@@ -162,6 +162,26 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
+    def write_id_row(self,label,data):
+        self.doc.start_row()
+        self.doc.start_cell("NormalCell")
+        self.doc.start_paragraph("Label")
+        self.doc.write_text(label)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell("NormalCell")
+        self.doc.start_paragraph("Data")
+        self.doc.write_raw(data)
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        self.doc.end_row()
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def write_marriage_row(self,list):
         self.doc.start_row()
 
@@ -297,7 +317,7 @@ class IndividualPage:
                 val = string.replace(val,'*',self.person.getId())
             else:
                 val = self.person.getId()
-            self.write_normal_row("%s:" % _("ID Number"),val,None)
+            self.write_id_row("%s:" % _("ID Number"),val)
             
         if self.person.getGender() == RelLib.Person.male:
             self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
