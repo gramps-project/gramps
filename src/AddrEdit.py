@@ -78,6 +78,8 @@ class AddressEditor:
         self.slist = self.top.get_widget("slist")
         self.sources_label = self.top.get_widget("sourcesAddr")
         self.notes_label = self.top.get_widget("noteAddr")
+        self.flowed = self.top.get_widget("addr_flowed")
+        self.preform = self.top.get_widget("addr_preform")
 
         self.parent = parent
         self.db = self.parent.db
@@ -104,9 +106,13 @@ class AddressEditor:
             self.postal.set_text(self.addr.getPostal())
             self.phone.set_text(self.addr.getPhone())
             self.priv.set_active(self.addr.getPrivacy())
-            self.note_field.get_buffer().set_text(self.addr.getNote())
             if self.addr.getNote():
+                self.note_field.get_buffer().set_text(self.addr.getNote())
                 Utils.bold_label(self.notes_label)
+            	if addr.getNoteFormat() == 1:
+                    self.preform.set_active(1)
+            	else:
+                    self.flowed.set_active(1)
         else:
             self.srcreflist = []
 
@@ -150,6 +156,7 @@ class AddressEditor:
         postal = self.postal.get_text()
         b = self.note_field.get_buffer()
         note = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
+        format = self.preform.get_active()
         priv = self.priv.get_active()
         
         if self.addr == None:
@@ -157,7 +164,7 @@ class AddressEditor:
             self.parent.plist.append(self.addr)
         self.addr.setSourceRefList(self.srcreflist)
 
-        self.update(date,street,city,state,country,postal,phone,note,priv)
+        self.update(date,street,city,state,country,postal,phone,note,format,priv)
         self.callback(self.addr)
 
     def check(self,get,set,data):
@@ -167,7 +174,7 @@ class AddressEditor:
             set(data)
             self.parent.lists_changed = 1
             
-    def update(self,date,street,city,state,country,postal,phone,note,priv):
+    def update(self,date,street,city,state,country,postal,phone,note,format,priv):
         """Compares the data items, and updates if necessary"""
         d = Date.Date()
         d.set(date)
@@ -183,6 +190,7 @@ class AddressEditor:
         self.check(self.addr.getPostal,self.addr.setPostal,postal)
         self.check(self.addr.getPhone,self.addr.setPhone,phone)
         self.check(self.addr.getNote,self.addr.setNote,note)
+        self.check(self.addr.getNoteFormat,self.addr.setNoteFormat,format)
         self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)
 
     def on_switch_page(self,obj,a,page):

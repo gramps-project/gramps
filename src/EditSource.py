@@ -73,6 +73,8 @@ class EditSource:
         self.gallery_label = self.top_window.get_widget("gallerySourceEditor")
         self.refs_label = self.top_window.get_widget("refsSourceEditor")
         self.notes_label = self.top_window.get_widget("notesSourceEditor")
+        self.flowed = self.top_window.get_widget("source_flowed")
+        self.preform = self.top_window.get_widget("source_preform")
         
         self.refinfo = self.top_window.get_widget("refinfo")
         
@@ -85,6 +87,10 @@ class EditSource:
         if source.getNote():
             self.notes_buffer.set_text(source.getNote())
             Utils.bold_label(self.notes_label)
+            if source.getNoteFormat() == 1:
+            	self.preform.set_active(1)
+            else:
+                self.flowed.set_active(1)
 
         if self.source.getPhotoList():
             Utils.bold_label(self.gallery_label)
@@ -234,7 +240,8 @@ class EditSource:
         abbrev = self.abbrev.get_text()
         note = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
-    
+        format = self.preform.get_active()
+
         if author != self.source.getAuthor():
             self.source.setAuthor(author)
             Utils.modified()
@@ -253,6 +260,10 @@ class EditSource:
         
         if note != self.source.getNote():
             self.source.setNote(note)
+            Utils.modified()
+
+        if format != self.source.getNoteFormat():
+            self.source.setNoteFormat(format)
             Utils.modified()
 
         self.close(None)

@@ -67,6 +67,8 @@ class NameEditor:
         self.priv = self.top.get_widget("priv")
         self.sources_label = self.top.get_widget("sourcesName")
         self.notes_label = self.top.get_widget("noteName")
+        self.flowed = self.top.get_widget("alt_flowed")
+        self.preform = self.top.get_widget("alt_preform")
 
         types = const.NameTypesMap.keys()
         types.sort()
@@ -109,9 +111,13 @@ class NameEditor:
             self.suffix_field.set_text(name.getSuffix())
             self.type_field.entry.set_text(_(name.getType()))
             self.priv.set_active(name.getPrivacy())
-            self.note_buffer.set_text(name.getNote())
             if name.getNote():
+            	self.note_buffer.set_text(name.getNote())
                 Utils.bold_label(self.notes_label)
+            	if name.getNoteFormat() == 1:
+                    self.preform.set_active(1)
+            	else:
+                    self.flowed.set_active(1)
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -132,6 +138,7 @@ class NameEditor:
         suffix = self.suffix_field.get_text()
         note = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                          self.note_buffer.get_end_iter(),gtk.FALSE)
+        format = self.preform.get_active()
         priv = self.priv.get_active()
 
         type = self.type_field.entry.get_text()
@@ -147,12 +154,12 @@ class NameEditor:
         
         self.name.setSourceRefList(self.srcreflist)
         
-        self.update_name(first,last,suffix,title,type,note,priv)
+        self.update_name(first,last,suffix,title,type,note,format,priv)
         self.parent.lists_changed = 1
 
         self.callback(self.name)
 
-    def update_name(self,first,last,suffix,title,type,note,priv):
+    def update_name(self,first,last,suffix,title,type,note,format,priv):
         
         if self.name.getFirstName() != first:
             self.name.setFirstName(first)
@@ -177,6 +184,10 @@ class NameEditor:
 
         if self.name.getNote() != note:
             self.name.setNote(note)
+            self.parent.lists_changed = 1
+
+        if self.name.getNoteFormat() != format:
+            self.name.setNoteFormat(format)
             self.parent.lists_changed = 1
 
         if self.name.getPrivacy() != priv:

@@ -1,3 +1,10 @@
+2003-12-15  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/NameEdit.py: Add note format support. 
+	* src/AddrEdit.py: Add note format support.
+	* src/AttrEdit.py: Add note format support.
+	* src/EventEdit.py: Add note format support.
+	* src/EditSource.py: Add note format support.
+
 2003-12-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/dialog.glade: Add format controls for notes.
 	* src/marriage.glade: Add format controls for notes.
