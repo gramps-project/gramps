@@ -26,12 +26,14 @@
 import cStringIO
 import traceback
 import sys
+import os
 
 #-------------------------------------------------------------------------
 #
 # GTK/GNOME modules
 #
 #-------------------------------------------------------------------------
+import gtk
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -42,6 +44,14 @@ import gtk.glade
 import const
 from intl import gettext as _
 
+_release_files = [
+    "/etc/redhat-release",
+    "/etc/mandrake-release",
+    "/etc/debian-release",
+    "/etc/SuSE-release",
+    "/etc/gentoo-release",
+    ]
+
 #-------------------------------------------------------------------------
 #
 # DisplayTrace
@@ -51,13 +61,28 @@ class DisplayTrace:
 
     def __init__(self):
         data = sys.exc_info()
+        ver = sys.version_info
+        
         msg = cStringIO.StringIO()
-        msg.write(_('GRAMPS %s has encountered an internal error.\n'
-                    'Please copy the message below and post a bug report '
-                    'at http://sourceforge.net/projects/gramps or send an '
-                    'email message to gramps-users@lists.sourceforge.net\n\n')
-                  % const.version)
-                    
+        msg.write(_('GRAMPS has encountered an internal error.\n'
+                    'Please copy the message below and post a bug report\n'
+                    'at http://sourceforge.net/projects/gramps or send an\n'
+                    'email message to gramps-bugs@lists.sourceforge.net\n\n'))
+
+        msg.write("GRAMPS : %s\n" % const.version)
+        msg.write("Python : %s.%s.%s %s\n" % (ver[0],ver[1],ver[2],ver[3]))
+        msg.write("GTK : %s.%s.%s\n" % gtk.gtk_version)
+        for n in _release_files:
+            if os.path.isfile(n):
+                try:
+                    f = open(n)
+                    text = f.readline()
+                    msg.write("OS : %s\n" % text)
+                    f.close()
+                    break
+                except:
+                    pass
+        
         traceback.print_exception(data[0],data[1],data[2],None,msg)
 
         self.glade = gtk.glade.XML(const.pluginsFile,"plugstat")

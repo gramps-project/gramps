@@ -311,9 +311,6 @@ class Gramps:
             "on_edit_active_person" : self.load_active_person,
             "on_edit_selected_people" : self.load_selected_people,
             "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
-            "on_edit_media_clicked" : self.media_view.on_edit_media_clicked,
-            "on_edit_place_clicked" : self.place_view.on_edit_clicked,
-            "on_edit_source_clicked" : self.source_view.on_edit_clicked,
             "on_exit_activate" : self.on_exit_activate,
             "on_family1_activate" : self.on_family1_activate,
             "on_find_activate" : self.on_find_activate,
@@ -326,7 +323,6 @@ class Gramps:
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
             "on_main_key_release_event" : self.on_main_key_release_event,
-            "on_add_media_clicked" : self.media_view.create_add_dialog,
             "on_media_activate" : self.on_media_activate,
             "on_media_list_select_row" : self.media_view.on_select_row,
             "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
@@ -371,6 +367,8 @@ class Gramps:
             self.source_view.on_edit_clicked(obj)
         elif cpage == 4:
             self.place_view.on_edit_clicked(obj)
+        elif cpage == 5:
+            self.media_view.on_edit_clicked(obj)
 
     def add_button_clicked(self,obj):
         cpage = self.notebook.get_current_page()
@@ -380,6 +378,8 @@ class Gramps:
             self.source_view.on_add_clicked(obj)
         elif cpage == 4:
             self.place_view.on_add_place_clicked(obj)
+        elif cpage == 5:
+            self.media_view.on_add_clicked(obj)
 
     def remove_button_clicked(self,obj):
         cpage = self.notebook.get_current_page()
@@ -389,6 +389,8 @@ class Gramps:
             self.source_view.on_delete_clicked(obj)
         elif cpage == 4:
             self.place_view.on_delete_clicked(obj)
+        elif cpage == 5:
+            self.media_view.on_delete_clicked(obj)
 
     def enable_buttons(self,val):
         self.addbtn.set_sensitive(val)
