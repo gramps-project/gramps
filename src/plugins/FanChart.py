@@ -325,7 +325,7 @@ class FanChartDialog(Report.DrawReportDialog):
         _make_default_style(self.default_style)
 
     def make_report(self):
-        """Create the object that will produce the Ancestor Chart.
+        """Create the object that will produce the Fan Chart.
         All user dialog has already been handled and the output file
         opened."""
 

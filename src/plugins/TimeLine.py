@@ -82,6 +82,7 @@ class TimeLine:
         self.title = title
         self.sort_func = sort_func
         self.newpage = newpage
+        self.setup()
         if output:
             self.standalone = 1
             self.d.open(output)
@@ -93,29 +94,29 @@ class TimeLine:
         Define the graphics styles used by the report. Paragraph definitions
         have already been defined in the document. The styles used are:
 
-        grid  - 0.5pt wide line dashed line. Used for the lines that make up
+        TLG-grid  - 0.5pt wide line dashed line. Used for the lines that make up
                 the grid.
-        line  - 0.5pt wide line. Used for the line connecting two endpoints
+        TLG-line  - 0.5pt wide line. Used for the line connecting two endpoints
                 and for the birth marker.
-        solid - 0.5pt line with a black fill color. Used for the date of
+        TLG-solid - 0.5pt line with a black fill color. Used for the date of
                 death marker.
-        text  - Contains the Name paragraph style used for the individual's
+        TLG-text  - Contains the TLG-Name paragraph style used for the individual's
                 name
-        title - Contains the Title paragraph style used for the title of
+        TLG-title - Contains the TLG-Title paragraph style used for the title of
                 the document
-        label - Contains the Label paragraph style used for the year label's
+        TLG-label - Contains the TLG-Label paragraph style used for the year label's
                 in the document.
         """
         g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
-        self.d.add_draw_style("line",g)
+        self.d.add_draw_style("TLG-line",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         g.set_fill_color((0,0,0))
-        self.d.add_draw_style("solid",g)
+        self.d.add_draw_style("TLG-solid",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
@@ -127,28 +128,28 @@ class TimeLine:
         g.set_line_width(0.5)
         g.set_line_style(BaseDoc.DASHED)
         g.set_color((0,0,0))
-        self.d.add_draw_style("grid",g)
+        self.d.add_draw_style("TLG-grid",g)
 
         g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("Name")
+        g.set_paragraph_style("TLG-Name")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        self.d.add_draw_style("text",g)
+        self.d.add_draw_style("TLG-text",g)
 
         g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("Title")
+        g.set_paragraph_style("TLG-Title")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        self.d.add_draw_style("title",g)
+        self.d.add_draw_style("TLG-title",g)
 
         g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("Label")
+        g.set_paragraph_style("TLG-Label")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        self.d.add_draw_style("label",g)
+        self.d.add_draw_style("TLG-label",g)
 
     def write_report(self):
 
@@ -156,7 +157,7 @@ class TimeLine:
 
         st_size = self.name_size()
 
-        font = self.d.style_list['Name'].get_font()
+        font = self.d.style_list['TLG-Name'].get_font()
         
         incr = pt2cm(font.get_size())
         pad =  incr*.75
@@ -168,7 +169,6 @@ class TimeLine:
         size = (stop-start)
         self.header = 2.0
         
-	#self.d.open(self.output)
         if self.newpage:
             self.doc.page_break()
         self.d.start_page()
@@ -186,7 +186,7 @@ class TimeLine:
             d = p.getDeath().getDateObj().getYear()
 
             n = p.getPrimaryName().getName()
-            self.d.draw_text('text',n,incr+pad,self.header + (incr+pad)*index)
+            self.d.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
             
             y1 = self.header + (pad+incr)*index
             y2 = self.header + ((pad+incr)*index)+incr
@@ -197,13 +197,13 @@ class TimeLine:
                 start_offset = ((float(b-low)/float(high-low)) * (size))
                 x1 = start+start_offset
                 path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                self.d.draw_path('line',path)
+                self.d.draw_path('TLG-line',path)
 
             if d != Date.UNDEF:
                 start_offset = ((float(d-low)/float(high-low)) * (size))
                 x1 = start+start_offset
                 path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                self.d.draw_path('solid',path)
+                self.d.draw_path('TLG-solid',path)
 
             if b != Date.UNDEF and d != Date.UNDEF:
                 start_offset = ((float(b-low)/float(high-low)) * size) + w
@@ -227,7 +227,6 @@ class TimeLine:
         self.d.end_page()    
         if self.standalone:
             self.d.close()
-	#self.d.close()
 
     def build_grid(self,year_low,year_high,start_pos,stop_pos):
         """
@@ -242,15 +241,15 @@ class TimeLine:
         """
         width = self.d.get_usable_width()
 
-        title_font = self.d.style_list['Title'].get_font()
-        normal_font = self.d.style_list['Name'].get_font()
-        label_font = self.d.style_list['Name'].get_font()
+        title_font = self.d.style_list['TLG-Title'].get_font()
+        normal_font = self.d.style_list['TLG-Name'].get_font()
+        label_font = self.d.style_list['TLG-Label'].get_font()
 
         tstr_width = pt2cm(FontScale.string_width(title_font,self.title))
 
         title_x = (width - tstr_width )/2.0
         title_y = 0
-        self.d.draw_text('title',self.title,title_x,title_y)
+        self.d.draw_text('TLG-title',self.title,title_x,title_y)
         
         label_y = self.header - (pt2cm(normal_font.get_size())*1.2)
         top_y = self.header
@@ -266,8 +265,8 @@ class TimeLine:
             xpos = start_pos+(val*delta)
             label_xpos = start_pos+(val*delta) - year_width
             
-            self.d.draw_text('label', year_str, label_xpos, label_y)
-            self.d.draw_line('grid', xpos, top_y, xpos, bottom_y)
+            self.d.draw_text('TLG-label', year_str, label_xpos, label_y)
+            self.d.draw_line('TLG-grid', xpos, top_y, xpos, bottom_y)
 
     def find_year_range(self):
         low  =  999999
@@ -300,7 +299,7 @@ class TimeLine:
     def name_size(self):
         self.plist = self.filter.apply(self.db,self.db.getPersonMap().values())
 
-        style_name = self.d.draw_styles['text'].get_paragraph_style()
+        style_name = self.d.draw_styles['TLG-text'].get_paragraph_style()
         font = self.d.style_list[style_name].get_font()
         
         size = 0
@@ -323,7 +322,7 @@ def _make_default_style(default_style):
     p = BaseDoc.ParagraphStyle()
     p.set_font(f)
     p.set_description(_("The style used for the person's name."))
-    default_style.add_style("Name",p)
+    default_style.add_style("TLG-Name",p)
 
     f = BaseDoc.FontStyle()
     f.set_size(8)
@@ -331,7 +330,7 @@ def _make_default_style(default_style):
     p = BaseDoc.ParagraphStyle()
     p.set_font(f)
     p.set_description(_("The style used for the year labels."))
-    default_style.add_style("Label",p)
+    default_style.add_style("TLG-Label",p)
 
     f = BaseDoc.FontStyle()
     f.set_size(14)
@@ -339,7 +338,7 @@ def _make_default_style(default_style):
     p = BaseDoc.ParagraphStyle()
     p.set_font(f)
     p.set_description(_("The style used for the title of the page."))
-    default_style.add_style("Title",p)
+    default_style.add_style("TLG-Title",p)
 
 #------------------------------------------------------------------------
 #
@@ -371,6 +370,17 @@ def _get_report_filters(person):
 
 #------------------------------------------------------------------------
 #
+# Builds list of sorting functions for this report
+#
+#------------------------------------------------------------------------
+def _get_sort_functions():
+    return [
+        (_("Birth Date"),sort.by_birthdate),
+        (_("Name"),sort.by_last_name), 
+    ]
+
+#------------------------------------------------------------------------
+#
 # TimeLineDialog
 #
 #------------------------------------------------------------------------
@@ -381,8 +391,12 @@ class TimeLineDialog(Report.DrawReportDialog):
 
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Timeline"),
+        return "%s - %s - GRAMPS" % (_("Timeline Graph"),
                                      _("Graphical Reports"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents."""
+        return _("Timeline Graph for %s") % name
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
@@ -406,7 +420,8 @@ class TimeLineDialog(Report.DrawReportDialog):
         self.sort_style = gtk.OptionMenu()
         self.sort_menu = gtk.Menu()
 
-        for item in [(_("Birth Date"),sort.by_birthdate),(_("Name"),sort.by_last_name)]:
+        sort_functions = _get_sort_functions()
+        for item in sort_functions:
             menuitem = gtk.MenuItem(item[0])
             menuitem.set_data('sort',item[1])
             menuitem.show()
@@ -433,7 +448,7 @@ class TimeLineDialog(Report.DrawReportDialog):
         try:
             MyReport = TimeLine(self.db, self.person, 
                     self.filter, title, sort_func, self.doc, self.target_path)
-	    MyReport.setup()
+	    #MyReport.setup()
             MyReport.write_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
@@ -484,16 +499,16 @@ _style_name = "default"
 
 _person_id = ""
 _filter_num = 0
-_sort = ""
-_title = ""
-_options = ( _person_id, _filter_num, _sort, _title )
+_sort_func_num = 0
+_title_str = ""
+_options = ( _person_id, _filter_num, _sort_func_num, _title_str )
 
 #------------------------------------------------------------------------
 #
 # Book Item Options dialog
 #
 #------------------------------------------------------------------------
-class TimelineGraphBareDialog(Report.BareReportDialog):
+class TimeLineBareDialog(Report.BareReportDialog):
 
     def __init__(self,database,person,opt,stl):
 
@@ -508,13 +523,13 @@ class TimelineGraphBareDialog(Report.BareReportDialog):
         Report.BareReportDialog.__init__(self,database,self.person)
 
         self.filter_num = int(self.options[1])
-        self.sort = self.options[2]
-        self.title = self.options[3]
+        self.sort_func_num = int(self.options[2])
+        self.title_str = self.options[3]
         self.new_person = None
 
         self.filter_combo.set_history(self.filter_num)
-        self.sort_style.set_history(self.filter_num)
-        self.title_box.get_buffer.set_text(self.title)
+        self.sort_style.set_history(self.sort_func_num)
+        self.title_box.set_text(self.title_str)
 
         self.window.run()
 
@@ -525,11 +540,11 @@ class TimelineGraphBareDialog(Report.BareReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Ancestor Chart"))
+        return "%s - GRAMPS Book" % (_("Timeline Graph"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""
-        return _("Ancestor Chart for GRAMPS Book") 
+        return _("Timeline Graph for GRAMPS Book") 
 
     def get_stylesheet_savefile(self):
         """Where to save styles for this report."""
@@ -539,10 +554,28 @@ class TimelineGraphBareDialog(Report.BareReportDialog):
         """No generations, no page breaks."""
         return (0, 0)
     
-    def get_report_extra_textbox_info(self):
-        """Label the textbox and provide the default contents."""
-        return (_("Display Format"), "$n\n%s $b\n%s $d" % (_BORN,_DIED),
-                _("Allows you to customize the data in the boxes in the report"))
+    def add_user_options(self):
+        """
+        Override the base class add_user_options task to add a menu that allows
+        the user to select the sort method.
+        """
+        
+        self.sort_style = gtk.OptionMenu()
+        self.sort_menu = gtk.Menu()
+
+        sort_functions = _get_sort_functions()
+        for item in sort_functions:
+            menuitem = gtk.MenuItem(item[0])
+            menuitem.set_data('sort',item[1])
+            menuitem.show()
+            self.sort_menu.append(menuitem)
+
+        self.sort_style.set_menu(self.sort_menu)
+        self.add_option(_('Sort by'),self.sort_style)
+
+        self.title_box = gtk.Entry()
+        self.title_box.show()
+        self.add_option(_('Title'),self.title_box)
 
     def make_default_style(self):
         _make_default_style(self.default_style)
@@ -559,11 +592,15 @@ class TimelineGraphBareDialog(Report.BareReportDialog):
 
         # Preparation
         self.parse_style_frame()
-        self.parse_report_options_frame()
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.report_text )
+        self.filter_num = self.filter_combo.get_history()
+        self.sort_func_num = self.sort_style.get_history()
+        self.title_str = self.title_box.get_text()
+
+        self.options = ( self.person.getId(), self.filter_num, 
+            self.sort_func_num, self.title_str )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -572,15 +609,20 @@ class TimelineGraphBareDialog(Report.BareReportDialog):
 #
 #------------------------------------------------------------------------
 def write_book_item(database,person,doc,options,newpage=0):
-    """Write the Ancestor Chart using options set.
+    """Write the Timeline Graph using options set.
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
             person = database.getPerson(options[0])
-        max_gen = int(options[1])
-        disp_format = options[2]
+        filter_num = int(options[1])
+        filters = _get_report_filters(person)
+        afilter = filters[filter_num]
+        sort_func_num = int(options[2])
+        sort_functions = _get_sort_functions()
+        sort_func = sort_functions[sort_func_num][1]
+        title_str = options[3]
         return TimeLine(database, person, 
-                    afilter, title, sort_func, doc, None, newpage )
+                    afilter, title_str, sort_func, doc, None, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
@@ -590,6 +632,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
+
 
 #------------------------------------------------------------------------
 #
@@ -621,7 +664,7 @@ register_report(
 register_book_item( 
     _("Timeline Graph"), 
     _("Graphics"),
-    TimelineGraphBareDialog,
+    TimeLineBareDialog,
     write_book_item,
     _options,
     _style_name,
