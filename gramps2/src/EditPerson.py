@@ -425,7 +425,7 @@ class EditPerson:
         self.parent.wins_dict[self.original_id] = self
         win_menu_label = GrampsCfg.nameof(self.person)
         if not win_menu_label.strip():
-            win_menu_label = _("NewPerson")
+            win_menu_label = _("New Person")
         self.win_menu_item = gtk.MenuItem(win_menu_label)
 	self.win_menu_item.set_submenu(gtk.Menu())
         self.win_menu_item.show()
