@@ -5,6 +5,7 @@
 	function, import it from Utils.py instead. 
 	* src/plugins/Ancestors.py (get_xpm_image): Remove function;
 	Bring up to the database interface. 
+	* src/gramps.glade: Menu improvements.
 
 2004-04-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/RTFDoc.py: Completely switch from grampslib.
