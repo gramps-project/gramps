@@ -89,7 +89,7 @@ class Gramps:
 
     def __init__(self,arg):
 
-        self.program = gnome.program_init("gramps","0.9.0pre")
+        self.program = gnome.program_init("gramps",const.version)
         
         self.DataFilter = Filter.Filter("")
         self.active_child = None
@@ -254,18 +254,15 @@ class Gramps:
             "on_removebtn_clicked" : self.remove_button_clicked,
             "delete_event" : self.delete_event,
             "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_preffam_clicked" : self.on_preferred_fam_toggled,
             "on_family_up_clicked" : self.family_up_clicked,
             "on_family_down_clicked" : self.family_down_clicked,
             "on_spouse_list_changed" : self.spouse_list_changed,
-            "on_prefrel_toggled" : self.on_preferred_rel_toggled,
             "on_about_activate" : self.on_about_activate,
             "on_add_bookmark_activate" : self.on_add_bookmark_activate,
             "on_add_child_clicked" : self.on_add_child_clicked,
             "on_add_new_child_clicked" : self.on_add_new_child_clicked,
             "on_add_place_clicked" : self.place_view.on_add_place_clicked,
             "on_add_source_clicked" : self.source_view.on_add_clicked,
-            "on_add_sp_clicked" : self.on_add_sp_clicked,
             "on_addperson_clicked" : self.load_new_person,
             "on_apply_filter_clicked" : self.on_apply_filter_clicked,
             "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
@@ -277,24 +274,17 @@ class Gramps:
             "on_delete_place_clicked" : self.place_view.on_delete_clicked,
             "on_delete_source_clicked" : self.source_view.on_delete_clicked,
             "on_delete_media_clicked" : self.media_view.on_delete_clicked,
-            "on_delete_sp_clicked" : self.on_delete_sp_clicked,
             "on_edit_active_person" : self.load_active_person,
             "on_edit_selected_people" : self.load_selected_people,
             "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
-            "on_edit_father_clicked" : self.on_edit_father_clicked,
             "on_edit_media_clicked" : self.media_view.on_edit_media_clicked,
-            "on_edit_mother_clicked" : self.on_edit_mother_clicked,
             "on_edit_place_clicked" : self.place_view.on_edit_clicked,
             "on_edit_source_clicked" : self.source_view.on_edit_clicked,
-            "on_edit_sp_clicked" : self.on_edit_sp_clicked,
-            "on_edit_spouse_clicked" : self.on_edit_spouse_clicked,
             "on_exit_activate" : self.on_exit_activate,
             "on_family1_activate" : self.on_family1_activate,
-            "on_father_next_clicked" : self.on_father_next_clicked,
             "on_find_activate" : self.on_find_activate,
             "on_findname_activate" : self.on_findname_activate,
             "on_home_clicked" : self.on_home_clicked,
-            "on_mother_next_clicked" : self.on_mother_next_clicked,
             "on_new_clicked" : self.on_new_clicked,
             "on_notebook1_switch_page" : self.on_notebook1_switch_page,
             "on_ok_button1_clicked" : self.on_ok_button1_clicked,
@@ -572,100 +562,6 @@ class Gramps:
 
     def add_new_cancel(self,obj):
         Utils.destroy_passed_object(self.addornew)
-
-    def add_new_new_relationship(self,obj):
-        import AddSpouse
-        Utils.destroy_passed_object(self.addornew)
-        AddSpouse.AddSpouse(self.db,self.active_person,
-                            self.family_view.load_family,self.redisplay_person_list)
-        
-    def on_add_sp_clicked(self,obj):
-        """Add a new spouse to the current person"""
-        if self.active_person:
-            if self.active_family and not self.active_spouse:
-                top = gtk.glade.XML(const.gladeFile, "add_or_new")
-                top.signal_autoconnect({
-                    'on_cancel_clicked' : self.add_new_cancel,
-                    'on_add_clicked' : self.add_new_choose_spouse,
-                    'on_new_clicked' : self.add_new_new_relationship
-                    })
-                self.addornew = top.get_widget('add_or_new')
-            else:
-                try:
-                    AddSpouse.AddSpouse(self.db,self.active_person,
-                                        self.family_view.load_family,
-                                        self.redisplay_person_list)
-                except:
-                    DisplayTrace.DisplayTrace()
-                    
-    def add_new_choose_spouse(self,obj):
-        Utils.destroy_passed_object(self.addornew)
-        try:
-            AddSpouse.SetSpouse(self.db,self.active_person,self.active_family,
-                                self.family_view.load_family,
-                                self.redisplay_person_list)
-        except:
-            DisplayTrace.DisplayTrace()
-
-    def on_edit_sp_clicked(self,obj):
-        """Edit the marriage information for the current family"""
-        if self.active_person:
-            try:
-                Marriage.Marriage(self.active_family,self.db,self.new_after_edit)
-            except:
-                DisplayTrace.DisplayTrace()
-
-    def on_delete_sp_clicked(self,obj):
-        """Delete the currently selected spouse from the family"""
-    
-        if self.active_person == None:
-            return
-        elif self.active_person == self.active_family.getFather():
-            person = self.active_family.getMother()
-            self.active_family.setMother(None)
-        else:
-            person = self.active_family.getFather()
-            self.active_family.setFather(None)
-
-        if person:
-            person.removeFamily(self.active_family)
-    
-        if len(self.active_family.getChildList()) == 0:
-            self.active_person.removeFamily(self.active_family)
-            self.db.deleteFamily(self.active_family)
-            if len(self.active_person.getFamilyList()) > 0:
-                self.family_view.load_family(self.active_person.getFamilyList()[0])
-            else:
-                self.family_view.load_family(None)
-        else:
-            self.family_view.load_family()
-        Utils.modified()
-
-    def on_mother_next_clicked(self,obj):
-        """Makes the current mother the active person"""
-        if self.active_parents:
-            mother = self.active_parents.getMother()
-            if mother:
-                self.change_active_person(mother)
-                obj.set_sensitive(1)
-                self.family_view.load_family()
-            else:
-                obj.set_sensitive(0)
-        else:
-            obj.set_sensitive(0)
-
-    def on_father_next_clicked(self,obj):
-        """Makes the current father the active person"""
-        if self.active_parents:
-            father = self.active_parents.getFather()
-            if father:
-                self.change_active_person(father)
-                obj.set_sensitive(1)
-                self.family_view.load_family()
-            else:
-                obj.set_sensitive(0)
-        else:
-            obj.set_sensitive(0)
 
     def on_add_child_clicked(self,obj):
         """Select an existing child to add to the active family"""
@@ -961,18 +857,6 @@ class Gramps:
     def load_active_person(self,obj):
         self.load_person(self.active_person)
     
-    def on_edit_spouse_clicked(self,obj):
-        """Display the active spouse in the EditPerson display"""
-        self.load_person(self.active_spouse)
-
-    def on_edit_mother_clicked(self,obj):
-        """Display the active mother in the EditPerson display"""
-        self.load_person(self.active_mother)
-
-    def on_edit_father_clicked(self,obj):
-        """Display the active father in the EditPerson display"""
-        self.load_person(self.active_father)
-
     def load_new_person(self,obj):
         self.active_person = Person()
         try:
@@ -1017,9 +901,6 @@ class Gramps:
         self.person_model.sort_column_changed()
         self.update_display(0)
         Utils.modified()
-
-    def sort_person_list():
-        pass
 
     def remove_from_person_list(self,person,old_id=None):
         pid = person.getId()
@@ -1331,16 +1212,6 @@ class Gramps:
             filter.hide()
         filter.set_sensitive(qual)
 
-    def on_preferred_rel_toggled(self,obj):
-        self.active_person.setPreferred(self.active_family)
-        self.family_view.load_family(self.active_family)
-        Utils.modified()
-
-    def on_preferred_fam_toggled(self,obj):
-        self.active_person.setMainParents(self.active_parents)
-        self.change_parents(self.active_parents)
-        Utils.modified()
-        
     def new_after_edit(self,epo,plist):
         if epo:
             if epo.person.getId() == "":
