@@ -778,7 +778,7 @@ class WebReport(Report.Report):
                                  image_dir_name)
                 return
     
-        ind_list = self.filter.apply(self.db.getPersonMap().values())
+        ind_list = self.filter.apply(self.db,self.db.getPersonMap().values())
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
@@ -1066,7 +1066,7 @@ class WebReportDialog(Report.ReportDialog):
         """The format frame is not used in this dialog.  Hide it, and
         set the output notebook to always display the html template
         page."""
-        self.output_notebook.set_page(1)
+        self.output_notebook.set_current_page(1)
 
     #------------------------------------------------------------------------
     #

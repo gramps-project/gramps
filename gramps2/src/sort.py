@@ -75,14 +75,14 @@ def by_last_name(first, second):
     name1 = first.PrimaryName
     name2 = second.PrimaryName
 
-    fsn = su(name1.Surname)
-    ssn = su(name2.Surname)
+    fsn = name1.Surname.upper()
+    ssn = name2.Surname.upper()
 
     if fsn == ssn :
-        ffn = su(name1.FirstName)
-        sfn = su(name2.FirstName)
+        ffn = name1.FirstName.upper()
+        sfn = name2.FirstName.upper()
         if ffn == sfn :
-            return cmp(su(name1.Suffix), su(name2.Suffix))
+            return cmp(name1.Suffix.upper(), name2.Suffix.upper())
         else :
             return cmp(ffn, sfn)
     else :

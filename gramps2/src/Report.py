@@ -158,13 +158,13 @@ class Report:
         self.ptop.vbox.add(gtk.HSeparator())
         self.ptop.vbox.set_spacing(10)
         self.pbar = gtk.ProgressBar()
-        self.pbar.set_format_string(_("%v of %u (%P%%)"))
-        self.pbar.configure(0.0,0.0,total)
-        self.pbar.set_show_text(1)
-        self.pbar.set_usize(350,20)
+#        self.pbar.set_format_string(_("%v of %u (%P%%)"))
+#        self.pbar.configure(0.0,0.0,total)
+#        self.pbar.set_show_text(1)
         self.pbar_max = total
         self.pbar_index = 0.0
 
+        self.ptop.set_size_request(350,20)
         self.ptop.vbox.add(self.pbar)
         self.ptop.show_all()
 
@@ -174,7 +174,7 @@ class Report:
         self.pbar_index = self.pbar_index + 1.0
         if (self.pbar_index > self.pbar_max):
             self.pbar_index = self.pbar_max
-        self.pbar.set_value(self.pbar_index)
+        self.pbar.set_fraction(self.pbar_index/100.0)
 
     def progress_bar_done(self):
         """Done with the progress bar.  It can be destroyed now."""
