@@ -314,7 +314,7 @@ class IndividualPage:
         
         if self.photos and len(media_list) > 0:
             object_id = media_list[0].get_reference_id()
-            object = self.database.find_object_from_id(object_id)
+            object = self.db.find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
                 src = object.get_path()
                 junk,ext = os.path.splitext(src)
@@ -405,9 +405,9 @@ class IndividualPage:
         
         my_list = []
         for object_ref in self.person.get_media_list():
-            object = self.database.find_object_from_id(object_ref.get_ref())
+            object = self.db.find_object_from_id(object_ref.get_reference_id())
             if object.get_mime_type()[0:5] == "image":
-                if object.get_privacy() == 0:
+                if object_ref.get_privacy() == 0:
                     my_list.append(object)
             
         # if no images were found, return
@@ -426,10 +426,10 @@ class IndividualPage:
         index = 0
         for obj_id in my_list:
             try:
-                obj = self.database.find_object_from_id(obj_id)
-                src = obj.get_reference().get_path()
+                obj = self.db.find_object_from_id(obj_id)
+                src = obj.get_path()
                 junk,ext = os.path.splitext(src)
-                base = '%s%s' % (obj.get_reference().get_id(),ext)
+                base = '%s%s' % (obj.get_id(),ext)
                 
                 if self.image_dir:
                     shutil.copyfile(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
@@ -450,7 +450,7 @@ class IndividualPage:
                     index = 1
                     continue
 
-                description = obj.get_reference().get_description()
+                description = obj.get_description()
 
                 self.doc.start_row()
                 self.doc.start_cell("ImageCell")
@@ -754,29 +754,34 @@ class WebReport(Report.Report):
             retval = "AFT %s" % retval
         return retval
 
-    def dump_gendex(self,person_list,html_dir):
+    def dump_gendex(self,person_id_list,html_dir):
         fname = "%s/gendex.txt" % html_dir
         try:
             f = open(fname,"w")
         except:
             return
-        for p in person_list:
+        for p_id in person_id_list:
+            p = self.db.find_person_from_id(p_id)
             name = p.get_primary_name()
             firstName = name.get_first_name()
             surName = name.get_surname()
             suffix = name.get_suffix()
 
-            f.write("%s.%s|" % (p.get_id(),self.ext))
+            f.write("%s.%s|" % (p_id,self.ext))
             f.write("%s|" % surName)
             if suffix == "":
                 f.write("%s /%s/|" % (firstName,surName))
             else:
                 f.write("%s /%s/, %s|" % (firstName,surName, suffix))
-            for e in [p.get_birth(),p.get_death()]:
+            for e_id in [p.get_birth_id(),p.get_death_id()]:
+                if e_id:
+                    e = self.db.find_event_from_id(e_id)
+                else:
+                    continue
                 if e:
                     f.write("%s|" % self.make_date(e.get_date_object()))
                     if e.get_place_id():
-                        f.write('%s|' % e.get_place_id().get_title())
+                        f.write('%s|' % self.db.find_place_from_id(e.get_place_id()).get_title())
                     else:
                         f.write('|')
                 else:
@@ -784,7 +789,7 @@ class WebReport(Report.Report):
             f.write('\n')
         f.close()
 
-    def dump_index(self,person_list,styles,template,html_dir):
+    def dump_index(self,person_id_list,styles,template,html_dir):
         """Writes an index file, listing all people in the person list."""
     
         doc = HtmlLinkDoc(self.selected_style,None,template,None)
@@ -796,10 +801,11 @@ class WebReport(Report.Report):
         doc.write_text(_("Family Tree Index"))
         doc.end_paragraph()
     
-        person_list.sort(sort.by_last_name)
+        person_id_list.sort(self.db.sort_by_name)
 
         a = {}
-        for person in person_list:
+        for person_id in person_id_list:
+            person = self.db.find_person_from_id(person_id)
             n = person.get_primary_name().get_surname()
             if n:
                 a[n[0]] = 1
@@ -829,9 +835,9 @@ class WebReport(Report.Report):
         if self.separate_alpha:
             doc.close()
             for n in link_keys:
-                p_list = [ p for p in person_list if \
-                            (p.get_primary_name().get_surname() \
-                            and (p.get_primary_name().get_surname()[0] == n) ) ]
+                p_id_list = [ p_id for p_id in person_id_list if \
+                            (self.db.find_person_from_id(p_id).get_primary_name().get_surname() \
+                            and (self.db.find_person_from_id(p_id).get_primary_name().get_surname()[0] == n) ) ]
                 doc = HtmlLinkDoc(self.selected_style,None,template,None)
                 doc.set_extension(self.ext)
                 doc.set_title(_("Section %s") % n)
@@ -848,10 +854,10 @@ class WebReport(Report.Report):
                 doc.write_raw('<tr><td width="%d%%" valign="top">' % td_width)
                 col_len = n_rows
 
-                for person in p_list:
-                    name = person.get_primary_name().get_name()
+                for person_id in p_id_list:
+                    name = self.db.find_person_from_if(person_id).get_primary_name().get_name()
 
-                    doc.start_link("%s.%s" % (person.get_id(),self.ext))
+                    doc.start_link("%s.%s" % (person_id,self.ext))
                     doc.write_text(name)
                     doc.end_link()
 
@@ -864,7 +870,7 @@ class WebReport(Report.Report):
                 doc.write_raw('</td></tr></table>')
                 doc.close()
         else:
-            n_rows = len(person_list) + len(link_keys)
+            n_rows = len(person_id_list) + len(link_keys)
             n_rows = n_rows/self.n_cols
             td_width = 100/self.n_cols
 
@@ -872,9 +878,9 @@ class WebReport(Report.Report):
             doc.write_raw('<tr><td width="%d%%" valign="top">' % td_width)
             col_len = n_rows
             for n in link_keys:
-                p_list = [ p for p in person_list if \
-                            (p.get_primary_name().get_surname() \
-                            and (p.get_primary_name().get_surname()[0] == n) ) ]
+                p_id_list = [ p_id for p_id in person_id_list if \
+                            (self.db.find_person_from_id(p_id).get_primary_name().get_surname() \
+                            and (self.db.find_person_from_id(p_id).get_primary_name().get_surname()[0] == n) ) ]
                 doc.start_paragraph('IndexLabel')
                 if self.include_alpha_links:
                     doc.write_linktarget("%03d" % a[n])
@@ -882,10 +888,10 @@ class WebReport(Report.Report):
                 doc.end_paragraph()
                 col_len = col_len - 1
 
-                for person in p_list:
-                    name = person.get_primary_name().get_name()
+                for person_id in p_id_list:
+                    name = self.db.find_person_from_id(person_id).get_primary_name().get_name()
 
-                    doc.start_link("%s.%s" % (person.get_id(),self.ext))
+                    doc.start_link("%s.%s" % (person_id,self.ext))
                     doc.write_text(name)
                     doc.end_link()
                     if col_len <= 0:
@@ -938,7 +944,7 @@ class WebReport(Report.Report):
                                  image_dir_name)
                 return
     
-        ind_list = self.filter.apply(self.db,self.db.get_person_id_map().values())
+        ind_list = self.filter.apply(self.db,self.db.get_person_keys())
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
@@ -950,8 +956,9 @@ class WebReport(Report.Report):
 
         my_map = {}
         for l in ind_list:
-            my_map[l.get_id()] = l
-        for person in ind_list:
+            my_map[l] = l
+        for person_id in ind_list:
+            person = self.db.find_person_from_id(person_id)
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             tdoc.set_extension(self.ext)
             tdoc.set_keywords([person.get_primary_name().get_surname(),

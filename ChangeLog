@@ -3,6 +3,10 @@
 	Switch from list of 2^gen strings to a dict with only used entries.
 	Clean up generation SpinButton in the dialog.
 
+	* src/GenericFilter.py: Convert to ids.
+	* src/plugins/FilterEditor.py: Convert to ids.
+	* src/plugins/WebPage.py: Convert to ids.
+
 2004-03-10  Leonid Mamtchenkov  <leonid@leonid.maks.net>
 	* src/plugins/WebPage.py: Link main photo to the original.
 	Use alt strings. Mini tree for many generations.
