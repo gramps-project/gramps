@@ -398,24 +398,27 @@ class HomePage(BasePage):
         if note_id:
             obj = db.get_object_from_gramps_id(note_id)
 
-            if obj.get_mime_type()[0:5] == "image":
-                newpath = obj.gramps_id + os.path.splitext(obj.get_path())[1]
-                shutil.copyfile(obj.get_path(),
-                                os.path.join(html_dir,newpath))
-                of.write('<div align="center">\n')
-                of.write('<img border="0" ')
-                of.write('src="%s" />' % newpath)
-                of.write('</div>\n')
-
-            note_obj = obj.get_note_object()
-            if note_obj:
-                text = note_obj.get()
-                if note_obj.get_format():
-                    of.write('<pre>\n%s\n</pre>\n' % text)
-                else:
-                    of.write('<p>')
-                    of.write('</p><p>'.join(text.split('\n')))
-                    of.write('</p>')
+            if not obj:
+                print "%s object not found" % note_id
+            else:
+                if obj.get_mime_type()[0:5] == "image":
+                    newpath = obj.gramps_id + os.path.splitext(obj.get_path())[1]
+                    shutil.copyfile(obj.get_path(),
+                                    os.path.join(html_dir,newpath))
+                    of.write('<div align="center">\n')
+                    of.write('<img border="0" ')
+                    of.write('src="%s" />' % newpath)
+                    of.write('</div>\n')
+    
+                note_obj = obj.get_note_object()
+                if note_obj:
+                    text = note_obj.get()
+                    if note_obj.get_format():
+                        of.write('<pre>\n%s\n</pre>\n' % text)
+                    else:
+                        of.write('<p>')
+                        of.write('</p><p>'.join(text.split('\n')))
+                        of.write('</p>')
 
         self.display_footer(of)
         of.close()
