@@ -241,10 +241,14 @@ class XmlWriter:
             self.g.write(">\n")
 
             keys = self.db.get_person_handles(sort_handles=False)
-            keys.sort ()
+            sorted_keys = []
             for key in keys:
-                person = self.db.get_person_from_handle(key)
-                
+                person = self.db.get_person_from_handle (key)
+                tuple = (person.get_gramps_id (), person)
+                sorted_keys.append (tuple)
+
+            sorted_keys.sort ()
+            for (gramps_id, person) in sorted_keys:
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count += 1
