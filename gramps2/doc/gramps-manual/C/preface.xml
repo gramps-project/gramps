@@ -1,0 +1,126 @@
+<preface id="gramps-preface">
+
+<!--
+	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+
+	  Copyright (C) 2003-2005  Alexander Roitman
+
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+-->
+
+<!-- $Id$ -->
+
+    <title>Preface</title> 
+    <para> &app; is a genealogical 
+    application. &app; is an acronym for the 
+    Genealogical Research and Analysis Management Programming System. To put 
+    it shortly, it allows you to store, edit, and research genealogical data 
+    using your computer. Its functionality is somewhat common to other 
+    genealogical programs. However, &app; offers some unique features. </para> 
+
+    <sect1 id="why-gramps">
+      <title>Why GRAMPS?</title>
+      <para> &app; was conceived under the concept
+      that most genealogy programs were designed to provide the researcher the 
+      capability to input information related to a particular family tree.  
+      Most of these programs have allowed for the arranging and storing of
+      information consistent with the GEDCOM standards. They usually provide
+      means for displaying descendant or ancestral relationships by means of
+      graphical displays, charts, or reports.  These may be augmented with 
+      pictures or other media to enhance the data.  Most provide for inputting 
+      data on unconnected individuals/families that may or may not have a 
+      relationship to the primary surname being researched.  Various other 
+      enhancements may also be provided in the genealogical program that 
+      allows for different degrees of importing and exporting data from other 
+      programs and printing the data contained in the various reports. </para>
+      
+      <para> &app;, on the other hand, attempts to
+      provide all of the common capabilities of these programs, but, more
+      importantly, to provide an additional capability of integration not common
+      to these programs.  This is the ability to input any bits and pieces of
+      information directly into &app; and
+      rearrange/manipulate any/all data events in the entire data base (in any
+      order or sequence) to assist the user in doing research, analysis and
+      correlation with the potential of filling relationship gaps.  In short, it 
+      is a tool that provides a way to input all your research into one place and 
+      do your analysis and correlation using the speed, power, and accuracy of 
+      your computer instead of pencils and unmanageable reams of paper. </para>
+    </sect1>
+    
+    <sect1 id="whats-new">
+    </sect1>
+
+    <sect1 id="typography">
+        <title>Typographical conventions</title>
+	<para>
+          In this book, we some words are marked with special typography:
+          <simplelist>
+	    <member><application>Applications</application></member>
+	    <member><command>Commands</command> you type at the command 
+            line</member>
+            <member><filename>Filenames</filename></member>
+            <member><replaceable>Replaceable text</replaceable></member>
+	    <member><guilabel>Labels</guilabel> for buttons and other
+             portions of the graphical interface</member>
+
+            <member> Menu selections look like this:
+                       <menuchoice>
+                          <guimenu>Menu</guimenu>
+                          <guisubmenu>Submenu</guisubmenu> 
+                          <guimenuitem>Menu Item</guimenuitem>
+                     </menuchoice>
+            </member>
+	    <member><guibutton>Buttons</guibutton> you can
+            click</member> 
+            <member><userinput>Anything you type
+            in</userinput></member>
+	 </simplelist>
+        </para>
+
+        <para>
+        We also provide assorted bits of additional information in tips 
+        and notes, as follows. 
+
+	  <tip id="example-tip">
+	      <title>Tip</title>
+	      <para>
+		Tips and bits of extra information will look like
+		this.
+	      </para>
+	    </tip>
+          
+           <note id="example-note">
+               <title>Note</title>
+	      <para>
+		Notes will look like this.
+	      </para>
+           </note>                
+         </para>
+
+        <para>
+         Finally, we have warnings, in cases where you should be careful:
+
+	    <warning id="example-warning">
+	      <title>Example Warning</title>
+	      <para>
+		This is what a warning looks like. If there's a chance
+		you'll run into trouble, we'll warn you beforehand.
+	      </para>
+	  </warning>
+       </para>
+    </sect1>
+
+  </preface>
+  

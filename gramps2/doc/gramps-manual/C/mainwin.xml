@@ -1,23 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="gramps-mainwin"> 
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2004  Alexander Roitman
+	  Copyright (C) 2003-2005  Alexander Roitman
 
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
-          distributed with this manual.
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
 <!-- $Id$ -->
 
-<!-- ================ Main Window ================================ -->
-  <sect1 id="gramps-mainwin"> 
     <title>Main Window</title> 
     <para>When you open a database (either existing or brand new), 
     the following window is displayed.</para>
@@ -84,7 +88,7 @@
       </variablelist>
 
     <!-- ================ Main Window Subsection  -->
-    <sect2 id="gramps-views">
+    <sect1 id="gramps-views">
       <title>Views</title>
       <para>Views are the various ways to display different aspects of 
       genealogical information, as described below. Since the relevant 
@@ -96,7 +100,7 @@
       switching between the Views.</para> 
 
     <!-- ================ Main Window Sub-subsection  -->
-      <sect3 id="view-modes">
+      <sect2 id="view-modes">
         <title>Switching Views and Viewing Modes</title>
 	<para>Depending on the state of the <menuchoice> 
 	<guimenu>View</guimenu><guimenuitem>Sidebar</guimenuitem> 
@@ -139,10 +143,10 @@
 	<guimenuitem>Sidebar</guimenuitem> 
 	</menuchoice> from the &app; menu.</para>
     
-      </sect3>
+      </sect2>
 
     <!-- ================ Main Window Sub-subsection  -->
-      <sect3 id="people-view">
+      <sect2 id="people-view">
         <title>People View</title>
 	<para>When &app; first opens a database, 
 	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
@@ -170,7 +174,7 @@
 	heading. </para> 
 
     <!-- ================ Main Window Sub-sub-subsection  -->
-        <sect4 id="filters">
+        <sect3 id="filters">
           <title>Filters</title>
 	  <para>Genealogical databases may contain huge numbers of people. 
 	  Since the long lists are hard for humans to handle,
@@ -219,10 +223,10 @@
 	  checking <menuchoice> <guimenu>View</guimenu> 
 	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item and check 
 	  what kind of filtering is currently set.</para> 
-        </sect4>
+        </sect3>
 
     <!-- ================ Main Window Sub-sub-subsection  -->
-        <sect4 id="alpha-tabs">
+        <sect3 id="alpha-tabs">
           <title>Alphabetical Tabs</title>
 	  <para>&app; offers another way of 
 	  managing long lists of people -- alphabetical tabs. Upon loading a 
@@ -234,12 +238,12 @@
 	  characters -- all the entries not assigned to any other tab end up 
 	  in <guilabel>Other</guilabel>. In particular, people with no family 
 	  name will appear under this category.</para> 
-        </sect4>
+        </sect3>
 
-      </sect3>
+      </sect2>
       
     <!-- ================ Main Window Sub-subsection  -->
-      <sect3 id="family-view">
+      <sect2 id="family-view">
         <title>Family View</title>
 	<para>Family View displays the family information of a currently 
 	selected (or Active) person. Specifically, this view shows the 
@@ -329,10 +333,10 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-      </sect3>
+      </sect2>
 
     <!-- ================ Main Window Sub-subsection  -->
-      <sect3 id="pedigree-view">
+      <sect2 id="pedigree-view">
         <title>Pedigree View</title>
 
 	<!-- ==== Figure: Pedigree View ==== -->
@@ -430,10 +434,10 @@
     reference. 
     </para>
 
-      </sect3>
+      </sect2>
 
     <!-- ================ Main Window Sub-subsection  -->
-      <sect3 id="sources-view">
+      <sect2 id="sources-view">
         <title>Sources View</title>
 
 	<!-- ==== Figure: Sources View ==== -->
@@ -456,10 +460,10 @@
 	<guilabel>Author</guilabel> of the source. Any column can be 
 	used for sorting the list. The usual rules apply: one click for 
 	ascending order, another click for descending order.</para> 
-      </sect3>
+      </sect2>
 
     <!-- ================ Main Window Sub-subsection  -->
-      <sect3 id="places-view">
+      <sect2 id="places-view">
         <title>Places View</title>
 
 	<!-- ==== Figure: Places View ==== -->
@@ -481,10 +485,10 @@
 	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
 	<guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of
 	these columns can be used for sorting by the usual sorting rules. </para> 
-      </sect3>
+      </sect2>
 
     <!-- ================ Main Window Sub-subsection  -->
-      <sect3 id="media-view">
+      <sect2 id="media-view">
         <title>Media View</title>
 
 	<!-- ==== Figure: Media View ==== -->
@@ -505,7 +509,7 @@
 	Path to the Media Object. The top part of the GRAMPS window shows 
 	a preview (if available) and information about the Media 
 	Object. </para> 
-      </sect3>
+      </sect2>
 
-    </sect2>
-  </sect1>  <!-- ================ End Main Window ===================== -->
+    </sect1>
+  </chapter>

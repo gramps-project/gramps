@@ -1,19 +1,22 @@
   <legalnotice id="legalnotice">
 	<para>
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts.  You can find
-	  a copy of the GFDL at this <ulink type="help"
-	  url="ghelp:fdl">link</ulink> or in the file COPYING-DOCS
-	  distributed with this manual.
-         </para>
-         <para> This manual is part of a collection of GNOME manuals
-          distributed under the GFDL.  If you want to distribute this
-          manual separately from the collection, you can do so by
-          adding a copy of the license to the manual, as described in
-          section 6 of the license.
+	This manual is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2 of the License, or
+	(at your option) any later version.
+    </para>
+
+    <para>
+	This manual is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+    </para>
+
+    <para>
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 	</para>
 
 	<para>
@@ -27,7 +30,7 @@
 
 	<para>
 	  DOCUMENT AND MODIFIED VERSIONS OF THE DOCUMENT ARE PROVIDED
-	  UNDER  THE TERMS OF THE GNU FREE DOCUMENTATION LICENSE
+	  UNDER  THE TERMS OF THE GNU GENERAL PUBLIC LICENSE
 	  WITH THE FURTHER UNDERSTANDING THAT:
 
 	  <orderedlist>
@@ -73,4 +76,3 @@
 	  </orderedlist>
 	</para>
   </legalnotice>
-

@@ -3,22 +3,36 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2004  Alexander Roitman
+	  Copyright (C) 2003-2005  Alexander Roitman
 
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
-          distributed with this manual.
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
 <!-- $Id$ -->
 
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+
   <!ENTITY legal SYSTEM "legal.xml">
+
+  <!ENTITY appversion "1.2.0">
+  <!ENTITY manrevision "2.7.0">
+  <!ENTITY date "February 2005">
+  <!ENTITY app "GRAMPS">
+
+  <!ENTITY preface SYSTEM "preface.xml">
   <!ENTITY getstart SYSTEM "getstart.xml">
   <!ENTITY mainwin SYSTEM "mainwin.xml">
   <!ENTITY usage SYSTEM "usage.xml">
@@ -27,10 +41,9 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "1.0.0">
-  <!ENTITY manrevision "2.5">
-  <!ENTITY date "February 2004">
-  <!ENTITY app "<application>GRAMPS</application>">
+  <!ENTITY bugs SYSTEM "bugs.xml">
+  <!ENTITY authors SYSTEM "authors.xml">
+
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
        Use the appversion entity to specify the version of the application.
@@ -46,14 +59,14 @@
   Template last modified Apr 11, 2002
 -->
 <!-- =============Document Header ============================= -->
-<article id="index" lang="en">
+<book id="index" lang="en">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
-  <articleinfo> 
+  <bookinfo> 
     <title>GRAMPS Manual V&manrevision;</title>       
 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
-    <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
+    <copyright> <year>2003-2005</year> <holder>Alex Roitman</holder> </copyright> 
 
 <!-- translators: uncomment this:
 
@@ -69,9 +82,8 @@
     <publisher> <publishername> GRAMPS Project </publishername> </publisher> 
 
    &legal;
-   <!-- This file  contains link to license for the documentation (GNU FDL), and 
-        other legal stuff such as "NO WARRANTY" statement. Please do not change 
-	any of this. -->
+   <!-- This file  contains link to license for the documentation (GNU GPL), and 
+        other legal stuff such as "NO WARRANTY" statement.  -->
 
     <authorgroup> 
       <author> 
@@ -106,7 +118,7 @@
 -->
     </authorgroup>
 
-<!-- According to GNU FDL, revision history is mandatory if you are -->
+<!-- According to GNU GPL, revision history is mandatory if you are -->
 <!-- modifying/reusing someone else's document.  If not, you can omit it. -->
 <!-- Remember to remove the &manrevision; entity from the revision entries other
 -->
@@ -123,6 +135,15 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@alex.neuro.umn.edu</email></para>
+                <para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.5</revnumber> 
+		<date>February 2004</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
 		    	<email>shura@alex.neuro.umn.edu</email></para>
@@ -210,118 +231,28 @@
       </para>
 <!-- Translators may also add here feedback address for translations -->
     </legalnotice> 
-  </articleinfo> 
+  </bookinfo> 
 
   <indexterm zone="index"> <primary>GRAMPS</primary> </indexterm> 
   <indexterm zone="index"> <primary>gramps</primary> </indexterm>
 
 <!-- ============= Document Body ============================= -->
-<!-- ============= Introduction ============================== -->
-  <sect1 id="gramps-intro"> 
-    <title>Introduction</title> 
-    <para> &app; is a genealogical 
-    application. &app; is an acronym for the 
-    Genealogical Research and Analysis Management Programming System. To put 
-    it shortly, it allows you to store, edit, and research genealogical data 
-    using your computer. Its functionality is somewhat common to other 
-    genealogical programs. However, &app; offers some unique features. </para> 
 
-    <sect2 id="why-gramps">
-      <title>Why GRAMPS?</title>
-      <para> &app; was conceived under the concept
-      that most genealogy programs were designed to provide the researcher the 
-      capability to input information related to a particular family tree.  
-      Most of these programs have allowed for the arranging and storing of
-      information consistent with the GEDCOM standards. They usually provide
-      means for displaying descendant or ancestral relationships by means of
-      graphical displays, charts, or reports.  These may be augmented with 
-      pictures or other media to enhance the data.  Most provide for inputting 
-      data on unconnected individuals/families that may or may not have a 
-      relationship to the primary surname being researched.  Various other 
-      enhancements may also be provided in the genealogical program that 
-      allows for different degrees of importing and exporting data from other 
-      programs and printing the data contained in the various reports. </para>
+	<!-- Preface -->
+	&preface;
+
+	 <!-- Regular chapters -->
+	&getstart;      <!-- Getting Started -->
+	&mainwin;		<!-- Main window -->
+	&usage;		<!-- Usage -->
+	&custom;		<!-- Customization -->
+
+	<!-- Appendices -->
+	&faq;		    <!-- FAQ -->
+	&keybind;		<!-- Keybindings reference -->
+	&filtref;		<!-- Filter rule reference -->
+	&cmdline;		<!-- Command line reference -->
+	&bugs;		<!-- Bugs and problems -->
+	&authors;		<!-- About authors -->
       
-      <para> &app;, on the other hand, attempts to
-      provide all of the common capabilities of these programs, but, more
-      importantly, to provide an additional capability of integration not common
-      to these programs.  This is the ability to input any bits and pieces of
-      information directly into &app; and
-      rearrange/manipulate any/all data events in the entire data base (in any
-      order or sequence) to assist the user in doing research, analysis and
-      correlation with the potential of filling relationship gaps.  In short, it 
-      is a tool that provides a way to input all your research into one place and 
-      do your analysis and correlation using the speed, power, and accuracy of 
-      your computer instead of pencils and unmanageable reams of paper. </para>
-    </sect2>
-  </sect1> <!-- ================ End Intro ================================ -->
-  
-  &getstart;	<!-- Getting Started -->
-  &mainwin;		<!-- Main window -->
-  &usage;		<!-- Usage -->
-  &custom;		<!-- Customization -->
-	
-  
-<!-- ============= Bugs ================================== -->
-<!-- This section is optional and is commented out by default. 
-     You can use it to describe known bugs and limitations of the 
-	  program if there are any - please be frank and list all
-     problems you know of. 
--->
-  <sect1 id="mayapp-bugs">
-  <title>Known Bugs and Limitations</title>
-  <para>Currently, &app; loads all data into memory, which tends to bog 
-  down the system for large databases (over 15000 people for a typical 
-  system). This will be addressed with the 1.2 release by incorporating 
-  a database backend. The database backend should dramatically improve 
-  both speed and memory usage. </para>
-  
-  <para>Direct printing is not currently supported. This is planned to be 
-  fixed after the stable 1.0 release by using gnome-print architechture.</para>
-  
-  <para>PS and PDF reports output garbage in place of unicode characters. 
-  This should also be solved when we move to gnome-print. In the meantime, 
-  a decent workaround is to produce reports in OpenOffice.org format and then 
-  export into PDF from withing OpenOffice.org application.</para>
- </sect1>
-<!-- ============= About ================================== -->
-<!-- This section contains info about the program (not docs), such as
-      author's name(s), web page, license, feedback address. This
-      section is optional: primary place for this info is "About.." box of
-      the program. However, if you do wish to include this info in the
-      manual, this is the place to put it. 
-      Alternatively, you can put this information in the title page.-->
-  <sect1 id="gramps-about"> 
-    <title>About GRAMPS</title> 
-    <para> &app; was written by Donald N. Allingham
-      (<email>dallingham@users.sourceforge.net</email>). 
-      To find more information about &app;, please visit the 
-      <ulink url="http://gramps.sourceforge.net" type="http">GRAMPS Project 
-      Web page</ulink>. </para>
-    <para>
-      To report a bug or make a suggestion regarding this application or
-      this manual, use the help menu in &app;, or follow the directions 
-      in this <ulink url="ghelp:gnome-feedback"  type="help">document</ulink>.
-    </para>
-
-    <para> This program is distributed under the terms of the GNU
-      General Public license as published by the Free Software
-      Foundation; either version 2 of the License, or (at your option)
-      any later version. A copy of this license can be found at this
-      <ulink url="ghelp:gpl" type="help">link</ulink>, or in the file
-      COPYING included with the source code of this program. </para>
-
-  </sect1> <!-- ============= End About ============================= -->
-
-<!-- ============= Appendices ================================== -->
-  <sect1 id="appendices">
-    <title>Appendices</title>
-  
-      &faq;		    <!-- FAQ -->
-      &keybind;		<!-- Keybindings reference -->
-      &filtref;		<!-- Filter rule reference -->
-      &cmdline;		<!-- Command line reference -->
-      
-  </sect1>
-
-</article>
+</book>

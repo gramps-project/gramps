@@ -1,22 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="faq">
+
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2005  Alexander Roitman
 
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
-          distributed with this manual.
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
 <!-- $Id$ -->
 
-      <!-- =============== Appendices Subsection ================ -->
-      <sect2 id="faq">
       <title>Frequently Asked Questions</title>
       <para>This appendix contains the list of questions that frequently come 
       up in mailing list discussions and forums. This list is by no means 
@@ -380,4 +385,4 @@ potential of your great idea :-)
 
       </variablelist>
 
-      </sect2>
+</appendix>
