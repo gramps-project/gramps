@@ -75,18 +75,14 @@ _name_format_list = [
     ]
 
 panellist = [
-    (_("Database"),
-     [( _("General"), 1),
-      ( _("Media Objects"), 7),
-      ( _("GRAMPS IDs"), 8)]),
     (_("Display"),
      [( _("General"), 3),
       ( _("Dates and Names"), 4),
       ( _("Toolbar and Statusbar"), 2)]),
-    (_("Usage"),
-     [( _("Report Preferences"), 6),
-      ( _("Researcher Information"), 5),
-      ( _("Data Guessing"), 9)]),
+    (_("Database"),
+     [( _("General"), 1),
+      ( _("GRAMPS IDs"), 6),
+      ( _("Researcher Information"), 5)]),
     ]
 
 
@@ -188,8 +184,6 @@ class GrampsPreferences:
         self.tree.append_column(col)
         self.tree.set_model(self.store)
         self.panel = self.top.get_widget("panel")
-        self.ofmt = self.top.get_widget("output_format")
-        self.gfmt = self.top.get_widget("graphical_format")
 
         self.imap = {}
         self.build_tree()
@@ -223,30 +217,6 @@ class GrampsPreferences:
         lds.set_active(GrampsGconfKeys.get_uselds())
         lds.connect('toggled',
                 lambda obj: GrampsGconfKeys.save_uselds(obj.get_active()))
-
-        mr = self.top.get_widget("mediaref")
-        mc = self.top.get_widget("mediacopy")
-        if GrampsGconfKeys.get_media_reference():
-            mr.set_active(1)
-        else:
-            mc.set_active(1)
-        mr.connect('toggled',
-                lambda obj: GrampsGconfKeys.save_media_reference(obj.get_active()))
-
-        dg = self.top.get_widget("globalprop")
-        dg.set_active(GrampsGconfKeys.get_media_global())
-        dg.connect('toggled',
-                lambda obj: GrampsGconfKeys.save_media_global(obj.get_active()))
-
-        dl = self.top.get_widget("localprop")
-        dl.set_active(GrampsGconfKeys.get_media_local())
-        dl.connect('toggled',
-                lambda obj: GrampsGconfKeys.save_media_local(obj.get_active()))
-
-        index_vis = self.top.get_widget("show_child_id")
-        index_vis.set_active(GrampsGconfKeys.get_index_visible())
-        index_vis.connect('toggled',
-                lambda obj: GrampsGconfKeys.save_index_visible(obj.get_active()))
 
         ipr = self.top.get_widget("iprefix")
         ipr.set_text(GrampsGconfKeys.get_person_id_prefix())
@@ -306,24 +276,6 @@ class GrampsPreferences:
         usetips.connect('toggled',
                 lambda obj: GrampsGconfKeys.save_usetips(obj.get_active()))
 
-        paper_obj = self.top.get_widget("paper_size")
-        menu = gtk.Menu()
-        choice = 0
-        for index in range(0,len(PaperMenu.paper_sizes)):
-            name = PaperMenu.paper_sizes[index].get_name()
-            if name == GrampsGconfKeys.get_paper_preference():
-                choice = index
-            item = gtk.MenuItem(name)
-            item.set_data(DATA,name)
-            item.show()
-            menu.append(item)
-        menu.set_active(choice)
-        paper_obj.set_menu(menu)
-        paper_obj.connect("changed", 
-                lambda obj: 
-                GrampsGconfKeys.save_paper_preference(obj.get_menu().get_active().get_data(DATA))
-                )
-
         lastnamegen_obj = self.top.get_widget("lastnamegen")
         menu = gtk.Menu()
         choice = 0
@@ -338,40 +290,6 @@ class GrampsPreferences:
         lastnamegen_obj.connect("changed", 
                 lambda obj: 
                 GrampsGconfKeys.save_lastnamegen(obj.get_menu().get_active().get_data(DATA),_surname_styles)
-                )
-
-        self.osubmenu = gtk.Menu()
-        choice = 0
-        index = 0
-        for name in [ _("No default format") ] + Plugins.get_text_doc_list():
-            if name == GrampsGconfKeys.get_output_preference():
-                choice = index
-            item = gtk.MenuItem(name)
-            item.set_data(DATA,name)
-            item.show()
-            self.osubmenu.append(item)
-            index = index + 1
-        self.osubmenu.set_active(choice)
-        self.ofmt.set_menu(self.osubmenu)
-        self.ofmt.connect("changed", 
-                    lambda obj: GrampsGconfKeys.save_output_preference(obj.get_menu().get_active().get_data(DATA)))
-
-        self.gsubmenu = gtk.Menu()
-        choice = 0
-        index = 0
-        for name in [ _("No default format") ] + Plugins.get_draw_doc_list():
-            if name == GrampsGconfKeys.get_goutput_preference():
-                choice = index
-            item = gtk.MenuItem(name)
-            item.set_data(DATA,name)
-            item.show()
-            self.gsubmenu.append(item)
-            index = index + 1
-        self.gsubmenu.set_active(choice)
-        self.gfmt.set_menu(self.gsubmenu)
-        self.gfmt.connect("changed", 
-                lambda obj: 
-                GrampsGconfKeys.save_goutput_preference(obj.get_menu().get_active().get_data(DATA))
                 )
 
         date_option = self.top.get_widget("date_format")
@@ -443,15 +361,6 @@ class GrampsPreferences:
         resemail.connect('changed',
                     lambda obj: GrampsGconfKeys.save_researcher_email(obj.get_text()))
 
-        repdir = self.top.get_widget("repdir").gtk_entry()
-        repdir.set_text(GrampsGconfKeys.get_report_dir())
-        repdir.connect('changed',
-                    lambda obj: GrampsGconfKeys.save_report_dir(obj.get_text()))
-        webdir = self.top.get_widget("htmldir").gtk_entry()
-        webdir.set_text(GrampsGconfKeys.get_web_dir())
-        webdir.connect('changed',
-                    lambda obj: GrampsGconfKeys.save_web_dir(obj.get_text()))
-            
     def select(self,obj):
         store,node = self.selection.get_selected()
         if node:
