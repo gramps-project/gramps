@@ -967,6 +967,8 @@ class GrampsParser:
             dv = self.source_ref.get_date()
         elif self.ord:
             dv = self.ord.get_date_object()
+        elif self.object:
+            dv = self.object.get_date_object()
         elif self.address:
             dv = self.address.get_date_object()
         else:
@@ -1017,6 +1019,8 @@ class GrampsParser:
             dv = self.source_ref.get_date()
         elif self.ord:
             dv = self.ord.get_date_object()
+        elif self.object:
+            dv = self.object.get_date_object()
         elif self.address:
             dv = self.address.get_date_object()
         else:
@@ -1067,6 +1071,8 @@ class GrampsParser:
             dv = self.source_ref.get_date()
         elif self.ord:
             dv = self.ord.get_date_object()
+        elif self.object:
+            dv = self.object.get_date_object()
         elif self.address:
             dv = self.address.get_date_object()
         else:
@@ -1171,6 +1177,8 @@ class GrampsParser:
                 self.placeobj.set_title(tag)
         if self.ord:
             self.ord.set_place_handle(self.placeobj.get_handle())
+        elif self.object:
+            self.object.set_place_handle(self.placeobj.get_handle())
         else:
             self.event.set_place_handle(self.placeobj.get_handle())
         self.db.commit_place(self.placeobj,self.trans,self.change)

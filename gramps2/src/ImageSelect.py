@@ -57,6 +57,9 @@ import ListModel
 import SelectObject
 import GrampsMime
 import Sources
+import DateEdit
+import DateHandler
+import Date
 from QuestionDialog import ErrorDialog
 
 _IMAGEX = 140
@@ -870,6 +873,8 @@ class GlobalMediaProperties:
 
     def __init__(self,db,obj,update,parent,parent_window=None):
         self.parent = parent
+        self.dp = DateHandler.create_parser()
+        self.dd = DateHandler.create_display()
         if obj:
             if self.parent.parent.child_windows.has_key(obj.get_handle()):
                 self.parent.parent.child_windows[obj.get_handle()].present(None)
@@ -885,18 +890,48 @@ class GlobalMediaProperties:
         self.db = db
         self.update = update
         self.refs = 0
-    
+        if obj:
+            self.date_object = Date.Date(self.obj.get_date_object())
+        else:
+            self.date_object = Date.Date()
+            
         self.path = self.db.get_save_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global","gramps")
 
         title = _('Media Properties Editor')
 
         self.window = self.change_dialog.get_widget('change_global')
+        self.date_entry = self.change_dialog.get_widget('date')
+
+        self.pdmap = {}
+        self.add_places = []
+        for key in self.db.get_place_handles():
+            p = db.get_place_from_handle(key).get_display_info()
+            self.pdmap[p[0]] = key
+
+        self.place = self.change_dialog.get_widget('place')
+        self.place_list = self.pdmap.keys()
+        self.place_list.sort()
+        build_dropdown(self.place,self.place_list)
+
+        if self.obj:
+            handle = self.obj.get_place_handle()
+            pobj = self.db.get_place_from_handle(handle)
+            if pobj:
+                self.place.set_text(pobj.get_title())
+
+            self.date_entry.set_text(self.dd.display(self.date_object))
+        
         Utils.set_titles(self.window,
                          self.change_dialog.get_widget('title'),title)
         
         self.descr_window = self.change_dialog.get_widget("description")
         self.notes = self.change_dialog.get_widget("notes")
+        self.date_check = DateEdit.DateEdit(self.date_object,
+                                            self.date_entry,
+                                            self.change_dialog.get_widget("date_edit"),
+                                            self.window)
+        
         self.pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
         self.attr_value = self.change_dialog.get_widget("attr_value")
@@ -1089,11 +1124,38 @@ class GlobalMediaProperties:
         else:
             Utils.unbold_label(self.notes_label)
             
+    def get_place(self,field,makenew=0):
+        text = unicode(field.get_text().strip())
+        if text:
+            if self.pdmap.has_key(text):
+                return self.pdmap[text]
+            elif makenew:
+                place = RelLib.Place()
+                place.set_title(text)
+                trans = self.db.transaction_begin()
+                self.db.add_place(place,trans)
+                self.db.transaction_commit(trans,_('Add Place (%s)' % text))
+                self.pdmap[text] = place.get_handle()
+                self.add_places.append(place)
+                return place.get_handle()
+            else:
+                return None
+        else:
+            return None
+
     def on_apply_clicked(self, obj):
         t = self.notes.get_buffer()
         text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
         desc = unicode(self.descr_window.get_text())
         note = self.obj.get_note()
+
+        if not self.date_object.is_equal(self.obj.get_date_object()):
+            self.obj.set_date_object(self.date_object)
+
+        p = self.get_place(self.place)
+        if p:
+            self.obj.set_place_handle(p)
+        
         format = self.preform.get_active()
         if text != note or desc != self.obj.get_description():
             self.obj.set_note(text)
@@ -1219,3 +1281,13 @@ class DeleteMediaQuery:
         self.db.transaction_commit(trans,_("Remove Media Object"))
         if self.update:
             self.update()
+
+def build_dropdown(entry,strings):
+    store = gtk.ListStore(str)
+    for value in strings:
+        node = store.append()
+        store.set(node,0,value)
+    completion = gtk.EntryCompletion()
+    completion.set_text_column(0)
+    completion.set_model(store)
+    entry.set_completion(completion)
