@@ -28,8 +28,8 @@
       <variablelist>
 
 
-      <varlistentry><term>What is GRAMPS?</term>
-      <listitem><para> GRAMPS is the Genealogical Research and Analysis 
+      <varlistentry><term>What is &app;?</term>
+      <listitem><para> &app; is the Genealogical Research and Analysis 
       Management Program System. In other words, it is a personal genealogy 
       program letting you store, edit, and research genealogical data using 
       the powers of your computer. 
@@ -38,9 +38,9 @@
 
       <varlistentry><term>Where do I get it and how much does it cost?</term>
       <listitem><para> 
-GRAMPS can be downloaded from <ulink url="http://sf.net/projects/gramps" 
+&app; can be downloaded from <ulink url="http://sf.net/projects/gramps" 
 type="http">http://sf.net/projects/gramps</ulink> at no charge. 
-GRAMPS is an Open Source project covered by the GNU General Public License. 
+&app; is an Open Source project covered by the GNU General Public License. 
 You have full access to the source code and are allowed to distribute the 
 program and source code freely. 
       </para></listitem>
@@ -48,7 +48,7 @@ program and source code freely.
 
       <varlistentry><term>Does it work with Windows (tm)?</term>
       <listitem><para> 
-No. GRAMPS uses the GTK and GNOME libraries. While the GTK libraries 
+No. &app; uses the GTK and GNOME libraries. While the GTK libraries 
 have been ported to Windows, the GNOME libraries have not.
 This, however, may change in the future. 
       </para></listitem>
@@ -58,11 +58,11 @@ This, however, may change in the future.
       <listitem><para> 
 The Fink project (<ulink url="http://fink.sf.net" 
 type="http">http://fink.sf.net</ulink>) has ported an old version of 
-GRAMPS (0.8.0) to OSX. The Mac OSX port is not directly supported by 
-the GRAMPS project, primarily because none of the GRAMPS developers 
+&app; (0.8.0) to OSX. The Mac OSX port is not directly supported by 
+the &app; project, primarily because none of the &app; developers 
 have access to Mac OSX.</para>
 
-<para>The GNOME 2 version of GRAMPS (0.9.x) does not appear to have been 
+<para>The GNOME 2 version of &app; (0.9.x) does not appear to have been 
 ported by the Fink project. Please contact the Fink project for more
 information.
       </para></listitem>
@@ -86,34 +86,34 @@ Previous versions required GNOME 1.X.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Is GRAMPS compatible with 
+      <varlistentry><term>Is &app; compatible with 
       other genealogical software (GenApps)?</term>
       <listitem><para> 
-GRAMPS makes every effort to maintain compatibility with GEDCOM, the general
+&app; makes every effort to maintain compatibility with GEDCOM, the general
 standard of recording genealogical information. We have import and export
-filters that enable GRAMPS to read and write GEDCOM files. </para>
+filters that enable &app; to read and write GEDCOM files. </para>
 
 <para>
 It is important to understand that the GEDCOM standard is poorly implemented --
 virtually every genealogical software has its own "flavor" of GEDCOM. As we
 learn about new flavor, the import/export filters can be created very quickly.
 However, finding out about the unknown flavors requires user feedback. 
-Please feel free to inform us about any GEDCOM flavor not supported by GRAMPS, 
+Please feel free to inform us about any GEDCOM flavor not supported by &app;, 
 and we will do our best to support it! 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can GRAMPS read files created by GenApp X?</term>
+      <varlistentry><term>Can &app; read files created by GenApp X?</term>
       <listitem><para> See above.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can GRAMPS write files readable by GenApp X?</term>
+      <varlistentry><term>Can &app; write files readable by GenApp X?</term>
       <listitem><para> See above.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can GRAMPS print a genealogical tree for my family?</term>
+      <varlistentry><term>Can &app; print a genealogical tree for my family?</term>
       <listitem><para> 
 Yes. Different people have different ideas of what a genealogical tree is. 
 Some think of it as a chart going from the distant ancestor and listing 
@@ -122,13 +122,13 @@ chart going from the person back in time, listing the ancestors and their
 families. Yet other people think of a table, text report, etc. </para>
 
 <para>
-GRAMPS can produce any of the above, and many more different charts and 
+&app; can produce any of the above, and many more different charts and 
 reports. Moreover, the plugin architechture enables users (you) to create 
 their own plugins which could be new reports, charts, or research tools. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>In what formats can GRAMPS output its reports?</term>
+      <varlistentry><term>In what formats can &app; output its reports?</term>
       <listitem><para> 
 Text reports are available in HTML, PDF, AbiWord, KWord, LaTeX, RTF, and
 OpenOffice formats. Graphical reports (charts and diagrams) are available in
@@ -136,11 +136,11 @@ PostScript, PDF, SVG, OpenOffice and GraphViz formats.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Is GRAMPS compatible with the Internet?</term>
+      <varlistentry><term>Is &app; compatible with the Internet?</term>
       <listitem><para> 
-GRAMPS can store web addresses and direct your browser to them. It can import
+&app; can store web addresses and direct your browser to them. It can import
 data that you download from the Internet. It can export data that you could 
-send over the Internet. GRAMPS is familiar with the standard file formats 
+send over the Internet. &app; is familiar with the standard file formats 
 widely used on the Internet (e.g. JPEG, PNG, and GIF images, MP3, OGG, and 
 WAV sound files, QuickTime, MPEG, and AVI movie files, etc). Other than that, 
 there is little that a genealogical program can do with the Internet :-) 
@@ -151,7 +151,7 @@ there is little that a genealogical program can do with the Internet :-)
       <listitem><para> 
 Yes. There are many levels of customization. One is creating or modifying 
 the templates used for the reports. This gives you some control over 
-the fonts, colors, and some layout of the reports. You can also use GRAMPS 
+the fonts, colors, and some layout of the reports. You can also use &app; 
 controls in the report dialogs to tell what contents should be used for a 
 particular report. In addition to this, you have an ability to create your 
 own filters -- this is useful in selecting people based on criteria set 
@@ -162,10 +162,10 @@ knowledge of programming in Python.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>What standards does GRAMPS support?</term>
+      <varlistentry><term>What standards does &app; support?</term>
       <listitem><para> 
 The nice thing about the standards is that there never is a shortage of 
-them :-). GRAMPS is tested to support the following flavors of GEDCOM: 
+them :-). &app; is tested to support the following flavors of GEDCOM: 
 GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
 GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
 Visual Genealogie. 
@@ -173,29 +173,29 @@ Visual Genealogie.
       </varlistentry>
 
       <varlistentry><term>What is the maximum database 
-      size (bytes) GRAMPS can handle?</term>
+      size (bytes) &app; can handle?</term>
       <listitem><para> 
-GRAMPS has no hard limits on the size of a database that it can handle. 
-In reality, however, there are practical limits. Currently GRAMPS loads all 
+&app; has no hard limits on the size of a database that it can handle. 
+In reality, however, there are practical limits. Currently &app; loads all 
 data into memory, so the limiting factor tends to be the available memory 
 on the system. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>How many people can GRAMPS database handle?</term>
+      <varlistentry><term>How many people can &app; database handle?</term>
       <listitem><para> 
-We have found that on a typical system, GRAMPS tends to bog down after the
+We have found that on a typical system, &app; tends to bog down after the
 database has around 15,000 people. Again, this is dependant on how much
 memory you have. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Why is GRAMPS running so slowly?</term>
+      <varlistentry><term>Why is &app; running so slowly?</term>
       <listitem><para> 
-If GRAMPS seems too slow to you, it is most likely that you have a large
-database. Currently, GRAMPS loads all the database into memory, therefore 
+If &app; seems too slow to you, it is most likely that you have a large
+database. Currently, &app; loads all the database into memory, therefore 
 large databases tend to be less than responsive. Specifically, the system 
-can be virtually brought to its knees if swapping is needed for GRAMPS' data.
+can be virtually brought to its knees if swapping is needed for &app;' data.
 </para> <para>
 This will be addressed in the next stable release following version 1.0. 
 Temporarily, adding more memory could make a huge difference, but we realize
@@ -242,6 +242,39 @@ Once the patch is committed and incorporated into pygtk, we will add the
 ability to add/remove/edit sortable columns.
       </para></listitem>
       </varlistentry>
+
+      <varlistentry><term>I would like to contribute to &app; by writing 
+      my favorite report. How do I do that?</term>
+      <listitem><para> 
+The easiest way to contribute to reports, filters, tools, etc. is to copy 
+an existing &app; report, filter, or tool. If you can create what you want 
+by modifying existing code -- great! If your idea does not fit into the logic
+of any existing &app; tool, the <ulink 
+url="http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage" 
+type="http">following page</ulink> may provide some help in writing your 
+own plugin from scratch.
+
+If you need more help or would like to discuss your idea with us, 
+please do not hesitate to contact us at <ulink 
+url="mailto:gramps-devel@lists.sf.net" 
+type="mailto">gramps-devel@lists.sf.net</ulink>
+</para>
+
+<para>
+To test your work in progress, you may save your plugin under
+<replaceable>$HOME/.gramps/plugins</replaceable> directory and it should 
+be found and imported on startup. 
+The correctly written plugin will register itself with &app;, create menu 
+item, and so on.</para>
+
+<para>
+If you are happy with your plugin and would like to contribute your code 
+back to the &app; project, you are very welcome to do so by contacting us 
+at <ulink url="mailto:gramps-devel@lists.sf.net" 
+type="mailto">gramps-devel@lists.sf.net</ulink>
+      </para></listitem>
+      </varlistentry>
+
 
       <varlistentry><term>I found a bug and I want it fixed right now! 
       What do I do?</term>
@@ -292,7 +325,8 @@ that showed up in your terminal or a in separate traceback window.
 
 <para>Most problems can be fixed quickly provided there is enough information. 
 To ensure this, please follow up on your bug reports. In particular, if you 
-file bug report with sf.net bug tracker, PLEASE log into sf.net before filing 
+file a bug report with sf.net bug tracker, PLEASE log in to sf.net before 
+filing 
 (register your free account if you don't have one). Then we will have a way 
 of contacting you should we need more information. If you choose to file your 
 report anonymously, at least check every so often whether your report page 
@@ -301,6 +335,33 @@ has something new posted, as it probably would.</para>
 <para>If the above explanations seem vague, please follow 
 <ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" 
 type="http">this link.</ulink>
+
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>It is obvious that &app; absolutely needs to 
+      become a (client-server/web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/C#/You-name-it) 
+      application. When is this going to happen?</term>
+      <listitem><para> 
+The surest way to see it happen is to get it done by yourself. Since
+&app; is free/open source, nobody prevents you from taking all of the
+code and continuing its development in whatever direction you see fit.
+In doing so, you may consider giving your new project another name to
+avoid confusion with the continuing &app; development. If you would
+like the &app; project to provide advice, expertise, filters, etc., 
+we will gladly cooperate with your new project, to ensure compatability 
+or import/export options to your new format of a project.</para>
+
+<para>                                                                                
+If, however, you would like the &app; project to to adopt your strategy,
+you would need to convince &app; developers that your strategy is good
+for &app; and superior to the present development strategy.</para>
+
+<para>                                                                                
+HINT: if &app; developers are still not convinced after about three
+messages sent to gramps-devel, maybe you are better off on your own
+rather than with a company of retards who can't fully realize the
+potential of your great idea :-)
 
       </para></listitem>
       </varlistentry>

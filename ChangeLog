@@ -1,3 +1,8 @@
+2003-12-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/C/figures/pedigree-child-cut.png: Add figure.
+	* doc/gramps-manual/C/mainwin.xml: Add figure. 
+	* FAQ, doc/gramps-manual/C/faq.xml: Add two questions. 
+
 2003-12-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/ru.po: Update Russian translation for 0.98.
 	* doc/gramps-manual/C/getstart.xml: More "open a directory" stuff. 
