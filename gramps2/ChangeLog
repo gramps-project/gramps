@@ -1,3 +1,6 @@
+2003-11-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: Fixed typo
+
 2003-11-13  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: delete unused code
 	* src/GrampsCfg.py: Fixed name format selection problem
