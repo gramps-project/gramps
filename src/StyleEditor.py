@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -212,7 +212,7 @@ class StyleEditor:
         
         font = p.get_font()
         self.top.get_widget("size").set_value(font.get_size())
-        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+        if font.get_type_face() == BaseDoc.FONT_SERIF:
             self.top.get_widget("roman").set_active(1)
         else:
             self.top.get_widget("swiss").set_active(1)
@@ -258,9 +258,9 @@ class StyleEditor:
         font.set_size(int(self.top.get_widget("size").get_value()))
     
         if self.top.get_widget("roman").get_active():
-            font.set_type_face(BaseDoc.FONT_SANS_SERIF)
-        else:
             font.set_type_face(BaseDoc.FONT_SERIF)
+        else:
+            font.set_type_face(BaseDoc.FONT_SANS_SERIF)
 
         font.set_bold(self.top.get_widget("bold").get_active())
         font.set_italic(self.top.get_widget("italic").get_active())
