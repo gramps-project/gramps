@@ -617,13 +617,13 @@ class FamilyView:
         except:
             DisplayTrace.DisplayTrace()
 
-    def spouse_after_edit(self,ep,trans):
+    def spouse_after_edit(self,epo,trans):
         ap = self.parent.active_person
         if epo:
             self.parent.db.commit_person(epo.person,trans)
             n = epo.person.get_primary_name().get_regular_name()
             self.parent.db.add_transaction(trans,_("Add Person (%s)") % n)
-            self.parent.people_view.remove_from_person_list(epo.person,epo.original_id)
+            self.parent.people_view.remove_from_person_list(epo.person)
             self.parent.people_view.redisplay_person_list(epo.person)
 
         self.parent.active_person = ap
@@ -679,7 +679,8 @@ class FamilyView:
         person.get_primary_name().set_surname_prefix(name[0])
 
         try:
-            EditPerson.EditPerson(self.parent, person, self.parent.db, self.new_child_after_edit)
+            EditPerson.EditPerson(self.parent, person, self.parent.db,
+                                  self.new_child_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1050,13 +1051,10 @@ class FamilyView:
             i += 1
             
             event = self.parent.db.find_event_from_id(val[3])
-            print event.serialize()
             if event:
                 dval = event.get_date()
             else:
                 dval = u''
-
-            print i,val[0],val[1],val[2],dval,status,val[3],child.get_id()
             self.child_model.set(iter,0,i,1,val[0],2,val[1],3,val[2],
                                  4,dval,5,status,6,val[6],7,child.get_id())
 
@@ -1395,7 +1393,7 @@ class FamilyView:
             child_id = list[i]
             child = self.parent.db.try_to_find_person_from_id(child_id)
             birth_id = child.get_birth_id()
-            birth = self.parent.db.try_to_find_event_from_id(birth_id)
+            birth = self.parent.db.find_event_from_id(birth_id)
             if not birth:
                 continue
             bday = birth.get_date_object()

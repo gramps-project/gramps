@@ -158,12 +158,10 @@ class PeopleView:
         self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
 
-    def remove_from_person_list(self,person,old_id=None):
+    def remove_from_person_list(self,person):
         """Remove the selected person from the list. A person object is
         expected, not an ID"""
-        if old_id == None:
-            old_id = person.get_id()
-        path = self.person_model.on_get_path(old_id)
+        path = self.person_model.on_get_path(person.get_id())
         self.person_model.row_deleted(path)
     
     def remove_from_history(self,person_id,old_id=None):
