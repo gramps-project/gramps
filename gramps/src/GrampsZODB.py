@@ -19,6 +19,7 @@
 #
 
 from ZODB import Persistent
+from ZODB.PersistentList import PersistentList
 from ZODB.dbmStorage import gdbmStorage
 from ZODB.DB import DB
 from BTrees.OOBTree import OOBTree
@@ -198,6 +199,7 @@ class GrampsZODB(GrampsDB):
         if self.root.has_key('surnames'):
             self.surnames = self.root['surnames']
         else:
+            self.surnames = PersistentList()
             for key in self.personMap.keys():
                 person = self.personMap[key]
                 self.addSurname(person.getPrimaryName().getSurname())

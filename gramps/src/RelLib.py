@@ -1849,8 +1849,10 @@ class GrampsDB(Persistent):
     def buildPersonDisplay(self,nkey,okey=None):
         if nkey != okey and okey != None:
             del self.personTable[okey]
-        self.personTable[nkey] = self.personMap[nkey].getDisplayInfo()
-
+        person = self.personMap[nkey]
+        self.personTable[nkey] = person.getDisplayInfo()
+        self.addSurname(person.getPrimaryName().getSurname())
+        
     def buildPlaceDisplay(self,nkey,okey=None):
         if nkey != okey and okey != None:
             del self.placeTable[okey]
