@@ -48,6 +48,11 @@ try:
     from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
     import reportlab.graphics.shapes
     import reportlab.lib.styles
+    from reportlab.pdfbase.pdfmetrics import *
+
+    for faceName in reportlab.pdfbase.pdfmetrics.standardFonts:
+        reportlab.pdfbase.pdfmetrics.registerTypeFace(reportlab.pdfbase.pdfmetrics.TypeFace(faceName))
+    
 except ImportError:
     raise Errors.PluginError( _("The ReportLab modules are not installed"))
 
@@ -113,20 +118,20 @@ class PdfDoc(BaseDoc.BaseDoc):
                         pdf_style.fontName = "Times-Bold"
                 else:
                     if font.get_italic():
-                        pdf_style.fontName = "Times-Italic"
+                        pdf_style.fontName = _TB
                     else:
-                        pdf_style.fontName = "Times-Roman"
+                        pdf_style.fontName = _T
             else:
                 if font.get_bold():
                     if font.get_italic():
                         pdf_style.fontName = "Helvetica-BoldOblique"
                     else:
-                        pdf_style.fontName = "Helvetica-Bold"
+                        pdf_style.fontName = _HB
                 else:
                     if font.get_italic():
                         pdf_style.fontName = "Helvetica-Oblique"
                     else:
-                        pdf_style.fontName = "Helvetica"
+                        pdf_style.fontName = _H
             pdf_style.bulletFontName = pdf_style.fontName
 
             right = style.get_right_margin()*cm
@@ -162,7 +167,9 @@ class PdfDoc(BaseDoc.BaseDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise Errors.ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+#            raise Errors.ReportError(_("Could not create %s") % self.filename)
 
     def page_break(self):
         self.story.append(PageBreak())
@@ -244,14 +251,14 @@ class PdfDoc(BaseDoc.BaseDoc):
         f = p.get_font()
         if f.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             if f.get_bold():
-                fn = 'Helvetica-Bold'
+                fn = _HB
             else:
-                fn = 'Helvetica'
+                fn = _H
         else:
             if f.get_bold():
-                fn = 'Times-Bold'
+                fn = _TB
             else:
-                fn = 'Times-Roman'
+                fn = _T
 
         black = Color(0,0,0)
         
@@ -402,13 +409,13 @@ class PdfDoc(BaseDoc.BaseDoc):
         sc = make_color(font.get_color())
         fc = make_color(font.get_color())
         fnt = self.pdf_set_font(font),
-        s = reportlab.graphics.shape.String(x*cm,
-                                            y,
-                                            str(text),
-                                            strokeColor=sc,
-                                            fillColor=fc,
-                                            fontName=fnt,
-                                            fontSize=size)
+        s = reportlab.graphics.shapes.String(x*cm,
+                                             y,
+                                             str(text),
+                                             strokeColor=sc,
+                                             fillColor=fc,
+                                             fontName=fnt,
+                                             fontSize=size)
         self.drawing.add(s)
 
     def pdf_set_font(self,font):
