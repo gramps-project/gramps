@@ -1049,8 +1049,9 @@ class Person:
 
     def removeAltFamily(self,family):
         """removes a Family instance from the alternate family list"""
-        for family in self.AltFamilyList:
-            self.AltFamilyList.remove(family)
+        for f in self.AltFamilyList[:]:
+            if f[0] == family:
+                self.AltFamilyList.remove(f)
 
     def setMainFamily(self,family):
         """sets the main Family of the Person, the Family in which the
