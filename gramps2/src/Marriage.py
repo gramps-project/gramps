@@ -30,6 +30,7 @@ import string
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -98,6 +99,7 @@ class Marriage:
 
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.on_cancel_edit,
+            "on_help_marriage_editor" : self.on_help_clicked,
             "on_up_clicked" : self.on_up_clicked,
             "on_down_clicked" : self.on_down_clicked,
             "on_attr_up_clicked" : self.on_attr_up_clicked,
@@ -232,6 +234,10 @@ class Marriage:
         self.redraw_event_list()
         self.redraw_attr_list()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-rel')
 
     def ev_drag_begin(self, context, a):
         return

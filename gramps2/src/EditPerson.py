@@ -371,6 +371,7 @@ class EditPerson:
             "on_web_go_clicked"         : self.on_web_go_clicked,
             "on_gender_activate"        : self.on_gender_activate,
             "on_givenName_focus_out_event": self.on_givenName_focus_out_event,
+            "on_help_person_clicked"    : self.on_help_clicked,
             })
 
         self.update_birth_death()
@@ -389,6 +390,10 @@ class EditPerson:
         self.get_widget("notebook").set_current_page(0)
         self.given.grab_focus()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-pers')
 
     def build_columns(self,tree,list):
         cnum = 0

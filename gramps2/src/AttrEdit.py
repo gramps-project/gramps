@@ -34,6 +34,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -116,15 +117,21 @@ class AttributeEditor:
         self.top.signal_autoconnect({
             "on_add_src_clicked" : self.add_source,
             "on_del_src_clicked" : self.del_source,
+            "on_help_attr_clicked" : self.on_help_clicked,
             "on_switch_page" : self.on_switch_page
             })
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
             self.on_ok_clicked()
         self.window.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-at')
+        self.val = self.window.run()
 
     def add_source(self,obj):
         pass

@@ -3663,6 +3663,19 @@
 	      <signal name="clicked" handler="on_select_spouse_clicked" object="spouseDialog"/>
 	    </widget>
 	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="spouse_help">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_spouse_help_clicked" last_modification_time="Tue, 18 Nov 2003 03:27:03 GMT"/>
+	    </widget>
+	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>
@@ -3999,6 +4012,19 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_save_parents_clicked" object="familyDialog"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button167">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_help_familyDialog_clicked" last_modification_time="Tue, 18 Nov 2003 03:52:23 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -4891,6 +4917,19 @@
 	      <signal name="clicked" handler="on_save_child_clicked" object="selectChild"/>
 	    </widget>
 	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button163">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_child_help_clicked" last_modification_time="Tue, 18 Nov 2003 03:40:31 GMT"/>
+	    </widget>
+	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>
@@ -5511,6 +5550,19 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-5</property>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button166">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_sourceEditor_help_clicked" last_modification_time="Tue, 18 Nov 2003 03:51:32 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -6536,6 +6588,19 @@
 	      <signal name="clicked" handler="on_save_parents_clicked" object="familyDialog"/>
 	    </widget>
 	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button165">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_parents_help_clicked" last_modification_time="Tue, 18 Nov 2003 03:50:21 GMT"/>
+	    </widget>
+	  </child>
 	</widget>
 	<packing>
 	  <property name="padding">0</property>
@@ -7462,6 +7527,19 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_ok_clicked" last_modification_time="Tue, 17 Jun 2003 03:10:31 GMT"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button164">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-help</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="response_id">-11</property>
+	      <signal name="clicked" handler="on_help_clicked" last_modification_time="Tue, 18 Nov 2003 03:45:00 GMT"/>
 	    </widget>
 	  </child>
 	</widget>
