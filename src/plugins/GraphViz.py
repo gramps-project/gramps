@@ -487,7 +487,7 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
                         if do != None:
                             if do.getYearValid():
                                 if just_year:
-                                    marriage = '%i' % date.getYear()
+                                    marriage = '%i' % do.getYear()
                                 else:
                                     marriage = m.getDate()
                     file.write('fontname="%s", label="%s"];\n' % (font,marriage))
