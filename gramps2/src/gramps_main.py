@@ -632,12 +632,25 @@ class Gramps:
         self.db.close()
         gtk.mainquit()
 
+    def save_query_noquit(self):
+        """Catch the reponse to the save question, no quitting"""
+        self.on_save_activate_quit()
+        self.delete_abandoned_photos()
+        self.db.close()
+	Utils.clearModified()
+
     def quit(self):
         """Catch the reponse to the save on exit question"""
         self.delete_abandoned_photos()
         self.db.close()
         gtk.mainquit()
         
+    def close_noquit(self):
+        """Close database and delete abandoned photos, no quit"""
+        self.delete_abandoned_photos()
+        self.db.close()
+	Utils.clearModified()
+
     def delete_abandoned_photos(self):
         """
         We only want to delete local objects, not external objects, however, we
@@ -1373,24 +1386,34 @@ class Gramps:
             DisplayTrace.DisplayTrace()
 	
     def on_open_activate(self,obj):
-        wFs = gtk.glade.XML(const.revisionFile, "dbopen")
-        wFs.signal_autoconnect({
-            "on_ok_button1_clicked": self.on_ok_button1_clicked,
-            "destroy_passed_object": Utils.destroy_passed_object
-            })
+        if Utils.wasModified():
+            self.delobj = obj
+            SaveDialog(_('Save Changes Made to the Database?'),
+                       _("Unsaved changes exist in the current database. If you "
+                         "close without saving, the changes you have made will "
+                         "be lost."),
+                       self.close_noquit,
+                       self.save_query_noquit)
 
-        fileSelector = wFs.get_widget("dbopen")
+        if not Utils.wasModified():
+            wFs = gtk.glade.XML(const.revisionFile, "dbopen")
+            wFs.signal_autoconnect({
+                "on_ok_button1_clicked": self.on_ok_button1_clicked,
+                "destroy_passed_object": Utils.destroy_passed_object
+                })
 
-        Utils.set_titles(fileSelector, wFs.get_widget('title'),
-                         _('Open a database'))
+            fileSelector = wFs.get_widget("dbopen")
+
+            Utils.set_titles(fileSelector, wFs.get_widget('title'),
+                             _('Open a database'))
         
-        dbname = wFs.get_widget("dbname")
-        getoldrev = wFs.get_widget("getoldrev")
-        fileSelector.set_data("dbname",dbname)
-        dbname.set_default_path(GrampsCfg.db_dir)
-        fileSelector.set_data("getoldrev",getoldrev)
-        getoldrev.set_sensitive(GrampsCfg.usevc)
-        fileSelector.show()
+            dbname = wFs.get_widget("dbname")
+            getoldrev = wFs.get_widget("getoldrev")
+            fileSelector.set_data("dbname",dbname)
+            dbname.set_default_path(GrampsCfg.db_dir)
+            fileSelector.set_data("getoldrev",getoldrev)
+            getoldrev.set_sensitive(GrampsCfg.usevc)
+            fileSelector.show()
 
     def on_revert_activate(self,obj):
         
@@ -1902,34 +1925,43 @@ class Gramps:
         #    self.load_new_person(obj)
 
     def open_example(self,obj):
-        import shutil
-        dest = os.path.expanduser("~/.gramps/example")
-        if not os.path.isdir(dest):
-            try:
-                os.mkdir(dest)
-            except IOError,msg:
-                ErrorDialog(_('Could not create database'),
-                            _('The directory ~/.gramps/example could not '
-                              'be created.' + '\n' + str(msg) ))
-            except OSError,msg:
-                ErrorDialog(_('Could not create database'),
-                            _('The directory ~/.gramps/example could not '
-                              'be created.' + '\n' + str(msg) ))
-            except:
-                ErrorDialog(_('Could not create database'),
-                            _('The directory ~/.gramps/example could not '
-                              'be created.'))
+        if Utils.wasModified():
+            self.delobj = obj
+            SaveDialog(_('Save Changes Made to the Database?'),
+                       _("Unsaved changes exist in the current database. If you "
+                         "close without saving, the changes you have made will "
+                         "be lost."),
+                       self.close_noquit,
+                       self.save_query_noquit)
 
-            try:
-                dir = "%s/share/gramps/example" % const.prefixdir
-                for file in os.listdir(dir):
-                    shutil.copy("%s/%s" % (dir,file), dest)
-            except IOError,msg:
-                ErrorDialog(_('Example database not created'),str(msg))
-            except OSError,msg:
-                ErrorDialog(_('Example database not created'),str(msg))
-            
-        self.read_file(dest)
+        if not Utils.wasModified():
+            import shutil
+            dest = os.path.expanduser("~/.gramps/example")
+            if not os.path.isdir(dest):
+                try:
+                    os.mkdir(dest)
+                except IOError,msg:
+                    ErrorDialog(_('Could not create database'),
+                        _('The directory ~/.gramps/example could not '
+                        'be created.' + '\n' + str(msg) ))
+                except OSError,msg:
+                    ErrorDialog(_('Could not create database'),
+                        _('The directory ~/.gramps/example could not '
+                        'be created.' + '\n' + str(msg) ))
+                except:
+                    ErrorDialog(_('Could not create database'),
+                        _('The directory ~/.gramps/example could not '
+                        'be created.'))
+                try:
+                    dir = "%s/share/gramps/example" % const.prefixdir
+                    for file in os.listdir(dir):
+                        shutil.copy("%s/%s" % (dir,file), dest)
+                except IOError,msg:
+                    ErrorDialog(_('Example database not created'),str(msg))
+                except OSError,msg:
+                    ErrorDialog(_('Example database not created'),str(msg))
+
+                self.read_file(dest)
 
 DARKEN = 1.4
 
