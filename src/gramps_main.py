@@ -55,6 +55,7 @@ from RelLib import *
 from PedView import PedigreeView
 from PlaceView import PlaceView
 from SourceView import SourceView
+from MediaView import MediaView
 
 import ReadXML
 import Filter
@@ -97,6 +98,7 @@ alt2col       = {}
 
 pedigree_view = None
 place_view    = None
+media_view    = None
 
 bookmarks     = None
 topWindow     = None
@@ -104,13 +106,6 @@ statusbar     = None
 gtop          = None
 notebook      = None
 person_list   = None
-media_list    = None
-mid           = None
-mtype         = None
-mdesc         = None
-mpath         = None
-mdetails      = None
-preview       = None
 database      = None
 nameArrow     = None
 idArrow       = None
@@ -408,7 +403,7 @@ def new_database_response(val):
     load_family()
     source_view.load_sources()
     place_view.load_places()
-    load_media()
+    media_view.load_media()
     
 #-------------------------------------------------------------------------
 #
@@ -443,7 +438,7 @@ def full_update():
     source_view.load_sources()
     place_view.load_places()
     pedigree_view.load_canvas(active_person)
-    load_media()
+    media_view.load_media()
 
 def update_display(changed):
     """Incremental display update, update only the displayed page"""
@@ -462,7 +457,7 @@ def update_display(changed):
     elif page == 4:
         place_view.load_places()
     else:
-        load_media()
+        media_view.load_media()
 
 #-------------------------------------------------------------------------
 #
@@ -1165,72 +1160,7 @@ def on_notebook1_switch_page(obj,junk,page):
         place_view.load_places()
     elif page == 5:
         merge_button.set_sensitive(0)
-        load_media()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_media_list_select_row(obj,row,b,c):
-    mobj = obj.get_row_data(row)
-    type = mobj.getMimeType()
-    type_name = utils.get_mime_description(type)
-    path = mobj.getPath()
-    preview.load_file(utils.thumb_path(database.getSavePath(),mobj))
-                          
-    mid.set_text(mobj.getId())
-    mtype.set_text(type_name)
-    mdesc.set_text(mobj.getDescription())
-    if path[0] == "/":
-        mpath.set_text(path)
-    else:
-        mpath.set_text("<local>")
-    mdetails.set_text("")
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def load_media():
-    media_list.freeze()
-    media_list.clear()
-
-    if len(media_list.selection) == 0:
-        current_row = 0
-    else:
-        current_row = media_list.selection[0]
-
-    index = 0
-    objects = database.getObjectMap().values()
-
-    for src in objects:
-        title = src.getDescription()
-        id = src.getId()
-        type = utils.get_mime_description(src.getMimeType())
-        if src.getLocal():
-            path = "<local copy>"
-        else:
-            path = src.getPath()
-        media_list.append([id,title,type,path,""])
-        media_list.set_row_data(index,src)
-        index = index + 1
-
-    media_list.sort()
-
-    if index > 0:
-        media_list.select_row(current_row,0)
-        media_list.moveto(current_row)
-    else:
-        mid.set_text("")
-        mtype.set_text("")
-        mdesc.set_text("")
-        mpath.set_text("")
-        mdetails.set_text("")
-        preview.load_imlib(const.empty_image)
-
-    media_list.thaw()
+        media_view.load_media()
 
 #-------------------------------------------------------------------------
 #
@@ -1911,103 +1841,19 @@ def on_main_key_release_event(obj,event):
     
 #-------------------------------------------------------------------------
 #
-# Basic media list callbacks
-#
-#-------------------------------------------------------------------------
-def create_add_dialog(obj):
-    """Add a new media object to the media list"""
-    import AddMedia
-    AddMedia.AddMediaObject(database,load_media)
-
-def on_edit_media_clicked(obj):
-    """Edit the properties of an existing media object in the media list"""
-    if len(media_list.selection) <= 0:
-        return
-    object = media_list.get_row_data(media_list.selection[0])
-    ImageSelect.GlobalMediaProperties(database,object,load_media)
-
-def on_delete_media_clicked(obj):
-    if len(media_list.selection) <= 0:
-        return
-    else:
-        index = media_list.selection[0]
-    mobj = media_list.get_row_data(index)
-    if is_media_object_used(mobj):
-        import ImageSelect
-        ans = ImageSelect.DeleteMediaQuery(mobj,database,update_display)
-        msg = _("This media object is currently being used. Delete anyway?")
-        GnomeQuestionDialog(msg,ans.query_response)
-    else:
-        map = database.getObjectMap()
-        del map[mobj.getId()]
-        utils.modified()
-        update_display(0)
-
-def is_media_object_used(mobj):
-    for p in database.getFamilyMap().values():
-        for o in p.getPhotoList():
-            if o.getReference() == mobj:
-                return 1
-    for p in database.getPersonMap().values():
-        for o in p.getPhotoList():
-            if o.getReference() == mobj:
-                return 1
-    for p in database.getSourceMap().values():
-        for o in p.getPhotoList():
-            if o.getReference() == mobj:
-                return 1
-    for p in database.getPlaceMap().values():
-        for o in p.getPhotoList():
-            if o.getReference() == mobj:
-                return 1
-    
-#-------------------------------------------------------------------------
-#
-# Drag and drop media list callbacks
-#
-#-------------------------------------------------------------------------
-def on_media_list_drag_data_get(w, context, selection_data, info, time):
-    if info == 1:
-        return
-    if len(w.selection) > 0:
-        row = w.selection[0]
-        d = w.get_row_data(row)
-        id = d.getId()
-        selection_data.set(selection_data.target, 8, id)	
-
-def on_media_list_drag_data_received(w, context, x, y, data, info, time):
-    if data and data.format == 8:
-        d = string.strip(string.replace(data.data,'\0',' '))
-        if d[0:5] == "file:":
-            name = d[5:]
-            mime = utils.get_mime_type(name)
-            photo = Photo()
-            photo.setPath(name)
-            photo.setMimeType(mime)
-            description = os.path.basename(name)
-            photo.setDescription(description)
-            database.addObject(photo)
-            utils.modified()
-            w.drag_finish(context, TRUE, FALSE, time)
-            load_media()
-        else:
-            w.drag_finish(context, FALSE, FALSE, time)
-
-#-------------------------------------------------------------------------
-#
 # Main program
 #
 #-------------------------------------------------------------------------
 
 def main(arg):
-    global pedigree_view, place_view, source_view
+    global pedigree_view, place_view, source_view, media_view
     global database, gtop
     global statusbar,notebook
-    global person_list, source_list, canvas, media_list
+    global person_list, source_list, canvas
     global topWindow, preview, merge_button
     global nameArrow, dateArrow, deathArrow, idArrow
     global cNameArrow, cDateArrow
-    global mid, mtype, mdesc, mpath, mdetails
+#    global mid, mtype, mdesc, mpath, mdetails
     
     rc_parse(const.gtkrcFile)
     database = RelDataBase()
@@ -2028,13 +1874,6 @@ def main(arg):
     topWindow   = gtop.get_widget("gramps")
     person_list = gtop.get_widget("person_list")
     source_list = gtop.get_widget("source_list")
-    media_list  = gtop.get_widget("media_list")
-    mid         = gtop.get_widget("mid")
-    mtype       = gtop.get_widget("mtype")
-    mdesc       = gtop.get_widget("mdesc")
-    mpath       = gtop.get_widget("mpath")
-    mdetails    = gtop.get_widget("mdetails")
-    preview     = gtop.get_widget("preview")
     filter_list = gtop.get_widget("filter_list")
     notebook    = gtop.get_widget(NOTEBOOK)
     nameArrow   = gtop.get_widget("nameSort")
@@ -2047,16 +1886,10 @@ def main(arg):
     pedigree_view = PedigreeView(canvas,modify_statusbar,\
                                  statusbar,change_active_person,\
                                  load_person)
-    place_view = PlaceView(database,gtop,update_display)
+    place_view  = PlaceView(database,gtop,update_display)
     source_view = SourceView(database,source_list,update_display)
+    media_view  = MediaView(database,gtop,update_display)
 
-    t = [ ('STRING', 0, 0),
-          ('text/plain',0,0),
-          ('text/uri-list',0,2),
-          ('application/x-rootwin-drop',0,1)]
-
-    media_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,GDK.ACTION_COPY)
-    media_list.drag_dest_set(DEST_DEFAULT_ALL,t,GDK.ACTION_COPY|GDK.ACTION_MOVE)
     cNameArrow  = gtop.get_widget("cNameSort")
     cDateArrow  = gtop.get_widget("cDateSort")
     person_list.set_column_visibility(5,0)
@@ -2100,13 +1933,13 @@ def main(arg):
         "on_delete_person_clicked"          : on_delete_person_clicked,
         "on_delete_place_clicked"           : place_view.on_delete_place_clicked,
         "on_delete_source_clicked"          : source_view.on_delete_source_clicked,
-        "on_delete_media_clicked"           : on_delete_media_clicked,
+        "on_delete_media_clicked"           : media_view.on_delete_media_clicked,
         "on_delete_sp_clicked"              : on_delete_sp_clicked,
         "on_edit_active_person"             : load_active_person,
         "on_edit_selected_people"           : load_selected_people,
         "on_edit_bookmarks_activate"        : on_edit_bookmarks_activate,
         "on_edit_father_clicked"            : on_edit_father_clicked,
-        "on_edit_media_clicked"             : on_edit_media_clicked,
+        "on_edit_media_clicked"             : media_view.on_edit_media_clicked,
         "on_edit_mother_clicked"            : on_edit_mother_clicked,
         "on_edit_place_clicked"             : place_view.on_edit_place_clicked,
         "on_edit_source_clicked"            : source_view.on_edit_source_clicked,
@@ -2131,11 +1964,11 @@ def main(arg):
         "on_place_list_button_press_event"  : place_view.on_button_press_event,
         "on_place_list_click_column"        : place_view.on_click_column,
         "on_main_key_release_event"         : on_main_key_release_event,
-        "on_add_media_clicked"              : create_add_dialog,
+        "on_add_media_clicked"              : media_view.create_add_dialog,
         "on_media_activate"                 : on_media_activate,
-        "on_media_list_select_row"          : on_media_list_select_row,
-        "on_media_list_drag_data_get"       : on_media_list_drag_data_get,
-        "on_media_list_drag_data_received"  : on_media_list_drag_data_received,
+        "on_media_list_select_row"          : media_view.on_select_row,
+        "on_media_list_drag_data_get"       : media_view.on_drag_data_get,
+        "on_media_list_drag_data_received"  : media_view.on_drag_data_received,
         "on_merge_activate"                 : on_merge_activate,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
