@@ -15,6 +15,7 @@
 	* src/docgen/PSDrawDoc.py: Support for rotated text and wedges
 	* src/StartupDialog.py: Attempt to seed the researcher name from the
 	name entry in the passwd file
+	* src/DrawDoc.py: support centered text
 	
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add gramps icon to correct location on install
