@@ -452,7 +452,7 @@ def save_frel(st):
 # 
 #
 #-------------------------------------------------------------------------
-def initialize_personal_event_list():
+def init_personal_event_list():
     p = []
     for event in personalConstantEvents.keys():
         p.append(_pe_e2l[event])
@@ -464,7 +464,7 @@ def initialize_personal_event_list():
 # 
 #
 #-------------------------------------------------------------------------
-def initialize_marriage_event_list():
+def init_marriage_event_list():
     p = []
     for event in familyConstantEvents.keys():
         p.append(_fe_e2l[event])
@@ -476,7 +476,7 @@ def initialize_marriage_event_list():
 # 
 #
 #-------------------------------------------------------------------------
-def initialize_personal_attribute_list():
+def init_personal_attribute_list():
     p = []
     for event in personalConstantAttributes.keys():
         p.append(_pa_e2l[event])
@@ -488,7 +488,7 @@ def initialize_personal_attribute_list():
 # 
 #
 #-------------------------------------------------------------------------
-def initialize_family_attribute_list():
+def init_family_attribute_list():
     p = []
     for event in familyConstantAttributes.keys():
         p.append(_fa_e2l[event])
@@ -500,18 +500,18 @@ def initialize_family_attribute_list():
 # 
 #
 #-------------------------------------------------------------------------
-def initialize_family_relation_list():
+def init_family_relation_list():
     p = []
     for event in _fr_e2l.keys():
         p.append(_fr_e2l[event])
     p.sort()
     return p
 
-personalEvents = initialize_personal_event_list()
-personalAttributes = initialize_personal_attribute_list()
-marriageEvents = initialize_marriage_event_list()
-familyAttributes = initialize_family_attribute_list()
-familyRelations = initialize_family_relation_list()
+personalEvents = init_personal_event_list()
+personalAttributes = init_personal_attribute_list()
+marriageEvents = init_marriage_event_list()
+familyAttributes = init_family_attribute_list()
+familyRelations = init_family_relation_list()
 places = []
 surnames = []
 

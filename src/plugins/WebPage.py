@@ -528,111 +528,21 @@ class IndividualPage:
                 
                 first = 1
                 for child in family.getChildList():
+                    name = child.getPrimaryName().getRegularName()
                     if first == 1:
                         first = 0
                     else:
                         self.doc.write_text('\n')
                     if self.list.has_key(child):
                         self.doc.start_link("%s.html" % child.getId())
-                        self.doc.write_text(child.getPrimaryName().getRegularName())
+                        self.doc.write_text(name)
                         self.doc.end_link()
                     else:
-                        self.doc.write_text(child.getPrimaryName().getRegularName())
+                        self.doc.write_text(name)
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()
         self.doc.end_table()
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def individual_filter(database,person,list,generations):
-    list.append(person)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def ancestor_filter(database,person,list,generations):
-
-    if person == None:
-        return
-    if person not in list:
-        list.append(person)
-    if generations <= 1:
-        return
-
-    family = person.getMainParents()
-    if family != None:
-        ancestor_filter(database,family.getFather(),list,generations-1)
-        ancestor_filter(database,family.getMother(),list,generations-1)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def descendant_filter(database,person,list,generations):
-
-    if person == None or person in list:
-        return
-    if person not in list:
-        list.append(person)
-    if generations <= 1:
-        return
-    
-    for family in person.getFamilyList():
-        for child in family.getChildList():
-            descendant_filter(database,child,list,generations-1)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def an_des_filter(database,person,list,generations):
-
-    descendant_filter(database,person,list,generations)
-    ancestor_filter(database,person,list,generations)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def entire_db_filter(database,person,list,generations):
-
-    for entry in database.getPersonMap().values():
-        list.append(entry)
-    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def an_des_of_gparents_filter(database,person,list,generations):
-
-    my_list = []
-
-    family = person.getMainParents()
-    if family == None:
-        return
-
-    for p in [ family.getMother(), family.getFather() ]:
-	if p:
-            pf = p.getMainParents()
-            if pf:
-                if pf.getFather():
-                    my_list.append(pf.getFather())
-                if pf.getMother():
-                    my_list.append(pf.getMother())
-
-    for person in my_list:
-        descendant_filter(database,person,list,generations)
-        ancestor_filter(database,person,list,generations)
 
 #------------------------------------------------------------------------
 #
@@ -676,14 +586,43 @@ class WebReport(Report):
         doc.end_paragraph()
     
         person_list.sort(sort.by_last_name)
-        doc.write_text('<div class="PersonIndex">')
+
+        a = {}
+        for person in person_list:
+            n = person.getPrimaryName().getSurname()
+            if n:
+                a[n[0]] = 1
+            else:
+                a[''] = 1
+
+        col_len = len(person_list) + len(a.keys())
+        col_len = col_len/2
+        
+        doc.write_text('<table width="100%" border="0">')
+        doc.write_text('<tr><td width="50%" valign="top">')
+        last = ''
+        end_col = 0
         for person in person_list:
             name = person.getPrimaryName().getName()
+            if name and name[0] != last:
+                last = name[0]
+                doc.start_paragraph('IndexLabel')
+                doc.write_text(name[0])
+                doc.end_paragraph()
+                col_len = col_len - 1
             doc.start_link("%s.html" % person.getId())
             doc.write_text(name)
             doc.end_link()
-            doc.newline()
-        doc.write_text('<div class="PersonIndex"/>')
+            if col_len <= 0 and end_col == 0:
+                doc.write_text('</td><td valign="top">')
+                doc.start_paragraph('IndexLabel')
+                doc.write_text(_("%s (continued)") % name[0])
+                doc.end_paragraph()
+                end_col = 1
+            else:
+                doc.newline()
+            col_len = col_len - 1
+        doc.write_text('</td></tr></table>')
         doc.close()
         
     def write_report(self):
@@ -908,7 +847,13 @@ class WebReportDialog(ReportDialog):
         p = ParagraphStyle()
         p.set(font=font,bborder=1)
         self.default_style.add_style("SourcesTitle",p)
-    
+
+        font = FontStyle()
+        font.set(bold=1,face=FONT_SANS_SERIF,size=14,italic=1)
+        p = ParagraphStyle()
+        p.set(font=font)
+        self.default_style.add_style("IndexLabel",p)
+
         font = FontStyle()
         font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
         p = ParagraphStyle()

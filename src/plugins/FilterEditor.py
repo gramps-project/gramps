@@ -32,6 +32,7 @@ import os
 import const
 from RelLib import *
 import GenericFilter
+import AutoComp
 import intl
 _ = intl.gettext
 
@@ -217,6 +218,12 @@ class FilterEditor:
         self.edit_rule(d)
 
     def edit_rule(self,val):
+        self.pmap = {}
+        self.add_places = []
+
+        for p in self.db.getPlaces():
+            self.pmap[p.get_title()] = p
+
         self.active_rule = val
         self.rule = libglade.GladeXML(const.filterFile,'add_rule')
         self.rule_top = self.rule.get_widget('add_rule')
@@ -258,7 +265,10 @@ class FilterEditor:
                 l = gtk.GtkLabel(v1)
                 l.set_alignment(1,0.5)
                 l.show()
-                if _name2list.has_key(v1):
+                if v == 'Place':
+                    t = gtk.GtkCombo()
+                    AutoComp.AutoCombo(t,self.pmap.keys())
+                elif _name2list.has_key(v1):
                     t = gtk.GtkCombo()
                     _name2list[v1].sort()
                     t.set_popdown_strings(_name2list[v1])
@@ -269,7 +279,7 @@ class FilterEditor:
                     t = gtk.GtkEntry()
                     tlist.append(t)
                 t.show()
-                table.attach(l,0,1,pos,pos+1,EXPAND|FILL,0,5,5)
+                table.attach(l,0,1,pos,pos+1,FILL,0,5,5)
                 table.attach(t,1,2,pos,pos+1,EXPAND|FILL,0,5,5)
                 pos = pos + 1
             self.notebook.append_page(table,gtk.GtkLabel(name))
