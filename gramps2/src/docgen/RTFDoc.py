@@ -429,6 +429,6 @@ try:
         print_label=_("Open in %s") % mprog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(type, RTFDoc, 1, 0, 1, ".rtf", print_label)
+    Plugins.register_text_doc(mtype, RTFDoc, 1, 0, 1, ".rtf", print_label)
 except:
     Plugins.register_text_doc('RTF document', RTFDoc, 1, 0, 1, ".rtf", None)

@@ -586,9 +586,9 @@ def _write_graph_record (self):
         individual = self.db.find_person_from_id(individual_id)
         if individual.get_gender() == individual.female:
             # There are exactly three cases where a female node is added:
-            family = None       # no family
-            husbands = []       # filtered-in husbands (naturalRelatives)
-            unknown_husbands = 0 # filtered-out/unknown husbands
+            family_id = None        # no family
+            husbands = []           # filtered-in husbands (naturalRelatives)
+            unknown_husbands = 0    # filtered-out/unknown husbands
             for family_id in individual.get_family_id_list():
                 family = self.db.find_family_from_id(family_id)
                 husband_id = family.get_father_id()
@@ -619,10 +619,11 @@ def _write_graph_record (self):
     _write_edge(self.File, style="solid", 
                 arrowHead=self.ArrowHeadStyle,arrowTail=self.ArrowTailStyle)
     for family_from_id, family_from_id2 in family_nodes.items():
-        for individual_from_id in family_from_id:
+        for individual_from_id in family_from_id2:
             individual_from = self.db.find_person_from_id(individual_from_id)
             for family_id, mother_rel_ship, father_rel_ship\
                     in individual_from.get_parent_family_id_list():
+                family = self.db.find_family_from_id(family_id)
                 father_id = family.get_father_id()
                 mother_id = family.get_mother_id()
                 # Things are complicated here because a parent may or
@@ -635,7 +636,7 @@ def _write_graph_record (self):
                     if mother_id in family_nodes[father_id]:
                         _write_edge(self.File, family_from_id, father_id,
                                    _get_edge_style(self, mother_rel_ship),
-                                   port_from=individual_from_id, port_to=mother_id)
+                                   portFrom=individual_from_id, portTo=mother_id)
                     else:
                         _write_edge(self.File, family_from_id, father_id,
                                    _get_edge_style(self, mother_rel_ship),
@@ -656,7 +657,7 @@ def _write_graph_record (self):
     marriages = 0
     for family_id, family_id2 in family_nodes.items():
         marriages = marriages + (len(family_id2) - 1)
-        for individual_id in family_id:
+        for individual_id in family_id2:
             individual = self.db.find_person_from_id(individual_id)
             if individual.get_gender() == individual.male\
                    and individual_id not in males:
