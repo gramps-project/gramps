@@ -1,3 +1,15 @@
+2005-03-13  Alex Roitman  <shura@gramps-project.org>
+	* src/DateEdit.py (update_after_editor): Add method.
+	* src/EditPerson.py: Always have birth/death events (never None);
+	Use new update method for dates; Only commit death/birth if changed;
+	Only add new birth/death if non-empty.
+	* src/EventEdit.py: Translate stored event names before including in
+	menu; Exclude birth/death from menu; Do not add birth/death to the
+	custom event types; Only detect type change for non-birth/death.
+	* src/GrampsDbBase.py: Do not commit objects with empty handles.
+	* src/GrampsInMemDB.py: Do not commit objects with empty handles.
+	* src/Utils.py (family_name): Add clause for unknown parents.
+
 2005-03-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/GenericFilter.py (Rule,GenericFilter): New methods prepare() and
 	reset(), that are called before/after a filter is applied, to properly

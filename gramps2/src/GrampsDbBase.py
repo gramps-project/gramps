@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -228,7 +228,7 @@ class GrampsDbBase:
         Commits the specified Person to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly:
+        if self.readonly or not person.get_handle():
             return 
         if change_time:
             person.change = int(change_time)
@@ -246,7 +246,7 @@ class GrampsDbBase:
         Commits the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly:
+        if self.readonly or not obj.get_handle():
             return 
         if change_time:
             obj.change = int(change_time)
@@ -263,7 +263,7 @@ class GrampsDbBase:
         Commits the specified Source to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly:
+        if self.readonly or not source.get_handle():
             return 
         if change_time:
             source.change = int(change_time)
@@ -280,7 +280,7 @@ class GrampsDbBase:
         Commits the specified Place to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly:
+        if self.readonly or not place.get_handle():
             return 
         if change_time:
             place.change = int(change_time)
@@ -297,7 +297,7 @@ class GrampsDbBase:
         Commits the specified Event to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly:
+        if self.readonly or not event.get_handle():
             return 
         if change_time:
             event.change = int(change_time)
@@ -314,7 +314,7 @@ class GrampsDbBase:
         Commits the specified Family to the database, storing the changes
         as part of the transaction.
         """
-        if self.readonly:
+        if self.readonly or not family.get_handle():
             return 
         if change_time:
             family.change = int(change_time)

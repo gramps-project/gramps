@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2002-2004  Donald N. Allingham
+# Copyright (C) 2002-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -156,8 +156,14 @@ class DateEdit:
         """
         date_dialog = DateEditorDialog(self.date_obj,self.parent_window)
         the_date = date_dialog.return_date
-        if the_date:
-            self.date_obj.copy(the_date)
+        self.update_after_editor(the_date)
+
+    def update_after_editor(self,date_obj):
+        """
+        Update text field and LED button to reflect the given date instance.
+        """
+        if date_obj:
+            self.date_obj.copy(date_obj)
             self.text_obj.set_text(DateHandler.displayer.display(self.date_obj))
             self.check()
         

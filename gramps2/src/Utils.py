@@ -117,8 +117,10 @@ def family_name(family,db):
                     "mother" : mname}
     elif father:
         name = NameDisplay.displayer.display(father)
-    else:
+    elif mother:
         name = NameDisplay.displayer.display(mother)
+    else:
+        name = _("unknown")
     return name
 
 def family_upper_name(family,db):
