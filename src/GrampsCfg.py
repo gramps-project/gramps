@@ -234,9 +234,10 @@ class GrampsPreferences:
                 lambda obj: GrampsGconfKeys.save_statusbar(2-obj.get_active()))
 
         toolbarmenu = self.top.get_widget("tooloptmenu")
-        toolbarmenu.set_history(GrampsGconfKeys.get_toolbar())
+        toolbarmenu.set_active(GrampsGconfKeys.get_toolbar()-1)
+        print GrampsGconfKeys.get_toolbar()
         toolbarmenu.connect('changed',
-                lambda obj: GrampsGconfKeys.save_toolbar(obj.get_history()))
+                lambda obj: GrampsGconfKeys.save_toolbar(obj.get_active()+1))
 
         pvbutton = self.top.get_widget('pvbutton')
         fvbutton = self.top.get_widget('fvbutton')

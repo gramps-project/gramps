@@ -1,3 +1,10 @@
+2005-01-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: move strip_id from Utils
+	* src/GrampsCfg.py: use ComboBox for toolbar selection
+	* src/Sources.py: switch to ComboBoxes from OptionMenus
+	* src/Utils.py: removed unused functions
+	* src/gramps.glade: switch to ComboBoxes
+
 2005-01-01 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetAncestralReport.py: Minor cleanup.
 	* src/plugins/DetDescendantReport.py: Convert to new scheme.

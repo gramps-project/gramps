@@ -1001,8 +1001,8 @@ class EditPerson:
         bplace_text = unicode(self.bplace.get_text())
         dplace_text = unicode(self.dplace.get_text())
             
-        prev_btext = Utils.strip_id(bplace_text)
-        prev_dtext = Utils.strip_id(dplace_text)
+        prev_btext = self.strip_id(bplace_text)
+        prev_dtext = self.strip_id(dplace_text)
 
         # Update birth with new values, make sure death values don't change
         if self.update_birth:
@@ -1015,6 +1015,13 @@ class EditPerson:
             self.update_death = False
             self.update_death_info()
             self.bplace.set_text(prev_btext)
+
+    def strip_id(self,text):
+        index = text.rfind('[')
+        if (index > 0):
+            text = text[:index]
+            text = text.rstrip()
+        return text
 
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
