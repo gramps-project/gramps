@@ -57,7 +57,7 @@ _person_id = ""
 _max_gen = 0
 _pg_brk = 0
 _filter_num = 0
-_options = [ _person_id, _max_gen, _pg_brk, _filter_num ]
+_options = ( _person_id, _max_gen, _pg_brk, _filter_num )
 
 #------------------------------------------------------------------------
 #

@@ -119,7 +119,7 @@ _person_id = ""
 _title_string = ""
 _copyright_string = ""
 
-_options = [ _person_id, _title_string, _copyright_string ]
+_options = ( _person_id, _title_string, _copyright_string )
 
 
 #------------------------------------------------------------------------
