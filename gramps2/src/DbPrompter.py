@@ -136,7 +136,19 @@ class ExistingDbPrompter:
         # Always add native format filter
         filter = gtk.FileFilter()
         filter.set_name(_('GRAMPS databases'))
-        filter.add_mime_type('application/x-gramps')
+        filter.add_mime_type(const.app_gramps)
+        choose.add_filter(filter)
+
+        # Always add native format filter
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS XML databases'))
+        filter.add_mime_type(const.app_gramps_xml)
+        choose.add_filter(filter)
+
+        # Always add native format filter
+        filter = gtk.FileFilter()
+        filter.set_name(_('GEDCOM'))
+        filter.add_mime_type(const.app_gedcom)
         choose.add_filter(filter)
 
         # Add more data type selections if opening existing db
@@ -147,19 +159,18 @@ class ExistingDbPrompter:
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
             filetype = gnome.vfs.get_mime_type(filename)
-            print filetype
             
-            if filetype == 'application/x-gramps':
+            if filetype == const.app_gramps:
                 choose.destroy()
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
                 self.parent.read_file(filename)
                 return 1
-            if filetype == 'application/x-gramps-xml' or filetype == 'text/xml' or filetype == 'application/x-gzip':
+            if filetype == const.app_gramps_xml:
                 choose.destroy()
                 self.parent.db = GrampsXMLDB.GrampsXMLDB()
                 self.parent.read_file(filename)
                 return 1
-            if filetype == 'application/x-gedcom':
+            if filetype == const.app_gedcom:
                 choose.destroy()
                 self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)

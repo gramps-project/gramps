@@ -184,7 +184,7 @@ class MyID(gtk.HBox):
 
     def set_text(self,val):
         try:
-            p = self.db.get_person(val)
+            p = self.db.get_person_from_handle(val)
             n = p.get_primary_name().get_name()
             self.tooltips.set_tip(self.entry,n)
         except:
@@ -554,7 +554,7 @@ class EditRule:
         self.add_places = []
 
         for p_id in self.db.get_place_handles():
-            p = self.db.try_to_find_place_from_handle(p_id)
+            p = self.db.get_place_from_handle(p_id)
             self.pmap[p.get_title()] = p_id
 
         self.active_rule = val
@@ -787,7 +787,7 @@ class ShowResults:
 
         n = []
         for p_id in id_list:
-            p = db.try_to_find_person_from_handle(p_id)
+            p = db.get_person_from_handle(p_id)
             n.append ("%s [%s]\n" % (p.get_primary_name().get_name(),p.get_handle()))
 
         n.sort ()

@@ -316,7 +316,7 @@ class DisplayChart:
 
     def build_row_data(self):
         for individual_id in self.my_list:
-            individual = self.db.try_to_find_person_from_handle(individual_id)
+            individual = self.db.get_person_from_handle(individual_id)
             name = individual.get_primary_name().get_name()
             birth_handle = individual.get_birth_handle()
             bdate = ""
@@ -326,7 +326,7 @@ class DisplayChart:
                 bdate = birth.get_date()
                 bplace_handle = birth.get_place_handle()
                 if bplace_handle:
-                    bplace = self.db.try_to_find_place_from_handle(bplace_handle).get_title()
+                    bplace = self.db.get_place_from_handle(bplace_handle).get_title()
             death_handle = individual.get_death_handle()
             ddate = ""
             dplace = ""
@@ -335,7 +335,7 @@ class DisplayChart:
                 ddate = death.get_date()
                 dplace_handle = death.get_place_handle()
                 if dplace_handle:
-                    dplace = self.db.try_to_find_place_from_handle(dplace_handle).get_title()
+                    dplace = self.db.get_place_from_handle(dplace_handle).get_title()
             map = {}
             elist = individual.get_event_list()[:]
             for ievent_handle in elist:
@@ -368,7 +368,7 @@ class DisplayChart:
                             date = event.get_date()
                             place_handle = event.get_place_handle()
                             if place_handle:
-                                place = self.db.try_to_find_place_from_handle(place_handle).get_title()
+                                place = self.db.get_place_from_handle(place_handle).get_title()
                         tlist.append("%s\n%s" % (date, place))
                         added = 1
                     else:
@@ -387,7 +387,7 @@ class DisplayChart:
         name, birth, and death. This should be the column titles of the report"""
         map = {}
         for individual_id in self.my_list:
-            individual = self.db.try_to_find_person_from_handle(individual_id)
+            individual = self.db.get_person_from_handle(individual_id)
             elist = individual.get_event_list()
             for event_handle in elist:
                 if not event_handle:

@@ -36,6 +36,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 import os
 import os.path
 import getopt
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -414,7 +415,7 @@ class ArgHandler:
                 # Write media files first, since the database may be modified 
                 # during the process (i.e. when removing object)
                 for m_id in self.parent.db.get_object_keys():
-                    mobject = self.parent.db.try_to_find_object_from_handle(m_id)
+                    mobject = self.parent.db.get_object_from_handle(m_id)
                     oldfile = mobject.get_path()
                     base = os.path.basename(oldfile)
                     if os.path.isfile(oldfile):

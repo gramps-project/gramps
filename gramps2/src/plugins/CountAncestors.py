@@ -67,7 +67,7 @@ class CountAncestors:
             temp = thisgen
             thisgen = []
             for person_handle in temp:
-                person = database.try_to_find_person_from_handle(person_handle)
+                person = database.get_person_from_handle(person_handle)
                 family_handle = person.get_main_parents_family_handle()
                 if family_handle:
                     family = database.find_family_from_handle(family_handle)

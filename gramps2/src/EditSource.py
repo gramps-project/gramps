@@ -143,7 +143,7 @@ class EditSource:
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
     def close(self,obj):
-        self.gallery.close(self.gallery_ok)
+        self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.top.destroy()
@@ -197,7 +197,7 @@ class EditSource:
                 if sref.get_base_handle() == self.source.get_handle():
                     p_list.append(name)
         for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             name = GrampsCfg.get_nameof()(p)
             for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
                 if event_handle:
@@ -218,7 +218,7 @@ class EditSource:
                     if sref.get_base_handle() == self.source.get_handle():
                         p_addr_list.append((name,v.get_street()))
         for object_handle in self.db.get_object_keys():
-            object = self.db.try_to_find_object_from_handle(object_handle)
+            object = self.db.get_object_from_handle(object_handle)
             name = object.get_description()
             for sref in object.get_source_references():
                 if sref.get_base_handle() == self.source.get_handle():
@@ -228,9 +228,9 @@ class EditSource:
             f_id = family.get_father_handle()
             m_id = family.get_mother_handle()
             if f_id:
-                f = self.db.try_to_find_person_from_handle(f_id)
+                f = self.db.get_person_from_handle(f_id)
             if m_id:
-                m = self.db.try_to_find_person_from_handle(m_id)
+                m = self.db.get_person_from_handle(m_id)
             if f_id and m_id:
                 name = _("%(father)s and %(mother)s") % {
                     "father" : GrampsCfg.get_nameof()(f),
@@ -373,7 +373,7 @@ class DelSrcQuery:
         
         for key in self.db.get_person_keys():
             commit = 0
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
                 v = self.db.find_event_from_handle(v_id)
                 if v:
@@ -404,13 +404,13 @@ class DelSrcQuery:
                 self.db.commit_family(p,trans)
 
         for p_id in self.db.get_object_keys():
-            p = self.db.try_to_find_object_from_handle(p_id,trans)
+            p = self.db.get_object_from_handle(p_id,trans)
             if self.delete_source(p):
                 self.db.commit_media_object(p,trans)
 
         for key in self.db.get_place_handle_keys():
-            p = self.db.try_to_find_place_from_handle(key)
-            if self.delete_source(self.db.try_to_find_place_from_handle(key)):
+            p = self.db.get_place_from_handle(key)
+            if self.delete_source(self.db.get_place_from_handle(key)):
                 self.db.commit_place(p,trans)
 
         self.db.remove_source_handle(self.source.get_handle(),trans)

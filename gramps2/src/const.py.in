@@ -39,6 +39,16 @@ from TransTable import TransTable
 
 #-------------------------------------------------------------------------
 #
+# Mime Types
+#
+#-------------------------------------------------------------------------
+
+app_gramps     = "application/x-gramps"
+app_gramps_xml = "application/x-gramps-xml"
+app_gedcom     = "application/x-gedcom"
+
+#-------------------------------------------------------------------------
+#
 # Paths to external programs
 #
 #-------------------------------------------------------------------------
@@ -473,12 +483,6 @@ family_relations = [
 # 
 #
 #-------------------------------------------------------------------------
-def relationship_def(txt):
-    if _frel2def.has_key(txt):
-        return _frel2def[txt]
-    else:
-        return _("No definition available")
-
 def display_frel(st):
     return family_relations.find_value(st)
 

@@ -373,13 +373,13 @@ class PedigreeView:
 
             childlist = find_children(self.parent.db,self.active_person)
             if len(childlist) == 1:
-                child = self.parent.db.try_to_find_person_from_handle(childlist[0])
+                child = self.parent.db.get_person_from_handle(childlist[0])
                 if child:
                     self.load_canvas(child)
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
                 for child_handle in childlist:
-                    child = self.parent.db.try_to_find_person_from_handle(child_handle)
+                    child = self.parent.db.get_person_from_handle(child_handle)
                     cname = GrampsCfg.get_nameof()(child)
                     menuitem = gtk.MenuItem(None)
                     if find_children(self.parent.db,child):
@@ -402,7 +402,7 @@ class PedigreeView:
            attached with menu item."""
 
         person_handle = obj.get_data(_PERSON)
-        person = self.parent.db.try_to_find_person_from_handle(person_handle)
+        person = self.parent.db.get_person_from_handle(person_handle)
         if person:
             self.load_canvas(person)
         return 1
@@ -427,7 +427,7 @@ class PedigreeView:
            attached to the button and change the root person to that
            person, redrawing the view."""
         person_handle = obj.get_data(_PERSON)
-        person = self.parent.db.try_to_find_person_from_handle(person_handle)
+        person = self.parent.db.get_person_from_handle(person_handle)
         if self.active_person:
             self.active_person = person
         self.load_canvas(person)
@@ -463,7 +463,7 @@ class PedigreeView:
         """Catch X events over a line and respond to the ones we care about"""
 
         person_handle = obj.get_data(_PERSON)
-        person = self.parent.db.try_to_find_person_from_handle(person_handle)
+        person = self.parent.db.get_person_from_handle(person_handle)
         style = self.canvas.get_style()
 
         if event.type == gtk.gdk._2BUTTON_PRESS:
@@ -495,11 +495,11 @@ class PedigreeView:
         if family != None:
             father_handle = family.get_father_handle()
             if father_handle != None:
-                father = self.parent.db.try_to_find_person_from_handle(father_handle)
+                father = self.parent.db.get_person_from_handle(father_handle)
                 self.find_tree(father,(2*index)+1,depth+1,list,frel)
             mother_handle = family.get_mother_handle()
             if mother_handle != None:
-                mother = self.parent.db.try_to_find_person_from_handle(mother_handle)
+                mother = self.parent.db.get_person_from_handle(mother_handle)
                 self.find_tree(mother,(2*index)+2,depth+1,list,mrel)
 
     def on_canvas1_event(self,obj,event):
@@ -578,7 +578,7 @@ class PedigreeView:
                 sp_id = family.get_mother_handle()
             else:
                 sp_id = family.get_father_handle()
-            spouse = self.parent.db.try_to_find_person_from_handle(sp_id)
+            spouse = self.parent.db.get_person_from_handle(sp_id)
             if not spouse:
                 continue
 
@@ -609,7 +609,7 @@ class PedigreeView:
             for sib_id in sib_list:
                 if sib_id == person.get_handle():
                     continue
-                sib = self.parent.db.try_to_find_person_from_handle(sib_id)
+                sib = self.parent.db.get_person_from_handle(sib_id)
                 if not sib:
                     continue
 
@@ -634,7 +634,7 @@ class PedigreeView:
         no_children = 1
         childlist = find_children(self.parent.db,person)
         for child_handle in childlist:
-            child = self.parent.db.try_to_find_person_from_handle(child_handle)
+            child = self.parent.db.get_person_from_handle(child_handle)
             if not child:
                 continue
         
@@ -668,7 +668,7 @@ class PedigreeView:
         no_parents = 1
         par_list = find_parents(self.parent.db,person)
         for par_id in par_list:
-            par = self.parent.db.try_to_find_person_from_handle(par_id)
+            par = self.parent.db.get_person_from_handle(par_id)
             if not par:
                 continue
 

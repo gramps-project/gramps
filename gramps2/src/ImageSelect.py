@@ -170,7 +170,7 @@ class ImageSelect:
 
         trans = self.db.start_transaction()
         for o_id in self.db.get_object_keys():
-            o = self.db.try_to_find_object_from_handle(o_id)
+            o = self.db.get_object_from_handle(o_id)
             if o.get_path() == filename:
                 already_imported = o
                 break
@@ -269,7 +269,7 @@ class Gallery(ImageSelect):
     def on_drag_begin(self,obj,context):
         if const.dnd_images:
             id = self.sel_obj.get_reference_handle()
-            obj = self.db.try_to_find_object_from_handle(id)
+            obj = self.db.get_object_from_handle(id)
             mtype = obj.get_mime_type()
             name = Utils.thumb_path(self.db.get_save_path(),obj)
             pix = gtk.gdk.pixbuf_new_from_file(name)
@@ -363,7 +363,7 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
         oid = photo.get_reference_handle()
-        object = self.db.try_to_find_object_from_handle(oid)
+        object = self.db.get_object_from_handle(oid)
         if self.canvas_list.has_key(oid):
             (grp,item,text,x,y) = self.canvas_list[oid]
             if x != self.cx or y != self.cy:
@@ -598,7 +598,7 @@ class Gallery(ImageSelect):
         
         menu = gtk.Menu()
         menu.set_title(_("Media Object"))
-        object = self.db.try_to_find_object_from_handle(photo.get_reference_handle())
+        object = self.db.get_object_from_handle(photo.get_reference_handle())
         mtype = object.get_mime_type()
         progname = GrampsMime.get_application(mtype)
         
@@ -615,20 +615,20 @@ class Gallery(ImageSelect):
     def popup_view_photo(self, obj):
         """Open this picture in a picture viewer"""
         photo = obj.get_data('o')
-        Utils.view_photo(self.db.try_to_find_object_from_handle(photo.get_reference_handle()))
+        Utils.view_photo(self.db.get_object_from_handle(photo.get_reference_handle()))
     
     def popup_edit_photo(self, obj):
         """Open this picture in a picture editor"""
         photo = obj.get_data('o')
         if os.fork() == 0:
-            obj = self.db.try_to_find_object_from_handle(photo.get_reference_handle())
+            obj = self.db.get_object_from_handle(photo.get_reference_handle())
             os.execvp(const.editor,[const.editor, obj.get_path()])
     
     def popup_convert_to_private(self, obj):
         """Copy this picture into gramps private database instead of
         leaving it as an external data object."""
         photo = obj.get_data('o')
-        object = self.db.try_to_find_object_from_handle(photo.get_reference_handle())
+        object = self.db.get_object_from_handle(photo.get_reference_handle())
         name = RelImage.import_media_object(object.get_path(),self.path,
                                             object.get_handle())
         object.set_path(name)
@@ -659,7 +659,7 @@ class LocalMediaProperties:
         self.child_windows = {}
         self.photo = photo
         self.db = parent.db
-        self.object = self.db.try_to_find_object_from_handle(photo.get_reference_handle())
+        self.object = self.db.get_object_from_handle(photo.get_reference_handle())
         self.alist = photo.get_attribute_list()[:]
         self.lists_changed = 0
         
@@ -1057,7 +1057,7 @@ class GlobalMediaProperties:
                                             titles,event_func=self.button_press)
         any = 0
         for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
                     self.refmodel.add([_("Person"),p.get_handle(),GrampsCfg.get_nameof()(p)])
@@ -1069,13 +1069,13 @@ class GlobalMediaProperties:
                     self.refmodel.add([_("Family"),p.get_handle(),Utils.family_name(p,self.db)])
                     any = 1
         for key in self.db.get_source_keys():
-            p = self.db.try_to_find_source_from_handle(key)
+            p = self.db.get_source_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
                     self.refmodel.add([_("Source"),p.get_handle(),p.get_title()])
                     any = 1
         for key in self.db.get_place_handle_keys():
-            p = self.db.try_to_find_place_from_handle(key)
+            p = self.db.get_place_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
                     self.refmodel.add([_("Place"),p.get_handle(),p.get_title()])
@@ -1170,7 +1170,7 @@ class DeleteMediaQuery:
         trans = self.db.start_transaction()
         
         for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             nl = []
             change = 0
             for photo in p.get_media_list():
@@ -1196,7 +1196,7 @@ class DeleteMediaQuery:
                 self.db.commit_family(p,trans)
 
         for key in self.db.get_source_keys():
-            sid = self.db.try_to_find_source_from_handle(key)
+            sid = self.db.get_source_from_handle(key)
             nl = []
             change = 0
             for photo in p.get_media_list():
@@ -1209,7 +1209,7 @@ class DeleteMediaQuery:
                 self.db.commit_source(p,trans)
 
         for key in self.db.get_place_handle_keys():
-            p = self.db.try_to_find_place_from_handle(key)
+            p = self.db.get_place_from_handle(key)
             nl = []
             change = 0
             for photo in p.get_media_list():

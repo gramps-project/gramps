@@ -112,8 +112,9 @@ class EditPerson:
         self.window.set_title("%s - GRAMPS" % _('Edit Person'))
         
         self.icon_list = self.top.get_widget("iconlist")
-        self.gallery = ImageSelect.Gallery(person, self.db.commit_person, self.path,
-                                           self.icon_list, self.db, self,self.window)
+        self.gallery = ImageSelect.Gallery(person, self.db.commit_person,
+                                           self.path, self.icon_list,
+                                           self.db, self, self.window)
 
         self.complete = self.get_widget('complete')
         self.name_delete_btn = self.top.get_widget('aka_delete')
@@ -499,7 +500,7 @@ class EditPerson:
 
         build_dropdown(place,self.place_list)
         if ord and ord.get_place_handle():
-            ord_place = self.db.try_to_find_place_from_handle(ord.get_place_handle())
+            ord_place = self.db.get_place_from_handle(ord.get_place_handle())
             place.set_text(ord_place.get_title())
         return stat
 
@@ -559,8 +560,8 @@ class EditPerson:
                 continue
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
-            f = self.db.try_to_find_person_from_handle(f_id)
-            m = self.db.try_to_find_person_from_handle(m_id)
+            f = self.db.get_person_from_handle(f_id)
+            m = self.db.get_person_from_handle(m_id)
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
                     'father' : GrampsCfg.get_nameof()(f),
@@ -650,7 +651,7 @@ class EditPerson:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
-                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    newbase = self.db.get_source_from_handle(base_handle)
                     src.set_base_handle(newbase)
                 place = foo.get_place_handle()
                 if place:
@@ -728,7 +729,7 @@ class EditPerson:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
-                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    newbase = self.db.get_source_from_handle(base_handle)
                     src.set_base_handle(newbase)
                 self.alist.append(foo)
             self.lists_changed = 1
@@ -761,7 +762,7 @@ class EditPerson:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
-                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    newbase = self.db.get_source_from_handle(base_handle)
                     src.set_base_handle(newbase)
                 self.plist.insert(row,foo)
                 
@@ -1253,7 +1254,7 @@ class EditPerson:
             if len(event.get_source_references()) > 0:
                 psrc_ref = event.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.try_to_find_source_from_handle(psrc_id)
+                psrc = self.db.get_source_from_handle(psrc_id)
                 self.event_src_field.set_text(short(psrc.get_title()))
                 self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1286,7 +1287,7 @@ class EditPerson:
             if len(addr.get_source_references()) > 0:
                 psrc_ref = addr.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.try_to_find_source_from_handle(psrc_id)
+                psrc = self.db.get_source_from_handle(psrc_id)
                 self.addr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
                 self.addr_src_field.set_text(short(psrc.get_title()))
             else:
@@ -1320,7 +1321,7 @@ class EditPerson:
             if len(name.get_source_references()) > 0:
                 psrc_ref = name.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.try_to_find_source_from_handle(psrc_id)
+                psrc = self.db.get_source_from_handle(psrc_id)
                 self.name_src_field.set_text(short(psrc.get_title()))
                 self.name_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1367,7 +1368,7 @@ class EditPerson:
             if len(attr.get_source_references()) > 0:
                 psrc_ref = attr.get_source_references()[0]
                 psrc_id = psrc_ref.get_base_handle()
-                psrc = self.db.try_to_find_source_from_handle(psrc_id)
+                psrc = self.db.get_source_from_handle(psrc_id)
                 self.attr_src_field.set_text(short(psrc.get_title()))
                 self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
             else:
@@ -1450,7 +1451,7 @@ class EditPerson:
         self.birth.set_place_handle(self.get_place(self.bplace,1))
 
         if idval != self.person.get_gramps_id():
-            person = self.db.try_to_find_person_from_gramps_id(idval)
+            person = self.db.get_person_from_gramps_id(idval)
             if not person:
                 self.person.set_gramps_id(idval)
             else:
@@ -1624,9 +1625,9 @@ class EditPerson:
                 self.add_places.append(place)
                 return place.get_handle()
             else:
-                return ''
+                return None
         else:
-            return ''
+            return None
 
     def on_primary_name_source_clicked(self,obj):
         Sources.SourceSelector(self.pname.get_source_references(),self,
@@ -1681,7 +1682,7 @@ class EditPerson:
         if media_list:
             ph = media_list[0]
             object_handle = ph.get_reference_handle()
-            object = self.db.try_to_find_object_from_handle(object_handle)
+            object = self.db.get_object_from_handle(object_handle)
             if self.load_obj != object.get_path():
                 if object.get_mime_type()[0:5] == "image":
                     self.load_photo(object.get_path())
@@ -1708,8 +1709,9 @@ class EditPerson:
         elif page == 9 and self.lds_not_loaded:
             self.lds_not_loaded = 0
             self.draw_lds()
-        text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                            self.notes_buffer.get_end_iter(),gtk.FALSE))
+        buffer = self.notes_buffer
+        text = unicode(buffer.get_text(buffer.get_start_iter(),
+                                       buffer.get_end_iter(),gtk.FALSE))
         if text:
             Utils.bold_label(self.notes_label)
         else:
@@ -1757,7 +1759,7 @@ class EditPerson:
         prev_date = "00000000"
         for i in range(len(list)):
             child_handle = list[i]
-            child = self.db.try_to_find_person_from_handle(child_handle)
+            child = self.db.get_person_from_handle(child_handle)
             if child.get_birth_handle():
                 event = self.db.find_event_from_handle(child.get_birth_handle())
                 bday = event.get_date_object()
@@ -1791,7 +1793,7 @@ class EditPerson:
         index = list.index(person.get_handle())
         target = index
         for i in range(index-1, -1, -1):
-            other = self.db.try_to_find_person_from_handle(list[i])
+            other = self.db.get_person_from_handle(list[i])
             event_handle = other.get_birth_handle()
             if event_handle:
                 event = self.db.find_event_from_handle(event_handle)
@@ -1806,7 +1808,7 @@ class EditPerson:
         # Now try moving to a later position in the list
         if (target == index):
             for i in range(index, len(list)):
-                other = self.db.try_to_find_person_from_handle(list[i])
+                other = self.db.get_person_from_handle(list[i])
                 event_handle = other.get_birth_handle()
                 if event_handle:
                     event = self.db.find_event_from_handle(event_handle)
@@ -1834,7 +1836,7 @@ def short(val,size=60):
 def place_title(db,event):
     pid = event.get_place_handle()
     if pid:
-        return db.try_to_find_place_from_handle(pid).get_title()
+        return db.get_place_from_handle(pid).get_title()
     else:
         return u''
 

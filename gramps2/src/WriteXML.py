@@ -244,7 +244,7 @@ class XmlWriter:
             keys.sort ()
             for key in keys:
                 try:
-                    person = self.db.get_person(key)
+                    person = self.db.get_person_from_handle(key)
                 except:
                     print "Key error %s" % key
                     continue
@@ -357,7 +357,7 @@ class XmlWriter:
             keys = self.db.get_source_keys ()
             keys.sort ()
             for key in keys:
-                source = self.db.get_source(key)
+                source = self.db.get_source_from_handle(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -392,7 +392,7 @@ class XmlWriter:
             self.g.write("  <objects>\n")
             objList.sort ()
             for key in self.db.get_object_keys():
-                object = self.db.try_to_find_object_from_handle(key)
+                object = self.db.get_object_from_handle(key)
                 self.write_object(object)
             self.g.write("  </objects>\n")
 
@@ -508,7 +508,7 @@ class XmlWriter:
         self.g.write('%s</lds_ord>\n' % sp)
     
     def dump_source_ref(self,source_ref,index=1):
-        source = self.db.try_to_find_source_from_handle(source_ref.get_base_handle())
+        source = self.db.get_source_from_handle(source_ref.get_base_handle())
         if source:
             p = source_ref.get_page()
             c = source_ref.get_comments()

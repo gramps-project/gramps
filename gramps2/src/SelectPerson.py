@@ -116,7 +116,7 @@ class SelectPerson:
         return
     
         for key in self.db.sort_person_keys():
-            person = self.db.get_person(key)
+            person = self.db.get_person_from_handle(key)
             if self.use_filter and not self.filter(person):
                 continue
                 
@@ -143,7 +143,7 @@ class SelectPerson:
 
             idlist = self.get_selected_ids()
             if idlist and idlist[0]:
-                return_value = self.db.get_person(idlist[0])
+                return_value = self.db.get_person_from_handle(idlist[0])
             else:
                 return_value = None
             self.top.destroy()

@@ -506,7 +506,7 @@ def _write_graph_box (self):
         _write_node(self.File, shape='ellipse', color='black',
                    fontname=self.FontStyle)
         for individual_id in individual_nodes:
-            individual = self.db.try_to_find_person_from_handle(individual_id)
+            individual = self.db.get_person_from_handle(individual_id)
             for family_handle in individual.get_family_handle_list():
                 if family_handle not in family_nodes:
                     family_nodes.add(family_handle)
@@ -518,7 +518,7 @@ def _write_graph_box (self):
     _write_edge(self.File, style="solid", 
                     arrowHead=self.ArrowHeadStyle,arrowTail=self.ArrowTailStyle)
     for individual_id in individual_nodes:
-        individual = self.db.try_to_find_person_from_handle(individual_id)
+        individual = self.db.get_person_from_handle(individual_id)
         for family_handle, mother_rel_ship, father_rel_ship\
                 in individual.get_parent_family_handle_list():
             family =  self.db.find_family_from_handle(family_handle)
@@ -554,7 +554,7 @@ def _write_graph_box (self):
     females = 0
     unknowns = 0
     for individual_id in individual_nodes:
-        individual = self.db.try_to_find_person_from_handle(individual_id)
+        individual = self.db.get_person_from_handle(individual_id)
         if individual.get_gender() == individual.male:
             males = males + 1
         elif individual.get_gender() == individual.female:
@@ -596,7 +596,7 @@ def _write_graph_record (self):
     for individual_id in natural_relatives:
         # If both husband and wife are members of the IndividualSet,
         # only one record, with the husband first, is displayed.
-        individual = self.db.try_to_find_person_from_handle(individual_id)
+        individual = self.db.get_person_from_handle(individual_id)
         if individual.get_gender() == individual.female:
             # There are exactly three cases where a female node is added:
             family_handle = None        # no family
@@ -633,7 +633,7 @@ def _write_graph_record (self):
                 arrowHead=self.ArrowHeadStyle,arrowTail=self.ArrowTailStyle)
     for family_from_handle, family_from_handle2 in family_nodes.items():
         for individual_from_handle in family_from_handle2:
-            individual_from = self.db.try_to_find_person_from_handle(individual_from_handle)
+            individual_from = self.db.get_person_from_handle(individual_from_handle)
             for family_handle, mother_rel_ship, father_rel_ship\
                     in individual_from.get_parent_family_handle_list():
                 family = self.db.find_family_from_handle(family_handle)
@@ -671,7 +671,7 @@ def _write_graph_record (self):
     for family_handle, family_handle2 in family_nodes.items():
         marriages = marriages + (len(family_handle2) - 1)
         for individual_id in family_handle2:
-            individual = self.db.try_to_find_person_from_handle(individual_id)
+            individual = self.db.get_person_from_handle(individual_id)
             if individual.get_gender() == individual.male\
                    and individual_id not in males:
                 males.add(individual_id)
@@ -692,7 +692,7 @@ def _get_individual_data (self, individual_id):
     """Returns a tuple of individual data"""
     # color
     color = ''
-    individual = self.db.try_to_find_person_from_handle(individual_id)
+    individual = self.db.get_person_from_handle(individual_id)
     if self.Colorize:
         gender = individual.get_gender()
         if gender == individual.male:
@@ -724,7 +724,7 @@ def _get_event_label (self, event_handle):
         elif self.PlaceCause:
             place_handle = event.get_place_handle()
             if place_handle:
-                place = self.db.try_to_find_place_from_handle(place_handle)
+                place = self.db.get_place_from_handle(place_handle)
                 return place.get_title()
             else:
                 return event.get_cause()
@@ -743,7 +743,7 @@ def _get_individual_label (self, individual_id, marriage_event_handle=None, fami
     individual's and family's IDs.
     """
     # Get data ready
-    individual = self.db.try_to_find_person_from_handle(individual_id)
+    individual = self.db.get_person_from_handle(individual_id)
     name = individual.get_primary_name().get_name()
     if self.IncludeDates:
         birth = _get_event_label(self, individual.get_birth_handle())
@@ -813,9 +813,9 @@ def _get_family_handle_record_label (self, record):
     """Returns a formatted string of a family record suitable for a label"""
     labels = []
     spouse_id = record[0]
-    spouse = self.db.try_to_find_person_from_handle(spouse_id)
+    spouse = self.db.get_person_from_handle(spouse_id)
     for individual_id in record:
-        individual = self.db.try_to_find_person_from_handle(individual_id)
+        individual = self.db.get_person_from_handle(individual_id)
         if spouse_id == individual_id:
             label = _get_individual_label(self, individual_id)
         else:

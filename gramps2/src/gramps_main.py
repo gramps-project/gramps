@@ -153,16 +153,26 @@ class Gramps:
         # Don't show main window until ArgHandler is done.
         # This prevents a window from annoyingly popping up when
         # the command line args are sufficient to operate without it.
-        GrampsCfg.client.notify_add("/apps/gramps/researcher",self.researcher_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/statusbar",self.statusbar_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar",self.toolbar_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar-on",self.toolbar_on_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/filter",self.filter_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/view",self.sidebar_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/interface/familyview",self.familyview_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/preferences/name-format",self.familyview_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-format",self.date_format_key_update)
-        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-entry",self.date_entry_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/researcher",
+                                    self.researcher_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/statusbar",
+                                    self.statusbar_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar",
+                                    self.toolbar_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar-on",
+                                    self.toolbar_on_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/filter",
+                                    self.filter_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/view",
+                                    self.sidebar_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/familyview",
+                                    self.familyview_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/preferences/name-format",
+                                    self.familyview_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-format",
+                                    self.date_format_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-entry",
+                                    self.date_entry_key_update)
         self.topWindow.show()
 
         if GrampsCfg.get_usetips():
@@ -399,7 +409,7 @@ class Gramps:
     def undo(self,*args):
         self.db.undo()
         if self.active_person:
-            p = self.db.try_to_find_person_from_handle(self.active_person.get_handle())
+            p = self.db.get_person_from_handle(self.active_person.get_handle())
             self.change_active_person(p)
         self.place_view.change_db(self.db)
         self.people_view.change_db(self.db)
@@ -514,7 +524,7 @@ class Gramps:
                         break
                     if pid not in haveit:
                         haveit.append(pid)
-                        person = self.db.get_person(pid)
+                        person = self.db.get_person_from_handle(pid)
                         item = gtk.MenuItem("_%d. %s [%s]" % 
                                             (num,person.get_primary_name().get_name(),pid))
                         item.connect("activate",self.bookmark_callback,person.get_handle())
@@ -546,7 +556,7 @@ class Gramps:
                     hotkey = "_%s" % chr(ord('a')+num-11)
                 elif num >= 21:
                     break
-                person = self.db.try_to_find_person_from_handle(pid)
+                person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
                     (hotkey,person.get_primary_name().get_name(),pid))
                 item.connect("activate",self.back_clicked,num)
@@ -574,7 +584,7 @@ class Gramps:
                     hotkey = "_%s" % chr(ord('a')+num-11)
                 elif num >= 21:
                     break
-                person = self.db.get_person(pid)
+                person = self.db.get_person_from_handle(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
                     (hotkey,person.get_primary_name().get_name(),pid))
                 item.connect("activate",self.fwd_clicked,num)
@@ -602,7 +612,7 @@ class Gramps:
         if self.hindex > 0:
             try:
                 self.hindex -= step
-                self.active_person = self.db.get_person(self.history[self.hindex])
+                self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
                 self.mhistory.append(self.history[self.hindex])
@@ -628,7 +638,7 @@ class Gramps:
         if self.hindex+1 < len(self.history):
             try:
                 self.hindex += step
-                self.active_person = self.db.get_person(self.history[self.hindex])
+                self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
                 self.mhistory.append(self.history[self.hindex])
@@ -803,8 +813,8 @@ class Gramps:
                 ErrorDialog(msg,msg2)
             else:
                 import MergeData
-                p1 = self.db.get_person(mlist[0])
-                p2 = self.db.get_person(mlist[1])
+                p1 = self.db.get_person_from_handle(mlist[0])
+                p2 = self.db.get_person_from_handle(mlist[1])
                 MergeData.MergePeople(self,self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
         elif page == PLACE_VIEW:
@@ -1061,7 +1071,7 @@ class Gramps:
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.try_to_find_object_from_handle(ObjectId)
+            mobj = self.db.get_object_from_handle(ObjectId)
             for p in self.db.get_family_handle_map().values():
                 nl = p.get_media_list()
                 for o in nl:
@@ -1069,21 +1079,21 @@ class Gramps:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_person_keys():
-                p = self.db.get_person(key)
+                p = self.db.get_person_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_source_keys():
-                p = self.db.get_source(key)
+                p = self.db.get_source_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_place_handle_keys():
-                p = self.db.get_place_handle(key)
+                p = self.db.get_place_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == ObjectId:
@@ -1117,13 +1127,13 @@ class Gramps:
                 name = choose.get_filename()
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
-                    object = self.db.try_to_find_object_from_handle(ObjectId)
+                    object = self.db.get_object_from_handle(ObjectId)
                     object.set_path(name)
             choose.destroy()
 
         #-------------------------------------------------------------------------
         for ObjectId in self.db.get_object_keys():
-            object = self.db.try_to_find_object_from_handle(ObjectId)
+            object = self.db.get_object_from_handle(ObjectId)
             if 0:
                 oldfile = object.get_path()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
@@ -1181,7 +1191,7 @@ class Gramps:
             mlist = [ self.active_person.get_handle() ]
 
         for sel in mlist:
-            p = self.db.get_person(sel)
+            p = self.db.get_person_from_handle(sel)
             self.active_person = p
             name = GrampsCfg.get_nameof()(p) 
 
@@ -1211,7 +1221,7 @@ class Gramps:
             if self.active_person.get_handle() == family.get_father_handle():
                 if family.get_mother_handle() == None:
                     for child_handle in family.get_child_handle_list():
-                        child = self.db.try_to_find_person_from_handle(child_handle)
+                        child = self.db.get_person_from_handle(child_handle)
                         child.remove_parent_family_handle(family.get_handle())
                         self.db.commit_person(child,trans)
                     self.db.delete_family(family.get_handle(),trans)
@@ -1220,7 +1230,7 @@ class Gramps:
             else:
                 if family.get_father_handle() == None:
                     for child_handle in family.get_child_handle_list():
-                        child = self.db.try_to_find_person_from_handle(child_handle)
+                        child = self.db.get_person_from_handle(child_handle)
                         child.remove_parent_family_handle(family)
                         self.db.commit_person(child,trans)
                     self.db.delete_family(family,trans)
@@ -1240,7 +1250,7 @@ class Gramps:
         self.db.remove_person_handle(id, trans)
 
         if self.hindex >= 0:
-            self.active_person = self.db.try_to_find_person_from_handle(self.history[self.hindex])
+            self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
         else:
             self.change_active_person(None)
         self.db.add_transaction(trans,_("Delete Person (%s)") % n)
@@ -1265,7 +1275,7 @@ class Gramps:
             self.modify_statusbar()
         elif self.active_person == None or \
                person.get_handle() != self.active_person.get_handle():
-            self.active_person = self.db.try_to_find_person_from_handle(person.get_handle())
+            self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.modify_statusbar()
             self.set_buttons(1)
             if person:
@@ -1291,7 +1301,7 @@ class Gramps:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
         else:
-            self.active_person = self.db.try_to_find_person_from_handle(person.get_handle())
+            self.active_person = self.db.get_person_from_handle(person.get_handle())
             self.set_buttons(1)
         
     def modify_statusbar(self):
@@ -1326,9 +1336,6 @@ class Gramps:
         except:
             DisplayTrace.DisplayTrace()
             return ""
-
-    def fs_close_window(self,obj):
-        self.filesel.destroy()
 
     def on_open_activate(self,obj):
         prompter = DbPrompter.ExistingDbPrompter(self,self.topWindow)
@@ -1515,7 +1522,7 @@ class Gramps:
             the_ids = self.db.get_person_keys()
             if the_ids:
                 the_ids.sort()
-                person = self.db.get_person(the_ids[0])
+                person = self.db.get_person_from_handle(the_ids[0])
         return person
     
     def load_database(self,name):
@@ -1571,7 +1578,7 @@ class Gramps:
         
     def bookmark_callback(self,obj,person_handle):
         old_person = self.active_person
-        person = self.db.try_to_find_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
         try:
             self.change_active_person(person)
             self.update_display(0)

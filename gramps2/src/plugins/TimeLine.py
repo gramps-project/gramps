@@ -184,7 +184,7 @@ class TimeLine:
         self.plist.sort(self.sort_func)
         
         for p_id in self.plist:
-            p = self.db.try_to_find_person_from_handle(p_id)
+            p = self.db.get_person_from_handle(p_id)
             b_id = p.get_birth_handle()
             if b_id:
                 b = self.db.find_event_from_handle(b_id).get_date_object().get_year()
@@ -282,7 +282,7 @@ class TimeLine:
         self.plist = self.filter.apply(self.db,self.db.get_person_keys())
 
         for p_id in self.plist:
-            p = self.db.try_to_find_person_from_handle(p_id)
+            p = self.db.get_person_from_handle(p_id)
             b_id = p.get_birth_handle()
             if b_id:
                 b = self.db.find_event_from_handle(b_id).get_date_object().get_year()
@@ -321,7 +321,7 @@ class TimeLine:
         
         size = 0
         for p_id in self.plist:
-            p = self.db.try_to_find_person_from_handle(p_id)
+            p = self.db.get_person_from_handle(p_id)
             n = p.get_primary_name().get_name()
             size = max(FontScale.string_width(font,n),size)
         return pt2cm(size)
@@ -538,7 +538,7 @@ class TimeLineBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -636,7 +636,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         filter_num = int(options[1])
         filters = _get_report_filters(person)
         afilter = filters[filter_num]

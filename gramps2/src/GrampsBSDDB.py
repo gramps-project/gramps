@@ -89,6 +89,8 @@ class GrampsBSDDB(GrampsDbBase):
         self.bookmarks = self.metadata.get('bookmarks')
         if self.bookmarks == None:
             self.bookmarks = []
+
+        self.genderStats = GenderStats(self.metadata.get('gender_stats'))
         return 1
 
     def close(self):
@@ -99,6 +101,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.media_map.close()
         self.event_map.close()
         self.metadata['bookmarks'] = self.bookmarks
+        self.metadata['gender_stats'] = self.genderStats.save_stats()
         self.metadata.close()
         self.surnames.close()
         self.eventnames.close()
@@ -140,7 +143,7 @@ class GrampsBSDDB(GrampsDbBase):
         return vals
 
     def remove_person_handle(self,handle,transaction):
-#        self.genderStats.uncount_person (self.person_map[handle])
+        self.genderStats.uncount_person (self.person_map[handle])
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)

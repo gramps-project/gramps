@@ -132,8 +132,8 @@ class Marriage:
         fid = family.get_father_handle()
         mid = family.get_mother_handle()
 
-        father = self.db.try_to_find_person_from_handle(fid)
-        mother = self.db.try_to_find_person_from_handle(mid)
+        father = self.db.get_person_from_handle(fid)
+        mother = self.db.get_person_from_handle(mid)
         
         self.title = _("%s and %s") % (GrampsCfg.get_nameof()(father),
                                   GrampsCfg.get_nameof()(mother))
@@ -400,11 +400,11 @@ class Marriage:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
-                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    newbase = self.db.get_source_from_handle(base_handle)
                     src.set_base_handle(newbase)
                 place = foo.get_place_handle()
                 if place:
-                    foo.set_place_handle(self.db.try_to_find_place_from_handle(place.get_handle()))
+                    foo.set_place_handle(self.db.get_place_from_handle(place.get_handle()))
                 self.elist.insert(row,foo)
 
             self.lists_changed = 1
@@ -432,7 +432,7 @@ class Marriage:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
-                    newbase = self.db.try_to_find_source_from_handle(base_handle)
+                    newbase = self.db.get_source_from_handle(base_handle)
                     src.set_base_handle(newbase)
                 self.alist.insert(row,foo)
 
@@ -478,7 +478,7 @@ class Marriage:
             place_handle = event.get_place_handle()
             
             if place_handle:
-                place_name = self.db.try_to_find_place_from_handle(place_handle).get_title()
+                place_name = self.db.get_place_from_handle(place_handle).get_title()
             else:
                 place_name = ""
             iter = self.etree.add([const.display_fevent(event.get_name()),
@@ -675,7 +675,7 @@ class Marriage:
         self.date_field.set_text(event.get_date())
         place_handle = event.get_place_handle()
         if place_handle:
-            place_name = self.db.try_to_find_place_from_handle(place_handle).get_title()
+            place_name = self.db.get_place_from_handle(place_handle).get_title()
         else:
             place_name = u""
         self.place_field.set_text(place_name)
@@ -684,7 +684,7 @@ class Marriage:
         if len(event.get_source_references()) > 0:
             psrc_ref = event.get_source_references()[0]
             psrc_id = psrc_ref.get_base_handle()
-            psrc = self.db.try_to_find_source_from_handle(psrc_id)
+            psrc = self.db.get_source_from_handle(psrc_id)
             self.event_src_field.set_text(psrc.get_title())
             self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
         else:
@@ -703,7 +703,7 @@ class Marriage:
         if len(attr.get_source_references()) > 0:
             psrc_ref = attr.get_source_references()[0]
             psrc_id = psrc_ref.get_base_handle()
-            psrc = self.db.try_to_find_source_from_handle(psrc_id)
+            psrc = self.db.get_source_from_handle(psrc_id)
             self.attr_src_field.set_text(psrc.get_title())
             self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
         else:
@@ -720,8 +720,8 @@ class Marriage:
 
         father_handle = self.family.get_father_handle()
         mother_handle = self.family.get_mother_handle()
-        father = self.db.try_to_find_person_from_handle(father_handle)
-        mother = self.db.try_to_find_person_from_handle(mother_handle)
+        father = self.db.get_person_from_handle(father_handle)
+        mother = self.db.get_person_from_handle(mother_handle)
         if father and mother:
             name = _("%s and %s") % (father.get_primary_name().get_name(),
                                          mother.get_primary_name().get_name())
@@ -741,8 +741,8 @@ class Marriage:
         import AttrEdit
         father_handle = self.family.get_father_handle()
         mother_handle = self.family.get_mother_handle()
-        father = self.db.try_to_find_person_from_handle(father_handle)
-        mother = self.db.try_to_find_person_from_handle(mother_handle)
+        father = self.db.get_person_from_handle(father_handle)
+        mother = self.db.get_person_from_handle(mother_handle)
         if father and mother:
             name = _("%s and %s") % (father.get_primary_name().get_name(),
                                      mother.get_primary_name().get_name())
@@ -785,7 +785,7 @@ class Marriage:
         text = string.strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.db.try_to_find_place_from_handle(self.pmap[text])
+                return self.db.get_place_from_handle(self.pmap[text])
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)

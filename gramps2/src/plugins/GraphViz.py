@@ -396,7 +396,7 @@ def dump_person(database,person_list,file,adoptionsdashed,arrowheadstyle,
 
     for person_handle in person_list:
         pid = string.replace(person_handle,'-','_')
-        person = database.try_to_find_person_from_handle(person_handle)
+        person = database.get_person_from_handle(person_handle)
         for family_handle, mrel, frel in person.get_parent_family_handle_list():
             family = database.find_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
@@ -450,7 +450,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
     # don't do it twice.
     families_done = []
     for person_handle in person_list:
-        person = database.try_to_find_person_from_handle(person_handle)
+        person = database.get_person_from_handle(person_handle)
         # Output the person's node.
         label = person.get_primary_name().get_name()
         id = string.replace(person_handle,'-','_')

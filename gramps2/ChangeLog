@@ -1,3 +1,7 @@
+2004-08-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* various: change try_to_find_*_from_handle to 
+	get_*_from_handle
+
 2004-08-05  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AutoComp.py: switch over entirely to ComboBox for
 	autocompletion

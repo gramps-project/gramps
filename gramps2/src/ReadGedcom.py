@@ -1746,7 +1746,7 @@ class GedcomParser:
                 new_key = prefix % val
                 new_pmax = max(new_pmax,val)
 
-                person = self.db.try_to_find_person_from_handle(pid,self.trans)
+                person = self.db.get_person_from_handle(pid,self.trans)
 
                 # new ID is not used
                 if not self.db.has_person_handle(new_key):
@@ -1755,7 +1755,7 @@ class GedcomParser:
                     person.set_gramps_id(new_key)
                     self.db.add_person(person,self.trans)
                 else:
-                    tp = self.db.try_to_find_person_from_handle(new_key,self.trans)
+                    tp = self.db.get_person_from_handle(new_key,self.trans)
                     # same person, just change it
                     if person == tp:
                         self.db.remove_person_handle(pid,self.trans)

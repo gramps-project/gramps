@@ -480,7 +480,7 @@ class EditPlace:
         fevent = []
         msg = ""
         for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place:
@@ -562,7 +562,7 @@ class DeletePlaceQuery:
         self.db.remove_place(self.place.get_handle(),trans)
 
         for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place.get_handle():

@@ -1504,7 +1504,7 @@ class Person(SourceNote):
             for family_handle in person.get_family_handle_list():
                 family = db.find_family_from_handle(family_handle)
                 for child_handle in family.get_child_handle_list():
-                    child = db.try_to_find_person_from_handle(child_handle)
+                    child = db.get_person_from_handle(child_handle)
                     if child.birth_handle:
                         child_birth = db.find_event_from_handle(child.birth_handle)
                         if child_birth.get_date() != "":
@@ -1537,7 +1537,7 @@ class Person(SourceNote):
                     if not parent_id:
                         continue
 
-                    parent = db.try_to_find_person_from_handle(parent_id)
+                    parent = db.get_person_from_handle(parent_id)
                     if parent.birth_handle:
                         parent_birth = db.find_event_from_handle(parent.birth_handle)
                         if parent_birth.get_date():
@@ -1569,7 +1569,7 @@ class Person(SourceNote):
                     continue
                 if spouse_id == self.handle:
                     continue
-                spouse = db.try_to_find_person_from_handle(spouse_id)
+                spouse = db.get_person_from_handle(spouse_id)
                 if spouse.birth_handle:
                     spouse_birth = db.find_event_from_handle(spouse.birth_handle)
                     if spouse_birth.get_date() != "":
@@ -2244,8 +2244,14 @@ class SourceRef:
 #
 #-------------------------------------------------------------------------
 class GenderStats:
-    def __init__ (self):
-        self.stats = {}
+    def __init__ (self,stats={}):
+        if stats == None:
+            self.stats = {}
+        else:
+            self.stats = stats
+
+    def save_stats(self):
+        return self.stats
 
     def _get_key (self, person):
         name = person.get_primary_name().get_first_name()

@@ -68,7 +68,7 @@ class SubstKeywords:
     def __init__(self,database,person_handle):
         """Creates a new object and associates a person with it."""
 
-        person = database.try_to_find_person_from_handle(person_handle)
+        person = database.get_person_from_handle(person_handle)
         self.n = person.get_primary_name().get_regular_name()
         self.N = person.get_primary_name().get_name()
         self.b = ""
@@ -86,14 +86,14 @@ class SubstKeywords:
             self.b = birth.get_date()
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
-                self.B = database.try_to_find_place_from_handle(bplace_handle).get_title()
+                self.B = database.get_place_from_handle(bplace_handle).get_title()
         death_handle = person.get_death_handle()
         if death_handle:
             death = database.find_event_from_handle(death_handle)
             self.d = death.get_date()
             dplace_handle = death.get_place_handle()
             if dplace_handle:
-                self.D = database.try_to_find_place_from_handle(dplace_handle).get_title()
+                self.D = database.get_place_from_handle(dplace_handle).get_title()
         self.i = str(person_handle)
 
         if person.get_family_handle_list():
@@ -103,12 +103,12 @@ class SubstKeywords:
             mother_handle = f.get_mother_handle()
             if father_handle == person_handle:
                 if mother_handle:
-                    mother = database.try_to_find_person_from_handle(mother_handle)
+                    mother = database.get_person_from_handle(mother_handle)
                     self.s = mother.get_primary_name().get_regular_name()
                     self.S = mother.get_primary_name().get_name()
             else:
                 if father_handle:
-                    father = database.try_to_find_person_from_handle(father_handle)
+                    father = database.get_person_from_handle(father_handle)
                     self.s = father.get_primary_name().get_regular_name()
                     self.S = father.get_primary_name().get_name()
             for e_id in f.get_event_list():
@@ -119,7 +119,7 @@ class SubstKeywords:
                     self.m = e.get_date()
                     mplace_handle = e.get_place_handle()
                     if mplace_handle:
-                        self.M = database.try_to_find_place_from_handle(mplace_handle).get_title()
+                        self.M = database.get_place_from_handle(mplace_handle).get_title()
 
     def replace(self,line):
         """Returns a new line of text with the substitutions performed."""

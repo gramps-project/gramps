@@ -162,7 +162,7 @@ class SourceSelector:
         self.model.clear()
         for s in self.list:
             base_handle = s.get_base_handle()
-            base = self.db.try_to_find_source_from_handle(base_handle)
+            base = self.db.get_source_from_handle(base_handle)
             iter = self.model.append()
             self.model.set(iter,0,base_handle,1,base.get_title())
 
@@ -244,7 +244,7 @@ class SourceTab:
         for s in self.list:
             base_handle = s.get_base_handle()
             iter = self.model.append()
-            base = self.db.try_to_find_source_from_handle(base_handle)
+            base = self.db.get_source_from_handle(base_handle)
             self.model.set(iter,0,base_handle,1,base.get_title())
         if self.list:
             Utils.bold_label(self.parent.sources_label)
@@ -335,7 +335,7 @@ class SourceEditor:
         self.pub_field = self.get_widget("spubinfo")
 
         if self.source_ref:
-            self.active_source = self.db.try_to_find_source_from_handle(self.source_ref.get_base_handle())
+            self.active_source = self.db.get_source_from_handle(self.source_ref.get_base_handle())
         else:
             self.active_source = None
 
@@ -416,7 +416,7 @@ class SourceEditor:
 
             scom = self.get_widget("scomment")
             scom.get_buffer().set_text(self.source_ref.get_comments())
-            src = self.db.try_to_find_source_from_handle(self.source_ref.get_base_handle())
+            src = self.db.get_source_from_handle(self.source_ref.get_base_handle())
             self.active_source = src
             if src:
                 self.author_field.set_text(src.get_author())
@@ -432,7 +432,7 @@ class SourceEditor:
         self.list = []
         self.active_source = sel
         for src_id in keys:
-            src = self.db.try_to_find_source_from_handle(src_id)
+            src = self.db.get_source_from_handle(src_id)
             l = gtk.Label("%s [%s]" % (src.get_title(),src.get_handle()))
             l.show()
             l.set_alignment(0,0.5)
@@ -454,7 +454,7 @@ class SourceEditor:
 
     def on_sourceok_clicked(self,obj):
 
-        if self.active_source != self.db.try_to_find_source_from_handle(self.source_ref.get_base_handle()):
+        if self.active_source != self.db.get_source_from_handle(self.source_ref.get_base_handle()):
             self.source_ref.set_base_handle(self.active_source.get_handle())
         
         date = unicode(self.get_widget("sdate").get_text())

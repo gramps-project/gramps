@@ -87,8 +87,8 @@ class SelectChild:
         self.add_child = self.xml.get_widget("childlist")
 
         if (self.family):
-            father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
-            mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
+            father = self.db.get_person_from_handle(self.family.get_father_handle())
+            mother = self.db.get_person_from_handle(self.family.get_mother_handle())
 
             if father != None:
                 fname = father.get_primary_name().get_name()
@@ -196,7 +196,7 @@ class SelectChild:
             
         person_list = []
         for key in self.db.sort_person_keys():
-            person = self.db.get_person(key)
+            person = self.db.get_person_from_handle(key)
             if filter:
                 if slist.has_key(key) or person.get_main_parents_family_handle():
                     continue
@@ -276,7 +276,7 @@ class SelectChild:
             return
 
         id = idlist[0]
-        select_child = self.db.get_person(id)
+        select_child = self.db.get_person_from_handle(id)
         if self.person.get_handle() == id:
             ErrorDialog(_("Error selecting a child"),
                         _("A person cannot be linked as his/her own child"),
@@ -300,13 +300,13 @@ class SelectChild:
         self.family.add_child_handle(select_child.get_handle())
         
         mrel = const.child_relations.find_value(self.mrel.get_text())
-        mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
+        mother = self.db.get_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
         frel = const.child_relations.find_value(self.frel.get_text())
-        father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
+        father = self.db.get_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":
                 frel = "Unknown"
@@ -393,8 +393,8 @@ class EditRel:
         Utils.set_titles(self.top,self.xml.get_widget('title'),
                          _('Relationships of %s') % name)
 
-        father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
-        mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
+        father = self.db.get_person_from_handle(self.family.get_father_handle())
+        mother = self.db.get_person_from_handle(self.family.get_mother_handle())
 
         if father:
             fname = father.get_primary_name().get_name()
@@ -437,13 +437,13 @@ class EditRel:
 
     def on_ok_clicked(self,obj):
         mrel = const.child_relations.find_value(self.mentry.get_text())
-        mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
+        mother = self.db.get_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
         frel = const.child_relations.find_value(self.fentry.get_text())
-        father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
+        father = self.db.get_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":
                 frel = "Unknown"

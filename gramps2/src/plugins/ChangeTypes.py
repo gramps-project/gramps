@@ -80,7 +80,7 @@ class ChangeTypes:
         new = unicode(self.auto2.child..get_text())
 
         for person_handle in self.db.get_person_keys():
-            person = self.db.try_to_find_person_from_handle(person_handle)
+            person = self.db.get_person_from_handle(person_handle)
             for event_handle in person.get_event_list():
                 if not event_handle:
                     continue

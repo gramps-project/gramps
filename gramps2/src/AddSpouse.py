@@ -219,7 +219,7 @@ class AddSpouse:
         else:
             self.db.add_person_no_map(person,id,trans)
 
-        person = self.db.try_to_find_person_from_handle(id)
+        person = self.db.get_person_from_handle(id)
         n = person.get_primary_name().get_name()
         self.db.add_transaction(trans,_('Add Person (%s)' % n))
         self.addperson(person)
@@ -246,13 +246,14 @@ class AddSpouse:
         if not idlist or not idlist[0]:
             return
         
-        spouse = self.db.get_person(idlist[0])
+        spouse = self.db.get_person_from_handle(idlist[0])
         spouse_id = spouse.get_handle()
 
         # don't do anything if the marriage already exists
         for f in self.person.get_family_handle_list():
             fam = self.db.find_family_from_handle(f)
-            if spouse_id == fam.get_mother_handle() or spouse_id == fam.get_father_handle():
+            if spouse_id == fam.get_mother_handle() or \
+                   spouse_id == fam.get_father_handle():
                 Utils.destroy_passed_object(obj)
                 return
 

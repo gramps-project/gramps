@@ -178,7 +178,7 @@ class MediaView:
         
         id = store.get_value(iter,1)
         
-        mobj = self.db.try_to_find_object_from_handle(id)
+        mobj = self.db.get_object_from_handle(id)
         type = mobj.get_mime_type()
         type_name = Utils.get_mime_description(type)
         path = mobj.get_path()
@@ -226,7 +226,7 @@ class MediaView:
         store,iter = self.selection.get_selected()
         if iter:
             id = store.get_value(iter,1)
-            object = self.db.try_to_find_object_from_handle(id)
+            object = self.db.get_object_from_handle(id)
             self.obj = object
             mime_type = object.get_mime_type()
             
@@ -292,7 +292,7 @@ class MediaView:
         list_store, iter = self.selection.get_selected()
         if iter:
             id = list_store.get_value(iter,1)
-            object = self.db.try_to_find_object_from_handle(id)
+            object = self.db.get_object_from_handle(id)
             ImageSelect.GlobalMediaProperties(self.db,object,self.load_media,
                                                 self,self.topWindow)
 
@@ -302,7 +302,7 @@ class MediaView:
             return
 
         id = store.get_value(iter,1)
-        mobj = self.db.try_to_find_object_from_handle(id)
+        mobj = self.db.get_object_from_handle(id)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.build_tree)
             QuestionDialog(_('Delete Media Object?'),
@@ -325,12 +325,12 @@ class MediaView:
                 if o.get_reference_handle() == mobj.get_handle():
                     return 1
         for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mobj.get_handle():
                     return 1
         for key in self.db.get_source_keys():
-            p = self.db.get_source(key)
+            p = self.db.get_source_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mobj.get_handle():
                     return 1
@@ -346,7 +346,7 @@ class MediaView:
         if not iter:
             return
         if (const.dnd_images):
-            object = self.db.try_to_find_object_from_handle(store.get_value(iter,1))
+            object = self.db.get_object_from_handle(store.get_value(iter,1))
             mtype = object.get_mime_type()
             name = Utils.thumb_path(self.db.get_save_path(),object)
             pix = gtk.gdk.pixbuf_new_from_file(name)
