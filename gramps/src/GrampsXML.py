@@ -27,7 +27,10 @@ class GrampsXML(GrampsDB):
 
     def get_base(self):
         return const.xmlFile
-    
+
+    def new(self):
+        GrampsDB.new(self)
+        
     def save(self,name,callback):
         WriteXML.exportData(self,name,callback)
 

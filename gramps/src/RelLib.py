@@ -1935,6 +1935,9 @@ class GrampsDB(Persistent):
         self.sourceMap = {}
         self.placeMap  = {}
         self.objectMap = {}
+        self.personTable = {}
+        self.placeTable = {}
+        self.sourceTable = {}
         self.smapIndex = 0
         self.pmapIndex = 0
         self.fmapIndex = 0
