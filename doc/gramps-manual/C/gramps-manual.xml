@@ -169,17 +169,16 @@
 <!-- ============= Introduction ============================== -->
   <sect1 id="gramps-intro"> 
     <title>Introduction</title> 
-    <para> <application>&app;</application> is a genealogical 
+    <para> &app; is a genealogical 
     application. &app; is an acronym for the 
     Genealogical Research and Analysis Management Programming System. To put 
     it shortly, it allows you to store, edit, and research genealogical data 
     using your computer. Its functionality is somewhat common to other 
-    genealogical programs. However, <application>&app;</application> offers 
-    some unique features. </para> 
+    genealogical programs. However, &app; offers some unique features. </para> 
 
     <sect2 id="why-gramps">
       <title>Why &app;?</title>
-      <para> <application>&app;</application> was conceived under the concept
+      <para> &app; was conceived under the concept
       that most genealogy programs were designed to provide the researcher the 
       capability to input information related to a particular family tree.  
       Most of these programs have allowed for the arranging and storing of
@@ -193,11 +192,11 @@
       allows for different degrees of importing and exporting data from other 
       programs and printing the data contained in the various reports. </para>
       
-      <para> <application>&app;</application>, on the other hand, attempts to
+      <para> &app;, on the other hand, attempts to
       provide all of the common capabilities of these programs, but, more
       importantly, to provide an additional capability of integration not common
       to these programs.  This is the ability to input any bits and pieces of
-      information directly into <application>&app;</application> and
+      information directly into &app; and
       rearrange/manipulate any/all data events in the entire data base (in any
       order or sequence) to assist the user in doing research, analysis and
       correlation with the potential of filling relationship gaps.  In short, it 
@@ -215,7 +214,7 @@
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
     <title>To Start &app;</title>
-    <para>You can start <application>&app;</application> in the 
+    <para>You can start &app; in the 
     following ways:</para> 
     <variablelist>
     <varlistentry>
@@ -225,11 +224,11 @@
     </varlistentry>
     <varlistentry>
 	<term>Command line</term>
-    	<listitem><para>To start <application>&app;</application> 
+    	<listitem><para>To start &app; 
 	from a command line, type <command>gramps</command>, then 
 	press <keycap>Return</keycap>.</para>
 	
-	<para>If you would like <application>&app;</application> to open 
+	<para>If you would like &app; to open 
 	a specific database or to import a specific file on startup, you can 
 	supply the filename as a command line argument:</para>
 
@@ -282,7 +281,7 @@
     <!-- ================ Getting Started Sub-subsection  -->
       <sect3 id="choose-db-start">
       <title>Choosing a database on startup</title> 
-      <para>If <application>&app;</application> is started without any
+      <para>If &app; is started without any
       database  to open, the following window will appear prompting you to 
       choose what database to open. </para>
       
@@ -308,7 +307,7 @@
         <title>Optional ZODB support</title> 
 
       <para>If either StandaloneZODB or Zope is installed on your system, 
-      <application>&app;</application> will give you the third option of 
+      &app; will give you the third option of 
       creating a new ZODB database. You can choose to start your new database 
       in either XML or ZODB format. Both formats have their strong and weak 
       points.</para>
@@ -400,12 +399,12 @@
       <varlistentry><term>Menubar</term>
 	<listitem><para>The menubar is located at the very top of the window
         (right below the window title) and provides access to all features of
-	<application>&app;</application> through its menus.</para></listitem>
+	&app; through its menus.</para></listitem>
       </varlistentry>
       <varlistentry><term>Toolbar</term>
 	<listitem><para> The toolbar is located immediately below the menubar. 
         The toolbar provides access to the most frequently used functions 
-        of <application>&app;</application>. The appearance of the toolbar 
+        of &app;. The appearance of the toolbar 
         can be adjusted in the <guilabel>Preferences</guilabel> 
 	dialog. </para></listitem>
       </varlistentry>
@@ -419,7 +418,7 @@
       <varlistentry><term>Statusbar</term>
 	<listitem><para>The statusbar is located to the right of the 
         progressbar, on the very bottom of the &app; window. 
-	It displays information about current <application>&app;</application> 
+	It displays information about current &app; 
 	activity and contextual information about the menu items. 
 	The behavior of the statusbar can be adjusted in 
 	<guilabel>Preferences</guilabel> dialog. </para></listitem>
@@ -429,7 +428,7 @@
 	&app; window is the display area.  
 	It shows certain aspects of genealogical information, depending on the 
 	currently selected View. The following six Views are available 
-	in <application>&app;</application>: 
+	in &app;: 
 	<itemizedlist>	
 	<listitem><para>People View</para></listitem>
 	<listitem><para>Family View</para></listitem>
@@ -497,14 +496,14 @@
 	<para>To switch between sidebar and notebook viewing modes, 
 	choose <menuchoice> <guimenu>View</guimenu> 
 	<guimenuitem>Sidebar</guimenuitem> 
-	</menuchoice> from the <application>&app;</application> menu.</para>
+	</menuchoice> from the &app; menu.</para>
     
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="people-view">
         <title>People View</title>
-	<para>When <application>&app;</application> opens a database, 
+	<para>When &app; opens a database, 
 	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
 	and <xref linkend="noside-nofilt-fig"/>). The People View lists 
         individuals whose data is stored in the database. The People View 
@@ -524,7 +523,7 @@
           <title>Filters</title>
 	  <para>Genealogical databases may contain huge numbers of people. 
 	  Since the long lists are hard for humans to handle,
-	  <application>&app;</application> provides a convenient way to limit 
+	  &app; provides a convenient way to limit 
 	  the scope of browsing by using the filter. To save screen space, 
 	  filter controls may be hidden, depending on the state of 
 	  <menuchoice> <guimenu>View</guimenu> 
@@ -540,7 +539,7 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	  <para>When <application>&app;</application> opens a database, the 
+	  <para>When &app; opens a database, the 
 	  filter is set to the trivial filter called <guilabel>All
 	  people</guilabel>, i.e. no filtering is in effect. To choose a 
 	  filter, use the pop-up <guilabel>Filter</guilabel> menu above the 
@@ -574,9 +573,9 @@
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect4 id="alpha-tabs">
           <title>Alphabetical Tabs</title>
-	  <para><application>&app;</application> offers another way of 
+	  <para>&app; offers another way of 
 	  managing long lists of people -- alphabetical tabs. Upon loading a 
-	  database, <application>&app;</application> checks for the stored 
+	  database, &app; checks for the stored 
 	  family names and breaks the people list into sublists based on the 
 	  first letter of their name. The alphabetical tabs are displayed in 
 	  the bottom part of the &app; window. 
@@ -785,7 +784,7 @@
   <sect1 id="gramps-usage"> 
     <title>Usage</title> 
     <para>As commonly encountered in everyday life, in
-    <application>&app;</application> there is usually more than one way to
+    &app; there is usually more than one way to
     accomplish something. The alternatives to some actions will therefore 
     be listed as appropriate.</para> 
 
@@ -803,7 +802,7 @@
       <guibutton>OK</guibutton> button to open it. </para>
       
       <para>If you have previously opened files with
-      <application>&app;</application> you can retrieve your past selections 
+      &app; you can retrieve your past selections 
       from the drop-down menu by clicking the down arrow button. Finally, if 
       the Revision Control System (RCS) is enabled in the 
       <guilabel>Preferences</guilabel> dialog, the check box 
@@ -811,9 +810,11 @@
       will be available. Check it to revert your database to an older RCS 
       version. </para>
       
-      <para>Note: the name you type or select should be the directory
-      (folder) which has your data (data.gramps or data.zodb files) as well as
-      any possible copies of Media Objects. </para> 
+      <para>NOTE: you should open DIRECTORY and NOT the FILE when opening 
+      &app; database. The directory you need to open should contain the 
+      database file as well as any possible copies of media objects. Such a 
+      directory is created by &app; when you start a database and is updated 
+      each time the database is saved. </para> 
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
@@ -843,7 +844,7 @@
       <title>Importing Data</title> 
       <para>Importing allows you to incorporate the data from other 
       databases into your currently open &app; database. Currently, 
-      <application>&app;</application> can import data from three different 
+      &app; can import data from three different 
       formats: GEDCOM, &app; database, and &app; package. All of these are
       available as items of <menuchoice><guimenu>File</guimenu>
       <guisubmenu>Import</guisubmenu></menuchoice> submenu.</para>
@@ -871,7 +872,7 @@
       For &app; database, select a directory which stores 
       the database and all media files (if any).</para> 
 
-      <para>Upon starting the GEDCOM import, <application>&app;</application> 
+      <para>Upon starting the GEDCOM import, &app; 
       will display the following GEDCOM import dialog with the summary of the 
       information about the data. The information is updated as the import
       progresses. </para>
@@ -887,7 +888,7 @@
 	<!-- ==== End of Figure ==== -->
 
       <para>Upon starting the &app; database or &app; package import, 
-      <application>&app;</application> will display the progress in the 
+      &app; will display the progress in the 
       progressbar of its main window.</para>
 
       <para>If a media file is not found during import, the following dialog
@@ -940,7 +941,7 @@
       
       <para>Exporting allows you to share any portion of your &app; database 
       with other researchers as well as to make your database completely 
-      portable to another computer. Currently, <application>&app;</application> 
+      portable to another computer. Currently, &app; 
       can export data  to three different formats: GEDCOM, &app; package, 
       and CD. All of these are available as items of
       <menuchoice><guimenu>File</guimenu>  
@@ -974,7 +975,7 @@
       etc. will be omitted in the exported GEDCOM file.
       </para>
 
-      <para>Upon starting the export, <application>&app;</application> will 
+      <para>Upon starting the export, &app; will 
       display the following GEDCOM export progress window with the 
       progressbars reflecting the current state of exporting. </para>
 
@@ -993,7 +994,7 @@
       local media objects, and copies of all external media objects. This is a
       useful format for moving your database to another machine or for sharing 
       it with somebody, while retaining all the features provided 
-      by <application>&app;</application>.
+      by &app;.
       </para>
       
       <para>Exporting to CD will prepare you database directory with all its
@@ -1103,7 +1104,7 @@
 	<guibutton>Add...</guibutton> button. </para>
 	
 	<para> The top and bottom lists contain males and females, 
-	respectively. By default, <application>&app;</application> will
+	respectively. By default, &app; will
 	limit both lists to people who could possibly be the parents (judged
 	by the date of birth) of the active person. To override this, check
 	the <guilabel>Show all</guilabel> box for each list. 
@@ -1127,7 +1128,7 @@
 	at the bottom. If necessary, you can add a person to the list by 
 	clicking the <guibutton>Add...</guibutton> button.</para>
 
-	<para> By default, <application>&app;</application> will
+	<para> By default, &app; will
 	limit the lists to people who could possibly be the child (judged
 	by the date of birth) of the active person. To override this, check
 	the <guilabel>Show all</guilabel> box. 
@@ -1287,7 +1288,7 @@
 	located immediately to the right of the text entry field. The 
 	available menu choices are formed from the information already stored 
 	in the database. Also, when you start to type within these fields, 
-	<application>&app;</application> will try to guess the remainder of 
+	&app; will try to guess the remainder of 
 	the text by using the same choices that are available from the
 	corresponding menu. To accept the highlighted guess and move to 
 	the next field, press the <keycap>Tab</keycap>. </para>
@@ -1299,9 +1300,9 @@
 	The buttons <guibutton>Source...</guibutton> and 
 	<guibutton>Note...</guibutton> allow adding or modifying the data about 
 	the sources of the name information and any relevant notes. 
-	Similarly, clicking the <guibutton>Edit..</guibutton> buttons located by the
-	birth and death <guilabel>Date</guilabel> fields allows you to edit the
-	corresponding events of birth and death. 
+	Clicking either <guibutton>Edit...</guibutton> button located next to 
+        the birth and death Date fields will bring up a dialog allowing you to 
+        edit the corresponding event (birth or death) details.
 	The field <guilabel>ID</guilabel> displays an internal 
 	&app; ID number which identifies the user in the
 	database. Finally, the <guilabel>Image</guilabel> area shows the first
@@ -1561,12 +1562,12 @@
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-dates"> 
         <title>Edit Dates</title> 
-	<para> Anywhere in <application>&app;</application> where the date 
+	<para> Anywhere in &app; where the date 
         is entered or edited, the following rules apply:</para> 
 
       <variablelist>
       <varlistentry><term>Date validity indicators</term>
-	<listitem><para><application>&app;</application> uses color 
+	<listitem><para>&app; uses color 
         circles to indicate the validity of the entered date. </para>
 
         <itemizedlist>
@@ -1595,14 +1596,14 @@
 
       <variablelist>
       <varlistentry><term>Acceptable date entries</term>
-	<listitem><para><application>&app;</application> recognizes many 
+	<listitem><para>&app; recognizes many 
         formats of exact dates. The only problematic formats are XX/XX/XX or
         XX-XX-XX because of the ambiguity between the day and the month.
         The interpretation for this type of formats is configured 
         in <guilabel>Getting Started</guilabel> dialog and can also be changed
         from the <guilabel>Preferences</guilabel> dialog. </para> </listitem>
 
-	<listitem><para>Besides exact dates, <application>&app;</application> 
+	<listitem><para>Besides exact dates, &app; 
         recognizes and supports partial dates, date ranges, and alternate
         calendars. </para>
         
@@ -1615,7 +1616,7 @@
         date such as from January 1961 to March 1963. </para></listitem>
 
         <listitem><para> Alternate calendars are calendars other than Gregorian
-        calendar. Currently, <application>&app;</application> supports Hebrew,
+        calendar. Currently, &app; supports Hebrew,
         French Republican, Julian, Islamic, and Persian alternate calendars. 
         </para></listitem>
 
@@ -2554,17 +2555,17 @@
     <sect2 id="gramps-nav"> 
        <title>Navigation</title> 
 	<para> As long as any database is open, 
-	<application>&app;</application> is focused on a 
+	&app; is focused on a 
 	single person usually referred to as an Active person. This 
 	allows you to view or modify the data concerning this person, 
 	his or her immediate family, etc. Navigating in the database (i.e. 
 	moving from person to person) is in fact nothing else but changing 
 	the Active person. This section describes many alternative ways
 	to navigate through the database using both the complex and the convenient 
-	interfaces <application>&app;</application> provides. All these ways
+	interfaces &app; provides. All these ways
 	eventually accomplish the same thing, but some are more convenient 
 	than others, depending what you are doing in 
-	<application>&app;</application> at the moment. </para>
+	&app; at the moment. </para>
        
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-people"> 
@@ -3144,7 +3145,7 @@
 	<guibutton>Test...</guibutton>, and <guibutton>Delete...</guibutton> 
 	buttons, respectively. All the filters displayed in the list will be 
 	automatically saved along with your database and will be available 
-	with subsequent sessions of <application>&app;</application>. </para>
+	with subsequent sessions of &app;. </para>
 	
 	<para>Clicking the <guibutton>Add...</guibutton> button invokes the 
 	following <guilabel>Define filter</guilabel> dialog: </para>
@@ -3211,7 +3212,7 @@
 
   <sect1 id="gramps-prefs"> 
     <title>Settings</title> 
-    <para>To configure <application>&app;</application>, choose 
+    <para>To configure &app;, choose 
       <menuchoice><guimenu>Settings</guimenu>
       <guimenuitem>Preferences</guimenuitem></menuchoice>. 
       The <guilabel>Preferences</guilabel> dialog contains the following 
@@ -3445,7 +3446,7 @@
 
 	<varlistentry><term><guilabel>Default database directory</guilabel></term>
 	<listitem><para> Choose the default directory in which &app; starts
-	looking when saving the database using the <guibutton>Browse..</guibutton> 
+	looking when saving the database using the <guibutton>Browse...</guibutton> 
 	or type its path into the text entry field. </para></listitem>
 	</varlistentry>
 
