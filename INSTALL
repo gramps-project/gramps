@@ -3,9 +3,9 @@ developers who may be adding functionality to the program, be sure to read
 the last section of this documen: "FINAL WORDS".
 
 SUPER-SHORT VERSION:
-You should still be able to just run "./configure && make". But if you make
-any significant changes, you may wish to run "./autogen.sh && make" to
-regenerate everything.
+You should be able to just run "./configure && make". But if you make any
+significant changes or experience any problems, you may wish to run
+"./autogen.sh && make" to regenerate everything.
 
 This will call aclocal if necessary, then automake, which creates
 Makefile.in from Makefile.am rules. Then it calls autoconf, which will
@@ -23,7 +23,8 @@ with docbook-utils-0.6.9.  There is a problem with 0.6.10, which seems to
 have some messed up dsl files. If you have difficulty building the HTML
 documentation with your version of jw, then remove "doc" from the SUBDIRS
 list in the top-level Makefile and send a report of where the failure was to
-the gramps-devel list.
+the gramps-devel list.  This distribution is tested with the style sheets
+and PNG support from the gnome-doc-tools-2-1 package.
 
 MORE INFO: Version and package info is now set in configure.in through a
 call to the AM_INIT_AUTOMAKE macro.  The results are stored in variables
