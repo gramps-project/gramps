@@ -350,6 +350,16 @@ class Gramps:
         self.topWindow.show()
         self.enable_toolbar(self.use_toolbar)
 
+    def clear_history(self):
+        self.history = []
+        self.mhistory = []
+        self.hindex = -1
+        self.back.set_sensitive(0)
+        self.forward.set_sensitive(0)
+        self.backbtn.set_sensitive(0)
+        self.fwdbtn.set_sensitive(0)
+        self.redraw_histmenu()
+
     def redraw_histmenu(self):
         """Create the history submenu of the Go menu"""
 
@@ -415,14 +425,12 @@ class Gramps:
                 self.back.set_sensitive(0)
                 self.forward.set_sensitive(0)
         except:
-            self.history = []
-            self.back.set_sensitive(0)
-            self.forward.set_sensitive(0)
+            self.clear_history
 
         self.gomenuitem.remove_submenu()
         self.gomenuitem.set_submenu(gomenu)
 
-    def build_backhistmenu(self):
+    def build_backhistmenu(self,event):
         """Builds and displays the menu with the back portion of the history"""
         if self.hindex > 0:
             backhistmenu = gtk.Menu()
@@ -445,13 +453,13 @@ class Gramps:
                 item.show()
                 backhistmenu.append(item)
                 num = num + 1
-            backhistmenu.popup(None,None,None,0,0)
+            backhistmenu.popup(None,None,None,event.button,event.time)
 
     def back_pressed(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_backhistmenu()
+            self.build_backhistmenu(event)
 
-    def build_fwdhistmenu(self):
+    def build_fwdhistmenu(self,event):
         """Builds and displays the menu with the forward portion of the history"""
         if self.hindex < len(self.history)-1:
             fwdhistmenu = gtk.Menu()
@@ -473,11 +481,11 @@ class Gramps:
                 item.show()
                 fwdhistmenu.append(item)
                 num = num + 1
-            fwdhistmenu.popup(None,None,None,0,0)
+            fwdhistmenu.popup(None,None,None,event.button,event.time)
 
     def fwd_pressed(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_fwdhistmenu()
+            self.build_fwdhistmenu(event)
 
     def set_buttons(self,val):
         self.report_menu.set_sensitive(val)
@@ -509,7 +517,7 @@ class Gramps:
                 self.fwdbtn.set_sensitive(1)
                 self.forward.set_sensitive(1)
             except:
-                self.set_buttons(0)
+                self.clear_history
         else:
             self.backbtn.set_sensitive(0)
             self.back.set_sensitive(0)
@@ -535,9 +543,7 @@ class Gramps:
                 self.backbtn.set_sensitive(1)
                 self.back.set_sensitive(1)
             except:
-                self.backbtn.set_sensitive(1)
-                self.back.set_sensitive(1)
-                self.set_buttons(0)
+                self.clear_history
         else:
             self.fwdbtn.set_sensitive(0)
             self.forward.set_sensitive(0)
@@ -893,6 +899,9 @@ class Gramps:
     def import_tool_callback(self):
         Utils.modified()
         self.people_view.clear_person_tabs()
+        if Utils.wasHistory_broken():
+            self.clear_history()
+	    Utils.clearHistory_broken()
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
         self.goto_active_person()
@@ -1743,8 +1752,16 @@ class Gramps:
         self.bookmarks.edit()
         
     def bookmark_callback(self,obj,person):
-        self.change_active_person(person)
-        self.update_display(0)
+        old_person = self.active_person
+        try:
+            self.change_active_person(person)
+            self.update_display(0)
+        except TypeError:
+            WarningDialog(_("Could Not Go to a Person"),
+                          _("Either stale bookmark or broken history caused by IDs reorder."))
+            self.clear_history()
+            self.change_active_person(old_person)
+            self.update_display(0)
     
     def on_default_person_activate(self,obj):
         if self.active_person:

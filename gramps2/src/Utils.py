@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -56,6 +58,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 _modifiedFlag = 0
+_history_brokenFlag = 0
 _autotime_val = 1
 _autosave_fun = None
 _autosave_tim = None
@@ -94,6 +97,10 @@ def clear_timer():
         gtk.timeout_remove(_autosave_tim)
         _autosave_tim = None
 
+def history_broken():
+    global _history_brokenFlag
+    _history_brokenFlag = 1
+
 #-------------------------------------------------------------------------
 #
 # force_unicode
@@ -116,6 +123,10 @@ def clearModified():
     global _modifiedFlag
     _modifiedFlag = 0
 
+def clearHistory_broken():
+    global _history_brokenFlag
+    _history_brokenFlag = 0
+
 #-------------------------------------------------------------------------
 #
 # Returns the modified flag
@@ -123,6 +134,9 @@ def clearModified():
 #-------------------------------------------------------------------------
 def wasModified():
     return _modifiedFlag
+
+def wasHistory_broken():
+    return _history_brokenFlag
 
 #-------------------------------------------------------------------------
 #
