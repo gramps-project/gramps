@@ -314,6 +314,9 @@ class SingleDate:
         _("aft")    : after,
             # And the untranslated versions for reading saved data from XML.
         "abt"	: about,        "about"	: about,
+        "bef"   : before,       "bef."  : before,
+        "aft."  : after,        "abt."  : about,
+        "est."  : about,        "est"   : about,
         "after"	: after,        "before": before
         }
 
@@ -358,7 +361,10 @@ class SingleDate:
         if val == None:
             self.mode = SingleDate.exact
         else:
-            self.mode = SingleDate.m2v[string.lower(val)]
+            try:
+                self.mode = SingleDate.m2v[string.lower(val)]
+            except KeyError:
+                raise Date.Error,val
 
     def setMonth(self,val):
         if val > 12 or val < 0:

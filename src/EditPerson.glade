@@ -2204,6 +2204,7 @@
 	      <signal>
 		<name>select_row</name>
 		<handler>on_event_select_row</handler>
+		<after>True</after>
 		<last_modification_time>Fri, 01 Dec 2000 02:58:20 GMT</last_modification_time>
 	      </signal>
 	      <signal>
