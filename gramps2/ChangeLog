@@ -1,4 +1,6 @@
 2003-07-25  Tim Waugh  <twaugh@redhat.com>
+	* src/Report.py: Support for making output formats printable.
+	* src/plugins/GraphViz.py: Make it printable.
 	* src/plugins/ReadGedcom.py: Handle ABBR in source definitions (i.e.
 	handle the GEDCOM that our exporter writes).
 
