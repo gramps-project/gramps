@@ -72,6 +72,10 @@ _lang_to_display = {
     'en_CA'  : DateDisplay.DateDisplay,
     'en_SE'  : DateDisplay.DateDisplay,
     'en'     : DateDisplay.DateDisplay,
+    'ru_RU'  : DateDisplay.DateDisplayRU,
+    'ru_RU.koi8r'  : DateDisplay.DateDisplayRU,
+    'ru_RU.utf8'  : DateDisplay.DateDisplayRU,
+    'russian'  : DateDisplay.DateDisplayRU,
     }
 
 #-------------------------------------------------------------------------
