@@ -27,8 +27,11 @@
 #
 #------------------------------------------------------------------------
 import Date
+import DateHandler
 import RelLib
 from NameDisplay import displayer as _nd
+import time
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -168,6 +171,10 @@ def draw_vertical_bar_graph(doc, format, start_x, start_y, height, width, data):
         doc.draw_bar(data[index][0],start,bottom-size,start+box_width,bottom)
         start += box_width * 1.5
 
+
+_t = time.localtime(time.time())
+_TODAY = DateHandler.parser.parse("%04d-%02d-%02d" % (_t[0],_t[1],_t[2]))
+
 def estimate_age(db, person, end_handle=None, start_handle=None):
     """
     Estimates the age of a person based off the birth and death
@@ -202,11 +209,14 @@ def estimate_age(db, person, end_handle=None, start_handle=None):
         dhandle = person.get_death_handle()
 
     # if either of the events is not defined, return an error message
-    if not bhandle or not dhandle:
+    if not bhandle:
         return (-1,-1)
 
     bdata = db.get_event_from_handle(bhandle).get_date_object()
-    ddata = db.get_event_from_handle(dhandle).get_date_object()
+    if dhandle:
+        ddata = db.get_event_from_handle(dhandle).get_date_object()
+    else:
+        ddata = _TODAY
 
     # if the date is not valid, return an error message
     if not bdata.get_valid() or not ddata.get_valid():
@@ -263,21 +273,31 @@ def sanitize_person(db,person):
 
     # copy gender
     new_person.set_gender(person.get_gender())
-
+    new_person.set_gramps_id(person.get_gramps_id())
+    new_person.set_handle(person.get_handle())
+    
     # copy names if not private
+    name = person.get_primary_name()
     if name.get_privacy() or person.get_privacy():
         name = RelLib.Name()
         name.set_first_name(_('Private'))
         name.set_surname(_('Private'))
     else:
-        name = person.get_primary_name()
         new_person.set_nick_name(person.get_nick_name())
+
+    new_person.set_primary_name(name)
+    # copy Family reference list
+    for handle in person.get_family_handle_list():
+        new_person.add_family_handle(handle)
+
+    # copy Family reference list
+    for item in person.get_parent_family_handle_list():
+        new_person.add_parent_family_handle(item[0],item[1],item[2])
+
 
     if person.get_privacy():
         return new_person
 
-    new_person.set_primary_name(name)
-        
     for name in person.get_alternate_names():
         if not name.get_privacy():
             new_person.add_alternate_name(name)
@@ -321,10 +341,6 @@ def sanitize_person(db,person):
     # copy Media reference list
     for obj in person.get_media_list():
         new_person.add_media_reference(RelLib.MediaRef(obj))
-
-    # copy Family reference list
-    for handle in person.get_family_handle_list():
-        new_person.add_family_handle(handle)
 
     # LDS ordinances
     ordinance = person.get_lds_baptism()
