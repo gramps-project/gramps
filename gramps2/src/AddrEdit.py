@@ -52,7 +52,7 @@ class AddressEditor:
     """
     Displays a dialog that allows the user to edit an address.
     """
-    def __init__(self,parent,addr):
+    def __init__(self,parent,addr,callback):
         """
         Displays the dialog box.
 
@@ -74,9 +74,8 @@ class AddressEditor:
 
         self.parent = parent
         self.addr = addr
-
+        self.callback = callback
         name = parent.person.getPrimaryName().getName()
-        print "'%s'" % name
         if name == ", ":
             text = _("Address Editor")
         else:
@@ -135,7 +134,7 @@ class AddressEditor:
         self.addr.setSourceRefList(self.srcreflist)
 
         self.update(date,street,city,state,country,postal,note,priv)
-        self.parent.redraw_addr_list()
+        self.callback(self.addr)
         Utils.destroy_passed_object(obj)
 
     def check(self,get,set,data):
