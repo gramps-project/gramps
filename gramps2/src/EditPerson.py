@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -1225,7 +1227,7 @@ class EditPerson:
             menu.append(item)
             msg = _("Make the selected name the preferred name")
             Utils.add_menuitem(menu,msg,None,self.change_name)
-            menu.popup(None,None,None,0,0)
+            menu.popup(None,None,None,event.button,event.time)
 
     def on_aka_update_clicked(self,obj):
         import NameEdit

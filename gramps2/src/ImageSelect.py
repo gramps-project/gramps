@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -316,7 +318,7 @@ class Gallery(ImageSelect):
                 item = widget.get_item_at(event.x,event.y)
                 if item:
                     (i,t,b,self.photo,oid) = self.p_map[item]
-                    self.show_popup(self.photo)
+                    self.show_popup(self.photo,event)
                 self.in_event = 0
                 return gtk.TRUE
         elif event.type == gtk.gdk.BUTTON_RELEASE:
@@ -562,7 +564,7 @@ class Gallery(ImageSelect):
             (i,t,b,photo,oid) = self.p_map[self.sel]
             LocalMediaProperties(photo,self.path,self)
         
-    def show_popup(self, photo):
+    def show_popup(self, photo, event):
         """Look for right-clicks on a picture and create a popup
         menu of the available actions."""
         
@@ -582,7 +584,7 @@ class Gallery(ImageSelect):
         if object.getLocal() == 0:
             Utils.add_menuitem(menu,_("Convert to local copy"),photo,
                                self.popup_convert_to_private)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
             
     def popup_view_photo(self, obj):
         """Open this picture in a picture viewer"""

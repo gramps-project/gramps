@@ -1,3 +1,13 @@
+2003-10-19  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/SourceView.py: Correct behavior for right-click popup menu.
+	* src/EditPerson.py: Likewise.
+	* src/FamilyView.py: Likewise.
+	* src/ImageSelect.py: Likewise.
+	* src/PedView.py: Likewise.
+	* src/PlaceView.py: Likewise.
+	* src/plugins/BookReport.py: Likewise.
+	* src/PeopleView.py: Likewise.
+
 2003-10-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SourceView.py: Enable popup menu on right-click.
 	* src/PlaceView.py: Likewise.

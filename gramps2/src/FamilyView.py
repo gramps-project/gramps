@@ -199,9 +199,9 @@ class FamilyView:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.person)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3 and self.person:
-            self.build_ap_menu()
+            self.build_ap_menu(event)
 
-    def build_ap_menu(self):
+    def build_ap_menu(self,event):
         """Builds the menu with navigation for the active person box"""
         
         back_sensitivity = self.parent.hindex > 0 
@@ -221,9 +221,9 @@ class FamilyView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
-    def build_nav_menu(self):
+    def build_nav_menu(self,event):
         """Builds the menu with navigation (no bookmark)"""
         
         back_sensitivity = self.parent.hindex > 0 
@@ -242,9 +242,9 @@ class FamilyView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
-    def build_parents_nosel_menu(self):
+    def build_parents_nosel_menu(self,event):
         """Builds the menu with navigation and Add parents"""
         
         back_sensitivity = self.parent.hindex > 0 
@@ -265,9 +265,9 @@ class FamilyView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
-    def build_sp_parents_nosel_menu(self):
+    def build_sp_parents_nosel_menu(self,event):
         """Builds the menu with navigation and Add parents"""
         
         back_sensitivity = self.parent.hindex > 0 
@@ -288,21 +288,21 @@ class FamilyView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
     def on_child_list_button_press(self,obj,event):
         model, iter = self.child_selection.get_selected()
         if not iter:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-                self.build_nav_menu()
+                self.build_nav_menu(event)
             return
         id = self.child_model.get_value(iter,2)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.parent.db.getPerson(id))
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_child_menu(id)
+            self.build_child_menu(id,event)
 
-    def build_child_menu(self,id):
+    def build_child_menu(self,id,event):
         """Builds the menu that allows editing operations on the child list"""
 
         menu = gtk.Menu()
@@ -332,7 +332,7 @@ class FamilyView:
             ]
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,id,callback)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
     def edit_child_callback(self,obj):
         model, iter = self.child_selection.get_selected()
@@ -356,7 +356,7 @@ class FamilyView:
             row = model.get_path(iter)
             self.display_marriage(self.person.getFamilyList()[row[0]])
 
-    def build_spouse_menu(self):
+    def build_spouse_menu(self,event):
 
         menu = gtk.Menu()
         menu.set_title(_('Spouse Menu'))
@@ -385,8 +385,8 @@ class FamilyView:
             (_("Set the selected spouse as the preferred spouse"), self.set_preferred_spouse),
             ]
         for msg,callback in entries:
-            Utils.add_menuitem(menu,msg,id,callback)
-        menu.popup(None,None,None,0,0)
+            Utils.add_menuitem(menu,msg,None,callback)
+        menu.popup(None,None,None,event.button,event.time)
 
     def set_preferred_spouse(self,obj):
         if self.selected_spouse:
@@ -413,9 +413,9 @@ class FamilyView:
             
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             if self.selected_spouse:
-                self.build_spouse_menu()
+                self.build_spouse_menu(event)
             else:
-                self.build_nav_menu()
+                self.build_nav_menu(event)
         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
            if self.person:
                try:
@@ -819,7 +819,7 @@ class FamilyView:
                                  5,status,
                                  6,val[6])
 
-    def build_parents_menu(self,family):
+    def build_parents_menu(self,family,event):
         """Builds the menu that allows editing operations on the child list"""
         menu = gtk.Menu()
         menu.set_title(_('Parents Menu'))
@@ -848,9 +848,9 @@ class FamilyView:
             ]
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,family,callback)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
-    def build_sp_parents_menu(self,family):
+    def build_sp_parents_menu(self,family,event):
         """Builds the menu that allows editing operations on the child list"""
         menu = gtk.Menu()
         menu.set_title(_('Spouse Parents Menu'))
@@ -879,7 +879,7 @@ class FamilyView:
             ]
         for msg,callback in entries:
             Utils.add_menuitem(menu,msg,family,callback)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
     def edit_ap_relationships(self,obj):
         self.parent_editor(self.person,self.ap_selection)
@@ -896,7 +896,7 @@ class FamilyView:
             plist = self.person.getParentList()
 
             if len(plist) == 0:
-                self.build_parents_nosel_menu()
+                self.build_parents_nosel_menu(event)
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
@@ -904,19 +904,19 @@ class FamilyView:
                 model, iter = self.ap_selection.get_selected()
                 path = model.get_path(iter)
                 family,m,r = plist[path[0]]
-            self.build_parents_menu(family)
+            self.build_parents_menu(family,event)
 
     def edit_sp_parents(self,obj,event):
         if self.selected_spouse == None:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-                self.build_nav_menu()
+                self.build_nav_menu(event)
             return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.selected_spouse,self.sp_selection)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             plist = self.selected_spouse.getParentList()
             if len(plist) == 0:
-                self.build_sp_parents_nosel_menu()
+                self.build_sp_parents_nosel_menu(event)
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
@@ -924,7 +924,7 @@ class FamilyView:
                 model, iter = self.sp_selection.get_selected()
                 path = model.get_path(iter)
                 family,m,r = plist[path[0]]
-            self.build_sp_parents_menu(family)
+            self.build_sp_parents_menu(family,event)
 
     def add_parents_clicked(self,obj):
         self.parent_add(self.person)

@@ -19,6 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #
 # Written by Alex Roitman, 
 # largely based on the BaseDoc classes by Don Allingham
@@ -782,7 +784,7 @@ class BookReportSelector:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_setup_clicked(obj)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_bk_context_menu()
+            self.build_bk_context_menu(event)
 
     def av_button_press(self,obj,event):
         """
@@ -792,9 +794,9 @@ class BookReportSelector:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_av_context_menu()
+            self.build_av_context_menu(event)
 
-    def build_bk_context_menu(self):
+    def build_bk_context_menu(self,event):
         """Builds the menu with item-centered and book-centered options."""
         
         store,iter = self.bk_model.get_selected()
@@ -823,9 +825,9 @@ class BookReportSelector:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
-    def build_av_context_menu(self):
+    def build_av_context_menu(self,event):
         """Builds the menu with the single Add option."""
         
         store,iter = self.av_model.get_selected()
@@ -846,7 +848,7 @@ class BookReportSelector:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
-        menu.popup(None,None,None,0,0)
+        menu.popup(None,None,None,event.button,event.time)
 
     def on_book_ok_clicked(self,obj): 
         """
