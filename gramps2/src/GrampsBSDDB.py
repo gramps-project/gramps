@@ -227,6 +227,12 @@ class GrampsBSDDB(GrampsDbBase):
             transaction.add(PLACE_KEY,handle,old_data)
         self.place_map.delete(str(handle))
 
+    def remove_object(self,handle,transaction):
+        if transaction != None:
+            old_data = self.media_map.get(handle)
+            transaction.add(PLACE_KEY,handle,old_data)
+        self.media_map.delete(str(handle))
+
     def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""

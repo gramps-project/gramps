@@ -37,6 +37,7 @@ import gtk
 import gtk.glade
 import gobject
 import gnome
+import locale
 
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 
@@ -95,7 +96,7 @@ _use_patronymic = [
 #-------------------------------------------------------------------------
 class EditPerson:
 
-    use_patronymic = os.environ.get('LANG').split('.')[0] in _use_patronymic
+    use_patronymic = locale.getlocale(locale.LC_TIME)[0] in _use_patronymic
     
     def __init__(self,parent,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
