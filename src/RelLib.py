@@ -655,18 +655,12 @@ class Family:
         self.Marriage = event
 
     def getMarriage(self):
-        if self.Marriage == None:
-            self.Marriage = Event()
-            self.Marriage.name = "Marriage"
         return self.Marriage
 
     def setDivorce(self,event):
         self.Divorce = event
 
     def getDivorce(self):
-        if self.Divorce == None:
-            self.Divorce = Event()
-            self.Divorce.name = "Marriage"
         return self.Divorce
 
     def addEvent(self,event) :
