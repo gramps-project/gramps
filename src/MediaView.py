@@ -181,13 +181,14 @@ class MediaView:
         if index > 0:
             self.media_list.select_row(current_row,0)
             self.media_list.moveto(current_row)
+            self.preview.show()
         else:
             self.mid.set_text("")
             self.mtype.set_text("")
             self.mdesc.set_text("")
             self.mpath.set_text("")
             self.mdetails.set_text("")
-            self.preview.load_imlib(const.empty_image)
+            self.preview.hide()
 
         if current_row < self.media_list.rows:
             self.media_list.moveto(current_row)
