@@ -3,7 +3,7 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "0.9.2">
-  <!ENTITY manrevision "2.0">
+  <!ENTITY manrevision "2.1">
   <!ENTITY date "May 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
@@ -98,6 +98,16 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  		<para role="author">Alex Roitman
+	    	<email>shura@alex.neuro.umn.edu</email>
+	  		</para>
+	  		<para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.0</revnumber> 
+		<date>April 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
 	    	<email>shura@alex.neuro.umn.edu</email>
@@ -211,7 +221,7 @@
 	supply the filename as a command line argument:</para>
 
 	<para>
-	<command>gramps</command> <replaceable>filename.ged</replaceable>
+	<command>gramps -i</command> <replaceable>filename.ged</replaceable>
     	</para> 
 
     	<para>where <replaceable>filename.ged</replaceable> is the name 
@@ -224,20 +234,36 @@
     <sect2 id="run-1st-time">
       <title>Running &app; for the first time</title>
     <para> 
-	[ FIXME: NEED TO RUN Getting Started DRUID to document this section ] 
-
     The first time you run the program, GRAMPS will display its 
-    Getting Started screens. </para>
+    Getting Started dialogs. Follow the directions guiding you through
+    <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
+    formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,
+    and <guilabel>LDS extensions</guilabel> sections. Most of the dialogs
+    are self-explanatory and will not be covered here.
+    </para>
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>&app; Getting Started Window</title> 
+	<title>&app; Getting Started Window: Researcher Information</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/druid.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Getting Started Window.  </phrase>
+	<phrase>Shows Researcher Information Window. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
+
+	<para>Enter your personal information in the corresponding
+	text entry fields. Although &app; requests information about you, 
+	this information is used only so that &app; can create valid GEDCOM 
+	output files. A valid GEDCOM file requires information about the file's 
+	creator. If you choose, you may leave the information empty, however
+	all the GEDCOM files you export will not be valid. 
+	</para>
+	
+	<para>This information can be entered at any time in the 
+	<guilabel>Preferences</guilabel> dialog, under the 
+	<guilabel>Usage</guilabel> category. 
+	</para>
 
 
     <!-- ================ Getting Started Sub-subsection  -->
@@ -787,20 +813,28 @@
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="import-gedcom"> 
-      <title>Importing GEDCOM Data</title> 
-      <para>Importing GEDCOM data allows you to incorporate the data created in 
-      other genealogical programs into your currently open &app; database. 
-      <application>&app;</application> can import GEDCOM data files from a 
-      number of software packages, as long as they comply with GEDCOM 
-      standards. To import a GEDCOM file, choose <menuchoice><guimenu>File</guimenu>
-      <guisubmenu>Import</guisubmenu><guimenuitem>Import from 
-      GEDCOM</guimenuitem></menuchoice>. You will then be prompted with the
-      <guilabel>Open File</guilabel> dialog asking you to specify the GEDCOM file
-      name. </para> 
+    <sect2 id="import-data"> 
+      <title>Importing Data</title> 
+      <para>Importing allows you to incorporate the data from other 
+      databases into your currently open &app; database. Currently, 
+      <application>&app;</application> can import data from three different 
+      formats: GEDCOM, &app; database, and &app; package. All of these are
+      available as items of <menuchoice><guimenu>File</guimenu>
+      <guisubmenu>Import</guisubmenu></menuchoice> submenu.</para>
       
-      <para>Upon starting the import, <application>&app;</application> will 
-      display the following GEDCOM import dialog with the summary of the 
+      <para>Note that the difference between opening &app; database and 
+      importing from &app; database is that importing incorporates all the 
+      data into your currently open database, if any. </para>
+
+      <para>After choosing an import format, you will be prompted with the
+      <guilabel>Open File</guilabel> dialog asking you to specify the 
+      file name from which to import. For GEDCOM and 
+      &app; package, select an appropriate file. 
+      For &app; database, select a directory which stores 
+      the database and all media files (if any).</para> 
+
+      <para>Upon starting the GEDCOM import, <application>&app;</application> 
+      will display the following GEDCOM import dialog with the summary of the 
       information about the data. The information is updated as the import
       progresses. </para>
 
@@ -813,18 +847,70 @@
 	<phrase>Shows GEDCOM Import Window. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
-    </sect2>  
-    <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="export-gedcom"> 
-      <title>Exporting GEDCOM Data</title> 
-      <para>Exporting GEDCOM data allows you to share any portion of your 
-      &app; database with other researchers 
-      by way of standard GEDCOM files. To export into a GEDCOM file, 
-      choose <menuchoice> <guimenu>File</guimenu>
-      <guisubmenu>Export</guisubmenu>
-      <guimenuitem>Export to GEDCOM</guimenuitem></menuchoice>. The following 
-      <guilabel>Export GEDCOM file</guilabel> dialog will appear.</para>
 
+      <para>Upon starting the &app; database or &app; package import, 
+      <application>&app;</application> will display the progress in the 
+      progress bar of its main window.</para>
+
+      <para>If a media file is not found during import, the following dialog
+      will prompt you for the possible actions:</para>
+
+	<!-- ==== Figure: Missing media window  ==== -->
+	<figure id="missing-media-im"> 
+	<title>Missing Media dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/druid.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Missing Media dialog.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+     <itemizedlist>	
+     <listitem>
+     <para>To remove the object corresponding to the missing file as well as
+      all the references to that object from various database records, click
+      <guibutton>Remove Object</guibutton> button. This will alter your 
+      database so that it will be in a consistent state, but all the 
+      references to the missing file will be gone. Use this option if the 
+      file is irrevocably lost and there is no possibility of ever replacing 
+      it. </para>
+      </listitem>
+
+     <listitem>
+     <para>To keep the reference to the object corresponding to the missing 
+     file, click <guibutton>Keep Reference</guibutton> button. 
+     This will leave things as is, i.e. in an inconsistent state.
+     You could supply the missing file later, in which case you will have
+     to copy it into your database directory. Choose this option if the
+     replacement is possible, but not available right now. </para></listitem>
+
+     <listitem>
+     <para>To supply the missing file during import, click 
+     <guibutton>Select File</guibutton> button. This will copy the file you
+     select in place of the missing file. No references will be altered
+     in the database, and it will be in the consistent state. Use this option
+     if the replacement is readily available. 
+     </para></listitem>
+    
+     </itemizedlist>	
+
+    </sect2>  
+
+    <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="export-data"> 
+      <title>Exporting Data</title> 
+      
+      <para>Exporting allows you to share any portion of your &app; database 
+      with other researchers as well as to make your database completely 
+      portable to another computer. Currently, <application>&app;</application> 
+      can export data  to three different formats: GEDCOM, &app; package, 
+      and CD. All of these are available as items of
+      <menuchoice><guimenu>File</guimenu>  
+      <guisubmenu>Export</guisubmenu></menuchoice> submenu.</para>
+
+      <para>Exporting to GEDCOM will create a GEDCOM file, according to the
+      settings set in the following dialog:</para>
+      
 	<!-- ==== Figure: GEDCOM Export ==== -->
 	<figure id="gedcom-export-fig"> 
 	<title>Export GEDCOM File dialog</title> 
@@ -863,43 +949,67 @@
 	<phrase>Shows Export GEDCOM progress dialog. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Export ==== -->
-    </sect2>
 
-    <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gramps-package-impex"> 
-      <title>Importing and Exporting &app; Packages</title> 
-      <para> <application>&app;</application> provides a way to make your 
-      &app; database completely portable. This might 
-      prove useful, for instance, when you need to move your database to 
-      another machine or to share it with somebody, while retaining all the 
-      features provided by <application>&app;</application>. To accomplish 
-      this, choose <menuchoice><guimenu>File</guimenu>
-      <guisubmenu>Export</guisubmenu>
-      <guimenuitem>Export to GRAMPS Package</guimenuitem></menuchoice>. The
-      <guilabel>GRAMPS Package Export</guilabel> window will appear. Type
-      the desired package name into the text entry area or click 
-      <guibutton>Browse...</guibutton> to select the file using the 
-      <guilabel>Save File</guilabel> dialog. The resulting package is a
-      gzip-compressed tar archive (also known as tarball) which contains 
-      gramps database, all local media objects, and copies of all external 
-      media objects. </para>
+      <para>Exporting to &app; package will create a gzip-compressed tar 
+      archive (also known as tarball) which contains gramps database, all 
+      local media objects, and copies of all external media objects. This is a
+      useful format for moving your database to another machine or for sharing 
+      it with somebody, while retaining all the features provided 
+      by <application>&app;</application>.
+      </para>
       
-      <para>To import data from such a package into your &app; database, choose 
-      <menuchoice><guimenu>File</guimenu><guisubmenu>Import</guisubmenu> 
-      <guimenuitem>Import from GRAMPS package</guimenuitem></menuchoice>, 
-      then select a package to be imported from the <guilabel>Import from 
-      GRAMPS package</guilabel> dialog. </para> 
+      <para>Exporting to CD will prepare you database directory with all its
+      contents to be recorded to the CD. This is done through 
+      <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
+      CD, go to <guilabel>burn:///</guilabel> location by  
+      selecting <menuchoice><guimenu>Go</guimenu>  
+      <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu. Your
+      database directory will show up. To record it onto the CD, click the CD
+      icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu>  
+      <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
+      </para>
 
-      <para>To import data from existing &app; database into your currently 
-      open &app; database, choose <menuchoice><guimenu>File</guimenu>
-      <guisubmenu>Import</guisubmenu><guimenuitem>Import from GRAMPS 
-      database</guimenuitem></menuchoice>, then select a directory which 
-      contains the database to be imported from the <guilabel>Import from 
-      GRAMPS database</guilabel> dialog. </para> 
+      <para>If a media file is not found during export, the following dialog
+      will prompt you for the possible actions:</para>
 
-      <para>Note that the difference between opening &app; database and 
-      importing from &app; database is that importing incorporates all the 
-      data into your currently open database, if any. </para>
+	<!-- ==== Figure: Missing media window  ==== -->
+	<figure id="missing-media-ex"> 
+	<title>Missing Media dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/druid.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Missing Media dialog.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+     <itemizedlist>	
+     <listitem>
+     <para>To remove the object corresponding to the missing file as well as
+      all the references to that object from various database records, click
+      <guibutton>Remove Object</guibutton> button. This will alter your 
+      database so that it will be in a consistent state, but all the 
+      references to the missing file will be gone. Use this option if the 
+      file is irrevocably lost and there is no possibility of ever replacing 
+      it. </para>
+      </listitem>
+
+     <listitem>
+     <para>To keep the reference to the object corresponding to the missing 
+     file, click <guibutton>Keep Reference</guibutton> button. 
+     This will leave things as is, i.e. in an inconsistent state.
+     You could supply the missing file later, in which case you will have
+     to copy it into your database directory. Choose this option if the
+     replacement is possible, but not available right now. </para></listitem>
+
+     <listitem>
+     <para>To supply the missing file during export, click 
+     <guibutton>Select File</guibutton> button. This will copy the file you
+     select in place of the missing file. No references will be altered
+     in the database, and it will be in the consistent state. Use this option
+     if the replacement is readily available. 
+     </para></listitem>
+    
+     </itemizedlist>	
 
     </sect2>
 
@@ -2262,13 +2372,14 @@
 	<variablelist>
 		<varlistentry><term>Person from the database</term>
 		<listitem><para> 
-	If the person's data are stored in a database, click <guilabel>Person 
-	is in the database</guilabel> box. Then ...
-
-[ FIXME: Need Don to decide which way this will eventually be implemented. ]
-
-	</para>
-		</listitem></varlistentry>
+	If the person's data are stored in a database, check <guilabel>Person 
+	is in the database</guilabel> box. Then enter GRAMPS ID into 
+	<guilabel>ID</guilabel> text entry field. If the ID you entered is
+	found in the database, the <guilabel>Person</guilabel> field will 
+	display the name of that person. Note: even though the 
+	person's name might be displayed in the <guilabel>Person</guilabel> 
+	field, it is not available for direct editing. 
+	</para></listitem></varlistentry>
 	</variablelist>
 	
 	<variablelist>
@@ -2916,8 +3027,8 @@
 
 	<varlistentry><term><guilabel>Researcher information</guilabel></term>
 	<listitem><para> Enter your personal information in the corresponding
-	text entry fields. Although GRAMPS requests information about you, 
-	this information is used only so that it can create valid GEDCOM 
+	text entry fields. Although &app; requests information about you, 
+	this information is used only so that &app; can create valid GEDCOM 
 	output files. A valid GEDCOM file requires information about the file's 
 	creator. If you choose, you may leave the information empty, however
 	all the GEDCOM files you export will not be valid. 
