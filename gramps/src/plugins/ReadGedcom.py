@@ -50,6 +50,9 @@ clear_data = 0
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "tiff", "pcx" ]
 
+_ADDRX = [ "ADDR", "ADR1", "ADR2" ]
+
+
 ged2rel = {}
 for val in const.personalConstantEvents.keys():
     key = const.personalConstantEvents[val]
@@ -523,13 +526,9 @@ class GedcomParser:
                     name.setSuffix(names[2])
                 self.person.setPrimaryName(name)
                 self.parse_name(name,2)
-	    elif matches[1] == "RIN":
+	    elif matches[1] == "RIN" or matches[1] == "RFN":
                 pass
-	    elif matches[1] == "RFN":
-                pass
-	    elif matches[1] == "AFN":
-                pass
-	    elif matches[1] == "CHAN":
+	    elif matches[1] == "AFN" or matches[1] == "CHAN":
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "ALIA":
                 pass
@@ -545,7 +544,6 @@ class GedcomParser:
                 else:
                     self.parse_person_object(2)
             elif matches[1] == "NOTE":
-                print matches[2]
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
                     note = matches[2] + self.parse_continue_data(1)
                     self.person.setNote(note)
@@ -562,8 +560,6 @@ class GedcomParser:
                     self.person.setGender(Person.male)
                 else:
                     self.person.setGender(Person.female)
-	    elif matches[1] == "EVEN":
-                pass
 	    elif matches[1] == "FAMS":
                 family = self.db.findFamily(matches[2],self.fmap)
                 self.person.addFamily(family)
@@ -768,9 +764,9 @@ class GedcomParser:
                 break
             elif matches[1] == "DATE":
                 address.setDate(matches[2])
-            elif matches[1] == "AGE" or matches[1] == "AGNC":
+            elif matches[1] == "AGE" or matches[1] in "AGNC":
                 self.ignore_sub_junk(level+1)
-            elif matches[1] == "CAUS" or matches[1] == "ADDR":
+            elif matches[1] == "CAUS" or matches[1] in "ADDR":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "STAT" or matches[1] == "TEMP":
                 self.ignore_sub_junk(level+1)
@@ -814,13 +810,14 @@ class GedcomParser:
 	    if int(matches[0]) < level:
                 self.backup()
                 return
-            elif matches[1] == "ADDR" or matches[1] == "ADR1" or matches[1] == "ADR2":
+            elif matches[1] in _ADDRX:
                 val = address.getStreet()
+                data = self.parse_continue_data(level+1)
                 if first == 0:
-                    val = "%s %s" % (matches[2], self.parse_continue_data(level+1))
+                    val = "%s %s" % (matches[2],data)
                     first = 1
                 else:
-                    val = "%s,%s %s" % (val,matches[2],self.parse_continue_data(level+1))
+                    val = "%s,%s %s" % (val,matches[2],data)
                 address.setStreet(val)
             elif matches[1] == "CITY":
                 address.setCity(matches[2])
@@ -845,16 +842,21 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == "TYPE":
-                if event.getName() != "":
-                    try:
-                        event.setName(ged2rel[matches[2]])
-                    except:
-                        event.setName(matches[2])
+                if event.getName() == "":
+                    if ged2rel.has_key(matches[2]):
+                        name = ged2rel[matches[2]]
+                    else:
+                        name = matches[2]
+                    print name
+                    event.setName(name)
+                else:
+                    print "*",event.getName()
+                print event.getName()
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
             elif matches[1] == "AGE" or matches[1] == "AGNC":
                 self.ignore_sub_junk(level+1)
-            elif matches[1] == "CAUS" or matches[1] == "ADDR":
+            elif matches[1] == "CAUS" or matches[1] in "ADDR":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "STAT" or matches[1] == "TEMP":
                 self.ignore_sub_junk(level+1)
@@ -904,7 +906,7 @@ class GedcomParser:
                 event.setDate(matches[2])
             elif matches[1] == "AGE" or matches[1] == "AGNC":
                 self.ignore_sub_junk(level+1)
-            elif matches[1] == "CAUS" or matches[1] == "ADDR":
+            elif matches[1] == "CAUS" or matches[1] in "ADDR":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "STAT" or matches[1] == "TEMP":
                 self.ignore_sub_junk(level+1)
@@ -1260,7 +1262,7 @@ class GedcomParser:
 	    if int(matches[0]) < level:
                 self.backup()
                 return
-            elif matches[1] == "ADDR":
+            elif matches[1] in "ADDR":
                 addr.label = matches[2]
                 self.parse_sub_addr(level+1, addr)
             elif matches[1] == "PHON":
