@@ -146,7 +146,7 @@ class AncestorReport:
 	try:
             self.doc.open(self.output)
         except:
-            print "Document write failure"
+            print _("Document write failure")
 
         generation = 1
         done = 0
@@ -165,7 +165,7 @@ class AncestorReport:
 	try:
 	    self.doc.close()
         except:
-            print "Document write failure"
+            print _("Document write failure")
 
     #--------------------------------------------------------------------
     #

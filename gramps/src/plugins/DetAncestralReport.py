@@ -146,14 +146,14 @@ class DetAncestorReport:
                 if child.getBirth().getDate() != "" and \
                         child.getBirth().getPlaceName() != "":
                     #print child.getBirth().getPlace().__dict__
-                    t= t+ " Born: "+child.getBirth().getDate() + \
+                    t= t+ _(" Born: ")+child.getBirth().getDate() + \
                         " "+child.getBirth().getPlaceName()
                 #print "getDeath()", child.getDeath().__dict__
                 if child.getDeath().getPlace() != None:
                 #   print child.getDeath().getPlace().__dict__
                     if child.getDeath().getDate() != "" or \
                             child.getDeath().getPlaceName() != "":
-                        t= t+ " Died: "+child.getDeath().getDate() + \
+                        t= t+ _(" Died: ")+child.getDeath().getDate() + \
                             " "+child.getDeath().getPlaceName()
                 self.doc.write_text(_(t))
                 self.doc.end_paragraph()
@@ -169,9 +169,9 @@ class DetAncestorReport:
         if rptOptions.firstName == reportOptions.Yes:
             firstName= person.getPrimaryName().getFirstName()
         elif person.getGender() == RelLib.Person.male:
-            firstName= "He"
+            firstName= _("He")
         else:
-            firstName= "She"
+            firstName= _("She")
 
         self.doc.start_bold()
         self.doc.write_text(name)
@@ -223,7 +223,7 @@ class DetAncestorReport:
                 if date.getDayValid() and date.getMonthValid() and \
                         rptOptions.fullDate == reportOptions.Yes:
                     if place != "":
-                        self.doc.write_text(" was born on %s in %s." % (date.getDate(), place))
+                        self.doc.write_text(_(" was born on %s in %s.") % (date.getDate(), place))
                     else:
                         self.doc.write_text(_(" was born on %s.") % date.getDate())
                 elif place != "":
@@ -357,9 +357,9 @@ class DetAncestorReport:
                 if person.getGender() == RelLib.Person.male:
                     if fam.getMother() != None:
                         spouse= fam.getMother().getPrimaryName().getRegularName()
-                        heshe= "He"
+                        heshe= _("He")
                 else:
-                    heshe= "She"
+                    heshe= _("She")
                     if fam.getFather() != None:
                         spouse= fam.getFather().getPrimaryName().getRegularName()
 
@@ -416,9 +416,9 @@ class DetAncestorReport:
                         ind= fam.getMother()
                         person= fam.getMother().getPrimaryName().getRegularName()
                         firstName= fam.getMother().getPrimaryName().getFirstName()
-                        heshe= "He"
+                        heshe= _("He")
                 else:
-                    heshe= "She"
+                    heshe= _("She")
                     if fam.getFather() != None:
                         ind= fam.getFather()
                         person= fam.getFather().getPrimaryName().getRegularName()
@@ -554,7 +554,7 @@ def report(database,person):
     style_sheet_list = StyleSheetList("det_ancestor_report.xml",styles)
     build_menu(None)
 
-    topDialog.get_widget("labelTitle").set_text("Detailed Ancestral Report for " + name)
+    topDialog.get_widget("labelTitle").set_text(_("Detailed Ancestral Report for %s") % name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_style_edit_clicked" : on_style_edit_clicked,
