@@ -116,7 +116,13 @@ class IndivSummary(Report.Report):
             return
         name = const.display_event(event.get_name())
         date = event.get_date()
-        place = event.get_place_name()
+        place_id = event.get_place_id()
+        if place_id:
+            place_obj = self.database.find_place_from_id(place_id)
+            place = place_obj.get_title()
+        else:
+            place = ""
+        
         description = event.get_description()
         if date == "":
             if place == "":
@@ -161,11 +167,17 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for family in self.person.get_family_id_list():
-            if self.person == family.get_father_id():
-                spouse = family.get_mother_id()
+        for family_id in self.person.get_family_id_list():
+            family = self.database.find_family_from_id(family_id)
+            if self.person.get_id() == family.get_father_id():
+                spouse_id = family.get_mother_id()
             else:
-                spouse = family.get_father_id()
+                spouse_id = family.get_father_id()
+            if spouse_id:
+                spouse = self.database.find_person_from_id(spouse_id)
+            else:
+                spouse = None
+                
             self.d.start_row()
             self.d.start_cell("IVS-NormalCell",2)
             self.d.start_paragraph("IVS-Spouse")
@@ -177,7 +189,8 @@ class IndivSummary(Report.Report):
             self.d.end_cell()
             self.d.end_row()
             
-            for event in family.get_event_list():
+            for event_id in family.get_event_list():
+                event = self.database.find_event_from_id(event_id)
                 self.write_fact(event)
 
             child_list = family.get_child_id_list()
@@ -193,11 +206,12 @@ class IndivSummary(Report.Report):
                 self.d.start_paragraph("IVS-Normal")
                 
                 first = 1
-                for child in family.get_child_id_list():
+                for child_id in child_list:
                     if first == 1:
                         first = 0
                     else:
                         self.d.write_text('\n')
+                    child = self.database.find_person_from_id(child_id)
                     self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
@@ -261,16 +275,19 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        family = self.person.get_main_parents_family_id()
-        if family:
-            father_inst = family.get_father_id()
-            if father_inst:
-                father = father_inst.get_primary_name().get_regular_name()
+        fam_id = self.person.get_main_parents_family_id()
+        if fam_id:
+            family = self.database.find_family_from_id(fam_id)
+            father_id = family.get_father_id()
+            if father_id:
+                dad = self.database.find_person_from_id(father_id)
+                father = dad.get_primary_name().get_regular_name()
             else:
                 father = ""
-            mother_inst = family.get_mother_id()
-            if mother_inst:
-                mother = mother_inst.get_primary_name().get_regular_name()
+            mother_id = family.get_mother_id()
+            if mother_id:
+                mom = self.database.find_person_from_id(mother_id)
+                mother = mom.get_primary_name().get_regular_name()
             else:
                 mother = ""
         else:
@@ -318,10 +335,12 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        event_list = [ self.person.get_birth(), self.person.get_death() ]
+        event_list = [ self.person.get_birth_id(), self.person.get_death_id() ]
         event_list = event_list + self.person.get_event_list()
-        for event in event_list:
-            self.write_fact(event)
+        for event_id in event_list:
+            if event_id:
+                event = self.database.find_event_from_id(event_id)
+                self.write_fact(event)
         self.d.end_table()
 
         self.write_families()
