@@ -368,7 +368,7 @@ class FamilyView:
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity,False),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity,False),
             #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1,False),
             (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1,True),
         ]
@@ -379,10 +379,10 @@ class FamilyView:
                 continue
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -399,7 +399,7 @@ class FamilyView:
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1),
         ]
         menu = gtk.Menu()
@@ -407,10 +407,10 @@ class FamilyView:
         for stock_id,callback,sensitivity in entries:
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -439,10 +439,10 @@ class FamilyView:
                 continue
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -503,17 +503,17 @@ class FamilyView:
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -577,17 +577,17 @@ class FamilyView:
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -707,7 +707,7 @@ class FamilyView:
         if self.person.get_gender() == RelLib.Person.MALE:
             self.family.set_mother_handle(epo.person.get_handle())
             self.family.set_father_handle(self.person.get_handle())
-        else:	
+        else:
             self.family.set_father_handle(epo.person.get_handle())
             self.family.set_mother_handle(self.person.get_handle())
 
@@ -777,7 +777,7 @@ class FamilyView:
                 self.family.set_mother_handle(self.person.get_handle())
 
         self.family.add_child_handle(epo.person.get_handle())
-        epo.person.add_parent_family_handle(self.family.get_handle(),"Birth","Birth")
+        epo.person.add_parent_family_handle(self.family.get_handle(),RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
         self.parent.db.commit_person(epo.person,trans)
         self.parent.db.commit_family(self.family,trans)
         self.parent.db.transaction_commit(trans,_("Add Child to Family"))
@@ -1140,17 +1140,17 @@ class FamilyView:
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -1179,17 +1179,17 @@ class FamilyView:
             (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
             (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
             #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
             (_("Home"),self.parent.on_home_clicked,1),
             (None,None,0),
         ]
         for stock_id,callback,sensitivity in nav_entries:
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -1539,7 +1539,7 @@ class FamilyView:
             child_date = birth.get_date_object().get_sort_value()
             if child_date == 0:
                 continue
-            if prev_date <= child_date:	# <= allows for twins
+            if prev_date <= child_date: # <= allows for twins
                 prev_date = child_date
             else:
                 inorder = False

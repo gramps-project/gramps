@@ -21,6 +21,8 @@
 	* src/rule.glade: Change button label; add "need to close" label.
 	* src/EditPlace.py: Typo.
 
+	* src/FamilyView.py: Correct constants for birth relationship.
+
 2005-03-09  Don Allingham  <don@gramps-project.org>
 	* src/NameEdit.py: assign date on close
 
