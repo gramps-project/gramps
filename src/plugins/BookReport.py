@@ -675,8 +675,11 @@ class BookReportSelector:
             self.book.append_item(item)
 	    
             data = [ item.get_name(), item.get_category() ]
-            pname = self.db.getPerson(options[0])
-            data.append(pname.getPrimaryName().getRegularName())
+            if data[1] == _("Title"):
+                data.append(_("Not Applicable"))
+            else:
+                pname = self.db.getPerson(options[0])
+                data.append(pname.getPrimaryName().getRegularName())
             self.bk_model.add(data)
 
     def on_add_clicked(self,obj):

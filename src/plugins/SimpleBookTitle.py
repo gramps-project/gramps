@@ -80,9 +80,10 @@ class SimpleBookTitle(Report.Report):
         self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
 
-        object = self.database.getObject(self.object_id)
-        name = object.getPath()
-        self.doc.add_photo(name,'center',10,10)
+        if self.object_id:
+            object = self.database.getObject(self.object_id)
+            name = object.getPath()
+            self.doc.add_photo(name,'center',10,10)
 
         self.doc.start_paragraph('SBT-Subtitle')
         self.doc.write_text(self.copyright_string)
@@ -124,7 +125,7 @@ _style_name = "default"
 
 _person_id = ""
 _title_string = ""
-_object_id = None
+_object_id = ""
 _copyright_string = ""
 
 _options = ( _person_id, _title_string, _object_id, _copyright_string )
@@ -157,7 +158,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         if self.options[2]:
             self.object_id = self.options[2]
         else:
-            self.object_id = None
+            self.object_id = ""
         
         if self.options[3]:
             self.copyright_string = self.options[3]
@@ -181,6 +182,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             else:
                 icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
                 self.preview.set_from_pixbuf(icon_image)
+            self.remove_obj_button.set_sensitive(gtk.TRUE)
 
         self.new_person = None
 
@@ -262,7 +264,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         pass
 
     def remove_obj(self, obj):
-        self.object_id = None
+        self.object_id = ""
         self.obj_title.set_text('')
         self.preview.set_from_pixbuf(None)
         self.remove_obj_button.set_sensitive(gtk.FALSE)
@@ -321,7 +323,7 @@ def write_book_item(database,person,doc,options,newpage=0):
         if options[2]:
             object_id = options[2]
         else:
-            object_id = None
+            object_id = ""
         if options[3]:
             copyright_string = options[3]
         else:
