@@ -1,3 +1,9 @@
+2003-10-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: fixed paths to redisplay_person_list
+	* src/ListModel.py: convert indices to strings. Sometimes a object just
+	doesn't work as a dictionary key
+	* src/PeopleStore.py: modify status bar, unroll loop while adding values
+
 2003-10-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsCfg.py: Implement instant preferences (HIG).
 	* src/preferences.glade: Likewise.
