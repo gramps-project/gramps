@@ -253,7 +253,7 @@ class Gallery(ImageSelect):
         """
 
     def on_drag_begin(self,obj,context):
-        if const.dnd_iamges:
+        if const.dnd_images:
             mtype = self.sel_obj.getReference().getMimeType()
             name = Utils.thumb_path(self.db.getSavePath(),self.sel_obj.getReference())
             pix = gtk.gdk.pixbuf_new_from_file(name)
