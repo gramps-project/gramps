@@ -695,9 +695,9 @@ class FamilyView:
         if self.person == None:
             return
         if self.selected_spouse == self.family.getFather():
-            self.family.setMother(None)
-        else:
             self.family.setFather(None)
+        else:
+            self.family.setMother(None)
 
         if self.selected_spouse:
             self.selected_spouse.removeFamily(self.family)
