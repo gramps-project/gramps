@@ -11,12 +11,20 @@ extern const char* gnome_vfs_mime_get_value(const char*,const char*);
 %inline %{
 const char* default_application_name(const char* type) {
 	GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
-	return a->name;
+	if (a) {
+		return a->name;
+	} else {
+		return (char*) NULL;
+	}
 }
 
 const char* default_application_command(const char* type) {
 	GnomeVFSMimeApplication *a = gnome_vfs_mime_get_default_application(type);
-	return a->command;
+	if (a) {
+		return a->command;
+	} else {
+		return (char*) NULL;
+	}	
 }
 
 %}
