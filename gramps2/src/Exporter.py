@@ -140,7 +140,7 @@ class Exporter:
                     'in any of the several formats supported by GRAMPS. '
                     'This can be used to make a copy of your data, backup '
                     'your data, or convert it to a format that will allow '
-                    'you to trasnfer it to a different program.\n\n'
+                    'you to transfer it to a different program.\n\n'
                     'If you change your mind during this process, you '
                     'can safely press the Cancel button at any time and your '
                     'present database will still be intact.'))
@@ -247,6 +247,8 @@ class Exporter:
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
+        tip = gtk.Tooltips()
+        
         group = None
         for ix in range(len(self.exports)):
             title = self.exports[ix][1]
@@ -257,10 +259,7 @@ class Exporter:
                 group = button
             self.format_buttons.append(button)
             table.attach(button,0,2,2*ix,2*ix+1)
-            label = gtk.Label(description)
-            label.set_line_wrap(True)
-            label.set_alignment(0,0.5)
-            table.attach(label,1,2,2*ix+1,2*ix+2,xpadding=24)
+            tip.set_tip(button,description)
         
         box.add(table)
         box.show_all()

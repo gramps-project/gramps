@@ -1,3 +1,16 @@
+2005-03-17  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/Exporter.py (build_info_page): proofreading; (build_format_page):
+	shrink the size of the window by using tooltips to display the
+	format description.
+	* src/plugins/ExportVCard.py: New (unfinished) plugin to export
+	addresses to pim applications.
+	* src/plugins/vcardexport.glade: GUI for the Exporter Druid of
+	vCard export
+	* src/plugins/ExportVCalendar.py: New (unfinished) plugin to export
+	events for calendaring applications.
+	* src/plugins/vcalendarexport.glade: GUI for the Exporter Druid
+	of vCalendar export
+
 2005-03-16  Alex Roitman  <shura@gramps-project.org>
 	* src/GenericFilter.py (HasTextMatchingSubstringOf): Minor.
 	* src/plugins/FilterEditor.py (EditRule:__init__): Typo.
