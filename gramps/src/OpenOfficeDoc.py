@@ -27,6 +27,12 @@ from latin_utf8 import latin_to_utf8
 import const
 
 try:
+    import PIL
+    no_pil = 0
+except:
+    no_pil = 1
+
+try:
     from codecs import *
 except:
     def EncodedFile(a,b,c):
@@ -418,8 +424,13 @@ class OpenOfficeDoc(TextDoc):
             height = file_tuple[2]
             base = os.path.basename(file)
             image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
-            cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,image_name)
-            os.system(cmd)
+            if no_pil:
+                cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,image_name)
+                os.system(cmd)
+            else:
+                im = PIL.Image.open(file)
+                im.thumbnail((width,height))
+                im.save(name,"JPEG")
 
     def _write_manifest(self):
 	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"

@@ -26,6 +26,13 @@ from latin_utf8 import latin_to_utf8
 import const
 import string
 
+try:
+    import PIL
+    no_pil = 0
+except:
+    no_pil = 1
+
+
 class AbiWordDoc(TextDoc):
 
     def __init__(self,type,orientation):
@@ -70,8 +77,15 @@ class AbiWordDoc(TextDoc):
                 height = file_tuple[2]
                 base = "/tmp/%s.png" % os.path.basename(file)
                 tag = string.replace(base,'.','_')
-                cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,base)
-                os.system(cmd)
+
+                if no_pil:
+                    cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,base)
+                    os.system(cmd)
+                else:
+                    im = PIL.Image.open(file)
+                    im.thumbnail((width,height))
+                    im.save(base,"PNG")
+
                 self.f.write('<d name="')
                 self.f.write(tag)
                 self.f.write('" mime-type="image/png" base64="yes">\n')
