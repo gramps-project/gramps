@@ -1,3 +1,9 @@
+2004-06-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels,py: faster sorting of places 
+	* src/PlaceView,py: faster sorting of places 
+	* src/RelLib,py: faster sorting of places 
+	* src/gramp_main.py: removed new database info message
+
 2004-06-18  Jason Salaz <whatsizbucket@users.sourceforge.net>
 	* src/plugins/ReadGedcom.py Fixed typos preventing import. (i.e. set_type instead of SetType, etc.)
 

@@ -51,7 +51,8 @@ class BaseModel(gtk.GenericTreeModel):
             return
         
         val = 0
-        for place_id in self.sort_keys():
+        keys = self.sort_keys()
+        for place_id in keys:
             self.iter2path[place_id] = (val,)
             self.path2iter[(val,)] = place_id
             val += 1

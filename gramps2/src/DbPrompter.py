@@ -117,8 +117,8 @@ class DbPrompter:
             filename = choose.get_filename()
             if save and os.path.splitext(filename)[1] != ".grdb":
                 filename = filename + ".grdb"
-            self.db.read_file(filename)
             choose.destroy()
+            self.db.read_file(filename)
             return 1
         else:
             choose.destroy()

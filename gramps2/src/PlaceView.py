@@ -79,10 +79,7 @@ class PlaceView:
 
         self.renderer = gtk.CellRendererText()
 
-        if const.nosort_tree:
-            self.model = DisplayModels.PlaceModel(self.db)
-        else:
-            self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.db))
+        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.db))
             
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
@@ -96,9 +93,8 @@ class PlaceView:
             
         column = gtk.TreeViewColumn(_('Place Name'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)
-        if not const.nosort_tree:
-            column.set_clickable(gtk.TRUE)
-            column.set_sort_column_id(0)
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(0)
 
         column.set_min_width(225)
         self.list.append_column(column)
@@ -111,9 +107,8 @@ class PlaceView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            if not const.nosort_tree:
-                column.set_clickable(gtk.TRUE)
-                column.set_sort_column_id(index)
+            column.set_clickable(gtk.TRUE)
+            column.set_sort_column_id(index)
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
@@ -128,10 +123,7 @@ class PlaceView:
 
     def build_tree(self):
         self.list.set_model(None)
-        if const.nosort_tree:
-            self.model = DisplayModels.PlaceModel(self.parent.db)
-        else:
-            self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
+        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
 
@@ -212,7 +204,6 @@ class PlaceView:
                     event_list.append(p.get_lds_sealing())
                 for event in event_list:
                     if event.get_place_id() == place.get_id():
-                        print event.get_id()
                         used = 1
 
             for fid in self.db.get_family_keys():
@@ -226,7 +217,6 @@ class PlaceView:
                     event_list.append(f.get_lds_sealing())
                 for event in event_list:
                     if event.get_place_id() == place.get_id():
-                        print event.get_id()
                         used = 1
 
             if used == 1:
