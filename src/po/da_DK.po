@@ -3309,8 +3309,8 @@ msgid ""
 "applications in the administrative account is rarely a wise idea, and can "
 "open up potential security risks."
 msgstr ""
-"Denne konto er ikke beregnet til normal brug. Afvikling af bruger programmer 
-"under den administrative konto er sjældent en god ide, og kan åbne for potentielle 
+"Denne konto er ikke beregnet til normal brug. Afvikling af bruger programmer " 
+"under den administrative konto er sjældent en god ide, og kan åbne for potentielle "
 "sikkerhedsrisici."
 
 #: gramps_main.py:619
