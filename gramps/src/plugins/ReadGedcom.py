@@ -178,11 +178,6 @@ class GedcomParser:
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def __init__(self, db, file, window):
         self.db = db
         self.person = None
@@ -212,21 +207,11 @@ class GedcomParser:
         self.update(self.file_obj,file)
         self.code = 0
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def update(self,field,text):
         field.set_text(text)
         while events_pending():
             mainiteration()
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def get_next(self):
         if self.backoff == 0:
             self.text = _cnv(string.strip(self.f.readline()))
@@ -249,11 +234,6 @@ class GedcomParser:
         self.backoff = 0
         return self.groups
             
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def barf(self,level):
         msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
         self.error_text_obj.insert_defaults(msg)
@@ -263,29 +243,14 @@ class GedcomParser:
         self.update(self.errors_obj,str(self.error_count))
         self.ignore_sub_junk(level)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def warn(self,msg):
         self.error_text_obj.insert_defaults(msg)
         self.error_count = self.error_count + 1
         self.update(self.errors_obj,str(self.error_count))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def backup(self):
         self.backoff = 1
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_gedcom_file(self):
         self.index = 0
         self.fam_count = 0
@@ -297,11 +262,6 @@ class GedcomParser:
         self.update(self.families_obj,str(self.fam_count))
         self.update(self.people_obj,str(self.indi_count))
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_trailer(self):
 	matches = self.get_next()
 
@@ -309,25 +269,9 @@ class GedcomParser:
 	    self.barf(0)
         self.f.close()
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_header(self):
 	self.parse_header_head()
         self.parse_header_source()
-        self.parse_header_dest()
-        self.parse_header_date()
-        self.parse_header_subm()
-        self.parse_header_subn()
-        self.parse_header_file()
-        self.parse_header_copr()
-        self.parse_header_gedc() 
-        self.parse_header_char()
-        self.parse_header_lang()
-        self.parse_header_plac()
-        self.parse_header_note()
 
     #---------------------------------------------------------------------
     #
@@ -376,11 +320,6 @@ class GedcomParser:
                         self.nmap[matches[2]] = noteobj
                         self.source.setNoteObj(noteobj)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_record(self):
         while 1:
 	    matches = self.get_next()
@@ -434,33 +373,19 @@ class GedcomParser:
             else:
 	        self.barf(1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_note_data(self,level):
         while 1:
             matches = self.get_next()
 	    if int(matches[0]) < level:
                 self.backup()
                 return
-            elif matches[1] == "SOUR":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "CHAN":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "REFN":
+            elif matches[1] in ["SOUR","CHAN","REFN"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "RIN":
                 pass
             else:
                 self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_ftw_relations(self,level):
         mrel = "Birth"
         frel = "Birth"
@@ -482,11 +407,6 @@ class GedcomParser:
             else:
                 self.barf(level+1)
     
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_family(self):
         self.addr = None
         while 1:
@@ -523,9 +443,7 @@ class GedcomParser:
                 self.family.addAttribute(a)
 	    elif matches[1] == "RIN" or matches[1] == "SUBM":  
                 pass
-            elif matches[1] == "REFN" or matches[1] == "CHAN":
-                self.ignore_sub_junk(2)
-            elif matches[1] == "SOUR":
+            elif matches[1] in ["REFN","CHAN","SOUR"]:
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
@@ -555,11 +473,6 @@ class GedcomParser:
                 self.family.addEvent(event)
 	        self.parse_family_event(event,2)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_individual(self):
         name_cnt = 0
         while 1:
@@ -586,20 +499,12 @@ class GedcomParser:
                     self.person.addAlternateName(name)
                 name_cnt = name_cnt + 1
                 self.parse_name(name,2)
-	    elif matches[1] == "RIN" or matches[1] == "RFN":
-                pass
             elif matches[1] == "_UID":
                 self.person.setPafUid(matches[2])
-	    elif matches[1] == "AFN" or matches[1] == "CHAN":
+	    elif matches[1] in ["AFN","CHAN","REFN","SOUR"]:
                 self.ignore_sub_junk(2)
-	    elif matches[1] == "ALIA":
+	    elif matches[1] in ["ALIA", "ANCI","DESI","RIN","RFN"]:
                 pass
-	    elif matches[1] == "ANCI" or matches[1] == "DESI":
-                pass
-	    elif matches[1] == "REFN":
-                self.ignore_sub_junk(2)
-	    elif matches[1] == "SOUR":
-                self.ignore_sub_junk(2)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
                     self.barf(2)
@@ -695,11 +600,6 @@ class GedcomParser:
                 self.person.addEvent(event)
 	        self.parse_person_event(event,2)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_optional_note(self,level):
         note = ""
         while 1:
@@ -717,11 +617,6 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_famc_type(self,level):
         type = ""
         note = ""
@@ -744,11 +639,6 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_person_object(self,level):
         form = ""
         file = ""
@@ -795,11 +685,6 @@ class GedcomParser:
             self.warn(_("Could not import %s: currently an unknown file type") % \
                       file + "\n")
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_source_object(self,source,level):
         form = ""
         file = ""
@@ -839,11 +724,6 @@ class GedcomParser:
             self.warn(_("Could not import %s: currently an unknown file type") % \
                       file + "\n")
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_family_object(self,level):
         form = ""
         file = ""
@@ -881,36 +761,25 @@ class GedcomParser:
         else:
             self.warn("Could not import %s: current an unknown file type\n" % file)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_residence(self,address,level):
         while 1:
             matches = self.get_next()
+
             if int(matches[0]) < level:
                 self.backup()
-                break
+                return 
             elif matches[1] == "DATE":
                 address.setDate(matches[2])
-            elif matches[1] == "AGE" or matches[1] == "AGNC":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "CAUS" or matches[1] == "ADDR":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "STAT" or matches[1] == "TEMP":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "OBJE" or matches[1] == "TYPE":
+	    elif matches[1] == "ADDR":
+                address.setStreet(matches[2] + self.parse_continue_data(2))
+                self.parse_address(address,level+1)
+            elif matches[1] in ["AGE","AGNC","CAUS","STAT","TEMP","OBJE","TYPE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
                 address.addSourceRef(source_ref)
                 self.parse_source_reference(source_ref,level+1)
-	    elif matches[1] == "ADDR":
-                self.addr = Address()
-                self.addr.setStreet(matches[2] + self.parse_continue_data(2))
-                self.parse_address(self.addr,2)
             elif matches[1] == "PLAC":
                 address.setStreet(matches[2])
                 self.parse_address(address,level+1)
@@ -931,16 +800,10 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_address(self,address,level):
         first = 0
         while 1:
             matches = self.get_next()
-
 	    if int(matches[0]) < level:
                 self.backup()
                 return
@@ -964,11 +827,6 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_person_event(self,event,level):
         note = ""
         while 1:
@@ -987,13 +845,7 @@ class GedcomParser:
                     event.setName(name)
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
-            elif matches[1] == "TIME" or matches[1] == "ADDR":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "AGE" or matches[1] == "AGNC":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "STAT" or matches[1] == "TEMP":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "OBJE" or matches[1] == "QUAY":
+            elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE","QUAY"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -1049,11 +901,6 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_family_event(self,event,level):
         global ged2fam
         global ged2gramps
@@ -1071,17 +918,7 @@ class GedcomParser:
                         event.setName(matches[2])
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
-            elif matches[1] == "TIME":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "AGE" or matches[1] == "AGNC":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "CAUS" or matches[1] == "ADDR":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "STAT" or matches[1] == "TEMP":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "HUSB" or matches[1] == "WIFE":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "OBJE" or matches[1] == "QUAY":
+            elif matches[1] == ["TIME","AGE","AGNC","CAUS","ADDR","STAT","TEMP","HUSB","WIFE","OBJE","QUAY"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
@@ -1239,11 +1076,6 @@ class GedcomParser:
 	    raise GedcomParser.BadFile, line
         self.index = self.index + 1
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_header_source(self):
         global is_ftw
         global _cnv
@@ -1266,7 +1098,7 @@ class GedcomParser:
    	    elif matches[1] == "CORP":
                 self.ignore_sub_junk(2)
    	    elif matches[1] == "DATA":
-                self.parse_sub_data(3)
+                self.ignore_sub_junk(2)
    	    elif matches[1] == "SUBM":
                 pass
    	    elif matches[1] == "SUBN":
@@ -1305,11 +1137,6 @@ class GedcomParser:
             else:
 	        self.barf(2)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_ftw_schema(self,level):
         while 1:
             matches = self.get_next()
@@ -1324,11 +1151,6 @@ class GedcomParser:
             else:
 	        self.barf(2)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_ftw_indi_schema(self,level):
         while 1:
             matches = self.get_next()
@@ -1340,11 +1162,6 @@ class GedcomParser:
                 label = self.parse_label(level+1)
                 ged2gramps[matches[1]] = label
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_label(self,level):
         while 1:
             matches = self.get_next()
@@ -1357,11 +1174,6 @@ class GedcomParser:
             else:
 	        self.barf(2)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_ftw_fam_schema(self,level):
         while 1:
             matches = self.get_next()
@@ -1373,11 +1185,6 @@ class GedcomParser:
                 label = self.parse_label(level+1)
                 ged2fam[matches[1]] = label
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def ignore_sub_junk(self,level):
 
         while 1:
@@ -1387,11 +1194,6 @@ class GedcomParser:
                 self.backup()
                 return
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def ignore_change_data(self,level):
 
 	matches = self.get_next()
@@ -1405,11 +1207,6 @@ class GedcomParser:
         else:
             self.backup()
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_place_form(self,level):
         while 1:
             matches = self.get_next()
@@ -1420,11 +1217,6 @@ class GedcomParser:
             elif matches[1] != "FORM":
 	        self.barf(level+1)
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_continue_data(self,level):
 	data = ""
         while 1:
@@ -1438,11 +1230,6 @@ class GedcomParser:
                 self.backup()
                 return data
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_date(self,level):
         date = DateStruct()
         while 1:
@@ -1455,164 +1242,6 @@ class GedcomParser:
                 date.time = matches[2]
             else:
 	        self.barf(level+1)
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_addr_struct(self,level):
-        addr = AddrStruct()
-
-        while 1:
-            matches = self.get_next()
-
-	    if int(matches[0]) < level:
-                self.backup()
-                return
-            elif matches[1] == "ADDR":
-                addr.label = matches[2] + self.parse_continue_data(level+1)
-                self.parse_sub_addr(level+1, addr)
-            elif matches[1] == "PHON":
-                addr.phone = matches[2]
-            else:
-                self.barf(level+1)
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_sub_addr(self,level,addr):
-        while 1:
-            matches = self.get_next()
-
-	    if int(matches[0]) < level:
-                self.backup()
-                return
-            elif matches[1] == "CONT":
-                addr.label = "%s\n%s" %(addr.label,matches[2])
-            elif matches[1] == "ADR1":
-                addr.addr1 = matches[2]
-            elif matches[1] == "ADR2":
-                addr.addr2 = matches[2]
-            elif matches[1] == "CITY":
-                addr.city = matches[2]
-            elif matches[1] == "STAE":
-                addr.state = matches[2]
-            elif matches[1] == "POST":
-                addr.postal = matches[2]
-            elif matches[1] == "CTRY":
-                addr.country = matches[2]
-            else:
-                self.barf(level+1)
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_sub_data(self,level):
-        while 1:
-            matches = self.get_next()
-
-	    if int(matches[0]) < level:
-                self.backup()
-                return
-            elif matches[1] == "DATE":
-                pass
-            elif matches[1] == "COPR":
-                pass
-            else:
-                self.barf(level+1)
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_dest(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_date(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_subm(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_subn(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_file(self):
-        pass
-    
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_copr(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_gedc(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_char(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_lang(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_plac(self):
-        pass
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def parse_header_note(self):
-        pass
 
 #-------------------------------------------------------------------------
 #
