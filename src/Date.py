@@ -1052,6 +1052,11 @@ class SingleDate:
 #
 #-------------------------------------------------------------------------
 def compare_dates(f,s):
+    if f.range == -1 and s.range == -1:
+        return cmp(f.text,s.text)
+    if f.range == -1 or s.range == -1:
+        return -1
+    
     first = f.get_start_date()
     second = s.get_start_date()
     if first.year != second.year:
