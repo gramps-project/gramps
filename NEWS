@@ -20,6 +20,7 @@ Version 0.9.2
   Please try hard to break it and report to gramps-devel.
 * Man page is updated.
 * Huge speed-up in Select Child (~25x) and Choose Parents (75x-150x) dialogs.
+* Fixed Filter behavior in People View. 
 * Dozens of bug fixes.
 
 Version 0.9.1
