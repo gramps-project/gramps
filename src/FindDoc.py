@@ -85,6 +85,8 @@ except:
 try:
     import PdfDoc
     _textdoc.append((_PDF, _has_tables, _paper, _styles))
+except ImportError:
+    pass
 except:
     import traceback
     traceback.print_exc()
@@ -92,6 +94,8 @@ except:
 try:
     import PdfDrawDoc
     _drawdoc.append(_PDF)
+except ImportError:
+    pass
 except:
     import traceback
     traceback.print_exc()
