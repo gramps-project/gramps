@@ -27,6 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -68,6 +69,8 @@ class PeopleView:
     def __init__(self,parent):
         self.parent = parent
 
+        self.nosort = os.environ.has_key('NOSORT')
+        
         self.DataFilter = Filter.Filter("")
         self.pscroll = self.parent.gtop.get_widget("pscroll")
         self.person_tree = self.parent.gtop.get_widget("person_tree")
@@ -84,9 +87,10 @@ class PeopleView:
             
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)        
-        column.set_clickable(gtk.TRUE)
         column.set_min_width(225)
-        column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
+        if not self.nosort:
+            column.set_clickable(gtk.TRUE)
+            column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
         self.person_tree.append_column(column)
         self.columns = [column]
 
@@ -108,10 +112,11 @@ class PeopleView:
         self.person_tree.set_model(None)
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
 
-        self.sort_model = gtk.TreeModelSort(self.person_model)
+        if self.nosort:
+            self.sort_model = self.person_model
+        else:
+            self.sort_model = gtk.TreeModelSort(self.person_model)
         self.person_tree.set_model(self.sort_model)
-
-        #self.person_tree.set_model(self.person_model)
 
         self.person_selection = self.person_tree.get_selection()
         self.person_selection.connect('changed',self.row_changed)
@@ -119,7 +124,6 @@ class PeopleView:
         self.person_tree.connect('button-press-event',self.on_plist_button_press)        
 
     def blist(self,store,path,iter,id_list):
-        #id_list.append(self.person_model.get_value(iter,1))
         id_list.append(self.sort_model.get_value(iter,1))
 
     def get_selected_objects(self):
@@ -250,6 +254,9 @@ class PeopleView:
         
     def redisplay_person_list(self,person):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        self.sort_model = gtk.TreeModelSort(self.person_model)
+        if self.nosort:
+            self.sort_model = self.person_model
+        else:
+            self.sort_model = gtk.TreeModelSort(self.person_model)
         self.person_tree.set_model(self.sort_model)
         
