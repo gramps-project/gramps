@@ -39,6 +39,7 @@ import shutil
 #
 #------------------------------------------------------------------------
 import gtk
+import gnome.ui
 
 #------------------------------------------------------------------------
 #
@@ -227,10 +228,10 @@ class IndividualPage:
             person = self.db.find_person_from_id(person_id)
             if self.list.has_key(person.get_id()):
                 self.doc.start_link("%s.%s" % (person.get_id(),self.ext))
-	        self.doc.write_text(person.get_primary_name().get_regular_name())
+                self.doc.write_text(person.getPrimaryName().getRegularName())
                 self.doc.end_link()
             else:
-	        self.doc.write_text(person.get_primary_name().get_regular_name())
+                self.doc.write_text(person.get_primary_name().get_regular_name())
 
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -653,7 +654,8 @@ class IndividualPage:
 class WebReport(Report.Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, include_mini_tree,
-                 style, image_dir, template_name,use_id,id_link,gendex,ext):
+                 style, image_dir, template_name,use_id,id_link,gendex,ext,
+                 include_alpha_links,separate_alpha,n_cols,ind_template_name):
         self.db = db
         self.ext = ext
         self.use_id = use_id
@@ -672,6 +674,10 @@ class WebReport(Report.Report):
         self.image_dir = image_dir
         self.use_gendex = gendex
         self.template_name = template_name
+        self.include_alpha_links = include_alpha_links
+        self.separate_alpha = separate_alpha
+        self.n_cols = n_cols
+        self.ind_template_name = ind_template_name
 
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
@@ -780,35 +786,99 @@ class WebReport(Report.Report):
             else:
                 a[''] = 1
 
-        col_len = len(person_list) + len(a.keys())
-        col_len = col_len/2
-        
-        doc.write_raw('<table width="100%" border="0">')
-        doc.write_raw('<tr><td width="50%" valign="top">')
-        last = ''
-        end_col = 0
-        for person in person_list:
-            name = person.get_primary_name().get_name()
-            if name and name[0] != last:
-                last = name[0]
-                doc.start_paragraph('IndexLabel')
-                doc.write_text(name[0])
-                doc.end_paragraph()
-                col_len = col_len - 1
-            doc.start_link("%s.%s" % (person.get_id(),self.ext))
-            doc.write_text(name)
-            doc.end_link()
-            if col_len <= 0 and end_col == 0:
-                doc.write_raw('</td><td valign="top">')
-                doc.start_paragraph('IndexLabel')
-                doc.write_text(_("%s (continued)") % name[0])
-                doc.end_paragraph()
-                end_col = 1
+        section_number = 1
+        link_keys = a.keys()
+        link_keys.sort()
+        for n in link_keys:
+            a[n] = section_number
+            section_number = section_number + 1
+
+        if self.include_alpha_links:
+            doc.start_paragraph('IndexLabelLinks')
+            if self.separate_alpha:
+                link_str = "index_%%03d.%s" % self.ext
             else:
-                doc.newline()
-            col_len = col_len - 1
-        doc.write_raw('</td></tr></table>')
-        doc.close()
+                link_str = "#%03d"
+            for n in link_keys:
+                doc.start_link(link_str % a[n])
+                doc.write_text(n)
+                doc.end_link()
+                doc.write_text(' ')
+            doc.end_paragraph()
+        
+        if self.separate_alpha:
+            doc.close()
+            for n in link_keys:
+                p_list = [ p for p in person_list if \
+                            (p.get_primary_name().get_surname() \
+                            and (p.get_primary_name().get_surname()[0] == n) ) ]
+                doc = HtmlLinkDoc(self.selected_style,None,template,None)
+                doc.set_extension(self.ext)
+                doc.set_title(_("Section %s") % n)
+
+                doc.open("%s/index_%03d.%s" % (html_dir,a[n],self.ext))
+                doc.start_paragraph("Title")
+                doc.write_text(_("Section %s") % n)
+                doc.end_paragraph()
+
+                n_rows = len(p_list)/self.n_cols
+                td_width = 100/self.n_cols
+
+                doc.write_raw('<table width="100%" border="0">')
+                doc.write_raw('<tr><td width="%d%%" valign="top">' % td_width)
+                col_len = n_rows
+
+                for person in p_list:
+                    name = person.get_primary_name().get_surname()
+
+                    doc.start_link("%s.%s" % (person.get_id(),self.ext))
+                    doc.write_text(name)
+                    doc.end_link()
+
+                    if col_len <= 0:
+                        doc.write_raw('</td><td width="%d%%" valign="top">' % td_width)
+                        col_len = n_rows
+                    else:
+                        doc.newline()
+                    col_len = col_len - 1
+                doc.write_raw('</td></tr></table>')
+                doc.close()
+        else:
+            n_rows = len(person_list) + len(link_keys)
+            n_rows = n_rows/self.n_cols
+            td_width = 100/self.n_cols
+
+            doc.write_raw('<table width="100%" border="0">')
+            doc.write_raw('<tr><td width="%d%%" valign="top">' % td_width)
+            col_len = n_rows
+            for n in link_keys:
+                p_list = [ p for p in person_list if \
+                            (p.get_primary_name().get_surname() \
+                            and (p.get_primary_name().get_surname()[0] == n) ) ]
+                doc.start_paragraph('IndexLabel')
+                if self.include_alpha_links:
+                    doc.write_linktarget("%03d" % a[n])
+                doc.write_text(n)
+               doc.end_paragraph()
+                col_len = col_len - 1
+
+                for person in p_list:
+                    name = person.get_primary_name().get_surname()
+
+                    doc.start_link("%s.%s" % (person.get_id(),self.ext))
+                    doc.write_text(name)
+                    doc.end_link()
+                    if col_len <= 0:
+                        doc.write_raw('</td><td width="%d%%" valign="top">' % td_width)
+                        doc.start_paragraph('IndexLabel')
+                        doc.write_text(_("%s (continued)") % n)
+                        doc.end_paragraph()
+                        col_len = n_rows
+                    else:
+                        doc.newline()
+                    col_len = col_len - 1
+            doc.write_raw('</td></tr></table>')
+            doc.close()
         
     def write_report(self):
         dir_name = self.target_path
@@ -879,7 +949,7 @@ class WebReport(Report.Report):
             
         if len(ind_list) > 1:
             self.dump_index(ind_list,self.selected_style,
-                            self.template_name,dir_name)
+                            self.ind_template_name,dir_name)
         if self.use_gendex == 1:
             self.dump_gendex(ind_list,dir_name)
         self.progress_bar_done()
@@ -925,6 +995,8 @@ class WebReportDialog(Report.ReportDialog):
         gendex_msg = _("Create a GENDEX index")
         imgdir_msg = _("Image subdirectory")
         ext_msg = _("File extension")
+        alpha_links_msg = _("Links to alphabetical sections in index page")
+        sep_alpha_msg = _("Split alphabetical sections to separate pages")
 
         tree_msg = _("Include short ancestor tree")
         self.mini_tree = gtk.CheckButton(tree_msg)
@@ -949,9 +1021,34 @@ class WebReportDialog(Report.ReportDialog):
         self.ext.set_popdown_strings(['.html','.htm','.php','.php3',
                                       '.cgi'])
 
+        self.use_alpha_links = gtk.CheckButton(alpha_links_msg)
+        self.use_sep_alpha = gtk.CheckButton(sep_alpha_msg)
+        self.use_sep_alpha.set_sensitive(0)
+        self.use_n_cols = gtk.SpinButton()
+        self.use_n_cols.set_value(2)
+        self.use_n_cols.set_digits(0)
+        self.use_n_cols.set_increments(1,2)
+        self.use_n_cols.set_range(1,5)
+        self.use_n_cols.set_numeric(gtk.TRUE)
+        self.ind_template = gtk.Combo()
+        template_list = [ Report._default_template ]
+        tlist = Report._template_map.keys()
+        tlist.sort()
+        for template in tlist:
+            if template != Report._user_template:
+                template_list.append(template)
+        template_list.append(Report._user_template)
+        self.ind_template.set_popdown_strings(template_list)
+        self.ind_template.entry.set_editable(0)
+        self.ind_user_template = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
+        self.ind_user_template.set_sensitive(0)
+
         self.add_option(imgdir_msg,self.imgdir)
         self.add_option('',self.mini_tree)
         self.add_option('',self.use_link)
+
+        self.use_alpha_links.connect('toggled',self.on_use_alpha_links_toggled)
+        self.ind_template.entry.connect('changed',self.ind_template_changed)
 
         title = _("Privacy")
         self.add_frame_option(title,None,self.no_private)
@@ -959,6 +1056,13 @@ class WebReportDialog(Report.ReportDialog):
         self.add_frame_option(title,None,self.no_images)
         self.add_frame_option(title,None,self.no_living_images)
         self.add_frame_option(title,None,self.no_comments)
+
+        title = _('Index page')
+        self.add_frame_option(title,_('Template'),self.ind_template)
+        self.add_frame_option(title,_("User Template"),self.ind_user_template)
+        self.add_frame_option(title,None,self.use_alpha_links)
+        self.add_frame_option(title,None,self.use_sep_alpha)
+        self.add_frame_option(title,_('Number of columns'),self.use_n_cols)
 
         title = _('Advanced')
         self.add_frame_option(title,'',self.include_id)
@@ -1075,6 +1179,13 @@ class WebReportDialog(Report.ReportDialog):
         p.set(font=font)
         p.set_description(_("The style used on the index page that labels each section."))
         self.default_style.add_style("IndexLabel",p)
+
+        font = BaseDoc.FontStyle()
+        font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        p = BaseDoc.ParagraphStyle()
+        p.set(font=font,align=BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_("The style used on the index page that labels links to each section."))
+        self.default_style.add_style("IndexLabelLinks",p)
 
         font = BaseDoc.FontStyle()
         font.set(bold=1,face=BaseDoc.FONT_SANS_SERIF,size=12,italic=1)
@@ -1204,6 +1315,21 @@ class WebReportDialog(Report.ReportDialog):
         else:
             self.photos = 2
 
+        text = unicode(self.ind_template.entry.get_text())
+        if Report._template_map.has_key(text):
+            if text == Report._user_template:
+                self.ind_template_name = self.ind_user_template.get_full_path(0)
+            else:
+                self.ind_template_name = "%s/%s" % (const.template_dir,Report._template_map[text])
+        else:
+            self.ind_template_name = None
+        self.include_alpha_links = self.use_alpha_links.get_active()
+        if self.include_alpha_links:
+            self.separate_alpha = self.use_sep_alpha.get_active()
+        else:
+            self.separate_alpha = 0
+        self.n_cols = self.use_n_cols.get_value()
+
     #------------------------------------------------------------------------
     #
     # Callback functions from the dialog
@@ -1218,6 +1344,26 @@ class WebReportDialog(Report.ReportDialog):
             self.no_living_images.set_sensitive(0)
         else:
             self.no_living_images.set_sensitive(1)
+
+    def on_use_alpha_links_toggled(self,obj):
+        """Keep the 'split alpha sections to separate pages' checkbox in 
+        line with the 'use alpha links' checkbox.  If there are no alpha
+        links included, it makes no sense to worry about splitting or not
+        the alpha link target to separate pages."""
+        if obj.get_active():
+            self.use_sep_alpha.set_sensitive(1)
+        else:
+            self.use_sep_alpha.set_sensitive(0)
+
+    def ind_template_changed(self,obj):
+        text = unicode(obj.get_text())
+        if Report._template_map.has_key(text):
+            if Report._template_map[text]:
+                self.ind_user_template.set_sensitive(0)
+            else:
+                self.ind_user_template.set_sensitive(1)
+        else:
+            self.ind_user_template.set_sensitive(0)
 
     #------------------------------------------------------------------------
     #
@@ -1235,7 +1381,9 @@ class WebReportDialog(Report.ReportDialog):
                                  self.selected_style,
                                  self.img_dir_text,self.template_name,
                                  self.use_id,self.id_link,self.use_gendex,
-                                 self.html_ext)
+                                 self.html_ext,self.include_alpha_links,
+                                 self.separate_alpha,self.n_cols,
+                                 self.ind_template_name)
             MyReport.write_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()

@@ -216,6 +216,7 @@ class CheckIntegrity:
         for key in self.db.get_person_keys():
             child = self.db.get_person(key)
             child.remove_parent_family_id(family.get_id())
+            child.remove_family_id(family.get_id())
         self.db.delete_family(family.get_id())
 
     def check_parent_relationships(self):

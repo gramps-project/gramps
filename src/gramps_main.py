@@ -1702,13 +1702,15 @@ class Gramps:
 
             mylist = self.db.get_family_attribute_types()
             for type in mylist:
-                if type not in const.familyAttributes:
-                    const.familyAttributes.append(type)
+                ntype = const.display_fattr(type)
+                if ntype not in const.familyAttributes:
+                    const.familyAttributes.append(ntype)
 
             mylist = self.db.get_family_relation_types()
             for type in mylist:
-                if type not in const.familyRelations:
-                    const.familyRelations.append(type)
+                ntype = const.display_frel(type)
+                if ntype not in const.familyRelations:
+                    const.familyRelations.append(ntype)
         except:
             pass
 
