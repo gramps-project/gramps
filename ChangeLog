@@ -1,3 +1,16 @@
+2003-11-17  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.glade: Add Help buttons to dialogs.
+	* src/AddSpouse.py (on_spouse_help_clicked): Add function.
+	* src/SelectChild.py (on_child_help_clicked): Add function.
+	* src/Marriage.py (on_help_clicked): Add function.
+	* src/EditPerson.py (on_help_clicked): Add function.
+	* src/marriage.glade: Add Help button to a dialog.
+	* src/edit_person.glade: Add Help button to a dialog.
+	* src/dialog.glade: Add Help buttons to dialogs.
+	* src/AddrEdit.py (on_help_clicked): Add function.
+	* src/AttrEdit.py (on_help_clicked): Add function.
+	* src/EventEdit.py (on_help_clicked): Add function.
+
 2003-11-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: handle LDS status setting properly
 	* src/RelLib.py: use LDS status for equality comparison

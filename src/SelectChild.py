@@ -19,6 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # internationalization
@@ -32,6 +34,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -67,6 +70,7 @@ class SelectChild:
 
         self.xml.signal_autoconnect({
             "on_save_child_clicked"    : self.on_save_child_clicked,
+            "on_child_help_clicked"    : self.on_child_help_clicked,
             "on_show_toggled"          : self.on_show_toggled,
             "destroy_passed_object"    : self.close
             })
@@ -118,6 +122,10 @@ class SelectChild:
         
         self.refmodel = ListModel.ListModel(self.add_child,titles)
         self.redraw_child_list(2)
+
+    def on_child_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-spec-ch')
 
     def close(self,obj):
         self.top.destroy()

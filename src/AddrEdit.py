@@ -31,6 +31,7 @@ mechanism for the user to edit address information.
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -117,15 +118,21 @@ class AddressEditor:
         self.date_check = DateEdit(self.addr_start,date_stat)
 
         self.top.signal_autoconnect({
-            "on_switch_page" : self.on_switch_page
+            "on_switch_page" : self.on_switch_page,
+            "on_help_addr_clicked" : self.on_help_clicked
             })
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
             self.ok_clicked()
         self.window.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-ad')
+        self.val = self.window.run()
 
     def ok_clicked(self):
         """

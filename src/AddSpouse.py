@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
+
 """
 The AddSpouse module provides the AddSpouse class that allows the user to
 add a new spouse to the active person.
@@ -38,6 +41,7 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -102,6 +106,7 @@ class AddSpouse:
 
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,
+            "on_spouse_help_clicked"   : self.on_spouse_help_clicked,
             "on_show_toggled"          : self.on_show_toggled,
             "on_new_spouse_clicked"    : self.new_spouse_clicked,
             "on_rel_type_changed"      : self.relation_type_changed,
@@ -111,6 +116,10 @@ class AddSpouse:
         self.relation_type.set_text(_("Married"))
         self.relation_type_changed(None)
         
+    def on_spouse_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-spec-rel')
+
     def select_row(self,obj):
         """
         Called with a row has be unselected. Used to enable the OK button
