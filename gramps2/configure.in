@@ -175,7 +175,7 @@ rm -f conftest.out conftest.py
 if test YES != "$has_vfs"
 then
    AC_MSG_ERROR([
-**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found.])
+**** The python bindings for GNOME canvas (gnome-python2-vfs) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
