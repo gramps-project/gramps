@@ -1,3 +1,7 @@
+2004-01-04  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/ReadGedcom.py: Correct level in parsing LDS ordinance
+	source references. Support for source description-type references. 
+
 2004-01-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/fr.po: Typo (named format line parameter was translated).
 
