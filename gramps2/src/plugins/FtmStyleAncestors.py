@@ -852,8 +852,9 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
     def __init__(self,database,person,opt,stl):
 
         self.options = opt
+        self.db = database
         if self.options[0]:
-            self.person = self.options[0]
+            self.person = self.db.getPerson(self.options[0])
         else:
             self.person = person
         Report.BareReportDialog.__init__(self,database,self.person)
@@ -899,8 +900,9 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
         self.parse_style_frame()
         self.parse_report_options_frame()
         
-        self.person = self.new_person
-        self.options = [ self.person, self.max_gen, self.pg_brk ]
+        if self.new_person:
+            self.person = self.new_person
+        self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
         self.style = self.selected_style 
    
 
@@ -914,7 +916,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = options[0]
+            person = database.getPerson(options[0])
         max_gen = options[1]
         pg_brk = options[2]
         MyReport = FtmAncestorReport(database, person, 
