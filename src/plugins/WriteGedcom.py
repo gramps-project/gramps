@@ -29,6 +29,8 @@ import const
 import Utils
 import intl
 import Date
+import re
+
 _ = intl.gettext
 
 import gtk
@@ -62,6 +64,14 @@ _calmap = {
     Date.FRENCH : (_fmonth, '@#FRENCH R@'),
     Date.JULIAN : (_month, '@#JULIAN@'),
     }
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+
+get_int = re.compile('([0-9]+)')
 
 #-------------------------------------------------------------------------
 #
@@ -486,7 +496,7 @@ class GedcomWriter:
         for family in self.flist:
             father_alive = mother_alive = 0
             self.g.write("0 @%s@ FAM\n" % self.fid(family.getId()))
-            self.g.write('1 REFN %s\n' % family.getId())
+            self.prefn(family)
             person = family.getFather()
             if person != None and person in self.plist:
                 self.g.write("1 HUSB @%s@\n" % self.pid(person.getId()))
@@ -570,7 +580,7 @@ class GedcomWriter:
 
     def write_person(self,person):
         self.g.write("0 @%s@ INDI\n" % self.pid(person.getId()))
-        self.g.write('1 REFN %s\n' % person.getId())
+        self.prefn(person)
         self.write_person_name(person.getPrimaryName(),person.getNickName())
 
         if self.altname == ALT_NAME_STD:
@@ -906,22 +916,20 @@ class GedcomWriter:
             self.write_long_text("NOTE",level+1,ref.getComments())
         
     def fid(self,id):
-        if self.fidmap.has_key(id):
-            return self.fidmap[id]
-        else:
-            val = "F%05d" % self.fidval
-            self.fidval = self.fidval + 1
-            self.fidmap[id] = val
-            return val
+        return id
 
+    def prefn(self,person):
+        match = get_int.search(person.getId())
+        if match:
+            self.g.write('1 REFN %d\n' % int(match.groups()[0]))
+
+    def frefn(self,family):
+        match = get_int.search(family.getId())
+        if match:
+            self.g.write('1 REFN %d\n' % int(match.groups()[0]))
+    
     def pid(self,id):
-        if self.pidmap.has_key(id):
-            return self.pidmap[id]
-        else:
-            val = "I%05d" % self.pidval
-            self.pidval = self.pidval + 1
-            self.pidmap[id] = val
-            return val
+        return id
 
     def sid(self,id):
         if self.sidmap.has_key(id):

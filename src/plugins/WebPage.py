@@ -809,14 +809,18 @@ class WebReportDialog(ReportDialog):
         all.add_rule(GenericFilter.Everyone([]))
 
         des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % name)
+        des.set_name(_("Direct Descendants of %s") % name)
         des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
+
+        df = GenericFilter.GenericFilter()
+        df.set_name(_("Descendant Families of %s") % name)
+        df.add_rule(GenericFilter.IsDescendantFamilyOf([self.person.getId()]))
         
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
         ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
 
-        return [all,des,ans]
+        return [all,des,df,ans]
 
     #------------------------------------------------------------------------
     #

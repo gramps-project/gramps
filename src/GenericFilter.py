@@ -185,6 +185,43 @@ class IsDescendantOf(Rule):
 
 #-------------------------------------------------------------------------
 #
+# IsDescendantFamilyOf
+#
+#-------------------------------------------------------------------------
+class IsDescendantFamilyOf(Rule):
+    """Rule that checks for a person that is a descendant or the spouse
+    of a descendant of a specified person"""
+
+    labels = [ _('ID') ]
+    
+    def name(self):
+        return "Is a descendant family member of"
+
+    def apply(self,p):
+        return self.search(p)
+
+    def search(self,p):
+        if p.getId() == self.list[0]:
+            return 1
+        for (f,r1,r2) in p.getParentList():
+            for p1 in [f.getMother(),f.getFather()]:
+                if p1:
+                    if self.search(p1):
+                        return 1
+        for fm in p.getFamilyList():
+            if p == fm.getFather():
+                s = fm.getMother()
+            else:
+                s = fm.getFather()
+                for (f,r1,r2) in s.getParentList():
+                    for p1 in [f.getMother(),f.getFather()]:
+                        if p1:
+                            if self.search(p1):
+                                return 1
+        return 0
+
+#-------------------------------------------------------------------------
+#
 # IsAncestorOf
 #
 #-------------------------------------------------------------------------
@@ -637,21 +674,22 @@ class GenericFilter:
 #
 #-------------------------------------------------------------------------
 tasks = {
-    _("Everyone")                   : Everyone,
-    _("Has the Id")                 : HasIdOf,
-    _("Has a name")                 : HasNameOf,
-    _("Has the relationships")      : HasRelationship,
-    _("Has the death")              : HasDeath,
-    _("Has the birth")              : HasBirth,
-    _("Is the descendant of")       : IsDescendantOf,
-    _("Is an ancestor of")          : IsAncestorOf,
-    _("Is a female")                : IsFemale,
-    _("Is a male")                  : IsMale,
-    _("Has the personal event")     : HasEvent,
-    _("Has the family event")       : HasFamilyEvent,
-    _("Has the personal attribute") : HasAttribute,
-    _("Has the family attribute")   : HasFamilyAttribute,
-    _("Matches the filter named")   : MatchesFilter,
+    _("Everyone")                        : Everyone,
+    _("Has the Id")                      : HasIdOf,
+    _("Has a name")                      : HasNameOf,
+    _("Has the relationships")           : HasRelationship,
+    _("Has the death")                   : HasDeath,
+    _("Has the birth")                   : HasBirth,
+    _("Is a descendant of")              : IsDescendantOf,
+    _("Is a descendant family member of"): IsDescendantFamilyOf,
+    _("Is an ancestor of")               : IsAncestorOf,
+    _("Is a female")                     : IsFemale,
+    _("Is a male")                       : IsMale,
+    _("Has the personal event")          : HasEvent,
+    _("Has the family event")            : HasFamilyEvent,
+    _("Has the personal attribute")      : HasAttribute,
+    _("Has the family attribute")        : HasFamilyAttribute,
+    _("Matches the filter named")        : MatchesFilter,
     }
 
 #-------------------------------------------------------------------------
