@@ -143,7 +143,7 @@ class Gramps:
                             "It is intended as a technology preview. Do not trust your "
                             "family database to this development version. This version may "
                             "contain bugs which could corrupt your database."))
-            GrampsCfg.client.set_bool('/apps/gramps/betawarn',1)
+            GrampsCfg.save_betawarn(1)
         
 
         self.RelClass = Plugins.relationship_class
@@ -156,7 +156,16 @@ class Gramps:
         # Don't show main window until ArgHandler is done.
         # This prevents a window from annoyingly popping up when
         # the command line args are sufficient to operate without it.
-        GrampsCfg.client.notify_add("/apps/gramps",self.pref_callback)
+        GrampsCfg.client.notify_add("/apps/gramps/researcher",self.researcher_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/statusbar",self.statusbar_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar",self.toolbar_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/toolbar-on",self.toolbar_on_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/filter",self.filter_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/view",self.sidebar_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/interface/familyview",self.familyview_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/preferences/name-format",self.familyview_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-format",self.date_format_key_update)
+        GrampsCfg.client.notify_add("/apps/gramps/preferences/date-entry",self.date_entry_key_update)
         self.topWindow.show()
 
         if GrampsCfg.get_usetips():
@@ -164,18 +173,45 @@ class Gramps:
 
         self.db.set_researcher(GrampsCfg.get_researcher())
 
-    def pref_callback(self,client,cnxn_id,entry,data):
+    def date_format_key_update(self,client,cnxn_id,entry,data):
+        GrampsCfg.set_calendar_date_format()
+        self.familyview_key_update(client,cnxn_id,entry,data)
+
+    def date_entry_key_update(self,client,cnxn_id,entry,data):
+        GrampsCfg.set_calendar_date_entry()
+
+    def researcher_key_update(self,client,cnxn_id,entry,data):
         self.db.set_iprefix(GrampsCfg.get_iprefix())
         self.db.set_fprefix(GrampsCfg.get_fprefix())
         self.db.set_sprefix(GrampsCfg.get_sprefix())
         self.db.set_oprefix(GrampsCfg.get_oprefix())
         self.db.set_pprefix(GrampsCfg.get_pprefix())
 
+    def statusbar_key_update(self,client,cnxn_id,entry,data):
         self.modify_statusbar()
+
+    def toolbar_key_update(self,client,cnxn_id,entry,data):
+        self.toolbar.set_style(GrampsCfg.get_toolbar_style())
+
+    def toolbar_on_key_update(self,client,cnxn_id,entry,data):
+        is_on = GrampsCfg.get_toolbar_on()
+        self.toolbar_btn.set_active(is_on)
+        self.enable_toolbar(is_on)
+
+    def filter_key_update(self,client,cnxn_id,entry,data):
+        is_on = GrampsCfg.get_filter()
+        self.filter_btn.set_active(is_on)
+        self.enable_filter(is_on)
+
+    def sidebar_key_update(self,client,cnxn_id,entry,data):
+        is_on = GrampsCfg.get_view()
+        self.sidebar_btn.set_active(is_on)
+        self.enable_sidebar(is_on)
+
+    def familyview_key_update(self,client,cnxn_id,entry,data):
         self.family_view.init_interface()
         self.update_display(1)
         self.goto_active_person()
-        self.toolbar.set_style(GrampsCfg.get_toolbar())
 
     def init_interface(self):
         """Initializes the GLADE interface, and gets references to the
@@ -235,14 +271,6 @@ class Gramps:
 
         self.db.set_undo_label(self.undolabel)
         self.db.set_redo_label(self.redolabel)
-        self.use_sidebar = GrampsCfg.get_view()
-        self.sidebar_btn.set_active(self.use_sidebar)
-
-        self.use_filter = GrampsCfg.get_filter()
-        self.filter_btn.set_active(self.use_filter)
-
-        self.use_toolbar = GrampsCfg.get_toolbar_on()
-        self.toolbar_btn.set_active(self.use_toolbar)
 
         self.child_model = gtk.ListStore(
             gobject.TYPE_INT, gobject.TYPE_STRING, gobject.TYPE_STRING,
@@ -253,7 +281,7 @@ class Gramps:
         self.build_plugin_menus()
         self.init_filters()
 
-        self.toolbar.set_style(GrampsCfg.get_toolbar())
+        self.toolbar.set_style(GrampsCfg.get_toolbar_style())
         self.views.set_show_tabs(0)
 
         self.family_view = FamilyView.FamilyView(self)
@@ -349,9 +377,13 @@ class Gramps:
             "on_open_example" : self.open_example,
             })
 
+        self.filter_btn.set_active(GrampsCfg.get_filter())
+        self.enable_filter(GrampsCfg.get_filter())
+        self.toolbar_btn.set_active(GrampsCfg.get_toolbar_on())
+        self.enable_toolbar(GrampsCfg.get_toolbar_on())
+        self.sidebar_btn.set_active(GrampsCfg.get_view())
+        self.enable_sidebar(GrampsCfg.get_view())
 
-        self.enable_filter(self.use_filter)
-        self.enable_sidebar(self.use_sidebar)
         self.find_place = None
         self.find_person = None
         self.find_source = None
@@ -369,7 +401,6 @@ class Gramps:
         self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
         self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_FORWARD)
 
-        self.enable_toolbar(self.use_toolbar)
 
     def undo(self,*args):
         self.db.undo()
@@ -672,8 +703,7 @@ class Gramps:
         Plugins.PluginStatus()
 
     def on_sidebar_activate(self,obj):
-        val = obj.get_active()
-        self.enable_sidebar(val)
+        GrampsCfg.save_view(obj.get_active())
 
     def enable_sidebar(self,val):
         if val:
@@ -682,7 +712,6 @@ class Gramps:
         else:
             self.sidebar.hide()
             self.views.set_show_tabs(1)
-        GrampsCfg.save_view(val)
 
     def enable_filter(self,val):
         if val:
@@ -691,19 +720,16 @@ class Gramps:
             self.filterbar.hide()
         
     def on_filter_activate(self,obj):
-        self.enable_filter(obj.get_active())
         GrampsCfg.save_filter(obj.get_active())
 
     def on_toolbar_activate(self,obj):
-        val = obj.get_active()
-        self.enable_toolbar(val)
+        GrampsCfg.save_toolbar_on(obj.get_active())
 
     def enable_toolbar(self,val):
         if val:
             self.toolbardock.show()
         else:
             self.toolbardock.hide()
-        GrampsCfg.save_toolbar_on(val)
 
     def build_plugin_menus(self):
         export_menu = self.gtop.get_widget("export1")

@@ -1,8 +1,11 @@
+<!-- $Id$ -->
+
 <gconfschemafile>
     <schemalist>
+
       <schema>
-        <key>/schemas/apps/gramps/autoload</key>
-        <applyto>/apps/gramps/autoload</applyto>
+        <key>/schemas/apps/gramps/behavior/autoload</key>
+        <applyto>/apps/gramps/behavior/autoload</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
@@ -13,20 +16,21 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/betawarn</key>
-        <applyto>/apps/gramps/betawarn</applyto>
+        <key>/schemas/apps/gramps/behavior/betawarn</key>
+        <applyto>/apps/gramps/behavior/betawarn</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
         <locale name="C">
-          <short>Display beta warning on startup</short>
-          <long>If set to 1, the warning about beta version will be loaded on the startup.</long>
+          <short>Hide beta warning on startup</short>
+          <long>If set to 1, the warning about beta version will not be 
+          displayed on the startup.</long>
         </locale>
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/date-entry</key>
-        <applyto>/apps/gramps/date-entry</applyto>
+        <key>/schemas/apps/gramps/preferences/date-entry</key>
+        <applyto>/apps/gramps/preferences/date-entry</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>0</default>
@@ -39,8 +43,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/date-format</key>
-        <applyto>/apps/gramps/date-format</applyto>
+        <key>/schemas/apps/gramps/preferences/date-format</key>
+        <applyto>/apps/gramps/preferences/date-format</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>0</default>
@@ -53,8 +57,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/defaultview</key>
-        <applyto>/apps/gramps/defaultview</applyto>
+        <key>/schemas/apps/gramps/interface/defaultview</key>
+        <applyto>/apps/gramps/interface/defaultview</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>0</default>
@@ -66,8 +70,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/familyview</key>
-        <applyto>/apps/gramps/familyview</applyto>
+        <key>/schemas/apps/gramps/interface/familyview</key>
+        <applyto>/apps/gramps/interface/familyview</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>0</default>
@@ -79,8 +83,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/filter</key>
-        <applyto>/apps/gramps/filter</applyto>
+        <key>/schemas/apps/gramps/interface/filter</key>
+        <applyto>/apps/gramps/interface/filter</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
@@ -91,8 +95,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/fprefix</key>
-        <applyto>/apps/gramps/fprefix</applyto>
+        <key>/schemas/apps/gramps/preferences/fprefix</key>
+        <applyto>/apps/gramps/preferences/fprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>F%04d</default>
@@ -104,8 +108,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/iprefix</key>
-        <applyto>/apps/gramps/iprefix</applyto>
+        <key>/schemas/apps/gramps/preferences/iprefix</key>
+        <applyto>/apps/gramps/preferences/iprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>I%04d</default>
@@ -117,8 +121,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/oprefix</key>
-        <applyto>/apps/gramps/oprefix</applyto>
+        <key>/schemas/apps/gramps/preferences/oprefix</key>
+        <applyto>/apps/gramps/preferences/oprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>F%04d</default>
@@ -130,8 +134,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/pprefix</key>
-        <applyto>/apps/gramps/pprefix</applyto>
+        <key>/schemas/apps/gramps/preferences/pprefix</key>
+        <applyto>/apps/gramps/preferences/pprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>F%04d</default>
@@ -143,8 +147,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/sprefix</key>
-        <applyto>/apps/gramps/sprefix</applyto>
+        <key>/schemas/apps/gramps/preferences/sprefix</key>
+        <applyto>/apps/gramps/preferences/sprefix</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>F%04d</default>
@@ -156,8 +160,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/goutput-preference</key>
-        <applyto>/apps/gramps/goutput-preference</applyto>
+        <key>/schemas/apps/gramps/preferences/goutput-preference</key>
+        <applyto>/apps/gramps/preferences/goutput-preference</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>No default format</default>
@@ -168,8 +172,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/output-preference</key>
-        <applyto>/apps/gramps/output-preference</applyto>
+        <key>/schemas/apps/gramps/preferences/output-preference</key>
+        <applyto>/apps/gramps/preferences/output-preference</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>No default format</default>
@@ -180,8 +184,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/paper-preference</key>
-        <applyto>/apps/gramps/paper-preference</applyto>
+        <key>/schemas/apps/gramps/preferences/paper-preference</key>
+        <applyto>/apps/gramps/preferences/paper-preference</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>Letter</default>
@@ -192,8 +196,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/id-edit</key>
-        <applyto>/apps/gramps/id-edit</applyto>
+        <key>/schemas/apps/gramps/behavior/id-edit</key>
+        <applyto>/apps/gramps/behavior/id-edit</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
@@ -204,8 +208,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/index-visible</key>
-        <applyto>/apps/gramps/index-visible</applyto>
+        <key>/schemas/apps/gramps/interface/index-visible</key>
+        <applyto>/apps/gramps/interface/index-visible</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
@@ -216,32 +220,20 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/last-file</key>
-        <applyto>/apps/gramps/last-file</applyto>
+        <key>/schemas/apps/gramps/paths/recent-file</key>
+        <applyto>/apps/gramps/paths/recent-file</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
         <locale name="C">
-          <short>Last XML database GRAMPS has worked with</short>
-          <long>Full pathname of the last XML database GRAMPS has worked with.</long>
-        </locale>
-      </schema>
-
-      <schema>
-        <key>/schemas/apps/gramps/recent-file</key>
-        <applyto>/apps/gramps/recent-file</applyto>
-        <owner>gramps</owner>
-        <type>string</type>
-        <default></default>
-        <locale name="C">
-          <short>Last GRDB database GRAMPS has worked with</short>
+          <short>Last database GRAMPS has worked with</short>
           <long>Full pathname of the last GRDB database GRAMPS has worked with.</long>
         </locale>
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/make-reference</key>
-        <applyto>/apps/gramps/make-reference</applyto>
+        <key>/schemas/apps/gramps/behavior/make-reference</key>
+        <applyto>/apps/gramps/behavior/make-reference</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>1</default>
@@ -254,8 +246,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/media-global</key>
-        <applyto>/apps/gramps/media-global</applyto>
+        <key>/schemas/apps/gramps/behavior/media-global</key>
+        <applyto>/apps/gramps/behavior/media-global</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>1</default>
@@ -268,8 +260,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/media-local</key>
-        <applyto>/apps/gramps/media-local</applyto>
+        <key>/schemas/apps/gramps/behavior/media-local</key>
+        <applyto>/apps/gramps/behavior/media-local</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>1</default>
@@ -282,8 +274,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/name-format</key>
-        <applyto>/apps/gramps/name-format</applyto>
+        <key>/schemas/apps/gramps/preferences/name-format</key>
+        <applyto>/apps/gramps/preferences/name-format</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>0</default>
@@ -296,8 +288,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/report-directory</key>
-        <applyto>/apps/gramps/report-directory</applyto>
+        <key>/schemas/apps/gramps/paths/report-directory</key>
+        <applyto>/apps/gramps/paths/report-directory</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>./</default>
@@ -308,8 +300,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-addr</key>
-        <applyto>/apps/gramps/researcher-addr</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-addr</key>
+        <applyto>/apps/gramps/researcher/researcher-addr</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -320,8 +312,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-city</key>
-        <applyto>/apps/gramps/researcher-city</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-city</key>
+        <applyto>/apps/gramps/researcher/researcher-city</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -332,8 +324,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-country</key>
-        <applyto>/apps/gramps/researcher-country</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-country</key>
+        <applyto>/apps/gramps/researcher/researcher-country</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -344,8 +336,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-email</key>
-        <applyto>/apps/gramps/researcher-email</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-email</key>
+        <applyto>/apps/gramps/researcher/researcher-email</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -356,8 +348,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-name</key>
-        <applyto>/apps/gramps/researcher-name</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-name</key>
+        <applyto>/apps/gramps/researcher/researcher-name</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -368,8 +360,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-phone</key>
-        <applyto>/apps/gramps/researcher-phone</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-phone</key>
+        <applyto>/apps/gramps/researcher/researcher-phone</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -380,8 +372,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-postal</key>
-        <applyto>/apps/gramps/researcher-postal</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-postal</key>
+        <applyto>/apps/gramps/researcher/researcher-postal</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -392,8 +384,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/researcher-state</key>
-        <applyto>/apps/gramps/researcher-state</applyto>
+        <key>/schemas/apps/gramps/researcher/researcher-state</key>
+        <applyto>/apps/gramps/researcher/researcher-state</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default></default>
@@ -404,8 +396,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/show-calendar</key>
-        <applyto>/apps/gramps/show-calendar</applyto>
+        <key>/schemas/apps/gramps/behavior/show-calendar</key>
+        <applyto>/apps/gramps/behavior/show-calendar</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
@@ -417,8 +409,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/startup</key>
-        <applyto>/apps/gramps/startup</applyto>
+        <key>/schemas/apps/gramps/behavior/startup</key>
+        <applyto>/apps/gramps/behavior/startup</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>0</default>
@@ -430,8 +422,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/statusbar</key>
-        <applyto>/apps/gramps/statusbar</applyto>
+        <key>/schemas/apps/gramps/interface/statusbar</key>
+        <applyto>/apps/gramps/interface/statusbar</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>1</default>
@@ -444,8 +436,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/surname-guessing</key>
-        <applyto>/apps/gramps/surname-guessing</applyto>
+        <key>/schemas/apps/gramps/behavior/surname-guessing</key>
+        <applyto>/apps/gramps/behavior/surname-guessing</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>0</default>
@@ -459,8 +451,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/toolbar</key>
-        <applyto>/apps/gramps/toolbar</applyto>
+        <key>/schemas/apps/gramps/interface/toolbar</key>
+        <applyto>/apps/gramps/interface/toolbar</applyto>
         <owner>gramps</owner>
         <type>int</type>
         <default>5</default>
@@ -473,8 +465,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/toolbar-on</key>
-        <applyto>/apps/gramps/toolbar-on</applyto>
+        <key>/schemas/apps/gramps/interface/toolbar-on</key>
+        <applyto>/apps/gramps/interface/toolbar-on</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>1</default>
@@ -486,8 +478,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/use-lds</key>
-        <applyto>/apps/gramps/use-lds</applyto>
+        <key>/schemas/apps/gramps/behavior/use-lds</key>
+        <applyto>/apps/gramps/behavior/use-lds</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
@@ -498,8 +490,8 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/use-tips</key>
-        <applyto>/apps/gramps/use-tips</applyto>
+        <key>/schemas/apps/gramps/behavior/use-tips</key>
+        <applyto>/apps/gramps/behavior/use-tips</applyto>
         <owner>gramps</owner>
         <type>bool</type>
         <default>0</default>
@@ -510,21 +502,21 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/view</key>
-        <applyto>/apps/gramps/view</applyto>
+        <key>/schemas/apps/gramps/interface/view</key>
+        <applyto>/apps/gramps/interface/view</applyto>
         <owner>gramps</owner>
         <type>bool</type>
-        <default>0</default>
+        <default>1</default>
         <locale name="C">
-          <short>Save last view</short>
-          <long>If set to 1, the last displayed view will be presented
-          on the startup.</long>
+          <short>Sidebar View</short>
+          <long>If set to 1, the Sidebar View will be enabled. If set to 0, 
+          the Notebook View will be used instead.</long>
         </locale>
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/website-directory</key>
-        <applyto>/apps/gramps/website-directory</applyto>
+        <key>/schemas/apps/gramps/paths/website-directory</key>
+        <applyto>/apps/gramps/paths/website-directory</applyto>
         <owner>gramps</owner>
         <type>string</type>
         <default>./</default>
