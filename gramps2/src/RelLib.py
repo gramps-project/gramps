@@ -608,7 +608,7 @@ class Person(PrimaryObject,SourceNote):
                 sp_birth_handle = spouse.get_birth_handle()
                 sp_death_handle = spouse.get_death_handle()
                 if sp_birth_handle:
-                    spouse_birth = db.find_event_from_handle(sp_birth_handle)
+                    spouse_birth = db.get_event_from_handle(sp_birth_handle)
                     if spouse_birth.get_date() != "":
                         d = SingleDate (spouse_birth.get_date_object().get_start_date())
                         d.set_year (d.get_year() + max_age_difference)
@@ -616,7 +616,7 @@ class Person(PrimaryObject,SourceNote):
                             return False
 
                 if sp_death_handle:
-                    spouse_death = db.find_event_from_handle(sp_death_handle)
+                    spouse_death = db.get_event_from_handle(sp_death_handle)
                     if spouse_death.get_date() != "":
                         d = SingleDate (spouse_birth.get_date_object().get_start_date())
                         d.set_year (d.get_year() - min_generation)
