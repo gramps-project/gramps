@@ -34,7 +34,6 @@ from gettext import gettext as _
 
 _H   = 'Helvetica'
 _HB  = 'Helvetica-Bold'
-_HO  = 'Helvetica-Oblique'
 _HBO = 'Helvetica-BoldOblique'
 _T   = 'Times-Roman'
 _TB  = 'Times-Bold'
@@ -592,7 +591,7 @@ try:
         print_label=None
     Plugins.register_text_doc(mtype, PdfDoc, 1, 0, 1, ".pdf", print_label)
     Plugins.register_draw_doc(mtype, PdfDoc, 1, 1,    ".pdf", print_label)
-    Plugins.register_book_doc(mtype,classref=PdfDoc,table=1,paper=1,style=1,ext=".pdf",print_label)
+    Plugins.register_book_doc(mtype,classref=PdfDoc,table=1,paper=1,style=1,ext=".pdf")
 except:
     Plugins.register_text_doc(_('PDF document'), PdfDoc, 1, 0, 1,".pdf", None)
     Plugins.register_draw_doc(_('PDF document'), PdfDoc, 1, 1,   ".pdf", None)
