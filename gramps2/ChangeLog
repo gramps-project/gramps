@@ -1,4 +1,9 @@
 2005-03-09  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: Fix widget sensitivity problem, assign
+	integer value instead of string to relationship type
+	* src/FamilyView.py: fix child relationship display value
+	* src/GrampsBSDDB.py: upgrade to DB version 4 (remove string 
+	relationship types)
 	* src/EditPerson.py: call new_after_edit instead of update_after_edit
 	for new people.
 	* src/EditPerson.py: add srcref as a drag and drop item
