@@ -179,6 +179,9 @@ class SingleDate:
               _("November"),
               _("December") ]
 
+    emname =[ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+              'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC' ]
+
     m2num = { string.lower(mname[0][0:3]) : 0,
               string.lower(mname[1][0:3]) : 1,
               string.lower(mname[2][0:3]) : 2,
@@ -191,6 +194,7 @@ class SingleDate:
               string.lower(mname[9][0:3]) : 9,
               string.lower(mname[10][0:3]) : 10,
               string.lower(mname[11][0:3]) : 11 }
+
 
     m2v = { _("abt")    : about ,
             _("about")  : about,
@@ -342,8 +346,8 @@ class SingleDate:
     #
     #--------------------------------------------------------------------
     def setMonthStrEng(self,text):
-        if SingleDate.m2num.has_key(string.lower(text[0:3])):
-            self.month = SingleDate.m2num[string.lower(text[0:3])]
+        if SingleDate.em2num.has_key(string.lower(text[0:3])):
+            self.month = SingleDate.em2num[string.lower(text[0:3])]
         else:
             self.month = -1
 
@@ -361,7 +365,35 @@ class SingleDate:
     #
     #--------------------------------------------------------------------
     def getSaveDate(self):
-        return self.getFmt3()
+        retval = ""
+        
+        if self.month == -1 and self.day == -1 and self.year == -1 :
+            pass
+        elif self.day == -1:
+            if self.month == -1:
+                retval = "%d" % self.year
+            elif self.year == -1:
+                retval = SingleDate.emname[self.month]
+            else:	
+                retval = "%s %d" % (SingleDate.emname[self.month],self.year)
+        elif self.month == -1:
+            retval = "%d" % self.year
+        else:
+            month = SingleDate.emname[self.month]
+            if self.year == -1:
+                retval = "%d %s ????" % (self.day,month)
+            else:
+                retval = "%d %s %d" % (self.day,month,self.year)
+
+        if self.mode == SingleDate.about:
+            retval = "ABT " + retval
+
+        if self.mode == SingleDate.before:
+            retval = _("BEFORE") + " " + retval
+        elif self.mode == SingleDate.after:
+            retval = _("AFTER") + " " + retval
+
+        return retval
 
     #--------------------------------------------------------------------
     #
