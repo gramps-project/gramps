@@ -1708,7 +1708,7 @@ class Gramps:
                     continue
 
                 for name in person.getAlternateNames():
-                    pos = (person,0)
+                    pos = (person,1)
                     new_alt2col[person].append(pos)
 
                     values = [gname(name,1), pid, gender, qbday, qdday,
