@@ -237,6 +237,7 @@ class Merge:
     def show(self):
         top = gtk.glade.XML(self.glade_file,"mergelist","gramps")
         self.window = top.get_widget("mergelist")
+        self.win_show_key = self.window
 
         Utils.set_titles(self.window, top.get_widget('title'),
                          _('Potential Merges'))
@@ -265,15 +266,15 @@ class Merge:
         self.window.destroy()
 
     def add_show_to_menu(self):
-        self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Potential Merges'))
-        self.parent_menu_item.connect("activate",self.present_show)
-        self.parent_menu_item.show()
-        self.parent.winsmenu.append(self.parent_menu_item)
+        self.show_parent.child_windows[self.win_show_key] = self.window
+        self.show_parent_menu_item = gtk.MenuItem(_('Potential Merges'))
+        self.show_parent_menu_item.connect("activate",self.present_show)
+        self.show_parent_menu_item.show()
+        self.parent.winsmenu.append(self.show_parent_menu_item)
 
     def remove_show_from_menu(self):
-        del self.parent.child_windows[self.win_key]
-        self.parent_menu_item.destroy()
+        del self.parent.child_windows[self.win_show_key]
+        self.show_parent_menu_item.destroy()
 
     def present_show(self,obj):
         self.window.present()

@@ -32,7 +32,7 @@ pkgpython_PYTHON = \
 	ReadNative.py\
 	RelCalc.py\
 	ReorderIds.py\
-	soundgen.py\
+	SoundGen.py\
 	Summary.py\
 	TimeLine.py\
 	Verify.py\
