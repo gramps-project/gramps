@@ -49,6 +49,7 @@ column_names = [
     _('Place Name'),
     _('ID'),
     _('Church Parish'),
+    _('ZIP/Postal Code'),
     _('City'),
     _('County'),
     _('State'),
@@ -257,4 +258,3 @@ class PlaceView:
         else:
             import MergeData
             MergeData.MergePlaces(self.parent.db,mlist[0],mlist[1],self.build_tree)
-

@@ -1,3 +1,11 @@
+2005-01-12  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/DisplayModels.py: Add Date and Place columns to Media model;
+	Zip to Place model.
+	* src/MediaView.py: Support for Date and Place columns.
+	* src/PlaceView.py: Support for Zil column.
+	* src/GrampsDbBase.py (get_place_column_order,
+	get_media_column_order): New column defaults.
+
 2005-01-11 Eero Tamminen <eerot@sf>
 	* src/plugins/StatisticsChart.py: remove localization from command
 	  line options help and put it back to dialog additions. Have
