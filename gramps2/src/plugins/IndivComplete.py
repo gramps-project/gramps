@@ -101,7 +101,7 @@ class IndivComplete:
     def write_fact(self,event):
         if event == None:
             return
-        name = event.getName()
+        name = _(event.getName())
         date = event.getDate()
         place = event.getPlaceName()
         description = event.getDescription()
@@ -456,7 +456,7 @@ class IndivSummaryDialog(Report.TextReportDialog):
     
     def get_stylesheet_savefile(self):
         """Where to save styles for this report."""
-        return "family_group.xml"
+        return "indiv_complete.xml"
     
     def doc_uses_tables(self):
         """This report requires table support."""
