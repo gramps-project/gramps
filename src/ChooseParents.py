@@ -76,13 +76,12 @@ class ChooseParents:
         family_update - task that updates the family display
         full_update - task that updates the main display 
         """
-        self.nosort = os.environ.has_key('NOSORT')
         self.parent = parent
         self.db = db
         self.child_windows = {}
         self.person = self.db.get_person_from_handle(person.get_handle())
         if family:
-            self.family = self.db.find_family_from_handle(family.get_handle())
+            self.family = self.db.get_family_from_handle(family.get_handle())
         else:
             self.family = None
         self.family_update = family_update
@@ -303,7 +302,7 @@ class ChooseParents:
     def build_exclude_list(self):
         self.exclude = { self.person.get_handle() : 1 }
         for family_handle in self.person.get_family_handle_list():
-            fam = self.db.find_family_from_handle(family_handle)
+            fam = self.db.get_family_from_handle(family_handle)
             for handle in [fam.get_father_handle(), fam.get_mother_handle()] + \
                     fam.get_child_handle_list():
                 if handle:
@@ -386,7 +385,7 @@ class ChooseParents:
             return None
 	
         for family_handle in self.db.get_family_handles():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             if family.get_father_handle() == father_handle and family.get_mother_handle() == mother_handle:
                 family.add_child_handle(self.person.get_handle())
                 self.db.commit_family(family,trans)
@@ -428,7 +427,7 @@ class ChooseParents:
             self.parent_selected = 1
             family_handle_list = self.mother.get_family_handle_list()
             if len(family_handle_list) >= 1:
-                family = self.db.find_family_from_handle(family_handle_list[0])
+                family = self.db.get_family_from_handle(family_handle_list[0])
                 father_handle = family.get_father_handle()
                 self.father_selection.select(father_handle)
                 #self.father_model.center_selected()
@@ -467,7 +466,7 @@ class ChooseParents:
             self.parent_selected = 1
             family_handle_list = self.father.get_family_handle_list()
             if len(family_handle_list) >= 1:
-                family = self.db.find_family_from_handle(family_handle_list[0])
+                family = self.db.get_family_from_handle(family_handle_list[0])
                 mother_handle = family.get_mother_handle()
                 mother = self.db.get_person_from_handle(mother_handle)
                 sname = mother.get_primary_name().get_surname()
@@ -491,7 +490,7 @@ class ChooseParents:
             self.parent_selected = 1
             family_handle_list = self.mother.get_family_handle_list()
             if len(family_handle_list) >= 1:
-                family = self.db.find_family_from_handle(family_handle_list[0])
+                family = self.db.get_family_from_handle(family_handle_list[0])
                 father_handle = family.get_mother_handle()
                 father = self.db.get_person_from_handle(father_handle)
                 sname = father.get_primary_name().get_surname()
@@ -648,7 +647,7 @@ class ModifyParents:
         """
         self.db = db
         self.person = person
-        self.family = self.db.find_family_from_handle(family_handle)
+        self.family = self.db.get_family_from_handle(family_handle)
         self.family_update = family_update
         self.full_update = full_update
         
