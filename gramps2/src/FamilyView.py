@@ -883,12 +883,12 @@ class FamilyView:
             self.load_family(self.family)
 
     def ap_parents_clicked(self,obj):
-        self.change_families(self.person)
+        self.change_families(self.person, self.ap_selection)
             
     def sp_parents_clicked(self,obj):
-        self.change_families(self.selected_spouse)
+        self.change_families(self.selected_spouse, self.sp_selection)
 
-    def change_families(self,person):
+    def change_families(self,person,select):
         if not person:
             return
         plist = person.get_parent_family_handle_list()
@@ -898,7 +898,7 @@ class FamilyView:
         if len(plist) == 1:
             family_handle,m,r = plist[0]
         else:
-            model, node = self.ap_selection.get_selected()
+            model, node = select.get_selected()
             path = model.get_path(node)
             family_handle,m,r = plist[path[0]]
         family = self.parent.db.get_family_from_handle(family_handle)

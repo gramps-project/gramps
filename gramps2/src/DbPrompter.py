@@ -90,10 +90,11 @@ class DbPrompter:
             top.hide()
             if response == gtk.RESPONSE_OK:
                 if new.get_active():
-                    prompter = NewNativeDbPrompter(self.parent,self.parent_window)
+                    prompter = NewNativeDbPrompter(self.parent,
+                                                   self.parent_window)
                 else:
-                    prompter = ExistingDbPrompter(self.parent,self.parent_window)
-                
+                    prompter = ExistingDbPrompter(self.parent,
+                                                  self.parent_window)
                 if prompter.chooser():
                     break
             elif response == gtk.RESPONSE_CANCEL:
@@ -183,11 +184,18 @@ class ExistingDbPrompter:
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
+            if len(filename) == 0:
+                return False
             filetype = get_mime_type(filename)
             (the_path,the_file) = os.path.split(filename)
             choose.destroy()
-            if open_native(self.parent,filename,filetype):
-                return True
+            try:
+                if open_native(self.parent,filename,filetype):
+                    return True
+            except:
+                QuestionDialog.ErrorDialog(
+                    _("Could not open file: %s") % filename)
+                return False
 
             # The above native formats did not work, so we need to 
             # look up the importer for this format

@@ -10,6 +10,9 @@
 	find_icon
 	* various: replace the deprecated gtk.TRUE/gtk.FALSE with 
 	True/False
+	* src/DbPrompter.py: catch zero length filename
+	* src/FamilyView.py: fixed selection of spouse's parents
+	* src/gramps_main.py: update display after loading data
 
 2005-02-22  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: use ComboBox instead of ComboBoxEntry
