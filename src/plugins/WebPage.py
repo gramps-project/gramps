@@ -193,7 +193,7 @@ class IndividualPage:
 
         index = 1
         for sref in self.slist:
-            self.doc.start_paragraph("Data")
+            self.doc.start_paragraph("SourceParagraph")
             self.doc.write_text('<A NAME="s%d">%d. ' % (index,index))
             index = index + 1
             self.doc.write_text("%s. " % sref.getBase().getTitle())
@@ -591,16 +591,22 @@ def report(database,person):
     styles.add_style("Spouse",p)
 
     font = FontStyle()
+    font.set(size=12,italic=1)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("Label",p)
+
+    font = FontStyle()
     font.set_size(12)
     p = ParagraphStyle()
     p.set_font(font)
     styles.add_style("Data",p)
 
     font = FontStyle()
-    font.set(size=12,italic=1)
+    font.set_size(10)
     p = ParagraphStyle()
     p.set_font(font)
-    styles.add_style("Label",p)
+    styles.add_style("SourceParagraph",p)
 
     font = FontStyle()
     font.set_size(12)
