@@ -51,7 +51,7 @@ import Date
 import DateHandler
 import ImageSelect
 import DateEdit
-from QuestionDialog import WarningDialog
+from QuestionDialog import WarningDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -246,17 +246,9 @@ class EventEditor:
         self.top.get_widget('sel_obj').set_sensitive(not noedit)
         self.top.get_widget('add_obj').set_sensitive(not noedit)
 
-        if not noedit:
-            self.event_menu.connect('changed',self.menu_changed)
-            self.menu_changed(self.event_menu)
-
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
         self.window.show()
-
-    def menu_changed(self,obj):
-        text = not obj.get_active_text()
-        self.ok.set_sensitive(not text)
 
     def on_delete_event(self,obj,b):
         self.gallery.close()
@@ -315,9 +307,15 @@ class EventEditor:
 
     def on_event_edit_ok_clicked(self,obj):
 
-        trans = self.db.transaction_begin()
-        
         ename = unicode(self.event_menu.child.get_text())
+
+        if not ename.strip():
+            ErrorDialog(_("Event does not have a type"),
+                        _("You must specify an event type "
+                          "before you can save the event"))
+            return
+
+        trans = self.db.transaction_begin()
         #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
         eplace_obj = self.get_place(self.place_field)
