@@ -1278,17 +1278,8 @@
 		      <property name="spacing">6</property>
 
 		      <child>
-			<widget class="GtkOptionMenu" id="filter_list">
-			  <property name="width_request">200</property>
+			<widget class="GtkComboBox" id="filter_list">
 			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="history">-1</property>
-
-			  <child internal-child="menu">
-			    <widget class="GtkMenu" id="convertwidget12">
-			      <property name="visible">True</property>
-			    </widget>
-			  </child>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
@@ -12541,29 +12532,6 @@ Other</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkOptionMenu" id="ldsbapstat">
-		  <property name="width_request">100</property>
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="history">-1</property>
-
-		  <child internal-child="menu">
-		    <widget class="GtkMenu" id="convertwidget22">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="left_attach">3</property>
-		  <property name="right_attach">4</property>
-		  <property name="top_attach">1</property>
-		  <property name="bottom_attach">2</property>
-		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkEntry" id="ldsbapdate">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
@@ -12876,28 +12844,6 @@ Other</property>
 	      </child>
 
 	      <child>
-		<widget class="GtkOptionMenu" id="endowstat">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="history">-1</property>
-
-		  <child internal-child="menu">
-		    <widget class="GtkMenu" id="convertwidget26">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="left_attach">3</property>
-		  <property name="right_attach">4</property>
-		  <property name="top_attach">6</property>
-		  <property name="bottom_attach">7</property>
-		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
 		<widget class="GtkButton" id="button132">
 		  <property name="visible">True</property>
 		  <property name="can_focus">True</property>
@@ -12982,28 +12928,6 @@ Other</property>
 		  <property name="right_attach">3</property>
 		  <property name="top_attach">11</property>
 		  <property name="bottom_attach">12</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkOptionMenu" id="sealstat">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="history">-1</property>
-
-		  <child internal-child="menu">
-		    <widget class="GtkMenu" id="convertwidget27">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="left_attach">3</property>
-		  <property name="right_attach">4</property>
-		  <property name="top_attach">11</property>
-		  <property name="bottom_attach">12</property>
-		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
 		</packing>
 	      </child>
@@ -13135,35 +13059,10 @@ Other</property>
 		  <property name="xpad">0</property>
 		  <property name="ypad">0</property>
 		  <property name="mnemonic_widget">sealparents</property>
-		  <accessibility>
-		    <atkrelation target="sealparents" type="label-for"/>
-		  </accessibility>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
 		  <property name="right_attach">2</property>
-		  <property name="top_attach">14</property>
-		  <property name="bottom_attach">15</property>
-		  <property name="x_options">fill</property>
-		  <property name="y_options"></property>
-		</packing>
-	      </child>
-
-	      <child>
-		<widget class="GtkOptionMenu" id="sealparents">
-		  <property name="visible">True</property>
-		  <property name="can_focus">True</property>
-		  <property name="history">-1</property>
-
-		  <child internal-child="menu">
-		    <widget class="GtkMenu" id="convertwidget31">
-		      <property name="visible">True</property>
-		    </widget>
-		  </child>
-		</widget>
-		<packing>
-		  <property name="left_attach">2</property>
-		  <property name="right_attach">3</property>
 		  <property name="top_attach">14</property>
 		  <property name="bottom_attach">15</property>
 		  <property name="x_options">fill</property>
@@ -13232,6 +13131,62 @@ Other</property>
 		  <property name="right_attach">3</property>
 		  <property name="top_attach">12</property>
 		  <property name="bottom_attach">13</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkComboBox" id="ldsbapstat">
+		  <property name="visible">True</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">3</property>
+		  <property name="right_attach">4</property>
+		  <property name="top_attach">1</property>
+		  <property name="bottom_attach">2</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkComboBox" id="endowstat">
+		  <property name="visible">True</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">3</property>
+		  <property name="right_attach">4</property>
+		  <property name="top_attach">6</property>
+		  <property name="bottom_attach">7</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkComboBox" id="sealstat">
+		  <property name="visible">True</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">3</property>
+		  <property name="right_attach">4</property>
+		  <property name="top_attach">11</property>
+		  <property name="bottom_attach">12</property>
+		  <property name="x_options">fill</property>
+		  <property name="y_options">fill</property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkComboBox" id="sealparents">
+		  <property name="visible">True</property>
+		</widget>
+		<packing>
+		  <property name="left_attach">2</property>
+		  <property name="right_attach">3</property>
+		  <property name="top_attach">14</property>
+		  <property name="bottom_attach">15</property>
 		  <property name="x_options">fill</property>
 		  <property name="y_options">fill</property>
 		</packing>
@@ -15215,28 +15170,6 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkOptionMenu" id="lds_status">
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="history">-1</property>
-
-			  <child internal-child="menu">
-			    <widget class="GtkMenu" id="convertwidget16">
-			      <property name="visible">True</property>
-			    </widget>
-			  </child>
-			</widget>
-			<packing>
-			  <property name="left_attach">3</property>
-			  <property name="right_attach">4</property>
-			  <property name="top_attach">1</property>
-			  <property name="bottom_attach">2</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
 			<widget class="GtkButton" id="button114">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
@@ -15299,6 +15232,20 @@ Other</property>
 			  <property name="right_attach">3</property>
 			  <property name="top_attach">2</property>
 			  <property name="bottom_attach">3</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options">fill</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkComboBox" id="lds_status">
+			  <property name="visible">True</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">3</property>
+			  <property name="right_attach">4</property>
+			  <property name="top_attach">1</property>
+			  <property name="bottom_attach">2</property>
 			  <property name="x_options">fill</property>
 			  <property name="y_options">fill</property>
 			</packing>

@@ -1,4 +1,10 @@
 2005-01-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: switch to ComboBox from OptionMenu
+	* src/GenericFilter.py: switch to ComboBox from OptionMenu
+	* src/Marriage.py: switch to ComboBox from OptionMenu
+	* src/PeopleView.py: switch to ComboBox from OptionMenu
+	* src/gramps.glade:switch to ComboBox from OptionMenu
+	* src/gramps_main.py: switch to ComboBox from OptionMenu
 	* src/const.py.in: add support for overriding gconf usage
 	* src/GrampsIniKeys.py: provide support for the default schema
 	* src/GrampsKeys.py: select appropriate backend

@@ -838,6 +838,10 @@ class Gramps:
 
     def init_filters(self):
 
+        cell = gtk.CellRendererText()
+        self.filter_list.pack_start(cell,True)
+        self.filter_list.add_attribute(cell,'text',0)
+
         filter_list = []
 
         all = GenericFilter.GenericFilter()
@@ -867,8 +871,9 @@ class Gramps:
 
         menu = GenericFilter.build_filter_menu(filter_list)
         
-        self.filter_list.set_menu(menu)
-        self.filter_list.set_history(0)
+        self.filter_model = GenericFilter.FilterStore(filter_list)
+        self.filter_list.set_model(self.filter_model)
+        self.filter_list.set_active(self.filter_model.default_index())
         self.filter_list.connect('changed',self.on_filter_name_changed)
         self.filter_text.set_sensitive(0)
         
@@ -1485,7 +1490,8 @@ class Gramps:
         self.people_view.apply_filter_clicked()
 
     def on_filter_name_changed(self,obj):
-        mime_filter = obj.get_menu().get_active().get_data('filter')
+        index = self.filter_list.get_active()
+        mime_filter = self.filter_model.get_filter(index)
         qual = mime_filter.need_param
         if qual:
             self.filter_text.show()
