@@ -29,7 +29,7 @@ import utils
 cnv = utils.fl2txt
 
 try:
-    import Image
+    import PIL.Image
     no_pil = 0
 except:
     no_pil = 1
@@ -86,7 +86,7 @@ class AbiWordDoc(TextDoc):
                     cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,width,height,file,base)
                     os.system(cmd)
                 else:
-                    im = Image.open(file)
+                    im = PIL.Image.open(file)
                     im.thumbnail((width,height))
                     im.save(base,"PNG")
 
