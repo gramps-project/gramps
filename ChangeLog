@@ -1,3 +1,7 @@
+2005-02-14 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetAncestralReport.py: Typos.
+	* src/plugins/DetDescendantReport.py: Typos.
+
 2005-02-04 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReadGrdb.py: Check for overlapping handles prior to
 	modifying data.
