@@ -17,52 +17,52 @@
 
       <!-- =============== Appendices Subsection ================ -->
   <sect2 id="append-cmdline">
-  <title>Command line reference</title>
-  <para>This appendix provides the reference to the command line 
-  capabilities available when launching &app; from the terminal. </para>
-  
-  <para>Let us note here that &app; was designed to be an interactive 
-  program. Therefore it uses graphical display and cannot run from the 
-  true non-graphical console. It would take an enormous amount of effort 
-  to enable it to run in a text-only terminal. This is why the set of 
-  command line options does not aim to completely get rid of dependency
-  on the graphical display. Rather, it merely makes certain (typical) tasks 
-  more convenient. It also allows one to execute these tasks from the scripts. 
-  However, the graphical display must be accessible at all times! 
-  </para>
+  <title>Befehlszeilenreferenz</title>
+  <para>Dieser Anhang liefert eine Referent über die Möglichkeiten,
+  wenn Sie &app; aus dem Terminal starten.</para>
 
-  <para>To summarize, the use of the command line options provides 
-  non-interactive behavior, but does not get rid of graphical display
-  dependency. Take it or leave it! 
+  <para>Lassen Sie uns anmerken, dass &apps als ein interaktives
+  Program entworfen wurde. Deshalb benutzt es eine grafische Ansicht und
+  kann nicht von eine echten nicht-grafischen Konsole gestartet werden. Es
+  würde einen enormen Aufwand darstellen eine Ausführung in einem Nur-Text
+  Terminal zu ermöglichen. Aus diesem Grund zielen die möglichen
+  Befehlszeilenparameter nicht darauf ab, komplett auf die grafisch
+  Anzeige zu verzichten. Eher machen sie einige typische Aufgaben
+  angenehmer. Sie erlauben Ihnen auch diese Aufgaben aus Skripten
+  heraus auszuführen. Jedenfalls muss die grafische Anzeige immer
+  verfügbar sein!</para>
+
+  <para>Zusammengefasst bietet die Benutzung der Befehlzeilenparameter
+  nicht-interaktives Verhalten, aber beseitigt nicht die Abhängigkeit
+  von der grafischen Anzeige. Take it or leave it!
   </para>
 
 
       <sect3 id="cmdline-options">
-      <title>Available options</title>
+      <title>Verfügbare Parameter</title>
 
-      <para>Here is the list of the command line options in &app;:
-      </para>
+      <para>Hier ist ein Liste der möglichen Parameter in &apps;:</para>
 
           <variablelist>
 
-          <varlistentry><term>Format options</term>
-          <listitem><para> The format of any file destined for import or export
-          can be specified with the 
-          	<command>-f</command> <replaceable>format</replaceable>
-          option. The <replaceable>format</replaceable> can be one of the 
-          following:
-          
+          <varlistentry><term>Format-Parameter</term>
+          <listitem><para>Das Format der Dateien für den Import oder
+	  Export kann festgelegt werden mit dem
+	  	<command>-f</command> <replaceable>Format</replaceable>
+          Parameter. <replaceable>Format</replaceable> kann eines der
+	  folgenden sein:
+
           	<variablelist>
 
           	<varlistentry><term>gramps</term>
-          	<listitem><para> &app; database. This format is available 
-                for both import and export. When not specified, it can be 
-                guessed if the filename represents a directory. 
+          	<listitem><para> &app; database. This format is available
+                for both import and export. When not specified, it can be
+                guessed if the filename represents a directory.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gedcom</term>
-          	<listitem><para> GEDCOM file. This format is available 
-                for both import and export. When not specified, it can be 
+          	<listitem><para> GEDCOM file. This format is available
+                for both import and export. When not specified, it can be
                 guessed if the filename ends with .ged
                 </para></listitem></varlistentry>
 
