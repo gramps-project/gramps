@@ -38,12 +38,20 @@ class GraphicsStyle:
             self.para_name = obj.para_name
             self.shadow = obj.shadow
 	    self.color = obj.color
+            self.lwidth = obj.lwidth
         else:
             self.height = 0
             self.width = 0
             self.para_name = ""
             self.shadow = 0
+            self.lwidth = 0.5
             self.color = (255,255,255)
+
+    def set_line_width(self,val):
+        self.lwidth = val
+
+    def get_line_width(self):
+        return self.lwidth
 
     def set_height(self,val):
         self.height = val
@@ -139,6 +147,12 @@ class DrawDoc:
 
     def write_at(self,style,text,x,y):
 	pass
+
+    def draw_bar(self,style,x1,y1,x2,y2):
+        pass
+
+    def draw_text(self,style,text,x1,y1):
+        pass
 
     def draw_line(self,style,x1,y1,x2,y2):
 	pass

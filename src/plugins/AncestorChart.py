@@ -143,11 +143,11 @@ class AncestorChart:
 	self.height = self.lines*pt2cm((125.0*self.font.get_size())/100.0)
 	self.box_width = pt2cm(self.box_width+20)
 
-        start = self.doc.get_right_margin()
+        start = 0
 	delta = (self.doc.get_usable_width() - (self.box_width + (5.0/10.0)))/3.0
         uh = self.doc.get_usable_height()
 
-        ystart = self.doc.get_top_margin() - ((self.height+(3.0/10.0))/2.0)
+        ystart = -self.height/2.0
         self.x = [start, start + delta, start + (2*delta), start + (3*delta)]
         self.y = [ ystart + (uh/2.0),   ystart + (uh/4.0),
                    ystart + 3*(uh/4.0), ystart + (uh/8.0),

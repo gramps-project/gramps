@@ -242,10 +242,10 @@ class DescendantReport:
         self.doc.start_page()
 
         delta = self.doc.get_usable_width()/(self.maxx)
-        top = self.doc.get_top_margin()
-        bottom = self.doc.get_top_margin() + self.doc.get_usable_height()
-        left = self.doc.get_left_margin()
-        right = self.doc.get_right_margin() + self.doc.get_usable_width() - (2*_sep)
+        top = 0
+        bottom = self.doc.get_usable_height()
+        left = 0
+        right = self.doc.get_usable_width() - (2*_sep)
 
         if plist:
             for (p,x,y) in plist:
