@@ -240,7 +240,7 @@ class IndividualPage:
         if self.use_id:
             if self.id_link:
                 val = '<a href="%s">%s</a>' % (self.id_link,self.person.getId())
-                val = string.replace(val,'#',self.person.getId())
+                val = string.replace(val,'*',self.person.getId())
             else:
                 val = self.person.getId()
             self.write_normal_row("%s:" % _("ID Number"),val,None)
