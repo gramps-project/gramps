@@ -392,12 +392,6 @@ class IndividualPage:
 
             child_list = family.getChildList()
             if len(child_list) > 0:
-                self.doc.start_row()
-                self.doc.start_cell("NormalCell")
-                self.doc.start_paragraph("Data")
-                self.doc.write_text("")
-                self.doc.end_paragraph()
-                self.doc.end_cell()
 
                 self.doc.start_cell("NormalCell")
                 self.doc.start_paragraph("Label")
