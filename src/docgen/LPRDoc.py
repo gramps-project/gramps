@@ -50,6 +50,32 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
+# Constants
+#
+#------------------------------------------------------------------------
+
+# Spacing in points (distance between the bottoms of two adjacent lines)
+_LINE_SPACING = 20  
+
+# Font constants -- specific for gnome-print
+_FONT_SANS_SERIF    = "Serif"
+_FONT_SERIF         = "Sans"
+_FONT_MONOSPACE     = "Monospace"
+_FONT_BOLD          = "Bold"
+_FONT_ITALIC        = "Italic"
+_FONT_BOLD_ITALIC   = "Bold Italic"
+_FONT_REGULAR       = "Regular"
+
+# Formatting directive constants
+_LINE_BREAK         = "Line Break"
+_PAGE_BREAK         = "Page Break"
+_START_BOLD         = "Start Bold"
+_END_BOLD           = "End Bold"
+_START_SUPER        = "Start Super"
+_END_SUPER          = "End Super"
+
+#------------------------------------------------------------------------
+#
 # Units conversion
 #
 #------------------------------------------------------------------------
@@ -67,21 +93,196 @@ def cm2u(cm):
 
 #------------------------------------------------------------------------
 #
-# Constants
+# font lookup function
 #
 #------------------------------------------------------------------------
+def find_font_from_fontstyle(fontstyle):
+    """
+    This function returns the gnomeprint.Font() object instance
+    corresponding to the parameters of BaseDoc.FontStyle()
+    
+    fontstyle       - a BaseDoc.FontStyle() instance
+    """
 
-# Spacing in points (distance between the bottoms of two adjacent lines)
-_LINE_SPACING = 20  
+    if fontstyle.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+        face = _FONT_SANS_SERIF
+    elif fontstyle.get_type_face() == BaseDoc.FONT_SERIF:
+        face = _FONT_SERIF
+    elif fontstyle.get_type_face() == BaseDoc.FONT_MONOSPACE:
+        face = _FONT_MONOSPACE
+        
+    if fontstyle.get_bold():
+        modifier = _FONT_BOLD
+        if fontstyle.get_italic():
+            modifier = _FONT_BOLD_ITALIC
+    elif fontstyle.get_italic():
+        modifier = _FONT_ITALIC
+    else:
+        modifier = _FONT_REGULAR
 
-# Font constants -- specific for gnome-print
-_FONT_SANS_SERIF    = "Serif"
-_FONT_SERIF         = "Sans"
-_FONT_MONOSPACE     = "Monospace"
-_FONT_BOLD          = "Bold"
-_FONT_ITALIC        = "Italic"
-_FONT_BOLD_ITALIC   = "Bold Italic"
-_FONT_REGULAR       = "Regular"
+    size = fontstyle.get_size()
+    
+    return gnomeprint.font_find_closest("%s %s" % (face, modifier),size)
+
+#function to determine the width of text
+def get_text_width(text,fontstyle):
+    font = find_font_from_fontstyle(fontstyle)
+    return font.get_width_utf8(text)
+
+#function to fund out the height of the text between left_margin 
+# and right_margin -- kinda like __print_text, but without printing.
+def get_text_height(text, width, fontstyle):
+
+    nlines = 0
+
+    if text and width > get_text_width(text,fontstyle):
+        nlines += 1
+    elif width <= get_text_width(text,fontstyle):
+        #divide up text and print
+        textlist = string.split(text)
+        the_text = ""
+        for element in textlist:
+            if get_text_width(the_text + element + " ",fontstyle) < width:
+                the_text = the_text + element + " "
+            else:
+                #__text contains as many words as this __width allows
+                nlines = nlines + 1
+                the_text = element + " "
+
+    return nlines * _LINE_SPACING
+
+#this function tells us the minimum size that a column can be
+#by returning the width of the largest word in the text
+def get_min_width(text,fontstyle):
+    max_word_size = 0
+    for word in text.split():
+        length = get_text_width(word,fontstyle)
+        if length > max_word_size:
+           max_word_size = length
+
+    return max_word_size
+
+#------------------------------------------------------------------------
+#
+# Paragraph class
+#
+#------------------------------------------------------------------------
+class GnomePrintParagraph:
+    """
+    A paragraph abstraction which provides the means for in-paragraph
+    formatting.
+    """
+    
+    def __init__(self,paragraph_style):
+        """
+        Creates a GnomePrintParapgrah instance. 
+        
+        paragraph_style - an instance of BaseDoc paragraph style object
+        """
+        self.style = paragraph_style
+        self.fontstyle = self.style.get_font()
+        self.piece_list = []
+
+    def add_piece(self,directive,text):
+        """
+        Add a piece to the paragraph.
+        
+        text        - the text of the corresponding piece
+        directive   - what to do with this piece
+        """
+        self.piece_list.append((directive,text))
+    
+    def get_piece_list(self):
+        """
+        Return a list of pieces for the paragraph.
+        """
+        return self.piece_list
+
+    def get_fontstyle(self):
+        """
+        Return fontstyle for the paragraph
+        """
+        return self.fontstyle
+
+    def get_width(self):
+        """
+        Determine the width of the paragraph if not formatted.
+        """
+        width = 0
+        
+        for (directive,text) in self.piece_list:
+            fontstyle = BaseDoc.FontStyle(self.fontstyle)
+            if directive == _START_BOLD:
+                fontstyle.set_bold(1)
+            elif directive == _END_BOLD:
+                fontstyle.set_bold(0)
+            
+            font = find_font_from_fontstyle(self.style.get_font())
+            width += font.get_width_utf8(text)
+        
+        return width
+
+    def get_min_width(self):
+        """
+        Determine the minimal width of the paragraph (longest word)
+        """
+        max_word_size = 0
+        
+        for (directive,text) in self.piece_list:
+            fontstyle = BaseDoc.FontStyle(self.fontstyle)
+            if directive == _START_BOLD:
+                fontstyle.set_bold(1)
+            elif directive == _END_BOLD:
+                fontstyle.set_bold(0)
+
+            for word in text.split():
+                length = get_text_width(word,fontstyle)
+                if length > max_word_size:
+                    max_word_size = length
+
+        return max_word_size
+
+    def get_height(self,width):
+        """
+        Determine the height the paragraph would have
+        if formatted for a given width.
+        
+        width       - required formatting width
+        """
+        nlines = 0
+        avail_width = width
+        
+        for (directive,text) in self.piece_list:
+            fontstyle = BaseDoc.FontStyle(self.fontstyle)
+            if directive == _START_BOLD:
+                fontstyle.set_bold(1)
+            elif directive == _END_BOLD:
+                fontstyle.set_bold(0)
+            
+            if text and avail_width > get_text_width(text,fontstyle):
+                avail_width -= get_text_width(text,fontstyle)
+            elif directive == _LINE_BREAK:
+                nlines += 1
+                avail_width = width
+            elif text and avail_width <= get_text_width(text,fontstyle):
+                #divide up text and print
+                textlist = text.split()
+                the_text = ""
+                for element in textlist:
+                    if get_text_width(the_text + element + " ",fontstyle) < avail_width:
+                        the_text = the_text + element + " "
+                    else:
+                        #__text contains as many words as this __width allows
+                        nlines += 1
+                        the_text = element + " "
+                        avail_width = width
+                        
+                #if __text still contains data, we will want to print it out
+                if the_text:
+                    avail_width = width - get_text_width(the_text,fontstyle)
+
+        return nlines * _LINE_SPACING
+    
 
 #------------------------------------------------------------------------
 #
@@ -96,12 +297,11 @@ class LPRDoc(BaseDoc.BaseDoc):
         #set up variables needed to keep track of which state we are in
         self.__in_table = 0
         self.__in_cell = 0
-        self.__in_paragraph = 0
         self.__page_count = 0
         self.__page_open = 0
         
-        self.__paragraph_data = ""
-        self.__cell_data = ""
+        self.paragraph = None
+        self.__cell_data = []
         self.__table_data = []
 
         #create main variables for this print job
@@ -109,43 +309,15 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__pc = self.__job.get_context()
 
         #find out what the width and height of the page is
-        __width, __height = gnomeprint.job_get_page_size_from_config(self.__job.get_config())
+        width, height = gnomeprint.job_get_page_size_from_config(self.__job.get_config())
 
-        self.__left_margin = cm2u(self.get_left_margin()) 
-        self.__right_margin = __width - cm2u(self.get_right_margin()) 
-        self.__top_margin = __height - cm2u(self.get_top_margin()) 
-        self.__bottom_margin = cm2u(self.get_bottom_margin()) 
+        self.left_margin = cm2u(self.get_left_margin()) 
+        self.right_margin = width - cm2u(self.get_right_margin()) 
+        self.top_margin = height - cm2u(self.get_top_margin()) 
+        self.bottom_margin = cm2u(self.get_bottom_margin()) 
 
         self.start_page(self)
  
-
-    def find_font_from_fontstyle(self,fontstyle):
-        """
-        This function returns the gnomeprint.Font() object instance
-        corresponding to the parameters of BaseDoc.FontStyle()
-        
-        fontstyle   :   a BaseDoc.FontStyle() instance
-        """
-
-        if fontstyle.get_type_face() == BaseDoc.FONT_SANS_SERIF:
-            face = _FONT_SANS_SERIF
-        elif fontstyle.get_type_face() == BaseDoc.FONT_SERIF:
-            face = _FONT_SERIF
-        elif fontstyle.get_type_face() == BaseDoc.FONT_MONOSPACE:
-            face = _FONT_MONOSPACE
-        
-        if fontstyle.get_bold():
-            modifier = _FONT_BOLD
-            if fontstyle.get_italic():
-                modifier = _FONT_BOLD_ITALIC
-        elif fontstyle.get_italic():
-            modifier = _FONT_ITALIC
-        else:
-            modifier = _FONT_REGULAR
-
-        size = fontstyle.get_size()
-        
-        return gnomeprint.font_find_closest("%s %s" % (face, modifier),size)
 
     def close(self):
         """Clean up and close the document"""
@@ -173,10 +345,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         if (self.__page_open):
            self.end_page()
 
-        self.__page_open=1
-        self.__page_count+=1
-        self.__x=self.__left_margin
-        self.__y=self.__top_margin
+        self.__page_open = 1
+        self.__page_count += 1
+        self.__x = self.left_margin
+        self.__y = self.top_margin
         
         self.__pc.beginpage(str(self.__page_count))
         self.__pc.moveto(self.__x, self.__y)
@@ -185,7 +357,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         """Close the current page"""
         #print "end page"
         if (self.__page_open):
-           self.__page_open=0
+           self.__page_open = 0
            self.__pc.showpage()
 
     def start_paragraph(self,style_name,leader=None):
@@ -194,54 +366,46 @@ class LPRDoc(BaseDoc.BaseDoc):
         We assume a linebreak at the end of each paragraph."""
         #print "start paragraph"
         #set paragraph variables so we know that we are in a paragraph
-        self.__in_paragraph = 1
-        self.__paragraph_data = ""
-        if self.__in_table:
-            self.__paragrapgh_styles[self.rownum][self.cellnum] = self.style_list[style_name]
-        else:
-            self.__paragraph_style = self.style_list[style_name]
+        self.paragraph = GnomePrintParagraph(self.style_list[style_name])
+        self.__paragraph_text = ""
+        self.__paragraph_directive = ""
     
     def end_paragraph(self):
         """End the current paragraph"""
-        #print "end paragraph"
-        self.__in_paragraph=0
-        #print text in paragraph if any data exists
-        if self.__paragraph_data:
-            fontstyle = self.__paragraph_style.get_font()
-            self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
-            self.__pc.moveto(self.__x, self.__y)
-            self.__x, self.__y = self.__print_text(self.__paragraph_data, 
-                                                self.__x, self.__y,
-                                                self.__left_margin, 
-                                                self.__right_margin,
-                                                fontstyle)
-            self.__paragraph_data = ""
-            self.__y = self.__advance_line(self.__y)
 
-####    FIXME BEGIN     #########
-# The following two functions don't work at the moment. The problem is
-# in that the writing is deferred when in tables and/or paragraphs. 
-# Paragraph text is accumulated, so afterwards, when it's tim to write,
-# one would need some pointers as to when to change the font (and where
-# to change it back. The easiest solution I can see is to replace
-# each paragraph with the list:
-#  [ ['Regular', 'text text'], ['Bold', 'other text'], ['Regular', 'text'] ]
-#===========================
+        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        if self.__in_cell:
+            # We're inside cell. Add paragrah to celldata
+            self.__cell_data.append(self.paragraph)
+        else:
+            # paragraph not in table: write it right away
+            self.__x, self.__y = self.write_paragraph(self.paragraph,
+                                        self.__x, self.__y, 
+                                        self.left_margin, self.right_margin)
+            self.__y = self.__advance_line(self.__y)
+        self.paragraph = None
+            
     def start_bold(self):
         """Bold face"""
-        pass
+        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        self.__paragraph_directive = _START_BOLD
+        self.__paragraph_text = ""
         
     def end_bold(self):
         """End bold face"""
-        pass
-#==========================
-####    FIXME END       #########
+        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        self.__paragraph_directive = ""
+        self.__paragraph_text = ""
 
     def start_superscript(self):
-        pass
+        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        self.__paragraph_directive = _START_SUPER
+        self.__paragraph_text = ""
                                                                                 
     def end_superscript(self):
-        pass
+        self.paragraph.add_piece(self.__paragraph_directive,self.__paragraph_text)
+        self.__paragraph_directive = ""
+        self.__paragraph_text = ""
                                                                                 
     def start_listing(self,style_name):
         """
@@ -254,18 +418,16 @@ class LPRDoc(BaseDoc.BaseDoc):
     def end_listing(self):
         pass
                                                                                 
-        
     def start_table(self,name,style_name):
         """Begin new table"""
         #print "start table"
         #reset variables for this state 
-        self.__table_data=[]
-        self.__in_table=1
+        self.__table_data = []
+        self.__in_table = 1
         self.__tbl_style = self.table_styles[style_name]
         self.__ncols = self.__tbl_style.get_columns()
         self.rownum = -1
-        self.__paragrapgh_styles = []
-        self.__table_width = (self.__right_margin - self.__left_margin) * \
+        self.__table_width = (self.right_margin - self.left_margin) * \
                             self.__tbl_style.get_width() / 100.0
         self.__cell_widths = []
 
@@ -274,19 +436,18 @@ class LPRDoc(BaseDoc.BaseDoc):
         #print "end table"
         #output table contents
         self.__output_table()
-        self.__in_table=0
-        self.__y=self.__advance_line(self.__y)
+        self.__in_table = 0
+        self.__y = self.__advance_line(self.__y)
 
     def start_row(self):
         """Begin a new row"""
         # doline/skipfirst are flags for adding hor. rules
         #print "start row"
         #reset this state, so we can get data from user
-        self.__row_data=[]
+        self.__row_data = []
         self.rownum = self.rownum + 1
         self.cellnum = -1
         self.__span = 1
-        self.__paragrapgh_styles.append([None] * self.__ncols)
         self.__cell_widths.append([0] * self.__ncols)
         for cell in range(self.__ncols):
             self.__cell_widths[self.rownum][cell] = self.__table_width * \
@@ -305,7 +466,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         #print "start cell"
         #reset this state
         self.__in_cell = 1
-        self.__cell_data = ""
+        self.__cell_data = []
         self.cellnum = self.cellnum + self.__span
         self.__span = span
         for __extra_cell in range(1,span):
@@ -317,16 +478,17 @@ class LPRDoc(BaseDoc.BaseDoc):
         """Prepares for next cell"""
         #print "end cell"
         #append the cell text to the row data
-        self.__in_cell=0
+        self.__in_cell = 0
         self.__row_data.append(self.__cell_data)
 
     def add_photo(self,name,pos,x,y):
         """Add photo to report"""
         #print "add photo"
+        pass
 
     def horizontal_line(self):
         self.__pc.moveto(self.__x, self.__y)
-        self.__pc.lineto(self.__right_margin, self.__y)
+        self.__pc.lineto(self.right_margin, self.__y)
 
     def write_cmdstr(self,text):
         """
@@ -335,10 +497,11 @@ class LPRDoc(BaseDoc.BaseDoc):
                                                                                 
         text - text to write.
         """
-        if self.__in_paragraph != 1:
-           self.start_paragraph()
-       
-        self.write(text)    
+        pass
+#        if not self.paragraph:
+#           self.start_paragraph()
+#       
+#        self.write(text)    
                                                                                 
     def draw_arc(self,style,x1,y1,x2,y2,angle,extent):
         pass
@@ -359,7 +522,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         if text != None:
            __text_width=self.__get_text_width(text,fontstyle)
            #try to center text in box
-           self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
+           self.__pc.setfont(find_font_from_fontstyle(fontstyle))
            self.__pc.moveto(self.__x+(__width/2)-(__text_width/2),
                             self.__y+(__height/2))
            self.__pc.show(text)                                                                       
@@ -369,7 +532,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         para_style = box_style.get_paragraph_style()
         fontstyle = para_style.get_font()
 
-        self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
+        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
         self.__pc.moveto(x, y)
         self.__pc.show(text)
 
@@ -382,7 +545,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         para_style = box_style.get_paragraph_style()
         fontstyle = para_style.get_font()
 
-        self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
+        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
         self.__pc.moveto(x1,y1)
         self.__pc.show(text)
                                                                                 
@@ -395,9 +558,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         #should we assume x1 y1 is the starting location
         #and that the right margin is the right edge?
         __width=self.get_text_width(text)
-        __center=self.__right_margin-self.__left_margin
+        __center=self.right_margin-self.left_margin
         __center-=__width/2
-        self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
+        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
         self.__pc.moveto(__center, self.__y)
         self.__pc.show(text)
                                                                                 
@@ -408,30 +571,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__pc.line_stroked(x1,y1,x2,y2)
                                                                                 
     def write_text(self,text):
-        """Write the text to the file"""
-        #print "write text"
-        #if we are in a cell add this text to cell_data
-        if self.__in_cell:
-           self.__cell_data=self.__cell_data+str(text)
-           return
-
-        #if we are in a paragraph add this text to the paragraph data
-        if self.__in_paragraph:
-           self.__paragraph_data=self.__paragraph_data+str(text)
-           return
-
-#       write_text() should only be called from within a paragraph!!!
-#
-#        #if we are at the bottom of the page, create a new page
-#        if self.__y < self.__bottom_margin:
-#            self.end_page()
-#            self.start_page()
-#
-#        #output data if we get this far (we are not in a paragaph or
-#        #a table)
-#        self.__x, self.__y=self.__print_text(text, self.__x, self.__y,
-#                          self.__left_margin, self.__right_margin)
-#        #self.__y=self.__advance_line(self.__y)
+        """Add the text to the paragraph"""
+        self.__paragraph_text = self.__paragraph_text + text
 
     def write_note(self,text,format,style_name):
         if format == 1:
@@ -449,99 +590,96 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     #function to help us advance a line 
     def __advance_line(self, y):
-        return y - _LINE_SPACING
-
-    #function to determine the width of text
-    def __text_width(self, text, fontstyle):
-        font = self.find_font_from_fontstyle(fontstyle)
-        return font.get_width_utf8(text)
-
-    #this function tells us the minimum size that a column can be
-    #by returning the width of the largest word in the text
-    def __min_column_size (self, text,fontstyle):
-        __textlist=string.split(text, " ")
-        __max_word_size=0
-        for __word in __textlist:
-            __length=self.__text_width(__word+" "*3,fontstyle)
-            if __length > __max_word_size:
-               __max_word_size=__length
-      
-        return __max_word_size
-
-    #function to fund out the height of the text between left_margin 
-    # and right_margin -- kinda like __print_text, but without printing.
-    def __text_height(self, text, width, fontstyle):
-
-        nlines = 1
-
-        if width < self.__text_width(text,fontstyle):
-            #divide up text and print
-            textlist = string.split(text)
-            text = ""
-            for element in textlist:
-                if self.__text_width(text + element + " ",fontstyle) < width:
-                    text = text + element + " "
-                else:
-                    #__text contains as many words as this __width allows
-                    nlines = nlines + 1
-                    text = element + " "
-
-            #if __text still contains data, we will want to print it out
-            if text:
-                nlines = nlines + 1
-
-        return nlines * _LINE_SPACING
-
-    def __print_text(self, text, x, y, left_margin, right_margin,fontstyle):
-        __width=right_margin-left_margin
-
-        if y - _LINE_SPACING < self.__bottom_margin:
+        new_y = y - _LINE_SPACING
+        if y < self.bottom_margin:
             self.end_page()
             self.start_page()
-            x=self.__x
-            y=self.__y
+            new_y = self.__y
+        return new_y
 
-        #all text will fit within the width provided
-        if __width >= self.__text_width(text,fontstyle):
-            self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
-            self.__pc.moveto(left_margin, y)
-            x=left_margin+self.__text_width(text,fontstyle)
-            self.__pc.show(text)
-            y=self.__advance_line(y)
-        else:
-            #divide up text and print
-            __textlist=string.split(text, " ")
-            __text=""
-            for __element in __textlist:
-                if self.__text_width(__text+__element+" ",fontstyle) < __width:
-                    __text=__text+__element+" "
+    def write_paragraph(self,paragraph,x,y,left_margin,right_margin):
+        """
+        Write the contents of the paragraph, observing per-piece info.
+        
+        paragraph   - GnomePrintParagraph instance
+        x,y         - coordinates to start at
+        left_margin,right_margin - boundaries to obey
+        """
+        width = right_margin - left_margin
+        avail_width = width
+
+        if y - _LINE_SPACING < self.bottom_margin:
+            self.end_page()
+            self.start_page()
+            x = self.__x
+            y = self.__y
+
+        x = left_margin
+        
+        for (directive,text) in paragraph.get_piece_list():
+            fontstyle = BaseDoc.FontStyle(paragraph.get_fontstyle())
+            if directive == _START_BOLD:
+                fontstyle.set_bold(1)
+            elif directive == _END_BOLD:
+                fontstyle.set_bold(0)
+            elif directive == _LINE_BREAK:
+                y = self.__advance_line()
+                x = self.__x
+                return
+            elif directive == _PAGE_BREAK:
+                self.end_page()
+                self.start_page()
+                x = self.__x
+                y = self.__y
+                return
+
+            #all text will fit within the width provided
+            if not text:
+                continue
+            if avail_width >= get_text_width(text,fontstyle):
+                avail_width -= get_text_width(text,fontstyle)
+                self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+                self.__pc.moveto(x, y)
+                x = x + get_text_width(text,fontstyle)
+                self.__pc.show(text)
+            else:
+                #divide up text and print
+                if x == left_margin:
+                    the_text = ""
                 else:
-                    #__text contains as many words as this __width allows
-                    self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
+                    the_text = " "
+                for element in text.split():
+                    if get_text_width(the_text + element + " ",fontstyle) < avail_width:
+                        the_text = the_text + element + " "
+                    else:
+                        #__text contains as many words as this __width allows
+                        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+                        self.__pc.moveto(x, y)
+                        self.__pc.show(the_text)
+                        the_text = element + " "
+                        y = self.__advance_line(y)
+                        x = left_margin
+                        avail_width = width
+
+                    #if not in table and cursor is below bottom margin
+                    if (not self.__in_table) and (y < self.bottom_margin):
+                        self.end_page()
+                        self.start_page()
+                        x = self.__x
+                        y = self.__y
+
+                #if __text still contains data, we will want to print it out
+                if the_text:
+                    self.__pc.setfont(find_font_from_fontstyle(fontstyle))
                     self.__pc.moveto(left_margin, y)
-                    self.__pc.show(__text)
-                    __text=__element+" "
-                    y=self.__advance_line(y)
-
-                #if not in table and cursor is below bottom margin
-                if (not self.__in_table) and (y < self.__bottom_margin):
-                    self.end_page()
-                    self.start_page()
-                    x=self.__x
-                    y=self.__y
-
-            #if __text still contains data, we will want to print it out
-            if len(__text) > 0:
-                self.__pc.setfont(self.find_font_from_fontstyle(fontstyle))
-                self.__pc.moveto(left_margin, y)
-                self.__pc.show(__text)
-                y=self.__advance_line(y)
-
+                    self.__pc.show(the_text)
+                    avail_width = width - get_text_width(the_text,fontstyle)
+        y = self.__advance_line(y)
         return (x,y)
 
     def __output_table(self):
         """do calcs on data in table and output data in a formatted way"""
-        __min_col_size = [self.__right_margin - self.__left_margin] \
+        __min_col_size = [self.right_margin - self.left_margin] \
                                                         * self.__ncols
         __max_vspace = [0] * len(self.__table_data)
 
@@ -551,19 +689,16 @@ class LPRDoc(BaseDoc.BaseDoc):
             for __col in range(self.__ncols):
                 if not self.__cell_widths[__row_num][__col]:
                     continue
-                if not self.__paragrapgh_styles[__row_num][__col]:
-                    continue
-                fontstyle = self.__paragrapgh_styles[__row_num][__col].get_font()
-                
-                __min = self.__min_column_size(__row[__col]+" "*3,fontstyle)
-                if __min < __min_col_size[__col]:
-                    __min_col_size[__col] = __min
 
-                __max = self.__text_height(__row[__col], 
-                                        self.__cell_widths[__row_num][__col],
-                                        fontstyle)
-                if __max > __max_vspace[__row_num]:
-                    __max_vspace[__row_num] = __max
+                for paragraph in __row[__col]:
+                    __min = paragraph.get_min_width()
+                    if __min < __min_col_size[__col]:
+                        __min_col_size[__col] = __min
+
+                    __max = paragraph.get_height(
+                                        self.__cell_widths[__row_num][__col])
+                    if __max > __max_vspace[__row_num]:
+                        __max_vspace[__row_num] = __max
 
         #now we have an idea of the max size of each column
         #now output data in the table
@@ -575,7 +710,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             __min_table_width = __min_table_width + __size
 
         #is table width larger than the width of the paper?
-        if __min_table_width > (self.__right_margin - self.__left_margin):
+        if __min_table_width > (self.right_margin - self.left_margin):
             print "Table does not fit onto the page.\n"
                    
         #for now we will assume left justification of tables
@@ -584,28 +719,24 @@ class LPRDoc(BaseDoc.BaseDoc):
                              #text in each row
         for __row_num in range(len(self.__table_data)):
             __row = self.__table_data[__row_num]
-            __x=self.__left_margin         #reset so that x is at margin
+            __x = self.left_margin         #reset so that x is at margin
             # If this row puts us below the bottom, start new page here
-            if self.__y - __max_vspace[__row_num] < self.__bottom_margin:
-               self.end_page()
-               self.start_page()
-               __min_y=self.__y
+            if self.__y - __max_vspace[__row_num] < self.bottom_margin:
+                self.end_page()
+                self.start_page()
+                __min_y = self.__y
             
             for __col in range(self.__ncols):
                 if not self.__cell_widths[__row_num][__col]:
                     continue
-                if not self.__paragrapgh_styles[__row_num][__col]:
+                if not __row[__col]:
                     continue
-                fontstyle = self.__paragrapgh_styles[__row_num][__col].get_font()
+                for paragraph in __row[__col]:
+                    __nothing, __y = self.write_paragraph(paragraph,
+                                     self.__x, self.__y, __x, 
+                                     __x + self.__cell_widths[__row_num][__col])
 
-                __nothing, __y=self.__print_text(__row[__col], 
-                                     self.__x, 
-                                     self.__y, 
-                                     __x, 
-                                     __x+self.__cell_widths[__row_num][__col],
-                                     fontstyle)
-
-                __x=__x+self.__cell_widths[__row_num][__col]    # set up margin for this row
+                __x = __x + self.__cell_widths[__row_num][__col]    # set up margin for this row
                 if __y < __min_y:     # if we go below current lowest 
                    __min_y=__y        # column
   
