@@ -217,7 +217,6 @@ class AddSpouse:
             self.db.add_person(person)
         else:
             self.db.add_person_no_map(person,person.get_id())
-        self.db.build_person_display(person.get_id())
         self.addperson(person)
         self.update_data(person.get_id())
         #self.slist.center_selected()
@@ -241,12 +240,14 @@ class AddSpouse:
                 Utils.destroy_passed_object(obj)
                 return
 
+        trans = self.db.start_transaction()
+
         if not self.active_family:
             self.active_family = self.db.new_family()
             self.person.add_family_id(self.active_family.get_id())
-            self.db.commit_person(self.person)
+            self.db.commit_person(self.person,trans)
         spouse.add_family_id(self.active_family.get_id())
-        self.db.commit_person(spouse)
+        self.db.commit_person(spouse,trans)
 
         if self.person.get_gender() == RelLib.Person.male:
             self.active_family.set_mother_id(spouse.get_id())
@@ -255,8 +256,10 @@ class AddSpouse:
             self.active_family.set_father_id(spouse.get_id())
             self.active_family.set_mother_id(self.person.get_id())
 
-        self.active_family.set_relationship(const.save_frel(unicode(self.relation_type.get_text())))
-        self.db.commit_family(self.active_family)
+        rtype = const.save_frel(unicode(self.relation_type.get_text()))
+        self.active_family.set_relationship(rtype)
+        self.db.commit_family(self.active_family,trans)
+        self.db.add_transaction(trans)
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
 

@@ -92,7 +92,8 @@ class DbPrompter:
             "on_ok_button1_clicked": self.save_ok_button_clicked,
             "destroy_passed_object": self.cancel_button_clicked,
             })
-        wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Create database'))
+        filesel = wFs.get_widget('fileselection')
+        filesel.set_title('%s - GRAMPS' % _('Create database'))
 
     def save_ok_button_clicked(self,obj):
         filename = obj.get_filename().encode('iso8859-1')
@@ -101,6 +102,18 @@ class DbPrompter:
             self.db.read_file(filename)
 
     def open_activate(self):
+
+        wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
+        wFs.signal_autoconnect({
+            "on_ok_button1_clicked": self.ok_button_clicked,
+            "destroy_passed_object": self.cancel_button_clicked,
+            })
+        self.filesel = wFs.get_widget('fileselection')
+        self.filesel.set_title('%s - GRAMPS' % _('Open database'))
+        if GrampsCfg.lastfile:
+            self.filesel.set_filename(GrampsCfg.lastfile)
+        return
+    
         wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
         wFs.signal_autoconnect({
             "on_ok_button1_clicked": self.ok_button_clicked,
@@ -130,7 +143,7 @@ class DbPrompter:
         self.show()
         
     def ok_button_clicked(self,obj):
-        filename = self.dbname.get_full_path(0)
+        filename = self.filesel.get_filename()
 
         if not filename:
             return

@@ -68,21 +68,18 @@ class PlaceView:
     
     def __init__(self,parent,db,glade,update):
         self.parent = parent
-        self.db     = db
         self.glade  = glade
+        self.db     = db
         self.list   = glade.get_widget("place_list")
-        self.update = update
+        self.list.connect('button-press-event',self.button_press)
+        self.list.connect('key-press-event',self.key_press)
+        self.selection = self.list.get_selection()
+        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
 
         self.renderer = gtk.CellRendererText()
 
-        self.active = None
-
         self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.db))
         self.list.set_model(self.model)
-        self.selection = self.list.get_selection()
-        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
-        self.list.connect('button-press-event',self.button_press)
-        self.list.connect('key-press-event',self.key_press)
         self.topWindow = self.glade.get_widget("gramps")
 
         self.columns = []
@@ -126,35 +123,6 @@ class PlaceView:
         self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
-
-    def load_places(self,id=None):
-        """Rebuilds the entire place view. This can be very time consuming
-        on large databases, and should only be called when absolutely
-        necessary"""
-        pass
-        #self.build_tree()
-        
-    def goto(self,id):
-        self.selection.unselect_all()
-        iter = self.id2col[id]
-        self.selection.select_iter(iter)
-        itpath = self.model.get_path (iter)
-        col = self.list.get_column (0)
-        self.list.scroll_to_cell (itpath, col, gtk.TRUE, 0.5, 0)
-
-    def merge(self):
-        mlist = []
-        self.selection.selected_foreach(self.blist,mlist)
-        
-        if len(mlist) != 2:
-            msg = _("Cannot merge places.")
-            msg2 = _("Exactly two places must be selected to perform a merge. "
-                "A second place can be selected by holding down the "
-                "control key while clicking on the desired place.")
-            ErrorDialog(msg,msg2)
-        else:
-            import MergeData
-            MergeData.MergePlaces(self.db,mlist[0],mlist[1],self.load_places)
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -201,26 +169,25 @@ class PlaceView:
             menu.append(item)
         menu.popup(None,None,None,event.button,event.time)
 
-    def new_place_after_edit(self,place):
-        self.db.add_place(place)
-        self.update(0)
-
-    def update_display(self,place):
-        if place:
-            self.db.build_place_display(place.get_id())
-        self.update(0)
-
     def on_add_place_clicked(self,obj):
         EditPlace.EditPlace(self.parent,RelLib.Place(),self.new_place_after_edit)
+
+    def new_place_after_edit(self,place):
+        self.db.add_place(place)
+
+    def update_display(self,place):
+        self.build_tree()
 
     def on_delete_clicked(self,obj):
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
-
+        
+        trans = self.db.start_transaction()
+        
         for place in mlist:
             used = 0
             for key in self.db.get_person_keys():
-                p = self.db.get_person(key)
+                p = self.db.find_person_from_id(key)
                 event_list = []
                 for e in [p.get_birth_id(),p.get_death_id()] + p.get_event_list():
                     event = self.db.find_event_from_id(e)
@@ -233,7 +200,8 @@ class PlaceView:
                 if p.get_lds_sealing():
                     event_list.append(p.get_lds_sealing())
                 for event in event_list:
-                    if event.get_place_id() == place:
+                    if event.get_place_id() == place.get_id():
+                        print event.get_id()
                         used = 1
 
             for fid in self.db.get_family_keys():
@@ -246,7 +214,8 @@ class PlaceView:
                 if f.get_lds_sealing():
                     event_list.append(f.get_lds_sealing())
                 for event in event_list:
-                    if event.get_place_id() == place:
+                    if event.get_place_id() == place.get_id():
+                        print event.get_id()
                         used = 1
 
             if used == 1:
@@ -259,8 +228,10 @@ class PlaceView:
                                _('_Delete Place'),
                                ans.query_response)
             else:
-                self.db.remove_place(place.get_id())
-                self.update(0)
+                trans = self.db.start_transaction()
+                self.db.remove_place(place.get_id(),trans)
+                self.db.add_transaction(trans)
+                self.build_tree()
 
     def on_edit_clicked(self,obj):
         """Display the selected places in the EditPlace display"""
@@ -273,3 +244,18 @@ class PlaceView:
     def blist(self,store,path,iter,list):
         id = self.db.get_place_id(store.get_value(iter,1))
         list.append(id)
+
+    def merge(self):
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
+        
+        if len(mlist) != 2:
+            msg = _("Cannot merge places.")
+            msg2 = _("Exactly two places must be selected to perform a merge. "
+                "A second place can be selected by holding down the "
+                "control key while clicking on the desired place.")
+            ErrorDialog(msg,msg2)
+        else:
+            import MergeData
+            MergeData.MergePlaces(self.db,mlist[0],mlist[1],self.build_tree)
+

@@ -151,11 +151,7 @@ class PeopleView:
     def remove_from_person_list(self,person,old_id=None):
         """Remove the selected person from the list. A person object is expected,
         not an ID"""
-        if old_id == None or person.get_id() == old_id:
-            path = self.person_model.on_get_path(person.get_id())
-            self.person_model.row_deleted(path)
-        else:
-            self.person_model.rebuild_data()
+        self.build_tree()
     
     def remove_from_history(self,person,old_id=None):
         """Removes a person from the history list"""
@@ -187,8 +183,8 @@ class PeopleView:
         self.apply_filter(self.person_tree)
         self.goto_active_person()
 
-    def add_to_person_list(self,person,change):
-        self.rebuild_data()
+    def add_to_person_list(self,person,change=0):
+        self.build_tree()
 
     def goto_active_person(self,first=0):
         if not self.parent.active_person:
@@ -253,4 +249,7 @@ class PeopleView:
         menu.popup(None,None,None,event.button,event.time)
         
     def redisplay_person_list(self,person):
-        self.person_model.rebuild_data()
+        self.person_model = PeopleModel.PeopleModel(self.parent.db)
+        self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.person_tree.set_model(self.sort_model)
+        

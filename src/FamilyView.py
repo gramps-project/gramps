@@ -87,16 +87,26 @@ class FamilyView:
             self.sp_par_arrow = "Down"
             self.child_arrow = "Up"
             if not already_init:
-                self.top.get_widget('add_parents2').connect('clicked',self.add_parents_clicked)
-                self.top.get_widget('del_parents2').connect('clicked',self.del_parents_clicked)
-                self.top.get_widget('add_spparents2').connect('clicked',self.add_sp_parents)
-                self.top.get_widget('del_spparents2').connect('clicked',self.del_sp_parents)
-                self.top.get_widget('fam_back2').connect('clicked',self.child_back)
-                self.top.get_widget('del_child_btn2').connect('clicked',self.remove_child_clicked)
-                self.top.get_widget('add_child_btn2').connect('clicked',self.add_child_clicked)
-                self.top.get_widget('select_child2').connect('clicked',self.select_child_clicked)
-                self.top.get_widget('ap_parents_btn2').connect('clicked',self.ap_parents_clicked)
-                self.top.get_widget('sp_parents_btn2').connect('clicked',self.sp_parents_clicked)
+                self.top.get_widget('add_parents2').connect('clicked',
+                                                            self.add_parents_clicked)
+                self.top.get_widget('del_parents2').connect('clicked',
+                                                            self.del_parents_clicked)
+                self.top.get_widget('add_spparents2').connect('clicked',
+                                                              self.add_sp_parents)
+                self.top.get_widget('del_spparents2').connect('clicked',
+                                                              self.del_sp_parents)
+                self.top.get_widget('fam_back2').connect('clicked',
+                                                         self.child_back)
+                self.top.get_widget('del_child_btn2').connect('clicked',
+                                                              self.remove_child_clicked)
+                self.top.get_widget('add_child_btn2').connect('clicked',
+                                                              self.add_child_clicked)
+                self.top.get_widget('select_child2').connect('clicked',
+                                                             self.select_child_clicked)
+                self.top.get_widget('ap_parents_btn2').connect('clicked',
+                                                               self.ap_parents_clicked)
+                self.top.get_widget('sp_parents_btn2').connect('clicked',
+                                                               self.sp_parents_clicked)
             self.parent.views.get_nth_page(2).show_all()
             if self.parent.views.get_current_page() == 1:
                 self.parent.views.set_current_page(2)
@@ -117,16 +127,26 @@ class FamilyView:
             self.sp_par_arrow = "Right"
             self.child_arrow = "Left"
             if not already_init:
-                self.top.get_widget('add_parents').connect('clicked',self.add_parents_clicked)
-                self.top.get_widget('del_parents').connect('clicked',self.del_parents_clicked)
-                self.top.get_widget('add_spparents').connect('clicked',self.add_sp_parents)
-                self.top.get_widget('del_spparents').connect('clicked',self.del_sp_parents)
-                self.top.get_widget('fam_back').connect('clicked',self.child_back)
-                self.top.get_widget('del_child_btn').connect('clicked',self.remove_child_clicked)
-                self.top.get_widget('add_child_btn').connect('clicked',self.add_child_clicked)
-                self.top.get_widget('select_child').connect('clicked',self.select_child_clicked)
-                self.top.get_widget('ap_parents_btn').connect('clicked',self.ap_parents_clicked)
-                self.top.get_widget('sp_parents_btn').connect('clicked',self.sp_parents_clicked)
+                self.top.get_widget('add_parents').connect('clicked',
+                                                           self.add_parents_clicked)
+                self.top.get_widget('del_parents').connect('clicked',
+                                                           self.del_parents_clicked)
+                self.top.get_widget('add_spparents').connect('clicked',
+                                                             self.add_sp_parents)
+                self.top.get_widget('del_spparents').connect('clicked',
+                                                             self.del_sp_parents)
+                self.top.get_widget('fam_back').connect('clicked',
+                                                        self.child_back)
+                self.top.get_widget('del_child_btn').connect('clicked',
+                                                             self.remove_child_clicked)
+                self.top.get_widget('add_child_btn').connect('clicked',
+                                                             self.add_child_clicked)
+                self.top.get_widget('select_child').connect('clicked',
+                                                            self.select_child_clicked)
+                self.top.get_widget('ap_parents_btn').connect('clicked',
+                                                              self.ap_parents_clicked)
+                self.top.get_widget('sp_parents_btn').connect('clicked',
+                                                              self.sp_parents_clicked)
             self.parent.views.get_nth_page(1).show_all()
             if self.parent.views.get_current_page() == 2:
                 self.parent.views.set_current_page(1)
@@ -234,7 +254,7 @@ class FamilyView:
                                     and event.state == gtk.gdk.CONTROL_MASK:
             self.spouse_swap(obj)
         elif event.keyval == gtk.gdk.keyval_from_name("Delete") and not event.state:
-            self.remove_spouse(obj)
+            self.remove_spouse(obj,trans)
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") and not event.state:
             self.select_spouse(obj)
         elif event.keyval == gtk.gdk.keyval_from_name("Insert") \
@@ -530,7 +550,9 @@ class FamilyView:
     def set_preferred_spouse(self,obj):
         if self.selected_spouse:
             self.person.set_preferred_family_id(self.family)
-            self.parent.db.commit_person(self.person)
+            trans = self.parent.db.start_transaction()
+            self.parent.db.commit_person(self.person,trans)
+            self.parent.db.add_transaction(trans)
             self.load_family()
             
     def edit_spouse_callback(self,obj):
@@ -597,28 +619,30 @@ class FamilyView:
     def spouse_after_edit(self,epo):
         ap = self.parent.active_person
         if epo:
-            self.parent.db.build_person_display(epo.person.get_id(),epo.original_id)
-            self.parent.db.commit_person(epo.person)
+            trans = self.parent.db.start_transaction()
+            self.parent.db.commit_person(epo.person,trans)
+            self.parent.db.add_transaction(trans)
             self.parent.people_view.remove_from_person_list(epo.person,epo.original_id)
             self.parent.people_view.redisplay_person_list(epo.person)
 
         self.parent.active_person = ap
         self.load_family(self.family)
         
-    def new_spouse_after_edit(self,epo,change):
+    def new_spouse_after_edit(self,epo,trans):
 
         if epo.person.get_id() == "":
-            self.parent.db.add_person(epo.person)
+            self.parent.db.add_person(epo.person,trans)
         else:
-            self.parent.db.add_person_no_map(epo.person,epo.person.get_id())
+            self.parent.db.add_person_no_map(epo.person,epo.person.get_id(),trans)
+
+        self.family = self.parent.db.new_family(trans)
 
         self.parent.people_view.add_to_person_list(epo.person,0)
-        self.family = self.parent.db.new_family()
         self.person.add_family_id(self.family.get_id())
         epo.person.add_family_id(self.family.get_id())
 
-        self.parent.db.commit_person(epo.person)
-        self.parent.db.commit_person(self.person)
+        self.parent.db.commit_person(epo.person,trans)
+        self.parent.db.commit_person(self.person,trans)
 
         if self.person.get_gender() == RelLib.Person.male:
             self.family.set_mother_id(epo.person.get_id())
@@ -627,7 +651,7 @@ class FamilyView:
             self.family.set_father_id(epo.person.get_id())
             self.family.set_mother_id(self.person.get_id())
 
-        self.parent.db.commit_family(self.family)
+        self.parent.db.commit_family(self.family,trans)
         self.load_family(self.family)
         
         Marriage.Marriage(self.parent,self.family,self.parent.db,
@@ -671,14 +695,13 @@ class FamilyView:
         self.parent.update_person_list(person)
         self.load_family(self.family)
             
-    def new_child_after_edit(self,epo):
+    def new_child_after_edit(self,epo,trans):
         
         if epo.person.get_id() == "":
-            self.parent.db.add_person(epo.person)
+            self.parent.db.add_person(epo.person,trans)
         else:
-            self.parent.db.add_person_no_map(epo.person,epo.person.get_id())
+            self.parent.db.add_person_no_map(epo.person,epo.person.get_id(),trans)
             
-        self.parent.db.build_person_display(epo.person.get_id())
         self.parent.people_view.add_to_person_list(epo.person,0)
 
         if not self.family:
@@ -691,8 +714,8 @@ class FamilyView:
 
         self.family.add_child_id(epo.person.get_id())
         epo.person.add_parent_family_id(self.family.get_id(),"Birth","Birth")
-        self.parent.db.commit_person(epo.person)
-        self.parent.db.commit_family(self.family)
+        self.parent.db.commit_person(epo.person,trans)
+        self.parent.db.commit_family(self.family,trans)
         self.display_marriage(self.family)
 
     def select_child_clicked(self,obj):
@@ -716,6 +739,8 @@ class FamilyView:
         id = self.child_model.get_value(iter,2)
         child = self.parent.db.get_person(id)
 
+        trans = self.parent.db.start_transaction()
+        
         self.family.remove_child_id(child.get_id())
         child.remove_parent_family_id(self.family.get_id())
         
@@ -725,8 +750,10 @@ class FamilyView:
             elif self.family.get_mother_id() == None:
                 self.delete_family_from(self.family.get_father_id())
 
-        self.parent.db.commit_person(child)
-        self.parent.db.commit_family(self.family)
+        self.parent.db.commit_person(child,trans)
+        self.parent.db.commit_family(self.family,trans)
+        self.parent.db.add_transaction(trans)
+        
         self.load_family()
 
     def remove_spouse(self,obj):
@@ -752,16 +779,18 @@ class FamilyView:
         else:
             self.family.set_mother_id(None)
 
+        trans = self.parent.db.start_transaction()
+        
         if self.selected_spouse:
-            self.selected_spouse.remove_family_id(self.family.get_id())
-            self.parent.db.commit_person(self.selected_spouse)
+            self.selected_spouse.remove_family_id(self.family.get_id(),trans)
+            self.parent.db.commit_person(self.selected_spouse,trans)
 
-        self.parent.db.commit_family(self.family)
+        self.parent.db.commit_family(self.family,trans)
 
         if len(self.family.get_child_id_list()) == 0:
-            self.person.remove_family_id(self.family.get_id())
-            self.parent.db.commit_person(self.person)
-            self.parent.db.delete_family(self.family.get_id())
+            self.person.remove_family_id(self.family.get_id(),trans)
+            self.parent.db.commit_person(self.person,trans)
+            self.parent.db.delete_family(self.family.get_id(),trans)
             if len(self.person.get_family_id_list()) > 0:
                 family_id = self.person.get_family_id_list()[0]
                 self.load_family(self.parent.db.find_family_from_id(family_id))
@@ -769,6 +798,7 @@ class FamilyView:
                 self.load_family(self.family)
         else:
             self.load_family(self.family)
+        self.parent.db.add_transaction(trans)
 
         if len(self.person.get_family_id_list()) <= 1:
             self.spouse_selection.set_mode(gtk.SELECTION_NONE)
@@ -806,7 +836,9 @@ class FamilyView:
         person = self.parent.db.find_person_from_id(person_id)
         self.parent.change_active_person(person)
 
-        self.parent.db.commit_family(family)
+        trans = self.parent.db.start_transaction()
+        self.parent.db.commit_family(family,trans)
+        self.parent.db.add_transaction(trans)
         self.load_family(family)
 
     def clear(self):
@@ -938,13 +970,15 @@ class FamilyView:
             return _("%s: unknown") % (l)
 
     def delete_family_from(self,person):
-        person.remove_family_id(self.family.get_id())
-        self.parent.db.delete_family(self.family.get_id())
+        trans = self.parent.db.start_transaction()
+        person.remove_family_id(self.family.get_id(),trans)
+        self.parent.db.delete_family(self.family.get_id(),trans)
         flist = self.person.get_family_id_list()
         if len(flist) > 0:
             self.family = flist[0]
         else:
             self.family = None
+        self.parent.db.add_transaction(trans)
 
     def display_marriage(self,family):
         self.child_model.clear()
@@ -1228,7 +1262,10 @@ class FamilyView:
             fam = person.get_parent_family_id_list()[row[0]]
             person.remove_parent_family_id(fam[0])
 
-        self.parent.db.commit_person(person)
+        trans = self.parent.db.start_transaction()
+        self.parent.db.commit_person(person,trans)
+        self.parent.db.add_transaction(trans)
+        
         self.load_family()
 
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):

@@ -293,7 +293,8 @@ class ChooseParents:
 
     def redrawf(self):
         """Redraws the potential father list"""
-        self.father_model = gtk.TreeModelSort(PeopleModel.PeopleModel(self.db, self.father_filter))
+        self.father_nsort = PeopleModel.PeopleModel(self.db, self.father_filter)
+        self.father_model = gtk.TreeModelSort(self.father_nsort)
         self.father_list.set_model(self.father_model)
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
@@ -302,7 +303,8 @@ class ChooseParents:
 
     def redrawm(self):
         """Redraws the potential mother list"""
-        self.mother_model = gtk.TreeModelSort(PeopleModel.PeopleModel(self.db, self.mother_filter))
+        self.mother_nsort = PeopleModel.PeopleModel(self.db, self.mother_filter)
+        self.mother_model = gtk.TreeModelSort(self.mother_nsort)
         self.mother_list.set_model(self.mother_model)
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
@@ -351,16 +353,18 @@ class ChooseParents:
         family.set_mother_id(mother_id)
         family.add_child_id(self.person.get_id())
 
+        trans = self.db.start_transaction()
         if father_id:
             father = self.db.find_person_from_id(father_id)
             father.add_family_id(family.get_id())
-            self.db.commit_person(father)
+            self.db.commit_person(father,trans)
         if mother_id:
             mother = self.db.find_person_from_id(mother_id)
             mother.add_family_id(family.get_id())
-            self.db.commit_person(mother)
+            self.db.commit_person(mother,trans)
 
-        self.db.commit_family(family)
+        self.db.commit_family(family,trans)
+        self.db.add_transaction(trans)
         return family
 
     def mother_list_select_row(self,obj):
@@ -414,8 +418,13 @@ class ChooseParents:
             if len(family_id_list) >= 1:
                 family = self.db.find_family_from_id(family_id_list[0])
                 mother_id = family.get_mother_id()
-                self.mother_selection.select(mother_id)
-                #self.mother_model.center_selected()
+                mother = self.db.find_person_from_id(mother_id)
+                sname = mother.get_primary_name().get_surname()
+                tpath = self.mother_nsort.on_get_path(sname)
+                self.mother_list.expand_row(tpath,0)
+                path = self.mother_nsort.on_get_path(mother_id)
+                self.mother_selection.select_path(path)
+                self.mother_list.scroll_to_cell(path,None,1,0.5,0)
 
     def mother_list_select_row(self,obj):
         """Called when a row is selected in the father list. Sets the
@@ -432,9 +441,14 @@ class ChooseParents:
             family_id_list = self.mother.get_family_id_list()
             if len(family_id_list) >= 1:
                 family = self.db.find_family_from_id(family_id_list[0])
-                father_id = family.get_father_id()
-                self.father_selection.select(father_id)
-                #self.father_model.center_selected()
+                father_id = family.get_mother_id()
+                father = self.db.find_person_from_id(father_id)
+                sname = father.get_primary_name().get_surname()
+                tpath = self.father_nsort.on_get_path(sname)
+                self.father_list.expand_row(tpath,0)
+                path = self.father_nsort.on_get_path(father_id)
+                self.father_selection.select_path(path)
+                self.father_list.scroll_to_cell(path,None,1,0.5,0)
 
     def save_parents_clicked(self,obj):
         """
@@ -491,7 +505,6 @@ class ChooseParents:
             id = self.db.add_person(person)
         else:
             self.db.add_person_no_map(person,id)
-        self.db.build_person_display(id)
 
         self.type = const.save_frel(unicode(self.prel.get_text()))
         dinfo = self.db.get_person_display(id)
@@ -538,12 +551,15 @@ class ChooseParents:
                     break
         else:
             self.person.add_parent_family_id(family.get_id(),mother_rel,father_rel)
-        self.db.commit_person(self.person)
-        self.db.commit_family(family)
+
+        trans = self.db.start_transaction()
+        self.db.commit_person(self.person,trans)
+        self.db.commit_family(family,trans)
         if self.father:
-            self.db.commit_person(self.father)
+            self.db.commit_person(self.father,trans)
         if self.mother:
-            self.db.commit_person(self.mother)
+            self.db.commit_person(self.mother,trans)
+        self.db.add_transaction(trans)
 
 class ModifyParents:
     def __init__(self,db,person,family_id,family_update,full_update,parent_window=None):

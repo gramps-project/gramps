@@ -635,7 +635,9 @@ class Marriage:
 
         self.update_lists()
         self.update_fv(self.family)
-        self.db.commit_family(self.family)
+        trans = self.db.start_transaction()
+        self.db.commit_family(self.family,trans)
+        self.db.add_transaction(trans)
 
         self.close(1)
 

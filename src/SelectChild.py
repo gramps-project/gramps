@@ -300,7 +300,10 @@ class SelectChild:
 
         select_child.add_parent_family_id(self.family.get_id(),mrel,frel)
 
-        self.db.commit_person(select_child)
+        trans = self.db.start_transaction()
+        self.db.commit_person(select_child,trans)
+        self.db.add_transaction(trans)
+        
         self.redraw(self.family)
         self.close(obj)
         
@@ -430,6 +433,9 @@ class EditRel:
                 frel = "Unknown"
 
         self.child.change_parent_family_id(self.family.get_id(),mrel,frel)
-        self.db.commit_person(self.child)
+        trans = self.start_transaction()
+        self.db.commit_person(self.child,trans)
+        self.db.add_transaction(trans)
+        
         self.update()
         self.top.destroy()

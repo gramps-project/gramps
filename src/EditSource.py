@@ -326,7 +326,10 @@ class EditSource:
 
         self.gallery_ok = 1
 
-        self.db.commit_source(self.source)
+        trans = self.db.start_transaction()
+        self.db.commit_source(self.source,trans)
+        self.db.add_transaction(trans)
+        
         if self.callback:
             self.callback(self.source)
         self.close(obj)
@@ -362,42 +365,53 @@ class DelSrcQuery:
                 m = 1
         if m:
             object.set_source_reference_list(l)
+        return m
 
     def query_response(self):
-        self.db.remove_source_id(self.source.get_id())
-
+        trans = self.db.start_transaction()
+        
         for key in self.db.get_person_keys():
+            commit = 0
             p = self.db.get_person(key)
             for v_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
                 v = self.db.find_event_from_id(v_id)
                 if v:
-                    self.delete_source(v)
+                    commit += self.delete_source(v)
 
             for v in p.get_attribute_list():
-                self.delete_source(v)
+                commit += self.delete_source(v)
 
             for v in p.get_alternate_names() + [p.get_primary_name()]:
-                self.delete_source(v)
+                commit += self.delete_source(v)
 
             for v in p.get_address_list():
-                self.delete_source(v)
+                commit += self.delete_source(v)
+            if commit > 0:
+                self.db.commit_person(p,trans)
 
         for p_id in self.db.get_family_keys():
+            commit = 0
             p = self.db.find_family_from_id(p_id)
             for v_id in p.get_event_list():
                 v = self.db.find_event_from_id(v_id)
                 if v:
-                    self.delete_source(v)
+                    commit += self.delete_source(v)
 
             for v in p.get_attribute_list():
-                self.delete_source(v)
+                commit += self.delete_source(v)
+            if commit > 0:
+                self.db.commit_family(p,trans)
 
         for p_id in self.db.get_object_keys():
             p = self.db.find_object_from_id(p_id)
-            self.delete_source(p)
+            if self.delete_source(p):
+                self.db.commit_media_object(p,trans)
 
         for key in self.db.get_place_id_keys():
             p = self.db.find_place_from_id(key)
-            self.delete_source(self.db.find_place_from_id(key))
+            if self.delete_source(self.db.find_place_from_id(key)):
+                self.db.commit_place(p,trans)
 
-        self.update(0)
+        self.db.remove_source_id(self.source.get_id(),trans)
+        self.db.add_transaction(trans)
+        self.update()

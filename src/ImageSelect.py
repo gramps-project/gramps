@@ -525,7 +525,7 @@ class Gallery(ImageSelect):
                 if GrampsCfg.globalprop:
                     GlobalMediaProperties(self.db,photo,None)
             else:
-                if self.db.get_object_map().has_key(data.data):
+                if self.db.has_object_id(data.data):
                     icon_index = self.get_index(w,x,y)
                     index = 0
                     for p in self.dataobj.get_media_list():
@@ -822,7 +822,10 @@ class LocalMediaProperties:
         if self.lists_changed:
             self.photo.set_attribute_list(self.alist)
             self.parent.lists_changed = 1
-        self.db.commit_media_object(self.object)
+
+        trans = self.db.start_transaction()
+        self.db.commit_media_object(self.object,trans)
+        self.db.add_transaction(trans)
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1061,7 +1064,9 @@ class GlobalMediaProperties:
             self.object.set_attribute_list(self.alist)
         if self.update != None:
             self.update()
-        self.db.commit_media_object(self.object)
+        trans = self.db.start_transaction()
+        self.db.commit_media_object(self.object,trans)
+        self.db.add_transaction(trans)
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1115,8 +1120,8 @@ class DeleteMediaQuery:
         self.update = update
         
     def query_response(self):
-        del self.db.get_object_map()[self.media.get_id()]
-
+        trans = self.db.start_transaction()
+        
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
             nl = []
@@ -1128,8 +1133,10 @@ class DeleteMediaQuery:
                     change = 1
             if change:
                 p.set_media_list(nl)
+                self.db.commit_person(p,trans)
 
-        for p in self.db.get_family_id_map().values():
+        for fid in self.db.get_family_keys():
+            p = self.db.find_family_from_id(fid)
             nl = []
             change = 0
             for photo in p.get_media_list():
@@ -1139,9 +1146,10 @@ class DeleteMediaQuery:
                     change = 1
             if change:
                 p.set_media_list(nl)
+                self.db.commit_family(p,trans)
 
         for key in self.db.get_source_keys():
-            p = self.db.get_source(key)
+            sid = self.db.find_source_from_id(key,trans)
             nl = []
             change = 0
             for photo in p.get_media_list():
@@ -1151,9 +1159,10 @@ class DeleteMediaQuery:
                     change = 1
             if change:
                 p.set_media_list(nl)
+                self.db.commit_source(p,trans)
 
         for key in self.db.get_place_id_keys():
-            p = self.db.get_place_id(key)
+            p = self.db.find_place_from_id(key)
             nl = []
             change = 0
             for photo in p.get_media_list():
@@ -1163,6 +1172,9 @@ class DeleteMediaQuery:
                     change = 1
             if change:
                 p.set_media_list(nl)
+                self.db.commit_place(p,trans)
 
+        self.db.remove_object(self.media.get_id(),trans)
+        self.db.add_transaction(trans)
         if self.update:
-            self.update(0)
+            self.update()

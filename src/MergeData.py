@@ -307,7 +307,7 @@ class MergePeople:
                 event = self.p2.get_death()
                 event.set_name("Alternate Death")
                 self.p1.add_event(event)
-            
+
         if self.glade.get_widget("bfather2").get_active():
             orig_family = self.p1.get_main_parents_family_id()
             if orig_family:
@@ -347,7 +347,6 @@ class MergePeople:
         try:
             self.db.remove_person_id(self.p2.get_id())
             self.db.personMap[self.p1.get_id()] = self.p1
-            self.db.build_person_display(self.p1.get_id(),old_id)
         except:
             print "%s is not in the person map!" % (GrampsCfg.nameof(self.p2))
         self.update(self.p1,self.p2,old_id)
