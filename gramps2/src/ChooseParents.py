@@ -279,27 +279,27 @@ class ChooseParents:
         if self.bday and self.bday.get_year_valid():
             if pbday and pbday.get_year_valid():
                 # reject if parents birthdate + 10 > child birthdate
-                if pbday.get_low_year()+10 > self.bday.get_high_year():
+                if pbday.get_year()+10 > self.bday.get_high_year():
                     return 0
 
                 # reject if parents birthdate + 90 < child birthdate 
-                if pbday.get_high_year()+90 < self.bday.get_low_year():
+                if pbday.get_high_year()+90 < self.bday.get_year():
                     return 0
 
                 if pdday and pdday.get_year_valid():
                     # reject if parents birthdate + 10 > child deathdate 
-                    if self.dday and pbday.get_low_year()+10 > self.dday.get_high_year():
+                    if self.dday and pbday.get_year()+10 > self.dday.get_high_year():
                         return 0
                 
         if self.dday and self.dday.get_year_valid():
             if pbday and pbday.get_year_valid():
                 # reject if parents deathday + 3 < childs birth date 
-                if pdday and self.bday and pdday.get_high_year()+3 < self.bday.get_low_year():
+                if pdday and self.bday and pdday.get_high_year()+3 < self.bday.get_year():
                     return 0
 
             if pdday and pdday.get_year_valid():
                 # reject if parents deathday + 150 < childs death date 
-                if pdday.get_high_year() + 150 < self.dday.get_low_year():
+                if pdday.get_high_year() + 150 < self.dday.get_year():
                     return 0
         return 1
 

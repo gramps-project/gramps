@@ -312,19 +312,19 @@ class AddSpouse:
 
             if pdday.get_year_valid():
                 # reject if person birthdate is after the spouse deathdate 
-                if self.bday.get_low_year() + 10 > pdday.get_high_year():
+                if self.bday.get_year() + 10 > pdday.get_high_year():
                     return 0
                 
                 # reject if person birthdate is more than 100 years 
                 # before the spouse deathdate
-                if self.bday.get_high_year() + 100 < pdday.get_low_year():
+                if self.bday.get_high_year() + 100 < pdday.get_year():
                     return 0
 
         if self.dday.get_year_valid():
             if pbday.get_year_valid():
                 # reject if person deathdate was prior to 
                 # the spouse birthdate 
-                if self.dday.get_high_year() < pbday.get_low_year() + 10:
+                if self.dday.get_high_year() < pbday.get_year() + 10:
                     return 0
 
             if pdday.get_year_valid():
