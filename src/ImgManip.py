@@ -22,7 +22,6 @@ import os
 import const
 import signal
 import md5
-import popen2
 import gtk
 
 class ImgManip:
@@ -44,6 +43,8 @@ class ImgManip:
         os.system(cmd)
         
     def fmt_data(self,cnv):
+        import popen2
+        
         cmd = "%s '%s' '%s:-'" % (const.convert,self.src,cnv)
         r,w = popen2.popen2(cmd)
         buf = r.read()
@@ -52,6 +53,8 @@ class ImgManip:
         return buf
 
     def fmt_scale_data(self,x,y,cnv):
+        import popen2
+        
         cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,self.src,cnv)
         signal.signal (signal.SIGCHLD, signal.SIG_DFL)
         r,w = popen2.popen2(cmd)
