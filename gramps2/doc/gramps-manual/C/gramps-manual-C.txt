@@ -289,11 +289,62 @@ of the GRAMPS window shows the preview (if available) and the information
 about the Media Object. 
 
 <Usage
+
+As commonly encountered in everyday life, in GRAMPS there is usually more 
+than one way to accomplish something. The alternatives to some actions 
+will therefore be listed as appropriate. 
+
 <	<Opening database
+
+To open a database, either choose File->Open menu item or click on the 
+Open button on the Toolbar. You will then be prompted with the following 
+window (Figure X) asking to specify the name of the database. 
+Either type the full path into the text entry field, or press 
+Browse... button to get to the graphical file selector dialog. 
+
+If you previously opened files with GRAMPS, you can retreive your past
+selections from the drop-down menu by pressing the down arrow button. 
+Finally, if the Revision Control System (RCS) is enabled in the Preferences
+dialog, the check-box prompting to revert the database to an older version 
+from RCS will be available. Check it to revert your database to an older RCS
+version. 
+
+Note: the name you type or select should be the directory (folder) which has
+your data (data.gramps or data.zodb files) as well as any possible copies 
+of Media Objects. 
+
 <	<Starting new database
+
+To start a fresh database, choose File->New menu item. You will then be 
+prompted with the File Save dialog asking to specify the name under which 
+the new database will be stored. Choose an empty directory for your new 
+database (create one if necessary). 
+
 <	<Saving database
+
+To save changes made to your database, choose File->Save menu item or click
+on the Save button on the Toolbar. The Status line will then 
+display "Saving <filename>..." message, and the Progress bar will advance as
+the saving progresses. 
+
 <	<Importing data
+
+Importing data allows you to incorporate the data created in other 
+genealogical programs into your currently open GRAMPS database. 
+GRAMPS can import GEDCOM data files from a number of software packages, 
+as long as they comply with GEDCOM standards. 
+To import GEDCOM file, choose File->Import->GEDCOM menu item. You will then 
+be prompted with the Open File dialog asking to specify the GEDCOM file name.
+
+Upon starting the import, GRAMPS will display the following GEDCOM import 
+dialog (Figure Y) with the summary of the information about the data. 
+The information is updated as the import progresses. 
+
 <	<Exporting data
+
+Exporting data allows you to share any portion of you GRAMPS database with 
+other researchers by way of standard GEDCOM files. 
+
 <	<Editing
 <	<	Edit personal data
 <	<	Edit relationship data
