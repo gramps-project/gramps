@@ -3,6 +3,7 @@
 	* src/PeopleStore.py: handle corrupt iter
 	* src/GenericFilter.py: handle unicode
 	* src/docgen/PSDrawDoc.py: handle iso-8859-1 characters
+	* src/docgen/PdfDoc.py: handle iso-8859-1 characters
 
 2004-01-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/AncestorChart2.py: Add hotkeys to check button labels.
