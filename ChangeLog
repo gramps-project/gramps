@@ -1,3 +1,6 @@
+2003-12-14  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/dialog.glade: Add format controls for notes.
+
 2003-12-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py (write_note): Implement function.
 	* src/edit_person.glade: Correct hotkeys.
