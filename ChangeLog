@@ -1,4 +1,6 @@
 2003-07-22  Tim Waugh  <twaugh@redhat.com>
+	* src/RelLib.py: Made Person.probablyAlive() take partners into
+	consideration if all else fails.
 	* src/plugins/WriteGedcom.py, src/plugins/gedcomexport.glade: New
 	option for obscuring names of living people.
 
