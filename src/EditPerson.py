@@ -283,11 +283,10 @@ class EditPerson:
         self.lds_baptism = self.person.getLdsBaptism()
         self.lds_endowment = self.person.getLdsEndowment()
         self.lds_sealing = self.person.getLdsSeal()
-        
-        if GrampsCfg.uselds:
-            if self.lds_baptism or self.lds_endowment or self.lds_sealing:
-                self.get_widget("lds_tab").show()
-                self.get_widget("lds_page").show()
+
+        if GrampsCfg.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
+            self.get_widget("lds_tab").show()
+            self.get_widget("lds_page").show()
 
         types = const.NameTypesMap.keys()
         types.sort()
