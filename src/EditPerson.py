@@ -142,6 +142,8 @@ class EditPerson:
 
         self.complete = self.get_widget('complete')
         self.complete.set_sensitive(mod)
+        self.private = self.get_widget('private')
+        self.private.set_sensitive(mod)
         self.name_delete_btn = self.top.get_widget('aka_delete')
         self.name_edit_btn = self.top.get_widget('aka_edit')
         self.web_delete_btn = self.top.get_widget('delete_url')
@@ -246,7 +248,8 @@ class EditPerson:
         self.person_photo = self.get_widget("personPix")
         self.eventbox = self.get_widget("eventbox1")
 
-        self.get_widget("changed").set_text(person.get_change_display())
+        self.get_widget("birth_stat").set_sensitive(mod)
+        self.get_widget("death_stat").set_sensitive(mod)
 
         self.prefix_label = self.get_widget('prefix_label')
 
@@ -478,8 +481,8 @@ class EditPerson:
                                            self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
-        if self.person.get_complete_flag():
-            self.complete.set_active(1)
+        self.complete.set_active(self.person.get_complete_flag())
+        self.private.set_active(self.person.get_privacy())
 
         self.eventbox.connect('button-press-event',self.image_button_press)
 
@@ -1509,6 +1512,8 @@ class EditPerson:
 
         if self.complete.get_active() != self.person.get_complete_flag():
             changed = True
+        if self.private.get_active() != self.person.get_privacy():
+            changed = True
 
         if self.person.get_gramps_id() != idval:
             changed = True
@@ -1999,8 +2004,8 @@ class EditPerson:
         if format != self.person.get_note_format():
             self.person.set_note_format(format)
 
-        if self.complete.get_active() != self.person.get_complete_flag():
-            self.person.set_complete_flag(self.complete.get_active())
+        self.person.set_complete_flag(self.complete.get_active())
+        self.person.set_privacy(self.private.get_active())
 
         if not self.lds_not_loaded:
             self.check_lds()

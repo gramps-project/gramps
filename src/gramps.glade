@@ -1318,7 +1318,7 @@
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			  <signal name="activate" handler="on_apply_filter_clicked"/>
 			</widget>
@@ -4330,7 +4330,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 		      </child>
@@ -4523,7 +4523,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 		      </child>
@@ -4997,7 +4997,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		  </child>
@@ -5177,7 +5177,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 	      </child>
@@ -5586,7 +5586,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -5607,7 +5607,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -5653,7 +5653,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -5674,7 +5674,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -6666,7 +6666,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 		      </child>
@@ -6912,7 +6912,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 		      </child>
@@ -7384,7 +7384,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">True</property>
 		</widget>
 		<packing>
@@ -7537,7 +7537,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 	      </child>
@@ -7708,7 +7708,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 	      </child>
@@ -8402,7 +8402,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -8424,7 +8424,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -8446,7 +8446,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -8618,7 +8618,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -8741,7 +8741,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -8762,7 +8762,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -8789,91 +8789,6 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkCheckButton" id="complete">
-			  <property name="border_width">6</property>
-			  <property name="visible">True</property>
-			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Information i_s complete</property>
-			  <property name="use_underline">True</property>
-			  <property name="relief">GTK_RELIEF_NORMAL</property>
-			  <property name="focus_on_click">True</property>
-			  <property name="active">False</property>
-			  <property name="inconsistent">False</property>
-			  <property name="draw_indicator">True</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">0</property>
-			  <property name="right_attach">5</property>
-			  <property name="top_attach">16</property>
-			  <property name="bottom_attach">17</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkHBox" id="hbox94">
-			  <property name="visible">True</property>
-			  <property name="homogeneous">False</property>
-			  <property name="spacing">0</property>
-
-			  <child>
-			    <widget class="GtkLabel" id="label396">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Last changed: </property>
-			      <property name="use_underline">False</property>
-			      <property name="use_markup">False</property>
-			      <property name="justify">GTK_JUSTIFY_LEFT</property>
-			      <property name="wrap">False</property>
-			      <property name="selectable">False</property>
-			      <property name="xalign">0</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">False</property>
-			      <property name="fill">False</property>
-			    </packing>
-			  </child>
-
-			  <child>
-			    <placeholder/>
-			  </child>
-
-			  <child>
-			    <widget class="GtkLabel" id="changed">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes"></property>
-			      <property name="use_underline">False</property>
-			      <property name="use_markup">False</property>
-			      <property name="justify">GTK_JUSTIFY_LEFT</property>
-			      <property name="wrap">False</property>
-			      <property name="selectable">False</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			    <packing>
-			      <property name="padding">0</property>
-			      <property name="expand">True</property>
-			      <property name="fill">True</property>
-			    </packing>
-			  </child>
-			</widget>
-			<packing>
-			  <property name="left_attach">6</property>
-			  <property name="right_attach">11</property>
-			  <property name="top_attach">16</property>
-			  <property name="bottom_attach">17</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options">fill</property>
-			</packing>
-		      </child>
-
-		      <child>
 			<widget class="GtkHBox" id="hbox97">
 			  <property name="visible">True</property>
 			  <property name="homogeneous">False</property>
@@ -8888,7 +8803,7 @@ Other</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
 			      <property name="has_frame">True</property>
-			      <property name="invisible_char">*</property>
+			      <property name="invisible_char" translatable="yes">*</property>
 			      <property name="activates_default">False</property>
 			    </widget>
 			    <packing>
@@ -8943,7 +8858,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -8966,7 +8881,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			  <signal name="focus_out_event" handler="on_given_focus_out" last_modification_time="Thu, 30 Sep 2004 16:30:21 GMT"/>
 			</widget>
@@ -9019,7 +8934,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -9153,7 +9068,7 @@ Other</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
 			      <property name="has_frame">True</property>
-			      <property name="invisible_char">*</property>
+			      <property name="invisible_char" translatable="yes">*</property>
 			      <property name="activates_default">False</property>
 			    </widget>
 			    <packing>
@@ -9249,6 +9164,51 @@ Other</property>
 			  <property name="bottom_attach">8</property>
 			  <property name="x_options">fill</property>
 			  <property name="y_options">fill</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkCheckButton" id="complete">
+			  <property name="border_width">6</property>
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="label" translatable="yes">Information i_s complete</property>
+			  <property name="use_underline">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <property name="active">False</property>
+			  <property name="inconsistent">False</property>
+			  <property name="draw_indicator">True</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">0</property>
+			  <property name="right_attach">5</property>
+			  <property name="top_attach">16</property>
+			  <property name="bottom_attach">17</property>
+			  <property name="x_options"></property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkCheckButton" id="private">
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="label" translatable="yes">Information is pri_vate</property>
+			  <property name="use_underline">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <property name="active">False</property>
+			  <property name="inconsistent">False</property>
+			  <property name="draw_indicator">True</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">6</property>
+			  <property name="right_attach">11</property>
+			  <property name="top_attach">16</property>
+			  <property name="bottom_attach">17</property>
+			  <property name="x_options"></property>
+			  <property name="y_options"></property>
 			</packing>
 		      </child>
 		    </widget>
@@ -12562,7 +12522,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -12686,7 +12646,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -12832,7 +12792,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -12853,7 +12813,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -12942,7 +12902,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -13035,7 +12995,7 @@ Other</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -13446,7 +13406,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -15179,7 +15139,7 @@ Other</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -15686,7 +15646,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15707,7 +15667,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15728,7 +15688,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15749,7 +15709,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15770,7 +15730,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15791,7 +15751,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15812,7 +15772,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15833,7 +15793,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15903,7 +15863,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -15949,7 +15909,7 @@ Other</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -18679,7 +18639,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -18700,7 +18660,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -18721,7 +18681,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -18742,7 +18702,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -18763,7 +18723,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -18784,7 +18744,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -18805,7 +18765,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -18826,7 +18786,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes"></property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -19044,7 +19004,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes">I</property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -19065,7 +19025,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes">F</property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -19086,7 +19046,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes">P</property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -19107,7 +19067,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes">S</property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -19128,7 +19088,7 @@ Text Beside Icons</property>
 				  <property name="max_length">0</property>
 				  <property name="text" translatable="yes">O</property>
 				  <property name="has_frame">True</property>
-				  <property name="invisible_char">*</property>
+				  <property name="invisible_char" translatable="yes">*</property>
 				  <property name="activates_default">False</property>
 				</widget>
 				<packing>
@@ -19816,7 +19776,7 @@ Text Beside Icons</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -21146,7 +21106,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -21814,7 +21774,7 @@ Very High</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -21835,7 +21795,7 @@ Very High</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -21856,7 +21816,7 @@ Very High</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -22201,7 +22161,7 @@ Very High</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -22541,7 +22501,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -23095,7 +23055,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -23116,7 +23076,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -23137,7 +23097,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -23158,7 +23118,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -24377,7 +24337,7 @@ Very High</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -24447,7 +24407,7 @@ Very High</property>
 			  <property name="max_length">0</property>
 			  <property name="text" translatable="yes"></property>
 			  <property name="has_frame">True</property>
-			  <property name="invisible_char">*</property>
+			  <property name="invisible_char" translatable="yes">*</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
@@ -24474,7 +24434,7 @@ Very High</property>
 			      <property name="max_length">0</property>
 			      <property name="text" translatable="yes"></property>
 			      <property name="has_frame">True</property>
-			      <property name="invisible_char">*</property>
+			      <property name="invisible_char" translatable="yes">*</property>
 			      <property name="activates_default">False</property>
 			    </widget>
 			    <packing>
@@ -26725,7 +26685,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -26746,7 +26706,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -26767,7 +26727,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -26788,7 +26748,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -27841,7 +27801,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -28511,7 +28471,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -28532,7 +28492,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -28553,7 +28513,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -28574,7 +28534,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -28595,7 +28555,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -28641,7 +28601,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -28687,7 +28647,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -29045,7 +29005,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -29066,7 +29026,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -29087,7 +29047,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -29108,7 +29068,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -29129,7 +29089,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -29150,7 +29110,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -29196,7 +29156,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -29829,7 +29789,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -29851,7 +29811,7 @@ Very High</property>
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -30181,7 +30141,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -30202,7 +30162,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -30223,7 +30183,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -30244,7 +30204,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -30334,7 +30294,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		      <accessibility>
 			<atkrelation target="patronymic" type="label-for"/>
@@ -30414,7 +30374,7 @@ Very High</property>
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -31131,7 +31091,7 @@ Family name Given name
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
@@ -32226,7 +32186,7 @@ Family name Given name
 		      <property name="max_length">0</property>
 		      <property name="text" translatable="yes"></property>
 		      <property name="has_frame">True</property>
-		      <property name="invisible_char">*</property>
+		      <property name="invisible_char" translatable="yes">*</property>
 		      <property name="activates_default">False</property>
 		    </widget>
 		    <packing>
@@ -32386,7 +32346,7 @@ Family name Given name
 		  <property name="max_length">0</property>
 		  <property name="text" translatable="yes"></property>
 		  <property name="has_frame">True</property>
-		  <property name="invisible_char">*</property>
+		  <property name="invisible_char" translatable="yes">*</property>
 		  <property name="activates_default">False</property>
 		</widget>
 		<packing>
