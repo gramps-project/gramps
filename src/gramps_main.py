@@ -384,7 +384,9 @@ class Gramps:
 
         self.gtop.signal_autoconnect({
             "on_back_clicked" : self.back_clicked,
+            "on_back_pressed" : self.back_pressed,
             "on_fwd_clicked" : self.fwd_clicked,
+            "on_fwd_pressed" : self.fwd_pressed,
             "on_editbtn_clicked" : self.edit_button_clicked,
             "on_addbtn_clicked" : self.add_button_clicked,
             "on_removebtn_clicked" : self.remove_button_clicked,
@@ -490,10 +492,53 @@ class Gramps:
         else:
             self.hist_gomenuitem.set_sensitive(0)
 
-    def back_clicked(self,obj):
+    def build_backhistmenu(self):
+        """Builds and displays the menu with the back portion of the history"""
+        if self.hindex > 0:
+            backhistmenu = gtk.Menu()
+            backhistmenu.set_title(_('Back Menu'))
+            pids = self.history[:self.hindex]
+            pids.reverse()
+            num = 1
+            for pid in pids:
+                person = self.db.getPerson(pid)
+                item = gtk.MenuItem("%s [%s]" % 
+                    (person.getPrimaryName().getName(),pid))
+                item.connect("activate",self.back_clicked,num)
+                item.show()
+                backhistmenu.append(item)
+                num = num + 1
+            backhistmenu.popup(None,None,None,0,0)
+
+    def back_pressed(self,obj,event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_backhistmenu()
+
+    def build_fwdhistmenu(self):
+        """Builds and displays the menu with the forward portion of the history"""
+        if self.hindex < len(self.history)-1:
+            fwdhistmenu = gtk.Menu()
+            fwdhistmenu.set_title(_('Forward Menu'))
+            pids = self.history[self.hindex+1:]
+            num = 1
+            for pid in pids:
+                person = self.db.getPerson(pid)
+                item = gtk.MenuItem("%s [%s]" % 
+                    (person.getPrimaryName().getName(),pid))
+                item.connect("activate",self.fwd_clicked,num)
+                item.show()
+                fwdhistmenu.append(item)
+                num = num + 1
+            fwdhistmenu.popup(None,None,None,0,0)
+
+    def fwd_pressed(self,obj,event):
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_fwdhistmenu()
+
+    def back_clicked(self,obj,step=1):
         if self.hindex > 0:
             try:
-                self.hindex -= 1
+                self.hindex -= step
                 self.active_person = self.db.getPerson(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
@@ -516,10 +561,10 @@ class Gramps:
             self.fwdbtn.set_sensitive(1)
             self.forward.set_sensitive(1)
 
-    def fwd_clicked(self,obj):
+    def fwd_clicked(self,obj,step=1):
         if self.hindex+1 < len(self.history):
             try:
-                self.hindex += 1
+                self.hindex += step
                 self.active_person = self.db.getPerson(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)

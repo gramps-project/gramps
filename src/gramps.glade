@@ -758,6 +758,7 @@
 		  <property name="use_stock">True</property>
 		  <property name="new_group">True</property>
 		  <signal name="clicked" handler="on_back_clicked" last_modification_time="Thu, 14 Aug 2003 02:19:55 GMT"/>
+		  <signal name="button_press_event" handler="on_back_pressed" last_modification_time="Tue, 19 Aug 2003 00:07:23 GMT"/>
 		</widget>
 		<packing>
 		  <property name="new_group">True</property>
@@ -770,6 +771,7 @@
 		  <property name="label">gtk-go-forward</property>
 		  <property name="use_stock">True</property>
 		  <signal name="clicked" handler="on_fwd_clicked" last_modification_time="Thu, 14 Aug 2003 02:20:17 GMT"/>
+		  <signal name="button_press_event" handler="on_fwd_pressed" last_modification_time="Tue, 19 Aug 2003 00:27:51 GMT"/>
 		</widget>
 	      </child>
 
