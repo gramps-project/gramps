@@ -204,7 +204,7 @@ class Date:
             else:
                 self.start.set(text)
                 self.range = 0
-        except:
+        except Date.Error:
             self.range = -1
             self.text = text
 
@@ -423,7 +423,7 @@ class SingleDate:
 
     def setMonthStr(self,text):
         try:
-            self.month = SingleDate.m2num[string.lower(text[0:3])]
+            self.month = _m2num[string.lower(text[0:3])]
         except KeyError:
             self.setMonthStrEng(text)
 
@@ -768,18 +768,6 @@ class SingleDate:
     def setModeVal(self,val):
         self.mode = val
     
-    def getMode(self,val):
-        if val == None:
-            self.mode = SingleDate.exact
-        elif string.lower(val)[0:2] == "be":
-            self.mode = SingleDate.before
-        elif string.lower(val)[0:2] == "af":
-            self.mode = SingleDate.after
-        elif string.lower(val)[0:2] == "ab":
-            self.mode = SingleDate.about
-        else:
-            self.mode = SingleDate.exact
-        
     def set(self,text):
         if self.calendar == GREGORIAN:
             self.set_gregorian(text)
@@ -794,6 +782,7 @@ class SingleDate:
         match = SingleDate.fmt2.match(text)
         if match:
             matches = match.groups()
+            self.setMode(matches[0])
             if l == 0:
                 mon = string.lower(matches[2])
             else:
@@ -811,6 +800,7 @@ class SingleDate:
         match = SingleDate.fmt3.match(text)
         if match:
             matches = match.groups()
+            self.setMode(matches[0])
             self.setYearVal(matches[3])
             self.setMonthVal(matches[2])
             self.setDayVal(matches[1])
@@ -819,6 +809,7 @@ class SingleDate:
         match = SingleDate.fmt4.match(text)
         if match:
             matches = match.groups()
+            self.setMode(matches[0])
             if l == 0:
                 mon = string.lower(matches[1])
             else:
@@ -831,6 +822,7 @@ class SingleDate:
         match = SingleDate.fmt5.match(text)
         if match:
             matches = match.groups()
+            self.setMode(matches[0])
             self.setYearVal(matches[1])
             self.month = UNDEF
             self.day = UNDEF
@@ -844,7 +836,7 @@ class SingleDate:
         match = SingleDate.fmt2.match(text)
         if match != None:
             matches = match.groups()
-            self.getMode(matches[0])
+            self.setMode(matches[0])
             self.setMonthStr(matches[2])
             if self.month == UNDEF:
                 raise Date.Error,text
@@ -858,7 +850,7 @@ class SingleDate:
         match = SingleDate.fmt5.match(text)
         if match != None:
             matches = match.groups()
-            self.getMode(matches[0])
+            self.setMode(matches[0])
             self.month = UNDEF
             self.day = UNDEF
             self.year = int(matches[1])
@@ -867,7 +859,7 @@ class SingleDate:
         match = SingleDate.fmt7.match(text)
         if match != None:
             matches = match.groups()
-            self.getMode(matches[0])
+            self.setMode(matches[0])
             if Date.entryCode == 2:
                 self.setMonthVal(matches[2])
                 self.setYearVal(matches[1])
@@ -879,7 +871,7 @@ class SingleDate:
         match = SingleDate.fmt3.match(text)
         if match != None:
             matches = match.groups()
-            self.getMode(matches[0])
+            self.setMode(matches[0])
             if Date.entryCode == 0:
                 self.setMonthVal(matches[1])
                 self.setDayVal(matches[2])
@@ -897,7 +889,7 @@ class SingleDate:
         match = SingleDate.fmt1.match(text)
         if match != None:
             matches = match.groups()
-            self.getMode(matches[0])
+            self.setMode(matches[0])
             self.setMonthStr(matches[1])
             if self.month == UNDEF:
                 raise Date.Error,text
@@ -912,7 +904,7 @@ class SingleDate:
         match = SingleDate.fmt4.match(text)
         if match != None:
             matches = match.groups()
-            self.getMode(matches[0])
+            self.setMode(matches[0])
             self.setMonthStr(matches[1])
             if self.month == UNDEF:
                 raise Date.Error,text
@@ -924,7 +916,7 @@ class SingleDate:
         match = SingleDate.fmt6.match(text)
         if match != None:
             matches = match.groups()
-            self.getMode(matches[0])
+            self.setMode(matches[0])
             self.setMonthVal(matches[1])
             self.day = UNDEF
             self.year = UNDEF
