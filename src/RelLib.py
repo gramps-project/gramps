@@ -1548,7 +1548,8 @@ class Event(PrimaryObject,DataObj):
         """
         if other == None:
             other = Event (None)
-        if (self.name != other.name or self.place != other.place or
+        if (self.name != other.name or 
+            ((self.place or other.place) and (self.place != other.place)) or
             self.description != other.description or self.cause != other.cause or
             self.private != other.private or
             (not self.get_date_object().is_equal(other.get_date_object())) or
