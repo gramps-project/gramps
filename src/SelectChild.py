@@ -193,14 +193,14 @@ class SelectChild:
                 if frel == "Birth":
                     frel = "Unknown"
 
-            if mrel == "Birth" and frel == "Birth":
-                family = select_child.getMainFamily()
-                if family != None and family != self.family:
-                    family.removeChild(select_child)
-
-                select_child.setMainFamily(self.family)
-            else:
-                select_child.addAltFamily(self.family,mrel,frel)
+#            if mrel == "Birth" and frel == "Birth":
+#                family = select_child.getMainFamily()
+#                if family != None and family != self.family:
+#                    family.removeChild(select_child)
+#
+#                select_child.setMainFamily(self.family)
+#            else:
+            select_child.addAltFamily(self.family,mrel,frel)
 
             Utils.modified()
         
@@ -373,11 +373,11 @@ class NewChild:
         mrel = const.childRelations[self.mrel.get_text()]
         frel = const.childRelations[self.frel.get_text()]
 
-        if mrel == "Birth" and frel == "Birth":
-            person.setMainFamily(self.family)
-        else:
-            person.addAltFamily(self.family,mrel,frel)
-
+#        if mrel == "Birth" and frel == "Birth":
+#            person.setMainFamily(self.family)
+#        else:
+        person.addAltFamily(self.family,mrel,frel)
+            
         self.family.addChild(person)
         
         # must do an apply filter here to make sure the main window gets updated

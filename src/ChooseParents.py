@@ -259,47 +259,18 @@ class ChooseParents:
         Changes the family type of the specified family. If the family
         is None, the the relationship type shoud be deleted.
         """
-        is_main = mother_rel == "Birth" and father_rel == "Birth"
-
-        if family == self.person.getMainFamily():
-            # make sure that the person is listed as a child
-            if self.person not in family.getChildList():
-                family.addChild(self.person)
-            # if the relationships indicate that this is no longer
-            # the main family, we need to delete the main family,
-            # and add it as an alternate family (assuming that it
-            # does not already in the list)
-            if not is_main:
-                self.person.setMainFamily(None)
-                for fam in self.person.getAltFamilyList():
-                    if fam[0] == family:
-                        if fam[1] == mother_rel and fam[2] == father_rel:
-                            return
-                        else:
-                            self.person.removeFamily(fam[0])
-                else:
+        if self.person not in family.getChildList():
+            family.addChild(self.person)
+        for fam in self.person.getAltFamilyList():
+            if family == fam[0]:
+                if mother_rel == fam[1] and father_rel == fam[2]:
+                    return
+                if mother_rel != fam[1] or father_rel != fam[2]:
+                    self.person.removeAltFamily(family)
                     self.person.addAltFamily(family,mother_rel,father_rel)
-        # The family is not already the main family
+                    break
         else:
-            if self.person not in family.getChildList():
-                family.addChild(self.person)
-            for fam in self.person.getAltFamilyList():
-                if family == fam[0]:
-                    if is_main:
-                        self.person.setMainFamily(family)
-                        self.person.removeAltFamily(family)
-                        break
-                    if mother_rel == fam[1] and father_rel == fam[2]:
-                        return
-                    if mother_rel != fam[1] or father_rel != fam[2]:
-                        self.person.removeAltFamily(family)
-                        self.person.addAltFamily(family,mother_rel,father_rel)
-                        break
-            else:
-                if is_main:
-                    self.person.setMainFamily(family)
-                else:
-                    self.person.addAltFamily(family,mother_rel,father_rel)
+            self.person.addAltFamily(family,mother_rel,father_rel)
         Utils.modified()
 
     def add_parent_close(self,obj):

@@ -29,7 +29,7 @@ class HaveAltFamilies(Filter.Filter):
     "People who were adopted"
 
     def match(self,person):
-        return len(person.getAltFamilyList()) > 0
+        return len(person.getAltFamilyList()) > 1
 
 
 Filter.register_filter(HaveAltFamilies,
