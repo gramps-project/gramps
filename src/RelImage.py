@@ -61,6 +61,10 @@ def import_media_object(filename,path,base):
         except:
             GnomeErrorDialog(_("Could not create %s") % thumb)
         
+        path = "%s/%s" % (thumb,base)
+        
+        mk_thumb(filename,path,const.thumbScale)
+        
         try:
             path = "%s/%s" % (thumb,base)
         

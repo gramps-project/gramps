@@ -236,11 +236,14 @@ class Gallery(ImageSelect):
         self.selectedIcon = iconNumber
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
+        import urlparse
+        
 	if data and data.format == 8:
             icon_index = w.get_icon_at(x,y)
             d = string.strip(string.replace(data.data,'\0',' '))
-            if d[0:5] == "file:":
-                name = d[5:]
+            protocol,site,file, j,k,l = urlparse.urlparse(d)
+            if protocol == "file":
+                name = file
                 mime = utils.get_mime_type(name)
                 photo = Photo()
                 photo.setPath(name)
@@ -248,6 +251,21 @@ class Gallery(ImageSelect):
                 description = os.path.basename(name)
                 photo.setDescription(description)
                 self.savephoto(photo)
+            elif protocol != "":
+                import urllib
+                u = urllib.URLopener()
+                tfile,headers = u.retrieve(d)
+                mime = utils.get_mime_type(tfile)
+                photo = Photo()
+                photo.setMimeType(mime)
+                photo.setDescription(d)
+                self.savephoto(photo)
+                try:
+                    name = RelImage.import_media_object(tfile,self.path,photo.getId())
+                    photo.setPath(name)
+                except:
+                    GnomeErrorDialog(_("Could not import %s") % d)
+                    return
             else:
                 if self.db.getObjectMap().has_key(data.data):
                     index = 0
@@ -372,7 +390,7 @@ class Gallery(ImageSelect):
     def popup_convert_to_private(self, obj):
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
         object = photo.getReference()
-        name = RelImage.import_media_object(object.getPath(),self.path,self.prefix)
+        name = RelImage.import_media_object(object.getPath(),self.path,object.getId())
     
         object.setPath(name)
         object.setLocal(1)
