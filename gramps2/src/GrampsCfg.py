@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -251,7 +251,8 @@ def loadConfig(call):
     gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style","BOTH")
 
     try:
-        gnome_toolbar = eval("gtk.TOOLBAR_%s" % gnome_toolbar_str.upper())
+        gnome_toolbar = eval("gtk.TOOLBAR_%s" % 
+                        gnome_toolbar_str.replace('-','_').upper())
     except:
         gnome_toolbar = 2
         
@@ -876,7 +877,8 @@ class GrampsPreferences:
         save_toolbar = self.top.get_widget("tooloptmenu").get_history()
         gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style",'BOTH')
         try:
-            gnome_toolbar = eval("gtk.TOOLBAR_%s" % gnome_toolbar_str.upper())
+            gnome_toolbar = eval("gtk.TOOLBAR_%s" % 
+                            gnome_toolbar_str.replace('-','_').upper())
         except:
             gnome_toolbar = 2
 

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Graphical Reports/Ancestor Chart"
 
@@ -178,8 +180,8 @@ class AncestorChart:
         self.start = person
         self.max_generations = max
         self.output = output
-	self.box_width = 0
-	self.box_height = 0
+        self.box_width = 0
+        self.box_height = 0
         self.lines = 0
         self.display = display
         self.newpage = newpage
@@ -188,8 +190,8 @@ class AncestorChart:
         if output:
             self.doc.open(output)
         self.standalone = output
-        self.font = self.doc.style_list["AC-Normal"].get_font()
-        self.tfont = self.doc.style_list["AC-Title"].get_font()
+        self.font = self.doc.style_list["AC2-Normal"].get_font()
+        self.tfont = self.doc.style_list["AC2-Title"].get_font()
 
         self.filter(self.start,1)
 
@@ -318,13 +320,13 @@ class AncestorChart:
         g = BaseDoc.GraphicsStyle()
         g.set_height(self.box_height)
         g.set_width(self.box_width)
-        g.set_paragraph_style("AC-Normal")
+        g.set_paragraph_style("AC2-Normal")
         g.set_shadow(1,0.2/self.scale)
         g.set_fill_color((255,255,255))
         self.doc.add_draw_style("box",g)
 
         g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("AC-Title")
+        g.set_paragraph_style("AC2-Title")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
@@ -418,7 +420,7 @@ def _make_default_style(default_style):
     p = BaseDoc.ParagraphStyle()
     p.set_font(f)
     p.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("AC-Normal",p)
+    default_style.add_style("AC2-Normal",p)
 
     f = BaseDoc.FontStyle()
     f.set_size(16)
@@ -427,7 +429,7 @@ def _make_default_style(default_style):
     p.set_font(f)
     p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     p.set_description(_('The basic style used for the title display.'))
-    default_style.add_style("AC-Title",p)
+    default_style.add_style("AC2-Title",p)
 
 #------------------------------------------------------------------------
 #
@@ -446,11 +448,11 @@ class AncestorChartDialog(Report.DrawReportDialog):
         self.title.set_text(self.get_header(self.person.getPrimaryName().getName()))
         self.title.show()
         self.add_option(_('Title'),self.title)
-        self.compress = gtk.CheckButton(_('Compress chart'))
+        self.compress = gtk.CheckButton(_('Co_mpress chart'))
         self.compress.set_active(1)
         self.compress.show()
         self.add_option('',self.compress)
-        self.scale = gtk.CheckButton(_('Scale to fit on a single page'))
+        self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
         self.scale.set_active(1)
         self.scale.show()
         self.add_option('',self.scale)
@@ -527,7 +529,10 @@ _style_name = "default"
 _person_id = ""
 _max_gen = 10
 _disp_format = [ "$n", "%s $b" % _BORN, "%s $d" % _DIED ]
-_options = ( _person_id, _max_gen, _disp_format )
+_scale = 1
+_compress = 1
+_title = None
+_options = ( _person_id, _max_gen, _disp_format, _scale, _compress, _title )
 
 #------------------------------------------------------------------------
 #
@@ -550,11 +555,20 @@ class AncestorChartBareDialog(Report.BareReportDialog):
 
         self.max_gen = int(self.options[1])
         self.disp_format = string.join(self.options[2],'\n')
+        self.do_scale = int(self.options[3])
+        self.do_compress = int(self.options[4])
+        if self.options[5] is not None:
+            self.the_title = self.options[5]
+        else:
+            self.the_title = self.get_the_title()
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
         self.extra_textbox.get_buffer().set_text(
             self.disp_format,len(self.disp_format))
+        self.scale.set_active(self.do_scale)
+        self.compress.set_active(self.do_compress)
+        self.title.set_text(self.the_title)
         
         self.window.run()
 
@@ -563,11 +577,29 @@ class AncestorChartBareDialog(Report.BareReportDialog):
     # Customization hooks
     #
     #------------------------------------------------------------------------
+    def add_user_options(self):
+        self.title=gtk.Entry()
+        self.title.set_text(self.get_the_title())
+        self.title.show()
+        self.add_option(_('Title'),self.title)
+        self.compress = gtk.CheckButton(_('Co_mpress chart'))
+        self.compress.set_active(1)
+        self.compress.show()
+        self.add_option('',self.compress)
+        self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
+        self.scale.set_active(1)
+        self.scale.show()
+        self.add_option('',self.scale)
+
     def get_title(self):
         """The window title for this dialog"""
         return "%s - GRAMPS Book" % (_("Ancestor Chart"))
 
-    def get_header(self, name):
+    def get_the_title(self):
+        """The header line at the top of the dialog contents."""
+        return _("Ancestor Chart for %s") % self.person.getPrimaryName().getName()
+
+    def get_header(self,name):
         """The header line at the top of the dialog contents"""
         return _("Ancestor Chart for GRAMPS Book") 
 
@@ -587,6 +619,13 @@ class AncestorChartBareDialog(Report.BareReportDialog):
     def make_default_style(self):
         _make_default_style(self.default_style)
 
+    def parse_report_options_frame (self):
+        # Call base class
+        Report.BareReportDialog.parse_report_options_frame (self)
+        self.do_scale = self.scale.get_active()
+        self.do_compress = self.compress.get_active()
+        self.the_title = self.title.get_text()
+
     def on_cancel(self, obj):
         pass
 
@@ -600,7 +639,8 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.report_text )
+        self.options = ( self.person.getId(), self.max_gen, self.report_text, 
+                        self.do_scale, self.do_compress, self.the_title )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -616,8 +656,12 @@ def write_book_item(database,person,doc,options,newpage=0):
             person = database.getPerson(options[0])
         max_gen = int(options[1])
         disp_format = options[2]
+        scale = int(options[3])
+        compress = int(options[4])
+        title = options[5]
         return AncestorChart(database, person, max_gen,
-                                   disp_format, doc, None, newpage )
+                                   disp_format, doc, None, 
+                                   scale, compress, title, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
@@ -799,4 +843,3 @@ register_book_item(
     _style_file,
     _make_default_style
     )
-
