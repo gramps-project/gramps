@@ -114,11 +114,11 @@ def load_filters(dir):
         name = os.path.split(file)
         match = pymod.match(name[1])
         if match:
-            groups = match.groups()
+            plugin = match.groups()[0]
             try: 
-                plugin = __import__(groups[0])
+                __import__(plugin)
             except:
-                print _("Failed to load the module: %s") % groups[0]
+                print _("Failed to load the module: %s") % plugin
                 import traceback
                 traceback.print_exc()
 

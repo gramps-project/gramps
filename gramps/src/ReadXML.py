@@ -154,7 +154,7 @@ def loadData(database, filename, callback=None):
         GnomeErrorDialog("%s\n%s" % (filemsg,errmsg))
         return 0
     except IOError,msg:
-        errmsg = "%s\n%s" % (_("Error reading %s"),filename,str(msg))
+        errmsg = "%s\n%s" % (_("Error reading %s") % filename,str(msg))
         GnomeErrorDialog(errmsg)
         import traceback
         traceback.print_exc()

@@ -377,7 +377,7 @@ class EditPerson:
             self.person.setEventList(self.elist)
             self.person.setAlternateNames(self.nlist)
             self.person.setUrlList(self.ulist)
-            self.person.setAttributeList(epo.alist)
+            self.person.setAttributeList(self.alist)
             self.person.setAddressList(self.plist)
             utils.modified()
 
@@ -1466,7 +1466,7 @@ class EventEditor:
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
         else:
-            utuils.attach_places(values,self.place_combo,None)
+            utils.attach_places(values,self.place_combo,None)
             self.conf_menu.set_history(2)
 
         self.window.set_data(OBJECT,self)

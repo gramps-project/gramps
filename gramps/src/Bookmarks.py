@@ -104,7 +104,7 @@ class Bookmarks :
     # add_to_menu - adds a person's name to the drop down menu
     #
     #---------------------------------------------------------------------
-    def add_to_menu(person):
+    def add_to_menu(self,person):
         item = gtk.GtkMenuItem(person.getPrimaryName().getName())
         item.connect("activate", self.callback, person)
         item.show()
