@@ -1418,40 +1418,48 @@ class GenericFilter:
 #
 #-------------------------------------------------------------------------
 tasks = {
-    _("Everyone")                             : Everyone,
-    _("Has the Id")                           : HasIdOf,
-    _("Has a name")                           : HasNameOf,
-    _("Has the relationships")                : HasRelationship,
-    _("Has the death")                        : HasDeath,
-    _("Has the birth")                        : HasBirth,
-    _("Is a descendant of")                   : IsDescendantOf,
-    _("Is a descendant family member of")     : IsDescendantFamilyOf,
-    _("Is a descendant of filter match")      : IsDescendantOfFilterMatch,
-    _("Is a descendant of person not more than N generations away")
+    unicode(_("Everyone"))                    : Everyone,
+    unicode(_("Has the Id"))                  : HasIdOf,
+    unicode(_("Has a name"))                  : HasNameOf,
+    unicode(_("Has the relationships"))       : HasRelationship,
+    unicode(_("Has the death"))               : HasDeath,
+    unicode(_("Has the birth"))               : HasBirth,
+    unicode(_("Is a descendant of"))          : IsDescendantOf,
+    unicode(_("Is a descendant family member of"))
+                                              : IsDescendantFamilyOf,
+    unicode(_("Is a descendant of filter match"))
+                                              : IsDescendantOfFilterMatch,
+    unicode(_("Is a descendant of person not more than N generations away"))
                                               : IsLessThanNthGenerationDescendantOf,
-    _("Is a descendant of person at least N generations away")
+    unicode(_("Is a descendant of person at least N generations away"))
                                               : IsMoreThanNthGenerationDescendantOf,
-    _("Is a child of filter match")           : IsChildOfFilterMatch,
-    _("Is an ancestor of")                    : IsAncestorOf,
-    _("Is an ancestor of filter match")       : IsAncestorOfFilterMatch,
-    _("Is an ancestor of person not more than N generations away")
+    unicode(_("Is a child of filter match"))
+                                              : IsChildOfFilterMatch,
+    unicode(_("Is an ancestor of"))
+                                              : IsAncestorOf,
+    unicode(_("Is an ancestor of filter match"))
+                                              : IsAncestorOfFilterMatch,
+    unicode(_("Is an ancestor of person not more than N generations away"))
                                               : IsLessThanNthGenerationAncestorOf,
-    _("Is an ancestor of person at least N generations away")
+    unicode(_("Is an ancestor of person at least N generations away"))
                                               : IsMoreThanNthGenerationAncestorOf,
-    _("Is a parent of filter match")          : IsParentOfFilterMatch,
-    _("Has a common ancestor with")           : HasCommonAncestorWith,
-    _("Has a common ancestor with filter match")
+    unicode(_("Is a parent of filter match"))
+                                              : IsParentOfFilterMatch,
+    unicode(_("Has a common ancestor with"))
+                                              : HasCommonAncestorWith,
+    unicode(_("Has a common ancestor with filter match"))
                                               : HasCommonAncestorWithFilterMatch,
-    _("Is a female")                          : IsFemale,
-    _("Is a male")                            : IsMale,
-    _("Has complete record")                  : HasCompleteRecord,
-    _("Has the personal event")               : HasEvent,
-    _("Has the family event")                 : HasFamilyEvent,
-    _("Has the personal attribute")           : HasAttribute,
-    _("Has the family attribute")             : HasFamilyAttribute,
-    _("Matches the filter named")             : MatchesFilter,
-    _("Is spouse of filter match")            : IsSpouseOfFilterMatch,
-    _("Relationship path between two people") : RelationshipPathBetween,
+    unicode(_("Is a female"))                 : IsFemale,
+    unicode(_("Is a male"))                   : IsMale,
+    unicode(_("Has complete record"))         : HasCompleteRecord,
+    unicode(_("Has the personal event"))      : HasEvent,
+    unicode(_("Has the family event"))        : HasFamilyEvent,
+    unicode(_("Has the personal attribute"))  : HasAttribute,
+    unicode(_("Has the family attribute"))    : HasFamilyAttribute,
+    unicode(_("Matches the filter named"))    : MatchesFilter,
+    unicode(_("Is spouse of filter match"))   : IsSpouseOfFilterMatch,
+    unicode(_("Relationship path between two people"))
+                                              : RelationshipPathBetween,
     }
 
 #-------------------------------------------------------------------------
