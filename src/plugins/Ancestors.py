@@ -21,6 +21,8 @@
 
 # $Id$
 
+import gtk
+
 #------------------------------------------------------------------------
 #
 # gramps modules
@@ -40,14 +42,16 @@ from intl import gettext as _
 #------------------------------------------------------------------------
 class AncestorsReport (Report.Report):
 
-    def __init__(self,database,person,max,pgbrk,doc,output,newpage=0):
+    def __init__(self,database,person,max,pgbrk,cite,doc,output,newpage=0):
         self.map = {}
         self.database = database
         self.start = person
         self.max_generations = max
         self.pgbrk = pgbrk
+        self.opt_cite = cite
         self.doc = doc
         self.sources = []
+        self.sourcerefs = []
 
         table = TextDoc.TableStyle ()
         table.set_column_widths ([15, 85])
@@ -87,9 +91,11 @@ class AncestorsReport (Report.Report):
         doc.add_cell_style ("NoPhoto", cell)
 
         cell = TextDoc.TableCellStyle ()
+        cell.set_padding (0.1)
         doc.add_cell_style ("Photo", cell)
 
         cell = TextDoc.TableCellStyle ()
+        cell.set_padding (0.1)
         doc.add_cell_style ("Entry", cell)
 
         if output:
@@ -286,6 +292,7 @@ class AncestorsReport (Report.Report):
 
                 if len (photos) == 0:
                     ret.append ((self.doc.start_cell, ["NoPhoto"]))
+                    ret.append ((self.doc.write_text, ["(no photo)"]))
                     ret.append ((self.doc.end_cell, []))
                 else:
                     ret.append ((self.doc.start_cell, ["Photo"]))
@@ -443,14 +450,25 @@ class AncestorsReport (Report.Report):
 
     def cite_sources (self, sourcereflist):
         citation = ""
-        for ref in sourcereflist:
-            source = ref.getBase ()
-            if source in self.sources:
-                citation += "[%d]" % (self.sources.index (source) + 1)
-                continue
+        if self.opt_cite:
+            for ref in sourcereflist:
+                if ref in self.sourcerefs:
+                    continue
 
-            self.sources.append (source)
-            citation += "[%d]" % len (self.sources)
+                self.sourcerefs.append (ref)
+                source = ref.getBase ()
+                if source in self.sources:
+                    ind = self.sources.index (source) + 1
+                else:
+                    self.sources.append (source)
+                    ind = len (self.sources)
+
+                citation += "[%d" % ind
+                comments = ref.getComments ()
+                if comments and comments.find ('\n') == -1:
+                    citation += " - %s" % comments.rstrip ('.')
+
+                citation += "]"
 
         return citation
 
@@ -672,13 +690,25 @@ class AncestorReportDialog(Report.TextReportDialog):
     def make_default_style(self):
         _make_default_style(self)
 
+    def add_user_options (self):
+        self.cb_cite = gtk.CheckButton (_("Cite sources"))
+        self.cb_cite.set_active (gtk.TRUE)
+        self.add_option ('', self.cb_cite)
+
+    def parse_report_options_frame (self):
+        # Call base class
+        Report.ReportDialog.parse_report_options_frame (self)
+        self.opt_cite = self.cb_cite.get_active ()
+
     def make_report(self):
         """Create the object that will produce the Ancestors Report.
         All user dialog has already been handled and the output file
         opened."""
         try:
             MyReport = AncestorsReport(self.db, self.person,
-                self.max_gen, self.pg_brk, self.doc, self.target_path)
+                                       self.max_gen, self.pg_brk,
+                                       self.opt_cite, self.doc,
+                                       self.target_path)
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
