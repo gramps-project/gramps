@@ -1,3 +1,12 @@
+2004-09-19 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateEdit.py: Take date object as an argument and work with it.
+	* src/AddrEdit.py: Use date object instead of text.
+	* src/EditPerson.py: Use date object instead of text.
+	* src/EventEdit.py: Use date object instead of text.
+	* src/gramps.glade: Minor cleanup.
+	* src/Date.py (copy): Add method.
+	* src/RelLib.py (Address): Correct the use of dates.
+
 2004-09-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsInMemDB.py: new base class for in memory databases, such
 	as XML or GEDCOM

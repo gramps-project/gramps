@@ -1723,6 +1723,8 @@ class Address(DataObj):
         if provided"""
         DataObj.__init__(self,source)
         
+        self.dd = DateHandler.create_display()
+        self.dp = DateHandler.create_parser()
         if source:
             self.street = source.street
             self.city = source.city
@@ -1743,12 +1745,14 @@ class Address(DataObj):
     def set_date(self,text):
         """attempts to sets the date that the person lived at the address
         from the passed string"""
-        self.date.set(text)
+        self.date = self.dp.parse(text)
 
     def get_date(self):
         """returns a string representation of the date that the person
         lived at the address"""
-        return self.date.get_date()
+        if self.date:
+            return self.dd.display(self.date)
+        return u""
 
     def get_preferred_date(self):
         """returns a string representation of the date that the person

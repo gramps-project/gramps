@@ -27,6 +27,13 @@ mechanism for the user to edit address information.
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -43,9 +50,8 @@ import Utils
 import Date
 import RelLib
 import Sources
-
+import Date
 import DateEdit
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -108,6 +114,7 @@ class AddressEditor:
 
         if self.addr:
             self.srcreflist = self.addr.get_source_references()
+            self.addr_date_obj = Date.Date(self.addr.get_date_object())
             self.addr_start.set_text(self.addr.get_date())
             self.street.set_text(self.addr.get_street())
             self.city.set_text(self.addr.get_city())
@@ -124,6 +131,7 @@ class AddressEditor:
             	else:
                     self.flowed.set_active(1)
         else:
+            self.addr_date_obj = Date.Date()
             self.srcreflist = []
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
@@ -133,7 +141,10 @@ class AddressEditor:
                                            self.top.get_widget('del_src'))
 
         date_stat = self.top.get_widget("date_stat")
-        self.date_check = DateEdit.DateEdit(self.addr_start,date_stat)
+        self.date_check = DateEdit.DateEdit(self.addr_date_obj,
+                                                    self.addr_start,
+                                                    date_stat,
+                                                    self.window)
 
         self.top.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,
@@ -193,7 +204,7 @@ class AddressEditor:
         Called when the OK button is pressed. Gets data from the
         form and updates the Address data structure.
         """
-        date = unicode(self.addr_start.get_text())
+        date_obj = self.addr_date_obj
         street = unicode(self.street.get_text())
         city = unicode(self.city.get_text())
         state = unicode(self.state.get_text())
@@ -210,7 +221,7 @@ class AddressEditor:
             self.parent.plist.append(self.addr)
         self.addr.set_source_reference_list(self.srcreflist)
 
-        self.update(date,street,city,state,country,postal,phone,note,format,priv)
+        self.update(date_obj,street,city,state,country,postal,phone,note,format,priv)
         self.callback(self.addr)
         self.close(obj)
 
@@ -221,13 +232,11 @@ class AddressEditor:
             set(data)
             self.parent.lists_changed = 1
             
-    def update(self,date,street,city,state,country,postal,phone,note,format,priv):
+    def update(self,date_obj,street,city,state,country,postal,phone,note,format,priv):
         """Compares the data items, and updates if necessary"""
-        d = Date.Date()
-        d.set(date)
 
-        if self.addr.get_date() != d.get_date():
-            self.addr.set_date(date)
+        if self.addr.get_date_object() != date_obj:
+            self.addr.set_date_object(date_obj)
             self.parent.lists_changed = 1
         
         self.check(self.addr.get_street,self.addr.set_street,street)

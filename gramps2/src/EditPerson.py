@@ -55,7 +55,7 @@ import ListModel
 import RelLib
 import Sources
 import DateEdit
-import DateParser
+import Date
 import DateHandler
 import TransTable
 
@@ -374,13 +374,19 @@ class EditPerson:
         self.addr_list.connect('drag_data_received',self.ad_drag_data_received)
         self.addr_list.connect('drag_begin', self.ad_drag_begin)
 
-        self.bdate_check = DateEdit.DateEdit(self.bdate,
-                                             self.get_widget("birth_stat"))
-        self.bdate_check.set_calendar(self.birth.get_date_object().get_calendar())
+        self.birth_date_object = self.birth.get_date_object()
+        self.death_date_object = self.death.get_date_object()
+        self.update_birth_death()
 
-        self.ddate_check = DateEdit.DateEdit(self.ddate,
-                                             self.get_widget("death_stat"))
-        self.ddate_check.set_calendar(self.death.get_date_object().get_calendar())
+        self.bdate_check = DateEdit.DateEdit(self.birth_date_object,
+                                            self.bdate,
+                                            self.get_widget("birth_stat"),
+                                            self.window)
+
+        self.ddate_check = DateEdit.DateEdit(self.death_date_object,
+                                            self.ddate,
+                                            self.get_widget("death_stat"),
+                                            self.window)
 
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
@@ -424,8 +430,6 @@ class EditPerson:
             "on_givenName_focus_out_event": self.on_givenName_focus_out_event,
             "on_help_person_clicked"    : self.on_help_clicked,
             })
-
-        self.update_birth_death()
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
                                            self.top,self.window,self.slist,
@@ -981,7 +985,7 @@ class EditPerson:
         self.update_birth = 1
         pname = self.person.get_primary_name().get_name()
         event = self.birth
-        event.set_date(unicode(self.bdate.get_text()))
+        event.set_date_object(Date.Date(self.birth_date_object))
         def_placename = unicode(self.bplace.get_text())
 
         p = self.get_place(self.bplace)
@@ -999,7 +1003,7 @@ class EditPerson:
         self.update_death = 1
         pname = self.person.get_primary_name().get_name()
         event = self.death
-        event.set_date(unicode(self.ddate.get_text()))
+        event.set_date_object(Date.Date(self.death_date_object))
         def_placename = unicode(self.dplace.get_text())
 
         p = self.get_place(self.dplace)
@@ -1087,8 +1091,8 @@ class EditPerson:
         orig record"""
 
         surname = unicode(self.surname.get_text())
-        self.birth.set_date(unicode(self.bdate.get_text()))
-        self.death.set_date(unicode(self.ddate.get_text()))
+        self.birth.set_date_object(self.birth_date_object)
+        self.death.set_date_object(self.death_date_object)
 
         ntype = unicode(self.ntype_field.child.get_text())
         suffix = unicode(self.suffix.get_text())
@@ -1215,10 +1219,8 @@ class EditPerson:
         self.bplace.set_text(place_title(self.db,self.birth))
         self.dplace.set_text(place_title(self.db,self.death))
 
-        self.bdate.set_text(self.dd.display(self.birth.get_date_object()))
-        self.bdate_check.set_calendar(self.birth.get_date_object().get_calendar())
-        self.ddate.set_text(self.dd.display(self.death.get_date_object()))
-        self.ddate_check.set_calendar(self.death.get_date_object().get_calendar())
+        self.bdate.set_text(self.dd.display(self.birth_date_object))
+        self.ddate.set_text(self.dd.display(self.death_date_object))
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
@@ -1462,7 +1464,7 @@ class EditPerson:
 
         name = self.pname
 
-        self.birth.set_date(unicode(self.bdate.get_text()))
+        self.birth.set_date_object(self.birth_date_object)
         self.birth.set_place_handle(self.get_place(self.bplace,1))
 
         if idval != self.person.get_gramps_id():
@@ -1532,7 +1534,7 @@ class EditPerson:
             new_order = self.reorder_child_list(self.person,f.get_child_handle_list())
             f.set_child_handle_list(new_order)
     
-        self.death.set_date(unicode(self.ddate.get_text()))
+        self.death.set_date_object(self.death_date_object)
         self.death.set_place_handle(self.get_place(self.dplace,1))
 
         if self.orig_death == None:
@@ -1709,10 +1711,12 @@ class EditPerson:
             self.load_photo(None)
 
     def update_birth_info(self):
+        self.birth_date_object.copy(self.birth.get_date_object())
         self.bdate.set_text(self.birth.get_date())
         self.bplace.set_text(place_title(self.db,self.birth))
 
     def update_death_info(self):
+        self.death_date_object.copy(self.death.get_date_object())
         self.ddate.set_text(self.death.get_date())
         self.dplace.set_text(place_title(self.db,self.death))
         

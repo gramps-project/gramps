@@ -120,6 +120,19 @@ class Date:
             self.sortval  = 0
             self.comment  = u""
 
+    def copy(self,source):
+        """
+        Copy all the attributes of the given Date instance
+        to the present instance, without creating a new object.
+        """
+        self.calendar = source.calendar
+        self.modifier = source.modifier
+        self.quality  = source.quality
+        self.dateval  = source.dateval
+        self.text     = source.text
+        self.sortval  = source.sortval
+        self.comment  = source.comment
+
     def __cmp__(self,other):
         """
         Comparison function. Allows the usage of equality tests.
