@@ -10,7 +10,9 @@ MOSTLYCLEANFILES =
 # In principle, this is handled by PYCFILES and PYOFILES, but
 # they don't seem to work so we edited the py-compile script instead
 
-pkgpython_PYTHON = \
+gdirdir=$(DESTDIR)$(prefix)/share/gramps
+
+gdir_PYTHON = \
 	AddMedia.py\
 	AddrEdit.py\
 	AddSpouse.py\
@@ -20,11 +22,13 @@ pkgpython_PYTHON = \
 	BaseDoc.py\
 	Bookmarks.py\
 	Calendar.py\
+	ColumnOrder.py\
 	ChooseParents.py\
 	const.py\
 	DateEdit.py\
 	Date.py\
 	DbPrompter.py\
+	DisplayModels.py\
 	DisplayTrace.py\
 	EditPerson.py\
 	EditPlace.py\
@@ -38,6 +42,7 @@ pkgpython_PYTHON = \
 	GedcomInfo.py\
 	GenericFilter.py\
 	GrampsCfg.py\
+	GrampsMime.py\
 	gramps_main.py\
 	gramps.py\
 	GraphLayout.py\
@@ -78,6 +83,7 @@ pkgpython_PYTHON = \
 	StyleEditor.py\
 	SubstKeywords.py\
 	TarFile.py\
+	TipOfDay.py\
 	TransTable.py\
 	UrlEdit.py\
 	Utils.py\
@@ -101,6 +107,7 @@ GRAPHICS = \
 	edit.png\
 	family48.png\
 	good.png\
+	home.png\
 	gramps.png\
 	logo.png\
 	media.png\
@@ -111,7 +118,7 @@ GRAPHICS = \
 	tools.png
 
 # Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
@@ -126,14 +133,5 @@ pycheck:
 	for d in $(SUBDIRS) ; do \
           (cd $$d; make pycheck); \
 	done;
-	pychecker $(pkgpython_PYTHON)
+	pychecker $(gdir_PYTHON)
 
-install-data-local:
-	$(INSTALL) -d $(DESTDIR)$(prefix)/share/pixmaps
-	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
-	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
-	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
-
-uninstall-local:
-	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
-	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop

@@ -25,8 +25,7 @@ exec_prefix=@exec_prefix@
 PACKAGE=@PACKAGE@
 
 export GRAMPSDIR=@datadir@/@PACKAGE@
-export GRAMPSPYDIR=@pkgpythondir@
-export GRAMPSPLUGINSDIR=$GRAMPSPYDIR/plugins:$GRAMPSPYDIR/docgen:$GRAMPSPYDIR/filters
+export GRAMPSPLUGINSDIR=$GRAMPDIR/plugins:$GRAMPSDIR/docgen
 export GRAMPSLIBDIR=@libdir@/@PACKAGE@
 export GRAMPSI18N=@prefix@/share/locale
 
@@ -37,4 +36,4 @@ else
     export PYTHONPATH=$GRAMPSDIR:$GRAMPSLIBDIR:$GRAMPSPLUGINSDIR:$PYTHONPATH
 fi
 
-exec @PYTHON@ $GRAMPSPYDIR/gramps.py $*
+exec @PYTHON@ $GRAMPSDIR/gramps.py $*

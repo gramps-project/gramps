@@ -1,3 +1,9 @@
+2004-05-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* Makefiles: updated for installation
+	* src/data/gnome-mime-application-x-gramps.png: new icon
+	* src/data/gramps.svg: new icon
+	* src/data/gramps.xml: mime information
+
 2004-05-25  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py (try_to_find_person_from_id): Remove transaction;
 	(try_to_find_source_from_id, try_to_find_object_from_id,

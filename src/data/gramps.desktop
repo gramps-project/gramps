@@ -21,3 +21,5 @@ Type=Application
 StartupNotify=true
 Categories=Application;Genealogy;
 X-GNOME-DocPath=gramps/gramps-manual.xml
+MimeType=application/x-gramps
+Exec=gramps %F

@@ -38,7 +38,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src/docgen
-DIST_COMMON = $(pkgpython_PYTHON) $(srcdir)/Makefile.am \
+DIST_COMMON = $(docgen_PYTHON) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
@@ -48,8 +48,8 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 SOURCES =
 DIST_SOURCES =
-am__installdirs = "$(DESTDIR)$(pkgpythondir)"
-pkgpythonPYTHON_INSTALL = $(INSTALL_DATA)
+am__installdirs = "$(DESTDIR)$(docgendir)"
+docgenPYTHON_INSTALL = $(INSTALL_DATA)
 py_compile = $(top_srcdir)/py-compile
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -119,8 +119,8 @@ localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
-pkgpyexecdir = @pkgpyexecdir@/docgen
-pkgpythondir = @pkgpythondir@/docgen
+pkgpyexecdir = @pkgpyexecdir@
+pkgpythondir = @pkgpythondir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 pyexecdir = @pyexecdir@
@@ -129,7 +129,8 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-pkgpython_PYTHON = \
+docgendir = $(DESTDIR)$(prefix)/share/gramps/docgen
+docgen_PYTHON = \
 	AbiWord2Doc.py\
 	AsciiDoc.py\
 	HtmlDoc.py\
@@ -177,28 +178,28 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 uninstall-info-am:
-install-pkgpythonPYTHON: $(pkgpython_PYTHON)
+install-docgenPYTHON: $(docgen_PYTHON)
 	@$(NORMAL_INSTALL)
-	test -z "$(pkgpythondir)" || $(mkdir_p) "$(DESTDIR)$(pkgpythondir)"
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	test -z "$(docgendir)" || $(mkdir_p) "$(DESTDIR)$(docgendir)"
+	@list='$(docgen_PYTHON)'; dlist=''; for p in $$list; do\
 	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
 	  if test -f $$b$$p; then \
 	    d=`echo $$p | sed -e 's,^.*/,,'`; \
 	    dlist="$$dlist $$d"; \
-	    echo " $(pkgpythonPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pkgpythondir)/$$d'"; \
-	    $(pkgpythonPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgpythondir)/$$d"; \
+	    echo " $(docgenPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(docgendir)/$$d'"; \
+	    $(docgenPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(docgendir)/$$d"; \
 	  else :; fi; \
 	done; \
 	test -z "$$dlist" || \
-	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(pkgpythondir)" $$dlist
+	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(docgendir)" $$dlist
 
-uninstall-pkgpythonPYTHON:
+uninstall-docgenPYTHON:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	@list='$(docgen_PYTHON)'; dlist=''; for p in $$list; do\
 	  d=`echo $$p | sed -e 's,^.*/,,'`; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$$d"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}c"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}o"; \
+	  rm -f "$(DESTDIR)$(docgendir)/$$d"; \
+	  rm -f "$(DESTDIR)$(docgendir)/$${d}c"; \
+	  rm -f "$(DESTDIR)$(docgendir)/$${d}o"; \
 	done
 tags: TAGS
 TAGS:
@@ -238,7 +239,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile
 installdirs:
-	for dir in "$(DESTDIR)$(pkgpythondir)"; do \
+	for dir in "$(DESTDIR)$(docgendir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -283,7 +284,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-pkgpythonPYTHON
+install-data-am: install-docgenPYTHON
 
 install-exec-am:
 
@@ -309,17 +310,17 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-info-am uninstall-pkgpythonPYTHON
+uninstall-am: uninstall-docgenPYTHON uninstall-info-am
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-exec \
-	install-exec-am install-info install-info-am install-man \
-	install-pkgpythonPYTHON install-strip installcheck \
+	install install-am install-data install-data-am \
+	install-docgenPYTHON install-exec install-exec-am install-info \
+	install-info-am install-man install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am uninstall uninstall-am uninstall-info-am \
-	uninstall-pkgpythonPYTHON
+	pdf-am ps ps-am uninstall uninstall-am uninstall-docgenPYTHON \
+	uninstall-info-am
 
 
 pycheck: 

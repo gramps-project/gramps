@@ -137,7 +137,12 @@ target_alias = @target_alias@
 
 # This is the src/data level Makefile
 SUBDIRS = templates
-pkgdata_DATA = gedcom.xml papersize.xml
+pkgdata_DATA = gedcom.xml \
+	       papersize.xml \
+	       tips.xml \
+	       gnome-mime-application-x-gramps.png \
+	       gramps.svg
+
 EXTRA_DIST = $(pkgdata_DATA)
 all: all-recursive
 
@@ -400,7 +405,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-pkgdataDATA
+install-data-am: install-data-local install-pkgdataDATA
 
 install-exec-am:
 
@@ -426,7 +431,7 @@ ps: ps-recursive
 
 ps-am:
 
-uninstall-am: uninstall-info-am uninstall-pkgdataDATA
+uninstall-am: uninstall-info-am uninstall-local uninstall-pkgdataDATA
 
 uninstall-info: uninstall-info-recursive
 
@@ -434,15 +439,31 @@ uninstall-info: uninstall-info-recursive
 	clean clean-generic clean-recursive ctags ctags-recursive \
 	distclean distclean-generic distclean-recursive distclean-tags \
 	distdir dvi dvi-am html html-am info info-am install \
-	install-am install-data install-data-am install-exec \
-	install-exec-am install-info install-info-am install-man \
-	install-pkgdataDATA install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
+	install-am install-data install-data-am install-data-local \
+	install-exec install-exec-am install-info install-info-am \
+	install-man install-pkgdataDATA install-strip installcheck \
+	installcheck-am installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic maintainer-clean-recursive \
 	mostlyclean mostlyclean-generic mostlyclean-recursive pdf \
 	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
-	uninstall-info-am uninstall-pkgdataDATA
+	uninstall-info-am uninstall-local uninstall-pkgdataDATA
 
+
+install-data-local:
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/pixmaps
+	$(INSTALL_DATA) gramps.png $(DESTDIR)$(prefix)/share/pixmaps
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
+	$(INSTALL_DATA) gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
+	$(INSTALL_DATA) gnome-mime-application-x-gramps.png $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/mime/packages
+	$(INSTALL_DATA) gramps.xml $(DESTDIR)$(prefix)/share/mime/packages
+	update-mime-database $(DESTDIR)$(prefix)/share/mime
+
+uninstall-local:
+	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
+	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
+	-rm $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gramps.png
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

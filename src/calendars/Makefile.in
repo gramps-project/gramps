@@ -20,6 +20,7 @@
 srcdir = @srcdir@
 top_srcdir = @top_srcdir@
 VPATH = @srcdir@
+pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
 top_builddir = ../..
@@ -37,7 +38,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src/calendars
-DIST_COMMON = $(pkgpython_PYTHON) $(srcdir)/Makefile.am \
+DIST_COMMON = $(calendar_PYTHON) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
@@ -47,11 +48,10 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 SOURCES =
 DIST_SOURCES =
-am__installdirs = "$(DESTDIR)$(pkgpythondir)"
-pkgpythonPYTHON_INSTALL = $(INSTALL_DATA)
+am__installdirs = "$(DESTDIR)$(calendardir)"
+calendarPYTHON_INSTALL = $(INSTALL_DATA)
 py_compile = $(top_srcdir)/py-compile
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-pkgdatadir = $(datadir)/@PACKAGE@/calendars
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AUTOCONF = @AUTOCONF@
@@ -119,8 +119,8 @@ localstatedir = @localstatedir@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
-pkgpyexecdir = @pkgpyexecdir@/plugins
-pkgpythondir = @pkgpythondir@/plugins
+pkgpyexecdir = @pkgpyexecdir@
+pkgpythondir = @pkgpythondir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 pyexecdir = @pyexecdir@
@@ -129,7 +129,8 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-pkgpython_PYTHON = \
+calendardir = $(datadir)/@PACKAGE@/calendars
+calendar_PYTHON = \
 	Islamic.py \
 	Persian.py
 
@@ -167,28 +168,28 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 uninstall-info-am:
-install-pkgpythonPYTHON: $(pkgpython_PYTHON)
+install-calendarPYTHON: $(calendar_PYTHON)
 	@$(NORMAL_INSTALL)
-	test -z "$(pkgpythondir)" || $(mkdir_p) "$(DESTDIR)$(pkgpythondir)"
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	test -z "$(calendardir)" || $(mkdir_p) "$(DESTDIR)$(calendardir)"
+	@list='$(calendar_PYTHON)'; dlist=''; for p in $$list; do\
 	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
 	  if test -f $$b$$p; then \
 	    d=`echo $$p | sed -e 's,^.*/,,'`; \
 	    dlist="$$dlist $$d"; \
-	    echo " $(pkgpythonPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pkgpythondir)/$$d'"; \
-	    $(pkgpythonPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pkgpythondir)/$$d"; \
+	    echo " $(calendarPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(calendardir)/$$d'"; \
+	    $(calendarPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(calendardir)/$$d"; \
 	  else :; fi; \
 	done; \
 	test -z "$$dlist" || \
-	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(pkgpythondir)" $$dlist
+	PYTHON=$(PYTHON) $(py_compile) --basedir "$(DESTDIR)$(calendardir)" $$dlist
 
-uninstall-pkgpythonPYTHON:
+uninstall-calendarPYTHON:
 	@$(NORMAL_UNINSTALL)
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
+	@list='$(calendar_PYTHON)'; dlist=''; for p in $$list; do\
 	  d=`echo $$p | sed -e 's,^.*/,,'`; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$$d"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}c"; \
-	  rm -f "$(DESTDIR)$(pkgpythondir)/$${d}o"; \
+	  rm -f "$(DESTDIR)$(calendardir)/$$d"; \
+	  rm -f "$(DESTDIR)$(calendardir)/$${d}c"; \
+	  rm -f "$(DESTDIR)$(calendardir)/$${d}o"; \
 	done
 tags: TAGS
 TAGS:
@@ -228,7 +229,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile
 installdirs:
-	for dir in "$(DESTDIR)$(pkgpythondir)"; do \
+	for dir in "$(DESTDIR)$(calendardir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -273,7 +274,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-pkgpythonPYTHON
+install-data-am: install-calendarPYTHON
 
 install-exec-am:
 
@@ -299,17 +300,17 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-info-am uninstall-pkgpythonPYTHON
+uninstall-am: uninstall-calendarPYTHON uninstall-info-am
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-exec \
-	install-exec-am install-info install-info-am install-man \
-	install-pkgpythonPYTHON install-strip installcheck \
+	install install-am install-calendarPYTHON install-data \
+	install-data-am install-exec install-exec-am install-info \
+	install-info-am install-man install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
-	pdf-am ps ps-am uninstall uninstall-am uninstall-info-am \
-	uninstall-pkgpythonPYTHON
+	pdf-am ps ps-am uninstall uninstall-am \
+	uninstall-calendarPYTHON uninstall-info-am
 
 
 pycheck: 
