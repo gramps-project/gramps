@@ -1,3 +1,36 @@
+Version 0.2.0
+* New GEDCOM importer. This new importer understands the GEDCOM
+  file structure, and intelligently parses the file.  More 
+  information is extracted from the GEDCOM file. Guessing the 
+  context of information is no longer done, so the data should go 
+  into the right place.  The display dialog now displays useful and 
+  interesting information as the file is loaded.  The importer
+  has been checked with file generated Personal Ancestral File,
+  Brother's Keeper, DISGEN, the GEDCOM Torture test, and even the
+  sometimes strange output of Family Tree Maker.
+* Better support for sources.  Source button on the main page, and
+  sources are entered from the main screen, instead of being about 
+  five layers deep.
+* Events, sources, attributes, and addresses can now have both 
+  sources and notes.
+* Limited configurability in status bar display. Instead of just a
+  name, you can have a name, the internal ID and a name, or a user
+  selectable attribute and a name.
+* A user selectable attribute can be displayed on the Edit Person
+  display along with the gramps internal ID.  The attribute is
+  specified in the preferences settings, and the value is taken
+  from the person's attribute list.
+* Images now load faster. Thumbnail images are created and maintained
+  by gramps, eliminating the need to rescale images everytime a 
+  gallery is displayed.
+* Paper size preference can now be specified in the preferences 
+  dialog. Once this is set, gramps will make this the default for
+  report generators. Eventually, you will be able to do the same
+  for output format preference. This button is current disabled.
+* Generating slightly better XML. Maintaining compatibility with
+  the older files.
+
+
 Version 0.1.5
 
 * Plenty of bug fixes in the report generators and merging due to the
