@@ -2336,7 +2336,8 @@ class GrampsDB:
         if (self.default):
             self.default.setAncestor(0)
         self.default = person
-        self.default.setAncestor(1)
+        if person:
+            self.default.setAncestor(1)
     
     def getDefaultPerson(self):
         """returns the default Person of the database"""

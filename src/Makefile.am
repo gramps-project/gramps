@@ -132,7 +132,7 @@ GRAPHICS = \
 	tools.png
 
 # Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop papersize.xml
 
 EXTRA_DIST = grampslib.i grampslib_wrap.c
 
