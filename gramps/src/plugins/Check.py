@@ -44,6 +44,7 @@ def runTool(database,active_person,callback):
     checker = CheckIntegrity(database)
     checker.check_for_broken_family_links()
     checker.cleanup_missing_photos()
+    checker.check_parent_relationships()
     checker.cleanup_empty_families(0)
     checker.report()
 
@@ -66,6 +67,7 @@ class CheckIntegrity:
         self.bad_person_photo = []
         self.empty_family = []
         self.broken_links = []
+        self.fam_rel = []
 
     #-------------------------------------------------------------------------
     #
@@ -130,12 +132,44 @@ class CheckIntegrity:
     #
     #
     #-------------------------------------------------------------------------
+    def check_parent_relationships(self):
+
+        family_list = self.db.getFamilyMap().values()[:]
+        for family in family_list:
+            father = family.getFather()
+            mother = family.getMother()
+            type = family.getRelationship()
+
+            if type != "Partners":
+                if father.getGender() == mother.getGender():
+                    family.setRelationship("Partners")
+                    self.fam_rel.append(family)
+                elif father.getGender() != RelLib.Person.male or \
+                     mother.getGender() != RelLib.Person.female:
+                    family.setFather(mother)
+                    family.setMother(father)
+                    self.fam_rel.append(family)
+            else:
+                if father.getGender() != mother.getGender():
+                    family.setRelationship("Unknown")
+                    self.fam_rel.append(family)
+                    if father.getGender() == RelLib.Person.female:
+                        family.setFather(mother)
+                        family.setMother(father)
+
+    #-------------------------------------------------------------------------
+    #
+    #
+    #
+    #-------------------------------------------------------------------------
     def report(self):
         fphotos = len(self.bad_family_photo)
         pphotos = len(self.bad_person_photo)
         efam = len(self.empty_family)
         blink = len(self.broken_links)
-        errors = blink + efam + pphotos + fphotos
+        rel = len(self.fam_rel)
+        
+        errors = blink + efam + pphotos + fphotos + rel
         
         if errors == 0:
             GnomeOkDialog(_("No errors were found"))
@@ -150,6 +184,10 @@ class CheckIntegrity:
             text = text + _("1 empty family was found\n")
         elif efam > 1:
             text = text + _("%d empty families were found\n") % efam
+        if rel == 1:
+            text = text + _("1 corrupted family relationship fixed\n")
+        elif rel > 1:
+            text = text + _("%d corrupted family relationship fixed\n") % rel
         if fphotos == 1:
             text = text + _("1 broken family image was found\n")
         elif fphotos > 1:

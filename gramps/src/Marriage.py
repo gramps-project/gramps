@@ -292,6 +292,10 @@ def on_close_marriage_editor(obj):
             val = const.save_frel(relation)
             if val == "Partners":
                 val = "Unknown"
+            if father.getGender() == Person.female or \
+               mother.getGender() == Person.male:
+                family_obj.family.setFather(mother)
+                family_obj.family.setMother(father)
             family_obj.family.setRelationship(val)
         utils.modified()
 
