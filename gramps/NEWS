@@ -19,6 +19,8 @@ Version 0.4.0
 * New plugin from Jesper Zedlitz that implements a graphical   
   representation of the people in the database, allowing you to
   reposition people according to your own desires.
+* XML is indented properly
+* XML DTD available
 
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.

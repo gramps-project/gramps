@@ -22,6 +22,7 @@ install:
 	-${INSTALL} -d ${sharedir}/example/gramps
 	-${INSTALL} -d ${sharedir}/example/gedcom
 	${INSTALL} gramps.sh ${bindir}/gramps
+	${INSTALL} doc/gramps.dtd ${sharedir}
 	-${INSTALL} example/gramps/*.jpg ${sharedir}/example/gramps
 	-${INSTALL} example/gramps/data.gramps ${sharedir}/example/gramps
 	-${INSTALL} example/gedcom/*.ged ${sharedir}/example/gedcom
