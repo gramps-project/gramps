@@ -29,8 +29,6 @@ import utils
 import string
 import gtk
 
-_OBJECT = "o"
-
 class Find:
     """Opens find person dialog for gramps"""
     
@@ -46,11 +44,10 @@ class Find:
         self.xml = libglade.GladeXML(const.gladeFile,"find")
         self.xml.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
-            "on_next_clicked" : on_next_clicked,
-            "on_prev_clicked" : on_prev_clicked,
+            "on_next_clicked"       : self.on_next_clicked,
+            "on_prev_clicked"       : self.on_prev_clicked,
             })
         self.top = self.xml.get_widget("find")
-        self.top.set_data(_OBJECT,self)
         self.entry = self.xml.get_widget("entry1")
         self.top.editable_enters(self.entry)
 
@@ -108,11 +105,10 @@ class Find:
         gtk.gdk_beep()
 
 
+    def on_next_clicked(self,obj):
+        """Callback for dialog box that causes the next person to be found"""
+        self.find_next()
 
-def on_next_clicked(obj):
-    """Callback for dialog box that causes the next person to be found"""
-    obj.get_data(_OBJECT).find_next()
-
-def on_prev_clicked(obj):
-    """Callback for dialog box that causes the previous person to be found"""
-    obj.get_data(_OBJECT).find_prev()
+    def on_prev_clicked(self,obj):
+        """Callback for dialog box that causes the previous person to be found"""
+        self.find_prev()

@@ -24,6 +24,10 @@ import os
 import string
 import shutil
 import intl
+import libglade
+import const
+import utils
+
 _ = intl.gettext
 
 try:
@@ -37,6 +41,37 @@ _date_re = re.compile("date:\s+([^;]+);")
 _sep = '-' * 10
 _end = "=" * 10
 
+
+class RevisionSelect:
+
+    def __init__(self,db,filename,vc,load):
+        self.db = db
+        self.filename = filename
+        self.vc = vc
+        self.load = load
+
+        dialog = libglade.GladeXML(const.gladeFile, "revselect")
+        revsel = dialog.get_widget("revselect")
+        dialog.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_loadrev_clicked"    : self.on_loadrev_clicked,
+            })
+
+        self.revlist = dialog.get_widget("revlist")
+        l = self.vc.revision_list()
+        l.reverse()
+        index = 0
+        for f in l:
+            self.revlist.append([f[0],f[1],f[2]])
+            self.revlist.set_row_data(index,f[0])
+            index = index + 1
+
+    def on_loadrev_clicked(self,obj):
+        if len(self.revlist.selection) > 0:
+            rev = self.revlist.get_row_data(self.revlist.selection[0])
+            f = self.vc.get_version(rev)
+            self.load(f,self.filename,rev)
+            utils.destroy_passed_object(obj)
 
 class VersionControl:
     """Base class for revision control systems"""

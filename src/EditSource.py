@@ -53,7 +53,6 @@ _ = intl.gettext
 # Constants
 #
 #-------------------------------------------------------------------------
-SOURCE = "s"
 
 class EditSource:
 
@@ -85,14 +84,13 @@ class EditSource:
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
             "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
-            "on_switch_page" : on_switch_page,
+            "on_switch_page" : self.on_switch_page,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
-            "on_sourceapply_clicked" : on_source_apply_clicked
+            "on_sourceapply_clicked" : self.on_source_apply_clicked
             })
 
         self.top = self.top_window.get_widget("sourceEditor")
-        self.top.set_data(SOURCE,self)
 
         if self.source.getId() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
@@ -102,47 +100,34 @@ class EditSource:
         self.top.editable_enters(self.author);
         self.top.editable_enters(self.pubinfo);
 
+    def on_source_apply_clicked(self,obj):
 
-#-----------------------------------------------------------------------------
-#
-#
-#
-#-----------------------------------------------------------------------------
-def on_source_apply_clicked(obj):
-
-    edit = obj.get_data(SOURCE)
-    title = edit.title.get_text()
-    author = edit.author.get_text()
-    pubinfo = edit.pubinfo.get_text()
-    note = edit.note.get_chars(0,-1)
+        title = self.title.get_text()
+        author = self.author.get_text()
+        pubinfo = self.pubinfo.get_text()
+        note = self.note.get_chars(0,-1)
     
-    if author != edit.source.getAuthor():
-        edit.source.setAuthor(author)
-        utils.modified()
+        if author != self.source.getAuthor():
+            self.source.setAuthor(author)
+            utils.modified()
         
-    if title != edit.source.getTitle():
-        edit.source.setTitle(title)
-        utils.modified()
+        if title != self.source.getTitle():
+            self.source.setTitle(title)
+            utils.modified()
         
-    if pubinfo != edit.source.getPubInfo():
-        edit.source.setPubInfo(pubinfo)
-        utils.modified()
+        if pubinfo != self.source.getPubInfo():
+            self.source.setPubInfo(pubinfo)
+            utils.modified()
         
-    if note != edit.source.getNote():
-        edit.source.setNote(note)
-        utils.modified()
+        if note != self.source.getNote():
+            self.source.setNote(note)
+            utils.modified()
 
-    utils.destroy_passed_object(edit.top)
-    edit.callback(edit.source)
+        utils.destroy_passed_object(self.top)
+        self.callback(self.source)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_switch_page(obj,a,page):
-    src = obj.get_data(SOURCE)
-    if page == 2 and src.not_loaded:
-        src.not_loaded = 0
-        src.gallery.load_images()
+    def on_switch_page(self,obj,a,page):
+        if page == 2 and self.not_loaded:
+            self.not_loaded = 0
+            self.gallery.load_images()
 

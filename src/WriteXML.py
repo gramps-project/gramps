@@ -56,7 +56,7 @@ def sortById(first,second):
 #
 #-------------------------------------------------------------------------
 def fix(line):
-    l = string.stripline)
+    l = string.stripline(line)
     l = string.replace(l,'&','&amp;')
     l = string.replace(l,'>','&gt;')
     l = string.replace(l,'<','&lt;')

@@ -1119,49 +1119,12 @@ def on_ok_button1_clicked(obj):
     utils.destroy_passed_object(obj)
 
     if getoldrev.get_active():
-        dialog = libglade.GladeXML(const.gladeFile, "revselect")
-        revsel = dialog.get_widget("revselect")
-        dialog.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "on_loadrev_clicked" : on_loadrev_clicked,
-            })
-        revlist = dialog.get_widget("revlist")
-        revsel.set_data("o",revlist)
         vc = VersionControl.RcsVersionControl(filename)
-        l = vc.revision_list()
-        l.reverse()
-        index = 0
-        for f in l:
-            revlist.append([f[0],f[1],f[2]])
-            revlist.set_row_data(index,f[0])
-            index = index + 1
-        revlist.set_data("n",filename)
+        VersionControl.RevisionSelect(database,filename,vc,load_revision)
     else:
         if filename != "":
             read_file(filename)
 
-def on_loadrev_clicked(obj):
-    clist = obj.get_data("o")
-    filename = clist.get_data("n")
-    if len(clist.selection) > 0:
-        rev = clist.get_row_data(clist.selection[0])
-        vc = VersionControl.RcsVersionControl(filename)
-        f = vc.get_version(rev)
-        load_revision(f,filename,rev)
-        utils.destroy_passed_object(obj)
-
-        active_person = None
-        for person in database.getPersonMap().values():
-            if active_person == None:
-                active_person = person
-            lastname = person.getPrimaryName().getSurname()
-            if lastname and lastname not in const.surnames:
-                const.surnames.append(lastname)
-            
-        statusbar.set_progress(1.0)
-        full_update()
-        statusbar.set_progress(0.0)
-    
 #-------------------------------------------------------------------------
 #
 #
@@ -3073,111 +3036,76 @@ def load_progress(value):
 #
 #
 #-------------------------------------------------------------------------
-def load_database(name):
+def post_load(name):
     global active_person
-	
-    filename = name + os.sep + const.indexFile
 
+    database.setSavePath(name)
+    res = database.getResearcher()
+    if res.getName() == "" and Config.owner.getName() != "":
+        database.setResearcher(Config.owner)
+        utils.modified()
+
+    setup_bookmarks()
+
+    mylist = database.getPersonEventTypes()
+    for type in mylist:
+        ntype = const.display_pevent(type)
+        if ntype not in const.personalEvents:
+            const.personalEvents.append(ntype)
+
+    mylist = database.getFamilyEventTypes()
+    for type in mylist:
+        ntype = const.display_fevent(type)
+        if ntype not in const.marriageEvents:
+            const.marriageEvents.append(ntype)
+
+    mylist = database.getPersonAttributeTypes()
+    for type in mylist:
+        ntype = const.display_pattr(type)
+        if ntype not in const.personalAttributes:
+            const.personalAttributes.append(ntype)
+
+    mylist = database.getFamilyAttributeTypes()
+    for type in mylist:
+        if type not in const.familyAttributes:
+            const.familyAttributes.append(type)
+
+    mylist = database.getFamilyRelationTypes()
+    for type in mylist:
+        if type not in const.familyRelations:
+            const.familyRelations.append(type)
+
+    Config.save_last_file(name)
+    gtop.get_widget("filter").set_text("")
+    
+    person = database.getDefaultPerson()
+    if person:
+        active_person = person
+    return 1
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def load_database(name):
+	
+    filename = "%s/%s" % (name,const.indexFile)
     if ReadXML.loadData(database,filename,load_progress) == 0:
         return 0
+    return post_load(name)
 
-    database.setSavePath(name)
-
-    res = database.getResearcher()
-    if res.getName() == "" and Config.owner.getName() != "":
-        database.setResearcher(Config.owner)
-        utils.modified()
-
-    setup_bookmarks()
-
-    mylist = database.getPersonEventTypes()
-    for type in mylist:
-        ntype = const.display_pevent(type)
-        if ntype not in const.personalEvents:
-            const.personalEvents.append(ntype)
-
-    mylist = database.getFamilyEventTypes()
-    for type in mylist:
-        ntype = const.display_fevent(type)
-        if ntype not in const.marriageEvents:
-            const.marriageEvents.append(ntype)
-
-    mylist = database.getPersonAttributeTypes()
-    for type in mylist:
-        ntype = const.display_pattr(type)
-        if ntype not in const.personalAttributes:
-            const.personalAttributes.append(ntype)
-
-    mylist = database.getFamilyAttributeTypes()
-    for type in mylist:
-        if type not in const.familyAttributes:
-            const.familyAttributes.append(type)
-
-    mylist = database.getFamilyRelationTypes()
-    for type in mylist:
-        if type not in const.familyRelations:
-            const.familyRelations.append(type)
-
-    Config.save_last_file(name)
-    gtop.get_widget("filter").set_text("")
-    
-    person = database.getDefaultPerson()
-    if person:
-        active_person = person
-    return 1
-
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def load_revision(f,name,revision):
-    global active_person
-	
-    filename = name + os.sep + const.indexFile
 
-    if ReadXML.loadRevision(database,f,filename, revision,load_progress) == 0:
+    filename = "%s/%s" % (name,const.indexFile)
+    if ReadXML.loadRevision(database,f,filename,revision,load_progress) == 0:
         return 0
-
-    database.setSavePath(name)
-
-    res = database.getResearcher()
-    if res.getName() == "" and Config.owner.getName() != "":
-        database.setResearcher(Config.owner)
-        utils.modified()
-
-    setup_bookmarks()
-
-    mylist = database.getPersonEventTypes()
-    for type in mylist:
-        ntype = const.display_pevent(type)
-        if ntype not in const.personalEvents:
-            const.personalEvents.append(ntype)
-
-    mylist = database.getFamilyEventTypes()
-    for type in mylist:
-        ntype = const.display_fevent(type)
-        if ntype not in const.marriageEvents:
-            const.marriageEvents.append(ntype)
-
-    mylist = database.getPersonAttributeTypes()
-    for type in mylist:
-        ntype = const.display_pattr(type)
-        if ntype not in const.personalAttributes:
-            const.personalAttributes.append(ntype)
-
-    mylist = database.getFamilyAttributeTypes()
-    for type in mylist:
-        if type not in const.familyAttributes:
-            const.familyAttributes.append(type)
-
-    mylist = database.getFamilyRelationTypes()
-    for type in mylist:
-        if type not in const.familyRelations:
-            const.familyRelations.append(type)
-
-    Config.save_last_file(name)
-    gtop.get_widget("filter").set_text("")
-    
-    person = database.getDefaultPerson()
-    if person:
-        active_person = person
-    return 1
+    return post_load(name)
 
 #-------------------------------------------------------------------------
 #
