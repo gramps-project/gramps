@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Thu Sep 18 22:31:51 2003\n"
-"PO-Revision-Date: 2003-11-25 01:24+0100\n"
+"PO-Revision-Date: 2003-11-25 23:34+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -2466,7 +2466,7 @@ msgstr "_Slektsnavn:"
 
 #: dialog.glade:2900 edit_person.glade:203
 msgid "Suffi_x:"
-msgstr "_Etterstavelse:"
+msgstr "Etterstave_lse:"
 
 #: dialog.glade:2928 edit_person.glade:278
 msgid "T_ype:"
@@ -2483,7 +2483,7 @@ msgstr "P_rivat opplysning"
 
 #: dialog.glade:3005 edit_person.glade:178
 msgid "Family _prefix:"
-msgstr "Forst_avelse:"
+msgstr "Forstavelse:"
 
 #: dialog.glade:3621 preferences.glade:2537
 msgid "_Person:"
@@ -2584,7 +2584,7 @@ msgstr "Start redigering av fødsels hendelse"
 
 #: edit_person.glade:373 edit_person.glade:1115
 msgid "Edit..."
-msgstr "Rediger..."
+msgstr "Redi_ger..."
 
 #: edit_person.glade:391
 msgid "Select source for this name information"
@@ -2601,7 +2601,7 @@ msgstr "Skriv inn/endre kommentarer angående navnet"
 #: edit_person.glade:413 edit_person.glade:4214 edit_person.glade:4464
 #: edit_person.glade:4689 marriage.glade:1710
 msgid "Note..."
-msgstr "K_ommentar..."
+msgstr "Kommenta_r..."
 
 #: edit_person.glade:431
 msgid "The person's given name"
@@ -2673,7 +2673,7 @@ msgstr "<b>Død</b>"
 
 #: edit_person.glade:1020 edit_person.glade:4256
 msgid "D_ate:"
-msgstr "D_ato:"
+msgstr "_Dato:"
 
 #: edit_person.glade:1048
 msgid "Plac_e:"
@@ -2861,7 +2861,7 @@ msgstr "SDH te_mpel:"
 
 #: edit_person.glade:4313 preferences.glade:2593
 msgid "P_lace:"
-msgstr "Sted:"
+msgstr "St_ed:"
 
 #: edit_person.glade:4482
 msgid "Dat_e:"
@@ -3253,7 +3253,7 @@ msgstr "Legg til en ny person til databasen og til en ny relasjon"
 
 #: gramps.glade:1601 gramps.glade:2744
 msgid "Selects an existing person from the database and adds to a new relationship"
-msgstr "Velg en eksisterende person fra databasen og leggert til en ny relasjon"
+msgstr "Velger en eksisterende person fra databasen og legger til en ny relasjon"
 
 #: gramps.glade:1627 gramps.glade:2770
 msgid "Removes the currently selected spouse"
@@ -3837,7 +3837,7 @@ msgstr "Slektstavle"
 #: plugins/FanChart.py:462 plugins/GraphViz.py:80 plugins/GraphViz.py:525
 #: plugins/TimeLine.py:397 plugins/TimeLine.py:658
 msgid "Graphical Reports"
-msgstr "Grafiske Rapporter"
+msgstr "Grafiske rapporter"
 
 #: plugins/AncestorChart.py:243
 msgid "Ancestor Chart for %s"
@@ -3882,7 +3882,7 @@ msgstr "Grafikk"
 
 #: plugins/AncestorReport.py:84 plugins/AncestorReport.py:239
 msgid "Ahnentafel Report for %s"
-msgstr "Ahnentafel Rapport for %s"
+msgstr "Ahnentafel rapport for %s"
 
 #: plugins/AncestorReport.py:97 plugins/DetAncestralReport.py:642
 #: plugins/DetDescendantReport.py:650
@@ -3960,7 +3960,7 @@ msgstr ", og ble begravd i %s."
 #: plugins/AncestorReport.py:235 plugins/AncestorReport.py:331
 #: plugins/AncestorReport.py:510 plugins/AncestorReport.py:521
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel Rapport"
+msgstr "Ahnentafel rapport"
 
 #: plugins/AncestorReport.py:235 plugins/AncestorReport.py:511
 #: plugins/Ancestors.py:828 plugins/Ancestors.py:1101
@@ -3976,11 +3976,11 @@ msgstr "Tekst Rapporter"
 
 #: plugins/AncestorReport.py:244
 msgid "Save Ahnentafel Report"
-msgstr "Lagre Ahnentafel Rapport"
+msgstr "Lagre Ahnentafel rapport"
 
 #: plugins/AncestorReport.py:335
 msgid "Ahnentafel Report for GRAMPS Book"
-msgstr "Ahnentafel Rapport til GRAMPS Bok"
+msgstr "Ahnentafel rapport til GRAMPS rok"
 
 #: plugins/AncestorReport.py:394 plugins/Ancestors.py:761
 #: plugins/DescendReport.py:294 plugins/FamilyGroup.py:608
@@ -4175,7 +4175,7 @@ msgstr "Introduksjon til barnene."
 #: plugins/Ancestors.py:827 plugins/Ancestors.py:940 plugins/Ancestors.py:1100
 #: plugins/Ancestors.py:1111
 msgid "Comprehensive Ancestors Report"
-msgstr "Omfattende Forfedre Rapport"
+msgstr "Omfattende forfedrerapport"
 
 #: plugins/Ancestors.py:832
 msgid "Ancestors for %s"
@@ -4192,11 +4192,11 @@ msgstr "Sitter kilder"
 
 #: plugins/Ancestors.py:944
 msgid "Comprehensive Ancestors Report for GRAMPS Book"
-msgstr "Omfattende Forfedre Rapport til GRAMPS Bok"
+msgstr "Omfattende forfedrerapport til GRAMPS bok"
 
 #: plugins/Ancestors.py:1103
 msgid "Produces a detailed ancestral report."
-msgstr "Lager en detaljert forfedre rapport."
+msgstr "Lager en detaljert forfedrerapport."
 
 #: plugins/BookReport.py:494
 msgid "Available Books"
@@ -4469,7 +4469,7 @@ msgstr "Interaktiv etterkommer utforsker"
 
 #: plugins/Desbrowser.py:121 plugins/EventCmp.py:353
 msgid "Analysis and Exploration"
-msgstr "Analyse og Utforskning"
+msgstr "Analyse og utforskning"
 
 #: plugins/Desbrowser.py:122
 msgid "Provides a browsable hierarchy based on the active person"
@@ -4727,11 +4727,11 @@ msgstr "  %s giftet seg den %s i %s"
 
 #: plugins/DetAncestralReport.py:628 plugins/DetAncestralReport.py:739
 msgid "Detailed Ancestral Report for %s"
-msgstr "Detaljert Forfedre Rapport for %s"
+msgstr "Detaljert forfedrerapport for %s"
 
 #: plugins/DetAncestralReport.py:735 plugins/DetDescendantReport.py:743
 msgid "Gramps - Ahnentafel Report"
-msgstr "Gramps - Ahnentafel Rapport"
+msgstr "Gramps - Ahnentafel rapport"
 
 #: plugins/DetAncestralReport.py:786 plugins/DetAncestralReport.py:1006
 #: plugins/DetDescendantReport.py:795 plugins/DetDescendantReport.py:1016
@@ -4786,15 +4786,15 @@ msgstr "Inkluder Foto/Bilder fra Galleriet"
 #: plugins/DetAncestralReport.py:992 plugins/DetAncestralReport.py:1242
 #: plugins/DetAncestralReport.py:1253
 msgid "Detailed Ancestral Report"
-msgstr "Detaljert Forfedre Rapport"
+msgstr "Detaljert forfedrerapport"
 
 #: plugins/DetAncestralReport.py:996
 msgid "Detailed Ancestral Report for GRAMPS Book"
-msgstr "Detaljert Forfedre Rapport til GRAMPS Bok"
+msgstr "Detaljert forfedrerapport til GRAMPS bok"
 
 #: plugins/DetAncestralReport.py:1245
 msgid "Produces a detailed ancestral report"
-msgstr "Lag en detaljert forfedre rapport"
+msgstr "Lag en detaljert forfedrerapport"
 
 #: plugins/DetAncestralReport.py:1362 plugins/DetDescendantReport.py:1371
 msgid " at the age of %d days"
@@ -4822,7 +4822,7 @@ msgstr " i en alder av %d år"
 
 #: plugins/DetDescendantReport.py:637 plugins/DetDescendantReport.py:747
 msgid "Detailed Descendant Report for %s"
-msgstr "Detaljert Etterkommerrapport for %s"
+msgstr "Detaljert etterkommerrapport for %s"
 
 #: plugins/DetDescendantReport.py:823
 msgid "Omit duplicate people"
@@ -4831,11 +4831,11 @@ msgstr "Utelat duplikate personer"
 #: plugins/DetDescendantReport.py:1002 plugins/DetDescendantReport.py:1251
 #: plugins/DetDescendantReport.py:1262
 msgid "Detailed Descendant Report"
-msgstr "Detaljert Etterkommerrapport"
+msgstr "Detaljert etterkommerrapport"
 
 #: plugins/DetDescendantReport.py:1006
 msgid "Detailed Descendant Report for GRAMPS Book"
-msgstr "Detaljert Etterkommerrapport til GRAMPS Bok"
+msgstr "Detaljert etterkommerrapport til GRAMPS bok"
 
 #: plugins/DetDescendantReport.py:1254
 msgid "Produces a detailed descendant report"
@@ -4923,7 +4923,7 @@ msgstr "Lager en familierapport ,som viser informasjon om et par foreldre og der
 
 #: plugins/FanChart.py:187
 msgid "Five Generation Fan Chart for %s"
-msgstr "Fem Generasjoners Vifte Slektstavle for %s"
+msgstr "Fem generasjoners vifte slektstavle for %s"
 
 #: plugins/FanChart.py:293
 msgid "The style used for the title."
@@ -4932,15 +4932,15 @@ msgstr "Stilen brukt for titelen."
 #: plugins/FanChart.py:308 plugins/FanChart.py:396 plugins/FanChart.py:461
 #: plugins/FanChart.py:469
 msgid "Fan Chart"
-msgstr "Vifte Slektstavle"
+msgstr "Vifte slektstavle"
 
 #: plugins/FanChart.py:312
 msgid "Fan Chart for %s"
-msgstr "Vifte Slektstavle for %s"
+msgstr "Vifte slektstavle for %s"
 
 #: plugins/FanChart.py:317
 msgid "Save Fan Chart"
-msgstr "Lagre Vifte Slektstavle"
+msgstr "Lagre Vifte slektstavle"
 
 #: plugins/FanChart.py:400
 msgid "Fan Chart for GRAMPS Book"
@@ -5000,7 +5000,7 @@ msgstr "Filter Test"
 
 #: plugins/FilterEditor.py:628
 msgid "Custom Filter Editor"
-msgstr "Tilpasset Filter Behandler"
+msgstr "Tilpasset filter behandler"
 
 #: plugins/FilterEditor.py:629 plugins/FilterEditor.py:642
 #: plugins/RelCalc.py:160 plugins/Verify.py:417 plugins/soundgen.py:95
@@ -5600,11 +5600,11 @@ msgstr "Inkluder Kilde Informasjon"
 #: plugins/IndivComplete.py:471 plugins/IndivComplete.py:475
 #: plugins/IndivComplete.py:816
 msgid "Complete Individual Report"
-msgstr "Komplett Individuell Rapport"
+msgstr "Komplett individuell rapport"
 
 #: plugins/IndivComplete.py:480
 msgid "Save Complete Individual Report"
-msgstr "Lagre Komplett Individuell Rapport"
+msgstr "Lagre komplett individuell rapport"
 
 #: plugins/IndivComplete.py:587 plugins/IndivComplete.py:824
 msgid "Individual Complete"
@@ -5630,19 +5630,19 @@ msgstr "Lager en komplett rapport på de valgte personene."
 #: plugins/IndivSummary.py:338 plugins/IndivSummary.py:523
 #: plugins/IndivSummary.py:626 plugins/IndivSummary.py:637
 msgid "Individual Summary"
-msgstr "Individuell Oppsummering"
+msgstr "Individuell oppsummering"
 
 #: plugins/IndivSummary.py:342
 msgid "Individual Summary for %s"
-msgstr "Individuell Oppsummering for %s"
+msgstr "Individuell oppsummering for %s"
 
 #: plugins/IndivSummary.py:347
 msgid "Save Individual Summary"
-msgstr "Lagre Individuell Oppsummering"
+msgstr "Lagre individuell oppsummering"
 
 #: plugins/IndivSummary.py:527
 msgid "Individual Summary Report for GRAMPS Book"
-msgstr "Individuell Oppsummering til GRAMPS Bok"
+msgstr "Individuell oppsummering til GRAMPS bok"
 
 #: plugins/IndivSummary.py:629
 msgid "Produces a detailed report on the selected person."
@@ -6253,7 +6253,7 @@ msgstr "Fakta og Hendelser"
 
 #: plugins/WebPage.py:637
 msgid "Creating Web Pages"
-msgstr "Lage Nett Sider"
+msgstr "Lage nett sider"
 
 #: plugins/WebPage.py:637
 msgid "Generate HTML reports - GRAMPS"
@@ -6334,11 +6334,11 @@ msgstr "GRAMPS ID link URL"
 
 #: plugins/WebPage.py:933 plugins/WebPage.py:1371
 msgid "Generate Web Site"
-msgstr "Lag Websted"
+msgstr "Lag websted"
 
 #: plugins/WebPage.py:933 plugins/WebPage.py:1372
 msgid "Web Page"
-msgstr "Nett Side"
+msgstr "Nett side"
 
 #: plugins/WebPage.py:938
 msgid "Target Directory"
