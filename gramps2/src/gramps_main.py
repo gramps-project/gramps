@@ -372,6 +372,7 @@ class Gramps:
             "on_open_activate" : self.on_open_activate,
             "on_import_activate" : self.on_import_activate,
             "on_export_activate" : self.on_export_activate,
+            "on_saveas_activate" : self.on_saveas_activate,
             "on_pedigree1_activate" : self.on_pedigree1_activate,
             "on_person_list1_activate" : self.on_person_list1_activate,
             "on_media_activate" : self.on_media_activate,
@@ -1426,6 +1427,10 @@ class Gramps:
         
     def on_import_activate(self,obj):
         prompter = DbPrompter.ImportDbPrompter(self,self.topWindow)
+        prompter.chooser()
+
+    def on_saveas_activate(self,obj):
+        prompter = DbPrompter.NewSaveasDbPrompter(self,self.topWindow)
         prompter.chooser()
 
     def on_export_activate(self,obj):

@@ -57,6 +57,10 @@ import GrampsXMLDB
 import GrampsGEDDB
 import GrampsKeys
 import RecentFiles
+import ReadGrdb
+import WriteGrdb
+import WriteXML
+import WriteGedcom
 
 #-------------------------------------------------------------------------
 #
@@ -277,7 +281,6 @@ class ImportDbPrompter:
 
             if filetype == 'application/x-gramps':
                 choose.destroy()
-                import ReadGrdb
                 ReadGrdb.importData(self.parent.db,filename)
                 self.parent.import_tool_callback()
                 return True
@@ -363,6 +366,107 @@ class NewNativeDbPrompter:
                     filename = filename + ".grdb"
                 choose.destroy()
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
+                self.parent.read_file(filename)
+                # Add the file to the recent items
+                RecentFiles.recent_files(filename,const.app_gramps)
+            	self.parent.build_recent_menu()
+                return True
+            else:
+                choose.destroy()
+                return False
+        choose.destroy()
+        return False
+
+#-------------------------------------------------------------------------
+#
+# NewSaveasDbPrompter
+#
+#-------------------------------------------------------------------------
+class NewSaveasDbPrompter:
+    """
+    This class allows to select a new empty InMemory database and then
+    to save current data into it and then continue editing it.
+    """
+    
+    def __init__(self,parent,parent_window=None):
+        self.parent = parent
+        self.parent_window = parent_window
+
+    def chooser(self):
+        """
+        Select the new file. Suggest the Untitled_X.grdb name.
+        Return 1 when selection is made and 0 otherwise.
+        """
+        choose = gtk.FileChooserDialog(_('GRAMPS: Select filename for a new database'),
+                                           self.parent_window,
+                                           gtk.FILE_CHOOSER_ACTION_SAVE,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_SAVE,
+                                            gtk.RESPONSE_OK))
+        choose.set_local_only(gtk.FALSE)
+
+        # Always add automatic (macth all files) filter
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('Automatic'))
+        mime_filter.add_pattern('*')
+        choose.add_filter(mime_filter)
+        
+        # Always add native format filter
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GRAMPS databases'))
+        mime_filter.add_mime_type(const.app_gramps)
+        choose.add_filter(mime_filter)
+
+        # Always add native format filter
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GRAMPS XML databases'))
+        mime_filter.add_mime_type(const.app_gramps_xml)
+        choose.add_filter(mime_filter)
+
+        # Always add native format filter
+        mime_filter = gtk.FileFilter()
+        mime_filter.set_name(_('GEDCOM files'))
+        mime_filter.add_mime_type(const.app_gedcom)
+        choose.add_filter(mime_filter)
+
+        # Suggested folder: try last open file, import, then last export, 
+        # then home.
+        default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = GrampsKeys.get_last_import_dir()
+        if len(default_dir)<=1:
+            default_dir = GrampsKeys.get_last_export_dir()
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        new_filename = Utils.get_new_filename('grdb',default_dir)
+        
+        choose.set_current_folder(default_dir)
+        choose.set_current_name(os.path.split(new_filename)[1])
+
+        while (True):
+            response = choose.run()
+            if response == gtk.RESPONSE_OK:
+                filename = choose.get_filename()
+                if filename == None:
+                    continue
+                os.system('touch %s' % filename)
+                filetype = get_mime_type(filename)
+                (the_path,the_file) = os.path.split(filename)
+                choose.destroy()
+                if filetype == const.app_gramps:
+                    WriteGrdb.exportData(self.parent.db,filename,None,None)
+                    self.parent.db.close()
+                    self.parent.db = GrampsBSDDB.GrampsBSDDB()
+                elif filetype == const.app_gramps_xml:
+                    WriteXML.exportData(self.parent.db,filename,None,None)
+                    self.parent.db.close()
+                    self.parent.db = GrampsXMLDB.GrampsXMLDB()
+                elif filetype == const.app_gedcom:
+                    WriteGedcom.exportData(self.parent.db,filename,None,None)
+                    self.parent.db.close()
+                    self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
