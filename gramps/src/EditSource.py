@@ -58,7 +58,7 @@ class EditSource:
 
         self.top_window = libglade.GladeXML(const.gladeFile,"sourceEditor")
         plwidget = self.top_window.get_widget("photolist")
-        self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db)
+        self.gallery = ImageSelect.Gallery(source, self.path, plwidget, db, self)
         self.title = self.top_window.get_widget("source_title")
         self.author = self.top_window.get_widget("author")
         self.pubinfo = self.top_window.get_widget("pubinfo")

@@ -76,7 +76,7 @@ class Marriage:
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         top_window = self.get_widget("marriageEditor")
         plwidget = self.top.get_widget("photolist")
-        self.gallery = ImageSelect.Gallery(family, self.path, plwidget, db)
+        self.gallery = ImageSelect.Gallery(family, self.path, plwidget, db, self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.on_cancel_edit,
             "on_up_clicked" : self.on_up_clicked,
