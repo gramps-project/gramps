@@ -114,7 +114,7 @@ class IndividualPage:
         self.id_link = idlink
         self.list = map
         self.private = private
-        self.alive = person.probably_alive(db) and restrict
+        self.alive = Utils.probably_alive(person,db) and restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.usecomments = not uc
         self.dir = dir_name

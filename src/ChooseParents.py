@@ -548,14 +548,13 @@ class ChooseParents:
         self.db.transaction_commit(trans,_("Choose Parents"))
         self.close(obj)
 
-    def add_new_parent(self,epo,trans):
+    def add_new_parent(self,epo,val):
         """Adds a new person to either the father list or the mother list,
         depending on the gender of the person."""
 
         person = epo.person
         handle = person.get_handle()
         name = person.get_primary_name().get_surname()
-        self.db.add_person(person,trans)
         self.type = self.prel.get_active()
 
         if self.type == const.FAMILY_CIVIL_UNION:

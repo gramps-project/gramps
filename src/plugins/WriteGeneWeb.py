@@ -353,7 +353,7 @@ class GeneWebWriter:
                     place = self.db.get_place_from_handle(place_handle)
                     b_place = place.get_title()
         
-        if person.probably_alive(self.db):
+        if Utils.probably_alive(person,self.db):
             d_date = ""
         else:
             d_date = "0"
@@ -407,7 +407,7 @@ class GeneWebWriter:
     def get_ref_name(self,person):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         firstname = "Living"
-        if not (person.probably_alive(self.db) and self.restrict and self.living):
+        if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if not self.person_ids.has_key(person.get_handle()):
             self.person_ids[person.get_handle()] = len(self.person_ids)
@@ -417,7 +417,7 @@ class GeneWebWriter:
     def get_child_ref_name(self,person,father_lastname):
         surname = self.rem_spaces( person.get_primary_name().get_surname())
         firstname = "Living"
-        if not (person.probably_alive(self.db) and self.restrict and self.living):
+        if not (Utils.probably_alive(person,self.db) and self.restrict and self.living):
             firstname = self.rem_spaces( person.get_primary_name().get_first_name())
         if not self.person_ids.has_key(person.get_handle()):
             self.person_ids[person.get_handle()] = len(self.person_ids)

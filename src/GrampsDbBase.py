@@ -85,6 +85,7 @@ class GrampsDbBase:
         self.open = 0
         self.genderStats = GenderStats()
 
+        self.undodb    = None
         self.id_trans  = None
         self.fid_trans = None
         self.pid_trans = None

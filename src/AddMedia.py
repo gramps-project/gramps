@@ -169,7 +169,7 @@ class AddMediaObject:
                 self.window.destroy()
                 return self.object
             elif val == gtk.RESPONSE_HELP: 
-                self.on_help_imagesel_clicked()
+                self.on_help_imagesel_clicked(None)
             else:
                 self.window.destroy()
                 return None

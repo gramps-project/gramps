@@ -670,14 +670,14 @@ class GedcomWriter:
                 person = self.db.get_person_from_handle(person_handle)
                 gramps_id = person.get_gramps_id()
                 self.writeln("1 HUSB @%s@" % gramps_id)
-                father_alive = person.probably_alive(self.db)
+                father_alive = Utils.probably_alive(person,self.db)
 
             person_handle = family.get_mother_handle()
             if person_handle != None and self.plist.has_key(person_handle):
                 person = self.db.get_person_from_handle(person_handle)
                 gramps_id = person.get_gramps_id()
                 self.writeln("1 WIFE @%s@" % gramps_id)
-                mother_alive = person.probably_alive(self.db)
+                mother_alive = Utils.probably_alive(person,self.db)
 
             if not self.restrict or ( not father_alive and not mother_alive ):
                 self.write_ord("SLGS",family.get_lds_sealing(),1,const.lds_ssealing)
@@ -750,7 +750,7 @@ class GedcomWriter:
             
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % person.get_gramps_id())
-        restricted = self.restrict and person.probably_alive (self.db)
+        restricted = self.restrict and probably_alive (person,self.db)
         self.prefn(person)
         primaryname = person.get_primary_name ()
         if restricted and self.living:

@@ -1,4 +1,16 @@
 2004-10-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddMedia.py: pychecker fixes
+	* src/DbPrompter.py: pychecker fixes
+	* src/DisplayModels.py: pychecker fixes
+	* src/GrampsDbBase.py: pychecker fixes
+	* src/GrampsInMemDB.py: pychecker fixes
+	* src/RelLib.py: move probably_alive to Utils
+	* src/Utils.py: added probably_alive
+	* src/WriteGedcom.py: probably_alive fixes
+	* src/WriteGedcom.py: probably_alive fixes
+	* src/plugins/WebPage.py: probably_alive fixes
+	* src/plugins/WebFtree.py: probably_alive fixes
+	* src/plugins/WebGeneWeb.py: probably_alive fixes
 	* src/NameEdit.py: integrate patches from Julio Sanchez to
 	fix surname prefix
 	* src/FamilyView.py: Handle add person post processing properly
