@@ -226,6 +226,15 @@
       </para></listitem>
       </varlistentry>
 
+      <varlistentry><term>Je veux relancer le dialogue d'installation (druid). Comment fais-je ? </term>
+      <listitem><para>
+      &app; gère un état dans les données de configuration GNOME pour mémoriser le fait 
+      que le dialogue d'installation a été exécuté. Ceci peut se faire par la commande 
+      suivante :</para>
+      <para><command>gconftool-2 -u /apps/gramps/startup</command>
+      </para></listitem>
+      </varlistentry>
+
       <varlistentry><term>Pourquoi les caractères non latins sont-ils mal
       affichés dans les impressions PDF ou Postscript ? </term>
       <listitem><para>
