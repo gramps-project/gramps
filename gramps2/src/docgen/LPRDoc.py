@@ -76,12 +76,6 @@ _SUPER      = "Super"
 # Units conversion
 #
 #------------------------------------------------------------------------
-def u2cm(unit):
-    """
-    Convert gnome-print units to cm
-    """
-    return 2.54 * unit / 72.0 
-
 def cm2u(cm):
     """
     Convert cm to gnome-print units
@@ -221,6 +215,7 @@ class GnomePrintParagraph:
         self.style = paragraph_style
         self.fontstyle = self.style.get_font()
         self.piece_list = []
+	self.lines = []
 
     def add_piece(self,directive,text):
         """
@@ -320,12 +315,12 @@ class GnomePrintParagraph:
                     if get_text_width(the_text + element + " ",fontstyle) < avail_width:
                         the_text = the_text + element + " "
                     else:
-                        #__text contains as many words as this __width allows
+                        # the_text contains as much as avail_width allows
                         nlines += 1
                         the_text = element + " "
                         avail_width = width
                         
-                #if __text still contains data, we will want to print it out
+                # if the_text still contains data, we will want to print it out
                 if the_text:
                     avail_width = width - get_text_width(the_text,fontstyle)
 
