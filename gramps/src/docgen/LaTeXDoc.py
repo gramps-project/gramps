@@ -374,6 +374,7 @@ class LaTeXDoc(TextDoc):
         """Write the text to the file"""
 	if text == '\n':
 	    text = '\\newline\n'
+        text = string.replace(text,'#','\#')
         self.f.write(text)
 
 
