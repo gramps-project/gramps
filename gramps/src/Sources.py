@@ -54,7 +54,7 @@ class SourceSelector:
         for s in self.orig:
             self.list.append(SourceRef(s))
         self.update=update
-        self.top = libglade.GladeXML(const.gladeFile,"sourcesel")
+        self.top = libglade.GladeXML(const.srcselFile,"sourcesel")
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_add_src_clicked"    : self.on_add_src_clicked,
@@ -117,7 +117,7 @@ class SourceEditor:
         self.parent = parent
         self.update = update
         self.source_ref = srcref
-        self.showSource = libglade.GladeXML(const.gladeFile, "sourceDisplay")
+        self.showSource = libglade.GladeXML(const.srcselFile, "sourceDisplay")
         self.showSource.signal_autoconnect({
             "on_combo_insert_text"  : utils.combo_insert_text,
             "on_sourceok_clicked"   : self.on_sourceok_clicked,

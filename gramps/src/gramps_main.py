@@ -1022,7 +1022,7 @@ def on_child_list_row_move(clist,fm,to):
     utils.modified()
 
 def on_open_activate(obj):
-    wFs = libglade.GladeXML(const.gladeFile, "dbopen")
+    wFs = libglade.GladeXML(const.revisionFile, "dbopen")
     wFs.signal_autoconnect({
         "on_ok_button1_clicked": on_ok_button1_clicked,
         "destroy_passed_object": utils.destroy_passed_object
@@ -1871,7 +1871,6 @@ def main(arg):
     statusbar   = gtop.get_widget("statusbar")
     topWindow   = gtop.get_widget("gramps")
     person_list = gtop.get_widget("person_list")
-    source_list = gtop.get_widget("source_list")
     filter_list = gtop.get_widget("filter_list")
     notebook    = gtop.get_widget(NOTEBOOK)
     nameArrow   = gtop.get_widget("nameSort")
@@ -1885,7 +1884,7 @@ def main(arg):
                                  statusbar,change_active_person,\
                                  load_person)
     place_view  = PlaceView(database,gtop,update_display)
-    source_view = SourceView(database,source_list,update_display)
+    source_view = SourceView(database,gtop,update_display)
     media_view  = MediaView(database,gtop,update_display)
 
     cNameArrow  = gtop.get_widget("cNameSort")
@@ -1959,7 +1958,6 @@ def main(arg):
         "on_person_list_button_press"       : on_person_list_button_press,
         "on_person_list_click_column"       : on_person_list_click_column,
         "on_person_list_select_row"         : on_person_list_select_row,
-        "on_place_list_button_press_event"  : place_view.on_button_press_event,
         "on_place_list_click_column"        : place_view.on_click_column,
         "on_main_key_release_event"         : on_main_key_release_event,
         "on_add_media_clicked"              : media_view.create_add_dialog,

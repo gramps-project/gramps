@@ -41,7 +41,7 @@ class Find:
         
         self.clist = clist
         self.task = task
-        self.xml = libglade.GladeXML(const.gladeFile,"find")
+        self.xml = libglade.GladeXML(const.findFile,"find")
         self.xml.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_next_clicked"       : self.on_next_clicked,

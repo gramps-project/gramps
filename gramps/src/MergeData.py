@@ -19,11 +19,12 @@
 #
 
 import RelLib
-import intl
 import utils
 import Config
 import const
-_ = intl.gettext
+
+from intl import gettext
+_ = gettext
 
 import string
 import libglade

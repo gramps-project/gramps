@@ -26,10 +26,10 @@
 import re
 import os
 import sys
-import intl
 import gtk
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #

@@ -26,6 +26,7 @@ import string
 from RelLib import *
 import EditPlace
 import utils
+import Config
 
 from intl import gettext
 _ = gettext
@@ -60,16 +61,21 @@ class PlaceView:
         self.place_list.set_column_visibility(13,0)
         self.place_list.set_sort_column(self.sort_column+7)
         self.place_list.set_sort_type(self.sort_direct)
+        self.place_list.connect('button-press-event',self.on_button_press_event)
+        self.place_list.connect('select-row',self.select_row)
+        self.active = None
 
     def load_places(self):
-        self.place_list.freeze()
-        self.place_list.clear()
-
         if len(self.place_list.selection) == 0:
             current_row = 0
         else:
             current_row = self.place_list.selection[0]
 
+        self.place_list.freeze()
+        self.place_list.clear()
+
+        self.place_list.set_column_visibility(1,Config.id_visible)
+        
         index = 0
         places = self.db.getPlaceMap().values()
 
@@ -94,9 +100,16 @@ class PlaceView:
         if index > 0:
             self.place_list.select_row(current_row,0)
             self.place_list.moveto(current_row)
-
+            self.active = self.place_list.get_row_data(current_row)
+        else:
+            self.active = None
+            
         self.place_list.thaw()
 
+    def select_row(self,obj,row,b,c):
+        if row == obj.selection[0]:
+            self.active = self.place_list.get_row_data(row)
+            
     def merge(self):
         if len(self.place_list.selection) != 2:
             msg = _("Exactly two places must be selected to perform a merge")
@@ -109,10 +122,9 @@ class PlaceView:
 
     def on_button_press_event(self,obj,event):
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-            if len(obj.selection) > 0:
-                index = obj.selection[0]
-                place = obj.get_row_data(index)
-                EditPlace.EditPlace(place,self.db,self.update_display_after_edit)
+            if self.active:
+                EditPlace.EditPlace(self.active,self.db,
+                                    self.update_display_after_edit)
 
     def on_click_column(self,obj,column):
         obj.freeze()
