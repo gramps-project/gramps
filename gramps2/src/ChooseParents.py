@@ -327,10 +327,8 @@ class ChooseParents:
             data = cursor.next()
         cursor.close()
 
-        self.father_model = gtk.TreeModelSort(self.father_nsort).filter_new()
-        self.father_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.father_model = gtk.TreeModelSort(self.father_nsort)
         self.father_list.set_model(self.father_model)
-        self.father_model.refilter()
         
         if self.type == RelLib.Family.CIVIL_UNION:
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
@@ -353,10 +351,8 @@ class ChooseParents:
             data = cursor.next()
         cursor.close()
 
-        self.mother_model = gtk.TreeModelSort(self.mother_nsort).filter_new()
-        self.mother_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.mother_model = gtk.TreeModelSort(self.mother_nsort)
         self.mother_list.set_model(self.mother_model)
-        self.mother_model.refilter()
         
         if self.type == RelLib.Family.CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
