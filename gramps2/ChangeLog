@@ -1,3 +1,7 @@
+2003-08-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: don't add columns to family view items
+	if they have already be added.
+
 2003-08-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: reinitialize interface after preferences
 	has been clicked.
