@@ -15,31 +15,21 @@ Documentation
 ---------------------------------
 Gramps documentation is supplied in the form of SGML files, which will be
 installed in the GNOME help path(*).  Recent versions of Nautilus and Galeon
-can generate HTML documents on-the-fly from these.  To generate distinct
-HTML documentation follow these steps:
+can generate HTML on-the-fly documents from these.  For more information on
+building HTML files (including info about packages that do and do not work
+with the documentation) see the INSTALL file.  To generate separate HTML
+documentation:
 
 1) Ensure the following packages are installed:
 * db2html >= 0.6.9  (jw >= 1.1)  to convert the SGML -> HTML
 * gnome-doc-tools-2-1            for the GNOME documentation style sheets
-The former is part of the docbook-utils package, the latter can be found at
-http://people.redhat.com/dcm/software.html. The /etc/sgml/catalog file
-should contain an entry pointing to PNG support. If configured properly,
-your db2html should automatically look up and use the /etc/sgml/catalog
-file.  If it doesn't you can try editing the DB2HTML line in Makefile.comm
-to explicitly use that file, DB2HTML = db2html -c /etc/sgml/catalog
+The former is part of the docbook-utils package, the latter can be found
+from the developer section at gnome.org. 
 
-2) Invoke configure with the --enable-html option: 
-   ./configure --enable-html
-
-3) In addition to the normal 'make' and 'make install', you need to also
-execute 'make html && make install-html'.
-
-If all goes well and you do the happy dance, the HTML files should be
-built and installed successfully.  Due to a wide variation in the
-implementation of db2html (and docbook-utils) across various Linux
-distributions, though, this is not guaranteed to work.  Some configure-time
-checks are in place, and it _should_ work, but it is very ad-hoc at the
-moment.  You have been warned. :-)
+One also needs png support for sgml, which should be a part of the
+gnome-doc-tools package. The /etc/sgml/catalog file should
+contain an entry pointing to PNG support. If configured properly, your
+db2html should automatically look up and use the /etc/sgml/catalog file.
 
 Of course, current HTML documentation can also be found on the gramps website,
 http://gramps.sourceforge.net/help.html

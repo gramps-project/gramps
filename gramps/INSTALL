@@ -16,7 +16,7 @@ building gramps.
 SHORT VERSION:
 Execute:
 aclocal
-automake --gnu && autoconf && make
+automake --add-missing --gnu && autoconf && make
 
 HTML documentation is built from SGML sources via jw.  It is known to work
 with docbook-utils-0.6.9.  There is a problem with 0.6.10, which seems to
