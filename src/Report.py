@@ -187,6 +187,7 @@ class ReportDialog:
         self.setup_report_options_frame()
         self.setup_other_frames()
         self.window.show_all()
+        self.setup_post_process()
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
