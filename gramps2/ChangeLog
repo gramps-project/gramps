@@ -1,8 +1,11 @@
+2004-08-25  Jim Smart  <jim@jimsmart.org>
+	* src/RelLib.py: guess_gender fix
+
 2004-08-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: make a distiction between adding a person
 	and editing a person.
 	* src/PeopleView.py: drop unused goto_active_person parameter
-	* srcgramps_main.py: drop unused goto_active_person parameter
+	* src/gramps_main.py: drop unused goto_active_person parameter
 
 2004-08-27  Tim Waugh  <twaugh@redhat.com>
 	* src/SelectObject.py (SelectObject.redraw): Use GRAMPS ID for
