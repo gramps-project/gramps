@@ -1105,7 +1105,7 @@ class Event(DataObj):
 
     def getSaveDate(self) :
         """returns the date of the Event in the form wanted by gramps XML save"""
-        if not self.date:
+        if self.date:
             return self.date.getSaveDate()
         return ""
 
