@@ -282,8 +282,13 @@ class LaTeXDoc(TextDoc):
 	self.rborder = self.cstyle.get_right_border()
 	self.bborder = self.cstyle.get_bottom_border()
 	self.tborder = self.cstyle.get_top_border()
-
-	cellfmt = "l"
+	self.llist = self.cstyle.get_longlist()
+	
+	if self.llist == 1:
+	    cellfmt = "p{\linewidth-3cm}"
+	else:
+	    cellfmt = "l"
+	    
 	# Account for vertical rules
 	if self.lborder == 1:
 	    cellfmt = '|' + cellfmt
@@ -324,6 +329,8 @@ class LaTeXDoc(TextDoc):
 		
     def write_text(self,text):
         """Write the text to the file"""
+	if text == '\n':
+	    text = '\\newline\n'
         self.f.write(text)
 
 
