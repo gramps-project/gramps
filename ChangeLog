@@ -1,3 +1,7 @@
+2004-01-02  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/PedView.py (load_canvas): Produce generation labels based on
+	the anchor.
+
 2004-01-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PedView.py (PedigreeView.load_canvas): switched anchor label from a label
 	to a CanvasText

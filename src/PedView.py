@@ -26,6 +26,13 @@ _PERSON    = "p"
 
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+from math import log
+
+#-------------------------------------------------------------------------
+#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
@@ -255,6 +262,16 @@ class PedigreeView:
             self.add_parent_button(p[0],x2-_PAD,ypts[2],h)
 
         gen_no = 1
+        if self.anchor:
+            anchor_list = [None]*31
+            self.find_tree(self.anchor,0,1,anchor_list)
+            for item in anchor_list:
+                if item:
+                    if item[0] == self.active_person:
+                        idx = anchor_list.index(item)
+                        gen_no = int(log(idx + 1,2)) + 1
+                        break
+
         for i in range(int(xdiv)):
             item = self.root.add(gnome.canvas.CanvasText, x=(cw*i/xdiv + cpad), y=h,
                                  text=str(gen_no),
