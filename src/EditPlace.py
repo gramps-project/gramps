@@ -369,6 +369,7 @@ class EditPlace:
         self.gallery_ok = 1
         self.update_lists()
 
+        self.db.commit_place(self.place)
         if self.callback:
             self.callback(self.place)
 

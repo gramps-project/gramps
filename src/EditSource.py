@@ -324,6 +324,7 @@ class EditSource:
 
         self.gallery_ok = 1
 
+        self.db.commit_source(self.source)
         if self.callback:
             self.callback(self.source)
         self.close(obj)

@@ -61,8 +61,8 @@ def import_media_object(filename,path,base):
     
     type = Utils.get_mime_type(filename)
     if type[0:5] == "image":
-        name = "%s/%s%s" % (path,base,ext)
-        thumb = "%s/.thumb" % (path)
+        name = "%s/%s%s" % (os.path.dirname(path),base,ext)
+        thumb = "%s/.thumb" % (os.path.dirname(path))
 
         try:
             if not os.path.exists(thumb):

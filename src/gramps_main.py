@@ -756,18 +756,9 @@ class Gramps:
 
     def on_exit_activate(self,obj):
         """Prompt to save on exit if needed"""
-        if Utils.wasModified():
-            self.delobj = obj
-            SaveDialog(_('Save Changes Made to the Database?'),
-                       _("Unsaved changes exist in the current database. If you "
-                         "close without saving, the changes you have made will "
-                         "be lost."),
-                       self.quit,
-                       self.save_query)
-        else:
-            self.delete_abandoned_photos()
-            self.db.close()
-            gtk.mainquit()
+        self.delete_abandoned_photos()
+        self.db.close()
+        gtk.mainquit()
 
     def save_query(self):
         """Catch the reponse to the save on exit question"""
@@ -781,14 +772,11 @@ class Gramps:
         self.on_save_activate_quit()
         self.delete_abandoned_photos()
         self.db.close()
-	Utils.clearModified()
 
     def quit(self):
         """Catch the reponse to the save on exit question"""
         self.delete_abandoned_photos()
         self.db.close()
-        if GrampsCfg.lastfile:
-            self.delete_autosave(GrampsCfg.lastfile)
         gtk.mainquit()
         
     def close_noquit(self):
@@ -797,7 +785,6 @@ class Gramps:
         self.db.close()
         if GrampsCfg.lastfile:
             self.delete_autosave(GrampsCfg.lastfile)
-	Utils.clearModified()
 
     def delete_abandoned_photos(self):
         """
@@ -888,7 +875,6 @@ class Gramps:
             self.topWindow.set_title("GRAMPS")
             self.active_person = None
 
-            Utils.clearModified()
             Utils.clear_timer()
             self.change_active_person(None)
             self.people_view.clear()
@@ -1145,7 +1131,6 @@ class Gramps:
         filename = os.path.normpath(os.path.abspath(filename))
         self.status_text(_("Saving %s ...") % filename)
 
-        Utils.clearModified()
         Utils.clear_timer()
 
         if os.path.exists(filename):
@@ -1386,69 +1371,33 @@ class Gramps:
             return ""
 	
     def on_open_activate(self,obj):
-        if Utils.wasModified():
-            self.delobj = obj
-            SaveDialog(_('Save Changes Made to the Database?'),
-                       _("Unsaved changes exist in the current database. If you "
-                         "close without saving, the changes you have made will "
-                         "be lost."),
-                       self.close_noquit,
-                       self.save_query_noquit)
-
-        if not Utils.wasModified():
-            wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
-
-            self.dbopen_fs = wFs.get_widget("dbopen")
-
-            Utils.set_titles(self.dbopen_fs, wFs.get_widget('title'),
-                             _('Open a database'))
+        wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
         
-            dbname = wFs.get_widget("dbname")
-            getoldrev = wFs.get_widget("getoldrev")
-            self.dbopen_fs.set_data("dbname",dbname)
-            dbname.set_default_path(GrampsCfg.db_dir)
-            dbname.set_filename(GrampsCfg.db_dir)
-            dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
-            
-            self.dbopen_fs.set_data("getoldrev",getoldrev)
-            getoldrev.set_sensitive(GrampsCfg.usevc)
-            self.dbopen_fs.set_transient_for(self.topWindow)
-            self.dbopen_fs.show()
-            self.dbopen_button = self.dbopen_fs.run()
-            if self.dbopen_button == gtk.RESPONSE_OK:
-                self.on_ok_button1_clicked(self.dbopen_fs)
-            elif self.dbopen_button == gtk.RESPONSE_HELP:
-                self.on_help_dbopen_clicked(obj)
-            self.dbopen_fs.destroy()
+        self.dbopen_fs = wFs.get_widget("dbopen")
+        
+        Utils.set_titles(self.dbopen_fs, wFs.get_widget('title'),
+                         _('Open a database'))
+        
+        dbname = wFs.get_widget("dbname")
+        getoldrev = wFs.get_widget("getoldrev")
+        self.dbopen_fs.set_data("dbname",dbname)
+        dbname.set_default_path(GrampsCfg.db_dir)
+        dbname.set_filename(GrampsCfg.db_dir)
+        dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
+        
+        self.dbopen_fs.set_data("getoldrev",getoldrev)
+        getoldrev.set_sensitive(GrampsCfg.usevc)
+        self.dbopen_fs.set_transient_for(self.topWindow)
+        self.dbopen_fs.show()
+        self.dbopen_button = self.dbopen_fs.run()
+        if self.dbopen_button == gtk.RESPONSE_OK:
+            self.on_ok_button1_clicked(self.dbopen_fs)
+        elif self.dbopen_button == gtk.RESPONSE_HELP:
+            self.on_help_dbopen_clicked(obj)
+        self.dbopen_fs.destroy()
 
     def on_revert_activate(self,obj):
-        
-        if self.db.get_save_path() != "":
-            QuestionDialog(_('Revert to last saved database?'),
-                           _('Reverting to the last saved database '
-                             'will cause all unsaved changes to be lost, and '
-                             'the last saved database will be loaded.'),
-                           _('_Revert'),
-                           self.revert_query)
-        else:
-            WarningDialog(_('Could Not Revert to the Previous Database.'),
-                          _('GRAMPS could not find a previous version of '
-                            'the database'))
-
-    def revert_query(self):
-        const.personalEvents = const.init_personal_event_list()
-        const.personalAttributes = const.init_personal_attribute_list()
-        const.marriageEvents = const.init_marriage_event_list()
-        const.familyAttributes = const.init_family_attribute_list()
-        const.familyRelations = const.init_family_relation_list()
-        
-        file = self.db.get_save_path()
-        self.db.new()
-        self.active_person = None
-        self.place_loaded = 0
-        self.read_file(file)
-        Utils.clearModified()
-        Utils.clear_timer()
+        pass
         
     def on_save_as_activate(self,obj):
         wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
