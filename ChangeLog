@@ -1,5 +1,8 @@
 2004-08-22  Tim Waugh  <twaugh@redhat.com>
 
+	* src/WriteGedcom.py (GedcomWriter.export_data): Write individuals
+	out in GRAMPS ID order.
+
 	* src/ReadXML.py (GrampsParser.start_object): Set GRAMPS ID.
 
 	* src/WriteXML.py (write_xml_data): Fixed typo causing XML export to
