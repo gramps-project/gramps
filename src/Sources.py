@@ -64,7 +64,7 @@ class SourceSelector:
         slist_map = [ (0, self.top.get_widget('arrow1')),
                       (1, self.top.get_widget('arrow2'))]
         
-        self.srcsort = Sorter.Sorter(self.slist, slist_map, 'source', self.top)
+        self.srcsort = Sorter.Sorter(self.slist, slist_map, 'source')
         self.redraw()
         self.sourcesel.show()
 
