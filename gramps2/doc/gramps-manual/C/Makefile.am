@@ -7,6 +7,8 @@ entities = legal.xml\
 	mainwin.xml\
 	usage.xml\
 	custom.xml\
+	faq.xml\
+	keybind.xml\
 	filtref.xml\
 	cmdline.xml 
 include $(top_srcdir)/doc/xmldocs.make

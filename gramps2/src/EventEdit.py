@@ -78,6 +78,12 @@ class EventEditor:
             if not self.witnesslist:
                 self.witnesslist = []
             self.date = Date.Date(self.event.getDateObj())
+            transname = const.display_event(event.getName())
+            # add the name to the list if it is not already there. This tends to occur
+            # in translated languages with the 'Death' event, which is a partial match
+            # to other events
+            if not transname in list:
+                list.append(transname)
         else:
             self.srcreflist = []
             self.witnesslist = []
@@ -134,15 +140,6 @@ class EventEditor:
                                            self.top.get_widget('edit_witness'),
                                            self.top.get_widget('del_witness'))
 
-        transname = const.display_event(event.getName())
-
-        # add the name to the list if it is not already there. This tends to occur
-        # in translated languages with the 'Death' event, which is a partial match
-        # to other events
-        
-        if not transname in list:
-            list.append(transname)
-            
         AutoComp.AutoCombo(self.event_menu,list)
         AutoComp.AutoEntry(self.place_field,self.pmap.keys())
 

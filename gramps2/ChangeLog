@@ -4,6 +4,13 @@
 	* src/plugins/book.glade: Remove initial text from the labels. 
 	* src/po/template.po: Updated translation template for 0.98.0.
 	* src/po/ru.po: Russian translation for 0.98.0.
+	* src/EventEdit.py (__init__): Only define translated name if the 
+	event is not empty.
+	* doc/gramps-manual/C/gramps-manual.xml: Update manual.
+	* doc/gramps-manual/C/mainwin.xml: Update manual.
+	* doc/gramps-manual/C/faq.xml: Add to CVS.
+	* doc/gramps-manual/C/keybind.xml: Add to CVS.
+	* doc/gramps-manual/C/Makefile.am: Add new files to the distribution.
 
 2003-11-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/po/template.po: updated translatable strings
