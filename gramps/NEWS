@@ -2,6 +2,13 @@ Version 0.5.1post
 * Support for QUAY on GEDCOM import. 
 * Confidence level moved to SourceReference instead of object
 * Support for revision control
+* Support for multiple sources per item
+* Improved GEDCOM import time
+* Support of NCHI and CAUS on GEDCOM import
+* All fields of birth and death events are editable. Clicking the
+  Edit button brings up the event editor. Birth and death fields
+  on the Edit Person dialog are now read only.
+* Support for unknown gender
 
 Version 0.5.1
 * Bug fixes

@@ -45,7 +45,6 @@ from RelLib import *
 
 SOURCEDISP = "s"
 ACTIVESRC  = "a"
-INDEX      = "i"
 MENUVAL    = "a"
 
 class SourceSelector:

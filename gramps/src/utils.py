@@ -30,7 +30,6 @@ _ = intl.gettext
 _modifiedFlag  = 0
 
 LISTOBJ = "s"
-INDEX   = "i"
 OBJECT  = "o"
 
 #-------------------------------------------------------------------------
@@ -209,15 +208,13 @@ def redraw_list(dlist,clist,func):
         clist.set_row_data(index,object)
         index = index + 1
     
-    current_row = clist.get_data(INDEX)
-    if index > 0:
-        if current_row <= 0:
-            current_row = 0
-        elif index <= current_row:
-            current_row = current_row - 1
-        clist.select_row(current_row,0)
-        clist.moveto(current_row,0)
-    clist.set_data(INDEX,current_row)
+    if len(clist.selection) == 0:
+        current_row = 0
+    else:
+        current_row = clist.selection[0]
+
+    clist.select_row(current_row,0)
+    clist.moveto(current_row,0)
     clist.thaw()
     return index
 
@@ -227,12 +224,9 @@ def redraw_list(dlist,clist,func):
 #
 #-------------------------------------------------------------------------
 def delete_selected(obj,list):
-    row = obj.get_data(INDEX)
-    if row < 0:
+    if len(obj.selection) == 0:
         return 0
-    del list[row]
-    if row > len(list)-1:
-        obj.set_data(INDEX,row-1)
+    del list[obj.selection[0]]
     return 1
 
 #-------------------------------------------------------------------------

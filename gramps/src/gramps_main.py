@@ -134,7 +134,6 @@ SURNAME     = "s"
 RELTYPE     = "d"
 PAD         = 3
 CANVASPAD   = 20
-INDEX       = "i"
 
 #-------------------------------------------------------------------------
 #
@@ -869,9 +868,10 @@ def load_sources():
     source_list.clear()
     source_list.freeze()
 
-    current_row = source_list.get_data(INDEX)
-    if current_row == None:
-        current_row = -1
+    if len(source_list.selection) > 0:
+        current_row = source_list.selection[0]
+    else:
+        current_row = 0
 
     index = 0
     for src in database.getSourceMap().values():
@@ -880,12 +880,9 @@ def load_sources():
         index = index + 1
 
     if index > 0:
-        if current_row == -1:
-            current_row = 0
         source_list.select_row(current_row,0)
         source_list.moveto(current_row)
 
-    source_list.set_data(INDEX,current_row)
     source_list.thaw()
 
 #-------------------------------------------------------------------------
@@ -895,8 +892,8 @@ def load_sources():
 #-------------------------------------------------------------------------
 def on_src_list_button_press_event(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        index = obj.get_data(INDEX)
-        if index >= 0:
+        if len(obj.selection) > 0:
+            index = obj.selection[0]
             source = obj.get_row_data(index)
             EditSource.EditSource(source,database,update_display_after_edit)
 
@@ -907,18 +904,10 @@ def on_src_list_button_press_event(obj,event):
 #-------------------------------------------------------------------------
 def on_place_list_button_press_event(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        index = obj.get_data(INDEX)
-        if index >= 0:
+        if len(obj.selection) > 0:
+            index = obj.selection[0]
             place = obj.get_row_data(index)
             EditPlace.EditPlace(place,database,update_display_after_edit)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_list_select_row(obj,a,b,c):
-    obj.set_data(INDEX,a)
 
 #-------------------------------------------------------------------------
 #
@@ -950,9 +939,10 @@ def on_delete_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_place_clicked(obj):
-    index = obj.get_data(INDEX)
-    if index == -1:
+    if len(obj.selection) == 0:
         return
+    else:
+        index = obj.selection[0]
 
     pevent = []
     fevent = []
@@ -1038,8 +1028,8 @@ def on_force_delete_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
-    index = obj.get_data(INDEX)
-    if index != -1:
+    if len(obj.selection) > 0:
+        index = obj.selection[0]
         source = obj.get_row_data(index)
         EditSource.EditSource(source,database,update_display_after_edit)
 
@@ -1049,8 +1039,8 @@ def on_edit_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_place_clicked(obj):
-    index = obj.get_data(INDEX)
-    if index != -1:
+    if len(obj.selection) > 0:
+        index = obj.selection[0]
         place = obj.get_row_data(index)
         EditPlace.EditPlace(place,database,update_display_after_edit)
 
@@ -1667,6 +1657,8 @@ def delete_person_response(val):
 #
 #-------------------------------------------------------------------------
 def remove_from_person_list(person):
+    global active_person
+    
     person_list.freeze()
     if id2col.has_key(person):
         for id in [id2col[person]] + alt2col[person]:
@@ -1675,6 +1667,9 @@ def remove_from_person_list(person):
 
         del id2col[person]
         del alt2col[person]
+
+        if row <= person_list.rows:
+            (active_person,alt) = person_list.get_row_data(row)
     person_list.thaw()
     
 #-------------------------------------------------------------------------
@@ -2064,9 +2059,10 @@ def load_places():
     place_list.freeze()
     place_list.clear()
 
-    current_row = place_list.get_data(INDEX)
-    if current_row == None:
-        current_row = -1
+    if len(place_list.selection) == 0:
+        current_row = 0
+    else:
+        current_row = place_list.selection[0]
 
     index = 0
     places = database.getPlaceMap().values()
@@ -2090,12 +2086,9 @@ def load_places():
     place_list.sort()
 
     if index > 0:
-        if current_row == -1:
-            current_row = 0
         place_list.select_row(current_row,0)
         place_list.moveto(current_row)
 
-    place_list.set_data(INDEX,current_row)
     place_list.thaw()
 
 #-------------------------------------------------------------------------
@@ -3290,7 +3283,6 @@ def main(arg):
         "on_person_list_select_row"         : on_person_list_select_row,
         "on_place_list_button_press_event"  : on_place_list_button_press_event,
         "on_main_key_release_event"         : on_main_key_release_event,
-        "on_place_list_select_row"          : on_list_select_row,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
         "on_remove_child_clicked"           : on_remove_child_clicked,
@@ -3299,7 +3291,6 @@ def main(arg):
         "on_save_activate"                  : on_save_activate,
         "on_save_as_activate"               : on_save_as_activate,
         "on_source_list_button_press_event" : on_src_list_button_press_event,
-        "on_source_list_select_row"         : on_list_select_row,
         "on_sources_activate"               : on_sources_activate,
         "on_spouselist_changed"             : on_spouselist_changed,
         "on_swap_clicked"                   : on_swap_clicked,
