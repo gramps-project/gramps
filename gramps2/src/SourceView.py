@@ -203,9 +203,9 @@ class SourceView:
     def update_display(self,source):
         self.model.update_row_by_handle(source.get_handle())
 
-    def blist(self,store,path,iter,list):
+    def blist(self,store,path,iter,sel_list):
         handle = store.get_value(iter,_HANDLE_COL)
-        list.append(handle)
+        sel_list.append(handle)
 
     def merge(self):
         mlist = []

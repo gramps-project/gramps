@@ -1461,31 +1461,31 @@ class MergeSources:
 
         self.title1 = self.glade.get_widget("title1")
         self.title2 = self.glade.get_widget("title2")
-        self.title1.set_text(src1.get_title())
-        self.title2.set_text(src2.get_title())
+        self.title1.set_text(self.src1.get_title())
+        self.title2.set_text(self.src2.get_title())
 
         self.author1 = self.glade.get_widget("author1")
         self.author2 = self.glade.get_widget("author2")
-        self.author1.set_text(src1.get_author())
-        self.author2.set_text(src2.get_author())
+        self.author1.set_text(self.src1.get_author())
+        self.author2.set_text(self.src2.get_author())
 
         self.abbrev1 = self.glade.get_widget("abbrev1")
         self.abbrev2 = self.glade.get_widget("abbrev2")
-        self.abbrev1.set_text(src1.get_abbreviation())
-        self.abbrev2.set_text(src2.get_abbreviation())
+        self.abbrev1.set_text(self.src1.get_abbreviation())
+        self.abbrev2.set_text(self.src2.get_abbreviation())
 
         self.pub1 = self.glade.get_widget("pub1")
         self.pub2 = self.glade.get_widget("pub2")
-        self.pub1.set_text(src1.get_publication_info())
-        self.pub2.set_text(src2.get_publication_info())
+        self.pub1.set_text(self.src1.get_publication_info())
+        self.pub2.set_text(self.src2.get_publication_info())
 
         self.gramps1 = self.glade.get_widget("gramps1")
         self.gramps2 = self.glade.get_widget("gramps2")
-        self.gramps1.set_text(src1.get_gramps_id())
-        self.gramps2.set_text(src2.get_gramps_id())
+        self.gramps1.set_text(self.src1.get_gramps_id())
+        self.gramps2.set_text(self.src2.get_gramps_id())
         
         self.glade.get_widget('ok').connect('clicked',self.merge)
-        self.glade.get_widget('close').connect('clicked',self.close)
+        self.glade.get_widget('cancel').connect('clicked',self.close)
         self.trans = self.db.transaction_begin()
         self.top.show()
 
@@ -1547,42 +1547,42 @@ class MergeSources:
             person = self.db.get_person_from_handle(handle)
             if person.has_source_reference(self.old_handle):
                 person.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_person(person,trans)
+                self.db.commit_person(person,self.trans)
 
         # family
         for handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(handle)
             if family.has_source_reference(self.old_handle):
                 family.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_family(family,trans)
+                self.db.commit_family(family,self.trans)
 
         # events
         for handle in self.db.get_event_handles():
             event = self.db.get_event_from_handle(handle)
             if event.has_source_reference(self.old_handle):
                 event.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_event(event,trans)
+                self.db.commit_event(event,self.trans)
 
         # sources
         for handle in self.db.get_source_handles():
             source = self.db.get_source_from_handle(handle)
             if source.has_source_reference(self.old_handle):
                 source.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_source(source,trans)
+                self.db.commit_source(source,self.trans)
 
         # places
         for handle in self.db.get_place_handles():
             place = self.db.get_place_from_handle(handle) 
             if place.has_source_reference(self.old_handle):
                 place.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_place(place,trans)
+                self.db.commit_place(place,self.trans)
 
         # media
         for handle in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(handle)
             if obj.has_source_reference(self.old_handle):
                 obj.replace_source_references(self.old_handle,self.new_handle)
-                self.db.commit_media_object(obj,trans)
+                self.db.commit_media_object(obj,self.trans)
         
         self.db.transaction_commit(self.trans,_("Merge Sources"))
         self.top.destroy()
