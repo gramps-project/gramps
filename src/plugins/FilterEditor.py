@@ -55,11 +55,11 @@ import SelectPerson
 from gettext import gettext as _
 
 _name2list = {
-    _('Personal event:')     : const.personalEvents,
-    _('Family event:')       : const.marriageEvents,
-    _('Personal attribute:') : const.personalAttributes,
-    _('Family attribute:')   : const.familyAttributes,
-    _('Relationship type:')  : const.familyRelations,
+    _('Personal event:')     : (const.personalEvents,const.personal_events),
+    _('Family event:')       : (const.marriageEvents,const.family_events),
+    _('Personal attribute:') : (const.personalAttributes,const.personal_attributes),
+    _('Family attribute:')   : (const.familyAttributes,const.family_attributes),
+    _('Relationship type:')  : (const.familyRelations,const.family_relations),
 }
 
 
@@ -196,19 +196,20 @@ class MyID(gtk.HBox):
 #-------------------------------------------------------------------------
 class MySelect(gtk.Combo):
     
-    def __init__(self,list):
+    def __init__(self,list,transtable):
         gtk.Combo.__init__(self)
         list.sort()
         self.set_popdown_strings(list)
         self.set_value_in_list(1,0)
         self.entry.set_editable(0)
+        self.transtable = transtable
         self.show()
         
     def get_text(self):
-        return unicode(self.entry.get_text())
+        return self.transtable.find_key(unicode(self.entry.get_text()))
 
     def set_text(self,val):
-        self.entry.set_text(val)
+        self.entry.set_text(_(val))
 
 #-------------------------------------------------------------------------
 #
@@ -462,7 +463,8 @@ class FilterEditor:
                 elif v == _('Filter name:'):
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
-                    t = MySelect(_name2list[v1])
+                    data =_name2list[v1]
+                    t = MySelect(data[0],data[1])
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 else:
@@ -560,7 +562,7 @@ class FilterEditor:
     def rule_ok(self,obj):
         name = unicode(self.rule_name.get_text())
         class_def = GenericFilter.tasks[name]
-        obj = class_def([])
+        obj = class_def(None)
         try:
             page = self.name2page[name]
             (n,c,v,t) = self.page[page]
