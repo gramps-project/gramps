@@ -345,7 +345,7 @@ def write_source_ref(g,level,ref):
         if ref_text != "":
             write_long_text(g,"TEXT",level+1,ref_text)
         if ref.getDate().getDate():
-            g.write("%d DATE %s\n",level+1,ref.getDate().getSaveDate())
+            g.write("%d DATE %s\n" % (level+1,ref.getDate().getSaveDate()))
     if ref.getComments() != "":
         write_long_text(g,"NOTE",level+1,ref.getComments())
         
