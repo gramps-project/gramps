@@ -152,7 +152,7 @@ class ArgHandler:
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     format = options[opt_ix+1][1]
-                    if format not in ('gedcom','gramps-xml','gramps-pkg','grdb'):
+                    if format not in ('gedcom','gramps-xml','gramps-pkg','grdb','geneweb'):
                         print "Invalid format:  %s" % format
                         print "Ignoring input file:  %s" % fname
                         continue
@@ -164,6 +164,8 @@ class ArgHandler:
                     format = 'gramps-xml'
                 elif ftype == const.app_gramps:
                     format = 'grdb'
+                elif ftype == const.app_geneweb:
+                    format = 'geneweb'
                 else:
                     print "Unrecognized format for input file %s" % fname
                     print "Ignoring input file:  %s" % fname
@@ -174,7 +176,7 @@ class ArgHandler:
                 if opt_ix<len(options)-1 \
                             and options[opt_ix+1][0] in ( '-f', '--format'): 
                     outformat = options[opt_ix+1][1]
-                    if outformat not in ('gedcom','gramps-xml','gramps-pkg','grdb','iso','wft'):
+                    if outformat not in ('gedcom','gramps-xml','gramps-pkg','grdb','iso','wft','geneweb'):
                         print "Invalid format:  %s" % outformat
                         print "Ignoring output file:  %s" % outfname
                         continue
@@ -184,6 +186,8 @@ class ArgHandler:
                     outformat = 'gramps-pkg'
                 elif outfname[-3:].upper() == "WFT":
                     outformat = 'wft'
+                elif outfname[-2:].upper() == "GW":
+                    outformat = 'geneweb'
                 elif not os.path.isfile(outfname):
                     if not os.path.isdir(outfname):
                         try:
@@ -426,6 +430,14 @@ class ArgHandler:
             except:
                 print "Error importing %s" % filename
                 os._exit(1)
+        elif format == 'geneweb':
+            import ImportGeneWeb
+            filename = os.path.normpath(os.path.abspath(filename))
+            try:
+                ImportGeneWeb.importData(self.parent.db,filename,None)
+            except:
+                print "Error importing %s" % filename
+                os._exit(1)
         elif format == 'gramps-pkg':
             # Create tempdir, if it does not exist, then check for writability
             tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
@@ -484,8 +496,8 @@ class ArgHandler:
         if format == 'gedcom':
             import WriteGedcom
             try:
-                g = WriteGedcom.GedcomWriter(self.parent.db,None,1,filename)
-                del g
+                gw = WriteGedcom.GedcomWriter(self.parent.db,None,1,filename)
+                ret = gw.export_data(filename)
             except:
                 print "Error exporting %s" % filename
                 os._exit(1)
@@ -494,63 +506,41 @@ class ArgHandler:
             dbname = os.path.join(filename,const.xmlFile)
             if filename:
                 try:
-                    self.parent.save_media(filename)
-                    self.parent.db.save(dbname,None)
+                    import WriteXML
+                    g = WriteXML.XmlWriter(self.parent.db,None,1,1)
+                    ret = g.write(dbname)
                 except:
                     print "Error exporting %s" % filename
                     os._exit(1)
         elif format == 'gramps-pkg':
-            import TarFile
-            import WriteXML
-            from cStringIO import StringIO
-
             try:
-                t = TarFile.TarFile(filename)
-                mtime = time.time()
+                import WritePkg
+                writer = WritePkg.PackageWriter(self.parent.db,filename)
+                ret = writer.export()
             except:
                 print "Error creating %s" % filename
                 os._exit(1)
-        
-            try:
-                # Write media files first, since the database may be modified 
-                # during the process (i.e. when removing object)
-                for m_id in self.parent.db.get_media_object_handles():
-                    mobject = self.parent.db.get_object_from_handle(m_id)
-                    oldfile = mobject.get_path()
-                    base = os.path.basename(oldfile)
-                    if os.path.isfile(oldfile):
-                        g = open(oldfile,"rb")
-                        t.add_file(base,mtime,g)
-                        g.close()
-                    else:
-                        print "Warning: media file %s was not found," % base,\
-                            "so it was ignored."
-            except:
-                print "Error exporting media files to %s" % filename
-                os._exit(1)
-            try:
-                # Write XML now
-                g = StringIO()
-                gfile = WriteXML.XmlWriter(self.parent.db,None,1)
-                gfile.write_handle(g)
-                mtime = time.time()
-                t.add_file("data.gramps",mtime,g)
-                g.close()
-                t.close()
-            except:
-                print "Error exporting data to %s" % filename
-                os._exit(1)
         elif format == 'iso':
-            import WriteCD
-            try:
-                WriteCD.PackageWriter(self.parent.db,1,filename)
-            except:
-                print "Error exporting %s" % filename
-                os._exit(1)
+            print "\tISO format is temporarily disabled."
+            #import WriteCD
+            #try:
+            #    WriteCD.PackageWriter(self.parent.db,1,filename)
+            #except:
+            #    print "Error exporting %s" % filename
+            #    os._exit(1)
         elif format == 'wft':
             import WriteFtree
             try:
-                WriteFtree.FtreeWriter(self.parent.db,None,1,filename)
+                writer = WriteFtree.FtreeWriter(self.parent.db,None,1,filename)
+                ret = writer.export_data()
+            except:
+                print "Error exporting %s" % filename
+                os._exit(1)
+        elif format == 'geneweb':
+            import WriteGeneWeb
+            try:
+                writer = WriteGeneWeb.GeneWebWriter(self.parent.db,None,1,filename)
+                ret = writer.export_data()
             except:
                 print "Error exporting %s" % filename
                 os._exit(1)

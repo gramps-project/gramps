@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Martin Hawlisch
+# Copyright (C) 2004-2005 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,9 +28,9 @@
 #
 #-------------------------------------------------------------------------
 import os
-import string
 import time
 import re
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -51,11 +52,7 @@ import const
 import Utils
 import Date
 import Errors
-from gettext import gettext as _
 from QuestionDialog import ErrorDialog
-
-_title_string = _("Export to GeneWeb")
-
 
 #-------------------------------------------------------------------------
 #
@@ -204,17 +201,17 @@ class GeneWebWriter:
     def writeln(self,text):
         self.g.write(self.iso8859('%s\n' % (text)))
 
-    def export_data(self,filename):
+    def export_data(self):
 
-        self.dirname = os.path.dirname (filename)
+        self.dirname = os.path.dirname (self.filename)
         try:
-            self.g = open(filename,"w")
+            self.g = open(self.filename,"w")
         except IOError,msg:
-            msg2 = _("Could not create %s") % filename
+            msg2 = _("Could not create %s") % self.filename
             ErrorDialog(msg2,str(msg))
             return 0
         except:
-            ErrorDialog(_("Could not create %s") % filename)
+            ErrorDialog(_("Could not create %s") % self.filename)
             return 0
 
         if len(self.flist) < 1:
@@ -566,7 +563,7 @@ def exportData(database,filename,person,option_box):
     ret = 0
     try:
         gw = GeneWebWriter(database,person,0,filename,option_box)
-        ret = gw.export_data(filename)
+        ret = gw.export_data()
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -577,11 +574,10 @@ def exportData(database,filename,person,option_box):
 #
 #
 #-------------------------------------------------------------------------
-_title = _('GeneWeb')
+_title = _('G_eneWeb')
 _description = _('GeneWeb is a web based genealogy program.')
 _config = (_('GeneWeb export options'),GeneWebWriterOptionBox)
 _filename = 'gw'
 
 from PluginMgr import register_export
-
 register_export(exportData,_title,_description,_config,_filename)

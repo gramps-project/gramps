@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
 import time
 import os
 from cStringIO import StringIO
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -49,20 +50,21 @@ import TarFile
 import Utils
 from QuestionDialog import MissingMediaDialog
 
-from gettext import gettext as _
-
-_title_string = _("Export to GRAMPS package")
 #-------------------------------------------------------------------------
 #
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,filename):
+def writeData(database,filename,person,callback=None):
+    ret = 0
     try:
-        PackageWriter(database,filename)
+        writer = PackageWriter(database,filename)
+        ret = writer.export()
+
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
+    return ret
     
 #-------------------------------------------------------------------------
 #
@@ -76,9 +78,10 @@ class PackageWriter:
 
         if os.path.splitext(filename)[1] != ".gpkg":
             filename = filename + ".gpkg"
-        self.export(filename)
+
+        self.filename = filename
             
-    def export(self, filename):
+    def export(self):
         missmedia_action = 0
         #--------------------------------------------------------------
         def remove_clicked():
@@ -129,7 +132,6 @@ class PackageWriter:
             # File is lost => do nothing, leave as is
             pass
 
-
         def select_clicked():
             # File is lost => select a file to replace the lost one
             def fs_close_window(obj):
@@ -150,7 +152,7 @@ class PackageWriter:
             fs_top.destroy()
         #---------------------------------------------------------------
 
-        t = TarFile.TarFile(filename)
+        t = TarFile.TarFile(self.filename)
         mtime = time.time()
         
         # Write media files first, since the database may be modified 
@@ -190,18 +192,17 @@ class PackageWriter:
         g.close()
 
         t.close()
+        return 1
     
 #-------------------------------------------------------------------------
 #
 # Register the plugin
 #
 #-------------------------------------------------------------------------
-_mime_type = 'application/x-gramps-package'
-_filter = gtk.FileFilter()
-_filter.set_name(_('GRAMPS packages'))
-_filter.add_mime_type(_mime_type)
-_ext_list = ('.gpkg',)
+_title = _('GRAM_PS package')
+_description = _('GRAMPS package is an archived XML database together with the media object files.')
+_config = None
+_filename = 'gpkg'
 
 from PluginMgr import register_export
-
-register_export(writeData,_filter,_ext_list)
+register_export(writeData,_title,_description,_config,_filename)
