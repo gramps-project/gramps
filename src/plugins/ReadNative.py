@@ -24,6 +24,8 @@ import libglade
 from ReadXML import *
 import Utils
 import intl
+import gtk
+import const
 
 _ = intl.gettext
 
@@ -41,46 +43,34 @@ def progress(val):
 #
 #-------------------------------------------------------------------------
 def readData(database,active_person,cb):
-    global db
-    global topDialog
-    global callback
-    global glade_file
+    ReadNative(database,active_person,cb)
 
-    db = database
-    callback = cb
-    
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "grampsimport.glade"
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class ReadNative:
+    def __init__(self,database,active_person,cb):
+        self.db = database
+        self.callback = cb
         
-    dic = {
-        "destroy_passed_object" : Utils.destroy_passed_object,
-        "on_ok_clicked" : on_ok_clicked
-        }
+        self.top = gtk.GtkFileSelection("%s - GRAMPS" % _("Import from GRAMPS"))
+        self.top.hide_fileop_buttons()
+        self.top.ok_button.connect('clicked', self.on_ok_clicked)
+        self.top.cancel_button.connect_object('clicked', Utils.destroy_passed_object,self.top)
+        self.top.show()
 
-    topDialog = libglade.GladeXML(glade_file,"grampsImport")
-    topDialog.signal_autoconnect(dic)
-    topDialog.get_widget("grampsImport").show()
+    def on_ok_clicked(self,obj):
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    global db
-    global topDialog
+        name = self.top.get_filename()
+        if name == "":
+            return
 
-    import const
-    
-    if topDialog.get_widget("new").get_active():
-        db.new()
-
-    name = topDialog.get_widget("filename").get_text()
-    name = name + os.sep + const.indexFile
-
-    Utils.destroy_passed_object(obj)
-    importData(db,name,progress)
-    callback(1)
+        name = "%s/%s" % (name,const.indexFile)
+        Utils.destroy_passed_object(self.top)
+        importData(self.db,name,progress)
+        self.callback(1)
 
 #------------------------------------------------------------------------
 #
