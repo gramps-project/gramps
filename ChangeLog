@@ -1,3 +1,7 @@
+2004-01-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/grampslib.i: same fixes as grampslib_wrap.c
+	* src/plugins/RelCalc.py: use preferred name format
+
 2004-01-21  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/grampslib_wrap.c: check the known mime types before calling the
 	gnome functions
