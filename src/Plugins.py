@@ -239,7 +239,6 @@ class PluginDialog:
             self.store.set(node,0,key)
             next = None
             data.sort()
-            data.reverse()
             for item in data:
                 next = self.store.insert_after(node,next)
                 ilist.append((next,item))
