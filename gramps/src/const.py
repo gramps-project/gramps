@@ -73,6 +73,7 @@ srcselFile     = "%s/srcsel.glade" % rootDir
 findFile       = "%s/find.glade" % rootDir
 mergeFile      = "%s/mergedata.glade" % rootDir
 traceFile      = "%s/trace.glade" % rootDir
+plugfile       = "%s/plugstat.glade" % rootDir
 pluginsDir     = "%s/plugins" % rootDir
 docgenDir      = "%s/docgen" % rootDir
 filtersDir     = "%s/filters" % rootDir
