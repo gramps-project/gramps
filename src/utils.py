@@ -125,10 +125,11 @@ else:
 #
 #
 #-------------------------------------------------------------------------
-def txt2fl(st):
-    if _use_comma:
+if _use_comma:
+    def txt2fl(st):
         return string.atof(string.replace(st,'.',','))
-    else:
+else:
+    def txt2fl(st):
         return string.atof(string.replace(st,',','.'))
 
 #-------------------------------------------------------------------------
@@ -136,8 +137,12 @@ def txt2fl(st):
 #
 #
 #-------------------------------------------------------------------------
-def fl2txt(fmt,val):
-    return string.replace(fmt % val, ',', '.')
+if _use_comma:
+    def fl2txt(fmt,val):
+        return string.replace(fmt % val, ',', '.')
+else:
+    def fl2txt(fmt,val):
+        return fmt % val
 
 #-------------------------------------------------------------------------
 #
