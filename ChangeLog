@@ -1,5 +1,12 @@
 2003-11-05  Tim Waugh  <twaugh@redhat.com>
 
+	* src/PlaceView.py (PlaceView.goto): Scroll to found item.
+	* src/SourceView.py (SourceView.goto): Likewise.
+	* src/MediaView.py (MediaView.goto): Likewise.
+
+	* src/Find.py (FindBase.show): Have the GtkEntry widget grab focus
+	when find dialog is displayed.
+
 	* src/gramps_main.py, src/FamilyView.py: Fix children enumeration
 	in family view.
 

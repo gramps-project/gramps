@@ -96,7 +96,11 @@ class SourceView:
         self.db = db
 
     def goto(self,id):
-        self.list.get_selection().select_iter(self.map[id])
+        iter = self.map[id]
+        self.list.get_selection().select_iter(iter)
+        itpath = self.model.get_path (iter)
+        col = self.list.get_column (0)
+        self.list.scroll_to_cell (itpath, col, gtk.TRUE, 0.5, 0)
 
     def load_sources(self):
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,

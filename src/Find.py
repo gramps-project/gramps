@@ -131,6 +131,7 @@ class FindBase:
     def show(self):
         self.top.window.raise_()
         self.top.show()
+        self.entry.grab_focus ()
         
     def on_next_clicked(self,obj):
         """Advances to the next person that matches the dialog text"""
