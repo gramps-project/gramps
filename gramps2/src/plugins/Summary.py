@@ -29,6 +29,14 @@
 #------------------------------------------------------------------------
 import os
 import posixpath
+from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
+import gtk.glade
 
 #------------------------------------------------------------------------
 #
@@ -37,16 +45,8 @@ import posixpath
 #------------------------------------------------------------------------
 import Utils
 import RelLib
-from gettext import gettext as _
-
-#------------------------------------------------------------------------
-#
-# GNOME/GTK modules
-#
-#------------------------------------------------------------------------
-import gtk
-import gtk.glade
-from gnome.ui import *
+import const
+import Report
 
 #------------------------------------------------------------------------
 #
@@ -139,27 +139,27 @@ def build_report(database,person):
 # Output report in a window
 #
 #------------------------------------------------------------------------
-def report(database,person):
+class SummaryReport:
+    def __init__(self,database,person):
+        text = build_report(database,person)
     
-    text = build_report(database,person)
-    
-    base = os.path.dirname(__file__)
-    glade_file = "%s/summary.glade" % base
+        base = os.path.dirname(__file__)
+        glade_file = "%s/summary.glade" % base
 
-    topDialog = gtk.glade.XML(glade_file,"summary","gramps")
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : Utils.destroy_passed_object,
-    })
+        topDialog = gtk.glade.XML(glade_file,"summary","gramps")
+        topDialog.signal_autoconnect({
+            "destroy_passed_object" : Utils.destroy_passed_object,
+        })
 
-    Utils.set_titles(topDialog.get_widget('summary'),
+        Utils.set_titles(topDialog.get_widget('summary'),
                      topDialog.get_widget('title'),
                      _('Database summary'))
 
     
-    top = topDialog.get_widget("summary")
-    textwindow = topDialog.get_widget("textwindow")
-    textwindow.get_buffer().set_text(text)
-    top.show()
+        top = topDialog.get_widget("summary")
+        textwindow = topDialog.get_widget("textwindow")
+        textwindow.get_buffer().set_text(text)
+        top.show()
     
 #-------------------------------------------------------------------------
 #
@@ -167,12 +167,13 @@ def report(database,person):
 #
 #-------------------------------------------------------------------------
 from Plugins import register_report
-
 register_report(
-    report,
-    _("Summary of the database"),
-    status=(_("Beta")),
-    category=_("View"),
-    description=_("Provides a summary of the current database")
+    name = 'summary',
+    category = const.CATEGORY_VIEW,
+    report_class = SummaryReport,
+    options_class = None,
+    modes = Report.MODE_GUI,
+    translated_name = _("Summary of the database"),
+    status = _("Beta"),
+    description= _("Provides a summary of the current database"),
     )
-
