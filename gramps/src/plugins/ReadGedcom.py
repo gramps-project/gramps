@@ -145,7 +145,7 @@ class GedcomParser:
         self.smap = {}
         self.nmap = {}
         self.refn = {}
-        self.added = []
+        self.added = {}
         self.gedmap = GedcomInfoDB()
         self.gedsource = None
         self.dir_path = os.path.dirname(file)
@@ -371,7 +371,7 @@ class GedcomParser:
                     self.update(self.people_obj,str(self.indi_count))
                 self.indi_count = self.indi_count + 1
                 self.person = self.db.findPerson(matches[1],self.pmap)
-                self.added.append(self.person)
+                self.added[self.person] = 1
                 self.parse_individual()
             elif matches[2] in ["SUBM","SUBN"]:
                 self.ignore_sub_junk(1)
@@ -1642,8 +1642,11 @@ class GedcomParser:
         prefix = self.db.iprefix
         pmap = self.db.getPersonMap()
         renamed = []
+        index = 0
         new_pmax = self.db.pmapIndex
-        for person in self.added:
+        for person in self.added.keys():
+            print index,person.getPrimaryName().getName()
+            index = index + 1
             if self.refn.has_key(person):
                 val = self.refn[person]
                 new_key = prefix % val
@@ -1662,7 +1665,7 @@ class GedcomParser:
                         pmap[new_key] = person
                         person.setId(new_key)
                     # person currently using it was just added, change it
-                    elif tp in self.added:
+                    elif self.added.has_key(tp):
                         del pmap[person.getId()]
                         pmap[new_key] = person
                         person.setId(new_key)
