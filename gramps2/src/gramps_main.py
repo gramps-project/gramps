@@ -629,13 +629,13 @@ class Gramps:
         back_sensitivity = self.hindex > 0 
         fwd_sensitivity = self.hindex + 1 < len(self.history)
         entries = [
-            ('gtk-go-back',self.back_clicked,back_sensitivity),
-            ('gtk-go-forward',self.fwd_clicked,fwd_sensitivity),
-            ('gtk-home',self.on_home_clicked,1),
+            (gtk.STOCK_GO_BACK,self.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.on_home_clicked,1),
             (_("Add Bookmark"),self.on_add_bookmark_activate,1),
             (None,None,0),
-            ('gtk-add', self.add_button_clicked,1),
-            ('gtk-remove', self.remove_button_clicked,1),
+            (gtk.STOCK_ADD, self.add_button_clicked,1),
+            (gtk.STOCK_REMOVE, self.remove_button_clicked,1),
             (_("Edit"), self.edit_button_clicked,1),
         ]
 

@@ -1,10 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # Modifications and feature additions:
-#               2002  Donald A. Peterson
+#               2002-2003  Donald A. Peterson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -411,15 +411,6 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 #
 #------------------------------------------------------------------------
 Plugins.register_text_doc(
-    name=_("LaTeX"),
-    classref=LaTeXDoc,
-    table=1,
-    paper=1,
-    style=0,
-    ext=".tex"
-    )
-
-Plugins.register_book_doc(
     name=_("LaTeX"),
     classref=LaTeXDoc,
     table=1,
