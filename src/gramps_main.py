@@ -1012,7 +1012,7 @@ class Gramps:
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
 
-    def update_display(self,changed):
+    def update_display(self,changed=True):
         """Incremental display update, update only the displayed page"""
         page = self.views.get_current_page()
         if page == PERSON_VIEW:
@@ -1128,6 +1128,7 @@ class Gramps:
         self.gtop.get_widget('tools_menu').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('tools').set_sensitive(not self.db.readonly)
         self.goto_active_person()
+        self.update_display()
         return 1
 
     def save_media(self,filename):
