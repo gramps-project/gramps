@@ -1443,7 +1443,6 @@ class Gramps:
         self.topWindow.set_title("%s - GRAMPS" % name)
         self.status_text("")
         self.statusbar.set_progress_percentage(0.0)
-        #self.statusbar.set_pulse_step(0.02)
         self.delete_autosave(old_file)
 
     def delete_autosave(self,filename):
@@ -1593,9 +1592,7 @@ class Gramps:
         if self.active_person == None:
             self.status_text("")
         else:
-            if GrampsCfg.status_bar == 0:
-                name = GrampsCfg.nameof(self.active_person)
-            elif GrampsCfg.status_bar == 1:
+            if GrampsCfg.status_bar <= 1:
                 pname = GrampsCfg.nameof(self.active_person)
                 name = "[%s] %s" % (self.active_person.getId(),pname)
             else:
