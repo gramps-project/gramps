@@ -480,20 +480,25 @@ class EditPlace:
     def display_references(self):
         pevent = []
         fevent = []
+        mlist = []
         msg = ""
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
                 event = self.db.get_event_from_handle(event_handle)
-                if event and event.get_place_handle() == self.place:
+                if event and event.get_place_handle() == self.place.get_handle():
                     pevent.append((p,event))
         for family_handle in self.db.get_family_handles():
             f = self.db.get_family_from_handle(family_handle)
             for event_handle in f.get_event_list():
                 event = self.db.get_event_from_handle(event_handle)
-                if event and event.get_place_handle() == self.place:
+                if event and event.get_place_handle() == self.place.get_handle():
                     fevent.append((f,event))
-                    
+        for media_handle in self.db.get_media_object_handles():
+            object = self.db.get_object_from_handle(media_handle)
+            if object and object.get_place_handle() == self.place.get_handle():
+                mlist.append(object)
+
         any = 0
         if len(pevent) > 0:
             any = 1
@@ -502,7 +507,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = msg + ( t % (self.name_display(e[0]),e[0].get_handle(),_(e[1].get_name())))
+                msg = msg + ( t % (self.name_display(e[0]),e[0].get_gramps_id(),_(e[1].get_name())))
 
         if len(fevent) > 0:
             any = 1
@@ -515,14 +520,23 @@ class EditPlace:
                 mother = e[0].get_mother_handle()
                 if father and mother:
                     fname = _("%(father)s and %(mother)s")  % {
-                                "father" : self.name_display(father),
-                                "mother" : self.name_display(mother) }
+                                "father" : self.name_display( self.db.get_person_from_handle( father)),
+                                "mother" : self.name_display( self.db.get_person_from_handle( mother)) }
                 elif father:
-                    fname = self.name_display(father)
+                    fname = self.name_display( self.db.get_person_from_handle( father))
                 else:
-                    fname = self.name_display(mother)
+                    fname = self.name_display( self.db.get_person_from_handle( mother))
 
-                msg = msg + ( t % (fname,e[0].get_handle(),_(e[1].get_name())))
+                msg = msg + ( t % (fname,e[0].get_gramps_id(),_(e[1].get_name())))
+
+        if len(mlist) > 0:
+            any = 1
+            msg = msg + "\n%s\n" % _("Media Objects")
+            msg = msg + "_________________________\n\n"
+            t = _("%s [%s]\n")
+
+            for o in mlist:
+                msg = msg + ( t % (o.get_description(),o.get_gramps_id()))
 
         self.refinfo.get_buffer().set_text(msg)
         if any:
