@@ -4047,7 +4047,7 @@ msgstr "- %s Né(e): %s %s Décédé(e): %s %s"
 #: plugins/DetAncestralReport.py:137 plugins/DetAncestralReport.py:141
 #: plugins/DetDescendantReport.py:149 plugins/DetDescendantReport.py:153
 msgid "- %s Born: %s %s Died: %s"
-msgstr "- %s Né(e): %s %s Décédé(e): %s %s"
+msgstr "- %s Né(e): %s %s Décédé(e): %s"
 
 #: plugins/DetAncestralReport.py:144 plugins/DetDescendantReport.py:156
 msgid "- %s Born: %s %s"
