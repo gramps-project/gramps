@@ -2,7 +2,7 @@
         <!-- if not using PNG graphic, replace reference above with
              .....PUBLIC "-//OASIS//DTD DocBook V3.1//EN"[
          -->
-<!ENTITY version "0.1.0"> <!-- replace with application version -->
+<!ENTITY version "0.2.0"> <!-- replace with application version -->
 ]>
 
 
@@ -164,7 +164,6 @@
     </para>
   </sect1>
 
-
  <!-- ================ Usage ================================ -->
  <!-- This section should describe basic usage of the application. -->
 
@@ -175,47 +174,176 @@
       This section describes basic usage of
       <application>gramps</application>.
     </para>
-
-    <!-- ========= Basic Usage =========================== -->
-    <sect2 id="mainwin">
-      <title>Person List</title>
-      <para>
-        Starting <application>gramps</application> opens the
-        <interface>Main window</interface>, shown in <xref
-        linkend="mainwindow-fig">. The window is at first empty.
-
-        <!-- ==== Figure ==== -->
-        <figure id="mainwindow-fig">
-	  <title>gramps Main Window</title>
-	  <screenshot>
-	    <screeninfo>gramps Main Window</screeninfo>
-	    <graphic fileref="mainwin" format="PNG" srccredit="Don Allingham">
-            </graphic>
-	  </screenshot>
-	</figure>
-    <!-- ==== End of Figure ==== -->
-      </para> 
-    </sect2>
-
-    <sect2 id="familyview">
-      <title>Family View</title>
-      <para>
-      </para>
-    </sect2>
-
-    <sect2 id="pedegreeview">
-      <title>Pedegree View</title>
-      <para>
-      </para>
-    </sect2>
-
-    <sect2 id="enteringdata">
-      <title>Entering data</title>
-	<para>
-        </para>
-    </sect2>
   </sect1>
 
+  <sect1 id="firsttime">
+    <title>Running gramps for the first time.</title>
+    <para>
+      This section should discuss the start up druid.
+    </para>
+  </sect1>
+
+  <sect1 id="mainwindow">
+    <title>Main Window</title>
+    <para>
+      Starting <application>gramps</application> opens the
+      <interface>Main window</interface>, shown in <xref
+      linkend="mainwindow-fig">. The window is at first empty.
+
+      <!-- ==== Figure ==== -->
+      <figure id="mainwindow-fig">
+        <title>gramps Main Window</title>
+	<screenshot>
+	  <screeninfo>gramps Main Window</screeninfo>
+	  <graphic fileref="mainwin" format="PNG" srccredit="Don Allingham">
+          </graphic>
+	</screenshot>
+      </figure>
+    <!-- ==== End of Figure ==== -->
+    </para>
+  </sect1>
+
+ <!-- ========= Basic Usage =========================== -->
+  <sect1 id="personlist">
+    <title>Person List</title>
+    <para>
+    The Person List window is the initial view seen on the main
+    window.  It displays the name, gender, birth date, and death
+    date of all individuals in the database.  At any time, you can
+    return to the this view either by pressing the People button at
+    the top of the screen, or by choosing the
+    <menuchoice>
+    <guisubmenu>View</guisubmenu>
+    <guimenuitem>Person List</guimenuitem> 
+    </menuchoice>
+    entry from the menus.
+    </para> 
+    <sect2>
+    <title>Selecting and Editing Individuals</title>
+    <para>
+    The Person List view lists the individuals in the database. A
+    individual can be selected as the active person by clicking on
+    an entry in the list. Once a person has been selected as the active 
+    person, the person's name appears in the status bar in the lower
+    left hand corner of the window.
+    </para>
+    <para>
+    Once the active person has been selected, pressing the Edit
+    Person button will display the Edit Person dialog allowing you
+    to edit the individual's personal information.  If the Edit
+    Person button is pressed without an active person being set, a
+    blank Edit Person dialog is presented, allowing you to enter a
+    new person.  Double-clicking on a entry will set the active
+    person and bring up the individual in the Edit Person dialog.
+    </para>
+    <para>
+    Pressing the Add Person button will display a blank Edit Person
+    dialog, allowing you to add a new person to the database.
+    </para>
+    <para>
+    If the Delete Person button is pressed, the active person and
+    all of the personal information related to the active person are
+    removed from the database.
+    </para>
+    </sect2>
+    <sect2>
+     <title>Applying Filters</title>
+    <para>
+    <application>gramps</application> allows you to apply filters to
+    the Person List. When a filter is applied, the Person List will
+    only display the entries matching the filter. All of the entries
+    remain in the database, but are temporarily hidden.
+    </para>
+    <para>
+    There are three parts to a filter. The first part is the
+    selection of the filter to be applied. A filter is selected from
+    the option menu directly above the Person List.  The second part
+    is an option qualifier. This qualifier provides more specific
+    information for the filter. Many filters do not require the
+    qualifier, and it will be grayed out if not needed.  The third
+    part of the filter is the invert selection.  When this option is
+    selected, <application>gramps</application> will display the
+    entries that do not match the filter.
+    </para>
+    <para>
+    A filter is not applied until the Apply button is pressed.  The
+    filter will remain in effect until the next time the Apply
+    button is pressed.
+    </para>
+    </sect2>
+    <sect2>
+     <title>Sorting</title>
+    <para>
+    Four columns are shown in the Person List display. The entries in
+    the list can be sorted by three of the field: Name, Birth Date, or 
+    Death Date.  Clicking on the column label will cause the list to 
+    be resorted by that column.  Arrows on the label indicate whether
+    the list is sort by ascending or descending order. 
+    </para>
+    <para>
+    If the list is already sorted by a particular column, clicking on
+    the same column label will switch sorting order.  For example, if
+    the list is currently sorted in ascending order by Name, clicking
+    on the Name column header will resort the list in descending order.
+    </para>
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="familyview">
+    <title>Family View</title>
+    <para>
+    The Family View window displays the spouses, parents, and children
+    of the active person. At any time, you can return to the this view
+    either by pressing the Family button at the top of the screen, or
+    by choosing the
+    <menuchoice>
+    <guisubmenu>View</guisubmenu>
+    <guimenuitem>Family View</guimenuitem> 
+    </menuchoice>
+    entry from the menus.
+    </para> 
+    <para> 
+    This section should describe the family view.
+    </para>
+  </sect1>
+
+  <sect1 id="pedegreeview">
+    <title>Pedegree View</title>
+    <para>
+    The Pedegree View window displays the active person, the active
+    person's parents, and the active parent's grandparents in a somewhat
+    graphical manner. At any time, you can return to the this view
+    either by pressing the Pedegree button at the top of the screen, or
+    by choosing the
+    <menuchoice>
+    <guisubmenu>View</guisubmenu>
+    <guimenuitem>Pedgree</guimenuitem> 
+    </menuchoice>
+    entry from the menus.
+    </para>
+    <para>
+    This section should describe the pedegree view.
+    </para>
+  </sect1>
+
+  <sect1 id="sourcelist">
+    <title>Source List</title>
+    <para>
+    The Source List window displays the different sources which have been
+    entered into the database. At any time, you can return to the this view
+    either by pressing the Sources button at the top of the screen, or
+    by choosing the
+    <menuchoice>
+    <guisubmenu>View</guisubmenu>
+    <guimenuitem>Sources</guimenuitem> 
+    </menuchoice>
+    entry from the menus.
+    </para>
+    <para>
+    This section should describe the source list.
+    </para>
+  </sect1>
 
  <!-- ============= Customization ============================= -->
 
@@ -519,22 +647,48 @@ def need_qualifier():
     <figure id="reportsrc">
     <title>Sample report implementation</title>
     <programlisting>
-"Category/report name"
+import intl
+_ = intl.gettext
 
 def report(database,person):
    ... actual code ...
 
 def get_description():
-   return "A detailed text description of what the report generator does"
+    return "A detailed text description of what the report generator does"
+
+def get_name():
+    return _("Category/report name")
 
 def get_xpm_image():
-   return [
-   "... XPM image data"
-   ]
+    return [
+    "... XPM image data"
+    ]
     </programlisting>
     </figure>
    </sect2>
-
+   <sect2 id="alittlehelp">
+    <title>A little help - Format Interfaces</title>
+    <para>
+    <application>gramps</application> provides some help with writing
+    reports.  Several generic python classes exist that aid in the
+    writing of report generators.  These classes provide an abstract
+    interface for a type of document, such as a drawing, word
+    processor document, or a spreadsheet.  From these core classes,
+    <application>gramps</application> derives interfaces to various
+    document formats.  This means that by coding to the generic word
+    processing class (<function>TextDoc</function>), a report
+    generator can instant access to multiple file formats (such as
+    HTML, OpenOffice, and AbiWord).
+    </para>
+    <para>
+    This scheme of deriving a output format from a generic base class
+    also makes it easier to add new formats.  Creating a new
+    derivied class targeting a different format (such as
+    <application>KWord</application> or
+    <application>LaTeX</application>) makes it easy for existing
+    report generators to use the new formats.
+    </para>
+   </sect2>
  </sect1>
 
  <!-- ============= Writing Tools ============================= -->
@@ -631,7 +785,6 @@ def get_xpm_image():
   </para>
  </sect1>
 </article>
-
 
 
 
