@@ -1,3 +1,13 @@
+2005-03-14  Alex Roitman  <shura@gramps-project.org>
+	* src/AddSpouse.py (select_spouse_clicked): Prevent adding oneself
+	and oneself's parents as a spouse; When aborting, do not close dialog.
+	* src/RelLib.py (BaseObject): Add base data class, to support
+	capabilites common to all gramps objects; (matches_string,
+	matches_regexp): Add methods for searching textual objects;
+	(Person,Family,Event,Place,Source,MediaRef,LdsOrd,Attribute,Address,
+	Name,Location,Note,Url,Witness,SourceRef): Add methods for determining
+	textual objects and children with textual objects.
+
 2005-03-14  Don Allingham  <don@gramps-project.org>
 	* src/gramps_main.py: use new GRAMPS homepage
 
