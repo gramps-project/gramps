@@ -62,10 +62,6 @@ from DateHandler import displayer as _dd
 #
 #------------------------------------------------------------------------
 
-# sort type identifiers
-_SORT_VALUE = 0
-_SORT_KEY = 1
-
 # needs to be global for the lookup_value_compare()
 _lookup_items = {}
 
@@ -73,6 +69,22 @@ _lookup_items = {}
 def lookup_value_compare(a, b):
     "compare given keys according to corresponding _lookup_items values"
     return cmp(_lookup_items[a],_lookup_items[b])
+
+class _options:
+    # sort type identifiers
+    SORT_VALUE = 0
+    SORT_KEY = 1
+
+    sorts = [
+        (SORT_VALUE, "Item count", _("Item count")),
+        (SORT_KEY, "Item name", _("Item name"))
+    ]
+    genders = [
+        (Person.unknown, "Both", _("Both")),
+        (Person.male, "Men", _("Men")),
+        (Person.female, "Women", _("Women"))
+    ]
+
 
 #------------------------------------------------------------------------
 #
@@ -83,24 +95,24 @@ class Extract:
 
     def __init__(self):
         """Methods for extracting statistical data from the database"""
-        self.extractors = [
-            (_("Titles"), self.title),
-            (_("Forenames"), self.forename),
-            (_("Birth years"), self.birth_year),
-            (_("Death years"), self.death_year),
-            (_("Birth months"), self.birth_month),
-            (_("Death months"), self.death_month),
-            (_("Estimated ages at death"), self.death_age),
-            #(_("TODO: Estimated (first) marriage ages"), self.marriage_age),
-            #(_("TODO: Estimated ages for bearing the first child"), self.first_child_age),
-            #(_("TODO: Estimated Ages for bearing the last child"), self.last_child_age),
-            #(_("TODO: Number of children"), self.child_count),
-            #(_("TODO: Cause of death"), self.death_cause),
-            #(_("TODO: Birth place"), self.birth_place),
-            #(_("TODO: Marriage place"), self.marriage_place),
-            #(_("TODO: Death place"), self.death_place),
-            (_("Genders"), self.gender)
-        ]
+        self.extractors = {
+            'data_title':  (self.title, "Titles", _("Titles")),
+            'data_fname':  (self.forename, "Forenames", _("Forenames")),
+            'data_byear':  (self.birth_year, "Birth years", _("Birth years")),
+            'data_dyear':  (self.death_year, "Death years", _("Death years")),
+            'data_bmonth': (self.birth_month, "Birth months", _("Birth months")),
+            'data_dmonth': (self.death_month, "Death months", _("Death months")),
+            'data_dage':   (self.death_age, "Estimated ages at death", _("Estimated ages at death")),
+            #'data_mage':  (self.marriage_age, "Estimated (first) marriage ages", _("Estimated (first) marriage ages")),
+            #'data_fchild': (self.first_child_age, "Estimated ages for bearing the first child", _("Estimated ages for bearing the first child")),
+            #'data_lchild': (self.last_child_age, "Estimated Ages for bearing the last child", _("Estimated Ages for bearing the last child")),
+            #'data_ccount': (self.child_count, "Number of children", _("Number of children")),
+            #'data_dcause': (self.death_cause, "Cause of death", _("Cause of death")),
+            #'data_bplace': (self.birth_place, "Birth place", _("Birth place")),
+            #'data_mplace': (self.marriage_place, "Marriage place", _("Marriage place")),
+            #'data_dplace': (self.death_place, "Death place", _("Death place")),
+            'data_gender': (self.gender, "Genders", _("Genders"))
+        }
 
     def estimate_age(self, db, person, date):
         """Utility method to estimate person's age at given date:
@@ -223,21 +235,50 @@ class Extract:
         else:
             gender = const.unknown
         return [gender]
+
+    def get_person_data(self, db, person, collect):
+        """Adds data from the database to 'collect' for the given person,
+           using methods rom the 'collect' data dict tuple
+        """
+        for chart in collect:
+            # get the information
+            extract_func = chart[2]
+            value = extract_func(db, person)
+            # list of information found
+            for key in value:
+                if key in chart[1].keys():
+                    chart[1][key] += 1
+                else:
+                    chart[1][key] = 1
+
     
-    def collect_data(self, db, filter_func, extract_func, genders,
+    def collect_data(self, db, filter_func, options, genders,
                      year_from, year_to, no_years):
         """goes through the database and collects the selected personal
         data persons fitting the filter and birth year criteria. The
         arguments are:
-        db           - the GRAMPS database
-        filter_func  - filtering function selected by the StatisticsDialog
-        extract_func - extraction method selected by the StatisticsDialog
-        genders      - which gender(s) to include into statistics
-        year_from    - use only persons who've born this year of after
-        year_to      - use only persons who've born this year or before
-        no_years     - use also people without any birth year
+        db          - the GRAMPS database
+        filter_func - filtering function selected by the StatisticsDialog
+        options     - report options_dict which sets which methods are used
+        genders     - which gender(s) to include into statistics
+        year_from   - use only persons who've born this year of after
+        year_to     - use only persons who've born this year or before
+        no_years    - use also people without any birth year
+	
+	Returns an array of tuple of:
+	- Extraction method title
+	- Dict of values with their counts
+	(- Method)
         """
-        items = {}
+	
+        data = []
+        ext = self.extractors
+        # initialize data
+        for key in options:
+            if options[key] and key in self.extractors:
+                # localized data title, value dict and method
+                data.append((ext[key][2], {}, ext[key][0]))
+        
         # go through the people and collect data
         for person_handle in filter_func.apply(db, db.get_person_handles(sort_handles=False)):
 
@@ -265,15 +306,8 @@ class Extract:
                             # do not accept people who are not known to be in range
                             continue
 
-            # get the information
-            value = extract_func(db,person)
-            # list of information found
-            for key in value:
-                if key in items.keys():
-                    items[key] += 1
-                else:
-                    items[key] = 1
-        return items
+            self.get_person_data(db, person, data)
+        return data
 
 # GLOBAL: required so that we get access to _Extract.extractors[]
 # Unfortunately class variables cannot reference instance methods :-/
@@ -311,13 +345,6 @@ class StatisticsChart(Report.Report):
         year_to = options['year_to']
         gender = options['gender']
 
-        (title, extractfun) = _Extract.extractors[options['extract']]
-        # extract requested items from the database and count them
-        self.items = _Extract.collect_data(database, filterfun, extractfun,
-                        gender, year_from, year_to, options['no_years'])
-        # generate sorted item lookup index index
-        self.index_items(options['sortby'], options['reverse'])
-
         # title needs both data extraction method name + gender name
         if gender == Person.male:
             genderstr = _("men")
@@ -326,33 +353,49 @@ class StatisticsChart(Report.Report):
         else:
             genderstr = None
 
-        if genderstr:
-            self.title = "%s (%s): %04d-%04d" % (title, genderstr, year_from, year_to)
-        else:
-            self.title = "%s: %04d-%04d" % (title, year_from, year_to)
+        # extract requested items from the database and count them
+        tables = _Extract.collect_data(database, filterfun, options,
+                        gender, year_from, year_to, options['no_years'])
 
+        self.data = []
+        sortby = options['sortby']
+        reverse = options['reverse']
+        for table in tables:
+            # generate sorted item lookup index index
+            lookup = self.index_items(table[1], sortby, reverse)
+            # document heading
+            if genderstr:
+                heading = "%s (%s): %04d-%04d" % (table[0], genderstr, year_from, year_to)
+            else:
+                heading = "%s: %04d-%04d" % (table[0], year_from, year_to)
+            self.data.append((heading, table[1], lookup))
+	    print heading
+	    print table[1]
+	    print lookup
+	
         self.setup()
+
         
-    def index_items(self, sort, reverse):
+    def index_items(self, data, sort, reverse):
         """creates & stores a sorted index for the items"""
         global _lookup_items
 
         # sort by item keys
-        index = self.items.keys()
+        index = data.keys()
         index.sort()
         if reverse:
             index.reverse()
 
-        if sort == _SORT_VALUE:
+        if sort == _options.SORT_VALUE:
             # set for the sorting function
-            _lookup_items = self.items
+            _lookup_items = data
         
             # then sort by value
             index.sort(lookup_value_compare)
             if reverse:
                 index.reverse()
 
-        self.index = index
+        return index
 
     
     def setup(self):
@@ -391,6 +434,16 @@ class StatisticsChart(Report.Report):
     def write_report(self):
         "output the selected statistics..."
 
+        self.doc.start_page()
+        
+        for data in self.data:
+            self.output_chart(data[0], data[1], data[3])
+            
+        self.doc.end_page()    
+
+
+    def output_chart(self, title, data, lookup):
+        
         font = self.doc.style_list['SC-Text'].get_font()
 
         # set layout variables
@@ -402,22 +455,19 @@ class StatisticsChart(Report.Report):
         # calculate maximum key string size
         max_size = 0
         max_value = 0
-        for key in self.index:
+        for key in lookup:
             max_size = max(self.doc.string_width(font, key), max_size)
-            max_value = max(self.items[key], max_value)
+            max_value = max(data[key], max_value)
         # horizontal area for the gfx bars
         start = pt2cm(max_size) + 1.0
         size = width - 1.5 - start
 
-        # start page
-        self.doc.start_page()
-
         # start output
-        self.doc.center_text('SC-title', self.title, width/2, 0)
-        #print self.title
+        self.doc.center_text('SC-title', title, width/2, 0)
+        print title
 
         yoffset = pt2cm(self.doc.style_list['SC-Title'].get_font().get_size())
-        for key in self.index:
+        for key in lookup:
             yoffset += (row_h + pad)
             if yoffset > max_y:
             # for graphical report, page_break() doesn't seem to work
@@ -428,9 +478,9 @@ class StatisticsChart(Report.Report):
             # right align the text to the value
             x = start - pt2cm(self.doc.string_width(font, key)) - 1.0
             self.doc.draw_text('SC-text', key, x, yoffset)
-            #print key + ":",
+            print key + ":",
         
-            value = self.items[key]
+            value = data[key]
             stop = start + (size * value / max_value)
             path = ((start, yoffset),
                     (stop, yoffset),
@@ -438,9 +488,7 @@ class StatisticsChart(Report.Report):
                     (start, yoffset + row_h))
             self.doc.draw_path('SC-bar', path)
             self.doc.draw_text('SC-text', str(value), stop + 0.5, yoffset)
-            #print "%d/%d" % (value, max_value)
-            
-        self.doc.end_page()    
+            print "%d/%d" % (value, max_value)
 
         return
 
@@ -453,36 +501,29 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
     """
     Defines options and provides their handling interface.
     """
-    _sorts = [
-        (_SORT_VALUE, _("Item count")),
-        (_SORT_KEY, _("Item name"))
-    ]
-    _genders = [
-        (Person.unknown, _("Both")),
-        (Person.male, _("Men")),
-        (Person.female, _("Women"))
-    ]
-
     def __init__(self,name, person_id=None):
         ReportOptions.ReportOptions.__init__(self, name, person_id)
 
     def set_new_options(self):
     # Options specific for this report
         self.options_dict = {
-            'extract'   : 0,
-            'sortby'    : _SORT_VALUE,
+            'gender'    : Person.unknown,
+            'sortby'    : _options.SORT_VALUE,
             'reverse'   : 0,
             'year_from' : 1700,
             'year_to'   : time.localtime()[0],
-            'no_years'  : 0,
-            'gender'    : Person.unknown
+            'no_years'  : 0
         }
+        for key in _Extract.extractors:
+            self.options_dict[key] = 0
+        self.options_dict['data_gender'] = 1
+
         self.options_help = {
-            'extract'   : ("=num", "Data to show",
-                                [item[0] for item in _Extract.extractors],
-                                True),
-            'sortby'    : ("=num", "Sorted by",
-                                ["%d\t%s" % item for item in self._sorts],
+            'gender'    : ("=num", "Genders included",
+                               ["%d\t%s" % (item[0], item[1]) for item in _options.genders],
+                               False),
+            'sortby'    : ("=num", "Sort chart items by",
+                                ["%d\t%s" % (item[0], item[1]) for item in _options.sorts],
                                 False),
             'reverse'   : ("=0/1", "Whether to sort in reverse order",
                                 ["Do not sort in reverse", "Sort in reverse"],
@@ -492,11 +533,12 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
             'year_to'   : ("=num", "Birth year until which to include people",
                                 "smaller than %d" % self.options_dict['year_to']),
             'no_years'  : ("=0/1", "Whether to include people without birth years",
-                                ["Do not include", "Include"], True),
-            'gender'    : ("=num", "Genders included",
-                               ["%d\t%s" % item for item in self._genders],
-                               False)
+                                ["Do not include", "Include"], True)
         }
+        for key in _Extract.extractors:
+            self.options_help[key] = ("=0/1", _Extract.extractors[key][1],
+                                ["Leave this data out", "Include chart with this data"],
+                                True)
 
     def enable_options(self):
         # Semi-common options that should be enabled for this report
@@ -557,23 +599,15 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         Override the base class add_user_options task to add
         report specific options
         """
-        # what data to extract from database
-        self.extract_menu = gtk.combo_box_new_text()
-        for item in _Extract.extractors:
-            self.extract_menu.append_text(item[0])
-        self.extract_menu.set_active(self.options_dict['extract'])
-        tip = _("Select which data is collected and which statistics is shown.")
-        dialog.add_option(_("Data to show"), self.extract_menu, tip)
-
         # how to sort the data
         self.sort_menu = gtk.combo_box_new_text()
-        for item_idx in range(len(self._sorts)):
-            item = self._sorts[item_idx]
-            self.sort_menu.append_text(item[1])
+        for item_idx in range(len(_options.sorts)):
+            item = _options.sorts[item_idx]
+            self.sort_menu.append_text(item[2])
             if item[0] == self.options_dict['sortby']:
                 self.sort_menu.set_active(item_idx)
         tip = _("Select how the statistical data is sorted.")
-        dialog.add_option(_("Sorted by"), self.sort_menu, tip)
+        dialog.add_option(_("Sort chart items by"), self.sort_menu, tip)
 
         # sorting order
         tip = _("Check to reverse the sorting order.")
@@ -605,25 +639,46 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 
         # gender selection
         self.gender_menu = gtk.combo_box_new_text()
-        for item_idx in range(len(self._genders)):
-            item = self._genders[item_idx]
-            self.gender_menu.append_text(item[1])
+        for item_idx in range(len(_options.genders)):
+            item = _options.genders[item_idx]
+            self.gender_menu.append_text(item[2])
             if item[0] == self.options_dict['gender']:
                 self.gender_menu.set_active(item_idx)
         tip = _("Select which genders are included into statistics.")
         dialog.add_option(_("Genders included"), self.gender_menu, tip)
 
+        # List of available charts on a separate option tab
+	idx = 0
+	half = len(_Extract.extractors)/2
+        hbox = gtk.HBox()
+        vbox = gtk.VBox()
+        self.charts = {}
+        for key in _Extract.extractors:
+            check = gtk.CheckButton(_Extract.extractors[key][2])
+            check.set_active(self.options_dict[key])
+            self.charts[key] = check
+	    vbox.add(check)
+	    idx += 1
+	    if idx == half:
+		hbox.add(vbox)
+		vbox = gtk.VBox()
+        hbox.add(vbox)
+	tip = _("Mark checkboxes to add charts with indicated data")
+	dialog.add_frame_option("Chart Selection", "", hbox, tip)
+        hbox.show_all()
+
     def parse_user_options(self, dialog):
         """
         Parses the custom options that we have added.
         """
-        self.options_dict['extract'] = self.extract_menu.get_active()
-        self.options_dict['sortby'] = self._sorts[self.sort_menu.get_active()][0]
+        self.options_dict['sortby'] = _options.sorts[self.sort_menu.get_active()][0]
         self.options_dict['reverse'] = int(self.reverse.get_active())
         self.options_dict['year_to'] = int(self.to_box.get_text())
         self.options_dict['year_from'] = int(self.from_box.get_text())
         self.options_dict['no_years'] = int(self.no_years.get_active())
-        self.options_dict['gender'] = self._genders[self.gender_menu.get_active()][0]
+        self.options_dict['gender'] = _options.genders[self.gender_menu.get_active()][0]
+        for key in _Extract.extractors:
+            self.options_dict[key] = int(self.charts[key].get_active())
 
 #------------------------------------------------------------------------
 #
