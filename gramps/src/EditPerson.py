@@ -147,42 +147,43 @@ class EditPerson:
         self.selectedIcon = -1
         
         self.top_window.signal_autoconnect({
-            "on_death_note_clicked" : on_death_note_clicked,
-            "on_death_source_clicked" : on_death_source_clicked,
-            "on_name_note_clicked" : on_name_note_clicked,
-            "on_name_source_clicked" : on_name_source_clicked,
+            "destroy_passed_object" : on_cancel_edit,
+            "on_add_address_clicked" : on_add_address_clicked,
+            "on_add_aka_clicked" : on_add_aka_clicked,
+            "on_add_attr_clicked" : on_add_attr_clicked,
+            "on_add_url_clicked" : on_add_url_clicked,
+            "on_addphoto_clicked" : on_add_photo_clicked,
+            "on_address_list_select_row" : on_address_list_select_row,
+            "on_aka_delete_clicked" : on_aka_delete_clicked,
+            "on_aka_update_clicked" : on_aka_update_clicked,
+            "on_apply_person_clicked" : on_apply_person_clicked,
+            "on_attr_list_select_row" : on_attr_list_select_row,
             "on_birth_note_clicked" : on_birth_note_clicked,
             "on_birth_source_clicked" : on_birth_source_clicked,
+            "on_browse_clicked": on_browse_clicked,
+            "on_death_note_clicked" : on_death_note_clicked,
+            "on_death_source_clicked" : on_death_source_clicked,
+            "on_delete_address_clicked" : on_delete_address_clicked,
+            "on_delete_attr_clicked" : on_delete_attr_clicked,
+            "on_delete_event" : on_delete_event,
+            "on_delete_url_clicked" : on_delete_url_clicked,
+            "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_editperson_switch_page" : on_switch_page,
             "on_event_add_clicked" : on_event_add_clicked,
             "on_event_delete_clicked" : on_event_delete_clicked,
-            "on_name_list_select_row" : on_name_list_select_row,
-            "on_browse_clicked": on_browse_clicked,
-            "on_web_list_select_row" : on_web_list_select_row,
-            "on_attr_list_select_row" : on_attr_list_select_row,
-            "on_address_list_select_row" : on_address_list_select_row,
-            "on_aka_update_clicked" : on_aka_update_clicked,
-            "on_aka_delete_clicked" : on_aka_delete_clicked,
-            "on_add_aka_clicked" : on_add_aka_clicked,
-            "on_update_url_clicked" : on_update_url_clicked,
-            "on_delete_url_clicked" : on_delete_url_clicked,
-            "on_add_attr_clicked" : on_add_attr_clicked,
-            "on_update_attr_clicked" : on_update_attr_clicked,
-            "on_delete_attr_clicked" : on_delete_attr_clicked,
-            "on_add_url_clicked" : on_add_url_clicked,
-            "on_update_address_clicked" : on_update_address_clicked,
-            "on_delete_address_clicked" : on_delete_address_clicked,
-            "on_add_address_clicked" : on_add_address_clicked,
-            "on_event_update_clicked" : on_event_update_clicked,
             "on_event_select_row" : on_event_select_row,
-            "on_editperson_switch_page" : on_switch_page,
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_event_update_clicked" : on_event_update_clicked,
             "on_makeprimary_clicked" : on_primary_photo_clicked,
-            "on_photolist_select_icon" : on_photo_select_icon,
+            "on_name_list_select_row" : on_name_list_select_row,
+            "on_name_note_clicked" : on_name_note_clicked,
+            "on_name_source_clicked" : on_name_source_clicked,
             "on_photolist_button_press_event" : on_photolist_button_press_event,
-            "on_addphoto_clicked" : on_add_photo_clicked,
-            "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_photolist_select_icon" : on_photo_select_icon,
             "on_showsource_clicked" : on_showsource_clicked,
-            "on_apply_person_clicked" : on_apply_person_clicked
+            "on_update_address_clicked" : on_update_address_clicked,
+            "on_update_attr_clicked" : on_update_attr_clicked,
+            "on_update_url_clicked" : on_update_url_clicked,
+            "on_web_list_select_row" : on_web_list_select_row,
             })
 
         if len(const.surnames) > 0:
@@ -502,6 +503,111 @@ class EditPerson:
     def update_addresses(self):
         self.person.setAddressList(self.plist)
 
+
+#-------------------------------------------------------------------------
+#
+# did_data_change
+#
+#-------------------------------------------------------------------------
+def did_data_change(obj):
+    
+    epo = obj.get_data(EDITPERSON)
+    person = epo.person
+    
+    surname = epo.surname_field.get_text()
+    suffix = epo.suffix.get_text()
+    given = epo.given.get_text()
+    nick = epo.nick.get_text()
+    title = epo.title.get_text()
+    bdate  = epo.bdate.get_text()
+    bplace = epo.bplace.get_text()
+    ddate  = epo.ddate.get_text()
+    dplace = epo.dplace.get_text()
+    gender = epo.is_male.get_active()
+    text = epo.notes_field.get_chars(0,-1)
+
+    name = person.getPrimaryName()
+    birth  = person.getBirth()
+    death  = person.getDeath()
+
+    changed = 0
+    if suffix != name.getSuffix() or surname != name.getSurname():
+        changed = 1
+    if given != name.getFirstName() or nick != person.getNickName():
+        changed = 1
+    if title != name.getTitle():
+        changed = 1
+
+    newBirth = Event()
+    newBirth.set("Birth",bdate,bplace,"")
+    if newBirth.compare(birth):
+        changed = 1
+
+    newDeath = Event()
+    newDeath.set("Death",ddate,dplace,"")
+    if newDeath.compare(death):
+        changed = 1
+        
+    if gender and person.getGender() == Person.female:
+        changed = 1
+    if not gender and person.getGender() == Person.male:
+        changed = 1
+    if text != person.getNote() or epo.events_changed:
+        changed = 1
+    if epo.names_changed or epo.urls_changed or \
+       epo.attr_changed or epo.addr_changed:
+        changed = 1
+
+    return changed
+
+#-------------------------------------------------------------------------
+#
+# on_cancel_edit
+#
+#-------------------------------------------------------------------------
+def on_cancel_edit(obj):
+
+    if did_data_change(obj):
+        global quit
+        q = _("Data was modified. Are you sure you want to abandon your changes?")
+        quit = obj
+        GnomeQuestionDialog(q,cancel_callback)
+    else:
+        utils.destroy_passed_object(obj)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def cancel_callback(a):
+    if a==0:
+        utils.destroy_passed_object(quit)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def save_callback(a):
+    if a==0:
+        save_person(quit)
+        
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def on_delete_event(obj,b):
+    obj.hide()
+    if did_data_change(obj):
+        global quit
+        q = _("Data was modified. Do you wish to save your changes?")
+        quit = obj
+        GnomeQuestionDialog(q,save_callback)
+    else:
+        utils.destroy_passed_object(obj)
+    
 #-------------------------------------------------------------------------
 #
 # on_name_list_select_row - sets the row object attached to the passed
@@ -1102,6 +1208,15 @@ def on_name_changed(obj):
 #
 #-------------------------------------------------------------------------
 def on_apply_person_clicked(obj):
+    save_person(obj)
+    utils.destroy_passed_object(obj)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def save_person(obj):
     epo = obj.get_data(EDITPERSON)
     person = epo.person
     
@@ -1216,8 +1331,7 @@ def on_apply_person_clicked(obj):
     epo.update_addresses()
     if epo.addr_changed:
         utils.modified()
-        
-    utils.destroy_passed_object(obj)
+
     epo.callback(epo)
 
 #-------------------------------------------------------------------------
