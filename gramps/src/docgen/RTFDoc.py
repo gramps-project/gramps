@@ -3,6 +3,52 @@
 #
 # Copyright (C) 2000  Donald N. Allingham
 #
+# Modified August 2002 by Gary Shao
+#
+#   Removed Gramps dependencies.
+#
+#   Made a more explicit distinction of whether paragraph properties
+#   were being emitted in a table or not. Changing the location of
+#   \qc and \qr commands in cell text enabled text alignment in table
+#   cells to work properly.
+#
+#   Improved the appearance of output by adding some default spacing
+#   before and after paragraphs using \sa and \sb commands. This lets
+#   the output more closely mimic that of the other document generators
+#   given the same document parameters.
+#
+#   Improved the appearance of tables by adding some default cell
+#   padding using the \trgaph command. This causes the output to
+#   more closely resemble that of the other document generators.
+#
+#   Removed unnecessary \par command at the end of embedded image.
+#
+#   Removed self-test function in favor of a general testing program
+#   that can be run for all supported document generators. Simplifies
+#   testing when the test program only has to be changed in one location
+#   instead of in each document generator.
+#
+#   Modified open() and close() methods to allow the filename parameter
+#   passed to open() to be either a string containing a file name, or
+#   a Python file object. This allows the document generator to be more
+#   easily used with its output directed to stdout, as may be called for
+#   in a CGI script.
+#
+# Modified September 2002 by Gary Shao
+#
+#   Added start_listing() and end_listing() methods to allow showing
+#   text blocks without filling or justifying.
+#
+#   Added line_break() method to allow forcing a line break in a text
+#   block.
+#
+#   Added new methods start_italic() and end_italic() to enable
+#   italicizing parts of text within a paragraph
+#
+#   Added method show_link() to display in text the value of a link.
+#   This method really only has an active role in the HTML generator,
+#   but is provided here for interface consistency.
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -24,11 +70,16 @@
 #
 #------------------------------------------------------------------------
 from TextDoc import *
-import Plugins
 import ImgManip
 
-import intl
-_ = intl.gettext
+try:
+    import Plugins
+    import intl
+    _ = intl.gettext
+except:
+    withGramps = 0
+else:
+    withGramps = 1
 
 #------------------------------------------------------------------------
 #
@@ -60,16 +111,22 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def open(self,filename):
-        if filename[-4:] != ".rtf":
-            self.filename = filename + ".rtf"
-        else:
-            self.filename = filename
+        if type(filename) == type(""):
+            if filename[-4:] != ".rtf":
+                self.filename = filename + ".rtf"
+            else:
+                self.filename = filename
 
-        self.f = open(self.filename,"w")
+            self.f = open(self.filename,"w")
+	    self.alreadyOpen = 0
+	elif hasattr(filename, "write"):
+	    self.f = filename
+	    self.alreadyOpen = 1
         self.f.write('{\\rtf1\\ansi\\ansicpg1252\\deff0\n')
         self.f.write('{\\fonttbl\n')
         self.f.write('{\\f0\\froman\\fcharset0\\fprq0 Times New Roman;}\n')
-        self.f.write('{\\f1\\fswiss\\fcharset0\\fprq0 Arial;}}\n')
+        self.f.write('{\\f1\\fswiss\\fcharset0\\fprq0 Arial;}\n')
+        self.f.write('{\\f2\\fmodern\\fcharset0\\fprq0 Courier New;}}\n')
         self.f.write('{\colortbl\n')
         self.color_map = {}
         index = 1
@@ -97,6 +154,7 @@ class RTFDoc(TextDoc):
         self.f.write('\\margb%d' % twips(self.bmargin))
         self.f.write('\\widowctl\n')
 	self.in_table = 0
+	self.in_listing = 0
 	self.text = ""
 
     #--------------------------------------------------------------------
@@ -106,7 +164,8 @@ class RTFDoc(TextDoc):
     #--------------------------------------------------------------------
     def close(self):
         self.f.write('}\n')
-        self.f.close()
+	if not self.alreadyOpen:
+            self.f.close()
 
     #--------------------------------------------------------------------
     #
@@ -115,6 +174,90 @@ class RTFDoc(TextDoc):
     #--------------------------------------------------------------------
     def end_page(self):
         self.f.write('\\sbkpage\n')
+
+    #--------------------------------------------------------------------
+    #
+    # Starts a listing. Instead of using a style sheet, generate the
+    # the style for each paragraph on the fly. Not the ideal, but it 
+    # does work.
+    #
+    #--------------------------------------------------------------------
+    def start_listing(self,style_name):
+        self.opened = 0
+        p = self.style_list[style_name]
+
+	# build font information
+
+        f = p.get_font()
+        size = f.get_size()*2
+        bgindex = self.color_map[p.get_background_color()]
+        fgindex = self.color_map[f.get_color()]
+        if f.get_type_face() == FONT_MONOSPACE:
+            self.font_type = '\\f2\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
+        elif f.get_type_face() == FONT_SERIF:
+            self.font_type = '\\f0\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
+        else:
+            self.font_type = '\\f1\\fs%d\\cf%d\\cb%d' % (size,fgindex,bgindex)
+        if f.get_bold():
+            self.font_type = self.font_type + "\\b"
+        if f.get_underline():
+            self.font_type = self.font_type + "\\ul"
+        if f.get_italic():
+            self.font_type = self.font_type + "\\i"
+
+	# build listing block information
+
+        self.f.write('\\pard')
+        self.f.write('\\ql')
+        self.para_align = '\\ql'
+	self.f.write('\\nowidctlpar')
+	self.f.write('\\nowwrap')
+	self.f.write('\\nocwrap')
+        self.f.write('\\ri%d' % twips(p.get_right_margin()))
+        self.f.write('\\li%d' % twips(p.get_left_margin()))
+        self.f.write('\\fi%d' % twips(p.get_first_indent()))
+        if p.get_padding():
+            self.f.write('\\sa%d' % twips((0.25 + p.get_padding())/2.0))
+            self.f.write('\\sb%d' % twips((0.25 + p.get_padding())/2.0))
+	else:
+            self.f.write('\\sa%d' % twips(0.125))
+            self.f.write('\\sb%d' % twips(0.125))
+	haveBorders = 0
+        if p.get_top_border():
+            self.f.write('\\brdrt\\brdrs')
+	    haveBorders = 1
+        if p.get_bottom_border():
+            self.f.write('\\brdrb\\brdrs')
+	    haveBorders = 1
+        if p.get_left_border():
+            self.f.write('\\brdrl\\brdrs')
+	    haveBorders = 1
+        if p.get_right_border():
+            self.f.write('\\brdrr\\brdrs')
+	    haveBorders = 1
+	if haveBorders:
+	    if p.get_padding():
+	        self.f.write('\\brsp%d' % twips(p.get_padding()))
+	    else:
+	        self.f.write('\\brsp%d' % twips(0.125))
+	self.in_listing = 1
+ 
+    #--------------------------------------------------------------------
+    #
+    # Ends a listing. Care has to be taken to make sure that the 
+    # braces are closed properly. The self.opened flag is used to indicate
+    # if braces are currently open. If the last write was the end of 
+    # a bold-faced phrase, braces may already be closed.
+    #
+    #--------------------------------------------------------------------
+    def end_listing(self):
+        self.f.write(self.text)
+        if self.opened:
+            self.f.write('}')
+            self.opened = 0
+        self.text = ""
+        self.f.write('\n\\par')
+	self.in_listing = 0
 
     #--------------------------------------------------------------------
     #
@@ -149,30 +292,54 @@ class RTFDoc(TextDoc):
 	if not self.in_table:
             self.f.write('\\pard')
         if p.get_alignment() == PARA_ALIGN_RIGHT:
-            self.f.write('\\qr')
+	    if not self.in_table:
+                self.f.write('\\qr')
+            self.para_align = '\\qr'
         elif p.get_alignment() == PARA_ALIGN_CENTER:
-            self.f.write('\\qc')
+	    if not self.in_table:
+                self.f.write('\\qc')
+            self.para_align = '\\qc'
+	else:
+            self.para_align = '\\ql'
         self.f.write('\\ri%d' % twips(p.get_right_margin()))
         self.f.write('\\li%d' % twips(p.get_left_margin()))
         self.f.write('\\fi%d' % twips(p.get_first_indent()))
         if p.get_alignment() == PARA_ALIGN_JUSTIFY:
             self.f.write('\\qj')
-        if p.get_padding():
-            self.f.write('\\sa%d' % twips(p.get_padding()/2.0))
-        if p.get_top_border():
-            self.f.write('\\brdrt\\brdrs')
-        if p.get_bottom_border():
-            self.f.write('\\brdrb\\brdrs')
-        if p.get_left_border():
-            self.f.write('\\brdrl\\brdrs')
-        if p.get_right_border():
-            self.f.write('\\brdrr\\brdrs')
-        if p.get_first_indent():
-            self.f.write('\\fi%d' % twips(p.get_first_indent()))
-        if p.get_left_margin():
-            self.f.write('\\li%d' % twips(p.get_left_margin()))
-        if p.get_right_margin():
-            self.f.write('\\ri%d' % twips(p.get_right_margin()))
+	if self.in_table:
+	    self.f.write('\\trgaph80')
+        else:
+            if p.get_padding():
+                self.f.write('\\sa%d' % twips((0.25 + p.get_padding())/2.0))
+                self.f.write('\\sb%d' % twips((0.25 + p.get_padding())/2.0))
+	    else:
+                self.f.write('\\sa%d' % twips(0.125))
+                self.f.write('\\sb%d' % twips(0.125))
+	    haveBorders = 0
+            if p.get_top_border():
+                self.f.write('\\brdrt\\brdrs')
+	        haveBorders = 1
+            if p.get_bottom_border():
+                self.f.write('\\brdrb\\brdrs')
+	        haveBorders = 1
+            if p.get_left_border():
+                self.f.write('\\brdrl\\brdrs')
+	        haveBorders = 1
+            if p.get_right_border():
+                self.f.write('\\brdrr\\brdrs')
+	        haveBorders = 1
+	    if haveBorders:
+	        if p.get_padding():
+	            self.f.write('\\brsp%d' % twips(p.get_padding()))
+	        else:
+	            self.f.write('\\brsp%d' % twips(0.125))
+	# This is redundant. Why was it here?
+        #if p.get_first_indent():
+        #    self.f.write('\\fi%d' % twips(p.get_first_indent()))
+        #if p.get_left_margin():
+        #    self.f.write('\\li%d' % twips(p.get_left_margin()))
+        #if p.get_right_margin():
+        #    self.f.write('\\ri%d' % twips(p.get_right_margin()))
 
         if leader:
             self.opened = 1
@@ -181,6 +348,9 @@ class RTFDoc(TextDoc):
             self.write_text(leader)
             self.f.write('\\tab}')
             self.opened = 0
+
+	self.bold_on = 0
+	self.italic_on = 0
     
     #--------------------------------------------------------------------
     #
@@ -195,8 +365,8 @@ class RTFDoc(TextDoc):
             self.f.write(self.text)
             if self.opened:
                 self.f.write('}')
-                self.text = ""
                 self.opened = 0
+            self.text = ""
             self.f.write('\n\\par')
         else:
             if self.text == "":
@@ -205,13 +375,42 @@ class RTFDoc(TextDoc):
 
     #--------------------------------------------------------------------
     #
+    # Starts italicized text, enclosed the braces
+    #
+    #--------------------------------------------------------------------
+    def start_italic(self):
+        self.italic_on = 1
+	emph = '\\i'
+	if self.bold_on:
+	    emph = emph + '\\b'
+        if self.opened:
+            self.text = self.text + '}'
+        self.text = self.text + '{%s%s ' % (self.font_type, emph)
+        self.opened = 1
+
+    #--------------------------------------------------------------------
+    #
+    # Ends italicized text, closing the braces
+    #
+    #--------------------------------------------------------------------
+    def end_italic(self):
+        self.italic_on = 0
+        self.opened = 0
+        self.text = self.text + '}'
+
+    #--------------------------------------------------------------------
+    #
     # Starts boldfaced text, enclosed the braces
     #
     #--------------------------------------------------------------------
     def start_bold(self):
+        self.bold_on = 1
+	emph = '\\b'
+	if self.italic_on:
+	    emph = emph + '\\i'
         if self.opened:
-            self.f.write('}')
-        self.f.write('{%s\\b ' % self.font_type)
+            self.text = self.text + '}'
+        self.text = self.text + '{%s%s ' % (self.font_type, emph)
         self.opened = 1
 
     #--------------------------------------------------------------------
@@ -220,8 +419,9 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def end_bold(self):
+        self.bold_on = 0
         self.opened = 0
-        self.f.write('}')
+        self.text = self.text + '}'
 
     #--------------------------------------------------------------------
     #
@@ -342,7 +542,7 @@ class RTFDoc(TextDoc):
 	    if index%32==0:
 	        self.f.write('\n')
 	    index = index+1
-	self.f.write('}}\\par\n')
+	self.f.write('}}\n')
     
     #--------------------------------------------------------------------
     #
@@ -354,163 +554,55 @@ class RTFDoc(TextDoc):
     #--------------------------------------------------------------------
     def write_text(self,text):
         if self.opened == 0:
+	    emph = ''
+	    if self.bold_on:
+	        emph = emph + '\\b'
+	    if self.italic_on:
+	        emph = emph + '\\i'
             self.opened = 1
-            self.text = self.text + '{%s ' % self.font_type
+	    if self.in_table:
+	        self.text = self.text + self.para_align
+            self.text = self.text + '{%s%s ' % (self.font_type, emph)
         for i in text:
             if ord(i) > 127:
                 self.text = self.text + '\\\'%2x' % ord(i)
             elif i == '{' or i == '}' :
                 self.text = self.text + '\\%s' % i
+	    elif self.in_listing and i == '\n':
+	        self.text = self.text + '\\line\n'
             else:
                 self.text = self.text + i
 
+    #--------------------------------------------------------------------
+    #
+    # Inserts a required line break into the text.
+    #
+    #--------------------------------------------------------------------
+    def line_break(self):
+        self.text = self.text + '\\line\n'
 
-if __name__ == "__main__":
+    #--------------------------------------------------------------------
+    #
+    # Shows link text.
+    #
+    #--------------------------------------------------------------------
+    def show_link(self, text, href):
+        self.write_text("%s (" % text)
+	self.start_italic()
+	self.write_text(href)
+	self.end_italic()
+	self.write_text(") ")
 
-    paper = PaperStyle("Letter",27.94,21.59)
-
-    styles = StyleSheet()
-    foo = FontStyle()
-    foo.set_type_face(FONT_SANS_SERIF)
-    foo.set_color((255,0,0))
-    foo.set_size(24)
-    foo.set_underline(1)
-    foo.set_bold(1)
-    foo.set_italic(1)
-
-    para = ParagraphStyle()
-    para.set_alignment(PARA_ALIGN_RIGHT)
-    para.set_font(foo)
-    styles.add_style("Title",para)
-
-    foo = FontStyle()
-    foo.set_type_face(FONT_SERIF)
-    foo.set_size(12)
-
-    para = ParagraphStyle()
-    para.set_font(foo)
-    styles.add_style("Normal",para)
-
-    foo = FontStyle()
-    foo.set_type_face(FONT_SERIF)
-    foo.set_size(12)
-
-    para = ParagraphStyle()
-    para.set_font(foo)
-    para.set_top_border(1)
-    para.set_left_border(1)
-    para.set_right_border(1)
-    para.set_bottom_border(1)
-    styles.add_style("Box",para)
-
-    doc = RTFDoc(styles,paper,PAPER_PORTRAIT)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.2)
-    cell.set_top_border(1)
-    cell.set_bottom_border(1)
-    cell.set_right_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('ParentHead',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('TextContents',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(0)
-    cell.set_left_border(1)
-    cell.set_padding(0.1)
-    doc.add_cell_style('TextChild1',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(1)
-    cell.set_left_border(1)
-    cell.set_padding(0.1)
-    doc.add_cell_style('TextChild2',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.1)
-    cell.set_bottom_border(1)
-    cell.set_right_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('TextContentsEnd',cell)
-
-    cell = TableCellStyle()
-    cell.set_padding(0.2)
-    cell.set_bottom_border(1)
-    cell.set_right_border(1)
-    cell.set_left_border(1)
-    doc.add_cell_style('ChildName',cell)
-
-    table = TableStyle()
-    table.set_width(100)
-    table.set_columns(3)
-    table.set_column_width(0,20)
-    table.set_column_width(1,40)
-    table.set_column_width(2,40)
-    doc.add_table_style('ParentTable',table)
-
-    table = TableStyle()
-    table.set_width(100)
-    table.set_columns(4)
-    table.set_column_width(0,5)
-    table.set_column_width(1,15)
-    table.set_column_width(2,40)
-    table.set_column_width(3,40)
-    doc.add_table_style('ChildTable',table)
-
-    doc.open("test")
-
-    doc.start_paragraph("Title")
-    doc.write_text("My Title")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Normal")
-    doc.write_text("Hello there. This is fun")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Box")
-    doc.write_text("This is my box")
-    doc.end_paragraph()
-
-    doc.start_paragraph("Normal")
-    doc.add_photo("foo.png",200,200)
-    doc.end_paragraph()
-
-    doc.start_table(id,'ParentTable')
-    doc.start_row()
-    doc.start_cell('ParentHead',3)
-    doc.start_paragraph('Normal')
-    doc.write_text('Banana : Smith ')
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.end_row()
-
-    doc.start_row()
-    doc.start_cell("TextContents")
-    doc.start_paragraph('Normal')
-    doc.write_text("some event")
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.start_cell("TextContents")
-    doc.start_paragraph('Normal')
-    doc.write_text("someday")
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.start_cell("TextContentsEnd")
-    doc.start_paragraph('Normal')
-    doc.write_text("somewhere")
-    doc.end_paragraph()
-    doc.end_cell()
-    doc.end_row()
-
-    doc.end_table()
-
-    doc.close()
-
-Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1)
+#------------------------------------------------------------------------
+#
+# Register the document generator with the system if in Gramps
+#
+#------------------------------------------------------------------------
+if withGramps:
+    Plugins.register_text_doc(
+        name=_("Rich Text Format (RTF)"),
+        classref=RTFDoc,
+        table=1,
+        paper=1,
+        style=1
+        )

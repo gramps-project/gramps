@@ -3,6 +3,51 @@
 #
 # Copyright (C) 2000  Donald N. Allingham
 #
+# Modified August 2002 by Gary Shao
+#
+#   Removed Gramps dependencies.
+#
+#   Removed dependencies on Gnome UI.
+#
+#   Moved call to build_style_declaration() out of __init__ method and
+#   into open method to allow cell table styles to get emitted in HTML.
+#
+#   Added style entry for underlined text in HTML output
+#
+#   Changed statements which constructed paths using "%s/%s" string
+#   formatting into ones using the os.path.join function to give better
+#   cross-platform compatibility.
+#
+#   Allowed table width to default to 0, which causes output table
+#   to have column widths that are automatically sized to the length
+#   of their contents.
+#
+#   Added support for start_bold() and end_bold() methods of TextDoc
+#   class for inline bolding of text.
+#
+#   Modified open() and close() methods to allow the filename parameter
+#   passed to open() to be either a string containing a file name, or
+#   a Python file object. This allows the document generator to be more
+#   easily used with its output directed to stdout, as may be called for
+#   in a CGI script.
+#
+# Modified September 2002 by Gary Shao
+#
+#   Changed implicit conversion of '\n' character to <br> command in
+#   write_text() to instead require an explicit call to line_break()
+#   for insertion of <br> into text. This makes the paragraph behavior
+#   a better match for that of other document generators.
+#
+#   Added start_listing() and end_listing() methods to allow displaying
+#   text blocks without automatic filling and justification. Intended
+#   for printing things like source code and plain text graphics.
+#
+#   Added support for start_italic() and end_italic() methods of TextDoc
+#   class for inline italicizing of text.
+#
+#   Added method show_link() to display a link as an anchor.
+#   This method really only has an active role in the HTML generator.
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -23,19 +68,26 @@ import string
 import re
 import time
 
-import gnome.ui
-import Plugins
 import ImgManip
 import TarFile
-import const
 
 from TextDoc import *
 
-from intl import gettext
-_ = gettext
+try:
+    import gnome.ui
+    import Plugins
+    import const
+    from intl import gettext
+    _ = gettext
+except:
+    withGramps = 0
+    Version = "1.0"
+else:
+    withGramps = 1
 
 t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)",
                               re.DOTALL|re.IGNORECASE|re.MULTILINE)
+
 
 #------------------------------------------------------------------------
 #
@@ -85,10 +137,9 @@ class HtmlDoc(TextDoc):
             self.filename = None
             self.top = []
             self.bottom = []
-            self.base = ""
+            self.base = "."
             self.load_template()
             self.build_header()
-            self.build_style_declaration()
             self.image_dir = "images"
         else:
             self.owner = source.owner
@@ -146,7 +197,11 @@ class HtmlDoc(TextDoc):
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
-            gnome.ui.GnomeErrorDialog(mymsg)
+	    if withGramps:
+	        gnome.ui.GnomeErrorDialog(mymsg)
+	    else:
+	        print mymsg
+		raise "TemplateError: No START marker"
 
     def load_html(self):
         start = re.compile(r"<!--\s*START\s*-->")
@@ -171,7 +226,11 @@ class HtmlDoc(TextDoc):
 
         if top_add == 1:
             mymsg = _("The marker '<!-- START -->' was not in the template")
-            gnome.ui.GnomeErrorDialog(mymsg)
+	    if withGramps:
+	        gnome.ui.GnomeErrorDialog(mymsg)
+	    else:
+	        print mymsg
+		raise "TemplateError: No START marker"
             
     def load_template(self):
         if self.template:
@@ -184,13 +243,19 @@ class HtmlDoc(TextDoc):
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
                 mymsg = "%s\n%s" % (mymsg,msg)
-                gnome.ui.GnomeWarningDialog(mymsg)
+		if withGramps:
+		    gnome.ui.GnomeWarningDialog(mymsg)
+		else:
+	            print mymsg
                 self.bottom = _bottom
                 self.top = _top
             except:
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
-                gnome.ui.GnomeWarningDialog(mymsg)
+		if withGramps:
+		    gnome.ui.GnomeWarningDialog(mymsg)
+		else:
+	            print mymsg
                 self.bottom = _bottom
                 self.top = _top
         else:
@@ -198,20 +263,29 @@ class HtmlDoc(TextDoc):
             self.top = _top
 
     def process_line(self,line):
-        l = string.replace(line,'$VERSION',const.version)
+        if withGramps:
+	    l = string.replace(line,'$VERSION',const.version)
+	else:
+            l = string.replace(line,'$VERSION',Version)
         return string.replace(l,'$COPYRIGHT',self.copyright)
         
     def open(self,filename):
-        (r,e) = os.path.splitext(filename)
-        if e == self.ext:
-            self.filename = filename
-        else:
-            self.filename = filename + self.ext
+        if type(filename) == type(""):
+            (r,e) = os.path.splitext(filename)
+            if e == self.ext:
+                self.filename = filename
+            else:
+                self.filename = filename + self.ext
 
-        self.base = os.path.dirname(self.filename)
+            self.base = os.path.dirname(self.filename)
 
-        self.f = open(self.filename,"w")
+            self.f = open(self.filename,"w")
+	    self.alreadyOpen = 0
+	elif hasattr(filename, "write"):
+	    self.f = filename
+	    self.alreadyOpen = 1
         self.f.write(self.file_header)
+        self.build_style_declaration()
         self.f.write(self.style_declaration)
 
     def build_header(self):
@@ -265,11 +339,13 @@ class HtmlDoc(TextDoc):
             if style.get_right_border():
                 right = 'thin solid #000000'
 
-            italic = bold = ''
+            italic = bold = underline = ''
             if font.get_italic():
                 italic = 'font-style:italic; '
             if font.get_bold():
                 bold = 'font-weight:bold; '
+	    if font.get_underline():
+	        underline = 'text-decoration:underline; '
             if font.get_type_face() == FONT_SANS_SERIF:
                 family = '"Helvetica","Arial","sans-serif"'
             else:
@@ -281,12 +357,12 @@ class HtmlDoc(TextDoc):
                         '\tmargin-right: %scm; margin-left: %scm;\n' 
                         '\tborder-top:%s; border-bottom:%s;\n' 
                         '\tborder-left:%s; border-right:%s;\n' 
-                        '\t%s%sfont-family:%s;\n}' 
+                        '\t%s%s%sfont-family:%s;\n}' 
                         % (key, font_size, font_color,
                            align, text_indent,
                            right_margin, left_margin,
                            top, bottom, left, right,
-                           italic, bold, family))
+                           italic, bold, underline, family))
 
         text.append('-->\n</style>')
         self.style_declaration = string.join(text,'\n')
@@ -294,14 +370,15 @@ class HtmlDoc(TextDoc):
     def close(self):
         for line in self.bottom:
             self.f.write(self.process_line(line))
-        self.f.close()
+	if not self.alreadyOpen:
+            self.f.close()
 
     def write_support_files(self):
         if self.map:
             for name in self.map.keys():
                 if name == 'template.html':
                     continue
-                fname = '%s/%s' % (self.base,name)
+                fname = '%s' % (os.path.join(self.base,name))
                 f = open(fname, 'wb')
                 f.write(self.map[name].read())
                 f.close()
@@ -312,7 +389,10 @@ class HtmlDoc(TextDoc):
         refname = "is%s" % os.path.basename(name)
 
         if self.image_dir:
-            imdir = "%s/%s" % (self.base,self.image_dir)
+	    if self.base:
+                imdir = "%s" % (os.path.join(self.base,self.image_dir))
+	    else:
+                imdir = "%s" % (self.image_dir)
         else:
             imdir = self.base
 
@@ -324,7 +404,7 @@ class HtmlDoc(TextDoc):
 
         try:
             img = ImgManip.ImgManip(name)
-            img.jpg_thumbnail("%s/%s" % (imdir,refname),size,size)
+            img.jpg_thumbnail("%s" % (os.path.join(imdir,refname)),size,size)
         except:
             return
 
@@ -335,15 +415,23 @@ class HtmlDoc(TextDoc):
         else:
             xtra = ''
             
+	if pos == "center":
+	    self.f.write('<center>')
         if self.image_dir:
-            self.f.write('<img src="%s/%s" border="0""%s>\n' % \
-                         (self.image_dir,refname,xtra))
+            self.f.write('<img src="%s" border="0"%s>' % \
+                         (os.path.join(self.image_dir,refname),xtra))
         else:
-            self.f.write('<img src="%s" border="0""%s>\n' % (refname,xtra))
+            self.f.write('<img src="%s" border="0"%s>' % (refname,xtra))
+	if pos == "center":
+	    self.f.write('</center>')
+	self.f.write('\n')
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]
-        self.f.write('<table width="%d%%" ' % self.tbl.get_width())
+	if self.tbl.get_width() == 0:
+            self.f.write('<table ')
+	else:
+            self.f.write('<table width="%d%%" ' % self.tbl.get_width())
         self.f.write('cellspacing="0">\n')
 
     def end_table(self):
@@ -362,7 +450,7 @@ class HtmlDoc(TextDoc):
         if span > 1:
             self.f.write(' colspan="' + str(span) + '"')
             self.col = self.col + 1
-        else:
+        elif self.tbl.get_column_width(self.col) > 0:
             self.f.write(' width="')
             self.f.write(str(self.tbl.get_column_width(self.col)))
             self.f.write('%"')
@@ -373,6 +461,55 @@ class HtmlDoc(TextDoc):
 
     def end_cell(self):
         self.f.write('</td>\n')
+
+    def start_listing(self,style_name):
+        style = self.style_list[style_name]
+        font = style.get_font()
+        font_size = font.get_size()
+        font_color = '#%02x%02x%02x' % font.get_color()
+        right_margin = "%.2f" % style.get_right_margin()
+        left_margin = "%.2f" % style.get_left_margin()
+        top = bottom = left = right = 'none'
+        pad = "%.3fcm"  % style.get_padding()
+        if style.get_top_border():
+            top = 'thin solid #000000'
+        if style.get_bottom_border():
+            bottom = 'thin solid #000000'
+        if style.get_left_border():
+	    left = 'thin solid #000000'
+        if style.get_right_border():
+            right = 'thin solid #000000'
+
+        italic = bold = underline = ''
+        if font.get_italic():
+            italic = 'font-style:italic; '
+        if font.get_bold():
+            bold = 'font-weight:bold; '
+	if font.get_underline():
+	    underline = 'text-decoration:underline; '
+	if font.get_type_face() == FONT_MONOSPACE:
+	    family = 'Courier,monospace'
+        elif font.get_type_face() == FONT_SANS_SERIF:
+            family = 'Helvetica,Arial,sans-serif'
+        else:
+            family = 'Times New Roman,Times,serif'
+
+        styleStr = '<pre style="font-size: %dpt; color: %s;\n' % \
+                     (font_size, font_color)
+	styleStr = styleStr + '\tpadding: %s %s %s %s;\n' % \
+		     (pad, pad, pad, pad)
+	styleStr = styleStr + '\tmargin-right: %scm; margin-left: %scm;\n' % \
+                     (right_margin, left_margin)
+	styleStr = styleStr + '\tborder-top:%s; border-bottom:%s;\n' % \
+                     (top, bottom)
+	styleStr = styleStr + '\tborder-left:%s; border-right:%s;\n' % \
+                     (left, right)
+	styleStr = styleStr + '\t%s%s%sfont-family:%s">\n' % \
+                     (italic, bold, underline, family)
+        self.f.write(styleStr)
+
+    def end_listing(self):
+        self.f.write('</pre>\n')
 
     def start_paragraph(self,style_name,leader=None):
         self.f.write('<p class="' + style_name + '">')
@@ -389,7 +526,37 @@ class HtmlDoc(TextDoc):
     def write_text(self,text):
         if text != "":
             self.empty = 0
-        text = string.replace(text,'\n','<br>')
+        #text = string.replace(text,'\n','<br>')
 	self.f.write(text)
 
-Plugins.register_text_doc(_("HTML"),HtmlDoc,1,0,1)
+    def start_bold(self):
+        self.f.write('<b>')
+
+    def end_bold(self):
+        self.f.write('</b>')
+
+    def start_italic(self):
+        self.f.write('<i>')
+
+    def end_italic(self):
+        self.f.write('</i>')
+
+    def line_break(self):
+        self.f.write('<br>\n')
+
+    def show_link(self, text, href):
+        self.write_text(' <a href="%s">%s</a> ' % (href, text))
+
+#------------------------------------------------------------------------
+#
+# Register the document generator with the system if in Gramps
+#
+#------------------------------------------------------------------------
+if withGramps:
+    Plugins.register_text_doc(
+        name=_("HTML"),
+        classref=HtmlDoc,
+        table=1,
+        paper=0,
+        style=1
+        )
