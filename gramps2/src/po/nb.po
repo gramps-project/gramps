@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Thu Sep 18 22:31:51 2003\n"
-"PO-Revision-Date: 2003-11-25 23:34+0100\n"
+"PO-Revision-Date: 2003-11-26 00:38+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -3578,7 +3578,7 @@ msgstr "Slette personen vil fjerne personen fra databasen. Dataene kan kun gjeno
 
 #: gramps_main.py:1575
 msgid "_Delete Person"
-msgstr "Slet Person"
+msgstr "Slett Person"
 
 #: gramps_main.py:1723
 msgid "%(relationship)s of %(person)s"
