@@ -346,7 +346,7 @@ class GrampsParser(handler.ContentHandler):
             photo.setPrivate(0)
         if self.family:
             self.family.addPhoto(photo)
-        if self.source:
+        elif self.source:
             self.source.addPhoto(photo)
         else:
             self.person.addPhoto(photo)
