@@ -1,0 +1,39 @@
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+bindir 		= @bindir@
+datadir		= @datadir@/@PACKAGE@
+INSTALL		= @INSTALL@
+srcdir		= @top_srcdir@
+pycomp		= ${srcdir}/py-compile
+CFLAGS          = -fPIC -shared -O -I/usr/include/python1.5 -I/usr/lib/python1.5/config
+
+@SET_MAKE@
+
+all:    intl.so
+	chmod +x ${pycomp}
+	${pycomp} *.py
+
+intl.so: intl.c
+	$(CC) $(CFLAGS) -o intl.so intl.c
+
+install:
+	${INSTALL} -d ${datadir}
+	${INSTALL} -c *.py *.jpg *.pyo *.glade *.xpm *.so ${datadir}
+	${INSTALL} -d ${prefix}/share/pixmaps
+	${INSTALL} -c gramps.png ${prefix}/share/pixmaps
+	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
+	${INSTALL} -c gramps.desktop ${prefix}/share/gnome/apps/Applications
+	for i in locale/*; do\
+		base=`basename $$i`;\
+		${INSTALL} -d ${prefix}/share/locale/$$base; \
+		${INSTALL} -d ${prefix}/share/locale/$$base/LC_MESSAGES; \
+		${INSTALL} $$i/LC_MESSAGES/gramps.mo ${prefix}/share/locale/$$base/LC_MESSAGES; \
+		done
+
+uninstall:
+	rm -f ${datadir}/*.py ${datadir}/*.pyo ${datadir}/*.glade ${datadir}/*.xpm
+	-rmdir ${datadir}
+
+
+clean:
+	-rm -f core *.pyo *.pyc *.bak *~	

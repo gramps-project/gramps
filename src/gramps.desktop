@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Gramps
+Comment=Genealogy Program
+Exec=gramps
+Icon=gramps.png
+Terminal=0
+Type=Application

@@ -1,0 +1,48 @@
+Version 0.1.4
+
+* Implemented date ranges.  Valid forms are "from <date> to <date>" and
+  "between <date> and <date>".
+* Better support for partial dates.  A question mark can optionally be 
+  used for a placeholder for a year if the year is unknown.  Illegal 
+  date formats issue a warning upon an attempt to save the date.
+* Start of internationalization (i18n) support.  Had to include a single
+  C file to allow libglade to understand translations.  This means that
+  binary releases are no longer going to be platform independant.
+* Start of a generic output formatter for report generation. Currently
+  supports HTML, OpenOffice (625+), and AbiWord (0.7.13+).  Allows 
+  control of paragraph and font styles.
+
+Version 0.1.3
+
+* Allow the user to specifiy their preferred numerical date input format,
+  either DD/MM/YY or MM/DD/YY on the preferences dialog box.
+* Handles file problems a bit more gracefully.
+* Use ISO-8859-1 character set instead of ASCII to support languages other
+  than English.  Eventually this should go to unicode, but python 1.5.2
+  does not have good unicode support.  Python 2.X/Gnome 2.X will be the 
+  migration for this feature.
+* Handle ANSEL encoding for import and exporting GEDCOM files.
+* Fixed a bug in the selection of parents, which did not accept new parents
+  if previous parents did not exist.
+
+Version 0.1.2
+
+* Allow the user the option to display alternate names in the person
+  list. Alternate names in the list have an '*' appended to the end
+  of the name.
+* Merge function now gives the user the option of saving the name of
+  the merged individual as an alternate name if the names are not 
+  the same.
+* Added the "Alternate Birth" and "Alternate Death" to the event list, 
+  to allow other birthdates to be recorded. Gramps makes a distinction
+  between the birthdate/deathdate and the alternates.
+* GEDCOM import and export adapted to load/save alternate birth and
+  death dates.  The first "BIRT" and "DEAT" tags are the ones used
+  for the primary dates, the others are loaded as alternates.
+* Added the ability to store web page addresses for each person. From
+  the edit person page, the "Go" button brings up a web browser to
+  display the page.
+* Fixed a bug in the relationship calculator that caused a traceback
+  when the person selected was a direct ancestor of the active person.
+* Added the suffix field to the alternate name entry on the Edit Person
+  form.

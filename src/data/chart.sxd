@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<office:document office:class="drawing" office:version="0.9" xmlns:office="http://openoffice.org/2000/office" xmlns:style="http://openoffice.org/2000/style" xmlns:text="http://openoffice.org/2000/text" xmlns:table="http://openoffice.org/2000/table" xmlns:draw="http://openoffice.org/2000/drawing" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="http://openoffice.org/2000/meta" xmlns:number="http://openoffice.org/2000/datastyle" xmlns:presentation="http://openoffice.org/2000/presentation" xmlns:svg="http://www.w3.org/2000/svg" xmlns:chart="http://openoffice.org/2000/chart">
+ <office:meta>
+  <meta:generator>Gramps</meta:generator>
+  <meta:initial-creator>Donald Allingham</meta:initial-creator>
+  <meta:creation-date>2001-01-26T11:12:22</meta:creation-date>
+  <dc:creator>Donald Allingham</dc:creator>
+  <dc:date>2001-01-26T11:34:34</dc:date>
+  <dc:language>en-US</dc:language>
+  <meta:editing-cycles>3</meta:editing-cycles>
+  <meta:editing-duration>PT0S</meta:editing-duration>
+  <meta:user-defined meta:name="Info 0"></meta:user-defined>
+  <meta:user-defined meta:name="Info 1"></meta:user-defined>
+  <meta:user-defined meta:name="Info 2"></meta:user-defined>
+  <meta:user-defined meta:name="Info 3"></meta:user-defined>
+ </office:meta>
+ <office:styles><draw:gradient draw:name="Standard 1" draw:style="linear" draw:start-color="#000000" draw:end-color="#ffffff" draw:start-intensity="100%" draw:end-intensity="100%" draw:angle="0" draw:border="0%"/><draw:hatch draw:name="Standard 1" draw:style="single" draw:color="#000000" draw:distance="0.02cm" draw:rotation="0"/><draw:fill-image draw:name="Standard 1" xlink:href="vnd.sun.star.GraphicObject:10000000000000400000004077CDC8F9" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad"/><draw:marker draw:name="Arrow" svg:viewBox="0 0 200 400" svg:d="100,0 200,400 0,400"/><draw:marker draw:name="Arrow" svg:viewBox="0 0 200 400" svg:d="100,0 200,400 0,400"/><draw:marker draw:name="Arrow" svg:viewBox="0 0 200 400" svg:d="100,0 200,400 0,400"/><draw:marker draw:name="Arrow" svg:viewBox="0 0 200 400" svg:d="100,0 200,400 0,400"/>
+  <style:style style:name="drawpool" style:family="default"><style:properties draw:stroke="solid" svg:stroke-width="0cm" svg:stroke-color="#000000" draw:marker-start="Standard 1" draw:marker-start-width="0.2cm" draw:marker-start-center="false" draw:marker-end="Standard 1" draw:marker-end-width="0.2cm" draw:marker-end-center="false" svg:stroke-opacity="0%" svg:stroke-linejoin="round" draw:fill="solid" draw:fill-color="#00b8ff" draw:fill-gradient-name="Standard 1" draw:gradient-step-count="0" draw:fill-hatch-name="Standard 1" draw:fill-image-name="Standard 1" draw:shadow="hidden" draw:shadow-offset-x="0cm" draw:shadow-offset-y="0cm" draw:shadow-color="#000000" draw:shadow-transparency="0%" fo:color="#000000" style:text-crossing-out="none" fo:font-size="24pt" fo:font-style="normal" style:text-underline="none" fo:font-weight="normal" fo:line-height="100%" fo:text-align="start" fo:hyphenate="false" fo:margin-left="0cm" fo:margin-right="0cm" fo:margin-top="0cm" fo:margin-bottom="0cm"/>
+  </style:style>
+  <style:style style:name="standard" style:family="graphics" style:parent-style-name="drawpool">
+   <style:properties draw:stroke="solid" svg:stroke-width="0cm" svg:stroke-color="#000000" draw:marker-start="Standard 1" draw:marker-start-width="0.3cm" draw:marker-start-center="false" draw:marker-end="Standard 1" draw:marker-end-width="0.3cm" draw:marker-end-center="false" draw:fill="solid" draw:fill-color="#00b8ff" draw:fill-gradient-name="Standard 1" draw:fill-hatch-name="Standard 1" draw:fill-image-name="Standard 1" draw:shadow="hidden" draw:shadow-offset-x="0.3cm" draw:shadow-offset-y="0.3cm" draw:shadow-color="#808080" fo:color="#000000" style:text-crossing-out="none" fo:font-size="24pt" fo:font-style="normal" style:text-underline="none" fo:font-weight="normal" fo:line-height="100%" fo:text-align="start" fo:margin-left="0cm" fo:margin-right="0cm" fo:margin-top="0cm" fo:margin-bottom="0cm"/>
+  </style:style>
+  <style:style style:name="objectwitharrow" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="solid" svg:stroke-width="0.15cm" svg:stroke-color="#000000" draw:marker-start="Arrow" draw:marker-start-width="0.7cm" draw:marker-start-center="true" draw:marker-end-width="0.3cm"/>
+  </style:style>
+  <style:style style:name="objectwithshadow" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:shadow="visible" draw:shadow-offset-x="0.2cm" draw:shadow-offset-y="0.2cm" draw:shadow-color="#808080"/>
+  </style:style>
+  <style:style style:name="objectwithoutfill" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:fill="none"/>
+  </style:style>
+  <style:style style:name="text" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none"/>
+  </style:style>
+  <style:style style:name="textbody" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none" fo:font-size="16pt"/>
+  </style:style>
+  <style:style style:name="textbodyjustfied" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none" fo:text-align="end"/>
+  </style:style>
+  <style:style style:name="textbodyindent" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none" fo:margin-left="0cm" fo:margin-right="0cm"/>
+  </style:style>
+  <style:style style:name="title" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none" fo:font-size="43pt"/>
+  </style:style>
+  <style:style style:name="title1" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="solid" draw:fill-color="#008080" draw:shadow="visible" draw:shadow-offset-x="0.2cm" draw:shadow-offset-y="0.2cm" draw:shadow-color="#808080" fo:font-size="24pt" fo:text-align="justify"/>
+  </style:style>
+  <style:style style:name="title2" style:family="graphics" style:parent-style-name="standard">
+   <style:properties svg:stroke-width="0.05cm" draw:fill-color="#ffcc99" draw:shadow="visible" draw:shadow-offset-x="0.2cm" draw:shadow-offset-y="0.2cm" draw:shadow-color="#808080" fo:font-size="36pt" fo:text-align="justify" fo:margin-left="0cm" fo:margin-right="0.2cm" fo:margin-top="0.1cm" fo:margin-bottom="0.1cm"/>
+  </style:style>
+  <style:style style:name="headline" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none" fo:font-size="24pt" fo:margin-top="0.42cm" fo:margin-bottom="0.21cm"/>
+  </style:style>
+  <style:style style:name="headline1" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none" fo:font-size="18pt" fo:font-weight="bold" fo:margin-top="0.42cm" fo:margin-bottom="0.21cm"/>
+  </style:style>
+  <style:style style:name="headline2" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="none" draw:fill="none" fo:font-size="14pt" fo:font-style="italic" fo:font-weight="bold" fo:margin-top="0.42cm" fo:margin-bottom="0.21cm"/>
+  </style:style>
+  <style:style style:name="measure" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:stroke="solid" draw:marker-start="Arrow" draw:marker-start-width="0.2cm" draw:marker-end="Arrow" draw:marker-end-width="0.2cm" draw:fill="none" fo:font-size="12pt"/>
+  </style:style>
+  <style:page-master style:name="PM0">
+    <style:properties fo:margin-top="0.423cm" fo:margin-bottom="0.623cm" fo:margin-left="0.635cm" fo:margin-right="0.665cm" fo:page-width="21.59cm" fo:page-height="27.94cm" fo:page-orientation="portrait"/>
+  </style:page-master>
+  <style:style style:name="P0" style:family="drawing-page"/>
+ </office:styles>
+ <office:automatic-styles>
+  <style:style style:name="gr1" style:family="graphics" style:parent-style-name="objectwithshadow">
+   <style:properties draw:fill="solid" draw:fill-color="#ffffff" fo:font-size="8pt" fo:margin-left="0cm" fo:margin-right="0cm"/>
+  </style:style>
+  <style:style style:name="gr2" style:family="graphics" style:parent-style-name="standard">
+   <style:properties fo:margin-left="0.6cm" fo:margin-right="0cm"/>
+  </style:style>
+  <style:style style:name="gr3" style:family="graphics" style:parent-style-name="standard">
+   <style:properties draw:marker-start="Standard 2" draw:marker-end="none" draw:marker-end-width="0.25cm" fo:margin-left="0.6cm" fo:margin-right="0cm"/>
+  </style:style>
+  <style:style style:name="P1" style:family="paragraph">
+   <style:properties fo:margin-left="0cm" fo:margin-right="0cm"/>
+  </style:style>
+  <style:style style:name="P2" style:family="paragraph">
+   <style:properties fo:margin-left="0.6cm" fo:margin-right="0cm"/>
+  </style:style>
+  <style:style style:name="T1" style:family="text">
+   <style:properties fo:font-family="Arial" fo:font-size="8pt"/>
+  </style:style>
+ </office:automatic-styles>
+ <office:master-styles>
+  <style:master-page style:name="Home" style:page-master-name="PM0"/>
+ </office:master-styles>
+ <office:body>
+ </office:body>
+</office:document>

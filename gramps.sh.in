@@ -1,0 +1,10 @@
+#! /bin/sh
+# @configure_input@
+
+prefix=@prefix@
+PYTHONPATH=@datadir@/@PACKAGE@
+export PYTHONPATH
+GRAMPSI18N=@prefix@/share/locale
+export GRAMPSI18N
+
+@PYTHON@ @datadir@/@PACKAGE@/gramps.py $*

@@ -1,0 +1,926 @@
+# Svenska meddelanden i Gramps.
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Bo Rosén <bo.rosen@home.se>, 2001.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Gramps 0.1.3b2\n"
+"POT-Creation-Date: 2001-05-10 08:06-0600\n"
+"PO-Revision-Date: 2001-05-12 21:19+0200\n"
+"Last-Translator: Bo Rosén <bo.rosen@home.se>\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: template.strings:12
+msgid "Add"
+msgstr "Lägg till"
+
+#: template.strings:15
+msgid "Add Bookmark"
+msgstr "Lägg till bokmärke"
+
+#: template.strings:18
+msgid "Add Child"
+msgstr "Lägg till barn"
+
+#: template.strings:21
+msgid "Add Existing Child"
+msgstr "Lägg till existerande barn"
+
+#: template.strings:24
+msgid "Add New Child"
+msgstr "Lägg till nytt barn"
+
+#: template.strings:27
+msgid "Add Person"
+msgstr "Lägg till person"
+
+#: template.strings:30
+msgid "Add Photo"
+msgstr "Lägg till foto"
+
+#: template.strings:33
+msgid "Add a new spouse"
+msgstr "Lägg till nytt gifte"
+
+#: template.strings:36
+msgid "Address :"
+msgstr "Adress:"
+
+#: template.strings:39
+msgid "Address : "
+msgstr "Adress: "
+
+#: template.strings:42
+msgid "Addresses"
+msgstr "Adresser"
+
+#: template.strings:45
+msgid "Adopted"
+msgstr "Adopterad"
+
+#: template.strings:48
+msgid "Alternate Names"
+msgstr "Alternativa namn"
+
+#: template.strings:51
+msgid "Appearance"
+msgstr "Utseende"
+
+#: template.strings:54
+msgid "Attribute"
+msgstr "Egenskap"
+
+#: template.strings:57
+msgid "Attribute :"
+msgstr "Egenskap:"
+
+#: template.strings:60
+msgid "Attributes"
+msgstr "Egenskaper"
+
+#: template.strings:63
+msgid "Author"
+msgstr "Författare"
+
+#: template.strings:66
+msgid "Author :"
+msgstr "Författare:"
+
+#: template.strings:69
+msgid "Author : "
+msgstr "Författare: "
+
+#: template.strings:72
+msgid "Automatically load last database"
+msgstr "Läs in förra databasen automatiskt"
+
+#: template.strings:75
+msgid "Biological"
+msgstr "Biologisk"
+
+#: template.strings:78
+msgid "Birth"
+msgstr "Födelse"
+
+#: template.strings:81
+msgid "Birth Date"
+msgstr "Födelsedatum"
+
+#: template.strings:84
+msgid "Birth Date "
+msgstr "Födelsedatum "
+
+#: template.strings:87
+msgid "Birthdate"
+msgstr "Födelsedatum"
+
+#: template.strings:90
+msgid "Call Number :"
+msgstr "Referensnummer:"
+
+#: template.strings:93
+msgid "Call Number : "
+msgstr "Referensnummer: "
+
+#: template.strings:96
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: template.strings:99
+msgid "Change Photo Description"
+msgstr "Ändra fotobeskrivning"
+
+#: template.strings:102
+msgid "Children"
+msgstr "Barn"
+
+#: template.strings:105
+msgid "Choose Parents"
+msgstr "Välj föräldrar"
+
+#: template.strings:108
+msgid "Choose Spouse"
+msgstr "Välj gifte"
+
+#: template.strings:111
+msgid "Choose source information"
+msgstr "Välj information om källan"
+
+#: template.strings:114
+msgid "City :"
+msgstr "Stad:"
+
+#: template.strings:117
+msgid "City/County : "
+msgstr "Stad/län: "
+
+#: template.strings:120
+msgid "Comments :"
+msgstr "Kommentarer:"
+
+#: template.strings:123
+msgid "Complete"
+msgstr "Fullständig"
+
+#: template.strings:126
+msgid "Contents"
+msgstr "Innehåll"
+
+#: template.strings:129
+msgid "Country  :"
+msgstr "Land:"
+
+#: template.strings:132
+msgid "Country :"
+msgstr "Land:"
+
+#: template.strings:135
+msgid "Creates a new event from the above data"
+msgstr "Skapar ny händelse utifrån ovanstående data"
+
+#: template.strings:138
+msgid "Custom Colors"
+msgstr "Anpassade färger"
+
+#: template.strings:141
+msgid "Date"
+msgstr "Datum"
+
+#: template.strings:145
+msgid "Date :"
+msgstr "Datum:"
+
+#: template.strings:148
+msgid "Date : "
+msgstr "Datum: "
+
+#: template.strings:151
+msgid "Date Format : "
+msgstr "Datumformat: "
+
+#: template.strings:154
+msgid "Death"
+msgstr "Död"
+
+#: template.strings:157
+msgid "Death Date "
+msgstr "Dödsdatum "
+
+#: template.strings:162
+msgid "Delete"
+msgstr "Ta bort"
+
+#: template.strings:165
+msgid "Delete Person"
+msgstr "Ta bort person"
+
+#: template.strings:168
+msgid "Delete Photo"
+msgstr "Ta bort foto"
+
+#: template.strings:171
+msgid "Delete the selected event"
+msgstr "Ta bort den valda händelsen"
+
+#: template.strings:174
+msgid "Description"
+msgstr "Beskrivning"
+
+#: template.strings:177
+msgid "Description :"
+msgstr "Beskrivning:"
+
+#: template.strings:180
+msgid "Description : "
+msgstr "Beskrivning: "
+
+#: template.strings:183
+msgid "Display Formats"
+msgstr "Visningsformat"
+
+#: template.strings:186
+msgid "Display active person's family relationships"
+msgstr "Visa den aktiva personens familjeband"
+
+#: template.strings:189
+msgid "Display list of people"
+msgstr "Visa lista över personer"
+
+#: template.strings:192
+msgid "Do not display alternate names in person list"
+msgstr "Visa inte alternativa namn i personlista"
+
+#: template.strings:195
+msgid "Do not make a private copy"
+msgstr "Skapa inte en privat kopia"
+
+#: template.strings:198
+msgid "Edit Bookmarks"
+msgstr "Redigera bokmärken"
+
+#: template.strings:201
+msgid "Edit Marriage"
+msgstr "Redigera äktenskap"
+
+#: template.strings:204
+msgid "Edit Person"
+msgstr "Redigera person"
+
+#: template.strings:207
+msgid "Edit marriage information"
+msgstr "Redigera äktenskapsinformation"
+
+#: template.strings:210
+msgid "Edit the active person's marriages"
+msgstr "Redigera den aktiva personens äktenskap"
+
+#: template.strings:213
+msgid "Enable Custom Colors"
+msgstr "Använd anpassade färger"
+
+#: template.strings:216
+msgid "Entry Formats"
+msgstr "Format för inmatning"
+
+#: template.strings:219
+msgid "Even Row Background : "
+msgstr "Bakgrund för jämna rader: "
+
+#: template.strings:222
+msgid "Even Row Foreground : "
+msgstr "Förgrund för jämna rader: "
+
+#: template.strings:225
+msgid "Event"
+msgstr "Händelse"
+
+#: template.strings:228
+msgid "Event Type :"
+msgstr "Typ av händelse:"
+
+#: template.strings:231
+msgid "Event Type : "
+msgstr "Typ av händelse: "
+
+#: template.strings:234
+msgid "Events"
+msgstr "Händelser"
+
+#: template.strings:237
+msgid "Exchange active person and displayed spouse"
+msgstr "Byt aktuell person och visat gifte"
+
+#: template.strings:240
+msgid "Export"
+msgstr "Exportera"
+
+#: template.strings:243
+msgid "Family"
+msgstr "Familj"
+
+#: template.strings:246
+msgid "Father :"
+msgstr "Fader:"
+
+#: template.strings:249
+msgid "Father : "
+msgstr "Fader:"
+
+#: template.strings:252
+msgid "File : "
+msgstr "Fil: "
+
+#: template.strings:255
+msgid "Filter :"
+msgstr "Filter:"
+
+#: template.strings:258
+msgid "Formats"
+msgstr "Format"
+
+#: template.strings:261
+msgid "From"
+msgstr "Från"
+
+#: template.strings:264
+msgid "From : "
+msgstr "Från: "
+
+#: template.strings:267
+msgid "Gallery"
+msgstr "Fotoalbum"
+
+#: template.strings:270
+msgid "Gender"
+msgstr "Kön"
+
+#: template.strings:273
+msgid "Gender : "
+msgstr "Kön: "
+
+#: template.strings:276
+msgid "General"
+msgstr "Allmänt"
+
+#: template.strings:279
+msgid "Generate reports"
+msgstr "Skapa rapporter"
+
+#: template.strings:282
+msgid "Given Name :"
+msgstr "Förnamn:"
+
+#: template.strings:285
+msgid "Given Name : "
+msgstr "Förnamn: "
+
+#: template.strings:288
+msgid "Go"
+msgstr "Gå"
+
+#: template.strings:291
+msgid "Go to Bookmark"
+msgstr "Gå till bokmärke"
+
+#: template.strings:294
+msgid "Gramps"
+msgstr "Gramps"
+
+#: template.strings:297
+msgid "Gramps - Add Child"
+msgstr "Gramps - Lägg till barn"
+
+#: template.strings:300
+msgid "Gramps - Add New Child"
+msgstr "Gramps - lägg till nytt barn"
+
+#: template.strings:303
+msgid "Gramps - Choose Parents"
+msgstr "Gramps - Välj föräldrar"
+
+#: template.strings:306
+msgid "Gramps - Choose Spouse"
+msgstr "Gramps - Välj gifte"
+
+#: template.strings:309
+msgid "Gramps - Edit Bookmarks"
+msgstr "Gramps - Redigera bokmärken"
+
+#: template.strings:312
+msgid "Gramps - Edit Person"
+msgstr "Gramps - Redigera person"
+
+#: template.strings:315
+msgid "Gramps - Getting Started"
+msgstr "Gramps - Komma igång"
+
+#: template.strings:318
+msgid "Gramps - Marriage Editor"
+msgstr "Gramps - Äktenskapsredigeraren"
+
+#: template.strings:321
+msgid "Gramps - Plugin Selection"
+msgstr "Gramps - Välj insticksmodul"
+
+#: template.strings:324
+msgid "Gramps - Preferences"
+msgstr "Gramps - Inställningar"
+
+#: template.strings:327
+msgid "Gramps - Report Selection"
+msgstr "Gramps - Välj rapporter"
+
+#: template.strings:330
+msgid "Gramps - Select File"
+msgstr "Gramps - Välj fil"
+
+#: template.strings:333
+msgid "Gramps - Select a picture"
+msgstr "Gramps - Välj en bild"
+
+#: template.strings:336
+msgid "Gramps - Source Editor"
+msgstr "Gramps - Källredigerare"
+
+#: template.strings:339
+msgid "Gramps Startup Druid"
+msgstr "Gramps uppstartsguide"
+
+#: template.strings:342
+msgid "Home"
+msgstr "Hem"
+
+#: template.strings:345
+msgid "Internet"
+msgstr "Internet"
+
+#: template.strings:348
+msgid "Invert"
+msgstr "Invertera"
+
+#: template.strings:351
+msgid "Location"
+msgstr "Plats"
+
+#: template.strings:354
+msgid "Make Primary"
+msgstr "Gör till primär"
+
+#: template.strings:357
+msgid "Make the active person the default person"
+msgstr "Gör den aktuella personen proband"
+
+#: template.strings:360
+msgid "Make the current father the active person"
+msgstr "Gör den aktuella fadern proband"
+
+#: template.strings:363
+msgid "Make the current mother the active person"
+msgstr "Gör den aktuella modern proband"
+
+#: template.strings:366
+msgid "Make the default person the active person"
+msgstr "Gå till probanden"
+
+#: template.strings:369
+msgid "Make the selected child the active person"
+msgstr "Gör det valda barnet proband"
+
+#: template.strings:372
+msgid "Marriage Editor"
+msgstr "Äktenskapsredigeraren"
+
+#: template.strings:375
+msgid "Marriage/Family Editor"
+msgstr "Äktenskaps-/Familjeredigeraren"
+
+#: template.strings:378
+msgid "Mother :"
+msgstr "Moder:"
+
+#: template.strings:381
+msgid "Mother : "
+msgstr "Moder: "
+
+#: template.strings:386
+msgid "Name"
+msgstr "Namn"
+
+#: template.strings:389
+msgid "Name :"
+msgstr "Namn:"
+
+#: template.strings:392
+msgid "Name Format : "
+msgstr "Namnformat: "
+
+#: template.strings:395
+msgid "Names"
+msgstr "Namn"
+
+#: template.strings:398
+msgid "Natural"
+msgstr "Äkta"
+
+#: template.strings:401
+msgid "New Person"
+msgstr "Ny Person"
+
+#: template.strings:404
+msgid "Nick Name :"
+msgstr "Smeknamn:"
+
+#: template.strings:407
+msgid "Notes"
+msgstr "Anteckningar"
+
+#: template.strings:410
+msgid "OK"
+msgstr "OK"
+
+#: template.strings:413
+msgid "Odd Row Background : "
+msgstr "Bakgrund för ojämna rader:"
+
+#: template.strings:416
+msgid "Odd Row Foreground : "
+msgstr "Förgrund för jämna rader:"
+
+#: template.strings:419
+msgid "Open"
+msgstr "Öppna"
+
+#: template.strings:422
+msgid "Open File"
+msgstr "Öppna fil"
+
+#: template.strings:425
+msgid "Other"
+msgstr "Annat"
+
+#: template.strings:428
+msgid "Pedegree"
+msgstr "Anor"
+
+#: template.strings:431
+msgid "People"
+msgstr "Personer"
+
+#: template.strings:434
+msgid "Person"
+msgstr "Person"
+
+#: template.strings:437
+msgid "Person : "
+msgstr "Person: "
+
+#: template.strings:440
+msgid "Person _List"
+msgstr "Person_lista"
+
+#: template.strings:443
+msgid "Phone :"
+msgstr "Telefonnummer:"
+
+#: template.strings:446
+msgid "Photo"
+msgstr "Foto"
+
+#: template.strings:449
+msgid "Photos"
+msgstr "Foton"
+
+#: template.strings:452
+msgid "Pick a color"
+msgstr "Välj en färg"
+
+#: template.strings:455
+msgid "Place"
+msgstr "Plats"
+
+#: template.strings:458
+msgid "Place :"
+msgstr "Plats:"
+
+#: template.strings:461
+msgid "Place : "
+msgstr "Plats: "
+
+#: template.strings:464
+msgid "Please enjoy using Gramps."
+msgstr "Hoppas du tycker om Gramps"
+
+#: template.strings:467
+msgid ""
+"Please enter following information.  You can change it at \n"
+"anytime in the program's preference settings"
+msgstr ""
+"Var vänlig och ange följande information. Du kan ändra det\n"
+"när som helst i programmets inställningar"
+
+#: template.strings:472
+msgid "Preview"
+msgstr "Förhandsvisa"
+
+#: template.strings:475
+msgid "Publication Info : "
+msgstr "Publikationsinformation:"
+
+#: template.strings:478
+msgid "Publication Information :"
+msgstr "Publikationsinformation:"
+
+#: template.strings:481
+msgid "Qualifier : "
+msgstr "Sökvillkor:"
+
+#: template.strings:484
+msgid "Relationship Type : "
+msgstr "Typ av släktskap:"
+
+#: template.strings:487
+msgid "Reletivity - Source Information"
+msgstr "Släktskap - Källinformation"
+
+#: template.strings:490
+msgid "Remove Child"
+msgstr "Ta bort barn"
+
+#: template.strings:493
+msgid "Remove current spouse"
+msgstr "Ta bort aktuellt gifte"
+
+#: template.strings:496
+msgid "Report Selection"
+msgstr "Val av rapport"
+
+#: template.strings:499
+msgid "Reports"
+msgstr "Rapporter"
+
+#: template.strings:502
+msgid "Researcher"
+msgstr "Forskare"
+
+#: template.strings:505
+msgid "Researcher Information"
+msgstr "Forskarinformation"
+
+#: template.strings:508
+msgid "Revert to last saved database"
+msgstr "Återgå till senast sparade databas"
+
+#: template.strings:511
+msgid "Run a tool"
+msgstr "Använd ett verktyg"
+
+#: template.strings:514
+msgid "Save"
+msgstr "Spara"
+
+#: template.strings:517
+msgid "Save File"
+msgstr "Spara fil"
+
+#: template.strings:520
+msgid "Select File"
+msgstr "Välj fil"
+
+#: template.strings:523
+msgid "Select Source"
+msgstr "Välj källa"
+
+#: template.strings:526
+msgid "Select a photo"
+msgstr "Välj ett foto"
+
+#: template.strings:529
+msgid "Select a picture"
+msgstr "Välj en bild"
+
+#: template.strings:532
+msgid "Select a report from those available on the left."
+msgstr "Välj en rapport från de som finns till vänster."
+
+#: template.strings:535
+msgid "Select a tool from those available on the left."
+msgstr "Välj ett verktyg från de som finns till vänster."
+
+#: template.strings:538
+msgid "Select information source"
+msgstr "Välj källa till informationen"
+
+#: template.strings:541
+msgid "Select the active person's parents"
+msgstr "Välj den aktiva personens föräldrar"
+
+#: template.strings:544
+msgid "Select the source of the information"
+msgstr "Välj källa till informationen"
+
+#: template.strings:547
+msgid "Show active person's anscestors"
+msgstr "Visa den aktiva personens anor"
+
+#: template.strings:550
+msgid "Show only those not currently a child in a family"
+msgstr "Visa enbart de som inte är barn i en familj"
+
+#: template.strings:554
+msgid "Source"
+msgstr "Källa"
+
+#: template.strings:557
+msgid "Source Editor"
+msgstr "Källredigerare"
+
+#: template.strings:560
+msgid "Source Information"
+msgstr "Källinformation"
+
+#: template.strings:563
+msgid "Spouse : "
+msgstr "Gifte: "
+
+#: template.strings:566
+msgid "State/Province :"
+msgstr "Stat/Provins:"
+
+#: template.strings:569
+msgid "State/Province : "
+msgstr "Stat/Provins: "
+
+#: template.strings:572
+msgid "Status"
+msgstr "Status"
+
+#: template.strings:575
+msgid "Status : "
+msgstr "Status: "
+
+#: template.strings:578
+msgid "Suffix :"
+msgstr "Suffix:"
+
+#: template.strings:581
+msgid "Surname :"
+msgstr "Efternamn:"
+
+#: template.strings:584
+msgid "Surname : "
+msgstr "Efternamn: "
+
+#: template.strings:587
+msgid "Text :"
+msgstr "Text:"
+
+#: template.strings:590
+msgid "Title"
+msgstr "Titel"
+
+#: template.strings:593
+msgid "Title :"
+msgstr "Titel:"
+
+#: template.strings:596
+msgid "Title : "
+msgstr "Titel: "
+
+#: template.strings:599
+msgid "To"
+msgstr "Till"
+
+#: template.strings:602
+msgid "To : "
+msgstr "Till: "
+
+#: template.strings:605
+msgid "Tool Selection"
+msgstr "Val av verktyg"
+
+#: template.strings:608
+msgid "Tools"
+msgstr "Verktyg"
+
+#: template.strings:613
+msgid "Update"
+msgstr "Uppdatera"
+
+#: template.strings:616
+msgid "Updates the selected event with the above data"
+msgstr "Uppdatera den valda händelsen med ovanstående data"
+
+#: template.strings:619
+msgid "Use tabbed pages"
+msgstr "Använd sidor med flikar"
+
+#: template.strings:622
+msgid "Value"
+msgstr "Värde"
+
+#: template.strings:625
+msgid "Value :"
+msgstr "Värde:"
+
+#: template.strings:628
+msgid "Volume/Film/Page :"
+msgstr "Volym/Film/Sida:"
+
+#: template.strings:631
+msgid "Web Address"
+msgstr "Webbadress"
+
+#: template.strings:634
+msgid "Web Address : "
+msgstr "Webbadress: "
+
+#: template.strings:637
+msgid ""
+"Welcome to Gramps, the Genealogical Research\n"
+"and Analysis Management Programming System.\n"
+"\n"
+"Since this is the first time you have run the program,\n"
+"some information about you needs to be gathered.\n"
+"\n"
+"This information is used to establish your ownership\n"
+"and copyright of the data you record. You may\n"
+"choose not to provide some or all of the requested \n"
+"information."
+msgstr ""
+"Välkommen till Gramps, programsystemet för genealogi-\n"
+"forskning och -analyshantering.\n"
+"\n"
+"Eftersom detta är första gången du kör programmet, \n"
+"måste en del information om dig samlas in.\n"
+"\n"
+"Denna information används för att ange ditt ägande \n"
+"och upphovsrätt på den data du lagrar. Du kan\n"
+"välja att inte svara på något av, eller endast\n"
+"en del av, den information som efterfrågas."
+
+#: template.strings:650
+msgid "ZIP/Postal Code :"
+msgstr "Postnummer:"
+
+#: template.strings:653
+msgid "Zip/Postal Code :"
+msgstr "Postnummer:"
+
+#: template.strings:656
+msgid "Zip/Postal Code : "
+msgstr "Postnummer: "
+
+#: template.strings:659
+msgid "_Bookmarks"
+msgstr "_Bokmärken"
+
+#: template.strings:662
+msgid "_Default Person"
+msgstr "_Proband"
+
+#: template.strings:665
+msgid "_Family"
+msgstr "_Familj"
+
+#: template.strings:668
+msgid "_Import"
+msgstr "_Importera"
+
+#: template.strings:671
+msgid "_New File"
+msgstr "_Ny fil"
+
+#: template.strings:674
+msgid "_Pedegree"
+msgstr "_Anor"
+
+#: template.strings:677
+msgid "_Revert"
+msgstr "_Återgå"
+
+#: template.strings:680
+msgid "email :"
+msgstr "e-post:"
+
+#: template.strings:683
+msgid "female"
+msgstr "kvinna"
+
+#: template.strings:686
+msgid "label199"
+msgstr "label199"
+
+#: template.strings:689
+msgid "label2"
+msgstr "label2"
+
+#: template.strings:692
+msgid "label200"
+msgstr "label200"
+
+#: template.strings:695
+msgid "male"
+msgstr "man"

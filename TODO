@@ -1,0 +1,21 @@
+* More complete GEDCOM import and export.  The current GEDCOM parse is
+  regular expression based, and not to sophisticated.  It probably won't
+  take much to confuse it badly.
+* Dates do not understand the concept of between
+* Dates do not understand alternate calendars
+* The GUI interface is not clean or consistant.  It needs a considerable
+  amount of work.
+* There are no sophisticated functions at all yet, such as merging of 
+  databases or finding duplicate people.  
+* There are no logic rules yet, such as warning if a parent's birthday 
+  is after a child's.
+* I'm not happy with the mechanism for the selection of alternate parents.  
+  It works, but is extremely clumsy and non-intuitive
+* OpenOffice zip file is not handled very gracefully.  Uses the "system"
+  call to generate the zip file using the hard coded path of /usr/bin/zip. 
+  Python 2.0 provides a zip interface, so this may need to hold off until 
+  the move is made to Python 2.0.
+* Really need a generic OutputFormat class, that can be reused in all the
+  report generators.  Derived classes can target OpenOffice, HTML, LaTeX,
+  KOffice, AbiWord, etc.
+* And a whole lot more....
