@@ -182,7 +182,13 @@ class Gramps:
                         outformat = 'gedcom'
                     elif string.upper(outfname[-3:]) == "TGZ":
                         outformat = 'gramps-pkg'
-                    elif os.path.isdir(outfname):
+                    elif not os.path.isfile(outfname):
+                        if not os.path.isdir(outfname):
+                            try:
+                                os.makedirs(outfname,0700)
+                            except:
+                                print "Cannot create directory %s" % outfname
+                                os._exit(1)
                         outformat = 'gramps'
                     else:
                         print "Unrecognized format for output file %s" % outfname
