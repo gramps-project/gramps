@@ -67,7 +67,7 @@ class EventEditor:
         self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
         self.cause_field  = self.top.get_widget("eventCause")
-        self.descr_field = self.top.get_widget("eventDescription")
+        self.descr_field = self.top.get_widget("event_description")
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personalEvents")
         self.priv = self.top.get_widget("priv")

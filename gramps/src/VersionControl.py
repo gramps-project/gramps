@@ -91,15 +91,16 @@ class RevisionComment:
 
 class RevisionSelect:
 
-    def __init__(self,db,filename,vc,load):
+    def __init__(self,db,filename,vc,load,callback=None):
         self.db = db
         self.filename = filename
         self.vc = vc
         self.load = load
+        self.callback = callback
 
         dialog = libglade.GladeXML(const.revisionFile, "revselect")
         dialog.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : self.on_cancel_clicked,
             "on_loadrev_clicked"    : self.on_loadrev_clicked,
             })
 
@@ -110,6 +111,11 @@ class RevisionSelect:
             self.revlist.append([f[0],f[1],f[3],f[2]])
             self.revlist.set_row_data(index,f[0])
             index = index + 1
+
+    def on_cancel_clicked(self,obj):
+        utils.destroy_passed_object(obj)
+        if self.callback:
+            self.callback()
 
     def on_loadrev_clicked(self,obj):
         if len(self.revlist.selection) > 0:

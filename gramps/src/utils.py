@@ -58,6 +58,9 @@ _ = gettext
 #
 #-------------------------------------------------------------------------
 _modifiedFlag  = 0
+_autotime_val  = 1
+_autosave_fun  = None
+_autosave_tim  = None
 
 LISTOBJ = "s"
 OBJECT  = "o"
@@ -70,8 +73,28 @@ OBJECT  = "o"
 #
 #-------------------------------------------------------------------------
 def modified():
-    global _modifiedFlag
+    global _modifiedFlag, _autosave_tim
+
+    if _autosave_fun and not _autosave_tim:
+        _autosave_tim = gtk.timeout_add(60000*_autotime_val,_autosave_fun)
     _modifiedFlag = 1
+
+def enable_autosave(fun,value):
+    global _autosave_fun
+    global _autosave_val
+    if fun != None:
+        _autosave_fun = fun
+    _autosave_val = value
+
+def disable_autosave():
+    global _autosave_fun
+    _autosave_fun = None
+
+def clear_timer():
+    global _autosave_tim
+    if _autosave_tim:
+        gtk.timeout_remove(_autosave_tim)
+        _autosave_tim = None
 
 #-------------------------------------------------------------------------
 #

@@ -339,7 +339,10 @@ class MergePeople:
                 old_note = old_note + "\n\n"
             self.p1.setNote(old_note + self.p2.getNote())
 
-        del self.db.getPersonMap()[self.p2.getId()]
+        try:
+            del self.db.getPersonMap()[self.p2.getId()]
+        except:
+            print "%s is not in the person map!" % (Config.nameof(self.p2))
         self.update(self.p1,self.p2)
         utils.destroy_passed_object(self.top)
         
