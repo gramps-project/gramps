@@ -1,3 +1,6 @@
+2005-02-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: don't override on_row_deleted
+
 2005-02-16 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditSource.py (DelSrcQuery.query_response): Typos.
 	* src/ImageSelect.py (DeleteMediaQuery.query_response): Typo.
