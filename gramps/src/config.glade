@@ -1468,37 +1468,11 @@ AbiWord
     <widget>
       <class>GtkTable</class>
       <name>table26</name>
-      <rows>2</rows>
+      <rows>3</rows>
       <columns>2</columns>
       <homogeneous>False</homogeneous>
       <row_spacing>0</row_spacing>
       <column_spacing>0</column_spacing>
-
-      <widget>
-	<class>GtkLabel</class>
-	<name>label206</name>
-	<label>Default report directory</label>
-	<justify>GTK_JUSTIFY_CENTER</justify>
-	<wrap>False</wrap>
-	<xalign>1</xalign>
-	<yalign>0.5</yalign>
-	<xpad>0</xpad>
-	<ypad>0</ypad>
-	<child>
-	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
-	  <top_attach>1</top_attach>
-	  <bottom_attach>2</bottom_attach>
-	  <xpad>0</xpad>
-	  <ypad>0</ypad>
-	  <xexpand>False</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
 
       <widget>
 	<class>GnomeFileEntry</class>
@@ -1608,6 +1582,100 @@ AbiWord
 	  <xfill>True</xfill>
 	  <yfill>False</yfill>
 	</child>
+      </widget>
+
+      <widget>
+	<class>GtkLabel</class>
+	<name>label206</name>
+	<label>Default report directory</label>
+	<justify>GTK_JUSTIFY_CENTER</justify>
+	<wrap>False</wrap>
+	<xalign>1</xalign>
+	<yalign>0.5</yalign>
+	<xpad>0</xpad>
+	<ypad>0</ypad>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>1</right_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkLabel</class>
+	<name>label208</name>
+	<label>Default Web Site directory</label>
+	<justify>GTK_JUSTIFY_CENTER</justify>
+	<wrap>False</wrap>
+	<xalign>1</xalign>
+	<yalign>0.5</yalign>
+	<xpad>0</xpad>
+	<ypad>0</ypad>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>1</right_attach>
+	  <top_attach>2</top_attach>
+	  <bottom_attach>3</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GnomeFileEntry</class>
+	<name>htmldir</name>
+	<history_id>repdir</history_id>
+	<max_saved>10</max_saved>
+	<title>Gramps - Select default report directory</title>
+	<directory>True</directory>
+	<modal>False</modal>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>2</top_attach>
+	  <bottom_attach>3</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+
+	<widget>
+	  <class>GtkEntry</class>
+	  <child_name>GnomeEntry:entry</child_name>
+	  <name>entry2</name>
+	  <tooltip>The default directory for the output of the  Web Site report generators</tooltip>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>changed</name>
+	    <handler>on_object_toggled</handler>
+	    <object>propertybox</object>
+	    <last_modification_time>Thu, 28 Jun 2001 13:49:30 GMT</last_modification_time>
+	  </signal>
+	  <editable>True</editable>
+	  <text_visible>True</text_visible>
+	  <text_max_length>0</text_max_length>
+	  <text></text>
+	</widget>
       </widget>
     </widget>
 
