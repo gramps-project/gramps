@@ -202,12 +202,12 @@ msgstr "sbr."
 # glade.c:2211
 #: Date.py:337
 msgid "est"
-msgstr ""
+msgstr "est"
 
 # glade.c:2212
 #: Date.py:338
 msgid "est."
-msgstr ""
+msgstr "est."
 
 # glade.c:2212 glade.c:2220
 #: Date.py:338 Date.py:355
@@ -257,7 +257,7 @@ msgstr "sbr\\.?"
 # glade.c:2219
 #: Date.py:354
 msgid "est\\.?"
-msgstr ""
+msgstr "est\\.?"
 
 # glade.c:2224
 #: Date.py:359
@@ -1270,8 +1270,7 @@ msgstr "%s e %s"
 # glade.c:2330
 #: Marriage.py:347
 msgid "Data was modified. Are you sure you want to abandon your changes?"
-msgstr ""
-"Dados foram modificados. Você tem certeza de que deseja abandonar suas "
+msgstr "Dados foram modificados. Você tem certeza que deseja abandonar suas "
 "modificações?"
 
 # glade.c:2334
@@ -4226,78 +4225,89 @@ msgstr "%(p1)s é primo direto de %(p2)s."
 # glade.c:2666
 #: plugins/RelCalc.py:63
 msgid "%(p1)s is the first cousin once removed of %(p2)s."
-msgstr "São primos distantes. Um dos pais de %(p1)s é primo direto de %(p2)s, "
-"ou vice-versa."
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 1 geração acima "
+"(pais), é primo direto de %(p2)s, ou vice-versa."
 
 # glade.c:2667
 #: plugins/RelCalc.py:66
 msgid "%(p1)s is the first cousin twice removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 2 gerações acima "
+"(avós), é primo direto de %(p2)s, ou vice-versa."
 
 # glade.c:2668
 #: plugins/RelCalc.py:69
 msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, %(removed)d "
+"gerações acima, é primo direto de %(p2)s, ou vice-versa."
 
 # glade.c:2669
 #: plugins/RelCalc.py:73
 msgid "%(p1)s is the second cousin of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é primo de segundo grau de %(p2)s."
 
 # glade.c:2670
 #: plugins/RelCalc.py:76
 msgid "%(p1)s is the second cousin once removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 1 geração acima "
+"(pais), é primo de segundo grau de %(p2)s, ou vice-versa."
 
 # glade.c:2671
 #: plugins/RelCalc.py:79
 msgid "%(p1)s is the second cousin twice removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 2 gerações acima "
+"(avós), é primo de segundo grau de %(p2)s, ou vice-versa."
 
 # glade.c:2672
 #: plugins/RelCalc.py:82
 msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, %(removed)d "
+"gerações acima, é primo de segundo grau de %(p2)s, ou vice-versa."
 
 # glade.c:2673
 #: plugins/RelCalc.py:86
 msgid "%(p1)s is the third cousin of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é primo de terceiro grau de %(p2)s."
 
 # glade.c:2674
 #: plugins/RelCalc.py:89
 msgid "%(p1)s is the third cousin once removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 1 geração acima "
+"(pais), é primo de terceiro grau de %(p2)s, ou vice-versa."
 
 # glade.c:2675
 #: plugins/RelCalc.py:92
 msgid "%(p1)s is the third cousin twice removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 2 gerações acima "
+"(avós), é primo de terceiro grau de %(p2)s, ou vice-versa."
 
 # glade.c:2665
 #: plugins/RelCalc.py:95
 msgid "%(p1)s is the third cousin %(removed)d times removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, %(removed)d "
+"gerações acima, é primo de terceiro grau de %(p2)s, ou vice-versa."
 
 # glade.c:2677
 #: plugins/RelCalc.py:99
 msgid "%(p1)s is the %(level)dth cousin of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é primo de %(level)do. grau de %(p2)s."
 
 # glade.c:2678
 #: plugins/RelCalc.py:102
 msgid "%(p1)s is the %(level)dth cousin once removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 1 geração acima "
+"(pais), é primo de %(level)do. grau de %(p2)s, ou vice-versa."
 
 # glade.c:2679
 #: plugins/RelCalc.py:105
 msgid "%(p1)s is the %(level)dth cousin twice removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, 2 gerações acima "
+"(avós), é primo de %(level)do. grau de %(p2)s, ou vice-versa."
 
 # glade.c:2680
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
-msgstr ""
+msgstr "São primos distantes. Um dos ascendentes de %(p1)s, %(removed)d "
+"gerações acima, é primo de %(level)do. grau de %(p2)s, ou vice-versa."
 
 # glade.c:2681
 #: plugins/RelCalc.py:113
@@ -4312,22 +4322,22 @@ msgstr "%(p1)s é avô de %(p2)s."
 # glade.c:2683
 #: plugins/RelCalc.py:119
 msgid "%(p1)s is the great grandfather of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é bisavô de %(p2)s."
 
 # glade.c:2684
 #: plugins/RelCalc.py:122
 msgid "%(p1)s is the second great grandfather of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é trisavô de %(p2)s."
 
 # glade.c:2685
 #: plugins/RelCalc.py:125
 msgid "%(p1)s is the third great grandfather of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tetravô de %(p2)s."
 
 # glade.c:2686
 #: plugins/RelCalc.py:128
 msgid "%(p1)s is the %(level)dth great grandfather of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é um avô, %(level)d gerações acima, de %(p2)s."
 
 # glade.c:2687
 #: plugins/RelCalc.py:133
@@ -4337,27 +4347,27 @@ msgstr "%(p1)s é filho de %(p2)s."
 # glade.c:2688
 #: plugins/RelCalc.py:136
 msgid "%(p1)s is the grandson of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é neto de %(p2)s."
 
 # glade.c:2689
 #: plugins/RelCalc.py:139
 msgid "%(p1)s is the great grandson of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é bisneto de %(p2)s."
 
 # glade.c:2690
 #: plugins/RelCalc.py:142
 msgid "%(p1)s is the second great grandson of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é trineto de %(p2)s."
 
 # glade.c:2691
 #: plugins/RelCalc.py:145
 msgid "%(p1)s is the third great grandson of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tetraneto de %(p2)s."
 
 # glade.c:2692
 #: plugins/RelCalc.py:148
 msgid "%(p1)s is the %(level)dth great grandson of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é um neto, %(level)d gerações abaixo, de %(p2)s."
 
 # glade.c:2693
 #: plugins/RelCalc.py:153
@@ -4372,22 +4382,22 @@ msgstr "%(p1)s é avó de %(p2)s."
 # glade.c:2695
 #: plugins/RelCalc.py:159
 msgid "%(p1)s is the great grandmother of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é bisavó de %(p2)s."
 
 # glade.c:2696
 #: plugins/RelCalc.py:162
 msgid "%(p1)s is the second great grandmother of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é trisavó de %(p2)s."
 
 # glade.c:2697
 #: plugins/RelCalc.py:165
 msgid "%(p1)s is the third great grandmother of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tetravó de %(p2)s."
 
 # glade.c:2698
 #: plugins/RelCalc.py:168
 msgid "%(p1)s is the %(level)dth great grandmother of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é uma avó, %(level)d gerações acima, de %(p2)s."
 
 # glade.c:2699
 #: plugins/RelCalc.py:173
@@ -4397,27 +4407,27 @@ msgstr "%(p1)s é filha de %(p2)s."
 # glade.c:2700
 #: plugins/RelCalc.py:176
 msgid "%(p1)s is the granddaughter of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é neta de %(p2)s."
 
 # glade.c:2701
 #: plugins/RelCalc.py:179
 msgid "%(p1)s is the great granddaughter of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é bisneta de %(p2)s."
 
 # glade.c:2702
 #: plugins/RelCalc.py:182
 msgid "%(p1)s is the second great granddaughter of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é trineta de %(p2)s."
 
 # glade.c:2703
 #: plugins/RelCalc.py:185
 msgid "%(p1)s is the third great granddaughter of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tetraneta de %(p2)s."
 
 # glade.c:2704
 #: plugins/RelCalc.py:188
 msgid "%(p1)s is the %(level)dth great granddaughter of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é uma neta, %(level)d gerações abaixo, de %(p2)s."
 
 # glade.c:2705
 #: plugins/RelCalc.py:193
@@ -4432,27 +4442,27 @@ msgstr "%(p1)s é tia de %(p2)s."
 # glade.c:2707
 #: plugins/RelCalc.py:199
 msgid "%(p1)s is the grandaunt of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tia-avó de %(p2)s."
 
 # glade.c:2708
 #: plugins/RelCalc.py:202
 msgid "%(p1)s is the great grandaunt of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tia-bisavó de %(p2)s."
 
 # glade.c:2709
 #: plugins/RelCalc.py:205
 msgid "%(p1)s is the second great grandaunt of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tia-trisavó de %(p2)s."
 
 # glade.c:2710
 #: plugins/RelCalc.py:208
 msgid "%(p1)s is the third great grandaunt of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tia-tetravó de %(p2)s."
 
 # glade.c:2711
 #: plugins/RelCalc.py:211
 msgid "%(p1)s is the %(level)dth great grandaunt of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é uma tia-avó, %(level)d gerações acima, de %(p2)s."
 
 # glade.c:2712
 #: plugins/RelCalc.py:216
@@ -4467,27 +4477,27 @@ msgstr "%(p1)s é tio de %(p2)s."
 # glade.c:2714
 #: plugins/RelCalc.py:222
 msgid "%(p1)s is the granduncle of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tio-avô de %(p2)s."
 
 # glade.c:2715
 #: plugins/RelCalc.py:225
 msgid "%(p1)s is the great granduncle of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tio-bisavô de %(p2)s."
 
 # glade.c:2716
 #: plugins/RelCalc.py:228
 msgid "%(p1)s is the second great granduncle of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tio-trisavô de %(p2)s."
 
 # glade.c:2717
 #: plugins/RelCalc.py:231
 msgid "%(p1)s is the third great granduncle of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é tio-tetravô de %(p2)s."
 
 # glade.c:2718
 #: plugins/RelCalc.py:234
 msgid "%(p1)s is the %(level)dth great granduncle of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é um tio-avô, %(level)d gerações acima, de %(p2)s."
 
 # glade.c:2719
 #: plugins/RelCalc.py:239
@@ -4497,27 +4507,27 @@ msgstr "%(p1)s é sobrinho de %(p2)s."
 # glade.c:2720
 #: plugins/RelCalc.py:242
 msgid "%(p1)s is the grandnephew of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinho-neto de %(p2)s."
 
 # glade.c:2721
 #: plugins/RelCalc.py:245
 msgid "%(p1)s is the great grandnephew of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinho-bisneto de %(p2)s."
 
 # glade.c:2722
 #: plugins/RelCalc.py:248
 msgid "%(p1)s is the second great grandnephew of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinho-trineto de %(p2)s."
 
 # glade.c:2723
 #: plugins/RelCalc.py:251
 msgid "%(p1)s is the third great grandnephew of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinho-tetraneto de %(p2)s."
 
 # glade.c:2724
 #: plugins/RelCalc.py:254
 msgid "%(p1)s is the %(level)dth great grandnephew of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é um sobrinho-neto, %(level)d gerações abaixo, de %(p2)s."
 
 # glade.c:2725
 #: plugins/RelCalc.py:259
@@ -4527,27 +4537,27 @@ msgstr "%(p1)s é sobrinha de %(p2)s."
 # glade.c:2726
 #: plugins/RelCalc.py:262
 msgid "%(p1)s is the grandniece of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinha-neta de %(p2)s."
 
 # glade.c:2727
 #: plugins/RelCalc.py:265
 msgid "%(p1)s is the great grandniece of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinha-bisneta de %(p2)s."
 
 # glade.c:2728
 #: plugins/RelCalc.py:268
 msgid "%(p1)s is the second great grandniece of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinha-trineta de %(p2)s."
 
 # glade.c:2729
 #: plugins/RelCalc.py:271
 msgid "%(p1)s is the third great grandniece of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é sobrinha-tetraneta de %(p2)s."
 
 # glade.c:2730
 #: plugins/RelCalc.py:274
 msgid "%(p1)s is the %(level)dth great grandniece of %(p2)s."
-msgstr ""
+msgstr "%(p1)s é uma sobrinha-neta, %(level)d gerações abaixo, de %(p2)s."
 
 # glade.c:2732
 #: plugins/RelCalc.py:363
@@ -4562,12 +4572,12 @@ msgstr "Os ancestrais comuns à eles são %s e %s."
 # glade.c:2734
 #: plugins/RelCalc.py:374
 msgid "Their common ancestors are : "
-msgstr ""
+msgstr "Os ancestrais comuns à eles são : "
 
 # glade.c:2735
 #: plugins/RelCalc.py:387
 msgid "There is no relationship between %s and %s."
-msgstr ""
+msgstr "Não existe relação entre %s e %s."
 
 # glade.c:2736
 #: plugins/RelCalc.py:391
@@ -4577,12 +4587,12 @@ msgstr "%s e %s"
 # glade.c:2737
 #: plugins/RelCalc.py:436
 msgid "Relationship calculator"
-msgstr "Calculador de Relação"
+msgstr "Calculadora de Relaçionamentos"
 
 # glade.c:2738 glade.c:2744 glade.c:2768
 #: plugins/RelCalc.py:437 plugins/Verify.py:292 plugins/soundgen.py:94
 msgid "Utilities"
-msgstr ""
+msgstr "Utilitários"
 
 # glade.c:2739
 #: plugins/RelCalc.py:438
@@ -4672,7 +4682,7 @@ msgstr "Sumário do banco de dados"
 # glade.c:2524 glade.c:2765
 #: plugins/Summary.py:134 plugins/count_anc.py:92
 msgid "View"
-msgstr ""
+msgstr "Visualizar"
 
 # glade.c:2766
 #: plugins/Summary.py:135
@@ -4794,7 +4804,7 @@ msgstr "Gera o Web Site"
 # glade.c:2808 glade.c:2811
 #: plugins/WebPage.py:836 plugins/WebPage.py:1069
 msgid "Web Page"
-msgstr ""
+msgstr "Página Web"
 
 # glade.c:2809
 #: plugins/WebPage.py:841
@@ -4867,7 +4877,7 @@ msgstr "A geração %d possui %d indivíduos.\n"
 # glade.c:2522
 #: plugins/count_anc.py:74
 msgid "Total ancestors in generations %d to -1 is %d .\n"
-msgstr ""
+msgstr "O total de ancestrais em gerações %d para -1 é %d .\n"
 
 # glade.c:2523
 #: plugins/count_anc.py:91
@@ -5004,7 +5014,7 @@ msgstr "ANSEL"
 # glade.c:1865
 #: plugins/gedcomexport.glade:215
 msgid "UNICODE"
-msgstr ""
+msgstr "UNICODE"
 
 # glade.c:1346
 #: plugins/gedcomexport.glade:232 plugins/merge.glade:432
@@ -5053,7 +5063,7 @@ msgstr "Criado por"
 # glade.c:1910
 #: plugins/gedcomimport.glade:129
 msgid "Version"
-msgstr ""
+msgstr "Versão"
 
 # glade.c:1291
 #: plugins/gedcomimport.glade:155
@@ -5118,7 +5128,7 @@ msgstr "Coincide Ponto Inicial"
 # glade.c:1893
 #: plugins/merge.glade:451
 msgid "Use SoundEx codes for name matches"
-msgstr ""
+msgstr "Usa códigos SoundEx para coincidir nomes"
 
 # glade.c:19
 #: plugins/merge.glade:464
@@ -5266,7 +5276,7 @@ msgstr "Verifica o Banco de Dados"
 # glade.c:1907
 #: plugins/verify.glade:136
 msgid "Verify - Settings"
-msgstr ""
+msgstr "Verifica - Configurações"
 
 # glade.c:1144
 #: plugins/verify.glade:187
@@ -5346,7 +5356,7 @@ msgstr "90"
 # glade.c:1939
 #: plugins/verify.glade:609
 msgid "Women"
-msgstr ""
+msgstr "Mulheres"
 
 # glade.c:1201
 #: plugins/verify.glade:631
@@ -5424,6 +5434,8 @@ msgid ""
 "To change your preferences, select one of the subcategories in the menu on "
 "the left hand side of the window."
 msgstr ""
+"Para mudar suas preferências, selecione uma das subcategorias no menu "
+"situado à esquerda da janela."
 
 # glade.c:502
 #: preferences.glade:331
@@ -5463,7 +5475,7 @@ msgstr "Controle de Revisões"
 # glade.c:1890
 #: preferences.glade:589
 msgid "Use Revision Control"
-msgstr ""
+msgstr "Usa Controle de Revisão"
 
 # glade.c:1497
 #: preferences.glade:618
@@ -5478,7 +5490,7 @@ msgstr "Habilita o auto-preenchimento"
 # glade.c:1853
 #: preferences.glade:712
 msgid "Toolbar"
-msgstr ""
+msgstr "Barra de Ferramentas"
 
 # glade.c:594
 #: preferences.glade:737
@@ -5518,11 +5530,11 @@ msgstr "Nome e atributos da pessoa ativa"
 # glade.c:1896
 #: preferences.glade:926
 msgid "Use tabbed pages"
-msgstr ""
+msgstr "Usa páginas tabuladas"
 
 #: preferences.glade:947
 msgid "Always display the LDS ordinance tabs"
-msgstr ""
+msgstr "Sempre exibe os tabuladores de ordenação SUD"
 
 # glade.c:579
 #: preferences.glade:979
@@ -5659,8 +5671,7 @@ msgstr "O diretório pré-definido de saída de diversos geradores de relatórios"
 # glade.c:1828
 #: preferences.glade:2425
 msgid "The default directory for the output of the Web Site report generators"
-msgstr ""
-"O diretório pré-definido de saída de geradores de relatórios de Web Sites"
+msgstr "O diretório de armazenamento pré-definido dos geradores de relatórios de Web Sites"
 
 # glade.c:109
 #: preferences.glade:2469
@@ -5745,7 +5756,7 @@ msgstr "O"
 # glade.c:1899
 #: preferences.glade:3014
 msgid "User Defined IDs"
-msgstr ""
+msgstr "IDs Definidos pelo Usuário"
 
 # glade.c:223
 #: preferences.glade:3040
@@ -5835,7 +5846,7 @@ msgstr "Informação da Publicação"
 # glade.c:1919
 #: srcsel.glade:481
 msgid "Volume/Film/Page"
-msgstr ""
+msgstr "Volume/Filme/Página"
 
 # glade.c:404
 #: srcsel.glade:559
@@ -5890,7 +5901,7 @@ msgstr "Opções de Fonte"
 # glade.c:2050
 #: styles.glade:479
 msgid "pt"
-msgstr ""
+msgstr "pt"
 
 # glade.c:398
 #: styles.glade:563
@@ -5915,17 +5926,17 @@ msgstr "Itálico"
 # glade.c:1868
 #: styles.glade:662
 msgid "Underline"
-msgstr ""
+msgstr "Sublinhado"
 
 # glade.c:2056
 #: styles.glade:705
 msgid "roman (Times)"
-msgstr ""
+msgstr "romano (Times)"
 
 # glade.c:2059
 #: styles.glade:720
 msgid "swiss (Arial, Helvetica)"
-msgstr ""
+msgstr "suíço (Arial, Helvetica)"
 
 # glade.c:1382
 #: styles.glade:787
@@ -5955,7 +5966,7 @@ msgstr "Enchimento"
 # glade.c:2021
 #: styles.glade:912 styles.glade:938 styles.glade:964
 msgid "cm"
-msgstr ""
+msgstr "cm"
 
 # glade.c:220
 #: styles.glade:1062
@@ -5970,29 +5981,29 @@ msgstr "Bordas"
 # glade.c:2041
 #: styles.glade:1138 styles.glade:1258
 msgid "left"
-msgstr ""
+msgstr "esquerda"
 
 # glade.c:2053
 #: styles.glade:1162 styles.glade:1304
 msgid "right"
-msgstr ""
+msgstr "direito"
 
 # glade.c:2018
 #: styles.glade:1186
 msgid "center"
-msgstr ""
+msgstr "centro"
 
 # glade.c:2038
 #: styles.glade:1210
 msgid "justify"
-msgstr ""
+msgstr "justificado"
 
 # glade.c:2065
 #: styles.glade:1281
 msgid "top"
-msgstr ""
+msgstr "superior"
 
 # glade.c:2015
 #: styles.glade:1327
 msgid "bottom"
-msgstr ""
+msgstr "inferior"
