@@ -18,11 +18,31 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+Handles the place view for GRAMPS.
+"""
+
+#-------------------------------------------------------------------------
+#
+# GTK modules
+#
+#-------------------------------------------------------------------------
 import GTK
 import GDK
 import gnome.ui
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import string
 
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from RelLib import *
 import EditPlace
 import utils
@@ -31,7 +51,13 @@ import Config
 from intl import gettext
 _ = gettext
 
+#-------------------------------------------------------------------------
+#
+# PlaceView class
+#
+#-------------------------------------------------------------------------
 class PlaceView:
+    
     def __init__(self,db,glade,update):
         self.db = db
         self.glade = glade
@@ -50,12 +76,9 @@ class PlaceView:
                             self.county_arrow, self.state_arrow,
                             self.country_arrow ]
 
-        self.place_list.set_column_visibility(7,0)
-        self.place_list.set_column_visibility(8,0)
-        self.place_list.set_column_visibility(9,0)
-        self.place_list.set_column_visibility(10,0)
-        self.place_list.set_column_visibility(11,0)
-        self.place_list.set_column_visibility(12,0)
+        for i in range(7,13):
+            self.place_list.set_column_visibility(i,0)
+
         self.place_list.connect('button-press-event',self.on_button_press_event)
         self.place_list.connect('select-row',self.select_row)
         self.active = None
@@ -69,6 +92,10 @@ class PlaceView:
         self.place_list.set_sort_type(self.sort_dir)
 
     def load_places(self):
+        """Rebuilds the entire place view. This can be very time consuming
+        on large databases, and should only be called when absolutely
+        necessary"""
+        
         if len(self.place_list.selection) == 0:
             current_row = 0
         else:
@@ -96,15 +123,14 @@ class PlaceView:
             self.place_list.set_row_data(index,src)
             index = index + 1
 
-        self.place_list.sort()
-
         if index > 0:
             self.place_list.select_row(current_row,0)
             self.place_list.moveto(current_row)
             self.active = self.place_list.get_row_data(current_row)
         else:
             self.active = None
-            
+
+        self.place_list.sort()
         self.place_list.thaw()
         
     def select_row(self,obj,row,b,c):
