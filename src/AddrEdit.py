@@ -44,7 +44,7 @@ import Date
 import RelLib
 import Sources
 
-from DateEdit import DateEdit
+import DateEdit
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -133,7 +133,7 @@ class AddressEditor:
                                            self.top.get_widget('del_src'))
 
         date_stat = self.top.get_widget("date_stat")
-        self.date_check = DateEdit(self.addr_start,date_stat)
+        self.date_check = DateEdit.DateEdit(self.addr_start,date_stat)
 
         self.top.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,
@@ -150,9 +150,9 @@ class AddressEditor:
         self.window.show()
 
     def on_date_edit_clicked(self,obj):
-        from QuestionDialog import ErrorDialog
-        ErrorDialog("Not implemented yet",
-                    "The Date Editor has not been implemented yet")
+        date_dialog = DateEdit.DateEditorDialog(self.addr_start.checkval)
+        the_date = date_dialog.get_date()
+        print "The date was built as follows:", the_date
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()

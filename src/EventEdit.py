@@ -48,7 +48,7 @@ import DateParser
 import DateHandler
 import ImageSelect
 
-from DateEdit import DateEdit
+import DateEdit
 from gettext import gettext as _
 
 from QuestionDialog import WarningDialog
@@ -136,7 +136,6 @@ class EventEditor:
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personal_events")
         self.priv = self.top.get_widget("priv")
-        self.calendar = self.top.get_widget("calendar")
         self.sources_label = self.top.get_widget("sourcesEvent")
         self.notes_label = self.top.get_widget("notesEvent")
         self.flowed = self.top.get_widget("eventflowed")
@@ -144,8 +143,6 @@ class EventEditor:
         self.gallery_label = self.top.get_widget("galleryEvent")
         self.witnesses_label = self.top.get_widget("witnessesEvent")
 
-        self.calendar.show()
-        
         if read_only:
             self.event_menu.set_sensitive(0)
             self.date_field.grab_focus()
@@ -197,7 +194,7 @@ class EventEditor:
                 self.event_menu.child.set_text(def_event)
             if def_placename:
                 self.place_field.set_text(def_placename)
-        self.date_check = DateEdit(self.date_field,self.top.get_widget("date_stat"))
+        self.date_check = DateEdit.DateEdit(self.date_field,self.top.get_widget("date_stat"))
 
         if not event:
             event = RelLib.Event()
@@ -219,28 +216,14 @@ class EventEditor:
             "on_date_edit_clicked"      : self.on_date_edit_clicked,
             })
 
-        menu = gtk.Menu()
-        index = 0
-        for cobj in Date.Date.calendar:
-            item = gtk.MenuItem(cobj)
-            item.set_data("d",index)
-            item.connect("activate",self.on_menu_changed)
-            item.show()
-            menu.append(item)
-            if self.date.get_calendar() == index:
-                menu.set_active(index)
-                self.date_check.set_calendar(index)
-            index += 1
-        self.calendar.set_menu(menu)
-
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
         self.window.show()
 
     def on_date_edit_clicked(self,obj):
-        from QuestionDialog import ErrorDialog
-        ErrorDialog("Not implemented yet",
-                    "The Date Editor has not been implemented yet")
+        date_dialog = DateEdit.DateEditorDialog(self.date_check.checkval)
+        the_date = date_dialog.get_date()
+        print "The date was built as follows:", the_date
 
     def on_delete_event(self,obj,b):
         self.gallery.close()
