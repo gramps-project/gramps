@@ -1,3 +1,7 @@
+2004-01-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/PedView.py (load_canvas): Add ahcnor button and label; 
+	(make_anchor_button,make_anchor_label,on_anchor_clicked): Add functions.
+
 2003-12-31  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/RelCalc.py (__init__): Skip the person when building the
 	list.
