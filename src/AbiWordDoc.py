@@ -19,12 +19,12 @@
 #
 
 import os
-import tempfile
+import base64
 
 from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
-
+import string
 
 class AbiWordDoc(TextDoc):
 
@@ -44,10 +44,7 @@ class AbiWordDoc(TextDoc):
         self.f.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
         self.f.write('<abiword version="0.7.13" fileformat="1.0">\n')
         self.f.write('<pagesize ')
-        if self.orientation == PAPER_US_LETTER:
-            self.f.write('pagetype="Letter" ')
-        else:
-            self.f.write('pagetype="A4" ')
+        self.f.write('pagetype="%s" ' % self.paper.get_name())
         if self.orientation == PAPER_PORTRAIT:
             self.f.write('orientation="portrait" ')
         else:
@@ -64,8 +61,46 @@ class AbiWordDoc(TextDoc):
 
     def close(self):
         self.f.write('</section>\n')
+        if len(self.photo_list) > 0:
+            self.f.write('<data>\n')
+            for file_tuple in self.photo_list:
+                file = file_tuple[0]
+                width = file_tuple[1]
+                height = file_tuple[2]
+                base = os.path.basename(file)
+                tag = string.replace(base,'.','_')
+                cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,base)
+                os.system(cmd)
+                self.f.write('<d name="')
+                self.f.write(tag)
+                self.f.write('" mime=type="image/png" base64="yes">\n')
+                f = open(base,"rb")
+                base64.encode(f,self.f)
+                f.close()
+                os.unlink(base)
+                self.f.write('</d>\n')
+            self.f.write('</data>\n')
+
         self.f.write('</abiword>\n')
         self.f.close()
+
+    def add_photo(self,name,x,y):
+        import GdkImlib
+
+        image = GdkImlib.Image(name)
+        scale = float(y)/float(image.rgb_height)
+        act_width = int(image.rgb_width * scale)
+        act_height = int(image.rgb_height * scale)
+
+        self.photo_list.append((name,act_width,act_height))
+
+        base = os.path.basename(name)
+        tag = string.replace(base,'.','_')
+
+        self.f.write('<image data="')
+        self.f.write(tag)
+        self.f.write('" props="width:%.3fin; ' % ((float(act_width)/72.0)/2.54))
+        self.f.write('height:%.3fin"/>\n'  % ((float(act_height)/72.0)/2.54))
 
     def start_paragraph(self,style_name):
         style = self.style_list[style_name]
@@ -111,7 +146,9 @@ class AbiWordDoc(TextDoc):
 
  
 if __name__ == "__main__":
-    doc = AbiWordDoc(PAPER_US_LETTER,PAPER_PORTRAIT)
+    paper = PaperStyle("Letter",27.94,21.59)
+
+    doc = AbiWordDoc(paper,PAPER_PORTRAIT)
     foo = FontStyle()
     foo.set_type_face(FONT_SANS_SERIF)
     foo.set_color((255,0,0))
@@ -132,7 +169,11 @@ if __name__ == "__main__":
     doc.start_paragraph("MyTitle")
     doc.write_text("This is my Title")
     doc.end_paragraph()
-    
+
+    doc.start_paragraph("Normal")
+    doc.add_photo("/home/dona/dad.jpg",200,200)
+    doc.end_paragraph()
+
     doc.start_paragraph("Normal")
     doc.write_text("This is a test of the emergency broadcast system. ")    
     doc.write_text("This is a only a test.  Repeat.  This is only a test. ")    
@@ -141,3 +182,4 @@ if __name__ == "__main__":
     doc.end_paragraph()
     doc.close()
 
+    
