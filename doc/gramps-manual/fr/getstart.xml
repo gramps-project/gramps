@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+        User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
-
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
+        Copyright (C) 2003  Alexander Roitman
+        Permission is granted to copy, distribute and/or modify this
+        document under the terms of the GNU Free Documentation
+        License (GFDL), Version 1.1 or any later version published
+        by the Free Software Foundation with no Invariant Sections,
+        no Front-Cover Texts, and no Back-Cover Texts.
+          A copy of the license is included in the file COPYING-DOCS
           distributed with this manual.
 -->
 
@@ -19,34 +18,34 @@
 <!-- =========== Getting Started ============================== -->
 
   <sect1 id="gramps-getting-started"> 
-    <title>Getting Started</title> 
+    <title>Initiation</title> 
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
-    <title>To Start &app;</title>
-    <para>You can start &app; in the following ways:</para> 
+    <title>Pour lancer &app;</title>
+    <para>Vous pouvez lancer &app; comme suit :</para> 
     <variablelist>
     <varlistentry>
 	<term><guimenu>Applications</guimenu> menu</term>
-	<listitem><para>Choose <menuchoice><guisubmenu>Other</guisubmenu>
+	<listitem><para>Choisissez <menuchoice><guisubmenu>Autres</guisubmenu>
 	<guimenuitem>Gramps</guimenuitem></menuchoice>. </para></listitem>
     </varlistentry>
     <varlistentry>
-	<term>Command line</term>
-    	<listitem><para>To start &app; from a command line, type 
-        <command>gramps</command>, then press <keycap>Return</keycap>.</para>
+	<term>Ligne de commande</term>
+    	<listitem><para>Pour lancer &app; en ligne de commande, entrez
+        <command>gramps</command>, puis <keycap>Entr?e</keycap>.</para>
 	
-	<para>If you would like &app; to open a specific database or to 
-        import a specific file on startup, you can supply the filename 
-        as a command line argument:</para>
+	<para>Si vous voulez que &app; ouvre un ensemble de donn?es
+        lors de son lancement, sp?cifiez le fichier au lancement comme argument 
+        de la ligne de commande :</para>
 
 	<para>
-	<command>gramps -i</command> <replaceable>filename.ged</replaceable>
+	<command>gramps -i</command> <replaceable>chemin.ged</replaceable>
     	</para> 
 
-    	<para>where <replaceable>filename.ged</replaceable> is the name 
-	of the file you	want to open/import. The detailed reference to the 
-        command line options is found in the <xref linkend="append-cmdline"/>. 
+    	<para>o? <replaceable>chemin.ged</replaceable> est le nom du fichier
+	que vous voulez ouvrir ou importer. La documentation de r?f?rence
+        des options en ligne de commande est dans <xref linkend="append-cmdline"/>. 
         </para></listitem>
     </varlistentry>
     </variablelist>
@@ -54,154 +53,148 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>Running &app; for the first time</title>
+      <title>La premi?re utilisation de &app;</title>
     <para> 
-    The first time you run the program, GRAMPS will display its 
-    Getting Started dialogs. Follow the directions guiding you through
-    <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
-    formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,
-    and <guilabel>LDS extensions</guilabel> sections. Most of the dialogs
-    are self-explanatory and will not be covered here.
+    La premi?re fois que vous l'utilisez, GRAMPS affiche un
+    dialogue de premier lancement. Suivez les directives qui vous guident
+    ? travers les sections
+    <guilabel>Informations sur le chercheur</guilabel>, <guilabel>Formats de dates
+    num?riques</guilabel>, <guilabel>Utilisation d'autres calendriers</guilabel>,
+    et <guilabel>extensions LDS</guilabel> . La plupart de ces dialogues
+    sont simples et ne seront pas d?crits ici.
     </para>
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>&app; Getting Started Window: Researcher Information</title> 
+	<title>Dialogue de premier lancement : Informations sur le chercheur en g?n?alogie</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Researcher Information Window. </phrase>
+	<phrase>Affiche le dialogue d'information sur le chercheur en g?n?alogie. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>Enter your personal information in the corresponding
-	text entry fields. Although &app; requests information about you, 
-	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file's 
-	creator. If you choose, you may leave the information empty, however
-	all the GEDCOM files you export will not be valid. 
+	<para>Saisissez vos informations personnelles dans les champs
+        de texte. &app; vous demande ces donn?es uniquement pour pouvoir cr?er
+        des fichiers Gedcom valides. Ceux-ci d?crivent le cr?ateur du fichier. 
+        Si vous le souhaitez, vous pouvez tout laisser ? blanc mais les fichiers
+        Gedcom cr??s seront alors incorrects.
 	</para>
 	
-	<para>This information can be entered at any time in the 
-	<guilabel>Preferences</guilabel> dialog, under the 
-	<guilabel>Usage</guilabel> category. 
+	<para>Ces informations peuvent ?tre saisies plus tard dans le dialogue
+	<guilabel>Pr?f?rences</guilabel>, dans la cat?gorie
+	<guilabel>Usage</guilabel> , sous le choix 
+        <guilabel>Recherche d'information/Information sur le chercheur en g?n?alogie</guilabel>.
 	</para>
 
-    </sect2>
-
-    <!-- ================ Getting Started Subsection  -->
+    <!-- ================ Getting Started Sub-section  -->
       <sect2 id="choose-db-start">
-      <title>Choosing a database on startup</title> 
-      <para>If &app; is started without any
-      database  to open, the following window will appear prompting you to 
-      choose what database to open. </para>
+      <title>Choix d'une banque de donn?es au d?marrage</title> 
+      <para>Si &app; est lanc? sans base de donn?es ? ouvrir,
+      le dialogue suivant s'ouvrira pour vous le demander.</para>
       
 	<!-- ==== Figure: Open existing/new database window ==== -->
 	<figure id="first-open"> 
-	<title>Open Database Window</title> 
+	<title>Dialogue d'ouverture d'une base de donn?es</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/first-open.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Open Database Window.  </phrase>
+	<phrase>Pr?sente le dialogue d'ouverture d'une base de donn?es. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
       
-      <para>If you would like to open an existing database, check the top radio
-      button and click the <guibutton>OK</guibutton> button. You will then be asked to 
-      specify the name of your existing database. If you would like to start
-      creating your brand new database from scratch right away, choose new XML
-      database. </para> 
+      <para>Si vous voulez ouvrir une base existante, cochez le bouton radio du haut
+      puis le bouton <guibutton>OK</guibutton> . Il vous sera alors demand? le nom
+      d'une base existante ? ouvrir. Au contraire, si vous voulez partir en cr?ant
+      une base vide, s?lectionnez Cr?er une nouvelle base XML. </para> 
 
-      <para>NOTE: when starting new database, you should 
-      select an empty <replaceable>DIRECTORY</replaceable> 
-      and <replaceable>NOT a FILE</replaceable>. Create empty directory if 
-      needed. The directory you specify will be used by &app; to store 
-      database file <replaceable>data.gramps</replaceable> as well as any 
-      possible copies of media objects. This directory will be updated by &app; 
-      each time the database is saved. </para> 
-      
-      <para>NOTE: when opening an existing database, you should 
-      open a <replaceable>DIRECTORY</replaceable> and 
-      <replaceable>NOT a FILE</replaceable>. The directory you need to open 
-      should contain the  database file <replaceable>data.gramps</replaceable> 
-      as well as any possible copies of media objects. Such a directory is 
-      created by &app; when you start a new database and is updated each time 
-      the database is saved. </para> 
+      <para>NOTE : quand vous partez avec une base de donn?es nouvelle, vous devez
+      choisir un <replaceable>REPERTOIRE</replaceable> vide et 
+      <replaceable>NON UN FICHIER</replaceable>. Cela cr?era un r?pertoire vide
+      si besoin est. Le r?pertoire que vous donnez servira ? &app; pour ranger
+      le fichier de donn?es <replaceable>data.gramps</replaceable> et ?ventuellement les
+      copies des objets multimedia. Ce r?pertoire sera mis ? jour par &app;
+      lors de chaque sauvegarde de la base de donn?es. </para>
+
+      <para>NOTE : quand vous ouvrez une base de donn?es existantes, sp?cifiez
+      un <replaceable>REPERTOIRE</replaceable> et
+      <replaceable>NON UN FICHIER</replaceable>. Le r?pertoire que vous voulez
+      ouvrir doit contenir le fichier de donn?es <replaceable>data.gramps</replaceable>
+      et ?ventuellement les copies d'objets multimedia. Un tel r?pertoire est cr??
+      par &app; quand vous cr?ez une base vide et est mis ? jour lors de chaque 
+      sauvegarde. </para>
 
       </sect2>
       
-<!-- ================ Getting Started Sub-subsection  
+    <!-- ================ Getting Started Sub-subsection  -->
       <sect3 id="zodb-support">
-        <title>Optional ZODB support</title> 
+        <title>Support optionnel du format ZODB</title> 
 
-      <para>If either StandaloneZODB or Zope is installed on your system, 
-      &app; will give you the third option of 
-      creating a new ZODB database. You can choose to start your new database 
-      in either XML or ZODB format. Both formats have their strong and weak 
-      points.</para>
+      <para>Dans le cas o? StandaloneZODB ou bien Zope sont install?s sur votre syst?me,
+      &app; vous proposera en plus la possibilit? de cr?er une base ZODB nouvelle. 
+      Vous pouvez alors choisir de cr?er une base nouvelle au format XML ou ZODB.
+      Chaque format a ses avantages et ses inconv?nients. </para>
 
-      <para>XML stands for eXtensible Markup Language, and is a human readable
-      structured description of data. It could be easily parsed by other 
-      programs should the need occur. It stores only the data itself. Its weak 
-      point is the relatively low speed of processing large data files. </para>
+      <para>XML signifie eXtensible Markup Language et conserve les donn?es
+      dans une forme structur?e, lisible en clair. En cas de besoin, il peut ?tre 
+      facilement analys? par d'autres programmes. Il ne conserve que les donn?es
+      "pures" (sans index par exemple). Son point faible est le co?t de
+      traitement plus lourd de gros fichiers de donn?es. </para>
 
-      <para>ZODB stands for Zope Object Database and provides the full-fledged
-      database support. ZODB files are not human readable. They contain a
-      certain overhead to assist working with large data structures. However,
-      ZODB provides a significant speed-up when the database size is large (over
-      a few thousand people). </para>
+      <para>ZODB signifie "Zope Object Database" et fournit toutes les capacit?s
+      d'une base de donn?es. Les fichiers ZODB ne peuvent ?tre lus simplement. 
+      Ils comprennent des donn?es suppl?mentaires pour mieux traiter de grandes
+      quantit?s de donn?es. ZODB est nettement plus rapide pour
+      des ensembles de donn?es de plusieurs milliers de personnes. </para>
 
-      <para>Its is hard to tell which format is better, since this is a typical
-      trade-off situation. If you are starting your research then you are likely
-      to be fine with the regular XML database. If you have tons of data to
-      import describing thousands upon thousands of people, then you are
-      probably better off with ZODB. </para>
+      <para>Dire quel format de donn?es est le meilleur est difficile dans l'absolu. 
+      Si vous commencez vos recherches, une base XML vous conviendra probablement.
+      Par contre, si vous avez des milliers de personnes dans vos donn?es, vous serez
+      probablement mieux servis avec ZODB. </para>
 
       </sect3>
--->
-
+    </sect2>
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="get-help">
-      <title>Obtaining Help</title>
-    <para> At any time, the following items are available for immediate aid
-    from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
+      <title>Avoir de l'aide</title>
+    <para> Les possibilit?s suivantes vous sont toujours accessibles ? partir du menu
+    <menuchoice><guimenu>Aide</guimenu></menuchoice> : </para>
     
 	<variablelist>
 
-	<varlistentry><term>User manual</term>
-	<listitem><para> Choose this item to read the text of this manual 
-	in the help browser.  </para></listitem>
+	<varlistentry><term>Manuel utilisateur</term>
+	<listitem><para> Ce choix vous permet de lire ce manuel dans le navigateur 
+        d'aide. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>FAQ</term>
-	<listitem><para> Use this item to read Frequently Asked Questions
-	about &app; in the browser. </para></listitem>
+        <varlistentry><term>FAQ</term>
+        <listitem><para> Ce choix vous donne acc?s ? la Foire Aux Questions
+        de &app; dans le navigateur web. </para></listitem>
+        </varlistentry>
+
+	<varlistentry><term>GRAMPS page d'accueil</term>
+	<listitem><para> Ce choix ouvre la page d'accueil de &app; dans votre navigateur
+        web. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS home page</term>
-	<listitem><para> Select this item to open home page of &app; in your
-	default web browser. </para></listitem>
+	<varlistentry><term>Listes de diffusion GRAMPS</term>
+	<listitem><para> Ce choix envoie votre navigateur web vers les archives
+	des listes de diffusion de &app; . </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>GRAMPS mailing lists</term>
-	<listitem><para> Choose this item to direct your web browser 
-	to the &app; mailing list archives. </para></listitem>
+	<varlistentry><term>Rapporter une anomalie</term>
+	<listitem><para> Ce choix vous permet d'enregistrer un rapport d'anomalie sur &app; 
+	dans le syst?me de suivi d'anomalies. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Report a bug</term>
-	<listitem><para> Use this item to file a bug report against &app; 
-	with the bug tracking system.  </para></listitem>
+	<varlistentry><term>Lister les greffons</term>
+	<listitem><para> Ce choix liste les greffons charg?s par &app;. </para></listitem>
 	</varlistentry>
     
-	<varlistentry><term>Show plugin status</term>
-	<listitem><para> Use this item to display the status of loaded 
-	plugins. </para></listitem>
-	</varlistentry>
-    
-	<varlistentry><term>Open example database</term>
-	<listitem><para> Select this item to load the example database shipped
-	with &app;. This database is composed of fictitious people and serves as
-	a useful example for learning how to work with &app;. </para></listitem>
+	<varlistentry><term>Ouvrir une base exemple</term>
+	<listitem><para> Ce choix ouvre la base de donn?es exemple install?e avec
+	&app;. Elle d?crit des personnes fictives et sert ? apprendre ? utiliser 
+	&app;. </para></listitem>
 	</varlistentry>
     
 	</variablelist>

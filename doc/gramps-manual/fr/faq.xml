@@ -17,351 +17,369 @@
 
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="faq">
-      <title>Frequently Asked Questions</title>
-      <para>This appendix contains the list of questions that frequently come 
-      up in mailing list discussions and forums. This list is by no means 
-      complete. If you would like to add questions/answers to this list, 
-      please email your suggestions to <ulink url="mailto:gramps-devel@lists.sf.net"  
-      type="mailto">gramps-devel@lists.sf.net</ulink>
+      <title>Foire Aux Questions</title>
+      <para>Cette annexe r?pond aux questions fr?quemment pos?es sur les listes 
+      de discussions et les forums. Elle n'est ?videmment pas limitative. 
+      Si vous souhaitez y ajouter des questions et/ou des r?ponses,
+      envoyez un message ?lectronique ? 
+      <ulink url="mailto:gramps-devel@lists.sf.net" type="mailto">gramps-devel@lists.sf.net</ulink>
       </para>
       
       <variablelist>
 
-
-      <varlistentry><term>What is &app;?</term>
-      <listitem><para> &app; is the Genealogical Research and Analysis 
-      Management Program System. In other words, it is a personal genealogy 
-      program letting you store, edit, and research genealogical data using 
-      the powers of your computer. 
+      <varlistentry><term>Qu'est ce que &app; ? </term>
+      <listitem><para>&app; est le Syst?me de Recherche et Analyse G?n?alogique
+      (Genealogical Research and Analysis Management Program System). 
+      Autrement dit, c'est un programme personnel de g?n?alogie qui vous permet
+      de conserver, modifier et chercher dans des donn?es g?n?alogiques, avec
+      l'aide de l'ordinateur. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Where do I get it and how much does it cost?</term>
+      <varlistentry><term>O? puis-je le trouver et que co?te-t'il ? </term>
       <listitem><para> 
-&app; can be downloaded from <ulink url="http://sf.net/projects/gramps" 
-type="http">http://sf.net/projects/gramps</ulink> at no charge. 
-&app; is an Open Source project covered by the GNU General Public License. 
-You have full access to the source code and are allowed to distribute the 
-program and source code freely. 
+      &app; peut ?tre t?l?charg? gratuitement depuis le site Internet 
+      <ulink url="http://sf.net/projects/gramps" type="http">http://sf.net/projects/gramps</ulink>. 
+      C'est un projet Open Source publi? sous la licence GNU GPL.
+      Vous avez compl?tement acc?s aux programmes sources et vous avez
+      le droit de redistribuer le programme et les sources librement. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Does it work with Windows (tm)?</term>
+      <varlistentry><term>Fonctionne-t'il avec Windows (tm) ? </term>
       <listitem><para> 
-No. &app; uses the GTK and GNOME libraries. While the GTK libraries 
-have been ported to Windows, the GNOME libraries have not.
-This, however, may change in the future. 
+      Non. &app; utilise les librairies GTK et GNOME. Les librairies GTK
+      ont ?t? port?es sous Windows, mais pas les librairies GNOME.
+      Cependant, cela pourrait changer un jour.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Does it work with the Mac?</term>
+      <varlistentry><term>Fonctionne-t'il sur le Macintosh ? </term>
       <listitem><para> 
-The Fink project (<ulink url="http://fink.sf.net" 
-type="http">http://fink.sf.net</ulink>) has ported an old version of 
-&app; (0.8.0) to OSX. The Mac OSX port is not directly supported by 
-the &app; project, primarily because none of the &app; developers 
-have access to Mac OSX.</para>
+      Le projet Fink (<ulink url="http://fink.sf.net" 
+      type="http">http://fink.sf.net</ulink>) a port? une vieille version de 
+      &app; (0.8.0) sur OSX. La version Mac OSX n'est pas directement support?e
+      par le projet &app;, surtout parce qu'aucun d?veloppeur de &app;
+      n'a acc?s ? Mac OSX.</para>
 
-<para>The GNOME 2 version of &app; (0.9.x) does not appear to have been 
-ported by the Fink project. Please contact the Fink project for more
-information.
+      <para>La version Gnome 2 de &app; (0.9.x) n'a pas ?t? port?e par le
+      projet Fink. Vous ?tes pri?s de contacter le projet Fink pour plus
+      d'information.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Does it work with KDE?</term>
+      <varlistentry><term>Fonctionne-t'il avec KDE ? </term>
       <listitem><para> 
-Yes, as long as the required GNOME libraries are installed.
+      Oui, ? condition que les librairies GNOME n?cessaires soient install?es.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Do I really have to have GNOME installed?</term>
-      <listitem><para> Yes, but you do not have to be running the GNOME desktop.
+      <varlistentry><term>Dois-je vraiment installer GNOME ? </term>
+      <listitem><para>Oui, mais il n'est pas obligatoire d'utiliser le bureau GNOME.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>What version of GNOME do I need?</term>
+      <varlistentry><term>De quelle version de GNOME ai-je besoin ? </term>
       <listitem><para> 
-The latest versions of gramps (0.9.0 and higher) require GNOME 2.0 or higher.
-Previous versions required GNOME 1.X. 
+      Les derni?res versions de &app; (0.9.0 et suivantes) ont besoin de GNOME 2.0 ou ult?rieures.
+      Les versions pr?c?dentes utilisaient GNOME 1.X. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Is &app; compatible with 
-      other genealogical software (GenApps)?</term>
+      <varlistentry><term>&app; est-il compatible avec 
+      d'autres logiciels de g?n?alogie ? </term>
       <listitem><para> 
-&app; makes every effort to maintain compatibility with GEDCOM, the general
-standard of recording genealogical information. We have import and export
-filters that enable &app; to read and write GEDCOM files. </para>
+      &app; fait tout ce qui est possible pour rester compatible avec
+      le format de donn?es g?n?alogique standard Gedcom. Nous avons
+      des filtres de lecture et d'?criture pour les fichiers Gedcom. </para>
 
-<para>
-It is important to understand that the GEDCOM standard is poorly implemented --
-virtually every genealogical software has its own "flavor" of GEDCOM. As we
-learn about new flavor, the import/export filters can be created very quickly.
-However, finding out about the unknown flavors requires user feedback. 
-Please feel free to inform us about any GEDCOM flavor not supported by &app;, 
-and we will do our best to support it! 
+      <para>
+      Il faut savoir que le format Gedcom est mal utilis?. Chaque logiciel
+      de g?n?alogie a sa propre variante de Gedcom. Quand nous avons connaissance
+      d'une variante, il est tr?s rapide de cr?er les filtres de lecture et d'?criture. 
+      Par contre, trouver les variantes demande d'avoir l'information de la part
+      des utilisateurs. N'h?sitez pas ? nous signaler une variante non support?e
+      par &app;, nous ferons ensuite de notre mieux pour la supporter !
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can &app; read files created by GenApp X?</term>
-      <listitem><para> See above.
+      <varlistentry><term>&app; peut-il lire les fichiers cr??s par le logiciel de 
+      g?n?alogie SuperGenWare ? </term>
+      <listitem><para>Voir la question pr?c?dente. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can &app; write files readable by GenApp X?</term>
-      <listitem><para> See above.
+      <varlistentry><term>&app; peut-il ?crire les fichiers lisibles par le logiciel de 
+      g?n?alogie SuperGenWare ?</term>
+      <listitem><para>Voir au-dessus..
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can &app; print a genealogical tree for my family?</term>
+      <varlistentry><term>&app; peut-il imprimer mon arbre g?n?alogique ? </term>
       <listitem><para> 
-Yes. Different people have different ideas of what a genealogical tree is. 
-Some think of it as a chart going from the distant ancestor and listing 
-all his/her descendants and their families. Others think it should be a 
-chart going from the person back in time, listing the ancestors and their 
-families. Yet other people think of a table, text report, etc. </para>
+      Oui. Chacun a son id?e sur comment doit ?tre dessin? un arbre g?n?alogique. 
+      Certains pensent qu'il faut montrer toues les familles depuis un anc?tre lointain
+      jusqu'? la racine de l'arbre, d'autres qu'il faut remonter de la personne
+      actuelle et montrer tous ses anc?tres et leurs familles. D'autres encore
+      pensent ? un tableau, ? des ?ditions en mode texte... </para>
 
-<para>
-&app; can produce any of the above, and many more different charts and 
-reports. Moreover, the plugin architechture enables users (you) to create 
-their own plugins which could be new reports, charts, or research tools. 
+      <para>
+      &app; peut faire tout cela, en des pr?sentations tr?s vari?es ainsi que d'autres encore. 
+      Plus g?n?ralement, le principe de greffons (plugins) permet aux utilisateurs
+      et donc ? vous-m?me, de cr?er vos propres greffons qui cr?ent vos propres rapports,
+      ?tats ou sorties papier pour aider vos recherches. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>In what formats can &app; output its reports?</term>
+      <varlistentry><term>Quel est le format des sorties d'impression de &app; ? </term>
       <listitem><para> 
-Text reports are available in HTML, PDF, AbiWord, KWord, LaTeX, RTF, and
-OpenOffice formats. Graphical reports (charts and diagrams) are available in
-PostScript, PDF, SVG, OpenOffice and GraphViz formats. 
+      Les sorties de texte pour impression sont disponibles dans les formats HTML, PDF, AbiWord, 
+      KWord, LaTeX, RTF, et OpenOffice. Les impressions graphiques (dessins et diagrammes) 
+      sont disponibles en formats PostScript, PDF, SVG, OpenOffice et GraphViz. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Is &app; compatible with the Internet?</term>
+      <varlistentry><term>&app; est-il compatible avec Internet ? </term>
       <listitem><para> 
-&app; can store web addresses and direct your browser to them. It can import
-data that you download from the Internet. It can export data that you could 
-send over the Internet. &app; is familiar with the standard file formats 
-widely used on the Internet (e.g. JPEG, PNG, and GIF images, MP3, OGG, and 
-WAV sound files, QuickTime, MPEG, and AVI movie files, etc). Other than that, 
-there is little that a genealogical program can do with the Internet :-) 
+      &app; peut garder des liens web et envoyer votre navigateur web vers elles. 
+      Il peut importer des donn?es que vous t?l?chargez depuis le R?seau. Il
+      peut exporter des donn?es que vous y enverrez. Il connait les formats
+      de fichiers courants (JPEG, PNG et GIF pour les images, MP3, OGG et 
+      WAV pour les sons, QuickTime, MPEG et AVI pour les video). A part cela,
+      il n'y a pas grand chose d'autre qu'un g?n?alogiqte puisse faire avec
+      Internet :-) . 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Can I create custom reports/filters/whatever?</term>
+      <varlistentry><term>Puis-je cr?er une ?dition, un filtre ou un machin ? </term>
       <listitem><para> 
-Yes. There are many levels of customization. One is creating or modifying 
-the templates used for the reports. This gives you some control over 
-the fonts, colors, and some layout of the reports. You can also use &app; 
-controls in the report dialogs to tell what contents should be used for a 
-particular report. In addition to this, you have an ability to create your 
-own filters -- this is useful in selecting people based on criteria set 
-by you. You can combine these filters to create new, more complex filters. 
-Finally, you have an option to create your own plugins. These may be new 
-reports, research tools, import/export filters, etc. This assumes some 
-knowledge of programming in Python. 
+      Oui. Il y a beaucoup de fa?ons de personnaliser &app;. Vous pouvez
+      modifier ou cr?er les mod?les d'impressions. Vous avez ainsi le contr?le des
+      polices de caract?res, des couleurs et d'?l?ments de la disposition
+      des impressions. Vous pouvez aussi utiliser les r?glages de &app;
+      pour choisir les informations servant ? pr?parer l'impression. 
+      En plus de tout cela, vous pouvez cr?er vos propres filtres.
+      Cela sert ? s?lectionner des individus selon vos besoins. 
+      Vous pouvez combiner ces filtres pour constituer des filtres
+      plus ?labor?s. Enfin, vous pouvez cr?er vos greffons. Ils peuvent
+      servir ? d?finir des rapports, des outils d'aide ? la recherche 
+      ou encore des filtres de lecture ou d'?criture de donn?es. Cela
+      demande la connaissance de la programmation en Python. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>What standards does &app; support?</term>
+      <varlistentry><term>Quels standards &app; supporte-t'il ? </term>
       <listitem><para> 
-The nice thing about the standards is that there never is a shortage of 
-them :-). &app; is tested to support the following flavors of GEDCOM: 
-GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
-GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
-Visual Genealogie. 
+      L'amusant ? propos des standards est qu'on ne risque pas d'en manquer :-).
+      &app; supporte les variantes suivantes de Gedcom : 
+      GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
+      GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion et 
+      Visual Genealogie. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>What is the maximum database 
-      size (bytes) &app; can handle?</term>
+      <varlistentry><term>Quelle est la taille maximale d'une base de donn?es 
+      &app; ? </term>
       <listitem><para> 
-&app; has no hard limits on the size of a database that it can handle. 
-In reality, however, there are practical limits. Currently &app; loads all 
-data into memory, so the limiting factor tends to be the available memory 
-on the system. 
+      &app; n'a pas de limite stricte sur la taille de sa base de donn?es.
+      Il y a seulement des limites pratiques. Pour le moment, &app; charge
+      ses donn?es en m?moire, qui devient alors la ressource critique. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>How many people can &app; database handle?</term>
+      <varlistentry><term>Combien de personnes peut-on mettre dans une base 
+      de donn?es &app; ? </term>
       <listitem><para> 
-We have found that on a typical system, &app; tends to bog down after the
-database has around 15,000 people. Again, this is dependant on how much
-memory you have. 
+      Nous avons exp?riment? que &app; tient jusqu'environ 15000 personnes
+      sur une configuration moyenne. Encore une fois, cela d?pend en fait
+      de la taille m?moire du syst?me. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Why is &app; running so slowly?</term>
+      <varlistentry><term>Pourquoi &app; est-il si lent ? </term>
       <listitem><para> 
-If &app; seems too slow to you, it is most likely that you have a large
-database. Currently, &app; loads all the database into memory, therefore 
-large databases tend to be less than responsive. Specifically, the system 
-can be virtually brought to its knees if swapping is needed for &app;' data.
-</para> <para>
-This will be addressed in the next stable release following version 1.0. 
-Temporarily, adding more memory could make a huge difference, but we realize
-that this is a poor way of treating the problem. If you would like to help 
-with the implementation of the real database backend, please don't hesitate 
-to email us at <ulink url="mailto:gramps-devel@lists.sf.net" 
-type="mailto">gramps-devel@lists.sf.net</ulink>
+      Si &app; vous parait si lent, c'est probablement que vous avez une
+      grosse base de donn?es. Pour le moment, &app; charge les donn?es en
+      m?moire. En cons?quence, les temps de r?ponse s'allongent pour de gros 
+      volumes de donn?es. En particulier, le r?sultat sera catastrophique
+      si les donn?es de &app; occasionnent de la pagination (swap).
+      </para>
+      <para>
+      Ceci sera trait? dans la premi?re version stable apr?s le version 1.0 .
+      En attendant, ajouter de la m?moire peut tout changer mais nous sommes
+      conscients que ce n'est pas la meilleure fa?on de traiter le probl?me. 
+      Si vous souhaitez aider ? l'impl?mentation avec une vraie base de donn?e,
+      n'h?sitez pas ? nous contacter par courrier ?lectronique ? 
+      <ulink url="mailto:gramps-devel@lists.sf.net" 
+      type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>My database is really big. 
-      Is there a way around loading all the data into memory?</term>
+      <varlistentry><term>Ma base de donn?es est vraiment tr?s grosse.
+      Y-a t'il un moyen de la charger sans tout charger en m?moire ? </term>
       <listitem><para> 
-Currently, there is no way around it. However, this is our biggest priority
-after releasing  version 1.0. The real database backend will be incorporated 
-in the next stable release (1.2) which will dramatically improve performance 
-in both speed and memory usage.
+      Actuellement, il n'y a pas d'autre moyen. C'est notre plus grosse 
+      priorit? apr?s la finition de la version 1.0 . L'utilisation d'une
+      vraie base de donn?es se fera dans la prochaine version stable (1.2),
+      qui am?liorera grandement les performances, tant en vitesse
+      d'ex?cution qu'en empreinte m?moire. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Why are non-latin characters displayed 
-      as garbage in PDF/PS reports?</term>
+      <varlistentry><term>Pourquoi les caract?res non latins sont-ils mal
+      affich?s dans les impressions PDF ou Postscript ? </term>
       <listitem><para> 
-This is a known problem -- PS (and PDF) have builtin fonts which pretty much 
-reflect the latin-1 charset. Any font in principle could be used with PS/PDF 
-but then it would have to be embedded in the file. This is problematic since 
-every system has different idea about fonts and their setup.</para>
+      C'est un probl?me connu. Le Postscript (et le PDF) utilisent des
+      polices de caract?res internes qui correspondent bien au jeu de caract?re
+      latin-1. En principe, on pourrait utiliser n'importe quel police de caract?res
+      mais il faudrait l'embarquer dans le fichier. C'est d?licat parce que
+      chaque syst?me g?re ? sa fa?on les polices et leur d?finition. </para>
 
-<para>
-This should be resolved as we move to gnome-print. In the meantime, a useable 
-workaround is to generate reports in OpenOffice.org format and then export 
-to PDF from the OpenOffice.org application.
+      <para>
+      Ce devrait ?tre r?gl? quand nous serons pass?s avec Gnome-print. 
+      Entre temps, une solution de contournement est de g?n?rer des ?ditions
+      en format OpenOffice.org, puis de g?n?rer le PDF depuis OpenOffice.org. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Why can I not add/remove/edit columns to the lists 
-      in People View and Family View?</term>
+      <varlistentry><term>Pourquoi ne peut-on pas ajouter, enlever ou modifier
+      des colonnes aux listes dans les Vues Individis et Famille ? </term>
       <listitem><para> 
-This will be addressed after the TreeModelSort bug is fixed in pygtk,
-see <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
-type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
- for the details.
-Once the patch is committed and incorporated into pygtk, we will add the 
-ability to add/remove/edit sortable columns.
+      Ceci sera trait? quand l'erreur dans TreeModelSort de pygtk sera corrig?e
+      (voir <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
+      type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
+      for the details).
+      D?s que la correction sera valid?e et mise dans pygtk, nous ajouterons
+      la capacit? d'ajouter, retirer et ?diter des colonnes avec tri. 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>I would like to contribute to &app; by writing 
-      my favorite report. How do I do that?</term>
+      <varlistentry><term>Je souhaiterais contribuer ? &app; en ?crivant
+      mon ?dition favorite. Comment fais-je ? </term>
       <listitem><para> 
-The easiest way to contribute to reports, filters, tools, etc. is to copy 
-an existing &app; report, filter, or tool. If you can create what you want 
-by modifying existing code -- great! If your idea does not fit into the logic
-of any existing &app; tool, the <ulink 
-url="http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage" 
-type="http">following page</ulink> may provide some help in writing your 
-own plugin from scratch.
+      La fa?on la plus simple pour ?crire de nouveaux rapports, filtres
+      ou outils est d'en copier un qui existe d?j? puis de le modifier.
+      Si cela vous convient, tant mieux ! Si votre id?e ne rentre 
+      dans la logique d'aucun outil existant, le <ulink 
+      url="http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage" 
+      type="http">lien</ulink> peut vous aider ? ?crire un greffon en partant de rien. 
 
-If you need more help or would like to discuss your idea with us, 
-please do not hesitate to contact us at <ulink 
-url="mailto:gramps-devel@lists.sf.net" 
-type="mailto">gramps-devel@lists.sf.net</ulink>
-</para>
+      Si vous avez besoin de plus d'aide, ou si vous voulez discuter de
+      votre id?e avec nous, n'h?sitez pas ? nous contacter par messagerie
+      ?lectronique ? <ulink 
+      url="mailto:gramps-devel@lists.sf.net" 
+      type="mailto">gramps-devel@lists.sf.net</ulink>
+      </para>
 
-<para>
-To test your work in progress, you may save your plugin under
-<replaceable>$HOME/.gramps/plugins</replaceable> directory and it should 
-be found and imported on startup. 
-The correctly written plugin will register itself with &app;, create menu 
-item, and so on.</para>
+      <para>
+      Pour tester votre r?alisation, vous pouvez sauver le greffon dans le r?pertoire
+      <replaceable>$HOME/.gramps/plugins</replaceable> o? il devrait ?tre
+      trouv? par &app; et charg? lors du lancement. 
+      Un greffon bien ?crit s'enregistre lui-m?me dans &app; et cr?e son
+      entr?e dans un menu.
+      </para>
 
-<para>
-If you are happy with your plugin and would like to contribute your code 
-back to the &app; project, you are very welcome to do so by contacting us 
-at <ulink url="mailto:gramps-devel@lists.sf.net" 
-type="mailto">gramps-devel@lists.sf.net</ulink>
+      <para>
+      Si votre greffon vous satisfait et que vous voulez contribuer vers
+      le projet &app;, vous ?tes le bienvenu : contactez-nous ? 
+      <ulink url="mailto:gramps-devel@lists.sf.net" 
+      type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
-
-      <varlistentry><term>I found a bug and I want it fixed right now! 
-      What do I do?</term>
+      <varlistentry><term>J'ai trouv? une erreur et je veux qu'elle soit
+      corrig?e tout de suite ! Que puis-je faire ? </term>
       <listitem><para> 
-The best thing you can do is to fix the bug and send the patch to
-<ulink url="mailto:gramps-devel@lists.sf.net" 
-type="mailto">gramps-devel@lists.sf.net</ulink> :-)</para>
+      La meilleure chose ? faire est de corriger l'erreur, puis d'envoyer
+      la correction ? 
+      <ulink url="mailto:gramps-devel@lists.sf.net" 
+      type="mailto">gramps-devel@lists.sf.net</ulink> :-)</para>
 
-<para>
-The next best thing would be to submit a good bug report. This can be done in
-one of the two ways: (1) send your report to 
-<ulink url="mailto:gramps-bugs@lists.sf.net" 
-type="mailto">gramps-bugs@lists.sf.net</ulink>
-or (2) file your report with the bug tracker system at 
-<ulink url="http://sf.net/tracker/?group_id=25770" type="http">
-http://sf.net/tracker/?group_id=25770&amp;atid=385137</ulink>
-(this function is also available by selecting 
-<menuchoice><guisubmenu>Help</guisubmenu><guimenuitem>Report a 
-bug</guimenuitem></menuchoice> from gramps main menu). </para>
+      <para>
+      Autrement, la meilleure chose ensuite est d'envoyer un bon
+      rapport d'anomalie. Ceci peut se faire de deux fa?ons diff?rentes : 
+      (1) envoyez votre rapport ? 
+      <ulink url="mailto:gramps-bugs@lists.sf.net" 
+      type="mailto">gramps-bugs@lists.sf.net</ulink>
+      ou (2) enregistrez votre rapport avec les syst?me de suivi d'erreur ?
+      <ulink url="http://sf.net/tracker/?group_id=25770" type="http">
+      http://sf.net/tracker/?group_id=25770&amp;atid=385137</ulink>
+      (cette fonction est aussi disponible en choisissant
+      <menuchoice><guisubmenu>Aide</guisubmenu><guimenuitem>Signaler une erreur
+      </guimenuitem></menuchoice> dans le menu principal de &app;). </para>
 
-<para>A good bug report would include: </para>
+      <para>Un bon rapport d'anomalie devrait comprendre : </para>
 
-<itemizedlist>
+      <itemizedlist>
 
-<listitem><para>   
-Version of gramps you were using when you encountered the bug 
-(available through <menuchoice><guisubmenu>Help</guisubmenu>
-<guimenuitem>About</guimenuitem></menuchoice> menu item).
-</para></listitem>
+      <listitem><para>
+      La version de &app; que vous utilisez (disponible par l'entr?e de menu
+      <menuchoice><guisubmenu>Aide</guisubmenu>
+      <guimenuitem>A propos</guimenuitem></menuchoice>).
+      </para></listitem>
 
-<listitem><para>
-Language under which gramps was run
-(available by executing </para>
-   <para><command>echo $LANG</command></para>
-<para>in your terminal).
-</para></listitem>
+      <listitem><para>
+      La langue d'utilisation de &app; (faites </para>
+      <para><command>echo $LANG</command></para>
+      <para>dans votre terminal de commande).
+      </para></listitem>
 
-<listitem><para>
-Symptoms indicating that this is indeed a bug.
-</para></listitem>
+      <listitem><para>
+      Les symptomes indiquant que c'est effectivement une erreur.
+      </para></listitem>
 
-<listitem><para>
-Any Traceback messages, error messages, warnings, etc, 
-that showed up in your terminal or a in separate traceback window.
-</para></listitem>
+      <listitem><para>
+      Tous les messages de trace, d'erreur ou avertissement
+      qui ont ?t? affich?s dans le terminal ou dans une fen?tre de trace s?par?e.
+      </para></listitem>
 
-</itemizedlist>
+      </itemizedlist>
 
-<para>Most problems can be fixed quickly provided there is enough information. 
-To ensure this, please follow up on your bug reports. In particular, if you 
-file a bug report with sf.net bug tracker, PLEASE log in to sf.net before 
-filing 
-(register your free account if you don't have one). Then we will have a way 
-of contacting you should we need more information. If you choose to file your 
-report anonymously, at least check every so often whether your report page 
-has something new posted, as it probably would.</para>
+      <para>La plupart des erreurs peuvent ?tre corrig?es rapidement
+      quand suffisamment d'information est fournie. Pour garantir
+      la qualit? de l'information, nous vous invitons ? suivre
+      vos rapports d'anomalie. En particulier, si vous enregistrez
+      un rapport sur le syst?me de suivi sf.net bug, PAR PITIE enregistrez-vous
+      sur sf.net avant de soumettre votre rapport
+      (enregistrez-vous sur un compte libre si vous n'en avez pas encore). 
+      Nous aurons ainsi un moyen de vous joindre si nous avons besoin de plus d'information. 
+      Si vous pr?f?rez enregistrer un rapport de fa?on anonyme, au moins 
+      surveillez souvent si votre page de rapport a quelque chose de nouveau,
+      comme ce sera probablement le cas. </para>
 
-<para>If the above explanations seem vague, please follow 
-<ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" 
-type="http">this link.</ulink>
+      <para>Si tout cela ne vous parait pas clair, suivez 
+      <ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" 
+      type="http">ce lien.</ulink>
 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>It is obvious that &app; absolutely needs to 
-      become a (client-server/web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/C#/You-name-it) 
-      application. When is this going to happen?</term>
+      <varlistentry><term>Il est ?vident que &app; doit absolument
+      devenir une application (client-serveur/web/PHP/weblog/Javascript/C++/distribu?e/KDE/Motif/Tcl/Win32/C#/Je-ne-sais-pas-encore-quoi).
+      Quand cela va-t'il se faire ? </term>
       <listitem><para> 
-The surest way to see it happen is to get it done by yourself. Since
-&app; is free/open source, nobody prevents you from taking all of the
-code and continuing its development in whatever direction you see fit.
-In doing so, you may consider giving your new project another name to
-avoid confusion with the continuing &app; development. If you would
-like the &app; project to provide advice, expertise, filters, etc., 
-we will gladly cooperate with your new project, to ensure compatability 
-or import/export options to your new format of a project.</para>
+      Le meilleur moyen que cela se fasse est de le faire vous-m?me.
+      Comme &app; est libre et open-source, personne ne vous interdit
+      de prendre tout le code et de continuer le d?veloppement dans
+      la direction qui vous convient. Vous devrez donner un autre nom
+      ? votre projet pour ?viter les confusions avec la suite de &app;.
+      Si vous voulez que le projet &app; vous fournisse des avis,
+      de l'expertise, des outils ou n'importe quoi, nous serons heureux
+      de coop?rer avec votre projet, pour assurer la compatibilit?
+      ou bien des op?rations de lecture-?criture de et vers le format
+      de donn?es de votre projet. </para>
 
-<para>                                                                                
-If, however, you would like the &app; project to to adopt your strategy,
-you would need to convince &app; developers that your strategy is good
-for &app; and superior to the present development strategy.</para>
+      <para>
+      Cependant, si vous souhaitez que le projet &app; suive votre
+      strat?gie, vous devrez convaincre les d?veloppeurs de &app;
+      que votre strat?gie est bonne pour &app; et meilleure que
+      celle pr?vue. </para>
 
-<para>                                                                                
-HINT: if &app; developers are still not convinced after about three
-messages sent to gramps-devel, maybe you are better off on your own
-rather than with a company of retards who can't fully realize the
-potential of your great idea :-)
+      <para>
+      TRUC : si les d?veloppeurs de &app; ne sont pas convaincus
+      apr?s trois messages envoy?s ? gramps-devel, peut-?tre vous feriez mieux
+      d'aller seul plut?t qu'avec un groupe d'idiots qui ne
+      peuvent pas comprendre votre g?nie :-) .
 
       </para></listitem>
       </varlistentry>
