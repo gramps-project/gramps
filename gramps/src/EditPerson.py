@@ -155,7 +155,7 @@ class EditPerson:
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
         
-        self.top.signal_autoconnect({
+        id = self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
             "on_add_address_clicked"    : self.on_add_addr_clicked,
             "on_add_aka_clicked"        : self.on_add_aka_clicked,
@@ -260,6 +260,7 @@ class EditPerson:
         self.redraw_addr_list()
         self.redraw_name_list()
         self.redraw_url_list()
+        self.window.show()
 
     def get_widget(self,str):
         """returns the widget related to the passed string"""
@@ -370,17 +371,24 @@ class EditPerson:
             gnome.url.show(text)
         
     def on_cancel_edit(self,obj):
-        global quit
-
         if self.did_data_change():
-            q = _("Data was modified. Are you sure you want to abandon your changes?")
-            quit = obj
-            GnomeQuestionDialog(q,cancel_callback)
+            q = _("Are you sure you want to abandon your changes?")
+            GnomeQuestionDialog(q,self.cancel_callback)
         else:
             utils.destroy_passed_object(obj)
 
     def on_delete_event(self,obj,b):
-        self.on_cancel_edit(obj)
+        if self.did_data_change():
+            q = _("Are you sure you want to abandon your changes?")
+            GnomeQuestionDialog(q,self.cancel_callback)
+            return TRUE
+        else:
+            utils.destroy_passed_object(obj)
+            return FALSE
+    
+    def cancel_callback(self,a):
+        if a==0:
+            utils.destroy_passed_object(self.window)
 
     def did_data_change(self):
     
@@ -695,6 +703,7 @@ class EditPerson:
 
         self.update_lists()
         self.callback(self)
+        self.window.hide()
         utils.destroy_passed_object(obj)
 
     def on_primary_name_source_clicked(self,obj):
@@ -794,19 +803,9 @@ def disp_event(event):
     return [const.display_pevent(event.getName()),
             event.getQuoteDate(),event.getPlaceName(),attr]
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def cancel_callback(a):
-    if a==0:
-        utils.destroy_passed_object(quit)
-
 def src_changed(parent):
     parent.lists_changed = 1
     
-
 #-------------------------------------------------------------------------
 # 
 # birth_dates_in_order

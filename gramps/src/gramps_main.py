@@ -89,14 +89,10 @@ active_mother = None
 active_child  = None
 active_spouse = None
 
-select_father = None
-select_spouse = None
-select_mother = None
-bookmarks     = None
-
 id2col        = {}
 alt2col       = {}
 
+bookmarks     = None
 topWindow     = None
 statusbar     = None
 gtop          = None
@@ -112,7 +108,6 @@ mpath         = None
 mdetails      = None
 preview       = None
 database      = None
-family_window = None
 nameArrow     = None
 deathArrow    = None
 dateArrow     = None
@@ -133,63 +128,37 @@ c_sort_direct = SORT_ASCENDING
 NOTEBOOK    = "notebook1"
 FILESEL     = "fileselection"
 FILTERNAME  = "filter_list"
-GIVEN       = "g"
-SURNAME     = "s"
-RELTYPE     = "d"
 PAD         = 3
 CANVASPAD   = 20
 
 #-------------------------------------------------------------------------
 #
-# Short hand function to return either the person's birthday, or an empty
-# string if the person is None
-#
-#-------------------------------------------------------------------------
-def deathday(person):
-    if person:
-        return person.getDeath().getQuoteDate()
-    else:
-        return ""
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def find_goto_to(person):
-    change_active_person(person)
-    goto_active_person()
-    update_display(0)
-    
-#-------------------------------------------------------------------------
-#
-#
+# Find support
 #
 #-------------------------------------------------------------------------
 def on_find_activate(obj):
+    """Display the find box"""
     Find.Find(person_list,find_goto_to)
+
+def find_goto_to(person):
+    """Find callback to jump to the selected person"""
+    change_active_person(person)
+    goto_active_person()
+    update_display(0)
 
 #-------------------------------------------------------------------------
 #
-#
+# Exiting
 #
 #-------------------------------------------------------------------------
 def delete_event(widget, event):
+    """Catch the destruction of the top window, prompt to save if needed"""
     widget.hide()
-    if utils.wasModified():
-        question = _("Unsaved changes exist in the current database\n") + \
-                   _("Do you wish to save the changes?")
-        topWindow.question(question,save_query)
-    else:    
-        mainquit(widget)
+    on_exit_activate(widget)
     return TRUE
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_exit_activate(obj):
+    """Prompt to save on exit if needed"""
     if utils.wasModified():
         question = _("Unsaved changes exist in the current database\n") + \
                    _("Do you wish to save the changes?")
@@ -197,43 +166,30 @@ def on_exit_activate(obj):
     else:    
         mainquit(obj)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def save_query(value):
+    """Catch the reponse to the save on exit question"""
     if value == 0:
         on_save_activate(None)
     mainquit(gtop)
 
 #-------------------------------------------------------------------------
 #
-# Displays the about box.  Called from Help menu
+# Help
 #
 #-------------------------------------------------------------------------
 def on_about_activate(obj):
+    """Displays the about box.  Called from Help menu"""
     GnomeAbout(const.progName,const.version,const.copyright,
                const.authors,const.comments,const.logo).show()
     
-#-------------------------------------------------------------------------
-#
-# Display the help box
-#
-#-------------------------------------------------------------------------
 def on_contents_activate(obj):
+    """Display the Gramps manual"""
     import gnome.help
-
     gnome.help.display("gramps-manual","index.html")
 
-#-------------------------------------------------------------------------
-#
-# Display the help box
-#
-#-------------------------------------------------------------------------
 def on_writing_extensions_activate(obj):
+    """Display the Extending Gramps manual"""
     import gnome.help
-
     gnome.help.display("extending-gramps","index.html")
     
 #-------------------------------------------------------------------------
@@ -260,11 +216,6 @@ def on_remove_child_clicked(obj):
     utils.modified()
     load_family()
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def delete_family_from(person):
     global active_family
 
@@ -278,52 +229,21 @@ def delete_family_from(person):
 
 #-------------------------------------------------------------------------
 #
-# 
+# Spouse editing callbacks 
 #
 #-------------------------------------------------------------------------
 def on_add_sp_clicked(obj):
-    dialog = libglade.GladeXML(const.gladeFile, "spouseDialog")
-    dialog.get_widget("rel_combo").set_popdown_strings(const.familyRelations)
+    """Add a new spouse to the current person"""
+    import AddSpouse
+    AddSpouse.AddSpouse(database,active_person,load_family,redisplay_person_list)
 
-    rel_type = dialog.get_widget("rel_type")
-    rel_type.set_data("d", dialog.get_widget("spouseList"))
-    rel_type.set_data("x", dialog.get_widget("reldef"))
-
-    top = dialog.get_widget("spouseDialog")
-    top.set_data(RELTYPE,rel_type)
-    top.set_data(GIVEN,dialog.get_widget("given"))
-    top.set_data(SURNAME,dialog.get_widget("surname"))
-
-    # Typing CR selects 'Add Existing' button
-    top.editable_enters(dialog.get_widget("given"))
-    top.editable_enters(dialog.get_widget("surname"))
-
-    dialog.signal_autoconnect({
-        "on_spouseList_select_row" : on_spouse_list_select_row,
-        "on_select_spouse_clicked" : on_select_spouse_clicked,
-        "on_new_spouse_clicked"    : on_new_spouse_clicked,
-        "on_rel_type_changed"      : on_rel_type_changed,
-        "destroy_passed_object"    : utils.destroy_passed_object
-        })
-
-    rel_type.set_text(_("Married"))
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def on_edit_sp_clicked(obj):
+    """Edit the marriage information for the current family"""
     Marriage.Marriage(active_family,database)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def on_delete_sp_clicked(obj):
-    global active_family
-
+    """Delete the currently selected spouse from the family"""
+    
     if active_person == active_family.getFather():
         person = active_family.getMother()
         active_family.setMother(None)
@@ -338,171 +258,90 @@ def on_delete_sp_clicked(obj):
         active_person.removeFamily(active_family)
         database.deleteFamily(active_family)
         if len(active_person.getFamilyList()) > 0:
-            active_family = active_person.getFamilyList()[0]
+            load_family(active_person.getFamilyList()[0])
         else:
-            active_family = None
-
-    load_family()
+            load_family(None)
+    else:
+        load_family()
     utils.modified()
-
 
 #-------------------------------------------------------------------------
 #
-# 
+# Selecting father, mother, or child from Family View
+#
+#-------------------------------------------------------------------------
+def on_mother_next_clicked(obj):
+    """Makes the current mother the active person"""
+    if active_parents:
+        mother = active_parents.getMother()
+        if mother:
+            change_active_person(mother)
+            obj.set_sensitive(1)
+            load_family()
+        else:
+            obj.set_sensitive(0)
+    else:
+        obj.set_sensitive(0)
+
+def on_father_next_clicked(obj):
+    """Makes the current mother the active person"""
+    if active_parents:
+        father = active_parents.getFather()
+        if father:
+            change_active_person(father)
+            obj.set_sensitive(1)
+            load_family()
+        else:
+            obj.set_sensitive(0)
+    else:
+        obj.set_sensitive(0)
+
+def on_fv_prev_clicked(obj):
+    """makes the currently select child the active person"""
+    if active_child:
+        change_active_person(active_child)
+        load_family()
+
+#-------------------------------------------------------------------------
+#
+# Editing children of a marriage
 #
 #-------------------------------------------------------------------------
 def on_add_child_clicked(obj):
+    """Select an existing child to add to the active family"""
     import SelectChild
     SelectChild.SelectChild(database,active_family,active_person,load_family)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def on_add_new_child_clicked(obj):
+    """Create a new child to add to the existing family"""
     import SelectChild
     SelectChild.NewChild(database,active_family,active_person,update_after_newchild)
 
+
 #-------------------------------------------------------------------------
 #
-# 
+# Choosing Parents
 #
 #-------------------------------------------------------------------------
 def on_choose_parents_clicked(obj):
-    global select_mother
-    global select_father
-    global family_window
-
-    if active_parents:
-        select_father = active_parents.getFather()
-        select_mother = active_parents.getMother()
-    else:
-        select_mother = None
-        select_father = None
-
-    family_window = libglade.GladeXML(const.gladeFile,"familyDialog")
-    familyDialog = family_window.get_widget("familyDialog")
-	
-    if active_parents and active_parents == active_person.getMainFamily():
-        family_window.get_widget("mrel").set_text(_("Birth"))
-        family_window.get_widget("frel").set_text(_("Birth"))
-    else:
-        for f in active_person.getAltFamilyList():
-            if f[0] == active_parents:
-                family_window.get_widget("mrel").set_text(_(f[1]))
-                family_window.get_widget("frel").set_text(_(f[2]))
-                break
-        else:
-            family_window.get_widget("mrel").set_text(_("Birth"))
-            family_window.get_widget("frel").set_text(_("Birth"))
-
-    fcombo = family_window.get_widget("prel_combo")
-    prel = family_window.get_widget("prel")
-            
-    prel.set_data("o",family_window)
-    fcombo.set_popdown_strings(const.familyRelations)
-
-    family_window.signal_autoconnect({
-        "on_motherList_select_row" : on_mother_list_select_row,
-        "on_fatherList_select_row" : on_father_list_select_row,
-        "on_save_parents_clicked" : on_save_parents_clicked,
-        "on_addmother_clicked" : on_addmother_clicked,
-        "on_addfather_clicked" : on_addfather_clicked,
-        "on_prel_changed" : on_prel_changed,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-
-    text = _("Choose the Parents of %s") % Config.nameof(active_person)
-    family_window.get_widget("chooseTitle").set_text(text)
-    if active_parents:
-        prel.set_text(active_parents.getRelationship())
-    else:
-        on_prel_changed(prel)
-    familyDialog.show()
+    import ChooseParents
+    ChooseParents.ChooseParents(database,active_person,active_parents,load_family)
     
 #-------------------------------------------------------------------------
 #
-# 
-#
-#-------------------------------------------------------------------------
-def on_prel_changed(obj):
-
-    family_window = obj.get_data("o")
-    type = obj.get_text()
-
-    fatherName = family_window.get_widget("fatherName")
-    fatherName.set_text(Config.nameof(select_father))
-    motherName = family_window.get_widget("motherName")
-    motherName.set_text(Config.nameof(select_mother))
-
-    father_list = family_window.get_widget("fatherList")
-    mother_list = family_window.get_widget("motherList")
-
-    father_list.freeze()
-    mother_list.freeze()
-    father_list.clear()
-    mother_list.clear()
-
-    father_list.append(["Unknown",""])
-    father_list.set_row_data(0,None)
-    father_list.set_data("father_text",fatherName)
-
-    mother_list.append(["Unknown",""])
-    mother_list.set_row_data(0,None)
-    mother_list.set_data("mother_text",motherName)
-
-    people = database.getPersonMap().values()
-    people.sort(sort.by_last_name)
-    father_index = 1
-    mother_index = 1
-    for person in people:
-        if person == active_person or person.getGender() == Person.unknown:
-            continue
-        elif type == "Partners":
-            father_list.append([utils.phonebook_name(person),utils.birthday(person)])
-            father_list.set_row_data(father_index,person)
-            father_index = father_index + 1
-            mother_list.append([utils.phonebook_name(person),utils.birthday(person)])
-            mother_list.set_row_data(mother_index,person)
-            mother_index = mother_index + 1
-        elif person.getGender() == Person.male:
-            father_list.append([utils.phonebook_name(person),utils.birthday(person)])
-            father_list.set_row_data(father_index,person)
-            father_index = father_index + 1
-        else:
-            mother_list.append([utils.phonebook_name(person),utils.birthday(person)])
-            mother_list.set_row_data(mother_index,person)
-            mother_index = mother_index + 1
-
-    if type == "Partners":
-        family_window.get_widget("mlabel").set_text(_("Parent"))
-        family_window.get_widget("flabel").set_text(_("Parent"))
-    else:
-        family_window.get_widget("mlabel").set_text(_("Mother"))
-        family_window.get_widget("flabel").set_text(_("Father"))
-
-    mother_list.thaw()
-    father_list.thaw()
-
-#-------------------------------------------------------------------------
-#
-# 
+# Creating a new database
 #
 #-------------------------------------------------------------------------
 def on_new_clicked(obj):
+    """Prompt for permission to close the current database"""
     msg = _("Do you want to close the current database and create a new one?")
     topWindow.question(msg,new_database_response)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def new_database_response(val):
+    """Clear out the database if permission was granted"""
     global active_person, active_father
     global active_family, active_mother
-    global active_child, select_father, select_mother
+    global active_child
     global id2col,alt2col,person_list
 
     if val == 1:
@@ -521,8 +360,6 @@ def new_database_response(val):
     active_family = None
     active_mother = None
     active_child  = None
-    select_father = None
-    select_mother = None
     id2col        = {}
     alt2col       = {}
 
@@ -546,10 +383,11 @@ def tool_callback(val):
         
 #-------------------------------------------------------------------------
 #
-# 
+# Update the display
 #
 #-------------------------------------------------------------------------
 def full_update():
+    """Brute force display update, updating all the pages"""
     global id2col
     global alt2col
     
@@ -567,12 +405,8 @@ def full_update():
     load_canvas()
     load_media()
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def update_display(changed):
+    """Incremental display update, update only the displayed page"""
     page = notebook.get_current_page()
     if page == 0:
         if changed:
@@ -919,268 +753,23 @@ def save_file(filename,comment):
 
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-def find_family(father,mother):
-
-    if not father and not mother:
-        return None
-	
-    families = database.getFamilyMap().values()
-    for family in families:
-        if family.getFather() == father and family.getMother() == mother:
-            return family
-        elif family.getFather() == mother and family.getMother() == father:
-            return family
-
-    family = database.newFamily()
-    family.setFather(father)
-    family.setMother(mother)
-    
-    if father:
-        father.addFamily(family)
-
-    if mother:
-        mother.addFamily(family)
-
-    return family
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def change_family_type(family,mrel,frel):
-
-    is_main = (mrel == "Birth") and (frel == "Birth")
-    
-    if not family:
-        if is_main:
-            main = active_person.getMainFamily()
-            if main:
-                main.removeChild(active_person)
-            active_person.setMainFamily(None)
-        else:
-            for fam in active_person.getAltFamilyList():
-                if is_main:
-                    active_person.removeAltFamily(fam[0])
-                    fam.removeChild(active_person)
-                    return
-    elif family == active_person.getMainFamily():
-        family.addChild(active_person)
-        if not is_main:
-            utils.modified()
-            active_person.setMainFamily(None)
-            for fam in active_person.getAltFamilyList():
-                if fam[0] == family:
-                    fam[1] = type
-                    break
-                elif fam[1] == type:
-                    fam[0] = family
-                    break
-            else:
-                active_person.addAltFamily(family,mrel,frel)
-    else:
-        family.addChild(active_person)
-        for fam in active_person.getAltFamilyList():
-            if family == fam[0]:
-                if is_main:
-                    active_person.setMainFamily(family)
-                    active_person.removeAltFamily(family)
-                    utils.modified()
-                    break
-                if mrel == fam[1] and frel == fam[2]:
-                    break
-                if mrel != fam[1] or frel != fam[2]:
-                    active_person.removeAltFamily(family)
-                    active_person.addAltFamily(family,mrel,frel)
-                    utils.modified()
-                    break
-        else:
-            if is_main:
-                active_person.setMainFamily(family)
-            else:
-                active_person.addAltFamily(family,mrel,frel)
-        utils.modified()
-                
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_save_parents_clicked(obj):
-    global active_father
-    global active_mother
-    global active_family
-    global select_mother
-    global select_father
-
-    mrel = family_window.get_widget("mrel").get_text()
-    frel = family_window.get_widget("frel").get_text()
-    type = family_window.get_widget("prel").get_text()
-
-    mrel = const.childRelations[mrel]
-    frel = const.childRelations[frel]
-    type = const.save_frel(type)
-    
-    if select_father or select_mother:
-        if select_mother and not select_father:
-            if select_mother.getGender() == Person.male:
-                select_father = select_mother
-                select_mother = None
-            family = find_family(select_father,select_mother)
-        elif select_father and not select_mother: 
-            if select_father.getGender() == Person.female:
-                select_mother = select_father
-                select_father = None
-            family = find_family(select_father,select_mother)
-        elif select_mother.getGender() != select_father.getGender():
-            if type == "Partners":
-                type = "Unknown"
-            if select_father.getGender() == Person.female:
-                x = select_father
-                select_father = select_mother
-                select_mother = x
-            family = find_family(select_father,select_mother)
-        else:
-            type = "Partners"
-            family = find_family(select_father,select_mother)
-    else:    
-        family = None
-
-    active_mother = select_mother
-    active_father = select_father
-    active_family = family
-
-    utils.destroy_passed_object(obj)
-    if family:
-        family.setRelationship(type)
-
-    change_family_type(family,mrel,frel)
-    load_family()
-	
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_select_spouse_clicked(obj):
-    global active_spouse
-    global select_spouse
-    global active_family
-
-    # check to make sure that the person is not already listed as a
-    # spouse
-    
-    for f in active_person.getFamilyList():
-        if select_spouse == f.getMother() or select_spouse == f.getFather():
-            utils.destroy_passed_object(obj)
-            return
-
-    utils.modified()
-    active_spouse = select_spouse
-
-    family = database.newFamily()
-    active_family = family
-
-    active_person.addFamily(family)
-    select_spouse.addFamily(family)
-
-    if active_person.getGender() == Person.male:
-        family.setMother(select_spouse)
-        family.setFather(active_person)
-    else:	
-        family.setFather(select_spouse)
-        family.setMother(active_person)
-
-    family.setRelationship(const.save_frel(obj.get_data("d").get_text()))
-
-    select_spouse = None
-    utils.destroy_passed_object(obj)
-
-    load_family()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_new_spouse_clicked(obj):
-    global active_spouse
-    global select_spouse
-    global active_family
-
-    select_spouse = Person()
-    database.addPerson(select_spouse)
-    name = Name()
-    select_spouse.setPrimaryName(name)
-    name.setSurname(string.strip(obj.get_data(SURNAME).get_text()))
-    name.setFirstName(string.strip(obj.get_data(GIVEN).get_text()))
-
-    reltype = const.save_frel(obj.get_data(RELTYPE).get_text())
-    if reltype == "Partners":
-        select_spouse.setGender(active_person.getGender())
-    else:
-        if active_person.getGender() == Person.male:
-            select_spouse.setGender(Person.female)
-        else:
-            select_spouse.setGender(Person.male)
-
-    utils.modified()
-    active_spouse = select_spouse
-
-    family = database.newFamily()
-    active_family = family
-
-    active_person.addFamily(family)
-    select_spouse.addFamily(family)
-
-    if active_person.getGender() == Person.male:
-        family.setMother(select_spouse)
-        family.setFather(active_person)
-    else:	
-        family.setFather(select_spouse)
-        family.setMother(active_person)
-
-    family.setRelationship(const.save_frel(obj.get_data("d").get_text()))
-
-    select_spouse = None
-    utils.destroy_passed_object(obj)
-
-    redisplay_person_list(active_spouse)
-    load_family()
-
-#-------------------------------------------------------------------------
-#
-#
+# Edit Person window for specified people
 #
 #-------------------------------------------------------------------------
 def load_active_person(obj):
+    """Display the active person in the EditPerson display"""
     load_person(active_person)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_edit_spouse_clicked(obj):
+    """Display the active spouse in the EditPerson display"""
     load_person(active_spouse)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_edit_mother_clicked(obj):
+    """Display the active mother in the EditPerson display"""
     load_person(active_mother)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_edit_father_clicked(obj):
+    """Display the active father in the EditPerson display"""
     load_person(active_father)
 
 #-------------------------------------------------------------------------
@@ -1193,56 +782,9 @@ def load_new_person(obj):
     active_person = Person()
     EditPerson.EditPerson(active_person,database,new_after_edit)
 
-def on_addfather_clicked(obj):
-    xml = libglade.GladeXML(const.gladeFile,"addperson")
-    top = xml.get_widget("addperson")
-    xml.get_widget("male").set_active(1)
-    xml.signal_autoconnect({
-        "on_addfather_close": on_addparent_close,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-    top.set_data("o",obj)
-    top.set_data("xml",xml)
-
-def on_addmother_clicked(obj):
-    xml = libglade.GladeXML(const.gladeFile,"addperson")
-    top = xml.get_widget("addperson")
-    xml.get_widget("female").set_active(1)
-    xml.signal_autoconnect({
-        "on_addfather_close": on_addparent_close,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-    top.set_data("o",obj)
-    top.set_data("xml",xml)
-
-def on_addparent_close(obj):
-    global select_father
-    global select_mother
-    
-    prel = obj.get_data("o")
-    xml = obj.get_data("xml")
-    surname = xml.get_widget("surname").get_text()
-    given = xml.get_widget("given").get_text()
-    person = Person()
-    database.addPerson(person)
-    name = Name()
-    name.setSurname(surname)
-    name.setFirstName(given)
-    person.setPrimaryName(name)
-    if xml.get_widget("male").get_active():
-        person.setGender(Person.male)
-        select_father = person
-    else:
-        person.setGender(Person.female)
-        select_mother = person
-    utils.modified()
-    
-    on_prel_changed(prel)
-    utils.destroy_passed_object(obj)
-
 #-------------------------------------------------------------------------
 #
-#
+# Deleting a person
 #
 #-------------------------------------------------------------------------
 def on_delete_person_clicked(obj):
@@ -1250,11 +792,6 @@ def on_delete_person_clicked(obj):
         msg = _("Do you really wish to delete %s?") % Config.nameof(active_person)
         topWindow.question( msg, delete_person_response)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def delete_person_response(val):
     if val == 1:
         return
@@ -1309,39 +846,6 @@ def remove_from_person_list(person):
             (active_person,alt) = person_list.get_row_data(row)
     person_list.thaw()
     
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_rel_type_changed(obj):
-
-    nameList = database.getPersonMap().values()
-    nameList.sort(sort.by_last_name)
-    spouse_list = obj.get_data("d")
-    spouse_list.clear()
-    spouse_list.freeze()
-    deftxt = obj.get_data("x")
-    text = obj.get_text()
-
-    deftxt.set_text(const.relationship_def(text))
-    
-    gender = active_person.getGender()
-    if text == _("Partners"):
-        if gender == Person.male:
-            gender = Person.female
-        else:
-            gender = Person.male
-	
-    index = 0
-    for person in nameList:
-        if person.getGender() == gender:
-            continue
-        spouse_list.append([person.getPrimaryName().getName(),utils.birthday(person)])
-        spouse_list.set_row_data(index,person)
-        index = index + 1
-    spouse_list.thaw()
-
 #-------------------------------------------------------------------------
 #
 #
@@ -1451,28 +955,6 @@ def sort_person_list():
 #
 #
 #-------------------------------------------------------------------------
-def on_father_list_select_row(obj,a,b,c):
-    global select_father
-	
-    select_father = obj.get_row_data(a)
-    obj.get_data("father_text").set_text(Config.nameof(select_father))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_mother_list_select_row(obj,a,b,c):
-    global select_mother
-
-    select_mother = obj.get_row_data(a)
-    obj.get_data("mother_text").set_text(Config.nameof(select_mother))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_child_list_button_press_event(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
         load_person(active_child)
@@ -1486,6 +968,25 @@ def on_person_list_button_press(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
         load_person(active_person)
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def goto_active_person():
+    if id2col.has_key(active_person):
+        pos = id2col[active_person]
+        column = person_list.find_row_from_data(pos)
+        if column != -1:
+            person_list.select_row(column,0)
+            person_list.moveto(column)
+    else:
+        if person_list.rows > 0:
+            person_list.select_row(0,0)
+            person_list.moveto(0)
+            person,alt = person_list.get_row_data(0)
+            change_active_person(person)	
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -1527,15 +1028,6 @@ def modify_statusbar():
 def on_child_list_select_row(obj,row,b,c):
     global active_child
     active_child = obj.get_row_data(row)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_spouse_list_select_row(obj,row,b,c):
-    global select_spouse
-    select_spouse = obj.get_row_data(row)
 
 #-------------------------------------------------------------------------
 #
@@ -1661,7 +1153,6 @@ def on_child_list_row_move(clist,fm,to):
     # Need to save the changed order
     utils.modified()
 
-
 def on_open_activate(obj):
     wFs = libglade.GladeXML(const.gladeFile, "dbopen")
     wFs.signal_autoconnect({
@@ -1711,7 +1202,7 @@ def revert_query(value):
 
 #-------------------------------------------------------------------------
 #
-#
+# Save the file
 #
 #-------------------------------------------------------------------------
 def on_save_as_activate(obj):
@@ -1736,22 +1227,14 @@ def on_save_activate(obj):
 
 def display_comment_box(filename):
     """Displays a dialog box, prompting for a revison control comment"""
-    top = libglade.GladeXML(const.gladeFile,"revcom")
-    rc = top.get_widget("revcom")
-    tbox = top.get_widget("text")
+    import VersionControl
+    VersionControl.RevisionComment(filename,save_file)
     
-    rc.editable_enters(tbox)
-    rc.set_data("f",filename)
-    rc.set_data("t",tbox)
-    top.signal_autoconnect({
-        "on_savecomment_clicked" : on_savecomment_clicked,
-        })
-
-def on_savecomment_clicked(obj):
-    """Saves the database, passing the revison control comment to the save routine"""
-    save_file(obj.get_data("f"),obj.get_data("t").get_text())
-    utils.destroy_passed_object(obj)
-    
+#-------------------------------------------------------------------------
+#
+# Callbacks for the menu selections to change the view
+# 
+#-------------------------------------------------------------------------
 def on_person_list1_activate(obj):
     """Switches to the person list view"""
     notebook.set_page(0)
@@ -1848,14 +1331,7 @@ def on_media_list_select_row(obj,row,b,c):
     type = mobj.getMimeType()
     type_name = utils.get_mime_description(type)
     path = mobj.getPath()
-    if type[0:5] == "image":
-        dir = os.path.dirname(path)
-        src = os.path.basename(path)
-        thumb = "%s%s.thumb%s%s.jpg" % (dir,os.sep,os.sep,src)
-        RelImage.check_thumb(path,thumb,const.thumbScale)
-        preview.load_file(thumb)
-    else:
-        preview.load_file(utils.find_icon(type))
+    preview.load_file(utils.thumb_path(database.getSavePath(),mobj))
                           
     mid.set_text(mobj.getId())
     mtype.set_text(type_name)
@@ -1902,80 +1378,6 @@ def load_media():
         media_list.moveto(current_row)
 
     media_list.thaw()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_arrow_left_clicked(obj):
-    if active_person:
-        myMenu = GtkMenu()
-        for family in active_person.getFamilyList():
-            for child in family.getChildList():
-                menuitem = GtkMenuItem(Config.nameof(child))
-                myMenu.append(menuitem)
-                menuitem.set_data("person",child)
-                menuitem.connect("activate",on_childmenu_changed)
-                menuitem.show()
-        myMenu.popup(None,None,None,0,0)
-    return 1
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_childmenu_changed(obj):
-    person = obj.get_data("person")
-    if person:
-        change_active_person(person)
-        load_canvas()
-    return 1
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_mother_next_clicked(obj):
-    if active_parents:
-        mother = active_parents.getMother()
-        if mother:
-            change_active_person(mother)
-            obj.set_sensitive(1)
-            load_family()
-        else:
-            obj.set_sensitive(0)
-    else:
-        obj.set_sensitive(0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_father_next_clicked(obj):
-    if active_parents:
-        father = active_parents.getFather()
-        if father:
-            change_active_person(father)
-            obj.set_sensitive(1)
-            load_family()
-        else:
-            obj.set_sensitive(0)
-    else:
-        obj.set_sensitive(0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_fv_prev_clicked(obj):
-    if active_child:
-        change_active_person(active_child)
-        load_family()
 
 #-------------------------------------------------------------------------
 #
@@ -2040,7 +1442,6 @@ def new_after_edit(epo):
         database.addPersonNoMap(epo.person,epo.person.getId())
     change_active_person(epo.person)
     redisplay_person_list(epo.person)
-
 
 #-------------------------------------------------------------------------
 #
@@ -2235,12 +1636,12 @@ def change_parents(family):
     global active_father
     global active_mother
     
-    fn = _("Father")
-    mn = _("Mother")
-
     if active_parents and active_parents.getRelationship() == "Partners":
         fn = _("Parent")
         mn = _("Parent")
+    else:
+        fn = _("Father")
+        mn = _("Mother")
 
     gtop.get_widget("editFather").children()[0].set_text(fn)
     gtop.get_widget("editMother").children()[0].set_text(mn)
@@ -2251,7 +1652,6 @@ def change_parents(family):
     mother_next = gtop.get_widget("mother_next")
     
     if family != None :
-
         active_father = family.getFather()
         if active_father != None :
             fv_father.set_text(Config.nameof(active_father))
@@ -2267,7 +1667,7 @@ def change_parents(family):
         else :
             fv_mother.set_text("")
             mother_next.set_sensitive(0)
-    elif active_person == None :
+    elif active_person == None:
         fv_father.set_text("")
         fv_mother.set_text("")
         mother_next.set_sensitive(0)
@@ -2287,7 +1687,418 @@ def change_parents(family):
 #
 #
 #-------------------------------------------------------------------------
+def display_marriage(family):
+    global active_child
+    global active_family
+    global active_spouse
 
+    active_family = family
+    clist = gtop.get_widget("child_list")
+    fv_prev = gtop.get_widget("fv_prev")
+
+    clist.clear()
+    active_child = None
+
+    i = 0
+    clist.set_sort_type(c_sort_direct)
+    clist.set_sort_column(c_sort_column)
+    clist.set_reorderable(c_sort_column == c_birth_order)
+
+    if family != None:
+        if active_person.getGender() == Person.male:
+            active_spouse = family.getMother()
+        else:
+            active_spouse = family.getFather()
+            
+        child_list = family.getChildList()
+        # List is already sorted by birth date
+        attr = ""
+        for child in child_list:
+            status = _("Unknown")
+            if child.getGender() == Person.male:
+                gender = const.male
+            elif child.getGender() == Person.female:
+                gender = const.female
+            else:
+                gender = const.unknown
+            if child.getMainFamily() == family:
+                status = _("Birth")
+            else:
+                for fam in child.getAltFamilyList():
+                    if fam[0] == family:
+                        if active_person == family.getFather():
+                            status = "%s/%s" % (_(fam[2]),_(fam[1]))
+                        else:
+                            status = "%s/%s" % (_(fam[1]),_(fam[2]))
+
+            if Config.show_detail:
+                attr = ""
+                if child.getNote() != "":
+                    attr = attr + "N"
+                if len(child.getEventList())>0:
+                    attr = attr + "E"
+                if len(child.getAttributeList())>0:
+                    attr = attr + "A"
+                if len(child.getFamilyList()) > 0:
+                    for f in child.getFamilyList():
+                        if f.getFather() and f.getMother():
+                            attr = attr + "M"
+                            break
+                if len(child.getPhotoList()) > 0:
+                    attr = attr + "P"
+
+            clist.append([Config.nameof(child),child.getId(),\
+                          gender,utils.birthday(child),status,attr,"%2d"%i])
+            clist.set_row_data(i,child)
+            i=i+1
+            if i != 0:
+                fv_prev.set_sensitive(1)
+                clist.select_row(0,0)
+            else:	
+                fv_prev.set_sensitive(0)
+        clist.set_data("f",family)
+        clist.sort()
+    else:
+        fv_prev.set_sensitive(0)
+		
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def load_progress(value):
+    statusbar.set_progress(value)
+    while events_pending():
+        mainiteration()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def post_load(name):
+    global active_person
+
+    database.setSavePath(name)
+    res = database.getResearcher()
+    if res.getName() == "" and Config.owner.getName() != "":
+        database.setResearcher(Config.owner)
+        utils.modified()
+
+    setup_bookmarks()
+
+    mylist = database.getPersonEventTypes()
+    for type in mylist:
+        ntype = const.display_pevent(type)
+        if ntype not in const.personalEvents:
+            const.personalEvents.append(ntype)
+
+    mylist = database.getFamilyEventTypes()
+    for type in mylist:
+        ntype = const.display_fevent(type)
+        if ntype not in const.marriageEvents:
+            const.marriageEvents.append(ntype)
+
+    mylist = database.getPersonAttributeTypes()
+    for type in mylist:
+        ntype = const.display_pattr(type)
+        if ntype not in const.personalAttributes:
+            const.personalAttributes.append(ntype)
+
+    mylist = database.getFamilyAttributeTypes()
+    for type in mylist:
+        if type not in const.familyAttributes:
+            const.familyAttributes.append(type)
+
+    mylist = database.getFamilyRelationTypes()
+    for type in mylist:
+        if type not in const.familyRelations:
+            const.familyRelations.append(type)
+
+    Config.save_last_file(name)
+    gtop.get_widget("filter").set_text("")
+    
+    person = database.getDefaultPerson()
+    if person:
+        active_person = person
+    return 1
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def load_database(name):
+    filename = "%s/%s" % (name,const.indexFile)
+    if ReadXML.loadData(database,filename,load_progress) == 0:
+        return 0
+    return post_load(name)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def load_revision(f,name,revision):
+    filename = "%s/%s" % (name,const.indexFile)
+    if ReadXML.loadRevision(database,f,filename,revision,load_progress) == 0:
+        return 0
+    return post_load(name)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def setup_bookmarks():
+    global bookmarks
+    bookmarks = Bookmarks.Bookmarks(database.getBookmarks(),
+                                    gtop.get_widget("jump_to"),
+                                    bookmark_callback)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def displayError(msg):
+    topWindow.error(msg)
+    statusbar.set_status("")
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def apply_filter():
+    global id2col
+    global alt2col
+    
+    person_list.freeze()
+    datacomp = DataFilter.compare
+    gname = utils.phonebook_from_name
+
+    person_list.set_column_visibility(1,Config.id_visible)
+    new_alt2col = {}
+    
+    for person in database.getPersonMap().values():
+        if datacomp(person):
+            if id2col.has_key(person):
+                new_alt2col[person] = alt2col[person]
+                continue
+            pos = (person,0)
+            id2col[person] = pos
+            new_alt2col[person] = []
+
+            if person.getGender() == Person.male:
+                gender = const.male
+            elif person.getGender() == Person.female:
+                gender = const.female
+            else:
+                gender = const.unknown
+
+            bday = person.getBirth().getDateObj()
+            dday = person.getDeath().getDateObj()
+            sort_bday = sort.build_sort_birth(bday)
+            sort_dday = sort.build_sort_death(dday)
+            qbday = bday.getQuoteDate()
+            qdday = dday.getQuoteDate()
+            pid = person.getId()
+            bsn = sort.build_sort_name
+
+            name = person.getPrimaryName()
+            person_list.insert(0,[gname(name,0), pid, gender, qbday, qdday,
+                                  bsn(name), sort_bday, sort_dday])
+            person_list.set_row_data(0,pos)
+
+            if Config.hide_altnames:
+                continue
+                
+            for name in person.getAlternateNames():
+                pos = (person,1)
+                new_alt2col[person].append(pos)
+
+                person_list.insert(0,[gname(name,1), pid, gender, qbday, qdday,
+                                      bsn(name), sort_bday, sort_dday])
+                person_list.set_row_data(0,pos)
+                    
+        else:
+            if id2col.has_key(person):
+                pid = id2col[person]
+                del id2col[person]
+
+                for id in [pid] + alt2col[person]:
+                    row = person_list.find_row_from_data(id)
+                    person_list.remove(row)
+
+    alt2col = new_alt2col
+    person_list.thaw()
+    sort_person_list()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_home_clicked(obj):
+    temp = database.getDefaultPerson()
+    if temp:
+        change_active_person(temp)
+        update_display(0)
+    else:
+        topWindow.error(_("No default/home person has been set"))
+
+#-------------------------------------------------------------------------
+#
+# Bookmark interface
+#
+#-------------------------------------------------------------------------
+def on_add_bookmark_activate(obj):
+    bookmarks.add(active_person)
+
+def on_edit_bookmarks_activate(obj):
+    bookmarks.edit()
+        
+def bookmark_callback(obj,person):
+    change_active_person(person)
+    update_display(0)
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_default_person_activate(obj):
+    if active_person:
+        name = active_person.getPrimaryName().getRegularName()
+        msg = _("Do you wish to set %s as the home person?") % name
+        topWindow.question(msg,set_person)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def set_person(value):
+    if not value:
+        database.setDefaultPerson(active_person)
+        utils.modified()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_current_type_changed(obj):
+    global active_parents
+    
+    active_parents = obj.get_data("parents")
+    change_parents(active_parents)
+
+#-------------------------------------------------------------------------
+#
+# Import/Export function callbacks
+#
+#-------------------------------------------------------------------------
+def export_callback(obj,plugin_function):
+    """Call the export plugin, with the active person and database"""
+    if active_person:
+        plugin_function(database,active_person)
+
+def import_callback(obj,plugin_function):
+    """Call the import plugin"""
+    plugin_function(database,active_person,tool_callback)
+    topWindow.set_title("Gramps - " + database.getSavePath())
+
+#-------------------------------------------------------------------------
+#
+# Call up the preferences dialog box
+#
+#-------------------------------------------------------------------------
+def on_preferences_activate(obj):
+    Config.display_preferences_box()
+    
+#-------------------------------------------------------------------------
+#
+# Report and tool callbacks from pull down menus
+#
+#-------------------------------------------------------------------------
+def menu_report(obj,task):
+    """Call the report plugin selected from the menus"""
+    if active_person:
+        task(database,active_person)
+
+def menu_tools(obj,task):
+    """Call the tool plugin selected from the menus"""
+    if active_person:
+        task(database,active_person,tool_callback)
+    
+#-------------------------------------------------------------------------
+#
+# Person list keypress events
+#
+#-------------------------------------------------------------------------
+def on_main_key_release_event(obj,event):
+    """Respond to the insert and delete buttons in the person list"""
+    if event.keyval == GDK.Delete:
+        on_delete_person_clicked(obj)
+    elif event.keyval == GDK.Insert:
+        load_new_person(obj)
+    
+#-------------------------------------------------------------------------
+#
+# Basic media list callbacks
+#
+#-------------------------------------------------------------------------
+def create_add_dialog(obj):
+    """Add a new media object to the media list"""
+    import AddMedia
+    AddMedia.AddMediaObject(database,load_media)
+
+def on_edit_media_clicked(obj):
+    """Edit the properties of an existing media object in the media list"""
+    if len(media_list.selection) <= 0:
+        return
+    object = media_list.get_row_data(media_list.selection[0])
+    ImageSelect.GlobalMediaProperties(object,database.getSavePath())
+    
+#-------------------------------------------------------------------------
+#
+# Drag and drop media list callbacks
+#
+#-------------------------------------------------------------------------
+def on_media_list_drag_data_get(w, context, selection_data, info, time):
+    if info == 1:
+        return
+    if len(w.selection) > 0:
+        row = w.selection[0]
+        d = w.get_row_data(row)
+        id = d.getId()
+        selection_data.set(selection_data.target, 8, id)	
+
+def on_media_list_drag_data_received(w, context, x, y, data, info, time):
+    if data and data.format == 8:
+        d = string.strip(string.replace(data.data,'\0',' '))
+        if d[0:5] == "file:":
+            name = d[5:]
+            mime = utils.get_mime_type(name)
+            photo = Photo()
+            photo.setPath(name)
+            photo.setMimeType(mime)
+            description = os.path.basename(name)
+            photo.setDescription(description)
+            database.addObject(photo)
+            utils.modified()
+            w.drag_finish(context, TRUE, FALSE, time)
+            load_media()
+        else:
+            w.drag_finish(context, FALSE, FALSE, time)
+
+#-------------------------------------------------------------------------
+#
+# Create the list of ancestors for the pedigree chart
+#
+#-------------------------------------------------------------------------
 def find_tree(person,index,depth,list,val=0):
 
     if depth > 5 or person == None:
@@ -2298,16 +2109,9 @@ def find_tree(person,index,depth,list,val=0):
     if family == None:
         l = person.getAltFamilyList()
         if len(l) > 0:
-            f = l[0]
-            family = f[0]
-            if f[1] == "Birth":
-                mrel = 0
-            else:
-                mrel = 1
-            if f[2] == "Birth":
-                frel = 0
-            else:
-                frel = 1
+            (family,m,f) = l[0]
+            mrel = (m != "Birth")
+            frel = (f != "Birth")
             
     list[index] = (person,val)
     if family != None:
@@ -2320,7 +2124,7 @@ def find_tree(person,index,depth,list,val=0):
 
 #-------------------------------------------------------------------------
 #
-#
+# Draw the pedigree chart
 #
 #-------------------------------------------------------------------------
 canvas_items = []
@@ -2376,37 +2180,34 @@ def load_canvas():
 
     childcnt = 0
     for family in active_person.getFamilyList():
-        for child in family.getChildList():
-            childcnt = 1
+        if len(family.getChildList()) > 0:
+            a = GtkArrow(at=GTK.ARROW_LEFT)
+            cnv_button = GtkButton()
+            cnv_button.add(a)
+            a.show()
+            cnv_button.connect("clicked",on_arrow_left_clicked)
+
+            cnv_button.show()
+            item = root.add("widget",
+                            widget=cnv_button,
+                            x=cx1,
+                            y=ypts[0]+(h/2.0), 
+                            height=h,
+                            width=h,
+                            size_pixels=1,
+                            anchor=GTK.ANCHOR_WEST)
+            canvas_items = [item, cnv_button, a]
             break
-
-    if childcnt != 0:
-        a = GtkArrow(at=GTK.ARROW_LEFT)
-        cnv_button = GtkButton()
-        cnv_button.add(a)
-        a.show()
-        cnv_button.connect("clicked",on_arrow_left_clicked)
-
-        cnv_button.show()
-        item = root.add("widget",
-                        widget=cnv_button,
-                        x=cx1,
-                        y=ypts[0]+(h/2.0), 
-                        height=h,
-                        width=h,
-                        size_pixels=1,
-                        anchor=GTK.ANCHOR_WEST)
-        canvas_items = [item, cnv_button, a]
     else:
         canvas_items = []
 
     if list[1]:
         p = list[1]
-        l = add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[1],h)
+        add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[1],h)
         
     if list[2]:
         p = list[2]
-        l = add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[2],h)
+        add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[2],h)
 
     for i in range(gen):
         if list[i]:
@@ -2425,6 +2226,36 @@ def load_canvas():
             add_box(root,xpts[i],ypts[i],w,h,p[0],style)
 
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_arrow_left_clicked(obj):
+    if active_person:
+        myMenu = GtkMenu()
+        for family in active_person.getFamilyList():
+            for child in family.getChildList():
+                menuitem = GtkMenuItem(Config.nameof(child))
+                myMenu.append(menuitem)
+                menuitem.set_data("person",child)
+                menuitem.connect("activate",on_childmenu_changed)
+                menuitem.show()
+        myMenu.popup(None,None,None,0,0)
+    return 1
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_childmenu_changed(obj):
+    person = obj.get_data("person")
+    if person:
+        change_active_person(person)
+        load_canvas()
+    return 1
+    
 def add_parent_button(root,item_list,parent,x,y,h):
     a = GtkArrow(at=GTK.ARROW_RIGHT)
     cnv_button = GtkButton()
@@ -2605,436 +2436,23 @@ def line_event(obj,event):
 #
 #
 #-------------------------------------------------------------------------
-def display_marriage(family):
-    global active_child
-    global active_family
-    global active_spouse
+ox1 = 0
+ox2 = 0
+oy1 = 0
+oy2 = 0
 
-    active_family = family
-    clist = gtop.get_widget("child_list")
-    fv_prev = gtop.get_widget("fv_prev")
+def on_canvas1_event(obj,event):
+    global ox1,ox2,oy1,oy2
 
-    clist.clear()
-    active_child = None
-
-    i = 0
-    clist.set_sort_type(c_sort_direct)
-    clist.set_sort_column(c_sort_column)
-    clist.set_reorderable(c_sort_column == c_birth_order)
-
-    if family != None:
-        if active_person.getGender() == Person.male:
-            active_spouse = family.getMother()
-        else:
-            active_spouse = family.getFather()
-            
-        child_list = family.getChildList()
-        # List is already sorted by birth date
-        attr = ""
-        for child in child_list:
-            status = _("Unknown")
-            if child.getGender() == Person.male:
-                gender = const.male
-            elif child.getGender() == Person.female:
-                gender = const.female
-            else:
-                gender = const.unknown
-            if child.getMainFamily() == family:
-                status = _("Birth")
-            else:
-                for fam in child.getAltFamilyList():
-                    if fam[0] == family:
-                        if active_person == family.getFather():
-                            status = "%s/%s" % (_(fam[2]),_(fam[1]))
-                        else:
-                            status = "%s/%s" % (_(fam[1]),_(fam[2]))
-
-            if Config.show_detail:
-                attr = ""
-                if child.getNote() != "":
-                    attr = attr + "N"
-                if len(child.getEventList())>0:
-                    attr = attr + "E"
-                if len(child.getAttributeList())>0:
-                    attr = attr + "A"
-                if len(child.getFamilyList()) > 0:
-                    for f in child.getFamilyList():
-                        if f.getFather() and f.getMother():
-                            attr = attr + "M"
-                            break
-                if len(child.getPhotoList()) > 0:
-                    attr = attr + "P"
-
-            clist.append([Config.nameof(child),child.getId(),\
-                          gender,utils.birthday(child),status,attr,"%2d"%i])
-            clist.set_row_data(i,child)
-            i=i+1
-            if i != 0:
-                fv_prev.set_sensitive(1)
-                clist.select_row(0,0)
-            else:	
-                fv_prev.set_sensitive(0)
-        clist.set_data("f",family)
-        clist.sort()
-    else:
-        fv_prev.set_sensitive(0)
-		
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def load_progress(value):
-    statusbar.set_progress(value)
-    while events_pending():
-        mainiteration()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def post_load(name):
-    global active_person
-
-    database.setSavePath(name)
-    res = database.getResearcher()
-    if res.getName() == "" and Config.owner.getName() != "":
-        database.setResearcher(Config.owner)
-        utils.modified()
-
-    setup_bookmarks()
-
-    mylist = database.getPersonEventTypes()
-    for type in mylist:
-        ntype = const.display_pevent(type)
-        if ntype not in const.personalEvents:
-            const.personalEvents.append(ntype)
-
-    mylist = database.getFamilyEventTypes()
-    for type in mylist:
-        ntype = const.display_fevent(type)
-        if ntype not in const.marriageEvents:
-            const.marriageEvents.append(ntype)
-
-    mylist = database.getPersonAttributeTypes()
-    for type in mylist:
-        ntype = const.display_pattr(type)
-        if ntype not in const.personalAttributes:
-            const.personalAttributes.append(ntype)
-
-    mylist = database.getFamilyAttributeTypes()
-    for type in mylist:
-        if type not in const.familyAttributes:
-            const.familyAttributes.append(type)
-
-    mylist = database.getFamilyRelationTypes()
-    for type in mylist:
-        if type not in const.familyRelations:
-            const.familyRelations.append(type)
-
-    Config.save_last_file(name)
-    gtop.get_widget("filter").set_text("")
-    
-    person = database.getDefaultPerson()
-    if person:
-        active_person = person
-    return 1
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def load_database(name):
-	
-    filename = "%s/%s" % (name,const.indexFile)
-    if ReadXML.loadData(database,filename,load_progress) == 0:
-        return 0
-    return post_load(name)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def load_revision(f,name,revision):
-
-    filename = "%s/%s" % (name,const.indexFile)
-    if ReadXML.loadRevision(database,f,filename,revision,load_progress) == 0:
-        return 0
-    return post_load(name)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def setup_bookmarks():
-    global bookmarks
-    bookmarks = Bookmarks.Bookmarks(database.getBookmarks(),
-                                    gtop.get_widget("jump_to"),
-                                    bookmark_callback)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def displayError(msg):
-    topWindow.error(msg)
-    statusbar.set_status("")
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def apply_filter():
-    global id2col
-    global alt2col
-    
-    person_list.freeze()
-    datacomp = DataFilter.compare
-    gname = utils.phonebook_from_name
-
-    person_list.set_column_visibility(1,Config.id_visible)
-    new_alt2col = {}
-    
-    for person in database.getPersonMap().values():
-        if datacomp(person):
-            if id2col.has_key(person):
-                new_alt2col[person] = alt2col[person]
-                continue
-            pos = (person,0)
-            id2col[person] = pos
-            new_alt2col[person] = []
-
-            if person.getGender() == Person.male:
-                gender = const.male
-            elif person.getGender() == Person.female:
-                gender = const.female
-            else:
-                gender = const.unknown
-
-            bday = person.getBirth().getDateObj()
-            dday = person.getDeath().getDateObj()
-            sort_bday = sort.build_sort_birth(bday)
-            sort_dday = sort.build_sort_death(dday)
-            qbday = bday.getQuoteDate()
-            qdday = dday.getQuoteDate()
-            pid = person.getId()
-            bsn = sort.build_sort_name
-
-            name = person.getPrimaryName()
-            person_list.insert(0,[gname(name,0), pid, gender, qbday, qdday,
-                                  bsn(name), sort_bday, sort_dday])
-            person_list.set_row_data(0,pos)
-
-            if Config.hide_altnames:
-                continue
-                
-            for name in person.getAlternateNames():
-                pos = (person,1)
-                new_alt2col[person].append(pos)
-
-                person_list.insert(0,[gname(name,1), pid, gender, qbday, qdday,
-                                      bsn(name), sort_bday, sort_dday])
-                person_list.set_row_data(0,pos)
-                    
-        else:
-            if id2col.has_key(person):
-                pid = id2col[person]
-                del id2col[person]
-
-                for id in [pid] + alt2col[person]:
-                    row = person_list.find_row_from_data(id)
-                    person_list.remove(row)
-
-    alt2col = new_alt2col
-    person_list.thaw()
-    sort_person_list()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def goto_active_person():
-    if id2col.has_key(active_person):
-        pos = id2col[active_person]
-        column = person_list.find_row_from_data(pos)
-        if column != -1:
-            person_list.select_row(column,0)
-            person_list.moveto(column)
-    else:
-        if person_list.rows > 0:
-            person_list.select_row(0,0)
-            person_list.moveto(0)
-            person,alt = person_list.get_row_data(0)
-            change_active_person(person)	
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_home_clicked(obj):
-    temp = database.getDefaultPerson()
-    if temp:
-        change_active_person(temp)
-        update_display(0)
-    else:
-        topWindow.error(_("No default/home person has been set"))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_bookmark_activate(obj):
-    bookmarks.add(active_person)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_edit_bookmarks_activate(obj):
-    bookmarks.edit()
-        
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_default_person_activate(obj):
-    if active_person:
-        name = active_person.getPrimaryName().getRegularName()
-        msg = _("Do you wish to set %s as the home person?") % name
-        topWindow.question(msg,set_person)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def set_person(value):
-    if not value:
-        database.setDefaultPerson(active_person)
-        utils.modified()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_current_type_changed(obj):
-    global active_parents
-    
-    active_parents = obj.get_data("parents")
-    change_parents(active_parents)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def export_callback(obj,plugin_function):
-    if active_person:
-        plugin_function(database,active_person)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def import_callback(obj,plugin_function):
-    plugin_function(database,active_person,tool_callback)
-    topWindow.set_title("Gramps - " + database.getSavePath())
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def bookmark_callback(obj,person):
-    change_active_person(person)
-    update_display(0)
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_preferences_activate(obj):
-    Config.display_preferences_box()
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def menu_report(obj,task):
-    if active_person:
-        task(database,active_person)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def menu_tools(obj,task):
-    if active_person:
-        task(database,active_person,tool_callback)
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_main_key_release_event(obj,event):
-    if event.keyval == GDK.Delete:
-        on_delete_person_clicked(obj)
-    elif event.keyval == GDK.Insert:
-        load_new_person(obj)
-    
-def on_media_list_drag_data_get(w, context, selection_data, info, time):
-    if info == 1:
-        return
-    if len(w.selection) > 0:
-        row = w.selection[0]
-        d = w.get_row_data(row)
-        id = d.getId()
-        selection_data.set(selection_data.target, 8, id)	
-
-def create_add_dialog(obj):
-    import AddMedia
-    AddMedia.AddMediaObject(database,load_media)
-
-def on_edit_media_clicked(obj):
-    if len(media_list.selection) <= 0:
-        return
-    object = media_list.get_row_data(media_list.selection[0])
-    ImageSelect.GlobalMediaProperties(object,database.getSavePath())
-    
-def on_media_list_drag_data_received(w, context, x, y, data, info, time):
-    if data and data.format == 8:
-        d = string.strip(string.replace(data.data,'\0',' '))
-        if d[0:5] == "file:":
-            name = d[5:]
-            mime = utils.get_mime_type(name)
-            photo = Photo()
-            photo.setPath(name)
-            photo.setMimeType(mime)
-            description = os.path.basename(name)
-            photo.setDescription(description)
-            database.addObject(photo)
-            utils.modified()
-            w.drag_finish(context, TRUE, FALSE, time)
-            load_media()
-        else:
-            w.drag_finish(context, FALSE, FALSE, time)
+    if event.type == GDK.EXPOSE:
+        cx1,cy1,cx2,cy2 = canvas.get_allocation()
+        if ox1 != cx1 or ox2 != cx2 or oy1 != cy1 or oy2 != cy2:
+            ox1 = cx1
+            ox2 = cx2
+            oy1 = cy1
+            oy2 = cy2
+            load_canvas()
+    return 0
 
 #-------------------------------------------------------------------------
 #
@@ -3197,32 +2615,7 @@ def main(arg):
         read_file(Config.lastfile)
 
     database.setResearcher(Config.owner)
-
     mainloop()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-ox1 = 0
-ox2 = 0
-oy1 = 0
-oy2 = 0
-
-def on_canvas1_event(obj,event):
-    global ox1,ox2,oy1,oy2
-
-    if event.type == GDK.EXPOSE:
-        cx1,cy1,cx2,cy2 = canvas.get_allocation()
-        if ox1 != cx1 or ox2 != cx2 or oy1 != cy1 or oy2 != cy2:
-            ox1 = cx1
-            ox2 = cx2
-            oy1 = cy1
-            oy2 = cy2
-            load_canvas()
-    return 0
-
 
 #-------------------------------------------------------------------------
 #
@@ -3231,4 +2624,3 @@ def on_canvas1_event(obj,event):
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
     main(None)
-    

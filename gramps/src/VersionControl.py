@@ -178,9 +178,9 @@ class RcsVersionControl(VersionControl):
             ofile.close()
         else:
             try:
-                os.link("%s/%s" %(self.wd,name),self.tfile)
+                os.link(name,self.tfile)
             except OSError:
-                shutil.copyfile("%s/%s" %(self.wd,name),self.tfile)
+                shutil.copyfile(name,self.tfile)
 
         proc = popen2.Popen3("ci -u %s" % self.tfile,1)
         proc.tochild.write(comment)

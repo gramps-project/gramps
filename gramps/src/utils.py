@@ -24,6 +24,7 @@ from gnome.ui import *
 import string
 import os
 import const
+import RelImage
 import intl
 
 _ = intl.gettext
@@ -378,3 +379,12 @@ def birthday(person):
         return person.getBirth().getQuoteDate()
     else:
         return ""
+
+def thumb_path(dir,mobj):
+    type = mobj.getMimeType()
+    if type[0:5] == "image":
+        thumb = "%s/.thumb/%s.jpg" % (dir,mobj.getId()) 
+        RelImage.check_thumb(mobj.getPath(),thumb,const.thumbScale)
+        return thumb
+    else:
+        return find_icon(type)
