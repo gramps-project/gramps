@@ -1,3 +1,12 @@
+2003-08-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/PdfDoc.py: Support drawing functions.
+	* src/docgen/PdfDrawDoc.py: remove - all functions integrated into
+	PdfDoc.py
+	* src/DbPrompter.py: change title from "Save" to "Create" when
+	opening a new database, prompt with last database saved.
+	* src/FamilyView.py: don't add columns to the child list if it
+	is already initialized
+
 2003-08-30  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py: Enable context menu for an empty people view. 
 	* src/FamilyView.py: Cleanups for the case of empty database. 
