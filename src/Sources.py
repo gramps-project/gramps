@@ -502,6 +502,3 @@ class SourceEditor:
         import EditSource
         EditSource.EditSource(RelLib.Source(),self.db, self,self.sourceDisplay, self.update_display)
 
-        
-def by_title(first,second):
-    return cmp(first.get_title(),second.get_title())

@@ -1,3 +1,9 @@
+2004-02-24  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/RelLib.py (sortbysource): Low-level implementation;
+	(sortbyplace): Typo.
+	* src/Sources.py (by_title): Remove function (superseded by
+	RelLib.GrampsDB.sortbysource).
+
 2004-02-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py, src/AttrEdit.py, src/EditPerson.py, 
 	src/EditSource.py, src/EventEdit.py, src/ImageSelect.py, 
