@@ -94,8 +94,7 @@ class PeopleView:
         for column in self.columns:
             self.person_tree.remove_column(column)
             
-        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,
-                                    weight=PeopleModel.COLUMN_BOLD)
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)        
         column.set_min_width(225)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
