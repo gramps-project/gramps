@@ -49,12 +49,14 @@ from gettext import gettext as _
 _release_files = [
     "/etc/mandrake-release",
     "/etc/redhat-release",
+    "/etc/fedora-release",
     "/etc/turbolinux-release",
     "/etc/debian-version",
     "/etc/environment.corel",
     "/etc/debian-release",
     "/etc/SuSE-release",
     "/etc/slackware-release",
+    "/etc/slackware-version",
     "/etc/gentoo-release",
     ]
 
