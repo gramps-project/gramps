@@ -301,9 +301,11 @@ class PedigreeView:
                 return 1
         elif event.type == GDK.ENTER_NOTIFY:
             self.expand_box(obj)
+            return 0
         elif event.type == GDK.LEAVE_NOTIFY:
             self.shrink_box(obj)
-
+            return 0
+        return 0
     def shrink_box(self,obj):
         """Shrink an exanded box back down to normal size"""
 
