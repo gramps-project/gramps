@@ -144,15 +144,18 @@ class PedigreeView:
         self.load_person = lp
         self.presel_descendants = []
 
-    def load_canvas(self, person):
-        """Redraws the pedigree view window, using the passed person
-           as the root person of the tree."""
-
+    def clear(self):
         for i in self.canvas_items:
             i.destroy()
         for i in self.boxes:
             i.cleanup()
-            
+
+    def load_canvas(self, person):
+        """Redraws the pedigree view window, using the passed person
+           as the root person of the tree."""
+
+        self.clear()
+        
         if person is not self.active_person:
             del self.presel_descendants[:]
             self.active_person = person
