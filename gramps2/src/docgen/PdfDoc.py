@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -573,6 +573,7 @@ def make_color(c):
 #
 #------------------------------------------------------------------------
 
+print_label = None
 try:
     import grampslib
     import Utils
@@ -582,7 +583,7 @@ try:
     if Utils.search_for(prog):
         print_label=_("Open in %s") % desc
 except:
-    print_label = None
+    pass
 
 Plugins.register_draw_doc(
     _("PDF"),
