@@ -440,13 +440,13 @@ class Gramps:
         self.topWindow.show()
         
     def change_alpha_page(self,obj,junk,page):
-        self.person_tree = self.pl_page[page]
+	self.person_tree = self.pl_page[page]
         self.person_list = self.pl_page[page].tree
         self.person_model = self.pl_page[page].model
         if not self.model_used.has_key(self.person_tree) or self.model_used[self.person_tree] == 0:
             self.model_used[self.person_tree] = 1
             self.apply_filter(self.person_tree)
-        
+   
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
         if cpage == 0:
@@ -1830,7 +1830,6 @@ class Gramps:
         self.topWindow.set_resizable(gtk.TRUE)
 
     def apply_filter(self,current_model=None):
-
         self.status_text(_('Updating display...'))
 
         datacomp = self.DataFilter.compare
@@ -1864,6 +1863,8 @@ class Gramps:
                 if self.id2col.has_key(key):
                     (model,iter) = self.id2col[key]
                     model.remove(iter)
+                    del self.id2col[key]
+
 
         for i in self.pl_page:
             i.sort()
