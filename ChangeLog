@@ -1,4 +1,5 @@
 2004-12-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ChooseParents.py: remove TreeModelFilter stuff.
 	* src/GenericFilter.py: Add a combobox that handles filter
 	selection
 	* src/PaperMenu.py: Add combobox classes to handle paper size
