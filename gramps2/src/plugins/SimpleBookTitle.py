@@ -275,7 +275,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
 
     def get_title(self):
         """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Simple Book Title"))
+        return "%s - GRAMPS Book" % (_("Title Page"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents"""
