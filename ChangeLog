@@ -4,6 +4,12 @@
 	* src/AttrEdit.py: Add note format support.
 	* src/EventEdit.py: Add note format support.
 	* src/EditSource.py: Add note format support.
+	* src/places.glade: Add format controls for notes.
+	* src/imagesel.glade: Add format controls for notes.
+	* src/EditPlace.py: Add note format support.
+	* src/ImageSelect.py: Add note format support.
+	* src/EditPerson.py: Clean up note format support.
+	* src/Marriage.py: Add note format support.
 
 2003-12-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/dialog.glade: Add format controls for notes.

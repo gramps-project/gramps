@@ -674,6 +674,11 @@ class LocalMediaProperties:
         self.attr_list = self.change_dialog.get_widget("attr_list")
         titles = [(_('Attribute'),0,150),(_('Value'),0,100)]
 
+        self.attr_label = self.change_dialog.get_widget("attr_local")
+        self.notes_label = self.change_dialog.get_widget("notes_local")
+        self.flowed = self.change_dialog.get_widget("flowed")
+        self.preform = self.change_dialog.get_widget("preform")
+
         self.atree = ListModel.ListModel(self.attr_list,titles,
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
@@ -696,14 +701,24 @@ class LocalMediaProperties:
 
         mt = Utils.get_mime_description(mtype)
         self.change_dialog.get_widget("type").set_text(mt)
-        self.change_dialog.get_widget("notes").get_buffer().set_text(self.photo.getNote())
+        self.notes = self.change_dialog.get_widget("notes")
+        if self.photo.getNote():
+            self.notes.get_buffer().set_text(self.photo.getNote())
+            Utils.bold_label(self.notes_label)
+            if self.photo.getNoteFormat() == 1:
+                self.preform.set_active(1)
+            else:
+                self.flowed.set_active(1)
+
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked" : Utils.destroy_passed_object,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_apply_clicked" : self.on_apply_clicked,
             "on_add_attr_clicked": self.on_add_attr_clicked,
+            "on_notebook_switch_page": self.on_notebook_switch_page,
             "on_update_attr_clicked": self.on_update_attr_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
+            "on_help_clicked" : self.on_help_clicked,
             })
         self.redraw_attr_list()
 
@@ -714,23 +729,43 @@ class LocalMediaProperties:
             d = [attr.getType(),attr.getValue()]
             iter = self.atree.add(d,attr)
             self.amap[str(attr)] = iter
+        if self.alist:
+            Utils.bold_label(self.attr_label)
+        else:
+            Utils.unbold_label(self.attr_label)
         
+    def on_notebook_switch_page(self,obj,junk,page):
+        t = self.notes.get_buffer()
+        text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)
+            
     def on_apply_clicked(self, obj):
         priv = self.change_dialog.get_widget("private").get_active()
 
-        t = self.change_dialog.get_widget("notes").get_buffer()
+        t = self.notes.get_buffer()
         text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
         note = self.photo.getNote()
+        format = self.preform.get_active()
         if text != note or priv != self.photo.getPrivacy():
             self.photo.setNote(text)
             self.photo.setPrivacy(priv)
             self.parent.lists_changed = 1
+            Utils.modified()
+        if format != self.photo.getNoteFormat():
+            self.photo.setNoteFormat(format)
             Utils.modified()
         if self.lists_changed:
             self.photo.setAttributeList(self.alist)
             self.parent.lists_changed = 1
             Utils.modified()
 
+    def on_help_clicked(self, obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-edit-complete')
+        
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)
         Utils.destroy_passed_object(obj)
@@ -806,6 +841,8 @@ class GlobalMediaProperties:
         self.attr_label = self.change_dialog.get_widget("attrGlobal")
         self.notes_label = self.change_dialog.get_widget("notesGlobal")
         self.refs_label = self.change_dialog.get_widget("refsGlobal")
+        self.flowed = self.change_dialog.get_widget("global_flowed")
+        self.preform = self.change_dialog.get_widget("global_preform")
 
         titles = [(_('Attribute'),0,150),(_('Value'),1,100)]
 
@@ -824,9 +861,13 @@ class GlobalMediaProperties:
         self.update_info()
         
         self.change_dialog.get_widget("type").set_text(Utils.get_mime_description(mtype))
-        self.notes.get_buffer().set_text(self.object.getNote())
         if self.object.getNote():
+            self.notes.get_buffer().set_text(self.object.getNote())
             Utils.bold_label(self.notes_label)
+            if self.object.getNoteFormat() == 1:
+                self.preform.set_active(1)
+            else:
+                self.flowed.set_active(1)
 
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked"      : Utils.destroy_passed_object,
@@ -889,7 +930,6 @@ class GlobalMediaProperties:
         else:
             Utils.unbold_label(self.attr_label)
 
-
     def button_press(self,obj):
         store,iter = self.refmodel.selection.get_selected()
         if not iter:
@@ -947,9 +987,13 @@ class GlobalMediaProperties:
         text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
         desc = self.descr_window.get_text()
         note = self.object.getNote()
+        format = self.preform.get_active()
         if text != note or desc != self.object.getDescription():
             self.object.setNote(text)
             self.object.setDescription(desc)
+            Utils.modified()
+        if format != self.object.getNoteFormat():
+            self.object.setNoteFormat(format)
             Utils.modified()
         if self.lists_changed:
             self.object.setAttributeList(self.alist)

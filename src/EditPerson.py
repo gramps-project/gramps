@@ -1023,8 +1023,7 @@ class EditPerson:
         unknown = self.is_unknown.get_active()
         text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
-        flowed = self.flowed.get_active()
-        preform = self.preform.get_active()
+        format = self.preform.get_active()
         idval = self.gid.get_text()
 
         changed = 0
@@ -1085,9 +1084,7 @@ class EditPerson:
             changed = 1
         if text != self.person.getNote() or self.lists_changed:
             changed = 1
-        if flowed and self.person.getNoteFormat() != 0:
-            changed = 1
-        elif preform and self.person.getNoteFormat() != 1 :
+        if format != self.person.getNoteFormat():
             changed = 1
 
         if self.lds_not_loaded == 0:
@@ -1509,12 +1506,10 @@ class EditPerson:
             self.person.setNote(text)
             Utils.modified()
 
-        flowed = self.flowed.get_active()
-        preform = self.preform.get_active()
-        if flowed and self.person.getNoteFormat() != 0:
-            self.person.setNoteFormat(0)
-        elif preform and self.person.getNoteFormat() != 1 :
-            self.person.setNoteFormat(1)
+        format = self.preform.get_active()
+        if format != self.person.getNoteFormat():
+            self.person.setNoteFormat(format)
+            Utils.modified()
 
         if self.complete.get_active() != self.person.getComplete():
             self.person.setComplete(self.complete.get_active())

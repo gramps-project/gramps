@@ -159,6 +159,9 @@ class Marriage:
         self.notes_label = self.get_widget("notesMarriage")
         self.lds_label = self.get_widget("ldsMarriage")
 
+        self.flowed = self.get_widget("mar_flowed")
+        self.preform = self.get_widget("mar_preform")
+
         self.elist = family.getEventList()[:]
         self.alist = family.getAttributeList()[:]
         self.lists_changed = 0
@@ -228,9 +231,13 @@ class Marriage:
 
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
-        self.notes_buffer.set_text(family.getNote())
         if family.getNote():
+            self.notes_buffer.set_text(family.getNote())
             Utils.bold_label(self.notes_label)
+    	    if family.getNoteFormat() == 1:
+    	    	self.preform.set_active(1)
+            else:
+                self.flowed.set_active(1)
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
                                            self.top,self.window,self.slist,
@@ -425,7 +432,11 @@ class Marriage:
 
         text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
+        format = self.preform.get_active()
+
         if text != self.family.getNote():
+            changed = 1
+        if format != self.family.getNoteFormat():
             changed = 1
         
         if self.lists_changed:
@@ -519,6 +530,11 @@ class Marriage:
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
         if text != self.family.getNote():
             self.family.setNote(text)
+            Utils.modified()
+
+        format = self.preform.get_active()
+        if format != self.family.getNoteFormat():
+            self.family.setNoteFormat(format)
             Utils.modified()
 
         if self.complete.get_active() != self.family.getComplete():
