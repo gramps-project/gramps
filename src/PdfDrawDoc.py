@@ -19,10 +19,8 @@
 #
 
 import os
-import tempfile
 import string
 
-import const
 from TextDoc import *
 from DrawDoc import *
 

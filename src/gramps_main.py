@@ -94,6 +94,7 @@ addChildList  = None
 bookmarks     = None
 
 id2col        = {}
+alt2col       = {}
 
 topWindow     = None
 statusbar     = None
@@ -698,7 +699,7 @@ def new_database_response(val):
     global active_person, active_father
     global active_family, active_mother
     global active_child, select_father, select_mother
-    global id2col,person_list
+    global id2col,alt2col,person_list
 
     if val == 1:
         return
@@ -720,6 +721,7 @@ def new_database_response(val):
     select_father = None
     select_mother = None
     id2col        = {}
+    alt2col       = {}
 
     utils.clearModified()
     change_active_person(None)
@@ -1264,9 +1266,30 @@ def delete_person_response(val):
     if family:
         family.removeChild(active_person)
             
+    remove_from_person_list(active_person)
+    person_list.sort()
+    update_display(0)
+
     del personmap[active_person.getId()]
-    apply_filter()
     utils.modified()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def remove_from_person_list(person):
+    person_list.freeze()
+    if id2col.has_key(person):
+        row = person_list.find_row_from_data(id2col[person])
+        if row != -1:
+            person_list.remove(row)
+    if alt2col.has_key(person):
+        for id in alt2col[person]:
+            row = person_list.find_row_from_data(id)
+            if row != -1:
+                person_list.remove(row)
+    person_list.thaw()
     
 #-------------------------------------------------------------------------
 #
@@ -1881,32 +1904,60 @@ def on_spouselist_changed(obj):
 #
 #
 #-------------------------------------------------------------------------
-def new_after_edit(person):
-    database.addPerson(person.person)
-    pos = (person.person,0)
-    id2col[person] = pos
-    gname = utils.phonebook_from_name
-    if DataFilter.compare(person.person):
-        if person.person.getGender():
-            gender = const.male
-        else:
-            gender = const.female
-        bday = person.person.getBirth().getDateObj()
-        dday = person.person.getDeath().getDateObj()
-        name = person.person.getPrimaryName()
-        person_list.insert(0,[gname(name,0),person.person.getId(), gender,bday.getQuoteDate(),
-                  dday.getQuoteDate(), sort.build_sort_name(name),
-                  sort.build_sort_birth(bday), sort.build_sort_death(dday)])
-        person_list.set_row_data(0,pos)
-        sort_person_list()
+def new_after_edit(epo):
+    database.addPerson(epo.person)
+    redisplay_person_list(epo.person)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def update_after_edit(person):
-    update_display(1)
+def update_after_edit(epo):
+    remove_from_person_list(epo.person)
+    redisplay_person_list(epo.person)
+    update_display(0)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def redisplay_person_list(person):
+    pos = (person,0)
+    id2col[person] = pos
+    alt2col[person] = []
+    gname = utils.phonebook_from_name
+    if DataFilter.compare(person):
+        if person.getGender():
+            gender = const.male
+        else:
+            gender = const.female
+        bday = person.getBirth().getDateObj()
+        dday = person.getDeath().getDateObj()
+        name = person.getPrimaryName()
+        person_list.insert(0,[gname(name,0),person.getId(),
+                              gender,bday.getQuoteDate(),
+                              dday.getQuoteDate(),
+                              sort.build_sort_name(name),
+                              sort.build_sort_birth(bday),
+                              sort.build_sort_death(dday)])
+
+        person_list.set_row_data(0,pos)
+
+        for name in person.getAlternateNames():
+            pos2 = (person,1)
+            alt2col[person].append(pos2)
+            person_list.insert(0,[gname(name,1),person.getId(),
+                                  gender,bday.getQuoteDate(),
+                                  dday.getQuoteDate(),
+                                  sort.build_sort_name(name),
+                                  sort.build_sort_birth(bday),
+                                  sort.build_sort_death(dday)])
+
+            person_list.set_row_data(0,pos2)
+
+        sort_person_list()
 
 #-------------------------------------------------------------------------
 #
@@ -2321,7 +2372,9 @@ def displayError(msg):
 #
 #-------------------------------------------------------------------------
 def apply_filter():
-
+    global id2col
+    global alt2col
+    
     people = database.getPersonMap().values()
 
     names = []
@@ -2335,34 +2388,60 @@ def apply_filter():
         names = names + altnames
 
     person_list.freeze()
-    person_list.clear()
-
-    color_clist = ListColors.ColorList(person_list,1)
 
     datacomp = DataFilter.compare
-    clistadd = color_clist.add_with_data
     gname = utils.phonebook_from_name
 
     person_list.set_column_visibility(1,Config.id_visible)
+
+    new_alt2col = {}
     
     for name_tuple in names:
-        person = name_tuple[1]
-        alt = name_tuple[2]
-        name = name_tuple[0]
+        name,person,alt = name_tuple
         
         if datacomp(person):
             pos = (person,alt)
-            if not alt:
+            if alt:
+                if id2col.has_key(person):
+                    continue
+                if new_alt2col.has_key(person):
+                    new_alt2col[person].append(pos)
+                else:
+                    new_alt2col[person] = [pos]
+            else:
+                if id2col.has_key(person):
+                    continue
                 id2col[person] = pos
+                    
             if person.getGender():
                 gender = const.male
             else:
                 gender = const.female
             bday = person.getBirth().getDateObj()
             dday = person.getDeath().getDateObj()
-            clistadd([gname(name,alt),person.getId(), gender,bday.getQuoteDate(),
-                      dday.getQuoteDate(), sort.build_sort_name(name),
-                      sort.build_sort_birth(bday), sort.build_sort_death(dday)], pos)
+            person_list.insert(0,[gname(name,0),person.getId(),
+                                  gender,bday.getQuoteDate(),
+                                  dday.getQuoteDate(),
+                                  sort.build_sort_name(name),
+                                  sort.build_sort_birth(bday),
+                                  sort.build_sort_death(dday)])
+            person_list.set_row_data(0,pos)
+        else:
+            if alt:
+                if alt2col.has_key(person):
+                    ids = alt2col[person]
+                    del alt2col[person]
+                    for id in ids:
+                        row = person_list.find_row_from_data(id)
+                        if row != -1:
+                            person_list.remove(row)
+            else:
+                if id2col.has_key(person):
+                    id = id2col[person]
+                    del id2col[person]
+                    row = person_list.find_row_from_data(id)
+                    if row != -1:
+                        person_list.remove(row)
 
     person_list.thaw()
     sort_person_list()
