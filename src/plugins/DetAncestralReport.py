@@ -94,7 +94,7 @@ class DetAncestorReport(Report):
                 self.doc.start_paragraph("ChildList")
                 t= child.getPrimaryName().getRegularName()
                 #print "getBirth()", child.getBirth().__dict__
-                if child.getBirth().getDate() != "" and \
+                if child.getBirth().getDate() != "" or \
                         child.getBirth().getPlaceName() != "":
                     #print child.getBirth().getPlace().__dict__
                     t= t+ _(" Born: ")+child.getBirth().getDate() + \
@@ -339,7 +339,7 @@ class DetAncestorReport(Report):
                         elif fulldate == "" and place != "":
                             t= _("  %s married %s in %s." % (heshe, spouse, place))
                         elif fulldate != "" and place == "":
-                            t= _("  %s married %s on %s" % (heshe, spouse, fulldate))
+                            t= _("  %s married %s on %s." % (heshe, spouse, fulldate))
                         else: t= _("  %s married %s on %s in %s." % \
                                 (heshe, spouse, fulldate, place))
                     else:
@@ -348,7 +348,7 @@ class DetAncestorReport(Report):
                         elif fulldate == "" and place != "":
                             t= _("  %s married in %s." % (heshe, place))
                         elif fulldate != "" and place == "":
-                            t= _("  %s married on %s" % (heshe, fulldate))
+                            t= _("  %s married on %s." % (heshe, fulldate))
                         else: t= _("  %s married on %s in %s." % \
                                 (heshe, fulldate, place))
 
@@ -700,11 +700,11 @@ class reportOptions:
                 if birth.getDayValid() and death.getDayValid():
                     if birth.getMonth() == death.getMonth() and birth.getDay() > death.getDay():
                         self.age= self.age -1
-                        self.units= "month"
                     if self.age == 0:
                         self.age= death.getMonth() - birth.getMonth()   # calc age in months
                         if birth.getDay() > death.getDay():
                             self.age= self.age - 1
+			    self.units= "month"
                         if self.age == 0:
                             self.age= death.getDay() + 31 - birth.getDay() # calc age in days
                             self.units= "day"

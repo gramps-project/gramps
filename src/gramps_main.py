@@ -118,11 +118,14 @@ DataFilter    = Filter.Filter("")
 c_birth_order = 0
 c_name        = 1
 c_id          = 2
+c_gender      = 3
 c_birth_date  = 4
 c_details     = 6
 c_sort_column = c_birth_order
 c_sort_direct = GTK.SORT_ASCENDING
 cNameArrow    = None
+cGenderArrow  = None
+cIDArrow      = None
 cDateArrow    = None
 
 #-------------------------------------------------------------------------
@@ -843,7 +846,7 @@ def set_sort_arrow(column,direct):
     else:
         arrow.set(GTK.ARROW_UP,2)
     
-def change_sort(column):
+def change_sort(column,change=1):
     global sort_direct
     global sort_column
 
@@ -855,22 +858,24 @@ def change_sort(column):
             a.hide()
     arrow.show()
 
-    if sort_column == column:
-        if sort_direct == GTK.SORT_DESCENDING:
-            sort_direct = GTK.SORT_ASCENDING
-            arrow.set(GTK.ARROW_DOWN,2)
-        else:
-            sort_direct = GTK.SORT_DESCENDING
-            arrow.set(GTK.ARROW_UP,2)
-    else:
-        sort_direct = GTK.SORT_ASCENDING
-        arrow.set(GTK.ARROW_DOWN,2)
-    sort_column = column
-
     person_list.set_sort_column(col_map[column])
     person_list.set_sort_type(sort_direct)
 
     sort_person_list()
+
+    if change:
+        if sort_column == column:
+            if sort_direct == GTK.SORT_DESCENDING:
+                sort_direct = GTK.SORT_ASCENDING
+                arrow.set(GTK.ARROW_DOWN,2)
+            else:
+                sort_direct = GTK.SORT_DESCENDING
+                arrow.set(GTK.ARROW_UP,2)
+        else:
+            sort_direct = GTK.SORT_ASCENDING
+            arrow.set(GTK.ARROW_DOWN,2)
+    sort_column = column
+
     if id2col.has_key(active_person):
         row = person_list.find_row_from_data(id2col[active_person])
         person_list.moveto(row)
@@ -997,9 +1002,13 @@ def on_child_list_select_row(obj,row,b,c):
 #-------------------------------------------------------------------------
 def on_child_list_click_column(clist,column):
     if column == c_name:
-        child_change_sort(clist,c_name,gtop.get_widget("cNameSort"))
+        child_change_sort(clist,c_name,cNameArrow)
+    elif column == c_gender:
+        child_change_sort(clist,c_gender,cGenderArrow)
+    elif column == c_id:
+        child_change_sort(clist,c_id,cIDArrow)
     elif (column == c_birth_order) or (column == c_birth_date):
-        child_change_sort(clist,c_birth_order,gtop.get_widget("cDateSort"))
+        child_change_sort(clist,c_birth_order,cDateArrow)
     else:
         return
 
@@ -1019,6 +1028,8 @@ def child_change_sort(clist,column,arrow):
 
     cNameArrow.hide()
     cDateArrow.hide()
+    cIDArrow.hide()
+    cGenderArrow.hide()
     arrow.show()
     
     if c_sort_column == column:
@@ -1034,7 +1045,6 @@ def child_change_sort(clist,column,arrow):
     clist.set_sort_type(c_sort_direct)
     clist.set_sort_column(c_sort_column)
     clist.set_reorderable(c_sort_column == c_birth_order)
-    
 
 def sort_child_list(clist):
     clist.freeze()
@@ -1982,7 +1992,7 @@ def main(arg):
     global person_list
     global topWindow, preview, merge_button
     global nameArrow, dateArrow, deathArrow, idArrow, genderArrow
-    global cNameArrow, cDateArrow, toolbar
+    global cNameArrow, cDateArrow, cIDArrow, cGenderArrow, toolbar
     global sort_column, sort_direct
     
     gtk.rc_parse(const.gtkrcFile)
@@ -2027,6 +2037,8 @@ def main(arg):
     media_view  = MediaView(database,gtop,update_display)
 
     cNameArrow  = gtop.get_widget("cNameSort")
+    cGenderArrow= gtop.get_widget("cGenderSort")
+    cIDArrow    = gtop.get_widget("cIDSort")
     cDateArrow  = gtop.get_widget("cDateSort")
     person_list.set_column_visibility(5,0)
     person_list.set_column_visibility(6,0)
@@ -2040,8 +2052,9 @@ def main(arg):
     topWindow.set_icon(gtk.GtkPixmap(topWindow,const.icon))
     
     person_list.column_titles_active()
+
+    change_sort(sort_column,sort_direct==GTK.SORT_DESCENDING)
     set_sort_arrow(sort_column,sort_direct)
-    change_sort(sort_column)
 
     gtop.signal_autoconnect({
         "delete_event"                      : delete_event,
