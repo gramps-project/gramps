@@ -1647,7 +1647,7 @@ class Event(DataObj):
         """sets the Date object associated with the Event"""
         self.date = date
 
-class Witness:
+class Witness(Persistent):
     def __init__(self,type=Event.NAME,val="",comment=""):
         self.set_type(type)
         self.set_value(val)
