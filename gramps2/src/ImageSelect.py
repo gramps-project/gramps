@@ -34,6 +34,7 @@ from gettext import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk
 import gnome
 import gnome.ui
@@ -112,9 +113,7 @@ class ImageSelect:
         self.fname       = self.glade.get_widget("fname")
         self.image       = self.glade.get_widget("image")
         self.description = self.glade.get_widget("photoDescription")
-        self.internal    = self.glade.get_widget('internal')
         self.temp_name   = ""
-        self.internal.hide()
 
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
@@ -123,8 +122,6 @@ class ImageSelect:
             "on_fname_update_preview" : self.on_name_changed,
             "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
             })
-
-        self.internal.connect('toggled',self.internal_toggled)
 
         if os.path.isdir(_last_path):
             self.fname.set_current_folder(_last_path)
@@ -160,7 +157,7 @@ class ImageSelect:
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.set_from_pixbuf(image)
             else:
-                i = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(mtype))
+                i = Utils.find_mime_type_pixbuf(mtype)
                 self.image.set_from_pixbuf(i)
 
     def on_savephoto_clicked(self):
@@ -300,7 +297,7 @@ class Gallery(ImageSelect):
                                       self.button, event)
                     
             self.in_event = 0
-            return gtk.TRUE
+            return True
 
         style = self.iconlist.get_style()
         
@@ -324,7 +321,7 @@ class Gallery(ImageSelect):
                 self.remember_y = event.y
                 self.button = event.button
                 self.in_event = 0
-                return gtk.TRUE
+                return True
 
             elif event.button == 3:
                 item = widget.get_item_at(event.x,event.y)
@@ -332,7 +329,7 @@ class Gallery(ImageSelect):
                     (i,t,b,self.photo,oid) = self.p_map[item]
                     self.show_popup(self.photo,event)
                 self.in_event = 0
-                return gtk.TRUE
+                return True
         elif event.type == gtk.gdk.BUTTON_RELEASE:
             self.button = 0
 #         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
@@ -341,7 +338,7 @@ class Gallery(ImageSelect):
 #                 (i,t,b,self.photo,oid) = self.p_map[item]
 #                 LocalMediaProperties(self.photo,self.path,self,self.parent_window)
 #             self.in_event = 0
-#             return gtk.TRUE
+#             return True
         elif event.type == gtk.gdk.MOTION_NOTIFY:
             if event.state & gtk.gdk.BUTTON1_MASK:
                 # Get the new position and move by the difference
@@ -352,13 +349,13 @@ class Gallery(ImageSelect):
                 self.remember_y = new_y
 
                 self.in_event = 0
-                return gtk.TRUE
+                return True
             
         if event.type == gtk.gdk.EXPOSE:
             self.load_images()
 
         self.in_event = 0
-        return gtk.FALSE
+        return False
 
     def savephoto(self, photo):
         """Save the photo in the dataobj object.  (Required function)"""
@@ -376,15 +373,17 @@ class Gallery(ImageSelect):
             if x != self.cx or y != self.cy:
                 grp.move(self.cx-x,self.cy-y)
         else:
-            import gobject
-            
             description = obj.get_description()
             if len(description) > 20:
                 description = "%s..." % description[0:20]
 
             try:
                 media_obj = self.db.get_object_from_handle(oid)
-                image = ImgManip.get_thumbnail_image(media_obj.get_path())
+                mtype = media_obj.get_mime_type()
+                if mtype[0:5] == "image":
+                    image = ImgManip.get_thumbnail_image(media_obj.get_path())
+                else:
+                    image = Utils.find_mime_type_pixbuf(mtype)
             except gobject.GError,msg:
                 ErrorDialog(str(msg))
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
@@ -789,7 +788,7 @@ class LocalMediaProperties:
         
     def on_notebook_switch_page(self,obj,junk,page):
         t = self.notes.get_buffer()
-        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:
@@ -799,7 +798,7 @@ class LocalMediaProperties:
         priv = self.change_dialog.get_widget("private").get_active()
 
         t = self.notes.get_buffer()
-        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         note = self.photo.get_note()
         format = self.preform.get_active()
         if text != note or priv != self.photo.get_privacy():
@@ -1167,7 +1166,7 @@ class GlobalMediaProperties:
         if page == 3:
             self.display_refs()
         t = self.notes.get_buffer()
-        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:
@@ -1194,7 +1193,7 @@ class GlobalMediaProperties:
 
     def on_apply_clicked(self, obj):
         t = self.notes.get_buffer()
-        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE))
+        text = unicode(t.get_text(t.get_start_iter(),t.get_end_iter(),False))
         desc = unicode(self.descr_window.get_text())
         note = self.obj.get_note()
 

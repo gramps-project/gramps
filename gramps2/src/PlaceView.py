@@ -91,7 +91,7 @@ class PlaceView:
             self.list.remove_column(column)
             
         column = gtk.TreeViewColumn(_('Place Name'), self.renderer,text=0)
-        column.set_resizable(gtk.TRUE)
+        column.set_resizable(True)
 
         column.set_min_width(225)
         self.list.append_column(column)
@@ -102,7 +102,7 @@ class PlaceView:
                 continue
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
-            column.set_resizable(gtk.TRUE)
+            column.set_resizable(True)
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)

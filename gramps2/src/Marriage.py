@@ -533,7 +533,7 @@ class Marriage:
             changed = 1
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                  self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                  self.notes_buffer.get_end_iter(),False))
         format = self.preform.get_active()
 
         if text != self.family.get_note():
@@ -616,7 +616,7 @@ class Marriage:
                 self.family.set_relationship(relation)
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                  self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                  self.notes_buffer.get_end_iter(),False))
         if text != self.family.get_note():
             self.family.set_note(text)
 
@@ -796,7 +796,7 @@ class Marriage:
 
     def on_switch_page(self,obj,a,page):
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                self.notes_buffer.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

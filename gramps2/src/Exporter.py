@@ -102,7 +102,7 @@ class Exporter:
         self.last_page = self.build_last_page()
         self.d.add(self.last_page)
 
-        self.d.set_show_help(gtk.TRUE)
+        self.d.set_show_help(True)
         self.d.connect('cancel',self.close)
         self.d.connect('help',self.help)
         self.w.connect("destroy_event",self.close)
@@ -195,7 +195,7 @@ class Exporter:
                 'Format:\t%s\nName:\t%s\nFolder:\t%s\n\n'
                 'Press Forward to proceed, Cancel to abort, or Back to '
                 'revisit your options.') % (format, name, folder))
-        self.confirm_label.set_line_wrap(gtk.TRUE)
+        self.confirm_label.set_line_wrap(True)
 
     def save(self,obj,obj2):
         """
@@ -258,7 +258,7 @@ class Exporter:
             self.format_buttons.append(button)
             table.attach(button,0,2,2*ix,2*ix+1)
             label = gtk.Label(description)
-            label.set_line_wrap(gtk.TRUE)
+            label.set_line_wrap(True)
             label.set_alignment(0,0.5)
             table.attach(label,1,2,2*ix+1,2*ix+2,xpadding=24)
         
@@ -315,7 +315,7 @@ class Exporter:
         p.set_logo(self.logo)
 
         self.chooser = gtk.FileChooserWidget(gtk.FILE_CHOOSER_ACTION_SAVE)
-        self.chooser.set_local_only(gtk.FALSE)
+        self.chooser.set_local_only(False)
         p.append_item("",self.chooser,"")
         # Dirty hack to enable proper EXPAND and FILL properties of the chooser
         parent = self.chooser.get_parent()

@@ -1074,7 +1074,7 @@ class Gramps:
         self.import_tool_callback()
 
     def read_file(self,filename,callback=None):
-        self.topWindow.set_resizable(gtk.FALSE)
+        self.topWindow.set_resizable(False)
         mode = "w"
         filename = os.path.normpath(os.path.abspath(filename))
         
@@ -1115,7 +1115,7 @@ class Gramps:
             return 0
 
 
-        self.topWindow.set_resizable(gtk.TRUE)
+        self.topWindow.set_resizable(True)
         self.gtop.get_widget('import1').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('abandon').set_sensitive(not self.db.readonly)
         self.gtop.get_widget('undolabel').set_sensitive(not self.db.readonly)

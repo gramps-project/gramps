@@ -499,7 +499,7 @@ class BookListDisplay:
 
         title_label = self.xml.get_widget('title')
         title_label.set_text(Utils.title(_('Book List')))
-        title_label.set_use_markup(gtk.TRUE)
+        title_label.set_use_markup(True)
         
         self.blist = ListModel.ListModel(self.xml.get_widget("list"),
                                         [('Name',-1,10)],)
@@ -621,12 +621,12 @@ class BookReportSelector:
 
         avail_label = self.xml.get_widget('avail_label')
         avail_label.set_text("<b>%s</b>" % _("_Available items"))
-        avail_label.set_use_markup(gtk.TRUE)
-        avail_label.set_use_underline(gtk.TRUE)
+        avail_label.set_use_markup(True)
+        avail_label.set_use_underline(True)
         book_label = self.xml.get_widget('book_label')
         book_label.set_text("<b>%s</b>" % _("Current _book"))
-        book_label.set_use_underline(gtk.TRUE)
-        book_label.set_use_markup(gtk.TRUE)
+        book_label.set_use_underline(True)
+        book_label.set_use_markup(True)
 
         av_titles = [(_('Name'),0,150),(_('Type'),1,50),('',-1,0)]
         bk_titles = [(_('Item name'),-1,150),(_('Type'),-1,50),('',-1,0),

@@ -23,6 +23,7 @@ import const
 import signal
 import md5
 import gtk
+import gobject
 
 class ImgManip:
     def __init__(self,source):
@@ -109,10 +110,16 @@ def set_thumbnail_image(path):
         pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
         pixbuf.save(_build_thumb_path(path),"jpeg")
     except:
+        import traceback
+        traceback.print_stack()
+        
         print "Could not create thumbnail for",path
 
 def get_thumbnail_image(path):
     filename = _build_thumb_path(path)
     if not os.path.isfile(filename):
         set_thumbnail_image(path)
-    return gtk.gdk.pixbuf_new_from_file(filename)
+    try:
+        return gtk.gdk.pixbuf_new_from_file(filename)
+    except gobject.GError:
+        return None

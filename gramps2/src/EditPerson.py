@@ -838,7 +838,7 @@ class EditPerson:
         t = self.etree.tree
         (x,y) = icon.get_size()
         mask = gtk.gdk.Pixmap(self.window.window,x,y,1)
-        mask.draw_rectangle(t.get_style().white_gc, gtk.TRUE, 0,0,x,y)
+        mask.draw_rectangle(t.get_style().white_gc, True, 0,0,x,y)
         t.drag_source_set_icon(t.get_colormap(),icon,mask)
 
     def url_drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -1255,7 +1255,7 @@ class EditPerson:
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                          self.notes_buffer.get_end_iter(),False))
         format = self.preform.get_active()
         idval = unicode(self.gid.get_text())
         if idval == "":
@@ -1503,7 +1503,7 @@ class EditPerson:
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                          self.notes_buffer.get_end_iter(),False))
         format = self.preform.get_active()
         idval = unicode(self.gid.get_text())
         if idval == "":
@@ -1998,7 +1998,7 @@ class EditPerson:
             ErrorDialog(msg)
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                          self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                          self.notes_buffer.get_end_iter(),False))
 
         if text != self.person.get_note():
             self.person.set_note(text)
@@ -2155,7 +2155,7 @@ class EditPerson:
             self.draw_lds()
         note_buf = self.notes_buffer
         text = unicode(note_buf.get_text(note_buf.get_start_iter(),
-                                       note_buf.get_end_iter(),gtk.FALSE))
+                                       note_buf.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:
@@ -2186,7 +2186,7 @@ class EditPerson:
         # initial values
         name = '<span size="larger" weight="bold">%s</span>' % self.name_display.display(self.person)
         self.get_widget("activepersonTitle").set_text(name)
-        self.get_widget("activepersonTitle").set_use_markup(gtk.TRUE)
+        self.get_widget("activepersonTitle").set_use_markup(True)
         self.suffix.set_text(self.pname.get_suffix())
         if self.use_patronymic:
             self.prefix.set_text(self.pname.get_patronymic())

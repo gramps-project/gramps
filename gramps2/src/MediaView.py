@@ -141,7 +141,7 @@ class MediaView:
             self.list.remove_column(column)
             
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
-        column.set_resizable(gtk.TRUE)
+        column.set_resizable(True)
 
         column.set_min_width(225)
         self.list.append_column(column)
@@ -153,7 +153,7 @@ class MediaView:
                 continue
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
-            column.set_resizable(gtk.TRUE)
+            column.set_resizable(True)
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
@@ -183,16 +183,14 @@ class MediaView:
         path = mobj.get_path()
         if mtype:
             type_name = Utils.get_mime_description(mtype)
-            image = ImgManip.get_thumbnail_image(path)
-            if image != None:
+            if mtype[0:5] == "image":
+                image = ImgManip.get_thumbnail_image(path)
                 self.preview.set_from_pixbuf(image)
             else:
-                icon = Utils.find_icon(mtype)
-                icon_image = gtk.gdk.pixbuf_new_from_file(icon)
+                icon_image = Utils.find_mime_type_pixbuf(mtype)
                 self.preview.set_from_pixbuf(icon_image)
         else:
-            icon = Utils.find_icon('text/plain')
-            icon_image = gtk.gdk.pixbuf_new_from_file(icon)
+            icon_image = Utils.find_mime_type_pixbuf('text/plain')
             self.preview.set_from_pixbuf(icon_image)
             type_name = _('Note')
         

@@ -227,47 +227,24 @@ def view_photo(photo):
     if os.fork() == 0:
         os.execvp(args[0],args)
 
-def nautilus_icon(icon,mime_type):
-    import GrampsKeys
+_icon_theme = gtk.icon_theme_get_default()
+
+def find_mime_type_pixbuf(mime_type):
+    icontmp = mime_type.replace('/','-')
+    try:
+        newicon = "gnome-mime-%s" % icontmp
+        try:
+            return _icon_theme.load_icon(newicon,48,0)
+        except:
+            icontmp = mime_type.split('/')[0]
+            try:
+                newicon = "gnome-mime-%s" % icontmp
+                return _icon_theme.load_icon(newicon,48,0)
+            except:
+                return gtk.gdk.pixbuf_new_from_file(const.icon)
+    except:
+        return gtk.gdk.pixbuf_new_from_file(const.icon)
     
-    theme = GrampsKeys.client.get_string("/desktop/gnome/file_views/icon_theme")
-
-    if icon :
-        newicon = "%s/%s/%s.png" % (const.nautdir,theme,icon)
-        if os.path.isfile(newicon):
-            return newicon
-        else:
-            newicon = "%s/document-icons/%s.png" % (const.pixdir,icon)
-            if os.path.isfile(newicon):
-                return newicon
-        return None
-    elif mime_type == "x-directory/":
-        if theme:
-            newicon = "%s/%s/i-directory.png" % (const.nautdir,theme)
-        else:
-            newicon = "%s/gnome-folder.png" % const.pixdir
-        if os.path.isfile(newicon):
-            return newicon
-        return None
-    else:
-        icontmp = mime_type.replace('/','-')
-        if theme:
-            newicon = "%s/%s/gnome-%s.png" % (const.nautdir,theme,icontmp)
-            if os.path.isfile(newicon):
-                return newicon
-            else:
-                newicon = "%s/document-icons/gnome-%s.png" % (const.nautdir,icontmp)
-                if os.path.isfile(newicon):
-                    return newicon
-        return None
-
-def find_icon(mtype):
-    n = nautilus_icon(None,mtype)
-    if n:
-        return n
-    else:
-        return const.icon
-
 def get_mime_description(mime_type):
     try:
         value = mime_get_description(mime_type)
@@ -323,8 +300,8 @@ def build_columns(tree,list):
         if name[2] >= 0:
             column.set_sort_column_id(name[2])
         if name[0] == '':
-            column.set_clickable(gtk.TRUE)
-            column.set_visible(gtk.FALSE)
+            column.set_clickable(True)
+            column.set_visible(False)
         cnum = cnum + 1
         tree.append_column(column)
 
@@ -369,11 +346,11 @@ def title(n):
 def set_title_label(xmlobj,t):
     title_label = xmlobj.get_widget('title')
     title_label.set_text('<span weight="bold" size="larger">%s</span>' % t)
-    title_label.set_use_markup(gtk.TRUE)
+    title_label.set_use_markup(True)
 
 def set_titles(window,title,t,msg=None):
     title.set_text('<span weight="bold" size="larger">%s</span>' % t)
-    title.set_use_markup(gtk.TRUE)
+    title.set_use_markup(True)
     if msg:
         window.set_title('%s - GRAMPS' % msg)
     else:

@@ -156,7 +156,7 @@ class CustomTextOptions(ReportOptions.ReportOptions):
                 self.top_text_view.get_buffer().get_text(
                     self.top_text_view.get_buffer().get_start_iter(),
                     self.top_text_view.get_buffer().get_end_iter(),
-                    gtk.FALSE
+                    False
                 ) 
             ).replace('\n',' ')
 
@@ -164,7 +164,7 @@ class CustomTextOptions(ReportOptions.ReportOptions):
                 self.middle_text_view.get_buffer().get_text(
                     self.middle_text_view.get_buffer().get_start_iter(),
                     self.middle_text_view.get_buffer().get_end_iter(),
-                    gtk.FALSE
+                    False
                 )
             ).replace('\n',' ')
 
@@ -172,7 +172,7 @@ class CustomTextOptions(ReportOptions.ReportOptions):
                 self.bottom_text_view.get_buffer().get_text(
                     self.bottom_text_view.get_buffer().get_start_iter(),
                     self.bottom_text_view.get_buffer().get_end_iter(),
-                    gtk.FALSE
+                    False
                 )
             ).replace('\n',' ')
 

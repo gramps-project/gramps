@@ -149,7 +149,7 @@ class DispBox:
             return 0
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_menu(event,self.person)
-            return gtk.TRUE
+            return True
         return 0
 
     def expand(self):
@@ -393,7 +393,7 @@ class PedigreeView:
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
                         label = gtk.Label(cname)
-                    label.set_use_markup(gtk.TRUE)
+                    label.set_use_markup(True)
                     label.show()
                     label.set_alignment(0,0)
                     menuitem.add(label)
@@ -528,8 +528,8 @@ class PedigreeView:
     def on_canvas_press(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_nav_menu(event)
-            return gtk.TRUE
-        return gtk.FALSE
+            return True
+        return False
 
     def add_nav_portion_to_menu(self,menu):
         """
@@ -661,7 +661,7 @@ class PedigreeView:
                 label = gtk.Label(NameDisplay.displayer.display(child))
 
             child_item = gtk.MenuItem(None)
-            label.set_use_markup(gtk.TRUE)
+            label.set_use_markup(True)
             label.show()
             label.set_alignment(0,0)
             child_item.add(label)
@@ -695,7 +695,7 @@ class PedigreeView:
                 label = gtk.Label(NameDisplay.displayer.display(par))
 
             par_item = gtk.MenuItem(None)
-            label.set_use_markup(gtk.TRUE)
+            label.set_use_markup(True)
             label.show()
             label.set_alignment(0,0)
             par_item.add(label)

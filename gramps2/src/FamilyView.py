@@ -274,7 +274,7 @@ class FamilyView:
             name = column_names[pair[1]][0]
             column = gtk.TreeViewColumn(name, gtk.CellRendererText(),
                                         text=pair[1])
-            column.set_resizable(gtk.TRUE)
+            column.set_resizable(True)
             column.set_min_width(40)
             column.set_sort_column_id(column_names[pair[1]][1])
             self.columns.append(column)

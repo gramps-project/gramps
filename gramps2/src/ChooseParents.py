@@ -185,20 +185,20 @@ class ChooseParents:
         
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
-        column.set_resizable(gtk.TRUE)        
-        column.set_clickable(gtk.TRUE)
+        column.set_resizable(True)        
+        column.set_clickable(True)
         column.set_sort_column_id(0)
         column.set_min_width(225)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
-        column.set_resizable(gtk.TRUE)        
-        column.set_clickable(gtk.TRUE)
+        column.set_resizable(True)        
+        column.set_clickable(True)
         column.set_sort_column_id(1)
         column.set_min_width(75)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
-        #column.set_resizable(gtk.TRUE)        
-        column.set_clickable(gtk.TRUE)
+        #column.set_resizable(True)        
+        column.set_clickable(True)
         tree.append_column(column)
 
     def on_delete_event(self,obj,b):
@@ -668,7 +668,7 @@ class ModifyParents:
             "on_parents_help_clicked"  : self.on_help_clicked,
             })
 
-        self.title.set_use_markup(gtk.TRUE)
+        self.title.set_use_markup(True)
 
         if self.family.get_relationship() == RelLib.Family.CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))

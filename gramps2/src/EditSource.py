@@ -393,7 +393,7 @@ class EditSource:
         pubinfo = unicode(self.pubinfo.get_text())
         abbrev = unicode(self.abbrev.get_text())
         note = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                  self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                  self.notes_buffer.get_end_iter(),False))
         format = self.preform.get_active()
 
         if author != self.source.get_author():
@@ -445,7 +445,7 @@ class EditSource:
             self.ref_not_loaded = 0
             self.display_references()
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
-                                self.notes_buffer.get_end_iter(),gtk.FALSE))
+                                self.notes_buffer.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

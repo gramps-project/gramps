@@ -81,7 +81,7 @@ class StyleListDisplay:
 
         title_label = self.top.get_widget('title')
         title_label.set_text(Utils.title(_('Style Editor')))
-        title_label.set_use_markup(gtk.TRUE)
+        title_label.set_use_markup(True)
         
         self.list = ListModel.ListModel(self.top.get_widget("list"),
                                         [('Style',-1,10)],)
@@ -202,7 +202,7 @@ class StyleEditor:
         self.current_p = p
 
         self.pname.set_text('<span size="larger" weight="bold">%s</span>' % name)
-        self.pname.set_use_markup(gtk.TRUE)
+        self.pname.set_use_markup(True)
 
         descr = p.get_description()
         if descr:
