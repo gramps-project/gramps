@@ -229,6 +229,8 @@ class PeopleStore:
                     col += 1
                 self.model.set_value(new_iter,_BCOL,pango.WEIGHT_NORMAL)
                 self.parent.id2col[d[1]] = (self,new_iter)
+
+	self.expand_row (name, iter)
     
     def add(self,data,select=0):
         self.count = self.count + 1

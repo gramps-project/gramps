@@ -1,3 +1,7 @@
+2003-10-10  Tim Waugh  <twaugh@redhat.com>
+	* src/PeopleStore.py: Fixed bug where you needed to expand the row
+	twice before it shows the people.
+
 2003-10-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Remove hot keys from toolbar buttons.
 	Add editing items under Edit menu. 
