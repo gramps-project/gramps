@@ -224,24 +224,9 @@ class PedigreeView:
         xpts = self.build_x_coords(cw/xdiv,_CANVASPAD+h)
         ypts = self.build_y_coords((ch-h)/32.0, h)
 
-        anchor_button = self.make_anchor_button(self.on_anchor_clicked)
-        an = pango.Layout(self.canvas.get_pango_context())
-        an_text = anchor_button.get_label()
-        try:
-            an.set_text(an_text,len(an_text))
-        except TypeError:
-            an.set_text(an_text)
-        (w_ab,h_ab) = an.get_pixel_size()
-
-        item = self.root.add(gnome.canvas.CanvasWidget, widget=anchor_button,
-                        x=0, y=y2-h_ab-12, 
-                        height=h_ab+12, width=w_ab+12,
-                        size_pixels=1, anchor=gtk.ANCHOR_WEST)
-        self.canvas_items = [item, anchor_button]
-
         self.anchor_txt = self.root.add(gnome.canvas.CanvasText,
-                                        x=w_ab+24,
-                                        y=y2-h_ab-12, 
+                                        x=0,
+                                        y=y2-12, 
                                         font=font,
                                         text=self.make_anchor_label(),
                                         fill_color_gdk=style.fg[gtk.STATE_NORMAL],
@@ -309,29 +294,24 @@ class PedigreeView:
         button.show()
         return (button, arrow)
 
-    def on_anchor_clicked(self,junk):
+    def on_anchor_set(self,junk):
         if self.active_person:
             self.anchor = self.active_person
-            anchor_string = self.anchor.getPrimaryName().getRegularName()
         else:
             self.anchor = None
         self.anchor_txt.set(text=self.make_anchor_label())
         
-    def make_anchor_button(self,function):
-        """Make a button containing anchor text with the attached callback"""
-
-        button = gtk.Button(_("Drop anchor here"))
-        button.connect("clicked",function)
-        button.show()
-        return button
+    def on_anchor_removed(self,junk):
+        self.anchor = None
+        self.anchor_txt.set(text=self.make_anchor_label())
 
     def make_anchor_label(self):
         """Make a label containing the name of the anchored person"""
         if self.anchor:
             anchor_string = self.anchor.getPrimaryName().getRegularName()
+            return "%s: %s" % (_("Anchor"),anchor_string)
         else:
-            anchor_string = _("None")
-        return "%s: %s" % (_("Anchor"),anchor_string)
+            return ""
 
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
@@ -494,6 +474,9 @@ class PedigreeView:
             ('gtk-go-back',self.parent.back_clicked,back_sensitivity),
             ('gtk-go-forward',self.parent.fwd_clicked,fwd_sensitivity),
             ('gtk-home',self.parent.on_home_clicked,1),
+            (None,None,0),
+            (_("Set anchor"),self.on_anchor_set,1),
+            (_("Remove anchor"),self.on_anchor_removed,1),
         ]
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
