@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import string
 import os
+import gtk
 import shutil
 from xml.parsers.expat import ExpatError
 
@@ -39,8 +40,9 @@ from xml.parsers.expat import ExpatError
 #-------------------------------------------------------------------------
 import RelLib
 from GrampsParser import GrampsParser, GrampsImportParser
-from QuestionDialog import ErrorDialog, WarningDialog
+from QuestionDialog import ErrorDialog, WarningDialog, MissingMediaDialog
 from intl import gettext as _
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -113,8 +115,66 @@ def importData(database, filename, callback):
         return 0
 
     xml_file.close()
-    del parser
     
+#-------------------------------------------------------------------------
+    def remove_clicked():
+        # File is lost => remove all references and the object itself
+        mobj = ObjectMap[NewMediaID]
+        for p in database.getFamilyMap().values():
+            nl = p.getPhotoList()
+            for o in nl:
+                if o.getReference() == mobj:
+                    nl.remove(o) 
+            p.setPhotoList(nl)
+        for key in database.getPersonKeys():
+            p = database.getPerson(key)
+            nl = p.getPhotoList()
+            for o in nl:
+                if o.getReference() == mobj:
+                    nl.remove(o) 
+            p.setPhotoList(nl)
+        for key in database.getSourceKeys():
+            p = database.getSource(key)
+            nl = p.getPhotoList()
+            for o in nl:
+                if o.getReference() == mobj:
+                    nl.remove(o) 
+            p.setPhotoList(nl)
+        for key in database.getPlaceKeys():
+            p = database.getPlace(key)
+            nl = p.getPhotoList()
+            for o in nl:
+                if o.getReference() == mobj:
+                    nl.remove(o) 
+            p.setPhotoList(nl)
+        database.removeObject(NewMediaID) 
+
+
+    def leave_clicked():
+        # File is lost => do nothing, leave as is
+        pass
+
+
+    def select_clicked():
+        # File is lost => select a file to replace the lost one
+        def fs_close_window(obj):
+            fs_top.destroy()
+
+        def fs_ok_clicked(obj):
+            name = fs_top.get_filename()
+            if os.path.isfile(name):
+                shutil.copy2(name,newfile)
+            Utils.destroy_passed_object(fs_top)
+
+        fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
+        fs_top.hide_fileop_buttons()
+        fs_top.ok_button.connect('clicked',fs_ok_clicked)
+        fs_top.cancel_button.connect('clicked',fs_close_window)
+        fs_top.show()
+        fs_top.run()
+
+#-------------------------------------------------------------------------
+
     # Rename media files if they were conflicting with existing ones
     ObjectMap = database.getObjectMap()
     newpath = database.getSavePath()
@@ -125,44 +185,19 @@ def importData(database, filename, callback):
 	(junk,oldext) = os.path.splitext(os.path.basename(oldfile))
         oldfile = os.path.join(basefile,OldMediaID+oldext)
         newfile = os.path.join(newpath,NewMediaID+oldext)
+    	ObjectMap[NewMediaID].setPath(newfile)
+        ObjectMap[NewMediaID].setLocal(1)
         try:
 	    shutil.copy2(oldfile,newfile)
-            ObjectMap[NewMediaID].setPath(os.path.join(newfile))
-            ObjectMap[NewMediaID].setLocal(1)
         except:
-            # File is lost => remove all references and the object itself
-            mobj = ObjectMap[NewMediaID]
-            for p in database.getFamilyMap().values():
-                nl = p.getPhotoList()
-                for o in nl:
-                    if o.getReference() == mobj:
-                        nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in database.getPersonKeys():
-                p = database.getPerson(key)
-                nl = p.getPhotoList()
-                for o in nl:
-                    if o.getReference() == mobj:
-                        nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in database.getSourceKeys():
-                p = database.getSource(key)
-                nl = p.getPhotoList()
-                for o in nl:
-                    if o.getReference() == mobj:
-                        nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in database.getPlaceKeys():
-                p = database.getPlace(key)
-                nl = p.getPhotoList()
-                for o in nl:
-                    if o.getReference() == mobj:
-                        nl.remove(o) 
-                p.setPhotoList(nl)
-            
-            database.removeObject(NewMediaID) 
-    
+            # File is lost => ask what to do
+            MissingMediaDialog(_("The file %s is not found") % oldfile,
+	        _("Please choose what you want to do.\n"), 
+                remove_clicked, leave_clicked, select_clicked)
+
+    del parser
     return 1
+    
 
 #-------------------------------------------------------------------------
 #
