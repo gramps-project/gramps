@@ -55,7 +55,7 @@ from gettext import gettext as _
 class FindBase:
     """Opens find person dialog for gramps"""
     
-    def __init__(self,task,name,db):
+    def __init__(self,task,name,db,valid_map=None):
         """Opens a dialog box instance that allows users to
         search for a person.
         task - function to call to change the active person"""
@@ -79,6 +79,7 @@ class FindBase:
         self.list = None
         self.index = 0
         self.visible = 1
+        self.valid = valid_map
 
     def get_value(self,id):
         return id
@@ -94,6 +95,9 @@ class FindBase:
             id = vals[1]
             name = vals[0]
             if id == None:
+                func()
+                continue
+            if self.valid and not self.valid.has_key(id):
                 func()
                 continue
             if string.find(name.upper(),text) >= 0:
@@ -144,13 +148,13 @@ class FindBase:
 class FindPerson(FindBase):
     """Opens a Find Person dialog for GRAMPS"""
     
-    def __init__(self,task,db):
+    def __init__(self,task,db,valid_map):
         """Opens a dialog box instance that allows users to
         search for a person.
 
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,task,_("Find Person"),db)
+        FindBase.__init__(self,task,_("Find Person"),db,valid_map)
         self.list = db.personTable.values()
         self.list.sort()
 

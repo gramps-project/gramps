@@ -692,7 +692,7 @@ class Gramps:
             if self.find_person:
                 self.find_person.show()
             else:
-                self.find_person = Find.FindPerson(self.find_goto_person,self.db)
+                self.find_person = Find.FindPerson(self.find_goto_person,self.db,self.id2col)
 
     def on_findname_activate(self,obj):
         """Display the find box"""
@@ -1658,7 +1658,10 @@ class Gramps:
         if not self.model_used.has_key(model) or self.model_used[model] == 0 or not iter:
             self.model_used[model] = 1
             self.apply_filter(model)
-            (model,iter) = self.id2col[id]
+            try:
+                (model,iter) = self.id2col[id]
+            except:
+                return
             
         model.selection.unselect_all()
         model.selection.select_iter(iter);
