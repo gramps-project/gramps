@@ -1,4 +1,5 @@
 2003-06-21  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py: Better handling of missing photos.
 	* src/plugins/Ancestors.py (event_info): Better handling of strings.
 	* src/plugins/Ancestors.py (person_name): Handle titles and suffices.
 
