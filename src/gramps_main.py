@@ -1428,13 +1428,13 @@ class Gramps:
                 sel = c
             mymap[f] = c
             mynmap[f] = sname
-            self.spouse_combo.disable_activate()
-            self.spouse_combo.list.clear_items(0,-1)
-            self.spouse_combo.list.append_items(list)
-            self.spouse_combo.list.select_child(sel)
+        self.spouse_combo.disable_activate()
+        self.spouse_combo.list.clear_items(0,-1)
+        self.spouse_combo.list.append_items(list)
             
         for v in mymap.keys():
             self.spouse_combo.set_item_string(mymap[v],mynmap[v])
+        self.spouse_combo.list.select_child(sel)
 
     def load_family(self,family=None):
         if family != None:
@@ -1495,12 +1495,12 @@ class Gramps:
 
                 self.gtop.get_widget('rel_frame').set_label(msg)
                 if self.active_person != self.active_family.getFather():
-                    spouse = self.active_family.getFather()
+                    self.active_spouse = self.active_family.getFather()
                 else:
-                    spouse = self.active_family.getMother()
+                    self.active_spouse = self.active_family.getMother()
 
                 self.build_spouse_dropdown()
-                self.spouse_text.set_text(GrampsCfg.nameof(spouse))
+                self.spouse_text.set_text(GrampsCfg.nameof(self.active_spouse))
                 self.spouse_edit.set_sensitive(1)
                 self.spouse_del.set_sensitive(1)
             elif number_of_families == 1:
@@ -1533,6 +1533,7 @@ class Gramps:
             else:
                 self.display_marriage(None)
         else:
+            self.active_spouse = None
             self.spouse_text.set_text("")
             self.display_marriage(None)
 
@@ -1628,7 +1629,7 @@ class Gramps:
 
         if family:
             flist = self.active_person.getFamilyList()
-            if self.active_person.getGender() == Person.male:
+            if self.active_person == family.getFather():
                 self.active_spouse = family.getMother()
             else:
                 self.active_spouse = family.getFather()
@@ -1685,6 +1686,7 @@ class Gramps:
             self.child_list.set_data("f",family)
             self.sort_child_list(self.child_list)
         else:
+            self.active_spouse = None
             fv_prev.set_sensitive(0)
 		
     def load_progress(self,value):
