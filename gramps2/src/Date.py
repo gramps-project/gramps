@@ -372,7 +372,10 @@ class SingleDate:
         vals = string.split(v,'-')
         self.setYearVal(vals[0])
         if len(vals) > 1:
-            self.setMonthVal(int(vals[1]))
+            try:
+                self.setMonthVal(int(vals[1]))
+            except:
+                self.month = UNDEF
         else:
             self.month = UNDEF
         if len(vals) > 2:

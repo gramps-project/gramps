@@ -109,6 +109,7 @@ class Gramps:
         self.DataFilter = Filter.Filter("")
         self.parents_index = 0
         self.active_person = None
+        self.place_loaded = 0
         self.bookmarks = None
         self.c_details = 6
         self.id2col = {}
@@ -627,6 +628,7 @@ class Gramps:
         self.pedigree_view.clear()
         self.source_view.load_sources()
         self.place_view.load_places()
+        self.place_loaded = 0
         self.media_view.load_media()
     
     def tool_callback(self,val):
@@ -638,16 +640,25 @@ class Gramps:
         """Brute force display update, updating all the pages"""
 
         self.complete_rebuild()
-        self.family_view.load_family()
-        self.source_view.load_sources()
-        self.place_view.load_places()
-        self.pedigree_view.load_canvas(self.active_person)
-        self.media_view.load_media()
+        page = self.notebook.get_current_page()
+        
+        if page == 1:
+            self.family_view.load_family()
+        elif page == 2:
+            self.pedigree_view.load_canvas(self.active_person)
+        elif page == 3:
+            self.source_view.load_sources()
+        elif page == 4:
+            self.place_view.load_places()
+            self.place_loaded = 1
+        elif page == 5:
+            self.media_view.load_media()
         self.toolbar.set_style(GrampsCfg.toolbar)
 
     def update_display(self,changed):
         """Incremental display update, update only the displayed page"""
         page = self.notebook.get_current_page()
+        
         if page == 0:
             if changed:
                 self.apply_filter()
@@ -661,6 +672,7 @@ class Gramps:
             self.source_view.load_sources()
         elif page == 4:
             self.place_view.load_places()
+            self.place_loaded = 1
         else:
             self.media_view.load_media()
 
@@ -721,6 +733,7 @@ class Gramps:
                          self.loadsaved_file)
         else:
             self.active_person = None
+            self.place_loaded = 0
             self.read_file(filename)
 
     def autosave_query(self):
@@ -763,7 +776,7 @@ class Gramps:
             self.topWindow.set_title("%s - GRAMPS" % name)
         else:
             GrampsCfg.save_last_file("")
-        
+
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
         filename = os.path.normpath(os.path.abspath(filename))
@@ -1040,6 +1053,7 @@ class Gramps:
         file = self.db.getSavePath()
         self.db.new()
         self.active_person = None
+        self.place_loaded = 0
         self.id2col = {}
         self.read_file(file)
         Utils.clearModified()
@@ -1103,6 +1117,9 @@ class Gramps:
 
     def on_places_activate(self,obj):
         """Switches to the places view"""
+        if self.place_loaded == 0:
+            self.place_view.load_places()
+            self.place_loaded = 1
         self.notebook.set_current_page(4)
 
     def on_media_activate(self,obj):

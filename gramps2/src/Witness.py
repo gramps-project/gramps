@@ -153,7 +153,7 @@ class WitnessEditor:
             else:
                 self.ok.set_sensitive(0)
         else:
-                self.ok.set_sensitive(1)
+            self.ok.set_sensitive(1)
 
     def on_toggled(self,obj):
         if self.in_db.get_active():
