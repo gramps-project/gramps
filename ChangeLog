@@ -1,3 +1,11 @@
+2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ReadXML.py (import_data), src/WriteXML.py (export_data), 
+	src/RelImage.py (import_media_object), src/gramps_main.py 
+	(open_example), src/plugins/Check.py (cleanup_missing_photos), 
+	src/plugins/WebPage.py (write_gallery): 
+	Change shutil.copy() calls to first call shutil.copyfile() and then try
+	setting up bits. 
+	
 2003-06-03  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/VersionControl.py:
 	Brought revision selection dialog up to date. Was dependant on
