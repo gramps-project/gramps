@@ -4,6 +4,11 @@
 	Connect handler to the filter change event; (get_new_filename): Make
 	a module function (outside any class). 
 
+	* src/DbPrompter.py: Handle package export.
+	* src/plugins/WritePkg.py: Register with the new scheme.
+	* src/plugins/ReadPkg.py: Minor cleanups.
+	* src/WriteXML.py: Minor cleanups. 
+
 2004-07-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: disable find old "find" function
 	* src/gramps.glade: enable TreeView find function

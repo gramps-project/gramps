@@ -815,7 +815,7 @@ _mime_type = 'data.gramps'
 _filter = gtk.FileFilter()
 _filter.set_name(_('GRAMPS XML databases'))
 _filter.add_pattern(_mime_type)
-_ext_list = '.gramps'
+_ext_list = ('.gramps',)
 
 from Plugins import register_export
 register_export(exportData,_filter,_ext_list)

@@ -58,9 +58,9 @@ _title_string = _("Export to GRAMPS package")
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,person):
+def writeData(database,filename):
     try:
-        PackageWriter(database)
+        PackageWriter(database,filename)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -72,38 +72,13 @@ def writeData(database,person):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self,database):
+    def __init__(self,database,filename):
         self.db = database
 
-        choose = gtk.FileChooserDialog(_('Save GRAMPS Package'),
-                                       None,
-                                       gtk.FILE_CHOOSER_ACTION_SAVE,
-                                       (gtk.STOCK_CANCEL,
-                                        gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
-                                        gtk.RESPONSE_OK))
-        
-        choose.set_local_only(gtk.FALSE)
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS package'))
-        filter.add_pattern('*.gpkg')
-        choose.add_filter(filter)
-
-        response = choose.run()
-
-        if response == gtk.RESPONSE_OK:
-            name = choose.get_filename()
-            if os.path.splitext(name)[1] != ".gpkg":
-                name = name + ".gpkg"
-            choose.destroy()
-            self.export(name)
-        else:
-            choose.destroy()
+        if os.path.splitext(filename)[1] != ".gpkg":
+            filename = filename + ".gpkg"
+        self.export(filename)
             
-    def on_help_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','export-data')
-
     def export(self, filename):
         missmedia_action = 0
         #--------------------------------------------------------------
@@ -222,6 +197,11 @@ class PackageWriter:
 # Register the plugin
 #
 #-------------------------------------------------------------------------
-from Plugins import register_export
+_mime_type = 'application/x-gramps-package'
+_filter = gtk.FileFilter()
+_filter.set_name(_('GRAMPS packages'))
+_filter.add_mime_type(_mime_type)
+_ext_list = ('.gpkg',)
 
-register_export(writeData,_title_string)
+from Plugins import register_export
+register_export(writeData,_filter,_ext_list)

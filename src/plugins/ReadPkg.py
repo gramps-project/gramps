@@ -50,7 +50,6 @@ _title_string = _("GRAMPS package")
 #
 #-------------------------------------------------------------------------
 def impData(database, name,cb=None,cl=0):
-        print "name1:", name
         # Create tempdir, if it does not exist, then check for writability
         tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
         if not os.path.isdir(tmpdir_path):
@@ -68,7 +67,6 @@ def impData(database, name,cb=None,cl=0):
             for filename in files:
                 os.remove( os.path.join(tmpdir_path,filename) )
 
-        print "name2:", name
         try:
             t = TarFile.ReadTarFile(name,tmpdir_path)
             t.extract()
@@ -186,9 +184,8 @@ def impData(database, name,cb=None,cl=0):
 #------------------------------------------------------------------------
 _mime_type = 'application/x-gramps-package'
 _filter = gtk.FileFilter()
-_filter.set_name(_('GRAMPS package'))
+_filter.set_name(_('GRAMPS packages'))
 _filter.add_mime_type(_mime_type)
 
 from Plugins import register_import
 register_import(impData,_filter,_mime_type)
-#register_import(readData,_title_string)
