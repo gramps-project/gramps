@@ -204,7 +204,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_people(self,attrs):
         if attrs.has_key("default"):
-            self.tempDefault = int(attrs["default"])
+            self.tempDefault = attrs["default"]
 
     #---------------------------------------------------------------------
     #
