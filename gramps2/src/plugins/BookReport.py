@@ -903,8 +903,6 @@ class BookReportDialog(Report.ReportDialog):
                 self.selected_style.add_style(
                     this_style_name,style_sheet.get_style(this_style_name))
 
-        print self.selected_style.get_names()
-
     def setup_style_frame(self): pass
     def setup_report_options_frame(self): pass
     def setup_other_frames(self): pass
