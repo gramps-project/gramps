@@ -150,9 +150,9 @@ class EditPerson:
         self.web_edit_btn = self.top.get_widget('edit_url')
         self.event_delete_btn = self.top.get_widget('event_del')
         self.event_edit_btn = self.top.get_widget('event_edit_btn')
-        self.attr_delete_btn = self.top.get_widget('attr_delete_btn')
+        self.attr_delete_btn = self.top.get_widget('attr_del')
         self.attr_edit_btn = self.top.get_widget('attr_edit_btn')
-        self.addr_delete_btn = self.top.get_widget('addr_delete_btn')
+        self.addr_delete_btn = self.top.get_widget('addr_del')
         self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
 
         self.notes_field = self.get_widget("personNotes")
