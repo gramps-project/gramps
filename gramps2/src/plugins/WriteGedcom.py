@@ -314,7 +314,7 @@ def ged_subdate(date):
                 retval = str(date.year)
             elif not date.getYearValid():
                 retval = "(%s)" % Date.SingleDate.emname[date.month]
-            else:	
+            else:
                 retval = "%s %d" % (Date.SingleDate.emname[date.month],date.year)
         except IndexError:
             print "Month index error - %d" % date.month
@@ -472,6 +472,8 @@ class GedcomWriterOptionBox:
         if self.images:
             images_path = self.topDialog.get_widget ("images_path")
             self.images_path = unicode(images_path.get_text ())
+        else:
+            self.images_path = ""
 
         self.dest = self.target_ged.get_dest()
         self.adopt = self.target_ged.get_adopt()
@@ -536,6 +538,7 @@ class GedcomWriter:
             self.private = self.option_box.private
             self.copy = self.option_box.copy
             self.images = self.option_box.images
+            self.images_path = self.option_box.images_path
             self.target_ged = self.option_box.target_ged
             self.dest = self.option_box.dest
             self.adopt = self.option_box.adopt
@@ -617,11 +620,11 @@ class GedcomWriter:
             msg2 = _("Could not create %s") % filename
             ErrorDialog(msg2,str(msg))
 #            self.progress.destroy()
-            return
+            return 0
         except:
             ErrorDialog(_("Could not create %s") % filename)
 #            self.progress.destroy()
-            return
+            return 0
 
         date = time.ctime(time.time()).split()
 
@@ -698,6 +701,7 @@ class GedcomWriter:
 
         self.writeln("0 TRLR")
         self.g.close()
+        return 1
 
     def write_copy(self):
         import time
@@ -770,7 +774,7 @@ class GedcomWriter:
                     if val:
                         self.writeln("1 %s %s" % (self.cnvtxt(val),
                                                   self.cnvtxt(event.get_description())))
-                    else:	
+                    else:
                         self.writeln("1 EVEN %s" % self.cnvtxt(event.get_description()))
                         self.writeln("2 TYPE %s" % self.cnvtxt(name))
 
@@ -859,7 +863,7 @@ class GedcomWriter:
     
         if person.get_gender() == RelLib.Person.male:
             self.writeln("1 SEX M")
-        elif person.get_gender() == RelLib.Person.female:	
+        elif person.get_gender() == RelLib.Person.female:
             self.writeln("1 SEX F")
 
         if not restricted:
@@ -1000,10 +1004,12 @@ class GedcomWriter:
                 photos = []
 
             for photo in photos:
-                if photo.ref.get_mime_type() == "image/jpeg":
+                photo_obj_id = photo.get_reference_id()
+                photo_obj = self.db.try_to_find_object_from_id(photo_obj_id)
+                if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')
-                    path = photo.ref.get_path ()
+                    path = photo_obj.get_path ()
                     dirname = os.path.join (self.dirname, self.images_path)
                     basename = os.path.basename (path)
                     self.writeln('2 FILE %s' % os.path.join(self.images_path,
@@ -1269,8 +1275,7 @@ def exportData(database,filename,person,option_box):
     ret = 0
     try:
         gw = GedcomWriter(database,person,0,filename,option_box)
-        gw.export_data(filename)
-        ret = 1
+        ret = gw.export_data(filename)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -1283,7 +1288,7 @@ def exportData(database,filename,person,option_box):
 #-------------------------------------------------------------------------
 _title = _('GE_DCOM 5.5')
 _description = _('GEDCOM is used to transfer data between genealogy programs. '
-        'Nearly all genealogy software will accept a GEDCOM file as input. ')
+        'Most genealogy software will accept a GEDCOM file as input. ')
 #option_box = GedcomWriterOptionBox()
 _config = (_('GEDCOM export options'),GedcomWriterOptionBox)
 _filename = 'ged'
