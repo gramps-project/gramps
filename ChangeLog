@@ -4,6 +4,9 @@
 	* src/plugins/ReadNative.py: Likewise.
 	* src/plugins/ReadGedcom.py: Likewise.
 	* src/Report.py: Put "Style" label in singular form (was plural).
+	* src/plugins/WritePkg.py: Enable "..." in the menu item.
+	* src/plugins/WriteCD.py: Likewise.
+	* src/plugins/WriteGedcom.py: Likewise.
 
 2003-07-14  Donald Peterson  <dpeterson@sigmaxi.org>
 	* src/docgen/LaTeXDoc.py: Regress UNICODE support to be only a

@@ -49,6 +49,7 @@ from QuestionDialog import MissingMediaDialog
 
 from intl import gettext as _
 
+_title_string = _("Export to GRAMPS package")
 #-------------------------------------------------------------------------
 #
 # writeData
@@ -194,4 +195,4 @@ class PackageWriter:
 #-------------------------------------------------------------------------
 from Plugins import register_export
 
-register_export(writeData,_("Export to GRAMPS package"))
+register_export(writeData, "%s..." % _title_string )

@@ -52,6 +52,8 @@ import ImgManip
 
 from intl import gettext as _
 
+_title_string = _("Export to CD")
+
 #-------------------------------------------------------------------------
 #
 # writeData
@@ -90,8 +92,7 @@ class PackageWriter:
             self.top = gtk.glade.XML(glade_file,"packageExport")
 
             Utils.set_titles(self.top.get_widget('packageExport'),
-                         self.top.get_widget('title'),
-                         _('Export to CD'))
+                         self.top.get_widget('title'),_title_string)
         
             self.top.signal_autoconnect(dic)
             self.top.get_widget("packageExport").show()
@@ -265,4 +266,4 @@ class PackageWriter:
 #-------------------------------------------------------------------------
 from Plugins import register_export
 
-register_export(writeData,_("Export to CD (nautilus)"))
+register_export(writeData, "%s (nautilus)..." % _title_string )
