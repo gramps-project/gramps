@@ -1,18 +1,20 @@
 include Makefile.comm
 
-ifeq (${DB2HTML},)
-DOCS = 
-else
+SRCS = src src/plugins src/docgen src/filters src/data 
 DOCS = doc/${GM}/C doc/${EG}/C
-endif
 
-# Append ${DOCS} to the next line to generate documentation
-DIRS = src src/plugins src/docgen src/filters src/data ${DOCS}
+DIRS = ${SRCS} ${DOCS}
 
 all:
-	@ for dir in ${DIRS}; do \
+	@ for dir in ${SRCS}; do \
 	  echo "Making all in $$dir"; \
 	  (cd $$dir; ${MAKE} all); \
+	done
+
+html:
+	@ for dir in ${DOCS}; do \
+	  echo "Making all in $$dir"; \
+	  (cd $$dir; ${MAKE} html); \
 	done
 
 install:
@@ -21,9 +23,14 @@ install:
 	  (cd $$dir; ${MAKE} install); \
 	done
 	-${INSTALL} -d ${bindir}
-	${INSTALL} gramps.sh ${bindir}/gramps
-	${INSTALL} doc/gramps.dtd ${sharedir}
-	chmod +x ${bindir}/gramps
+	${INSTALL} -m 755 gramps.sh ${bindir}/gramps
+	${INSTALL} -m 644 doc/gramps.dtd ${sharedir}
+
+install-html:
+	@ for dir in ${DOCS}; do \
+	  echo "Making install-html in $$dir"; \
+	  (cd $$dir; ${MAKE} install-html); \
+	done
 
 uninstall:
 	@ for dir in ${DIRS}; do \

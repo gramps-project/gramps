@@ -11,6 +11,8 @@
 ac_help=
 ac_default_prefix=/usr/local
 # Any additions from configure.in:
+ac_help="$ac_help
+  --enable-html           Create HTML documentation from sgml files. (requires DocBook 0.6.9)"
 
 # Initialize some variables set by options.
 # The variables have the same names as the options, with
@@ -528,7 +530,7 @@ PACKAGE=gramps
 # Extract the first word of "python", so it can be a program name with args.
 set dummy python; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:532: checking for $ac_word" >&5
+echo "configure:534: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PYTHON'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -563,7 +565,7 @@ fi
 # Extract the first word of "sh", so it can be a program name with args.
 set dummy sh; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:567: checking for $ac_word" >&5
+echo "configure:569: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_BINSH'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -603,7 +605,7 @@ then
 	# Extract the first word of "python1.5", so it can be a program name with args.
 set dummy python1.5; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:607: checking for $ac_word" >&5
+echo "configure:609: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PYTHON15'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -644,7 +646,7 @@ then
 	# Extract the first word of "python2.0", so it can be a program name with args.
 set dummy python2.0; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:648: checking for $ac_word" >&5
+echo "configure:650: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PYTHON20'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -685,7 +687,7 @@ then
 	# Extract the first word of "python2.1", so it can be a program name with args.
 set dummy python2.1; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:689: checking for $ac_word" >&5
+echo "configure:691: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PYTHON21'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -726,7 +728,7 @@ then
 	# Extract the first word of "python2.2", so it can be a program name with args.
 set dummy python2.2; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:730: checking for $ac_word" >&5
+echo "configure:732: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_PYTHON22'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -765,7 +767,7 @@ fi
 # Extract the first word of "zip", so it can be a program name with args.
 set dummy zip; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:769: checking for $ac_word" >&5
+echo "configure:771: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_ZIP'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -796,14 +798,6 @@ if test -n "$ZIP"; then
 else
   echo "$ac_t""no" 1>&6
 fi
-
-
-
-
-
-
-
-
 
 
 ac_aux_dir=
@@ -837,7 +831,7 @@ ac_configure=$ac_aux_dir/configure # This should be Cygnus configure.
 # SVR4 /usr/ucb/install, which tries to use the nonexistent group "staff"
 # ./install, which can be erroneously created by make from ./install.sh.
 echo $ac_n "checking for a BSD compatible install""... $ac_c" 1>&6
-echo "configure:841: checking for a BSD compatible install" >&5
+echo "configure:835: checking for a BSD compatible install" >&5
 if test -z "$INSTALL"; then
 if eval "test \"`echo '$''{'ac_cv_path_install'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -890,7 +884,7 @@ test -z "$INSTALL_SCRIPT" && INSTALL_SCRIPT='${INSTALL_PROGRAM}'
 test -z "$INSTALL_DATA" && INSTALL_DATA='${INSTALL} -m 644'
 
 echo $ac_n "checking whether ${MAKE-make} sets \${MAKE}""... $ac_c" 1>&6
-echo "configure:894: checking whether ${MAKE-make} sets \${MAKE}" >&5
+echo "configure:888: checking whether ${MAKE-make} sets \${MAKE}" >&5
 set dummy ${MAKE-make}; ac_make=`echo "$2" | sed 'y%./+-%__p_%'`
 if eval "test \"`echo '$''{'ac_cv_prog_make_${ac_make}_set'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -920,7 +914,7 @@ fi
 # Extract the first word of "gcc", so it can be a program name with args.
 set dummy gcc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:924: checking for $ac_word" >&5
+echo "configure:918: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -950,7 +944,7 @@ if test -z "$CC"; then
   # Extract the first word of "cc", so it can be a program name with args.
 set dummy cc; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:954: checking for $ac_word" >&5
+echo "configure:948: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1001,7 +995,7 @@ fi
       # Extract the first word of "cl", so it can be a program name with args.
 set dummy cl; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1005: checking for $ac_word" >&5
+echo "configure:999: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1033,7 +1027,7 @@ fi
 fi
 
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works""... $ac_c" 1>&6
-echo "configure:1037: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
+echo "configure:1031: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) works" >&5
 
 ac_ext=c
 # CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
@@ -1044,12 +1038,12 @@ cross_compiling=$ac_cv_prog_cc_cross
 
 cat > conftest.$ac_ext << EOF
 
-#line 1048 "configure"
+#line 1042 "configure"
 #include "confdefs.h"
 
 main(){return(0);}
 EOF
-if { (eval echo configure:1053: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:1047: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   ac_cv_prog_cc_works=yes
   # If we can't run a trivial program, we are probably using a cross compiler.
   if (./conftest; exit) 2>/dev/null; then
@@ -1075,12 +1069,12 @@ if test $ac_cv_prog_cc_works = no; then
   { echo "configure: error: installation or configuration problem: C compiler cannot create executables." 1>&2; exit 1; }
 fi
 echo $ac_n "checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler""... $ac_c" 1>&6
-echo "configure:1079: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
+echo "configure:1073: checking whether the C compiler ($CC $CFLAGS $LDFLAGS) is a cross-compiler" >&5
 echo "$ac_t""$ac_cv_prog_cc_cross" 1>&6
 cross_compiling=$ac_cv_prog_cc_cross
 
 echo $ac_n "checking whether we are using GNU C""... $ac_c" 1>&6
-echo "configure:1084: checking whether we are using GNU C" >&5
+echo "configure:1078: checking whether we are using GNU C" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_gcc'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1089,7 +1083,7 @@ else
   yes;
 #endif
 EOF
-if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1093: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
+if { ac_try='${CC-cc} -E conftest.c'; { (eval echo configure:1087: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }; } | egrep yes >/dev/null 2>&1; then
   ac_cv_prog_gcc=yes
 else
   ac_cv_prog_gcc=no
@@ -1108,7 +1102,7 @@ ac_test_CFLAGS="${CFLAGS+set}"
 ac_save_CFLAGS="$CFLAGS"
 CFLAGS=
 echo $ac_n "checking whether ${CC-cc} accepts -g""... $ac_c" 1>&6
-echo "configure:1112: checking whether ${CC-cc} accepts -g" >&5
+echo "configure:1106: checking whether ${CC-cc} accepts -g" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_cc_g'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1141,7 +1135,7 @@ fi
 
 
 echo $ac_n "checking how to run the C preprocessor""... $ac_c" 1>&6
-echo "configure:1145: checking how to run the C preprocessor" >&5
+echo "configure:1139: checking how to run the C preprocessor" >&5
 # On Suns, sometimes $CPP names a directory.
 if test -n "$CPP" && test -d "$CPP"; then
   CPP=
@@ -1156,13 +1150,13 @@ else
   # On the NeXT, cc -E runs the code through the compiler's parser,
   # not just through cpp.
   cat > conftest.$ac_ext <<EOF
-#line 1160 "configure"
+#line 1154 "configure"
 #include "confdefs.h"
 #include <assert.h>
 Syntax Error
 EOF
 ac_try="$ac_cpp conftest.$ac_ext >/dev/null 2>conftest.out"
-{ (eval echo configure:1166: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+{ (eval echo configure:1160: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
 ac_err=`grep -v '^ *+' conftest.out | grep -v "^conftest.${ac_ext}\$"`
 if test -z "$ac_err"; then
   :
@@ -1173,13 +1167,13 @@ else
   rm -rf conftest*
   CPP="${CC-cc} -E -traditional-cpp"
   cat > conftest.$ac_ext <<EOF
-#line 1177 "configure"
+#line 1171 "configure"
 #include "confdefs.h"
 #include <assert.h>
 Syntax Error
 EOF
 ac_try="$ac_cpp conftest.$ac_ext >/dev/null 2>conftest.out"
-{ (eval echo configure:1183: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+{ (eval echo configure:1177: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
 ac_err=`grep -v '^ *+' conftest.out | grep -v "^conftest.${ac_ext}\$"`
 if test -z "$ac_err"; then
   :
@@ -1190,13 +1184,13 @@ else
   rm -rf conftest*
   CPP="${CC-cc} -nologo -E"
   cat > conftest.$ac_ext <<EOF
-#line 1194 "configure"
+#line 1188 "configure"
 #include "confdefs.h"
 #include <assert.h>
 Syntax Error
 EOF
 ac_try="$ac_cpp conftest.$ac_ext >/dev/null 2>conftest.out"
-{ (eval echo configure:1200: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+{ (eval echo configure:1194: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
 ac_err=`grep -v '^ *+' conftest.out | grep -v "^conftest.${ac_ext}\$"`
 if test -z "$ac_err"; then
   :
@@ -1222,17 +1216,17 @@ echo "$ac_t""$CPP" 1>&6
 
 ac_safe=`echo "libintl.h" | sed 'y%./+-%__p_%'`
 echo $ac_n "checking for libintl.h""... $ac_c" 1>&6
-echo "configure:1226: checking for libintl.h" >&5
+echo "configure:1220: checking for libintl.h" >&5
 if eval "test \"`echo '$''{'ac_cv_header_$ac_safe'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
   cat > conftest.$ac_ext <<EOF
-#line 1231 "configure"
+#line 1225 "configure"
 #include "confdefs.h"
 #include <libintl.h>
 EOF
 ac_try="$ac_cpp conftest.$ac_ext >/dev/null 2>conftest.out"
-{ (eval echo configure:1236: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
+{ (eval echo configure:1230: \"$ac_try\") 1>&5; (eval $ac_try) 2>&5; }
 ac_err=`grep -v '^ *+' conftest.out | grep -v "^conftest.${ac_ext}\$"`
 if test -z "$ac_err"; then
   rm -rf conftest*
@@ -1255,7 +1249,7 @@ fi
 
 
 echo $ac_n "checking for textdomain in -lc""... $ac_c" 1>&6
-echo "configure:1259: checking for textdomain in -lc" >&5
+echo "configure:1253: checking for textdomain in -lc" >&5
 ac_lib_var=`echo c'_'textdomain | sed 'y%./+-%__p_%'`
 if eval "test \"`echo '$''{'ac_cv_lib_$ac_lib_var'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -1263,7 +1257,7 @@ else
   ac_save_LIBS="$LIBS"
 LIBS="-lc  $LIBS"
 cat > conftest.$ac_ext <<EOF
-#line 1267 "configure"
+#line 1261 "configure"
 #include "confdefs.h"
 /* Override any gcc2 internal prototype to avoid an error.  */
 /* We use char because int might match the return type of a gcc2
@@ -1274,7 +1268,7 @@ int main() {
 textdomain()
 ; return 0; }
 EOF
-if { (eval echo configure:1278: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:1272: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   rm -rf conftest*
   eval "ac_cv_lib_$ac_lib_var=yes"
 else
@@ -1293,7 +1287,7 @@ if eval "test \"`echo '$ac_cv_lib_'$ac_lib_var`\" = yes"; then
 else
   echo "$ac_t""no" 1>&6
  echo $ac_n "checking for textdomain in -lintl""... $ac_c" 1>&6
-echo "configure:1297: checking for textdomain in -lintl" >&5
+echo "configure:1291: checking for textdomain in -lintl" >&5
 ac_lib_var=`echo intl'_'textdomain | sed 'y%./+-%__p_%'`
 if eval "test \"`echo '$''{'ac_cv_lib_$ac_lib_var'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
@@ -1301,7 +1295,7 @@ else
   ac_save_LIBS="$LIBS"
 LIBS="-lintl  $LIBS"
 cat > conftest.$ac_ext <<EOF
-#line 1305 "configure"
+#line 1299 "configure"
 #include "confdefs.h"
 /* Override any gcc2 internal prototype to avoid an error.  */
 /* We use char because int might match the return type of a gcc2
@@ -1312,7 +1306,7 @@ int main() {
 textdomain()
 ; return 0; }
 EOF
-if { (eval echo configure:1316: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+if { (eval echo configure:1310: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
   rm -rf conftest*
   eval "ac_cv_lib_$ac_lib_var=yes"
 else
@@ -1341,7 +1335,7 @@ fi
 # Extract the first word of "gnome-config", so it can be a program name with args.
 set dummy gnome-config; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1345: checking for $ac_word" >&5
+echo "configure:1339: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_prog_HAVE_GNOME_CONFIG'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1372,7 +1366,7 @@ GNOMEHELP=`gnome-config --prefix`
 
 
 echo $ac_n "checking Python bindings for sax/xml""... $ac_c" 1>&6
-echo "configure:1376: checking Python bindings for sax/xml" >&5
+echo "configure:1370: checking Python bindings for sax/xml" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1405,7 +1399,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python bindings for gtk+""... $ac_c" 1>&6
-echo "configure:1409: checking Python bindings for gtk+" >&5
+echo "configure:1403: checking Python bindings for gtk+" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1431,7 +1425,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python bindings for GNOME""... $ac_c" 1>&6
-echo "configure:1435: checking Python bindings for GNOME" >&5
+echo "configure:1429: checking Python bindings for GNOME" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1457,7 +1451,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python/libglade bindings""... $ac_c" 1>&6
-echo "configure:1461: checking Python/libglade bindings" >&5
+echo "configure:1455: checking Python/libglade bindings" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1483,7 +1477,7 @@ fi
 echo "$ac_t""ok" 1>&6
 
 echo $ac_n "checking Python/GNOME bindings for libglade""... $ac_c" 1>&6
-echo "configure:1487: checking Python/GNOME bindings for libglade" >&5
+echo "configure:1481: checking Python/GNOME bindings for libglade" >&5
 
 cat > conftest.py <<EOF
 try:
@@ -1511,7 +1505,7 @@ echo "$ac_t""ok" 1>&6
 
 
 echo $ac_n "checking for headers required to compile python extensions""... $ac_c" 1>&6
-echo "configure:1515: checking for headers required to compile python extensions" >&5
+echo "configure:1509: checking for headers required to compile python extensions" >&5
 
 if test "$PYTHON15" != ""; then
   py_prefix=`$PYTHON15 -c "import sys; print sys.prefix"`
@@ -1523,7 +1517,6 @@ if test "$PYTHON15" != ""; then
   fi
 fi
 
-
 if test "$PYTHON20" != ""; then
   py_prefix=`$PYTHON20 -c "import sys; print sys.prefix"`
   py_exec_prefix=`$PYTHON20 -c "import sys; print sys.exec_prefix"`
@@ -1533,7 +1526,6 @@ if test "$PYTHON20" != ""; then
     INTLLIBS="${INTLLIBS}intl20.so "
   fi
 fi
-
 
 if test "$PYTHON21" != ""; then
   py_prefix=`$PYTHON21 -c "import sys; print sys.prefix"`
@@ -1547,7 +1539,6 @@ if test "$PYTHON21" != ""; then
     INTLLIBS="${INTLLIBS}intl21.so "
   fi
 fi
-
 
 if test "$PYTHON22" != ""; then
   py_prefix=`$PYTHON22 -c "import sys; print sys.prefix"`
@@ -1563,16 +1554,23 @@ if test "$PYTHON22" != ""; then
 fi
 
 
-
-
 echo "$ac_t""ok" 1>&6
 
 
+# Check whether --enable-html or --disable-html was given.
+if test "${enable_html+set}" = set; then
+  enableval="$enable_html"
+  WANT_HTML="1"
+else
+  WANT_HTML="0"
+fi
 
-# Extract the first word of "db2html", so it can be a program name with args.
+
+if test "$WANT_HTML" = "1"; then
+  # Extract the first word of "db2html", so it can be a program name with args.
 set dummy db2html; ac_word=$2
 echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
-echo "configure:1576: checking for $ac_word" >&5
+echo "configure:1574: checking for $ac_word" >&5
 if eval "test \"`echo '$''{'ac_cv_path_DOCBOOKHTML'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
@@ -1604,11 +1602,33 @@ else
   echo "$ac_t""no" 1>&6
 fi
 
-if test $DOCBOOKHTML; then
-  echo $ac_n "checking for correct gnome-doc DTD""... $ac_c" 1>&6
-echo "configure:1610: checking for correct gnome-doc DTD" >&5
+  if test $DOCBOOKHTML; then
+    DOCBOOK_VER_STRING=
+    DB_VERSION=
+    REQ_VERSION=
+    echo $ac_n "checking for docbook 0.6.9""... $ac_c" 1>&6
+echo "configure:1611: checking for docbook 0.6.9" >&5
+    DOCBOOK_VER_STRING=`$DOCBOOKHTML -v | awk '{print $3}'`
+    DB_VERSION=`echo ${DOCBOOK_VER_STRING} | awk -F. '{print $1 * 1000 + $2 * 100 + $3;}'`
+    REQ_VERSION=609
+    if test "$DB_VERSION" -ne $REQ_VERSION; then
+      echo "$ac_t""********
+    DocBook = 0.6.9 is required to safely build extra docs.  I found 
+    $DOCBOOK_VER_STRING so will not build/install them.
+  ********" 1>&6  
+    DOCBOOKHTML=
+    fi
+  else
+    echo "$ac_t""********
+    Failed to find docbook so will not create requested documentation.
+  ********" 1>&6
+  fi
   
-  cat > conftest.sgml <<EOF
+  if test $DOCBOOKHTML; then
+    echo $ac_n "checking for correct gnome-doc DTD""... $ac_c" 1>&6
+echo "configure:1630: checking for correct gnome-doc DTD" >&5
+    
+    cat > conftest.sgml <<EOF
 <!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
 <!ENTITY version "0.0.1"> 
 ]>
@@ -1625,28 +1645,38 @@ echo "configure:1610: checking for correct gnome-doc DTD" >&5
   </sect1>
 </article> 
 EOF
-  $DOCBOOKHTML conftest.sgml -o conftest >&5 2>dbconf.err 
-  testresult=`cat dbconf.err | wc | awk '{print $1}'`
-  
-  if test $testresult = "0"; then
-    rm -f dbconf.err
-    echo "$ac_t""ok" 1>&6
-  else
-    echo "$ac_t""
-********
-    I had some problem with the gnome-doc DTD.  Please install
-    gnome-doc-tools from http://people.redhat.com/dcm/software.html.
-    Refer to dbconf.err for details.
-    		  I will not create documentation.
-********" 1>&6
-    DOCBOOKHTML=
-  fi  
-  rm -rf conftest 
-else
-  echo "$ac_t""********
-  Failed to find docbook (db2html) so will not create documentation.
-********" 1>&6
+    $DOCBOOKHTML conftest.sgml -o conftest >&5 2>dbconf.err 
+    testresult=`cat dbconf.err | wc | awk '{print $1}'`
+    
+    if test $testresult = "0"; then
+      rm -f dbconf.err
+      echo "$ac_t""ok" 1>&6
+    else
+      echo "$ac_t""
+  ********
+      I had some problem with the gnome-doc DTD.  Please install
+      gnome-doc-tools from http://people.redhat.com/dcm/software.html.
+      Refer to dbconf.err for details.
+      		  I will not create documentation.
+  ********" 1>&6
+      DOCBOOKHTML=
+    fi  
+    rm -rf conftest 
+  fi
 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 trap '' 1 2 15
@@ -1810,10 +1840,6 @@ s%@PYTHON20@%$PYTHON20%g
 s%@PYTHON21@%$PYTHON21%g
 s%@PYTHON22@%$PYTHON22%g
 s%@ZIP@%$ZIP%g
-s%@PYTHON_VERSION@%$PYTHON_VERSION%g
-s%@PACKAGE@%$PACKAGE%g
-s%@GNOMEHELP@%$GNOMEHELP%g
-s%@DOCBOOKHTML@%$DOCBOOKHTML%g
 s%@INSTALL_PROGRAM@%$INSTALL_PROGRAM%g
 s%@INSTALL_SCRIPT@%$INSTALL_SCRIPT%g
 s%@INSTALL_DATA@%$INSTALL_DATA%g
@@ -1821,6 +1847,10 @@ s%@SET_MAKE@%$SET_MAKE%g
 s%@CC@%$CC%g
 s%@CPP@%$CPP%g
 s%@HAVE_GNOME_CONFIG@%$HAVE_GNOME_CONFIG%g
+s%@DOCBOOKHTML@%$DOCBOOKHTML%g
+s%@PYTHON_VERSION@%$PYTHON_VERSION%g
+s%@PACKAGE@%$PACKAGE%g
+s%@GNOMEHELP@%$GNOMEHELP%g
 s%@P15_INCLUDES@%$P15_INCLUDES%g
 s%@P20_INCLUDES@%$P20_INCLUDES%g
 s%@P21_INCLUDES@%$P21_INCLUDES%g

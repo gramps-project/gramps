@@ -3,16 +3,25 @@ include @top_srcdir@/Makefile.comm
 MANSRC = ${EG}.sgml
 MANDIR = ${EG}
 
-all: ${MANDIR}/index.html
+
+html: ${MANDIR}/index.html
 
 ${MANDIR}/index.html: ${MANSRC}
-	db2html ${MANSRC} -o ${MANDIR}
+	-${DB2HTML} ${MANSRC} -o ${MANDIR}
+	-rm -rf ${MANSC}.junk/
 	
 install:
+	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
+	-${INSTALL} -m 644 ${MANSRC} ${GNOMEHELP}/${EG}/C
+
+# We only install the .html files since .png's 
+# should already be there from the normal install
+install-html:
 	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
 	-${INSTALL} -m 644 ${EG}/*.html ${GNOMEHELP}/${EG}/C
 
 uninstall:
+	-rm -f ${GNOMEHELP}/${EG}/C/*.sgml
 	-rm -f ${GNOMEHELP}/${EG}/C/*.html
 	-rmdir ${GNOMEHELP}/${EG}/C/
 
