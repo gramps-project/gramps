@@ -1056,6 +1056,9 @@ class TextDoc:
         "Closes the document"
         pass
 
+    def print_report(self):
+        pass
+
     def line_break(self):
         "Forces a line break within a paragraph"
 	pass

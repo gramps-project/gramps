@@ -35,6 +35,7 @@ import Errors
 
 import TextDoc 
 import DrawDoc
+from Report import run_print_dialog
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -90,6 +91,9 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
             raise Errors.ReportError(_("Could not create %s") % self.filename,msg)
         except:
             raise Errors.ReportError(_("Could not create %s") % self.filename)
+
+    def print_report(self):
+        return run_print_dialog (self.filename)
 
     def start_paragraph(self,style_name):
 	pass

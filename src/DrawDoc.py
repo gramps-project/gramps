@@ -157,6 +157,9 @@ class DrawDoc:
     def close(self):
         pass
 
+    def print_report(self):
+        pass
+
     def start_page(self,orientation=None):
         pass
 

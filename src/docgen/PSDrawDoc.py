@@ -35,6 +35,7 @@ import Plugins
 import Errors
 import TextDoc
 import DrawDoc
+from Report import run_print_dialog
 
 from intl import gettext as _
 
@@ -115,6 +116,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
             self.f.write('%%Orientation: Portrait\n')
         self.f.write('%%EndComments\n')
         self.f.write('/cm { 28.34 mul } def\n')
+        self.filename = filename
 
     def close(self):
         self.f.write('%%Trailer\n')
@@ -122,6 +124,9 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%d\n' % self.page)
         self.f.write('%%EOF\n')
         self.f.close()
+
+    def print_report(self):
+        return run_print_dialog (self.filename)
         
     def start_paragraph(self,style_name):
 	pass
@@ -375,4 +380,5 @@ def rgb_color(color):
     b = float(color[2])/255.0
     return (r,g,b)
         
-Plugins.register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps");
+Plugins.register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps",
+                          _("Print a copy"));

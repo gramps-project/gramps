@@ -79,6 +79,28 @@ _template_map = {
     _user_template : None
     }
 
+
+#-------------------------------------------------------------------------
+#
+# Support for printing generated files
+#
+#-------------------------------------------------------------------------
+def get_print_dialog_app ():
+    """Return the name of a program which sends stdin (or the program's
+    arguments) to the printer."""
+    for printdialog in ["/usr/bin/kprinter --stdin",
+                        "/usr/share/printconf/util/print.py"]:
+        if os.access (printdialog.split (' ')[0], os.X_OK):
+            return printdialog
+
+    return "lpr"
+
+def run_print_dialog (filename):
+    """Send file to the printer, possibly throwing up a dialog to
+    ask which one etc."""
+    os.environ["FILE"] = filename
+    return os.system ('cat "$FILE" | %s &' % get_print_dialog_app ())
+
 #-------------------------------------------------------------------------
 #
 # Report
@@ -764,23 +786,6 @@ class ReportDialog(BareReportDialog):
         pass
 
     def setup_center_person(self): pass
-
-    def get_print_dialog_app (self):
-        """Return the name of a program which sends stdin (or the program's
-        arguments) to the printer."""
-        for printdialog in ["/usr/bin/kprinter",
-                            "/usr/share/printconf/util/print.py"]:
-            if os.access (printdialog, os.X_OK):
-                return printdialog
-                break
-
-        return "lpr"
-
-    def run_print_dialog (self, filename):
-        """Send file to the printer, possibly throwing up a dialog to
-        ask which one etc."""
-        args = [self.get_print_dialog_app (), filename]
-        os.spawnvp (os.P_NOWAIT, args[0], args)
 
     #------------------------------------------------------------------------
     #

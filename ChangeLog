@@ -1,3 +1,9 @@
+2003-07-28  Tim Waugh  <twaugh@redhat.com>
+	* src/Report.py, src/TextDoc.py, src/DrawDoc.py: More support for
+	making printable output formats.
+	* src/docgen/PSDrawDoc.py, src/docgen/PdfDrawDoc.py: Make these
+	output formats printable.
+
 2003-07-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsParser.py: directly delete several maps to free memory
 
