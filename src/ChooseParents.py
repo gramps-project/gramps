@@ -159,23 +159,23 @@ class ChooseParents:
         self.fmodel.clear()
         self.fmodel.new_model()
 
-        pkey = self.person.get_id()
+        person_id = self.person.get_id()
 
         if self.father:
-            fid = self.father.get_id()
+            father_id = self.father.get_id()
         else:
-            fid = None
+            father_id = None
             
         bday = self.person.get_birth().get_date_object()
         dday = self.person.get_death().get_date_object()
 
         person_list = []
         for key in self.db.sort_person_keys():
-            if pkey == key:
+            if person_id == key:
                 continue
 
             person = self.db.get_person(key)
-            if person.get_gender() != person.male:
+            if person.get_gender() != RelLib.Person.male:
                 continue
 
             if not self.showallf.get_active():
@@ -215,9 +215,9 @@ class ChooseParents:
             d = self.db.get_person_display(idval)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
-                self.fmodel.add(info,d[1],fid==d[1])
+                self.fmodel.add(info,d[1],father_id==d[1])
             elif d[2] == const.male:
-                self.fmodel.add(info,d[1],fid==d[1])
+                self.fmodel.add(info,d[1],father_id==d[1])
 
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
@@ -233,7 +233,7 @@ class ChooseParents:
         self.mmodel.clear()
         self.mmodel.new_model()
 
-        pkey = self.person.get_id()
+        person_id = self.person.get_id()
 
         if self.mother:
             mid = self.mother.get_id()
@@ -245,11 +245,11 @@ class ChooseParents:
 
         person_list = []
         for key in self.db.sort_person_keys():
-            if pkey == key:
+            if person_id == key:
                 continue
 
             person = self.db.get_person(key)
-            if person.get_gender() != person.female:
+            if person.get_gender() != RelLib.Person.female:
                 continue
 
             person = self.db.get_person(key)
@@ -315,30 +315,33 @@ class ChooseParents:
     def showallm_toggled(self,obj):
         self.redrawm()
         
-    def find_family(self,father,mother):
+    def find_family(self,father_id,mother_id):
         """
         Finds the family associated with the father and mother.
         If one does not exist, it is created.
         """
-        if not father and not mother:
+        if not father_id and not mother_id:
             return None
 	
         families = self.db.get_family_id_map().values()
         for family in families:
-            if family.get_father_id() == father and family.get_mother_id() == mother:
+            if family.get_father_id() == father_id and family.get_mother_id() == mother_id:
                 return family
-            elif family.get_father_id() == mother and family.get_mother_id() == father:
+            elif family.get_father_id() == mother_id and family.get_mother_id() == father_id:
                 return family
 
         family = self.db.new_family()
-        family.set_father_id(father)
-        family.set_mother_id(mother)
-        family.add_child_id(self.person)
-    
-        if father:
+        family.set_father_id(father_id)
+        family.set_mother_id(mother_id)
+        family.add_child_id(self.person.get_id())
+
+        if father_id:
+            father = self.db.find_person_from_id(father_id)
             father.add_family_id(family.get_id())
         if mother:
+            mother = self.db.find_person_from_id(mother_id)
             mother.add_family_id(family.get_id())
+
         return family
 
     def mother_list_select_row(self,obj):
@@ -354,10 +357,11 @@ class ChooseParents:
 
         if not self.parent_selected and self.mother:
             self.parent_selected = 1
-            list = self.mother.get_family_id_list()
-            if len(list) >= 1:
-                father = list[0].get_father_id()
-                self.fmodel.find(father.get_id())
+            family_id_list = self.mother.get_family_id_list()
+            if len(family_id_list) >= 1:
+                family = self.db.find_family_from_id(family_id_list[0])
+                father_id = family.get_father_id()
+                self.fmodel.find(father_id)
                 self.fmodel.center_selected()
 
     def father_list_select_row(self,obj):
@@ -372,10 +376,11 @@ class ChooseParents:
 
         if not self.parent_selected and self.father:
             self.parent_selected = 1
-            list = self.father.get_family_id_list()
-            if len(list) >= 1:
-                mother = list[0].get_mother_id()
-                self.mmodel.find(mother.get_id())
+            family_id_list = self.father.get_family_id_list()
+            if len(family_id_list) >= 1:
+                family = self.db.find_family_from_id(family_id_list[0])
+                mother_id = family.get_mother_id()
+                self.mmodel.find(mother_id)
                 self.mmodel.center_selected()
 
     def save_parents_clicked(self,obj):
@@ -398,23 +403,21 @@ class ChooseParents:
                 if self.mother.get_gender() == RelLib.Person.male:
                     self.father = self.mother
                     self.mother = None
-                self.family = self.find_family(self.father,self.mother)
+                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
             elif self.father and not self.mother: 
                 if self.father.get_gender() == RelLib.Person.female:
                     self.mother = self.father
                     self.father = None
-                self.family = self.find_family(self.father,self.mother)
+                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
             elif self.mother.get_gender() != self.father.get_gender():
                 if self.type == "Partners":
                     self.type = "Unknown"
                 if self.father.get_gender() == RelLib.Person.female:
-                    x = self.father
-                    self.father = self.mother
-                    self.mother = x
-                self.family = self.find_family(self.father,self.mother)
+                    self.father, self.mother = self.mother, self.father
+                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
             else:
                 self.type = "Partners"
-                self.family = self.find_family(self.father,self.mother)
+                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
         else:    
             self.family = None
 
@@ -471,7 +474,7 @@ class ChooseParents:
         is None, the the relationship type shoud be deleted.
         """
         if self.person not in family.get_child_id_list():
-            family.add_child_id(self.person)
+            family.add_child_id(self.person.get_id())
         for fam in self.person.get_parent_family_id_list():
             if family == fam[0]:
                 if mother_rel == fam[1] and father_rel == fam[2]:

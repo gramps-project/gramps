@@ -1326,7 +1326,7 @@ class Gramps:
             
         self.people_view.remove_from_history(self.active_person)
         self.db.remove_person_id(self.active_person.get_id())
-        self.people_view.remove_from_person_list(self.active_person.get_id())
+        self.people_view.remove_from_person_list(self.active_person)
         self.people_view.person_model.sort_column_changed()
 
         if self.hindex >= 0:

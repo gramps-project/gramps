@@ -1,3 +1,8 @@
+2004-02-15  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/RelCalc.py: Handle IDs properly
+	* src/Relationship.py: Handle IDs properly
+	* src/home.png: added new default person icon
+
 2004-02-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetDescendantReport.py: Add style descriptions
 	for the paragraphs. Add first entry style. Change defaults to be

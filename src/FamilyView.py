@@ -603,10 +603,12 @@ class FamilyView:
         self.load_family(self.family)
         
     def new_spouse_after_edit(self,epo):
+
         if epo.person.get_id() == "":
             self.parent.db.add_person(epo.person)
         else:
             self.parent.db.add_person_no_map(epo.person,epo.person.get_id())
+
         self.parent.db.build_person_display(epo.person.get_id())
         self.parent.people_view.add_to_person_list(epo.person,0)
 
@@ -615,11 +617,11 @@ class FamilyView:
         epo.person.add_family_id(self.family.get_id())
 
         if self.person.get_gender() == RelLib.Person.male:
-            self.family.set_mother_id(epo.person)
-            self.family.set_father_id(self.person)
+            self.family.set_mother_id(epo.person.get_id())
+            self.family.set_father_id(self.person.get_id())
         else:	
-            self.family.set_father_id(epo.person)
-            self.family.set_mother_id(self.person)
+            self.family.set_father_id(epo.person.get_id())
+            self.family.set_mother_id(self.person.get_id())
         
         self.load_family(self.family)
         

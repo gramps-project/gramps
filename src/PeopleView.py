@@ -83,10 +83,14 @@ class PeopleView:
         self.clearing_tabs = 0
 
     def row_changed(self,obj):
-        mlist = self.person_tree.get_selected_objects()
-        if mlist and mlist[0]:
+        """Called with a row is changed. Check the selected objects from the person_tree
+        to get the IDs of the selected objects. Set the active person to the first person
+        in the list. If no one is selected, set the active person to None"""
+        selected_id_list = self.person_tree.get_selected_objects()
+        if selected_id_list:
+            assert(selected_id_list[0])
             try:
-                self.parent.change_active_person(self.parent.db.get_person(mlist[0]))
+                self.parent.change_active_person(self.parent.db.get_person(selected_id_list[0]))
             except:
                 self.parent.change_active_person(None)
                 self.person_tree.unselect()
@@ -141,11 +145,14 @@ class PeopleView:
             model.clear()
 
     def remove_from_person_list(self,person,old_id=None):
-        pid = person.get_id()
+        """Remove the selected person from the list. A person object is expected,
+        not an ID"""
+
+        person_id = person.get_id()
         if old_id:
             del_id = old_id
         else:
-            del_id = pid
+            del_id = person_id
 
         if self.id2col.has_key(del_id):
             (model,iter) = self.id2col[del_id]
@@ -157,11 +164,13 @@ class PeopleView:
                 self.parent.active_person = None
     
     def remove_from_history(self,person,old_id=None):
-        pid = person.get_id()
+        """Removes a person from the history list"""
+        
+        person_id = person.get_id()
         if old_id:
             del_id = old_id
         else:
-            del_id = pid
+            del_id = person_id
 
         hc = self.parent.history.count(del_id)
         for c in range(hc):
