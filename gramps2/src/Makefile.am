@@ -91,7 +91,8 @@ pkgpython_PYTHON = \
 	Utils.py\
 	VersionControl.py\
 	Witness.py\
-	WriteXML.py
+	WriteXML.py\
+        SelectPerson.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
@@ -110,7 +111,8 @@ GLADEFILES = \
 	revision.glade\
 	rule.glade\
 	srcsel.glade\
-	styles.glade
+	styles.glade\
+        choose.glade
 
 GRAPHICS = \
 	bad.png\

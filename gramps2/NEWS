@@ -9,6 +9,9 @@ Version 0.9.3
 * Improved Family View. 
 * Fixed duplicate people problem.
 * Imporved sharing of a single database between the users. 
+* Improved witness handling. 
+* Speed up in SourceView performance. 
+* Proper handling of different encodings in gedcom export.
 * Many dozens of bug fixes.
 
 Version 0.9.2
