@@ -387,10 +387,13 @@ class NewChild:
         utils.destroy_passed_object(obj)
         self.new_child = person
 
+    def other_update(self,arg1,arg2):
+        self.update(None,self.new_child)
+
     def on_edit_new_child(self,obj):
         import EditPerson
         
         self.on_addchild_ok_clicked(obj)
-        EditPerson.EditPerson(self.new_child,self.db)
+        EditPerson.EditPerson(self.new_child,self.db,self.other_update)
         
 
