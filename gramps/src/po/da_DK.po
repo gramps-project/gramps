@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
 "POT-Creation-Date: Wed May  1 16:53:26 2002\n"
-"PO-Revision-Date: 2002-05-06 12:47+0200\n"
+"PO-Revision-Date: 2002-05-06 13:41+0200\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -5278,3 +5278,118 @@ msgstr "top"
 msgid "bottom"
 msgstr "bund"
 
+#~ msgid "Haljamar Smith"
+#~ msgstr "Haljamar Smith"
+
+#~ msgid "Multiple Marriages"
+#~ msgstr "Flere ægteskaber"
+
+#~ msgid "Specific IDs"
+#~ msgstr "Specifikke ID'er"
+
+#~ msgid "_New File"
+#~ msgstr "_Ny Fil"
+
+#~ msgid "Do you wish to save the changes?"
+#~ msgstr "Ønsker du at gemme disse ændringer?"
+
+#~ msgid ":"
+#~ msgstr ":"
+
+#~ msgid "gramps ID"
+#~ msgstr "gramps ID"
+
+#~ msgid "Please check the person's marriages."
+#~ msgstr "Kontroller venligst personens ægteskaber."
+
+#~ msgid "Select existing person"
+#~ msgstr "Vælg eksisterende person"
+
+#~ msgid "Select existing person as spouse"
+#~ msgstr "Vælg eksisterende person som ægtefælle"
+
+#~ msgid "Add new person as spouse"
+#~ msgstr "Tilføj en ny person som ægtefælle"
+
+#~ msgid "Ancestors"
+#~ msgstr "Aner"
+
+#~ msgid "Descendants"
+#~ msgstr "Efterkommere"
+
+#~ msgid "Ancestors and Descendants"
+#~ msgstr "Aner og Efterkommere"
+
+#~ msgid "Generates relationship graphs, currently only in GraphViz format."
+#~ msgstr "Danner slægtstræer, indtil nu kun i GraphViz format."
+
+#~ msgid ""
+#~ "GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, "
+#~ "svg, and many other formats."
+#~ msgstr ""
+#~ "GraphViz (prik) kan konvertere træet til postscript, jpeg, png, vrml, "
+#~ "svg, og mange andre formater."
+
+#~ msgid ""
+#~ "For more information or to get a copy of GraphViz, goto http://www."
+#~ "graphviz.org"
+#~ msgstr ""
+#~ "For mere information og for at få en kopi af GraphViz, gå til http://www."
+#~ "graphviz.org"
+
+#~ msgid "Individual"
+#~ msgstr "Individ"
+
+#~ msgid "Ancestors and descendants"
+#~ msgstr "Aner og efterkommere"
+
+#~ msgid "Grandparent's ancestors and descendants"
+#~ msgstr "Bedsteforælders aner og efterkommere"
+
+#~ msgid "Entire database"
+#~ msgstr "Hele databasen"
+
+#~ msgid "Save complex filter as:"
+#~ msgstr "Gem komplekst filter som:"
+
+#~ msgid "Event Comparison - Create a complex filter"
+#~ msgstr "Hændelsessammenligning - Dan et komplekst filter"
+
+#~ msgid "test"
+#~ msgstr "test"
+
+#~ msgid "8"
+#~ msgstr "8"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "50"
+#~ msgstr "50"
+
+#~ msgid "17"
+#~ msgstr "17"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "90"
+#~ msgstr "90"
+
+#~ msgid "49"
+#~ msgstr "49"
+
+#~ msgid "11"
+#~ msgstr "11"
+
+#~ msgid "18"
+#~ msgstr "18"
+
+#~ msgid "65"
+#~ msgstr "65"
+
+#~ msgid "15"
+#~ msgstr "15"
