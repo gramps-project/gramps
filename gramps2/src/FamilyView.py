@@ -403,9 +403,10 @@ class FamilyView:
 
     def edit_relationship(self,obj,event):
         if event.state & gtk.gdk.SHIFT_MASK and \
-           event.type == gtk.gdk.BUTTON_PRESS and \
-           event.button == 1 and self.selected_spouse:
-            self.parent.load_person(self.selected_spouse)
+                    event.type == gtk.gdk.BUTTON_PRESS and \
+                    event.button == 1 and self.selected_spouse:
+            self.edit_spouse_callback(None)
+            
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             if self.selected_spouse:
                 self.build_spouse_menu()
@@ -443,11 +444,23 @@ class FamilyView:
         else:
             person.setGender(RelLib.Person.male)
         try:
-            EditPerson.EditPerson(person, self.parent.db, self.spouse_after_edit)
+            EditPerson.EditPerson(person, self.parent.db, self.new_spouse_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
     def spouse_after_edit(self,epo,plist):
+        ap = self.parent.active_person
+        if epo:
+            self.parent.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
+            self.parent.people_view.remove_from_person_list(epo.person,epo.original_id)
+            self.parent.people_view.redisplay_person_list(epo.person)
+        for p in plist:
+            self.parent.place_view.new_place_after_edit(p)
+
+        self.parent.active_person = ap
+        self.load_family(self.family)
+        
+    def new_spouse_after_edit(self,epo,plist):
         if epo.person.getId() == "":
             self.parent.db.addPerson(epo.person)
         else:
@@ -491,7 +504,7 @@ class FamilyView:
         person.getPrimaryName().setSurnamePrefix(name[0])
 
         try:
-            EditPerson.EditPerson(person, self.parent.db, self.child_after_edit)
+            EditPerson.EditPerson(person, self.parent.db, self.new_child_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -509,7 +522,7 @@ class FamilyView:
         self.parent.update_person_list(person)
         self.load_family(self.family)
             
-    def child_after_edit(self,epo,plist):
+    def new_child_after_edit(self,epo,plist):
         
         if epo.person.getId() == "":
             self.parent.db.addPerson(epo.person)

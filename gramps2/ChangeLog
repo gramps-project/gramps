@@ -13,6 +13,15 @@
 	* src/gramps_main.py: Likewise.
 	* src/Makefile.am, src/Makefile.in: Ship src/ArgHandler.py.
 	* NEWS: More items.
+	* src/FamilyView.py (new_spouse_after_edit): Rename function (used 
+	to be called spouse_after_edit); 
+	(add_spouse): Call new_spouse_after_edit.
+	(spouse_after_edit): Add function to be called after editing existing
+	spouse's personal data. Takes care of display issues only;
+	(new_child_after_edit): Rename function (used to be called 
+	child_after_edit);
+	(add_child_clicked): Call new_child_after_edit.
+	(edit_relationship): Change callback to get consistent behavior.
 
 2003-10-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py : support for capitalized name formats
