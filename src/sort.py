@@ -37,13 +37,13 @@ def build_sort_name(n):
 #-------------------------------------------------------------------------
 def build_sort_birth(n):
     y = n.start.year
-    if y == -1:
+    if y < 0:
         y = 9999
     m = n.start.month
-    if m == -1:
+    if m < 0:
         m = 99
     d = n.start.day
-    if d == -1:
+    if d < 0:
         d = 99
     return "%04d%02d%02d" % (y,m,d)
 
