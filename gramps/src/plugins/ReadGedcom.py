@@ -43,11 +43,8 @@ import gnome.mime
 ANSEL = 1
 UNICODE = 2
 
-topDialog = None
 db = None
 callback = None
-glade_file = None
-clear_data = 0
 
 def nocnv(s):
     return s
@@ -82,14 +79,11 @@ fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.
 def importData(database, filename):
 
     global callback
-    global topDialog
-    global glade_file
 
     # add some checking here
 
-    if clear_data == 1:
-        database.new()
-
+    glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
+        
     statusTop = libglade.GladeXML(glade_file,"status")
     statusWindow = statusTop.get_widget("status")
     statusTop.get_widget("close").set_sensitive(0)
@@ -1667,50 +1661,31 @@ class GedcomParser:
 
         self.db.pmapIndex = new_pmax
 
+def readData(database,active_person,cb):
+    global db
+    global callback
+    
+    db = database
+    callback = cb
+    
+    top = gtk.GtkFileSelection("%s - GRAMPS" % _("Import from GEDCOM"))
+    top.hide_fileop_buttons()
+    top.ok_button.connect_object('clicked', on_ok_clicked,top)
+    top.cancel_button.connect_object('clicked', Utils.destroy_passed_object,top)
+    top.show()
+
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 def on_ok_clicked(obj):
-    global clear_data
 
-    name = topDialog.get_widget("filename").get_text()
+    name = obj.get_filename()
     if name == "":
         return
-
-    if topDialog.get_widget("new").get_active():
-        clear_data = 1
-    else:
-        clear_data = 0
-
     Utils.destroy_passed_object(obj)
     importData(db,name)
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def readData(database,active_person,cb):
-    global db
-    global topDialog
-    global callback
-    global glade_file
-    
-    db = database
-    callback = cb
-    
-    glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
-        
-    dic = {
-        "destroy_passed_object" : Utils.destroy_passed_object,
-        "on_ok_clicked" : on_ok_clicked
-        }
-
-    topDialog = libglade.GladeXML(glade_file,"gedcomImport")
-    topDialog.signal_autoconnect(dic)
-    topDialog.get_widget("gedcomImport").show()
 
 #-------------------------------------------------------------------------
 #
