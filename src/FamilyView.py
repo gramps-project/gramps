@@ -352,7 +352,7 @@ class FamilyView:
                 
             if len(splist) > 1:
                 self.spouse_selection.set_mode(gtk.SELECTION_SINGLE)
-                self.spouse_selection.select_iter(iter)
+                self.spouse_selection.select_path(0)
             else:
                 self.spouse_selection.set_mode(gtk.SELECTION_NONE)
 
