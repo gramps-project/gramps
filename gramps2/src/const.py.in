@@ -93,6 +93,7 @@ dataDir        = "%s/data" % rootDir
 gtkrcFile      = "%s/gtkrc" % rootDir
 template_dir   = "%s/templates" % dataDir
 papersize      = "file:%s/papersize.xml" % dataDir
+tipdata        = "%s/tips.xml" % dataDir
 fdl            = "%s/fdl.txt" % dataDir
 
 startup        = 1
