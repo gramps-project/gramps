@@ -185,21 +185,21 @@ class Report:
 
     # Ordinal generation names.  Used by multiple reports.
     gen = {
-        1 : _("First"),          2 : _("Second"),
-        3 : _("Third"),          4 : _("Fourth"),
-        5 : _("Fifth"),          6 : _("Sixth"),
-        7 : _("Seventh"),        8 : _("Eighth"),
-        9 : _("Ninth"),          10: _("Tenth"),
-        11: _("Eleventh"),       12: _("Twelfth"),
-        13: _("Thirteenth"),     14: _("Fourteenth"),
-        15: _("Fifteenth"),      16: _("Sixteenth"),
-        17: _("Seventeenth"),    18: _("Eighteenth"),
-        19: _("Nineteenth"),     20: _("Twentieth"),
-        21: _("Twenty-first"),   22: _("Twenty-second"),
-        23: _("Twenty-third"),   24: _("Twenty-fourth"),
-        25: _("Twenty-fifth"),   26: _("Twenty-sixth"),
-        27: _("Twenty-seventh"), 28: _("Twenty-eighth"),
-        29: _("Twenty-ninth")
+        1 : _("First Generation"),          2 : _("Second Generation"),
+        3 : _("Third Generation"),          4 : _("Fourth Generation"),
+        5 : _("Fifth Generation"),          6 : _("Sixth Generation"),
+        7 : _("Seventh Generation"),        8 : _("Eighth Generation"),
+        9 : _("Ninth Generation"),          10: _("Tenth Generation"),
+        11: _("Eleventh Generation"),       12: _("Twelfth Generation"),
+        13: _("Thirteenth Generation"),     14: _("Fourteenth Generation"),
+        15: _("Fifteenth Generation"),      16: _("Sixteenth Generation"),
+        17: _("Seventeenth Generation"),    18: _("Eighteenth Generation"),
+        19: _("Nineteenth Generation"),     20: _("Twentieth Generation"),
+        21: _("Twenty-first Generation"),   22: _("Twenty-second Generation"),
+        23: _("Twenty-third Generation"),   24: _("Twenty-fourth Generation"),
+        25: _("Twenty-fifth Generation"),   26: _("Twenty-sixth Generation"),
+        27: _("Twenty-seventh Generation"), 28: _("Twenty-eighth Generation"),
+        29: _("Twenty-ninth Generation")
         }
 
     def __init__(self, database, person, options_class):
