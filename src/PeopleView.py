@@ -365,5 +365,5 @@ class PeopleView:
                 pnode = self.person_model.get_iter(path)
                 self.person_model.row_inserted(path,pnode)
                 
-        self.parent.change_active_person(person)
+        #self.parent.change_active_person(person)
         self.goto_active_person()

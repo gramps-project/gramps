@@ -303,7 +303,8 @@ class FamilyView:
     def ap_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.person)
-        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3 and self.person:
+        elif (event.type == gtk.gdk.BUTTON_PRESS and event.button == 3
+              and self.person):
             self.build_ap_menu(event)
 
     def ap_key_press(self,obj,event):
@@ -797,8 +798,7 @@ class FamilyView:
             return
         try:
             SelectChild.SelectChild(self.parent, self.parent.db, self.family,
-                                    self.person, self.load_family,
-                                    self.update_person_list)
+                                    self.person, self.load_family)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -806,6 +806,8 @@ class FamilyView:
         if self.family == None or self.person == None:
             return
 
+        family = self.family
+        
         model, node = self.child_selection.get_selected()
         if not node:
             return
@@ -815,18 +817,17 @@ class FamilyView:
 
         trans = self.parent.db.transaction_begin()
         
-        self.family.remove_child_handle(child.get_handle())
-        child.remove_parent_family_handle(self.family.get_handle())
+        family.remove_child_handle(child.get_handle())
+        child.remove_parent_family_handle(family.get_handle())
         
-        if len(self.family.get_child_handle_list()) == 0:
-            if self.family.get_father_handle() == None:
-                self.delete_family_from(self.family.get_mother_handle())
-            elif self.family.get_mother_handle() == None:
-                self.delete_family_from(self.family.get_father_handle())
+        if len(family.get_child_handle_list()) == 0:
+            if family.get_father_handle() == None:
+                self.delete_family_from(family.get_mother_handle(),trans)
+            elif family.get_mother_handle() == None:
+                self.delete_family_from(family.get_father_handle(),trans)
 
         self.parent.db.commit_person(child,trans)
-        if self.family:
-            self.parent.db.commit_family(self.family,trans)
+        self.parent.db.commit_family(family,trans)
         n = child.get_primary_name().get_regular_name()
         self.parent.db.transaction_commit(trans,_("Remove Child (%s)") % n)
 
@@ -961,8 +962,10 @@ class FamilyView:
             self.clear()
             return
 
-        bd = self.parent.db.get_event_from_handle(self.person.get_birth_handle())
-        dd = self.parent.db.get_event_from_handle(self.person.get_death_handle())
+        bhandle = self.person.get_birth_handle()
+        dhandle = self.person.get_death_handle()
+        bd = self.parent.db.get_event_from_handle(bhandle)
+        dd = self.parent.db.get_event_from_handle(dhandle)
 
         if bd and dd:
             n = "%s [%s]\n\t%s %s\n\t%s %s " % (
@@ -1091,8 +1094,7 @@ class FamilyView:
         else:
             return _("%s: unknown") % (l)
 
-    def delete_family_from(self,person_handle):
-        trans = self.parent.db.transaction_begin()
+    def delete_family_from(self,person_handle,trans):
         person = self.parent.db.get_person_from_handle(person_handle)
         person.remove_family_handle(self.family.get_handle())
         self.parent.db.remove_family(self.family.get_handle(),trans)
@@ -1102,7 +1104,6 @@ class FamilyView:
         else:
             self.family = None
         n = NameDisplay.displayer.display(person)
-        self.parent.db.transaction_commit(trans,_("Remove from family (%s)") % n)
 
     def display_marriage(self,family):
         if not family:

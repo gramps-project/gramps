@@ -56,13 +56,12 @@ from QuestionDialog import ErrorDialog
 #-------------------------------------------------------------------------
 class SelectChild:
 
-    def __init__(self,parent,db,family,person,redraw,add_person):
+    def __init__(self,parent,db,family,person,callback):
         self.parent = parent
         self.db = db
+        self.callback = callback
         self.person = person
         self.family = family
-        self.redraw = redraw
-        self.add_person = add_person
         self.renderer = gtk.CellRendererText()
         self.xml = gtk.glade.XML(const.gladeFile,"select_child","gramps")
     
@@ -328,8 +327,6 @@ class SelectChild:
         self.db.commit_family(self.family,trans)
         n = select_child.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Add Child to Family (%s)") % n)
-
-        self.redraw(self.family)
         self.close(obj)
         
     def on_show_toggled(self,obj):
