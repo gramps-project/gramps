@@ -288,23 +288,17 @@ class GrampsParser:
 
     def start_childof(self,attrs):
         family = self.db.findFamilyNoMap(u2l(attrs["ref"]))
-        if len(attrs) == 1:
-            self.person.MainFamily = family
+        if attrs.has_key("mrel"):
+            mrel = u2l(attrs["mrel"])
         else:
-            mrel = ""
-            frel = ""
-            if attrs.has_key("mrel"):
-                mrel = u2l(attrs["mrel"])
-            if attrs.has_key("frel"):
-                frel = u2l(attrs["frel"])
-            if mrel=="Birth" and frel=="Birth":
-                self.person.MainFamily = family
-            else:
-                if mrel or frel:
-                    self.person.AltFamilyList.append((family,mrel,frel))
-                else:
-                    type = u2l(attrs["type"])
-                    self.person.AltFamilyList.append((family,type,type))
+            mrel = "Birth"
+        if attrs.has_key("frel"):
+            frel = u2l(attrs["frel"])
+        else:
+            frel = "Birth"
+        self.person.AltFamilyList.append((family,mrel,frel))
+        if attrs.has_key('pref'):
+            self.person.setMainFamily(family)
 
     def start_parentin(self,attrs):
         self.person.FamilyList.append(self.db.findFamilyNoMap(u2l(attrs["ref"])))
@@ -871,14 +865,6 @@ class GrampsImportParser(GrampsParser):
         self.family = self.db.findFamily(u2l(attrs["id"]),self.fmap)
         if attrs.has_key("type"):
             self.family.setRelationship(u2l(attrs["type"]))
-
-    def start_childof(self,attrs):
-        family = self.db.findFamily(u2l(attrs["ref"]),self.fmap)
-        if attrs.has_key("type"):
-            type = u2l(attrs["type"])
-            self.person.addAltFamily(family,type)
-        else:
-            self.person.setMainFamily(family)
 
     def start_sourceref(self,attrs):
         self.source_ref = SourceRef()

@@ -886,7 +886,6 @@ class Person:
         self.EventList = []
         self.FamilyList = []
         self.AltFamilyList = []
-        self.MainFamily = None
         self.photoList = []
         self.nickname = ""
         self.alternateNames = []
@@ -1022,6 +1021,11 @@ class Person:
         parent or spouse"""
         self.FamilyList.append(family)
 
+    def setPreferred(self,family):
+        if family in self.FamilyList:
+            self.FamilyList.remove(family)
+            self.FamilyList = [family] + self.FamilyList
+
     def getFamilyList(self) :
         """returns the list of Family instances in which the
         person is a parent or spouse"""
@@ -1082,16 +1086,40 @@ class Person:
         for f in self.AltFamilyList[:]:
             if f[0] == family:
                 self.AltFamilyList.remove(f)
+                return f
+        else:
+            return None
+
+    def has_family(self,family):
+        for f in self.AltFamilyList:
+            if f[0] == family:
+                return f
+        else:
+            return None
 
     def setMainFamily(self,family):
         """sets the main Family of the Person, the Family in which the
         Person is a natural born child"""
-        self.MainFamily = family
-
+        assert(family in self.AltFamilyList)
+        
+        f = self.removeFamily(family)
+        self.AltFamilyList = [f] + self.AltFamilyList
+        
     def getMainFamily(self):
         """returns the main Family of the Person, the Family in which the
         Person is a natural born child"""
-        return self.MainFamily
+        if len(self.AltFamilyList) == 0:
+            return None
+        else:
+            return self.AltFamilyList[0][0]
+
+    def getMainFamilyRel(self):
+        """returns the main Family of the Person, the Family in which the
+        Person is a natural born child"""
+        if len(self.AltFamilyList) == 0:
+            return None
+        else:
+            return self.AltFamilyList
 
     def setNote(self,text):
         """sets the note attached to the Person to the passed text"""
@@ -1127,8 +1155,7 @@ class Person:
     def setAncestor(self, value):
         """set ancestor flag and recurse"""
         self.ancestor = value
-        family = self.MainFamily
-        if family:
+        for (family,m,f) in self.AltFamilyList:
             if family.Father:
                 # Don't waste time if the ancestor is already flagged.
                 # This will happen when cousins marry.
@@ -1712,7 +1739,6 @@ class GrampsDB:
         self.familyMap = {}
 
         for p in self.personMap.values():
-            p.MainFamily = None
             p.AltFamilyList = []
             p.FamilyList = []
         self.personMap = {}
