@@ -1,3 +1,9 @@
+2003-10-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: fix reference paths
+	* src/PeopleView.py: remove gobject import
+	* src/FamilyView.py: return name prefix/surname tuple
+	* Makefile.am: installation path from grampslib.so
+
 2003-10-10  Tim Waugh  <twaugh@redhat.com>
 	* src/PeopleStore.py: Fixed bug where you needed to expand the row
 	twice before it shows the people.
