@@ -1,3 +1,9 @@
+Version 0.6.2pre
+* Fixed SuSE 7.3/lib-imlib problem.
+* Improved GEDCOM import/export. Gramps now passes the GEDCHK program
+  and can now properly handle the quirks in names, notes, and parent/child
+  relationships from PAF, Legacy, FTW, Brother's Keeper, and Family Origins.
+
 Version 0.6.1
 * Fixed Family View/Pedigree View button swap
 * Updated Spanish translation

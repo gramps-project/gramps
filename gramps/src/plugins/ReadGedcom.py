@@ -164,6 +164,8 @@ class GedcomParser:
         self.dir_path = os.path.dirname(file)
         self.localref = 0
         self.placemap = {}
+        self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
+        self.broken_conc = 0
 
         self.f = open(file,"r")
         self.index = 0
@@ -555,8 +557,8 @@ class GedcomParser:
                 addr.setStreet(matches[2] + self.parse_continue_data(2))
                 self.parse_address(addr,2)
                 self.person.addAddress(addr)
-	    elif matches[1] == "TITL":
-                self.person.getPrimaryName().setTitle(matches[2])
+#	    elif matches[1] == "TITL":
+#                self.person.getPrimaryName().setTitle(matches[2])
 	    elif matches[1] == "BIRT":
                 event = Event()
                 if self.person.getBirth().getDate() != "" or \
@@ -694,7 +696,7 @@ class GedcomParser:
                 photo.setPath(path)
                 photo.setDescription(title)
                 photo.setMimeType(utils.get_mime_type(path))
-                db.addObject(photo)
+                self.db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
                 self.person.addPhoto(oref)
@@ -733,7 +735,7 @@ class GedcomParser:
                 photo.setPath(path)
                 photo.setDescription(title)
                 photo.setMimeType(utils.get_mime_type(path))
-                db.addObject(photo)
+                self.db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
                 source.addPhoto(oref)
@@ -771,7 +773,7 @@ class GedcomParser:
                 photo.setPath(path)
                 photo.setDescription(title)
                 photo.setMimeType(utils.get_mime_type(path))
-                db.addObject(photo)
+                self.db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
                 self.family.addPhoto(photo)
@@ -904,7 +906,11 @@ class GedcomParser:
                 else:
                     note = "\n%s" % info
 	    elif matches[1] == "CONC":
-	        event.setDescription( "%s %s" % (event.getDescription(), matches[2]))
+                d = event.getDescription()
+                if self.broken_conc:
+                    event.setDescription("%s %s" % (d, matches[2]))
+                else:
+                    event.setDescription("%s%s" % (d, matches[2]))
 	    elif matches[1] == "CONT":
 	        event.setDescription("%s\n%s" % (event.getDescription(),matches[2]))
             else:
@@ -969,9 +975,14 @@ class GedcomParser:
                 else:
                     note = "\n%s" % info
 	    elif matches[1] == "CONC":
-	        event.setDescription( "%s %s" % (event.getDescription(), matches[2]))
+                d = event.getDescription()
+                if self.broken_conc:
+                    event.setDescription("%s %s" % (d,matches[2]))
+                else:
+                    event.setDescription("%s%s" % (d,matches[2]))
 	    elif matches[1] == "CONT":
-	        event.setDescription("%s\n%s" % (event.getDescription(),matches[2]))
+                d = event.getDescription()
+	        event.setDescription("%s\n%s" % (d,matches[2]))
             else:
 	        self.barf(level+1)
 
@@ -1033,7 +1044,10 @@ class GedcomParser:
                 else:
                     note = "\n%s" % info
 	    elif matches[1] == "CONC":
-	        attr.setValue( "%s %s" % (attr.getValue(), matches[2]))
+                if self.broken_conc:
+                    attr.setValue("%s %s" % (attr.getValue(), matches[2]))
+                else:
+                    attr.setValue("%s %s" % (attr.getValue(), matches[2]))
 	    elif matches[1] == "CONT":
 	        attr.setValue("%s\n%s" % (attr.getValue(),matches[2]))
             else:
@@ -1182,8 +1196,11 @@ class GedcomParser:
                 pass
 	    elif matches[1] == "SURN":
                 name.setSurname(matches[2])
-	    elif matches[1] == "NSFX":
+	    elif matches[1] == "TITL":
                 name.setSuffix(matches[2])
+	    elif matches[1] == "NSFX":
+                if name.getSuffix() == "":
+                    name.setSuffix(matches[2])
 	    elif matches[1] == "NICK":
                 self.person.setNickName(matches[2])
             elif matches[1] == "_AKA":
@@ -1235,6 +1252,10 @@ class GedcomParser:
 	    elif matches[1] == "SOUR":
                 if self.created_obj.get_text() == "":
                     self.update(self.created_obj,matches[2])
+                if matches[2] in self.broken_conc_list:
+                    self.broken_conc = 1
+                else:
+                    self.broken_conc = 0
                 if matches[2] == "FTW":
                     self.is_ftw = 1
    	    elif matches[1] == "NAME":
@@ -1363,9 +1384,12 @@ class GedcomParser:
             matches = self.get_next()
 
             if matches[1] == "CONC":
-               data = "%s%s" % (data,matches[2])
+                if self.broken_conc:
+                    data = "%s %s" % (data,matches[2])
+                else:
+                    data = "%s%s" % (data,matches[2])
             elif matches[1] == "CONT":
-               data = "%s\n%s" % (data,matches[2])
+                data = "%s\n%s" % (data,matches[2])
             else:
                 self.backup()
                 return data
@@ -1389,8 +1413,6 @@ class GedcomParser:
 #
 #-------------------------------------------------------------------------
 def on_ok_clicked(obj):
-    global db
-    global topDialog
     global clear_data
 
     name = topDialog.get_widget("filename").get_text()
@@ -1439,12 +1461,3 @@ from Plugins import register_import
 
 register_import(readData,_("Import from GEDCOM"))
 
-if __name__ == "__main__":
-    import profile
-    import sys
-    global db
-
-    glade_file = "plugins/gedcomimport.glade"
-    
-    db = RelDataBase()
-    profile.run('importData(db,sys.argv[1])')
