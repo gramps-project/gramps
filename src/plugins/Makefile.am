@@ -65,7 +65,6 @@ GLADEFILES = \
 	gedcomimport.glade\
 	merge.glade\
 	patchnames.glade\
-	pkgexport.glade\
 	relcalc.glade\
 	soundex.glade\
 	summary.glade\
