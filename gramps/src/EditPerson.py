@@ -772,14 +772,12 @@ class EditPerson:
             changed = 1
         if self.pname.getNote() != name.getNote():
             changed = 1
-
         if self.lds_not_loaded == 0 and self.check_lds():
             changed == 1
 
         bplace = string.strip(self.bplace.get_text())
         dplace = string.strip(self.dplace.get_text())
 
-        bplace = self.bplace.get_text()
         if self.pmap.has_key(bplace):
             p1 = self.pmap[bplace]
         else:
@@ -788,7 +786,6 @@ class EditPerson:
                 changed = 1
         self.birth.setPlace(p1)
 
-        dplace = self.dplace.get_text()
         if self.pmap.has_key(dplace):
             p1 = self.pmap[dplace]
         else:
@@ -796,7 +793,6 @@ class EditPerson:
             if dplace != "":
                 changed = 1
         self.death.setPlace(p1)
-
 
         if not self.birth.are_equal(self.person.getBirth()):
             changed = 1
