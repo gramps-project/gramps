@@ -881,9 +881,12 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_person_event(self,event,level):
+        note = ""
         while 1:
             matches = self.get_next()
             if int(matches[0]) < level:
+                if note != "":
+                    event.setNote(note)
                 self.backup()
                 break
             elif matches[1] == "TYPE":
@@ -895,11 +898,9 @@ class GedcomParser:
                     event.setName(name)
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
-            elif matches[1] == "TIME":
+            elif matches[1] == "TIME" or matches[1] == "ADDR":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "AGE" or matches[1] == "AGNC":
-                self.ignore_sub_junk(level+1)
-            elif matches[1] == "CAUS" or matches[1] == "ADDR":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "STAT" or matches[1] == "TEMP":
                 self.ignore_sub_junk(level+1)
@@ -912,9 +913,8 @@ class GedcomParser:
                     ref = "gsr%d" % self.localref
                     s = self.db.findSource(ref,self.smap)
                     source_ref.setBase(s)
-                    note = matches[2] + self.parse_continue_data(1)
                     s.setTitle('Imported Source #%d' % self.localref)
-                    s.setNote(note)
+                    s.setNote(matches[2] + self.parse_continue_data(1))
                     self.ignore_sub_junk(2)
                 else:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
@@ -941,8 +941,18 @@ class GedcomParser:
                     self.db.addPlace(place)
                 event.setPlace(place)
                 self.ignore_sub_junk(level+1)
+            elif matches[1] == "CAUS":
+                info = matches[2] + self.parse_continue_data(level+1)
+                if note == "":
+                    note = "%s: %s" % (_("Cause of Death"), info)
+                else:
+                    note = "%s\n%s: %s" % (note,_("Cause of Death"), info)
             elif matches[1] == "NOTE":
-                note = matches[2] + self.parse_continue_data(level+1)
+                info = matches[2] + self.parse_continue_data(level+1)
+                if note == "":
+                    note = info
+                else:
+                    note = "\n%s" % info
 	    elif matches[1] == "CONC":
 	        event.setDescription( "%s %s" % (event.getDescription(), matches[2]))
 	    elif matches[1] == "CONT":

@@ -423,6 +423,7 @@ def redraw_child_list(filter):
             for c in f.getChildList():
                 slist.append(c)
             
+    personmap = {}
     for person in person_list:
         if filter:
             if person in slist:
@@ -463,6 +464,12 @@ def redraw_child_list(filter):
                     if pbday.getLowYear() > dday.getHighYear() + 150:
                         continue
         
+        personmap[utils.phonebook_name(person)] = person
+
+    keynames = personmap.keys()
+    keynames.sort()
+    for key in keynames:
+        person = personmap[key]
         add_child_win.append([utils.phonebook_name(person),birthday(person),\
                               person.getId()])
         add_child_win.set_row_data(index,person)

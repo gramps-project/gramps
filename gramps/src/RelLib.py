@@ -1301,6 +1301,7 @@ class SourceRef:
                 return 0
             if self.getComments() != other.getComments():
                 return 0
+            return 1
         elif not self.ref and not other.ref:
             return 1
         else:

@@ -281,8 +281,14 @@ def attach_places(values,combo,place):
     sel_child = c
     list = [c]
     mymap = {}
+    placenamemap = {}
     for src in values:
-        l = gtk.GtkLabel("%s [%s]" % (src.get_title(),src.getId()))
+        placenamemap["%s [%s]" % (src.get_title(),src.getId())] = src
+    placenames = placenamemap.keys()
+    placenames.sort()
+    for key in placenames:
+        src = placenamemap[key]
+        l = gtk.GtkLabel(key)
         l.show()
         l.set_alignment(0,0.5)
         c = gtk.GtkListItem()
