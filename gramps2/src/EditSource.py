@@ -38,6 +38,7 @@ import Utils
 import GrampsCfg
 import ImageSelect
 import ListModel
+import RelLib
 
 from gettext import gettext as _
 
@@ -50,7 +51,10 @@ from gettext import gettext as _
 class EditSource:
 
     def __init__(self,source,db,parent,parent_window=None,func=None):
-        self.source = source
+        if source:
+            self.source = source
+        else:
+            self.source = RelLib.Source()
         self.db = db
         self.parent = parent
         if source:
@@ -328,7 +332,10 @@ class EditSource:
         self.gallery_ok = 1
 
         trans = self.db.transaction_begin()
-        self.db.commit_source(self.source,trans)
+        if self.source.get_handle() == None:
+            self.db.add_source(self.source,trans)
+        else:
+            self.db.commit_source(self.source,trans)
         self.db.transaction_commit(trans,_("Edit Source (%s)") % title)
         
         if self.callback:

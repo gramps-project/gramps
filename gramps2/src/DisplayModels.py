@@ -38,12 +38,10 @@ class BaseModel(gtk.GenericTreeModel):
     def __init__(self,db):
 
         gtk.GenericTreeModel.__init__(self)
-        self.set_property("leak_references",0)
+        self.set_property("leak_references",False)
 
         self.db = db
         self.rebuild_data()
-        self.connect('row-inserted',self.on_row_inserted)
-        self.connect('row-deleted',self.on_row_deleted)
 
     def rebuild_data(self):
         self.datalist = []
@@ -56,8 +54,20 @@ class BaseModel(gtk.GenericTreeModel):
     def on_row_inserted(self,obj,path,iter):
         self.rebuild_data()
 
-    def on_row_deleted(self,obj,path):
-        self.rebuild_data()
+    def delete_row_by_handle(self,handle):
+        index = self.datalist.index(handle)
+        del self.datalist[index]
+        self.row_deleted(index)
+
+    def delete_row_by_handle(self,handle):
+        index = self.datalist.index(handle)
+        del self.datalist[index]
+        self.row_deleted(index)
+
+    def update_row_by_handle(self,handle):
+        index = self.datalist.index(handle)
+        iter = self.get_iter(index)
+        self.row_changed(index,iter)
 
     def on_get_flags(self):
 	'''returns the GtkTreeModelFlags for this particular type of model'''
@@ -103,12 +113,12 @@ class BaseModel(gtk.GenericTreeModel):
 	'''returns true if this node has children'''
         if node == None:
             return len(self.datalist) > 0
-        return 0
+        return False
 
     def on_iter_n_children(self,node):
         if node == None:
             return len(self.datalist)
-        return 0
+        return False
 
     def on_iter_nth_child(self,node,n):
         if node == None:

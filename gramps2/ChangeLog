@@ -1,3 +1,15 @@
+2004-08-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsBSDDB.py: add remove_place function
+	* src/DisplayModels.py: added row deletion and updating
+	functions
+	* src/EditPlace.py: Make a distinction between update and
+	new
+	* src/EditSource.py: Make a distinction between update and
+	new
+	* src/PeopleModel.py: remove debugging code
+	* src/PlaceView.py: better handling of updating and deleiting
+	* src/SourceView.py: better handling of updating and deleiting
+
 2004-08-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: cleanup dialogs
 	* src/EditPerson.py: update screen properly
