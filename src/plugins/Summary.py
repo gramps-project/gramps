@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "View/Summary of the database"
 
@@ -53,8 +55,8 @@ from gnome.ui import *
 #------------------------------------------------------------------------
 def build_report(database,person):
 
-    personList = database.get_person_id_map().values()
-    familyList = database.get_family_id_map().values()
+    personList = database.get_person_keys()
+    familyList = database.get_family_keys()
 
     with_photos = 0
     total_photos = 0
@@ -67,25 +69,32 @@ def build_report(database,person):
     namelist = []
     notfound = []
     
-    pobjects = len(database.get_object_map().values())
-    for photo in database.get_object_map().values():
+    pobjects = len(database.get_object_keys())
+    for photo_id in database.get_object_keys():
+        photo = database.find_object_from_id(photo_id)
         try:
             bytes = bytes + posixpath.getsize(photo.get_path())
         except:
             notfound.append(photo.get_path())
         
-    for person in personList:
+    for person_id in personList:
         length = len(person.get_media_list())
         if length > 0:
             with_photos = with_photos + 1
             total_photos = total_photos + length
                 
+        person = database.find_person_from_id(person_id)
         name = person.get_primary_name()
         if name.get_first_name() == "" or name.get_surname() == "":
             incomp_names = incomp_names + 1
-        if person.get_main_parents_family_id() == None and len(person.get_family_id_list()) == 0:
+        if (not person.get_main_parents_family_id()) and (not len(person.get_family_id_list())):
             disconnected = disconnected + 1
-        if person.get_birth().get_date() == "":
+        birth_id = person.get_birth_id()
+        if birth_id:
+            birth = database.find_event_from_id(birth_id)
+            if not birth.get_date():
+                missing_bday = missing_bday + 1
+        else:
             missing_bday = missing_bday + 1
         if person.get_gender() == RelLib.Person.female:
             females = females + 1

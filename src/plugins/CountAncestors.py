@@ -2,6 +2,7 @@
 # count_anc.py - Ancestor counting plugin for gramps
 #
 # Copyright (C) 2001  Jesper Zedlitz
+# Copyright (C) 2004  Donald Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "View/Number of ancestors"
 
@@ -47,16 +50,16 @@ class CountAncestors:
             })
         thisgen = []
         allgen = []
-        thisgen.append(person)
+        thisgen.append(person.get_id())
         title = _("Number of ancestors of \"%s\" by generation") % person.get_primary_name().get_name()
         text = text + title + ':\n'
-        thisgensize=1
-        gen=1
-        while thisgensize>0:
-            thisgensize=0
-            if len(thisgen) >0:
-                thisgensize=len(thisgen)
-                gen= gen-1
+        thisgensize = 1
+        gen = 1
+        while thisgensize > 0:
+            thisgensize = 0
+            if thisgen:
+                thisgensize = len( thisgen )
+                gen = gen - 1
                 if thisgensize == 1 :
                     text = text + _("Generation %d has 1 individual.\n") % (gen)
                 else:
@@ -68,15 +71,15 @@ class CountAncestors:
                 family_id = person.get_main_parents_family_id()
                 if family_id:
                     family = database.find_family_from_id(family_id)
-                    father = family.get_father_id()
-                    mother = family.get_mother_id()
-                    if father != None:
-                        thisgen.append(father)
-                    if mother != None:
-                        thisgen.append(mother)
+                    father_id = family.get_father_id()
+                    mother_id = family.get_mother_id()
+                    if father_id:
+                        thisgen.append(father_id)
+                    if mother_id:
+                        thisgen.append(mother_id)
             allgen = allgen + thisgen
 	  
-        text = text + _("Total ancestors in generations %d to -1 is %d .\n") % (gen, len(allgen))
+        text = text + _("Total ancestors in generations %d to -1 is %d.\n") % (gen, len(allgen))
 
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
