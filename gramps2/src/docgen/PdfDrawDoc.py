@@ -110,6 +110,10 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         else:
             self.f.setDash([2,4],0)
         self.f.setLineWidth(stype.get_line_width())
+
+        color = stype.get_fill_color()
+        
+        self.f.setFillColor((float(color[0])/255.0,float(color[1])/255.0,float(color[2])/255.0))
         
         p = self.f.beginPath()
         point = path[0]

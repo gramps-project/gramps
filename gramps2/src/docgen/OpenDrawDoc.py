@@ -38,6 +38,7 @@ import Errors
 import TextDoc
 import DrawDoc
 import const
+import FontScale
 
 from intl import gettext as _
 
@@ -244,13 +245,18 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 	    self.f.write('" style:family="graphics" ')
 	    self.f.write('style:parent-style-name="standard">\n')
 	    self.f.write('<style:properties ')
-            if style.color[0] == 0 and style.color[1] == 0 and style.color[2] == 0:
-                self.f.write('draw:fill="solid" ')
-            else:
+            if style.color[0] == 255 and style.color[1] == 255 and style.color[2] == 255:
                 self.f.write('draw:fill="none" ')
+            else:
+                self.f.write('draw:fill="solid" ')
+
+            self.f.write('draw:fill-color="#%02x%02x%02x" ' % style.get_fill_color())
                 
             if style.get_line_style() == DrawDoc.DASHED:
                 self.f.write('draw:color="#cccccc" ')
+            else:
+                self.f.write('draw:color="#%02x%02x%02x" ' % style.get_color())
+                
             
             if style.get_line_width():
                 self.f.write('draw:stroke="solid" ')
@@ -484,12 +490,16 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 
+        pstyle = self.style_list[para_name]
+        font = pstyle.get_font()
+        sw = FontScale.string_width(font,text)*1.3
+
 	self.f.write('<draw:text-box draw:style-name="')
 	self.f.write(style)
 	self.f.write('" draw:layer="layout" ')
         # fix this
-	self.f.write('svg:width="%.3fcm" ' % 5.0)
-	self.f.write('svg:height="%.3fcm" ' % 1.0)
+	self.f.write('svg:width="%.3fcm" ' % sw)
+	self.f.write('svg:height="%.4fpt" ' % (font.get_size()*1.4))
 
 	self.f.write('svg:x="%.3fcm" ' % float(x))
         self.f.write('svg:y="%.3fcm">' % float(y))

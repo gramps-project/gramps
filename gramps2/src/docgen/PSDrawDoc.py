@@ -123,14 +123,13 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('gsave\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
         self.f.write(self.fontdef(p))
-        self.f.write('(%s) show\n' % text)
-        self.f.write('grestore\n')
+        self.f.write('(%s) show grestore\n' % text)
 
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
         self.f.write('gsave\n')
         self.f.write('newpath\n')
-        self.f.write('%d setlinewidth\n' % stype.get_line_width())
+        self.f.write('%.4f setlinewidth\n' % stype.get_line_width())
         if stype.get_line_style() == DrawDoc.SOLID:
             self.f.write('[] 0 setdash\n')
         else:
@@ -146,10 +145,11 @@ class PSDrawDoc(DrawDoc.DrawDoc):
             y1 = point[1]+self.tmargin
             self.f.write('%f cm %f cm lineto\n' % self.translate(x1,y1))
         self.f.write('closepath\n')
-        if self.color[0] == 0:
-            self.f.write('fill\n')
-        else:
-            self.f.write('stroke\n')
+
+        color = stype.get_fill_color()
+        if (color[0] != 255 or color[1] != 255 or color[2] != 255) :
+            self.f.write('%.4f %.4f %.4f setrgbcolor fill\n' % rgb_color(color))
+        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(stype.get_color()))
         self.f.write('grestore\n')
 
     def draw_line(self,style,x1,y1,x2,y2):
@@ -158,18 +158,17 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         y1 = y1 + self.tmargin
         y2 = y2 + self.tmargin
         stype = self.draw_styles[style]
-        self.f.write('gsave\n')
-        self.f.write('newpath\n')
+        self.f.write('gsave newpath\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
         self.f.write('%f cm %f cm lineto\n' % self.translate(x2,y2))
-        self.f.write('%d setlinewidth\n' % stype.get_line_width())
+        self.f.write('%.4f setlinewidth\n' % stype.get_line_width())
         if stype.get_line_style() == DrawDoc.SOLID:
             self.f.write('[] 0 setdash\n')
         else:
             self.f.write('[2 4] 0 setdash\n')
             
         self.f.write('2 setlinecap\n')
-        self.f.write('stroke\n')
+        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(stype.get_color()))
         self.f.write('grestore\n')
 
     def patch_text(self,text):
@@ -188,8 +187,8 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write("%f cm 0 rlineto\n" % (x2-x1)) 
         self.f.write("0  %f cm rlineto\n" % (y1-y2))
         self.f.write('closepath\n')
-        self.f.write("%d setlinewidth\n" % box_type.get_line_width())
-        self.f.write("stroke\n")
+        self.f.write("%.4f setlinewidth\n" % box_type.get_line_width())
+        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(box_type.get_color()))
         self.f.write('grestore\n')
     
     def draw_box(self,style,text,x,y):
@@ -227,9 +226,8 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%f cm 0 rlineto\n' % bw)
         self.f.write('0 %f cm rlineto\n' % bh)
         self.f.write('closepath\n')
-        self.f.write('0 setgray\n')
-        self.f.write('1 setlinewidth\n')
-        self.f.write('stroke\n')
+        self.f.write('%.4f setlinewidth\n' % box_style.get_line_width())
+        self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(box_style.get_color()))
 	if text != "":
             self.f.write(self.fontdef(p))
             lines = string.split(text,'\n')
@@ -244,5 +242,11 @@ class PSDrawDoc(DrawDoc.DrawDoc):
                 self.f.write('%f cm %f cm moveto\n' % self.translate(x+mar,ypos))
                 self.f.write("(%s) show\n" % lines[i])
         self.f.write('grestore\n')
+
+def rgb_color(color):
+    r = float(color[0])/255.0
+    g = float(color[1])/255.0
+    b = float(color[2])/255.0
+    return (r,g,b)
         
 Plugins.register_draw_doc(_("PostScript"),PSDrawDoc);
