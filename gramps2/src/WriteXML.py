@@ -77,9 +77,7 @@ def exportData(database, filename, callback):
     compress = GrampsCfg.uncompress == 0 and _gzip_ok == 1
 
     try:
-        print "xmlwriter"
         g = XmlWriter(database,callback,0,compress)
-        print "done"
         g.write(filename)
     except:
         import DisplayTrace

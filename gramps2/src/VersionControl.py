@@ -85,6 +85,7 @@ class RevisionComment:
         Utils.set_titles(self.win,self.top.get_widget('title'),_('Revision control comment'))
         self.text = self.top.get_widget("text")
         self.win.show()
+        self.win.run()
 
     def on_savecomment_clicked(self,obj):
         comment = unicode(self.text.get_text())
