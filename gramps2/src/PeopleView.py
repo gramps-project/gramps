@@ -83,7 +83,7 @@ class PeopleView:
 
     def row_changed(self,obj):
         mlist = self.person_tree.get_selected_objects()
-        if mlist:
+        if mlist and mlist[0]:
             self.parent.change_active_person(self.parent.db.getPerson(mlist[0]))
             try:
                 self.parent.change_active_person(self.parent.db.getPerson(mlist[0]))
