@@ -1,3 +1,7 @@
+2003-10-23  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/ReadGedcom.py (GedcomParser.__init__): 
+	Build translation map of correct length.
+
 2003-10-22  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsParser.py: remove debugging statement
 	* src/RelLib.py: remove debugging statement
