@@ -66,6 +66,7 @@ INDEX    = "i"
 FUNCTION = "f"
 QUALIFIER= "q"
 FILTER   = "x"
+NAME     = "n"
 
 #------------------------------------------------------------------------
 #
@@ -203,6 +204,7 @@ class EventComparison:
             myMenu.append(menuitem)
             menuitem.set_data(FILTER,Filter.filterMap[filter])
             menuitem.set_data(FUNCTION,Filter.filterEnb[filter])
+            menuitem.set_data(NAME,filter)
             menuitem.set_data(QUALIFIER,qualifier)
             menuitem.connect("activate",on_filter_name_changed)
             menuitem.show()
@@ -548,6 +550,7 @@ def on_add_clicked(obj):
     menu = myobj.filter_menu.get_menu()
 
     function = menu.get_active().get_data(FILTER)
+    name = menu.get_active().get_data(NAME)
 
     myfilter = function(qualifier)
     myfilter.set_invert(invert)
@@ -562,7 +565,7 @@ def on_add_clicked(obj):
     else:
         invert_text = "no"
 
-    name = myfilter.__doc__
+    print name, qualifier, invert_text
     myobj.filter_list_obj.append([name,qualifier,invert_text])
 
 #-------------------------------------------------------------------------

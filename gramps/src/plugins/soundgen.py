@@ -74,4 +74,4 @@ def runTool(database,active_person,callback):
 #
 #-------------------------------------------------------------------------
 def get_description():
-    return "Generates SoundEx codes for names"
+    return _("Generates SoundEx codes for names")

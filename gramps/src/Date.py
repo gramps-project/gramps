@@ -120,8 +120,7 @@ class Date:
         elif self.range == -1:
             return self.text
 	else:
-	    return _("from") + " " + _func(self.start) + " " + \
-                   _("to") + " " + _func(self.stop)
+	    return "%s %s %s %s" % ( _("from"),_func(self.start),_("to"), _func(self.stop))
 
     #--------------------------------------------------------------------
     #
@@ -131,11 +130,13 @@ class Date:
     def getQuoteDate(self):
 	if self.range == 0:
 	    return _func(self.start)
-        elif self.range == -1 and self.text:
-            return '"' + self.text + '"'
+        elif self.range == -1:
+            if self.text:
+                return '"%s"' % self.text
+            else:
+                return ''
 	else:
-	    return _("from") + " " + _func(self.start) + " " + \
-                   _("to") + " " + _func(self.stop)
+	    return "%s %s %s %s" % ( _("from"),_func(self.start),_("to"), _func(self.stop))
 
     #--------------------------------------------------------------------
     #

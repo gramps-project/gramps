@@ -271,8 +271,8 @@ class EditPerson:
         self.name_list.clear()
 
 	self.name_index = 0
-        attr = ""
         for name in self.person.getAlternateNames():
+            attr = ""
             if Config.show_detail:
                 if name.getNote() != "":
                     attr = "N"
@@ -331,8 +331,8 @@ class EditPerson:
         self.attr_list.clear()
 
 	self.attr_index = 0
-        detail = ""
         for attr in self.person.getAttributeList():
+            detail = ""
             if Config.show_detail:
                 if attr.getNote() != "":
                     detail = "N"
@@ -363,9 +363,9 @@ class EditPerson:
         self.address_list.freeze()
         self.address_list.clear()
 
-        detail = ""
 	self.address_index = 0
         for address in self.person.getAddressList():
+            detail = ""
             if Config.show_detail:
                 if address.getNote() != "":
                     detail = "N"
@@ -400,8 +400,8 @@ class EditPerson:
         self.event_list.clear()
 
         self.event_index = 0
-        attr = ""
         for event in self.person.getEventList():
+            attr = ""
             if Config.show_detail:
                 if event.getNote() != "":
                     attr = "N"
