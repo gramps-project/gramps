@@ -1,3 +1,11 @@
+2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/FtmStyleAncestor.py (print_more_about,print_notes):
+	Change to regular name instead of formal name.
+	* src/plugins/FtmStyleDescendants.py (print_more_about):
+	Likewise.
+	* src/plugins/FtmStyleDescendants.py (print_children):
+	Table name includes only family id.
+
 2003-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DetAncestralReport.py (write_death): Proper checks for 
         valid day and month of death.
