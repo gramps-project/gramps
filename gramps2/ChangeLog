@@ -1,3 +1,11 @@
+2004-03-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: rebuild models after import
+	* src/gramps.glade: expand child menu
+	* src/PeopleView.py: handle sorting of columns
+	* src/PeopleModel.py: handle sorting of columns
+	* src/ChooseParents.py: handle sorting of columns
+	* src/SelectPerson.py: use PersonModel
+
 2004-03-22  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Fix colliding name.
 	* src/PedView.py (on_show_child_menu): Switch to id.
