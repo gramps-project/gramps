@@ -81,3 +81,4 @@ for file in string.split(files):
     py_compile.compile(path)
 print" 2>/dev/null || :
 
+
