@@ -68,7 +68,6 @@
 	* doc/gramps-manual/C/keybind.xml: Update.
 	* doc/gramps-manual/C/filtref.xml: Update.
 
->>>>>>> 1.492
 2003-11-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PedView.py (PedigreeView.find_children): used italics instead of
 	'*' to indicate children in popup menu
