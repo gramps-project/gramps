@@ -35,8 +35,7 @@
 	      <property name="label">gtk-cancel</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="sourceDisplay"/>
+	      <property name="response_id">-6</property>
 	    </widget>
 	  </child>
 
@@ -49,8 +48,7 @@
 	      <property name="label">gtk-ok</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_sourceok_clicked" object="sourceDisplay"/>
+	      <property name="response_id">-5</property>
 	    </widget>
 	  </child>
 	</widget>
@@ -744,8 +742,7 @@
 	      <property name="label">gtk-cancel</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="sourcesel"/>
+	      <property name="response_id">-6</property>
 	    </widget>
 	  </child>
 
@@ -757,8 +754,7 @@
 	      <property name="label">gtk-ok</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_src_ok_clicked" object="slist"/>
+	      <property name="response_id">-5</property>
 	    </widget>
 	  </child>
 	</widget>

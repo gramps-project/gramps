@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -100,7 +100,7 @@ class AddressEditor:
             self.srcreflist = []
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,
-                                           self.top, self.slist,
+                                           self.top, self.window, self.slist,
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))

@@ -53,17 +53,15 @@ class SourceSelector:
             self.list.append(RelLib.SourceRef(s))
         self.update=update
         self.top = gtk.glade.XML(const.srcselFile,"sourcesel","gramps")
-        self.sourcesel = self.top.get_widget("sourcesel")
+        self.window = self.top.get_widget("sourcesel")
 
-        Utils.set_titles(self.sourcesel, self.top.get_widget('title'),
+        Utils.set_titles(self.window, self.top.get_widget('title'),
                          _('Source Reference Selection'))
         
         self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_add_src_clicked"    : self.add_src_clicked,
             "on_del_src_clicked"    : self.del_src_clicked,
             "on_edit_src_clicked"   : self.edit_src_clicked,
-            "on_src_ok_clicked"     : self.src_ok_clicked,
             })
 
         self.slist = self.top.get_widget("slist")
@@ -90,7 +88,14 @@ class SourceSelector:
         self.delete.set_sensitive(gtk.FALSE)
         self.edit.set_sensitive(gtk.FALSE)
         self.redraw()
-        self.sourcesel.show()
+        if self.parent:
+            self.window.set_transient_for(self.parent.window)
+
+        self.window.show()
+        val = self.window.run()
+        if val == gtk.RESPONSE_OK:
+            self.src_ok_clicked()
+        self.window.destroy()
 
     def selection_changed(self,obj):
         (store,iter) = self.selection.get_selected()
@@ -108,13 +113,12 @@ class SourceSelector:
             iter = self.model.append()
             self.model.set(iter,0,base.getId(),1,base.getTitle())
 
-    def src_ok_clicked(self,obj):
+    def src_ok_clicked(self):
         del self.orig[:]
         for s in self.list:
             self.orig.append(s)
         if self.update:
             self.update(self.orig)
-        Utils.destroy_passed_object(self.sourcesel)
     
     def edit_src_clicked(self,obj):
         store,iter = self.selection.get_selected()
@@ -148,11 +152,12 @@ class SourceSelector:
 #
 #-------------------------------------------------------------------------
 class SourceTab:
-    def __init__(self,srclist,parent,top,clist,add_btn,edit_btn,del_btn):
+    def __init__(self,srclist,parent,top,window,clist,add_btn,edit_btn,del_btn):
         self.db = parent.db
         self.parent = parent
         self.list = srclist
         self.top = top
+        self.window = window
         self.slist = clist
         self.selection = clist.get_selection()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
@@ -234,10 +239,8 @@ class SourceEditor:
                          _('Source Information'))
         
         self.showSource.signal_autoconnect({
-            "on_sourceok_clicked"   : self.on_sourceok_clicked,
             "on_source_changed"     : self.on_source_changed,
             "on_add_src_clicked"    : self.add_src_clicked,
-            "destroy_passed_object" : Utils.destroy_passed_object
             })
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
@@ -262,6 +265,12 @@ class SourceEditor:
         self.draw(self.active_source)
         self.set_button()
         self.sourceDisplay.show()
+        if self.parent:
+            self.sourceDisplay.set_transient_for(self.parent.window)
+        val = self.sourceDisplay.run()
+        if val == gtk.RESPONSE_OK:
+            self.on_sourceok_clicked()
+        self.sourceDisplay.destroy()
 
     def set_button(self):
         if self.active_source:
@@ -322,7 +331,7 @@ class SourceEditor:
         else:
             self.title_menu.set_sensitive(0)
 
-    def on_sourceok_clicked(self,obj):
+    def on_sourceok_clicked(self):
 
         if self.active_source != self.source_ref.getBase():
             self.source_ref.setBase(self.active_source)
@@ -352,7 +361,6 @@ class SourceEditor:
             self.update(self.parent,self.source_ref)
         
         Utils.modified()
-        Utils.destroy_passed_object(obj)
 
     def on_source_changed(self,obj):
         sel = obj.list.get_selection()
