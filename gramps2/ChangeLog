@@ -1,5 +1,8 @@
 2003-11-03  Tim Waugh  <twaugh@redhat.com>
 
+	* src/plugins/WriteGedcom.py (GedcomWriter.write_families): Use
+	frefn not prefn.
+
 	* src/plugins/gedcomexport.glade, src/plugins/WriteGedcom.py: Added
 	support for external image references.
 
