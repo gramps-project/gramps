@@ -919,8 +919,9 @@ class EditPerson:
         for event_handle in self.elist:
             event = self.db.get_event_from_handle(event_handle)
             pname = place_title(self.db,event)
-            node = self.etree.add([const.display_pevent(event.get_name()),event.get_description(),
-                                    event.get_quote_date(),pname],event)
+            node = self.etree.add([const.display_pevent(event.get_name()),
+                                   event.get_description(),
+                                   event.get_quote_date(),pname],event)
             self.emap[str(event)] = node
         if self.elist:
             self.etree.select_row(0)

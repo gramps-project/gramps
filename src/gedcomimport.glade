@@ -692,7 +692,8 @@
 		  <child>
 		    <widget class="GtkComboBox" id="codeset">
 		      <property name="visible">True</property>
-		      <property name="items" translatable="yes">ANSEL
+		      <property name="items" translatable="yes">default
+ANSEL
 ANSI (iso-8859-1)
 ASCII
 UNICODE</property>
