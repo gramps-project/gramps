@@ -368,4 +368,4 @@ try:
 except:
     pass
 
-Plugins.register_text_doc(_("Plaint Text"),AsciiDoc,1,1,1,".txt", print_label)
+Plugins.register_text_doc(_("Plain Text"),AsciiDoc,1,1,1,".txt", print_label)
