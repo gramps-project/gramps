@@ -82,6 +82,7 @@ class Exporter:
 
         self.build_exports()
         self.confirm_label = gtk.Label()
+        self.extra_pages = []
 
         self.w = gtk.Window()
 
@@ -257,7 +258,8 @@ class Exporter:
             table.attach(button,0,2,2*ix,2*ix+1)
             label = gtk.Label(description)
             label.set_line_wrap(gtk.TRUE)
-            table.attach(label,1,2,2*ix+1,2*ix+2)
+            label.set_alignment(0,0.5)
+            table.attach(label,1,2,2*ix+1,2*ix+2,xpadding=24)
         
         box.add(table)
         box.show_all()
@@ -265,9 +267,25 @@ class Exporter:
         return p
 
     def build_options(self,obj,obj2):
+        """
+        Build an extra page with the options specific for the chosen format.
+        If there's already a page (or pages) for this format in 
+        self.empty_pages then do nothing, otherwise add a page.
+
+        If the chosen format does not have options then remove all
+        extra pages that are already there (from previous user passes 
+        through the druid).
+        """
         ix = self.get_selected_format_index()
         if self.exports[ix][3]:
             title = self.exports[ix][3][0]
+            for (ep_ix,ep) in self.extra_pages:
+                if ep_ix == ix:
+                    return
+                else:
+                   ep.destroy()
+                   self.extra_pages.remove((ep_ix,ep))
+
             option_box_class = self.exports[ix][3][1]
             self.option_box_instance = option_box_class(self.person)
 
@@ -277,8 +295,13 @@ class Exporter:
             p.set_background(self.bg_color)
             p.set_logo(self.logo)
             p.append_item("",self.option_box_instance.get_option_box(),"")
+            self.extra_pages.append((ix,p))
             self.d.insert_page(self.file_sel_page,p)
             p.show_all()
+        else:
+            for (ep_ix,ep) in self.extra_pages:
+                ep.destroy()
+            self.extra_pages = []
 
     def build_file_sel_page(self):
         """
