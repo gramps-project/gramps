@@ -1567,7 +1567,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=pre3
+RELEASE=pre4
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"

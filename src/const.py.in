@@ -102,6 +102,7 @@ authors      = ["Donald N. Allingham", "David Hampton","Donald A. Peterson"]
 comments     = _("GRAMPS (Genealogical Research and Analysis "
                  "Management Programming System) is a personal "
                  "genealogy program.")
+documenters  = { 'Don Allingham', 'Lawrence Allingham' ]
 
 #-------------------------------------------------------------------------
 #
