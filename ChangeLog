@@ -1,4 +1,7 @@
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
+	* src/WriteGedcom.py (GedcomWriter.write_sources): Write sources
+	in ID order for easier change tracking.
+
 	* src/WriteXML.py (XmlWriter.write_xml_data): Use GRAMPS ID not DB
 	handle.
 	(XmlWriter.dump_source_ref): Likewise.
