@@ -84,26 +84,16 @@ class Address:
         self.state = ""
         self.country = ""
         self.postal = ""
-        self.start = Date()
-        self.stop = Date()
+        self.date = Date()
 
-    def setStartDate(self,date):
-        self.start.set(date)
+    def setDate(self,text):
+        self.date.set(text)
 
-    def getStartDate(self):
-        return self.start.getDate()
+    def getDate(self):
+        return self.date.getDate()
 
-    def getStartDateObj(self):
-        return self.start
-
-    def setStopDate(self,date):
-        self.stop.set(date)
-
-    def getStopDate(self):
-        return self.stop.getDate()
-
-    def getStopDateObj(self):
-        return self.stop
+    def getDateObj(self):
+        return self.date
 
     def setStreet(self,val):
         self.street = val
