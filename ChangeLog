@@ -1,3 +1,7 @@
+2003-08-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Relationship.py: add "get_grandparents_string" to return the
+	grandparents relationship between to people.
+
 2003-08-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Set version to 0.9.4 (since the release is 0.CVS...).
 	Otherwise it becomes older-version that the latest release. 
