@@ -70,7 +70,6 @@ pkgpython_PYTHON = \
 	PlaceView.py\
 	Plugins.py\
 	QuestionDialog.py\
-	QuickAdd.py\
 	ReadXML.py\
 	Relationship.py\
 	RelImage.py\

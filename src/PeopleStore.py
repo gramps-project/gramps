@@ -29,6 +29,13 @@ import pango
 
 #-------------------------------------------------------------------------
 #
+# internationalization
+#
+#-------------------------------------------------------------------------
+from gettext import gettext as _
+
+#-------------------------------------------------------------------------
+#
 # constants
 #
 #-------------------------------------------------------------------------
@@ -234,7 +241,6 @@ class PeopleStore:
         if not iter:
             iter = self.tree_roots[name]
         child = self.model.iter_children(iter)
-        node_list = self.tree_list[name]
 
         if self.model.get_value(child,0) is None:
             self.model.remove(child)
