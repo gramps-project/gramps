@@ -926,7 +926,6 @@ class WebReportDialog(ReportDialog):
         """The format frame is not used in this dialog.  Hide it, and
         set the output notebook to always display the html template
         page."""
-        self.topDialog.get_widget("format_frame").hide()
         self.output_notebook.set_page(1)
 
     def setup_other_frames(self):

@@ -124,7 +124,7 @@
 
       <widget>
 	<class>GtkFrame</class>
-	<name>format_frame</name>
+	<name>target_frame</name>
 	<border_width>4</border_width>
 	<label>Save As</label>
 	<label_xalign>0</label_xalign>
@@ -193,6 +193,7 @@
 	<class>GtkFrame</class>
 	<name>format_frame</name>
 	<border_width>4</border_width>
+	<visible>False</visible>
 	<label>Format</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -217,6 +218,7 @@
 	<class>GtkFrame</class>
 	<name>style_frame</name>
 	<border_width>4</border_width>
+	<visible>False</visible>
 	<label>Styles</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -403,6 +405,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>pagecount_label</name>
+	      <visible>False</visible>
 	      <label>Count</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
@@ -429,6 +432,7 @@
 	    <widget>
 	      <class>GtkOptionMenu</class>
 	      <name>pagecount_menu</name>
+	      <visible>False</visible>
 	      <can_focus>True</can_focus>
 	      <items>Single (scaled)
 </items>
@@ -560,6 +564,7 @@
 	<class>GtkFrame</class>
 	<name>options_frame</name>
 	<border_width>4</border_width>
+	<visible>False</visible>
 	<label>Report Options</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -582,6 +587,7 @@
 	    <class>GtkCombo</class>
 	    <name>filter_combo</name>
 	    <border_width>5</border_width>
+	    <visible>False</visible>
 	    <value_in_list>True</value_in_list>
 	    <ok_if_empty>True</ok_if_empty>
 	    <case_sensitive>False</case_sensitive>
@@ -618,6 +624,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>filter_label</name>
+	    <visible>False</visible>
 	    <label>Filter</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -644,6 +651,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>gen_label</name>
+	    <visible>False</visible>
 	    <label>Generations</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -670,6 +678,7 @@
 	  <widget>
 	    <class>GtkSpinButton</class>
 	    <name>generations</name>
+	    <visible>False</visible>
 	    <can_focus>True</can_focus>
 	    <climb_rate>1</climb_rate>
 	    <digits>0</digits>
@@ -702,6 +711,7 @@
 	  <widget>
 	    <class>GtkCheckButton</class>
 	    <name>pagebreak</name>
+	    <visible>False</visible>
 	    <can_focus>True</can_focus>
 	    <label>Page break between generations</label>
 	    <active>False</active>
@@ -725,6 +735,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>extra_menu_label</name>
+	    <visible>False</visible>
 	    <label></label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -751,6 +762,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>extra_textbox_label</name>
+	    <visible>False</visible>
 	    <label></label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
@@ -778,6 +790,7 @@
 	    <class>GtkOptionMenu</class>
 	    <name>extra_menu</name>
 	    <border_width>5</border_width>
+	    <visible>False</visible>
 	    <can_focus>True</can_focus>
 	    <items>default
 </items>
@@ -803,6 +816,7 @@
 	    <name>extra_scrolledwindow</name>
 	    <border_width>5</border_width>
 	    <height>80</height>
+	    <visible>False</visible>
 	    <hscrollbar_policy>GTK_POLICY_ALWAYS</hscrollbar_policy>
 	    <vscrollbar_policy>GTK_POLICY_ALWAYS</vscrollbar_policy>
 	    <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
