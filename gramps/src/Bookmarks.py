@@ -97,7 +97,7 @@ class Bookmarks :
         if person not in self.bookmarks:
             utils.modified()
             self.bookmarks.append(person)
-            self.add_to_menu(person)
+            self.redraw()
 
     #---------------------------------------------------------------------
     #
