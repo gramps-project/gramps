@@ -124,7 +124,7 @@ class Attribute:
     def setNoteObj(self,obj):
         self.note = obj
 
-    def getNoteObj(self,obj):
+    def getNoteObj(self):
         return self.note
 
     def setSourceRef(self,id) :
@@ -217,7 +217,7 @@ class Address:
     def setNoteObj(self,obj):
         self.note = obj
 
-    def getNoteObj(self,obj):
+    def getNoteObj(self):
         return self.note
 
     def setDate(self,text):
@@ -989,9 +989,6 @@ class SourceRef:
 
     def setNoteObj(self,note):
         self.comments = note
-
-    def getComments(self):
-        return self.comments
 
     def setComments(self,comments):
         self.comments.set(comments)

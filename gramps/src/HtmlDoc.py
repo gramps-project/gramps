@@ -19,16 +19,15 @@
 #
 
 import os
-import tempfile
 import string
 import re
 import intl
 import utils
+import gnome.ui
 
 _ = intl.gettext
 
 from TextDoc import *
-import const
 
 #------------------------------------------------------------------------
 #
@@ -116,7 +115,6 @@ class HtmlDoc(TextDoc):
                     mymsg = _("The marker '<!-- START -->' was not in the template")
                     gnome.ui.GnomeErrorDialog(mymsg)
             except IOError,msg:
-                import gnome.ui
 
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
@@ -125,8 +123,6 @@ class HtmlDoc(TextDoc):
                 self.bottom = _bottom
                 self.top = _top
             except:
-                import gnome.ui
-
                 mymsg = _("Could not open %s\nUsing the default template") % \
                         self.template
                 gnome.ui.GnomeWarningDialog(mymsg)

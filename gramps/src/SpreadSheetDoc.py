@@ -82,7 +82,7 @@ class SpreadSheetDoc:
     def close(self):
         pass
 
-    def start_page(self,orientation=None):
+    def start_page(self,name,style_name):
         pass
 
     def end_page(self):

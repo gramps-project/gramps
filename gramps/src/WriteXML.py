@@ -221,8 +221,6 @@ def dump_name(g,label,name,index=1):
 #-------------------------------------------------------------------------
 
 def exportData(database, filename, callback):
-    global db
-    db = database
     
     date = string.split(time.ctime(time.time()))
     fileroot = os.path.dirname(filename)
@@ -440,9 +438,9 @@ def exportData(database, filename, callback):
             g.write("    </source>\n")
         g.write("  </sources>\n")
 
-    if len(db.getBookmarks()) > 0:
+    if len(database.getBookmarks()) > 0:
         g.write("  <bookmarks>\n")
-        for person in db.getBookmarks():
+        for person in database.getBookmarks():
             g.write('    <bookmark ref="%s"/>\n' % person.getId())
         g.write("  </bookmarks>\n")
 

@@ -24,10 +24,7 @@
 #
 #-------------------------------------------------------------------------
 from gtk import *
-from gnome.ui import *
 
-import GTK
-import gnome.config
 import libglade
 import intl
 

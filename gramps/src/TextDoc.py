@@ -20,7 +20,6 @@
 
 import string
 import os
-import sys
 import utils
 
 #-------------------------------------------------------------------------

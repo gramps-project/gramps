@@ -67,7 +67,7 @@ def on_add_clicked(obj):
     top = obj.get_data("o")
 
     style = top.sheetlist.get_style_sheet("default")
-    x = StyleEditor("New Style",style,top)
+    StyleEditor("New Style",style,top)
 
 #------------------------------------------------------------------------
 #
@@ -100,7 +100,7 @@ def on_edit_clicked(obj):
 
     index = top.list.get_data("i")
     (name,style) = top.list.get_row_data(index)
-    x = StyleEditor(name,style,top)
+    StyleEditor(name,style,top)
 
 #------------------------------------------------------------------------
 #

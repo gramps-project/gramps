@@ -243,7 +243,6 @@ class OpenDrawDoc(DrawDoc):
 		self.f.write('draw:shadow="visible" ')
             else:
 		self.f.write('draw:shadow="hidden" ')
-	    pname = style.get_paragraph_style()
 	    self.f.write('/>\n')
   	    self.f.write('</style:style>\n')
 
@@ -445,28 +444,3 @@ class OpenDrawDoc(DrawDoc):
         else:
             self.f.write('/>\n')
 
-if __name__ == "__main__":
-
-    
-
-    s = PaperStyle("Junk",27.94,21.59)
-    x = OpenDrawDoc(s,PAPER_PORTRAIT)
-    f = FontStyle()
-    f.set_type_face(FONT_SANS_SERIF)
-    f.set_size(14)
-    p = ParagraphStyle()
-    p.set_font(f)
-    x.add_paragraph_style("mytest",p)
-
-    g = GraphicsStyle()
-    g.set_width(2)
-    g.set_height(2)
-    g.set_paragraph_style("mytest")
-    g.set_shadow(1)
-    x.add_draw_style("mybox",g)
-
-    x.open("/home/dona/test")
-    x.start_page()
-    x.draw_box("mybox","Hello",4,4)
-    x.end_page()
-    x.close()

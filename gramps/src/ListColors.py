@@ -20,8 +20,6 @@
 
 from gtk import *
 
-import sys
-
 _enable   = 0
 oddbg    = (0xffff,0xffff,0xffff)
 evenbg   = (0xffff,0xffff,0xffff)
