@@ -92,10 +92,6 @@ active_spouse = None
 select_father = None
 select_spouse = None
 select_mother = None
-select_child_list = {}
-childWindow   = None
-new_child_win = None
-add_child_win = None
 bookmarks     = None
 
 id2col        = {}
@@ -137,27 +133,11 @@ c_sort_direct = SORT_ASCENDING
 NOTEBOOK    = "notebook1"
 FILESEL     = "fileselection"
 FILTERNAME  = "filter_list"
-ODDFGCOLOR  = "oddForeground"
-ODDBGCOLOR  = "oddBackground"
-EVENFGCOLOR = "evenForeground"
-EVENBGCOLOR = "evenBackground"
 GIVEN       = "g"
 SURNAME     = "s"
 RELTYPE     = "d"
 PAD         = 3
 CANVASPAD   = 20
-
-#-------------------------------------------------------------------------
-#
-# Short hand function to return either the person's birthday, or an empty
-# string if the person is None
-#
-#-------------------------------------------------------------------------
-def birthday(person):
-    if person:
-        return person.getBirth().getQuoteDate()
-    else:
-        return ""
 
 #-------------------------------------------------------------------------
 #
@@ -364,290 +344,25 @@ def on_delete_sp_clicked(obj):
 
     load_family()
     utils.modified()
-    
+
+
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
 def on_add_child_clicked(obj):
-    global add_child_win
-    global childWindow
-    global select_child_list
-    
-    childWindow = libglade.GladeXML(const.gladeFile,"selectChild")
-    
-    childWindow.signal_autoconnect({
-        "on_save_child_clicked"    : on_save_child_clicked,
-        "on_addChild_select_row"   : on_add_child_select_row,
-        "on_addChild_unselect_row" : on_add_child_unselect_row,
-        "on_show_toggled"          : on_show_toggled,
-        "destroy_passed_object"    : utils.destroy_passed_object
-        })
+    import SelectChild
+    SelectChild.SelectChild(database,active_family,active_person,load_family)
 
-    select_child_list = {}
-    selectChild = childWindow.get_widget("selectChild")
-    add_child_win = childWindow.get_widget("addChild")
-    add_child_win.set_column_visibility(1,Config.id_visible)
-
-    father = active_family.getFather()
-    if father != None:
-        fname = father.getPrimaryName().getName()
-        ftitle = _("Relationship to %s") % fname
-        childWindow.get_widget("flabel").set_text(ftitle)
-
-    mother = active_family.getMother()
-    if mother != None:
-        mname = mother.getPrimaryName().getName()
-        mtitle = _("Relationship to %s") % mname
-        childWindow.get_widget("mlabel").set_text(mtitle)
-
-    childWindow.get_widget("mrel").set_text(_("Birth"))
-    childWindow.get_widget("frel").set_text(_("Birth"))
-    
-    redraw_child_list(2)
-    selectChild.show()
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def redraw_child_list(filter):
-    person_list = database.getPersonMap().values()
-    person_list.sort(sort.by_last_name)
-    add_child_win.freeze()
-    add_child_win.clear()
-    index = 0
-
-    bday = active_person.getBirth().getDateObj()
-    dday = active_person.getDeath().getDateObj()
-
-    bday_valid = (bday.getYear() != -1)
-    dday_valid = (dday.getYear() != -1)
-    
-    slist = []
-    for f in [active_person.getMainFamily()] + active_person.getFamilyList():
-        if f:
-            if f.getFather():
-                slist.append(f.getFather())
-            elif f.getMother():
-                slist.append(f.getMother())
-            for c in f.getChildList():
-                slist.append(c)
-            
-    personmap = {}
-    for person in person_list:
-        if filter:
-            if person in slist:
-                continue
-            if person.getMainFamily() != None:
-                continue
-            
-            pdday = person.getDeath().getDateObj()
-            pbday = person.getBirth().getDateObj()
-
-            if bday_valid:
-                if pbday.getYear() != -1:
-
-                    # reject if child birthdate < parents birthdate + 10
-                    if pbday.getLowYear() < bday.getHighYear()+10:
-                        continue
-
-                    # reject if child birthdate > parents birthdate + 90
-                    if pbday.getLowYear() > bday.getHighYear()+90:
-                        continue
-
-                if pdday.getYear() != -1:
-                    # reject if child deathdate < parents birthdate+ 10
-                    if pdday.getLowYear() < bday.getHighYear()+10:
-                        continue
-                
-            if dday_valid:
-
-                if pbday.getYear() != -1:
-                    
-                    # reject if childs birth date > parents deathday + 3
-                    if pdday.getLowYear() > dday.getHighYear()+3:
-                        continue
-
-                if pdday.getYear() != -1:
-
-                    # reject if childs death date > parents deathday + 150
-                    if pbday.getLowYear() > dday.getHighYear() + 150:
-                        continue
-        
-        personmap[utils.phonebook_name(person)] = person
-
-    keynames = personmap.keys()
-    keynames.sort()
-    for key in keynames:
-        person = personmap[key]
-        add_child_win.append([utils.phonebook_name(person),birthday(person),\
-                              person.getId()])
-        add_child_win.set_row_data(index,person)
-        index = index + 1
-    add_child_win.thaw()
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def on_show_toggled(obj):
-    redraw_child_list(obj.get_active())
-    
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
 def on_add_new_child_clicked(obj):
-    global new_child_win
-    
-    new_child_win = libglade.GladeXML(const.gladeFile,"addChild")
-    new_child_win.signal_autoconnect({
-        "on_addchild_ok_clicked" : on_addchild_ok_clicked,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-
-    if active_person.getGender() == Person.male:
-        surname = active_person.getPrimaryName().getSurname()
-    elif active_spouse:
-        surname = active_spouse.getPrimaryName().getSurname()
-    else:
-        surname = ""
-
-    if active_family:
-        father = active_family.getFather()
-        if father != None:
-            fname = father.getPrimaryName().getName()
-            label = _("Relationship to %s") % fname
-            new_child_win.get_widget("flabel").set_text(label)
-
-        mother = active_family.getMother()
-        if mother != None:
-            mname = mother.getPrimaryName().getName()
-            label = _("Relationship to %s") % mname
-            new_child_win.get_widget("mlabel").set_text(label)
-    else:
-        fname = active_person.getPrimaryName().getName()
-        label = _("Relationship to %s") % fname
-        if active_person.getGender() == Person.male:
-            new_child_win.get_widget("flabel").set_text(label)
-            new_child_win.get_widget("mcombo").set_sensitive(0)
-        else:
-            new_child_win.get_widget("mlabel").set_text(label)
-            new_child_win.get_widget("fcombo").set_sensitive(0)
-
-    new_child_win.get_widget("childSurname").set_text(surname)
-    new_child_win.get_widget("addChild").show()
-    new_child_win.get_widget("mrel").set_text(_("Birth"))
-    new_child_win.get_widget("frel").set_text(_("Birth"))
-
-    # Typing CR selects OK button
-    window = new_child_win.get_widget("addChild")
-    window.editable_enters(new_child_win.get_widget("childGiven"))
-    window.editable_enters(new_child_win.get_widget("childSurname"))
-    window.editable_enters(new_child_win.get_widget("mrel"))
-    window.editable_enters(new_child_win.get_widget("frel"))
-    
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def on_addchild_ok_clicked(obj):
-    global active_family
-    
-    surname = new_child_win.get_widget("childSurname").get_text()
-    given = new_child_win.get_widget("childGiven").get_text()
-    
-    person = Person()
-    database.addPerson(person)
-
-    name = Name()
-    name.setSurname(surname)
-    name.setFirstName(given)
-    person.setPrimaryName(name)
-
-    if new_child_win.get_widget("childMale").get_active():
-        person.setGender(Person.male)
-    elif new_child_win.get_widget("childFemale").get_active():
-        person.setGender(Person.female)
-    else:
-        person.setGender(Person.unknown)
-        
-    if not active_family:
-        active_family = database.newFamily()
-        if active_person.getGender() == Person.male:
-            active_family.setFather(active_person)
-        else:
-            active_family.setMother(active_person)
-        active_person.addFamily(active_family)
-
-    mrel = const.childRelations[new_child_win.get_widget("mrel").get_text()]
-    frel = const.childRelations[new_child_win.get_widget("frel").get_text()]
-
-    if mrel == "Birth" and frel == "Birth":
-        person.setMainFamily(active_family)
-    else:
-        person.addAltFamily(active_family,mrel,frel)
-
-    active_family.addChild(person)
-        
-    # must do an apply filter here to make sure the main window gets updated
-    
-    redisplay_person_list(person)
-    load_family()
-    utils.modified()
-    utils.destroy_passed_object(obj)
-    
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def on_save_child_clicked(obj):
-    global active_family
-
-    for select_child in select_child_list.keys():
-
-        if active_family == None:
-            active_family = database.newFamily()
-            active_person.addFamily(active_family)
-            if active_person.getGender() == Person.male:
-                active_family.setFather(active_person)
-            else:	
-                active_family.setMother(active_person)
-
-        active_family.addChild(select_child)
-		
-        mrel = const.childRelations[childWindow.get_widget("mrel").get_text()]
-        mother = active_family.getMother()
-        if mother and mother.getGender() != Person.female:
-            if mrel == "Birth":
-                mrel = "Unknown"
-                
-        frel = const.childRelations[childWindow.get_widget("frel").get_text()]
-        father = active_family.getFather()
-        if father and father.getGender() != Person.male:
-            if frel == "Birth":
-                frel = "Unknown"
-
-        if mrel == "Birth" and frel == "Birth":
-            family = select_child.getMainFamily()
-            if family != None and family != active_family:
-                family.removeChild(select_child)
-
-            select_child.setMainFamily(active_family)
-        else:
-            select_child.addAltFamily(active_family,mrel,frel)
-
-        utils.modified()
-        
-    utils.destroy_passed_object(obj)
-    load_family()
+    import SelectChild
+    SelectChild.NewChild(database,active_family,active_person,update_after_newchild)
 
 #-------------------------------------------------------------------------
 #
@@ -745,18 +460,18 @@ def on_prel_changed(obj):
         if person == active_person or person.getGender() == Person.unknown:
             continue
         elif type == "Partners":
-            father_list.append([utils.phonebook_name(person),birthday(person)])
+            father_list.append([utils.phonebook_name(person),utils.birthday(person)])
             father_list.set_row_data(father_index,person)
             father_index = father_index + 1
-            mother_list.append([utils.phonebook_name(person),birthday(person)])
+            mother_list.append([utils.phonebook_name(person),utils.birthday(person)])
             mother_list.set_row_data(mother_index,person)
             mother_index = mother_index + 1
         elif person.getGender() == Person.male:
-            father_list.append([utils.phonebook_name(person),birthday(person)])
+            father_list.append([utils.phonebook_name(person),utils.birthday(person)])
             father_list.set_row_data(father_index,person)
             father_index = father_index + 1
         else:
-            mother_list.append([utils.phonebook_name(person),birthday(person)])
+            mother_list.append([utils.phonebook_name(person),utils.birthday(person)])
             mother_list.set_row_data(mother_index,person)
             mother_index = mother_index + 1
 
@@ -973,71 +688,14 @@ def on_delete_place_clicked(obj):
                 fevent.append((f,event))
 
     if len(pevent) > 0 or len(fevent) > 0:
-        msg = []
-        ptop = libglade.GladeXML(const.gladeFile,"place_query")
-        ptop.signal_autoconnect({
-            'on_force_delete_clicked': on_force_delete_clicked,
-            'destroy_passed_object' : utils.destroy_passed_object}) 
-        
-        fd = ptop.get_widget("place_query")
-        fd.set_data("p",pevent)
-        fd.set_data("f",fevent)
-        fd.set_data("place",place)
-        
-        textbox = ptop.get_widget("text")
-        textbox.set_point(0)
-        textbox.set_word_wrap(1)
-
-        if len(pevent) > 0:
-            textbox.insert_defaults(_("People") + "\n")
-            textbox.insert_defaults("_________________________\n\n")
-            t = _("%s [%s]: event %s\n")
-
-            for e in pevent:
-                msg = t % (Config.nameof(e[0]),e[0].getId(),e[1].getName())
-                textbox.insert_defaults(msg)
-
-        if len(fevent) > 0:
-            textbox.insert_defaults("\n%s\n" % _("Families"))
-            textbox.insert_defaults("_________________________\n\n")
-            t = _("%s [%s]: event %s\n")
-
-            for e in fevent:
-                father = e[0].getFather()
-                mother = e[0].getMother()
-                if father and mother:
-                    fname = "%s and %s" % (Config.nameof(father),Config.nameof(mother))
-                elif father:
-                    fname = "%s" % Config.nameof(father)
-                else:
-                    fname = "%s" % Config.nameof(mother)
-
-                msg = t % (fname,e[0].getId(),e[1].getName())
-                textbox.insert_defaults(msg)
+        import EditPlace
+        EditPlace.DeletePlaceQuery(database,place,update_display,pevent,fevent)
     else:
         map = database.getPlaceMap()
         del map[place.getId()]
         utils.modified()
         update_display(0)
         
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_force_delete_clicked(obj):
-    place = obj.get_data('place')
-    plist = obj.get_data('p')
-    flist = obj.get_data('f')
-
-    for event in plist + flist:
-        event[1].setPlace(None)
-    map = database.getPlaceMap()
-    del map[place.getId()]
-    utils.modified()
-    utils.destroy_passed_object(obj)
-    update_display(0)
-    
 #-------------------------------------------------------------------------
 #
 #
@@ -1679,7 +1337,7 @@ def on_rel_type_changed(obj):
     for person in nameList:
         if person.getGender() == gender:
             continue
-        spouse_list.append([person.getPrimaryName().getName(),birthday(person)])
+        spouse_list.append([person.getPrimaryName().getName(),utils.birthday(person)])
         spouse_list.set_row_data(index,person)
         index = index + 1
     spouse_list.thaw()
@@ -1798,22 +1456,6 @@ def on_father_list_select_row(obj,a,b,c):
 	
     select_father = obj.get_row_data(a)
     obj.get_data("father_text").set_text(Config.nameof(select_father))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_child_select_row(obj,row,b,c):
-    select_child_list[obj.get_row_data(row)] = 1
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_child_unselect_row(obj,row,b,c):
-    del select_child_list[obj.get_row_data(row)]
 
 #-------------------------------------------------------------------------
 #
@@ -2399,6 +2041,16 @@ def new_after_edit(epo):
     change_active_person(epo.person)
     redisplay_person_list(epo.person)
 
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def update_after_newchild(family,person):
+    load_family(family)
+    redisplay_person_list(person)
+
 #-------------------------------------------------------------------------
 #
 #
@@ -2467,10 +2119,14 @@ def load_person(person):
 #
 #
 #-------------------------------------------------------------------------
-def load_family():
+def load_family(family=None):
     global active_mother
     global active_parents
     global active_spouse
+    global active_family
+
+    if family != None:
+        active_family = family
     
     family_types = []
     main_family = None
@@ -2977,10 +2633,12 @@ def display_marriage(family):
         attr = ""
         for child in child_list:
             status = _("Unknown")
-            if child.getGender():
+            if child.getGender() == Person.male:
                 gender = const.male
-            else:
+            elif child.getGender() == Person.female:
                 gender = const.female
+            else:
+                gender = const.unknown
             if child.getMainFamily() == family:
                 status = _("Birth")
             else:
@@ -3008,7 +2666,7 @@ def display_marriage(family):
                     attr = attr + "P"
 
             clist.append([Config.nameof(child),child.getId(),\
-                          gender,birthday(child),status,attr,"%2d"%i])
+                          gender,utils.birthday(child),status,attr,"%2d"%i])
             clist.set_row_data(i,child)
             i=i+1
             if i != 0:
@@ -3350,6 +3008,34 @@ def on_media_list_drag_data_get(w, context, selection_data, info, time):
         id = d.getId()
         selection_data.set(selection_data.target, 8, id)	
 
+def create_add_dialog(obj):
+    import AddMedia
+    AddMedia.AddMediaObject(database,load_media)
+
+def on_edit_media_clicked(obj):
+    if len(media_list.selection) <= 0:
+        return
+    object = media_list.get_row_data(media_list.selection[0])
+    ImageSelect.GlobalMediaProperties(object,database.getSavePath())
+    
+def on_media_list_drag_data_received(w, context, x, y, data, info, time):
+    if data and data.format == 8:
+        d = string.strip(string.replace(data.data,'\0',' '))
+        if d[0:5] == "file:":
+            name = d[5:]
+            mime = utils.get_mime_type(name)
+            photo = Photo()
+            photo.setPath(name)
+            photo.setMimeType(mime)
+            description = os.path.basename(name)
+            photo.setDescription(description)
+            database.addObject(photo)
+            utils.modified()
+            w.drag_finish(context, TRUE, FALSE, time)
+            load_media()
+        else:
+            w.drag_finish(context, FALSE, FALSE, time)
+
 #-------------------------------------------------------------------------
 #
 # Main program
@@ -3537,85 +3223,6 @@ def on_canvas1_event(obj,event):
             load_canvas()
     return 0
 
-def create_add_dialog(obj):
-    glade       = libglade.GladeXML(const.imageselFile,"imageSelect")
-    window      = glade.get_widget("imageSelect")
-    fname       = glade.get_widget("fname")
-    image       = glade.get_widget("image")
-    description = glade.get_widget("photoDescription")
-    external    = glade.get_widget("private")
-    
-    glade.signal_autoconnect({
-        "on_savephoto_clicked" : on_savephoto_clicked,
-        "on_name_changed" : on_name_changed,
-        "destroy_passed_object" : utils.destroy_passed_object
-        })
-    
-    window.editable_enters(description)
-    window.set_data("t",glade)
-    window.show()
-
-def on_savephoto_clicked(obj):
-    glade = obj.get_data("t")
-    filename = glade.get_widget("photosel").get_full_path(0)
-    description = glade.get_widget("photoDescription").get_text()
-    external = glade.get_widget("private")
-
-    if os.path.exists(filename) == 0:
-        GnomeErrorDialog(_("That is not a valid file name."));
-        return
-
-    type = utils.get_mime_type(filename)
-    mobj = Photo()
-    if description == "":
-        description = os.path.basename(filename)
-    mobj.setDescription(description)
-    mobj.setMimeType(type)
-    database.addObject(mobj)
-
-    if external.get_active() == 0:
-        path = database.getSavePath()
-        name = RelImage.import_media_object(filename,path,mobj.getId())
-    mobj.setPath(name)
-
-    utils.modified()
-    load_media()
-    utils.destroy_passed_object(obj)
-
-def on_name_changed(obj):
-    glade = obj.get_data('t')
-    filename = glade.get_widget("fname").get_text()
-    if os.path.isfile(filename):
-        type = utils.get_mime_type(filename)
-        if type[0:5] == "image":
-            image = RelImage.scale_image(filename,const.thumbScale)
-            glade.get_widget("image").load_imlib(image)
-        else:
-            glade.get_widget("image").load_file(utils.find_icon(type))
-
-def on_edit_media_clicked(obj):
-    if len(media_list.selection) <= 0:
-        return
-    object = media_list.get_row_data(media_list.selection[0])
-    ImageSelect.GlobalMediaProperties(object,database.getSavePath())
-    
-def on_media_list_drag_data_received(w, context, x, y, data, info, time):
-    if data and data.format == 8:
-        d = string.strip(string.replace(data.data,'\0',' '))
-        if d[0:5] == "file:":
-            name = d[5:]
-            mime = utils.get_mime_type(name)
-            photo = Photo()
-            photo.setPath(name)
-            photo.setMimeType(mime)
-            description = os.path.basename(name)
-            photo.setDescription(description)
-            database.addObject(photo)
-            utils.modified()
-            w.drag_finish(context, TRUE, FALSE, time)
-            load_media()
-        else:
-            w.drag_finish(context, FALSE, FALSE, time)
 
 #-------------------------------------------------------------------------
 #

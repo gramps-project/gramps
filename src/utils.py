@@ -367,3 +367,14 @@ def get_mime_description(type):
     return type
 
 
+#-------------------------------------------------------------------------
+#
+# Short hand function to return either the person's birthday, or an empty
+# string if the person is None
+#
+#-------------------------------------------------------------------------
+def birthday(person):
+    if person:
+        return person.getBirth().getQuoteDate()
+    else:
+        return ""
