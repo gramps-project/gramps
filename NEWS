@@ -1,14 +1,41 @@
-Version 0.5.1post
-* Support for QUAY on GEDCOM import. 
-* Confidence level moved to SourceReference instead of object
-* Support for revision control
-* Support for multiple sources per item
-* Improved GEDCOM import time
-* Support of NCHI and CAUS on GEDCOM import
+Version 0.6.0pre
+* Support for QUAY, NCHI, and CAUS on GEDCOM import. GEDCOM
+  import is significantly faster.
+* Support for multiple sources per item.
+* Support for revision control. RCS based revision control is 
+  available.
+* Confidence level moved to SourceReference instead of object.
 * All fields of birth and death events are editable. Clicking the
   Edit button brings up the event editor. Birth and death fields
   on the Edit Person dialog are now read only.
-* Support for unknown gender
+* Support for unknown gender.
+* Central image/media repository added. All images in a gallery 
+  are references to these media objects. Media objects can have
+  global properties (in the repository) or local properties (in
+  each gallery).
+* Media types are beyond images are now supported (PDF, MP3,
+  word processor documents, etc.)
+* Drag and drop of images from one gallery to another. Drag and
+  drop from file managers into the gallery. Drag and drop from a
+  web page to a gallery.
+* Drag and drop reordering of children in children lists.
+* Drag and drop reordering of images in a gallery.
+* Autocompletion support on most entry boxes with drop down menus.
+* Plugins can be reloaded without re-starting gramps.
+* Two people can be selected and directly merged from the main
+  person list.
+* Two places can be selected and directly merged from the main 
+  place list.
+* The "Find and Merge" functionality has been improved to make it
+  easier to find matches. 
+* Web page generation is significantly faster.
+* Many plugins enhanced. Descendant browser can jump to an Edit Person
+  display, Event Comparison can now save and load complex filters, 
+  etc.
+* User had significant more control over the format of the internal
+  GRAMPS' ids. You can now set a prefix for each type (such as "I-"
+  for individuals) or specify more powerful formatting using C-like
+  format statements (such as "I-%04d").
 
 Version 0.5.1
 * Bug fixes
