@@ -5,7 +5,7 @@
 >GRAMPS Manual V2.0</TITLE
 ><META
 NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.77+"></HEAD
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"></HEAD
 ><BODY
 CLASS="article"
 BGCOLOR="#FFFFFF"
@@ -21,11 +21,11 @@ CLASS="TITLEPAGE"
 CLASS="title"
 ><A
 NAME="AEN2"
-></A
 ><SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> Manual V2.0</H1
+> Manual V2.0</A
+></H1
 ><DIV
 CLASS="authorgroup"
 ><A
@@ -46,12 +46,12 @@ CLASS="orgname"
 CLASS="address"
 ><P
 CLASS="address"
->&nbsp;<TT
+>&nbsp;<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:shura@alex.neuro.umn.edu"
 >shura@alex.neuro.umn.edu</A
->&#62;</TT
+>&#62;</CODE
 >&nbsp;</P
 ></DIV
 ></DIV
@@ -70,12 +70,12 @@ CLASS="orgname"
 CLASS="address"
 ><P
 CLASS="address"
->&nbsp;<TT
+>&nbsp;<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:dallingham@users.sourceforge.net"
 >dallingham@users.sourceforge.net</A
->&#62;</TT
+>&#62;</CODE
 >&nbsp;</P
 ></DIV
 ></DIV
@@ -616,8 +616,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-intro"
-></A
->1. Introduction</H2
+>1. Introduction</A
+></H2
 ><P
 > The <SPAN
 CLASS="application"
@@ -647,11 +647,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="why-gramps"
-></A
 >1.1. Why <SPAN
 CLASS="application"
 >GRAMPS</SPAN
->?</H3
+>?</A
+></H3
 ><P
 > <SPAN
 CLASS="application"
@@ -704,18 +704,18 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-getting-started"
-></A
->2. Getting Started</H2
+>2. Getting Started</A
+></H2
 ><DIV
 CLASS="sect2"
 ><H3
 CLASS="sect2"
 ><A
 NAME="gramps-start"
-></A
 >2.1. To Start <SPAN
 CLASS="application"
 >GRAMPS</SPAN
+></A
 ></H3
 ><P
 >You can start <SPAN
@@ -779,19 +779,15 @@ CLASS="application"
 >&#13;	<B
 CLASS="command"
 >gramps</B
-> <TT
+> <VAR
 CLASS="replaceable"
-><I
->filename.ged</I
-></TT
+>filename.ged</VAR
 >
     	</P
 ><P
->where <TT
+>where <VAR
 CLASS="replaceable"
-><I
->filename.ged</I
-></TT
+>filename.ged</VAR
 > is the name 
 	of the file you	want to open/import. </P
 ></DD
@@ -804,11 +800,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="run-1st-time"
-></A
 >2.2. Running <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> for the first time</H3
+> for the first time</A
+></H3
 ><P
 > 
 	[ FIXME: NEED TO RUN Getting Started DRUID to document this section ] 
@@ -840,8 +836,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="choose-db-start"
-></A
->2.2.1. Choosing a database on startup</H4
+>2.2.1. Choosing a database on startup</A
+></H4
 ><P
 >If <SPAN
 CLASS="application"
@@ -884,8 +880,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="zodb-support"
-></A
->2.2.2. Optional ZODB support</H4
+>2.2.2. Optional ZODB support</A
+></H4
 ><P
 >If either StandaloneZODB or Zope is installed on your system, 
       <SPAN
@@ -924,8 +920,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-mainwin"
-></A
->3. Main Window</H2
+>3. Main Window</A
+></H2
 ><P
 >When you open a database (either existing or brand new), 
     the following window is displayed.</P
@@ -1082,8 +1078,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-views"
-></A
->3.1. Views</H3
+>3.1. Views</A
+></H3
 ><P
 >Views are the various ways to display different aspects of 
       genealogical information, as described below. Since the relevant 
@@ -1099,8 +1095,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="view-modes"
-></A
->3.1.1. Switching Views and Viewing Modes</H4
+>3.1.1. Switching Views and Viewing Modes</A
+></H4
 ><P
 >Depending on the state of the <SPAN
 CLASS="guimenu"
@@ -1182,8 +1178,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="people-view"
-></A
->3.1.2. People View</H4
+>3.1.2. People View</A
+></H4
 ><P
 >When <SPAN
 CLASS="application"
@@ -1237,8 +1233,8 @@ CLASS="sect4"
 CLASS="sect4"
 ><A
 NAME="filters"
-></A
->3.1.2.1. Filters</H5
+>3.1.2.1. Filters</A
+></H5
 ><P
 >Genealogical databases may contain huge numbers of people. 
 	  Since the long lists are hard for humans to handle,
@@ -1360,8 +1356,8 @@ CLASS="sect4"
 CLASS="sect4"
 ><A
 NAME="alpha-tabs"
-></A
->3.1.2.2. Alphabetical Tabs</H5
+>3.1.2.2. Alphabetical Tabs</A
+></H5
 ><P
 ><SPAN
 CLASS="application"
@@ -1402,8 +1398,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="family-view"
-></A
->3.1.3. Family View</H4
+>3.1.3. Family View</A
+></H4
 ><P
 >Family View displays the Family information of a currently 
 	selected (or Active) person. Specifically, this view shows the 
@@ -1513,8 +1509,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="pedigree-view"
-></A
->3.1.4. Pedigree View</H4
+>3.1.4. Pedigree View</A
+></H4
 ><DIV
 CLASS="figure"
 ><A
@@ -1581,8 +1577,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="sources-view"
-></A
->3.1.5. Sources View</H4
+>3.1.5. Sources View</A
+></H4
 ><DIV
 CLASS="figure"
 ><A
@@ -1626,8 +1622,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="places-view"
-></A
->3.1.6. Places View</H4
+>3.1.6. Places View</A
+></H4
 ><DIV
 CLASS="figure"
 ><A
@@ -1682,8 +1678,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="media-view"
-></A
->3.1.7. Media View</H4
+>3.1.7. Media View</A
+></H4
 ><DIV
 CLASS="figure"
 ><A
@@ -1718,8 +1714,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-usage"
-></A
->4. Usage</H2
+>4. Usage</A
+></H2
 ><P
 >As commonly encountered in everyday life, in
     <SPAN
@@ -1737,8 +1733,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="open-db"
-></A
->4.1. Opening Database</H3
+>4.1. Opening Database</A
+></H3
 ><P
 >To open a database, either choose <SPAN
 CLASS="guimenu"
@@ -1804,8 +1800,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="new-db"
-></A
->4.2. Starting New Database</H3
+>4.2. Starting New Database</A
+></H3
 ><P
 >To start a new database, choose <SPAN
 CLASS="guimenu"
@@ -1828,8 +1824,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="save-db"
-></A
->4.3. Saving Database</H3
+>4.3. Saving Database</A
+></H3
 ><P
 >To save changes made to your database, choose <SPAN
 CLASS="guimenu"
@@ -1844,11 +1840,9 @@ CLASS="guibutton"
 > on the Toolbar. The Status line will then 
       display <SPAN
 CLASS="guilabel"
->Saving <TT
+>Saving <VAR
 CLASS="replaceable"
-><I
->filename</I
-></TT
+>filename</VAR
 >...</SPAN
 > 
       message, and the progress bar will advance as the saving progresses.</P
@@ -1859,8 +1853,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="import-gedcom"
-></A
->4.4. Importing GEDCOM Data</H3
+>4.4. Importing GEDCOM Data</A
+></H3
 ><P
 >Importing GEDCOM data allows you to incorporate the data created in 
       other genealogical programs into your currently open <SPAN
@@ -1925,8 +1919,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="export-gedcom"
-></A
->4.5. Exporting GEDCOM Data</H3
+>4.5. Exporting GEDCOM Data</A
+></H3
 ><P
 >Exporting GEDCOM data allows you to share any portion of your 
       <SPAN
@@ -2036,11 +2030,11 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-package-impex"
-></A
 >4.6. Importing and Exporting <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> Packages</H3
+> Packages</A
+></H3
 ><P
 > <SPAN
 CLASS="application"
@@ -2115,8 +2109,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-edit-quick"
-></A
->4.7. Editing Data: Quick Start</H3
+>4.7. Editing Data: Quick Start</A
+></H3
 ><P
 > Editing any portion of data allows you to amend and/or 
 	modify information stored in the database. The available editing 
@@ -2132,8 +2126,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-add-pers"
-></A
->4.7.1. To Add a Person</H4
+>4.7.1. To Add a Person</A
+></H4
 ><P
 > To add a person to the database, switch to the People View 
 	(<A
@@ -2165,8 +2159,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-spec-rel"
-></A
->4.7.2. To Specify a Relationship</H4
+>4.7.2. To Specify a Relationship</A
+></H4
 ><P
 >To specify a relationship, first switch to the Family View 
 	(<A
@@ -2196,8 +2190,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-spec-par"
-></A
->4.7.3. To Specify Parents</H4
+>4.7.3. To Specify Parents</A
+></H4
 ><P
 >To specify parents of an active person, first switch to the 
 	Family View (<A
@@ -2248,8 +2242,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-spec-ch"
-></A
->4.7.4. To Specify Children</H4
+>4.7.4. To Specify Children</A
+></H4
 ><P
 >To specify children of an active person, switch to the 
 	Family View (<A
@@ -2289,8 +2283,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-add-img"
-></A
->4.7.5. To Add Images</H4
+>4.7.5. To Add Images</A
+></H4
 ><P
 >You can add images (as well as other media objects) to 
 	individual people, events, sources, places, as well as images 
@@ -2417,8 +2411,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-edit-src-plc"
-></A
->4.7.6. To Edit Sources and Places</H4
+>4.7.6. To Edit Sources and Places</A
+></H4
 ><P
 > To add a source or a place to the database, switch to 
 	the appropriate Sources View (<A
@@ -2459,8 +2453,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-edit-complete"
-></A
->4.8. Editing Data: Complete Description</H3
+>4.8. Editing Data: Complete Description</A
+></H3
 ><P
 > This section provides a complete description of all editing 
       options for all pieces of data in the <SPAN
@@ -2473,8 +2467,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-pers"
-></A
->4.8.1. Edit Personal Information</H4
+>4.8.1. Edit Personal Information</A
+></H4
 ><P
 > Editing of personal data can be performed in the 
 	following ways. </P
@@ -3205,8 +3199,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-rel"
-></A
->4.8.2. Edit Relationship Data</H4
+>4.8.2. Edit Relationship Data</A
+></H4
 ><P
 > Editing of relationship data is performed in the following 
 	<SPAN
@@ -3504,8 +3498,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-src"
-></A
->4.8.3. Edit Source Data</H4
+>4.8.3. Edit Source Data</A
+></H4
 ><P
 > To edit source data, switch to the Sources View and select the
 	desired entry in the list of sources. Double-click on that entry or
@@ -3708,8 +3702,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-plc"
-></A
->4.8.4. Edit Place Data</H4
+>4.8.4. Edit Place Data</A
+></H4
 ><P
 > To edit place data, switch to the Places View and select the
 	desired entry in the list of places. Double-click on that entry or
@@ -4042,8 +4036,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-media"
-></A
->4.8.5. Edit Media Data</H4
+>4.8.5. Edit Media Data</A
+></H4
 ><P
 > To edit media data, switch to the Media View and select the
 	desired entry in the list of sources. Double-click on that entry or
@@ -4260,8 +4254,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-ev"
-></A
->4.8.6. Edit Events</H4
+>4.8.6. Edit Events</A
+></H4
 ><P
 > Events are edited through the following <SPAN
 CLASS="guilabel"
@@ -4462,8 +4456,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-si"
-></A
->4.8.7. Edit Source Information</H4
+>4.8.7. Edit Source Information</A
+></H4
 ><P
 > When adding source references to events, places, etc., 
 	the following dialog appears: </P
@@ -4537,8 +4531,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-an"
-></A
->4.8.8. Edit Alternate Names</H4
+>4.8.8. Edit Alternate Names</A
+></H4
 ><P
 > Alternate names are edited through the following 
 	<SPAN
@@ -4695,8 +4689,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-at"
-></A
->4.8.9. Edit Attributes</H4
+>4.8.9. Edit Attributes</A
+></H4
 ><P
 > Attributes are edited through the following 
 	<SPAN
@@ -4855,8 +4849,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-ad"
-></A
->4.8.10. Edit Addresses</H4
+>4.8.10. Edit Addresses</A
+></H4
 ><P
 > Addresses are edited through the following 
 	<SPAN
@@ -5011,8 +5005,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="adv-wit"
-></A
->4.8.11. Edit Witnesses</H4
+>4.8.11. Edit Witnesses</A
+></H4
 ><P
 > Witnesses are edited through the following 
 	<SPAN
@@ -5128,8 +5122,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-nav"
-></A
->4.9. Navigation</H3
+>4.9. Navigation</A
+></H3
 ><P
 > As long as any database is open, 
 	<SPAN
@@ -5167,8 +5161,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-people"
-></A
->4.9.1. Using People View</H4
+>4.9.1. Using People View</A
+></H4
 ><P
 > The most intuitive way to select an active person is 
 	to use the People View. When in the People View, just select the
@@ -5182,8 +5176,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-family"
-></A
->4.9.2. Using Family View</H4
+>4.9.2. Using Family View</A
+></H4
 ><P
 > When in the Family View, you can easily navigate between the
 	members of the displayed family as follows: </P
@@ -5224,8 +5218,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-pedigree"
-></A
->4.9.3. Using Pedigree View</H4
+>4.9.3. Using Pedigree View</A
+></H4
 ><P
 > Pedigree View also allows you to move along the family tree. 
 	The benefits of this method is that you can see more than one 
@@ -5274,8 +5268,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-default"
-></A
->4.9.4. Setting Default Person</H4
+>4.9.4. Setting Default Person</A
+></H4
 ><P
 > One and only one person in the database can be selected as the 
 	default person. Once the default person is selected, moving to that
@@ -5304,8 +5298,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="gramps-nav-bookmk"
-></A
->4.9.5. Bookmarking People</H4
+>4.9.5. Bookmarking People</A
+></H4
 ><P
 > Similarly to the default person, you can bookmark other people 
 	from the database to simplify further navigation. To bookmark a person,
@@ -5326,11 +5320,9 @@ CLASS="guisubmenu"
 >Go to bookmark</SPAN
 >-&gt;<SPAN
 CLASS="guimenuitem"
-><TT
+><VAR
 CLASS="replaceable"
-><I
->Person's name</I
-></TT
+>Person's name</VAR
 ></SPAN
 >. </P
 ><P
@@ -5371,8 +5363,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gen-reports"
-></A
->4.10. Generating Reports</H3
+>4.10. Generating Reports</A
+></H3
 ><P
 > Reports are the most common form of the output produced by
 	genealogical research. Majority of genealogical software puts a lot
@@ -5403,20 +5395,16 @@ CLASS="guimenu"
 >Reports</SPAN
 >-&gt;<SPAN
 CLASS="guisubmenu"
-><TT
+><VAR
 CLASS="replaceable"
-><I
->Report Type</I
-></TT
+>Report Type</VAR
 ></SPAN
 >-&gt;<SPAN
 CLASS="guimenuitem"
-><TT
+><VAR
 CLASS="replaceable"
-><I
 >Particular 
-	Report</I
-></TT
+	Report</VAR
 ></SPAN
 >. Alternatively, 
 	you can browse the complete selection of available reports along 
@@ -5436,8 +5424,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="rep-graph"
-></A
->4.10.1. Graphical Reports</H4
+>4.10.1. Graphical Reports</A
+></H4
 ><P
 > Graphical reports represent information in forms of charts 
 	and graphs. Most of the options are common among graphical reports, 
@@ -5515,8 +5503,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="rep-text"
-></A
->4.10.2. Text Reports</H4
+>4.10.2. Text Reports</A
+></H4
 ><P
 > Text reports represent the desired information as formatted 
 	text. Most of the options are common among text reports, 
@@ -5624,8 +5612,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="rep-view"
-></A
->4.10.3. View</H4
+>4.10.3. View</A
+></H4
 ><P
 > View reports represent overall summaries of the database 
 	information available immediately for on-screen viewing. 
@@ -5662,8 +5650,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="rep-web"
-></A
->4.10.4. Web Page</H4
+>4.10.4. Web Page</A
+></H4
 ><P
 > This report generates web pages, either for a selected 
 	individual (active person) or a set of individuals. The options 
@@ -5688,8 +5676,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-tools"
-></A
->4.11. Running Tools</H3
+>4.11. Running Tools</A
+></H3
 ><P
 > <SPAN
 CLASS="application"
@@ -5711,20 +5699,16 @@ CLASS="guimenu"
 >Tools</SPAN
 >-&gt;<SPAN
 CLASS="guisubmenu"
-><TT
+><VAR
 CLASS="replaceable"
-><I
->Tool Section</I
-></TT
+>Tool Section</VAR
 ></SPAN
 >-&gt;<SPAN
 CLASS="guimenuitem"
-><TT
+><VAR
 CLASS="replaceable"
-><I
 >Particular 
-	Tool</I
-></TT
+	Tool</VAR
 ></SPAN
 >. Alternatively, 
 	you can browse the complete selection of available tools along 
@@ -5743,8 +5727,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="tools-ae"
-></A
->4.11.1. Analysis and Exploration</H4
+>4.11.1. Analysis and Exploration</A
+></H4
 ><P
 > This section contains tools which analyze and explore the
 	database, but do not alter it. The following analysis and exploration
@@ -5764,8 +5748,11 @@ CLASS="variablelist"
 >This tool compares events across the selected group of
 	people. The people for this comparison are chosen with the use of 
 	custom filters. The custom filters can be created in the Custom Filter
-	Editor. The resulting table produced by this tool can be saved as a 
-	spreadsheet. </P
+	Editor (see <A
+HREF="#tools-util"
+>Section 4.11.3</A
+>). The resulting table produced
+	by this tool can be saved as a spreadsheet. </P
 ></DD
 ><DT
 >Interactive descendant browser</DT
@@ -5785,8 +5772,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="tools-db"
-></A
->4.11.2. Database Processing</H4
+>4.11.2. Database Processing</A
+></H4
 ><P
 > This section contains tools which may modify your database. 
 	The modifications will only be performed upon your explicit consent. 
@@ -5860,8 +5847,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="tools-util"
-></A
->4.11.3. Utilities</H4
+>4.11.3. Utilities</A
+></H4
 ><P
 > </P
 ><P
@@ -5883,8 +5870,94 @@ CLASS="variablelist"
 ><P
 >The Custom Filter Editor builds custom filters 
 	that can be used to select people included in reports, exports, 
-	and other tools and utilities.
-	</P
+	and other tools and utilities. This is in fact a very powerful tool 
+	in genealogical analysis.</P
+><P
+>When you launch it, the <SPAN
+CLASS="guilabel"
+>User defined filters</SPAN
+> 
+	dialog appears that lists all the filters (if any) previously defined 
+	by you. Click <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> to define a new filter. 
+	Once you have designed your filters, you can edit, test, and delete 
+	selected filters using <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	<SPAN
+CLASS="guibutton"
+>Test...</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Delete...</SPAN
+> 
+	buttons, respectively. All the filters displayed in the list will be 
+	automatically saved along with your database and will be available 
+	upon the future runs of <SPAN
+CLASS="application"
+><SPAN
+CLASS="application"
+>GRAMPS</SPAN
+></SPAN
+>. </P
+><P
+>Clicking <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> invokes the 
+	following <SPAN
+CLASS="guilabel"
+>Define filter</SPAN
+> dialog: </P
+><DIV
+CLASS="figure"
+><A
+NAME="cfe-df-fig"
+></A
+><P
+><B
+>Figure 35. Define filter dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/cfe-df.png"></P
+></DIV
+></DIV
+><P
+> Type the name for your 
+	new filter into the <SPAN
+CLASS="guilabel"
+>Name</SPAN
+> field. Enter any 
+	comment that would help you identify this filter in the future
+	into the <SPAN
+CLASS="guilabel"
+>Comment</SPAN
+> field. Add as many rules as you
+	would like to your filter using <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+> button. 
+	Check <SPAN
+CLASS="guilabel"
+>Invert box</SPAN
+> to negate the filter rule 
+	(e.g. inverting "has a common ancestor with I1" rule will match 
+	everyone who does not have a common ancestor with that person). 
+	If the filter has more than one rule, choose whether all of them 
+	must apply, only one (either) rule must apply, or exactly one (either) 
+	rule must apply, in order for the filter to generate a match. </P
+><P
+> Note that the filters you already designed may be used as a rule
+	for another filter. This gives you nearly infinite flexibility in
+	custom-tailoring your selection criteria that can be later used in 
+	most of the exports, reports and some of the tools (such as comparing
+	individual events). </P
 ></DD
 ><DT
 >Generate SoundEx codes</DT
@@ -5921,8 +5994,8 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-prefs"
-></A
->5. Settings</H2
+>5. Settings</A
+></H2
 ><P
 >To configure <SPAN
 CLASS="application"
@@ -5974,8 +6047,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-usage"
-></A
->5.1. Usage</H3
+>5.1. Usage</A
+></H3
 ><P
 > This category contains preferences relevant to the 
 	general usage of <SPAN
@@ -5988,8 +6061,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-find"
-></A
->5.1.1. Find</H4
+>5.1.1. Find</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6021,8 +6094,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-report"
-></A
->5.1.2. Report Preferences</H4
+>5.1.2. Report Preferences</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6098,8 +6171,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-res"
-></A
->5.1.3. Researcher Information</H4
+>5.1.3. Researcher Information</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6129,8 +6202,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-usage-guess"
-></A
->5.1.4. Data Guessing</H4
+>5.1.4. Data Guessing</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6143,8 +6216,7 @@ CLASS="guilabel"
 ></DT
 ><DD
 ><P
-> Select the surname guessing method which is used 
-[ FIXME: where exactly is this used ? ]
+> This option is not currently implemented. 
 	</P
 ></DD
 ></DL
@@ -6157,8 +6229,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-display"
-></A
->5.2. Display</H3
+>5.2. Display</A
+></H3
 ><P
 > This category contains preferences relevant to  
 	displaying database records and controls in <SPAN
@@ -6172,8 +6244,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-gen"
-></A
->5.2.1. General</H4
+>5.2.1. General</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6198,7 +6270,7 @@ CLASS="guilabel"
 ><DD
 ><P
 > 
-[ FIXME: where exactly is this used ? ]
+	This option is not currently implemented.
 	</P
 ></DD
 ></DL
@@ -6210,8 +6282,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-date"
-></A
->5.2.2. Dates and Calendar</H4
+>5.2.2. Dates and Calendar</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6257,8 +6329,12 @@ CLASS="guilabel"
 ></DT
 ><DD
 ><P
-> Check this box to enable calendar format selection menu 
-[ FIXME: where exactly? ]
+> Check this box to enable calendar format selection 
+	menu when you are entering dates in the <SPAN
+CLASS="guilabel"
+>Event
+	Editor</SPAN
+> dialog. 
 	</P
 ></DD
 ></DL
@@ -6270,8 +6346,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-display-bars"
-></A
->5.2.3. Tool and Status Bars</H4
+>5.2.3. Tool and Status Bars</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6309,8 +6385,8 @@ CLASS="sect2"
 CLASS="sect2"
 ><A
 NAME="gramps-prefs-db"
-></A
->5.3. Database</H3
+>5.3. Database</A
+></H3
 ><P
 > This category contains preferences relevant to the 
 	database itself. It has the following subcategories: </P
@@ -6320,8 +6396,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-gen"
-></A
->5.3.1. General</H4
+>5.3.1. General</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6398,8 +6474,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-media"
-></A
->5.3.2. Media Objects</H4
+>5.3.2. Media Objects</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6450,11 +6526,11 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-id"
-></A
 >5.3.3. <SPAN
 CLASS="application"
 >GRAMPS</SPAN
-> internal IDs</H4
+> internal IDs</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6495,8 +6571,8 @@ CLASS="sect3"
 CLASS="sect3"
 ><A
 NAME="prefs-db-rcs"
-></A
->5.3.4. Revision Control</H4
+>5.3.4. Revision Control</A
+></H4
 ><P
 ></P
 ><DIV
@@ -6542,22 +6618,22 @@ CLASS="sect1"
 CLASS="sect1"
 ><A
 NAME="gramps-about"
-></A
 >6. About <SPAN
 CLASS="application"
 >GRAMPS</SPAN
+></A
 ></H2
 ><P
 > <SPAN
 CLASS="application"
 >GRAMPS</SPAN
 > was written by Donald N. Allingham
-      (<TT
+      (<CODE
 CLASS="email"
 >&#60;<A
 HREF="mailto:dallingham@users.sourceforge.net"
 >dallingham@users.sourceforge.net</A
->&#62;</TT
+>&#62;</CODE
 >). 
       To find more information about <SPAN
 CLASS="application"

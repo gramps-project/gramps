@@ -2623,8 +2623,8 @@
 	<listitem><para>This tool compares events across the selected group of
 	people. The people for this comparison are chosen with the use of 
 	custom filters. The custom filters can be created in the Custom Filter
-	Editor. The resulting table produced by this tool can be saved as a 
-	spreadsheet. </para></listitem>
+	Editor (see <xref linkend="tools-util"/>). The resulting table produced
+	by this tool can be saved as a spreadsheet. </para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Interactive descendant browser</term>
@@ -2698,8 +2698,49 @@
  	<varlistentry><term>Custom Filter Editor</term>
 	<listitem><para>The Custom Filter Editor builds custom filters 
 	that can be used to select people included in reports, exports, 
-	and other tools and utilities.
-	</para></listitem>
+	and other tools and utilities. This is in fact a very powerful tool 
+	in genealogical analysis.</para> 
+	
+	<para>When you launch it, the <guilabel>User defined filters</guilabel> 
+	dialog appears that lists all the filters (if any) previously defined 
+	by you. Click <guibutton>Add...</guibutton> to define a new filter. 
+	Once you have designed your filters, you can edit, test, and delete 
+	selected filters using <guibutton>Edit...</guibutton>, 
+	<guibutton>Test...</guibutton>, and <guibutton>Delete...</guibutton> 
+	buttons, respectively. All the filters displayed in the list will be 
+	automatically saved along with your database and will be available 
+	upon the future runs of <application>&app;</application>. </para>
+	
+	<para>Clicking <guibutton>Add...</guibutton> invokes the 
+	following <guilabel>Define filter</guilabel> dialog: </para>
+	
+ 	<!-- ==== Figure: Define filter dialog ==== -->
+	<figure id="cfe-df-fig"> 
+	<title>Define filter dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/cfe-df.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Define filter dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para> Type the name for your 
+	new filter into the <guilabel>Name</guilabel> field. Enter any 
+	comment that would help you identify this filter in the future
+	into the <guilabel>Comment</guilabel> field. Add as many rules as you
+	would like to your filter using <guibutton>Add...</guibutton> button. 
+	Check <guilabel>Invert box</guilabel> to negate the filter rule 
+	(e.g. inverting "has a common ancestor with I1" rule will match 
+	everyone who does not have a common ancestor with that person). 
+	If the filter has more than one rule, choose whether all of them 
+	must apply, only one (either) rule must apply, or exactly one (either) 
+	rule must apply, in order for the filter to generate a match. </para>
+	
+	<para> Note that the filters you already designed may be used as a rule
+	for another filter. This gives you nearly infinite flexibility in
+	custom-tailoring your selection criteria that can be later used in 
+	most of the exports, reports and some of the tools (such as comparing
+	individual events). </para></listitem>
 	</varlistentry>
 
  	<varlistentry><term>Generate SoundEx codes</term>
@@ -2836,8 +2877,7 @@
 	<variablelist>
 	
 	<varlistentry><term><guilabel>Surname guessing</guilabel></term>
-	<listitem><para> Select the surname guessing method which is used 
-[ FIXME: where exactly is this used ? ]
+	<listitem><para> This option is not currently implemented. 
 	</para></listitem>
 	</varlistentry>
 
@@ -2868,7 +2908,7 @@
 
 	<varlistentry><term><guilabel>Show index numbers in child list</guilabel></term>
 	<listitem><para> 
-[ FIXME: where exactly is this used ? ]
+	This option is not currently implemented.
 	</para></listitem>
 	</varlistentry>
 
@@ -2900,8 +2940,9 @@
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
-	<listitem><para> Check this box to enable calendar format selection menu 
-[ FIXME: where exactly? ]
+	<listitem><para> Check this box to enable calendar format selection 
+	menu when you are entering dates in the <guilabel>Event
+	Editor</guilabel> dialog. 
 	</para></listitem>
 	</varlistentry>
 
