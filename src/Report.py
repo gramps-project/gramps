@@ -1755,7 +1755,7 @@ def report(database,person,report_class,options_class,translated_name,name,categ
 
     dialog = dialog_class(database,person,options_class,name,translated_name)
     response = dialog.window.run()
-    if response == True:
+    if response:
         try:
             MyReport = report_class(dialog.db,dialog.person,dialog.options)
             MyReport.begin_report()
@@ -1789,6 +1789,7 @@ def write_book_item(database,person,report_class,options_class):
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
+    return None
 
 # Command-line generic task
 def cl_report(database,name,category,report_class,options_class,options_str_dict):
