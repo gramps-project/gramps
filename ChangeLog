@@ -1,3 +1,6 @@
+2004-09-20 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/GrampsInMemDB.py: Remove unused modules.
+
 2004-09-20  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsBSDDB.py: fix remove_person and count_person
 	* src/GrampsInMemDB.py: fix remove_person and count_person
