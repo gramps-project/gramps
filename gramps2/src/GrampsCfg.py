@@ -29,6 +29,7 @@ import os
 
 import PaperMenu
 import Plugins
+import Calendar
 
 #-------------------------------------------------------------------------
 #
@@ -283,8 +284,8 @@ def loadConfig(call):
 
     autocomp = not ac
         
-    set_format_code(dateFormat)
-    Date.entryCode = dateEntry
+    Calendar.set_format_code(dateFormat)
+    Calendar.ENTRYCODE = dateEntry
 
     if _name_format == 0:
         nameof = Utils.normal_name
@@ -659,7 +660,7 @@ class GrampsPreferences:
             item.connect("activate", self.on_format_toggled)
             item.show()
             date_menu.append(item)
-        date_menu.set_active(get_format_code())
+        date_menu.set_active(Calendar.get_format_code())
         date_option.set_menu(date_menu)
 
         date_entry = self.top.get_widget("date_entry_format")
@@ -670,7 +671,7 @@ class GrampsPreferences:
             item.connect("activate", self.on_format_toggled)
             item.show()
             date_menu.append(item)
-        date_menu.set_active(Date.entryCode)
+        date_menu.set_active(Calendar.ENTRYCODE)
         date_entry.set_menu(date_menu)
 
         name_option = self.top.get_widget("name_format")
@@ -905,13 +906,13 @@ class GrampsPreferences:
         format_menu = self.top.get_widget("date_format").get_menu()
         active = format_menu.get_active().get_data(INDEX)
         
-        set_format_code(active)
+        Calendar.set_format_code(active)
         set_int("/apps/gramps/date-format",active)
         
         format_menu = self.top.get_widget("date_entry_format").get_menu()
         entry_active = format_menu.get_active().get_data(INDEX)
         
-        Date.entryCode = entry_active
+        Calendar.ENTRYCODE = entry_active
         set_int("/apps/gramps/date-entry",entry_active)
         
         # get the name format
