@@ -2304,12 +2304,9 @@ class GrampsDB(Persistent):
         return self.surnames
 
     def addSurname(self,name):
-        try:
-            if name and name not in self.surnames:
-                self.surnames.append(name)
-                self.surnames.sort()
-        except:
-            print name
+        if name and name not in self.surnames:
+            self.surnames.append(name)
+            self.surnames.sort()
     
     def getBookmarks(self):
         """returns the list of Person instances in the bookmarks"""

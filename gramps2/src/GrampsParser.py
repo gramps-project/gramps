@@ -275,7 +275,6 @@ class GrampsParser:
         if attrs.has_key('ref'):
             self.witness = RelLib.Witness(RelLib.Event.ID,attrs['ref'])
         if attrs.has_key('name'):
-            print "name",attrs['name']
             self.witness = RelLib.Witness(RelLib.Event.NAME,attrs['name'])
         
     def start_coord(self,attrs):
