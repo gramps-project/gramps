@@ -253,7 +253,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             act_width = x_cm/ratio
 
         photo_list_item = (name,act_width,act_height)
-        if not photo_list_item in photo_list:
+        if not photo_list_item in self.photo_list:
             self.photo_list.append(photo_list_item)
 
         base = os.path.basename(name)
