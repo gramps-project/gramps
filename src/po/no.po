@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Wed Feb  4 11:53:29 2004\n"
-"PO-Revision-Date: 2004-03-16 07:20+0100\n"
+"PO-Revision-Date: 2004-03-16 16:44+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -6494,7 +6494,7 @@ msgstr ""
 
 #: plugins/ReadNative.py:34
 msgid "Import from GRAMPS database"
-msgstr "Import fra GRAMPS-atabase"
+msgstr "Import fra GRAMPS-database"
 
 #: plugins/ReadPkg.py:36
 msgid "Import from GRAMPS package"
