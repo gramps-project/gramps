@@ -82,7 +82,7 @@ class FtmDescendantReport(Report.Report):
         if person == None or generation >= self.max_generations:
             return
 
-        self.anc_map[index] = (person,generation)
+        self.anc_map[index] = person
         try:
             self.gen_map[generation].append(index)
         except:
@@ -119,7 +119,7 @@ class FtmDescendantReport(Report.Report):
             indexlist = self.gen_map[generation]
             indexlist.sort()
             for key in indexlist:
-                (person,gen) = self.anc_map[key]
+                person = self.anc_map[key]
 
                 pri_name = person.getPrimaryName()
                 self.doc.start_paragraph("Entry","%d." % key)
@@ -393,8 +393,8 @@ class FtmDescendantReport(Report.Report):
             for child in family.getChildList():
                 child_index = child_index + 1
                 child_name = child.getPrimaryName().getRegularName()
-                for (ind,pg) in self.anc_map.items():
-                    if pg[0] == child:
+                for (ind,p) in self.anc_map.items():
+                    if p == child:
                         index = ind
 		if first:
                     first = 0
