@@ -36,6 +36,7 @@ importers, exporters, and document generators.
 import gobject
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -72,7 +73,6 @@ _tools   = []
 _imports = []
 _exports = []
 _success = []
-_failed  = []
 _expect  = []
 _attempt = []
 _loaddir = []
@@ -82,6 +82,7 @@ _drawdoc = []
 _failmsg = []
 _bkitems = []
 
+_status_up = None
 #-------------------------------------------------------------------------
 #
 # Default relationship calculator
@@ -326,14 +327,30 @@ class PluginStatus:
     """Displays a dialog showing the status of loaded plugins"""
     
     def __init__(self):
+        global _status_up
+        if _status_up:
+            _status_up.close(None)
+        _status_up = self
+
         import cStringIO
         
         self.glade = gtk.glade.XML(const.pluginsFile,"plugstat","gramps")
         self.top = self.glade.get_widget("plugstat")
         self.top.set_title("%s - GRAMPS" % _('Plugin status'))
         window = self.glade.get_widget("text")
+        self.pop_button = self.glade.get_widget("pop_button")
+        if GrampsGconfKeys.get_pop_plugin_status():
+            self.pop_button.set_active(1)
+        else:
+            self.pop_button.set_active(0)
+        self.pop_button.connect('toggled',
+            lambda obj: GrampsGconfKeys.save_pop_plugin_status(self.pop_button.get_active()))
+        GrampsGconfKeys.client.notify_add("/apps/gramps/behavior/pop-plugin-status",
+                                    self.pop_button_update)
         self.glade.signal_autoconnect({
-            'on_close_clicked' : self.close
+            'on_close_clicked'  : self.close,
+            'on_help_clicked'   : self.help,
+            'on_plugstat_delete_event'   : self.on_delete,
             })
 
         info = cStringIO.StringIO()
@@ -357,9 +374,20 @@ class PluginStatus:
             info.seek(0)
             window.get_buffer().set_text(info.read())
 
+    def on_delete(self,obj1,obj2):
+        _status_up = None
+
     def close(self,obj):
         self.top.destroy()
-        
+        _status_up = None
+
+    def help(self,obj):
+        """Display the GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-getting-started')
+
+    def pop_button_update(self, client,cnxn_id,entry,data):
+        self.pop_button.set_active(GrampsGconfKeys.get_pop_plugin_status())
+
 #-------------------------------------------------------------------------
 #
 # load_plugins
@@ -372,7 +400,7 @@ def load_plugins(direct):
     responsible for registering itself in the correct manner. No attempt
     is done in this routine to register the tasks."""
     
-    global _success,_failed,_attempt,_loaddir
+    global _success,_attempt,_loaddir,_failmsg
     
     # if the directory does not exist, do nothing
     if not os.path.isdir(direct):
@@ -409,33 +437,53 @@ def load_plugins(direct):
         except:
             _failmsg.append((filename,sys.exc_info()))
 
+    if GrampsGconfKeys.get_pop_plugin_status() and len(_expect)+len(_failmsg):
+        PluginStatus()
+
 #-------------------------------------------------------------------------
 #
 # reload_plugins
 #
 #-------------------------------------------------------------------------
-def reload_plugins(obj):
+def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
     """Treated as a callback, causes all plugins to get reloaded. This is
     useful when writing and debugging a plugin"""
     
     pymod = compile(r"^(.*)\.py$")
 
-    # attempt to reload all plugins that have succeeded
-    # in the past
+    global _success,_attempt,_loaddir,_failmsg
+
+    oldfailmsg = _failmsg[:]
+    _failmsg = []
+
+    # attempt to reload all plugins that have succeeded in the past
     for plugin in _success:
+        filename = os.path.basename(plugin.__file__)
+        filename = filename.replace('pyc','py')
+        filename = filename.replace('pyo','py')
         try: 
             reload(plugin)
         except:
-            _failmsg.append((plugin,sys.exc_info()))
+            _failmsg.append((filename,sys.exc_info()))
             
     # attempt to load the plugins that have failed in the past
     
-    for plugin in _failed:
+    for (filename,message) in oldfailmsg:
+        name = os.path.split(filename)
+        match = pymod.match(name[1])
+        if not match:
+            continue
+        _attempt.append(filename)
+        plugin = match.groups()[0]
         try: 
-            __import__(plugin)
-            del _failmsg[plugin]
+            # For some strange reason second importing of a failed plugin
+            # results in success. Then reload reveals the actual error.
+            # Looks like a bug in Python.
+            a = __import__(plugin)
+            reload(a)
+            _success.append(a)
         except:
-            _failmsg.append((plugin,sys.exc_info()))
+            _failmsg.append((filename,sys.exc_info()))
 
     # attempt to load any new files found
     for directory in _loaddir:
@@ -445,7 +493,7 @@ def reload_plugins(obj):
             if not match:
                 continue
             if filename in _attempt:
-                return
+                continue
             _attempt.append(filename)
             plugin = match.groups()[0]
             try: 
@@ -454,6 +502,14 @@ def reload_plugins(obj):
                     _success.append(a)
             except:
                 _failmsg.append((filename,sys.exc_info()))
+
+    if GrampsGconfKeys.get_pop_plugin_status():
+        global _status_up
+        if len(_failmsg):
+            PluginStatus()
+        elif _status_up:
+            _status_up.close(None)
+            _status_up = None
 
 #-------------------------------------------------------------------------
 #
@@ -765,3 +821,15 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
             callback(menuitem)
         index = index + 1
     main_menu.set_menu(myMenu)
+
+#-------------------------------------------------------------------------
+#
+# Register the plugin reloading tool
+#
+#-------------------------------------------------------------------------
+register_tool(
+    reload_plugins,
+    _("Reload plugins"),
+    category=_("Debug"),
+    description=_("Attempt to reload plugins. Note: This tool itself is not reloaded!"),
+    )

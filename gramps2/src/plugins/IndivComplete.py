@@ -57,7 +57,7 @@ import gtk
 _person_handle = ""
 _filter_num = 0
 _use_srcs = 0
-_options = ( _person_id, _filter_num, _use_srcs )
+_options = ( _person_handle, _filter_num, _use_srcs )
 
 #------------------------------------------------------------------------
 #

@@ -553,6 +553,19 @@
       </schema>
 
       <schema>
+        <key>/schemas/apps/gramps/behavior/pop-plugin-status</key>
+        <applyto>/apps/gramps/behavior/pop-plugin-status</applyto>
+        <owner>gramps</owner>
+        <type>bool</type>
+        <default>0</default>
+        <locale name="C">
+          <short>Automatically pop plugin status window</short>
+          <long>If set to 1, Plugin Status Window will pop automatically
+          when problems are detected on plugins load and reload.</long>
+        </locale>
+      </schema>
+
+      <schema>
         <key>/schemas/apps/gramps/interface/view</key>
         <applyto>/apps/gramps/interface/view</applyto>
         <owner>gramps</owner>
