@@ -98,6 +98,7 @@ class FamilyView:
         self.selected_spouse = None
 
         self.child_list = self.top.get_widget('chlist')
+        self.child_list.set_reorderable(gtk.TRUE)
         self.child_model = gtk.ListStore(gobject.TYPE_INT,   gobject.TYPE_STRING,
                                          gobject.TYPE_STRING,gobject.TYPE_STRING,
                                          gobject.TYPE_STRING,gobject.TYPE_STRING, 

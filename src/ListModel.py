@@ -35,7 +35,7 @@ class ListModel:
         self.selection.set_mode(mode)
         self.mode = mode
         self.data_index = l
-
+        self.count = 0
         self.cids = []
         
         cnum = 0
@@ -55,10 +55,10 @@ class ListModel:
 
             cnum = cnum + 1
             self.cids.append(name[1])
-            if name[1] != -1:
+            if name[0] != '':
                 self.tree.append_column(column)
 
-        if self.cids[0] > 0:
+        if self.cids[0] != -1:
             self.model.set_sort_column_id(self.cids[0],gtk.SORT_ASCENDING)
         self.connect_model()
         
@@ -72,6 +72,7 @@ class ListModel:
         self.tree.set_reorderable(order)
         
     def new_model(self):
+        self.count = 0
         self.model = gtk.ListStore(*self.mylist)
 
     def connect_model(self):
@@ -81,6 +82,8 @@ class ListModel:
     def sort(self):
         val = self.model.get_sort_column_id()
         col = val[0]
+        if col < 0:
+            return
         if col > 0:
             self.model.set_sort_column_id(col,val[1])
         else:
@@ -90,8 +93,25 @@ class ListModel:
     def get_selected(self):
         return self.selection.get_selected()
 
+    def get_row_at(self,x,y):
+        path = self.tree.get_path_at_pos(x,y)
+        if path == None:
+            return self.count -1
+        else:
+            return path[0][0]-1
+
+    def get_selected_row(self):
+        store, iter = self.selection.get_selected()
+        if iter:
+            rows = store.get_path(iter)
+            return rows[0]
+        else:
+            return -1
+
     def get_selected_objects(self):
-        if self.mode == gtk.SELECTION_SINGLE:
+        if self.count == 0:
+            return []
+        elif self.mode == gtk.SELECTION_SINGLE:
             store,iter = self.selection.get_selected()
             if iter:
                 return [self.model.get_value(iter,self.data_index)]
@@ -102,14 +122,26 @@ class ListModel:
             self.selection.selected_foreach(self.blist,mlist)
             return mlist
 
+    def get_icon(self):
+        if self.mode == gtk.SELECTION_SINGLE:
+            store,iter = self.selection.get_selected()
+            path = self.model.get_path(iter)
+        else:
+            mlist = []
+            self.selection.selected_foreach(self.blist,mlist)
+            path = self.model.get_path(mlist[0])
+        return self.tree.create_row_drag_icon(path)
+
     def blist(self,store,path,iter,list):
         list.append(self.model.get_value(iter,self.data_index))
 
     def clear(self):
+        self.count = 0
         self.model.clear()
 
     def remove(self,iter):
         self.model.remove(iter)
+        self.count = self.count - 1
         
     def get_row(self,iter):
         row = self.model.get_path(iter)
@@ -122,6 +154,7 @@ class ListModel:
         return self.model.get_value(iter,self.data_index)
         
     def add(self,data,info=None,select=0):
+        self.count = self.count + 1
         iter = self.model.append()
         col = 0
         for object in data:
@@ -133,6 +166,7 @@ class ListModel:
         return iter
 
     def add_and_select(self,data,info=None):
+        self.count = self.count + 1
         iter = self.model.append()
         col = 0
         for object in data:

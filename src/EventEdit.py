@@ -101,7 +101,7 @@ class EventEditor:
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('del_src'))
 
-        AutoComp.AutoEntry(self.event_menu.entry,list)
+        AutoComp.AutoCombo(self.event_menu,list)
         AutoComp.AutoEntry(self.place_field,self.pmap.keys())
 
         if event != None:

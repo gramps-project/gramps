@@ -454,8 +454,9 @@ class XmlWriter:
         if date.isEmpty():
             return
 
-        if cal != 0:
-            calstr = ' cformat="%s"' % date.get_calendar().NAME
+        name = date.get_calendar().NAME
+        if name != Calendar.Gregorian.NAME:
+            calstr = ' cformat="%s"' % name
         else:
             calstr = ''
 

@@ -1081,12 +1081,10 @@ try:
     parser = make_parser()
     path = const.template_dir
     parser.setContentHandler(TemplateParser(_template_map,path))
-    parser.parse("%s/templates.xml" % path)
+    parser.parse("file://%s/templates.xml" % path)
     parser = make_parser()
     path = os.path.expanduser("~/.gramps/templates")
     parser.setContentHandler(TemplateParser(_template_map,path))
-    parser.parse("%s/templates.xml" % path)
+    parser.parse("file://%s/templates.xml" % path)
 except (IOError,OSError,SAXParseException):
     pass
-
-

@@ -445,7 +445,7 @@ class GrampsParser:
             d.set_calendar_val(int(attrs['calendar']))
 
         if attrs.has_key("cformat"):
-            d.set_calendar(Calendar.find_calendar(attrs['calendar']))
+            d.set_calendar(Calendar.find_calendar(attrs['cformat']))
 
         d.get_start_date().setIsoDate(attrs['val'])
         
