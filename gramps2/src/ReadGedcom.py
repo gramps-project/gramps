@@ -176,7 +176,7 @@ def import2(database, filename, cb, codeset, use_trans):
         return
     except:
         Utils.destroy_passed_object(statusWindow)
-        ErrorDialog(_("%s could not be opened\n") % filename)
+        DisplayTrace.DisplayTrace()
         return
 
     if database.get_number_of_people() == 0:
@@ -209,7 +209,6 @@ def import2(database, filename, cb, codeset, use_trans):
         cb(1)
     elif callback:
         callback()
-    print "callback done"
 
 #-------------------------------------------------------------------------
 #
@@ -231,7 +230,7 @@ class GedcomParser:
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, file, window, codeset):
+    def __init__(self, dbase, filename, window, codeset):
         self.dp = DateParser.DateParser()
         self.db = dbase
         self.person = None
@@ -245,7 +244,9 @@ class GedcomParser:
         self.gedmap = GedcomInfoDB()
         self.gedsource = None
         self.def_src = RelLib.Source()
-        self.dir_path = os.path.dirname(file)
+        fname = os.path.basename(filename).split('\\')[-1]
+        self.def_src.set_title(_("Import from %s") % unicode(fname))
+        self.dir_path = os.path.dirname(filename)
         self.localref = 0
         self.placemap = {}
         self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
@@ -257,8 +258,8 @@ class GedcomParser:
         self.lid2id = {}
         self.fid2id = {}
 
-        self.f = open(file,"rU")
-        self.filename = file
+        self.f = open(filename,"rU")
+        self.filename = filename
         self.index = 0
         self.backoff = 0
         self.override = codeset
@@ -278,7 +279,7 @@ class GedcomParser:
         else:
             self.cnv = nocnv
 
-        self.geddir = os.path.dirname(os.path.normpath(os.path.abspath(file)))
+        self.geddir = os.path.dirname(os.path.normpath(os.path.abspath(filename)))
     
         self.transtable = string.maketrans('','')
         self.delc = self.transtable[0:31]
@@ -307,7 +308,7 @@ class GedcomParser:
             self.gedattr[amap[val]] = val
 
         if self.window:
-            self.update(self.file_obj,os.path.basename(file))
+            self.update(self.file_obj,os.path.basename(filename))
             
         self.search_paths = []
 
@@ -580,6 +581,10 @@ class GedcomParser:
                         if child:
                             child.add_address(self.addr)
                             self.db.commit_person(child, self.trans)
+                if len(self.family.get_source_references()) == 0:
+                    sref = RelLib.SourceRef()
+                    sref.set_base_handle(self.def_src.get_handle())
+                    self.family.add_source_reference(sref)
                 self.db.commit_family(self.family, self.trans)
                 del self.family
             elif matches[2] == "INDI":
@@ -1642,7 +1647,7 @@ class GedcomParser:
                 pass
             elif matches[1] == "FILE":
                 filename = os.path.basename(matches[2]).split('\\')[-1]
-                self.def_src.set_title(unicode(filename))
+                self.def_src.set_title(_("Import from %s") % unicode(filename))
             elif matches[1] == "COPR":
                 self.def_src.set_publication_info(unicode(matches[2]))
             elif matches[1] in ["CORP","DATA","SUBM","SUBN","LANG"]:
