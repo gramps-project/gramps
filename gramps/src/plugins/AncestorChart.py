@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Generate files/Ancestor Chart"
+"Graphical Reports/Ancestor Chart"
 
 import Config
 import os
@@ -387,7 +387,7 @@ from Plugins import register_report
 register_report(
     report,
     _("Ancestor Chart"),
-    category=_("Generate Files"),
+    category=_("Graphical Reports"),
     description=_("Produces a graphical ancestral tree graph"),
     xpm=get_xpm_image()
     )
