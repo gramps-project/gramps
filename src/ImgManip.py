@@ -83,14 +83,14 @@ class ImgManip:
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            im.save(dest,string.upper(pil))
+            im.save(dest,pil.upper())
         
         def fmt_convert(self,dest,pil):
             im = PIL.Image.open(self.src)
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            im.save(dest,string.upper(pil))
+            im.save(dest,pil.upper())
 
         def fmt_data(self,pil):
             g = StringIO.StringIO()
@@ -98,7 +98,7 @@ class ImgManip:
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            im.save(g,string.upper(pil))
+            im.save(g,pil.upper())
             g.seek(0)
             buf = g.read()
             g.close()
@@ -110,7 +110,7 @@ class ImgManip:
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            return im.tostring(string.upper(pil),"RGB")
+            return im.tostring(pil.upper(),"RGB")
 
     def jpg_thumbnail(self,dest,width,height):
         self.fmt_thumbnail(dest,width,height,"jpeg")
