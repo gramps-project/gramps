@@ -1446,20 +1446,20 @@
 		    <widget class="GtkVBox" id="vbox55">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">True</property>
-		      <property name="spacing">0</property>
+		      <property name="spacing">6</property>
 
 		      <child>
 			<widget class="GtkButton" id="add_spouse">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Adds a spouse</property>
+			  <property name="tooltip" translatable="yes">Adds a new person to the database and to a new relationship</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 
 			  <child>
 			    <widget class="GtkImage" id="image84">
 			      <property name="visible">True</property>
-			      <property name="stock">gtk-add</property>
-			      <property name="icon_size">1</property>
+			      <property name="stock">gtk-new</property>
+			      <property name="icon_size">4</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1468,7 +1468,33 @@
 			  </child>
 			</widget>
 			<packing>
-			  <property name="padding">5</property>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="select_spouse">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Selects an existing person from the database and adds to a new relationship</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+
+			  <child>
+			    <widget class="GtkImage" id="image475">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-index</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
 			  <property name="expand">False</property>
 			  <property name="fill">False</property>
 			</packing>
@@ -1494,7 +1520,7 @@
 			  </child>
 			</widget>
 			<packing>
-			  <property name="padding">5</property>
+			  <property name="padding">0</property>
 			  <property name="expand">False</property>
 			  <property name="fill">False</property>
 			</packing>
@@ -1514,7 +1540,7 @@
 		    <widget class="GtkVBox" id="vbox57">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">False</property>
-		      <property name="spacing">0</property>
+		      <property name="spacing">6</property>
 
 		      <child>
 			<widget class="GtkButton" id="ap_parents_btn">
@@ -1536,7 +1562,7 @@
 			  </child>
 			</widget>
 			<packing>
-			  <property name="padding">6</property>
+			  <property name="padding">0</property>
 			  <property name="expand">False</property>
 			  <property name="fill">False</property>
 			</packing>
@@ -1638,7 +1664,7 @@
 		    <widget class="GtkVBox" id="vbox56">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">False</property>
-		      <property name="spacing">0</property>
+		      <property name="spacing">6</property>
 
 		      <child>
 			<widget class="GtkButton" id="sp_parents_btn">
@@ -1660,7 +1686,7 @@
 			  </child>
 			</widget>
 			<packing>
-			  <property name="padding">6</property>
+			  <property name="padding">0</property>
 			  <property name="expand">False</property>
 			  <property name="fill">False</property>
 			</packing>
@@ -1972,7 +1998,7 @@
 		    <widget class="GtkVBox" id="vbox65">
 		      <property name="visible">True</property>
 		      <property name="homogeneous">False</property>
-		      <property name="spacing">0</property>
+		      <property name="spacing">6</property>
 
 		      <child>
 			<widget class="GtkButton" id="fam_back">
@@ -1994,7 +2020,7 @@
 			  </child>
 			</widget>
 			<packing>
-			  <property name="padding">10</property>
+			  <property name="padding">0</property>
 			  <property name="expand">False</property>
 			  <property name="fill">False</property>
 			</packing>
@@ -2003,15 +2029,41 @@
 		      <child>
 			<widget class="GtkButton" id="add_child_btn">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">Adds a new child to the selected family</property>
+			  <property name="tooltip" translatable="yes">Adds a new child to the database and to the current family</property>
 			  <property name="can_focus">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 
 			  <child>
 			    <widget class="GtkImage" id="image94">
 			      <property name="visible">True</property>
-			      <property name="stock">gtk-add</property>
-			      <property name="icon_size">1</property>
+			      <property name="stock">gtk-new</property>
+			      <property name="icon_size">4</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="padding">0</property>
+			  <property name="expand">False</property>
+			  <property name="fill">False</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="select_child">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Selects an existing person from the database and adds as a child to the current family</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+
+			  <child>
+			    <widget class="GtkImage" id="image474">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-index</property>
+			      <property name="icon_size">4</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>

@@ -75,7 +75,7 @@ class SelectChild:
         self.top = self.xml.get_widget("select_child")
         title_label = self.xml.get_widget('title')
 
-        Utils.set_titles(self.top,title_label,_('Add Children'))
+        Utils.set_titles(self.top,title_label,_('Add Child to Family'))
         
         self.add_child = self.xml.get_widget("childlist")
 
