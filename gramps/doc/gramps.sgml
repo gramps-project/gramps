@@ -33,7 +33,7 @@
 <article id="index"> <!-- please do not change the id -->
 
   <artheader>
-    <title>GRAMPS User Manual</title>
+    <title>gramps User Manual</title>
     <copyright>
       <year>2001</year>
       <holder>Donald N. Allingham</holder>
@@ -42,7 +42,7 @@
   <!-- translators: uncomment this:
 
   <copyright>
-   <year>2000</year>
+   <year>2001</year>
    <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
   </copyright>
 
@@ -106,7 +106,7 @@
 
   <!-- This is the manual version, not application version. --> 
     <releaseinfo>
-       This is version 1.0 of GRAMPS manual.
+       This is version 1.0 of the gramps manual.
     </releaseinfo>
 
   </artheader>
@@ -118,7 +118,7 @@
     <title>Introduction</title>
 
     <para>
-    GRAMPS is an acronym for the Genealogical Research and Analysis
+    gramps is an acronym for the Genealogical Research and Analysis
     Management Programming System.  It was conceived under the concept
     that most genealogy programs were designed to provide the
     researcher the capability to input information related to a
@@ -133,11 +133,11 @@
     Various other enhancements may also be provided in the
     genealogical program that allows for different degrees of
     importing and exporting data from other programs and printing of
-    the data contained in the various reports.  GRAMPS, on the other
+    the data contained in the various reports.  gramps, on the other
     hand, attempts to provide all of the common capabilities of these
     programs, but, more importantly, to provide a capability not
     common to these programs.  This is the ability to input any bits
-    and pieces of information directly into GRAMPS and
+    and pieces of information directly into gramps and
     rearrange/manipulate any/all data events in the entire data base
     (in any order or sequence) to assist the user in doing research,
     analysis and correlation with the potential of filling
@@ -146,10 +146,8 @@
     correlation using the speed, power, and accuracy of your computer
     instead of pencils and unmanageable reams of paper.
     </para>
-
-
     <para>
-      To run <application>GRAMPS</application>, select
+      To run <application>gramps</application>, select
       <menuchoice>
 	<guisubmenu>Programs</guisubmenu>
 	<guisubmenu>Applications</guisubmenu>
@@ -157,13 +155,12 @@
       </menuchoice>
       from the <guimenu>Main Menu</guimenu>, or type
       <command>gramps</command> on the command line.
-  </para>
-
+    </para>
     <para>
-      <application>GRAMPS</application> is included in the
+      <application>gramps</application> is included in the
       <filename>gramps</filename> package, which is part of the
       GNOME desktop environment. This document describes version
-      &version; of <application>GRAMPS</application>.
+      &version; of <application>gramps</application>.
     </para>
   </sect1>
 
@@ -172,26 +169,26 @@
  <!-- This section should describe basic usage of the application. -->
 
   <sect1 id="usage">
-    <title>Using GRAMPS</title>
+    <title>Using gramps</title>
     <para>
-      <application>GRAMPS</application> is a genealogy program.
+      <application>gramps</application> is a genealogy program.
       This section describes basic usage of
-      <application>GRAMPS</application>.
+      <application>gramps</application>.
     </para>
 
     <!-- ========= Basic Usage =========================== -->
     <sect2 id="mainwin">
       <title>Person List</title>
       <para>
-        Starting <application>GRAMPS</application> opens the
+        Starting <application>gramps</application> opens the
         <interface>Main window</interface>, shown in <xref
         linkend="mainwindow-fig">. The window is at first empty.
 
         <!-- ==== Figure ==== -->
         <figure id="mainwindow-fig">
-	  <title>GRAMPS Main Window</title>
+	  <title>gramps Main Window</title>
 	  <screenshot>
-	    <screeninfo>GRAMPS Main Window</screeninfo>
+	    <screeninfo>gramps Main Window</screeninfo>
 	    <graphic fileref="mainwin" format="PNG" srccredit="Don Allingham">
             </graphic>
 	  </screenshot>
@@ -248,13 +245,118 @@
 
  </sect1>
 
+ <!-- ============= Generating Reports ============================= -->
+
+ <sect1 id="genreports">
+  <title>Generating Reports</title>
+  <para>
+  <application>gramps</application> can produce a wide variety of 
+  reports. New report generators can be written by the user without
+  modifying the main program. For this reason, there may be more 
+  reports available than are documented by this manual
+  </para>
+  <para>
+  Unlike many genealogy programs, <application>gramps</application>
+  does not directly print reports. Instead,
+  <application>gramps</application> produces reports in formats that
+  are understood by other programs.  These formats include OpenOffice,
+  AbiWord, PDF, and HTML, among others. This allows the generated
+  reports to be modified after they are generated, stored for use
+  later, or emailed to another person.
+  </para>
+  <sect2 id="htmltemplates">
+  <title>Using HTML templates</title>
+  <para>
+  Many programs exist to convert GEDCOM files into HTML files that
+  can be viewed in a web browser. Most of these programs generate
+  HTML files according to their own predefined style. Since most
+  people have a style that they prefer, they are left with the option
+  of modifying hundreds of files by hand.
+  </para>
+  <para>
+  To solve this problem, <application>gramps</application> allows the
+  user to specify a template to be used for generating HTML files.  At
+  the time the report is generated, if HTML is selected as the target
+  format, the user can select an HTML template to be used.  Since the
+  template is chosen at report generation time, a different template
+  may be chosen each time, allowing the user to change the appearence
+  of the generated files at any time.  Nearly any existing HTML file
+  can be used as an HTML template for
+  <application>gramps</application>.
+  </para>
+  <para>
+  When a file has been established as the HTML template file,
+  <application>gramps</application> uses the template for each file
+  that it generates. <application>gramps</application> starts each
+  file by copying data from the template until it reaches an HTML
+  comment uses as a marker.  At that point,
+  <application>gramps</application> inserts its data into the output
+  file. <application>gramps</application> the continues reading the
+  until it reaches a second comment that tells it to resume copying
+  from the template.
+  </para>
+  <para>
+  <application>gramps</application> uses the string <function>&lt;!--
+  START --&gt;</function> to indicate where it should start inserting
+  its information, and the string <function>&lt;!-- STOP
+  --&gt;</function> to indicate where it should resume copying data
+  from the template.  The effect is that
+  <application>gramps</application> will create a new document,
+  replacing everything between the <function>&lt;!-- START
+  --&gt;</function> and <function>&lt;!-- STOP --&gt;</function> comments
+  with the report information.
+  </para>
+  <para>
+  The comment markers should be at the beginning of a line in the HTML
+  template file.  Adding the comments to an existing HTML document will
+  not affect the original HTML document in any way.
+  </para>
+  <para>
+  If no HTML template is specified, or if the specified template
+  cannot be read, <application>gramps</application> will use a
+  default, predefined template.
+  </para>
+  <para>
+    <figure id="templateexample">
+    <title>Sample HTML Template Example</title>
+    <programlisting>
+&lt;HTML&gt;
+&lt;HEAD&gt;
+&lt;TITLE&gt;
+This is my Title
+&lt;/TITLE&gt;
+&lt;/HEAD&gt;
+&lt;BODY BGCOLOR="#FFFFFF"&gt;
+&lt;P&gt;
+This is a simple template.  This text will appear in the html output.
+&lt;/P&gt;
+&lt;!-- START --&gt;
+&lt;P&gt;
+This is where gramps will place its report information. Any 
+information between the two comments, including this paragraph,
+will not appear in the gramps generated output.
+&lt;/P&gt;
+&lt;!-- STOP --&gt;
+&lt;P&gt;
+This text, since it appears after the stop comment, will also
+appear in every gramps generated file.
+&lt;/P&gt;
+&lt;/BODY&gt;
+&lt;/HTML&gt;
+    </programlisting>
+    </figure>
+  </para>
+  </sect2>
+
+ </sect1>
+
  <!-- ============= Writing Filters ============================= -->
 
  <sect1 id="writingfilters">
   <title>Writing Filters</title>
   <para>
    Users can create their own filters and add them to
-   <application>GRAMPS</application>.  By adding the filter to the
+   <application>gramps</application>.  By adding the filter to the
    user's private filter directory 
    (<filename class="directory">~/.gramps/filters</filename>), 
    the filter will be automatically
@@ -273,8 +375,9 @@
     <para>
     Each filter is a python class, and should be in its own separate
     module (file). The module should consist of the filter class
-    definition, and two functions &mdash; <function>create</function>,
-    and <function>need_qualifier</function>.
+    definition, and three functions &mdash;
+    <function>create</function>, <function>need_qualifier</function>,
+    and <function>get_name</function>.
     </para>
     <para>
     The <function>create</function> function takes a string as its
@@ -294,10 +397,16 @@
     enabled or disabled.
     </para>
     <para>
-    The module documentation string (a text string as the first
-    statement in the module) is used for the description of the
-    module.  This is the description that gets entered into filter
-    selection menus.
+    The <function>get_name</function> function is used to provide a
+    description for the filter. This description is entered into
+    filter selection menus. If the filter is intended to be used by
+    others, it should be prepared for internationalization.  This is
+    accomplished by importing the <function>intl</function> module,
+    add defining <function>_</function> to be
+    <function>intl.gettext</function>.  The string returned by
+    <function>get_name</function> should be passed through the
+    <function>_</function> function to allow for conversion to the
+    target langauge.
     </para>
     <para>
     All filters must be derived from the
@@ -319,17 +428,23 @@
     <figure id="filtersrc">
     <title>Sample filter implementation</title>
     <programlisting>
-"Names that contain a substring"
-
 import Filter
 import string
+import intl
+_ = intl.gettext
+
+# class definition
 
 class SubString(Filter.Filter):
-    "Names that contain a substring"
 
     def match(self,person):
         name = person.getPrimaryName().getName()
         return string.find(name,self.text) >= 0
+
+# module functions
+
+def get_name(s):
+    return _("Names that contain a substring")
 
 def create(text):
     return SubString(text)
@@ -347,7 +462,7 @@ def need_qualifier():
   <title>Writing Reports</title>
    <para>
    Users can create their own report generators and add them to
-   <application>GRAMPS</application>.  By adding the report generator
+   <application>gramps</application>.  By adding the report generator
    to the user's private filter directory (<filename
    class="directory">~/.gramps/plugins</filename>), the report
    generator filter will be automatically recognized the next time
@@ -359,20 +474,22 @@ def need_qualifier():
      Like filters, report generators are written in the
      <application>python</application> language. Fewer restrictions
      are made on report generators than on filters.  The report
-     generator is passed the current <application>GRAMPS</application>
+     generator is passed the current <application>gramps</application>
      database and the active person.  The generator needs to take
      special care to make sure that it does not alter the database in
      anyway.
     </para>
     <para>
-    The python documentation string (the first text string and first
-    statement) of the module is used to name the report generator. The
-    string consists of two parts, separated by a forward slash.  The
-    first part of the string is the category of the report
-    generator. <application>GRAMPS</application> uses this part to
-    group similar reports together in the interface. The second part
-    of the string is the actual name of the reprot generator, and will
-    be displayed in the report menu.
+    The function <function>get_name</function> is used to provide the
+    name of the the report generator. As with a filter definition,
+    this string should support internationalization via the
+    <function>intl</function> module. The returned string consists of
+    two parts, separated by a forward slash.  The first part of the
+    string is the category of the report generator.
+    <application>gramps</application> uses this part to group similar
+    reports together in the interface. The second part of the string
+    is the actual name of the reprot generator, and will be displayed
+    in the report menu.
     </para>
     <para>
     A report generator module must supply the
@@ -454,19 +571,11 @@ def get_xpm_image():
  <sect1 id="authors">
   <title>Authors</title>
   <para>
-   <application>GRAMPS</application> was written by Donald N. Allingham
+   <application>gramps</application> was written by Donald N. Allingham
    (<email>donaldallingham@home.com</email>). To find more information about
-   <application>GRAMPS</application>, please visit the <ulink
-   url="http://gramps.sourceforge.net" type="http">GRAMPS Web
-   page</ulink>.  Please send all comments, suggestions, and bug
-   reports to the <ulink url="http://bugs.gnome.org" type="http">GNOME
-   bug tracking database</ulink>.  (Instructions for submitting bug
-   reports can be found <ulink
-   url="http://bugs.gnome.org/Reporting.html" type="http">
-   on-line</ulink>.)  You can also use <application>Bug Report
-   Tool</application> (<command>bug-buddy</command>), available in the
-   <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
-   Menu</guimenu>, for submitting bug reports.
+   <application>gramps</application>, please visit the <ulink
+   url="http://gramps.sourceforge.net" type="http">gramps Web
+   page</ulink>.  
   </para>
 
   <para>
@@ -522,6 +631,7 @@ def get_xpm_image():
   </para>
  </sect1>
 </article>
+
 
 
 
