@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -415,6 +415,6 @@ register_tool(
     runTool,
     _("Verify the database"),
     category=_("Utilities"),
-    description=_("List exceptions to assertions or checks about the database")
+    description=_("Lists exceptions to assertions or checks about the database")
     )
 

@@ -32,6 +32,14 @@
 	and "Show plugin status" menu items. 
 	* src/plugins/DescendReport.py: Enable translation for "b." and "d." 
 	* doc/gramps-manual/C/gramps-manual.xml: More corrections.
+	* src/gramps_main.py: Replace old "file-should-be-directory" message.
+	* src/StartupDialog.py: Minor typos. 
+	* src/plugins/Verify.py: Likewise.
+	* src/plugins/WebPage.py: Likewise.
+	* src/plugins/book.glade: Likewise.
+	* src/MediaView.py: Likewise.
+	* src/PlaceView.py: Likewise.
+	* src/po/template.po: Update the above corrections in template.
 
 2003-07-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/CustomBookText.py: Add to CVS. 

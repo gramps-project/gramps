@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Pubilc License as published by
@@ -764,11 +764,11 @@ class WebReport(Report.Report):
                 try:
                     os.mkdir(dir_name)
                 except IOError, value:
-                    ErrorDialog(_("Could not create the directory : %s") % \
+                    ErrorDialog(_("Could not create the directory: %s") % \
                                 dir_name + "\n" + value[1])
                     return
                 except:
-                    ErrorDialog(_("Could not create the directory : %s") % \
+                    ErrorDialog(_("Could not create the directory: %s") % \
                                 dir_name)
                     return
 
@@ -780,11 +780,11 @@ class WebReport(Report.Report):
             try:
                 os.mkdir(image_dir_name)
             except IOError, value:
-                ErrorDialog(_("Could not create the directory : %s") % \
+                ErrorDialog(_("Could not create the directory: %s") % \
                                  image_dir_name + "\n" + value[1])
                 return
             except:
-                ErrorDialog(_("Could not create the directory : %s") % \
+                ErrorDialog(_("Could not create the directory: %s") % \
                                  image_dir_name)
                 return
     
