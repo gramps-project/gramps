@@ -1,3 +1,6 @@
+2003-11-24  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* FAQ: Added to CVS.
+
 2003-11-23  Don Allingham  <dona@localhost.localdomain>
 	* src/gramps_main.py: just update information after an edit
 	instead of deleting/re-enter. Caused pygtk to segfault
