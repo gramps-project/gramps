@@ -94,8 +94,6 @@ bookmarks     = None
 
 id2col        = {}
 
-surnameList   = []
-
 topWindow     = None
 statusbar     = None
 gtop          = None
@@ -817,8 +815,8 @@ def read_file(filename):
 
     for person in database.getPersonMap().values():
         lastname = person.getPrimaryName().getSurname()
-        if lastname and lastname not in surnameList:
-            surnameList.append(lastname)
+        if lastname and lastname not in const.surnames:
+            const.surnames.append(lastname)
             
     full_update()
     statusbar.set_progress(0.0)
@@ -1736,11 +1734,9 @@ def update_after_edit(person):
 #-------------------------------------------------------------------------
 def load_person(person):
     if person == None:
-        EditPerson.EditPerson(Person(),database,surnameList,\
-                              new_after_edit)
+        EditPerson.EditPerson(Person(),database,new_after_edit)
     else:
-        EditPerson.EditPerson(person,database,surnameList,\
-                              update_after_edit)
+        EditPerson.EditPerson(person,database,update_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -2175,7 +2171,8 @@ def apply_filter():
         name = name_tuple[0]
         
         if datacomp(person):
-            id2col[person] = i
+            if not alt:
+                id2col[person] = i
             if person.getGender():
                 gender = const.male
             else:

@@ -81,11 +81,39 @@ class Photo:
 #
 #-------------------------------------------------------------------------
 class Attribute:
-    def __init__(self):
-        self.type = ""
-        self.value = ""
-        self.source_ref = SourceRef()
-        self.note = Note()
+    def __init__(self,source=None):
+        if source:
+            self.type = source.type
+            self.value = source.value
+            if source.source_ref:
+                self.source_ref = SourceRef(source.source_ref)
+            else:
+                self.source_ref = None
+            if source.note:
+                self.note = Note(source.note)
+            else:
+                self.note = None
+            self.confidence = 2
+            self.private = 0
+        else:
+            self.type = ""
+            self.value = ""
+            self.source_ref = None
+            self.note = Note()
+            self.confidence = 2
+            self.private = 0
+
+    def setPrivacy(self,val):
+        self.private = val
+
+    def getPrivacy(self):
+        return self.private
+
+    def setConfidence(self,val):
+        self.confidence = val
+
+    def getConfidence(self):
+        return self.confidence
         
     def setNote(self,text):
         self.note.set(text)
@@ -103,6 +131,8 @@ class Attribute:
         self.source_ref = id
 
     def getSourceRef(self) :
+        if not self.source_ref:
+            self.source_ref = SourceRef()
         return self.source_ref
 
     def setType(self,val):
@@ -123,27 +153,66 @@ class Attribute:
 #
 #-------------------------------------------------------------------------
 class Address:
-    def __init__(self):
-        self.street = ""
-        self.city = ""
-        self.state = ""
-        self.country = ""
-        self.postal = ""
-        self.date = Date()
-        self.note = Note()
-        self.source_ref = SourceRef()
+    def __init__(self,source=None):
+        if source:
+            self.street = source.street
+            self.city = source.city
+            self.state = source.state
+            self.country = source.country
+            self.postal = source.postal
+            self.date = Date(source.date)
+            if source.source_ref:
+                self.source_ref = SourceRef(source.source_ref)
+            else:
+                self.source_ref = None
+            if source.note:
+                self.note = Note(source.note)
+            else:
+                self.note = None
+            self.confidence = source.confidence
+            self.private = source.private
+        else:
+            self.street = ""
+            self.city = ""
+            self.state = ""
+            self.country = ""
+            self.postal = ""
+            self.date = Date()
+            self.note = None
+            self.source_ref = None
+            self.confidence = 2
+            self.private = 0
+
+    def setPrivacy(self,val):
+        self.private = val
+
+    def getPrivacy(self):
+        return self.private
+
+    def setConfidence(self,val):
+        self.confidence = val
+
+    def getConfidence(self):
+        return self.confidence
 
     def setSourceRef(self,id) :
         self.source_ref = id
 
     def getSourceRef(self) :
+        if not self.source_ref:
+            self.source_ref = SourceRef()
         return self.source_ref
 
     def setNote(self,text):
+        if self.note == None:
+            self.note = Note()
         self.note.set(text)
 
     def getNote(self):
-        return self.note.get()
+        if self.note == None:
+            return ""
+        else:
+            return self.note.get() 
 
     def setNoteObj(self,obj):
         self.note = obj
@@ -197,13 +266,43 @@ class Address:
 #-------------------------------------------------------------------------
 class Name:
 
-    def __init__(self):
-        self.FirstName = ""
-        self.Surname = ""
-        self.Suffix = ""
-        self.Title = ""
-        self.source_ref = None
-        self.note = None
+    def __init__(self,source=None):
+        if source:
+            self.FirstName = source.FirstName
+            self.Surname = source.Surname
+            self.Suffix = source.Suffix
+            self.Title = source.Title
+            if source.source_ref:
+                self.source_ref = SourceRef(source.source_ref)
+            else:
+                self.source_ref = None
+            if source.note:
+                self.note = Note(source.note)
+            else:
+                self.note = None
+            self.private = 0
+            self.confidence = 2
+        else:
+            self.FirstName = ""
+            self.Surname = ""
+            self.Suffix = ""
+            self.Title = ""
+            self.source_ref = None
+            self.note = None
+            self.private = 0
+            self.confidence = 2
+
+    def setPrivacy(self,val):
+        self.private = val
+
+    def getPrivacy(self):
+        return self.private
+
+    def setConfidence(self,val):
+        self.confidence = val
+
+    def getConfidence(self):
+        return self.confidence
         
     def setName(self,first,last,suffix):
         self.FirstName = first
@@ -280,9 +379,21 @@ class Name:
 #-------------------------------------------------------------------------
 class Url:
 
-    def __init__(self,path="",desc=""):
-        self.path = path
-        self.desc = desc
+    def __init__(self,source=None):
+        if source:
+            self.path = source.path
+            self.desc = source.desc
+            self.private = source.private
+        else:
+            self.path = ""
+            self.desc = ""
+            self.private = 0
+
+    def setPrivacy(self,val):
+        self.private = val
+
+    def getPrivacy(self):
+        return self.private
 
     def set_path(self,path):
         self.path = path
@@ -342,11 +453,17 @@ class Person:
     def getAlternateNames(self):
         return self.alternateNames
 
+    def setAlternateNames(self,list):
+        self.alternateNames = list
+
     def addAlternateName(self,name):
         self.alternateNames.append(name)
 
     def getUrlList(self):
         return self.urls
+
+    def setUrlList(self,list):
+        self.urls = list
 
     def addUrl(self,url):
         self.urls.append(url)
@@ -430,6 +547,9 @@ class Person:
     def getAddressList(self) :
         return self.addressList
 
+    def setAddressList(self,list) :
+        self.addressList = list
+
     def addAttribute(self,attribute) :
         self.attributeList.append(attribute)
 
@@ -443,6 +563,9 @@ class Person:
 
     def getAttributeList(self) :
         return self.attributeList
+
+    def setAttributeList(self,list) :
+        self.attributeList = list
 
     def getAltFamilyList(self) :
         return self.AltFamilyList
@@ -506,7 +629,9 @@ class Event:
             if source.note:
                 self.note = Note(source.note)
             else:
-                self.source_ref = None
+                self.note = None
+            self.confidence = source.confidence
+            self.private = source.private
         else:
             self.place = ""
             self.date = Date()
@@ -514,6 +639,20 @@ class Event:
             self.name = ""
             self.source_ref = None
             self.note = None
+            self.confidence = 2
+            self.private = 0
+
+    def setPrivacy(self,val):
+        self.private = val
+
+    def getPrivacy(self):
+        return self.private
+
+    def setConfidence(self,val):
+        self.confidence = val
+
+    def getConfidence(self):
+        return self.confidence
 
     def set(self,name,date,place,description):
         self.name = name

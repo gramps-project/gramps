@@ -150,6 +150,10 @@ class GrampsParser(handler.ContentHandler):
     def start_event(self,attrs):
         self.event = Event()
         self.event_type = u2l(string.capwords(attrs["type"]))
+        if attrs.has_key("conf"):
+            self.event.confidence = string.atoi(attrs["conf"])
+        if attrs.has_key("priv"):
+            self.event.private = string.atoi(attrs["priv"])
         
     #---------------------------------------------------------------------
     #
@@ -158,6 +162,10 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_attribute(self,attrs):
         self.attribute = Attribute()
+        if attrs.has_key("conf"):
+            self.attribute.confidence = string.atoi(attrs["conf"])
+        if attrs.has_key("priv"):
+            self.attribute.privacy = string.atoi(attrs["priv"])
         if attrs.has_key('type'):
             self.in_old_attr = 1
             self.attribute.setType(u2l(string.capwords(attrs["type"])))
@@ -176,6 +184,10 @@ class GrampsParser(handler.ContentHandler):
     def start_address(self,attrs):
         self.address = Address()
         self.person.addAddress(self.address)
+        if attrs.has_key("conf"):
+            self.address.confidence = string.atoi(attrs["conf"])
+        if attrs.has_key("priv"):
+            self.address.private = string.atoi(attrs["priv"])
 
     #---------------------------------------------------------------------
     #
@@ -245,7 +257,11 @@ class GrampsParser(handler.ContentHandler):
             desc = ""
 
         try:
-            url = Url(u2l(attrs["href"]),desc)
+            url = Url()
+            url.set_path(u2l(attrs["href"]))
+            url.set_description(desc)
+            if attrs.has_key("priv"):
+                url.setPrivacy(string.atoi(attrs['priv']))
             self.person.addUrl(url)
         except KeyError:
             return
@@ -295,6 +311,10 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_name(self,attrs):
         self.name = Name()
+        if attrs.has_key("conf"):
+            self.name.confidence = string.atoi(attrs["conf"])
+        if attrs.has_key("priv"):
+            self.name.private = string.atoi(attrs["priv"])
         
     #---------------------------------------------------------------------
     #

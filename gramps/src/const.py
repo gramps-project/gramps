@@ -114,6 +114,18 @@ childRelations = {
 
 #-------------------------------------------------------------------------
 #
+# Confidence
+#
+#-------------------------------------------------------------------------
+confidence = [ _("Very Low"),
+               _("Low"),
+               _("Normal"),
+               _("High"),
+               _("Very High")
+             ]
+
+#-------------------------------------------------------------------------
+#
 # Family event string mappings
 #
 #-------------------------------------------------------------------------
@@ -453,3 +465,4 @@ marriageEvents = initialize_marriage_event_list()
 familyAttributes = initialize_family_attribute_list()
 familyRelations = initialize_family_relation_list()
 places = []
+surnames = []

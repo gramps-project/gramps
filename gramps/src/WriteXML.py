@@ -59,9 +59,12 @@ def fix(line):
 #
 #
 #-------------------------------------------------------------------------
-def writeNote(g,val,note):
+def writeNote(g,val,note,indent=0):
     if not note:
         return
+    if indent != 0:
+        g.write("  " * indent)
+        
     g.write("<" + val + ">")
     g.write(fix(note))
     g.write("</" + val + ">\n")
@@ -87,18 +90,20 @@ def dump_my_event(g,name,event):
     date = event.getSaveDate()
     place = event.getPlace()
     description = event.getDescription()
-    if not name and not date and not place and not description:
+    if (not name or name == "Birth" or name == "Death") and \
+       not date and not place and not description:
         return
     
-    g.write("<event type=\"" + fix(name) + "\">\n")
-    write_line(g,"date",date)
-    write_line(g,"place",place)
-    write_line(g,"description",description)
+    g.write('    <event type="%s" conf="%d" priv="%d">\n' % \
+            (fix(name),event.getConfidence(),event.getPrivacy()))
+    write_line(g,"date",date,3)
+    write_line(g,"place",place,3)
+    write_line(g,"description",description,3)
     if event.getNote() != "":
-        writeNote(g,"note",event.getNote())
+        writeNote(g,"note",event.getNote(),3)
 
     dump_source_ref(g,event.getSourceRef())
-    g.write("</event>\n")
+    g.write("    </event>\n")
 
 #-------------------------------------------------------------------------
 #
@@ -139,7 +144,7 @@ def write_ref(g,label,person):
 #-------------------------------------------------------------------------
 def write_id(g,label,person):
     if person:
-        g.write('<%s id="%s">\n' % (label,person.getId()))
+        g.write('  <%s id="%s">\n' % (label,person.getId()))
 
 #-------------------------------------------------------------------------
 #
@@ -159,9 +164,9 @@ def write_family_id(g,family):
 #
 #
 #-------------------------------------------------------------------------
-def write_line(g,label,value):
+def write_line(g,label,value,indent=1):
     if value:
-        g.write('<%s>%s</%s>\n' % (label,fix(value),label))
+        g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,fix(value),label))
 
 #-------------------------------------------------------------------------
 #
@@ -169,16 +174,17 @@ def write_line(g,label,value):
 #
 #-------------------------------------------------------------------------
 def dump_name(g,label,name):
-    g.write('<%s>\n' % label)
-    write_line(g,"first",name.getFirstName())
-    write_line(g,"last",name.getSurname())
-    write_line(g,"suffix",name.getSuffix())
-    write_line(g,"title",name.getTitle())
+    g.write('    <%s conf="%s" priv="%s">\n' % \
+            (label,name.getConfidence(),name.getPrivacy()))
+    write_line(g,"first",name.getFirstName(),3)
+    write_line(g,"last",name.getSurname(),3)
+    write_line(g,"suffix",name.getSuffix(),3)
+    write_line(g,"title",name.getTitle(),3)
     if name.getNote() != "":
         writeNote(g,"note",name.getNote())
     dump_source_ref(g,name.getSourceRef())
     
-    g.write('</%s>\n' % label)
+    g.write('    </%s>\n' % label)
 
 #-------------------------------------------------------------------------
 #
@@ -209,27 +215,27 @@ def exportData(database, filename, callback):
 
     g.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n")
     g.write("<database>\n")
-    g.write("<header>\n")
-    g.write("<created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
+    g.write("  <header>\n")
+    g.write("    <created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
     g.write(" version=\"" + const.version + "\"")
     g.write(" people=\"%d\"" % (len(database.getPersonMap().values())))
     g.write(" families=\"%d\"/>\n" % len(database.getFamilyMap().values()))
-    g.write("<researcher>\n")
-    write_line(g,"resname",owner.getName())
-    write_line(g,"resaddr",owner.getAddress())
-    write_line(g,"rescity",owner.getCity())
-    write_line(g,"resstate",owner.getState())
-    write_line(g,"rescountry",owner.getCountry())
-    write_line(g,"respostal",owner.getPostalCode())
-    write_line(g,"resphone",owner.getPhone())
-    write_line(g,"resemail",owner.getEmail())
-    g.write("</researcher>\n")
-    g.write("</header>\n")
+    g.write("    <researcher>\n")
+    write_line(g,"resname",owner.getName(),3)
+    write_line(g,"resaddr",owner.getAddress(),3)
+    write_line(g,"rescity",owner.getCity(),3)
+    write_line(g,"resstate",owner.getState(),3)
+    write_line(g,"rescountry",owner.getCountry(),3)
+    write_line(g,"respostal",owner.getPostalCode(),3)
+    write_line(g,"resphone",owner.getPhone(),3)
+    write_line(g,"resemail",owner.getEmail(),3)
+    g.write("    </researcher>\n")
+    g.write("  </header>\n")
 
-    g.write("<people")
+    g.write("  <people")
     person = database.getDefaultPerson()
     if person:
-        g.write(" default=\"" + person.getId() + "\"")
+        g.write(' default="%s"' % person.getId())
     g.write(">\n")
 
     total = len(personList) + len(familyList)
@@ -243,9 +249,9 @@ def exportData(database, filename, callback):
             
         write_id(g,"person",person)
         if person.getGender() == Person.male:
-            write_line(g,"gender","M")
+            write_line(g,"gender","M",2)
         else:
-            write_line(g,"gender","F")
+            write_line(g,"gender","F",2)
         dump_name(g,"name",person.getPrimaryName())
         for name in person.getAlternateNames():
             dump_name(g,"aka",name)
@@ -272,7 +278,8 @@ def exportData(database, filename, callback):
         if len(person.getAddressList()) > 0:
             g.write("<addresses>\n")
             for address in person.getAddressList():
-                g.write('<address>\n')
+                g.write('<address conf="%d" priv="%d">\n' % \
+                        (address.getConfidence(), address.getPrivacy()))
                 write_line(g,"date",address.getDateObj().getSaveDate())
                 write_line(g,"street",address.getStreet())
                 write_line(g,"city",address.getCity())
@@ -289,7 +296,9 @@ def exportData(database, filename, callback):
             g.write("<attributes>\n")
             for attr in person.getAttributeList():
                 if attr.getSourceRef() or attr.getNote():
-                    g.write('<attribute>\n')
+                    g.write('<attribute conf="%d" priv="%d">\n' % \
+                            (attr.getConfidence(),attr.getPrivacy()))
+
                     write_line(g,"attr_type",attr.getType())
                     write_line(g,"attr_value",attr.getValue())
                     dump_source_ref(g,attr.getSourceRef())
@@ -304,7 +313,7 @@ def exportData(database, filename, callback):
         if len(person.getUrlList()) > 0:
             g.write("<urls>\n")
             for url in person.getUrlList():
-                g.write('<url href="' + url.get_path() + '"')
+                g.write('<url priv="%d" href="%s"' % (url.getPrivacy(),url.get_path()))
                 if url.get_description() != "":
                     g.write(' description="' + url.get_description() + '"')
                 g.write('/>\n')
