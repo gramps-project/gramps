@@ -61,6 +61,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.level = 0
         self.time = "0000-00-00T00:00:00"
         self.new_page = 0
+        self.new_cell = 0
 
     def open(self,filename):
         t = time.localtime(time.time())
@@ -259,6 +260,8 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         base = os.path.basename(name)
         tag = string.replace(base,'.','_')
         
+        if self.new_cell:
+            self.f.write('<text:p>\n')
         if pos == "left":
             self.f.write('<draw:image draw:style-name="Left" ')
         elif pos == "right":
@@ -278,6 +281,8 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.f.write(base)
         self.f.write('" xlink:type="simple" xlink:show="embed" ')
         self.f.write('xlink:actuate="onLoad"/>\n')
+        if self.new_cell:
+            self.f.write('</text:p>\n')
 
     def start_table(self,name,style_name):
         self.f.write('<table:table table:name="')
@@ -306,11 +311,13 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             self.f.write(' table:number-columns-spanned="%s">\n' % span)
 	else:	     
 	    self.f.write('>\n')
+        self.new_cell = 1
 
     def end_cell(self):
         self.f.write('</table:table-cell>\n')
         for col in range(1,self.span):
             self.f.write('<table:covered-table-cell/>\n')
+        self.new_cell = 0
 
     def start_bold(self):
         self.f.write('<text:span text:style-name="Tbold">')
@@ -504,12 +511,14 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         if leader != None:
             self.f.write(leader)
             self.f.write('<text:tab-stop/>')
+        self.new_cell = 0
 
     def end_paragraph(self):
         if self.level == 0:
             self.f.write('</text:p>\n')
         else:
             self.f.write('</text:h>\n')
+        self.new_cell = 1
 
     def write_text(self,text):
         text = string.replace(text,'\n','<text:line-break/>')
