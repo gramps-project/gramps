@@ -25,11 +25,12 @@ class ListModel:
     def __init__(self,tree,dlist,select_func=None,event_func=None):
         self.tree = tree
         l = len(dlist)
-        mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
-        self.model = gtk.ListStore(*mylist)
+        self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
+
+        self.new_model()
+        self.connect_model()
 
         self.selection = self.tree.get_selection()
-        self.tree.set_model(self.model)
 
         self.data_index = l
         
@@ -61,6 +62,12 @@ class ListModel:
             self.double_click = event_func
             self.tree.connect('event',self.button_press)
 
+    def new_model(self):
+        self.model = gtk.ListStore(*self.mylist)
+
+    def connect_model(self):
+        self.tree.set_model(self.model)
+        
     def get_selected(self):
         return self.selection.get_selected()
 
