@@ -25,6 +25,8 @@
 	src/plugins/WebPage.py, src/plugins/WriteCD.py, 
 	src/plugins/WritePkg.py, src/plugins/DetAncestralReport.py:
 	Use get_event_from_handle (not find_ ).
+	* src/GrampsDbBase.py (find_event_from_handle): 
+	Add transaction argument
 
 2004-08-20  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: update family display after EditPerson
