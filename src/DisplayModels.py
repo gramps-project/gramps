@@ -62,12 +62,9 @@ class BaseModel(gtk.GenericTreeModel):
     def on_row_deleted(self,obj,path):
         self.rebuild_data()
 
-#     def find_path(self,iter):
-#         return self.iter2path.get(iter)
-
     def on_get_flags(self):
 	'''returns the GtkTreeModelFlags for this particular type of model'''
-	return 0
+	return gtk.TREE_MODEL_LIST_ONLY
 
     def on_get_n_columns(self):
         return 9

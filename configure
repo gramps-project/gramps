@@ -274,7 +274,7 @@ PACKAGE_STRING='gramps 1.1.0'
 PACKAGE_BUGREPORT='gramps-bugs@lists.sourceforge.net'
 
 ac_unique_file="src/gramps.py"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot RELEASE VERSIONSTRING MSGFMT MSGCONV ICONV LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO AMTAR install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot RELEASE VERSIONSTRING MSGFMT MSGCONV ICONV LANGUAGES POFILES MOFILES PYTHON PYTHON_VERSION PYTHON_PREFIX PYTHON_EXEC_PREFIX PYTHON_PLATFORM pythondir pkgpythondir pyexecdir pkgpyexecdir BINSH PKG_CONFIG PYGTK_CFLAGS PYGTK_LIBS SK_CONFIG SCROLLKEEPER_BUILD_REQUIRED GNOMEHELP GPREFIX LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -2042,31 +2042,103 @@ def out(str):
 "
 
 
-echo "$as_me:$LINENO: checking Python bindings for gtk" >&5
-echo $ECHO_N "checking Python bindings for gtk... $ECHO_C" >&6
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    import gobject
-    out("YES")
-except ImportError:
-    out("No")
-EOF
-$PYTHON conftest.py
-has_pygtk=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test YES != "$has_pygtk"
-then
-   { { echo "$as_me:$LINENO: error:
+  succeeded=no
 
-**** The python bindings for gtk 2.0 (pygtk2) could not be found." >&5
-echo "$as_me: error:
+  if test -z "$PKG_CONFIG"; then
+    # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
 
-**** The python bindings for gtk 2.0 (pygtk2) could not be found." >&2;}
-   { (exit 1); exit 1; }; }
+  test -z "$ac_cv_path_PKG_CONFIG" && ac_cv_path_PKG_CONFIG="no"
+  ;;
+esac
 fi
-echo "$as_me:$LINENO: result: ok" >&5
-echo "${ECHO_T}ok" >&6
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+
+if test -n "$PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
+echo "${ECHO_T}$PKG_CONFIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  fi
+
+  if test "$PKG_CONFIG" = "no" ; then
+     echo "*** The pkg-config script could not be found. Make sure it is"
+     echo "*** in your path, or set the PKG_CONFIG environment variable"
+     echo "*** to the full path to pkg-config."
+     echo "*** Or see http://www.freedesktop.org/software/pkgconfig to get pkg-config."
+  else
+     PKG_CONFIG_MIN_VERSION=0.9.0
+     if $PKG_CONFIG --atleast-pkgconfig-version $PKG_CONFIG_MIN_VERSION; then
+        echo "$as_me:$LINENO: checking for pygtk-2.0 >= 2.3.4" >&5
+echo $ECHO_N "checking for pygtk-2.0 >= 2.3.4... $ECHO_C" >&6
+
+        if $PKG_CONFIG --exists "pygtk-2.0 >= 2.3.4" ; then
+            echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+            succeeded=yes
+
+            echo "$as_me:$LINENO: checking PYGTK_CFLAGS" >&5
+echo $ECHO_N "checking PYGTK_CFLAGS... $ECHO_C" >&6
+            PYGTK_CFLAGS=`$PKG_CONFIG --cflags "pygtk-2.0 >= 2.3.4"`
+            echo "$as_me:$LINENO: result: $PYGTK_CFLAGS" >&5
+echo "${ECHO_T}$PYGTK_CFLAGS" >&6
+
+            echo "$as_me:$LINENO: checking PYGTK_LIBS" >&5
+echo $ECHO_N "checking PYGTK_LIBS... $ECHO_C" >&6
+            PYGTK_LIBS=`$PKG_CONFIG --libs "pygtk-2.0 >= 2.3.4"`
+            echo "$as_me:$LINENO: result: $PYGTK_LIBS" >&5
+echo "${ECHO_T}$PYGTK_LIBS" >&6
+        else
+            PYGTK_CFLAGS=""
+            PYGTK_LIBS=""
+            ## If we have a custom action on failure, don't print errors, but
+            ## do set a variable so people can do so.
+            PYGTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "pygtk-2.0 >= 2.3.4"`
+            echo $PYGTK_PKG_ERRORS
+        fi
+
+
+
+     else
+        echo "*** Your version of pkg-config is too old. You need version $PKG_CONFIG_MIN_VERSION or newer."
+        echo "*** See http://www.freedesktop.org/software/pkgconfig"
+     fi
+  fi
+
+  if test $succeeded = yes; then
+     :
+  else
+     { { echo "$as_me:$LINENO: error: Library requirements (pygtk-2.0 >= 2.3.4) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&5
+echo "$as_me: error: Library requirements (pygtk-2.0 >= 2.3.4) not met; consider adjusting the PKG_CONFIG_PATH environment variable if your libraries are in a nonstandard prefix so pkg-config can find them." >&2;}
+   { (exit 1); exit 1; }; }
+  fi
+
 
 echo "$as_me:$LINENO: checking Python bindings for gnome" >&5
 echo $ECHO_N "checking Python bindings for gnome... $ECHO_C" >&6
@@ -2962,6 +3034,9 @@ s,@pkgpythondir@,$pkgpythondir,;t t
 s,@pyexecdir@,$pyexecdir,;t t
 s,@pkgpyexecdir@,$pkgpyexecdir,;t t
 s,@BINSH@,$BINSH,;t t
+s,@PKG_CONFIG@,$PKG_CONFIG,;t t
+s,@PYGTK_CFLAGS@,$PYGTK_CFLAGS,;t t
+s,@PYGTK_LIBS@,$PYGTK_LIBS,;t t
 s,@SK_CONFIG@,$SK_CONFIG,;t t
 s,@SCROLLKEEPER_BUILD_REQUIRED@,$SCROLLKEEPER_BUILD_REQUIRED,;t t
 s,@GNOMEHELP@,$GNOMEHELP,;t t

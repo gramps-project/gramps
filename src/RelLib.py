@@ -1789,7 +1789,6 @@ class Event(DataObj):
             return 1
         elif not (witness_list and other_list):
             return 0
-        other_list = other_list[:]
         for a in witness_list:
             if a in other_list:
                 other_list.remove(a)
@@ -2430,6 +2429,24 @@ class GrampsDB:
             self.bookmarks = []
         return 1
 
+    def get_people_view_maps(self):
+        if self.metadata:
+            return (self.metadata.get('tp_iter'),
+                    self.metadata.get('tp_path'),
+                    self.metadata.get('p_iter'),
+                    self.metadata.get('p_path'),
+                    self.metadata.get('sname'))
+        else:
+            return (None,None,None,None,None)
+
+    def set_people_view_maps(self,maps):
+        if self.metadata:
+            self.metadata['tp_iter'] = maps[0]
+            self.metadata['tp_path'] = maps[1]
+            self.metadata['p_iter']  = maps[2]
+            self.metadata['p_path']  = maps[3]
+            self.metadata['sname']  = maps[4]
+
     def close(self):
         self.person_map.close()
         self.family_map.close()
@@ -2494,10 +2511,6 @@ class GrampsDB:
             return keys
         else:
             return []
-#         keys = self.person_map.keys()
-#         if type(keys) == type([]):
-#             keys.sort(self.sort_by_name)
-#         return keys
 
     def get_person_display(self,key):
         data = self.person_map.get(str(key))
@@ -2515,8 +2528,6 @@ class GrampsDB:
                  data[6],
                  data[5],
                  data[2].get_sort_name(),
-#                  sort.build_sort_date(bday),
-#                  sort.build_sort_date(dday),
                  data[6],
                  data[5],
                  GrampsCfg.display_surname(data[2])]
@@ -3142,7 +3153,7 @@ class GrampsDB:
 
     def add_place_as(self,place,trans=None):
         if trans != None:
-            trans.add(PLACE_KEY,index,None)
+            trans.add(PLACE_KEY,place.get_id(),None)
         self.place_map.put(str(place.get_id()),place.serialize())
         return place.get_id()
         

@@ -176,8 +176,8 @@ class DbPrompter:
             Utils.destroy_passed_object(obj)
 
     def open_delete_event(self,obj,event):
-        gtk.mainquit()
+        gtk.main_quit()
 
     def open_cancel_clicked(self,obj):
-        gtk.mainquit()
+        gtk.main_quit()
 
