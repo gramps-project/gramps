@@ -27,9 +27,9 @@ import GDK
 import gtk
 
 import Config
-import intl
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #

@@ -23,8 +23,7 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
+import gtk
 import libglade
 
 #-------------------------------------------------------------------------
@@ -184,10 +183,10 @@ class SourceEditor:
         sel_child = None
         list = []
         for src in values:
-            l = GtkLabel("%s [%s]" % (src.getTitle(),src.getId()))
+            l = gtk.GtkLabel("%s [%s]" % (src.getTitle(),src.getId()))
             l.show()
             l.set_alignment(0,0.5)
-            c = GtkListItem()
+            c = gtk.GtkListItem()
             c.add(l)
             c.set_data("s",src)
             c.show()

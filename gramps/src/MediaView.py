@@ -21,17 +21,16 @@
 import GTK
 import GDK
 import gnome.ui
-import gtk
 import string
 import ImageSelect
 
 from RelLib import *
-import intl
 import utils
 import const
 import os
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 class MediaView:
     def __init__(self,db,glade,update):
@@ -71,13 +70,14 @@ class MediaView:
         self.mdetails.set_text("")
 
     def load_media(self):
-        self.media_list.freeze()
-        self.media_list.clear()
 
         if len(self.media_list.selection) == 0:
             current_row = 0
         else:
             current_row = self.media_list.selection[0]
+
+        self.media_list.freeze()
+        self.media_list.clear()
 
         index = 0
         objects = self.db.getObjectMap().values()
@@ -107,6 +107,10 @@ class MediaView:
             self.mdetails.set_text("")
             self.preview.load_imlib(const.empty_image)
 
+        if current_row < self.media_list.rows:
+            self.media_list.moveto(current_row)
+        else:
+            self.media_list.moveto(0)
         self.media_list.thaw()
 
     def create_add_dialog(self,obj):

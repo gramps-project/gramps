@@ -41,14 +41,14 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import intl
 import const
 import utils
 import Config
 from RelLib import *
 import RelImage
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
@@ -249,8 +249,9 @@ class Gallery(ImageSelect):
                 photo = Photo()
                 photo.setPath(name)
                 photo.setMimeType(mime)
-                description = os.path.basename(name)
-                photo.setDescription(description)
+                basename = os.path.basename(name)
+                (root,ext) = os.path.splitext(basename)
+                photo.setDescription(root)
                 self.savephoto(photo)
             elif protocol != "":
                 import urllib
@@ -423,7 +424,11 @@ class Gallery(ImageSelect):
             photo = self.dataobj.getPhotoList()[self.selectedIcon]
             LocalMediaProperties(photo,self.path)
 
-
+#-------------------------------------------------------------------------
+#
+# LocalMediaProperties
+#
+#-------------------------------------------------------------------------
 class LocalMediaProperties:
 
     def __init__(self,photo,path):
@@ -507,6 +512,11 @@ class LocalMediaProperties:
         import AttrEdit
         AttrEdit.AttributeEditor(self,None,"Media Object",[])
 
+#-------------------------------------------------------------------------
+#
+# GlobalMediaProperties
+#
+#-------------------------------------------------------------------------
 class GlobalMediaProperties:
 
     def __init__(self,db,object,update):
@@ -518,14 +528,15 @@ class GlobalMediaProperties:
 
         self.path = self.db.getSavePath()
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_global")
-        descr_window = self.change_dialog.get_widget("description")
+        self.descr_window = self.change_dialog.get_widget("description")
+        self.notes = self.change_dialog.get_widget("notes")
         pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
         self.attr_value = self.change_dialog.get_widget("attr_value")
         self.attr_details = self.change_dialog.get_widget("attr_details")
         self.attr_list = self.change_dialog.get_widget("attr_list")
         
-        descr_window.set_text(self.object.getDescription())
+        self.descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
         pixmap.load_file(utils.thumb_path(self.path,self.object))
 
@@ -535,7 +546,7 @@ class GlobalMediaProperties:
         self.update_info()
         
         self.change_dialog.get_widget("type").set_text(utils.get_mime_description(mtype))
-        self.change_dialog.get_widget("notes").insert_defaults(object.getNote())
+        self.notes.insert_defaults(object.getNote())
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked"      : utils.destroy_passed_object,
             "on_ok_clicked"          : self.on_ok_clicked,
@@ -594,15 +605,17 @@ class GlobalMediaProperties:
             self.display_refs()
             
     def on_apply_clicked(self, obj):
-        text = self.change_dialog.get_widget("notes").get_chars(0,-1)
-        desc = self.change_dialog.get_widget("description").get_text()
+        text = self.notes.get_chars(0,-1)
+        desc = self.descr_window.get_text()
         note = self.object.getNote()
         if text != note or desc != self.object.getDescription():
             self.object.setNote(text)
+            self.object.setDescription(desc)
             utils.modified()
         if self.lists_changed:
             self.object.setAttributeList(self.alist)
             utils.modified()
+        self.update()
 
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)

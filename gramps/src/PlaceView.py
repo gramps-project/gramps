@@ -21,15 +21,14 @@
 import GTK
 import GDK
 import gnome.ui
-import gtk
 import string
 
 from RelLib import *
 import EditPlace
 import utils
-import intl
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 class PlaceView:
     def __init__(self,db,glade,update):

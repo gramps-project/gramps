@@ -18,11 +18,27 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import os
-import intl
-import GdkImlib
 
-_ = intl.gettext
+#-------------------------------------------------------------------------
+#
+# internationalization
+#
+#-------------------------------------------------------------------------
+from intl import gettext
+_ = gettext
+
+#-------------------------------------------------------------------------
+#
+# GNOME/GTK
+#
+#-------------------------------------------------------------------------
+from GdkImlib import create_image_from_xpm
 
 #-------------------------------------------------------------------------
 #
@@ -53,24 +69,24 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
-icon           = rootDir + os.sep + "gramps.xpm"
-logo           = rootDir + os.sep + "logo.png"
-gladeFile      = rootDir + os.sep + "gramps.glade"
-placesFile     = rootDir + os.sep + "places.glade"
-imageselFile   = rootDir + os.sep + "imagesel.glade"
-marriageFile   = rootDir + os.sep + "marriage.glade"
-editPersonFile = rootDir + os.sep + "EditPerson.glade"
-bookFile       = rootDir + os.sep + "bookmarks.glade"
-pluginsFile    = rootDir + os.sep + "plugins.glade"
-editnoteFile   = rootDir + os.sep + "editnote.glade"
-configFile     = rootDir + os.sep + "config.glade"
-stylesFile     = rootDir + os.sep + "styles.glade"
-dialogFile     = rootDir + os.sep + "dialog.glade"
-mergeFile      = rootDir + os.sep + "mergedata.glade"
-pluginsDir     = rootDir + os.sep + "plugins"
-filtersDir     = rootDir + os.sep + "filters"
-dataDir        = rootDir + os.sep + "data"
-gtkrcFile      = rootDir + os.sep + "gtkrc"
+icon           = "%s/gramps.xpm" % rootDir
+logo           = "%s/logo.png" % rootDir
+gladeFile      = "%s/gramps.glade" % rootDir
+placesFile     = "%s/places.glade" % rootDir
+imageselFile   = "%s/imagesel.glade" % rootDir
+marriageFile   = "%s/marriage.glade" % rootDir
+editPersonFile = "%s/EditPerson.glade" % rootDir
+bookFile       = "%s/bookmarks.glade" % rootDir
+pluginsFile    = "%s/plugins.glade" % rootDir
+editnoteFile   = "%s/editnote.glade" % rootDir
+configFile     = "%s/config.glade" % rootDir
+stylesFile     = "%s/styles.glade" % rootDir
+dialogFile     = "%s/dialog.glade" % rootDir
+mergeFile      = "%s/mergedata.glade" % rootDir
+pluginsDir     = "%s/plugins" % rootDir
+filtersDir     = "%s/filters" % rootDir
+dataDir        = "%s/data" % rootDir
+gtkrcFile      = "%s/gtkrc" % rootDir
 
 #-------------------------------------------------------------------------
 #
@@ -507,4 +523,4 @@ xpm_data = [
     '" 	c None"',
     '" "};']
 
-empty_image = GdkImlib.create_image_from_xpm(xpm_data)
+empty_image = create_image_from_xpm(xpm_data)

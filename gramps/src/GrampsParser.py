@@ -21,26 +21,22 @@
 from RelLib import *
 
 import string
-import os
-import sys
 import utils
 
 #-------------------------------------------------------------------------
 #
-# Try to abstract SAX1 from SAX2
+# Find a parser. xml.sax should be available, but it is possible that
+# someone has removed it in favor of the PyXML distribution, which
+# defined a _xmlplux.sax
 #
 #-------------------------------------------------------------------------
-if sys.version[0] != '1':
-    try:
-        from _xmlplus.sax import handler
-        from _xmlplus.sax import make_parser
-    except:
-        from xml.sax import handler
-        from xml.sax import make_parser
-else:
+try:
     from xml.sax import handler
     from xml.sax import make_parser
-
+except:
+    from _xmlplus.sax import handler
+    from _xmlplus.sax import make_parser
+    
 #-------------------------------------------------------------------------
 #
 # Unicode to latin conversion
@@ -467,8 +463,8 @@ class GrampsParser(handler.ContentHandler):
         self.object.setMimeType(u2l(attrs['mime']))
         self.object.setDescription(u2l(attrs['description']))
         src = u2l(attrs["src"])
-        if src[0] != os.sep:
-            self.object.setPath("%s%s%s" % (self.base,os.sep,src))
+        if src[0] != '/':
+            self.object.setPath("%s/%s" % (self.base,src))
             self.object.setLocal(1)
         else:
             self.object.setPath(src)
@@ -477,7 +473,7 @@ class GrampsParser(handler.ContentHandler):
     def stop_object(self,tag):
         self.object = None
 
-    def stop_objref(self,tage):
+    def stop_objref(self,tag):
         self.objref = None
         
     #---------------------------------------------------------------------
@@ -497,8 +493,8 @@ class GrampsParser(handler.ContentHandler):
                 self.pref.setPrivacy(int(attrs[key]))
             elif key == "src":
                 src = u2l(attrs["src"])
-                if src[0] != os.sep:
-                    self.photo.setPath("%s%s%s" % (self.base,os.sep,src))
+                if src[0] != '/':
+                    self.photo.setPath("%s/%s" % (self.base,src))
                     self.photo.setLocal(1)
                 else:
                     self.photo.setPath(src)

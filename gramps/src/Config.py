@@ -34,11 +34,9 @@ import PaperMenu
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
-
-import gnome.config
+import gtk
 import libglade
+from gnome.config import get_string, get_bool, get_int, set_string, sync, set_bool, set_int
 
 #-------------------------------------------------------------------------
 #
@@ -51,9 +49,9 @@ from Date import *
 import const
 import utils
 import ListColors
-import intl
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 _date_format_list = [
     _("Month Day, Year"),
@@ -187,36 +185,36 @@ def loadConfig(call):
     global status_bar
 
     _callback = call
-    lastfile = gnome.config.get_string("/gramps/data/LastFile")
-    usetabs = gnome.config.get_bool("/gramps/config/UseTabs")
-    usevc = gnome.config.get_bool("/gramps/config/UseVersionControl")
-    vc_comment = gnome.config.get_bool("/gramps/config/UseComment")
-    uncompress = gnome.config.get_bool("/gramps/config/DontCompressXML")
-    id_visible = gnome.config.get_bool("/gramps/config/IdVisible")
-    id_edit = gnome.config.get_bool("/gramps/config/IdEdit")
-    index_visible = gnome.config.get_bool("/gramps/config/IndexVisible")
-    show_detail = gnome.config.get_bool("/gramps/config/ShowDetail")
-    status_bar = gnome.config.get_int("/gramps/config/StatusBar")
-    display_attr = gnome.config.get_bool("/gramps/config/DisplayAttr")
-    attr_name = gnome.config.get_string("/gramps/config/DisplayAttrName")
+    lastfile = get_string("/gramps/data/LastFile")
+    usetabs = get_bool("/gramps/config/UseTabs")
+    usevc = get_bool("/gramps/config/UseVersionControl")
+    vc_comment = get_bool("/gramps/config/UseComment")
+    uncompress = get_bool("/gramps/config/DontCompressXML")
+    id_visible = get_bool("/gramps/config/IdVisible")
+    id_edit = get_bool("/gramps/config/IdEdit")
+    index_visible = get_bool("/gramps/config/IndexVisible")
+    show_detail = get_bool("/gramps/config/ShowDetail")
+    status_bar = get_int("/gramps/config/StatusBar")
+    display_attr = get_bool("/gramps/config/DisplayAttr")
+    attr_name = get_string("/gramps/config/DisplayAttrName")
     
-    hide_altnames = gnome.config.get_bool("/gramps/config/DisplayAltNames")
-    autoload = gnome.config.get_bool("/gramps/config/autoLoad")
-    dateFormat = gnome.config.get_int("/gramps/config/dateFormat")
-    dateEntry = gnome.config.get_int("/gramps/config/dateEntry")
-    paper_preference = gnome.config.get_string("/gramps/config/paperPreference")
-    output_preference = gnome.config.get_string("/gramps/config/outputPreference")
-    _name_format = gnome.config.get_int("/gramps/config/nameFormat")
+    hide_altnames = get_bool("/gramps/config/DisplayAltNames")
+    autoload = get_bool("/gramps/config/autoLoad")
+    dateFormat = get_int("/gramps/config/dateFormat")
+    dateEntry = get_int("/gramps/config/dateEntry")
+    paper_preference = get_string("/gramps/config/paperPreference")
+    output_preference = get_string("/gramps/config/outputPreference")
+    _name_format = get_int("/gramps/config/nameFormat")
 
-    iprefix = gnome.config.get_string("/gramps/config/iprefix")
-    fprefix = gnome.config.get_string("/gramps/config/fprefix")
-    sprefix = gnome.config.get_string("/gramps/config/sprefix")
-    oprefix = gnome.config.get_string("/gramps/config/oprefix")
-    pprefix = gnome.config.get_string("/gramps/config/pprefix")
+    iprefix = get_string("/gramps/config/iprefix")
+    fprefix = get_string("/gramps/config/fprefix")
+    sprefix = get_string("/gramps/config/sprefix")
+    oprefix = get_string("/gramps/config/oprefix")
+    pprefix = get_string("/gramps/config/pprefix")
 
-    report_dir = gnome.config.get_string("/gramps/config/ReportDirectory")
-    web_dir = gnome.config.get_string("/gramps/config/WebsiteDirectory")
-    db_dir = gnome.config.get_string("/gramps/config/DbDirectory")
+    report_dir = get_string("/gramps/config/ReportDirectory")
+    web_dir = get_string("/gramps/config/WebsiteDirectory")
+    db_dir = get_string("/gramps/config/DbDirectory")
 
     if report_dir == None:
         report_dir = "./"
@@ -233,16 +231,16 @@ def loadConfig(call):
     else:
         db_dir = os.path.normpath(db_dir) + os.sep
 
-    name = gnome.config.get_string("/gramps/researcher/name")
-    addr = gnome.config.get_string("/gramps/researcher/addr")
-    city = gnome.config.get_string("/gramps/researcher/city")
-    state = gnome.config.get_string("/gramps/researcher/state")
-    country = gnome.config.get_string("/gramps/researcher/country")
-    postal = gnome.config.get_string("/gramps/researcher/postal")
-    phone = gnome.config.get_string("/gramps/researcher/phone")
-    email = gnome.config.get_string("/gramps/researcher/email")
+    name = get_string("/gramps/researcher/name")
+    addr = get_string("/gramps/researcher/addr")
+    city = get_string("/gramps/researcher/city")
+    state = get_string("/gramps/researcher/state")
+    country = get_string("/gramps/researcher/country")
+    postal = get_string("/gramps/researcher/postal")
+    phone = get_string("/gramps/researcher/phone")
+    email = get_string("/gramps/researcher/email")
 
-    en = gnome.config.get_bool("/gramps/color/enableColors")
+    en = get_bool("/gramps/color/enableColors")
     if en == None:
         en = 0
 
@@ -332,8 +330,8 @@ def loadConfig(call):
 #
 #-------------------------------------------------------------------------
 def save_last_file(file):
-    gnome.config.set_string("/gramps/data/LastFile",file)
-    gnome.config.sync()
+    set_string("/gramps/data/LastFile",file)
+    sync()
 
 #-------------------------------------------------------------------------
 #
@@ -362,15 +360,15 @@ def on_initDruid_finish(obj,b):
 #
 #-------------------------------------------------------------------------
 def store_researcher(res):
-    gnome.config.set_string("/gramps/researcher/name",res.name)
-    gnome.config.set_string("/gramps/researcher/addr",res.addr)
-    gnome.config.set_string("/gramps/researcher/city",res.city)
-    gnome.config.set_string("/gramps/researcher/state",res.state)
-    gnome.config.set_string("/gramps/researcher/country",res.country)
-    gnome.config.set_string("/gramps/researcher/postal",res.postal)
-    gnome.config.set_string("/gramps/researcher/phone",res.phone)
-    gnome.config.set_string("/gramps/researcher/email",res.email)
-    gnome.config.sync()
+    set_string("/gramps/researcher/name",res.name)
+    set_string("/gramps/researcher/addr",res.addr)
+    set_string("/gramps/researcher/city",res.city)
+    set_string("/gramps/researcher/state",res.state)
+    set_string("/gramps/researcher/country",res.country)
+    set_string("/gramps/researcher/postal",res.postal)
+    set_string("/gramps/researcher/phone",res.phone)
+    set_string("/gramps/researcher/email",res.email)
+    sync()
 
 #-------------------------------------------------------------------------
 #
@@ -470,29 +468,29 @@ def on_propertybox_apply(obj,page):
     paper_preference = paper_obj.get_data(DATA)
     output_preference = output_obj.get_data(DATA)
     
-    gnome.config.set_bool("/gramps/config/UseTabs",usetabs)
-    gnome.config.set_bool("/gramps/config/UseVersionControl",usevc)
-    gnome.config.set_bool("/gramps/config/UseComment",vc_comment)
-    gnome.config.set_bool("/gramps/config/DontCompressXML",uncompress)
-    gnome.config.set_bool("/gramps/config/IdVisible",id_visible)
-    gnome.config.set_bool("/gramps/config/IdEdit",id_edit)
-    gnome.config.set_bool("/gramps/config/IndexVisible",index_visible)
-    gnome.config.set_bool("/gramps/config/ShowDetail",show_detail)
-    gnome.config.set_int("/gramps/config/StatusBar",status_bar)
-    gnome.config.set_bool("/gramps/config/DisplayAttr",display_attr)
-    gnome.config.set_string("/gramps/config/DisplayAttrName",attr_name)
-    gnome.config.set_string("/gramps/config/paperPreference",paper_preference)
-    gnome.config.set_string("/gramps/config/outputPreference",output_preference)
-    gnome.config.set_bool("/gramps/config/autoLoad",autoload)
-    gnome.config.set_bool("/gramps/config/DisplayAltNames",hide_altnames)
-    gnome.config.set_string("/gramps/config/ReportDirectory",report_dir)
-    gnome.config.set_string("/gramps/config/WebsiteDirectory",web_dir)
-    gnome.config.set_string("/gramps/config/DbDirectory",db_dir)
-    gnome.config.set_string("/gramps/config/iprefix",iprefix)
-    gnome.config.set_string("/gramps/config/fprefix",fprefix)
-    gnome.config.set_string("/gramps/config/pprefix",pprefix)
-    gnome.config.set_string("/gramps/config/oprefix",oprefix)
-    gnome.config.set_string("/gramps/config/sprefix",sprefix)
+    set_bool("/gramps/config/UseTabs",usetabs)
+    set_bool("/gramps/config/UseVersionControl",usevc)
+    set_bool("/gramps/config/UseComment",vc_comment)
+    set_bool("/gramps/config/DontCompressXML",uncompress)
+    set_bool("/gramps/config/IdVisible",id_visible)
+    set_bool("/gramps/config/IdEdit",id_edit)
+    set_bool("/gramps/config/IndexVisible",index_visible)
+    set_bool("/gramps/config/ShowDetail",show_detail)
+    set_int("/gramps/config/StatusBar",status_bar)
+    set_bool("/gramps/config/DisplayAttr",display_attr)
+    set_string("/gramps/config/DisplayAttrName",attr_name)
+    set_string("/gramps/config/paperPreference",paper_preference)
+    set_string("/gramps/config/outputPreference",output_preference)
+    set_bool("/gramps/config/autoLoad",autoload)
+    set_bool("/gramps/config/DisplayAltNames",hide_altnames)
+    set_string("/gramps/config/ReportDirectory",report_dir)
+    set_string("/gramps/config/WebsiteDirectory",web_dir)
+    set_string("/gramps/config/DbDirectory",db_dir)
+    set_string("/gramps/config/iprefix",iprefix)
+    set_string("/gramps/config/fprefix",fprefix)
+    set_string("/gramps/config/pprefix",pprefix)
+    set_string("/gramps/config/oprefix",oprefix)
+    set_string("/gramps/config/sprefix",sprefix)
 
     # search for the active date format selection
     
@@ -500,13 +498,13 @@ def on_propertybox_apply(obj,page):
     active = format_menu.get_active().get_data(INDEX)
 
     set_format_code(active)
-    gnome.config.set_int("/gramps/config/dateFormat",active)
+    set_int("/gramps/config/dateFormat",active)
 
     format_menu = prefsTop.get_widget("date_entry_format").get_menu()
     entry_active = format_menu.get_active().get_data(INDEX)
 
     Date.entryCode = entry_active
-    gnome.config.set_int("/gramps/config/dateEntry",entry_active)
+    set_int("/gramps/config/dateEntry",entry_active)
 
     # get the name format
 
@@ -515,7 +513,7 @@ def on_propertybox_apply(obj,page):
 
     name_tuple = _name_format_list[active_name]
     nameof = name_tuple[1]
-    gnome.config.set_int("/gramps/config/nameFormat",active_name)
+    set_int("/gramps/config/nameFormat",active_name)
 
     name = prefsTop.get_widget("resname").get_text()
     addr = prefsTop.get_widget("resaddr").get_text()
@@ -527,7 +525,7 @@ def on_propertybox_apply(obj,page):
     email = prefsTop.get_widget("resemail").get_text()
 
     ListColors.set_enable(prefsTop.get_widget("enableColors").get_active())
-    gnome.config.set_bool("/gramps/color/enableColors",ListColors.get_enable())
+    set_bool("/gramps/color/enableColors",ListColors.get_enable())
     
     ListColors.oddfg = prefsTop.get_widget(ODDFGCOLOR).get_i16()
     ListColors.oddbg = prefsTop.get_widget(ODDBGCOLOR).get_i16()
@@ -553,7 +551,7 @@ def on_propertybox_apply(obj,page):
 
     # update the config file
     
-    gnome.config.sync()
+    sync()
     _callback()
 
 #-------------------------------------------------------------------------
@@ -562,9 +560,9 @@ def on_propertybox_apply(obj,page):
 #
 #-------------------------------------------------------------------------
 def save_config_color(name,color):
-    gnome.config.set_int("/gramps/color/" + name + ".r",color[0])
-    gnome.config.set_int("/gramps/color/" + name + ".g",color[1])
-    gnome.config.set_int("/gramps/color/" + name + ".b",color[2])
+    set_int("/gramps/color/" + name + ".r",color[0])
+    set_int("/gramps/color/" + name + ".g",color[1])
+    set_int("/gramps/color/" + name + ".b",color[2])
 
 #-------------------------------------------------------------------------
 #
@@ -668,13 +666,13 @@ def display_preferences_box(db):
     display_altnames.set_active(hide_altnames)
 
     paper_obj = prefsTop.get_widget("paper_size")
-    menu = GtkMenu()
+    menu = gtk.GtkMenu()
     choice = 0
     for index in range(0,len(PaperMenu.paper_sizes)):
         name = PaperMenu.paper_sizes[index].get_name()
         if name == paper_preference:
             choice = index
-        item = GtkMenuItem(name)
+        item = gtk.GtkMenuItem(name)
         item.set_data(OBJECT,pbox)
         item.set_data(DATA,name)
         item.connect("activate", on_format_toggled)
@@ -684,7 +682,7 @@ def display_preferences_box(db):
     paper_obj.set_menu(menu)
 
     output_obj = prefsTop.get_widget("output_format")
-    menu = GtkMenu()
+    menu = gtk.GtkMenu()
     choice = 0
 
     choice = 0
@@ -692,7 +690,7 @@ def display_preferences_box(db):
     for name in const.output_formats:
         if name == output_preference:
             choice = index
-        item = GtkMenuItem(name)
+        item = gtk.GtkMenuItem(name)
         item.set_data(OBJECT,pbox)
         item.set_data(DATA,name)
         item.connect("activate", on_format_toggled)
@@ -703,9 +701,9 @@ def display_preferences_box(db):
     output_obj.set_menu(menu)
 
     date_option = prefsTop.get_widget("date_format")
-    date_menu = GtkMenu()
+    date_menu = gtk.GtkMenu()
     for index in range(0,len(_date_format_list)):
-        item = GtkMenuItem(_date_format_list[index])
+        item = gtk.GtkMenuItem(_date_format_list[index])
         item.set_data(INDEX,index)
         item.set_data(OBJECT,pbox)
         item.connect("activate", on_format_toggled)
@@ -715,9 +713,9 @@ def display_preferences_box(db):
     date_option.set_menu(date_menu)
 
     date_entry = prefsTop.get_widget("date_entry_format")
-    date_menu = GtkMenu()
+    date_menu = gtk.GtkMenu()
     for index in range(0,len(_date_entry_list)):
-        item = GtkMenuItem(_date_entry_list[index])
+        item = gtk.GtkMenuItem(_date_entry_list[index])
         item.set_data(INDEX,index)
         item.set_data(OBJECT,pbox)
         item.connect("activate", on_format_toggled)
@@ -727,10 +725,10 @@ def display_preferences_box(db):
     date_entry.set_menu(date_menu)
 
     name_option = prefsTop.get_widget("name_format")
-    name_menu = GtkMenu()
+    name_menu = gtk.GtkMenu()
     for index in range(0,len(_name_format_list)):
         name_tuple = _name_format_list[index]
-        item = GtkMenuItem(name_tuple[0])
+        item = gtk.GtkMenuItem(name_tuple[0])
         item.set_data(INDEX,index)
         item.set_data(OBJECT,pbox)
         item.connect("activate", on_format_toggled)
@@ -788,9 +786,9 @@ def display_preferences_box(db):
 #
 #-------------------------------------------------------------------------
 def get_config_color(name,defval):
-    r = gnome.config.get_int("/gramps/color/" + name + ".r")
-    g = gnome.config.get_int("/gramps/color/" + name + ".g")
-    b = gnome.config.get_int("/gramps/color/" + name + ".b")
+    r = get_int("/gramps/color/" + name + ".r")
+    g = get_int("/gramps/color/" + name + ".g")
+    b = get_int("/gramps/color/" + name + ".b")
     if r == None:
         return defval
     else:

@@ -23,12 +23,11 @@
 # 
 #
 #-------------------------------------------------------------------------
-from gtk import *
-
+import gtk
 import libglade
-import intl
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
@@ -37,7 +36,7 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 import os
 import sys
-import re
+from re import compile
 
 #-------------------------------------------------------------------------
 #
@@ -71,7 +70,7 @@ IMAGE     = "i"
 TASK      = "f"
 TITLE     = "t"
 
-pymod = re.compile(r"^(.*)\.py$")
+pymod = compile(r"^(.*)\.py$")
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +107,7 @@ class ReportPlugins:
     
         self.dialog.get_widget("description").set_text(doc)
 
-        i,m = create_pixmap_from_xpm_d(GtkWindow(),None,xpm)
+        i,m = gtk.create_pixmap_from_xpm_d(gtk.GtkWindow(),None,xpm)
         img.set(i,m)
     
         self.dialog.get_widget("report_title").set_text(title)
@@ -157,7 +156,7 @@ class ToolPlugins:
 def build_tree(tree,list,task):
     item_hash = {}
     for report in list:
-        item = GtkTreeItem(report[2])
+        item = gtk.GtkTreeItem(report[2])
         item.connect("select",task)
         item.set_data(TASK,report[0])
         item.set_data(TITLE,report[2])
@@ -172,10 +171,10 @@ def build_tree(tree,list,task):
     key_list = item_hash.keys()
     key_list.sort()
     for key in key_list:
-        top_item = GtkTreeItem(key)
+        top_item = gtk.GtkTreeItem(key)
         top_item.show()
         tree.append(top_item)
-        subtree = GtkTree()
+        subtree = gtk.GtkTree()
         subtree.show()
         top_item.set_subtree(subtree)
         subtree.show()
@@ -297,7 +296,7 @@ def register_tool(task, name, category=None, description=None, xpm=None):
 #
 #-------------------------------------------------------------------------
 def build_menu(top_menu,list,callback):
-    report_menu = GtkMenu()
+    report_menu = gtk.GtkMenu()
     report_menu.show()
     
     hash = {}
@@ -310,16 +309,16 @@ def build_menu(top_menu,list,callback):
     catlist = hash.keys()
     catlist.sort()
     for key in catlist:
-        entry = GtkMenuItem(key)
+        entry = gtk.GtkMenuItem(key)
         entry.show()
         report_menu.append(entry)
-        submenu = GtkMenu()
+        submenu = gtk.GtkMenu()
         submenu.show()
         entry.set_submenu(submenu)
         list = hash[key]
         list.sort()
         for name in list:
-            subentry = GtkMenuItem(name[0])
+            subentry = gtk.GtkMenuItem(name[0])
             subentry.show()
             subentry.connect("activate",callback,name[1])
             submenu.append(subentry)
@@ -332,20 +331,20 @@ def build_tools_menu(top_menu,callback):
     build_menu(top_menu,_tools,callback)
 
 def build_export_menu(top_menu,callback):
-    myMenu = GtkMenu()
+    myMenu = gtk.GtkMenu()
 
     for report in _exports:
-        item = GtkMenuItem(report[1])
+        item = gtk.GtkMenuItem(report[1])
         item.connect("activate", callback ,report[0])
         item.show()
         myMenu.append(item)
     top_menu.set_submenu(myMenu)
 
 def build_import_menu(top_menu,callback):
-    myMenu = GtkMenu()
+    myMenu = gtk.GtkMenu()
 
     for report in _imports:
-        item = GtkMenuItem(report[1])
+        item = gtk.GtkMenuItem(report[1])
         item.connect("activate", callback ,report[0])
         item.show()
         myMenu.append(item)

@@ -21,11 +21,11 @@
 import os
 import string
 import re
-import intl
 import utils
 import gnome.ui
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 from TextDoc import *
 

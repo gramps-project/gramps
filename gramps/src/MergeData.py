@@ -26,11 +26,13 @@ import const
 _ = intl.gettext
 
 import string
-
-import gtk
-import gnome.ui 
 import libglade
 
+#-------------------------------------------------------------------------
+#
+# Merge People
+#
+#-------------------------------------------------------------------------
 class MergePeople:
 
     def __init__(self,db,person1,person2,update):
@@ -854,22 +856,3 @@ class MergePlaces:
         utils.modified()
         utils.destroy_passed_object(obj)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def new_after_edit(epo):
-    pass
-        
-if __name__ == "__main__":
-    import sys
-    import ReadXML
-
-    database = RelLib.RelDataBase()
-    ReadXML.loadData(database,sys.argv[1])
-
-    person1 = database.getPersonMap().values()[0]
-    person2 = database.getPersonMap().values()[1]
-    MergePeople(database,person1,person2)
-    gtk.mainloop()

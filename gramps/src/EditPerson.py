@@ -30,8 +30,7 @@ import string
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
+from gnome.ui import GnomeErrorDialog, GnomeWarningDialog, GnomeQuestionDialog
 import libglade
 import GdkImlib
 
@@ -40,7 +39,6 @@ import GdkImlib
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import intl
 import const
 import utils
 import Config
@@ -48,7 +46,8 @@ from RelLib import *
 import ImageSelect
 import sort
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
@@ -414,14 +413,15 @@ class EditPerson:
             utils.destroy_passed_object(obj)
 
     def on_delete_event(self,obj,b):
-        """If the data has changed, give the user a chance to cancel the close window"""
+        """If the data has changed, give the user a chance to cancel
+        the close window"""
         if self.did_data_change():
             q = _("Are you sure you want to abandon your changes?")
             GnomeQuestionDialog(q,self.cancel_callback)
-            return TRUE
+            return 1
         else:
             utils.destroy_passed_object(obj)
-            return FALSE
+            return 0
     
     def cancel_callback(self,a):
         """If the user answered yes to abandoning changes, close the window"""

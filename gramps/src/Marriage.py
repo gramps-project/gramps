@@ -23,13 +23,8 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
 from gnome.ui import *
-
 import libglade
-import intl
-
-_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +37,8 @@ import Config
 import utils
 from RelLib import *
 import ImageSelect
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
@@ -153,7 +150,6 @@ class Marriage:
 
     def get_widget(self,name):
         return self.top.get_widget(name)
-
 
     def did_data_change(self):
         changed = 0

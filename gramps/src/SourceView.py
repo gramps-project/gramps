@@ -18,18 +18,30 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import GTK
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
 import GDK
 import gnome.ui
-import gtk
-import string
 
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
 from RelLib import *
-import intl
 import EditSource
 import utils
 
-_ = intl.gettext
+#-------------------------------------------------------------------------
+#
+# internationalization
+#
+#-------------------------------------------------------------------------
+from intl import gettext
+_ = gettext
 
 class SourceView:
     def __init__(self,db,source_list,update):
