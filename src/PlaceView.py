@@ -58,6 +58,7 @@ column_names = [
     _('Country'),
     _('Longitude'),
     _('Latitude'),
+    _('Last Changed'),
     ]
 
 _HANDLE_COL = len(column_names)
@@ -237,6 +238,7 @@ class PlaceView:
             EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):
+        print iter, _HANDLE_COL
         handle = self.parent.db.get_place_from_handle(store.get_value(iter,_HANDLE_COL))
         list.append(handle)
 

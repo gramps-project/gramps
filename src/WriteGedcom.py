@@ -814,6 +814,8 @@ class GedcomWriter:
                            self.writeln('2 _STAT %s' % f[2])
                            break
 
+            self.write_change(1,family.get_change_time())
+            
 #            index = index + 1
 #            if index % 100 == 0 and not self.cl:
 #                self.fbar.set_fraction(index/nump)
@@ -844,6 +846,8 @@ class GedcomWriter:
             if source.get_note():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
             index = index + 1
+            self.write_change(1,source.get_change_time())
+            
 #            if index % 100 == 0 and not self.cl:
 #                self.sbar.set_fraction(index/nump)
 #                while(gtk.events_pending()):
@@ -1068,6 +1072,19 @@ class GedcomWriter:
         if not restricted or not self.exclnotes:
             if person.get_note():
                 self.write_long_text("NOTE",1,self.cnvtxt(person.get_note()))
+
+        self.write_change(1,person.get_change_time())
+
+
+    def write_change(self,level,timeval):
+        tval = time.localtime(timeval)
+        self.writeln('%d CHAN' % level)
+        time_val = time.localtime(timeval)
+        self.writeln('%d DATE %d %s %d' % (level + 1,time_val[2],
+                                           _month[time_val[1]],time_val[0]))
+        self.writeln('%d TIME %02d:%02d:%02d' % (level + 2,time_val[3],
+                                                 time_val[4],time_val[5]))
+        
 
     def write_long_text(self,tag,level,note):
         if self.conc == GedcomInfo.CONC_OK:

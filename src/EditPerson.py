@@ -25,8 +25,8 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 import pickle
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -209,6 +209,7 @@ class EditPerson:
         self.inet_label = self.get_widget("inet_label")
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
+        self.get_widget("changed").set_text(person.get_change_display())
 
         self.orig_birth = self.db.get_event_from_handle(person.get_birth_handle())
         self.orig_death = self.db.get_event_from_handle(person.get_death_handle())
@@ -458,7 +459,7 @@ class EditPerson:
         self.window.destroy()
 
     def add_itself_to_winsmenu(self):
-        self.parent.child_windows[self.orig_id] = self
+        self.parent.child_windows[self.orig_handle] = self
         win_menu_label = GrampsCfg.get_nameof()(self.person)
         if not win_menu_label.strip():
             win_menu_label = _("New Person")
@@ -473,7 +474,7 @@ class EditPerson:
         self.winsmenu.append(self.menu_item)
 
     def remove_itself_from_winsmenu(self):
-        del self.parent.child_windows[self.orig_id]
+        del self.parent.child_windows[self.orig_handle]
         self.menu_item.destroy()
         self.winsmenu.destroy()
         self.win_menu_item.destroy()
@@ -1126,8 +1127,8 @@ class EditPerson:
         if self.lds_not_loaded == 0 and self.check_lds():
             changed = 1
 
-        bplace = unicode(string.strip(self.bplace.get_text()))
-        dplace = unicode(string.strip(self.dplace.get_text()))
+        bplace = unicode(self.bplace.get_text().strip())
+        dplace = unicode(self.dplace.get_text().strip())
 
         if self.pdmap.has_key(bplace):
             self.birth.set_place_handle(self.pdmap[bplace])
@@ -1620,7 +1621,7 @@ class EditPerson:
         self.close()
 
     def get_place(self,field,makenew=0):
-        text = unicode(string.strip(field.get_text()))
+        text = unicode(field.get_text().strip())
         if text:
             if self.pdmap.has_key(text):
                 return self.pdmap[text]

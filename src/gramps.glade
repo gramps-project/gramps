@@ -7990,8 +7990,8 @@ Other</property>
 		    <widget class="GtkTable" id="table15">
 		      <property name="border_width">12</property>
 		      <property name="visible">True</property>
-		      <property name="n_rows">15</property>
-		      <property name="n_columns">12</property>
+		      <property name="n_rows">17</property>
+		      <property name="n_columns">11</property>
 		      <property name="homogeneous">False</property>
 		      <property name="row_spacing">6</property>
 		      <property name="column_spacing">12</property>
@@ -8600,8 +8600,8 @@ Other</property>
 			  </child>
 			</widget>
 			<packing>
-			  <property name="left_attach">7</property>
-			  <property name="right_attach">12</property>
+			  <property name="left_attach">6</property>
+			  <property name="right_attach">11</property>
 			  <property name="top_attach">0</property>
 			  <property name="bottom_attach">8</property>
 			  <property name="x_options">fill</property>
@@ -8624,8 +8624,8 @@ Other</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">7</property>
-			  <property name="right_attach">12</property>
+			  <property name="left_attach">6</property>
+			  <property name="right_attach">11</property>
 			  <property name="top_attach">9</property>
 			  <property name="bottom_attach">10</property>
 			  <property name="x_options">fill</property>
@@ -8649,8 +8649,8 @@ Other</property>
 			  <property name="mnemonic_widget">gid</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">8</property>
-			  <property name="right_attach">9</property>
+			  <property name="left_attach">7</property>
+			  <property name="right_attach">8</property>
 			  <property name="top_attach">10</property>
 			  <property name="bottom_attach">11</property>
 			  <property name="x_options">fill</property>
@@ -8671,8 +8671,8 @@ Other</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">9</property>
-			  <property name="right_attach">12</property>
+			  <property name="left_attach">8</property>
+			  <property name="right_attach">11</property>
 			  <property name="top_attach">10</property>
 			  <property name="bottom_attach">11</property>
 			  <property name="y_options"></property>
@@ -8719,8 +8719,8 @@ Other</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">7</property>
-			  <property name="right_attach">12</property>
+			  <property name="left_attach">6</property>
+			  <property name="right_attach">11</property>
 			  <property name="top_attach">12</property>
 			  <property name="bottom_attach">13</property>
 			  <property name="x_options">fill</property>
@@ -8747,8 +8747,8 @@ Other</property>
 			  </accessibility>
 			</widget>
 			<packing>
-			  <property name="left_attach">8</property>
-			  <property name="right_attach">9</property>
+			  <property name="left_attach">7</property>
+			  <property name="right_attach">8</property>
 			  <property name="top_attach">13</property>
 			  <property name="bottom_attach">14</property>
 			  <property name="x_options">fill</property>
@@ -8772,8 +8772,8 @@ Other</property>
 			  <property name="mnemonic_widget">death_place</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">8</property>
-			  <property name="right_attach">9</property>
+			  <property name="left_attach">7</property>
+			  <property name="right_attach">8</property>
 			  <property name="top_attach">14</property>
 			  <property name="bottom_attach">15</property>
 			  <property name="x_options">fill</property>
@@ -8794,8 +8794,8 @@ Other</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">9</property>
-			  <property name="right_attach">10</property>
+			  <property name="left_attach">8</property>
+			  <property name="right_attach">9</property>
 			  <property name="top_attach">13</property>
 			  <property name="bottom_attach">14</property>
 			  <property name="y_options"></property>
@@ -8811,8 +8811,8 @@ Other</property>
 			  <property name="ypad">0</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">10</property>
-			  <property name="right_attach">11</property>
+			  <property name="left_attach">9</property>
+			  <property name="right_attach">10</property>
 			  <property name="top_attach">13</property>
 			  <property name="bottom_attach">14</property>
 			  <property name="x_options">fill</property>
@@ -8833,8 +8833,8 @@ Other</property>
 			  <signal name="clicked" handler="on_edit_death_clicked" object="editPerson"/>
 			</widget>
 			<packing>
-			  <property name="left_attach">11</property>
-			  <property name="right_attach">12</property>
+			  <property name="left_attach">10</property>
+			  <property name="right_attach">11</property>
 			  <property name="top_attach">13</property>
 			  <property name="bottom_attach">14</property>
 			  <property name="x_options">fill</property>
@@ -8897,8 +8897,8 @@ Other</property>
 			  <property name="activates_default">False</property>
 			</widget>
 			<packing>
-			  <property name="left_attach">9</property>
-			  <property name="right_attach">12</property>
+			  <property name="left_attach">8</property>
+			  <property name="right_attach">11</property>
 			  <property name="top_attach">14</property>
 			  <property name="bottom_attach">15</property>
 			  <property name="y_options"></property>
@@ -8918,6 +8918,91 @@ Other</property>
 			  <property name="y_options">fill</property>
 			</packing>
 		      </child>
+
+		      <child>
+			<widget class="GtkCheckButton" id="complete">
+			  <property name="border_width">6</property>
+			  <property name="visible">True</property>
+			  <property name="can_focus">True</property>
+			  <property name="label" translatable="yes">Information i_s complete</property>
+			  <property name="use_underline">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <property name="active">False</property>
+			  <property name="inconsistent">False</property>
+			  <property name="draw_indicator">True</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">0</property>
+			  <property name="right_attach">5</property>
+			  <property name="top_attach">16</property>
+			  <property name="bottom_attach">17</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkHBox" id="hbox94">
+			  <property name="visible">True</property>
+			  <property name="homogeneous">False</property>
+			  <property name="spacing">0</property>
+
+			  <child>
+			    <widget class="GtkLabel" id="label396">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes">Last changed: </property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">False</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <placeholder/>
+			  </child>
+
+			  <child>
+			    <widget class="GtkLabel" id="changed">
+			      <property name="visible">True</property>
+			      <property name="label" translatable="yes"></property>
+			      <property name="use_underline">False</property>
+			      <property name="use_markup">False</property>
+			      <property name="justify">GTK_JUSTIFY_LEFT</property>
+			      <property name="wrap">False</property>
+			      <property name="selectable">False</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">True</property>
+			      <property name="fill">True</property>
+			    </packing>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="left_attach">6</property>
+			  <property name="right_attach">11</property>
+			  <property name="top_attach">16</property>
+			  <property name="bottom_attach">17</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options">fill</property>
+			</packing>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">0</property>
@@ -8926,29 +9011,6 @@ Other</property>
 		      <property name="bottom_attach">1</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkCheckButton" id="complete">
-		      <property name="border_width">6</property>
-		      <property name="visible">True</property>
-		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">Information i_s complete</property>
-		      <property name="use_underline">True</property>
-		      <property name="relief">GTK_RELIEF_NORMAL</property>
-		      <property name="focus_on_click">True</property>
-		      <property name="active">False</property>
-		      <property name="inconsistent">False</property>
-		      <property name="draw_indicator">True</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">0</property>
-		      <property name="right_attach">1</property>
-		      <property name="top_attach">1</property>
-		      <property name="bottom_attach">2</property>
-		      <property name="x_options">shrink</property>
-		      <property name="y_options"></property>
 		    </packing>
 		  </child>
 		</widget>
@@ -13031,6 +13093,69 @@ Other</property>
 		      </child>
 
 		      <child>
+			<widget class="GtkComboBox" id="marriage_type">
+			  <property name="visible">True</property>
+			  <property name="items" translatable="yes"></property>
+			</widget>
+			<packing>
+			  <property name="left_attach">1</property>
+			  <property name="right_attach">2</property>
+			  <property name="top_attach">0</property>
+			  <property name="bottom_attach">1</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options">fill</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkLabel" id="label397">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Last Changed:</property>
+			  <property name="use_underline">False</property>
+			  <property name="use_markup">False</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">0</property>
+			  <property name="right_attach">1</property>
+			  <property name="top_attach">2</property>
+			  <property name="bottom_attach">3</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkLabel" id="changed">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes"></property>
+			  <property name="use_underline">False</property>
+			  <property name="use_markup">False</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">1</property>
+			  <property name="right_attach">2</property>
+			  <property name="top_attach">2</property>
+			  <property name="bottom_attach">3</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
+
+		      <child>
 			<widget class="GtkCheckButton" id="complete">
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
@@ -13045,25 +13170,10 @@ Other</property>
 			<packing>
 			  <property name="left_attach">1</property>
 			  <property name="right_attach">2</property>
-			  <property name="top_attach">2</property>
-			  <property name="bottom_attach">3</property>
+			  <property name="top_attach">3</property>
+			  <property name="bottom_attach">4</property>
 			  <property name="x_options">fill</property>
 			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
-			<widget class="GtkComboBox" id="marriage_type">
-			  <property name="visible">True</property>
-			  <property name="items" translatable="yes"></property>
-			</widget>
-			<packing>
-			  <property name="left_attach">1</property>
-			  <property name="right_attach">2</property>
-			  <property name="top_attach">0</property>
-			  <property name="bottom_attach">1</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options">fill</property>
 			</packing>
 		      </child>
 		    </widget>
@@ -14860,7 +14970,7 @@ Other</property>
 		<widget class="GtkTable" id="table19">
 		  <property name="border_width">6</property>
 		  <property name="visible">True</property>
-		  <property name="n_rows">11</property>
+		  <property name="n_rows">12</property>
 		  <property name="n_columns">4</property>
 		  <property name="homogeneous">False</property>
 		  <property name="row_spacing">6</property>
@@ -15372,6 +15482,54 @@ Other</property>
 		      <property name="right_attach">4</property>
 		      <property name="top_attach">8</property>
 		      <property name="bottom_attach">9</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkLabel" id="label398">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes">Last Changed:</property>
+		      <property name="use_underline">False</property>
+		      <property name="use_markup">False</property>
+		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+		      <property name="wrap">False</property>
+		      <property name="selectable">False</property>
+		      <property name="xalign">0</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">0</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">1</property>
+		      <property name="right_attach">2</property>
+		      <property name="top_attach">11</property>
+		      <property name="bottom_attach">12</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkLabel" id="changed">
+		      <property name="visible">True</property>
+		      <property name="label" translatable="yes"></property>
+		      <property name="use_underline">False</property>
+		      <property name="use_markup">False</property>
+		      <property name="justify">GTK_JUSTIFY_LEFT</property>
+		      <property name="wrap">False</property>
+		      <property name="selectable">False</property>
+		      <property name="xalign">0</property>
+		      <property name="yalign">0.5</property>
+		      <property name="xpad">0</property>
+		      <property name="ypad">0</property>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">4</property>
+		      <property name="top_attach">11</property>
+		      <property name="bottom_attach">12</property>
+		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
 		    </packing>
 		  </child>

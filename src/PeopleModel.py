@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import time
 
 #-------------------------------------------------------------------------
 #
@@ -50,7 +51,7 @@ import accent
 #
 #-------------------------------------------------------------------------
 COLUMN_NAME      = 0
-COLUMN_VIEW      = 6
+COLUMN_VIEW      = 9
 COLUMN_BOLD      = COLUMN_VIEW + 1
 COLUMN_INT_ID    = COLUMN_BOLD + 1
 
@@ -61,6 +62,7 @@ _NAME_COL  = 3
 _DEATH_COL = 6
 _BIRTH_COL = 7
 _FAMILY_COL= 9
+_CHANGE_COL= 21
 
 #-------------------------------------------------------------------------
 #
@@ -85,6 +87,7 @@ class PeopleModel(gtk.GenericTreeModel):
             self.column_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.column_change,
             self.sort_name,
             ]
 
@@ -289,6 +292,9 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_id(self,data):
         return data[_ID_COL]
+
+    def column_change(self,data):
+        return time.asctime(time.localtime(data[_CHANGE_COL]))
 
     def column_gender(self,data):
         return _GENDER[data[_GENDER_COL]]

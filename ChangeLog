@@ -1,3 +1,21 @@
+2004-08-23  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Utils.py: produce less line noise when generating
+	handles
+	* src/WriteGedcom.py: save CHAN records
+	* src/WriteXML.py: save handles and time stamps
+	* src/GrampsDbBase.py: make the find_xxx_from_handle functions
+	consistent and correct (handle ids correctly)
+	* src/DisplayModels.py: add last change column
+	* src/PeopleModel.py: add last change column
+	* src/PeopleView.py: add last change column
+	* src/MediaView.py: add last change column
+	* src/SourceView.py: add last change column
+	* src/EditPerson.py: display last change timestamps
+	* src/EditPlace.py: display last change timestamps
+	* src/Marriage.py: display last change timestamps
+	* src/ReadXML.py: set last change time
+	* src/gramps.glade: updates for last change display
+	
 2004-08-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py: (probably_alive): Fixed typo (bug #1014223).
 	* src/NameEdit.py: Proper use of ComboBoxEntry widgets (#1014238).
