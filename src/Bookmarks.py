@@ -42,8 +42,6 @@ import utils
 #
 #-------------------------------------------------------------------------
 OBJECT   = "o"
-ROWS     = "r"
-INDEX    = "i"
 TOPINST  = "top"
 NAMEINST = "namelist"
 
@@ -123,24 +121,16 @@ class Bookmarks :
     def edit(self):
         top = libglade.GladeXML(const.bookFile,TOPINST)
         namelist = top.get_widget(NAMEINST)
-        self.index = 0
+        index = 0
         for person in self.bookmarks:
             namelist.append([person.getPrimaryName().getName()])
-            namelist.set_row_data(self.index,person)
-            self.index = self.index + 1
+            namelist.set_row_data(index,person)
+            index = index + 1
 
-        if self.index > 0:
-            namelist.select_row(0,0)
-            namelist.set_data(INDEX,0)
-        else:
-            namelist.set_data(INDEX,-1)
-        namelist.set_data(ROWS,self.index)
-            
         top.signal_autoconnect({
             "on_ok_clicked" : on_ok_clicked,
             "on_down_clicked" : on_down_clicked,
             "on_up_clicked" : on_up_clicked,
-            "on_namelist_select_row" : on_namelist_select_row,
             "on_delete_clicked" : on_delete_clicked,
             "on_cancel_clicked" : on_cancel_clicked
             })
@@ -152,15 +142,6 @@ class Bookmarks :
 
 #-------------------------------------------------------------------------
 #
-# on_namelist_select_row - changes the selected row stored on the namelist
-# to the row that was just selected.
-#
-#-------------------------------------------------------------------------
-def on_namelist_select_row(obj,row,junk,junk2):
-    obj.set_data(INDEX,row)
-    
-#-------------------------------------------------------------------------
-#
 # on_delete_clicked - gets the selected row and number of rows that have
 # been attached to the namelist. If the selected row is greater than 0,
 # then the row is deleted from the list. The number of rows is then
@@ -168,15 +149,9 @@ def on_namelist_select_row(obj,row,junk,junk2):
 #
 #-------------------------------------------------------------------------
 def on_delete_clicked(obj):
-    index = obj.get_data(INDEX)
-    rows = obj.get_data(ROWS)
-    if index >= 0:
+    if len(obj.selection) > 0:
+        index = obj.selection[0]
         obj.remove(index)
-        obj.set_data(ROWS,rows-1)
-        if index != 0:
-            obj.select_row(0,0)
-        else:
-            obj.unselect_all()
 
 #-------------------------------------------------------------------------
 #
@@ -184,10 +159,9 @@ def on_delete_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_up_clicked(obj):
-    index = obj.get_data(INDEX)
-    if index > 0:
+    if len(obj.selection) > 0:
+        index = obj.selection[0]
         obj.swap_rows(index-1,index)
-        obj.set_data(INDEX,index-1)
 
 #-------------------------------------------------------------------------
 #
@@ -195,11 +169,10 @@ def on_up_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_down_clicked(obj):
-    index = obj.get_data(INDEX)
-    rows = obj.get_data(ROWS)
-    if index != rows-1:
-        obj.swap_rows(index+1,index)
-        obj.set_data(INDEX,index+1)
+    if len(obj.selection) > 0:
+        index = obj.selection[0]
+        if index != obj.rows-1:
+            obj.swap_rows(index+1,index)
 
 #-------------------------------------------------------------------------
 #

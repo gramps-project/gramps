@@ -54,7 +54,6 @@ _ = intl.gettext
 # Constants
 #
 #-------------------------------------------------------------------------
-INDEX  = "i"
 SOURCE = "s"
 
 class EditSource:

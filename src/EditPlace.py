@@ -58,7 +58,6 @@ _DEFHTTP = "http://gramps.sourceforge.net"
 # Constants
 #
 #-------------------------------------------------------------------------
-_INDEX  = "i"
 _PLACE  = "p"
 
 class EditPlace:
@@ -154,11 +153,9 @@ class EditPlace:
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
         self.web_list.set_data(_PLACE,self)
-        self.web_list.set_data(_INDEX,-1)
         self.redraw_url_list()
 
         self.loc_list.set_data(_PLACE,self)
-        self.loc_list.set_data(_INDEX,-1)
         self.redraw_location_list()
 
     #-------------------------------------------------------------------------
@@ -475,8 +472,8 @@ def on_apply_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_url_clicked(obj):
-    row = obj.get_data(_INDEX)
-    if row >= 0:
+    if len(obj.selection) > 0:
+        row = obj.selection[0]
         UrlEditor(obj.get_data(_PLACE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
@@ -485,8 +482,8 @@ def on_update_url_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_loc_clicked(obj):
-    row = obj.get_data(_INDEX)
-    if row >= 0:
+    if len(obj.selection) > 0:
+        row = obj.selection[0]
         LocationEditor(obj.get_data(_PLACE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
@@ -604,7 +601,6 @@ def on_url_edit_ok_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_web_list_select_row(obj,row,b,c):
-    obj.set_data(_INDEX,row)
 
     epo = obj.get_data(_PLACE)
     url = obj.get_row_data(row)
@@ -627,7 +623,6 @@ def on_web_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_loc_list_select_row(obj,row,b,c):
-    obj.set_data(_INDEX,row)
 
     epo = obj.get_data(_PLACE)
     loc = obj.get_row_data(row)

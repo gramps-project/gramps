@@ -51,7 +51,6 @@ import ImageSelect
 # Constants
 #
 #-------------------------------------------------------------------------
-INDEX      = "i"
 MARRIAGE   = "m"
 
 #-------------------------------------------------------------------------
@@ -135,9 +134,7 @@ class Marriage:
         # stored object data
         top_window.set_data(MARRIAGE,self)
         self.event_list.set_data(MARRIAGE,self)
-        self.event_list.set_data(INDEX,-1)
         self.attr_list.set_data(MARRIAGE,self)
-        self.attr_list.set_data(INDEX,-1)
 
         # set notes data
         self.notes_field.set_point(0)
@@ -380,8 +377,8 @@ def on_add_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row >= 0:
+    if len(obj.selection) > 0:
+        row = obj.selection[0]
         EventEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
@@ -404,7 +401,6 @@ def on_delete_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
     family_obj = obj.get_data(MARRIAGE)
     event = obj.get_row_data(row)
     
@@ -634,8 +630,6 @@ def on_ok_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_attr_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
-
     family_obj = obj.get_data(MARRIAGE)
     attr = obj.get_row_data(row)
 
@@ -649,8 +643,8 @@ def on_attr_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_update_attr_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row >= 0:
+    if len(obj.selection) > 0:
+        row = obj.selection[0]
         AttributeEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------

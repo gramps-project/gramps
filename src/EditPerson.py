@@ -65,7 +65,6 @@ _DEFHTTP = "http://gramps.sourceforge.net"
 # names.
 #
 #-------------------------------------------------------------------------
-INDEX      = "i"
 EDITPERSON = "p"
 OBJECT     = "o"
 PHOTO      = "p"
@@ -248,7 +247,7 @@ class EditPerson:
 
         if person.getGender() == Person.male:
             self.is_male.set_active(1)
-        elif person.getGender() == Person.male:
+        elif person.getGender() == Person.female:
             self.is_female.set_active(1)
         else:
             self.is_unknown.set_active(1)
@@ -270,15 +269,10 @@ class EditPerson:
         # stored object data
         self.edit_person.set_data(EDITPERSON,self)
         self.event_list.set_data(EDITPERSON,self)
-        self.event_list.set_data(INDEX,-1)
         self.name_list.set_data(EDITPERSON,self)
-        self.name_list.set_data(INDEX,-1)
         self.web_list.set_data(EDITPERSON,self)
-        self.web_list.set_data(INDEX,-1)
         self.attr_list.set_data(EDITPERSON,self)
-        self.attr_list.set_data(INDEX,-1)
         self.addr_list.set_data(EDITPERSON,self)
-        self.addr_list.set_data(INDEX,-1)
 
         # draw lists
         self.redraw_event_list()
@@ -588,7 +582,6 @@ def on_delete_event(obj,b):
 #
 #-------------------------------------------------------------------------
 def on_name_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
 
     epo = obj.get_data(EDITPERSON)
     name = obj.get_row_data(row)
@@ -607,7 +600,6 @@ def on_name_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_web_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
 
     epo = obj.get_data(EDITPERSON)
     url = obj.get_row_data(row)
@@ -630,7 +622,6 @@ def on_web_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_attr_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
 
     epo = obj.get_data(EDITPERSON)
     attr = obj.get_row_data(row)
@@ -647,7 +638,6 @@ def on_attr_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_addr_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
 
     epo = obj.get_data(EDITPERSON)
     a = obj.get_row_data(row)
@@ -668,9 +658,8 @@ def on_addr_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_aka_update_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row >= 0:
-        NameEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if len(obj.selection) >= 0:
+        NameEditor(obj.get_data(EDITPERSON),obj.get_row_data(obj.selection[0]))
 
 #-------------------------------------------------------------------------
 #
@@ -678,9 +667,8 @@ def on_aka_update_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_url_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row >= 0:
-        UrlEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if len(obj.selection) > 0:
+        UrlEditor(obj.get_data(EDITPERSON),obj.get_row_data(obj.selection[0]))
 
 #-------------------------------------------------------------------------
 #
@@ -688,9 +676,8 @@ def on_update_url_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_attr_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row >= 0:
-        AttributeEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if len(obj.selection) > 0:
+        AttributeEditor(obj.get_data(EDITPERSON),obj.get_row_data(obj.selection[0]))
 
 #-------------------------------------------------------------------------
 #
@@ -698,9 +685,8 @@ def on_update_attr_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_update_addr_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row >= 0:
-        AddressEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
+    if len(obj.selection) > 0:
+        AddressEditor(obj.get_data(EDITPERSON),obj.get_row_data(obj.selection[0]))
 
 #-------------------------------------------------------------------------
 #
@@ -823,9 +809,8 @@ def on_edit_death_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_event_update_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row >= 0:
-        EventEditor(obj.get_data(EDITPERSON),obj.get_row_data(row),0)
+    if len(obj.selection) > 0:
+        EventEditor(obj.get_data(EDITPERSON),obj.get_row_data(obj.selection[0]),0)
 
 #-------------------------------------------------------------------------
 #
@@ -835,7 +820,6 @@ def on_event_update_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_event_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
     event = obj.get_row_data(row)
 
     epo = obj.get_data(EDITPERSON)
