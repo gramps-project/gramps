@@ -97,24 +97,34 @@ def dump_my_event(g,name,event):
     write_line(g,"date",date)
     write_line(g,"place",place)
     write_line(g,"description",description)
-    source = event.getSource()
-    if source:
-        sourceRef = source.getBase()
-        if sourceRef:
-            p = source.getPage()
-            c = source.getComments()
-            t = source.getText()
-            d = source.getDate().getSaveDate()
+    if event.getNote() != "":
+        writeNote(g,"note",event.getNote())
+
+    dump_source_ref(g,event.getSourceRef())
+    g.write("</event>\n")
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def dump_source_ref(g,source_ref):
+    if source_ref:
+        source = source_ref.getBase()
+        if source:
+            p = source_ref.getPage()
+            c = source_ref.getComments()
+            t = source_ref.getText()
+            d = source_ref.getDate().getSaveDate()
             if p == "" and c == "" and t == "" and d == "":
-                g.write("<sourceref ref=\"%d\"/>\n" % sourceRef.getId())
+                g.write("<sourceref ref=\"%d\"/>\n" % source.getId())
             else:
-                g.write("<sourceref ref=\"%d\">\n" % sourceRef.getId())
+                g.write("<sourceref ref=\"%d\">\n" % source.getId())
                 write_line(g,"spage",p)
                 writeNote(g,"scomments",c)
                 writeNote(g,"stext",t)
                 write_line(g,"sdate",c)
                 g.write("</sourceref>\n")
-    g.write("</event>\n")
 
 #-------------------------------------------------------------------------
 #
@@ -263,15 +273,26 @@ def exportData(database, filename, callback):
                 write_line(g,"state",address.getState())
                 write_line(g,"country",address.getCountry())
                 write_line(g,"postal",address.getPostal())
+                if address.getNote() != "":
+                    writeNote(g,"note",address.getNote())
+                dump_source_ref(g,address.getSourceRef())
                 g.write('</address>\n')
             g.write('</addresses>\n')
 
         if len(person.getAttributeList()) > 0:
             g.write("<attributes>\n")
             for attr in person.getAttributeList():
-                g.write('<attribute type="%s">' % attr.getType())
-                g.write(fix(attr.getValue()))
-                g.write('</attribute>\n')
+                if attr.getSourceRef() or attr.getNote():
+                    g.write('<attribute>')
+                    write_line(g,"attr_type",attr.getType())
+                    write_line(g,"attr_value",attr.getValue())
+                    dump_source_ref(g,attr.getSourceRef())
+                    writeNote(g,"note",attr.getNote())
+                    g.write('</attribute>\n')
+                else:
+                    g.write('<attribute type="%s">' % attr.getType())
+                    g.write(fix(attr.getValue()))
+                    g.write('</attribute>\n')
             g.write('</attributes>\n')
 
         if len(person.getUrlList()) > 0:
@@ -335,12 +356,14 @@ def exportData(database, filename, callback):
             write_line(g,"sauthor",source.getAuthor())
             write_line(g,"spubinfo",source.getPubInfo())
             write_line(g,"scallno",source.getCallNumber())
+            if source.getNote() != "":
+                writeNote(g,"note",source.getNote())
             g.write("</source>\n")
         g.write("</sources>\n")
 
-    if len(db.bookmarks) > 0:
+    if len(db.getBookmarks()) > 0:
         g.write("<bookmarks>\n")
-        for person in db.bookmarks:
+        for person in db.getBookmarks():
             g.write("<bookmark ref=\"" + str(person.getId()) + "\"/>\n")
         g.write("</bookmarks>\n")
 

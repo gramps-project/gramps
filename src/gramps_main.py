@@ -100,6 +100,7 @@ topWindow     = None
 statusbar     = None
 Main          = None
 person_list   = None
+source_list   = None
 database      = None
 family_window = None
 queryTop      = None
@@ -146,6 +147,16 @@ def deathday(person):
         return person.getDeath().getQuoteDate()
     else:
         return ""
+    
+def delete_event(widget, event):
+    widget.hide()
+    if utils.wasModified():
+        question = _("Unsaved changes exist in the current database\n") + \
+                   _("Do you wish to save the changes?")
+        topWindow.question(question,save_query)
+    else:    
+        mainquit(widget)
+    return TRUE
 
 #-------------------------------------------------------------------------
 #
@@ -560,6 +571,7 @@ def new_database_response(val):
     change_active_person(None)
     person_list.clear()
     load_family()
+    load_sources()
     
 #-------------------------------------------------------------------------
 #
@@ -594,9 +606,113 @@ def update_display(changed):
             goto_active_person()
     elif page == 1:
         load_family()
+    elif page == 3:
+        load_sources()
     else:
         load_tree()
 
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def load_sources():
+    source_list.clear()
+    source_list.freeze()
+
+    color_clist = ListColors.ColorList(source_list,1)
+
+    current_row = source_list.get_data("i")
+    if current_row == None:
+        current_row = -1
+
+    index = 0
+    for src in database.getSourceMap().values():
+        source_list.append([src.getTitle(),src.getAuthor()])
+        source_list.set_row_data(index,src)
+        index = index + 1
+
+    if index > 0:
+        if current_row == -1:
+            current_row = 0
+        source_list.select_row(current_row,0)
+        source_list.moveto(current_row,0)
+
+    source_list.set_data("i",current_row)
+    source_list.thaw()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_source_list_button_press_event(obj,event):
+    if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        index = obj.get_data("i")
+        if index == -1:
+            return
+
+        source = obj.get_row_data(index)
+        EditSource.EditSource(source,database,update_source_after_edit)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_source_list_select_row(obj,a,b,c):
+    obj.set_data("i",a)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_add_source_clicked(obj):
+    import EditSource
+
+    EditSource.EditSource(Source(),database,new_source_after_edit)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_delete_source_clicked(obj):
+    pass
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_edit_source_clicked(obj):
+    import EditSource
+    
+    index = obj.get_data("i")
+    if index == -1:
+        return
+
+    source = obj.get_row_data(index)
+    EditSource.EditSource(source,database,update_source_after_edit)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def new_source_after_edit(source):
+    database.addSource(source.source)
+    update_display(1)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def update_source_after_edit(source):
+    update_display(1)
+    
 #-------------------------------------------------------------------------
 #
 # 
@@ -1153,7 +1269,18 @@ def change_active_person(person):
 #
 #-------------------------------------------------------------------------
 def modify_statusbar():
-    statusbar.set_status(Config.nameof(active_person))
+    pname = Config.nameof(active_person)
+    if Config.status_bar == 1:
+        name = "[%s] %s" % (str(active_person.getId()),pname)
+    elif Config.status_bar == 2:
+        name = pname
+        for attr in active_person.getAttributeList():
+            if attr.getType() == Config.attr_name:
+                name = "[%s] %s" % (attr.getValue(),pname)
+                break
+    else:
+        name = pname
+    statusbar.set_status(name)
 	
 #-------------------------------------------------------------------------
 #
@@ -1276,6 +1403,10 @@ def on_pedegree1_activate(obj):
     notebk = Main.get_widget(NOTEBOOK)
     notebk.set_page(2)
 
+def on_sources_activate(obj):
+    notebk = Main.get_widget(NOTEBOOK)
+    notebk.set_page(3)
+
 #-------------------------------------------------------------------------
 #
 # Load the appropriate page after a notebook switch
@@ -1284,16 +1415,18 @@ def on_pedegree1_activate(obj):
 def on_notebook1_switch_page(obj,junk,page):
     if not active_person:
         return
-    if (page == 0):
+    if page == 0:
         if id2col.has_key(active_person):
             column = id2col[active_person]
             person_list.select_row(column,0)
             person_list.moveto(column,0)
-    elif (page == 1):
+    elif page == 1:
         load_family()
-    elif (page == 2):
+    elif page == 2:
         load_tree()
-
+    elif page == 3:
+        load_sources()
+        
 #-------------------------------------------------------------------------
 #
 #
@@ -1797,7 +1930,7 @@ def setup_bookmarks():
     
     menu = Main.get_widget("jump_to")
     person_map = database.getPersonMap()
-    bookmarks = Bookmarks.Bookmarks(database.bookmarks,person_map,\
+    bookmarks = Bookmarks.Bookmarks(database.getBookmarks(),person_map,\
                                     menu,bookmark_callback)
 
 #-------------------------------------------------------------------------
@@ -1989,7 +2122,7 @@ def on_preferences_activate(obj):
 def main(arg):
     global database, Main
     global statusbar
-    global person_list, pv
+    global person_list, source_list, pv
     global topWindow
     
     import ReadXML
@@ -2008,6 +2141,7 @@ def main(arg):
     topWindow   = Main.get_widget("gramps")
     statusbar   = Main.get_widget("statusbar")
     person_list = Main.get_widget("person_list")
+    source_list = Main.get_widget("source_list")
     filter_list = Main.get_widget("filter_list")
     
     myMenu = GtkMenu()
@@ -2035,6 +2169,7 @@ def main(arg):
         "on_reports_clicked" : on_reports_clicked,
         "on_person_list1_activate": on_person_list1_activate,
         "on_family1_activate" : on_family1_activate,
+        "on_sources_activate" : on_sources_activate,
         "on_pedegree1_activate" : on_pedegree1_activate,
         "on_notebook1_switch_page": on_notebook1_switch_page,
         "on_ok_button1_clicked": on_ok_button1_clicked,
@@ -2077,6 +2212,12 @@ def main(arg):
         "on_edit_mother_clicked" : on_edit_mother_clicked,
         "on_exit_activate" : on_exit_activate,
         "on_statusbar_unmap" : on_statusbar_unmap,
+        "on_add_source_clicked" : on_add_source_clicked,
+        "on_source_list_button_press_event" : on_source_list_button_press_event,
+        "on_source_list_select_row": on_source_list_select_row,
+        "on_delete_source_clicked" : on_delete_source_clicked,
+        "on_edit_source_clicked" : on_edit_source_clicked,
+        "delete_event" : delete_event,
         "on_open_activate" : on_open_activate
         })	
 

@@ -61,6 +61,24 @@ class Date:
     def get_stop_date(self):
         return self.stop
 
+    def getYear(self):
+        return self.get_start_date().getYear()
+
+    def getMonth(self):
+        return self.get_start_date().getMonth()
+
+    def getDay(self):
+        return self.get_start_date().getDay()
+
+    def getStopYear(self):
+        return self.get_stop_date().getYear()
+
+    def getStopMonth(self):
+        return self.get_stop_date().getMonth()
+
+    def getStopDay(self):
+        return self.get_stop_date().getDay()
+
     #--------------------------------------------------------------------
     #
     # 

@@ -250,7 +250,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label199</name>
-	    <label>Date Format : </label>
+	    <label>Date Format</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
@@ -276,7 +276,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label200</name>
-	    <label>Name Format : </label>
+	    <label>Name Format</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
@@ -303,7 +303,8 @@
 	    <class>GtkOptionMenu</class>
 	    <name>date_format</name>
 	    <can_focus>True</can_focus>
-	    <items></items>
+	    <items>
+</items>
 	    <initial_choice>0</initial_choice>
 	    <child>
 	      <left_attach>1</left_attach>
@@ -325,7 +326,8 @@
 	    <class>GtkOptionMenu</class>
 	    <name>name_format</name>
 	    <can_focus>True</can_focus>
-	    <items></items>
+	    <items>
+</items>
 	    <initial_choice>0</initial_choice>
 	    <child>
 	      <left_attach>1</left_attach>
@@ -369,7 +371,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label201</name>
-	    <label>Date Format : </label>
+	    <label>Date Format</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
@@ -396,7 +398,8 @@
 	    <class>GtkOptionMenu</class>
 	    <name>date_entry_format</name>
 	    <can_focus>True</can_focus>
-	    <items></items>
+	    <items>
+</items>
 	    <initial_choice>0</initial_choice>
 	    <child>
 	      <left_attach>1</left_attach>
@@ -433,40 +436,11 @@
     <widget>
       <class>GtkTable</class>
       <name>table21</name>
-      <rows>2</rows>
-      <columns>1</columns>
+      <rows>1</rows>
+      <columns>2</columns>
       <homogeneous>False</homogeneous>
       <row_spacing>0</row_spacing>
       <column_spacing>0</column_spacing>
-
-      <widget>
-	<class>GtkCheckButton</class>
-	<name>enableColors</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>toggled</name>
-	  <handler>on_color_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Sat, 17 Feb 2001 14:19:39 GMT</last_modification_time>
-	</signal>
-	<label>Enable Custom Colors</label>
-	<active>False</active>
-	<draw_indicator>True</draw_indicator>
-	<child>
-	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
-	  <top_attach>0</top_attach>
-	  <bottom_attach>1</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>10</ypad>
-	  <xexpand>False</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
 
       <widget>
 	<class>GtkFrame</class>
@@ -477,8 +451,8 @@
 	<child>
 	  <left_attach>0</left_attach>
 	  <right_attach>1</right_attach>
-	  <top_attach>1</top_attach>
-	  <bottom_attach>2</bottom_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>False</xexpand>
@@ -492,7 +466,7 @@
 	<widget>
 	  <class>GtkTable</class>
 	  <name>table22</name>
-	  <rows>4</rows>
+	  <rows>5</rows>
 	  <columns>2</columns>
 	  <homogeneous>False</homogeneous>
 	  <row_spacing>0</row_spacing>
@@ -514,8 +488,8 @@
 	    <child>
 	      <left_attach>1</left_attach>
 	      <right_attach>2</right_attach>
-	      <top_attach>0</top_attach>
-	      <bottom_attach>1</bottom_attach>
+	      <top_attach>1</top_attach>
+	      <bottom_attach>2</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>False</xexpand>
@@ -543,8 +517,8 @@
 	    <child>
 	      <left_attach>1</left_attach>
 	      <right_attach>2</right_attach>
-	      <top_attach>1</top_attach>
-	      <bottom_attach>2</bottom_attach>
+	      <top_attach>2</top_attach>
+	      <bottom_attach>3</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>False</xexpand>
@@ -572,8 +546,8 @@
 	    <child>
 	      <left_attach>1</left_attach>
 	      <right_attach>2</right_attach>
-	      <top_attach>2</top_attach>
-	      <bottom_attach>3</bottom_attach>
+	      <top_attach>3</top_attach>
+	      <bottom_attach>4</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>False</xexpand>
@@ -601,8 +575,8 @@
 	    <child>
 	      <left_attach>1</left_attach>
 	      <right_attach>2</right_attach>
-	      <top_attach>3</top_attach>
-	      <bottom_attach>4</bottom_attach>
+	      <top_attach>4</top_attach>
+	      <bottom_attach>5</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>5</ypad>
 	      <xexpand>False</xexpand>
@@ -617,33 +591,7 @@
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label195</name>
-	    <label>Odd Row Foreground : </label>
-	    <justify>GTK_JUSTIFY_CENTER</justify>
-	    <wrap>False</wrap>
-	    <xalign>1</xalign>
-	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <child>
-	      <left_attach>0</left_attach>
-	      <right_attach>1</right_attach>
-	      <top_attach>0</top_attach>
-	      <bottom_attach>1</bottom_attach>
-	      <xpad>5</xpad>
-	      <ypad>0</ypad>
-	      <xexpand>False</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>False</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkLabel</class>
-	    <name>label196</name>
-	    <label>Odd Row Background : </label>
+	    <label>Odd Row Foreground</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
@@ -661,15 +609,15 @@
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
 	      <yshrink>False</yshrink>
-	      <xfill>False</xfill>
+	      <xfill>True</xfill>
 	      <yfill>False</yfill>
 	    </child>
 	  </widget>
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label197</name>
-	    <label>Even Row Foreground : </label>
+	    <name>label196</name>
+	    <label>Odd Row Background</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
@@ -687,15 +635,15 @@
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
 	      <yshrink>False</yshrink>
-	      <xfill>False</xfill>
+	      <xfill>True</xfill>
 	      <yfill>False</yfill>
 	    </child>
 	  </widget>
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label198</name>
-	    <label>Even Row Background : </label>
+	    <name>label197</name>
+	    <label>Even Row Foreground</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
@@ -713,8 +661,155 @@
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
 	      <yshrink>False</yshrink>
-	      <xfill>False</xfill>
+	      <xfill>True</xfill>
 	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkLabel</class>
+	    <name>label198</name>
+	    <label>Even Row Background</label>
+	    <justify>GTK_JUSTIFY_CENTER</justify>
+	    <wrap>False</wrap>
+	    <xalign>1</xalign>
+	    <yalign>0.5</yalign>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>4</top_attach>
+	      <bottom_attach>5</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>0</ypad>
+	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkCheckButton</class>
+	    <name>enableColors</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_color_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Sat, 17 Feb 2001 14:19:39 GMT</last_modification_time>
+	    </signal>
+	    <label>Enable Custom Colors</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>0</top_attach>
+	      <bottom_attach>1</bottom_attach>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>frame7</name>
+	<label>Status Bar</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>True</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>True</yfill>
+	</child>
+
+	<widget>
+	  <class>GtkVBox</class>
+	  <name>vbox25</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>stat1</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:01 GMT</last_modification_time>
+	    </signal>
+	    <label>Active person's name only</label>
+	    <active>True</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>status</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>stat2</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:16 GMT</last_modification_time>
+	    </signal>
+	    <label>Active person's name and gramps ID</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>status</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>stat3</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:29 GMT</last_modification_time>
+	    </signal>
+	    <label>Active person's name and attribute</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>status</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
 	    </child>
 	  </widget>
 	</widget>
@@ -938,7 +1033,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label143</name>
-	<label>Name :</label>
+	<label>Name</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -950,7 +1045,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>0</top_attach>
 	  <bottom_attach>1</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -964,7 +1059,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label144</name>
-	<label>Address :</label>
+	<label>Address</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -976,7 +1071,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>1</top_attach>
 	  <bottom_attach>2</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -990,7 +1085,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label145</name>
-	<label>City :</label>
+	<label>City</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -1002,7 +1097,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>2</top_attach>
 	  <bottom_attach>3</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -1016,7 +1111,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label146</name>
-	<label>State/Province :</label>
+	<label>State/Province</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -1028,7 +1123,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>3</top_attach>
 	  <bottom_attach>4</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -1042,7 +1137,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label147</name>
-	<label>Country :</label>
+	<label>Country</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -1054,7 +1149,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>4</top_attach>
 	  <bottom_attach>5</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -1068,7 +1163,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label148</name>
-	<label>Zip/Postal Code :</label>
+	<label>Zip/Postal Code</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -1080,7 +1175,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>5</top_attach>
 	  <bottom_attach>6</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -1094,7 +1189,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label149</name>
-	<label>Phone :</label>
+	<label>Phone</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -1106,7 +1201,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>6</top_attach>
 	  <bottom_attach>7</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -1120,7 +1215,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label150</name>
-	<label>email :</label>
+	<label>email</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -1132,7 +1227,7 @@
 	  <right_attach>1</right_attach>
 	  <top_attach>7</top_attach>
 	  <bottom_attach>8</bottom_attach>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>False</xexpand>
 	  <yexpand>False</yexpand>
@@ -1149,6 +1244,131 @@
       <child_name>Notebook:tab</child_name>
       <name>label142</name>
       <label>Researcher</label>
+      <justify>GTK_JUSTIFY_CENTER</justify>
+      <wrap>False</wrap>
+      <xalign>0.5</xalign>
+      <yalign>0.5</yalign>
+      <xpad>0</xpad>
+      <ypad>0</ypad>
+    </widget>
+
+    <widget>
+      <class>GtkTable</class>
+      <name>table25</name>
+      <rows>3</rows>
+      <columns>2</columns>
+      <homogeneous>False</homogeneous>
+      <row_spacing>0</row_spacing>
+      <column_spacing>0</column_spacing>
+
+      <widget>
+	<class>GtkLabel</class>
+	<name>label203</name>
+	<label>Preferred Output Format</label>
+	<justify>GTK_JUSTIFY_CENTER</justify>
+	<wrap>False</wrap>
+	<xalign>1</xalign>
+	<yalign>0.5</yalign>
+	<xpad>0</xpad>
+	<ypad>0</ypad>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>1</right_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkLabel</class>
+	<name>label204</name>
+	<label>Preferred Paper Size</label>
+	<justify>GTK_JUSTIFY_CENTER</justify>
+	<wrap>False</wrap>
+	<xalign>1</xalign>
+	<yalign>0.5</yalign>
+	<xpad>0</xpad>
+	<ypad>0</ypad>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>1</right_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkOptionMenu</class>
+	<name>paper_size</name>
+	<can_focus>True</can_focus>
+	<items>Letter
+A4
+</items>
+	<initial_choice>0</initial_choice>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkOptionMenu</class>
+	<name>output_format</name>
+	<can_focus>True</can_focus>
+	<items>OpenOffice
+HTML
+PDF
+AbiWord
+</items>
+	<initial_choice>0</initial_choice>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+    </widget>
+
+    <widget>
+      <class>GtkLabel</class>
+      <child_name>Notebook:tab</child_name>
+      <name>label202</name>
+      <label>Reports</label>
       <justify>GTK_JUSTIFY_CENTER</justify>
       <wrap>False</wrap>
       <xalign>0.5</xalign>

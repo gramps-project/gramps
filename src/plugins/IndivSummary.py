@@ -293,8 +293,16 @@ class IndivSummary:
 
         family = self.person.getMainFamily()
         if family:
-            father = family.getFather().getPrimaryName().getRegularName()
-            mother = family.getMother().getPrimaryName().getRegularName()
+            father_inst = family.getFather()
+            if father_inst:
+                father = father_inst.getPrimaryName().getRegularName()
+            else:
+                father = ""
+            mother_inst = family.getMother()
+            if mother_inst:
+                mother = mother_inst.getPrimaryName().getRegularName()
+            else:
+                mother = ""
         else:
             father = ""
             mother = ""

@@ -20,6 +20,7 @@
 
 import TextDoc
 import gtk
+import Config
 import intl
 
 _ = intl.gettext
@@ -39,12 +40,17 @@ paper_sizes = [
 
 def make_paper_menu(main_menu):
 
+    index = 0
     myMenu = gtk.GtkMenu()
     for paper in paper_sizes:
-        menuitem = gtk.GtkMenuItem(paper.get_name())
+        name = paper.get_name()
+        menuitem = gtk.GtkMenuItem(name)
         menuitem.set_data("i",paper)
         menuitem.show()
         myMenu.append(menuitem)
+        if name == Config.paper_preference:
+            myMenu.set_active(index)
+        index = index + 1
     main_menu.set_menu(myMenu)
 
 def make_orientation_menu(main_menu):

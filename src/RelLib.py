@@ -23,6 +23,21 @@ from Researcher import *
 
 #-------------------------------------------------------------------------
 #
+# Note class.
+#
+#-------------------------------------------------------------------------
+class Note:
+    def __init__(self,text = ""):
+        self.text = text
+
+    def set(self,text):
+        self.text = text
+
+    def get(self):
+        return self.text
+    
+#-------------------------------------------------------------------------
+#
 # Photo class. Contains information about a photo stored in the database
 #
 #-------------------------------------------------------------------------
@@ -59,6 +74,26 @@ class Attribute:
     def __init__(self):
         self.type = ""
         self.value = ""
+        self.source_ref = SourceRef()
+        self.note = Note()
+        
+    def setNote(self,text):
+        self.note.set(text)
+
+    def getNote(self):
+        return self.note.get()
+
+    def setNoteObj(self,obj):
+        self.note = obj
+
+    def getNoteObj(self,obj):
+        return self.note
+
+    def setSourceRef(self,id) :
+        self.source_ref = id
+
+    def getSourceRef(self) :
+        return self.source_ref
 
     def setType(self,val):
         self.type = val
@@ -85,6 +120,26 @@ class Address:
         self.country = ""
         self.postal = ""
         self.date = Date()
+        self.note = Note()
+        self.source_ref = SourceRef()
+
+    def setSourceRef(self,id) :
+        self.source_ref = id
+
+    def getSourceRef(self) :
+        return self.source_ref
+
+    def setNote(self,text):
+        self.note.set(text)
+
+    def getNote(self):
+        return self.note.get()
+
+    def setNoteObj(self,obj):
+        self.note = obj
+
+    def getNoteObj(self,obj):
+        return self.note
 
     def setDate(self,text):
         self.date.set(text)
@@ -228,7 +283,7 @@ class Person:
         self.addressList = []
         self.attributeList = []
         self.urls = []
-        self.note = ""
+        self.note = Note()
         self.paf_uid = ""
 
     def setPrimaryName(self,name) :
@@ -363,10 +418,17 @@ class Person:
         return self.MainFamily
 
     def setNote(self,text):
-        self.note = text
+        self.note.set(text)
 
     def getNote(self):
+        return self.note.get()
+
+    def setNoteObj(self,obj):
+        self.note = obj
+
+    def getNoteObj(self,obj):
         return self.note
+
 	
 #-------------------------------------------------------------------------
 #
@@ -380,7 +442,8 @@ class Event:
         self.date = Date()
         self.description = ""
         self.name = ""
-        self.source = None
+        self.source_ref = None
+        self.note = Note()
 
     def set(self,name,date,place,description):
         self.name = name
@@ -406,17 +469,29 @@ class Event:
     def getName(self) :
         return self.name
 
-    def setSource(self,id) :
-        self.source = id
+    def setSourceRef(self,id) :
+        self.source_ref = id
 
-    def getSource(self) :
-        return self.source
+    def getSourceRef(self) :
+        return self.source_ref
 
     def setPlace(self,place) :
         self.place = place
 
     def getPlace(self) :
         return self.place 
+
+    def setNote(self,note) :
+        self.note.set(note)
+
+    def getNote(self) :
+        return self.note.get() 
+
+    def setNoteObj(self,note) :
+        self.note = note
+
+    def getNoteObj(self) :
+        return self.note
 
     def setDescription(self,description) :
         self.description = description
@@ -456,13 +531,19 @@ class Family:
         self.EventList = []
         self.id = -1
         self.photoList = []
-        self.note = ""
+        self.note = Note()
 
     def getNote(self):
-        return self.note
+        return self.note.get()
 
     def setNote(self,text):
-        self.note = text
+        self.note.set(text)
+
+    def getNoteObj(self):
+        return self.note
+
+    def setNoteObj(self,obj):
+        self.note = obj
 
     def setId(self,id) :
        	self.id = id
@@ -532,13 +613,14 @@ class Family:
 #
 #
 #-------------------------------------------------------------------------
-class SourceBase:
+class Source:
     def __init__(self):
         self.title = ""
         self.author = ""
         self.pubinfo = ""
         self.callno = ""
-
+        self.note = Note()
+        
     def setId(self,newId):
         self.id = newId
 
@@ -550,6 +632,18 @@ class SourceBase:
 
     def getTitle(self):
         return self.title
+
+    def setNote(self,text):
+        self.note.set(text)
+
+    def getNote(self):
+        return self.note.get()
+
+    def setNoteObj(self,obj):
+        self.note = obj
+
+    def getNoteObj(self):
+        return self.note
 
     def setAuthor(self,author):
         self.author = author
@@ -574,12 +668,12 @@ class SourceBase:
 #
 #
 #-------------------------------------------------------------------------
-class Source:
+class SourceRef:
     def __init__(self):
         self.ref = None
         self.page = ""
         self.date = Date()
-        self.comments = ""
+        self.comments = Note()
         self.text = ""
 
     def setBase(self,ref):
@@ -600,20 +694,23 @@ class Source:
     def getPage(self):
         return self.page
 
-    def getDate(self):
-        return self.date
-
     def setText(self,text):
         self.text = text
 
     def getText(self):
         return self.text
 
-    def setComments(self,comments):
-        self.comments = comments
+    def setNoteObj(self,note):
+        self.comments = note
 
     def getComments(self):
         return self.comments
+
+    def setComments(self,comments):
+        self.comments.set(comments)
+
+    def getComments(self):
+        return self.comments.get()
 
 #-------------------------------------------------------------------------
 #
@@ -637,6 +734,9 @@ class RelDataBase:
         self.bookmarks = []
         self.path = ""
 
+    def getBookmarks(self):
+        return self.bookmarks
+    
     def clean_bookmarks(self):
         new_bookmarks = []
         for person in self.bookmarks:
@@ -748,7 +848,7 @@ class RelDataBase:
         if map.has_key(idVal):
             source = self.sourceMap[map[idVal]]
         else:
-            source = SourceBase()
+            source = Source()
             map[idVal] = self.addSource(source)
         return source
 
@@ -763,7 +863,7 @@ class RelDataBase:
         if self.sourceMap.has_key(val):
             source = self.sourceMap[val]
         else:
-            source = SourceBase()
+            source = Source()
             self.addSourceNoMap(source,val)
         return source
 
