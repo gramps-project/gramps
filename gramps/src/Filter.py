@@ -135,11 +135,15 @@ def load_filters(dir):
             name = plugin.get_name()
         else:
             name = plugin.__doc__
-            
+
         for task in plugin.__dict__.keys():
-            if task == "create":
-                filterMap[name] = plugin.__dict__[task]
-                filterList.append(plugin.__doc__)
-            if task == "need_qualifier" :
-                filterEnb[name] = plugin.__dict__[task]
+            try:
+                if task == "create":
+                    filterMap[name] = plugin.__dict__[task]
+                    filterList.append(name)
+                if task == "need_qualifier" :
+                    filterEnb[name] = plugin.__dict__[task]
+            except:
+                continue
+            
 
