@@ -126,6 +126,9 @@ ODDFGCOLOR    = "oddForeground"
 ODDBGCOLOR    = "oddBackground"
 EVENFGCOLOR   = "evenForeground"
 EVENBGCOLOR   = "evenBackground"
+INDEX         = "i"
+OBJECT        = "o"
+DATA          = "d"
 
 #-------------------------------------------------------------------------
 #
@@ -377,8 +380,8 @@ def on_propertybox_apply(obj,page):
     if webdir_temp != None and os.path.isdir(webdir_temp):
         web_dir = os.path.normpath(webdir_temp) + os.sep
 
-    paper_preference = paper_obj.get_data("d")
-    output_preference = output_obj.get_data("d")
+    paper_preference = paper_obj.get_data(DATA)
+    output_preference = output_obj.get_data(DATA)
     
     gnome.config.set_bool("/gramps/config/UseTabs",usetabs)
     gnome.config.set_bool("/gramps/config/DontCompressXML",uncompress)
@@ -398,13 +401,13 @@ def on_propertybox_apply(obj,page):
     # search for the active date format selection
     
     format_menu = prefsTop.get_widget("date_format").get_menu()
-    active = format_menu.get_active().get_data("i")
+    active = format_menu.get_active().get_data(INDEX)
 
     set_format_code(active)
     gnome.config.set_int("/gramps/config/dateFormat",active)
 
     format_menu = prefsTop.get_widget("date_entry_format").get_menu()
-    entry_active = format_menu.get_active().get_data("i")
+    entry_active = format_menu.get_active().get_data(INDEX)
 
     Date.entryCode = entry_active
     gnome.config.set_int("/gramps/config/dateEntry",entry_active)
@@ -412,7 +415,7 @@ def on_propertybox_apply(obj,page):
     # get the name format
 
     format_menu = prefsTop.get_widget("name_format").get_menu()
-    active_name = format_menu.get_active().get_data("i")
+    active_name = format_menu.get_active().get_data(INDEX)
 
     name_tuple = _name_format_list[active_name]
     nameof = name_tuple[1]
@@ -474,7 +477,7 @@ def on_object_toggled(obj):
 #
 #-------------------------------------------------------------------------
 def on_format_toggled(obj):
-    obj.get_data("o").changed()
+    obj.get_data(OBJECT).changed()
 
 #-------------------------------------------------------------------------
 #
@@ -550,8 +553,8 @@ def display_preferences_box():
         if name == paper_preference:
             choice = index
         item = GtkMenuItem(name)
-        item.set_data("o",pbox)
-        item.set_data("d",name)
+        item.set_data(OBJECT,pbox)
+        item.set_data(DATA,name)
         item.connect("activate", on_format_toggled)
         item.show()
         menu.append(item)
@@ -568,8 +571,8 @@ def display_preferences_box():
         if name == output_preference:
             choice = index
         item = GtkMenuItem(name)
-        item.set_data("o",pbox)
-        item.set_data("d",name)
+        item.set_data(OBJECT,pbox)
+        item.set_data(DATA,name)
         item.connect("activate", on_format_toggled)
         item.show()
         menu.append(item)
@@ -581,8 +584,8 @@ def display_preferences_box():
     date_menu = GtkMenu()
     for index in range(0,len(_date_format_list)):
         item = GtkMenuItem(_date_format_list[index])
-        item.set_data("i",index)
-        item.set_data("o",pbox)
+        item.set_data(INDEX,index)
+        item.set_data(OBJECT,pbox)
         item.connect("activate", on_format_toggled)
         item.show()
         date_menu.append(item)
@@ -593,8 +596,8 @@ def display_preferences_box():
     date_menu = GtkMenu()
     for index in range(0,len(_date_entry_list)):
         item = GtkMenuItem(_date_entry_list[index])
-        item.set_data("i",index)
-        item.set_data("o",pbox)
+        item.set_data(INDEX,index)
+        item.set_data(OBJECT,pbox)
         item.connect("activate", on_format_toggled)
         item.show()
         date_menu.append(item)
@@ -606,8 +609,8 @@ def display_preferences_box():
     for index in range(0,len(_name_format_list)):
         name_tuple = _name_format_list[index]
         item = GtkMenuItem(name_tuple[0])
-        item.set_data("i",index)
-        item.set_data("o",pbox)
+        item.set_data(INDEX,index)
+        item.set_data(OBJECT,pbox)
         item.connect("activate", on_format_toggled)
         item.show()
         name_menu.append(item)

@@ -105,7 +105,12 @@ female       = _("female")
 #
 #-------------------------------------------------------------------------
 
-output_formats = ["OpenOffice", "AbiWord", "PDF", "HTML" ]
+output_formats = [
+    "OpenOffice",
+    "AbiWord",
+    "PDF",
+    "HTML"
+    ]
 
 childRelations = {
     _("Birth")     : "Birth",
@@ -122,12 +127,13 @@ childRelations = {
 # Confidence
 #
 #-------------------------------------------------------------------------
-confidence = [ _("Very Low"),
-               _("Low"),
-               _("Normal"),
-               _("High"),
-               _("Very High")
-             ]
+confidence = [
+    _("Very Low"),
+    _("Low"),
+    _("Normal"),
+    _("High"),
+    _("Very High")
+    ]
 
 #-------------------------------------------------------------------------
 #
@@ -135,25 +141,25 @@ confidence = [ _("Very Low"),
 #
 #-------------------------------------------------------------------------
 familyConstantEvents = {
-    "Annulment"             : "ANUL",
-    "Divorce Filing"        : "DIVF",
-    "Divorce"               : "DIV",
-    "Engagement"            : "ENGA",
-    "Marriage Contract"     : "MARC",
-    "Marriage License"      : "MARL",
-    "Marriage Settlement"   : "MARS",
-    "Marriage"              : "MARR"
+    "Annulment"           : "ANUL",
+    "Divorce Filing"      : "DIVF",
+    "Divorce"             : "DIV",
+    "Engagement"          : "ENGA",
+    "Marriage Contract"   : "MARC",
+    "Marriage License"    : "MARL",
+    "Marriage Settlement" : "MARS",
+    "Marriage"            : "MARR"
     }
 
 _fe_e2l = {
-    "Annulment"             : _("Annulment"),
-    "Divorce Filing"        : _("Divorce Filing"),
-    "Divorce"               : _("Divorce"),
-    "Engagement"            : _("Engagement"),
-    "Marriage Contract"     : _("Marriage Contract"),
-    "Marriage License"      : _("Marriage License"),
-    "Marriage Settlement"   : _("Marriage Settlement"),
-    "Marriage"              : _("Marriage")
+    "Annulment"           : _("Annulment"),
+    "Divorce Filing"      : _("Divorce Filing"),
+    "Divorce"             : _("Divorce"),
+    "Engagement"          : _("Engagement"),
+    "Marriage Contract"   : _("Marriage Contract"),
+    "Marriage License"    : _("Marriage License"),
+    "Marriage Settlement" : _("Marriage Settlement"),
+    "Marriage"            : _("Marriage")
     }
 
 _fe_l2e = {}
@@ -188,71 +194,71 @@ def save_fevent(st):
 #
 #-------------------------------------------------------------------------
 personalConstantEvents = {
-    "Adopted"               : "ADOP",
-    "Adult Christening"     : "CHRA",
-    "Alternate Birth"       : "BIRT",
-    "Alternate Death"       : "DEAT",
-    "Baptism (LDS)"         : "BAPL",
-    "Baptism"               : "BAPM",
-    "Bar Mitzvah"           : "BARM",
-    "Bas Mitzvah"           : "BASM",
-    "Burial"                : "BURI",
-    "Cause Of Death"        : "CAUS",
-    "Ordination"            : "ORID",
-    "Census"                : "CENS",
-    "Christening"           : "CHR" ,
-    "Confirmation"          : "CONF",
-    "Cremation"             : "CREM",
-    "Degree"                : "_DEG", 
-    "Divorce Filing"        : "DIVF",
-    "Education"             : "EDUC",
-    "Elected"               : "_ELEC",
-    "Emigration"            : "EMIG",
-    "First Communion"       : "FCOM",
-    "Graduation"            : "GRAD",
-    "Military Service"      : "_MILT", 
-    "Naturalization"        : "NATU",
-    "Immigration"           : "IMMI",
-    "Occupation"            : "OCCU",
-    "Probate"               : "PROB",
-    "Religion"              : "RELI",
-    "Residence"             : "RESI", 
-    "Retirement"            : "RETI",
-    "Will"                  : "WILL"
+    "Adopted"           : "ADOP",
+    "Adult Christening" : "CHRA",
+    "Alternate Birth"   : "BIRT",
+    "Alternate Death"   : "DEAT",
+    "Baptism (LDS)"     : "BAPL",
+    "Baptism"           : "BAPM",
+    "Bar Mitzvah"       : "BARM",
+    "Bas Mitzvah"       : "BASM",
+    "Burial"            : "BURI",
+    "Cause Of Death"    : "CAUS",
+    "Ordination"        : "ORID",
+    "Census"            : "CENS",
+    "Christening"       : "CHR" ,
+    "Confirmation"      : "CONF",
+    "Cremation"         : "CREM",
+    "Degree"            : "_DEG", 
+    "Divorce Filing"    : "DIVF",
+    "Education"         : "EDUC",
+    "Elected"           : "_ELEC",
+    "Emigration"        : "EMIG",
+    "First Communion"   : "FCOM",
+    "Graduation"        : "GRAD",
+    "Military Service"  : "_MILT", 
+    "Naturalization"    : "NATU",
+    "Immigration"       : "IMMI",
+    "Occupation"        : "OCCU",
+    "Probate"           : "PROB",
+    "Religion"          : "RELI",
+    "Residence"         : "RESI", 
+    "Retirement"        : "RETI",
+    "Will"              : "WILL"
     }
 
 _pe_e2l = {
-    "Adopted"               : _("Adopted"),
-    "Alternate Birth"       : _("Alternate Birth"),
-    "Alternate Death"       : _("Alternate Death"),
-    "Adult Christening"     : _("Adult Christening"),
-    "Baptism (LDS)"         : _("Baptism (LDS)"),
-    "Baptism"               : _("Baptism"),
-    "Bar Mitzvah"           : _("Bar Mitzvah"),
-    "Bas Mitzvah"           : _("Bas Mitzvah"),
-    "Burial"                : _("Burial"),
-    "Cause Of Death"        : _("Cause Of Death"),
-    "Census"                : _("Census"),
-    "Christening"           : _("Christening"),
-    "Confirmation"          : _("Confirmation"),
-    "Cremation"             : _("Cremation"),
-    "Degree"                : _("Degree"),
-    "Divorce Filing"        : _("Divorce Filing"),
-    "Education"             : _("Education"),
-    "Elected"               : _("Elected"),
-    "Emigration"            : _("Emigration"),
-    "First Communion"       : _("First Communion"),
-    "Immigration"           : _("Immigration"),
-    "Graduation"            : _("Graduation"),
-    "Military Service"      : _("Military Service"), 
-    "Naturalization"        : _("Naturalization"),
-    "Occupation"            : _("Occupation"),
-    "Ordination"            : _("Ordination"),
-    "Probate"               : _("Probate"),
-    "Religion"              : _("Religion"),
-    "Residence"             : _("Residence"),
-    "Retirement"            : _("Retirement"),
-    "Will"                  : _("Will")
+    "Adopted"           : _("Adopted"),
+    "Alternate Birth"   : _("Alternate Birth"),
+    "Alternate Death"   : _("Alternate Death"),
+    "Adult Christening" : _("Adult Christening"),
+    "Baptism (LDS)"     : _("Baptism (LDS)"),
+    "Baptism"           : _("Baptism"),
+    "Bar Mitzvah"       : _("Bar Mitzvah"),
+    "Bas Mitzvah"       : _("Bas Mitzvah"),
+    "Burial"            : _("Burial"),
+    "Cause Of Death"    : _("Cause Of Death"),
+    "Census"            : _("Census"),
+    "Christening"       : _("Christening"),
+    "Confirmation"      : _("Confirmation"),
+    "Cremation"         : _("Cremation"),
+    "Degree"            : _("Degree"),
+    "Divorce Filing"    : _("Divorce Filing"),
+    "Education"         : _("Education"),
+    "Elected"           : _("Elected"),
+    "Emigration"        : _("Emigration"),
+    "First Communion"   : _("First Communion"),
+    "Immigration"       : _("Immigration"),
+    "Graduation"        : _("Graduation"),
+    "Military Service"  : _("Military Service"), 
+    "Naturalization"    : _("Naturalization"),
+    "Occupation"        : _("Occupation"),
+    "Ordination"        : _("Ordination"),
+    "Probate"           : _("Probate"),
+    "Religion"          : _("Religion"),
+    "Residence"         : _("Residence"),
+    "Retirement"        : _("Retirement"),
+    "Will"              : _("Will")
     }
 
 _pe_l2e = {}
@@ -372,11 +378,11 @@ def save_fattr(st):
 #-------------------------------------------------------------------------
 
 _fr_e2l = {
-    "Married"    : _("Married"),
-    "Unmarried"  : _("Unmarried"),
-    "Partners"   : _("Partners"),
-    "Unknown"    : _("Unknown"),
-    "Other"      : _("Other")
+    "Married"   : _("Married"),
+    "Unmarried" : _("Unmarried"),
+    "Partners"  : _("Partners"),
+    "Unknown"   : _("Unknown"),
+    "Other"     : _("Other")
 }
 
 _fr_l2e = {}
