@@ -1,3 +1,20 @@
+Version 0.7.1
+* A database must now be open at all times. Prevents the problem of
+  not having a place to put files.
+* Several drop down menus for names have been replaced with
+  autocompletion text boxes.
+* Autosave - allows the database to be saved to a backup file
+  periodically.
+* New Descendant Graph dialog.
+* Reorganization of reports.
+* New preferences dialog.
+* Configurable guessing of last names for new children.
+* Slightly improved incomplete date handling.
+* More sort columns and improved sorting in the lists.
+* New tooltips (Don Peterson)
+* Improved navigation in the Pedigree View (Shane Hathaway)
+* Italian translation (Marco Molteni)
+
 Version 0.7.0
 * LD_PRELOAD set to handle Mandrake 8.1 shared library problems.
 * Drag and drop copying of events, address, attributes, and URLs.
