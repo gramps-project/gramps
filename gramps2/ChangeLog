@@ -2,6 +2,9 @@
 	* src/PedView.py: Import RelLib for accessing relationship constants.
 	* src/NameEdit.py: Use empty Date for newly created name.
 
+	* src/data/gramps.schemas: Place dont-ask key into interface dir.
+	* src/Marriage.py (did_data_change): Compare gramps_id, not handle.
+
 2005-03-08  Don Allingham  <don@gramps-project.org>
 	* src/ChooseParents.py: change _nsort to _model
 	* src/GrampsBSDDB.py: fix event secondary index function to that
