@@ -582,7 +582,7 @@ register_report(
     report,
     _("Descendant Graph"),
     category=_("Graphical Reports"),
-    description=_("Generates a list of descendants of the active person"),
+    description=_("Generates a graph of descendants of the active person"),
     status=(_("Alpha")),
     xpm=get_xpm_image(),
     author_name="Donald N. Allingham",

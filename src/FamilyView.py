@@ -234,6 +234,52 @@ class FamilyView:
             menu.append(item)
         menu.popup(None,None,None,0,0)
 
+    def build_parents_nosel_menu(self):
+        """Builds the menu with navigation and Add parents"""
+        
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        entries = [
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            (None,None,0),
+            (_("Add parents"),self.add_parents_clicked,1),
+        ]
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
+
+    def build_sp_parents_nosel_menu(self):
+        """Builds the menu with navigation and Add parents"""
+        
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        entries = [
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            (None,None,0),
+            (_("Add parents"),self.add_sp_parents,1),
+        ]
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,0,0)
+
     def on_child_list_button_press(self,obj,event):
         model, iter = self.child_selection.get_selected()
         if not iter:
@@ -269,6 +315,7 @@ class FamilyView:
             menu.append(item)
 
         entries = [
+            (_("Make the selected child an active person"), self.child_back),
             (_("Edit the child/parent relationships"), self.child_rel),
             (_("Edit the selected child"),self.edit_child_callback),
             (_("Remove the selected child"),self.remove_child_clicked),
@@ -321,6 +368,7 @@ class FamilyView:
             menu.append(item)
 
         entries = [
+            (_("Make the selected spouse an active person"), self.spouse_swap),
             (_("Edit relationship"), self.edit_marriage_callback),
             (_("Remove the selected spouse"), self.remove_spouse),
             (_("Edit the selected spouse"), self.edit_spouse_callback),
@@ -770,7 +818,9 @@ class FamilyView:
             menu.append(item)
 
         entries = [
+            (_("Make the selected parents the active family"), self.ap_parents_clicked),
             (_("Edit the child/parent relationships"), self.edit_ap_relationships),
+            (_("Add parents"), self.add_parents_clicked),
             (_("Remove parents"),self.del_parents_clicked),
             ]
         for msg,callback in entries:
@@ -799,7 +849,9 @@ class FamilyView:
             menu.append(item)
 
         entries = [
+            (_("Make the selected parents the active family"), self.sp_parents_clicked),
             (_("Edit the child/parent relationships"), self.edit_sp_relationships),
+            (_("Add parents"), self.add_sp_parents),
             (_("Remove parents"),self.del_sp_parents),
             ]
         for msg,callback in entries:
@@ -819,7 +871,7 @@ class FamilyView:
             plist = self.person.getParentList()
 
             if len(plist) == 0:
-                self.build_nav_menu()
+                self.build_parents_nosel_menu()
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
@@ -832,14 +884,14 @@ class FamilyView:
     def edit_sp_parents(self,obj,event):
         if self.selected_spouse == None:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-                self.build_nav_menu()
+                self.build_sp_parents_nosel_menu()
             return
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.selected_spouse,self.sp_selection)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             plist = self.selected_spouse.getParentList()
             if len(plist) == 0:
-                self.build_nav_menu()
+                self.build_sp_parents_nosel_menu()
                 return
             elif len(plist) == 1:
                 family,m,r = plist[0]
