@@ -222,6 +222,7 @@ class Gallery(ImageSelect):
             icon_list.connect("drag_begin", self.on_drag_begin)
 
         _iconlist_refs.append(icon_list)
+        self.in_event = 0
         
         # Remember arguments
         self.path      = path;
@@ -261,6 +262,9 @@ class Gallery(ImageSelect):
 
     def item_event(self, widget, event=None):
 
+        if self.in_event:
+            return
+        self.in_event = 1
         if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
             if widget.drag_check_threshold(self.remember_x,self.remember_y,
                                            event.x,event.y):
@@ -273,6 +277,7 @@ class Gallery(ImageSelect):
                                       gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
                                       self.button, event)
                     
+            self.in_event = 0
             return gtk.TRUE
 
         style = self.iconlist.get_style()
@@ -296,6 +301,7 @@ class Gallery(ImageSelect):
                 self.remember_x = event.x
                 self.remember_y = event.y
                 self.button = event.button
+                self.in_event = 0
                 return gtk.TRUE
 
             elif event.button == 3:
@@ -303,6 +309,7 @@ class Gallery(ImageSelect):
                 if item:
                     (i,t,b,self.photo,oid) = self.p_map[item]
                     self.show_popup(self.photo)
+                self.in_event = 0
                 return gtk.TRUE
         elif event.type == gtk.gdk.BUTTON_RELEASE:
             self.button = 0
@@ -311,6 +318,7 @@ class Gallery(ImageSelect):
             if item:
                 (i,t,b,self.photo,oid) = self.p_map[item]
                 LocalMediaProperties(self.photo,self.path,self)
+            self.in_event = 0
             return gtk.TRUE
         elif event.type == gtk.gdk.MOTION_NOTIFY:
             if event.state & gtk.gdk.BUTTON1_MASK:
@@ -321,11 +329,13 @@ class Gallery(ImageSelect):
                 self.remember_x = new_x
                 self.remember_y = new_y
 
+                self.in_event = 0
                 return gtk.TRUE
             
         if event.type == gtk.gdk.EXPOSE:
             self.load_images()
 
+        self.in_event = 0
         return gtk.FALSE
 
     def savephoto(self, photo):
