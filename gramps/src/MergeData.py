@@ -779,10 +779,14 @@ def name_of(p):
 
 #-------------------------------------------------------------------------
 #
-#
+# Merge Places
 #
 #-------------------------------------------------------------------------
 class MergePlaces:
+    """
+    Merges to places into a single place. Displays a dialog box that
+    allows the places to be combined into one.
+    """
     def __init__(self,database,place1,place2,update):
         self.db = database
         self.p1 = place1
@@ -803,23 +807,39 @@ class MergePlaces:
         self.top.show()
 
     def on_merge_places_clicked(self,obj):
+        """
+        Performs the merge of the places when the merge button is clicked.
+        """
         t2active = self.glade.get_widget("title2").get_active()
 
         old_id = self.p1.getId()
+        
         if t2active:
             self.p1.set_title(self.p2.get_title())
         elif self.glade.get_widget("title3").get_active():
             self.p1.set_title(self.t3.get_text())
+
+        # Set longitude
         if self.p1.get_longitude() == "" and self.p2.get_longitude() != "":
             self.p1.set_longitude(self.p2.get_longitude())
+
+        # Set latitude
         if self.p1.get_latitude() == "" and self.p2.get_latitude() != "":
             self.p1.set_latitude(self.p2.get_latitude())
+
+        # Add URLs from P2 to P1
         for url in self.p2.getUrlList():
             self.p1.addUrl(url)
+
+        # Copy photos from P2 to P1
         for photo in self.p2.getPhotoList():
             self.p1.addPhoto(photo)
+
+        # Copy sources from P2 to P1
         for source in self.p2.getSourceRefList():
             self.p1.addSource(source)
+
+        # Add notes from P2 to P1
         note = self.p2.getNote()
         if note != "":
             if self.p1.getNote() == "":
@@ -839,20 +859,23 @@ class MergePlaces:
                 if not l.is_empty():
                     self.p1.add_alternate_locations(l)
 
-
+        # loop through people, changing event references to P2 to P1
         for key in self.db.getPersonKeys():
             p = self.db.getPerson(key)
             for event in [p.getBirth(), p.getDeath()] + p.getEventList():
                 if event.getPlace() == self.p2:
                     event.setPlace(self.p1)
+
+        # loop through families, changing event references to P2 to P1
         for f in self.db.getFamilyMap().values():
             for event in f.getEventList():
                 if event.getPlace() == self.p2:
                     event.setPlace(self.p1)
+                    
         self.db.removePlace(self.p2.getId())
         self.db.buildPlaceDisplay(self.p1.getId(),old_id)
         
-        self.update()
+        self.update(self.p1.getId())
         Utils.modified()
         Utils.destroy_passed_object(obj)
 
