@@ -102,6 +102,9 @@ class Verify:
         personList = self.db.get_person_keys()
 
         oldage = int(self.top.get_widget("oldage").get_text())
+        hwdif = int(self.top.get_widget("hwdif").get_text())
+        cspace = int(self.top.get_widget("cspace").get_text())
+        cbspan = int(self.top.get_widget("cbspan").get_text())
         yngmar = int(self.top.get_widget("yngmar").get_text())
         oldmar = int(self.top.get_widget("oldmar").get_text())
         oldmom = int(self.top.get_widget("oldmom").get_text())
@@ -239,8 +242,6 @@ class Verify:
                 if person.get_gender() == RelLib.Person.female:
                     warn.write( _("Old and unmarried: %(female_name)s died unmarried, at the age of %(ageatdeath)d years.\n") % { 
                         'female_name' : idstr, 'ageatdeath' : ageatdeath } )
-            first_cbyear = 99999
-            last_cbyear=0
             prev_cbyear=0
             prev_maryear=0
             prev_sdyear=0
@@ -272,6 +273,11 @@ class Verify:
                         warn.write( _("Husband and wife with the same surname: %s in family %s, and %s.\n") % (
                             idstr,family.get_id(), spouse.get_primary_name().get_name() ) )
                     sdyear = self.get_year( spouse.get_death_id() )
+                    sbyear = self.get_year( spouse.get_birth_id() )
+                    if abs(sbyear-byear) > hwdif:
+                        warn.write( _("Large age difference between husband and wife: %s in family %s, and %s.\n") % (
+                            idstr,family.get_id(), spouse.get_primary_name().get_name() ) )
+                        
                     if sdyear == 0:
                         sdyear = 0  # burial year
 
@@ -356,14 +362,13 @@ class Verify:
                                 warn.write( _("Long widowhood: %s was a widow %d years.\n") % (idstr, wdwyear) )
 
                     nkids = 0
+                    cbyears = []
                     for child_id in family.get_child_id_list():
                         nkids = nkids+1
                         child = self.db.find_person_from_id(child_id)
                         cbyear = self.get_year( child.get_birth_id() )
-                        if cbyear>0 and cbyear < first_cbyear:
-                            first_cbyear = cbyear
-                        if cbyear>last_cbyear:
-                            last_cbyear = cbyear
+                        if cbyear:
+                            cbyears.append(cbyear)
 
                         # parentage checks 
                         if byear>0 and cbyear>0:
@@ -405,8 +410,16 @@ class Verify:
                                 if person.get_gender() == RelLib.Person.female:
                                     warn.write( _("Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
                                                 'female_name' : idstr, 'dyear' : dyear, 'fam' : family.get_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
-                                
-        
+                    
+                    if cbyears:
+                        cbyears.sort()
+                        if (cbyears[-1] - cbyears[0]) > cbspan:
+                            warn.write(_("Large year span for all children: family %s.\n") % family.get_id() )
+                    if len(cbyears) > 1:
+                        cby_diff = [ cbyears[i+1]-cbyears[i] for i in range(len(cbyears)-1) ]
+                        if max(cby_diff) > cspace:
+                            warn.write(_("Large age differences between children: family %s.\n") % family.get_id() )
+
         text = ""
         if error:
             text = _("ERRORS:\n") + error.getvalue() + "\n" 
