@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -118,11 +118,18 @@ class DateDisplayES(DateDisplay):
         )
 
     _mod_str = ("",u"antes de ",u"después de ",u"hacia ","","","")
+
+    _qual_str = ("","calculado ","estimado ")
+
+    formats = (
+        "AAAA-MM-DD (ISO)", "Numérica", "Mes Día, Año",
+        "MES Día, Año", "Día Mes, Año", "Día MES, Año"
+        )
     
     def display(self,date):
         """
-        Returns a text string representing the date.
-        """
+    Returns a text string representing the date.
+    """
         mod = date.get_modifier()
         cal = date.get_calendar()
         qual = date.get_quality()
@@ -153,4 +160,3 @@ class DateDisplayES(DateDisplay):
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
 register_datehandler(('es_ES','spanish'),DateParserES, DateDisplayES)
-
