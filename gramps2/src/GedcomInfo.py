@@ -144,7 +144,7 @@ class GedcomInfoDB:
 
         try:
             file = "%s/gedcom.xml" % const.dataDir
-            f = open(file,"r")
+            f = open(file.encode('iso8859-1'),"r")
         except:
             return
 

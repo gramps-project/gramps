@@ -329,7 +329,7 @@ class MediaView:
                 try:
                     tfile,headers = u.retrieve(d)
                 except IOError, msg:
-                    ErrorDialog(t,str(msg))
+                    ErrorDialog(_('Image import failed'),str(msg))
                     return
                 mime = Utils.get_mime_type(tfile)
                 photo = RelLib.Photo()
