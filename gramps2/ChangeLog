@@ -1,3 +1,7 @@
+2005-01-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ReportUtils.py: allow start and stop event handle selection
+	for age estimation
+
 2005-01-25 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/TipOfDay.py (TipOfDay.__init__): Set transent property.
 	* src/gramps_main.py (Gramnps.__init__): Pass itself to TipOfDay;
