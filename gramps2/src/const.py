@@ -86,6 +86,7 @@ traceFile      = "%s/trace.glade" % rootDir
 filterFile     = "%s/rule.glade" % rootDir
 
 pluginsDir     = "%s/plugins" % rootDir
+calendarDir    = "%s/calendars" % rootDir
 docgenDir      = "%s/docgen" % rootDir
 filtersDir     = "%s/filters" % rootDir
 dataDir        = "%s/data" % rootDir
