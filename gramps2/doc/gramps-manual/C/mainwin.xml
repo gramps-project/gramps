@@ -364,6 +364,16 @@
 	to show four generations, starting from the newly selected Active 
 	person. </para>
 	
+	<!-- ==== Figure: Pedigree View ==== -->
+	<figure id="pedigree-child-cut-fig"> 
+	<title>Children Menu</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/pedigree-child-cut.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Children Menu in Pedigree View.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para>The left-hand side of the window shows the left arrow button. 
 	Upon clicking, the button expands to the menu listing the children 
 	of the Active person. Selecting the menu item makes the corresponding 
