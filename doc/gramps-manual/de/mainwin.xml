@@ -30,7 +30,7 @@
 	<textobject> 
 	<phrase>Zeigt Hauptfenster von &app;. Es enthält die Titelzeile,
 	      die Menüleiste, die Werkzeugleiste, die Seitenleiste, das
-	      Ansichtsfeld, die Statuszeile, die Fortschrittsbalken und die
+	      Ansichtsfeld, die Statusleiste, die Fortschrittsbalken und die
 	      Scrollbalken. Die Menüleiste enthält das Datei-, das Bearbeiten-,
 	      das Gehe zu-, das Lesezeichen-, das Berichte-, das Werkzeuge-
 	      und das Hilfe-Menü.
@@ -63,27 +63,26 @@
 	Export von anderen Formaten, dem Erstellen von Webseiten usw.
         </para></listitem>
       </varlistentry>
-      <varlistentry><term>Statusbar</term>
-	<listitem><para>The statusbar is located to the right of the 
-        progressbar, on the very bottom of the &app; window. 
-	It displays information about current &app; 
-	activity and contextual information about the menu items. 
-	The behavior of the statusbar can be adjusted in 
-	<guilabel>Preferences</guilabel> dialog. </para></listitem>
+      <varlistentry><term>Statusleiste</term>
+	<listitem><para>Die Statusleiste befindet sich rechts vom
+	Fortschrittsbalken, ganz unten im &app;-Fenster. Es zeigt
+	Informationen über die aktuelle &app;-Aktivität und
+	Kontextinformationen zu den Menüeinträgen. Das Verhalten der
+	Statusleiste kann im <guilabel>Einstellungen</guilabel>-Dialog.
+	</para></listitem>
       </varlistentry>
-      <varlistentry><term>Display area</term>
-	<listitem><para>The largest area in the center of the
-	&app; window is the display area.  
-	It shows certain aspects of genealogical information, depending on the 
-	currently selected View. The following six Views are available 
-	in &app;: 
+      <varlistentry><term>Ansichtsfeld</term>
+	<listitem><para>Den größten Teil des &app;-Fensters nimmt das
+	Ansichtsfeld ein. Es zeigt bestimmte Aspekte der genealogischen
+	Informationen, abhängig von der ausgewählten Ansicht. Die folgenden
+	sechs Ansichten sind verfügbar in &app;:
 	<itemizedlist>	
-	<listitem><para>People View</para></listitem>
-	<listitem><para>Family View</para></listitem>
-	<listitem><para>Pedigree View</para></listitem>
-	<listitem><para>Sources View</para></listitem>
-	<listitem><para>Places View</para></listitem>
-	<listitem><para>Media View</para></listitem>
+	<listitem><para>Personenansicht</para></listitem>
+	<listitem><para>Familienansicht</para></listitem>
+	<listitem><para>Stammbaumansicht</para></listitem>
+	<listitem><para>Quellenansicht</para></listitem>
+	<listitem><para>Ortsansicht</para></listitem>
+	<listitem><para>Medienansicht</para></listitem>
 
 	</itemizedlist>
 	</para></listitem>
@@ -92,209 +91,218 @@
 
     <!-- ================ Main Window Subsection  -->
     <sect2 id="gramps-views">
-      <title>Views</title>
-      <para>Views are the various ways to display different aspects of 
-      genealogical information, as described below. Since the relevant 
-      information is very broad and non-uniform in both context and modality, 
-      it is best to split its display into smaller categories, uniform in 
-      context and modality. Each View represents such a split and displays a 
-      certain portion of overall available information. Before the detailed 
-      description of available Views, let us  guide you through the ways of 
-      switching between the Views.</para> 
+      <title>Ansichten</title>
+      <para>Ansichten sind verschiedene Wege verschiedene Aspekte der
+      genealogischen Daten anzuzeigen, wie im Folgenden beschrieben. Weil
+      die relevanten Information oft sehr wage und nicht einheitlich in
+      Zusammenhang und Modalität sind, ist es am Besten ihre Ansicht zu in
+      kleinere Kategorien, einheitlich in Zusammenhang und Modalität zu
+      unterteilen. Jede Ansicht repräsentiert eine solche Unterteilung und
+      zeigt bestimmt Aspekte der insgesamt verfügbaren Informationen an.
+      Vor der ausführlichen Beschreibung der verfügbaren Ansichten, führen
+      wir Sie durch die Wege zwischen den Ansichten zu wechseln.</para> 
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="view-modes">
-        <title>Switching Views and Viewing Modes</title>
-	<para>Depending on the state of the <menuchoice> 
-	<guimenu>View</guimenu><guimenuitem>Sidebar</guimenuitem> 
-	</menuchoice> menu item, the View could be switched either in the 
-	sidebar or in the notebook tabs in the top part of the window. 
+        <title>Die Ansichten und Ansichtsmodi wechseln</title>
+	<para>Abhänging vom Status des Menüeintrags <menuchoice> 
+	<guimenu>Ansicht</guimenu><guimenuitem>Seitenleiste</guimenuitem> 
+	</menuchoice>, kann die Ansichte entweder in der Seitenleiste oder
+	an der Reitern im oberen Teil des Fensters gewechselt werden. 
 	</para>
 
 	<variablelist>
-	<varlistentry><term>To switch the View while in a Sidebar mode, 
-	click on the desired sidebar icon.</term>
+	<varlistentry><term>Um die Ansicht im Seitenleistenmodus zu
+	wechseln, klicken Sie auf das gewünschte Seitenleistensymbol.</term>
 	  <listitem>
 	  <!-- ==== Figure: Sidebar Mode ==== -->
 	  <figure id="side-nofilt-fig"> 
-	  <title>Sidebar Viewing Mode</title> 
+	  <title>Seitenleisten-Ansichtsmodus</title> 
 	  <screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	  <textobject> 
-	  <phrase>Shows sidebar viewing mode.  </phrase>
+	  <phrase>Zeigt den Seitenleisten-Anichtsmodus.  </phrase>
 	  </textobject></mediaobject></screenshot></figure>
 	  <!-- ==== End of Figure ==== -->
 	  </listitem></varlistentry>
 
-	<varlistentry><term>To switch the View while in a Notebook mode, 
-		click on the desired notebook tab.</term>
+	<varlistentry><term>Um die Ansicht im Reitermodus umzuschalten,
+                klicken Sie auf den gewünschten Reiter.</term>
 	  <listitem>
 	  <!-- ==== Figure: Tabbed Notebook Mode ==== -->
 	  <figure id="noside-nofilt-fig"> 
-	  <title>Tabbed Viewing Mode</title> 
+	  <title>Reiter-Ansichtsmodus</title> 
 	  <screenshot><mediaobject><imageobject><imagedata 
 	  	fileref="figures/noside-nofilt.png" format="PNG"/></imageobject>
 	  <textobject> 
-	  <phrase>Shows tabbed viewing mode.  </phrase>
+	  <phrase>Zeigt den Reiter-Ansichtsmodus.  </phrase>
 	  </textobject></mediaobject></screenshot></figure>
 	  <!-- ==== End of Figure ==== -->
 	  </listitem></varlistentry>
 	</variablelist>
 
-	<para>To switch between sidebar and notebook viewing modes, 
-	choose <menuchoice> <guimenu>View</guimenu> 
-	<guimenuitem>Sidebar</guimenuitem> 
-	</menuchoice> from the &app; menu.</para>
+	<para>Um zwischen Seitenleisten- und Reiter-Ansichtsmodus
+        umzuschalten, wählen Sie <menuchoice> <guimenu>Ansicht</guimenu> 
+	<guimenuitem>Seitenleiste</guimenuitem> 
+	</menuchoice> aus dem &app;-Menü.</para>
     
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="people-view">
-        <title>People View</title>
-	<para>When &app; first opens a database, 
-	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
-	and <xref linkend="noside-nofilt-fig"/>). The People View lists 
-        individuals whose data is stored in the database.</para>
+        <title>Personenansicht</title>
+	<para>Wenn &app; eine Datenbank öffnet, wird die Ansicht zuerst
+        auf die Personenansicht (<xref linkend="side-nofilt-fig"/> 
+	und <xref linkend="noside-nofilt-fig"/>). Die Personenansicht
+        listet Personen auf, dessen Daten in der Datenbank gespeichert
+        sind.</para>
         
-        <para> The individuals are arranged in a tree-like structure, 
-        according to their family names. Every family name is a node of the 
-        tree. Clicking the arrow on the left of the node will toggle its 
-        expansion state. When expanded, the node's contents is listed in the 
-        window. When collapsed, the contents is rolled up and not visible. 
-        However, all the data is still intact, it is just not being displayed.
-        </para>
+        <para> Die Personen sind in einer baumartigen Struktur angeordnet,
+        entsprechend der Familiennamen. Jede Familie ist ein Knoten des
+        Baumes. Ein Klick auf den Pfeil links von dem Knoten ändert dessen
+        Expansionsstatus. Wenn er geöffnet ist, wird der Inhalt des Knoten
+        im Fenster aufgelistet. Wenn er geschlossen ist, wird der Inhalt
+        aufgerollt und ist nicht sichtbar. Jedenfalls sind alle Daten noch
+        intakt, werden aber nicht angezeigt.</para>
         
-        <para>The People View 
-        displays people's <guilabel>Names</guilabel>, 
-        &app; <guilabel>ID</guilabel> numbers, 
-        <guilabel>Gender</guilabel>, and 
-	their <guilabel>Birth</guilabel> and <guilabel>Death dates</guilabel>. 
-	The list can be ordered by any field.</para> 
+        <para>Die Personenansicht zeigt die <guilabel>Namen</guilabel>, 
+        die &app;-<guilabel>ID</guilabel>-Zahlen, das 
+        <guilabel>Geschlecht</guilabel> und die
+        <guilabel>Geburts-</guilabel> und <guilabel>Todesdaten</guilabel>
+        der Personen. Die Liste kann nach einem beliebigen Feld sortiert
+        werden.</para> 
 
-	<para>Example: to order list by the Birth date, click on the
-	<guilabel>Birth date</guilabel> column heading. To order list in 
-	reverse	(descending) order, click one more time on the desired column
-	heading. </para> 
+	<para>Beispiel: um die Liste nach den Geburtsdaten zu sortieren,
+	klicken Sie auf den <guilabel>Geburtsdatum</guilabel>-Spaltenkopf.
+	Um die Liste in umgekehrter (absteigender) Ordnung zu sortieren,
+	klicken Sie ein weiteres Mal auf den gewünschten Spaltenkopf.</para> 
 
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect4 id="filters">
-          <title>Filters</title>
-	  <para>Genealogical databases may contain huge numbers of people. 
-	  Since the long lists are hard for humans to handle,
-	  &app; provides a convenient way to limit 
-	  the scope of browsing by using the filter. To save screen space, 
-	  filter controls may be hidden, depending on the state of 
-	  <menuchoice> <guimenu>View</guimenu> 
-	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item.</para> 
+          <title>Filter</title>
+	  <para>Genealogische Datenbank können eine riesige Anzahl an
+	  Personen umfassen. Weil lange Listen für Menschen schwer
+	  zu handhaben sind, bietet &app; einen angenehmen Weg um den
+	  Umfang mit Filtern zu begrenzen. Um Bildschirmplatz zu sparen
+	  können die Filterkontrollen versteckt werden, abhängig vom
+	  Status des <menuchoice> <guimenu>Ansicht</guimenu> 
+	  <guimenuitem>Filter</guimenuitem> </menuchoice> Menüeintrags.</para> 
 	  
 	<!-- ==== Figure: Enabled Filter ==== -->
 	<figure id="side-filt-fig"> 
-	<title>Filter Controls Displayed</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<title>Filterkontrollen angezeigt</title>
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/side-filt.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows filter controls.  </phrase>
+	<textobject>
+	<phrase>Zeigt die Filterkontrollen.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	  <para>When &app; opens a database, the 
-	  filter is set to the trivial filter called <guilabel>All
-	  people</guilabel>, i.e. no filtering is in effect. To choose a 
-	  filter, use the pop-up <guilabel>Filter</guilabel> menu above the 
-	  people's list. Once the filter is chosen, click the 
-	  <guibutton>Apply</guibutton> button in the upper right corner of the 
-	  window. The filtering will take effect upon clicking the 
-	  <guibutton>Apply</guibutton> button. To invert the filtering rule, 
-          check the <guilabel>Invert</guilabel> box on the left 
-	  of <guibutton>Apply</guibutton> button. </para>
-	  
-	  <para>Example: To show people without children, choose 
-	  <guilabel>People with children</guilabel> filter, then check 
-	  <guilabel>Invert</guilabel> box, and then click the 
-	  <guibutton>Apply</guibutton> button. To cancel any filtering, set 
-	  the filter to <guilabel>All people</guilabel>  
-	  and then click the <guibutton>Apply</guibutton> button. </para>
-	  
-	  <para>Note: even if the filter controls are not displayed 
-	  (<menuchoice> <guimenu>View</guimenu> 
-	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item is
-	  unchecked), the filtering might still be in place. In other words, 
-	  the visibility of the filter controls is not related to the actual 
-	  filtering imposed on the list. This may be a cause of confusion, when
-	  you enable the filtering and then remove the controls from the
-	  display. If in doubt, enable the display of filter controls by 
-	  checking <menuchoice> <guimenu>View</guimenu> 
-	  <guimenuitem>Filter</guimenuitem> </menuchoice> menu item and check 
-	  what kind of filtering is currently set.</para> 
+	  <para>Wenn &app; eine Datenbank öffnet, wird der triviale
+	  Filter <guilabel>Alle Personen</guilabel> eingestellt, d.h. es
+	  wird überhaupt nicht gefiltert. Um einen Filter auszuwählen,
+	  benutzen Sie das <guilabel>Filter</guilabel>-Aufklappmenü über
+	  der Personenliste. Wenn der Filter ausgewählt ist, klicken Sie
+	  auf den <guibutton>Anwenden</guibutton>-Knopf in der oberen,
+	  rechten Ecke des Fensters. Sie sehen das Ergebnis des Filters,
+	  sofort nachdem Sie auf den <guibutton>Anwebden</guibutton>-Knopf
+	  geklickt haben. Um den Filter zu invertieren markieren Sie
+	  das <guilabel>Invertieren</guilabel>-Feld links vom
+	  <guibutton>Anwenden</guibutton>-Knopf. </para>
+
+	  <para>Beispiel: Um Personen ohne Kinder zu zeigen wählen Sie den
+	  <guilabel>Personen mit Kindern</guilabel>-Filter, klicken
+	  dann auf das <guilabel>Invertieren</guilabel>-Feld und klicken
+	  dann auf den <guibutton>Anwenden</guibutton>-Knopf. Um einen
+	  Filter rückgangig zu machen, stellen Sie einfach des Filter
+	  <guilabel>Alle Personen</guilabel> ein und klicken Sie auf den
+	  <guibutton>Anwenden</guibutton>-Knopf. </para>
+
+	  <para>Anmerkung: Auch wenn die Filterkontrollen nicht angezeigt
+	  werden (<menuchoice> <guimenu>Ansicht</guimenu>
+	  <guimenuitem>Filter</guimenuitem> </menuchoice> Menüeintrag ist
+	  nichts markiert), kann noch eine Filterung stattfinden. In anderen
+	  Worten: die Sichtbarkeit der Filterkontrollen hat nichts mit dem
+	  tatsächlich verwendeten Filter zu tun. Die könnte Verwirrung
+	  verursachen, wenn Sie einen Filter einstellen und dann die
+	  Kontrollen verstecken. Im Zweifelsfall, lassen Sie die
+	  Filterkontrollen anzeigen, in dem den <menuchoice>
+	  <guimenu>Ansicht</guimenu> <guimenuitem>Filter</guimenuitem>
+	  </menuchoice> Menüeintrag markieren, und überprüfen, welche
+	  Art der Filterung gerade eingestellt ist.</para>
         </sect4>
 
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect4 id="alpha-tabs">
-          <title>Alphabetical Tabs</title>
-	  <para>&app; offers another way of 
-	  managing long lists of people -- alphabetical tabs. Upon loading a 
-	  database, &app; checks for the stored 
-	  family names and breaks the people list into sublists based on the 
-	  first letter of their name. The alphabetical tabs are displayed in 
-	  the bottom part of the &app; window. 
-	  The last tab, <guilabel>Other</guilabel>, stands for unidentified 
-	  characters -- all the entries not assigned to any other tab end up 
-	  in <guilabel>Other</guilabel>. In particular, people with no family 
-	  name will appear under this category.</para> 
+          <title>Alphabetische Reiter</title>
+	  <para>&app; bietet eine weitere Möglichkeit lange Personenlisten
+	  zu verwalten - alphabetische Reiter. Wenn eine Datenbank geladen
+	  wurde, sucht &app; nach Familiennamen und unterteilt die
+	  Personenliste in Unterlisten des ersten Buchstabens ihres Namens.
+	  Die alphabetischen Reiter sind im unteren Teil des &app;-Fensters.
+	  Der letzte Reiter, <guilabel>Andere</guilabel>, steht für
+	  unidentifizierte Buchstaben. Alle Einträde, die nicht zu einem
+	  anderen reiter zugeordnet werden können, landen in <guilabel>
+	  Andere</guilabel>. Speziell werden Familien ohne Familennamen
+	  unter dieser Kategorie erscheinen.</para>
         </sect4>
 
       </sect3>
-      
+
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="family-view">
-        <title>Family View</title>
-	<para>Family View displays the family information of a currently 
-	selected (or Active) person. Specifically, this view shows the 
-	relationships (e.g marriages, partnerships, etc.) of the active 
-	person, his/her parents (or step parents, or guardians, etc), and 
-	his/her children (could be step children, adopted children, etc.).
-	</para>
-	
+        <title>Familienansicht</title>
+	<para>Die Familienansicht zeigt Informationen über die Familie der
+	aktuell ausgewählten Person. Insbesondere zeigt diese Ansicht die
+	Beziehungen (z.B. Ehen, Partnerschaften usw.) der aktuellen Person,
+	seine Eltern (oder Stiefeltern) und seine Kinder (es können auch
+	Stiefkinder oder adoptierte Kinder usw. sein).</para>
+
 	<!-- ==== Figure: Family View ==== -->
-	<figure id="family-fig"> 
-	<title>Family View</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<figure id="family-fig">
+	<title>Familienansicht</title>
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/family.png" format="PNG"/></imageobject>
-	<textobject> 
-	<phrase>Shows Family View.  </phrase>
+	<textobject>
+	<phrase>Zeigt die Familienansicht  </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Active person's data is in the list box in the upper left 
-	corner of the window. Directly below it, another box lists the Spouse's
-	data, for each relationship of Active person (can be more than one). 
-	The double-arrow button to the right of the Active person list box 
-	allows you to exchange the currently selected spouse (Current spouse) 
-	with the Active person. Double-clicking on the Active person allows the 
-	editing of Active person's data. Double-clicking on the Current spouse 
-	allows you to edit their relationship information. Shift-clicking on 
-        the Current spouse allows the editing of the Current spouse's data.</para>
+	<para>Die Daten der aktuellen Person stehen in dem Listenfeld in der
+	oberen linken Ecke des Fensters. Direkt darunter, ein anderes Feld
+	listet die Daten der (Ehe-)Partner, jeweils mit der Beziehung zur
+	aktuellen Person auf (es können mehr als einer sein). Der
+	Doppelpfeilknopf recht von dem Listenfeld der aktuellen Personen
+	ermöglicht es Ihnen zwischen dem momentan ausgewählten Partner
+	(aktueller Partner) und der aktuellen Person zu wechseln.
+	Mit einem Doppelklick auf die aktuelle Person können Sie ihre
+	Daten bearbeiten. Mit einem Doppelklick auf den aktuellen Partner
+	können Sie die Informationen über ihre Beziehung bearbeiten. Mit
+	einem Shift-Klick auf den aktuellen Partner können Sie seine
+	Daten bearbeiten.</para>
 
-        <para> To add a new relationship use one of the two upper buttons to the
-        right of the spouse box. Click the top one to add a new person to a
-        database and to the new relationship. Click the middle one to add a
-        person already existing in the database to the new relationship. 
-	To remove Current spouse, click the lowest button 
-        (<guibutton>-</guibutton>) to the 
-	right of the spouse box. Note that removing a spouse from the
-        relationship does not remove the person from the database. Most of these
-        functions are also available by right-clicking into the spouse box and
-        selecting an appropriate items from the context menu. </para>
-	
-	<para>The parents of both the Active person and the Current spouse 
-	are listed in the corresponding list boxes in the right-hand part of 
-	the window (Active person's parents on top, Current spouse parents 
-	on the bottom). Both list boxes have a set of three buttons on their 
+        <para>Um eine neue Beziehung hinzuzufügen benutzen Sie die zwei
+	oberen Knöpfe rechts des Partner-Feldes. Klicken Sie auf den oberen
+	um eine neue Person zur Datenbank und zur neuen Partnerschaft
+	hinzuzufügen. Klicken Sie auf den mittleren um eine bereits in der
+	Datenbank vorhandene Person der neuen Beziehung zuzuweisen. Wenn
+	Sie den aktuellen Partner entfernen wollen, klicken Sie auf den
+	untersten Knopf (<guibutton>-</guibutton>) rechts von dem
+	Partner-Feld. Beachten Sie, dass das Entfernen eines Partners aus
+	der Beziehung diese Person nicht aus der Datenbank entfernt. Die
+	meisten dieser Funktionen sind auch verfügbar durch einen
+	Rechts-Klick in das Partner-Feld und den entsprechenden
+	Menü-Einträgen im Kontextmenü.</para>
+
+	<para>The parents of both the Active person and the Current spouse
+	are listed in the corresponding list boxes in the right-hand part of
+	the window (Active person's parents on top, Current spouse parents
+	on the bottom). Both list boxes have a set of three buttons on their
 	right side. The <guibutton>+</guibutton> and <guibutton>-</guibutton>
-	buttons allow you to add and remove parents of the Active person and the 
+	buttons allow you to add and remove parents of the Active person and the
 	Current spouse, respectively. Clicking the right arrow button
-	makes the family in the corresponding list box an active family. 
-	That is, it makes the selected Father the Active person, and the 
+	makes the family in the corresponding list box an active family.
+	That is, it makes the selected Father the Active person, and the
 	selected Mother the Current spouse. Most of these
         functions are also available by right-clicking into the parent box and
         selecting an appropriate items from the context menu. </para>
