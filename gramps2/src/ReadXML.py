@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import string
 import os
+import shutil
 from xml.parsers.expat import ExpatError
 
 #-------------------------------------------------------------------------
@@ -54,8 +55,8 @@ except:
 
 #-------------------------------------------------------------------------
 #
-# Initialization function for the module.  Called to start the reading
-# of data.
+# Importing data into the currently open database. 
+# Must takes care of renaming media files according to their new IDs.
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, callback):
@@ -115,20 +116,17 @@ def importData(database, filename, callback):
     
     # Rename media files if they were conflicting with existing ones
     ObjectMap = parser.db.getObjectMap()
-    MediaFileMapKeys = parser.MediaFileMap.keys()
-    MediaFileMapKeys.sort()
-    MediaFileMapKeys.reverse()
-    for OldMediaID in MediaFileMapKeys:
+    newpath = database.getSavePath()
+    for OldMediaID in parser.MediaFileMap.keys():
         NewMediaID = parser.MediaFileMap[OldMediaID]
-        if NewMediaID != OldMediaID:
-            oldfile = ObjectMap[NewMediaID].getPath()
-            oldpath = os.path.dirname(oldfile)
-	    (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
-            oldfile = os.path.join( basefile, OldMediaID + oldext )
-            newfile = os.path.join( basefile, NewMediaID + oldext )
-            os.rename(oldfile,newfile)
-            ObjectMap[NewMediaID].setPath(os.path.join(oldpath,NewMediaID+oldext))
-            ObjectMap[NewMediaID].setLocal(1)
+        oldfile = ObjectMap[NewMediaID].getPath()
+	oldpath = os.path.dirname(oldfile)
+	(junk,oldext) = os.path.splitext(os.path.basename(oldfile))
+        oldfile = os.path.join(basefile,OldMediaID+oldext)
+        newfile = os.path.join(newpath,NewMediaID+oldext)
+        shutil.copy2(oldfile,newfile)
+        ObjectMap[NewMediaID].setPath(os.path.join(newfile))
+        ObjectMap[NewMediaID].setLocal(1)
     
     return 1
 
