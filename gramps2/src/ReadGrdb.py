@@ -30,6 +30,7 @@
 #-------------------------------------------------------------------------
 import os
 from gettext import gettext as _
+import sets
 
 #-------------------------------------------------------------------------
 #
@@ -59,20 +60,46 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
             ErrorDialog(_("%s could not be opened") % filename)
         return
     
-    trans = database.transaction_begin()
+    # Check for duplicate handles. At the moment we simply exit here,
+    # before modifying any data. In the future we will need to handle
+    # this better.
+    handles = sets.Set(database.person_map.keys())
+    other_handles = sets.Set(other_database.person_map.keys())
+    if handles.intersection(other_handles):
+        raise Errors.HandleError('Personal handles in two databases overlap.')
+        
+    handles = sets.Set(database.family_map.keys())
+    other_handles = sets.Set(other_database.family_map.keys())
+    if handles.intersection(other_handles):
+        raise Errors.HandleError('Family handles in two databases overlap.')
+
+    handles = sets.Set(database.place_map.keys())
+    other_handles = sets.Set(other_database.place_map.keys())
+    if handles.intersection(other_handles):
+        raise Errors.HandleError('Place handles in two databases overlap.')
+
+    handles = sets.Set(database.source_map.keys())
+    other_handles = sets.Set(other_database.source_map.keys())
+    if handles.intersection(other_handles):
+        raise Errors.HandleError('Source handles in two databases overlap.')
+
+    handles = sets.Set(database.media_map.keys())
+    other_handles = sets.Set(other_database.media_map.keys())
+    if handles.intersection(other_handles):
+        raise Errors.HandleError('Media handles in two databases overlap.')
+
+    handles = sets.Set(database.event_map.keys())
+    other_handles = sets.Set(other_database.event_map.keys())
+    if handles.intersection(other_handles):
+        raise Errors.HandleError('Event handles in two databases overlap.')
+
     # copy all data from new_database to database,
     # rename gramps IDs of first-class objects when conflicts are found
+    trans = database.transaction_begin(_("Import database"))
 
     # People table
     for person_handle in other_database.person_map.keys():
         person = other_database.get_person_from_handle(person_handle)
-        
-        # First, check whether this handle is a duplicate, and do something
-        if person_handle in database.person_map.keys():
-            raise Errors.HandleError(
-                    'Handle %s is already present in the opened database.\n'
-                    'Name: %s' % (person_handle,person.get_primary_name().get_regular_name())
-                    )
         
         # Then we check gramps_id for conflicts and change it if needed
         gramps_id = str(person.get_gramps_id())
@@ -85,12 +112,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     for family_handle in other_database.family_map.keys():
         family = other_database.get_family_from_handle(family_handle)
         
-        # First, check whether this handle is a duplicate, and do something
-        if family_handle in database.family_map.keys():
-            raise Errors.HandleError(
-                    'Handle %s is already present in the opened database.' % family_handle
-                    )
-        
         # Then we check gramps_id for conflicts and change it if needed
         gramps_id = str(family.get_gramps_id())
         if database.fid_trans.has_key(gramps_id):
@@ -101,12 +122,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     # Place table
     for place_handle in other_database.place_map.keys():
         place = other_database.get_place_from_handle(place_handle)
-        
-        # First, check whether this handle is a duplicate, and do something
-        if place_handle in database.place_map.keys():
-            raise Errors.HandleError(
-                    'Handle %s is already present in the opened database.' % place_handle
-                    )
         
         # Then we check gramps_id for conflicts and change it if needed
         gramps_id = str(place.get_gramps_id())
@@ -119,12 +134,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     for source_handle in other_database.source_map.keys():
         source = other_database.get_source_from_handle(source_handle)
         
-        # First, check whether this handle is a duplicate, and do something
-        if source_handle in database.source_map.keys():
-            raise Errors.HandleError(
-                    'Handle %s is already present in the opened database.' % source_handle
-                    )
-        
         # Then we check gramps_id for conflicts and change it if needed
         gramps_id = str(source.get_gramps_id())
         if database.sid_trans.has_key(gramps_id):
@@ -136,12 +145,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     for media_handle in other_database.media_map.keys():
         media = other_database.get_object_from_handle(media_handle)
         
-        # First, check whether this handle is a duplicate, and do something
-        if media_handle in database.media_map.keys():
-            raise Errors.HandleError(
-                    'Handle %s is already present in the opened database.' % media_handle
-                    )
-        
         # Then we check gramps_id for conflicts and change it if needed
         gramps_id = str(media.get_gramps_id())
         if database.oid_trans.has_key(gramps_id):
@@ -152,12 +155,6 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     # Event table
     for event_handle in other_database.event_map.keys():
         event = other_database.get_event_from_handle(event_handle)
-        
-        # First, check whether this handle is a duplicate, and do something
-        if event_handle in database.event_map.keys():
-            raise Errors.HandleError(
-                    'Handle %s is already present in the opened database.' % event_handle
-                    )
         
         # Events don't have gramps IDs, so we don't need to check here
         database.add_event(event,trans)
