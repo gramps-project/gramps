@@ -900,7 +900,7 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Names</guilabel></term>
 		<listitem>
-	<para> <guilabel>Names</guilabel> tab shows information concerning 
+	<para> <guilabel>Names</guilabel> tab displays information concerning 
 	alternate names of the person and the controls allowing its
 	modification. The bottom part displays the list of all alternate names
 	of the person stored in the database. The top part shows the details 
@@ -908,27 +908,152 @@
 	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
 	and <guibutton>Delete</guibutton> allow to correspondingly add, 
 	modify, and remove an alternate name record from the database. 
-	The two latter buttons become available only when an alternate name
-	is selected from the list. 
+	Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	an alternate name is selected from the list.  
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
 	
-<!--	<guilabel>General</guilabel>, <guilabel>Names</guilabel>,
-	<guilabel>Events</guilabel>, <guilabel>Attributes</guilabel>,
-	<guilabel>Addresses</guilabel>, <guilabel>Notes</guilabel>,
-	<guilabel>Gallery</guilabel>, <guilabel>Internet</guilabel>, and
-	<guilabel>LDS</guilabel>.  -->
+	<variablelist>
+		<varlistentry><term><guilabel>Events</guilabel></term>
+		<listitem>
+	<para> <guilabel>Events</guilabel> tab displays information about 
+	the events relevant to the person and the controls allowing its
+	modification. The bottom part displays the list of all such events 
+	stored in the database. The top part shows the details 
+	of the currently selected event in the list (if any). The buttons
+	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
+	and <guibutton>Delete</guibutton> allow to correspondingly add, 
+	modify, and remove an event record from the database. 
+	Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	an event is selected from the list.  
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
 
-<!--
-[ FIXME: STOPPED HERE ] 
--->
+	<variablelist>
+		<varlistentry><term><guilabel>Attributes</guilabel></term>
+		<listitem>
+	<para> <guilabel>Attributes</guilabel> tab displays information about 
+	the attributes of the person and the controls allowing its
+	modification. These could be any personal attributes of a person whose
+	description naturally fits into Parameter-Value pairs (e.g. enormous
+	generousity can be stored as the parameter "Generousity" with the 
+	value "Enormous", etc.). The bottom part displays the list of all  
+	attributes stored in the database. The top part shows the details 
+	of the currently selected attribute in the list (if any). The buttons
+	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
+	and <guibutton>Delete</guibutton> allow to correspondingly add, 
+	modify, and remove an attribute record from the database. 
+	Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	an attribute is selected from the list.  
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Addresses</guilabel></term>
+		<listitem>
+	<para> <guilabel>Addresses</guilabel> tab displays information about 
+	the addresses of the person and the controls allowing its
+	modification. The bottom part displays the list of all 
+	addresses stored in the database. The top part shows the details 
+	of the currently selected address in the list (if any). The buttons
+	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
+	and <guibutton>Delete</guibutton> allow to correspondingly add, 
+	modify, and remove an address record from the database. 
+	Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	an address is selected from the list.  
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Notes</guilabel></term>
+		<listitem>
+	<para> <guilabel>Notes</guilabel> tab displays information about 
+	the notes conerning the person. These could be any notes which do not
+	naturally fit into the Parameter-Value pairs available to Attributes. 
+	To add a note or modify existing notes simply edit the text in the 
+	text entry field.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Gallery</guilabel></term>
+		<listitem>
+	<para> <guilabel>Gallery</guilabel> tab displays information about 
+	media objects associated with the person and the controls allowing its
+	modification. The central part shows the list of all such meda objects. 
+	For media object which are valid image files previews of images are 
+	displayed. For other objects such as audio files, movie files, etc. 
+	generic &app; icon is displayed instead. Note that the first available
+	image in the gallery will be also displayed in the
+	<guilabel>Image</guilabel> area in the <guilabel>General</guilabel> 
+	tab. The buttons <guibutton>Add...</guibutton>,
+	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+	to correspondingly add,  modify, and remove a media object record from
+	the database. Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Remove</guibutton> buttons become available only when 
+	a media object is selected from the list. 
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Internet</guilabel></term>
+		<listitem>
+	<para> <guilabel>Internet</guilabel> tab displays information about 
+	Internet addresses relevant of the person and the controls
+	allowing its modification. The bottom part displays the list of all 
+	such Internet addresses stored in the database. The top part shows the
+	details of the currently selected addresses in the list (if any). 
+	The buttons <guibutton>Add...</guibutton>,
+	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
+	allow to correspondingly add, modify, and remove an Internet address 
+	record from the database. The button <guibutton>Go</guibutton> allows
+	to open a web-page with the corresponding address with your default 
+	browser. Note that <guibutton>Edit...</guibutton>, 
+	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
+	become available only when an address is selected from the list.  
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>LDS</guilabel></term>
+		<listitem>
+	<para> <guilabel>LDS</guilabel> tab displays information 
+	about LDS ordinances of the person and the controls allowing its
+	modification. These are <guilabel>LDS baptims</guilabel>, 
+	<guilabel>Endowment</guilabel>, and <guilabel>Sealed to 
+	parents</guilabel> ordinances, as labeled inside the tab. 
+	Each ordinance is described by its date, LDS temple, and Place where 
+	it happened. An additional pop-up menu <guilabel>Parents</guilabel> is
+	available for the <guilabel>Sealed to parents</guilabel> ordinance.
+	Each ordinance can further be described by its status through the 
+	selections available in the <guilabel>Status</guilabel> pop-up menu 
+	menu and can also be referenced by sources and notes via corresponding 
+	<guibutton>Sources...</guibutton> and <guibutton>Note</guibutton>
+	buttons. 
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-rel"> 
         <title>Edit Relationship Data</title> 
 	<para> </para>
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
