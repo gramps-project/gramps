@@ -156,7 +156,6 @@ class PedigreeView:
         self.sb = status_bar
         self.change_active_person = change_active
         self.load_person = lp
-        self.presel_descendants = []
         self.canvas.connect('button-press-event',self.on_canvas_press)
 
     def clear(self):
@@ -172,7 +171,6 @@ class PedigreeView:
         self.clear()
         
         if person is not self.active_person:
-            del self.presel_descendants[:]
             self.active_person = person
         if person == None:
             return
@@ -246,7 +244,7 @@ class PedigreeView:
             p = list[2]
             self.add_parent_button(p[0],x2-_PAD,ypts[2],h)
 
-        gen_no = len(self.presel_descendants) + 1
+        gen_no = 1
         for i in range(int(xdiv)):
             item = self.root.add(gnome.canvas.CanvasText, x=(cw*i/xdiv + cpad), y=h,
                                  text=str(gen_no),
@@ -288,12 +286,7 @@ class PedigreeView:
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
 
-        if self.presel_descendants:
-            # Go to a previously selected child.
-            person = self.presel_descendants.pop(-1)
-            self.active_person = person
-            self.load_canvas(person)
-        elif self.active_person:
+        if self.active_person:
             # Build and display the menu attached to the left pointing arrow
             # button. The menu consists of the children of the current root
             # person of the tree. Attach a child to each menu item.
@@ -358,7 +351,6 @@ class PedigreeView:
            person, redrawing the view."""
         person = obj.get_data(_PERSON)
         if self.active_person:
-            self.presel_descendants.append(self.active_person)
             self.active_person = person
         self.load_canvas(person)
     
