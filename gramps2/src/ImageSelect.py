@@ -718,7 +718,7 @@ class LocalMediaProperties:
         self.change_dialog.get_widget("gid").set_text(self.object.get_id())
 
         if self.object.get_local():
-            self.change_dialog.get_widget("path").set_text("<local>")
+            self.change_dialog.get_widget("path").set_text(_("<local>"))
         else:
             self.change_dialog.get_widget("path").set_text(fname)
 
@@ -965,7 +965,7 @@ class GlobalMediaProperties:
     def update_info(self):
         fname = self.object.get_path()
         if self.object.get_local():
-            self.change_dialog.get_widget("path").set_text("<local>")
+            self.change_dialog.get_widget("path").set_text(_("<local>"))
             self.makelocal.set_sensitive(0)
         else:
             self.change_dialog.get_widget("path").set_text(fname)

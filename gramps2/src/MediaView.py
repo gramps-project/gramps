@@ -172,7 +172,7 @@ class MediaView:
         elif path[0] == "/":
             self.mpath.set_text(path)
         else:
-            self.mpath.set_text("<local>")
+            self.mpath.set_text(_("<local>"))
         self.mdetails.set_text(Utils.get_detail_text(mobj,0))
 
     def on_button_press_event(self,obj,event):
@@ -241,6 +241,7 @@ class MediaView:
         if name:
             self.obj.set_path(name)
             self.obj.setLocal(1)
+            self.load_media()
 
     def popup_change_description(self, obj):
         ImageSelect.GlobalMediaProperties(self.db,self.obj,self.load_media)
