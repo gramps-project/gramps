@@ -203,9 +203,9 @@ class FtreeWriter:
 
             family = p.getMainParents()
             if family:
-                if family.getFather():
+                if family.getFather() and id_map.has_key(family.getFather().getId()):
                     father = id_map[family.getFather().getId()]
-                if family.getMother():
+                if family.getMother() and id_map.has_key(family.getMother().getId()):
                     mother = id_map[family.getMother().getId()]
 
             #
