@@ -175,10 +175,11 @@ class AddSpouse:
         self.person.addFamily(family)
         spouse.addFamily(family)
 
-        if self.person.getGender() == RelLib.Person.male:
+        if (self.person.getGender() == RelLib.Person.male
+            or spouse.getGender() == RelLib.Person.female):
             family.setMother(spouse)
             family.setFather(self.person)
-        else:	
+        else:
             family.setFather(spouse)
             family.setMother(self.person)
 
@@ -322,11 +323,18 @@ class SetSpouse:
                 return
 
         Utils.modified()
-        if self.family.getFather() == self.person:
+
+        # Recompute the family relation.  self.person is already
+        # a father or mother, but in case (s)he had an unknown
+        # gender, adding a spouse might swap roles.
+        if (self.person.getGender() == RelLib.Person.male
+            or spouse.getGender() == RelLib.Person.female):
             self.family.setMother(spouse)
+            self.family.setFather(self.person)
         else:
             self.family.setFather(spouse)
-            
+            self.family.setMother(self.person)
+
         spouse.addFamily(self.family)
 
         reltype = self.relation_type.get_text()
