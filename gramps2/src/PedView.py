@@ -172,6 +172,8 @@ class PedigreeView:
         self.boxes = []
         self.root = self.canvas.root()
         self.active_person = None
+        r = Relationship.RelationshipCalculator(self.parent.db)
+        self.distance = r.get_relationship_distance
         self.x1 = 0
         self.x2 = 0
         self.y1 = 0
@@ -291,11 +293,11 @@ class PedigreeView:
 
         gen_no = 1
         if self.anchor:
-            gn = get_distance(self.parent.db,self.anchor,self.active_person)
-            if gn == None:
+            (firstRel,secondRel,common) = self.distance(self.active_person,self.anchor)
+            if not common or type(common) in [type(''),type(u'')]:
                 self.remove_anchor()
             else:
-                gen_no = gn
+                gen_no = len(firstRel)-len(secondRel)
 
         for i in range(int(xdiv)):
             item = self.root.add(gnome.canvas.CanvasText, x=(cw*i/xdiv + cpad), y=h,
@@ -710,63 +712,6 @@ class PedigreeView:
         # Add history-based navigation
         self.add_nav_portion_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
-
-#-------------------------------------------------------------------------
-#
-# Function to determine distance between people
-#
-#-------------------------------------------------------------------------
-def get_distance(db,orig_person,other_person):
-    """
-    Returns a number of generations representing distance between two people.
-    
-    If the two people don't have common ancestors, None is returned.
-    Otherwise, the returned number is the distance from the orig_person 
-    to the closest common ancestor minus the distance from the other_person
-    to the closest common ancestor. 
-    """
-    
-    firstMap = {}
-    firstList = []
-    secondMap = {}
-    secondList = []
-    common = []
-    rank = 9999999
-
-    if orig_person == None or other_person == None:
-        return None
-
-    if orig_person == other_person:
-        return 0
-
-    try:
-        r = Relationship.RelationshipCalculator(db)
-        r.apply_filter(orig_person,0,firstList,firstMap)
-        r.apply_filter(other_person,0,secondList,secondMap)
-    except RuntimeError:
-        return None
-    
-    for person_handle in firstList:
-        if person_handle in secondList:
-            new_rank = firstMap[person_handle]
-            if new_rank < rank:
-                rank = new_rank
-                common = [ person_handle ]
-            elif new_rank == rank:
-                common.append(person_handle)
-
-    if not common:
-        return None
-
-    firstRel = None
-    secondRel = None
-
-    person_handle = common[0]
-    secondRel = secondMap[person_handle]
-    firstRel = firstMap[person_handle]
-    if firstRel == None or secondRel == None:
-        return None
-    return firstRel-secondRel
 
 #-------------------------------------------------------------------------
 #
