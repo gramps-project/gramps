@@ -541,7 +541,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         #find total width that the table needs to be.
         #later this value may be used to cut the longest columns down
         #so that data fits on the width of the page
-        __min_table_width = sum(__min_col_size)
+        __min_table_width = 0
+        for __size in __min_col_size:
+            __min_table_width = __min_table_width + __size
 
         #is table width larger than the width of the paper?
         if __min_table_width > (self.__right_margin - self.__left_margin):
