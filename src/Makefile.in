@@ -5,7 +5,7 @@ datadir		= @datadir@/@PACKAGE@
 INSTALL		= @INSTALL@
 srcdir		= @top_srcdir@
 pycomp		= ${srcdir}/py-compile
-CFLAGS          = -fPIC -shared -O -I/usr/include/python1.5 -I/usr/lib/python1.5/config
+CFLAGS          = -fPIC -shared -O @PYTHON_INCLUDES@
 LANG            = sv
 
 @SET_MAKE@
