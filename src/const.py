@@ -97,6 +97,7 @@ thumbScale   = 100.0
 indexFile    = "data.gramps"
 male         = _("male")
 female       = _("female")
+unknown      = _("unknown")
 
 #-------------------------------------------------------------------------
 #
@@ -343,9 +344,11 @@ def save_pattr(st):
 #
 #-------------------------------------------------------------------------
 familyConstantAttributes = {
+    "Number of Children" : "NCHI",
     }
 
 _fa_e2l = {
+    "Number of Children" : _("Number of Children"),
     }
 
 _fa_l2e = {}

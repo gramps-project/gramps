@@ -69,8 +69,12 @@ class EditPlace:
         self.callback = func
         self.path = db.getSavePath()
         self.not_loaded = 1
-        self.sref = SourceRef(place.getSourceRef())
-
+        self.list_changed = 0
+        if place:
+            self.srcreflist = place.getSourceRefList()
+        else:
+            self.srcreflist = []
+            
         self.selectedIcon = -1
         self.currentImages = []
         self.top_window = libglade.GladeXML(const.placesFile,"placeEditor")
@@ -87,7 +91,6 @@ class EditPlace:
         self.web_url = self.top_window.get_widget("web_url")
         self.web_go = self.top_window.get_widget("web_go")
         self.web_description = self.top_window.get_widget("url_des")
-        self.source_field = self.top_window.get_widget("source_field")
         
         self.loc_list = self.top_window.get_widget("loc_list")
         self.loc_city = self.top_window.get_widget("loc_city")
@@ -107,10 +110,6 @@ class EditPlace:
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
-        if self.sref.getBase():
-            self.source_field.set_text(self.sref.getBase().getTitle())
-        else:
-            self.source_field.set_text("")
 
         self.note.set_point(0)
         self.note.insert_defaults(place.getNote())
@@ -281,8 +280,8 @@ def on_place_apply_clicked(obj):
         mloc.set_city(city)
         utils.modified()
 
-    if not edit.place.getSourceRef().are_equal(edit.sref):
-        edit.place.setSourceRef(edit.sref)
+    if edit.list_changed:
+        edit.place.setSourceRefList(edit.srcreflist)
         utils.modified()
 
     if state != mloc.get_state():
@@ -535,7 +534,10 @@ def on_add_loc_clicked(obj):
 #-------------------------------------------------------------------------
 def on_source_clicked(obj):
     epo = obj.get_data(_PLACE)
-    Sources.SourceEditor(epo.sref,epo.db,epo.source_field)
+    Sources.SourceSelector(epo.srcreflist,epo,src_changed)
+
+def src_changed(parent):
+    parent.list_changed = 1
 
 #-------------------------------------------------------------------------
 #

@@ -120,7 +120,8 @@ def dump_my_event(g,name,event,index=1):
     if event.getNote() != "":
         writeNote(g,"note",event.getNote(),index+1)
 
-    dump_source_ref(g,event.getSourceRef(),index+1)
+    for s in event.getSourceRefList():
+        dump_source_ref(g,s,index+1)
     g.write("%s</event>\n" % sp)
 
 #-------------------------------------------------------------------------
@@ -129,27 +130,26 @@ def dump_my_event(g,name,event,index=1):
 #
 #-------------------------------------------------------------------------
 def dump_source_ref(g,source_ref,index=1):
-    if source_ref:
-        source = source_ref.getBase()
-        if source:
-            p = source_ref.getPage()
-            c = source_ref.getComments()
-            t = source_ref.getText()
-            d = source_ref.getDate().getSaveDate()
-            q = source_ref.getConfidence()
-            g.write("  " * index)
-            if p == "" and c == "" and t == "" and d == "" and q == 2:
-                g.write('<sourceref ref="%s"/>\n' % source.getId())
+    source = source_ref.getBase()
+    if source:
+        p = source_ref.getPage()
+        c = source_ref.getComments()
+        t = source_ref.getText()
+        d = source_ref.getDate().getSaveDate()
+        q = source_ref.getConfidence()
+        g.write("  " * index)
+        if p == "" and c == "" and t == "" and d == "" and q == 2:
+            g.write('<sourceref ref="%s"/>\n' % source.getId())
+        else:
+            if q == 2:
+                g.write('<sourceref ref="%s">\n' % source.getId())
             else:
-                if q == 2:
-                    g.write('<sourceref ref="%s">\n' % source.getId())
-                else:
-                    g.write('<sourceref ref="%s" conf="%d">\n' % (source.getId(),q))
-                write_line(g,"spage",p,index+1)
-                writeNote(g,"scomments",c,index+1)
-                writeNote(g,"stext",t,index+1)
-                write_line(g,"sdate",d,index+1)
-                g.write("%s</sourceref>\n" % ("  " * index))
+                g.write('<sourceref ref="%s" conf="%d">\n' % (source.getId(),q))
+            write_line(g,"spage",p,index+1)
+            writeNote(g,"scomments",c,index+1)
+            writeNote(g,"stext",t,index+1)
+            write_line(g,"sdate",d,index+1)
+            g.write("%s</sourceref>\n" % ("  " * index))
 
 #-------------------------------------------------------------------------
 #
@@ -215,7 +215,8 @@ def dump_name(g,label,name,index=1):
     write_line(g,"title",name.getTitle(),index+1)
     if name.getNote() != "":
         writeNote(g,"note",name.getNote(),index+1)
-    dump_source_ref(g,name.getSourceRef(),index+1)
+    for s in name.getSourceRefList():
+        dump_source_ref(g,s,index+1)
     
     g.write('%s</%s>\n' % (sp,label))
 
@@ -269,11 +270,12 @@ def dump_location(g,loc):
 
 def write_attribute_list(g, list):
     for attr in list:
-        if attr.getSourceRef() or attr.getNote():
+        if len(attr.getSourceRef()) > 0 or attr.getNote():
             g.write('      <attribute%s>\n' % conf_priv(attr))
             write_line(g,"attr_type",attr.getType(),4)
             write_line(g,"attr_value",attr.getValue(),4)
-            dump_source_ref(g,attr.getSourceRef(),4)
+            for s in attr.getSourceRefList():
+                dump_source_ref(g,s,index+1)
             writeNote(g,"note",attr.getNote(),4)
             g.write('      </attribute>\n')
         else:
@@ -328,7 +330,8 @@ def write_place_obj(g,place):
     write_url_list(g, place.getUrlList())
     if place.getNote() != "":
         writeNote(g,"note",place.getNote(),3)
-    dump_source_ref(g,place.getSourceRef(),3)
+    for s in place.getSourceRefList():
+        dump_source_ref(g,s,index+1)
     g.write("    </placeobj>\n")
 
 #-------------------------------------------------------------------------
@@ -412,8 +415,10 @@ def write_xml_data(database, g, callback, sp):
             write_id(g,"person",person,2)
             if person.getGender() == Person.male:
                 write_line(g,"gender","M",3)
-            else:
+            elif person.getGender() == Person.female:
                 write_line(g,"gender","F",3)
+            else:
+                write_line(g,"gender","U",3)
             dump_name(g,"name",person.getPrimaryName(),3)
             for name in person.getAlternateNames():
                 dump_name(g,"aka",name,3)
@@ -441,7 +446,8 @@ def write_xml_data(database, g, callback, sp):
                     write_line(g,"postal",address.getPostal(),4)
                     if address.getNote() != "":
                         writeNote(g,"note",address.getNote(),4)
-                    dump_source_ref(g,address.getSourceRef(),4)
+                    for s in address.getSourceRefList():
+                        dump_source_ref(g,s,index+1)
                     g.write('      </address>\n')
 
             write_attribute_list(g,person.getAttributeList())

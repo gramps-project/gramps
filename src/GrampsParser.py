@@ -414,15 +414,15 @@ class GrampsParser(handler.ContentHandler):
             self.source_ref.confidence = self.conf
         self.source_ref.setBase(source)
         if self.event:
-            self.event.setSourceRef(self.source_ref)
+            self.event.addSourceRef(self.source_ref)
         elif self.address:
-            self.address.setSourceRef(self.source_ref)
+            self.address.addSourceRef(self.source_ref)
         elif self.name:
-            self.name.setSourceRef(self.source_ref)
+            self.name.addSourceRef(self.source_ref)
         elif self.attribute:
-            self.attribute.setSourceRef(self.source_ref)
+            self.attribute.addSourceRef(self.source_ref)
         elif self.placeobj:
-            self.placeobj.setSourceRef(self.source_ref)
+            self.placeobj.addSourceRef(self.source_ref)
         else: 
             print "Sorry, I'm lost"
 
@@ -638,7 +638,13 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_gender(self,tag):
-        self.person.gender = (u2l(tag) == "M")
+        t = u2l(tag)
+        if t == "M":
+            self.person.gender = Person.male
+        elif t == "F":
+            self.person.gender = Person.female
+        else:
+            self.person.gender = Person.unknown
 
     #---------------------------------------------------------------------
     #
@@ -1107,15 +1113,15 @@ class GrampsImportParser(GrampsParser):
         self.source = self.db.findSource(u2l(attrs["ref"]),self.smap)
         self.source_ref.setBase(self.source)
         if self.address:
-            self.address.setSourceRef(self.source_ref)
+            self.address.addSourceRef(self.source_ref)
         elif self.name:
-            self.name.setSourceRef(self.source_ref)
+            self.name.addSourceRef(self.source_ref)
         elif self.event:
-            self.event.setSourceRef(self.source_ref)
+            self.event.addSourceRef(self.source_ref)
         elif self.attribute:
-            self.attribute.setSourceRef(self.source_ref)
+            self.attribute.addSourceRef(self.source_ref)
         elif self.placeobj:
-            self.placeobj.setSourceRef(self.source_ref)
+            self.placeobj.addSourceRef(self.source_ref)
         else: 
             print "Sorry, I'm lost"
 

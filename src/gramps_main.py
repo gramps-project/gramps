@@ -560,10 +560,12 @@ def on_addchild_ok_clicked(obj):
     name.setFirstName(given)
     person.setPrimaryName(name)
 
-    if new_child_win.get_widget("childGender").get_active():
+    if new_child_win.get_widget("childMale").get_active():
         person.setGender(Person.male)
-    else:
+    elif new_child_win.get_widget("childFemale").get_active():
         person.setGender(Person.female)
+    else:
+        person.setGender(Person.unknown)
         
     if not active_family:
         active_family = database.newFamily()
@@ -729,7 +731,7 @@ def on_prel_changed(obj):
     father_index = 1
     mother_index = 1
     for person in people:
-        if person == active_person:
+        if person == active_person or person.getGender() == Person.unknown:
             continue
         elif type == "Partners":
             father_list.append([utils.phonebook_name(person),birthday(person)])
@@ -2255,10 +2257,12 @@ def redisplay_person_list(person):
     alt2col[person] = []
     gname = utils.phonebook_from_name
     if DataFilter.compare(person):
-        if person.getGender():
+        if person.getGender() == Person.male:
             gender = const.male
-        else:
+        elif person.getGender() == Person.female:
             gender = const.female
+        else:
+            gender = const.unknown
         bday = person.getBirth().getDateObj()
         dday = person.getDeath().getDateObj()
         name = person.getPrimaryName()
@@ -2992,10 +2996,12 @@ def apply_filter():
             id2col[person] = pos
             new_alt2col[person] = []
 
-            if person.getGender():
+            if person.getGender() == Person.male:
                 gender = const.male
-            else:
+            elif person.getGender() == Person.female:
                 gender = const.female
+            else:
+                gender = const.unknown
 
             bday = person.getBirth().getDateObj()
             dday = person.getDeath().getDateObj()

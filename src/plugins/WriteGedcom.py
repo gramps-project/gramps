@@ -200,8 +200,28 @@ def add_persons_sources(person):
     for event in elist:
         if private and event.getPrivacy():
             continue
-        source_ref = event.getSourceRef()
-        if source_ref != None:
+        for source_ref in event.getSourceRefList():
+            sbase = source_ref.getBase()
+            if sbase != None and sbase not in source_list:
+                source_list.append(sbase)
+    for event in person.getAddressList():
+        if private and event.getPrivacy():
+            continue
+        for source_ref in event.getSourceRefList():
+            sbase = source_ref.getBase()
+            if sbase != None and sbase not in source_list:
+                source_list.append(sbase)
+    for event in person.getAttibuteList:
+        if private and event.getPrivacy():
+            continue
+        for source_ref in event.getSourceRefList():
+            sbase = source_ref.getBase()
+            if sbase != None and sbase not in source_list:
+                source_list.append(sbase)
+    for name in person.getNameList + [ person.getPrimaryName() ]:
+        if private and event.getPrivacy():
+            continue
+        for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
             if sbase != None and sbase not in source_list:
                 source_list.append(sbase)
@@ -215,8 +235,14 @@ def add_familys_sources(family):
     for event in family.getEventList():
         if private and event.getPrivacy():
             continue
-        source_ref = event.getSourceRef()
-        if source_ref != None:
+        for source_ref in event.getSourceRefList():
+            sbase = source_ref.getBase()
+            if sbase != None and sbase not in source_list:
+                source_list.append(sbase)
+    for attr in family.getAttributeList():
+        if private and event.getPrivacy():
+            continue
+        for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
             if sbase != None and sbase not in source_list:
                 source_list.append(sbase)
@@ -273,8 +299,8 @@ def dump_event_stats(g,event):
         g.write("2 PLAC %s\n" % cnvtxt(event.getPlaceName()))
     if event.getNote() != "":
         write_long_text(g,"NOTE",2,event.getNote())
-    if event.getSourceRef() != None:
-        write_source_ref(g,2,event.getSourceRef())
+    for srcref in event.getSourceRefList():
+        write_source_ref(g,2,srcref)
         
 def fmtline(text,limit,level):
     new_text = []
@@ -340,8 +366,8 @@ def write_person_name(g,name,nick):
         g.write('2 NICK %s\n' % nick)
     if name.getNote() != "":
         write_long_text(g,"NOTE",2,name.getNote())
-    if name.getSourceRef() != None:
-        write_source_ref(g,2,name.getSourceRef())
+    for srcref in name.getSourceRefList():
+        write_source_ref(g,2,srcref)
 
 #-------------------------------------------------------------------------
 #
@@ -431,8 +457,8 @@ def write_person(g,person):
             g.write("2 PLAC %s\n" % cnvtxt(attr.getValue()))
             if attr.getNote() != "":
                 write_long_text(g,"NOTE",2,attr.getNote())
-            if attr.getSourceRef() != None:
-                write_source_ref(g,2,attr.getSourceRef())
+            for srcref in attr.getSourceRefList():
+                write_source_ref(g,2,srclist)
 
         for addr in person.getAddressList():
             if private and addr.getPrivacy():
@@ -448,8 +474,8 @@ def write_person(g,person):
                 g.write("2 CTRY %s\n" % addr.getCountry())
             if addr.getNote() != "":
                 write_long_text(g,"NOTE",2,addr.getNote())
-            if addr.getSourceRef() != None:
-                write_source_ref(g,2,addr.getSourceRef())
+            for srcref in addr.getSourceRefList():
+                write_source_ref(g,2,srcref)
 
     family = person.getMainFamily()
     if family != None and family in family_list:

@@ -22,11 +22,6 @@ import gzip
 _BLKSIZE=512
 nul = '\0'
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
 class TarFile:
     def __init__(self,name):
         self.name = name
@@ -78,3 +73,46 @@ class TarFile:
             self.f.write('\0' * rem)
         self.f.close()
 
+
+class ReadTarFile:
+    def __init__(self,name,wd):
+        self.name = name
+	self.wd = wd
+        self.f = gzip.open(name,"rb")
+        self.pos = 0
+        
+    def extract(self):
+	while 1:
+	    buf = self.f.read(100)
+            if buf == '':
+	        return
+            index = 0
+	    for b in buf:
+	        if b != '\0':
+		    index = index + 1
+	        else:
+		    if index == 0:
+                        return
+		    continue
+	    filename = buf[0:index]
+	    self.f.read(24) # modes
+            l = self.f.read(12)
+            length = int(l,8) 
+	    self.f.read(12)
+	    self.f.read(6)
+	    self.f.read(111)
+
+	    self.f.read(64)
+	    self.f.read(183)
+            foo = open(filename,"wb")
+	    foo.write(self.f.read(length))
+	    foo.close()
+	    self.f.read(_BLKSIZE-(length%_BLKSIZE))
+
+    def close(self):
+        self.f.close()
+
+if __name__ == "__main__":
+	a = ReadTarFile("out.gpkg",".")
+	a.extract()
+	a.close()

@@ -131,7 +131,7 @@ class IndividualPage:
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
         self.doc.write_text(data)
-        if sref != None and sref.getBase() != None :
+        for sref in srefllist:
             self.doc.start_link("#s%d" % self.scnt)
             self.doc.write_text("<SUP>%d</SUP>" % self.scnt)
             self.doc.end_link()
@@ -244,7 +244,7 @@ class IndividualPage:
             self.doc.end_paragraph()
 
         self.doc.start_table("one","IndTable")
-        self.write_normal_row("%s:" % _("Name"), name, name_obj.getSourceRef())
+        self.write_normal_row("%s:" % _("Name"), name, name_obj.getSourceRefList())
         if self.person.getGender() == Person.male:
             self.write_normal_row("%s:" % _("Gender"), \
                                   _("Male"),None)
@@ -306,7 +306,7 @@ class IndividualPage:
             date = event.getDate()
             descr = event.getDescription()
             place = event.getPlaceName()
-            srcref = event.getSourceRef()
+            srcref = event.getSourceRefList()
 
             if date == "" and descr == "" and place == "" and srcref.getBase() == None:
                 continue
