@@ -554,6 +554,9 @@ class GrampsParser:
     def stop_people(self,tag):
         self.person = None
 
+    def stop_person(self,tag):
+        self.db.buildPersonDisplay(self.person.getId())
+
     def stop_description(self,tag):
         self.event.setDescription(u2l(tag))
 
@@ -756,7 +759,7 @@ class GrampsParser:
         "p"          : (None, stop_ptag),
         "parentin"   : (start_parentin,None),
         "people"     : (start_people, stop_people),
-        "person"     : (start_person, None),
+        "person"     : (start_person, stop_person),
         "img"        : (start_photo, stop_photo),
         "objref"     : (start_objref, stop_objref),
         "object"     : (start_object, stop_object),
