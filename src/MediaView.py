@@ -25,9 +25,9 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 import gc
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -51,15 +51,7 @@ import ImgManip
 import RelImage
 import DisplayModels
 import GrampsMime
-
 from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
-
-#-------------------------------------------------------------------------
-#
-# internationalization
-#
-#-------------------------------------------------------------------------
-from gettext import gettext as _
 
 column_names = [
     _('Title'),
@@ -160,7 +152,24 @@ class MediaView:
             self.list.append_column(column)
             index += 1
 
+    def media_add(self,handle_list):
+        for handle in handle_list:
+            self.model.add_row_by_handle(handle)
+
+    def media_update(self,handle_list):
+        for handle in handle_list:
+            self.model.update_row_by_handle(handle)
+
+    def media_delete(self,handle_list):
+        for handle in handle_list:
+            self.model.delete_row_by_handle(handle)
+
     def change_db(self,db):
+        db.connect('media-add',    self.media_add)
+        db.connect('media-update', self.media_update)
+        db.connect('media-delete', self.media_delete)
+        db.connect('media-rebuild',self.build_tree)
+
         self.db = db
         self.build_columns()
         self.build_tree()
@@ -192,7 +201,7 @@ class MediaView:
             image = Utils.find_mime_type_pixbuf('text/plain')
             type_name = _('Note')
         self.preview.set_from_pixbuf(image)
-	del image
+        del image
         gc.collect()
 
         self.mid.set_text(mobj.get_gramps_id())
@@ -267,23 +276,13 @@ class MediaView:
             os.execvp(const.editor,[const.editor, self.obj.get_path()])
     
     def popup_change_description(self, obj):
-        ImageSelect.GlobalMediaProperties(
-            self.db, self.obj, self.update_display, self,self.topWindow)
+        ImageSelect.GlobalMediaProperties(self.db,self.obj,self,self.topWindow)
 
     def on_add_clicked(self,obj):
         """Add a new media object to the media list"""
         import AddMedia
-        am = AddMedia.AddMediaObject(self.db,self.add_object)
+        am = AddMedia.AddMediaObject(self.db)
         am.run()
-
-    def add_object(self,mobj_handle):
-        self.model.add_row_by_handle(mobj_handle)
-
-    def update_display(self,mobj):
-        self.model.update_row_by_handle(mobj.get_handle())
-
-    def add_to_display(self,mobj):
-        self.model.add_row_by_handle(mobj.get_handle())
 
     def on_edit_clicked(self,obj):
         """Edit the properties of an existing media object in the media list"""
@@ -293,9 +292,7 @@ class MediaView:
             handle = list_store.get_value(node,_HANDLE_COL)
             obj = self.db.get_object_from_handle(handle)
             if obj.get_mime_type():
-                ImageSelect.GlobalMediaProperties(
-                    self.db,obj, self.update_display,
-                    self,self.topWindow)
+                ImageSelect.GlobalMediaProperties(self.db,obj,self,self.topWindow)
             else:
                 import NoteEdit
                 NoteEdit.NoteEditor(obj,self.parent,self.topWindow,
@@ -314,8 +311,7 @@ class MediaView:
         handle = store.get_value(node,_HANDLE_COL)
         the_lists = Utils.get_media_referents(handle,self.db)
 
-        ans = ImageSelect.DeleteMediaQuery(handle,self.db,the_lists,
-                                           self.model.delete_row_by_handle)
+        ans = ImageSelect.DeleteMediaQuery(handle,self.db,the_lists)
         if filter(None,the_lists): # quick test for non-emptiness
             msg = _('This media object is currently being used. '
                     'If you delete this object, it will be removed from '
@@ -358,7 +354,7 @@ class MediaView:
 
         self.list.emit_stop_by_name('drag-data-received')
         if data and data.format == 8:
-            d = string.strip(string.replace(data.data,'\0',' '))
+            d = data.data.replace('\0',' ').strip()
             protocol,site,name, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
                 mime = GrampsMime.get_type(name)
@@ -375,7 +371,6 @@ class MediaView:
                 self.build_tree()
                 if GrampsKeys.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,
-                                                      self.update_display,
                                                       self,self.topWindow)
             elif protocol != "":
                 import urllib
@@ -399,5 +394,5 @@ class MediaView:
                 self.db.transaction_commit(trans,_("Add Media Object"))
                 
                 if GrampsKeys.get_media_global():
-                    ImageSelect.GlobalMediaProperties(self.db,photo,None,
+                    ImageSelect.GlobalMediaProperties(self.db,photo,
                                                 self,self.topWindow)

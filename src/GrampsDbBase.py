@@ -127,7 +127,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         'place-add'      : (list,),
         'place-update'   : (list,),
         'place-delete'   : (list,),
-        'place-rebuild'  : None
+        'place-rebuild'  : None,
+        'media-add'      : (list,),
+        'media-update'   : (list,),
+        'media-delete'   : (list,),
+        'media-rebuild'  : None,
         }
     
     def __init__(self):
@@ -285,6 +289,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             old_data = self.media_map.get(handle)
             transaction.add(MEDIA_KEY,handle,old_data)
         self.media_map[handle] = obj.serialize()
+        if transaction and not transaction.batch:
+            if old_data:
+                self.emit('media-update',([handle],))
+            else:
+                self.emit('media-add',([handle],))
 
     def commit_source(self,source,transaction,change_time=None):
         """
@@ -690,8 +699,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
         if place.get_gramps_id() == None:
             place.set_gramps_id(self.find_next_place_gramps_id())
         self.commit_place(place,transaction)
-        if transaction and not transaction.batch:
-            self.emit('place-add',([place.handle],))
         return place.get_handle()
 
     def add_object(self,obj,transaction):
@@ -955,6 +962,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             self.emit('family-rebuild')
             self.emit('place-rebuild')
             self.emit('source-rebuild')
+            self.emit('media-rebuild')
 
     def undo(self):
         """
@@ -1005,8 +1013,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                     self.emit('place-update',([str(handle),]))
             elif key == MEDIA_KEY:
                 if data == None:
+                    self.emit('media-delete',([str(handle),]))
                     del self.media_map[str(handle)]
                 else:
+                    self.emit('media-update',([str(handle),]))
                     self.media_map[str(handle)] = data
 
         if self.undo_callback:

@@ -277,8 +277,8 @@ class GrampsBSDDB(GrampsDbBase):
             self.genderStats.uncount_person (person)
             if transaction != None:
                 transaction.add(PERSON_KEY,handle,person.serialize())
-            if transaction and not transaction.batch:
-                self.emit('person-delete',([str(handle)],))
+                if not transaction.batch:
+                    self.emit('person-delete',([str(handle)],))
             self.person_map.delete(str(handle))
 
     def remove_source(self,handle,transaction):
@@ -286,8 +286,8 @@ class GrampsBSDDB(GrampsDbBase):
             if transaction != None:
                 old_data = self.source_map.get(str(handle))
                 transaction.add(SOURCE_KEY,handle,old_data)
-            if transaction and not transaction.batch:
-                self.emit('source-delete',([handle],))
+                if not transaction.batch:
+                    self.emit('source-delete',([handle],))
             self.source_map.delete(str(handle))
 
     def remove_family(self,handle,transaction):
@@ -295,8 +295,8 @@ class GrampsBSDDB(GrampsDbBase):
             if transaction != None:
                 old_data = self.family_map.get(str(handle))
                 transaction.add(FAMILY_KEY,handle,old_data)
-            if transaction and not transaction.batch:
-                self.emit('family-delete',([str(handle)],))
+                if not transaction.batch:
+                    self.emit('family-delete',([str(handle)],))
             self.family_map.delete(str(handle))
 
     def remove_event(self,handle,transaction):
@@ -311,8 +311,8 @@ class GrampsBSDDB(GrampsDbBase):
             if transaction != None:
                 old_data = self.place_map.get(handle)
                 transaction.add(PLACE_KEY,handle,old_data)
-            if transaction and not transaction.batch:
-                self.emit('place-delete',([handle],))
+                if not transaction.batch:
+                    self.emit('place-delete',([handle],))
             self.place_map.delete(str(handle))
 
     def remove_object(self,handle,transaction):
@@ -320,6 +320,8 @@ class GrampsBSDDB(GrampsDbBase):
             if transaction != None:
                 old_data = self.media_map.get(handle)
                 transaction.add(PLACE_KEY,handle,old_data)
+                if not transaction.batch:
+                    self.emit('media-delete',([handle],))
             self.media_map.delete(str(handle))
 
     def get_person_from_gramps_id(self,val):
