@@ -1,4 +1,4 @@
-#coding: utf-8
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Donald N. Allingham
@@ -141,13 +141,13 @@ class DateParser:
         }
 
     french_to_int = {
-        u'vend\xe9miaire' : 1,  u'brumaire'   : 2,
-        u'frimaire'       : 3,  u'niv\xf4se  ': 4,
-        u'pluvi\xf4se'    : 5,  u'vent\xf4se' : 6,
-        u'germinal'       : 7,  u'flor\xe9al' : 8,
-        u'prairial'       : 9,  u'messidor'   : 10,
-        u'thermidor'      : 11, u'fructidor'  : 12,
-        u'extra'          : 13
+        'vend\xc3\xa9miaire'   : 1,    'brumaire'   : 2,
+        'frimaire'             : 3,    'niv\xc3\xb4se  ': 4,
+        'pluvi\xc3\xb4se'      : 5,    'vent\xc3\xb4se' : 6,
+        'germinal'             : 7,    'flor\xc3\xa9al' : 8,
+        'prairial'             : 9,    'messidor'   : 10,
+        'thermidor'            : 11,   'fructidor'  : 12,
+        'extra'                : 13
         }
 
     islamic_to_int = {
@@ -204,65 +204,8 @@ class DateParser:
         'calculated' : Date.QUAL_CALCULATED,
         }
     
-    _rfc_mon_str  = '(' + '|'.join(_rfc_mons_to_int.keys()) + ')'
-    _rfc_day_str  = '(' + '|'.join(_rfc_days) + ')'
-
-    _bce_str = '(' + '|'.join(bce) + ')'
-    
-    _qual_str = '(' + '|'.join(
-        [ key.replace('.','\.') for key in quality_to_int.keys() ]
-        ) + ')'
-    _mod_str  = '(' + '|'.join(
-        [ key.replace('.','\.') for key in modifier_to_int.keys() ]
-        ) + ')'
-    _mon_str  = '(' + '|'.join(month_to_int.keys()) + ')'
-    _jmon_str = '(' + '|'.join(hebrew_to_int.keys()) + ')'
-    _fmon_str = '(' + '|'.join(french_to_int.keys()) + ')'
-    _pmon_str = '(' + '|'.join(persian_to_int.keys()) + ')'
-    _cal_str  = '(' + '|'.join(calendar_to_int.keys()) + ')'
-    _imon_str = '(' + '|'.join(islamic_to_int.keys()) + ')'
-
-    _bce_re   = re.compile("(.+)\s+%s" % _bce_str)
-    
-    _cal      = re.compile("(.+)\s\(%s\)" % _cal_str,
-                           re.IGNORECASE)
-    _qual     = re.compile("%s\s+(.+)" % _qual_str,
-                           re.IGNORECASE)
-    _span     = re.compile("from\s+(.+)\s+to\s+(.+)",
-                           re.IGNORECASE)
-    _range    = re.compile("(bet.|between)\s+(.+)\s+and\s+(.+)",
-                           re.IGNORECASE)
-    _modifier = re.compile('%s\s+(.*)' % _mod_str,
-                           re.IGNORECASE)
-    _text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % _mon_str,
-                           re.IGNORECASE)
-    _text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % _mon_str,
-                           re.IGNORECASE)
-    _jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % _jmon_str,
-                           re.IGNORECASE)
-    _jtext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % _jmon_str,
-                           re.IGNORECASE)
-    _ftext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % _fmon_str,
-                           re.IGNORECASE)
-    _ftext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % _fmon_str,
-                           re.IGNORECASE)
-    _ptext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % _pmon_str,
-                           re.IGNORECASE)
-    _ptext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % _pmon_str,
-                           re.IGNORECASE)
-    _itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % _imon_str,
-                           re.IGNORECASE)
-    _itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % _imon_str,
-                           re.IGNORECASE)
-    _range2   = re.compile('%s\s+(\d+)-(\d+)\s*,?\s*((\d+)(/\d+)?)?' % _mon_str,
-                           re.IGNORECASE)
-    _numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
-    _iso      = re.compile("(\d+)-(\d+)-(\d+)")
-    _rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
-                        % (_rfc_day_str,_rfc_mon_str))
-
-
     def __init__(self):
+        self.init_strings()
         self.parser = {
             Date.CAL_GREGORIAN : self._parse_greg_julian,
             Date.CAL_JULIAN    : self._parse_greg_julian,
@@ -278,6 +221,74 @@ class DateParser:
         else:
             self.dmy = True
         
+    def init_strings(self):
+        """
+        This method compiles regular expression strings for matching dates.
+        
+        Most of the re's in most languages can stay as is. span and range
+        most likely will need to change. Whatever change is done, this method
+        may be called first as DateParser.init_strings(self) so that the
+        invariant expresions don't need to be repeteadly coded. All differences
+        can be coded after DateParser.init_strings(self) call, that way they
+        override stuff from this method. See DateParserRU() as an example.
+        """
+        self._rfc_mon_str  = '(' + '|'.join(self._rfc_mons_to_int.keys()) + ')'
+        self._rfc_day_str  = '(' + '|'.join(self._rfc_days) + ')'
+
+        self._bce_str = '(' + '|'.join(self.bce) + ')'
+    
+        self._qual_str = '(' + '|'.join(
+            [ key.replace('.','\.') for key in self.quality_to_int.keys() ]
+            ) + ')'
+        self._mod_str  = '(' + '|'.join(
+            [ key.replace('.','\.') for key in self.modifier_to_int.keys() ]
+            ) + ')'
+        self._mon_str  = '(' + '|'.join(self.month_to_int.keys()) + ')'
+        self._jmon_str = '(' + '|'.join(self.hebrew_to_int.keys()) + ')'
+        self._fmon_str = '(' + '|'.join(self.french_to_int.keys()) + ')'
+        self._pmon_str = '(' + '|'.join(self.persian_to_int.keys()) + ')'
+        self._cal_str  = '(' + '|'.join(self.calendar_to_int.keys()) + ')'
+        self._imon_str = '(' + '|'.join(self.islamic_to_int.keys()) + ')'
+
+        self._bce_re   = re.compile("(.+)\s+%s" % self._bce_str)
+    
+        self._cal      = re.compile("(.+)\s\(%s\)" % self._cal_str,
+                           re.IGNORECASE)
+        self._qual     = re.compile("%s\s+(.+)" % self._qual_str,
+                           re.IGNORECASE)
+        self._span     = re.compile("(from)\s+(.+)\s+(to)\s+(.+)",
+                           re.IGNORECASE)
+        self._range    = re.compile("(bet.|between)\s+(.+)\s+(and)\s+(.+)",
+                           re.IGNORECASE)
+        self._modifier = re.compile('%s\s+(.*)' % self._mod_str,
+                           re.IGNORECASE)
+        self._text     = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
+                           re.IGNORECASE)
+        self._text2    = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._mon_str,
+                           re.IGNORECASE)
+        self._jtext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._jmon_str,
+                           re.IGNORECASE)
+        self._jtext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._jmon_str,
+                           re.IGNORECASE)
+        self._ftext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._fmon_str,
+                           re.IGNORECASE)
+        self._ftext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._fmon_str,
+                           re.IGNORECASE)
+        self._ptext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._pmon_str,
+                           re.IGNORECASE)
+        self._ptext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._pmon_str,
+                           re.IGNORECASE)
+        self._itext    = re.compile('%s\s+(\d+)?\s*,?\s*((\d+)(/\d+)?)?' % self._imon_str,
+                           re.IGNORECASE)
+        self._itext2   = re.compile('(\d+)?\s+?%s\s*((\d+)(/\d+)?)?' % self._imon_str,
+                           re.IGNORECASE)
+        self._range2   = re.compile('%s\s+(\d+)-(\d+)\s*,?\s*((\d+)(/\d+)?)?' % self._mon_str,
+                           re.IGNORECASE)
+        self._numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
+        self._iso      = re.compile("(\d+)-(\d+)-(\d+)")
+        self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
+                        % (self._rfc_day_str,self._rfc_mon_str))
+
     def _get_int(self,val):
         """
         Converts the string to an integer if the value is not None. If the
@@ -404,6 +415,8 @@ class DateParser:
         qual = Date.QUAL_NONE
         cal  = Date.CAL_GREGORIAN
         
+        text = text.encode('utf8')
+        
         match = self._cal.match(text)
         if match:
             grps = match.groups()
@@ -421,8 +434,8 @@ class DateParser:
         match = self._span.match(text)
         if match:
             grps = match.groups()
-            start = self._parse_subdate(grps[0],text_parser)
-            stop = self._parse_subdate(grps[1],text_parser)
+            start = self._parse_subdate(grps[1],text_parser)
+            stop = self._parse_subdate(grps[3],text_parser)
             date.set(qual,Date.MOD_SPAN,cal,start + stop)
             return
     
@@ -430,7 +443,7 @@ class DateParser:
         if match:
             grps = match.groups()
             start = self._parse_subdate(grps[1],text_parser)
-            stop = self._parse_subdate(grps[2],text_parser)
+            stop = self._parse_subdate(grps[3],text_parser)
             date.set(qual,Date.MOD_RANGE,cal,start + stop)
             return
 
@@ -514,46 +527,48 @@ class DateParser:
 class DateParserFR(DateParser):
 
     modifier_to_int = {
-        u'avant'    : Date.MOD_BEFORE, 
-        u'av.'      : Date.MOD_BEFORE, 
-        u'av'       : Date.MOD_BEFORE, 
-        u'apr\xe8s' : Date.MOD_AFTER,
-        u'ap.'    : Date.MOD_AFTER,
-        u'ap'     : Date.MOD_AFTER,
-        u'env.'   : Date.MOD_ABOUT,
-        u'env'    : Date.MOD_ABOUT,
-        u'circa'  : Date.MOD_ABOUT,
-        u'c.'     : Date.MOD_ABOUT,
-        u'vers'   : Date.MOD_ABOUT,
+        'avant'    : Date.MOD_BEFORE, 
+        'av.'      : Date.MOD_BEFORE, 
+        'av'       : Date.MOD_BEFORE, 
+        'apr\xc3\xa8s' : Date.MOD_AFTER,
+        'ap.'    : Date.MOD_AFTER,
+        'ap'     : Date.MOD_AFTER,
+        'env.'   : Date.MOD_ABOUT,
+        'env'    : Date.MOD_ABOUT,
+        'circa'  : Date.MOD_ABOUT,
+        'c.'     : Date.MOD_ABOUT,
+        'vers'   : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'gr\xe9gorien'      : Date.CAL_GREGORIAN,
-        u'g'                 : Date.CAL_GREGORIAN,
-        u'julien'            : Date.CAL_JULIAN,
-        u'j'                 : Date.CAL_JULIAN,
-        u'h\xe9breu'         : Date.CAL_HEBREW,
-        u'h'                 : Date.CAL_HEBREW,
-        u'islamique'         : Date.CAL_ISLAMIC,
-        u'i'                 : Date.CAL_ISLAMIC,
-        u'r\xe9volutionnaire': Date.CAL_FRENCH,
-        u'r'                 : Date.CAL_FRENCH,
-        u'perse'             : Date.CAL_PERSIAN,
-        u'p'                 : Date.CAL_PERSIAN,
+        'gr\xc3\xa9gorien'      : Date.CAL_GREGORIAN,
+        'g'                     : Date.CAL_GREGORIAN,
+        'julien'                : Date.CAL_JULIAN,
+        'j'                     : Date.CAL_JULIAN,
+        'h\xc3\xa9breu'         : Date.CAL_HEBREW,
+        'h'                     : Date.CAL_HEBREW,
+        'islamique'             : Date.CAL_ISLAMIC,
+        'i'                     : Date.CAL_ISLAMIC,
+        'r\xc3\xa9volutionnaire': Date.CAL_FRENCH,
+        'r'                     : Date.CAL_FRENCH,
+        'perse'                 : Date.CAL_PERSIAN,
+        'p'                     : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
-        u'estimated'  : Date.QUAL_ESTIMATED,
-        u'est.'       : Date.QUAL_ESTIMATED,
-        u'est'        : Date.QUAL_ESTIMATED,
-        u'calc.'      : Date.QUAL_CALCULATED,
-        u'calc'       : Date.QUAL_CALCULATED,
-        u'calculated' : Date.QUAL_CALCULATED,
+        'estimated'  : Date.QUAL_ESTIMATED,
+        'est.'       : Date.QUAL_ESTIMATED,
+        'est'        : Date.QUAL_ESTIMATED,
+        'calc.'      : Date.QUAL_CALCULATED,
+        'calc'       : Date.QUAL_CALCULATED,
+        'calculated' : Date.QUAL_CALCULATED,
         }
 
-    _span     = re.compile("de\s+(.+)\s+\xe0\s+(.+)",
+    def init_strings(self):
+        DateParser.init_strings(self)
+        self._span     = re.compile("(de)\s+(.+)\s+(\xc3\xa0)\s+(.+)",
                            re.IGNORECASE)
-    _range    = re.compile("(ent.|ent|entre)\s+(.+)\s+et\s+(.+)",
+        self._range    = re.compile("(ent.|ent|entre)\s+(.+)\s+(et)\s+(.+)",
                            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -564,48 +579,56 @@ class DateParserFR(DateParser):
 class DateParserRU(DateParser):
 
     modifier_to_int = {
-        u'до'    : Date.MOD_BEFORE, 
-        u'по'    : Date.MOD_BEFORE,
-        u'после' : Date.MOD_AFTER,
-        u'п.'    : Date.MOD_AFTER,
-        u'с'     : Date.MOD_AFTER,
-        u'ок.'   : Date.MOD_ABOUT,
-        u'около'    : Date.MOD_ABOUT,
-        u'примерно'  : Date.MOD_ABOUT,
-        u'прим.'     : Date.MOD_ABOUT,
-        u'приблизительно'  : Date.MOD_ABOUT,
-        u'приб.'  : Date.MOD_ABOUT,
+        '\xd0\xb4\xd0\xbe'    : Date.MOD_BEFORE, 
+        '\xd0\xbf\xd0\xbe'    : Date.MOD_BEFORE,
+        '\xd0\xbf\xd0\xbe\xd1\x81\xd0\xbb\xd0\xb5' : Date.MOD_AFTER,
+        '\xd0\xbf.'    : Date.MOD_AFTER,
+        '\xd0\xbf'    : Date.MOD_AFTER,
+        '\xd1\x81'     : Date.MOD_AFTER,
+        '\xd0\xbe\xd0\xba' : Date.MOD_ABOUT,
+        '\xd0\xbe\xd0\xba.'   : Date.MOD_ABOUT,
+        '\xd0\xbe\xd0\xba\xd0\xbe\xd0\xbb\xd0\xbe'    : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xbc\xd0\xb5\xd1\x80\xd0\xbd\xd0\xbe'  : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xbc'     : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xbc.'     : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb1\xd0\xbb\xd0\xb8\xd0\xb7\xd0\xb8\xd1\x82\xd0\xb5\xd0\xbb\xd1\x8c\xd0\xbd\xd0\xbe'  : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb1.'  : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb1\xd0\xbb.'  : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb1'  : Date.MOD_ABOUT,
+        '\xd0\xbf\xd1\x80\xd0\xb8\xd0\xb1\xd0\xbb'  : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        u'григорианский'      : Date.CAL_GREGORIAN,
-        u'г'                 : Date.CAL_GREGORIAN,
-        u'юлианский'            : Date.CAL_JULIAN,
-        u'ю'                 : Date.CAL_JULIAN,
-        u'еврейский'         : Date.CAL_HEBREW,
-        u'е'                 : Date.CAL_HEBREW,
-        u'исламский'         : Date.CAL_ISLAMIC,
-        u'и'                 : Date.CAL_ISLAMIC,
-        u'республиканский': Date.CAL_FRENCH,
-        u'р'                 : Date.CAL_FRENCH,
-        u'персидский'             : Date.CAL_PERSIAN,
-        u'п'                 : Date.CAL_PERSIAN,
+        '\xd0\xb3\xd1\x80\xd0\xb8\xd0\xb3\xd0\xbe\xd1\x80\xd0\xb8\xd0\xb0\xd0\xbd\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'   : Date.CAL_GREGORIAN,
+        '\xd0\xb3'                 : Date.CAL_GREGORIAN,
+        '\xd1\x8e\xd0\xbb\xd0\xb8\xd0\xb0\xd0\xbd\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'            : Date.CAL_JULIAN,
+        '\xd1\x8e'                 : Date.CAL_JULIAN,
+        '\xd0\xb5\xd0\xb2\xd1\x80\xd0\xb5\xd0\xb9\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'         : Date.CAL_HEBREW,
+        '\xd0\xb5'         : Date.CAL_HEBREW,
+        '\xd0\xb8\xd1\x81\xd0\xbb\xd0\xb0\xd0\xbc\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'         : Date.CAL_ISLAMIC,
+        '\xd0\xb8'                 : Date.CAL_ISLAMIC,
+        '\xd1\x80\xd0\xb5\xd1\x81\xd0\xbf\xd1\x83\xd0\xb1\xd0\xbb\xd0\xb8\xd0\xba\xd0\xb0\xd0\xbd\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9': Date.CAL_FRENCH,
+        '\xd1\x80'                 : Date.CAL_FRENCH,
+        '\xd0\xbf\xd0\xb5\xd1\x80\xd1\x81\xd0\xb8\xd0\xb4\xd1\x81\xd0\xba\xd0\xb8\xd0\xb9'             : Date.CAL_PERSIAN,
+        '\xd0\xbf'             : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
-        u'оценено'  : Date.QUAL_ESTIMATED,
-        u'оцен.'       : Date.QUAL_ESTIMATED,
-        u'оц.'        : Date.QUAL_ESTIMATED,
-        u'оцен'       : Date.QUAL_ESTIMATED,
-        u'оц'        : Date.QUAL_ESTIMATED,
-        u'вычислено'      : Date.QUAL_CALCULATED,
-        u'вычисл.'       : Date.QUAL_CALCULATED,
-        u'выч.' : Date.QUAL_CALCULATED,
-        u'вычисл'       : Date.QUAL_CALCULATED,
-        u'выч' : Date.QUAL_CALCULATED,
+        '\xd0\xbe\xd1\x86\xd0\xb5\xd0\xbd\xd0\xb5\xd0\xbd\xd0\xbe'  : Date.QUAL_ESTIMATED,
+        '\xd0\xbe\xd1\x86\xd0\xb5\xd0\xbd.'       : Date.QUAL_ESTIMATED,
+        '\xd0\xbe\xd1\x86.'        : Date.QUAL_ESTIMATED,
+        '\xd0\xbe\xd1\x86\xd0\xb5\xd0\xbd'       : Date.QUAL_ESTIMATED,
+        '\xd0\xbe\xd1\x86'        : Date.QUAL_ESTIMATED,
+        '\xd0\xb2\xd1\x8b\xd1\x87\xd0\xb8\xd1\x81\xd0\xbb\xd0\xb5\xd0\xbd\xd0\xbe'      : Date.QUAL_CALCULATED,
+        '\xd0\xb2\xd1\x8b\xd1\x87\xd0\xb8\xd1\x81\xd0\xbb.'       : Date.QUAL_CALCULATED,
+        '\xd0\xb2\xd1\x8b\xd1\x87.' : Date.QUAL_CALCULATED,
+        '\xd0\xb2\xd1\x8b\xd1\x87\xd0\xb8\xd1\x81\xd0\xbb'       : Date.QUAL_CALCULATED,
+        '\xd0\xb2\xd1\x8b\xd1\x87' : Date.QUAL_CALCULATED,
         }
 
-    _span     = re.compile("(с|от)\s+(.+)\s+(по|до)\s+(.+)",
+    def init_strings(self):
+        DateParser.init_strings(self)
+        self._span     = re.compile("(\xd1\x81|\xd0\xbe\xd1\x82)\\s+(.+)\\s+(\xd0\xbf\xd0\xbe|\xd0\xb4\xd0\xbe)\\s+(.+)",
                            re.IGNORECASE)
-    _range    = re.compile("(между|меж|меж.)\s+(.+)\s+и\s+(.+)",
+        self._range    = re.compile("(\xd0\xbc\xd0\xb5\xd0\xb6\xd0\xb4\xd1\x83|\xd0\xbc\xd0\xb5\xd0\xb6|\xd0\xbc\xd0\xb5\xd0\xb6.)\\s+(.+)\\s+(\xd0\xb8)\\s+(.+)",
                            re.IGNORECASE)

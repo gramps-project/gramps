@@ -1,3 +1,8 @@
+2004-11-10 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateHandler.py: Add Russian displayer.
+	* src/DateParser.py: Correct parsers -- proper unicode conversions.
+	* src/DateDisplay.py: Add Russian displayer.
+
 2004-11-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: handle the new "dont-ask" key
 	* src/GrampsGconfKeys.py: handle the new "dont-ask" key
