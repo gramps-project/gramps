@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -423,7 +423,7 @@ class GrampsParser:
 
     def start_last(self,attrs):
         if attrs.has_key('prefix'):
-            self.name.set_prefix(attrs['prefix'])
+            self.name.set_surname_prefix(attrs['prefix'])
         
     def start_note(self,attrs):
         self.in_note = 1
