@@ -617,9 +617,9 @@ class GrampsParser:
         self.event = None
 
     def stop_name(self,tag):
-        self.person.PrimaryName = self.name
         if self.name.getType() == "":
             self.name.setType("Birth Name")
+        self.person.setPrimaryName (self.name)
         self.name = None
 
     def stop_place(self,tag):
@@ -667,11 +667,11 @@ class GrampsParser:
     def stop_gender(self,tag):
         t = tag
         if t == "M":
-            self.person.gender = RelLib.Person.male
+            self.person.setGender (RelLib.Person.male)
         elif t == "F":
-            self.person.gender = RelLib.Person.female
+            self.person.setGender (RelLib.Person.female)
         else:
-            self.person.gender = RelLib.Person.unknown
+            self.person.setGender (RelLib.Person.unknown)
 
     def stop_stitle(self,tag):
         self.source.setTitle(tag)

@@ -86,6 +86,7 @@ class EditPerson:
         self.update_death = 0
         self.pdmap = {}
         self.add_places = []
+        self.should_guess_gender = (self.original_id == '')
 
         for key in db.getPlaceKeys():
             p = db.getPlaceDisplay(key)
@@ -318,6 +319,8 @@ class EditPerson:
             "on_update_attr_clicked"    : self.on_update_attr_clicked,
             "on_update_url_clicked"     : self.on_update_url_clicked,
             "on_web_go_clicked"         : self.on_web_go_clicked,
+            "on_gender_activate"        : self.on_gender_activate,
+            "on_givenName_focus_out_event": self.on_givenName_focus_out_event,
             })
 
         self.update_birth_death()
@@ -437,6 +440,21 @@ class EditPerson:
         self.build_bap_menu()
         self.build_seal_menu()
         self.build_endow_menu()
+
+    def on_gender_activate (self, button):
+        self.should_guess_gender = 0
+
+    def on_givenName_focus_out_event (self, entry, event):
+        if not self.should_guess_gender:
+            return
+
+        gender = self.db.genderStats.guess_gender (entry.get_text ())
+        if gender == RelLib.Person.unknown:
+            self.is_unknown.set_active (1)
+        elif gender == RelLib.Person.male:
+            self.is_male.set_active (1)
+        else:
+            self.is_female.set_active (1)
 
     def build_menu(self,list,task,opt_menu):
         menu = gtk.Menu()
