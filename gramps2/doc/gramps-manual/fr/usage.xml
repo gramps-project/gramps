@@ -357,7 +357,7 @@
       <sect3 id="gramps-spec-rel">
         <title>Pour spécifier une relation</title> 
 	<para>Pour spécifier une relation entre deux personnes, aller d'abord
-	dans la vue par famille (<xref linkend="family-fig"/>). 
+	dans la vue par famille (<xref linkend="family-fig"/>).
 	Cliquez ensuite dans l'un des deux boutons en haut à droite de la zone
 	de l'époux/se. Celui du haut ajoute une nouvelle personne dans la base
 	de données et la met en relation avec la personne active. 
@@ -577,7 +577,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
+	la base de données. Si des modifications avaient été faites,
 	une fenêtre d'avertissement proposera le choix entre fermer
 	sans écrire les données dans la base, annuler la commande de fermeture
 	ou écrire les données dans la base. 
@@ -606,7 +606,7 @@
 	et de décès. Certains de ces champs de saisie (<guilabel>Nom de Famille</guilabel>,
 	<guilabel>Type</guilabel>, ainsi que les <guilabel>Lieux</guilabel>) 
 	permettent d'ouvrir la liste des possibilités par un menu déroulant, 
-	à l'aide de la flèche vers le bas présente à droite du champ. 
+	à l'aide de la flèche vers le bas présente à droite du champ.
 	Les choix proposés par le menu déroulant sont ceux déjà connus
 	dans la base de données. &app; essaiera aussi de deviner la suite
 	du texte que vous aurez commencé à saisir à partir des données déjà connues.
@@ -1028,7 +1028,7 @@
 	permet d'écrire les modofications dans la base de données et ferme
 	la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
+	la base de données. Si des modifications avaient été faites,
 	une fenêtre d'avertissement proposera le choix entre fermer
 	sans écrire les données dans la base, annuler la commande de fermeture
 	ou écrire les données dans la base. </para>
@@ -1088,7 +1088,7 @@
 	<para>
 	Les boutons 
 	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton>
-	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
+	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter,
 	modifier et supprimer un attribut et sa valeur pour la relation. 
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
@@ -1156,7 +1156,7 @@
 	tous les objets multimédias conservés dans la base de données. 
 	Les objets qui sont des fichiers-images valides sont représentés par
 	une vignette. Les autres comme des enregistrements sonores ou video sont
-	représentés par une icône générique. 
+	représentés par une icône générique.
 	</para>
 	<para>
 	Les boutons
@@ -1194,7 +1194,7 @@
       <sect3 id="adv-src"> 
         <title>Modification des données des sources</title> 
 	<para> Pour modifier les données sur les sources, allez dans la vue
-	Sources et sélectionnez celle que vous voulez modifier. 
+	Sources et sélectionnez celle que vous voulez modifier.
 	Double-cliquez sur la ligne voulue ou cliquez sur le bouton
 	<guibutton>Modifier</guibutton> dans la barre d'outils pour
 	lancer le dialogue <guilabel>Affichage des Sources</guilabel> : </para>
@@ -1217,11 +1217,8 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. </para> 
-	
+	la base de données. </para>
+
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
 	dans l'onglet : une étiquette écrite en caractères gras marque
@@ -1317,7 +1314,7 @@
 	<title>Dialogue Editeur de Lieux</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-plc.png" format="PNG"/></imageobject>
-	<textobject> 
+	<textobject>
 	<phrase>Montre le dialogue Editeur de Lieux. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
@@ -1330,10 +1327,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. </para> 
+	la base de données. </para>
 	
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
@@ -1347,7 +1341,7 @@
 		<varlistentry><term><guilabel>Général</guilabel></term>
 		<listitem><para>L'onglet 
 	<guilabel>Général</guilabel> permet la modification des caractéristiques
-	les plus communes du lieu : 
+	les plus communes du lieu :
 	le nom sous lequel il apparaît dans la base de données, 
 	la ville, la paroisse, le département, la région, le pays, 
 	la longitude et la latitude. 
@@ -1421,7 +1415,7 @@
 		<listitem>
 	<para>L'onglet <guilabel>Galerie</guilabel> affiche les données des objets multimédias
 	associés au lieu et permet leur modification. La partie centrale de la fenêtre montre
-	tous les objets multimédias conservés dans la base de données. 
+	tous les objets multimédias conservés dans la base de données.
 	Les objets qui sont des fichiers-images valides sont représentés par
 	une vignette. Les autres comme des enregistrements sonores ou video sont
 	représentés par une icône générique. 
@@ -1504,10 +1498,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. </para> 
+	la base de données. </para>
 
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
@@ -1579,7 +1570,7 @@
 	base de données qui font référence à l'objet multimédia. Si cet objet
 	n'est jamais référencé, la liste est vide. Si au contraire
 	il est référencé de nombreuses fois, la liste montrera tous les éléments
-	de la base de données concernés. 
+	de la base de données concernés.
 	Elle peut être triée par n'importe quelle colonne, en cliquant sur
 	son en-tête : 
 	<guilabel>Type</guilabel>, <guilabel>Objet</guilabel> or
@@ -1618,10 +1609,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. </para> 
+	la base de données. </para>
 	
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
@@ -1658,7 +1646,7 @@
 	Les boutons 
 	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
 	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
-	modifier et supprimer une source pour l'évènement. 
+	modifier et supprimer une source pour l'évènement.
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
 	sélectionné une source dans la liste.
@@ -1729,10 +1717,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. </para> 
+	la base de données. </para>
 
 	<para> La source peut être choisie parmi celles définies dans la base de données
 	à l'aide de la liste déroulante <guilabel>Titre</guilabel>. Si vous voulez
@@ -1771,10 +1756,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. </para> 
+	la base de données. </para>
 	
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
@@ -1863,10 +1845,7 @@
 	permet d'écrire les modofications dans la base de données et ferme
 	la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. </para>
+	la base de données. </para>
 	
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
@@ -1957,11 +1936,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. 
-	</para>
+	la base de données. </para>
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
 	dans l'onglet : une étiquette écrite en caractères gras marque
@@ -2049,11 +2024,7 @@
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
-	la base de données. Si des modificatiàons avaient été faites, 
-	une fenêtre d'avertissement proposera le choix entre fermer
-	sans écrire les données dans la base, annuler la commande de fermeture
-	ou écrire les données dans la base. 
-	</para>
+	la base de données. </para>
 	<para>Le nom du témoin peut être saisi de deux façons différentes, 
 	selon que le témoin est connu dans la base de données ou pas
 	(cas d'une personne sans relation familiale avec les individus de
@@ -2091,7 +2062,7 @@
 	<para> Le champ <guilabel>Commentaire</guilabel> vous permet de conserver 
 	tout commentaire concernant le témoignage. Si vous voulez une quelconque 
 	donnée sur ce témoignage, il vous suffit de saisir votre texte
-	dans la zone de saisie. 
+	dans la zone de saisie.
 	</para>
 	<para>
 	Remarquez que le commentaire concerne le témoignage et pas le témoin.
@@ -2133,7 +2104,7 @@
 	est le moyen de corriger les données. </para>
         
 	<para> Pour exécuter une fusion, sélectionnez deux lieux dans
-	la vue Lieux. Ceci se fait en sélectionnant le premier lieu, 
+	la vue Lieux. Ceci se fait en sélectionnant le premier lieu,
 	puis le second en maintenant enfoncée la touche <keycap>Ctrl</keycap>.
 	</para>
         
@@ -2228,7 +2199,7 @@
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-pedigree"> 
+      <sect3 id="gramps-nav-pedigree">
         <title>L'utilisation de la vue en arborescence</title> 
 	<para> La vue en arborescence (voir <xref linkend="pedigree-view"/>) vous
 	permet aussi de vous déplacer dans l'arbre familial. 
@@ -2370,7 +2341,7 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-find-places"> 
-        <title>Recherche de Lieu</title> 
+        <title>Recherche de Lieu</title>
 	<para> Pour chercher un lieu dans la base de données, sélectionnez 
         <menuchoice><guimenu>Modifier</guimenu><guimenuitem>Chercher...</guimenuitem></menuchoice> 
         dans une vue Lieux. Ceci ouvre le dialogue <guilabel>Chercher un Lieu</guilabel>
@@ -2463,7 +2434,7 @@
 	transforme ensuite le graphe en Postscript, JPEG, PNG, 
 	VRML, SVG ou encore beaucoup d'autres formats. 
 	Les outils GraphWiz sont disponibles gratuitement sur le
-	<ulink url="http://www.graphviz.org" type="http">site 
+	<ulink url="http://www.graphviz.org" type="http">site
 	GraphViz</ulink>. Les options spécifiques sont des filtres sur les 
 	personnes, le nombre de génération prises en compte ainsi
 	que des options pour GraphWiz liées à la pagination, la couleur
@@ -2894,9 +2865,9 @@
 	<para>Quand vous le lancez, le dialogue des <guilabel>Filtres Personnalisés</guilabel> 
 	est affiché et liste tous les filtres que vous avez déjà définis (s'il y en a). 
 	Cliquez sur le bouton <guibutton>Ajouter...</guibutton> pour définir un nouveau filtre. 
-	Quand vous l'avez défini, vous pouvez modifier, tester et supprimer les 
+	Quand vous l'avez défini, vous pouvez modifier, tester et supprimer les
 	filtres sélectionnés avec les boutons <guibutton>Modifier...</guibutton>, 
-	<guibutton>Test...</guibutton> et <guibutton>Supprimer...</guibutton>. 
+	<guibutton>Test...</guibutton> et <guibutton>Supprimer</guibutton>. 
 	Tous les filtres affichés dans la liste seront automatiquement enregistrés
 	avec votre base de données et seront disponibles pour les sessions
 	suivantes de &app;. </para>
