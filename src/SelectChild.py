@@ -66,17 +66,29 @@ class SelectChild:
         self.add_child = self.xml.get_widget("addChild")
         self.add_child.set_column_visibility(1,Config.id_visible)
 
-        father = self.family.getFather()
-        if father != None:
-            fname = father.getPrimaryName().getName()
-            ftitle = _("Relationship to %s") % fname
-            self.xml.get_widget("flabel").set_text(ftitle)
+        if (self.family):
+            father = self.family.getFather()
+            mother = self.family.getMother()
 
-        mother = self.family.getMother()
-        if mother != None:
-            mname = mother.getPrimaryName().getName()
-            mtitle = _("Relationship to %s") % mname
-            self.xml.get_widget("mlabel").set_text(mtitle)
+            if father != None:
+                fname = father.getPrimaryName().getName()
+                label = _("Relationship to %s") % fname
+                self.xml.get_widget("flabel").set_text(label)
+
+            if mother != None:
+                mname = mother.getPrimaryName().getName()
+                label = _("Relationship to %s") % mname
+                self.xml.get_widget("mlabel").set_text(label)
+        else:
+            fname = self.person.getPrimaryName().getName()
+            label = _("Relationship to %s") % fname
+            
+            if self.person.getGender() == Person.male:
+                self.xml.get_widget("flabel").set_text(label)
+                self.xml.get_widget("mrel_combo").set_sensitive(0)
+            else:
+                self.xml.get_widget("mlabel").set_text(label)
+                self.xml.get_widget("frel_combo").set_sensitive(0)
 
         self.mrel = self.xml.get_widget("mrel")
         self.frel = self.xml.get_widget("frel")
