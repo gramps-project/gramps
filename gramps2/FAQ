@@ -265,7 +265,7 @@ A good bug report would include:
        (available through Help->About menu item)
    (2) Language under which gramps was run
        (available by executing "echo $LANG" in your terminal)
-   (3) Symptomps indicating that this is indeed a bug
+   (3) Symptoms indicating that this is indeed a bug
    (4) Any Traceback messages, error messages, warnings, etc, that showed up
        in your terminal or a in separate traceback window
 
