@@ -2494,6 +2494,106 @@ def on_preferences_activate(obj):
     
 #-------------------------------------------------------------------------
 #
+#
+#
+#-------------------------------------------------------------------------
+def build_report_menu(report_item):
+
+    report_menu = GtkMenu()
+    report_menu.show()
+    report_item.set_submenu(report_menu)
+    
+    hash = {}
+    for report in Plugins.reports:
+        if report.__dict__.has_key("get_name"):
+            doc = report.get_name()
+        else:
+            doc = report.__doc__
+        info = string.split(doc,"/")
+
+        if hash.has_key(info[0]):
+            hash[info[0]].append((info[1],report.report))
+        else:
+            hash[info[0]] = [(info[1],report.report)]
+
+    catlist = hash.keys()
+    catlist.sort()
+    for key in catlist:
+        entry = GtkMenuItem(key)
+        entry.show()
+        report_menu.append(entry)
+        submenu = GtkMenu()
+        submenu.show()
+        entry.set_submenu(submenu)
+        list = hash[key]
+        list.sort()
+        for name in list:
+            subentry = GtkMenuItem(name[0])
+            subentry.show()
+            subentry.connect("activate",menu_report,name[1])
+            submenu.append(subentry)
+            
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def menu_report(obj,task):
+    if active_person:
+        task(database,active_person)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_tools_menu(report_item):
+
+    report_menu = GtkMenu()
+    report_menu.show()
+    report_item.set_submenu(report_menu)
+    
+    hash = {}
+    for report in Plugins.tools:
+        if report.__dict__.has_key("get_name"):
+            doc = report.get_name()
+        else:
+            doc = report.__doc__
+        info = string.split(doc,"/")
+
+        if hash.has_key(info[0]):
+            hash[info[0]].append((info[1],report.runTool))
+        else:
+            hash[info[0]] = [(info[1],report.runTool)]
+
+    catlist = hash.keys()
+    catlist.sort()
+    for key in catlist:
+        entry = GtkMenuItem(key)
+        entry.show()
+        report_menu.append(entry)
+        submenu = GtkMenu()
+        submenu.show()
+        entry.set_submenu(submenu)
+        list = hash[key]
+        list.sort()
+        for name in list:
+            subentry = GtkMenuItem(name[0])
+            subentry.show()
+            subentry.connect("activate",menu_tools,name[1])
+            submenu.append(subentry)
+            
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def menu_tools(obj,task):
+    if active_person:
+        task(database,active_person,update_display)
+    
+#-------------------------------------------------------------------------
+#
 # Main program
 #
 #-------------------------------------------------------------------------
@@ -2517,6 +2617,9 @@ def main(arg):
         Filter.load_filters(path)
 
     gtop = libglade.GladeXML(const.gladeFile, "gramps")
+
+    build_report_menu(gtop.get_widget("reports_menu"))
+    build_tools_menu(gtop.get_widget("tools_menu"))
     
     statusbar   = gtop.get_widget("statusbar")
     topWindow   = gtop.get_widget("gramps")
