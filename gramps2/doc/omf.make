@@ -26,7 +26,7 @@
 # 	Version: 0.1.2 (last updated: March 20, 2002)
 #
 
-omf_dest_dir=$(datadir)/omf/gramps
+omf_dest_dir=$(datadir)/omf/@PACKAGE@
 scrollkeeper_localstate_dir = $(localstatedir)/scrollkeeper
 
 omf: omf_timestamp
