@@ -1,5 +1,7 @@
 2003-12-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/dialog.glade: Add format controls for notes.
+	* src/marriage.glade: Add format controls for notes.
+	* src/gramps.glade: Add format controls for notes.
 
 2003-12-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py (write_note): Implement function.
