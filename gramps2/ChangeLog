@@ -35,6 +35,7 @@
 	last file, last export, then home folders. 
 	(NewNativeDbPrompter): Try last file, last import, last export folders, 
 	then fall back to home.
+	* src/data/Makefile.am: Kill gconfd using SIGTERM -- HUP did not work.
 
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.
