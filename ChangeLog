@@ -1,3 +1,11 @@
+2005-01-04 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgeHandler.py: Support for CODE for CLI mode.
+	* src/Plugins.py: Use 'text' instead of 'doc'.
+	* src/Report.py: Support for CODE reports.
+	* src/ReportOptions.py: Paper-setting methods for runtime.
+	* src/const.py.in: Label change.
+	* src/plugins/GraphViz.py: Convert to new scheme.
+
 2005-01-04  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Plugins.py: move non-gui functions to PluginMgr.py
 	* src/PluginMgr.py: Non-gui functions for plugins
