@@ -811,6 +811,7 @@ class GedcomParser:
                 self.person.add_address(addr)
             elif matches[1] == "BIRT":
                 event = RelLib.Event()
+                self.db.add_event(event)
                 if self.person.get_birth_id():
                     event.set_name("Alternate Birth")
                     self.person.add_event_id(event.get_id())
@@ -818,7 +819,7 @@ class GedcomParser:
                     event.set_name("Birth")
                     self.person.set_birth_id(event.get_id())
                 self.parse_person_event(event,2)
-                self.db.add_event(event)
+                self.db.commit_event(event)
             elif matches[1] == "ADOP":
                 event = RelLib.Event()
                 event.set_name("Adopted")
@@ -827,6 +828,7 @@ class GedcomParser:
                 self.db.add_event(event)
             elif matches[1] == "DEAT":
                 event = RelLib.Event()
+                self.db.add_event(event)
                 if self.person.get_death_id():
                     event.set_name("Alternate Death")
                     self.person.add_event_id(event.get_id())
@@ -834,7 +836,7 @@ class GedcomParser:
                     event.set_name("Death")
                     self.person.set_death_id(event.get_id())
                 self.parse_person_event(event,2)
-                self.db.add_event(event)
+                self.db.commit_event(event)
             elif matches[1] == "EVEN":
                 event = RelLib.Event()
                 if matches[2]:
@@ -919,7 +921,7 @@ class GedcomParser:
                 source_ref = self.handle_source(matches,level+1)
                 self.person.get_primary_name().add_source_reference(source_ref)
             elif matches[1] == "_PRIMARY":
-                type = matches[1]
+                pass #type = matches[1]
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
                     note = matches[2] + self.parse_continue_data(level+1)
