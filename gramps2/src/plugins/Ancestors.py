@@ -619,8 +619,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                 citation += "[%d" % ind
                 comments = ref.get_comments ()
                 if comments and comments.find ('\n') == -1:
-    	            # Work around rstrip('.') which is not working 
-	                # with python2.2.1 and earlier
+                    # Work around rstrip('.') which is not working 
+                    # with python2.2.1 and earlier
                     #citation += " - %s" % comments.rstrip ('.')
                     comments = comments.rstrip()
                     if comments[-1] == '.':
@@ -654,7 +654,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             # with python2.2.1 and earlier
             nick = nick.strip()
             if nick[0] == '"':
-            	nick = nick[1:]
+                nick = nick[1:]
             if nick[-1] == '"':
                 nick = nick[:-1]
                 name += ' ("%s")' % nick
