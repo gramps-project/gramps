@@ -1144,6 +1144,7 @@ class GedcomWriter:
             else:
                 self.writeln("")
             if ref.getText():
+                ref_text = ref.getText()
                 self.write_long_text("TEXT",level+1,self.cnvtxt(ref_text))
 
         if ref.getComments():
