@@ -1150,7 +1150,7 @@ class GedcomParser:
                     photo = RelLib.MediaObject()
                     photo.set_path(path)
                     photo.set_description(title)
-                    photo.set_mime_type(Utils.get_mime_type(path))
+                    photo.set_mime_type(Utils.get_mime_type(os.path.abspath(path)))
                     self.db.add_object(photo, self.trans)
                     self.media_map[path] = photo.get_handle()
                 else:
@@ -1192,7 +1192,7 @@ class GedcomParser:
                 photo = RelLib.MediaObject()
                 photo.set_path(path)
                 photo.set_description(title)
-                photo.set_mime_type(Utils.get_mime_type(path))
+                photo.set_mime_type(Utils.get_mime_type(os.path.abspath(path)))
                 self.db.add_object(photo, self.trans)
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
