@@ -721,6 +721,17 @@ class Url:
         """returns the description of the URL"""
         return self.desc
 
+    def are_equal(self,other):
+        """returns 1 if the specified URL is the same as the instance"""
+        if other == None:
+            return 0
+        if self.path != other.path:
+            return 0
+        if self.desc != other.desc:
+            return 0
+        return 1
+    
+        
 class Person:
     """Represents an individual person in the gramps database"""
     

@@ -785,7 +785,7 @@ def save_file(filename,comment):
 # Edit Person window for specified people
 #
 #-------------------------------------------------------------------------
-def load_active_person(obj):
+def load_selected_people(obj):
     """Display the selected people in the EditPerson display"""
     if len(person_list.selection) > 5:
         msg = _("You requested too many people to edit at the same time")
@@ -795,6 +795,9 @@ def load_active_person(obj):
             person = person_list.get_row_data(p)
             load_person(person[0])
 
+def load_active_person(obj):
+    load_person(active_person)
+    
 def on_edit_spouse_clicked(obj):
     """Display the active spouse in the EditPerson display"""
     load_person(active_spouse)
@@ -2656,6 +2659,7 @@ def main(arg):
         "on_delete_media_clicked"           : on_delete_media_clicked,
         "on_delete_sp_clicked"              : on_delete_sp_clicked,
         "on_edit_active_person"             : load_active_person,
+        "on_edit_selected_people"           : load_selected_people,
         "on_edit_bookmarks_activate"        : on_edit_bookmarks_activate,
         "on_edit_father_clicked"            : on_edit_father_clicked,
         "on_edit_media_clicked"             : on_edit_media_clicked,

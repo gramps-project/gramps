@@ -1110,8 +1110,8 @@
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>clicked</name>
-	      <handler>on_edit_active_person</handler>
-	      <last_modification_time>Fri, 01 Dec 2000 04:16:55 GMT</last_modification_time>
+	      <handler>on_edit_selected_people</handler>
+	      <last_modification_time>Fri, 26 Oct 2001 12:53:20 GMT</last_modification_time>
 	    </signal>
 	    <label>Edit/View Person</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
