@@ -18,17 +18,31 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
 import gtk.glade
 
+#-------------------------------------------------------------------------
+#
+# gramps modules
+#
+#-------------------------------------------------------------------------
 import Utils
 import AutoComp
 import const
 import RelLib
 from intl import gettext as _
 
-
+#-------------------------------------------------------------------------
+#
+# QuickAdd
+#
+#-------------------------------------------------------------------------
 class QuickAdd:
-    def __init__(self,db,sex,callback):
+    def __init__(self,db,sex,callback,default_name = ""):
         self.db = db
         self.callback = callback
         
@@ -41,15 +55,19 @@ class QuickAdd:
 
         self.window = self.xml.get_widget("addperson")
         title = self.xml.get_widget('title')
+        combo = self.xml.get_widget("surnameCombo")
+        self.surname = self.xml.get_widget("surname")
+        self.given = self.xml.get_widget("given")
         
         Utils.set_titles(self.window,title, _('Add Person'))
         
-        self.c = AutoComp.AutoCombo(self.xml.get_widget("surnameCombo"),
-                                    self.db.getSurnames())
-
+        self.c = AutoComp.AutoCombo(combo,self.db.getSurnames())
+        if default_name:
+            self.surname.set_text(default_name)
+            
     def close(self,obj):
-        surname = self.xml.get_widget("surname").get_text()
-        given = self.xml.get_widget("given").get_text()
+        surname = self.surname.get_text()
+        given = self.given.get_text()
         person = RelLib.Person()
         name = person.getPrimaryName()
         name.setSurname(surname)

@@ -87,11 +87,12 @@ class DispBox:
         self.group.set_data('p',person)
 
     def cleanup(self):
-       self.shadow.destroy()
-       self.bkgnd.destroy()
-       self.textbox.destroy()
-       self.group.destroy()
-
+        self.shadow.destroy()
+        self.bkgnd.destroy()
+        self.textbox.destroy()
+        self.group.destroy()
+        return
+    
     def group_event(self,obj,event):
         """Handle events over a drawn box. Doubleclick would edit,
            shift doubleclick would change the active person, entering
@@ -99,7 +100,7 @@ class DispBox:
            box returns it to the original size and information"""
 
         if event.type == gtk.gdk._2BUTTON_PRESS:
-                return 1
+            return 1
         elif event.type == gtk.gdk.ENTER_NOTIFY:
             self.expand()
             return 0
@@ -110,14 +111,12 @@ class DispBox:
 
     def expand(self):
         """Expand a box to include additional information"""
-        self.group.raise_to_top()
         self.textbox.set(text=self.exp)
         self.bkgnd.set(y1=-self.h,y2=self.h*2)
         self.shadow.set(y1=-self.h+_PAD,y2=self.h*2+_PAD)
-
+        
     def shrink(self):
         """Expand a box to include additional information"""
-        self.group.raise_to_top()
         self.textbox.set(text=self.name)
         self.bkgnd.set(y1=0,y2=self.h)
         self.shadow.set(y1=_PAD,y2=self.h+_PAD)

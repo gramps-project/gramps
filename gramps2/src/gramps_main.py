@@ -1183,7 +1183,7 @@ class Gramps:
         model.selection.select_iter(iter);
         itpath = model.model.get_path(iter)
         col = model.tree.get_column(0)
-        model.tree.scroll_to_cell(itpath,col,1,0.5,0.0)
+        model.tree.scroll_to_cell(itpath,col,1,0.5,0)
             
     def change_active_person(self,person):
         if person != self.active_person:
@@ -1410,6 +1410,8 @@ class Gramps:
             self.db.buildPersonDisplay(epo.person.getId())
             self.change_active_person(epo.person)
             self.redisplay_person_list(epo.person)
+        if self.views.get_current_page() == 1:
+            self.family_view.load_family()
         for p in plist:
             self.place_view.new_place_after_edit(p)
 
