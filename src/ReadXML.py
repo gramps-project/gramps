@@ -30,6 +30,7 @@ import gzip
 import os
 from gnome.ui import *
 
+import sys
 import xml.sax
 import xml.sax.saxutils
 
@@ -38,11 +39,15 @@ import xml.sax.saxutils
 # Try to abstract SAX1 from SAX2
 #
 #-------------------------------------------------------------------------
-try:
-    import xml.sax.saxexts
-    sax = 1
-except:
+
+if sys.version[0] != '1':
     sax = 2
+else:
+    try:
+        import xml.sax.saxexts
+        sax = 1
+    except:
+        sax = 2
 
 #-------------------------------------------------------------------------
 #

@@ -23,6 +23,7 @@ from Researcher import Researcher
 
 import string
 import os
+import sys
 
 from xml.sax import handler
 
@@ -31,11 +32,14 @@ from xml.sax import handler
 # Try to abstract SAX1 from SAX2
 #
 #-------------------------------------------------------------------------
-try:
-    import xml.sax.saxexts
-    sax = 1
-except:
+if sys.version[0] != '1':
     sax = 2
+else:
+    try:
+        import xml.sax.saxexts
+        sax = 1
+    except:
+        sax = 2
 
 from latin_utf8 import utf8_to_latin
 

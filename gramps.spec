@@ -1,4 +1,4 @@
-%define ver      0.2.0
+%define ver      0.3.0
 %define rel      1
 %define prefix   /usr
 
@@ -13,8 +13,9 @@ BuildRoot: /var/tmp/%{name}-%{version}-root
 
 URL: http://gramps.sourceforge.net
 
-Requires: python >= 1.5.2
+Requires: python = 1.5.2
 Requires: pygnome >= 1.0.53
+Requires: pygnome-libglade
 Requires: PyXML
 
 %description
@@ -53,6 +54,8 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/pixmaps/gramps.png
 # %{prefix}/share/gramps/*
 %{prefix}/share/locale/*/LC_MESSAGES/gramps.mo
+%{prefix}/share/example/gedcom/*
+%{prefix}/share/example/gramps/*
 %{prefix}/share/gramps/*.pyo
 %{prefix}/share/gramps/*.so
 %{prefix}/share/gramps/*.py
@@ -62,5 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/gramps/filters/*.py
 %{prefix}/share/gramps/filters/*.pyo
 %{prefix}/share/gramps/plugins/*.py
+%{prefix}/share/gramps/plugins/*.glade
 %{prefix}/share/gramps/plugins/*.pyo
 
