@@ -12,6 +12,7 @@
 
 	* src/plugins/RelGraph.py: Remove from CVS.
 	* src/plugins/GraphViz.py: Minor fixes. Still not converted yet.
+	* src/plugins/Makefile.am: Stop shipping RelGraph.py.
 
 2005-01-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: move strip_id from Utils

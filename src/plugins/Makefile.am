@@ -48,7 +48,6 @@ pkgdata_PYTHON = \
 	Leak.py\
 	SimpleBookTitle.py\
 	CustomBookText.py\
-	RelGraph.py\
 	rel_it.py\
 	rel_hu.py\
 	rel_da.py\
@@ -60,7 +59,6 @@ pkgdata_PYTHON = \
 	ImportGeneWeb.py\
 	WriteGeneWeb.py\
 	rel_es.py
-
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
