@@ -50,32 +50,22 @@ _lang = locale.getlocale(locale.LC_TIME)[0]
 
 _lang_to_parser = {
     'C'      : DateParser.DateParser,
-    'fr_FR'  : DateParser.DateParserFR,
     'en_US'  : DateParser.DateParser,
     'en_GB'  : DateParser.DateParser,
     'en_AU'  : DateParser.DateParser,
     'en_CA'  : DateParser.DateParser,
     'en_SE'  : DateParser.DateParser,
     'en'     : DateParser.DateParser,
-    'ru_RU'  : DateParser.DateParserRU,
-    'ru_RU.koi8r'  : DateParser.DateParserRU,
-    'ru_RU.utf8'  : DateParser.DateParserRU,
-    'russian'  : DateParser.DateParserRU,
     }
 
 _lang_to_display = {
     'C'      : DateDisplay.DateDisplay,
-    'fr_FR'  : DateDisplay.DateDisplayFR,
     'en_US'  : DateDisplay.DateDisplay,
     'en_GB'  : DateDisplay.DateDisplay,
     'en_AU'  : DateDisplay.DateDisplay,
     'en_CA'  : DateDisplay.DateDisplay,
     'en_SE'  : DateDisplay.DateDisplay,
     'en'     : DateDisplay.DateDisplay,
-    'ru_RU'  : DateDisplay.DateDisplayRU,
-    'ru_RU.koi8r'  : DateDisplay.DateDisplayRU,
-    'ru_RU.utf8'  : DateDisplay.DateDisplayRU,
-    'russian'  : DateDisplay.DateDisplayRU,
     }
 
 #-------------------------------------------------------------------------
@@ -116,3 +106,12 @@ def get_format():
     except:
         print "not found"
         return 0
+
+#-------------------------------------------------------------------------
+#
+# Import localized date classes
+#
+#-------------------------------------------------------------------------
+from Plugins import load_plugins
+from const import datesDir
+load_plugins(datesDir)

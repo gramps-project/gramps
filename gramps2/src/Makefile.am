@@ -1,5 +1,5 @@
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen plugins data po 
+SUBDIRS = docgen plugins dates data po 
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 

@@ -1,3 +1,16 @@
+2004-11-15 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateDisplay.py: Remove localized displayers.
+	* src/DateParser.py: Remove localized parsers.
+	* src/DateHandler.py: Remove hard-coded localization assignments;
+	load localized classes from dates directory.
+	* src/const.py.in: Add datesDir constant.
+	* src/dates/Date_ru.py: Add to CVS.
+	* src/dates/Date_fr.py: Add to CVS. 
+	* src/dates/Makefile.am: Add to CVS. 
+	* src/dates/.cvsignore: Add to CVS. 
+	* configure.in: Generate src/dates/Makefile.
+	* src/Makefile.am: Add dates to SUBDIRS.
+
 2004-11-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateParser.py: handle leap year in gregorial validity check
 	* src/MergeData.py: Preserve more data when merging 

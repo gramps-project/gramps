@@ -96,6 +96,7 @@ filterFile     = "%s/rule.glade" % rootDir
 errdialogsFile = "%s/gramps.glade" % rootDir
 
 pluginsDir     = "%s/plugins" % rootDir
+datesDir       = "%s/dates" % rootDir
 docgenDir      = "%s/docgen" % rootDir
 dataDir        = "%s/data" % rootDir
 template_dir   = "%s/templates" % dataDir
