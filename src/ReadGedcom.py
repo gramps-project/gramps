@@ -403,7 +403,7 @@ class GedcomParser:
                 self.index += 1
                 self.text = "";
                 self.backoff = 0
-		msg = _("Warning: Premature end of file at line %d.\n") % self.index
+                msg = _("Warning: Premature end of file at line %d.\n") % self.index
                 self.errmsg(msg)
                 self.error_count = self.error_count + 1
                 self.groups = (-1, "END OF FILE", "")
