@@ -216,6 +216,18 @@ in both speed and memory usage.
       </para></listitem>
       </varlistentry>
 
+      <varlistentry><term>I want to rerun the Startup dialog. 
+      How do I do this?</term>
+      <listitem><para> 
+      &app; keeps a flag in the GNOME configuration database to indicate 
+      that the startup dialog has been run. To cause &app; to rerun this, 
+      the flag needs to be reset. This can be done with the following 
+      command: </para>
+      
+      <para><command>gconftool-2 -u /apps/gramps/startup</command>
+      </para></listitem>
+      </varlistentry>
+
       <varlistentry><term>Why are non-latin characters displayed 
       as garbage in PDF/PS reports?</term>
       <listitem><para> 
@@ -349,7 +361,7 @@ code and continuing its development in whatever direction you see fit.
 In doing so, you may consider giving your new project another name to
 avoid confusion with the continuing &app; development. If you would
 like the &app; project to provide advice, expertise, filters, etc., 
-we will gladly cooperate with your new project, to ensure compatability 
+we will gladly cooperate with your new project, to ensure compatibility 
 or import/export options to your new format of a project.</para>
 
 <para>                                                                                

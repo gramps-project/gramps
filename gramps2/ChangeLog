@@ -1,3 +1,6 @@
+2004-02-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/C/faq.xml: Typo. Add startup druid question.
+
 2004-02-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/ReadGedcom.py (GedcomParser.parse_individual): handle event
 	description
