@@ -206,6 +206,22 @@ def sortById(first,second):
 #
 #
 #-------------------------------------------------------------------------
+def sort_by_gramps_id(first,second):
+    fid = first.get_gramps_id()
+    sid = second.get_gramps_id()
+    
+    if fid == sid:
+        return 0
+    elif fid < sid:
+        return -1
+    else:
+        return 1
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def make_date(subdate):
     retval = ""
     day = subdate.get_day()
@@ -809,7 +825,7 @@ class GedcomWriter:
 #            self.sbar.set_fraction(1.0)
 
     def write_person(self,person):
-        self.writeln("0 @%s@ INDI" % self.pid(person.get_id()))
+        self.writeln("0 @%s@ INDI" % self.pid(person.get_gramps_id()))
         restricted = self.restrict and person.probably_alive (self.db)
         self.prefn(person)
         primaryname = person.get_primary_name ()
@@ -1221,7 +1237,7 @@ class GedcomWriter:
         return id
  
     def prefn(self,person):
-        match = _get_int.search(person.get_id())
+        match = _get_int.search(person.get_gramps_id())
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
 

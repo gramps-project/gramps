@@ -249,11 +249,12 @@ class AddSpouse:
             return
         
         spouse = self.db.get_person(idlist[0])
+        spouse_id = spouse.get_id()
 
         # don't do anything if the marriage already exists
         for f in self.person.get_family_id_list():
             fam = self.db.find_family_from_id(f)
-            if spouse.get_id() == fam.get_mother_id() or spouse.get_id() == fam.get_father_id():
+            if spouse_id == fam.get_mother_id() or spouse_id == fam.get_father_id():
                 Utils.destroy_passed_object(obj)
                 return
 
@@ -263,6 +264,7 @@ class AddSpouse:
             self.active_family = self.db.new_family(trans)
             self.person.add_family_id(self.active_family.get_id())
             self.db.commit_person(self.person,trans)
+
         spouse.add_family_id(self.active_family.get_id())
         self.db.commit_person(spouse,trans)
 
@@ -277,6 +279,7 @@ class AddSpouse:
         self.active_family.set_relationship(rtype)
         self.db.commit_family(self.active_family,trans)
         self.db.add_transaction(trans,_("Add Spouse"))
+
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
         m = Marriage.Marriage(self.parent, self.active_family,

@@ -1186,16 +1186,19 @@ class Person(SourceNote):
                 self.note)
 
     def unserialize(self,data):
-        (self.id, self.gid, self.gender, 
-         self.primary_name, self.alternate_names, self.nickname, 
-         self.death_id, self.birth_id, self.event_list,
-         self.family_list, self.parent_family_list,
-         self.media_list, 
-         self.address_list,
-         self.attribute_list,
-         self.urls,
-         self.lds_bapt, self.lds_endow, self.lds_seal,
-         self.complete, self.source_list, self.note) = data
+        try:
+            (self.id, self.gid, self.gender, 
+             self.primary_name, self.alternate_names, self.nickname, 
+             self.death_id, self.birth_id, self.event_list,
+             self.family_list, self.parent_family_list,
+             self.media_list, 
+             self.address_list,
+             self.attribute_list,
+             self.urls,
+             self.lds_bapt, self.lds_endow, self.lds_seal,
+             self.complete, self.source_list, self.note) = data
+        except:
+            print data
             
     def set_complete(self,val):
         self.complete = val
