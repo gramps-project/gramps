@@ -386,6 +386,8 @@ class ReportDialog:
         # Save Frame
         frame = GtkFrame(_("Save As"))
         frame.set_border_width(ReportDialog.frame_pad)
+        self.target_fileentry = GnomeFileEntry(hid,_("Save As"))
+
         hbox = GtkHBox()
         hbox.set_border_width(ReportDialog.border_pad)
         if (self.get_target_is_directory()):
@@ -400,7 +402,6 @@ class ReportDialog:
         if hid[-4:]==".xml":
             hid = hid[0:-4]
             
-        self.target_fileentry = GnomeFileEntry(hid,_("Save As"))
         hbox.add(self.target_fileentry)
         frame.add(hbox)
         self.window.vbox.add(frame)
