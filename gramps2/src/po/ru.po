@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 1.0.0\n"
 "POT-Creation-Date: Thu Jan 22 23:56:16 2004\n"
-"PO-Revision-Date: 2004-02-01 00:30-0600\n"
-"Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
+"PO-Revision-Date: 2004-02-01 20:46-0500\n"
+"Last-Translator: Alexander Bogdashevsky <sanderb@kezomba.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2402,7 +2402,7 @@ msgstr ""
 
 #: StartupDialog.py:216
 msgid "MM/DD/YYYY (United States)"
-msgstr "ММ/ДД/ГГГГ (Американский)"
+msgstr "ММ/ДД/ГГГГ (США)"
 
 #: StartupDialog.py:217
 msgid "DD/MM/YYYY (European)"
@@ -2434,14 +2434,10 @@ msgstr ""
 msgid "Enable support for alternate calendars"
 msgstr "Включить поддержку альтернативных календарей"
 
-# Обряды Мормонов?
-# !!!FIXME!!!
 #: StartupDialog.py:274
 msgid "LDS extensions"
-msgstr "Расширения LDS"
+msgstr "Расширения СПД"
 
-# Может просто - Церковь мормонов?
-# !!!FIXME!!!
 #: StartupDialog.py:283
 msgid ""
 "GRAMPS has support for LDS Ordinances, which are special event types\n"
@@ -2450,17 +2446,16 @@ msgid ""
 "You may choose to either enable or disable this support. You may\n"
 "change this option in the future in the Preferences dialog."
 msgstr ""
-"GRAMPS поддерживает Обряды LDS, которые являются\n"
+"GRAMPS поддерживает Обряды СПД, которые являются\n"
 "специальными типами событий связанных с Церковью Иисуса\n"
-"Христа Святых Последних Дней (Церковь мормонов).\n"
+"Христа святых последних дней (Церковь мормонов).\n"
 "\n"
 "Вы можете включить или выключить эту поддержку. Вы можете\n"
 "изменить эту настройку в будущем в диалоге Настройки."
 
-# !!!FIXME!!!
 #: StartupDialog.py:294
 msgid "Enable LDS ordinance support"
-msgstr "Включить поддержку LDS"
+msgstr "Включить поддержку СПД"
 
 #: StyleEditor.py:68
 msgid "Document Styles"
@@ -2922,10 +2917,10 @@ msgstr "Фамилия в браке"
 msgid "Other Name"
 msgstr "Другое имя"
 
-# LDS, смерть наступила от года до 8 лет
+# LDS
 #: const.py:861
 msgid "Child"
-msgstr ""
+msgstr "Ребёнок (1-8л)"
 
 # Кривовато немного
 #: const.py:861
@@ -2934,79 +2929,79 @@ msgstr ""
 msgid "<No Status>"
 msgstr "<нет статуса>"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:861
 #: const.py:867
 #: const.py:873
 msgid "Cleared"
-msgstr ""
+msgstr "Одобрено"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:861
 #: const.py:867
 #: const.py:873
 msgid "Completed"
-msgstr ""
+msgstr "Выполнено"
 
-# LDS, смерть наступила до года
+# LDS
 #: const.py:862
 msgid "Infant"
-msgstr ""
+msgstr "Младенец (1-12м)"
 
-# LDS, мертворождённый
+# LDS
 #: const.py:862
 #: const.py:868
 msgid "Stillborn"
-msgstr ""
+msgstr "Мертворождённый"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:862
 #: const.py:868
 #: const.py:874
 msgid "Pre-1970"
-msgstr ""
+msgstr "Пре-1970"
 
-# LDS? !!!FIXME!!!
+# LDS, An ordinance request was qualified by authorized crteria 
 #: const.py:862
 #: const.py:868
 #: const.py:874
 msgid "Qualified"
-msgstr ""
+msgstr "Возможно"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:863
 #: const.py:869
 #: const.py:875
 msgid "Submitted"
-msgstr ""
+msgstr "Запрошено"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:863
 #: const.py:869
 #: const.py:875
 msgid "Uncleared"
-msgstr ""
+msgstr "Отозвано"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:867
 msgid "BIC"
-msgstr ""
+msgstr "Рождён в завете"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:868
 #: const.py:874
 msgid "DNS"
-msgstr ""
+msgstr "Не приписывать"
 
-# LDS? !!!FIXME!!!
+# LDS
 #: const.py:873
 msgid "Canceled"
-msgstr ""
+msgstr "Отменено"
 
 # LDS? !!!FIXME!!!
 #: const.py:874
 msgid "DNS/CAN"
-msgstr ""
+msgstr "Не приписывать/CAN"
 
 #: const.py:881
 msgid "Flowed"
@@ -3016,10 +3011,9 @@ msgstr "Простой текст"
 msgid "Preformatted"
 msgstr "Форматированный"
 
-# !!!FIXME!!!
 #: dialog.glade:34
 msgid "Close window without changes"
-msgstr "Закрыть окно без изменений"
+msgstr "Откатить изменения и закрыть окно"
 
 #: dialog.glade:48
 #: dialog.glade:2118
@@ -3831,15 +3825,13 @@ msgstr "Удалить выделенную ссылку"
 msgid "Internet"
 msgstr "Интернет"
 
-# !!!FIXME!!!
 #: edit_person.glade:4299
 msgid "<b>LDS baptism</b>"
-msgstr "<b>LDS крещение</b>"
+msgstr "<b>СПД крещение</b>"
 
-# !!!FIXME!!!
 #: edit_person.glade:4395
 msgid "LDS _temple:"
-msgstr "_Храм LDS:"
+msgstr "_Храм СПД:"
 
 #: edit_person.glade:4464
 #: edit_person.glade:4763
@@ -3848,16 +3840,15 @@ msgstr "_Храм LDS:"
 msgid "Sources..."
 msgstr "Источники..."
 
-# Завещанное - такого перевода нигде не встретил. Везде или дар или пожервование
-# !!!FIXME!!!
+# LDS
+# иногда называется Дар Духа Святого
 #: edit_person.glade:4550
 msgid "<b>Endowment</b>"
-msgstr "<b>Пожертвование</b>"
+msgstr "<b>Эндаумент</b>"
 
-# !!!FIXME!!!
 #: edit_person.glade:4603
 msgid "LDS te_mple:"
-msgstr "Х_рам LDS:"
+msgstr "Х_рам СПД:"
 
 #: edit_person.glade:4631
 #: preferences.glade:2478
@@ -3870,7 +3861,7 @@ msgstr "Дат_а:"
 
 #: edit_person.glade:4871
 msgid "LD_S temple:"
-msgstr "Храм LD_S:"
+msgstr "Храм _СПД:"
 
 #: edit_person.glade:4957
 msgid "Pla_ce:"
@@ -3882,13 +3873,12 @@ msgstr "Ро_дители:"
 
 #: edit_person.glade:5075
 msgid "<b>Sealed to parents</b>"
-msgstr "<b>Приписан к родителям</b>"
+msgstr "<b>Приписан(а) к родителям</b>"
 
-# !!!FIXME!!!
 #: edit_person.glade:5104
 #: marriage.glade:2011
 msgid "LDS"
-msgstr "LDS"
+msgstr "СПД"
 
 #: errdialogs.glade:161
 msgid "Close _without saving"
@@ -3918,11 +3908,11 @@ msgstr "Выбрать замену для утерянного файла"
 msgid "_Select File"
 msgstr "_Выбрать Файл"
 
+# !!!FIXME!!!
 #: errdialogs.glade:1086
 msgid "If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing medial files."
-msgstr ""
+msgstr "Отметте, если Вы хотите применить этот выбор ко всем утерянным документам (никаких дополнительных вопросов по поводу утерянных документов не будет задано)."
 
-# !!!FIXME!!!
 #: errdialogs.glade:1088
 msgid "_Use this selection for all missing media files"
 msgstr "Применить ко всем утерянным документам"
@@ -4536,7 +4526,6 @@ msgstr "Использовать в качестве предпочитаемы�
 msgid "_Text:"
 msgstr "_Текст:"
 
-# !!!FIXME!!!
 #: gramps_main.py:123
 msgid "GRAMPS is being run as the 'root' user."
 msgstr "GRAMPS работает как пользователь 'root'."
@@ -4683,8 +4672,6 @@ msgstr "Загружаю %s..."
 msgid "No Home Person has been set."
 msgstr "Базовое лицо не определено."
 
-# несоответствие термина Базовое лицо и кнопки Домой (везде, и в английском варианте)
-# !!!FIXME!!!
 #: gramps_main.py:1773
 msgid "The Home Person may be set from the Settings menu."
 msgstr "Базовое лицо может быть определено в меню Установок."
@@ -4713,7 +4700,6 @@ msgstr "Устаревшая закладка или потеря истории
 msgid "Set %s as the Home Person"
 msgstr "Установить %s как Базовое лицо"
 
-# !!!FIXME!!!
 #: gramps_main.py:1804
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
 msgstr "После того, как Базовое лицо определено, нажатие кнопки Домой на панели инструментов сделает Базовое лицо активным."
@@ -4863,12 +4849,12 @@ msgstr "Сохранить другое имя как альтернативно
 # !!!FIXME!!!
 #: mergedata.glade:1742
 msgid "Keep other birth event as an alternate birth event"
-msgstr "Сохранить другое событие рождения как альтернативное рождение"
+msgstr "Сохранить альтернативную информацию о рождении"
 
 # !!!FIXME!!!
 #: mergedata.glade:1760
 msgid "Keep other death event as an alternate death event"
-msgstr "Сохранить другое событие смерти как альтернативную смерть"
+msgstr "Сохранить альтернативную информацию о смерти"
 
 #: places.glade:159
 msgid "C_ity:"
@@ -6288,7 +6274,6 @@ msgstr "Жена"
 msgid "Spouse"
 msgstr "Супруг(а)"
 
-# !!!FIXME!!!
 #: plugins/FamilyGroup.py:318
 #: plugins/FamilyGroup.py:361
 #: plugins/FamilyGroup.py:480
@@ -6304,17 +6289,14 @@ msgstr "Отчёт о семейной группе"
 msgid "Children"
 msgstr "Дети"
 
-# !!!FIXME!!!
 #: plugins/FamilyGroup.py:365
 msgid "Family Group Report for %s"
 msgstr "Отчёт о семейной группе для %s"
 
-# !!!FIXME!!!
 #: plugins/FamilyGroup.py:370
 msgid "Save Family Group Report"
 msgstr "Сохранить отчёт о семейной группе"
 
-# !!!FIXME!!!
 #: plugins/FamilyGroup.py:484
 msgid "Family Group Report for GRAMPS Book"
 msgstr "Отчёт о семейной группе для Книги GRAMPS"
@@ -6327,7 +6309,6 @@ msgstr "Стиль текста, относящегося к детям."
 msgid "The style used for the parent's name"
 msgstr "Стиль имён родителей."
 
-# !!!FIXME!!!
 #: plugins/FamilyGroup.py:763
 msgid "Creates a family group report, showing information on a set of parents and their children."
 msgstr "Создаёт отчёт о семейной группе. Включает информацию о родителях и их детях."
@@ -7475,7 +7456,6 @@ msgstr "Подзаголовок книги"
 msgid "Copyright %d %s"
 msgstr "© %d %s"
 
-# !!!FIXME!!!
 #: plugins/SimpleBookTitle.py:278
 msgid "Simple Book Title"
 msgstr "Название книги"
@@ -8609,10 +8589,9 @@ msgstr "Имя и _GRAMPS ID активного лица"
 msgid "<b>Statusbar</b>"
 msgstr "<b>Панель статуса</b>"
 
-# !!!FIXME!!!
 #: preferences.glade:936
 msgid "_Always display the LDS ordinance tabs"
-msgstr "_Всегда показывать закладку LDS"
+msgstr "_Всегда показывать закладку СПД"
 
 #: preferences.glade:959
 msgid "_Show index numbers in child list"
@@ -8938,7 +8917,6 @@ msgstr "_Новый..."
 msgid "<b>Source selection</b>"
 msgstr "<b>Выбор источника</b>"
 
-# !!!FIXME!!!
 #: srcsel.glade:644
 msgid "<b>Source details</b>"
 msgstr "<b>Подробности источника</b>"
