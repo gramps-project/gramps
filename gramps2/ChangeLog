@@ -1,6 +1,8 @@
 2003-06-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPlace.py (on_switch_page): Fix page numbers to enable proper
 	loading of gallery and references. 
+	* src/EditPlace.py: Add url_edit_callback() and pass it on to UrlEdit 
+	when clicked on Add or Edit in Place's Url list.
 
 2003-06-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py (Book.pop_item): Add missing return
