@@ -54,8 +54,19 @@ class ColorList:
             else:
                 self.clist.set_background(self.index,self.evenbg)
                 self.clist.set_foreground(self.index,self.evenfg)
-        self.index = self.index + 1
+            self.index = self.index + 1
 
     def add_with_data(self,list,data):
         self.add(list)
         self.clist.set_row_data(self.index-1,data)
+
+def set_enable(val):
+    global enable
+    
+    if color_ok:
+        enable = val
+    else:
+        enable = 0
+
+def get_enable():
+    return enable
