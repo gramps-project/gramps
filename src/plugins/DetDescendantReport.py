@@ -516,13 +516,13 @@ class DetDescendantReport(Report):
         for fam in person.getFamilyList():
             mate = ""
             if person.getGender() == RelLib.Person.male:
-                heshe = _("He")
+                heshe = _("She")
                 if fam.getMother():
                     mate = fam.getMother()
                     mateName = mate.getPrimaryName().getRegularName()
                     mateFirstName = mate.getPrimaryName().getFirstName()
             else:
-                heshe = _("She")
+                heshe = _("He")
                 if fam.getFather():
                     mate = fam.getFather()
                     mateName = mate.getPrimaryName().getRegularName()
