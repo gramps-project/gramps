@@ -57,16 +57,13 @@ from intl import gettext as _
 class FindBase:
     """Opens find person dialog for gramps"""
     
-    def __init__(self,clist,task,name,db):
+    def __init__(self,task,name,db):
         """Opens a dialog box instance that allows users to
         search for a person.
-
-        clist - GtkCList containing the people information
         task - function to call to change the active person"""
 
+        self.t = type(u' ')
         self.db = db
-        self.clist = clist
-        self.nlist = []
         self.task = task
         self.glade = gtk.glade.XML(const.gladeFile,"find")
         self.glade.signal_autoconnect({
@@ -76,38 +73,46 @@ class FindBase:
             })
         self.top = self.glade.get_widget('find')
         self.entry = self.glade.get_widget('entry')
+        self.forward_button = self.glade.get_widget('forward')
+        self.back_button = self.glade.get_widget('back')
         Utils.set_titles(self.top, self.glade.get_widget('title'), name)
 
+        self.index = 0
+
     def get_value(self,id):
-        return None
-    
-    def enable_autocomp(self):
-        if GrampsCfg.autocomp:
-            self.comp = AutoComp.AutoEntry(self.entry,self.nlist)
+        return id
         
     def advance(self,func):
         text = self.entry.get_text()
+        if type(text) != self.t:
+            text = unicode(text.upper())
+        orow = self.index
         func()
-        while self.row != orow:
-            id = self.clist.get_row_data(self.row)
+        while self.index != orow:
+            vals = self.list[self.index]
+            id = vals[1]
+            name = vals[0]
             if id == None:
                 func()
                 continue
-            if string.find(string.upper(self.get_value(id)),string.upper(text)) >= 0:
-                self.task(self.row)
+            if string.find(name.upper(),text) >= 0:
+                self.back_button.set_sensitive(0)
+                self.forward_button.set_sensitive(0)
+                self.task(self.get_value(id))
+                self.back_button.set_sensitive(1)
+                self.forward_button.set_sensitive(1)
                 return
             func()
-        gtk.gdk_beep()
 
     def forward(self):
-        self.row = self.row + 1
-        if self.row == self.clist.rows:
-            self.row = 0
+        self.index = self.index + 1
+        if self.index == len(self.list):
+            self.index = 0
 
     def backward(self):
-        self.row = self.row - 1
-        if self.row < 0:
-            self.row =  self.clist.rows
+        self.index = self.index - 1
+        if self.index < 0:
+            self.index = len(self.list)
 
     def on_close_clicked(self,obj):
         """Destroys the window in response to a close window button press"""
@@ -129,23 +134,19 @@ class FindBase:
 class FindPerson(FindBase):
     """Opens a Find Person dialog for GRAMPS"""
     
-    def __init__(self,id,task,db):
+    def __init__(self,task,db):
         """Opens a dialog box instance that allows users to
         search for a person.
 
-        clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,id,task,_("Find Person"),db)
-        for n in self.db.getPersonKeys():
-            val = self.db.getPersonDisplay(n)
-            self.nlist.append(val[0])
-        self.enable_autocomp()
+        FindBase.__init__(self,task,_("Find Person"),db)
+        self.list = db.personTable.values()
+        self.list.sort()
 
     def get_value(self,id):
-        return self.db.getPersonDisplay(id)[0]
+        return self.db.getPerson(id)
     
-
 #-------------------------------------------------------------------------
 #
 # FindPlace
@@ -154,20 +155,15 @@ class FindPerson(FindBase):
 class FindPlace(FindBase):
     """Opens a Find Place dialog for GRAMPS"""
     
-    def __init__(self,clist,task,db):
+    def __init__(self,task,db):
         """Opens a dialog box instance that allows users to
         search for a place.
 
-        clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Place"),db)
-        for n in self.db.getPlaceKeys():
-            self.nlist.append(self.db.getPlaceDisplay(n)[0])
-        self.enable_autocomp()
-        
-    def get_value(self,id):
-        return  self.db.getPlaceDisplay(id)[0]
+        FindBase.__init__(self,task,_("Find Place"),db)
+        self.list = db.placeTable.values()
+        self.list.sort()
 
 #-------------------------------------------------------------------------
 #
@@ -177,20 +173,15 @@ class FindPlace(FindBase):
 class FindSource(FindBase):
     """Opens a Find Place dialog for GRAMPS"""
     
-    def __init__(self,clist,task,db):
+    def __init__(self,task,db):
         """Opens a dialog box instance that allows users to
         search for a place.
 
-        clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Source"),db)
-        for n in self.db.getSourceKeys():
-            self.nlist.append(n[0])
-        self.enable_autocomp()
-        
-    def get_value(self,id):
-        return  self.db.getSourceDisplay(id)[0]
+        FindBase.__init__(self,task,_("Find Source"),db)
+        self.list = db.sourceTable.values()
+        self.list.sort()
 
 #-------------------------------------------------------------------------
 #
@@ -200,39 +191,15 @@ class FindSource(FindBase):
 class FindMedia(FindBase):
     """Opens a Find Media Object dialog for GRAMPS"""
     
-    def __init__(self,clist,task,db):
+    def __init__(self,task,db):
         """Opens a dialog box instance that allows users to
         search for a place.
 
-        clist - GtkCList containing the people information
         task - function to call to change the active person"""
         
-        FindBase.__init__(self,clist,task,_("Find Media Object"),db)
+        FindBase.__init__(self,task,_("Find Media Object"),db)
+        self.list = []
         for n in self.db.getObjectMap().values():
-            self.nlist.append(n.getDescription())
-        self.enable_autocomp()
+            self.list.append((n.getDescription(),n.getId()))
+        self.list.sort()
         
-    def advance(self,func):
-        try:
-            self.row = self.clist.selection[0]
-        except IndexError:
-            gtk.gdk_beep()
-            return
-
-        text = self.entry.get_text()
-        if self.row == None or text == "":
-            gtk.gdk_beep()
-            return
-        orow = self.row
-        func()
-        while self.row != orow:
-            value = self.clist.get_row_data(self.row)
-            if value == None:
-                func()
-                continue
-            name = value.getDescription()
-            if string.find(string.upper(name),string.upper(text)) >= 0:
-                self.task(self.row)
-                return
-            func()
-        gtk.gdk_beep()

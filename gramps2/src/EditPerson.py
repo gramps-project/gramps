@@ -677,8 +677,17 @@ class EditPerson:
             self.etree.select_row(0)
 
         # Remember old combo list input
-        prev_btext = Utils.strip_id(self.bplace.get_text())
-        prev_dtext = Utils.strip_id(self.dplace.get_text())
+
+        bplace_text = self.bplace.get_text()
+        if type(bplace_text) == type(u''):
+            bplace_text = unicode(bplace_text)
+
+        dplace_text = self.dplace.get_text()
+        if type(dplace_text) == type(u''):
+            dplace_text = unicode(dplace_text)
+            
+        prev_btext = Utils.strip_id(bplace_text)
+        prev_dtext = Utils.strip_id(dplace_text)
 
         # Update birth with new values, make sure death values don't change
         if self.update_birth:
@@ -745,6 +754,9 @@ class EditPerson:
         event = self.birth
         event.setDate(self.bdate.get_text())
         def_placename = self.bplace.get_text()
+        if type(def_placename) == type(u''):
+            def_placename = unicode(def_placename)
+
         p = self.get_place(self.bplace)
         if p:
             event.setPlace(p)
@@ -762,6 +774,9 @@ class EditPerson:
         event = self.death
         event.setDate(self.ddate.get_text())
         def_placename = self.dplace.get_text()
+        if type(def_placename) == type(u''):
+            def_placename = unicode(def_placename)
+
         p = self.get_place(self.dplace)
         if p:
             event.setPlace(p)

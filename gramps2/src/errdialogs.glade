@@ -4,7 +4,6 @@
 <glade-interface>
 
 <widget class="GtkDialog" id="errdialog">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -134,7 +133,6 @@
 </widget>
 
 <widget class="GtkDialog" id="savedialog">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -289,7 +287,6 @@
 </widget>
 
 <widget class="GtkDialog" id="questiondialog">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -430,7 +427,6 @@
 </widget>
 
 <widget class="GtkDialog" id="optiondialog">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -571,7 +567,6 @@
 </widget>
 
 <widget class="GtkDialog" id="warndialog">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -701,7 +696,6 @@
 </widget>
 
 <widget class="GtkDialog" id="okdialog">
-  <property name="visible">True</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>

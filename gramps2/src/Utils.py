@@ -95,6 +95,19 @@ def clear_timer():
 
 #-------------------------------------------------------------------------
 #
+# force_unicode
+#
+#-------------------------------------------------------------------------
+_t = type(u'')
+
+def force_unicode(n):
+    if type(n) != _t:
+        return (unicode(n).lower(),unicode(n))
+    else:
+        return (n.lower(),n)
+
+#-------------------------------------------------------------------------
+#
 # Clears the modified flag.  Should be called after data is saved.
 #
 #-------------------------------------------------------------------------
@@ -120,7 +133,7 @@ def phonebook_name(person):
     if person:
         return person.getPrimaryName().getName()
     else:
-        return ""
+        return u''
 
 def family_name(family):
     """Builds a name for the family from the parents names"""
@@ -146,7 +159,7 @@ def normal_name(person):
     if person:
         return person.getPrimaryName().getRegularName()
     else:
-        return ""
+        return u''
 
 #-------------------------------------------------------------------------
 #

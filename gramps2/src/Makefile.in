@@ -260,7 +260,7 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
 	install-exec-recursive installdirs-recursive install-recursive \
 	uninstall-recursive check-recursive installcheck-recursive
 DIST_COMMON = README $(dist_pkgdata_DATA) $(pkgpython_PYTHON) AUTHORS \
-	ChangeLog Makefile.am Makefile.in NEWS const.py.in
+	ChangeLog Makefile.am Makefile.in NEWS TODO const.py.in
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive
 

@@ -51,7 +51,7 @@
 			  <accelerator key="N" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image334">
+			    <widget class="GtkImage" id="image421">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-new</property>
 			      <property name="icon_size">1</property>
@@ -73,7 +73,7 @@
 			  <accelerator key="O" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image335">
+			    <widget class="GtkImage" id="image422">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-open</property>
 			      <property name="icon_size">1</property>
@@ -95,9 +95,64 @@
 			  <accelerator key="S" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image336">
+			    <widget class="GtkImage" id="image423">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-save</property>
+			      <property name="icon_size">1</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkImageMenuItem" id="save_as1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">Save _As...</property>
+			  <property name="use_underline">True</property>
+			  <signal name="activate" handler="on_save_as_activate" last_modification_time="Tue, 01 Apr 2003 03:50:28 GMT"/>
+
+			  <child internal-child="image">
+			    <widget class="GtkImage" id="image424">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-save-as</property>
+			      <property name="icon_size">1</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="separator9">
+			  <property name="visible">True</property>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="import1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">_Import</property>
+			  <property name="use_underline">True</property>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkImageMenuItem" id="export1">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes">_Export</property>
+			  <property name="use_underline">True</property>
+
+			  <child internal-child="image">
+			    <widget class="GtkImage" id="image425">
+			      <property name="visible">True</property>
+			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
@@ -116,58 +171,9 @@
 			  <signal name="activate" handler="on_revert_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image337">
+			    <widget class="GtkImage" id="image426">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-revert-to-saved</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkMenuItem" id="import1">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Import</property>
-			  <property name="use_underline">True</property>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="save_as1">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Save _As...</property>
-			  <property name="use_underline">True</property>
-			  <signal name="activate" handler="on_save_as_activate" last_modification_time="Tue, 01 Apr 2003 03:50:28 GMT"/>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image338">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-save-as</property>
-			      <property name="icon_size">1</property>
-			      <property name="xalign">0.5</property>
-			      <property name="yalign">0.5</property>
-			      <property name="xpad">0</property>
-			      <property name="ypad">0</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-
-		      <child>
-			<widget class="GtkImageMenuItem" id="export1">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Export</property>
-			  <property name="use_underline">True</property>
-
-			  <child internal-child="image">
-			    <widget class="GtkImage" id="image339">
-			      <property name="visible">True</property>
-			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
@@ -186,7 +192,7 @@
 			  <signal name="activate" handler="on_reload_plugins_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image340">
+			    <widget class="GtkImage" id="image427">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-refresh</property>
 			      <property name="icon_size">1</property>
@@ -213,7 +219,7 @@
 			  <signal name="activate" handler="on_exit_activate" last_modification_time="Tue, 01 Apr 2003 03:49:05 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image341">
+			    <widget class="GtkImage" id="image428">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-quit</property>
 			      <property name="icon_size">1</property>
@@ -245,9 +251,10 @@
 			  <property name="label" translatable="yes">_Find...</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_find_activate"/>
+			  <accelerator key="F" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image342">
+			    <widget class="GtkImage" id="image429">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-find</property>
 			      <property name="icon_size">1</property>
@@ -268,7 +275,7 @@
 			  <signal name="activate" handler="on_merge_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image343">
+			    <widget class="GtkImage" id="image430">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -336,7 +343,7 @@
 			  <accelerator key="D" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image344">
+			    <widget class="GtkImage" id="image431">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-index</property>
 			      <property name="icon_size">1</property>
@@ -358,7 +365,7 @@
 			  <accelerator key="B" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image345">
+			    <widget class="GtkImage" id="image432">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-open</property>
 			      <property name="icon_size">1</property>
@@ -422,7 +429,7 @@
 			  <signal name="activate" handler="on_preferences1_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image346">
+			    <widget class="GtkImage" id="image433">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-preferences</property>
 			      <property name="icon_size">1</property>
@@ -443,7 +450,7 @@
 			  <signal name="activate" handler="on_default_person_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image347">
+			    <widget class="GtkImage" id="image434">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-home</property>
 			      <property name="icon_size">1</property>
@@ -472,14 +479,14 @@
 		      <child>
 			<widget class="GtkImageMenuItem" id="contents">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_User's manual</property>
+			  <property name="label" translatable="yes">_User manual</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_contents_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image348">
+			    <widget class="GtkImage" id="image435">
 			      <property name="visible">True</property>
-			      <property name="stock">gnome-stock-book-red</property>
+			      <property name="stock">gtk-go-forward</property>
 			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
@@ -491,6 +498,12 @@
 		      </child>
 
 		      <child>
+			<widget class="GtkMenuItem" id="separator7">
+			  <property name="visible">True</property>
+			</widget>
+		      </child>
+
+		      <child>
 			<widget class="GtkImageMenuItem" id="gramps_home_page">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes">GRAMPS _home page</property>
@@ -498,7 +511,7 @@
 			  <signal name="activate" handler="on_gramps_home_page_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image349">
+			    <widget class="GtkImage" id="image436">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-jump-to</property>
 			      <property name="icon_size">1</property>
@@ -519,7 +532,7 @@
 			  <signal name="activate" handler="on_gramps_mailing_lists_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image350">
+			    <widget class="GtkImage" id="image437">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-mail</property>
 			      <property name="icon_size">1</property>
@@ -538,6 +551,12 @@
 			  <property name="label" translatable="yes">_Report a bug</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_gramps_report_bug_activate"/>
+			</widget>
+		      </child>
+
+		      <child>
+			<widget class="GtkMenuItem" id="separator8">
+			  <property name="visible">True</property>
 			</widget>
 		      </child>
 
@@ -567,7 +586,7 @@
 			  <signal name="activate" handler="on_about_activate" last_modification_time="Tue, 01 Apr 2003 03:44:24 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image351">
+			    <widget class="GtkImage" id="image438">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-about</property>
 			      <property name="icon_size">1</property>
@@ -757,7 +776,7 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkLabel" id="side_ped_label">
+		    <widget class="GtkLabel" id="side_people_label">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">People</property>
 		      <property name="use_underline">False</property>
@@ -769,6 +788,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">views</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -806,7 +826,7 @@
 		    <widget class="GtkLabel" id="label318">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Family</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -815,6 +835,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">views</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -852,7 +873,7 @@
 		    <widget class="GtkLabel" id="label316">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Pedigree</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -861,6 +882,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">views</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -898,7 +920,7 @@
 		    <widget class="GtkLabel" id="label319">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Sources</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -907,6 +929,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">views</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -944,7 +967,7 @@
 		    <widget class="GtkLabel" id="label320">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Places</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -953,6 +976,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">views</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -990,7 +1014,7 @@
 		    <widget class="GtkLabel" id="label321">
 		      <property name="visible">True</property>
 		      <property name="label" translatable="yes">Media</property>
-		      <property name="use_underline">False</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -999,6 +1023,7 @@
 		      <property name="yalign">0.5</property>
 		      <property name="xpad">0</property>
 		      <property name="ypad">0</property>
+		      <property name="mnemonic_widget">views</property>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -1026,8 +1051,6 @@
 	      <property name="show_border">False</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
-	      <property name="tab_hborder">6</property>
-	      <property name="tab_vborder">2</property>
 	      <property name="enable_popup">False</property>
 	      <signal name="switch_page" handler="on_notebook1_switch_page" after="yes"/>
 
@@ -1267,8 +1290,6 @@
 		      <property name="show_border">False</property>
 		      <property name="tab_pos">GTK_POS_BOTTOM</property>
 		      <property name="scrollable">False</property>
-		      <property name="tab_hborder">4</property>
-		      <property name="tab_vborder">2</property>
 		      <property name="enable_popup">False</property>
 		      <signal name="switch_page" handler="on_alpha_switch_page" last_modification_time="Sat, 09 Nov 2002 22:11:07 GMT"/>
 
@@ -4634,8 +4655,6 @@
 	      <property name="show_border">True</property>
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
-	      <property name="tab_hborder">2</property>
-	      <property name="tab_vborder">2</property>
 	      <property name="enable_popup">False</property>
 	      <signal name="switch_page" handler="on_switch_page" object="sourceEditor"/>
 
@@ -6319,7 +6338,7 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button157">
+	    <widget class="GtkButton" id="back">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
@@ -6332,7 +6351,7 @@
 	  </child>
 
 	  <child>
-	    <widget class="GtkButton" id="button158">
+	    <widget class="GtkButton" id="forward">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
 	      <property name="has_default">True</property>

@@ -25,38 +25,46 @@ everything else fails.
 import sys
 
 ver = sys.version[0:3]
+_trans = None
 
 try:
     if ver == "2.2":
         from intl22 import *
         status = None
     else:
+        import gettext as foo
+        
         status = 'Internationalization library could not be loaded'
         print status
         
         def gettext(s):
-            return s
+            return foo.gettext(s)
 
         def textdomain(s):
-            return
+            return foo.textdomain(s)
 
         def bindtextdomain(s,x):
-            return
+            return foo.bindtextdomain(s,x)
 
         def bind_textdomain_codeset(s,x):
             return
 except:
+    import gettext as foo
+
     status = 'Internationalization library could not be loaded'
-    print status
-    
-    def gettext(s):
-        return s
     
     def textdomain(s):
-        return
+        return foo.textdomain(s)
     
     def bindtextdomain(s,x):
-        return
+        return foo.bindtextdomain(s,x)
 
+    def null(s):
+        return s
+    
     def bind_textdomain_codeset(s,x):
-        return
+        global gettext
+        try:
+            gettext = foo.translation(s).ugettext
+        except:
+            gettext = null

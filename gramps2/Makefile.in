@@ -466,8 +466,6 @@ uninstall-info: uninstall-info-recursive
 	uninstall-info-recursive uninstall-local uninstall-recursive
 
 
-#grampsdocdir = $(datadir)/doc/gramps-$(VERSION)
-
 gramps: gramps.sh
 	cp gramps.sh gramps
 

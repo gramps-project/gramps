@@ -41,6 +41,14 @@ import string
 #-------------------------------------------------------------------------
 import gtk
 
+_t = type(u'')
+
+def patch(n):
+    if type(n) != _t:
+        return (unicode(n).lower(),unicode(n))
+    else:
+        return (n.lower(),n)
+
 #-------------------------------------------------------------------------
 #
 # AutoCompBase
@@ -63,10 +71,11 @@ class AutoCompBase:
             self.nlist = source.nlist
         else:
             self.nlist = []
-            self.nlist = map((lambda n: (string.lower(n),n)),plist)
-            self.nlist.sort()
+            self.nlist = map(patch,plist)
+        self.nlist.sort()
         self.nl = "xzsdkdjecsc"
         self.l = 0
+        self.t = type(u' ')
 
     def insert_text(self,entry,new_text,new_text_len,i_dont_care):
         """
@@ -182,6 +191,9 @@ class AutoCombo(AutoCompBase):
         typed = entry.get_text()
         if (not typed):
             return
+        if type(typed) != self.t:
+            typed = unicode(typed)
+
         typed_lc = string.lower(typed)
 
         if typed_lc == self.nl:
@@ -224,7 +236,7 @@ class AutoEntry(AutoCompBase):
         AutoCompBase.__init__(self,widget,plist,source)
         self.entry = widget
         self.entry.connect("insert-text",self.insert_text)
-
+        
     def timer_callback(self,entry):
         """
         The workhorse routine of file completion.  This routine grabs the
@@ -240,6 +252,10 @@ class AutoEntry(AutoCompBase):
 
         # Get the user's text
         typed = entry.get_text()
+
+        if type(typed) != self.t:
+            typed = unicode(typed)
+        
         if (not typed):
             return
         typed_lc = string.lower(typed)

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -176,6 +176,12 @@ def get_nephew(f,s,level):
 def get_niece(f,s,level):
     return "%s of %s" % (niece_level[level],f)
 
+def is_spouse(orig,other):
+    for f in orig.getFamilyList():
+        if other == f.getFather() or other == f.getMother():
+            return 1
+    return 0
+
 def get_relationship(orig_person,other_person):
     firstMap = {}
     firstList = []
@@ -183,6 +189,17 @@ def get_relationship(orig_person,other_person):
     secondList = []
     common = []
     rank = 9999999
+
+    if orig_person == None:
+        return "No home person has been defined"
+
+    firstName = orig_person.getPrimaryName().getRegularName()
+    secondName = other_person.getPrimaryName().getRegularName()
+
+    if orig_person == other_person:
+        return firstName
+    if is_spouse(orig_person,other_person):
+        return "Spouse of %s" % (firstName)
 
     filter(orig_person,0,firstList,firstMap)
     filter(other_person,0,secondList,secondMap)
@@ -198,9 +215,6 @@ def get_relationship(orig_person,other_person):
 
     firstRel = -1
     secondRel = -1
-
-    firstName = orig_person.getPrimaryName().getRegularName()
-    secondName = other_person.getPrimaryName().getRegularName()
 
     length = len(common)
     
