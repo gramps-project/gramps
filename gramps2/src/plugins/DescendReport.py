@@ -73,15 +73,8 @@ class DescendantReport(Report.Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        max_gen   - Maximum number of generations to include.
-        pg_breaks - Whether to include page breaks between generations.
-        document  - BaseDoc instance for the output file. Any class derived
-                    from BaseDoc may be used
-        output    - name of the output file. 
-                    None if report is not a standalone, in which case
-                    somebody must take care of opening and initializing report
-                    prior to writing.
-        newpage   - if True, newpage is made before writing a report
+        gen       - Maximum number of generations to include.
+        pagebbg   - Whether to include page breaks between generations.
 
         """
 

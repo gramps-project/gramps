@@ -65,15 +65,8 @@ class AncestorReport(Report.Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        max_gen   - Maximum number of generations to include.
-        pg_breaks - Whether to include page breaks between generations.
-        document  - BaseDoc instance for the output file. Any class derived
-                    from BaseDoc may be used
-        output    - name of the output file. 
-                    None if report is not a standalone, in which case
-                    somebody must take care of opening and initializing report
-                    prior to writing.
-        newpage   - if True, newpage is made before writing a report
+        gen       - Maximum number of generations to include.
+        pagebbg   - Whether to include page breaks between generations.
 
         """
 
@@ -83,7 +76,7 @@ class AncestorReport(Report.Report):
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
 
-    def filter(self,person_handle,index,generation=1):
+    def apply_filter(self,person_handle,index,generation=1):
         if not person_handle or generation >= self.max_generations:
             return
         self.map[index] = person_handle
@@ -92,12 +85,12 @@ class AncestorReport(Report.Report):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.get_family_from_handle(family_handle)
-            self.filter(family.get_father_handle(),index*2,generation+1)
-            self.filter(family.get_mother_handle(),(index*2)+1,generation+1)
+            self.apply_filter(family.get_father_handle(),index*2,generation+1)
+            self.apply_filter(family.get_mother_handle(),(index*2)+1,generation+1)
 
     def write_report(self):
 
-        self.filter(self.start_person.get_handle(),1)
+        self.apply_filter(self.start_person.get_handle(),1)
 
         name = self.start_person.get_primary_name().get_regular_name()
         self.doc.start_paragraph("AHN-Title")
