@@ -173,7 +173,7 @@ class EditPerson:
         self.event_cause_field = self.get_widget("eventCause")
         self.event_date_field  = self.get_widget("eventDate")
         self.event_descr_field = self.get_widget("eventDescription")
-        self.event_details_field = self.get_widget("event_details")
+        self.event_src_field = self.get_widget("event_srcinfo")
         self.attr_details_field = self.get_widget("attr_details")
         self.name_details_field = self.get_widget("name_details")
         self.addr_details_field = self.get_widget("addr_details")
@@ -225,15 +225,15 @@ class EditPerson:
         self.name_source = self.get_widget("name_source")
         self.gid = self.get_widget("gid")
 
+        self.death = Event(person.getDeath())
+        self.birth = Event(person.getBirth())
+        self.pname = Name(person.getPrimaryName())
+
         self.elist = person.getEventList()[:]
         self.nlist = person.getAlternateNames()[:]
         self.alist = person.getAttributeList()[:]
         self.ulist = person.getUrlList()[:]
         self.plist = person.getAddressList()[:]
-
-        self.death = Event(person.getDeath())
-        self.birth = Event(person.getBirth())
-        self.pname = Name(person.getPrimaryName())
 
         # Typing CR selects OK button
         self.window.editable_enters(self.notes_field);
@@ -614,16 +614,14 @@ class EditPerson:
         # Update birth with new values, make sure death values don't change
         if self.update_birth:
             self.update_birth = 0
-            self.bdate.set_text(self.birth.getDate())
-            self.bplace.set_text(self.birth.getPlaceName())
+            self.update_birth_info()
             self.dplace.set_text(prev_dtext)
         self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
 
         # Update death with new values, make sure birth values don't change
         if self.update_death:
             self.update_death = 0
-            self.ddate.set_text(self.death.getDate())
-            self.dplace.set_text(self.death.getPlaceName())
+            self.update_death_info()
             self.bplace.set_text(prev_btext)
         self.ddate_check = DateEdit(self.ddate,self.get_widget("death_stat"))
 
@@ -906,7 +904,6 @@ class EditPerson:
                ord.getStatus() != self.seal_stat or \
                ord.getFamily() != self.ldsfam:
                 return 1
-
         return 0
 
     def on_event_delete_clicked(self,obj):
@@ -979,7 +976,14 @@ class EditPerson:
         self.event_name_field.set_label(const.display_pevent(event.getName()))
         self.event_cause_field.set_text(event.getCause())
         self.event_descr_field.set_text(event.getDescription())
-        self.event_details_field.set_text(Utils.get_detail_text(event))
+        if len(event.getSourceRefList()) > 0:
+            psrc = event.getSourceRefList()[0]
+            n = _("%(source_title)s; Confidence - %(confidence)s") % {
+                'source_title' : psrc.getBase().getTitle(),
+                'confidence' : const.confidence[psrc.getConfidence()]}
+            self.event_src_field.set_text(n)
+        else:
+            self.event_src_field.set_text('')
 
     def on_event_unselect_row(self,obj,a,b,c):
         enable = len(obj.selection) > 0
@@ -1388,10 +1392,22 @@ class EditPerson:
                     self.load_photo(None)
         else:
             self.load_photo(None)
+
+    def update_birth_info(self):
+        self.bdate.set_text(self.birth.getDate())
+        self.bplace.set_text(self.birth.getPlaceName())
+
+    def update_death_info(self):
+        self.ddate.set_text(self.death.getDate())
+        self.dplace.set_text(self.death.getPlaceName())
         
     def on_switch_page(self,obj,a,page):
         if page == 0:
             self.load_person_image()
+            self.update_death_info()
+            self.update_birth_info()
+        elif page == 2:
+            self.redraw_event_list()
         elif page == 6 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()

@@ -31,19 +31,17 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-
 import const
 import Utils
 from RelLib import *
 
 #-------------------------------------------------------------------------
 #
-# constants
+# SourceSelector
 #
 #-------------------------------------------------------------------------
 
 class SourceSelector:
-
     def __init__(self,srclist,parent,update=None):
         self.db = parent.db
         self.parent = parent
@@ -149,7 +147,6 @@ class SourceEditor:
         return self.showSource.get_widget(name)
 
     def draw(self):
-
         if self.source_ref:
             self.get_widget("spage").set_text(self.source_ref.getPage())
             date = self.source_ref.getDate()

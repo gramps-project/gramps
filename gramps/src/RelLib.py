@@ -1327,6 +1327,16 @@ class Event(DataObj):
             self.name = ""
             self.cause = ""
 
+    def is_empty(self):
+        date = self.getDateObj()
+        place = self.getPlace()
+        description = self.getDescription()
+        if (not name or name == "Birth" or name == "Death") and \
+           date.isEmpty() and not place and not description:
+            return 1
+        else:
+            return 0
+
     def set(self,name,date,place,description):
         """sets the name, date, place, and description of an Event instance"""
         self.name = name
