@@ -2,17 +2,18 @@
 SUBDIRS = templates
 pkgdatadir = $(datadir)/@PACKAGE@/data
 
-dist_pkgdata_DATA = gedcom.xml \
-	       papersize.xml \
-	       tips.xml \
-	       gnome-mime-application-x-gramps.png \
-           gnome-mime-application-x-gedcom.png \
-	       gnome-mime-application-x-gramps-package.png \
-	       gramps.applications \
-	       gramps.desktop \
-	       gramps.svg \
-	       gramps.keys \
-           gramps.mime
+dist_pkgdata_DATA = \
+	gedcom.xml \
+	papersize.xml \
+	tips.xml \
+	gnome-mime-application-x-gramps.png \
+	gnome-mime-application-x-gedcom.png \
+	gnome-mime-application-x-gramps-package.png \
+	gramps.applications \
+	gramps.desktop \
+	gramps.svg \
+	gramps.keys \
+	gramps.mime
 
 EXTRA_DIST = $(dist_pkgdata_DATA)
 
@@ -37,10 +38,12 @@ install-data-local:    install-schemas
 
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
-	-rm $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gramps.png
+	-rm $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-*.png
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.keys
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.mime
+	-rm $(DESTDIR)$(prefix)/share/application-registry/gramps.applications
 	-rm $(DESTDIR)$(prefix)/share/mime/packages/gramps.xml
 	-rm $(DESTDIR)/etc/gconf/schemas/gramps.schemas
+	update-mime-database $(DESTDIR)$(prefix)/share/mime
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
 		gconftool-2 --makefile-uninstall-rule gramps.schemas
