@@ -100,10 +100,13 @@ def importData(database, filename, callback):
         return 0
     except ValueError, msg:
         if str(msg)[0:16] == "Incorrect length":
-            WarningDialog(_("Your database has encountered an error in the library "
-                            "that compresses the data.\nYour data should be okay, but "
-                            "you may want to consider disabling compression.\n"
-                            "This can be disabled in the Properties dialog."))
+            WarningDialog(_("A Data Compression Problem Was Encountered"),
+                          _("Your database has encountered an error in the library "
+                            "that compresses the data. Your data should be okay, but "
+                            "you may want to consider disabling compression. "
+                            "This can be disabled in the Properties dialog. Once you "
+                            "have disabled compression, this error will go away after "
+                            "the next time you save the database."))
         else:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
