@@ -1394,6 +1394,8 @@ class Person(Persistent):
         # for descendants that were born more than a lifespan ago.
 
         min_generation = 13
+        max_generation = 60
+        max_age_difference = 60
         def descendants_too_old (person, years):
             for family in person.getFamilyList ():
                 for child in family.getChildList ():
@@ -1417,25 +1419,55 @@ class Person(Persistent):
             return 0
 
         # What about their parents?
-        family = self.getMainParents ()
-        if family:
-            for parent in [family.getFather (), family.getMother ()]:
-                if not parent:
+        def parents_too_old (person, age_difference):
+            family = person.getMainParents ()
+            if family:
+                for parent in [family.getFather (), family.getMother ()]:
+                    if not parent:
+                        continue
+
+                    if parent.birth.getDate () != "":
+                        d = SingleDate (parent.birth.getDateObj ().
+                                        get_start_date ())
+                        d.setYear (d.getYear () + max_generation +
+                                   age_difference)
+                        if not not_too_old (d):
+                            return 1
+
+                    if parent.death.getDate () != "":
+                        d = SingleDate (parent.death.getDateObj ().
+                                        get_start_date ())
+                        d.setYear (d.getYear () + age_difference)
+                        if not not_too_old (d):
+                            return 1
+
+        if parents_too_old (self, 0):
+            return 0
+
+        # As a last resort, trying seeing if their spouse's age gives
+        # any clue.
+        for family in self.getFamilyList ():
+            for spouse in [family.getFather (), family.getMother ()]:
+                if not spouse:
                     continue
-
-                if parent.birth.getDate () != "":
-                    d = SingleDate (parent.birth.getDateObj ().
+                if spouse == self:
+                    continue
+                if spouse.birth.getDate () != "":
+                    d = SingleDate (spouse.birth.getDateObj().
                                     get_start_date ())
-                    d.setYear (d.getYear () + min_generation)
-                    print d.getYear ()
+                    d.setYear (d.getYear () + max_age_difference)
                     if not not_too_old (d):
                         return 0
 
-                if parent.death.getDate () != "":
-                    d = SingleDate (parent.death.getDateObj ().
+                if spouse.death.getDate () != "":
+                    d = SingleDate (spouse.birth.getDateObj().
                                     get_start_date ())
+                    d.setYear (d.getYear () - min_generation)
                     if not not_too_old (d):
                         return 0
+
+                if parents_too_old (spouse, max_age_difference):
+                    return 0
 
         return 1
     
