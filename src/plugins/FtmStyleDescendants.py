@@ -40,7 +40,7 @@ from gettext import gettext as _
 import Report
 import BaseDoc
 import RelLib
-import Utils
+import ReportUtils
 import ReportOptions
 from DateHandler import displayer as dd
 import const
@@ -705,7 +705,7 @@ class FtmDescendantReport(Report.Report):
                 
                 self.doc.start_cell('FTD-Normal')
                 self.doc.start_paragraph('FTD-Child-Num')
-                self.doc.write_text("%s." % Utils.roman(child_index).lower())
+                self.doc.write_text("%s." % ReportUtils.roman(child_index).lower())
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 

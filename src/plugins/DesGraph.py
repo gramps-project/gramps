@@ -109,10 +109,10 @@ class DescendantGraph(Report.Report):
                 self.box_width = max(self.box_width,new_width)
 
             self.lines = max(self.lines,len(self.text[p_id]))
+        self.calc()
 
     def write_report(self):
 
-        self.calc()
         maxx,maxy = self.layout.max_size()
 
         maxx = int(maxx)
