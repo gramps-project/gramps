@@ -866,6 +866,25 @@
     
   </sect1> <!-- ================ End Customization ================== -->
 
+
+<Preferences
+<	Usage
+<		Find
+<		Report Preferences
+<		Researcher Information
+<		Data Guessing
+<	Display
+<		General
+<		Dates and Calendars
+<		Tools and Status Bars
+<	Database
+<		General
+<		Media Objects
+<		GRAMPS Internal IDs
+<		Revision Control
+<Authors
+<License
+
       <variablelist> 
 	<varlistentry> 
 	  <term> 
