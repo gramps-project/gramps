@@ -137,7 +137,7 @@ class CheckIntegrity:
         def select_clicked():
             # File is lost => select a file to replace the lost one
             def fs_close_window(obj):
-                fs_top.destroy()
+                self.bad_photo.append(ObjectMap[ObjectId])
 
             def fs_ok_clicked(obj):
                 name = fs_top.get_filename()
@@ -150,14 +150,13 @@ class CheckIntegrity:
                     self.replaced_photo.append(ObjectMap[ObjectId])
                 else:
                     self.bad_photo.append(ObjectMap[ObjectId])
-                Utils.destroy_passed_object(fs_top)
 
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
             fs_top.hide_fileop_buttons()
             fs_top.ok_button.connect('clicked',fs_ok_clicked)
             fs_top.cancel_button.connect('clicked',fs_close_window)
-            fs_top.show()
             fs_top.run()
+            fs_top.destroy()
 
         #-------------------------------------------------------------------------
         ObjectMap = self.db.getObjectMap()
