@@ -1,3 +1,6 @@
+2005-03-06  Don Allingham  <don@gramps-project.org>
+	* src/GrampsBSDDB.py: display upgrade messages to stdout
+
 2005-03-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsBSDDB.py: add upgrade to version 3 for new Name type
 	* src/NameEdit.py: add date editor field
