@@ -115,11 +115,11 @@ class SelectChild:
         slist = []
         for f in self.person.getParentList():
             if f:
-                if f.getFather():
-                    slist.append(f.getFather())
-                elif f.getMother():
-                    slist.append(f.getMother())
-                for c in f.getChildList():
+                if f[0].getFather():
+                    slist.append(f[0].getFather())
+                elif f[0].getMother():
+                    slist.append(f[0].getMother())
+                for c in f[0].getChildList():
                     slist.append(c)
             
         person_list = []

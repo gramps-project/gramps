@@ -753,7 +753,7 @@ msgstr "Inga"
 
 #: EditPerson.py:393 EditSource.py:138
 msgid "%(father)s and %(mother)s"
-msgstr "%(fader)ns och %(moder)ns"
+msgstr "%(fader)s och %(moder)s"
 
 #: EditPerson.py:730 EditPerson.py:739
 msgid "Are you sure you want to abandon your changes?"
@@ -765,7 +765,7 @@ msgstr "GRAMPS ID har inte ändrats."
 
 #: EditPerson.py:1072
 msgid "%(grampsid)s is already used by %(person)s"
-msgstr "%(grampsid) används redan av %(person)s"
+msgstr "%(grampsid)s används redan av %(person)s"
 
 #: EditPerson.py:1177
 msgid "Changing the gender caused problems with marriage information."
@@ -3410,15 +3410,15 @@ msgstr "Import från GRAMPS"
 
 #: plugins/RelCalc.py:60
 msgid "%(p1)s is the first cousin of %(p2)s."
-msgstr "%(p1)s är %(p2)ss första kusin."
+msgstr "%(p1)s är %(p2)s första kusin."
 
 #: plugins/RelCalc.py:63
 msgid "%(p1)s is the first cousin once removed of %(p2)s."
-msgstr "%(p1)s är %(p2)ss första syssling."
+msgstr "%(p1)s är %(p2)s första syssling."
 
 #: plugins/RelCalc.py:66
 msgid "%(p1)s is the first cousin twice removed of %(p2)s."
-msgstr "%(p1)s är %(p2)ss första brylling."
+msgstr "%(p1)s är %(p2)s första brylling."
 
 #: plugins/RelCalc.py:69
 msgid "%(p1)s is the first cousin %(removed)d times removed of %(p2)s."
@@ -3430,11 +3430,11 @@ msgstr "%(p1)s är syssling till %(p2)s. "
 
 #: plugins/RelCalc.py:76
 msgid "%(p1)s is the second cousin once removed of %(p2)s."
-msgstr "%(p1)s är  %(p2)ss första syssling."
+msgstr "%(p1)s är  %(p2)s första syssling."
 
 #: plugins/RelCalc.py:79
 msgid "%(p1)s is the second cousin twice removed of %(p2)s."
-msgstr "%(p1)s är %(p2)ss andra brylling."
+msgstr "%(p1)s är %(p2)ssandra brylling."
 
 #: plugins/RelCalc.py:82
 msgid "%(p1)s is the second cousin %(removed)d times removed of %(p2)s."
@@ -3442,15 +3442,15 @@ msgstr "%(p1)s är släkt med %(p2)s i %(removed)d:e led. "
 
 #: plugins/RelCalc.py:86
 msgid "%(p1)s is the third cousin of %(p2)s."
-msgstr "%(p1)s är %(p2)ss tredje kusin."
+msgstr "%(p1)s är %(p2)s tredje kusin."
 
 #: plugins/RelCalc.py:89
 msgid "%(p1)s is the third cousin once removed of %(p2)s."
-msgstr "%(p1)s är %(p2)ss tredje syssling."
+msgstr "%(p1)s är %(p2)s tredje syssling."
 
 #: plugins/RelCalc.py:92
 msgid "%(p1)s is the third cousin twice removed of %(p2)s."
-msgstr "%(p1)s är %(p2)ss tredje brylling."
+msgstr "%(p1)s är %(p2)s tredje brylling."
 
 #: plugins/RelCalc.py:95
 msgid "%(p1)s is the third cousin %(removed)d times removed of %(p2)s."
@@ -3458,19 +3458,19 @@ msgstr "%(p1)s är släkt med %(p2)s i %(removed)d:e led."
 
 #: plugins/RelCalc.py:99
 msgid "%(p1)s is the %(level)dth cousin of %(p2)s."
-msgstr "%(p1s är %(p2)ss %(level)d:e kusin."
+msgstr "%(p1)s är %(p2)s %(level)d:e kusin."
 
 #: plugins/RelCalc.py:102
 msgid "%(p1)s is the %(level)dth cousin once removed of %(p2)s."
-msgstr "%(p1s är %(p2)ss %(level)d:e syssling."
+msgstr "%(p1)s är %(p2)s %(level)d:e syssling."
 
 #: plugins/RelCalc.py:105
 msgid "%(p1)s is the %(level)dth cousin twice removed of %(p2)s."
-msgstr "%(p1s är %(p2)ss %(level)d:e brylling."
+msgstr "%(p1)s är %(p2)s %(level)d:e brylling."
 
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
-msgstr "%(p1)s är %(p2)ss %(level)d:e släkting i %(removed)d led."
+msgstr "%(p1)s är %(p2)s %(level)d:e släkting i %(removed)d led."
 
 #: plugins/RelCalc.py:113
 msgid "%(p1)s is the father of %(p2)s."
@@ -3518,7 +3518,7 @@ msgstr "%(p2)s är %(p2)s tredje barnbarnsbarn som är pojke."
 
 #: plugins/RelCalc.py:148
 msgid "%(p1)s is the %(level)dth great grandson of %(p2)s."
-msgstr "%(p1) är %(p2)ss manliga ättling i %(level)d led."
+msgstr "%(p1)s är %(p2)s manliga ättling i %(level)d led."
 
 #: plugins/RelCalc.py:153
 msgid "%(p1)s is the mother of %(p2)s."
@@ -3526,7 +3526,7 @@ msgstr "%(p1)s är mor till %(p2)s."
 
 #: plugins/RelCalc.py:156
 msgid "%(p1)s is the grandmother of %(p2)s."
-msgstr "%(p1) är mor- eller farmor till %(p2)s."
+msgstr "%(p1)s är mor- eller farmor till %(p2)s."
 
 #: plugins/RelCalc.py:159
 msgid "%(p1)s is the great grandmother of %(p2)s."
@@ -3534,15 +3534,15 @@ msgstr "%(p1)s är gammelfarmor eller gammelmormor till %(p2)s."
 
 #: plugins/RelCalc.py:162
 msgid "%(p1)s is the second great grandmother of %(p2)s."
-msgstr "%(p1)s är %(p2)ss andra gammelfarmor eller gammelmormor."
+msgstr "%(p1)s är %(p2)s andra gammelfarmor eller gammelmormor."
 
 #: plugins/RelCalc.py:165
 msgid "%(p1)s is the third great grandmother of %(p2)s."
-msgstr "%(p1)s är %(p2)ss tredje gammelfarmor eller gammelmormor."
+msgstr "%(p1)s är %(p2)s tredje gammelfarmor eller gammelmormor."
 
 #: plugins/RelCalc.py:168
 msgid "%(p1)s is the %(level)dth great grandmother of %(p2)s."
-msgstr "%(p1)s är %(p2)ss kvinnliga ana i %(level)d:e led."
+msgstr "%(p1)s är %(p2)s kvinnliga ana i %(level)d:e led."
 
 #: plugins/RelCalc.py:173
 msgid "%(p1)s is the daughter of %(p2)s."
@@ -3550,23 +3550,23 @@ msgstr "%(p1)s är dotter till %(p2)s."
 
 #: plugins/RelCalc.py:176
 msgid "%(p1)s is the granddaughter of %(p2)s."
-msgstr "%(p1) är son- eller dotterdotter till %(p2)s."
+msgstr "%(p1)s är son- eller dotterdotter till %(p2)s."
 
 #: plugins/RelCalc.py:179
 msgid "%(p1)s is the great granddaughter of %(p2)s."
-msgstr "%(p1) är %(p2)ss kvinnliga barnbarnsbarn."
+msgstr "%(p1)s är %(p2)s kvinnliga barnbarnsbarn."
 
 #: plugins/RelCalc.py:182
 msgid "%(p1)s is the second great granddaughter of %(p2)s."
-msgstr "%(p1) är %(p2)ss andra kvinnliga barnbarnsbarn."
+msgstr "%(p1)s är %(p2)s andra kvinnliga barnbarnsbarn."
 
 #: plugins/RelCalc.py:185
 msgid "%(p1)s is the third great granddaughter of %(p2)s."
-msgstr " %(p1) är %(p2)ss tredje kvinnliga barnbarnsbarn."
+msgstr " %(p1)s är %(p2)s tredje kvinnliga barnbarnsbarn."
 
 #: plugins/RelCalc.py:188
 msgid "%(p1)s is the %(level)dth great granddaughter of %(p2)s."
-msgstr "%(p1)s är %(p2)ss kvinnliga ättling i %(level)d:e led."
+msgstr "%(p1)s är %(p2)s kvinnliga ättling i %(level)d:e led."
 
 #: plugins/RelCalc.py:193
 msgid "%(p1)s is the sister of %(p2)s."
@@ -3578,7 +3578,7 @@ msgstr "%(p1)s är moster eller faster till %(p2)s."
 
 #: plugins/RelCalc.py:199
 msgid "%(p1)s is the grandaunt of %(p2)s."
-msgstr "%s(p1) är gammelmoster eller -faster till %(p2)s."
+msgstr "%(p1)s är gammelmoster eller -faster till %(p2)s."
 
 #: plugins/RelCalc.py:202
 msgid "%(p1)s is the great grandaunt of %(p2)s."
@@ -3622,7 +3622,7 @@ msgstr "%(p1)s är tredje gammel gammelmorbror eller -farbror till %(p2)s."
 
 #: plugins/RelCalc.py:234
 msgid "%(p1)s is the %(level)dth great granduncle of %(p2)s."
-msgstr "%(p1) är mor- eller farbror i %(level)d:e led till %(p2)s."
+msgstr "%(p1)s är mor- eller farbror i %(level)d:e led till %(p2)s."
 
 #: plugins/RelCalc.py:239
 msgid "%(p1)s is the nephew of %(p2)s."
@@ -3634,23 +3634,23 @@ msgstr "%(p1)s är %(p2)s manliga barnbarn till syskon"
 
 #: plugins/RelCalc.py:245
 msgid "%(p1)s is the great grandnephew of %(p2)s."
-msgstr " i en ålder av %d %s"
+msgstr " i en ålder av"
 
 #: plugins/RelCalc.py:248
 msgid "%(p1)s is the second great grandnephew of %(p2)s."
-msgstr "%(p1)s är %(p2)ss andra manliga barnbarnsbarn till syskon."
+msgstr "%(p1)s är %(p2)s andra manliga barnbarnsbarn till syskon."
 
 #: plugins/RelCalc.py:251
 msgid "%(p1)s is the third great grandnephew of %(p2)s."
-msgstr "%(p1)s är %(p2)ss tredje manliga barnbarnsbarn till syskon."
+msgstr "%(p1)s är %(p2)s tredje manliga barnbarnsbarn till syskon."
 
 #: plugins/RelCalc.py:254
 msgid "%(p1)s is the %(level)dth great grandnephew of %(p2)s."
-msgstr "%(p1)s är %(p2)ss manliga barnbarnsbarn till syskon i %(level)d:e led."
+msgstr "%(p1)s är %(p2)s manliga barnbarnsbarn till syskon i %(level)d:e led."
 
 #: plugins/RelCalc.py:259
 msgid "%(p1)s is the niece of %(p2)s."
-msgstr "%8p1)s är brors- eller systerdotter till %(p2)s."
+msgstr "%(p1)s är brors- eller systerdotter till %(p2)s."
 
 #: plugins/RelCalc.py:262
 msgid "%(p1)s is the grandniece of %(p2)s."
@@ -3658,19 +3658,19 @@ msgstr "%(p1)s är %(p2)s kvinnliga barnbarn till syskon"
 
 #: plugins/RelCalc.py:265
 msgid "%(p1)s is the great grandniece of %(p2)s."
-msgstr " %(p1)s är %(p2)ss kvinnliga barnbarnsbarn till syskon."
+msgstr " %(p1)s är %(p2)s kvinnliga barnbarnsbarn till syskon."
 
 #: plugins/RelCalc.py:268
 msgid "%(p1)s is the second great grandniece of %(p2)s."
-msgstr "%(p1)s är %(p2)ss andra kvinnliga barnbarnsbarn till syskon."
+msgstr "%(p1)s är %(p2)s andra kvinnliga barnbarnsbarn till syskon."
 
 #: plugins/RelCalc.py:271
 msgid "%(p1)s is the third great grandniece of %(p2)s."
-msgstr "%(p1)s är %(p2)ss tredje kvinnliga barnbarnsbarn till syskon."
+msgstr "%(p1)s är %(p2)s tredje kvinnliga barnbarnsbarn till syskon."
 
 #: plugins/RelCalc.py:274
 msgid "%(p1)s is the %(level)dth great grandniece of %(p2)s."
-msgstr "%(p1)s är %(p2)ss kvinnliga barnbarnsbarn till syskon i %(level)d:e led."
+msgstr "%(p1)s är %(p2)s kvinnliga barnbarnsbarn till syskon i %(level)d:e led."
 
 #: plugins/RelCalc.py:363
 msgid "Their common ancestor is %s."

@@ -1029,6 +1029,7 @@ class GedcomParser:
             elif matches[1] == "FAMC":
                 ord.setFamily(self.db.findFamily(matches[2],self.fmap))
             elif matches[1] == "PLAC":
+                val = matches[2]
                 if self.placemap.has_key(val):
                     place = self.placemap[val]
                 else:
