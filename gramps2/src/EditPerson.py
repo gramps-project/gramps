@@ -1652,7 +1652,8 @@ class EditPerson:
         media_list = self.person.get_media_list()
         if media_list:
             ph = media_list[0]
-            object = ph.get_reference()
+            object_id = ph.get_reference_id()
+            object = self.db.find_object_from_id(object_id)
             if self.load_obj != object.get_path():
                 if object.get_mime_type()[0:5] == "image":
                     self.load_photo(object.get_path())
