@@ -1,3 +1,7 @@
+2004-09-13  Tim Waugh  <twaugh@redhat.com>
+	* src/GenericFilter.py (IsAncestorOfFilterMatch.apply): Fixed
+	thinko.
+
 2004-09-13 Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py (event_info): Prevent constructions like
 	"died in before 1901" by playing safe if the mode is not exact.
