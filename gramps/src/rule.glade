@@ -57,6 +57,7 @@
       <widget>
 	<class>GtkButton</class>
 	<name>ok</name>
+	<sensitive>False</sensitive>
 	<can_default>True</can_default>
 	<can_focus>True</can_focus>
 	<signal>
@@ -122,7 +123,7 @@
       <widget>
 	<class>GtkTable</class>
 	<name>table1</name>
-	<rows>2</rows>
+	<rows>4</rows>
 	<columns>2</columns>
 	<homogeneous>False</homogeneous>
 	<row_spacing>0</row_spacing>
@@ -189,6 +190,11 @@
 	  <class>GtkEntry</class>
 	  <name>filter_name</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>changed</name>
+	    <handler>on_filter_name_changed</handler>
+	    <last_modification_time>Sun, 07 Apr 2002 19:28:31 GMT</last_modification_time>
+	  </signal>
 	  <editable>True</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -232,6 +238,54 @@
 	    <yfill>False</yfill>
 	  </child>
 	</widget>
+
+	<widget>
+	  <class>GtkRadioButton</class>
+	  <name>logical_and</name>
+	  <can_focus>True</can_focus>
+	  <label>All rules must apply</label>
+	  <active>True</active>
+	  <draw_indicator>True</draw_indicator>
+	  <group>logic</group>
+	  <child>
+	    <left_attach>1</left_attach>
+	    <right_attach>2</right_attach>
+	    <top_attach>2</top_attach>
+	    <bottom_attach>3</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkRadioButton</class>
+	  <name>logical_or</name>
+	  <can_focus>True</can_focus>
+	  <label>At least one rule must apply</label>
+	  <active>False</active>
+	  <draw_indicator>True</draw_indicator>
+	  <group>logic</group>
+	  <child>
+	    <left_attach>1</left_attach>
+	    <right_attach>2</right_attach>
+	    <top_attach>3</top_attach>
+	    <bottom_attach>4</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
       </widget>
 
       <widget>
@@ -253,6 +307,16 @@
 	  <width>450</width>
 	  <height>200</height>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>select_row</name>
+	    <handler>on_rule_select_row</handler>
+	    <last_modification_time>Sun, 07 Apr 2002 19:29:31 GMT</last_modification_time>
+	  </signal>
+	  <signal>
+	    <name>unselect_row</name>
+	    <handler>on_rule_unselect_row</handler>
+	    <last_modification_time>Sun, 07 Apr 2002 19:30:23 GMT</last_modification_time>
+	  </signal>
 	  <columns>2</columns>
 	  <column_widths>147,80</column_widths>
 	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
@@ -319,6 +383,7 @@
 	<widget>
 	  <class>GtkButton</class>
 	  <name>edit</name>
+	  <sensitive>False</sensitive>
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <signal>
@@ -333,6 +398,7 @@
 	<widget>
 	  <class>GtkButton</class>
 	  <name>delete</name>
+	  <sensitive>False</sensitive>
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <signal>
@@ -636,6 +702,16 @@
 	  <width>450</width>
 	  <height>150</height>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>select_row</name>
+	    <handler>on_filters_select_row</handler>
+	    <last_modification_time>Sun, 07 Apr 2002 22:15:34 GMT</last_modification_time>
+	  </signal>
+	  <signal>
+	    <name>unselect_row</name>
+	    <handler>on_filters_unselect_row</handler>
+	    <last_modification_time>Sun, 07 Apr 2002 22:15:44 GMT</last_modification_time>
+	  </signal>
 	  <columns>2</columns>
 	  <column_widths>117,80</column_widths>
 	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
@@ -688,6 +764,7 @@
 	<widget>
 	  <class>GtkButton</class>
 	  <name>button3</name>
+	  <tooltip>Add a new filter</tooltip>
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <signal>
@@ -701,7 +778,9 @@
 
 	<widget>
 	  <class>GtkButton</class>
-	  <name>button4</name>
+	  <name>edit</name>
+	  <sensitive>False</sensitive>
+	  <tooltip>Edit the selected filter</tooltip>
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <signal>
@@ -715,7 +794,9 @@
 
 	<widget>
 	  <class>GtkButton</class>
-	  <name>button5</name>
+	  <name>delete</name>
+	  <sensitive>False</sensitive>
+	  <tooltip>Delete the selected filter</tooltip>
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <signal>
@@ -729,7 +810,9 @@
 
 	<widget>
 	  <class>GtkButton</class>
-	  <name>button7</name>
+	  <name>test</name>
+	  <sensitive>False</sensitive>
+	  <tooltip>Display people matching the filter</tooltip>
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <signal>

@@ -505,11 +505,19 @@ class GenericFilter:
             self.flist = source.flist[:]
             self.name = source.name
             self.comment = source.comment
+            self.logical_or = source.logical_or
         else:
             self.flist = []
-            self.name = 'NoName'
+            self.name = ''
             self.comment = ''
+            self.logical_or = 0
 
+    def set_logical_or(self,val):
+        self.logical_or = val
+
+    def get_logical_or(self):
+        return self.logical_or
+    
     def get_name(self):
         return self.name
     
@@ -533,12 +541,19 @@ class GenericFilter:
     
     def apply(self,list):
         result = []
-        for p in list:
-            for rule in self.flist:
-                if rule.apply(p) == 0:
-                    break
-            else:
-                result.append(p)
+        if self.logical_or:
+            for p in list:
+                for rule in self.flist:
+                    if rule.apply(p):
+                        result.append(p)
+                        break
+        else:
+            for p in list:
+                for rule in self.flist:
+                    if rule.apply(p) == 0:
+                        break
+                else:
+                    result.append(p)
         return result
 
 #-------------------------------------------------------------------------
@@ -607,6 +622,8 @@ class GenericFilterList:
         f.write('<filters>\n')
         for i in self.filter_list:
             f.write('  <filter name="%s"' % self.fix(i.get_name()))
+            if i.get_logical_or():
+                f.write(' function="1"')
             comment = i.get_comment()
             if comment:
                 f.write(' comment="%s"' % self.fix(comment))
@@ -643,6 +660,8 @@ class FilterParser(handler.ContentHandler):
         if tag == "filter":
             self.f = GenericFilter()
             self.f.set_name(attrs['name'])
+            if attrs.has_key('function'):
+                self.f.set_logical_or(int(attrs['function']))
             if attrs.has_key('comment'):
                 self.f.set_comment(attrs['comment'])
             self.gfilter_list.add(self.f)

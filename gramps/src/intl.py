@@ -36,6 +36,8 @@ try:
     elif ver == "2.2":
         from intl22 import *
     else:
+        print 'Internationalization library could be loaded'
+        
         def gettext(s):
             return s
 

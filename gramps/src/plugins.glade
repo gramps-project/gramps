@@ -110,23 +110,54 @@
       </child>
 
       <widget>
-	<class>GtkTree</class>
-	<name>tree</name>
-	<border_width>5</border_width>
-	<width>250</width>
-	<height>300</height>
-	<selection_mode>GTK_SELECTION_SINGLE</selection_mode>
-	<view_mode>GTK_TREE_VIEW_ITEM</view_mode>
-	<view_line>True</view_line>
+	<class>GtkScrolledWindow</class>
+	<name>scrolledwindow1</name>
+	<width>200</width>
+	<hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
+	<vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
+	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
+	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
 	<child>
 	  <shrink>False</shrink>
-	  <resize>True</resize>
+	  <resize>False</resize>
 	</child>
+
+	<widget>
+	  <class>GtkCTree</class>
+	  <name>tree</name>
+	  <width>250</width>
+	  <height>300</height>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>tree_select_row</name>
+	    <handler>on_tree_select_row</handler>
+	    <last_modification_time>Mon, 08 Apr 2002 00:44:55 GMT</last_modification_time>
+	  </signal>
+	  <columns>1</columns>
+	  <column_widths>80</column_widths>
+	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	  <show_titles>False</show_titles>
+	  <shadow_type>GTK_SHADOW_IN</shadow_type>
+
+	  <widget>
+	    <class>GtkLabel</class>
+	    <child_name>CTree:title</child_name>
+	    <name>label63</name>
+	    <label>label63</label>
+	    <justify>GTK_JUSTIFY_CENTER</justify>
+	    <wrap>False</wrap>
+	    <xalign>0.5</xalign>
+	    <yalign>0.5</yalign>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	  </widget>
+	</widget>
       </widget>
 
       <widget>
 	<class>GtkVBox</class>
 	<name>vbox36</name>
+	<width>300</width>
 	<homogeneous>False</homogeneous>
 	<spacing>0</spacing>
 	<child>

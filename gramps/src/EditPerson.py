@@ -92,6 +92,22 @@ class EditPerson:
         self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
         gwidget = self.top.get_widget("photolist")
         self.gallery = ImageSelect.Gallery(person, self.path, gwidget, self.db)
+
+        self.name_update_btn = self.top.get_widget('aka_update')
+        self.name_delete_btn = self.top.get_widget('aka_delete')
+
+        self.web_update_btn = self.top.get_widget('update_url')
+        self.web_delete_btn = self.top.get_widget('delete_url')
+
+        self.event_edit_btn = self.top.get_widget('event_edit_btn')
+        self.event_delete_btn = self.top.get_widget('event_delete_btn')
+        
+        self.attr_edit_btn = self.top.get_widget('attr_edit_btn')
+        self.attr_delete_btn = self.top.get_widget('attr_delete_btn')
+
+        self.addr_edit_btn = self.top.get_widget('addr_edit_btn')
+        self.addr_delete_btn = self.top.get_widget('addr_delete_btn')
+
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
             "on_up_clicked"             : self.on_up_clicked,
@@ -103,12 +119,14 @@ class EditPerson:
             "on_addr_button_press"      : self.addr_double_click,
             "on_web_button_press"       : self.url_double_click,
             "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
-            "on_address_list_select_row": self.on_addr_list_select_row,
+            "on_addr_select_row"        : self.on_addr_select_row,
+            "on_addr_unselect_row"      : self.on_addr_unselect_row,
             "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
             "on_aka_update_clicked"     : self.on_aka_update_clicked,
             "on_apply_person_clicked"   : self.on_apply_person_clicked,
             "on_attr_button_press"      : self.attr_double_click,
-            "on_attr_list_select_row"   : self.on_attr_list_select_row,
+            "on_attr_select_row"        : self.on_attr_select_row,
+            "on_attr_unselect_row"      : self.on_attr_unselect_row,
             "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
             "on_edit_death_clicked"     : self.on_edit_death_clicked,
             "on_delete_address_clicked" : self.on_delete_addr_clicked,
@@ -122,9 +140,11 @@ class EditPerson:
             "on_event_button_press"     : self.event_double_click,
             "on_event_delete_clicked"   : self.on_event_delete_clicked,
             "on_event_select_row"       : self.on_event_select_row,
+            "on_event_unselect_row"     : self.on_event_unselect_row,
             "on_event_update_clicked"   : self.on_event_update_clicked,
             "on_name_button_press"      : self.aka_double_click,
-            "on_name_list_select_row"   : self.on_name_list_select_row,
+            "on_name_select_row"        : self.on_name_select_row,
+            "on_name_unselect_row"      : self.on_name_unselect_row,
             "on_name_note_clicked"      : self.on_name_note_clicked,
             "on_ldsbap_note_clicked"    : self.on_ldsbap_note_clicked,
             "on_ldsendow_note_clicked"  : self.on_ldsendow_note_clicked,
@@ -139,7 +159,8 @@ class EditPerson:
             "on_update_attr_clicked"    : self.on_update_attr_clicked,
             "on_update_url_clicked"     : self.on_update_url_clicked,
             "on_web_go_clicked"         : self.on_web_go_clicked,
-            "on_web_list_select_row"    : self.on_web_list_select_row,
+            "on_web_select_row"         : self.on_web_select_row,
+            "on_web_unselect_row"       : self.on_web_unselect_row,
             })
 
         self.window = self.get_widget("editPerson")
@@ -225,7 +246,8 @@ class EditPerson:
         self.window.editable_enters(self.dplace);
         
         self.autoplace = AutoComp.AutoCombo(self.bpcombo,self.pmap.keys())
-        self.autodeath = AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),self.autoplace)
+        self.autodeath = AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),
+                                            self.autoplace)
         self.comp = AutoComp.AutoCombo(self.sncombo,const.surnames)
             
         self.gid.set_text(person.getId())
@@ -283,25 +305,33 @@ class EditPerson:
         self.notes_field.insert_defaults(person.getNote())
         self.notes_field.set_word_wrap(1)
 
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                      pycode_tgts,ACTION_COPY)
         self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.event_list.connect('drag_data_get', self.ev_drag_data_get)
-        self.event_list.connect('drag_data_received', self.ev_drag_data_received)
+        self.event_list.connect('drag_data_received',
+                                self.ev_drag_data_received)
 
-        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                    pycode_tgts,ACTION_COPY)
         self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.web_list.connect('drag_data_get', self.url_drag_data_get)
-        self.web_list.connect('drag_data_received', self.url_drag_data_received)
+        self.web_list.connect('drag_data_received',
+                              self.url_drag_data_received)
         
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,
+                                     ACTION_COPY)
         self.attr_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.attr_list.connect('drag_data_get', self.at_drag_data_get)
-        self.attr_list.connect('drag_data_received', self.at_drag_data_received)
+        self.attr_list.connect('drag_data_received',
+                               self.at_drag_data_received)
 
-        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                     pycode_tgts,ACTION_COPY)
         self.addr_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
-        self.addr_list.connect('drag_data_received', self.ad_drag_data_received)
+        self.addr_list.connect('drag_data_received',
+                               self.ad_drag_data_received)
 
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -951,6 +981,8 @@ class EditPerson:
                               self.callback)
         
     def on_event_select_row(self,obj,row,b,c):
+        self.event_edit_btn.set_sensitive(1)
+        self.event_delete_btn.set_sensitive(1)
         event = obj.get_row_data(row)
         self.event_date_field.set_text(event.getDate())
         self.event_place_field.set_text(event.getPlaceName())
@@ -959,9 +991,20 @@ class EditPerson:
         self.event_descr_field.set_text(event.getDescription())
         self.event_details_field.set_text(Utils.get_detail_text(event))
 
-    def on_addr_list_select_row(self,obj,row,b,c):
+    def on_event_unselect_row(self,obj,a,b,c):
+        enable = len(obj.selection) > 0
+        self.event_edit_btn.set_sensitive(enable)
+        self.event_delete_btn.set_sensitive(enable)
 
+    def on_addr_unselect_row(self,obj,row,b,c):
+        enable = len(obj.selection) > 0
+        self.addr_edit_btn.set_sensitive(enable)
+        self.addr_delete_btn.set_sensitive(enable)
+
+    def on_addr_select_row(self,obj,row,b,c):
         a = obj.get_row_data(row)
+        self.addr_edit_btn.set_sensitive(1)
+        self.addr_delete_btn.set_sensitive(1)
 
         label = "%s %s %s" % (a.getCity(),a.getState(),a.getCountry())
         self.addr_label.set_label(label)
@@ -973,8 +1016,9 @@ class EditPerson:
         self.addr_postal.set_text(a.getPostal())
         self.addr_details_field.set_text(Utils.get_detail_text(a))
 
-    def on_name_list_select_row(self,obj,row,b,c):
-
+    def on_name_select_row(self,obj,row,b,c):
+        self.name_update_btn.set_sensitive(1)
+        self.name_delete_btn.set_sensitive(1)
         name = obj.get_row_data(row)
         self.name_frame.set_label(name.getName())
         self.alt_given_field.set_text(name.getFirstName())
@@ -984,8 +1028,14 @@ class EditPerson:
         self.name_type_field.set_text(name.getType())
         self.name_details_field.set_text(Utils.get_detail_text(name))
 
-    def on_web_list_select_row(self,obj,row,b,c):
+    def on_name_unselect_row(self,obj,a,b,c):
+        enable = len(obj.selection) > 0
+        self.name_update_btn.set_sensitive(enable)
+        self.name_delete_btn.set_sensitive(enable)
 
+    def on_web_select_row(self,obj,row,b,c):
+        self.web_update_btn.set_sensitive(1)
+        self.web_delete_btn.set_sensitive(1)
         url = obj.get_row_data(row)
         if url == None:
             self.web_url.set_text("")
@@ -997,12 +1047,23 @@ class EditPerson:
             self.web_go.set_sensitive(1)
             self.web_description.set_text(url.get_description())
 
-    def on_attr_list_select_row(self,obj,row,b,c):
+    def on_web_unselect_row(self,obj,row,b,c):
+        enable = len(obj.selection) > 0
+        self.web_update_btn.set_sensitive(enable)
+        self.web_delete_btn.set_sensitive(enable)
 
+    def on_attr_select_row(self,obj,row,b,c):
+        self.attr_edit_btn.set_sensitive(1)
+        self.attr_delete_btn.set_sensitive(1)
         attr = obj.get_row_data(row)
         self.attr_type.set_label(const.display_pattr(attr.getType()))
         self.attr_value.set_text(attr.getValue())
         self.attr_details_field.set_text(Utils.get_detail_text(attr))
+
+    def on_attr_unselect_row(self,obj,row,b,c):
+        enable = len(obj.selection) > 0
+        self.attr_edit_btn.set_sensitive(enable)
+        self.attr_delete_btn.set_sensitive(enable)
 
     def aka_double_click(self,obj,event):
         if event.button == 1 and event.type == _2BUTTON_PRESS:
