@@ -145,8 +145,14 @@ def dump_ordinance(g,name,ord,index=1):
         write_date(g,dateobj,index+1)
     if ord.getTemple():
         g.write('%s<temple val="%s"/>\n' % (sp2,fix(ord.getTemple())))
+    if ord.getStatus() != 0:
+        g.write('%s<status val="%d"/>\n' % (sp2,ord.getStatus()))
     if ord.getFamily():
         g.write('%s<sealed_to ref="%s"/>\n' % (sp2,fix(ord.getFamily().getId())))
+    if ord.getNote() != "":
+        write_note(g,"note",ord.getNote(),index+1)
+    for s in ord.getSourceRefList():
+        dump_source_ref(g,s,index+1)
     g.write('%s</lds_ord>\n' % sp)
     
 #-------------------------------------------------------------------------

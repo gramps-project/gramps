@@ -222,6 +222,9 @@ def runTool(database,person,callback):
 #
 #-------------------------------------------------------------------------
 class RelCalc:
+    """
+    Relationship calculator class.
+    """
 
     def __init__(self,database,person):
         self.person = person

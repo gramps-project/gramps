@@ -136,6 +136,9 @@ class GrampsParser:
     def start_temple(self,attrs):
         self.ord.setTemple(u2l(attrs['val']))
 
+    def start_status(self,attrs):
+        self.ord.setStatus(int(u2l(attrs['val'])))
+
     def start_sealed_to(self,attrs):
         id = u2l(attrs['ref'])
         self.ord.setFamily(self.db.findFamilyNoMap(id))
@@ -318,6 +321,8 @@ class GrampsParser:
         self.source_ref.setBase(source)
         if self.photo:
             self.photo.addSourceRef(self.source_ref)
+        elif self.ord:
+            self.ord.addSourceRef(self.source_ref)
         elif self.object:
             self.object.addSourceRef(self.source_ref)
         elif self.event:
@@ -628,6 +633,8 @@ class GrampsParser:
 
         if self.address:
             self.address.setNote(note)
+        elif self.ord:
+            self.ord.setNote(note)
         elif self.attribute:
             self.attribute.setNote(note)
         elif self.object:
@@ -738,6 +745,7 @@ class GrampsParser:
         "location"   : (start_location,None),
         "lds_ord"    : (start_lds_ord, stop_lds_ord),
         "temple"     : (start_temple, None),
+        "status"     : (start_status, None),
         "sealed_to"  : (start_sealed_to, None),
         "coord"      : (start_coord,None),
         "pos"        : (start_pos, None),

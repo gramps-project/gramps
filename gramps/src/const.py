@@ -213,7 +213,7 @@ personalConstantEvents = {
     "Blessing"            : "BLES",
     "Burial"              : "BURI",
     "Cause Of Death"      : "CAUS",
-    "Ordination"          : "ORID",
+    "Ordination"          : "ORDI",
     "Census"              : "CENS",
     "Christening"         : "CHR" ,
     "Confirmation"        : "CONF",
@@ -697,3 +697,43 @@ lds_temple_to_abrev = {
     "WASHI": "Washington, D.C.",      
     "WA"   : "Washington, D.C.",      
 }
+
+lds_baptism_status = {
+    "<No Status>" : 0,
+    "Child"       : 1,
+    "Cleared"     : 2,
+    "Completed"   : 3,
+    "Infant"      : 4,
+    "Pre-1970"    : 5,
+    "Qualified"   : 6,
+    "Stillborn"   : 7,
+    "Submitted"   : 8,
+    "Uncleared"   : 9,
+    }
+
+lds_baptism_index = [
+    "<No Status>",
+    "Child",
+    "Cleared",
+    "Completed",
+    "Infant",
+    "Pre-1970",
+    "Qualified",
+    "Stillborn",
+    "Submitted",
+    "Uncleared",
+    ]
+
+lds_csealing_index = [
+    "<No Status>",
+    "BIC",
+    "Cleared",
+    "Completed",
+    "DNS",
+    "Pre-1970",
+    "Qualified",
+    "Stillborn",
+    "Submitted",
+    "Uncleared",
+    ]
+    

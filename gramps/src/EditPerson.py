@@ -81,6 +81,7 @@ class EditPerson:
         self.callback = callback
         self.path = db.getSavePath()
         self.not_loaded = 1
+        self.lds_not_loaded = 1
         self.lists_changed = 0
         self.update_birth = 0
         self.update_death = 0
@@ -124,6 +125,12 @@ class EditPerson:
             "on_name_button_press"      : self.aka_double_click,
             "on_name_list_select_row"   : self.on_name_list_select_row,
             "on_name_note_clicked"      : self.on_name_note_clicked,
+            "on_ldsbap_note_clicked"    : self.on_ldsbap_note_clicked,
+            "on_ldsendow_note_clicked"  : self.on_ldsendow_note_clicked,
+            "on_ldsseal_note_clicked"   : self.on_ldsseal_note_clicked,
+            "on_ldsbap_src_clicked"     : self.on_ldsbap_source_clicked,
+            "on_ldsendow_src_clicked"   : self.on_ldsendow_source_clicked,
+            "on_ldsseal_src_clicked"    : self.on_ldsseal_source_clicked,
             "on_name_source_clicked"    : self.on_primary_name_source_clicked,
             "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
             "on_photolist_select_icon"  : self.gallery.on_photo_select_icon,
@@ -195,6 +202,12 @@ class EditPerson:
         self.ldsseal_date = self.get_widget("sealdate")
         self.ldsseal_temple = self.get_widget("sealtemple")
         self.ldsseal_fam = self.get_widget("sealparents")
+        self.ldsbapstat = self.get_widget("ldsbapstat")
+        self.ldssealstat = self.get_widget("sealstat")
+        self.ldsendowstat = self.get_widget("endowstat")
+        self.ldsbapplace = self.get_widget("ldsbapplace")
+        self.ldssealplace = self.get_widget("sealplace")
+        self.ldsendowplace = self.get_widget("endowplace")
         
         self.elist = person.getEventList()[:]
         self.nlist = person.getAlternateNames()[:]
@@ -273,6 +286,7 @@ class EditPerson:
         ord = person.getLdsBaptism()
         self.ldsbap_temple.set_popdown_strings(_temple_names)
         if ord:
+            self.bap_stat = ord.getStatus()
             self.ldsbap_date.set_text(ord.getDate())
             if ord.getTemple() != "":
                 name = const.lds_temple_to_abrev[ord.getTemple()]
@@ -280,11 +294,13 @@ class EditPerson:
                 name = ""
             self.ldsbap_temple.entry.set_text(name)
         else:
+            self.bap_stat = 0
             self.ldsbap_temple.entry.set_text("")
 
         ord = person.getLdsEndowment()
         self.ldsend_temple.set_popdown_strings(_temple_names)
         if ord:
+            self.end_stat = ord.getStatus()
             self.ldsend_date.set_text(ord.getDate())
             if ord.getTemple() != "":
                 name = const.lds_temple_to_abrev[ord.getTemple()]
@@ -292,11 +308,13 @@ class EditPerson:
                 name = ""
             self.ldsend_temple.entry.set_text(name)
         else:
+            self.end_stat = 0
             self.ldsend_temple.entry.set_text("")
 
         ord = person.getLdsSeal()
         self.ldsseal_temple.set_popdown_strings(_temple_names)
         if ord:
+            self.seal_stat = ord.getStatus()
             self.ldsseal_date.set_text(ord.getDate())
             self.ldsfam = ord.getFamily()
             if ord.getTemple() != "":
@@ -305,6 +323,7 @@ class EditPerson:
                 name = ""
             self.ldsseal_temple.entry.set_text(name)
         else:
+            self.seal_stat = 0
             self.ldsseal_temple.entry.set_text("")
             self.ldsfam = None
 
@@ -364,6 +383,10 @@ class EditPerson:
         self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
         self.addr_list.connect('drag_data_received', self.ad_drag_data_received)
 
+        self.build_bap_menu()
+        self.build_seal_menu()
+        self.build_endow_menu()
+
         # draw lists
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -372,6 +395,55 @@ class EditPerson:
         self.redraw_url_list()
         self.window.show()
 
+
+    def build_bap_menu(self):
+        menu = gtk.GtkMenu()
+        index = 0
+        for val in const.lds_baptism_index:
+            menuitem = gtk.GtkMenuItem(val)
+            menuitem.set_data("val",index)
+            menuitem.connect('activate',self.set_lds_bap)
+            menuitem.show()
+            menu.append(menuitem)
+            index = index + 1
+        self.ldsbapstat.set_menu(menu)
+        self.ldsbapstat.set_history(self.bap_stat)
+
+    def build_endow_menu(self):
+        menu = gtk.GtkMenu()
+        index = 0
+        for val in const.lds_baptism_index:
+            menuitem = gtk.GtkMenuItem(val)
+            menuitem.set_data("val",index)
+            menuitem.connect('activate',self.set_lds_endow)
+            menuitem.show()
+            menu.append(menuitem)
+            index = index + 1
+        self.ldsendowstat.set_menu(menu)
+        self.ldsendowstat.set_history(self.end_stat)
+
+    def build_seal_menu(self):
+        menu = gtk.GtkMenu()
+        index = 0
+        for val in const.lds_csealing_index:
+            menuitem = gtk.GtkMenuItem(val)
+            menuitem.set_data("val",index)
+            menuitem.connect('activate',self.set_lds_seal)
+            menuitem.show()
+            menu.append(menuitem)
+            index = index + 1
+        self.ldssealstat.set_menu(menu)
+        self.ldssealstat.set_history(self.seal_stat)
+
+    def set_lds_bap(self,obj):
+        self.bap_stat = obj.get_data("val")
+
+    def set_lds_endow(self,obj):
+        self.end_stat = obj.get_data("val")
+
+    def set_lds_seal(self,obj):
+        self.seal_stat = obj.get_data("val")
+    
     def ev_drag_data_received(self,widget,context,x,y,selection_data,info,time):
         if selection_data and selection_data.data:
             exec 'data = %s' % selection_data.data
@@ -706,6 +778,8 @@ class EditPerson:
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
                 changed = 1
+            elif ord.getStatus() != self.bap_stat:
+                changed = 1
             elif ord.getTemple() != temple:
                 changed = 1
 
@@ -723,6 +797,8 @@ class EditPerson:
             d = Date()
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
+                changed = 1
+            elif ord.getStatus() != self.end_stat:
                 changed = 1
             elif ord.getTemple() != temple:
                 changed = 1
@@ -744,6 +820,8 @@ class EditPerson:
             if compare_dates(d,ord.getDateObj()) != 0:
                 changed = 1
             elif ord.getTemple() != temple:
+                changed = 1
+            elif ord.getStatus() != self.seal_stat:
                 changed = 1
             elif ord.getFamily() != self.ldsfam:
                 changed = 1
@@ -1070,7 +1148,7 @@ class EditPerson:
         else:
             temple = ""
         ord = self.person.getLdsBaptism()
-        update_ord(self.person.setLdsBaptism,ord,date,temple)
+        update_ord(self.person.setLdsBaptism,ord,date,temple,self.bap_stat)
 
         date = self.ldsend_date.get_text()
         temple = self.ldsend_temple.entry.get_text()
@@ -1079,7 +1157,7 @@ class EditPerson:
         else:
             temple = ""
         ord = self.person.getLdsEndowment()
-        update_ord(self.person.setLdsEndowment,ord,date,temple)
+        update_ord(self.person.setLdsEndowment,ord,date,temple,self.end_stat)
 
         date = self.ldsseal_date.get_text()
         temple = self.ldsseal_temple.entry.get_text()
@@ -1105,6 +1183,9 @@ class EditPerson:
             if ord.getTemple() != temple:
                 ord.setTemple(temple)
                 utils.modified()
+            if ord.getStatus() != self.seal_stat:
+                ord.setStatus(self.seal_stat)
+                utils.modified()
             if ord.getFamily() != self.ldsfam:
                 ord.setFamily(self.ldsfam)
                 utils.modified()
@@ -1121,6 +1202,54 @@ class EditPerson:
     def on_name_note_clicked(self,obj):
         import NoteEdit
         NoteEdit.NoteEditor(self.pname)
+
+    def on_ldsbap_source_clicked(self,obj):
+        import Sources
+        ord = self.person.getLdsBaptism()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsBaptism(ord)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self,src_changed)
+
+    def on_ldsbap_note_clicked(self,obj):
+        import NoteEdit
+        ord = self.person.getLdsBaptism()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsBaptism(ord)
+        NoteEdit.NoteEditor(ord)
+
+    def on_ldsendow_source_clicked(self,obj):
+        import Sources
+        ord = self.person.getLdsEndowment()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsEndowment(ord)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self,src_changed)
+
+    def on_ldsendow_note_clicked(self,obj):
+        import NoteEdit
+        ord = self.person.getLdsEndowment()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsEndowment(ord)
+        NoteEdit.NoteEditor(ord)
+
+    def on_ldsseal_source_clicked(self,obj):
+        import Sources
+        ord = self.person.getLdsSeal()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsSeal(ord)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self,src_changed)
+
+    def on_ldsseal_note_clicked(self,obj):
+        import NoteEdit
+        ord = self.person.getLdsSeal()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsSeal(ord)
+        NoteEdit.NoteEditor(ord)
 
     def load_person_image(self):
         photo_list = self.person.getPhotoList()
@@ -1141,9 +1270,29 @@ class EditPerson:
         elif page == 6 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()
+        elif page == 8 and self.lds_not_loaded:
+            self.lds_not_loaded = 0
+            plist = self.db.getPlaceMap().values()
+            ord = self.person.getLdsBaptism()
+            if ord :
+                place = ord.getPlace()
+            else:
+                place = None
+            utils.attach_places(plist,self.ldsbapplace,place)
+            ord = self.person.getLdsSeal()
+            if ord :
+                place = ord.getPlace()
+            else:
+                place = None
+            utils.attach_places(plist,self.ldssealplace,place)
+            ord = self.person.getLdsEndowment()
+            if ord :
+                place = ord.getPlace()
+            else:
+                place = None
+            utils.attach_places(plist,self.ldsendowplace,place)
 
-
-def update_ord(func,ord,date,temple):
+def update_ord(func,ord,date,temple,stat):
     if not ord:
         if (date or temple):
             ord = LdsOrd()
@@ -1159,6 +1308,9 @@ def update_ord(func,ord,date,temple):
             utils.modified()
         elif ord.getTemple() != temple:
             ord.setTemple(temple)
+            utils.modified()
+        elif ord.getStatus() != stat:
+            ord.setStatus(stat)
             utils.modified()
 
 #-------------------------------------------------------------------------
