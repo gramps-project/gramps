@@ -990,6 +990,7 @@ class LPRDoc(BaseDoc.BaseDoc):
     def draw_path(self,style,path):
         self.brand_new_page = 0
         stype = self.draw_styles[style]
+        self.gpc.setlinewidth(stype.get_line_width())
         fill_color = [ val/255.0 for val in stype.get_fill_color()]
         color = [ val/255.0 for val in stype.get_color()]
 
@@ -1082,9 +1083,10 @@ class LPRDoc(BaseDoc.BaseDoc):
     def draw_bar(self, style, x1, y1, x2, y2):
         self.brand_new_page = 0
 
-        style = self.draw_styles[style]
-        fill_color = [ val/255.0 for val in style.get_fill_color() ]
-        color = [ val/255.0 for val in style.get_color() ]
+        stype = self.draw_styles[style]
+        self.gpc.setlinewidth(stype.get_line_width())
+        fill_color = [ val/255.0 for val in stype.get_fill_color() ]
+        color = [ val/255.0 for val in stype.get_color() ]
 
         x = self.left_margin + cm2u(x1)
         y = self.top_margin - cm2u(y1)
