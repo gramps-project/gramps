@@ -1,8 +1,7 @@
-#! /usr/bin/python -O
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allinghamg
+# Copyright (C) 2000-2003  Donald N. Allinghamg
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +25,7 @@
 #-------------------------------------------------------------------------
 import string
 import os
+import getopt
 
 #-------------------------------------------------------------------------
 #
@@ -97,7 +97,7 @@ _sel_mode = gtk.SELECTION_MULTIPLE
 #-------------------------------------------------------------------------
 class Gramps:
 
-    def __init__(self,arg):
+    def __init__(self,args):
 
         self.pl_titles  = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
                             (_('Birth date'),6,150),(_('Death date'),7,150), ('',5,0),
@@ -140,11 +140,66 @@ class Gramps:
         self.relationship = Plugins.relationship_function()
         self.init_interface()
 
-        if arg != None:
-            if string.upper(arg[-3:]) == "GED":
-                self.read_gedcom(arg)
-            else:
-                self.read_file(arg)
+        self.cl = 0
+        if args:
+            options,leftargs = getopt.getopt(args,
+                const.shortopts,const.longopts)
+            if leftargs:
+                print "Unrecognized option: %s" % leftargs[0]
+                return
+            outfile = ''
+            action = ''
+            for opt_ix in range(len(options)):
+                o = options[opt_ix][0][1]
+                if o == '-':
+                    continue
+                elif o == 'i':
+                    fname = options[opt_ix][1]
+                    if opt_ix<len(options)-1 and options[opt_ix+1][0][1]=='f': 
+                        format = options[opt_ix+1][1]
+                        if format not in [ 'gedcom', 'gramps', 'gramps-pkg' ]:
+                            print "Invalid format:  %s" % format
+                            return
+                    elif string.upper(fname[-3:]) == "GED":
+                        format = 'gedcom'
+                    elif string.upper(fname[-3:]) == "TGZ":
+                        format = 'gramps-pkg'
+                    elif os.path.isdir(fname):
+                        format = 'gramps'
+                    else:
+                        print "Unrecognized format for input file %s" % fname
+                        return
+                    self.cl_import(fname,format)
+                elif o == 'o':
+                    outfname = options[opt_ix][1]
+                    if opt_ix<len(options)-1 and options[opt_ix+1][0][1]=='f': 
+                        outformat = options[opt_ix+1][1]
+                        if outformat not in [ 'gedcom', 'gramps', 'gramps-pkg', 'iso' ]:
+                            print "Invalid format:  %s" % outformat
+                            return
+                    elif string.upper(outfname[-3:]) == "GED":
+                        outformat = 'gedcom'
+                    elif string.upper(outfname[-3:]) == "TGZ":
+                        outformat = 'gramps-pkg'
+                    elif os.path.isdir(outfname):
+                        outformat = 'gramps'
+                    else:
+                        print "Unrecognized format for output file %s" % outfname
+                        return
+                elif o == 'a':
+                    action = options[opt_ix][1]
+            
+            if outfname:
+                self.cl_export(outfname,outformat)
+                self.cl = 1
+
+            if action:
+                self.cl_action(action)
+                self.cl = 1
+            
+            if self.cl:
+                os._exit(0)
+
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
             self.auto_save_load(GrampsCfg.lastfile)
         else:
@@ -832,6 +887,15 @@ class Gramps:
             GrampsCfg.save_last_file("")
         self.topWindow.set_resizable(gtk.TRUE)
         
+    def cl_import(self,filename,format):
+        pass
+
+    def cl_export(self,filename,format):
+        pass
+
+    def cl_action(self,action):
+        pass
+
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
         filename = os.path.normpath(os.path.abspath(filename))
