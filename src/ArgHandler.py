@@ -254,15 +254,22 @@ class ArgHandler:
             success = False
             filename = os.path.abspath(os.path.expanduser(self.open_gui))
             filetype = GrampsMime.get_type(filename) 
-            if filetype == const.app_gramps:
-                print "Type: GRAMPS database"
+            if filetype in (const.app_gramps,const.app_gedcom,
+                                        const.app_gramps_xml):
+                # Say the type outloud
+                if filetype == const.app_gramps:
+                    print "Type: GRAMPS database"
+                elif filetype == const.app_gedcom:
+                    print "Type: GEDCOM file"
+                elif filetype == const.app_gramps_xml:
+                    print "Type: GRAMPS XML database"
+
                 if self.auto_save_load(filename):
                     print "Opened successfully!"
                     success = True
                 else:
                     print "Cannot open %s. Exiting..."
-            elif filetype in (const.app_gedcom,"x-directory/normal",
-                                        const.app_gramps_package):
+            elif filetype in (const.app_gramps_package,):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
                             _("New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
                             self.parent.topWindow)
@@ -273,12 +280,6 @@ class ArgHandler:
                         _('GRAMPS cannot open non-native data without setting up new GRAMPS database.'))
                     print "Cannot continue without native database. Exiting..." 
                     os._exit(1)
-                elif filetype == const.app_gedcom:
-                    print "Type: GEDCOM"
-                    self.parent.read_gedcom(filename)
-                elif filetype == "x-directory/normal":
-                    print "Type: GRAMPS XML"
-                    self.parent.read_xml(filename)
                 elif filetype == const.app_gramps_package:
                     print "Type: GRAMPS package"
                     self.parent.read_pkg(filename)
