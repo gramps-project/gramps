@@ -389,7 +389,10 @@ class XmlWriter:
             self.g.write("  " * indent)
         
         format = noteobj.getFormat()
-        self.g.write('<%s format="%d">' % (val,format))
+        if format:
+            self.g.write('<%s format="%d">' % (val,format))
+        else:
+            self.g.write('<%s>' % val)
         self.g.write(self.fix(string.rstrip(text)))
         self.g.write("</%s>\n" % val)
 			
