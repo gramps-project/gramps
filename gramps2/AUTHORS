@@ -5,3 +5,7 @@ David Hampton ** Autocomp.py and Report.py
 Donald A. Peterson  ** Makefiles, LaTeXDoc.py
 
 Alex Roitman ** BookReport, command line, Gramps manual, bugfixes
+
+Tim Waugh ** Comprehensive Ancestor report, docgen, Makefiles, bugfixes
+
+$Id$

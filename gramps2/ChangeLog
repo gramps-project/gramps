@@ -20,6 +20,7 @@
 	GrampsImportParser.start_person, GrampsImportParser.start_family): 
 	Parse completeness.
 	* src/EditPerson.py: Add support for completeness.
+	* AUTHORS: Add Tim Waugh to the author list.
 
 2003-12-02  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add more docs.
