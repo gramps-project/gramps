@@ -145,7 +145,7 @@ class FamilyView:
         Utils.build_columns(self.child_list,
                             [ ('',30,-1), (_('Name'),250,-1), (_('ID'),50,-1),
                               (_('Gender'),100,-1), (_('Birth Date'),150,-1),
-                              (_('Status'),150,-1), ('',0,-1) ])
+                              (_('Status'),100,-1), ('',0,-1) ])
 
     def edit_active_person(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:

@@ -1417,10 +1417,10 @@ class Gramps:
             name = self.active_person.getPrimaryName().getRegularName()
             msg = _("Do you wish to set %s as the home person?") % name
 
-            QuestionDialog(_('Set %n as the Home Person') % name,
-                           _('Once a Home Person is defined, pressing the Home key '
-                             'on the toolbar will make the home person the active '
-                             'person.'),
+            QuestionDialog(_('Set %s as the Home Person') % name,
+                           _('Once a Home Person is defined, pressing the '
+                             'Home button on the toolbar will make the home '
+                             'person the active person.'),
                            _('Set Home Person'),
                            self.set_person)
             

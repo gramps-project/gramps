@@ -163,7 +163,6 @@ class Report:
         """Done with the progress bar.  It can be destroyed now."""
         Utils.destroy_passed_object(self.ptop)
 
-
 class ReportDialog:
     """
     The ReportDialog base class.  This is a base class for generating
@@ -213,8 +212,15 @@ class ReportDialog:
         # Set up and run the dialog.  These calls are not in top down
         # order when looking at the dialog box as there is some
         # interaction between the various frames.
+
         self.setup_title()
         self.setup_header()
+        self.tbl = gtk.Table(4,4,gtk.FALSE)
+        self.tbl.set_col_spacings(12)
+        self.tbl.set_row_spacings(6)
+        self.tbl.set_border_width(6)
+        self.col = 0
+        self.window.vbox.add(self.tbl)
         self.setup_target_frame()
         self.setup_format_frame()
         self.setup_style_frame()
@@ -443,7 +449,8 @@ class ReportDialog:
         self.output_notebook.set_current_page(self.notebook_page)
 
         # Does this report format use styles?
-        self.style_frame.set_sensitive(obj.get_data("styles"))
+        self.style_button.set_sensitive(obj.get_data("styles"))
+        self.style_menu.set_sensitive(obj.get_data("styles"))
 
     #------------------------------------------------------------------------
     #
@@ -465,11 +472,10 @@ class ReportDialog:
         of the currently selected person."""
 
         title = self.get_header(self.name)
-        label = gtk.Label(title)
-        label.set_padding(12,12)
-        label.set_size_request(450,10)
+        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
+        label.set_use_markup(gtk.TRUE)
         self.window.vbox.pack_start(label,gtk.TRUE,gtk.TRUE,ReportDialog.border_pad)
-        self.window.vbox.set_border_width(12)
+        self.window.vbox.add(gtk.HSeparator());
         
     def setup_target_frame(self):
         """Set up the target frame of the dialog.  This function
@@ -479,42 +485,35 @@ class ReportDialog:
         directory should be used."""
 
         # Save Frame
-        frame = gtk.Frame(_("Save As"))
-        frame.set_border_width(ReportDialog.frame_pad)
+
+        label = gtk.Label("<b>%s</b>" % _('Document Options'))
+        label.set_use_markup(1)
+        label.set_alignment(0.0,0.5)
+        self.tbl.set_border_width(12)
+        self.tbl.attach(label,0,4,self.col,self.col+1)
+        self.col += 1
+        
         hid = self.get_stylesheet_savefile()
         if hid[-4:]==".xml":
             hid = hid[0:-4]
         self.target_fileentry = gnome.ui.FileEntry(hid,_("Save As"))
 
-        hbox = gtk.HBox()
-        hbox.set_border_width(ReportDialog.border_pad)
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
-            label = gtk.Label(_("Directory"))
+            label = gtk.Label("%s :" % _("Directory"))
         else:
-            label = gtk.Label(_("Filename"))
-        hbox.pack_start(label,0,0,5)
-            
-        hbox.add(self.target_fileentry)
-        frame.add(hbox)
-        self.window.vbox.add(frame)
+            label = gtk.Label("%s :" % _("Filename"))
+        label.set_alignment(0.0,0.5)
 
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.target_fileentry,2,4,self.col,self.col+1)
+        self.col += 1
+        
         self.target_fileentry.set_default_path(self.get_default_directory())
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
 
         self.target_fileentry.set_filename(self.get_default_directory())
-
-        # Faugh! The following line of code would allow the 'Enter'
-        # key in the file name box to close the dialog.  However there
-        # is a bug (or is it?) in the closing of the Gnome FileEntry
-        # browser that sends the same signal that is sent when the
-        # 'Enter' key is pressed.  This causes the report to be run
-        # when the browser window is closed instead of waiting for the
-        # dialog window OK button to be clicked.  The user does not
-        # have a chance to set any other options.
-        #
-        # self.window.editable_enters(self.target_filename)
 
     def setup_format_frame(self):
         """Set up the format frame of the dialog.  This function
@@ -523,10 +522,11 @@ class ReportDialog:
 
         self.format_menu = gtk.OptionMenu()
         self.make_doc_menu()
-        frame = gtk.Frame(_("Output Format"))
-        frame.add(self.format_menu)
-        frame.set_border_width(ReportDialog.frame_pad)        
-        self.window.vbox.add(frame)
+        label = gtk.Label("%s :" % _("Output Format"))
+        label.set_alignment(0.0,0.5)
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
+        self.col += 1
 
     def setup_style_frame(self):
         """Set up the style frame of the dialog.  This function relies
@@ -536,17 +536,18 @@ class ReportDialog:
         choose from."""
 
         # Styles Frame
-        self.style_frame = gtk.Frame(_("Styles"))
+        label = gtk.Label("%s :" % _("Styles"))
+        label.set_alignment(0.0,0.5)
+
         hbox = gtk.HBox()
-        hbox.set_border_width(ReportDialog.border_pad)
         self.style_menu = gtk.OptionMenu()
-        hbox.pack_start(self.style_menu,gtk.TRUE,gtk.TRUE,2)
-        style_button = gtk.Button(_("Style Editor"))
-        style_button.connect('clicked',self.on_style_edit_clicked)
-        hbox.pack_end(style_button,0,0,2)
-        self.style_frame.add(hbox)
-        self.style_frame.set_border_width(ReportDialog.frame_pad)
-        self.window.vbox.add(self.style_frame)
+        self.style_button = gtk.Button("%s..." % _("Style Editor"))
+        self.style_button.connect('clicked',self.on_style_edit_clicked)
+
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
+        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.col += 1
         
         # Build the default style set for this report.
         self.default_style = TextDoc.StyleSheet()
@@ -567,14 +568,9 @@ class ReportDialog:
         the callback from when the file format is changed."""
 
         self.output_notebook = gtk.Notebook()
-        self.paper_frame = gtk.Frame(_("Paper Options"))
-        self.paper_frame.set_border_width(ReportDialog.frame_pad)
-        self.output_notebook.append_page(self.paper_frame,gtk.Label(_("Paper Options")))
-        self.html_frame = gtk.Frame(_("HTML Options"))
-        self.html_frame.set_border_width(ReportDialog.frame_pad)
-        self.output_notebook.append_page(self.html_frame,gtk.Label(_("HTML Options")))
         self.output_notebook.set_show_tabs(0)
         self.output_notebook.set_show_border(0)
+        self.output_notebook.set_border_width(12)
         self.output_notebook.set_current_page(self.notebook_page)
         self.window.vbox.add(self.output_notebook)
 
@@ -596,44 +592,57 @@ class ReportDialog:
         its strings should be."""
 
         (pagecount_map, start_text) = self.get_print_pagecount_map()
-        table = gtk.Table(2,5)
-        self.paper_frame.add(table)
+
+        if pagecount_map:
+            self.paper_table = gtk.Table(3,6)
+        else:
+            self.paper_table = gtk.Table(4,6)
+        self.paper_table.set_col_spacings(12)
+        self.paper_table.set_row_spacings(6)
+        self.paper_table.set_border_width(0)
+        self.output_notebook.append_page(self.paper_table,gtk.Label(_("Paper Options")))
+            
+        paper_label = gtk.Label("<b>%s</b>" % _("Paper Options"))
+        paper_label.set_use_markup(gtk.TRUE)
+        paper_label.set_alignment(0.0,0.5)
+        self.paper_table.attach(paper_label,0,6,0,1,gtk.SHRINK|gtk.FILL)
+
         self.papersize_menu = gtk.OptionMenu()
         self.papersize_menu.connect('changed',self.size_changed)
         
         self.orientation_menu = gtk.OptionMenu()
-        l = gtk.Label(_("Size"))
-        pad = ReportDialog.border_pad
-        l.set_alignment(1.0,0.5)
-        table.attach(l,0,1,0,1,gtk.FILL,gtk.FILL,pad,pad)
-        table.attach(self.papersize_menu,1,2,0,1,xpadding=pad,ypadding=pad)
-        l = gtk.Label(_("Height"))
-        l.set_alignment(1.0,0.5)
-        table.attach(l,2,3,0,1,xpadding=pad,ypadding=pad)
+        l = gtk.Label("%s : " % _("Size"))
+        l.set_alignment(0.0,0.5)
+        
+        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.papersize_menu,2,3,1,2)
+        l = gtk.Label("%s :" % _("Height"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
 
         self.pheight = gtk.Entry()
         self.pheight.set_sensitive(0)
-        table.attach(self.pheight,3,4,0,1,xpadding=pad,ypadding=pad)
+        self.paper_table.attach(self.pheight,4,5,1,2)
         
         l = gtk.Label(_("cm"))
         l.set_alignment(0.0,0.5)
-        table.attach(l,4,5,0,1,xpadding=pad,ypadding=pad)
+        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
 
-        l = gtk.Label(_("Orientation"))
-        l.set_alignment(1.0,0.5)
-        table.attach(l,0,1,1,2,gtk.FILL,gtk.FILL,pad,pad)
-        table.attach(self.orientation_menu,1,2,1,2,xpadding=pad,ypadding=pad)
-        l = gtk.Label(_("Width"))
-        l.set_alignment(1.0,0.5)
-        table.attach(l,2,3,1,2,xpadding=pad,ypadding=pad)
+        l = gtk.Label("%s :" % _("Orientation"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.orientation_menu,2,3,2,3)
+        l = gtk.Label("%s :" % _("Width"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,3,4,2,3,gtk.SHRINK|gtk.FILL)
 
         self.pwidth = gtk.Entry()
         self.pwidth.set_sensitive(0)
-        table.attach(self.pwidth,3,4,1,2,xpadding=pad,ypadding=pad)
+        self.paper_table.attach(self.pwidth,4,5,2,3)
 
         l = gtk.Label(_("cm"))
         l.set_alignment(0.0,0.5)
-        table.attach(l,4,5,1,2,xpadding=pad,ypadding=pad)
+        self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
 
         PaperMenu.make_paper_menu(self.papersize_menu)
         PaperMenu.make_orientation_menu(self.orientation_menu)
@@ -643,8 +652,10 @@ class ReportDialog:
             self.pagecount_menu = gtk.OptionMenu()
             myMenu = Utils.build_string_optmenu(pagecount_map, start_text)
             self.pagecount_menu.set_menu(myMenu)
-            table.attach(gtk.Label(_("Page Count")),0,1,1,2,gtk.FILL,gtk.FILL,pad,pad)
-            table.attach(self.pagecount_menu,1,2,1,2,xpadding=pad,ypadding=pad)
+            l = gtk.Label("%s :" % _("Page Count"))
+            l.set_alignment(0.0,0.5)
+            self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
+            self.paper_table.attach(self.pagecount_menu,2,3,3,4)
             
     def html_file_enable(self,obj):
         text = obj.get_text()
@@ -661,14 +672,22 @@ class ReportDialog:
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        table = gtk.Table(2,2)
-        self.html_frame.add(table)
-        l = gtk.Label(_("Template"))
-        pad = ReportDialog.border_pad
-        l.set_alignment(1.0,0.5)
-        table.attach(l,0,1,0,1,gtk.FILL,gtk.FILL,pad,pad)
-        self.template_combo = gtk.Combo()
+        self.html_table = gtk.Table(3,3)
+        self.html_table.set_col_spacings(12)
+        self.html_table.set_row_spacings(6)
+        self.html_table.set_border_width(0)
+        html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
+        html_label.set_alignment(0.0,0.5)
+        html_label.set_use_markup(gtk.TRUE)
+        self.html_table.attach(html_label,0,3,0,1)
 
+        self.output_notebook.append_page(self.html_table,gtk.Label(_("HTML Options")))
+
+        l = gtk.Label("%s :" % _("Template"))
+        l.set_alignment(0.0,0.5)
+        self.html_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
+
+        self.template_combo = gtk.Combo()
         template_list = [ _default_template ]
         tlist = _template_map.keys()
         tlist.sort()
@@ -682,15 +701,13 @@ class ReportDialog:
         self.template_combo.entry.set_editable(0)
         self.template_combo.entry.connect('changed',self.html_file_enable)
         
-        table.attach(self.template_combo,1,2,0,1,
-                     gtk.FILL|gtk.EXPAND,gtk.FILL|gtk.EXPAND,pad,pad)
-        table.attach(gtk.Label(_("User Template")),0,1,1,2,
-                     gtk.FILL,gtk.FILL,pad,pad)
-        self.html_fileentry = gnome.ui.FileEntry("HTML_Template",
-                                                 _("Choose File"))
+        self.html_table.attach(self.template_combo,2,3,1,2)
+        l = gtk.Label("%s :" % _("User Template"))
+        l.set_alignment(0.0,0.5)
+        self.html_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+        self.html_fileentry = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
         self.html_fileentry.set_sensitive(0)
-        table.attach(self.html_fileentry,1,2,1,2,
-                     gtk.FILL|gtk.EXPAND,gtk.FILL|gtk.EXPAND,pad,pad)
+        self.html_table.attach(self.html_fileentry,2,3,2,3)
 
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
@@ -723,34 +740,37 @@ class ReportDialog:
         if max_rows == 0:
             return
 
-        table = gtk.Table(2,max_rows)
-
+        table = gtk.Table(3,max_rows+1)
+        table.set_col_spacings(12)
+        table.set_row_spacings(6)
+        
+        label = gtk.Label("<b>%s</b>" % _("Report Options"))
+        label.set_alignment(0.0,0.5)
+        label.set_use_markup(gtk.TRUE)
+        
         if len(self.frame_names) == 0:
-            frame = gtk.Frame(_("Report Options"))
-            frame.set_border_width(ReportDialog.frame_pad)
-            self.window.vbox.add(frame)
-            frame.add(table)
+            table.attach(label,0,3,0,1)
+            table.set_border_width(12)
+            self.window.vbox.add(table)
         else:
+            table.set_border_width(6)
             self.notebook = gtk.Notebook()
-            self.window.vbox.pack_start(self.notebook,padding=ReportDialog.frame_pad)
-            self.notebook.append_page(table,gtk.Label(_("Report Options")))
-            self.notebook.set_border_width(ReportDialog.frame_pad)
+            self.notebook.set_border_width(6)
+            self.window.vbox.add(self.notebook)
+            self.notebook.append_page(table,label)
+        row += 1
 
-        pad = ReportDialog.border_pad
         if len(local_filters):
             self.filter_combo = gtk.OptionMenu()
-            l = gtk.Label(_("Filter"))
-            l.set_alignment(1.0,0.5)
-            table.attach(l,0,1,row,row+1,xoptions=gtk.FILL,yoptions=0,
-                         xpadding=pad,ypadding=pad)
-            table.attach(self.filter_combo,1,2,row,row+1,yoptions=0,
-                         xpadding=pad,ypadding=pad)
-
+            l = gtk.Label("%s :" % _("Filter"))
+            l.set_alignment(0.0,0.5)
+            table.attach(l,1,2,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+            table.attach(self.filter_combo,2,3,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
             menu = GenericFilter.build_filter_menu(local_filters)
 
             self.filter_combo.set_menu(menu)
             self.filter_menu = menu
-            row = row + 1
+            row += 1
             
         # Set up the generations spin and page break checkbox
         if use_gen:
@@ -759,40 +779,35 @@ class ReportDialog:
             adjustment = gtk.Adjustment(use_gen,1,31,1,0)
             self.generations_spinbox.set_adjustment(adjustment)
             adjustment.value_changed()
-            l = gtk.Label(_("Generations"))
-            l.set_alignment(1.0,0.5)
-            table.attach(l,0,1,row,row+1,xoptions=gtk.FILL,yoptions=0,
-                         xpadding=pad,ypadding=pad)
-            table.attach(self.generations_spinbox,1,2,row,row+1,
-                         yoptions=0, xpadding=pad,ypadding=pad)
-            row = row + 1
+            l = gtk.Label("%s :" % _("Generations"))
+            l.set_alignment(0.0,0.5)
+            table.attach(l,1,2,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
+            table.attach(self.generations_spinbox,2,3,row,row+1,gtk.EXPAND|gtk.FILL,gtk.SHRINK|gtk.FILL)
+            row += 1
 
             if use_break:
                 msg = _("Page break between generations")
                 self.pagebreak_checkbox = gtk.CheckButton(msg)
-                table.attach(self.pagebreak_checkbox,1,2,row,row+1,
-                             xpadding=pad,ypadding=pad)
-                row = row + 1
+                table.attach(self.pagebreak_checkbox,2,3,row,row+1)
+                row += 1
 
         # Now the "extra" option menu
         if extra_map:
-            self.extra_menu_label = gtk.Label(em_label)
-            self.extra_menu_label.set_alignment(1.0,0.5)
+            self.extra_menu_label = gtk.Label("%s :" % em_label)
+            self.extra_menu_label.set_alignment(0.0,0.5)
             self.extra_menu = gtk.OptionMenu()
             myMenu = Utils.build_string_optmenu(extra_map, preset)
             self.extra_menu.set_menu(myMenu)
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)
-            table.attach(self.extra_menu_label,0,1,row,row+1,
-                         xoptions=gtk.FILL,yoptions=0,xpadding=pad,ypadding=pad)
-            table.attach(self.extra_menu,1,2,row,row+1,yoptions=0,
-                         xpadding=pad,ypadding=pad)
-            row = row + 1
+            table.attach(self.extra_menu_label,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
+            table.attach(self.extra_menu,2,3,row,row+1)
+            row += 1
             
         # Now the "extra" text box
         if string:
-            self.extra_textbox_label = gtk.Label(et_label)
-            self.extra_textbox_label.set_alignment(1.0,0)
+            self.extra_textbox_label = gtk.Label("%s :" % et_label)
+            self.extra_textbox_label.set_alignment(0.0,0)
             swin = gtk.ScrolledWindow()
             swin.set_shadow_type(gtk.SHADOW_IN)
             swin.set_policy(gtk.POLICY_AUTOMATIC,gtk.POLICY_AUTOMATIC)
@@ -806,42 +821,42 @@ class ReportDialog:
 
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
-            table.attach(self.extra_textbox_label,0,1,row,row+1,xoptions=gtk.FILL,
-                         yoptions=0,xpadding=pad,ypadding=pad)
-            table.attach(swin,1,2,row,row+1,
-                         yoptions=0,xpadding=pad,ypadding=pad)
-            row = row + 1
+            table.attach(self.extra_textbox_label,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
+            table.attach(swin,2,3,row,row+1)
+            row += 1
 
         # Setup requested widgets
         for (text,widget) in self.widgets:
             if text == None:
-                table.attach(widget,0,2,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
+                table.attach(widget,2,3,row,row+1)
             else:
-                text_widget = gtk.Label(text)
-                text_widget.set_alignment(1.0,0)
-                table.attach(text_widget,0,1,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
-                table.attach(widget,1,2,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
-            row = row + 1
-        
+                text_widget = gtk.Label("%s :" % text)
+                text_widget.set_alignment(0.0,0.0)
+                table.attach(text_widget,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
+                table.attach(widget,2,3,row,row+1)
+            row += 1
 
     def setup_other_frames(self):
         pad = ReportDialog.border_pad
         for key in self.frame_names:
             list = self.frames[key]
-            table = gtk.Table(2,len(list))
-            self.notebook.append_page(table,gtk.Label(_(key)))
+            table = gtk.Table(3,len(list))
+            table.set_col_spacings(12)
+            table.set_row_spacings(6)
+            table.set_border_width(6)
+            l = gtk.Label("<b>%s</b>" % _(key))
+            l.set_use_markup(gtk.TRUE)
+            self.notebook.append_page(table,l)
 
             row = 0
             for (text,widget) in list:
-                if text == None:
-                    table.attach(widget,0,2,row,row+1,
-                                 xpadding=pad,ypadding=pad)
+                if text:
+                    text_widget = gtk.Label('%s :' % text)
+                    text_widget.set_alignment(0.0,0.5)
+                    table.attach(text_widget,1,2,row,row+1,gtk.SHRINK|gtk.FILL)
+                    table.attach(widget,2,3,row,row+1)
                 else:
-                    text_widget = gtk.Label(text)
-                    text_widget.set_alignment(1.0,0)
-                    table.attach(text_widget,0,1,row,row+1,gtk.FILL,gtk.FILL,pad,pad)
-                    table.attach(widget,1,2,row,row+1,yoptions=0,
-                                 xpadding=pad,ypadding=pad)
+                    table.attach(widget,2,3,row,row+1)
                 row = row + 1
 
     #------------------------------------------------------------------------
