@@ -1206,7 +1206,6 @@ class BaseDoc:
         @param name: name of the table style
         @param style: TableStyle instance to be added
         """
-        assert(self.init_called==False)
         self.table_styles[name] = TableStyle(style)
 
     def add_cell_style(self,name,style):
@@ -1216,7 +1215,6 @@ class BaseDoc:
         @param name: name of the table cell style
         @param style: TableCellStyle instance to be added
         """
-        assert(self.init_called==False)
         self.cell_styles[name] = TableCellStyle(style)
 
     def open(self,filename):

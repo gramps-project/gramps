@@ -221,6 +221,7 @@ class Report:
             self.standalone = False
 
     def begin_report(self):
+        self.doc.init()
         if self.options_class.get_newpage():
             self.doc.page_break()
         
