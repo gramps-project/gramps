@@ -35,6 +35,7 @@
 	* src/GrampsParser.py (GrampsParser.stop_scallno): Remove function.
 	* src/gramps.glade (sourceEditor): Remove Call Number widgets.
 	* src/EditSource.py: Remove Call Number support. 
+	* src/plugins/WriteGedcom.py (write_sources): Remove CallNumber export.
 
 2003-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/filters/Complete.py: Add filter matching people with the 
