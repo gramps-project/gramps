@@ -38,6 +38,7 @@ import time
 from gtk import *
 from gnome.ui import *
 from libglade import *
+from StyleEditor import *
 
 active_person = None
 db = None
