@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +60,8 @@ class DbPrompter:
     def show(self):
         opendb = gtk.glade.XML(const.gladeFile, "opendb","gramps")
         top = opendb.get_widget('opendb')
-        top.set_transient_for(self.parent)
+        if self.parent:
+            top.set_transient_for(self.parent)
         title = opendb.get_widget('title')
 
         Utils.set_titles(top,title,_('Open a database'))

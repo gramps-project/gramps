@@ -272,7 +272,7 @@ class Gramps:
             self.auto_save_load(GrampsCfg.lastfile)
         else:
             import DbPrompter
-            DbPrompter.DbPrompter(self,0)
+            DbPrompter.DbPrompter(self,0,self.topWindow)
 
         if self.db.need_autosave() and GrampsCfg.autosave_int != 0:
             Utils.enable_autosave(self.autosave_database,
