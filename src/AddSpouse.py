@@ -30,7 +30,7 @@ __version__ = "$Revision$"
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -76,7 +76,7 @@ class AddSpouse:
         self.addperson = addperson
         self.active_family = family
 
-        self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog")
+        self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog","gramps")
 
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.relation_type = self.glade.get_widget("rel_type")

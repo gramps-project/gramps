@@ -30,13 +30,13 @@ import gtk.glade
 
 import Utils
 
-from intl import gettext as _
+from gettext import gettext as _
 
 class EvalWindow:
 
     def __init__(self):
         glade_file = "%s/%s" % (os.path.dirname(__file__),"eval.glade")
-        self.glade = gtk.glade.XML(glade_file,"top")
+        self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
         self.top = self.glade.get_widget("top")
         self.dbuf = self.glade.get_widget("display").get_buffer()

@@ -24,7 +24,7 @@ import gnome
 import gnome.ui
 import gconf
 
-from intl import gettext as _
+from gettext import gettext as _
 
 _StartupEntry = "/apps/gramps/startup"
 

@@ -38,7 +38,7 @@ import Report
 import TextDoc
 import Errors
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------

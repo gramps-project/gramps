@@ -50,7 +50,7 @@ import QuestionDialog
 import RelImage
 import ImgManip
 
-from intl import gettext as _
+from gettext import gettext as _
 
 _title_string = _("Export to CD")
 
@@ -89,7 +89,7 @@ class PackageWriter:
                 "on_ok_clicked" : self.on_ok_clicked
                 }
         
-            self.top = gtk.glade.XML(glade_file,"packageExport")
+            self.top = gtk.glade.XML(glade_file,"packageExport","gramps")
 
             Utils.set_titles(self.top.get_widget('packageExport'),
                          self.top.get_widget('title'),_title_string)

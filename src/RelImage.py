@@ -42,7 +42,7 @@ from QuestionDialog import ErrorDialog, WarningDialog
 import const
 import Utils
 import ImgManip
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

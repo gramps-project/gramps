@@ -45,7 +45,7 @@ import gtk.glade
 #-------------------------------------------------------------------------
 import const
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +63,7 @@ class FindBase:
         self.t = type(u' ')
         self.db = db
         self.task = task
-        self.glade = gtk.glade.XML(const.gladeFile,"find")
+        self.glade = gtk.glade.XML(const.gladeFile,"find","gramps")
         self.glade.signal_autoconnect({
             'on_next_clicked' : self.on_next_clicked,
             'on_back_clicked' : self.on_prev_clicked,

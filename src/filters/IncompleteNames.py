@@ -21,7 +21,7 @@
 "People with incomplete names"
 
 import Filter
-from intl import gettext as _
+from gettext import gettext as _
 
 class IncompleteNames(Filter.Filter):
     "People with incomplete names"

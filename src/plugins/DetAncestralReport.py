@@ -26,7 +26,7 @@ import sort
 import Errors
 import string
 
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 import Report

@@ -51,7 +51,7 @@ import ListModel
 import grampslib
 
 from QuestionDialog import ErrorDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 _IMAGEX = 140
 _IMAGEY = 150
@@ -92,7 +92,7 @@ class ImageSelect:
         if self.path == '':
             return
             
-        self.glade       = gtk.glade.XML(const.imageselFile,"imageSelect")
+        self.glade       = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
         window           = self.glade.get_widget("imageSelect")
 
         self.fname       = self.glade.get_widget("fname")
@@ -623,8 +623,7 @@ class LocalMediaProperties:
         self.db = parent.db
         
         fname = self.object.getPath()
-        self.change_dialog = gtk.glade.XML(const.imageselFile,
-                                               "change_description")
+        self.change_dialog = gtk.glade.XML(const.imageselFile,"change_description","gramps")
 
         title = _('Change local media object properties')
         Utils.set_titles(self.change_dialog.get_widget('change_description'),
@@ -752,7 +751,7 @@ class GlobalMediaProperties:
         self.refs = 0
     
         self.path = self.db.getSavePath()
-        self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global")
+        self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global","gramps")
 
         title = _('Change global media object properties')
 

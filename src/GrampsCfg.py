@@ -52,7 +52,7 @@ import RelLib
 import const
 import Utils
 
-from intl import gettext as _
+from gettext import gettext as _
 
 client = gconf.client_get_default()
 client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
@@ -502,7 +502,7 @@ def add_checkbox(category,panel,frame,config_tag,label,default):
 class GrampsPreferences:
     def __init__(self,db):
         self.db = db
-        self.top = gtk.glade.XML(const.prefsFile,"preferences")
+        self.top = gtk.glade.XML(const.prefsFile,"preferences","gramps")
         self.top.signal_autoconnect({
             "on_close_clicked" : self.on_close_clicked,
             "on_ok_clicked" : self.on_ok_clicked,

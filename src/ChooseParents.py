@@ -31,7 +31,7 @@ __version__ = "$Revision$"
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -90,7 +90,7 @@ class ChooseParents:
             self.mother = None
             self.father = None
 
-        self.glade = gtk.glade.XML(const.gladeFile,"familyDialog")
+        self.glade = gtk.glade.XML(const.gladeFile,"familyDialog","gramps")
         self.top = self.glade.get_widget("familyDialog")
 
         text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
@@ -482,7 +482,7 @@ class ModifyParents:
         self.father = self.family.getFather()
         self.mother = self.family.getMother()
 
-        self.glade = gtk.glade.XML(const.gladeFile,"modparents")
+        self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
         self.top = self.glade.get_widget("modparents")
         self.title = self.glade.get_widget("title")
 

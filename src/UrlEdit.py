@@ -33,7 +33,7 @@ import gtk.glade
 import const
 import Utils
 import RelLib
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -46,7 +46,7 @@ class UrlEditor:
         self.parent = parent
         self.url = url
         self.callback = callback
-        self.top = gtk.glade.XML(const.dialogFile, "url_edit")
+        self.top = gtk.glade.XML(const.dialogFile, "url_edit","gramps")
         self.window = self.top.get_widget("url_edit")
         self.des  = self.top.get_widget("url_des")
         self.addr = self.top.get_widget("url_addr")

@@ -40,7 +40,7 @@ import Calendar
 from QuestionDialog import ErrorDialog
 from FontScale import string_width
 from SubstKeywords import SubstKeywords
-from intl import gettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

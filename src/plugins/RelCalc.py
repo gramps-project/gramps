@@ -46,7 +46,7 @@ import RelLib
 import Utils
 import ListModel
 import Plugins
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -73,7 +73,7 @@ class RelCalc:
 
         base = os.path.dirname(__file__)
         glade_file = "%s/relcalc.glade" % base
-        self.glade = gtk.glade.XML(glade_file,"relcalc")
+        self.glade = gtk.glade.XML(glade_file,"relcalc","gramps")
 
         name = self.person.getPrimaryName().getRegularName()
 

@@ -35,7 +35,7 @@ import posixpath
 #------------------------------------------------------------------------
 import Utils
 import RelLib
-from intl import gettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -134,7 +134,7 @@ def report(database,person):
     base = os.path.dirname(__file__)
     glade_file = "%s/summary.glade" % base
 
-    topDialog = gtk.glade.XML(glade_file,"summary")
+    topDialog = gtk.glade.XML(glade_file,"summary","gramps")
     topDialog.signal_autoconnect({
         "destroy_passed_object" : Utils.destroy_passed_object,
     })

@@ -23,7 +23,7 @@
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +58,7 @@ class SelectPerson:
         self.db = db
         self.filter = filter
         gladefile = "%s/choose.glade" % const.rootDir
-        self.glade = gtk.glade.XML(gladefile,"select")
+        self.glade = gtk.glade.XML(gladefile,"select","gramps")
         self.top = self.glade.get_widget('select')
         title_label = self.glade.get_widget('title')
         self.filter_select = self.glade.get_widget('filter')

@@ -45,7 +45,7 @@ import GrampsCfg
 import Sources
 import ImageSelect
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -75,7 +75,7 @@ class EditPlace:
         else:
             self.srcreflist = []
 
-        self.top_window = gtk.glade.XML(const.placesFile,"placeEditor")
+        self.top_window = gtk.glade.XML(const.placesFile,"placeEditor","gramps")
         self.top = self.top_window.get_widget("placeEditor")
         self.iconlist = self.top_window.get_widget('iconlist')
         title_label = self.top_window.get_widget('title')

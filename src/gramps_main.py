@@ -31,7 +31,7 @@ import getopt
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -276,7 +276,7 @@ class Gramps:
         widgets that it will need.
         """
 
-        self.gtop = gtk.glade.XML(const.gladeFile, "gramps")
+        self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
         self.topWindow   = self.gtop.get_widget("gramps")
 
         self.report_button = self.gtop.get_widget("reports")
@@ -1558,7 +1558,7 @@ class Gramps:
                        self.save_query_noquit)
 
         if not Utils.wasModified():
-            wFs = gtk.glade.XML(const.revisionFile, "dbopen")
+            wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
             wFs.signal_autoconnect({
                 "on_ok_button1_clicked": self.on_ok_button1_clicked,
                 "destroy_passed_object": Utils.destroy_passed_object
@@ -1611,7 +1611,7 @@ class Gramps:
         Utils.clear_timer()
         
     def on_save_as_activate(self,obj):
-        wFs = gtk.glade.XML (const.gladeFile, "fileselection")
+        wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
         wFs.signal_autoconnect({
             "on_ok_button1_clicked": self.on_ok_button2_clicked,
             "destroy_passed_object": Utils.destroy_passed_object

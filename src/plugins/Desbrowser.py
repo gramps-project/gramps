@@ -33,7 +33,7 @@ import os
 #
 #------------------------------------------------------------------------
 import Utils
-from intl import gettext as _
+from gettext import gettext as _
 import GrampsCfg
 
 #------------------------------------------------------------------------
@@ -66,7 +66,7 @@ class DesBrowse:
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "desbrowse.glade"
 
-        self.glade = gtk.glade.XML(glade_file,"top")
+        self.glade = gtk.glade.XML(glade_file,"top","gramps")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             })

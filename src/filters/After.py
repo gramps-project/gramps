@@ -22,7 +22,7 @@
 
 import Filter
 import Date
-from intl import gettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

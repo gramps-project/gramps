@@ -21,7 +21,7 @@
 "People with multiple marriage records"
 
 import Filter
-from intl import gettext as _
+from gettext import gettext as _
 
 class MultipleMarriages(Filter.Filter):
     "People with multiple marriage records"

@@ -42,7 +42,7 @@ import Utils
 import GrampsCfg
 import ListModel
 import const
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +58,7 @@ class MergePeople:
         self.update = update
         self.ep_update = ep_update
 
-        self.glade = gtk.glade.XML(const.mergeFile,"merge")
+        self.glade = gtk.glade.XML(const.mergeFile,"merge","gramps")
         self.top = self.glade.get_widget("merge")
 
         Utils.set_titles(self.top,self.glade.get_widget('title'),
@@ -820,7 +820,7 @@ class MergePlaces:
         self.p2 = place2
         self.update = update
 
-        self.glade = gtk.glade.XML(const.mergeFile,"merge_places")
+        self.glade = gtk.glade.XML(const.mergeFile,"merge_places","gramps")
         self.top = self.glade.get_widget("merge_places")
         self.glade.get_widget("title1_text").set_text(place1.get_title())
         self.glade.get_widget("title2_text").set_text(place2.get_title())

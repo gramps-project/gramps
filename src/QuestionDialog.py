@@ -22,11 +22,11 @@ import gtk
 import gtk.glade
 import const
 
-from intl import gettext as _
+from gettext import gettext as _
 
 class SaveDialog:
     def __init__(self,msg1,msg2,task1,task2):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"savedialog")
+        self.xml = gtk.glade.XML(const.errdialogsFile,"savedialog","gramps")
         self.top = self.xml.get_widget('savedialog')
         self.task1 = task1
         self.task2 = task2
@@ -49,7 +49,7 @@ class SaveDialog:
 
 class QuestionDialog:
     def __init__(self,msg1,msg2,label,task):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog")
+        self.xml = gtk.glade.XML(const.errdialogsFile,"questiondialog","gramps")
         self.top = self.xml.get_widget('questiondialog')
         self.top.set_title('')
 
@@ -71,7 +71,7 @@ class QuestionDialog:
 
 class OptionDialog:
     def __init__(self,msg1,msg2,btnmsg1,task1,btnmsg2,task2):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"optiondialog")
+        self.xml = gtk.glade.XML(const.errdialogsFile,"optiondialog","gramps")
         self.top = self.xml.get_widget('optiondialog')
         self.top.set_title('')
 
@@ -101,7 +101,7 @@ class OptionDialog:
 class ErrorDialog:
     def __init__(self,msg1,msg2=""):
         
-        self.xml = gtk.glade.XML(const.errdialogsFile,"errdialog")
+        self.xml = gtk.glade.XML(const.errdialogsFile,"errdialog","gramps")
         self.top = self.xml.get_widget('errdialog')
         
         label1 = self.xml.get_widget('label1')
@@ -116,7 +116,7 @@ class ErrorDialog:
 class WarningDialog:
     def __init__(self,msg1,msg2=""):
         
-        self.xml = gtk.glade.XML(const.errdialogsFile,"warndialog")
+        self.xml = gtk.glade.XML(const.errdialogsFile,"warndialog","gramps")
         self.top = self.xml.get_widget('warndialog')
         
         label1 = self.xml.get_widget('label1')
@@ -131,7 +131,7 @@ class WarningDialog:
 class OkDialog:
     def __init__(self,msg1,msg2=""):
 
-        self.xml = gtk.glade.XML(const.errdialogsFile,"okdialog")
+        self.xml = gtk.glade.XML(const.errdialogsFile,"okdialog","gramps")
         self.top = self.xml.get_widget('okdialog')
 
         label1 = self.xml.get_widget('label1')
@@ -145,7 +145,7 @@ class OkDialog:
 
 class MissingMediaDialog:
     def __init__(self,msg1,msg2,task1,task2,task3):
-        self.xml = gtk.glade.XML(const.errdialogsFile,"missmediadialog")
+        self.xml = gtk.glade.XML(const.errdialogsFile,"missmediadialog","gramps")
         self.top = self.xml.get_widget('missmediadialog')
         self.task1 = task1
         self.task2 = task2

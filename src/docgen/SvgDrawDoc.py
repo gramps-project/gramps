@@ -32,7 +32,7 @@ from math import pi, cos, sin, fabs
 #
 #-------------------------------------------------------------------------
 import Plugins
-from intl import gettext as _
+from gettext import gettext as _
 import TextDoc
 import DrawDoc
 import Errors

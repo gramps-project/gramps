@@ -36,7 +36,7 @@ import const
 import Utils
 import RelLib
 import ListModel
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -112,7 +112,7 @@ class WitnessEditor:
         self.parent = parent
         self.update = update
         self.ref = ref
-        self.show_witness = gtk.glade.XML(const.dialogFile, "witness_edit")
+        self.show_witness = gtk.glade.XML(const.dialogFile, "witness_edit","gramps")
         self.show_witness.signal_autoconnect({
             "ok_clicked"   : self.ok_clicked,
             "on_toggled"   : self.on_toggled,

@@ -41,7 +41,7 @@ import EditPlace
 import Utils
 
 from QuestionDialog import QuestionDialog, ErrorDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

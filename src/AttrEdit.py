@@ -43,7 +43,7 @@ import Sources
 import AutoComp
 import RelLib
 
-from intl import gettext as _
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +66,7 @@ class AttributeEditor:
 
         self.parent = parent
         self.attrib = attrib
-        self.top = gtk.glade.XML(const.dialogFile, "attr_edit")
+        self.top = gtk.glade.XML(const.dialogFile, "attr_edit","gramps")
         self.type_field  = self.top.get_widget("attr_type")
         self.slist  = self.top.get_widget("slist")
         self.value_field = self.top.get_widget("attr_value")

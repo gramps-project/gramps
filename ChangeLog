@@ -1,3 +1,8 @@
+2003-08-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* configure.in: removal of intl.c/intl22.so
+	* src/gramps.py: handling of i18n without the use of intl
+	* src/*.py: switch from intl to gettext
+
 2003-08-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: New tool icon
 	* src/gramps_main.py: handle back/fwd buttons, disabling when

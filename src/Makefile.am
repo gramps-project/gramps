@@ -4,9 +4,8 @@ SUBDIRS = docgen filters plugins data po calendars
 # For intl. support, how do we compile?
 CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
-CLEANFILES = $(INTLLIBS) grampslib.so
+CLEANFILES = grampslib.so
 MOSTLYCLEANFILES = 
-INTLLIBS= intl22.so
 
 # What are the PYTHON scripts for this package that need to be handled?
 #
@@ -53,7 +52,6 @@ pkgpython_PYTHON = \
 	Hebrew.py\
 	ImageSelect.py\
 	ImgManip.py\
-	intl.py\
 	Julian.py\
 	latin_ansel.py\
 	latin_utf8.py\
@@ -133,16 +131,14 @@ GRAPHICS = \
 
 # Other stuff that we need to install
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
-nodist_pkgdata_DATA = grampslib.so $(INTLLIBS)
+nodist_pkgdata_DATA = grampslib.so
 
-EXTRA_DIST = grampslib.i intl.c grampslib_wrap.c
+EXTRA_DIST = grampslib.i grampslib_wrap.c
 
-all-local: $(INTLLIBS) grampslib.so
+all-local: grampslib.so
 
 # These can probably be done in a better or more elegant/generic way 
 # eventually (libtool?), but this works.
-intl22.so: $(srcdir)/intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) $(PYTHON_CPPFLAGS) -DVER22 -o $@ $(srcdir)/intl.c
 
 grampslib.so: $(srcdir)/grampslib_wrap.c
 	$(CC) $(CFLAGS) $(PYTHON_CPPFLAGS) -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 

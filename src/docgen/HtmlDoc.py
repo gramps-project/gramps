@@ -31,7 +31,7 @@ import const
 import Errors
 import TextDoc
 
-from intl import gettext as _
+from gettext import gettext as _
 
 t_header_line_re = re.compile(r"(.*)<TITLE>(.*)</TITLE>(.*)",
                               re.DOTALL|re.IGNORECASE|re.MULTILINE)

@@ -46,7 +46,7 @@ import StyleEditor
 import Report
 import Errors
 from QuestionDialog import ErrorDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #

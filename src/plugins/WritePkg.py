@@ -47,7 +47,7 @@ import TarFile
 import Utils
 from QuestionDialog import MissingMediaDialog
 
-from intl import gettext as _
+from gettext import gettext as _
 
 _title_string = _("Export to GRAMPS package")
 #-------------------------------------------------------------------------
@@ -81,7 +81,7 @@ class PackageWriter:
             "on_ok_clicked" : self.on_ok_clicked
             }
         
-        self.top = gtk.glade.XML(glade_file,"packageExport")
+        self.top = gtk.glade.XML(glade_file,"packageExport","gramps")
 
         Utils.set_titles(self.top.get_widget('packageExport'),
                          self.top.get_widget('title'),

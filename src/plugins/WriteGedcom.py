@@ -56,7 +56,7 @@ import GedcomInfo
 import Errors
 import ansel_utf8
 
-from intl import gettext as _
+from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 _title_string = _("Export to GEDCOM")
@@ -364,7 +364,7 @@ class GedcomWriter:
         else:
             glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
             
-            self.topDialog = gtk.glade.XML(glade_file,"gedcomExport")
+            self.topDialog = gtk.glade.XML(glade_file,"gedcomExport","gramps")
             self.topDialog.signal_autoconnect({
                 "destroy_passed_object" : Utils.destroy_passed_object,
                 "gnu_free" : self.gnu_free,
@@ -499,7 +499,7 @@ class GedcomWriter:
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
 
-        self.exprogress = gtk.glade.XML(glade_file,"exportprogress")
+        self.exprogress = gtk.glade.XML(glade_file,"exportprogress","gramps")
         self.exprogress.signal_autoconnect({
             "on_close_clicked" : Utils.destroy_passed_object
             })

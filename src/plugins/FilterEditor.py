@@ -49,7 +49,7 @@ import AutoComp
 import ListModel
 import Utils
 import SelectPerson
-from intl import gettext as _
+from gettext import gettext as _
 
 _name2list = {
     _('Personal event:')     : const.personalEvents,
@@ -217,7 +217,7 @@ class FilterEditor:
         self.filterdb = GenericFilter.GenericFilterList(filterdb)
         self.filterdb.load()
 
-        self.editor = gtk.glade.XML(const.filterFile,'filter_list')
+        self.editor = gtk.glade.XML(const.filterFile,'filter_list',"gramps")
         self.editor_top = self.editor.get_widget('filter_list')
         self.filter_list = self.editor.get_widget('filters')
         self.edit = self.editor.get_widget('edit')
@@ -289,7 +289,7 @@ class FilterEditor:
 
     def filter_editor(self,filter):
         self.filter = filter
-        self.glade = gtk.glade.XML(const.filterFile,'define_filter')
+        self.glade = gtk.glade.XML(const.filterFile,'define_filter',"gramps")
         self.top = self.glade.get_widget('define_filter')
         self.define_title = self.glade.get_widget('title')
 
@@ -392,7 +392,7 @@ class FilterEditor:
             self.pmap[p.get_title()] = p
 
         self.active_rule = val
-        self.rule = gtk.glade.XML(const.filterFile,'rule_editor')
+        self.rule = gtk.glade.XML(const.filterFile,'rule_editor',"gramps")
         self.rule_top = self.rule.get_widget('rule_editor')
         self.valuebox = self.rule.get_widget('valuebox')
         self.rname = self.rule.get_widget('ruletree')
@@ -568,7 +568,7 @@ class FilterEditor:
 
 class ShowResults:
     def __init__(self,plist):
-        self.glade = gtk.glade.XML(const.filterFile,'test')
+        self.glade = gtk.glade.XML(const.filterFile,'test',"gramps")
         self.top = self.glade.get_widget('test')
         text = self.glade.get_widget('text')
 

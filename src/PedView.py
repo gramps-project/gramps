@@ -38,7 +38,7 @@ import pango
 #
 #-------------------------------------------------------------------------
 import GrampsCfg
-from intl import gettext as _
+from gettext import gettext as _
 
 _BORN = _('b.')
 _DIED = _('d.')

@@ -52,7 +52,7 @@ import RelLib
 import Date
 import Calendar
 import Errors
-from intl import gettext as _
+from gettext import gettext as _
 from Utils import for_each_ancestor
 
 #-------------------------------------------------------------------------

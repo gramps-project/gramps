@@ -35,7 +35,7 @@ import RelLib
 import Errors
 import Relationship
 from QuestionDialog import ErrorDialog
-from intl import gettext as _
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
