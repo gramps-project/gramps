@@ -130,7 +130,11 @@ class MediaView:
 
     def goto(self,id):
         self.selection.unselect_all()
-        self.selection.select_iter(self.id2col[id])
+        iter = self.id2col[id]
+        self.selection.select_iter(iter)
+        itpath = self.model.get_path (iter)
+        col = self.list.get_column (0)
+        self.list.scroll_to_cell (itpath, col, gtk.TRUE, 0.5, 0)
 
     def change_db(self,db):
         self.db = db
