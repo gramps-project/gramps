@@ -2955,9 +2955,9 @@
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>clicked</name>
-	      <handler>on_add_source_clicked</handler>
-	      <object>source_list</object>
-	      <last_modification_time>Tue, 29 May 2001 21:16:02 GMT</last_modification_time>
+	      <handler>on_add_place_clicked</handler>
+	      <object>place_list</object>
+	      <last_modification_time>Sat, 18 Aug 2001 15:39:49 GMT</last_modification_time>
 	    </signal>
 	    <label>Add Place</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
@@ -2970,11 +2970,11 @@
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>clicked</name>
-	      <handler>on_edit_source_clicked</handler>
-	      <object>source_list</object>
-	      <last_modification_time>Tue, 29 May 2001 21:15:39 GMT</last_modification_time>
+	      <handler>on_edit_place_clicked</handler>
+	      <object>place_list</object>
+	      <last_modification_time>Sat, 18 Aug 2001 15:39:59 GMT</last_modification_time>
 	    </signal>
-	    <label>Edit Edit</label>
+	    <label>Edit Place</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -2994,7 +2994,7 @@
 	<class>GtkLabel</class>
 	<child_name>Notebook:tab</child_name>
 	<name>label230</name>
-	<label>Places</label>
+	<label>label230</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>

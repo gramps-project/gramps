@@ -55,6 +55,7 @@ else:
 
 logo           = rootDir + os.sep + "gramps.xpm"
 gladeFile      = rootDir + os.sep + "gramps.glade"
+placesFile     = rootDir + os.sep + "places.glade"
 imageselFile   = rootDir + os.sep + "imagesel.glade"
 marriageFile   = rootDir + os.sep + "marriage.glade"
 editPersonFile = rootDir + os.sep + "EditPerson.glade"
