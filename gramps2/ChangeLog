@@ -1,3 +1,8 @@
+2004-07-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: handle deleting of parent properly
+	* src/plugins/WriteGedcom.py: revert to using GRAMPS ID values
+	* src/plugins/WriteXML.py: use proper ID values
+
 2004-07-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Update.
 	* src/Exporter.py: Clean up, add doc strings.
@@ -12,6 +17,7 @@
 2004-07-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: Handle the new file selector
 	* src/MediaView.py: redraw list properly
+	* src/FamilyView.py: fix removal of parents
 
 2004-07-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (on_export_activate): Switch to new Exporter.

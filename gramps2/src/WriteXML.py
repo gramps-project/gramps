@@ -237,7 +237,7 @@ class XmlWriter:
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s"' % person.get_gramps_id())
+                self.g.write(' default="%s"' % person.get_id())
             self.g.write(">\n")
 
             keys = self.db.get_person_keys()
@@ -331,8 +331,10 @@ class XmlWriter:
                 count = count + 1
             
                 self.write_family_id(family,2)
-                self.write_ref("father",family.get_father_id(),3)
-                self.write_ref("mother",family.get_mother_id(),3)
+                fid = family.get_father_id()
+                mid = family.get_mother_id()
+                self.write_ref("father",fid,3)
+                self.write_ref("mother",mid,3)
                 for event_id in family.get_event_list():
                     event = self.db.find_event_from_id(event_id)
                     self.dump_event(event,3)
@@ -532,7 +534,7 @@ class XmlWriter:
 
     def write_id(self,label,person,index=1):
         if person:
-            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_gramps_id()))
+            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_id()))
             comp = person.get_complete()
             if comp:
                 self.g.write(' complete="1"')
@@ -791,8 +793,8 @@ class XmlWriter:
 #
 #-------------------------------------------------------------------------
 def sortById(first,second):
-    fid = first.get_gramps_id()
-    sid = second.get_gramps_id()
+    fid = first.get_id()
+    sid = second.get_id()
 
     if fid < sid:
         return -1

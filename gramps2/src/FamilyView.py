@@ -1221,12 +1221,14 @@ class FamilyView:
         model, iter = self.child_selection.get_selected()
         if iter:
             id = self.child_model.get_value(iter,2)
-            self.parent.change_active_person(self.parent.db.get_person(id))
+            child = self.parent.db.try_to_find_person_from_gramps_id(id)
+            self.parent.change_active_person(child)
             self.load_family()
         else:
             list = self.family.get_child_id_list()
             if len(list) == 1:
-                self.parent.change_active_person(list[0])
+                p = self.parent.db.try_to_find_person_from_id(list[0])
+                self.parent.change_active_person(p)
                 self.load_family()
 
     def parent_editor(self,person,selection):
@@ -1271,7 +1273,10 @@ class FamilyView:
     def parent_deleter(self,person,selection):
         if not person:
             return
+
+        trans = self.parent.db.start_transaction()
         plist = person.get_parent_family_id_list()
+
         if len(plist) == 0:
             return
         if len(plist) == 1:
@@ -1282,10 +1287,24 @@ class FamilyView:
                 return
 
             row = model.get_path(iter)
-            fam = person.get_parent_family_id_list()[row[0]]
-            person.remove_parent_family_id(fam[0])
+            family_id = person.get_parent_family_id_list()[row[0]][0]
+            person.remove_parent_family_id(family_id)
+            fam = self.parent.db.try_to_find_family_from_id(family_id)
 
-        trans = self.parent.db.start_transaction()
+            if len(fam.get_child_id_list()) == 0:
+                father_id = fam.get_father_id()
+                mother_id = fam.get_mother_id()
+                if father_id == None and mother_id:
+                    mother = self.parent.db.find_person_from_id(mother_id)
+                    mother.remove_family_id(fam)
+                    self.parent.db.commit_person(mother,trans)
+                    self.parent.db.delete_family(fam,trans)
+                elif mother_id == None and father_id:
+                    father = self.parent.db.find_person_from_id(father_id)
+                    father.remove_family_id(fam,trans)
+                    self.parent.db.commit_person(father,trans)
+                    self.parent.db.delete_family(fam,trans)
+
         self.parent.db.commit_person(person,trans)
         n = person.get_primary_name().get_regular_name()
         self.parent.db.add_transaction(trans,_("Remove Parents (%s)") % n)
