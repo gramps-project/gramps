@@ -18,6 +18,14 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+ChooseParents interface allows users to select the paretns of an
+individual.
+"""
+
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # internationalization
@@ -56,6 +64,15 @@ class ChooseParents:
     to be edited.
     """
     def __init__(self,db,person,family,family_update,full_update):
+        """
+        Creates a ChoosePerson dialog box.
+
+        db - database associated the person
+        person - person whose parents we are selecting
+        family - current family
+        family_update - task that updates the family display
+        full_update - task that updates the main display 
+        """
         self.db = db
         self.person = person
         self.family = family
@@ -128,7 +145,7 @@ class ChooseParents:
         self.top.show()
 
     def redraw(self):
-
+        """Redraws the potential father and mother lists"""
         self.father_list.freeze()
         self.mother_list.freeze()
         self.father_list.clear()
@@ -199,6 +216,7 @@ class ChooseParents:
             self.flabel.set_label(_("Father"))
 
     def parent_relation_changed(self,obj):
+        """Called everytime the parent relationship information is changegd"""
         self.old_type = self.type
         self.type = const.save_frel(obj.get_text())
         if self.old_type == "Partners" or self.type == "Partners":
@@ -231,6 +249,9 @@ class ChooseParents:
         return family
 
     def mother_list_select_row(self,obj,a,b,c):
+        """Called when a row is selected in the mother list. Sets the
+        active mother based off the id associated with the row."""
+        
         id = obj.get_row_data(a)
         if id:
             self.mother = self.db.getPerson(id)
@@ -238,6 +259,8 @@ class ChooseParents:
             self.mother = None
 
     def father_list_select_row(self,obj,a,b,c):
+        """Called when a row is selected in the father list. Sets the
+        active father based off the id associated with the row."""
         id = obj.get_row_data(a)
         if id:
             self.father = self.db.getPerson(id)
@@ -245,6 +268,10 @@ class ChooseParents:
             self.father = None
 
     def save_parents_clicked(self,obj):
+        """
+        Called with the OK button nis pressed. Saves the selected people as parents
+        of the main perosn.
+        """
         mother_rel = const.childRelations[self.mother_rel.get_text()]
         father_rel = const.childRelations[self.father_rel.get_text()]
 
@@ -280,6 +307,8 @@ class ChooseParents:
         self.family_update(None)
 
     def add_new_parent(self,person):
+        """Adds a new person to either the father list or the mother list,
+        depending on the gender of the person."""
         id = person.getId()
         self.type = const.save_frel(self.prel.get_text())
         dinfo = self.db.getPersonDisplay(id)
@@ -303,6 +332,9 @@ class ChooseParents:
         self.full_update()
         
     def add_parent_clicked(self,obj):
+        """Called with the Add New Person button is pressed. Calls the QuickAdd
+        class to create a new person."""
+        
         import QuickAdd
         QuickAdd.QuickAdd(self.db,"male",self.add_new_parent)
 

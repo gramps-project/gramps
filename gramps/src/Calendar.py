@@ -25,6 +25,9 @@ C implementation. The original C source can be found at Scott's
 web site at http://www.scottlee.com
 """
 
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision$"
+
 _FR_SDN_OFFSET         = 2375474
 _FR_DAYS_PER_4_YEARS   = 1461
 _FR_DAYS_PER_MONTH     = 30
