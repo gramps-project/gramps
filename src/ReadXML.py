@@ -175,6 +175,7 @@ if __name__ == "__main__":
     t1 = time.time()
 
     profile.run('loadData(db,file,lcb)')
+#    loadData(db,file,lcb)
     t2 = time.time()
     print t2 - t1
 

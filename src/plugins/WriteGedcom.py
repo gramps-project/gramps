@@ -35,6 +35,9 @@ from libglade import *
 
 import const
 from latin_ansel import latin_to_ansel
+from latin_utf8  import latin_to_utf8
+
+cnvtxt = latin_to_ansel
 
 topDialog = None
 db = None
@@ -235,89 +238,21 @@ def sortById(first,second):
 #
 #
 #-------------------------------------------------------------------------
-def writeNote(g,id,note):
-    g.write("1 NOTE @NI%s@\n" % id)
-    g.write("0 @NI%s@ NOTE\n" % id)
-    first = 0
-    realfirst = 0
-    words = []
+def write_long_text(g,tag,level,note):
+    prefix = "%d %s" % (level,tag)
     textlines = string.split(note,'\n')
-
-    lineLen = 0
-    text = ""
-	
     for line in textlines:
-        if line == "":
-            continue
-        line = latin_to_ansel(line)
-        for word in string.split(line):
-            text = text + " " + word
-            if len(text) > 72 :
-                if first == 0 or realfirst == 0:
-                    g.write("1 CONC%s \n" % text)
-                    realfirst = 1
-                else:	
-                    g.write("1 CONT%s\n" % text)
-                    first = 0
-                text = ""
-        if len(text) > 0:
-            if first == 0 or realfirst == 0:
-                g.write("1 CONC%s \n" % text)
-                realfirst = 1
-            else:	
-                g.write("1 CONT%s\n" % text)
-                first = 1
-            text = ""
-			
-        g.write("1 CONT\n")
-        first = 1
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def write_comment(g,note):
-    g.write("3 NOTE ")
-    first = 0
-    realfirst = 0
-    words = []
-    textlines = string.split(note,'\n')
-
-    lineLen = 0
-    text = ""
-	
-    for line in textlines:
-        if line == "":
-            continue
-        line = latin_to_ansel(line)
-        for word in string.split(line):
-            text = text + " " + word
-            if len(text) > 72 :
-                if realfirst == 0:
-                    g.write("%s \n" % text)
-                    realfirst = 1
-                elif first == 0:
-                    g.write("1 CONC%s \n" % text)
-                    realfirst = 1
-                else:	
-                    g.write("1 CONT%s\n" % text)
-                    first = 0
-                text = ""
-        if len(text) > 0:
-            if realfirst == 0:
-                g.write("%s \n" % text)
-                realfirst = 1
-            elif first == 0:
-                g.write("1 CONC%s \n" % text)
-                realfirst = 1
-            else:	
-                g.write("1 CONT%s\n" % text)
-                first = 1
-            text = ""
-			
-        g.write("1 CONT\n")
-        first = 1
+        while len(line) > 0:
+            if len(line) > 70:
+                g.write("%s %s\n" % (prefix,line[0:70]))
+                line = line[70:]
+            else:
+                g.write("%s %s\n" % (prefix,line))
+                line = ""
+            if len(line) > 0:
+                prefix = "%d CONC" % (level + 1)
+            else:
+                prefix = "%d CONT" % (level + 1)
     
 #-------------------------------------------------------------------------
 #
@@ -326,24 +261,13 @@ def write_comment(g,note):
 #-------------------------------------------------------------------------
 def dump_event_stats(g,event):
     if event.getSaveDate() != "":
-        g.write("2 DATE %s\n" % latin_to_ansel(event.getSaveDate()))
+        g.write("2 DATE %s\n" % cnvtxt(event.getSaveDate()))
     if event.getPlace() != "":
-        g.write("2 PLAC %s\n" % latin_to_ansel(event.getPlace()))
-    source = event.getSourceRef()
-    if source:
-        base = source.getBase()
-        if base:
-            g.write("2 SOUR @" + str(base.getId()) + "@\n")
-        text = latin_to_ansel(string.strip(source.getPage()))
-        if text != "":
-            g.write("3 PAGE " + text + "\n")
-        text = latin_to_ansel(string.strip(source.getText()))
-        if text != "":
-            g.write("3 DATA\n")
-            g.write("4 TEXT " + text + "\n")
-        comments = latin_to_ansel(string.strip(source.getComments()))
-        if comments != "":
-            write_comment(g,comments)
+        g.write("2 PLAC %s\n" % cnvtxt(event.getPlace()))
+    if event.getNote() != "":
+        write_long_text(g,"NOTE",2,event.getNote())
+    if event.getSourceRef() != None:
+        write_source_ref(g,2,event.getSourceRef())
         
 #-------------------------------------------------------------------------
 #
@@ -376,6 +300,160 @@ def probably_alive(person):
 #
 #
 #-------------------------------------------------------------------------
+def write_person_name(g,name,nick):
+    firstName = cnvtxt(name.getFirstName())
+    surName = cnvtxt(name.getSurname())
+    suffix = cnvtxt(name.getSuffix())
+    title = cnvtxt(name.getTitle())
+    if suffix == "":
+        g.write("1 NAME %s /%s/\n" % (firstName,surName))
+    else:
+        g.write("1 NAME %s /%s/, %s\n" % (firstName,surName, suffix))
+
+    if name.getFirstName() != "":
+        g.write("2 GIVN %s\n" % firstName)
+    if name.getSurname() != "":
+        g.write("2 SURN %s\n" % surName)
+    if name.getSuffix() != "":
+        g.write("2 NSFX %s\n" % suffix)
+    if name.getTitle() != "":
+        g.write("2 TITL %s\n" % title)
+    if nick != "":
+        g.write('2 NICK %s\n' % nick)
+    if name.getNote() != "":
+        write_long_text(g,"NOTE",2,name.getNote())
+    if name.getSourceRef() != None:
+        write_source_ref(g,2,name.getSourceRef())
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def write_source_ref(g,level,ref):
+    if ref.getBase() == None:
+        return
+    g.write("%d SOUR @S%s@\n" % (level,str(ref.getBase().getId())))
+    if ref.getPage() != "":
+        g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
+    if ref.getText() != "" or ref.getDate().getDate() != "":
+        g.write('%d DATA\n' % level+1)
+        if ref.getText():
+            write_long_text(g,"TEXT",level+1,ref.get_text())
+        if ref.getDate().getDate():
+            g.write("%d DATE %s\n",ref.getDate().getSaveDate())
+    if ref.getComments() != "":
+        write_long_text(g,"NOTE",level+1,ref.getComments())
+        
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def write_person(g,person):
+    g.write("0 @I%s@ INDI\n" % person.getId())
+
+    write_person_name(g,person.getPrimaryName(),person.getNickName())
+    for name in person.getAlternateNames():
+        write_person_name(g,name,"")
+    
+    if person.getGender() == Person.male:
+        g.write("1 SEX M\n")
+    else:	
+        g.write("1 SEX F\n")
+
+    if not probably_alive(person):
+
+        birth = person.getBirth()
+        if birth.getSaveDate() != "" or birth.getPlace() != "":
+            g.write("1 BIRT\n")
+            dump_event_stats(g,birth)
+				
+        death = person.getDeath()
+        if death.getSaveDate() != "" or death.getPlace() != "":
+            g.write("1 DEAT\n")
+            dump_event_stats(g,death)
+
+        uid = person.getPafUid()
+        if uid != "":
+            g.write("1 _UID %s\n" % uid)
+            
+        for event in person.getEventList():
+            name = event.getName()
+            if const.personalConstantEvents.has_key(name):
+                val = const.personalConstantEvents[name]
+            else:
+                val = ""
+            if val != "" :
+                g.write("1 %s %s\n" % (cnvtxt(val),cnvtxt(event.getDescription())))
+            else:
+                g.write("1 EVEN %s\n" % cnvtxt(event.getDescription()))
+                g.write("2 TYPE %s\n" % cnvtxt(event.getName()))
+            dump_event_stats(g,event)
+
+        for attr in person.getAttributeList():
+            name = attr.getType()
+            if const.personalConstantAttributes.has_key(name):
+                val = const.personalConstantEvents[name]
+            else:
+                val = ""
+            if val != "" : 
+                g.write("1 %s\n" % val)
+            else:
+                g.write("1 EVEN\n")
+                g.write("2 TYPE %s\n" % cnvtxt(name))
+            g.write("2 PLAC %s\n" % cnvtxt(attr.getValue()))
+            if attr.getNote() != "":
+                write_long_text(g,"NOTE",2,attr.getNote())
+            if attr.getSourceRef() != None:
+                write_source_ref(g,2,attr.getSourceRef())
+
+        for addr in person.getAddressList():
+            write_long_text(g,"RESI",1,addr.getStreet())
+            if addr.getCity() != "":
+                g.write("2 CITY %s\n" % addr.getCity())
+            if addr.getState() != "":
+                g.write("2 STAE %s\n" % addr.getState())
+            if addr.getPostalCode() != "":
+                g.write("2 POST %s\n" % addr.getPostalCode())
+            if addr.getCountry() != "":
+                g.write("2 CTRY %s\n" % addr.getCountry())
+            if addr.getNote() != "":
+                write_long_text(g,"NOTE",2,addr.getNote())
+            if addr.getSourceRef() != None:
+                write_source_ref(g,2,addr.getSourceRef())
+
+    family = person.getMainFamily()
+    if family != None and family in family_list:
+        g.write("1 FAMC @F%s@\n" % str(family.getId()))
+        g.write("2 PEDI birth\n")
+
+    for family in person.getAltFamilyList():
+        g.write("1 FAMC @F%s@\n" % str(family[0].getId()))
+        if string.lower(family[1]) == "adopted":
+            g.write("2 PEDI adopted\n")
+        
+    for family in person.getFamilyList():
+        if family != None and family in family_list:
+            g.write("1 FAMS @F%s@\n" % family.getId())
+
+    for url in person.getUrlList():
+        g.write('1 OBJE\n')
+        g.write('2 FORM URL\n')
+        if url.get_description() != "":
+            g.write('2 TITL %s\n' % url.get_description())
+        if url.get_path() != "":
+            g.write('2 FILE %s\n' % url.get_path())
+
+    if person.getNote() != "":
+        write_long_text(g,"NOTE",1,person.getNote())
+			
+    
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def exportData(database, filename):
 
     g = open(filename,"w")
@@ -388,7 +466,10 @@ def exportData(database, filename):
     g.write("2 NAME Gramps\n")
     g.write("1 DEST GRAMPS\n")
     g.write("1 DATE %s %s %s\n" % (date[2],string.upper(date[1]),date[4]))
-    g.write("1 CHAR ANSEL\n");
+    if cnvtxt == latin_to_ansel:
+        g.write("1 CHAR ANSEL\n");
+    else:
+        g.write("1 CHAR UNICODE\n");
     g.write("1 SUBM @SUBM@\n")
     g.write("1 FILE %s\n" % filename)
     g.write("1 GEDC\n")
@@ -396,98 +477,24 @@ def exportData(database, filename):
     g.write("0 @SUBM@ SUBM\n")
     owner = database.getResearcher()
     if owner.getName() != "":
-        g.write("1 NAME " + latin_to_ansel(owner.getName()) +"\n")
+        g.write("1 NAME " + cnvtxt(owner.getName()) +"\n")
         if owner.getAddress() != "":
-            g.write("1 ADDR " + latin_to_ansel(owner.getAddress()) + "\n")
+            g.write("1 ADDR " + cnvtxt(owner.getAddress()) + "\n")
         if owner.getCity() != "":
-            g.write("2 CITY " + latin_to_ansel(owner.getCity()) + "\n")
+            g.write("2 CITY " + cnvtxt(owner.getCity()) + "\n")
         if owner.getState() != "":
-            g.write("2 STAE " + latin_to_ansel(owner.getState()) + "\n")
+            g.write("2 STAE " + cnvtxt(owner.getState()) + "\n")
         if owner.getPostalCode() != "":
-            g.write("2 POST " + latin_to_ansel(owner.getPostalCode()) + "\n")
+            g.write("2 POST " + cnvtxt(owner.getPostalCode()) + "\n")
         if owner.getCountry() != "":
-            g.write("2 CTRY " + latin_to_ansel(owner.getCountry()) + "\n")
+            g.write("2 CTRY " + cnvtxt(owner.getCountry()) + "\n")
         if owner.getPhone() != "":
-            g.write("1 PHON " + latin_to_ansel(owner.getPhone()) + "\n")
+            g.write("1 PHON " + cnvtxt(owner.getPhone()) + "\n")
 
     people_list.sort(sortById)
     for person in people_list:
-        g.write("0 @I%s@ INDI\n" % person.getId())
-        name = person.getPrimaryName()
-        firstName = latin_to_ansel(name.getFirstName())
-        surName = latin_to_ansel(name.getSurname())
-        suffix = latin_to_ansel(name.getSuffix())
-        if suffix == "":
-            g.write("1 NAME %s /%s/\n" % (firstName,surName))
-        else:
-            g.write("1 NAME %s /%s/, %s\n" % (firstName,surName, suffix))
-
-        if name.getFirstName() != "":
-            g.write("2 GIVN %s\n" % firstName)
-        if name.getSurname() != "":
-            g.write("2 SURN %s\n" % surName)
-        if name.getSuffix() != "":
-            g.write("2 NSFX %s\n" % suffix)
-
-        if person.getGender() == Person.male:
-            g.write("1 SEX M\n")
-        else:	
-            g.write("1 SEX F\n")
-
-        if not probably_alive(person):
-
-            birth = person.getBirth()
-            if birth.getSaveDate() != "" or birth.getPlace() != "":
-                g.write("1 BIRT\n")
-                dump_event_stats(g,birth)
-				
-            death = person.getDeath()
-            if death.getSaveDate() != "" or death.getPlace() != "":
-                g.write("1 DEAT\n")
-                dump_event_stats(g,death)
-
-            uid = person.getPafUid()
-            if uid != "":
-                g.write("1 _UID " + uid + "\n")
+        write_person(g,person)
             
-            for event in person.getEventList():
-                name = event.getName()
-                if const.personalConstantEvents.has_key(name):
-                    val = const.personalConstantEvents[name]
-                else:
-                    val = ""
-                if val != "" : 
-                    g.write("1 " + const.personalConstantEvents[name] + \
-                            " " + event.getDescription() + "\n")
-                else:
-                    g.write("1 EVEN " + latin_to_ansel(event.getDescription()) + "\n")
-                    g.write("2 TYPE " + latin_to_ansel(event.getName()) + "\n")
-                dump_event_stats(g,event)
-
-            for attr in person.getAttributeList():
-                name = attr.getType()
-                if const.personalConstantAttributes.has_key(name):
-                    val = const.personalConstantEvents[name]
-                else:
-                    val = ""
-                if val != "" : 
-                    g.write("1 " + val + "\n")
-                else:
-                    g.write("1 EVEN " + "\n")
-                    g.write("2 TYPE " + latin_to_ansel(name) + "\n")
-                g.write("2 PLAC " + latin_to_ansel(attr.getValue()) + "\n")
-            
-        family = person.getMainFamily()
-        if family != None and family in family_list:
-            g.write("1 FAMC @F%s@\n" % family.getId())
-
-        for family in person.getFamilyList():
-            if family != None and family in family_list:
-                g.write("1 FAMS @F%s@\n" % family.getId())
-
-        if person.getNote() != "":
-            writeNote(g,person.getId(),person.getNote())
-			
     for family in family_list:
         g.write("0 @F%s@ FAM\n" % family.getId())
         person = family.getFather()
@@ -512,17 +519,17 @@ def exportData(database, filename):
                 dump_event_stats(g,event)
 
             for event in family.getEventList():
-                text = event.getName()
+                name = event.getName()
 
                 if const.familyConstantEvents.has_key(name):
-                    val = const.personalConstantEvents[name]
+                    val = const.familyConstantEvents[name]
                 else:
                     val = ""
-                if val != "": # and val[0] != "_":
-                    g.write("1 %s\n" % const.familyConstantEvents[text])
+                if val != "":
+                    g.write("1 %s\n" % const.familyConstantEvents[name])
                 else:	
                     g.write("1 EVEN\n")
-                    g.write("2 TYPE %s\n" % latin_to_ansel(event.getName()))
+                    g.write("2 TYPE %s\n" % cnvtxt(name))
 					
                 dump_event_stats(g,event)
 
@@ -530,17 +537,19 @@ def exportData(database, filename):
             g.write("1 CHIL @I%s@\n" % person.getId())
 
     for source in source_list:
-        g.write("0 @" + str(source.getId()) + "@ SOUR\n")
+        g.write("0 @S%s@ SOUR\n" % str(source.getId()))
         if source.getTitle() != "":
-            g.write("1 TITL " + latin_to_ansel(source.getTitle()) + "\n")
+            g.write("1 TITL %s\n" % cnvtxt(source.getTitle()))
         if source.getAuthor() != "":
-            g.write("1 AUTH " + latin_to_ansel(source.getAuthor()) + "\n")
+            g.write("1 AUTH %s\n" % cnvtxt(source.getAuthor()))
         if source.getPubInfo() != "":
-            g.write("1 PUBL " + latin_to_ansel(source.getPubInfo()) + "\n")
+            g.write("1 PUBL %s\n" % cnvtxt(source.getPubInfo()))
         if source.getTitle() != "":
-            g.write("1 ABBR " + latin_to_ansel(source.getTitle()) + "\n")
+            g.write("1 ABBR %s\n" % cnvtxt(source.getTitle()))
         if source.getCallNumber() != "":
-            g.write("1 CALN " + latin_to_ansel(source.getCallNumber()) + "\n")
+            g.write("1 CALN %s\n" % cnvtxt(source.getCallNumber()))
+        if source.getNote() != "":
+            write_long_text(g,"NOTE",1,source.getNote())
             
         
     g.write("0 TRLR\n")
@@ -551,14 +560,70 @@ def exportData(database, filename):
 #
 #
 #-------------------------------------------------------------------------
+def gedcom_date(date):
+    if date.range == 1:
+        s1 = ged_subdate(date.get_start_date())
+        s2 = ged_subdate(date.get_stop_date())
+        return "BET %s AND %s" % (s1,s2)
+    elif date.range == -1:
+        return "(%s)" % date.text
+    else:
+        return ged_subdate(self.start)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def ged_subdate(date):
+        
+    if date.month == -1 and date.day == -1 and date.year == -1 :
+        return ""
+    elif date.day == -1:
+        if date.month == -1:
+            retval = str(date.year)
+        elif date.year == -1:
+            retval = "(%s)" % SingleDate.emname[date.month]
+        else:	
+            retval = "%s %d" % (SingleDate.emname[date.month],date.year)
+    elif date.month == -1:
+        retval = str(date.year)
+    else:
+        month = SingleDate.emname[date.month]
+        if date.year == -1:
+            retval = "(%d %s)" % (date.day,month)
+        else:
+            retval = "%d %s %d" % (date.day,month,date.year)
+
+    if date.mode == SingleDate.about:
+        retval = "ABT %s"  % retval
+
+    if date.mode == SingleDate.before:
+        retval = "BEF %s" % retval
+    elif date.mode == SingleDate.after:
+        retval = "AFT %s" % retval
+
+    return retval
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_ok_clicked(obj):
     global db
     global topDialog
     global restrict
+    global cnvtxt
     
     restrict = topDialog.get_widget("restrict").get_active()
     filter_obj = topDialog.get_widget("filter").get_menu().get_active()
     filter = filter_obj.get_data("filter")
+
+    if topDialog.get_widget("ansel").get_active():
+        cnvtxt = latin_to_ansel
+    else:
+        cnvtxt = latin_to_utf8
 
     name = topDialog.get_widget("filename").get_text()
     filter()

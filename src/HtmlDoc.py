@@ -41,6 +41,10 @@ try:
 except:
     no_pil = 1
 
+t_one_line_re = re.compile(r"^(.*)<TITLE>.*</TITLE>(.*)$")
+t_start_re = re.compile(r"^(.*)<TITLE>.*$")
+t_stop_re = re.compile(r"^(.*)</TITLE>")
+
 #------------------------------------------------------------------------
 #
 # Default template
@@ -142,6 +146,19 @@ class HtmlDoc(TextDoc):
         self.f = open(self.filename,"w")
         
         for line in self.top:
+            match = t_one_line_re.match(line)
+            if match:
+                m = match.groups()
+                self.f.write('%s<TITLE>%s</TITLE>%s\n' % (m[0],self.title,m[1]))
+                continue
+            match = t_start_re.match(line)
+            if match:
+                m =match.groups()
+                self.f.write('%s<TITLE>%s\n' % (m[0],self.title))
+                continue
+            if t_stop_re.match(line):
+                self.f.write('</TITLE>\n')
+                continue 
             self.f.write(line)
 
         self.f.write('<style type="text/css">\n<!--\n')

@@ -2134,7 +2134,8 @@ def on_statusbar_unmap(obj):
 #
 #-------------------------------------------------------------------------
 def export_callback(obj,plugin_function):
-    plugin_function(database,active_person)
+    if active_person:
+        plugin_function(database,active_person)
 
 #-------------------------------------------------------------------------
 #

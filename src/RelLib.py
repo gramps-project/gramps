@@ -35,7 +35,7 @@ class Note:
 
     def get(self):
         return self.text
-    
+
 #-------------------------------------------------------------------------
 #
 # Photo class. Contains information about a photo stored in the database
@@ -192,8 +192,8 @@ class Name:
         self.Surname = ""
         self.Suffix = ""
         self.Title = ""
-        self.source_ref = SourceRef()
-        self.note = Note()
+        self.source_ref = None
+        self.note = None
         
     def setName(self,first,last,suffix):
         self.FirstName = first
@@ -236,22 +236,31 @@ class Name:
         else:
             return "%s %s, %s" % (self.FirstName, self.Surname, self.Suffix)
 
-    def setNote(self,text):
-        self.note.set(text)
+    def setNote(self,note) :
+        if self.note == None:
+            self.note = Note()
+        self.note.set(note)
 
-    def getNote(self):
-        return self.note.get()
+    def getNote(self) :
+        if self.note == None:
+            return ""
+        else:
+            return self.note.get() 
 
-    def setNoteObj(self,obj):
-        self.note = obj
+    def setNoteObj(self,note) :
+        self.note = note
 
-    def getNoteObj(self,obj):
+    def getNoteObj(self):
+        if self.note == None:
+            self.note = Note()
         return self.note
 
     def setSourceRef(self,id) :
         self.source_ref = id
 
     def getSourceRef(self) :
+        if not self.source_ref:
+            self.source_ref = SourceRef()
         return self.source_ref
 
 #-------------------------------------------------------------------------
@@ -289,7 +298,7 @@ class Person:
 
     def __init__(self):
         self.id = -1
-        self.PrimaryName = Name()
+        self.PrimaryName = None
         self.EventList = []
         self.FamilyList = []
         self.AltFamilyList = []
@@ -297,19 +306,21 @@ class Person:
         self.photoList = []
         self.nickname = ""
         self.alternateNames = []
-        self.gender = Person.female
-        self.death = Event()
-        self.birth = Event()
+        self.gender = 0
+        self.death = None
+        self.birth = None
         self.addressList = []
         self.attributeList = []
         self.urls = []
-        self.note = Note()
+        self.note = None
         self.paf_uid = ""
 
     def setPrimaryName(self,name) :
          self.PrimaryName = name
 	
     def getPrimaryName(self) :
+        if not self.PrimaryName:
+            self.PrimaryName = Name()
         return self.PrimaryName
 
     def setPafUid(self,val) :
@@ -355,9 +366,15 @@ class Person:
         self.death = event
 
     def getBirth(self) :
+        if self.birth == None:
+            self.birth = Event()
+            self.birth.name = "Birth"
         return self.birth
 
     def getDeath(self) :
+        if self.death == None:
+            self.death = Event()
+            self.death.name = "Death"
         return self.death
 
     def addPhoto(self,photo):
@@ -437,18 +454,24 @@ class Person:
     def getMainFamily(self) :
         return self.MainFamily
 
-    def setNote(self,text):
-        self.note.set(text)
+    def setNote(self,note) :
+        if self.note == None:
+            self.note = Note()
+        self.note.set(note)
 
-    def getNote(self):
-        return self.note.get()
+    def getNote(self) :
+        if self.note == None:
+            return ""
+        else:
+            return self.note.get() 
 
-    def setNoteObj(self,obj):
-        self.note = obj
+    def setNoteObj(self,note) :
+        self.note = note
 
-    def getNoteObj(self,obj):
+    def getNoteObj(self):
+        if self.note == None:
+            self.note = Note()
         return self.note
-
 	
 #-------------------------------------------------------------------------
 #
@@ -462,8 +485,8 @@ class Event:
         self.date = Date()
         self.description = ""
         self.name = ""
-        self.source_ref = SourceRef()
-        self.note = Note()
+        self.source_ref = None
+        self.note = None
 
     def set(self,name,date,place,description):
         self.name = name
@@ -493,6 +516,8 @@ class Event:
         self.source_ref = id
 
     def getSourceRef(self) :
+        if not self.source_ref:
+            self.source_ref = SourceRef()
         return self.source_ref
 
     def setPlace(self,place) :
@@ -502,15 +527,22 @@ class Event:
         return self.place 
 
     def setNote(self,note) :
+        if self.note == None:
+            self.note = Note()
         self.note.set(note)
 
     def getNote(self) :
-        return self.note.get() 
+        if self.note == None:
+            return ""
+        else:
+            return self.note.get() 
 
     def setNoteObj(self,note) :
         self.note = note
 
-    def getNoteObj(self) :
+    def getNoteObj(self):
+        if self.note == None:
+            self.note = Note()
         return self.note
 
     def setDescription(self,description) :
@@ -623,12 +655,18 @@ class Family:
         self.Marriage = event
 
     def getMarriage(self):
+        if self.Marriage == None:
+            self.Marriage = Event()
+            self.Marriage.name = "Marriage"
         return self.Marriage
 
     def setDivorce(self,event):
         self.Divorce = event
 
     def getDivorce(self):
+        if self.Divorce == None:
+            self.Divorce = Event()
+            self.Divorce.name = "Marriage"
         return self.Divorce
 
     def addEvent(self,event) :

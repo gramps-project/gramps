@@ -41,7 +41,13 @@ else:
     except:
         sax = 2
 
+#-------------------------------------------------------------------------
+#
+# Unicode to latin conversion
+#
+#-------------------------------------------------------------------------
 from latin_utf8 import utf8_to_latin
+u2l = utf8_to_latin
 
 #-------------------------------------------------------------------------
 #
@@ -103,7 +109,7 @@ class GrampsParser(handler.ContentHandler):
         self.callback = callback
         self.entries = 0
         self.count = 0
-        self.increment = 50
+        self.increment = 100
         self.event = None
         self.name = None
         self.tempDefault = None
@@ -206,8 +212,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_father(self,attrs):
-        father = self.db.findPersonNoMap(attrs["ref"])
-        self.family.setFather(father)
+        self.family.Father = self.db.findPersonNoMap(attrs["ref"])
 
     #---------------------------------------------------------------------
     #
@@ -215,8 +220,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_mother(self,attrs):
-        mother = self.db.findPersonNoMap(attrs["ref"])
-        self.family.setMother(mother)
+        self.family.Mother = self.db.findPersonNoMap(attrs["ref"])
     
     #---------------------------------------------------------------------
     #
@@ -224,8 +228,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_child(self,attrs):
-        child = self.db.findPersonNoMap(attrs["ref"])
-        self.family.addChild(child)
+        self.family.Children.append(self.db.findPersonNoMap(attrs["ref"]))
 
     #---------------------------------------------------------------------
     #
@@ -269,9 +272,9 @@ class GrampsParser(handler.ContentHandler):
         family = self.db.findFamilyNoMap(attrs["ref"])
         if attrs.has_key("type"):
             type = attrs["type"]
-            self.person.addAltFamily(family,type)
+            self.person.AltFamilyList.append((family,type))
         else:
-            self.person.setMainFamily(family)
+            self.person.MainFamily = family
 
     #---------------------------------------------------------------------
     #
@@ -279,8 +282,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_parentin(self,attrs):
-        family = self.db.findFamilyNoMap(attrs["ref"])
-        self.person.addFamily(family)
+        self.person.FamilyList.append(self.db.findFamilyNoMap(attrs["ref"]))
 
     #---------------------------------------------------------------------
     #
@@ -355,8 +357,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_created(self,attrs):
-        self.entries = string.atoi(attrs["people"]) + \
-                       string.atoi(attrs["families"])
+        self.entries = int(attrs["people"]) + int(attrs["families"])
 
     #---------------------------------------------------------------------
     #
@@ -365,7 +366,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_attribute(self,tag):
         if self.in_old_attr:
-            self.attribute.setValue(tag)
+            self.attribute.setValue(u2l(tag))
         self.in_old_attr = 0
         self.attribute = None
 
@@ -375,7 +376,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_attr_type(self,tag):
-        self.attribute.setType(tag)
+        self.attribute.setType(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -383,7 +384,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_attr_value(self,tag):
-        self.attribute.setValue(tag)
+        self.attribute.setValue(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -399,7 +400,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_event(self,tag):
-        self.event.setName(self.event_type)
+        self.event.name = self.event_type
 
         if self.event_type == "Birth":
             self.person.setBirth(self.event)
@@ -410,9 +411,9 @@ class GrampsParser(handler.ContentHandler):
         elif self.event_type == "Divorce":
             self.family.setDivorce(self.event)
         elif self.person:
-            self.person.addEvent(self.event)
+            self.person.EventList.append(self.event)
         else:
-            self.family.addEvent(self.event)
+            self.family.EventList.append(self.event)
         self.event = None
 
     #---------------------------------------------------------------------
@@ -421,7 +422,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_name(self,tag):
-        self.person.setPrimaryName(self.name)
+        self.person.PrimaryName = self.name
         self.name = None
 
     #---------------------------------------------------------------------
@@ -430,7 +431,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_place(self,tag):
-        self.event.setPlace(tag)
+        self.event.place = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -450,7 +451,7 @@ class GrampsParser(handler.ContentHandler):
             if self.address:
                 self.address.setDate(tag)
             else:
-                self.event.getDateObj().quick_set(tag)
+                self.event.date.quick_set(tag)
 
     #---------------------------------------------------------------------
     #
@@ -458,14 +459,14 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_first(self,tag):
-        self.name.setFirstName(tag)
+        self.name.FirstName = u2l(tag)
 
     #---------------------------------------------------------------------
     #
     #
     #
     #---------------------------------------------------------------------
-    def stop_family(self,tag):
+    def stop_families(self,tag):
         self.family = None
 
     #---------------------------------------------------------------------
@@ -473,7 +474,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #
     #---------------------------------------------------------------------
-    def stop_person(self,tag):
+    def stop_people(self,tag):
         self.person = None
 
     #---------------------------------------------------------------------
@@ -482,7 +483,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_description(self,tag):
-        self.event.setDescription(tag)
+        self.event.setDescription(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -490,10 +491,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_gender(self,tag):
-        if tag == "M":
-            self.person.setGender(Person.male)
-        else:
-            self.person.setGender(Person.female)
+        self.person.gender = (tag == "M")
 
     #---------------------------------------------------------------------
     #
@@ -501,7 +499,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_stitle(self,tag):
-        self.source.setTitle(tag)
+        self.source.setTitle(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -525,7 +523,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_sauthor(self,tag):
-        self.source.setAuthor(tag)
+        self.source.setAuthor(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -538,19 +536,19 @@ class GrampsParser(handler.ContentHandler):
         self.source_ref.setDate(date)
         
     def stop_street(self,tag):
-        self.address.setStreet(tag)
+        self.address.setStreet(u2l(tag))
 
     def stop_city(self,tag):
-        self.address.setCity(tag)
+        self.address.setCity(u2l(tag))
 
     def stop_state(self,tag):
-        self.address.setState(tag)
+        self.address.setState(u2l(tag))
         
     def stop_country(self,tag):
-        self.address.setCountry(tag)
+        self.address.setCountry(u2l(tag))
 
     def stop_postal(self,tag):
-        self.address.setPostal(tag)
+        self.address.setPostal(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -558,7 +556,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_spage(self,tag):
-        self.source_ref.setPage(tag)
+        self.source_ref.setPage(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -566,7 +564,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_spubinfo(self,tag):
-        self.source.setPubInfo(tag)
+        self.source.setPubInfo(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -574,7 +572,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_scallno(self,tag):
-        self.source.setCallNumber(tag)
+        self.source.setCallNumber(u2l(tag))
         
     #---------------------------------------------------------------------
     #
@@ -586,7 +584,7 @@ class GrampsParser(handler.ContentHandler):
             self.use_p = 0
             note = fix_spaces(self.stext_list)
         else:
-            note = tag
+            note = u2l(tag)
         self.source_ref.setText(note)
 
     #---------------------------------------------------------------------
@@ -599,7 +597,7 @@ class GrampsParser(handler.ContentHandler):
             self.use_p = 0
             note = fix_spaces(self.scomments_list)
         else:
-            note = tag
+            note = u2l(tag)
         self.source_ref.setComments(note)
 
     #---------------------------------------------------------------------
@@ -608,7 +606,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_last(self,tag):
-        self.name.setSurname(tag)
+        self.name.Surname = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -616,7 +614,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_suffix(self,tag):
-        self.name.setSuffix(tag)
+        self.name.Suffix = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -624,7 +622,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_title(self,tag):
-        self.name.setTitle(tag)
+        self.name.Title = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -632,7 +630,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_nick(self,tag):
-        self.person.setNickName(tag)
+        self.person.setNickName(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -645,7 +643,7 @@ class GrampsParser(handler.ContentHandler):
             self.use_p = 0
             note = fix_spaces(self.note_list)
         else:
-            note = tag
+            note = u2l(tag)
         if self.address:
             self.address.setNote(note)
         elif self.attribute:
@@ -677,7 +675,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_resname(self,tag):
-        self.resname = tag
+        self.resname = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -685,7 +683,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_resaddr(self,tag):
-        self.resaddr = tag
+        self.resaddr = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -693,7 +691,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_rescity(self,tag):
-        self.rescity = tag
+        self.rescity = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -701,7 +699,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_resstate(self,tag):
-        self.resstate = tag
+        self.resstate = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -709,7 +707,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_rescountry(self,tag):
-        self.rescon = tag
+        self.rescon = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -717,7 +715,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_respostal(self,tag):
-        self.respos = tag
+        self.respos = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -725,7 +723,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_resphone(self,tag):
-        self.resphone = tag
+        self.resphone = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -733,7 +731,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_resemail(self,tag):
-        self.resemail = tag
+        self.resemail = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -743,11 +741,11 @@ class GrampsParser(handler.ContentHandler):
     def stop_ptag(self,tag):
         self.use_p = 1
         if self.in_note:
-            self.note_list.append(tag)
+            self.note_list.append(u2l(tag))
         elif self.in_stext:
-            self.stext_list.append(tag)
+            self.stext_list.append(u2l(tag))
         elif self.in_scomments:
-            self.scomments_list.append(tag)
+            self.scomments_list.append(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -775,7 +773,7 @@ class GrampsParser(handler.ContentHandler):
         "date"       : (None, stop_date),
         "description": (None, stop_description),
         "event"      : (start_event, stop_event),
-        "families"   : (None, None),
+        "families"   : (None, stop_families),
         "family"     : (start_family, None),
         "father"     : (start_father, None),
         "first"      : (None, stop_first),
@@ -788,8 +786,8 @@ class GrampsParser(handler.ContentHandler):
         "note"       : (start_note, stop_note),
         "p"          : (None, stop_ptag),
         "parentin"   : (start_parentin,None),
-        "people"     : (start_people, None),
-        "person"     : (start_person, stop_person),
+        "people"     : (start_people, stop_people),
+        "person"     : (start_person, None),
         "img"        : (start_photo, None),
         "place"      : (None, stop_place),
         "postal"     : (None, stop_postal),
@@ -849,7 +847,7 @@ class GrampsParser(handler.ContentHandler):
     def endElement(self,tag):
 
         if self.func:
-            self.func(self,utf8_to_latin(self.data))
+            self.func(self,self.data)
         self.func_index = self.func_index - 1    
         self.func,self.data = self.func_list[self.func_index]
 

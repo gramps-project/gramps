@@ -122,62 +122,6 @@
       </widget>
 
       <widget>
-	<class>GtkHBox</class>
-	<name>hbox1</name>
-	<homogeneous>False</homogeneous>
-	<spacing>0</spacing>
-	<child>
-	  <padding>0</padding>
-	  <expand>False</expand>
-	  <fill>False</fill>
-	</child>
-
-	<widget>
-	  <class>GtkLabel</class>
-	  <name>label1</name>
-	  <label>Filter</label>
-	  <justify>GTK_JUSTIFY_CENTER</justify>
-	  <wrap>False</wrap>
-	  <xalign>0.5</xalign>
-	  <yalign>0.5</yalign>
-	  <xpad>5</xpad>
-	  <ypad>0</ypad>
-	  <child>
-	    <padding>0</padding>
-	    <expand>False</expand>
-	    <fill>False</fill>
-	  </child>
-	</widget>
-
-	<widget>
-	  <class>GtkOptionMenu</class>
-	  <name>filter</name>
-	  <can_focus>True</can_focus>
-	  <items></items>
-	  <initial_choice>0</initial_choice>
-	  <child>
-	    <padding>5</padding>
-	    <expand>False</expand>
-	    <fill>False</fill>
-	  </child>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GtkCheckButton</class>
-	<name>restrict</name>
-	<can_focus>True</can_focus>
-	<label>Restrict data on living people</label>
-	<active>True</active>
-	<draw_indicator>True</draw_indicator>
-	<child>
-	  <padding>5</padding>
-	  <expand>False</expand>
-	  <fill>False</fill>
-	</child>
-      </widget>
-
-      <widget>
 	<class>GnomeFileEntry</class>
 	<name>fileentry1</name>
 	<width>350</width>
@@ -201,6 +145,107 @@
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
 	  <text></text>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>frame2</name>
+	<border_width>5</border_width>
+	<label>Filter</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkOptionMenu</class>
+	  <name>filter</name>
+	  <border_width>5</border_width>
+	  <can_focus>True</can_focus>
+	  <items>
+</items>
+	  <initial_choice>0</initial_choice>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>frame3</name>
+	<border_width>5</border_width>
+	<label>Encoding</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkVBox</class>
+	  <name>vbox2</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>ansel</name>
+	    <border_width>2</border_width>
+	    <can_focus>True</can_focus>
+	    <label>ANSEL</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>enc</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>radiobutton2</name>
+	    <border_width>2</border_width>
+	    <can_focus>True</can_focus>
+	    <label>UNICODE</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>enc</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>frame1</name>
+	<border_width>5</border_width>
+	<label>Options</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkCheckButton</class>
+	  <name>restrict</name>
+	  <border_width>5</border_width>
+	  <can_focus>True</can_focus>
+	  <label>Restrict data on living people</label>
+	  <active>True</active>
+	  <draw_indicator>True</draw_indicator>
 	</widget>
       </widget>
     </widget>

@@ -429,6 +429,8 @@ def dump_person(person,prefix,templateTop,templateBottom,targetDir):
     if not alive:
         print_event(html,_("Birth"),person.getBirth())
         print_event(html,_("Death"),person.getDeath())
+        for event in person.getEventList():
+            print_event(html,event.getName(),event)
     
     family = person.getMainFamily()
     if family != None:
