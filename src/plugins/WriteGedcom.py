@@ -1032,8 +1032,9 @@ class GedcomWriter:
     def write_person_name(self,name,nick):
         firstName = self.cnvtxt(name.getFirstName())
         surName = self.cnvtxt(name.getSurname())
+        surName = surName.replace('/','?')
         surPref = self.cnvtxt(name.getSurnamePrefix())
-        surName = surPref.replace('/','?')
+        surPref = surPref.replace('/','?')
         suffix = self.cnvtxt(name.getSuffix())
         title = self.cnvtxt(name.getTitle())
         if suffix == "":
