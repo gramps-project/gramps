@@ -112,7 +112,7 @@ class FilterEditor:
         if len(sel) != 1:
             return
         filt = self.filter_list.get_row_data(sel[0])
-        list = filt.apply(self.db.getPersonMap().values())
+        list = filt.apply(self.db,self.db.getPersonMap().values())
         ShowResults(list)
 
     def delete_filter(self,obj):
