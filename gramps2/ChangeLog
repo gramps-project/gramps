@@ -41,6 +41,9 @@
 	* src/ArgHandler.py (auto_save_load): Subclass database depending 
 	on the format.
 
+	* src/DbPrompter.py (ExistingDbPrompter.chooser,
+	ImportDbPrompter.chooser): Destroy file chooser on failure (#1014254).
+
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.
 

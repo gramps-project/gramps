@@ -213,11 +213,8 @@ class ExistingDbPrompter:
                         return 0
             QuestionDialog.ErrorDialog( _("Could not open file: %s") % filename,
                         _('The type "%s" is not in the list of known file types') % filetype )
-            return 0
-
-        else:
-            choose.destroy()
-            return 0
+        choose.destroy()
+        return 0
 
 #-------------------------------------------------------------------------
 #
@@ -301,11 +298,8 @@ class ImportDbPrompter:
                     return 1
             QuestionDialog.ErrorDialog( _("Could not open file: %s") % filename,
                         _('The type "%s" is not in the list of known file types') % filetype )
-            return 0
-
-        else:
-            choose.destroy()
-            return 0
+        choose.destroy()
+        return 0
 
 #-------------------------------------------------------------------------
 #
