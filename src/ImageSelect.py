@@ -52,7 +52,7 @@ import RelLib
 import RelImage
 import ListModel
 import SelectObject
-import grampslib
+import GrampsMime
 
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
@@ -146,7 +146,7 @@ class ImageSelect:
         self.temp_name = root
         
         if os.path.isfile(filename):
-            type = Utils.get_mime_type(filename)
+            type = GrampsMime.get_type(filename)
             if type[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.set_from_pixbuf(image)
@@ -182,7 +182,7 @@ class ImageSelect:
             self.dataobj.add_media_reference(oref)
             self.add_thumbnail(oref)
         else:
-            type = Utils.get_mime_type(filename)
+            type = GrampsMime.get_type(filename)
             mobj = RelLib.MediaObject()
             if description == "":
                 description = os.path.basename(filename)
@@ -478,7 +478,7 @@ class Gallery(ImageSelect):
             protocol,site,file, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
                 name = file
-                mime = Utils.get_mime_type(name)
+                mime = GrampsMime.get_type(name)
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
@@ -502,7 +502,7 @@ class Gallery(ImageSelect):
                     t = _("Could not import %s") % d
                     ErrorDialog(t,str(msg))
                     return
-                mime = Utils.get_mime_type(tfile)
+                mime = GrampsMime.get_type(tfile)
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
                 photo.set_description(d)
@@ -615,18 +615,16 @@ class Gallery(ImageSelect):
         menu.set_title(_("Media Object"))
         object = self.db.find_object_from_id(photo.get_reference_id())
         mtype = object.get_mime_type()
-        progname = grampslib.default_application_name(mtype)
+        print mtype
+        progname = GrampsMime.get_application(mtype)
         
-        Utils.add_menuitem(menu,_("Open in %s") % progname,
+        Utils.add_menuitem(menu,_("Open in %s") % progname[1],
                            photo,self.popup_view_photo)
         if mtype[0:5] == "image":
             Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                photo,self.popup_edit_photo)
         Utils.add_menuitem(menu,_("Edit Object Properties"),photo,
                            self.popup_change_description)
-        if object.get_local() == 0:
-            Utils.add_menuitem(menu,_("Convert to local copy"),photo,
-                               self.popup_convert_to_private)
         menu.popup(None,None,None,event.button,event.time)
             
     def popup_view_photo(self, obj):
@@ -717,10 +715,7 @@ class LocalMediaProperties:
         self.change_dialog.get_widget("private").set_active(photo.get_privacy())
         self.change_dialog.get_widget("gid").set_text(self.object.get_id())
 
-        if self.object.get_local():
-            self.change_dialog.get_widget("path").set_text(_("<local>"))
-        else:
-            self.change_dialog.get_widget("path").set_text(fname)
+        self.change_dialog.get_widget("path").set_text(fname)
 
         mt = Utils.get_mime_description(mtype)
         self.change_dialog.get_widget("type").set_text(mt)
@@ -967,12 +962,8 @@ class GlobalMediaProperties:
 
     def update_info(self):
         fname = self.object.get_path()
-        if self.object.get_local():
-            self.change_dialog.get_widget("path").set_text(_("<local>"))
-            self.makelocal.set_sensitive(0)
-        else:
-            self.change_dialog.get_widget("path").set_text(fname)
-            self.makelocal.set_sensitive(1)
+        self.change_dialog.get_widget("path").set_text(fname)
+        self.makelocal.set_sensitive(1)
 
     def on_make_local_clicked(self, obj):
         name = RelImage.import_media_object(self.object.get_path(),
@@ -1019,7 +1010,7 @@ class GlobalMediaProperties:
         for key in self.db.get_family_keys():
             p = self.db.find_family_from_id(key)
             for o in p.get_media_list():
-                if o.get_reference_get_id() == self.object.get_id():
+                if o.get_reference_id() == self.object.get_id():
                     self.refmodel.add([_("Family"),p.get_id(),Utils.family_name(p,self.db)])
                     any = 1
         for key in self.db.get_source_keys():

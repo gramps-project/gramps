@@ -4,7 +4,6 @@ SUBDIRS = docgen filters plugins data po calendars
 # For intl. support, how do we compile?
 CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
-CLEANFILES = grampslib.so
 MOSTLYCLEANFILES = 
 
 # What are the PYTHON scripts for this package that need to be handled?
@@ -135,16 +134,6 @@ GRAPHICS = \
 # Other stuff that we need to install
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop papersize.xml
 
-EXTRA_DIST = grampslib.i grampslib_wrap.c
-
-all-local: grampslib.so
-
-# These can probably be done in a better or more elegant/generic way 
-# eventually (libtool?), but this works.
-
-grampslib.so: $(srcdir)/grampslib_wrap.c
-	$(CC) $(CFLAGS) $(PYTHON_CPPFLAGS) -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 
-
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
 # But, since the template depends on everything from here, we allow this
@@ -165,10 +154,7 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
-	$(INSTALL) -d $(DESTDIR)$(pkglibdir)
-	$(INSTALL_DATA) grampslib.so $(DESTDIR)$(pkglibdir)
 
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
 	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
-	-rm $(DESTDIR)$(pkglibdir)/grampslib.so

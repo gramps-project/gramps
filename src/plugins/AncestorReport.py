@@ -81,8 +81,6 @@ class AncestorReport(Report.Report):
 
         self.filter(self.start.get_id(),1)
 
-        print self.map
-        
         name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("AHN-Title")
         title = _("Ahnentafel Report for %s") % name
@@ -131,7 +129,7 @@ class AncestorReport(Report.Report):
                     place = place[:-1]
                 if date.get_date() != "" or place_id:
                     if date.get_date() != "":
-                        if date.getDayValid() and date.getMonthValid():
+                        if date.get_day_valid() and date.get_month_valid():
                             if place != "":
                                 t = _("%s was born on %s in %s. ") % \
                                     (name,date.get_date(),place)
@@ -171,7 +169,7 @@ class AncestorReport(Report.Report):
                         male = 0
 
                     if date.get_date() != "":
-                        if date.getDayValid() and date.getMonthValid():
+                        if date.get_day_valid() and date.get_month_valid():
                             if male:
                                 if place != "":
                                     t = _("He died on %s in %s") % \
@@ -211,7 +209,7 @@ class AncestorReport(Report.Report):
                             place = place[:-1]
                         if date.get_date() != "" or place_id:
                             if date.get_date() != "":
-                                if date.getDayValid() and date.getMonthValid():
+                                if date.get_day_valid() and date.get_month_valid():
                                     if place != "":
                                         t = _(", and was buried on %s in %s.") % \
                                             (date.get_date(),place)

@@ -36,24 +36,9 @@ AC_SUBST(MOFILES)
 
 dnl Checks for programs.  
 dnl We first only check for python >= 2.2
+
 AM_PATH_PYTHON(2.2)
-
-dnl override automatic python detection with our own place
-pythondir=\${prefix}/share
-pyexecdir=\${prefix}/share
-pkgpythondir=\${prefix}/share/\${PACKAGE}
-pkgpyexecdir=\${prefix}/share/\${PACKAGE}
-
 AC_PATH_PROG(BINSH, sh)
-AC_PATH_PROG(ZIP, zip)
-
-AC_PROG_CC
-
-dnl Check for programs
-
-AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, "YES", "NO")
-GNOMEINC=`pkg-config --cflags gnome-vfs-module-2.0`
-GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
 pygtk_require="
 try:
@@ -90,7 +75,7 @@ then
 fi
 AC_MSG_RESULT(ok)
 
-AC_MSG_CHECKING(Python bindings for GNOME)
+AC_MSG_CHECKING(Python bindings for gnome)
 cat > conftest.py <<EOF
 $pygtk_require
 try:
@@ -109,7 +94,7 @@ rm -f conftest.out conftest.py
 if test YES != "$has_pygnome"
 then
    AC_MSG_ERROR([
-**** The python bindings for GNOME 2.0 (gnome-python2) could not be found.])
+**** The python bindings for gnome 2.0 (gnome-python2) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
@@ -135,7 +120,7 @@ then
 fi
 AC_MSG_RESULT(ok)
 
-AC_MSG_CHECKING(Python bindings for GNOME canvas)
+AC_MSG_CHECKING(Python bindings for gnome canvas)
 cat > conftest.py <<EOF
 $pygtk_require
 try:
@@ -153,11 +138,11 @@ rm -f conftest.out conftest.py
 if test YES != "$has_canvas"
 then
    AC_MSG_ERROR([
-**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found.])
+**** The python bindings for gnome canvas (gnome-python2-canvas) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
-AC_MSG_CHECKING(Python bindings for GNOME VFS)
+AC_MSG_CHECKING(Python bindings for gnome vfs)
 cat > conftest.py <<EOF
 $pygtk_require
 try:
@@ -175,7 +160,7 @@ rm -f conftest.out conftest.py
 if test YES != "$has_vfs"
 then
    AC_MSG_ERROR([
-**** The python bindings for GNOME canvas (gnome-python2-vfs) could not be found.])
+**** The python bindings for gnome canvas (gnome-python2-vfs) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
@@ -205,11 +190,6 @@ AC_MSG_RESULT(ok)
 dnl Checks for libraries.
 
 dnl Checks for header files.
-
-AC_CACHE_CHECK([for Python include directory],
- [gramps_cv_python_inc],
- [gramps_cv_python_inc=`$PYTHON -c "from distutils import sysconfig; print sysconfig.get_python_inc()" 2>/dev/null`])
-AC_SUBST([PYTHON_CPPFLAGS], ["-I$gramps_cv_python_inc"])
 
 dnl ====================================
 dnl = Begin tests for scrollkeeper
@@ -242,9 +222,6 @@ AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 
 AC_SUBST(GNOMEHELP)
 AC_SUBST(GPREFIX)
-
-AC_SUBST(GNOMEINC)
-AC_SUBST(GNOMELIB)
 
 AC_CONFIG_FILES([
 Makefile 

@@ -27,6 +27,7 @@
 #------------------------------------------------------------------------
 import string
 import os
+import GrampsMime
 
 #------------------------------------------------------------------------
 #
@@ -126,12 +127,10 @@ class RTFDoc(BaseDoc.BaseDoc):
         self.f.close()
 
         if self.print_req:
-            import grampslib
-
             apptype = 'application/rtf'
             prog = grampslib.default_application_command(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog)
+            os.system ('%s "$FILE" &' % prog[0])
 
     #--------------------------------------------------------------------
     #
@@ -416,16 +415,17 @@ class RTFDoc(BaseDoc.BaseDoc):
 # Register the document generator with the GRAMPS plugin system
 #
 #------------------------------------------------------------------------
-print_label = None
+
 try:
-    import grampslib
     import Utils
+    
+    prog = GrampsMime.get_application("application/rtf")
+    type = GrampsMime.description("application/rtf")
 
-    prog = grampslib.default_application_command("application/rtf")
-    desc = grampslib.default_application_name("application/rtf")
-    if Utils.search_for(prog):
-        print_label=_("Open in %s") % desc
+    if Utils.search_for(prog[0]):
+        print_label=_("Open in %s") % prog[1]
+    else:
+        print_label=None
+    Plugins.register_text_doc(type, RTFDoc, 1, 0, 1, ".rtf", print_label)
 except:
-    pass
-
-Plugins.register_text_doc(_("Rich Text Format (RTF)"),RTFDoc,1,1,1,".rtf", print_label)
+    Plugins.register_text_doc('RTF document', RTFDoc, 1, 0, 1, ".rtf", print_label)

@@ -348,8 +348,9 @@ class Gramps:
 
     def undo(self,*args):
         self.db.undo()
-        p = self.db.try_to_find_person_from_id(self.active_person.get_id())
-        self.change_active_person(p)
+        if self.active_person:
+            p = self.db.try_to_find_person_from_id(self.active_person.get_id())
+            self.change_active_person(p)
         self.place_view.change_db(self.db)
         self.people_view.change_db(self.db)
         self.source_view.change_db(self.db)

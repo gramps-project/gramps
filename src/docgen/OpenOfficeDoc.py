@@ -43,7 +43,7 @@ import const
 import Plugins
 import ImgManip
 import FontScale
-import grampslib
+import GrampsMime
 
 #-------------------------------------------------------------------------
 #
@@ -365,9 +365,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self._write_meta_file()
         self._write_zip()
         if self.print_req:
-            app = grampslib.default_application_command(_apptype)
+            app = GrampsMime.get_application(_apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app)
+            os.system ('%s "$FILE" &' % app[0])
 
     def add_media_object(self,name,pos,x_cm,y_cm):
 
@@ -968,33 +968,23 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 # Register plugins
 #
 #--------------------------------------------------------------------------
-print_label = None
 try:
     import Utils
     
-    prog = grampslib.default_application_command(_apptype)
+    prog = GrampsMime.get_application(_apptype)
+    type = GrampsMime.get_description(_apptype)
 
-    if Utils.search_for(prog):
+    if Utils.search_for(prog[0]):
         print_label = _("Open in OpenOffice.org")
-except:
-    pass
-     
-Plugins.register_text_doc(
-    _("OpenOffice.org Writer"),
-    OpenOfficeDoc,
-    1,
-    1,
-    1,
-    ".sxw",
-    print_label)
+    else:
+        print_label = None
 
-Plugins.register_book_doc(
-    _("OpenOffice.org Writer"),
-    OpenOfficeDoc,
-    1,
-    1,
-    1,
-    ".sxw")
+    Plugins.register_text_doc(type,OpenOfficeDoc,1,1,1,".sxw", print_label)
+    Plugins.register_book_doc(type,OpenOfficeDoc,1,1,1,".sxw")
+except:
+    Plugins.register_text_doc('OpenOffice.org Writer', OpenOfficeDoc,1,1,1,".sxw", None)
+    Plugins.register_book_doc("OpenOffice.org Writer", OpenOfficeDoc,1,1,1,".sxw")
+
 
 Plugins.register_draw_doc(
     _("OpenOffice.org Draw"),

@@ -348,12 +348,12 @@ class ChooseParents:
             elif family.get_father_id() == mother_id and family.get_mother_id() == father_id:
                 return family
 
-        family = self.db.new_family()
+        trans = self.db.start_transaction()
+        family = self.db.new_family(trans)
         family.set_father_id(father_id)
         family.set_mother_id(mother_id)
         family.add_child_id(self.person.get_id())
 
-        trans = self.db.start_transaction()
         if father_id:
             father = self.db.find_person_from_id(father_id)
             father.add_family_id(family.get_id())

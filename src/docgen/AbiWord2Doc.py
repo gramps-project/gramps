@@ -37,7 +37,7 @@ import BaseDoc
 import Errors
 import Plugins
 import ImgManip
-import grampslib
+import GrampsMime
 
 from latin_utf8 import latin_to_utf8
 from gettext import gettext as _
@@ -179,9 +179,12 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'application/x-abiword'
-            app = grampslib.default_application_command(apptype)
-            os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app)
+            try:
+                app = GrampsMime.get_application(apptype)[0]
+                os.environ["FILE"] = self.filename
+                os.system ('%s "$FILE" &' % app)
+            except:
+                pass
 
     def add_media_object(self,name,pos,x_cm,y_cm):
 
@@ -311,14 +314,16 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 #
 #--------------------------------------------------------------------------
 
-print_label = None
-try:
-    import Utils
+import Utils
 
-    prog = grampslib.default_application_command("application/x-abiword")
-    if Utils.search_for(prog):
-        print_label=_("Open in AbiWord")
-except:
-    pass
+try:
+    prog = GrampsMime.get_application("application/x-abiword")
+    type = GrampsMime.get_description('application/x-abiword')
     
-Plugins.register_text_doc(_("AbiWord"),AbiWordDoc,1,1,1,".abw", print_label)
+    if Utils.search_for(prog[0]):
+        print_label=_("Open in %s" % prog[1])
+    else:
+        print_label=None
+    Plugins.register_text_doc(type,AbiWordDoc,1,1,1,".abw", print_label)
+except:
+    Plugins.register_text_doc('AbiWord document',AbiWordDoc,1,1,1,".abw", None)

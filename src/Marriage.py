@@ -518,7 +518,7 @@ class Marriage:
         else:
             temple = ""
 
-        place = self.get_place(1)
+        place = self.get_place(0)
         
         ord = self.family.get_lds_sealing()
         if not ord:
@@ -554,18 +554,16 @@ class Marriage:
     def on_delete_event(self,obj,b):
         self.on_cancel_edit(obj)
 
-    def on_close_marriage_editor(self,obj):
-        self.save()
-        
-    def save(self):
+    def on_close_marriage_editor(self,*obj):
+
+        trans = self.db.start_transaction()
+
         idval = unicode(self.gid.get_text())
         family = self.family
         if idval != family.get_id():
-            m = self.db.get_family_id_map() 
-            if not m.has_key(idval):
-                if m.has_key(family.get_id()):
-                    del m[family.get_id()]
-                    m[idval] = family
+            if not self.db.has_family_id(idval):
+                if self.db.has_family_id(family.get_id()):
+                    self.db.remove_family_id(family.get_id(),trans)
                 family.set_id(idval)
             else:
                 WarningDialog(_("GRAMPS ID value was not changed."),
@@ -607,7 +605,7 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
-        place = self.get_place(1)
+        place = self.get_place(1,trans)
 
         ord = self.family.get_lds_sealing()
         if not ord:
@@ -635,7 +633,6 @@ class Marriage:
 
         self.update_lists()
         self.update_fv(self.family)
-        trans = self.db.start_transaction()
         self.db.commit_family(self.family,trans)
         self.db.add_transaction(trans)
 
@@ -780,26 +777,27 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
-        place = self.get_place(1)
+        trans = self.start_transaction()
+        place = self.get_place(1,trans)
+        self.add_transaction(trans)
         
         if date or temple or place:
             Utils.bold_label(self.lds_label)
         else:
             Utils.unbold_label(self.lds_label)
 
-    def get_place(self,makenew=0):
+    def get_place(self,makenew,trans=None):
         field = self.lds_place.entry
         text = string.strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.db.get_place_id_map()[self.pmap[text]]
+                return self.db.find_place_from_id(self.pmap[text],trans)
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
-                self.db.add_place(place)
+                self.db.add_place(place,trans)
                 self.pmap[text] = place.get_id()
                 self.add_places.append(place)
-                Utils.modified()
                 return place
             else:
                 return None

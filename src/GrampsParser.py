@@ -27,6 +27,7 @@ import Date
 import string
 import Calendar
 import Utils
+import GrampsMime
 import xml.parsers.expat
     
 #-------------------------------------------------------------------------
@@ -523,7 +524,7 @@ class GrampsParser:
                 a.set_type(key)
                 a.set_value(attrs[key])
                 self.photo.add_attribute(a)
-        self.photo.set_mime_type(Utils.get_mime_type(self.photo.get_path()))
+        self.photo.set_mime_type(GrampsMime.get_type(self.photo.get_path()))
         self.db.add_object(self.photo)
         if self.family:
             self.family.add_media_reference(self.pref)

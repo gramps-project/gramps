@@ -33,7 +33,7 @@ import Errors
 from TarFile import TarFile
 import Plugins
 import ImgManip
-import grampslib
+import GrampsMime
 
 from gettext import gettext as _
 
@@ -264,9 +264,9 @@ class KwordDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'application/x-kword'
-            app = grampslib.default_application_command(apptype)
+            app = GrampsMime.get_application(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % app)
+            os.system ('%s "$FILE" &' % app[0])
 
     def start_paragraph(self,style_name,leader=None):
         self.format_list = []
@@ -485,15 +485,17 @@ class KwordDoc(BaseDoc.BaseDoc):
 #
 #------------------------------------------------------------------------
 
-print_label = None
 try:
     import Utils
-
-    prog = grampslib.default_application_command("application/x-kword")
-    desc = grampslib.default_application_name("application/x-kword")
-    if Utils.search_for(prog):
-        print_label=_("Open in %s") % desc
+    
+    prog = GrampsMime.get_application("application/x-kword")
+    type = GrampsMime.get_description("application/x-kword")
+    
+    if prog and Utils.search_for(prog[0]):
+        print_label=_("Open in %s") % prog[1]
+    else:
+        print_label=None
+    Plugins.register_text_doc(type, KwordDoc, 1, 0, 1, ".kwd", print_label)
 except:
-    pass
+    Plugins.register_text_doc('KWord', KwordDoc, 1, 0, 1, ".kwd", print_label)
 
-Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1,".kwd")

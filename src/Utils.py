@@ -35,8 +35,6 @@ import locale
 #
 #-------------------------------------------------------------------------
 import gtk
-import gnome.vfs
-import grampslib
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +43,7 @@ import grampslib
 #-------------------------------------------------------------------------
 import const
 import RelImage
+import GrampsMime
 
 #-------------------------------------------------------------------------
 #
@@ -308,9 +307,10 @@ def add_menuitem(menu,msg,obj,func):
 #-------------------------------------------------------------------------
 def view_photo(photo):
     type = photo.get_mime_type()
-    prog = grampslib.default_application_command(type)
-
-    if not prog:
+    try:
+        data = GrampsMime.get_application(type)
+        prog = data[0]
+    except:
         return
     
     args = string.split(prog)
@@ -428,16 +428,21 @@ def find_icon(mtype):
         return const.icon
 
 def get_mime_type(file):
-    type = grampslib.gnome_vfs_mime_type_from_name(file)
-    if type:
-        return type
-    return "unknown"
+    try:
+        return gnome.vfs.get_mime_type(file)
+    except:
+        return "unknown"
 
 def get_mime_description(type):
-    value = grampslib.gnome_vfs_mime_get_description(type)
-    if value:
-        return value
-    return ""
+    try:
+        value = gnome.vfs.mime_get_description(type)
+        if value:
+            return value
+        else:
+            return ''
+    except:
+        return ''
+    
 
 #-------------------------------------------------------------------------
 #

@@ -57,6 +57,7 @@ import const
 import Utils
 import RelImage
 import RelLib
+import GrampsMime
 
 #-------------------------------------------------------------------------
 #
@@ -114,7 +115,7 @@ class AddMediaObject:
             ErrorDialog(msgstr % filename, msgstr2)
             return
 
-        type = Utils.get_mime_type(filename)
+        type = GrampsMime.get_type(filename)
         if description == "":
             description = os.path.basename(filename)
 
@@ -149,8 +150,8 @@ class AddMediaObject:
         self.temp_name = root
 
         if os.path.isfile(filename):
-            type = Utils.get_mime_type(filename)
-
+            type = GrampsMime.get_type(filename)
+            
             if type[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
             else:

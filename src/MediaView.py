@@ -50,6 +50,7 @@ import ImageSelect
 import RelImage
 import ColumnOrder
 import DisplayModels
+import GrampsMime
 
 from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
 
@@ -215,9 +216,12 @@ class MediaView:
             id = store.get_value(iter,1)
             object = self.db.find_object_from_id(id)
             self.obj = object
+            mime_type = object.get_mime_type()
+            
             Utils.add_menuitem(menu,_("View in the default viewer"),None,
                                self.popup_view_photo)
-            if object.get_mime_type()[0:5] == "image":
+            
+            if mime_type[0:5] == "image":
                 Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                    None,self.popup_edit_photo)
             item = gtk.MenuItem()
@@ -352,7 +356,7 @@ class MediaView:
             protocol,site,file, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
                 name = file
-                mime = Utils.get_mime_type(name)
+                mime = GrampsMime.get_type(name)
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
                 photo.set_mime_type(mime)
@@ -384,7 +388,7 @@ class MediaView:
                 except IOError, msg:
                     ErrorDialog(_('Image import failed'),str(msg))
                     return
-                mime = Utils.get_mime_type(tfile)
+                mime = GrampsMime.get_type(tfile)
                 photo = RelLib.MediaObject()
                 photo.set_mime_type(mime)
                 if mime[0:5] == "image":

@@ -214,7 +214,7 @@ class PeopleView:
         
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
-        mlist = self.person_tree.get_selected_objects()
+        mlist = self.get_selected_objects()
         if mlist:
             sel_sensitivity = 1
         else:

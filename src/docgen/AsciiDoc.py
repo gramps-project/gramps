@@ -27,6 +27,7 @@
 #------------------------------------------------------------------------
 import string
 import os
+import GrampsMime
 
 #------------------------------------------------------------------------
 #
@@ -128,12 +129,10 @@ class AsciiDoc(BaseDoc.BaseDoc):
         self.f.close()
 
         if self.print_req:
-            import grampslib
-
             apptype = 'text/plain'
-            prog = grampslib.default_application_command(apptype)
+            prog = GrampsMime.get_application(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog)
+            os.system ('%s "$FILE" &' % prog[0])
 
     def get_usable_width(self):
         return _WIDTH_IN_CHARS
@@ -358,14 +357,17 @@ class AsciiDoc(BaseDoc.BaseDoc):
 #------------------------------------------------------------------------
 print_label = None
 try:
-    import grampslib
     import Utils
 
-    prog = grampslib.default_application_command("text/plain")
-    desc = grampslib.default_application_name("text/plain")
-    if Utils.search_for(prog):
-        print_label=_("Open in %s") % desc
-except:
-    pass
+    prog = GrampsMime.get_application("text/plain")
+    type = GrampsMime.get_description('text/plain')
 
-Plugins.register_text_doc(_("Plain Text"),AsciiDoc,1,1,1,".txt", print_label)
+    if Utils.search_for(prog[0]):
+        print_label=_("Open in %s" % prog[1])
+    else:
+        print_label=None
+
+    Plugins.register_text_doc(type,AsciiDoc,1,1,1,".txt", print_label)
+except:
+    Plugins.register_text_doc("Plain Text",AsciiDoc,1,1,1,".txt", None)
+
