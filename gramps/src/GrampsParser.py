@@ -649,8 +649,6 @@ class GrampsParser(handler.ContentHandler):
         else:
             note = u2l(tag)
 
-        print note
-        
         if self.address:
             self.address.setNote(note)
             print "Address"
