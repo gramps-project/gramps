@@ -204,11 +204,6 @@ class EditPerson:
         self.attr_list.set_column_visibility(2,Config.show_detail)
         self.addr_list.set_column_visibility(2,Config.show_detail)
 
-        plist = self.db.getPlaceMap().values()
-        if len(plist) > 0:
-            utils.attach_places(plist,self.dpcombo,self.death.getPlace())
-            utils.attach_places(plist,self.bpcombo,self.birth.getPlace())
-
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
             val = ""
@@ -285,6 +280,10 @@ class EditPerson:
     def redraw_event_list(self):
         """redraws the event list for the person"""
         utils.redraw_list(self.elist,self.event_list,disp_event)
+        plist = self.db.getPlaceMap().values()
+        if len(plist) > 0:
+            utils.attach_places(plist,self.dpcombo,self.death.getPlace())
+            utils.attach_places(plist,self.bpcombo,self.birth.getPlace())
         self.bplace.set_text(self.birth.getPlaceName())
         self.dplace.set_text(self.death.getPlaceName())
         self.bdate.set_text(self.birth.getDate())
