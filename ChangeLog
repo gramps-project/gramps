@@ -1,6 +1,9 @@
 2004-01-31  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/Ancestors.py: Typo.
 	* src/plugins/IndivComplete.py: Typo.
+	* src/Report.py: Mark translatable string.
+	* src/Witness.py: Mark translatable string.
+	* src/plugins/FamilyGroup.py: Mark translatable string.
 
 2004-01-31  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Updating translation for 1.0-RC

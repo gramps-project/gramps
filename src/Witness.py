@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -157,7 +157,7 @@ class WitnessEditor:
 
     def choose(self,obj):
         import SelectPerson
-        sel_person = SelectPerson.SelectPerson(self.db,'Select Person',parent_window=self.window)
+        sel_person = SelectPerson.SelectPerson(self.db,_('Select Person'),parent_window=self.window)
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person
