@@ -420,12 +420,16 @@ class Gramps:
     def on_contents_activate(self,obj):
         """Display the GRAMPS manual"""
         import gnome.help
-        gnome.help.display("gramps-manual","index.html")
+	url = gnome.help.file_find_file("gramps-manual","gramps-manual.sgml")
+	url = "gnome-help:"+url
+        gnome.help.goto(url)
 
     def on_writing_extensions_activate(self,obj):
         """Display the Extending GRAMPS manual"""
         import gnome.help
-        gnome.help.display("extending-gramps","index.html")
+        url = gnome.help.file_find_file("extending-gramps","extending-gramps.sgml")
+	url = "gnome-help:"+url
+        gnome.help.goto(url)
     
     def on_remove_child_clicked(self,obj):
         if not self.active_family or not self.active_child or not self.active_person:
