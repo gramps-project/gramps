@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Support for dates"
 
@@ -126,56 +128,56 @@ class Date:
             self.stop.calendar = self.calendar
         return self.stop
 
-    def getLowYear(self):
-        return self.start.getYear()
+    def get_low_year(self):
+        return self.start.get_year()
         
-    def getHighYear(self):
+    def get_high_year(self):
         if self.stop == None:
-            return self.start.getYear()
+            return self.start.get_year()
         else:
-            return self.stop.getYear()
+            return self.stop.get_year()
 
-    def getYear(self):
+    def get_year(self):
         return self.start.year
 
-    def getYearValid(self):
+    def get_year_valid(self):
         return self.start.year != UNDEF
 
-    def getMonth(self):
+    def get_month(self):
         if self.start.month == UNDEF:
             return UNDEF
         return self.start.month
 
-    def getMonthValid(self):
+    def get_month_valid(self):
         return self.start.month != UNDEF
 
-    def getDay(self):
+    def get_day(self):
         return self.start.day
 
-    def getDayValid(self):
+    def get_day_valid(self):
         return self.start.day != UNDEF
 
-    def getValid(self):
+    def get_valid(self):
         """ Returns true if any part of the date is valid"""
         return self.start.year != UNDEF or self.start.month != UNDEF or self.start.day != UNDEF
 
-    def getIncomplete(self):
+    def get_incomplete(self):
         return self.range == 0 and self.start.year == UNDEF or \
                self.start.month == UNDEF or self.start.day == UNDEF
 
-    def getStopYear(self):
+    def get_stop_year(self):
         if self.stop == None:
             self.stop = SingleDate()
             self.stop.calendar = self.calendar
         return self.stop.year
 
-    def getStopMonth(self):
+    def get_stop_month(self):
         if self.stop == None:
             self.stop = SingleDate()
             self.stop.calendar = self.calendar
         return self.stop.month+1
 
-    def getStopDay(self):
+    def get_stop_day(self):
         if self.stop == None:
             self.stop = SingleDate()
             self.stop.calendar = self.calendar
@@ -268,14 +270,14 @@ class Date:
         s = self.start
         return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not self.text
 
-    def isValid(self):
+    def is_valid(self):
         if self.range == -1:
             return 0
         elif self.range:
-            return self.start.getValid() and self.stop.getValid()
-        return self.start.getValid()
+            return self.start.get_valid() and self.stop.get_valid()
+        return self.start.get_valid()
     
-    def isRange(self):
+    def is_range(self):
         return self.range == 1
         
 #-------------------------------------------------------------------------
@@ -300,64 +302,64 @@ class SingleDate:
             self.mode = Calendar.EXACT
             self.calendar = Gregorian.Gregorian()
 
-    def setMode(self,val):
+    def set_mode(self,val):
         self.mode = self.calendar.set_mode_value(val)
 
-    def setMonth(self,val):
+    def set_month(self,val):
         if val > 14 or val < 0:
             self.month = UNDEF
         else:
             self.month = val
 
-    def setMonthVal(self,s):
+    def set_month_val(self,s):
         self.month = self.calendar.set_value(s)
 
-    def setDayVal(self,s):
+    def set_day_val(self,s):
         self.day = self.calendar.set_value(s)
 
-    def setYearVal(self,s):
+    def set_year_val(self,s):
         if s:
             self.year = self.calendar.set_value(s)
         else:
             self.year = UNDEF
 
-    def getMonth(self):
+    def get_month(self):
         return self.month
 
-    def getMonthValid(self):
+    def get_month_valid(self):
         return self.month != UNDEF
 
-    def setDay(self,val):
+    def set_day(self,val):
         self.day = val
 
-    def getDay(self):
+    def get_day(self):
 	return self.day
 
-    def getDayValid(self):
+    def get_day_valid(self):
 	return self.day != UNDEF
 
-    def setYear(self,val):
+    def set_year(self,val):
         self.year = val
 
-    def getYear(self):
+    def get_year(self):
         return self.year
 
-    def getYearValid(self):
+    def get_year_valid(self):
         return self.year != UNDEF
 
-    def getValid(self):
+    def get_valid(self):
         """ Returns true if any part of the date is valid"""
         if self.year == UNDEF and self.month == UNDEF and self.day == UNDEF:
             return 1
         return self.calendar.check(self.year,self.month,self.day)
 
-    def setMonthStr(self,text):
+    def set_month_str(self,text):
         self.calendar.set_month_string(text)
 
-    def getMonthStr(self):
+    def get_month_str(self):
 	return self.calendar.month(self.month)
 
-    def getIsoDate(self):
+    def get_iso_date(self):
         if self.year == UNDEF:
             y = "????"
         else:
@@ -385,30 +387,30 @@ class SingleDate:
         else:
             return self.calendar.quote_display(self.year, self.month, self.day, self.mode)
 
-    def setIsoDate(self,v):
+    def set_iso_date(self,v):
         data = string.split(v)
         if len(data) > 1:
-            self.setMode(data[0])
+            self.set_mode(data[0])
             v = data[1]
         
         vals = string.split(v,'-')
-        self.setYearVal(vals[0])
+        self.set_year_val(vals[0])
         if len(vals) > 1:
             try:
-                self.setMonthVal(int(vals[1]))
+                self.set_month_val(int(vals[1]))
             except:
                 self.month = UNDEF
         else:
             self.month = UNDEF
         if len(vals) > 2:
-            self.setDayVal(vals[2])
+            self.set_day_val(vals[2])
         else:
             self.day = UNDEF
         
-    def getModeVal(self):
+    def get_mode_val(self):
         return self.mode
 
-    def setModeVal(self,val):
+    def set_mode_val(self,val):
         self.mode = val
     
     def set(self,text):
