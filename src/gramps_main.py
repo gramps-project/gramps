@@ -1466,7 +1466,9 @@ def on_edit_father_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def load_new_person(obj):
-    EditPerson.EditPerson(Person(),database,new_after_edit)
+    global active_person
+    active_person = Person()
+    EditPerson.EditPerson(active_person,database,new_after_edit)
 
 #-------------------------------------------------------------------------
 #
