@@ -4,6 +4,8 @@
 
 Copyright (c) 2001 Graham J. Williams
 
+Time-stamp: <2001/09/14 09:54:20 Graham.Williams@cmis.csiro.au>
+
 Freely Redistributable under the terms of the GNU General Public License.
 
 Based on GEDCOM and conforming with Gramps XML encoding.
@@ -15,11 +17,11 @@ Information on Gramps is available from http://
 <!--
 
 	Define an XML document which is a <database> consisting of a
-	<header>, <people>, <families>, <sources> and <bookmarks>.
+	<header>, <people>, <families>, <sources>, <places> and <bookmarks>.
 
 -->
 
-<!ELEMENT database (header, people?, families?, sources?, bookmarks?)>
+<!ELEMENT database (header, people?, families?, sources?, places?, bookmarks?)>
 
 <!--	************************************************************
 
@@ -73,7 +75,7 @@ PEOPLE
 <!ATTLIST name    conf CDATA #IMPLIED
                   priv CDATA #IMPLIED>
 
-<!ELEMENT aka     (first?, last?,suffix?)>
+<!ELEMENT aka     (first?, last?,suffix?,note?)>
 <!ATTLIST aka     conf CDATA #IMPLIED
                   priv CDATA #IMPLIED>
 
@@ -87,11 +89,6 @@ PEOPLE
 <!ELEMENT pos EMPTY>
 <!ATTLIST pos x CDATA #REQUIRED
               y CDATA #REQUIRED>
-
-<!ELEMENT url EMPTY>
-<!ATTLIST url conf CDATA #IMPLIED
-              priv CDATA #IMPLIED
-              href CDATA #REQUIRED>
 
 <!ELEMENT childof EMPTY>
 <!ATTLIST childof
@@ -153,6 +150,29 @@ SOURCES
 
 <!--	************************************************************
 
+PLACES
+
+-->
+
+<!ELEMENT places (placeobj)*>
+
+<!ELEMENT placeobj (coord?,location*,img*,url*,note?)>
+<!ATTLIST placeobj id ID #REQUIRED title CDATA #REQUIRED>
+
+<!ELEMENT coord EMPTY>
+<!ATTLIST coord long CDATA #REQUIRED lat CDATA #REQUIRED>
+
+<!ELEMENT location EMPTY>
+<!ATTLIST location
+    city        CDATA #REQUIRED
+    county      CDATA #REQUIRED
+    state       CDATA #REQUIRED
+    country     CDATA #REQUIRED
+>
+
+
+<!--	************************************************************
+
 BOOKMARKS
 
 -->
@@ -176,27 +196,37 @@ SHARED ELEMENTS
 
 
 <!ELEMENT event (date?,place?,description?,sourceref?,note?)>
-<!ATTLIST event type CDATA #REQUIRED>
+<!ATTLIST event type
+   (Birth|Death|Christening|Baptism|Engagement|Marriage|
+   Occupation|Education|Degree|Immi|Burial|Cremation)
+   #REQUIRED>
 
 <!--
 
-  Alternatively for event type we could enumerate all possibilities,
-  but then this will not conform to Gramps as Gramps allows any type
-  of events (i.e., a user can define their own type of event) . So by
-  allowing anything we no longer have automatic checking.
+  We can enumerate all possibilities for an event and then this will
+  not conform to Gramps as Gramps allows any type of events (i.e., a
+  user can define their own type of event) . By allowing anything
+  (CDATA) we no longer have automatic checking and in emacs no more
+  automatic selection of event types.
 
-  (Birth|Death|Christening|Baptism|Engagement|Marriage|
-   Occupation|Education|Degree|Immi|Burial)
-
-  There are many more that Gramps supplies by default.
+  So decide to use the enumerated list for now unless there is a storm
+  of protest.
 
 -->
 
 <!ELEMENT date        (#PCDATA)>
-<!ELEMENT place       (#PCDATA)>
 <!ELEMENT description (#PCDATA)>
 
 <!ELEMENT note (#PCDATA)>
+
+<!ELEMENT url EMPTY>
+<!ATTLIST url href CDATA #REQUIRED
+              conf CDATA #IMPLIED
+              priv (0|1) #IMPLIED
+              description CDATA #IMPLIED>
+
+<!ELEMENT place EMPTY>
+<!ATTLIST place ref IDREF #REQUIRED>
 
 <!ELEMENT sourceref (spage?,scomments?,stext?,sdate?)>
 <!ATTLIST sourceref ref IDREF #REQUIRED>
@@ -209,6 +239,6 @@ SHARED ELEMENTS
 <!ELEMENT img EMPTY>
 <!ATTLIST img
   src     CDATA #REQUIRED
-  descrip CDATA #IMPLIED
+  description CDATA #IMPLIED
   display CDATA #IMPLIED>
 
