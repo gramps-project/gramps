@@ -1,6 +1,7 @@
 2004-05-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py (probably_alive): Typos.
 	* src/Plugins.py: Do not pass parent to the reports.
+	* src/SubstKeywords.py (__init__): Typo.
 
 2004-05-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/ChangeTypes.py: Remove Utils.modified() call.

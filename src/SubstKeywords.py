@@ -100,7 +100,7 @@ class SubstKeywords:
             f_id = person.get_family_id_list()[0]
             f = database.find_family_from_id(f_id)
             father_id = f.get_father_id()
-            mother_id = f.get_mother_id
+            mother_id = f.get_mother_id()
             if father_id == person_id:
                 if mother_id:
                     mother = database.find_person_from_id(mother_id)
