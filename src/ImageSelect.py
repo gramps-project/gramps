@@ -129,14 +129,7 @@ class ImageSelect:
         self.savephoto(mobj)
 
         if type[0:5] == "image":
-            if self.external.get_active() == 1:
-                if os.path.isfile(filename):
-                    name = filename
-                    thumb = "%s/.thumb/%s.jpg" % (self.path,mobj.getId())
-                    RelImage.mk_thumb(filename,thumb,const.thumbScale)
-                else:
-                    return
-            else:
+            if self.external.get_active() == 0:
                 name = RelImage.import_media_object(filename,self.path,mobj.getId())
         else:
             if self.external.get_active() == 1:
@@ -217,11 +210,7 @@ class Gallery(ImageSelect):
     def add_thumbnail(self, photo):
         object = photo.getReference()
         path = object.getPath()
-        if object.getMimeType()[0:5] == "image":
-            thumb = "%s/.thumb/%s.jpg" % (self.path,object.getId())
-            RelImage.check_thumb(path,thumb,const.thumbScale)
-        else:
-            thumb = utils.find_icon(object.getMimeType())
+        thumb = utils.thumb_path(self.db.getSavePath(),object)
         self.icon_list.append(thumb,object.getDescription())
         
     #-------------------------------------------------------------------------
@@ -401,12 +390,7 @@ class LocalMediaProperties:
         
         descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
-        if mtype[0:5] == "image":
-            thumb = "%s/.thumb/%s" % (path,self.object.getId())
-            RelImage.check_thumb(fname,thumb,const.thumbScale)
-            pixmap.load_file(thumb)
-        else:
-            pixmap.load_file(utils.find_icon(mtype))
+        pixmap.load_file(utils.thumb_path(path,self.object))
 
         self.change_dialog.get_widget("private").set_active(photo.getPrivacy())
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
@@ -489,12 +473,7 @@ class GlobalMediaProperties:
         
         descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
-        if mtype[0:5] == "image":
-            thumb = "%s/.thumb/%s" % (path,self.object.getId())
-            RelImage.check_thumb(fname,thumb,const.thumbScale)
-            pixmap.load_file(thumb)
-        else:
-            pixmap.load_file(utils.find_icon(mtype))
+        pixmap.load_file(utils.thumb_path(path,self.object))
 
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
 

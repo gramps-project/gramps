@@ -93,7 +93,7 @@ useExceptions= 0
 #
 #-------------------------------------------------------------------------
 picWidth     = 275.0
-thumbScale   = 100.0
+thumbScale   = 96.0
 indexFile    = "data.gramps"
 male         = _("male")
 female       = _("female")
