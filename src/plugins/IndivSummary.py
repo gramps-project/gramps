@@ -165,7 +165,10 @@ class IndivSummary:
             self.d.start_row()
             self.d.start_cell("NormalCell",2)
             self.d.start_paragraph("Spouse")
-            self.d.write_text(spouse.getPrimaryName().getRegularName())
+            if spouse:
+                self.d.write_text(spouse.getPrimaryName().getRegularName())
+            else:
+                self.d.write_text(_("unknown"))
             self.d.end_paragraph()
             self.d.end_cell()
             self.d.end_row()
