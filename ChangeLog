@@ -1,3 +1,8 @@
+2004-02-03  Michel Guitel  <michel.guitel@free.fr>
+	* doc/gramps-manual/fr/faq.xml: Update.
+	* doc/gramps-manual/fr/mainwin.xml: Update.
+	* doc/gramps-manual/fr/usage.xml: Update.
+
 2004-02-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in, configure: Don't ship Hungarian manual (unfinished).
 	* doc/gramps-manual/Makefile.am, doc/gramps-manual/Makefile.in:
