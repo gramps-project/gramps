@@ -3544,26 +3544,22 @@
 	</widget>
 
 	<widget>
-	  <class>GtkEntry</class>
-	  <name>surname</name>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>activate</name>
-	    <handler>on_surname_activate</handler>
-	    <object>spouseDialog</object>
-	    <last_modification_time>Sat, 22 Sep 2001 04:20:48 GMT</last_modification_time>
-	  </signal>
-	  <editable>True</editable>
-	  <text_visible>True</text_visible>
-	  <text_max_length>0</text_max_length>
-	  <text></text>
+	  <class>GtkCombo</class>
+	  <name>surname_combo</name>
+	  <border_width>5</border_width>
+	  <value_in_list>False</value_in_list>
+	  <ok_if_empty>True</ok_if_empty>
+	  <case_sensitive>False</case_sensitive>
+	  <use_arrows>True</use_arrows>
+	  <use_arrows_always>False</use_arrows_always>
+	  <items></items>
 	  <child>
 	    <left_attach>1</left_attach>
 	    <right_attach>2</right_attach>
 	    <top_attach>1</top_attach>
 	    <bottom_attach>2</bottom_attach>
-	    <xpad>5</xpad>
-	    <ypad>5</ypad>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
 	    <xexpand>True</xexpand>
 	    <yexpand>False</yexpand>
 	    <xshrink>False</xshrink>
@@ -3571,6 +3567,23 @@
 	    <xfill>True</xfill>
 	    <yfill>False</yfill>
 	  </child>
+
+	  <widget>
+	    <class>GtkEntry</class>
+	    <child_name>GtkCombo:entry</child_name>
+	    <name>surname</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>surname_combo</object>
+	      <last_modification_time>Tue, 30 Oct 2001 09:51:42 GMT</last_modification_time>
+	    </signal>
+	    <editable>True</editable>
+	    <text_visible>True</text_visible>
+	    <text_max_length>0</text_max_length>
+	    <text></text>
+	  </widget>
 	</widget>
       </widget>
     </widget>
