@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import string
 import urlparse
 from gettext import gettext as _
 
@@ -458,7 +457,7 @@ class Gallery(ImageSelect):
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
         if data and data.format == 8:
             icon_index = self.get_index(w,x,y)
-            d = string.strip(string.replace(data.data,'\0',' '))
+            d = data.data.replace('\0',' ').strip()
             protocol,site,mfile,j,k,l = urlparse.urlparse(d)
             if protocol == "file":
                 name = mfile
@@ -1085,6 +1084,16 @@ class GlobalMediaProperties:
                                        p.get_gramps_id(),
                                        NameDisplay.displayer.display(p)])
                     any = 1
+            for event_handle in p.get_event_list() + [p.get_birth_handle(),p.get_death_handle()]:
+                if event_handle:
+                    event = self.db.get_event_from_handle(event_handle)
+                    for o in event.get_media_list():
+                        if o.get_reference_handle() == self.obj.get_handle():
+                            self.refmodel.add([_("Personal event"),
+                                       "%s: %s" % (p.get_gramps_id(),event.get_gramps_id()),
+                                       "%s: %s" % (NameDisplay.displayer.display(p),
+                                                _(event.get_name()))])
+                            any = 1
         for key in self.db.get_family_handles():
             p = self.db.get_family_from_handle(key)
             for o in p.get_media_list():
@@ -1093,6 +1102,17 @@ class GlobalMediaProperties:
                                        p.get_gramps_id(),
                                        Utils.family_name(p,self.db)])
                     any = 1
+            for event_handle in p.get_event_list():
+                if event_handle:
+                    event = self.db.get_event_from_handle(event_handle)
+                    for o in event.get_media_list():
+                        if o.get_reference_handle() == self.obj.get_handle():
+                            self.refmodel.add([_("Family event"),
+                                        "%s: %s" % (p.get_gramps_id(),
+                                                    event.get_gramps_id()),
+                                        "%s: %s" % (Utils.family_name(p,self.db),
+                                                    _(event.get_name()))])
+                            any = 1
         for key in self.db.get_source_handles():
             p = self.db.get_source_from_handle(key)
             for o in p.get_media_list():
