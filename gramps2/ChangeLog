@@ -1,3 +1,11 @@
+2005-01-30 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/WriteGrdb.py: Add to CVS.
+	* src/gramps.glade: Add Save as item, switch former one to Export.
+	* src/gramps_main.py: Support for save as.
+	* src/DbPrompter.py: Support for save as.
+
+	* src/WriteGrdb.py: Copy metadata.
+
 2005-01-29 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/GraphViz.py (GraphVizDialog.__init__):
 	Use proper response ID;  (GraphVizGraphics.__init__): set up self.doc;
@@ -5,13 +13,6 @@
 
 	* src/ArgHandler.py: Support for opening in the command-line mode.
 	* src/const.py.in: Add -O | --open option.
-
-	* src/WriteGrdb.py: Add to CVS.
-	* src/gramps.glade: Add Save as item, switch former one to Export.
-	* src/gramps_main.py: Support for save as.
-	* src/DbPrompter.py: Support for save as.
-
-	* src/WriteGrdb.py: Copy metadata.
 
 2005-01-29 Eero Tamminen <eerot@sf>
 	* src/plugins/StatisticsChart.py:
