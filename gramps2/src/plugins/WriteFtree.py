@@ -45,11 +45,15 @@ import gtk.glade
 import WriteXML
 import TarFile
 import Utils
+import GenericFilter
+import Errors
+
 from QuestionDialog import MissingMediaDialog
 
 from intl import gettext as _
 
 _title_string = _("Export to Web Family Tree")
+
 #-------------------------------------------------------------------------
 #
 # writeData
@@ -57,7 +61,7 @@ _title_string = _("Export to Web Family Tree")
 #-------------------------------------------------------------------------
 def writeData(database,person):
     try:
-        FtreeWriter(database)
+        FtreeWriter(database,person)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -69,42 +73,90 @@ def writeData(database,person):
 #-------------------------------------------------------------------------
 class FtreeWriter:
 
-    def __init__(self,database):
+    def __init__(self,database,person):
         self.db = database
 
         base = os.path.dirname(__file__)
-        glade_file = "%s/%s" % (base,"pkgexport.glade")
+        glade_file = "%s/%s" % (base,"writeftree.glade")
         
         
         dic = {
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_ok_clicked" : self.on_ok_clicked
+            "destroy_passed_object" : self.close,
+            "on_ok_clicked" : self.on_ok_clicked,
             }
-        
-        self.top = gtk.glade.XML(glade_file,"packageExport")
 
-        Utils.set_titles(self.top.get_widget('packageExport'),
+        self.plist = {}
+        self.top = gtk.glade.XML(glade_file,"top")
+
+        Utils.set_titles(self.top.get_widget('top'),
                          self.top.get_widget('title'),
                          _title_string)
         
         self.top.signal_autoconnect(dic)
-        self.top.get_widget("packageExport").show()
+
+        self.topwin = self.top.get_widget("top")
+        self.restrict = self.top.get_widget("restrict")
+        self.filter = self.top.get_widget("filter")
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+        
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
+        des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+        
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
+        ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+        
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") %
+                     person.getPrimaryName().getName())
+        com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+        
+        self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
+        self.filter.set_menu(self.filter_menu)
+        
+        self.topwin.show()
+
+    def close(self,obj):
+        self.topwin.destroy()
 
     def on_ok_clicked(self,obj):
         name = self.top.get_widget("filename").get_text()
-        Utils.destroy_passed_object(obj)
+        restrict = self.top.get_widget('restrict').get_active()
+        pfilter = self.filter_menu.get_active().get_data("filter")
+        
+        Utils.destroy_passed_object(self.topwin)
         try:
-            self.export(name)
+            self.export(name, pfilter, restrict)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
 
-    def export(self, filename):
+    def export(self, filename, cfilter, restrict ):
+
+        if cfilter == None:
+            for p in self.db.getPersonKeys():
+                self.plist[p] = 1
+        else:
+            try:
+                for p in cfilter.apply(self.db, self.db.getPersonMap().values()):
+                    self.plist[p.getId()] = 1
+            except Errors.FilterError, msg:
+                (m1,m2) = msg.messages()
+                ErrorDialog(m1,m2)
+                return
+            
+        self.flist = {}
+        for key in self.plist.keys():
+            p = self.db.getPerson(key)
 
         name_map = {}
         id_map = {}
         id_name = {}
-        for key in self.db.getPersonKeys():
+        for key in self.plist:
             pn = self.db.getPerson(key).getPrimaryName()
             fn = ""
             sn = pn.getSurname()
@@ -130,7 +182,7 @@ class FtreeWriter:
 
         f = open(filename,"w")
 
-        for key in self.db.getPersonKeys():
+        for key in self.plist:
             p = self.db.getPerson(key)
             name = id_name[key]
             father = ""
@@ -151,13 +203,18 @@ class FtreeWriter:
             birth = p.getBirth().getDateObj()
             death = p.getDeath().getDateObj()
 
-            if birth.isValid():
-                if death.isValid():
+            if restrict:
+                alive = p.probablyAlive()
+            else:
+                alive = 0
+                
+            if birth.isValid() and not alive:
+                if death.isValid() and not alive :
                     dates = "%s-%s" % (fdate(birth),fdate(death))
                 else:
                     dates = fdate(birth)
             else:
-                if death.isValid():
+                if death.isValid() and not alive:
                     dates = fdate(death)
                 else:
                     dates = ""
