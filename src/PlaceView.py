@@ -135,7 +135,7 @@ class PlaceView:
     def on_button_press_event(self,obj,event):
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             if self.active:
-                EditPlace.EditPlace(self.active,self.db,
+                EditPlace.EditPlace(self,self.active,
                                     self.update_display_after_edit)
 
     def insert_place(self,place):
@@ -164,7 +164,7 @@ class PlaceView:
         self.place_list.thaw()
 
     def on_add_place_clicked(self,obj):
-        EditPlace.EditPlace(Place(),self.db,self.new_place_after_edit)
+        EditPlace.EditPlace(self,Place(),self.new_place_after_edit)
 
     def moveto(self,row):
         self.place_list.unselect_all()
@@ -223,7 +223,7 @@ class PlaceView:
         else:
             for p in obj.selection:
                 place = self.db.getPlace(obj.get_row_data(p))
-                EditPlace.EditPlace(place,self.db,
+                EditPlace.EditPlace(self,place,
                                     self.update_display_after_edit)
 
 

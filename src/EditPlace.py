@@ -63,11 +63,12 @@ pycode_tgts = [('url', 0, 0)]
 #-------------------------------------------------------------------------
 class EditPlace:
 
-    def __init__(self,place,db,func=None):
+    def __init__(self,parent,place,func=None):
         self.place = place
-        self.db = db
+        self.db = parent.db
+        self.parent = parent
         self.callback = func
-        self.path = db.getSavePath()
+        self.path = parent.db.getSavePath()
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
@@ -78,7 +79,7 @@ class EditPlace:
             
         self.top_window = libglade.GladeXML(const.placesFile,"placeEditor")
         plwidget = self.top_window.get_widget("photolist")
-        self.glry = ImageSelect.Gallery(place, self.path, plwidget, db, self)
+        self.glry = ImageSelect.Gallery(place, self.path, plwidget, self.db, self)
         self.title = self.top_window.get_widget("place_title")
         self.city = self.top_window.get_widget("city")
         self.parish = self.top_window.get_widget("parish")
@@ -101,7 +102,6 @@ class EditPlace:
         self.loc_parish  = self.top_window.get_widget("loc_parish")
         self.loc_country = self.top_window.get_widget("loc_country")
 
-        self.lists_changed = 0
         self.ulist = place.getUrlList()[:]
         self.llist = place.get_alternate_locations()[:]
 
@@ -115,6 +115,7 @@ class EditPlace:
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
         self.refinfo = self.top_window.get_widget("refinfo")
+        self.slist = self.top_window.get_widget("slist")
 
         self.note.set_point(0)
         self.note.insert_defaults(place.getNote())
@@ -122,7 +123,6 @@ class EditPlace:
 
         self.top_window.signal_autoconnect({
             "destroy_passed_object"     : Utils.destroy_passed_object,
-            "on_source_clicked"         : self.on_source_clicked,
             "on_photolist_select_icon"  : self.glry.on_photo_select_icon,
             "on_photolist_button_press" : self.glry.on_button_press_event,
             "on_switch_page"            : self.on_switch_page,
@@ -152,6 +152,8 @@ class EditPlace:
         self.top.editable_enters(self.country);
         self.top.editable_enters(self.longitude);
         self.top.editable_enters(self.latitude);
+
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,self.top_window,self.slist)
         
         if self.place.getId() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
@@ -296,9 +298,6 @@ class EditPlace:
     def on_add_loc_clicked(self,obj):
         import LocEdit
         LocEdit.LocationEditor(self,None)
-
-    def on_source_clicked(self,obj):
-        Sources.SourceSelector(self.srcreflist,self)
 
     def on_web_list_select_row(self,obj,row,b,c):
         url = obj.get_row_data(row)

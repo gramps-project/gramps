@@ -222,5 +222,3 @@ class EventEditor:
         if self.event.getPrivacy() != priv:
             self.event.setPrivacy(priv)
             self.parent.lists_changed = 1
-
-            

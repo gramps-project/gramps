@@ -84,7 +84,7 @@ class SourceSelector:
         for s in self.list:
             self.orig.append(s)
         if self.update:
-            self.update(self.parent)
+            self.update(self.orig)
         Utils.destroy_passed_object(self.sourcesel)
     
     def on_edit_src_clicked(self,obj):
@@ -92,11 +92,14 @@ class SourceSelector:
         if len(sel) > 0:
             row = sel[0]
             src = obj.get_row_data(row)
-            SourceEditor(src,self.db,update_clist,self)
+            SourceEditor(src,self.db,self.update_clist,self)
+
+    def update_clist(self,inst,ref):
+        inst.redraw()
 
     def on_add_src_clicked(self,obj):
         src = SourceRef()
-        SourceEditor(src,self.db,add_ref,self)
+        SourceEditor(src,self.db,self.add_ref,self)
 
     def on_del_src_clicked(self,obj):
         sel = obj.selection
@@ -104,6 +107,11 @@ class SourceSelector:
             row = sel[0]
             del self.list[row]
             self.redraw()
+
+    def add_ref(self,inst,ref):
+        self.parent.lists_changed = 1
+        inst.list.append(ref)
+        inst.redraw()
 
 #-------------------------------------------------------------------------
 #
@@ -140,16 +148,25 @@ class SourceTab:
             index = index + 1
         self.slist.thaw()
 
+    def update_clist(self,inst,ref):
+        inst.redraw()
+        self.parent.lists_changed = 1
+
     def on_edit_src_clicked(self,obj):
         sel = obj.selection
         if len(sel) > 0:
             row = sel[0]
             src = obj.get_row_data(row)
-            SourceEditor(src,self.db,update_clist,self)
+            SourceEditor(src,self.db,self.update_clist,self)
 
     def on_add_src_clicked(self,obj):
         src = SourceRef()
-        SourceEditor(src,self.db,add_ref,self)
+        SourceEditor(src,self.db,self.add_ref,self)
+
+    def add_ref(self,inst,ref):
+        self.parent.lists_changed = 1
+        inst.list.append(ref)
+        inst.redraw()
 
     def on_del_src_clicked(self,obj):
         sel = obj.selection
@@ -290,11 +307,5 @@ class SourceEditor:
 def by_title(a,b):
     return cmp(a.getTitle(),b.getTitle())
                
-def update_clist(inst,ref):
-    inst.redraw()
-
-def add_ref(inst,ref):
-    inst.list.append(ref)
-    inst.redraw()
 
         
