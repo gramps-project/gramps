@@ -336,10 +336,10 @@ class DetDescendantReport(Report):
                 place= "_____________"
 
             if date.getDate() != "":
-                if date.getDay() > 0 and date.getMonth() > 0 and \
+                if date.getDay() and date.getMonth() and \
                             rptOptions.fullDate == reportOptions.Yes:
                     fulldate= date.getDate()
-                elif date.getMonth() > 0 and rptOptions.fullDate == reportOptions.Yes:
+                elif date.getMonth() and rptOptions.fullDate == reportOptions.Yes:
                     fulldate= "%s %s" % (date.getMonth(), date.getYear())
                 else: fulldate= ""
             elif rptOptions.blankDate == reportOptions.Yes:
