@@ -45,7 +45,7 @@ def find_fidmap(key,data):
     return str(data[1])
 
 def find_eventname(key,data):
-    return str(data[1])
+    return str(data[2])
 
 class GrampsBSDDBCursor(GrampsCursor):
 
@@ -252,6 +252,7 @@ class GrampsBSDDB(GrampsDbBase):
         names = self.eventnames.keys()
         a = {}
         for name in names:
+            
             a[unicode(name)] = 1
         vals = a.keys()
         vals.sort()
