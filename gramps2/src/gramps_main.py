@@ -81,9 +81,16 @@ try:
 except:
     zodb_ok = 0
 
-pl_titles = [ (_('Name'),5,250), (_('ID'),1,50),
-              (_('Gender'),2,70), (_('Birth Date'),6,150),
-              (_('Death Date'),7,150), ('',5,0), ('',6,0), ('',7,0) ]
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+pl_titles = [ (_('Name'),5,250), (_('ID'),1,50),(_('Gender'),2,70),
+              (_('Birth Date'),6,150),(_('Death Date'),7,150), ('',5,0),
+              ('',6,0), ('',7,0) ]
+
+_sel_mode = gtk.SELECTION_MULTIPLE
 
 #-------------------------------------------------------------------------
 #
@@ -174,13 +181,15 @@ class Gramps:
         self.ptabs       = self.gtop.get_widget("ptabs")
         self.pl_other    = self.gtop.get_widget("pl_other")
 
+        self.ptabs.set_show_tabs(0)
+
         self.pl_page = [
             ListModel.ListModel(self.pl_other, pl_titles, self.row_changed,
-                                self.alpha_event, gtk.SELECTION_MULTIPLE),
+                                self.alpha_event, _sel_mode),
             ]
 
+        self.person_tree = self.pl_page[0]
         self.person_list = self.pl_page[0].tree
-        self.person_selection = self.pl_page[0].selection
         self.person_model = self.pl_page[0].model
         
         self.default_list = self.pl_page[-1]
@@ -188,7 +197,6 @@ class Gramps:
         self.alpha_page = {}
         self.model2page = {}
         self.tab_list = []
-
         
         self.filter_list = self.gtop.get_widget("filter_list")
         self.notebook    = self.gtop.get_widget("notebook1")
@@ -309,8 +317,8 @@ class Gramps:
                       "use at your own risk.")
 
     def change_alpha_page(self,obj,junk,page):
+        self.person_tree = self.pl_page[page]
         self.person_list = self.pl_page[page].tree
-        self.person_selection = self.pl_page[page].selection
         self.person_model = self.pl_page[page].model
         
     def edit_button_clicked(self,obj):
@@ -352,10 +360,9 @@ class Gramps:
         self.editbtn.set_sensitive(val)
             
     def row_changed(self,obj):
-        mlist = []
-        self.person_selection.selected_foreach(self.blist,mlist)
+        mlist = self.person_tree.get_selected_objects()
         if mlist:
-            self.change_active_person(mlist[0])
+            self.change_active_person(self.db.getPerson(mlist[0]))
 
     def on_show_plugin_status(self,obj):
         Plugins.PluginStatus()
@@ -458,24 +465,21 @@ class Gramps:
         import gnome.url
         gnome.url.show("http://sourceforge.net/tracker/?group_id=25770&atid=385137")
 
-    def blist(self,store,path,iter,list):
-        id = self.db.getPerson(store.get_value(iter,1))
-        list.append(id)
-    
     def on_merge_activate(self,obj):
         """Calls up the merge dialog for the selection"""
         page = self.notebook.get_current_page()
         if page == 0:
 
-            mlist = []
-            self.person_selection.selected_foreach(self.blist,mlist)
+            mlist = self.person_tree.get_selected_objects()
 
             if len(mlist) != 2:
                 msg = _("Exactly two people must be selected to perform a merge")
                 ErrorDialog(msg)
             else:
                 import MergeData
-                MergeData.MergePeople(self.db,mlist[0],mlist[1],self.merge_update,
+                p1 = self.db.getPerson(mlist[0])
+                p2 = self.db.getPerson(mlist[2])
+                MergeData.MergePeople(self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
         elif page == 4:
             self.place_view.merge()
@@ -561,8 +565,15 @@ class Gramps:
 
         for i in range(0,len(self.tab_list)):
             self.ptabs.remove_page(0)
+        self.ptabs.set_show_tabs(0)
         self.tab_list = []
-    
+        self.alpha_page = {}
+        self.model2page = {}
+
+        self.person_tree = self.pl_page[-1]
+        self.person_list = self.pl_page[-1].tree
+        self.person_model = self.pl_page[-1].model
+
         if zodb == 1:
             self.db = GrampsZODB()
         elif zodb == 2:
@@ -794,8 +805,7 @@ class Gramps:
         except (IOError,OSError),msg:
             self.status_text("%s - %s" % (_("autosave failed"),msg))
         except:
-            import traceback
-            traceback.print_exc()
+            DisplayTrace.DisplayTrace()
         return 0
 
     def load_selected_people(self,obj):
@@ -815,9 +825,11 @@ class Gramps:
             DisplayTrace.DisplayTrace()
 
     def delete_person_clicked(self,obj):
-        sel = self.person_selection.get_selected()
-        if sel:
-            name = GrampsCfg.nameof(self.active_person) 
+        mlist = self.person_tree.get_selected_objects()
+
+        for sel in mlist:
+            p = self.db.getPerson(sel)
+            name = GrampsCfg.nameof(p) 
             msg = _("Do you really wish to delete %s?") % name
 
             QuestionDialog(_('Delete Person'), msg, self.delete_person_response)
@@ -858,7 +870,7 @@ class Gramps:
 
         if self.id2col.has_key(del_id):
             (model,iter,page) = self.id2col[del_id]
-            model.model.remove(iter)
+            model.remove(iter)
             del self.id2col[del_id]
             
             if person == self.active_person:
@@ -1176,13 +1188,12 @@ class Gramps:
             else:
                 model = self.default_list
             
-            iter = model.model.append()
+            iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
+                              val[6],val[7]],key)
+
             page = self.model2page[model]
             self.id2col[key] = (model,iter)
 
-            model.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
-                            3, val[3], 4, val[4], 5, val[5],
-                            6, val[6], 7, val[7])
             if change:
                 self.change_active_person(person)
                 self.goto_active_person()
@@ -1239,7 +1250,7 @@ class Gramps:
         res = self.db.getResearcher()
         owner = GrampsCfg.get_researcher()
     
-        if res.getName() == "" and owner.getName() != "":
+        if res.getName() == "" and owner.getName():
             self.db.setResearcher(owner)
             Utils.modified()
 
@@ -1349,13 +1360,10 @@ class Gramps:
                 else:
                     model = self.default_list
 
-                iter = model.model.append()
+                iter = model.add([val[0],val[1],val[2],val[3],val[4],val[5],
+                                  val[6],val[7]],key)
                 page = self.model2page[model]
                 self.id2col[key] = (model,iter)
-
-                model.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
-                                3, val[3], 4, val[4], 5, val[5],
-                                6, val[6], 7, val[7])
             else:
                 if self.id2col.has_key(key):
                     (model,iter) = self.id2col[key]
@@ -1371,17 +1379,20 @@ class Gramps:
         display.add_with_viewport(tree)
         display.show()
         model = ListModel.ListModel(tree,pl_titles,self.row_changed,
-                                    self.alpha_event,gtk.SELECTION_MULTIPLE)
-        self.pl_page.append(model)
+                                    self.alpha_event,_sel_mode)
         self.alpha_page[pg] = model
         for index in range(0,len(self.tab_list)):
             if pg < self.tab_list[index]:
                 self.ptabs.insert_page(display,gtk.Label(pg),index)
+                self.ptabs.set_show_tabs(1)
                 self.tab_list.insert(index,pg)
+                self.pl_page.insert(index,model)
                 break
         else:
             self.ptabs.insert_page(display,gtk.Label(pg),len(self.tab_list))
+            self.ptabs.set_show_tabs(1)
             self.tab_list.append(pg)
+            self.pl_page = self.pl_page[0:-1] + [model,self.default_list]
 
         for index in range(0,len(self.tab_list)):
             model = self.alpha_page[self.tab_list[index]]

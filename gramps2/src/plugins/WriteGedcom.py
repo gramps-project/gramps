@@ -67,6 +67,12 @@ _calmap = {
     Date.JULIAN : (_month, '@#JULIAN@'),
     }
 
+_caldef = {
+    Date.SingleDate.about : "ABT",
+    Date.SingleDate.about : "BEF",
+    Date.SingleDate.about : "AFT",
+    }
+
 #-------------------------------------------------------------------------
 #
 #
@@ -170,7 +176,7 @@ def sortById(first,second):
 #
 #
 #-------------------------------------------------------------------------
-def make_date(subdate,mmap):
+def make_date(subdate):
     retval = ""
     day = subdate.getDay()
     mon = subdate.getMonth()
@@ -180,35 +186,42 @@ def make_date(subdate,mmap):
     mon_valid = subdate.getMonthValid()
     year_valid = subdate.getYearValid()
 
+    if _calmap.has_key(subdate.calendar):
+        (mmap,prefix) = _calmap[subdate.calendar]
+    else:
+        mmap = _month
+        prefix = ""
+
     if not day_valid:
         try:
             if not mon_valid:
-                retval = str(year)
+                retval = '(%d)' % year
             elif not year_valid:
-                retval = mmap[mon]
+                retval = '(%s)' % mmap[mon]
             else:
-                retval = "%s %d" % (mmap[mon],year)
+                retval = "(%s %d)" % (mmap[mon],year)
         except IndexError:
             print "Month index error - %d" % mon
-            retval = str(year)
+            retval = '(%d)' % year
     elif not mon_valid:
-        retval = str(year)
+        retval = '(%d)' % year
     else:
         try:
             month = mmap[mon]
             if not year_valid:
-                retval = "%d %s ????" % (day,month)
+                retval = "(%d %s)" % (day,month)
             else:
                 retval = "%d %s %d" % (day,month,year)
         except IndexError:
             print "Month index error - %d" % mon
             retval = str(year)
-    if mode == Date.SingleDate.about:
-        retval = "ABT %s"  % retval
-    elif mode == Date.SingleDate.before:
-        retval = "BEF %s" % retval
-    elif mode == Date.SingleDate.after:
-        retval = "AFT %s" % retval
+
+    if prefix:
+        retval = "%s %s" % (prefix, retval)
+    
+    if _caldef.has_key(mode):
+        retval = "%s %s"  % (_caldef[mode],retval)
+
     return retval
         
 def fmtline(text,limit,level):
@@ -861,34 +874,13 @@ class GedcomWriter:
             val = date.getText()
             if val != "":
                 self.g.write("%s %s\n" % (prefix,self.cnvtxt(val)))
-        elif date.get_calendar() == Date.GREGORIAN:
+        else:
             if date.isRange():
-                val = "FROM %s TO %s" % (make_date(start,_month),
-                                         make_date(date.get_stop_date(),_month))
+                val = "FROM %s TO %s" % (make_date(start),
+                                         make_date(date.get_stop_date()))
             else:
                 val = make_date(start,_month)
             self.g.write("%s %s\n" % (prefix,val))
-        else:
-            if self.cal == CALENDAR_YES:
-                (mlist,cal) = _calmap[date.get_calendar()]
-                if date.isRange():
-                    stop = date.get_stop_date()
-                    val = "FROM %s TO %s" % (make_date(start,mlist),
-                                             make_date(stop,mlist))
-                else:
-                    val = make_date(start,mlist)
-                self.g.write("%s %s %s\n" % (prefix,cal,val))
-            else:
-                mydate = Date.Date(date)
-                mydate.set_calendar(Date.GREGORIAN)
-                start = mydate.get_start_date()
-                if mydate.isRange():
-                    stop = mydate.get_stop_date()
-                    val = "FROM %s TO %s" % (make_date(start,_month),
-                                             make_date(stop,_month))
-                else:
-                    val = make_date(start,_month)
-                self.g.write("%s %s\n" % (prefix,val))
 
     def write_person_name(self,name,nick):
         firstName = self.cnvtxt(name.getFirstName())

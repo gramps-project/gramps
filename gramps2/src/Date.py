@@ -257,7 +257,9 @@ class Date:
 	else:
             d1 = func(self.start)
             d2 = func(self.stop)
-	    return "%s %s %s %s" % ( _("from"),d1,_("to"),d2 )
+	    return _("from %(start_date)s to %(stop_date)s") % {
+                'start_date' : d1,
+                'stop_date' : d2 }
     
     def getDate(self):
         return self.get_fmt(SingleDate.getDate)
@@ -283,7 +285,9 @@ class Date:
         else:
             d1 = _func(self.start)
             d2 = _func(self.stop)
-            return "%s %s %s %s" % ( _("from"),d1,_("to"), d2)
+            return _("from %(start_date)s to %(stop_date)s") % {
+                'start_date' : d1,
+                'stop_date' : d2 }
 
     def get_quote_date(self,month_map,cal_str):
         if self.range == 0:
@@ -296,11 +300,14 @@ class Date:
         else:
             d1 = self.start.display_calendar(month_map)
             d2 = self.stop.display_calendar(month_map)
-            return "%s %s %s %s (%s)" % ( _("from"),d1,_("to"), d2,cal_str)
+            return _("from %(start_date)s to %(stop_date)s (%(calendar)s)") % {
+                'start_date' : d1,
+                'stop_data' :d2,
+                'calendar' : cal_str}
 
     def isEmpty(self):
         s = self.start
-        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF
+        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not s.text
 
     def isValid(self):
         return self.range != -1 
