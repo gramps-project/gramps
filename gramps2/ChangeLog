@@ -5,6 +5,7 @@
 	module
 	* src/PlaceView.py: do an initial sort, don't rely on "click" function
 	* src/SourceView.py: do an initial sort, don't rely on "click" function
+	* src/Date.py: catch day changes if the date has both a start and stop part
 
 2003-12-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WebPage.py: proper handling of links in the MiniTree
