@@ -459,6 +459,7 @@ class Gramps:
         if text == None:
             self.undolabel.set_sensitive(0)
             self.undolabel.get_children()[0].set_text(_("_Undo"))
+            self.undolabel.get_children()[0].set_use_underline(1)
         else:
             self.undolabel.set_sensitive(1)
             label = self.undolabel.get_children()[0]

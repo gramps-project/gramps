@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,8 +32,18 @@ Class handling language-specific displaying of names.
 import os
 import locale
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import RelLib
 
+#-------------------------------------------------------------------------
+#
+# NameDisplay class
+#
+#-------------------------------------------------------------------------
 class NameDisplay:
     """
     Base class for displaying of Name instances.
@@ -122,7 +132,9 @@ class NameDisplay:
         @returns: Returns the L{RelLib.Name} string representation
         @rtype: str
         """
-        if name.display_as == RelLib.Name.LNFN:
+        if name == None:
+            return ""
+        elif name.display_as == RelLib.Name.LNFN:
             return self._lnfn(name)
         else:
             return self._fnln(name)
