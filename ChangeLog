@@ -17,8 +17,8 @@
 	styles.
 
 2003-07-19  Don Allingham  <dallingham@users.sourceforge.net>
-        * src/Sources.py: use textview instead of entry for page information
-        * src/srcsel.glade: use textview instead of entry for page information
+	* src/Sources.py: use textview instead of entry for page information
+	* src/srcsel.glade: use textview instead of entry for page information
 	* src/plugins/WriteGedcom.py: Allow for multi-line PAGE information for
 	as source.
 	* src/gramps.glade: parent relationship editor has an indicator to
