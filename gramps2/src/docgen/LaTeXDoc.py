@@ -381,6 +381,8 @@ class LaTeXDoc(TextDoc.TextDoc):
 	if text == '\n':
 	    text = '\\newline\n'
         text = string.replace(text,'#','\#')
+        text = text.replace('<super>','\\textsuperscript{')
+        text = text.replace('</super>','}')
         self.f.write(text)
 
 

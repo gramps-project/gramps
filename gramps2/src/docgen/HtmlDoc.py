@@ -408,6 +408,8 @@ class HtmlDoc(TextDoc.TextDoc):
         text = string.replace(text,'<','&lt;');
         text = string.replace(text,'>','&gt;');
         text = string.replace(text,'\n','<br>')
+        text = text.replace('&lt;super&gt;','<sup>')
+        text = text.replace('&lt;/super&gt;','</sup>')
         if text != "":
             self.empty = 0
 	self.f.write(text)
