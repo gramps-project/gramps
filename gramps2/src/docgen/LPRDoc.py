@@ -64,8 +64,9 @@ if gnomeprint.Context.__dict__.has_key('grestore'):
 else:
     support_photos = 0
     print "LPRDoc: Photos and rotated text (used in TimeChart)"
-    print "are not supported for direct priting."
-    print "Get gnome-python from CVS or wait for the next gnome-python release."
+    print "        are not supported for direct priting."
+    print "        Get gnome-python from CVS" 
+    print "        or wait for the next gnome-python release."
 ### end FIXME ###
 
 #------------------------------------------------------------------------
@@ -92,45 +93,24 @@ _SUPER_ELEVATION_FRACTION = 0.3
 # Number of points to subtract to get the superscrip size
 _SUPER_SIZE_REDUCTION = 2
 
+# Factor which multiplies the font size to get line spacing for the font
+_EXTRA_SPACING_FACTOR = 1.1
+
 # Font constants -- specific for gnome-print
-_TTF_FREEFONT = ( ( 'FreeSerif Medium', 
-                    'FreeSerif Bold', 
-                    'FreeSerif Italic', 
-                    'FreeSerif BoldItalic' ),
-                  ( 'FreeSans Medium',
-                    'FreeSans Bold',
-                    'FreeSans Oblique',
-                    'FreeSans BoldOblique'),
-                  ( 'FreeMono Medium',
-                    'FreeMono Bold',
-                    'FreeMono Oblique',
-                    'FreeMono BoldOblique')
+_TTF_FREEFONT = ( 
+('FreeSerif Medium','FreeSerif Bold','FreeSerif Italic','FreeSerif BoldItalic' ),
+('FreeSans Medium','FreeSans Bold','FreeSans Oblique','FreeSans BoldOblique'),
+('FreeMono Medium','FreeMono Bold','FreeMono Oblique','FreeMono BoldOblique')
                 )
-_MS_TTFONT = (  (   'Times New Roman Regular', 
-                    'Times New Roman Bold', 
-                    'Times New Roman Italic', 
-                    'Times New Roman Bold Italic' ),
-                  ( 'Arial Regular',
-                    'Arial Bold',
-                    'Arial Italic',
-                    'Arial Bold Italic'),
-                  ( 'Courier New Regular',
-                    'Courier New Bold',
-                    'Courier New Italic',
-                    'Courier New Bold Italic')
+_MS_TTFONT = (  
+('Times New Roman Regular','Times New Roman Bold','Times New Roman Italic','Times New Roman Bold Italic' ),
+('Arial Regular','Arial Bold','Arial Italic','Arial Bold Italic'),
+('Courier New Regular','Courier New Bold','Courier New Italic','Courier New Bold Italic')
                 )
-_GNOME_FONT = ( (   'Serif Regular', 
-                    'Serif Bold', 
-                    'Serif Italic', 
-                    'Serif Bold Italic' ),
-                  ( 'Sans Regular',
-                    'Sans Bold',
-                    'Sans Italic',
-                    'Sans Bold Italic'),
-                  ( 'Monospace Regular',
-                    'Monospace New Bold',
-                    'Monospace New Italic',
-                    'Monospace New Bold Italic')
+_GNOME_FONT = ( 
+('Serif Regular','Serif Bold','Serif Italic','Serif Bold Italic' ),
+('Sans Regular','Sans Bold','Sans Italic','Sans Bold Italic'),
+('Monospace Regular','Monospace New Bold','Monospace New Italic','Monospace New Bold Italic')
                 )
 
 # Search for ttf-freefont first
@@ -142,7 +122,7 @@ for family in _TTF_FREEFONT:
             break
 
 if ttf_not_found:
-    print "Free true type fonts not found."
+    print "LPRDoc: Free true type fonts not found."
     # Search for MS ttfs
     ms_not_found = 0
     for family in _MS_TTFONT:
@@ -151,16 +131,18 @@ if ttf_not_found:
                 ms_not_found = 1
                 break
     if ms_not_found:
-        print "Microsoft true type fonts not found."
-        print "Using Gnome standard fonts."
-        print "Non-ascii characters will appear garbled in the output."
-        print "INSTALL Free true type fonts from http://www.nongnu.org/freefont/"
+        print "        Microsoft true type fonts not found."
+        print "        Using Gnome standard fonts."
+        print "        Non-ascii characters will appear garbled in the output."
+        print "        INSTALL Free true type fonts" 
+        print "        from http://www.nongnu.org/freefont/"
         _FONT_SET = _GNOME_FONT
     else:
-        print "Found Microsoft true type fonts. Will use them for now."
-        print "These fonts are not free. "
-        print "We would advise you to switch to Free true type fonts"
-        print "INSTALL Free true type fonts from http://www.nongnu.org/freefont/"
+        print "        Found Microsoft true type fonts. Will use them for now."
+        print "        These fonts are not free. "
+        print "        You are advised to switch to Free true type fonts"
+        print "        INSTALL Free true type fonts" 
+        print "        from http://www.nongnu.org/freefont/"
         _FONT_SET = _MS_TTFONT
 else:
     _FONT_SET = _TTF_FREEFONT
@@ -178,7 +160,7 @@ _MONO       = "Mono"
 #------------------------------------------------------------------------
 def cm2u(cm):
     """
-    Convert cm to gnome-print units
+    Convert cm to gnome-print units.
     """
     return cm * 72.0 / 2.54 
 
@@ -293,19 +275,19 @@ class GnomePrintParagraph:
 
     def get_fontstyle(self):
         """
-        Return fontstyle for the paragraph
+        Return fontstyle for the paragraph.
         """
         return self.fontstyle
 
     def get_alignment(self):
         """
-        Return requested alignment of the paragraph
+        Return requested alignment of the paragraph.
         """
         return self.style.get_alignment()
 
     def get_min_width(self):
         """
-        Determine the minimal width of the paragraph (longest word)
+        Determine the minimal width of the paragraph (longest word).
         """
         max_word_size = 0
         
@@ -412,12 +394,13 @@ class GnomePrintParagraph:
                     end_word = len(textlist)
 
         self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
-        self.height = nlines * self.fontstyle.get_size() \
+        self.height = nlines * self.fontstyle.get_size() * _EXTRA_SPACING_FACTOR \
                     + 2 * cm2u(self.style.get_padding())
     
     def get_lines(self):
         """
         Return a list of assemlbed lines for the paragraph.
+
         Each element is a tuple corresponding to the line's contents:
         (start_piece,start_word,end_piece,end_word,avail_width)
         """
@@ -501,7 +484,7 @@ class GnomePrintPhoto:
 #
 #------------------------------------------------------------------------
 class LPRDoc(BaseDoc.BaseDoc):
-    """Gnome-print document interface class. Derived from BaseDoc"""
+    """Gnome-print document interface class. Derived from BaseDoc."""
     
     #------------------------------------------------------------------------
     #
@@ -509,13 +492,13 @@ class LPRDoc(BaseDoc.BaseDoc):
     #
     #------------------------------------------------------------------------
     def open(self,filename):
-        """Sets up initialization"""
+        """Sets up initialization."""
         #set up variables needed to keep track of which state we are in
         self.__in_table = 0
         self.__in_cell = 0
         self.__page_count = 0
         self.__page_open = 0
-        
+        self.brand_new_page = 0        
         self.paragraph = None
         self.__cell_data = []
         self.__table_data = []
@@ -536,7 +519,7 @@ class LPRDoc(BaseDoc.BaseDoc):
  
 
     def close(self):
-        """Clean up and close the document"""
+        """Clean up and close the document."""
         #gracefully end page before we close the doc if a page is open
         if self.__page_open:
            self.end_page()
@@ -545,7 +528,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__show_print_dialog()
 
     def start_page(self,orientation=None):
-        """Create a new page"""
+        """Create a new page."""
+        # Don't start new page if it is just started
+        if self.brand_new_page:
+            return
         #reset variables dealing with opening a page
         if (self.__page_open):
             self.end_page()
@@ -557,18 +543,19 @@ class LPRDoc(BaseDoc.BaseDoc):
         
         self.__pc.beginpage(str(self.__page_count))
         self.__pc.moveto(self.__x, self.__y)
+        self.brand_new_page = 1
 
     def end_page(self):
-        """Close the current page"""
+        """Close the current page."""
         if (self.__page_open):
             self.__page_open = 0
             self.__pc.showpage()
-            self.__y -= self.top_margin + _LINE_SPACING
+        self.brand_new_page = 0
 
     def page_break(self):
-        "Forces a page break, creating a new page"
+        "Forces a page break, creating a new page."
         # If we're already at the very top, relax and do nothing
-        if self.__y != self.top_margin:
+        if not self.brand_new_page:
             self.end_page()
             self.start_page()
                                                                                 
@@ -579,13 +566,14 @@ class LPRDoc(BaseDoc.BaseDoc):
     #------------------------------------------------------------------------
 
     def line_break(self):
-        "Forces a line break within a paragraph"
+        "Forces a line break within a paragraph."
         # Add previously held text to the paragraph, 
         # then add line break directive, 
         # then start accumulating further text 
         append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.paragraph.add_piece(_LINE_BREAK,"")
         self.__paragraph_text = ""
+        self.brand_new_page = 0
 
     def start_paragraph(self,style_name,leader=None):
         """Paragraphs handling - A Gramps paragraph is any 
@@ -597,9 +585,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__paragraph_text = ""
         if leader:
             self.__paragraph_text += leader + " "
+        self.brand_new_page = 0
     
     def end_paragraph(self):
-        """End the current paragraph"""
+        """End the current paragraph."""
         # Add current text/directive to paragraoh,
         # then either add paragrah to the list of cell's paragraphs
         # or print it right away if not in cell
@@ -613,31 +602,36 @@ class LPRDoc(BaseDoc.BaseDoc):
                                         self.__x, self.__y, 
                                         self.right_margin - self.left_margin)
         self.paragraph = None
+        self.brand_new_page = 0
             
     def start_bold(self):
-        """Bold face"""
+        """Bold face."""
         append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.__paragraph_directive = _BOLD
         self.__paragraph_text = ""
+        self.brand_new_page = 0
         
     def end_bold(self):
-        """End bold face"""
+        """End bold face."""
         append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.__paragraph_directive = ""
         self.__paragraph_text = ""
+        self.brand_new_page = 0
 
     def start_superscript(self):
         append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.__paragraph_directive = _SUPER
         self.__paragraph_text = ""
+        self.brand_new_page = 0
                                                                                 
     def end_superscript(self):
         append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
         self.__paragraph_directive = ""
         self.__paragraph_text = ""
+        self.brand_new_page = 0
                                                                                 
     def start_table(self,name,style_name):
-        """Begin new table"""
+        """Begin new table."""
         # initialize table, compute its width, find number of columns
         self.__table_data = []
         self.__in_table = 1
@@ -648,16 +642,18 @@ class LPRDoc(BaseDoc.BaseDoc):
                             self.__tbl_style.get_width() / 100.0
         self.__cell_widths = []
         self.__cell_styles = []
+        self.brand_new_page = 0
 
     def end_table(self):
-        """Close the table environment"""
+        """Close the table environment."""
         # output table contents
         self.__output_table()
         self.__in_table = 0
         self.__y = self.__advance_line(self.__y)
+        self.brand_new_page = 0
 
     def start_row(self):
-        """Begin a new row"""
+        """Begin a new row."""
         # Initialize row, compute cell widths
         self.__row_data = []
         self.rownum = self.rownum + 1
@@ -668,15 +664,18 @@ class LPRDoc(BaseDoc.BaseDoc):
         for cell in range(self.__ncols):
             self.__cell_widths[self.rownum][cell] = self.__table_width * \
                             self.__tbl_style.get_column_width(cell) / 100.0
+        self.brand_new_page = 0
 
     def end_row(self):
-        """End the row (new line)"""
+        """End the row (new line)."""
         # add row data to the data we have for the current table
         self.__table_data.append(self.__row_data)
+        self.brand_new_page = 0
             
     def start_cell(self,style_name,span=1):
         """Add an entry to the table."""
         # Initialize a cell, take care of span>1 cases
+        self.brand_new_page = 0
         self.__in_cell = 1
         self.__cell_data = []
         self.cellnum = self.cellnum + self.__span
@@ -689,13 +688,14 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.__cell_widths[self.rownum][self.cellnum + __extra_cell] = 0
 
     def end_cell(self):
-        """Prepares for next cell"""
+        """Prepares for next cell."""
         # append the cell text to the row data
         self.__in_cell = 0
         self.__row_data.append(self.__cell_data)
+        self.brand_new_page = 0
 
     def add_photo(self,name,pos,x,y):
-        """Add photo to report"""
+        """Add photo to report."""
 
         photo = GnomePrintPhoto(name,pos,x,y)
         if self.__in_cell:
@@ -706,6 +706,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.__x, self.__y = self.write_photo(photo,
                                         self.__x, self.__y, 
                                         self.right_margin - self.left_margin)
+        self.brand_new_page = 0
 
     def write_photo(self,photo,x,y,width):
         """
@@ -716,6 +717,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         width       - allocated width
         """
 
+        self.brand_new_page = 0
         # FIXME -- remove when gnome-python is released and hits every distro
         if not support_photos:
             return (x,y)
@@ -751,6 +753,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                                                                                 
     def write_text(self,text):
         """Add the text to the paragraph"""
+        self.brand_new_page = 0
         # Take care of superscript tags
         super_count = text.count('<super>')
         for num in range(super_count):
@@ -769,6 +772,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__paragraph_text = self.__paragraph_text + text
 
     def write_note(self,text,format,style_name):
+        self.brand_new_page = 0
         if format == 1:
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
@@ -785,8 +789,9 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     #function to help us advance a line 
     def __advance_line(self,y,paragraph=None):
+        self.brand_new_page = 0
         if paragraph:
-            spacing = paragraph.fontstyle.get_size()
+            spacing = paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR
         else:
             spacing = _LINE_SPACING
         new_y = y - spacing
@@ -807,6 +812,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         width       - allocated width
         """
         
+        self.brand_new_page = 0
         if not paragraph.get_piece_list():
             return (x,y)
 
@@ -821,7 +827,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         no_space = 0
         first = 1
 
-        if y - paragraph.fontstyle.get_size() < self.bottom_margin:
+        if y - paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR < self.bottom_margin:
             self.end_page()
             self.start_page()
             x = left_margin
@@ -841,13 +847,13 @@ class LPRDoc(BaseDoc.BaseDoc):
             elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
                 pass
             elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
-                print "Paragraph justification not supported."
-                print "Falling back to left-justified mode."
+                print "LPRDoc: Paragraph justification not supported."
+                print "        Falling back to left-justified mode."
 
             if first:
                 first = 0
                 x = x + cm2u(paragraph.style.get_first_indent())
-                y = y - paragraph.fontstyle.get_size()
+                y = y - paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR
 
             # Loop over pieces that constitute the line
             for piece_num in range(start_piece,end_piece+1):
@@ -903,7 +909,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         return (x,y)
 
     def __output_table(self):
-        """do calcs on data in table and output data in a formatted way"""
+        """Do calcs on data in table and output data in a formatted way."""
+        self.brand_new_page = 0
         __min_col_size = [0] * self.__ncols
         __max_vspace = [0] * len(self.__table_data)
 
@@ -933,7 +940,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             __min_table_width = __min_table_width + __size
 
         if __min_table_width > (self.right_margin - self.left_margin):
-            print "Table does not fit onto the page.\n"
+            print "LPRDoc: Table does not fit onto the page."
 
         #for now we will assume left justification of tables
         #output data in table
@@ -971,10 +978,12 @@ class LPRDoc(BaseDoc.BaseDoc):
     #------------------------------------------------------------------------
 
     def horizontal_line(self):
+        self.brand_new_page = 0
         self.__pc.moveto(self.left_margin, self.__y)
         self.__pc.lineto(self.right_margin, self.__y)
 
     def draw_path(self,style,path):
+        self.brand_new_page = 0
         stype = self.draw_styles[style]
         color = [ val/255.0 for val in stype.get_fill_color()]
 
@@ -1008,6 +1017,7 @@ class LPRDoc(BaseDoc.BaseDoc):
     def draw_box(self,style,text,x,y):
         #assuming that we start drawing box from current position
 
+        self.brand_new_page = 0
         x = self.left_margin + cm2u(x)
         y = self.top_margin - cm2u(y)
 
@@ -1023,16 +1033,17 @@ class LPRDoc(BaseDoc.BaseDoc):
         if text:
             lines = text.split('\n')
             start_x = x + 0.5 * fontstyle.get_size()
-            start_y = y - fontstyle.get_size()
+            start_y = y - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
             for line in lines:
                 if not line.split():
                     continue
                 self.__pc.setfont(find_font_from_fontstyle(fontstyle))
                 self.__pc.moveto(start_x,start_y)
                 self.__pc.show(line)
-                start_y -= fontstyle.get_size()
+                start_y -= fontstyle.get_size() * _EXTRA_SPACING_FACTOR
 
     def write_at (self, style, text, x, y):
+        self.brand_new_page = 0
         para_style = self.style_list[style]
         fontstyle = para_style.get_font()
 
@@ -1041,23 +1052,26 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__pc.show(text)
 
     def draw_bar(self, style, x1, y1, x2, y2):
+        self.brand_new_page = 0
         self.__pc.moveto(x1, y1)
         self.__pc.lineto(x2, y2)
 
     def draw_text(self,style,text,x,y):
+        self.brand_new_page = 0
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
         para_style = self.style_list[para_name]
         fontstyle = para_style.get_font()
 
         start_x = self.left_margin + cm2u(x)
-        start_y = self.top_margin - cm2u(y) - fontstyle.get_size()
+        start_y = self.top_margin - cm2u(y) - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
         
         self.__pc.setfont(find_font_from_fontstyle(fontstyle))
         self.__pc.moveto(start_x,start_y)
         self.__pc.show(text)
                                                                                 
     def center_text(self,style,text,x,y):
+        self.brand_new_page = 0
         box_style = self.draw_styles[style]
         para_name = box_style.get_paragraph_style()
         para_style = self.style_list[para_name]
@@ -1065,11 +1079,14 @@ class LPRDoc(BaseDoc.BaseDoc):
 
         width = get_text_width(text,fontstyle)
         start_x = self.left_margin + cm2u(x) - 0.5 * width
+        start_y = self.top_margin - cm2u(y) \
+                - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
         self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-        self.__pc.moveto(start_x, self.top_margin - cm2u(y) - fontstyle.get_size())
+        self.__pc.moveto(start_x, start_y)
         self.__pc.show(text)
                                                                                 
     def rotate_text(self,style,text,x,y,angle):
+        self.brand_new_page = 0
         # FIXME - remove when new gnome-python is in all distros
         if not support_photos:
             return
@@ -1096,11 +1113,12 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.__pc.setfont(find_font_from_fontstyle(fontstyle))
             self.__pc.moveto(this_x,this_y)
             self.__pc.show(line)
-            this_y -= size
+            this_y -= size * _EXTRA_SPACING_FACTOR
 
         self.__pc.grestore()
                                                                                 
     def draw_line(self,style,x1,y1,x2,y2):
+        self.brand_new_page = 0
         x1 = cm2u(x1) + self.left_margin
         x2 = cm2u(x2) + self.left_margin
         y1 = self.top_margin - cm2u(y1)
