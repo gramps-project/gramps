@@ -1,3 +1,7 @@
+2005-02-04 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ReadGrdb.py: Check for overlapping handles prior to
+	modifying data.
+
 2005-02-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/NavWebPage.py: More enhancements
 	* src/Sort.py: sort places by title
