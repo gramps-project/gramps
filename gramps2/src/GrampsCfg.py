@@ -522,19 +522,17 @@ def add_checkbox(category,panel,frame,config_tag,label,default):
 #-------------------------------------------------------------------------
 class GrampsPreferences:
     def __init__(self,db):
+        self.built = 0
         self.db = db
         self.top = gtk.glade.XML(const.prefsFile,"preferences","gramps")
         self.top.signal_autoconnect({
             "on_close_clicked" : self.on_close_clicked,
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_apply_clicked" : self.on_propertybox_apply,
             "on_help_clicked" : self.on_propertybox_help,
             "on_object_toggled" : self.on_object_toggled,
             "on_tree_select_row" : self.select
             })
 
         self.window = self.top.get_widget("preferences")
-        self.apply = self.top.get_widget("apply")
         self.tree = self.top.get_widget("tree")
         self.store = gtk.TreeStore(gobject.TYPE_STRING)
         self.selection = self.tree.get_selection()
@@ -550,7 +548,7 @@ class GrampsPreferences:
         self.build_tree()
         self.build()
         self.build_ext()
-        self.apply.set_sensitive(0)
+        self.built = 1
         self.window.show()
 
     def build_tree(self):
@@ -804,10 +802,6 @@ class GrampsPreferences:
     def on_close_clicked(self,obj):
         Utils.destroy_passed_object(self.window)
     
-    def on_ok_clicked(self,obj):
-        self.on_propertybox_apply(obj)
-        Utils.destroy_passed_object(self.window)
-
     def on_propertybox_apply(self,obj):
         global nameof
         global uselds
@@ -1014,12 +1008,14 @@ class GrampsPreferences:
     def on_object_toggled(self,obj):
         """Called by the elements on the property box to set the changed flag,
         so that the property box knows to set the Apply button"""
-        self.apply.set_sensitive(1)
+        if self.built:
+            self.on_propertybox_apply(obj)
 
     def on_format_toggled(self,obj):
         """Called by the elements on the property box to set the changed flag,
         so that the property box knows to set the Apply button"""
-        self.apply.set_sensitive(1)
+        if self.built:
+            self.on_propertybox_apply(obj)
 
 #-------------------------------------------------------------------------
 #

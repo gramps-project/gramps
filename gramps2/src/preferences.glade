@@ -27,20 +27,6 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="apply">
-	      <property name="visible">True</property>
-	      <property name="sensitive">False</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-apply</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_apply_clicked"/>
-	    </widget>
-	  </child>
-
-	  <child>
 	    <widget class="GtkButton" id="button6">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -50,19 +36,6 @@
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="on_close_clicked"/>
-	    </widget>
-	  </child>
-
-	  <child>
-	    <widget class="GtkButton" id="button4">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-ok</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_ok_clicked"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -768,7 +741,7 @@
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
 				  <property name="history">0</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox" last_modification_time="Thu, 16 Oct 2003 03:13:45 GMT"/>
+				  <signal name="changed" handler="on_object_toggled" object="propertybox" last_modification_time="Thu, 16 Oct 2003 16:14:49 GMT"/>
 
 				  <child>
 				    <widget class="GtkMenu" id="menu3">
