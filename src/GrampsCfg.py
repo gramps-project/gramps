@@ -317,12 +317,12 @@ def loadConfig(call):
 
     nameof = _name_format_list[_name_format][1]
 
-    if _name_format%2:
-        display_name = Utils.phonebook_name
-        display_surname = lambda x : x.getSurname()
-    else:
+    if _name_format > 1:
         display_name = Utils.phonebook_upper_name
         display_surname = lambda x : x.getUpperSurname()
+    else:
+        display_name = Utils.phonebook_name
+        display_surname = lambda x : x.getSurname()
 
     make_path(os.path.expanduser("~/.gramps"))
     make_path(os.path.expanduser("~/.gramps/filters"))
