@@ -960,7 +960,6 @@ class FamilyView:
 
         flist = {}
 
-        print splist
         for f in splist:
             fm = self.parent.db.get_family_from_handle(f)
             if not fm:
