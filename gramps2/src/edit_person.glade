@@ -3531,8 +3531,7 @@
 		      <property name="left_margin">6</property>
 		      <property name="right_margin">6</property>
 		      <property name="indent">6</property>
-		      <property name="text" translatable="yes">kjhkjh
-kjhkjhk</property>
+		      <property name="text" translatable="yes"></property>
 		    </widget>
 		  </child>
 		</widget>
