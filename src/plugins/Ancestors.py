@@ -28,6 +28,7 @@ import gtk
 # gramps modules
 #
 #------------------------------------------------------------------------
+import const
 import Report
 import TextDoc
 import RelLib
@@ -135,6 +136,15 @@ class ComprehensiveAncestorsReport (Report.Report):
             for source in self.sources:
                 self.doc.start_paragraph ("AR-Entry")
                 self.doc.write_text ("[%d] %s" % (i, source.getTitle ()))
+                author = source.getAuthor ()
+                pubinfo = source.getPubInfo ()
+                extra = author
+                if pubinfo:
+                    if extra:
+                        extra += ', '
+                    extra += pubinfo
+                if extra:
+                    self.doc.write_text ('; %s' % extra)
                 self.doc.end_paragraph ()
 
                 note = source.getNote ()
@@ -376,7 +386,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         name = event.getName ()
         description = event.getDescription ()
         if name != 'Birth' and name != 'Death' and name != 'Marriage':
-            info += name
+            info += const.display_pevent (name)
             if description:
                 info += ': ' + description
                 description = None
@@ -449,7 +459,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         ret = ''
         born_info = self.event_info (person.getBirth ())
         if born_info:
-            ret = ", born" + born_info
+            ret = ", " + _("born") + born_info
 
         died_info = self.event_info (person.getDeath ())
         if died_info:
@@ -458,21 +468,9 @@ class ComprehensiveAncestorsReport (Report.Report):
             else:
                 ret += ', '
 
-            ret += 'died' + died_info
+            ret += _('died') + died_info
 
         return ret
-
-    def Pronoun (self, person):
-        if person.getGender () == RelLib.Person.female:
-            return 'She'
-        else:
-            return 'He'
-
-    def son_or_daughter (self, person):
-        if person.getGender () == RelLib.Person.female:
-            return 'daughter'
-        else:
-            return 'son'
 
     def parents_of (self, person):
         gender = person.getGender ()
@@ -713,8 +711,9 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         for name in names:
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
-            paras.append ((self.doc.write_text, [name.getType () + ': ' +
-                                                 name.getRegularName ()]))
+            paras.append ((self.doc.write_text,
+                           [const.InverseNameTypesMap[name.getType ()] +
+                            ': ' + name.getRegularName ()]))
             paras.append ((self.doc.end_paragraph, []))
 
         for event in events:

@@ -1,3 +1,7 @@
+2003-07-23  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/Ancestors.py: More translation bits.  Include
+	source author and publication information.
+
 2003-07-22  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SelectChild.py: Replace braces with parentheses in named format
 	string parameter. 
