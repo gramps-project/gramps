@@ -229,8 +229,6 @@ class OpenOfficeDoc(TextDoc):
 
         image = ImgManip.ImgManip(name)
         (x,y) = image.size()
-        aspect_ratio = float(x)/float(y)
-
         ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
 
         if ratio < 1:

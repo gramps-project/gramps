@@ -1701,8 +1701,8 @@ class GrampsDB:
 
         for p in self.personMap.values():
             p.MainFamily = None
-            p.AltFamilyList = None
-            p.FamilyList = None
+            p.AltFamilyList = []
+            p.FamilyList = []
         self.personMap = {}
 
         self.sourceMap = {}
