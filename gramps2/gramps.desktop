@@ -8,3 +8,9 @@ Icon=gramps.png
 Categories=Application;Genealogy;
 StartupNotify=true
 X-GNOME-DocPath=gramps/gramps-manual.xml
+
+Name[no]=GRAMPS slekts database
+Comment[no]=Administrer ditt famili tre
+Name[nb]=GRAMPS slekts database
+Comment[nb]=Administrer ditt famili tre
+
