@@ -127,7 +127,7 @@ class PeopleView:
             if not pair[0]:
                 continue
             name = column_names[pair[1]]
-            column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+            column = gtk.TreeViewColumn(name, self.renderer, markup=pair[1])
             column.set_resizable(True)
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
