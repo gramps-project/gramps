@@ -657,6 +657,7 @@ class Gramps:
             self.back.set_sensitive(0)
             self.fwdbtn.set_sensitive(1)
             self.forward.set_sensitive(1)
+        self.goto_active_person()
 
     def fwd_clicked(self,obj,step=1):
         if self.hindex+1 < len(self.history):
@@ -683,6 +684,7 @@ class Gramps:
             self.forward.set_sensitive(0)
             self.backbtn.set_sensitive(1)
             self.back.set_sensitive(1)
+        self.goto_active_person()
 
     def edit_button_clicked(self,obj):
         cpage = self.views.get_current_page()
@@ -920,6 +922,7 @@ class Gramps:
         home = self.db.get_default_person()
         if home:
             self.change_active_person(home)
+            self.goto_active_person()
             self.update_display(0)
         self.full_update()
             
@@ -933,8 +936,7 @@ class Gramps:
         self.people_view.apply_filter()
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
-        else:
-            self.goto_active_person()
+        self.goto_active_person()
 
         self.place_view.change_db(self.db)
         self.source_view.change_db(self.db)
@@ -1257,6 +1259,7 @@ class Gramps:
             self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
         else:
             self.change_active_person(None)
+            self.goto_active_person()
         self.db.transaction_commit(trans,_("Delete Person (%s)") % n)
         self.redraw_histmenu()
 
@@ -1515,6 +1518,7 @@ class Gramps:
         self.relationship = self.RelClass(self.db)
 
         self.change_active_person(self.find_initial_person())
+        self.goto_active_person()
         self.statusbar.set_progress_percentage(0.0)
         return 1
 
@@ -1583,6 +1587,7 @@ class Gramps:
         person = self.db.get_person_from_handle(person_handle)
         try:
             self.change_active_person(person)
+            self.goto_active_person()
             self.update_display(0)
         except TypeError:
             WarningDialog(_("Could not go to a Person"),
@@ -1590,6 +1595,7 @@ class Gramps:
                             "caused by IDs reorder."))
             self.clear_history()
             self.change_active_person(old_person)
+            self.goto_active_person()
             self.update_display(0)
     
     def on_default_person_activate(self,obj):
