@@ -141,12 +141,18 @@ class AddressEditor:
             "on_ok_addr_clicked" : self.ok_clicked,
             "on_cancel_addr_clicked" : self.close,
             "on_addr_edit_delete_event" : self.on_delete_event,
+            "on_date_edit_clicked", self.on_date_edit_clicked,
             })
 
         if parent_window:
             self.window.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_date_edit_clicked(self,obj):
+        from QuestionDialog import ErrorDialog
+        ErrorDialog("Not implemented yet",
+                    "The Date Editor has not been implemented yet")
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
