@@ -27,6 +27,7 @@ import libglade
 import const
 import utils
 import string
+import gtk
 
 _OBJECT = "o"
 
@@ -69,6 +70,7 @@ class Find:
                     self.task(person)
                     return
             row = row + 1
+        gtk.gdk_beep()
 
     def find_prev(self):
         """Advances to the previous person that matches the dialog text"""
@@ -86,6 +88,7 @@ class Find:
                     self.task(person)
                     return
             row = row - 1
+        gtk.gdk_beep()
 
 
 

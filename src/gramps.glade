@@ -703,6 +703,11 @@
 	      <class>GtkEntry</class>
 	      <name>filter</name>
 	      <can_focus>True</can_focus>
+	      <signal>
+		<name>activate</name>
+		<handler>on_apply_filter_clicked</handler>
+		<last_modification_time>Thu, 06 Sep 2001 23:02:43 GMT</last_modification_time>
+	      </signal>
 	      <editable>True</editable>
 	      <text_visible>True</text_visible>
 	      <text_max_length>0</text_max_length>

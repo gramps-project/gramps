@@ -170,6 +170,7 @@ def deathday(person):
 def find_goto_to(person):
     change_active_person(person)
     goto_active_person()
+    update_display(0)
     
 #-------------------------------------------------------------------------
 #
@@ -344,7 +345,7 @@ def on_delete_sp_clicked(obj):
         active_person.removeFamily(active_family)
         database.deleteFamily(active_family)
         if len(active_person.getFamilyList()) > 0:
-            active_family = active_person.getFamilyIndex(0)
+            active_family = active_person.getFamilyList()[0]
         else:
             active_family = None
 
@@ -877,7 +878,7 @@ def on_src_list_button_press_event(obj,event):
         index = obj.get_data(INDEX)
         if index >= 0:
             source = obj.get_row_data(index)
-            EditSource.EditSource(source,database,update_after_edit)
+            EditSource.EditSource(source,database,update_display_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -889,7 +890,7 @@ def on_place_list_button_press_event(obj,event):
         index = obj.get_data(INDEX)
         if index >= 0:
             place = obj.get_row_data(index)
-            EditPlace.EditPlace(place,database,update_after_edit)
+            EditPlace.EditPlace(place,database,update_display_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -1018,7 +1019,7 @@ def on_edit_source_clicked(obj):
     index = obj.get_data(INDEX)
     if index != -1:
         source = obj.get_row_data(index)
-        EditSource.EditSource(source,database,update_after_edit)
+        EditSource.EditSource(source,database,update_display_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -1029,7 +1030,7 @@ def on_edit_place_clicked(obj):
     index = obj.get_data(INDEX)
     if index != -1:
         place = obj.get_row_data(index)
-        EditPlace.EditPlace(place,database,update_after_edit)
+        EditPlace.EditPlace(place,database,update_display_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -1047,6 +1048,14 @@ def new_source_after_edit(source):
 #-------------------------------------------------------------------------
 def new_place_after_edit(place):
     database.addPlace(place)
+    update_display(0)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def update_display_after_edit(place):
     update_display(0)
 
 #-------------------------------------------------------------------------
