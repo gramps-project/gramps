@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -252,6 +252,7 @@ class GraphVizDialog(Report.ReportDialog):
         name = "Graphviz (dot)"
         menuitem = gtk.MenuItem (name)
         menuitem.set_data ("d", name)
+        menuitem.set_data("paper",1)
         if os.system ("dot </dev/null 2>/dev/null") == 0:
             menuitem.set_data ("printable", _("Generate print output"))
         menuitem.show ()

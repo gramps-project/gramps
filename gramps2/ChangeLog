@@ -1,3 +1,6 @@
+2003-08-04  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/GraphViz.py (make_doc_menu): Add paper option to the menu.
+
 2003-08-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/dialog.glade: Consistent tooltips.
 	* src/gramps.glade: Likewise.
