@@ -611,7 +611,7 @@ class FtmAncestorReport(Report.Report):
         death_valid = ddate != "" or dplace != ""
         birth_valid = bdate != "" or bplace != ""
 
-        if birth_valid and death_valid:
+        if birth_valid or death_valid:
             if spouse.getGender() == RelLib.Person.male:
                 if bdate:
                     if bplace:
