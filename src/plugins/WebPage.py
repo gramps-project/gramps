@@ -162,8 +162,9 @@ class IndividualPage:
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
         if person:
-            if self.list.has_key(person):
-                self.doc.start_link("%s.%s" % (person.getId(),self.ext))
+            id = person.getId()
+            if self.list.has_key(id):
+                self.doc.start_link("%s.%s" % (id,self.ext))
 	        self.doc.write_text(person.getPrimaryName().getRegularName())
                 self.doc.end_link()
             else:
@@ -512,8 +513,9 @@ class IndividualPage:
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse:
-                if self.list.has_key(spouse):
-                    self.doc.start_link("%s.%s" % (spouse.getId(),self.ext))
+                id = spouse.getId()
+                if self.list.has_key(id):
+                    self.doc.start_link("%s.%s" % (id,self.ext))
                     self.doc.write_text(spouse.getPrimaryName().getRegularName())
                     self.doc.end_link()
                 else:
@@ -549,8 +551,9 @@ class IndividualPage:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    if self.list.has_key(child):
-                        self.doc.start_link("%s.%s" % (child.getId(),self.ext))
+                    id = child.getId()
+                    if self.list.has_key(id):
+                        self.doc.start_link("%s.%s" % (id,self.ext))
                         self.doc.write_text(name)
                         self.doc.end_link()
                     else:
@@ -775,7 +778,7 @@ class WebReport(Report):
 
         my_map = {}
         for l in ind_list:
-            my_map[l] = 1
+            my_map[l.getId()] = 1
         for person in ind_list:
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             tdoc.set_extension(self.ext)

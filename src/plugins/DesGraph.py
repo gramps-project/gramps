@@ -83,20 +83,19 @@ class DescendantReport:
         self.layout = GraphLayout.DescendLine(plist,person)
         (self.v,self.e) = self.layout.layout()
         
-        self.text = {}
         for (p,x,y) in self.v:
-
-            self.text[p] = []
+            id = p.getId()
+            self.text[id] = []
             subst = SubstKeywords(p)
             for line in self.display:
-                self.text[p].append(subst.replace(line))
+                self.text[id].append(subst.replace(line))
 
             self.font = self.doc.style_list["Normal"].get_font()
-            for line in self.text[p]:
+            for line in self.text[id]:
                 new_width = string_width(self.font,line)
                 self.box_width = max(self.box_width,new_width)
 
-            self.lines = max(self.lines,len(self.text[p]))    
+            self.lines = max(self.lines,len(self.text[id]))    
 
     def write_report(self):
 
@@ -244,7 +243,8 @@ class DescendantReport:
 
         if plist:
             for (p,x,y) in plist:
-                name = string.join(self.text[p],"\n")
+                id = p.getId()
+                name = string.join(self.text[id],"\n")
                 x = (x-1)*delta + left + _sep
                 y = (y-1)*(self.height+_sep)+top
                 self.doc.draw_box("box",name,x,y)
