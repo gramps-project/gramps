@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -97,6 +98,7 @@ class NameEditor:
         self.note_buffer = self.note_field.get_buffer()
         
         self.top.signal_autoconnect({
+            "on_help_name_clicked" : self.on_help_clicked,
             "on_switch_page" : self.on_switch_page
             })
 
@@ -113,10 +115,15 @@ class NameEditor:
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
             self.on_name_edit_ok_clicked()
         self.window.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-an')
+        self.val = self.window.run()
 
     def on_name_edit_ok_clicked(self):
         first = self.given_field.get_text()
