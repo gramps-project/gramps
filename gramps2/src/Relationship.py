@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -164,34 +166,64 @@ def apply_filter(person,index,plist,pmap):
         apply_filter(family.getMother(),index+1,plist,pmap)
 
 def get_cousin(level,removed):
-    return "%s cousin%s" % (_level_name[level],_removed_level[removed])
+    if removed > len(_removed_level)-1 or level>len(_level_name)-1:
+        return "distant relative"
+    else:
+        return "%s cousin%s" % (_level_name[level],_removed_level[removed])
 
 def get_parents(level):
-    return _parents_level[level]
+    if level>len(_parents_level)-1:
+        return "distant ancestors"
+    else:
+        return _parents_level[level]
 
 def get_father(level):
-    return _father_level[level]
+    if level>len(_father_level)-1:
+        return "distant ancestor"
+    else:
+        return _father_level[level]
 
 def get_son(level):
-    return _son_level[level]
+    if level>len(_son_level)-1:
+        return "distant descendant"
+    else:
+        return _son_level[level]
 
 def get_mother(level):
-    return _mother_level[level]
+    if level>len(_mother_level)-1:
+        return "distant ancestor"
+    else:
+        return _mother_level[level]
 
 def get_daughter(level):
-    return _daughter_level[level]
+    if level>len(_daughter_level)-1:
+        return "distant descendant"
+    else:
+        return _daughter_level[level]
 
 def get_aunt(level):
-    return _sister_level[level]
+    if level>len(_sister_level)-1:
+        return "distant ancestor"
+    else:
+        return _sister_level[level]
 
 def get_uncle(level):
-    return _brother_level[level]
+    if level>len(_brother_level)-1:
+        return "distant ancestor"
+    else:
+        return _brother_level[level]
 
 def get_nephew(level):
-    return _nephew_level[level]
+    if level>len(_nephew_level)-1:
+        return "distant descendant"
+    else:
+        return _nephew_level[level]
 
 def get_niece(level):
-    return _niece_level[level]
+    if level>len(_niece_level)-1:
+        return "distant descendant"
+    else:
+        return _niece_level[level]
 
 def is_spouse(orig,other):
     for f in orig.getFamilyList():
