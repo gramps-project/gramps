@@ -830,15 +830,15 @@ class GedcomParser:
             elif matches[1] == "NOTE":
                 if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
                     note = matches[1] + self.parse_continue_data(1)
-                    self.address.setNote(note)
+                    address.setNote(note)
                     self.ignore_sub_junk(2)
                 else:
                     if self.nmap.has_key(matches[2]):
-                        self.address.setNoteObj(self.nmap[matches[2]])
+                        address.setNoteObj(self.nmap[matches[2]])
                     else:
                         noteobj = Note()
                         self.nmap[matches[2]] = noteobj
-                        self.address.setNoteObj(noteobj)
+                        address.setNoteObj(noteobj)
             else:
 	        self.barf(level+1)
 

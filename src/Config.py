@@ -331,7 +331,7 @@ def store_researcher(res):
 def on_propertybox_help(obj,page):
     import gnome.help
 
-    gnome.help.display("gramps","preferences.html#prefs_tab%d" % page)
+    gnome.help.display('gramps-manual','prefs.html')
     
 #-------------------------------------------------------------------------
 #
