@@ -754,14 +754,14 @@ class FamilyView:
 
     def icelandic(self,val):
         fname = ""
-        if self.person.getGender() == Person.male:
+        if self.person.getGender() == RelLib.Person.male:
             fname = self.person.getPrimaryName().getFirstName()
         elif self.family:
             f = self.family.getFather()
             if f:
                 fname = f.getPrimaryName().getFirstName()
         if fname:
-            fname = string.split(fname)[0]
+            fname = fname.split()[0]
         if val == 0:
             return "%ssson" % fname
         elif val == 1:

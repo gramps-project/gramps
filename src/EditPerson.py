@@ -922,6 +922,10 @@ class EditPerson:
         surname = self.surname_field.get_text()
         if GrampsCfg.capitalize:
             surname = surname.upper()
+
+        self.birth.setDate(self.bdate.get_text())
+        self.death.setDate(self.ddate.get_text())
+
         ntype = self.ntype_field.entry.get_text()
         suffix = self.suffix.get_text()
         prefix = self.prefix.get_text()
