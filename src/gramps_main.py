@@ -469,7 +469,7 @@ class Gramps:
         if GrampsCfg.defaultview == 0:
             self.views.set_current_page(0)
         else:
-            self.views.set_current_page(1)
+            self.views.set_current_page(2)
             
         self.topWindow.show()
 
