@@ -57,11 +57,12 @@ import Config
 
 
 class ChooseParents:
-    def __init__(self,db,person,family,update):
+    def __init__(self,db,person,family,family_update,full_update):
         self.db = db
         self.person = person
         self.family = family
-        self.update = update
+        self.family_update = family_update
+        self.full_update = full_update
         
         if self.family:
             self.father = self.family.getFather()
@@ -238,19 +239,26 @@ class ChooseParents:
         if self.family:
             self.family.setRelationship(type)
             self.change_family_type(self.family,mrel,frel)
-        self.update(self.family)
+        self.family_update(self.family)
 
     def on_addparent_clicked(self,obj,sex):
         self.xml = libglade.GladeXML(const.gladeFile,"addperson")
         self.xml.get_widget(sex).set_active(1)
         self.xml.signal_autoconnect({
             "on_addfather_close": self.on_addparent_close,
+            "on_combo_insert_text" : utils.combo_insert_text,
             "destroy_passed_object" : utils.destroy_passed_object
             })
 
         window = self.xml.get_widget("addperson")
         window.editable_enters(self.xml.get_widget("given"))
         window.editable_enters(self.xml.get_widget("surname"))
+        if len(const.surnames) > 0:
+            const.surnames.sort()
+            combo = self.xml.get_widget("surnameCombo")
+            combo.set_popdown_strings(const.surnames)
+            combo.disable_activate()
+        self.xml.get_widget("surname").set_text("")
 
     def on_addfather_clicked(self,obj):
         self.on_addparent_clicked(obj,"male")
@@ -330,4 +338,5 @@ class ChooseParents:
         utils.modified()
         self.on_prel_changed(self.prel)
         utils.destroy_passed_object(obj)
+        self.full_update()
 
