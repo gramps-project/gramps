@@ -20,6 +20,7 @@
 
 import gtk
 import gnome.mime
+import gnome.util
 from gnome.ui import *
 import string
 import os
@@ -389,8 +390,11 @@ def thumb_path(dir,mobj):
     type = mobj.getMimeType()
     if type[0:5] == "image":
         thumb = "%s/.thumb/%s.jpg" % (dir,mobj.getId()) 
-        RelImage.check_thumb(mobj.getPath(),thumb,const.thumbScale)
-        return thumb
+        try:
+            RelImage.check_thumb(mobj.getPath(),thumb,const.thumbScale)
+            return thumb
+        except:
+            return find_icon(type)
     else:
         return find_icon(type)
 
