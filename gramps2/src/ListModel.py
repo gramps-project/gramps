@@ -28,7 +28,6 @@ class ListModel:
         self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
 
         self.new_model()
-        self.connect_model()
 
         self.selection = self.tree.get_selection()
 
@@ -45,17 +44,21 @@ class ListModel:
             else:
                 column.set_resizable(gtk.TRUE)
             cnum = cnum + 1
-            tree.append_column(column)
+            self.tree.append_column(column)
             
+        self.column = None
         num = 0
         for name in dlist:
-            column = tree.get_column(num)
+            column = self.tree.get_column(num)
             if name[1] != -1:
                 column.set_sort_column_id(name[1])
-                if num == 0:
-                    column.clicked()
-                num = num + 1
-
+            if not self.column:
+                self.column = column
+            num = num + 1
+            
+        self.connect_model()
+        self.column.clicked()
+        
         if select_func:
             self.selection.connect('changed',select_func)
         if event_func:
@@ -67,6 +70,7 @@ class ListModel:
 
     def connect_model(self):
         self.tree.set_model(self.model)
+        self.column.clicked()
         
     def get_selected(self):
         return self.selection.get_selected()

@@ -30,8 +30,7 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -61,6 +60,7 @@ good_xpm       = "%s/good.xpm" % rootDir
 bad_xpm        = "%s/bad.xpm" % rootDir
 caution_xpm    = "%s/caution.xpm" % rootDir
 
+papersize      = "%s/papersize.xml" % rootDir
 system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
 icon           = "%s/gramps.xpm" % rootDir

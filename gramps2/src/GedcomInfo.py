@@ -19,8 +19,6 @@
 #
 
 import const
-from latin_utf8 import utf8_to_latin
-u2l = utf8_to_latin
 
 ADOPT_NONE         = 0
 ADOPT_EVENT        = 1
@@ -175,15 +173,13 @@ class GedInfoParser:
         p.ParseFile(file)
         
     def startElement(self,tag,attrs):
-        tag = u2l(tag)
         if tag == "target":
-            name = u2l(attrs['name'])
+            name = attrs['name']
             self.current = GedcomDescription(name)
             self.parent.add_description(name,self.current)
         elif tag == "dest":
-            self.current.set_dest(u2l(attrs['val']))
+            self.current.set_dest(attrs['val'])
         elif tag == "adopt":
-            val = u2l(attrs['val'])
             if val == 'none':
                 self.current.set_adopt(ADOPT_NONE)
             elif val == 'event':
@@ -195,10 +191,9 @@ class GedInfoParser:
             elif val == 'pedigree':
                 self.current.set_adopt(ADOPT_PEDI)
         elif tag == "conc":
-            if u2l(attrs['val']) == 'broken':
+            if attrs['val'] == 'broken':
                 self.current.set_conc(CONC_BROKEN)
         elif tag == "alternate_names":
-            val = u2l(attrs['val'])
             if val == 'none':
                 self.current.set_alt_name(ALT_NAME_NONE)
             elif val == 'event_aka':
@@ -210,13 +205,13 @@ class GedInfoParser:
             elif val == '_alias':
                 self.current.set_alt_name(ALT_NAME_UALIAS)
         elif tag == "calendars":
-            if u2l(attrs['val']) == 'no':
+            if attrs['val'] == 'no':
                 self.current.set_alt_calendar(CALENDAR_NO)
         elif tag == "event":
-            self.current.add_tag_value(u2l(attrs['tag']),u2l(attrs['value']))
+            self.current.add_tag_value(attrs['tag'],attrs['value'])
         elif tag == "object_support":
-            if u2l(attrs['val']) == 'no':
+            if attrs['val'] == 'no':
                 self.current.set_obje(OBJE_NO)
         elif tag == "residence":
-            if u2l(attrs['val']) == 'place':
+            if attrs['val'] == 'place':
                 self.current.set_resi(RESIDENCE_PLAC)

@@ -41,9 +41,6 @@ import os
 from string import find,join,strip,replace
 import gtk
 
-from latin_utf8 import utf8_to_latin
-u2l = utf8_to_latin
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -777,32 +774,30 @@ class FilterParser(handler.ContentHandler):
     def startElement(self,tag,attrs):
         if tag == "filter":
             self.f = GenericFilter()
-            self.f.set_name(u2l(attrs['name']))
+            self.f.set_name(attrs['name'])
             if attrs.has_key('function'):
                 try:
-                    if int(u2l(attrs['function'])):
+                    if int(attrs['function']):
                         op = 'or'
                     else:
                         op = 'and'
                 except ValueError:
-                    op = u2l(attrs['function'])
+                    op = attrs['function']
                 self.f.set_logical_op(op)
             if attrs.has_key('comment'):
-                self.f.set_comment(u2l(attrs['comment']))
+                self.f.set_comment(attrs['comment'])
             if attrs.has_key('invert'):
                 try:
-                    self.f.set_invert(int(u2l(attrs['invert'])))
+                    self.f.set_invert(int(attrs['invert']))
                 except ValueError:
                     pass
             self.gfilter_list.add(self.f)
         elif tag == "rule":
-            c = attrs['class']
-            name = _(u2l(c))
+            name = _(attrs['class'])
             self.a = []
             self.cname = tasks[name]
         elif tag == "arg":
-            c = attrs['value']
-            self.a.append(u2l(c))
+            self.a.append(attrs['value'])
 
     def endElement(self,tag):
         if tag == "rule":

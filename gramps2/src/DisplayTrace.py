@@ -54,10 +54,11 @@ class DisplayTrace:
     def __init__(self):
         data = sys.exc_info()
         msg = cStringIO.StringIO()
-        msg.write(_('GRAMPS has encountered an internal error.\n'
+        msg.write(_('GRAMPS %s has encountered an internal error.\n'
                     'Please copy the message below and post a bug report '
                     'at http://sourceforge.net/projects/gramps or send an '
-                    'email message to gramps-users@lists.sourceforge.net\n\n'))
+                    'email message to gramps-users@lists.sourceforge.net\n\n')
+                  % const.version)
                     
         traceback.print_exception(data[0],data[1],data[2],None,msg)
 
