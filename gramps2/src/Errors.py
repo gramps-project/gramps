@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  David R. Hampton
+# Copyright (C) 2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 #
 
 class ReportError(Exception):
-    
+    """Error used to report Report errors"""
     def __init__(self,value):
         self.value = value
 
@@ -27,7 +27,7 @@ class ReportError(Exception):
         return self.value
 
 class GedcomError(Exception):
-    
+    """Error used to report GEDCOM errors"""
     def __init__(self,value):
         self.value = value
 
@@ -35,7 +35,7 @@ class GedcomError(Exception):
         return self.value
 
 class PluginError(Exception):
-    
+    """Error used to report plugin errors"""
     def __init__(self,value):
         self.value = value
 

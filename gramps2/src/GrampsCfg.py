@@ -144,6 +144,7 @@ index_visible = 0
 mediaref      = 1
 globalprop    = 1
 localprop     = 1
+capitalize    = 0
 
 #-------------------------------------------------------------------------
 #
@@ -223,6 +224,7 @@ def loadConfig(call):
     vc_comment = get_bool("/apps/gramps/use-comment")
     uncompress = get_bool("/apps/gramps/dont-compress-xml")
     id_edit = get_bool("/apps/gramps/id-edit")
+    capitalize = get_bool("/apps/gramps/capitalize")
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
     toolbar = get_int("/apps/gramps/toolbar",2)
@@ -544,6 +546,7 @@ class GrampsPreferences:
         auto = self.top.get_widget("autoload")
         asave_int = self.top.get_widget("autosave_interval")
         idedit = self.top.get_widget("gid_edit")
+        cap = self.top.get_widget('capitalize')
         index_vis = self.top.get_widget("show_child_id")
         lds = self.top.get_widget("uselds")
         ac = self.top.get_widget("autocomp")
@@ -571,6 +574,7 @@ class GrampsPreferences:
         vcom.set_active(vc_comment)
         compress.set_active(uncompress)
         idedit.set_active(id_edit)
+        cap.set_active(capitalize)
         index_vis.set_active(index_visible)
 
         self.top.get_widget("iprefix").set_text(iprefix)
@@ -792,6 +796,7 @@ class GrampsPreferences:
         global vc_comment
         global uncompress
         global id_edit
+        global capitalize
         global index_visible
         global status_bar
         global toolbar
@@ -816,6 +821,8 @@ class GrampsPreferences:
         vc_comment = self.top.get_widget("vc_comment").get_active()
         uncompress = self.top.get_widget("uncompress").get_active()
         id_edit = self.top.get_widget("gid_edit").get_active()
+        capitalize = self.top.get_widget('capitalize').get_active()
+        
         index_visible = self.top.get_widget("show_child_id").get_active()
         paper_obj = self.top.get_widget("paper_size").get_menu().get_active()
 
@@ -878,6 +885,7 @@ class GrampsPreferences:
         set_bool("/apps/gramps/use-comment",vc_comment)
         set_bool("/apps/gramps/dont-compress-xml",uncompress)
         set_bool("/apps/gramps/id-edit",id_edit)
+        set_bool("/apps/gramps/capitalize",capitalize)
         set_bool("/apps/gramps/index-visible",index_visible)
         set_int("/apps/gramps/statusbar",status_bar)
         set_int("/apps/gramps/toolbar",toolbar+1)

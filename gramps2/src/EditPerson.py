@@ -828,6 +828,8 @@ class EditPerson:
         """Check to see if any of the data has changed from the
         original record"""
         surname = self.surname_field.get_text()
+        if GrampsCfg.capitalize:
+            surname = surname.upper()
         ntype = self.ntype_field.entry.get_text()
         suffix = self.suffix.get_text()
         prefix = self.prefix.get_text()
@@ -850,8 +852,12 @@ class EditPerson:
             changed = 1
         if prefix != name.getSurnamePrefix():
             changed = 1
-        if surname != name.getSurname():
-            changed = 1
+        if GrampsCfg.capitalize:
+            if surname != name.getSurname():
+                changed = 1
+        else:
+            if surname.upper() != name.getSurname().upper():
+                changed = 1
         if ntype != name.getType():
             changed = 1
         if given != name.getFirstName():
@@ -1206,9 +1212,14 @@ class EditPerson:
         if ntype != name.getType():
             name.setType(ntype)
             
-        if surname != name.getSurname():
-            name.setSurname(surname)
-            self.db.addSurname(surname)
+        if GrampsCfg.capitalize:
+            if surname.upper() != name.getSurname().upper():
+                name.setSurname(surname.upper())
+                self.db.addSurname(surname.upper())
+        else:
+            if surname != name.getSurname():
+                name.setSurname(surname)
+                self.db.addSurname(surname)
 
         if given != name.getFirstName():
             name.setFirstName(given)
