@@ -27,6 +27,7 @@
 #-------------------------------------------------------------------------
 import pickle
 import os
+import locale
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -38,8 +39,6 @@ import gtk
 import gtk.glade
 import gobject
 import gnome
-import locale
-
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 
 #-------------------------------------------------------------------------
@@ -260,9 +259,19 @@ class EditPerson:
             self.prefix_label.set_use_underline(True)
 
         birth_handle = person.get_birth_handle()
+        if birth_handle:
+            self.orig_birth = self.db.get_event_from_handle(birth_handle)
+        else:
+            self.orig_birth = RelLib.Event()
+            self.orig_birth.set_name("Birth")
+
         death_handle = person.get_death_handle()
-        self.orig_birth = self.db.get_event_from_handle(birth_handle)
-        self.orig_death = self.db.get_event_from_handle(death_handle)
+        if death_handle:
+            self.orig_death = self.db.get_event_from_handle(death_handle)
+        else:
+            self.orig_death = RelLib.Event()
+            self.orig_death.set_name("Death")
+
         self.death = RelLib.Event(self.orig_death)
         self.birth = RelLib.Event(self.orig_birth)
         self.pname = RelLib.Name(person.get_primary_name())
@@ -423,7 +432,6 @@ class EditPerson:
 
         self.birth_date_object = self.birth.get_date_object()
         self.death_date_object = self.death.get_date_object()
-        self.update_birth_death()
 
         self.bdate_check = DateEdit.DateEdit(
             self.birth_date_object, self.bdate,
@@ -432,6 +440,8 @@ class EditPerson:
         self.ddate_check = DateEdit.DateEdit(
             self.death_date_object, self.ddate,
             self.get_widget("death_stat"), self.window)
+
+        self.update_birth_death()
 
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
@@ -717,23 +727,10 @@ class EditPerson:
 
         for fam_id in flist:
             index += 1
-            fam = self.db.get_family_from_handle(fam_id)
-            if fam == None:
+            family = self.db.get_family_from_handle(fam_id)
+            if family == None:
                 continue
-            f_id = fam.get_father_handle()
-            m_id = fam.get_mother_handle()
-            f = self.db.get_person_from_handle(f_id)
-            m = self.db.get_person_from_handle(m_id)
-            if f and m:
-                name = _("%(father)s and %(mother)s") % {
-                    'father' : self.name_display.display(f),
-                    'mother' : self.name_display.display(m) }
-            elif f:
-                name = self.name_display.display(f)
-            elif m:
-                name = self.name_display.display(m)
-            else:
-                name = _("unknown")
+            name = Utils.family_name(family,self.db)
             store.append(row=[name])
             self.lds_fam_list.append(fam_id)
             if fam_id == self.ldsfam:
@@ -1386,15 +1383,14 @@ class EditPerson:
         self.bplace.set_text(place_title(self.db,self.birth))
         self.dplace.set_text(place_title(self.db,self.death))
 
-        self.bdate.set_text(self.dd.display(self.birth_date_object))
-        self.ddate.set_text(self.dd.display(self.death_date_object))
+        self.bdate_check.update_after_editor(self.birth_date_object)
+        self.ddate_check.update_after_editor(self.death_date_object)
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
         store,node = self.atree.get_selected()
         if node:
             attr = self.atree.get_object(node)
-            print attr.get_type()
             pname = self.name_display.display(self.person)
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
                                      self.attr_edit_callback,self.window,
@@ -1696,10 +1692,10 @@ class EditPerson:
             p = self.db.get_place_from_handle(key).get_display_info()
             self.pdmap[p[0]] = key
 
-        if self.orig_birth == None:
-            self.db.add_event(self.birth,trans)
-            self.person.set_birth_handle(self.birth.get_handle())
-        elif not self.orig_birth.are_equal(self.birth):
+        if not self.orig_birth.are_equal(self.birth):
+            if self.orig_birth.is_empty():
+                self.db.add_event(self.birth,trans)
+                self.person.set_birth_handle(self.birth.get_handle())
             self.db.commit_event(self.birth,trans)
 
         # Update each of the families child lists to reflect any
@@ -1717,10 +1713,10 @@ class EditPerson:
         self.death.set_date_object(self.death_date_object)
         self.death.set_place_handle(self.get_place(self.dplace,1))
 
-        if self.orig_death == None:
-            self.db.add_event(self.death,trans)
-            self.person.set_death_handle(self.death.get_handle())
-        elif not self.orig_death.are_equal(self.death):
+        if not self.orig_death.are_equal(self.death):
+            if self.orig_death.is_empty():
+                self.db.add_event(self.death,trans)
+                self.person.set_death_handle(self.death.get_handle())
             self.db.commit_event(self.death,trans)
 
         male = self.is_male.get_active()
@@ -1905,13 +1901,11 @@ class EditPerson:
             self.load_photo(None)
 
     def update_birth_info(self):
-        self.birth_date_object.copy(self.birth.get_date_object())
-        self.bdate.set_text(self.birth.get_date())
+        self.bdate_check.update_after_editor(self.birth.get_date_object())
         self.bplace.set_text(place_title(self.db,self.birth))
 
     def update_death_info(self):
-        self.death_date_object.copy(self.death.get_date_object())
-        self.ddate.set_text(self.death.get_date())
+        self.ddate_check.update_after_editor(self.death.get_date_object())
         self.dplace.set_text(place_title(self.db,self.death))
         
     def on_switch_page(self,obj,a,page):

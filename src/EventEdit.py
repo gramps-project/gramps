@@ -88,8 +88,10 @@ class EventEditor:
         values = {}
         for v in elist:
             values[v] = 1
-        for v in self.db.get_person_event_type_list():
-            values[v] = 1
+        for vv in self.db.get_person_event_type_list():
+            if vv not in ("Birth","Death"):
+                v = _(vv)
+                values[v] = 1
             
         self.elist = values.keys()
         self.elist.sort()
@@ -108,8 +110,8 @@ class EventEditor:
             # add the name to the list if it is not already there. This
             # tends to occur in translated languages with the 'Death'
             # event, which is a partial match to other events
-            if not transname in elist:
-                elist.append(transname)
+            #if not transname in elist:
+            #    elist.append(transname)
         else:
             self.srcreflist = []
             self.witnesslist = []
@@ -321,7 +323,7 @@ class EventEditor:
         edesc = unicode(self.descr_field.get_text())
         epriv = self.priv.get_active()
 
-        if not ename in self.elist:
+        if ename not in self.elist + [_("Birth") , _("Death")]:
             WarningDialog(
                 _('New event type created'),
                 _('The "%s" event type has been added to this database.\n'
@@ -353,7 +355,8 @@ class EventEditor:
                 self.event.set_place_handle("")
                 self.parent.lists_changed = 1
         
-        if self.event.get_name() != self.trans.find_key(name):
+        if self.event.get_name() not in [self.trans.find_key(name),
+                                            "Birth","Death"]:
             self.event.set_name(self.trans.find_key(name))
             self.parent.lists_changed = 1
         

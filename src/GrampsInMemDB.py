@@ -25,6 +25,11 @@ Provides the common infrastructure for database formats that
 must hold all of their data in memory.
 """
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 from RelLib import *
 from GrampsDbBase import *
 
@@ -189,35 +194,35 @@ class GrampsInMemDB(GrampsDbBase):
         del self.event_map[str(handle)]
 
     def commit_person(self,person,transaction,change_time=None):
-        if self.readonly:
+        if self.readonly or not person.get_handle():
             return
         gid = person.get_gramps_id()
         self.id_trans[gid] = person.get_handle()
         GrampsDbBase.commit_person(self,person,transaction,change_time)
 
     def commit_place(self,place,transaction,change_time=None):
-        if self.readonly:
+        if self.readonly or not place.get_handle():
             return
         gid = place.get_gramps_id()
         self.pid_trans[gid] = place.get_handle()
         GrampsDbBase.commit_place(self,place,transaction,change_time)
 
     def commit_family(self,family,transaction,change_time=None):
-        if self.readonly:
+        if self.readonly or not family.get_handle():
             return
         gid = family.get_gramps_id()
         self.fid_trans[gid] = family.get_handle()
         GrampsDbBase.commit_family(self,family,transaction,change_time)
 
     def commit_media_object(self,obj,transaction,change_time=None):
-        if self.readonly:
+        if self.readonly or not obj.get_handle():
             return
         gid = obj.get_gramps_id()
         self.oid_trans[gid] = obj.get_handle()
         GrampsDbBase.commit_media_object(self,obj,transaction,change_time)
 
     def commit_source(self,source,transaction,change_time=None):
-        if self.readonly:
+        if self.readonly or not source.get_handle():
             return
         gid = source.get_gramps_id()
         self.sid_trans[gid] = source.get_handle()
