@@ -118,7 +118,6 @@ class PeopleView:
         import time
         t = time.time()
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        print "new",time.time() - t
         #self.sort_model = self.person_model.filter_new()
         self.sort_model = self.person_model
         self.person_tree.set_model(self.sort_model)
@@ -177,7 +176,6 @@ class PeopleView:
             self.parent.mhistory.remove(del_id)
 
     def apply_filter_clicked(self):
-        print "Applying Filter"
         mi = self.parent.filter_list.get_menu().get_active()
         self.DataFilter = mi.get_data("filter")
         if self.DataFilter.need_param:
@@ -185,7 +183,6 @@ class PeopleView:
             self.DataFilter.set_parameter(qual)
         self.apply_filter()
         self.goto_active_person()
-        print "Done"
 
     def add_to_person_list(self,person,change=0):
         self.apply_filter_clicked()

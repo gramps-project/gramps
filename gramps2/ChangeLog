@@ -1,3 +1,10 @@
+2004-08-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py (GenderStats.guess_gender): back out 
+	incorrect patch
+	* src/Witness.py: handle new_name error
+	* src/SelectPerson.py: remove unused crud left over from
+	1.0, grab handle instead of GRAMPS ID
+
 2004-08-31  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Sources.py (SourceTab.redraw, SourceSelector.redraw):
 	Use gramps ID instead of handle for display.
