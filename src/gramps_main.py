@@ -100,7 +100,7 @@ surnameList   = []
 
 topWindow     = None
 statusbar     = None
-Main          = None
+gtop          = None
 person_list   = None
 source_list   = None
 database      = None
@@ -181,7 +181,7 @@ def on_exit_activate(obj):
 def save_query(value):
     if value == 0:
         on_save_activate(None)
-    mainquit(Main)
+    mainquit(gtop)
 
 #-------------------------------------------------------------------------
 #
@@ -233,6 +233,7 @@ def on_edit_marriage_clicked(obj):
         return
 
     queryTop = libglade.GladeXML(const.gladeFile,"marriageQuery")
+    
     queryTop.signal_autoconnect({
         "on_marriageQuery_clicked" : on_marriageQuery_clicked,
         "destroy_passed_object" : utils.destroy_passed_object
@@ -266,6 +267,7 @@ def on_add_child_clicked(obj):
     select_child = None
 	
     childWindow = libglade.GladeXML(const.gladeFile,"selectChild")
+    
     childWindow.signal_autoconnect({
         "on_save_child_clicked" : on_save_child_clicked,
         "on_addChild_select_row" : on_addChild_select_row,
@@ -438,7 +440,7 @@ def on_rtype_clicked(obj,a):
     select_father = None
     select_mother = None
 
-    if type == "Biological":
+    if type == "Birth":
         fam = active_person.getMainFamily()
         if fam:
             select_father = fam.getFather()
@@ -592,8 +594,8 @@ def marriage_edit(family):
 #
 #-------------------------------------------------------------------------
 def full_update():
-    Main.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
-    Main.get_widget("child_list").set_column_visibility(4,Config.show_detail)
+    gtop.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
+    gtop.get_widget("child_list").set_column_visibility(4,Config.show_detail)
     apply_filter()
     load_family()
     load_sources()
@@ -605,7 +607,7 @@ def full_update():
 #
 #-------------------------------------------------------------------------
 def update_display(changed):
-    page = Main.get_widget(NOTEBOOK).get_current_page()
+    page = gtop.get_widget(NOTEBOOK).get_current_page()
     if page == 0:
         if changed:
             apply_filter()
@@ -877,7 +879,7 @@ def find_family(father,mother):
 def change_family_type(family,type):
 
     if not family:
-        if type == "Biological":
+        if type == "Birth":
             main = active_person.getMainFamily()
             if main:
                 main.removeChild(active_person)
@@ -889,7 +891,7 @@ def change_family_type(family,type):
                     fam.removeChild(active_person)
                     return
     elif family == active_person.getMainFamily():
-        if type != "Biological":
+        if type != "Birth":
             utils.modified()
             active_person.setMainFamily(None)
             found = 0
@@ -905,7 +907,7 @@ def change_family_type(family,type):
     else:
         for fam in active_person.getAltFamilyList():
             if family == fam[0]:
-                if type == "Biological":
+                if type == "Birth":
                     active_person.setMainFamily(family)
                     active_person.removeAltFamily(family)
                     utils.modified()
@@ -1187,9 +1189,9 @@ def on_person_list_select_row(obj,a,b,c):
 def on_person_list_click_column(obj,column):
     global sortFunc
 
-    nameArrow = Main.get_widget("nameSort")
-    dateArrow = Main.get_widget("dateSort")
-    deathArrow= Main.get_widget("deathSort")
+    nameArrow = gtop.get_widget("nameSort")
+    dateArrow = gtop.get_widget("dateSort")
+    deathArrow= gtop.get_widget("deathSort")
     
     if column == 0:
         dateArrow.hide()
@@ -1420,19 +1422,19 @@ def on_save_activate(obj):
 #
 #-------------------------------------------------------------------------
 def on_person_list1_activate(obj):
-    notebk = Main.get_widget(NOTEBOOK)
+    notebk = gtop.get_widget(NOTEBOOK)
     notebk.set_page(0)
 
 def on_family1_activate(obj):
-    notebk = Main.get_widget(NOTEBOOK)
+    notebk = gtop.get_widget(NOTEBOOK)
     notebk.set_page(1)
 
 def on_pedegree1_activate(obj):
-    notebk = Main.get_widget(NOTEBOOK)
+    notebk = gtop.get_widget(NOTEBOOK)
     notebk.set_page(2)
 
 def on_sources_activate(obj):
-    notebk = Main.get_widget(NOTEBOOK)
+    notebk = gtop.get_widget(NOTEBOOK)
     notebk.set_page(3)
 
 #-------------------------------------------------------------------------
@@ -1563,9 +1565,9 @@ def on_swap_clicked(obj):
     if not active_person:
         return
     if len(active_person.getFamilyList()) > 1:
-        spouse = Main.get_widget("fv_spouse").get_menu().get_active().get_data("person")
+        spouse = gtop.get_widget("fv_spouse").get_menu().get_active().get_data("person")
     else:
-        spouse = Main.get_widget("fv_spouse1").get_data("person")
+        spouse = gtop.get_widget("fv_spouse1").get_data("person")
 
     if not spouse:
         return
@@ -1580,9 +1582,9 @@ def on_swap_clicked(obj):
 def on_apply_filter_clicked(obj):
     global DataFilter
 
-    invert_filter = Main.get_widget("invert").get_active()
-    qualifer = Main.get_widget("filter").get_text()
-    menu = Main.get_widget(FILTERNAME).get_menu()
+    invert_filter = gtop.get_widget("invert").get_active()
+    qualifer = gtop.get_widget("filter").get_text()
+    menu = gtop.get_widget(FILTERNAME).get_menu()
     function = menu.get_active().get_data("filter")
     DataFilter = function(qualifer)
     DataFilter.set_invert(invert_filter)
@@ -1595,7 +1597,7 @@ def on_apply_filter_clicked(obj):
 #-------------------------------------------------------------------------
 def on_filter_name_changed(obj):
     function = obj.get_data("function")
-    Main.get_widget("filter").set_sensitive(function())
+    gtop.get_widget("filter").set_sensitive(function())
 
 #-------------------------------------------------------------------------
 #
@@ -1650,7 +1652,7 @@ def load_family():
     family_types = []
     main_family = None
 
-    Main.get_widget("fv_person").set_text(Config.nameof(active_person))
+    gtop.get_widget("fv_person").set_text(Config.nameof(active_person))
 
     if active_person:
         main_family = active_person.getMainFamily()
@@ -1666,7 +1668,7 @@ def load_family():
     if len(family_types) > 0:
         typeMenu = GtkMenu()
         if main_family:
-            menuitem = GtkMenuItem("Biological")
+            menuitem = GtkMenuItem("Birth")
             menuitem.set_data("parents",main_family)
             menuitem.connect("activate",on_current_type_changed)
             menuitem.show()
@@ -1677,10 +1679,10 @@ def load_family():
             menuitem.connect("activate",on_current_type_changed)
             menuitem.show()
             typeMenu.append(menuitem)
-        Main.get_widget("childtype").set_menu(typeMenu)
-        Main.get_widget("childtype").show()
+        gtop.get_widget("childtype").set_menu(typeMenu)
+        gtop.get_widget("childtype").show()
     else:
-        Main.get_widget("childtype").hide()
+        gtop.get_widget("childtype").hide()
 
     change_parents(active_parents)
 
@@ -1705,24 +1707,24 @@ def load_family():
                     menuitem.connect("activate",on_spouselist_changed)
                     menuitem.show()
 
-                Main.get_widget("fv_spouse").set_menu(myMenu)
-            Main.get_widget("lab_or_list").set_page(1)
+                gtop.get_widget("fv_spouse").set_menu(myMenu)
+            gtop.get_widget("lab_or_list").set_page(1)
         elif number_of_families == 1:
-            Main.get_widget("lab_or_list").set_page(0)
+            gtop.get_widget("lab_or_list").set_page(0)
             family = active_person.getFamilyList()[0]
             if active_person != family.getFather():
                 spouse = family.getFather()
             else:
                 spouse = family.getMother()
             active_spouse = spouse
-            fv_spouse1 = Main.get_widget("fv_spouse1")
+            fv_spouse1 = gtop.get_widget("fv_spouse1")
             fv_spouse1.set_text(Config.nameof(spouse))
             fv_spouse1.set_data("person",spouse)
             fv_spouse1.set_data("family",active_person.getFamilyList()[0])
         else:
-            Main.get_widget("lab_or_list").set_page(0)
-            Main.get_widget("fv_spouse1").set_text("")
-            fv_spouse1 = Main.get_widget("fv_spouse1")
+            gtop.get_widget("lab_or_list").set_page(0)
+            gtop.get_widget("fv_spouse1").set_text("")
+            fv_spouse1 = gtop.get_widget("fv_spouse1")
             fv_spouse1.set_text("")
             fv_spouse1.set_data("person",None)
             fv_spouse1.set_data("family",None)
@@ -1732,7 +1734,7 @@ def load_family():
         else:
             display_marriage(None)
     else:
-        fv_spouse1 = Main.get_widget("fv_spouse1").set_text("")
+        fv_spouse1 = gtop.get_widget("fv_spouse1").set_text("")
         display_marriage(None)
         
 #-------------------------------------------------------------------------
@@ -1744,10 +1746,10 @@ def change_parents(family):
     global active_father
     global active_mother
     
-    fv_father = Main.get_widget("fv_father")
-    fv_mother = Main.get_widget("fv_mother")
-    father_next = Main.get_widget("father_next")
-    mother_next = Main.get_widget("mother_next")
+    fv_father = gtop.get_widget("fv_father")
+    fv_mother = gtop.get_widget("fv_mother")
+    father_next = gtop.get_widget("father_next")
+    mother_next = gtop.get_widget("mother_next")
     
     if family != None :
 
@@ -1804,14 +1806,14 @@ def load_tree():
             tips.set_tip(pv[i],None)
 
     if text[2] == "":
-        Main.get_widget("ped_father_next").set_sensitive(0)
+        gtop.get_widget("ped_father_next").set_sensitive(0)
     else:
-        Main.get_widget("ped_father_next").set_sensitive(1)
+        gtop.get_widget("ped_father_next").set_sensitive(1)
 
     if text[3] == "":
-        Main.get_widget("ped_mother_next").set_sensitive(0)
+        gtop.get_widget("ped_mother_next").set_sensitive(0)
     else:
-        Main.get_widget("ped_mother_next").set_sensitive(1)
+        gtop.get_widget("ped_mother_next").set_sensitive(1)
 
 #-------------------------------------------------------------------------
 #
@@ -1850,8 +1852,8 @@ def display_marriage(family):
     global active_spouse
 
     active_family = family
-    clist = Main.get_widget("child_list")
-    fv_prev = Main.get_widget("fv_prev")
+    clist = gtop.get_widget("child_list")
+    fv_prev = gtop.get_widget("fv_prev")
 
     clist.clear()
     active_child = None
@@ -1963,7 +1965,7 @@ def load_database(name):
             const.familyRelations.append(type)
 
     Config.save_last_file(name)
-    Main.get_widget("filter").set_text("")
+    gtop.get_widget("filter").set_text("")
     active_person = database.getDefaultPerson()
     return 1
 
@@ -1975,7 +1977,7 @@ def load_database(name):
 def setup_bookmarks():
     global bookmarks
     
-    menu = Main.get_widget("jump_to")
+    menu = gtop.get_widget("jump_to")
     person_map = database.getPersonMap()
     bookmarks = Bookmarks.Bookmarks(database.getBookmarks(),person_map,\
                                     menu,bookmark_callback)
@@ -2170,7 +2172,7 @@ def on_preferences_activate(obj):
 #-------------------------------------------------------------------------
 
 def main(arg):
-    global database, Main
+    global database, gtop
     global statusbar
     global person_list, source_list, pv
     global topWindow
@@ -2187,12 +2189,13 @@ def main(arg):
     if os.path.isdir(path):
         Filter.load_filters(path)
 
-    Main = libglade.GladeXML(const.gladeFile, "gramps")
-    topWindow   = Main.get_widget("gramps")
-    statusbar   = Main.get_widget("statusbar")
-    person_list = Main.get_widget("person_list")
-    source_list = Main.get_widget("source_list")
-    filter_list = Main.get_widget("filter_list")
+    gtop = libglade.GladeXML(const.gladeFile, "gramps")
+    
+    statusbar   = gtop.get_widget("statusbar")
+    topWindow   = gtop.get_widget("gramps")
+    person_list = gtop.get_widget("person_list")
+    source_list = gtop.get_widget("source_list")
+    filter_list = gtop.get_widget("filter_list")
     
     myMenu = GtkMenu()
     for filter in Filter.filterList:
@@ -2204,7 +2207,7 @@ def main(arg):
         menuitem.show()
     filter_list.set_menu(myMenu)
     
-    Main.get_widget("filter").set_sensitive(0)
+    gtop.get_widget("filter").set_sensitive(0)
 
     # set the window icon 
     topWindow.set_icon(GtkPixmap(topWindow,const.logo))
@@ -2212,9 +2215,9 @@ def main(arg):
     person_list.column_titles_active()
 
     for box in range(1,16):
-        pv[box] = Main.get_widget("pv%d" % box)
+        pv[box] = gtop.get_widget("pv%d" % box)
 
-    Main.signal_autoconnect({
+    gtop.signal_autoconnect({
         "on_about_activate": on_about_activate,
         "on_reports_clicked" : on_reports_clicked,
         "on_person_list1_activate": on_person_list1_activate,
@@ -2273,16 +2276,16 @@ def main(arg):
 
     database = RelDataBase()
     Config.loadConfig(full_update)
-    Main.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
-    Main.get_widget("child_list").set_column_visibility(4,Config.show_detail)
+    gtop.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
+    gtop.get_widget("child_list").set_column_visibility(4,Config.show_detail)
         
     if arg != None:
         read_file(arg)
     elif Config.lastfile != None and Config.lastfile != "" and Config.autoload:
         read_file(Config.lastfile)
 
-    Main.get_widget("export1").set_submenu(Plugins.export_menu(export_callback))
-    Main.get_widget("import1").set_submenu(Plugins.import_menu(import_callback))
+    gtop.get_widget("export1").set_submenu(Plugins.export_menu(export_callback))
+    gtop.get_widget("import1").set_submenu(Plugins.import_menu(import_callback))
 
     database.setResearcher(Config.owner)
     mainloop()

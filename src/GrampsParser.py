@@ -149,7 +149,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_event(self,attrs):
         self.event = Event()
-        self.event_type = string.capwords(attrs["type"])
+        self.event_type = u2l(string.capwords(attrs["type"]))
         
     #---------------------------------------------------------------------
     #
@@ -160,7 +160,7 @@ class GrampsParser(handler.ContentHandler):
         self.attribute = Attribute()
         if attrs.has_key('type'):
             self.in_old_attr = 1
-            self.attribute.setType(string.capwords(attrs["type"]))
+            self.attribute.setType(u2l(string.capwords(attrs["type"])))
         else:
             self.in_old_attr = 0
         if self.person:
@@ -183,7 +183,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_bmark(self,attrs):
-        person = self.db.findPersonNoMap(attrs["ref"])
+        person = self.db.findPersonNoMap(u2l(attrs["ref"]))
         self.db.bookmarks.append(person)
 
     #---------------------------------------------------------------------
@@ -195,7 +195,7 @@ class GrampsParser(handler.ContentHandler):
         if self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.person = self.db.findPersonNoMap(attrs["id"])
+        self.person = self.db.findPersonNoMap(u2l(attrs["id"]))
 
     #---------------------------------------------------------------------
     #
@@ -212,7 +212,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_father(self,attrs):
-        self.family.Father = self.db.findPersonNoMap(attrs["ref"])
+        self.family.Father = self.db.findPersonNoMap(u2l(attrs["ref"]))
 
     #---------------------------------------------------------------------
     #
@@ -220,7 +220,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_mother(self,attrs):
-        self.family.Mother = self.db.findPersonNoMap(attrs["ref"])
+        self.family.Mother = self.db.findPersonNoMap(u2l(attrs["ref"]))
     
     #---------------------------------------------------------------------
     #
@@ -228,7 +228,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_child(self,attrs):
-        self.family.Children.append(self.db.findPersonNoMap(attrs["ref"]))
+        self.family.Children.append(self.db.findPersonNoMap(u2l(attrs["ref"])))
 
     #---------------------------------------------------------------------
     #
@@ -240,12 +240,12 @@ class GrampsParser(handler.ContentHandler):
         if not attrs.has_key("href"):
             return
         try:
-            desc = attrs["description"]
+            desc = u2l(attrs["description"])
         except KeyError:
             desc = ""
 
         try:
-            url = Url(attrs["href"],desc)
+            url = Url(u2l(attrs["href"]),desc)
             self.person.addUrl(url)
         except KeyError:
             return
@@ -259,9 +259,9 @@ class GrampsParser(handler.ContentHandler):
         if self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.findFamilyNoMap(attrs["id"])
+        self.family = self.db.findFamilyNoMap(u2l(attrs["id"]))
         if attrs.has_key("type"):
-            self.family.setRelationship(attrs["type"])
+            self.family.setRelationship(u2l(attrs["type"]))
 
     #---------------------------------------------------------------------
     #
@@ -269,9 +269,9 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_childof(self,attrs):
-        family = self.db.findFamilyNoMap(attrs["ref"])
+        family = self.db.findFamilyNoMap(u2l(attrs["ref"]))
         if attrs.has_key("type"):
-            type = attrs["type"]
+            type = u2l(attrs["type"])
             self.person.AltFamilyList.append((family,type))
         else:
             self.person.MainFamily = family
@@ -282,7 +282,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_parentin(self,attrs):
-        self.person.FamilyList.append(self.db.findFamilyNoMap(attrs["ref"]))
+        self.person.FamilyList.append(self.db.findFamilyNoMap(u2l(attrs["ref"])))
 
     #---------------------------------------------------------------------
     #
@@ -307,7 +307,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_sourceref(self,attrs):
         self.source_ref = SourceRef()
-        self.source = self.db.findSourceNoMap(attrs["ref"])
+        self.source = self.db.findSourceNoMap(u2l(attrs["ref"]))
         self.source_ref.setBase(self.source)
         if self.address:
             self.address.setSourceRef(self.source_ref)
@@ -326,7 +326,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_source(self,attrs):
-        self.source = self.db.findSourceNoMap(attrs["id"])
+        self.source = self.db.findSourceNoMap(ul2(attrs["id"]))
 
     #---------------------------------------------------------------------
     #
@@ -336,8 +336,8 @@ class GrampsParser(handler.ContentHandler):
     def start_photo(self,attrs):
         photo = Photo()
         if attrs.has_key("descrip"):
-            photo.setDescription(attrs["descrip"])
-        src = attrs["src"]
+            photo.setDescription(u2l(attrs["descrip"]))
+        src = u2l(attrs["src"])
         if src[0] != os.sep:
             photo.setPath("%s%s%s" % (self.base,os.sep,src))
             photo.setPrivate(1)
@@ -879,7 +879,7 @@ class GrampsImportParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_bmark(self,attrs):
-        person = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        person = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.db.bookmarks.append(person)
 
     #---------------------------------------------------------------------
@@ -891,7 +891,7 @@ class GrampsImportParser(handler.ContentHandler):
         if self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.person = self.db.findPerson("x%s" % attrs["id"],self.pmap)
+        self.person = self.db.findPerson("x%s" % u2l(attrs["id"]),self.pmap)
 
     #---------------------------------------------------------------------
     #
@@ -899,7 +899,7 @@ class GrampsImportParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_father(self,attrs):
-        father = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        father = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.family.setFather(father)
 
     #---------------------------------------------------------------------
@@ -908,7 +908,7 @@ class GrampsImportParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_mother(self,attrs):
-        mother = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        mother = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.family.setMother(mother)
     
     #---------------------------------------------------------------------
@@ -917,7 +917,7 @@ class GrampsImportParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_child(self,attrs):
-        child = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        child = self.db.findPerson("x%s" % u2l(attrs["ref"]),self.pmap)
         self.family.addChild(child)
 
     #---------------------------------------------------------------------
@@ -929,9 +929,9 @@ class GrampsImportParser(handler.ContentHandler):
         if self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.findFamily(attrs["id"],self.fmap)
+        self.family = self.db.findFamily(u2l(attrs["id"]),self.fmap)
         if attrs.has_key("type"):
-            self.family.setRelationship(attrs["type"])
+            self.family.setRelationship(u2l(attrs["type"]))
 
     #---------------------------------------------------------------------
     #
@@ -939,9 +939,9 @@ class GrampsImportParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_childof(self,attrs):
-        family = self.db.findFamily(attrs["ref"],self.fmap)
+        family = self.db.findFamily(u2l(attrs["ref"]),self.fmap)
         if attrs.has_key("type"):
-            type = attrs["type"]
+            type = u2l(attrs["type"])
             self.person.addAltFamily(family,type)
         else:
             self.person.setMainFamily(family)
@@ -953,7 +953,7 @@ class GrampsImportParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_sourceref(self,attrs):
         self.source_ref = SourceRef()
-        self.source = self.db.findSource(attrs["ref"],self.smap)
+        self.source = self.db.findSource(u2l(attrs["ref"]),self.smap)
         self.source_ref.setBase(self.source)
         if self.address:
             self.address.setSourceRef(self.source_ref)
@@ -972,5 +972,5 @@ class GrampsImportParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_source(self,attrs):
-        self.source = self.db.findSource(attrs["id"],self.smap)
+        self.source = self.db.findSource(u2l(attrs["id"]),self.smap)
 

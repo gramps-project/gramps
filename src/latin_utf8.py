@@ -25,7 +25,7 @@ if sys.version[0] != '1':
         return s.encode('latin-1')
 
     def latin_to_utf8(s):
-        return s.encode('utf-8')
+        return s
 
 else:
     try:

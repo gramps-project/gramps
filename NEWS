@@ -1,6 +1,11 @@
 Version 0.3.1
 * Improved Web Site generation (changed from Individual Web Pages)
 * Faster load times for XML database
+* Fixed unicode problems with Python 2.0
+* Improved GEDCOM exporter
+* Use the GRAMPSDIR environment variable in the shell script to determine
+  the root path instead of dynamically doing it by attempting to look
+  at __file__ in const.py
 
 Version 0.3.0
 * Support for RTF (export to MSWord) and limited support for KWord

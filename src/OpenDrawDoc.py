@@ -438,9 +438,9 @@ class OpenDrawDoc(DrawDoc):
             text = latin_to_utf8(string.replace(text,'\n','<text:line-break/>'))
             self.f.write('>\n')
   	    self.f.write('<text:p text:style-name="P1">')
-	    self.f.write('<text:span text:style-name="T')
-	    self.f.write(para_name)
-	    self.f.write('">'+text+'</text:span></text:p>\n')
+	    self.f.write('<text:span text:style-name="T%s">' % para_name)
+	    self.f.write(text)
+            self.f.write('</text:span></text:p>\n')
             self.f.write('</draw:rect>\n')
         else:
             self.f.write('/>\n')
