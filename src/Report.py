@@ -151,7 +151,9 @@ class Report:
         self.ptop = gtk.Dialog()
         self.ptop.set_has_separator(gtk.FALSE)
         self.ptop.set_title(title)
-        self.ptop.vbox.add(gtk.Label(header))
+        lbl = gtk.Label(header)
+        lbl.set_use_markup(True)
+        self.ptop.vbox.add(lbl)
         self.ptop.vbox.set_spacing(10)
         self.pbar = gtk.ProgressBar()
         self.pbar_max = total
