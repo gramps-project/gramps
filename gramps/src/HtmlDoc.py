@@ -24,7 +24,6 @@ import string
 import re
 
 from TextDoc import *
-from latin_utf8 import latin_to_utf8
 import const
 
 _top = [

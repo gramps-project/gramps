@@ -71,6 +71,7 @@
 	    <last_modification_time>Wed, 07 Mar 2001 04:12:28 GMT</last_modification_time>
 	  </signal>
 	  <stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
 
 	<widget>
@@ -85,6 +86,7 @@
 	    <last_modification_time>Tue, 06 Mar 2001 23:40:27 GMT</last_modification_time>
 	  </signal>
 	  <stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
 
 	<widget>
@@ -93,6 +95,7 @@
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <stock_button>GNOME_STOCK_BUTTON_HELP</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
       </widget>
     </widget>
@@ -344,6 +347,7 @@
 	    <last_modification_time>Wed, 07 Mar 2001 02:55:00 GMT</last_modification_time>
 	  </signal>
 	  <label>Add</label>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
 
 	<widget>
@@ -358,6 +362,7 @@
 	    <last_modification_time>Wed, 07 Mar 2001 02:55:12 GMT</last_modification_time>
 	  </signal>
 	  <label>Delete</label>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
 
 	<widget>
@@ -366,6 +371,7 @@
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <label>Load</label>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
 
 	<widget>
@@ -380,6 +386,7 @@
 	    <last_modification_time>Sun, 18 Mar 2001 13:52:32 GMT</last_modification_time>
 	  </signal>
 	  <label>Save</label>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
       </widget>
     </widget>
@@ -436,6 +443,7 @@
 	<can_default>True</can_default>
 	<can_focus>True</can_focus>
 	<label>Do Nothing</label>
+	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
 
       <widget>
@@ -450,6 +458,7 @@
 	  <last_modification_time>Thu, 15 Mar 2001 20:53:45 GMT</last_modification_time>
 	</signal>
 	<label>Save As...</label>
+	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
 
       <widget>
@@ -464,6 +473,7 @@
 	  <last_modification_time>Thu, 08 Mar 2001 16:10:16 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_CLOSE</stock_button>
+	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
     </widget>
 
@@ -693,6 +703,7 @@
 	  <widget>
 	    <class>GtkRadioButton</class>
 	    <name>html</name>
+	    <visible>False</visible>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>toggled</name>
@@ -729,6 +740,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label11</name>
+	      <visible>False</visible>
 	      <label>Template : </label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
@@ -746,6 +758,7 @@
 	    <widget>
 	      <class>GnomeFileEntry</class>
 	      <name>htmltemplate</name>
+	      <visible>False</visible>
 	      <sensitive>False</sensitive>
 	      <history_id>HtmlTemplate</history_id>
 	      <max_saved>10</max_saved>

@@ -165,8 +165,8 @@ def importData(database, filename):
     total = len(allLines)
 
     value = 0
-    for index in range(1,21):
-        value = value + total/20
+    for index in range(1,51):
+        value = value + total/50
         values[index] = value
 
     index = 1
@@ -179,9 +179,9 @@ def importData(database, filename):
         elif encoding == 2:
             line = latin_utf8.utf8_to_latin(line)
             
-        if currentLine == value and index <= 20:
+        if currentLine == value and index <= 50:
             index = index + 1
-            if index <= 20:
+            if index <= 50:
                 value = values[index]
                 progressWindow.set_percentage(float(currentLine)/float(total))
                 while events_pending():
@@ -402,6 +402,13 @@ def importData(database, filename):
                 inlocalNote = 0
                 person.setNote(user2note[noteId])
 
+            regex_match = noterefRegexp.match(line)
+            if regex_match :
+                matches = regex_match.groups()
+                print "found note",matches[0]
+                person2note[person] = matches[0]
+                continue
+
             regex_match = noteactRegexp.match(line)
             if regex_match :
                 inlocalNote = 1
@@ -427,12 +434,6 @@ def importData(database, filename):
             if regex_match:
                 matches = regex_match.groups()
                 mySource.setPage(matches[0])
-                continue
-
-            regex_match = noterefRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                person2note[person] = matches[0]
                 continue
 
             regex_match = genderRegexp.match(line)
@@ -645,11 +646,10 @@ def on_ok_clicked(obj):
         statusWindow.destroy()
     except IOError, val:
         GnomeErrorDialog("Could not load " + name + "\n" + val[1])
+    except:
+        GnomeErrorDialog("Could not load " + name + \
+                         "\n due to an unexpected internal error")
         statusWindow.destroy()
-#    except:
-#        GnomeErrorDialog("Could not load " + name + \
-#                         "\n due to an unexpected internal error")
-#        statusWindow.destroy()
     
 #-------------------------------------------------------------------------
 #

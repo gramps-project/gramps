@@ -26,6 +26,11 @@ from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 
+try:
+    from codecs import *
+except:
+    def EncodedFile(a,b,c):
+        return a
 
 class OpenOfficeDoc(TextDoc):
 
@@ -54,7 +59,9 @@ class OpenOfficeDoc(TextDoc):
         os.mkdir(self.tempdir + os.sep + "Pictures")
         os.mkdir(self.tempdir + os.sep + "META-INF")
             
-        self.f = open(self.tempdir + os.sep + "content.xml","w")
+        fname = self.tempdir + os.sep + "content.xml"
+        self.f = EncodedFile(open(fname,"wb"),'latin-1','utf-8')
+
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -138,7 +145,33 @@ class OpenOfficeDoc(TextDoc):
         self._write_styles_file()
         self._write_manifest()
         self._write_meta_file()
+        self._write_photos()
         self._write_zip()
+
+    def add_photo(self,name,x,y):
+        import GdkImlib
+
+        image = GdkImlib.Image(name)
+        scale = float(y)/float(image.rgb_height)
+        act_width = int(image.rgb_width * scale)
+        act_height = int(image.rgb_height * scale)
+
+        self.photo_list.append((name,act_width,act_height))
+
+        base = os.path.basename(name)
+        tag = string.replace(base,'.','_')
+        
+        self.f.write('<draw:image draw:style-name="photo" ')
+        self.f.write('draw:name="')
+        self.f.write(tag)
+        self.f.write('" text:anchor-type="paragraph" ')
+        self.f.write('svg:width="%.3fcm" ' % (float(act_width)/72.0))
+        self.f.write('svg:height="%.3fcm" ' % (float(act_height)/72.0))
+        self.f.write('draw:z-index="0" ')
+        self.f.write('xlink:href="#Pictures/')
+        self.f.write(base)
+        self.f.write('" xlink:type="simple" xlink:show="embed" ')
+        self.f.write('xlink:actuate="onLoad"/>\n')
 
     def start_table(self,name,style_name):
         self.f.write('<table:table table:name="')
@@ -185,15 +218,18 @@ class OpenOfficeDoc(TextDoc):
         os.unlink(self.tempdir + os.sep + "content.xml")
         os.unlink(self.tempdir + os.sep + "meta.xml")
         os.unlink(self.tempdir + os.sep + "styles.xml")
-#        for image in self.image_list:
-#            os.unlink(self.tempdir + os.sep + "Pictures" + os.sep + image)
+        for image in self.photo_list:
+            base = os.path.basename(image[0])
+            os.unlink(self.tempdir + os.sep + "Pictures" + os.sep + base)
         os.rmdir(self.tempdir + os.sep + "Pictures")
         os.rmdir(self.tempdir + os.sep + "META-INF")
         os.rmdir(self.tempdir)
         
     def _write_styles_file(self):
 	file = self.tempdir + os.sep + "styles.xml"
-	self.f = open(file,"w")
+
+	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
+        
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -230,6 +266,13 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('</style:default-style>\n')
         self.f.write('<style:style style:name="Standard" ')
         self.f.write('style:family="paragraph" style:class="text"/>\n')
+        self.f.write('<style:style style:name="photo" style:family="graphics">\n')
+        self.f.write('<style:properties text:anchor-type="paragraph" ')
+        self.f.write('svg:x="0cm" svg:y="0cm" style:wrap="none" ')
+        self.f.write('style:vertical-pos="top" style:vertical-rel="paragraph" ')
+        self.f.write('style:horizontal-pos="center" style:horizontal-rel="paragraph"/>\n')
+        self.f.write('</style:style>\n')
+        
         for key in self.style_list.keys():
             style = self.style_list[key]
             self.f.write('<style:style style:name="' + key + '" ')
@@ -342,15 +385,33 @@ class OpenOfficeDoc(TextDoc):
         text = string.replace(text,'\n','<text:line-break/>')
 	self.f.write(latin_to_utf8(text))
 
+    def _write_photos(self):
+
+        for file_tuple in self.photo_list:
+            file = file_tuple[0]
+            width = file_tuple[1]
+            height = file_tuple[2]
+            base = os.path.basename(file)
+            image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
+            cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,image_name)
+            os.system(cmd)
+
     def _write_manifest(self):
 	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"
-	self.f = open(file,"w")
+	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
         self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
 	self.f.write('<manifest:file-entry ')
         self.f.write('manifest:media-type="application/vnd.sun.xml.writer" ')
 	self.f.write('manifest:full-path="/"/>')
+        for image in self.photo_list:
+            i = image[0]
+            base = os.path.basename(i)
+            self.f.write('<manifest:file-entry manifest:media-type="" ')
+            self.f.write('manifest:full-path="Pictures/')
+            self.f.write(base)
+            self.f.write('"/>')
         self.f.write('<manifest:file-entry manifest:media-type="" ')
 	self.f.write('manifest:full-path="Pictures/"/>')
 	self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
@@ -359,15 +420,13 @@ class OpenOfficeDoc(TextDoc):
 	self.f.write('manifest:full-path="styles.xml"/>')
 	self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
 	self.f.write('manifest:full-path="meta.xml"/>')
-	#self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
-	#self.f.write('manifest:full-path="settings.xml"/>')
 	self.f.write('</manifest:manifest>\n')
 	self.f.close()
 
     def _write_meta_file(self):
 	file = self.tempdir + os.sep + "meta.xml"
         name = latin_to_utf8(self.name)
-	self.f = open(file,"w")
+	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
 	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')

@@ -197,8 +197,10 @@ def exportData(database, filename, callback):
 
     g.write("<people")
     person = database.getDefaultPerson()
+    print person
     if person:
         g.write(" default=\"" + str(person.getId()) + "\"")
+        print str(person.getId())
     g.write(">\n")
 
     total = len(personList) + len(familyList)

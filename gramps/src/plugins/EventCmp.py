@@ -30,7 +30,6 @@ import re
 import sort
 import utils
 import string
-import OpenOffice
 
 #------------------------------------------------------------------------
 #
@@ -49,6 +48,9 @@ from libglade import *
 import ListColors
 import Filter
 import const
+from TextDoc import *
+from OpenSpreadSheet import *
+
 
 #------------------------------------------------------------------------
 #
@@ -68,43 +70,43 @@ FILTER   = "x"
 #
 #------------------------------------------------------------------------
 class TableReport:
-    def __init__(self,filename):
+
+    def __init__(self,filename,doc):
         self.filename = filename
-
-    def initialize(self):
-        pass
-
-    def finalize(self):
-        pass
-
-    def write_table_head():
-        pass
-
-    def set_row(self,val):
-        pass
-
-    def write_table_data():
-        pass
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class OpenOfficeTable(TableReport):
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def initialize(self):
-        templateFile = const.dataDir + os.sep + "table.sxc"
+        self.doc = doc
         
-        self.open_office = OpenOffice.OpenOfficeCore(self.filename,\
-                                                     templateFile,".sxc")
-        self.file = self.open_office.setup()
-        self.file.write('<table:table table:name="Sheet1" table:style-name="ta1">\n')
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def initialize(self,cols):
+
+        t = TableStyle()
+        t.set_columns(cols)
+        for index in range(0,cols):
+            t.set_column_width(index,4)
+        self.doc.add_table_style("mytbl",t)
+
+        f = FontStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        f.set_size(12)
+        f.set_bold(1)
+        p = ParagraphStyle()
+        p.set_font(f)
+        p.set_background_color((0xcc,0xff,0xff))
+        p.set_padding(0.1)
+        self.doc.add_style("head",p)
+
+        f = FontStyle()
+        f.set_type_face(FONT_SANS_SERIF)
+        f.set_size(10)
+        p = ParagraphStyle()
+        p.set_font(f)
+        self.doc.add_style("data",p)
+
+        self.doc.open(self.filename)
+        self.doc.start_page("Page 1","mytbl")
 
     #--------------------------------------------------------------------
     #
@@ -112,8 +114,8 @@ class OpenOfficeTable(TableReport):
     #
     #--------------------------------------------------------------------
     def finalize(self):
-        self.file.write('</table:table>\n')
-        self.open_office.end()
+        self.doc.end_page()
+        self.doc.close()
         
     #--------------------------------------------------------------------
     #
@@ -122,14 +124,13 @@ class OpenOfficeTable(TableReport):
     #--------------------------------------------------------------------
     def write_table_data(self,data):
         length = len(data)
-            
-        self.file.write('<table:table-row table:style-name="ro1">\n')
+
+        self.doc.start_row()
         for item in data:
-            self.file.write('<table:table-cell table:style-name="ce' + str(self.row))
-            self.file.write('" table:value-type="string">\n')
-            self.file.write('<text:p>' + item + '</text:p>\n')
-            self.file.write('</table:table-cell>\n')
-        self.file.write('</table:table-row>\n')
+            self.doc.start_cell("data")
+            self.doc.write_text(item)
+            self.doc.end_cell()
+        self.doc.end_row()
 
     #--------------------------------------------------------------------
     #
@@ -147,105 +148,13 @@ class OpenOfficeTable(TableReport):
     def write_table_head(self,data):
         length = len(data)
         self.prev = 3
-        self.file.write('<table:table-column table:style-name="co1" ')
-        self.file.write('table:number-columns-repeated="' + str(length+1) + '"/>\n')
-        self.file.write('<table:table-row table:style-name="ro1">\n')
+
+        self.doc.start_row()
         for item in data:
-            self.file.write('<table:table-cell table:style-name="ce1" ')
-            self.file.write('table:value-type="string">\n')
-            self.file.write('<text:p>' + item + '</text:p>\n')
-            self.file.write('</table:table-cell>\n')
-        self.file.write('</table:table-row>\n')
-
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class HtmlTable(TableReport):
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def __init__(self,file,template):
-        self.template = template
-        TableReport.__init__(self,file)
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def initialize(self):
-        if self.template == "":
-            self.template = const.dataDir + os.sep + "table.html"
-            
-        templateFile = open(self.template,"r")
-        lines = templateFile.readlines()
-        templateFile.close()
-
-        self.last = []
-        self.first = []
-        in_last = 0
-        for line in lines:
-            if line[0:14] == "<!-- START -->":
-                in_last = 1
-                self.last.append(line);
-            elif in_last == 0:
-                self.first.append(line)
-            else:
-                self.last.append(line);
-
-        self.file = open(self.filename,"w")
-        for line in self.first:
-            self.file.write(line)
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def finalize(self):
-        
-        self.file.write("</table>")
-        for line in self.last:
-            self.file.write(line)
-        self.file.close()
-        
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_table_data(self,data):
-        length = len(data)
-            
-        self.file.write('<tr>\n')
-        for item in data:
-            self.file.write('<td>\n')
-            if item == "":
-                self.file.write('&nbsp;')
-            else:
-                self.file.write(fix(item))
-            self.file.write('\n</td>\n')
-        self.file.write('</tr>\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_table_head(self,data):
-        self.file.write('<table cellspacing=1 cellpadding=1 border=1>\n')
-        self.file.write('<tr>\n')
-        for item in data:
-            self.file.write('<th>\n')
-            self.file.write(fix(item))
-            self.file.write('\n</th>\n')
-        self.file.write('</tr>\n')
+            self.doc.start_cell("head")
+            self.doc.write_text(item)
+            self.doc.end_cell()
+        self.doc.end_row()
 
 #------------------------------------------------------------------------
 #
@@ -450,17 +359,14 @@ class EventComparison:
         for item in unsort_list:
             sort_list.append(item[1])
 
+        event_titles = ["Person","Birth","Death"] + sort_list
+
         name = self.form.get_widget("filename").get_text()
 
-        if self.form.get_widget("openoffice").get_active():
-            spreadsheet = OpenOfficeTable(name)
-        elif self.form.get_widget("html").get_active():
-            template = self.form.get_widget("htmlfile").get_text()
-            spreadsheet = HtmlTable(name,template)
+        doc = OpenSpreadSheet(PaperStyle("junk",10,10),PAPER_PORTRAIT)
+        spreadsheet = TableReport(name,doc)
+        spreadsheet.initialize(len(event_titles))
 
-        spreadsheet.initialize()
-
-        event_titles = ["Person","Birth","Death"] + sort_list
 
         spreadsheet.write_table_head(event_titles)
     

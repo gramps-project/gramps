@@ -7,4 +7,4 @@ echo "Working on python files"
 ./get_strings *.py >> glade.c
 echo "Building template.po"
 xgettext -C -s -a -o template.po glade.c
-rm glade.c
+#rm glade.c
