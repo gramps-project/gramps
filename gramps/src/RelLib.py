@@ -591,6 +591,9 @@ class ObjectRef:
     def getNoteObj(self):
         """Return in note instance, not just the text"""
         return self.note
+
+    def unique_note(self):
+        self.note = Note(self.note.get())
     
     def addAttribute(self,attr):
         """Adds a propery to the Photo object. This is not used by gramps,
@@ -1389,6 +1392,9 @@ class Family:
         """returns the Note instance attached to the Family"""
         return self.note
 
+    def unique_note(self):
+        self.note = Note(self.note.get())
+
     def setNoteObj(self,obj):
         """sets the Note instance attached to the Family"""
         self.note = obj
@@ -1566,6 +1572,9 @@ class Source:
     def getNoteObj(self):
         """returns the Note instance attached to the Source"""
         return self.note
+
+    def unique_note(self):
+        self.note = Note(self.note.get())
 
     def setAuthor(self,author):
         """sets the author of the Source"""
