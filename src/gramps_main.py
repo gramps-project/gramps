@@ -123,7 +123,9 @@ ODDFGCOLOR = "oddForeground"
 ODDBGCOLOR = "oddBackground"
 EVENFGCOLOR= "evenForeground"
 EVENBGCOLOR= "evenBackground"
-
+GIVEN      = "g"
+SURNAME    = "s"
+RELTYPE    = "d"
 #-------------------------------------------------------------------------
 #
 # Short hand function to return either the person's birthday, or an empty
@@ -250,15 +252,22 @@ def on_remove_child_clicked(obj):
 #-------------------------------------------------------------------------
 def on_add_sp_clicked(obj):
     spouseDialog = libglade.GladeXML(const.gladeFile, "spouseDialog")
+    
     spouseList = spouseDialog.get_widget("spouseList")
     spouseDialog.get_widget("rel_combo").set_popdown_strings(const.familyRelations)
     rel_type = spouseDialog.get_widget("rel_type")
     rel_type.set_data("d",spouseList)
-    spouseDialog.get_widget("spouseDialog").set_data("d",rel_type)
+    rel_type.set_data("x",spouseDialog.get_widget("reldef"))
+
+    top = spouseDialog.get_widget("spouseDialog")
+    top.set_data(RELTYPE,rel_type)
+    top.set_data(GIVEN,spouseDialog.get_widget("given"))
+    top.set_data(SURNAME,spouseDialog.get_widget("surname"))
 
     spouseDialog.signal_autoconnect({
         "on_spouseList_select_row" : on_spouseList_select_row,
         "on_select_spouse_clicked" : on_select_spouse_clicked,
+        "on_new_spouse_clicked" : on_new_spouse_clicked,
         "on_rel_type_changed" : on_rel_type_changed,
         "destroy_passed_object" : utils.destroy_passed_object
         })
@@ -519,7 +528,7 @@ def on_addchild_ok_clicked(obj):
         
     # must do an apply filter here to make sure the main window gets updated
     
-    apply_filter()
+    redisplay_person_list(person)
     load_family()
     utils.modified()
     utils.destroy_passed_object(obj)
@@ -1363,6 +1372,56 @@ def on_select_spouse_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
+def on_new_spouse_clicked(obj):
+    global active_spouse
+    global select_spouse
+    global active_family
+
+    select_spouse = Person()
+    database.addPerson(select_spouse)
+    name = Name()
+    select_spouse.setPrimaryName(name)
+    name.setSurname(string.strip(obj.get_data(SURNAME).get_text()))
+    name.setFirstName(string.strip(obj.get_data(GIVEN).get_text()))
+
+    reltype = const.save_frel(obj.get_data(RELTYPE).get_text())
+    if reltype == "Partners":
+        select_spouse.setGender(active_person.getGender())
+    else:
+        if active_person.getGender() == Person.male:
+            select_spouse.setGender(Person.female)
+        else:
+            select_spouse.setGender(Person.male)
+
+    utils.modified()
+    active_spouse = select_spouse
+
+    family = database.newFamily()
+    active_family = family
+
+    active_person.addFamily(family)
+    select_spouse.addFamily(family)
+
+    if active_person.getGender() == Person.male:
+        family.setMother(select_spouse)
+        family.setFather(active_person)
+    else:	
+        family.setFather(select_spouse)
+        family.setMother(active_person)
+
+    family.setRelationship(const.save_frel(obj.get_data("d").get_text()))
+
+    select_spouse = None
+    utils.destroy_passed_object(obj)
+
+    redisplay_person_list(active_spouse)
+    load_family()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def load_active_person(obj):
     load_person(active_person)
 
@@ -1474,8 +1533,12 @@ def on_rel_type_changed(obj):
     spouse_list = obj.get_data("d")
     spouse_list.clear()
     spouse_list.freeze()
+    deftxt = obj.get_data("x")
+    
     text = obj.get_text()
 
+    deftxt.set_text(const.relationship_def(text))
+    
     gender = active_person.getGender()
     if text == _("Partners"):
         if gender == Person.male:
