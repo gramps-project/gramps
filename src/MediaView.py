@@ -239,7 +239,7 @@ class MediaView:
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
                     return 1
-        for key in self.db.getSourceKeys()
+        for key in self.db.getSourceKeys():
             p = self.db.getSource(key)
             for o in p.getPhotoList():
                 if o.getReference() == mobj:
