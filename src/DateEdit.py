@@ -21,7 +21,7 @@
 # $Id$
 
 """
-The DateEdit module provides classes. 
+Date editing module for GRAMPS. 
 
 The DateEdit.DateEdit provides two visual feedback to the user via a pixamp
 to indicate if the assocated GtkEntry box contains a valid date. Green
@@ -59,8 +59,8 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import Date
-import DateParser
 import DateDisplay
+import DateHandler
 import const
 import Utils
 
@@ -104,38 +104,65 @@ class DateEdit:
     bad = gtk.gdk.pixbuf_new_from_file(const.bad_xpm)
     caution = gtk.gdk.pixbuf_new_from_file(const.caution_xpm)
     
-    def __init__(self,text_obj,button_obj):
-        """Creates a connection between the text_obj and the pixmap_obj"""
+    def __init__(self,date_obj,text_obj,button_obj,parent_window=None):
+        """
+        Creates a connection between the date_obj, text_obj and the pixmap_obj.
+        Assigns callbacks to parse and change date when the text
+        in text_obj is changed, and to invoke Date Editor when the LED
+        button_obj is pressed. 
+        """
 
-        self.dp = DateParser.DateParser()
+        self.dp = DateHandler.create_parser()
+        self.dd = DateHandler.create_display()
+        self.date_obj = date_obj
         self.text_obj = text_obj
         self.button_obj = button_obj
+        self.parent_window = parent_window
+
         self.pixmap_obj = button_obj.get_child()
-        self.text_obj.connect('focus-out-event',self.check)
-        self.check(None,None)
+        self.text_obj.connect('focus-out-event',self.parse_and_check)
         self.button_obj.connect('clicked',self.invoke_date_editor)
-
-    def set_calendar(self,cobj):
-        self.check(None,None)
         
-    def check(self,obj,val):
-        """Called with the text box loses focus. If the string contains a
-        valid date, sets the appropriate pixmap"""
+        self.text = unicode(self.text_obj.get_text())
+        self.check()
 
-        text = unicode(self.text_obj.get_text())
-        self.checkval = self.dp.parse(text)
-        if self.checkval.get_modifier() == Date.MOD_TEXTONLY:
+    def check(self):
+        """
+        Check current date object and display LED indicating the validity.
+        """
+        if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
             self.pixmap_obj.set_from_pixbuf(DateEdit.bad)
 #        elif self.checkval.get_incomplete():
 #            self.pixmap_obj.set_from_pixbuf(DateEdit.caution)
         else:
             self.pixmap_obj.set_from_pixbuf(DateEdit.good)
-    
+        
+    def parse_and_check(self,obj,val):
+        """
+        Called with the text box loses focus. Parses the text and calls 
+        the check() method ONLY if the text has changed.
+        """
+
+        text = unicode(self.text_obj.get_text())
+        if text != self.text:
+            self.text = text
+            self.date_obj.copy(self.dp.parse(text))
+            self.check()
+
     def invoke_date_editor(self,obj):
-        date_dialog = DateEditorDialog(self.checkval)
-        the_date = date_dialog.get_date()
-        self.text_obj.set_text(str(the_date))
-        print "The date was built as follows:", the_date
+        """
+        Invokes Date Editor dialog when the user clicks the LED button.
+        If date was in fact built, sets the date_obj to the newly built
+        date.
+        """
+        date_dialog = DateEditorDialog(self.date_obj,self.parent_window)
+        the_date = date_dialog.return_date
+        if the_date:
+            self.date_obj.copy(the_date)
+            self.text_obj.set_text(self.dd.display(self.date_obj))
+            print "The date was built as follows:", self.date_obj
+        else:
+            print "Cancel was pressed, date not changed."
         
 #-------------------------------------------------------------------------
 #
@@ -148,16 +175,13 @@ class DateEditorDialog:
     limitations of parsing and/or underlying structure of Date.
     """
 
-    def __init__(self,date):
+    def __init__(self,date,parent_window=None):
         """
         Initiate and display the dialog.
         """
 
         # Create self.date as a copy of the given Date object.
         self.date = Date.Date(date)
-        # Keep the given Date object safe as self.old_date 
-        # until we're happy with modifying and want to commit.
-        self.old_date = date
 
         self.top = gtk.glade.XML(const.dialogFile, "date_edit","gramps" )
         self.top_window = self.top.get_widget('date_edit')
@@ -222,8 +246,11 @@ class DateEditorDialog:
         # The dialog is modal -- since dates don't have name, we don't
         # want to have several open dialogs, since then the user will
         # loose track of which is which.
+        if parent_window:
+            self.top_window.set_transient_for(parent_window)
         response = self.top_window.run()
-        self.top_window.destroy()
+
+        self.return_date = None
 
         if response == gtk.RESPONSE_HELP:
             # Here be help :-)
@@ -231,18 +258,14 @@ class DateEditorDialog:
         elif response == gtk.RESPONSE_OK:
             (the_quality,the_modifier,the_calendar,the_value,the_text) = \
                                         self.build_date_from_ui()
-            self.old_date.set(
+            self.return_date = Date.Date(self.date)
+            self.return_date.set(
                 quality=the_quality,
                 modifier=the_modifier,
                 calendar=the_calendar,
                 value=the_value)
-            self.old_date.set_text_value(the_text)
-
-    def get_date(self):
-        """
-        Return the current date.
-        """
-        return self.date
+            self.return_date.set_text_value(the_text)
+        self.top_window.destroy()
 
     def build_date_from_ui(self):
         """
@@ -260,7 +283,6 @@ class DateEditorDialog:
         text = self.text_entry.get_text()
 
         if modifier == Date.MOD_TEXTONLY:
-            date.set_as_text(self.text_entry.get_text())
             return (Date.QUAL_NONE,Date.MOD_TEXTONLY,Date.CAL_GREGORIAN,
                                             Date.EMPTY,text)
 

@@ -20,7 +20,13 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from string import strip
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -44,14 +50,11 @@ import GrampsCfg
 import AutoComp
 import RelLib
 import Date
-import DateParser
 import DateHandler
 import ImageSelect
-
 import DateEdit
-from gettext import gettext as _
-
 from QuestionDialog import WarningDialog
+
 #-------------------------------------------------------------------------
 #
 # EventEditor class
@@ -194,7 +197,10 @@ class EventEditor:
                 self.event_menu.child.set_text(def_event)
             if def_placename:
                 self.place_field.set_text(def_placename)
-        self.date_check = DateEdit.DateEdit(self.date_field,self.top.get_widget("date_stat"))
+        self.date_check = DateEdit.DateEdit(self.date,
+                                        self.date_field,
+                                    	self.top.get_widget("date_stat"),
+                                    	self.window)
 
         if not event:
             event = RelLib.Event()
@@ -282,7 +288,7 @@ class EventEditor:
         trans = self.db.transaction_begin()
         
         ename = unicode(self.event_menu.child.get_text())
-        self.date = self.dp.parse(unicode(self.date_field.get_text()))
+        #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
         eplace_obj = self.get_place(self.place_field,trans)
         buf = self.note_field.get_buffer()
