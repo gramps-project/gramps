@@ -21,7 +21,6 @@
 import libglade
 import gtk
 import Utils
-import ListColors
 import const
 
 from TextDoc import *
@@ -61,15 +60,18 @@ class StyleListDisplay:
         self.list.clear()
 
         self.list.set_data("i",0)
-        box = ListColors.ColorList(self.list,1)
         sheet = self.sheetlist.get_style_sheet("default")
-        box.add_with_data(["default"],("default",sheet))
+        self.list.append(["default"])
+        self.list.set_row_data(0,("default",sheet))
 
+        index = 1
         for style in self.sheetlist.get_style_names():
             if style == "default":
                 continue
             sheet = self.sheetlist.get_style_sheet(style)
-            box.add_with_data([style],(style,sheet))
+            self.list.append([style])
+            self.list.set_row_data(index,(style,sheet))
+            index = index + 1
 
 #------------------------------------------------------------------------
 #

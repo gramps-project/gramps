@@ -51,7 +51,7 @@ from Date import *
 
 import const
 import Utils
-import ListColors
+import Sorter
 
 from intl import gettext
 _ = gettext
@@ -289,13 +289,13 @@ def loadConfig(call):
     if en == None:
         en = 0
 
-    ListColors.set_enable(en)
+    Sorter.set_enable(en)
 
-    ListColors.oddfg = get_config_color(ODDFGCOLOR,(0,0,0))
-    ListColors.oddbg = get_config_color(ODDBGCOLOR,(0xffff,0xffff,0xffff))
-    ListColors.evenfg = get_config_color(EVENFGCOLOR,(0,0,0))
-    ListColors.evenbg = get_config_color(EVENBGCOLOR,(0xffff,0xffff,0xffff))
-    ListColors.ancestorfg = get_config_color(ANCESTORFGCOLOR,(0,0,0))
+    Sorter.oddfg = get_config_color(ODDFGCOLOR,(0,0,0))
+    Sorter.oddbg = get_config_color(ODDBGCOLOR,(0xffff,0xffff,0xffff))
+    Sorter.evenfg = get_config_color(EVENFGCOLOR,(0,0,0))
+    Sorter.evenbg = get_config_color(EVENBGCOLOR,(0xffff,0xffff,0xffff))
+    Sorter.ancestorfg = get_config_color(ANCESTORFGCOLOR,(0,0,0))
 
     if paper_preference == None:
         paper_preference = "Letter"
@@ -774,31 +774,26 @@ class GrampsPreferences:
         self.top.get_widget("resemail").set_text(cemail)
 
         cwidget = self.top.get_widget(ODDFGCOLOR)
-        cwidget.set_i16(ListColors.oddfg[0],ListColors.oddfg[1],\
-                        ListColors.oddfg[2],0xffff)
+        cwidget.set_i16(Sorter.oddfg[0],Sorter.oddfg[1],Sorter.oddfg[2],0xffff)
 
         cwidget = self.top.get_widget(ODDBGCOLOR)
-        cwidget.set_i16(ListColors.oddbg[0],ListColors.oddbg[1],\
-                        ListColors.oddbg[2],0xffff)
+        cwidget.set_i16(Sorter.oddbg[0],Sorter.oddbg[1],Sorter.oddbg[2],0xffff)
         
         cwidget = self.top.get_widget(EVENFGCOLOR)
-        cwidget.set_i16(ListColors.evenfg[0],ListColors.evenfg[1],\
-                        ListColors.evenfg[2],0xffff)
+        cwidget.set_i16(Sorter.evenfg[0],Sorter.evenfg[1],Sorter.evenfg[2],0xffff)
         
         cwidget = self.top.get_widget(EVENBGCOLOR)
-        cwidget.set_i16(ListColors.evenbg[0],ListColors.evenbg[1],\
-                        ListColors.evenbg[2],0xffff)
+        cwidget.set_i16(Sorter.evenbg[0],Sorter.evenbg[1],Sorter.evenbg[2],0xffff)
         
         cwidget = self.top.get_widget(ANCESTORFGCOLOR)
-        cwidget.set_i16(ListColors.ancestorfg[0],ListColors.ancestorfg[1],\
-                        ListColors.ancestorfg[2],0xffff)
+        cwidget.set_i16(Sorter.ancestorfg[0],Sorter.ancestorfg[1],Sorter.ancestorfg[2],0xffff)
         
-        self.top.get_widget("enableColors").set_active(ListColors.get_enable())
-        self.top.get_widget(ODDFGCOLOR).set_sensitive(ListColors.get_enable())
-        self.top.get_widget(ODDBGCOLOR).set_sensitive(ListColors.get_enable())
-        self.top.get_widget(EVENBGCOLOR).set_sensitive(ListColors.get_enable())
-        self.top.get_widget(EVENFGCOLOR).set_sensitive(ListColors.get_enable())
-        self.top.get_widget(ANCESTORFGCOLOR).set_sensitive(ListColors.get_enable())
+        self.top.get_widget("enableColors").set_active(Sorter.get_enable())
+        self.top.get_widget(ODDFGCOLOR).set_sensitive(Sorter.get_enable())
+        self.top.get_widget(ODDBGCOLOR).set_sensitive(Sorter.get_enable())
+        self.top.get_widget(EVENBGCOLOR).set_sensitive(Sorter.get_enable())
+        self.top.get_widget(EVENFGCOLOR).set_sensitive(Sorter.get_enable())
+        self.top.get_widget(ANCESTORFGCOLOR).set_sensitive(Sorter.get_enable())
         
         self.top.get_widget("dbdir").gtk_entry().set_text(db_dir)
         self.top.get_widget("repdir").gtk_entry().set_text(report_dir)
@@ -1049,20 +1044,20 @@ class GrampsPreferences:
         phone = self.top.get_widget("resphone").get_text()
         email = self.top.get_widget("resemail").get_text()
         
-        ListColors.set_enable(self.top.get_widget("enableColors").get_active())
-        set_bool("/gramps/color/enableColors",ListColors.get_enable())
+        Sorter.set_enable(self.top.get_widget("enableColors").get_active())
+        set_bool("/gramps/color/enableColors",Sorter.get_enable())
         
-        ListColors.oddfg = self.top.get_widget(ODDFGCOLOR).get_i16()
-        ListColors.oddbg = self.top.get_widget(ODDBGCOLOR).get_i16()
-        ListColors.evenfg = self.top.get_widget(EVENFGCOLOR).get_i16()
-        ListColors.evenbg = self.top.get_widget(EVENBGCOLOR).get_i16()
-        ListColors.ancestorfg = self.top.get_widget(ANCESTORFGCOLOR).get_i16()
+        Sorter.oddfg = self.top.get_widget(ODDFGCOLOR).get_i16()
+        Sorter.oddbg = self.top.get_widget(ODDBGCOLOR).get_i16()
+        Sorter.evenfg = self.top.get_widget(EVENFGCOLOR).get_i16()
+        Sorter.evenbg = self.top.get_widget(EVENBGCOLOR).get_i16()
+        Sorter.ancestorfg = self.top.get_widget(ANCESTORFGCOLOR).get_i16()
         
-        save_config_color(ODDFGCOLOR,ListColors.oddfg)
-        save_config_color(ODDBGCOLOR,ListColors.oddbg)
-        save_config_color(EVENFGCOLOR,ListColors.evenfg)
-        save_config_color(EVENBGCOLOR,ListColors.evenbg)
-        save_config_color(ANCESTORFGCOLOR,ListColors.ancestorfg)
+        save_config_color(ODDFGCOLOR,Sorter.oddfg)
+        save_config_color(ODDBGCOLOR,Sorter.oddbg)
+        save_config_color(EVENFGCOLOR,Sorter.evenfg)
+        save_config_color(EVENBGCOLOR,Sorter.evenbg)
+        save_config_color(ANCESTORFGCOLOR,Sorter.ancestorfg)
         
         set_string("/gramps/researcher/name",name)
         set_string("/gramps/researcher/addr",addr)

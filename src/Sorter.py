@@ -38,7 +38,6 @@ import GTK
 #
 #-------------------------------------------------------------------------
 import GrampsCfg
-import ListColors
 
 class Sorter:
 
@@ -92,25 +91,25 @@ class Sorter:
         self.clist.freeze()
         self.clist.sort()
         self.clist.sort()
-        if ListColors.get_enable():
+        if _enable:
             try:
-                loddbg = ListColors.oddbg
-                loddfg = ListColors.oddfg
-                levenbg = ListColors.evenbg
-                levenfg = ListColors.evenfg
+                loddbg = oddbg
+                loddfg = oddfg
+                levenbg = evenbg
+                levenfg = evenfg
 
                 cmap = self.clist.get_colormap()
-                oddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
-                oddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
-                evenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])
-                evenfg = cmap.alloc(levenfg[0],levenfg[1],levenfg[2])
+                toddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
+                toddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
+                tevenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])
+                tevenfg = cmap.alloc(levenfg[0],levenfg[1],levenfg[2])
                 rows = self.clist.rows
                 for i in range(0,rows,2):
-                    self.clist.set_background(i,oddbg)
-                    self.clist.set_foreground(i,oddfg)
+                    self.clist.set_background(i,toddbg)
+                    self.clist.set_foreground(i,toddfg)
                     if i != rows:
-                        self.clist.set_background(i+1,evenbg)
-                        self.clist.set_foreground(i+1,evenfg)
+                        self.clist.set_background(i+1,tevenbg)
+                        self.clist.set_foreground(i+1,tevenfg)
             except OverflowError:
                 pass
         self.clist.thaw()
@@ -171,3 +170,29 @@ class ChildSorter(Sorter):
         """
         Sorter.change_sort(self,column,change)
         self.clist.set_reorderable(self.col == 0)
+
+
+#-------------------------------------------------------------------------
+#
+# Color management
+#
+#-------------------------------------------------------------------------
+_enable   = 0
+oddbg    = (0xffff,0xffff,0xffff)
+evenbg   = (0xffff,0xffff,0xffff)
+oddfg    = (0,0,0)
+evenfg   = (0,0,0)
+ancestorfg = (0,0,0)
+
+def to_signed(a):
+    if a & 0x8000:
+        return a - 0x10000
+    else:
+        return a
+
+def set_enable(val):
+    global _enable
+    _enable = val
+
+def get_enable():
+    return _enable
