@@ -65,6 +65,7 @@ class FamilyView:
         self.parent = parent
         self.top = parent.gtop
         self.family = None
+        self.cadded = [ 0, 0 ]
         self.init_interface()
 
     def set_widgets(self,val):
@@ -114,26 +115,32 @@ class FamilyView:
             self.top.get_widget('sp_parents_btn').connect('clicked',self.sp_parents_clicked)
 
     def init_interface(self):
-        self.set_widgets(GrampsCfg.familyview)
+        fv = GrampsCfg.familyview
+        self.set_widgets(fv)
+
+        already_init = self.cadded[fv]
         
         self.ap_model = gtk.ListStore(gobject.TYPE_STRING)
         self.ap_data.set_model(self.ap_model)
-        column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
-        self.ap_data.append_column(column)
+        if not already_init:
+            column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+            self.ap_data.append_column(column)
         self.ap_data.connect('button-press-event',self.edit_active_person)
 
         self.ap_parents_model = gtk.ListStore(gobject.TYPE_STRING)
         self.ap_parents.set_model(self.ap_parents_model)
         self.ap_selection = self.ap_parents.get_selection()
-        column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
-        self.ap_parents.append_column(column)
+        if not already_init:
+            column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+            self.ap_parents.append_column(column)
         self.ap_parents.connect('button-press-event',self.edit_ap_parents)
 
         self.sp_parents_model = gtk.ListStore(gobject.TYPE_STRING)
         self.sp_parents.set_model(self.sp_parents_model)
         self.sp_selection = self.sp_parents.get_selection()
-        column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
-        self.sp_parents.append_column(column)
+        if not already_init:
+            column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+            self.sp_parents.append_column(column)
         self.sp_parents.connect('button-press-event',self.edit_sp_parents)
 
         self.spouse_model = gtk.ListStore(gobject.TYPE_STRING)
@@ -142,8 +149,9 @@ class FamilyView:
         self.spouse_selection.connect('changed',self.spouse_changed)
         self.spouse_list.connect('button-press-event',self.edit_relationship)
         
-        column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
-        self.spouse_list.append_column(column)
+        if not already_init:
+            column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+            self.spouse_list.append_column(column)
         self.selected_spouse = None
 
         self.child_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
@@ -175,6 +183,8 @@ class FamilyView:
                               (_('Gender'),100,-1), (_('Birth date'),150,6),
                               (_('Status'),100,-1), ('',0,-1) ])
 
+        self.cadded[fv] = 1
+        
     def edit_active_person(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.parent.load_person(self.person)
