@@ -437,7 +437,7 @@ class EditPerson:
         self.menu.append(self.menu_item)
 
     def remove_itself_from_winsmenu(self):
-        self.parent.wins_dict.pop(self.original_id,None)
+        del self.parent.wins_dict[self.original_id]
         self.menu_item.destroy()
 	self.menu.destroy()
 	self.win_menu_item.destroy()
