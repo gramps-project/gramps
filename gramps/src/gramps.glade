@@ -2670,6 +2670,7 @@
 	  <widget>
 	    <class>GtkButton</class>
 	    <name>button45</name>
+	    <tooltip>Choose child from the database</tooltip>
 	    <can_default>True</can_default>
 	    <can_focus>True</can_focus>
 	    <signal>
@@ -2677,13 +2678,14 @@
 	      <handler>on_add_child_clicked</handler>
 	      <last_modification_time>Tue, 21 Nov 2000 14:03:13 GMT</last_modification_time>
 	    </signal>
-	    <label>Add Existing Children</label>
+	    <label>Add Existing Child</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
 	  <widget>
 	    <class>GtkButton</class>
 	    <name>button46</name>
+	    <tooltip>Add new person to database (and this family)</tooltip>
 	    <can_default>True</can_default>
 	    <can_focus>True</can_focus>
 	    <signal>
@@ -2698,6 +2700,7 @@
 	  <widget>
 	    <class>GtkButton</class>
 	    <name>button47</name>
+	    <tooltip>Remove selected child from this family</tooltip>
 	    <can_default>True</can_default>
 	    <can_focus>True</can_focus>
 	    <signal>
