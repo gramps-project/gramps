@@ -197,6 +197,7 @@ class EditPerson:
             "on_delete_event"           : on_delete_event,
             "on_delete_url_clicked"     : on_delete_url_clicked,
             "on_deletephoto_clicked"    : self.gallery.on_delete_photo_clicked,
+            "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_editperson_switch_page" : on_switch_page,
             "on_event_add_clicked"      : on_event_add_clicked,
             "on_event_delete_clicked"   : on_event_delete_clicked,
@@ -263,7 +264,8 @@ class EditPerson:
         if len(photo_list) != 0:
             ph = photo_list[0]
             object = ph.getReference()
-            self.load_photo(object.getPath())
+            if object.getMimeType()[0:5] == "image":
+                self.load_photo(object.getPath())
     
         # set notes data
         self.notes_field.set_point(0)
@@ -407,11 +409,12 @@ class PersonGallery(ImageSelect.Gallery):
         for i in range(0,selected_icon):
             photolist[selected_icon-i] = photolist[selected_icon-i-1]
         photolist[0] = savePhoto
-    
-        self.epo.load_photo(savePhoto.getReference().getPath())
+
+        ref = savePhoto.getReference()
+        if ref.getMimeType() == "image":
+            self.epo.load_photo(savePhoto.getReference().getPath())
         self.load_images()
         utils.modified()
-    
 
 #-------------------------------------------------------------------------
 #

@@ -2879,6 +2879,11 @@
 	      <handler>on_media_list_drag_data_get</handler>
 	      <last_modification_time>Tue, 09 Oct 2001 21:02:46 GMT</last_modification_time>
 	    </signal>
+	    <signal>
+	      <name>drag_data_received</name>
+	      <handler>on_media_list_drag_data_received</handler>
+	      <last_modification_time>Thu, 11 Oct 2001 22:42:26 GMT</last_modification_time>
+	    </signal>
 	    <columns>5</columns>
 	    <column_widths>33,331,104,168,80</column_widths>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
@@ -2972,6 +2977,11 @@
 	    <name>button142</name>
 	    <can_default>True</can_default>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_add_media_clicked</handler>
+	      <last_modification_time>Thu, 11 Oct 2001 22:36:50 GMT</last_modification_time>
+	    </signal>
 	    <label>Add Media Object</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>

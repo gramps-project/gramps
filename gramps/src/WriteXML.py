@@ -293,8 +293,6 @@ def write_photo_list(g,list,indent=3):
             g.write(">\n")
             write_attribute_list(g,proplist,indent+1)
             write_note(g,"note",photo.getNote(),indent+1)
-            for s in photo.getSourceRefList():
-                dump_source_ref(g,s,indent+1)
             g.write('%s</objref>\n' % sp)
 
 def write_url_list(g, list):

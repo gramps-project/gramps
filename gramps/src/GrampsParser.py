@@ -505,7 +505,7 @@ class GrampsParser(handler.ContentHandler):
                 a.setType(key)
                 a.setValue(u2l(attrs[key]))
                 self.photo.addAttribute(a)
-        self.photo.setMimeType(gnome.mime.type_or_default(self.photo.getPath(),"unknown"))
+        self.photo.setMimeType(utils.get_mime_type(self.photo.getPath()))
         self.db.addObject(self.photo)
         if self.family:
             self.family.addPhoto(self.pref)

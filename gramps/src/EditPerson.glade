@@ -22,7 +22,7 @@
     <last_modification_time>Fri, 03 Aug 2001 01:42:42 GMT</last_modification_time>
   </signal>
   <title>Gramps - Edit Person</title>
-  <type>GTK_WINDOW_TOPLEVEL</type>
+  <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
   <allow_shrink>False</allow_shrink>
@@ -3567,10 +3567,10 @@
 	  <class>GtkHButtonBox</class>
 	  <name>hbuttonbox13</name>
 	  <layout_style>GTK_BUTTONBOX_SPREAD</layout_style>
-	  <spacing>30</spacing>
+	  <spacing>15</spacing>
 	  <child_min_width>85</child_min_width>
 	  <child_min_height>27</child_min_height>
-	  <child_ipad_x>7</child_ipad_x>
+	  <child_ipad_x>3</child_ipad_x>
 	  <child_ipad_y>0</child_ipad_y>
 	  <child>
 	    <padding>0</padding>
@@ -3589,7 +3589,7 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Sat, 09 Dec 2000 22:09:54 GMT</last_modification_time>
 	    </signal>
-	    <label>Add Object</label>
+	    <label>Add Media Object</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -3604,7 +3604,7 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Sun, 10 Dec 2000 03:48:08 GMT</last_modification_time>
 	    </signal>
-	    <label>Delete Object</label>
+	    <label>Delete Media Object</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 
@@ -3619,7 +3619,22 @@
 	      <object>editPerson</object>
 	      <last_modification_time>Sun, 10 Dec 2000 15:10:41 GMT</last_modification_time>
 	    </signal>
-	    <label>Make Primary</label>
+	    <label>Make Primary Object</label>
+	    <relief>GTK_RELIEF_NORMAL</relief>
+	  </widget>
+
+	  <widget>
+	    <class>GtkButton</class>
+	    <name>button127</name>
+	    <can_default>True</can_default>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_edit_properties_clicked</handler>
+	      <object>editPerson</object>
+	      <last_modification_time>Thu, 11 Oct 2001 22:22:08 GMT</last_modification_time>
+	    </signal>
+	    <label>Edit Properties</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	  </widget>
 	</widget>
