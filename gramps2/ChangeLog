@@ -1,3 +1,6 @@
+2005-02-02 Eero Tamminen <eerot@sf>
+	* src/plugins/StatisticsChart.py: Better colors for pies
+
 2005-02-02 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Makefile.am: Ship ReadGrdb.py and WriteGrdb.py.
 
