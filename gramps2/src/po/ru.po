@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.1\n"
 "POT-Creation-Date: Mon Mar 31 21:01:56 2003\n"
-"PO-Revision-Date: 2003-04-01 21:45-0600\n"
+"PO-Revision-Date: 2003-04-01 22:10-0600\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2341,7 +2341,7 @@ msgstr "<b>Пол</b>"
 
 #: edit_person.glade:690
 msgid "<b>Preferred name</b>"
-msgstr "<b>Предпочитаемое имя<b>"
+msgstr "<b>Предпочитаемое имя</b>"
 
 #: edit_person.glade:721 gramps.glade:5279
 msgid "_male"
@@ -2409,7 +2409,7 @@ msgstr "<b>Альтернативное имя</b>"
 #: edit_person.glade:1449 edit_person.glade:1989 edit_person.glade:2473
 #: edit_person.glade:3023 marriage.glade:529 marriage.glade:949
 msgid "<b>Primary source</b>"
-msgstr "<b>Первичный источник<b>"
+msgstr "<b>Первичный источник</b>"
 
 #: edit_person.glade:1725
 msgid "Create an alternate name for this person"
