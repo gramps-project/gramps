@@ -27,16 +27,12 @@ import sys
 ver = sys.version[0:3]
 
 try:
-    if ver == "1.5":
-        from intl15 import *
-    elif ver == "2.0":
-        from intl20 import *
-    elif ver == "2.1":
-        from intl21 import *
-    elif ver == "2.2":
+    if ver == "2.2":
         from intl22 import *
+        status = None
     else:
-        print 'Internationalization library could be loaded'
+        status = 'Internationalization library could not be loaded'
+        print status
         
         def gettext(s):
             return s
@@ -50,8 +46,8 @@ try:
         def bind_textdomain_codeset(s,x):
             return
 except:
-    import traceback
-    traceback.print_exc()
+    status = 'Internationalization library could not be loaded'
+    print status
     
     def gettext(s):
         return s

@@ -326,6 +326,7 @@ class EditPerson:
         self.redraw_addr_list()
         self.redraw_name_list()
         self.redraw_url_list()
+        self.get_widget("notebook").set_current_page(0)
         self.given.grab_focus()
         self.window.show()
 

@@ -57,7 +57,8 @@ import Utils
 import GrampsCfg
 import Errors
 
-from intl import gettext as _
+import intl
+_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -277,6 +278,9 @@ class PluginStatus:
             })
 
         info = cStringIO.StringIO()
+
+        if intl.status:
+            _expect.append(('intl:py','GRAMPS was built without internationalization support'))
 
         if len(_expect) + len(_failmsg) == 0:
             window.get_buffer().set_text(_('All modules were successfully loaded.'))
