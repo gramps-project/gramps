@@ -173,30 +173,19 @@ class SourceView:
         source = self.parent.db.get_source_from_handle(handle)
 
         the_lists = Utils.get_source_referents(handle,self.parent.db)
-
-        used = the_lists[0] or the_lists[1] or the_lists[2] \
-                or the_lists[3] or the_lists[4] or the_lists[5]
-
         ans = EditSource.DelSrcQuery(source,self.parent.db,the_lists,
                                          self.model.delete_row_by_handle)
 
-        if used:
-            QuestionDialog(_('Delete %s?') % source.get_title(),
-                           _('This source is currently being used. Deleting it '
-                             'will remove it from the database and from all '
-                             'records that reference it. The data can only '
-                             'be recovered by Undo operation or by quitting '
-                             'with abandoning changes.'),
-                           _('_Delete Source'),
-                           ans.query_response,self.topWindow)
+        if filter(None,the_lists): # quick test for non-emptiness
+            msg = _('This source is currently being used. Deleting it '
+                    'will remove it from the database and from all '
+                    'records that reference it.')
         else:
-            QuestionDialog(_('Delete %s?') % source.get_title(),
-                           _('Deleting source will remove it from the '
-                           'database. The data can only be recovered by '
-                           'Undo operation or by quitting with abandoning '
-                           'changes.'),
-                           _('_Delete Source'),
-                           ans.query_response,self.topWindow)
+            msg = _('Deleting source will remove it from the database.')
+            
+        msg = "%s %s" % (msg,Utils.data_recover_msg)
+        QuestionDialog(_('Delete %s?') % source.get_title(), msg,
+                       _('_Delete Source'),ans.query_response,self.topWindow)
 
     def on_edit_clicked(self,obj):
         list_store, node = self.selection.get_selected()

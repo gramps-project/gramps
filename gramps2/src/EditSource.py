@@ -266,7 +266,7 @@ class EditSource:
 
         slist = self.top_window.get_widget('slist')
 
-        titles = [(_('Object Type'),0,150),(_('ID'),1,50),(_('Name'),2,150)]
+        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
         
         self.model = ListModel.ListModel(slist,titles)
 

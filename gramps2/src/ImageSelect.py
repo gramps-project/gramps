@@ -1106,59 +1106,46 @@ class GlobalMediaProperties:
             return
         self.refs = 1
 
-        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Value'),2,100)]
-        self.refmodel = ListModel.ListModel(self.change_dialog.get_widget("refinfo"),
-                                            titles,event_func=self.button_press)
-        any = 0
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Person"),
-                                       p.get_gramps_id(),
-                                       NameDisplay.displayer.display(p)])
-                    any = 1
-            for event_handle in p.get_event_list() + [p.get_birth_handle(),p.get_death_handle()]:
-                if event_handle:
-                    event = self.db.get_event_from_handle(event_handle)
-                    for o in event.get_media_list():
-                        if o.get_reference_handle() == self.obj.get_handle():
-                            self.refmodel.add([_("Personal event"),
-                                       "%s: %s" % (p.get_gramps_id(),event.get_gramps_id()),
-                                       "%s: %s" % (NameDisplay.displayer.display(p),
-                                                _(event.get_name()))])
-                            any = 1
-        for key in self.db.get_family_handles():
-            p = self.db.get_family_from_handle(key)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Family"),
-                                       p.get_gramps_id(),
-                                       Utils.family_name(p,self.db)])
-                    any = 1
-            for event_handle in p.get_event_list():
-                if event_handle:
-                    event = self.db.get_event_from_handle(event_handle)
-                    for o in event.get_media_list():
-                        if o.get_reference_handle() == self.obj.get_handle():
-                            self.refmodel.add([_("Family event"),
-                                        "%s: %s" % (p.get_gramps_id(),
-                                                    event.get_gramps_id()),
-                                        "%s: %s" % (Utils.family_name(p,self.db),
-                                                    _(event.get_name()))])
-                            any = 1
-        for key in self.db.get_source_handles():
-            p = self.db.get_source_from_handle(key)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Source"),p.get_gramps_id(),p.get_title()])
-                    any = 1
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(key)
-            for o in p.get_media_list():
-                if o.get_reference_handle() == self.obj.get_handle():
-                    self.refmodel.add([_("Place"),p.get_gramps_id(),p.get_title()])
-                    any = 1
+        (person_list,family_list,event_list,place_list,source_list
+            ) = Utils.get_media_referents(self.obj.get_handle(),self.db)
+
+        any = person_list or family_list or event_list or place_list or source_list
+
+        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Name'),2,150)]
+        self.refmodel = ListModel.ListModel(
+                                self.change_dialog.get_widget("refinfo"),
+                                titles,event_func=self.button_press)
+
+        for handle in person_list:
+            person = self.db.get_person_from_handle(handle)
+            name = NameDisplay.displayer.display(person)
+            gramps_id = person.get_gramps_id()
+            self.refmodel.add([_("Person"),gramps_id,name])
+
+        for handle in family_list:
+            family = self.db.get_family_from_handle(handle)
+            name = Utils.family_name(family,self.db)
+            gramps_id = family.get_gramps_id()
+            self.model.add([_("Family"),gramps_id,name])
+
+        for handle in event_list:
+            event = self.db.get_event_from_handle(handle)
+            name = event.get_name()
+            gramps_id = event.get_gramps_id()
+            self.model.add([_("Event"),gramps_id,name])
+
+        for handle in place_list:
+            place = self.db.get_place_from_handle(handle)
+            name = place.get_title()
+            gramps_id = place.get_gramps_id()
+            self.model.add([_("Place"),gramps_id,name])
+
+        for handle in source_list:
+            source = self.db.get_source_from_handle(handle)
+            name = source.get_title()
+            gramps_id = source.get_gramps_id()
+            self.model.add([_("Source"),gramps_id,name])
+
         if any:
             Utils.bold_label(self.refs_label)
         else:
@@ -1267,70 +1254,57 @@ class GlobalMediaProperties:
 
 class DeleteMediaQuery:
 
-    def __init__(self,media,db,update):
+    def __init__(self,media_handle,db,the_lists,update):
         self.db = db
-        self.media = media
+        self.media_handle = media_handle
+        self.the_lists = the_lists
         self.update = update
         
     def query_response(self):
         trans = self.db.transaction_begin()
         
-        for key in self.db.get_person_handles(sort_handles=False):
-            p = self.db.get_person_from_handle(key)
-            nl = []
-            change = 0
-            for photo in p.get_media_list():
-                if photo.get_reference_handle() != self.media.get_handle():
-                    nl.append(photo)
-                else:
-                    change = 1
-            if change:
-                p.set_media_list(nl)
-                self.db.commit_person(p,trans)
+        (person_list,family_list,event_list,
+                place_list,source_list) = self.the_lists
 
-        for fid in self.db.get_family_handles():
-            p = self.db.get_family_from_handle(fid)
-            nl = []
-            change = 0
-            for photo in p.get_media_list():
-                if photo.get_reference_handle() != self.media.get_handle():
-                    nl.append(photo)
-                else:
-                    change = 1
-            if change:
-                p.set_media_list(nl)
-                self.db.commit_family(p,trans)
+        for handle in person_list:
+            person = self.db.get_person_from_handle(handle)
+            new_list = [ photo for photo in person.get_media_list() \
+                        if photo.get_reference_handle() != self.media_handle ]
+            person.set_media_list(new_list)
+            self.db.commit_person(person,trans)
 
-        for key in self.db.get_source_handles():
-            sid = self.db.get_source_from_handle(key)
-            nl = []
-            change = 0
-            for photo in p.get_media_list():
-                if photo.get_reference_handle() != self.media.get_handle():
-                    nl.append(photo)
-                else:
-                    change = 1
-            if change:
-                p.set_media_list(nl)
-                self.db.commit_source(p,trans)
+        for handle in family_list:
+            family = self.db.get_family_from_handle(handle)
+            new_list = [ photo for photo in family.get_media_list() \
+                        if photo.get_reference_handle() != self.media_handle ]
+            family.set_media_list(new_list)
+            self.db.commit_family(family,trans)
 
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_from_handle(key)
-            nl = []
-            change = 0
-            for photo in p.get_media_list():
-                if photo.get_reference_handle() != self.media.get_handle():
-                    nl.append(photo)
-                else:
-                    change = 1
-            if change:
-                p.set_media_list(nl)
-                self.db.commit_place(p,trans)
+        for handle in event_list:
+            event = self.db.get_event_from_handle(handle)
+            new_list = [ photo for photo in event.get_media_list() \
+                        if photo.get_reference_handle() != self.media_handle ]
+            event.set_media_list(new_list)
+            self.db.commit_event(event,trans)
 
-        self.db.remove_object(self.media.get_handle(),trans)
+        for handle in place_list:
+            place = self.db.get_place_from_handle(handle)
+            new_list = [ photo for photo in place.get_media_list() \
+                        if photo.get_reference_handle() != self.media_handle ]
+            place.set_media_list(new_list)
+            self.db.commit_place(place,trans)
+
+        for handle in source_list:
+            source = self.db.get_source_from_handle(handle)
+            new_list = [ photo for photo in source.get_media_list() \
+                        if photo.get_reference_handle() != self.media_handle ]
+            source.set_media_list(new_list)
+            self.db.commit_source(source,trans)
+
+        self.db.remove_object(self.media_handle,trans)
         self.db.transaction_commit(trans,_("Remove Media Object"))
         if self.update:
-            self.update(self.media.get_handle())
+            self.update(self.media_handle)
 
 def build_dropdown(entry,strings):
     store = gtk.ListStore(str)
