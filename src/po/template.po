@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Thu Mar  6 19:16:10 2003\n"
+"POT-Creation-Date: Fri Mar  7 21:56:51 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -514,11 +514,11 @@ msgstr ""
 msgid "Remove Parents"
 msgstr ""
 
-#: FamilyView.py:590
+#: FamilyView.py:593
 msgid "Attempt to Reorder Children Failed"
 msgstr ""
 
-#: FamilyView.py:591
+#: FamilyView.py:594
 msgid "Children must be ordered by their birth dates."
 msgstr ""
 
@@ -1150,226 +1150,226 @@ msgstr ""
 msgid "First"
 msgstr ""
 
-#: Report.py:97
+#: Report.py:96
 msgid "Second"
 msgstr ""
 
-#: Report.py:98
-msgid "Third"
-msgstr ""
-
-#: Report.py:99
+#: Report.py:97
 msgid "Fourth"
 msgstr ""
 
-#: Report.py:100
+#: Report.py:97
+msgid "Third"
+msgstr ""
+
+#: Report.py:98
 msgid "Fifth"
 msgstr ""
 
-#: Report.py:101
+#: Report.py:98
 msgid "Sixth"
 msgstr ""
 
-#: Report.py:102
-msgid "Seventh"
-msgstr ""
-
-#: Report.py:103
+#: Report.py:99
 msgid "Eighth"
 msgstr ""
 
-#: Report.py:104
+#: Report.py:99
+msgid "Seventh"
+msgstr ""
+
+#: Report.py:100
 msgid "Ninth"
 msgstr ""
 
-#: Report.py:105
+#: Report.py:100
 msgid "Tenth"
 msgstr ""
 
-#: Report.py:106
+#: Report.py:101
 msgid "Eleventh"
 msgstr ""
 
-#: Report.py:107
+#: Report.py:101
 msgid "Twelfth"
 msgstr ""
 
-#: Report.py:108
-msgid "Thirteenth"
-msgstr ""
-
-#: Report.py:109
+#: Report.py:102
 msgid "Fourteenth"
 msgstr ""
 
-#: Report.py:110
+#: Report.py:102
+msgid "Thirteenth"
+msgstr ""
+
+#: Report.py:103
 msgid "Fifteenth"
 msgstr ""
 
-#: Report.py:111
+#: Report.py:103
 msgid "Sixteenth"
 msgstr ""
 
-#: Report.py:112
-msgid "Seventeenth"
-msgstr ""
-
-#: Report.py:113
+#: Report.py:104
 msgid "Eighteenth"
 msgstr ""
 
-#: Report.py:114
+#: Report.py:104
+msgid "Seventeenth"
+msgstr ""
+
+#: Report.py:105
 msgid "Nineteenth"
 msgstr ""
 
-#: Report.py:115
+#: Report.py:105
 msgid "Twentieth"
 msgstr ""
 
-#: Report.py:116
+#: Report.py:106
 msgid "Twenty-first"
 msgstr ""
 
-#: Report.py:117
+#: Report.py:106
 msgid "Twenty-second"
 msgstr ""
 
-#: Report.py:118
-msgid "Twenty-third"
-msgstr ""
-
-#: Report.py:119
+#: Report.py:107
 msgid "Twenty-fourth"
 msgstr ""
 
-#: Report.py:120
+#: Report.py:107
+msgid "Twenty-third"
+msgstr ""
+
+#: Report.py:108
 msgid "Twenty-fifth"
 msgstr ""
 
-#: Report.py:121
+#: Report.py:108
 msgid "Twenty-sixth"
 msgstr ""
 
-#: Report.py:122
-msgid "Twenty-seventh"
-msgstr ""
-
-#: Report.py:123
+#: Report.py:109
 msgid "Twenty-eighth"
 msgstr ""
 
-#: Report.py:124
+#: Report.py:109
+msgid "Twenty-seventh"
+msgstr ""
+
+#: Report.py:110
 msgid "Twenty-ninth"
 msgstr ""
 
-#: Report.py:130
-msgid "Progress Report - GRAMPS"
+#: Report.py:116
+msgid "Progress Report"
 msgstr ""
 
-#: Report.py:130
+#: Report.py:116
 msgid "Working"
 msgstr ""
 
-#: Report.py:265
-msgid "Save Report As - GRAMPS"
+#: Report.py:255
+msgid "Save Report As"
 msgstr ""
 
-#: Report.py:490
+#: Report.py:480
 msgid "Document Options"
 msgstr ""
 
-#: Report.py:500
+#: Report.py:490
 msgid "Save As"
 msgstr ""
 
-#: Report.py:504
+#: Report.py:494
 msgid "Directory"
 msgstr ""
 
-#: Report.py:506
+#: Report.py:496
 msgid "Filename"
 msgstr ""
 
-#: Report.py:526
+#: Report.py:516
 msgid "Output Format"
 msgstr ""
 
-#: Report.py:540
+#: Report.py:530
 msgid "Styles"
 msgstr ""
 
-#: Report.py:545 StyleEditor.py:80
+#: Report.py:535 StyleEditor.py:80
 msgid "Style Editor"
 msgstr ""
 
-#: Report.py:604 Report.py:606
+#: Report.py:594 Report.py:596
 msgid "Paper Options"
 msgstr ""
 
-#: Report.py:615
+#: Report.py:605
 msgid "Size"
 msgstr ""
 
-#: Report.py:620
+#: Report.py:610
 msgid "Height"
 msgstr ""
 
-#: Report.py:628 Report.py:644 styles.glade:829 styles.glade:853
-#: styles.glade:877
+#: Report.py:618 Report.py:634 styles.glade:903 styles.glade:927
+#: styles.glade:951
 msgid "cm"
 msgstr ""
 
-#: Report.py:632
+#: Report.py:622
 msgid "Orientation"
 msgstr ""
 
-#: Report.py:636
+#: Report.py:626
 msgid "Width"
 msgstr ""
 
-#: Report.py:656
+#: Report.py:646
 msgid "Page Count"
 msgstr ""
 
-#: Report.py:680 Report.py:685
+#: Report.py:670 Report.py:675
 msgid "HTML Options"
 msgstr ""
 
-#: Report.py:687 plugins/eventcmp.glade:192
+#: Report.py:677 plugins/eventcmp.glade:192
 msgid "Template"
 msgstr ""
 
-#: Report.py:706
+#: Report.py:696
 msgid "User Template"
 msgstr ""
 
-#: Report.py:709
+#: Report.py:699
 msgid "Choose File"
 msgstr ""
 
-#: Report.py:748
+#: Report.py:738
 msgid "Report Options"
 msgstr ""
 
-#: Report.py:766 gramps.glade:245 gramps.glade:976 plugins/FilterEditor.py:70
+#: Report.py:756 gramps.glade:245 gramps.glade:976 plugins/FilterEditor.py:70
 #: plugins/eventcmp.glade:522 plugins/gedcomexport.glade:157
 #: plugins/pafexport.glade:127
 msgid "Filter"
 msgstr ""
 
-#: Report.py:783
+#: Report.py:773
 msgid "Generations"
 msgstr ""
 
-#: Report.py:790
+#: Report.py:780
 msgid "Page break between generations"
 msgstr ""
 
-#: Report.py:879
+#: Report.py:869
 msgid "Invalid file name"
 msgstr ""
 
-#: Report.py:880
+#: Report.py:870
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
@@ -1416,12 +1416,16 @@ msgstr ""
 msgid "Error saving stylesheet"
 msgstr ""
 
-#: StyleEditor.py:175
+#: StyleEditor.py:177
 msgid "Style editor"
 msgstr ""
 
-#: StyleEditor.py:179
+#: StyleEditor.py:181
 msgid "Paragraph"
+msgstr ""
+
+#: StyleEditor.py:207
+msgid "No description available"
 msgstr ""
 
 #: Utils.py:176
@@ -3340,7 +3344,7 @@ msgstr ""
 #: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:562
 #: plugins/FullFamily.py:171 plugins/GraphViz.py:447
 #: plugins/IndivComplete.py:663 plugins/IndivSummary.py:496
-#: plugins/Summary.py:146 plugins/TimeLine.py:447 plugins/WebPage.py:1251
+#: plugins/Summary.py:146 plugins/TimeLine.py:447 plugins/WebPage.py:1269
 msgid "Beta"
 msgstr ""
 
@@ -4770,11 +4774,11 @@ msgstr ""
 msgid "GRAMPS ID link URL"
 msgstr ""
 
-#: plugins/WebPage.py:897 plugins/WebPage.py:1249
+#: plugins/WebPage.py:897 plugins/WebPage.py:1267
 msgid "Generate Web Site"
 msgstr ""
 
-#: plugins/WebPage.py:897 plugins/WebPage.py:1250
+#: plugins/WebPage.py:897 plugins/WebPage.py:1268
 msgid "Web Page"
 msgstr ""
 
@@ -4790,7 +4794,67 @@ msgstr ""
 msgid "Descendant Families of %s"
 msgstr ""
 
-#: plugins/WebPage.py:1252
+#: plugins/WebPage.py:961
+msgid "The style used for the title of the page."
+msgstr ""
+
+#: plugins/WebPage.py:969
+msgid "The style used for the header that identifies facts and events."
+msgstr ""
+
+#: plugins/WebPage.py:977
+msgid "The style used for the header for the notes section."
+msgstr ""
+
+#: plugins/WebPage.py:984
+msgid "The style used for the copyright notice."
+msgstr ""
+
+#: plugins/WebPage.py:991
+msgid "The style used for the header for the sources section."
+msgstr ""
+
+#: plugins/WebPage.py:998
+msgid "The style used on the index page that labels each section."
+msgstr ""
+
+#: plugins/WebPage.py:1005
+msgid "The style used for the header for the image section."
+msgstr ""
+
+#: plugins/WebPage.py:1012
+msgid "The style used for the header for the marriages and children section."
+msgstr ""
+
+#: plugins/WebPage.py:1020
+msgid "The style used for the spouse's name."
+msgstr ""
+
+#: plugins/WebPage.py:1027
+msgid "The style used for the general data labels."
+msgstr ""
+
+#: plugins/WebPage.py:1034
+msgid "The style used for the general data."
+msgstr ""
+
+#: plugins/WebPage.py:1041
+msgid "The style used for the description of images."
+msgstr ""
+
+#: plugins/WebPage.py:1048
+msgid "The style used for the notes associated with images."
+msgstr ""
+
+#: plugins/WebPage.py:1055
+msgid "The style used for the source information."
+msgstr ""
+
+#: plugins/WebPage.py:1062
+msgid "The style used for the note information."
+msgstr ""
+
+#: plugins/WebPage.py:1270
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr ""
 
@@ -5558,115 +5622,119 @@ msgstr ""
 msgid "Style _name:"
 msgstr ""
 
-#: styles.glade:401
+#: styles.glade:446
+msgid "<b>Description</b>"
+msgstr ""
+
+#: styles.glade:475
 msgid "pt"
 msgstr ""
 
-#: styles.glade:428 styles.glade:730
+#: styles.glade:502 styles.glade:804
 msgid "Pick a color"
 msgstr ""
 
-#: styles.glade:466
+#: styles.glade:540
 msgid "_Bold"
 msgstr ""
 
-#: styles.glade:487
+#: styles.glade:561
 msgid "_Italic"
 msgstr ""
 
-#: styles.glade:508
+#: styles.glade:582
 msgid "_Underline"
 msgstr ""
 
-#: styles.glade:528
+#: styles.glade:602
 msgid "<b>Type face</b>"
 msgstr ""
 
-#: styles.glade:552
+#: styles.glade:626
 msgid "<b>Size</b>"
 msgstr ""
 
-#: styles.glade:576
+#: styles.glade:650
 msgid "<b>Color</b>"
 msgstr ""
 
-#: styles.glade:600
+#: styles.glade:674
 msgid "<b>Options</b>"
 msgstr ""
 
-#: styles.glade:650
+#: styles.glade:724
 msgid "_Roman (Times, serif)"
 msgstr ""
 
-#: styles.glade:671
+#: styles.glade:745
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr ""
 
-#: styles.glade:698
+#: styles.glade:772
 msgid "<b>Font options</b>"
 msgstr ""
 
-#: styles.glade:745
+#: styles.glade:819
 msgid "R_ight:"
 msgstr ""
 
-#: styles.glade:773
+#: styles.glade:847
 msgid "L_eft:"
 msgstr ""
 
-#: styles.glade:801
+#: styles.glade:875
 msgid "_Padding:"
 msgstr ""
 
-#: styles.glade:965
+#: styles.glade:1039
 msgid "_Left"
 msgstr ""
 
-#: styles.glade:986
+#: styles.glade:1060
 msgid "Le_ft"
 msgstr ""
 
-#: styles.glade:1007
+#: styles.glade:1081
 msgid "_Right"
 msgstr ""
 
-#: styles.glade:1029
+#: styles.glade:1103
 msgid "_Justify"
 msgstr ""
 
-#: styles.glade:1051
+#: styles.glade:1125
 msgid "_Center"
 msgstr ""
 
-#: styles.glade:1073
+#: styles.glade:1147
 msgid "Ri_ght"
 msgstr ""
 
-#: styles.glade:1094
+#: styles.glade:1168
 msgid "_Bottom"
 msgstr ""
 
-#: styles.glade:1115
+#: styles.glade:1189
 msgid "_Top"
 msgstr ""
 
-#: styles.glade:1135
-msgid "<b>Alignment</b>"
-msgstr ""
-
-#: styles.glade:1158
+#: styles.glade:1209
 msgid "<b>Background</b>"
 msgstr ""
 
-#: styles.glade:1182
+#: styles.glade:1233
 msgid "<b>Margins</b>"
 msgstr ""
 
-#: styles.glade:1206
+#: styles.glade:1257
 msgid "<b>Borders</b>"
 msgstr ""
 
-#: styles.glade:1261
+#: styles.glade:1306
+msgid "<b>Alignment</b>"
+msgstr ""
+
+#: styles.glade:1336
 msgid "<b>Paragraph options</b>"
 msgstr ""
 

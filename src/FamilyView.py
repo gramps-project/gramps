@@ -423,7 +423,7 @@ class FamilyView:
         i = 0
         fiter = None
         child_list = list(family.getChildList())
-        child_list.sort(sort.by_birthdate)
+#        child_list.sort(sort.by_birthdate)
 
         self.child_map = {}
 
@@ -573,25 +573,28 @@ class FamilyView:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
+
             if mytype != 'child':
                 return
 
             s,i = self.child_selection.get_selected()
             if not i:
                 return
+
             spath = s.get_path(i)
             src = spath[0] 
             list = self.family.getChildList()
+
             obj = list[src]
             list.remove(obj)
             list.insert(row,obj)
-
+            
             if (birth_dates_in_order(list) == 0):
                 WarningDialog(_("Attempt to Reorder Children Failed"),
                               _("Children must be ordered by their birth dates."))
                 return
             self.family.setChildList(list)
-            self.load_family()
+            self.display_marriage(self.family)
             Utils.modified()
             
     def drag_data_get(self,widget, context, sel_data, info, time):
@@ -601,8 +604,7 @@ class FamilyView:
         id = self.child_model.get_value(iter,2)
         person = self.parent.db.getPerson(id)
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(person);
-        data = str(('child',id,pickled));
+        data = str(('child',id));
         sel_data.set(sel_data.target, bits_per, data)
 
     def drag_begin(self, context, a):

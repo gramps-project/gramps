@@ -93,41 +93,27 @@ class Report:
 
     # Ordinal generation names.  Used by multiple reports.
     gen = {
-        1 : _("First"),
-        2 : _("Second"),
-        3 : _("Third"),
-        4 : _("Fourth"),
-        5 : _("Fifth"),
-        6 : _("Sixth"),
-        7 : _("Seventh"),
-        8 : _("Eighth"),
-        9 : _("Ninth"),
-        10: _("Tenth"),
-        11: _("Eleventh"),
-        12: _("Twelfth"),
-        13: _("Thirteenth"),
-        14: _("Fourteenth"),
-        15: _("Fifteenth"),
-        16: _("Sixteenth"),
-        17: _("Seventeenth"),
-        18: _("Eighteenth"),
-        19: _("Nineteenth"),
-        20: _("Twentieth"),
-        21: _("Twenty-first"),
-        22: _("Twenty-second"),
-        23: _("Twenty-third"),
-        24: _("Twenty-fourth"),
-        25: _("Twenty-fifth"),
-        26: _("Twenty-sixth"),
-        27: _("Twenty-seventh"),
-        28: _("Twenty-eighth"),
+        1 : _("First"),          2 : _("Second"),
+        3 : _("Third"),          4 : _("Fourth"),
+        5 : _("Fifth"),          6 : _("Sixth"),
+        7 : _("Seventh"),        8 : _("Eighth"),
+        9 : _("Ninth"),          10: _("Tenth"),
+        11: _("Eleventh"),       12: _("Twelfth"),
+        13: _("Thirteenth"),     14: _("Fourteenth"),
+        15: _("Fifteenth"),      16: _("Sixteenth"),
+        17: _("Seventeenth"),    18: _("Eighteenth"),
+        19: _("Nineteenth"),     20: _("Twentieth"),
+        21: _("Twenty-first"),   22: _("Twenty-second"),
+        23: _("Twenty-third"),   24: _("Twenty-fourth"),
+        25: _("Twenty-fifth"),   26: _("Twenty-sixth"),
+        27: _("Twenty-seventh"), 28: _("Twenty-eighth"),
         29: _("Twenty-ninth")
         }
 
     def get_progressbar_data(self):
         """The window title for this dialog, and the header line to
         put at the top of the contents of the dialog box."""
-        return (_("Progress Report - GRAMPS"), _("Working"))
+        return ("%s - GRAMPS" % _("Progress Report"), _("Working"))
 
     def progress_bar_setup(self,total):
         """Create a progress dialog.  This routine calls a
@@ -158,7 +144,11 @@ class Report:
         self.pbar_index = self.pbar_index + 1.0
         if (self.pbar_index > self.pbar_max):
             self.pbar_index = self.pbar_max
-        self.pbar.set_fraction(self.pbar_index/100.0)
+
+        val = self.pbar_index/self.pbar_max
+        
+        self.pbar.set_text("%d of %d (%.1f%%)" % (self.pbar_index,self.pbar_max,(val*100)))
+        self.pbar.set_fraction(val)
 
     def progress_bar_done(self):
         """Done with the progress bar.  It can be destroyed now."""
@@ -262,7 +252,7 @@ class ReportDialog:
         """The title of the window that will be created when the user
         clicks the 'Browse' button in the 'Save As' File Entry
         widget."""
-        return(_("Save Report As - GRAMPS"))
+        return("%s - GRAMPS" % _("Save Report As"))
 
     def get_target_is_directory(self):
         """Is the user being asked to input the name of a file or a

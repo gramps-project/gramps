@@ -171,7 +171,9 @@ class StyleEditor:
             })
 
         self.window = self.top.get_widget("editor")
-
+        self.pname = self.top.get_widget('pname')
+        self.pdescription = self.top.get_widget('pdescription')
+        
         Utils.set_titles(self.window, self.top.get_widget('title'),_('Style editor'))
 
         self.first = 1
@@ -184,14 +186,26 @@ class StyleEditor:
         self.top.get_widget('bgcolor').connect('color-set',self.bg_color_set)
         self.top.get_widget("style_name").set_text(name)
 
-        for p_name in self.style.get_names():
+        names = self.style.get_names()
+        names.reverse()
+        for p_name in names:
             self.plist.add([p_name],self.style.get_style(p_name))
         self.plist.select_row(0)
 
-    def draw(self,p):
+    def draw(self,name,p):
         """Updates the display with the selected paragraph."""
         
         self.current_p = p
+
+        self.pname.set_text('<span size="larger" weight="bold">%s</span>' % name)
+        self.pname.set_use_markup(gtk.TRUE)
+
+        descr = p.get_description()
+        if descr:
+            self.pdescription.set_text(descr)
+        else:
+            self.pdescription.set_text(_("No description available"))
+        
         font = p.get_font()
         self.top.get_widget("size").set_value(font.get_size())
         if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
@@ -284,9 +298,11 @@ class StyleEditor:
         old paragraph, then draws the newly selected paragraph"""
 
         objs = self.plist.get_selected_objects()
+        store,iter = self.plist.get_selected()
+        name = store.get_value(iter,0)
         if self.first == 0:
             self.save_paragraph(self.current_p)
         else:
             self.first = 0
         self.current_p = objs[0]
-        self.draw(self.current_p)
+        self.draw(name,self.current_p)
