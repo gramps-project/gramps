@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Thu Apr 10 14:37:48 2003\n"
+"POT-Creation-Date: Thu Apr 10 20:17:42 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2222,7 +2222,7 @@ msgid "The surname or last name"
 msgstr ""
 
 #: edit_person.glade:495
-msgid "An optional prefix for the surname that is not used in sorting, such as \"de\" or \"van\""
+msgid "An optional prefix for the family name that is not used in sorting, such as \"de\" or \"van\""
 msgstr ""
 
 #: edit_person.glade:517

@@ -492,7 +492,7 @@
 		      <child>
 			<widget class="GtkEntry" id="prefix">
 			  <property name="visible">True</property>
-			  <property name="tooltip" translatable="yes">An optional prefix for the surname that is not used in sorting, such as &quot;de&quot; or &quot;van&quot;</property>
+			  <property name="tooltip" translatable="yes">An optional prefix for the family name that is not used in sorting, such as &quot;de&quot; or &quot;van&quot;</property>
 			  <property name="can_focus">True</property>
 			  <property name="editable">True</property>
 			  <property name="visibility">True</property>
