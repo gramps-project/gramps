@@ -1,16 +1,20 @@
 # Dutch translation of GRAMPS
 # Copyright (C) 2003 The Free Software Foundation,  Inc.
 # Tino Meinen <a.t.meinen@chello.nl>, 2003.
-# -----------------
+# -------------------------------------------------
 # Conventies (kan later altijd nog aangepast worden)
+# -------------------------------------------------
+# active - actief (moet hier nog iets beters voor verzinnen)
+# city - plaats
 # people - personen
 # place - locatie
+# record - archief
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS 0.9 CVS\n"
 "POT-Creation-Date: Fri Mar  7 22:49:58 2003\n"
-"PO-Revision-Date: 2003-03-15 14:09+0100\n"
+"PO-Revision-Date: 2003-03-20 17:05+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
@@ -90,9 +94,10 @@ msgstr "ong\\.?"
 msgid "about"
 msgstr "ongeveer"
 
+# schatting afkorting?
 #: Calendar.py:53
 msgid "est\\.?"
-msgstr ""
+msgstr "sch\\.?"
 
 #: Calendar.py:54 Calendar.py:115
 msgid "circa"
@@ -176,11 +181,11 @@ msgstr "ong."
 
 #: Calendar.py:114
 msgid "est"
-msgstr ""
+msgstr "sch"
 
 #: Calendar.py:115
 msgid "est."
-msgstr ""
+msgstr "sch."
 
 #: Calendar.py:117
 msgid "bef"
@@ -248,7 +253,7 @@ msgstr "Ouders aanpassen"
 
 #: Date.py:76
 msgid "(from|between|bet|bet.)"
-msgstr ""
+msgstr "(van|tussen|tus|tus.)"
 
 #: Date.py:77
 msgid "(and|to|-)"
@@ -391,19 +396,19 @@ msgstr ""
 msgid "Place Editor"
 msgstr "Locatie-editor"
 
-# Plaats
+# stad
 #: EditPlace.py:119 PlaceView.py:50
 msgid "City"
-msgstr "Stad"
+msgstr "Plaats"
 
 #: EditPlace.py:119 PlaceView.py:51
 msgid "County"
 msgstr "Graafschap"
 
-# Staat
+# Provincie
 #: EditPlace.py:120 PlaceView.py:52
 msgid "State"
-msgstr "Provincie"
+msgstr "Staat"
 
 #: EditPlace.py:120 PlaceView.py:53
 msgid "Country"
@@ -666,7 +671,7 @@ msgstr "Titel:"
 # naam filteren of filternaam
 #: GenericFilter.py:575
 msgid "Filter name:"
-msgstr ""
+msgstr "Filternaam:"
 
 #: GenericFilter.py:716
 msgid "Everyone"
@@ -849,9 +854,10 @@ msgstr "GRAMPS interne IDs"
 msgid "Revision Control"
 msgstr "Revisie-beheer"
 
+# De weergave van Datums en kalenders, werkbalk en statusbalk.
 #: GrampsCfg.py:100
 msgid "Display"
-msgstr ""
+msgstr "Weergave"
 
 #: GrampsCfg.py:102
 msgid "Dates and Calendars"
@@ -926,13 +932,14 @@ msgstr "Object-eigenschappen bewerken"
 msgid "Convert to local copy"
 msgstr "Omzetten naar locale kopie"
 
+# Gaat het om de local properties of de local object
 #: ImageSelect.py:607
 msgid "Change local media object properties"
-msgstr ""
+msgstr "Eigenschappen van lokaal media-object aanpassen"
 
 #: ImageSelect.py:727
 msgid "Change global media object properites"
-msgstr ""
+msgstr "Eigenschappen van algemeen media-object aanpassen"
 
 #: ImageSelect.py:831 plugins/EventCmp.py:288
 msgid "Person"
@@ -993,7 +1000,7 @@ msgstr "Media-object verwijderen?"
 msgid ""
 "This media object is currently being used. If you delete this object, it will "
 "be removed from the database and from all records that reference it."
-msgstr ""
+msgstr "Dit mediaobject wordt momenteel gebruikt. Als u dit object verwijdert zal het uit de database worden gehaald en uit alle archieven die er naar verwijzen."
 
 #: MergeData.py:65
 msgid "Merge Places"
@@ -1013,11 +1020,11 @@ msgstr "Personen samenvoegen"
 
 #: NameEdit.py:78
 msgid "Alternate Name Editor for %s"
-msgstr ""
+msgstr "Alternatieve naam-editor voor %s"
 
 #: NameEdit.py:80
 msgid "Alternate Name Editor"
-msgstr ""
+msgstr "Alternatieve naam-editor"
 
 #: NoteEdit.py:50 NoteEdit.py:57
 msgid "Edit Note"
@@ -1033,11 +1040,11 @@ msgstr "Landschap"
 
 #: PaperMenu.py:126 PaperMenu.py:138
 msgid "Custom Size"
-msgstr ""
+msgstr "Aangepast formaat"
 
 #: PedView.py:370
 msgid "Double clicking will make %s the active person"
-msgstr ""
+msgstr "Dubbelklikken om van %s de actieve persoon te maken"
 
 # Plaatsnaam
 #: PlaceView.py:47
@@ -1065,7 +1072,7 @@ msgid ""
 "This place is currently being used at least one record in the database. "
 "Deleting it will remove it from the database and remove it from all records "
 "the reference it."
-msgstr ""
+msgstr "Deze locatie wordt momenteel in tenminste een archief in de database gebruikt. Als u het verwijdert zal het uit de database worden gehaald en uit alle archieven die ernaar verwijzen."
 
 #: PlaceView.py:196
 msgid "Delete Place"
@@ -1374,10 +1381,9 @@ msgstr "Oriëntatie"
 msgid "Width"
 msgstr "Breedte"
 
-# paginatelling
 #: Report.py:646
 msgid "Page Count"
-msgstr "Bladzijde"
+msgstr "Paginatelling"
 
 #: Report.py:670 Report.py:675
 msgid "HTML Options"
@@ -1455,7 +1461,7 @@ msgstr "Bron verwijderen"
 
 #: Sources.py:59
 msgid "Source Reference Selection"
-msgstr ""
+msgstr "Bronverwijzing-selectie"
 
 #: Sources.py:218
 msgid "Source Information"
@@ -1467,7 +1473,7 @@ msgstr "Documentstijlen"
 
 #: StyleEditor.py:116
 msgid "Error saving stylesheet"
-msgstr ""
+msgstr "Fout bij opslaan stylesheet"
 
 #: StyleEditor.py:177
 msgid "Style editor"
@@ -1571,6 +1577,9 @@ msgid ""
 "needs to be entered. If you do not plan to generate GEDCOM \n"
 "files, you may leave it blank."
 msgstr ""
+"Om geldige GEDCOM-bestanden te kunnen aanmaken moet de volgende\n"
+"informatie ingevoerd worden. Als u niet van plan bent\n"
+"GEDCOM-bestanden te genereren kunt u het leeg laten."
 
 #: config.glade:103 edit_person.glade:1234 edit_person.glade:2014
 #: edit_person.glade:2498 edit_person.glade:2904 gramps.glade:5558
@@ -1583,10 +1592,10 @@ msgstr "Naam:"
 msgid "Address:"
 msgstr "Adres:"
 
-# Plaats
+# Stad
 #: config.glade:151 places.glade:602
 msgid "City:"
-msgstr "Stad"
+msgstr "Plaats:"
 
 #: config.glade:175 edit_person.glade:2976
 msgid "State/Province:"
@@ -1648,6 +1657,11 @@ msgid ""
 "need one or\n"
 "more of these alternate calendars, enable alternate calendar support."
 msgstr ""
+"Standaard gebruiken alle datums in GRAMPS de Gregoriaanse kalender. Dit \n"
+"is normaliter voldoende voor de meeste gebruikers. Ondersteuning voor \n"
+"Juliaanse, Franse Republiek en Hebreeuwse kalenders kan worden aangezet.\n"
+"Als u denkt dat u behoefte heeft aan een of meer van deze alternatieve\n"
+"kalenders, kunt u alternatieve kalender-ondersteuning aanzetten."
 
 # Moet het in het engels niet alternative zijn?
 # gebruiken ipc aanzetten?
@@ -1687,6 +1701,13 @@ msgid ""
 "\n"
 "Please enjoy using GRAMPS."
 msgstr ""
+"GRAMPS is een 'Open Bron' project. Het succes \n"
+"hang af van de gebruikers. Feedback van gebruikers is\n"
+"belangrijk. Abonnert u zich op de mailinglijsten,\n"
+"rapporteer fouten, stel verbeteringen voor, en kijk\n"
+"hoe u kunt bijdragen.\n"
+"\n"
+"Veel plezier met het gebruik van GRAMPS."
 
 #: const.py:106
 msgid ""
@@ -1721,11 +1742,11 @@ msgstr "Gesponsord"
 msgid "Foster"
 msgstr "Pleegouder"
 
-# Overig
+# tablabel voor de beginletters van de namen (de overige dan)
 #: const.py:160 const.py:435 const.py:443 gramps.glade:1170
 #: mergedata.glade:218
 msgid "Other"
-msgstr "Anders"
+msgstr "Overige"
 
 #: const.py:169 srcsel.glade:493
 msgid "Very Low"
@@ -1784,11 +1805,11 @@ msgstr "Huwelijk"
 
 #: const.py:274
 msgid "Alternate Birth"
-msgstr ""
+msgstr "Alternatieve geboorte"
 
 #: const.py:275
 msgid "Alternate Death"
-msgstr ""
+msgstr "Alternatieve dood"
 
 # Doping
 #: const.py:276
@@ -1829,6 +1850,7 @@ msgstr "Volkstelling"
 msgid "Christening"
 msgstr "Doop"
 
+# het heilig vormsel toedienen, Vormen
 # Bevestiging
 #: const.py:285
 msgid "Confirmation"
@@ -1921,7 +1943,7 @@ msgstr "Testament"
 
 #: const.py:352
 msgid "Caste"
-msgstr ""
+msgstr "Kaste"
 
 #: const.py:354
 msgid "Identification Number"
@@ -1941,11 +1963,11 @@ msgstr "Aantal kinderen"
 
 #: const.py:431
 msgid "A legal or common-law relationship between a husband and wife"
-msgstr ""
+msgstr "Een wettelijke of gewoonterecht-relatie tussen man en vrouw"
 
 #: const.py:432
 msgid "No legal or common-law relationship between man and woman"
-msgstr ""
+msgstr "Geen wettelijke of gewoonterecht-relatie tussen man en vrouw"
 
 #: const.py:432 const.py:440
 msgid "Unmarried"
@@ -1953,23 +1975,23 @@ msgstr "Ongetrouwd"
 
 #: const.py:433
 msgid "An established relationship between members of the same sex"
-msgstr ""
+msgstr "Een gevestigde relatie tussen leden van hetzelfde geslacht"
 
 #: const.py:434
 msgid "Unknown relationship between a man and woman"
-msgstr ""
+msgstr "Onbekende relatie tussen een man en een vrouw"
 
 #: const.py:435
 msgid "An unspecified relationship between a man and woman"
-msgstr ""
+msgstr "Een ongespecificeerde relatie tussen een man en een vrouw"
 
 #: const.py:459
 msgid "No definition available"
-msgstr ""
+msgstr "Geen definitie beschikbaar"
 
 #: const.py:900
 msgid "Also Known As"
-msgstr ""
+msgstr "Ook bekend als"
 
 #: const.py:901
 msgid "Birth Name"
@@ -2014,7 +2036,7 @@ msgstr "_Oorzaak:"
 
 #: dialog.glade:259 dialog.glade:2053
 msgid "Selects the calendar format for display"
-msgstr ""
+msgstr "Selecteerd het kalenderformaat voor weergave"
 
 #: dialog.glade:294 dialog.glade:2088
 msgid "French"
@@ -2023,7 +2045,7 @@ msgstr "Frans"
 #: dialog.glade:478 dialog.glade:1055 dialog.glade:2034 dialog.glade:2654
 #: imagesel.glade:578
 msgid "_Private record"
-msgstr ""
+msgstr "_Persoonlijk archief"
 
 #: dialog.glade:504 dialog.glade:1164 dialog.glade:2258 dialog.glade:3296
 #: edit_person.glade:1193 gramps.glade:4675 imagesel.glade:1560
@@ -2067,7 +2089,7 @@ msgstr "Verwij_deren"
 #: dialog.glade:652 dialog.glade:1312 dialog.glade:2406 dialog.glade:3445
 #: gramps.glade:2021 places.glade:1182
 msgid "<b>Sources</b>"
-msgstr "<b>Bronne</b>"
+msgstr "<b>Bronnen</b>"
 
 #: dialog.glade:706 dialog.glade:1364 dialog.glade:2459 dialog.glade:3498
 #: gramps.glade:4726 places.glade:1034
@@ -2099,6 +2121,7 @@ msgstr "_Graafschap:"
 msgid "Cou_ntry:"
 msgstr "_Land:"
 
+# Provincie
 #: dialog.glade:1579 places.glade:175
 msgid "_State:"
 msgstr "_Staat:"
@@ -2114,11 +2137,11 @@ msgstr "Accepteren en sluiten"
 
 #: dialog.glade:1921
 msgid "_City/County:"
-msgstr ""
+msgstr "_Plaats/Graafschap:"
 
 #: dialog.glade:1949
 msgid "_State/Province"
-msgstr ""
+msgstr "_Staat/Provincie"
 
 #: dialog.glade:2005 preferences.glade:1510
 msgid "_ZIP/Postal code:"
@@ -2132,21 +2155,23 @@ msgstr "_Web-adres:"
 msgid "_Description:"
 msgstr "_Beschrijving:"
 
+# aanpassingen
 #: dialog.glade:2764 gramps.glade:4433 marriage.glade:34
 msgid "Reject changes and close"
-msgstr ""
+msgstr "Veranderingen verwerpen en sluiten"
 
 #: dialog.glade:2850 edit_person.glade:130
 msgid "_Given name:"
-msgstr ""
+msgstr "_Voornaam:"
 
 #: dialog.glade:2878 edit_person.glade:155
 msgid "_Family name:"
-msgstr ""
+msgstr "_Achternaam:"
 
+# Achtervoegsel
 #: dialog.glade:2906 edit_person.glade:205
 msgid "Suffi_x:"
-msgstr ""
+msgstr "Suffi_x:"
 
 #: dialog.glade:2934
 msgid "T_ype:"
@@ -2159,27 +2184,27 @@ msgstr "_Titel:"
 
 #: dialog.glade:2991
 msgid "P_rivate record"
-msgstr ""
+msgstr "Pe_rsoonlijk archief"
 
 #: dialog.glade:3011 edit_person.glade:180
 msgid "Family _prefix:"
-msgstr ""
+msgstr "T_ussenvoegsel:"
 
 #: dialog.glade:3627 preferences.glade:2380
 msgid "_Person:"
-msgstr ""
+msgstr "_Persoon:"
 
 #: dialog.glade:3655 rule.glade:132
 msgid "_Comment:"
-msgstr ""
+msgstr "_Opmerking:"
 
 #: dialog.glade:3748
 msgid "Person is in the _database"
-msgstr ""
+msgstr "Persoon bevindt zich in de _database"
 
 #: dialog.glade:3771 edit_person.glade:881
 msgid "_ID:"
-msgstr ""
+msgstr "_ID:"
 
 #: docgen/AbiWordDoc.py:321
 msgid "AbiWord"
@@ -2187,13 +2212,15 @@ msgstr "AbiWord"
 
 #: docgen/HtmlDoc.py:155 docgen/HtmlDoc.py:180
 msgid "The marker '<!-- START -->' was not in the template"
-msgstr ""
+msgstr "De markering '<!-- START -->' stond niet in het sjabloon"
 
 #: docgen/HtmlDoc.py:191 docgen/HtmlDoc.py:198
 msgid ""
 "Could not open %s\n"
 "Using the default template"
 msgstr ""
+"Kon %s niet openen\n"
+"Zal het standaard sjabloon gebruiken"
 
 #: docgen/HtmlDoc.py:414 plugins/eventcmp.glade:164
 msgid "HTML"
@@ -2222,7 +2249,7 @@ msgstr "PostScript"
 
 #: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:36
 msgid "The ReportLab modules are not installed"
-msgstr ""
+msgstr "De ReportLab-modules zijn niet geïnstalleerd"
 
 #: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:217
 msgid "PDF"
@@ -2238,11 +2265,11 @@ msgstr "SVG (Scalable Vector Graphics)"
 
 #: edit_person.glade:34
 msgid "Abandon changes and close window"
-msgstr ""
+msgstr "Veranderingen annuleren en venster sluiten"
 
 #: edit_person.glade:48
 msgid "Accept changes and close dialog"
-msgstr ""
+msgstr "Veranderingen accepteren en dialoog sluiten"
 
 #: edit_person.glade:255
 msgid "_Nickname:"
@@ -2270,16 +2297,16 @@ msgstr "Bron..."
 
 #: edit_person.glade:413
 msgid "Enter/modify notes regarding this name"
-msgstr ""
+msgstr "Opmerkingen betreffende deze naam invoeren/aanpassen"
 
 #: edit_person.glade:415 edit_person.glade:4211 edit_person.glade:4461
 #: edit_person.glade:4686 marriage.glade:1708
 msgid "Note..."
-msgstr ""
+msgstr "Opmerking..."
 
 #: edit_person.glade:433
 msgid "The person's given name"
-msgstr ""
+msgstr "De voornaam van de persoon"
 
 #: edit_person.glade:465
 msgid "The surname or last name"
@@ -2289,15 +2316,15 @@ msgstr "De achternaam"
 msgid ""
 "An optional prefix for the surname that is not used in sorting, such as "
 "\"de\" or \"van\""
-msgstr "Een facultatief voorvoegsel (prefix) voor de achternaam dat niet wordt gebruikt bij het sorteren zoals \"de\" of \"van\""
+msgstr "Tussenvoegsel (prefix) voor de achternaam dat niet wordt gebruikt bij het sorteren zoals \"de\" of \"van\""
 
 #: edit_person.glade:518
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
-msgstr "Een facultatief naam-achtervoegsel (suffix) zoals \"Jr.\" of \"III\""
+msgstr "Achtervoegsel (suffix) zoals \"Jr.\" of \"III\""
 
 #: edit_person.glade:540
 msgid "A title used to refer to the person, such as \"Dr.\" or \"Rev.\""
-msgstr "Een titel voor de persoon zoals \"Dr.\" of \"Ds.\""
+msgstr "De titel van de persoon zoals \"Dr.\" of \"Ds.\""
 
 #: edit_person.glade:562
 msgid "A name that the person was more commonly know by"
@@ -2309,7 +2336,7 @@ msgstr "<b>Geslacht</b>"
 
 #: edit_person.glade:691
 msgid "<b>Preferred name</b>"
-msgstr ""
+msgstr "<b>Voorkeursnaam</b>"
 
 #: edit_person.glade:722 gramps.glade:5145
 msgid "_male"
@@ -2350,16 +2377,17 @@ msgstr "D_atum:"
 
 #: edit_person.glade:1046
 msgid "Plac_e:"
-msgstr "_Locatie:"
+msgstr "L_ocatie:"
 
 #: edit_person.glade:1111
 msgid "Invoke death event editor"
 msgstr "Overlijden-editor aanroepen"
 
+# Vertrouwen
 #: edit_person.glade:1258 edit_person.glade:2038 edit_person.glade:2522
 #: edit_person.glade:2928 marriage.glade:458 marriage.glade:877
 msgid "Confidence:"
-msgstr ""
+msgstr "Zekerheid:"
 
 #: edit_person.glade:1282
 msgid "Family prefix:"
@@ -2373,7 +2401,7 @@ msgstr "Type:"
 
 #: edit_person.glade:1426
 msgid "<b>Alternate name</b>"
-msgstr ""
+msgstr "<b>Alternatieve naam</b>"
 
 #: edit_person.glade:1450 edit_person.glade:1990 edit_person.glade:2474
 #: edit_person.glade:3024 marriage.glade:529 marriage.glade:949
@@ -2382,15 +2410,15 @@ msgstr "<b>Primaire bron</b>"
 
 #: edit_person.glade:1726
 msgid "Create an alternate name for this person"
-msgstr ""
+msgstr "Een alternatieve naam voor deze persoon aanmaken"
 
 #: edit_person.glade:1745
 msgid "Edit the selected name"
-msgstr ""
+msgstr "De geselecteerde naam bewerken"
 
 #: edit_person.glade:1763
 msgid "Delete selected name"
-msgstr ""
+msgstr "De geselecteerde naam verwijderen"
 
 #: edit_person.glade:1805
 msgid "<b>Names</b>"
@@ -2398,7 +2426,7 @@ msgstr "<b>Namen</b>"
 
 #: edit_person.glade:1846
 msgid "<b>Event</b>"
-msgstr ""
+msgstr "<b>Gebeurtenis</b>"
 
 #: edit_person.glade:1894 marriage.glade:386
 msgid "Cause:"
@@ -2406,149 +2434,152 @@ msgstr "Oorzaak:"
 
 #: edit_person.glade:2275
 msgid "Create a new event"
-msgstr ""
+msgstr "Een nieuwe gebeurtenis aanmaken"
 
 #: edit_person.glade:2294
 msgid "Edit the selected event"
-msgstr ""
+msgstr "De geselecteerde gebeurtenis aanmaken"
 
 #: edit_person.glade:2312
 msgid "Delete the selected event"
-msgstr ""
+msgstr "De geselecteerde gebeurtenis verwijderen"
 
 #: edit_person.glade:2361 marriage.glade:505 marriage.glade:818
 msgid "<b>Events</b>"
-msgstr ""
+msgstr "<b>Gebeurtenissen</b>"
 
 #: edit_person.glade:2402 edit_person.glade:2773 imagesel.glade:907
 #: imagesel.glade:1067 imagesel.glade:1690 imagesel.glade:1849
 #: marriage.glade:973 marriage.glade:1212
 msgid "<b>Attributes</b>"
-msgstr ""
+msgstr "<b>Attributen</b>"
 
 #: edit_person.glade:2687
 msgid "Create a new attribute"
-msgstr ""
+msgstr "Een nieuw attribuut aanmaken"
 
+# het ipv de?
 #: edit_person.glade:2706
 msgid "Edit the selected attribute"
-msgstr ""
+msgstr "De geselecteerde attribuut bewerken"
 
 #: edit_person.glade:2724 imagesel.glade:1012 imagesel.glade:1794
 #: marriage.glade:1170
 msgid "Delete the selected attribute"
-msgstr ""
+msgstr "Het geselecteerde attribuut verwijderen"
 
 #: edit_person.glade:2808
 msgid "City/County:"
-msgstr ""
+msgstr "Plaats/Graafschap:"
 
 #: edit_person.glade:3000 edit_person.glade:3403
 msgid "<b>Addresses</b>"
-msgstr ""
+msgstr "<b>Adressen</b>"
 
 #: edit_person.glade:3317
 msgid "Create a new address"
-msgstr ""
+msgstr "Een nieuwe adres aanmaken"
 
 #: edit_person.glade:3336
 msgid "Edit the selected address"
-msgstr ""
+msgstr "Het geselecteerde adres bewerken"
 
 #: edit_person.glade:3354
 msgid "Delete the selected address"
-msgstr ""
+msgstr "Het geselecteerde adres verwijderen"
 
 #: edit_person.glade:3430
 msgid "Enter miscellaneous relevant data and documentation"
-msgstr ""
+msgstr "Overige relevante data en documentatie invoeren"
 
 #: edit_person.glade:3455 imagesel.glade:777 imagesel.glade:1900
 #: marriage.glade:1263
 msgid "<b>Notes</b>"
-msgstr ""
+msgstr "<b>Opmerkingen</b>"
 
 #: edit_person.glade:3522 gramps.glade:4793 marriage.glade:1324
 msgid "Place new media object in this gallery"
-msgstr ""
+msgstr "Een nieuw object in deze galerie plaatsen"
 
 #: edit_person.glade:3540
 msgid "Edit the properties of the selected object"
-msgstr ""
+msgstr "De eigenschappen van het geselecteerde object bewerken"
 
 #: edit_person.glade:3557 gramps.glade:4829 marriage.glade:1357
 msgid "Remove selected object from this gallery only"
-msgstr ""
+msgstr "Geselecteerde object alleen uit deze galerie verwijderen"
 
 #: edit_person.glade:3560
 msgid "_Remove"
-msgstr ""
+msgstr "Verwij_deren"
 
+# Fotogalerie
 #: edit_person.glade:3599 gramps.glade:4884 marriage.glade:1392
 #: places.glade:1335
 msgid "<b>Gallery</b>"
-msgstr ""
+msgstr "<b>Galerie</b>"
 
 #: edit_person.glade:3634 places.glade:1370
 msgid "Web address:"
-msgstr ""
+msgstr "Web-adres:"
 
 #: edit_person.glade:3729 places.glade:1465
 msgid "<b>Internet addresses</b>"
-msgstr ""
+msgstr "<b>Internet-adressen</b>"
 
 #: edit_person.glade:3800
 msgid "Add an internet reference about this person"
-msgstr ""
+msgstr "Een internet-verwijzing over deze persoon toevoegen"
 
 #: edit_person.glade:3835
 msgid "Go to this web page"
-msgstr ""
+msgstr "Naar deze web-pagina gaan"
 
 #: edit_person.glade:3874 places.glade:1605
 msgid "_Go"
-msgstr ""
+msgstr "_Ga"
 
 #: edit_person.glade:3907
 msgid "Delete selected reference"
-msgstr ""
+msgstr "Geselecteerde verwijzing verwijderen"
 
 #: edit_person.glade:3949 places.glade:1691
 msgid "<b>Internet</b>"
-msgstr ""
+msgstr "<b>Internet</b>"
 
 #: edit_person.glade:3978
 msgid "<b>LDS baptism</b>"
-msgstr ""
+msgstr "<b>LDS baptisme</b>"
 
+# Tempel?
 #: edit_person.glade:4074
 msgid "LDS _temple:"
-msgstr ""
+msgstr "LDS _temple:"
 
 #: edit_person.glade:4143 edit_person.glade:4442 edit_person.glade:4618
 #: marriage.glade:1689
 msgid "Sources..."
-msgstr ""
+msgstr "Bronnen..."
 
 #: edit_person.glade:4229
 msgid "<b>Endowment</b>"
-msgstr ""
+msgstr "<b>Talent</b>"
 
 #: edit_person.glade:4282
 msgid "LDS te_mple:"
-msgstr ""
+msgstr "LDS te_mple:"
 
 #: edit_person.glade:4310 preferences.glade:2436
 msgid "P_lace:"
-msgstr ""
+msgstr "_Locatie:"
 
 #: edit_person.glade:4479
 msgid "Dat_e:"
-msgstr ""
+msgstr "Dat_um:"
 
 #: edit_person.glade:4550
 msgid "LD_S temple:"
-msgstr ""
+msgstr "LD_S temple:"
 
 #: edit_person.glade:4704
 msgid "Pa_rents:"
@@ -2556,7 +2587,7 @@ msgstr "_Ouders:"
 
 #: edit_person.glade:4754
 msgid "<b>Sealed to parents</b>"
-msgstr ""
+msgstr "<b>Aan ouders verzegeled</b>"
 
 #: edit_person.glade:4783 marriage.glade:1739
 msgid "<b>LDS</b>"
@@ -2574,31 +2605,32 @@ msgstr "label1"
 
 #: errdialogs.glade:162
 msgid "Close _without saving"
-msgstr ""
+msgstr "Sluiten _zonder opslaan"
 
 #: filters/After.py:54
 msgid "People with an event after ..."
-msgstr ""
+msgstr "Personen met een gebeurtenis na ..."
 
 #: filters/AltFam.py:37
 msgid "People who were adopted"
-msgstr ""
+msgstr "Personen die geadopteerd zijn"
 
 #: filters/Before.py:54
 msgid "People with an event before ..."
-msgstr ""
+msgstr "Personen met een gebeurtenis voor ..."
 
+# zonder relatie, ongebonden personen
 #: filters/Disconnected.py:38 plugins/Summary.py:112
 msgid "Disconnected individuals"
-msgstr ""
+msgstr "Personen zonder connectie"
 
 #: filters/EventPlace.py:68
 msgid "People with an event location of ..."
-msgstr ""
+msgstr "Personen met een gebeurtenis-locatie in ..."
 
 #: filters/EventType.py:40
 msgid "People who have an event type of ..."
-msgstr ""
+msgstr "Personen die een gebeurtenistype hebben van ..."
 
 #: filters/Females.py:39 plugins/Summary.py:109
 msgid "Females"
@@ -2606,11 +2638,11 @@ msgstr "Vrouwen"
 
 #: filters/HavePhotos.py:38
 msgid "People who have images"
-msgstr ""
+msgstr "Personen met afbeeldingen"
 
 #: filters/IncompleteNames.py:39
 msgid "People with incomplete names"
-msgstr ""
+msgstr "Personen met onvolledige namen"
 
 #: filters/Males.py:39 plugins/Summary.py:108
 msgid "Males"
@@ -2618,7 +2650,7 @@ msgstr "Mannen"
 
 #: filters/MatchSndEx.py:43
 msgid "Names with same SoundEx code as ..."
-msgstr ""
+msgstr "Namen met een SoundEx-code van ..."
 
 #: filters/MatchSndEx.py:44
 msgid "Surname"
@@ -2626,43 +2658,43 @@ msgstr "Achternaam"
 
 #: filters/MatchSndEx2.py:39
 msgid "Names with the specified SoundEx code"
-msgstr ""
+msgstr "Namen met de opgegeven SoundEx-code"
 
 #: filters/MatchSndEx2.py:40 plugins/soundex.glade:131
 msgid "SoundEx Code"
-msgstr ""
+msgstr "SoundEx-code"
 
 #: filters/MutlipleMarriages.py:38
 msgid "People with multiple marriage records"
-msgstr ""
+msgstr "Personen met meervoudige huwelijksarchieven"
 
 #: filters/NeverMarried.py:38
 msgid "People with no marriage records"
-msgstr ""
+msgstr "Personen zonder huwelijksarchieven"
 
 #: filters/NoBirthdate.py:38
 msgid "People without a birth date"
-msgstr ""
+msgstr "Personen zonder geboortedatum"
 
 #: filters/NoChildren.py:43
 msgid "People with children"
-msgstr ""
+msgstr "Personen zonder kinderen"
 
 #: filters/RegExMatch.py:51
 msgid "Names that match a regular expression"
-msgstr ""
+msgstr "Namen die aan een regulier expressie voldoen"
 
 #: filters/RegExMatch.py:52 filters/SubString.py:43
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: filters/SubString.py:42
 msgid "Names that contain a substring"
-msgstr ""
+msgstr "Namen die een tekenreeks bevatten"
 
 #: gramps.glade:11
 msgid "GRAMPS"
-msgstr ""
+msgstr "GRAMPS"
 
 #: gramps.glade:40
 msgid "_File"
@@ -2672,21 +2704,22 @@ msgstr "_Bestand"
 msgid "_New"
 msgstr "_Nieuw"
 
+# Terugkeren, terugkomen
 #: gramps.glade:75
 msgid "_Revert"
-msgstr ""
+msgstr "_Terugvallen"
 
 #: gramps.glade:96
 msgid "_Import"
-msgstr ""
+msgstr "_Importeren"
 
 #: gramps.glade:112
 msgid "_Export"
-msgstr ""
+msgstr "_Exporteren"
 
 #: gramps.glade:132
 msgid "Reload plugins"
-msgstr ""
+msgstr "Plugins herladen"
 
 #: gramps.glade:171
 msgid "_Edit"
@@ -2698,7 +2731,7 @@ msgstr "Zoeken..."
 
 #: gramps.glade:201
 msgid "_Merge"
-msgstr ""
+msgstr "_Samenvoegen"
 
 #: gramps.glade:226
 msgid "_View"
@@ -2710,19 +2743,19 @@ msgstr "Zijbalk"
 
 #: gramps.glade:259
 msgid "_Bookmarks"
-msgstr ""
+msgstr "_Favorieten"
 
 #: gramps.glade:268
 msgid "_Add bookmark"
-msgstr ""
+msgstr "Favoriet _toevoegen"
 
 #: gramps.glade:290
 msgid "_Edit bookmarks"
-msgstr ""
+msgstr "Favorieten be_werken"
 
 #: gramps.glade:318
 msgid "Go to bookmark"
-msgstr ""
+msgstr "Ga naar favoriet"
 
 # rapportages
 #: gramps.glade:330
@@ -2739,7 +2772,7 @@ msgstr "_Instellingen"
 
 #: gramps.glade:363
 msgid "_Default Person"
-msgstr ""
+msgstr "_Standaard persoon"
 
 #: gramps.glade:388
 msgid "_Help"
@@ -2751,7 +2784,7 @@ msgstr "Gebr_uikshandleiding"
 
 #: gramps.glade:418
 msgid "_Writing extensions"
-msgstr ""
+msgstr "E_xtenties schrijven"
 
 #: gramps.glade:439
 msgid "GRAMPS _home page"
@@ -2785,17 +2818,19 @@ msgstr "Bestand opslaan"
 msgid "Save"
 msgstr "Opslaan"
 
+# Beginpersoon?
 #: gramps.glade:558
 msgid "Make the home person the active person"
 msgstr ""
 
+# Begin?
 #: gramps.glade:559
 msgid "Home"
 msgstr ""
 
 #: gramps.glade:569
 msgid "Generate reports"
-msgstr ""
+msgstr "Rapportages genereren"
 
 #: gramps.glade:570
 msgid "Reports"
@@ -2803,7 +2838,7 @@ msgstr "Rapportage"
 
 #: gramps.glade:583
 msgid "Run a tool"
-msgstr ""
+msgstr "Voer een actie uit"
 
 #: gramps.glade:584
 msgid "Tools"
@@ -2811,7 +2846,7 @@ msgstr "Gereedschap"
 
 #: gramps.glade:594
 msgid "Add a new item"
-msgstr ""
+msgstr "Een nieuw item toevoegen"
 
 #: gramps.glade:595
 msgid "Add"
@@ -2819,15 +2854,15 @@ msgstr "Toevoegen"
 
 #: gramps.glade:608
 msgid "Remove the currently selected item"
-msgstr ""
+msgstr "Het geselecteerde item verwijderen"
 
 #: gramps.glade:609
 msgid "Remove"
-msgstr ""
+msgstr "Verwijderen"
 
 #: gramps.glade:619
 msgid "Edit the selected item"
-msgstr ""
+msgstr "Het geselecteerde item bewerken"
 
 #: gramps.glade:620
 msgid "Edit"
@@ -2848,11 +2883,11 @@ msgstr "Media"
 
 #: gramps.glade:1082
 msgid "Show persons that do not match the filtering rule"
-msgstr ""
+msgstr "Personen tonen die niet door het filter komen"
 
 #: gramps.glade:1084
 msgid "Invert"
-msgstr ""
+msgstr "Omkeren"
 
 #: gramps.glade:1202
 msgid "<b>People</b>"
@@ -2860,83 +2895,83 @@ msgstr "<b>Mensen</b>"
 
 #: gramps.glade:1231
 msgid "Exchange the current spouse with the active person"
-msgstr ""
+msgstr "De huidige echtgenoot met de actieve persoon wisselen"
 
 #: gramps.glade:1296
 msgid "Adds a spouse"
-msgstr ""
+msgstr "Voegt een echtgenoot toe"
 
 #: gramps.glade:1322
 msgid "Removes the currently selected spouse"
-msgstr ""
+msgstr "Verwijdert de huidige geselectterde echtgenoot"
 
 #: gramps.glade:1364
 msgid "Make the active person's family the active family"
-msgstr ""
+msgstr "De familie van de actieve persoon de actieve familie maken"
 
 #: gramps.glade:1390
 msgid "Adds a new set of parents to the active person"
-msgstr ""
+msgstr "Voegt een nieuw stel ouders toe aan de actieve persoon."
 
 #: gramps.glade:1416
 msgid "Deletes the selected parents from the active person"
-msgstr ""
+msgstr "Verwijdert de geselecteerde ouders van de actieve persoon"
 
 #: gramps.glade:1461 gramps.glade:1735
 msgid "Double-click to edit the selected parents"
-msgstr ""
+msgstr "Dubbelklikken om de geselecteerde ouders te bewerken"
 
 #: gramps.glade:1488
 msgid "Make the selected spouse's family the active family"
-msgstr ""
+msgstr "De familie van de geselecteerde echtgenoot de actieve familie maken"
 
 #: gramps.glade:1514
 msgid "Adds a new set of parents to the selected spouse"
-msgstr ""
+msgstr "Een nieuw stel ouders an de geselecteerde echtgenoot toevoegen"
 
 #: gramps.glade:1540
 msgid "Deletes the selected parents from the selected spouse"
-msgstr ""
+msgstr "Verwijdert de geselecteerde ouders van de geselecteerde echtgenoot"
 
 #: gramps.glade:1576
 msgid "<b>Children</b>"
-msgstr ""
+msgstr "<b>Kinderen</b>"
 
 #: gramps.glade:1600
 msgid "<b>Active person</b>"
-msgstr ""
+msgstr "<b>Actieve persoon</b>"
 
 #: gramps.glade:1624
 msgid "<b>Active person's Parents</b>"
-msgstr ""
+msgstr "<b>Ouders van actieve persoon</b>"
 
 #: gramps.glade:1648
 msgid "<b>Spouse</b>"
-msgstr ""
+msgstr "<b>Echtgenoot</b>"
 
 #: gramps.glade:1672
 msgid "<b>Spouse's parents</b>"
-msgstr ""
+msgstr "<b>Ouders van echtgenoot</b>"
 
 #: gramps.glade:1765
 msgid "Double-click to edit the active person"
-msgstr ""
+msgstr "Dubbelklikken om de actieve persoon te bewerken"
 
 #: gramps.glade:1795
 msgid "Double-click to edit the relationship information"
-msgstr ""
+msgstr "Dubbelklikken om de relatie-informatie te bewerken"
 
 #: gramps.glade:1822
 msgid "Make the selected child the active person"
-msgstr ""
+msgstr "Het geselecteerde kind de actieve persoon maken"
 
 #: gramps.glade:1848
 msgid "Adds a new child to the selected family"
-msgstr ""
+msgstr "Voegt een nieuw kind aan de geselecteerde familie toe"
 
 #: gramps.glade:1874
 msgid "Deletes the selected child from the selected family"
-msgstr ""
+msgstr "Verwijdert het geselecteerde kind uit de geselecteerde familie"
 
 #: gramps.glade:1916
 msgid "<b>Family</b>"
@@ -2958,9 +2993,10 @@ msgstr "<b>Voorbeeld</b>"
 msgid "Details:"
 msgstr "Details:"
 
+# pad
 #: gramps.glade:2237 imagesel.glade:505 imagesel.glade:1251
 msgid "Path:"
-msgstr ""
+msgstr "Locatie:"
 
 #: gramps.glade:2406
 msgid "<b>Information</b>"
@@ -2972,11 +3008,11 @@ msgstr "<b>Media</b>"
 
 #: gramps.glade:2734 marriage.glade:127
 msgid "_Relationship type:"
-msgstr ""
+msgstr "Soort _relatie:"
 
 #: gramps.glade:2825
 msgid "Relationship definition\n"
-msgstr ""
+msgstr "Relatie-definitie\n"
 
 #: gramps.glade:2982
 msgid "_Father's relationship to child:"
@@ -3073,31 +3109,31 @@ msgstr "Overlijdingsdatum"
 
 #: gramps_main.py:118
 msgid "GRAMPS is being run as the 'root' user."
-msgstr ""
+msgstr "GRAMPS wordt uitgevoerd al gebruiker 'root'"
 
 #: gramps_main.py:119
 msgid ""
 "This account is not meant for normal appication use. Running user "
 "applications in the administrative account is rarely a wise idea, and can "
 "open up potential security risks."
-msgstr ""
+msgstr "Dit account is niet bedoeld voor het gebruik van normale toepassingen. Gebruikerstoepassingen uitvoeren in het systeembeheerdersaccount is zelden een goed idee en kan mogelijke veiligheidsrisico's veroorzaken."
 
 #: gramps_main.py:479
 msgid ""
 "Exactly two people must be selected to perform a merge. A second person can "
 "be selected by holding down the control key while clicking on a the desired "
 "person."
-msgstr ""
+msgstr "Om een samenvoeging uit te voeren moeten precies twee mensen worden geselecteerd. Een tweede persoon kan worden geselecteerd door op het toetsenbord de control-toets in te drukken, en dan met de muis de gewenste persoon aan te klikken."
 
 #: gramps_main.py:502
 msgid "Save Changes Made to the Database?"
-msgstr ""
+msgstr "De veranderingen aan de database opslaan?"
 
 #: gramps_main.py:503
 msgid ""
 "Unsaved changes exist in the current database. If you close without saving, "
 "the changes you have made will be lost."
-msgstr ""
+msgstr "In de huidige database bevinden zich veranderingen die niet zijn opgeslagen. Als u sluit zonder opslaan, zullen de veranderingen verloren gaan."
 
 #: gramps_main.py:538 gramps_main.py:553
 msgid "HELP is currently not available"
@@ -3118,20 +3154,26 @@ msgid ""
 "Creating a new database will close the existing database, discarding any "
 "unsaved changes. You will then be prompted to create a new database"
 msgstr ""
+"Het aanmaken van een nieuwe database zal de bestaande database sluiten en\n"
+"niet opgeslagen veranderingen verwerpen. U zult daarna worden gevraagd om\n"
+"een nieuwe database aan te maken."
 
 #: gramps_main.py:570
 msgid "Create New Database"
 msgstr "Nieuwe database aanmaken"
 
+# autosave hier vertaald met backup-bestand omdat dat de functie er van is.
 #: gramps_main.py:703
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
 msgstr ""
+"Er is een recent backupbestand voor %s.\n"
+"Moet deze worden geladen in plaats van de laatst opgeslagen versie?"
 
 #: gramps_main.py:708
 msgid "An autosave file was detected"
-msgstr ""
+msgstr "Er is een backupbestand gedetecteerd"
 
 #: gramps_main.py:709
 msgid ""
@@ -3139,11 +3181,11 @@ msgid ""
 "more recent than the last saved database. This typically happens when GRAMPS "
 "was unexpected shutdown before the data was saved. You may load this file to "
 "try to recover any missing data."
-msgstr ""
+msgstr "GRAMPS heeft een backupbestand van de geselecteerde database gevonden. Dit bestand is recenter dat de laatst opgeslagen versie. Dit gebeurt meestal wanneer GRAMPS onverwacht werd afgesloten voordat data kon worden opgeslagen. U kunt dit bestand laden om eventueel verloren data terug te winnen."
 
 #: gramps_main.py:715
 msgid "Load autosave file"
-msgstr ""
+msgstr "Backupbestand laden"
 
 #: gramps_main.py:717
 msgid "Load saved database"
@@ -3161,7 +3203,7 @@ msgstr "%s is geen map"
 msgid ""
 "The file you should attempt to open should be a directory that contains a "
 "data.gramps file or a gramps.zodb file."
-msgstr ""
+msgstr "Het bestand dat u moet openen moet een map zijn dat het bestand data.gramps bevat of het moet een bestand gramps.zodb zijn."
 
 #: gramps_main.py:755
 msgid "Loading %s ..."
@@ -3175,56 +3217,57 @@ msgstr "Opslaan van %s ..."
 msgid ""
 "An was detected while attempting to create the file. The operating system "
 "reported \"%s\""
-msgstr ""
+msgstr "Er trad een fout op bij het aanmaken van het bestand. Het besturingssysteem rapporteerde: \"%s\""
 
 #: gramps_main.py:805 gramps_main.py:814
 msgid "An error was detected while trying to create the file"
-msgstr ""
+msgstr "Er trad een fout op bij het aanmaken van het bestand"
 
 #: gramps_main.py:847
 msgid "autosaving..."
-msgstr ""
+msgstr "automatisch opslaan..."
 
 #: gramps_main.py:850
 msgid "autosave complete"
-msgstr ""
+msgstr "automatisch opslaan voltooid"
 
 #: gramps_main.py:852
 msgid "autosave failed"
-msgstr ""
+msgstr "automatisch opslaan mislukt"
 
 #: gramps_main.py:881
 msgid ""
 "Deleting the person will remove the person from from the database. The data "
 "can only be recovered by closing the database without saving changes. This "
 "change will become permanent after you save the database."
-msgstr ""
+msgstr "Het verwijderen van de persoon zal de persoon uit de database halen. De data kan alleen worden teruggewonnen door de database af te sluiten zonder de veranderingen op te slaan. De verwijdering zal permanent worden zodra u de database opslaat. "
 
 #: gramps_main.py:886
 msgid "Delete Person"
-msgstr ""
+msgstr "Persoon verwijderen"
 
+# bewaard gebruikt ipv opgeslagen
 #: gramps_main.py:1000
 msgid "Revert to last saved database?"
-msgstr ""
+msgstr "Terugvallen naar de laatst bewaarde database"
 
 #: gramps_main.py:1001
 msgid ""
 "Reverting to the last saved database will cause all unsaved changes to be "
 "lost, and the last saved database will be loaded."
-msgstr ""
+msgstr "Bij terugvallen naar de laatst opgeslagen database zullen alle veranderingen die niet opgeslagen zijn, verloren gaan. De laast opgeslagen database zal dan worden geladen."
 
 #: gramps_main.py:1004
 msgid "Revert"
-msgstr ""
+msgstr "Terugvallen"
 
 #: gramps_main.py:1007
 msgid "Could Not Revert to the Previous Database."
-msgstr ""
+msgstr "Kon niet naar de vorige database terugvallen"
 
 #: gramps_main.py:1008
 msgid "GRAMPS could not find a previous version of the database"
-msgstr ""
+msgstr "GRAMPS kon geen vorige versie van de database vinden"
 
 #: gramps_main.py:1311
 msgid "Loading %s..."
@@ -3240,15 +3283,15 @@ msgstr ""
 
 #: gramps_main.py:1413
 msgid "%s has been bookmarked"
-msgstr ""
+msgstr "Er is een favoriet voor %s aangemaakt"
 
 #: gramps_main.py:1416
 msgid "Could Not Set a Bookmark."
-msgstr ""
+msgstr "Kon geen favoriet instellen."
 
 #: gramps_main.py:1417
 msgid "A bookmark could not be set because no one was selected."
-msgstr ""
+msgstr "Er kon geen favoriet worden ingesteld omdat er geen is geselecteerd."
 
 #: gramps_main.py:1429
 msgid "Set %s as the Home Person"
@@ -3282,11 +3325,11 @@ msgstr "Object-type:"
 
 #: imagesel.glade:978
 msgid "Creates a new object attribute from the above data"
-msgstr ""
+msgstr "Maakt uit bovenstaande data een nieuw object-attribuut aan"
 
 #: imagesel.glade:1509
 msgid "Copies the object into the database"
-msgstr ""
+msgstr "Kopieert het object naar de database"
 
 #: imagesel.glade:1511
 msgid "_Make a local copy"
@@ -3294,7 +3337,7 @@ msgstr "Een lokale kopie _maken"
 
 #: imagesel.glade:1760
 msgid "Creates a new attribute from the above data"
-msgstr ""
+msgstr "Maakt ui bovenstaande data een nieuw attribuut aan"
 
 #: marriage.glade:217
 msgid "_GRAMPS ID:"
@@ -3302,39 +3345,40 @@ msgstr "_GRAMPS ID:"
 
 #: marriage.glade:743
 msgid "Add new event for this marriage"
-msgstr ""
+msgstr "Een nieuwe gebeurtenis voor dit huwelijk toevoegen"
 
 #: marriage.glade:776
 msgid "Delete selected event"
-msgstr ""
+msgstr "Geselecteerde gebeurtenis verwijderen"
 
 #: marriage.glade:1137
 msgid "Create a new attribute for this marriage"
-msgstr ""
+msgstr "Een nieuw attribuut voor dit huwelijk aanmaken"
 
 #: marriage.glade:1427
 msgid "<b>Sealed to spouse</b>"
-msgstr ""
+msgstr "<b>Aan echtgenoot verzegeld</b>"
 
+# tempel
 #: marriage.glade:1475
 msgid "Temple:"
-msgstr ""
+msgstr "Kerk:"
 
 #: mergedata.glade:171
 msgid "Place 1"
-msgstr ""
+msgstr "Locatie 1"
 
 #: mergedata.glade:194
 msgid "Place 2"
-msgstr ""
+msgstr "Locatie 2"
 
 #: mergedata.glade:283
 msgid "_Merge and close"
-msgstr ""
+msgstr "_Samenvoegen en sluiten"
 
 #: mergedata.glade:296
 msgid "Merge and _edit"
-msgstr ""
+msgstr "Samenvoegen en be_werken"
 
 #: mergedata.glade:807 mergedata.glade:1304
 msgid "<b>Parents</b>"
@@ -3360,17 +3404,21 @@ msgstr "<b>Eerste persoon</b>"
 msgid "<b>Second person</b>"
 msgstr "<b>Tweede persoon</b>"
 
+# behouden ipv beschouwen?
 #: mergedata.glade:1727
 msgid "Keep other name as an alternate name"
-msgstr ""
+msgstr "Andere naam als een alternatieve naam beschouwen"
 
+# geboortegebeurtenis is onmogelijk
+# mogelijk: geboortedatum
 #: mergedata.glade:1745
 msgid "Keep other birth event as an alternate birth event"
-msgstr ""
+msgstr "Andere geboorte als een alternatieve geboorte beschouwen"
 
+# idem: sterfdatum
 #: mergedata.glade:1763
 msgid "Keep other death event as an alternate death event"
-msgstr ""
+msgstr "Andere overlijden als een alternatieve overlijden beschouwen"
 
 #: places.glade:231
 msgid "Co_untry:"
@@ -3388,34 +3436,34 @@ msgstr "_Breedtegraad:"
 msgid "County:"
 msgstr "Graafschap:"
 
-# Staat
+# Provincie:
 #: places.glade:652
 msgid "State:"
-msgstr "Provincie:"
+msgstr "Staat:"
 
 #: places.glade:777
 msgid "Church parish:"
-msgstr "Kerk-parochie:"
+msgstr "Parochie:"
 
 #: places.glade:827 places.glade:983
 msgid "<b>Other names</b>"
-msgstr ""
+msgstr "<b>Andere namen</b>"
 
 #: plugins.glade:179
 msgid "Select a report from those available on the left."
-msgstr ""
+msgstr "Kies een rapport uit de vermeldingen aan de linkerkant."
 
 #: plugins.glade:208
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: plugins.glade:255 srcsel.glade:296
 msgid "Author:"
-msgstr ""
+msgstr "Auteur:"
 
 #: plugins.glade:279
 msgid "Author's email:"
-msgstr ""
+msgstr "Email van auteur:"
 
 #: plugins/AncestorChart.py:217 plugins/AncestorChart.py:425
 msgid "Ancestor Chart"
@@ -3439,18 +3487,18 @@ msgstr "Voorouderkaart opslaan"
 #: plugins/AncestorChart.py:238 plugins/DesGraph.py:325
 #: plugins/FullFamily.py:126
 msgid "Display Format"
-msgstr ""
+msgstr "Weergave-formaat"
 
 #: plugins/AncestorChart.py:239 plugins/DesGraph.py:326
 #: plugins/FullFamily.py:127
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr ""
+msgstr "Biedt de mogelijk de data in de kaders van de rapportage aan te passen."
 
 #: plugins/AncestorChart.py:248 plugins/AncestorReport.py:262
 #: plugins/DesGraph.py:335 plugins/FamilyGroup.py:417
 #: plugins/IndivComplete.py:528 plugins/IndivSummary.py:371
 msgid "The basic style used for the text display."
-msgstr ""
+msgstr "De gebruikte basisstijl  voor de tekstweergave."
 
 #: plugins/AncestorChart.py:427 plugins/AncestorReport.py:389
 #: plugins/DescendReport.py:284 plugins/DetAncestralReport.py:972
@@ -3463,88 +3511,88 @@ msgstr "Beta"
 
 #: plugins/AncestorChart.py:428 plugins/FullFamily.py:172
 msgid "Produces a graphical ancestral tree graph"
-msgstr ""
+msgstr "Levert een grafische voorouder-boomstam"
 
 #: plugins/AncestorReport.py:75 plugins/AncestorReport.py:229
 msgid "Ahnentafel Report for %s"
-msgstr ""
+msgstr "Ahnentafel-rapportage voor %s"
 
 #: plugins/AncestorReport.py:88 plugins/DetAncestralReport.py:629
 #: plugins/DetDescendantReport.py:651
 msgid "%s Generation"
-msgstr ""
+msgstr "%s generatie"
 
 #: plugins/AncestorReport.py:117
 msgid "%s was born on %s in %s. "
-msgstr ""
+msgstr "%s werd geboren op %s in %s."
 
 #: plugins/AncestorReport.py:120
 msgid "%s was born on %s. "
-msgstr ""
+msgstr "%s werd geboren op %s."
 
 #: plugins/AncestorReport.py:124
 msgid "%s was born in the year %s in %s. "
-msgstr ""
+msgstr "%s werd geboren in het jaar %s in %s."
 
 #: plugins/AncestorReport.py:127
 msgid "%s was born in the year %s. "
-msgstr ""
+msgstr "%s werd geboren in het jaar %s."
 
 #: plugins/AncestorReport.py:152
 msgid "He died on %s in %s"
-msgstr ""
+msgstr "Hij stierf op %s in %s"
 
 #: plugins/AncestorReport.py:155
 msgid "He died on %s"
-msgstr ""
+msgstr "Hij stierf op %s"
 
 #: plugins/AncestorReport.py:158
 msgid "She died on %s in %s"
-msgstr ""
+msgstr "Zij stierf op %s in %s"
 
 #: plugins/AncestorReport.py:161
 msgid "She died on %s"
-msgstr ""
+msgstr "Zij stierf op %s"
 
 #: plugins/AncestorReport.py:165
 msgid "He died in the year %s in %s"
-msgstr ""
+msgstr "Hij stierf in het jaar %s in %s"
 
 #: plugins/AncestorReport.py:168
 msgid "He died in the year %s"
-msgstr ""
+msgstr "Hij stierf in het jaar %s"
 
 #: plugins/AncestorReport.py:171
 msgid "She died in the year %s in %s"
-msgstr ""
+msgstr "Zij stierf in het jaar %s in %s"
 
 #: plugins/AncestorReport.py:174
 msgid "She died in the year %s"
-msgstr ""
+msgstr "Zij stierf in het jaar %s"
 
 #: plugins/AncestorReport.py:187
 msgid ", and was buried on %s in %s."
-msgstr ""
+msgstr ", en werd begraven op %s in %s."
 
 #: plugins/AncestorReport.py:190
 msgid ", and was buried on %s."
-msgstr ""
+msgstr ", en werd begraven op %s."
 
 #: plugins/AncestorReport.py:194
 msgid ", and was buried in the year %s in %s."
-msgstr ""
+msgstr ", en werd begraven in het jaar %s in %s."
 
 #: plugins/AncestorReport.py:197
 msgid ", and was buried in the year %s."
-msgstr ""
+msgstr ", en werd begraven in het jaar %s."
 
 #: plugins/AncestorReport.py:200
 msgid " and was buried in %s."
-msgstr ""
+msgstr " en werd begraven in %s."
 
 #: plugins/AncestorReport.py:225 plugins/AncestorReport.py:387
 msgid "Ahnentafel Report"
-msgstr ""
+msgstr "Ahnentafel-rapportage"
 
 #: plugins/AncestorReport.py:225 plugins/AncestorReport.py:388
 #: plugins/DescendReport.py:124 plugins/DescendReport.py:283
@@ -3553,42 +3601,42 @@ msgstr ""
 #: plugins/IndivComplete.py:446 plugins/IndivComplete.py:668
 #: plugins/IndivSummary.py:317 plugins/IndivSummary.py:501
 msgid "Text Reports"
-msgstr ""
+msgstr "Tekst-rapportages"
 
 #: plugins/AncestorReport.py:234 plugins/DetAncestralReport.py:677
 msgid "Save Ancestor Report"
-msgstr ""
+msgstr "Voorouder-rapportage opslaan"
 
 #: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
 #: plugins/FamilyGroup.py:408 plugins/IndivComplete.py:502
 #: plugins/IndivSummary.py:345 plugins/TimeLine.py:389 plugins/WebPage.py:961
 msgid "The style used for the title of the page."
-msgstr ""
+msgstr "De gebruikte stijl voor de titel van de pagina."
 
 #: plugins/AncestorReport.py:257
 msgid "The style used for the generation header."
-msgstr ""
+msgstr "De gebruikte stijl voor de generatie-kop."
 
 #: plugins/AncestorReport.py:390
 msgid "Produces a textual ancestral report"
-msgstr ""
+msgstr "Levert een tekstueel voorouder-rapport"
 
 #: plugins/ChangeTypes.py:75
 msgid "1 event record was modified"
-msgstr ""
+msgstr "1 gebeurtenis-archief aangepast"
 
 #: plugins/ChangeTypes.py:77
 msgid "%d event records were modified"
-msgstr ""
+msgstr "%d gebeurtenis-archieven aangepast"
 
 #: plugins/ChangeTypes.py:91
 msgid "Rename personal event types"
-msgstr ""
+msgstr "Persoonlijke gebeurtenis-typen hernoemen"
 
 #: plugins/ChangeTypes.py:92 plugins/Check.py:225 plugins/Merge.py:545
 #: plugins/PatchNames.py:152 plugins/ReorderIds.py:122
 msgid "Database Processing"
-msgstr ""
+msgstr "Database verwerken"
 
 #: plugins/ChangeTypes.py:93
 msgid "Allows all the events of a certain name to be renamed to a new name"
@@ -3596,7 +3644,7 @@ msgstr ""
 
 #: plugins/Check.py:147
 msgid "No errors were found"
-msgstr ""
+msgstr "Er zijn geen fouten gevonden"
 
 #: plugins/Check.py:153
 msgid "1 broken child/family link was fixed\n"
@@ -3648,11 +3696,11 @@ msgstr ""
 
 #: plugins/Check.py:208
 msgid "Check Integrity"
-msgstr ""
+msgstr "Integriteit controleren"
 
 #: plugins/Check.py:224
 msgid "Check and repair database"
-msgstr ""
+msgstr "Database controleren en repareren"
 
 #: plugins/Check.py:226
 msgid ""
@@ -3661,19 +3709,19 @@ msgstr ""
 
 #: plugins/DesGraph.py:308 plugins/DesGraph.py:459
 msgid "Descendant Graph"
-msgstr ""
+msgstr "Afstammeling-grafiek"
 
 #: plugins/DesGraph.py:311
 msgid "Descendant Graph for %s"
-msgstr ""
+msgstr "Afstammeling-grafiek voor %s"
 
 #: plugins/DesGraph.py:314
 msgid "Save Descendant Graph"
-msgstr ""
+msgstr "Afstammeling-grafiek opslaan"
 
 #: plugins/DesGraph.py:461 plugins/DescendReport.py:285
 msgid "Generates a list of descendants of the active person"
-msgstr ""
+msgstr "Genereert een lijst met afstammelingen van de actieve persoon"
 
 #: plugins/DesGraph.py:462
 msgid "Alpha"
@@ -3681,15 +3729,16 @@ msgstr "Alpha"
 
 #: plugins/Desbrowser.py:116
 msgid "Interactive descendant browser"
-msgstr ""
+msgstr "Interactieve afstammeling-browser"
 
 #: plugins/Desbrowser.py:117 plugins/EventCmp.py:335
 msgid "Analysis and Exploration"
 msgstr "Analyse en verkenning"
 
+# browsable?
 #: plugins/Desbrowser.py:118
 msgid "Provides a browsable hierarchy based on the active person"
-msgstr ""
+msgstr "Levert een browsbare hiërarchie gebaseerd op de actieve persoon"
 
 #: plugins/DescendReport.py:87 plugins/GraphViz.py:103
 #: plugins/IndivComplete.py:475 plugins/TimeLine.py:353
@@ -3699,19 +3748,19 @@ msgstr "Afstammelingen van %s"
 
 #: plugins/DescendReport.py:124 plugins/DescendReport.py:282
 msgid "Descendant Report"
-msgstr ""
+msgstr "Afstammeling-rapport"
 
 #: plugins/DescendReport.py:128 plugins/DetDescendantReport.py:638
 msgid "Descendant Report for %s"
-msgstr ""
+msgstr "Afstammeling-rapport voor %s"
 
 #: plugins/DescendReport.py:133 plugins/DetDescendantReport.py:699
 msgid "Save Descendant Report"
-msgstr ""
+msgstr "Afstammeling-rapport opslaan"
 
 #: plugins/DescendReport.py:156
 msgid "The style used for the level %d display."
-msgstr ""
+msgstr "De gebruikte stijl voor de weergave van niveau %d."
 
 #: plugins/DetAncestralReport.py:115 plugins/DetDescendantReport.py:125
 msgid "Child of %s and %s is:"
@@ -3903,11 +3952,11 @@ msgstr "  %s trouwde op %s in %s"
 
 #: plugins/DetAncestralReport.py:615 plugins/DetAncestralReport.py:672
 msgid "Detailed Ancestral Report for %s"
-msgstr ""
+msgstr "Gedetailleerd afstammeling-rapport voor %s"
 
 #: plugins/DetAncestralReport.py:668 plugins/DetDescendantReport.py:690
 msgid "Gramps - Ahnentafel Report"
-msgstr ""
+msgstr "Gramps - Ahnentafel-rapportage"
 
 #: plugins/DetAncestralReport.py:773
 msgid "Use first names instead of pronouns"
@@ -3915,87 +3964,89 @@ msgstr ""
 
 #: plugins/DetAncestralReport.py:777
 msgid "Use full dates instead of only the year"
-msgstr ""
+msgstr "Volledige datums gebruiken in plaats van alleen het jaar"
 
 #: plugins/DetAncestralReport.py:781
 msgid "List children"
-msgstr ""
+msgstr "Kinderen opsommen"
 
 #: plugins/DetAncestralReport.py:785
 msgid "Include notes"
-msgstr ""
+msgstr "Opmerkingen bijvoegen"
 
 #: plugins/DetAncestralReport.py:789
 msgid "Replace Place with ______"
-msgstr ""
+msgstr "Locatie vervangen door ______"
 
 #: plugins/DetAncestralReport.py:793
 msgid "Replace Dates with ______"
-msgstr ""
+msgstr "Datums vervangen door ______"
 
 #: plugins/DetAncestralReport.py:797
 msgid "Compute age"
-msgstr ""
+msgstr "Leeftijd berekenen"
 
+# Duplicaat-voorouders
 #: plugins/DetAncestralReport.py:801
 msgid "Omit duplicate ancestors"
-msgstr ""
+msgstr "Voorouder-duplicaten weglaten"
 
+# Opnemen ipv toevoegen
 #: plugins/DetAncestralReport.py:805
 msgid "Add descendant reference in child list"
-msgstr ""
+msgstr "Afstammeling-verwijzingen in kinderen-lijst toevoegen"
 
 #: plugins/DetAncestralReport.py:809
 msgid "Include Photo/Images from Gallery"
-msgstr ""
+msgstr "Foto's/Afbeeldingen uit de galerie bijvoegen"
 
 #: plugins/DetAncestralReport.py:971
 msgid "Detailed Ancestral Report"
-msgstr ""
+msgstr "Gedetailleerd voorouder-rapport"
 
 #: plugins/DetAncestralReport.py:974
 msgid "Produces a detailed ancestral report"
-msgstr ""
+msgstr "Levert een gedetailleerd voorouder-rapport"
 
 #: plugins/DetAncestralReport.py:1079 plugins/DetDescendantReport.py:957
 msgid " at the age of %d days"
-msgstr ""
+msgstr " op de leeftijd van %d dagen"
 
 #: plugins/DetAncestralReport.py:1081 plugins/DetDescendantReport.py:959
 msgid " at the age of %d months"
-msgstr ""
+msgstr " op de leeftijd van %d maanden"
 
 #: plugins/DetAncestralReport.py:1083 plugins/DetDescendantReport.py:961
 msgid " at the age of %d years"
-msgstr ""
+msgstr " op de leeftijd van %d jaar"
 
 #: plugins/DetAncestralReport.py:1086 plugins/DetDescendantReport.py:964
 msgid " at the age of %d day"
-msgstr ""
+msgstr " op de leeftijd van %d dag"
 
 #: plugins/DetAncestralReport.py:1088 plugins/DetDescendantReport.py:966
 msgid " at the age of %d month"
-msgstr ""
+msgstr " op de leeftijd van %d maand"
 
 #: plugins/DetAncestralReport.py:1090 plugins/DetDescendantReport.py:968
 msgid " at the age of %d year"
-msgstr ""
+msgstr " op de leeftijd van %d jaar"
 
 #: plugins/DetDescendantReport.py:502
 msgid "  %s married"
-msgstr ""
+msgstr "  %s getrouwd"
 
 #: plugins/DetDescendantReport.py:694
 msgid "Detailed Descendant Report for %s"
-msgstr ""
+msgstr "Gedetailleerd afstammeling-rapport voor %s"
 
 #: plugins/DetDescendantReport.py:849
 msgid "Detailed Descendant Report"
-msgstr ""
+msgstr "Gedetailleerd afstammeling-rapport"
 
 #: plugins/DetDescendantReport.py:852
 msgid "Produces a detailed descendant report"
-msgstr ""
+msgstr "Levert een gedetailleerd afstammeling-rapport"
 
 #: plugins/EventCmp.py:141 plugins/GraphViz.py:99 plugins/IndivComplete.py:483
 #: plugins/TimeLine.py:349 plugins/WebPage.py:922 plugins/WriteGedcom.py:369
@@ -4024,7 +4075,7 @@ msgstr ""
 #: plugins/FamilyGroup.py:117 plugins/FamilyGroup.py:344
 #: plugins/FamilyGroup.py:564
 msgid "Family Group Report"
-msgstr ""
+msgstr "Familiegroep-rapport"
 
 #: plugins/FamilyGroup.py:129
 msgid "Husband"
@@ -4045,74 +4096,75 @@ msgstr "Kinderen"
 
 #: plugins/FamilyGroup.py:348
 msgid "Family Group Report for %s"
-msgstr ""
+msgstr "Familiegroep-rapport voor %s"
 
 #: plugins/FamilyGroup.py:353
 msgid "Save Family Group Report"
-msgstr ""
+msgstr "Familiegroep-rapport opslaan"
 
+# related to?
 #: plugins/FamilyGroup.py:426
 msgid "The style used for the text related to the children."
-msgstr ""
+msgstr "De gebruikte stijl voor de tekst verbonden met de kinderen."
 
 #: plugins/FamilyGroup.py:435
 msgid "The style used for the parent's name"
-msgstr ""
+msgstr "De gebruikte stijl voor de naam van de ouders"
 
 #: plugins/FamilyGroup.py:567
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
-msgstr ""
+msgstr "Maakt een familiegroepsrapport met informatie over een aantal ouders en hun kinderen."
 
 #: plugins/FilterEditor.py:38
 msgid "Personal Event"
-msgstr ""
+msgstr "Persoonlijke gebeurtenis"
 
 #: plugins/FilterEditor.py:39
 msgid "Family Event"
-msgstr ""
+msgstr "Familie-gebeurtenis"
 
 #: plugins/FilterEditor.py:40
 msgid "Personal Attribute"
-msgstr ""
+msgstr "Persoonlijk attribuut"
 
 #: plugins/FilterEditor.py:41
 msgid "Family Attribute"
-msgstr ""
+msgstr "Familie-attribuut"
 
 #: plugins/FilterEditor.py:42
 msgid "Relationship Type"
-msgstr ""
+msgstr "Soort relatie"
 
 #: plugins/FilterEditor.py:59
 msgid "User defined filters"
-msgstr ""
+msgstr "Gebruiker-gedefinieerde filters"
 
 #: plugins/FilterEditor.py:70
 msgid "Comment"
-msgstr ""
+msgstr "Opmerking"
 
 #: plugins/FilterEditor.py:126
 msgid "Define filter"
-msgstr ""
+msgstr "Filter definieren"
 
 #: plugins/FilterEditor.py:231
 msgid "Add rule"
-msgstr ""
+msgstr "Regel toevoegen"
 
 #: plugins/FilterEditor.py:342
 msgid "Test Filter"
-msgstr ""
+msgstr "Filter testen"
 
 #: plugins/FilterEditor.py:382
 msgid "Custom Filter Editor"
-msgstr ""
+msgstr "Aangepaste filter-editor"
 
 #: plugins/FilterEditor.py:383 plugins/FilterEditor.py:396
 #: plugins/RelCalc.py:447 plugins/Verify.py:291 plugins/soundgen.py:86
 msgid "Utilities"
-msgstr ""
+msgstr "Hulpmiddelen"
 
 #: plugins/FilterEditor.py:384
 msgid ""
@@ -4122,7 +4174,7 @@ msgstr ""
 
 #: plugins/FilterEditor.py:395
 msgid "System Filter Editor"
-msgstr ""
+msgstr "Systeem-filter editor"
 
 #: plugins/FilterEditor.py:397
 msgid ""
@@ -4133,19 +4185,19 @@ msgstr ""
 
 #: plugins/FullFamily.py:105 plugins/FullFamily.py:169
 msgid "Full Family Chart"
-msgstr ""
+msgstr "Volledige familiekaart"
 
 #: plugins/FullFamily.py:109
 msgid "Full Family Chart for %s"
-msgstr ""
+msgstr "Volledige familiekaart voor %s"
 
 #: plugins/FullFamily.py:114
 msgid "Save Full Family Chart"
-msgstr ""
+msgstr "Volledige familiekaart opslaan"
 
 #: plugins/GraphViz.py:60 plugins/GraphViz.py:87
 msgid "Single (scaled)"
-msgstr ""
+msgstr "Enkelvoudig (geschaald)"
 
 #: plugins/GraphViz.py:61
 msgid "Single"
@@ -4161,7 +4213,7 @@ msgstr "Relatiegrafiek"
 
 #: plugins/GraphViz.py:83
 msgid "Graphviz File"
-msgstr ""
+msgstr "Graphviz-bestand"
 
 #: plugins/GraphViz.py:107 plugins/IndivComplete.py:479
 #: plugins/TimeLine.py:357 plugins/WebPage.py:934 plugins/WriteGedcom.py:377
@@ -4170,52 +4222,52 @@ msgstr "Voorouders van %s"
 
 #: plugins/GraphViz.py:111 plugins/TimeLine.py:361 plugins/WriteGedcom.py:381
 msgid "People with common ancestor with %s"
-msgstr ""
+msgstr "Personen met dezelfde voorouder als %s"
 
 #: plugins/GraphViz.py:120
 msgid "Descendants <- Ancestors"
-msgstr ""
+msgstr "Afstammelingen <- Voorouders"
 
 #: plugins/GraphViz.py:125
 msgid "Descendants -> Ancestors"
-msgstr ""
+msgstr "Afstammelingen -> Voorouders"
 
 #: plugins/GraphViz.py:130
 msgid "Descendants <-> Ancestors"
-msgstr ""
+msgstr "Afstammelingen <-> Voorouders"
 
 #: plugins/GraphViz.py:135
 msgid "Descendants - Ancestors"
-msgstr ""
+msgstr "Afstammelingen - Voorouders"
 
 #: plugins/GraphViz.py:144 plugins/GraphViz.py:152 plugins/GraphViz.py:160
 #: plugins/GraphViz.py:170 plugins/GraphViz.py:180 plugins/GraphViz.py:188
 #: plugins/GraphViz.py:202 plugins/GraphViz.py:205 plugins/GraphViz.py:215
 #: plugins/GraphViz.py:222
 msgid "GraphViz Options"
-msgstr ""
+msgstr "GraphViz-opties"
 
 #: plugins/GraphViz.py:145
 msgid "Arrowhead Options"
-msgstr ""
+msgstr "Pijlpunt-opties"
 
 #: plugins/GraphViz.py:147
 msgid "Choose the direction that the arrows point."
-msgstr ""
+msgstr "Kies de richting van de pijlen."
 
 #: plugins/GraphViz.py:149
 msgid "Include Birth and Death Dates"
-msgstr ""
+msgstr "Geboortedatums en sterfdatums bijvoegen"
 
 #: plugins/GraphViz.py:154
 msgid ""
 "Include the years that the individual was born and/or died in the graph node "
 "labels."
-msgstr ""
+msgstr "Het geboortejaar of overlijdensjaar van de persoon in de grafieklabels tonen."
 
 #: plugins/GraphViz.py:158
 msgid "Include URLs"
-msgstr ""
+msgstr "URLs bijvoegen"
 
 #: plugins/GraphViz.py:162
 msgid ""
@@ -4226,59 +4278,61 @@ msgstr ""
 
 #: plugins/GraphViz.py:168
 msgid "Colorize Graph"
-msgstr ""
+msgstr "Grafiek kleuren"
 
 #: plugins/GraphViz.py:173
 msgid ""
 "Males will be outlined in blue, females will be outlined in pink.  If the sex "
 "of an individual is unknown it will be outlined in black."
 msgstr ""
+"Mannen krijgen een blauwe kleur, vrouwen een roze kleur. Als het geslacht van \n"
+"een persoon niet bekend is krijg de persoon een zwarte kleur."
 
 #: plugins/GraphViz.py:178
 msgid "Indicate non-birth relationships with dashed lines"
-msgstr ""
+msgstr "Niet-geboorte relaties aanduiden met stippellijnen"
 
 #: plugins/GraphViz.py:183
 msgid "Non-birth relationships will show up as dashed lines in the graph."
-msgstr ""
+msgstr "Relaties die niet uit een geboorte zijn ontstaan worden in de grafiek weergeven met stippellijnen."
 
 #: plugins/GraphViz.py:186
 msgid "Show family nodes"
-msgstr ""
+msgstr "Familieknooppunten tonen"
 
 #: plugins/GraphViz.py:191
 msgid "Families will show up as circles, linked to parents and children."
-msgstr ""
+msgstr "Families zijn te zien als cirkels met verbindingen naar ouders en kinderen."
 
 #: plugins/GraphViz.py:203
 msgid "Top & Bottom Margins"
-msgstr ""
+msgstr "Onder en boven-marges"
 
 #: plugins/GraphViz.py:206
 msgid "Left & Right Margins"
-msgstr ""
+msgstr "Linker en rechter-marges"
 
 #: plugins/GraphViz.py:216
 msgid "Number of Horizontal Pages"
-msgstr ""
+msgstr "Aantal horizontale pagina's"
 
 #: plugins/GraphViz.py:218
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "horizontally."
-msgstr ""
+msgstr "GraphViz kan zeer grote grafieken maken door deze te verspreiden over een rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld horizontaal."
 
 #: plugins/GraphViz.py:223
 msgid "Number of Vertical Pages"
-msgstr ""
+msgstr "Aantal vertikale pagina's"
 
 #: plugins/GraphViz.py:225
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
 "vertically."
-msgstr ""
+msgstr "GraphViz kan zeer grote grafieken maken door deze te verspreiden over een rechthoekig veld van pagina's. Dit bepaalt het aantal pagina's in het veld vertikaal."
 
 #: plugins/GraphViz.py:431
 msgid ""
@@ -4286,89 +4340,90 @@ msgid ""
 "(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and many "
 "other formats. For more information or to get a copy of GraphViz, goto "
 "http://www.graphviz.org"
-msgstr ""
+msgstr "Genereert relatiegrafieken, momenteel alleen in GraphViz-formaat. GraphViz (dot) kan een grafiek omzetten in postscript, jpeg, png, vrml, svg, en vele andere formaten. Voor meer informatie of een kopie van GraphViz, ga naar http://www.graphviz.org"
 
 #: plugins/IndivComplete.py:117
 msgid "%(date)s in %(place)s."
-msgstr ""
+msgstr "%(datum)s in %(plaats)en"
 
 #: plugins/IndivComplete.py:149 plugins/WebPage.py:463
 msgid "Notes"
-msgstr ""
+msgstr "Opmerkingen"
 
 #: plugins/IndivComplete.py:176
 msgid "Alternate Parents"
-msgstr ""
+msgstr "Alternatieve ouders"
 
 #: plugins/IndivComplete.py:214
 msgid "Alternate Names"
-msgstr ""
+msgstr "Alternatieve namen"
 
 #: plugins/IndivComplete.py:243 plugins/IndivSummary.py:139
 #: plugins/WebPage.py:516
 msgid "Marriages/Children"
-msgstr ""
+msgstr "Huwelijken/Kinderen"
 
 #: plugins/IndivComplete.py:317 plugins/IndivSummary.py:291
 msgid "Individual Facts"
-msgstr ""
+msgstr "Persoonlijke feiten"
 
 #: plugins/IndivComplete.py:353 plugins/IndivSummary.py:192
 #: plugins/WebPage.py:122 plugins/WebPage.py:249
 msgid "Summary of %s"
-msgstr ""
+msgstr "Samenvatting van %s"
 
 #: plugins/IndivComplete.py:383 plugins/IndivSummary.py:232
 #: plugins/WebPage.py:284
 msgid "Male"
-msgstr ""
+msgstr "Mannelijk"
 
 #: plugins/IndivComplete.py:385 plugins/IndivSummary.py:234
 #: plugins/WebPage.py:286
 msgid "Female"
-msgstr ""
+msgstr "Vrouwelijk"
 
 #: plugins/IndivComplete.py:435
 msgid "Include Source Information"
-msgstr ""
+msgstr "Bron-informatie bijvoegen"
 
 #: plugins/IndivComplete.py:446 plugins/IndivComplete.py:450
 #: plugins/IndivComplete.py:666
 msgid "Complete Individual Report"
-msgstr ""
+msgstr "Volledig persoonlijk rapport"
 
 #: plugins/IndivComplete.py:455
 msgid "Save Complete Individual Report"
-msgstr ""
+msgstr "Volledig persoonlijk rapport opslaan"
 
 #: plugins/IndivComplete.py:512 plugins/IndivSummary.py:355
 msgid "The style used category labels."
-msgstr ""
+msgstr "De gebruikte stijl voor categorie-labels."
 
 #: plugins/IndivComplete.py:521 plugins/IndivSummary.py:364
 #: plugins/WebPage.py:1019
 msgid "The style used for the spouse's name."
-msgstr ""
+msgstr "De gebruikte stijl voor naam van de echtgenoot."
 
 #: plugins/IndivComplete.py:669
 msgid "Produces a complete report on the selected people."
-msgstr ""
+msgstr "Levert een volledig rapport voor de geselecteerde personen."
 
 #: plugins/IndivSummary.py:317 plugins/IndivSummary.py:499
 msgid "Individual Summary"
-msgstr ""
+msgstr "Persoonlijke samenvatting"
 
 #: plugins/IndivSummary.py:321
 msgid "Individual Summary for %s"
-msgstr ""
+msgstr "Persoonlijke samenvatting voor %s"
 
 #: plugins/IndivSummary.py:326
 msgid "Save Individual Summary"
-msgstr ""
+msgstr "Persoonlijke samenvatting opslaan"
 
+# voor de geselecteerde persoon
 #: plugins/IndivSummary.py:502
 msgid "Produces a detailed report on the selected person."
-msgstr ""
+msgstr "Levert een gedetailleerd persoonlijk rapport over de geselecteerde persoon."
 
 #: plugins/Merge.py:111
 msgid "Medium"
@@ -4376,25 +4431,27 @@ msgstr ""
 
 #: plugins/Merge.py:214
 msgid "First Person"
-msgstr ""
+msgstr "Eerste persoon"
 
+# Classificatie, taxering
 #: plugins/Merge.py:214
 msgid "Rating"
-msgstr ""
+msgstr "Klasse"
 
 #: plugins/Merge.py:215
 msgid "Second Person"
-msgstr ""
+msgstr "Tweede persoon"
 
+# Duplicaat
 #: plugins/Merge.py:544
 msgid "Find possible duplicate people"
-msgstr ""
+msgstr "Mogelijke dubbele personen zoeken"
 
 #: plugins/Merge.py:546
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
-msgstr ""
+msgstr "De gehele database doorzoeken op personen die mogelijk representaties zijn van een en dezelfde persoon."
 
 #: plugins/PatchNames.py:101
 msgid "%s will be extracted as a nickname from %s\n"
@@ -4406,11 +4463,11 @@ msgstr ""
 
 #: plugins/PatchNames.py:119
 msgid "No titles or nicknames were found"
-msgstr ""
+msgstr "Geen titels of bijnamen gevonden"
 
 #: plugins/PatchNames.py:151
 msgid "Extract information from names"
-msgstr ""
+msgstr "Informatie uit namen halen"
 
 #: plugins/PatchNames.py:153
 msgid ""
@@ -4421,28 +4478,29 @@ msgstr ""
 #: plugins/ReadGedcom.py:132 plugins/ReadGedcom.py:136
 #: plugins/ReadGedcom.py:144
 msgid "%s could not be opened\n"
-msgstr ""
+msgstr "%s kon niet worden geopend\n"
 
 #: plugins/ReadGedcom.py:296
 msgid "GEDCOM file ended unexpectedly"
-msgstr ""
+msgstr "GEDCOM-bestand is onverwacht geëindigd"
 
+# Let op, ipv waarschuwing
 #: plugins/ReadGedcom.py:312 plugins/ReadGedcom.py:323
 msgid "Warning: line %d was not understood, so it was ignored."
-msgstr ""
+msgstr "Waarschuwing: regel %d werd niet begrepen en is daarom genegeerd."
 
 #: plugins/ReadGedcom.py:368
 msgid "Import Complete: %d seconds"
-msgstr ""
+msgstr "Import voltooid: %d seconden"
 
 #: plugins/ReadGedcom.py:1699 plugins/ReadGedcom.py:1742
 msgid "Import from GEDCOM"
-msgstr ""
+msgstr "Importeren uit GEDCOM"
 
 #: plugins/ReadNative.py:47 plugins/ReadNative.py:58 plugins/ReadNative.py:61
 #: plugins/ReadNative.py:97
 msgid "Import from GRAMPS"
-msgstr ""
+msgstr "Importeren uit GRAMPS"
 
 #: plugins/RelCalc.py:74
 msgid "%(p1)s is the first cousin of %(p2)s."
@@ -4710,27 +4768,27 @@ msgstr ""
 
 #: plugins/RelCalc.py:323
 msgid "Birthday"
-msgstr ""
+msgstr "Geboortedag"
 
 #: plugins/RelCalc.py:377
 msgid "Their common ancestor is %s."
-msgstr ""
+msgstr "Hun gemeenschappelijke voorouder is %s."
 
 #: plugins/RelCalc.py:383
 msgid "Their common ancestors are %s and %s."
-msgstr ""
+msgstr "Hun gemeenschappelijke voorouders zijn %s en %s."
 
 #: plugins/RelCalc.py:388
 msgid "Their common ancestors are : "
-msgstr ""
+msgstr "Hun gemeenschappelijke voorouders zijn : "
 
 #: plugins/RelCalc.py:401
 msgid "There is no relationship between %s and %s."
-msgstr ""
+msgstr "Er is geen relatie tussen %s en %s."
 
 #: plugins/RelCalc.py:405
 msgid "%s and %s are the same person."
-msgstr ""
+msgstr "%s en %s zijn dezelfde persoon."
 
 #: plugins/RelCalc.py:446
 msgid "Relationship calculator"
@@ -4738,87 +4796,90 @@ msgstr ""
 
 #: plugins/RelCalc.py:448
 msgid "Calculates the relationship between two people"
-msgstr ""
+msgstr "Berekent de relatie tussen twee personen"
 
 #: plugins/ReorderIds.py:121
 msgid "Reorder gramps IDs"
-msgstr ""
+msgstr "Gramps ID's herordenen"
 
 #: plugins/ReorderIds.py:123
 msgid "Reorders the gramps IDs according to gramps' default rules."
-msgstr ""
+msgstr "De gramps ID's herordenen volgends de standaard regels van gramps."
 
+# Individuen
 #: plugins/Summary.py:105
 msgid "Individuals"
-msgstr ""
+msgstr "Personen"
 
 #: plugins/Summary.py:107
 msgid "Number of individuals"
-msgstr ""
+msgstr "Aantal personen"
 
 #: plugins/Summary.py:110
 msgid "Individuals with incomplete names"
-msgstr ""
+msgstr "Personen met onvolledige namen"
 
 #: plugins/Summary.py:111
 msgid "Individuals missing birth dates"
-msgstr ""
+msgstr "Personen zonder geboortedatum"
 
 #: plugins/Summary.py:113
 msgid "Family Information"
-msgstr ""
+msgstr "Familie-informatie"
 
 #: plugins/Summary.py:115
 msgid "Number of families"
-msgstr ""
+msgstr "Aantal families"
 
 #: plugins/Summary.py:116
 msgid "Unique surnames"
-msgstr ""
+msgstr "Unieke achternamen"
 
 #: plugins/Summary.py:119
 msgid "Individuals with media objects"
-msgstr ""
+msgstr "Personen met media-objecten"
 
 #: plugins/Summary.py:120
 msgid "Total number of media object references"
-msgstr ""
+msgstr "Totaal aantal verwijzingen naar media-objecten"
 
 #: plugins/Summary.py:121
 msgid "Number of unique media objects"
-msgstr ""
+msgstr "Aantal unieke media-objecten"
 
 #: plugins/Summary.py:122
 msgid "Total size of media objects"
-msgstr ""
+msgstr "Totale grootte van media-objecten"
 
 #: plugins/Summary.py:123
 msgid "bytes"
-msgstr ""
+msgstr "byte"
 
 #: plugins/Summary.py:126
 msgid "Missing Media Objects"
-msgstr ""
+msgstr "Ontbrekende media-objecten"
 
 #: plugins/Summary.py:145
 msgid "Summary of the database"
-msgstr ""
+msgstr "Samenvatting van de database"
 
+# het gaat om het weergeven van de voorouders of een samenvatting van de db.
 #: plugins/Summary.py:147 plugins/count_anc.py:95
 msgid "View"
-msgstr ""
+msgstr "Weergeven"
 
 #: plugins/Summary.py:148
 msgid "Provides a summary of the current database"
-msgstr ""
+msgstr "Levert een samenvatting van de huidige database"
 
+# tijdslijn?
 #: plugins/TimeLine.py:309
 msgid "Timeline"
 msgstr "Tijdlijn"
 
 #: plugins/TimeLine.py:315
 msgid "Timeline File"
-msgstr ""
+msgstr "Tijdlijn-bestand"
 
 #: plugins/TimeLine.py:330
 msgid "Birth Date"
@@ -4830,379 +4891,383 @@ msgstr "Sorteren op"
 
 #: plugins/TimeLine.py:373
 msgid "The style used for the person's name."
-msgstr ""
+msgstr "De gebruikte stijl voor de naam van de persoon."
 
 #: plugins/TimeLine.py:381
 msgid "The style used for the year labels."
-msgstr ""
+msgstr "De gebruikte stijl voor de jaar-labels."
 
 #: plugins/TimeLine.py:445
 msgid "Generates a timeline graph."
-msgstr ""
+msgstr "Genereert een tijdlijn-grafiek."
 
 #: plugins/TimeLine.py:449
 msgid "Timeline Graph"
-msgstr ""
+msgstr "Tijdlijn grafiek"
 
 #: plugins/Verify.py:290
 msgid "Verify the database"
-msgstr ""
+msgstr "De database verifiëren"
 
 #: plugins/Verify.py:292
 msgid "List exceptions to assertions or checks about the database"
-msgstr ""
+msgstr "Uitzonderingen op aannaames of controles op de database opsommen"
 
 #: plugins/WebPage.py:281
 msgid "ID Number"
-msgstr ""
+msgstr "ID-nummer"
 
 #: plugins/WebPage.py:322
 msgid "Return to the index of people"
-msgstr ""
+msgstr "Terugkeren naar de personen-index"
 
 #: plugins/WebPage.py:355
 msgid "Gallery"
-msgstr ""
+msgstr "Galerie"
 
 #: plugins/WebPage.py:429
 msgid "Facts and Events"
-msgstr ""
+msgstr "Feiten en gebeurtenissen"
 
 #: plugins/WebPage.py:606
 msgid "Creating Web Pages"
-msgstr ""
+msgstr "Web-pagina's aanmaken"
 
 #: plugins/WebPage.py:606
 msgid "Generate HTML reports - GRAMPS"
-msgstr ""
+msgstr "HTML-rapportages genereren - GRAMPS"
 
 #: plugins/WebPage.py:695 plugins/WebPage.py:699
 msgid "Family Tree Index"
-msgstr ""
+msgstr "Familieboom-index"
 
 #: plugins/WebPage.py:733
 msgid "%s (continued)"
-msgstr ""
+msgstr "%s (voortzetting)"
 
 #: plugins/WebPage.py:750
 msgid "Neither %s nor %s are directories"
-msgstr ""
+msgstr "Noch %s noch %s zijn mappen"
 
 #: plugins/WebPage.py:757 plugins/WebPage.py:761 plugins/WebPage.py:773
 #: plugins/WebPage.py:777
 msgid "Could not create the directory : %s"
-msgstr ""
+msgstr "Kon de map %s niet aanmaken"
 
 #: plugins/WebPage.py:844
 msgid "Include a link to the index page"
-msgstr ""
+msgstr "Een link naar de index-pagina bijvoegen"
 
 #: plugins/WebPage.py:845 plugins/gedcomexport.glade:429
 #: plugins/pafexport.glade:276
 msgid "Do not include records marked private"
-msgstr ""
+msgstr "Archieven gemakreerd als privé, niet bijvoegen"
 
 #: plugins/WebPage.py:846
 msgid "Restrict information on living people"
-msgstr ""
+msgstr "Informatie over levende personen beperken"
 
 #: plugins/WebPage.py:847
 msgid "Do not use images"
-msgstr ""
+msgstr "Geen afbeeldingen gebruiken"
 
 #: plugins/WebPage.py:848
 msgid "Do not use images for living people"
-msgstr ""
+msgstr "Geen afbeeldingen voor levende mensen gebruiken"
 
 #: plugins/WebPage.py:849
 msgid "Do not include comments and text in source information"
-msgstr ""
+msgstr "Geen opmerkingen en tekst in de bron-informatie bijvoegen"
 
 #: plugins/WebPage.py:850
 msgid "Include the GRAMPS ID in the report"
-msgstr ""
+msgstr "De GRAMPS ID in de rapportage bijvoegen"
 
 #: plugins/WebPage.py:851
 msgid "Create a GENDEX index"
-msgstr ""
+msgstr "Een GENDEX index aanmaken"
 
 #: plugins/WebPage.py:852
 msgid "Image subdirectory"
-msgstr ""
+msgstr "Afbeeldings-submap"
 
+# Bestandsuitgang
 #: plugins/WebPage.py:853
 msgid "File extension"
-msgstr ""
+msgstr "Bestandsextentie"
 
 #: plugins/WebPage.py:877
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 #: plugins/WebPage.py:884
 msgid "Advanced"
-msgstr ""
+msgstr "Geavanceerd"
 
 #: plugins/WebPage.py:886
 msgid "GRAMPS ID link URL"
-msgstr ""
+msgstr "GRAMPS ID link URL"
 
+# webstek
 #: plugins/WebPage.py:897 plugins/WebPage.py:1266
 msgid "Generate Web Site"
-msgstr ""
+msgstr "Web-site genereren"
 
 #: plugins/WebPage.py:897 plugins/WebPage.py:1267
 msgid "Web Page"
-msgstr ""
+msgstr "Web-pagina"
 
 #: plugins/WebPage.py:902
 msgid "Target Directory"
-msgstr ""
+msgstr "Doel-map"
 
 #: plugins/WebPage.py:926
 msgid "Direct Descendants of %s"
-msgstr ""
+msgstr "Directe afstammelingen van %s"
 
 #: plugins/WebPage.py:930
 msgid "Descendant Families of %s"
-msgstr ""
+msgstr "Familie-afstammelingen van %s"
 
 #: plugins/WebPage.py:968
 msgid "The style used for the header that identifies facts and events."
-msgstr ""
+msgstr "De gebruikte stijl voor de kop voor feiten en gebeurtenissen."
 
 #: plugins/WebPage.py:976
 msgid "The style used for the header for the notes section."
-msgstr ""
+msgstr "De gebruikte stijl voor de kop voor opmerkingen."
 
 #: plugins/WebPage.py:983
 msgid "The style used for the copyright notice."
-msgstr ""
+msgstr "De gebruikte stijl voor het copyright."
 
 #: plugins/WebPage.py:990
 msgid "The style used for the header for the sources section."
-msgstr ""
+msgstr "De gebruikte stijl voor de kop voor bronnen."
 
 #: plugins/WebPage.py:997
 msgid "The style used on the index page that labels each section."
-msgstr ""
+msgstr "De gebruikte stijl voor de index-pagina die elke sectie labelt."
 
 #: plugins/WebPage.py:1004
 msgid "The style used for the header for the image section."
-msgstr ""
+msgstr "De gebruikte stijl voor de kop voor afbeeldingen."
 
 #: plugins/WebPage.py:1011
 msgid "The style used for the header for the marriages and children section."
-msgstr ""
+msgstr "De gebruikte stijl voor de kop voor huwelijken en kinderen."
 
 #: plugins/WebPage.py:1026
 msgid "The style used for the general data labels."
-msgstr ""
+msgstr "De gebruikte stijl voor de algemene datalabels."
 
 #: plugins/WebPage.py:1033
 msgid "The style used for the general data."
-msgstr ""
+msgstr "De gebruikte stijl voor de algemene data."
 
 #: plugins/WebPage.py:1040
 msgid "The style used for the description of images."
-msgstr ""
+msgstr "De gebruikte stijl voor de beschrijving van afbeeldingen."
 
 #: plugins/WebPage.py:1047
 msgid "The style used for the notes associated with images."
-msgstr ""
+msgstr "De gebruikte stijl voor de opmerkingen bij afbeeldingen."
 
 #: plugins/WebPage.py:1054
 msgid "The style used for the source information."
-msgstr ""
+msgstr "De gebruikte stijl voor de bron-informatie."
 
 #: plugins/WebPage.py:1061
 msgid "The style used for the note information."
-msgstr ""
+msgstr "De gebruikte stijl voor de omperking-informatie."
 
 #: plugins/WebPage.py:1269
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
-msgstr ""
+msgstr "Genereert web-pagina's (HTML) voor personen, of een groep personen."
 
 #: plugins/WriteGedcom.py:1076
 msgid "Export to GEDCOM"
-msgstr ""
+msgstr "Naar GEDCOM exporteren"
 
 #: plugins/WritePkg.py:151
 msgid "Export to GRAMPS package"
-msgstr ""
+msgstr "Naar een GRAMPS-pakket exporteren"
 
 #: plugins/changetype.glade:6
 msgid "Change Event Types - GRAMPS"
-msgstr ""
+msgstr "Gebeurtenistypen veranderen - GRAMPS"
 
 #: plugins/changetype.glade:69
 msgid "Change Event Type of"
-msgstr ""
+msgstr "Gebeurtenistype veranderen voor"
 
+# change foo to bar
 #: plugins/changetype.glade:137
 msgid "to"
-msgstr ""
+msgstr "in"
 
 #: plugins/count_anc.py:51
 msgid "Number of ancestors of \"%s\" by generation"
-msgstr ""
+msgstr "Aantal voorouders van \"%s\" per generatie"
 
 #: plugins/count_anc.py:61
 msgid "Generation %d has 1 individual.\n"
-msgstr ""
+msgstr "Generatie %d bevat 1 persoon.\n"
 
 #: plugins/count_anc.py:63
 msgid "Generation %d has %d individuals.\n"
-msgstr ""
+msgstr "Generatie %d bevat %d personen.\n"
 
 #: plugins/count_anc.py:77
 msgid "Total ancestors in generations %d to -1 is %d .\n"
-msgstr ""
+msgstr "Aantal voorouders in generatie %s tot -1 is %d .\n"
 
 #: plugins/count_anc.py:94
 msgid "Number of ancestors"
-msgstr ""
+msgstr "Aantal voorouders"
 
 #: plugins/count_anc.py:96
 msgid "Counts number of ancestors of selected person"
-msgstr ""
+msgstr "Telt het aantal voorouders van de geselecteerde persoon"
 
 #: plugins/desbrowse.glade:6
 msgid "Descendant Browser - GRAMPS"
-msgstr ""
+msgstr "Afstammelingen-browser - GRAMPS"
 
 #: plugins/desbrowse.glade:69
 msgid "Descendant Browser"
-msgstr ""
+msgstr "Afstammelingen-browser"
 
 #: plugins/eventcmp.glade:9
 msgid "Save as a Spreadsheet - GRAMPS"
-msgstr ""
+msgstr "Opslaan als een spreadsheet - GRAMPS"
 
 #: plugins/eventcmp.glade:71
 msgid "Save data as a spreadsheet"
-msgstr ""
+msgstr "De data opslaan als een spreadsheet"
 
 #: plugins/eventcmp.glade:105
 msgid "Save Data"
-msgstr ""
+msgstr "Data opslaan"
 
 #: plugins/eventcmp.glade:147
 msgid "OpenOffice Spreadsheet"
-msgstr ""
+msgstr "OpenOffice spreadsheet"
 
 #: plugins/eventcmp.glade:215
 msgid "Choose the HTML template"
-msgstr ""
+msgstr "Kies een HTML-sjabloon"
 
 #: plugins/eventcmp.glade:252
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #: plugins/eventcmp.glade:287 plugins/eventcmp.glade:415
 msgid "Event Comparison - GRAMPS"
-msgstr ""
+msgstr "Gebeurtenis-vergelijken - GRAMPS"
 
 #: plugins/eventcmp.glade:354 plugins/eventcmp.glade:477
 msgid "Event Comparison"
-msgstr ""
+msgstr "Gebeurtenis-vergelijken"
 
 #: plugins/gedcomexport.glade:9 plugins/gedcomexport.glade:502
 msgid "Export GEDCOM file"
-msgstr ""
+msgstr "GEDCOM-bestand exporteren"
 
 #: plugins/gedcomexport.glade:72 plugins/gedcomexport.glade:551
 #: plugins/pkgexport.glade:188
 msgid "GEDCOM Export"
-msgstr ""
+msgstr "GEDCOM-export"
 
 #: plugins/gedcomexport.glade:106
 msgid "Export GEDCOM"
-msgstr ""
+msgstr "GEDCOM exporteren"
 
 #: plugins/gedcomexport.glade:199
 msgid "ANSEL"
-msgstr ""
+msgstr "ANSEL"
 
 #: plugins/gedcomexport.glade:218
 msgid "UNICODE"
-msgstr ""
+msgstr "UNICODE"
 
+# codering
 #: plugins/gedcomexport.glade:238 plugins/gedcomimport.glade:199
 msgid "Encoding"
-msgstr ""
+msgstr "Tekenset"
 
 #: plugins/gedcomexport.glade:287
 msgid "Copyright"
-msgstr ""
+msgstr "Copyright"
 
 #: plugins/gedcomexport.glade:313
 msgid "Target"
-msgstr ""
+msgstr "Doel"
 
 #: plugins/gedcomexport.glade:349
 msgid "Standard GEDCOM 5.5"
-msgstr ""
+msgstr "Standaard GEDCOM 5.5"
 
 #: plugins/gedcomexport.glade:379
 msgid "Standard Copyright"
-msgstr ""
+msgstr "Standaard Copyright"
 
 #: plugins/gedcomexport.glade:388
 msgid "GNU Free Documentation License"
-msgstr ""
+msgstr "GNU Free Documentation License"
 
 #: plugins/gedcomexport.glade:397
 msgid "No Copyright"
-msgstr ""
+msgstr "Geen Copyright"
 
 #: plugins/gedcomexport.glade:448 plugins/pafexport.glade:292
 msgid "Restrict data on living people"
-msgstr ""
+msgstr "Gegevens over levende personen beperken"
 
 #: plugins/gedcomexport.glade:467 plugins/merge.glade:447
 #: plugins/pafexport.glade:261
 msgid "Options"
-msgstr ""
+msgstr "Opties"
 
 #: plugins/gedcomimport.glade:6
 msgid "GEDCOM Import Status"
-msgstr ""
+msgstr "GEDCOM importstatus"
 
 #: plugins/gedcomimport.glade:22
 msgid "GEDCOM Import"
-msgstr ""
+msgstr "GEDCOM import"
 
 #: plugins/gedcomimport.glade:61
 msgid "File"
-msgstr ""
+msgstr "Bestand"
 
 #: plugins/gedcomimport.glade:84
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #: plugins/gedcomimport.glade:107
 msgid "Version"
-msgstr ""
+msgstr "Versie"
 
 #: plugins/gedcomimport.glade:130
 msgid "Number of Families"
-msgstr ""
+msgstr "Aantal families"
 
 #: plugins/gedcomimport.glade:153
 msgid "Number of People"
-msgstr ""
+msgstr "Aantal personen"
 
 #: plugins/gedcomimport.glade:176
 msgid "Number of Errors"
-msgstr ""
+msgstr "Aantal fouten"
 
 #: plugins/gedcomimport.glade:370
 msgid "Close window when complete"
-msgstr ""
+msgstr "Venster sluiten wanneer voltooid"
 
 #: plugins/merge.glade:8 plugins/merge.glade:249
 msgid "Merge People - GRAMPS"
-msgstr ""
+msgstr "Personen samenvoegen - GRAMPS"
 
 #: plugins/merge.glade:24
 msgid "Determining Possible Merges"
@@ -5210,23 +5275,23 @@ msgstr ""
 
 #: plugins/merge.glade:56
 msgid "Please be patient. This may take a while."
-msgstr ""
+msgstr "Een ogenblik alstublieft, dit kan even duren."
 
 #: plugins/merge.glade:118
 msgid "Merge List - GRAMPS"
-msgstr ""
+msgstr "Samenvoegingslijst - GRAMPS"
 
 #: plugins/merge.glade:144
 msgid "Merge"
-msgstr ""
+msgstr "Samenvoegen"
 
 #: plugins/merge.glade:182
 msgid "Potential Merges"
-msgstr ""
+msgstr "Mogelijke samenvoegingen"
 
 #: plugins/merge.glade:311
 msgid "Merge People"
-msgstr ""
+msgstr "Personen samenvoegen"
 
 #: plugins/merge.glade:366
 msgid "Match Threshold"
@@ -5234,27 +5299,27 @@ msgstr ""
 
 #: plugins/merge.glade:407
 msgid "Use SoundEx codes for name matches"
-msgstr ""
+msgstr "SoundEx-codes voor naam-overeenkomsten gebruiken"
 
 #: plugins/merge.glade:424
 msgid "(Recommended only for English)"
-msgstr ""
+msgstr "(Alleen aanbevolen voor Engels)"
 
 #: plugins/pafexport.glade:8
 msgid "Export PAF for PalmOS file"
-msgstr ""
+msgstr "PAF voor PalmOS-bestand exporteren"
 
 #: plugins/pafexport.glade:70
 msgid "PAF for PalmOS Export"
-msgstr ""
+msgstr "PAF voor PalmOS export"
 
 #: plugins/pafexport.glade:157
 msgid "Information"
-msgstr ""
+msgstr "Informatie"
 
 #: plugins/pafexport.glade:176
 msgid "Database name: "
-msgstr ""
+msgstr "Database-naam: "
 
 #: plugins/patchnames.glade:8
 msgid "Name and Title Extraction Tool - GRAMPS"
@@ -5276,32 +5341,32 @@ msgstr ""
 
 #: plugins/pkgexport.glade:8
 msgid "Export GRAMPS package - GRAMPS"
-msgstr ""
+msgstr "GRAMPS-pakket exporteren - GRAMPS"
 
 #: plugins/pkgexport.glade:70
 msgid "GRAMPS package export"
-msgstr ""
+msgstr "GRAMPS pakket-export"
 
 #: plugins/pkgexport.glade:139
 msgid "Export GRAMPS package"
-msgstr ""
+msgstr "GRAMPS-pakket exporteren"
 
 #: plugins/pkgexport.glade:299 plugins/pkgexport.glade:323
 #: plugins/pkgexport.glade:347 plugins/readgedcom.glade:54
 msgid "%P %%"
-msgstr ""
+msgstr "%P %%"
 
 #: plugins/readgedcom.glade:6
 msgid "GEDCOM Read Progress"
-msgstr ""
+msgstr "GEDCOM-lezen voortgang"
 
 #: plugins/readgedcom.glade:22
 msgid "GEDCOM Import Progress"
-msgstr ""
+msgstr "GEDCOM-import voortgang"
 
 #: plugins/relcalc.glade:8
 msgid "Relationship Calculator - GRAMPS"
-msgstr ""
+msgstr "Relatie-calculator - GRAMPS"
 
 #: plugins/relcalc.glade:72
 msgid "name"
@@ -5309,95 +5374,96 @@ msgstr "naam"
 
 #: plugins/soundex.glade:6
 msgid "SoundEx Code Generator - GRAMPS"
-msgstr ""
+msgstr "SoundEx-codegenerator - GRAMPS"
 
 #: plugins/soundex.glade:28
 msgid "Calculate SoundEx code for the name"
-msgstr ""
+msgstr "SoundEx-code voor de naam berekenen"
 
 #: plugins/soundex.glade:42
 msgid "Close Window"
-msgstr ""
+msgstr "Venster sluiten"
 
 #: plugins/soundex.glade:70
 msgid "SoundEx Code Generator"
-msgstr ""
+msgstr "SoundEx-codegenerator"
 
 #: plugins/soundex.glade:186
 msgid "Name used to generate SoundEx code"
-msgstr ""
+msgstr "Gebruikte naam voor genereren SoundEx-code"
 
 #: plugins/soundgen.py:85
 msgid "Generate SoundEx codes"
-msgstr ""
+msgstr "Soundex-codes genereren"
 
 #: plugins/soundgen.py:87
 msgid "Generates SoundEx codes for names"
-msgstr ""
+msgstr "Genereert SoundEx-codes voor namen"
 
 #: plugins/summary.glade:8
 msgid "Database Summary - GRAMPS"
-msgstr ""
+msgstr "Database overzicht - GRAMPS"
 
 #: plugins/summary.glade:66
 msgid "Database Summary"
-msgstr ""
+msgstr "Database overzicht"
 
 #: plugins/verify.glade:8
 msgid "Database Verify - GRAMPS"
-msgstr ""
+msgstr "Database verifiëren - GRAMPS"
 
 #: plugins/verify.glade:66
 msgid "Database Verify"
-msgstr ""
+msgstr "Database verifiëren"
 
 #: plugins/verify.glade:141
 msgid "Verify - Settings"
-msgstr ""
+msgstr "Verifiëren - Instellingen"
 
 #: plugins/verify.glade:181
 msgid "Maximum age"
-msgstr ""
+msgstr "Maximum leeftijd"
 
 #: plugins/verify.glade:205
 msgid "Maximum husband-wife age difference"
-msgstr ""
+msgstr "Maximum leeftijdsverschil man-vrouw"
 
+# huwelijk
 #: plugins/verify.glade:229
 msgid "Minimum age to marry"
-msgstr ""
+msgstr "Minumum leeftijd voor trouwen"
 
 #: plugins/verify.glade:253
 msgid "Maximum age to marry"
-msgstr ""
+msgstr "Maximum leeftijd voor trouwen"
 
 #: plugins/verify.glade:277
 msgid "Maximum number of spouses for a person"
-msgstr ""
+msgstr "Maximum aantal echtgenoten voor een persoon"
 
 #: plugins/verify.glade:301
 msgid "Maximum number of consecutive years of widowhood"
-msgstr ""
+msgstr "Maximum aantaal opeenvolgende jaren weduwnaarschap"
 
 #: plugins/verify.glade:325
 msgid "Maximum number of years between children"
-msgstr ""
+msgstr "Maximum aantal jaren tussen kinderen"
 
 #: plugins/verify.glade:349
 msgid "Maximum span of years for all children"
-msgstr ""
+msgstr "Maximum reikwijdte in jaren voor alle kinderen"
 
 #: plugins/verify.glade:609
 msgid "Minimum age to bear a child"
-msgstr ""
+msgstr "Minimum leeftijd voor baren van een kind"
 
 #: plugins/verify.glade:633
 msgid "Maximum age to bear a child"
-msgstr ""
+msgstr "Maximum leeftijd voor baren van een kind"
 
 #: plugins/verify.glade:701 plugins/verify.glade:885
 msgid "Maximum number of children"
-msgstr ""
+msgstr "Maximum aantal kinderen"
 
 #: plugins/verify.glade:749
 msgid "Women"
@@ -5405,11 +5471,11 @@ msgstr "Vrouwen"
 
 #: plugins/verify.glade:793
 msgid "Minimum age to father a child"
-msgstr ""
+msgstr "Minimum leeftijd voor vader tot kind"
 
 #: plugins/verify.glade:817
 msgid "Maximum age to father a child"
-msgstr ""
+msgstr "Maximum leeftijd voor vader tot kind"
 
 #: plugins/verify.glade:933
 msgid "Men"
@@ -5423,15 +5489,15 @@ msgstr "GRAMPS voorkeuren"
 msgid ""
 "To change your preferences, select one of the subcategories in the menu on "
 "the left hand side of the window."
-msgstr ""
+msgstr "Om uw voorkeueren te veranderen kiest u een van de subcategorieën uit het menu aan de linkerzijde van het venster."
 
 #: preferences.glade:240
 msgid "A_utosave interval:"
-msgstr ""
+msgstr "A_utomatisch opslaan inteval:"
 
 #: preferences.glade:289
 msgid "D_efault database directory:"
-msgstr ""
+msgstr "St_andaard database-map:"
 
 #: preferences.glade:317
 msgid "minutes"
@@ -5443,7 +5509,7 @@ msgstr "<b>Database</b>"
 
 #: preferences.glade:367
 msgid "Select default database directory - GRAMPS"
-msgstr ""
+msgstr "Standaard database-map selecteren - GRAMPS"
 
 #: preferences.glade:374
 msgid "The default directory for storing databases"
@@ -5469,9 +5535,10 @@ msgstr "<b>Revisiebeheer</b>"
 msgid "_Use revision control"
 msgstr "Revisiebeheer _gebruiken"
 
+# comment?
 #: preferences.glade:559
 msgid "_Prompt for comment on save"
-msgstr ""
+msgstr "_Vragen voor opslaan."
 
 #: preferences.glade:657
 msgid "<b>Find</b>"
@@ -5504,11 +5571,11 @@ msgstr "Pictogrammen _en tekst tonen"
 
 #: preferences.glade:867
 msgid "_Active person's name only"
-msgstr ""
+msgstr "Alleen naam van _actieve persoon"
 
 #: preferences.glade:890
 msgid "Active person's name and _GRAMPS ID"
-msgstr ""
+msgstr "Naam en _GRAMPS-ID van actieve persoon"
 
 #: preferences.glade:962
 msgid "_Always display the LDS ordinance tabs"
@@ -5516,35 +5583,35 @@ msgstr ""
 
 #: preferences.glade:985
 msgid "_Show index numbers in child list"
-msgstr ""
+msgstr "_Index-nummers in kinderen-lijst tonen"
 
 #: preferences.glade:1006
 msgid "<b>Display</b>"
-msgstr ""
+msgstr "<b>Weergave</b>"
 
 #: preferences.glade:1078
 msgid "_Date format:"
-msgstr ""
+msgstr "_Datum-formaat:"
 
 #: preferences.glade:1106
 msgid "_Name format:"
-msgstr ""
+msgstr "_Naam-formaat:"
 
 #: preferences.glade:1157
 msgid "D_ate format:"
-msgstr ""
+msgstr "D_atum-formaat:"
 
 #: preferences.glade:1208
 msgid "_Show calendar format selection menu"
-msgstr ""
+msgstr "Selectiemenu voor _kalenderformaat tonen"
 
 #: preferences.glade:1229
 msgid "<b>Display formats</b>"
-msgstr ""
+msgstr "<b>Weergave-formaten</b>"
 
 #: preferences.glade:1253
 msgid "<b>Entry formats</b>"
-msgstr ""
+msgstr "<b>Invoer-formaten</b>"
 
 #: preferences.glade:1277
 msgid "<b>Calendars</b>"
@@ -5560,7 +5627,7 @@ msgstr "_Adres:"
 
 #: preferences.glade:1454
 msgid "_State/Province:"
-msgstr ""
+msgstr "_Staat/Provincie:"
 
 #: preferences.glade:1482
 msgid "_Country:"
@@ -5600,11 +5667,11 @@ msgstr "A4"
 
 #: preferences.glade:2008
 msgid "_Default report directory:"
-msgstr ""
+msgstr "Standaard _rapportage-map:"
 
 #: preferences.glade:2038 preferences.glade:2100
 msgid "Select default report directory - GRAMPS"
-msgstr ""
+msgstr "Standaard rapportage-map selecteren - GRAMPS"
 
 #: preferences.glade:2045
 msgid "The default directory for the output of many report generators"
@@ -5612,11 +5679,11 @@ msgstr ""
 
 #: preferences.glade:2070
 msgid "Default _web site directory:"
-msgstr ""
+msgstr "Standaard _web-site map:"
 
 #: preferences.glade:2107
 msgid "The default directory for the output of the Web Site report generators"
-msgstr ""
+msgstr "De standaard map voor de uitvoer van de web-site rapportage-generatoren"
 
 #: preferences.glade:2132
 msgid "<b>Report preferences</b>"
@@ -5640,11 +5707,11 @@ msgstr ""
 
 #: preferences.glade:2291
 msgid "<b>Drag and drop from and external source</b>"
-msgstr ""
+msgstr "<b>Trekken en slepen uit een  externe bron</b>"
 
 #: preferences.glade:2315
 msgid "<b>Drag and drop from an internal source</b>"
-msgstr ""
+msgstr "<b>Trekken en slepen uit een interne bron</b>"
 
 #: preferences.glade:2408
 msgid "_Family:"
@@ -5693,15 +5760,15 @@ msgstr "<b>GRAMPS ID aanduidingen</b>"
 
 #: preferences.glade:2680
 msgid "_Allow internal GRAMPS ID numbers to be edited"
-msgstr ""
+msgstr "_Bewerken van interne GRAMPS ID-nummers toestaan"
 
 #: preferences.glade:2749
 msgid "_Surname guessing:"
-msgstr ""
+msgstr "_Achternaam raden:"
 
 #: preferences.glade:2777
 msgid "<b>Customization</b>"
-msgstr ""
+msgstr "<b>Instellingen</b>"
 
 #: revision.glade:104
 msgid "_Database:"
@@ -5709,31 +5776,32 @@ msgstr "_Database:"
 
 #: revision.glade:162
 msgid "_Revert to an older version from revision control"
-msgstr ""
+msgstr "_Terugvallen naar een oudere versie uit het revisie-beheer"
 
 #: revision.glade:400
 msgid "Comment:"
-msgstr ""
+msgstr "Opmerking:"
 
+# aan precies een regel moet voldaan worden
 #: rule.glade:207
 msgid "E_xactly one rule must apply"
-msgstr ""
+msgstr "_Precies een regel moet gelden"
 
 #: rule.glade:228
 msgid "At least _one rule must apply"
-msgstr ""
+msgstr "_Tenminste een regel moet gelden"
 
 #: rule.glade:250
 msgid "All _rules must apply"
-msgstr ""
+msgstr "_Alle regels moeten gelden"
 
 #: rule.glade:272
 msgid "_Invert"
-msgstr ""
+msgstr "_Omkeren"
 
 #: rule.glade:621
 msgid "<b>Values</b>"
-msgstr ""
+msgstr "<b>Waarden</b>"
 
 #: rule.glade:649
 msgid "<b>Rule</b>"
@@ -5755,9 +5823,10 @@ msgstr "_Testen..."
 msgid "Delete the selected filter"
 msgstr "De geselecteerde filter verwijderen"
 
+# Vertrouwen
 #: srcsel.glade:110
 msgid "_Confidence:"
-msgstr ""
+msgstr "_Zekerheid:"
 
 #: srcsel.glade:138
 msgid "<b>Source details</b>"
@@ -5765,7 +5834,7 @@ msgstr "<b>Bron-details</b>"
 
 #: srcsel.glade:162
 msgid "_Volume/Film/Page:"
-msgstr ""
+msgstr "_Volume/Film/Pagina:"
 
 #: srcsel.glade:218
 msgid "Te_xt:"
@@ -5809,7 +5878,7 @@ msgstr "_Vet"
 
 #: styles.glade:561
 msgid "_Italic"
-msgstr "_Scheef"
+msgstr "_Cursief"
 
 #: styles.glade:582
 msgid "_Underline"
@@ -5817,12 +5886,12 @@ msgstr "_Onderstreept"
 
 #: styles.glade:602
 msgid "<b>Type face</b>"
-msgstr ""
+msgstr "<b>Soort lettertype</b>"
 
 # Grootte, formaat, afmeting
 #: styles.glade:626
 msgid "<b>Size</b>"
-msgstr ""
+msgstr "<b>Grootte</b>"
 
 #: styles.glade:650
 msgid "<b>Color</b>"
