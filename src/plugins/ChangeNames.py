@@ -50,14 +50,6 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# constants
-#
-#-------------------------------------------------------------------------
-_title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
-_nick_re = re.compile(r"(.+)\s*[(\"](.*)[)\"]")
-
-#-------------------------------------------------------------------------
-#
 # Search each name in the database, and compare the firstname against the
 # form of "Name (Nickname)".  If it matches, change the first name entry
 # to "Name" and add "Nickname" into the nickname field.
@@ -65,17 +57,17 @@ _nick_re = re.compile(r"(.+)\s*[(\"](.*)[)\"]")
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback,parent=None):
     try:
-        PatchNames(database,callback,parent)
+        ChangeNames(database,callback,parent)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #
-# PatchNames
+# ChangeNames
 #
 #-------------------------------------------------------------------------
-class PatchNames:
+class ChangeNames:
 
     def __init__(self,db,callback,parent):
         self.cb = callback
@@ -84,33 +76,17 @@ class PatchNames:
         self.trans = db.transaction_begin()
         self.win_key = self
         self.child_windows = {}
-        self.title_list = []
-        self.nick_list = []
+        self.name_list = []
 
-        for key in self.db.get_person_handles(sort_handles=False):
+        for name in self.db.get_surname_list():
+            if name != name.capitalize():
+                self.name_list.append(name)
         
-            person = self.db.get_person_from_handle(key)
-            first = person.get_primary_name().get_first_name()
-            match = _title_re.match(first)
-            if match:
-                groups = match.groups()
-                self.title_list.append((key,groups[0],groups[1]))
-            match = _nick_re.match(first)
-            if match:
-                groups = match.groups()
-                self.nick_list.append((key,groups[0],groups[1]))
-
-        if self.nick_list or self.title_list:
+        if self.name_list:
             self.display()
         else:
             OkDialog(_('No modifications made'),
-                     _("No titles or nicknames were found"))
-
-    def toggled(self,cell,path_string):
-        path = tuple([int (i) for i in path_string.split(':')])
-        row = self.model[path]
-        row[0] = not row[0]
-        self.model.row_changed(path,row.iter)
+                     _("No capitalization changes where detected."))
 
     def display(self):
 
@@ -125,57 +101,34 @@ class PatchNames:
             "on_delete_event" : self.on_delete_event
             })
         self.list = self.top.get_widget("list")
-        self.label = _('Name and title extraction tool')
+        self.label = _('Capitalization changes')
         Utils.set_titles(self.window,self.top.get_widget('title'),self.label)
 
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING)
 
         r = gtk.CellRendererToggle()
-        r.connect('toggled',self.toggled)
         c = gtk.TreeViewColumn(_('Select'),r,active=0)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('ID'),gtk.CellRendererText(),text=1)
+        c = gtk.TreeViewColumn(_('Original Name'),
+                               gtk.CellRendererText(),text=1)
         self.list.append_column(c)
 
-        c = gtk.TreeViewColumn(_('Type'),gtk.CellRendererText(),text=2)
-        self.list.append_column(c)
-
-        c = gtk.TreeViewColumn(_('Value'),gtk.CellRendererText(),text=3)
-        self.list.append_column(c)
-
-        c = gtk.TreeViewColumn(_('Name'),gtk.CellRendererText(),text=4)
+        c = gtk.TreeViewColumn(_('Capitalization Change'),
+                               gtk.CellRendererText(),text=2)
         self.list.append_column(c)
 
         self.list.set_model(self.model)
 
-        self.nick_hash = {}
-        self.title_hash = {}
-        
-        for (id,name,nick) in self.nick_list:
-            p = self.db.get_person_from_handle(id)
-            gid = p.get_gramps_id()
+        self.iter_list = []
+        for name in self.name_list:
             handle = self.model.append()
             self.model.set_value(handle,0,1)
-            self.model.set_value(handle,1,gid)
-            self.model.set_value(handle,2,_('Nickname'))
-            self.model.set_value(handle,3,nick)
-            self.model.set_value(handle,4,p.get_primary_name().get_name())
-            self.nick_hash[id] = handle
+            self.model.set_value(handle,1,name)
+            self.model.set_value(handle,2,name.capitalize())
+            self.iter_list.append(handle)
             
-        for (id,title,nick) in self.title_list:
-            p = self.db.get_person_from_handle(id)
-            gid = p.get_gramps_id()
-            handle = self.model.append()
-            self.model.set_value(handle,0,1)
-            self.model.set_value(handle,1,gid)
-            self.model.set_value(handle,2,_('Title'))
-            self.model.set_value(handle,3,nick)
-            self.model.set_value(handle,4,p.get_primary_name().get_name())
-            self.title_hash[id] = handle
-
         self.add_itself_to_menu()
         self.window.show()
 
@@ -201,27 +154,26 @@ class PatchNames:
         self.window.present()
                 
     def on_ok_clicked(self,obj):
-        for grp in self.nick_list:
-            handle = self.nick_hash[grp[0]]
-            val = self.model.get_value(handle,0)
-            if val:
-                p = self.db.get_person_from_handle(grp[0])
-                name = p.get_primary_name()
-                name.set_first_name(grp[1].strip())
-                p.set_nick_name(grp[2].strip())
-                self.db.commit_person(p,self.trans)
+        changelist = []
+        for node in self.iter_list:
+            if self.model.get_value(node,0):
+                changelist.append(self.model.get_value(node,1))
 
-        for grp in self.title_list:
-            handle = self.title_hash[grp[0]]
-            val = self.model.get_value(handle,0)
-            if val:
-                p = self.db.get_person_from_handle(grp[0])
-                name = p.get_primary_name()
-                name.set_first_name(grp[2].strip())
-                name.set_title(grp[1].strip())
-                self.db.commit_person(p,self.trans)
+        anychange = False
+        for handle in self.db.get_person_handles():
+            change = False
+            person = self.db.get_person_from_handle(handle)
+            for name in [person.get_primary_name()] + person.get_alternate_names():
+                sname = name.get_surname()
+                if sname in changelist:
+                    change = True
+                    anychange = True
+                    name.set_surname(sname.capitalize())
+            if change:
+                self.db.commit_person(person,self.trans)
 
-        self.db.transaction_commit(self.trans,_("Extract information from names"))
+        if anychange:
+            self.db.transaction_commit(self.trans,_("Capitalization changes"))
         self.close(obj)
         self.cb(1)
         
@@ -234,7 +186,7 @@ from Plugins import register_tool
 
 register_tool(
     runTool,
-    _("Extract information from names"),
+    _("Fix capitalization of family names"),
     category=_("Database Processing"),
     description=_("Searches the entire database and attempts to "
                   "extract titles and nicknames that may be embedded "

@@ -12,6 +12,7 @@ pkgdata_PYTHON = \
 	Ancestors.py\
 	BookReport.py\
 	ChangeTypes.py\
+	ChangeNames.py\
 	Check.py\
 	CountAncestors.py\
 	Desbrowser.py\
@@ -70,6 +71,7 @@ GLADEFILES = \
 	eventcmp.glade\
 	merge.glade\
 	patchnames.glade\
+	changenames.glade\
 	relcalc.glade\
 	soundex.glade\
 	summary.glade\
