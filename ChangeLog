@@ -25,6 +25,12 @@
 	* src/Plugins.py: Register _relcalc_class.
 	* src/gramps_main.py: Use class of relationship calculator.
 
+	* src/plugins/IndivComplete.py: fixed child_relations translation
+	* src/const.py.in: fixed child_relations translation
+	* src/SelectChild.py: fixed child_relations translation
+	* src/TransTable.py: unicode conversion
+	* src/ChooseParents.py: fixed child_relations translation
+
 2004-02-13  Egyeki Gergely  <egeri@elte.hu>
 	* src/po/hu.po: Update
 	* doc/gramps-manual/hu/filtref.xml: Update

@@ -202,7 +202,7 @@ class IndivComplete(Report.Report):
             father = family.get_father_id()
             if father:
                 fname = father.get_primary_name().get_regular_name()
-                frel = const.child_relations[frel]
+                frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Father'),fname,frel)
             else:
                 self.write_p_entry(_('Father'),'','')
@@ -210,7 +210,7 @@ class IndivComplete(Report.Report):
             mother = family.get_mother_id()
             if mother:
                 fname = mother.get_primary_name().get_regular_name()
-                frel = const.child_relations(frel)
+                frel = const.child_relations.find_value(frel)
                 self.write_p_entry(_('Mother'),fname,frel)
             else:
                 self.write_p_entry(_('Mother'),'','')
