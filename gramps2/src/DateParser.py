@@ -49,17 +49,20 @@ import Date
 # Top-level module functions
 #
 #-------------------------------------------------------------------------
+_max_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+
 def gregorian_valid(date_tuple):
     day = date_tuple[0]
     month = date_tuple[1]
     valid = True
-    if month > 12:
-        valid = False
-    elif day > _max_days[month]:
+    try:
+        if month > 12:
+            valid = False
+        elif day > _max_days[month-1]:
+            valid = False
+    except:
         valid = False
     return valid
-
-_max_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 #-------------------------------------------------------------------------
 #
