@@ -284,16 +284,22 @@ class GedcomParser:
             pass
 
     def errmsg(self,msg):
-        try:
-            self.error_text_obj.get_buffer().insert_at_cursor(msg)
-        except TypeError:
-            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+        if self.window:
+            try:
+                self.error_text_obj.get_buffer().insert_at_cursor(msg)
+            except TypeError:
+                self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+        else:
+            print msg
 
     def infomsg(self,msg):
-        try:
-            self.info_text_obj.get_buffer().insert_at_cursor(msg)
-        except TypeError:
-            self.info_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+        if self.window:
+            try:
+                self.info_text_obj.get_buffer().insert_at_cursor(msg)
+            except TypeError:
+                self.info_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+        else:
+            print msg
 
     def find_file(self,fullname,altpath):
         tries = []
@@ -402,6 +408,8 @@ class GedcomParser:
             self.infomsg("\n%s" % msg)
         else:
             print msg
+            print "Families: %d" % self.fam_count
+            print "Individuals: %d" % self.indi_count
             return None
 
     def break_note_links(self):

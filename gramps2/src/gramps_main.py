@@ -938,9 +938,13 @@ class Gramps:
             import ReadGedcom
             filename = os.path.normpath(os.path.abspath(filename))
             try:
-                ReadGedcom.importData(self.db,filename)
+                g = ReadGedcom.GedcomParser(self.db,filename,None)
+                g.parse_gedcom_file()
+                g.resolve_refns()
+                del g
             except:
                 print "Error importing %s" % filename
+                os._exit(1)
         elif format == 'gramps':
             try:
                 dbname = os.path.join(filename,const.xmlFile)
