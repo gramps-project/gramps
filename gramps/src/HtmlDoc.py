@@ -237,16 +237,16 @@ class HtmlDoc(TextDoc):
         scale = float(nx)/float(ny)
         if scale > 1.0:
             scale = 1.0/scale
-            act_width = x
-            act_height = y * scale
+            act_width = float(x)
+            act_height = float(y * scale)
         else:
-            act_width = x * scale
-            act_height = y
+            act_width = float(x * scale)
+            act_height = float(y)
 
-        cmtopt = 72.0/2.54
-        pixw = int(act_width*cmtopt)
-        pixx = int(act_height*cmtopt)
-        im.thumbnail((pixw,pixx))
+        cmtopt = float(150.0/2.54)
+        pixx = int(act_width*cmtopt)
+        pixy = int(act_height*cmtopt)
+        im.thumbnail((pixx,pixy))
 
         imdir = self.base + os.sep + "images"
         if not os.path.isdir(imdir):
@@ -262,7 +262,7 @@ class HtmlDoc(TextDoc):
             return
 
         self.f.write('<img src="images/%s" width="%d" height="%d">\n' % \
-                     (refname,pixw,pixx))
+                     (refname,pixx,pixy))
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]
