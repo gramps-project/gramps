@@ -11,7 +11,11 @@
 	after they are edited.
 	* src/EditPerson.py: Support keeping track of events and attributes
 	after they are edited.
-
+	* src/docgen/PdfDrawDoc.py: Support for rotated text and wedges
+	* src/docgen/PSDrawDoc.py: Support for rotated text and wedges
+	* src/StartupDialog.py: Attempt to seed the researcher name from the
+	name entry in the passwd file
+	
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add gramps icon to correct location on install
 	* src/gramps.desktop: Add startup notification (egg timer)
