@@ -1,3 +1,8 @@
+2003-11-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/edit_person.glade: Set meaningful id for the Notes tab label.
+	* src/EditPerson.py (__init__): Find notes_label from XML, call
+	chane_notes() if note is not empty; (change_notes): Add function. 
+
 2003-11-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (back_pressed, fwd_pressed): Pass event to the
 	build_menu functions; (build_backhistmenu, build_fwdhistmenu): Use 
