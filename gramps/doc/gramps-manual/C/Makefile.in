@@ -25,4 +25,5 @@ uninstall:
 
 clean:
 	-rm -f ${MANDIR}/*.html
+	-rm -rf ${MANDIR}/stylesheet-images/
 	-rm -rf ${MANDIR}.junk/
