@@ -1,3 +1,6 @@
+2003-07-24  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/FilterEditor.py: Fix 'edit' to do so in place.
+
 2003-07-23  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/WriteGedcom.py, src/plugins/gedcomexport.glade: New
         options for excluding sources and notes for living people.
