@@ -501,7 +501,8 @@ class Marriage:
         import EventEdit
         name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.save_pevent,None,None,0,self.cb)
+                              const.save_pevent,None,None,0,self.cb,
+                              const.defaultMarriageEvent)
 
     def on_event_update_clicked(self,obj):
         import EventEdit
@@ -597,4 +598,3 @@ class Marriage:
         obj = list[src]
         list.remove(obj)
         list.insert(dest,obj)
-
