@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -862,7 +862,7 @@ class FamilyView:
         self.parent.db.deleteFamily(self.family)
         flist = self.person.getFamilyList()
         if len(flist) > 0:
-            self.family = flist[0][0]
+            self.family = flist[0]
         else:
             self.family = None
 
