@@ -67,7 +67,7 @@ class BaseModel(gtk.GenericTreeModel):
 	return gtk.TREE_MODEL_LIST_ONLY
 
     def on_get_n_columns(self):
-        return 9
+        return 10
 
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various

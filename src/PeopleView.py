@@ -54,6 +54,7 @@ column_names = [
     _('Birth Place'),
     _('Death Date'),
     _('Death Place'),
+    _('Spouse'),
     ]
 
 #-------------------------------------------------------------------------
@@ -81,7 +82,8 @@ class PeopleView:
         self.person_selection = self.person_tree.get_selection()
         self.person_selection.connect('changed',self.row_changed)
         self.person_tree.connect('row_activated', self.alpha_event)
-        self.person_tree.connect('button-press-event',self.on_plist_button_press)
+        self.person_tree.connect('button-press-event',
+                                 self.on_plist_button_press)
 
     def get_maps(self):
         return (self.person_model.top_iter2path,
@@ -136,9 +138,10 @@ class PeopleView:
         return mlist
         
     def row_changed(self,obj):
-        """Called with a row is changed. Check the selected objects from the person_tree
-        to get the IDs of the selected objects. Set the active person to the first person
-        in the list. If no one is selected, set the active person to None"""
+        """Called with a row is changed. Check the selected objects from
+        the person_tree to get the IDs of the selected objects. Set the
+        active person to the first person in the list. If no one is
+        selected, set the active person to None"""
 
         selected_ids = self.get_selected_objects()
 
@@ -163,8 +166,8 @@ class PeopleView:
         self.person_tree.set_model(self.sort_model)
 
     def remove_from_person_list(self,person,old_id=None):
-        """Remove the selected person from the list. A person object is expected,
-        not an ID"""
+        """Remove the selected person from the list. A person object is
+        expected, not an ID"""
         if old_id == None:
             old_id = person.get_id()
         path = self.person_model.on_get_path(old_id)
@@ -216,7 +219,8 @@ class PeopleView:
     def apply_filter(self,current_model=None):
         self.parent.status_text(_('Updating display...'))
 
-        keys = self.DataFilter.apply(self.parent.db,self.parent.db.get_person_keys())
+        keys = self.DataFilter.apply(self.parent.db,
+                                     self.parent.db.get_person_keys())
         self.person_model.reset_visible()
         for person_id in keys:
             self.person_model.set_visible(person_id,1)

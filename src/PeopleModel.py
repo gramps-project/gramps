@@ -49,9 +49,9 @@ from RelLib import *
 #
 #-------------------------------------------------------------------------
 COLUMN_NAME      = 0
-COLUMN_NAME_SORT = 7
-COLUMN_VIEW      = 8
-COLUMN_BOLD      = 9
+COLUMN_NAME_SORT = 8
+COLUMN_VIEW      = COLUMN_NAME_SORT + 1
+COLUMN_BOLD      = COLUMN_VIEW + 1
 
 #-------------------------------------------------------------------------
 #
@@ -76,6 +76,7 @@ class PeopleModel(gtk.GenericTreeModel):
             self.column_birth_place,
             self.column_death_day,
             self.column_death_place,
+            self.column_spouse,
             self.sort_name,
             ]
 
@@ -318,6 +319,21 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def sort_name(self,data):
         return data[2].get_sort_name()
+
+    def column_spouse(self,data):
+        id = data[0]
+        if data[8]:
+            fid = data[8][0]
+        else:
+            return u""
+        d2 = self.db.family_map.get(str(fid))
+        if fid and d2 :
+            if d2[1] == id:
+                return self.db.person_map.get(str(d2[2]))[2].get_name()
+            else:
+                return self.db.person_map.get(str(d2[1]))[2].get_name()
+        else:
+            return u""
 
     def column_name(self,data):
         return data[2].get_name()

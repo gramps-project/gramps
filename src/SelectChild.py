@@ -122,7 +122,8 @@ class SelectChild:
         self.frel.set_text(_("Birth"))
 
         self.refmodel = PeopleModel.PeopleModel(self.db)
-        self.add_child.set_model(self.refmodel) 
+
+        self.add_child.set_model(self.refmodel)
         self.redraw_child_list(2)
         self.add_itself_to_menu()
         self.add_columns(self.add_child)
