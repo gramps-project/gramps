@@ -116,7 +116,7 @@ class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,parent,db,active,list,msg,label=None,button_label=None,tool_tip=None):
+    def __init__(self,parent,db,active,item_list,msg,label=None,button_label=None,tool_tip=None):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -177,7 +177,11 @@ class PluginDialog:
                 pass
 
         self.run_tool = None
-        self.build_tree(list)
+        self.report_vs_tool = len(item_list[0]) == 9
+        if self.report_vs_tool:
+            self.build_report_tree(item_list)
+        else:
+            self.build_tool_tree(item_list)
         self.add_itself_to_menu()
         self.top.show()
 
@@ -205,7 +209,11 @@ class PluginDialog:
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
 
-        if self.run_tool:
+        if self.report_vs_tool:
+            (report_class,options_class,title,category,name) = self.run_tool
+            Report.report(self.db,self.active,
+                        report_class,options_class,title,name,category)
+        elif self.run_tool:
             if self.update:
                 self.run_tool(self.db,self.active,self.update,self.parent)
             else:
@@ -224,12 +232,16 @@ class PluginDialog:
         self.statbox.show()
         data = self.imap[path]
 
-        title = data[0]
-        task = data[1]
-        doc = data[2]
-        status = data[3]
-        author = data[4]
-        email = data[5]
+        if self.report_vs_tool:
+            (report_class,options_class,title,
+                category,name,doc,status,author,email) = data
+        else:
+            title = data[0]
+            task = data[1]
+            doc = data[2]
+            status = data[3]
+            author = data[4]
+            email = data[5]
 
         self.description.set_text(doc)
         self.status.set_text(status)
@@ -237,9 +249,12 @@ class PluginDialog:
         self.title.set_use_markup(1)
         self.author_name.set_text(author)
         self.author_email.set_text(email)
-        self.run_tool = task
+        if self.report_vs_tool:
+            self.run_tool = (report_class,options_class,title,category,name)
+        else:
+            self.run_tool = task
 
-    def build_tree(self,list):
+    def build_tool_tree(self,item_list):
         """Populates a GtkTree with each menu item assocated with a entry
         in the lists. The list must consist of a tuples with the following
         format:
@@ -253,7 +268,7 @@ class PluginDialog:
 
         # build the tree items and group together based on the category name
         item_hash = {}
-        for report in list:
+        for report in item_list:
             t = (report[2],report[0],report[3],report[4],report[5],report[6])
             if item_hash.has_key(report[1]):
                 item_hash[report[1]].append(t)
@@ -277,6 +292,48 @@ class PluginDialog:
                 next = self.store.insert_after(node,next)
                 ilist.append((next,item))
                 self.store.set(next,0,item[0])
+        for next,tab in ilist:
+            path = self.store.get_path(next)
+            self.imap[path] = tab
+
+    def build_report_tree(self,item_list):
+        """Populates a GtkTree with each menu item assocated with a entry
+        in the lists. The list must consist of a tuples with the following
+        format:
+        
+        (task_to_call, category, report name, description, image, status, author_name, author_email)
+        
+        Items in the same category are grouped under the same submen. The
+        task_to_call is bound to the 'select' callback of the menu entry."""
+
+        ilist = []
+
+        # build the tree items and group together based on the category name
+        item_hash = {}
+        for report in item_list:
+            category = const.standalone_categories[report[3]]
+            if item_hash.has_key(category):
+                item_hash[category].append(report)
+            else:
+                item_hash[category] = [report]
+
+        # add a submenu for each category, and populate it with the
+        # GtkTreeItems that are associated with it.
+        key_list = item_hash.keys()
+        key_list.sort()
+        key_list.reverse()
+        
+        prev = None
+        for key in key_list:
+            data = item_hash[key]
+            node = self.store.insert_after(None,prev)
+            self.store.set(node,0,key)
+            next = None
+            data.sort(lambda x,y: cmp(x[2],y[2]))
+            for item in data:
+                next = self.store.insert_after(node,next)
+                ilist.append((next,item))
+                self.store.set(next,0,item[2])
         for next,tab in ilist:
             path = self.store.get_path(next)
             self.imap[path] = tab
