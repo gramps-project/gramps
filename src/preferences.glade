@@ -133,17 +133,25 @@
 	</child>
 
 	<widget>
-	  <class>GtkTree</class>
-	  <name>tree</name>
-	  <border_width>10</border_width>
-	  <width>175</width>
-	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
-	  <view_mode>GTK_TREE_VIEW_LINE</view_mode>
-	  <view_line>True</view_line>
+	  <class>GtkFrame</class>
+	  <name>frame19</name>
+	  <width>180</width>
+	  <label_xalign>0</label_xalign>
+	  <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	  <child>
 	    <shrink>False</shrink>
-	    <resize>True</resize>
+	    <resize>False</resize>
 	  </child>
+
+	  <widget>
+	    <class>GtkTree</class>
+	    <name>tree</name>
+	    <border_width>10</border_width>
+	    <width>175</width>
+	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	    <view_mode>GTK_TREE_VIEW_ITEM</view_mode>
+	    <view_line>True</view_line>
+	  </widget>
 	</widget>
 
 	<widget>
@@ -226,6 +234,23 @@
 		    <padding>0</padding>
 		    <expand>True</expand>
 		    <fill>True</fill>
+		  </child>
+		</widget>
+
+		<widget>
+		  <class>GtkLabel</class>
+		  <name>label86</name>
+		  <label>To change your preferences, select one of the subcategories in the menu on the left hand side of the window.</label>
+		  <justify>GTK_JUSTIFY_RIGHT</justify>
+		  <wrap>True</wrap>
+		  <xalign>0.5</xalign>
+		  <yalign>0.5</yalign>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <child>
+		    <padding>0</padding>
+		    <expand>False</expand>
+		    <fill>False</fill>
 		  </child>
 		</widget>
 	      </widget>
@@ -1691,7 +1716,7 @@
 		<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 		<child>
 		  <padding>0</padding>
-		  <expand>True</expand>
+		  <expand>False</expand>
 		  <fill>True</fill>
 		</child>
 
@@ -2464,7 +2489,7 @@ A4
 		<label_xalign>0</label_xalign>
 		<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 		<child>
-		  <padding>5</padding>
+		  <padding>0</padding>
 		  <expand>False</expand>
 		  <fill>True</fill>
 		</child>

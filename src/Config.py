@@ -34,6 +34,7 @@ import PaperMenu
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import GTK
 import gtk
 import libglade
 from gnome.config import get_string, get_bool, get_int, set_string, sync, set_bool, set_int
@@ -87,21 +88,23 @@ _name_format_list = [
     (_("Surname, Firstname"), utils.phonebook_name),
     ]
 
-
-notemap = {
-    _("Database") : 1,
-    _("Find") : 3,
-    _("Revision Control") : 2,
-    _("Tool and Status Bars") : 4,
-    _("Display") : 5,
-    _("List Colors") : 6,
-    _("Dates and Calendars") : 7,
-    _("Researcher Information") : 8,
-    _("Report Preferences") : 9,
-    _("Media Objects") : 10,
-    _("GRAMPS internal IDs") : 11,
-    _("Other") : 12,
-    }
+panellist = [
+    (_("Database"),
+     [( _("General"), 1),
+      ( _("Dates and Calendars"), 7),
+      ( _("Media Objects"), 10),
+      ( _("GRAMPS internal IDs"), 11),
+      ( _("Revision Control"),2)]),
+    (_("Display"),
+     [( _("General"), 5),
+      ( _("Tool and Status Bars"), 4),
+      ( _("List Colors"), 6)]),
+    (_("Usage"),
+     [( _("Find"), 3),
+      ( _("Report Preferences"), 9),
+      ( _("Researcher Information"), 8),
+      ( _("Data Guessing"), 12)]),
+    ]
 
 
 #-------------------------------------------------------------------------
@@ -453,7 +456,103 @@ def save_config_color(name,color):
     set_int("/gramps/color/" + name + ".g",color[1])
     set_int("/gramps/color/" + name + ".b",color[2])
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 
+def get_config_text(panel,key):
+    return get_string("/gramps/%s/%s" % (panel,key))
+
+def get_config_bool(panel,key):
+    return get_bool("/gramps/%s/%s" % (panel,key))
+
+def get_config_int(panel,key):
+    return get_int("/gramps/%s/%s" % (panel,key))
+
+ext_items = []
+
+class ConfigWidget:
+    def __init__(self,panel,key,label,default):
+        self.p = panel
+        self.k = key
+        self.l = label
+        self.w = None
+        self.d = default
+        self.tag = "/gramps/%s/%s" % (panel,key)
+        
+    def set(self):
+        pass
+
+class ConfigEntry(ConfigWidget):
+
+    def get_widgets(self):
+        l = gtk.GtkLabel(self.l)
+        l.show()
+        self.w = gtk.GtkEntry()
+        self.w.show()
+        
+        val = get_string(self.tag)
+        if val == None:
+            self.w.set_text(self.d)
+        else:
+            self.w.set_text(val)
+        return [l,self.w]
+
+    def set(self):
+        val = self.w.get_text()
+        set_string(self.tag,val)
+
+class ConfigInt(ConfigWidget):
+
+    def get_widgets(self):
+        l = gtk.GtkLabel(self.l)
+        l.show()
+        self.w = gtk.GtkSpinButton(digits=0)
+        self.w.show()
+        
+        val = get_int(self.tag)
+        if val == None:
+            self.w.set_value(int(self.d))
+        else:
+            self.w.set_value(val)
+        return [l,self.w]
+
+    def set(self):
+        val = self.w.get_value_as_int()
+        set_int(self.tag,val)
+
+class ConfigCheckbox(ConfigWidget):
+    
+    def get_widgets(self):
+        self.w = gtk.GtkCheckButton(self.l)
+        self.w.show()
+        val = get_bool(self.tag)
+        if val == None:
+            self.w.set_active(self.d)
+        else:
+            self.w.set_active(val)
+        return [self.w]
+
+    def set(self):
+        val = self.w.get_active()
+        set_bool(self.tag,val)
+        
+def add_text(category,panel,frame,config_tag,label,default):
+    ext_items.append(category,panel,frame,ConfigEntry(panel,config_tag,label,default))
+
+def add_int(category,panel,frame,config_tag,label,default):
+    ext_items.append(category,panel,frame,ConfigInt(panel,config_tag,label,default))
+
+def add_checkbox(category,panel,frame,config_tag,label,default):
+    ext_items.append(category,panel,frame,ConfigCheckbox(panel,config_tag,label,default))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 class GrampsPreferences:
     def __init__(self,db):
         self.db = db
@@ -474,23 +573,24 @@ class GrampsPreferences:
         self.panel = self.top.get_widget("panel")
         self.build_tree()
         self.build()
+        self.build_ext()
         self.apply.set_sensitive(0)
 
     def build_tree(self):
-        self.top_item = gtk.GtkTreeItem('GRAMPS')
-        self.top_item.show()
-        self.top_item.connect("select",self.select,0)
-        self.tree.append(self.top_item)
-        subtree = gtk.GtkTree()
-        subtree.show()
-        self.top_item.set_subtree(subtree)
-        self.top_item.expand()
-        for name in notemap.keys():
+        self.tree.show()
+        for (name,list) in panellist:
             item = gtk.GtkTreeItem(name)
-            item.expand()
-            item.connect("select",self.select,notemap[name])
             item.show()
-            subtree.append(item)
+            item.connect("select",self.select,0)
+            self.tree.append(item)
+            subtree = gtk.GtkTree()
+            subtree.show()
+            item.set_subtree(subtree)
+            for (subname,tab) in list:
+                newitem = gtk.GtkTreeItem(subname)
+                newitem.show()
+                newitem.connect("select",self.select,tab)
+                subtree.append(newitem)
         
     def build(self):
         auto = self.top.get_widget("autoload")
@@ -678,6 +778,61 @@ class GrampsPreferences:
         self.top.get_widget("repdir").gtk_entry().set_text(report_dir)
         self.top.get_widget("htmldir").gtk_entry().set_text(web_dir)
 
+    def build_ext(self):
+        self.c = {}
+        self.ext_list = []
+        for (c,p,f,o) in ext_items:
+            self.ext_list.append(o)
+            if self.c.has_key(c):
+                if self.c[c][p].has_key(f):
+                    self.c[c][p][f].append(o)
+                else:
+                    self.c[c][p][f] = [o]
+            else:
+                self.c[c] = {}
+                self.c[c][p] = {}
+                self.c[c][p][f] = [o]
+
+        next_panel=13
+        for c in self.c.keys():
+            item = gtk.GtkTreeItem(c)
+            item.show()
+            item.expand()
+            item.connect('select',self.select,0)
+            self.tree.append(item)
+            subtree = gtk.GtkTree()
+            subtree.show()
+            item.set_subtree(subtree)
+            for panel in self.c[c].keys():
+                newitem = gtk.GtkTreeItem(panel)
+                newitem.show()
+                newitem.expand()
+                newitem.connect('select',self.select,next_panel)
+                next_panel = next_panel + 1
+                subtree.append(newitem)
+                box = gtk.GtkVBox()
+                box.show()
+                col = 0
+                panel_label = gtk.GtkLabel("")
+                panel_label.show()
+                self.panel.append_page(box,panel_label)
+                for frame in self.c[c][panel].keys():
+                    pairs = self.c[c][panel][frame]
+                    fr = gtk.GtkFrame(frame)
+                    fr.show()
+                    box.pack_start(fr,GTK.FALSE,GTK.FALSE)
+                    table = gtk.GtkTable(len(pairs),2)
+                    table.show()
+                    fr.add(table)
+                    for wobj in pairs:
+                        w = wobj.get_widgets()
+                        if len(w) == 2:
+                            table.attach(w[0],0,1,col,col+1,GTK.FILL,GTK.SHRINK,5,5)
+                            table.attach(w[1],1,2,col,col+1,GTK.FILL|GTK.EXPAND,GTK.SHRINK,5,5)
+                        else:
+                            table.attach(w[0],0,2,col,col+1,GTK.FILL|GTK.EXPAND,GTK.SHRINK,5,5)
+                        col = col + 1
+            
     def select(self,obj,data):
         self.panel.set_page(data)
 
@@ -890,6 +1045,9 @@ class GrampsPreferences:
         self.db.set_oprefix(oprefix)
         self.db.set_pprefix(pprefix)
         
+        for o in self.ext_list:
+            o.set()
+
         # update the config file
         
         sync()
@@ -964,6 +1122,5 @@ def save_sort_cols(name,col,dir):
 #-------------------------------------------------------------------------
 def druid_cancel_clicked(obj,a):
     utils.destroy_passed_object(obj)
-
 
 
