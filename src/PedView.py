@@ -98,7 +98,7 @@ class DispBox:
                                       fill_color_gdk=style.text[gtk.STATE_NORMAL],
                                       font=font, anchor=gtk.ANCHOR_WEST)
         self.group.connect('event',self.group_event)
-        self.group.set_data('p',person)
+        self.group.set_data(_PERSON,person)
 
     def cleanup(self):
         self.shadow.destroy()
@@ -232,25 +232,21 @@ class PedigreeView:
         except TypeError:
             an.set_text(an_text)
         (w_ab,h_ab) = an.get_pixel_size()
+
         item = self.root.add(gnome.canvas.CanvasWidget, widget=anchor_button,
                         x=0, y=y2-h_ab-12, 
                         height=h_ab+12, width=w_ab+12,
                         size_pixels=1, anchor=gtk.ANCHOR_WEST)
         self.canvas_items = [item, anchor_button]
 
-        anchor_label = self.make_anchor_label()
-        al = pango.Layout(self.canvas.get_pango_context())
-        al_text = anchor_label.get_text()
-        try:
-            al.set_text(al_text,len(al_text))
-        except TypeError:
-            al.set_text(al_text)
-        (w_al,h_al) = al.get_pixel_size()
-        item = self.root.add(gnome.canvas.CanvasWidget, widget=anchor_label,
-                        x=w_ab+24, y=y2-h_al-12, 
-                        height=h_al+12, width=w_al+12,
-                        size_pixels=1, anchor=gtk.ANCHOR_WEST)
-        self.canvas_items = [item, anchor_label]
+        self.anchor_txt = self.root.add(gnome.canvas.CanvasText,
+                                        x=w_ab+24,
+                                        y=y2-h_ab-12, 
+                                        font=font,
+                                        text=self.make_anchor_label(),
+                                        fill_color_gdk=style.fg[gtk.STATE_NORMAL],
+                                        anchor=gtk.ANCHOR_WEST)
+        self.canvas_items.append(self.anchor_txt)
 
         for family in self.active_person.getFamilyList():
             if len(family.getChildList()) > 0:
@@ -260,10 +256,10 @@ class PedigreeView:
                                      x=_CANVASPAD, y=ypts[0]+(h/2.0), 
                                      height=h, width=h,
                                      size_pixels=1, anchor=gtk.ANCHOR_WEST)
-                self.canvas_items = [item, button, arrow]
+                self.canvas_items.append(item)
+                self.canvas_items.append(button)
+                self.canvas_items.append(arrow)
                 break
-        else:
-            self.canvas_items = []
 
         if list[1]:
             p = list[1]
@@ -319,9 +315,8 @@ class PedigreeView:
             anchor_string = self.anchor.getPrimaryName().getRegularName()
         else:
             self.anchor = None
-            anchor_string = ""
-        print "Dropped anchor here: %s" % anchor_string
-
+        self.anchor_txt.set(text=self.make_anchor_label())
+        
     def make_anchor_button(self,function):
         """Make a button containing anchor text with the attached callback"""
 
@@ -332,16 +327,11 @@ class PedigreeView:
 
     def make_anchor_label(self):
         """Make a label containing the name of the anchored person"""
-
         if self.anchor:
             anchor_string = self.anchor.getPrimaryName().getRegularName()
         else:
             anchor_string = _("None")
-
-        label = gtk.Label("<b>%s:</b> %s" % (_("Anchor"),anchor_string))
-        label.set_use_markup(True)
-        label.show()
-        return label
+        return "%s: %s" % (_("Anchor"),anchor_string)
 
     def on_show_child_menu(self,obj):
         """User clicked button to move to child of active person"""
