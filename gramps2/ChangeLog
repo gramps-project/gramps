@@ -1,3 +1,19 @@
+2005-01-29 Eero Tamminen <eerot@sf>
+	* src/plugins/StatisticsChart.py:
+	  - Add first versions of following statistics:
+	    - Child counts
+	    - Marriage places
+	    - Marriage ages
+	    - Ages when first child was born
+	    - Ages when last child was born
+	  - Added a note that children can be either biological or adopted
+	    (this relation can be gotten easily/fast only when going from child
+	     to parents, not when going from parent to children like I need to)
+	  - Take advantage of Don's age calculations function
+	    -> Remove "Estimate" from the age descriptions
+	  - Convert ages to correctly sortable strings
+	  - Add a few TODO notes
+
 2005-01-28 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PedView.py: Fix remnants of gnome.canvas syntax.
 	* src/ReadGrdb.py: Add to CVS: native database importer.

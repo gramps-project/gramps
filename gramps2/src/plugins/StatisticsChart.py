@@ -17,8 +17,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# Statistics plugin (w) 2004-2005 by Eero Tamminen.
-# Partially based on code from the Timeline graph plugin.
+# Statistics plugin (w) 2004-2005 by Eero Tamminen with lots of help
+# from Alex Roitman.
+#
+# To see things still missing, search for "TODO"...
 #
 # $Id$
 
@@ -46,8 +48,11 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import const                # gender and report type names
-from RelLib import Person   # need Person internals for getting gender / gender name
+
+# Person and relation types
+from RelLib import Person, Family
+# gender and report type names
+import const
 import BaseDoc
 import Report
 import ReportUtils
@@ -108,15 +113,20 @@ class Extract:
 			    self.get_birth, self.get_place),
             'data_dplace': ("Death places", _("Death places"),
 			     self.get_death, self.get_place),
-            #'data_mplace': (self.marriage_place, "Marriage place", _("Marriage place")),
-            #'data_fchild': (self.first_child_age, "Estimated ages for bearing the first child", _("Estimated ages for bearing the first child")),
-            #'data_lchild': (self.last_child_age, "Estimated Ages for bearing the last child", _("Estimated Ages for bearing the last child")),
-            #'data_ccount': (self.child_count, "Number of children", _("Number of children")),
-            #'data_mage':  (self.marriage_age, "Estimated (first) marriage ages", _("Estimated (first) marriage ages")),
-            'data_dage':   ("Estimated ages at death", _("Estimated ages at death"),
-			    self.get_person, self.get_death_age),
-            'data_age':   ("Estimated ages", _("Estimated ages"),
-			    self.get_person, self.get_person_age)
+            'data_mplace': ("Marriage places", _("Marriage places"),
+			     self.get_marriage_handles, self.get_places),
+            'data_fchild': ("Ages when first child born", _("Ages when first child born"),
+			     self.get_child_handles, self.get_first_child_age),
+            'data_lchild': ("Ages when last child born", _("Ages when last child born"),
+			     self.get_child_handles, self.get_last_child_age),
+            'data_ccount': ("Number of children", _("Number of children"),
+			     self.get_child_handles, self.get_child_count),
+            'data_mage':   ("Marriage ages", _("Marriage ages"),
+			     self.get_marriage_handles, self.get_event_ages),
+            'data_dage':   ("Ages at death", _("Ages at death"),
+			     self.get_person, self.get_death_age),
+            'data_age':    ("Ages", _("Ages"),
+			     self.get_person, self.get_person_age)
         }
 
     # ----------------- data extraction methods --------------------
@@ -124,6 +134,7 @@ class Extract:
 
     def get_title(self, person):
 	"return title for given person"
+        # TODO: return all titles, not just primary ones...
         title = person.get_primary_name().get_title()
         if title:
             return [title]
@@ -132,7 +143,7 @@ class Extract:
     
     def get_forename(self, person):
 	"return forenames for given person"
-        # because this returns list, other methods return list too
+        # TODO: return all forenames, not just primary ones...
         firstnames = person.get_primary_name().get_first_name().strip()
         if firstnames:
             return [name.capitalize() for name in firstnames.split()]
@@ -182,50 +193,97 @@ class Extract:
 	    if place:
 		return [place]
         return [_("Place missing")]
+
+    def get_places(self, data):
+        "return places for given (person,event_handles)"
+        places = []
+        person, event_handles = data
+        for event_handle in event_handles:
+            event = self.db.get_event_from_handle(event_handle)
+            place_handle = event.get_place_handle()
+            if place_handle:
+                place = self.db.get_place_from_handle(place_handle).get_title()
+                if place:
+                   places.append(place)
+            else:
+                places.append(_("Place missing"))
+        return places
     
     def get_person_age(self, person):
 	"return age for given person, if alive"
-	death = self.get_death(person)
+	death = person.get_death_handle()
 	if not death:
-            return self.estimate_age(person)
+            return [self.estimate_age(person)]
         return [_("Already dead")]
 
     def get_death_age(self, person):
 	"return age at death for given person, if dead"
-	death = self.get_death(person)
-	if death:
-            return self.estimate_age(person)
+	death_handle = person.get_death_handle()
+	if death_handle:
+            return [self.estimate_age(person, death_handle)]
         return [_("Still alive")]
 
-    def marriage_age(self, person):
-        return "TODO: Marriage age stat unimplemented"
+    def get_event_ages(self, data):
+        "return ages at given (person,event_handles)"
+        ages = []
+        person, event_handles = data
+        for event_handle in event_handles:
+            ages.append(self.estimate_age(person, event_handle))
+        if ages:
+            return ages
+	return [_("Events missing")]
 
-    def marriage_place(self, person):
-        return "TODO: Marriage place stat unimplemented"
+    def get_first_child_age(self, data):
+        "return age when first child in given (person,child_handles) was born"
+        ages, errors = self.get_sorted_child_ages(data)
+        if ages:
+            errors.append(ages[0])
+            return errors
+        return [_("Children missing")]
 
-    def first_child_age(self, person):
-        return "TODO: First child bearing age stat unimplemented"
+    def get_last_child_age(self, data):
+        "return age when last child in given (person,child_handles) was born"
+        ages, errors = self.get_sorted_child_ages(data)
+        if ages:
+            errors.append(ages[-1])
+            return errors
+        return [_("Children missing")]
 
-    def last_child_age(self, person):
-        return "TODO: Last child bearing age stat unimplemented"
-
-    def child_count(self, person):
-        return "TODO: Child count stat unimplemented"
+    def get_child_count(self, data):
+        "return number of children in given (person,child_handles)"
+        return [str(len(data[1]))]
 
     # ------------------- utility methods -------------------------
+    
+    def get_sorted_child_ages(self, data):
+        "return (sorted_ages,errors) for given (person,child_handles)"
+        ages = []
+        errors = []
+        person, child_handles = data
+        for child_handle in child_handles:
+            child = self.db.get_person_from_handle(child_handle)
+            birth_handle = child.get_birth_handle()
+            if birth_handle:
+		ages.append(self.estimate_age(person, birth_handle))
+	    else:
+                errors.append(_("Birth missing"))
+                continue
+        ages.sort()
+        return (ages, errors)
 
-    def estimate_age(self, person):
-        "return estimated age (range) for given person or error message"
-        age = ReportUtils.estimate_age(self.db, person)
+    def estimate_age(self, person, end=None, begin=None):
+        """return estimated age (range) for given person or error message.
+           age string is padded with spaces so that it can be sorted"""
+        age = ReportUtils.estimate_age(self.db, person, end, begin)
         if age[0] < 0 or age[1] < 0:
             # inadequate information
-            return [_("Date(s) missing")]
+            return _("Date(s) missing")
         if age[0] == age[1]:
             # exact year
-            return [str(age[0])]
+            return "%3d" % age[0]
         else:
             # minimum and maximum
-            return [str(age[0]) + "-" + str(age[1])]
+            return "%3d-%d" % (age[0], age[1])
 
     # ------------------- type methods -------------------------
     # take db and person and return suitable gramps object(s)
@@ -235,18 +293,48 @@ class Extract:
 	return person
 
     def get_birth(self, person):
-	"return birth event for given person or None"
+        "return birth event for given person or None"
         birth_handle = person.get_birth_handle()
         if birth_handle:
             return self.db.get_event_from_handle(birth_handle)
-	return None
+        return None
     
     def get_death(self, person):
-	"return death event for given person or None"
-	death_handle = person.get_death_handle()
+        "return death event for given person or None"
+        death_handle = person.get_death_handle()
         if death_handle:
             return self.db.get_event_from_handle(death_handle)
-	return None
+        return None
+    
+    def get_child_handles(self, person):
+        "return list of child handles for given person or None"
+        children = []
+        for fam_handle in person.get_family_handle_list():
+            fam = self.db.get_family_from_handle(fam_handle)
+            for child_handle in fam.get_child_handle_list():
+                children.append(child_handle)
+        # TODO: it would be good to return only biological children,
+        # but GRAMPS doesn't offer any efficient way to check that
+        # (I don't want to check each children's parent family mother
+        # and father relations as that would make this *much* slower)
+        if children:
+            return (person, children)
+        return None
+
+    def get_marriage_handles(self, person):
+        "return list of marriage event handles for given person or None"
+        marriages = []
+        for family_handle in person.get_family_handle_list():
+            family = self.db.get_family_from_handle(family_handle)
+            if family.get_relationship() == Family.MARRIED:
+                for event_handle in family.get_event_list():
+                    if event_handle:
+                        event = self.db.get_event_from_handle(event_handle)
+                        if event.get_name() == "Marriage":
+                            marriages.append(event_handle)
+        if marriages:
+            return (person, marriages)
+        return None
 
     # ----------------- data collection methods --------------------
 
@@ -296,7 +384,7 @@ class Extract:
         # which methods to use
         for key in options:
             if options[key] and key in self.extractors:
-                # localized data title, value dict and method
+                # localized data title, value dict, type and data method
                 data.append((ext[key][1], {}, ext[key][2], ext[key][3]))
         
         # go through the people and collect data
@@ -696,6 +784,10 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
 	tip = _("Mark checkboxes to add charts with indicated data")
 	dialog.add_frame_option("Chart Selection", "", hbox, tip)
         hbox.show_all()
+
+        # Note about children
+        label = gtk.Label(_("Note that children can be both biological or adopted."))
+	dialog.add_frame_option("Chart Selection", "", label)
 
 	
     def parse_user_options(self, dialog):
