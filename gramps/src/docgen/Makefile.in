@@ -19,7 +19,7 @@ all: ${PYOBJS}
 
 install:
 	${INSTALL} -d ${docgen}
-	${INSTALL} *.py *.pyo ${docgen}
+	${INSTALL} -m 644 *.py *.pyo ${docgen}
 
 uninstall:
 	rm ${docgen}/*.py ${docgen}/*.pyo 
