@@ -365,7 +365,6 @@ def attach_places(values,combo,place):
 
     for v in mymap.keys():
         combo.set_item_string(mymap[v],v.get_title())
-        
 
 #-------------------------------------------------------------------------
 #
