@@ -310,34 +310,37 @@ class IndividualPage:
 
         self.doc.start_table("gallery","IndTable")
         for obj in my_list:
-            self.doc.start_row()
-            self.doc.start_cell("ImageCell")
-            self.doc.start_paragraph("Data")
-            src = obj.getReference().getPath()
-            base = os.path.basename(src)
-            self.doc.start_link("images/%s" % base)
-            self.doc.add_photo(src,"row",1.5,1.5)
-            shutil.copy(src,"%s/images/%s" % (self.dir,base))
-            self.doc.end_link()
-            
-            self.doc.end_paragraph()
-            self.doc.end_cell()
-            self.doc.start_cell("NoteCell")
-            description = obj.getReference().getDescription()
-            if description != "":
-                self.doc.start_paragraph("PhotoDescription")
-                self.doc.write_text(description)
+            try:
+                shutil.copy(src,"%s/images/%s" % (self.dir,base))
+                self.doc.start_row()
+                self.doc.start_cell("ImageCell")
+                self.doc.start_paragraph("Data")
+                src = obj.getReference().getPath()
+                base = os.path.basename(src)
+                self.doc.start_link("images/%s" % base)
+                self.doc.add_photo(src,"row",1.5,1.5)
+                self.doc.end_link()
+                
                 self.doc.end_paragraph()
-            if obj.getNote() != "":
-                self.doc.start_paragraph("PhotoNote")
-                self.doc.write_text(obj.getNote())
-                self.doc.end_paragraph()
-            elif obj.getReference().getNote() != "":
-                self.doc.start_paragraph("PhotoNote")
-                self.doc.write_text(obj.getReference().getNote())
-                self.doc.end_paragraph()
-            self.doc.end_cell()
-            self.doc.end_row()
+                self.doc.end_cell()
+                self.doc.start_cell("NoteCell")
+                description = obj.getReference().getDescription()
+                if description != "":
+                    self.doc.start_paragraph("PhotoDescription")
+                    self.doc.write_text(description)
+                    self.doc.end_paragraph()
+                if obj.getNote() != "":
+                    self.doc.start_paragraph("PhotoNote")
+                    self.doc.write_text(obj.getNote())
+                    self.doc.end_paragraph()
+                elif obj.getReference().getNote() != "":
+                    self.doc.start_paragraph("PhotoNote")
+                    self.doc.write_text(obj.getReference().getNote())
+                    self.doc.end_paragraph()
+                self.doc.end_cell()
+                self.doc.end_row()
+            except IOError:
+                pass
         self.doc.end_table()
         
 
