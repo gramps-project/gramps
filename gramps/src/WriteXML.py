@@ -181,6 +181,9 @@ class XmlWriter:
         self.g.write("    </researcher>\n")
         self.g.write("  </header>\n")
 
+        count = 0
+        delta = max(int(total/50),1)
+
         if person_len > 0:
             self.g.write("  <people")
             person = self.db.getDefaultPerson()
@@ -188,9 +191,6 @@ class XmlWriter:
                 self.g.write(' default="%s"' % person.getId())
             self.g.write(">\n")
 
-            delta = max(int(total/50),1)
-
-            count = 0
             for key in self.db.getPersonKeys():
                 person = self.db.getPerson(key)
                 if self.callback and count % delta == 0:
@@ -312,11 +312,15 @@ class XmlWriter:
         if place_len > 0:
             self.g.write("  <places>\n")
             for key in self.db.getPlaceKeys():
-                place = self.db.getPlace(key)
-                if self.callback and count % delta == 0:
-                    self.callback(float(count)/float(total))
+                try:
+                    place = self.db.getPlace(key)
+                    if self.callback and count % delta == 0:
+                        self.callback(float(count)/float(total))
+                    self.write_place_obj(place)
+                except:
+                    print "Could not find place %s" % key
                 count = count + 1
-                self.write_place_obj(place)
+                    
             self.g.write("  </places>\n")
 
         if len(objList) > 0:

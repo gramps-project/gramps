@@ -232,17 +232,10 @@ class Gallery(ImageSelect):
         """Scale the image and add it to the IconList."""
         object = photo.getReference()
         name = Utils.thumb_path(self.db.getSavePath(),object)
-        try:
-            thumb = GdkImlib.Image(name)
-        except IOError,msg:
-            emsg = _("Could not import %s - %s") % (name,msg)
-            gnome.ui.GnomeErrorDialog(emsg)
-            return
-        self.icon_cache.append(thumb)
         description = object.getDescription()
         if len(description) > 50:
             description = "%s..." % description[0:50]
-        self.icon_list.append_imlib(thumb,description)
+        self.icon_list.append(name,description)
         
     def load_images(self):
         """clears the currentImages list to free up any cached 
