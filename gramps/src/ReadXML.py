@@ -29,13 +29,18 @@ from GrampsParser import *
 
 import string
 import time
-import gzip
 import os
 from gnome.ui import *
 import sys
 
 import intl
 _ = intl.gettext
+
+try:
+    import gzip
+    gzip_ok = 1
+except:
+    gzip_ok = 0
 
 #-------------------------------------------------------------------------
 #
@@ -64,14 +69,17 @@ def importData(database, filename, callback):
     parser = make_parser()
     parser.setContentHandler(GrampsImportParser(database,callback,basefile))
 
-    use_gzip = 1
-    try:
-        f = gzip.open(filename,"r")
-        f.read(1)
-        f.close()
-    except IOError,msg:
+    if gzip_ok:
+        use_gzip = 1
+        try:
+            f = gzip.open(filename,"r")
+            f.read(1)
+            f.close()
+        except IOError,msg:
+            use_gzip = 0
+            f.close()
+    else:
         use_gzip = 0
-        f.close()
 
     try:
         if use_gzip:
@@ -123,12 +131,16 @@ def loadData(database, filename, callback=None):
     parser = make_parser()
     parser.setContentHandler(GrampsParser(database,callback,basefile))
 
-    use_gzip = 1
-    try:
-        f = gzip.open(filename,"r")
-        f.read(1)
-        f.close()
-    except IOError,msg:
+    if gzip_ok:
+        use_gzip = 1
+        try:
+            f = gzip.open(filename,"r")
+            f.read(1)
+            f.close()
+        except IOError,msg:
+            use_gzip = 0
+            f.close()
+    else:
         use_gzip = 0
 
     try:

@@ -24,10 +24,15 @@ import const
 import string
 import Config
 import time
-import gzip
 import shutil
 import os
 
+try:
+    import gzip
+    gzip_ok = 1
+except:
+    gzip_ok = 0
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -324,10 +329,13 @@ def exportData(database, filename, callback):
     if os.path.isfile(filename):
         shutil.copy(filename, filename + ".bak")
 
-    if Config.uncompress:
-        g = open(filename,"w")
+    if Config.uncompress ==0 and gzip_ok == 1:
+        try:
+            g = gzip.open(filename,"wb")
+        except:
+            g = open(filename,"w")
     else:
-        g = gzip.open(filename,"wb")
+        g = open(filename,"w")
 
     g.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
     g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
