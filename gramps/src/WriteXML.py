@@ -194,6 +194,9 @@ class XmlWriter:
 
             for key in self.db.getPersonKeys():
                 person = self.db.getPerson(key)
+                if not person:
+                    GnomeErrorDialog("Person ID %s was NULL" % key)
+                    continue
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1

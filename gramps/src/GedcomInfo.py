@@ -42,6 +42,8 @@ OBJE_NO            = 0
 OBJE_YES           = 1
 RESIDENCE_ADDR     = 0
 RESIDENCE_PLAC     = 1
+SOURCE_REFS_NO     = 0
+SOURCE_REFS_YES    = 1
 
 #-------------------------------------------------------------------------
 #
@@ -60,6 +62,7 @@ class GedcomDescription:
         self.cal = CALENDAR_YES
         self.obje = OBJE_YES
         self.resi = RESIDENCE_ADDR
+        self.source_refs = SOURCE_REFS_YES
         self.gramps2tag_map = {}
         self.tag2gramps_map = {}
 
@@ -104,6 +107,12 @@ class GedcomDescription:
 
     def get_resi(self):
         return self.resi
+
+    def set_source_refs(self,val):
+        self.source_refs = val
+
+    def get_source_refs(self):
+        return self.source_refs
 
     def add_tag_value(self,tag,value):
         self.gramps2tag_map[value] = tag
@@ -220,3 +229,6 @@ class GedInfoParser:
         elif tag == "residence":
             if u2l(attrs['val']) == 'place':
                 self.current.set_resi(RESIDENCE_PLAC)
+        elif tag == "source_refs":
+            if u2l(attrs['val']) == 'no':
+                self.current.set_source_refs(SOURCE_REFS_NO)

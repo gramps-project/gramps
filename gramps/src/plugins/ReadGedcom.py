@@ -137,12 +137,22 @@ def importData(database, filename, cb=None):
 
     try:
         close = g.parse_gedcom_file()
+    except IOError,msg:
+        Utils.destroy_passed_object(statusWindow)
+        errmsg = _("%s could not be opened\n") % filename
+        gnome.ui.GnomeErrorDialog(errmsg + str(msg))
+        return
     except GedcomParser.BadFile, msg:
         Utils.destroy_passed_object(statusWindow)
         gnome.ui.GnomeErrorDialog(_("Failure reading %s: %s\n"
                                     "First line should have been '0 HEAD'\n"
                                     "but was '%s'") %
                                   (filename,GedcomParser.BadFile,msg))
+        return
+    except:
+        import DisplayTrace
+        Utils.destroy_passed_object(statusWindow)
+        DisplayTrace.DisplayTrace()
         return
     
     g.resolve_refns()
