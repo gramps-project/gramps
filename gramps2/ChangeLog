@@ -1,3 +1,7 @@
+2003-10-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/GraphViz.py (GraphVizDialog.get_report_filters):
+	Make static Descendant and Ancestral filters inclusive. 
+
 2003-10-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WebPage.py: Fixed ID link so that link references are
 	not converted to &lt; and &gt;
