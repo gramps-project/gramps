@@ -261,9 +261,8 @@ doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
 doc/gramps-manual/fr/Makefile	
-doc/gramps-manual/de/Makefile	
-doc/gramps-manual/ru/Makefile	
 doc/gramps-manual/hu/Makefile
+doc/gramps-manual/ru/Makefile	
 example/Makefile
 example/gramps/Makefile
 gramps.spec

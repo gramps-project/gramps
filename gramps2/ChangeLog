@@ -1,5 +1,8 @@
 2004-02-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/ru/custom.xml: Update.
+	* configure.in, configure: Don't ship German manual (unfinished).
+	* doc/gramps-manual/Makefile.am, doc/gramps-manual/Makefile.in:
+	Don't ship German manual.
 
 2004-02-02  Egyeki Gergely  <egeri@elte.hu>
 	* src/plugins/rel_hu.py: New relations added.

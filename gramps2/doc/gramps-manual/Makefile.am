@@ -1,3 +1,3 @@
 # Process this file with automake to produce Makefile.in
 
-SUBDIRS = C fr de ru hu
+SUBDIRS = C fr hu ru
