@@ -184,7 +184,7 @@ class GrampsBSDDB(GrampsDbBase):
             transaction.add(SOURCE_KEY,handle,old_data)
         self.source_map.delete(str(handle))
 
-    def remove_family_handle(self,handle,transaction):
+    def remove_family(self,handle,transaction):
         if transaction != None:
             old_data = self.family_map.get(str(handle))
             transaction.add(FAMILY_KEY,handle,old_data)

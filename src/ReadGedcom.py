@@ -1729,7 +1729,6 @@ class GedcomParser:
                 stop =  self.dp.parse(data2)
                 dateobj.set(Date.QUAL_NONE, Date.MOD_RANGE, cal,
                             start.get_start_date() + stop.get_start_date())
-                print dateobj
                 return dateobj
 
             match = spanRegexp.match(text)
@@ -1751,7 +1750,6 @@ class GedcomParser:
                 stop =  self.dp.parse(data2)
                 dateobj.set(Date.QUAL_NONE, Date.MOD_SPAN, cal,
                             start.get_start_date() + stop.get_start_date())
-                print dateobj
                 return dateobj
         
             match = calRegexp.match(text)
@@ -1764,10 +1762,8 @@ class GedcomParser:
                     dateobj.set_calendar(Date.CAL_JULIAN)
                 elif cal == "HEBREW":
                     dateobj.set_calendar(Date.CAL_HEBREW)
-                print dateobj
                 return dateobj
             else:
-                print text, self.dp.parse(text)
                 return self.dp.parse(text)
         except IOError:
             return self.dp.set_text(text)
@@ -1793,7 +1789,6 @@ class GedcomParser:
         prefix = self.db.iprefix
         index = 0
         new_pmax = self.db.pmap_index
-        print self.added
         for pid in self.added.keys():
             index = index + 1
             if self.refn.has_key(pid):

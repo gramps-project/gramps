@@ -243,7 +243,7 @@ class CheckIntegrity:
             child = self.db.get_person_from_handle(key)
             child.remove_parent_family_handle(family_handle)
             child.remove_family_handle(family_handle)
-        self.db.remove_family_handle(family_handle,self.trans)
+        self.db.remove_family(family_handle,self.trans)
 
     def check_parent_relationships(self):
         for key in self.db.get_family_handles():

@@ -1408,7 +1408,6 @@ class LdsOrd(SourceNote):
     def get_date(self) :
         """returns a string representation of the date of the ordinance"""
         if self.date:
-            print self.dd
             return self.dd.display(self.date)
         return u""
 
