@@ -81,6 +81,8 @@ class PdfDoc(TextDoc):
 
         self.doc = GrampsDocTemplate(self.filename, 
 	                             pagesize=self.pagesize,
+                                     allowSplitting=1,
+                                     _pageBreakQuick=0,
                                      leftMargin=self.lmargin*cm,
                                      rightMargin=self.rmargin*cm,
                                      topMargin=self.tmargin*cm,
@@ -189,10 +191,11 @@ class PdfDoc(TextDoc):
 
 	self.tblstyle = []
         self.cur_table_cols = []
-        width = (float(self.cur_table.get_width())/100.0) * self.get_usable_width() * cm
+        width = float(self.cur_table.get_width()/100.0) * self.get_usable_width()
+
 	for val in range(self.cur_table.get_columns()):
             percent = float(self.cur_table.get_column_width(val))/100.0
-            self.cur_table_cols.append(width * percent)
+            self.cur_table_cols.append(width * percent * cm)
 
     def end_table(self):
         ts = reportlab.platypus.tables.TableStyle(self.tblstyle)
@@ -200,7 +203,6 @@ class PdfDoc(TextDoc):
                                               colWidths=self.cur_table_cols,
                                               style=ts)
 	self.story.append(tbl)
-#	self.story.append(Spacer(1,0.5*cm))
         self.in_table = 0
 
     def start_row(self):
