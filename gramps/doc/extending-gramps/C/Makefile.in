@@ -6,7 +6,7 @@ MANDIR = ${EG}
 all: ${MANDIR}/index.html
 
 ${MANDIR}/index.html: ${MANSRC}
-	db2html -c catalog ${MANSRC} -o ${MANDIR}
+	db2html ${MANSRC} -o ${MANDIR}
 	
 install:
 	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
