@@ -1,3 +1,12 @@
+2005-03-29  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/DdTargets.py: add family targets to target list functions
+	* src/Marriage.py (at_dest_drag_data_received, ev_dest_drag_data_received, 
+	ev_source_drag_data_get, at_source_drag_data_get): fixed dnd methods and 
+	added use of DdTarget types.
+	* src/plugins/ScratchPad.py (generate_family_event_tooltip, 
+	generate_family_event_tooltip, redraw_object_list): added support for 
+	family events and attributes.
+
 2005-03-27  Alex Roitman  <shura@gramps-project.org>
 	* src/MergeData.py: Fixes for places and sources.
 	* src/PlaceView.py (build_context_menu): Typo.

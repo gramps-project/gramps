@@ -257,9 +257,11 @@ class ScratchPadWindow:
         for obj in ScratchPadWindow.olist:
             obj_targets = obj['targets']
 
+            
             # union with gramps_types
             if len([target for target \
                     in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
+
                 
                 exec 'unpack_data = %s' % obj['data']
                 exec 'mytype = "%s"' % unpack_data[0]
@@ -274,13 +276,16 @@ class ScratchPadWindow:
                                            data.get_date(),
                                            location,
                                            self.generate_addr_tooltip(data)],obj)
-
                 elif mytype == DdTargets.EVENT.drag_type:
                     node = self.otree.add([_("Event"),
                                            const.display_pevent(data.get_name()),
                                            data.get_description(),
                                            self.generate_event_tooltip(data)],obj)
-
+                elif mytype == DdTargets.FAMILY_EVENT.drag_type:
+                    node = self.otree.add([_("Family Event"),
+                                           const.display_fevent(data.get_name()),
+                                           data.get_description(),
+                                           self.generate_family_event_tooltip(data)],obj)
                 elif mytype == DdTargets.URL.drag_type:
                     node = self.otree.add([_("Url"),
                                            data.get_path(),
@@ -291,6 +296,11 @@ class ScratchPadWindow:
                                            const.display_pattr(data.get_type()),
                                            data.get_value(),
                                            self.generate_pattr_tooltip(data)],obj)
+                elif mytype == DdTargets.FAMILY_ATTRIBUTE.drag_type:
+                    node = self.otree.add([_("Family Attribute"),
+                                           const.display_fattr(data.get_type()),
+                                           data.get_value(),
+                                           self.generate_fattr_tooltip(data)],obj)
                 elif mytype == DdTargets.SOURCEREF.drag_type:
                     base = self.db.get_source_from_handle(data.get_base_handle())
                     node = self.otree.add([_("SourceRef"),
@@ -301,6 +311,7 @@ class ScratchPadWindow:
             # Union with text targets
             elif len([target for target \
                       in obj_targets if DdTargets.is_text_type(target)]) > 0:
+
                 node = self.otree.add([_("Text"),
                                        "",
                                        obj['data'],
@@ -326,6 +337,36 @@ class ScratchPadWindow:
             "\t<b>%s:</b>\t%s\n" % (
             _("Event"),
             _("Type"),escape(const.display_pevent(event.get_name())),
+            _("Date"),escape(event.get_date()),
+            _("Place"),escape(place_title(self.db,event)),
+            _("Cause"),escape(event.get_cause()),
+            _("Description"), escape(event.get_description()))
+
+        if len(event.get_source_references()) > 0:
+            psrc_ref = event.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self.db.get_source_from_handle(psrc_id)
+
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+
+        return s
+
+
+    def generate_family_event_tooltip(self,event):
+        global escape
+        
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Family Event"),
+            _("Type"),escape(const.display_fevent(event.get_name())),
             _("Date"),escape(event.get_date()),
             _("Place"),escape(place_title(self.db,event)),
             _("Cause"),escape(event.get_cause()),
@@ -408,6 +449,27 @@ class ScratchPadWindow:
 
         return s
 
+    def generate_fattr_tooltip(self,attr):
+        global escape
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (_("Family Attribute"),
+                                  _("Type"),
+                                  escape(const.display_fattr(attr.get_type())),
+                                  _("Value"),
+                                  escape(attr.get_value()))
+        
+        if len(attr.get_source_references()) > 0:
+            psrc_ref = attr.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self.db.get_source_from_handle(psrc_id)
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Sources"),
+                _("Name"),escape(short(psrc.get_title())))
+
+        return s
+
         
     def generate_srcref_tooltip(self,srcref):
         global escape
@@ -464,7 +526,7 @@ register_tool(
     ScratchPad,
     _("Scratch Pad"),
     category=_("Utilities"),
-    description=_("The Scratch Pad provides a tempory note pad to store "
+    description=_("The Scratch Pad provides a temporary note pad to store "
                   "objects for easy reuse.")
     )
 

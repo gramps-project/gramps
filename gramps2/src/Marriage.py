@@ -452,21 +452,26 @@ class Marriage:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'family = "%s"' % data[1]
-            if mytype != 'fevent':
+            
+            if mytype != DdTargets.FAMILY_EVENT.drag_type:
                 return
-            elif family == self.family.get_handle():
+
+            foo = pickle.loads(data[2]);
+            
+            if family == self.family.get_handle() and \
+                   foo.get_handle() in self.elist:
                 self.move_element(self.elist,self.etree.get_selected_row(),
                                   row)
             else:
-                foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
                     newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase)
+                    src.set_base_handle(newbase.get_handle())
                 place = foo.get_place_handle()
                 if place:
-                    foo.set_place_handle(self.db.get_place_from_handle(place.get_handle()))
-                self.elist.insert(row,foo)
+                    foo.set_place_handle(
+                        self.db.get_place_from_handle(place.get_handle()).get_handle())
+                self.elist.insert(row,foo.get_handle())
 
             self.lists_changed = 1
             self.redraw_event_list()
@@ -476,7 +481,8 @@ class Marriage:
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
-        data = str(('fevent',self.family.get_handle(),pickled));
+        data = str((DdTargets.FAMILY_EVENT.drag_type,
+                    self.family.get_handle(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
     def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
@@ -485,16 +491,21 @@ class Marriage:
             exec 'data = %s' % selection_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'family = "%s"' % data[1]
-            if mytype != 'fevent':
+            
+            if mytype != DdTargets.FAMILY_ATTRIBUTE.drag_type:
                 return
-            elif family == self.family.get_handle():
-                self.move_element(self.elist,self.etree.get_selected_row(),row)
+            
+            foo = pickle.loads(data[2]);
+            
+            if family == self.family.get_handle() and \
+                   foo in self.alist:
+                self.move_element(self.alist,self.atree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_handle = src.get_base_handle()
                     newbase = self.db.get_source_from_handle(base_handle)
-                    src.set_base_handle(newbase)
+                    src.set_base_handle(newbase.get_handle())
                 self.alist.insert(row,foo)
 
             self.lists_changed = 1
@@ -505,7 +516,8 @@ class Marriage:
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
-        data = str(('fattr',self.family.get_handle(),pickled));
+        data = str((DdTargets.FAMILY_ATTRIBUTE.drag_type,
+                    self.family.get_handle(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
     def update_lists(self):
