@@ -101,12 +101,12 @@ class Calendar:
         _("September"), _("October"),   _("November"), _("December")]
 
     M2NUM = {
-        (MONTHS[0][0:3]).lower(): 1,   (MONTHS[1][0:3]).lower(): 2,
-        (MONTHS[2][0:3]).lower(): 3,   (MONTHS[3][0:3]).lower(): 4,
-        (MONTHS[4][0:3]).lower(): 5,   (MONTHS[5][0:3]).lower(): 6,
-        (MONTHS[6][0:3]).lower(): 7,   (MONTHS[7][0:3]).lower(): 8,
-        (MONTHS[8][0:3]).lower(): 9,   (MONTHS[9][0:3]).lower(): 10,
-        (MONTHS[10][0:3]).lower(): 11, (MONTHS[11][0:3]).lower(): 12
+        (unicode(MONTHS[0])[0:3]).lower(): 1,   (unicode(MONTHS[1])[0:3]).lower(): 2,
+        (unicode(MONTHS[2])[0:3]).lower(): 3,   (unicode(MONTHS[3])[0:3]).lower(): 4,
+        (unicode(MONTHS[4])[0:3]).lower(): 5,   (unicode(MONTHS[5])[0:3]).lower(): 6,
+        (unicode(MONTHS[6])[0:3]).lower(): 7,   (unicode(MONTHS[7])[0:3]).lower(): 8,
+        (unicode(MONTHS[8])[0:3]).lower(): 9,   (unicode(MONTHS[9])[0:3]).lower(): 10,
+        (unicode(MONTHS[10])[0:3]).lower(): 11, (unicode(MONTHS[11])[0:3]).lower(): 12
         }
 
     M2V = {
@@ -420,7 +420,8 @@ class Calendar:
             return UNDEF
 
     def set_month_string(self,text):
-        val = unicode(text[0:self.mlen()]).lower()
+        val = unicode(text)[0:3]
+        val = val.lower()
         try:
             return Calendar.M2NUM[val]
         except KeyError:
