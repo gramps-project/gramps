@@ -18,7 +18,7 @@
   <title>Gramps - Marriage Editor</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_CENTER</position>
-  <modal>True</modal>
+  <modal>False</modal>
   <allow_shrink>False</allow_shrink>
   <allow_grow>False</allow_grow>
   <auto_shrink>False</auto_shrink>
@@ -29,7 +29,7 @@
     <class>GtkVBox</class>
     <child_name>GnomeDialog:vbox</child_name>
     <name>dialog-vbox5</name>
-    <width>500</width>
+    <width>550</width>
     <homogeneous>False</homogeneous>
     <spacing>8</spacing>
     <child>
@@ -178,6 +178,7 @@
       <widget>
 	<class>GtkNotebook</class>
 	<name>notebook4</name>
+	<width>550</width>
 	<can_focus>True</can_focus>
 	<show_tabs>True</show_tabs>
 	<show_border>True</show_border>
@@ -468,7 +469,7 @@
 	      <last_modification_time>Sat, 25 Nov 2000 16:53:14 GMT</last_modification_time>
 	    </signal>
 	    <columns>3</columns>
-	    <column_widths>91,106,80</column_widths>
+	    <column_widths>128,124,80</column_widths>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
