@@ -228,6 +228,7 @@ class GedcomParser:
 	match = lineRE.match(line)
         if not match:
 	    raise GedcomParser.SyntaxError, self.lines[self.index]
+        
         self.index = self.index + 1
     	return match.groups()
 
@@ -335,7 +336,9 @@ class GedcomParser:
             elif matches[1] == "DATA" or matches[1] == "TEXT":
                 self.ignore_sub_junk(2)
             elif matches[1] == "TITL":
-                self.source.setTitle(matches[2] + self.parse_continue_data(2))
+                title = matches[2] + self.parse_continue_data(2)
+                title = string.replace(title,'\n',' ')
+                self.source.setTitle(title)
             elif matches[1] == "AUTH":
                 self.source.setAuthor(matches[2] + self.parse_continue_data(2))
             elif matches[1] == "PUBL":
