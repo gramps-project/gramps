@@ -186,14 +186,13 @@ class MediaView:
             type_name = Utils.get_mime_description(mtype)
             if mtype[0:5] == "image":
                 image = ImgManip.get_thumbnail_image(path)
-                self.preview.set_from_pixbuf(image)
             else:
-                icon_image = Utils.find_mime_type_pixbuf(mtype)
-                self.preview.set_from_pixbuf(icon_image)
+                image = Utils.find_mime_type_pixbuf(mtype)
         else:
-            icon_image = Utils.find_mime_type_pixbuf('text/plain')
-            self.preview.set_from_pixbuf(icon_image)
+            image = Utils.find_mime_type_pixbuf('text/plain')
             type_name = _('Note')
+        self.preview.set_from_pixbuf(image)
+	del image
         gc.collect()
 
         self.mid.set_text(mobj.get_gramps_id())
