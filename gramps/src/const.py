@@ -107,11 +107,12 @@ female       = _("female")
 output_formats = ["OpenOffice", "AbiWord", "PDF", "HTML" ]
 
 childRelations = {
-    _("Birth") : "Birth",
-    _("Adopted") : "Adopted",
+    _("Birth")     : "Birth",
+    _("Adopted")   : "Adopted",
     _("Stepchild") : "Stepchild",
-    _("Unknown") : "Unknown",
-    _("Other") : "Other",
+    _("Foster")    : "Foster",
+    _("Unknown")   : "Unknown",
+    _("Other")     : "Other",
     }
 
 #-------------------------------------------------------------------------
