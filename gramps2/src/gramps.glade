@@ -5965,10 +5965,10 @@
 			  <child>
 			    <widget class="GtkButton" id="add_photo">
 			      <property name="visible">True</property>
-			      <property name="tooltip" translatable="yes">Place new media object in this gallery</property>
+			      <property name="tooltip" translatable="yes">Add a new media object to the database and place it in this gallery</property>
 			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Add...</property>
+			      <property name="label" translatable="yes">_Add from file...</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <signal name="clicked" handler="on_addphoto_clicked" object="sourceEditor"/>
@@ -5981,15 +5981,31 @@
 			  </child>
 
 			  <child>
+			    <widget class="GtkButton" id="button169">
+			      <property name="visible">True</property>
+			      <property name="tooltip" translatable="yes">Select an existing media object from the database and place it in this gallery</property>
+			      <property name="can_default">True</property>
+			      <property name="can_focus">True</property>
+			      <property name="label" translatable="yes">Add from _database...</property>
+			      <property name="use_underline">True</property>
+			      <property name="relief">GTK_RELIEF_NORMAL</property>
+			      <signal name="clicked" handler="on_selectphoto_clicked" object="sourceEditor" last_modification_time="Fri, 12 Dec 2003 05:21:39 GMT"/>
+			    </widget>
+			    <packing>
+			      <property name="padding">0</property>
+			      <property name="expand">False</property>
+			      <property name="fill">False</property>
+			    </packing>
+			  </child>
+
+			  <child>
 			    <widget class="GtkButton" id="edit_photo">
 			      <property name="visible">True</property>
+			      <property name="tooltip" translatable="yes">Edit the properties of the selected object</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">_Edit...</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
-			      <accessibility>
-				<atkproperty name="AtkObject::accessible_description" translatable="yes">Edit the properties of the selected object</atkproperty>
-			      </accessibility>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
@@ -6004,7 +6020,7 @@
 			      <property name="tooltip" translatable="yes">Remove selected object from this gallery only</property>
 			      <property name="can_default">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="label" translatable="yes">_Delete</property>
+			      <property name="label" translatable="yes">_Remove</property>
 			      <property name="use_underline">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <signal name="clicked" handler="on_deletephoto_clicked" object="sourceEditor"/>
@@ -6014,10 +6030,6 @@
 			      <property name="expand">False</property>
 			      <property name="fill">False</property>
 			    </packing>
-			  </child>
-
-			  <child>
-			    <placeholder/>
 			  </child>
 			</widget>
 			<packing>
