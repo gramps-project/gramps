@@ -6,6 +6,8 @@ dnl Checks for programs.
 PACKAGE=gramps
 
 AC_PATH_PROG(PYTHON, python)
+AC_PATH_PROG(BINSH, sh)
+AC_PATH_PROG(DOCBOOKHTML, db2html)
 
 changequote(<<, >>)dnl
 PYTHON_VERSION=`$PYTHON -c "import sys; print sys.version[:3]"`
@@ -41,10 +43,12 @@ fi
 
 AC_PATH_PROG(ZIP, zip)
 
+AC_SUBST(BINSH)
 AC_SUBST(PYTHON)
 AC_SUBST(PYTHON_VERSION)
 AC_SUBST(PACKAGE)
 AC_SUBST(GNOMEHELP)
+AC_SUBST(DOCBOOKHTML)
 AC_SUBST(LIBS)
 
 AC_PROG_INSTALL
@@ -264,11 +268,13 @@ dnl Checks for typedefs, structures, and compiler characteristics.
 dnl Checks for library functions.
 
 AC_OUTPUT(Makefile \
+	Makefile.comm\
 	src/Makefile\
 	src/plugins/Makefile\
 	src/docgen/Makefile\
 	src/filters/Makefile\
 	src/data/Makefile\
+	doc/gramps-manual/C/Makefile\
+	doc/extending-gramps/C/Makefile\
 	gramps.sh)
-
 
