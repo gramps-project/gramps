@@ -411,8 +411,12 @@ class AncestorsReport (Report.Report):
         return 'Mr.'
 
     def person_name (self, person):
-        name = ''
         primary = person.getPrimaryName ()
+
+        name = primary.getTitle ()
+        if name:
+            name += ' '
+
         first = primary.getFirstName ()
         last = primary.getSurname ()
         first_replaced = first.replace ('?', '')
@@ -426,6 +430,10 @@ class AncestorsReport (Report.Report):
                 name += ' (unknown)'
         else:
             name += ' ' + last
+
+        suffix = primary.getSuffix ()
+        if suffix:
+            name += ', ' + suffix
 
         type = primary.getType ()
         if type != 'Birth Name':
