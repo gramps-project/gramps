@@ -27,6 +27,8 @@ import gtk.glade
 
 import soundex
 import Utils
+import AutoComp
+
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -50,6 +52,10 @@ class SoundGen:
             "on_apply_clicked"      : self.on_apply_clicked,
         })
 
+        Utils.set_titles(self.glade.get_widget('soundEx'),
+                         self.glade.get_widget('title'),
+                         _('SoundEx code generator'))
+
         self.value = self.glade.get_widget("value")
         self.name = self.glade.get_widget("name")
         names = []
@@ -59,7 +65,8 @@ class SoundGen:
                 names.append(lastname)
 
         names.sort()
-        self.glade.get_widget("nameList").set_popdown_strings(names)
+        self.autocomp = AutoComp.AutoCombo(self.glade.get_widget("nameList"),
+                                           names)
 
         if active_person:
             n = active_person.getPrimaryName().getSurname()

@@ -29,6 +29,7 @@ import const
 import Utils
 from intl import gettext as _
 from QuestionDialog import OkDialog
+import AutoComp
 
 #-------------------------------------------------------------------------
 #
@@ -42,6 +43,11 @@ def runTool(database,person,callback):
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 class ChangeTypes:
     def __init__(self,db,person):
         self.person = person
@@ -51,8 +57,14 @@ class ChangeTypes:
         glade_file = "%s/%s" % (base,"changetype.glade")
         self.glade = gtk.glade.XML(glade_file,"top")
 
-        self.glade.get_widget("original").set_popdown_strings(const.personalEvents)
-        self.glade.get_widget("new").set_popdown_strings(const.personalEvents)
+        self.auto1 = AutoComp.AutoCombo(self.glade.get_widget("original"),
+                                        const.personalEvents)
+        self.auto2 = AutoComp.AutoCombo(self.glade.get_widget("new"),
+                                        const.personalEvents)
+
+        Utils.set_titles(self.glade.get_widget('top'),
+                         self.glade.get_widget('title'),
+                         _('Change event types'))
 
         self.glade.signal_autoconnect({
             "on_close_clicked"     : Utils.destroy_passed_object,

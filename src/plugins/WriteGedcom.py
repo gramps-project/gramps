@@ -361,6 +361,10 @@ class GedcomWriter:
             "no_copyright" : self.no_copyright,
             "on_ok_clicked" : self.on_ok_clicked
             })
+
+        Utils.set_titles(self.topDialog.get_widget('gedcomExport'),
+                         self.topDialog.get_widget('title'),
+                         _('GEDCOM export'))
         
         filter_obj = self.topDialog.get_widget("filter")
         self.copy = 0
@@ -466,6 +470,10 @@ class GedcomWriter:
         self.exprogress.signal_autoconnect({
             "on_close_clicked" : Utils.destroy_passed_object
             })
+
+        Utils.set_titles(self.topDialog.get_widget('exportprogress'),
+                         self.topDialog.get_widget('title'),
+                         _('GEDCOM export'))
 
         self.fbar = self.exprogress.get_widget("fbar")
         self.pbar = self.exprogress.get_widget("pbar")
