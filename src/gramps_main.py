@@ -489,7 +489,7 @@ class Gramps:
                 msg = _("Cannot merge people.")
                 msg2 = _("Exactly two people must be selected to perform a merge. "
                          "A second person can be selected by holding down the "
-                         "control key while clicking on the desired person.")
+                         "control key while clicking on a the desired person.")
                 ErrorDialog(msg,msg2)
             else:
                 import MergeData
@@ -1465,8 +1465,8 @@ class Gramps:
             self.change_active_person(temp)
             self.update_display(0)
         else:
-            ErrorDialog(_("No home person has been set."),
-                        _("The home person may be set from the Settings menu."))
+            ErrorDialog(_("No Home Person has been set."),
+                        _("The Home Person may be set from the Settings menu."))
 
     def on_add_bookmark_activate(self,obj):
         if self.active_person:
