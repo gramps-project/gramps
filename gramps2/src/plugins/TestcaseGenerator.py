@@ -133,6 +133,10 @@ class TestcaseGenerator:
             self.persons_todo.append( self.generate_person(0))
             for person_h in self.persons_todo:
                 self.generate_family(person_h)
+                if randint(0,3) == 0:
+                    self.generate_family(person_h)
+                if randint(0,7) == 0:
+                    self.generate_family(person_h)
                 if self.person_count > self.max_person_count:
                     break
                 for child_h in self.parents_todo:
@@ -438,6 +442,7 @@ class TestcaseGenerator:
             self.db.commit_person(child,self.trans)
             if randint(0,3) > 0:
                 self.persons_todo.append(child_h)
+                
     def generate_parents(self,child_h):
         child = self.db.get_person_from_handle(child_h)
         if child.get_parent_family_handle_list():
@@ -448,9 +453,9 @@ class TestcaseGenerator:
         person1_h = self.generate_person(1,lastname)
         person2_h = self.generate_person(0)
 
-        if randint(0,2) > 0:
+        if randint(0,2) > 1:
             self.parents_todo.append(person1_h)
-        if randint(0,2) > 0:
+        if randint(0,2) > 1:
             self.parents_todo.append(person2_h)
             
 
