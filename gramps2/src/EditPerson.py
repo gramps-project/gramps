@@ -256,6 +256,7 @@ class EditPerson:
         self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
         self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.web_list.connect('drag_data_get', self.url_drag_data_get)
+        self.web_list.connect('drag_begin', self.url_drag_begin)
         self.web_list.connect('drag_data_received',
                               self.url_drag_data_received)
         
@@ -266,6 +267,7 @@ class EditPerson:
         self.attr_list.connect('drag_data_get', self.at_drag_data_get)
         self.attr_list.connect('drag_data_received',
                                self.at_drag_data_received)
+        self.attr_list.connect('drag_begin', self.at_drag_begin)
 
         self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                      pycode_tgts,ACTION_COPY)
@@ -274,6 +276,7 @@ class EditPerson:
         self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
         self.addr_list.connect('drag_data_received',
                                self.ad_drag_data_received)
+        self.addr_list.connect('drag_begin', self.ev_drag_begin)
 
         self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
         self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
@@ -531,6 +534,9 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_url_list()
 
+    def url_drag_begin(self, context, a):
+        return
+
     def url_drag_data_get(self,widget, context, sel_data, info, time):
         ev = self.wtree.get_selected_objects()
         
@@ -560,6 +566,9 @@ class EditPerson:
             self.lists_changed = 1
             self.redraw_attr_list()
 
+    def at_drag_begin(self, context, a):
+        return
+
     def at_drag_data_get(self,widget, context, sel_data, info, time):
         ev = self.atree.get_selected_objects()
         
@@ -585,7 +594,8 @@ class EditPerson:
                     base = src.getBase()
                     newbase = self.db.findSourceNoMap(base.getId())
                     src.setBase(newbase)
-                self.plist.append(foo)
+                self.plist.insert(row,foo)
+                
             self.lists_changed = 1
             self.redraw_addr_list()
 
@@ -596,6 +606,9 @@ class EditPerson:
         pickled = pickle.dumps(ev[0]);
         data = str(('paddr',self.person.getId(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
+
+    def ad_drag_begin(self, context, a):
+        return
 
     def menu_changed(self,obj):
         self.ldsfam = obj.get_data("f")
