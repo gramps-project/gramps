@@ -794,7 +794,8 @@ class Gramps:
         autosave = "%s/autosave.gramps" % filename
     
         self.statusbar.set_status(_("Saving %s ...") % filename)
-
+        if self.bookmarks:
+            self.db.setBookmarks(self.bookmarks.getBookmarkList())
         Utils.clearModified()
         Utils.clear_timer()
 
@@ -852,7 +853,8 @@ class Gramps:
         Utils.clear_timer()
 
         filename = "%s/autosave.gramps" % (self.db.getSavePath())
-    
+        if self.bookmarks:
+            self.db.setBookmarks(self.bookmarks.getBookmarkList())
         self.statusbar.set_status(_("autosaving..."));
         try:
             self.db.save(filename,self.quick_progress)
@@ -933,13 +935,10 @@ class Gramps:
         for key in self.db.getFamilyMap().keys():
             family = self.db.getFamily(key)
             if self.active_person == family.getFather():
-                print "removing father"
                 family.setFather(None)
             if self.active_person == family.getMother():
-                print "removing mother"
                 family.setMother(None)
             if self.active_person in family.getChildList():
-                print "removing child"
                 family.removeChild(self.active_person)
 
         self.db.removePerson(self.active_person.getId())

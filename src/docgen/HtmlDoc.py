@@ -524,9 +524,12 @@ class HtmlDoc(TextDoc):
         self.f.write('</p>\n')
 
     def write_text(self,text):
+        text = string.replace(text,'&','&amp;');       # Must be first
+        text = string.replace(text,'<','&lt;');
+        text = string.replace(text,'>','&gt;');
+        text = string.replace(text,'\n','<br>')
         if text != "":
             self.empty = 0
-        #text = string.replace(text,'\n','<br>')
 	self.f.write(text)
 
     def start_bold(self):

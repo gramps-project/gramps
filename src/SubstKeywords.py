@@ -96,7 +96,7 @@ class SubstKeywords:
             for e in f.getEventList():
                 if e.getName == 'Marriage':
                     self.m = e.getDate()
-                    self.M = e.getPlace()
+                    self.M = e.getPlaceName()
         else:
             self.s = ""
             self.S = ""

@@ -81,6 +81,9 @@ class Bookmarks :
             self.bookmarks.append(person)
             self.redraw()
 
+    def getBookmarkList(self):
+        return self.bookmarks
+    
     def add_to_menu(self,person):
         """adds a person's name to the drop down menu"""
         item = gtk.GtkMenuItem(person.getPrimaryName().getName())

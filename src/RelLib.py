@@ -1964,6 +1964,10 @@ class GrampsDB(Persistent):
         """returns the list of Person instances in the bookmarks"""
         return extlist(self.bookmarks)
     
+    def setBookmarks(self,list):
+        """returns the list of Person instances in the bookmarks"""
+        self.bookmarks = list
+
     def clean_bookmarks(self):
         """cleans up the bookmark list, removing empty slots"""
         new_bookmarks = []
