@@ -2024,7 +2024,11 @@ class Gramps:
                 try:
                     dir = "%s/share/gramps/example" % const.prefixdir
                     for file in os.listdir(dir):
-                        shutil.copy("%s/%s" % (dir,file), dest)
+                        shutil.copyfile("%s/%s" % (dir,file), dest)
+                        try:
+                            shutil.copystat("%s/%s" % (dir,file), dest)
+                        except:
+                            pass
                 except IOError,msg:
                     ErrorDialog(_('Example database not created'),str(msg))
                 except OSError,msg:

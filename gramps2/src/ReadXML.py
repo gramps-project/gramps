@@ -185,7 +185,11 @@ def importData(database, filename, callback,cl=0):
         def fs_ok_clicked(obj):
             name = fs_top.get_filename()
             if os.path.isfile(name):
-                shutil.copy2(name,newfile)
+                shutil.copyfile(name,newfile)
+                try:
+                    shutil.copystat(name,newfile)
+                except:
+                    pass
             Utils.destroy_passed_object(fs_top)
 
         fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
@@ -210,7 +214,11 @@ def importData(database, filename, callback,cl=0):
     	ObjectMap[NewMediaID].setPath(newfile)
         ObjectMap[NewMediaID].setLocal(1)
         try:
-	    shutil.copy2(oldfile,newfile)
+	    shutil.copyfile(oldfile,newfile)
+            try:
+                shutil.copystat(oldfile,newfile)
+            except:
+                pass
         except:
             if cl:
                 print "Warning: media file %s was not found," \
