@@ -171,8 +171,6 @@ class MediaView:
         else:
             icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(mtype))
             self.preview.set_from_pixbuf(icon_image)
-            if not pexists:
-                fexists = 0
         
         self.mid.set_text(mobj.get_gramps_id())
         self.mtype.set_text(type_name)
