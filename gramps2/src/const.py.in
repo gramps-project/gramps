@@ -350,6 +350,28 @@ def save_pevent(st):
 
 #-------------------------------------------------------------------------
 #
+# Merged functions for events: personal, family, whatever else 
+# there might be in the future. 
+#
+#-------------------------------------------------------------------------
+def display_event(st):
+    if _pe_e2l.has_key(st):
+        return _pe_e2l[st]
+    elif _fe_e2l.has_key(st):
+        return _fe_e2l[st]
+    else:
+        return st
+
+def save_event(st):
+    if _pe_l2e.has_key(st):
+        return _pe_l2e[st]
+    elif _fe_l2e.has_key(st):
+        return _fe_l2e[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
 # 
 #
 #-------------------------------------------------------------------------
@@ -436,6 +458,28 @@ def save_fattr(st):
 
 #-------------------------------------------------------------------------
 #
+# Merged functions for attributes: personal, family, whatever else 
+# there might be in the future. 
+#
+#-------------------------------------------------------------------------
+def display_attr(st):
+    if _pa_e2l.has_key(st):
+        return _pa_e2l[st]
+    elif _fa_e2l.has_key(st):
+        return _fa_e2l[st]
+    else:
+        return st
+
+def save_attr(st):
+    if _pa_l2e.has_key(st):
+        return _pa_l2e[st]
+    elif _fa_l2e.has_key(st):
+        return _fa_l2e[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
 # 
 #
 #-------------------------------------------------------------------------
@@ -457,8 +501,8 @@ _fr_e2l = {
 }
 
 _fr_l2e = {}
-for a in _fa_e2l.keys():
-    _fa_l2e[_fa_e2l[a]] = a
+for r in _fr_e2l.keys():
+    _fr_l2e[_fr_e2l[r]] = r
 
 #-------------------------------------------------------------------------
 #

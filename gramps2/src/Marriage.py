@@ -357,7 +357,7 @@ class Marriage:
         self.etree.clear()
         self.emap = {}
         for data in self.elist:
-            iter = self.etree.add([data.getName(),data.getQuoteDate(),data.getPlaceName()],data)
+            iter = self.etree.add([const.display_fevent(data.getName()),data.getQuoteDate(),data.getPlaceName()],data)
             self.emap[str(data)] = iter
         if self.elist:
             self.etree.select_row(0)
@@ -522,7 +522,7 @@ class Marriage:
         import EventEdit
         name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.save_pevent,None,None,0,self.event_edit_callback,
+                              const.display_fevent,None,None,0,self.event_edit_callback,
                               const.defaultMarriageEvent)
 
     def on_event_update_clicked(self,obj):
@@ -533,7 +533,7 @@ class Marriage:
         event = self.etree.get_object(iter)
         name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.save_pevent,event,None,0,self.event_edit_callback)
+                              const.display_fevent,event,None,0,self.event_edit_callback)
 
     def on_delete_clicked(self,obj):
         if Utils.delete_selected(obj,self.elist):

@@ -396,6 +396,7 @@ class XmlWriter:
             return
 
         sp = "  " * index
+        name = const.save_event(name) 
         self.g.write('%s<event type="%s"%s>\n' % (sp,self.fix(name),conf_priv(event)))
         self.write_date(event.getDateObj(),index+1)
 
@@ -469,7 +470,7 @@ class XmlWriter:
             sp = "  " * index
             self.g.write('%s<family id="%s"' % (sp,family.getId()))
             if rel != "":
-                self.g.write(' type="%s">\n' % rel)
+                self.g.write(' type="%s">\n' % const.save_frel(rel))
             else:
                 self.g.write('>\n')
 
@@ -596,7 +597,8 @@ class XmlWriter:
         sp = '  ' * indent
         for attr in list:
             self.g.write('%s<attribute%s type="%s" value="%s"' % \
-                         (sp,conf_priv(attr),attr.getType(),self.fix(attr.getValue())))
+                         (sp,conf_priv(attr),const.save_attr(attr.getType()),
+                         self.fix(attr.getValue())))
             slist = attr.getSourceRefList()
             note = attr.getNote()
             if note == "" and len(slist) == 0:

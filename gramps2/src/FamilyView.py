@@ -520,7 +520,8 @@ class FamilyView:
                 else:
                     mdate = ""
                 v = "%s\n\t%s%s" % (GrampsCfg.nameof(sp),
-                                    f.getRelationship(),mdate)
+                                    const.display_frel(f.getRelationship()),
+                                    mdate)
                 self.spouse_model.set(iter,0,v)
             else:
                 self.spouse_model.set(iter,0,"unknown\n")

@@ -1,3 +1,18 @@
+2003-08-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/FamilyView.py (load_family): Enable translation for family
+	relation. 
+	* src/const.py.in: Add new functions: display_event(), save_event(), 
+	display_attr(), and save_attr() which work for either personal or 
+	family events/attributes. Correct silly typo. 
+	* src/WriteXML.py (dump_my_event): Call const.save_event() before 
+	saving; (write_family_id): Call const.save_frel() before saving; 
+	(write_attribute_list): Call const.save_attr() before saving.
+	* src/Marriage.py (redraw_event_list): Call const.display_fevent()
+	before saving; (on_add_clicked): change const.save_fevent() to 
+	const.display_fevent(); (on_event_update_clicked): Likewise. 
+	* src/EventEdit.py (EventEditor.__init__): Call self.trans() before
+	displaying event name. 
+
 2003-08-05  Tim Waugh  <twaugh@redhat.com>
 	* src/Report.py, src/TextDoc.py, src/DrawDoc.py: Adjusted the way
 	that 'Print Report' is handled.
