@@ -1050,6 +1050,8 @@ class FamilyView:
     def display_marriage(self,family):
         if not family:
             self.family = None
+            self.child_model = DisplayModels.ChildModel([],self.parent.db)
+            self.child_list.set_model(self.child_model)
             return
 
         hlist = family.get_child_handle_list()
@@ -1236,8 +1238,8 @@ class FamilyView:
         """makes the currently select child the active person"""
         model, node = self.child_selection.get_selected()
         if node:
-            handle = self.child_model.get_value(node,2)
-            child = self.parent.db.get_person_from_gramps_id(handle)
+            handle = self.child_model.get_value(node,_HANDLE_COL)
+            child = self.parent.db.get_person_from_handle(handle)
             self.parent.change_active_person(child)
             self.load_family()
         else:
@@ -1404,7 +1406,7 @@ class FamilyView:
         store,node = self.child_selection.get_selected()
         if not node:
             return
-        handle = self.child_model.get_value(node,2)
+        handle = self.child_model.get_value(node,_HANDLE_COL)
         bits_per = 8; # we're going to pass a string
         data = str(('child',handle));
         sel_data.set(sel_data.target, bits_per, data)

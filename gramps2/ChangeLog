@@ -1,3 +1,8 @@
+2004-11-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: simpler way of handling patronymic names
+	based of LANG
+	* src/FamilyView.py: clear childlist if no spouse exists
+
 2004-11-29 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py: Support for re-building Open Recent submenu
 	and opening files from it.
