@@ -1,4 +1,5 @@
 2003-09-02  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/GraphViz.py: Fixed typo.
 	* src/gramps_main.py: Fixed start-up view when family view style
 	is the default.
 
