@@ -1,3 +1,9 @@
+2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ScratchPad.py (ScratchPadListView.object_drag_data_received,
+	ScratchPadListView.on_object_select_row): disables drop that originates from the
+	pad itself and enabled dropping into the correct row as indicated by the 
+	UI.
+	
 2005-04-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Check.py: new database callback scheme; Use Utils.family_name.
 	* src/plugins/ChangeNames.py: new database callback scheme

@@ -393,6 +393,9 @@ class ScratchPadListModel(gtk.ListStore):
 #-------------------------------------------------------------------------
 class ScratchPadListView:
 
+    LOCAL_DRAG_TARGET = ('MY_TREE_MODEL_ROW', gtk.TARGET_SAME_WIDGET, 0)
+    LOCAL_DRAG_TYPE   = 'MY_TREE_MODEL_ROW'
+    
     def __init__(self, db, widget):
         self._db = db
         self._widget = widget
@@ -436,6 +439,7 @@ class ScratchPadListView:
         self.treetips = TreeTips.TreeTips(self._widget,2,True)
 
         self._widget.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                   (ScratchPadListView.LOCAL_DRAG_TARGET,) + \
                                    DdTargets.all_targets(),
                                    ACTION_COPY)
 
@@ -494,14 +498,15 @@ class ScratchPadListView:
         if iter != None:
             o = model.get_value(iter,1)
 
-            targets = [target.target() for target in o.__class__.DROP_TARGETS]
+            targets = [ScratchPadListView.LOCAL_DRAG_TARGET] + \
+                      [target.target() for target in o.__class__.DROP_TARGETS]
 
             self._widget.enable_model_drag_source(BUTTON1_MASK, targets, ACTION_COPY)
 
     def object_drag_begin(self, context, a):
         return
 
-    def object_drag_data_get(self, widget, context, sel_data, info, time):        
+    def object_drag_data_get(self, widget, context, sel_data, info, time):
         tree_selection = widget.get_selection()
         model,iter = tree_selection.get_selected()
         o = model.get_value(iter,1)
@@ -509,6 +514,11 @@ class ScratchPadListView:
         sel_data.set(sel_data.target, 8, o.pack())
 
     def object_drag_data_received(self,widget,context,x,y,selection,info,time):
+
+        # Ignore drops from the same widget.
+        if ScratchPadListView.LOCAL_DRAG_TYPE in context.targets:            
+            return
+
         model = widget.get_model()
         sel_data = selection.data
 
@@ -530,8 +540,21 @@ class ScratchPadListView:
         wrapper_class = self._target_type_to_wrapper_class_map[possible_wrappers[0]]
 
         o = wrapper_class(self._db,sel_data)
-        model.append([o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
 
+        drop_info = widget.get_dest_row_at_pos(x, y)
+        if drop_info:
+            path, position = drop_info
+            iter = model.get_iter(path)
+            if (position == gtk.TREE_VIEW_DROP_BEFORE
+                or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                model.insert_before(iter,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+            else:
+                model.insert_after(iter,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+        else:
+            model.append([o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+            
+
+        # remember time for double drop workaround.
         self._previous_drop_time = time
 
 
