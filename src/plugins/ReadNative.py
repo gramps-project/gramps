@@ -47,9 +47,12 @@ class ReadNative:
         self.top = gtk.FileSelection("%s - GRAMPS" % _("Import from GRAMPS"))
         self.top.hide_fileop_buttons()
         self.top.ok_button.connect('clicked', self.on_ok_clicked)
-        self.top.cancel_button.connect_object('clicked', Utils.destroy_passed_object,self.top)
+        self.top.cancel_button.connect('clicked', self.close_window)
         self.top.show()
 
+    def close_window(self,obj):
+        self.top.destroy()
+        
     def show_display(self):
         self.window = gtk.Window()
         self.window.set_title(_("Import from GRAMPS"))

@@ -100,7 +100,7 @@ startup        = 1
 #-------------------------------------------------------------------------
 progName     = "GRAMPS"
 version      = "@VERSIONSTRING@"
-copyright    = "© 2001-2003 Donald N. Allingham"
+copyright    = unicode("© 2001-2003 Donald N. Allingham","iso-8859-1")
 authors      = ["Donald N. Allingham", "David Hampton","Donald A. Peterson"]
 comments     = _("GRAMPS (Genealogical Research and Analysis "
                  "Management Programming System) is a personal "

@@ -26,6 +26,8 @@ from intl import gettext as _
 import TextDoc
 import DrawDoc
 
+def pt2cm(val):
+    return (float(val)/72.0)*2.54
 
 class PSDrawDoc(DrawDoc.DrawDoc):
 
@@ -111,16 +113,43 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%%PageTrailer\n')
 
     def draw_text(self,style,text,x1,y1):
-        x1 = x1 + self.lmargin
-        y1 = y1 + self.tmargin
-
         stype = self.draw_styles[style]
 	para_name = stype.get_paragraph_style()
 	p = self.style_list[para_name]
+
+        x1 = x1 + self.lmargin
+        y1 = y1 + self.tmargin + pt2cm(p.get_font().get_size())
+
         self.f.write('gsave\n')
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
         self.f.write(self.fontdef(p))
         self.f.write('(%s) show\n' % text)
+        self.f.write('grestore\n')
+
+    def draw_path(self,style,path,fill):
+        stype = self.draw_styles[style]
+        self.f.write('gsave\n')
+        self.f.write('newpath\n')
+        self.f.write('%d setlinewidth\n' % stype.get_line_width())
+        if stype.get_line_style() == DrawDoc.SOLID:
+            self.f.write('[] 0 setdash\n')
+        else:
+            self.f.write('[2 4] 0 setdash\n')
+
+        point = path[0]
+        x1 = point[0]+self.lmargin
+        y1 = point[1]+self.tmargin
+        self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
+
+        for point in path[1:]:
+            x1 = point[0]+self.lmargin
+            y1 = point[1]+self.tmargin
+            self.f.write('%f cm %f cm lineto\n' % self.translate(x1,y1))
+        self.f.write('closepath\n')
+        if fill:
+            self.f.write('fill\n')
+        else:
+            self.f.write('stroke\n')
         self.f.write('grestore\n')
 
     def draw_line(self,style,x1,y1,x2,y2):

@@ -278,6 +278,7 @@ _utoa = {
 def ansel_to_utf8(s):
     """Converts an ANSEL encoded string to UTF8"""
 
+    print s
     buff = cStringIO.StringIO()
     while s:
         c0 = ord(s[0])
@@ -285,18 +286,25 @@ def ansel_to_utf8(s):
             head = u' '
             s = s[1:]
         elif c0 > 127:
-            if _twobyte.has_key(s[0:2]):
-                head = _twobyte[s[0:2]]
+            l2 = s[0:2]
+            l1 = s[0]
+            print "----------------------"
+            if _twobyte.has_key(l2):
+                head = _twobyte[l2]
                 s = s[2:]
-            elif _onebyte.has_key(s[0]):
-                head = _onebyte[s[0]]
+                print "two"
+            elif _onebyte.has_key(l1):
+                head = _onebyte[l1]
                 s = s[1:]
+                print "**8 one",l1,ord(l1),"*",_onebyte[l1],
             else:
                 head = u'\xff\xfd'
                 s = s[1:]
+                print "barf"
         else:
             head = s[0]
             s = s[1:]
+        print head,c0
         buff.write(head)
     ans = buff.getvalue()
     buff.close()

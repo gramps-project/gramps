@@ -211,7 +211,8 @@ def loadConfig(call):
     global mediaref
     global globalprop
     global localprop
-
+    global capitalize
+    
     _callback = call
     lastfile = get_string("/apps/gramps/last-file")
     uselds = get_bool("/apps/gramps/use-lds")
@@ -459,7 +460,7 @@ class ConfigCheckbox(ConfigWidget):
 class ConfigFile(ConfigWidget):
 
     def get_widgets(self):
-        self.w = gnome.ui.GnomeFileEntry(self.tag)
+        self.w = gnome.ui.FileEntry(self.tag)
         lbl = gtk.Label(self.l)
         self.w.show()
         lbl.show()

@@ -100,7 +100,7 @@ startup        = 1
 #-------------------------------------------------------------------------
 progName     = "GRAMPS"
 version      = "0.9.0-rc5"
-copyright    = "© 2001-2003 Donald N. Allingham"
+copyright    = unicode("© 2001-2003 Donald N. Allingham","iso-8859-1")
 authors      = ["Donald N. Allingham", "David Hampton","Donald A. Peterson"]
 comments     = _("GRAMPS (Genealogical Research and Analysis "
                  "Management Programming System) is a personal "
@@ -130,8 +130,8 @@ childRelations = {
     _("Birth")     : "Birth",
     _("Adopted")   : "Adopted",
     _("Stepchild") : "Stepchild",
-    _("Foster")    : "Foster",
     _("Sponsored") : "Sponsored",
+    _("Foster")    : "Foster",
     _("None")      : "None",
     _("Unknown")   : "Unknown",
     _("Other")     : "Other",

@@ -136,7 +136,8 @@ class MediaView:
         if pexists and os.path.exists(thumb_path):
             self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
         else:
-            self.preview.set_from_pixbuf(Utils.find_icon(type))
+            icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
+            self.preview.set_from_pixbuf(icon_image)
             if not pexists:
                 fexists = 0
         
