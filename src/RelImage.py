@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -177,4 +177,24 @@ def check_thumb(source,dest,size):
         mk_thumb(source,dest,size)
     return 1
 
+
+#-------------------------------------------------------------------------
+#
+# Test if there's PIL available
+#
+#-------------------------------------------------------------------------
+def is_pil():
+    try:
+        from PIL import __name__ as pilname
+        return 1
+    except:
+        return 0
+
+#-------------------------------------------------------------------------
+#
+# Test if there's convert available
+#
+#-------------------------------------------------------------------------
+def is_cnv():
+    return not os.system('which convert>/dev/null')
 
