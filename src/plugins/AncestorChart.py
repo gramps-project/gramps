@@ -41,8 +41,7 @@ import gtk
 #
 #------------------------------------------------------------------------
 import GrampsCfg
-import DrawDoc
-import TextDoc
+import BaseDoc
 import Report
 import Errors
 import FontScale
@@ -68,7 +67,7 @@ def pt2cm(pt):
 #------------------------------------------------------------------------
 class AncestorChart:
 
-    def __init__(self,database,person,output,max,doc,display):
+    def __init__(self,database,person,max,display,doc,output,newpage=0):
         self.doc = doc
         self.doc.creator(database.getResearcher().getName())
         self.map = {}
@@ -80,6 +79,13 @@ class AncestorChart:
 	self.height = 0
         self.lines = 0
         self.display = display
+        self.newpage = newpage
+	self.calc()
+        if output:
+            self.standalone = 1
+            self.doc.open(output)
+        else:
+            self.standalone = 0
         
     def filter(self,person,index):
         """traverse the ancestors recursively until either the end
@@ -97,7 +103,7 @@ class AncestorChart:
         for line in self.display:
             self.text[index].append(subst.replace(line))
 
-        self.font = self.doc.style_list["Normal"].get_font()
+        self.font = self.doc.style_list["AC-Normal"].get_font()
 	for line in self.text[index]:
 	    self.box_width = max(self.box_width,FontScale.string_width(self.font,line))
 
@@ -109,11 +115,9 @@ class AncestorChart:
             self.filter(family.getMother(),(index*2)+1)
 
     def write_report(self):
-	self.calc()
-	try:
-            self.doc.open(self.output)
-        except:
-            raise Errors.ReportError(_("Could not create %s") % self.output)
+
+        if self.newpage:
+            self.doc.page_break()
 
         generation = 1
         done = 0
@@ -129,7 +133,9 @@ class AncestorChart:
                     self.print_page(index, generation, page)
                     page = page + 1
             generation = generation + 3
-        self.doc.close()
+        if self.standalone:
+            self.doc.close()
+        #self.doc.close()
 
     def calc(self):
         """
@@ -157,15 +163,15 @@ class AncestorChart:
                    ystart + 9*(uh/16.0), ystart + 11*(uh/16.0),
                    ystart + 13*(uh/16.0), ystart + 15*(uh/16.0)]
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_height(self.height)
         g.set_width(self.box_width)
-        g.set_paragraph_style("Normal")
+        g.set_paragraph_style("AC-Normal")
         g.set_shadow(1)
         g.set_fill_color((255,255,255))
         self.doc.add_draw_style("box",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         self.doc.add_draw_style("line",g)
 
     def get_numbers(self,start,index,vals):
@@ -205,6 +211,21 @@ class AncestorChart:
         
 #------------------------------------------------------------------------
 #
+# 
+#
+#------------------------------------------------------------------------
+def _make_default_style(default_style):
+    """Make the default output style for the Ancestor Chart report."""
+    f = BaseDoc.FontStyle()
+    f.set_size(9)
+    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    p = BaseDoc.ParagraphStyle()
+    p.set_font(f)
+    p.set_description(_('The basic style used for the text display.'))
+    default_style.add_style("AC-Normal",p)
+
+#------------------------------------------------------------------------
+#
 # AncestorChartDialog
 #
 #------------------------------------------------------------------------
@@ -239,14 +260,7 @@ class AncestorChartDialog(Report.DrawReportDialog):
                 _("Allows you to customize the data in the boxes in the report"))
 
     def make_default_style(self):
-        """Make the default output style for the Ancestor Chart report."""
-        f = TextDoc.FontStyle()
-        f.set_size(9)
-        f.set_type_face(TextDoc.FONT_SANS_SERIF)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(f)
-        p.set_description(_('The basic style used for the text display.'))
-        self.default_style.add_style("Normal",p)
+        _make_default_style(self.default_style)
 
     def make_report(self):
         """Create the object that will produce the Ancestor Chart.
@@ -254,8 +268,8 @@ class AncestorChartDialog(Report.DrawReportDialog):
         opened."""
 
         try:
-            MyReport = AncestorChart(self.db, self.person, self.target_path,
-                                     self.max_gen, self.doc, self.report_text)
+            MyReport = AncestorChart(self.db, self.person, 
+                self.max_gen, self.report_text, self.doc,self.target_path)
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
@@ -274,6 +288,118 @@ class AncestorChartDialog(Report.DrawReportDialog):
 #------------------------------------------------------------------------
 def report(database,person):
     AncestorChartDialog(database,person)
+
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+_style_file = "ancestor_chart.xml"
+_style_name = "default" 
+
+_person_id = ""
+_max_gen = 10
+_disp_format = [ "$n", "%s $b" % _BORN, "%s $d" % _DIED ]
+_options = ( _person_id, _max_gen, _disp_format )
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class AncestorChartBareDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,opt,stl):
+
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+        self.style_name = stl
+
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        self.max_gen = int(self.options[1])
+        self.disp_format = string.join(self.options[2],'\n')
+        self.new_person = None
+
+        self.generations_spinbox.set_value(self.max_gen)
+        self.extra_textbox.get_buffer().set_text(
+            self.disp_format,len(self.disp_format))
+        
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Ancestor Chart"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Ancestor Chart for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return _style_file
+    
+    def get_report_generations(self):
+        """Default to 10 generations, no page breaks."""
+        return (10, 0)
+    
+    def get_report_extra_textbox_info(self):
+        """Label the textbox and provide the default contents."""
+        return (_("Display Format"), "$n\n%s $b\n%s $d" % (_BORN,_DIED),
+                _("Allows you to customize the data in the boxes in the report"))
+
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.new_person:
+            self.person = self.new_person
+        self.options = ( self.person.getId(), self.max_gen, self.report_text )
+        self.style_name = self.selected_style.get_name()
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the Ancestor Chart using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        max_gen = int(options[1])
+        disp_format = options[2]
+        return AncestorChart(database, person, max_gen,
+                                   disp_format, doc, None, newpage )
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #
@@ -422,7 +548,7 @@ def get_xpm_image():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -433,5 +559,17 @@ register_report(
     xpm=get_xpm_image(),
     author_name="Donald N. Allingham",
     author_email="dallingham@users.sourceforge.net"
+    )
+
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
+register_book_item( 
+    _("Ancestor Chart"), 
+    _("Graphics"),
+    AncestorChartBareDialog,
+    write_book_item,
+    _options,
+    _style_name,
+    _style_file,
+    _make_default_style
     )
 
