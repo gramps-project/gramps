@@ -442,7 +442,7 @@ class DetAncestorReport(Report):
 #------------------------------------------------------------------------
 class DetAncestorReportDialog(TextReportDialog):
     def __init__(self,database,person):
-        ReportDialog.__init__(self,database,person)
+        TextReportDialog.__init__(self,database,person)
 
     #------------------------------------------------------------------------
     #
