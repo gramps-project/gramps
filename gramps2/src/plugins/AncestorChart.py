@@ -42,7 +42,6 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import GrampsCfg
 import BaseDoc
 import Report
 import Errors

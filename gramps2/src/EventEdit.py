@@ -141,7 +141,7 @@ class EventEditor:
         self.gallery_label = self.top.get_widget("galleryEvent")
         self.witnesses_label = self.top.get_widget("witnessesEvent")
 
-        if GrampsCfg.calendar:
+        if GrampsCfg.get_calendar():
             self.calendar.show()
         else:
             self.calendar.hide()

@@ -379,7 +379,7 @@ class MediaView:
                 trans = self.db.start_transaction()
                 self.db.add_object(photo,trans)
                 self.load_media()
-                if GrampsCfg.mediaref == 0:
+                if GrampsCfg.get_media_reference() == 0:
                     name = RelImage.import_media_object(name,
                                                         self.db.get_save_path(),
                                                         photo.get_id())
@@ -389,7 +389,7 @@ class MediaView:
                 self.db.commit_media_object(photo,trans)
                 self.db.add_transaction(trans,_("Add Media Object"))
                 
-                if GrampsCfg.globalprop:
+                if GrampsCfg.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media,
                                                 self,self.topWindow)
             elif protocol != "":
@@ -422,7 +422,7 @@ class MediaView:
                 self.db.commit_media_object(photo,trans)
                 self.db.add_transaction(trans,_("Add Media Object"))
                 
-                if GrampsCfg.globalprop:
+                if GrampsCfg.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,None,
                                                 self,self.topWindow)
 

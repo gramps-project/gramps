@@ -127,7 +127,7 @@ class AddSpouse:
         self.ok.set_sensitive(0)
                      
         self.rel_combo.set_popdown_strings(const.familyRelations)
-        title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
+        title = _("Choose Spouse/Partner of %s") % GrampsCfg.get_nameof()(person)
 
         Utils.set_titles(self.glade.get_widget('spouseDialog'),
                          self.glade.get_widget('title'),title,

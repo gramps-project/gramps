@@ -153,7 +153,7 @@ class FamilyView:
             self.parent.views.get_nth_page(2).hide()
 
     def init_interface(self):
-        fv = GrampsCfg.familyview
+        fv = GrampsCfg.get_family_view()
         self.set_widgets(fv)
 
         already_init = self.cadded[fv]
@@ -665,7 +665,7 @@ class FamilyView:
             return
 
         person = RelLib.Person()
-        autoname = GrampsCfg.lastnamegen
+        autoname = GrampsCfg.get_lastnamegen()
         
         if autoname == 0:
             name = self.north_american(0)
@@ -762,8 +762,8 @@ class FamilyView:
 
     def remove_spouse(self,obj):
         if self.selected_spouse:
-            nap = GrampsCfg.nameof(self.person)
-            nsp = GrampsCfg.nameof(self.selected_spouse)
+            nap = GrampsCfg.get_nameof()(self.person)
+            nsp = GrampsCfg.get_nameof()(self.selected_spouse)
             QuestionDialog(_('Remove %s as a spouse of %s?') % (nsp,nap),
                            _('Removing a spouse removes the relationship between '
                              'the spouse and the active person. It does not '
@@ -868,20 +868,20 @@ class FamilyView:
         dd = self.parent.db.find_event_from_id(self.person.get_death_id())
 
         if bd and dd:
-            n = "%s [%s]\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
+            n = "%s [%s]\n\t%s %s\n\t%s %s " % (GrampsCfg.get_nameof()(self.person),
                                                 self.person.get_gramps_id(),
                                                 _BORN,bd.get_date(),
                                                 _DIED,dd.get_date())
         elif bd:
-            n = "%s [%s]\n\t%s %s" % (GrampsCfg.nameof(self.person),
+            n = "%s [%s]\n\t%s %s" % (GrampsCfg.get_nameof()(self.person),
                                       self.person.get_gramps_id(),
                                       _BORN,bd.get_date())
         elif dd:
-            n = "%s [%s]\n\t%s %s" % (GrampsCfg.nameof(self.person),
+            n = "%s [%s]\n\t%s %s" % (GrampsCfg.get_nameof()(self.person),
                                       self.person.get_gramps_id(),
                                       _DIED,dd.get_date())
         else:
-            n = "%s [%s]" % (GrampsCfg.nameof(self.person),
+            n = "%s [%s]" % (GrampsCfg.get_nameof()(self.person),
                              self.person.get_gramps_id())
 
         self.ap_model.clear()
@@ -923,7 +923,7 @@ class FamilyView:
                     mdate = " - %s" % event.get_date()
                 else:
                     mdate = ""
-                v = "%s [%s]\n\t%s%s" % (GrampsCfg.nameof(sp),
+                v = "%s [%s]\n\t%s%s" % (GrampsCfg.get_nameof()(sp),
                                          sp.get_gramps_id(),
                                          const.display_frel(fm.get_relationship()),
                                          mdate)
@@ -982,7 +982,7 @@ class FamilyView:
             
     def nameof(self,l,p,mode):
         if p:
-            n = GrampsCfg.nameof(p)
+            n = GrampsCfg.get_nameof()(p)
             pid = p.get_gramps_id()
             return _("%s: %s [%s]\n\tRelationship: %s") % (l,n,pid,_(mode))
         else:
@@ -1189,7 +1189,7 @@ class FamilyView:
     def del_parents_clicked(self,obj):
         if len(self.person.get_parent_family_id_list()) == 0:
             return
-        n = GrampsCfg.nameof(self.person)
+        n = GrampsCfg.get_nameof()(self.person)
         QuestionDialog(_('Remove Parents of %s') % n,
                        _('Removing the parents of a person removes the person as a '
                          'child of the parents. The parents are not removed from the '
@@ -1204,7 +1204,7 @@ class FamilyView:
     def del_sp_parents(self,obj):
         if not self.selected_spouse or len(self.selected_spouse.get_parent_family_id_list()) == 0:
             return
-        n = GrampsCfg.nameof(self.selected_spouse)
+        n = GrampsCfg.get_nameof()(self.selected_spouse)
         QuestionDialog(_('Remove Parents of %s') % n,
                        _('Removing the parents of a person removes the person as a '
                          'child of the parents. The parents are not removed from the '

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003 Donald N. Allingham
+# Copyright (C) 2000-2004 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 import const
 import gtk.glade
@@ -37,8 +39,6 @@ def need_to_run():
     client = gconf.client_get_default()
     client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
     val = client.get_int(_StartupEntry)
-    if val == None:
-        return 1
     if val < const.startup:
         return 1
     return 0
@@ -124,14 +124,14 @@ class StartupDialog:
         self.client.set_string('/apps/gramps/researcher-email',unicode(self.email.get_text()))
 
         if self.date1.get_active():
-            self.client.set_int("/apps/gramps/dateEntry",0)
+            self.client.set_int("/apps/gramps/date-entry",0)
         elif self.date2.get_active():
-            self.client.set_int("/apps/gramps/dateEntry",1)
+            self.client.set_int("/apps/gramps/date-entry",1)
         elif self.date3.get_active():
-            self.client.set_int("/apps/gramps/dateEntry",2)
+            self.client.set_int("/apps/gramps/date-entry",2)
             
-        self.client.set_int("/apps/gramps/ShowCalendar",self.calendar.get_active())
-        self.client.set_int("/apps/gramps/UseLDS",self.lds.get_active())
+        self.client.set_bool("/apps/gramps/show-calendar",self.calendar.get_active())
+        self.client.set_bool("/apps/gramps/use-lds",self.lds.get_active())
         self.client.set_int(_StartupEntry,const.startup)
         self.w.destroy()
         self.task(self.args)
@@ -217,9 +217,7 @@ class StartupDialog:
         self.date2 = gtk.RadioButton(label=_("DD/MM/YYYY (European)"),group=self.date1)
         self.date3 = gtk.RadioButton(label=_("YYYY-MM-DD (ISO)"),group=self.date1)
 
-        val = self.client.get_int("/apps/gramps/dateEntry")
-        if val == None:
-            val = 0
+        val = self.client.get_int("/apps/gramps/date-entry")
             
         if val == 0:
             self.date1.set_active(1)
@@ -259,10 +257,7 @@ class StartupDialog:
         
         self.calendar = gtk.CheckButton(label=_("Enable support for alternate calendars"))
 
-        if self.client.get_int("/apps/gramps/ShowCalendar"):
-            self.calendar.set_active(1)
-        else:
-            self.calendar.set_active(0)
+        self.calendar.set_active(self.client.get_bool("/apps/gramps/show-calendar"))
         
         align.add(self.calendar)
         
@@ -293,10 +288,7 @@ class StartupDialog:
         
         self.lds = gtk.CheckButton(label=_("Enable LDS ordinance support"))
 
-        if self.client.get_int("/apps/gramps/UseLDS"):
-            self.lds.set_active(1)
-        else:
-            self.lds.set_active(0)
+        self.lds.set_active(self.client.get_bool("/apps/gramps/use-lds"))
 
         align.add(self.lds)
         

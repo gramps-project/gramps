@@ -500,7 +500,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = msg + ( t % (GrampsCfg.nameof(e[0]),e[0].get_id(),_(e[1].get_name())))
+                msg = msg + ( t % (GrampsCfg.get_nameof()(e[0]),e[0].get_id(),_(e[1].get_name())))
 
         if len(fevent) > 0:
             any = 1
@@ -513,12 +513,12 @@ class EditPlace:
                 mother = e[0].get_mother_id()
                 if father and mother:
                     fname = _("%(father)s and %(mother)s")  % {
-                                "father" : GrampsCfg.nameof(father),
-                                "mother" : GrampsCfg.nameof(mother) }
+                                "father" : GrampsCfg.get_nameof()(father),
+                                "mother" : GrampsCfg.get_nameof()(mother) }
                 elif father:
-                    fname = "%s" % GrampsCfg.nameof(father)
+                    fname = "%s" % GrampsCfg.get_nameof()(father)
                 else:
-                    fname = "%s" % GrampsCfg.nameof(mother)
+                    fname = "%s" % GrampsCfg.get_nameof()(mother)
 
                 msg = msg + ( t % (fname,e[0].get_id(),_(e[1].get_name())))
 

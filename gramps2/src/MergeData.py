@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -75,8 +77,8 @@ class MergePeople:
             "destroy_passed_object" : Utils.destroy_passed_object,
             })
 
-        fname = GrampsCfg.nameof(person1)
-        mname = GrampsCfg.nameof(person2)
+        fname = GrampsCfg.get_nameof()(person1)
+        mname = GrampsCfg.get_nameof()(person2)
 
         Utils.set_titles(self.top, self.glade.get_widget('title'),
                          _("Merge %s and %s") % (fname,mname),
@@ -85,13 +87,13 @@ class MergePeople:
         f1 = person1.get_main_parents_family_id()
         f2 = person2.get_main_parents_family_id()
         
-        name1 = GrampsCfg.nameof(person1)
+        name1 = GrampsCfg.get_nameof()(person1)
         death1 = person1.get_death().get_date()
         dplace1 = self.place_name(person1.get_death())
         birth1 = person1.get_birth().get_date()
         bplace1 = self.place_name(person1.get_birth())
 
-        name2 = GrampsCfg.nameof(person2)
+        name2 = GrampsCfg.get_nameof()(person2)
         death2 = person2.get_death().get_date()
         dplace2 = self.place_name(person2.get_death())
         birth2 = person2.get_birth().get_date()
@@ -191,7 +193,7 @@ class MergePeople:
             if spouse == None:
                 name = "unknown"
             else:
-                sname = GrampsCfg.nameof(spouse)
+                sname = GrampsCfg.get_nameof()(spouse)
                 name = "%s [%s]" % (sname,spouse.get_id())
             widget.add([name])
 
@@ -347,7 +349,7 @@ class MergePeople:
             self.db.remove_person_id(self.p2.get_id())
             self.db.personMap[self.p1.get_id()] = self.p1
         except:
-            print "%s is not in the person map!" % (GrampsCfg.nameof(self.p2))
+            print "%s is not in the person map!" % (GrampsCfg.get_nameof()(self.p2))
         self.update(self.p1,self.p2,old_id)
         Utils.destroy_passed_object(self.top)
         
@@ -579,8 +581,8 @@ def compare_people(p1,p2):
                     if father1 == father2:
                         chance = chance + 1.0
                     else:
-                        fname1 = GrampsCfg.nameof(father1)
-                        fname2 = GrampsCfg.nameof(father2)
+                        fname1 = GrampsCfg.get_nameof()(father1)
+                        fname2 = GrampsCfg.get_nameof()(father2)
                         value = name_match(fname1,fname2)
                         if value != -1.0:
                             chance = chance + value
@@ -591,8 +593,8 @@ def compare_people(p1,p2):
                     if mother1 == mother2:
                         chance = chance + 1.0
                     else:
-                        mname1 = GrampsCfg.nameof(mother1)
-                        mname2 = GrampsCfg.nameof(mother2)
+                        mname1 = GrampsCfg.get_nameof()(mother1)
+                        mname2 = GrampsCfg.get_nameof()(mother2)
                         value = name_match(mname1,mname2)
                         if value != -1.0:
                             chance = chance + value
@@ -799,7 +801,7 @@ def ancestors_of(p1,list):
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % (GrampsCfg.nameof(p),p.get_id())
+    return "%s (%s)" % (GrampsCfg.get_nameof()(p),p.get_id())
 
 #-------------------------------------------------------------------------
 #

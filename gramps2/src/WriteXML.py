@@ -49,7 +49,6 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import GrampsCfg
 import Calendar
 import Gregorian
 import RelLib 

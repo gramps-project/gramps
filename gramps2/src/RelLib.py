@@ -1215,14 +1215,14 @@ class Person(SourceNote):
             gender = const.unknown
         bday = self.birth_id
         dday = self.death_id
-        return [ GrampsCfg.display_name(self),
+        return [ GrampsCfg.get_display_name()(self),
                  self.gid,
                  gender,
                  bday,
                  dday,
                  self.get_primary_name().get_sort_name(),
                  bday, dday,
-                 GrampsCfg.display_surname(self.primary_name)]
+                 GrampsCfg.get_display_surname()(self.primary_name)]
                                           
     def set_primary_name(self,name):
         """sets the primary name of the Person to the specified
@@ -2576,7 +2576,7 @@ class GrampsDB:
                  data[3].get_sort_name(),
                  data[7],
                  data[6],
-                 GrampsCfg.display_surname(data[3])]
+                 GrampsCfg.get_display_surname()(data[3])]
 
     def commit_person(self,person,transaction):
         gid = str(person.get_id())

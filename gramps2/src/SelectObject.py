@@ -59,7 +59,6 @@ import RelLib
 import const
 import Utils
 import ListModel
-import GrampsCfg
 
 #-------------------------------------------------------------------------
 #

@@ -198,7 +198,7 @@ class EditSource:
                     p_list.append(name)
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            name = GrampsCfg.nameof(p)
+            name = GrampsCfg.get_nameof()(p)
             for event_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
                 if event_id:
                     event = self.db.find_event_from_id(event_id)
@@ -233,12 +233,12 @@ class EditSource:
                 m = self.db.try_to_find_person_from_id(m_id)
             if f_id and m_id:
                 name = _("%(father)s and %(mother)s") % {
-                    "father" : GrampsCfg.nameof(f),
-                    "mother" : GrampsCfg.nameof(m)}
+                    "father" : GrampsCfg.get_nameof()(f),
+                    "mother" : GrampsCfg.get_nameof()(m)}
             elif f_id:
-                name = GrampsCfg.nameof(f)
+                name = GrampsCfg.get_nameof()(f)
             else:
-                name = GrampsCfg.nameof(m)
+                name = GrampsCfg.get_nameof()(m)
             for v_id in p.get_event_list():
                 v = self.db.find_event_from_id(v_id)
                 if not v:

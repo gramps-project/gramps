@@ -1,3 +1,38 @@
+2004-07-14  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/gramps.schemas: Cleanup.
+	* src/data/Makefile.am: Clen up install rule. Add uninstall rule.
+	* src/StartupDialog.py: Correct use of keys.
+	* src/GrampsCfg.py: Correct usage of gconf.
+	* src/DbPrompter.py: Remove unused module.
+	* src/SelectChild.py: Remove unused module.
+	* src/SelectObject.py: Remove unused module.
+	* src/WriteXML.py: Remove unused module.
+	* src/gramps_main.py: Convert to new gconf usage.
+	* src/FamilyView.py: Convert to new gconf usage.
+	* src/AddSpouse.py: Convert to new gconf usage.
+	* src/ChooseParents.py: Convert to new gconf usage.
+	* src/EditPerson.py: Convert to new gconf usage.
+	* src/EditPlace.py: Convert to new gconf usage.
+	* src/EditSource.py: Convert to new gconf usage.
+	* src/EventEdit.py: Convert to new gconf usage.
+	* src/ImageSelect.py: Convert to new gconf usage.
+	* src/Marriage.py: Convert to new gconf usage.
+	* src/MediaView.py: Convert to new gconf usage.
+	* src/MergeData.py: Convert to new gconf usage.
+	* src/PedView.py: Convert to new gconf usage.
+	* src/Plugins.py: Convert to new gconf usage.
+	* src/RelLib.py: Convert to new gconf usage.
+	* src/TipOfDay.py: Convert to new gconf usage.
+	* src/plugins/AncestorChart2.py: Remove unused module.
+	* src/plugins/AncestorChart.py: Remove unused module.
+	* src/plugins/BookReport.py: Remove unused module.
+	* src/plugins/FanChart.py: Remove unused module.
+	* src/plugins/Partition.py: Remove unused module.
+	* src/plugins/Desbrowser.py: Convert to new gconf usage.
+	* src/plugins/Merge.py: Convert to new gconf usage.
+	* src/plugins/RelCalc.py: Convert to new gconf usage.
+	* src/plugins/WebPage.py: Convert to new gconf usage.
+
 2004-07-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Exporter.py: Fix EXPAND/FILL state of the chooser widget.
 	* src/DbPrompter.py (SaveAsDbPrompter): Remove class.
