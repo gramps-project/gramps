@@ -1,3 +1,12 @@
+2004-11-08  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateHandler.py: add handlers for fr_FR
+	* src/DateParser.py: add parser for french
+	* src/DateDisplay.py: add displayer for french
+
+2004-11-08  Steve Swales  <Steve.Swales@sun.com>
+	* src/gramps.py: Better way of setting locale
+	* src/DateHandler.py: Better locate settings
+
 2004-11-08 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/Makefile.am: Remove gramps.desktop from
         dist_pkgdata_DATA which was causing it to get installed

@@ -296,3 +296,39 @@ class DateDisplay:
     def _display_islamic(self,date_val):
         return self._display_calendar(date_val,self._islamic)
 
+class DateDisplayFR(DateDisplay):
+
+    calendar = (
+        u"", u" (Julien)", u" (H\xe9breu)", 
+        u" (R\xe9volutionnaire)", u" (Perse)", u" (Islamique)"
+        )
+
+    _mod_str = (u"",u"avant ",u"apr\xe8s ",u"vers ",u"",u"",u"")
+    
+    def display(self,date):
+        """
+        Returns a text string representing the date.
+        """
+        mod = date.get_modifier()
+        cal = date.get_calendar()
+        qual = date.get_quality()
+        start = date.get_start_date()
+
+        qual_str = self._qual_str[qual]
+        
+        if mod == Date.MOD_TEXTONLY:
+            return date.get_text()
+        elif start == Date.EMPTY:
+            return u""
+        elif mod == Date.MOD_SPAN:
+            d1 = self.display_cal[cal](start)
+            d2 = self.display_cal[cal](date.get_stop_date())
+            return u"%sde %s \xe0 %s%s" % (qual_str,d1,d2,self.calendar[cal])
+        elif mod == Date.MOD_RANGE:
+            d1 = self.display_cal[cal](start)
+            d2 = self.display_cal[cal](date.get_stop_date())
+            return u"%sentre %s et %s%s" % (qual_str,d1,d2,self.calendar[cal])
+        else:
+            text = self.display_cal[date.get_calendar()](start)
+            return u"%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
+    

@@ -486,6 +486,53 @@ class DateParser:
         self.set_date(new_date,text)
         return new_date
 
+class DateParserFR(DateParser):
+
+    modifier_to_int = {
+        u'avant'    : Date.MOD_BEFORE, 
+        u'av.'      : Date.MOD_BEFORE, 
+        u'av'       : Date.MOD_BEFORE, 
+        u'apr\xe8s' : Date.MOD_AFTER,
+        u'ap.'    : Date.MOD_AFTER,
+        u'ap'     : Date.MOD_AFTER,
+        u'env.'   : Date.MOD_ABOUT,
+        u'env'    : Date.MOD_ABOUT,
+        u'circa'  : Date.MOD_ABOUT,
+        u'c.'     : Date.MOD_ABOUT,
+        u'vers'   : Date.MOD_ABOUT,
+        }
+
+    calendar_to_int = {
+        u'gr\xe9gorien'      : Date.CAL_GREGORIAN,
+        u'g'                 : Date.CAL_GREGORIAN,
+        u'julien'            : Date.CAL_JULIAN,
+        u'j'                 : Date.CAL_JULIAN,
+        u'h\xe9breu'         : Date.CAL_HEBREW,
+        u'h'                 : Date.CAL_HEBREW,
+        u'islamique'         : Date.CAL_ISLAMIC,
+        u'i'                 : Date.CAL_ISLAMIC,
+        u'r\xe9volutionnaire': Date.CAL_FRENCH,
+        u'r'                 : Date.CAL_FRENCH,
+        u'perse'             : Date.CAL_PERSIAN,
+        u'p'                 : Date.CAL_PERSIAN,
+        }
+
+    quality_to_int = {
+        u'estimated'  : Date.QUAL_ESTIMATED,
+        u'est.'       : Date.QUAL_ESTIMATED,
+        u'est'        : Date.QUAL_ESTIMATED,
+        u'calc.'      : Date.QUAL_CALCULATED,
+        u'calc'       : Date.QUAL_CALCULATED,
+        u'calculated' : Date.QUAL_CALCULATED,
+        }
+
+    _span     = re.compile("de\s+(.+)\s+\xe0\s+(.+)",
+                           re.IGNORECASE)
+    _range    = re.compile("(ent.|ent|entre)\s+(.+)\s+et\s+(.+)",
+                           re.IGNORECASE)
+
+
+
 _max_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 def gregorian_valid(date_tuple):
@@ -497,3 +544,4 @@ def gregorian_valid(date_tuple):
     elif day > _max_days[month]:
         valid = False
     return valid
+
