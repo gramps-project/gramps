@@ -152,12 +152,25 @@ class FamilyView:
             self.parent.load_person(self.person)
 
     def on_child_list_button_press(self,obj,event):
+        model, iter = self.child_selection.get_selected()
+        if not iter:
+            return
+        id = self.child_model.get_value(iter,2)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            model, iter = self.child_selection.get_selected()
-            if iter:
-                id = self.child_model.get_value(iter,2)
-                self.parent.load_person(self.parent.db.getPerson(id))
+            self.parent.load_person(self.parent.db.getPerson(id))
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            menu = gtk.Menu()
+            item = gtk.TearoffMenuItem()
+            item.show()
+            menu.append(item)
+            msg = _("Edit relationships")
+            Utils.add_menuitem(menu,msg,id,self.child_rel)
+            menu.popup(None,None,None,0,0)
 
+    def child_rel(self,obj):
+        person = self.parent.db.getPerson(obj.get_data(Utils.OBJECT))
+        SelectChild.EditRel(person,self.family,self.load_family)
+        
     def spouse_changed(self,obj):
         model, iter = obj.get_selected()
         if not iter:
