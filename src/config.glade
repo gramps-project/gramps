@@ -1126,7 +1126,28 @@
 	    <active>False</active>
 	    <draw_indicator>True</draw_indicator>
 	    <child>
-	      <padding>5</padding>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkCheckButton</class>
+	    <name>uselds</name>
+	    <border_width>3</border_width>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Sun, 30 Dec 2001 00:13:47 GMT</last_modification_time>
+	    </signal>
+	    <label>Enable LDS tab on Edit Person form</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <child>
+	      <padding>0</padding>
 	      <expand>False</expand>
 	      <fill>False</fill>
 	    </child>
@@ -1135,12 +1156,13 @@
 	  <widget>
 	    <class>GtkHBox</class>
 	    <name>hbox1</name>
+	    <border_width>3</border_width>
 	    <homogeneous>False</homogeneous>
 	    <spacing>0</spacing>
 	    <child>
 	      <padding>0</padding>
-	      <expand>True</expand>
-	      <fill>True</fill>
+	      <expand>False</expand>
+	      <fill>False</fill>
 	    </child>
 
 	    <widget>
@@ -1157,7 +1179,7 @@
 	      <active>False</active>
 	      <draw_indicator>True</draw_indicator>
 	      <child>
-		<padding>3</padding>
+		<padding>0</padding>
 		<expand>False</expand>
 		<fill>False</fill>
 	      </child>

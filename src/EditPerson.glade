@@ -4341,7 +4341,8 @@
 
       <widget>
 	<class>GtkVBox</class>
-	<name>vbox38</name>
+	<name>lds_page</name>
+	<visible>False</visible>
 	<homogeneous>False</homogeneous>
 	<spacing>0</spacing>
 
@@ -5268,7 +5269,8 @@
       <widget>
 	<class>GtkLabel</class>
 	<child_name>Notebook:tab</child_name>
-	<name>label248</name>
+	<name>lds_tab</name>
+	<visible>False</visible>
 	<label>LDS</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
