@@ -313,7 +313,6 @@ class Gramps:
             "on_home_clicked" : self.on_home_clicked,
             "on_new_clicked" : self.on_new_clicked,
             "on_notebook1_switch_page" : self.on_views_switch_page,
-            "on_ok_button1_clicked" : self.on_ok_button1_clicked,
             "on_open_activate" : self.on_open_activate,
             "on_import_activate" : self.on_import_activate,
             "on_export_activate" : self.on_export_activate,
@@ -906,7 +905,9 @@ class Gramps:
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
-        DbPrompter.DbPrompter(self,1,self.topWindow)
+        self.db.close()
+        prompter = DbPrompter.NewNativeDbPrompter(self,self.topWindow)
+        prompter.chooser()
 
     def clear_database(self):
         """Clear out the database if permission was granted"""
@@ -958,16 +959,6 @@ class Gramps:
     def on_reports_clicked(self,obj):
         if self.active_person:
             Plugins.ReportPlugins(self,self.db,self.active_person)
-
-    def on_ok_button1_clicked(self,obj):
-        filename = self.filesel.get_filename()
-        if filename == "" or filename == None:
-            return
-        filename = os.path.normpath(os.path.abspath(filename))
-        self.filesel.destroy()
-        self.clear_database()
-        if self.auto_save_load(filename) == 0:
-            DbPrompter.DbPrompter(self,0,self.topWindow)
 
     def on_help_dbopen_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1096,14 +1087,6 @@ class Gramps:
         self.goto_active_person()
         return 1
 
-    def on_ok_button2_clicked(self,obj):
-        filename = obj.get_filename()
-        filename = os.path.normpath(os.path.abspath(filename))
-        if filename:
-            Utils.destroy_passed_object(obj)
-            self.save_media(filename)
-            self.save_file(filename,_("No Comment Provided"))
-
     def save_media(self,filename):
         import RelImage
         missmedia_action = 0
@@ -1201,53 +1184,6 @@ class Gramps:
                             leave_clicked()
                         elif missmedia_action == 3:
                             select_clicked()
-
-    def save_file(self,filename,comment):        
-
-        path = filename
-        filename = os.path.normpath(os.path.abspath(filename))
-        self.status_text(_("Saving %s ...") % filename)
-
-        if os.path.exists(filename):
-            if not os.path.isdir(filename):
-                DbPrompter.DbPrompter(self,0,self.topWindow)
-                self.displayError(_("Database could not be opened"),
-                                  _("%s is not a directory.") % filename + ' ' + \
-                                  _("You should select a directory that contains a "
-                                "data.gramps file."))
-                return
-        else:
-            try:
-                os.mkdir(filename)
-            except (OSError,IOError), msg:
-                emsg = _("Could not create %s") % filename
-                ErrorDialog(emsg,_("An error was detected while attempting to create the file. ",
-                                   'The operating system reported "%s"' % str(msg)))
-                return
-            except:
-                ErrorDialog(_("Could not create %s") % filename,
-                            _("An error was detected while trying to create the file"))
-                return
-        
-        old_file = filename
-        filename = "%s/%s" % (filename,self.db.get_base())
-        try:
-            self.db.clear_added_media_objects()
-        except (OSError,IOError), msg:
-            emsg = _("Could not create %s") % filename
-            ErrorDialog(emsg,msg)
-            return
-        
-        self.db.set_save_path(old_file)
-        GrampsCfg.save_last_file(old_file)
-
-        filename = self.db.get_save_path()
-        if filename[-1] == '/':
-            filename = filename[:-1]
-        name = os.path.basename(filename)
-        self.topWindow.set_title("%s - GRAMPS" % name)
-        self.status_text("")
-        self.statusbar.set_progress_percentage(0.0)
 
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
@@ -1427,121 +1363,12 @@ class Gramps:
         self.filesel.destroy()
 
     def on_open_activate(self,obj):
-
-        choose = gtk.FileChooserDialog(_('GRAMPS: Open database'),
-                                       self.topWindow,
-                                       gtk.FILE_CHOOSER_ACTION_OPEN,
-                                       (gtk.STOCK_CANCEL,
-                                        gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
-                                        gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('Automatic'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
+        prompter = DbPrompter.ExistingDbPrompter(self,self.topWindow)
+        prompter.chooser()
         
-        # Always add native format filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('GRAMPS databases'))
-        filter.add_mime_type('application/x-gramps')
-        choose.add_filter(filter)
-
-        for (importData,filter,mime_type) in Plugins._imports:
-            choose.add_filter(filter)
-
-        if GrampsCfg.lastfile:
-            choose.set_filename(GrampsCfg.lastfile)
-
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            filename = os.path.normpath(os.path.abspath(filename))
-            self.clear_database()
-            filetype = gnome.vfs.get_mime_type(filename)
-            (junk,the_file) = os.path.split(filename)
-
-            if filetype == 'application/x-gramps':
-                if self.auto_save_load(filename) == 0:
-                    DbPrompter.DbPrompter(self,0,self.topWindow)
-            else:
-                opened = 0
-                for (importData,filter,mime_type) in Plugins._imports:
-                    if filetype == mime_type or the_file == mime_type:
-                        OkDialog( _("Opening non-native format"), 
-                                _("New gramps database has to be set up "
-                                  "when opening non-native formats. The "
-                                  "following dialog will let you select "
-                                  "the new database."),
-                                self.topWindow)
-                        DbPrompter.NewNativeDbPrompter(self,self.topWindow,filename)
-                        importData(self.db,filename)
-                        self.import_tool_callback()
-                        opened = 1
-                        break
-                if not opened:
-                    ErrorDialog( _("Could not open file: %s") % filename,
-                            _('The type "%s" is not in the list of known file types') % filetype )
-        choose.destroy()
- 
     def on_import_activate(self,obj):
-        choose = gtk.FileChooserDialog(_('GRAMPS: Import database'),
-                                       self.topWindow,
-                                       gtk.FILE_CHOOSER_ACTION_OPEN,
-                                       (gtk.STOCK_CANCEL,
-                                        gtk.RESPONSE_CANCEL,
-                                        gtk.STOCK_OPEN,
-                                        gtk.RESPONSE_OK))
-
-        # Always add automatic (macth all files) filter
-        filter = gtk.FileFilter()
-        filter.set_name(_('Automatic'))
-        filter.add_pattern('*')
-        choose.add_filter(filter)
-
-#   FIXME: Uncomment when we have grdb importer
-#
-#        # Always add native format filter
-#        filter = gtk.FileFilter()
-#        filter.set_name(_('GRAMPS databases'))
-#        filter.add_mime_type('application/x-gramps')
-#        choose.add_filter(filter)
-
-        for (importData,filter,mime_type) in Plugins._imports:
-            choose.add_filter(filter)
-
-        if GrampsCfg.lastfile:
-            choose.set_filename(GrampsCfg.lastfile)
-
-        response = choose.run()
-        if response == gtk.RESPONSE_OK:
-            filename = choose.get_filename()
-            filename = os.path.normpath(os.path.abspath(filename))
-            filetype = gnome.vfs.get_mime_type(filename)
-            (junk,the_file) = os.path.split(filename)
-
-#   FIXME: Uncomment when we have grdb importer
-#
-#            if filetype == 'application/x-gramps':
-#                if self.auto_save_load(filename) == 0:
-#                    DbPrompter.DbPrompter(self,0,self.topWindow)
-#            else:
-            if True:
-                opened = 0
-                for (importData,filter,mime_type) in Plugins._imports:
-                    if filetype == mime_type or the_file == mime_type:
-                        print mime_type
-                        print "Keys before:", self.db.get_person_keys()
-                        importData(self.db,filename)
-                        self.import_tool_callback()
-                        opened = 1
-                        print "Keys after:", self.db.get_person_keys()
-                        break
-                if not opened:
-                    ErrorDialog( _("Could not open file: %s") % filename,
-                            _('The type "%s" is not in the list of known file types') % filetype )
-        choose.destroy()
+        prompter = DbPrompter.ImportDbPrompter(self,self.topWindow)
+        prompter.chooser()
 
     def on_export_activate(self,obj):
         choose = gtk.FileChooserDialog(_('GRAMPS: Export database'),
