@@ -375,7 +375,8 @@ class XmlWriter:
                     self.callback(float(count)/float(total))
                 count = count + 1
                 self.g.write("    <source id=\"%s\" handle=\"%s\" change=\"%d\">\n" %
-                             (source.get_gramps_id(), source.get_handle(), source.get_change_time()))
+                             (source.get_gramps_id(), source.get_handle(),
+                              source.get_change_time()))
                 self.write_force_line("stitle",source.get_title(),3)
                 self.write_line("sauthor",source.get_author(),3)
                 self.write_line("spubinfo",source.get_publication_info(),3)
@@ -383,6 +384,7 @@ class XmlWriter:
                 if source.get_note() != "":
                     self.write_note("note",source.get_note_object(),3)
                 self.write_media_list(source.get_media_list())
+                self.write_data_map(source.get_data_map())
                 self.g.write("    </source>\n")
             self.g.write("  </sources>\n")
 
@@ -769,6 +771,15 @@ class XmlWriter:
                     self.dump_source_ref(ref,indent+1)
                 self.write_note("note",photo.get_note_object(),indent+1)
                 self.g.write('%s</objref>\n' % sp)
+
+    def write_data_map(self,datamap,indent=3):
+        if len(datamap) == 0:
+            return
+        
+        sp = '  '*indent
+        for key in datamap.keys():
+            self.g.write('%s<data_item key="%s" value="%s"/>' %
+                         (sp,key,datamap[key]))
 
     def write_url_list(self,list):
         for url in list:

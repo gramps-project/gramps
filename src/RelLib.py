@@ -1191,12 +1191,13 @@ class Source(PrimaryObject):
         self.pubinfo = ""
         self.note = Note()
         self.media_list = []
+        self.datamap = {}
         self.abbrev = ""
 
     def serialize(self):
         return (self.handle, self.gramps_id, self.title, self.author,
                 self.pubinfo, self.note, self.media_list, self.abbrev,
-                self.change)
+                self.change,self.datamap)
 
     def unserialize(self,data):
         """
@@ -1205,7 +1206,7 @@ class Source(PrimaryObject):
         """
         (self.handle, self.gramps_id, self.title, self.author,
          self.pubinfo, self.note, self.media_list, self.abbrev,
-         self.change) = data
+         self.change,self.datamap) = data
         
     def get_display_info(self):
         return [self.title,self.gramps_id,self.author,
@@ -1222,6 +1223,18 @@ class Source(PrimaryObject):
     def set_media_list(self,list):
         """Sets the list of MediaObject objects"""
         self.media_list = list
+
+    def get_data_map(self):
+        """Returns the data map of attributes for the source"""
+        return self.datamap
+
+    def set_data_map(self,datamap):
+        """Sets the data map of attributes for the source"""
+        self.datamap = datamap
+
+    def set_data_item(self,key,value):
+        """Sets the particular data item in the attribute data map"""
+        self.datamap[key] = value
 
     def set_title(self,title):
         """sets the title of the Source"""
