@@ -1370,10 +1370,11 @@ class Gramps:
 
     def goto_active_person(self):
         if not self.active_person:
-            self.person_tree = self.pl_page[0]
-            self.person_list = self.pl_page[0].tree
-            self.person_model = self.pl_page[0].model
-            self.ptabs.set_current_page(0)
+            page = self.ptabs.get_current_page()
+            self.person_tree = self.pl_page[page]
+            self.person_list = self.pl_page[page].tree
+            self.person_model = self.pl_page[page].model
+            self.ptabs.set_current_page(page)
             return
         
         id = self.active_person.getId()
@@ -1599,6 +1600,7 @@ class Gramps:
             self.source_view.load_sources()
         elif page == 4:
             self.enable_buttons(1)
+            self.place_view.load_places()
             self.merge_button.set_sensitive(1)
         elif page == 5:
             self.enable_buttons(1)
