@@ -1906,8 +1906,7 @@ class EditPerson:
         self.pname.set_first_name(unicode(self.given.get_text()))
         self.pname.set_title(unicode(self.title.get_text()))
 
-        NameEdit.NameEditor(self, self.pname, self.update_name,
-                            self.window, self.update_sources)
+        NameEdit.NameEditor(self, self.pname, self.update_name, self.window)
 
     def update_name(self,name):
         self.write_primary_name()
