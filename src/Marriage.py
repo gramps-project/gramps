@@ -339,18 +339,26 @@ class Marriage:
         self.family.setEventList(self.elist)
         self.family.setAttributeList(self.alist)
 
+    def attr_edit_callback(self,attr):
+        self.redraw_attr_list()
+        self.atree.select_iter(self.amap[str(attr)])
+
     def redraw_attr_list(self):
         self.atree.clear()
+        self.amap = {}
         for attr in self.alist:
             d = [const.display_fattr(attr.getType()),attr.getValue()]
-            self.atree.add(d,attr)
+            iter = self.atree.add(d,attr)
+            self.amap[str(attr)] = iter
         if self.alist:
             self.atree.select_row(0)
 
     def redraw_event_list(self):
         self.etree.clear()
+        self.emap = {}
         for data in self.elist:
-            self.etree.add([data.getName(),data.getQuoteDate(),data.getPlaceName()],data)
+            iter = self.etree.add([data.getName(),data.getQuoteDate(),data.getPlaceName()],data)
+            self.emap[str(data)] = iter
         if self.elist:
             self.etree.select_row(0)
 
@@ -502,11 +510,19 @@ class Marriage:
             Utils.modified()
         self.update_fv(self.family)
 
+    def event_edit_callback(self,event):
+        """Birth and death events may not be in the map"""
+        self.redraw_event_list()
+        try:
+            self.etree.select_iter(self.emap[str(event)])
+        except:
+            pass
+
     def on_add_clicked(self,obj):
         import EventEdit
         name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.save_pevent,None,None,0,self.cb,
+                              const.save_pevent,None,None,0,self.event_edit_callback,
                               const.defaultMarriageEvent)
 
     def on_event_update_clicked(self,obj):
@@ -517,7 +533,7 @@ class Marriage:
         event = self.etree.get_object(iter)
         name = Utils.family_name(self.family)
         EventEdit.EventEditor(self,name,const.marriageEvents,
-                              const.save_pevent,event,None,0,self.cb)
+                              const.save_pevent,event,None,0,self.event_edit_callback)
 
     def on_delete_clicked(self,obj):
         if Utils.delete_selected(obj,self.elist):
@@ -577,7 +593,8 @@ class Marriage:
             name = father.getPrimaryName().getName()
         else:
             name = mother.getPrimaryName().getName()
-        AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes)
+        AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes,
+                                 self.attr_edit_callback)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
@@ -595,7 +612,8 @@ class Marriage:
             name = father.getPrimaryName().getName()
         else:
             name = mother.getPrimaryName().getName()
-        AttrEdit.AttributeEditor(self,None,name,const.familyAttributes)
+        AttrEdit.AttributeEditor(self,None,name,const.familyAttributes,
+                                 self.attr_edit_callback)
 
     def move_element(self,list,src,dest):
         if src == -1:

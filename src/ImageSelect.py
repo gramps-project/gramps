@@ -661,9 +661,11 @@ class LocalMediaProperties:
 
     def redraw_attr_list(self):
         self.atree.clear()
+        self.amap = {}
         for attr in self.alist:
             d = [attr.getType(),attr.getValue()]
-            self.atree.add(d,attr)
+            iter = self.atree.add(d,attr)
+            self.amap[str(attr)] = iter
         
     def on_apply_clicked(self, obj):
         priv = self.change_dialog.get_widget("private").get_active()
@@ -695,7 +697,11 @@ class LocalMediaProperties:
         else:
             self.attr_type.set_label('')
             self.attr_value.set_text('')
-            
+
+    def attr_callback(self,attr):
+        self.redraw_attr_list()
+        self.atree.select_iter(self.amap[str(attr)])
+        
     def on_update_attr_clicked(self,obj):
         import AttrEdit
 
@@ -703,7 +709,8 @@ class LocalMediaProperties:
         if iter:
             attr = self.atree.get_object(iter)
             AttrEdit.AttributeEditor(self,attr,"Media Object",
-                                     Plugins.get_image_attributes())
+                                     Plugins.get_image_attributes(),
+                                     self.attr_callback)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
@@ -713,7 +720,8 @@ class LocalMediaProperties:
     def on_add_attr_clicked(self,obj):
         import AttrEdit
         AttrEdit.AttributeEditor(self,None,"Media Object",
-                                 Plugins.get_image_attributes())
+                                 Plugins.get_image_attributes(),
+                                 self.attr_callback)
 
 #-------------------------------------------------------------------------
 #
@@ -814,9 +822,11 @@ class GlobalMediaProperties:
 
     def redraw_attr_list(self):
         self.atree.clear()
+        self.amap = {}
         for attr in self.alist:
             d = [attr.getType(),attr.getValue()]
-            self.atree.add(d,attr)
+            iter = self.atree.add(d,attr)
+            self.amap[str(attr)] = iter
 
     def button_press(self,obj):
         store,iter = self.refmodel.selection.get_selected()
@@ -885,6 +895,10 @@ class GlobalMediaProperties:
             self.attr_type.set_label('')
             self.attr_value.set_text('')
 
+    def attr_callback(self,attr):
+        self.redraw_attr_list()
+        self.atree.select_iter(self.amap[str(attr)])
+
     def on_update_attr_clicked(self,obj):
         import AttrEdit
 
@@ -892,7 +906,8 @@ class GlobalMediaProperties:
         if iter:
             attr = self.atree.get_object(iter)
             AttrEdit.AttributeEditor(self,attr,"Media Object",
-                                     Plugins.get_image_attributes())
+                                     Plugins.get_image_attributes(),
+                                     self.attr_callback)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
@@ -902,7 +917,8 @@ class GlobalMediaProperties:
     def on_add_attr_clicked(self,obj):
         import AttrEdit
         AttrEdit.AttributeEditor(self,None,"Media Object",
-                                 Plugins.get_image_attributes())
+                                 Plugins.get_image_attributes(),
+                                 self.attr_callback)
 
 class DeleteMediaQuery:
 

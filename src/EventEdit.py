@@ -224,7 +224,7 @@ class EventEditor:
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,epriv,ecause)
         self.parent.redraw_event_list()
-        self.callback(None,self.plist)
+        self.callback(self.event)
         Utils.destroy_passed_object(obj)
 
     def update_event(self,name,date,place,desc,note,priv,cause):
