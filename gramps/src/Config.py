@@ -175,8 +175,13 @@ def loadConfig(call):
 
     if report_dir == None:
         report_dir = "."
+    else:
+        report_dir = report_dir + os.sep
+        
     if db_dir == None:
         db_dir = "."
+    else:
+        db_dir = db_dir + os.sep
 
     name = gnome.config.get_string("/gramps/researcher/name")
     addr = gnome.config.get_string("/gramps/researcher/addr")
@@ -334,11 +339,11 @@ def on_propertybox_apply(obj,page):
 
     dbdir_temp = prefsTop.get_widget("dbdir").get_full_path(1)
     if os.path.isdir(dbdir_temp):
-        dbdir = dbdir_temp
+        db_dir = dbdir_temp + os.sep
 
     repdir_temp = prefsTop.get_widget("repdir").get_full_path(1)
     if os.path.isdir(repdir_temp):
-        repdir = repdir_temp
+        report_dir = repdir_temp + os.sep
     
     paper_preference = paper_obj.get_data("d")
     output_preference = output_obj.get_data("d")
@@ -352,8 +357,8 @@ def on_propertybox_apply(obj,page):
     gnome.config.set_string("/gramps/config/outputPreference",output_preference)
     gnome.config.set_bool("/gramps/config/autoLoad",autoload)
     gnome.config.set_bool("/gramps/config/DisplayAltNames",hide_altnames)
-    gnome.config.set_string("/gramps/config/ReportDirectory",repdir)
-    gnome.config.set_string("/gramps/config/DbDirectory",dbdir)
+    gnome.config.set_string("/gramps/config/ReportDirectory",report_dir)
+    gnome.config.set_string("/gramps/config/DbDirectory",db_dir)
 
     # search for the active date format selection
     
