@@ -44,7 +44,7 @@ def filter(person,index,list,map):
     list.append(person)
     map[person] = index
     
-    family = person.getMainFamily()
+    family = person.getMainParents()
     if family != None:
         filter(family.getFather(),index+1,list,map)
         filter(family.getMother(),index+1,list,map)

@@ -159,7 +159,7 @@ def ancestors(person):
         return
     people_list.append(person)
     add_persons_sources(person)
-    family = person.getMainFamily()
+    family = person.getMainParents()
     if family == None or family in family_list:
         return
     add_familys_sources(family)
@@ -178,8 +178,7 @@ def walk(person):
     people_list.append(person)
     add_persons_sources(person)
     families = person.getFamilyList()
-    families.append(person.getMainFamily())
-    for f in person.getAltFamilyList():
+    for f in person.getAltParentList():
         families.append(f[0])
     for family in families:
         if family == None or family in family_list:
@@ -408,8 +407,8 @@ def exportData(database, filename):
 	data = data + write_16_bit( get_year(person.getBirth()) )
 	data = data + write_16_bit( get_year(person.getDeath()) )
 	
-	if person.getMainFamily() != None:
-	    data = data + write_16_bit( fid_to_record[person.getMainFamily().getId()] )
+	if person.getMainParents() != None:
+	    data = data + write_16_bit( fid_to_record[person.getMainParents().getId()] )
 	else:
 	    data = data + "\xff\xff"
 	    

@@ -69,7 +69,7 @@ class DetAncestorReport(Report):
             return
         self.map[index] = person
 
-        family = person.getMainFamily()
+        family = person.getMainParents()
         if family != None:
             self.filter(family.getFather(),index*2)
             self.filter(family.getMother(),(index*2)+1)
@@ -265,7 +265,7 @@ class DetAncestorReport(Report):
                     t= ""
 
     def write_parents(self, person, firstName):
-        ext_family= person.getMainFamily()
+        ext_family= person.getMainParents()
         if ext_family != None:
             if ext_family.getFather() != None:
                 father= ext_family.getFather().getPrimaryName().getRegularName()

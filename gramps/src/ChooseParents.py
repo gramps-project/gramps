@@ -78,18 +78,14 @@ class ChooseParents:
         self.mlabel = self.glade.get_widget("mlabel")
         self.fcombo.set_popdown_strings(const.familyRelations)
 
-        if self.family and self.family == self.person.getMainFamily():
+        for (f,mr,fr) in self.person.getParentList():
+            if f == self.family:
+                self.mother_rel.set_text(_(mr))
+                self.father_rel.set_text(_(fr))
+                break
+        else:
             self.mother_rel.set_text(_("Birth"))
             self.father_rel.set_text(_("Birth"))
-        else:
-            for (f,mr,fr) in self.person.getAltFamilyList():
-                if f == self.family:
-                    self.mother_rel.set_text(_(mr))
-                    self.father_rel.set_text(_(fr))
-                    break
-            else:
-                self.mother_rel.set_text(_("Birth"))
-                self.father_rel.set_text(_("Birth"))
 
         self.glade.signal_autoconnect({
             "on_motherList_select_row" : self.mother_list_select_row,
@@ -261,7 +257,7 @@ class ChooseParents:
         """
         if self.person not in family.getChildList():
             family.addChild(self.person)
-        for fam in self.person.getAltFamilyList():
+        for fam in self.person.getParentList():
             if family == fam[0]:
                 if mother_rel == fam[1] and father_rel == fam[2]:
                     return

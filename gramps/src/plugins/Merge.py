@@ -54,7 +54,7 @@ def ancestors_of(p1,list):
     if p1 == None or p1 in list:
         return
     list.append(p1)
-    f1 = p1.getMainFamily()
+    f1 = p1.getMainParents()
     if f1 != None:
         ancestors_of(f1.getFather(),list)
         ancestors_of(f1.getMother(),list)
@@ -431,8 +431,8 @@ class Merge:
         if p1 in ancestors:
             return -1
         
-        f1 = p1.getMainFamily()
-        f2 = p2.getMainFamily()
+        f1 = p1.getMainParents()
+        f2 = p2.getMainParents()
 
         if f1 and f2:
             dad1 = get_name_obj(f1.getFather())

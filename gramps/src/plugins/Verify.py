@@ -157,7 +157,7 @@ def on_apply_clicked(obj):
 	    waswidstr = " was a widow "
 	    
 	# multiple parentage check
-	if( len(person.getAltFamilyList()) > 1 ):
+	if( len(person.getParentList()) > 1 ):
 	    warn = "%sMultiple parentage %s.\n" % (warn, idstr)
 
         # marriage checks

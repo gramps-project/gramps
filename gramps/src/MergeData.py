@@ -58,8 +58,8 @@ class MergePeople:
 
         label_text = "Merge %s and %s" % (GrampsCfg.nameof(person1),GrampsCfg.nameof(person2))
         self.glade.get_widget("progress").set_text(label_text)
-        f1 = person1.getMainFamily()
-        f2 = person2.getMainFamily()
+        f1 = person1.getMainParents()
+        f2 = person2.getMainParents()
         
         name1 = GrampsCfg.nameof(person1)
         death1 = person1.getDeath().getDate()
@@ -311,11 +311,11 @@ class MergePeople:
                 self.p1.addEvent(event)
             
         if self.glade.get_widget("bfather2").get_active():
-            orig_family = self.p1.getMainFamily()
+            orig_family = self.p1.getMainParents()
             if orig_family:
                 orig_family.removeChild(self.p1)
             
-            source_family = self.p2.getMainFamily()
+            source_family = self.p2.getMainParents()
             self.p1.setMainFamily(source_family)
 
             if source_family:
@@ -324,10 +324,10 @@ class MergePeople:
                 if self.p1 not in source_family.getChildList():
                     source_family.addChild(self.p1)
         else:
-            source_family = self.p2.getMainFamily()
+            source_family = self.p2.getMainParents()
             if source_family:
                 source_family.removeChild(self.p2)
-                self.p2.setMainFamily(None)
+                self.p2.setMainParents(None)
 
         self.merge_families()
 
@@ -429,8 +429,8 @@ class MergePeople:
                 for child in src_family.getChildList():
                     if child not in tgt_family.getChildList():
                         tgt_family.addChild(child)
-                        if child.getMainFamily() == src_family:
-                            child.setMainFamily(tgt_family)
+                        if child.getMainParents() == src_family:
+                            child.setMainParents(tgt_family)
                         else:
                             index = 0
                             for fam in child.getAltFamilies():
@@ -484,8 +484,8 @@ class MergePeople:
 
     def delete_empty_family(self,family):
         for child in family.getChildList():
-            if child.getMainFamily() == family:
-                child.setMainFamily(None)
+            if child.getMainParents() == family:
+                child.setMainParents(None)
             else:
                 child.removeAltFamily(family)
         self.db.deleteFamily(family)
@@ -534,8 +534,8 @@ def compare_people(p1,p2):
     if p1 in ancestors:
         return -1.0
         
-    f1 = p1.getMainFamily()
-    f2 = p2.getMainFamily()
+    f1 = p1.getMainParents()
+    f2 = p2.getMainParents()
 
     if f1 and f1.getFather():
         dad1 = f1.getFather().getPrimaryName()
@@ -778,7 +778,7 @@ def ancestors_of(p1,list):
     if p1 == None:
         return
     list.append(p1)
-    f1 = p1.getMainFamily()
+    f1 = p1.getMainParents()
     if f1 != None:
         ancestors_of(f1.getFather(),list)
         ancestors_of(f1.getMother(),list)

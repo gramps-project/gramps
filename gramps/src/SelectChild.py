@@ -113,7 +113,7 @@ class SelectChild:
         dday = self.person.getDeath().getDateObj()
 
         slist = []
-        for f in [self.person.getMainFamily()] + self.person.getFamilyList():
+        for f in self.person.getParentList():
             if f:
                 if f.getFather():
                     slist.append(f.getFather())
@@ -125,7 +125,7 @@ class SelectChild:
         person_list = []
         for person in self.db.getPersonMap().values():
             if filter:
-                if person in slist or person.getMainFamily():
+                if person in slist or person.getMainParents():
                     continue
             
                 pdday = person.getDeath().getDateObj()

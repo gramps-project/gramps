@@ -374,8 +374,8 @@ class EditPerson:
         
         index = 0
         hist = 0
-        flist = [self.person.getMainFamily()]
-        for (fam,mrel,frel) in self.person.getAltFamilyList():
+        flist = [self.person.getMainParents()]
+        for (fam,mrel,frel) in self.person.getParentList():
             flist.append(fam)
         for fam in flist:
             if fam == None:
@@ -1121,11 +1121,11 @@ class EditPerson:
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
-        family = self.person.getMainFamily()
+        family = self.person.getMainParents()
         if (family):
             new_order = reorder_child_list(self.person,family.getChildList())
             family.setChildList(new_order)
-        for (family, rel1, rel2) in self.person.getAltFamilyList():
+        for (family, rel1, rel2) in self.person.getParentList():
             new_order = reorder_child_list(self.person,family.getChildList())
             family.setChildList(new_order)
     

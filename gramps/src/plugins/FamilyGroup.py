@@ -168,7 +168,7 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.end_row()
 
-        family = person.getMainFamily()
+        family = person.getMainParents()
         if family == None or family.getFather() == None:
             father_name = ""
         else:

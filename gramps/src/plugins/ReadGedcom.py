@@ -488,15 +488,15 @@ class GedcomParser:
                 child = self.db.findPerson(matches[2],self.pmap)
                 self.family.addChild(child)
 
-                for f in child.getAltFamilyList():
+                for f in child.getParentList():
                     if f[0] == self.family:
                         break
                 else:
                     if (mrel=="Birth" or mrel=="") and (frel=="Birth" or frel==""):
-                        child.setMainFamily(self.family)
+                        child.setMainParents(self.family)
                     else:
-                        if child.getMainFamily() == self.family:
-                            child.setMainFamily(None)
+                        if child.getMainParents() == self.family:
+                            child.setMainParents(None)
                         child.addAltFamily(self.family,mrel,frel)
 	    elif matches[1] == "NCHI":
                 a = Attribute()
@@ -627,18 +627,18 @@ class GedcomParser:
                 type,note = self.parse_famc_type(2)
                 family = self.db.findFamily(matches[2],self.fmap)
                 
-                for f in self.person.getAltFamilyList():
+                for f in self.person.getParentList():
                     if f[0] == family:
                         break
                 else:
                     if type == "" or type == "Birth":
-                        if self.person.getMainFamily() == None:
-                            self.person.setMainFamily(family)
+                        if self.person.getMainParents() == None:
+                            self.person.setMainParents(family)
                         else:
                             self.person.addAltFamily(family,"Unknown","Unknown")
                     else:
-                        if self.person.getMainFamily() == family:
-                            self.person.setMainFamily(None)
+                        if self.person.getMainParents() == family:
+                            self.person.setMainParents(None)
                         self.person.addAltFamily(family,type,type)
 	    elif matches[1] == "RESI":
                 addr = Address()
@@ -1108,8 +1108,8 @@ class GedcomParser:
             elif matches[1] == "FAMC":
                 family = self.db.findFamily(matches[2],self.fmap)
                 mrel,frel = self.parse_adopt_famc(level+1);
-                if self.person.getMainFamily() == family:
-                    self.person.setMainFamily(None)
+                if self.person.getMainParents() == family:
+                    self.person.setMainParents(None)
                 self.person.addAltFamily(family,mrel,frel)
             elif matches[1] == "PLAC":
                 val = matches[2]
