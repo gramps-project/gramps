@@ -144,29 +144,30 @@ def importData(database, filename, callback,cl=0):
 #-------------------------------------------------------------------------
     def remove_clicked():
         # File is lost => remove all references and the object itself
-        mobj = ObjectMap[NewMediaID]
-        for p in database.get_family_id_map().values():
+        mobj = database.find_object_from_id(NewMediaID)
+        for fid in database.get_family_keys():
+            p = database.find_family_from_id(fid)
             nl = p.get_media_list()
             for o in nl:
                 if o.get_reference() == mobj:
                     nl.remove(o) 
             p.set_media_list(nl)
         for key in database.get_person_keys():
-            p = database.get_person(key)
+            p = database.find_person_from_id(key)
             nl = p.get_media_list()
             for o in nl:
-                if o.get_reference() == mobj:
+                if o.get_reference_id() == mobj.get_id():
                     nl.remove(o) 
             p.set_media_list(nl)
         for key in database.get_source_keys():
-            p = database.get_source(key)
+            p = database.find_source_from_id(key)
             nl = p.get_media_list()
             for o in nl:
-                if o.get_reference() == mobj:
+                if o.get_reference_id() == mobj.get_id():
                     nl.remove(o) 
             p.set_media_list(nl)
         for key in database.get_place_id_keys():
-            p = database.get_place_id(key)
+            p = database.find_place_from_id(key)
             nl = p.get_media_list()
             for o in nl:
                 if o.get_reference() == mobj:
@@ -200,8 +201,6 @@ def importData(database, filename, callback,cl=0):
         fs_top.cancel_button.connect('clicked',fs_close_window)
         fs_top.run()
         fs_top.destroy()
-
-#-------------------------------------------------------------------------
 
 #    # Rename media files if they were conflicting with existing ones
 #    newpath = database.get_save_path()

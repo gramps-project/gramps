@@ -90,7 +90,7 @@ class ReadNative:
             DisplayTrace.DisplayTrace()
         
 	self.window.destroy()
-        self.callback(1)
+        self.callback()
 
     def progress(self,val):
         self.progress_bar.set_fraction(val)
