@@ -347,7 +347,7 @@ class MediaView:
         store,node = self.selection.get_selected()
         if not node:
             return
-        handle = store.get_value(node,1)
+        handle = store.get_value(node,_HANDLE_COL)
         selection_data.set(selection_data.target, 8, handle)
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
