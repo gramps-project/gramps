@@ -253,7 +253,7 @@ class OpenOfficeDoc(TextDoc):
         self.f.write(tag)
         self.f.write('" text:anchor-type="paragraph" ')
         self.f.write('svg:width="%.3fcm" ' % x_cm*scale)
-        self.f.write('svg:height="%.3fcm" ' y_cm*scale)
+        self.f.write('svg:height="%.3fcm" ' % y_cm*scale)
         self.f.write('draw:z-index="0" ')
         self.f.write('xlink:href="#Pictures/')
         self.f.write(base)

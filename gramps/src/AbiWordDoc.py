@@ -80,7 +80,7 @@ class AbiWordDoc(TextDoc):
             self.f.write('orientation="portrait" ')
         else:
             self.f.write('orientation="landscape" ')
-        self.f.write('width="%.4f" ' self.width/2.54)
+        self.f.write('width="%.4f" ' % self.width/2.54)
         self.f.write('height="%.4f" ' % self.height/2.54)
         self.f.write('units="inch" page-scale="1.000000"/>\n')
         self.f.write('<section ')

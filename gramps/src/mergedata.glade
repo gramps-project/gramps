@@ -16,7 +16,7 @@
   <class>GnomeDialog</class>
   <name>merge_places</name>
   <width>400</width>
-  <title>Gramps - Merge Places</title>
+  <title>Merge Places - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -292,7 +292,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>merge</name>
-  <title>Gramps - Merge People</title>
+  <title>Merge People - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>

@@ -458,7 +458,7 @@ class XmlWriter:
             
             self.g.write('%s<dateval val="%s"%s%s/>\n' % (sp,dstr,pref,calstr))
         else:
-            self.g.write('%s<datestr val="%s"/>\n' %(sp,date.getText()))
+            self.g.write('%s<datestr val="%s"/>\n' %(sp,fix(date.getText())))
 
     def write_force_line(self,label,value,indent=1):
         if value != None:
