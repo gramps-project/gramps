@@ -220,7 +220,7 @@ class GedcomParser:
         self.is_ftw = 0
         self.idswap = {}
 
-        self.f = open(file,"r")
+        self.f = open(file,"rU")
         self.filename = file
         self.index = 0
         self.backoff = 0

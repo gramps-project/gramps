@@ -3,6 +3,8 @@
 	* src/plugins/WriteGedcom.py: Switch from radiobuttons to menu
 	for the encoding choice. 
 	* src/plugins/gedcomexport.glade: Clean up interface.
+	* src/plugins/ReadGedcom.py (GedcomParser.__init__): Use
+	universal newline mode to work with Mac newlines. 
 
 2004-07-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: handle deleting of parent properly
