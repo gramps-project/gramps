@@ -8220,24 +8220,6 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkImage" id="birth_stat">
-			  <property name="visible">True</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">3</property>
-			  <property name="right_attach">4</property>
-			  <property name="top_attach">13</property>
-			  <property name="bottom_attach">14</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options">fill</property>
-			</packing>
-		      </child>
-
-		      <child>
 			<widget class="GtkButton" id="button99">
 			  <property name="border_width">1</property>
 			  <property name="visible">True</property>
@@ -8803,24 +8785,6 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkImage" id="death_stat">
-			  <property name="visible">True</property>
-			  <property name="xalign">0.5</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">9</property>
-			  <property name="right_attach">10</property>
-			  <property name="top_attach">13</property>
-			  <property name="bottom_attach">14</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options">fill</property>
-			</packing>
-		      </child>
-
-		      <child>
 			<widget class="GtkButton" id="button126">
 			  <property name="border_width">1</property>
 			  <property name="visible">True</property>
@@ -9001,6 +8965,64 @@ Other</property>
 			  <property name="bottom_attach">17</property>
 			  <property name="x_options">fill</property>
 			  <property name="y_options">fill</property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="button174">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Invoke date editor</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_edit_date_birth_clicked" last_modification_time="Sat, 18 Sep 2004 02:29:41 GMT"/>
+
+			  <child>
+			    <widget class="GtkImage" id="birth_stat">
+			      <property name="visible">True</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="left_attach">3</property>
+			  <property name="right_attach">4</property>
+			  <property name="top_attach">13</property>
+			  <property name="bottom_attach">14</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
+
+		      <child>
+			<widget class="GtkButton" id="button175">
+			  <property name="visible">True</property>
+			  <property name="tooltip" translatable="yes">Invoke date editor</property>
+			  <property name="can_focus">True</property>
+			  <property name="relief">GTK_RELIEF_NORMAL</property>
+			  <property name="focus_on_click">True</property>
+			  <signal name="clicked" handler="on_edit_date_death_clicked" last_modification_time="Sat, 18 Sep 2004 02:30:11 GMT"/>
+
+			  <child>
+			    <widget class="GtkImage" id="death_stat">
+			      <property name="visible">True</property>
+			      <property name="xalign">0.5</property>
+			      <property name="yalign">0.5</property>
+			      <property name="xpad">0</property>
+			      <property name="ypad">0</property>
+			    </widget>
+			  </child>
+			</widget>
+			<packing>
+			  <property name="left_attach">9</property>
+			  <property name="right_attach">10</property>
+			  <property name="top_attach">13</property>
+			  <property name="bottom_attach">14</property>
+			  <property name="x_options">fill</property>
+			  <property name="y_options"></property>
 			</packing>
 		      </child>
 		    </widget>
@@ -13488,30 +13510,6 @@ Other</property>
 		      </child>
 
 		      <child>
-			<widget class="GtkLabel" id="marriagePlace">
-			  <property name="visible">True</property>
-			  <property name="label" translatable="yes"></property>
-			  <property name="use_underline">False</property>
-			  <property name="use_markup">False</property>
-			  <property name="justify">GTK_JUSTIFY_LEFT</property>
-			  <property name="wrap">False</property>
-			  <property name="selectable">False</property>
-			  <property name="xalign">0</property>
-			  <property name="yalign">0.5</property>
-			  <property name="xpad">0</property>
-			  <property name="ypad">0</property>
-			</widget>
-			<packing>
-			  <property name="left_attach">2</property>
-			  <property name="right_attach">5</property>
-			  <property name="top_attach">3</property>
-			  <property name="bottom_attach">4</property>
-			  <property name="x_options">fill</property>
-			  <property name="y_options"></property>
-			</packing>
-		      </child>
-
-		      <child>
 			<widget class="GtkLabel" id="marriageDate">
 			  <property name="visible">True</property>
 			  <property name="label" translatable="yes"></property>
@@ -13604,6 +13602,29 @@ Other</property>
 			  <property name="y_options"></property>
 			</packing>
 		      </child>
+
+		      <child>
+			<widget class="GtkLabel" id="marriagePlace">
+			  <property name="visible">True</property>
+			  <property name="label" translatable="yes"></property>
+			  <property name="use_underline">False</property>
+			  <property name="use_markup">False</property>
+			  <property name="justify">GTK_JUSTIFY_LEFT</property>
+			  <property name="wrap">False</property>
+			  <property name="selectable">False</property>
+			  <property name="xalign">0</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+			<packing>
+			  <property name="left_attach">2</property>
+			  <property name="right_attach">5</property>
+			  <property name="top_attach">3</property>
+			  <property name="bottom_attach">4</property>
+			  <property name="y_options"></property>
+			</packing>
+		      </child>
 		    </widget>
 		    <packing>
 		      <property name="padding">0</property>
@@ -13667,7 +13688,7 @@ Other</property>
 			    <packing>
 			      <property name="padding">0</property>
 			      <property name="expand">False</property>
-			      <property name="fill">False</property>
+			      <property name="fill">True</property>
 			    </packing>
 			  </child>
 
@@ -13684,7 +13705,7 @@ Other</property>
 			    <packing>
 			      <property name="padding">0</property>
 			      <property name="expand">False</property>
-			      <property name="fill">False</property>
+			      <property name="fill">True</property>
 			    </packing>
 			  </child>
 
@@ -13703,7 +13724,7 @@ Other</property>
 			    <packing>
 			      <property name="padding">0</property>
 			      <property name="expand">False</property>
-			      <property name="fill">False</property>
+			      <property name="fill">True</property>
 			    </packing>
 			  </child>
 
@@ -13713,7 +13734,7 @@ Other</property>
 			</widget>
 			<packing>
 			  <property name="padding">0</property>
-			  <property name="expand">True</property>
+			  <property name="expand">False</property>
 			  <property name="fill">True</property>
 			</packing>
 		      </child>
@@ -26145,7 +26166,7 @@ Other</property>
 		  <property name="border_width">12</property>
 		  <property name="visible">True</property>
 		  <property name="n_rows">6</property>
-		  <property name="n_columns">4</property>
+		  <property name="n_columns">3</property>
 		  <property name="homogeneous">False</property>
 		  <property name="row_spacing">6</property>
 		  <property name="column_spacing">12</property>
@@ -26287,60 +26308,6 @@ Other</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkOptionMenu" id="calendar">
-		      <property name="tooltip" translatable="yes">Selects the calendar format for display</property>
-		      <property name="can_focus">True</property>
-		      <property name="history">0</property>
-
-		      <child internal-child="menu">
-			<widget class="GtkMenu" id="convertwidget4">
-			  <property name="visible">True</property>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget5">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Gregorian</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget6">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Julian</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget7">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Hebrew</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget8">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">French</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">3</property>
-		      <property name="right_attach">4</property>
-		      <property name="top_attach">1</property>
-		      <property name="bottom_attach">2</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
 		    <widget class="GtkEntry" id="eventDate">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
@@ -26375,7 +26342,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">4</property>
 		      <property name="bottom_attach">5</property>
 		      <property name="y_options"></property>
@@ -26396,7 +26363,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">3</property>
 		      <property name="bottom_attach">4</property>
 		      <property name="y_options"></property>
@@ -26417,7 +26384,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">2</property>
 		      <property name="bottom_attach">3</property>
 		      <property name="y_options"></property>
@@ -26438,29 +26405,11 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">5</property>
 		      <property name="bottom_attach">6</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImage" id="date_stat">
-		      <property name="visible">True</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">3</property>
-		      <property name="top_attach">1</property>
-		      <property name="bottom_attach">2</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
 
@@ -26470,11 +26419,39 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">0</property>
 		      <property name="bottom_attach">1</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkButton" id="button176">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="clicked" handler="on_date_edit_clicked" last_modification_time="Sat, 18 Sep 2004 02:42:17 GMT"/>
+
+		      <child>
+			<widget class="GtkImage" id="date_stat">
+			  <property name="visible">True</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">1</property>
+		      <property name="bottom_attach">2</property>
+		      <property name="x_options">fill</property>
+		      <property name="y_options"></property>
 		    </packing>
 		  </child>
 		</widget>
@@ -28338,7 +28315,7 @@ Other</property>
 		  <property name="border_width">12</property>
 		  <property name="visible">True</property>
 		  <property name="n_rows">8</property>
-		  <property name="n_columns">4</property>
+		  <property name="n_columns">3</property>
 		  <property name="homogeneous">False</property>
 		  <property name="row_spacing">6</property>
 		  <property name="column_spacing">12</property>
@@ -28534,77 +28511,6 @@ Other</property>
 		  </child>
 
 		  <child>
-		    <widget class="GtkOptionMenu" id="calendar">
-		      <property name="tooltip" translatable="yes">Selects the calendar format for display</property>
-		      <property name="can_focus">True</property>
-		      <property name="history">0</property>
-
-		      <child internal-child="menu">
-			<widget class="GtkMenu" id="convertwidget20">
-			  <property name="visible">True</property>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget21">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Gregorian</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget22">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Julian</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget23">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">Hebrew</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-
-			  <child>
-			    <widget class="GtkMenuItem" id="convertwidget24">
-			      <property name="visible">True</property>
-			      <property name="label" translatable="yes">French</property>
-			      <property name="use_underline">True</property>
-			    </widget>
-			  </child>
-			</widget>
-		      </child>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">3</property>
-		      <property name="right_attach">4</property>
-		      <property name="top_attach">0</property>
-		      <property name="bottom_attach">1</property>
-		      <property name="x_options">fill</property>
-		      <property name="y_options"></property>
-		    </packing>
-		  </child>
-
-		  <child>
-		    <widget class="GtkImage" id="date_stat">
-		      <property name="visible">True</property>
-		      <property name="xalign">0.5</property>
-		      <property name="yalign">0.5</property>
-		      <property name="xpad">0</property>
-		      <property name="ypad">0</property>
-		    </widget>
-		    <packing>
-		      <property name="left_attach">2</property>
-		      <property name="right_attach">3</property>
-		      <property name="top_attach">0</property>
-		      <property name="bottom_attach">1</property>
-		      <property name="y_options">fill</property>
-		    </packing>
-		  </child>
-
-		  <child>
 		    <widget class="GtkEntry" id="address_start">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
@@ -28640,7 +28546,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">1</property>
 		      <property name="bottom_attach">2</property>
 		      <property name="y_options"></property>
@@ -28661,7 +28567,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">2</property>
 		      <property name="bottom_attach">3</property>
 		      <property name="y_options"></property>
@@ -28682,7 +28588,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">3</property>
 		      <property name="bottom_attach">4</property>
 		      <property name="y_options"></property>
@@ -28703,7 +28609,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">4</property>
 		      <property name="bottom_attach">5</property>
 		      <property name="y_options"></property>
@@ -28724,7 +28630,7 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">5</property>
 		      <property name="bottom_attach">6</property>
 		      <property name="y_options"></property>
@@ -28770,9 +28676,37 @@ Other</property>
 		    </widget>
 		    <packing>
 		      <property name="left_attach">1</property>
-		      <property name="right_attach">4</property>
+		      <property name="right_attach">3</property>
 		      <property name="top_attach">6</property>
 		      <property name="bottom_attach">7</property>
+		      <property name="y_options"></property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkButton" id="button177">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="focus_on_click">True</property>
+		      <signal name="clicked" handler="on_date_edit_clicked" last_modification_time="Sat, 18 Sep 2004 02:40:33 GMT"/>
+
+		      <child>
+			<widget class="GtkImage" id="date_stat">
+			  <property name="visible">True</property>
+			  <property name="xalign">0.5</property>
+			  <property name="yalign">0.5</property>
+			  <property name="xpad">0</property>
+			  <property name="ypad">0</property>
+			</widget>
+		      </child>
+		    </widget>
+		    <packing>
+		      <property name="left_attach">2</property>
+		      <property name="right_attach">3</property>
+		      <property name="top_attach">0</property>
+		      <property name="bottom_attach">1</property>
+		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
 		    </packing>
 		  </child>

@@ -216,6 +216,7 @@ class EventEditor:
             "on_deletephoto_clicked"    : self.gallery.on_delete_media_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_editphoto_clicked"      : self.gallery.on_edit_media_clicked,
+            "on_date_edit_clicked"      : self.on_date_edit_clicked,
             })
 
         menu = gtk.Menu()
@@ -235,6 +236,11 @@ class EventEditor:
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_date_edit_clicked(self,obj):
+        from QuestionDialog import ErrorDialog
+        ErrorDialog("Not implemented yet",
+                    "The Date Editor has not been implemented yet")
 
     def on_delete_event(self,obj,b):
         self.gallery.close()
