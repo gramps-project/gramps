@@ -28,6 +28,8 @@ class ListModel:
         self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
 
         self.tree.set_rules_hint(gtk.TRUE)
+        self.tree.set_enable_search(gtk.TRUE)
+        self.tree.set_search_column(gtk.TRUE)
         self.new_model()
         self.selection = self.tree.get_selection()
         self.selection.set_mode(mode)

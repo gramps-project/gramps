@@ -42,6 +42,7 @@ import GrampsCfg
 # GTK/GNOME modules
 #
 #------------------------------------------------------------------------
+import gobject
 import gtk
 import gtk.glade
 
@@ -71,31 +72,38 @@ class DesBrowse:
             "destroy_passed_object" : Utils.destroy_passed_object,
             })
         top = self.glade.get_widget("top")
-        tree= self.glade.get_widget("tree1")
+        self.tree= self.glade.get_widget("tree1")
+        col = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
+        self.tree.append_column(col)
+        self.model = gtk.TreeStore(gobject.TYPE_STRING,gobject.TYPE_PYOBJECT)
+        self.tree.set_model(self.model)
+        self.tree.set_rules_hint(gtk.TRUE)
+        self.tree.set_headers_visible(gtk.FALSE)
         
-        self.add_to_tree(tree,self.active)
+        self.add_to_tree(None,None,self.active)
+        self.tree.expand_all()
+        self.tree.connect('event',self.button_press_event)
+
         top.show()
 
-    def add_to_tree(self,tree,person):
-        item = gtk.TreeItem(GrampsCfg.nameof(person))
-        item.show()
-        item.connect('button-press-event',self.button_press_event)
-        item.set_data('d',person)
-        tree.append(item)
-        subtree = None
+    def add_to_tree(self,parent,sib,person):
+        item = self.model.insert_after(parent,sib)
+        self.model.set(item,0,GrampsCfg.nameof(person))
+        self.model.set(item,1,person)
+        prev = None
         for family in person.getFamilyList():
             for child in family.getChildList():
-                if subtree == None:
-                    subtree = gtk.Tree()
-                    subtree.show()
-                    item.set_subtree(subtree)
-                self.add_to_tree(subtree,child)
-
+                prev = self.add_to_tree(item,prev,child)
+        return item
+    
     def button_press_event(self,obj,event):
         import EditPerson
+
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            person = obj.get_data('d')
-            EditPerson.EditPerson(person,self.db,self.callback)
+            store,iter = self.tree.get_selection().get_selected()
+            if iter:
+                person = store.get_value(iter,1)
+                EditPerson.EditPerson(person,self.db,self.callback)
 
 #------------------------------------------------------------------------
 #

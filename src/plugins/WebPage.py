@@ -68,6 +68,9 @@ class HtmlLinkDoc(HtmlDoc):
     def newline(self):
         self.f.write('<BR>\n')
 
+    def write_raw(self,text):
+        self.f.write(text)
+
 #------------------------------------------------------------------------
 #
 # 
@@ -114,7 +117,9 @@ class IndividualPage:
         if sreflist:
             for sref in sreflist:
                 self.doc.start_link("#s%d" % self.scnt)
-                self.doc.write_text("<SUP>%d</SUP>" % self.scnt)
+                self.doc.write_raw('<SUP>')
+                self.doc.write_text('%d' % self.scnt)
+                self.doc.write_raw('</SUP>')
                 self.doc.end_link()
                 self.scnt = self.scnt + 1
                 self.slist.append(sref)
@@ -160,7 +165,7 @@ class IndividualPage:
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
         if person:
-            if self.list.has_key(person):
+            if self.list.has_key(person.getId()):
                 self.doc.start_link("%s.%s" % (person.getId(),self.ext))
 	        self.doc.write_text(person.getPrimaryName().getRegularName())
                 self.doc.end_link()
@@ -179,7 +184,9 @@ class IndividualPage:
         index = 1
         for sref in self.slist:
             self.doc.start_paragraph("SourceParagraph")
-            self.doc.write_text('<A NAME="s%d">%d. ' % (index,index))
+            self.doc.start_link("s%d" % index)
+            self.doc.write_text('%d. ' % index)
+            self.doc.end_link()
             index = index + 1
             self.write_info(sref.getBase().getTitle())
             self.write_info(sref.getBase().getAuthor())
@@ -510,7 +517,7 @@ class IndividualPage:
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse:
-                if self.list.has_key(spouse):
+                if self.list.has_key(spouse.getId()):
                     self.doc.start_link("%s.%s" % (spouse.getId(),self.ext))
                     self.doc.write_text(spouse.getPrimaryName().getRegularName())
                     self.doc.end_link()
@@ -547,7 +554,7 @@ class IndividualPage:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    if self.list.has_key(child):
+                    if self.list.has_key(child.getId()):
                         self.doc.start_link("%s.%s" % (child.getId(),self.ext))
                         self.doc.write_text(name)
                         self.doc.end_link()
@@ -695,8 +702,8 @@ class WebReport(Report):
         col_len = len(person_list) + len(a.keys())
         col_len = col_len/2
         
-        doc.write_text('<table width="100%" border="0">')
-        doc.write_text('<tr><td width="50%" valign="top">')
+        doc.write_raw('<table width="100%" border="0">')
+        doc.write_raw('<tr><td width="50%" valign="top">')
         last = ''
         end_col = 0
         for person in person_list:
@@ -719,7 +726,7 @@ class WebReport(Report):
             else:
                 doc.newline()
             col_len = col_len - 1
-        doc.write_text('</td></tr></table>')
+        doc.write_raw('</td></tr></table>')
         doc.close()
         doc.write_support_files()
         
@@ -773,7 +780,7 @@ class WebReport(Report):
 
         my_map = {}
         for l in ind_list:
-            my_map[l] = 1
+            my_map[l.getId()] = l
         for person in ind_list:
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             tdoc.set_extension(self.ext)

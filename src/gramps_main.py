@@ -1358,10 +1358,19 @@ class Gramps:
         self.status_text("")
 
     def complete_rebuild(self):
-        self.status_text(_("Updating display..."))
+        import time
+        t = time.time()
         keys = self.alpha_page.keys()
+
+        for key in keys:
+            self.alpha_page[key].new_model()
+        self.id2col = {}
         self.apply_filter()
+        for key in keys:
+            self.alpha_page[key].connect_model()
+        
         self.modify_statusbar()
+        self.status_text(_("Updating display... %d") % (time.time()-t))
 
     def apply_filter(self):
         datacomp = self.DataFilter.compare
