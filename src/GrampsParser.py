@@ -176,9 +176,9 @@ class GrampsParser(handler.ContentHandler):
         if attrs.has_key('state'):
             loc.set_state(u2l(attrs['state']))
         if attrs.has_key('county'):
-            loc.set_state(u2l(attrs['county']))
+            loc.set_county(u2l(attrs['county']))
         if attrs.has_key('country'):
-            loc.set_state(u2l(attrs['country']))
+            loc.set_country(u2l(attrs['country']))
         if attrs.has_key('type'):
             self.placeobj.add_alternate_locations(loc)
         else:
