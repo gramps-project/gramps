@@ -1,4 +1,12 @@
 2004-08-24  Tim Waugh  <twaugh@redhat.com>
+	* src/MediaView.py (MediaView.on_select_row): Use the correct
+	column for DB handle.
+	(MediaView.on_select_row): Display GRAMPS ID, not DB handle.
+	(MediaView.build_context_menu): Use the correct column for DB
+	handle.
+	(MediaView.on_edit_clicked): Likewise.
+	(MediaView.on_delete_clicked): Likewise.
+
 	* src/WriteXML.py: Write out 'default' tag on people node for
 	compatibility with GRAMPS 1.0.x.
 

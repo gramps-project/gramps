@@ -162,8 +162,8 @@ class MediaView:
         store,node = self.selection.get_selected()
         if not node:
             return
-        
-        handle = store.get_value(node,1)
+
+        handle = store.get_value(node,5)
         
         mobj = self.db.get_object_from_handle(handle)
         mtype = mobj.get_mime_type()
@@ -179,7 +179,7 @@ class MediaView:
             if not pexists:
                 fexists = 0
         
-        self.mid.set_text(mobj.get_handle())
+        self.mid.set_text(mobj.get_gramps_id())
         self.mtype.set_text(type_name)
         self.mdesc.set_text(mobj.get_description())
         if len(path) == 0 or fexists == 0:
@@ -212,7 +212,7 @@ class MediaView:
 
         store,node = self.selection.get_selected()
         if node:
-            handle = store.get_value(node,1)
+            handle = store.get_value(node,5)
             obj = self.db.get_object_from_handle(handle)
             self.obj = obj
             mime_type = obj.get_mime_type()
@@ -278,7 +278,7 @@ class MediaView:
 
         list_store, node = self.selection.get_selected()
         if node:
-            handle = list_store.get_value(node,1)
+            handle = list_store.get_value(node,5)
             obj = self.db.get_object_from_handle(handle)
             ImageSelect.GlobalMediaProperties(self.db,obj,self.load_media,
                                                 self,self.topWindow)
@@ -288,7 +288,7 @@ class MediaView:
         if not node:
             return
 
-        handle = store.get_value(node,1)
+        handle = store.get_value(node,5)
         mobj = self.db.get_object_from_handle(handle)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.build_tree)
