@@ -232,39 +232,44 @@ class MergePeople:
     def on_merge_clicked(self,obj):
         utils.modified()
 
-        anames = self.p1.getAlternateNames()[:]
-        for xname in self.p2.getAlternateNames():
-            for name in anames:
-                if name.getFirstName() == xname.getFirstName() and \
-                   name.getSurname() == xname.getSurname() and \
-                   name.getTitle() == xname.getTitle() and \
-                   name.getSuffix() == xname.getSuffix():
-                    self.copy_note(xname,name)
-                    self.copy_sources(xname,name)
+        list = self.p1.getAlternateNames()[:]
+        for xdata in self.p2.getAlternateNames():
+            for data in list:
+                if data.are_equal(xdata):
+                    self.copy_note(xdata,data)
+                    self.copy_sources(xdata,data)
                     break
             else:
                 self.p1.addAlternateName(xname)
 
-        anames = self.p1.getAttributeList()[:]
-        for xname in self.p2.getAttributeList():
-            for name in anames:
-                if name.getType() == xname.getType() and \
-                   name.getValue() == xname.getValue():
-                    self.copy_note(xname,name)
-                    self.copy_sources(xname,name)
+        list = self.p1.getAttributeList()[:]
+        for xdata in self.p2.getAttributeList():
+            for data in list:
+                if data.getType() == xdata.getType() and \
+                   data.getValue() == xdata.getValue():
+                    self.copy_note(xdata,data)
+                    self.copy_sources(xdata,data)
                     break
             else:
                 self.p1.addAttribute(xname)
 
-        elist = self.p1.getEventList()[:]
-        for xevent in self.p2.getEventList():
-            for event in elist:
-                if event.are_equal(xevent):
-                    self.copy_note(xevent,event)
-                    self.copy_sources(xevent,event)
+        list = self.p1.getEventList()[:]
+        for xdata in self.p2.getEventList():
+            for data in list:
+                if data.are_equal(xdata):
+                    self.copy_note(xdata,data)
+                    self.copy_sources(xdata,data)
                     break
             else:
                 self.p1.addEvent(xevent)
+
+        list = self.p1.getUrlList()[:]
+        for xdata in self.p2.getUrlList():
+            for data in list:
+                if data.are_equal(xdata):
+                    break
+            else:
+                self.p1.addUrl(xdata)
 
         if self.bname1.get_active():
             if self.altname.get_active():
