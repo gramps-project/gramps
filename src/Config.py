@@ -40,7 +40,6 @@ from gtk import *
 from gnome.ui import *
 
 import gnome.config
-import gnome.help
 import libglade
 
 #-------------------------------------------------------------------------
@@ -60,21 +59,21 @@ import intl
 _ = intl.gettext
 
 _date_format_list = [
-    "Month Day, Year",
-    "MON Day, Year",
-    "Day MON Year",
-    "MM/DD/YYYY",
-    "MM-DD-YYYY",
-    "DD/MM/YYYY",
-    "DD-MM-YYYY",
-    "MM.DD.YYYY",
-    "DD.MM.YYYY",
-    "DD. Month Year"
+    _("Month Day, Year"),
+    _("MON Day, Year"),
+    _("Day MON Year"),
+    _("MM/DD/YYYY"),
+    _("MM-DD-YYYY"),
+    _("DD/MM/YYYY"),
+    _("DD-MM-YYYY"),
+    _("MM.DD.YYYY"),
+    _("DD.MM.YYYY"),
+    _("DD. Month Year)"
     ]
 
 _date_entry_list = [
-    "MM/DD/YYYY, MM.DD.YYYY, MM-DD-YYYY",
-    "DD/MM/YYYY, DD.MM.YYYY, DD-MM-YYYY"
+    _("MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"),
+    _("DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY")
     ]
 
 _name_format_list = [
@@ -100,8 +99,8 @@ attr_name     = ""
 status_bar    = 0
 paper_preference = None
 output_preference = None
-report_dir    = "."
-db_dir        = "."
+report_dir    = "./"
+db_dir        = "./"
 
 #-------------------------------------------------------------------------
 #
