@@ -619,7 +619,7 @@ class EditPerson:
         """loads, scales, and displays the person's main photo"""
         self.load_obj = photo
         if photo == None:
-            self.get_widget("personPix").load_imlib(const.empty_image)
+            self.get_widget("personPix").hide()
         else:
             try:
                 i = GdkImlib.Image(photo)
@@ -628,8 +628,9 @@ class EditPerson:
                 y = int(scale*(i.rgb_height))
                 i = i.clone_scaled_image(x,y)
                 self.get_widget("personPix").load_imlib(i)
+                self.get_widget("personPix").show()
             except:
-                self.get_widget("personPix").load_imlib(const.empty_image)
+                self.get_widget("personPix").hide()
 
     def update_lists(self):
         """Updates the person's lists if anything has changed"""
