@@ -1,0 +1,214 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+
+<!-- A Document Type Definition for genealogy data (as produced by Gramps)
+
+Copyright (c) 2001 Graham J. Williams
+
+Freely Redistributable under the terms of the GNU General Public License.
+
+Based on GEDCOM and conforming with Gramps XML encoding.
+
+Information on Gramps is available from http://
+
+-->
+
+<!--
+
+	Define an XML document which is a <database> consisting of a
+	<header>, <people>, <families>, <sources> and <bookmarks>.
+
+-->
+
+<!ELEMENT database (header, people?, families?, sources?, bookmarks?)>
+
+<!--	************************************************************
+
+HEADER
+
+	A <header> consists of <created> (information about this
+	genealogical database) and <researcher> (information about the
+	person who created this genealogical database)
+
+-->
+
+<!ELEMENT header (created, researcher?)>
+
+<!ELEMENT created EMPTY>
+<!ATTLIST created
+  date     CDATA #REQUIRED
+  version  CDATA #REQUIRED
+  people   CDATA #REQUIRED
+  families CDATA #REQUIRED>
+
+<!ELEMENT researcher (resname, resaddr?, rescity?, resstate?,
+                      rescountry?, respostal?, resphone?, resemail?)>
+<!ELEMENT resname    (#PCDATA)>
+<!ELEMENT resaddr    (#PCDATA)>
+<!ELEMENT rescity    (#PCDATA)>
+<!ELEMENT resstate   (#PCDATA)>
+<!ELEMENT rescountry (#PCDATA)>
+<!ELEMENT respostal  (#PCDATA)>
+<!ELEMENT resphone   (#PCDATA)>
+<!ELEMENT resemail   (#PCDATA)>
+
+<!--	************************************************************
+
+PEOPLE
+
+	The UID is a place holder for PAF UID's that are imported. PAF
+	generates a unique ID for each person which is useful for
+	merges. It is not used by Gramps otherwise.
+
+-->
+
+<!ELEMENT people (person)*>
+<!ATTLIST people default CDATA #IMPLIED>
+
+<!ELEMENT person (gender, name?, aka*, nick?, pos?, uid?, event*,
+                  img*, url*, childof*, parentin*, address*,
+                  sourceref?, attribute*, note?)>
+<!ATTLIST person id ID #REQUIRED>
+
+<!ELEMENT name    (first?, last?,suffix?)>
+<!ATTLIST name    conf CDATA #IMPLIED
+                  priv CDATA #IMPLIED>
+
+<!ELEMENT aka     (first?, last?,suffix?)>
+<!ATTLIST aka     conf CDATA #IMPLIED
+                  priv CDATA #IMPLIED>
+
+<!ELEMENT gender  (#PCDATA)>
+<!ELEMENT first   (#PCDATA)>
+<!ELEMENT last    (#PCDATA)>
+<!ELEMENT suffix  (#PCDATA)>
+<!ELEMENT nick    (#PCDATA)>
+<!ELEMENT uid     (#PCDATA)>
+
+<!ELEMENT pos EMPTY>
+<!ATTLIST pos x CDATA #REQUIRED
+              y CDATA #REQUIRED>
+
+<!ELEMENT url EMPTY>
+<!ATTLIST url conf CDATA #IMPLIED
+              priv CDATA #IMPLIED
+              href CDATA #REQUIRED>
+
+<!ELEMENT childof EMPTY>
+<!ATTLIST childof
+  ref   IDREF  #REQUIRED
+  mrel  (Birth|Adopted|Stepchild|Other|Unknown) #IMPLIED
+  frel  (Birth|Adopted|Stepchild|Other|Unknown) #IMPLIED>
+
+<!ELEMENT parentin EMPTY>
+<!ATTLIST parentin
+  ref    IDREF #REQUIRED>
+
+<!ELEMENT address (date?,street?,city?,state?,country?,postal?,
+                   note?,sourceref?)>
+<!ATTLIST address conf CDATA #IMPLIED
+                  priv CDATA #IMPLIED>
+
+<!ELEMENT street  (#PCDATA)>
+<!ELEMENT city    (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT postal  (#PCDATA)>
+<!ELEMENT state   (#PCDATA)>
+
+<!--	************************************************************
+
+FAMILY
+
+	An element to record information about a family.
+
+-->
+
+<!ELEMENT families (family)*>
+
+<!ELEMENT family (father?,mother?,event*,img*,child*,attribute*,note?)>
+<!ATTLIST family
+  id        ID    #REQUIRED
+  type      (Married|Unmarried|Partners|Other|Unkown) #IMPLIED>
+
+<!ELEMENT father EMPTY>
+<!ATTLIST father ref IDREF #REQUIRED>
+
+<!ELEMENT mother EMPTY>
+<!ATTLIST mother ref IDREF #REQUIRED>
+
+<!ELEMENT child EMPTY>
+<!ATTLIST child ref IDREF #REQUIRED>
+
+<!--	************************************************************
+
+SOURCES
+
+-->
+
+<!ELEMENT sources (source)*>
+<!ELEMENT source (sauthor?,spubinfo?,scallno?)>
+<!ATTLIST source id ID #REQUIRED>
+<!ELEMENT sauthor  (#PCDATA)>
+<!ELEMENT spubinfo (#PCDATA)>
+<!ELEMENT scallno  (#PCDATA)>
+
+<!--	************************************************************
+
+BOOKMARKS
+
+-->
+
+<!ELEMENT bookmarks (bookmark)*>
+<!ELEMENT bookmark EMPTY>
+<!ATTLIST bookmark ref IDREF #REQUIRED>
+
+<!--	************************************************************
+
+SHARED ELEMENTS
+
+-->
+
+<!ELEMENT attribute  (attr_type,attr_value,note?,sourceref?)>
+<!ATTLIST attribute  conf CDATA #IMPLIED
+                     priv CDATA #IMPLIED>
+
+<!ELEMENT attr_type  (#PCDATA)>
+<!ELEMENT attr_value (#PCDATA)>
+
+
+<!ELEMENT event (date?,place?,description?,sourceref?,note?)>
+<!ATTLIST event type CDATA #REQUIRED>
+
+<!--
+
+  Alternatively for event type we could enumerate all possibilities,
+  but then this will not conform to Gramps as Gramps allows any type
+  of events (i.e., a user can define their own type of event) . So by
+  allowing anything we no longer have automatic checking.
+
+  (Birth|Death|Christening|Baptism|Engagement|Marriage|
+   Occupation|Education|Degree|Immi|Burial)
+
+  There are many more that Gramps supplies by default.
+
+-->
+
+<!ELEMENT date        (#PCDATA)>
+<!ELEMENT place       (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT note (#PCDATA)>
+
+<!ELEMENT sourceref (spage?,scomments?,stext?,sdate?)>
+<!ATTLIST sourceref ref IDREF #REQUIRED>
+
+<!ELEMENT spage     (#PCDATA)>
+<!ELEMENT scomments (#PCDATA)>
+<!ELEMENT sdate     (#PCDATA)>
+<!ELEMENT stext     (#PCDATA)>
+
+<!ELEMENT img EMPTY>
+<!ATTLIST img
+  src     CDATA #REQUIRED
+  descrip CDATA #IMPLIED
+  display CDATA #IMPLIED>
+
