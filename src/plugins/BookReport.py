@@ -46,6 +46,7 @@ except:
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+from gtk import RESPONSE_OK
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -785,7 +786,7 @@ class BookReportSelector:
         item_dialog = BookItemDialog(self.db,option_class,item.get_name(),
                                         item.get_translated_name())
         response = item_dialog.window.run()
-        if response == True and item_dialog.person and data[1] != _("Title"): 
+        if response == RESPONSE_OK and item_dialog.person and data[1] != _("Title"): 
             self.bk_model.model.set_value(the_iter,2,
                 item_dialog.person.get_primary_name().get_regular_name())
             self.book.set_item(row,item)
@@ -980,7 +981,7 @@ class BookReportDialog(Report.ReportDialog):
                     this_style_name,style_sheet.get_style(this_style_name))
 
         response = self.window.run()
-        if response == True:
+        if response == RESPONSE_OK:
             try:
                 self.make_report()
             except (IOError,OSError),msg:
