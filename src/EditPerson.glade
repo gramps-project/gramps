@@ -5395,40 +5395,6 @@
 </widget>
 
 <widget>
-  <class>GtkFileSelection</class>
-  <name>fileselection1</name>
-  <border_width>10</border_width>
-  <title>Select File</title>
-  <type>GTK_WINDOW_TOPLEVEL</type>
-  <position>GTK_WIN_POS_NONE</position>
-  <modal>False</modal>
-  <allow_shrink>False</allow_shrink>
-  <allow_grow>True</allow_grow>
-  <auto_shrink>False</auto_shrink>
-  <show_file_op_buttons>True</show_file_op_buttons>
-
-  <widget>
-    <class>GtkButton</class>
-    <child_name>FileSel:ok_button</child_name>
-    <name>ok_button1</name>
-    <can_default>True</can_default>
-    <can_focus>True</can_focus>
-    <label>OK</label>
-    <relief>GTK_RELIEF_NORMAL</relief>
-  </widget>
-
-  <widget>
-    <class>GtkButton</class>
-    <child_name>FileSel:cancel_button</child_name>
-    <name>cancel_button1</name>
-    <can_default>True</can_default>
-    <can_focus>True</can_focus>
-    <label>Cancel</label>
-    <relief>GTK_RELIEF_NORMAL</relief>
-  </widget>
-</widget>
-
-<widget>
   <class>GnomeDialog</class>
   <name>name_edit</name>
   <title>Alternate Name Editor - GRAMPS</title>
