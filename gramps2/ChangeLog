@@ -1,6 +1,9 @@
 2003-11-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/fr.po: Fix format line. 
 
+2003-11-20  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/preferences.glade: make the title on the dialog non-expandable
+
 2003-11-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FamilyView.py: Enable keyboard navigation in Family View. 
 
