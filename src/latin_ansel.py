@@ -130,3 +130,60 @@ def latin_to_ansel(s):
     buff.close()
     return ans
 
+if __name__ == "__main__":
+
+    print 'static unsigned char s0[] = {'
+    for i in range(256):
+        if i == 255:
+            suf = '};\n\n'
+        else:
+            suf = ','
+        if i%16 == 0 and i != 0:
+            print '\n',
+        try:
+            print "%3d%s" % (_s0[i],suf),
+        except:
+            print "%3d%s" % (i,suf),
+
+    print 'static unsigned char t0[] = {'
+    for i in range(256):
+        if i == 255:
+            suf = '};\n\n'
+        else:
+            suf = ','
+        if i%16 == 0 and i != 0:
+            print '\n',
+        try:
+            print "%3d%s" % (ord(_t0[i]),suf),
+        except KeyError:
+            print '0%s' % suf,
+
+    print 'static unsigned char* t1[] = {'
+    for i in range(256):
+        if i == 255:
+            suf = '};\n\n'
+        else:
+            suf = ','
+        if i%8== 0 and i != 0:
+            print '\n',
+        try:
+            t = _t1[i]
+            print '"\\%03o\\%03o"%s' % (ord(t[0]),ord(t[1]),suf),
+        except KeyError:
+            print '"\\%03o"%s' % (i,suf),
+
+    for key in _s1.keys():
+        print 'static unsigned char s_%x[] = {' % key
+        for i in range(256):
+            if i == 255:
+                suf = '};\n\n'
+            else:
+                suf = ','
+            if i%16 == 0 and i != 0:
+                print '\n',
+            try:
+                print "%3d%s" % (_s1[key][i],suf),
+            except:
+                print "%3d%s" % (i,suf),
+        
+    

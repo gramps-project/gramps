@@ -48,7 +48,12 @@ import gnome.mime
 #-------------------------------------------------------------------------
 from RelLib import *
 import Date
-import latin_ansel
+try:
+    from ansel import ansel_to_latin
+except:
+    from latin_ansel import ansel_to_latin
+    
+import ansel
 import latin_utf8 
 import intl
 import Utils
@@ -105,7 +110,7 @@ fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.
 #
 #
 #-------------------------------------------------------------------------
-def importData(database, filename):
+def importData(database, filename, cb=None):
 
     global callback
 
@@ -139,7 +144,10 @@ def importData(database, filename):
         statusWindow.destroy()
     
     Utils.modified()
-    if callback:
+    if cb:
+        statusWindow.destroy()
+        cb(1)
+    elif callback:
         callback(1)
 
 #-------------------------------------------------------------------------
@@ -1383,7 +1391,7 @@ class GedcomParser:
                     self.cnv = latin_utf8.utf8_to_latin
                 elif matches[2] == "ANSEL":
                     self.code = ANSEL
-                    self.cnv = latin_ansel.ansel_to_latin
+                    self.cnv = ansel_to_latin
                 self.ignore_sub_junk(2)
                 self.update(self.encoding_obj,matches[2])
    	    elif matches[1] == "GEDC":

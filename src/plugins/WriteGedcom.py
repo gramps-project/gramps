@@ -38,7 +38,11 @@ import gnome.ui
 import libglade
 
 from GedcomInfo import *
-from latin_ansel import latin_to_ansel
+try:
+    from ansel import latin_to_ansel
+except:
+    from latin_ansel import latin_to_ansel
+
 from latin_utf8  import latin_to_utf8
 
 #-------------------------------------------------------------------------
@@ -84,15 +88,15 @@ def add_familys_sources(family,slist,private):
             continue
         for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
-            if sbase != None and sbase not in slist:
-                slist.append(sbase)
+            if sbase != None and not slist.has_key(sbase):
+                slist[sbase.getId()] = 1
     for attr in family.getAttributeList():
         if private and attr.getPrivacy():
             continue
         for source_ref in attr.getSourceRefList():
             sbase = source_ref.getBase()
-            if sbase != None and sbase not in slist:
-                slist.append(sbase)
+            if sbase != None and not slist.has_key(sbase.getId()):
+                slist[sbase.getId()] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -109,32 +113,32 @@ def add_persons_sources(person,slist,private):
             continue
         for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
-            if sbase != None and sbase not in slist:
-                slist.append(sbase)
+            if sbase != None and not slist.has_key(sbase.getId()):
+                slist[sbase.getId()] = 1
 
     for event in person.getAddressList():
         if private and event.getPrivacy():
             continue
         for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
-            if sbase != None and sbase not in slist:
-                slist.append(sbase)
+            if sbase != None and not slist.has_key(sbase.getId()):
+                slist[sbase.getId()] = 1
 
     for event in person.getAttributeList():
         if private and event.getPrivacy():
             continue
         for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
-            if sbase != None and sbase not in slist:
-                slist.append(sbase)
+            if sbase != None and not slist.has_key(sbase.getId()):
+                slist[sbase.getId()] = 1
 
     for name in person.getAlternateNames() + [person.getPrimaryName()]:
         if private and name.getPrivacy():
             continue
         for source_ref in name.getSourceRefList():
             sbase = source_ref.getBase()
-            if sbase != None and sbase not in slist:
-                slist.append(sbase)
+            if sbase != None and not slist.has_key(sbase.getId()):
+                slist[sbase.getId()] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -303,9 +307,9 @@ class GedcomWriter:
         self.restrict = 1
         self.private = 1
         self.cnvtxt = latin_to_ansel
-        self.plist = []
-        self.slist = []
-        self.flist = []
+        self.plist = {}
+        self.slist = {}
+        self.flist = {}
         self.adopt = ADOPT_EVENT
         self.fidval = 0
         self.fidmap = {}
@@ -381,17 +385,20 @@ class GedcomWriter:
         name = self.topDialog.get_widget("filename").get_text()
 
         if cfilter == None:
-            self.plist = self.db.getPersonMap().values()
+            for p in self.db.getPersonKeys():
+                self.plist[p] = 1
         else:
-            self.plist = cfilter.apply(self.db.getPersonMap().values())
+            for p in cfilter.apply(self.db.getPersonMap().values()):
+                self.plist[p.getId()] = 1
         
-        self.flist = []
-        self.slist = []
-        for p in self.plist[:]:
+        self.flist = {}
+        self.slist = {}
+        for key in self.plist.keys():
+            p = self.db.getPerson(key)
             add_persons_sources(p,self.slist,self.private)
             for family in p.getFamilyList():
                 add_familys_sources(family,self.slist,self.private)
-                self.flist.append(family)
+                self.flist[family.getId()] = 1
                 
         Utils.destroy_passed_object(obj)
 
@@ -412,7 +419,6 @@ class GedcomWriter:
         closebtn.set_sensitive(0)
 
         self.export_data(name)
-
         closebtn.set_sensitive(1)
 
     def export_data(self,filename):
@@ -429,7 +435,7 @@ class GedcomWriter:
             return
 
         date = string.split(time.ctime(time.time()))
-        
+
         self.g.write("0 HEAD\n")
         self.g.write("1 SOUR GRAMPS\n")
         self.g.write("2 VERS " + const.version + "\n")
@@ -477,15 +483,17 @@ class GedcomWriter:
             self.g.write('1 ADDR Not Provided\n')
             self.g.write('2 CONT Not Provided\n')
 
-        self.plist.sort(sortById)
+        pkeys = self.plist.keys()
+        pkeys.sort()
         nump = float(len(self.plist))
         index = 0.0
-        for person in self.plist:
-            self.write_person(person)
+        for key in pkeys:
+            self.write_person(self.db.getPerson(key))
             index = index + 1
-            self.pbar.set_value((100*index)/nump)
-            while(gtk.events_pending()):
-                gtk.mainiteration()
+            if index%100 == 0:
+                self.pbar.set_value((100*index)/nump)
+                while(gtk.events_pending()):
+                    gtk.mainiteration()
         self.pbar.set_value(100.0)
 
         self.write_families()
@@ -497,17 +505,18 @@ class GedcomWriter:
     def write_families(self):
         nump = float(len(self.flist))
         index = 0.0
-        for family in self.flist:
+        for key in self.flist.keys():
+            family = self.db.getFamily(key)
             father_alive = mother_alive = 0
             self.g.write("0 @%s@ FAM\n" % self.fid(family.getId()))
             self.prefn(family)
             person = family.getFather()
-            if person != None and person in self.plist:
+            if person != None and self.plist.has_key(person.getId()):
                 self.g.write("1 HUSB @%s@\n" % self.pid(person.getId()))
                 father_alive = person.probablyAlive()
 
             person = family.getMother()
-            if person != None and person in self.plist:
+            if person != None and self.plist.has_key(person.getId()):
                 self.g.write("1 WIFE @%s@\n" % self.pid(person.getId()))
                 mother_alive = person.probablyAlive()
 
@@ -534,7 +543,7 @@ class GedcomWriter:
                     self.dump_event_stats(event)
 
             for person in family.getChildList():
-                if person not in self.plist:
+                if not self.plist.has_key(person.getId()):
                     continue
                 self.g.write("1 CHIL @%s@\n" % self.pid(person.getId()))
                 if self.adopt == ADOPT_FTW:
@@ -554,15 +563,17 @@ class GedcomWriter:
                             break
                 
             index = index + 1
-            self.fbar.set_value((100*index)/nump)
-            while(gtk.events_pending()):
-                gtk.mainiteration()
+            if index % 100 == 0:
+                self.fbar.set_value((100*index)/nump)
+                while(gtk.events_pending()):
+                    gtk.mainiteration()
         self.fbar.set_value(100.0)
 
     def write_sources(self):
         nump = float(len(self.slist))
         index = 0.0
-        for source in self.slist:
+        for key in self.slist.keys():
+            source = self.db.getSource(key)
             self.g.write("0 @%s@ SOUR\n" % self.sid(source.getId()))
             if source.getTitle() != "":
                 self.g.write("1 TITL %s\n" % fmtline(self.cnvtxt(source.getTitle()),248,1))
@@ -575,11 +586,12 @@ class GedcomWriter:
             if source.getCallNumber() != "":
                 self.g.write("1 CALN %s\n" % self.cnvtxt(source.getCallNumber()))
             if source.getNote() != "":
-                self.write_long_text("NOTE",1,source.getNote())
+                self.write_long_text("NOTE",1,self.cnvtxt(source.getNote()))
             index = index + 1
-            self.sbar.set_value((100*index)/nump)
-            while(gtk.events_pending()):
-                gtk.mainiteration()
+            if index % 100 == 0:
+                self.sbar.set_value((100*index)/nump)
+                while(gtk.events_pending()):
+                    gtk.mainiteration()
         self.sbar.set_value(100.0)
 
     def write_person(self,person):
@@ -690,7 +702,7 @@ class GedcomWriter:
                     self.g.write("2 TYPE %s\n" % self.cnvtxt(name))
                 self.g.write("2 PLAC %s\n" % self.cnvtxt(attr.getValue()))
                 if attr.getNote() != "":
-                    self.write_long_text("NOTE",2,attr.getNote())
+                    self.write_long_text("NOTE",2,self.cnvtxt(attr.getNote()))
                 for srcref in attr.getSourceRefList():
                     self.write_source_ref(2,srcref)
 
@@ -718,19 +730,19 @@ class GedcomWriter:
                     if text:
                         self.g.write("2 PLAC %s\n" % text)
                 if addr.getNote() != "":
-                    self.write_long_text("NOTE",3,addr.getNote())
+                    self.write_long_text("NOTE",3,self.cnvtxt(addr.getNote()))
                 for srcref in addr.getSourceRefList():
                     self.write_source_ref(3,srcref)
 
         for family in person.getParentList():
-            if family in self.flist:
+            if self.flist.has_key(family[0].getId()):
                 self.g.write("1 FAMC @%s@\n" % self.fid(family[0].getId()))
                 if self.adopt == ADOPT_PEDI:
                     if string.lower(family[1]) == "adopted":
                         self.g.write("2 PEDI Adopted\n")
         
         for family in person.getFamilyList():
-            if family != None and family in self.flist:
+            if family != None and self.flist.has_key(family.getId()):
                 self.g.write("1 FAMS @%s@\n" % self.fid(family.getId()))
 
         if self.obje:
@@ -743,7 +755,7 @@ class GedcomWriter:
                     self.g.write('2 FILE %s\n' % url.get_path())
 
         if person.getNote() != "":
-            self.write_long_text("NOTE",1,person.getNote())
+            self.write_long_text("NOTE",1,self.cnvtxt(person.getNote()))
 			
     def write_long_text(self,tag,level,note):
         if self.conc == CONC_OK:
@@ -817,7 +829,7 @@ class GedcomWriter:
         if event.getCause() != "":
             self.g.write("2 CAUS %s\n" % self.cnvtxt(event.getCause()))
         if event.getNote() != "":
-            self.write_long_text("NOTE",2,event.getNote())
+            self.write_long_text("NOTE",2,self.cnvtxt(event.getNote()))
         for srcref in event.getSourceRefList():
             self.write_source_ref(2,srcref)
 
@@ -835,7 +847,7 @@ class GedcomWriter:
         if ord.getStatus() != 0:
             self.g.write("2 STAT %s\n" % self.cnvtxt(statlist[ord.getStatus()]))
         if ord.getNote() != "":
-            self.write_long_text("NOTE",index+1,ord.getNote())
+            self.write_long_text("NOTE",index+1,self.cnvtxt(ord.getNote()))
         for srcref in ord.getSourceRefList():
             self.write_source_ref(index+1,srcref)
 
@@ -895,7 +907,7 @@ class GedcomWriter:
         if nick != "":
             self.g.write('2 NICK %s\n' % nick)
         if name.getNote() != "":
-            self.write_long_text("NOTE",2,name.getNote())
+            self.write_long_text("NOTE",2,self.cnvtxt(name.getNote()))
         for srcref in name.getSourceRefList():
             self.write_source_ref(2,srcref)
 

@@ -22,6 +22,9 @@ The AttrEdit module provides the AddressEditor class. This provides a
 mechanism for the user to edit address information.
 """
 
+__author__ = "Donald N. Allingham"
+__version__ = "$Revision$"
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -36,8 +39,8 @@ import libglade
 #-------------------------------------------------------------------------
 import const
 import Utils
-from RelLib import *
 import Sources
+from RelLib import Attribute
 
 from intl import gettext
 _ = gettext
@@ -47,7 +50,7 @@ _ = gettext
 # AttributeEditor class
 #
 #-------------------------------------------------------------------------
-class AttributeEditor(Sources.SourceTab):
+class AttributeEditor:
     """
     Displays a dialog that allows the user to edit an attribute.
     """
@@ -60,6 +63,7 @@ class AttributeEditor(Sources.SourceTab):
         title - The title of the dialog box
         list - list of options for the pop down menu
         """
+
         self.parent = parent
         self.attrib = attrib
         self.top = libglade.GladeXML(const.dialogFile, "attr_edit")
