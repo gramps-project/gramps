@@ -337,9 +337,6 @@ class GedcomParser:
             next_line = self.f.readline()
             self.text = string.translate(next_line.strip(),self.trans,self.delc)
 
-            if not self.text:
-                raise Errors.GedcomError(_("GEDCOM file ended unexpectedly"))
-
             try:
                 self.text = self.cnv(self.text)
             except:
@@ -354,8 +351,11 @@ class GedcomParser:
                 else:
                     self.groups = (int(l[0]),l[1],l[2])
             except:
-		msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-                msg = "%s\n\t%s\n" % (msg,self.text)
+                if self.text == "":
+                    msg = _("Warning: line %d was blank, so it was ignored.\n") % self.index
+                else:
+                    msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
+                    msg = "%s\n\t%s\n" % (msg,self.text)
                 self.errmsg(msg)
                 self.error_count = self.error_count + 1
                 self.groups = (999, "XXX", "XXX")
@@ -518,7 +518,8 @@ class GedcomParser:
                     noteobj = RelLib.Note()
                     self.nmap[matches[1]] = noteobj
                 text =  matches[2][4:]
-                noteobj.append(text + self.parse_continue_data(1))
+#                noteobj.append(text + self.parse_continue_data(1))
+                noteobj.append(text + self.parse_note_continue(1))
                 self.parse_note_data(1)
 	    elif matches[1] == "TRLR":
                 self.backup()
