@@ -106,7 +106,8 @@ comments     = _("GRAMPS (Genealogical Research and Analysis "
 #-------------------------------------------------------------------------
 picWidth     = 275.0
 thumbScale   = 96.0
-indexFile    = "data.gramps"
+xmlFile      = "data.gramps"
+zodbFile     = "gramps.zodb"
 male         = _("male")
 female       = _("female")
 unknown      = _("unknown")

@@ -60,7 +60,6 @@ from MediaView import MediaView
 
 from QuestionDialog import QuestionDialog
 
-import ReadXML
 import Filter
 import const
 import Plugins
@@ -73,7 +72,14 @@ import EditPerson
 import Marriage
 import Find
 import VersionControl
-import WriteXML
+
+from GrampsXML import GrampsXML
+try:
+    from GrampsZODB import GrampsZODB
+    USE_ZODB = 1
+except:
+    USE_ZODB = 0
+    
 
 #-------------------------------------------------------------------------
 #
@@ -100,12 +106,11 @@ class Gramps:
         self.c_gender = 3
         self.c_id = 2
         self.c_name = 1
-        self.c_sort_col = self.c_birth_order
-        self.c_sort_dir = GTK.SORT_ASCENDING
-        self.sort_col = 0
-        self.sort_dir = GTK.SORT_ASCENDING
+        self.c_scol = self.c_birth_order
+        self.c_sdir = GTK.SORT_ASCENDING
+        self.scol = 0
+        self.sdir = GTK.SORT_ASCENDING
         self.id2col = {}
-        self.alt2col = {}
 
         gtk.rc_parse(const.gtkrcFile)
 
@@ -114,9 +119,12 @@ class Gramps:
                     "This account is not meant for normal application use.")
             gnome.ui.GnomeWarningDialog(msg)
 
-        self.database = GrampsDB()
+        # This will never contain data - It will be replaced by either
+        # a GrampsXML or GrampsZODB
+        
+        self.db = GrampsDB()
 
-        (self.sort_col,self.sort_dir) = GrampsCfg.get_sort_cols("person",self.sort_col,self.sort_dir)
+        (self.scol,self.sdir) = GrampsCfg.get_sort_cols("person",self.scol,self.sdir)
 
         GrampsCfg.loadConfig(self.full_update)
         self.init_interface()
@@ -125,14 +133,14 @@ class Gramps:
         self.col_arr = [ self.nameArrow, self.idArrow, self.genderArrow,
                          self.dateArrow, self.deathArrow]
 
-        self.change_sort(self.sort_col,self.sort_dir==GTK.SORT_DESCENDING)
-        self.set_sort_arrow(self.sort_col,self.sort_dir)
+        self.change_sort(self.scol,self.sdir==GTK.SORT_DESCENDING)
+        self.set_sort_arrow(self.scol,self.sdir)
 
-        self.database.set_iprefix(GrampsCfg.iprefix)
-        self.database.set_oprefix(GrampsCfg.oprefix)
-        self.database.set_fprefix(GrampsCfg.fprefix)
-        self.database.set_sprefix(GrampsCfg.sprefix)
-        self.database.set_pprefix(GrampsCfg.pprefix)
+        self.db.set_iprefix(GrampsCfg.iprefix)
+        self.db.set_oprefix(GrampsCfg.oprefix)
+        self.db.set_fprefix(GrampsCfg.fprefix)
+        self.db.set_sprefix(GrampsCfg.sprefix)
+        self.db.set_pprefix(GrampsCfg.pprefix)
         
         if arg != None:
             if string.upper(arg[-3:]) == "GED":
@@ -145,11 +153,11 @@ class Gramps:
             import DbPrompter
             DbPrompter.DbPrompter(self,0)
 
-        if GrampsCfg.autosave_int != 0:
+        if self.db.need_autosave() and GrampsCfg.autosave_int != 0:
             Utils.enable_autosave(self.autosave_database,
                                   GrampsCfg.autosave_int)
 
-        self.database.setResearcher(GrampsCfg.get_researcher())
+        self.db.setResearcher(GrampsCfg.get_researcher())
 
     def init_interface(self):
         """Initializes the GLADE interface, and gets references to the
@@ -174,7 +182,7 @@ class Gramps:
         self.cDateArrow  = self.gtop.get_widget("cDateSort")
         self.canvas      = self.gtop.get_widget("canvas1")
         self.child_list  = self.gtop.get_widget("child_list")
-        self.toolbar = self.gtop.get_widget("toolbar1")
+        self.toolbar     = self.gtop.get_widget("toolbar1")
         self.spouse_menu = self.gtop.get_widget("fv_spouse")
         self.person_text = self.gtop.get_widget("fv_person")
         self.spouse_text = self.gtop.get_widget("fv_spouse1")
@@ -214,94 +222,94 @@ class Gramps:
                                           self.statusbar,
                                           self.change_active_person,
                                           self.load_person)
-        self.place_view  = PlaceView(self.database,self.gtop,self.update_display)
-        self.source_view = SourceView(self.database,self.gtop,self.update_display)
-        self.media_view  = MediaView(self.database,self.gtop,self.update_display)
+        self.place_view  = PlaceView(self.db,self.gtop,self.update_display)
+        self.source_view = SourceView(self.db,self.gtop,self.update_display)
+        self.media_view  = MediaView(self.db,self.gtop,self.update_display)
 
         self.gtop.signal_autoconnect({
-            "delete_event"                      : self.delete_event,
-            "destroy_passed_object"             : Utils.destroy_passed_object,
-            "on_preffam_clicked"                : self.on_preferred_fam_toggled,
-            "on_family_up_clicked"              : self.family_up_clicked,
-            "on_family_down_clicked"            : self.family_down_clicked,
-            "on_spouse_list_changed"            : self.spouse_list_changed,
-            "on_prefrel_toggled"                : self.on_preferred_rel_toggled,
-            "on_about_activate"                 : self.on_about_activate,
-            "on_add_bookmark_activate"          : self.on_add_bookmark_activate,
-            "on_add_child_clicked"              : self.on_add_child_clicked,
-            "on_add_new_child_clicked"          : self.on_add_new_child_clicked,
-            "on_add_place_clicked"              : self.place_view.on_add_place_clicked,
-            "on_add_source_clicked"             : self.source_view.on_add_source_clicked,
-            "on_add_sp_clicked"                 : self.on_add_sp_clicked,
-            "on_addperson_clicked"              : self.load_new_person,
-            "on_apply_filter_clicked"           : self.on_apply_filter_clicked,
-            "on_arrow_left_clicked"             : self.pedigree_view.on_show_child_menu,
-            "on_canvas1_event"                  : self.pedigree_view.on_canvas1_event,
-            "on_child_list_button_press_event"  : self.on_child_list_button_press_event,
-            "on_child_list_select_row"          : self.on_child_list_select_row,
-            "on_child_list_click_column"        : self.on_child_list_click_column,
-            "on_child_list_row_move"            : self.on_child_list_row_move,
-            "on_choose_parents_clicked"         : self.on_choose_parents_clicked, 
-            "on_contents_activate"              : self.on_contents_activate,
-            "on_default_person_activate"        : self.on_default_person_activate,
-            "on_delete_parents_clicked"         : self.on_delete_parents_clicked,
-            "on_delete_person_clicked"          : self.on_delete_person_clicked,
-            "on_delete_place_clicked"           : self.place_view.on_delete_place_clicked,
-            "on_delete_source_clicked"          : self.source_view.on_delete_source_clicked,
-            "on_delete_media_clicked"           : self.media_view.on_delete_media_clicked,
-            "on_delete_sp_clicked"              : self.on_delete_sp_clicked,
-            "on_edit_active_person"             : self.load_active_person,
-            "on_edit_selected_people"           : self.load_selected_people,
-            "on_edit_bookmarks_activate"        : self.on_edit_bookmarks_activate,
-            "on_edit_father_clicked"            : self.on_edit_father_clicked,
-            "on_edit_media_clicked"             : self.media_view.on_edit_media_clicked,
-            "on_edit_mother_clicked"            : self.on_edit_mother_clicked,
-            "on_edit_place_clicked"             : self.place_view.on_edit_place_clicked,
-            "on_edit_source_clicked"            : self.source_view.on_edit_source_clicked,
-            "on_edit_sp_clicked"                : self.on_edit_sp_clicked,
-            "on_edit_spouse_clicked"            : self.on_edit_spouse_clicked,
-            "on_exit_activate"                  : self.on_exit_activate,
-            "on_family1_activate"               : self.on_family1_activate,
-            "on_father_next_clicked"            : self.on_father_next_clicked,
-            "on_find_activate"                  : self.on_find_activate,
-            "on_findname_activate"              : self.on_findname_activate,
-            "on_fv_prev_clicked"                : self.on_fv_prev_clicked,
-            "on_home_clicked"                   : self.on_home_clicked,
-            "on_mother_next_clicked"            : self.on_mother_next_clicked,
-            "on_new_clicked"                    : self.on_new_clicked,
-            "on_notebook1_switch_page"          : self.on_notebook1_switch_page,
-            "on_ok_button1_clicked"             : self.on_ok_button1_clicked,
-            "on_open_activate"                  : self.on_open_activate,
-            "on_pedegree1_activate"             : self.on_pedegree1_activate,
-            "on_person_list1_activate"          : self.on_person_list1_activate,
-            "on_person_list_button_press"       : self.on_person_list_button_press,
-            "on_person_list_click_column"       : self.on_person_list_click_column,
-            "on_person_list_select_row"         : self.on_person_list_select_row,
-            "on_place_list_click_column"        : self.place_view.on_click_column,
-            "on_main_key_release_event"         : self.on_main_key_release_event,
-            "on_add_media_clicked"              : self.media_view.create_add_dialog,
-            "on_media_activate"                 : self.on_media_activate,
-            "on_media_list_select_row"          : self.media_view.on_select_row,
-            "on_media_list_drag_data_get"       : self.media_view.on_drag_data_get,
-            "on_media_list_drag_data_received"  : self.media_view.on_drag_data_received,
-            "on_merge_activate"                 : self.on_merge_activate,
-            "on_places_activate"                : self.on_places_activate,
-            "on_preferences_activate"           : self.on_preferences_activate,
-            "on_reload_plugins_activate"        : Plugins.reload_plugins,
-            "on_remove_child_clicked"           : self.on_remove_child_clicked,
-            "on_reports_clicked"                : self.on_reports_clicked,
-            "on_revert_activate"                : self.on_revert_activate,
-            "on_save_activate"                  : self.on_save_activate,
-            "on_save_as_activate"               : self.on_save_as_activate,
-            "on_show_plugin_status"             : self.on_show_plugin_status,
-            "on_source_list_button_press_event" : self.source_view.on_button_press_event,
-            "on_sources_activate"               : self.on_sources_activate,
-            "on_swap_clicked"                   : self.on_swap_clicked,
-            "on_tools_clicked"                  : self.on_tools_clicked,
-            "on_gramps_home_page_activate"      : self.on_gramps_home_page_activate,
-            "on_gramps_report_bug_activate"     : self.on_gramps_report_bug_activate,
-            "on_gramps_mailing_lists_activate"  : self.on_gramps_mailing_lists_activate,
-            "on_writing_extensions_activate"    : self.on_writing_extensions_activate,
+            "delete_event" : self.delete_event,
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "on_preffam_clicked" : self.on_preferred_fam_toggled,
+            "on_family_up_clicked" : self.family_up_clicked,
+            "on_family_down_clicked" : self.family_down_clicked,
+            "on_spouse_list_changed" : self.spouse_list_changed,
+            "on_prefrel_toggled" : self.on_preferred_rel_toggled,
+            "on_about_activate" : self.on_about_activate,
+            "on_add_bookmark_activate" : self.on_add_bookmark_activate,
+            "on_add_child_clicked" : self.on_add_child_clicked,
+            "on_add_new_child_clicked" : self.on_add_new_child_clicked,
+            "on_add_place_clicked" : self.place_view.on_add_place_clicked,
+            "on_add_source_clicked" : self.source_view.on_add_source_clicked,
+            "on_add_sp_clicked" : self.on_add_sp_clicked,
+            "on_addperson_clicked" : self.load_new_person,
+            "on_apply_filter_clicked" : self.on_apply_filter_clicked,
+            "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
+            "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
+            "on_child_list_button_press" : self.on_child_list_button_press,
+            "on_child_list_select_row" : self.on_child_list_select_row,
+            "on_child_list_click_column" : self.on_child_list_click_column,
+            "on_child_list_row_move" : self.on_child_list_row_move,
+            "on_choose_parents_clicked" : self.on_choose_parents_clicked, 
+            "on_contents_activate" : self.on_contents_activate,
+            "on_default_person_activate" : self.on_default_person_activate,
+            "on_delete_parents_clicked" : self.on_delete_parents_clicked,
+            "on_delete_person_clicked" : self.on_delete_person_clicked,
+            "on_delete_place_clicked" : self.place_view.on_delete_clicked,
+            "on_delete_source_clicked" : self.source_view.on_delete_clicked,
+            "on_delete_media_clicked" : self.media_view.on_delete_clicked,
+            "on_delete_sp_clicked" : self.on_delete_sp_clicked,
+            "on_edit_active_person" : self.load_active_person,
+            "on_edit_selected_people" : self.load_selected_people,
+            "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
+            "on_edit_father_clicked" : self.on_edit_father_clicked,
+            "on_edit_media_clicked" : self.media_view.on_edit_media_clicked,
+            "on_edit_mother_clicked" : self.on_edit_mother_clicked,
+            "on_edit_place_clicked" : self.place_view.on_edit_place_clicked,
+            "on_edit_source_clicked" : self.source_view.on_edit_source_clicked,
+            "on_edit_sp_clicked" : self.on_edit_sp_clicked,
+            "on_edit_spouse_clicked" : self.on_edit_spouse_clicked,
+            "on_exit_activate" : self.on_exit_activate,
+            "on_family1_activate" : self.on_family1_activate,
+            "on_father_next_clicked" : self.on_father_next_clicked,
+            "on_find_activate" : self.on_find_activate,
+            "on_findname_activate" : self.on_findname_activate,
+            "on_fv_prev_clicked" : self.on_fv_prev_clicked,
+            "on_home_clicked" : self.on_home_clicked,
+            "on_mother_next_clicked" : self.on_mother_next_clicked,
+            "on_new_clicked" : self.on_new_clicked,
+            "on_notebook1_switch_page" : self.on_notebook1_switch_page,
+            "on_ok_button1_clicked" : self.on_ok_button1_clicked,
+            "on_open_activate" : self.on_open_activate,
+            "on_pedegree1_activate" : self.on_pedegree1_activate,
+            "on_person_list1_activate" : self.on_person_list1_activate,
+            "on_person_list_button_press" : self.on_person_list_button_press,
+            "on_person_list_click_column" : self.on_person_list_click_column,
+            "on_person_list_select_row" : self.on_person_list_select_row,
+            "on_place_list_click_column" : self.place_view.on_click_column,
+            "on_main_key_release_event" : self.on_main_key_release_event,
+            "on_add_media_clicked" : self.media_view.create_add_dialog,
+            "on_media_activate" : self.on_media_activate,
+            "on_media_list_select_row" : self.media_view.on_select_row,
+            "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
+            "on_media_list_drag_data_received" : self.media_view.on_drag_data_received,
+            "on_merge_activate" : self.on_merge_activate,
+            "on_places_activate" : self.on_places_activate,
+            "on_preferences_activate" : self.on_preferences_activate,
+            "on_reload_plugins_activate" : Plugins.reload_plugins,
+            "on_remove_child_clicked" : self.on_remove_child_clicked,
+            "on_reports_clicked" : self.on_reports_clicked,
+            "on_revert_activate" : self.on_revert_activate,
+            "on_save_activate" : self.on_save_activate,
+            "on_save_as_activate" : self.on_save_as_activate,
+            "on_show_plugin_status" : self.on_show_plugin_status,
+            "on_source_list_button_press" : self.source_view.button_press,
+            "on_sources_activate" : self.on_sources_activate,
+            "on_swap_clicked" : self.on_swap_clicked,
+            "on_tools_clicked" : self.on_tools_clicked,
+            "on_gramps_home_page_activate" : self.on_gramps_home_page_activate,
+            "on_gramps_report_bug_activate" : self.on_gramps_report_bug_activate,
+            "on_gramps_mailing_lists_activate" : self.on_gramps_mailing_lists_activate,
+            "on_writing_extensions_activate" : self.on_writing_extensions_activate,
             })	
 
     def on_show_plugin_status(self,obj):
@@ -337,16 +345,16 @@ class Gramps:
         """Display the find box"""
         if self.notebook.get_current_page() == 4:
             Find.FindPlace(self.place_view.place_list,self.find_goto_place,
-                           self.database.getPlaceMap().values())
+                           self.db.getPlaceMap().values())
         elif self.notebook.get_current_page() == 3:
             Find.FindSource(self.source_view.source_list,self.find_goto_source,
-                           self.database.getSourceMap().values())
+                           self.db.getSourceMap().values())
         elif self.notebook.get_current_page() == 5:
             Find.FindMedia(self.media_view.media_list,self.find_goto_media,
-                           self.database.getObjectMap().values())
+                           self.db.getObjectMap().values())
         else:
             Find.FindPerson(self.person_list,self.find_goto_to,
-                            self.database.getPersonMap().values())
+                            self.db.getPersonMap().values())
 
     def on_findname_activate(self,obj):
         """Display the find box"""
@@ -393,7 +401,9 @@ class Gramps:
                 import MergeData
                 (p1,x) = self.person_list.get_row_data(self.person_list.selection[0])
                 (p2,x) = self.person_list.get_row_data(self.person_list.selection[1])
-                MergeData.MergePeople(self.database,p1,p2,self.merge_update,
+                p1 = self.db.getPersonMap()[p1]
+                p2 = self.db.getPersonMap()[p2]
+                MergeData.MergePeople(self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
         elif page == 4:
             self.place_view.merge()
@@ -464,7 +474,7 @@ class Gramps:
 
     def delete_family_from(self,person):
         person.removeFamily(self.active_family)
-        self.database.deleteFamily(self.active_family)
+        self.db.deleteFamily(self.active_family)
         flist = self.active_person.getFamilyList()
         if len(flist) > 0:
             self.active_family = flist[0][0]
@@ -477,7 +487,7 @@ class Gramps:
     def add_new_new_relationship(self,obj):
         import AddSpouse
         Utils.destroy_passed_object(self.addornew)
-        AddSpouse.AddSpouse(self.database,self.active_person,
+        AddSpouse.AddSpouse(self.db,self.active_person,
                             self.load_family,self.redisplay_person_list)
         
     def on_add_sp_clicked(self,obj):
@@ -493,18 +503,18 @@ class Gramps:
                     })
                 self.addornew = top.get_widget('add_or_new')
             else:
-                AddSpouse.AddSpouse(self.database,self.active_person,
+                AddSpouse.AddSpouse(self.db,self.active_person,
                                     self.load_family,self.redisplay_person_list)
     def add_new_choose_spouse(self,obj):
         import AddSpouse
         Utils.destroy_passed_object(self.addornew)
-        AddSpouse.SetSpouse(self.database,self.active_person,self.active_family,
+        AddSpouse.SetSpouse(self.db,self.active_person,self.active_family,
                             self.load_family, self.redisplay_person_list)
 
     def on_edit_sp_clicked(self,obj):
         """Edit the marriage information for the current family"""
         if self.active_person:
-            Marriage.Marriage(self.active_family,self.database,self.new_after_edit)
+            Marriage.Marriage(self.active_family,self.db,self.new_after_edit)
 
     def on_delete_sp_clicked(self,obj):
         """Delete the currently selected spouse from the family"""
@@ -523,7 +533,7 @@ class Gramps:
     
         if len(self.active_family.getChildList()) == 0:
             self.active_person.removeFamily(self.active_family)
-            self.database.deleteFamily(self.active_family)
+            self.db.deleteFamily(self.active_family)
             if len(self.active_person.getFamilyList()) > 0:
                 self.load_family(self.active_person.getFamilyList()[0])
             else:
@@ -568,14 +578,14 @@ class Gramps:
         """Select an existing child to add to the active family"""
         import SelectChild
         if self.active_person:
-            SelectChild.SelectChild(self.database,self.active_family,
+            SelectChild.SelectChild(self.db,self.active_family,
                                     self.active_person,self.load_family)
 
     def on_add_new_child_clicked(self,obj):
         """Create a new child to add to the existing family"""
         import SelectChild
         if self.active_person:
-            SelectChild.NewChild(self.database,self.active_family,
+            SelectChild.NewChild(self.db,self.active_family,
                                  self.active_person,self.update_after_newchild,
                                  self.update_after_edit,
                                  GrampsCfg.lastnamegen)
@@ -583,7 +593,7 @@ class Gramps:
     def on_choose_parents_clicked(self,obj):
         import ChooseParents
         if self.active_person:
-            ChooseParents.ChooseParents(self.database,self.active_person,
+            ChooseParents.ChooseParents(self.db,self.active_person,
                                         self.active_parents,self.load_family,
                                         self.full_update)
     
@@ -600,7 +610,7 @@ class Gramps:
         self.clear_database()
         DbPrompter.DbPrompter(self,1)
     
-    def clear_database(self):
+    def clear_database(self,zodb=1):
         """Clear out the database if permission was granted"""
         const.personalEvents = const.init_personal_event_list()
         const.personalAttributes = const.init_personal_attribute_list()
@@ -608,7 +618,15 @@ class Gramps:
         const.familyAttributes = const.init_family_attribute_list()
         const.familyRelations = const.init_family_relation_list()
     
-        self.database.new()
+        if zodb:
+            self.db = GrampsZODB()
+        else:
+            self.db = GrampsXML()
+
+        self.place_view.change_db(self.db)
+        self.source_view.change_db(self.db)
+        self.media_view.change_db(self.db)
+
         self.topWindow.set_title("GRAMPS")
         self.active_person = None
         self.active_father = None
@@ -617,7 +635,6 @@ class Gramps:
         self.active_child  = None
         self.active_spouse = None
         self.id2col        = {}
-        self.alt2col       = {}
 
         Utils.clearModified()
         Utils.clear_timer()
@@ -636,7 +653,6 @@ class Gramps:
     def full_update(self):
         """Brute force display update, updating all the pages"""
         self.id2col = {}
-        self.alt2col = {}
         self.person_list.clear()
         self.notebook.set_show_tabs(GrampsCfg.usetabs)
         self.child_list.set_column_visibility(self.c_details,GrampsCfg.show_detail)
@@ -671,12 +687,12 @@ class Gramps:
 
     def on_tools_clicked(self,obj):
         if self.active_person:
-            Plugins.ToolPlugins(self.database,self.active_person,
+            Plugins.ToolPlugins(self.db,self.active_person,
                                 self.tool_callback)
 
     def on_reports_clicked(self,obj):
         if self.active_person:
-            Plugins.ReportPlugins(self.database,self.active_person)
+            Plugins.ReportPlugins(self.db,self.active_person)
 
     def on_ok_button1_clicked(self,obj):
     
@@ -692,7 +708,7 @@ class Gramps:
     
         if getoldrev.get_active():
             vc = VersionControl.RcsVersionControl(filename)
-            VersionControl.RevisionSelect(self.database,filename,vc,
+            VersionControl.RevisionSelect(self.db,filename,vc,
                                           self.load_revision)
         else:
             self.auto_save_load(filename)
@@ -727,12 +743,12 @@ class Gramps:
         import ReadGedcom
         
         self.topWindow.set_title("%s - GRAMPS" % filename)
-        ReadGedcom.importData(self.database,filename)
+        ReadGedcom.importData(self.db,filename)
         self.full_update()
 
     def read_file(self,filename):
         base = os.path.basename(filename)
-        if base == const.indexFile:
+        if base == const.xmlFile:
             filename = os.path.dirname(filename)
         elif base == "autosave.gramps":
             filename = os.path.dirname(filename)
@@ -746,11 +762,11 @@ class Gramps:
             if filename[-1] == '/':
                 filename = filename[:-1]
             name = os.path.basename(filename)
-            self.topWindow.set_title("%s - %s" % (name,_("GRAMPS")))
+            self.topWindow.set_title("%s - GRAMPS" % name)
         else:
             self.statusbar.set_status("")
             GrampsCfg.save_last_file("")
-
+        
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
         if filename:
@@ -787,26 +803,26 @@ class Gramps:
                 return
         
         old_file = filename
-        filename = filename + os.sep + const.indexFile
+        filename = "%s/%s" % (filename,self.db.get_base())
         try:
-            WriteXML.exportData(self.database,filename,self.load_progress)
+            self.db.save(filename,self.load_progress)
         except (OSError,IOError), msg:
             emsg = _("Could not create %s") % filename + "\n" + str(msg)
             gnome.ui.GnomeErrorDialog(emsg)
             return
 
-        self.database.setSavePath(old_file)
+        self.db.setSavePath(old_file)
         GrampsCfg.save_last_file(old_file)
 
         if GrampsCfg.usevc:
             vc = VersionControl.RcsVersionControl(path)
             vc.checkin(filename,comment,not GrampsCfg.uncompress)
 
-        filename = self.database.getSavePath()
+        filename = self.db.getSavePath()
         if filename[-1] == '/':
             filename = filename[:-1]
         name = os.path.basename(filename)
-        self.topWindow.set_title("%s - %s" % (name,_("GRAMPS")))
+        self.topWindow.set_title("%s - GRAMPS" % name)
         self.statusbar.set_status("")
         self.statusbar.set_progress(0)
         if os.path.exists(autosave):
@@ -817,18 +833,18 @@ class Gramps:
 
     def autosave_database(self):
 
-        path = self.database.getSavePath()
+        path = self.db.getSavePath()
         if not path:
             return
         
         filename = os.path.normpath(path)
         Utils.clear_timer()
 
-        filename = "%s/autosave.gramps" % (self.database.getSavePath())
+        filename = "%s/autosave.gramps" % (self.db.getSavePath())
     
         self.statusbar.set_status(_("autosaving..."));
         try:
-            WriteXML.quick_write(self.database,filename,self.quick_progress)
+            self.db.save(filename,self.quick_progress)
             self.statusbar.set_status(_("autosave complete"));
         except (IOError,OSError),msg:
             self.statusbar.set_status("%s - %s" % (_("autosave failed"),msg))
@@ -845,7 +861,7 @@ class Gramps:
         else:
             for p in self.person_list.selection:
                 (person,x) = self.person_list.get_row_data(p)
-                self.load_person(person)
+                self.load_person(self.db.getPersonMap()[person])
 
     def load_active_person(self,obj):
         self.load_person(self.active_person)
@@ -864,7 +880,7 @@ class Gramps:
 
     def load_new_person(self,obj):
         self.active_person = Person()
-        EditPerson.EditPerson(self.active_person,self.database,
+        EditPerson.EditPerson(self.active_person,self.db,
                               self.new_after_edit)
 
     def on_delete_person_clicked(self,obj):
@@ -880,8 +896,8 @@ class Gramps:
             gnome.ui.GnomeErrorDialog(msg)
 
     def delete_person_response(self):
-        personmap = self.database.getPersonMap()
-        familymap = self.database.getPersonMap()
+        personmap = self.db.getPersonMap()
+        familymap = self.db.getPersonMap()
 
         for family in self.active_person.getFamilyList():
             if self.active_person.getGender == Person.male:
@@ -903,7 +919,7 @@ class Gramps:
         if family:
             family.removeChild(self.active_person)
             
-        del personmap[self.active_person.getId()]
+        self.db.removePerson(self.active_person.getId())
         self.remove_from_person_list(self.active_person)
         self.person_list.sort()
         self.update_display(0)
@@ -912,16 +928,17 @@ class Gramps:
     def remove_from_person_list(self,person):
     
         self.person_list.freeze()
-        if self.id2col.has_key(person):
-            for id in [self.id2col[person]] + self.alt2col[person]:
+        pid = person.getId()
+        if self.id2col.has_key(pid):
+            for id in self.id2col[pid]:
                 row = self.person_list.find_row_from_data(id)
                 self.person_list.remove(row)
 
-            del self.id2col[person]
-            del self.alt2col[person]
+            del self.id2col[pid]
 
             if row > self.person_list.rows:
-                (self.active_person,x) = self.person_list.get_row_data(row)
+                (p,x) = self.person_list.get_row_data(row)
+                self.active_person = self.db.getPersonMap()[p]
         self.person_list.thaw()
     
     def merge_update(self,p1,p2):
@@ -939,7 +956,8 @@ class Gramps:
     
     def on_person_list_select_row(self,obj,row,b,c):
         if row == obj.selection[0]:
-            (person,x) = obj.get_row_data(row)
+            (id,x) = obj.get_row_data(row)
+            person = self.db.getPersonMap()[id]
             self.change_active_person(person)
 
     def on_person_list_click_column(self,obj,column):
@@ -964,28 +982,30 @@ class Gramps:
         arrow.show()
 
         self.person_list.set_sort_column(self.col_map[column])
-        self.person_list.set_sort_type(self.sort_dir)
+        self.person_list.set_sort_type(self.sdir)
 
         self.sort_person_list()
 
         if change:
-            if self.sort_col == column:
-                if self.sort_dir == GTK.SORT_DESCENDING:
-                    self.sort_dir = GTK.SORT_ASCENDING
+            if self.scol == column:
+                if self.sdir == GTK.SORT_DESCENDING:
+                    self.sdir = GTK.SORT_ASCENDING
                     arrow.set(GTK.ARROW_DOWN,2)
                 else:
-                    self.sort_dir = GTK.SORT_DESCENDING
+                    self.sdir = GTK.SORT_DESCENDING
                     arrow.set(GTK.ARROW_UP,2)
             else:
-                self.sort_dir = GTK.SORT_ASCENDING
+                self.sdir = GTK.SORT_ASCENDING
                 arrow.set(GTK.ARROW_DOWN,2)
-        self.sort_col = column
+        self.scol = column
 
-        if self.id2col.has_key(self.active_person):
-            data = self.id2col[self.active_person]
-            row = self.person_list.find_row_from_data(data)
-            self.person_list.moveto(row)
-        GrampsCfg.save_sort_cols("person",self.sort_col,self.sort_dir)
+        if self.active_person:
+            pid = self.active_person.getId()
+            if self.id2col.has_key(pid):
+                data = self.id2col[pid]
+                row = self.person_list.find_row_from_data(data)
+                self.person_list.moveto(row)
+        GrampsCfg.save_sort_cols("person",self.scol,self.sdir)
     
     def sort_person_list(self):
         self.person_list.freeze()
@@ -1015,7 +1035,7 @@ class Gramps:
         self.goto_active_person()
         self.person_list.thaw()
     
-    def on_child_list_button_press_event(self,obj,event):
+    def on_child_list_button_press(self,obj,event):
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             self.load_person(self.active_child)
 
@@ -1023,9 +1043,12 @@ class Gramps:
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             self.load_person(self.active_person)
 
-    def goto_active_person(self,):
-        if self.id2col.has_key(self.active_person):
-            pos = self.id2col[self.active_person]
+    def goto_active_person(self):
+        if not self.active_person:
+            return
+        id = self.active_person.getId()
+        if self.id2col.has_key(id):
+            pos = self.id2col[id]
             column = self.person_list.find_row_from_data(pos)
             if column != -1:
                 self.person_list.unselect_all()
@@ -1037,6 +1060,7 @@ class Gramps:
                     self.person_list.select_row(0,0)
                     self.person_list.moveto(0)
                     (person,x) = self.person_list.get_row_data(0)
+                    person = self.db.getPersonMap()[person]
                     self.change_active_person(person)	
     
     def change_active_person(self,person):
@@ -1062,7 +1086,8 @@ class Gramps:
         return 0
 	
     def on_child_list_select_row(self,obj,row,b,c):
-        self.active_child = obj.get_row_data(row)
+        id = obj.get_row_data(row)
+        self.active_child = id #self.db.getPersonMap()[id]
 
     def on_child_list_click_column(self,clist,column):
         """Called when the user selects a column header on the self.person_list
@@ -1082,8 +1107,9 @@ class Gramps:
             return
 
         self.sort_child_list(clist)
-        if self.id2col.has_key(self.active_child):
-            row = clist.find_row_from_data(self.id2col[self.active_child])
+        if self.active_child and self.id2col.has_key(self.active_child.getId()):
+            row = clist.find_row_from_data(self.id2col[
+                self.active_child.getId()])
             clist.moveto(row)
 
     def child_change_sort(self,clist,column,arrow):
@@ -1093,19 +1119,19 @@ class Gramps:
         self.cGenderArrow.hide()
         arrow.show()
     
-        if self.c_sort_col == column:
-            if self.c_sort_dir == GTK.SORT_DESCENDING:
-                self.c_sort_dir = GTK.SORT_ASCENDING
+        if self.c_scol == column:
+            if self.c_sdir == GTK.SORT_DESCENDING:
+                self.c_sdir = GTK.SORT_ASCENDING
                 arrow.set(GTK.ARROW_DOWN,2)
             else:
-                self.c_sort_dir = GTK.SORT_DESCENDING
+                self.c_sdir = GTK.SORT_DESCENDING
                 arrow.set(GTK.ARROW_UP,2)
         else:
-            self.c_sort_dir = GTK.SORT_ASCENDING
-        self.c_sort_col = column
-        clist.set_sort_type(self.c_sort_dir)
-        clist.set_sort_column(self.c_sort_col)
-        clist.set_reorderable(self.c_sort_col == self.c_birth_order)
+            self.c_sdir = GTK.SORT_ASCENDING
+        self.c_scol = column
+        clist.set_sort_type(self.c_sdir)
+        clist.set_sort_column(self.c_scol)
+        clist.set_reorderable(self.c_scol == self.c_birth_order)
 
     def sort_child_list(self,clist):
         clist.freeze()
@@ -1128,7 +1154,8 @@ class Gramps:
                 rows = clist.rows
                 for i in range(0,rows):
                     clist.set_background(i,(evenbg,oddbg)[i%2])
-                    person = clist.get_row_data(i)
+                    id = clist.get_row_data(i)
+                    person = self.db.getPersonMap()[id]
                     if (person.getAncestor()):
                         clist.set_foreground(i,ancestorfg)
                     else:
@@ -1159,7 +1186,7 @@ class Gramps:
 
         # This function deals with ascending order lists.  Convert if
         # necessary.
-        if (self.c_sort_dir == GTK.SORT_DESCENDING):
+        if (self.c_sdir == GTK.SORT_DESCENDING):
             clist_order.reverse()
             max_index = len(clist_order) - 1
             fm = max_index - fm
@@ -1189,7 +1216,7 @@ class Gramps:
 
         # Convert the original list back to whatever ordering is being
         # used by the clist itself.
-        if (self.c_sort_dir == GTK.SORT_DESCENDING):
+        if (self.c_sdir == GTK.SORT_DESCENDING):
             clist_order.reverse()
 
         # Update the clist indices so any change of sorting works
@@ -1219,7 +1246,7 @@ class Gramps:
 
     def on_revert_activate(self,obj):
         
-        if self.database.getSavePath() != "":
+        if self.db.getSavePath() != "":
             msg = _("Do you wish to abandon your changes and "
                     "revert to the last saved database?")
 
@@ -1238,8 +1265,8 @@ class Gramps:
         const.familyAttributes = const.init_family_attribute_list()
         const.familyRelations = const.init_family_relation_list()
         
-        file = self.database.getSavePath()
-        self.database.new()
+        file = self.db.getSavePath()
+        self.db.new()
         self.active_person = None
         self.active_father = None
         self.active_family = None
@@ -1247,7 +1274,6 @@ class Gramps:
         self.active_child  = None
         self.active_spouse = None
         self.id2col        = {}
-        self.alt2col       = {}
         self.read_file(file)
         Utils.clearModified()
         Utils.clear_timer()
@@ -1265,26 +1291,26 @@ class Gramps:
     def on_save_activate(self,obj):
         """Saves the file, first prompting for a comment if revision
         control needs it"""
-        if not self.database.getSavePath():
+        if not self.db.getSavePath():
             self.on_save_as_activate(obj)
         else:
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.display_comment_box(self.database.getSavePath())
+                self.display_comment_box(self.db.getSavePath())
             else:
                 msg = _("No Comment Provided")
-                self.save_file(self.database.getSavePath(),msg)
+                self.save_file(self.db.getSavePath(),msg)
 
     def on_save_activate_quit(self):
         """Saves the file, first prompting for a comment if revision
         control needs it"""
-        if not self.database.getSavePath():
+        if not self.db.getSavePath():
             self.on_save_as_activate(None)
         else:
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.display_comment_box(self.database.getSavePath())
+                self.display_comment_box(self.db.getSavePath())
             else:
                 msg = _("No Comment Provided")
-                self.save_file(self.database.getSavePath(),msg)
+                self.save_file(self.db.getSavePath(),msg)
 
     def display_comment_box(self,filename):
         """Displays a dialog box, prompting for a revison control comment"""
@@ -1377,9 +1403,9 @@ class Gramps:
     def new_after_edit(self,epo,plist):
         if epo:
             if epo.person.getId() == "":
-                self.database.addPerson(epo.person)
+                self.db.addPerson(epo.person)
             else:
-                self.database.addPersonNoMap(epo.person,epo.person.getId())
+                self.db.addPersonNoMap(epo.person,epo.person.getId())
             self.change_active_person(epo.person)
             self.redisplay_person_list(epo.person)
         for p in plist:
@@ -1401,46 +1427,19 @@ class Gramps:
 
     def redisplay_person_list(self,person):
         pos = (person,0)
-        self.id2col[person] = pos
-        self.alt2col[person] = []
+        self.id2col[person.getId()] = pos
         gname = Utils.phonebook_from_name
+        bsn = sort.build_sort_name
+        bsd = sort.build_sort_date
+        
         if self.DataFilter.compare(person):
-            if person.getGender() == Person.male:
-                gender = const.male
-            elif person.getGender() == Person.female:
-                gender = const.female
-            else:
-                gender = const.unknown
-            bday = person.getBirth().getDateObj()
-            dday = person.getDeath().getDateObj()
-            name = person.getPrimaryName()
-            self.person_list.insert(0,[gname(name,0),person.getId(),
-                                       gender,bday.getQuoteDate(),
-                                       dday.getQuoteDate(),
-                                       sort.build_sort_name(name),
-                                       sort.build_sort_date(bday),
-                                       sort.build_sort_date(dday)])
-
+            self.person_list.insert(0,person.getDisplayInfo())
             self.person_list.set_row_data(0,pos)
-
-            if GrampsCfg.hide_altnames == 0:
-                for name in person.getAlternateNames():
-                    pos2 = (person,0)
-                    self.alt2col[person].append(pos2)
-                    self.person_list.insert(0,[gname(name,1),person.getId(),
-                                               gender,bday.getQuoteDate(),
-                                               dday.getQuoteDate(),
-                                               sort.build_sort_name(name),
-                                               sort.build_sort_date(bday),
-                                               sort.build_sort_date(dday)])
-
-                    self.person_list.set_row_data(0,pos2)
         self.sort_person_list()
 
     def load_person(self,person):
         if person:
-            EditPerson.EditPerson(person,self.database,
-                                  self.update_after_edit)
+            EditPerson.EditPerson(person, self.db, self.update_after_edit)
 
     def build_spouse_dropdown(self):
         mymap = {}
@@ -1669,9 +1668,9 @@ class Gramps:
         self.active_child = None
         
         i = 0
-        self.child_list.set_sort_type(self.c_sort_dir)
-        self.child_list.set_sort_column(self.c_sort_col)
-        self.child_list.set_reorderable(self.c_sort_col == self.c_birth_order)
+        self.child_list.set_sort_type(self.c_sdir)
+        self.child_list.set_sort_column(self.c_scol)
+        self.child_list.set_reorderable(self.c_scol == self.c_birth_order)
 
         if family:
             if self.active_person == family.getFather():
@@ -1679,7 +1678,7 @@ class Gramps:
             else:
                 self.active_spouse = family.getFather()
             
-            child_list = family.getChildList()
+            child_list = list(family.getChildList())
             child_list.sort(sort.by_birthdate)
 
             attr = ""
@@ -1714,13 +1713,11 @@ class Gramps:
                     if len(child.getPhotoList()) > 0:
                         attr = attr + "P"
 
-                self.child_list.append(["%2d"%(i+1),
+                self.child_list.append(["%2d" % (i+1),
                                         GrampsCfg.nameof(child),
-                                        child.getId(),
-                                        gender,
+                                        child.getId(), gender,
                                         Utils.birthday(child),
-                                        status,
-                                        attr])
+                                        status, attr])
                 self.child_list.set_row_data(i,child)
                 i=i+1
                 if i != 0:
@@ -1747,57 +1744,50 @@ class Gramps:
         gtk.threads_leave()
 
     def post_load(self,name):
-        self.database.setSavePath(name)
-        res = self.database.getResearcher()
+        self.db.setSavePath(name)
+        res = self.db.getResearcher()
         owner = GrampsCfg.get_researcher()
     
         if res.getName() == "" and owner.getName() != "":
-            self.database.setResearcher(owner)
+            self.db.setResearcher(owner)
             Utils.modified()
 
         self.setup_bookmarks()
 
-        mylist = self.database.getPersonEventTypes()
-        for type in mylist:
-            ntype = const.display_pevent(type)
-            if ntype not in const.personalEvents:
-                const.personalEvents.append(ntype)
-
-        mylist = self.database.getFamilyEventTypes()
-        for type in mylist:
-            ntype = const.display_fevent(type)
-            if ntype not in const.marriageEvents:
-                const.marriageEvents.append(ntype)
-
-        mylist = self.database.getPersonAttributeTypes()
-        for type in mylist:
-            ntype = const.display_pattr(type)
-            if ntype not in const.personalAttributes:
-                const.personalAttributes.append(ntype)
-
-        mylist = self.database.getFamilyAttributeTypes()
-        for type in mylist:
-            if type not in const.familyAttributes:
-                const.familyAttributes.append(type)
-
-        mylist = self.database.getFamilyRelationTypes()
-        for type in mylist:
-            if type not in const.familyRelations:
-                const.familyRelations.append(type)
-
+#        mylist = self.db.getPersonEventTypes()
+#        for type in mylist:
+#            ntype = const.display_pevent(type)
+#            if ntype not in const.personalEvents:
+#                const.personalEvents.append(ntype)
+#
+#        mylist = self.db.getFamilyEventTypes()
+#        for type in mylist:
+#            ntype = const.display_fevent(type)
+#            if ntype not in const.marriageEvents:
+#                const.marriageEvents.append(ntype)
+#
+#        mylist = self.db.getPersonAttributeTypes()
+#        for type in mylist:
+#            ntype = const.display_pattr(type)
+#            if ntype not in const.personalAttributes:
+#                const.personalAttributes.append(ntype)
+#
+#        mylist = self.db.getFamilyAttributeTypes()
+#        for type in mylist:
+#            if type not in const.familyAttributes:
+#                const.familyAttributes.append(type)
+#
+#        mylist = self.db.getFamilyRelationTypes()
+#        for type in mylist:
+#            if type not in const.familyRelations:
+#                const.familyRelations.append(type)
+#
         GrampsCfg.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")
     
-        person = self.database.getDefaultPerson()
+        person = self.db.getDefaultPerson()
         if person:
             self.active_person = person
-        for person in self.database.getPersonMap().values():
-            if self.active_person == None:
-                self.active_person = person
-            lastname = person.getPrimaryName().getSurname()
-            if lastname and lastname not in const.surnames:
-                const.surnames.append(lastname)
-                const.surnames.sort()
 
         self.statusbar.set_progress(1.0)
         self.full_update()
@@ -1805,19 +1795,25 @@ class Gramps:
         return 1
     
     def load_database(self,name):
-        filename = "%s/%s" % (name,const.indexFile)
-        if ReadXML.loadData(self.database,filename,self.load_progress) == 0:
+        filename = "%s/%s" % (name,const.xmlFile)
+        if not os.path.isfile(filename):
+            filename = "%s/%s" % (name,const.zodbFile)
+            self.clear_database(1)
+        else:
+            self.clear_database(0)
+            
+        if self.db.load(filename,self.load_progress) == 0:
             return 0
         return self.post_load(name)
 
     def load_revision(self,f,name,revision):
-        filename = "%s/%s" % (name,const.indexFile)
-        if ReadXML.loadRevision(self.database,f,filename,revision,self.load_progress) == 0:
+        filename = "%s/%s" % (name,self.db.get_base())
+        if ReadXML.loadRevision(self.db,f,filename,revision,self.load_progress) == 0:
             return 0
         return self.post_load(name)
 
     def setup_bookmarks(self):
-        self.bookmarks = Bookmarks.Bookmarks(self.database.getBookmarks(),
+        self.bookmarks = Bookmarks.Bookmarks(self.db.getBookmarks(),
                                              self.gtop.get_widget("jump_to"),
                                              self.bookmark_callback)
 
@@ -1831,67 +1827,32 @@ class Gramps:
         gname = Utils.phonebook_from_name
         
         self.person_list.set_column_visibility(1,GrampsCfg.id_visible)
-        new_alt2col = {}
     
-        bsn = sort.build_sort_name
-        bsd = sort.build_sort_date
-        for person in self.database.getPersonMap().values():
+        i = 0
+        for key in self.db.getPersonKeys():
+            i = i + 1
+            person = self.db.getPersonMap()[key]
             if datacomp(person):
-                if self.id2col.has_key(person):
-                    new_alt2col[person] = self.alt2col[person]
+                if self.id2col.has_key(key):
                     continue
-                pos = (person,0)
-                self.id2col[person] = pos
-                new_alt2col[person] = []
+                pos = (key,0)
+                self.id2col[key] = pos
 
-                if person.getGender() == Person.male:
-                    gender = const.male
-                elif person.getGender() == Person.female:
-                    gender = const.female
-                else:
-                    gender = const.unknown
-
-                name = person.getPrimaryName()
-                bday = person.getBirth().getDateObj()
-                dday = person.getDeath().getDateObj()
-                sort_bday = bsd(bday)
-                sort_dday = bsd(dday)
-                qbday = bday.getQuoteDate()
-                qdday = dday.getQuoteDate()
-                pid = person.getId()
-
-                values = [gname(name,0), pid, gender, qbday, qdday,
-                          bsn(name), sort_bday, sort_dday ]
-                self.person_list.insert(0,values)
+                self.person_list.insert(0,self.db.getPersonDisplay(key))
                 self.person_list.set_row_data(0,pos)
-                
-                if GrampsCfg.hide_altnames:
-                    continue
-
-                for name in person.getAlternateNames():
-                    pos = (person,1)
-                    new_alt2col[person].append(pos)
-
-                    values = [gname(name,1), pid, gender, qbday, qdday,
-                              bsn(name), sort_bday, sort_dday]
-                    self.person_list.insert(0,values)
-                    self.person_list.set_row_data(0,pos)
-                    
             else:
-                if self.id2col.has_key(person):
-                    pid = self.id2col[person]
-                    del self.id2col[person]
+                if self.id2col.has_key(key):
+                    del self.id2col[key]
 
-                    for id in [pid] + self.alt2col[person]:
+                    for id in [key]:
                         row = self.person_list.find_row_from_data(id)
                         self.person_list.remove(row)
 
-        self.alt2col = new_alt2col
         self.person_list.thaw()
         self.sort_person_list()
 
     def on_home_clicked(self,obj):
-        temp = self.database.getDefaultPerson()
+        temp = self.db.getDefaultPerson()
         if temp:
             self.change_active_person(temp)
             self.update_display(0)
@@ -1921,7 +1882,7 @@ class Gramps:
                            _('Do not change Home Person'))
             
     def set_person(self):
-        self.database.setDefaultPerson(self.active_person)
+        self.db.setDefaultPerson(self.active_person)
         Utils.modified()
 
     def family_up_clicked(self,obj):
@@ -1969,25 +1930,25 @@ class Gramps:
     def export_callback(self,obj,plugin_function):
         """Call the export plugin, with the active person and database"""
         if self.active_person:
-            plugin_function(self.database,self.active_person)
+            plugin_function(self.db,self.active_person)
 
     def import_callback(self,obj,plugin_function):
         """Call the import plugin"""
-        plugin_function(self.database,self.active_person,self.tool_callback)
-        self.topWindow.set_title("Gramps - " + self.database.getSavePath())
+        plugin_function(self.db,self.active_person,self.tool_callback)
+        self.topWindow.set_title("%s - GRAMPS" % self.db.getSavePath())
 
     def on_preferences_activate(self,obj):
-        GrampsCfg.display_preferences_box(self.database)
+        GrampsCfg.display_preferences_box(self.db)
     
     def menu_report(self,obj,task):
         """Call the report plugin selected from the menus"""
         if self.active_person:
-            task(self.database,self.active_person)
+            task(self.db,self.active_person)
 
     def menu_tools(self,obj,task):
         """Call the tool plugin selected from the menus"""
         if self.active_person:
-            task(self.database,self.active_person,self.tool_callback)
+            task(self.db,self.active_person,self.tool_callback)
     
     def on_main_key_release_event(self,obj,event):
         """Respond to the insert and delete buttons in the person list"""

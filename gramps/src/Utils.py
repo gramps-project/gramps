@@ -429,20 +429,6 @@ def thumb_path(dir,mobj):
     else:
         return find_icon(type)
 
-
-#-------------------------------------------------------------------------
-#
-#
-# Common setup code for a combo box for inputting a surname.
-#
-#-------------------------------------------------------------------------
-def attach_surnames(combo):
-    if len(const.surnames) > 0:
-        # Surnames are always sorted
-        combo.set_popdown_strings(const.surnames)
-        combo.disable_activate()
-    combo.entry.set_text("")
-
 #-------------------------------------------------------------------------
 #
 # Sets up a delayed (0.005 sec) handler for text completion.  Text

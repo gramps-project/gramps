@@ -84,6 +84,9 @@ class MediaView:
         self.media_list.set_sort_column(self.sort_map[self.sort_col])
         self.set_arrow(self.sort_col)
 
+    def change_db(self,db):
+        self.db = db
+
     def moveto(self,row):
         self.media_list.unselect_all()
         self.media_list.select_row(row,0)
@@ -260,7 +263,7 @@ class MediaView:
         object = self.media_list.get_row_data(self.media_list.selection[0])
         ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
 
-    def on_delete_media_clicked(self,obj):
+    def on_delete_clicked(self,obj):
         if len(self.media_list.selection) <= 0:
             return
         else:

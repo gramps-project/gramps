@@ -81,7 +81,7 @@ class Merge:
         self.person_list = database.getPersonMap().values()[:]
 
         base = os.path.dirname(__file__)
-        self.glade_file = base + os.sep + "merge.glade"
+        self.glade_file = "%s/%s" % (base,"merge.glade")
         top = GladeXML(self.glade_file,"dialog")
         
         my_menu = GtkMenu()

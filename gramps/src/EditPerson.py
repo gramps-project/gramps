@@ -249,7 +249,7 @@ class EditPerson:
         self.autoplace = AutoComp.AutoCombo(self.bpcombo,self.pmap.keys())
         self.autodeath = AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),
                                             self.autoplace)
-        self.comp = AutoComp.AutoCombo(self.sncombo,const.surnames)
+        self.comp = AutoComp.AutoCombo(self.sncombo,self.db.getSurnames())
             
         self.gid.set_text(person.getId())
         self.gid.set_editable(GrampsCfg.id_edit)
@@ -1140,9 +1140,7 @@ class EditPerson:
             
         if surname != name.getSurname():
             name.setSurname(surname)
-            if surname not in const.surnames:
-                const.surnames.append(surname)
-                const.surnames.sort()
+            self.db.addSurname(name)
 
         if given != name.getFirstName():
             name.setFirstName(given)

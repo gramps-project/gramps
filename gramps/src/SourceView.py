@@ -71,13 +71,16 @@ class SourceView:
         self.sort_arrow = [self.title_arrow, self.id_arrow, self.author_arrow]
         self.source_list.connect('click-column',self.click_column)
 
-        self.sort_col,self.sort_dir = GrampsCfg.get_sort_cols("source",3,GTK.SORT_ASCENDING)
-        if self.sort_col >= len(self.sort_arrow):
-            self.sort_col = 0
+        self.scol,self.sdir = GrampsCfg.get_sort_cols("source",3,GTK.SORT_ASCENDING)
+        if self.scol >= len(self.sort_arrow):
+            self.scol = 0
             
-        self.source_list.set_sort_type(self.sort_dir)
-        self.source_list.set_sort_column(self.sort_map[self.sort_col])
-        self.set_arrow(self.sort_col)
+        self.source_list.set_sort_type(self.sdir)
+        self.source_list.set_sort_column(self.sort_map[self.scol])
+        self.set_arrow(self.scol)
+
+    def change_db(self,db):
+        self.db = db
 
     def moveto(self,row):
         self.source_list.unselect_all()
@@ -91,7 +94,7 @@ class SourceView:
 
         a = self.sort_arrow[column]
         a.show()
-        if self.sort_dir == GTK.SORT_ASCENDING:
+        if self.sdir == GTK.SORT_ASCENDING:
             a.set(GTK.ARROW_DOWN,2)
         else:
             a.set(GTK.ARROW_UP,2)
@@ -107,20 +110,20 @@ class SourceView:
             data = obj.get_row_data(obj.selection[0])
         
         obj.freeze()
-        if new_col == self.sort_col:
-            if self.sort_dir == GTK.SORT_ASCENDING:
-                self.sort_dir = GTK.SORT_DESCENDING
+        if new_col == self.scol:
+            if self.sdir == GTK.SORT_ASCENDING:
+                self.sdir = GTK.SORT_DESCENDING
             else:
-                self.sort_dir = GTK.SORT_ASCENDING
+                self.sdir = GTK.SORT_ASCENDING
         else:
-            self.sort_dir = GTK.SORT_ASCENDING
+            self.sdir = GTK.SORT_ASCENDING
 
         self.set_arrow(column)
             
-        obj.set_sort_type(self.sort_dir)
+        obj.set_sort_type(self.sdir)
         obj.set_sort_column(new_col)
-        self.sort_col = new_col
-        GrampsCfg.save_sort_cols("source",self.sort_col,self.sort_dir)
+        self.scol = new_col
+        GrampsCfg.save_sort_cols("source",self.scol,self.sdir)
         obj.sort()
         if data:
             row = obj.find_row_from_data(data)
@@ -139,13 +142,9 @@ class SourceView:
         self.source_list.set_column_visibility(1,GrampsCfg.id_visible)
 
         index = 0
-        for src in self.db.getSourceMap().values():
-            id = src.getId()
-            title = src.getTitle()
-            author = src.getAuthor()
-            stitle = string.upper(title)
-            sauthor = string.upper(author)
-            self.source_list.append([title,id,author,stitle,sauthor])
+        for key in self.db.getSourceKeys():
+            src = self.db.getSourceMap()[key]
+            self.source_list.append(src.getDisplayInfo())
             self.source_list.set_row_data(index,src)
             index = index + 1
 
@@ -156,17 +155,18 @@ class SourceView:
         self.source_list.sort()
         self.source_list.thaw()
     
-    def on_button_press_event(self,obj,event):
+    def button_press(self,obj,event):
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             if len(obj.selection) > 0:
                 index = obj.selection[0]
                 source = obj.get_row_data(index)
-                EditSource.EditSource(source,self.db,self.update_display_after_edit)
+                EditSource.EditSource(source,self.db,
+                                      self.update_display_after_edit)
 
     def on_add_source_clicked(self,obj):
         EditSource.EditSource(Source(),self.db,self.new_source_after_edit)
 
-    def on_delete_source_clicked(self,obj):
+    def on_delete_clicked(self,obj):
         if len(obj.selection) == 0:
             return
         else:
@@ -228,7 +228,8 @@ class SourceView:
         if len(obj.selection) > 0:
             index = obj.selection[0]
             source = obj.get_row_data(index)
-            EditSource.EditSource(source,self.db,self.update_display_after_edit)
+            EditSource.EditSource(source,self.db,
+                                  self.update_display_after_edit)
 
     def new_source_after_edit(self,source):
         self.db.addSource(source)

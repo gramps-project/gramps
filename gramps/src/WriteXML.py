@@ -157,14 +157,14 @@ class XmlWriter:
         date = string.split(time.ctime(time.time()))
         owner = self.db.getResearcher()
         personList = self.db.getPersonMap().values()
-        personList.sort(sortById)
+        #personList.sort(sortById)
         familyList = self.db.getFamilyMap().values()
-        familyList.sort(sortById)
+        #familyList.sort(sortById)
         sourceList = self.db.getSourceMap().values()
         placeList = self.db.getPlaceMap().values()
-        placeList.sort(sortById)
+        #placeList.sort(sortById)
         objList = self.db.getObjectMap().values()
-        objList.sort(sortById)
+        #objList.sort(sortById)
         
         total = len(personList) + len(familyList) + len(placeList) + len(sourceList)
 
