@@ -1,5 +1,12 @@
-2003-11-01  Tim Waugh  <twaugh@redhat.com>
+2003-11-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/WriteCD.py: launch nautilus to burn:/// after exporting to a CD
+	* src/PeopleView.py: rebuild after a filter is applied
+	* src/DbPrompter: remove ZODB option
+	* src/RelLib.py: remove ZODB option
+	* src/gramps.glade: remove ZODB option
+	* src/gramps_main.py: remove ZODB option
 
+2003-11-01  Tim Waugh  <twaugh@redhat.com>
 	* src/gramps_main.py (Gramps.delete_person_clicked): Fix removal
 	of multiple people at once (bug #834102).
 
