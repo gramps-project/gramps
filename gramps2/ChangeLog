@@ -2,6 +2,8 @@
 	* src/ReadXML.py: Fix file copy problem, handle copy failure
 	* src/ImageSelect.py: Display GRAMPS ID, not DB handle
 	* src/WriteGedcom.py: handle image file problems when exporting
+	* src/DisplayModels.py: handle a closed database in on_get_value 
+	* src/PeopleModel.py: handle a closed database in on_get_value 
 
 2004-08-24  Martin Hawlisch <loshawlos@users.sourceforge.net>
 	* src/plugins/WebPage.py: web page enhancements, including
