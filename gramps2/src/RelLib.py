@@ -2299,7 +2299,15 @@ class GrampsDB(Persistent):
     
     def getDefaultPerson(self):
         """returns the default Person of the database"""
-        return self.default
+        if self.default == None:
+            keys = self.personTable.keys()
+            if len(keys):
+                keys.sort()
+                return self.personMap[keys[0]]
+            else:
+                return None
+        else:
+            return self.default
 
     def getPerson(self,id):
         """returns a map of gramps's IDs to Person instances"""
