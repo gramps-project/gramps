@@ -59,7 +59,8 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 class SourceView:
-    def __init__(self,db,glade,update):
+    def __init__(self,parent,db,glade,update):
+        self.parent = parent
         self.glade = glade
         self.db = db
         self.update = update
@@ -129,7 +130,7 @@ class SourceView:
             store,iter = self.selection.get_selected()
             id = store.get_value(iter,1)
             source = self.db.get_source(id)
-            EditSource.EditSource(source,self.db,self.topWindow,self.update_display)
+            EditSource.EditSource(source,self.db,self.parent,self.topWindow,self.update_display)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
@@ -169,7 +170,7 @@ class SourceView:
         menu.popup(None,None,None,event.button,event.time)
 
     def on_add_clicked(self,obj):
-        EditSource.EditSource(RelLib.Source(),self.db,self.topWindow,self.new_after_edit)
+        EditSource.EditSource(RelLib.Source(),self.db,self.parent,self.topWindow,self.new_after_edit)
 
     def on_delete_clicked(self,obj):
         
@@ -244,7 +245,7 @@ class SourceView:
         if iter:
             id = list_store.get_value(iter,1)
             source = self.db.get_source(id)
-            EditSource.EditSource(source, self.db, self.topWindow, self.update_display)
+            EditSource.EditSource(source, self.db, self.parent, self.topWindow, self.update_display)
 
     def new_after_edit(self,source):
         self.db.add_source(source)
@@ -253,4 +254,3 @@ class SourceView:
     def update_display(self,place):
         self.db.build_source_display(place.get_id())
         self.update(0)
-

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -49,6 +49,14 @@ class LocationEditor:
 
     def __init__(self,parent,location,parent_window=None):
         self.parent = parent
+        if location:
+            if self.parent.child_windows.has_key(location):
+                self.parent.child_windows[location].present(None)
+                return
+            else:
+                self.win_key = location
+        else:
+            self.win_key = self
         self.location = location
         self.top = gtk.glade.XML(const.dialogFile, "loc_edit","gramps")
         self.window = self.top.get_widget("loc_edit")
@@ -75,21 +83,43 @@ class LocationEditor:
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "on_help_loc_clicked" : self.on_help_clicked,
+            "on_ok_loc_clicked" : self.on_location_edit_ok_clicked,
+            "on_cancel_loc_clicked" : self.close,
+            "on_loc_delete_event" : self.on_delete_event,
            })
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.val = self.window.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_location_edit_ok_clicked()
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
         self.window.destroy()
+        
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_('Location Editor'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.window.run()
 
-    def on_location_edit_ok_clicked(self):
+    def on_location_edit_ok_clicked(self,obj):
         self.location = self.location
 
         city = unicode(self.city.get_text())
@@ -107,6 +137,7 @@ class LocationEditor:
         self.update_location(city,parish,county,state,phone,postal,country)
         
         self.parent.redraw_location_list()
+        self.close(obj)
 
     def update_location(self,city,parish,county,state,phone,postal,country):
         if self.location.get_city() != city:

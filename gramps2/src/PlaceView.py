@@ -52,7 +52,8 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class PlaceView:
     
-    def __init__(self,db,glade,update):
+    def __init__(self,parent,db,glade,update):
+        self.parent = parent
         self.db     = db
         self.glade  = glade
         self.list   = glade.get_widget("place_list")
@@ -164,7 +165,7 @@ class PlaceView:
             mlist = []
             self.selection.selected_foreach(self.blist,mlist)
             if mlist:
-                EditPlace.EditPlace(self,mlist[0],self.update_display,self.topWindow)
+                EditPlace.EditPlace(self.parent,mlist[0],self.update_display,self.topWindow)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
@@ -214,7 +215,7 @@ class PlaceView:
         self.update(0)
 
     def on_add_place_clicked(self,obj):
-        EditPlace.EditPlace(self,RelLib.Place(),self.new_place_after_edit)
+        EditPlace.EditPlace(self.parent,RelLib.Place(),self.new_place_after_edit)
 
     def on_delete_clicked(self,obj):
         mlist = []
@@ -263,7 +264,7 @@ class PlaceView:
         self.selection.selected_foreach(self.blist,mlist)
 
         for place in mlist:
-            EditPlace.EditPlace(self, place, self.update_display)
+            EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):
         id = self.db.get_place_id(store.get_value(iter,1))

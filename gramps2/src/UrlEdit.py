@@ -105,7 +105,7 @@ class UrlEditor:
         self.parent.winsmenu.append(self.parent_menu_item)
 
     def remove_itself_from_menu(self):
-        self.parent.child_windows[self.win_key]
+        del self.parent.child_windows[self.win_key]
         self.parent_menu_item.destroy()
 
     def present(self,obj):

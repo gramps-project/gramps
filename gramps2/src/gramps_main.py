@@ -254,9 +254,9 @@ class Gramps:
             self.change_active_person, self.load_person
             )
         
-        self.place_view  = PlaceView.PlaceView(self.db,self.gtop,self.update_display)
-        self.source_view = SourceView.SourceView(self.db,self.gtop,self.update_display)
-        self.media_view  = MediaView.MediaView(self.db,self.gtop,self.update_display)
+        self.place_view  = PlaceView.PlaceView(self,self.db,self.gtop,self.update_display)
+        self.source_view = SourceView.SourceView(self,self.db,self.gtop,self.update_display)
+        self.media_view  = MediaView.MediaView(self,self.db,self.gtop,self.update_display)
 
         self.add_button = self.gtop.get_widget('addbtn')
         self.add_item = self.gtop.get_widget('add_item')
