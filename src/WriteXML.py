@@ -171,9 +171,9 @@ class XmlWriter:
         
         total = person_len + family_len + place_len + source_len
 
-        self.g.write('<?xml version="1.0"?>\n')
+        self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
-        self.g.write("<database>\n")
+        self.g.write("<database xmlns=\"http://gramps.sourceforge.net/database\">\n")
         self.g.write("  <header>\n")
         self.g.write("    <created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
         self.g.write(" version=\"" + const.version + "\"")
@@ -360,11 +360,11 @@ class XmlWriter:
         self.g.write("</database>\n")
 
     def fix(self,line):
-        l = string.strip(line)
-        l = string.replace(l,'&','&amp;')
-        l = string.replace(l,'>','&gt;')
-        l = string.replace(l,'<','&lt;')
-        return string.replace(l,'"','&quot;')
+        l = line.strip()
+        l = l.replace('&','&amp;')
+        l = l.replace('>','&gt;')
+        l = l.replace('<','&lt;')
+        return l.replace('"','&quot;')
 
     def write_note(self,val,note,indent=0):
         if not note:
@@ -387,9 +387,17 @@ class XmlWriter:
             sp = "  "*index
             com = self.fix(w.get_comment())
             if w.get_type() == RelLib.Event.ID:
-                self.g.write('%s<witness ref="%s">%s</witness>\n' % (sp,w.get_value(),com))
+                self.g.write('%s<witness>\n' % sp)
+                self.g.write('  %s<ref>%s</ref>\n' % (sp,w.get_value()))
+                if com:
+                    self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
+                self.g.write('%s</witness>\n' % sp)
             else:
-                self.g.write('%s<witness name="%s">%s</witness>\n' % (sp,w.get_value(),com))
+                self.g.write('%s<witness>\n' % sp)
+                self.g.write('  %s<name>%s</name>\n' % (sp,w.get_value()))
+                if com:
+                    self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
+                self.g.write('%s</witness>\n' % sp)
 
     def dump_my_event(self,name,event,index=1):
         if not event or event.is_empty():
