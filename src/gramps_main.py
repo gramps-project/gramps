@@ -1289,8 +1289,8 @@ def redisplay_person_list(person):
                               gender,bday.getQuoteDate(),
                               dday.getQuoteDate(),
                               sort.build_sort_name(name),
-                              sort.build_sort_event(bday),
-                              sort.build_sort_event(dday)])
+                              sort.build_sort_date(bday),
+                              sort.build_sort_date(dday)])
 
         person_list.set_row_data(0,pos)
 
@@ -1302,8 +1302,8 @@ def redisplay_person_list(person):
                                       gender,bday.getQuoteDate(),
                                       dday.getQuoteDate(),
                                       sort.build_sort_name(name),
-                                      sort.build_sort_event(bday),
-                                      sort.build_sort_event(dday)])
+                                      sort.build_sort_date(bday),
+                                      sort.build_sort_date(dday)])
 
                 person_list.set_row_data(0,pos2)
 
@@ -1720,8 +1720,8 @@ def apply_filter():
 
             bday = person.getBirth().getDateObj()
             dday = person.getDeath().getDateObj()
-            sort_bday = sort.build_sort_event(bday)
-            sort_dday = sort.build_sort_event(dday)
+            sort_bday = sort.build_sort_date(bday)
+            sort_dday = sort.build_sort_date(dday)
             qbday = bday.getQuoteDate()
             qdday = dday.getQuoteDate()
             pid = person.getId()

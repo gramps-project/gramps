@@ -61,7 +61,7 @@ _AM9_32_43 = ((15 * _HALAKIM_PER_HOUR) + 589)
 
 #-------------------------------------------------------------------------
 #
-# 
+# Conversion tables
 #
 #-------------------------------------------------------------------------
 monthsPerYear = [
@@ -76,7 +76,7 @@ yearOffset = [
 
 #-------------------------------------------------------------------------
 #
-# 
+# Tasks
 #
 #-------------------------------------------------------------------------
 
@@ -99,6 +99,7 @@ def sdn_to_french(sdn):
 
 
 def sdn_to_gregorian(sdn):
+    """Converts an SDN number to a gregorial date"""
     if sdn <= 0:
         return (0,0,0)
 
@@ -133,7 +134,7 @@ def sdn_to_gregorian(sdn):
     return (year,month,day)
 
 def gregorian_to_sdn(iyear,imonth,iday):
-
+    """Converts a gregorian date to an SDN number"""
     # check for invalid dates 
     if iyear==0 or iyear<-4714 or imonth<=0 or imonth>12 or iday<=0 or iday>31:
 	return 0
@@ -164,6 +165,7 @@ def gregorian_to_sdn(iyear,imonth,iday):
 
 
 def sdn_to_julian(sdn):
+    """Converts an SDN number to a Julian date"""
     if sdn <= 0 :
         return (0,0,0)
 
@@ -193,6 +195,7 @@ def sdn_to_julian(sdn):
     return (year,month,day)
 
 def julian_to_sdn(iyear,imonth,iday):
+    """Converts a Julian calendar date to an SDN number"""
 
     # check for invalid dates
     if iyear==0 or iyear<-4713 or imonth<=0 or imonth>12 or iday<=0 or iday>31:
@@ -329,6 +332,7 @@ def FindStartOfYear(year):
     return (pMetonicCycle, pMetonicYear, pMoladDay, pMoladHalakim, pTishri1)
 
 def sdn_to_jewish(sdn):
+    """Converts an SDN number to a Julian calendar date"""
 
     if sdn <= _H_SDN_OFFSET :
         return (0,0,0)
@@ -439,6 +443,7 @@ def sdn_to_jewish(sdn):
 
 
 def jewish_to_sdn(year, month, day):
+    """Converts a Jewish calendar date to an SDN number"""
     if year <= 0 or day <= 0 or day > 30 : 
 	return 0
 

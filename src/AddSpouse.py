@@ -17,6 +17,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+"""
+The AddSpouse module provides the AddSpouse class that allows the user to
+add a new spouse to the active person.
+"""
 
 #-------------------------------------------------------------------------
 #

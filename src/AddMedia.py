@@ -18,6 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+"""
+Provides the interface to allow a person to add a media object to the database.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules
@@ -124,7 +128,6 @@ class AddMediaObject:
         see if the file exists. If it does, the imgae is loaded into
         the preview window.
         """
-
         filename = self.file_text.get_text()
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)

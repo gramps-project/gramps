@@ -17,6 +17,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+"""
+The AttrEdit module provides the AddressEditor class. This provides a
+mechanism for the user to edit address information.
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -44,8 +48,18 @@ _ = gettext
 #
 #-------------------------------------------------------------------------
 class AttributeEditor:
-
+    """
+    Displays a dialog that allows the user to edit an attribute.
+    """
     def __init__(self,parent,attrib,title,list):
+        """
+        Displays the dialog box.
+
+        parent - The class that called the Address editor.
+        attrib - The attribute that is to be edited
+        title - The title of the dialog box
+        list - list of options for the pop down menu
+        """
         self.parent = parent
         self.attrib = attrib
         self.top = libglade.GladeXML(const.dialogFile, "attr_edit")
@@ -84,16 +98,20 @@ class AttributeEditor:
         self.window.set_data("o",self)
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
-            "on_attr_edit_ok_clicked" : self.on_attrib_edit_ok_clicked,
+            "on_attr_edit_ok_clicked" : self.on_ok_clicked,
             "on_combo_insert_text"    : utils.combo_insert_text,
-            "on_source_clicked" : self.on_attrib_source_clicked
+            "on_source_clicked" : self.on_source_clicked
             })
 
-    def on_attrib_source_clicked(self,obj):
+    def on_source_clicked(self,obj):
+        """Displays the SourceSelector, allowing sources to be edited"""
         Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
             
-    def on_attrib_edit_ok_clicked(self,obj):
-
+    def on_ok_clicked(self,obj):
+        """
+        Called when the OK button is pressed. Gets data from the
+        form and updates the Attribute data structure.
+        """
         type = self.type_field.get_text()
         value = self.value_field.get_text()
         note = self.note_field.get_chars(0,-1)
@@ -104,28 +122,27 @@ class AttributeEditor:
             self.attrib.setSourceRefList(self.srcreflist)
             self.parent.alist.append(self.attrib)
         
-        self.update_attrib(type,value,note,priv)
+        self.update(type,value,note,priv)
         
         self.parent.redraw_attr_list()
         utils.destroy_passed_object(obj)
 
-    def update_attrib(self,type,value,note,priv):
-        
-        if self.attrib.getType() != const.save_pattr(type):
-            self.attrib.setType(const.save_pattr(type))
+    def check(self,get,set,data):
+        """Compares a data item, updates if necessary, and sets the
+        parents lists_changed flag"""
+        if get() != data:
+            set(data)
             self.parent.lists_changed = 1
-        
-        if self.attrib.getValue() != value:
-            self.attrib.setValue(value)
-            self.parent.lists_changed = 1
-
-        if self.attrib.getNote() != note:
-            self.attrib.setNote(note)
-            self.parent.lists_changed = 1
-
-        if self.attrib.getPrivacy() != priv:
-            self.attrib.setPrivacy(priv)
-            self.parent.lists_changed = 1
+            
+    def update(self,type,value,note,priv):
+        """Compares the data items, and updates if necessary"""
+        ntype = const.save_pattr(type)
+        self.check(self.attrib.getType,self.attrib.setType,ntype)
+        self.check(self.attrib.getValue,self.attrib.setValue,value)
+        self.check(self.attrib.getNote,self.attrib.setNote,note)
+        self.check(self.attrib.getPrivacy,self.attrib.setPrivacy,priv)
 
 def src_changed(parent):
+    """Sets the lists_changed flag of the parent object. Used as a callback
+    to the source editor, so the source editor can indicate a change."""
     parent.lists_changed = 1

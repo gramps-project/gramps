@@ -17,6 +17,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+"""
+The AddrEdit module provides the AddressEditor class. This provides a
+mechanism for the user to edit address information.
+"""
 
 #-------------------------------------------------------------------------
 #
@@ -33,6 +37,7 @@ import libglade
 import const
 import utils
 import Date
+import RelLib
 
 from intl import gettext
 _ = gettext
@@ -44,7 +49,7 @@ _ = gettext
 #-------------------------------------------------------------------------
 class AddressEditor:
     """
-    Displays a dialog that allows the user to edit a address.
+    Displays a dialog that allows the user to edit an address.
     """
     def __init__(self,parent,addr):
         """
@@ -110,7 +115,7 @@ class AddressEditor:
     def ok_clicked(self,obj):
         """
         Called when the OK button is pressed. Gets data from the
-        form and updates the Address data structure
+        form and updates the Address data structure.
         """
         date = self.addr_start.get_text()
         street = self.street.get_text()
@@ -122,7 +127,7 @@ class AddressEditor:
         priv = self.priv.get_active()
         
         if self.addr == None:
-            self.addr = Address()
+            self.addr = RelLib.Address()
             self.addr.setSourceRefList(self.srcreflist)
             self.parent.plist.append(self.addr)
             
@@ -154,27 +159,7 @@ class AddressEditor:
         self.check(self.addr.getNote,self.addr.setNote,note)
         self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)
 
-#        if self.addr.getState() != state:
-#            self.addr.setState(state)
-#            self.parent.lists_changed = 1
-#        if self.addr.getStreet() != street:
-#            self.addr.setStreet(street)
-#            self.parent.lists_changed = 1
-#        if self.addr.getCountry() != country:
-#            self.addr.setCountry(country)
-#            self.parent.lists_changed = 1
-#        if self.addr.getCity() != city:
-#            self.addr.setCity(city)
-#            self.parent.lists_changed = 1
-#        if self.addr.getPostal() != postal:
-#            self.addr.setPostal(postal)
-#            self.parent.lists_changed = 1
-#        if self.addr.getNote() != note:
-#            self.addr.setNote(note)
-#            self.parent.lists_changed = 1
-#        if self.addr.getPrivacy() != priv:
-#            self.addr.setPrivacy(priv)
-#            self.parent.lists_changed = 1
-
 def src_changed(parent):
+    """Sets the lists_changed flag of the parent object. Used as a callback
+    to the source editor, so the source editor can indicate a change."""
     parent.lists_changed = 1

@@ -461,12 +461,18 @@ class SingleDate:
                 retval = str(self.year)
             elif self.year == UNDEF:
                 retval = _mname[self.month]
-            else:	
-                retval = "%s %d" % (_mname[self.month],self.year)
+            else:
+                try:
+                    retval = "%s %d" % (_mname[self.month],self.year)
+                except:
+                    retval = "**** %d %d %d ****" % (self.year,self.month,self.day)
         elif self.month == UNDEF:
             retval = str(self.year)
         else:
-            month = _mname[self.month]
+            try:
+                month = _mname[self.month]
+            except:
+                month = "<ILLEGAL MONTH>"
             if self.year == UNDEF:
                 retval = "%s %d, ????" % (month,self.day)
             else:
@@ -830,6 +836,8 @@ class SingleDate:
             else:
                 self.setMonthVal(matches[1])
                 self.setYearVal(matches[2])
+            if self.getMonth() > 13:
+                raise Date.Error
             return 1
 
         match = SingleDate.fmt3.match(text)

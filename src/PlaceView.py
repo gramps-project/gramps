@@ -149,7 +149,6 @@ class PlaceView:
         
         for a in self.sort_arrow:
             a.hide()
-        arrow = self.sort_arrow[column]
         if self.sort_col == column:
             if self.sort_direct == GTK.SORT_DESCENDING:
                 self.sort_direct = GTK.SORT_ASCENDING
