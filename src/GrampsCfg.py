@@ -586,10 +586,8 @@ class GrampsPreferences:
         
         if status_bar == 0:
             self.top.get_widget("stat1").set_active(1)
-        elif status_bar == 1:
-            self.top.get_widget("stat2").set_active(1)
         else:
-            self.top.get_widget("stat3").set_active(1)
+            self.top.get_widget("stat2").set_active(1)
 
         if toolbar == 0:
             self.top.get_widget("tool1").set_active(1)

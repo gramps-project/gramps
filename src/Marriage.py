@@ -79,7 +79,7 @@ class Marriage:
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor")
         top_window = self.get_widget("marriageEditor")
 
-        Utils.set_titles(top_window, self.top.get_window('title'),
+        Utils.set_titles(top_window, self.top.get_widget('title'),
                          _('Marriage/Relationship Editor'))
         
         self.icon_list = self.get_widget('iconlist')
