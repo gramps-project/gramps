@@ -2794,7 +2794,7 @@
 	by you. Click the <guibutton>Add...</guibutton> button to define a new filter. 
 	Once you have designed your filters, you can edit, test, and delete 
 	selected filters using the <guibutton>Edit...</guibutton>, 
-	<guibutton>Test...</guibutton>, and <guibutton>Delete...</guibutton> 
+	<guibutton>Test...</guibutton>, and <guibutton>Delete</guibutton> 
 	buttons, respectively. All the filters displayed in the list will be 
 	automatically saved along with your database and will be available 
 	with subsequent sessions of &app;. </para>

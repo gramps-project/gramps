@@ -2028,9 +2028,9 @@
 	<menuchoice><guimenu>Отчёты</guimenu>
 	<guisubmenu><replaceable>Тип отчёта</replaceable></guisubmenu>
 	<guimenuitem><replaceable>Конкрентный 
-	Отчёт</replaceable></guimenuitem></menuchoice>. Или, Вы можете просмотреть
+	отчёт</replaceable></guimenuitem></menuchoice>. Или, Вы можете просмотреть
     полный выбор доступных отчётов с их краткими описаниями в диалоге <guilabel>Выбор 
-	Отчётов</guilabel>, вызываемом щелчком кнопки 
+	отчётов</guilabel>, вызываемом щелчком кнопки 
 	<guibutton>Отчёты</guibutton> на панели инструментов.
 	</para>
 
@@ -2305,47 +2305,44 @@
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-tools"> 
-        <title>Running Tools</title> 
-	<para> &app; tools allow you to perform various types of analyses
-	of your genealogical data. Typically, the tools do not produce 
-	output in form of printouts or files. Instead, they produce screen
-	output immediately available for the researcher. However, when
-	appropriate, you can save the results of running a tool into a file. 
-	Tools present one of the major strengths of &app; compared to the most
-	genealogical software. </para> 
+        <title>Запуск инструментов</title> 
+	<para> Инструменты &app; позволяют осуществлять различные типы анализа 
+    Ваших генеалогических данных. Обычно, инструменты не производят вывода в форме 
+    файлов или печати. Вместо этого, они отображают вывод на экран для немедленного 
+    просмотра. Однако, по возможности, Вы можете сохранить результаты запуска инструмента 
+    в файл. Инструменты являются одной из сильных сторон &app;, по сравнению с большинством 
+    генеалогических программ. </para> 
 	
-	<para>The tools can be accessed through the menu by choosing 
-	<menuchoice><guimenu>Tools</guimenu>
-	<guisubmenu><replaceable>Tool Section</replaceable></guisubmenu>
-	<guimenuitem><replaceable>Particular 
-	Tool</replaceable></guimenuitem></menuchoice>. Alternatively, 
-	you can browse the complete selection of available tools along 
-	with their brief descriptions in a <guilabel>Tool 
-	Selection</guilabel> dialog evoked by clicking the 
-	<guibutton>Tools</guibutton> icon on the toolbar. </para>
+	<para>Доступ ко всем инструментам осуществляется выбором
+	<menuchoice><guimenu>Инструменты</guimenu>
+    <guisubmenu><replaceable>Категория инструментов</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Конкрентный 
+	инструмент</replaceable></guimenuitem></menuchoice>. Или, Вы можете просмотреть
+    полный выбор доступных инструментов с их краткими описаниями в диалоге <guilabel>Выбор 
+	инструментов</guilabel>, вызываемом щелчком кнопки 
+	<guibutton>Инструменты</guibutton> на панели инструментов. </para>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="tools-ae"> 
-	<title>Analysis and Exploration</title> 
-	<para> This section contains tools which analyze and explore the
-	database, but do not alter it. The following analysis and exploration
-	tools are currently available in &app;: </para>
+	<title>Анализ и исследование</title> 
+	<para> Эта категория содержит инструменты, которые анализируют и исследуют базу данных,
+    но не изменяют её. Следующие инструменты анализа и исследований доступны в настоящий 
+    момент в &app;: </para>
 
 	<variablelist>
 
-	<varlistentry><term>Compare individual events</term>
-	<listitem><para>This tool compares events across the selected group of
-	people. The people for this comparison are chosen with the use of 
-	custom filters. The custom filters can be created in the Custom Filter
-	Editor (see <xref linkend="tools-util"/>). The resulting table produced
-	by this tool can be saved as a spreadsheet. </para></listitem>
+	<varlistentry><term>Сравнить индивидуальные события</term>
+	<listitem><para>Этот инструмент сравнивает события выбранной группы лиц между собой. 
+    Группа лиц выбирается применением фильтров пользователя. Такие фильтры могут быть 
+    созданы в Редакторе фильтров пользователя (см. <xref linkend="tools-util"/>). 
+    Таблица, производимая этим инструментом, может быть сохранена в качестве электронной
+    таблицы (spreadsheet). </para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Interactive descendant browser</term>
-	<listitem><para>This tool builds a tree with the active person being 
-	the root. Children branch from their parents in the usual manner. 
-	Use this tool for a quick glance of a person's descendants. 
-	</para></listitem>
+ 	<varlistentry><term>Интерактивный просмотр потомков</term>
+	<listitem><para>Этот инструмент строит дерево, в корне которого находится активное лицо.
+    Дети являются ветвями их родителей. Используйте этот инструмент для быстрого просмотра
+    потомков лица. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -2353,66 +2350,64 @@
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="tools-db"> 
-	<title>Database Processing</title> 
-	<para> This section contains tools which may modify your database. 
-	The modifications will only be performed upon your explicit consent. 
-	The tools from this section are used mostly for finding and correcting
-	errors in the data. The following database processing tools are 
-	currently available in &app;:</para>
+	<title>Обработка базы данных</title> 
+	<para> Эта категория содержит инструменты, которые могут изменить Вашу базу данных.
+    Изменения будут произведены только с Вашего согласия. Инструменты из этой категории 
+    в основном используются для поиска и исправления ошибок в данных. Следующие инструменты 
+    обработки базы данных доступны в настоящий момент в &app;: </para>
 
 	<variablelist>
 
- 	<varlistentry><term>Check and repair database</term>
-	<listitem><para>This tool checks the database for integrity problems, 
-	fixing the problems it can. Specifically, the tool is checking for:</para>
+ 	<varlistentry><term>Проверить и скорректировать базу данных</term>
+	<listitem><para>Этот инструмент проверяет целостность базы данных, по мере возможности
+    исправляя ошибки. Инструмент проверяет следующие нарушения:</para>
 	<itemizedlist>
-		<listitem><para>Broken family links. These are the cases when 
-		a person's record refers to a family while the family's record 
-		does not refer to that person, and vice versa.
+		<listitem><para>Нарушенные семейные связи. Бывают случаи, когда личная запись 
+        ссылается на семью, в то время как семейная запись не содержит ссылки на это
+        лицо, и наоборот.
 		</para></listitem>
 
-		<listitem><para>Missing media objects. The missing media 
-		object is the object whose file is referenced in the database 
-		but does not exist. This can happen when the file is 
-		accidentally deleted, renamed, or moved to another location.
+		<listitem><para>Утерянные документы. Утерянными документами являются такие 
+        документы, для которых ссылки на файл, записанные в базе данных, указывают
+        на несуществующий файл. Это может произойти, если файл случайно удалён, 
+        переименован, или перемещён в другой каталог. 
 		</para></listitem>
 
-		<listitem><para>Empty families. These are the family entries 
-		which have no reference to any person as their member. 
+		<listitem><para>Пустые семьи. Такими являются записи о семьях, не имеющие ссылок
+        на какое-либо лицо как члена этой семьи.
 		</para></listitem>
 
-		<listitem><para>Parent relationship. This checks all families
-		to ensure that father and mother are not mixed up. The check 
-		is also made that parents have different gender. If they have 
-		common gender then their relationship is renamed to "Partners".
+		<listitem><para>Отношения между родителями. Это проверяет все семьи, 
+        удостоверяя правильность отцовства/материнства. Также, производится проверка
+        на то, что отец и мать разного пола. Если они одного пола, их отношение 
+        переименуется в "Партнёры".
 		</para></listitem>
 
 	</itemizedlist>
 	</listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Extract information from names</term>
-	<listitem><para>This tool searches the entire database and attempts 
-	to extract titles and nicknames that may be embedded in a person's 
-	<guilabel>Given name</guilabel> field. 
+ 	<varlistentry><term>Выделить информацию из имён</term>
+	<listitem><para>Этот инструмент просматривает базу данных и пытается выделить титулы 
+    и прозвища, возможно содержащиеся в поле <guilabel>Имя</guilabel>. 
 	</para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Find possible duplicate people</term>
-	<listitem><para>This tool searches the entire database, looking 
-	for the entries that may represent the same person. 
+ 	<varlistentry><term>Найти возможные дубликаты лиц</term>
+	<listitem><para>Этот инструмент просматривает базу данных в поиске записей, 
+    которые могут представлять  одно лицо.
 	</para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Rename personal event types</term>
-	<listitem><para>This tool allows all the events of a certain name
-	to be renamed to a new name. 
+ 	<varlistentry><term>Переименовать личные события</term>
+	<listitem><para>Этот инструмент позволяет переименовать все события с определённым
+    названием в другое название. 
 	</para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Reorder &app; IDs</term>
-	<listitem><para>This tool reorders the &app; IDs according to the
-	defaults of &app;.
+ 	<varlistentry><term>Упорядочить &app; IDs</term>
+	<listitem><para>Этот инструмент сортирует &app; ID согласно правилам
+    по умолчанию.
 	</para></listitem>
 	</varlistentry>
 
@@ -2422,121 +2417,111 @@
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="tools-util"> 
-	<title>Utilities</title> 
+	<title>Утилиты</title> 
 	<para> </para>
 
- 	<para> This section contains tools allowing you to perform a simple 
-	operation on a portion of data. The results can be saved in your
-	database, but they will not modify your existing data. 
-	The following utilities are currently available in &app;:</para>
+ 	<para> Эта категория содержит инструменты, позволяющие совершение простых операций
+    с базой данных. Результаты могут быть сохранены вместе с Вашей базой данных, 
+    но они не изменят существыющие данные. Следующие утилиты доступны в настоящий 
+    момент в &app;:</para>
 
 	<variablelist>
 
- 	<varlistentry><term>Custom Filter Editor</term>
-	<listitem><para>The Custom Filter Editor builds custom filters 
-	that can be used to select people included in reports, exports, 
-	and other tools and utilities. This is in fact a very powerful tool 
-	in genealogical analysis.</para> 
+ 	<varlistentry><term>Редактор фильтров пользователя</term>
+	<listitem><para>Редактор фильтров пользователя создаёт фильтры пользователя, используемые
+    для выбора людей при создании отчётов, экспорте и в различных инструментах. 
+    В действительности, это чрезвычайно мощный инструмент в генеалогическом анализе. </para> 
 	
-	<para>When you launch it, the <guilabel>User defined filters</guilabel> 
-	dialog appears that lists all the filters (if any) previously defined 
-	by you. Click the <guibutton>Add...</guibutton> button to define a new filter. 
-	Once you have designed your filters, you can edit, test, and delete 
-	selected filters using the <guibutton>Edit...</guibutton>, 
-	<guibutton>Test...</guibutton>, and <guibutton>Delete...</guibutton> 
-	buttons, respectively. All the filters displayed in the list will be 
-	automatically saved along with your database and will be available 
-	with subsequent sessions of &app;. </para>
+	<para>При запуске инструмента появляется диалог <guilabel>Фильтры пользователя</guilabel>, 
+	перечисляющий все определённые Вами фильтры (если имеются). Щёлкните кнопку 
+    <guibutton>Добавить...</guibutton>, чтобы определить новый фильтр. Созданные фильтры 
+    можно править, проверять и удалять нажатием кнопок <guibutton>Правка...</guibutton>, 
+	<guibutton>Проверка...</guibutton> и <guibutton>Удалить</guibutton>, соответственно.
+    Все показанные фильтры будут автоматически сохранены вместе с Вашей базой данных
+    и будут доступны в последующих сеансах работы с &app;. </para>
 	
-	<para>Clicking the <guibutton>Add...</guibutton> button invokes the 
-	following <guilabel>Define filter</guilabel> dialog: </para>
+	<para>Щелчок кнопки <guibutton>Добавить...</guibutton> вызывает следующий диалог
+	<guilabel>Определить фильтр</guilabel>: </para>
 	
  	<!-- ==== Figure: Define filter dialog ==== -->
 	<figure id="cfe-df-fig"> 
-	<title>Define filter dialog</title> 
+	<title>Диалог Определить фильтр</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/cfe-df.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Define filter dialog. </phrase>
+	<phrase>Показан диалог Определить фильтр. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> Type the name for your new filter into the 
-	<guilabel>Name</guilabel> field. Enter any comment that would help you
-	identify this filter in the future into the <guilabel>Comment</guilabel>
-	field. Add as many rules to the <guilabel>Rule list</guilabel> as you
-	would like to your filter using <guibutton>Add...</guibutton> button. 
-	Check <guilabel>Return values that do not match the filter rules
-	(invert)</guilabel> to negate the filter rule (e.g. inverting "has a
-	common ancestor with I1" rule will match everyone who does not have a
-	common ancestor with that person). If the filter has more than one rule, 
-	select one of the <guilabel>Rule operations</guilabel>. This allows you
-	to choose whether all rules must apply, only one (either) rule must 
-	apply, or exactly one (either) rule must apply, in order for the filter 
-	to generate a match. If your filter has only one rule, this selection 
-	has no effect. </para>
+	<para> Введите название фильтра в поле <guilabel>Имя</guilabel>. Введите любой 
+    комментарий, помогающий Вам распознать этот фильтр в будущем, в поле 
+    <guilabel>Комментарий</guilabel>. Добавьте любое количество правил для Вашего фильтра
+    в <guilabel>Список правил</guilabel>, используя кнопку <guibutton>Добавить...</guibutton>. 
+    Отметьте <guilabel>Возвращать значения, не удовлетворяющие правилам 
+    фильтра (инвертировать)</guilabel> чтобы обратить правило фильтра (напр. обращение правила
+    "Имеет общего предка с I1" выберет всех, не имеющих общего предка с этим лицом).
+    Если фильтр содержит более одного правила, выберите одну из 
+    <guilabel>Операций над правилами</guilabel>. Это позволяет выбор: должны ли применяться 
+    все правила, хотя бы одно (любое) правило, или ровно одно (какое-либо) правило, чтобы фильтр
+    выбал лицо. Если Ваш фильтр имеет только одно правило, этот выбор не имеет значения. </para>
 	
-	<para> Clicking the <guibutton>Add...</guibutton> button invokes the 
-	following <guilabel>Add Rule</guilabel> dialog:</para>
+	<para> Щелчок кнопки <guibutton>Добавить...</guibutton> вызывает следующий диалог
+	<guilabel>Добавить правило</guilabel>: </para>
 
  	<!-- ==== Figure: Add Rule dialog ==== -->
 	<figure id="cfe-ar-fig"> 
-	<title>Add Rule dialog</title> 
+	<title>Диалог Добавить правило</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/cfe-ar.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Add Rule dialog. </phrase>
+	<phrase>Показан диалог Добавить правило. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para>The pane on the left-hand side displays available filter rules 
-        arranged by their categories in an expandable tree. For detailed filter 
-        rule reference, see <xref linkend="append-filtref"/>. Click on the 
-        arrows to fold/unfold the appropriate category.  Select the rule 
-        from the tree by clicking on its name. The right-hand side displays 
-        the name, the description, and the values for the currently selected 
-        rule. Once you are satisfied with your rule selection and its values, 
-        click <guibutton>OK</guibutton> to add this rule to the rule list 
-        of the currently edited filter. Clicking <guibutton>Cancel</guibutton>
-        will abort adding the rule to the filter. </para>
+	<para>Панель в левой части окна показывает возможные правила фильтров, распределённые
+    по категориям в развёртывающееся дерево. Для подробной справки по правилам фильтров
+    см. <xref linkend="append-filtref"/>. Щёлкните стрелку, чтобы свернуть/развернуть
+    соответствующую категорию. Выберите правило из дерева путём щелчка по его имени.
+    Правая сторона показывает название, описание и значения для выбранного правила.
+    Если Вы удовлетворены выбором правиля и его значений, щёлкните кнопку 
+    <guibutton>OK</guibutton>, чтобы добавить это правило к редактируемому фильтру.
+    Щёлчок кнопки <guibutton>Отменить</guibutton> отменит добавление правиля к фильтру. </para>
         
-        <para> Note that a filter you've already designed may be used as a rule
-	for another filter. This gives you nearly infinite flexibility in
-	custom-tailoring your selection criteria that can be later used in 
-	most of the exports, reports and some of the tools (such as comparing
-	individual events). </para></listitem>
+        <para> Заметьте, что определённый Вами фильтр может быть использован в качестве
+        правила для другого фильтра. Это предоставляет практически бесконечную гибкость 
+        в подгонке критериев выбора, которые впоследствии могут использоваться в 
+        большинстве экспортов, отчётов и в некоторых инструментах (таких как сравнение
+        индивидуальных событий). </para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Generate SoundEx codes</term>
-	<listitem><para>This utility generates SoundEx codes for the names of
-	people in the database. Please visit the <ulink 
+ 	<varlistentry><term>Вычислить код SoundEx</term>
+	<listitem><para>Эта утилита вычисляет коды SoundEx для фамилий людей. Пожалуйста, 
+    посетите страницу <ulink 
 	url="http://www.archives.gov/research_room/genealogy/census/soundex.html" 
-	type="http">NARA Soundex Indexing page</ulink> to learn more about 
-	Soudex Indexing System.
+	type="http">NARA Soundex Indexing page</ulink>, чтобы узнать подробнее о Системе
+    Индексирования Soudex.
 	</para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Relationship calculator</term>
-	<listitem><para>This utility calculates the relationship between 
-	two people from the database. 
+ 	<varlistentry><term>Определить родственные отношения</term>
+	<listitem><para>Эта утилита определяет родственные отношения между двумя 
+    лицами из базы данных.
 	</para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Verify the database</term>
-	<listitem><para>This utility allows you to verify the database based 
-	on the set of criteria specified by you. This tool is different from 
-	the previously described Check tool in the following. The Check tool
-	detects inconsistencies in the database structure. The Verify tool, 
-	however, is detecting the records that do not satisfy your particular 
-	criteria. </para>
+ 	<varlistentry><term>Проверить базу данных</term>
+	<listitem><para>Эта утилита позволяет проверить базу данных набором указанных 
+    Вами критериев. Эта функция отличается от описанной ранее функции "Проверить и 
+    скорректировать базу данных" следующим образом. Опсанная ранее операция выявляет
+    некорректности в структуре базы данных. Настоящая же утилита выводит записи, 
+    не удовлетворяющие Вашим специфическим критериям. </para>
 
-	<para>For example, you may want to make sure that nobody in your 
-	database had children at the age of 98. Based on common sense, such 
-	a record would indicate an error. However, it is not a consistency 
-	error in the database. Besides, someone might have a child at the of 
-	98 (albeit this rarely happens). The Verify tool will display 
-	everything that violates your criteria so that you can check whether 
-	the record is erroneous or not. The ultimate decision is yours.
+	<para>Например, Вы хотите убедится в том, что никто в вашей базе данных ни имел 
+    ребёнка в возрасте 98 лет. На основании здравого смысла, такая запись означает ошибку.
+    Однако, это не является некорректностью базы данных. Кроме этого, кто-то мог иметь
+    ребёнка в возрасте 98 лет (хотя это не часто случается). Настоящая утилита покажет
+    все записи, нарушающие Выши критерии, предоставляя Вам решать ошибочна ли запись 
+    или нет. 
 	</para></listitem>
 	</varlistentry>
 
