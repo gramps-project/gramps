@@ -247,8 +247,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.cntnt.write('fo:font-weight="bold" ')
             if font.get_italic():
                 self.cntnt.write('fo:font-style="italic" ')
-            self.cntnt.write('fo:font-size="%dpt"/>' % font.get_size())
-            self.cntnt.write('style:font-size-asian="%dpt" ' % font.get_size())
+            self.cntnt.write('fo:font-size="%dpt" ' % font.get_size())
+            self.cntnt.write('style:font-size-asian="%dpt"/> ' % font.get_size())
             self.cntnt.write('</style:style>\n')
 
 	for style_name in self.table_styles.keys():
@@ -977,8 +977,8 @@ try:
 
     Plugins.register_text_doc(mtype,OpenOfficeDoc,1,1,1,".sxw",print_label)
     Plugins.register_book_doc(mtype,OpenOfficeDoc,1,1,1,".sxw")
-    Plugins.register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxd",print_label);
+    Plugins.register_draw_doc(mtype,OpenOfficeDoc,1,1,  ".sxw",print_label);
 except:
     Plugins.register_text_doc(_('OpenOffice.org Writer'), OpenOfficeDoc,1,1,1,".sxw", None)
     Plugins.register_book_doc(_("OpenOffice.org Writer"), OpenOfficeDoc,1,1,1,".sxw")
-    Plugins.register_draw_doc(_("OpenOffice.org Draw"),   OpenOfficeDoc,1,1,".sxd",None);
+    Plugins.register_draw_doc(_("OpenOffice.org Writer"),   OpenOfficeDoc,1,1,".sxx",None);
