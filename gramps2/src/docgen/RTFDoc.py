@@ -26,6 +26,7 @@
 import TextDoc
 import Plugins
 import ImgManip
+import Errors
 
 from intl import gettext as _
 

@@ -50,7 +50,6 @@ import const
 import Utils
 import GrampsCfg
 import ListModel
-import Date
 
 _titles = [(_('Name'),3,200),(_('ID'),1,50),(_('Birth date'),4,50),('',0,50),('',0,0)]
 

@@ -26,14 +26,14 @@ Provides a TextDoc based interface to the AbiWord document format.
 # Imported Modules
 #
 #-------------------------------------------------------------------------
-import os
 import base64
 
 import TextDoc
-from latin_utf8 import latin_to_utf8
-import string
+import Errors
 import Plugins
 import ImgManip
+
+from latin_utf8 import latin_to_utf8
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -194,7 +194,6 @@ class AbiWordDoc(TextDoc.TextDoc):
         self.icount += 1
 
     def start_superscript(self):
-        fsize = self.my_para.get_font().get_size()
         self.text = self.text + '<c props="text-position:superscript">'
 
     def end_superscript(self):

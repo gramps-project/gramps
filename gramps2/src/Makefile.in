@@ -207,7 +207,6 @@ pkgpython_PYTHON = \
 # If not using GNU make, then list all files individually
 # The latter is more portable and POSIX-friendly :)
 GLADEFILES = \
-	config.glade\
 	dialog.glade\
 	edit_person.glade\
 	errdialogs.glade\
@@ -260,7 +259,7 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
 	install-exec-recursive installdirs-recursive install-recursive \
 	uninstall-recursive check-recursive installcheck-recursive
 DIST_COMMON = README $(dist_pkgdata_DATA) $(pkgpython_PYTHON) AUTHORS \
-	ChangeLog Makefile.am Makefile.in NEWS TODO const.py.in
+	ChangeLog Makefile.am Makefile.in NEWS const.py.in
 DIST_SUBDIRS = $(SUBDIRS)
 all: all-recursive
 

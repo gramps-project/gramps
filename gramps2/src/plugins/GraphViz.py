@@ -44,6 +44,8 @@ import Utils
 import Report
 import TextDoc
 import GenericFilter
+import Errors
+
 from intl import gettext as _
 from latin_utf8 import utf8_to_latin
 
@@ -271,6 +273,7 @@ class GraphVizDialog(Report.ReportDialog):
         try:
             ind_list = self.filter.apply(self.db, self.db.getPersonMap().values())
         except Errors.FilterError, msg:
+            from QuestionDialog import ErrorDialog
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
 

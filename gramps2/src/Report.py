@@ -787,8 +787,8 @@ class ReportDialog(BareReportDialog):
     def get_default_basename(self):
         """What should the default name be?
         """
-        path = self.get_stylesheet_savefile()
-        return path.split('.')[0]
+        spath = self.get_stylesheet_savefile()
+        return spath.split('.')[0]
 
     def get_print_pagecount_map(self):
         """Return the data used to fill out the 'pagecount' option
@@ -859,11 +859,11 @@ class ReportDialog(BareReportDialog):
 
         if not self.get_target_is_directory():
             fname = self.target_fileentry.get_full_path(0)
-            (path,ext) = os.path.splitext(fname)
+            (spath,ext) = os.path.splitext(fname)
 
             ext_val = obj.get_data('ext')
             if ext_val:
-                fname = path + ext_val
+                fname = spath + ext_val
             self.target_fileentry.set_filename(fname)
 
         # Does this report format use styles?
@@ -909,8 +909,8 @@ class ReportDialog(BareReportDialog):
         self.tbl.attach(self.target_fileentry,2,4,self.col,self.col+1)
         self.col += 1
         
-        path = self.get_default_directory()
-        self.target_fileentry.set_default_path(path)
+        spath = self.get_default_directory()
+        self.target_fileentry.set_default_path(spath)
 
 
     def setup_format_frame(self):
@@ -931,13 +931,13 @@ class ReportDialog(BareReportDialog):
         if ext == None:
             ext = ""
         if type:
-            path = self.get_default_directory()
+            spath = self.get_default_directory()
             if self.get_target_is_directory():
-                self.target_fileentry.set_filename(path)
+                self.target_fileentry.set_filename(spath)
             else:
                 base = self.get_default_basename()
-                path = os.path.normpath("%s/%s%s" % (path,base,ext))
-                self.target_fileentry.set_filename(path)
+                spath = os.path.normpath("%s/%s%s" % (spath,base,ext))
+                self.target_fileentry.set_filename(spath)
 
 
     def setup_output_notebook(self):
@@ -1310,12 +1310,12 @@ class TemplateParser(handler.ContentHandler):
             
 try:
     parser = make_parser()
-    path = const.template_dir
-    parser.setContentHandler(TemplateParser(_template_map,path))
-    parser.parse("file://%s/templates.xml" % path)
+    apath = const.template_dir
+    parser.setContentHandler(TemplateParser(_template_map,spath))
+    parser.parse("file://%s/templates.xml" % spath)
     parser = make_parser()
-    path = os.path.expanduser("~/.gramps/templates")
-    parser.setContentHandler(TemplateParser(_template_map,path))
-    parser.parse("file://%s/templates.xml" % path)
+    spath = os.path.expanduser("~/.gramps/templates")
+    parser.setContentHandler(TemplateParser(_template_map,spath))
+    parser.parse("file://%s/templates.xml" % spath)
 except (IOError,OSError,SAXParseException):
     pass

@@ -231,11 +231,11 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         self.f.setFillColor(make_color(font.get_color()))
 
         val = len(text)
-        y = ((-font.get_size() * val)/2.0) + font.get_size()
+        y = ((-size * val)/2.0) + size
 
         for line in text:
             self.f.drawCentredString(0,y,line.encode('iso-8859-1'))
-            y += font.get_size()
+            y += size
 
         self.f.restoreState()
 
@@ -276,16 +276,13 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         self.f.restoreState()
 
     def left_print(self,text,font,x,y):
-        size = font.get_size()
-
         self.f.saveState()
         self.f.setStrokeColor(make_color(font.get_color()))
 
         self.pdf_set_font(font)
        
-        self.f.drawString(start_x,start_y,text.encode('iso-8859-1'))
+        self.f.drawString(x,y,text.encode('iso-8859-1'))
         self.f.restoreState()
-
 
 def make_color(c):
     return Color(float(c[0])/255.0, float(c[1])/255.0, float(c[2])/255.0)

@@ -216,7 +216,7 @@ class Gramps:
                         os.mkdir(self.impdir_path,0700)
                     except:
                         print "Could not create import directory %s. Exiting." \
-                            % impdir_path 
+                            % self.impdir_path 
                         os._exit(1)
                 elif not os.access(self.impdir_path,os.W_OK):
                     print "Import directory %s is not writable. Exiting." \
@@ -737,9 +737,11 @@ class Gramps:
 
     def clear_person_tabs(self):
 
+        self.ptabs.hide()
         for i in range(0,len(self.tab_list)):
             self.ptabs.remove_page(0)
         self.ptabs.set_show_tabs(0)
+        self.ptabs.show()
         self.id2col = {}
         self.tab_list = []
         self.alpha_page = {}

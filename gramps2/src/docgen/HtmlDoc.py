@@ -28,7 +28,7 @@ import Plugins
 import ImgManip
 import TarFile
 import const
-
+import Errors
 import TextDoc
 
 from intl import gettext as _

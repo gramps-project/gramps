@@ -202,6 +202,16 @@ class ListModel:
             self.sel_iter = iter
         return iter
 
+    def set(self,iter,data,info=None,select=0):
+        col = 0
+        for object in data:
+            self.model.set_value(iter,col,object)
+            col = col + 1
+        self.model.set_value(iter,col,info)
+        if select:
+            self.sel_iter = iter
+        return iter
+
     def add_and_select(self,data,info=None):
         self.count = self.count + 1
         iter = self.model.append()

@@ -119,12 +119,11 @@ class RevisionSelect:
         
         self.model = ListModel.ListModel(self.revlist,titles)
         
-        index = 0
         for f in l:
             a = f[0].split('.')
             revsort = ''
             for v in a:
-                revsort = "%s.%06d" % (revsort,int(a[0]))
+               revsort = "%s.%06d" % (revsort,int(v))
             self.model.add([f[0],f[1],f[3],f[2],revsort],f[0])
 
     def on_cancel_clicked(self,obj):

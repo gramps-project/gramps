@@ -23,7 +23,6 @@ import gtk.glade
 import gnome
 import gnome.ui
 import gconf
-import Utils
 
 from intl import gettext as _
 

@@ -18,19 +18,40 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import string
 from math import pi, cos, sin
         
-import cStringIO
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import Plugins
-from intl import gettext as _
-
+import Errors
 import TextDoc
 import DrawDoc
 
+from intl import gettext as _
+
+
+#-------------------------------------------------------------------------
+#
+# pt2cm - points to cm conversion
+#
+#-------------------------------------------------------------------------
 def pt2cm(val):
     return (float(val)/72.0)*2.54
 
+#-------------------------------------------------------------------------
+#
+# PSDrawDoc
+#
+#-------------------------------------------------------------------------
 class PSDrawDoc(DrawDoc.DrawDoc):
 
     def __init__(self,styles,type,orientation):
@@ -129,7 +150,6 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
-	font = p.get_font()
 
         self.f.write('gsave\n')
         self.f.write('%.4f %.4f %.4f setrgbcolor\n' % rgb_color(stype.get_color()))

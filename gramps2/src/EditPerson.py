@@ -72,7 +72,7 @@ pycode_tgts = [('url', 0, 0),
 #-------------------------------------------------------------------------
 class EditPerson:
 
-    def __init__(self,person,db,callback=None,gender=RelLib.Person.female):
+    def __init__(self,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
         self.person = person
         self.original_id = person.getId()
