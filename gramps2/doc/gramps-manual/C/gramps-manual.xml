@@ -3075,8 +3075,8 @@
 
  	<varlistentry><term>Interactive descendant browser</term>
 	<listitem><para>This tool builds a tree with the active person being 
-	the root. Children branch from their parents in a usual manner. 
-	Use this tool for a quick glance on a person's descendants. 
+	the root. Children branch from their parents in the usual manner. 
+	Use this tool for a quick glance of a person's descendants. 
 	</para></listitem>
 	</varlistentry>
 
@@ -3096,14 +3096,37 @@
 
  	<varlistentry><term>Check and repair database</term>
 	<listitem><para>This tool checks the database for integrity problems, 
-	fixing the problems it can. 
-	</para></listitem>
+	fixing the problems it can. Specifically, the tool is checking for:</para>
+	<itemizedlist>
+		<listitem><para>Broken family links. These are the cases when 
+		a person's record refers to a family while the family's record 
+		does not refer to that person, and vice versa.
+		</para></listitem>
+
+		<listitem><para>Missing media objects. The missing media 
+		object is the object whose file is referenced in the database 
+		but does not exist. This can happen when the file is 
+		accidentially deleted, renamed, or moved to another location.
+		</para></listitem>
+
+		<listitem><para>Empty families. These are the family entries 
+		which have no reference to any person as their member. 
+		</para></listitem>
+
+		<listitem><para>Parent relationship. This checks all families
+		to ensure that father and mother are not mixed up. The check 
+		is also made that parents have different gender. If they have 
+		common gender then their relationship is renamed to "Partners".
+		</para></listitem>
+
+	</itemizedlist>
+	</listitem>
 	</varlistentry>
 
  	<varlistentry><term>Extract information from names</term>
 	<listitem><para>This tool searches the entire database and attempts 
 	to extract titles and nicknames that may be embedded in a person's 
-	given name field. 
+	<guilabel>Given name</guilabel> field. 
 	</para></listitem>
 	</varlistentry>
 
@@ -3194,7 +3217,10 @@
 
  	<varlistentry><term>Generate SoundEx codes</term>
 	<listitem><para>This utility generates SoundEx codes for the names of
-	people in the database.
+	people in the database. Please visit the <ulink 
+	url="http://www.archives.gov/research_room/genealogy/census/soundex.html" 
+	type="http">NARA Soundex Indexing page</ulink> to learn more about 
+	Soudex Indexing System.
 	</para></listitem>
 	</varlistentry>
 
@@ -3206,7 +3232,19 @@
 
  	<varlistentry><term>Verify the database</term>
 	<listitem><para>This utility allows you to verify the database based 
-	on the set of criteria specified by you. 
+	on the set of criteria specified by you. This tool is different from 
+	the previously described Check tool in the following. The Check tool
+	detects inconsistencies in the database structure. The Verify tool, 
+	however, is detecting the records that do not satisfy your particualr 
+	criteria. </para>
+
+	<para>For example, you may want to make sure that nobody in your 
+	database had children at the age of 98. Based on common sense, such 
+	a record would indicate an error. However, it is not a consistency 
+	error in the database. Besides, someone might have a child at the of 
+	98 (albeit this rarely happens). The Verify tool will display 
+	everything that violates your criteria so that you can check whether 
+	the record is erroneous or not. The ultimate decision is yours.
 	</para></listitem>
 	</varlistentry>
 
@@ -3310,8 +3348,8 @@
 	text entry fields. Although &app; requests information about you, 
 	this information is used only so that &app; can create valid GEDCOM 
 	output files. A valid GEDCOM file requires information about the file's 
-	creator. If you choose, you may leave the information empty, however
-	all the GEDCOM files you export will not be valid. 
+	creator. If you choose, you may leave the information empty, however 
+	none of your exported GEDCOM files will be valid. 
 	</para></listitem>
 	</varlistentry>
 
@@ -3439,7 +3477,11 @@
 
 	<varlistentry><term><guilabel>Do not compress XML data file</guilabel></term>
 	<listitem><para> Check this box to disable compression of the XML
-	data file. Compression significantly reduces the file size. 
+	data file. Compression significantly reduces the file size. While it 
+	creates an overhead in performance (some processor cycles must be spent
+	to decompress the file before use), this overhead is extremely small. 
+	Now that the compression-related bugs have long been fixed, there is 
+	virtually no reason to disable data file compression. 
 	</para></listitem>
 	</varlistentry>
 
@@ -3450,8 +3492,8 @@
 
 	<varlistentry><term><guilabel>Autosave interval</guilabel></term>
 	<listitem><para> Set the interval (in minutes) after which &app; will
-	automatically save your database. Zero interval completely disables 
-	autosave. </para></listitem>
+	automatically save your database. Setting the interval to zero (0) 
+	disables autosaving. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Default database directory</guilabel></term>
@@ -3467,25 +3509,54 @@
       <sect3 id="prefs-db-media"> 
         <title>Media Objects</title> 
 
+	<para>Before describing preferences for media objects, let us
+	review the background on local and non-local objects. A local object 
+	is the object whose file is stored inside the same directory in which 
+	the &app; database file resides. A non-local object is stored 
+	elsewhere, so that the database has only the reference to the file's 
+	location and some records of the object's properties. </para>
+	
+	<para>You may choose to store your media objects either locally 
+	or externally. Making your objects local will increase the amount 
+	of disk space consumed by the &app; database directory. However, 
+	if the external file is deleted or removed, &app; will still be able 
+	to use the local copy. In contrast, leaving your objects non-local 
+	will decrease the disk space requirements. However, losing the 
+	original file will render your media object unusable.
+	</para>
+	
+	<para>Note that exporting your database to any format will complie
+	all medial objects, no matter whether they are local or not. 
+	Specifially, export to gramps package will include all the media 
+	object files in the package and change the references accordingly. 
+	Export to CD will copy all media object files to the directory under 
+	the <guilabel>burn:///</guilabel> location in Nautilus and change the 
+	references accordingly. Finally, export to GEDCOM will place all 
+	media object files next to the GEDCOM file with the approrpiate 
+	changes in the path names. 
+	</para>
+	
 	<variablelist>
 
-	<varlistentry><term><guilabel>Drag and drop from an external source</guilabel></term>
+	<varlistentry><term><guilabel>Drag and drop from an external 
+	source</guilabel></term>
 	<listitem><para> Choose between a reference and a local copy made when
 	the object is dropped into the gallery. The reference saves disk 
 	space as it does not copy the object. The local copy makes your 
 	database portable as it does not depend on an external file. Consult
 	your needs to make best choice.</para> 
 	
-	<para>Check the <guilabel>Display global properties editor when object is
-	dropped</guilabel> box to invoke the global properties editor after you 
-	drop an external object into the gallery. 
+	<para>Check the <guilabel>Display global properties editor when 
+	object is dropped</guilabel> box to invoke the global properties 
+	editor after you drop an external object into the gallery. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Drag and drop from an internal source</guilabel></term>
-	<listitem><para> Check the <guilabel>Display local properties editor when 
-	object is dropped</guilabel> box to invoke the local properties editor 
-	after you drop an internal object into the gallery. 
+	<varlistentry><term><guilabel>Drag and drop from an internal 
+	source</guilabel></term>
+	<listitem><para> Check the <guilabel>Display local properties editor 
+	when object is dropped</guilabel> box to invoke the local properties 
+	editor after you drop an internal object into the gallery. 
 	</para></listitem>
 	</varlistentry>
 

@@ -30,6 +30,8 @@
 2003-07-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add "..." after Merge, Edit Bookmarks, Preferences, 
 	and "Show plugin status" menu items. 
+	* src/plugins/DescendReport.py: Enable translation for "b." and "d." 
+	* doc/gramps-manual/C/gramps-manual.xml: More corrections.
 
 2003-07-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/CustomBookText.py: Add to CVS. 

@@ -48,6 +48,9 @@ from intl import gettext as _
 #------------------------------------------------------------------------
 import gtk
 
+_BORN = _('b.')
+_DIED = _('d.')
+
 #------------------------------------------------------------------------
 #
 # DescendantReport
@@ -75,11 +78,11 @@ class DescendantReport:
         if birth.getYearValid() or death.getYearValid():
             self.doc.write_text(' (')
             if birth.getYearValid():
-                self.doc.write_text('b. ' + str(birth.getYear()))
+                self.doc.write_text("%s %d" % (_BORN,birth.getYear()))
             if death.getYearValid():
                 if birth.getYearValid():
                     self.doc.write_text(', ')
-                self.doc.write_text('d. ' + str(death.getYear()))
+                self.doc.write_text("%s %d" % (_DIED,death.getYear()))
             self.doc.write_text(')')
         
     def write_report(self):
