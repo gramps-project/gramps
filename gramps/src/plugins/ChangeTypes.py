@@ -33,60 +33,55 @@ import intl
 
 _ = intl.gettext
 
-topDialog = None
-
 #-------------------------------------------------------------------------
 #
-#
-#
-#-------------------------------------------------------------------------
-def on_apply_clicked(obj):
-    original = topDialog.get_widget("original_text").get_text()
-    new = topDialog.get_widget("new_text").get_text()
-    
-    for person in db.getPersonMap().values():
-        for event in person.getEventList():
-            if event.getName() == original:
-                event.setName(new)
-                utils.modified()
-
-    on_close_clicked(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_close_clicked(obj):
-    obj.destroy()
-    while events_pending():
-        mainiteration()
-
-#-------------------------------------------------------------------------
 #
 #
 #-------------------------------------------------------------------------
 def runTool(database,person,callback):
-    global active_person
-    global topDialog
-    global glade_file
-    global db
+    ChangeTypes(database,person)
 
-    active_person = person
-    db = database
+class ChangeTypes:
+    def __init__(self,db,person):
+        self.person = person
+        self.db = db
 
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "changetype.glade"
-    topDialog = GladeXML(glade_file,"top")
+        base = os.path.dirname(__file__)
+        glade_file = "%s/%s" % (base,"changetype.glade")
+        self.glade = GladeXML(glade_file,"top")
 
-    topDialog.get_widget("original").set_popdown_strings(const.personalEvents)
-    topDialog.get_widget("new").set_popdown_strings(const.personalEvents)
+        self.glade.get_widget("original").set_popdown_strings(const.personalEvents)
+        self.glade.get_widget("new").set_popdown_strings(const.personalEvents)
 
-    topDialog.signal_autoconnect({
-        "on_close_clicked" : on_close_clicked,
-        "on_apply_clicked" : on_apply_clicked
-        })
+        self.glade.signal_autoconnect({
+            "on_close_clicked"     : utils.destroy_passed_object,
+            "on_combo_insert_text" : utils.combo_insert_text,
+            "on_apply_clicked"     : self.on_apply_clicked
+            })
     
+    def on_apply_clicked(self,obj):
+        modified = 0
+        original = self.glade.get_widget("original_text").get_text()
+        new = self.glade.get_widget("new_text").get_text()
+
+        print original
+        print new
+        for person in self.db.getPersonMap().values():
+            for event in person.getEventList():
+                print event.getName()
+                if event.getName() == original:
+                    event.setName(new)
+                    modified = modified + 1
+                    utils.modified()
+
+        if modified == 1:
+            msg = _("1 event record was modified")
+        else:
+            msg = _("%d event records were modified") % modified
+            
+        GnomeOkDialog(msg)
+        utils.destroy_passed_object(obj)
+
 #------------------------------------------------------------------------
 #
 # 
