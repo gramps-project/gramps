@@ -604,6 +604,7 @@ def write_xml_data(database, g, callback, sp):
 
             for event in family.getEventList():
                 dump_event(g,event,3)
+            dump_ordinance(g,"sealed_to_spouse",family.getLdsSeal(),3)
 
             write_photo_list(g,family.getPhotoList())
 

@@ -839,7 +839,7 @@ class SingleDate:
             if self.month == UNDEF:
                 raise Date.Error,text
             self.day = int(matches[1])
-            if len(matches) == 4:
+            if len(matches) == 4 and matches[3] != None:
                 self.setYearVal(matches[3])
             else:
                 self.year = UNDEF

@@ -40,6 +40,11 @@ import ImageSelect
 from intl import gettext
 _ = gettext
 
+
+_temple_names = const.lds_temple_codes.keys()
+_temple_names.sort()
+_temple_names = [""] + _temple_names
+
 #-------------------------------------------------------------------------
 #
 # Marriage class
@@ -47,19 +52,15 @@ _ = gettext
 #-------------------------------------------------------------------------
 class Marriage:
 
-    #-------------------------------------------------------------------------
-    #
-    # Initializes the class, and displays the window
-    #
-    #-------------------------------------------------------------------------
     def __init__(self,family,db):
+        """Initializes the Marriage class, and displays the window"""
         self.family = family
         self.db = db
         self.path = db.getSavePath()
 
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         top_window = self.get_widget("marriageEditor")
-        fid = "f%s" % family.getId()
+        fid = family.getId()
         plwidget = self.top.get_widget("photolist")
         self.gallery = ImageSelect.Gallery(family, self.path, fid, plwidget, db)
         self.top.signal_autoconnect({
@@ -103,6 +104,8 @@ class Marriage:
         self.attr_value = self.get_widget("attr_value")
         self.event_details = self.get_widget("event_details")
         self.attr_details_field = self.get_widget("attr_details")
+        self.lds_date = self.get_widget("lds_date")
+        self.lds_temple = self.get_widget("lds_temple")
 
         self.event_list.set_column_visibility(3,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
@@ -119,6 +122,18 @@ class Marriage:
         self.type_field.entry.set_text(frel)
         self.gid.set_text(family.getId())
         self.gid.set_editable(Config.id_edit)
+
+        ord = family.getLdsSeal()
+        self.lds_temple.set_popdown_strings(_temple_names)
+        if ord:
+            self.lds_date.set_text(ord.getDate())
+            if ord.getTemple() != "":
+                name = const.lds_temple_to_abrev[ord.getTemple()]
+            else:
+                name = ""
+            self.lds_temple.entry.set_text(name)
+        else:
+            self.lds_temple.entry.set_text("")
         
         # set notes data
         self.notes_field.set_point(0)
@@ -167,6 +182,24 @@ class Marriage:
         idval = self.gid.get_text()
         if self.family.getId() != idval:
             changed = 1
+
+        date = self.lds_date.get_text()
+        temple = self.lds_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
+        ord = self.family.getLdsSeal()
+        if not ord:
+            if date or temple:
+                changed = 1
+        else:
+            d = Date()
+            d.set(date)
+            if compare_dates(d,ord.getDateObj()) != 0:
+                changed = 1
+            elif ord.getTemple() != temple:
+                changed = 1
 
         return changed
 
@@ -219,6 +252,30 @@ class Marriage:
         if text != self.family.getNote():
             self.family.setNote(text)
             utils.modified()
+
+        date = self.lds_date.get_text()
+        temple = self.lds_temple.entry.get_text()
+        if const.lds_temple_codes.has_key(temple):
+            temple = const.lds_temple_codes[temple]
+        else:
+            temple = ""
+        ord = self.family.getLdsSeal()
+        if not ord:
+            if date or temple:
+                ord = LdsOrd()
+                ord.setDate(date)
+                ord.setTemple(temple)
+                self.family.setLdsSeal(ord)
+                utils.modified()
+        else:
+            d = Date()
+            d.set(date)
+            if compare_dates(d,ord.getDateObj()) != 0:
+                ord.setDateObj(d)
+                utils.modified()
+            if ord.getTemple() != temple:
+                ord.setTemple(temple)
+                utils.modified()
 
         utils.destroy_passed_object(self.get_widget("marriageEditor"))
 

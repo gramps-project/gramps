@@ -122,12 +122,16 @@ class GrampsParser:
     def start_lds_ord(self,attrs):
         type = u2l(attrs['type'])
         self.ord = LdsOrd()
-        if type == "baptism":
-            self.person.setLdsBaptism(self.ord)
-        elif type == "endowment":
-            self.person.setLdsEndowment(self.ord)
-        else:
-            self.person.setLdsSeal(self.ord)
+        if self.person:
+            if type == "baptism":
+                self.person.setLdsBaptism(self.ord)
+            elif type == "endowment":
+                self.person.setLdsEndowment(self.ord)
+            elif type == "sealed_to_parents":
+                self.person.setLdsSeal(self.ord)
+        elif self.family:
+            if type == "sealed_to_spouse":
+                self.family.setLdsSeal(self.ord)
 
     def start_temple(self,attrs):
         self.ord.setTemple(u2l(attrs['val']))

@@ -952,11 +952,11 @@ def sort_child_list(clist):
     clist.sort()
     if ListColors.get_enable():
         try:
-            oddbg = GdkColor(ListColors.oddbg[0],ListColors.oddbg[1],ListColors.oddbg[2])
-            oddfg = GdkColor(ListColors.oddfg[0],ListColors.oddfg[1],ListColors.oddfg[2])
-            evenbg = GdkColor(ListColors.evenbg[0],ListColors.evenbg[1],ListColors.evenbg[2])
-            evenfg = GdkColor(ListColors.evenfg[0],ListColors.evenfg[1],ListColors.evenfg[2])
-            ancestorfg = GdkColor(ListColors.ancestorfg[0],ListColors.ancestorfg[1],ListColors.ancestorfg[2])
+            oddbg = gtk.GdkColor(ListColors.oddbg[0],ListColors.oddbg[1],ListColors.oddbg[2])
+            oddfg = gtk.GdkColor(ListColors.oddfg[0],ListColors.oddfg[1],ListColors.oddfg[2])
+            evenbg = gtk.GdkColor(ListColors.evenbg[0],ListColors.evenbg[1],ListColors.evenbg[2])
+            evenfg = gtk.GdkColor(ListColors.evenfg[0],ListColors.evenfg[1],ListColors.evenfg[2])
+            ancestorfg = gtk.GdkColor(ListColors.ancestorfg[0],ListColors.ancestorfg[1],ListColors.ancestorfg[2])
             rows = clist.rows
             for i in range(0,rows):
                 clist.set_background(i,(evenbg,oddbg)[i%2])
