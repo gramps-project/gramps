@@ -6,15 +6,40 @@ dnl Checks for programs.
 PACKAGE=gramps
 
 AC_PATH_PROG(PYTHON, python)
-AC_PATH_PROG(PYTHON15, python1.5)
-AC_PATH_PROG(PYTHON20, python2.0)
-AC_PATH_PROG(PYTHON21, python2.1)
-AC_PATH_PROG(PYTHON22, python2.2)
-AC_PATH_PROG(ZIP, zip)
 
 changequote(<<, >>)dnl
 PYTHON_VERSION=`$PYTHON -c "import sys; print sys.version[:3]"`
 changequote([, ])dnl
+
+if test "$PYTHON_VERSION" != "1.5" 
+then
+	AC_PATH_PROG(PYTHON15, python1.5)
+else
+	PYTHON15=$PYTHON
+fi
+
+if test "$PYTHON_VERSION" != "2.0" 
+then
+	AC_PATH_PROG(PYTHON20, python2.0)
+else
+	PYTHON20=$PYTHON
+fi
+
+if test "$PYTHON_VERSION" != "2.1" 
+then
+	AC_PATH_PROG(PYTHON21, python2.1)
+else
+	PYTHON21=$PYTHON
+fi
+
+if test "$PYTHON_VERSION" != "2.2" 
+then
+	AC_PATH_PROG(PYTHON22, python2.2)
+else
+	PYTHON22=$PYTHON
+fi
+
+AC_PATH_PROG(ZIP, zip)
 
 AC_SUBST(PYTHON)
 AC_SUBST(PYTHON_VERSION)
@@ -180,7 +205,6 @@ dnl Checks for header files.
 
 AC_MSG_CHECKING(for headers required to compile python extensions)
 
-echo $PYTHON15
 if test "$PYTHON15" != ""; then
   py_prefix=`$PYTHON15 -c "import sys; print sys.prefix"`
   py_exec_prefix=`$PYTHON15 -c "import sys; print sys.exec_prefix"`

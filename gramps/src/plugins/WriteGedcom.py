@@ -584,7 +584,7 @@ class GedcomWriter:
                 mother_alive = person.probablyAlive()
 
             if not self.restrict or ( not father_alive and not mother_alive ):
-                self.write_ord("SLGS",family.getLdsSeal(),1)
+                self.write_ord("SLGS",family.getLdsSeal(),1,const.lds_ssealing)
 
                 for event in family.getEventList():
                     if self.private and event.getPrivacy():
@@ -686,9 +686,9 @@ class GedcomWriter:
             
             ad = 0
 
-            self.write_ord("BAPL",person.getLdsBaptism(),1)
-            self.write_ord("ENDL",person.getLdsBaptism(),1)
-            self.write_ord("SLGC",person.getLdsSeal(),1)
+            self.write_ord("BAPL",person.getLdsBaptism(),1,const.lds_baptism)
+            self.write_ord("ENDL",person.getLdsEndowment(),1,const.lds_baptism)
+            self.write_ord("SLGC",person.getLdsSeal(),1,const.lds_csealing)
             
             for event in person.getEventList():
                 if self.private and event.getPrivacy():
@@ -893,15 +893,23 @@ class GedcomWriter:
         for srcref in event.getSourceRefList():
             self.write_source_ref(2,srcref)
 
-    def write_ord(self,name,ord,index):
+    def write_ord(self,name,ord,index,statlist):
         if ord == None:
             return
         self.g.write('%d %s\n' % (index,name))
         self.print_date("%d DATE" % (index + 1), ord.getDateObj())
-        if ord.getTemple() != "":
-            self.g.write('%d TEMP %s\n' % (index+1,ord.getTemple()))
         if ord.getFamily():
             self.g.write('%d FAMC @%s@\n' % (index+1,self.fid(ord.getFamily().getId())))
+        if ord.getTemple() != "":
+            self.g.write('%d TEMP %s\n' % (index+1,ord.getTemple()))
+        if ord.getPlaceName() != "":
+            self.g.write("2 PLAC %s\n" % self.cnvtxt(ord.getPlaceName()))
+        if ord.getStatus() != 0:
+            self.g.write("2 STAT %S\n" % self.cnvtxt(statlist[ord.getStatus()]))
+        if ord.getNote() != "":
+            self.write_long_text("NOTE",index+1,ord.getNote())
+        for srcref in ord.getSourceRefList():
+            self.write_source_ref(index+1,srcref)
 
     def print_date(self,prefix,date):
         start = date.get_start_date()

@@ -7,4 +7,8 @@ export GRAMPSDIR=@datadir@/@PACKAGE@
 export PYTHONPATH=$GRAMPSDIR
 export GRAMPSI18N=@prefix@/share/locale
 
+if [ -f /usr/X11R6/lib/libX11.so ] ; then
+    export LIB_PRELOAD=/usr/X11R6/lib/libX11.so
+fi
+
 @PYTHON@ $GRAMPSDIR/gramps.py $*

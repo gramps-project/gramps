@@ -698,20 +698,23 @@ lds_temple_to_abrev = {
     "WA"   : "Washington, D.C.",      
 }
 
-lds_baptism_status = {
-    "<No Status>" : 0,
-    "Child"       : 1,
-    "Cleared"     : 2,
-    "Completed"   : 3,
-    "Infant"      : 4,
-    "Pre-1970"    : 5,
-    "Qualified"   : 6,
-    "Stillborn"   : 7,
-    "Submitted"   : 8,
-    "Uncleared"   : 9,
+lds_status = {
+    "BIC"         : 1,
+    "CANCELED"    : 1,
+    "CHILD"       : 1,
+    "CLEARED"     : 2,
+    "COMPLETED"   : 3,
+    "DNS"         : 4,
+    "INFANT"      : 4,
+    "PRE-1970"    : 5,
+    "QUALIFIED"   : 6,
+    "DNS/CAN"     : 7,
+    "STILLBORN"   : 7,
+    "SUBMITTED"   : 8,
+    "UNCLEARED"   : 9,
     }
 
-lds_baptism_index = [
+lds_baptism = [
     "<No Status>",
     "Child",
     "Cleared",
@@ -724,7 +727,7 @@ lds_baptism_index = [
     "Uncleared",
     ]
 
-lds_csealing_index = [
+lds_csealing = [
     "<No Status>",
     "BIC",
     "Cleared",
@@ -736,4 +739,18 @@ lds_csealing_index = [
     "Submitted",
     "Uncleared",
     ]
+
+lds_ssealing = [
+    "<No Status>",
+    "Canceled",
+    "Cleared",
+    "Completed",
+    "DNS",
+    "Pre-1970",
+    "Qualified",
+    "DNS/CAN",
+    "Submitted",
+    "Uncleared",
+    ]
+
     

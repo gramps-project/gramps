@@ -920,8 +920,45 @@ class GedcomParser:
                 ord.setDateObj(self.extract_date(matches[2]))
             elif matches[1] == "FAMC":
                 ord.setFamily(self.db.findFamily(matches[2],self.fmap))
-            elif matches[1] in ["PLAC", "STAT", "SOUR", "NOTE" ]:
+            elif matches[1] == "PLAC":
+                if self.placemap.has_key(val):
+                    place = self.placemap[val]
+                else:
+                    place = Place()
+                    place.set_title(matches[2])
+                    self.db.addPlace(place)
+                    self.placemap[val] = place
+                ord.setPlace(place)
                 self.ignore_sub_junk(level+1)
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                if matches[2] and matches[2][0] != "@":
+                    self.localref = self.localref + 1
+                    ref = "gsr%d" % self.localref
+                    s = self.db.findSource(ref,self.smap)
+                    source_ref.setBase(s)
+                    s.setTitle('Imported Source #%d' % self.localref)
+                    s.setNote(matches[2] + self.parse_continue_data(level+1))
+                    self.ignore_sub_junk(2)
+                else:
+                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                    self.parse_source_reference(source_ref,level+1)
+                ord.addSourceRef(source_ref)
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[2] + self.parse_continue_data(level+1)
+                    ord.setNote(note)
+                    self.ignore_sub_junk(2)
+                else:
+                    if self.nmap.has_key(matches[2]):
+                        ord.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        ord.setNoteObj(noteobj)
+            elif matches[1] == "STAT":
+                if const.lds_status.has_key(matches[2]):
+                    ord.setStatus(const.lds_status[matches[2]])
             else:
                 self.barf(level+1)
 

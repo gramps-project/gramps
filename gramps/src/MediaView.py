@@ -172,7 +172,9 @@ class MediaView:
             os.execvp(const.editor,[const.editor, self.obj.getPath()])
     
     def popup_convert_to_private(self, obj):
-        name = RelImage.import_media_object(self.obj.getPath(),self.db.getSavePath(),self.obj.getId())
+        path = self.db.getSavePath()
+        id = self.obj.getId()
+        name = RelImage.import_media_object(self.obj.getPath(),path,id)
         self.obj.setPath(name)
         self.obj.setLocal(1)
 
@@ -330,8 +332,7 @@ class MediaView:
                     id = photo.getId()
                     path = self.db.getSavePath()
                     name = RelImage.import_media_object(tfile,path,id)
-                    if name != None and name != "":
-                        photo.setPath(name)
+                    photo.setPath(name)
                 except:
                     photo.setPath(tfile)
                     w.drag_finish(context, 1, 0, time)

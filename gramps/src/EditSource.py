@@ -76,7 +76,7 @@ class EditSource:
         self.top_window.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
             "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
-            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
+            "on_photolist_button_press_event" : self.gallery.on_button_press_event,
             "on_switch_page" : self.on_switch_page,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,

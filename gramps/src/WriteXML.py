@@ -469,8 +469,26 @@ def exportData(database, filename, callback):
     else:
         g = open(filename,"w")
 
-    write_xml_data(database, g, callback, 0)
-    g.close()
+    try:
+        write_xml_data(database, g, callback, 0)
+    except:
+        from gnome.ui import GnomeErrorDialog
+        import traceback
+        from intl import gettext
+        _ = gettext
+        
+        traceback.print_exc()
+        
+        fname = os.path.expanduser("~/gramps.err")
+        errfile = open(fname,"w")
+        traceback.print_exc(file=errfile)
+        errfile.close()
+
+        GnomeErrorDialog(_("Failure writing %s, original file restored") % filename)
+        shutil.copy(filename + ".bak", filename)
+
+    if not g.closed:
+        g.close()
 
 def write_xml_data(database, g, callback, sp):
 
