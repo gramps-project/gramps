@@ -111,9 +111,14 @@ class DescendantReport:
                 self.doc.write_text(')')
             self.doc.end_paragraph()
 
+        childlist = []
         for family in person.getFamilyList():
             for child in family.getChildList():
-                self.dump(level+1,child)
+                childlist.append(child)
+
+        childlist.sort(sort.by_birthdate)
+        for child in childlist:
+            self.dump(level+1,child)
 
 #------------------------------------------------------------------------
 #
@@ -134,11 +139,12 @@ class DesReportWindow:
             "on_save_clicked": on_save_clicked
             })
 
+        notebook = self.top.get_widget("option_notebook")
+        notebook.set_data("frame",self.top.get_widget("style_frame"))
         PaperMenu.make_paper_menu(self.top.get_widget("papersize"))
         PaperMenu.make_orientation_menu(self.top.get_widget("orientation"))
         FindDoc.get_text_doc_menu(self.top.get_widget("format"),0,\
-                                  option_switch,\
-                                  self.top.get_widget("option_notebook"))
+                                  option_switch,notebook)
         
         mytop = self.top.get_widget("dialog1")
 
@@ -147,6 +153,7 @@ class DesReportWindow:
         f.set_type_face(FONT_SANS_SERIF)
         f.set_bold(1)
         p = ParagraphStyle()
+        p.set_header_level(1)
         p.set_font(f)
         
         sheet = StyleSheet()
@@ -159,7 +166,7 @@ class DesReportWindow:
             p.set_left_margin(float(i-1))
             sheet.add_style("Level" + str(i),p)
 
-        self.style_sheet_list = StyleSheetList("descend_report",sheet)
+        self.style_sheet_list = StyleSheetList("descend_report.xml",sheet)
         build_menu(self)
 
         mytop.set_data("o",self)
@@ -190,11 +197,14 @@ def build_menu(object):
 #------------------------------------------------------------------------
 def option_switch(obj):
     val = obj.get_data("paper")
+    st = obj.get_data("styles")
     notebook = obj.get_data("obj")
+    frame = notebook.get_data("frame")
     if val == 1:
         notebook.set_page(0)
     else:
         notebook.set_page(1)
+    frame.set_sensitive(st)
         
 #------------------------------------------------------------------------
 #

@@ -316,10 +316,10 @@ def report(database,person):
     styles.add_style("Generation",para)
 
     para = ParagraphStyle()
-    para.set(first_indent=-0.75,lmargin=1.0,pad=1)
+    para.set(first_indent=-2.0,lmargin=2.0,pad=1)
     styles.add_style("Entry",para)
 
-    style_sheet_list = StyleSheetList("ancestor_report",styles)
+    style_sheet_list = StyleSheetList("ancestor_report.xml",styles)
     build_menu(None)
 
     topDialog.get_widget("labelTitle").set_text("Ahnentafel Report for " + name)
@@ -352,11 +352,13 @@ def build_menu(object):
 #------------------------------------------------------------------------
 def option_switch(obj):
     val = obj.get_data("paper")
+    st = obj.get_data("styles")
     notebook = topDialog.get_widget("option_notebook")
     if val == 1:
         notebook.set_page(0)
     else:
         notebook.set_page(1)
+    topDialog.get_widget("style_frame").set_sensitive(st)
 
 #------------------------------------------------------------------------
 #
