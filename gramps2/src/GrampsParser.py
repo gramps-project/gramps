@@ -90,7 +90,7 @@ class GrampsParser:
         self.fmap = {}
         self.smap = {}
         self.lmap = {}
-        self.MediaFileMap = {}
+        self.media_file_map = {}
         
         self.callback = callback
         self.entries = 0
@@ -100,9 +100,9 @@ class GrampsParser:
         self.name = None
         self.tempDefault = None
         self.owner = RelLib.Researcher()
-	self.func_list = [None]*50
-	self.func_index = 0
-	self.func = None
+        self.func_list = [None]*50
+        self.func_index = 0
+        self.func = None
         self.witness_comment = ""
 
         self.func_map = {
@@ -1033,7 +1033,7 @@ class GrampsImportParser(GrampsParser):
 
     def start_objref(self,attrs):
         self.objref = RelLib.MediaRef()
-        id = self.db.find_object_no_conflicts(attrs['ref'],self.MediaFileMap).get_id()
+        id = self.db.find_object_no_conflicts(attrs['ref'],self.media_file_map).get_id()
         self.objref.set_reference_id(id)
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
@@ -1047,7 +1047,7 @@ class GrampsImportParser(GrampsParser):
             self.placeobj.add_media_reference(self.objref)
 
     def start_object(self,attrs):
-        self.object = self.db.find_object_no_conflicts(attrs['id'],self.MediaFileMap)
+        self.object = self.db.find_object_no_conflicts(attrs['id'],self.media_file_map)
         self.object.set_mime_type(attrs['mime'])
         self.object.set_description(attrs['description'])
         src = attrs["src"]

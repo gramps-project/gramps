@@ -204,11 +204,11 @@ def importData(database, filename, callback,cl=0):
 #-------------------------------------------------------------------------
 
 #    # Rename media files if they were conflicting with existing ones
-#    ObjectMap = database.get_object_map()
 #    newpath = database.get_save_path()
-#    for OldMediaID in parser.MediaFileMap.keys():
-#        NewMediaID = parser.MediaFileMap[OldMediaID]
-#        oldfile = ObjectMap[NewMediaID].get_path()
+#    for old_media_id in parser.media_file_map.keys():
+#        new_media_id = parser.MediaFileMap[old_media_id]
+#        new_media = database.find_object_from_id(new_media_id)
+#        oldfile = new_media.get_path()
 #        (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
 #        oldfile = os.path.join(basefile,OldMediaID+oldext)
 #        newfile = os.path.join(newpath,NewMediaID+oldext)
