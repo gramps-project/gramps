@@ -211,6 +211,7 @@ class Gramps:
         self.gtop.signal_autoconnect({
             "delete_event"                      : self.delete_event,
             "destroy_passed_object"             : Utils.destroy_passed_object,
+            "on_preffam_toggled"                : self.on_preferred_fam_toggled,
             "on_family_up_clicked"              : self.family_up_clicked,
             "on_family_down_clicked"            : self.family_down_clicked,
             "on_prefrel_toggled"                : self.on_preferred_rel_toggled,
@@ -1307,6 +1308,13 @@ class Gramps:
         self.spouse_ptab.set_page(1)
         self.spouse_pref.set_active(0)
         self.active_person.setPreferred(self.active_family)
+        Utils.modified()
+
+    def on_preferred_fam_toggled(self,obj):
+        obj.set_active(0)
+        self.active_person.setMainFamily(self.active_parents)
+        self.change_parents(self.active_parents)
+        Utils.modified()
         
     def new_after_edit(self,epo,plist):
         if epo:
@@ -1402,30 +1410,14 @@ class Gramps:
 
             if self.active_parents == None and len(family_types) > 0:
                 self.active_parents = family_types[0][0]
+            if len(family_types) > 1:
+                self.gtop.get_widget('multi_parents').show()
+                self.gtop.get_widget('preffam').show()
+            else:
+                self.gtop.get_widget('multi_parents').hide()
+                self.gtop.get_widget('preffam').hide()
         else:
             self.active_parents = None
-
-#        if len(family_types) > 0:
-#            typeMenu = gtk.GtkMenu()
-#            index = 0
-#            pref = 0
-#            for fam in family_types:
-#                if fam[0] == main_family:
-#                    pref = index
-#                if self.active_person == fam[0].getFather():
-#                    menuitem = gtk.GtkMenuItem("%s/%s" % (fam[1],fam[2]))
-#                else:
-#                    menuitem = gtk.GtkMenuItem("%s/%s" % (fam[2],fam[1]))
-#                menuitem.set_data("parents",fam[0])
-#                menuitem.connect("activate",self.on_current_type_changed)
-#                menuitem.show()
-#                typeMenu.append(menuitem)
-#                index = index + 1
-#            self.child_type.set_menu(typeMenu)
-#            self.child_type.set_history(pref)
-#            self.child_type.show()
-#        else:
-#            self.child_type.hide()
 
         self.change_parents(self.active_parents)
 
@@ -1494,12 +1486,32 @@ class Gramps:
             self.display_marriage(None)
         
     def change_parents(self,family):
+        """Switches to a different set of parents on the Family View"""
+        
         if self.active_parents and self.active_parents.getRelationship() == "Partners":
             fn = _("Parent")
             mn = _("Parent")
         else:
             fn = _("Father")
             mn = _("Mother")
+
+        pframe = self.gtop.get_widget('parent_frame')
+        if self.active_parents:
+            val = len(self.active_person.getAltFamilyList())
+            if self.active_parents == self.active_person.getMainFamily():
+                self.gtop.get_widget('preffam').set_sensitive(0)
+                if val > 1:
+                    pframe.set_label(_("Preferred Parents (%d of %d)") % \
+                                     (self.parents_index+1,val))
+                else:
+                    pframe.set_label(_("Preferred Parents"))
+            else:
+                self.gtop.get_widget('preffam').set_sensitive(1)
+                pframe.set_label(_("Alternate Parents (%d of %d)") % \
+                                     (self.parents_index+1,val))
+        else:
+            self.gtop.get_widget('parent_frame').set_label(_("No Parents"))
+            
 
         self.gtop.get_widget("editFather").children()[0].set_text(fn)
         self.gtop.get_widget("editMother").children()[0].set_text(mn)
@@ -1508,6 +1520,9 @@ class Gramps:
         fv_mother = self.gtop.get_widget("fv_mother")
         father_next = self.gtop.get_widget("father_next")
         mother_next = self.gtop.get_widget("mother_next")
+
+        self.gtop.get_widget("mrel").set_text('')
+        self.gtop.get_widget("frel").set_text('')
     
         if family != None :
             self.active_father = family.getFather()
@@ -1529,6 +1544,7 @@ class Gramps:
                 if f[0] == family:
                     self.gtop.get_widget("mrel").set_text(_(f[1]))
                     self.gtop.get_widget("frel").set_text(_(f[2]))
+                    break
         elif self.active_person == None:
             fv_father.set_text("")
             fv_mother.set_text("")
