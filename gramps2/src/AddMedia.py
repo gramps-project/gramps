@@ -91,21 +91,23 @@ class AddMediaObject:
                          _('Select a media object'))
         
         self.glade.signal_autoconnect({
-            "on_name_changed"       : self.on_name_changed,
+            "on_fname_update_preview" : self.on_name_changed,
+            "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
             })
         
         self.window.show()
 
-    def on_help_imagesel_clicked(self):
+    def on_help_imagesel_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
+        self.val = self.window.run()
 
     def on_savephoto_clicked(self):
         """
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
         """
-        filename = self.glade.get_widget("photosel").get_full_path(0)
+        filename = self.file_text.get_filename()
         description = unicode(self.description.get_text())
         
         if os.path.exists(filename) == 0:
@@ -121,17 +123,18 @@ class AddMediaObject:
         mobj = RelLib.MediaObject()
         mobj.set_description(description)
         mobj.set_mime_type(mtype)
-        self.db.add_object(mobj)
+
+        trans = self.db.start_transaction()
+        self.db.add_object(mobj,trans)
         
         name = filename
         mobj.set_path(name)
 
-        if self.update:
-            self.update()
         self.object = mobj
-        trans = self.db.start_transaction()
         self.db.commit_media_object(mobj,trans)
         self.db.add_transaction(trans,_("Add Media Object"))
+        if self.update:
+            self.update()
         
     def on_name_changed(self,*obj):
         """
@@ -139,7 +142,7 @@ class AddMediaObject:
         see if the file exists. If it does, the imgae is loaded into
         the preview window.
         """
-        filename = unicode(self.file_text.get_text())
+        filename = unicode(self.file_text.get_filename())
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
         old_title  = unicode(self.description.get_text())
@@ -154,7 +157,7 @@ class AddMediaObject:
             if mtype[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
             else:
-                image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
+                image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(mtype))
             self.image.set_from_pixbuf(image)
 
     def run(self):
