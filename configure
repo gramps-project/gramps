@@ -3852,6 +3852,11 @@ try:
     pygtk.require('2.0')
 except ImportError:
     pass
+
+def out(str):
+    f = open('conftest.out', 'w')
+    f.write(str)
+    f.close()
 "
 
 
@@ -3861,18 +3866,14 @@ cat > conftest.py <<EOF
 $pygtk_require
 try:
     import gobject
-    f = open("conftest.out", "w")
-    f.write("YES")
-    f.close()
+    out("YES")
 except ImportError:
-    f = open("conftest.out", "w")
-    f.write("NO")
-    f.close()
+    out("No")
 EOF
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test "YES" != $has_pygtk
+if test YES != "$has_pygtk"
 then
    { { echo "$as_me:$LINENO: error:
 
@@ -3890,19 +3891,19 @@ echo $ECHO_N "checking Python bindings for GNOME... $ECHO_C" >&6
 cat > conftest.py <<EOF
 $pygtk_require
 try:
-    import gnome, gnome.ui
-    f = open("conftest.out", "w")
-    f.write("YES")
-    f.close()
+    import gnome
+    # Do not import gnome.ui, this can kill python if the
+    # display cannot be opened.  Just search it.
+    import imp
+    imp.find_module('gnome/ui')
+    out("YES")
 except ImportError:
-    f = open("conftest.out", "w")
-    f.write("NO")
-    f.close()
+    out("NO")
 EOF
 $PYTHON conftest.py
 has_pygnome=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test "YES" != $has_pygnome
+if test YES != "$has_pygnome"
 then
    { { echo "$as_me:$LINENO: error:
 **** The python bindings for GNOME 2.0 (gnome-python2) could not be found." >&5
@@ -3919,18 +3920,14 @@ cat > conftest.py <<EOF
 $pygtk_require
 try:
     import gconf
-    f = open("conftest.out", "w")
-    f.write("YES")
-    f.close()
+    out("YES")
 except ImportError:
-    f = open("conftest.out", "w")
-    f.write("NO")
-    f.close()
+    out("NO")
 EOF
 $PYTHON conftest.py
 has_gconf=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test "YES" != $has_gconf
+if test YES != "$has_gconf"
 then
    { { echo "$as_me:$LINENO: error:
 **** The python bindings for gconf (gnome-python2-gconf) could not be found." >&5
@@ -3946,19 +3943,18 @@ echo $ECHO_N "checking Python bindings for GNOME canvas... $ECHO_C" >&6
 cat > conftest.py <<EOF
 $pygtk_require
 try:
-    import gnome.canvas
-    f = open("conftest.out", "w")
-    f.write("YES")
-    f.close()
+    # Do not import gnome.canvas, this can raise a RuntimeError if the
+    # display cannot be opened.  Just search it.
+    import imp
+    imp.find_module('gnome/canvas')
+    out("YES")
 except ImportError:
-    f = open("conftest.out", "w")
-    f.write("NO")
-    f.close()
+    out("NO")
 EOF
 $PYTHON conftest.py
 has_canvas=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test "YES" != $has_canvas
+if test YES != "$has_canvas"
 then
    { { echo "$as_me:$LINENO: error:
 **** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found." >&5
@@ -3974,19 +3970,18 @@ echo $ECHO_N "checking Python bindin for glade... $ECHO_C" >&6
 cat > conftest.py <<EOF
 $pygtk_require
 try:
-    import gtk.glade
-    f = open("conftest.out", "w")
-    f.write("YES")
-    f.close()
+    # Do not import gtk.glade, this can raise a RuntimeError if the
+    # display cannot be opened.  Just search it.
+    import imp
+    imp.find_module('gtk/glade')
+    out("YES")
 except ImportError:
-    f = open("conftest.out", "w")
-    f.write("NO")
-    f.close()
+    out("NO")
 EOF
 $PYTHON conftest.py
 has_pygtk=`cat conftest.out`
 rm -f conftest.out conftest.py
-if test "YES" != $has_pygtk
+if test YES != "$has_pygtk"
 then
    { { echo "$as_me:$LINENO: error:
 
