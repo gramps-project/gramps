@@ -25,6 +25,9 @@ import string
 from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
+import utils
+cnv = utils.fl2txt
+
 
 try:
     import Image
@@ -112,7 +115,8 @@ class OpenOfficeDoc(TextDoc):
             self.f.write('<style:style style:name="' + style_name + '" ')
 	    self.f.write('style:family="table">\n')
             table_width = float(self.get_usable_width())
-	    self.f.write('<style:properties style:width="%.3fcm" ' % table_width)
+            table_width_str = cnv("%.4f",table_width)
+	    self.f.write('<style:properties style:width="%scm" '%table_width_str)
             self.f.write('/>\n')
             self.f.write('</style:style>\n')
 	    for col in range(0,style.get_columns()):
@@ -120,7 +124,9 @@ class OpenOfficeDoc(TextDoc):
 		self.f.write(style_name + '.' + str(chr(ord('A')+col)) +'" ')
 		self.f.write('style:family="table-column">')
                 width = table_width * float(style.get_column_width(col)/100.0)
-		self.f.write('<style:properties style:column-width="%.3fcm"/>' % width)
+                width_str = cnv("%.4f",width)
+		self.f.write('<style:properties ')
+                self.f.write('style:column-width="%scm"/>' % width_str)
 	        self.f.write('</style:style>\n')
         for cell in self.cell_styles.keys():
             cell_style = self.cell_styles[cell]
@@ -128,7 +134,8 @@ class OpenOfficeDoc(TextDoc):
             self.f.write(cell)
             self.f.write('" style:family="table-cell">\n')
             self.f.write('<style:properties')
-            self.f.write(' fo:padding="%.3fcm"' % cell_style.get_padding())
+            self.f.write(' fo:padding="%scm"' % \
+                         cnv("%.3f",cell_style.get_padding()))
             if cell_style.get_top_border():
                 self.f.write(' fo:border-top="0.002cm solid #000000"')
             else:
@@ -181,8 +188,8 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('draw:name="')
         self.f.write(tag)
         self.f.write('" text:anchor-type="paragraph" ')
-        self.f.write('svg:width="%.3fcm" ' % (float(act_width)/72.0))
-        self.f.write('svg:height="%.3fcm" ' % (float(act_height)/72.0))
+        self.f.write('svg:width="%scm" ' % cnv("%.3f",float(act_width)/72.0))
+        self.f.write('svg:height="%scm" ' % cnv((float(act_height)/72.0)))
         self.f.write('draw:z-index="0" ')
         self.f.write('xlink:href="#Pictures/')
         self.f.write(base)
@@ -304,7 +311,8 @@ class OpenOfficeDoc(TextDoc):
             self.f.write('<style:properties ')
 
             if style.get_padding() != 0.0:
-	       self.f.write('fo:padding="%.3fcm" ' % style.get_padding())
+	       self.f.write('fo:padding="%scm" ' % \
+                            cnv("%.3f",style.get_padding()))
 
             align = style.get_alignment()
 	    if align == PARA_ALIGN_LEFT:
@@ -332,9 +340,12 @@ class OpenOfficeDoc(TextDoc):
 	    if font.get_underline():
 		self.f.write('style:text-underline="single" ')
                 self.f.write('style:text-underline-color="font-color" ')
-            self.f.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
-            self.f.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
-            self.f.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
+            self.f.write('fo:text-indent="%scm" ' % \
+                         cnv("%.2f",style.get_first_indent()))
+            self.f.write('fo:margin-right="%scm" ' % \
+                         cnv("%.2f",style.get_right_margin()))
+            self.f.write('fo:margin-left="%scm" ' % \
+                         cnv("%.2f",style.get_left_margin()))
             self.f.write('fo:margin-top="0cm" ')
             self.f.write('fo:margin-bottom="0.212cm"')
             self.f.write('/>\n')
@@ -358,17 +369,19 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('</office:styles>\n')
         self.f.write('<office:automatic-styles>\n')
         self.f.write('<style:page-master style:name="pm1">\n')
-        self.f.write('<style:properties fo:page-width="%.2fcm" ' % self.width)
-        self.f.write('fo:page-height="%.2fcm" ' % self.height)
+        self.f.write('<style:properties fo:page-width="%scm" ' % \
+                     cnv(self.width))
+        self.f.write('fo:page-height="%scm" ' % \
+                     cnv(self.height))
         self.f.write('style:num-format="1" ')
         if self.orientation == PAPER_PORTRAIT:
             self.f.write('style:print-orientation="portrait" ')
         else:
             self.f.write('style:print-orientation="landscape" ')
-        self.f.write('fo:margin-top="%.2fcm" ' % self.tmargin)
-        self.f.write('fo:margin-bottom="%.2fcm" ' % self.bmargin)
-        self.f.write('fo:margin-left="%.2fcm" ' % self.lmargin)
-        self.f.write('fo:margin-right="%.2fcm" ' % self.rmargin)
+        self.f.write('fo:margin-top="%scm" ' % cnv("%.2f",self.tmargin))
+        self.f.write('fo:margin-bottom="%scm" ' % cnv("%.2f",self.bmargin))
+        self.f.write('fo:margin-left="%scm" ' % cnv("%.2f",self.lmargin))
+        self.f.write('fo:margin-right="%scm" ' % cnv("%.2f",self.rmargin))
         self.f.write('style:footnote-max-height="0cm">\n')
         self.f.write('<style:footnote-sep style:width="0.018cm" ')
         self.f.write('style:distance-before-sep="0.101cm" ')

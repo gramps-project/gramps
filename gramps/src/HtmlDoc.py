@@ -23,6 +23,7 @@ import tempfile
 import string
 import re
 import intl
+import utils
 
 _ = intl.gettext
 
@@ -128,7 +129,7 @@ class HtmlDoc(TextDoc):
 
             self.f.write('.')
             self.f.write(key)
-            pad = "%.3fcm " % style.get_padding()
+            pad = utils.fl2txt("%.3fcm ",style.get_padding())
             self.f.write(' { padding:' + pad + pad + pad + pad +'; ')
             if style.get_top_border():
 	       self.f.write('border-top:thin solid #000000; ')
@@ -165,9 +166,12 @@ class HtmlDoc(TextDoc):
                 self.f.write('text-align:right; ')
             elif align == PARA_ALIGN_JUSTIFY:
                 self.f.write('text-align:justify; ')
-            self.f.write('text-indent:%.2fcm; ' % style.get_first_indent())
-            self.f.write('margin-right:%.2fcm; ' % style.get_right_margin())
-            self.f.write('margin-left:%.2fcm; ' % style.get_left_margin())
+            self.f.write('text-indent:%scm; ' % \
+                         utils.fl2txt("%.2f",style.get_first_indent()))
+            self.f.write('margin-right:%scm; ' % \
+                         utils.fl2txt("%.2f",style.get_right_margin()))
+            self.f.write('margin-left:%scm; ' % \
+                         utils.fl2txt("%.2f",style.get_left_margin()))
             if font.get_italic():
                 self.f.write('font-style:italic; ')
             if font.get_bold():
