@@ -4184,7 +4184,7 @@ msgstr "%(grandparents)s på mödernet till (name)s"
 
 #: plugins/Ancestors.py:254
 msgid "%(name)s's %(parents)s"
-msgstr "%(parent)s till %(name)s"
+msgstr "%(parents)s till %(name)s"
 
 #: plugins/Ancestors.py:258
 msgid "%(name)s's paternal %(grandparents)s"
