@@ -35,6 +35,14 @@ from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
+# GNOME libraries
+#
+#-------------------------------------------------------------------------
+import gtk 
+import gtk.glade
+
+#-------------------------------------------------------------------------
+#
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
@@ -53,18 +61,87 @@ from DateHandler import parser as _dp
 #-------------------------------------------------------------------------
 class TestcaseGenerator:
     def __init__(self,database,active_person,callback,parent):
-        print "__init__"
         self.db = database
         self.person_count = 0
+        self.persons_todo = []
+        self.parents_todo = []
         
     def run(self):
-        print "run"
+        title = "%s - GRAMPS" % _("Generate testcases")
+        self.top = gtk.Dialog(title)
+        self.top.set_default_size(400,150)
+        self.top.set_has_separator(False)
+        self.top.vbox.set_spacing(5)
+        label = gtk.Label('<span size="larger" weight="bold">%s</span>' % _("Generate testcases"))
+        label.set_use_markup(True)
+        self.top.vbox.pack_start(label,0,0,5)
+
+        self.check_bugs = gtk.CheckButton( _("Generate Database errors"))
+        self.check_bugs.set_active(True)
+        self.top.vbox.pack_start(self.check_bugs,0,0,5)
+
+        self.check_persons = gtk.CheckButton( _("Generate dummy families"))
+        self.check_persons.set_active(True)
+        self.top.vbox.pack_start(self.check_persons,0,0,5)
+
+        self.entry_count = gtk.Entry()
+        self.entry_count.set_text("2000")
+        self.top.vbox.pack_start(self.entry_count,0,0,5)
+
+        self.top.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
+        self.top.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
+        self.top.add_button(gtk.STOCK_HELP,gtk.RESPONSE_HELP)
+        self.top.show_all()
+
+        response = self.top.run()
+        bugs = self.check_bugs.get_active()
+        persons = self.check_persons.get_active()
+        person_count = int(self.entry_count.get_text())
+        self.top.destroy()
+
+        if response == gtk.RESPONSE_OK:
+            self.run_generator(bugs,persons,person_count)
+
+
+    def run_generator( self, generate_bugs = 1, generate_families = 1, generate_max_persons = 2000):
+        title = "%s - GRAMPS" % _("Generate testcases")
+        self.top = gtk.Window()
+        self.top.set_title(title)
+        self.top.set_position(gtk.WIN_POS_MOUSE)
+        self.top.set_modal(True)
+        self.top.set_default_size(400,150)
+        vbox = gtk.VBox()
+        self.top.add(vbox)
+        label = gtk.Label(_("Generating persons and families.\nPlease wait."))
+        vbox.pack_start(label,0,0,5)
+        self.progress = gtk.ProgressBar()
+        self.progress.set_fraction(0.0)
+        vbox.pack_end(self.progress,0,0,5)
+        self.top.show_all()
+        while gtk.events_pending():
+            gtk.main_iteration()
+        
+        self.max_person_count = generate_max_persons
+
         self.trans = self.db.transaction_begin()
-        self.generate_broken_relations()
-        person1_h = self.generate_person(0)
-        self.generate_family(person1_h)
+
+        if generate_bugs:
+            self.generate_broken_relations()
+
+        if generate_families:
+            self.persons_todo.append( self.generate_person(0))
+            for person_h in self.persons_todo:
+                self.generate_family(person_h)
+                if self.person_count > self.max_person_count:
+                    break
+                for child_h in self.parents_todo:
+                    self.generate_parents(child_h)
+                    if self.person_count > self.max_person_count:
+                        break
+            
         self.db.transaction_commit(self.trans,_("Testcase generator"))
- 
+        self.top.destroy()
+        
 
     def generate_broken_relations(self):
         # Create a family, that links to father and mother, but father does not link back
@@ -229,7 +306,12 @@ class TestcaseGenerator:
 
     
     def generate_person(self,gender=None,lastname=None,note=None):
-        print "generate_person"
+        self.progress.set_fraction(min(1.0,max(0.0, 1.0*self.person_count/self.max_person_count)))
+        if self.person_count % 10 == 0:
+            while gtk.events_pending():
+                gtk.main_iteration()
+
+
         np = RelLib.Person()
         
         # Note
@@ -239,21 +321,30 @@ class TestcaseGenerator:
         # Gender
         if gender == None:
             gender = randint(0,1)
-            print "Random gender"
         np.set_gender(gender)
         
         # Name
-        syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du"]
-        syllables2 = ["as","il","an","am","on","er","im","ach","ik","ud"]
+        syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
+        syllables2 = ["as","il","an","am","on","er","im","ach","ik","ud","ab","ul","le"]
 
         name = RelLib.Name()
         firstname = ""
-        for i in range(0,randint(2,5)):
-            firstname = firstname + choice(syllables1)
+        for i in range(0,randint(1,5)):
+            for i in range(0,randint(2,5)):
+                firstname = firstname + choice(syllables2)
+            if gender == RelLib.Person.FEMALE:
+                firstname = firstname + choice(("a","e","i","o","u"))
+            firstname = firstname + " "
+        firstname = firstname.title().strip()
         if not lastname:
             lastname = ""
             for i in range(0,randint(2,5)):
                 lastname = lastname + choice(syllables1)
+        n = randint(0,2)
+        if n == 0:
+            lastname = lastname.title()
+        elif n == 1:
+            lastname = lastname.upper()
         name.set_first_name(firstname)
         name.set_surname(lastname)
         np.set_primary_name(name)
@@ -263,7 +354,6 @@ class TestcaseGenerator:
         return( self.db.add_person(np,self.trans))
         
     def generate_family(self,person1_h):
-        print "generate_family"
         person1 = self.db.get_person_from_handle(person1_h)
         if person1.get_gender() == 1:
             person2_h = self.generate_person(0)
@@ -271,6 +361,11 @@ class TestcaseGenerator:
             person2_h = person1_h
             person1_h = self.generate_person(1)
         
+        if randint(0,2) > 0:
+            self.parents_todo.append(person1_h)
+        if randint(0,2) > 0:
+            self.parents_todo.append(person2_h)
+            
         fam = RelLib.Family()
         fam.set_father_handle(person1_h)
         fam.set_mother_handle(person2_h)
@@ -286,18 +381,50 @@ class TestcaseGenerator:
 
         lastname = person1.get_primary_name().get_surname()     
         
-        if self.person_count < 20:
-            for i in range(0,randint(1,10)):
-                child_h = self.generate_person(None, lastname)
-                fam = self.db.get_family_from_handle(fam_h)
-                fam.add_child_handle(child_h)
-                self.db.commit_family(fam,self.trans)
-                child = self.db.get_person_from_handle(child_h)
-                child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
-                self.db.commit_person(child,self.trans)
-                if randint(0,3) > 0:
-                    self.generate_family(child_h)
-        
+        for i in range(0,randint(1,10)):
+            child_h = self.generate_person(None, lastname)
+            fam = self.db.get_family_from_handle(fam_h)
+            fam.add_child_handle(child_h)
+            self.db.commit_family(fam,self.trans)
+            child = self.db.get_person_from_handle(child_h)
+            child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+            self.db.commit_person(child,self.trans)
+            if randint(0,3) > 0:
+                self.persons_todo.append(child_h)
+    def generate_parents(self,child_h):
+        child = self.db.get_person_from_handle(child_h)
+        if child.get_parent_family_handle_list():
+            return
+
+        lastname = child.get_primary_name().get_surname()     
+
+        person1_h = self.generate_person(1,lastname)
+        person2_h = self.generate_person(0)
+
+        if randint(0,2) > 0:
+            self.parents_todo.append(person1_h)
+        if randint(0,2) > 0:
+            self.parents_todo.append(person2_h)
+            
+
+        fam = RelLib.Family()
+        fam.set_father_handle(person1_h)
+        fam.set_mother_handle(person2_h)
+        fam.set_relationship(RelLib.Family.MARRIED)
+        fam.add_child_handle(child_h)
+        fam_h = self.db.add_family(fam,self.trans)
+        fam = self.db.commit_family(fam,self.trans)
+        person1 = self.db.get_person_from_handle(person1_h)
+        person1.add_family_handle(fam_h)
+        self.db.commit_person(person1,self.trans)
+        person2 = self.db.get_person_from_handle(person2_h)
+        person2.add_family_handle(fam_h)
+        self.db.commit_person(person2,self.trans)
+
+        child.add_parent_family_handle(fam_h,RelLib.Person.CHILD_REL_BIRTH,RelLib.Person.CHILD_REL_BIRTH)
+        self.db.commit_person(child,self.trans)
+
+
 
 #-------------------------------------------------------------------------
 #

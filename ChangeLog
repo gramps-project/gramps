@@ -1,3 +1,8 @@
+2005-03-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* plugins/TestcaseGenerator.py: Added a dialog to specify what is to be generated
+	and a ProgressBar. Enhanced family tree generation and randomized names a little more.
+	You can now generate thousands of people :-)
+
 2005-03-31  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/stock_link.png: added icon for scratchpad display
 	* src/DdTargets.py (all_text): new method to return all text ddtypes
