@@ -72,6 +72,7 @@ _textdoc = []
 _drawdoc = []
 _failmsg = []
 
+_unavailable = _("No description was provided"),
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -186,7 +187,14 @@ class ToolPlugins:
         self.run_tool = obj.get_data(TASK)
 
 
+#-------------------------------------------------------------------------
+#
+# PluginStatus
+#
+#-------------------------------------------------------------------------
 class PluginStatus:
+    """Displays a dialog showing the status of loaded plugins"""
+    
     def __init__(self):
         import cStringIO
         
@@ -195,6 +203,9 @@ class PluginStatus:
         window = self.glade.get_widget("text")
 
         info = cStringIO.StringIO()
+        info.write(_("The following modules could not be loaded:"))
+        info.write("\n\n")
+        
         for (file,msgs) in _failmsg:
             error = str(msgs[0])
             if error[0:11] == "exceptions.":
@@ -260,7 +271,7 @@ def build_tree(tree,list,task):
 # load_plugins
 #
 #-------------------------------------------------------------------------
-def load_plugins(dir):
+def load_plugins(direct):
     """Searches the specified directory, and attempts to load any python
     modules that it finds, adding name to the _attempts list. If the module
     successfully loads, it is added to the _success list. Each plugin is
@@ -270,17 +281,17 @@ def load_plugins(dir):
     global _success,_failed,_attempt,_loaddir
     
     # if the directory does not exist, do nothing
-    if not os.path.isdir(dir):
+    if not os.path.isdir(direct):
         return
 
     # if the path has not already been loaded, save it in the _loaddir
     # list for use on reloading
     
-    if dir not in _loaddir:
-	_loaddir.append(dir)
+    if direct not in _loaddir:
+	_loaddir.append(direct)
 
     # add the directory to the python search path
-    sys.path.append(dir)
+    sys.path.append(direct)
 
     pymod = compile(r"^(.*)\.py$")
 
@@ -289,7 +300,7 @@ def load_plugins(dir):
     # add it to the _success list. If it fails, add it to the _failure
     # list
     
-    for file in os.listdir(dir):
+    for file in os.listdir(direct):
         name = os.path.split(file)
         match = pymod.match(name[1])
         if not match:
@@ -361,7 +372,7 @@ def register_import(task, name):
 
 def register_report(task, name,
                     category=_("Uncategorized"),
-                    description=_("No description was provided"),
+                    description=_unavailable,
                     xpm=None,
                     status=_("Unknown")):
     """Register a report with the plugin system"""
@@ -372,7 +383,7 @@ def register_report(task, name,
 
 def register_tool(task, name,
                   category=_("Uncategorized"),
-                  description=_("No description was provided"),
+                  description=_unavailable,
                   xpm=None,
                   status=_("Unknown")):
     """Register a tool with the plugin system"""
@@ -519,11 +530,10 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
 
 #-------------------------------------------------------------------------
 #
-# get_text_doc_menu
+# get_text_doc_list
 #
 #-------------------------------------------------------------------------
 def get_text_doc_list():
-
     l = []
     _textdoc.sort()
     for item in _textdoc:

@@ -324,11 +324,18 @@ class RTFDoc(TextDoc):
         nx,ny = im.size()
         buf = im.jpg_data()
 
-        scale = float(ny)/float(nx)
-        if scale > 1:
-            scale = 1.0/scale
-        act_width = twips(x_cm * scale)
-        act_height = twips(y_cm * scale)
+        ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+        if ratio < 1:
+            act_width = x_cm
+            act_height = y_cm*ratio
+        else:
+            act_height = y_cm
+            act_width = x_cm/ratio
+
+        act_width = twips(act_width)
+        act_height = twips(act_height)
+        
         im.thumbnail((int(act_width*40),int(act_height*40)))
 
 	self.f.write('{\*\shppict{\\pict\\jpegblip')

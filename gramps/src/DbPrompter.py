@@ -29,6 +29,8 @@ import Utils
 import gtk
 import const
 import GrampsCfg
+import intl
+_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #

@@ -305,6 +305,7 @@ personalConstantAttributes = {
     "Caste"                 : "CAST",
     "Description"           : "DSCR",
     "Identification Number" : "IDNO",
+    "Reference Number"      : "REFN",
     "National Origin"       : "NATI",
     "Social Security Number": "SSN"
     }
@@ -312,6 +313,7 @@ personalConstantAttributes = {
 _pa_e2l = {
     "Caste"                 : _("Caste"),
     "Description"           : _("Description"),
+    "Reference Number"      : _("Reference Number"),
     "Identification Number" : _("Identification Number"),
     "National Origin"       : _("National Origin"),
     "Social Security Number": _("Social Security Number")

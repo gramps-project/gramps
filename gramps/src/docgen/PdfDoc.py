@@ -34,12 +34,16 @@ _ = intl.gettext
 # ReportLab python/PDF modules
 #
 #------------------------------------------------------------------------
-import reportlab.platypus.tables
-from reportlab.platypus import *
-from reportlab.lib.units import cm
-from reportlab.lib.colors import Color
-from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
-import reportlab.lib.styles
+
+try:
+    import reportlab.platypus.tables
+    from reportlab.platypus import *
+    from reportlab.lib.units import cm
+    from reportlab.lib.colors import Color
+    from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
+    import reportlab.lib.styles
+except:
+    raise "Missing Libraries", "The ReportLab modules are not installed"
 
 #------------------------------------------------------------------------
 #
@@ -259,14 +263,15 @@ class PdfDoc(TextDoc):
     def add_photo(self,name,pos,x,y):
         img = ImgManip.ImgManip(name)
         nx,ny = img.size()
-        scale = float(nx)/float(ny)
-        if scale > 1.0:
-            scale = 1.0/scale
-            act_width = x
-            act_height = y * scale
+
+        ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+        if ratio < 1:
+            act_width = x_cm
+            act_height = y_cm*ratio
         else:
-            act_width = x * scale
-            act_height = y
+            act_height = y_cm
+            act_width = x_cm/ratio
 
         self.story.append(Image(name,act_width*cm,act_height*cm))
         self.story.append(Spacer(1,0.5*cm))
