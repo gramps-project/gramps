@@ -53,7 +53,7 @@ def build_sort_name(n):
     if n.Surname:
         return "%-25s%-30s%s" % (su(n.Surname),su(n.FirstName),su(n.Suffix))
     else:
-        return "%s" % chr(255)
+        return "@"
         
 
 def build_sort_date(n):
