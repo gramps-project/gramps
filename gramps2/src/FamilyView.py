@@ -57,6 +57,8 @@ _DIED = _('d.')
 
 pycode_tgts = [('child', 0, 0)]
 
+spcode_tgts = [('spouse', 0, 0)]
+
 column_names = [
     (_('#'),0) ,
     (_('ID'),1) ,
@@ -82,6 +84,7 @@ class FamilyView:
         self.top = parent.gtop
         self.family = None
         self.cadded = [ 0, 0 ]
+        self.in_drag = False
         self.init_interface()
 
     def set_widgets(self,val):
@@ -124,6 +127,7 @@ class FamilyView:
                                                                self.ap_parents_clicked)
                 self.top.get_widget('sp_parents_btn2').connect('clicked',
                                                                self.sp_parents_clicked)
+
             self.parent.views.get_nth_page(2).show_all()
             if self.parent.views.get_current_page() == 1:
                 self.parent.views.set_current_page(2)
@@ -169,6 +173,15 @@ class FamilyView:
                 self.parent.views.set_current_page(1)
             self.parent.views.get_nth_page(2).hide()
 
+        self.spouse_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                       spcode_tgts,ACTION_COPY)
+        self.spouse_list.drag_source_set(BUTTON1_MASK,
+                                         spcode_tgts, ACTION_COPY)
+        self.spouse_list.connect('drag_data_get',
+                                 self.sp_drag_data_get)
+        self.spouse_list.connect('drag_data_received',
+                                 self.sp_drag_data_received)
+
     def init_interface(self):
         fv = GrampsGconfKeys.get_family_view()
         self.dd = DateHandler.create_display()
@@ -202,7 +215,7 @@ class FamilyView:
             self.sp_parents.connect('button-press-event',self.sp_par_button_press)
             self.sp_parents.connect('key-press-event',self.sp_par_key_press)
 
-        self.spouse_model = gtk.ListStore(TYPE_STRING)
+        self.spouse_model = gtk.ListStore(TYPE_STRING,TYPE_STRING)
         self.spouse_list.set_model(self.spouse_model)
         self.spouse_selection = self.spouse_list.get_selection()
         if not already_init:
@@ -530,6 +543,8 @@ class FamilyView:
         SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
 
     def spouse_changed(self,obj):
+        if self.in_drag:
+            return
         model, node = obj.get_selected()
         if not node:
             self.display_marriage(None)
@@ -538,7 +553,6 @@ class FamilyView:
             family_handle = self.person.get_family_handle_list()[row[0]]
             fam = self.parent.db.get_family_from_handle(family_handle)
             self.display_marriage(fam)
-
 
     def build_spouse_menu(self,event):
 
@@ -660,7 +674,7 @@ class FamilyView:
             self.parent.people_view.redisplay_person_list(epo.person)
 
         self.parent.active_person = ap
-        self.load_family(self.family)
+        self.load_family()
         
     def new_spouse_after_edit(self,epo,val):
 
@@ -891,7 +905,6 @@ class FamilyView:
         
     def load_family(self,family=None):
 
-        self.build_columns()
         if self.parent.active_person:
             handle = self.parent.active_person.get_handle()
             self.person = self.parent.db.get_person_from_handle(handle)
@@ -961,8 +974,10 @@ class FamilyView:
                                          const.family_relations[fm.get_relationship()][0],
                                          mdate)
                 self.spouse_model.set(node,0,v)
+                self.spouse_model.set(node,1,f)
             else:
                 self.spouse_model.set(node,0,"%s\n" % _("<double click to add spouse>"))
+                self.spouse_model.set(node,1,f)
 
         if family and family.get_handle() in flist:
             self.display_marriage(family)
@@ -1348,7 +1363,43 @@ class FamilyView:
             trans = self.parent.db.transaction_begin()
             self.parent.db.commit_family(self.family,trans)
             self.parent.db.transaction_commit(trans,_('Reorder children'))
-            self.display_marriage(self.family)
+            self.load_family(self.family)
+
+    def sp_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        self.in_drag = True
+        path = self.spouse_list.get_path_at_pos(x,y)
+        if path == None:
+            row = len(self.person.get_family_handle_list())
+        else:
+            row = path[0][0] -1
+        
+        if sel_data and sel_data.data:
+            exec 'data = %s' % sel_data.data
+            exec 'mytype = "%s"' % data[0]
+            exec 'person = "%s"' % data[1]
+
+            if mytype != 'spouse':
+                return
+
+            s,i = self.spouse_selection.get_selected()
+            if not i:
+                return
+
+            spath = s.get_path(i)
+            src = spath[0] 
+            family_list = self.person.get_family_handle_list()
+
+            obj = family_list[src]
+            family_list.remove(obj)
+            family_list.insert(row,obj)
+
+            self.person.set_family_handle_list(family_list)
+            trans = self.parent.db.transaction_begin()
+            self.parent.db.commit_person(self.person,trans)
+            self.parent.db.transaction_commit(trans,_('Reorder spouses'))
+            self.load_family()
+            #self.display_marriage(self.family)
+        self.in_drag = False
             
     def drag_data_get(self,widget, context, sel_data, info, time):
         store,node = self.child_selection.get_selected()
@@ -1357,6 +1408,15 @@ class FamilyView:
         handle = self.child_model.get_value(node,2)
         bits_per = 8; # we're going to pass a string
         data = str(('child',handle));
+        sel_data.set(sel_data.target, bits_per, data)
+
+    def sp_drag_data_get(self,widget, context, sel_data, info, time):
+        store,node = self.spouse_selection.get_selected()
+        if not node:
+            return
+        handle = self.spouse_model.get_value(node,1)
+        bits_per = 8; # we're going to pass a string
+        data = str(('spouse',handle));
         sel_data.set(sel_data.target, bits_per, data)
 
     def north_american(self,val):

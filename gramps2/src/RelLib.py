@@ -430,6 +430,11 @@ class Person(PrimaryObject,SourceNote):
         person is a parent or spouse"""
         return self.family_list
 
+    def set_family_handle_list(self,flist) :
+        """returns the list of Family instances in which the
+        person is a parent or spouse"""
+        self.family_list = flist
+
     def clear_family_handle_list(self) :
         """
         Removes all familyts from the family list.

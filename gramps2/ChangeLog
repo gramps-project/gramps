@@ -1,4 +1,8 @@
 2004-11-18  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: Handle reordering of spouses by drag
+	and drop
+	* src/RelLib.py: Allow the family list to be set externally
+	* src/gramps.glade: enable reordering flag for spouse list
 	* src/DisplayModels.py: Added ChildModel to handle the
 	child list in the Family View
 	* src/gramps_main.py: add column editor for Family View
