@@ -189,6 +189,5 @@ register_tool(
     _("Fix capitalization of family names"),
     category=_("Database Processing"),
     description=_("Searches the entire database and attempts to "
-                  "extract titles and nicknames that may be embedded "
-                  "in a person's given name field.")
+                  "fix capitalization of the names.")
     )
