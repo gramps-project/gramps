@@ -1,3 +1,10 @@
+2003-08-14  Alexandre Duret-Lutz  <adl@gnu.org>
+	* configure.in: Check for include directory of $PYTHON, not $PYTHON22.
+	Set PYTHON_CPPFLAGS accordingly.  Do not set $PYTHON22 and
+	$P22_INCLUDES, they are not used anymore.
+	* src/Makefile.am (GVFSINC): Remove, unused.
+	(intl22.so, grampslib.so): Adjust to use $P22_INCLUDES.
+
 2003-08-13  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: implement a basic history mechanism
 	* src/gramps.glade: add back and forward buttons
