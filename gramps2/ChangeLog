@@ -1,4 +1,7 @@
 2004-01-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/IndivComplete.py (write_note): Typo.
+
+2004-01-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/ru/mainwin.xml: Update translation.
 	* doc/gramps-manual/ru/usage.xml: Update translation.
 
