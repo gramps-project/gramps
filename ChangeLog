@@ -1,3 +1,13 @@
+2004-02-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: remove local media concept
+	* src/RelLib.py: remove local media concept
+	* src/SelectObject.py: remove local media concept
+	* src/MediaView.py: remove local media concept
+	* src/EditSource.py: remove local media concept
+	* src/GrampsParser.py: remove local media concept
+	* src/AddMedia.py: remove local media concept
+	* src/GrampsZODB.py: delete
+
 2004-02-29  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Add to CVS.
 	* src/docgen/AsciiDoc.py: Correctly treat cells with span>1.
