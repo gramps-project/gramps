@@ -18,9 +18,18 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import os
+#-------------------------------------------------------------------------
+#
+# Standard python libraries
+#
+#-------------------------------------------------------------------------
 import string
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS libraries
+#
+#-------------------------------------------------------------------------
 import Plugins
 import Errors
 
@@ -28,18 +37,27 @@ import TextDoc
 import DrawDoc
 from intl import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# ReportLab PDF detection, PIL detection
+#
+#-------------------------------------------------------------------------
 try:
     from reportlab.pdfgen import canvas
     from reportlab.lib.units import cm
     from reportlab.lib.colors import Color
-except:
+except ImportError:
     raise Errors.PluginError( _("The ReportLab modules are not installed"))
 
-def make_color(color):
-    return Color(float(color[0])/255.0, float(color[1])/255.0,
-                 float(color[2])/255.0)
-
+#-------------------------------------------------------------------------
+#
+# PdfDrawDoc
+#
+#-------------------------------------------------------------------------
 class PdfDrawDoc(DrawDoc.DrawDoc):
+    """
+    PDF drawing class. Uses the ReportLab libraries to build the PDF files
+    """
 
     def __init__(self,styles,type,orientation):
         DrawDoc.DrawDoc.__init__(self,styles,type,orientation)
@@ -139,7 +157,7 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 
 	w = box_style.get_width()*cm
         h = box_style.get_height()*cm
-        self.f.setLineWidth(stype.get_line_width())
+        self.f.setLineWidth(box_style.get_line_width())
 
 	if box_style.get_shadow():
             self.f.setFillColorRGB(0.5,0.5,0.5)
@@ -148,12 +166,12 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 	font = p.get_font()
 
         self.f.setStrokeColor(make_color(font.get_color()))
-	self.f.setFillColor(make_color(box_style.get_color()))
+	self.f.setFillColor(make_color(box_style.get_fill_color()))
 
  	self.f.rect(x*cm,y*cm,w,h,fill=1)
 
 	if text != "":
-            lines = string.split(text,'\n')
+            lines = text.split('\n')
             self.center_print(lines,font,x*cm,y*cm,w,h)
 
     def draw_text(self,style,text,x,y):
@@ -214,4 +232,14 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         self.f.drawString(start_x,start_y,text)
         self.f.restoreState()
 
-Plugins.register_draw_doc(_("PDF"),PdfDrawDoc);
+
+def make_color(c):
+    return Color(float(c[0])/255.0, float(c[1])/255.0, float(c[2])/255.0)
+
+
+#-------------------------------------------------------------------------
+#
+# Register the document class
+#
+#-------------------------------------------------------------------------
+Plugins.register_draw_doc(_("PDF"),PdfDrawDoc,1,1,".pdf");

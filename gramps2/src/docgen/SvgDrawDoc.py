@@ -153,7 +153,7 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         self.f.write('y="%4.2fcm" ' % y)
         self.f.write('width="%4.2fcm" ' % bw)
         self.f.write('height="%4.2fcm" ' % bh)
-        self.f.write('style="fill:#%02x%02x%02x; stroke:#000000; stroke-width:1;"/>\n' % box_style.get_color())
+        self.f.write('style="fill:#%02x%02x%02x; stroke:#000000; stroke-width:1;"/>\n' % box_style.get_fill_color())
         if text != "":
             font = p.get_font()
             font_size = font.get_size()
@@ -218,4 +218,4 @@ def units(val):
 # Register document generator
 #
 #-------------------------------------------------------------------------
-Plugins.register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc);
+Plugins.register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc,1,1,".svg");

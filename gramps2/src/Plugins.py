@@ -58,6 +58,7 @@ import GrampsCfg
 import Errors
 
 import intl
+
 _ = intl.gettext
 
 #-------------------------------------------------------------------------
@@ -438,19 +439,19 @@ def register_tool(task, name,
     _tools.append((task, category, name, description, xpm, status, author_name, author_name))
 
 
-def register_text_doc(name,classref, table, paper, style):
+def register_text_doc(name,classref, table, paper, style, ext):
     """Register a text document generator"""
     for n in _textdoc:
         if n[0] == name:
             return
-    _textdoc.append((name,classref,table,paper,style))
+    _textdoc.append((name,classref,table,paper,style,ext))
 
-def register_draw_doc(name,classref):
+def register_draw_doc(name,classref,paper,style, ext):
     """Register a drawing document generator"""
     for n in _drawdoc:
         if n[0] == name:
             return
-    _drawdoc.append((name,classref))
+    _drawdoc.append((name,classref,paper,style,ext))
 
 #-------------------------------------------------------------------------
 #
@@ -563,6 +564,7 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
         menuitem.set_data("name",item[1])
         menuitem.set_data("styles",item[4])
         menuitem.set_data("paper",item[3])
+        menuitem.set_data("ext",item[5])
         menuitem.set_data("obj",obj)
         if callback:
             menuitem.connect("activate",callback)
@@ -608,9 +610,12 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
 
     index = 0
     myMenu = gtk.Menu()
-    for (name,classref) in _drawdoc:
+    for (name,classref,paper,styles,ext) in _drawdoc:
         menuitem = gtk.MenuItem(name)
         menuitem.set_data("name",classref)
+        menuitem.set_data("styles",styles)
+        menuitem.set_data("paper",paper)
+        menuitem.set_data("ext",ext)
         menuitem.set_data("obj",obj)
         if callback:
             menuitem.connect("activate",callback)

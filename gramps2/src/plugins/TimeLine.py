@@ -315,6 +315,10 @@ class TimeLineDialog(Report.DrawReportDialog):
         return "%s - %s - GRAMPS" % (_("Timeline"),
                                      _("Graphical Reports"))
 
+    def get_stylesheet_savefile(self):
+        """Where to save user defined styles for this report."""
+        return "timeline.xml"
+
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
         clicked in the 'Save As' frame."""

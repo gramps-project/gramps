@@ -163,6 +163,7 @@ class AncestorChart:
         g.set_width(self.box_width)
         g.set_paragraph_style("Normal")
         g.set_shadow(1)
+        g.set_fill_color((255,255,255))
         self.doc.add_draw_style("box",g)
 
         g = DrawDoc.GraphicsStyle()

@@ -24,6 +24,8 @@ from latin_utf8 import latin_to_utf8
 import time
 import StringIO
 import gzip
+
+import Errors
 from TarFile import TarFile
 import Plugins
 import ImgManip
@@ -435,4 +437,4 @@ class KwordDoc(TextDoc.TextDoc):
     def write_text(self,text):
 	self.text = self.text + text
 
-Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1)
+Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1,".kwd")

@@ -249,4 +249,4 @@ def rgb_color(color):
     b = float(color[2])/255.0
     return (r,g,b)
         
-Plugins.register_draw_doc(_("PostScript"),PSDrawDoc);
+Plugins.register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps");
