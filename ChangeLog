@@ -1,3 +1,8 @@
+2003-12-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsCfg.py: Make sure to return "BOTH" if the gnome
+	toolbar gconf entry is not set. Appears that this can happen
+	on systems that don't have gnome fully installed.
+
 2003-12-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/edit_person.glade: Add notes format radiobuttons.
 	* src/EditPerson.py: Support format for the person's notes.
