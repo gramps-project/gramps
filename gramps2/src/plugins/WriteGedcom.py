@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -705,12 +705,12 @@ class GedcomWriter:
             person = family.get_father_id()
             if person != None and self.plist.has_key(person.get_id()):
                 self.writeln("1 HUSB @%s@" % self.pid(person.get_id()))
-                father_alive = person.probably_alive()
+                father_alive = person.probably_alive(db)
 
             person = family.get_mother_id()
             if person != None and self.plist.has_key(person.get_id()):
                 self.writeln("1 WIFE @%s@" % self.pid(person.get_id()))
-                mother_alive = person.probably_alive()
+                mother_alive = person.probably_alive(db)
 
             if not self.restrict or ( not father_alive and not mother_alive ):
                 self.write_ord("SLGS",family.get_lds_sealing(),1,const.lds_ssealing)
@@ -788,7 +788,7 @@ class GedcomWriter:
 
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % self.pid(person.get_id()))
-        restricted = self.restrict and person.probably_alive ()
+        restricted = self.restrict and person.probably_alive (db)
         self.prefn(person)
         primaryname = person.get_primary_name ()
         if restricted and self.living:
