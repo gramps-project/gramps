@@ -1,4 +1,4 @@
-.TH gramps 1 "@VERSION@" "January 2004" "@VERSION@"
+.TH gramps 1 "@VERSION@" "February 2004" "@VERSION@"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
@@ -28,7 +28,7 @@ Gramps should seem familiar to anyone who has used other geneology programs
 before such as \fIFamily Tree Maker for Windows(TM)\fR or the GNU Geneweb.
 .br 
 It supports importing of the ever popular GEDCOM format which is used world 
-wide by almost all other geneology software.
+wide by almost all other genealogy software.
 
 .SH OPTIONS
 .TP 
