@@ -1177,7 +1177,6 @@ def _make_default_style(self):
 class FtmDescendantReportDialog(Report.TextReportDialog):
     def __init__(self,database,person):
         Report.TextReportDialog.__init__(self,database,person)
-        self.make_default_style = _make_default_style
 
     #------------------------------------------------------------------------
     #
@@ -1201,6 +1200,9 @@ class FtmDescendantReportDialog(Report.TextReportDialog):
         """Where to save styles for this report."""
         return "ftm_descendant_report.xml"
     
+    def make_default_style(self):
+        _make_default_style(self)
+
     def make_report(self):
         """Create the object that will produce the FTM Style Descendant Report.
         All user dialog has already been handled and the output file
@@ -1277,6 +1279,8 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         self.generations_spinbox.set_value(self.max_gen)
         self.pagebreak_checkbox.set_active(self.pg_brk)
         
+        self.window.run()
+
     #------------------------------------------------------------------------
     #
     # Customization hooks
@@ -1294,6 +1298,9 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         """Where to save styles for this report."""
         return "ftm_descendant_report.xml"
     
+    def make_default_style(self):
+        _make_default_style(self)
+
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
         and close the window."""
@@ -1308,9 +1315,13 @@ class FtmDescendantBareReportDialog(Report.BareReportDialog):
         self.window.destroy()
     
     def get_options(self):
+        """This function returns the options to be used for this book item."""
+
         return [ self.person, self.max_gen, self.pg_brk ]
     
     def get_style(self):
+        """This function returns the style to be used for this book item."""
+
         return self.selected_style
 
 
@@ -1451,4 +1462,4 @@ register_book_item(
     write_book_item,
     get_options,
     get_style
-)
+    )
