@@ -1,6 +1,10 @@
 2003-11-25  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* FAQ: Several minor corrections. New question about bug reports.
 	* Makefile.am, Makefile.in: Add FAQ to EXTRA_DIST.
+	* src/Marriage.py (__init__): Call AutoComp.AutoCombo() prior to 
+	setting text in place and temple combos. Set place text to empty 
+	string if LdsSeal is empty. Markup lds_label as bold if LdsSeal is 
+	not empty. 
 
 2003-11-25  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Utils.py (search_for): check for directory
