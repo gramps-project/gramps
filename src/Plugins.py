@@ -242,7 +242,6 @@ class PluginStatus:
             if error[0:11] == "exceptions.":
                 error = error[11:]
             msg = msgs[1]
-            trc = msgs[2]
             info.write("%s\n\t%s: %s\n\n" % (file,error,msg) )
 
         info.seek(0)
@@ -315,7 +314,7 @@ def reload_plugins(obj):
         try: 
             reload(plugin)
         except:
-            _failmsg.append((file,sys.exc_info()))
+            _failmsg.append((plugin,sys.exc_info()))
             
     # attempt to load the plugins that have failed in the past
     
@@ -323,7 +322,7 @@ def reload_plugins(obj):
         try: 
             __import__(plugin)
         except:
-            _failmsg.append((file,sys.exc_info()))
+            _failmsg.append((plugin,sys.exc_info()))
 
     # attempt to load any new files found
     for dir in _loaddir:

@@ -178,7 +178,8 @@ class RcsVersionControl(VersionControl):
         slog = 0
         sname = 0
         v = None
-        l = None
+        l = []
+        o = None
         d = None
         r,w = popen2.popen2("rlog %s" % self.vfile)
 
@@ -188,7 +189,7 @@ class RcsVersionControl(VersionControl):
             if sname == 1:
                 if line[0:3] == "key":
                     sname = 0
-                    continue;
+                    continue
                 else:
                     s = string.split(string.strip(line),":")
                     print "%s - %s" % (s[0],s[1])
@@ -213,7 +214,7 @@ class RcsVersionControl(VersionControl):
                 o = g.group(2)
                 slog = 1
                 l = []
-
+       
         w.close()
         r.close()
         return rlist
@@ -240,8 +241,7 @@ class RcsVersionControl(VersionControl):
         status = proc.wait()
         del proc
         os.remove(self.tfile)
-        if status != 0:
-            return status
+        return status
         
     def set_tag(self,tag):
         """Sets the tag to the symbolic string"""

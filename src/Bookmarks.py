@@ -34,7 +34,6 @@ from gnome.ui import *
 # Local modules
 #
 #-------------------------------------------------------------------------
-import const
 import Utils
 from intl import gettext
 _ = gettext

@@ -232,7 +232,7 @@ class ChooseParents:
         if self.family:
             self.family.setRelationship(type)
             self.change_family_type(self.family,mother_rel,father_rel)
-        self.family_update(self.family)
+        self.family_update(None)
 
     def add_parent_clicked(self,obj,sex):
         self.xml = libglade.GladeXML(const.gladeFile,"addperson")

@@ -143,7 +143,6 @@ class Marriage:
 
         self.lds_temple.set_popdown_strings(_temple_names)
 
-        plist = self.db.getPlaceMap().values()
         ord = self.family.getLdsSeal()
         if ord:
             if ord.getPlace():

@@ -25,7 +25,6 @@ strings as the possible completions.
 
 import string
 import gtk
-import GDK
 
 cnv = string.lower
 

@@ -23,8 +23,6 @@
 import RelLib
 import const
 import os
-import re
-import sort
 import string
 import Utils
 import intl
@@ -412,8 +410,6 @@ class ReportDialog:
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
         should be."""
-
-        title = self.get_title()
         self.name = self.person.getPrimaryName().getRegularName()
         self.window.set_title(self.get_title())
 

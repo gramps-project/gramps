@@ -171,10 +171,7 @@ class EventEditor:
 
         ename = self.name_field.get_text()
         self.date.set(self.date_field.get_text())
-
         ecause = self.cause_field.get_text()
-        eplace = strip(self.place_field.get_text())
-        
         eplace_obj = self.get_place(self.place_field,1)
         enote = self.note_field.get_chars(0,-1)
         edesc = self.descr_field.get_text()
