@@ -173,17 +173,17 @@ def get_age_sister (level):
 def is_fathermother_in_law(orig,other):
 #    sp = []
     for f in other.getFamilyList():
-	if other == f.getFather(): sp = f.getMother
-	elif other == f.getMother() : sp = f.getFather
+	if other == f.getFather(): sp = f.getMother()
+	elif other == f.getMother() : sp = f.getFather()
         for g in orig.getFamilyList():
-           if sp in g.getChildList(): return 1
+            if sp in g.getChildList(): return 1
     return 0
 
 def get_fathermother_in_law_child(orig,other):
 #    sp = []
     for f in other.getFamilyList():
-	if other == f.getFather(): sp = f.getMother
-	elif other == f.getMother() : sp = f.getFather
+	if other == f.getFather(): sp = f.getMother()
+	elif other == f.getMother() : sp = f.getFather()
         for g in orig.getFamilyList():
             if sp in g.getChildList(): return [sp]
     return []
