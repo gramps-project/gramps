@@ -83,6 +83,8 @@ class AddMediaObject:
         self.description = self.glade.get_widget("photoDescription")
         self.image = self.glade.get_widget("image")
         self.file_text = self.glade.get_widget("fname")
+        self.internal = self.glade.get_widget('internal')
+        self.internal.connect('toggled',self.internal_toggled)
         self.update = update
         self.temp_name = ""
         self.object = None
@@ -97,6 +99,9 @@ class AddMediaObject:
         
         self.window.show()
 
+    def internal_toggled(self, obj):
+        self.file_text.set_sensitive(not obj.get_active())
+        
     def on_help_imagesel_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
@@ -107,29 +112,36 @@ class AddMediaObject:
         Callback function called with the save button is pressed.
         A new media object is created, and added to the database.
         """
-        filename = self.file_text.get_filename()
+
         description = unicode(self.description.get_text())
+
+        if self.internal.get_active():
+            import NoteEdit
+
+            mobj = RelLib.MediaObject()
+            mobj.set_description(description)
+            mobj.set_mime_type(None)
+        else:
+            filename = self.file_text.get_filename()
         
-        if os.path.exists(filename) == 0:
-            msgstr = _("Cannot import %s")
-            msgstr2 = _("The filename supplied could not be found.")
-            ErrorDialog(msgstr % filename, msgstr2)
-            return
+            if os.path.exists(filename) == 0:
+                msgstr = _("Cannot import %s")
+                msgstr2 = _("The filename supplied could not be found.")
+                ErrorDialog(msgstr % filename, msgstr2)
+                return
 
-        mtype = GrampsMime.get_type(filename)
-        if description == "":
-            description = os.path.basename(filename)
+            mtype = GrampsMime.get_type(filename)
+            if description == "":
+                description = os.path.basename(filename)
 
-        mobj = RelLib.MediaObject()
-        mobj.set_description(description)
-        mobj.set_mime_type(mtype)
+            mobj = RelLib.MediaObject()
+            mobj.set_description(description)
+            mobj.set_mime_type(mtype)
+            name = filename
+            mobj.set_path(name)
 
         trans = self.db.transaction_begin()
         self.db.add_object(mobj,trans)
-        
-        name = filename
-        mobj.set_path(name)
-
         self.object = mobj
         self.db.commit_media_object(mobj,trans)
         self.db.transaction_commit(trans,_("Add Media Object"))
