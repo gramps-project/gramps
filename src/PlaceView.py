@@ -46,8 +46,8 @@ class PlaceView:
         self.place_arrows = [ self.place_arrow, self.place_id_arrow, self.city_arrow,
                               self.county_arrow, self.state_arrow, self.country_arrow ]
 
-        self.p_sort_column = 0
-        self.p_sort_direct = GTK.SORT_ASCENDING
+        self.sort_column = 0
+        self.sort_direct = GTK.SORT_ASCENDING
 
         self.place_list.set_column_visibility(6,0)
         self.place_list.set_column_visibility(7,0)
@@ -55,8 +55,8 @@ class PlaceView:
         self.place_list.set_column_visibility(9,0)
         self.place_list.set_column_visibility(10,0)
         self.place_list.set_column_visibility(11,0)
-        self.place_list.set_sort_column(self.p_sort_column+6)
-        self.place_list.set_sort_type(self.p_sort_direct)
+        self.place_list.set_sort_column(self.sort_column+6)
+        self.place_list.set_sort_type(self.sort_direct)
 
     def load_places(self):
         self.place_list.freeze()
@@ -120,19 +120,19 @@ class PlaceView:
         for a in self.place_arrows:
             a.hide()
         arrow = self.place_arrows[column]
-        if self.p_sort_column == column:
-            if self.p_sort_direct == GTK.SORT_DESCENDING:
-                self.p_sort_direct = GTK.SORT_ASCENDING
+        if self.sort_column == column:
+            if self.sort_direct == GTK.SORT_DESCENDING:
+                self.sort_direct = GTK.SORT_ASCENDING
                 arrow.set(GTK.ARROW_DOWN,2)
             else:
-                self.p_sort_direct = GTK.SORT_DESCENDING
+                self.sort_direct = GTK.SORT_DESCENDING
                 arrow.set(GTK.ARROW_UP,2)
         else:
-            self.p_sort_direct = GTK.SORT_ASCENDING
+            self.sort_direct = GTK.SORT_ASCENDING
             arrow.set(GTK.ARROW_DOWN,2)
-        self.p_sort_column = column
-        self.place_list.set_sort_type(self.p_sort_direct)
-        self.place_list.set_sort_column(self.p_sort_column + 6)
+        self.sort_column = column
+        self.place_list.set_sort_type(self.sort_direct)
+        self.place_list.set_sort_column(self.sort_column + 6)
         arrow.show()
         self.place_list.sort()
         if sel:
