@@ -1748,178 +1748,166 @@
       
        <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-merge"> 
-        <title>Merge People</title> 
-	<para> Sometime two people entries in the database turn out to be 
-        describing the same person. When this happens, merging people is 
-        a useful way of correcting the situation. </para>
+        <title>Слияние персональных записей</title> 
+	<para> Иногда две персональные записи в базе данных оказываются описывающими 
+    одно и то же лицо. Когда это происходит, слияние записей становится удобным способом
+    разрешения ситуации.</para>
         
-        <para> To make a merge, exactly two people have to be selected in the
-        People View. This is accomplished by selecting one person and then
-        selecting another person while holding down <keycap>Ctrl</keycap> key.
+        <para> Чтобы произвести слияние, в Виде Людей должны быть выделены ровно два лица.
+        Это достигается выбором одного лица и, затем, выбора другого с нажатием контрольной 
+        клавиши (<keycap>Ctrl</keycap>).
         </para>
         
-        <para> When exactly two people are selected, choose
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge...</guimenuitem></menuchoice>
-        to evoke <guilabel>Merge People</guilabel> dialog. The dialog allows you to
-        retain the data from either person as the primary data for the new
-        (merged) person. The data from the other person can be kept as alternate
-        data if you so choose. If you would like to continue editing data of 
-        a newly merged person, click the <guibutton>Merge and edit</guibutton>
-        button. </para>
+        <para> Когда ровно два лица выделены, выберите 
+        <menuchoice><guimenu>Правка</guimenu><guimenuitem>Слияние...</guimenuitem></menuchoice>
+        для вызова диалога <guilabel>Слить Людей</guilabel>. Этот диалог позволяет Вам
+        сохранить данные из любой записи в качестве главных данных для нового (объединённого) 
+        лица. Данные из другой записи можно сохранить в качестве альтернативных, если
+        Вы этого хотите. Если Вы желаете продолжить правку данных нового лица, щёлкните кнопку
+        <guibutton>Слияние и правка</guibutton>.
+        </para>
       </sect3>
 
        <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-merge-places"> 
-        <title>Merge Places</title> 
-        <para> Sometime two place entries in the database turn out to be 
-        describing the same place. When this happens, merging places is 
-        a useful way of correcting the situation. </para>
+        <title>Слияние Мест</title> 
+        <para> Иногда две записи о местах в базе данных оказываются описывающими 
+    одно и то же место. Когда это происходит, слияние записей становится удобным способом
+    разрешения ситуации. </para>
         
-        <para> To make a merge, exactly two places have to be selected in the
-        Places View. This is accomplished by selecting one place and then
-        selecting another place while holding down <keycap>Ctrl</keycap> key.
+        <para> Чтобы произвести слияние, в Виде Мест должны быть выделены ровно два места.
+        Это достигается выбором одного места и, затем, выбора другого с нажатием контрольной 
+        клавиши (<keycap>Ctrl</keycap>).
         </para>
         
-        <para> When exactly two places are selected, choose
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge...</guimenuitem></menuchoice>
-        to evoke <guilabel>Merge Places</guilabel> dialog. The dialog allows 
-        you to retain the data from either place as the primary data for 
-        the new (merged) place. Alternatively, you may type in other data
-        for the new place, if you click <guilabel>Other</guilabel> radio 
-        button.</para>
+        <para> Когда ровно два места выделены, выберите 
+        <menuchoice><guimenu>Правка</guimenu><guimenuitem>Слияние...</guimenuitem></menuchoice>
+        для вызова диалога <guilabel>Слить Места</guilabel>. Этот диалог позволяет Вам
+        сохранить данные из любой записи в качестве главных данных для нового (объединённого) 
+        места. Вместо этого, Вы можете ввести другие данные для нового места, если щёлкните 
+        радио-кнопку <guibutton>Другое</guibutton>.
+        </para>
       </sect3>
 
    </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
-       <title>Navigation</title> 
-	<para> As long as any database is open, &app; is focused on a 
-	single person usually referred to as an Active person. This 
-	allows you to view or modify the data concerning this person, 
-	his or her immediate family, etc. Navigating in the database (i.e. 
-	moving from person to person) is in fact nothing else but changing 
-	the Active person. This section describes many alternative ways
-	to navigate through the database using both the complex and the 
-        convenient interfaces &app; provides. All these ways eventually 
-        accomplish the same thing, but some are more convenient than others, 
-        depending what you are doing in &app; at the moment. </para>
+       <title>Навигация</title> 
+	<para> Пока открыта какая-либо база данных, фокус &app; находится на одном лице,
+    обычно называемом Активным лицом. Это позволяет Вам просматривать или редактировать 
+    данные, касающиеся этого лица, членов его семьи, и т.д. Навигация в базе данных (т.е.
+    перемещение от лица к лицу) есть ничто иное, как смена Активного лица. Этот раздел 
+    описывает различные способы навигации по базе данных, используя сложный и удобный
+    интерфейс, предоставляемый &app;. Все эти способы, в результате, совершают одно
+    и то же действие, но одни являются более удобными, чем другие, в зависимости от того,
+    что Вы делаете в &app; в настоящий момент. </para>
        
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-people"> 
-        <title>Using the People View </title> 
-	<para> The most intuitive way to select an active person is 
-	to use the People View (see <xref linkend="people-view"/>). 
-        When in the People View, just select the 
-	name of the desired person from the list by clicking that list 
-	entry. The person you have selected becomes active. The statusbar 
-	updates to reflect the change of the active person. </para> 
+        <title>Используя Вид Людей </title> 
+	<para> Наиболее интуитивный способ выбора активного лица состоит в использовании
+    Вида Людей (см. <xref linkend="people-view"/>). Находясь в Виде Людей, просто выберите
+    желаемое лицо из списка нажатием на запись этого лица. Лицо станет активным. Панель статуса
+    обновится, чтобы отразить изменение активного лица. </para> 
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-family"> 
-        <title>Using the Family View</title> 
-	<para> When in the Family View (see <xref linkend="family-view"/>), 
-        you can easily navigate between the members of the displayed family 
-        as follows: </para>
+        <title>Используя Вид Семьи </title> 
+	<para> Находясь в Виде Семьи (см. <xref linkend="family-view"/>), 
+        Вы можете легко перемещаться между членами показанной семьи 
+        следующим образом: </para>
 
 	<itemizedlist>
-	<listitem><para>To make the currently selected spouse the active person, 
-	click the double-arrow button to the right of the active person box. 
-        Alternatively, right-click into the spouse box and select 
-        <guilabel>Make the selected spouse an active person</guilabel> item 
-        from the context menu. 
+	<listitem><para>Чтобы сделать выделенного супруга активным лицом,
+    щёлкните кнопку с двойной стрелкой справа от окошка активного лица.
+    Или сделайте правый щелчок в окошко супруга и выберите элемент 
+        <guilabel>Сделать выделенного супруга активным лицом</guilabel> 
+        из контекстного меню.
 	</para></listitem>
 	
-	<listitem><para>To make the currently selected parents the active family
-	(thereby making father the active person and mother the selected
-	spouse), click the right-arrow button to the right of the active person's
-	parents box. Alternatively, right-click into the active person's parents 
-        box and select 
-        <guilabel>Make the selected parents the active family</guilabel> item 
-        from the context menu. 
+	<listitem><para>Чтобы сделать выделенных родителей активной семьёй
+    (таким образом отец становится активным лицом, а мать - выделенным супругом),
+    щёлкните кнопку с правой стрелкой справа от окошка родителей активного лица. 
+    Или сделайте правый щелчок в окошко родителей активного лица и выберите элемент
+        <guilabel>Сделать выделенных родителей активной семьёй</guilabel> 
+        из контекстного меню.
         </para></listitem> 
 	
-	<listitem><para>To make the currently selected spouse's parents 
-	the active family (thereby making father the active person and mother 
-	the selected spouse), click the right-arrow button to the right of the 
-	spouse's parents box. Alternatively, right-click into the spouse's parents 
-        box and select 
-        <guilabel>Make the selected parents the active family</guilabel> item 
-        from the context menu. </para></listitem>
+	<listitem><para>Чтобы сделать родителей выделенного супруга активной семьёй
+    (таким образом отец становится активным лицом, а мать - выделенным супругом),
+    щёлкните кнопку с правой стрелкой справа от окошка родителей супруга. 
+    Или сделайте правый щелчок в окошко родителей супруга и выберите элемент
+        <guilabel>Сделать выделенных родителей активной семьёй</guilabel> 
+        из контекстного меню. </para></listitem>
 	
-	<listitem><para>To make the currently selected child the active person, 
-	click the left-arrow button to the right of the children box. 
-        Alternatively, right-click into the children box and select 
-        <guilabel>Make the selected child an active person</guilabel> item 
-        from the context menu.
+	<listitem><para>Чтобы сделать выделенного ребёнка активным лицом,
+    щёлкните кнопку с левой стрелкой справа от окошка детей.
+    Или сделайте правый щелчок в окошко детей и выберите элемент 
+        <guilabel>Сделать выделенного ребёнка активным лицом</guilabel> 
+        из контекстного меню.
 	</para></listitem>
 
 	</itemizedlist>
 
-        <para>In addition to this, &app; provides an extensive set of keyboard
-        navigation options. The detailed reference to the keybindings 
-        is found in the <xref linkend="append-keybind"/>.</para>
+        <para>В дополнение к этому, &app; предоставляет широкий набор клавишных 
+        назначений для навигации. Для подробной справки по назначениям клавиш 
+        см. <xref linkend="append-keybind"/>. </para>
 
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-pedigree"> 
-        <title>Using the Pedigree View</title> 
-	<para> The Pedigree View (see <xref linkend="pedigree-view"/>) also 
-        allows you to move along the family tree. 
-	The benefit of this method is that you can see more than one 
-	generation of the family tree. Also, you can jump directly from a
-	great-grandson to a great-grandfather without going through the 
-	intermediate generations. </para>
+        <title>Используя Вид Родословной</title> 
+	<para> Вид Родословной (см. <xref linkend="pedigree-view"/>) также позволяет
+    Вам перемещаться по семейному дереву. Преимущество этого метода в том, что Вы
+    видите более одного поколения этого дерева. Также, Вы можете перепрыгнуть 
+    непосредственно от правнука к прадеду, минуя промежуточные поколения.  </para>
 
-	<para> Note that after changing the active person in the Pedigree 
-	View, the display is re-adjusted to show four generations, starting 
-	from the newly selected Active person. When in the Pedigree View, you 
-	can easily navigate between the members of the displayed family tree 
-	as follows: </para> 
+	<para> Заметьте, что после смены активного лица в Виде Родословной дисплей
+    перестраивается, чтобы отразить четыре поколения, начиная с вновь выбранного 
+    активного лица. Находясь в Виде Родословной, Вы можете легко перемещаться 
+    между членами показанного семейного дерева следующим образом: </para> 
 
 	<itemizedlist>
-	<listitem><para>To make any displayed person the active person, 
-	double-click the line that connects to the left side of the
-	corresponding box. </para></listitem>
+	<listitem><para>Чтобы сделать любое показанное лицо активным, сделайте
+    двойной щелчок по линии, подходящей слева к соответствующей рамке.
+    </para></listitem>
 
-	<listitem><para>To make a child of the currently active person (if any) 
-	the active person, click the left arrow button to the left of the
-	corresponding box. If there is more than one child, the button expands
-	to the menu listing the children to choose from. </para></listitem> 
+	<listitem><para>Чтобы сделать ребёнка активного лица (если таковой существует) 
+    активным лицом, щёлкните кнопку с левой стрелкой слева от рамки активного лица.
+    Если активное лицо имеет более одного ребёнка, кнопка развернётся в меню со списком
+    детей, из которых можно выбрать нужного ребёнка. </para></listitem> 
 
-	<listitem><para>To move the whole family tree one generation back,
-	click on the corresponding right arrow button on the right-hand side 
-	of the display area. Clicking the upper button will move the tree 
-	along the paternal line. Clicking the lower button will move the 
-	tree along the maternal line. </para>
+	<listitem><para> Чтобы передвинуть всё семейное дерево на одно поколение назад
+    щёлкните соответствующую кнопку с правой стрелкой в правой части области просмотра.
+    Щелчок верхней кнопки передвинет дерево по отцовской линии. 
+    Щелчок нижней кнопки передвинет дерево по материнской линии. </para>
 
-	<para> Clicking either of these buttons is completely equivalent to
-	double-clicking the lines connecting to the left of the corresponding
-	boxes for father and mother. </para></listitem>
+	<para> Щелчок любой из этих кнопок полностью равносилен двойному щелчку
+    по линии, подходящей слева к соответствующей рамке отца или матери. 
+    </para></listitem>
 	</itemizedlist>
 
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-default"> 
-        <title>Setting the Home Person</title> 
-	<para> One and only one person in the database can be selected as the 
-	Home person. Once the Home person is selected, moving to that
-	person becomes a matter of a single click, regardless of which view 
-	you are using at the moment. </para>
+        <title>Выбор Базового лица</title> 
+	<para> Одно и только одно лицо в базе данных может быть выбрано в качестве
+    Базового лица. Коль скоро Базовое лицо установлено, перемещение к этому лицу
+    становится делом одного щелчка, независимо от того, какой Вид Вы используете 
+    в настоящий момент. </para>
 
-	<para> To set the Home person, first navigate to that person using 
-	any method you like. Then choose 
-	<menuchoice><guimenu>Edit</guimenu>
-	<guimenuitem>Set Home person</guimenuitem></menuchoice>. Once this is 
-	done, you can move to the Home person from anywhere in the 
-	database by simply clicking the <guibutton>Home</guibutton> icon 
-        on the toolbar. You can also choose <menuchoice><guimenu>Go</guimenu>
-	<guimenuitem>Home</guimenuitem></menuchoice> from the menu or select 
-        <guilabel>Home</guilabel> item from any context menu available on the 
-        right click. 
+	<para> Чтобы установить Базовое лицо, вначале переместитесь к этому лицу,
+    используя любой метод навигации. Затем выберите <menuchoice><guimenu>Правка</guimenu>
+	<guimenuitem>Установить Базовое лицо</guimenuitem></menuchoice>. Как только
+    это сделано, Вы можете переместится к Базовому лицу простым щелчком кнопки 
+	<guibutton>Домой</guibutton> на панели инструментов. Также Вы можете выбрать
+    <menuchoice><guimenu>Иди</guimenu><guimenuitem>Домой</guimenuitem></menuchoice> 
+    из меню &app; или выбрать элемент <guilabel>Домой</guilabel> из любого контекстного
+    меню, вызываемого правым щелчком.
         </para>
 	
       </sect3>
@@ -1927,49 +1915,48 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-history"> 
-        <title>Using history-based tools</title> 
-	<para> &app; also features a powerful set of history-based navigation 
-        tools. These tools are similar to those commonly used in web browsers. 
-        They include <guilabel>Back</guilabel> and <guilabel>Forward</guilabel>
-        items available from the <menuchoice><guimenu>Go</guimenu></menuchoice> 
-        menu, context menus, and the toolbar buttons. They also include the 
-        list of the recent selections available under the 
-        <menuchoice><guimenu>Go</guimenu></menuchoice> menu that allows you to jump 
-        directly to any of the recent selections. 
-        Finally, right-clicking on the <guibutton>Back</guibutton> 
-        and <guibutton>Forward</guibutton> toolbar buttons invokes the 
-        popup menu with corresponding portion of the history. Select any item
-        from the menu to jump directly to it. </para>
+        <title>Используя историю перемещения </title> 
+	<para> &app; также предлагает мощный набор средств навигации, основанных на истории
+    перемещения по базе данных. Эти средства близки к обычно используемым в веб-браузерах.
+    Они включают элементы <guilabel>Назад</guilabel> и <guilabel>Вперёд</guilabel>,
+    доступные в меню <menuchoice><guimenu>Иди</guimenu></menuchoice>, контекстных меню, 
+    и в качестве кнопок на панели инструментов. Также они включают список недавних лиц
+    в меню <menuchoice><guimenu>Иди</guimenu></menuchoice>, который позволяет Вам 
+    перепрыгнуть непосредственно на любое из недавних лиц. Наконец, правый щелчок  
+    кнопок <guilabel>Назад</guilabel> и <guilabel>Вперёд</guilabel> на панели 
+    инструментов вызывает меню с соответствующей порцией истории. Выберите любой 
+    элемент из меню, чтобы перепрыгнуть прямо на обозначенное лицо. </para>
 
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-bookmk"> 
-        <title>Bookmarking People</title> 
-	<para> Similar to setting the Home person, you can bookmark other 
-        people from the database to simplify further navigation. To bookmark 
-        a person, first navigate to that person, then choose 
-	<menuchoice><guimenu>Bookmarks</guimenu>
-	<guimenuitem>Add bookmark</guimenuitem></menuchoice>. To move to that
-	person from anywhere in the database, choose 
-	<menuchoice><guimenu>Bookmarks</guimenu>
-	<guisubmenu>Go to bookmark</guisubmenu>
-	<guimenuitem><replaceable>Person's name</replaceable></guimenuitem>
+        <title>Установка закладок</title> 
+	<para> Чтобы облегчит навигацию, Вы можете установить закладки на любых лиц
+    в базе данных -- действие, похожее на установку Базового лица. Чтобы установить
+    закладку на лицо, вначале переместитесь на это лицо, а затем выберите 
+    <menuchoice><guimenu>Закладки</guimenu>
+	<guimenuitem>Добавить закладку</guimenuitem></menuchoice>. 
+    Чтобы переместится к этому лицу из любого места в базе данных, выберите
+	<menuchoice><guimenu>Закладки</guimenu>
+	<guisubmenu>Перейти к закладке</guisubmenu>
+	<guimenuitem><replaceable>Имя лица</replaceable></guimenuitem>
 	</menuchoice>. </para>
 	
-	<para> You can manage your bookmarks by choosing 
-	<menuchoice><guimenu>Bookmarks</guimenu>
-	<guimenuitem>Edit bookmarks...</guimenuitem></menuchoice>. This opens
-	the following <guilabel>Edit Bookmarks</guilabel> dialog with the 
-	list of	bookmarks and the controls to modify this list. </para>
+	<para> Вы можете управлять закладками путём выбора
+    You can manage your bookmarks by choosing 
+	<menuchoice><guimenu>Закладки</guimenu>
+	<guimenuitem>Правка закладок...</guimenuitem></menuchoice>. Это открывает
+    следующий диалог <guilabel>Правка закладок</guilabel> со списком закладок
+    и управлением для его модификации. </para>
 	
  	<!-- ==== Figure: Edit Bookmarks dialog ==== -->
 	<figure id="edit-bm-fig"> 
-	<title>Edit Bookmarks dialog</title> 
+	<title>Диалог Правка закладок</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-bm.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Edit Bookmarks dialog. </phrase>
+	<phrase>Показан диалог Правка закладок. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
@@ -1977,324 +1964,297 @@
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-find-people"> 
-        <title>Finding People</title> 
-	<para> To find a person in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the People View, Family View, or Pedigree View. This opens a 
-        <guilabel>Find Person</guilabel> dialog which can be used for searching
-        forward and backward. </para>
+        <title>Поиск людей</title> 
+	<para> Чтобы найти лицо в базе данных, выберите 
+        <menuchoice><guimenu>Правка</guimenu><guimenuitem>Поиск...</guimenuitem></menuchoice>,
+        находясь при этом в Виде Людей, Виде Семьи, или Виде родословной. Это открывает
+        диалог <guilabel>Поиск лица</guilabel>, который может быть использован для поиска
+        вперёд и назад. </para>
 	
-	<para> If the search is successful, the found person becomes an active
-        person and the display adjusts according to the new active person and the
-        current view. </para>
+	<para> Если поиск успешен, найденное лицо становится активным и дисплей перестраивается,
+    в соответствии с новым активным лицом и с текущим Видом. </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-find-sources"> 
-        <title>Finding Sources</title> 
-	<para> To find a source in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Sources View. This opens a <guilabel>Find Source</guilabel>
-        dialog which can be used for searching forward and backward. If the
-        search is successful, the found source becomes highlighted. </para> 
+        <title>Поиск источников</title> 
+	<para> Чтобы найти источник в базе данных, выберите 
+        <menuchoice><guimenu>Правка</guimenu><guimenuitem>Поиск...</guimenuitem></menuchoice>,
+        находясь при этом в Виде Источников. Это открывает
+        диалог <guilabel>Поиск источников</guilabel>, который может быть использован для поиска
+        вперёд и назад. Если поиск успешен, найденный источник становится выделенным
+        в списке. </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-find-places"> 
-        <title>Finding Places</title> 
-	<para> To find a place in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Places View. This opens a <guilabel>Find Place</guilabel> 
-        dialog which can be used for searching forward and backward. If the 
-        search is successful, the found place becomes highlighted. </para> 
+        <title>Поиск мест</title> 
+	<para> Чтобы найти место в базе данных, выберите 
+        <menuchoice><guimenu>Правка</guimenu><guimenuitem>Поиск...</guimenuitem></menuchoice>,
+        находясь при этом в Виде Мест. Это открывает
+        диалог <guilabel>Поиск мест</guilabel>, который может быть использован для поиска
+        вперёд и назад. Если поиск успешен, найденное место становится выделенным
+        в списке.</para> 
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-find-media"> 
-        <title>Finding Media Objects</title> 
-	<para> To find a media object in a database, choose 
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in the Media View. This opens a <guilabel>Find Media Objects</guilabel> 
-        dialog which can be used for searching forward and backward. If the 
-        search is successful, the found media object becomes highlighted. </para> 
+        <title>Поиск документов</title> 
+	<para> Чтобы найти документ в базе данных, выберите 
+        <menuchoice><guimenu>Правка</guimenu><guimenuitem>Поиск...</guimenuitem></menuchoice>,
+        находясь при этом в Виде Альбома. Это открывает
+        диалог <guilabel>Поиск документов</guilabel>, который может быть использован для поиска
+        вперёд и назад. Если поиск успешен, найденный документ становится выделенным
+        в списке. </para> 
       </sect3>
 
    </sect2>
    
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gen-reports"> 
-        <title>Generating Reports</title> 
-	<para> Reports are the most common form of the output produced by
-	genealogical research. The majority of genealogical software puts a lot
-	of emphasis on developing nicely looking reports. &app; is no 
-	exception in this regard: it offers a choice of a variety of reports. 
-	&app; can generate reports in a multitude of open formats, both 
-	text based and graphical. &app; can also produce screen based reports 
-	that are convenient for viewing a summary of your database. 
-	Finally, &app; can generate a web site suitable for immediate 
-	posting on the Internet. All these are almost infinitely flexible: 
-        if you wish to modify or extend the default format of &app; report 
-	you can design and choose the style for each of your reports. </para>
+        <title>Создание отчётов</title> 
+	<para> Отчёты являются наиболее распространённой формой выходных результатов, 
+    производимых генеалогическими изысканиями. Большинство генеалогических программ
+    уделяют большое внимание разработке хорошо выглядящих отчётов. &app; не является
+    исключением в этом смысле, предлагая широкий выбор отчётов. &app; может создавать
+    отчёты в различных открытых форматах, как текстовых, так и графических. &app; 
+    также может создавать отчёты экранного вывода, удобные для просмотра статистики
+    Вашеё базы данных. Наконец, &app; может создать веб-сайт, пригодный к немедленой
+    установке в Интернет. Все эти возможности практически бесконечно настраиваемы:
+    если ВЫ хотит изменить или дополнить базовый формат отчёта &app;, Вы можете 
+    создать и выбрать стиль для каждого из Ваших отчётов. </para>
 
-	<para> All reports can be accessed through the menu by choosing
-	<menuchoice><guimenu>Reports</guimenu>
-	<guisubmenu><replaceable>Report Type</replaceable></guisubmenu>
-	<guimenuitem><replaceable>Particular 
-	Report</replaceable></guimenuitem></menuchoice>. Alternatively, 
-	you can browse the complete selection of available reports along 
-	with their brief descriptions in a <guilabel>Report 
-	Selection</guilabel> dialog evoked by clicking the 
-	<guibutton>Reports</guibutton> icon on the toolbar. 
+	<para> Доступ ко всем отчётам осуществляется выбором 
+	<menuchoice><guimenu>Отчёты</guimenu>
+	<guisubmenu><replaceable>Тип отчёта</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Конкрентный 
+	Отчёт</replaceable></guimenuitem></menuchoice>. Или, Вы можете просмотреть
+    полный выбор доступных отчётов с их краткими описаниями в диалоге <guilabel>Выбор 
+	Отчётов</guilabel>, вызываемом щелчком кнопки 
+	<guibutton>Отчёты</guibutton> на панели инструментов.
 	</para>
 
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-graph"> 
-	<title>Graphical Reports</title> 
-	<para> Graphical reports represent information in forms of charts 
-	and graphs. Most of the options are common among graphical reports, 
-	therefore they will be described only once, at the end of this 
-	section. The few options which are specific to a given report will be 
-	described directly in that report's entry.</para>
+	<title>Графические отчёты</title> 
+	<para> Графические отчёты представляют информацию в виде карт и графиков. 
+    Большинство параметров является общим для графических отчётов, поэтому они
+    будут описаны только один раз, в конце этого раздела. Немногочисленные параметры,
+    специальные для каждого отчёта, будут описаны непосредственно в разделе 
+    этого отчёта. </para>
 
-	<para>The following graphical reports are currently 
-	available in &app;: </para>
+	<para>Следующие графические отчёты доступны в настоящий момент в &app;: </para>
 	
 	<variablelist>
 
-	<varlistentry><term>Ancestor Chart</term>
-	<listitem><para>This report generates the chart of people who are
-	ancestors of the Active person. Specific options include 
-	the number of generations considered and the format of the displayed 
-	entries. </para></listitem>
+	<varlistentry><term>Карта предков</term>
+	<listitem><para>Этот отчёт создаёт карту людей, являющихся предками Активного
+    лица. Специальные параметры включают число рассматриваемых поколений и формат выводимых
+    записей. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Descendant Graph</term>
-	<listitem><para>This report generates a graph of people who are
-	descendants of the Active person. Specific options include 
-	the format of the displayed entries. </para></listitem>
+	<varlistentry><term>Граф потомков</term>
+	<listitem><para>Этот отчёт создаёт граф людей, являющихся потомками Активного
+    лица. Специальные параметры включают формат выводимых записей. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Relationship Graph</term>
-	<listitem><para>This report creates a complex relationship graph in 
-	GraphViz format. The GraphViz <command>dot</command> tool can 
-	transform the graph into postscript, jpeg, png, vrml, svg, and many
-	other formats. GraphViz tools are freely available from the 
-	<ulink url="http://www.graphviz.org" type="http">GraphViz 
-	site</ulink>. Specific options for this report 
-	include filter and number of generations considered, as well as 
-	several GraphViz-specific options related to pagination, color, 
-	and details of the graph. </para></listitem>
+	<varlistentry><term>Граф отношений</term>
+	<listitem><para>Этот отчёт создаёт сложный граф отношений в формате GraphViz.
+    Программа <command>dot</command> из пакета GraphViz может преобразовать
+    граф в форматы postscript, jpeg, png, vrml, svg и многие другие. Инструменты
+    GraphViz свободно доступны на <ulink url="http://www.graphviz.org" type="http">
+    сайте GraphViz</ulink>. Специальные параметры для этого отчёта включают 
+    фильтр и число рассматриваемых поколений, а также несколько параметров, специальных
+    для формата GraphViz, касающихся разбиения на страницы, цвета и подробностей 
+    графа. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Timeline Graph</term>
-	<listitem><para>This report outputs the list of people with their
-	lifetimes represented by intervals on a common chronological scale. 
-	Specific options include filter, sorting method, and the title of 
-	the report. </para></listitem>
+	<varlistentry><term>Временная диаграмма</term>
+	<listitem><para>Этот отчёт выводит список людей, так что время их жизни представлено
+    интервалом на общей хронологической шкале. Специальные параметры включают 
+    фильтр, метод сортировки и название отчёта. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
 
-	<para>Common options for graphical reports are the filename of the
-	output, the format of the output, selected style, page size and 
-	orientation. </para>
+	<para>Общими параметрами для графических отчётов являются имя выходного файла, 
+    формат вывода, стиль отчёта, размер и ориентация страницы. </para>
 
       </sect3>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-text"> 
-	<title>Text Reports</title> 
-	<para> Text reports represent the desired information as formatted 
-	text. Most of the options are common among text reports, 
-	therefore they will be described only once, at the end of this 
-	section. The options which are specific to a given report will be 
-	described directly in that report's entry.</para>
+	<title>Текстовые отчёты</title> 
+	<para> Текстовые отчёты представляют информацию в виде форматированного текста.
+    Большинство параметров является общим для текстовых отчётов, поэтому они
+    будут описаны только один раз, в конце этого раздела. Немногочисленные параметры,
+    специальные для каждого отчёта, будут описаны непосредственно в разделе 
+    этого отчёта. </para>
 	
-	<para>The following text reports are currently 
-	available in &app;:</para>
+	<para>Следующие текстовые отчёты доступны в настоящий момент в &app;:</para>
 
 	<variablelist>
 
-	<varlistentry><term>Ahnentafel Report</term>
-	<listitem><para>This report lists the active person and his or her 
-	ancestors along with their vital data. The people are numbered in a 
-	special way which is an established standard called Ahnentafel. 
-	The active person is given number 1. His or her father and mother 
-	have numbers 2 and 3, respectively. This rule holds for every person 
-	while going back in generations: father's parents are numbered 4 and 5, 
-	and mother's parents are numbered 6 and 7, fathers always numbered 
-	with even and mothers with odd numbers. Therefore, for any person 
-	having number N in this tree, the numbers of father and mother 
-	are 2N and 2N+1, respectively. 
+	<varlistentry><term>Таблица предков</term>
+	<listitem><para>Этот отчёт перечисляет активное лицо и его предков с их жизненными 
+    данными. Люди пронумерованы специальным способом, в соответствии с установленным 
+    стандартом Ahnentafel. Активному лицу приписывается номер 1. Его отец и мать получают 
+    номера 2 и 3, соответственно. Такое же правило применяется к каждому лицу при 
+    движении назад по поколениям: родители отца получают номера 4 и 5, а родители матери
+    - 6 и 7. Отцы всегда получают чётные, а матери - нечётные номера. Таким образом, 
+    для любого лица с номером N в этом дереве, номера отца и матери равны 2N и 2N+1, 
+    соответственно.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Comprehensive Ancestors Report</term>
-	<listitem><para>This report produces a comprehensive description 
-	of ancestors of the active person. The highlights of this report
-        include elaborate layout, images of children, present and former 
-        spouses, and source citations. Specific options: number 
-	of backward generations to consider, whether to cite sources, 
-        and whether to break pages between generations. </para></listitem>
+	<varlistentry><term>Расширенный отчёт о предках</term>
+	<listitem><para>Этот отчёт производит расширенное описание предков активного лица.
+    Особенностями этого отчёта являются тщательно выработанное расположение частей,
+    изображения детей, настоящих и бывших супругов и ссылки на источники. 
+    Специальные параметры: число рассматриваемых поколений, цитировать ли источники 
+    и вставлять ли новую страницу между поколениями. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Complete Individual Report</term>
-	<listitem><para>This report provides individual summaries similar to
-	that of the Individual Summary report. The advantage of this report 
-	is the specific filter option. Depending on the filter choice (active
-	person only, his or her descendants, his or her ancestors, or entire
-	database), the report may contain from one to many individual 
-	summaries. Another option for this report is the inclusion of 
-	source information when listing events. </para></listitem>
+	<varlistentry><term>Полный индивидуальный отчёт</term>
+	<listitem><para>Этот отчёт предоставляет индивидуальную стастистику, схожую с 
+    содержанием Суммарного отчёта. Преимущество этого отчёта заключается в дополнительных
+    параметрах фильтра. В зависимости от выбранного фильтра (активное лицо, его потомки,
+    его предки, или вся база данных), отчёт может содержать от одного до многих
+    индивидуальных сводок. Дополнительной возможностью этого отчёта является включение
+    информации об источниках при перечислении событий. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Descendant Report</term>
-	<listitem><para>This report produces a brief description 
-	of descendants of the active person. Specific options: number 
-	of forward generations to consider. </para></listitem>
+	<varlistentry><term>Отчёт о потомках</term>
+	<listitem><para>Этот отчёт производит краткое описание потомков активного лица. 
+    Специальные параметры: число рассматриваемых поколений. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Detailed Ancestral Report</term>
-	<listitem><para>This report covers in detail the ancestors of the
-	active person. It includes vital data (birth and death) as well as 
-	marriages. Specific options: number of backward generations 
-	to consider, as well as a variety of options regarding the exact 
-	contents to include. </para></listitem>
+	<varlistentry><term>Подробный отчёт о предках</term>
+	<listitem><para>Этот отчёт в подробностях описывает предков активного лица.
+    Он включает жизненные данные (рождение и смерть), а также информацию о браках.
+    Специальные параметры: число рассматриваемых поколений, а также многочисленные 
+    опции, касающиеся включаемого содержания. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Detailed Descendant Report</term>
-	<listitem><para>This report covers in detail the descendants of the
-	active person. It includes vital (birth and death) information as well as 
-	marriages. Specific options: number of forward generations 
-	to consider. </para></listitem>
+	<varlistentry><term>Подробный отчёт о потомках</term>
+	<listitem><para>Этот отчёт в подробностях описывает потомков активного лица.
+    Он включает жизненные данные (рождение и смерть), а также информацию о браках.
+    Специальные параметры: число рассматриваемых поколений. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>FTM Style Ancestral Report</term>
-	<listitem><para>This report creates an ancestral report similar to 
-        that produced by the Family Tree Maker (tm) program. It covers in detail the 
-        active person and his/her ancestors It includes vital information 
-        as well as marriages, children, and notes.  Specific options: number 
-        of backward generations to consider. </para></listitem>
+	<varlistentry><term>FTM отчёт о предках</term>
+	<listitem><para>Этот отчёт в подробностях описывает предков активного лица, по образцу
+    программы Family Tree Maker (tm). Он включает жизненные данные (рождение и смерть), а также 
+    информацию о браках и комментарии, касающиеся активного лица и его предков.
+    Специальные параметры: число рассматриваемых поколений. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>FTM Style Descendant Report</term>
-	<listitem><para>This report creates a descendant report similar to 
-        that produced by the Family Tree Maker (tm) program. It covers in detail the 
-        active person and his/her descendants. It includes vital information 
-        as well as marriages, children, and notes. Specific options: 
-        number of forward generations to consider. </para></listitem>
+	<varlistentry><term>FTM отчёт о потомках</term>
+	<listitem><para>Этот отчёт в подробностях описывает потомков активного лица, по образцу
+    программы Family Tree Maker (tm). Он включает жизненные данные (рождение и смерть), а также 
+    информацию о браках и комментарии, касающиеся активного лица и его потомков.
+    Специальные параметры: число рассматриваемых поколений. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Family Group Report</term>
-	<listitem><para>This creates a family group report, showing
-	information on a set of parents and their children. Specific 
-	options: the spouse (available only if the active person has more
-	than one spouse). </para></listitem>
+	<varlistentry><term>Отчёт о семейной группе</term>
+	<listitem><para>Этот отчёт описывает семейную группу, показывая информацию о родителях
+    и их детях. Специальные параметры: супруг (доступен, только если активное лицо состоит
+    или состояло более чем в одном браке). </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term>Individual Summary</term>
-	<listitem><para>This report produces a detailed summary on the 
-	active person. The report includes all the facts known to the 
-	database about that person. </para></listitem>
+	<varlistentry><term>Суммарный отчёт</term>
+	<listitem><para>Этот отчёт производит подробное описание активного лица. Он включает 
+    все факты, доступные в базе данных, об этом человеке. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
 
-	<para>Common options for text reports are the filename of the
-	output, the format of the output, selected style, page size and 
-	orientation. For HTML reports, there is no page information. 
-	Instead, HTML options include the choice of the HTML template, 
-	either available in &app; or a custom template defined by you. </para>
+	<para>Общими параметрами для текстовых отчётов являются имя выходного файла, 
+    формат вывода, стиль отчёта, размер и ориентация страницы. Для отчётов в формате
+    HTML, информация о страницах не имеет смысла. Вместо этого, параметры этих отчётов
+    включают выбор шаблона HTML (доступного в &app; или определяемого Вами). </para>
 
       </sect3>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-books"> 
-	<title>Books</title> 
-	<para> Currently, the only available report under this category
-        is the Book Report. </para>
+	<title>Книги</title> 
+	<para> В настоящий момент, единственным отчётом в этой категории является 
+    Отчёт книга. </para>
 
-	<para> The Book Report creates a single document (i.e. a Book) 
-        containing a collection of graphical and textual reports.
-        Consequently, this allows for a very rich set of documents 
-        that &app; can produce. 
+	<para> Отчёт книга создаёт один документ (т.е. книгу), содержащий коллекцию 
+    графических и текстовых отчётов. Как следствие, это предоставляет богатый 
+    набор документов, производимых &app;. 
         </para>
 
-	<para> When Book Report is selected, the following book configuration
-        dialog appears: </para>
+	<para> При выборе Отчёта книга появляется следующий диалог 
+    конфигурации книги: </para>
 
  	<!-- ==== Figure: Book Report dialog ==== -->
 	<figure id="rep-book-fig"> 
-	<title>Book Report dialog</title> 
+	<title>Диалог Отчётв книга</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/bookreport.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Book Report dialog. </phrase>
+	<phrase>Показан диалог Отчётв книга. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> The <guilabel>Book name</guilabel> text entry field is used to
-        save the book (a set of configured selections) for future use.
-        The top pane lists the items available for inclusion in the 
-        book. The bottom pane lists the currently selected items in
-        the order they will appear in the book. </para>
+	<para> Поле ввода текста <guilabel>Название книги</guilabel> используется
+    дла сохранения книги (набора настроек) для будущего использования. 
+    Верхняя панель перечисляет элементы, доступные для включения в книгу.
+    Нижняя панель перечисляет элементы, уже включённые в книгу, в том порядке, 
+    в котором они появятся в книге. </para>
         
-	<para> The horizontal set of buttons by the <guilabel>Book 
-	name</guilabel> field operates on the whole book. Click 
-	the <guibutton>Clear</guibutton> button to clear all items from
-        the current book. Click the <guibutton>Save</guibutton> button to 
-	save the current book (under the name typed in 
-	the <guilabel>Book name</guilabel> text entry field) for future use. 
-	Note that saving the book also saves the configuration for each item. 
-	Click the <guibutton>Open</guibutton> button to load
-        the book from the list of previously saved books. Finally, click the 
-        <guibutton>Edit books</guibutton> button to evoke the editable list of
-        available books.  </para>
+	<para> Горизонтальный ряд кнопок рядом с полем <guilabel>Название книги</guilabel>
+    относится ко всей книге. Щёлкните кнопку <guibutton>Очистить</guibutton>, чтобы убрать
+    все элементы из книги. Щёлкните кнопку <guibutton>Сохранить</guibutton>, чтобы 
+    сохранить текущую книгу (под именем, ввдённым в поле <guilabel>Название книги</guilabel>) 
+    для последующего использования. Заметьте, что сохранение книги также сохраняет 
+    конфигурацию каждого элемента. Щёлкните кнопку <guibutton>Открыть</guibutton>, чтобы 
+    загрузить книгу из списка сохранённых книг. Наконец, щёлкните кнопку 
+    <guibutton>Правка</guibutton>, чтобы вызвать редактируемый список имеющихся книг.
+    </para>
 	
-	<para> The vertical set of buttons to the right of the bottom pane
-	operates on the 
-	selected book item. Click the <guibutton>Add</guibutton> button to 
-	add selected item from the available list to the current book. Click 
-	the <guibutton>Remove</guibutton> button to remove an item from the 
-	current book. Use <guibutton>Up</guibutton> and 
-	<guibutton>Down</guibutton> to change the items order in the current 
-	book. Click the <guibutton>Setup</guibutton> button to configure the 
-	options of the selected item of the current book. 
-        </para>
+	<para> Вертикальный ряд кнопок справа от нижней панели относится к 
+    выделенному элементу книги. Щёлкните кнопку <guibutton>Добавить</guibutton>, 
+    чтобы добавить выделенный элемент из списка доступных элементов в 
+    текущую книгу. Щёлкните кнопку <guibutton>Удалить</guibutton>, 
+    чтобы удалить элемент из текущей книги. Используйте кнопки <guibutton>Вверх</guibutton>
+    и <guibutton>Вниз</guibutton>, чтобы изменить порядок элементов в текущей книге.
+    Щёлкните кнопку <guibutton>Настроить</guibutton>, чтобы настроить выделенный элемент 
+    текущей книги. </para>
 
-	<para> The configuration dialogs evoked by <guibutton>Setup</guibutton>
-        are item-specific. If you choose not to configure the item, sane
-        defaults will be used for all needed options. The common option for 
-        almost all book items is the center person: the person on whom the
-        item is centered. Thanks to this option, you can create a book with
-        items centered on different people (e.g. your mom's and dad's 
-        ancestors as separate chapters). By default, the center person is 
-	set to the active person. </para> 
+	<para> Диалоги конфигурации, вызываемый кнопкой <guibutton>Настроить</guibutton>,
+    различны для различных элементов. Если Вы решите не настраивать элемент, 
+    разумные параметры будут выбраны по умолчанию. Общим параметром почти всех 
+    элементов книги является цунтральное лицо: лицо, на котором сосредоточен фокус 
+    элемента. Благодаря этому параметру, Вы можете создать книгу с элементами,
+    базирующимися на разных людях (напр. различние разделы о предков отца и матери).
+    По умолчанию, за центральное лицо берётся активное лицо. </para> 
 
-	<para>Almost all items available for inclusion in the book are textual 
-        or graphical reports, and are therefore available in the form of standalone 
-        reports. The exception is the following items which are only available as 
-        book items:</para>
+	<para>Почти все элементы, доступные для включения в книгу, являются текстовыми
+    или графическими отчётами, и, поэтому, доступны в форме самостоятельных отчётов.
+    Исключение составляют следующие элементы, доступные только для включения в 
+    книгу:</para>
 
 	<variablelist>
 
-	<varlistentry><term>Title Page</term>
-	<listitem><para>This item produces a customized Title page. You can 
-        configure the text of title, subtitle, and the footer of the page. 
-        An image can be optionally placed between the subtitle and the footer. 
-        Because of its configurability, this item can be used to create 
-        title pages for the whole book, its chapter, or even a single item. 
-        </para>
+	<varlistentry><term>Титульный лист</term>
+	<listitem><para>Этот элемент создаёт Титульный лист книги. Вы можете настроить 
+    текст названия, подзаголовка и нижней строку листа. По желанию, между подзаголовком
+    и нижней строкой можно вставить изображение. Благодаря такой настраиваемости, 
+    этот элемент можно использовать для создания титульных листов для всей книги,
+    её раздела, или даже одного элемента. </para>
         </listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Custom Text</term>
-	<listitem><para>This item produces a page with three paragraphs, each 
-        containing custom text. The appearance of the text can be adjusted by 
-        using custom styles. This item was meant to be used for epigraphs, 
-        dedications, explanations, notes, and so forth. 
-        </para></listitem>
+ 	<varlistentry><term>Текст пользователя</term>
+	<listitem><para>Этот элемент создаёт страницу с тремя абзацами, каждый из которых 
+    содержит текст пользователя. Вид текста может быть настроен использованием стилей
+    пользвателя. Этот элемент предназначен для эпиграфов, посвящений, разъяснений, 
+    комментариев, и т.д. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -2303,22 +2263,22 @@
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-view"> 
-	<title>View Reports</title> 
-	<para> View reports represent overall summaries of the database 
-	information available immediately for on-screen viewing. 
-	The following view reports are currently available in &app;:</para>
+	<title>Отчёты просмотра</title> 
+	<para> Отчёты просмотра предсавляют общую статистику по базе данных для 
+    непосредственного экранного просмотра. Следующие отчёты просмотра доступны
+    в настоящий момент в &app;:</para>
 
 	<variablelist>
 
-	<varlistentry><term>Number of ancestors</term>
-	<listitem><para>This report displays the number of ancestors of the
-	active person. </para></listitem>
+	<varlistentry><term>Число предков</term>
+	<listitem><para>Этот отчёт показывает число предков активного лица. 
+	</para></listitem>
 	</varlistentry>
 
- 	<varlistentry><term>Summary of the database</term>
-	<listitem><para>This report displays the overall statistics concerning
-	number of individuals of each gender, various incomplete entries
-	statistics, as well as family and media statistics. </para></listitem>
+ 	<varlistentry><term>Статистика по базе данных</term>
+	<listitem><para>Этот отчёт показывает общую статистику по базе данных, касающуюся
+    числа лиц каждого пола, различную статистику о неполных записях, а также статистику
+    по семьям и документам. </para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -2326,21 +2286,18 @@
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-web"> 
-	<title>Web Page</title> 
+	<title>Web сайт</title> 
 
-	<para> This report generates web pages, either for a selected 
-	individual (active person) or a set of individuals. The options 
-	for this report are broken down into contents, privacy, and advanced 
-	options. The contents options include the filter (determine the 
-	scope of the database to consider), 
-	destination directory for the images, an optional short ancestor tree, 
-        and a link to the index page.
-	Privacy options allow you to omit private records, restrict 
-	information on living people, skip images (either all or only 
-        those of living people), and omit comments and text in source 
-        information. Finally, the advanced options allow you to include 
-        the optional &app; ID, create a GENDEX index, and specify the 
-        extension of the resulting files. </para>
+	<para> Этот отчёт производит web страницы, либо по выбранному лицу (активное 
+    лицо), либо по набору лиц. Параметры для этого отчёта разбиты на категории
+    содержания, секретности и продвинутых параметров. Параметры содержания включают 
+    фильтр (определяет желаемую часть  базы данных), каталог изображений, и 
+    дополнительные опции короткого дерева предков и линка на главную страницу.
+    Параметры секретности позволяют Вам опустить личные записи, ограничить информацию
+    о живущих лицах, пропустить изображения (всех или только живущих лиц)
+    и опустить комментарии и текст в записях источников. 
+    Наконец, продвинутые параметры позволяют Вам включить дополнительные &app; ID,
+    создать индекс GENDEX и указать расширение выводимых файлов. </para>
 
       </sect3>
 
