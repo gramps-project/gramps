@@ -457,6 +457,8 @@ class StyleSheetList:
             parser = make_parser()
             parser.setContentHandler(SheetParser(self))
             parser.parse(self.file)
+        except IOError:
+            pass
         except:
             print "could not parse file"
         
