@@ -210,11 +210,11 @@ class BookReportSelector:
 # 
 #
 #------------------------------------------------------------------------
-class ReportOptionsDialog(Report.TextReportDialog):
+class ReportOptionsDialog(Report.BareReportDialog):
 
     def __init__(self,database,person,rep_title):
         self.rep_title = rep_title
-        Report.TextReportDialog.__init__(self,database,person)
+        Report.BareReportDialog.__init__(self,database,person)
 
     def get_title(self):
         """The window title for this dialog"""
@@ -223,16 +223,6 @@ class ReportOptionsDialog(Report.TextReportDialog):
     def get_header(self, name):
         """The header line at the top of the dialog contents"""
         return _("%s for GRAMPS Book") % self.rep_title
-
-    def setup_paper_frame(self): pass
-
-    def setup_html_frame(self): pass
-
-    def setup_style_frame(self): pass
-
-    def html_file_enable(self,obj): pass
-    
-    def setup_target_frame(self): pass
 
     def setup_format_frame(self): 
 	center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
@@ -370,8 +360,10 @@ register_report(
     report,
     _("Book Report"),
     category=_("Text Reports"),
-    status=(_("Experimental")),
+    status=(_("Unstable")),
     description=_("Creates a book containg several reports."),
-    xpm=get_xpm_image()
+    xpm=get_xpm_image(),
+    author_name="Alex Roitman",
+    author_email="shura@alex.neuro.umn.edu"
     )
 
