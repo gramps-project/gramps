@@ -593,7 +593,7 @@
 		      <child>
 			<widget class="GtkCombo" id="ntype">
 			  <property name="visible">True</property>
-			  <property name="value_in_list">True</property>
+			  <property name="value_in_list">False</property>
 			  <property name="allow_empty">False</property>
 			  <property name="case_sensitive">False</property>
 			  <property name="enable_arrow_keys">True</property>
