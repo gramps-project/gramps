@@ -889,8 +889,11 @@ class WebReport(Report.Report):
 #
 #------------------------------------------------------------------------
 class WebReportDialog(Report.ReportDialog):
+
+    report_options = {}
+
     def __init__(self,database,person):
-        Report.ReportDialog.__init__(self,database,person)
+        Report.ReportDialog.__init__(self,database,person, self.report_options)
 
     def add_user_options(self):
         lnk_msg = _("Include a link to the index page")

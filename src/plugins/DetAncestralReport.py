@@ -726,8 +726,11 @@ def _make_default_style(default_style):
 #
 #------------------------------------------------------------------------
 class DetAncestorReportDialog(Report.TextReportDialog):
+
+    report_options = {}
+
     def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person,self.report_options)
 
     #------------------------------------------------------------------------
     #

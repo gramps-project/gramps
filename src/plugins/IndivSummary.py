@@ -330,8 +330,10 @@ class IndivSummary(Report.Report):
 #------------------------------------------------------------------------
 class IndivSummaryDialog(Report.TextReportDialog):
 
+    report_options = {}
+
     def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person, self.report_options)
 
     def get_title(self):
         """The window title for this dialog"""

@@ -465,6 +465,7 @@ def build_string_optmenu(mapping, start_val):
         else:
             menuitem = gtk.MenuItem(key)
         menuitem.set_data("d", mapping[key])
+        menuitem.set_data("l", key)
         menuitem.show()
         myMenu.append(menuitem)
         if key == start_val:

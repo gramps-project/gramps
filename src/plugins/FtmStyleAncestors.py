@@ -786,6 +786,7 @@ class FtmAncestorReport(Report.Report):
                             else:
                                 self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s. ") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     })
@@ -990,8 +991,11 @@ def _make_default_style(default_style):
 #
 #------------------------------------------------------------------------
 class FtmAncestorReportDialog(Report.TextReportDialog):
+
+    report_options = {}
+
     def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person,self.report_options)
 
     #------------------------------------------------------------------------
     #
