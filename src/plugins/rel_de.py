@@ -406,4 +406,4 @@ from Plugins import register_relcalc
 
 register_relcalc(get_relationship,
     ["de","DE","de_DE","deutsch","Deutsch","de_DE.UTF8","de_DE@euro","de_DE.UTF8@euro",
-            "german","German"])
+            "german","German", "de_DE.UTF-8", "de_DE.utf-8", "de_DE.utf8"])
