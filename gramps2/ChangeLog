@@ -1,3 +1,7 @@
+2004-08-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ChooseParents.py: use get_family_from_handle instead
+	of find_family_from_handle
+
 2004-08-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: fix None gramps_id for new person
 	* src/PeopleModel.py: add sort_name back in
