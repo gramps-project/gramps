@@ -142,7 +142,7 @@ class NameEditor:
 
     def close_child_windows(self):
 	for child_window in self.child_windows:
-	    child_window.close()
+	    child_window.close(None)
 
     def add_itself_to_menu(self):
 	if not self.name:
