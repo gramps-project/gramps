@@ -1577,6 +1577,8 @@ class Gramps:
 
     def delete_person_response(self):
         for family in self.active_person.getFamilyList():
+            if not family:
+                continue
             if self.active_person == family.getFather():
                 if family.getMother() == None:
                     for child in family.getChildList():
@@ -1599,6 +1601,12 @@ class Gramps:
         self.db.removePerson(self.active_person.getId())
         self.remove_from_person_list(self.active_person)
         self.person_model.sort_column_changed()
+        try:
+            self.mhistory = self.mhistory[:-2]
+            self.change_active_person(self.mhistory[-2])
+        except:
+            self.mhistory = []
+            self.change_active_person(None)
         self.update_display(0)
         Utils.modified()
 
