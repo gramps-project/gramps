@@ -42,20 +42,6 @@ from gettext import gettext as _
 #
 #------------------------------------------------------------------------
 import gtk.gdk
-
-### FIXME ###
-# This is a dirty workaround for incomplete gnomeprint bindings.
-# Switching to local pygtk version before importing gnomeprint
-# (I have CVS version installed locally)
-import sys
-newpath = [
-    '/usr/local/lib/python2.3', 
-    '/usr/local/lib/python2.3/site-packages', 
-    '/usr/local/lib/python2.3/site-packages/gtk-2.0'
-    ]
-sys.path = newpath + sys.path
-### end FIXME ###
-
 import gnomeprint, gnomeprint.ui
 
 ### FIXME ###
