@@ -109,7 +109,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 self.sname_sub[surname] = [person_handle]
 
         self.top_path2iter = self.sname_sub.keys()
-        self.top_path2iter.sort()
+        self.top_path2iter.sort(locale.strcoll)
         for name in self.top_path2iter:
             val = 0
             entries = self.sname_sub[name]
