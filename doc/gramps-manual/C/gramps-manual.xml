@@ -2671,6 +2671,23 @@
 	contents to include. </para></listitem>
 	</varlistentry>
 
+	<varlistentry><term>FTM Style Descendant Report</term>
+	<listitem><para>This report creates a descendant report similar to 
+        that produced by the Family Tree Maker (tm). It covers in detail the 
+        active person and his/her descendants. It includes vital information 
+        as well as marriages, children, and notes. Specific options: 
+        number of forward generations to consider. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>FTM Style Ancestral Report</term>
+	<listitem><para>This report creates an ancestral report similar to 
+        that produced by the Family Tree Maker (tm).It covers in detail the 
+        active person and his/her ancestors It includes vital information 
+        as well as marriages, children, and notes.  Specific options: number 
+        of backward generations to consider, as well as a variety of options 
+        on what exact contents to include. </para></listitem>
+	</varlistentry>
+
 	<varlistentry><term>Descendant Report</term>
 	<listitem><para>This report produces a brief description 
 	of descendants of the active person. Specific options: number 
