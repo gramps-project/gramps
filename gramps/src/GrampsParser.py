@@ -23,6 +23,7 @@ from RelLib import *
 import string
 import os
 import sys
+import utils
 import gnome.mime
 
 #-------------------------------------------------------------------------

@@ -41,9 +41,8 @@ import utils
 # Constants
 #
 #-------------------------------------------------------------------------
-OBJECT   = "o"
-TOPINST  = "top"
-NAMEINST = "namelist"
+_TOPINST  = "top"
+_NAMEINST = "namelist"
 
 #-------------------------------------------------------------------------
 #
@@ -119,88 +118,51 @@ class Bookmarks :
     #
     #---------------------------------------------------------------------
     def edit(self):
-        top = libglade.GladeXML(const.bookFile,TOPINST)
-        namelist = top.get_widget(NAMEINST)
+        top = libglade.GladeXML(const.bookFile,_TOPINST)
+        self.namelist = top.get_widget(_NAMEINST)
         index = 0
         for person in self.bookmarks:
-            namelist.append([person.getPrimaryName().getName()])
-            namelist.set_row_data(index,person)
+            self.namelist.append([person.getPrimaryName().getName()])
+            self.namelist.set_row_data(index,person)
             index = index + 1
 
         top.signal_autoconnect({
-            "on_ok_clicked" : on_ok_clicked,
-            "on_down_clicked" : on_down_clicked,
-            "on_up_clicked" : on_up_clicked,
-            "on_delete_clicked" : on_delete_clicked,
-            "on_cancel_clicked" : on_cancel_clicked
+            "on_ok_clicked"     : self.on_ok_clicked,
+            "on_down_clicked"   : self.on_down_clicked,
+            "on_up_clicked"     : self.on_up_clicked,
+            "on_delete_clicked" : self.on_delete_clicked,
+            "on_cancel_clicked" : self.on_cancel_clicked
             })
 
-        topBox = top.get_widget(TOPINST)
-        topBox.set_data(OBJECT,self)
-        topBox.set_data(NAMEINST,namelist)
-        topBox.show()
+    def on_delete_clicked(self,obj):
+        if len(obj.selection) > 0:
+            index = obj.selection[0]
+            obj.remove(index)
 
-#-------------------------------------------------------------------------
-#
-# on_delete_clicked - gets the selected row and number of rows that have
-# been attached to the namelist. If the selected row is greater than 0,
-# then the row is deleted from the list. The number of rows is then
-# decremented. 
-#
-#-------------------------------------------------------------------------
-def on_delete_clicked(obj):
-    if len(obj.selection) > 0:
-        index = obj.selection[0]
-        obj.remove(index)
+    def on_up_clicked(self,obj):
+        if len(obj.selection) > 0:
+            index = obj.selection[0]
+            obj.swap_rows(index-1,index)
 
-#-------------------------------------------------------------------------
-#
-# on_up_clicked - swap rows if the selected row is greater than 0
-#
-#-------------------------------------------------------------------------
-def on_up_clicked(obj):
-    if len(obj.selection) > 0:
-        index = obj.selection[0]
-        obj.swap_rows(index-1,index)
+    def on_down_clicked(self,obj):
+        if len(obj.selection) > 0:
+            index = obj.selection[0]
+            if index != obj.rows-1:
+                obj.swap_rows(index+1,index)
 
-#-------------------------------------------------------------------------
-#
-# on_down_clicked - swap rows if the selected index is not the last index
-#
-#-------------------------------------------------------------------------
-def on_down_clicked(obj):
-    if len(obj.selection) > 0:
-        index = obj.selection[0]
-        if index != obj.rows-1:
-            obj.swap_rows(index+1,index)
-
-#-------------------------------------------------------------------------
-#
-# on_ok_clicked - loop through the name list, extracting the attached
-# person from list, and building up the new bookmark list. The menu is
-# then redrawn.
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    bkmarks = obj.get_data(OBJECT)
-    namelist = obj.get_data(NAMEINST)
-    del bkmarks.bookmarks[0:]
+    def on_ok_clicked(self,obj):
+        del self.bookmarks[0:]
     
-    for index in range(0,bkmarks.index):
-        person = namelist.get_row_data(index)
-        if person:
-            bkmarks.bookmarks.append(person)
+        for index in range(0,self.index):
+            person = self.namelist.get_row_data(index)
+            if person:
+                self.bookmarks.append(person)
 
-    bkmarks.redraw()
-    obj.destroy()
+        self.redraw()
+        obj.destroy()
     
-#-------------------------------------------------------------------------
-#
-# on_cancel_clicked - destroy the bookmark editor
-#
-#-------------------------------------------------------------------------
-def on_cancel_clicked(obj):
-    obj.destroy()
+    def on_cancel_clicked(self,obj):
+        obj.destroy()
 
 
 
