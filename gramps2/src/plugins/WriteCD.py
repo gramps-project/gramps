@@ -128,18 +128,25 @@ class PackageWriter:
         try:
             uri = gnome.vfs.URI('burn:///%s' % base)
             gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.error, msg:
-            print msg
-            os._exit(1)
+        except gnome.vfs.FileExistsError, msg:
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+                                       "1 %s " % str(msg))
+            return
+        except:
+            QuestionDialog.ErrorDialog("CD export preparation failed",
+                                       'Could not create burn:///%s' % base)
+            return
 
         try:
             uri = gnome.vfs.URI('burn:///%s/.thumb' % base)
             gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.error, msg:
-            print msg
-            os._exit(1)
+        except gnome.vfs.FileExistsError, msg:
+            QuestionDialog.ErrorDialog("CD export preparation failed",
+                                       "2 %s " % str(msg))
+            return
 
-        for obj in self.db.get_object_map().values():
+        for obj_id in self.db.get_object_keys():
+            obj = self.db.find_object_from_id(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
@@ -169,41 +176,55 @@ class PackageWriter:
         try:
             uri = gnome.vfs.URI('burn:///%s' % base)
             gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.error, msg:
-            print msg
+        except gnome.vfs.FileExistsError:
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+                                       "File already exists")
+            return
+        except:
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+                                       _('Could not create burn:///%s') % base)
+            return
 
         try:
             uri = gnome.vfs.URI('burn:///%s/.thumb' % base)
             gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.error, msg:
-            print msg
+        except gnome.vfs.FileExistsError, msg:
+            QuestionDialog.ErrorDialog("CD export preparation failed",
+                                       "4 %s " % str(msg))
+            return
+        except:
+            QuestionDialog.ErrorDialog(_("CD export preparation failed"),
+                                       _('Could not create burn:///%s/.thumb') % base)
+            return
 
         #--------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
             mobj = self.db.get_object(self.object_id)
-            for p in self.db.get_family_id_map().values():
+            for p_id in self.db.get_family_keys:
+                p = self.db.find_family_from_id(p_id)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
+                
             for key in self.db.get_person_keys():
-                p = self.db.get_person(key)
+                p = self.db.find_person_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_source_keys():
-                p = self.db.get_source(key)
+                p = self.db.find_source_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_place_id_keys():
-                p = self.db.get_place_id(key)
+                p = self.db.find_place_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
@@ -241,7 +262,8 @@ class PackageWriter:
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
 
-        for obj in self.db.get_object_map().values():
+        for obj_id in self.db.get_object_keys():
+            obj = self.db.find_object_from_id(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):

@@ -13,7 +13,7 @@
   <property name="modal">False</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
-  <property name="icon">gramps.xpm</property>
+  <property name="icon">gramps.png</property>
   <property name="enable_layout_config">True</property>
   <signal name="destroy" handler="on_exit_activate"/>
   <signal name="delete_event" handler="delete_event"/>

@@ -562,14 +562,14 @@ class XmlWriter:
         else:
             calstr = ''
 
-        if date.isRange():
-            d1 = date.get_start_date().getIsoDate()
-            d2 = date.get_stop_date().getIsoDate()
+        if date.is_range():
+            d1 = date.get_start_date().get_iso_date()
+            d2 = date.get_stop_date().get_iso_date()
             self.g.write('%s<daterange start="%s" stop="%s"%s/>\n' % (sp,d1,d2,calstr))
-        elif date.isValid():
+        elif date.is_valid():
             d1 = date.get_start_date()
-            mode = d1.getModeVal()
-            dstr = d1.getIsoDate()
+            mode = d1.get_mode_val()
+            dstr = d1.get_iso_date()
             
             if mode == Calendar.BEFORE:
                 pref = ' type="before"'
@@ -684,8 +684,8 @@ class XmlWriter:
     def write_media_list(self,list,indent=3):
         sp = '  '*indent
         for photo in list:
-            mobj = photo.get_reference()
-            self.g.write('%s<objref ref="%s"' % (sp,mobj.get_id()))
+            mobj_id = photo.get_reference_id()
+            self.g.write('%s<objref ref="%s"' % (sp,mobj_id))
             if photo.get_privacy():
                 self.g.write(' priv="1"')
             proplist = photo.get_attribute_list()

@@ -95,21 +95,11 @@ pkgpython_PYTHON = \
 # If not using GNU make, then list all files individually
 # The latter is more portable and POSIX-friendly :)
 GLADEFILES = \
-	dialog.glade\
-	edit_person.glade\
-	errdialogs.glade\
 	gramps.glade\
-	imagesel.glade\
-	marriage.glade\
 	mergedata.glade\
-	places.glade\
 	plugins.glade\
-	preferences.glade\
-	revision.glade\
 	rule.glade\
-	srcsel.glade\
-	styles.glade\
-        choose.glade
+	styles.glade
 
 GRAPHICS = \
 	bad.png\
@@ -118,12 +108,9 @@ GRAPHICS = \
 	family48.png\
 	good.png\
 	gramps.png\
-	gramps.xpm\
 	logo.png\
 	media.png\
-	pedigree.xpm\
 	people48.png\
-	people.xpm\
 	place.png\
 	sources.png\
 	splash.jpg\

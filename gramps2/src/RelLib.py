@@ -3006,7 +3006,7 @@ class GrampsDB:
             map[gid] = self.add_event(event,trans)
         return event
 
-    def find_source_from_id(self,val,trans):
+    def find_source_from_id(self,val,trans=None):
         """finds a Source in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
 

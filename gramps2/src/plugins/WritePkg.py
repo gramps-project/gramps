@@ -108,29 +108,30 @@ class PackageWriter:
         #--------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = ObjectMap[ObjectId]
-            for p in self.db.get_family_id_map().values():
+            mobj = self.db.find_family_from_id(ObjectId)
+            for p_id in self.db.get_family_keys():
+                p = self.db.find_family_from_id(p_id)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_person_keys():
-                p = self.db.get_person(key)
+                p = self.db.find_person_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_source_keys():
-                p = self.db.get_source(key)
+                p = self.db.find_person_from_source(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
                         nl.remove(o) 
                 p.set_media_list(nl)
             for key in self.db.get_place_id_keys():
-                p = self.db.get_place_id(key)
+                p = self.db.find_place_from_id(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference() == mobj:
@@ -169,9 +170,8 @@ class PackageWriter:
         
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
-        ObjectMap = self.db.get_object_map()
-        for ObjectId in ObjectMap.keys():
-            oldfile = ObjectMap[ObjectId].get_path()
+        for ObjectId in self.db.get_object_keys():
+            oldfile = self.db.find_object_from_id(ObjectId).get_path()
             base = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 g = open(oldfile,"rb")
