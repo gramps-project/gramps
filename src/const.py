@@ -96,7 +96,6 @@ thumbScale   = 100.0
 indexFile    = "data.gramps"
 male         = _("male")
 female       = _("female")
-helpMenu     = "contents.html"
 
 #-------------------------------------------------------------------------
 #
@@ -233,22 +232,6 @@ _pe_l2e = {}
 for a in _pe_e2l.keys():
     _pe_l2e[_pe_e2l[a]] = a
 
-personalConstantAttributes = {
-    "Description"           : "DSCR",
-    "Identification Number": "IDNO",
-    "Social Security Number": "SSN"
-    }
-
-familyConstantAttributes = {
-    }
-
-familyConstantRelations = [
-    "Married",
-    "Common Law",
-    "Partners",
-    "Unknown"
-]
-
 #-------------------------------------------------------------------------
 #
 # 
@@ -271,16 +254,100 @@ def save_pevent(st):
     else:
         return st
 
-personalEvents = personalConstantEvents.keys()
-personalEvents.sort()
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+personalConstantAttributes = {
+    "Description"           : "DSCR",
+    "Identification Number" : "IDNO",
+    "Social Security Number": "SSN"
+    }
 
-personalAttributes = personalConstantAttributes.keys()
-personalAttributes.sort()
+_pa_e2l = {
+    "Description"           : _("Description"),
+    "Identification Number" : _("Identification Number"),
+    "Social Security Number": _("Social Security Number")
+    }
+
+_pa_l2e = {}
+for a in _pa_e2l.keys():
+    _pa_l2e[_pa_e2l[a]] = a
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def display_pattr(st):
+    if _pa_e2l.has_key(st):
+        return _pa_e2l[st]
+    else:
+        return st
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def save_pattr(st):
+    if _pa_l2e.has_key(st):
+        return _pa_l2e[st]
+    else:
+        return st
+
+familyConstantAttributes = {
+    }
+
+familyConstantRelations = [
+    "Married",
+    "Common Law",
+    "Partners",
+    "Unknown"
+]
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def initialize_personal_event_list():
+    p = []
+    for event in personalConstantEvents.keys():
+        p.append(_pe_e2l[event])
+    p.sort()
+    return p
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def initialize_marriage_event_list():
+    p = []
+    for event in familyConstantEvents.keys():
+        p.append(_fe_e2l[event])
+    p.sort()
+    return p
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def initialize_personal_attribute_list():
+    p = []
+    for event in personalConstantAttributes.keys():
+        p.append(_pa_e2l[event])
+    p.sort()
+    return p
+
+personalEvents = initialize_personal_event_list()
+personalAttributes = initialize_personal_attribute_list()
+marriageEvents = initialize_marriage_event_list()
 
 familyAttributes = familyConstantAttributes.keys()
 familyAttributes.sort()
-
-marriageEvents = familyConstantEvents.keys()
-marriageEvents.sort()
 
 familyRelations = familyConstantRelations
