@@ -43,7 +43,7 @@ from QuestionDialog import ErrorDialog
 # Importing data into the currently open database. 
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, person=None, callback=None):
+def exportData(database, filename, person=None, callback=None, cl=False):
 
     filename = os.path.normpath(filename)
 

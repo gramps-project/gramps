@@ -367,7 +367,8 @@ class Exporter:
         options may be added.
         """
         try:
-            shutil.copyfile(database.get_save_path(),filename)
+            import WriteGrdb
+            WriteGrdb.exportData(database,filename,person)
             return 1
         except IOError, msg:
             QuestionDialog.ErrorDialog( _("Could not write file: %s") % filename,
