@@ -7,6 +7,7 @@
 	* doc/gramps.1: Likewise. 
 	* NEWS: Likewise. 
 	* TODO: Add recently discussed items from gramps-devel.  
+	* gramps.sh.in: Fix bashism to have a valid bourn-shell script. 
 
 2003-09-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SourceView.py (button_press,on_add_clicked,on_delete_clicked,
