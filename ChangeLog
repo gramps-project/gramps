@@ -1,3 +1,7 @@
+2003-08-25  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.glade: Minor cleanups for the alternate family view. 
+	* src/gramps_main.py: Likewise.
+
 2003-08-25  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: move alternate family view tab, assign a
 	few object names

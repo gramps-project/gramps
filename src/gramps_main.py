@@ -417,6 +417,7 @@ class Gramps:
             "on_edit_selected_people" : self.load_selected_people,
             "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
             "on_exit_activate" : self.on_exit_activate,
+            "on_family_activate" : self.on_family_activate,
             "on_family1_activate" : self.on_family1_activate,
             "on_family2_activate" : self.on_family2_activate,
             "on_find_activate" : self.on_find_activate,
@@ -1794,6 +1795,13 @@ class Gramps:
     def on_person_list1_activate(self,obj):
         """Switches to the person list view"""
         self.views.set_current_page(PERSON_VIEW)
+
+    def on_family_activate(self,obj):
+        """Switches to the family view"""
+        if GrampsCfg.familyview == 0:
+            self.on_family1_activate(obj)
+        else:
+            self.on_family2_activate(obj)
 
     def on_family1_activate(self,obj):
         """Switches to the family view"""

@@ -925,7 +925,7 @@
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
 		      <property name="relief">GTK_RELIEF_NONE</property>
-		      <signal name="clicked" handler="on_family1_activate" last_modification_time="Thu, 05 Sep 2002 02:22:52 GMT"/>
+		      <signal name="clicked" handler="on_family_activate" last_modification_time="Tue, 26 Aug 2003 04:14:43 GMT"/>
 
 		      <child>
 			<widget class="GtkImage" id="image46">
