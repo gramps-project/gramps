@@ -59,6 +59,12 @@ class BaseModel(gtk.GenericTreeModel):
         del self.datalist[index]
         self.row_deleted(index)
 
+    def add_row_by_handle(self,handle):
+        self.datalist = self.sort_keys()
+        index = self.datalist.index(handle)
+        iter = self.get_iter(index)
+        self.row_inserted(index,iter)
+
     def delete_row_by_handle(self,handle):
         index = self.datalist.index(handle)
         del self.datalist[index]

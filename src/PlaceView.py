@@ -173,7 +173,7 @@ class PlaceView:
         EditPlace.EditPlace(self.parent,RelLib.Place(),self.new_place_after_edit)
 
     def new_place_after_edit(self,place):
-        self.build_tree()
+        self.model.add_row_by_handle(place.get_handle())
 
     def update_display(self,place):
         self.model.update_row_by_handle(place.get_handle())

@@ -150,8 +150,8 @@ class MediaView:
         self.build_tree()
 
     def build_tree(self):
-        self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
-        # self.model = DisplayModels.MediaModel(self.parent.db)
+        #self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
+        self.model = DisplayModels.MediaModel(self.parent.db)
             
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
@@ -258,20 +258,23 @@ class MediaView:
         name = RelImage.import_media_object(self.obj.get_path(),path,handle)
         if name:
             self.obj.set_path(name)
-            self.load_media()
 
     def popup_change_description(self, obj):
-        ImageSelect.GlobalMediaProperties(self.db,self.obj,self.load_media,
-                                                self,self.topWindow)
-
-    def load_media(self):
-        pass
+        ImageSelect.GlobalMediaProperties(self.db,self.obj,
+                                          self.update_display,
+                                          self,self.topWindow)
 
     def on_add_clicked(self,obj):
         """Add a new media object to the media list"""
         import AddMedia
-        am = AddMedia.AddMediaObject(self.db,self.build_tree)
+        am = AddMedia.AddMediaObject(self.db,self.add_object)
         am.run()
+
+    def add_object(self,mobj_handle):
+        self.model.add_row_by_handle(mobj_handle)
+
+    def update_display(self,mobj):
+        self.model.update_row_by_handle(mobj.get_handle())
 
     def on_edit_clicked(self,obj):
         """Edit the properties of an existing media object in the media list"""
@@ -280,8 +283,9 @@ class MediaView:
         if node:
             handle = list_store.get_value(node,5)
             obj = self.db.get_object_from_handle(handle)
-            ImageSelect.GlobalMediaProperties(self.db,obj,self.load_media,
-                                                self,self.topWindow)
+            ImageSelect.GlobalMediaProperties(self.db,obj,
+                                              self.update_display,
+                                              self,self.topWindow)
 
     def on_delete_clicked(self,obj):
         store,node = self.selection.get_selected()
@@ -291,7 +295,8 @@ class MediaView:
         handle = store.get_value(node,5)
         mobj = self.db.get_object_from_handle(handle)
         if self.is_object_used(mobj):
-            ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.build_tree)
+            ans = ImageSelect.DeleteMediaQuery(mobj,self.db,
+                                               self.model.delete_row_by_handle)
             QuestionDialog(_('Delete Media Object?'),
                            _('This media object is currently being used. '
                              'If you delete this object, it will be removed '
@@ -300,33 +305,39 @@ class MediaView:
                            _('_Delete Media Object'),
                            ans.query_response)
         else:
-            trans = self.db.transaction_begin()
-            self.db.remove_object(mobj.get_handle(),trans)
-            self.db.transaction_commit(trans,_("Remove Media Object"))
-            self.build_tree()
+            self.delete_object(mobj)
+
+    def delete_object(self,media_obj):
+        trans = self.parent.db.transaction_begin()
+        mobj_handle = media_obj.get_handle()
+        self.parent.db.remove_object(mobj_handle,trans)
+        title_msg = _("Delete Media Object?")
+        self.parent.db.transaction_commit(trans,title_msg)
+        self.model.delete_row_by_handle(mobj_handle)
 
     def is_object_used(self,mobj):
-        for family_handle in self.db.get_family_handles():
+        mhandle = mobj.get_handle()
+        for family_handle in self.db.get_family_handles(sort_handles=False):
             p = self.db.get_family_from_handle(family_handle)
             for o in p.get_media_list():
-                if o.get_reference_handle() == mobj.get_handle():
-                    return 1
+                if o.get_reference_handle() == mhandle:
+                    return True
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for o in p.get_media_list():
-                if o.get_reference_handle() == mobj.get_handle():
-                    return 1
-        for key in self.db.get_source_handles():
+                if o.get_reference_handle() == mhandle:
+                    return True
+        for key in self.db.get_source_handles(sort_handles=False):
             p = self.db.get_source_from_handle(key)
             for o in p.get_media_list():
-                if o.get_reference_handle() == mobj.get_handle():
-                    return 1
-        for key in self.db.get_place_handles():
-            p = self.db.get_place_handle(key)
+                if o.get_reference_handle() == mhandle:
+                    return True
+        for key in self.db.get_place_handles(sort_handles=False):
+            p = self.db.get_place_from_handle(key)
             for o in p.get_media_list():
-                if o.get_reference_handle() == mobj.get_handle():
-                    return 1
-        return 0
+                if o.get_reference_handle() == mhandle:
+                    return True
+        return False
 
     def on_drag_begin(self,obj,context):
         store,node = self.selection.get_selected()
@@ -363,7 +374,6 @@ class MediaView:
                 photo.set_description(description)
                 trans = self.db.transaction_begin()
                 self.db.add_object(photo,trans)
-                self.load_media()
                 if GrampsCfg.get_media_reference() == 0:
                     name = RelImage.import_media_object(name,
                                                         self.db.get_save_path(),
@@ -375,8 +385,9 @@ class MediaView:
                 self.db.transaction_commit(trans,_("Add Media Object"))
                 
                 if GrampsCfg.get_media_global():
-                    ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media,
-                                                self,self.topWindow)
+                    ImageSelect.GlobalMediaProperties(self.db,photo,
+                                                      self.update_display,
+                                                      self,self.topWindow)
             elif protocol != "":
                 import urllib
                 u = urllib.URLopener()

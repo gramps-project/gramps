@@ -134,7 +134,7 @@ class AddMediaObject:
         self.db.commit_media_object(mobj,trans)
         self.db.transaction_commit(trans,_("Add Media Object"))
         if self.update:
-            self.update()
+            self.update(mobj.get_handle())
         
     def on_name_changed(self,*obj):
         """
