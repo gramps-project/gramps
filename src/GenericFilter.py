@@ -169,8 +169,8 @@ class RelationshipPathBetween(Rule):
         
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
-            if fam_id:
-                fam = self.db.get_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
+            if fam:
                 for child_handle in fam.get_child_handle_list():
                     if child_handle:
                         self.desc_list(child_handle,map,0)
@@ -351,8 +351,8 @@ class IsDescendantOf(Rule):
         
         p = self.db.get_person_from_handle(p_id)
         for fam_id in p.get_family_handle_list():
-            if fam_id:
-                fam = self.db.get_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
+            if fam:
                 for child_handle in fam.get_child_handle_list():
                     self.init_list(child_handle,0)
 
@@ -635,8 +635,8 @@ class IsAncestorOf(Rule):
         
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
-        if fam_id:
-            fam = self.db.get_family_from_handle(fam_id)
+        fam = self.db.get_family_from_handle(fam_id)
+        if fam:
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         
@@ -732,8 +732,8 @@ class IsLessThanNthGenerationAncestorOf(Rule):
         
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
-        if fam_id:
-            fam = self.db.get_family_from_handle(fam_id)
+        fam = self.db.get_family_from_handle(fam_id)
+        if fam:
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         
@@ -785,8 +785,8 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
         
         p = self.db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
-        if fam_id:
-            fam = self.db.get_family_from_handle(fam_id)
+        fam = self.db.get_family_from_handle(fam_id)
+        if fam:
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         

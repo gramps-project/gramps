@@ -37,6 +37,10 @@
 	* src/plugins/Check.py: Import const module.
 	* src/PedView.py: Add person to the list even if there are no parents.
 
+	* src/WriteGedcom.py (write_sources, write_person, write_ord):
+	Use gramps id instead of handle.
+	* src/GenericFilter.py: Check object for being not None. 
+
 2004-08-20  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: update family display after EditPerson
 	* src/EditPerson.py: fix callback
