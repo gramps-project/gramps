@@ -1,8 +1,8 @@
 2004-06-28  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/DbPrompter.py: Add NewNativeDbPrompter class for setting up
-	a native database. Enable opening any format on the startup.
-	* src/gramps_main.py: Use NewNativeDbPrompter when opening 
-	non-native data.
+	* src/DbPrompter.py: Add new class for new, existing, and import
+	prompters. Enable opening any format on the startup.
+	* src/gramps_main.py: Use new DbPrompter classes.
+	* src/ArgHandler.py: Use new DbPrompter classes.
 
 2004-06-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: fix import problem

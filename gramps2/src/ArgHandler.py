@@ -201,36 +201,34 @@ class ArgHandler:
                     print "Opened successfully!"
                 else:
                     print "Cannot open %s. Exiting..."
-            elif filetype == "application/x-gedcom":
-                print "Type: GEDCOM"
+            elif filetype in ("application/x-gedcom","x-directory/normal",
+	    	    	    	    "application/x-gramps-package"):
                 QuestionDialog.OkDialog( _("Opening non-native format"), 
-                            _("New gramps database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
+                            _("New GRAMPS database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
                             self.parent.topWindow)
-                DbPrompter.DbPrompter(self.parent,1,self.parent.topWindow,filename)
-                self.parent.read_gedcom(filename)
-            elif filetype == "x-directory/normal":
-                print "Type: GRAMPS XML"
-                QuestionDialog.OkDialog( _("Opening non-native format"), 
-                            _("New gramps database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
-                            self.parent.topWindow)
-                DbPrompter.DbPrompter(self.parent,1,self.parent.topWindow,filename)
-                self.parent.read_xml(filename)
-            elif filetype == "application/x-gramps-package":
-                print "Type: GRAMPS package"
-                QuestionDialog.OkDialog( _("Opening non-native format"), 
-                            _("New gramps database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
-                            self.parent.topWindow)
-                DbPrompter.DbPrompter(self.parent,1,self.parent.topWindow,filename)
-                self.parent.read_pkg(filename)
-            else:
+                prompter = DbPrompter.NewNativeDbPrompter(self.parent)
+		if not prompter.chooser():
+                    QuestionDialog.ErrorDialog( 
+                        _("New GRAMPS database was not set up"),
+                        _('GRAMPS cannot open non-native data without setting up new GRAMPS database.'))
+                    print "Cannot continue without native database. Exiting..." 
+    	            os._exit(1)
+		elif filetype == "application/x-gedcom":
+                    print "Type: GEDCOM"
+                    self.parent.read_gedcom(filename)
+            	elif filetype == "x-directory/normal":
+                    print "Type: GRAMPS XML"
+                    self.parent.read_xml(filename)
+    	        elif filetype == "application/x-gramps-package":
+                    print "Type: GRAMPS package"
+                    self.parent.read_pkg(filename)
+    	    else:
                 print "Unknown file type: %s" % filetype
                 QuestionDialog.ErrorDialog( 
-                            _("Cannot open file: unknown type"),
-                            _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype,
-                            self.parent.topWindow)
+                        _("Cannot open file: unknown type"),
+                        _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
                 print "Exiting..." 
-                os._exit(1)
-                            
+    	        os._exit(1)
             return
            
         if self.imports:
@@ -287,9 +285,9 @@ class ArgHandler:
             self.parent.import_tool_callback()
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
             if self.parent.auto_save_load(GrampsCfg.lastfile) == 0:
-                DbPrompter.DbPrompter(self.parent,0,self.parent.topWindow)
+                DbPrompter.DbPrompter(self.parent,0)
         else:
-            DbPrompter.DbPrompter(self.parent,0,self.parent.topWindow)
+	    DbPrompter.DbPrompter(self.parent,0)
 
 
     #-------------------------------------------------------------------------
