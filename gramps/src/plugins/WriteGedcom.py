@@ -398,7 +398,7 @@ def write_person(g,person):
         for attr in person.getAttributeList():
             name = attr.getType()
             if const.personalConstantAttributes.has_key(name):
-                val = const.personalConstantEvents[name]
+                val = const.personalConstantAttributes[name]
             else:
                 val = ""
             if val != "" : 
