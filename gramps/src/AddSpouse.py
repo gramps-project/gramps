@@ -78,7 +78,6 @@ class AddSpouse:
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouseList")
         self.relation_def = self.glade.get_widget("reldef")
-        self.top = self.glade.get_widget("spouseDialog")
         self.ok = self.glade.get_widget('spouse_ok')
 
         self.ok.set_sensitive(0)
@@ -87,7 +86,7 @@ class AddSpouse:
                      
         self.spouse_list.set_column_visibility(2,0)
         self.spouse_list.set_column_visibility(3,0)
-        self.sorter = Sorter.Sorter(self.spouse_list,arrow_map,'spouse',self.top)
+        self.sorter = Sorter.Sorter(self.spouse_list,arrow_map,'spouse')
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)
         self.glade.get_widget("spouseTitle").set_text(title)
@@ -239,7 +238,6 @@ class SetSpouse:
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouseList")
         self.relation_def = self.glade.get_widget("reldef")
-        self.top = self.glade.get_widget("spouseDialog")
 
         self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.nameof(person)

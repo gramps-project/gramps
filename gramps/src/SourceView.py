@@ -56,11 +56,10 @@ from intl import gettext
 _ = gettext
 
 class SourceView:
-    def __init__(self,db,glade,update,top_window):
+    def __init__(self,db,glade,update):
         self.glade = glade
         self.db = db
         self.update = update
-        self.top_window = top_window
 
         arrow_map = [(3, glade.get_widget("title_arrow")),
                      (1, glade.get_widget("src_id_arrow")),
@@ -68,7 +67,7 @@ class SourceView:
         self.source_list = glade.get_widget("source_list")
         self.source_list.set_column_visibility(3,0)
         self.source_list.set_column_visibility(4,0)
-        self.source_sort = Sorter.Sorter(self.source_list,arrow_map,'source',self.top_window)
+        self.source_sort = Sorter.Sorter(self.source_list,arrow_map,'source')
 
     def change_db(self,db):
         self.db = db

@@ -36,11 +36,10 @@ import GrampsCfg
 import ListColors
 
 class Sorter:
-    def __init__(self, clist, column_map, key, top_window):
+    def __init__(self, clist, column_map, key):
         self.clist = clist
         self.column_map = column_map
         self.key = key
-        self.top_window = top_window
         (self.col,self.sort) = GrampsCfg.get_sort_cols(self.key,0,GTK.SORT_ASCENDING)
         self.change_sort(self.col,0)
         self.clist.connect('click-column',self.click)
@@ -65,7 +64,7 @@ class Sorter:
                 levenbg = ListColors.evenbg
                 levenfg = ListColors.evenfg
 
-                cmap = self.top_window.get_colormap()
+                cmap = self.clist.get_colormap()
                 oddbg = cmap.alloc(loddbg[0],loddbg[1],loddbg[2])
                 oddfg = cmap.alloc(loddfg[0],loddfg[1],loddfg[2])
                 evenbg = cmap.alloc(levenbg[0],levenbg[1],levenbg[2])

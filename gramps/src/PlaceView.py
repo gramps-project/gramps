@@ -54,10 +54,9 @@ _ = gettext
 #-------------------------------------------------------------------------
 class PlaceView:
     
-    def __init__(self,db,glade,update,top_window):
+    def __init__(self,db,glade,update):
         self.db = db
         self.glade = glade
-        self.top_window = top_window
         self.place_list    = glade.get_widget("place_list")
         self.update_display= update
 
@@ -76,7 +75,7 @@ class PlaceView:
                      (11, glade.get_widget("state_arrow")),
                      (12, glade.get_widget("country_arrow"))]
 
-        self.place_sort = Sorter.Sorter(self.place_list,plist_map,'place',self.top_window)
+        self.place_sort = Sorter.Sorter(self.place_list,plist_map,'place')
 
 
     def change_db(self,db):
