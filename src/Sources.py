@@ -256,7 +256,7 @@ class SourceEditor:
             self.pub_field.set_text("")
 
         values = self.db.getSourceMap().values()
-        values.sort(by_title)
+#        values.sort(by_title)
 
         sel_child = None
         list = []

@@ -760,15 +760,15 @@ class GedcomWriter:
                 self.g.write("1 RESI\n")
                 self.print_date("2 DATE",addr.getDateObj())
                 if self.resi == 0:
-                    self.write_long_text("ADDR",2,addr.getStreet())
+                    self.write_long_text("ADDR",2,self.cnvtxt(addr.getStreet()))
                     if addr.getCity():
-                        self.g.write("3 CITY %s\n" % addr.getCity())
+                        self.g.write("3 CITY %s\n" % self.cnvtxt(addr.getCity()))
                     if addr.getState():
-                        self.g.write("3 STAE %s\n" % addr.getState())
+                        self.g.write("3 STAE %s\n" % self.cnvtxt(addr.getState()))
                     if addr.getPostal():
-                        self.g.write("3 POST %s\n" % addr.getPostal())
+                        self.g.write("3 POST %s\n" % self.cnvtxt(addr.getPostal()))
                     if addr.getCountry():
-                        self.g.write("3 CTRY %s\n" % addr.getCountry())
+                        self.g.write("3 CTRY %s\n" % self.cnvtxt(addr.getCountry()))
                 else:
                     text = addr.getStreet()
                     text = addr_append(text,addr.getCity())
@@ -968,7 +968,7 @@ class GedcomWriter:
             if ref_text != "" or not ref.getDate().isEmpty():
                 self.g.write('%d DATA\n' % (level+1))
                 if ref_text != "":
-                    self.write_long_text("TEXT",level+2,ref_text)
+                    self.write_long_text("TEXT",level+2,self.cnvtxt(ref_text))
                 pfx = "%d DATE" % (level+2)
                 self.print_date(pfx,ref.getDate())
         else:
@@ -989,10 +989,10 @@ class GedcomWriter:
             else:
                 self.g.write("\n")
             if ref.getText():
-                self.write_long_text("TEXT",level+1,ref_text)
+                self.write_long_text("TEXT",level+1,self.cnvtxt(ref_text))
 
         if ref.getComments():
-            self.write_long_text("NOTE",level+1,ref.getComments())
+            self.write_long_text("NOTE",level+1,self.cnvtxt(ref.getComments()))
         
     def fid(self,id):
         return id
