@@ -700,6 +700,11 @@ class GedcomParser:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
                     self.parse_source_reference(source_ref,2)
                 self.person.getPrimaryName().addSourceRef(source_ref)
+	    elif matches[1] == "REFN":
+                attr = Attribute()
+                attr.setType("Reference Number")
+                attr.setValue(matches[2])
+                self.person.addAttribute(attr)
 	    elif matches[1] in ["AFN","CHAN","REFN","ASSO"]:
                 self.ignore_sub_junk(2)
 	    elif matches[1] in ["ANCI","DESI","RIN","RFN"]:

@@ -27,9 +27,12 @@ import Plugins
 import intl
 _ = intl.gettext
 
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import cm
-from reportlab.lib.colors import Color
+try:
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.units import cm
+    from reportlab.lib.colors import Color
+except:
+    raise "Missing Libraries", "The ReportLab modules are not installed"
 
 def make_color(color):
     return Color(float(color[0])/255.0, float(color[1])/255.0,

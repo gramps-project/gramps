@@ -231,12 +231,14 @@ class OpenOfficeDoc(TextDoc):
         (x,y) = image.size()
         aspect_ratio = float(x)/float(y)
 
-        if aspect_ratio > x_cm/y_cm:
+        ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
+
+        if ratio < 1:
             act_width = x_cm
-            act_height = y_cm/aspect_ratio
+            act_height = y_cm*ratio
         else:
             act_height = y_cm
-            act_width = x_cm*aspect_ratio
+            act_width = x_cm/ratio
 
         self.photo_list.append((name,act_width,act_height))
 
