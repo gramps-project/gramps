@@ -621,18 +621,15 @@ class EditPerson:
             tree.append_column(column)
 
     def lds_field(self,lds_ord,combo,date,place):
-        AutoComp.fill_combo(combo,_temple_names)
+        build_combo(combo,_temple_names)
+        temple_code = const.lds_temple_to_abrev.get(lds_ord.get_temple(),"")
+        index = _temple_names.index(temple_code)
+        combo.set_active(index)
         if not lds_ord.is_empty():
             stat = lds_ord.get_status()
             date.set_text(lds_ord.get_date())
-            if lds_ord.get_temple() != "":
-                name = const.lds_temple_to_abrev[lds_ord.get_temple()]
-            else:
-                name = ""
-            combo.child.set_text(name)
         else:
             stat = 0
-            combo.child.set_text("")
 
         build_dropdown(place,self.place_list)
         if lds_ord and lds_ord.get_place_handle():
@@ -768,7 +765,7 @@ class EditPerson:
         opt_menu.set_model(store)
         opt_menu.connect('changed',task)
         opt_menu.set_active(type)
-                   
+
     def build_bap_menu(self):
         self.build_menu(const.lds_baptism,self.set_lds_bap,self.ldsbapstat,
                         self.bstat)
@@ -777,6 +774,11 @@ class EditPerson:
         self.build_menu(const.lds_baptism,self.set_lds_endow,self.ldsendowstat,
                         self.estat)
 
+    def build_seal_menu(self):
+        self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat,
+                        self.seal_stat)
+
+                   
     def build_seal_menu(self):
         self.build_menu(const.lds_csealing,self.set_lds_seal,self.ldssealstat,
                         self.seal_stat)
@@ -1335,7 +1337,7 @@ class EditPerson:
 
     def check_lds(self):
         self.lds_baptism.set_date(unicode(self.ldsbap_date.get_text()))
-        temple = unicode(self.ldsbap_temple.child.get_text())
+        temple = _temple_names[self.ldsbap_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_baptism.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1343,7 +1345,7 @@ class EditPerson:
         self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
 
         self.lds_endowment.set_date(unicode(self.ldsend_date.get_text()))
-        temple = unicode(self.ldsend_temple.child.get_text())
+        temple = _temple_names[self.ldsend_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_endowment.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1351,7 +1353,7 @@ class EditPerson:
         self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
 
         self.lds_sealing.set_date(unicode(self.ldsseal_date.get_text()))
-        temple = unicode(self.ldsseal_temple.child.get_text())
+        temple = _temple_names[self.ldsseal_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_sealing.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1585,7 +1587,7 @@ class EditPerson:
 
     def check_lds(self):
         self.lds_baptism.set_date(unicode(self.ldsbap_date.get_text()))
-        temple = unicode(self.ldsbap_temple.child.get_text())
+        temple = _temple_names[self.ldsbap_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_baptism.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1593,7 +1595,7 @@ class EditPerson:
         self.lds_baptism.set_place_handle(self.get_place(self.ldsbapplace,1))
 
         self.lds_endowment.set_date(unicode(self.ldsend_date.get_text()))
-        temple = unicode(self.ldsend_temple.child.get_text())
+        temple = _temple_names[self.ldsend_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_endowment.set_temple(const.lds_temple_codes[temple])
         else:
@@ -1601,7 +1603,7 @@ class EditPerson:
         self.lds_endowment.set_place_handle(self.get_place(self.ldsendowplace,1))
 
         self.lds_sealing.set_date(unicode(self.ldsseal_date.get_text()))
-        temple = unicode(self.ldsseal_temple.child.get_text())
+        temple = _temple_names[self.ldsseal_temple.get_active()]
         if const.lds_temple_codes.has_key(temple):
             self.lds_sealing.set_temple(const.lds_temple_codes[temple])
         else:
@@ -2285,11 +2287,21 @@ def place_title(db,event):
         return u''
 
 def build_dropdown(entry,strings):
-    store = gtk.ListStore(gobject.TYPE_STRING)
+    store = gtk.ListStore(str)
     for value in strings:
         node = store.append()
-        store.set(node,0,value)
+        store.set(node,0,unicode(value))
     completion = gtk.EntryCompletion()
     completion.set_text_column(0)
     completion.set_model(store)
     entry.set_completion(completion)
+
+def build_combo(entry,strings):
+    cell = gtk.CellRendererText()
+    entry.pack_start(cell,True)
+    entry.add_attribute(cell,'text',0)
+    store = gtk.ListStore(str)
+    for value in strings:
+        node = store.append()
+        store.set(node,0,unicode(value))
+    entry.set_model(store)

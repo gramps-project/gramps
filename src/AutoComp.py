@@ -54,7 +54,7 @@ def fill_entry(entry,data_list):
     entry.set_completion(completion)
     
 def fill_option_text(combobox,data):
-    store = gtk.ListStore(gobject.TYPE_STRING)
+    store = gtk.ListStore(str)
     for item in data:
         store.append(row=[item])
     combobox.set_model(store)
