@@ -164,7 +164,7 @@ def on_merge_activate(obj):
             import MergeData
             p1 = person_list.get_row_data(person_list.selection[0])
             p2 = person_list.get_row_data(person_list.selection[1])
-            MergeData.MergePeople(database,p1[0],p2[0],remove_from_person_list)
+            MergeData.MergePeople(database,p1[0],p2[0],merge_update)
     elif page == 4:
         if len(place_list.selection) != 2:
             msg = _("Exactly two places must be selected to perform a merge")
@@ -883,6 +883,9 @@ def remove_from_person_list(person):
             (active_person,alt) = person_list.get_row_data(row)
     person_list.thaw()
     
+def merge_update(p1,p2):
+    remove_from_person_list(p2)
+
 #-------------------------------------------------------------------------
 #
 #

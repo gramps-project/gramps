@@ -63,8 +63,7 @@ class CheckIntegrity:
     #-------------------------------------------------------------------------
     def __init__(self,db):
         self.db = db
-        self.bad_family_photo = []
-        self.bad_person_photo = []
+        self.bad_photo = []
         self.empty_family = []
         self.broken_links = []
         self.fam_rel = []
@@ -95,15 +94,9 @@ class CheckIntegrity:
     #
     #-------------------------------------------------------------------------
     def cleanup_missing_photos(self):
-        for family in self.db.getFamilyMap().values():
-            for photo in family.getPhotoList():
-                if not os.path.isfile(photo.getPath()):
-                    self.bad_family_photo.append(family,photo)
-
-        for person in self.db.getPersonMap().values():
-            for photo in person.getPhotoList():
-                if not os.path.isfile(photo.getPath()):
-                    self.bad_person_photo.append(person,photo)
+        for photo in self.db.getObjectMap().values():
+            if not os.path.isfile(photo.getPath()):
+                self.bad_photo.append(photo)
 
     #-------------------------------------------------------------------------
     #
@@ -166,13 +159,12 @@ class CheckIntegrity:
     #
     #-------------------------------------------------------------------------
     def report(self):
-        fphotos = len(self.bad_family_photo)
-        pphotos = len(self.bad_person_photo)
+        photos = len(self.bad_photo)
         efam = len(self.empty_family)
         blink = len(self.broken_links)
         rel = len(self.fam_rel)
         
-        errors = blink + efam + pphotos + fphotos + rel
+        errors = blink + efam + photos + rel
         
         if errors == 0:
             GnomeOkDialog(_("No errors were found"))
@@ -205,15 +197,11 @@ class CheckIntegrity:
             text = text + _("1 corrupted family relationship fixed\n")
         elif rel > 1:
             text = text + _("%d corrupted family relationship fixed\n") % rel
-        if fphotos == 1:
-            text = text + _("1 broken family image was found\n")
-        elif fphotos > 1:
-            text = text + _("%d broken family images were found\n") % fphotos
-        if pphotos == 1:
-            text = text + _("1 broken personal image was found\n")
-        elif pphotos > 1:
-            text = text + _("%d broken personal images were found\n") % pphotos
-                
+        if photos == 1:
+            text = text + _("1 media object was referenced, but not found\n")
+        elif photos > 1:
+            text = text + _("%d media objects were referenced, but not found\n") % photos
+
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
         topDialog = GladeXML(glade_file,"summary")
