@@ -10,6 +10,10 @@
 	Use gramps ID instead of handle for display.
 	* src/ImageSelect.py (GlobalMediaProperties.display_refs):
 	Use gramps ID instead of handle for display.
+	* src/ReadXML.py (start_witness): Properly use handle of witness.
+	* src/Witness.py (WitnessTab.redraw): Use gramps ID for display;
+	(WitnessEditor.remove_itself_from_menu): Typo; 
+	(WitnessEditor.ok_clicked): Catch exception and add error dialog.
 
 2004-08-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: use new MediaList update routine
