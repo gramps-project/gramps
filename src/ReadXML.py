@@ -76,7 +76,7 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
     database.fmap = {}
 
     change = os.path.getmtime(filename)
-    parser = GrampsParser(database,callback,basefile,change)
+    parser = GrampsParser(database,callback,basefile,change,filename)
 
     if gzip_ok:
         use_gzip = 1
@@ -273,7 +273,8 @@ def fix_spaces(text_list):
 #-------------------------------------------------------------------------
 class GrampsParser:
 
-    def __init__(self,database,callback,base,change):
+    def __init__(self,database,callback,base,change,filename):
+        self.filename = filename
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
@@ -913,7 +914,11 @@ class GrampsParser:
         self.object.set_description(attrs['description'])
         src = attrs["src"]
         if src:
+            if src[0] != '/':
+                fullpath = os.path.abspath(self.filename)
+                src = os.path.dirname(fullpath) + '/' + src
             self.object.set_path(src)
+            self.db.set_thumbnail_image(self.object.get_handle(),src)
 
     def stop_people(self,*tag):
         pass

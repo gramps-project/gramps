@@ -184,7 +184,6 @@ def import2(database, filename, cb, codeset, use_trans):
 
     try:
         close = g.parse_gedcom_file(use_trans)
-        g.resolve_refns()
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
         errmsg = _("%s could not be opened\n") % filename
@@ -204,12 +203,15 @@ def import2(database, filename, cb, codeset, use_trans):
     statusTop.get_widget("close").set_sensitive(1)
     if close:
         statusWindow.destroy()
+
+    print database.person_map.stat()
     
     if cb:
         statusWindow.destroy()
         cb(1)
     elif callback:
         callback()
+    print "callback done"
 
 #-------------------------------------------------------------------------
 #
@@ -314,7 +316,7 @@ class GedcomParser:
             f = open("/proc/mounts","r")
 
             for line in f.xreadlines():
-                paths = string.split(line)
+                paths = line.split()
                 ftype = paths[2].upper()
                 if ftype in file_systems.keys():
                     mypaths.append((paths[1],file_systems[ftype]))
@@ -355,7 +357,7 @@ class GedcomParser:
 
     def find_file(self,fullname,altpath):
         tries = []
-        fullname = string.replace(fullname,'\\','/')
+        fullname = fullname.replace('\\','/')
         tries.append(fullname)
         
         if os.path.isfile(fullname):
@@ -395,7 +397,7 @@ class GedcomParser:
                 self.text = string.translate(self.text,self.transtable2)
             
             self.index += 1
-            l = string.split(self.text, None, 2)
+            l = self.text.split(None, 2)
             ln = len(l)
             try:
                 if ln == 2:
@@ -508,12 +510,12 @@ class GedcomParser:
                 return
             elif matches[1] == "TITL":
                 title = matches[2] + self.parse_continue_data(level+1)
-                title = string.replace(title,'\n',' ')
+                title = title.replace('\n',' ')
                 self.source.set_title(title)
             elif matches[1] == "TAXT" or matches[1] == "PERI": # EasyTree Sierra On-Line
                 if self.source.get_title() == "":
                     title = matches[2] + self.parse_continue_data(level+1)
-                    title = string.replace(title,'\n',' ')
+                    title = title.replace('\n',' ')
                     self.source.set_title(title)
             elif matches[1] == "AUTH":
                 self.source.set_author(matches[2] + self.parse_continue_data(level+1))
@@ -628,7 +630,7 @@ class GedcomParser:
     def find_person_handle(self,gramps_id):
         intid = self.gid2id.get(gramps_id)
         if not intid:
-            intid = Utils.create_id()
+            intid = create_id()
             self.gid2id[gramps_id] = intid
         return intid
 
@@ -646,7 +648,7 @@ class GedcomParser:
     def find_family_handle(self,gramps_id):
         intid = self.fid2id.get(gramps_id)
         if not intid:
-            intid = Utils.create_id()
+            intid = create_id()
             self.fid2id[gramps_id] = intid
         return intid
 
@@ -656,7 +658,7 @@ class GedcomParser:
         if self.db.source_map.has_key(intid):
             source.unserialize(self.db.source_map.get(intid))
         else:
-            intid = Utils.create_id()
+            intid = create_id()
             source.set_handle(intid)
             source.set_gramps_id(gramps_id)
             self.db.add_source(source,self.trans)
@@ -669,7 +671,7 @@ class GedcomParser:
         if self.db.place_map.has_key(intid):
             place.unserialize(self.db.place_map.get(intid))
         else:
-            intid = Utils.create_id()
+            intid = create_id()
             place.set_handle(intid)
             place.set_title(gramps_id)
             place.set_gramps_id(self.db.find_next_place_gramps_id())
@@ -712,11 +714,11 @@ class GedcomParser:
                 return (mrel,frel)
             # FTW
             elif matches[1] == "_FREL":
-                if string.lower(matches[2]) != "natural":
-                    frel = string.capitalize(matches[2])
+                if matches[2].lower() != "natural":
+                    frel = matches[2].capitalize()
             # FTW
             elif matches[1] == "_MREL":
-                if string.lower(matches[2]) != "natural":
+                if matches[2].lower() != "natural":
                     mrel = matches[2]
             elif matches[1] == "ADOP":
                 mrel = "Adopted"
@@ -789,7 +791,7 @@ class GedcomParser:
                 else:
                     self.parse_family_object(2)
             elif matches[1] == "_COMM":
-                note = string.strip(matches[2]) + self.parse_continue_data(1)
+                note = matches[2].strip() + self.parse_continue_data(1)
                 self.family.set_note(note)
                 self.ignore_sub_junk(2)
             elif matches[1] == "NOTE":
@@ -974,7 +976,7 @@ class GedcomParser:
                 if matches[2]:
                     event.set_description(matches[2])
                 self.parse_person_event(event,2)
-                n = string.strip(event.get_name()) 
+                n = event.get_name().strip() 
                 if n in self.attrs:
                     attr = RelLib.Attribute()
                     attr.set_type(self.gedattr[n])
@@ -1001,7 +1003,7 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
             else:
                 event = RelLib.Event()
-                n = string.strip(matches[1])
+                n = matches[1].strip()
                 if ged2gramps.has_key(n):
                     event.set_name(ged2gramps[n])
                 elif self.gedattr.has_key(n):
@@ -1033,7 +1035,7 @@ class GedcomParser:
                 self.backup()
                 return note
             elif matches[1] == "NOTE":
-                if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
+                if not matches[2].strip() or matches[2] and matches[2][0] != "@":
                     note = matches[2] + self.parse_continue_data(level+1)
                     self.parse_note_data(level+1)
                 else:
@@ -1050,7 +1052,7 @@ class GedcomParser:
 
             if int(matches[0]) < level:
                 self.backup()
-                return (string.capitalize(ftype),note)
+                return (ftype.capitalize(),note)
             elif matches[1] == "PEDI":
                 ftype = matches[2]
             elif matches[1] == "SOUR":
@@ -1059,7 +1061,7 @@ class GedcomParser:
             elif matches[1] == "_PRIMARY":
                 pass #type = matches[1]
             elif matches[1] == "NOTE":
-                if not string.strip(matches[2]) or matches[2] and matches[2][0] != "@":
+                if not matches[2].strip() or matches[2] and matches[2][0] != "@":
                     note = matches[2] + self.parse_continue_data(level+1)
                     self.parse_note_data(level+1)
                 else:
@@ -1948,6 +1950,15 @@ _mime_type = 'application/x-gedcom'
 _filter = gtk.FileFilter()
 _filter.set_name(_('GEDCOM files'))
 _filter.add_mime_type(_mime_type)
+
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def create_id():
+    return Utils.create_id()
 
 #-------------------------------------------------------------------------
 #

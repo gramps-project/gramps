@@ -1124,9 +1124,9 @@ class Gramps:
             if response == gtk.RESPONSE_OK:
                 name = choose.get_filename()
                 if os.path.isfile(name):
-                    RelImage.import_media_object(name,filename,base)
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)
+                    self.db.set_thumbnail_image(ObjectId,name)
             choose.destroy()
 
         #-------------------------------------------------------------------------

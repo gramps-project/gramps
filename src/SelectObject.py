@@ -117,10 +117,9 @@ class SelectObject:
         the_type = Utils.get_mime_description(obj.get_mime_type())
         path = obj.get_path()
 
-        thumb_path = Utils.thumb_path(self.db.get_save_path(),obj)
-        pexists = os.path.exists(path)
-        if pexists and os.path.exists(thumb_path):
-            self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
+        image = self.db.get_thumbnail_image(obj.get_handle())
+        if image:
+            self.preview.set_from_pixbuf(image)
         else:
             icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
             self.preview.set_from_pixbuf(icon_image)

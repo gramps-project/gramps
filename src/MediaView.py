@@ -113,11 +113,6 @@ class MediaView:
         self.list.connect('button-press-event',self.on_button_press_event)
         self.list.connect('key-press-event',self.key_press)
         self.selection.connect('changed',self.on_select_row)
-        if not RelImage.is_cnv():
-	    WarningDialog(_("Thumbnails not available")
-                ,_("There is no suitable tool to generate thumbnails for the images. "
-                "If you would like to enable this feature, "
-                "install ImageMagick, available at http://www.imagemagick.org/"))
         self.columns = []
         self.build_columns()
         self.build_tree()
@@ -169,11 +164,9 @@ class MediaView:
         mobj = self.db.get_object_from_handle(handle)
         mtype = mobj.get_mime_type()
         type_name = Utils.get_mime_description(mtype)
-        path = mobj.get_path()
-        thumb_path = Utils.thumb_path(self.db.get_save_path(),mobj)
-        pexists = os.path.exists(path)
-        if pexists and os.path.exists(thumb_path):
-            self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
+        image = self.db.get_thumbnail_image(mobj.get_handle())
+        if image != None:
+            self.preview.set_from_pixbuf(image)
         else:
             icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(mtype))
             self.preview.set_from_pixbuf(icon_image)
@@ -256,7 +249,7 @@ class MediaView:
     def popup_convert_to_private(self, obj):
         path = self.db.get_save_path()
         handle = self.obj.get_handle()
-        name = RelImage.import_media_object(self.obj.get_path(),path,handle)
+        self.db.set_thumbnail_image(handle,path)
         if name:
             self.obj.set_path(name)
 
@@ -346,9 +339,8 @@ class MediaView:
             return
         if (const.dnd_images):
             obj = self.db.get_object_from_handle(store.get_value(node,1))
-            name = Utils.thumb_path(self.db.get_save_path(),obj)
-            pix = gtk.gdk.pixbuf_new_from_file(name)
-            context.set_icon_pixbuf(pix,0,0)
+            image = self.db.get_thumbnail_image(obj.get_handle())
+            context.set_icon_pixbuf(image,0,0)
 
     def on_drag_data_get(self,w, context, selection_data, info, time):
         if info == 1:
@@ -376,11 +368,7 @@ class MediaView:
                 trans = self.db.transaction_begin()
                 self.db.add_object(photo,trans)
                 if GrampsGconfKeys.get_media_reference() == 0:
-                    name = RelImage.import_media_object(name,
-                                                        self.db.get_save_path(),
-                                                        photo.get_handle())
-                    if name:
-                        photo.set_path(name)
+                    self.db.set_thumbnail_image(photo.get_handle(),name)
 
                 self.db.commit_media_object(photo,trans)
                 self.db.transaction_commit(trans,_("Add Media Object"))
@@ -409,9 +397,7 @@ class MediaView:
                 try:
                     handle = photo.get_handle()
                     path = self.db.get_save_path()
-                    name = RelImage.import_media_object(tfile,path,handle)
-                    if name:
-                        photo.set_path(name)
+                    self.db.set_thumbnail_image(handle,path)
                 except:
                     photo.set_path(tfile)
                     return
