@@ -29,12 +29,9 @@ from libglade import *
 import RelLib
 import sort
 import intl
+import utils
 
 _ = intl.gettext
-
-topDialog = None
-other_person = None
-col2person = []
 
 #-------------------------------------------------------------------------
 #
@@ -50,118 +47,6 @@ def filter(person,index,list,map):
     if family != None:
         filter(family.getFather(),index+1,list,map)
         filter(family.getMother(),index+1,list,map)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_peopleList_select_row(obj,a,b,c):
-    global other_person
-    
-    other_person = col2person[a]
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_apply_clicked(obj):
-    firstMap = {}
-    firstList = []
-    secondMap = {}
-    secondList = []
-    common = []
-    rank = 9999999
-
-    filter(active_person,0,firstList,firstMap)
-    filter(other_person,0,secondList,secondMap)
-
-    for person in firstList:
-        if person in secondList:
-            new_rank = firstMap[person]
-            if new_rank < rank:
-                rank = new_rank
-                common = [ person ]
-            elif new_rank == rank:
-                common.append(person)
-
-    firstRel = -1
-    secondRel = -1
-
-    firstName = active_person.getPrimaryName().getRegularName()
-    secondName = other_person.getPrimaryName().getRegularName()
-
-    length = len(common)
-    if length == 1:
-        person = common[0]
-        secondRel = firstMap[person]
-        firstRel = secondMap[person]
-        commontext = " Their common ancestor is "
-        commontext = commontext + person.getPrimaryName().getRegularName() + "."
-    elif length > 1:
-        index = 0
-        commontext = " Their common ancestors are "
-        for person in common:
-            secondRel = firstMap[person]
-            firstRel = secondMap[person]
-            if length == index + 1:
-                commontext = commontext + " and "
-            elif index != 0:
-                commontext = commontext + ", "
-            commontext = commontext + person.getPrimaryName().getRegularName()
-            index = index + 1
-    else:
-        commontext = ""
-
-    if firstRel == -1:
-        text = "There is no relationship between " + firstName + " and " + secondName + "."
-    elif firstRel == 0:
-        if other_person.getGender() == RelLib.Person.male:
-            root = "father"
-        else:
-            root = "mother"
-        if secondRel == 0:
-            text = firstName + " and " + secondName + " are the same person."
-        else:
-            text = secondName + get_prefix(secondRel,root) + firstName
-    elif secondRel == 0:
-        if other_person.getGender() == RelLib.Person.male:
-            text = secondName + get_prefix(firstRel,"son") + firstName + "."
-        else:
-            text = secondName + get_prefix(firstRel,"daughter") + firstName + "."
-    elif firstRel == 1:
-        if other_person.getGender() == RelLib.Person.male:
-            root = "uncle"
-        else:
-            root = "aunt"
-        if secondRel == 1:
-            if other_person.getGender() == RelLib.Person.male:
-                text = secondName + " is the brother of " + firstName + "."
-            else:
-                text = secondName + " is the sister of " + firstName + "."
-        else:
-            text = secondName + get_prefix(secondRel-1,root) + firstName + "."
-    elif secondRel == 1:
-        if other_person.getGender() == RelLib.Person.male:
-            text = secondName + get_prefix(firstRel-1,"nephew") + firstName + "."
-        else:
-            text = secondName + get_prefix(firstRel-1,"niece") + firstName + "."
-    else:
-        if secondRel > firstRel:
-            text = secondName + cousin(secondRel-1,secondRel-firstRel) + firstName + "."
-        else:
-            text = secondName + cousin(firstRel-1,firstRel-secondRel) + firstName + "."
-
-    text1 = topDialog.get_widget("text1")
-    text1.set_point(0)
-    length = text1.get_length()
-    text1.forward_delete(length)
-    if firstRel == 0 or secondRel == 0:
-        text1.insert_defaults(text)
-    else:    
-        text1.insert_defaults(text + commontext)
-    text1.set_word_wrap(1)
 
 #-------------------------------------------------------------------------
 #
@@ -188,7 +73,7 @@ def cousin(level,removed):
         root = root + " %d times removed of " % removed
 
     return root
-        
+
 #-------------------------------------------------------------------------
 #
 #
@@ -213,46 +98,147 @@ def get_prefix(level,root):
 #
 #
 #-------------------------------------------------------------------------
-def on_close_clicked(obj):
-    obj.destroy()
-    while events_pending():
-        mainiteration()
-
-#-------------------------------------------------------------------------
-#
-#
-#-------------------------------------------------------------------------
 def runTool(database,person,callback):
-    global active_person
-    global topDialog
-    global glade_file
-    global db
 
-    active_person = person
-    db = database
+    RelCalc(database,person)
 
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "relcalc.glade"
-    topDialog = GladeXML(glade_file,"relcalc")
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class RelCalc:
 
-    name = person.getPrimaryName().getRegularName()
+    def __init__(self,database,person):
+        self.person = person
+        self.db = database
+
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "relcalc.glade"
+        self.glade = GladeXML(glade_file,"relcalc")
+
+        name = self.person.getPrimaryName().getRegularName()
     
-    topDialog.get_widget("name").set_text(_("Relationship to %s") % name)
-    peopleList = topDialog.get_widget("peopleList")
+        self.glade.get_widget("name").set_text(_("Relationship to %s") % name)
+        self.people = self.glade.get_widget("peopleList")
 
-    name_list = database.getPersonMap().values()
-    name_list.sort(sort.by_last_name)
-    for per in name_list:
-        col2person.append(per)
-        name = per.getPrimaryName().getName()
-        birthday = per.getBirth().getDate()
-        peopleList.append([name,birthday])
+        name_list = self.db.getPersonMap().values()
+        name_list.sort(sort.by_last_name)
+        index = 0
+        for per in name_list:
+            name = per.getPrimaryName().getName()
+            birthday = per.getBirth().getDate()
+            id = per.getId()
+            self.people.append([name,id,birthday])
+            self.people.set_row_data(index,per)
+            index = index + 1
+            
+        self.glade.signal_autoconnect({
+            "on_close_clicked"         : utils.destroy_passed_object,
+            "on_apply_clicked"         : self.on_apply_clicked
+            })
 
-    topDialog.signal_autoconnect({
-        "on_close_clicked" : on_close_clicked,
-        "on_peopleList_select_row" : on_peopleList_select_row,
-        "on_apply_clicked" : on_apply_clicked
-        })
+    def on_apply_clicked(self,obj):
+        firstMap = {}
+        firstList = []
+        secondMap = {}
+        secondList = []
+        common = []
+        rank = 9999999
+
+        if len(self.people.selection) == 0:
+            return
+
+        other_person = self.people.get_row_data(self.people.selection[0])
+        filter(self.person,0,firstList,firstMap)
+        filter(other_person,0,secondList,secondMap)
+
+        for person in firstList:
+            if person in secondList:
+                new_rank = firstMap[person]
+                if new_rank < rank:
+                    rank = new_rank
+                    common = [ person ]
+                elif new_rank == rank:
+                    common.append(person)
+
+        firstRel = -1
+        secondRel = -1
+
+        firstName = self.person.getPrimaryName().getRegularName()
+        secondName = other_person.getPrimaryName().getRegularName()
+
+        length = len(common)
+        if length == 1:
+            person = common[0]
+            secondRel = firstMap[person]
+            firstRel = secondMap[person]
+            name = person.getPrimaryName().getRegularName()
+            commontext = " " + _("Their common ancestor is %s.") % name
+        elif length > 1:
+            index = 0
+            commontext = " Their common ancestors are "
+            for person in common:
+                secondRel = firstMap[person]
+                firstRel = secondMap[person]
+                if length == index + 1:
+                    commontext = commontext + " and "
+                elif index != 0:
+                    commontext = commontext + ", "
+                commontext = commontext + person.getPrimaryName().getRegularName()
+                index = index + 1
+        else:
+            commontext = ""
+
+        if firstRel == -1:
+            msg = _("There is no relationship between %s and %s.")
+            text = msg % (firstName,secondName)
+        elif firstRel == 0:
+            if other_person.getGender() == RelLib.Person.male:
+                root = "father"
+            else:
+                root = "mother"
+            if secondRel == 0:
+                text = firstName + " and " + secondName + " are the same person."
+            else:
+                text = secondName + get_prefix(secondRel,root) + firstName
+        elif secondRel == 0:
+            if other_person.getGender() == RelLib.Person.male:
+                text = secondName + get_prefix(firstRel,"son") + firstName + "."
+            else:
+                text = secondName + get_prefix(firstRel,"daughter") + firstName + "."
+        elif firstRel == 1:
+            if other_person.getGender() == RelLib.Person.male:
+                root = "uncle"
+            else:
+                root = "aunt"
+            if secondRel == 1:
+                if other_person.getGender() == RelLib.Person.male:
+                    text = secondName + " is the brother of " + firstName + "."
+                else:
+                    text = secondName + " is the sister of " + firstName + "."
+            else:
+                text = secondName + get_prefix(secondRel-1,root) + firstName + "."
+        elif secondRel == 1:
+            if other_person.getGender() == RelLib.Person.male:
+                text = secondName + get_prefix(firstRel-1,"nephew") + firstName + "."
+            else:
+                text = secondName + get_prefix(firstRel-1,"niece") + firstName + "."
+        else:
+            if secondRel > firstRel:
+                text = secondName + cousin(secondRel-1,secondRel-firstRel) + firstName + "."
+            else:
+                text = secondName + cousin(firstRel-1,firstRel-secondRel) + firstName + "."
+
+        text1 = self.glade.get_widget("text1")
+        text1.set_point(0)
+        length = text1.get_length()
+        text1.forward_delete(length)
+        if firstRel == 0 or secondRel == 0:
+            text1.insert_defaults(text)
+        else:    
+            text1.insert_defaults(text + commontext)
+        text1.set_word_wrap(1)
     
 #-------------------------------------------------------------------------
 #

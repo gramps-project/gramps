@@ -23,6 +23,7 @@
 __author__ = "Don Allingham"
 
 
+import re
 from Date import *
 
 CONF_VERY_HIGH = 4
@@ -30,6 +31,8 @@ CONF_HIGH      = 3
 CONF_NORMAL    = 2
 CONF_LOW       = 1
 CONF_VERY_LOW  = 0
+
+_id_reg = re.compile("%\d+d")
 
 class SourceNote:
     """Base class for storing source references and notes"""
@@ -1474,19 +1477,34 @@ class RelDataBase:
         self.fprefix = "F%d"
 
     def set_iprefix(self,val):
-        self.iprefix = val + "%d"
+        if _id_reg.search(val):
+            self.iprefix = val
+        else:
+            self.iprefix = val + "%d"
 
     def set_sprefix(self,val):
-        self.sprefix = val + "%d"
+        if _id_reg.search(val):
+            self.sprefix = val
+        else:
+            self.sprefix = val + "%d"
 
     def set_oprefix(self,val):
-        self.oprefix = val + "%d"
+        if _id_reg.search(val):
+            self.oprefix = val
+        else:
+            self.oprefix = val + "%d"
 
     def set_pprefix(self,val):
-        self.pprefix = val + "%d"
+        if _id_reg.search(val):
+            self.pprefix = val
+        else:
+            self.pprefix = val + "%d"
 
     def set_fprefix(self,val):
-        self.fprefix = val + "%d"
+        if _id_reg.search(val):
+            self.fprefix = val
+        else:
+            self.fprefix = val + "%d"
 
     def new(self):
         """initializes the RelDataBase to empty values"""

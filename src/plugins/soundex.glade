@@ -83,15 +83,6 @@
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_CLOSE</stock_button>
       </widget>
-
-      <widget>
-	<class>GtkButton</class>
-	<name>help</name>
-	<tooltip>Help is not implemented yet</tooltip>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<stock_button>GNOME_STOCK_BUTTON_HELP</stock_button>
-      </widget>
     </widget>
 
     <widget>
@@ -254,6 +245,12 @@
 	    <name>name</name>
 	    <tooltip>Name used to generate SoundEx code</tooltip>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>nameList</object>
+	      <last_modification_time>Sat, 27 Oct 2001 19:28:10 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>

@@ -32,7 +32,7 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
 
-    for prefix in ["xyzzytemporaryid%d", "I%d"] :
+    for prefix in ["xyzzytemporaryid%d", database.iprefix] :
         index = 0
         pmap = database.getPersonMap()
         for id in pmap.keys():
@@ -43,7 +43,7 @@ def runTool(database,active_person,callback):
             del pmap[id]
             index = index + 1
 
-    for prefix in ["xyzzytemporaryid%d", "F%d"] :
+    for prefix in ["xyzzytemporaryid%d", database.fprefix] :
         index = 0
         pmap = database.getFamilyMap()
         for id in pmap.keys():
@@ -54,9 +54,31 @@ def runTool(database,active_person,callback):
             del pmap[id]
             index = index + 1
 
-    for prefix in ["xyzzytemporaryid%d", "S%d"] :
+    for prefix in ["xyzzytemporaryid%d", database.sprefix] :
         index = 0
         pmap = database.getSourceMap()
+        for id in pmap.keys():
+            newid = prefix % index
+            person = pmap[id]
+            person.setId(newid)
+            pmap[newid] = person
+            del pmap[id]
+            index = index + 1
+
+    for prefix in ["xyzzytemporaryid%d", database.pprefix] :
+        index = 0
+        pmap = database.getPlaceMap()
+        for id in pmap.keys():
+            newid = prefix % index
+            person = pmap[id]
+            person.setId(newid)
+            pmap[newid] = person
+            del pmap[id]
+            index = index + 1
+
+    for prefix in ["xyzzytemporaryid%d", database.oprefix] :
+        index = 0
+        pmap = database.getObjectMap()
         for id in pmap.keys():
             newid = prefix % index
             person = pmap[id]

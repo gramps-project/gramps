@@ -33,43 +33,53 @@ import intl
 
 _ = intl.gettext
 
-topDialog = None
-
-#-------------------------------------------------------------------------
-#
-#
-#-------------------------------------------------------------------------
-def on_apply_clicked(obj):
-    
-    text = obj.get_text()
-    value = topDialog.get_widget("value").set_text(soundex.soundex(text))
-    
 #-------------------------------------------------------------------------
 #
 #
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
-    global topDialog
-    
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "soundex.glade"
+    SoundGen(database,active_person)
 
-    topDialog = GladeXML(glade_file,"soundEx")
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
-        "on_apply_clicked" : on_apply_clicked
+
+class SoundGen:
+    def __init__(self,database,active_person):
+        self.db = database
+        
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "soundex.glade"
+
+        self.glade = GladeXML(glade_file,"soundEx")
+        self.glade.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_combo_insert_text"  : utils.combo_insert_text,
+            "on_apply_clicked"      : self.on_apply_clicked,
         })
 
-    names = []
-    for person in database.getPersonMap().values():
-        lastname = person.getPrimaryName().getSurname()
-        if lastname not in names:
-            names.append(lastname)
+        self.value = self.glade.get_widget("value")
+        self.name = self.glade.get_widget("name")
+        names = []
+        for person in self.db.getPersonMap().values():
+            lastname = person.getPrimaryName().getSurname()
+            if lastname not in names:
+                names.append(lastname)
 
-    names.sort()
-    topDialog.get_widget("nameList").set_popdown_strings(names)
-    topDialog.get_widget("name").set_text("")
-    topDialog.get_widget("soundEx").show()    
+        names.sort()
+        self.glade.get_widget("nameList").set_popdown_strings(names)
+
+        if active_person:
+            n = active_person.getPrimaryName().getSurname()
+            self.name.set_text(n)
+            self.value.set_text(soundex.soundex(n))
+        else:
+            self.name.set_text("")
+            
+        self.glade.get_widget("soundEx").show()    
+
+    def on_apply_clicked(self,obj):
+        
+        text = obj.get_text()
+        value = self.value.set_text(soundex.soundex(text))
+    
 
 #-------------------------------------------------------------------------
 #

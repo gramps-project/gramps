@@ -33,9 +33,9 @@ import libglade
 import RelLib
 import utils
 
-title_list = []
-nick_list = []
-cb = None
+_title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
+_nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
+
 
 #-------------------------------------------------------------------------
 #
@@ -45,73 +45,69 @@ cb = None
 #
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback):
+    PatchNames(database,callback)
 
-    global cb
+class PatchNames:
 
-    cb = callback
-    title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
-    nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
-    
-    personMap = database.getPersonMap()
-    for key in personMap.keys():
+    def __init__(self,db,callback):
+        self.cb = callback
+        self.db = db
+        self.title_list = []
+        self.nick_list = []
         
-        person = personMap[key]
-        first = person.getPrimaryName().getFirstName()
-        match = title_re.match(first)
-        if match:
-            groups = match.groups()
-            title_list.append((person,groups[0],groups[1]))
+        personMap = self.db.getPersonMap()
+        for key in personMap.keys():
+        
+            person = personMap[key]
+            first = person.getPrimaryName().getFirstName()
+            match = _title_re.match(first)
+            if match:
+                groups = match.groups()
+                self.title_list.append((person,groups[0],groups[1]))
 
-        match = nick_re.match(first)
-        if match:
-            groups = match.groups()
-            nick_list.append((person,groups[0],groups[1]))
+            match = _nick_re.match(first)
+            if match:
+                groups = match.groups()
+                self.nick_list.append((person,groups[0],groups[1]))
 
-    msg = ""
-    if len(nick_list) > 0 or len(title_list) > 0:
-        if len(nick_list) > 0:
-            for name in nick_list:
+        msg = ""
+        if len(self.nick_list) > 0 or len(self.title_list) > 0:
+            for name in self.nick_list:
                 msg = msg + _("%s will be extracted as a nickname from %s\n") % \
                       (name[2],name[0].getPrimaryName().getName())
 
-        if len(title_list) > 0:
-            for name in title_list:
+            for name in self.title_list:
                 msg = msg + _("%s will be extracted as a title from %s\n") % \
                       (name[0].getPrimaryName().getName(),name[1])
 
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "patchnames.glade"
+            base = os.path.dirname(__file__)
+            glade_file = base + os.sep + "patchnames.glade"
 
-        top = libglade.GladeXML(glade_file,"summary")
-        top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "on_ok_clicked" : on_ok_clicked
-            })
-        top.get_widget("textwindow").show_string(msg)
-    else:
-        GnomeOkDialog(_("No titles or nicknames were found"))
-        callback(0)
+            self.top = libglade.GladeXML(glade_file,"summary")
+            self.top.signal_autoconnect({
+                "destroy_passed_object" : utils.destroy_passed_object,
+                "on_ok_clicked" : self.on_ok_clicked
+                })
+            self.top.get_widget("textwindow").show_string(msg)
+        else:
+            GnomeOkDialog(_("No titles or nicknames were found"))
+            self.cb(0)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    for grp in nick_list:
-        name = grp[0].getPrimaryName()
-        name.setFirstName(grp[1])
-        grp[0].setNickName(grp[2])
-        utils.modified()
+    def on_ok_clicked(self,obj):
+        for grp in self.nick_list:
+            name = grp[0].getPrimaryName()
+            name.setFirstName(grp[1])
+            grp[0].setNickName(grp[2])
+            utils.modified()
 
-    for grp in title_list:
-        name = grp[0].getPrimaryName()
-        name.setFirstName(grp[2])
-        name.setTitle(grp[1])
-        utils.modified()
+        for grp in self.title_list:
+            name = grp[0].getPrimaryName()
+            name.setFirstName(grp[2])
+            name.setTitle(grp[1])
+            utils.modified()
 
-    utils.destroy_passed_object(obj)
-    cb(1)
+        utils.destroy_passed_object(obj)
+        self.cb(1)
         
 #------------------------------------------------------------------------
 #
