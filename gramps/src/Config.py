@@ -63,15 +63,18 @@ _date_format_list = [
     "Month Day, Year",
     "MON Day, Year",
     "Day MON Year",
-    "MM/DD/YY",
-    "MM-DD-YY",
-    "DD/MM/YY",
-    "DD-MM-YY"
+    "MM/DD/YYYY",
+    "MM-DD-YYYY",
+    "DD/MM/YYYY",
+    "DD-MM-YYYY",
+    "MM.DD.YYYY",
+    "DD.MM.YYYY",
+    "DD. Month Year"
     ]
 
 _date_entry_list = [
-    "MM/DD/YY",
-    "DD/MM/YY"
+    "MM/DD/YYYY, MM.DD.YYYY, MM-DD-YYYY",
+    "DD/MM/YYYY, DD.MM.YYYY, DD-MM-YYYY"
     ]
 
 _name_format_list = [
@@ -174,14 +177,14 @@ def loadConfig(call):
     db_dir = gnome.config.get_string("/gramps/config/DbDirectory")
 
     if report_dir == None:
-        report_dir = "."
+        report_dir = "./"
     else:
-        report_dir = report_dir + os.sep
+        report_dir = os.path.normpath(report_dir) + os.sep
         
     if db_dir == None:
-        db_dir = "."
+        db_dir = "./"
     else:
-        db_dir = db_dir + os.sep
+        db_dir = os.path.normpath(db_dir) + os.sep
 
     name = gnome.config.get_string("/gramps/researcher/name")
     addr = gnome.config.get_string("/gramps/researcher/addr")
@@ -339,11 +342,11 @@ def on_propertybox_apply(obj,page):
 
     dbdir_temp = prefsTop.get_widget("dbdir").get_full_path(1)
     if os.path.isdir(dbdir_temp):
-        db_dir = dbdir_temp + os.sep
+        db_dir = os.path.normpath(dbdir_temp) + os.sep
 
     repdir_temp = prefsTop.get_widget("repdir").get_full_path(1)
     if os.path.isdir(repdir_temp):
-        report_dir = repdir_temp + os.sep
+        report_dir = os.path.normpath(repdir_temp) + os.sep
     
     paper_preference = paper_obj.get_data("d")
     output_preference = output_obj.get_data("d")

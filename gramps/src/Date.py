@@ -292,7 +292,7 @@ class SingleDate:
     
     fmt1 = re.compile(start + "(\S+)(\s+\d+\s*,)?\s*(\d+)?\s*$",
                       re.IGNORECASE)
-    fmt2 = re.compile(start + "(\d+)\s+(\S+)(\s+\d+)?\s*$",
+    fmt2 = re.compile(start + "(\d+)\.?\s+(\S+)(\s+\d+)?\s*$",
                       re.IGNORECASE)
     quick= re.compile(start + "(\d+)?\s(\S\S\S)?\s(\d+)?",
                       re.IGNORECASE)
@@ -579,7 +579,7 @@ class SingleDate:
     # 
     #
     #--------------------------------------------------------------------
-    def getFmt4(self):
+    def getFmt10(self):
         retval = ""
         
         if self.month == -1 and self.day == -1 and self.year == -1 :
@@ -588,16 +588,52 @@ class SingleDate:
             if self.month == -1:
                 retval = str(self.year)
             elif self.year == -1:
-                retval = "%d/??/??" % self.month+1
+                retval = SingleDate.mname[self.month]
             else:
-                retval = "%d/??/%d" % (self.month+1,self.year)
+                month = SingleDate.mname[self.month]
+                retval = "%s %d" % (month,self.year)
         elif self.month == -1:
-            retval = "??-%d-%d" % (self.day,self.year)
+            retval = str(self.year)
+        else:
+            month = SingleDate.mname[self.month]
+            if self.year == -1:
+                retval = "%d. %s ????" % (self.day,month)
+            else:
+                retval = "%d. %s %d" % (self.day,month,self.year)
+
+        if self.mode == SingleDate.about:
+            retval = "%s %s" % (_("ABT"),retval)
+        if self.mode == SingleDate.before:
+            retval = "%s %s" % (_("BEFORE"),retval)
+        elif self.mode == SingleDate.after:
+            retval = "%s %s" % (_("AFTER"),retval)
+
+        return retval
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def get_mmddyyyy(self,sep):
+        retval = ""
+        
+        if self.month == -1 and self.day == -1 and self.year == -1 :
+            pass
+        elif self.day == -1:
+            if self.month == -1:
+                retval = str(self.year)
+            elif self.year == -1:
+                retval = "%d%s??%s??" % (self.month+1,sep,sep)
+            else:
+                retval = "%d%s??%s%d" % (self.month+1,sep,sep,self.year)
+        elif self.month == -1:
+            retval = "??%s%d%s%d" % (sep,self.day,sep,self.year)
         else:
             if self.year == -1:
-                retval = "%d/%d/????" % (self.month+1,self.day)
+                retval = "%d%s%d%s????" % (self.month+1,sep,self.day,sep)
             else:
-                retval = "%d/%d/%d" % (self.month+1,self.day,self.year)
+                retval = "%d%s%d%s%d" % (self.month+1,sep,self.day,sep,self.year)
 
         if self.mode == SingleDate.about:
             retval = "%s %s" % (_("ABT"),retval)
@@ -608,6 +644,14 @@ class SingleDate:
             retval = "%s %s" % (_("AFTER"),retval)
 
         return retval
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def getFmt4(self):
+        return self.get_mmddyyyy("/")
 
     #--------------------------------------------------------------------
     #
@@ -615,40 +659,22 @@ class SingleDate:
     #
     #--------------------------------------------------------------------
     def getFmt5(self):
-        retval = ""
-        
-        if self.month == -1 and self.day == -1 and self.year == -1 :
-            pass
-        elif self.day == -1:
-            if self.month == -1:
-                retval = str(self.year)
-            elif self.year == -1:
-                retval = "%d-??-??" % self.month+1
-            else:
-                retval = "%d-??-%d" % (self.month+1,self.year)
-        elif self.month == -1:
-            retval = "??-%d-%d" % (self.day,self.year)
-        else:
-            if self.year == -1:
-                retval = "%d-%d-????" % (self.month+1,self.day)
-            else:
-                retval = "%d-%d-%d" % (self.month+1,self.day,self.year)
-
-        if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
-        if self.mode == SingleDate.before:
-            retval = "%s %s" % (_("BEFORE"),retval)
-        elif self.mode == SingleDate.after:
-            retval = "%s %s" % (_("AFTER"),retval)
-
-        return retval
+        return self.get_mmddyyyy("-")
 
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
-    def getFmt6(self):
+    def getFmt8(self):
+        return self.get_mmddyyyy(".")
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def get_ddmmyyyy(self,sep):
         retval = ""
         
         if self.month == -1 and self.day == -1 and self.year == -1 :
@@ -657,16 +683,16 @@ class SingleDate:
             if self.month == -1:
                 retval = str(self.year)
             elif self.year == -1:
-                retval = "??/%d/??" % self.month+1
+                retval = "??%s%d%s??" % (sep,self.month+1,sep)
             else:
-                retval = "??/%d/%d" % (self.month+1,self.year)
+                retval = "??%s%d%s%d" % (sep,self.month+1,sep,self.year)
         elif self.month == -1:
-            retval = "%d/??/%d" % (self.day,self.year)
+            retval = "%d%s??%s%d" % (self.day,sep,sep,self.year)
         else:
             if self.year == -1:
-                retval = "%d/%d/????" % (self.day,self.month+1)
+                retval = "%d%s%d%s????" % (self.day,sep,self.month+1,sep)
             else:
-                retval = "%d/%d/%d" % (self.day,self.month+1,self.year)
+                retval = "%d%s%d%s%d" % (self.day,sep,self.month+1,sep,self.year)
 
         if self.mode == SingleDate.about:
             retval = "%s %s" % (_("ABT"),retval)
@@ -676,6 +702,13 @@ class SingleDate:
             retval = "%s %s" % (_("AFTER"),retval)
 
         return retval
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def getFmt6(self):
+        return self.get_ddmmyyyy("/")
 
     #--------------------------------------------------------------------
     #
@@ -683,38 +716,23 @@ class SingleDate:
     #
     #--------------------------------------------------------------------
     def getFmt7(self):
-        retval = ""
-        if self.month == -1 and self.day == -1 and self.year == -1 :
-            pass
-        elif self.day == -1:
-            if self.month == -1:
-                retval = "%d" % self.year
-            elif self.year == -1:
-                retval = "??-%d-??" % self.month+1
-            else:
-                retval = "??-%d-%d" % (self.month+1,self.year)
-        elif self.month == -1:
-            retval = "%d-??-%d" % (self.day,self.year)
-        elif self.year == -1:
-            retval = "%d-%d-????" % (self.day,self.month+1)
-        else:
-            retval = "%d-%d-%d" % (self.day,self.month+1,self.year)
-
-        if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABT"),retval)
-        if self.mode == SingleDate.before:
-            retval = "%s %s" % (_("BEFORE"),retval)
-        elif self.mode == SingleDate.after:
-            retval = "%s %s" % (_("AFTER"),retval)
-
-        return retval
+        return self.get_ddmmyyyy("-")
 
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
-    fmtFunc = [ getFmt1, getFmt2, getFmt3, getFmt4, getFmt5, getFmt6, getFmt7 ]
+    def getFmt9(self):
+        return self.get_ddmmyyyy(".")
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    fmtFunc = [ getFmt1, getFmt2, getFmt3, getFmt4, getFmt5, getFmt6,
+                getFmt7, getFmt8, getFmt9, getFmt10 ]
 
     #--------------------------------------------------------------------
     #
