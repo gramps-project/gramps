@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -40,6 +40,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import NameDisplay
+import DateHandler
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 
@@ -292,6 +293,7 @@ class PlaceModel(BaseModel):
             self.column_name,
             self.column_id,
             self.column_parish,
+            self.column_postal_code,
             self.column_city,
             self.column_county,
             self.column_state,
@@ -351,6 +353,12 @@ class PlaceModel(BaseModel):
         except:
             return u''
 
+    def column_postal_code(self,data):
+        try:
+            return data[5].get_postal_code()
+        except:
+            return u''
+
     def column_change(self,data):
         return unicode(time.asctime(time.localtime(data[11])))
 
@@ -371,6 +379,8 @@ class MediaModel(BaseModel):
             self.column_mime,
             self.column_path,
             self.column_change,
+            self.column_date,
+            self.column_place,
             self.column_handle,
             ]
         BaseModel.__init__(self,db)
@@ -390,9 +400,20 @@ class MediaModel(BaseModel):
     def column_id(self,data):
         return unicode(data[1])
 
+    def column_date(self,data):
+        if data[9]:
+            return unicode(DateHandler.displayer.display(data[9]))
+        return u''
+
+    def column_place(self,data):
+        if data[10]:
+            place = self.db.get_place_from_handle(data[10])
+            if place:
+                return place.get_title()
+        return u''
+
     def column_handle(self,data):
         return unicode(data[0])
 
     def column_change(self,data):
         return unicode(time.asctime(time.localtime(data[8])))
-

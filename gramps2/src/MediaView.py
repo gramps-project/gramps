@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2004  Donald N. Allingham
+# Copyright (C) 2001-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -66,8 +66,11 @@ column_names = [
     _('Type'),
     _('Path'),
     _('Last Changed'),
+    _('Date'),
+    _('Place'),
     ]
 
+_HANDLE_COL = len(column_names)
 #-------------------------------------------------------------------------
 #
 # MediaView
@@ -173,7 +176,7 @@ class MediaView:
         if not node:
             return
 
-        handle = store.get_value(node,5)
+        handle = store.get_value(node,_HANDLE_COL)
         
         mobj = self.db.get_object_from_handle(handle)
         mtype = mobj.get_mime_type()
@@ -219,7 +222,7 @@ class MediaView:
 
         store,node = self.selection.get_selected()
         if node:
-            handle = store.get_value(node,5)
+            handle = store.get_value(node,_HANDLE_COL)
             obj = self.db.get_object_from_handle(handle)
             self.obj = obj
             mime_type = obj.get_mime_type()
@@ -284,7 +287,7 @@ class MediaView:
 
         list_store, node = self.selection.get_selected()
         if node:
-            handle = list_store.get_value(node,5)
+            handle = list_store.get_value(node,_HANDLE_COL)
             obj = self.db.get_object_from_handle(handle)
             ImageSelect.GlobalMediaProperties(self.db,obj,
                                               self.update_display,
@@ -295,7 +298,7 @@ class MediaView:
         if not node:
             return
 
-        handle = store.get_value(node,5)
+        handle = store.get_value(node,_HANDLE_COL)
         mobj = self.db.get_object_from_handle(handle)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,
@@ -352,7 +355,7 @@ class MediaView:
         if not node:
             return
         if (const.dnd_images):
-            handle = store.get_value(node,5)
+            handle = store.get_value(node,_HANDLE_COL)
             obj = self.db.get_object_from_handle(handle)
             image = ImgManip.get_thumbnail_image(obj.get_path())
             context.set_icon_pixbuf(image,0,0)
@@ -415,5 +418,3 @@ class MediaView:
                 if GrampsKeys.get_media_global():
                     ImageSelect.GlobalMediaProperties(self.db,photo,None,
                                                 self,self.topWindow)
-
-    
