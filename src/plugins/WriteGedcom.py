@@ -1017,11 +1017,10 @@ class GedcomWriter:
 
     def print_date(self,prefix,date):
         start = date.get_start_date()
-        if date.isEmpty():
-            val = date.getText()
-            if val:
-                self.writeln("%s %s" % (prefix,self.cnvtxt(val)))
-        else:
+        val = date.getText()
+        if val:
+            self.writeln("%s %s" % (prefix,self.cnvtxt(val)))
+        elif not date.isEmpty ():
             if date.isRange():
                 val = "FROM %s TO %s" % (make_date(start),
                                          make_date(date.get_stop_date()))
