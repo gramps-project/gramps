@@ -146,7 +146,7 @@ class Gramps:
                 const.shortopts,const.longopts)
             if leftargs:
                 print "Unrecognized option: %s" % leftargs[0]
-                return
+                os._exit(1)
             outfname = ''
             action = ''
 	    imports = []
@@ -160,7 +160,7 @@ class Gramps:
                         format = options[opt_ix+1][1]
                         if format not in [ 'gedcom', 'gramps', 'gramps-pkg' ]:
                             print "Invalid format:  %s" % format
-                            return
+                            os._exit(1)
                     elif string.upper(fname[-3:]) == "GED":
                         format = 'gedcom'
                     elif string.upper(fname[-3:]) == "TGZ":
@@ -169,7 +169,7 @@ class Gramps:
                         format = 'gramps'
                     else:
                         print "Unrecognized format for input file %s" % fname
-                        return
+                        os._exit(1)
 		    imports.append((fname,format))
                 elif o == 'o':
                     outfname = options[opt_ix][1]
@@ -177,7 +177,7 @@ class Gramps:
                         outformat = options[opt_ix+1][1]
                         if outformat not in [ 'gedcom', 'gramps', 'gramps-pkg', 'iso' ]:
                             print "Invalid format:  %s" % outformat
-                            return
+                            os._exit(1)
                     elif string.upper(outfname[-3:]) == "GED":
                         outformat = 'gedcom'
                     elif string.upper(outfname[-3:]) == "TGZ":
@@ -186,9 +186,12 @@ class Gramps:
                         outformat = 'gramps'
                     else:
                         print "Unrecognized format for output file %s" % outfname
-                        return
+                        os._exit(1)
                 elif o == 'a':
                     action = options[opt_ix][1]
+                    if action not in [ 'check', 'summary' ]:
+                        print "Unknown action: %s." % action
+                        os._exit(1)
             
             if not (outfname or action):
                 self.cl = 0
@@ -222,7 +225,7 @@ class Gramps:
                 self.cl_export(outfname,outformat)
 
             if action:
-                print "Performing: action %s." % action
+                print "Performing action: %s." % action
                 self.cl_action(action)
             
             if self.cl:
@@ -924,13 +927,13 @@ class Gramps:
             try:
                 ReadGedcom.importData(self.db,filename)
             except:
-                pass
+                print "Error importing %s" % filename
         elif format == 'gramps':
             try:
                 dbname = os.path.join(filename,const.xmlFile)
                 ReadXML.importData(self.db,dbname,None)
             except:
-                pass
+                print "Error importing %s" % filename
         elif format == 'gramps-pkg':
             # Create tempdir, if it does not exist, then check for writability
             tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
@@ -939,10 +942,10 @@ class Gramps:
                     os.mkdir(tmpdir_path,0700)
                 except:
                     print "Could not create temporary directory %s" % tmpdir_path 
-                    return
+                    os._exit(1)
             elif not os.access(tmpdir_path,os.W_OK):
                 print "Temporary directory %s is not writable" % tmpdir_path 
-                return
+                os._exit(1)
             else:    # tempdir exists and writable -- clean it up if not empty
 	        files = os.listdir(tmpdir_path) ;
                 for fn in files:
@@ -955,14 +958,14 @@ class Gramps:
 	        t.close()
             except:
                 print "Error extracting into %s" % tmpdir_path 
-                return
+                os._exit(1)
 
             dbname = os.path.join(tmpdir_path,const.xmlFile)  
 
             try:
                 ReadXML.importData(self.db,dbname,None)
             except:
-                pass
+                print "Error importing %s" % filename
             # Clean up tempdir after ourselves
             files = os.listdir(tmpdir_path) 
             for fn in files:
@@ -970,13 +973,14 @@ class Gramps:
             os.rmdir(tmpdir_path)
         else:
             print "Invalid format:  %s" % format
-            return
+            os._exit(1)
         if not self.cl:
             return self.post_load(self.impdir_path)
 
     def cl_export(self,filename,format):
         if format == 'gedcom':
             print "Command-line export to gedcom is not implemented yet."
+            os._exit(0)
         elif format == 'gramps':
             filename = os.path.normpath(os.path.abspath(filename))
             dbname = os.path.join(filename,const.xmlFile)
@@ -1013,9 +1017,28 @@ class Gramps:
             t.close()
         elif format == 'iso':
             print "Command-line export to iso is not implemented yet."
+            os._exit(0)
+        else:
+            print "Invalid format:  %s" % format
+            os._exit(1)
 
     def cl_action(self,action):
-        print "Command-line action is not implemented yet."
+        if action == 'check':
+            import Check
+            checker = Check.CheckIntegrity(self.db)
+            checker.check_for_broken_family_links()
+            checker.cleanup_missing_photos()
+            checker.check_parent_relationships()
+            checker.cleanup_empty_families(0)
+            errs = checker.build_report(1)
+            if errs:
+                checker.report(1)
+        elif action == 'summary':
+            print "Command-line summary is not implemented yet."
+            os._exit(0)
+        else:
+            print "Unknown action: %s." % action
+            os._exit(1)
 
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
