@@ -2,6 +2,7 @@
 	* src/plugins/DetAncestralReport.py: Minor cleanup.
 	* src/plugins/DetDescendantReport.py: Convert to new scheme.
 	* src/plugins/FamilyGroup.py: Convert to new scheme.
+	* src/Report.py: Typos.
 
 2004-12-31  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: remove name display options
