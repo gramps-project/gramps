@@ -679,6 +679,7 @@ _mime_type = const.app_geneweb
 _filter = gtk.FileFilter()
 _filter.set_name(_('GeneWeb files'))
 _filter.add_mime_type(_mime_type)
+_format_name = _('GeneWeb')
 
 from PluginMgr import register_import
-register_import(importData,_filter,_mime_type,1)
+register_import(importData,_filter,_mime_type,0,_format_name)

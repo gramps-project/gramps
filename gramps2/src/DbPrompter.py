@@ -161,11 +161,11 @@ class ExistingDbPrompter:
 
         format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
+        for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
             if not native_format:
                 choose.add_filter(mime_filter)
                 format_list.append(mime_type)
-                _KNOWN_FORMATS[mime_type] = mime_filter.get_name()
+                _KNOWN_FORMATS[mime_type] = format_name
         
         (box,type_selector) = format_maker(format_list)
         choose.set_extra_widget(box)
@@ -202,7 +202,7 @@ class ExistingDbPrompter:
             # The above native formats did not work, so we need to 
             # look up the importer for this format
             # and create an empty native database to import data in
-            for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
+            for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
                 if filetype == mime_type or the_file == mime_type:
                     QuestionDialog.OkDialog(
                         _("Opening non-native format"), 
@@ -260,14 +260,17 @@ class ImportDbPrompter:
         # Always add automatic (macth all files) filter
         add_all_files_filter(choose)
         add_grdb_filter(choose)
+        add_xml_filter(choose)
+        add_gedcom_filter(choose)
 
-        format_list = [const.app_gramps]
+        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
 
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
-            choose.add_filter(mime_filter)
-            format_list.append(mime_type)
-            _KNOWN_FORMATS[mime_type] = mime_filter.get_name()
+        for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
+            if not native_format:
+                choose.add_filter(mime_filter)
+                format_list.append(mime_type)
+                _KNOWN_FORMATS[mime_type] = format_name
 
         (box,type_selector) = format_maker(format_list)
         choose.set_extra_widget(box)
@@ -298,7 +301,7 @@ class ImportDbPrompter:
 
             (the_path,the_file) = os.path.split(filename)
             GrampsKeys.save_last_import_dir(the_path)
-            for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
+            for (importData,mime_filter,mime_type,native_format,format_name) in PluginMgr.import_list:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
                     importData(self.parent.db,filename)
@@ -525,7 +528,11 @@ def open_native(parent,filename,filetype):
 
     return success
 
-
+#-------------------------------------------------------------------------
+#
+# Format selectors and filters
+#
+#-------------------------------------------------------------------------
 class GrampsFormatWidget(gtk.ComboBox):
 
     def __init__(self):
@@ -566,7 +573,9 @@ def format_maker(formats):
     type_selector.set(format_list)
 
     box = gtk.HBox()
-    label = gtk.Label(_('Select file type:'))
+    label = gtk.Label(_('Select file _type:'))
+    label.set_use_underline(True)
+    label.set_mnemonic_widget(type_selector)
     box.pack_start(label,expand=False,fill=False,padding=6)
     box.add(type_selector)
     box.show_all()
@@ -594,7 +603,7 @@ def add_gramps_files_filter(chooser):
 
 def add_grdb_filter(chooser):
     """
-    Add an GRDB filter to the file chooser dialog.
+    Add a GRDB filter to the file chooser dialog.
     """
     mime_filter = gtk.FileFilter()
     mime_filter.set_name(_('GRAMPS databases'))

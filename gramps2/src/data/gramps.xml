@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- $Id$ -->
+
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-gramps">
     <comment xml:lang="en">GRAMPS database</comment>
@@ -7,6 +10,9 @@
   <mime-type type="application/x-gedcom">
     <comment xml:lang="en">GEDCOM</comment>
     <glob pattern="*.ged"/>
+    <magic priority="80">
+      <match type="string" value="0 HEAD" offset="0:1"/>
+    </magic>
   </mime-type>
   <mime-type type="application/x-gramps-package">
     <comment xml:lang="en">GRAMPS package</comment>
@@ -15,9 +21,18 @@
   <mime-type type="application/x-gramps-xml">
     <comment xml:lang="en">GRAMPS XML database</comment>
     <glob pattern="*.gramps"/>
+    <magic priority="80">
+      <match type="string" value="&lt;!DOCTYPE database" offset="0:256"/>
+      <match type="string" value="&lt;database" offset="0:64"/>
+    </magic>
   </mime-type>
   <mime-type type="application/x-geneweb">
     <comment xml:lang="en">GeneWeb source file</comment>
     <glob pattern="*.gw"/>
+    <magic priority="80">
+      <match type="string" value="fam" offset="0:64"/>
+      <match type="string" value="beg" offset="0:64"/>
+      <match type="string" value="end" offset="0:64"/>
+    </magic>
   </mime-type>
 </mime-info>

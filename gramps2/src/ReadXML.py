@@ -25,7 +25,6 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 import gtk
 import shutil
@@ -261,10 +260,10 @@ def importData(database, filename, callback=None,cl=0,use_trans=True):
 #-------------------------------------------------------------------------
 
 def rs(text):
-    return string.join(string.split(text))
+    return ' '.join(text.split())
 
 def fix_spaces(text_list):
-    return string.join(map(rs,text_list),'\n')
+    return '\n'.join(map(rs,text_list))
 
 #-------------------------------------------------------------------------
 #
@@ -1394,7 +1393,7 @@ class GrampsParser:
     def endElement(self,tag):
 
         if self.func:
-            self.func(string.join(self.tlist,''))
+            self.func(''.join(self.tlist))
         self.func_index = self.func_index - 1    
         self.func,self.tlist = self.func_list[self.func_index]
 
@@ -1429,16 +1428,3 @@ def build_place_title(loc):
     if country:
         value = append_value(value,country)
     return value
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-_mime_type = 'data.gramps'
-_filter = gtk.FileFilter()
-_filter.set_name(_('GRAMPS XML databases'))
-_filter.add_pattern(_mime_type)
-
-from PluginMgr import register_import
-register_import(importData,_filter,_mime_type,1)

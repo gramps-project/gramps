@@ -32,6 +32,7 @@ import re
 import string
 import const
 import time
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -57,7 +58,6 @@ import Utils
 import GrampsMime
 from GedcomInfo import *
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -1950,6 +1950,11 @@ class GedcomParser:
     def invert_year(self,subdate):
         return (subdate[0],subdate[1],-subdate[2],subdate[3])
     
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def extract_temple(matches):
     try:
         if const.lds_temple_to_abrev.has_key(matches[2]):
@@ -1960,65 +1965,5 @@ def extract_temple(matches):
     except:
         return None
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def readData(database,active_person,cb):
-    global callback
-    global file_topa
-    
-    callback = cb
-
-    choose = gtk.FileChooserDialog("%s - GRAMPS" % _title_string,
-                                   None,
-                                   gtk.FILE_CHOOSER_ACTION_OPEN,
-                                   (gtk.STOCK_CANCEL,
-                                    gtk.RESPONSE_CANCEL,
-                                    gtk.STOCK_OPEN,
-                                    gtk.RESPONSE_OK))
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('GEDCOM files'))
-    mime_filter.add_pattern('*.ged')
-    mime_filter.add_pattern('*.GED')
-    choose.add_filter(mime_filter)
-        
-    mime_filter = gtk.FileFilter()
-    mime_filter.set_name(_('All files'))
-    mime_filter.add_pattern('*')
-    choose.add_filter(mime_filter)
-
-    response = choose.run()
-    if response == gtk.RESPONSE_OK:
-        filename = choose.get_filename()
-        choose.destroy()
-        try:
-            importData(database,filename)
-        except:
-            DisplayTrace.DisplayTrace()
-    else:
-        choose.destroy()
-
-
-_mime_type = 'application/x-gedcom'
-_filter = gtk.FileFilter()
-_filter.set_name(_('GEDCOM files'))
-_filter.add_mime_type(_mime_type)
-
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def create_id():
     return Utils.create_id()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-from PluginMgr import register_import
-register_import(importData,_filter,_mime_type,1)
