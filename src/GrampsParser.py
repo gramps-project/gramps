@@ -606,7 +606,8 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_last(self,tag):
-        self.name.Surname = u2l(tag)
+        if self.name:
+            self.name.Surname = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -614,7 +615,8 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_suffix(self,tag):
-        self.name.Suffix = u2l(tag)
+        if self.name:
+            self.name.Suffix = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -622,7 +624,8 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_title(self,tag):
-        self.name.Title = u2l(tag)
+        if self.name:
+            self.name.Title = u2l(tag)
 
     #---------------------------------------------------------------------
     #
@@ -630,7 +633,8 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_nick(self,tag):
-        self.person.setNickName(u2l(tag))
+        if self.name:
+            self.person.setNickName(u2l(tag))
 
     #---------------------------------------------------------------------
     #
