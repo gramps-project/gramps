@@ -409,6 +409,14 @@ class Gallery(ImageSelect):
                            justification=gtk.JUSTIFY_CENTER,
                            y=_IMAGEY-10, text=description)
 
+            bnds = text.get_bounds()
+            print bnds
+            while bnds[0] <0:
+                description = description[0:-4] + "..."
+                text.set(text=description)
+                bnds = text.get_bounds()
+                print bnds
+
             for i in [ item, text, box, grp ] :
                 self.p_map[i] = (item,text,box,photo,oid)
                 i.show()
