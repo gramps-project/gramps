@@ -1423,7 +1423,7 @@ def birth_dates_in_order(list):
 # reorder_child_list
 # 
 # Reorder the child list to put the specified person in his/her
-# correct birth orde.  Only check *valid* birthdates.  Move the person
+# correct birth order.  Only check *valid* birthdates.  Move the person
 # as short a distance as possible.
 # 
 #-------------------------------------------------------------------------
