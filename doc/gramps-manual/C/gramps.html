@@ -385,6 +385,31 @@ HREF="#adv-plc"
 HREF="#adv-media"
 >Edit Media Data</A
 ></DT
+><DT
+>4.8.6. <A
+HREF="#adv-ev"
+>Edit Events</A
+></DT
+><DT
+>4.8.7. <A
+HREF="#adv-si"
+>Edit Source Information</A
+></DT
+><DT
+>4.8.8. <A
+HREF="#adv-an"
+>Edit Alternate Names</A
+></DT
+><DT
+>4.8.9. <A
+HREF="#adv-at"
+>Edit Attributes</A
+></DT
+><DT
+>4.8.10. <A
+HREF="#adv-ad"
+>Edit Addresses</A
+></DT
 ></DL
 ></DD
 ><DT
@@ -2837,7 +2862,7 @@ CLASS="guilabel"
 CLASS="guilabel"
 >Internet</SPAN
 > tab displays information about 
-	Internet addresses relevant of the person and the controls
+	Internet addresses relevant to the person and the controls
 	allowing its modification. The bottom part displays the list of all 
 	such Internet addresses stored in the database. The top part shows the
 	details of the currently selected addresses in the list (if any). 
@@ -3429,8 +3454,7 @@ CLASS="guilabel"
 >Source Editor</SPAN
 > dialog. Instead, the
 	corresponding database record (e.g. birth event) has to be brought
-	up and its source reference edited.
-	</P
+	up and its source reference edited. </P
 ></DD
 ></DL
 ></DIV
@@ -3637,6 +3661,137 @@ CLASS="guibutton"
 ></DD
 ></DL
 ></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Gallery</SPAN
+> tab displays information about 
+	media objects associated with the given place and the controls 
+	allowing its modification. The central part shows the list of all 
+	such media objects. For media object which are valid image files 
+	previews of images are displayed. For other objects such as audio 
+	files, movie files, etc., generic <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> icon is displayed instead. 
+	The buttons <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, 
+	<SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Remove</SPAN
+> allow
+	to correspondingly add,  modify, and remove a media object reference 
+	to this source. Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Remove</SPAN
+> buttons become available only when 
+	a media object is selected from the list. 
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Internet</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Internet</SPAN
+> tab displays information about 
+	Internet addresses relevant to the place and the controls
+	allowing its modification. The bottom part displays the list of all 
+	such Internet addresses stored in the database. The top part shows the
+	details of the currently selected addresses in the list (if any). 
+	The buttons <SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>,
+	<SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>,  and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> 
+	allow to correspondingly add, modify, and remove an Internet address 
+	record from the database. The button <SPAN
+CLASS="guibutton"
+>Go</SPAN
+> allows
+	to open a web-page with the corresponding address with your default 
+	browser. Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+>, and <SPAN
+CLASS="guibutton"
+>Go</SPAN
+> buttons 
+	become available only when an address is selected from the list.
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>References</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>References</SPAN
+> tab displays information about 
+	database records that refer to this place. If the place is not 
+	referenced from any database record, the tab shows empty list. 
+	If the place is referenced from many records, the tab will list 
+	all of them. This information cannot be modified from 
+	the <SPAN
+CLASS="guilabel"
+>Place Editor</SPAN
+> dialog. Instead, the
+	corresponding database record (e.g. birth event) has to be brought
+	up and its place reference edited. </P
+></DD
+></DL
+></DIV
 ></DIV
 ><DIV
 CLASS="sect3"
@@ -3647,7 +3802,269 @@ NAME="adv-media"
 ></A
 >4.8.5. Edit Media Data</H4
 ><P
->  </P
+> To edit media data, switch to the Media View and select the
+	desired entry in the list of sources. Double-clik on that entry or
+	click <SPAN
+CLASS="guibutton"
+>Edit</SPAN
+> on the toolbar to invoke the 
+	following <SPAN
+CLASS="guilabel"
+>Edit Media Properties</SPAN
+> dialog: </P
+><DIV
+CLASS="figure"
+><A
+NAME="edit-media-fig"
+></A
+><P
+><B
+>Figure 15. Edit Media Properties dialog</B
+></P
+><DIV
+CLASS="mediaobject"
+><P
+><IMG
+SRC="figures/edit-media.png"></P
+></DIV
+></DIV
+><P
+> The top of the window shows the dialog title. Below the title  
+	is the preview of an object and the summary of its properties (ID, 
+	path, and object type). The central part of the window displays four 
+	notebook tabs containing different categories of available information. 
+	You can bring any tab to the top for viewing or editing by clicking on 
+	the appropriate tab heading. The bottom part has 
+	<SPAN
+CLASS="guibutton"
+>OK</SPAN
+> and <SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> buttons. 
+	Clicking <SPAN
+CLASS="guibutton"
+>OK</SPAN
+> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<SPAN
+CLASS="guibutton"
+>Cancel</SPAN
+> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </P
+><P
+>&#13;	The tabs provide the following information categories of 
+	media object data:
+	</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>General</SPAN
+></DT
+><DD
+><P
+> 
+	<SPAN
+CLASS="guilabel"
+>General</SPAN
+> tab allows the title which labels this
+	object in the database. The title can be typed in the appropriate 
+	text entry field. If the object is not local (i.e. the corresponding
+	file does not reside under <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> database directory), the
+	<SPAN
+CLASS="guibutton"
+>Make a local copy</SPAN
+> button is available. 
+	Click it to copy the media into <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> database directory. This will 
+	increase the amount of disk space consumed by <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> database. However, 
+	if the external file is deleted or removed, <SPAN
+CLASS="application"
+>GRAMPS</SPAN
+> will still be able 
+	to use the local copy.  </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Attributes</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Attributes</SPAN
+> tab displays information about 
+	the attributes of the media object and the controls allowing its
+	modification. The bottom part displays the list of all such 
+	attributes stored in the database. The top part shows the details 
+	of the currently selected attribute in the list (if any). The buttons
+	<SPAN
+CLASS="guibutton"
+>Add...</SPAN
+>, <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+>, 
+	and <SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> allow to correspondingly add, 
+	modify, and remove an attribute record from the database. 
+	Note that <SPAN
+CLASS="guibutton"
+>Edit...</SPAN
+> and 
+	<SPAN
+CLASS="guibutton"
+>Delete</SPAN
+> buttons become available only when 
+	an attribute is selected from the list. </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>Notes</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>Notes</SPAN
+> tab displays information about the 
+	notes concerning the media object. These could be any notes which do 
+	not naturally fit into the Parameter-Value pairs available to 
+	Attributes. To add a note or modify existing notes simply edit the 
+	text in the text entry field. </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="guilabel"
+>References</SPAN
+></DT
+><DD
+><P
+> <SPAN
+CLASS="guilabel"
+>References</SPAN
+> tab displays information about 
+	database records that refer to this media object. If the object is not 
+	referenced from any database record, the tab shows empty list. 
+	If the object is referenced from many records, the tab will list 
+	all of them. The list can be ordered by any of its column headers:
+	<SPAN
+CLASS="guilabel"
+>Type</SPAN
+>, <SPAN
+CLASS="guilabel"
+>Object</SPAN
+>, or
+	<SPAN
+CLASS="guilabel"
+>Value</SPAN
+>. This information cannot be modified from
+	the <SPAN
+CLASS="guilabel"
+>Medi Object Properties Editor</SPAN
+> dialog. 
+	Instead, the corresponding database record (e.g. birth event) has to 
+	be brought up and its media object reference edited in the gallery 
+	tab. </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="adv-ev"
+></A
+>4.8.6. Edit Events</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="adv-si"
+></A
+>4.8.7. Edit Source Information</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="adv-an"
+></A
+>4.8.8. Edit Alternate Names</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="adv-at"
+></A
+>4.8.9. Edit Attributes</H4
+><P
+> </P
+></DIV
+><DIV
+CLASS="sect3"
+><HR><H4
+CLASS="sect3"
+><A
+NAME="adv-ad"
+></A
+>4.8.10. Edit Addresses</H4
+><P
+> </P
 ></DIV
 ></DIV
 ><DIV

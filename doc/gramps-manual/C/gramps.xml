@@ -1168,7 +1168,7 @@
 		<varlistentry><term><guilabel>Internet</guilabel></term>
 		<listitem>
 	<para> <guilabel>Internet</guilabel> tab displays information about 
-	Internet addresses relevant of the person and the controls
+	Internet addresses relevant to the person and the controls
 	allowing its modification. The bottom part displays the list of all 
 	such Internet addresses stored in the database. The top part shows the
 	details of the currently selected addresses in the list (if any). 
@@ -1428,8 +1428,7 @@
 	<guilabel>Value</guilabel>. This information cannot be modified from
 	the <guilabel>Source Editor</guilabel> dialog. Instead, the
 	corresponding database record (e.g. birth event) has to be brought
-	up and its source reference edited.
-	</para>
+	up and its source reference edited. </para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1526,20 +1525,195 @@
 		</listitem></varlistentry>
 	</variablelist>
 
+	<variablelist>
+		<varlistentry><term><guilabel>Gallery</guilabel></term>
+		<listitem>
+	<para> <guilabel>Gallery</guilabel> tab displays information about 
+	media objects associated with the given place and the controls 
+	allowing its modification. The central part shows the list of all 
+	such media objects. For media object which are valid image files 
+	previews of images are displayed. For other objects such as audio 
+	files, movie files, etc., generic &app; icon is displayed instead. 
+	The buttons <guibutton>Add...</guibutton>, 
+	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+	to correspondingly add,  modify, and remove a media object reference 
+	to this source. Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Remove</guibutton> buttons become available only when 
+	a media object is selected from the list. 
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
 
+	<variablelist>
+		<varlistentry><term><guilabel>Internet</guilabel></term>
+		<listitem>
+	<para> <guilabel>Internet</guilabel> tab displays information about 
+	Internet addresses relevant to the place and the controls
+	allowing its modification. The bottom part displays the list of all 
+	such Internet addresses stored in the database. The top part shows the
+	details of the currently selected addresses in the list (if any). 
+	The buttons <guibutton>Add...</guibutton>,
+	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
+	allow to correspondingly add, modify, and remove an Internet address 
+	record from the database. The button <guibutton>Go</guibutton> allows
+	to open a web-page with the corresponding address with your default 
+	browser. Note that <guibutton>Edit...</guibutton>, 
+	<guibutton>Delete</guibutton>, and <guibutton>Go</guibutton> buttons 
+	become available only when an address is selected from the list.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>References</guilabel></term>
+		<listitem>
+	<para> <guilabel>References</guilabel> tab displays information about 
+	database records that refer to this place. If the place is not 
+	referenced from any database record, the tab shows empty list. 
+	If the place is referenced from many records, the tab will list 
+	all of them. This information cannot be modified from 
+	the <guilabel>Place Editor</guilabel> dialog. Instead, the
+	corresponding database record (e.g. birth event) has to be brought
+	up and its place reference edited. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+      </sect3>
+
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-media"> 
+        <title>Edit Media Data</title> 
+	<para> To edit media data, switch to the Media View and select the
+	desired entry in the list of sources. Double-clik on that entry or
+	click <guibutton>Edit</guibutton> on the toolbar to invoke the 
+	following <guilabel>Edit Media Properties</guilabel> dialog: </para>
+
+ 	<!-- ==== Figure: Edit Media Properties dialog ==== -->
+	<figure id="edit-media-fig"> 
+	<title>Edit Media Properties dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-media.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Edit Media Properties dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+	
+	<para> The top of the window shows the dialog title. Below the title  
+	is the preview of an object and the summary of its properties (ID, 
+	path, and object type). The central part of the window displays four 
+	notebook tabs containing different categories of available information. 
+	You can bring any tab to the top for viewing or editing by clicking on 
+	the appropriate tab heading. The bottom part has 
+	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
+	Clicking <guibutton>OK</guibutton> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<guibutton>Cancel</guibutton> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </para> 
+	
+	<para>
+	The tabs provide the following information categories of 
+	media object data:
+	</para>
+
+	<variablelist>
+		<varlistentry><term><guilabel>General</guilabel></term>
+		<listitem><para> 
+	<guilabel>General</guilabel> tab allows the title which labels this
+	object in the database. The title can be typed in the appropriate 
+	text entry field. If the object is not local (i.e. the corresponding
+	file does not reside under &app; database directory), the
+	<guibutton>Make a local copy</guibutton> button is available. 
+	Click it to copy the media into &app; database directory. This will 
+	increase the amount of disk space consumed by &app; database. However, 
+	if the external file is deleted or removed, &app; will still be able 
+	to use the local copy.  </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Attributes</guilabel></term>
+		<listitem>
+	<para> <guilabel>Attributes</guilabel> tab displays information about 
+	the attributes of the media object and the controls allowing its
+	modification. The bottom part displays the list of all such 
+	attributes stored in the database. The top part shows the details 
+	of the currently selected attribute in the list (if any). The buttons
+	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
+	and <guibutton>Delete</guibutton> allow to correspondingly add, 
+	modify, and remove an attribute record from the database. 
+	Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	an attribute is selected from the list. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Notes</guilabel></term>
+		<listitem>
+	<para> <guilabel>Notes</guilabel> tab displays information about the 
+	notes concerning the media object. These could be any notes which do 
+	not naturally fit into the Parameter-Value pairs available to 
+	Attributes. To add a note or modify existing notes simply edit the 
+	text in the text entry field. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>References</guilabel></term>
+		<listitem>
+	<para> <guilabel>References</guilabel> tab displays information about 
+	database records that refer to this media object. If the object is not 
+	referenced from any database record, the tab shows empty list. 
+	If the object is referenced from many records, the tab will list 
+	all of them. The list can be ordered by any of its column headers:
+	<guilabel>Type</guilabel>, <guilabel>Object</guilabel>, or
+	<guilabel>Value</guilabel>. This information cannot be modified from
+	the <guilabel>Medi Object Properties Editor</guilabel> dialog. 
+	Instead, the corresponding database record (e.g. birth event) has to 
+	be brought up and its media object reference edited in the gallery 
+	tab. </para>
+		</listitem></varlistentry>
+	</variablelist>
 
       </sect3>
 
 <!--
 [ FIXME: STOPPED HERE ] 
 -->
-      <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-media"> 
-        <title>Edit Media Data</title> 
-	<para>  </para>
 
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-ev"> 
+        <title>Edit Events</title> 
+	<para> </para>
       </sect3>
 
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-si"> 
+        <title>Edit Source Information</title> 
+	<para> </para>
+      </sect3>
+      
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-an"> 
+        <title>Edit Alternate Names</title> 
+	<para> </para>
+      </sect3>
+      
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-at"> 
+        <title>Edit Attributes</title> 
+	<para> </para>
+      </sect3>
+      
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-ad"> 
+        <title>Edit Addresses</title> 
+	<para> </para>
+      </sect3>
+      
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
