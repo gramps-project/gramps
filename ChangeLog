@@ -3,7 +3,11 @@
 	Remove extra files.
 	* AUTHORS: Consolidate with src/AUTHORS.
 	* src/plugins/Makefile.am, src/plugins/Makefile.in: Ship RelGraph.py 
-	and rel_it.py. 
+	and rel_it.py.
+	* src/ArgHandler.py: Split off gramps_main into a separate file.
+	* src/gramps_main.py: Likewise.
+	* src/Makefile.am, src/Makefile.in: Ship src/ArgHandler.py.
+	* NEWS: More items.
 
 2003-10-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py : support for capitalized name formats
