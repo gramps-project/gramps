@@ -1,3 +1,7 @@
+2004-09-08 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/FilterEditor.py (ShowResults.__init__): 
+	Use gramps IDs instead of handles for display.
+
 2004-09-01 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPlace.py (on_web_go_clicked): Typo.
 
