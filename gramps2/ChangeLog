@@ -1,3 +1,11 @@
+2004-02-19  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EditPerson.py: Use parent class. Add/remove itself from/to
+	the Windows menu.
+	* src/NameEdit.py: Make non-modal. 
+	* src/gramps.glade: Add Windows menu.
+	* src/gramps_main.py: Get Windows menu and its submenu.
+	Pass Gramps class to the children -- first-class object editors.
+
 2004-02-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Relationship.py: Factor out relationship distance computation.
 	* src/plugins/rel_ru.py: Use self.get_distance(). 

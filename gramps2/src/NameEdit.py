@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,6 +101,8 @@ class NameEditor:
         
         self.top.signal_autoconnect({
             "on_help_name_clicked" : self.on_help_clicked,
+            "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
+            "destroy_passed_object" : Utils.destroy_passed_object, 
             "on_switch_page" : self.on_switch_page
             })
 
@@ -121,17 +123,18 @@ class NameEditor:
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.val = self.window.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_name_edit_ok_clicked()
-        self.window.destroy()
+        #self.val = self.window.run()
+        self.window.show()
+        #if self.val == gtk.RESPONSE_OK:
+        #    self.on_name_edit_ok_clicked()
+        #self.window.destroy()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.window.run()
+        #self.val = self.window.run()
 
-    def on_name_edit_ok_clicked(self):
+    def on_name_edit_ok_clicked(self,obj):
         first = unicode(self.given_field.get_text())
         last = unicode(self.surname_field.get_text())
         title = unicode(self.title_field.get_text())
@@ -158,6 +161,7 @@ class NameEditor:
         self.parent.lists_changed = 1
 
         self.callback(self.name)
+        Utils.destroy_passed_object(obj)
 
     def update_name(self,first,last,suffix,title,type,note,format,priv):
         

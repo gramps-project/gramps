@@ -264,6 +264,11 @@ class Gramps:
         self.fwdbtn = self.gtop.get_widget('fwd_btn')
         self.gomenuitem = self.gtop.get_widget("go1")
 
+        self.wins = self.gtop.get_widget("windows1")
+        self.wins.set_submenu(gtk.Menu())
+        self.winsmenu = self.wins.get_submenu()
+        self.wins_dict = {}
+
         self.gtop.signal_autoconnect({
             "on_back_clicked" : self.back_clicked,
             "on_back_pressed" : self.back_pressed,
@@ -1267,7 +1272,7 @@ class Gramps:
     def load_new_person(self,obj):
         self.active_person = RelLib.Person()
         try:
-            EditPerson.EditPerson(self.active_person,self.db,
+            EditPerson.EditPerson(self,self.active_person,self.db,
                                   self.new_after_edit)
         except:
             DisplayTrace.DisplayTrace()
@@ -1637,7 +1642,7 @@ class Gramps:
     def load_person(self,person):
         if person:
             try:
-                EditPerson.EditPerson(person, self.db, self.update_after_edit)
+                EditPerson.EditPerson(self, person, self.db, self.update_after_edit)
             except:
                 DisplayTrace.DisplayTrace()
 
