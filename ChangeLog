@@ -1,3 +1,10 @@
+2003-12-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py (FamilyView.really_remove_spouse): remove the
+	corret person from the family when deleting the spouse
+
+2003-12-06  Lorenzo Cappelletti  <lorenzo.cappelletti@email.it>
+	* src/po/it.po: updated Italian translation
+
 2003-12-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/figures/pedigree-child-cut.png: Add figure.
 	* doc/gramps-manual/C/mainwin.xml: Add figure. 
