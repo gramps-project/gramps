@@ -52,12 +52,13 @@ class EventEditor:
     def __init__(self,parent,name,list,trans,event,def_placename,read_only):
         self.parent = parent
         self.event = event
-        self.date = Date(event.getDateObj())
         self.trans = trans
         if event:
             self.srcreflist = self.event.getSourceRefList()
+            self.date = Date(self.event.getDateObj())
         else:
             self.srcreflist = []
+            self.date = Date(None)
         self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
