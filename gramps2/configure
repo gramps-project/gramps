@@ -3274,6 +3274,33 @@ fi
 echo "$as_me:$LINENO: result: ok" >&5
 echo "${ECHO_T}ok" >&6
 
+echo "$as_me:$LINENO: checking Python bindings for GNOME VFS" >&5
+echo $ECHO_N "checking Python bindings for GNOME VFS... $ECHO_C" >&6
+cat > conftest.py <<EOF
+$pygtk_require
+try:
+    # Do not import gnome.canvas, this can raise a RuntimeError if the
+    # display cannot be opened.  Just search it.
+    import imp
+    imp.find_module('gnome/vfs')
+    out("YES")
+except ImportError:
+    out("NO")
+EOF
+$PYTHON conftest.py
+has_vfs=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test YES != "$has_vfs"
+then
+   { { echo "$as_me:$LINENO: error:
+**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found." >&5
+echo "$as_me: error:
+**** The python bindings for GNOME canvas (gnome-python2-canvas) could not be found." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+echo "$as_me:$LINENO: result: ok" >&5
+echo "${ECHO_T}ok" >&6
+
 echo "$as_me:$LINENO: checking Python bindin for glade" >&5
 echo $ECHO_N "checking Python bindin for glade... $ECHO_C" >&6
 cat > conftest.py <<EOF

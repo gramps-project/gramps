@@ -1,4 +1,6 @@
 2004-01-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PedView.py (PedigreeView.load_canvas): switched anchor label from a label
+	to a CanvasText
 	* src/const.py.in: eliminate zipcmd
 	* src/docgen/OpenSpreadSheet.py: eliminate the need for ZIP, use python
 	zipfile module instead
