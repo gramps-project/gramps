@@ -214,22 +214,31 @@ class CheckIntegrity:
             mother = family.getMother()
             type = family.getRelationship()
 
-            if father == None or mother == None:
+            if not father and not mother:
                 continue
-            if type != "Partners":
-                if father.getGender() == mother.getGender():
-                    family.setRelationship("Partners")
-                    self.fam_rel.append(family)
-                elif father.getGender() == RelLib.Person.female or \
-                     mother.getGender() == RelLib.Person.male:
+            elif father == None:
+                if mother.getGender() == RelLib.Person.male:
                     family.setFather(mother)
+                    family.setMother(None)
+            elif mother == None:
+                if father.getGender() == RelLib.Person.female:
                     family.setMother(father)
-                    self.fam_rel.append(family)
+                    family.setFather(None)
             else:
-                if father.getGender() != mother.getGender():
+                fgender = father.getGender()
+                mgender = mother.getGender()
+                if type != "Partners":
+                    if fgender == mgender and fgender != RelLib.Person.unknown:
+                        family.setRelationship("Partners")
+                        self.fam_rel.append(family)
+                    elif fgender == RelLib.Person.female or mgender == RelLib.Person.male:
+                        family.setFather(mother)
+                        family.setMother(father)
+                        self.fam_rel.append(family)
+                elif fgender != mgender:
                     family.setRelationship("Unknown")
                     self.fam_rel.append(family)
-                    if father.getGender() == RelLib.Person.female:
+                    if fgender == RelLib.Person.female or mgender == RelLib.Person.male:
                         family.setFather(mother)
                         family.setMother(father)
 
