@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
-"POT-Creation-Date: Tue Oct 15 06:09:07 2002\n"
+"POT-Creation-Date: Mon Nov 11 06:32:27 2002\n"
 "PO-Revision-Date: 2002-06-24 20:04+0200\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -17,16 +17,16 @@ msgstr ""
 msgid "%s is not a valid file name or does not exist."
 msgstr "%s ist kein gültiger Dateiname oder die Datei existiert nicht."
 
-#: AddSpouse.py:95 AddSpouse.py:260
+#: AddSpouse.py:95 AddSpouse.py:269
 msgid "Choose Spouse/Partner of %s"
 msgstr "(Ehe-)Partner von %s auswählen"
 
-#: AddSpouse.py:108 AddSpouse.py:271 const.py:399 const.py:407
+#: AddSpouse.py:108 AddSpouse.py:280 const.py:399 const.py:407
 #: plugins/FamilyGroup.py:289 plugins/FamilyGroup.py:291
 msgid "Married"
 msgstr "Verheiratet"
 
-#: AddSpouse.py:201 AddSpouse.py:337 const.py:401 const.py:409
+#: AddSpouse.py:202 AddSpouse.py:357 const.py:401 const.py:409
 msgid "Partners"
 msgstr "Partner"
 
@@ -66,7 +66,7 @@ msgstr "Löschen"
 #: gramps.glade:5573 gramps.glade:5969 gramps.glade:5990 gramps.glade:6034
 #: gramps.glade:6064 gramps.glade:7011 gramps.glade:7041 gramps.glade:7058
 #: gramps.glade:7088 plugins/EventCmp.py:286 plugins/FamilyGroup.py:139
-#: plugins/GraphViz.py:332 plugins/GraphViz.py:333
+#: plugins/GraphViz.py:336 plugins/GraphViz.py:337
 msgid "Birth"
 msgstr "Geburt"
 
@@ -293,8 +293,8 @@ msgstr "Informationsquelle auswählen"
 #: EditPerson.glade:243 EditPerson.glade:539 EditPerson.glade:2234
 #: EditPerson.glade:2838 EditPerson.glade:3589 EditPerson.glade:4254
 #: EditPerson.glade:5006 EditPerson.glade:5278 EditPerson.glade:5550
-#: GenericFilter.py:274 GenericFilter.py:312 GenericFilter.py:401
-#: GenericFilter.py:433 dialog.glade:180 dialog.glade:1886 filters/After.py:56
+#: GenericFilter.py:313 GenericFilter.py:351 GenericFilter.py:440
+#: GenericFilter.py:472 dialog.glade:180 dialog.glade:1886 filters/After.py:56
 #: filters/Before.py:56 marriage.glade:349 marriage.glade:921
 #: marriage.glade:1920 revision.glade:351 srcsel.glade:507
 msgid "Date"
@@ -302,8 +302,8 @@ msgstr "Datum"
 
 #: EditPerson.glade:269 EditPerson.glade:513 EditPerson.glade:2260
 #: EditPerson.glade:2851 EditPerson.glade:5058 EditPerson.glade:5330
-#: EditPerson.glade:5628 GenericFilter.py:274 GenericFilter.py:312
-#: GenericFilter.py:401 GenericFilter.py:433 ImageSelect.py:670
+#: EditPerson.glade:5628 GenericFilter.py:313 GenericFilter.py:351
+#: GenericFilter.py:440 GenericFilter.py:472 ImageSelect.py:670
 #: dialog.glade:232 filters/EventPlace.py:70 marriage.glade:375
 #: marriage.glade:934 marriage.glade:1946 preferences.glade:2783
 msgid "Place"
@@ -354,17 +354,17 @@ msgstr "unbekannt"
 msgid "Preferred Name"
 msgstr "Bevorzugter Name"
 
-#: EditPerson.glade:757 EditPerson.glade:1436 GenericFilter.py:511
+#: EditPerson.glade:757 EditPerson.glade:1436 GenericFilter.py:550
 #: dialog.glade:2953 gramps.glade:7176 gramps.glade:7537
 msgid "Given Name"
 msgstr "Vorname"
 
-#: EditPerson.glade:783 EditPerson.glade:1462 GenericFilter.py:511
+#: EditPerson.glade:783 EditPerson.glade:1462 GenericFilter.py:550
 #: dialog.glade:3005
 msgid "Suffix"
 msgstr "Suffix"
 
-#: EditPerson.glade:809 EditPerson.glade:1618 GenericFilter.py:511
+#: EditPerson.glade:809 EditPerson.glade:1618 GenericFilter.py:550
 #: dialog.glade:639 dialog.glade:1217 dialog.glade:2397 dialog.glade:3186
 #: dialog.glade:3405 gramps.glade:2831 gramps.glade:4040 gramps.glade:4179
 #: gramps.glade:6383 imagesel.glade:235 imagesel.glade:792 imagesel.glade:1765
@@ -377,7 +377,7 @@ msgstr "Titel"
 msgid "Nick Name"
 msgstr "Spitzname"
 
-#: EditPerson.glade:861 EditPerson.glade:1410 GenericFilter.py:511
+#: EditPerson.glade:861 EditPerson.glade:1410 GenericFilter.py:550
 #: dialog.glade:2979 filters/MatchSndEx.py:45 gramps.glade:7202
 #: gramps.glade:7408
 msgid "Surname"
@@ -487,8 +487,8 @@ msgid "No Events"
 msgstr "Keine Ereignisse"
 
 #: EditPerson.glade:2286 EditPerson.glade:2825 EditPerson.glade:4573
-#: EditPerson.glade:4882 GenericFilter.py:274 GenericFilter.py:312
-#: GenericFilter.py:401 GenericFilter.py:433 const.py:321 dialog.glade:206
+#: EditPerson.glade:4882 GenericFilter.py:313 GenericFilter.py:351
+#: GenericFilter.py:440 GenericFilter.py:472 const.py:321 dialog.glade:206
 #: dialog.glade:2700 gramps.glade:6739 marriage.glade:401 places.glade:1592
 #: places.glade:1824 plugins/pafexport.glade:241
 msgid "Description"
@@ -523,8 +523,8 @@ msgstr "Ereignisse"
 msgid "No Attributes"
 msgstr "Keine Attribute"
 
-#: EditPerson.glade:3009 EditPerson.glade:3364 GenericFilter.py:465
-#: GenericFilter.py:486 dialog.glade:955 imagesel.glade:933
+#: EditPerson.glade:3009 EditPerson.glade:3364 GenericFilter.py:504
+#: GenericFilter.py:525 dialog.glade:955 imagesel.glade:933
 #: imagesel.glade:1202 imagesel.glade:1933 imagesel.glade:2203
 #: marriage.glade:1077 marriage.glade:1422
 msgid "Value"
@@ -838,122 +838,126 @@ msgstr "Quelle finden"
 msgid "Find Media Object"
 msgstr "Multimedia-Objekt finden"
 
-#: GenericFilter.py:135 GenericFilter.py:168 GenericFilter.py:195
-#: GenericFilter.py:231 dialog.glade:569 dialog.glade:1147 dialog.glade:2327
-#: dialog.glade:3335 gramps.glade:1034 gramps.glade:2479 gramps.glade:2887
-#: gramps.glade:3192 gramps.glade:3988 gramps.glade:4235 gramps.glade:5865
-#: imagesel.glade:613 imagesel.glade:1507 imagesel.glade:2370
-#: mergedata.glade:1013 mergedata.glade:1725 places.glade:1252
-#: plugins/relcalc.glade:170 srcsel.glade:808
+#: GenericFilter.py:136 GenericFilter.py:169 GenericFilter.py:196
+#: GenericFilter.py:232 GenericFilter.py:259 dialog.glade:569
+#: dialog.glade:1147 dialog.glade:2327 dialog.glade:3335 gramps.glade:1034
+#: gramps.glade:2479 gramps.glade:2887 gramps.glade:3192 gramps.glade:3988
+#: gramps.glade:4235 gramps.glade:5865 imagesel.glade:613 imagesel.glade:1507
+#: imagesel.glade:2370 mergedata.glade:1013 mergedata.glade:1725
+#: places.glade:1252 plugins/relcalc.glade:170 srcsel.glade:808
 msgid "ID"
 msgstr "ID"
 
-#: GenericFilter.py:274 plugins/FilterEditor.py:40
+#: GenericFilter.py:313 plugins/FilterEditor.py:40
 msgid "Personal Event"
 msgstr "Ereignis einer Person"
 
-#: GenericFilter.py:312 plugins/FilterEditor.py:41
+#: GenericFilter.py:351 plugins/FilterEditor.py:41
 msgid "Family Event"
 msgstr "Ereignis einer Familie"
 
-#: GenericFilter.py:351
+#: GenericFilter.py:390
 msgid "Number of Relationships"
 msgstr "Anzahl an Beziehungen"
 
-#: GenericFilter.py:352 gramps.glade:4875 marriage.glade:161
+#: GenericFilter.py:391 gramps.glade:4875 marriage.glade:161
 #: plugins/FilterEditor.py:44
 msgid "Relationship Type"
 msgstr "Beziehungstyp"
 
-#: GenericFilter.py:353 const.py:363
+#: GenericFilter.py:392 const.py:363
 msgid "Number of Children"
 msgstr "Kinderzahl"
 
-#: GenericFilter.py:465 plugins/FilterEditor.py:42
+#: GenericFilter.py:504 plugins/FilterEditor.py:42
 msgid "Personal Attribute"
 msgstr "Attribut einer Person"
 
-#: GenericFilter.py:486 plugins/FilterEditor.py:43
+#: GenericFilter.py:525 plugins/FilterEditor.py:43
 msgid "Family Attribute"
 msgstr "Attribut einer Familie"
 
-#: GenericFilter.py:539
+#: GenericFilter.py:578
 msgid "Filter Name"
 msgstr "Filtername"
 
-#: GenericFilter.py:677
+#: GenericFilter.py:719
 msgid "Everyone"
 msgstr "Alle"
 
-#: GenericFilter.py:678
+#: GenericFilter.py:720
 msgid "Has the Id"
 msgstr "Hat die ID"
 
-#: GenericFilter.py:679
+#: GenericFilter.py:721
 msgid "Has a name"
 msgstr "Hat den Namen"
 
-#: GenericFilter.py:680
+#: GenericFilter.py:722
 msgid "Has the relationships"
 msgstr "Hat die Beziehungen"
 
-#: GenericFilter.py:681
+#: GenericFilter.py:723
 msgid "Has the death"
 msgstr "Hat die Todesdaten"
 
-#: GenericFilter.py:682
+#: GenericFilter.py:724
 msgid "Has the birth"
 msgstr "Hat die Geburtsdaten"
 
-#: GenericFilter.py:683
+#: GenericFilter.py:725
 msgid "Is a descendant of"
 msgstr "Ist Nachkomme von"
 
-#: GenericFilter.py:684
+#: GenericFilter.py:726
 msgid "Is a descendant family member of"
 msgstr "Ist ein Familienmitglied eines Nachkommens von"
 
-#: GenericFilter.py:685
+#: GenericFilter.py:727
 msgid "Is an ancestor of"
 msgstr "Ist Vorfahre von"
 
-#: GenericFilter.py:686
+#: GenericFilter.py:728
+msgid "Has a common ancestor with"
+msgstr "Hat einen gemeinsamen Vorfahren mit"
+
+#: GenericFilter.py:729
 msgid "Is a female"
 msgstr "Ist weiblich"
 
-#: GenericFilter.py:687
+#: GenericFilter.py:730
 msgid "Is a male"
 msgstr "Ist männlich"
 
-#: GenericFilter.py:688
+#: GenericFilter.py:731
 msgid "Has the personal event"
 msgstr "Hat das persönliche Ereignis"
 
-#: GenericFilter.py:689
+#: GenericFilter.py:732
 msgid "Has the family event"
 msgstr "Hat das Familien-Ereignis"
 
-#: GenericFilter.py:690
+#: GenericFilter.py:733
 msgid "Has the personal attribute"
 msgstr "Hat das persönliche Attribut"
 
-#: GenericFilter.py:691
+#: GenericFilter.py:734
 msgid "Has the family attribute"
 msgstr "Hat das Familien-Attribut"
 
-#: GenericFilter.py:692
+#: GenericFilter.py:735
 msgid "Matches the filter named"
 msgstr "Erfüllt den Filter namens"
 
-#: GenericFilter.py:840
+#: GenericFilter.py:883
 msgid "Local Filters"
 msgstr "Lokale Filter"
 
-#: GenericFilter.py:855
+#: GenericFilter.py:898
 msgid "System Filters"
 msgstr "Systemweite Filter"
 
-#: GenericFilter.py:870
+#: GenericFilter.py:913
 msgid "Custom Filters"
 msgstr "Selbstdefinierte Filter"
 
@@ -1264,7 +1268,7 @@ msgstr ""
 
 #: RelImage.py:74 RelImage.py:77 RelImage.py:142 RelImage.py:145
 #: gramps_main.py:809 gramps_main.py:813 gramps_main.py:821
-#: plugins/WriteGedcom.py:428 plugins/WriteGedcom.py:433
+#: plugins/WriteGedcom.py:433 plugins/WriteGedcom.py:438
 msgid "Could not create %s"
 msgstr "Datei %s konnte nicht erstellt werden"
 
@@ -2079,7 +2083,7 @@ msgstr "HTML"
 msgid "KWord"
 msgstr "KWord"
 
-#: docgen/LaTeXDoc.py:657
+#: docgen/LaTeXDoc.py:667
 msgid "LaTeX"
 msgstr "LaTeX"
 
@@ -3132,7 +3136,7 @@ msgstr "Ahnentafel (graphisch)"
 
 #: plugins/AncestorChart.py:228 plugins/AncestorChart.py:444
 #: plugins/DesGraph.py:302 plugins/DesGraph.py:451 plugins/GraphViz.py:64
-#: plugins/GraphViz.py:443
+#: plugins/GraphViz.py:447
 msgid "Graphical Reports"
 msgstr "Graphische Berichte"
 
@@ -3155,8 +3159,8 @@ msgstr "Erlaubt die Anpassung der Daten in den Kästen des Berichts"
 #: plugins/AncestorChart.py:445 plugins/AncestorReport.py:383
 #: plugins/DescendReport.py:285 plugins/DetAncestralReport.py:822
 #: plugins/DetDescendantReport.py:895 plugins/FamilyGroup.py:551
-#: plugins/GraphViz.py:442 plugins/IndivComplete.py:657
-#: plugins/IndivSummary.py:521 plugins/Summary.py:147 plugins/WebPage.py:1252
+#: plugins/GraphViz.py:446 plugins/IndivComplete.py:661
+#: plugins/IndivSummary.py:521 plugins/Summary.py:147 plugins/WebPage.py:1256
 msgid "Beta"
 msgstr "Beta"
 
@@ -3251,10 +3255,11 @@ msgid "Ahnentafel Report"
 msgstr "Ahnentafel"
 
 #: plugins/AncestorReport.py:223 plugins/AncestorReport.py:382
+#: plugins/DescendOutlineReport.py:248 plugins/DescendOutlineReport.py:423
 #: plugins/DescendReport.py:129 plugins/DescendReport.py:284
 #: plugins/DetAncestralReport.py:823 plugins/DetDescendantReport.py:896
 #: plugins/FamilyGroup.py:339 plugins/FamilyGroup.py:550
-#: plugins/IndivComplete.py:447 plugins/IndivComplete.py:658
+#: plugins/IndivComplete.py:447 plugins/IndivComplete.py:662
 #: plugins/IndivSummary.py:332 plugins/IndivSummary.py:522
 msgid "Text Reports"
 msgstr "Textuelle Berichte"
@@ -3279,7 +3284,9 @@ msgstr "Datenbankverarbeitung"
 #: plugins/Capitalize.py:127
 msgid ""
 "Searches the entire database and converts all surnames to capital letters"
-msgstr "Durchsucht die gesamte Datenbank nach Nachnamen und wandelt sie in Großbuchstaben."
+msgstr ""
+"Durchsucht die gesamte Datenbank nach Nachnamen und wandelt sie in "
+"Großbuchstaben."
 
 #: plugins/ChangeTypes.py:77
 msgid "1 event record was modified"
@@ -3379,7 +3386,7 @@ msgstr "Graphische Übersicht der Nachkommen abspeichern"
 msgid "Generates a list of descendants of the active person"
 msgstr "Generiert eine Liste der Nachkommen der aktuellen Person."
 
-#: plugins/DesGraph.py:453
+#: plugins/DesGraph.py:453 plugins/DescendOutlineReport.py:424
 msgid "Alpha"
 msgstr "Alpha"
 
@@ -3395,11 +3402,43 @@ msgstr "Analyse und Untersuchung"
 msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Erstellt eine interaktive Baumstruktur für die aktuelle Person."
 
-#: plugins/DescendReport.py:87 plugins/GraphViz.py:89
-#: plugins/IndivComplete.py:476 plugins/WriteGedcom.py:336
-#: plugins/WritePafPalm.py:570
+#: plugins/DescendOutlineReport.py:141 plugins/DescendReport.py:87
+#: plugins/GraphViz.py:89 plugins/IndivComplete.py:476
+#: plugins/WriteGedcom.py:336 plugins/WritePafPalm.py:570
 msgid "Descendants of %s"
 msgstr "Nachkommen von %s"
+
+#: plugins/DescendOutlineReport.py:225
+msgid "Bold Last Names"
+msgstr "Nachnamen fett drucken"
+
+#: plugins/DescendOutlineReport.py:233
+msgid "Font Size:"
+msgstr "Schriftgröße:"
+
+#: plugins/DescendOutlineReport.py:239
+msgid "Indent:"
+msgstr "Einzug:"
+
+#: plugins/DescendOutlineReport.py:248 plugins/DescendOutlineReport.py:422
+#, fuzzy
+msgid "Descendant Outline Report"
+msgstr "Bericht über Nachkommen"
+
+#: plugins/DescendOutlineReport.py:252
+#, fuzzy
+msgid "Descendant Outline Report for %s"
+msgstr "Übersicht der Nachkommen von %s"
+
+#: plugins/DescendOutlineReport.py:257
+#, fuzzy
+msgid "Save Descendant Outline Report"
+msgstr "Bericht über Nachkommen speichern"
+
+#: plugins/DescendOutlineReport.py:425
+#, fuzzy
+msgid "Generates an outline of descendants starting with the active person"
+msgstr "Generiert eine Liste der Nachkommen der aktuellen Person."
 
 #: plugins/DescendReport.py:129 plugins/DescendReport.py:283
 msgid "Descendant Report"
@@ -3646,7 +3685,7 @@ msgstr "Ausführlicher Bericht über Nachkommen"
 msgid "Produces a detailed descendant report"
 msgstr "Erstellt einen ausführlichen Bericht über Nachkommen"
 
-#: plugins/EventCmp.py:131 plugins/GraphViz.py:85 plugins/IndivComplete.py:484
+#: plugins/EventCmp.py:131 plugins/GraphViz.py:85 plugins/IndivComplete.py:488
 #: plugins/WebPage.py:913 plugins/WriteGedcom.py:332
 #: plugins/WritePafPalm.py:561
 msgid "Entire Database"
@@ -3668,6 +3707,18 @@ msgstr ""
 "Hilft bei der Analyse der Daten durch die Möglichkeit, eigene Filter zu "
 "entwickeln und auf die Datenbank anzuwenden, um ähnliche Ereignisse zu "
 "finden."
+
+#: plugins/Example.py:133
+msgid "Example Case"
+msgstr "Beispielfall"
+
+#: plugins/Example.py:134
+msgid "Examples"
+msgstr "Beispiele"
+
+#: plugins/Example.py:135
+msgid "Writes to stdout a list of birth and death dates"
+msgstr "Schreibt eine Liste mit Geburts- und Sterbedaten auf stdout"
 
 #: plugins/FamilyGroup.py:107 plugins/FamilyGroup.py:339
 #: plugins/FamilyGroup.py:549
@@ -3746,7 +3797,7 @@ msgstr "Eine Seite"
 msgid "Multiple"
 msgstr "Mehrere Seiten"
 
-#: plugins/GraphViz.py:63 plugins/GraphViz.py:441
+#: plugins/GraphViz.py:63 plugins/GraphViz.py:445
 msgid "Relationship Graph"
 msgstr "Verwandtschaftsgraph"
 
@@ -3759,52 +3810,57 @@ msgstr "Graphviz Datei"
 msgid "Ancestors of %s"
 msgstr "Vorfahren von %s"
 
-#: plugins/GraphViz.py:102
+#: plugins/GraphViz.py:97 plugins/IndivComplete.py:484 plugins/WebPage.py:929
+#: plugins/WriteGedcom.py:344
+msgid "People with common ancestor with %s"
+msgstr "Personen mit gleichem Vorfahren wie %s"
+
+#: plugins/GraphViz.py:106
 msgid "Descendants <- Ancestors"
 msgstr "Nachkommen <- Vorfahren"
 
-#: plugins/GraphViz.py:107
+#: plugins/GraphViz.py:111
 msgid "Descendants -> Ancestors"
 msgstr "Nachkommen -> Vorfahren"
 
-#: plugins/GraphViz.py:112
+#: plugins/GraphViz.py:116
 msgid "Descendants <-> Ancestors"
 msgstr "Nachkommen <-> Vorfahren"
 
-#: plugins/GraphViz.py:117
+#: plugins/GraphViz.py:121
 msgid "Descendants - Ancestors"
 msgstr "Nachkommen - Vorfahren"
 
-#: plugins/GraphViz.py:126 plugins/GraphViz.py:134 plugins/GraphViz.py:142
-#: plugins/GraphViz.py:152 plugins/GraphViz.py:162 plugins/GraphViz.py:170
-#: plugins/GraphViz.py:184 plugins/GraphViz.py:187 plugins/GraphViz.py:197
-#: plugins/GraphViz.py:204
+#: plugins/GraphViz.py:130 plugins/GraphViz.py:138 plugins/GraphViz.py:146
+#: plugins/GraphViz.py:156 plugins/GraphViz.py:166 plugins/GraphViz.py:174
+#: plugins/GraphViz.py:188 plugins/GraphViz.py:191 plugins/GraphViz.py:201
+#: plugins/GraphViz.py:208
 msgid "GraphViz Options"
 msgstr "Optionen für GraphViz"
 
-#: plugins/GraphViz.py:127
+#: plugins/GraphViz.py:131
 msgid "Arrowhead Options"
 msgstr "Pfeilenden"
 
-#: plugins/GraphViz.py:129
+#: plugins/GraphViz.py:133
 msgid "Choose the direction that the arrows point."
 msgstr "Richtung der Pfeile auswählen"
 
-#: plugins/GraphViz.py:131
+#: plugins/GraphViz.py:135
 msgid "Include Birth and Death Dates"
 msgstr "Geburts- und Todesdaten aufnehmen"
 
-#: plugins/GraphViz.py:136
+#: plugins/GraphViz.py:140
 msgid ""
 "Include the years that the individual was born and/or died in the graph node "
 "labels."
 msgstr "Geburts- und Todesjahr in die Knotenbeschriftung aufnehmen"
 
-#: plugins/GraphViz.py:140
+#: plugins/GraphViz.py:144
 msgid "Include URLs"
 msgstr "URLs aufnehmen"
 
-#: plugins/GraphViz.py:144
+#: plugins/GraphViz.py:148
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Generate "
@@ -3814,11 +3870,11 @@ msgstr ""
 "werden können, die Links zu den mit \"Webseite generieren\" erstellten "
 "Dateien enthalten."
 
-#: plugins/GraphViz.py:150
+#: plugins/GraphViz.py:154
 msgid "Colorize Graph"
 msgstr "Farbiger Graph"
 
-#: plugins/GraphViz.py:155
+#: plugins/GraphViz.py:159
 msgid ""
 "Males will be outlined in blue, females will be outlined in pink.  If the "
 "sex of an individual is unknown it will be outlined in black."
@@ -3826,37 +3882,37 @@ msgstr ""
 "Männer haben einen blauen Rand, Frauen einen pinken. Bei unbekanntem "
 "Geschlecht ist der Rand schwarz."
 
-#: plugins/GraphViz.py:160
+#: plugins/GraphViz.py:164
 msgid "Indicate non-birth relationships with dashed lines"
 msgstr "Gestrichelte Linien für nicht-leibliche Verwandschaften"
 
-#: plugins/GraphViz.py:165
+#: plugins/GraphViz.py:169
 msgid "Non-birth relationships will show up as dashed lines in the graph."
 msgstr ""
 "Nicht-leibliche Verwandschaften (z.B. Adoption) erscheinen im Graph als "
 "gestrichelte Linien."
 
-#: plugins/GraphViz.py:168
+#: plugins/GraphViz.py:172
 msgid "Show family nodes"
 msgstr "Familienknoten anzeigen"
 
-#: plugins/GraphViz.py:173
-msgid "Families will show up as circles, linkedto parents and children."
+#: plugins/GraphViz.py:177
+msgid "Families will show up as circles, linked to parents and children."
 msgstr "Familien werden als Kreise anzeigt, verbunden mit Eltern und Kindern."
 
-#: plugins/GraphViz.py:185
+#: plugins/GraphViz.py:189
 msgid "Top & Bottom Margins"
 msgstr "Oberer & unterer Rand"
 
-#: plugins/GraphViz.py:188
+#: plugins/GraphViz.py:192
 msgid "Left & Right Margins"
 msgstr "Linker & rechter Rand"
 
-#: plugins/GraphViz.py:198
+#: plugins/GraphViz.py:202
 msgid "Number of Horizontal Pages"
 msgstr "Horizontale Seitenzahl"
 
-#: plugins/GraphViz.py:200
+#: plugins/GraphViz.py:204
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -3866,11 +3922,11 @@ msgstr ""
 "rechteckige Fläche aus mehreren Seiten verteilt wird. Dies gibt die "
 "horizontale Anzahl an Seiten vor."
 
-#: plugins/GraphViz.py:205
+#: plugins/GraphViz.py:209
 msgid "Number of Vertical Pages"
 msgstr "Vertikale Seitenzahl"
 
-#: plugins/GraphViz.py:207
+#: plugins/GraphViz.py:211
 msgid ""
 "GraphViz can create very large graphs by spreading the graph across a "
 "rectangular array of pages. This controls the number pages in the array "
@@ -3880,7 +3936,7 @@ msgstr ""
 "rechteckige Fläche aus mehreren Seiten verteilt wird. Dies gibt die "
 "vertikale Anzahl an Seiten vor."
 
-#: plugins/GraphViz.py:426
+#: plugins/GraphViz.py:430
 msgid ""
 "Generates relationship graphs, currently only in GraphViz format. GraphViz "
 "(dot) can transform the graph into postscript, jpeg, png, vrml, svg, and "
@@ -3933,7 +3989,7 @@ msgid "Include Source Information"
 msgstr "Quellinformationen aufnehmen"
 
 #: plugins/IndivComplete.py:447 plugins/IndivComplete.py:451
-#: plugins/IndivComplete.py:656
+#: plugins/IndivComplete.py:660
 msgid "Complete Individual Report"
 msgstr "Vollständiger persönlicher Bericht"
 
@@ -3941,7 +3997,7 @@ msgstr "Vollständiger persönlicher Bericht"
 msgid "Save Complete Individual Report"
 msgstr "Vollständigen persönlichen Bericht speichern"
 
-#: plugins/IndivComplete.py:659
+#: plugins/IndivComplete.py:663
 msgid "Produces a complete report on the selected people."
 msgstr "Erstellt einen vollständigen Bericht über die gewählten Personen."
 
@@ -4519,11 +4575,11 @@ msgstr "Extras"
 msgid "GRAMPS ID link URL"
 msgstr "GRAMPS ID abhängige URL"
 
-#: plugins/WebPage.py:888 plugins/WebPage.py:1250
+#: plugins/WebPage.py:888 plugins/WebPage.py:1254
 msgid "Generate Web Site"
 msgstr "Webseite generieren"
 
-#: plugins/WebPage.py:888 plugins/WebPage.py:1251
+#: plugins/WebPage.py:888 plugins/WebPage.py:1255
 msgid "Web Page"
 msgstr "Webseite"
 
@@ -4539,11 +4595,11 @@ msgstr "Direkte Nachkommen von %s"
 msgid "Descendant Families of %s"
 msgstr "Familie eines Nachkommens von %s"
 
-#: plugins/WebPage.py:1253
+#: plugins/WebPage.py:1257
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Generiert Webseiten (HTML) für Personen oder Gruppen von Personen."
 
-#: plugins/WriteGedcom.py:963
+#: plugins/WriteGedcom.py:968
 msgid "Export to GEDCOM"
 msgstr "GEDCOM Export"
 
