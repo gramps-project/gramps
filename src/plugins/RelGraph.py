@@ -61,18 +61,23 @@ from latin_utf8 import utf8_to_latin
 # constants
 #
 #------------------------------------------------------------------------
-_scaled = 0
-_single = 1
-_multiple = 2
-
-_pagecount_map = {
-    _("Single (scaled)") : _scaled,
-    _("Single") : _single,
-    _("Multiple") : _multiple,
-    }
+# FIXME: These will be removed soon
+#_scaled = 0
+#_single = 1
+#_multiple = 2
+#
+#_pagecount_map = {
+#    _("Single (scaled)") : _scaled,
+#    _("Single") : _single,
+#    _("Multiple") : _multiple,
+#    }
 
 _PS_FONT = 'Helvetica'
 _TT_FONT = 'FreeSans'
+
+_FAM_NONE  = 0
+_FAM_STACK = 1
+_FAM_NODE  = 2
 
 #------------------------------------------------------------------------
 #
@@ -120,11 +125,14 @@ class RelGraphDialog(Report.ReportDialog):
 
     def get_print_pagecount_map(self):
         """Set up the list of possible page counts."""
-        return (_pagecount_map, _("Single (scaled)"))
+        # FIXME: Remove soon.
+        #return(_pagecount_map, _("Single (scaled)"))
+        # No pagecount options, everything is ruled from the page tab.
+        return (None,None) 
 
     def get_report_generations(self):
-        """Default to 10 generations, no page breaks."""
-        return (10, 0)
+        """No generations option, no page breaks option."""
+        return (0, 0)
 
     def get_report_filters(self):
         """Set up the list of possible content filters."""
@@ -207,21 +215,31 @@ class RelGraphDialog(Report.ReportDialog):
                               _("Choose the direction that the arrows point."))
 
 
-        self.show_as_stack_cb = gtk.CheckButton(_("Show family as a stack"))
-        self.show_as_stack_cb.set_active(self.ShowAsStack)
-        self.show_as_stack_cb.connect('toggled', self._grey_out_cb)
-        self.add_frame_option(_("GraphViz Options"), '',
-                              self.show_as_stack_cb,
-                              _("The main individual is shown along with "
-                                "their spouses in a stack."))
+        self.fam_optionmenu = gtk.OptionMenu()
+        menu = gtk.Menu()
 
-        self.show_families_cb = gtk.CheckButton(_("Show family nodes"))
-        self.show_families_cb.set_active(self.ShowFamilies)
-        self.show_families_cb.connect('toggled', self._grey_out_cb)
-        self.add_frame_option(_("GraphViz Options"), '',
-                              self.show_families_cb,
-                              _("Families will show up as ellipses, linked "
-                                "to parents and children."))
+        menuitem = gtk.MenuItem(_("Do not show families"))
+        menuitem.set_data('f',_FAM_NONE)
+        menuitem.show()
+        menu.append(menuitem)
+
+        menuitem = gtk.MenuItem(_("Show families as stacks"))
+        menuitem.set_data('f',_FAM_STACK)
+        menuitem.show()
+        menu.append(menuitem)
+
+        menuitem = gtk.MenuItem(_("Show families as nodes"))
+        menuitem.set_data('f',_FAM_NODE)
+        menuitem.show()
+        menu.append(menuitem)
+
+        self.fam_optionmenu.set_menu(menu)
+        
+        self.add_frame_option(_("GraphViz Options"),
+                              _("Family Display Options"),
+                              self.fam_optionmenu,
+                              _("Choose how to display families."))
+
         msg = _("Include IDs")
         self.includeid_cb = gtk.CheckButton(msg)
         self.includeid_cb.set_active(self.IncludeId)
@@ -328,16 +346,6 @@ class RelGraphDialog(Report.ReportDialog):
             else:
                 self.just_year_cb.set_sensitive(0)
                 self.place_cause_cb.set_sensitive(0)
-        elif button == self.show_families_cb:
-            if button.get_active():
-                self.show_as_stack_cb.set_sensitive(0)
-            else:
-                self.show_as_stack_cb.set_sensitive(1)
-        elif button == self.show_as_stack_cb:
-            if button.get_active():
-                self.show_families_cb.set_sensitive(0)
-            else:
-                self.show_families_cb.set_sensitive(1)
 
     def make_doc_menu(self):
         """Build a one item menu of document types that are
@@ -367,8 +375,13 @@ class RelGraphDialog(Report.ReportDialog):
         pass
 
     def parse_other_frames(self):
-        self.ShowAsStack = self.show_as_stack_cb.get_active()
-        self.ShowFamilies = self.show_families_cb.get_active()
+        self.ShowAsStack = 0
+        self.ShowFamilies = 0
+        showfam = self.fam_optionmenu.get_menu().get_active().get_data('f')
+        if showfam == _FAM_STACK:
+            self.ShowAsStack = 1
+        elif showfam == _FAM_NODE:
+            self.ShowFamilies = 1
         self.IncludeDates = self.includedates_cb.get_active()
         self.JustYear = self.just_year_cb.get_active()
         self.PlaceCause = self.place_cause_cb.get_active()
