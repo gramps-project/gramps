@@ -53,6 +53,15 @@ no_photos = 0
 styles = StyleSheet()
 style_sheet_list = None
 
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def by_date(a,b):
+    return compare_dates(a.getDateObj(),b.getDateObj())
+
 #------------------------------------------------------------------------
 #
 # 
@@ -101,11 +110,6 @@ class IndividualPage:
         self.doc.add_table_style("FamTable",tbl)
 
         cell = TableCellStyle()
-        cell.set_top_border(1)
-        cell.set_bottom_border(1)
-        self.doc.add_cell_style("TableHead",cell)
-
-        cell = TableCellStyle()
         self.doc.add_cell_style("NormalCell",cell)
 
         name = person.getPrimaryName().getRegularName()
@@ -118,9 +122,14 @@ class IndividualPage:
     #--------------------------------------------------------------------
     def write_normal_row(self,list):
         self.doc.start_row()
+        first = 1
         for i in list:
             self.doc.start_cell("NormalCell")
-            self.doc.start_paragraph("Normal")
+            if first == 1:
+                self.doc.start_paragraph("Label")
+            else:
+                self.doc.start_paragraph("Data")
+            first = 0
             self.doc.write_text(i)
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -131,16 +140,43 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
+    def write_marriage_row(self,list):
+        self.doc.start_row()
+
+        self.doc.start_cell("NormalCell")
+        self.doc.start_paragraph("Label")
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell("NormalCell")
+        self.doc.start_paragraph("Label")
+        self.doc.write_text(list[1])
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell("NormalCell")
+        self.doc.start_paragraph("Data")
+        self.doc.write_text(list[2])
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.end_row()
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def write_link_row(self,title,person):
         self.doc.start_row()
         self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Normal")
+        self.doc.start_paragraph("Label")
         self.doc.write_text(title)
         self.doc.end_paragraph()
         self.doc.end_cell()
 
         self.doc.start_cell("NormalCell")
-        self.doc.start_paragraph("Normal")
+        self.doc.start_paragraph("Data")
         if person:
             if person in self.list:
                 self.doc.start_link("i%s.html" % str(person.getId()))
@@ -167,12 +203,12 @@ class IndividualPage:
         self.doc.write_text(_("Summary of %s") % name)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph("Normal")
+        self.doc.start_paragraph("Data")
         self.doc.end_paragraph()
 
         if self.photos and len(photo_list) > 0:
             file = photo_list[0].getPath()
-            self.doc.start_paragraph("Normal")
+            self.doc.start_paragraph("Data")
             self.doc.add_photo(file,4.0,4.0)
             self.doc.end_paragraph()
 
@@ -190,20 +226,17 @@ class IndividualPage:
         else:
             self.write_link_row("%s:" % _("Father"), None)
             self.write_link_row("%s:" % _("Mother"), None)
-        if self.person.getNote() != "":
-            note = string.replace(self.person.getNote(),"\n","<br>")
-            self.write_normal_row(["%s:" % _("Notes"), note])
-            
         self.doc.end_table()
         
-        self.doc.start_paragraph("Normal")
+        self.doc.start_paragraph("Data")
         self.doc.end_paragraph()
         
         self.write_facts()
+        self.write_notes()
         self.write_families()
 
         if self.link:
-            self.doc.start_paragraph("Normal")
+            self.doc.start_paragraph("Data")
             self.doc.start_link("index.html")
             self.doc.write_text(_("Return to the index of people"))
             self.doc.end_link()
@@ -224,18 +257,15 @@ class IndividualPage:
     #--------------------------------------------------------------------
     def write_facts(self):
 
-        self.doc.start_table("two","IndTable")
-
-        self.doc.start_row()
-        self.doc.start_cell("TableHead",2)
-        self.doc.start_paragraph("TableTitle")
-        self.doc.write_text(_("Individual Facts"))
+        self.doc.start_paragraph("EventsTitle")
+        self.doc.write_text(_("Facts and Events"))
         self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
+
+        self.doc.start_table("two","IndTable")
 
         event_list = [ self.person.getBirth(), self.person.getDeath() ]
         event_list = event_list + self.person.getEventList()
+        event_list.sort(by_date)
         for event in event_list:
             name = _(event.getName())
             date = event.getDate()
@@ -245,16 +275,34 @@ class IndividualPage:
                 if place == "":
                     continue
                 else:
-                    val = place + ". " + description
+                    val = "%s. %s" % (place,description)
             else:
                 if place == "":
-                    val = date + ". " + description
+                    val = "%s. %s" % (date,description)
                 else:
-                    val = date + " in " + place + ". " +  description
+                    val = _("%s in %s. %s") % (date,place,description)
 
             self.write_normal_row([name, val])
 
         self.doc.end_table()
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def write_notes(self):
+
+        if self.person.getNote() == "":
+            return
+        
+        self.doc.start_paragraph("NotesTitle")
+        self.doc.write_text(_("Notes"))
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("NotesParagraph")
+        self.doc.write_text(self.person.getNote())
+        self.doc.end_paragraph()
 
     #--------------------------------------------------------------------
     #
@@ -273,14 +321,14 @@ class IndividualPage:
             if place == "":
                 return
             else:
-                val = place + ". " + description
+                val = "%s. %s" % (place,description)
         else:
             if place == "":
-                val = date + ". " + description
+                val = "%s. %s" % (date,description)
             else:
-                val = date + " in " + place + ". " +  description
+                val = "%s, %s. %s" % (date,place,description)
 
-        self.write_normal_row(["",name, val])
+        self.write_marriage_row(["",name, val])
 
     #--------------------------------------------------------------------
     #
@@ -288,16 +336,11 @@ class IndividualPage:
     #
     #--------------------------------------------------------------------
     def write_families(self):
-        self.doc.start_paragraph("Normal")
-        self.doc.end_paragraph()
-        self.doc.start_table("three","FamTable")
-        self.doc.start_row()
-        self.doc.start_cell("TableHead",3)
-        self.doc.start_paragraph("TableTitle")
+        self.doc.start_paragraph("FamilyTitle")
         self.doc.write_text(_("Marriages/Children"))
         self.doc.end_paragraph()
-        self.doc.end_cell()
-        self.doc.end_row()
+
+        self.doc.start_table("three","FamTable")
         
         for family in self.person.getFamilyList():
             if self.person == family.getFather():
@@ -326,19 +369,19 @@ class IndividualPage:
             if len(child_list) > 0:
                 self.doc.start_row()
                 self.doc.start_cell("NormalCell")
-                self.doc.start_paragraph("Normal")
+                self.doc.start_paragraph("Data")
                 self.doc.write_text("")
                 self.doc.end_paragraph()
                 self.doc.end_cell()
 
                 self.doc.start_cell("NormalCell")
-                self.doc.start_paragraph("Normal")
+                self.doc.start_paragraph("Label")
                 self.doc.write_text(_("Children"))
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 
                 self.doc.start_cell("NormalCell")
-                self.doc.start_paragraph("Normal")
+                self.doc.start_paragraph("Data")
                 
                 first = 1
                 for child in family.getChildList():
@@ -501,8 +544,20 @@ def report(database,person):
     font = FontStyle()
     font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
     p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("TableTitle",p)
+    p.set(font=font,bborder=1)
+    styles.add_style("EventsTitle",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
+    styles.add_style("NotesTitle",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
+    styles.add_style("FamilyTitle",p)
     
     font = FontStyle()
     font.set(bold=1,face=FONT_SANS_SERIF,size=12)
@@ -514,7 +569,20 @@ def report(database,person):
     font.set_size(12)
     p = ParagraphStyle()
     p.set_font(font)
-    styles.add_style("Normal",p)
+    styles.add_style("Data",p)
+
+    font = FontStyle()
+    font.set(size=12,italic=1)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("Label",p)
+
+    font = FontStyle()
+    font.set_size(12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("NotesParagraph",p)
+
     style_sheet_list = StyleSheetList("webpage.xml",styles)
 
     dic = {

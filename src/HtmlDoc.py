@@ -210,6 +210,22 @@ class HtmlDoc(TextDoc):
                          utils.fl2txt("%.2f",style.get_right_margin()))
             self.f.write('margin-left:%scm; ' % \
                          utils.fl2txt("%.2f",style.get_left_margin()))
+            if style.get_top_border():
+	       self.f.write('border-top:thin solid #000000; ')
+            else:
+	       self.f.write('border-top:none; ')
+            if style.get_bottom_border():
+	       self.f.write('border-bottom:thin solid #000000; ')
+            else: 
+	       self.f.write('border-bottom:none; ')
+            if style.get_right_border():
+	       self.f.write('border-right:thin solid #000000; ')
+            else:
+	       self.f.write('border-right:none; ')
+            if style.get_left_border():
+	       self.f.write('border-left:thin solid #000000; ')
+            else:
+	       self.f.write('border-left:none; ')
             if font.get_italic():
                 self.f.write('font-style:italic; ')
             if font.get_bold():
