@@ -45,7 +45,6 @@ pkgpython_PYTHON = \
 	GrampsParser.py\
 	gramps.py\
 	GrampsXML.py\
-	GrampsZODB.py\
 	GraphLayout.py\
 	Gregorian.py\
 	Hebrew.py\
@@ -64,7 +63,7 @@ pkgpython_PYTHON = \
 	PaperMenu.py\
 	PedView.py\
 	PeopleView.py\
-	PeopleStore.py\
+	PeopleModel.py\
 	PlaceView.py\
 	Plugins.py\
 	QuestionDialog.py\
@@ -87,7 +86,6 @@ pkgpython_PYTHON = \
 	TransTable.py\
 	UrlEdit.py\
 	Utils.py\
-	VersionControl.py\
 	Witness.py\
 	WriteXML.py\
 	SelectPerson.py\
