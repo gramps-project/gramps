@@ -256,5 +256,8 @@ def string_width(font,text):
     l = _font_array[i][j]
     r = 0
     for c in text:
-        r = r + l[ord(c)]
+        try:
+            r = r + l[ord(c)]
+        except:
+            r = r + l[ord('n')]
     return (r+1)*s
