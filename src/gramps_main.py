@@ -57,7 +57,7 @@ import PlaceView
 import FamilyView
 import SourceView
 
-from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog, SaveDialog, OptionDialog
+from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog, SaveDialog, OptionDialog, MissingMediaDialog
 
 import DisplayTrace
 import Filter
@@ -845,17 +845,83 @@ class Gramps:
 
     def save_media(self,filename):
         import RelImage
+        #-------------------------------------------------------------------------
+        def remove_clicked():
+            # File is lost => remove all references and the object itself
+            mobj = ObjectMap[ObjectId]
+            for p in self.db.getFamilyMap().values():
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getPersonKeys():
+                p = self.db.getPerson(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getSourceKeys():
+                p = self.db.getSource(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getPlaceKeys():
+                p = self.db.getPlace(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            self.db.removeObject(ObjectId) 
+    
+
+        def leave_clicked():
+            # File is lost => do nothing, leave as is
+            pass
+
+
+        def select_clicked():
+            # File is lost => select a file to replace the lost one
+            def fs_close_window(obj):
+                fs_top.destroy()
+
+            def fs_ok_clicked(obj):
+                name = fs_top.get_filename()
+                if os.path.isfile(name):
+                    RelImage.import_media_object(name,filename,base)
+                    ObjectMap[ObjectId].setPath(newfile)
+                Utils.destroy_passed_object(fs_top)
+
+            fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
+            fs_top.hide_fileop_buttons()
+            fs_top.ok_button.connect('clicked',fs_ok_clicked)
+            fs_top.cancel_button.connect('clicked',fs_close_window)
+            fs_top.show()
+            fs_top.run()
+
+        #-------------------------------------------------------------------------
         ObjectMap = self.db.getObjectMap()
         for ObjectId in ObjectMap.keys():
             if ObjectMap[ObjectId].getLocal():
                 oldfile = ObjectMap[ObjectId].getPath()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
                 newfile = os.path.join(filename,os.path.basename(oldfile))
-                try:
+                ObjectMap[ObjectId].setPath(newfile)
+                if os.path.isfile(oldfile):
                     RelImage.import_media_object(oldfile,filename,base)
-                    ObjectMap[ObjectId].setPath(newfile)
-                except:
-                    pass
+                else:
+                    # File is lost => ask what to do
+                    MissingMediaDialog(_("Media object could not be found"),
+	                _("%(file_name)s is referenced in the database, but no longer exists. " 
+                            "The file may have been deleted or moved to a different location. " 
+                            "You may choose to either remove the reference from the database, " 
+                            "keep the reference to the missing file, or select a new file." 
+                            ) % { 'file_name' : oldfile },
+                        remove_clicked, leave_clicked, select_clicked)
 
     def save_file(self,filename,comment):        
 
