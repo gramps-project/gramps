@@ -290,7 +290,7 @@ def dump_index(person_list,file,includedates,includeurl):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Generates relationship graphs, currently only in GraphViz"
+    return _("Generates relationship graphs, currently only in GraphViz "
              "format. GraphViz (dot) can transform the graph into "
              "postscript, jpeg, png, vrml, svg, and many other formats. "
              "For more information or to get a copy of GraphViz, "
