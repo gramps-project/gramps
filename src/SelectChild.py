@@ -108,7 +108,7 @@ class SelectChild:
             fname = NameDisplay.displayer.display(self.person)
             label = _("Relationship to %s") % fname
             
-            if self.person.get_gender() == RelLib.Person.male:
+            if self.person.get_gender() == RelLib.Person.MALE:
                 self.xml.get_widget("flabel").set_text(label)
                 self.xml.get_widget("mrel_combo").set_sensitive(0)
             else:
@@ -246,9 +246,9 @@ class SelectChild:
         for idval in person_list:
             person = self.db.get_person_from_handle(idval)
             name = NameDisplay.displayer.display(person)
-            if person.gender == RelLib.Person.male:
+            if person.gender == RelLib.Person.MALE:
                 gender = _("male")
-            elif person.gender == RelLib.Person.female:
+            elif person.gender == RelLib.Person.FEMALE:
                 gender = _("female")
             else:
                 gender = _("unknown")
@@ -304,7 +304,7 @@ class SelectChild:
             self.family = RelLib.Family()
             self.db.add_family(self.family,trans)
             self.person.add_family_handle(self.family.get_handle())
-            if self.person.get_gender() == RelLib.Person.male:
+            if self.person.get_gender() == RelLib.Person.MALE:
                 self.family.set_father_handle(self.person)
             else:	
                 self.family.set_mother_handle(self.person)
@@ -319,13 +319,13 @@ class SelectChild:
         
         mrel = const.child_relations.find_value(self.mrel.get_text())
         mother = self.db.get_person_from_handle(self.family.get_mother_handle())
-        if mother and mother.get_gender() != RelLib.Person.female:
+        if mother and mother.get_gender() != RelLib.Person.FEMALE:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
         frel = const.child_relations.find_value(self.frel.get_text())
         father = self.db.get_person_from_handle(self.family.get_father_handle())
-        if father and father.get_gender() !=RelLib.Person.male:
+        if father and father.get_gender() !=RelLib.Person.MALE:
             if frel == "Birth":
                 frel = "Unknown"
 
@@ -343,7 +343,7 @@ class SelectChild:
         self.redraw_child_list(not obj.get_active())
 
     def north_american(self,val):
-        if self.person.get_gender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.MALE:
             return self.person.get_primary_name().get_surname()
         elif self.family:
             f = self.family.get_father_handle()
@@ -374,7 +374,7 @@ class SelectChild:
 
     def icelandic(self,val):
         fname = ""
-        if self.person.get_gender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.MALE:
             fname = self.person.get_primary_name().get_first_name()
         elif self.family:
             f = self.family.get_father_handle()
@@ -455,13 +455,13 @@ class EditRel:
     def on_ok_clicked(self,obj):
         mrel = const.child_relations.find_value(self.mentry.get_text())
         mother = self.db.get_person_from_handle(self.family.get_mother_handle())
-        if mother and mother.get_gender() != RelLib.Person.female:
+        if mother and mother.get_gender() != RelLib.Person.FEMALE:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
         frel = const.child_relations.find_value(self.fentry.get_text())
         father = self.db.get_person_from_handle(self.family.get_father_handle())
-        if father and father.get_gender() !=RelLib.Person.male:
+        if father and father.get_gender() !=RelLib.Person.MALE:
             if frel == "Birth":
                 frel = "Unknown"
 

@@ -99,7 +99,7 @@ def build_report(database,person):
                 missing_bday = missing_bday + 1
         else:
             missing_bday = missing_bday + 1
-        if person.get_gender() == RelLib.Person.female:
+        if person.get_gender() == RelLib.Person.FEMALE:
             females = females + 1
         else:
             males = males + 1

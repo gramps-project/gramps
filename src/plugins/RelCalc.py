@@ -105,9 +105,9 @@ class RelCalc:
             else:
                 bdate = ""
             name = p.get_primary_name()
-            if p.get_gender() == RelLib.Person.male:
+            if p.get_gender() == RelLib.Person.MALE:
                 gender = _("male")
-            elif p.get_gender() == RelLib.Person.female:
+            elif p.get_gender() == RelLib.Person.FEMALE:
                 gender = _("female")
             else:
                 gender = _("unknown")

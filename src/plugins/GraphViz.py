@@ -307,7 +307,7 @@ class GraphViz:
                 else:
                     style = 'color'
                 gender = person.get_gender()
-                if gender == person.male:
+                if gender == person.MALE:
                     self.f.write('%s=%s, ' % (style, self.colors['male']))
                 elif gender == person.female:
                     self.f.write('%s=%s, ' % (style, self.colors['female']))

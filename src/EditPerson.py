@@ -122,7 +122,7 @@ class EditPerson:
         self.name_display = NameDisplay.displayer
         self.should_guess_gender = (person.get_gramps_id() == '' and
                                     person.get_gender () ==
-                                    RelLib.Person.unknown)
+                                    RelLib.Person.UNKNOWN)
 
         for key in db.get_place_handles():
             p = db.get_place_from_handle(key).get_display_info()
@@ -347,9 +347,9 @@ class EditPerson:
         AutoComp.fill_combo(self.ntype_field,types)
         self.write_primary_name()
         
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             self.is_male.set_active(1)
-        elif person.get_gender() == RelLib.Person.female:
+        elif person.get_gender() == RelLib.Person.FEMALE:
             self.is_female.set_active(1)
         else:
             self.is_unknown.set_active(1)
@@ -696,9 +696,9 @@ class EditPerson:
             return
 
         gender = self.db.genderStats.guess_gender(unicode(entry.get_text ()))
-        if gender == RelLib.Person.unknown:
+        if gender == RelLib.Person.UNKNOWN:
             self.is_unknown.set_active(True)
-        elif gender == RelLib.Person.male:
+        elif gender == RelLib.Person.MALE:
             self.is_male.set_active(True)
         else:
             self.is_female.set_active(True)
@@ -1252,11 +1252,11 @@ class EditPerson:
             changed = True
         if not self.death.are_equal(self.orig_death):
             changed = True
-        if male and self.person.get_gender() != RelLib.Person.male:
+        if male and self.person.get_gender() != RelLib.Person.MALE:
             changed = True
-        elif female and self.person.get_gender() != RelLib.Person.female:
+        elif female and self.person.get_gender() != RelLib.Person.FEMALE:
             changed = True
-        elif unknown and self.person.get_gender() != RelLib.Person.unknown:
+        elif unknown and self.person.get_gender() != RelLib.Person.UNKNOWN:
             changed = True
         if text != self.person.get_note():
             changed = True
@@ -1644,8 +1644,8 @@ class EditPerson:
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
         error = False
-        if male and self.person.get_gender() != RelLib.Person.male:
-            self.person.set_gender(RelLib.Person.male)
+        if male and self.person.get_gender() != RelLib.Person.MALE:
+            self.person.set_gender(RelLib.Person.MALE)
             for temp_family in self.person.get_family_handle_list():
                 if self.person == temp_family.get_mother_handle():
                     if temp_family.get_father_handle() != None:
@@ -1653,8 +1653,8 @@ class EditPerson:
                     else:
                         temp_family.set_mother_handle(None)
                         temp_family.set_father_handle(self.person)
-        elif female and self.person.get_gender() != RelLib.Person.female:
-            self.person.set_gender(RelLib.Person.female)
+        elif female and self.person.get_gender() != RelLib.Person.FEMALE:
+            self.person.set_gender(RelLib.Person.FEMALE)
             for temp_family in self.person.get_family_handle_list():
                 if self.person == temp_family.get_father_handle():
                     if temp_family.get_mother_handle() != None:
@@ -1662,8 +1662,8 @@ class EditPerson:
                     else:
                         temp_family.set_father_handle(None)
                         temp_family.set_mother_handle(self.person)
-        elif unknown and self.person.get_gender() != RelLib.Person.unknown:
-            self.person.set_gender(RelLib.Person.unknown)
+        elif unknown and self.person.get_gender() != RelLib.Person.UNKNOWN:
+            self.person.set_gender(RelLib.Person.UNKNOWN)
             for temp_family in self.person.get_family_handle_list():
                 if self.person == temp_family.get_father_handle():
                     if temp_family.get_mother_handle() != None:

@@ -329,7 +329,7 @@ class DetAncestorReport(Report.Report):
 
         if self.firstName:
             firstName = person.get_primary_name().get_first_name()
-        elif person.get_gender() == RelLib.Person.male:
+        elif person.get_gender() == RelLib.Person.MALE:
             firstName = _("He")
         else:
             firstName = _("She")
@@ -542,7 +542,7 @@ class DetAncestorReport(Report.Report):
                 mother= ""
 
             if father or mother:
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     if father:
                         if mother:
                             self.doc.write_text(_(" %s is the son of %s and %s.") % \
@@ -585,7 +585,7 @@ class DetAncestorReport(Report.Report):
                 fam_num= fam_num + 1
                 spouse= ""
                 t= ""
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     if fam.get_mother_handle():
                         mother = self.database.get_person_from_handle(fam.get_mother_handle())
                         spouse = mother.get_primary_name().get_regular_name()
@@ -665,7 +665,7 @@ class DetAncestorReport(Report.Report):
             for fam_id in famList:
                 fam = self.database.get_family_from_handle(fam_id)
                 person= ""
-                if mate.get_gender() == RelLib.Person.male:
+                if mate.get_gender() == RelLib.Person.MALE:
                     if fam.get_mother_handle():
                         ind_id= fam.get_mother_handle()
                         ind = self.database.get_person_from_handle(ind_id)
@@ -700,7 +700,7 @@ class DetAncestorReport(Report.Report):
                     self.doc.end_paragraph()
 
                     if self.listChildren \
-                               and mate.get_gender() == RelLib.Person.male:
+                               and mate.get_gender() == RelLib.Person.MALE:
                         self.write_children(fam)
 
     #--------------------------------------------------------------------
@@ -755,7 +755,7 @@ class DetAncestorReport(Report.Report):
             self.genIDs[person_handle]= key
             dupPerson= self.write_person(key)
             if dupPerson == 0:		# Is this a duplicate ind record
-                if person.get_gender() == RelLib.Person.female and  \
+                if person.get_gender() == RelLib.Person.FEMALE and  \
                          self.listChildren and  \
                          len(person.get_family_handle_list()) > 0:
                     family_handle = person.get_family_handle_list()[0]

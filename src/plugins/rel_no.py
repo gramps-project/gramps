@@ -115,7 +115,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('sønne')
             else:
                 result.append('datter')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('sønn')
         else:
             result.append('datter')
@@ -132,7 +132,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('mor')
         if level > 1:
             result.append(self.get_cousin(level))
-        elif person.get_gender() == RelLib.Person.male:
+        elif person.get_gender() == RelLib.Person.MALE:
             result.append('fetter')
         else:
             result.append('kusine')
@@ -161,7 +161,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('sønn')
             else:
                 result.append('datter')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('sønn')
         else:
             result.append('datter')
@@ -207,12 +207,12 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     result.append('sønne')
                 else:
                     result.append('datter')
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 result.append('sønn')
             else:
                 result.append('datter')
         else:
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 result.append('bror')
             else:
                 result.append('søster')
@@ -237,7 +237,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 #    FIXME: need Norwegian term for spouse. If gender-specific, use the code below.
 #    UPDATE by Frode: unsure about how it's included in the finished code, so I need 
 #    to see this running to know if it is the right words to use.
-#            if other_person.get_gender() == RelLib.Person.male:
+#            if other_person.get_gender() == RelLib.Person.MALE:
 #                return ("ektemann",[])
 #            else:
 #                return ("hustru",[])
@@ -259,7 +259,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif not secondRel:
             return (self.get_direct_descendant(other_person,firstRel),common)
         elif len(firstRel) == 1:
-            if other_person.get_gender() == RelLib.Person.male:
+            if other_person.get_gender() == RelLib.Person.MALE:
                 return (self.get_ancestors_brother(secondRel),common)
             else:
                 return (self.get_ancestors_sister(secondRel),common)

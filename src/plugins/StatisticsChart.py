@@ -76,9 +76,9 @@ class _options:
         (SORT_KEY, "Item name", _("Item name"))
     ]
     genders = [
-        (Person.unknown, "Both", _("Both")),
-        (Person.male, "Men", _("Men")),
-        (Person.female, "Women", _("Women"))
+        (Person.UNKNOWN, "Both", _("Both")),
+        (Person.MALE, "Men", _("Men")),
+        (Person.FEMALE, "Women", _("Women"))
     ]
 
 
@@ -154,9 +154,9 @@ class Extract:
         "return gender for given person"
         # TODO: why there's no Person.getGenderName?
         # It could be used by getDisplayInfo & this...
-        if person.gender == Person.male:
+        if person.gender == Person.MALE:
             return [_("Men")]
-        if person.gender == Person.female:
+        if person.gender == Person.FEMALE:
             return [_("Women")]
         return [_("Gender unknown")]
 
@@ -392,7 +392,7 @@ class Extract:
 
             person = db.get_person_from_handle(person_handle)
             # check whether person has suitable gender
-            if person.gender != genders and genders != Person.unknown:
+            if person.gender != genders and genders != Person.UNKNOWN:
                 continue
         
             # check whether birth year is within required range
@@ -453,9 +453,9 @@ class StatisticsChart(Report.Report):
         gender = options['gender']
 
         # title needs both data extraction method name + gender name
-        if gender == Person.male:
+        if gender == Person.MALE:
             genders = _("Men")
-        elif gender == Person.female:
+        elif gender == Person.FEMALE:
             genders = _("Women")
         else:
             genders = None
@@ -704,7 +704,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
     def set_new_options(self):
     # Options specific for this report
         self.options_dict = {
-            'gender'    : Person.unknown,
+            'gender'    : Person.UNKNOWN,
             'sortby'    : _options.SORT_VALUE,
             'reverse'   : 0,
             'year_from' : 1700,

@@ -87,7 +87,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('isän')
             else:
                 result.append('äidin')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('isä')
         else:
             result.append('äiti')
@@ -102,9 +102,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('tyttären')
             else:
                 result.append('lapsen')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('poika')
-        elif person.get_gender() == RelLib.Person.female:
+        elif person.get_gender() == RelLib.Person.FEMALE:
             result.append('tytär')
         else:
             result.append('lapsi')
@@ -139,9 +139,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('tyttären')
             else:
                 result.append('lapsen')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('poika')
-        elif person.get_gender() == RelLib.Person.female:
+        elif person.get_gender() == RelLib.Person.FEMALE:
             result.append('tytär')
         else:
             result.append('lapsi')
@@ -202,7 +202,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif not secondRel:
             return (self.get_direct_descendant(other_person,firstRel),common)
         elif len(firstRel) == 1:
-            if other_person.get_gender() == RelLib.Person.male:
+            if other_person.get_gender() == RelLib.Person.MALE:
                 return (self.get_ancestors_brother(secondRel),common)
             else:
                 return (self.get_ancestors_sister(secondRel),common)

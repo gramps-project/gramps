@@ -651,10 +651,10 @@ class FamilyView:
 
     def add_spouse(self,obj):
         person = RelLib.Person()
-        if self.person.get_gender() == RelLib.Person.male:
-            person.set_gender(RelLib.Person.female)
+        if self.person.get_gender() == RelLib.Person.MALE:
+            person.set_gender(RelLib.Person.FEMALE)
         else:
-            person.set_gender(RelLib.Person.male)
+            person.set_gender(RelLib.Person.MALE)
         try:
             EditPerson.EditPerson(self.parent, person, self.parent.db,
                                   self.new_spouse_after_edit)
@@ -688,7 +688,7 @@ class FamilyView:
         self.parent.db.commit_person(epo.person,trans)
         self.parent.db.commit_person(self.person,trans)
 
-        if self.person.get_gender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.MALE:
             self.family.set_mother_handle(epo.person.get_handle())
             self.family.set_father_handle(self.person.get_handle())
         else:	
@@ -735,7 +735,7 @@ class FamilyView:
             self.family = RelLib.Family()
             self.parent.db.add_family(self.family,trans)
             person.add_family_handle(self.family.get_handle())
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 self.family.set_father_handle(person)
             else:
                 self.family.set_mother_handle(person)
@@ -754,7 +754,7 @@ class FamilyView:
             self.family = RelLib.Family()
             self.parent.db.add_family(self.family,trans)
             self.person.add_family_handle(self.family.get_handle())
-            if self.person.get_gender() == RelLib.Person.male:
+            if self.person.get_gender() == RelLib.Person.MALE:
                 self.family.set_father_handle(self.person.get_handle())
             else:
                 self.family.set_mother_handle(self.person.get_handle())
@@ -1435,7 +1435,7 @@ class FamilyView:
         sel_data.set(sel_data.target, bits_per, data)
 
     def north_american(self,val):
-        if self.person.get_gender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.MALE:
             pname = self.person.get_primary_name()
             return (pname.get_surname_prefix(),pname.get_surname())
         elif self.family:
@@ -1468,7 +1468,7 @@ class FamilyView:
 
     def icelandic(self,val):
         fname = ""
-        if self.person.get_gender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.MALE:
             fname = self.person.get_primary_name().get_first_name()
         elif self.family:
             f = self.family.get_father_handle()

@@ -176,7 +176,7 @@ class AncestorReport(Report.Report):
                 if place[-1:] == '.':
                     place = place[:-1]
                 if date_text != "" or place_handle:
-                    if person.get_gender() == RelLib.Person.male:
+                    if person.get_gender() == RelLib.Person.MALE:
                         male = 1
                     else:
                         male = 0

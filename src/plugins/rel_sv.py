@@ -114,7 +114,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('son')
             else:
                 result.append('dotter')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('son')
         else:
             result.append('dotter')
@@ -147,7 +147,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 result.append('son')
             else:
                 result.append('dotter')
-        if person.get_gender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.MALE:
             result.append('son')
         else:
             result.append('dotter')
@@ -188,7 +188,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             return ('', [])
 
         if self.is_spouse(orig_person,other_person):
-            if other_person.get_gender() == RelLib.Person.male:
+            if other_person.get_gender() == RelLib.Person.MALE:
                 return ("make",[])
             else:
                 return ("maka",[])
@@ -210,7 +210,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         elif not secondRel:
             return (self.get_direct_descendant(other_person,firstRel),common)
         elif len(firstRel) == 1:
-            if other_person.get_gender() == RelLib.Person.male:
+            if other_person.get_gender() == RelLib.Person.MALE:
                 return (self.get_ancestors_brother(secondRel),common)
             else:
                 return (self.get_ancestors_sister(secondRel),common)

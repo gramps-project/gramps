@@ -332,7 +332,7 @@ class DetDescendantReport(Report.Report):
 
         if self.firstName:
             firstName = person.get_primary_name().get_first_name()
-        elif person.get_gender() == RelLib.Person.male:
+        elif person.get_gender() == RelLib.Person.MALE:
             firstName = _("He")
         else:
             firstName = _("She")
@@ -549,7 +549,7 @@ class DetDescendantReport(Report.Report):
                 mother = ""
 
             if father or mother:
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     if father:
                         if mother:
                             self.doc.write_text(_(" %s is the son of %s and %s.") % \
@@ -587,7 +587,7 @@ class DetDescendantReport(Report.Report):
                 fam = self.database.get_family_from_handle(fam_id)
                 fam_num= fam_num + 1
                 spouse = ""
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     mother_handle = fam.get_mother_handle()
                     if mother_handle:
                         spouse = self.database.get_person_from_handle(mother_handle).get_primary_name().get_regular_name()
@@ -667,7 +667,7 @@ class DetDescendantReport(Report.Report):
         for fam_id in person.get_family_handle_list():
             fam = self.database.get_family_from_handle(fam_id)
             mate = ""
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 heshe = _("She")
                 mother_handle = fam.get_mother_handle()
                 if mother_handle:
@@ -729,7 +729,7 @@ class DetDescendantReport(Report.Report):
         if len(famList):
             for fam_id in famList:
                 fam = self.database.get_family_from_handle(fam_id)
-                if self.start_person.get_gender() == RelLib.Person.male:
+                if self.start_person.get_gender() == RelLib.Person.MALE:
                     mother_handle = fam.get_mother_handle()
                     if mother_handle:
                         spouseName = self.database.get_person_from_handle(mother_handle).get_primary_name().get_first_name()

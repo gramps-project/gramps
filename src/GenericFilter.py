@@ -330,7 +330,7 @@ class IsFemale(Rule):
         return _('Matches all females')
 
     def apply(self,db,p_id):
-        return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.female
+        return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.FEMALE
 
 #-------------------------------------------------------------------------
 #
@@ -966,7 +966,7 @@ class IsMale(Rule):
         return _('Matches all males')
 
     def apply(self,db,p_id):
-        return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.male
+        return db.get_person_from_handle(p_id).get_gender() == RelLib.Person.MALE
 
 #-------------------------------------------------------------------------
 #

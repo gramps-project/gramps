@@ -254,9 +254,9 @@ class XmlWriter:
                 count += 1
             
                 self.write_id("person",person,2)
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     self.write_line("gender","M",3)
-                elif person.get_gender() == RelLib.Person.female:
+                elif person.get_gender() == RelLib.Person.FEMALE:
                     self.write_line("gender","F",3)
                 else:
                     self.write_line("gender","U",3)

@@ -167,60 +167,60 @@ class Verify:
 
             if byear>0 and bapyear>0:
                 if byear > bapyear:
-                    if person.get_gender() == RelLib.Person.male:
+                    if person.get_gender() == RelLib.Person.MALE:
                         error.write( _("Baptized before birth: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
                             'male_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
-                    if person.get_gender() == RelLib.Person.female:
+                    if person.get_gender() == RelLib.Person.FEMALE:
                         error.write( _("Baptized before birth: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
                             'female_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
                 if byear < bapyear:
-                    if person.get_gender() == RelLib.Person.male:
+                    if person.get_gender() == RelLib.Person.MALE:
                         warn.write( _("Baptized late: %(male_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
                             'male_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
-                    if person.get_gender() == RelLib.Person.female:
+                    if person.get_gender() == RelLib.Person.FEMALE:
                         warn.write( _("Baptized late: %(female_name)s born %(byear)d, baptized %(bapyear)d.\n") % { 
                             'female_name' : idstr, 'byear' : byear, 'bapyear' : bapyear } )
             if dyear>0 and buryear>0:
                 if dyear > buryear:
-                    if person.get_gender() == RelLib.Person.male:
+                    if person.get_gender() == RelLib.Person.MALE:
                         error.write( _("Buried before death: %(male_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
                             'male_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
-                    if person.get_gender() == RelLib.Person.female:
+                    if person.get_gender() == RelLib.Person.FEMALE:
                         error.write( _("Buried before death: %(female_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
                             'female_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
                 if dyear < buryear:
-                    if person.get_gender() == RelLib.Person.male:
+                    if person.get_gender() == RelLib.Person.MALE:
                         warn.write( _("Buried late: %(male_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
                             'male_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
-                    if person.get_gender() == RelLib.Person.female:
+                    if person.get_gender() == RelLib.Person.FEMALE:
                         warn.write( _("Buried late: %(female_name)s died %(dyear)d, buried %(buryear)d.\n") % { 
                             'female_name' : idstr, 'dyear' : dyear, 'buryear' : buryear } )
             if dyear>0 and (byear>dyear):
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     error.write( _("Died before birth: %(male_name)s born %(byear)d, died %(dyear)d.\n") % { 
                         'male_name' : idstr, 'byear' : byear, 'dyear' : dyear } )
-                if person.get_gender() == RelLib.Person.female:
+                if person.get_gender() == RelLib.Person.FEMALE:
                     error.write( _("Died before birth: %(female_name)s born %(byear)d, died %(dyear)d.\n") % { 
                         'female_name' : idstr, 'byear' : byear, 'dyear' : dyear } )
             if dyear>0 and (bapyear>dyear):
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     error.write( _("Died before baptism: %(male_name)s baptized %(bapyear)d, died %(dyear)d.\n") % { 
                         'male_name' : idstr, 'bapyear' : bapyear, 'dyear' : dyear } )
-                if person.get_gender() == RelLib.Person.female:
+                if person.get_gender() == RelLib.Person.FEMALE:
                     error.write( _("Died before baptism: %(female_name)s baptized %(bapyear)d, died %(dyear)d.\n") % { 
                         'female_name' : idstr, 'bapyear' : bapyear, 'dyear' : dyear } )
             if buryear>0 and (byear>buryear):
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     error.write( _("Buried before birth: %(male_name)s born %(byear)d, buried %(buryear)d.\n") % { 
                         'male_name' : idstr, 'byear' : byear, 'buryear' : buryear } )
-                if person.get_gender() == RelLib.Person.female:
+                if person.get_gender() == RelLib.Person.FEMALE:
                     error.write( _("Buried before birth: %(female_name)s born %(byear)d, buried %(buryear)d.\n") % { 
                         'female_name' : idstr, 'byear' : byear, 'buryear' : buryear } )
             if buryear>0 and (bapyear>buryear):
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     error.write( _("Buried before baptism: %(male_name)s baptized %(bapyear)d, buried %(buryear)d.\n") % { 
                         'male_name' : idstr, 'bapyear' : bapyear, 'buryear' : buryear } )
-                if person.get_gender() == RelLib.Person.female:
+                if person.get_gender() == RelLib.Person.FEMALE:
                     error.write( _("Buried before baptism: %(female_name)s baptized %(bapyear)d, buried %(buryear)d.\n") % { 
                         'female_name' : idstr, 'bapyear' : bapyear, 'buryear' : buryear } )
             if byear == 0 and estimate_age:
@@ -232,26 +232,26 @@ class Verify:
             else:
                 ageatdeath = 0
             if ageatdeath > oldage:
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     warn.write( _("Old age: %(male_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
                         'male_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
-                if person.get_gender() == RelLib.Person.female:
+                if person.get_gender() == RelLib.Person.FEMALE:
                     warn.write( _("Old age: %(female_name)s born %(byear)d, died %(dyear)d, at the age of %(ageatdeath)d.\n") % { 
                         'female_name' : idstr, 'byear' : byear, 'dyear' : dyear, 'ageatdeath' : ageatdeath } )
     
             # gender checks
 
-            if person.get_gender() == RelLib.Person.female:
+            if person.get_gender() == RelLib.Person.FEMALE:
                 oldpar = oldmom
                 yngpar = yngmom
-            if person.get_gender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.MALE:
                 oldpar = olddad
                 yngpar = yngdad
-            if (person.get_gender() != RelLib.Person.female) and (person.get_gender() != RelLib.Person.male):
+            if (person.get_gender() != RelLib.Person.FEMALE) and (person.get_gender() != RelLib.Person.MALE):
                 warn.write( _("Unknown gender for %s.\n") % idstr )
                 oldpar = olddad
                 yngpar = yngdad
-            if (person.get_gender() == RelLib.Person.female) and (person.get_gender() == RelLib.Person.male):
+            if (person.get_gender() == RelLib.Person.FEMALE) and (person.get_gender() == RelLib.Person.MALE):
                 error.write( _("Ambiguous gender for %s.\n") % idstr )
                 oldpar = olddad
                 yngpar = yngdad
@@ -264,17 +264,17 @@ class Verify:
             nkids = 0
             nfam  = len( person.get_family_handle_list() )
             if nfam > wedder:
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     warn.write( _("Married often: %(male_name)s married %(nfam)d times.\n") % { 
                         'male_name' : idstr, 'nfam' : nfam } )
-                if person.get_gender() == RelLib.Person.female:
+                if person.get_gender() == RelLib.Person.FEMALE:
                     warn.write( _("Married often: %(female_name)s married %(nfam)d times.\n") % { 
                         'female_name' : idstr, 'nfam' : nfam } )
             if ageatdeath>oldunm and nfam == 0:
-                if person.get_gender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.MALE:
                     warn.write( _("Old and unmarried: %(male_name)s died unmarried, at the age of %(ageatdeath)d years.\n") % { 
                         'male_name' : idstr, 'ageatdeath' : ageatdeath } )
-                if person.get_gender() == RelLib.Person.female:
+                if person.get_gender() == RelLib.Person.FEMALE:
                     warn.write( _("Old and unmarried: %(female_name)s died unmarried, at the age of %(ageatdeath)d years.\n") % { 
                         'female_name' : idstr, 'ageatdeath' : ageatdeath } )
             prev_cbyear=0
@@ -291,11 +291,11 @@ class Verify:
                 if father_handle:
                     father = self.db.get_person_from_handle(father_handle)
                 if mother_handle and father_handle:
-                    if ( mother.get_gender() == father.get_gender() ) and mother.get_gender() != RelLib.Person.unknown:
+                    if ( mother.get_gender() == father.get_gender() ) and mother.get_gender() != RelLib.Person.UNKNOWN:
                         warn.write( _("Homosexual marriage: %s in family %s.\n") % ( idstr, family.get_gramps_id() ) )
-                if father_handle == person.get_handle() and person.get_gender() == RelLib.Person.female:
+                if father_handle == person.get_handle() and person.get_gender() == RelLib.Person.FEMALE:
                     error.write( _("Female husband: %s in family %s.\n") % ( idstr, family.get_gramps_id() ) )
-                if mother_handle == person.get_handle() and person.get_gender() == RelLib.Person.male:
+                if mother_handle == person.get_handle() and person.get_gender() == RelLib.Person.MALE:
                     error.write( _("Male wife: %s in family %s.\n") % ( idstr, family.get_gramps_id() ) )
                 if father_handle == person.get_handle():
                    spouse_id = mother_handle
@@ -303,7 +303,7 @@ class Verify:
                    spouse_id = father_handle
                 if spouse_id:
                     spouse = self.db.get_person_from_handle(spouse_id)
-                    if person.get_gender() == RelLib.Person.male and \
+                    if person.get_gender() == RelLib.Person.MALE and \
                            person.get_primary_name().get_surname() == spouse.get_primary_name().get_surname():
                         warn.write( _("Husband and wife with the same surname: %s in family %s, and %s.\n") % (
                             idstr,family.get_gramps_id(), spouse.get_primary_name().get_name() ) )
@@ -341,39 +341,39 @@ class Verify:
                         if byear > 0:
                             marage = maryear - byear
                             if marage < 0:
-                                if person.get_gender() == RelLib.Person.male:
+                                if person.get_gender() == RelLib.Person.MALE:
                                         error.write( _("Married before birth: %(male_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n") %  { 
                                         'male_name' : idstr, 'byear' : byear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
-                                if person.get_gender() == RelLib.Person.female:
+                                if person.get_gender() == RelLib.Person.FEMALE:
                                     error.write( _("Married before birth: %(female_name)s born %(byear)d, married %(maryear)d to %(spouse)s.\n") %  { 
                                         'female_name' : idstr, 'byear' : byear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
                             else:
                                 if marage < yngmar:
-                                    if person.get_gender() == RelLib.Person.male:
+                                    if person.get_gender() == RelLib.Person.MALE:
                                         warn.write( _("Young marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n") % { 
                                             'male_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
-                                    if person.get_gender() == RelLib.Person.female:
+                                    if person.get_gender() == RelLib.Person.FEMALE:
                                         warn.write( _("Young marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n") % { 
                                             'female_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
                                 if marage > oldmar:
-                                   if person.get_gender() == RelLib.Person.male:
+                                   if person.get_gender() == RelLib.Person.MALE:
                                         warn.write( _("Old marriage: %(male_name)s married at age %(marage)d to %(spouse)s.\n") % { 
                                             'male_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
-                                   if person.get_gender() == RelLib.Person.female:
+                                   if person.get_gender() == RelLib.Person.FEMALE:
                                         warn.write( _("Old marriage: %(female_name)s married at age %(marage)d to %(spouse)s.\n") % { 
                                             'female_name' : idstr, 'marage' : marage, 'spouse' : spouse.get_primary_name().get_name() } )
                         if dyear>0 and maryear > dyear:
-                            if person.get_gender() == RelLib.Person.male:
+                            if person.get_gender() == RelLib.Person.MALE:
                                 error.write( _("Married after death: %(male_name)s died %(dyear)d, married %(maryear)d to %(spouse)s.\n") % { 
                                     'male_name' : idstr, 'dyear' : dyear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
-                            if person.get_gender() == RelLib.Person.female:
+                            if person.get_gender() == RelLib.Person.FEMALE:
                                 error.write( _("Married after death: %(female_name)s died %(dyear)d, married %(maryear)d to %(spouse)s.\n") % { 
                                     'female_name' : idstr, 'dyear' : dyear, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name() } )
                         if prev_cbyear > maryear:
-                            if person.get_gender() == RelLib.Person.male:
+                            if person.get_gender() == RelLib.Person.MALE:
                                 warn.write( _("Marriage before birth from previous family: %(male_name)s married %(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n") % { 
                                     'male_name' : idstr, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name(), 'prev_cbyear' : prev_cbyear } )
-                            if person.get_gender() == RelLib.Person.female:
+                            if person.get_gender() == RelLib.Person.FEMALE:
                                 warn.write( _("Marriage before birth from previous family: %(female_name)s married %(maryear)d to %(spouse)s, previous birth %(prev_cbyear)d.\n") % { 
                                     'female_name' : idstr, 'maryear' : maryear, 'spouse' : spouse.get_primary_name().get_name(), 'prev_cbyear' : prev_cbyear } )
                         prev_maryear = maryear
@@ -383,17 +383,17 @@ class Verify:
                     if maryear>0 and prev_sdyear > 0:
                         wdwyear = maryear-prev_sdyear
                         if wdwyear > lngwdw:
-                            if person.get_gender() == RelLib.Person.male:
+                            if person.get_gender() == RelLib.Person.MALE:
                                 warn.write( _("Long widowhood: %s was a widower %d years before, family %s.\n") % (idstr, wdwyear, family.get_gramps_id() ) )
-                            if person.get_gender() == RelLib.Person.female:
+                            if person.get_gender() == RelLib.Person.FEMALE:
                                 warn.write( _("Long widowhood: %s was a widow %d years before, family %s.\n") % (idstr, wdwyear, family.get_gramps_id() ) )
 
                     if fnum==nfam and dyear>0 and sdyear>0:
                         wdwyear = dyear - sdyear
                         if wdwyear > lngwdw:
-                            if person.get_gender() == RelLib.Person.male:
+                            if person.get_gender() == RelLib.Person.MALE:
                                 warn.write( _("Long widowhood: %s was a widower %d years.\n") % (idstr, wdwyear) )
-                            if person.get_gender() == RelLib.Person.female:
+                            if person.get_gender() == RelLib.Person.FEMALE:
                                 warn.write( _("Long widowhood: %s was a widow %d years.\n") % (idstr, wdwyear) )
 
                     nkids = 0
@@ -409,40 +409,40 @@ class Verify:
                         if byear>0 and cbyear>0:
                             bage = cbyear - byear
                             if bage > oldpar:
-                                if person.get_gender() == RelLib.Person.male:
+                                if person.get_gender() == RelLib.Person.MALE:
                                     warn.write( _("Old father: %(male_name)s at age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
                                         'male_name' : idstr, 'bage' : bage, 'fam' : family.get_handle(), 'child' : child.get_primary_name().get_name() } ) 
-                                if person.get_gender() == RelLib.Person.female:
+                                if person.get_gender() == RelLib.Person.FEMALE:
                                     warn.write( _("Old mother: %(female_name)s at age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
                                         'female_name' : idstr, 'bage' : bage, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name() } ) 
                             if bage < 0:
-                                if person.get_gender() == RelLib.Person.male:
+                                if person.get_gender() == RelLib.Person.MALE:
                                     error.write( _("Unborn father: %(male_name)s born %(byear)d, in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
                                                 'male_name' : idstr, 'byear' : byear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear } )
-                                if person.get_gender() == RelLib.Person.female:
+                                if person.get_gender() == RelLib.Person.FEMALE:
                                     error.write( _("Unborn mother: %(female_name)s born %(byear)d, in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
                                                 'female_name' : idstr, 'byear' : byear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear } )
                             else:
                                 if bage < yngpar:
-                                    if person.get_gender() == RelLib.Person.male:
+                                    if person.get_gender() == RelLib.Person.MALE:
                                         warn.write( _("Young father: %(male_name)s at the age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
                                                         'male_name' : idstr, 'bage' : bage, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name() } )
-                                        if person.get_gender() == RelLib.Person.female:
+                                        if person.get_gender() == RelLib.Person.FEMALE:
                                             warn.write( _("Young mother: %(female_name)s at the age of %(bage)d in family %(fam)s had a child %(child)s.\n") % { 
                                                         'female_name' : idstr, 'bage' : bage, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name() } )
                         if dyear>0 and cbyear>dyear:
                             if cbyear-1>dyear:
-                                if person.get_gender() == RelLib.Person.male:
+                                if person.get_gender() == RelLib.Person.MALE:
                                     error.write( _("Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
                                                 'male_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
-                                if person.get_gender() == RelLib.Person.female:
+                                if person.get_gender() == RelLib.Person.FEMALE:
                                     error.write( _("Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
                                                 'female_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
                             else:
-                                if person.get_gender() == RelLib.Person.male:
+                                if person.get_gender() == RelLib.Person.MALE:
                                     warn.write( _("Dead father: %(male_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
                                                 'male_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
-                                if person.get_gender() == RelLib.Person.female:
+                                if person.get_gender() == RelLib.Person.FEMALE:
                                     warn.write( _("Dead mother: %(female_name)s died %(dyear)d, but in family %(fam)s had a child %(child)s born %(cbyear)d.\n") % { 
                                                 'female_name' : idstr, 'dyear' : dyear, 'fam' : family.get_gramps_id(), 'child' : child.get_primary_name().get_name(), 'cbyear' : cbyear} )
                     

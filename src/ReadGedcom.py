@@ -931,11 +931,11 @@ class GedcomParser:
                 note = self.parse_note(matches,self.person,1,note)
             elif matches[1] == "SEX":
                 if matches[2] == '':
-                    self.person.set_gender(RelLib.Person.unknown)
+                    self.person.set_gender(RelLib.Person.UNKNOWN)
                 elif matches[2][0] == "M":
-                    self.person.set_gender(RelLib.Person.male)
+                    self.person.set_gender(RelLib.Person.MALE)
                 else:
-                    self.person.set_gender(RelLib.Person.female)
+                    self.person.set_gender(RelLib.Person.FEMALE)
             elif matches[1] in [ "BAPL", "ENDL", "SLGC" ]:
                 lds_ord = RelLib.LdsOrd()
                 if matches[1] == "BAPL":
