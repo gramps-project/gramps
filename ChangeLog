@@ -1,3 +1,10 @@
+2005-01-11 Eero Tamminen <eerot@sf>
+	* src/plugins/StatisticsChart.py: remove localization from command
+	  line options help and put it back to dialog additions. Have
+	  options in code in same order as in the GUI. Alias
+	  options_class.handler.options_dict for more readable code.
+	  Fix sort and gender option parsing.
+
 2005-01-11 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsGconfKeys.py (get_event_id_prefix): Typo.
 	* src/GrampsIniKeys.py (get_event_id_prefix): Typo.
