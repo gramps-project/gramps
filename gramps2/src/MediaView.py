@@ -111,6 +111,11 @@ class MediaView:
         self.list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
                                 t,gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE)
 
+
+        self.list.connect("drag_data_received", self.on_drag_data_received)
+        self.list.connect("drag_data_get", self.on_drag_data_get)
+        self.list.connect("drag_begin", self.on_drag_begin)
+
         self.update = update
         self.list.connect('button-press-event',self.on_button_press_event)
         self.selection.connect('changed',self.on_select_row)
@@ -275,12 +280,26 @@ class MediaView:
                 if o.getReference() == mobj:
                     return 1
         return 0
-    
+
+    def on_drag_begin(self,obj,context):
+        store,iter = self.selection.get_selected()
+        if not iter:
+            return
+        if (const.dnd_images):
+            object = self.db.getObject(store.get_value(iter,1))
+            mtype = object.getMimeType()
+            name = Utils.thumb_path(self.db.getSavePath(),object)
+            pix = gtk.gdk.pixbuf_new_from_file(name)
+            context.set_icon_pixbuf(pix,0,0)
+
     def on_drag_data_get(self,w, context, selection_data, info, time):
         if info == 1:
             return
-        d = w.get_row_data(w.focus_row)
-        id = d.getId()
+
+        store,iter = self.selection.get_selected()
+        if not iter:
+            return
+        id = store.get_value(iter,1)
         selection_data.set(selection_data.target, 8, id)	
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
@@ -298,7 +317,6 @@ class MediaView:
                 photo.setDescription(description)
                 self.db.addObject(photo)
                 Utils.modified()
-                w.drag_finish(context, 1, 0, time)
                 self.load_media()
                 if GrampsCfg.mediaref == 0:
                     name = RelImage.import_media_object(name,
@@ -336,12 +354,9 @@ class MediaView:
                         photo.setPath(name)
                 except:
                     photo.setPath(tfile)
-                    w.drag_finish(context, 1, 0, time)
                     return
                 Utils.modified()
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,None)
-            else:
-                w.drag_finish(context, 0, 0, time)
 
     
