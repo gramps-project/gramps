@@ -1489,12 +1489,14 @@ class Person(SourceNote):
     def get_lds_sealing(self):
         return self.lds_seal
 
-    def probably_alive(self):
+    def probably_alive(self,db):
         """Returns true if the person may be alive."""
-        if not self.death.is_empty ():
+        if self.death_id:
             return 0
-        if self.birth.get_date() != "":
-            return not_too_old(self.birth.get_date_object().get_start_date())
+        if self.birth_id:
+            birth = db.find_event_from_id(self.birth_id)
+            if birth.get_date() != "":
+                return not_too_old(birth.get_date_object().get_start_date())
 
         # Neither birth nor death events are available.  Try looking
         # for descendants that were born more than a lifespan ago.
@@ -1503,20 +1505,26 @@ class Person(SourceNote):
         max_generation = 60
         max_age_difference = 60
         def descendants_too_old (person, years):
-            for family in person.get_family_id_list():
-                for child in family.get_child_id_list():
-                    if child.birth.get_date () != "":
-                        d = SingleDate (child.birth.get_date_object ().
+            for family_id in person.get_family_id_list():
+                family = db.find_family_from_id(family_id)
+                for child_id in family.get_child_id_list():
+                    child = db.find_person_from_id(child_id)
+                    if child.birth_id:
+                        child_birth = db.find_event_from_id(child.birth_id)
+                        if child_birth.get_date () != "":
+                            d = SingleDate (child_birth.get_date_object ().
                                         get_start_date ())
-                        d.setYear (d.getYear () - years)
-                        if not not_too_old (d):
-                            return 1
+                            d.setYear (d.getYear () - years)
+                            if not not_too_old (d):
+                                return 1
 
-                    if child.death.get_date () != "":
-                        d = SingleDate (child.death.get_date_object ().
+                    if child.death_id:
+                        child_death = db.find_event_from_id(child.death_id)
+                        if child_death.get_date () != "":
+                            d = SingleDate (child_death.get_date_object ().
                                         get_start_date ())
-                        if not not_too_old (d):
-                            return 1
+                            if not not_too_old (d):
+                                return 1
 
                     if descendants_too_old (child, years + min_generation):
                         return 1
@@ -1526,51 +1534,63 @@ class Person(SourceNote):
 
         # What about their parents?
         def parents_too_old (person, age_difference):
-            family = person.get_main_parents_family_id ()
-            if family:
-                for parent in [family.get_father_id (), family.get_mother_id ()]:
-                    if not parent:
+            family_id = person.get_main_parents_family_id ()
+            if family_id:
+                family = db.find_family_from_id(family_id)
+                for parent_id in [family.get_father_id (), family.get_mother_id ()]:
+                    if not parent_id:
                         continue
 
-                    if parent.birth.get_date () != "":
-                        d = SingleDate (parent.birth.get_date_object ().
+                    parent = db.find_person_from_id(parent_id)
+                    if parent.birth_id:
+                        parent_birth = db.find_event_from_id(parent.birth_id)
+                        if parent_birth.get_date () != "":
+                            d = SingleDate (parent.birth.get_date_object ().
                                         get_start_date ())
-                        d.setYear (d.getYear () + max_generation +
+                            d.setYear (d.getYear () + max_generation +
                                    age_difference)
-                        if not not_too_old (d):
-                            return 1
+                            if not not_too_old (d):
+                                return 1
 
-                    if parent.death.get_date () != "":
-                        d = SingleDate (parent.death.get_date_object ().
+                    if parent.death_id:
+                        parent_death = db.find_event_from_id(parent.death_id)
+                        if parent_death.get_date () != "":
+                            d = SingleDate (parent.death.get_date_object ().
                                         get_start_date ())
-                        d.setYear (d.getYear () + age_difference)
-                        if not not_too_old (d):
-                            return 1
+                            d.setYear (d.getYear () + age_difference)
+                            if not not_too_old (d):
+                                return 1
 
         if parents_too_old (self, 0):
             return 0
 
         # As a last resort, trying seeing if their spouse's age gives
         # any clue.
-        for family in self.get_family_id_list ():
-            for spouse in [family.get_father_id (), family.get_mother_id ()]:
-                if not spouse:
+        for family_id in self.get_family_id_list ():
+            family = db.find_family_from_id(family_id)
+            for spouse_id in [family.get_father_id (), family.get_mother_id ()]:
+                if not spouse_id:
                     continue
-                if spouse == self:
+                if spouse_id == self.id:
                     continue
-                if spouse.birth.get_date () != "":
-                    d = SingleDate (spouse.birth.get_date_object().
+                spouse = db.find_person_from_id(spouse_id)
+                if spouse.birth_id:
+                    spouse_birth = db.find_event_from_id(spouse.birth_id)
+                    if spouse_birth.get_date () != "":
+                        d = SingleDate (spouse.birth.get_date_object().
                                     get_start_date ())
-                    d.setYear (d.getYear () + max_age_difference)
-                    if not not_too_old (d):
-                        return 0
+                        d.setYear (d.getYear () + max_age_difference)
+                        if not not_too_old (d):
+                            return 0
 
-                if spouse.death.get_date () != "":
-                    d = SingleDate (spouse.birth.get_date_object().
+                if spouse.death_id:
+                    spouse_death = db.find_event_from_id(spouse.death_id)
+                    if spouse_death.get_date () != "":
+                        d = SingleDate (spouse.birth.get_date_object().
                                     get_start_date ())
-                    d.setYear (d.getYear () - min_generation)
-                    if not not_too_old (d):
-                        return 0
+                        d.setYear (d.getYear () - min_generation)
+                        if not not_too_old (d):
+                            return 0
 
                 if parents_too_old (spouse, max_age_difference):
                     return 0

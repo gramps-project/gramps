@@ -72,14 +72,6 @@ _hline = " "    # Everything is underlined, so use blank
 
 #------------------------------------------------------------------------
 #
-# 
-#
-#------------------------------------------------------------------------
-def by_date(a,b):
-    return Date.compare_dates(a.get_date_object(),b.get_date_object())
-
-#------------------------------------------------------------------------
-#
 # HtmlLinkDoc
 #
 #------------------------------------------------------------------------
@@ -119,7 +111,7 @@ class IndividualPage:
         self.id_link = idlink
         self.list = map
         self.private = private
-        self.alive = person.probably_alive() and restrict
+        self.alive = person.probably_alive(db) and restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.usecomments = not uc
         self.dir = dir_name
@@ -134,6 +126,18 @@ class IndividualPage:
         self.doc.set_title(_("Summary of %s") % name)
         self.doc.fix_title()
         
+    #------------------------------------------------------------------------
+    #
+    # 
+    #
+    #------------------------------------------------------------------------
+    def by_date(self,a_id,b_id):
+        if not (a_id and b_id):
+            return 0
+        a = self.db.find_event_from_id(a_id)
+        b = self.db.find_event_from_id(b_id)
+        return Date.compare_dates(a.get_date_object(),b.get_date_object())
+
     #--------------------------------------------------------------------
     #
     # 
@@ -490,10 +494,13 @@ class IndividualPage:
             return
         count = 0
         
-        event_list = [ self.person.get_birth(), self.person.get_death() ]
-        event_list = event_list + self.person.get_event_list()
-        event_list.sort(by_date)
-        for event in event_list:
+        event_id_list = [ self.person.get_birth_id(), self.person.get_death_id() ]
+        event_id_list = event_id_list + self.person.get_event_list()
+        event_id_list.sort(self.by_date)
+        for event_id in event_id_list:
+            if not event_id:
+                continue
+            event = self.db.find_event_from_id(event_id)
             if event.get_privacy():
                 continue
             name = _(event.get_name())
@@ -629,9 +636,11 @@ class IndividualPage:
             self.doc.end_row()
             
             if not self.alive:
-                for event in family.get_event_list():
-                    if event.get_privacy() == 0:
-                        self.write_fam_fact(event)
+                for event_id in family.get_event_list():
+                    if event_id:
+                        event = self.db.find_event_from_id(event_id)
+                        if event.get_privacy() == 0:
+                            self.write_fam_fact(event)
 
             child_list = family.get_child_id_list()
             if len(child_list) > 0:
