@@ -40,7 +40,7 @@
         </thead>
         <tbody> 
         <row valign="top"> 
-          <entry><para><keycap>Enter<keycap></para></entry> 
+          <entry><para><keycap>Enter</keycap></para></entry> 
           <entry><para>Вызвать диалог <guilabel>Правка Лица</guilabel> 
           с выбанным лицом.</para></entry> 
         </row>  
