@@ -191,7 +191,7 @@ def get_relationship(orig_person,other_person):
     rank = 9999999
 
     if orig_person == None:
-        return "No home person has been defined"
+        return "No Home Person has been defined"
 
     firstName = orig_person.getPrimaryName().getRegularName()
     secondName = other_person.getPrimaryName().getRegularName()

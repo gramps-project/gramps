@@ -764,9 +764,8 @@ class Gramps:
         elif not os.path.isdir(filename):
             self.displayError(_("Database could not be opened"),
                               _("%s is not a directory.") % filename + ' ' + \
-                              _("The file you should attempt to open should be "
-                                "a directory that contains a data.gramps file or "
-                                "a gramps.zodb file."))
+                              _("You should select a directory that contains a "
+                                "data.gramps file or a gramps.zodb file."))
             return
 
         if self.load_database(filename) == 1:

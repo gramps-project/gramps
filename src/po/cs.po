@@ -2828,7 +2828,7 @@ msgid "No Parents"
 msgstr "Žádní rodiče"
 
 #: gramps_main.py:1896
-msgid "No default/home person has been set"
+msgid "No default/Home Person has been set"
 msgstr "Nebyla nastavena implicitní/rodinná osoba"
 
 #: gramps_main.py:1901
@@ -2836,7 +2836,7 @@ msgid "%s has been bookmarked"
 msgstr "%s byl vložen do záložek"
 
 #: gramps_main.py:1914
-msgid "Do you wish to set %s as the home person?"
+msgid "Do you wish to set %s as the Home Person?"
 msgstr "Chcete nastavit %s jako implicitní osobu?"
 
 #: gramps_main.py:1916

@@ -2769,7 +2769,7 @@ msgid "Loading %s..."
 msgstr "Carregando %s..."
 
 #: gramps_main.py:1347
-msgid "No default/home person has been set"
+msgid "No default/Home Person has been set"
 msgstr "Não se estabeleceu uma pessoa inicial"
 
 #: gramps_main.py:1353
@@ -2782,7 +2782,7 @@ msgstr ""
 "O marcador não pode ser estabelecido porque nehum deles foi selecionado"
 
 #: gramps_main.py:1368
-msgid "Do you wish to set %s as the home person?"
+msgid "Do you wish to set %s as the Home Person?"
 msgstr "Deseja marcar %s como a pessoa inicial?"
 
 #: gramps_main.py:1370

@@ -358,7 +358,7 @@ msgid "unknown"
 msgstr "onbekend"
 
 #: EditPerson.py:809 EditPerson.py:826
-msgid "Save Changes to %s?"
+msgid "Save changes to %s?"
 msgstr "Wijzigingen aan %s opslaan?"
 
 #: EditPerson.py:810 EditPerson.py:827 Marriage.py:404
@@ -2820,7 +2820,7 @@ msgstr "Opslaan"
 
 # Beginpersoon?
 #: gramps.glade:558
-msgid "Make the home person the active person"
+msgid "Make the Home Person the active person"
 msgstr ""
 
 # Begin?
@@ -3274,11 +3274,11 @@ msgid "Loading %s..."
 msgstr "Laden van %s..."
 
 #: gramps_main.py:1406
-msgid "No home person has been set."
+msgid "No Home Person has been set."
 msgstr ""
 
 #: gramps_main.py:1407
-msgid "The home person may be set from the Settings menu."
+msgid "The Home Person may be set from the Settings menu."
 msgstr ""
 
 #: gramps_main.py:1413
@@ -3300,7 +3300,7 @@ msgstr ""
 #: gramps_main.py:1430
 msgid ""
 "Once a Home Person is defined, pressing the Home button on the toolbar will "
-"make the home person the active person."
+"make the Home Person the active person."
 msgstr ""
 
 #: gramps_main.py:1433
