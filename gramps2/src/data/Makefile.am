@@ -14,14 +14,16 @@ dist_pkgdata_DATA = \
 	gramps.desktop \
 	gramps.svg \
 	gramps.keys \
-	gramps.mime
+	gramps.mime \
+	gramps.schemas
 
 EXTRA_DIST = $(dist_pkgdata_DATA)
 
 install-schemas:
-	$(INSTALL_DATA) gramps.schemas $(DESTDIR)/etc/gconf/schemas
+	$(mkdir_p) $(DESTDIR)$(sysconfdir)/gconf/schemas
+	$(INSTALL_DATA) $(top_srcdir)/src/data/gramps.schemas $(DESTDIR)$(sysconfdir)/gconf/schemas
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool-2 --makefile-install-rule gramps.schemas
+		gconftool-2 --makefile-install-rule $(top_srcdir)/src/data/gramps.schemas
 	pkill -HUP gconfd
 
 install-data-local:    install-schemas
@@ -44,7 +46,7 @@ uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.mime
 	-rm $(DESTDIR)$(prefix)/share/application-registry/gramps.applications
 	-rm $(DESTDIR)$(prefix)/share/mime/packages/gramps.xml
-	-rm $(DESTDIR)/etc/gconf/schemas/gramps.schemas
+	-rm $(DESTDIR)$(sysconfdir)/gconf/schemas/gramps.schemas
 	update-mime-database $(DESTDIR)$(prefix)/share/mime
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
-		gconftool-2 --makefile-uninstall-rule gramps.schemas
+		gconftool-2 --makefile-uninstall-rule $(top_srcdir)/src/data/gramps.schemas
