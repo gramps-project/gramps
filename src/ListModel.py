@@ -41,6 +41,7 @@ class ListModel:
         self.count = 0
         self.cid = None
         self.cids = []
+        self.objects = []
         
         cnum = 0
         for name in dlist:
@@ -48,6 +49,10 @@ class ListModel:
             renderer.set_fixed_height_from_font(1)
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
             column.set_min_width(name[2])
+
+            self.objects.append(renderer)
+            self.objects.append(column)
+            
             if name[0] == '':
                 column.set_visible(gtk.FALSE)
             else:
@@ -201,6 +206,7 @@ class ListModel:
         self.model.set_value(iter,col,info)
         if select:
             self.sel_iter = iter
+            self.selection.select_iter(self.sel_iter)
         return iter
 
     def set(self,iter,data,info=None,select=0):
@@ -234,3 +240,7 @@ class ListModel:
             self.double_click(obj)
             return 1
         return 0
+
+    def cleanup(self):
+        for obj in self.objects:
+            del obj

@@ -23,7 +23,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 import getopt
 
@@ -168,9 +167,9 @@ class Gramps:
                         if format not in [ 'gedcom', 'gramps', 'gramps-pkg' ]:
                             print "Invalid format:  %s" % format
                             os._exit(1)
-                    elif string.upper(fname[-3:]) == "GED":
+                    elif fname[-3:].upper()== "GED":
                         format = 'gedcom'
-                    elif string.upper(fname[-3:]) == "TGZ":
+                    elif fname[-3:].upper() == "TGZ":
                         format = 'gramps-pkg'
                     elif os.path.isdir(fname):
                         format = 'gramps'
@@ -185,9 +184,9 @@ class Gramps:
                         if outformat not in [ 'gedcom', 'gramps', 'gramps-pkg', 'iso' ]:
                             print "Invalid format:  %s" % outformat
                             os._exit(1)
-                    elif string.upper(outfname[-3:]) == "GED":
+                    elif outfname[-3:].upper() == "GED":
                         outformat = 'gedcom'
-                    elif string.upper(outfname[-3:]) == "TGZ":
+                    elif outfname[-3:].upper() == "TGZ":
                         outformat = 'gramps-pkg'
                     elif not os.path.isfile(outfname):
                         if not os.path.isdir(outfname):
@@ -1968,6 +1967,10 @@ class Gramps:
         """Call the export plugin, with the active person and database"""
         if self.active_person:
             plugin_function(self.db,self.active_person)
+        else:
+            ErrorDialog(_('A person must be selected to export'),
+                        _('Exporting requires that an active person be selected. '
+                          'Please select a person and try again.'))
 
     def import_callback(self,obj,plugin_function):
         """Call the import plugin"""
