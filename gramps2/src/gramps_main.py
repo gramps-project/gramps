@@ -922,8 +922,8 @@ class Gramps:
         home = self.db.get_default_person()
         if home:
             self.change_active_person(home)
-            self.goto_active_person()
             self.update_display(0)
+            self.goto_active_person()
         self.full_update()
             
     def full_update(self):
@@ -1587,16 +1587,16 @@ class Gramps:
         person = self.db.get_person_from_handle(person_handle)
         try:
             self.change_active_person(person)
-            self.goto_active_person()
             self.update_display(0)
+            self.goto_active_person()
         except TypeError:
             WarningDialog(_("Could not go to a Person"),
                           _("Either stale bookmark or broken history "
                             "caused by IDs reorder."))
             self.clear_history()
             self.change_active_person(old_person)
-            self.goto_active_person()
             self.update_display(0)
+            self.goto_active_person()
     
     def on_default_person_activate(self,obj):
         if self.active_person:

@@ -1,4 +1,5 @@
 2004-11-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: fix goto_active_person
 	* src/DateParser.py: Handle month=12 in gregorian_valid
 
 2004-11-09 Alex Roitman  <shura@alex.neuro.umn.edu>
