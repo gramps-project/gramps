@@ -464,6 +464,7 @@ def build_columns(tree,list):
     cnum = 0
     for name in list:
         renderer = gtk.CellRendererText()
+        renderer.set_fixed_height_from_font(1)
         column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
         column.set_min_width(name[1])
         if name[2] >= 0:

@@ -273,6 +273,7 @@ class Gramps:
         """Initializes the GLADE interface, and gets references to the
         widgets that it will need.
         """
+
         self.gtop = gtk.glade.XML(const.gladeFile, "gramps")
         self.topWindow   = self.gtop.get_widget("gramps")
 
@@ -1254,6 +1255,7 @@ class Gramps:
         self.topWindow.set_title("%s - GRAMPS" % name)
         self.status_text("")
         self.statusbar.set_progress_percentage(0.0)
+        self.statusbar.set_pulse_step(0.02)
         if os.path.exists(autosave):
             try:
                 os.remove(autosave)
@@ -1570,11 +1572,8 @@ class Gramps:
             self.status_text(_('Updating display - this may take a few seconds...'))
         else:
             self.status_text(_('Updating display...'))
-        if self.place_loaded == 0:
-            self.place_view.load_places()
-            self.place_loaded = 1
-        self.modify_statusbar()
         self.views.set_current_page(4)
+        self.modify_statusbar()
 
     def on_media_activate(self,obj):
         """Switches to the media view"""

@@ -45,6 +45,7 @@ class ListModel:
         cnum = 0
         for name in dlist:
             renderer = gtk.CellRendererText()
+            renderer.set_fixed_height_from_font(1)
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
             column.set_min_width(name[2])
             if name[0] == '':
