@@ -23,10 +23,12 @@ import libglade
 import gnome.config
 import utils
 
+_StartupEntry = "/gramps/config/startup"
+
 def need_to_run():
-    if gnome.config.get_string("/gramps/config/startup") == None:
+    if gnome.config.get_string(_StartupEntry) == None:
         return 1
-    val  = gnome.config.get_int("/gramps/config/startup") 
+    val  = gnome.config.get_int(_StartupEntry) 
     if val < const.startup:
         return 1
     return 0
@@ -74,10 +76,11 @@ class StartupDialog:
 
         lds = self.druid.get_widget("enable_lds").get_active()
         gnome.config.set_int("/gramps/config/UseLDS",lds)
+        gnome.config.set_int(_StartupEntry,const.startup)
         gnome.config.sync()
         utils.destroy_passed_object(obj)
 
     def on_cancel_clicked(self,obj):
-        gnome.config.set_int("/gramps/config/startup",const.startup)
+        gnome.config.set_int(_StartupEntry,const.startup)
         gnome.config.sync()
         utils.destroy_passed_object(obj)
