@@ -539,7 +539,7 @@ class XmlWriter:
         source = self.db.get_source_from_handle(source_ref.get_base_handle())
         if source:
             p = source_ref.get_page()
-            c = source_ref.get_comments()
+            c = source_ref.get_note()
             t = source_ref.get_text()
             d = source_ref.get_date_object()
             q = source_ref.get_confidence_level()

@@ -624,7 +624,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     ind = len (self.sources)
 
                 citation += "[%d" % ind
-                comments = ref.get_comments ()
+                comments = ref.get_note ()
                 if comments and comments.find ('\n') == -1:
                     citation += " - %s" % comments.rstrip ('.')
 

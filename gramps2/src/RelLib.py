@@ -298,7 +298,92 @@ class PrimaryObject(BaseObject):
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         pass
 
-class SourceNote(BaseObject):
+class NoteBase:
+    """
+    Base class for storing notes.
+    """
+    def __init__(self,source=None):
+        """
+        Create a new NoteBase, copying from source if not None
+        
+        @param source: Object used to initialize the new object
+        @type source: NoteBase
+        """
+        
+        if source and source.note:
+            self.note = Note(source.note.get())
+        else:
+            self.note = None
+
+    def set_note(self,text):
+        """
+        Assigns the specified text to the associated note.
+
+        @param text: Text of the note
+        @type text: str
+        """
+        if self.note == None:
+            self.note = Note()
+        self.note.set(text)
+
+    def get_note(self):
+        """
+        Returns the text of the current note.
+
+        @returns: the text of the current note
+        @rtype: str
+        """
+        if self.note == None:
+            return ""
+        else:
+            return self.note.get() 
+
+    def set_note_format(self,val):
+        """
+        Sets the note's format to the given value. The format indicates
+        whether the text is flowed (wrapped) or preformatted.
+
+        @param val: True indicates the text is flowed
+        @type val: bool
+        """
+        if self.note:
+            self.note.set_format(val)
+
+    def get_note_format(self):
+        """
+        Returns the current note's format
+
+        @returns: True indicates that the note should be flowed (wrapped)
+        @rtype: bool
+        """
+        if self.note == None:
+            return False
+        else:
+            return self.note.get_format()
+
+    def set_note_object(self,note_obj):
+        """
+        Replaces the current L{Note} object associated with the object
+
+        @param note_obj: New L{Note} object to be assigned
+        @type note_obj: L{Note}
+        """
+        self.note = note_obj
+
+    def get_note_object(self):
+        """
+        Returns the L{Note} instance associated with the object.
+
+        @returns: L{Note} object assocated with the object
+        @rtype: L{Note}
+        """
+        return self.note
+
+    def unique_note(self):
+        """Creates a unique instance of the current note"""
+        self.note = Note(self.note.get())
+
+class SourceNote(BaseObject,NoteBase):
     """
     Base class for storing source references and notes
     """
@@ -311,13 +396,11 @@ class SourceNote(BaseObject):
         @type source: SourceNote
         """
         
-        self.source_list = []
-        self.note = None
-
+        NoteBase.__init__(self,source)
         if source:
             self.source_list = [SourceRef(sref) for sref in source.source_list]
-            if source.note:
-                self.note = Note(source.note.get())
+        else:
+            self.source_list = []
 
     def add_source_reference(self,src_ref) :
         """
@@ -410,74 +493,6 @@ class SourceNote(BaseObject):
         @type src_ref_list: list of L{SourceRef} instances
         """
         self.source_list = src_ref_list
-
-    def set_note(self,text):
-        """
-        Assigns the specified text to the associated note.
-
-        @param text: Text of the note
-        @type text: str
-        """
-        if self.note == None:
-            self.note = Note()
-        self.note.set(text)
-
-    def get_note(self):
-        """
-        Returns the text of the current note.
-
-        @returns: the text of the current note
-        @rtype: str
-        """
-        if self.note == None:
-            return ""
-        else:
-            return self.note.get() 
-
-    def set_note_format(self,val):
-        """
-        Sets the note's format to the given value. The format indicates
-        whether the text is flowed (wrapped) or preformatted.
-
-        @param val: True indicates the text is flowed
-        @type val: bool
-        """
-        if self.note:
-            self.note.set_format(val)
-
-    def get_note_format(self):
-        """
-        Returns the current note's format
-
-        @returns: True indicates that the note should be flowed (wrapped)
-        @rtype: bool
-        """
-        if self.note == None:
-            return False
-        else:
-            return self.note.get_format()
-
-    def set_note_object(self,note_obj):
-        """
-        Replaces the current L{Note} object associated with the object
-
-        @param note_obj: New L{Note} object to be assigned
-        @type note_obj: L{Note}
-        """
-        self.note = note_obj
-
-    def get_note_object(self):
-        """
-        Returns the L{Note} instance associated with the object.
-
-        @returns: L{Note} object assocated with the object
-        @rtype: L{Note}
-        """
-        return self.note
-
-    def unique_note(self):
-        """Creates a unique instance of the current note"""
-        self.note = Note(self.note.get())
 
 class MediaBase:
     """
@@ -752,6 +767,42 @@ class AttributeBase:
         @type attribute_list: list
         """
         self.attribute_list = attribute_list
+
+class PlaceBase:
+    """
+    Base class for place-aware objects.
+    """
+    def __init__(self,source=None):
+        """
+        Initialize a PlaceBase. If the source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: PlaceBase
+        """
+        if source:
+            self.place = source.place
+        else:
+            self.place = ""
+
+    def set_place_handle(self,place_handle):
+        """
+        Sets the database handle for L{Place} associated with the object.
+
+        @param place_handle: L{Place} database handle
+        @type place_handle: str
+        """
+        self.place = place_handle
+
+    def get_place_handle(self):
+        """
+        Returns the database handle of the L{Place} assocated with
+        the Event.
+
+        @returns: L{Place} database handle
+        @rtype: str
+        """
+        return self.place 
 
 class PrivateSourceNote(SourceNote,PrivacyBase):
     """
@@ -1873,7 +1924,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         """
         self.event_list = event_list
 
-class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase):
+class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase,PlaceBase):
     """
     Introduction
     ============
@@ -1897,9 +1948,9 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase):
         PrivateSourceNote.__init__(self,source)
         MediaBase.__init__(self,source)
         DateBase.__init__(self,source)
+        PlaceBase.__init__(self,source)
 
         if source:
-            self.place = source.place
             self.description = source.description
             self.name = source.name
             self.cause = source.cause
@@ -1908,7 +1959,6 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase):
             else:
                 self.witness = None
         else:
-            self.place = ""
             self.description = ""
             self.name = ""
             self.cause = ""
@@ -2115,26 +2165,6 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase):
         @rtype: str
         """
         return self.name
-
-    def set_place_handle(self,place_handle):
-        """
-        Sets the database handle for L{Place} associated with the
-        Event.
-
-        @param place_handle: L{Place} database handle
-        @type place_handle: str
-        """
-        self.place = place_handle
-
-    def get_place_handle(self):
-        """
-        Returns the database handle of the L{Place} assocated with
-        the Event.
-
-        @returns: L{Place} database handle
-        @rtype: str
-        """
-        return self.place 
 
     def set_cause(self,cause):
         """
@@ -2591,13 +2621,14 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """returns the description of the image"""
         return self.desc
 
-class Source(PrimaryObject,MediaBase):
+class Source(PrimaryObject,MediaBase,NoteBase):
     """A record of a source of information"""
     
     def __init__(self):
         """creates a new Source instance"""
         PrimaryObject.__init__(self)
         MediaBase.__init__(self)
+        NoteBase.__init__(self)
         self.title = ""
         self.author = ""
         self.pubinfo = ""
@@ -2720,34 +2751,6 @@ class Source(PrimaryObject,MediaBase):
         """
         return self.title
 
-    def set_note(self,text):
-        """sets the text of the note attached to the Source"""
-        self.note.set(text)
-
-    def get_note(self):
-        """returns the text of the note attached to the Source"""
-        return self.note.get()
-
-    def set_note_format(self,val):
-        """Set the note's format to the given value"""
-        self.note.set_format(val)
-
-    def get_note_format(self):
-        """Return the current note's format"""
-        return self.note.get_format()
-
-    def set_note_object(self,obj):
-        """sets the Note instance attached to the Source"""
-        self.note = obj
-
-    def get_note_object(self):
-        """returns the Note instance attached to the Source"""
-        return self.note
-
-    def unique_note(self):
-        """Creates a unique instance of the current note"""
-        self.note = Note(self.note.get())
-
     def set_author(self,author):
         """sets the author of the Source"""
         self.author = author
@@ -2772,7 +2775,7 @@ class Source(PrimaryObject,MediaBase):
         """returns the title abbreviation of the Source"""
         return self.abbrev
 
-class LdsOrd(SourceNote,DateBase):
+class LdsOrd(SourceNote,DateBase,PlaceBase):
     """
     Class that contains information about LDS Ordinances. LDS
     ordinances are similar to events, but have very specific additional
@@ -2784,17 +2787,16 @@ class LdsOrd(SourceNote,DateBase):
         """Creates a LDS Ordinance instance"""
         SourceNote.__init__(self,source)
         DateBase.__init__(self,source)
+        PlaceBase.__init__(self,source)
         
         if source:
             self.famc = source.famc
             self.temple = source.temple
             self.status = source.status
-            self.place = source.place
         else:
             self.famc = None
             self.temple = ""
             self.status = 0
-            self.place = None
 
     def get_text_data_list(self):
         """
@@ -2816,14 +2818,6 @@ class LdsOrd(SourceNote,DateBase):
         if self.note:
             check_list.append(self.note)
         return check_list
-
-    def set_place_handle(self,place):
-        """sets the Place database handle of the ordinance"""
-        self.place = place
-
-    def get_place_handle(self):
-        """returns the Place handle of the ordinance"""
-        return self.place 
 
     def set_family_handle(self,family):
         """Sets the Family database handle associated with the LDS ordinance"""
@@ -3707,7 +3701,7 @@ class Witness(BaseObject,PrivacyBase):
     def get_comment(self):
         return self.comment
 
-class SourceRef(BaseObject,DateBase,PrivacyBase):
+class SourceRef(BaseObject,DateBase,PrivacyBase,NoteBase):
     """Source reference, containing detailed information about how a
     referenced source relates to it"""
     
@@ -3715,17 +3709,17 @@ class SourceRef(BaseObject,DateBase,PrivacyBase):
         """creates a new SourceRef, copying from the source if present"""
         DateBase.__init__(self,source)
         PrivacyBase.__init__(self,source)
+        NoteBase.__init__(self,source)
         if source:
             self.confidence = source.confidence
             self.ref = source.ref
             self.page = source.page
-            self.comments = Note(source.comments.get())
             self.text = source.text
         else:
             self.confidence = CONF_NORMAL
             self.ref = None
             self.page = ""
-            self.comments = Note()
+            self.note = Note()
             self.text = ""
 
     def get_text_data_list(self):
@@ -3744,7 +3738,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase):
         @return: Returns the list of child objects that may carry textual data.
         @rtype: list
         """
-        return [self.comments]
+        return [self.note]
 
     def set_confidence_level(self,val):
         """Sets the confidence level"""
@@ -3778,18 +3772,6 @@ class SourceRef(BaseObject,DateBase,PrivacyBase):
         """returns the text related to the SourceRef"""
         return self.text
 
-    def set_note_object(self,note):
-        """Change the Note instance to obj"""
-        self.comments = note
-
-    def set_comments(self,comments):
-        """sets the comments about the SourceRef"""
-        self.comments.set(comments)
-
-    def get_comments(self):
-        """returns the comments about the SourceRef"""
-        return self.comments.get()
-
     def are_equal(self,other):
         """returns True if the passed SourceRef is equal to the current"""
         if self.ref and other.ref:
@@ -3802,7 +3784,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase):
                 return False
             if self.get_text() != other.get_text():
                 return False
-            if self.get_comments() != other.get_comments():
+            if self.get_note() != other.get_note():
                 return False
             if self.confidence != other.confidence:
                 return False
@@ -3811,10 +3793,6 @@ class SourceRef(BaseObject,DateBase,PrivacyBase):
             return True
         else:
             return False
-        
-    def unique_note(self):
-        """Creates a unique instance of the current note"""
-        self.comments = Note(self.comments.get())
 
 class GenderStats:
     """

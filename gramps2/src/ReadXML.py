@@ -1291,7 +1291,7 @@ class GrampsParser:
             note = fix_spaces(self.scomments_list)
         else:
             note = tag
-        self.source_ref.set_comments(note)
+        self.source_ref.set_note(note)
 
     def stop_last(self,tag):
         if self.name:

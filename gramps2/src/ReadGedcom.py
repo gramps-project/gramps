@@ -883,7 +883,7 @@ class GedcomParser:
         return self.parse_note_base(matches,obj,level,old_note,obj.set_note)
 
     def parse_comment(self,matches,obj,level,old_note):
-        return self.parse_note_base(matches,obj,level,old_note,obj.set_comments)
+        return self.parse_note_base(matches,obj,level,old_note,obj.set_note)
 
     def parse_individual(self):
         name_cnt = 0

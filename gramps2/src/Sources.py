@@ -496,7 +496,7 @@ class SourceEditor:
             text.get_buffer().set_text(self.source_ref.get_text())
 
             scom = self.get_widget("scomment")
-            scom.get_buffer().set_text(self.source_ref.get_comments())
+            scom.get_buffer().set_text(self.source_ref.get_note())
             src = self.db.get_source_from_handle(self.source_ref.get_base_handle())
             self.active_source = src
             if src:
@@ -557,7 +557,7 @@ class SourceEditor:
         self.source_ref.set_page(page)
         self.source_ref.set_date_object(self.date_obj)
         self.source_ref.set_text(text)
-        self.source_ref.set_comments(comments)
+        self.source_ref.set_note(comments)
         self.source_ref.set_confidence_level(conf)
         self.source_ref.set_privacy(self.private.get_active())
 

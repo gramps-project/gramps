@@ -421,7 +421,7 @@ class ScratchPadWindow:
             _("Title"),escape(base.get_title()),
             _("Page"), escape(srcref.get_page()),
             _("Text"), escape(srcref.get_text()),
-            _("Comment"), escape(srcref.get_comments()))
+            _("Comment"), escape(srcref.get_note()))
 
         return s
 

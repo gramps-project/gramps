@@ -194,7 +194,7 @@ class FtmDescendantReport(Report.Report):
                 self.doc.write_text(' ')
                 self.doc.write_text(item)
 
-            item = srcref.get_comments()
+            item = srcref.get_note()
             if item:
                 self.doc.write_text('; ')
                 self.doc.write_text(_('Comments:'))
