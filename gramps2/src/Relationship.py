@@ -282,17 +282,7 @@ class RelationshipCalculator:
         firstRel = -1
         secondRel = -1
 
-        length = len(common)
-    
-        if length == 1:
-            person_id = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
-        elif length == 2:
-            person_id = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
-        elif length > 2:
+        if common:
             person_id = common[0]
             secondRel = firstMap[person_id]
             firstRel = secondMap[person_id]
@@ -327,6 +317,7 @@ class RelationshipCalculator:
             else:
                 return (self.get_cousin(secondRel-1,firstRel-secondRel),common)
 
+
     def get_grandparents_string(self,orig_person,other_person):
         """
         returns a string representing the relationshp between the two people,
@@ -345,8 +336,11 @@ class RelationshipCalculator:
         if orig_person == other_person:
             return ('', [])
         
-        self.apply_filter(orig_person,0,firstList,firstMap)
-        self.apply_filter(other_person,0,secondList,secondMap)
+        try:
+            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
+            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
+        except RuntimeError,msg:
+            return (_("Relationship loop detected"),None)
     
         for person_id in firstList:
             if person_id in secondList:
@@ -360,17 +354,7 @@ class RelationshipCalculator:
         firstRel = -1
         secondRel = -1
 
-        length = len(common)
-    
-        if length == 1:
-            person_id = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
-        elif length == 2:
-            person_id = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
-        elif length > 2:
+        if common:
             person_id = common[0]
             secondRel = firstMap[person_id]
             firstRel = secondMap[person_id]
