@@ -63,6 +63,7 @@ import ListColors
 import Config
 import EditSource
 import EditPerson
+import EditPlace
 import Marriage
 
 #-------------------------------------------------------------------------
@@ -751,6 +752,7 @@ def new_database_response(val):
     person_list.clear()
     load_family()
     load_sources()
+    load_places()
     
 #-------------------------------------------------------------------------
 #
@@ -788,6 +790,7 @@ def full_update():
     apply_filter()
     load_family()
     load_sources()
+    load_places()
     load_tree()
 
 #-------------------------------------------------------------------------
@@ -860,7 +863,29 @@ def on_source_list_button_press_event(obj,event):
 #
 #
 #-------------------------------------------------------------------------
+def on_place_list_button_press_event(obj,event):
+    if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+        index = obj.get_data("i")
+        if index == -1:
+            return
+
+        place = obj.get_row_data(index)
+        EditPlace.EditPlace(place,database,update_place_after_edit)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_source_list_select_row(obj,a,b,c):
+    obj.set_data("i",a)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_place_list_select_row(obj,a,b,c):
     obj.set_data("i",a)
 
 #-------------------------------------------------------------------------
@@ -876,7 +901,23 @@ def on_add_source_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
+def on_add_place_clicked(obj):
+    EditPlace.EditPlace(Place(),database,new_place_after_edit)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_delete_source_clicked(obj):
+    pass
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_delete_place_clicked(obj):
     pass
 
 #-------------------------------------------------------------------------
@@ -892,6 +933,20 @@ def on_edit_source_clicked(obj):
     source = obj.get_row_data(index)
     EditSource.EditSource(source,database,update_source_after_edit)
 
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_edit_place_clicked(obj):
+    index = obj.get_data("i")
+    if index == -1:
+        return
+
+    place = obj.get_row_data(index)
+    EditPlace.EditPlace(place,database,update_place_after_edit)
+
 #-------------------------------------------------------------------------
 #
 #
@@ -906,7 +961,24 @@ def new_source_after_edit(source):
 #
 #
 #-------------------------------------------------------------------------
+def new_place_after_edit(place):
+    database.addPlace(place)
+    update_display(0)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def update_source_after_edit(source):
+    update_display(0)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def update_place_after_edit(source):
     update_display(0)
     
 #-------------------------------------------------------------------------
@@ -2786,10 +2858,15 @@ def main(arg):
         "on_edit_mother_clicked" : on_edit_mother_clicked,
         "on_exit_activate" : on_exit_activate,
         "on_add_source_clicked" : on_add_source_clicked,
+        "on_add_place_clicked" : on_add_place_clicked,
         "on_source_list_button_press_event" : on_source_list_button_press_event,
         "on_source_list_select_row": on_source_list_select_row,
+        "on_place_list_button_press_event" : on_place_list_button_press_event,
+        "on_place_list_select_row": on_place_list_select_row,
         "on_delete_source_clicked" : on_delete_source_clicked,
+#        "on_delete_place_clicked" : on_delete_place_clicked,
         "on_edit_source_clicked" : on_edit_source_clicked,
+        "on_edit_place_clicked" : on_edit_place_clicked,
         "delete_event" : delete_event,
         "on_open_activate" : on_open_activate
         })	

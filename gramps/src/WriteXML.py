@@ -478,15 +478,15 @@ def exportData(database, filename, callback):
                     for key in proplist.keys():
                         g.write(' %s="%s"' % (key,proplist[key]))
                 g.write("/>\n")
-                if len(place.getUrlList()) > 0:
-                    for url in place.getUrlList():
-                        g.write('      <url priv="%d" href="%s"' % \
-                                (url.getPrivacy(),url.get_path()))
-                        if url.get_description() != "":
-                            g.write(' description="' + url.get_description() + '"')
-                if place.getNote() != "":
-                    writeNote(g,"note",place.getNote(),3)
-                dump_source_ref(g,event.getSourceRef(),index+1)
+            if len(place.getUrlList()) > 0:
+                for url in place.getUrlList():
+                    g.write('      <url priv="%d" href="%s"' % \
+                            (url.getPrivacy(),url.get_path()))
+                    if url.get_description() != "":
+                        g.write(' description="' + url.get_description() + '"')
+            if place.getNote() != "":
+                writeNote(g,"note",place.getNote(),3)
+            dump_source_ref(g,event.getSourceRef(),3)
             g.write("    </placeobj>\n")
         g.write("  </places>\n")
 
