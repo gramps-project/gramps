@@ -83,13 +83,19 @@ class SourceView:
                 column.set_visible(gtk.TRUE)
             column.set_sort_column_id(title[1])
             column.set_min_width(title[2])
+            column.connect('clicked',self.on_click)
             self.list.append_column(column)
+
+        self.click_col = None
 
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING)
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
+
+    def on_click(self,column):
+        self.click_col = column
 
     def change_db(self,db):
         self.db = db
