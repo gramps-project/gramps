@@ -287,11 +287,11 @@ class FtmDescendantReport(Report.Report):
     def print_more_about(self,person):
 
         first = 1
-        ncount = 0
+        ncount = 1
         for name in person.getAlternateNames():
             if first:
                 self.doc.start_paragraph('SubEntry')
-                self.doc.write_text(_('More about %(person_name)s:') % { 'person_name' : name })
+                self.doc.write_text(_('More about %(person_name)s:') % { 'person_name' : person.getPrimaryName().getRegularName() })
                 self.doc.end_paragraph()
                 first = 0
             self.doc.start_paragraph('Details')
@@ -330,6 +330,7 @@ class FtmDescendantReport(Report.Report):
             else:
                 self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s') % {
                     'event_name' : event.getName(),
+                    'endnotes' : self.endnotes(event),
                     'place' : event.getPlaceName() })
             self.doc.end_paragraph()
 
@@ -1101,10 +1102,10 @@ class FtmDescendantReport(Report.Report):
                 elif father:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(father)s.") % {
-                            'father' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.getPrimaryName().getRegularName(), })
                     else:
                         self.doc.write_text(_("She is the daughter of %(father)s.") % {
-                            'father' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.getPrimaryName().getRegularName(), })
             self.doc.write_text(' ');
 
 

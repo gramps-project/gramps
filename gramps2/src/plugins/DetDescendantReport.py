@@ -499,7 +499,7 @@ class DetDescendantReport(Report):
                             (heshe, spouse, fulldate, place)
                 else:
                     if fulldate == "" and place == "":
-                        t= _("  %s married")
+                        t= _("  %s married") % heshe
                     elif fulldate == "" and place != "":
                         t= _("  %s married in %s") % (heshe, place)
                     elif fulldate != "" and place == "":
