@@ -30,6 +30,7 @@ import tempfile
 import string
 import zipfile
 import time
+import locale
 from math import pi, cos, sin, fabs
 
 #-------------------------------------------------------------------------
@@ -97,6 +98,14 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             raise Errors.ReportError(_("Could not create %s") % self.content_xml)
 
     def init(self):
+
+        current_locale = locale.getlocale()
+        self.lang = current_locale[0]
+        if self.lang:
+            self.lang = self.lang.replace('_','-')
+        else:
+            self.lang = "en-US"
+
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -392,7 +401,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.media_list.append(media_list_item)
 
         base = os.path.basename(name)
-        tag = string.replace(base,'.','_')
+        tag = base.replace('.','_')
         
         if self.new_cell:
             self.f.write('<text:p>')
@@ -683,7 +692,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 text = text.replace(' '*n, ' <text:s text:c="%d"/>' % (n-1) )
             text = text.replace('\n','<text:line-break/>')
             text = text.replace('\t','<text:tab-stop/>')
-            text = text.replace('&lt;super&gt;','<text:span text:style-name="GSuper">')
+            text = text.replace('&lt;super&gt;',
+                                '<text:span text:style-name="GSuper">')
             text = text.replace('&lt;/super&gt;','</text:span>')
 
             self.start_paragraph(style_name)
@@ -695,7 +705,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
-                line = string.join(string.split(line))
+                line = string.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
@@ -704,7 +714,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         text = text.replace('<','&lt;')
         text = text.replace('>','&gt;')
         text = text.replace('\n','<text:line-break/>')
-        text = text.replace('&lt;super&gt;','<text:span text:style-name="GSuper">')
+        text = text.replace('&lt;super&gt;',
+                            '<text:span text:style-name="GSuper">')
         text = text.replace('&lt;/super&gt;','</text:span>')
 	self.f.write(text)
 
@@ -782,7 +793,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	self.f.write(self.time)
 	self.f.write('</dc:date>\n')
 	self.f.write('<meta:print-date>0-00-00T00:00:00</meta:print-date>\n')
-	self.f.write('<dc:language>en-US</dc:language>\n')
+	self.f.write('<dc:language>%s</dc:language>\n' % self.lang)
 	self.f.write('<meta:editing-cycles>1</meta:editing-cycles>\n')
 	self.f.write('<meta:editing-duration>PT0S</meta:editing-duration>\n')
 	self.f.write('<meta:user-defined meta:name="Info 0"/>\n')
@@ -933,8 +944,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	if text != "":
   	    self.f.write('<text:p text:style-name="%s">' % para_name)
             self.f.write('<text:span text:style-name="F%s">' % para_name)
-            text = string.replace(text,'\t','<text:tab-stop/>')
-            text = string.replace(text,'\n','<text:line-break/>')
+            text = text.replace('\t','<text:tab-stop/>')
+            text = text.replace('\n','<text:line-break/>')
 	    self.f.write(text)
             self.f.write('</text:span>')
             self.f.write('</text:p>\n')
