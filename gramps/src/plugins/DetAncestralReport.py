@@ -137,14 +137,19 @@ class AncestorReport:
         for child in family.getChildList():
             self.doc.start_paragraph("ChildList")
             t= child.getPrimaryName().getRegularName()
+            #print "getBirth()", child.getBirth().__dict__
             if child.getBirth().getDate() != "" and \
-               child.getBirth().getPlaceName() != "":
-                t= t+ "    Born: "+child.getBirth().getDate() + \
+                    child.getBirth().getPlaceName() != "":
+                #print child.getBirth().getPlace().__dict__
+                t= t+ " Born: "+child.getBirth().getDate() + \
                     " "+child.getBirth().getPlaceName()
-            if child.getDeath().getPlaceName() != "":
-                if child.getDeath().getDate() != "" or child.getDeath().getPlaceName() != "":
-                    t= t+ "    Died: "+child.getDeath().getDate() + \
-                                                              " "+child.getDeath().getPlaceName()
+            #print "getDeath()", child.getDeath().__dict__
+            if child.getDeath().getPlace() != None:
+                #print child.getDeath().getPlace().__dict__
+                if child.getDeath().getDate() != "" or \
+                            child.getDeath().getPlaceName() != "":
+                    t= t+ " Died: "+child.getDeath().getDate() + \
+                            " "+child.getDeath().getPlaceName()
             self.doc.write_text(_(t))
             self.doc.end_paragraph()
 
@@ -168,11 +173,13 @@ class AncestorReport:
         self.doc.end_bold()
 
         # Check birth record
-        print person.getPrimaryName().getRegularName()
+        #print person.getPrimaryName().getRegularName()
         birth = person.getBirth()
         if birth:
             date = birth.getDateObj().get_start_date()
-            place = birth.getPlaceName()
+            if birth.getPlaceName() != "":
+                place = birth.getPlaceName()
+            else: place= ""
             if place[-1:] == '.':
                 place = place[:-1]
             t= ""
@@ -182,15 +189,15 @@ class AncestorReport:
                     t= "on %s" % date.getDate()
                 else:
                     t= "in the year %s" % date.getYear()
-            elif rptOptions.dateBlank == reportOptions.Yes:
+            elif rptOptions.blankDate == reportOptions.Yes:
                 t= "on _______________"
             if place != "":
                 t= t + " in %s" % place
-            elif rptOptions.placeBlank == reportOptions.Yes:
+            elif rptOptions.blankPlace == reportOptions.Yes:
                 t= t + " in _____________________"
 
             if t != "":
-                self.doc.write_text(_("  was born " + t + "."))
+                self.doc.write_text(_(" was born " + t + "."))
             else: self.doc.write_text(_("."))
 
         t= ""
@@ -212,12 +219,12 @@ class AncestorReport:
                         t= t + ("on %s" % date.getDate())
                     else:
                         t= t + ("in the year %s" % date.getDate())
-                elif rptOptions.dateBlank == reportOptions.Yes:
+                elif rptOptions.blankDate == reportOptions.Yes:
                     t= "on ______________"
 
                 if place != "":
                     t= t + (" in %s") % place
-                elif rptOptions.placeBlank == reportOptions.Yes:
+                elif rptOptions.blankPlace == reportOptions.Yes:
                     t= t + (" in _____________")
 
                 if buried:
@@ -235,7 +242,7 @@ class AncestorReport:
                                    t = t + " in %s" % place
                            else:
                                t = t + "in the year %s" % date.getDate()
-                        elif rptOptions.dateBlank == reportOptions.Yes:
+                        elif rptOptions.blankDate == reportOptions.Yes:
                                t= t + " on ___________"
                         if place != "":
                                t = t + " in %s" % place
@@ -301,13 +308,14 @@ class AncestorReport:
                                             rptOptions.fullDate == reportOptions.Yes:
                                     t= t + " on "+date.getDate()
                                 else: t= t + " in the year %s" % date.getYear()
-                            elif rptOptions.dateBlank == reportOptions.Yes:
+                            elif rptOptions.blankDate == reportOptions.Yes:
                                 t= t + " on __________"
                         else: t= t + " on __________"
 
-                        if marriage.getPlaceName() != "":
+                        if marriage.getPlace() != None and \
+                                marriage.getPlaceName() != "":
                             t= t + " in " + marriage.getPlaceName()
-                        elif rptOptions.placeBlank == reportOptions.Yes:
+                        elif rptOptions.blankPlace == reportOptions.Yes:
                             t= t + " in ____________"
             self.doc.write_text(_(t+"."))
 
@@ -576,9 +584,9 @@ from Plugins import register_report
 
 register_report(
     report,
-    _("Produces a detailed textual ancestral report"),
+    _("Detailed Ancestral Report"),
     category=_("Generate Files"),
-    description= _("Detailed Ancestral Report"),
+    description= _("Produces a detailed ancestral report"),
     xpm= get_xpm_image()
     )
 
@@ -624,11 +632,11 @@ class reportOptions:
         #Include source notes
         #self.noSourceNotes= reportOptions.Yes
 
-        #Replace missing  with ___________
-        self.placeBlank= reportOptions.Yes
+        #Replace missing Place with ___________
+        self.blankPlace= reportOptions.Yes
 
         #Replace missing dates with __________
-        self.dateBlank= reportOptions.Yes
+        self.blankDate= reportOptions.Yes
 
         #Omit country code
         #self.noCountryInfo= reportOptions.No

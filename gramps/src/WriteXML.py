@@ -213,6 +213,27 @@ def dump_name(g,label,name,index=1):
     
     g.write('%s</%s>\n' % (sp,label))
 
+def dump_location(g,loc):
+    "Writes the location information to the output file"
+    city = fix(loc.get_city())
+    state = fix(loc.get_state())
+    country = fix(loc.get_country())
+    county = fix(loc.get_county())
+
+    if not city and not state and not county and not country:
+        return
+    
+    g.write('      <location')
+    if city:
+        g.write(' city="%s"' % city)
+    if county:
+        g.write(' county="%s"' % county)
+    if state:
+        g.write(' state="%s"' % state)
+    if country:
+        g.write(' country="%s"' % country)
+    g.write('/>\n')
+
 #-------------------------------------------------------------------------
 #
 #
@@ -449,24 +470,9 @@ def exportData(database, filename, callback):
             if place.get_longitude() != "" or place.get_latitude() != "":
                 g.write('      <coord long="%s" lat=%s"/>\n' % \
                         (fix(place.get_longitude()),fix(place.get_latitude())))
-            loc = place.get_main_location()
-            city = fix(loc.get_city())
-            state = fix(loc.get_state())
-            country = fix(loc.get_country())
-            county = fix(loc.get_county())
-            if city or state or country or county:
-                g.write('      <location city="%s"' % city)
-                g.write(' county="%s" state="%s"' % (county,state))
-                g.write(' country="%s"/>\n' % country)
+            dump_location(g,place.get_main_location())
             for loc in place.get_alternate_locations():
-                city = fix(loc.get_city())
-                state = fix(loc.get_state())
-                country = fix(loc.get_country())
-                county = fix(loc.get_county())
-                if city or state or country or county:
-                    g.write('      <location')
-                    g.write(' city="%s" county="%s"' % (city,county))
-                    g.write(' state="%s" country="%s"/>\n' % (state,country))
+                dump_location(g,loc)
             for photo in place.getPhotoList():
                 path = photo.getPath()
                 l = len(fileroot)
