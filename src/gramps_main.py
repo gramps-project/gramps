@@ -59,7 +59,7 @@ import FamilyView
 import SourceView
 import PeopleView
 
-from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog, SaveDialog, OptionDialog, MissingMediaDialog
+from QuestionDialog import *
 
 import DisplayTrace
 import Filter
@@ -71,6 +71,12 @@ import GrampsCfg
 import EditPerson
 import Find
 import ReadXML
+import DbPrompter
+
+try:    # First try python2.3 and later: this is the future
+    from bsddb import db
+except ImportError: # try python2.2
+    from bsddb3 import db
 
 #-------------------------------------------------------------------------
 #
@@ -139,9 +145,9 @@ class Gramps:
             import ArgHandler
             ArgHandler.ArgHandler(self,args)
         elif GrampsCfg.lastfile and GrampsCfg.autoload:
-            self.auto_save_load(GrampsCfg.lastfile)
+            if self.auto_save_load(GrampsCfg.lastfile) == 0:
+                DbPrompter.DbPrompter(self,0,self.topWindow)
         else:
-            import DbPrompter
             DbPrompter.DbPrompter(self,0,self.topWindow)
 
         self.db.set_researcher(GrampsCfg.get_researcher())
@@ -962,7 +968,8 @@ class Gramps:
         filename = os.path.normpath(os.path.abspath(filename))
         self.filesel.destroy()
         self.clear_database()
-        self.auto_save_load(filename)
+        if self.auto_save_load(filename) == 0:
+            DbPrompter.DbPrompter(self,0,self.topWindow)
 
     def on_help_dbopen_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -970,7 +977,6 @@ class Gramps:
         self.dbopen_button = self.dbopen_fs.run()
 
     def auto_save_load(self,filename):
-
         filename = os.path.normpath(os.path.abspath(filename))
         if os.path.isdir(filename):
             dirname = filename
@@ -978,7 +984,7 @@ class Gramps:
             dirname = os.path.dirname(filename)
 
         self.active_person = None
-        self.read_file(filename)
+        return self.read_file(filename)
 
     def read_gedcom(self,filename):
         import ReadGedcom
@@ -994,15 +1000,51 @@ class Gramps:
     def read_file(self,filename):
         self.topWindow.set_resizable(gtk.FALSE)
         filename = os.path.normpath(os.path.abspath(filename))
-        if self.load_database(filename) == 1:
-            if filename[-1] == '/':
-                filename = filename[:-1]
-            name = os.path.basename(filename)
-            self.topWindow.set_title("%s - GRAMPS" % name)
+        new_db = 0
+        
+        if os.path.isdir(filename):
+            ErrorDialog(_('Cannot open database'),
+                        _('The selected file is a directory, not '
+                          'a file.\nA GRAMPS database must be a file.'))
+            return 0
+        elif os.path.exists(filename):
+            if not os.access(filename,os.R_OK):
+                ErrorDialog(_('Cannot open database'),
+                            _('You do not have read access to the selected '
+                              'file.'))
+                return 0
+            elif not os.access(filename,os.W_OK):
+                ErrorDialog(_('Cannot open database'),
+                            _('You do not have write access to the selected '
+                              'file.'))
+                return 0
         else:
-            GrampsCfg.save_last_file("")
+            new_db = 1
+
+        try:
+            if self.load_database(filename) == 1:
+                if filename[-1] == '/':
+                    filename = filename[:-1]
+                name = os.path.basename(filename)
+                self.topWindow.set_title("%s - GRAMPS" % name)
+            else:
+                GrampsCfg.save_last_file("")
+                ErrorDialog(_('Cannot open database'),
+                            _('The database file specified could not be opened file.'))
+                return 0
+        except db.DBAccessError, msg:
+            ErrorDialog(_('Cannot open database'),
+                        _('%s could not be opened.' % filename) + '\n' + msg[1])
+            return 0
+        
+        if new_db:
+            OkDialog(_('New database created'),
+                     _('GRAMPS has created a new database called %s') %
+                     filename)
+        
         self.topWindow.set_resizable(gtk.TRUE)
         self.people_view.apply_filter()
+        return 1
 
     def on_ok_button2_clicked(self,obj):
         filename = obj.get_filename()
@@ -1573,12 +1615,13 @@ class Gramps:
     def load_database(self,name):
 
         filename = name
-        #self.clear_database()
 
         self.status_text(_("Loading %s...") % name)
+
         if self.db.load(filename,self.load_progress) == 0:
             self.status_text('')
             return 0
+            
         self.status_text('')
         self.db.clear_added_media_objects()
         return self.post_load(name)

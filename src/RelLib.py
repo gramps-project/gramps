@@ -2407,11 +2407,11 @@ class GrampsDB:
     def load(self,name,callback):
         if self.person_map:
             self.close()
-            
+
         self.env = db.DBEnv()
         flags = db.DB_CREATE|db.DB_INIT_MPOOL|db.DB_PRIVATE
-
         self.env.open(os.path.dirname(name), flags)
+            
         name = os.path.basename(name)
         self.person_map = dbshelve.open(name, dbname="person", dbenv=self.env)
         self.family_map = dbshelve.open(name, dbname="family", dbenv=self.env)
@@ -2426,6 +2426,7 @@ class GrampsDB:
         self.surnames.open(name, "surnames", db.DB_HASH, flags=db.DB_CREATE)
 
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+        return 1
 
     def close(self):
         self.person_map.close()

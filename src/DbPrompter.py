@@ -97,8 +97,8 @@ class DbPrompter:
     def save_ok_button_clicked(self,obj):
         filename = obj.get_filename().encode('iso8859-1')
         if filename:
-            Utils.destroy_passed_object(obj)
-            self.db.read_file(filename)
+            if self.db.read_file(filename) == 1:
+                Utils.destroy_passed_object(obj)
 
     def open_activate(self):
 
@@ -122,8 +122,8 @@ class DbPrompter:
 
         if not filename:
             return
-        Utils.destroy_passed_object(obj)
-        self.db.read_file(filename)
+        if self.db.read_file(filename) == 1:
+            Utils.destroy_passed_object(obj)
 
     def open_delete_event(self,obj,event):
         gtk.mainquit()
