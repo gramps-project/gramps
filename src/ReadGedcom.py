@@ -454,7 +454,7 @@ class GedcomParser:
                 if note:
                     self.source.set_note(note)
                 if not self.source.get_title():
-                    self.source.set_title("No title - ID %s" % self.source.get_handle())
+                    self.source.set_title("No title - ID %s" % self.source.get_gramps_id())
                 self.db.commit_source(self.source, self.trans)
                 self.backup()
                 return
@@ -501,17 +501,21 @@ class GedcomParser:
                 self.family = self.find_or_create_family(matches[1])
                 self.parse_family()
                 if self.addr != None:
-                    father = self.family.get_father_handle()
+                    father_handle = self.family.get_father_handle()
+                    father = self.db.get_person_from_handle(father_handle)
                     if father:
                         father.add_address(self.addr)
                         self.db.commit_person(father, self.trans)
-                    mother = self.family.get_mother_handle()
+                    mother_handle = self.family.get_mother_handle()
+                    mother = self.db.get_person_from_handle(mother_handle)
                     if mother:
                         mother.add_address(self.addr)
                         self.db.commit_person(mother, self.trans)
-                    for child in self.family.get_child_handle_list():
-                        child.add_address(self.addr)
-                        self.db.commit_person(child, self.trans)
+                    for child_handle in self.family.get_child_handle_list():
+                        child = self.db.get_person_from_handle(child_handle)
+                        if child:
+                            child.add_address(self.addr)
+                            self.db.commit_person(child, self.trans)
                 self.db.commit_family(self.family, self.trans)
                 del self.family
             elif matches[2] == "INDI":
@@ -1751,7 +1755,7 @@ class GedcomParser:
             s.set_note(matches[2] + self.parse_continue_data(level))
             self.ignore_sub_junk(level+1)
         else:
-            source_ref.set_base_handle(self.find_or_create_source(matches[2][1:-1]))
+            source_ref.set_base_handle(self.find_or_create_source(matches[2][1:-1]).get_handle())
             self.parse_source_reference(source_ref,level)
         return source_ref
 

@@ -243,9 +243,9 @@ class SourceTab:
         self.model.clear()
         for s in self.list:
             base_handle = s.get_base_handle()
-            iter = self.model.append()
             base = self.db.get_source_from_handle(base_handle)
-            self.model.set(iter,0,base_handle,1,base.get_title())
+            iter = self.model.append()
+            self.model.set(iter,0,base.get_gramps_id(),1,base.get_title())
         if self.list:
             Utils.bold_label(self.parent.sources_label)
         else:
@@ -426,14 +426,14 @@ class SourceEditor:
             self.pub_field.set_text("")
 
         keys = self.db.get_source_handles()
-        keys.sort(self.db.sortbysource)
+        keys.sort(self.db._sortbysource)
         
         sel_child = None
         self.list = []
         self.active_source = sel
         for src_id in keys:
             src = self.db.get_source_from_handle(src_id)
-            l = gtk.Label("%s [%s]" % (src.get_title(),src.get_handle()))
+            l = gtk.Label("%s [%s]" % (src.get_title(),src.get_gramps_id()))
             l.show()
             l.set_alignment(0,0.5)
             c = gtk.ListItem()
