@@ -2,6 +2,8 @@
 	* src/plugins/Check.py: Add check for child handle in family, that
 	does no longer exist in database
 
+	* src/plugins/Check.py (check_parent_relationships): typo
+
 2005-03-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/ScratchPad.py (ScratchPadWindow): moved content of pad to a 
 	class attribute so that it is preserved when the pad is closed.
