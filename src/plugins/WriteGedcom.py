@@ -467,6 +467,9 @@ def write_person(g,person):
             if private and addr.getPrivacy():
                 continue
             g.write("1 RESI\n")
+            datestr = addr.getDateObj().getSaveDate()
+            if datestr != "":
+                g.write("2 DATE %s\n" % cnvtxt(datestr))
             write_long_text(g,"ADDR",2,addr.getStreet())
             if addr.getCity() != "":
                 g.write("3 CITY %s\n" % addr.getCity())
