@@ -1838,11 +1838,6 @@ class SourceRef(Persistent):
         """Creates a unique instance of the current note"""
         self.comments = Note(self.comments.get())
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 class GrampsDB(Persistent):
     """GRAMPS database object. This object is a base class for other
     objects."""
