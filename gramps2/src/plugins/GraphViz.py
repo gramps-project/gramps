@@ -60,6 +60,17 @@ from QuestionDialog import ErrorDialog
 _PS_FONT = 'Helvetica'
 _TT_FONT = 'FreeSans'
 
+_formats = (
+    ( _("Postscript"), "ps" ),
+    ( _("Structured Vector Graphics (SVG)"), "svg" ),
+    ( _("Compressed Structured Vector Graphics (SVG)"), "svgz" ),
+    ( _("PNG image"), "png" ),
+    ( _("JPEG image"), "jpg" ),
+    ( _("GIF image"), "gif" ),
+)
+
+dot_found = os.system("dot -V 2>/dev/null") == 0
+
 #------------------------------------------------------------------------
 #
 # Report class
@@ -450,7 +461,14 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 
         return [all,des,ans,com]
 
+    def make_doc_menu(self,dialog,active=None):
+        pass
+
     def add_user_options(self,dialog):
+        if dot_found:
+            dialog.make_doc_menu = self.make_doc_menu
+            dialog.format_menu = GraphicsFormatComboBox()
+            dialog.format_menu.set()
 
         self.arrowstyles = (
             (_("Descendants <- Ancestors"),     'd'),
@@ -601,10 +619,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                                 "vertically."))
 
     def toggle_date(self,obj):
-        if self.includedates_cb.get_active():
-            self.just_year_cb.set_sensitive(1)
-        else:
-            self.just_year_cb.set_sensitive(0)
+        self.just_year_cb.set_sensitive(self.includedates_cb.get_active())
 
     def parse_user_options(self,dialog):
         self.options_dict['arrow'] = \
@@ -621,6 +636,8 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
         self.options_dict['font'] = \
                 self.font_options[self.font_box.get_active()][1]
+        if dot_found:
+            self.handler.dot_format_str = dialog.format_menu.get_format_str()
 
 #------------------------------------------------------------------------
 #
@@ -672,7 +689,7 @@ class GraphVizDialog(Report.ReportDialog):
 
 #------------------------------------------------------------------------
 #
-# Combo Box class
+# Combo Box classes
 #
 #------------------------------------------------------------------------
 class FormatComboBox(gtk.ComboBox):
@@ -709,6 +726,52 @@ class FormatComboBox(gtk.ComboBox):
     def get_printable(self):
         return _("Generate print output")
 
+
+class GraphicsFormatComboBox(gtk.ComboBox):
+    """
+    Format combo box class for graphical (not codegen) report.
+    """
+
+    def set(self,active=None):
+        self.store = gtk.ListStore(str)
+        self.set_model(self.store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        for item in _formats:
+            self.store.append(row=[item[0]])
+        self.set_active(0)
+
+    def get_label(self):
+        return _formats[self.get_active()][0]
+
+    def get_reference(self):
+        return EmptyDoc
+
+    def get_paper(self):
+        return 1
+
+    def get_styles(self):
+        return 0
+
+    def get_ext(self):
+        return '.%s' % _formats[self.get_active()][1]
+
+    def get_format_str(self):
+        return _formats[self.get_active()][1]
+
+    def get_printable(self):
+        return _("Generate print output")
+
+#------------------------------------------------------------------------
+#
+# Empty class to keep the BaseDoc-targeted format happy
+#
+#------------------------------------------------------------------------
+class EmptyDoc:
+    def __init__(self,styles,type,template,orientation,source=None):
+        pass
+
 #------------------------------------------------------------------------
 #
 # 
@@ -733,12 +796,45 @@ def cl_report(database,name,category,options_str_dict):
 #
 #
 #------------------------------------------------------------------------
+class GraphVizGraphics(Report.Report):
+    def __init__(self,database,person,options_class):
+        self.database = database
+        self.start_person = person
+        self.options_class = options_class
+
+        self.user_output = options_class.get_output()
+        self.junk_output = os.path.expanduser("~/.gramps/junk")
+        self.the_format = options_class.handler.dot_format_str
+        self.the_font = self.options_class.handler.options_dict['font']
+
+    def begin_report(self):
+        self.options_class.set_output(self.junk_output)
+
+    def write_report(self):
+        GraphViz(self.database,self.start_person,self.options_class)
+
+    def end_report(self):
+        os.system('dot -T%s -o %s %s ; rm %s' %
+                    (self.the_format,self.user_output,
+                    self.junk_output,self.junk_output))
+
+#------------------------------------------------------------------------
+#
+#
+#
+#------------------------------------------------------------------------
 def get_description():
     return _("Generates relationship graphs, currently only in GraphViz "
              "format. GraphViz (dot) can transform the graph into "
              "postscript, jpeg, png, vrml, svg, and many other formats. "
              "For more information or to get a copy of GraphViz, "
              "goto http://www.graphviz.org")
+
+def get_description_graphics():
+    return _("Generates relationship graphs using GraphViz (dot) program. "
+             "This report generates dot file behind the scene and then "
+             "uses dot to convert it into a graph. If you want the dot"
+             "file itself, please use the Code Generators category.")
 
 #------------------------------------------------------------------------
 #
@@ -757,4 +853,18 @@ register_report(
     description= get_description(),
     author_name="Donald N. Allingham",
     author_email="dallingham@users.sourceforge.net"
+    )
+
+if dot_found:
+    register_report(
+        name = 'rel_graph2',
+        category = const.CATEGORY_DRAW,
+        report_class = GraphVizGraphics,
+        options_class = GraphVizOptions,
+        modes = Report.MODE_GUI | Report.MODE_CLI,
+        translated_name = _("Relationship Graph"),
+        status = _("Beta"),
+        description= get_description_graphics(),
+        author_name="Donald N. Allingham",
+        author_email="dallingham@users.sourceforge.net"
     )
