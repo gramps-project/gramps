@@ -21,14 +21,14 @@
 "Females"
 
 import Filter
-from RelLib import Person
+import RelLib
 from intl import gettext as _
 
 class Females(Filter.Filter):
     "Females"
 
     def match(self,person):
-        return person.getGender() == Person.female
+        return person.getGender() == RelLib.Person.female
 
 #------------------------------------------------------------------------
 #
