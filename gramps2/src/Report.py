@@ -79,7 +79,7 @@ _default_template = _("Default Template")
 _user_template = _("User Defined Template")
 
 _template_map = {
-    _user_template : None
+    _user_template : ""
     }
 
 # Modes for generating reports
@@ -441,7 +441,12 @@ class BareReportDialog:
         """Called to allow parsing of added widgets.
         It is called when OK is pressed in a dialog. 
         All custom widgets should provide a parsing code here."""
-        self.options.parse_user_options(self)
+        try:
+            self.options.parse_user_options(self)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+            
 
     def add_option(self,label_text,widget,tooltip=None):
         """Takes a text string and a Gtk Widget, and stores them to be
@@ -1246,13 +1251,19 @@ class ReportDialog(BareReportDialog):
         tlist = _template_map.keys()
         tlist.sort()
 
+        template_name = self.options.handler.get_template_name()
+
         self.template_combo.append_text(_default_template)
+        template_index = 1
+        active_index = 0
         for template in tlist:
             if template != _user_template:
                 self.template_combo.append_text(template)
+                if _template_map[template] == template_name:
+                    active_index = template_index
+                template_idex = templatex_index + 1
         self.template_combo.append_text(_user_template)
-        
-        self.template_combo.set_active(False)
+
         self.template_combo.connect('changed',self.html_file_enable)
         
         self.html_table.attach(self.template_combo,2,3,1,2)
@@ -1262,11 +1273,18 @@ class ReportDialog(BareReportDialog):
         self.html_fileentry = gnome.ui.FileEntry("HTML_Template",
                                                  _("Choose File"))
         self.html_fileentry.set_modal(True)
-        self.html_fileentry.set_sensitive(False)
-        user_template = ''
+        if template_name and not active_index:
+            active_index = template_index
+            user_template = template_name
+            self.html_fileentry.set_sensitive(True)
+        else:
+            user_template = ''
+            self.html_fileentry.set_sensitive(False)
+
         if os.path.isfile(user_template):
             self.html_fileentry.set_filename(user_template)
         self.html_table.attach(self.html_fileentry,2,3,2,3)
+        self.template_combo.set_active(active_index)
 
 
     #------------------------------------------------------------------------
@@ -1308,7 +1326,7 @@ class ReportDialog(BareReportDialog):
         """Parse the format frame of the dialog.  Save the user
         selected output format for later use."""
         self.format = self.format_menu.get_reference()
-        format_name = self.format_menu.get_label()
+        format_name = self.format_menu.get_clname()
         self.options.handler.set_format_name(format_name)
 
     def parse_paper_frame(self):
@@ -1363,9 +1381,8 @@ class ReportDialog(BareReportDialog):
             else:
                 self.template_name = "%s/%s" % (const.template_dir,_template_map[text])
         else:
-            self.template_name = None
+            self.template_name = ""
         self.options.handler.set_template_name(self.template_name)
-
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices.  Validate

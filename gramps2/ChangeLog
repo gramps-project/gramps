@@ -15,6 +15,11 @@
 	* src/plugins/GraphViz.py: Support for graphical report
 	if dot was found on the system.
 
+	* src/Report.py: Switch to using short format names. Fix templates.
+	* src/Plugins.py: Switch to using short format names. 
+	* src/PluginMgr.py: Switch to using short format names. 
+	* src/ReportOptions.py: Switch to using short format names.
+
 2005-01-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditPlace.py (EditPlace.display_references):
 	Fix event and object references.

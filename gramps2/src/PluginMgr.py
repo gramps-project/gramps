@@ -283,7 +283,7 @@ def register_book_doc(name,classref, table, paper, style, ext, clname=''):
             return
     if not clname:
         clname = ext[1:]
-    bookdoc_list.append((name,classref,table,paper,style,ext,clname))
+    bookdoc_list.append((name,classref,table,paper,style,ext,None,clname))
 
 #-------------------------------------------------------------------------
 #
