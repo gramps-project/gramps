@@ -189,6 +189,18 @@ def get_lastfile():
 def save_last_file(val):
     set_string("/apps/gramps/paths/recent-file",val)
 
+def get_last_import_dir():
+    return get_string("/apps/gramps/paths/recent-import-dir")
+
+def save_last_import_dir(val):
+    set_string_as_path("/apps/gramps/paths/recent-import-dir",val)
+
+def get_last_export_dir():
+    return get_string("/apps/gramps/paths/recent-export-dir")
+
+def save_last_export_dir(val):
+    set_string_as_path("/apps/gramps/paths/recent-export-dir",val)
+
 def get_report_dir():
     return get_string("/apps/gramps/paths/report-directory")
 

@@ -1860,4 +1860,4 @@ _filter.add_mime_type(_mime_type)
 #
 #-------------------------------------------------------------------------
 from Plugins import register_import
-register_import(importData,_filter,_mime_type)
+register_import(importData,_filter,_mime_type,1)

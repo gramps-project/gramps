@@ -51,6 +51,7 @@ import Plugins
 import GrampsBSDDB
 import GrampsXMLDB
 import GrampsGEDDB
+import GrampsCfg
 
 #-------------------------------------------------------------------------
 #
@@ -147,36 +148,54 @@ class ExistingDbPrompter:
 
         # Always add native format filter
         mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GEDCOM'))
+        mime_filter.set_name(_('GEDCOM files'))
         mime_filter.add_mime_type(const.app_gedcom)
         choose.add_filter(mime_filter)
 
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type) in Plugins._imports:
-            choose.add_filter(mime_filter)
+        for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
+            if not native_format:
+                choose.add_filter(mime_filter)
         
+        # Suggested folder: try last open file, last import, last export, 
+        # then home.
+        default_dir = os.path.split(GrampsCfg.get_lastfile())[0] + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = GrampsCfg.get_last_import_dir()
+        if len(default_dir)<=1:
+            default_dir = GrampsCfg.get_last_export_dir()
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        choose.set_current_folder(default_dir)
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
             filetype = gnome.vfs.get_mime_type(filename)
-            
+
+            (the_path,the_file) = os.path.split(filename)
+            GrampsCfg.save_last_import_dir(the_path)
+
             if filetype == const.app_gramps:
                 choose.destroy()
                 self.parent.db = GrampsBSDDB.GrampsBSDDB()
                 self.parent.read_file(filename)
                 return 1
-            if filetype == const.app_gramps_xml:
+            elif filetype == const.app_gramps_xml:
                 choose.destroy()
                 self.parent.db = GrampsXMLDB.GrampsXMLDB()
                 self.parent.read_file(filename)
                 return 1
-            if filetype == const.app_gedcom:
+            elif filetype == const.app_gedcom:
                 choose.destroy()
                 self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)
                 return 1
-            (junk,the_file) = os.path.split(filename)
-            for (importData,mime_filter,mime_type) in Plugins._imports:
+
+            # The above native formats did not work, so we need to 
+            # look up the importer for this format
+            # and create an empty native database to import data in
+            for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
                     QuestionDialog.OkDialog( _("Opening non-native format"), 
@@ -240,17 +259,27 @@ class ImportDbPrompter:
         choose.add_filter(mime_filter)
         
 #   FIXME: Uncomment when we have grdb importer
-#
 #        # Always add native format filter
-#        filter = gtk.FileFilter()
-#        filter.set_name(_('GRAMPS databases'))
-#        filter.add_mime_type('application/x-gramps')
-#        choose.add_filter(filter)
+#        mime_filter = gtk.FileFilter()
+#        mime_filter.set_name(_('GRAMPS databases'))
+#        mime_filter.add_mime_type(const.app_gramps)
+#        choose.add_filter(mime_filter)
 
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type) in Plugins._imports:
+        for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
             choose.add_filter(mime_filter)
         
+        # Suggested folder: try last open file, import, then last export, 
+        # then home.
+        default_dir = GrampsCfg.get_last_import_dir()
+        if len(default_dir)<=1:
+            default_dir = os.path.split(GrampsCfg.get_lastfile())[0] + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = GrampsCfg.get_last_export_dir()
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        choose.set_current_folder(default_dir)
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
@@ -261,8 +290,10 @@ class ImportDbPrompter:
 #                choose.destroy()
 #                self.parent.read_file(filename)
 #                return 1
-            (junk,the_file) = os.path.split(filename)
-            for (importData,mime_filter,mime_type) in Plugins._imports:
+
+            (the_path,the_file) = os.path.split(filename)
+            GrampsCfg.save_last_import_dir(the_path)
+            for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
                     importData(self.parent.db,filename)
@@ -275,7 +306,6 @@ class ImportDbPrompter:
         else:
             choose.destroy()
             return 0
-
 
 #-------------------------------------------------------------------------
 #
@@ -316,12 +346,22 @@ class NewNativeDbPrompter:
         # Always add native format filter
         mime_filter = gtk.FileFilter()
         mime_filter.set_name(_('GRAMPS databases'))
-        mime_filter.add_mime_type('application/x-gramps')
+        mime_filter.add_mime_type(const.app_gramps)
         choose.add_filter(mime_filter)
 
-        new_filename = Utils.get_new_filename('grdb')
+        # Suggested folder: try last open file, import, then last export, 
+        # then home.
+        default_dir = os.path.split(GrampsCfg.get_lastfile())[0] + os.path.sep
+        if len(default_dir)<=1:
+            default_dir = GrampsCfg.get_last_import_dir()
+        if len(default_dir)<=1:
+            default_dir = GrampsCfg.get_last_export_dir()
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
+        new_filename = Utils.get_new_filename('grdb',default_dir)
         
-        choose.set_filename(new_filename)
+        choose.set_current_folder(default_dir)
         choose.set_current_name(os.path.split(new_filename)[1])
 
         response = choose.run()

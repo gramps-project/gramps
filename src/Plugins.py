@@ -468,10 +468,10 @@ def register_export(exportData,_title,_description='',_config=None,_filename='')
     if _description and _filename:
         _exports.append((exportData,_title,_description,_config,_filename))
 
-def register_import(task, ffilter, mime=None):
+def register_import(task, ffilter, mime=None, native_format=0):
     """Register an import filter, taking the task and file filter"""
     if mime:
-        _imports.append((task, ffilter, mime))
+        _imports.append((task, ffilter, mime, native_format))
 
 def register_report(task, name,
                     category=_("Uncategorized"),
