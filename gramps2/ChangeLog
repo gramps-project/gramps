@@ -1,5 +1,8 @@
 2003-11-05  Tim Waugh  <twaugh@redhat.com>
 
+	* src/gramps_main.py, src/FamilyView.py: Fix children enumeration
+	in family view.
+
 	* src/plugins/FilterEditor.py (ShowResults.__init__): Sort
 	results.
 
