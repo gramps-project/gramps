@@ -1,5 +1,8 @@
 2003-11-02  Tim Waugh  <twaugh@redhat.com>
 
+	* src/ArgHandler.py, src/DbPrompter,py: clear_database takes no
+	additional arguments.
+
 	* src/plugins/WriteGedcom.py (GedcomWriter.__init__): Fixed
 	default filename for export.
 
