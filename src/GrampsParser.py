@@ -633,7 +633,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_nick(self,tag):
-        if self.name:
+        if self.person:
             self.person.setNickName(u2l(tag))
 
     #---------------------------------------------------------------------
