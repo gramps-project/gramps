@@ -23,7 +23,7 @@
     <para>A &app; beállításához válassza ki az alábbi menüpontot:
       <menuchoice><guimenu>Szerkesztés</guimenu>
       <guimenuitem>Tulajdonságok...</guimenuitem></menuchoice>. 
-      A <guilabel>Tulajdonságok</guilabel> párbeszédablak a következőket kategóriákat 
+      A <guilabel>Tulajdonságok</guilabel> párbeszédablak a következő kategóriákat 
       tartalmazza: </para>
       
       <itemizedlist>
@@ -35,7 +35,7 @@
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-usage"> 
       <title>Használat</title> 
-	<para> Ez a kategória a &app; általános használathoz szűkséges beállításokat tertalmazza. 
+	<para> Ez a kategória a &app; általános használathoz szűkséges információkat tertalmazza. 
  A következő alkategóriákat tartalmazza:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
@@ -45,11 +45,10 @@
 	<variablelist>
 
 	<varlistentry><term><guilabel>Automatikus kiegészítés engedélyezése</guilabel></term>
-	<listitem><para>If this box is checked, &app; will attempt to complete
-	the text as you type it into text entry fields such as family name,
-	place of birth, etc. Completion is attempted based on the match 
-	between the beginning of the text being typed and the corresponding 
-	data already stored in the database. 
+	<listitem><para>Ha ez a mező be van jelölve akkor a &app; megpróbálja 
+	kiegészíteni a szöveget a család név, a helyek, születési idők, stb. írása 
+	közben. Az összehasonlítás a leírt szöveg eleje és az adatbázisban már 
+	tárolt adatok összehasonlításával történik.
 	</para></listitem>
 	</varlistentry>
 
@@ -59,35 +58,35 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-report"> 
-        <title>Report Preferences</title> 
+        <title>Összesítők tulajdonságai</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Preferred text format</guilabel></term>
+	<varlistentry><term><guilabel>Kedvelt szöveg formátum</guilabel></term>
 	<listitem><para> Select the preferred format for text reports 
 	from the available formats listed in this menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Preferred graphical format</guilabel></term>
+	<varlistentry><term><guilabel>Kedvelt grafikai formátum</guilabel></term>
 	<listitem><para> Select the preferred format for graphical reports 
 	from the available formats listed in this menu.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Preferred paper size</guilabel></term>
+	<varlistentry><term><guilabel>Kedvelt papír méret</guilabel></term>
 	<listitem><para> Select the preferred paper size used for reports 
 	from the available sizes listed in this menu.
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default report directory</guilabel></term>
+	<varlistentry><term><guilabel>Alapértelmezett összesítő könyvtár</guilabel></term>
 	<listitem><para> Choose the default directory for the reports using the 
 	<guibutton>Browse...</guibutton> button or type it in the text entry
 	field. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default web site directory</guilabel></term>
+	<varlistentry><term><guilabel>Alapértelmezett web site könyvtár</guilabel></term>
 	<listitem><para> Choose the default directory for the web site using the 
 	<guibutton>Browse...</guibutton> button or type it in the text entry
 	field. </para></listitem>
@@ -99,11 +98,11 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-res"> 
-        <title>Researcher Information</title> 
+        <title>Információk a kutatóról</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Researcher information</guilabel></term>
+	<varlistentry><term><guilabel>Kutató információ</guilabel></term>
 	<listitem><para> Enter your personal information in the corresponding
 	text entry fields. Although &app; requests information about you, 
 	this information is used only so that &app; can create valid GEDCOM 
@@ -119,11 +118,11 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-usage-guess"> 
-        <title>Data Guessing</title> 
+        <title>Adatok következtetése</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Family name guessing</guilabel></term>
+	<varlistentry><term><guilabel>Valószínüsíthető családnév</guilabel></term>
 	<listitem><para> This option affects the initial family name of a 
 	child when he/she is added to the database. NOTE: this option only
 	affects the initial family name guessed by &app; when the 
@@ -150,24 +149,24 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-display"> 
-      <title>Display</title> 
+      <title>Megjelenítés</title> 
 	<para> This category contains preferences relevant to  
 	displaying database records and controls in &app;. 
 	It has the following subcategories:</para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-gen"> 
-        <title>General</title> 
+        <title>Általános</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Default view</guilabel></term>
+	<varlistentry><term><guilabel>Alapértelmezett nézet</guilabel></term>
 	<listitem><para> This determines which view will appear when you 
         start &app;. Choose between Person and Family views. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Family view style</guilabel></term>
+	<varlistentry><term><guilabel>Család nézeti stílus</guilabel></term>
 	<listitem><para> This selects between the two available styles of the Family 
         view layout. The <guilabel>Left to right</guilabel> style is similar to the 
         Family Tree Maker (tm), while the <guilabel>Top to bottom</guilabel> is
@@ -175,13 +174,14 @@
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Always display the LDS ordinance tabs</guilabel></term>
+	<varlistentry><term><guilabel>Mindig jelenítse meg a mormon ünnepeket</guilabel></term>
 	<listitem><para> Check this box to have LDS ordinance tabs displayed. 
 	If you do not know what LDS is then you probably should not check it. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Show index numbers in child list</guilabel></term>
+	<varlistentry><term><guilabel>Gyermekek listájában az indexek feltüntetése
+	</guilabel></term>
 	<listitem><para> 
 	This option is not currently implemented.
 	</para></listitem>
@@ -192,29 +192,29 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-date"> 
-        <title>Dates and Calendar</title> 
+        <title>Dátumok és naptárak</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Display: Date format</guilabel></term>
+	<varlistentry><term><guilabel>Megjelenítési dátum formátum</guilabel></term>
 	<listitem><para> Select the display format for the dates
 	from the available formats listed in this menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Name format</guilabel></term>
+	<varlistentry><term><guilabel>Megjelenítési név formátum</guilabel></term>
 	<listitem><para> Select the display format for the names  
 	from the available formats listed in this menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Entry: Date format</guilabel></term>
+	<varlistentry><term><guilabel>Beviteli dátum formátum</guilabel></term>
 	<listitem><para> Select the entry format for the dates
 	from the available formats listed in this menu. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
+	<varlistentry><term><guilabel>Naptárválasztó megjelenítése</guilabel></term>
 	<listitem><para> Check this box to enable the calendar format selection 
 	menu when you are entering dates in the <guilabel>Event 
 	Editor</guilabel> dialog.  This will allow you to select different 
@@ -227,17 +227,17 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-display-bars"> 
-        <title>Toolbar and Statusbar</title> 
+        <title>Eszközök és állapotjelzők</title> 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Toolbar</guilabel></term>
+	<varlistentry><term><guilabel>Eszköztár</guilabel></term>
 	<listitem><para> Select the desired appearance of the toolbar icons
 	from the menu. Selecting <guilabel>GNOME Settings</guilabel> will use
 	the overall settings selected for your GNOME desktop. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Statusbar</guilabel></term>
+	<varlistentry><term><guilabel>Állapotjelző</guilabel></term>
 	<listitem><para> Select the desired contents displayed in the 
 	statusbar using the radio buttons. 
 	</para></listitem>
@@ -250,22 +250,22 @@
 
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-db"> 
-      <title>Database</title> 
+      <title>Adatbázis</title> 
 	<para> This category contains preferences relevant to the 
 	database itself. It has the following subcategories: </para>
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-gen"> 
-        <title>General</title> 
+        <title>Általános</title> 
 
 	<variablelist>
 	
-	<varlistentry><term><guilabel>Automatically load last database</guilabel></term>
+	<varlistentry><term><guilabel>Utolsó adatbázis autómatikus betöltése</guilabel></term>
 	<listitem><para> Check this box to automatically load the last open
 	database on startup. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Do not compress XML data file</guilabel></term>
+	<varlistentry><term><guilabel>Ne tömörítse az XML adatbázis fájlt</guilabel></term>
 	<listitem><para> Check this box to disable compression of the XML
 	data file. Compression significantly reduces the file size. While it 
 	creates an overhead in performance (some processor cycles must be spent
@@ -275,13 +275,13 @@
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Autosave interval</guilabel></term>
+	<varlistentry><term><guilabel>Automentés gyakorisága</guilabel></term>
 	<listitem><para> Set the interval (in minutes) after which &app; will
 	automatically save your database. Setting the interval to zero (0) 
 	disables autosaving. </para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Default database directory</guilabel></term>
+	<varlistentry><term><guilabel>Alapértelmezett adatbázis könyvtár</guilabel></term>
 	<listitem><para> Choose the default directory in which &app; starts
 	looking when saving the database using the <guibutton>Browse...</guibutton> 
 	or type its path into the text entry field. </para></listitem>
@@ -292,7 +292,7 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-media"> 
-        <title>Media Objects</title> 
+        <title>Média objektumok</title> 
 
 	<para>Before describing preferences for media objects, let us
 	review the background on local and non-local objects. A local object 
@@ -337,8 +337,7 @@
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Drag and drop from an internal 
-	source</guilabel></term>
+	<varlistentry><term><guilabel>Drag and drop egy külső forrásból</guilabel></term>
 	<listitem><para> Check the <guilabel>Display local properties editor 
 	when object is dropped</guilabel> box to invoke the local properties 
 	editor after you drop an internal object into the gallery. 
@@ -350,18 +349,18 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-id"> 
-        <title>&app; internal IDs</title> 
+        <title>&app; belső ID-k</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel> GRAMPS ID prefixes</guilabel></term>
+	<varlistentry><term><guilabel> GRAMPS ID előtagok</guilabel></term>
 	<listitem><para> Enter ID prefixes for various kinds of database 
 	entries into the corresponding text entry fields. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Allow internal GRAMPS ID numbers to be
-	edited</guilabel></term>
+	<varlistentry><term><guilabel>GRAMPS ID-k szerkesztésének az engedélyezése
+	</guilabel></term>
 	<listitem><para> Check this box to enable editing of the internal &app;
 	ID numbers. Unless you know what you are doing, leave it unchecked.
 	</para></listitem>
@@ -372,20 +371,20 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-rcs"> 
-        <title>Revision Control</title> 
+        <title>Biztonsági másolat</title> 
 
 	<variablelist>
 
-	<varlistentry><term><guilabel>Use revision control</guilabel></term>
-	<listitem><para> Check this box to enable &app; to use the revision control
-	system for your database. If you choose this option, select the
-	particular revision control system from the menu. 
+	<varlistentry><term><guilabel>Biztonsági másolat engedélyezése</guilabel></term>
+	<listitem><para> A mező bejelölésével engedélyezheti a &app;ben a 
+	biztonsági másolat használatát. Ha kiválasztja ezt az opciót akkor a 
+	mellette lévő menüből az alkalmazott mentési módszer állítható be. 
 	</para></listitem>
 	</varlistentry>
 
-	<varlistentry><term><guilabel>Prompt for comment on save</guilabel></term>
-	<listitem><para> Check this box to instruct &app; to prompt you to enter
-	the comment when you save the database. 
+	<varlistentry><term><guilabel>Mentéskor megjegyzések hozzáadása</guilabel></term>
+	<listitem><para> E mező bejelölésével a &app; minden mentésnél 
+	megjegyzések hozzáadására biztosít lehetőséget.	
 	</para></listitem>
 	</varlistentry>
 

@@ -20,8 +20,8 @@
       <title>Gyakran Intézett Kérdések (FAQ)</title>
       <para>Ez a fejezet olyan kérdéseket tartalmaz melyek gyakran jelennek meg 
       a levelezőlistán és a fórumokon. Ez a fejezet nem teljes. 
-      Ha kérdéseket vagy válaszokat szeretnél hozzáadni, akkor 
-      légyszíves küldj egy e-mailt a következő címre 
+      Ha kérdéseket vagy válaszokat szeretne hozzáadni, akkor 
+      küldjön egy e-mailt a következő címre 
        <ulink url="mailto:gramps-devel@lists.sf.net" 
        type="mailto">gramps-devel@lists.sf.net</ulink>
       </para>
@@ -40,11 +40,11 @@
 
       <varlistentry><term>Honnan tudom megszerezni, és mennyibe kerül?</term>
       <listitem><para> 
-&app; szabadon letölthető az alábbi címről: <ulink url="http://sf.net/projects/gramps" 
-type="http">http://sf.net/projects/gramps</ulink>. 
-&app; egy Szabad Forrásu projekt (Open Source) GNU licenszeléssel (GNU General Public License). 
-Teljes hozzáférésed van a forráskódhoz. Szabadon terjesztheted a programot és 
-a forráskódot is. 
+	&app; szabadon letölthető az alábbi címről: <ulink url="http://sf.net/projects/gramps" 
+	type="http">http://sf.net/projects/gramps</ulink>. 
+	&app; egy Szabad Forrásu projekt (Open Source) GNU licenszeléssel (GNU General Public  		License). 
+	Teljes hozzáférése van a forráskódhoz. Szabadon terjesztheti a programot és 
+	a forráskódot is. 
       </para></listitem>
       </varlistentry>
 
@@ -76,7 +76,7 @@ Igen, de csak akkor ha a szűkséges GNOME könyvtárak is fel vannak telepítve
       </varlistentry>
 
       <varlistentry><term>Muszály feltelepítenem a GNOME-ot?</term>
-      <listitem><para> Igen, de nem kell a GNOME-ot használnod.
+      <listitem><para> Igen, de nem kell a GNOME-ot használnia.
       </para></listitem>
       </varlistentry>
 
@@ -94,23 +94,23 @@ használt formátum az adatok tárolására. Importálást és exportálást vé
 szűrők segítségével a &app; képes írni és olvasni a GEDCOM fájlokat. </para>
 
 <para>
-Fontos, hogy megértsd, hogy a GEDCOM formátum nem pontosan definiált -- 
+Fontos, hogy a GEDCOM formátum nem pontosan definiált -- 
 így mindegyik örökléskutató program a maga módján értelmezi a GEDCOM fájlokat. 
 Megérteni az alapformátumot és írni egy import/export szűrőt viszonylag könnyű, 
-de kitalálni, hogy melyik program hogyan használja fel fájlokat nehéz. Ezért 
+de kitalálni, hogy melyik program hogyan használja fel a fájlokat nehéz. Ezért 
 ehhez a felhasználók visszajelzéseire van szűkségünk.  
-Kérlek szólj nekünk ha olyan GEDCOM "mezőt" talál amit a &app; nem támogat!
+Kérjük szóljon nekünk ha olyan GEDCOM "mezőt" talál amit a &app; nem támogat!
 És mi pótoljuk a hiányosságot! 
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>&app; képes olvasni a GenProg X által létrehozott fájlt?</term>
-      <listitem><para> Lásd feljebb.
+      <listitem><para> Fentebb.
       </para></listitem>
       </varlistentry>
 
       <varlistentry><term>&app; képes írni a GenProg X által létrehozott fájlt?</term>
-      <listitem><para> Lásd feljebb.
+      <listitem><para> Fentebb.
       </para></listitem>
       </varlistentry>
 
@@ -225,7 +225,7 @@ mind sebesség, mind memória használat területén.
 Ez egy ismert probléma -- PS (és PDF) bépített betükészletet használnak ami 
 elég jól tükrözi a latin-1 karakterkészletet. Elméletileg bármilyen karakterkészlet 
 használható a PS/PDF dokumentumokban, de ezeket a karakterkészleteket a fájlba 
-mellékelni kell. Ez eléggé problémás, hiszen minden rendszernek különböző elképzelése 
+mellékelni kell. Ez eléggé nehéz, hiszen minden rendszernek különböző elképzelése 
 van a karakterkészletek elérhetőségéről és beállításairól.</para>
 
 <para>
@@ -250,15 +250,15 @@ ability to add/remove/edit sortable columns.
       <varlistentry><term>Szeretnék közreműködni a &app; program készítésében. 
       Készítenék egy bővítményt. Hogyan tudom ezt megcsinálni?</term>
       <listitem><para> 
-A legegyszerűbb módszer az, hogy ha felhasználod a már jelenleg is működő 
-&app; jelentés- és szűrőmodulokat. Ha a forrás módosításával meg tudod valósítani 
-az elképzeléseidet akkor az csodálatos! Ha az ötleteid nem igazodnak egyik létező 
+A legegyszerűbb módszer az, hogy ha felhasználja a már jelenleg is működő 
+&app; jelentés- és szűrőmodulokat. Az a legjobb ha a forrás módosításával meg 
+tudja valósítani az elképzeléseit! Ha az ötletei nem igazodnak egyik létező 
 &app; modulhoz sem, akkor a <ulink 
 url="http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage" 
-type="http">következő oldal</ulink> segítséget nyújthat, hogyan is indulj el.
+type="http">következő oldal</ulink> segítséget nyújthat, hogyan is induljon el.
 
-Ha több segítségre van szűkséged vagy meg szeretnéd beszélni velünk az ötleteidet, 
-akkor ne habozz felvenni velünk a kapcsolatot a <ulink 
+Ha több segítségre van szűksége vagy meg szeretné beszélni velünk az ötleteit, 
+akkor ne habozzon felvenni velünk a kapcsolatot a <ulink 
 url="mailto:gramps-devel@lists.sf.net" 
 type="mailto">gramps-devel@lists.sf.net</ulink> címre írt levéllel.
 </para>
