@@ -1,4 +1,5 @@
 2003-07-28  Tim Waugh  <twaugh@redhat.com>
+	* src/plugins/AncestorChart.py: Printable hook.
 	* src/plugins/GraphViz.py: Adapt.
 	* src/Report.py, src/TextDoc.py, src/DrawDoc.py, src/Plugins.py: More
 	support for making printable output formats.
