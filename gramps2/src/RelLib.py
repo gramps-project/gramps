@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -218,10 +218,24 @@ class LdsOrd(SourceNote):
         """Gets the temple assocated with the LDS ordinance"""
         return self.temple
 
-    def are_equal(self,other):
-        """returns 1 if the spdcified ordinance is the same as the instance"""
-        if other == None:
+    def isEmpty(self):
+        """Returns 1 if the LDS ordidance is actually empty"""
+        if (self.famc or 
+                (self.date and not self.date.isEmpty()) or 
+                self.temple or 
+                self.status or 
+                self.place):
             return 0
+        else:
+            return 1
+        
+    def are_equal(self,other):
+        """returns 1 if the specified ordinance is the same as the instance"""
+        if other == None:
+            if self.isEmpty():
+                return 1
+            else:
+                return 0
         if (self.famc != other.famc or
             self.place != other.place or
             self.temple != other.temple or
