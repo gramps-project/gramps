@@ -64,6 +64,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.db = db
         self.filter = filter
         self.visible = {}
+        self.top_visible = {}
         
         self.fmap = [
             self.column_name,
@@ -115,6 +116,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.path2iter = {}
         self.sname_sub = {}
         self.visible = {}
+        self.top_visible = {}
 
         if not self.db.is_open():
             return
@@ -231,7 +233,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 return pango.WEIGHT_NORMAL
         elif col == COLUMN_VIEW:
             if self.top_iter2path.has_key(iter):
-                return 1
+                return self.top_visible.has_key(iter)
             return self.visible.has_key(iter)
         elif self.top_iter2path.has_key(iter):
             if col == 0:
@@ -246,8 +248,11 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def reset_visible(self):
         self.visible = {}
+        self.top_visible = {}
 
     def set_visible(self,iter,val):
+        col = self.iter2path[iter]
+        self.top_visible[col[0]] = val
         self.visible[iter] = val
 
     def on_iter_next(self, node):

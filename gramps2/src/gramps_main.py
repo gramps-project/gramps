@@ -203,7 +203,6 @@ class Gramps:
         self.toolbar     = self.gtop.get_widget("toolbar1")
         self.toolbardock = self.gtop.get_widget("dockitem2")
         self.filter_text = self.gtop.get_widget('filter')
-        self.filter_inv  = self.gtop.get_widget("invert")
         self.qual_label  = self.gtop.get_widget("qual")
         self.child_type  = self.gtop.get_widget("childtype")
         self.spouse_tab  = self.gtop.get_widget("lab_or_list")
@@ -717,6 +716,11 @@ class Gramps:
         filter_list = []
 
         all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+        filter_list.append(all)
+        
+        all = GenericFilter.GenericFilter()
         all.set_name(_("Females"))
         all.add_rule(GenericFilter.IsFemale([]))
         filter_list.append(all)
@@ -726,14 +730,16 @@ class Gramps:
         all.add_rule(GenericFilter.IsMale([]))
         filter_list.append(all)
 
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
+        all = GenericFilter.ParamFilter()
+        all.set_name(_("Name contains..."))
+        all.add_rule(GenericFilter.SearchName([]))
         filter_list.append(all)
-        
-        menu = GenericFilter.build_filter_menu(filter_list)
 
+        menu = GenericFilter.build_filter_menu(filter_list)
+        
         self.filter_list.set_menu(menu)
+        self.filter_list.set_history(0)
+        self.filter_list.connect('changed',self.on_filter_name_changed)
         self.filter_text.set_sensitive(0)
         
     def on_find_activate(self,obj):
@@ -1485,17 +1491,14 @@ class Gramps:
         self.people_view.apply_filter_clicked()
 
     def on_filter_name_changed(self,obj):
-        filter = obj.get_data("filter")
-        qual = obj.get_data('qual')
+        filter = obj.get_menu().get_active().get_data('filter')
+        qual = filter.need_param
         if qual:
-            self.qual_label.show()
-            self.qual_label.set_sensitive(1)
-            self.qual_label.set_text(obj.get_data("label"))
-            filter.show()
+            self.filter_text.show()
+            self.filter_text.set_sensitive(1)
         else:
-            self.qual_label.hide()
-            filter.hide()
-        filter.set_sensitive(qual)
+            self.filter_text.hide()
+            self.filter_text.set_sensitive(0)
 
     def new_after_edit(self,epo,trans):
         if epo:
