@@ -149,110 +149,6 @@ class BaseObject:
         """
         return []
 
-    def has_handle_reference(self,classname,handle):
-        """
-        Returns True if the object or any of its non-primary child objects
-        has reference to a given handle of given primary object type.
-        
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle: The handle to be checked.
-        @type handle: str
-        @return: Returns whether the object or any of it's non-primary child objects has reference to this handle of this object type.
-        @rtype: bool
-        """
-        # Run through its own items
-        if classname == 'Source' and isinstance(self,SourceNote):
-            if self.has_source_reference(handle):
-                return True
-        elif classname == 'MediaObject' and isinstance(self,MediaBase):
-            if self.has_media_reference(handle):
-                return True
-        else:
-            if handle in self.get_handleholder_list(classname):
-                return True
-
-        # Run through child objects
-        for obj in self.get_handleholder_child_list(classname):
-            if obj.has_handle_reference(classname,handle):
-                return True
-
-        return False
-
-    def remove_handle_references(self,classname,handle_list):
-        """
-        Removes references to object handles in the list
-        in this object and all child objects.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param handle_list: The list of handles to be removed.
-        @type handle_list: str
-        """
-        # Run through its own items
-        if classname == 'Source' and isinstance(self,SourceNote):
-            self.remove_source_references(handle_list)
-        elif classname == 'MediaObject' and isinstance(self,MediaBase):
-            self.remove_media_references(handle_list)
-        else:
-            self._remove_handle_references(classname,handle_list)
-
-        # Run through child objects
-        for obj in self.get_handleholder_child_list(classname):
-            obj.remove_handle_references(classname,handle_list)
-
-    def replace_handle_reference(self,classname,old_handle,new_handle):
-        """
-        Replaces references to source handles in the list
-        in this object and all child objects.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @param old_handle: The handle to be replaced.
-        @type old_handle: str
-        @param new_handle: The handle to replace the old one with.
-        @type new_handle: str
-        """
-        # Run through its own items
-        if classname == 'Source' and isinstance(self,SourceNote):
-            self.replace_source_references(old_handle,new_handle)
-        elif classname == 'MediaObject' and isinstance(self,MediaBase):
-            self.replace_media_references(old_handle,new_handle)
-        else:
-            self._replace_handle_reference(classname,old_handle,new_handle)
-
-        # Run through child objects
-        for obj in self.get_handleholder_child_list(classname):
-            obj.replace_handle_reference(classname,old_handle,new_handle)
-
-    def _replace_handle_reference(self,classname,old_handle,new_handle):
-        pass
-
-    def _remove_handle_references(self,classname,handle_list):
-        pass
-
-    def get_handleholder_list(self,classname):
-        """
-        Returns the list of all bjects referring to handles of a given type.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @return: Returns the list of all attributes referring to handles of this type.
-        @rtype: list
-        """
-        return []
-
-    def get_handleholder_child_list(self,classname):
-        """
-        Returns the list of child objects that may refer to handles of a given type.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @return: Returns the list of child objects that may refer to handles of this type.
-        @rtype: list
-        """
-        return []
-
 class PrimaryObject(BaseObject):
     """
     The PrimaryObject is the base class for all primary objects in the
@@ -339,6 +235,68 @@ class PrimaryObject(BaseObject):
         @rtype: str
         """
         return self.gramps_id
+
+    def has_handle_reference(self,classname,handle):
+        """
+        Returns True if the object has reference to a given handle
+        of given primary object type.
+        
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param handle: The handle to be checked.
+        @type handle: str
+        @return: Returns whether the object has reference to this handle of this object type.
+        @rtype: bool
+        """
+        if classname == 'Source' and isinstance(self,SourceNote):
+            return self.has_source_reference(handle)
+        elif classname == 'MediaObject' and isinstance(self,MediaBase):
+            return self.has_media_reference(handle)
+        else:
+            return self._has_handle_reference(classname,handle)
+
+    def remove_handle_references(self,classname,handle_list):
+        """
+        Removes all references in this object to object handles in the list.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param handle_list: The list of handles to be removed.
+        @type handle_list: str
+        """
+        if classname == 'Source' and isinstance(self,SourceNote):
+            self.remove_source_references(handle_list)
+        elif classname == 'MediaObject' and isinstance(self,MediaBase):
+            self.remove_media_references(handle_list)
+        else:
+            self._remove_handle_references(classname,handle_list)
+
+    def replace_handle_reference(self,classname,old_handle,new_handle):
+        """
+        Replaces all references to old handle with those to the new handle.
+
+        @param classname: The name of the primary object class.
+        @type classname: str
+        @param old_handle: The handle to be replaced.
+        @type old_handle: str
+        @param new_handle: The handle to replace the old one with.
+        @type new_handle: str
+        """
+        if classname == 'Source' and isinstance(self,SourceNote):
+            self.replace_source_references(old_handle,new_handle)
+        elif classname == 'MediaObject' and isinstance(self,MediaBase):
+            self.replace_media_references(old_handle,new_handle)
+        else:
+            self._replace_handle_reference(classname,old_handle,new_handle)
+
+    def _has_handle_reference(self,classname,handle):
+        pass
+
+    def _remove_handle_references(self,classname,handle_list):
+        pass
+
+    def _replace_handle_reference(self,classname,old_handle,new_handle):
+        pass
 
 class SourceNote(BaseObject):
     """
@@ -570,15 +528,6 @@ class MediaBase(BaseObject):
         """
         self.media_list = media_ref_list
 
-    def get_mediaref_child_list(self):
-        """
-        Returns the list of child secondary objects that may refer media.
-
-        @return: Returns the list of child secondary child objects that may refer media.
-        @rtype: list
-        """
-        return []
-
     def has_media_reference(self,obj_handle) :
         """
         Returns True if the object or any of it's child objects has reference
@@ -589,21 +538,11 @@ class MediaBase(BaseObject):
         @return: Returns whether the object or any of it's child objects has reference to this media handle.
         @rtype: bool
         """
-        for media_ref in self.media_list:
-            # Using direct access here, not the getter method -- efficiency!
-            if media_ref.ref == obj_handle:
-                return True
-
-        for item in self.get_mediaref_child_list():
-            if item.has_media_reference(obj_handle):
-                return True
-
-        return False
+        return obj_handle in [media_ref.ref for media_ref in self.media_list]
 
     def remove_media_references(self,obj_handle_list):
         """
-        Removes references to all media handles in the list
-        in this object and all child objects.
+        Removes references to all media handles in the list.
 
         @param obj_handle_list: The list of media handles to be removed.
         @type obj_handle_list: list
@@ -612,13 +551,9 @@ class MediaBase(BaseObject):
                                     if media_ref.ref not in obj_handle_list ]
         self.media_list = new_media_list
 
-        for item in self.get_mediaref_child_list():
-            item.remove_media_references(obj_handle_list)
-
     def replace_media_references(self,old_handle,new_handle):
         """
-        Replaces references to media handles in the list
-        in this object and all child objects.
+        Replaces all references to old media handle with the new handle.
 
         @param old_handle: The media handle to be replaced.
         @type old_handle: str
@@ -629,17 +564,14 @@ class MediaBase(BaseObject):
             ix = self.media_list.index(old_handle)
             self.media_list[ix] = new_handle
 
-        for item in self.get_mediaref_child_list():
-            item.replace_media_references(old_handle,new_handle)
-
-class DataObj(SourceNote):
+class PrivateObject(SourceNote):
     """
-    Base class for data elements, providing source, note, and privacy data
+    Same as SourceNote, plus the privacy capabilities.
     """
 
     def __init__(self,source=None):
         """
-        Initialize a DataObj. If the source is not None, then object
+        Initialize a PrivateObject. If the source is not None, then object
         is initialized from values of the source object.
 
         @param source: Object used to initialize the new object
@@ -671,7 +603,7 @@ class DataObj(SourceNote):
         """
         return self.private
 
-class Person(PrimaryObject,DataObj,MediaBase):
+class Person(PrimaryObject,PrivateObject,MediaBase):
     """
     Introduction
     ============
@@ -715,7 +647,7 @@ class Person(PrimaryObject,DataObj,MediaBase):
         handle.
         """
         PrimaryObject.__init__(self)
-        DataObj.__init__(self)
+        PrivateObject.__init__(self)
         SourceNote.__init__(self)
         MediaBase.__init__(self)
         self.primary_name = Name()
@@ -783,6 +715,14 @@ class Person(PrimaryObject,DataObj,MediaBase):
          self.lds_seal, self.complete, self.source_list, self.note,
          self.change,self.private) = (data + (False,))[0:23]
             
+    def _has_handle_reference(self,classname,handle):
+        if classname == 'Event':
+            return handle in self.event_list + [self.birth_handle,self.death_handle]
+        elif classname == 'Family':
+            return handle in self.family_list + \
+                        [item[0] for item in self.parent_family_list ]
+        return False
+
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Event':
             new_list = [ handle for handle in self.event_list \
@@ -821,23 +761,6 @@ class Person(PrimaryObject,DataObj,MediaBase):
                 else:
                     new_list.append(item)
             self.parent_family_list = new_list
-
-    def get_handleholder_list(self,classname):
-        """
-        Returns the list of all objects referring to handles of a given type.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @return: Returns the list of all attributes referring to handles of this type.
-        @rtype: list
-        """
-        if classname == 'Event':
-            check_list = [self.birth_handle,self.death_handle]
-            add_list = [item for item in check_list if item]
-            return self.event_list + check_list
-        elif classname == 'Family':
-            return self.family_list + \
-                        [item[0] for item in self.parent_family_list ]
 
     def get_text_data_list(self):
         """
@@ -1555,6 +1478,13 @@ class Family(PrimaryObject,SourceNote,MediaBase):
          self.media_list, self.attribute_list, self.lds_seal,
          self.complete, self.source_list, self.note, self.change) = data
 
+    def _has_handle_reference(self,classname,handle):
+        if classname == 'Event':
+            return handle in self.event_list
+        elif classname == 'Person':
+            return handle in self.child_list + [self.father_handle,self.mother_handle]
+        return False
+
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Event':
             new_list = [ handle for handle in self.event_list \
@@ -1582,22 +1512,6 @@ class Family(PrimaryObject,SourceNote,MediaBase):
                 self.father_handle = new_handle
             if self.mother_handle == old_handle:
                 self.mother_handle = new_handle
-
-    def get_handleholder_list(self,classname):
-        """
-        Returns the list of all objects referring to handles of a given type.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @return: Returns the list of all attributes referring to handles of this type.
-        @rtype: list
-        """
-        if classname == 'Event':
-            return self.event_list
-        elif classname == 'Person':
-            check_list = [self.father_handle,self.mother_handle]
-            add_list = [item for item in check_list if item]
-            return self.child_list + add_list
 
     def get_text_data_child_list(self):
         """
@@ -1864,7 +1778,7 @@ class Family(PrimaryObject,SourceNote,MediaBase):
         """
         self.event_list = event_list
 
-class Event(PrimaryObject,DataObj,MediaBase):
+class Event(PrimaryObject,PrivateObject,MediaBase):
     """
     Introduction
     ============
@@ -1885,7 +1799,7 @@ class Event(PrimaryObject,DataObj,MediaBase):
         """
 
         PrimaryObject.__init__(self,source)
-        DataObj.__init__(self,source)
+        PrivateObject.__init__(self,source)
         MediaBase.__init__(self,source)
 
         if source:
@@ -1940,6 +1854,14 @@ class Event(PrimaryObject,DataObj,MediaBase):
          self.place, self.cause, self.private, self.source_list,
          self.note, self.witness, self.media_list, self.change) = data
 
+    def _has_handle_reference(self,classname,handle):
+        if classname == 'Place':
+            return self.place == handle
+        elif classname == 'Person':
+            return handle in [ witness.val for witness in self.witness \
+                                        if witness.type == ID ]
+        return False
+
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Person' and self.witness:
             new_list = [ witness for witness in self.witness \
@@ -1956,21 +1878,6 @@ class Event(PrimaryObject,DataObj,MediaBase):
                     witness.val = new_hanlde
         elif classname == 'Place' and self.place == old_handle:
             self.place = new_handle
-
-    def get_handleholder_list(self,classname):
-        """
-        Returns the list of all objects referring to handles of a given type.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @return: Returns the list of all attributes referring to handles of this type.
-        @rtype: list
-        """
-        if classname == 'Place':
-            return [self.place]
-        elif classname == 'Person' and self.witness:
-            return [ witness.val for witness in self.witness \
-                                        if witness.type == ID ]
 
     def get_text_data_list(self):
         """
@@ -2556,6 +2463,11 @@ class MediaObject(PrimaryObject,SourceNote):
          self.date, self.place) = data
     
 
+    def _has_handle_reference(self,classname,handle):
+        if classname == 'Place':
+            return self.place == handle
+        return False
+
     def _remove_handle_references(self,classname,handle_list):
         if classname == 'Place' and self.place in handle_list:
             self.place = u''
@@ -2563,18 +2475,6 @@ class MediaObject(PrimaryObject,SourceNote):
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Place' and self.place == old_handle:
             self.place = new_handle
-
-    def get_handleholder_list(self,classname):
-        """
-        Returns the list of all objects referring to handles of a given type.
-
-        @param classname: The name of the primary object class.
-        @type classname: str
-        @return: Returns the list of all attributes referring to handles of this type.
-        @rtype: list
-        """
-        if classname == 'Place':
-            return [self.place]
 
     def get_text_data_list(self):
         """
@@ -2781,7 +2681,7 @@ class Source(PrimaryObject,MediaBase):
         to this source handle.
 
         @param src_handle: The source handle to be checked.
-        @type src_ref: str
+        @type src_handle: str
         @return: Returns whether any of it's child objects has reference to this source handle.
         @rtype: bool
         """
@@ -3360,13 +3260,13 @@ class MediaRef(SourceNote):
         """sets the property list associated with the image"""
         self.attrlist = list
 
-class Attribute(DataObj):
+class Attribute(PrivateObject):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
     
     def __init__(self,source=None):
         """creates a new Attribute object, copying from the source if provided"""
-        DataObj.__init__(self,source)
+        PrivateObject.__init__(self,source)
         
         if source:
             self.type = source.type
@@ -3412,13 +3312,13 @@ class Attribute(DataObj):
         """returns the value of the Attribute instance"""
         return self.value
 
-class Address(DataObj):
+class Address(PrivateObject):
     """Provides address information for a person"""
 
     def __init__(self,source=None):
         """Creates a new Address instance, copying from the source
         if provided"""
-        DataObj.__init__(self,source)
+        PrivateObject.__init__(self,source)
         
         if source:
             self.street = source.street
@@ -3549,7 +3449,7 @@ class Address(DataObj):
         """returns the postal code of the Address"""
         return self.postal
 
-class Name(DataObj):
+class Name(PrivateObject):
     """Provides name information about a person. A person may have more
     that one name throughout his or her life."""
 
@@ -3559,7 +3459,7 @@ class Name(DataObj):
     
     def __init__(self,source=None):
         """creates a new Name instance, copying from the source if provided"""
-        DataObj.__init__(self,source)
+        PrivateObject.__init__(self,source)
         
         if source:
             self.first_name = source.first_name
