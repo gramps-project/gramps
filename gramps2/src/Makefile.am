@@ -29,7 +29,6 @@ pkgpython_PYTHON = \
 	Date.py\
 	DbPrompter.py\
 	DisplayTrace.py\
-	DrawDoc.py\
 	EditPerson.py\
 	EditPlace.py\
 	EditSource.py\
@@ -86,7 +85,6 @@ pkgpython_PYTHON = \
 	StyleEditor.py\
 	SubstKeywords.py\
 	TarFile.py\
-	TextDoc.py\
 	UrlEdit.py\
 	Utils.py\
 	VersionControl.py\
