@@ -259,7 +259,7 @@
         </graphic>
       </screenshot>
     </figure>
-    <sect2>
+    <sect2 id="seleditindv">
       <title>Selecting and Editing Individuals</title>
       <para>
       The People View lists the individuals in the database. An in
@@ -337,7 +337,7 @@
       </para>
     </sect2>
   </sect1>
-  <sect1>
+  <sect1 id="editpersondata">
     <title>Editing a person's data</title>
     <para>
     A person's personal information can be edited in the
