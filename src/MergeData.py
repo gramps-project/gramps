@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -313,15 +313,18 @@ class MergePeople:
             orig_family = self.p1.getMainParents()
             if orig_family:
                 orig_family.removeChild(self.p1)
-            
-            source_family = self.p2.getMainParents()
+                self.p1.removeAltFamily(orig_family)
+           
+            (source_family,mrel,frel) = self.p2.getMainParentsRel()
             self.p1.setMainParents(source_family)
 
             if source_family:
                 if self.p2 in source_family.getChildList():
                     source_family.removeChild(self.p2)
+                    self.p2.removeAltFamily(source_family)
                 if self.p1 not in source_family.getChildList():
                     source_family.addChild(self.p1)
+                    self.p1.addAltFamily(source_family,mrel,frel)
         else:
             source_family = self.p2.getMainParents()
             if source_family:
@@ -344,6 +347,8 @@ class MergePeople:
 
         try:
             self.db.removePerson(self.p2.getId())
+            self.db.personMap[self.p1.getId()] = self.p1
+            self.db.personTable[self.p1.getId()] = self.p1.getDisplayInfo()
             self.db.buildPersonDisplay(self.p1.getId(),old_id)
         except:
             print "%s is not in the person map!" % (GrampsCfg.nameof(self.p2))
