@@ -218,13 +218,15 @@ class TableCellStyle:
             self.tborder = obj.tborder
             self.bborder = obj.bborder
             self.padding = obj.padding
+	    self.longlist = obj.longlist
         else:
             self.rborder = 0
             self.lborder = 0
             self.tborder = 0
             self.bborder = 0
             self.padding = 0
-
+	    self.longlist = 0
+	    
     def set_padding(self,val):
         self.padding = val
 
@@ -239,6 +241,9 @@ class TableCellStyle:
 
     def set_bottom_border(self,val):
         self.bborder = val
+
+    def set_longlist(self,val):
+        self.longlist = val
 
     def get_padding(self):
         return self.padding
@@ -255,6 +260,8 @@ class TableCellStyle:
     def get_bottom_border(self):
         return self.bborder
 
+    def get_longlist(self):
+        return self.longlist
 
 #------------------------------------------------------------------------
 #
