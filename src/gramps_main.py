@@ -1965,6 +1965,7 @@ def post_load(name):
         lastname = person.getPrimaryName().getSurname()
         if lastname and lastname not in const.surnames:
             const.surnames.append(lastname)
+            const.surnames.sort()
 
     statusbar.set_progress(1.0)
     full_update()

@@ -253,12 +253,7 @@ class ChooseParents:
         window = self.xml.get_widget("addperson")
         window.editable_enters(self.xml.get_widget("given"))
         window.editable_enters(self.xml.get_widget("surname"))
-        if len(const.surnames) > 0:
-            const.surnames.sort()
-            combo = self.xml.get_widget("surnameCombo")
-            combo.set_popdown_strings(const.surnames)
-            combo.disable_activate()
-        self.xml.get_widget("surname").set_text("")
+        utils.attach_surnames(self.xml.get_widget("surnameCombo"))
 
     def on_addfather_clicked(self,obj):
         self.on_addparent_clicked(obj,"male")

@@ -62,7 +62,7 @@ class NameEditor:
         self.surname_field = self.top.get_widget("alt_last")
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.note_field = self.top.get_widget("alt_note")
-        self.top.get_widget("alt_surname_list").set_popdown_strings(const.surnames)
+        utils.attach_surnames(self.top.get_widget("alt_surname_list"))
         self.priv = self.top.get_widget("priv")
 
         if self.name:

@@ -193,9 +193,7 @@ class EditPerson:
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
         
-        if len(const.surnames) > 0:
-            const.surnames.sort()
-            self.get_widget("lastNameList").set_popdown_strings(const.surnames)
+        utils.attach_surnames(self.get_widget("lastNameList"))
 
         self.gid.set_text(person.getId())
         self.gid.set_editable(Config.id_edit)
