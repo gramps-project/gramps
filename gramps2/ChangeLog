@@ -1,3 +1,6 @@
+2003-12-13  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/KwordDoc.py (write_note): Implement function.
+
 2003-12-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/HtmlDoc.py (write_note): Set monospace font family 
 	for a preformatted note.

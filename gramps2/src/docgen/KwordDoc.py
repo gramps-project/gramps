@@ -18,10 +18,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 import BaseDoc
 from latin_utf8 import latin_to_utf8
 
 import time
+import string
 import cStringIO
 import gzip
 
@@ -438,6 +441,19 @@ class KwordDoc(BaseDoc.BaseDoc):
 
     def horizontal_line(self):
         pass
+
+    def write_note(self,text,format,style_name):
+        if format == 1:
+            self.start_paragraph(style_name)
+            self.write_text(text)
+            self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                line = line.replace('\n',' ')
+                line = string.join(string.split(line))
+                self.write_text(line)
+                self.end_paragraph()
 
     def write_text(self,text):
         text = text.replace('&','&amp;');       # Must be first
