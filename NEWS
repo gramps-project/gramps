@@ -2,17 +2,20 @@ Version 0.9.1
 * Custom paper sizes may be set for reports
 * Witnesses may be added to an event. The witnesses do not have to be in
   the database, in which case only a string for a name is kept.
-* Improved Dialogs to be more compliant with GNOME Human Interface Guidelines.
+* Improved interface to be more compliant with GNOME Human Interface Guidelines.
 * Added Romanian translation (Radu Bogdan Mare)
+* Added Dutch translation (Tino Meinen)
 * Displaying of tabbed person list is significantly faster, since the lists
   are only drawn with they are selected.
-* GRAMPS manual has been updated for the GNOME 2 interface.
+* GRAMPS manual has been updated for the GNOME 2 interface (Alex Roitman)
 * Patch Names utility allows you to select which names should be modified.
 * Find dialog is now working again.
 * Example database can be installed and loaded from the help menu.
 * The status bar can now optionally show the active person's relationship
   to the home person (works for English only, since the relationship
   calculation is region/culture dependent).
+* Dozens of bug fixes.
+* GZIP compression problem has been resolved. 
 
 Version 0.9.0
 * GNOME 2.0 support. Requires pygtk2 and gnome-python2.
