@@ -265,19 +265,19 @@ class RelationshipCalculator:
             return ("spouse",[])
 
         try:
-            self.apply_filter(orig_person,0,firstList,firstMap)
-            self.apply_filter(other_person,0,secondList,secondMap)
+            self.apply_filter(orig_person.get_id(),0,firstList,firstMap)
+            self.apply_filter(other_person.get_id(),0,secondList,secondMap)
         except RuntimeError,msg:
             return (_("Relationship loop detected"),None)
     
-        for person in firstList:
-            if person in secondList:
-                new_rank = firstMap[person.get_id()]
+        for person_id in firstList:
+            if person_id in secondList:
+                new_rank = firstMap[person_id]
                 if new_rank < rank:
                     rank = new_rank
-                    common = [ person ]
+                    common = [ person_id ]
                 elif new_rank == rank:
-                    common.append(person)
+                    common.append(person_id)
 
         firstRel = -1
         secondRel = -1
@@ -285,17 +285,17 @@ class RelationshipCalculator:
         length = len(common)
     
         if length == 1:
-            person = common[0]
-            secondRel = firstMap[person.get_id()]
-            firstRel = secondMap[person.get_id()]
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
         elif length == 2:
-            p1 = common[0]
-            secondRel = firstMap[p1.get_id()]
-            firstRel = secondMap[p1.get_id()]
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
         elif length > 2:
-            person = common[0]
-            secondRel = firstMap[person.get_id()]
-            firstRel = secondMap[person.get_id()]
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
             
         if firstRel == -1:
             return ("",[])
@@ -348,14 +348,14 @@ class RelationshipCalculator:
         self.apply_filter(orig_person,0,firstList,firstMap)
         self.apply_filter(other_person,0,secondList,secondMap)
     
-        for person in firstList:
-            if person in secondList:
-                new_rank = firstMap[person.get_id()]
+        for person_id in firstList:
+            if person_id in secondList:
+                new_rank = firstMap[person_id]
                 if new_rank < rank:
                     rank = new_rank
-                    common = [ person ]
+                    common = [ person_id ]
                 elif new_rank == rank:
-                    common.append(person)
+                    common.append(person_id)
 
         firstRel = -1
         secondRel = -1
@@ -363,17 +363,17 @@ class RelationshipCalculator:
         length = len(common)
     
         if length == 1:
-            person = common[0]
-            secondRel = firstMap[person.get_id()]
-            firstRel = secondMap[person.get_id()]
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
         elif length == 2:
-            p1 = common[0]
-            secondRel = firstMap[p1.get_id()]
-            firstRel = secondMap[p1.get_id()]
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
         elif length > 2:
-            person = common[0]
-            secondRel = firstMap[person.get_id()]
-            firstRel = secondMap[person.get_id()]
+            person_id = common[0]
+            secondRel = firstMap[person_id]
+            firstRel = secondMap[person_id]
             
         if firstRel == 0:
             if secondRel == 0:
