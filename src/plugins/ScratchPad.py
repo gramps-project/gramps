@@ -398,69 +398,135 @@ class ScratchPadWindow:
             self.otree.select_row(0)
             
 
-    def generate_addr_tooltip(self,addr):
-        global escape
-        return "<big><b>%s</b></big>\n"\
-               "<b>%s:</b>\t%s\n"\
-               "<b>%s:</b>\n"\
-               "\t%s\n"\
-               "\t%s\n"\
-               "\t%s\n"\
-               "\t%s" % (_("Address"),
-                         _("Date"),
-                         escape(addr.get_date()),
-                         _("Location"),
-                         escape(addr.get_street()),
-                         escape(addr.get_city()),
-                         escape(addr.get_state()),
-                         escape(addr.get_country()))
 
     def generate_event_tooltip(self,event):
         global escape
-        return "<big><b>%s</b></big>\n"\
-               "<b>%s:</b>\t%s\n"\
-               "<b>%s:</b>\t%s\n" % (_("Event"),
-                                     _("Name"),                       
-                                     escape(const.display_pevent(event.get_name())),
-                                     _("Description"),
-                                     escape(event.get_description()))
+        
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Event"),
+            _("Type"),escape(const.display_pevent(event.get_name())),
+            _("Date"),escape(event.get_date()),
+            _("Place"),escape(place_title(self.db,event)),
+            _("Cause"),escape(event.get_cause()),
+            _("Description"), escape(event.get_description()))
+
+        if len(event.get_source_references()) > 0:
+            psrc_ref = event.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self.db.get_source_from_handle(psrc_id)
+
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+
+        return s
+
+    def generate_addr_tooltip(self,addr):
+        global escape
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Address"),
+            _("Date"), escape(addr.get_date()),
+            _("Location"),
+            escape(addr.get_street()),
+            escape(addr.get_city()),
+            escape(addr.get_state()),
+            escape(addr.get_country()),
+            escape(addr.get_postal_code()),
+            _("Telephone"), escape(addr.get_phone()))
+    
+        if len(addr.get_source_references()) > 0:
+            psrc_ref = addr.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self.db.get_source_from_handle(psrc_id)
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Sources"),
+                _("Name"),escape(short(psrc.get_title())))
+            
+        return s
+
     
     def generate_url_tooltip(self,url):
         global escape
-        return "<big><b>%s</b></big>\n"\
-               "<b>%s:</b>\t%s\n"\
-               "<b>%s:</b>\t%s" % (_("Url"),
-                                   _("Path"),
-                                   escape(url.get_path()),
-                                   _("Description"),
-                                   escape(url.get_description()))
+        return "<big><b>%s</b></big>\n\n"\
+               "\t<b>%s:</b>\t%s\n"\
+               "\t<b>%s:</b>\t%s" % (_("Url"),
+                                     _("Path"),
+                                     escape(url.get_path()),
+                                     _("Description"),
+                                     escape(url.get_description()))
 
-    def generate_pattr_tooltip(self,pattr):
+    def generate_pattr_tooltip(self,attr):
         global escape
-        return "<big><b>%s</b></big>\n"\
-               "<b>%s:</b>\t%s\n"\
-               "<b>%s:</b>\t%s" % (_("Attribute"),
-                                   _("Type"),
-                                   escape(const.display_pattr(pattr.get_type())),
-                                   _("Value"),
-                                   escape(pattr.get_value()))
-    
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (_("Attribute"),
+                                  _("Type"),
+                                  escape(const.display_pattr(attr.get_type())),
+                                  _("Value"),
+                                  escape(attr.get_value()))
+        
+        if len(attr.get_source_references()) > 0:
+            psrc_ref = attr.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self.db.get_source_from_handle(psrc_id)
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Sources"),
+                _("Name"),escape(short(psrc.get_title())))
+
+        return s
+
+        
     def generate_srcref_tooltip(self,srcref):
         global escape
         base = self.db.get_source_from_handle(srcref.get_base_handle())
-        return "<big><b>%s</b></big>\n"\
-               "<b>%s:</b>\t%s\n"\
-               "<b>%s:</b>\t%s" % (_("SourceRef"),
-                                   _("Title"),
-                                   escape(base.get_title()),
-                                   _("Text"),
-                                   escape(srcref.get_text()))
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (
+            _("SourceRef"),
+            _("Title"),escape(base.get_title()),
+            _("Page"), escape(srcref.get_page()),
+            _("Text"), escape(srcref.get_text()),
+            _("Comment"), escape(srcref.get_comments()))
+
+        return s
 
     def generate_text_tooltip(self,text):
         global escape
         return "<big><b>%s</b></big>\n"\
                "%s" % (_("Text"),
                        escape(text))
+
+def short(val,size=60):
+    if len(val) > size:
+        return "%s..." % val[0:size]
+    else:
+        return val
+
+def place_title(db,event):
+    pid = event.get_place_handle()
+    if pid:
+        return db.get_place_from_handle(pid).get_title()
+    else:
+        return u''
 
 #-------------------------------------------------------------------------
 #
