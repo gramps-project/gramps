@@ -7,3 +7,4 @@ Exec=gramps
 Icon=gramps.png
 Terminal=0
 Type=Application
+StartupNotify=true

@@ -29,6 +29,7 @@ BuildRequires: scrollkeeper >= @SCROLLKEEPER_BUILD_REQUIRED@
 BuildRequires: automake >= 1.6
 BuildRequires: autoconf >= 2.52
 BuildRequires: rpm >= 4.1
+BuildRequires: desktop-file-utils >= 0.2.92
 
 %description
 gramps (Genealogical Research and Analysis Management Programming
@@ -54,6 +55,12 @@ CFLAGS="$RPM_OPT_FLAGS" make
 rm -rf $RPM_BUILD_ROOT
 
 %makeinstall
+mkdir $RPM_BUILD_ROOT%{_datadir}/applications
+desktop-file-install --vendor gramps --delete-original \
+	--dir $RPM_BUILD_ROOT%{_datadir}/applications  \
+	--add-category Application                     \
+	--add-category Utility                         \
+	$RPM_BUILD_ROOT%{_datadir}/gnome/apps/Applications/gramps.desktop
 %find_lang gramps
 rm -rf $RPM_BUILD_ROOT/%{_localstatedir}/scrollkeeper/
 
@@ -68,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{prefix}/bin/gramps
 
-%{_datadir}/gnome/apps/Applications/gramps.desktop
+%{_datadir}/applications/*
 %{_datadir}/pixmaps/gramps.png
 
 %{_datadir}/gramps/*
