@@ -120,6 +120,14 @@
       possible copies of media objects. This directory will be updated by &app; 
       each time the database is saved. </para> 
       
+      <para>NOTE: when opening an existing database, you should 
+      open a <replaceable>DIRECTORY</replaceable> and 
+      <replaceable>NOT a FILE</replaceable>. The directory you need to open 
+      should contain the  database file <replaceable>data.gramps</replaceable> 
+      as well as any possible copies of media objects. Such a directory is 
+      created by &app; when you start a new database and is updated each time 
+      the database is saved. </para> 
+
       </sect2>
       
 <!-- ================ Getting Started Sub-subsection  
@@ -165,6 +173,11 @@
 	in the help browser.  </para></listitem>
 	</varlistentry>
 
+	<varlistentry><term>FAQ</term>
+	<listitem><para> Use this item to read Frequently Asked Questions
+	about &app; in the browser. </para></listitem>
+	</varlistentry>
+    
 	<varlistentry><term>GRAMPS home page</term>
 	<listitem><para> Select this item to open home page of &app; in your
 	default web browser. </para></listitem>

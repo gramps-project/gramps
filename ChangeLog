@@ -1,5 +1,8 @@
 2003-12-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/ru.po: Update Russian translation for 0.98.
+	* doc/gramps-manual/C/getstart.xml: More "open a directory" stuff. 
+	* src/gramps.glade: Add Help button to opendb dialog.
+	* src/DbPrompter.py (open_help_clicked): Add function.
 
 2003-12-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/getstart.xml: Remove ZODB support section. 

@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GNOME modules
@@ -25,6 +27,7 @@
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -62,6 +65,7 @@ class DbPrompter:
         
         opendb.signal_autoconnect({
             "on_open_ok_clicked" : self.open_ok_clicked,
+            "on_open_help_clicked" : self.open_help_clicked,
             "on_open_cancel_clicked" : self.open_cancel_clicked,
             "on_opendb_delete_event": self.open_delete_event,
             })
@@ -77,6 +81,10 @@ class DbPrompter:
         else:
             self.open_activate()
         Utils.destroy_passed_object(obj)
+
+    def open_help_clicked(self,obj):
+        """Display the GRAMPS manual"""
+        gnome.help_display('gramps-manual','choose-db-start')
 
     def save_as_activate(self):
         wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
