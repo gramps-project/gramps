@@ -551,11 +551,10 @@ def create_id():
 # 
 #
 #-------------------------------------------------------------------------
-_NEW_NAME_PATTERN = '~/Untitled_%d.%s'
+_NEW_NAME_PATTERN = '%sUntitled_%d.%s'
 
-def get_new_filename(ext):
+def get_new_filename(ext,folder='~/'):
     ix = 1
-    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext) )):
+    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (folder,ix,ext) )):
         ix = ix + 1
-    return os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext))
-
+    return os.path.expanduser(_NEW_NAME_PATTERN % (folder,ix,ext))

@@ -50,6 +50,7 @@ import const
 import Utils
 import Plugins
 import QuestionDialog
+import GrampsCfg
 
 #-------------------------------------------------------------------------
 #
@@ -203,6 +204,7 @@ class Exporter:
         Depending on the success status, set the text for the final page.
         """
         filename = self.chooser.get_filename()
+        GrampsCfg.save_last_export_dir(os.path.split(filename)[0])
         ix = self.get_selected_format_index()
         if self.exports[ix][3]:
             success = self.exports[ix][0](self.parent.db,filename,self.person,
@@ -329,11 +331,19 @@ class Exporter:
         """
         ix = self.get_selected_format_index()
         ext = self.exports[ix][4]
+        
+        # Suggested folder: try last export, then last import, then home.
+        default_dir = GrampsCfg.get_last_export_dir()
+        if len(default_dir)<=1:
+            default_dir = GrampsCfg.get_last_import_dir()
+        if len(default_dir)<=1:
+            default_dir = '~/'
+
         if ext == 'gramps':
-            new_filename = os.path.expanduser('~/data.gramps')
+            new_filename = os.path.expanduser(default_dir + 'data.gramps')
         else:
-            new_filename = Utils.get_new_filename(ext)
-        self.chooser.set_filename(new_filename)
+            new_filename = Utils.get_new_filename(ext,default_dir)
+        self.chooser.set_current_folder(default_dir)
         self.chooser.set_current_name(os.path.split(new_filename)[1])
 
     def get_selected_format_index(self):

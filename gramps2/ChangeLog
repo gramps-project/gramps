@@ -19,6 +19,23 @@
 	* src/plugins/WebPage.py: Use gramps ID for naming the files
 	and creating links. 
 
+	* src/Plugins.py: Add native_format flag to import plugin registration.
+	* src/ReadXML.py, src/ReadGedcom.py: Register as native formats
+	to prevent loading twice on File->Open.
+	* src/data/gramps.schemas: Add keys for last import and export dirs.
+	* src/GrampsCfg.py (get_last_import_dir, save_last_import_dir,
+	get_last_export_dir, save_last_export_dir): Add functions.
+	* src/Exportder.py (suggest_filename): Try last export and last
+	import folders before falling back to Home; (save): Save export folder.
+	* src/Utils.py (get_new_filename): Add optional folder argument.
+	* src/DbPrompter.py (ExistingDbPrompter.chooser): Only add
+	importers for non-native formats, the rest is already taken care of;
+	Try last file, last import, last export, then home folders; 
+	(ImportDbPrompter.chooser): Save import folder; Try last import, 
+	last file, last export, then home folders. 
+	(NewNativeDbPrompter): Try last file, last import, last export folders, 
+	then fall back to home.
+
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
 	* install-sh: Removed this generated file.
 
