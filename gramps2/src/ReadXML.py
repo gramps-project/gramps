@@ -30,6 +30,7 @@ import os
 import gtk
 import shutil
 import xml.parsers.expat
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -37,7 +38,6 @@ import xml.parsers.expat
 #
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog, WarningDialog, MissingMediaDialog
-from gettext import gettext as _
 import Calendar
 import Date
 import GrampsMime
@@ -61,7 +61,7 @@ except:
 # Must takes care of renaming media files according to their new IDs.
 #
 #-------------------------------------------------------------------------
-def importData(database, filename, callback,cl=0):
+def importData(database, filename, callback=None,cl=0):
 
     filename = os.path.normpath(filename)
     basefile = os.path.dirname(filename)
@@ -1159,3 +1159,15 @@ def build_place_title(loc):
         value = append_value(value,country)
     return value
     
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+_mime_type = 'data.gramps'
+_filter = gtk.FileFilter()
+_filter.set_name(_('GRAMPS XML databases'))
+_filter.add_pattern(_mime_type)
+
+from Plugins import register_import
+register_import(importData,_filter,_mime_type)

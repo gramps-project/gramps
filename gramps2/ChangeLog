@@ -1,3 +1,12 @@
+2004-06-23  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgHandler.py (handle_args): Add import callback call.
+	* src/gramps_main.py: Use open filters, mime types, and handlers 
+	from import plugins. 
+	* src/Plugins.py: Change import plugin registration.
+	* src/ReadXML.py: Change registration.
+	* src/plugins/ReadGedcom.py: Change registration.
+	* src/plugins/ReadPkg.py: Rewrite and change registration.
+
 2004-06-22  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson,py: allow reordering of event columns
 	* src/TransTable.py: allow to be initialized with a list instead of a map

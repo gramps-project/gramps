@@ -1801,11 +1801,17 @@ def readData(database,active_person,cb):
             DisplayTrace.DisplayTrace()
     else:
         choose.destroy()
-        
+
+
+_mime_type = 'application/x-gedcom'
+_filter = gtk.FileFilter()
+_filter.set_name(_('GEDCOM files'))
+_filter.add_mime_type(_mime_type)
+
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 from Plugins import register_import
-register_import(readData,_title_string)
+register_import(importData,_filter,_mime_type)
