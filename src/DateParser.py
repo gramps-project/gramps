@@ -36,6 +36,7 @@ __version__ = "$Revision$"
 import re
 import time
 import locale
+import calendar
 
 #-------------------------------------------------------------------------
 #
@@ -49,7 +50,8 @@ import Date
 # Top-level module functions
 #
 #-------------------------------------------------------------------------
-_max_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+_max_days  = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+_leap_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 def gregorian_valid(date_tuple):
     day = date_tuple[0]
@@ -58,6 +60,9 @@ def gregorian_valid(date_tuple):
     try:
         if month > 12:
             valid = False
+        elif calendar.isleap(date_tuple[2]):
+            if day > _leap_days[month-1]:
+                valid = False
         elif day > _max_days[month-1]:
             valid = False
     except:
@@ -82,18 +87,9 @@ class DateParser:
     # RFC-2822 only uses capitalized English abbreviated names, no locales.
     _rfc_days = ('Sun','Mon','Tue','Wed','Thu','Fri','Sat')
     _rfc_mons_to_int = {
-        'Jan' : 1,
-        'Feb' : 2, 
-        'Mar' : 3,
-        'Apr' : 4,
-        'May' : 5,
-        'Jun' : 6,
-        'Jul' : 7,
-        'Aug' : 8,
-        'Sep' : 9,
-        'Oct' : 10,
-        'Nov' : 11,
-        'Dec' : 12,
+        'Jan' : 1,  'Feb' : 2,  'Mar' : 3,  'Apr' : 4,
+        'May' : 5,  'Jun' : 6,  'Jul' : 7,  'Aug' : 8,
+        'Sep' : 9,  'Oct' : 10, 'Nov' : 11, 'Dec' : 12,
         }
 
     month_to_int = {
@@ -317,9 +313,9 @@ class DateParser:
 
     def _parse_greg_julian(self,text):
         return self._parse_calendar(text,self._text,self._text2,
-                                    self.month_to_int)
+                                    self.month_to_int,gregorian_valid)
                              
-    def _parse_calendar(self,text,regex1,regex2,mmap):
+    def _parse_calendar(self,text,regex1,regex2,mmap,check=None):
         match = regex1.match(text)
         if match:
             groups = match.groups()
@@ -336,7 +332,10 @@ class DateParser:
                 d = self._get_int(groups[1])
                 y = int(groups[3])
                 s = groups[4] != None
-            return (d,m,y,s)
+            value = (d,m,y,s)
+            if check and not check((d,m,y)):
+                value = Date.EMPTY
+            return value
 
         match = regex2.match(text)
         if match:
@@ -354,7 +353,11 @@ class DateParser:
             else:
                 y = int(groups[3])
                 s = groups[4] != None
-            return (d,m,y,s)
+            value = (d,m,y,s)
+            if check and not check((d,m,y)):
+                value = DATE.EMPTY
+            return value
+        
         return Date.EMPTY
     
     def _parse_subdate(self,text,subparser=None):
@@ -363,6 +366,9 @@ class DateParser:
         """
         if subparser == None:
             subparser = self._parse_greg_julian
+            check = gregorian_valid
+        else:
+            check = None
             
         value = subparser(text)
         if value != Date.EMPTY:
@@ -374,7 +380,7 @@ class DateParser:
             y = self._get_int(groups[0])
             m = self._get_int(groups[1])
             d = self._get_int(groups[2])
-            if gregorian_valid((d,m)):
+            if gregorian_valid((d,m,y)):
                 return (d,m,y,False)
             else:
                 return Date.EMPTY
@@ -385,7 +391,7 @@ class DateParser:
             d = self._get_int(groups[2])
             m = self._rfc_mons_to_int[groups[3]]
             y = self._get_int(groups[4])
-            if gregorian_valid((d,m)):
+            if gregorian_valid((d,m,y)):
                 return (d,m,y,False)
             else:
                 return Date.EMPTY
@@ -400,11 +406,11 @@ class DateParser:
                 m = self._get_int(groups[1])
                 d = self._get_int(groups[3])
             y = self._get_int(groups[4])
-            if gregorian_valid((d,m)):
-                return (d,m,y,False)
-            else:
-                return Date.EMPTY
-
+            value = (d,m,y,False)
+            if check and not check((d,m,y)):
+                value = Date.EMPTY
+            return value
+        
         return Date.EMPTY
 
     def set_date(self,date,text):

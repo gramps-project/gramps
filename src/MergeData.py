@@ -235,8 +235,8 @@ class MergePeople:
         for xdata in self.p2.get_alternate_names():
             for data in lst:
                 if data.are_equal(xdata):
-                    self.copy_note(xdata,data)
-                    self.copy_sources(xdata,data)
+                    self.copy_note(data,xdata)
+                    self.copy_sources(data,xdata)
                     break
             else:
                 self.p1.add_alternate_name(xdata)
@@ -246,8 +246,8 @@ class MergePeople:
             for data in lst:
                 if data.get_type() == xdata.get_type() and \
                    data.getValue() == xdata.get_value():
-                    self.copy_note(xdata,data)
-                    self.copy_sources(xdata,data)
+                    self.copy_note(data,xdata)
+                    self.copy_sources(data,xdata)
                     break
             else:
                 self.p1.add_attribute(xdata)
@@ -256,11 +256,21 @@ class MergePeople:
         for xdata in self.p2.get_event_list():
             for data in lst:
                 if data.are_equal(xdata):
-                    self.copy_note(xdata,data)
-                    self.copy_sources(xdata,data)
+                    self.copy_note(data,xdata)
+                    self.copy_sources(data,xdata)
                     break
             else:
                 self.p1.add_event(xdata)
+
+        lst = self.p1.get_address_list()
+        for xdata in self.p2.getAddressList():
+            for data in lst:
+                if data.are_equal(xdata):
+                    self.copy_note(data,xdata)
+                    self.copy_sources(data,xdata)
+                    break
+            else:
+                self.p1.addAddress(xdata)
 
         lst = self.p1.get_url_list()[:]
         for xdata in self.p2.get_url_list():
@@ -344,6 +354,8 @@ class MergePeople:
             if old_note:
                 old_note = old_note + "\n\n"
             self.p1.set_note(old_note + self.p2.get_note())
+
+        self.copy_sources(self.p1,self.p2)
 
         try:
             self.db.remove_person(self.p2.get_handle())
