@@ -27,6 +27,7 @@ import re
 import os
 import sys
 import intl
+import gtk
 
 _ = intl.gettext
 
@@ -85,32 +86,21 @@ class Filter:
 
 #-------------------------------------------------------------------------
 #
-# create - creates a new filter object from the passed data. Eliminates
-# the need to know the name of the class.
+#
 #
 #-------------------------------------------------------------------------
-def create(text):
-    return Filter(text)
+
+_filter_list = [(Filter, _("All people"), 0)]
+
+def register_filter(class_name, description=None, qualifier=0):
+    if description == None:
+        description = _("No description")
+    _filter_list.append((class_name,description,qualifier))
 
 #-------------------------------------------------------------------------
 #
-# need_qualifier - indicates if another parameter is needed.  Used to 
-# enable or disable the qualifier field on the display
-#
-#-------------------------------------------------------------------------
-def need_qualifier():
-    return 0
-
-filterList = [ _("All people") ]
-filterMap  = { _("All people") : create }
-filterEnb  = { _("All people") : need_qualifier }
-
-#-------------------------------------------------------------------------
-#
-# load_filters - loads all filters in the specfied directory.  Looks for
-# a task named "create". The create and need_qualifer tasks are loaded in
-# hash tables so that the filter description can be used to retrieve the
-# create and need_qualifier functions
+# load_filters - loads all filters in the specfied directory.  Assumes
+# that the filters will register themselves
 #
 #-------------------------------------------------------------------------
 def load_filters(dir):
@@ -123,23 +113,29 @@ def load_filters(dir):
     for file in os.listdir(dir):
         name = os.path.split(file)
         match = pymod.match(name[1])
-        if match == None:
-            continue
-        groups = match.groups()
-        try: 
-            plugin = __import__(groups[0])
-        except:
-            continue
+        if match:
+            groups = match.groups()
+            try: 
+                plugin = __import__(groups[0])
+            except:
+                print _("Failed to load the module: %s") % groups[0]
+                import traceback
+                traceback.print_exc()
 
-        if plugin.__dict__.has_key("get_name"):
-            name = plugin.get_name()
-        else:
-            name = plugin.__doc__
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_filter_menu(callback):
+    myMenu = gtk.GtkMenu()
+    for filter in _filter_list:
+        menuitem = gtk.GtkMenuItem(filter[1])
+        myMenu.append(menuitem)
+        menuitem.set_data("filter",filter[0])
+        menuitem.set_data("qual",filter[2])
+        menuitem.connect("activate",callback)
+        menuitem.show()
+    return myMenu
 
-        if plugin.__dict__.has_key("create"):
-            filterMap[name] = plugin.create
-            filterList.append(name)
-        if plugin.__dict__.has_key("need_qualifier"):
-            filterEnb[name] = plugin.need_qualifier
-            
 

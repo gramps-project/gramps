@@ -26,7 +26,6 @@
 from gtk import *
 from gnome.ui import *
 
-import gnome.mime
 import libglade
 import os
 import intl
@@ -94,8 +93,9 @@ class Marriage:
 
         top_window = self.get_widget("marriageEditor")
         text_win = self.get_widget("marriageTitle")
-        text_win.set_text(Config.nameof(family.getFather()) + " and " + \
-                          Config.nameof(family.getMother()))
+        title = _("%s and %s") % (Config.nameof(family.getFather()),
+                                  Config.nameof(family.getMother()))
+        text_win.set_text(title)
         
         self.event_list = self.get_widget("marriageEventList")
         self.photo_list = self.get_widget("photolist")
@@ -118,14 +118,14 @@ class Marriage:
 
         self.elist = family.getEventList()[:]
         self.alist = family.getAttributeList()[:]
-        self.events_changed = 0
-        self.attr_changed = 0
+        self.lists_changed = 0
 
         # set initial data
         self.load_images()
 
         self.type_field.set_popdown_strings(const.familyRelations)
-        self.type_field.entry.set_text(const.display_frel(family.getRelationship()))
+        frel = const.display_frel(family.getRelationship())
+        self.type_field.entry.set_text(frel)
         
         # stored object data
         top_window.set_data(MARRIAGE,self)
@@ -148,15 +148,8 @@ class Marriage:
     #
     #
     #-------------------------------------------------------------------------
-    def update_events(self):
+    def update_lists(self):
         self.family.setEventList(self.elist)
-
-    #-------------------------------------------------------------------------
-    #
-    #
-    #
-    #-------------------------------------------------------------------------
-    def update_attributes(self):
         self.family.setAttributeList(self.alist)
 
     #---------------------------------------------------------------------
@@ -165,46 +158,7 @@ class Marriage:
     #
     #---------------------------------------------------------------------
     def redraw_attr_list(self):
-        self.attr_list.freeze()
-        self.attr_list.clear()
-
-	self.attr_index = 0
-        for attr in self.alist:
-            details = get_detail_flags(attr)
-            self.attr_list.append([const.display_fattr(attr.getType()),\
-                                   attr.getValue(),details])
-            self.attr_list.set_row_data(self.attr_index,attr)
-            self.attr_index = self.attr_index + 1
-
-        current_row = self.attr_list.get_data(INDEX)
-        
-        if self.attr_index > 0:
-            if current_row <= 0:
-                current_row = 0
-            elif self.attr_index <= current_row:
-                current_row = current_row - 1
-            self.attr_list.select_row(current_row,0)
-            self.attr_list.moveto(current_row,0)
-        self.attr_list.set_data(INDEX,current_row)
-        self.attr_list.thaw()
-
-    #-------------------------------------------------------------------------
-    #
-    # add_event - adds the event to the window, attaching the event structure
-    # to each row.
-    #
-    #-------------------------------------------------------------------------
-    def add_event(self,text,event):
-        if not event:
-            return
-        detail = get_detail_flags(event)
-        if event.getPlace():
-            p = event.getPlace().get_title()
-        else:
-            p = ""
-        self.event_list.append([text,event.getQuoteDate(),p,detail])
-        self.event_list.set_row_data(self.lines,event)
-        self.lines = self.lines + 1
+        utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
     #-------------------------------------------------------------------------
     #
@@ -215,13 +169,9 @@ class Marriage:
     #
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
-
-        src = photo.getPath()
-        thumb = self.db.getSavePath() + os.sep + ".thumb" + os.sep + \
-                os.path.basename(src)
-
+        src = os.path.basename(photo.getPath())
+        thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
         RelImage.check_thumb(src,thumb,const.thumbScale)
-
         self.photo_list.append(thumb,photo.getDescription())
 
     #-------------------------------------------------------------------------
@@ -232,9 +182,6 @@ class Marriage:
     #
     #-------------------------------------------------------------------------
     def load_images(self):
-
-        if len(self.family.getPhotoList()) == 0:
-            return
         self.photo_list.freeze()
         self.photo_list.clear()
         for photo in self.family.getPhotoList():
@@ -248,26 +195,7 @@ class Marriage:
     #
     #-------------------------------------------------------------------------
     def redraw_events(self):
-        self.lines = 0
-        self.event_list.freeze()
-        self.event_list.clear()
-
-        for event in self.elist:
-            self.add_event(const.display_fevent(event.getName()),event)
-
-        current_row = self.event_list.get_data(INDEX)
-        if current_row == None:
-            current_row = -1
-        
-        if self.lines >= 0:
-            if current_row < 0:
-                current_row = 0
-            elif self.lines < current_row:
-                current_row = current_row - 1
-            self.event_list.select_row(current_row,0)
-            self.event_list.moveto(current_row,0)
-        self.event_list.set_data(INDEX,current_row)
-        self.event_list.thaw()
+        utils.redraw_list(self.elist,self.event_list,disp_event)
 
     #-------------------------------------------------------------------------
     #
@@ -294,10 +222,7 @@ def did_data_change(obj):
     if text != family_obj.family.getNote():
         changed = 1
         
-    if family_obj.events_changed:
-        changed = 1
-
-    if family_obj.events_changed:
+    if family_obj.lists_changed:
         changed = 1
 
     return changed
@@ -332,9 +257,9 @@ def cancel_callback(a):
 #
 #-------------------------------------------------------------------------
 def on_delete_event(obj,b):
+    global quit
 
     if did_data_change(obj):
-        global quit
         q = _("Data was modified. Are you sure you want to abandon your changes?")
         quit = obj
         GnomeQuestionDialog(q,cancel_callback)
@@ -375,12 +300,8 @@ def on_close_marriage_editor(obj):
 
     utils.destroy_passed_object(family_obj.get_widget("marriageEditor"))
 
-    family_obj.update_events()
-    if family_obj.events_changed:
-        utils.modified()
-
-    family_obj.update_attributes()
-    if family_obj.attr_changed:
+    family_obj.update_lists()
+    if family_obj.lists_changed:
         utils.modified()
 
 #-------------------------------------------------------------------------
@@ -401,9 +322,8 @@ def on_add_clicked(obj):
 #-------------------------------------------------------------------------
 def on_update_clicked(obj):
     row = obj.get_data(INDEX)
-    if row < 0:
-        return
-    EventEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
+    if row >= 0:
+        EventEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -414,18 +334,9 @@ def on_update_clicked(obj):
 #-------------------------------------------------------------------------
 def on_delete_clicked(obj):
     family_obj = obj.get_data(MARRIAGE)
-    row = obj.get_data(INDEX)
-    if row < 0:
-        return
-    
-    del family_obj.elist[row]
-
-    if row > len(family_obj.elist)-1:
-        obj.set_data(INDEX,row-1)
-        
-    family_obj.redraw_events()
-    family_obj.events_changed = 1
-    utils.modified()
+    if utils.delete_selected(obj,family_obj.elist):
+        family_obj.lists_changed = 1
+        family_obj.redraw_events()
 
 #-------------------------------------------------------------------------
 #
@@ -439,9 +350,9 @@ def on_select_row(obj,row,b,c):
     event = obj.get_row_data(row)
     
     family_obj.date_field.set_text(event.getDate())
-    family_obj.place_field.set_text(event.getPlace().get_title())
+    family_obj.place_field.set_text(event.getPlaceName())
     family_obj.name_field.set_label(const.display_fevent(event.getName()))
-    family_obj.event_details.set_text(get_detail_text(event))
+    family_obj.event_details.set_text(utils.get_detail_text(event))
     family_obj.descr_field.set_text(event.getDescription())
 
 #-------------------------------------------------------------------------
@@ -525,27 +436,24 @@ def update_event(event,name,date,place,desc,note,priv,conf):
 #
 #-------------------------------------------------------------------------
 def on_photolist_button_press_event(obj,event):
+    myobj = obj.get_data(MARRIAGE)
+    icon = myobj.selectedIcon
+    if icon == -1:
+        return
+
     if event.button == 3:
-        myobj = obj.get_data(MARRIAGE)
+        photo = myobj.family.getPhotoList()[icon]
         menu = GtkMenu()
         item = GtkTearoffMenuItem()
         item.show()
-        view = GtkMenuItem(_("View Image"))
-        view.set_data("m",myobj)
-        view.connect("activate",on_view_photo)
-        view.show()
-        edit = GtkMenuItem(_("Edit Image"))
-        edit.set_data("m",myobj)
-        edit.connect("activate",on_edit_photo)
-        edit.show()
-        change = GtkMenuItem(_("Edit Description"))
-        change.set_data("m",myobj)
-        change.connect("activate",on_change_description)
-        change.show()
         menu.append(item)
-        menu.append(view)
-        menu.append(edit)
-        menu.append(change)
+        utils.add_menuitem(menu,_("View Image"),myobj,on_view_photo)
+        utils.add_menuitem(menu,_("Edit Image"),myobj,on_edit_photo)
+        utils.add_menuitem(menu,_("Edit Description"),myobj,
+                           on_change_description)
+        if photo.getPrivate() == 0:
+            utils.add_menuitem(menu,_("Convert to private copy"),myobj,
+                               on_convert_to_private)
         menu.popup(None,None,None,0,0)
 
 #-------------------------------------------------------------------------
@@ -556,18 +464,7 @@ def on_photolist_button_press_event(obj,event):
 def on_view_photo(obj):
     myobj = obj.get_data("m")
     photo = myobj.family.getPhotoList()[myobj.selectedIcon]
-    type = gnome.mime.type(photo.getPath())
-    
-    prog = string.split(gnome.mime.get_value(type,'view'))
-    args = []
-    for val in prog:
-        if val == "%f":
-            args.append(photo.getPath())
-        else:
-            args.append(val)
-    
-    if os.fork() == 0:
-        os.execvp(args[0],args)
+    utils.view_photo(photo)
 
 #-------------------------------------------------------------------------
 #
@@ -595,10 +492,11 @@ def on_photo_select_icon(obj,iconNumber,event):
 #-------------------------------------------------------------------------
 def on_delete_photo_clicked(obj):
     marriage_obj = obj.get_data(MARRIAGE)
+    icon = marriage_obj.selectedIcon
 
-    photolist = marriage_obj.family.getPhotoList()
-    marriage_obj.photo_list.remove(marriage_obj.selectedIcon)
-    del photolist[marriage_obj.selectedIcon]
+    if icon != -1:
+        marriage_obj.photo_list.remove(icon)
+        del marriage_obj.family.getPhotoList()[icon]
 
 #-------------------------------------------------------------------------
 #
@@ -713,7 +611,7 @@ def on_attr_list_select_row(obj,row,b,c):
 
     family_obj.attr_type.set_label(const.display_fattr(attr.getType()))
     family_obj.attr_value.set_text(attr.getValue())
-    family_obj.attr_details_field.set_text(get_detail_text(attr))
+    family_obj.attr_details_field.set_text(utils.get_detail_text(attr))
 
 #-------------------------------------------------------------------------
 #
@@ -722,9 +620,8 @@ def on_attr_list_select_row(obj,row,b,c):
 #-------------------------------------------------------------------------
 def on_update_attr_clicked(obj):
     row = obj.get_data(INDEX)
-    if row < 0:
-        return
-    AttributeEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
+    if row >= 0:
+        AttributeEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #
@@ -732,18 +629,10 @@ def on_update_attr_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_attr_clicked(obj):
-    row = obj.get_data(INDEX)
-    if row < 0:
-        return
-
     family_obj = obj.get_data(MARRIAGE)
-    del family_obj.alist[row]
-
-    if row > len(family_obj.alist)-1:
-        obj.set_data(INDEX,row-1)
-
-    family_obj.redraw_attr_list()
-    utils.modified()
+    if utils.delete_selected(obj,family_obj.alist):
+        family_obj.lists_changed = 1
+        family_obj.redraw_attr_list()
 
 #-------------------------------------------------------------------------
 #
@@ -793,27 +682,14 @@ class EventEditor:
         self.top.get_widget("eventTitle").set_text(name) 
         self.event_menu.set_popdown_strings(const.marriageEvents)
 
-        myMenu = GtkMenu()
-        index = 0
-        for name in const.confidence:
-            item = GtkMenuItem(name)
-            item.set_data("a",index)
-            item.show()
-            myMenu.append(item)
-            index = index + 1
-
-        self.conf_menu.set_menu(myMenu)
+        build_confidence_menu(self.conf_menu)
 
         values = self.parent.db.getPlaceMap().values()
         if event != None:
             self.name_field.set_text(event.getName())
 
-            attach_places(values,self.place_combo,event.getPlace())
-            if event.getPlace():
-                self.place_field.set_text(event.getPlace().get_title())
-            else:
-                self.place_field.set_text('')
-
+            utils.attach_places(values,self.place_combo,event.getPlace())
+            self.place_field.set_text(event.getPlaceName())
             self.date_field.set_text(event.getDate())
             self.descr_field.set_text(event.getDescription())
             self.conf_menu.set_history(event.getConfidence())
@@ -830,7 +706,7 @@ class EventEditor:
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
         else:
-            attach_places(values,self.place_combo,None)
+            utils.attach_places(values,self.place_combo,None)
             self.conf_menu.set_history(2)
 
         self.window.set_data("o",self)
@@ -861,7 +737,7 @@ def on_event_edit_ok_clicked(obj):
     ename = ee.name_field.get_text()
     edate = ee.date_field.get_text()
     eplace = string.strip(ee.place_field.get_text())
-    eplace_obj = get_place_from_list(ee.place_combo)
+    eplace_obj = utils.get_place_from_list(ee.place_combo)
     enote = ee.note_field.get_chars(0,-1)
     edesc = ee.descr_field.get_text()
     epriv = ee.priv.get_active()
@@ -877,16 +753,14 @@ def on_event_edit_ok_clicked(obj):
         ee.parent.db.addPlace(eplace_obj)
 
     if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,econf):
-        ee.parent.events_changed = 1
+        ee.parent.lists_changed = 1
         
     if not source_refs_equal(event.getSourceRef(),ee.srcref):
         event.setSourceRef(ee.srcref)
-        ee.parent.events_changed = 1
+        ee.parent.lists_changed = 1
 
     ee.parent.redraw_events()
-
     utils.destroy_passed_object(obj)
-
 
 #-------------------------------------------------------------------------
 #
@@ -921,20 +795,13 @@ class AttributeEditor:
             name = father.getPrimaryName().getName()
         else:
             name = mother.getPrimaryName().getName()
-        
-        self.top.get_widget("attrTitle").set_text(_("Attribute Editor for %s") % name)
+
+        title = _("Attribute Editor for %s") % name
+        self.top.get_widget("attrTitle").set_text(title)
         if len(const.familyAttributes) > 0:
             self.attrib_menu.set_popdown_strings(const.familyAttributes)
 
-        myMenu = GtkMenu()
-        index = 0
-        for name in const.confidence:
-            item = GtkMenuItem(name)
-            item.set_data("a",index)
-            item.show()
-            myMenu.append(item)
-            index = index + 1
-        self.conf_menu.set_menu(myMenu)
+        build_confidence_menu(self.conf_menu)
 
         if attrib != None:
             self.type_field.set_text(attrib.getType())
@@ -946,7 +813,6 @@ class AttributeEditor:
                 self.source_field.set_text("")
                  
             self.conf_menu.set_history(attrib.getConfidence())
-
             self.priv.set_active(attrib.getPrivacy())
 
             self.note_field.set_point(0)
@@ -991,52 +857,14 @@ def on_attrib_edit_ok_clicked(obj):
         ee.parent.alist.append(attrib)
         
     if update_attrib(attrib,type,value,note,priv,conf):
-        ee.parent.attr_changed = 1
+        ee.parent.lists_changed = 1
         
     if not source_refs_equal(attrib.getSourceRef(),ee.srcref):
         attrib.setSourceRef(ee.srcref)
-        ee.parent.attr_changed = 1
+        ee.parent.lists_changed = 1
 
     ee.parent.redraw_attr_list()
     utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_detail_flags(obj):
-    detail = ""
-    if Config.show_detail:
-        if obj.getNote() != "":
-            detail = "N"
-        if obj.getSourceRef().getBase():
-            detail = detail + "S"
-        if obj.getPrivacy():
-            detail = detail + "P"
-    return detail
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_detail_text(obj):
-    if obj.getNote() != "":
-        details = _("Note")
-    else:
-        details = ""
-    if obj.getSourceRef().getBase() != None:
-        if details == "":
-            details = _("Source")
-        else:
-            details = "%s, %s" % (details,_("Source"))
-    if obj.getPrivacy() == 1:
-        if details == "":
-            details = _("Private")
-        else:
-            details = "%s, %s" % (details,_("Private"))
-    return details
 
 #-------------------------------------------------------------------------
 #
@@ -1060,47 +888,18 @@ def source_refs_equal(one,two):
 
 #-------------------------------------------------------------------------
 #
-#
+# 
 #
 #-------------------------------------------------------------------------
-def attach_places(values,combo,place):
-    l = GtkLabel("")
-    l.show()
-    l.set_alignment(0,0.5)
-    c = GtkListItem()
-    c.add(l)
-    c.set_data("s",None)
-    c.show()
-    sel_child = c
-    list = [c]
-    mymap = {}
-    for src in values:
-        l = GtkLabel("%s [%s]" % (src.get_title(),src.getId()))
-        l.show()
-        l.set_alignment(0,0.5)
-        c = GtkListItem()
-        c.add(l)
-        c.set_data("s",src)
-        c.show()
-        list.append(c)
-        if src == place:
-            sel_child = c
-        mymap[src] = c
+def disp_attr(attr):
+    detail = utils.get_detail_flags(attr)
+    return [const.display_pattr(attr.getType()),attr.getValue(),detail]
 
-    combo.list.append_items(list)
-    combo.list.select_child(sel_child)
-
-    for v in mymap.keys():
-        combo.set_item_string(mymap[v],v.get_title())
-        
 #-------------------------------------------------------------------------
 #
-#
+# 
 #
 #-------------------------------------------------------------------------
-def get_place_from_list(obj):
-    select = obj.list.get_selection()
-    if len(select) == 0:
-        return None
-    else:
-        return select[0].get_data("s")
+def disp_event(event):
+    return [const.display_fevent(event.getName()), event.getQuoteDate(),
+            event.getPlaceName(), utils.get_detail_flags(event)]

@@ -474,11 +474,14 @@ def on_save_clicked(obj):
 # 
 #
 #------------------------------------------------------------------------
-def get_description():
-    return _("Produces a detailed report on the selected person.")
+from Plugins import register_report
 
-def get_name():
-    return _("Generate files/Individual Summary")
+register_report(
+    report,
+    _("Individual Summary"),
+    category=_("Generate Files"),
+    description=_("Produces a detailed report on the selected person.")
+    )
 
 
 

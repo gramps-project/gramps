@@ -776,18 +776,17 @@ def dump_index(person_list,styles,template,html_dir):
         doc.newline()
     doc.close()
 
-#------------------------------------------------------------------------
+#-------------------------------------------------------------------------
 #
-# 
 #
-#------------------------------------------------------------------------
-def get_description():
-    return _("Generates web (HTML) pages for individuals, or a set of individuals.")
+#
+#-------------------------------------------------------------------------
+from Plugins import register_report
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_name():
-    return _("Web Site/Generate Web Site")
+register_report(
+    report,
+    _("Generate Web Site"),
+    category=_("Web Page"),
+    description=_("Generates web (HTML) pages for individuals, or a set of individuals.")
+    )
+

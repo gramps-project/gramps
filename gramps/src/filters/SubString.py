@@ -32,11 +32,12 @@ class SubString(Filter.Filter):
     def match(self,person):
         return string.find(utils.phonebook_name(person),self.text) >= 0
 
-def create(text):
-    return SubString(text)
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(SubString,
+                       description=_("Names that contain a substring"),
+                       qualifier=1)
 
-def need_qualifier():
-    return 1
-
-def get_name():
-    return _("Names that contain a substring")

@@ -19,7 +19,6 @@
 #
 
 from RelLib import *
-from Researcher import Researcher
 
 import string
 import os

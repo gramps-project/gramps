@@ -43,11 +43,18 @@ class RegExMatch(Filter.Filter):
         else:
             return self.regexp.search(utils.phonebook_name(person))
 
-def create(text):
-    return RegExMatch(text)
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(RegExMatch,
+                       description=_("Names that match a regular expression"),
+                       qualifier=1)
 
-def need_qualifier():
-    return 1
 
-def get_name():
-    return _("Names that match a regular expression")
+
+
+
+
+

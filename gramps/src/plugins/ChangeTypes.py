@@ -87,13 +87,16 @@ def runTool(database,person,callback):
         "on_apply_clicked" : on_apply_clicked
         })
     
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
+# 
 #
-#
-#-------------------------------------------------------------------------
-def get_description():
-    return _("Allows all the events of a certain name to be renamed to a new name")
+#------------------------------------------------------------------------
+from Plugins import register_tool
 
-def get_name():
-    return _("Database Processing/Rename personal event types")
+register_tool(
+    runTool,
+    _("Rename personal event types"),
+    category=_("Database Processing"),
+    description=_("Allows all the events of a certain name to be renamed to a new name")
+    )

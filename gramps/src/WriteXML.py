@@ -19,7 +19,6 @@
 #
 
 from RelLib import *
-from Researcher import *
 import const
 
 import string
@@ -504,9 +503,3 @@ def exportData(database, filename, callback):
     g.write("</database>\n")
     g.close()
 	
-    
-
-
-
-
-

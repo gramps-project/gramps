@@ -32,13 +32,12 @@ class NoBirthdate(Filter.Filter):
     def match(self,person):
         return person.getBirth().getDate() == ""
 
-def create(text):
-    return NoBirthdate(text)
-
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("People without a birth date")
-
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(NoBirthdate,
+                       description=_("People without a birth date"),
+                       qualifier=0)
 

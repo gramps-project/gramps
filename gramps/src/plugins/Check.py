@@ -226,14 +226,18 @@ class CheckIntegrity:
         topDialog.get_widget("summaryTitle").set_text(title)
         textwindow.show_string(text)
         top.show()
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def get_description():
-    return _("Checks the database for integrity problems, fixing the problems that it can")
 
-def get_name():
-    return _("Database Processing/Check and repair database")
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+from Plugins import register_tool
+
+register_tool(
+    runTool,
+    _("Check and repair database"),
+    category=_("Database Processing"),
+    description=_("Checks the database for integrity problems, fixing the problems that it can")
+    )
+    

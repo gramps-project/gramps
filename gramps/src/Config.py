@@ -48,7 +48,6 @@ import libglade
 from RelLib import *
 from Date import *
 
-import Researcher
 import const
 import utils
 import ListColors
@@ -89,7 +88,7 @@ _name_format_list = [
 #
 #-------------------------------------------------------------------------
 
-owner         = Researcher.Researcher()
+owner         = Researcher()
 prefsTop      = None
 autoload      = 0
 usetabs       = 0

@@ -32,11 +32,11 @@ class MatchSndEx2(Filter.Filter):
     def match(self,person):
         return self.text == soundex.soundex(person.getPrimaryName().getSurname())
 
-def create(text):
-    return MatchSndEx2(text)
-
-def need_qualifier():
-    return 1
-
-def get_name():
-    return _("Names with the specified SoundEx code")
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(MatchSndEx2,
+                       description=_("Names with the specified SoundEx code"),
+                       qualifier=1)

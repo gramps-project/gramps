@@ -910,17 +910,6 @@ def runTool(database,active_person,callback):
 #
 #
 #-------------------------------------------------------------------------
-def get_description():
-    return _("Searches the entire database, looking for individual entries that may represent the same person.")
-
-def get_name():
-    return _("Database Processing/Merge people")
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def update_and_destroy(obj):
     obj.get_data("t").update(1)
     utils.destroy_passed_object(obj)
@@ -950,3 +939,18 @@ def on_merge_clicked(obj):
 #-------------------------------------------------------------------------
 def by_id(p1,p2):
     return cmp(p1.getId(),p2.getId())
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+from Plugins import register_tool
+
+register_tool(
+    runTool,
+    _("Merge people"),
+    category=_("Database Processing"),
+    description=_("Searches the entire database, looking for individual entries that may represent the same person.")
+    )
+

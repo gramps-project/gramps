@@ -33,11 +33,11 @@ class EventType(Filter.Filter):
                 return 1
         return 0
     
-def create(text):
-    return EventType(text)
-
-def need_qualifier():
-    return 1
-
-def get_name():
-    return _("People who have an event type of ...")
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(EventType,
+                       description=_("People who have an event type of ..."),
+                       qualifier=1)

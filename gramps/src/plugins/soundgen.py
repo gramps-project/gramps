@@ -76,13 +76,13 @@ def runTool(database,active_person,callback):
 #
 #
 #-------------------------------------------------------------------------
-def get_description():
-    return _("Generates SoundEx codes for names")
+from Plugins import register_tool
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_name():
-    return _("Utilities/Generate SoundEx codes")
+register_tool(
+    runTool,
+    _("Generate SoundEx codes"),
+    category=_("Utilities"),
+    description=_("Generates SoundEx codes for names")
+    )
+
+

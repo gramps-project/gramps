@@ -302,7 +302,7 @@ def report(database,person):
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_style_edit_clicked" : on_style_edit_clicked,
-        "on_save_clicked" : on_save_clicked
+        "on_save_clicked"       : on_save_clicked
         })
 
 #------------------------------------------------------------------------
@@ -364,27 +364,10 @@ def on_save_clicked(obj):
     doc = FindDoc.make_draw_doc(styles,format,paper,orien)
 
     MyReport = AncestorReport(db,text,active_person,outputName,doc,max_gen)
-
     MyReport.write_report()
 
     utils.destroy_passed_object(obj)
 
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_description():
-    return _("Produces a graphical ancestral tree graph")
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_name():
-    return _("Generate files/Ancestor Chart")
-        
 #------------------------------------------------------------------------
 #
 # 
@@ -446,11 +429,18 @@ def get_xpm_image():
         "                                                ",
         "                                                "]
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+from Plugins import register_report
 
-
-
-
-
-
-
+register_report(
+    report,
+    _("Ancestor Chart"),
+    category=_("Generate Files"),
+    description=_("Produces a graphical ancestral tree graph"),
+    xpm=get_xpm_image()
+    )
 

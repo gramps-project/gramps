@@ -19,8 +19,14 @@
 #
 
 import gtk
-
+import gnome.mime
+import string
+import os
+import const
 _modifiedFlag  = 0
+
+LISTOBJ = "s"
+INDEX   = "i"
 
 #-------------------------------------------------------------------------
 #
@@ -102,7 +108,6 @@ def destroy_passed_object(obj):
 # point numbers
 #
 #-------------------------------------------------------------------------
-import string
 
 if string.find("%.3f" % 1.2, ",") == -1:
     _use_comma = 0
@@ -127,3 +132,178 @@ def txt2fl(st):
 #-------------------------------------------------------------------------
 def fl2txt(fmt,val):
     return string.replace(fmt % val, ',', '.')
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_flags(obj):
+    import Config
+    
+    detail = ""
+    if Config.show_detail:
+        if obj.getNote() != "":
+            detail = "N"
+        if obj.getSourceRef().getBase():
+            detail = detail + "S"
+        if obj.getPrivacy():
+            detail = detail + "P"
+    return detail
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_text(obj):
+    if obj.getNote() != "":
+        details = "%s" % _("Note")
+    else:
+        details = ""
+    if obj.getSourceRef().getBase() != None:
+        if details == "":
+            details = _("Source")
+        else:
+            details = "%s, %s" % (details,_("Source"))
+    if obj.getPrivacy() == 1:
+        if details == "":
+            details = _("Private")
+        else:
+            details = "%s, %s" % (details,_("Private"))
+    return details
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_confidence_menu(menu):
+    myMenu = gtk.GtkMenu()
+    index = 0
+    for name in const.confidence:
+        item = gtk.GtkMenuItem(name)
+        item.set_data("a",index)
+        item.show()
+        myMenu.append(item)
+        index = index + 1
+    menu.set_menu(myMenu)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def redraw_list(dlist,clist,func):
+    clist.freeze()
+    clist.clear()
+    
+    index = 0
+    for object in dlist:
+        clist.append(func(object))
+        clist.set_row_data(index,object)
+        index = index + 1
+    
+    current_row = clist.get_data(INDEX)
+    if index > 0:
+        if current_row <= 0:
+            current_row = 0
+        elif index <= current_row:
+            current_row = current_row - 1
+        clist.select_row(current_row,0)
+        clist.moveto(current_row,0)
+    clist.set_data(INDEX,current_row)
+    clist.thaw()
+    return index
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def delete_selected(obj,list):
+    row = obj.get_data(INDEX)
+    if row < 0:
+        return 0
+    del list[row]
+    if row > len(list)-1:
+        obj.set_data(INDEX,row-1)
+    return 1
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def add_menuitem(menu,msg,obj,func):
+    item = gtk.GtkMenuItem(msg)
+    item.set_data("m",obj)
+    item.connect("activate",func)
+    item.show()
+    menu.append(item)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def view_photo(photo):
+    type = gnome.mime.type(photo.getPath())
+    prog = string.split(gnome.mime.get_value(type,'view'))
+    args = []
+    for val in prog:
+        if val == "%f":
+            args.append(photo.getPath())
+        else:
+            args.append(val)
+    
+    if os.fork() == 0:
+        os.execvp(args[0],args)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def attach_places(values,combo,place):
+    l = gtk.GtkLabel("")
+    l.show()
+    l.set_alignment(0,0.5)
+    c = gtk.GtkListItem()
+    c.add(l)
+    c.set_data(LISTOBJ,None)
+    c.show()
+    sel_child = c
+    list = [c]
+    mymap = {}
+    for src in values:
+        l = gtk.GtkLabel("%s [%s]" % (src.get_title(),src.getId()))
+        l.show()
+        l.set_alignment(0,0.5)
+        c = gtk.GtkListItem()
+        c.add(l)
+        c.set_data(LISTOBJ,src)
+        c.show()
+        list.append(c)
+        if src == place:
+            sel_child = c
+        mymap[src] = c
+
+    combo.list.append_items(list)
+    combo.list.select_child(sel_child)
+
+    for v in mymap.keys():
+        combo.set_item_string(mymap[v],v.get_title())
+        
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_place_from_list(obj):
+    select = obj.list.get_selection()
+    if len(select) == 0:
+        return None
+    else:
+        return select[0].get_data(LISTOBJ)

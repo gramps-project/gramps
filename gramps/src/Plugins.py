@@ -30,8 +30,6 @@ import intl
 
 _ = intl.gettext
 
-names = {}
-
 #-------------------------------------------------------------------------
 #
 # 
@@ -55,10 +53,21 @@ import utils
 # 
 #
 #-------------------------------------------------------------------------
-reports = []
-imports = []
-exports = []
-tools = []
+_reports = []
+_tools   = []
+_imports = []
+_exports = []
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+OBJECT    = "o"
+DOCSTRING = "d"
+IMAGE     = "i"
+TASK      = "f"
+TITLE     = "t"
 
 #-------------------------------------------------------------------------
 #
@@ -71,64 +80,19 @@ class ReportPlugins:
         self.db = db
         self.active = active
         
-        self.plugins_dialog = libglade.GladeXML(const.pluginsFile,"report")
-        self.plugins_dialog.signal_autoconnect({
+        self.dialog = libglade.GladeXML(const.pluginsFile,"report")
+        self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : on_report_apply_clicked,
-            "on_report_ok_clicked" : on_report_ok_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "on_report_ok_clicked"    : on_report_apply_clicked,
+            "destroy_passed_object"   : utils.destroy_passed_object
             })
 
-        top = self.plugins_dialog.get_widget("report")
-        top.set_data("o",self)
-        tree = self.plugins_dialog.get_widget("tree1")
+        top = self.dialog.get_widget("report")
+        top.set_data(OBJECT,self)
+        tree = self.dialog.get_widget("tree1")
         self.run_tool = None
-
-        item_hash = {}
-        for report in reports:
-            if report.__dict__.has_key("get_name"):
-                doc = report.get_name()
-            else:
-                doc = report.__doc__
-            
-            info = string.split(doc,"/")
-            if len(info) == 1:
-                category = _("Uncategorized")
-                name = info[0]
-            else:
-                category = info[0]
-                name = info[1]
-            item = GtkTreeItem(name)
-            item.set_data("o",self)
-            item.set_data("c",report.report)
-            if "get_description" in report.__dict__.keys():
-                item.set_data("d",report.get_description)
-            else:
-                item.set_data("d",no_description)
-            if "get_xpm_image" in report.__dict__.keys():
-                item.set_data("i",report.get_xpm_image)
-            else:
-                item.set_data("i",no_image)
-            item.set_data("t",doc)
-            item.connect("select",on_report_node_selected)
-            if item_hash.has_key(category):
-                item_hash[category].append(item)
-            else:
-                item_hash[category] = [item]
-
-        key_list = item_hash.keys()
-        key_list.sort()
-        for key in key_list:
-            top_item = GtkTreeItem(key)
-            top_item.show()
-            tree.append(top_item)
-            subtree = GtkTree()
-            subtree.show()
-            top_item.set_subtree(subtree)
-            subtree.show()
-            for item in item_hash[key]:
-                item.show()
-                subtree.append(item)
-
+        build_tree(tree,_reports,on_report_node_selected)
+                   
 #-------------------------------------------------------------------------
 #
 # 
@@ -140,50 +104,53 @@ class ToolPlugins:
         self.active = active
         self.update = update
         
-        self.plugins_dialog = libglade.GladeXML(const.pluginsFile,"pluginsel")
-        self.plugins_dialog.signal_autoconnect({
-            "on_apply_clicked" : on_apply_clicked,
-            "on_ok_clicked" : on_ok_clicked,
+        self.dialog = libglade.GladeXML(const.pluginsFile,"pluginsel")
+        self.dialog.signal_autoconnect({
+            "on_apply_clicked"      : on_apply_clicked,
+            "on_ok_clicked"         : on_ok_clicked,
             "destroy_passed_object" : utils.destroy_passed_object
             })
 
-        top = self.plugins_dialog.get_widget("pluginsel")
-        top.set_data("o",self)
-        tree = self.plugins_dialog.get_widget("tree")
+        top = self.dialog.get_widget("pluginsel")
+        top.set_data(OBJECT,self)
+        tree = self.dialog.get_widget("tree")
         self.run_tool = None
+        build_tree(tree,_tools,on_node_selected)
 
-        item_hash = {}
-        for report in tools:
-            if report.__dict__.has_key("get_name"):
-                doc = report.get_name()
-            else:
-                doc = report.__doc__
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def build_tree(tree,list,task):
+    item_hash = {}
+    for report in list:
+        item = GtkTreeItem(report[2])
+        item.connect("select",task)
+        item.set_data(OBJECT,self)
+        item.set_data(TASK,report[0])
+        item.set_data(TITLE,report[2])
+        item.set_data(DOCSTRING,report[3])
+        item.set_data(IMAGE,report[4])
 
-            info = string.split(doc,"/")
-            item = GtkTreeItem(info[1])
-            item.set_data("o",self)
-            item.set_data("c",report.runTool)
-            item.set_data("d",report.get_description)
-            item.set_data("t",doc)
-            item.connect("select",on_node_selected)
-            if item_hash.has_key(info[0]):
-                item_hash[info[0]].append(item)
-            else:
-                item_hash[info[0]] = [item]
+        if item_hash.has_key(report[1]):
+            item_hash[report[1]].append(item)
+        else:
+            item_hash[report[1]] = [item]
 
-        key_list = item_hash.keys()
-        key_list.sort()
-        for key in key_list:
-            top_item = GtkTreeItem(key)
-            top_item.show()
-            tree.append(top_item)
-            subtree = GtkTree()
-            subtree.show()
-            top_item.set_subtree(subtree)
-            subtree.show()
-            for item in item_hash[key]:
-                item.show()
-                subtree.append(item)
+    key_list = item_hash.keys()
+    key_list.sort()
+    for key in key_list:
+        top_item = GtkTreeItem(key)
+        top_item.show()
+        tree.append(top_item)
+        subtree = GtkTree()
+        subtree.show()
+        top_item.set_subtree(subtree)
+        subtree.show()
+        for item in item_hash[key]:
+            item.show()
+            subtree.append(item)
 
 #-------------------------------------------------------------------------
 #
@@ -191,13 +158,13 @@ class ToolPlugins:
 #
 #-------------------------------------------------------------------------
 def on_node_selected(obj):
-    myobj = obj.get_data("o")
-    doc = obj.get_data("d")
-    title = string.split(obj.get_data("t"),"/")
+    myobj = obj.get_data(OBJECT)
+    doc = obj.get_data(DOCSTRING)
+    title = obj.get_data(TITLE)
     
-    myobj.plugins_dialog.get_widget("description").set_text(doc())
-    myobj.plugins_dialog.get_widget("pluginTitle").set_text(title[1])
-    myobj.run_tool = obj.get_data("c")
+    myobj.dialog.get_widget("description").set_text(doc)
+    myobj.dialog.get_widget("pluginTitle").set_text(title)
+    myobj.run_tool = obj.get_data(TASK)
 
 #-------------------------------------------------------------------------
 #
@@ -205,31 +172,19 @@ def on_node_selected(obj):
 #
 #-------------------------------------------------------------------------
 def on_report_node_selected(obj):
-    myobj = obj.get_data("o")
-    doc = obj.get_data("d")
-    xpm_func = obj.get_data("i")
+    myobj = obj.get_data(OBJECT)
+    doc = obj.get_data(DOCSTRING)
+    xpm = obj.get_data(IMAGE)
+    title = obj.get_data(TITLE)
+    img = myobj.dialog.get_widget("image")
     
-    title = string.split(obj.get_data("t"),"/")
-    img = myobj.plugins_dialog.get_widget("image")
-    
-    myobj.plugins_dialog.get_widget("description").set_text(doc())
+    myobj.dialog.get_widget("description").set_text(DOC)
 
-    i,m = create_pixmap_from_xpm_d(GtkWindow(),None,xpm_func())
+    i,m = create_pixmap_from_xpm_d(GtkWindow(),None,xpm)
     img.set(i,m)
     
-    if len(title) == 1:
-        myobj.plugins_dialog.get_widget("report_title").set_text(title[0])
-    else:
-        myobj.plugins_dialog.get_widget("report_title").set_text(title[1])
-    myobj.run_tool = obj.get_data("c")
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_doc(a,b):
-    return cmp(names[a],names[b])
+    myobj.dialog.get_widget("report_title").set_text(title)
+    myobj.run_tool = obj.get_data(TASK)
 
 #-------------------------------------------------------------------------
 #
@@ -237,9 +192,9 @@ def by_doc(a,b):
 #
 #-------------------------------------------------------------------------
 def on_apply_clicked(obj):
-    myobj = obj.get_data("o")
+    myobj = obj.get_data(OBJECT)
     utils.destroy_passed_object(obj)
-    if myobj.run_tool != None:
+    if myobj.run_tool:
         myobj.run_tool(myobj.db,myobj.active,myobj.update)
 
 #-------------------------------------------------------------------------
@@ -248,9 +203,9 @@ def on_apply_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_report_apply_clicked(obj):
-    myobj = obj.get_data("o")
+    myobj = obj.get_data(OBJECT)
     utils.destroy_passed_object(obj)
-    if myobj.run_tool != None:
+    if myobj.run_tool:
         myobj.run_tool(myobj.db,myobj.active)
 
 #-------------------------------------------------------------------------
@@ -260,14 +215,6 @@ def on_report_apply_clicked(obj):
 #-------------------------------------------------------------------------
 def on_ok_clicked(obj):
     on_apply_clicked(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_report_ok_clicked(obj):
-    on_report_apply_clicked(obj)
 
 #-------------------------------------------------------------------------
 #
@@ -289,76 +236,146 @@ def load_plugins(dir):
         groups = match.groups()
         try: 
             plugin = __import__(groups[0])
-            try:
-                names[plugin] = plugin.get_name()
-            except:
-                names[plugin] = plugin.__doc__
         except:
             print _("Failed to load the module: %s") % groups[0]
             import traceback
             traceback.print_exc()
-            continue
-        if plugin.__dict__.has_key("report"):
-            reports.append(plugin)
-        elif plugin.__dict__.has_key("writeData"):
-            exports.append(plugin)
-        elif plugin.__dict__.has_key("runTool"):
-            tools.append(plugin)
-        elif plugin.__dict__.has_key("readData"):
-            imports.append(plugin)
-
-    tools.sort(by_doc)
-    imports.sort(by_doc)
-    exports.sort(by_doc)
-    reports.sort(by_doc)
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-def export_menu(callback):
+def build_export_menu(top_menu,callback):
     myMenu = GtkMenu()
 
-    for report in exports:
-        try:
-            text = report.get_name()
-        except:
-            text = report.__doc__
-        item = GtkMenuItem(text)
+    for report in _exports:
+        item = GtkMenuItem(report[1])
+        item.connect("activate", callback ,report[0])
+        item.show()
+        myMenu.append(item)
+    top_menu.set_submenu(myMenu)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def build_import_menu(top_menu,callback):
+    myMenu = GtkMenu()
+
+    for report in _imports:
+        item = GtkMenuItem(report[1])
+        item.connect("activate", callback ,report[0])
+        item.show()
+        myMenu.append(item)
+    top_menu.set_submenu(myMenu)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def register_export(task, name):
+    _exports.append((task, name))
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def register_import(task, name):
+    _imports.append((task, name))
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def register_report(task, name, category=None, description=None, xpm=None):
+    if xpm == None:
+        xpm_data = no_image()
+    elif type(xpm) == type([]):
+        xpm_data = xpm
+    else:
+        xpm_data = xpm
+
+    if category == None:
+        category = _("Uncategorized")
+    if description == None:
+        description = _("No description was provided")
         
-        item.show()
-        item.connect("activate", callback ,report.writeData)
-        myMenu.append(item)
-    return myMenu
+    _reports.append((task, category, name, description, xpm_data))
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-def import_menu(callback):
-    myMenu = GtkMenu()
+def register_tool(task, name, category=None, description=None, xpm=None):
+    if xpm == None:
+        xpm_data = no_image()
+    elif type(xpm) == type([]):
+        xpm_data = xpm
+    else:
+        xpm_data = xpm
 
-    for report in imports:
-        try:
-            text = report.get_name()
-        except:
-            text = report.__doc__
-        item = GtkMenuItem(text)
-
-        item.show()
-        item.connect("activate", callback ,report.readData)
-        myMenu.append(item)
-    return myMenu
+    if category == None:
+        category = _("Uncategorized")
+    if description == None:
+        description = _("No description was provided")
+        
+    _tools.append((task, category, name, description, xpm_data))
 
 #-------------------------------------------------------------------------
 #
-# 
+#
 #
 #-------------------------------------------------------------------------
-def no_description():
-    return _("No description was provided")
+def build_menu(top_menu,list,callback):
+    report_menu = GtkMenu()
+    report_menu.show()
+    
+    hash = {}
+    for report in list:
+        if hash.has_key(report[1]):
+            hash[report[1]].append((report[2],report[0]))
+        else:
+            hash[report[1]] = [(report[2],report[0])]
+
+    catlist = hash.keys()
+    catlist.sort()
+    for key in catlist:
+        entry = GtkMenuItem(key)
+        entry.show()
+        report_menu.append(entry)
+        submenu = GtkMenu()
+        submenu.show()
+        entry.set_submenu(submenu)
+        list = hash[key]
+        list.sort()
+        for name in list:
+            subentry = GtkMenuItem(name[0])
+            subentry.show()
+            subentry.connect("activate",callback,name[1])
+            submenu.append(subentry)
+    top_menu.set_submenu(report_menu)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_report_menu(top_menu,callback):
+    build_menu(top_menu,_reports,callback)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_tools_menu(top_menu,callback):
+    build_menu(top_menu,_tools,callback)
 
 #-------------------------------------------------------------------------
 #

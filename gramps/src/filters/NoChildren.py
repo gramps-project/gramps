@@ -37,12 +37,12 @@ class HaveChildren(Filter.Filter):
                 break
         return val
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(HaveChildren,
+                       description=_("People with children"),
+                       qualifier=0)
 
-def create(text):
-    return HaveChildren(text)
-
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("People with children")

@@ -244,5 +244,17 @@ def get_description():
            " " + \
            _("For more information or to get a copy of GraphViz, goto http://www.graphviz.org")
 
-def get_name():
-    return _("Generate files/Relationship graph")
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+from Plugins import register_report
+
+register_report(
+    report,
+    _("Relationship graph"),
+    category=_("Generate Files"),
+    description=get_description()
+    )
+

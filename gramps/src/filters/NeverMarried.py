@@ -32,11 +32,12 @@ class NeverMarried(Filter.Filter):
     def match(self,person):
         return len(person.getFamilyList()) == 0
 
-def create(text):
-    return NeverMarried(text)
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+Filter.register_filter(NeverMarried,
+                       description=_("People with no marriage records"),
+                       qualifier=0)
 
-def need_qualifier():
-    return 0
-
-def get_name():
-    return _("People with no marriage records")

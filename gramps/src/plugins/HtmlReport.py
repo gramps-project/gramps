@@ -545,13 +545,18 @@ def dump_index(person_list,filename,prefix,templateTop,templateBottom,targetDir)
         html.write(line)
 
     html.close()
+
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-def get_description():
-    return _("Generates web (HTML) pages for individuals, or a set of individuals.")
+from Plugins import register_report
 
-def get_name():
-    return _("Generate files/Individual web pages")
+register_report(
+    report,
+    _("Individual web pages"),
+    category=_("Generate Files"),
+    description=_("Generates web (HTML) pages for individuals, or a set of individuals.")
+    )
+

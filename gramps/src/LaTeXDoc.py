@@ -60,9 +60,6 @@ class LaTeXDoc(TextDoc):
         self.f.write("\\title{}\n")
         self.f.write("\\author{}\n")
         self.in_list = 0
-	self.in_table = 0
-	self.cell_number = 1
-	self.columns = 0
 
     def close(self):
         if self.in_list:
@@ -99,10 +96,8 @@ class LaTeXDoc(TextDoc):
     def end_paragraph(self):
         if self.level > 0:
             self.f.write('}\n')
-        elif not self.in_list and not self.in_table:
+        elif not self.in_list:
             self.f.write('\n\\par\\noindent\n')
-	elif self.in_table:
-	    pass
         else:
             self.f.write('\n')
 
@@ -115,38 +110,18 @@ class LaTeXDoc(TextDoc):
         pass
 
     def start_table(self,name,style_name):
-        self.f.write('\n\\par\\noindent\n')
-	self.f.write("\\medskip\n");
-        self.f.write("\\begin{tabular}{");
-	tbl = self.table_styles[style_name]
-	self.columns = tbl.get_columns()
-	for i in range(0, self.columns ):
-	    self.f.write("l");
-	self.f.write("}\n");
-	self.in_table = 1
-	self.cell_number = 0
         pass
 
     def end_table(self):
-        # self.f.write("\\hline\n");
-        self.f.write("\\end{tabular}\n");
         pass
 
     def start_row(self):
-        # self.f.write("\\hline\n");
-        self.cell_number = 0
         pass
 
     def end_row(self):
-        for i in range( self.cell_number, self.columns ):
-	   self.f.write(" & ");
-        self.f.write("\\\\\n")
         pass
 
     def start_cell(self,style_name,span=1):
-        if self.cell_number > 0:
-	    self.f.write(" & ");
-	self.cell_number = self.cell_number +1
         pass
 
     def end_cell(self):
@@ -160,4 +135,5 @@ class LaTeXDoc(TextDoc):
 
     def write_text(self,text):
         self.f.write(text)
+
 

@@ -686,5 +686,11 @@ def writeData(database,person):
 
     topDialog.get_widget("gedcomExport").show()
 
-def get_name():
-    return _("Export to GEDCOM")
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+from Plugins import register_export
+
+register_export(writeData,_("Export to GEDCOM"))

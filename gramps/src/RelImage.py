@@ -51,12 +51,11 @@ def import_photo(filename,path,prefix):
         return None
         
     for index in range(0,1000):
-        base = "%s_%d.jpg" % (prefix,index)
-        name = path + os.sep + base
+        name = "%s%s%s_%d.jpg" % (path,os.sep,prefix,index)
         if os.path.exists(name) == 0:
             break
 
-    thumb = path+os.sep+".thumb"
+    thumb = "%s%s.thumb" % (path,os.sep)
 
     try:
         if not os.path.exists(thumb):
@@ -67,7 +66,7 @@ def import_photo(filename,path,prefix):
         GnomeErrorDialog(_("Could not create %s") % thumb)
         
     try:
-        path = thumb + os.sep + base
+        path = "%s%s%s" % (thumb,os.sep,base)
         
         mk_thumb(filename,path,const.thumbScale)
         
@@ -81,7 +80,6 @@ def import_photo(filename,path,prefix):
                 PIL.Image.open(filename).save(name)
     except:
         return None
-
     return name
 
 #-------------------------------------------------------------------------
