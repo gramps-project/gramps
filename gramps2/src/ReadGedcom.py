@@ -593,7 +593,6 @@ class GedcomParser:
             place.set_handle(intid)
             place.set_title(gramps_id)
             place.set_gramps_id(self.db.find_next_place_gramps_id())
-            print place.get_gramps_id()
             self.db.add_place(place,self.trans)
             self.lid2id[gramps_id] = intid
         return place
@@ -1141,7 +1140,7 @@ class GedcomParser:
             elif matches[1] == "POST":
                 address.set_postal_code(matches[2])
             elif matches[1] == "CTRY":
-                address.setCountry(matches[2])
+                address.set_country(matches[2])
             else:
                 self.barf(level+1)
 

@@ -1005,7 +1005,7 @@ class GrampsParser:
         self.address.set_state(tag)
         
     def stop_country(self,tag):
-        self.address.setCountry(tag)
+        self.address.set_country(tag)
 
     def stop_postal(self,tag):
         self.address.set_postal_code(tag)

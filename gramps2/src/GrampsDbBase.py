@@ -37,6 +37,13 @@ from gettext import gettext as _
 _UNDO_SIZE = 1000
 _id_reg    = compile("%\d+d")
 
+PERSON_KEY     = 0
+FAMILY_KEY     = 1
+SOURCE_KEY     = 2
+EVENT_KEY      = 3
+MEDIA_KEY      = 4
+PLACE_KEY      = 5
+
 #-------------------------------------------------------------------------
 #
 # GrampsDbBase

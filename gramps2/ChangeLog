@@ -1,3 +1,9 @@
+2004-08-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddrEdit.py: setCountry -> set_country
+	* src/RelLib.py: Add concept of PrimaryObject
+	* src/GrampsDbBase.py: add local constants
+	* src/ReadGedcom.py: support new API
+
 2004-08-11  Tim Waugh  <twaugh@redhat.com>
 	* src/GrampsDbBase.py: Fixed some missed str()s.
 

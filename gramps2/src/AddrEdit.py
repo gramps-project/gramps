@@ -231,7 +231,7 @@ class AddressEditor:
             self.parent.lists_changed = 1
         
         self.check(self.addr.get_street,self.addr.set_street,street)
-        self.check(self.addr.get_country,self.addr.setCountry,country)
+        self.check(self.addr.get_country,self.addr.set_country,country)
         self.check(self.addr.get_city,self.addr.set_city,city)
         self.check(self.addr.get_state,self.addr.set_state,state)
         self.check(self.addr.get_postal_code,self.addr.set_postal_code,postal)
