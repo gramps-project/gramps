@@ -834,9 +834,6 @@ _max_gen = 10
 _pg_brk = 0
 _options = [ _person_id, _max_gen, _pg_brk ]
 
-def options_dialog(database,person):
-    FtmAncestorBareReportDialog(database,person) 
-
 #------------------------------------------------------------------------
 #
 # Book Item Options dialog

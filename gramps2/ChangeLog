@@ -1,3 +1,7 @@
+2003-06-16  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/FtmStyleAncestors.py, src/plugins/FtmStyleDescendants.py:
+	Remove options_dialog function -- it is not nedded anymore. 
+
 2003-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: added select/edit buttions to family view
 	* src/SelectChild.py: change title from Add Children to Add Child
