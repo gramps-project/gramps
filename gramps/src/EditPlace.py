@@ -188,7 +188,10 @@ class EditPlace:
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
         src = os.path.basename(photo.getPath())
-        thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
+        if photo.getPrivate():
+            thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
+        else:
+            thumb = "%s%s.thumb%s%s.jpg" % (self.path,os.sep,os.sep,os.path.basename(src))
         RelImage.check_thumb(src,thumb,const.thumbScale)
         self.photo_list.append(thumb,photo.getDescription())
         
