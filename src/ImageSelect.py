@@ -103,22 +103,18 @@ class ImageSelect:
         self.fname       = self.glade.get_widget("fname")
         self.image       = self.glade.get_widget("image")
         self.description = self.glade.get_widget("photoDescription")
-        self.external    = self.glade.get_widget("private")
-        self.photosel    = self.glade.get_widget("photosel")
         self.temp_name   = ""
 
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
         
         self.glade.signal_autoconnect({
-            "on_name_changed" : self.on_name_changed,
+            "on_fname_update_preview" : self.on_name_changed,
             "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
             })
 
         if os.path.isdir(_last_path):
-            self.photosel.set_default_path(_last_path)
-            self.photosel.set_filename(_last_path)
-            self.photosel.gtk_entry().set_position(len(_last_path))
+            self.fname.set_current_folder(_last_path)
 
         if self.parent_window:
             self.window.set_transient_for(self.parent_window)
@@ -135,7 +131,7 @@ class ImageSelect:
 
     def on_name_changed(self, obj):
         """The filename has changed.  Verify it and load the picture."""
-        filename = unicode(self.fname.get_text())
+        filename = unicode(self.fname.get_filename())
 
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
@@ -158,7 +154,7 @@ class ImageSelect:
         """Save the photo in the dataobj object.  (Required function)"""
         global _last_path
         
-        filename = self.photosel.get_full_path(0)
+        filename = self.fname.get_filename()
         _last_path = os.path.dirname(filename)
         
         description = unicode(self.description.get_text())
@@ -189,22 +185,8 @@ class ImageSelect:
             mobj.set_description(description)
             mobj.set_mime_type(type)
             self.savephoto(mobj)
-
-            if type[0:5] == "image":
-                if self.external.get_active() == 0:
-                    name = RelImage.import_media_object(filename,self.path,
-                                                        mobj.get_id())
-                    mobj.setLocal(1)
-                else:
-                    name = filename
-            else:
-                if self.external.get_active() == 1:
-                    name = filename
-                else:
-                    name = RelImage.import_media_object(filename,self.path,
-                                                        mobj.get_id())
-                    mobj.setLocal(1)
-            mobj.set_path(name)
+            mobj.set_path(filename)
+            self.db.commit_media_object(mobj)
             
         self.parent.lists_changed = 1
         self.load_images()
@@ -615,7 +597,6 @@ class Gallery(ImageSelect):
         menu.set_title(_("Media Object"))
         object = self.db.find_object_from_id(photo.get_reference_id())
         mtype = object.get_mime_type()
-        print mtype
         progname = GrampsMime.get_application(mtype)
         
         Utils.add_menuitem(menu,_("Open in %s") % progname[1],
