@@ -414,6 +414,10 @@ class GedcomParser:
 	    elif matches[1] == "WIFE":
                 self.family.setMother(self.db.findPerson(matches[2],self.pmap))
                 self.ignore_sub_junk(2)
+	    elif matches[1] == "SLGS":
+                ord = LdsOrd()
+                self.family.setLdsSeal(ord)
+                self.parse_ord(ord,2)
 	    elif matches[1] == "ADDR":
                 self.addr = Address()
                 self.addr.setStreet(matches[2] + self.parse_continue_data())
@@ -535,6 +539,15 @@ class GedcomParser:
                     self.person.setGender(Person.male)
                 else:
                     self.person.setGender(Person.female)
+	    elif matches[1] in [ "BAPL", "ENDL", "SLGC" ]:
+                ord = LdsOrd()
+                if matches[1] == "BAPL":
+                    self.person.setLdsBaptism(ord)
+                elif matches[1] == "ENDL":
+                    self.person.setLdsEndowment(ord)
+                else:
+                    self.person.setLdsSeal(ord)
+                self.parse_ord(ord,2)
 	    elif matches[1] == "FAMS":
                 family = self.db.findFamily(matches[2],self.fmap)
                 self.person.addFamily(family)
@@ -854,6 +867,23 @@ class GedcomParser:
                 address.setCountry(matches[2])
             else:
 	        self.barf(level+1)
+
+    def parse_ord(self,ord,level):
+        while 1:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                break
+            elif matches[1] == "TEMP":
+                ord.setTemple(matches[2])
+            elif matches[1] == "DATE":
+                ord.setDateObj(self.extract_date(matches[2]))
+            elif matches[1] == "FAMC":
+                ord.setFamily(self.db.findFamily(matches[2],self.fmap))
+            elif matches[1] == ["PLAC", "STAT", "SOUR", "NOTE" ]:
+                self.ignore_sub_junk(level+1)
+            else:
+                self.barf(level+1)
 
     def parse_person_event(self,event,level):
         note = ""

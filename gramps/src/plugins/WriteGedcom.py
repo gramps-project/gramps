@@ -614,6 +614,8 @@ class GedcomWriter:
             father = family.getFather()
             mother = family.getMother()
             if not self.probably_alive(father) or not self.probably_alive(mother):
+                self.write_ord("SLGS",family.getLdsSeal(),1)
+
                 for event in family.getEventList():
                     if self.private and event.getPrivacy():
                         continue
@@ -717,6 +719,11 @@ class GedcomWriter:
                 self.g.write("1 _UID %s\n" % uid)
             
             ad = 0
+
+            self.write_ord("BAPL",person.getLdsBaptism(),1)
+            self.write_ord("ENDL",person.getLdsBaptism(),1)
+            self.write_ord("SLGC",person.getLdsSeal(),1)
+            
             for event in person.getEventList():
                 if self.private and event.getPrivacy():
                     continue
@@ -927,6 +934,16 @@ class GedcomWriter:
             self.write_long_text("NOTE",2,event.getNote())
         for srcref in event.getSourceRefList():
             self.write_source_ref(2,srcref)
+
+    def write_ord(self,name,ord,index):
+        if ord == None:
+            return
+        self.g.write('%d %s\n' % (index,name))
+        self.print_date("%d DATE" % (index + 1), ord.getDateObj())
+        if ord.getTemple() != "":
+            self.g.write('%d TEMP %s\n' % (index+1,ord.getTemple()))
+        if ord.getFamily():
+            self.g.write('%d FAMC @%s@\n' % (index+1,self.fid(ord.getFamily().getId())))
 
     def print_date(self,prefix,date):
         start = date.get_start_date()
