@@ -53,6 +53,7 @@ import const
 import RelLib
 import Date
 import Calendar
+from TransTable import TransTable
 from gettext import gettext as _
 from Utils import for_each_ancestor
 
@@ -214,32 +215,18 @@ class RelationshipPathBetween(Rule):
         path1 = { p1.getId() : 1}
         path2 = { p2.getId() : 1}
 
-        print common[0].getId()
-        print common[1].getId()
-        
         for person in common:
             new_map = {}
             self.desc_list(person,new_map,1)
             self.get_intersection(path1,firstMap,new_map)
             self.get_intersection(path2,secondMap,new_map)
 
-        print "Common Ancestor desc"
-        print new_map
-        print "p1 ancestors"
-        print path1
-        print "p2 ancestors"
-        print path2
-        
         for e in path1:
             self.map[e] = 1
         for e in path2:
             self.map[e] = 1
         for e in common:
             self.map[e.getId()] = 1
-
-        print path1
-        print path2
-        print self.map
 
     def get_intersection(self,target, map1, map2):
         for e in map1.keys():
@@ -1419,47 +1406,39 @@ class GenericFilter:
 #-------------------------------------------------------------------------
 tasks = {
     unicode(_("Everyone"))                    : Everyone,
-    unicode(_("Has the Id"))                  : HasIdOf,
-    unicode(_("Has a name"))                  : HasNameOf,
-    unicode(_("Has the relationships"))       : HasRelationship,
-    unicode(_("Has the death"))               : HasDeath,
-    unicode(_("Has the birth"))               : HasBirth,
-    unicode(_("Is a descendant of"))          : IsDescendantOf,
-    unicode(_("Is a descendant family member of"))
-                                              : IsDescendantFamilyOf,
-    unicode(_("Is a descendant of filter match"))
-                                              : IsDescendantOfFilterMatch,
+    unicode(_("Has the Id"))                           : HasIdOf,
+    unicode(_("Has a name"))                           : HasNameOf,
+    unicode(_("Has the relationships"))                : HasRelationship,
+    unicode(_("Has the death"))                        : HasDeath,
+    unicode(_("Has the birth"))                        : HasBirth,
+    unicode(_("Is a descendant of"))                   : IsDescendantOf,
+    unicode(_("Is a descendant family member of"))     : IsDescendantFamilyOf,
+    unicode(_("Is a descendant of filter match"))      : IsDescendantOfFilterMatch,
     unicode(_("Is a descendant of person not more than N generations away"))
                                               : IsLessThanNthGenerationDescendantOf,
     unicode(_("Is a descendant of person at least N generations away"))
                                               : IsMoreThanNthGenerationDescendantOf,
-    unicode(_("Is a child of filter match"))
-                                              : IsChildOfFilterMatch,
-    unicode(_("Is an ancestor of"))
-                                              : IsAncestorOf,
-    unicode(_("Is an ancestor of filter match"))
-                                              : IsAncestorOfFilterMatch,
+    unicode(_("Is a child of filter match"))           : IsChildOfFilterMatch,
+    unicode(_("Is an ancestor of"))                    : IsAncestorOf,
+    unicode(_("Is an ancestor of filter match"))       : IsAncestorOfFilterMatch,
     unicode(_("Is an ancestor of person not more than N generations away"))
                                               : IsLessThanNthGenerationAncestorOf,
     unicode(_("Is an ancestor of person at least N generations away"))
                                               : IsMoreThanNthGenerationAncestorOf,
-    unicode(_("Is a parent of filter match"))
-                                              : IsParentOfFilterMatch,
-    unicode(_("Has a common ancestor with"))
-                                              : HasCommonAncestorWith,
+    unicode(_("Is a parent of filter match"))          : IsParentOfFilterMatch,
+    unicode(_("Has a common ancestor with"))           : HasCommonAncestorWith,
     unicode(_("Has a common ancestor with filter match"))
                                               : HasCommonAncestorWithFilterMatch,
-    unicode(_("Is a female"))                 : IsFemale,
-    unicode(_("Is a male"))                   : IsMale,
-    unicode(_("Has complete record"))         : HasCompleteRecord,
-    unicode(_("Has the personal event"))      : HasEvent,
-    unicode(_("Has the family event"))        : HasFamilyEvent,
-    unicode(_("Has the personal attribute"))  : HasAttribute,
-    unicode(_("Has the family attribute"))    : HasFamilyAttribute,
-    unicode(_("Matches the filter named"))    : MatchesFilter,
-    unicode(_("Is spouse of filter match"))   : IsSpouseOfFilterMatch,
-    unicode(_("Relationship path between two people"))
-                                              : RelationshipPathBetween,
+    unicode(_("Is a female"))                          : IsFemale,
+    unicode(_("Is a male"))                            : IsMale,
+    unicode(_("Has complete record"))                  : HasCompleteRecord,
+    unicode(_("Has the personal event"))               : HasEvent,
+    unicode(_("Has the family event"))                 : HasFamilyEvent,
+    unicode(_("Has the personal attribute"))           : HasAttribute,
+    unicode(_("Has the family attribute"))             : HasFamilyAttribute,
+    unicode(_("Matches the filter named"))             : MatchesFilter,
+    unicode(_("Is spouse of filter match"))            : IsSpouseOfFilterMatch,
+    unicode(_("Relationship path between two people")) : RelationshipPathBetween,
     }
 
 #-------------------------------------------------------------------------
@@ -1569,7 +1548,7 @@ class FilterParser(handler.ContentHandler):
             self.gfilter_list.add(self.f)
         elif tag == "rule":
             cname = attrs['class']
-            name = _(cname)
+            name = unicode(_(cname))
             self.a = []
             self.cname = tasks[name]
         elif tag == "arg":
