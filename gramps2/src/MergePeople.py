@@ -102,14 +102,14 @@ class Compare:
         if len(elist) > 0:
             self.add(tobj,title,_("Events") + "\n")
             for event_handle in person.get_event_list():
-                title = self.db.find_event_from_handle(event_handle).get_title()
-                self.add(tobj,normal,"%s:\t%s\n" % (title,self.get_event_info(dhandle)))
-        self.add(tobj,title,_("Parents") + "\n")
+                name = self.db.get_event_from_handle(event_handle).get_name()
+                self.add(tobj,normal,"%s:\t%s\n" % (name,self.get_event_info(dhandle)))
         plist = person.get_parent_family_handle_list()
         if len(plist) > 0:
+            self.add(tobj,title,_("Parents") + "\n")
             for fid in person.get_parent_family_handle_list():
                 (fn,mn,id) = self.get_parent_info(fid[0])
-                self.add(tobj,normal,"%s:\t%s\n" % (_('Family'),id))
+                self.add(tobj,normal,"%s:\t%s\n" % (_('Family ID'),id))
                 if fn:
                     self.add(tobj,indent,"%s:\t%s\n" % (_('Father'),fn))
                 if mn:
@@ -130,7 +130,7 @@ class Compare:
                     self.add(tobj,indent,"%s:\t%s\n" % (_('Spouse'),name_of(spouse)))
                 relstr = const.family_relations[family.get_relationship()][0]
                 self.add(tobj,indent,"%s:\t%s\n" % (_('Type'),relstr))
-                event = ReportUtils.find_marriage(person,family)
+                event = ReportUtils.find_marriage(self.db,family)
                 if event:
                     self.add(tobj,indent,"%s:\t%s\n" % (_('Marriage'),self.get_event_info(event.get_handle())))
                 for child_id in family.get_child_handle_list():
