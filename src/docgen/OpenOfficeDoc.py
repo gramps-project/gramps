@@ -112,6 +112,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('office:class="text" office:version="0.9">\n')
         self.f.write('<office:script/>\n')
         self.f.write('<office:font-decls>\n')
+        self.f.write('<style:font-decl style:name="Courier" fo:font-family="Courier" ')
+        self.f.write('style:font-family-generic="modern" style:font-pitch="fixed"/>\n')
         self.f.write('<style:font-decl style:name="Times New Roman" ')
         self.f.write('fo:font-family="&apos;Times New Roman&apos;" ')
         self.f.write('style:font-family-generic="roman" ')
@@ -127,6 +129,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('</style:style>\n')
         self.f.write('<style:style style:name="GSuper" style:family="text">')
         self.f.write('<style:properties style:text-position="super 58%"/>')
+        self.f.write('</style:style>\n')
+        self.f.write('<style:style style:name="GRAMPS-preformat" style:family="text">')
+        self.f.write('<style:properties style:font-name="Courier"/>')
         self.f.write('</style:style>\n')
 
 	for style_name in self.draw_styles.keys():
@@ -686,9 +691,11 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
+                self.f.write('<text:span test:style-name="GRAMPS-preformat">')
                 line = line.replace('\n',' ')
                 line = string.join(string.split(line))
                 self.write_text(line)
+                self.f.write('</text:span>')
                 self.end_paragraph()
 
     def write_text(self,text):
