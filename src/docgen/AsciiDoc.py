@@ -53,7 +53,7 @@ _WIDTH_IN_CHARS = 72
 #
 #------------------------------------------------------------------------
 def reformat_para(para='',left=0,right=72,just=LEFT,right_pad=0):
-    if not para:
+    if not para.strip():
         return "\n"
     words = para.split()
     lines = []
