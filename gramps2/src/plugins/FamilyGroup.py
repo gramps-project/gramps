@@ -50,9 +50,13 @@ from QuestionDialog import ErrorDialog
 #------------------------------------------------------------------------
 class FamilyGroup:
 
-    def __init__(self,database,family,doc,output,newpage=0):
+    def __init__(self,database,family_id,doc,output,newpage=0):
         self.db = database
-        self.family = family
+        
+        if family_id:
+            self.family = self.db.find_family_from_id(family_id)
+        else:
+            self.family = None
         self.output = output
         self.doc = doc
         self.newpage = newpage
@@ -126,10 +130,12 @@ class FamilyGroup:
         if self.standalone:
             self.doc.close()
     
-    def dump_parent(self,person):
+    def dump_parent(self,person_id):
 
-        if not person:
+        if not person_id:
             return
+        
+        person = self.db.find_person_from_id(person_id)
         
         if person.get_gender() == RelLib.Person.male:
             id = _("Husband")
@@ -146,8 +152,25 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.end_row()
         
-        birth = person.get_birth()
-        death = person.get_death()
+        birth_id = person.get_birth_id()
+        bdate = ""
+        bplace = ""
+        if birth_id:
+            birth = self.db.find_event_from_id(birth_id)
+            bdate = birth.get_date()
+            bplace_id = birth.get_place_id()
+            if bplace_id:
+                bplace = self.db.find_place_from_id(bplace_id).get_title()
+        
+        death_id = person.get_death_id()
+        ddate = ""
+        dplace = ""
+        if death_id:
+            death = self.db.find_event_from_id(death_id)
+            ddate = death.get_date()
+            dplace_id = death.get_place_id()
+            if dplace_id:
+                dplace = self.db.find_place_from_id(dplace_id).get_title()
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -157,12 +180,12 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContents")
         self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(birth.get_date())
+        self.doc.write_text(bdate)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContentsEnd")
         self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(birth.get_place_name())
+        self.doc.write_text(bplace)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -175,25 +198,27 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContents")
         self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(death.get_date())
+        self.doc.write_text(ddate)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.start_cell("FGR-TextContentsEnd")
         self.doc.start_paragraph('FGR-Normal')
-        self.doc.write_text(death.get_place_name())
+        self.doc.write_text(dplace)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
 
-        family = person.get_main_parents_family_id()
-        if family == None or family.get_father_id() == None:
-            father_name = ""
-        else:
-            father_name = family.get_father_id().get_primary_name().get_regular_name()
-        if family == None or family.get_mother_id() == None:
-            mother_name = ""
-        else:
-            mother_name = family.get_mother_id().get_primary_name().get_regular_name()
+        family_id = person.get_main_parents_family_id()
+        father_name = ""
+        mother_name = ""
+        if family_id:
+            family = self.db.find_family_from_id(family_id)
+            father_id = family.get_father_id() 
+            if father_id:
+                father_name = self.db.find_person_from_id(father_id).get_primary_name().get_regular_name()
+            mother_id = family.get_mother_id() 
+            if mother_id:
+                mother_name = self.db.find_person_from_id(mother_id).get_primary_name().get_regular_name()
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -224,12 +249,14 @@ class FamilyGroup:
         self.doc.end_table()
 
     def dump_child_event(self,text,name,event):
+        date = ""
+        place = ""
         if event:
             date = event.get_date()
-            place = event.get_place_name()
-        else:
-            date = ""
-            place = ""
+            place_id = event.get_place_id()
+            if place_id:
+                place = self.db.find_place_from_id(place_id).get_title()
+
         self.doc.start_row()
         self.doc.start_cell(text)
         self.doc.start_paragraph('FGR-Normal')
@@ -252,8 +279,9 @@ class FamilyGroup:
         self.doc.end_cell()
         self.doc.end_row()
         
-    def dump_child(self,index,person):
+    def dump_child(self,index,person_id):
 
+        person = self.db.find_person_from_id(person_id)
         self.doc.start_row()
         self.doc.start_cell('FGR-TextChild1')
         self.doc.start_paragraph('FGR-ChildText')
@@ -271,19 +299,38 @@ class FamilyGroup:
         self.doc.end_row()
 
         families = len(person.get_family_id_list())
-        self.dump_child_event('FGR-TextChild1',_('Birth'),person.get_birth())
-        if families == 0:
-            self.dump_child_event('FGR-TextChild2',_('Death'),person.get_death())
+        birth_id = person.get_birth_id()
+        if birth_id:
+            birth = self.db.find_event_from_id(birth_id)
         else:
-            self.dump_child_event('FGR-TextChild1',_('Death'),person.get_death())
+            birth = None
+        death_id = person.get_death_id()
+        if death_id:
+            death = self.db.find_event_from_id(death_id)
+        else:
+            death = None
+        self.dump_child_event('FGR-TextChild1',_('Birth'),birth)
+        if families == 0:
+            self.dump_child_event('FGR-TextChild2',_('Death'),death)
+        else:
+            self.dump_child_event('FGR-TextChild1',_('Death'),death)
             
         index = 1
-        for family in person.get_family_id_list():
-            m = family.get_marriage()
-            if person == family.get_father_id():
-                spouse = family.get_mother_id()
+        for family_id in person.get_family_id_list():
+            family = self.db.find_family_from_id(family_id)
+            for event_id in family.get_event_list():
+                if event_id:
+                    event = self.db.find_event_from_id(event_id)
+                    if event.get_name() == "Marriage":
+                        m = event
+                        break
             else:
-                spouse = family.get_father_id()
+                m = None
+
+            if person_id == family.get_father_id():
+                spouse_id = family.get_mother_id()
+            else:
+                spouse_id = family.get_father_id()
             self.doc.start_row()
             self.doc.start_cell('FGR-TextChild1')
             self.doc.start_paragraph('FGR-Normal')
@@ -296,7 +343,8 @@ class FamilyGroup:
             self.doc.end_cell()
             self.doc.start_cell('FGR-TextContentsEnd',2)
             self.doc.start_paragraph('FGR-Normal')
-            if spouse:
+            if spouse_id:
+                spouse = self.db.find_person_from_id(spouse_id)
                 self.doc.write_text(spouse.get_primary_name().get_regular_name())
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -339,8 +387,8 @@ class FamilyGroup:
                 self.doc.end_cell()
                 self.doc.end_row()
                 index = 1
-                for child in self.family.get_child_id_list():
-                    self.dump_child(index,child)
+                for child_id in self.family.get_child_id_list():
+                    self.dump_child(index,child_id)
                     index = index + 1
                 self.doc.end_table()
         self.end()
@@ -356,6 +404,7 @@ class FamilyGroupDialog(Report.TextReportDialog):
     report_options = {}
 
     def __init__(self,database,person):
+        self.db = database
         Report.TextReportDialog.__init__(self,database,person,self.report_options)
 
     def get_title(self):
@@ -384,7 +433,7 @@ class FamilyGroupDialog(Report.TextReportDialog):
         return (0, 0)
     
     def get_report_extra_menu_info(self):
-        spouse_map = _build_spouse_map(self.person)
+        spouse_map = _build_spouse_map(self.db,self.person)
         return (_("Spouse"), spouse_map, None, None)
 
     #------------------------------------------------------------------------
@@ -461,7 +510,7 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
 
         self.new_person = None
 
-        self.spouse_map = _build_spouse_map(self.person)
+        self.spouse_map = _build_spouse_map(self.db,self.person)
         if self.extra_menu:
             myMenu = Utils.build_string_optmenu(self.spouse_map,self.spouse_name)
             self.extra_menu.set_menu(myMenu)
@@ -641,23 +690,25 @@ def _make_default_style(default_style):
     para.set_description(_("The style used for the parent's name"))
     default_style.add_style('FGR-ParentName',para)
 
-def _build_spouse_map(person):
+def _build_spouse_map(database,person):
     """Create a mapping of all spouse names:families to be put
     into the 'extra' option menu in the report options box.  If
     the selected person has never been married then this routine
     will return a placebo label and disable the OK button."""
     spouse_map = {}
     family_list = person.get_family_id_list()
-    for family in family_list:
-        if person == family.get_father_id():
-            spouse = family.get_mother_id()
+    for family_id in family_list:
+        family = database.find_family_from_id(family_id)
+        if person.get_id() == family.get_father_id():
+            spouse_id = family.get_mother_id()
         else:
-            spouse = family.get_father_id()
-        if spouse:
+            spouse_id = family.get_father_id()
+        if spouse_id:
+            spouse = database.find_person_from_id(spouse_id)
             name = spouse.get_primary_name().get_name()
         else:
             name= _("unknown")
-        spouse_map[name] = family
+        spouse_map[name] = family_id
     return spouse_map
 
 #------------------------------------------------------------------------
