@@ -1178,7 +1178,7 @@ class Event(DataObj):
         self.setDate(date)
         
     def are_equal(self,other):
-        """returns 1 if the spdcified event is the same as the instance"""
+        """returns 1 if the specified event is the same as the instance"""
         if other == None:
             return 0
         if (self.name != other.name or
