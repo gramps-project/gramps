@@ -1,3 +1,7 @@
+2004-03-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/LPRDoc.py: Table support correction: transferring
+	row to the next page.
+
 2004-02-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: remove local media concept
 	* src/RelLib.py: remove local media concept

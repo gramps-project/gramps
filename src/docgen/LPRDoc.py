@@ -50,30 +50,41 @@ from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# Paragraph Handling
-#
-#------------------------------------------------------------------------
-    
-#------------------------------------------------------------------------
-#
 # Units conversion
 #
 #------------------------------------------------------------------------
-def cm(unit):
+def u2cm(unit):
     """
     Convert gnome-print units to cm
     """
     return 2.54 * unit / 72.0 
 
-def unit(cms):
+def cm2u(cm):
     """
-    Convert cms to gnome-print units
+    Convert cm to gnome-print units
     """
-    return cms * 72.0 / 2.54 
+    return cm * 72.0 / 2.54 
 
 #------------------------------------------------------------------------
 #
-# LPRDoc
+# Constants
+#
+#------------------------------------------------------------------------
+
+# Spacing in points (distance between the bottoms of two adjacent lines)
+_LINE_SPACING = 20  
+# An inch for each margin so far (should use styles later)
+_LEFT_MARGIN = cm2u(2.54)
+_RIGHT_MARGIN = cm2u(2.54)
+_TOP_MARGIN = cm2u(2.54)
+_BOTTOM_MARGIN = cm2u(2.54)
+# Default font
+_FONT_SIZE = 12
+_FONT_NAME = 'Serif'
+
+#------------------------------------------------------------------------
+#
+# LPRDoc class
 #
 #------------------------------------------------------------------------
 class LPRDoc(BaseDoc.BaseDoc):
@@ -97,15 +108,17 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__pc = self.__job.get_context()
 
         #find out what the width and height of the page is
-        __width, __height =gnomeprint.job_get_page_size_from_config(self.__job.get_config())
-        self.__left_margin=__width*0.1
-        self.__right_margin=__width*0.9
-        self.__top_margin=__height*0.9
-        self.__bottom_margin=__height*0.1
+        __width, __height = gnomeprint.job_get_page_size_from_config(self.__job.get_config())
+        self.__left_margin = _LEFT_MARGIN
+        self.__right_margin = __width - _RIGHT_MARGIN
+        self.__top_margin = __height - _TOP_MARGIN
+        self.__bottom_margin = _BOTTOM_MARGIN
 
         #set what fonts we will use
-        self.__regular_font=gnomeprint.font_find_closest("Serif Regular", 10)
-        self.__bold_font=gnomeprint.font_find_closest("Serif Bold", 10)
+        self.__regular_font=gnomeprint.font_find_closest(
+                                    "%s Regular" % _FONT_NAME, _FONT_SIZE)
+        self.__bold_font=gnomeprint.font_find_closest(
+                                    "%s Bold" % _FONT_NAME, _FONT_SIZE)
         self.__font=self.__regular_font
 
         self.start_page(self)
@@ -211,6 +224,12 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__in_table=1
         self.__tbl_style = self.table_styles[style_name]
         self.__ncols = self.__tbl_style.get_columns()
+        table_width = (self.__right_margin - self.__left_margin) * \
+                            self.__tbl_style.get_width() / 100.0
+        self.cell_widths = [0] * self.__ncols
+        for cell in range(self.__ncols):
+            self.cell_widths[cell] = table_width * \
+                            self.__tbl_style.get_column_width(cell) / 100.0
 
     def end_table(self):
         """Close the table environment"""
@@ -264,7 +283,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                                                                                 
         text - text to write.
         """
-        if self__in_paragraph != 1:
+        if self.__in_paragraph != 1:
            self.start_paragraph()
        
         self.write(text)    
@@ -342,7 +361,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     #function to help us advance a line 
     def __advance_line(self, y):
-        return y-20
+        return y - _LINE_SPACING
 
     #function to determine the width of text
     def __text_width(self, text):
@@ -360,117 +379,160 @@ class LPRDoc(BaseDoc.BaseDoc):
       
         return __max_word_size
 
-    #function to print out text between left_margin and right_margin
-    #at position y on page
+    #function to fund out the height of the text between left_margin 
+    # and right_margin -- kinda like __print_text, but without printing.
+    def __text_height(self, text, width):
+
+        nlines = 1
+
+        if width < self.__text_width(text):
+            #divide up text and print
+            textlist = string.split(text)
+            text = ""
+            for element in textlist:
+                if self.__text_width(text + element + " ") < width:
+                    text = text + element + " "
+                else:
+                    #__text contains as many words as this __width allows
+                    nlines = nlines + 1
+                    text = element + " "
+
+            #if __text still contains data, we will want to print it out
+            if text:
+                nlines = nlines + 1
+
+        return nlines * _LINE_SPACING
+
     def __print_text(self, text, x, y, left_margin, right_margin):
         __width=right_margin-left_margin
 
         #all text will fit within the width provided
         if __width >= self.__text_width(text):
-           self.__pc.moveto(left_margin, y)
-           x=left_margin+self.__text_width(text)
-           self.__pc.show(text)
-           y=self.__advance_line(y)
+            self.__pc.moveto(left_margin, y)
+            x=left_margin+self.__text_width(text)
+            self.__pc.show(text)
+            y=self.__advance_line(y)
         else:
-          #divide up text and print
-          __textlist=string.split(text, " ")
-          __text=""
-          for __element in __textlist:
-              if self.__text_width(__text+__element+" ") < __width:
-                 __text=__text+__element+" "
-              else:
-                 #__text contains as many words as this __width allows
-                 self.__pc.moveto(left_margin, y)
-                 self.__pc.show(__text)
-                 __text=__element+" "
-                 y=self.__advance_line(y)
+            #divide up text and print
+            __textlist=string.split(text, " ")
+            __text=""
+            for __element in __textlist:
+                if self.__text_width(__text+__element+" ") < __width:
+                    __text=__text+__element+" "
+                else:
+                    #__text contains as many words as this __width allows
+                    self.__pc.moveto(left_margin, y)
+                    self.__pc.show(__text)
+                    __text=__element+" "
+                    y=self.__advance_line(y)
 
-                 #if not in table and cursor is below bottom margin
-                 if self.__in_table==0 and y < self.__bottom_margin:
+                #if not in table and cursor is below bottom margin
+                if self.__in_table==0 and y < self.__bottom_margin:
                     self.end_page()
                     self.start_page()
                     x=self.__x
                     y=self.__y
 
-          #if __text still contains data, we will want to print it out
-          if len(__text) > 0:
-             self.__pc.moveto(left_margin, y)
-             self.__pc.show(__text)
-             y=self.__advance_line(y)
+            #if __text still contains data, we will want to print it out
+            if len(__text) > 0:
+                self.__pc.moveto(left_margin, y)
+                self.__pc.show(__text)
+                y=self.__advance_line(y)
 
         return (x,y)
 
     def __output_table(self):
         """do calcs on data in table and output data in a formatted way"""
-        __max_col_size=[0]*self.__ncols
-        __min_col_size=[0]*self.__ncols
+        __min_col_size = [self.__right_margin - self.__left_margin] \
+                                                        * self.__ncols
+        __max_vspace = [0] * len(self.__table_data)
 
-        for __row in self.__table_data:
-           #do calcs on each __row and keep track on max length of each column
-           for __col in range(self.__ncols):
-              __row[__col]=__row[__col]+" "*3;   
-              if __max_col_size[__col] < self.__text_width(__row[__col]):
-                  __max_col_size[__col]=self.__text_width(__row[__col])
-              __min_col_size[__col]=self.__min_column_size(__row[__col])
+        for __row_num in range(len(self.__table_data)):
+            __row = self.__table_data[__row_num][:]
+            #do calcs on each __row and keep track on max length of each column
+            for __col in range(self.__ncols):
+                __min = self.__min_column_size(__row[__col]+" "*3)
+                if __min < __min_col_size[__col]:
+                    __min_col_size[__col] = __min
 
+                __max = self.__text_height(__row[__col], self.cell_widths[__col])
+                if __max > __max_vspace[__row_num]:
+                    __max_vspace[__row_num] = __max
 
         #now we have an idea of the max size of each column
         #now output data in the table
         #find total width that the table needs to be.
         #later this value may be used to cut the longest columns down
         #so that data fits on the width of the page
-        __total_table_width=0
-        for __value in __max_col_size:
-          __total_table_width+=__value
+        __min_table_width = sum(__min_col_size)
 
         #is table width larger than the width of the paper?
-        if __total_table_width > (self.__right_margin - self.__left_margin):
-            #figure out the largest our table can be to fit on a page
-            __width=self.__right_margin - self.__left_margin
-            #find out how much larger our table is than what is allowed
-            __extra_length=__total_table_width - __width
-            #for each column, substract the extra width off so that
-            #each column gets deduced a width determined by its 
-            #size compared to the other columns
-            #(larger columns get more taken off, smaller columns get
-            # less width taken off)
-
-            while __extra_length > 1:
-                print __extra_length
-                for __col in range(self.__ncols):
-                    if __extra_length<=1: break
-                    if __max_col_size[__col] > __min_col_size[__col]:
-                        __temp=__max_col_size[__col]-(__max_col_size[__col]/__total_table_width)*__extra_length
-                    if __temp >= __min_col_size[__col]:
-                        __max_col_size[__col]=__temp
-
-                __total_table_width=0
-                for __value in __max_col_size:
-                    __total_table_width+=__value
-                __extra_length=__total_table_width - __width  
+        if __min_table_width > (self.__right_margin - self.__left_margin):
+            print "Table does not fit onto the page.\n"
+#BILLY:
+#   I have commented this block since the table width is now determined
+#   from the start_table's style argument. Here we only detect if we
+#   have minimum column sizes exceeding the page width -- should not
+#   happen really. If it does, there's no good way to fix it,
+#   so I'm not even attempting. It's like fitting table
+#   with three cells, each containing a word occupying the whole line.
+#
+#            #figure out the largest our table can be to fit on a page
+#            __width=self.__right_margin - self.__left_margin
+#            #find out how much larger our table is than what is allowed
+#            __extra_length=__min_table_width - __width
+#            #for each column, substract the extra width off so that
+#            #each column gets deduced a width determined by its 
+#            #size compared to the other columns
+#            #(larger columns get more taken off, smaller columns get
+#            # less width taken off)
+#
+#            __temp = 0
+#            while __extra_length > 1:
+#                print "Extra length:", __extra_length
+#                for __col in range(self.__ncols):
+#                    if __extra_length<=1: break
+#                    if __max_col_size[__col] > __min_col_size[__col]:
+#                        __temp = self.cell_widths[__col] \
+#                                - (self.cell_widths[__col]/__min_table_width) \
+#                                * __extra_length
+#                    if __temp >= __min_col_size[__col]:
+#                        __max_col_size[__col]=__temp
+#
+#                __min_table_width=0
+#                for __value in __max_col_size:
+#                    __min_table_width+=__value
+#                __extra_length=__min_table_width - __width  
                    
         #for now we will assume left justification of tables
         #output data in table
         __min_y=self.__y     #need to keep track of tallest column of 
                              #text in each row
-        for __row in self.__table_data:
+        for __row_num in range(len(self.__table_data)):
+            __row = self.__table_data[__row_num]
             __x=self.__left_margin         #reset so that x is at margin
+            # If this row puts us below the bottom, start new page here
+            if self.__y - __max_vspace[__row_num] < self.__bottom_margin:
+               self.end_page()
+               self.start_page()
+               __min_y=self.__y
+            
             for __col in range(self.__ncols):
                 __nothing, __y=self.__print_text(__row[__col], 
                                                  self.__x, self.__y, 
-                                                 __x, __x+__max_col_size[__col])
+                                                 __x, __x+self.cell_widths[__col])
 
-                __x=__x+__max_col_size[__col]    # set up margin for this row
+                __x=__x+self.cell_widths[__col]    # set up margin for this row
                 if __y < __min_y:     # if we go below current lowest 
                    __min_y=__y        # column
   
             self.__y=__min_y          #reset so that we do not overwrite
 
             #see if we are about to go off the page, if so, create new page
-            if self.__y < self.__bottom_margin:
-               self.end_page()
-               self.start_page()
-               __min_y=self.__y
+            #if self.__y < self.__bottom_margin:
+            #   self.end_page()
+            #   self.start_page()
+            #   __min_y=self.__y
 
     #function to print text to a printer
     def __do_print(self,dialog, job):
