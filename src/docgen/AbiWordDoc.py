@@ -64,7 +64,7 @@ class AbiWordDoc(TextDoc.TextDoc):
             self.filename = filename
 
         self.f = open(self.filename,"w")
-        self.f.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
+        self.f.write('<?xml version="1.0"?>\n')
         self.f.write('<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML')
         self.f.write('1.0 Strict//EN" "http://www.abisource.com/awml.dtd">\n')
         self.f.write('<abiword xmlns:awml="http://www.abisource.com/awml.dtd" ')
@@ -132,6 +132,13 @@ class AbiWordDoc(TextDoc.TextDoc):
         self.f.write('" props="width:%.3fin; ' % act_width)
         self.f.write('height:%.3fin"/>'  % act_height)
 
+    def start_superscript(self):
+        fsize = self.my_para.get_font().get_size()
+        self.text = self.text + '<c props="text-position:superscript">'
+
+    def end_superscript(self):
+        self.text = self.text + '</c>'
+
     def start_paragraph(self,style_name,leader=None):
         if self.in_table:
             self.start_paragraph_intable(style_name,leader)
@@ -142,6 +149,8 @@ class AbiWordDoc(TextDoc.TextDoc):
         style = self.style_list[style_name]
         self.current_style = style
         self.f.write('<p props="')
+        self.f.write('margin-top:%.4fin; ' % (float(style.get_padding())/2.54))
+        self.f.write('margin-bottom:%.4fin; ' % (float(style.get_padding())/2.54))
         if style.get_alignment() == TextDoc.PARA_ALIGN_RIGHT:
             self.f.write('text-align:right;')
         elif style.get_alignment() == TextDoc.PARA_ALIGN_LEFT:
@@ -216,9 +225,11 @@ class AbiWordDoc(TextDoc.TextDoc):
             self.f.write('</c></p>\n')
 
     def write_text(self,text):
-        text = string.replace(text,'&','&amp;');       # Must be first
-        text = string.replace(text,'<','&lt;');
-        text = string.replace(text,'>','&gt;');
+        text = text.replace('&','&amp;');       # Must be first
+        text = text.replace('<','&lt;');
+        text = text.replace('>','&gt;');
+        text = text.replace('&lt;super&gt;','<c props="text-position:superscript">')
+        text = text.replace('&lt;/super&gt;','</c>')
         if self.in_table:
             self.cdata = self.cdata + text
         else:
