@@ -29,10 +29,7 @@ __author__ = "Don Allingham"
 # Try to abstract SAX1 from SAX2
 #
 #-------------------------------------------------------------------------
-try:
-    from xml.sax import make_parser,handler,SAXParseException
-except:
-    from _xmlplus.sax import make_parser,handler,SAXParseException
+from xml.sax import make_parser,handler,SAXParseException
 
 #-------------------------------------------------------------------------
 #
@@ -40,8 +37,7 @@ except:
 #
 #-------------------------------------------------------------------------
 import os
-from string import find,join
-
+import string
 import gtk
 
 #-------------------------------------------------------------------------
@@ -85,6 +81,9 @@ class Rule:
     labels = []
     
     def __init__(self,list):
+        self.set_list(list)
+
+    def set_list(self,list):
         assert type(list) == type([]) or list == None, "Argument is not a list"
         self.list = list
 
@@ -976,8 +975,8 @@ class HasEvent(Rule):
             val = 1
             if self.list[0] and event.get_name() != self.list[0]:
                 val = 0
-            if self.list[3] and find(event.get_description().upper(),
-                                     self.list[3].upper())==-1:
+            if self.list[3] and string.find(event.get_description().upper(),
+                                            self.list[3].upper())==-1:
                 val = 0
             if self.date:
                 if date_cmp(self.date,event.get_date_object()):
@@ -987,7 +986,7 @@ class HasEvent(Rule):
                 if pl_id:
                     pl = db.find_place_from_id(pl_id)
                     pn = pl.get_title()
-                    if find(pn.upper(),self.list[2].upper()) == -1:
+                    if string.find(pn.upper(),self.list[2].upper()) == -1:
                         val = 0
                 if val == 1:
                     return 1
@@ -1033,7 +1032,7 @@ class HasFamilyEvent(Rule):
                 if self.list[0] and event.get_name() != self.list[0]:
                     val = 0
                 v = self.list[3]
-                if v and find(event.get_description().upper(),v.upper())==-1:
+                if v and string.find(event.get_description().upper(),v.upper())==-1:
                     val = 0
                 if self.date:
                     if date_cmp(self.date,event.get_date_object()):
@@ -1042,7 +1041,7 @@ class HasFamilyEvent(Rule):
                 if pl_id:
                     pl = db.find_place_from_id(pl_id)
                     pn = pl.get_title()
-                    if self.list[2] and find(pn,self.list[2].upper()) == -1:
+                    if self.list[2] and string.find(pn,self.list[2].upper()) == -1:
                         val = 0
                     if val == 1:
                         return 1
@@ -1140,7 +1139,7 @@ class HasBirth(Rule):
             return 0
         event = db.find_event_from_id(event_id)
         ed = event.get_description().upper()
-        if len(self.list) > 2 and find(ed,self.list[2].upper())==-1:
+        if len(self.list) > 2 and string.find(ed,self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
@@ -1149,7 +1148,7 @@ class HasBirth(Rule):
         if pl_id:
             pl = db.find_place_from_id(pl_id)
             pn = pl.get_title()
-            if len(self.list) > 1 and find(pn,self.list[1].upper()) == -1:
+            if len(self.list) > 1 and string.find(pn,self.list[1].upper()) == -1:
                 return 0
         return 1
 
@@ -1187,7 +1186,7 @@ class HasDeath(Rule):
             return 0
         event = db.find_event_from_id(event_id)
         ed = event.get_description().upper()
-        if self.list[2] and find(ed,self.list[2].upper())==-1:
+        if self.list[2] and string.find(ed,self.list[2].upper())==-1:
             return 0
         if self.date:
             if date_cmp(self.date,event.get_date_object()) == 0:
@@ -1196,7 +1195,7 @@ class HasDeath(Rule):
         if pl_id:
             pl = db.find_place_from_id(pl_id)
             pn = pl.get_title()
-            if self.list[1] and find(pn,self.list[1].upper()) == -1:
+            if self.list[1] and string.find(pn,self.list[1].upper()) == -1:
                 return 0
         return 1
 
@@ -1219,7 +1218,7 @@ class HasAttribute(Rule):
             if self.list[0] and event.get_type() != self.list[0]:
                 return 0
             ev = event.get_value().upper()
-            if self.list[1] and find(ev,self.list[1].upper())==-1:
+            if self.list[1] and string.find(ev,self.list[1].upper())==-1:
                 return 0
         return 1
 
@@ -1245,7 +1244,7 @@ class HasFamilyAttribute(Rule):
                 if self.list[0] and event.get_type() != self.list[0]:
                     val = 0
                 ev = event.get_value().upper()
-                if self.list[1] and find(ev,self.list[1].upper())==-1:
+                if self.list[1] and string.find(ev,self.list[1].upper())==-1:
                     val = 0
                 if val == 1:
                     return 1
@@ -1278,18 +1277,41 @@ class HasNameOf(Rule):
         p = db.find_person_from_id(p_id)
         for name in [p.get_primary_name()] + p.get_alternate_names():
             val = 1
-            if self.f and find(name.get_first_name().upper(),self.f.upper()) == -1:
+            if self.f and string.find(name.get_first_name().upper(),self.f.upper()) == -1:
                 val = 0
-            if self.l and find(name.get_surname().upper(),self.l.upper()) == -1:
+            if self.l and string.find(name.get_surname().upper(),self.l.upper()) == -1:
                 val = 0
-            if self.s and find(name.get_suffix().upper(),self.s.upper()) == -1:
+            if self.s and string.find(name.get_suffix().upper(),self.s.upper()) == -1:
                 val = 0
-            if self.t and find(name.get_title().upper(),self.t.upper()) == -1:
+            if self.t and string.find(name.get_title().upper(),self.t.upper()) == -1:
                 val = 0
             if val == 1:
                 return 1
         return 0
 
+#-------------------------------------------------------------------------
+#
+# HasNameOf
+#
+#-------------------------------------------------------------------------
+class SearchName(Rule):
+    """Rule that checks for full or partial name matches"""
+
+    labels = [_('Substring:')]
+    
+    def name(self):
+        return 'Matches name'
+    
+    def description(self):
+        return _("Matches the person with a specified (partial) name")
+
+    def category(self):
+        return _('General filters')
+
+    def apply(self,db,p_id):
+        self.f = self.list[0]
+        p = db.find_person_from_id(p_id)
+        return self.f and string.find(p.get_primary_name().get_name().upper(),self.f.upper()) != -1
     
 #-------------------------------------------------------------------------
 #
@@ -1357,12 +1379,14 @@ class GenericFilter:
     
     def __init__(self,source=None):
         if source:
+            self.need_param = source.need_param
             self.flist = source.flist[:]
             self.name = source.name
             self.comment = source.comment
             self.logical_op = source.logical_op
             self.invert = source.invert
         else:
+            self.need_param = 0
             self.flist = []
             self.name = ''
             self.comment = ''
@@ -1477,7 +1501,7 @@ class GenericFilter:
 #
 #-------------------------------------------------------------------------
 tasks = {
-    unicode(_("Everyone"))                    : Everyone,
+    unicode(_("Everyone"))                             : Everyone,
     unicode(_("Has the Id"))                           : HasIdOf,
     unicode(_("Has a name"))                           : HasNameOf,
     unicode(_("Has the relationships"))                : HasRelationship,
@@ -1487,20 +1511,20 @@ tasks = {
     unicode(_("Is a descendant family member of"))     : IsDescendantFamilyOf,
     unicode(_("Is a descendant of filter match"))      : IsDescendantOfFilterMatch,
     unicode(_("Is a descendant of person not more than N generations away"))
-                                              : IsLessThanNthGenerationDescendantOf,
+                                                       : IsLessThanNthGenerationDescendantOf,
     unicode(_("Is a descendant of person at least N generations away"))
-                                              : IsMoreThanNthGenerationDescendantOf,
+                                                       : IsMoreThanNthGenerationDescendantOf,
     unicode(_("Is a child of filter match"))           : IsChildOfFilterMatch,
     unicode(_("Is an ancestor of"))                    : IsAncestorOf,
     unicode(_("Is an ancestor of filter match"))       : IsAncestorOfFilterMatch,
     unicode(_("Is an ancestor of person not more than N generations away"))
-                                              : IsLessThanNthGenerationAncestorOf,
+                                                       : IsLessThanNthGenerationAncestorOf,
     unicode(_("Is an ancestor of person at least N generations away"))
-                                              : IsMoreThanNthGenerationAncestorOf,
+                                                       : IsMoreThanNthGenerationAncestorOf,
     unicode(_("Is a parent of filter match"))          : IsParentOfFilterMatch,
     unicode(_("Has a common ancestor with"))           : HasCommonAncestorWith,
     unicode(_("Has a common ancestor with filter match"))
-                                              : HasCommonAncestorWithFilterMatch,
+                                                       : HasCommonAncestorWithFilterMatch,
     unicode(_("Is a female"))                          : IsFemale,
     unicode(_("Is a male"))                            : IsMale,
     unicode(_("Has complete record"))                  : HasCompleteRecord,
@@ -1633,6 +1657,21 @@ class FilterParser(handler.ContentHandler):
             
     def characters(self, data):
         pass
+
+class ParamFilter(GenericFilter):
+
+    def __init__(self,source=None):
+        GenericFilter.__init__(self,source)
+        self.need_param = 1
+        self.param_list = []
+
+    def set_parameter(self,param):
+        self.param_list = [param]
+
+    def apply(self,db,id_list):
+        for rule in self.flist:
+            rule.set_list(self.param_list)
+        return GenericFilter.apply(self,db,id_list)
 
 #-------------------------------------------------------------------------
 #

@@ -1,3 +1,10 @@
+2004-04-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GenericFilter.py: Add a generic filter that can take a
+	parameter
+	* src/PeopleModel.py: Support for top level visibility
+	* src/gramps.glade: clean up filtering widgets
+	* src/gramps_main.py: build basic filters
+
 2004-04-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: remove unused functions
 	* src/DisplayModels.py: filtering support

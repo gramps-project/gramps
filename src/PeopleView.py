@@ -103,6 +103,7 @@ class PeopleView:
         column.set_resizable(gtk.TRUE)        
         column.set_min_width(225)
         column.set_clickable(gtk.TRUE)
+        column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
         self.person_tree.append_column(column)
         self.columns = [column]
@@ -116,6 +117,7 @@ class PeopleView:
             column.set_resizable(gtk.TRUE)
             #column.set_clickable(gtk.TRUE)
             column.set_min_width(60)
+            column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
             column.set_sort_column_id(index)
             self.columns.append(column)
             self.person_tree.append_column(column)
@@ -197,6 +199,8 @@ class PeopleView:
         qualifer = unicode(self.parent.filter_text.get_text())
         mi = self.parent.filter_list.get_menu().get_active()
         self.DataFilter = mi.get_data("filter")
+        if self.DataFilter.need_param:
+            self.DataFilter.set_parameter(unicode(self.parent.filter_text.get_text()))
         self.apply_filter()
         self.goto_active_person()
 
