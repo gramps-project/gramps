@@ -136,8 +136,8 @@ class Gramps:
                       (3, self.gtop.get_widget("cGenderSort")),
                       (4, date_arrow)]
         
-        self.person_sort = Sorter.Sorter(self.person_list, plist_map, 'person', self.topWindow)
-        self.child_sort = Sorter.ChildSorter(self.child_list, clist_map, 'child', self.topWindow)
+        self.person_sort = Sorter.Sorter(self.person_list, plist_map, 'person')
+        self.child_sort = Sorter.ChildSorter(self.child_list, clist_map, 'child')
                                                   
         if arg != None:
             if string.upper(arg[-3:]) == "GED":
@@ -210,9 +210,9 @@ class Gramps:
                                           self.statusbar,
                                           self.change_active_person,
                                           self.load_person)
-        self.place_view  = PlaceView(self.db,self.gtop,self.update_display,self.topWindow)
-        self.source_view = SourceView(self.db,self.gtop,self.update_display,self.topWindow)
-        self.media_view  = MediaView(self.db,self.gtop,self.update_display,self.topWindow)
+        self.place_view  = PlaceView(self.db,self.gtop,self.update_display)
+        self.source_view = SourceView(self.db,self.gtop,self.update_display)
+        self.media_view  = MediaView(self.db,self.gtop,self.update_display)
 
         self.gtop.signal_autoconnect({
             "delete_event" : self.delete_event,
@@ -1709,7 +1709,7 @@ class Gramps:
             self.statusbar.set_status(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
-            gramps.ui.GnomeWarningDialog(_("Bookmark could not be set because no one was selected"))
+            gnome.ui.GnomeWarningDialog(_("Bookmark could not be set because no one was selected"))
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()

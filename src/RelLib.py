@@ -1330,7 +1330,8 @@ class Event(DataObj):
     def is_empty(self):
         date = self.getDateObj()
         place = self.getPlace()
-        description = self.getDescription()
+        description = self.description
+        name = self.name
         if (not name or name == "Birth" or name == "Death") and \
            date.isEmpty() and not place and not description:
             return 1

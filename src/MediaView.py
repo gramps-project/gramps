@@ -38,9 +38,8 @@ from intl import gettext
 _ = gettext
 
 class MediaView:
-    def __init__(self,db,glade,update,top_window):
+    def __init__(self,db,glade,update):
         self.db = db
-        self.top_window = top_window
         self.media_list = glade.get_widget("media_list")
         self.mid        = glade.get_widget("mid")
         self.mtype      = glade.get_widget("mtype")
@@ -71,7 +70,7 @@ class MediaView:
 
         # Restore the previous sort column
         
-        self.media_sort = Sorter.Sorter(self.media_list, arrow_map, 'media', self.top_window)
+        self.media_sort = Sorter.Sorter(self.media_list, arrow_map, 'media')
         
     def change_db(self,db):
         self.db = db
