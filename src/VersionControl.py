@@ -236,8 +236,9 @@ class RcsVersionControl(VersionControl):
                 slog = 1
                 l = []
        
-        w.close()
-        r.close()
+        proc.tochild.close()
+        proc.fromchild.close()
+        proc.childerr.close()
         return rlist
 
     def checkin(self,name,comment,binary):
