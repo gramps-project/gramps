@@ -842,19 +842,7 @@ class Gramps:
 
     def on_faq_activate(self,obj):
         """Display FAQ"""
-        faqtop = gtk.glade.XML(const.gladeFile, "faq", "faq")
-        faqWindow = faqtop.get_widget("faq")
-	faqView = faqtop.get_widget("faq_view")
-        faqtop.signal_autoconnect({
-            "on_faq_close_clicked" : Utils.destroy_passed_object
-	})
-	# FIXME: filename is bogus, waiting for install policy decision
-	faq_file = open('/home/shura/gramps2/FAQ')
-	faq_text = faq_file.read()
-	faq_file.close()
-	faq_buffer = faqView.get_buffer()
-        faq_buffer.set_text(faq_text)
-	faqWindow.show()
+        gnome.help_display('gramps-manual','faq')
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""

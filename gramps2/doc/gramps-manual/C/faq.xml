@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+
+	  Copyright (C) 2003  Alexander Roitman
+
+	  Permission is granted to copy, distribute and/or modify this
+	  document under the terms of the GNU Free Documentation
+	  License (GFDL), Version 1.1 or any later version published
+	  by the Free Software Foundation with no Invariant Sections,
+	  no Front-Cover Texts, and no Back-Cover Texts. 
+          A copy of the license is included in the file COPYING-DOCS 
+          distributed with this manual.
+-->
 
 <!-- $Id$ -->
 
@@ -250,22 +263,24 @@ bug</guimenuitem></menuchoice> from gramps main menu). </para>
 <itemizedlist>
 
 <listitem><para>   
-1. Version of gramps you were using when you encountered the bug 
+Version of gramps you were using when you encountered the bug 
 (available through <menuchoice><guisubmenu>Help</guisubmenu>
 <guimenuitem>About</guimenuitem></menuchoice> menu item).
 </para></listitem>
 
 <listitem><para>
-2. Language under which gramps was run
-(available by executing <command>echo $LANG</command> in your terminal).
+Language under which gramps was run
+(available by executing </para>
+   <para><command>echo $LANG</command></para>
+<para>in your terminal).
 </para></listitem>
 
 <listitem><para>
-3. Symptoms indicating that this is indeed a bug.
+Symptoms indicating that this is indeed a bug.
 </para></listitem>
 
 <listitem><para>
-4. Any Traceback messages, error messages, warnings, etc, 
+Any Traceback messages, error messages, warnings, etc, 
 that showed up in your terminal or a in separate traceback window.
 </para></listitem>
 
