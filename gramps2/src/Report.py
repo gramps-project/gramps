@@ -52,8 +52,9 @@ import TextDoc
 import StyleEditor
 import GrampsCfg
 import PaperMenu
-from intl import gettext as _
+import Errors
 
+from intl import gettext as _
 from QuestionDialog import  ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -77,20 +78,6 @@ _user_template = _("User Defined Template")
 _template_map = {
     _user_template : None
     }
-
-#-------------------------------------------------------------------------
-#
-# Exceptions
-#
-#-------------------------------------------------------------------------
-
-class ReportError(Exception):
-    
-    def __init__(self,value):
-        self.value = value
-
-    def __str__(self):
-        return self.value
 
 #-------------------------------------------------------------------------
 #

@@ -71,6 +71,8 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             self.filename = filename + ".sxw"
         else:
             self.filename = filename
+
+        self.filename = os.path.normpath(os.path.abspath(filename))
             
         try:
             self.content_xml = tempfile.mktemp()

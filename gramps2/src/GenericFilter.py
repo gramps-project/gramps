@@ -774,7 +774,7 @@ class GenericFilterList:
         except:
             return
         
-        f.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n")
+        f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
         for i in self.filter_list:
             f.write('  <filter name="%s"' % self.fix(i.get_name()))

@@ -21,6 +21,7 @@
 class ReportError(Exception):
     """Error used to report Report errors"""
     def __init__(self,value):
+        Exception.__init__(self)
         self.value = value
 
     def __str__(self):
@@ -29,6 +30,7 @@ class ReportError(Exception):
 class GedcomError(Exception):
     """Error used to report GEDCOM errors"""
     def __init__(self,value):
+        Exception.__init__(self)
         self.value = value
 
     def __str__(self):
@@ -37,6 +39,7 @@ class GedcomError(Exception):
 class PluginError(Exception):
     """Error used to report plugin errors"""
     def __init__(self,value):
+        Exception.__init__(self)
         self.value = value
 
     def __str__(self):

@@ -48,6 +48,7 @@ import Errors
 
 from SubstKeywords import SubstKeywords
 from intl import gettext as _
+from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
 #
@@ -341,6 +342,8 @@ class DescendantReportDialog(Report.DrawReportDialog):
             MyReport = DescendantReport(self.db,self.report_text,
                                         self.person, self.target_path, self.doc)
             MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
