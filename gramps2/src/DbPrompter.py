@@ -142,7 +142,7 @@ class ExistingDbPrompter:
         choose.set_local_only(gtk.FALSE)
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('Automatic'))
+        mime_filter.set_name(_('All files'))
         mime_filter.add_pattern('*')
         choose.add_filter(mime_filter)
         
@@ -249,7 +249,7 @@ class ImportDbPrompter:
         choose.set_local_only(gtk.FALSE)
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('Automatic'))
+        mime_filter.set_name(_('All files'))
         mime_filter.add_pattern('*')
         choose.add_filter(mime_filter)
         
@@ -331,7 +331,7 @@ class NewNativeDbPrompter:
 
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('Automatic'))
+        mime_filter.set_name(_('All files'))
         mime_filter.add_pattern('*')
         choose.add_filter(mime_filter)
         
@@ -408,7 +408,7 @@ class NewSaveasDbPrompter:
 
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('Automatic'))
+        mime_filter.set_name(_('All files'))
         mime_filter.add_pattern('*')
         choose.add_filter(mime_filter)
         

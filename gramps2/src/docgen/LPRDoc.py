@@ -510,7 +510,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.bottom_margin = cm2u(self.get_bottom_margin()) 
 
         self.start_page(self)
- 
+        self.filename = ""
 
     def close(self):
         """Clean up and close the document."""
@@ -990,7 +990,8 @@ class LPRDoc(BaseDoc.BaseDoc):
     def draw_path(self,style,path):
         self.brand_new_page = 0
         stype = self.draw_styles[style]
-        color = [ val/255.0 for val in stype.get_fill_color()]
+        fill_color = [ val/255.0 for val in stype.get_fill_color()]
+        color = [ val/255.0 for val in stype.get_color()]
 
         point = path[0]
         x = cm2u(point[0]) + self.left_margin
@@ -1002,7 +1003,9 @@ class LPRDoc(BaseDoc.BaseDoc):
             y = self.top_margin - cm2u(point[1])
             self.gpc.lineto(x,y)
         self.gpc.closepath()
-        self.gpc.stroke()
+
+        self.gpc.setrgbcolor(fill_color[0],fill_color[1],fill_color[2])
+        self.gpc.fill()
 
         point = path[0]
         x = cm2u(point[0]) + self.left_margin
@@ -1016,7 +1019,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.gpc.closepath()
 
         self.gpc.setrgbcolor(color[0],color[1],color[2])
-        self.gpc.fill()
+        self.gpc.stroke()
+
         self.gpc.setrgbcolor(0,0,0)
         
     def draw_box(self,style,text,x,y):
@@ -1087,10 +1091,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         bh = cm2u(y2-y1)
         bw = cm2u(x2-x1)
 
-        self.gpc.setrgbcolor(color[0],color[1],color[2])
-        self.gpc.rect_stroked(x,y,bw,-bh)
         self.gpc.setrgbcolor(fill_color[0],fill_color[1],fill_color[2])
         self.gpc.rect_filled(x,y,bw,-bh)
+        self.gpc.setrgbcolor(color[0],color[1],color[2])
+        self.gpc.rect_stroked(x,y,bw,-bh)
         self.gpc.setrgbcolor(0,0,0)
 
     def draw_text(self,style,text,x,y):
@@ -1219,7 +1223,6 @@ PluginMgr.register_text_doc(
     print_report_label=None,
     clname='print')
     
-
 PluginMgr.register_book_doc(
     _("Print..."),
     LPRDoc,
