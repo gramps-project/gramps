@@ -127,9 +127,9 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         self.write_paragraphs (self.person (self.start.get_id(), suppress_children = 1,
                                             needs_name = 1))
-        families = [self.start.get_main_parents_family_id ()]
-        if len (families) > 0:
-            self.generation (self.max_generations, families, [], [self.start])
+        family_ids = [self.start.get_main_parents_family_id ()]
+        if len (family_ids) > 0:
+            self.generation (self.max_generations, family_ids, [], [self.start])
 
         if len (self.sources) > 0:
             self.doc.start_paragraph ("AR-Heading")
@@ -218,16 +218,16 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         return ret
 
-    def generation (self, generations, pfamilies, mfamilies,
+    def generation (self, generations, pfamily_ids, mfamily_ids,
                     already_described, thisgen = 2):
-        if generations > 1 and (len (pfamilies) + len (mfamilies)):
+        if generations > 1 and (len (pfamily_ids) + len (mfamily_ids)):
             people = []
-            for family in pfamilies:
-                people.extend (self.family (family, already_described))
+            for family_id in pfamily_ids:
+                people.extend (self.family (family_id, already_described))
 
-            if thisgen > 2 and len (mfamilies):
-                for self.gp in [mfamilies[0].get_father_id (),
-                                mfamilies[0].get_mother_id ()]:
+            if thisgen > 2 and len (mfamily_ids):
+                for self.gp in [self.database.find_family_from_id(mfamily_ids[0]).get_father_id (),
+                                self.database.find_family_from_id(mfamilies[0]).get_mother_id ()]:
                     if self.gp:
                         break
 
@@ -240,15 +240,15 @@ class ComprehensiveAncestorsReport (Report.Report):
                 people.append ((self.doc.write_text, [heading]))
                 people.append ((self.doc.end_paragraph, []))
 
-            for family in mfamilies:
-                people.extend (self.family (family, already_described))
+            for family_id in mfamily_ids:
+                people.extend (self.family (family_id, already_described))
 
             if len (people):
                 if self.pgbrk:
                     self.doc.page_break()
                 self.doc.start_paragraph ("AR-Heading")
-                family_ids = pfamilies
-                family_ids.extend (mfamilies)
+                family_ids = pfamily_ids
+                family_ids.extend (mfamily_ids)
                 for self.gp in [self.database.find_family_from_id(family_ids[0]).get_father_id (),
                                 self.database.find_family_from_id(family_ids[0]).get_mother_id ()]:
                     if self.gp:
@@ -269,8 +269,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                 self.doc.end_paragraph ()
                 self.write_paragraphs (people)
 
-                next_pfamilies = []
-                next_mfamilies = []
+                next_pfamily_ids = []
+                next_mfamily_ids = []
                 for family_id in family_ids:
                     family = self.database.find_family_from_id(family_id)
                     father_id = family.get_father_id ()
@@ -280,7 +280,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                         father_family_id = father.get_main_parents_family_id ()
                         father_family = self.database.find_family_from_id(father_family_id)
                         if father_family:
-                            next_pfamilies.append (father_family)
+                            next_pfamily_ids.append (father_family_id)
 
                     mother_id = family.get_mother_id ()
                     mother = self.database.find_person_from_id(mother_id)
@@ -289,10 +289,10 @@ class ComprehensiveAncestorsReport (Report.Report):
                         mother_family_id = mother.get_main_parents_family_id ()
                         mother_family = self.database.find_family_from_id(mother_family_id)
                         if mother_family:
-                            next_mfamilies.append (mother_family)
+                            next_mfamily_ids.append (mother_family_id)
 
-                self.generation (generations - 1, next_pfamilies,
-                                 next_mfamilies, already_described,
+                self.generation (generations - 1, next_pfamily_ids,
+                                 next_mfamily_ids, already_described,
                                  thisgen + 1)
 
     def person (self, person_id,
