@@ -234,9 +234,10 @@ class IndividualPage:
             object = photo_list[0].getReference()
             if object.getMimeType()[0:5] == "image":
                 file = object.getPath()
-                self.doc.start_paragraph("Data")
-                self.doc.add_photo(file,"row",4.0,4.0)
-                self.doc.end_paragraph()
+                if os.path.isfile(file):
+                    self.doc.start_paragraph("Data")
+                    self.doc.add_photo(file,"row",4.0,4.0)
+                    self.doc.end_paragraph()
 
         # Start the first table, which consists of basic information, including
         # name, gender, and parents
