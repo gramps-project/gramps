@@ -332,7 +332,10 @@ def importData(database, filename):
             regex_match = dateRegexp.match(line)
             if regex_match :
                 matches = regex_match.groups()
-                event.setDate(matches[0])
+                try:
+                    event.setDate(matches[0])
+                except:
+                    pass
                 continue
             
             regex_match = typeRegexp.match(line)
@@ -530,7 +533,10 @@ def importData(database, filename):
             regex_match = dateRegexp.match(line)
             if regex_match :
                 matches = regex_match.groups()
-                event.setDate(matches[0])
+                try:
+                    event.setDate(matches[0])
+                except:
+                    pass
                 continue
 
             regex_match = fileRegexp.match(line)
