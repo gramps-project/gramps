@@ -38,6 +38,8 @@ CALENDAR_NO        = 0
 CALENDAR_YES       = 1
 OBJE_NO            = 0
 OBJE_YES           = 1
+PREFIX_NO          = 0
+PREFIX_YES         = 1
 RESIDENCE_ADDR     = 0
 RESIDENCE_PLAC     = 1
 
@@ -60,7 +62,8 @@ class GedcomDescription:
         self.resi = RESIDENCE_ADDR
         self.gramps2tag_map = {}
         self.tag2gramps_map = {}
-
+        self.prefix = PREFIX_YES
+        
     def set_dest(self,val):
         self.dest = val
 
@@ -73,6 +76,12 @@ class GedcomDescription:
     def get_adopt(self):
         return self.adopt
 
+    def set_prefix(self,val):
+        self.prefix=val
+
+    def get_prefix(self):
+        return self.prefix
+    
     def set_conc(self,val):
         self.conc = val
 
@@ -212,6 +221,9 @@ class GedInfoParser:
         elif tag == "object_support":
             if attrs['val'] == 'no':
                 self.current.set_obje(OBJE_NO)
+        elif tag == "prefix":
+            if attrs['val'] == 'no':
+                self.current.set_obje(PREFIX_NO)
         elif tag == "residence":
             if attrs['val'] == 'place':
                 self.current.set_resi(RESIDENCE_PLAC)

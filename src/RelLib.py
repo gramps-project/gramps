@@ -821,12 +821,20 @@ class Name(DataObj):
             self.Suffix = source.Suffix
             self.Title = source.Title
             self.type = source.type
+            self.Prefix = source.Prefix
         else:
             self.FirstName = ""
             self.Surname = ""
             self.Suffix = ""
             self.Title = ""
             self.type = ""
+            self.Prefix = ""
+
+    def getSurnamePrefix(self):
+        return self.Prefix
+
+    def setSurnamePrefix(self,val):
+        self.Prefix = val
 
     def setType(self,type):
         """sets the type of the Name instance"""
@@ -872,10 +880,16 @@ class Name(DataObj):
         """returns a name string built from the components of the Name
         instance, in the form of Surname, Firstname"""
         
-        if (self.Suffix == ""):
-            return "%s, %s" % (self.Surname, self.FirstName)
+        if self.Suffix:
+            if self.Prefix:
+                return "%s %s, %s %s" % (self.Prefix, self.Surname, self.FirstName, self.Suffix)
+            else:
+                return "%s, %s %s" % (self.Surname, self.FirstName, self.Suffix)
         else:
-            return "%s, %s %s" % (self.Surname, self.FirstName, self.Suffix)
+            if self.Prefix:
+                return "%s %s, %s" % (self.Prefix,self.Surname, self.FirstName)
+            else:
+                return "%s, %s" % (self.Surname, self.FirstName)
 
     def getRegularName(self):
         """returns a name string built from the components of the Name

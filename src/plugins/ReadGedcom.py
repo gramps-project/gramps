@@ -1339,7 +1339,7 @@ class GedcomParser:
 	    elif matches[1] == "GIVN":
                 name.setFirstName(matches[2])
 	    elif matches[1] == "SPFX":
-                pass
+                name.setSurnamePrefix(matches[2])
 	    elif matches[1] == "SURN":
                 name.setSurname(matches[2])
                 self.db.addSurname(matches[2])

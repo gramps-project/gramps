@@ -39,8 +39,6 @@ import Date
 #-------------------------------------------------------------------------
 
 su = string.upper
-sp = string.split
-
 
 _plist = [ 'de', 'van', 'von', 'la', 'di', 'le', 'du' ]
 
@@ -52,14 +50,10 @@ def build_sort_name(n):
     """Builds a name from a RelLib.Name instance that is suitable for
     use as a sort key in a GtkCList. The name is converted to upper case
     to provide for case-insenstive sorting"""
-    l = string.split(n.Surname)
-    if len(l) > 1 and _prefix.has_key(l[0].lower()):
-        return "%-25s%-30s%s" % (su(l[1]),su(n.FirstName),su(n.Suffix))
+    if n.Surname:
+        return "%-25s%-30s%s" % (su(n.Surname),su(n.FirstName),su(n.Suffix))
     else:
-        if n.Surname:
-            return "%-25s%-30s%s" % (su(n.Surname),su(n.FirstName),su(n.Suffix))
-        else:
-            return "%s" % chr(255)
+        return "%s" % chr(255)
         
 
 def build_sort_date(n):

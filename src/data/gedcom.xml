@@ -5,6 +5,7 @@
     <adopt val="none"/>
     <conc val="standard"/>
     <alternate_names val="none"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -16,6 +17,7 @@
     <adopt val="event"/>
     <conc val="broken"/>
     <alternate_names val="event_aka"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -27,6 +29,7 @@
     <adopt val="ftw"/>
     <conc val="broken"/>
     <alternate_names val="alias"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
       <event tag="_DEG" value="Degree"/>
@@ -42,6 +45,7 @@
     <adopt val="none"/>
     <conc val="broken"/>
     <alternate_names val="none"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -53,6 +57,7 @@
     <adopt val="event_extended"/>
     <conc val="standard"/>
     <alternate_names val="none"/>
+    <prefix val="no">
     <calendar val="yes"/>
     <extended_events>
     </extended_events>
@@ -63,6 +68,7 @@
     <dest val="Legacy"/>
     <adopt val="legacy"/>
     <conc val="broken"/>
+    <prefix val="no">
     <alternate_names val="standard"/>
     <calendar val="no"/>
     <extended_events>
@@ -75,6 +81,7 @@
     <adopt val="pedigree"/>
     <conc val="standard"/>
     <alternate_names val="aka"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -86,6 +93,7 @@
     <adopt val="none"/>
     <conc val="broken"/>
     <alternate_names val="none"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -97,6 +105,7 @@
     <adopt val="none"/>
     <conc val="broken"/>
     <alternate_names val="_alias"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
     </extended_events>
@@ -108,6 +117,7 @@
     <adopt val="none"/>
     <conc val="broken"/>
     <alternate_names val="none"/>
+    <prefix val="no">
     <calendar val="no"/>
     <extended_events>
     </extended_events>

@@ -437,6 +437,14 @@ class XmlWriter:
             else:
                 self.g.write('>\n')
 
+    def write_last(self,name,indent=1):
+        p = name.Prefix
+        n = name.Surname
+        if p:
+            self.g.write('%s<last prefix="%s">%s</last>\n' % ('  '*indent,p,self.fix(n)))
+        else:
+            self.g.write('%s<last>%s</last>\n' % ('  '*indent,self.fix(n)))
+
     def write_line(self,label,value,indent=1):
         if value:
             self.g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,self.fix(value),label))
@@ -486,7 +494,7 @@ class XmlWriter:
         else:
             self.g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))
         self.write_line("first",name.getFirstName(),index+1)
-        self.write_line("last",name.getSurname(),index+1)
+        self.write_last(name,index+1)
         self.write_line("suffix",name.getSuffix(),index+1)
         self.write_line("title",name.getTitle(),index+1)
         if name.getNote() != "":

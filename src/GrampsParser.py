@@ -303,6 +303,10 @@ class GrampsParser:
             self.name.conf = 2
         if attrs.has_key("priv"):
             self.name.private = int(attrs["priv"])
+
+    def start_last(self,attrs):
+        if attrs.has_key('prefix'):
+            self.name.Prefix = attrs['prefix']
         
     def start_note(self,attrs):
         self.in_note = 1
@@ -746,7 +750,7 @@ class GrampsParser:
         "first"      : (None, stop_first),
         "gender"     : (None, stop_gender),
         "header"     : (None, None),
-        "last"       : (None, stop_last),
+        "last"       : (start_last, stop_last),
         "mother"     : (start_mother,None),
         "name"       : (start_name, stop_name),
         "nick"       : (None, stop_nick),

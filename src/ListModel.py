@@ -74,6 +74,11 @@ class ListModel:
     def connect_model(self):
         self.tree.set_model(self.model)
         self.model.set_sort_column_id(0,gtk.SORT_ASCENDING)
+
+    def sort(self):
+        val = self.model.get_sort_column_id()
+        self.model.set_sort_column_id(val[0],val[1])
+        self.model.sort_column_changed()
         
     def get_selected(self):
         return self.selection.get_selected()
