@@ -488,12 +488,14 @@ def on_ok_button1_clicked(obj):
     filename = dbname.get_full_path(1)
     utils.destroy_passed_object(obj)
 
+    if filename == "" or filename == None:
+        return
+    
     if getoldrev.get_active():
         vc = VersionControl.RcsVersionControl(filename)
         VersionControl.RevisionSelect(database,filename,vc,load_revision)
     else:
-        if filename != "":
-            read_file(filename)
+        read_file(filename)
 
 #-------------------------------------------------------------------------
 #
