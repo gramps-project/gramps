@@ -599,7 +599,7 @@ class FamilyView:
         elif autoname == 3:
             name = self.icelandic(0)
         else:
-            name = ("","")
+            name = self.no_name(0)
         person.getPrimaryName().setSurname(name[1])
         person.getPrimaryName().setSurnamePrefix(name[0])
 
