@@ -55,8 +55,6 @@ Preferences dialog under the Settings menu.</text>
       <background_color>225,219,197</background_color>
       <logo_background_color>225,220,197</logo_background_color>
       <textbox_color>255,255,255</textbox_color>
-      <logo_image>gramps.png</logo_image>
-      <watermark_image>splash.jpg</watermark_image>
     </widget>
 
     <widget>
@@ -66,7 +64,6 @@ Preferences dialog under the Settings menu.</text>
       <title_color>125,104,74</title_color>
       <background_color>225,220,197</background_color>
       <logo_background_color>225,220,197</logo_background_color>
-      <logo_image>gramps.png</logo_image>
 
       <widget>
 	<class>GtkVBox</class>
@@ -575,7 +572,6 @@ files, you may leave it blank.</label>
       <title_color>125,104,74</title_color>
       <background_color>225,220,197</background_color>
       <logo_background_color>225,220,197</logo_background_color>
-      <logo_image>gramps.png</logo_image>
 
       <widget>
 	<class>GtkVBox</class>
@@ -708,7 +704,6 @@ numerical dates</label>
       <title_color>125,104,74</title_color>
       <background_color>225,220,197</background_color>
       <logo_background_color>225,220,197</logo_background_color>
-      <logo_image>gramps.png</logo_image>
 
       <widget>
 	<class>GtkVBox</class>
@@ -798,7 +793,6 @@ more of these alternate calendars, enable alternate calendar support.</label>
       <title_color>125,104,74</title_color>
       <background_color>225,220,197</background_color>
       <logo_background_color>225,220,197</logo_background_color>
-      <logo_image>gramps.png</logo_image>
 
       <widget>
 	<class>GtkVBox</class>
@@ -904,8 +898,6 @@ Please enjoy using GRAMPS.</text>
       <textbox_color>255,255,255</textbox_color>
       <text_color>0,0,0</text_color>
       <title_color>125,104,74</title_color>
-      <logo_image>gramps.png</logo_image>
-      <watermark_image>splash.jpg</watermark_image>
     </widget>
   </widget>
 </widget>
