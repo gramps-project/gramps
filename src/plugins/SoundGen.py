@@ -37,23 +37,27 @@ from gettext import gettext as _
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback):
-    SoundGen(database,active_person)
+def runTool(database,active_person,callback,parent=None):
+    SoundGen(database,active_person,parent)
 
 
 class SoundGen:
-    def __init__(self,database,active_person):
+    def __init__(self,database,active_person,parent):
         self.db = database
+        self.parent = parent
+        self.win_key = self
         
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "soundex.glade"
 
         self.glade = gtk.glade.XML(glade_file,"soundEx","gramps")
         self.glade.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
+            "destroy_passed_object" : self.close,
+            "on_delete_event"       : self.on_delete_event,
         })
 
-        Utils.set_titles(self.glade.get_widget('soundEx'),
+        self.window = self.glade.get_widget("soundEx")
+        Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
                          _('SoundEx code generator'))
 
@@ -84,7 +88,30 @@ class SoundGen:
         else:
             self.name.set_text("")
             
-        self.glade.get_widget("soundEx").show()    
+        self.window.show()    
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_('SoundEx code generator tool'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_apply_clicked(self,obj):
         try:

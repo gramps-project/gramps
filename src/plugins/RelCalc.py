@@ -53,8 +53,8 @@ from gettext import gettext as _
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,person,callback):
-    RelCalc(database,person)
+def runTool(database,person,callback,parent=None):
+    RelCalc(database,person,parent)
 
 #-------------------------------------------------------------------------
 #
@@ -66,11 +66,13 @@ class RelCalc:
     Relationship calculator class.
     """
 
-    def __init__(self,database,person):
+    def __init__(self,database,person,parent):
         self.person = person
         self.db = database
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(database)
+        self.parent = parent
+        self.win_key = self
 
         base = os.path.dirname(__file__)
         glade_file = "%s/relcalc.glade" % base
@@ -78,7 +80,8 @@ class RelCalc:
 
         name = self.person.get_primary_name().get_regular_name()
 
-        Utils.set_titles(self.glade.get_widget('relcalc'),
+        self.window = self.glade.get_widget('relcalc')
+        Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
                          _('Relationship to %s') % name,
                          _('Relationship calculator'))
@@ -100,9 +103,34 @@ class RelCalc:
         self.clist.connect_model()
             
         self.glade.signal_autoconnect({
-            "on_close_clicked" : Utils.destroy_passed_object,
+            "on_close_clicked" : self.close,
+            "on_delete_event"  : self.on_delete_event,
             "on_apply_clicked" : self.on_apply_clicked
             })
+
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_('Relationship calculator tool'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_apply_clicked(self,obj):
         model,iter = self.clist.get_selected()

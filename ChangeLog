@@ -12,6 +12,15 @@
 	* src/plugins/merge.glade: Define event handlers.
 	* src/plugins/ChangeTypes.py: Convert to db. 
 
+	* src/plugins/SoundGen.py: Window management. Replaces soundgen.py.
+	* src/plugins/soundgen.py: Remove from CVS. 
+	* src/plugins/soundex.glade: Define event handler. 
+	* src/plugins/RelCalc.py: Window management.
+	* src/plugins/relcalc.glade: Define event handler. 
+	* src/plugins/Makefile.am: Ship SoundGen.py instead of soundgen.py.
+	* src/plugins/Verify.py: Window management.
+	* src/plugins/verify.glade: Define event handler.
+
 2004-05-09  Don Allingham  <donaldallingham@users.sourceforge.net>
 	* src/DbPrompter.py: added a .grdb if not specified.
 

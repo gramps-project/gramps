@@ -57,30 +57,57 @@ import Gregorian
 from gettext import gettext as _
 
 
-def runTool(database,active_person,callback):
-    Verify(database,active_person)
+def runTool(database,active_person,callback,parent=None):
+    Verify(database,active_person,parent)
 
 #-------------------------------------------------------------------------
 #
 #
 #-------------------------------------------------------------------------
 class Verify:
-    def __init__(self,database,active_person):
+    def __init__(self,database,active_person,parent):
         self.db = database
+        self.parent = parent
+        self.win_key = self
 
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "verify.glade"
 
         self.top = gtk.glade.XML(self.glade_file,"verify_settings","gramps")
         self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_verify_ok_clicked" : self.on_apply_clicked
+            "destroy_passed_object"  : self.close,
+            "on_verify_delete_event" : self.on_delete_event,
+            "on_verify_ok_clicked"   : self.on_apply_clicked
         })
 
-        Utils.set_titles(self.top.get_widget('verify_settings'),
+        self.window = self.top.get_widget('verify_settings')
+        Utils.set_titles(self.window,
                      self.top.get_widget('title'),
                      _('Database Verify'))
 
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_('Database Verify'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def get_year(self,event_id):
         """
@@ -435,14 +462,39 @@ class Verify:
                      _('Database Verify'))
     
         top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
+            "destroy_passed_object"  : self.close_result,
+            "on_result_delete_event" : self.on_result_delete_event,
         })
     
-        topwin = top.get_widget("verify_result")
+        self.topwin = top.get_widget("verify_result")
+        self.win_result_key = self.topwin
         textwindow = top.get_widget("textwindow")
         textwindow.get_buffer().set_text(text)
-        topwin.show()
+        
+        self.add_result_to_menu()
+        self.topwin.show()
     
+    def on_result_delete_event(self,obj,b):
+        self.remove_result_from_menu()
+
+    def close_result(self,obj):
+        self.remove_result_from_menu()
+        self.topwin.destroy()
+
+    def add_result_to_menu(self):
+        self.parent.child_windows[self.win_result_key] = self.topwin
+        self.result_parent_menu_item = gtk.MenuItem(_('Database Verify results'))
+        self.result_parent_menu_item.connect("activate",self.present_result)
+        self.result_parent_menu_item.show()
+        self.parent.winsmenu.append(self.result_parent_menu_item)
+
+    def remove_result_from_menu(self):
+        del self.parent.child_windows[self.win_result_key]
+        self.result_parent_menu_item.destroy()
+
+    def present_result(self,obj):
+        self.topwin.present()
+
 #-------------------------------------------------------------------------
 #
 #
