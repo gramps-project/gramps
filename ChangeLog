@@ -1,3 +1,6 @@
+2004-03-27  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/rel_it.py: Convert to class. 
+
 2004-01-26  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FtmStyleDescendants.py (_make_default_style, 
 	print_children): Add new style for numbering children.
