@@ -555,13 +555,11 @@ def new_database_response(val):
     if val == 1:
         return
 
-    const.personalEvents = const.personalConstantEvents.keys()
-    const.personalEvents.sort()
-    const.personalAttributes = const.personalConstantAttributes.keys()
-    const.personalAttributes.sort()
-    const.familyAttributes = const.familyConstantAttributes.keys()
-    const.familyAttributes.sort()
-    const.familyRelations = const.familyConstantRelations
+    const.personalEvents = const.initialize_personal_event_list()
+    const.personalAttributes = const.initialize_personal_attribute_list()
+    const.marriageEvents = const.initialize_marriage_event_list()
+    const.familyAttributes = const.initialize_family_attribute_list()
+    const.familyRelations = const.initialize_family_relation_list()
     database.new()
     topWindow.set_title("Gramps")
     active_person = None
@@ -1372,19 +1370,11 @@ def on_revert_activate(obj):
 #-------------------------------------------------------------------------
 def revert_query(value):
     if value == 0:
-        const.personalEvents = const.personalConstantEvents.keys()
-        const.personalEvents.sort()
-
-        const.personalAttributes = const.personalConstantAttributes.keys()
-        const.personalAttributes.sort()
-
-        const.familyAttributes = const.familyConstantAttributes.keys()
-        const.familyAttributes.sort()
-
-        const.marriageEvents = const.familyConstantEvents.keys()
-        const.marriageEvents.sort()
-
-        const.familyRelations = const.familyConstantRelations
+        const.personalEvents = const.initialize_personal_event_list()
+        const.personalAttributes = const.initialize_personal_attribute_list()
+        const.marriageEvents = const.initialize_marriage_event_list()
+        const.familyAttributes = const.initialize_family_attribute_list()
+        const.familyRelations = const.initialize_family_relation_list()
 
         file = database.getSavePath()
         database.new()
@@ -1946,13 +1936,21 @@ def load_database(name):
 
     mylist = database.getPersonEventTypes()
     for type in mylist:
-        if type not in const.personalEvents:
-            const.personalEvents.append(type)
+        ntype = const.display_pevent(type)
+        if ntype not in const.personalEvents:
+            const.personalEvents.append(ntype)
+
+    mylist = database.getFamilyEventTypes()
+    for type in mylist:
+        ntype = const.display_fevent(type)
+        if ntype not in const.marriageEvents:
+            const.marriageEvents.append(ntype)
 
     mylist = database.getPersonAttributeTypes()
     for type in mylist:
-        if type not in const.personalAttributes:
-            const.personalAttributes.append(type)
+        ntype = const.display_pattr(type)
+        if ntype not in const.personalAttributes:
+            const.personalAttributes.append(ntype)
 
     mylist = database.getFamilyAttributeTypes()
     for type in mylist:
