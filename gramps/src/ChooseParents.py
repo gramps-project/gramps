@@ -187,11 +187,12 @@ class ChooseParents:
         family = self.db.newFamily()
         family.setFather(father)
         family.setMother(mother)
+        family.addChild(self.person)
     
         if father:
-            father.addFamily(self.family)
+            father.addFamily(family)
         if mother:
-            mother.addFamily(self.family)
+            mother.addFamily(family)
 
         return family
 
@@ -211,7 +212,7 @@ class ChooseParents:
         if self.father or self.mother:
             if self.mother and not self.father:
                 if self.mother.getGender() == Person.male:
-                    self.father = self._mother
+                    self.father = self.mother
                     self.mother = None
                 self.family = self.find_family(self.father,self.mother)
             elif self.father and not self.mother: 
@@ -239,21 +240,23 @@ class ChooseParents:
             self.change_family_type(self.family,mrel,frel)
         self.update(self.family)
 
-    def on_addfather_clicked(self,obj):
-        xml = libglade.GladeXML(const.gladeFile,"addperson")
-        xml.get_widget("male").set_active(1)
-        xml.signal_autoconnect({
-            "on_addfather_close": on_addparent_close,
-            "destroy_passed_object" : utils.destroy_passed_object
-            })
-
-    def on_addmother_clicked(self,obj):
+    def on_addparent_clicked(self,obj,sex):
         self.xml = libglade.GladeXML(const.gladeFile,"addperson")
-        self.xml.get_widget("female").set_active(1)
+        self.xml.get_widget(sex).set_active(1)
         self.xml.signal_autoconnect({
             "on_addfather_close": self.on_addparent_close,
             "destroy_passed_object" : utils.destroy_passed_object
             })
+
+        window = self.xml.get_widget("addperson")
+        window.editable_enters(self.xml.get_widget("given"))
+        window.editable_enters(self.xml.get_widget("surname"))
+
+    def on_addfather_clicked(self,obj):
+        self.on_addparent_clicked(obj,"male")
+
+    def on_addmother_clicked(self,obj):
+        self.on_addparent_clicked(obj,"female")
 
     def change_family_type(self,family,mrel,frel):
 
