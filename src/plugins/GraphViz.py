@@ -446,13 +446,13 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 
         self.options_help = {
             'font'      : ("=str","Font to use in the report.",
-                            [ "%s\t%s" % (item[0],item[2]) for item in _options.fonts ],
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.fonts ],
                             False),
             'latin'     : ("=0/1","Needs to be set if font doesn't support unicode.",
                             ["Supports unicode","Supports only Latin1"],
                             True),
             'arrow'     : ("=str","Arrow styles for heads and tails.",
-                            [ "%s\t%s" % (item[0],item[2]) for item in _options.arrowstyles ],
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.arrowstyles ],
                             False),
             'showfamily': ("=0/1","Whether to show family nodes.",
                             ["Do not show family nodes","Show family nodes"],
@@ -473,10 +473,10 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                             ["Do not include URLs","Include URLs"],
                             True),
             'rankdir'      : ("=str","Graph direction.",
-                            [ "%s\t%s" % (item[0],item[2]) for item in _options.rankdir ],
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.rankdir ],
                             False),
             'color'     : ("=str","Whether and how to colorize graph.",
-                            [ "%s\t%s" % (item[0],item[2]) for item in _options.colors ],
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.colors ],
                             False),
             'dashedl'   : ("=0/1","Whether to use dotted lines for non-birth relationships.",
                             ["Do not use dotted lines","Use dotted lines"],
@@ -490,7 +490,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'pagesv'    : ("=num","Number of pages in vertical direction.",
                             "Integer values"),
             'gvof'      : ("=str","Output format to convert dot file into.",
-                            [ "%s\t%s" % (item[0],item[2]) for item in _options.formats ],
+                            [ "%s\t%s" % (item[0],item[1]) for item in _options.formats ],
                             False),
         }
 
