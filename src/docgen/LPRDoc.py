@@ -189,6 +189,8 @@ def append_to_paragraph(paragraph,directive,text):
     directive       - what to do with this piece
     text            - the text of the corresponding piece
     """
+    if not directive and not text:
+        return
     text_list = text.split('\n')
     for the_text in text_list[:-1]:
         paragraph.add_piece(directive,the_text)
@@ -215,7 +217,8 @@ class GnomePrintParagraph:
         self.style = paragraph_style
         self.fontstyle = self.style.get_font()
         self.piece_list = []
-	self.lines = []
+        self.lines = []
+        self.height = None
 
     def add_piece(self,directive,text):
         """
@@ -285,16 +288,31 @@ class GnomePrintParagraph:
         return max_word_size
 
     def get_height(self,width):
+        if not self.lines:
+            self.format(width)
+        return self.height
+
+    def format(self,width):
         """
         Determine the height the paragraph would have
         if formatted for a given width.
         
         width       - required formatting width
         """
-        nlines = 0
+
+        if self.lines:
+            return
+
+        nlines = 1
         avail_width = width
+
+        start_piece = end_piece = start_word = end_word = 0
         
-        for (directive,text) in self.piece_list:
+        for piece_num in range(len(self.piece_list)):
+            end_piece = piece_num
+
+            (directive,text) = self.piece_list[piece_num]
+
             fontstyle = BaseDoc.FontStyle(self.fontstyle)
             if directive == _BOLD:
                 fontstyle.set_bold(1)
@@ -304,27 +322,40 @@ class GnomePrintParagraph:
             
             if text and avail_width > get_text_width(text,fontstyle):
                 avail_width -= get_text_width(text,fontstyle)
+                end_word = len(text.split())
             elif directive == _LINE_BREAK:
                 nlines += 1
+                end_word = 0
+                self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
                 avail_width = width
+                start_piece = end_piece
+                start_word = 0
             elif text and avail_width <= get_text_width(text,fontstyle):
-                #divide up text and print
+                # divide up text
                 textlist = text.split()
                 the_text = ""
-                for element in textlist:
-                    if get_text_width(the_text + element + " ",fontstyle) < avail_width:
-                        the_text = the_text + element + " "
+                for word_num in range(len(textlist)):
+                    word = textlist[word_num]
+                    if get_text_width(the_text + word + " ",fontstyle) <= avail_width:
+                        the_text = the_text + word + " "
                     else:
                         # the_text contains as much as avail_width allows
                         nlines += 1
-                        the_text = element + " "
+                        end_word = word_num
+                        avail_width -= get_text_width(the_text,fontstyle)
+                        self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
                         avail_width = width
+                        the_text = word + " "
+                        start_piece = end_piece
+                        start_word = word_num
                         
                 # if the_text still contains data, we will want to print it out
                 if the_text:
                     avail_width = width - get_text_width(the_text,fontstyle)
+                    end_word = len(textlist)
 
-        return nlines * _LINE_SPACING
+        self.lines.append((start_piece,start_word,end_piece,end_word,avail_width))
+        self.height = nlines * _LINE_SPACING
     
 
 #------------------------------------------------------------------------
@@ -431,7 +462,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             # paragraph not in table: write it right away
             self.__x, self.__y = self.write_paragraph(self.paragraph,
                                         self.__x, self.__y, 
-                                        self.left_margin, self.right_margin)
+                                        self.right_margin - self.left_margin)
             self.__y = self.__advance_line(self.__y)
         self.paragraph = None
             
@@ -654,7 +685,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.__x = x
         return new_y
 
-    def write_paragraph(self,paragraph,x,y,left_margin,right_margin):
+    def write_paragraph(self,paragraph,x,y,width):
         """
         Write the contents of the paragraph, observing per-piece info.
         
@@ -662,89 +693,133 @@ class LPRDoc(BaseDoc.BaseDoc):
         x,y         - coordinates to start at
         left_margin,right_margin - boundaries to obey
         """
-        width = right_margin - left_margin
-        avail_width = width
+        
+        left_margin = x
+        paragraph.format(width)
 
         if y - _LINE_SPACING < self.bottom_margin:
             self.end_page()
             self.start_page()
-            x = self.__x
+            x = left_margin
             y = self.__y
 
-        x = left_margin
-        
-        for (directive,text) in paragraph.get_piece_list():
-            fontstyle = BaseDoc.FontStyle(paragraph.get_fontstyle())
-            if directive == _BOLD:
-                fontstyle.set_bold(1)
-            elif directive == _SUPER:
-                size = fontstyle.get_size()
-                fontstyle.set_size(size-2)
-                y = y + 0.25 * _LINE_SPACING
-            elif directive == _LINE_BREAK:
-                y = self.__advance_line(y)
-                x = left_margin
-                avail_width = width
+        for (start_piece,start_word,end_piece,end_word,avail_width) \
+                                                    in paragraph.lines:
+
+            if not paragraph.get_piece_list():
                 continue
 
-            #all text will fit within the width provided
-            if not text:
-                if directive == _SUPER:
-                    y = y - 0.25 * _LINE_SPACING
-                continue
-            if avail_width >= get_text_width(text,fontstyle):
-                avail_width -= get_text_width(text,fontstyle)
-                if paragraph.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
-                    x = x + 0.5 * avail_width
-                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
-                    x = x + avail_width
-                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
+            if paragraph.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
+                x = x + 0.5 * avail_width
+            elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
+                x = x + avail_width
+            elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
+                pass
+            elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
+                print "Paragraph justification not supported."
+                print "Falling back to left-justified mode."
+
+            for piece_num in range(start_piece,end_piece+1):
+                (directive,text) = paragraph.get_piece_list()[piece_num]
+                fontstyle = BaseDoc.FontStyle(paragraph.get_fontstyle())
+                if directive == _BOLD:
+                    fontstyle.set_bold(1)
+                elif directive == _SUPER:
+                    size = fontstyle.get_size()
+                    fontstyle.set_size(size-2)
+                    y = y + 0.25 * _LINE_SPACING
+
+                textlist = text.split()
+                if start_piece == end_piece:
+                    the_textlist = textlist[start_word:end_word]
+                elif piece_num > start_piece and piece_num < end_piece:
+                    the_textlist = textlist[:]
+                elif piece_num == start_piece:
+                    the_textlist = textlist[start_word:]
+                elif piece_num == end_piece:
+                    the_textlist = textlist[:end_word]
+                else:
+                    print "ERROR!!!"
+                    return
+
+                the_text = string.join(the_textlist)
+                if piece_num == start_piece \
+                                or directive == _SUPER \
+                                or directive == _LINE_BREAK \
+                                or (the_text and the_text[0] == '.'):
                     pass
-                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
-                    pass
+                else:
+                    the_text = " " + the_text
 
                 self.__pc.setfont(find_font_from_fontstyle(fontstyle))
                 self.__pc.moveto(x, y)
-                self.__pc.show(text)
-                x = x + get_text_width(text,fontstyle)
-            else:
-                #divide up text and print
-                if x == left_margin or directive == _SUPER \
-                        or text[0] == '.':
-                    the_text = ""
-                else:
-                    the_text = " "
-                for element in text.split():
-                    if get_text_width(the_text + element + " ",fontstyle) < avail_width:
-                        the_text = the_text + element + " "
-                    else:
-                        # the_text contains as much as avail_width allows
-                        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-                        self.__pc.moveto(x, y)
-                        self.__pc.show(the_text)
-                        the_text = element + " "
-                        y = self.__advance_line(y)
-                        x = left_margin
-                        avail_width = width
+                self.__pc.show(the_text)
+                x = x + get_text_width(the_text,fontstyle)
+                if directive == _SUPER:
+                    y = y - 0.25 * _LINE_SPACING
 
-                    #if not in table and cursor is below bottom margin
-                    if (not self.__in_table) and (y < self.bottom_margin):
-                        self.end_page()
-                        self.start_page()
-                        x = self.__x
-                        y = self.__y
+            y = self.__advance_line(y)
+            x = left_margin
 
-                #if __text still contains data, we will want to print it out
-                if the_text:
-                    self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-                    self.__pc.moveto(left_margin, y)
-                    self.__pc.show(the_text)
-                    x = x + get_text_width(the_text,fontstyle)
-                    avail_width = width - get_text_width(the_text,fontstyle)
-            if directive == _SUPER:
-                y = y - 0.25 * _LINE_SPACING
-        y = self.__advance_line(y)
         return (x,y)
+
+#            #all text will fit within the width provided
+#            if not text:
+#                if directive == _SUPER:
+#                    y = y - 0.25 * _LINE_SPACING
+#                continue
+#            if avail_width >= get_text_width(text,fontstyle):
+#                avail_width -= get_text_width(text,fontstyle)
+#                if paragraph.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
+#                    x = x + 0.5 * avail_width
+#                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_RIGHT:
+#                    x = x + avail_width
+#                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_LEFT:
+#                    pass
+#                elif paragraph.get_alignment() == BaseDoc.PARA_ALIGN_JUSTIFY:
+#                    pass
+#
+#                self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+#                self.__pc.moveto(x, y)
+#                self.__pc.show(text)
+#                x = x + get_text_width(text,fontstyle)
+#            else:
+#                #divide up text and print
+#                if x == left_margin or directive == _SUPER \
+#                        or text[0] == '.':
+#                    the_text = ""
+#                else:
+#                    the_text = " "
+#                for element in text.split():
+#                    if get_text_width(the_text + element + " ",fontstyle) < avail_width:
+#                        the_text = the_text + element + " "
+#                    else:
+#                        # the_text contains as much as avail_width allows
+#                        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+#                        self.__pc.moveto(x, y)
+#                        self.__pc.show(the_text)
+#                        the_text = element + " "
+#                        y = self.__advance_line(y)
+#                        x = left_margin
+#                        avail_width = width
+#
+#                    #if not in table and cursor is below bottom margin
+#                    if (not self.__in_table) and (y < self.bottom_margin):
+#                        self.end_page()
+#                        self.start_page()
+#                        x = self.__x
+#                        y = self.__y
+#
+#                #if __text still contains data, we will want to print it out
+#                if the_text:
+#                    self.__pc.setfont(find_font_from_fontstyle(fontstyle))
+#                    self.__pc.moveto(left_margin, y)
+#                    self.__pc.show(the_text)
+#                    x = x + get_text_width(the_text,fontstyle)
+#                    avail_width = width - get_text_width(the_text,fontstyle)
+#            if directive == _SUPER:
+#                y = y - 0.25 * _LINE_SPACING
+#        y = self.__advance_line(y)
 
     def __output_table(self):
         """do calcs on data in table and output data in a formatted way"""
@@ -780,21 +855,21 @@ class LPRDoc(BaseDoc.BaseDoc):
         #output data in table
         for __row_num in range(len(self.__table_data)):
             __row = self.__table_data[__row_num]
-            __x = self.left_margin         #reset so that x is at margin
             # If this row puts us below the bottom, start new page here
             if self.__y - __max_vspace[__row_num] < self.bottom_margin:
                 self.end_page()
                 self.start_page()
-            
+
+            __x = self.left_margin         #reset so that x is at margin
             col_y = self.__y    # all columns start at the same height
             for __col in range(self.__ncols):
                 if not self.__cell_widths[__row_num][__col]:
                     continue
                 self.__y = col_y
                 for paragraph in __row[__col]:
-                    __nothing, self.__y = self.write_paragraph(paragraph,
-                                     self.__x, self.__y, __x, 
-                                     __x + self.__cell_widths[__row_num][__col])
+                    junk, self.__y = self.write_paragraph(paragraph,
+                                     __x, self.__y, 
+                                     self.__cell_widths[__row_num][__col])
 
                 __x = __x + self.__cell_widths[__row_num][__col]    # set up margin for this row
 
