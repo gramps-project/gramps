@@ -29,6 +29,8 @@
 
 	* src/PaperMenu.py (GrampsPaperComboBox.set): Compare paper names.
 
+	* src/ReportUtils.py (born_died_str): Find events to reference.
+
 2005-02-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: more readonly patches
 	* src/EventEdit.py: more readonly patches

@@ -476,6 +476,9 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
     bdate,bplace,bdate_full,ddate,dplace,ddate_full = \
                             get_birth_death_strings(database,person)
 
+    birth = database.get_event_from_handle(person.get_birth_handle())
+    death = database.get_event_from_handle(person.get_death_handle())
+
     if person.get_gender() == RelLib.Person.MALE:
         if bdate:
             if bplace:
