@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.98.0\n"
 "POT-Creation-Date: Thu Jan 22 23:56:16 2004\n"
-"PO-Revision-Date: 2004-01-24 13:28-0500\n"
+"PO-Revision-Date: 2004-01-26 00:06-0500\n"
 "Last-Translator: Alexander Bogdashevsky <sanderb@kezomba.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1160,10 +1160,9 @@ msgstr "Тип отношений:"
 msgid "Number of children:"
 msgstr "Количество детей:"
 
-# !!!FIXME!!!
 #: GenericFilter.py:1017
 msgid "Matches the person who has a particular relationship"
-msgstr "Выбирает людей, состоящих в определённом отношении"
+msgstr "Выбирает людей, состоящих в данном отношении"
 
 #: GenericFilter.py:1079
 msgid "Matches the person with a birth of a particular value"
@@ -1479,9 +1478,11 @@ msgstr "Настройки отчётов"
 msgid "Researcher Information"
 msgstr "Информация об исследователе"
 
+# Предположение
+# !!!FIXME!!!
 #: GrampsCfg.py:121
 msgid "Data Guessing"
-msgstr "Предугадывание данных"
+msgstr "Угадывание данных"
 
 #: GrampsCfg.py:667
 #: GrampsCfg.py:682
@@ -1544,12 +1545,12 @@ msgstr "Создать локальную копию"
 # !!!FIXME!!!
 #: ImageSelect.py:672
 msgid "Change local media object properties"
-msgstr "Изменить локальные свойства документа"
+msgstr "Изменить свойства локального документа"
 
 # !!!FIXME!!!
 #: ImageSelect.py:835
 msgid "Change global media object properties"
-msgstr "Изменить глобальные свойства документа"
+msgstr "Изменить свойства внешнего документа"
 
 #: ImageSelect.py:959
 #: plugins/EventCmp.py:308
@@ -2451,7 +2452,7 @@ msgid ""
 msgstr ""
 "GRAMPS поддерживает Обряды LDS, которые являются\n"
 "специальными типами событий связанных с Церковью Иисуса\n"
-"Христа Святых Последних Дней.\n"
+"Христа Святых Последних Дней (Церковь мормонов).\n"
 "\n"
 "Вы можете включить или выключить эту поддержку. Вы можете\n"
 "изменить эту настройку в будущем в диалоге Настройки."
@@ -2919,9 +2920,11 @@ msgstr "Фамилия в браке"
 msgid "Other Name"
 msgstr "Другое имя"
 
+# LDS
+# !!!FIXME!!!
 #: const.py:861
 msgid "Child"
-msgstr "Ребёнок"
+msgstr ""
 
 # Кривовато немного
 #: const.py:861
@@ -3554,7 +3557,7 @@ msgstr "_женщина"
 
 #: edit_person.glade:773
 msgid "u_nknown"
-msgstr "_нет данных"
+msgstr "_неизвестно"
 
 #: edit_person.glade:802
 #: mergedata.glade:603
@@ -5443,7 +5446,6 @@ msgstr "Центральное лицо"
 msgid "Different database"
 msgstr "Другая база данных"
 
-# !!!FIXME!!!
 #: plugins/BookReport.py:660
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -5454,7 +5456,7 @@ msgid ""
 msgstr ""
 "Эта книга была создана со ссылками на базу данных %s.\n"
 "\n"
-"В рузультате чего сохранённые ссылки на центральное лицо неверны.\n"
+"Сохранённые ссылки на центральное лицо теряют смысл в другой базе данных.\n"
 "\n"
 "Поэтому, за центральное лицо каждого элемента берётся активное лицо в текущей базе данных."
 
@@ -6178,7 +6180,7 @@ msgstr "Создаёт подробный отчёт о предках"
 #: plugins/DetAncestralReport.py:1329
 #: plugins/DetDescendantReport.py:1338
 msgid " at the age of %d days"
-msgstr " в %d днях от роду"
+msgstr " в возрасте %d дней от роду"
 
 # !!!FIXME!!!
 #: plugins/DetAncestralReport.py:1331
@@ -7897,11 +7899,10 @@ msgstr "Включать ссылки на главную страницу"
 msgid "Do not include records marked private"
 msgstr "Не включать записи, помеченные как личные"
 
-# !!!FIXME!!!
 #: plugins/WebPage.py:904
 #: plugins/pafexport.glade:292
 msgid "Restrict information on living people"
-msgstr "Ограничить информацию о живущих лицах"
+msgstr "Ограничить информацию о живых людях"
 
 #: plugins/WebPage.py:905
 msgid "Do not use images"
@@ -7999,10 +8000,9 @@ msgstr "Стиль заголовка раздела изображений."
 msgid "The style used for the header for the marriages and children section."
 msgstr "Стиль заголовка раздела браков и детей."
 
-# !!!FIXME!!!
 #: plugins/WebPage.py:1089
 msgid "The style used for the general data labels."
-msgstr "Стиль общих временных меток."
+msgstr "Общий стиль временных меток."
 
 #: plugins/WebPage.py:1096
 msgid "The style used for the general data."
@@ -8068,7 +8068,7 @@ msgstr "Очистить книгу"
 # !!!FIXME!!!
 #: plugins/book.glade:154
 msgid "Save current set of configured selections"
-msgstr "Сохранить текущий набор составляющих"
+msgstr "Сохранить текущий набор настроек"
 
 #: plugins/book.glade:182
 msgid "Open previously created book"
@@ -8226,7 +8226,7 @@ msgstr "Экспорт GEDCOM"
 
 #: plugins/gedcomexport.glade:198
 msgid "_Target:"
-msgstr "_Формат:"
+msgstr "_Диалект:"
 
 #: plugins/gedcomexport.glade:236
 msgid "Standard GEDCOM 5.5"
@@ -8289,7 +8289,7 @@ msgstr "AN_SI (ISO-8859-1)"
 # !!!FIXME!!!
 #: plugins/gedcomexport.glade:527
 msgid "Use _Living as first name"
-msgstr "Использовать _Живущий в качестве имени"
+msgstr "Использовать _Живой в качестве имени"
 
 #: plugins/gedcomexport.glade:562
 msgid "Exclude _notes"
@@ -8503,7 +8503,7 @@ msgstr "Максимальный возраст чтобы стать отцом
 # !!!FIXME!!!
 #: plugins/verify.glade:903
 msgid "Estimate missing dates"
-msgstr "Рассчитывать (приблизительно) недостающие даты"
+msgstr "Оценивать недостающие даты"
 
 #: preferences.glade:8
 msgid "GRAMPS Preferences"
@@ -8735,11 +8735,9 @@ msgstr "Базовый каталог для размещения результ
 msgid "Default _web site directory:"
 msgstr "Базовый каталог для _Web сайтов:"
 
-# HTML отчётов?
-# !!!FIXME!!!
 #: preferences.glade:2160
 msgid "The default directory for the output of the Web Site report generators"
-msgstr "Базовый каталог для размещения Web отчётов"
+msgstr "Базовый каталог для размещения файлов Web сайта"
 
 #: preferences.glade:2184
 msgid "<b>Report preferences</b>"
@@ -8844,8 +8842,6 @@ msgstr "Комментарий:"
 msgid "<b>Definition</b>"
 msgstr "<b>Определение</b>"
 
-# Правила?
-# !!!FIXME!!!
 #: rule.glade:130
 msgid "<b>Rule List</b>"
 msgstr "<b>Список правил</b>"
