@@ -1,12 +1,12 @@
 # Russian translation for GRAMPS; Русский перевод GRAMPS. 
 # Copyright (C) 2002 Free Software Foundation, Inc. 
-# Alex Roitman <shura@alex.neuro.umn.edu>, 2002. 
+# Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2003. 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.9.0\n"
-"POT-Creation-Date: Sat Feb  1 08:40:59 2003\n"
-"PO-Revision-Date: 2003-02-01 18:47-0600\n"
+"POT-Creation-Date: Tue Feb 11 21:17:51 2003\n"
+"PO-Revision-Date: 2003-02-12 11:21-0600\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: English <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,23 +17,27 @@ msgstr ""
 msgid "%s is not a valid file name or does not exist."
 msgstr "%s не является правильным именем файла, или не существует."
 
-#: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:200 FamilyView.py:139
-#: SelectChild.py:107 gramps_main.py:91 plugins/FilterEditor.py:123
+#: AddSpouse.py:85 ChooseParents.py:55 EditPerson.py:200 FamilyView.py:141
+#: SelectChild.py:107 config.glade:102 gramps_main.py:91 mergedata.glade:480
+#: mergedata.glade:1486 plugins/FilterEditor.py:123
 #: plugins/IndivComplete.py:370 plugins/IndivSummary.py:211
-#: plugins/RelCalc.py:322 plugins/WebPage.py:274
+#: plugins/RelCalc.py:322 plugins/TimeLine.py:330 plugins/WebPage.py:274
+#: plugins/soundex.glade:108 preferences.glade:1477 rule.glade:115
 msgid "Name"
 msgstr "Имя"
 
-#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:139 GenericFilter.py:133
+#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:141 GenericFilter.py:133
 #: GenericFilter.py:166 GenericFilter.py:193 GenericFilter.py:229
-#: GenericFilter.py:256 ImageSelect.py:807 MediaView.py:59 PlaceView.py:48
+#: GenericFilter.py:256 ImageSelect.py:815 MediaView.py:59 PlaceView.py:48
 #: SelectChild.py:107 SourceView.py:54 Sources.py:70 Sources.py:140
-#: gramps_main.py:91 plugins/RelCalc.py:322
+#: gramps.glade:2505 gramps_main.py:91 imagesel.glade:546 imagesel.glade:1457
+#: mergedata.glade:876 mergedata.glade:1510 plugins/RelCalc.py:322
 msgid "ID"
 msgstr "ID Номер"
 
-#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:140 SelectChild.py:107
-#: gramps_main.py:92
+#: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:142 SelectChild.py:107
+#: gramps_main.py:92 mergedata.glade:408 mergedata.glade:1093
+#: plugins/TimeLine.py:330
 msgid "Birth Date"
 msgstr "Дата рождения"
 
@@ -41,11 +45,12 @@ msgstr "Дата рождения"
 msgid "Choose Spouse/Partner of %s"
 msgstr "Выбрать Супруга/Партнера для %s"
 
-#: AddSpouse.py:105 const.py:407 const.py:415
+#: AddSpouse.py:105 const.py:409 const.py:417 plugins/FamilyGroup.py:299
+#: plugins/FamilyGroup.py:301
 msgid "Married"
 msgstr "Женаты"
 
-#: AddSpouse.py:201 const.py:409 const.py:417
+#: AddSpouse.py:201 const.py:411 const.py:419
 msgid "Partners"
 msgstr "Партнеры"
 
@@ -182,8 +187,10 @@ msgid "Undefined Calendar"
 msgstr "Неопределенный Календарь"
 
 #: ChooseParents.py:121 ChooseParents.py:122 ChooseParents.py:366
-#: ChooseParents.py:367 SelectChild.py:103 SelectChild.py:105 const.py:130
-#: plugins/EventCmp.py:288 plugins/GraphViz.py:335 plugins/GraphViz.py:336
+#: ChooseParents.py:367 SelectChild.py:103 SelectChild.py:105 const.py:131
+#: gramps.glade:3424 gramps.glade:3619 gramps.glade:4195 gramps.glade:4401
+#: gramps.glade:6101 gramps.glade:6367 plugins/EventCmp.py:288
+#: plugins/FamilyGroup.py:149 plugins/GraphViz.py:335 plugins/GraphViz.py:336
 msgid "Birth"
 msgstr "Рождение"
 
@@ -196,14 +203,16 @@ msgstr "Выбрать Родителей для %s"
 msgid "Parent"
 msgstr "Родитель"
 
-#: ChooseParents.py:186 ChooseParents.py:389 FamilyView.py:351
+#: ChooseParents.py:186 ChooseParents.py:389 FamilyView.py:357
+#: mergedata.glade:456 mergedata.glade:1045 plugins/FamilyGroup.py:208
 #: plugins/IndivComplete.py:197 plugins/IndivComplete.py:199
 #: plugins/IndivComplete.py:410 plugins/IndivSummary.py:272
 #: plugins/WebPage.py:293 plugins/WebPage.py:296
 msgid "Mother"
 msgstr "Мать"
 
-#: ChooseParents.py:187 ChooseParents.py:390 FamilyView.py:350
+#: ChooseParents.py:187 ChooseParents.py:390 FamilyView.py:356
+#: mergedata.glade:678 mergedata.glade:1311 plugins/FamilyGroup.py:195
 #: plugins/IndivComplete.py:189 plugins/IndivComplete.py:191
 #: plugins/IndivComplete.py:405 plugins/IndivSummary.py:258
 #: plugins/WebPage.py:292 plugins/WebPage.py:295
@@ -224,7 +233,7 @@ msgstr "(и|до|-)"
 
 #: Date.py:228 Date.py:241
 msgid "from %(start_date)s to %(stop_date)s"
-msgstr "от %(start_date)s до %(stop_date)s"
+msgstr "с %(start_date)s по %(stop_date)s"
 
 #: DbPrompter.py:99 gramps_main.py:730 gramps_main.py:983 gramps_main.py:995
 msgid "No Comment Provided"
@@ -239,8 +248,9 @@ msgid ""
 "\n"
 msgstr ""
 "GRAMPS столкнулась с внутренней ошибкой.\n"
-"Пожалуйста, скопируйте нижеследующее сообщение и заполните отчет об ошибке\n"
-"по адресу http://sourceforge.net/projects/gramps или пошлите сообщение\n"
+"Пожалуйста, скопируйте нижеследующее сообщение\n"
+"и пошлите отчет об ошибке по адресу\n"
+"http://sourceforge.net/projects/gramps или пошлите сообщение\n"
 "по эл. почте по адресу gramps-users@lists.sourceforge.net\n"
 
 #: DisplayTrace.py:92
@@ -248,7 +258,10 @@ msgid "Internal Error - GRAMPS"
 msgstr "Внутренняя Ошибка - GRAMPS"
 
 #: EditPerson.py:180 EditPerson.py:206 EditPlace.py:99 GenericFilter.py:310
-#: GenericFilter.py:348 GenericFilter.py:437 GenericFilter.py:469 const.py:329
+#: GenericFilter.py:348 GenericFilter.py:437 GenericFilter.py:469 const.py:331
+#: dialog.glade:175 dialog.glade:2324 edit_person.glade:2355
+#: edit_person.glade:4448 marriage.glade:369 places.glade:1302
+#: plugins/pafexport.glade:217
 msgid "Description"
 msgstr "Описание"
 
@@ -258,39 +271,53 @@ msgstr "Событие"
 
 #: EditPerson.py:181 EditPerson.py:194 GenericFilter.py:310
 #: GenericFilter.py:348 GenericFilter.py:437 GenericFilter.py:469
-#: Marriage.py:138 filters/After.py:55 filters/Before.py:55
+#: Marriage.py:138 dialog.glade:151 dialog.glade:1624 edit_person.glade:183
+#: edit_person.glade:485 edit_person.glade:2307 edit_person.glade:3534
+#: edit_person.glade:4914 edit_person.glade:5185 edit_person.glade:5456
+#: filters/After.py:55 filters/Before.py:55 marriage.glade:321
+#: marriage.glade:1843 srcsel.glade:456
 msgid "Date"
 msgstr "Дата"
 
 #: EditPerson.py:181 GenericFilter.py:310 GenericFilter.py:348
-#: GenericFilter.py:437 GenericFilter.py:469 ImageSelect.py:828
-#: Marriage.py:138 filters/EventPlace.py:69
+#: GenericFilter.py:437 GenericFilter.py:469 ImageSelect.py:836
+#: Marriage.py:138 dialog.glade:199 edit_person.glade:209
+#: edit_person.glade:459 edit_person.glade:2331 edit_person.glade:4962
+#: edit_person.glade:5233 edit_person.glade:5528 filters/EventPlace.py:69
+#: marriage.glade:345 marriage.glade:1869 preferences.glade:2555
 msgid "Place"
 msgstr "Место"
 
 #: EditPerson.py:188 GenericFilter.py:501 GenericFilter.py:522
-#: ImageSelect.py:592 ImageSelect.py:724 ImageSelect.py:807 Marriage.py:139
-#: plugins/FilterEditor.py:123
+#: ImageSelect.py:600 ImageSelect.py:732 ImageSelect.py:815 Marriage.py:139
+#: dialog.glade:831 edit_person.glade:2997 imagesel.glade:916
+#: imagesel.glade:1906 marriage.glade:1000 plugins/FilterEditor.py:123
 msgid "Value"
 msgstr "Значение"
 
-#: EditPerson.py:188 ImageSelect.py:592 ImageSelect.py:724 Marriage.py:139
+#: EditPerson.py:188 ImageSelect.py:600 ImageSelect.py:732 Marriage.py:139
+#: dialog.glade:807
 msgid "Attribute"
 msgstr "Атрибут"
 
-#: EditPerson.py:194
+#: EditPerson.py:194 config.glade:126 dialog.glade:1648 edit_person.glade:3510
+#: preferences.glade:1502
 msgid "Address"
 msgstr "Адрес"
 
-#: EditPerson.py:200 ImageSelect.py:807 MediaView.py:59
+#: EditPerson.py:200 ImageSelect.py:815 MediaView.py:59 dialog.glade:2746
+#: edit_person.glade:1009 edit_person.glade:1689 gramps.glade:2480
 msgid "Type"
 msgstr "Тип"
 
-#: EditPerson.py:206 EditPlace.py:99
+#: EditPerson.py:206 EditPlace.py:99 gramps.glade:2455 imagesel.glade:498
+#: imagesel.glade:1528
 msgid "Path"
 msgstr "Путь"
 
-#: EditPerson.py:389 GrampsCfg.py:62 const.py:134
+#: EditPerson.py:389 GrampsCfg.py:62 const.py:136 gramps.glade:3512
+#: gramps.glade:3707 gramps.glade:4261 gramps.glade:4467 gramps.glade:6189
+#: gramps.glade:6455
 msgid "None"
 msgstr "Нет"
 
@@ -298,7 +325,8 @@ msgstr "Нет"
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
 
-#: EditPerson.py:414 const.py:121 plugins/IndivComplete.py:259
+#: EditPerson.py:414 const.py:122 edit_person.glade:676
+#: plugins/FamilyGroup.py:385 plugins/IndivComplete.py:259
 #: plugins/IndivSummary.py:155 plugins/WebPage.py:537
 msgid "unknown"
 msgstr "неизвестно"
@@ -332,19 +360,24 @@ msgstr ""
 "Изменение пола вызвало проблемы с брачной информацией.\n"
 "Пожалуйста, проверьте браки данного лица."
 
-#: EditPlace.py:115 PlaceView.py:50
+#: EditPlace.py:115 PlaceView.py:50 config.glade:150 dialog.glade:1254
+#: places.glade:153 places.glade:578 preferences.glade:1527
 msgid "City"
 msgstr "Город"
 
-#: EditPlace.py:115 PlaceView.py:51
+#: EditPlace.py:115 PlaceView.py:51 dialog.glade:1278 places.glade:201
+#: places.glade:554
 msgid "County"
 msgstr "Область/Район/Уезд"
 
-#: EditPlace.py:116 PlaceView.py:52
+#: EditPlace.py:116 PlaceView.py:52 dialog.glade:1326 places.glade:177
+#: places.glade:628
 msgid "State"
 msgstr "Государство/Республика"
 
-#: EditPlace.py:116 PlaceView.py:53
+#: EditPlace.py:116 PlaceView.py:53 config.glade:198 dialog.glade:1302
+#: dialog.glade:1766 edit_person.glade:3462 places.glade:225 places.glade:652
+#: preferences.glade:1577
 msgid "Country"
 msgstr "Страна"
 
@@ -352,11 +385,12 @@ msgstr "Страна"
 msgid "Internet Address Editor for %s"
 msgstr "Редактор Интернет-Адресов для %s"
 
-#: EditPlace.py:285 EditPlace.py:309
+#: EditPlace.py:285 EditPlace.py:309 dialog.glade:2259
 msgid "Internet Address Editor"
 msgstr "Редактор Интернет-Адресов"
 
-#: EditPlace.py:354
+#: EditPlace.py:354 gramps.glade:680 plugins/gedcomexport.glade:644
+#: plugins/pkgexport.glade:272
 msgid "People"
 msgstr "Люди"
 
@@ -364,7 +398,7 @@ msgstr "Люди"
 msgid "%s [%s]: event %s\n"
 msgstr "%s [%s]: событие %s\n"
 
-#: EditPlace.py:362
+#: EditPlace.py:362 plugins/gedcomexport.glade:618 plugins/pkgexport.glade:249
 msgid "Families"
 msgstr "Семьи"
 
@@ -392,29 +426,29 @@ msgstr "Семейные Атрибуты"
 msgid "Media Objects"
 msgstr "Медиа-Объекты"
 
-#: EditSource.py:177
+#: EditSource.py:177 gramps.glade:864
 msgid "Places"
 msgstr "Места"
 
-#: FamilyView.py:140 gramps_main.py:91 plugins/IndivComplete.py:381
-#: plugins/IndivSummary.py:225 plugins/WebPage.py:284 plugins/WebPage.py:286
-#: plugins/WebPage.py:288
+#: FamilyView.py:142 gramps.glade:5344 gramps_main.py:91
+#: plugins/IndivComplete.py:381 plugins/IndivSummary.py:225
+#: plugins/WebPage.py:284 plugins/WebPage.py:286 plugins/WebPage.py:288
 msgid "Gender"
 msgstr "Пол"
 
-#: FamilyView.py:141
+#: FamilyView.py:143 plugins.glade:208
 msgid "Status"
 msgstr "Статус"
 
-#: FamilyView.py:219
+#: FamilyView.py:221
 msgid "Delete Spouse"
 msgstr "Уничтожить Супруга"
 
-#: FamilyView.py:220
+#: FamilyView.py:222
 msgid "Do you wish to remove %s as a spouse?"
-msgstr "Вы хотите удалить %s как супруга?"
+msgstr "Вы хотите удалить %s в качестве супруга?"
 
-#: FamilyView.py:367
+#: FamilyView.py:373
 msgid ""
 "%s: %s\n"
 "\tRelationship: %s"
@@ -422,24 +456,27 @@ msgstr ""
 "%s: %s\n"
 "\tОтношение: %s"
 
-#: FamilyView.py:369
+#: FamilyView.py:375
 msgid "%s: unknown"
 msgstr "%s: неизвестно"
 
-#: FamilyView.py:406 Plugins.py:400 Plugins.py:411 const.py:135 const.py:410
-#: const.py:418 gramps_main.py:1156 plugins/WebPage.py:288
+#: FamilyView.py:412 Plugins.py:404 Plugins.py:405 Plugins.py:406
+#: Plugins.py:418 Plugins.py:419 Plugins.py:420 const.py:137 const.py:412
+#: const.py:420 gramps.glade:3534 gramps.glade:3729 gramps.glade:4283
+#: gramps.glade:4489 gramps.glade:6211 gramps.glade:6477 gramps_main.py:1156
+#: plugins/WebPage.py:288
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: FamilyView.py:452 FamilyView.py:462
+#: FamilyView.py:458 FamilyView.py:468
 msgid "Delete Parents"
-msgstr "Удалить Родителей"
+msgstr "Уничтожить Родителей"
 
-#: FamilyView.py:453 FamilyView.py:463
+#: FamilyView.py:459 FamilyView.py:469
 msgid "Do you wish to remove the selected parents?"
 msgstr "Вы хотите удалить выделенных родителей?"
 
-#: FamilyView.py:554
+#: FamilyView.py:560
 msgid "Invalid move. Children must be ordered by birth date."
 msgstr "Невозможная операция. Дети должны быть упорядочены по дате рождения."
 
@@ -447,7 +484,7 @@ msgstr "Невозможная операция. Дети должны быть упорядочены по дате рождения."
 msgid "All people"
 msgstr "Все люди"
 
-#: Filter.py:73 Filter.py:80
+#: Filter.py:73 Filter.py:80 gramps.glade:1026
 msgid "Qualifier"
 msgstr "Критерий"
 
@@ -491,11 +528,12 @@ msgstr "Семейное Событие"
 msgid "Number of Relationships"
 msgstr "Число Отношеий"
 
-#: GenericFilter.py:388 plugins/FilterEditor.py:41
+#: GenericFilter.py:388 gramps.glade:3027 marriage.glade:124
+#: plugins/FilterEditor.py:41
 msgid "Relationship Type"
 msgstr "Тип Отношений"
 
-#: GenericFilter.py:389 const.py:371
+#: GenericFilter.py:389 const.py:373
 msgid "Number of Children"
 msgstr "Количество Детей"
 
@@ -507,22 +545,28 @@ msgstr "Личный Атрибут"
 msgid "Family Attribute"
 msgstr "Семейный Атрибут"
 
-#: GenericFilter.py:547
-msgid "Given Name"
-msgstr "Имя"
-
-#: GenericFilter.py:547
-msgid "Suffix"
-msgstr "Суффикс"
-
 #: GenericFilter.py:547 MediaView.py:59 SourceView.py:54 Sources.py:70
-#: Sources.py:140
+#: Sources.py:140 dialog.glade:2877 edit_person.glade:794
+#: edit_person.glade:1665 gramps.glade:2553 gramps.glade:4835
+#: imagesel.glade:240 imagesel.glade:784 imagesel.glade:1712 places.glade:129
+#: plugins/TimeLine.py:341 srcsel.glade:168
 msgid "Title"
 msgstr "Титул"
 
-#: GenericFilter.py:547 filters/MatchSndEx.py:44
+#: GenericFilter.py:547 dialog.glade:2564 edit_person.glade:742
+#: edit_person.glade:1497 gramps.glade:5447
+msgid "Given Name"
+msgstr "Имя"
+
+#: GenericFilter.py:547 dialog.glade:2588 edit_person.glade:846
+#: edit_person.glade:1473 filters/MatchSndEx.py:44 gramps.glade:5318
 msgid "Surname"
 msgstr "Фамилия"
+
+#: GenericFilter.py:547 dialog.glade:2612 edit_person.glade:768
+#: edit_person.glade:1521
+msgid "Suffix"
+msgstr "Суффикс"
 
 #: GenericFilter.py:575
 msgid "Filter Name"
@@ -692,11 +736,12 @@ msgstr "Имя Фамилия"
 msgid "Surname, Firstname"
 msgstr "Фамилия, Имя"
 
-#: GrampsCfg.py:95
+#: GrampsCfg.py:95 preferences.glade:477 revision.glade:111
 msgid "Database"
 msgstr "База Данных"
 
-#: GrampsCfg.py:96 GrampsCfg.py:101
+#: GrampsCfg.py:96 GrampsCfg.py:101 imagesel.glade:1858 places.glade:512
+#: plugins/verify.glade:135
 msgid "General"
 msgstr "Общее"
 
@@ -708,7 +753,7 @@ msgstr "Внутренние GRAMPS ID номера"
 msgid "Revision Control"
 msgstr "Контроль Изменений"
 
-#: GrampsCfg.py:100
+#: GrampsCfg.py:100 preferences.glade:1018
 msgid "Display"
 msgstr "Дисплей"
 
@@ -724,15 +769,15 @@ msgstr "Панели Инструментов и Статуса"
 msgid "Usage"
 msgstr "Использование"
 
-#: GrampsCfg.py:105
+#: GrampsCfg.py:105 preferences.glade:712
 msgid "Find"
 msgstr "Поиск"
 
-#: GrampsCfg.py:106
+#: GrampsCfg.py:106 preferences.glade:2237
 msgid "Report Preferences"
 msgstr "Настройки Отчетов"
 
-#: GrampsCfg.py:107
+#: GrampsCfg.py:107 config.glade:48 preferences.glade:1871
 msgid "Researcher Information"
 msgstr "Информация об Исследователе"
 
@@ -740,15 +785,15 @@ msgstr "Информация об Исследователе"
 msgid "Data Guessing"
 msgstr "Угадывание Данных"
 
-#: GrampsCfg.py:631 GrampsCfg.py:646
+#: GrampsCfg.py:632 GrampsCfg.py:647
 msgid "No default format"
 msgstr "Нет формата по умолчанию"
 
-#: Gregorian.py:53
+#: Gregorian.py:53 dialog.glade:384 dialog.glade:1934
 msgid "Gregorian"
 msgstr "Григорианский"
 
-#: Hebrew.py:89
+#: Hebrew.py:89 dialog.glade:400 dialog.glade:1950
 msgid "Hebrew"
 msgstr "Еврейский"
 
@@ -756,40 +801,49 @@ msgstr "Еврейский"
 msgid "That is not a valid file name."
 msgstr "Это не является правильным именем файла."
 
-#: ImageSelect.py:424 MediaView.py:330 plugins/ReadGedcom.py:898
-#: plugins/ReadGedcom.py:933 plugins/ReadGedcom.py:968
+#: ImageSelect.py:344
+msgid "Thumbnail %s could not be found"
+msgstr "Пиктограмма %s не найдена"
+
+#: ImageSelect.py:434 MediaView.py:329 plugins/ReadGedcom.py:902
+#: plugins/ReadGedcom.py:937 plugins/ReadGedcom.py:972
 msgid "Could not import %s"
 msgstr "Не смогла импортировать %s"
 
-#: ImageSelect.py:527
-msgid "Open in %s"
-msgstr "Открыто в %s"
+#: ImageSelect.py:530 MediaView.py:166 preferences.glade:2603
+msgid "Media Object"
+msgstr "Медиа-Объекты"
 
-#: ImageSelect.py:530 MediaView.py:171
+#: ImageSelect.py:535
+msgid "Open in %s"
+msgstr "Открыто в %s."
+
+#: ImageSelect.py:538 MediaView.py:170
 msgid "Edit with the GIMP"
 msgstr "Правка в GIMP"
 
-#: ImageSelect.py:532 MediaView.py:173
+#: ImageSelect.py:540 MediaView.py:172
 msgid "Edit Object Properties"
 msgstr "Правка Свойств Объекта"
 
-#: ImageSelect.py:535 MediaView.py:176
+#: ImageSelect.py:543 MediaView.py:175
 msgid "Convert to local copy"
 msgstr "Преобразовать в локальную копию"
 
-#: ImageSelect.py:814 plugins/EventCmp.py:288
+#: ImageSelect.py:822 plugins/EventCmp.py:288 preferences.glade:2507
 msgid "Person"
 msgstr "Лицо"
 
-#: ImageSelect.py:818
+#: ImageSelect.py:826 gramps.glade:726 preferences.glade:2531
 msgid "Family"
 msgstr "Семья"
 
-#: ImageSelect.py:823 Utils.py:181 Utils.py:183
+#: ImageSelect.py:831 Utils.py:181 Utils.py:183 edit_person.glade:944
+#: preferences.glade:2579
 msgid "Source"
 msgstr "Источник"
 
-#: Julian.py:52
+#: Julian.py:52 dialog.glade:392 dialog.glade:1942
 msgid "Julian"
 msgstr "Юлианский"
 
@@ -797,7 +851,7 @@ msgstr "Юлианский"
 msgid "Location Editor for %s"
 msgstr "Редактор Местоположений для %s"
 
-#: LocEdit.py:61
+#: LocEdit.py:61 dialog.glade:1213
 msgid "Location Editor"
 msgstr "Редактор Местоположений"
 
@@ -811,19 +865,19 @@ msgid "Data was modified. Are you sure you want to abandon your changes?"
 msgstr ""
 "Данные были изменены. Вы уверены что вы хотите потерять ваши изменения?"
 
-#: MediaView.py:147
+#: MediaView.py:148
 msgid "The file no longer exists"
 msgstr "Этого файла уже не существует"
 
-#: MediaView.py:169
+#: MediaView.py:168
 msgid "View in the default viewer"
 msgstr "Просмотр в устройстве просмотра по умолчанию"
 
-#: MediaView.py:259
+#: MediaView.py:258
 msgid "Delete Object"
 msgstr "Уничтожить Объект"
 
-#: MediaView.py:260
+#: MediaView.py:259
 msgid "This media object is currently being used. Delete anyway?"
 msgstr ""
 "Этот медиа-объект в настоящий момент используется. Все равно уничтожить?"
@@ -844,7 +898,7 @@ msgstr "Вертикально"
 msgid "Landscape"
 msgstr "Горизонтально"
 
-#: PedView.py:364
+#: PedView.py:367
 msgid "Double clicking will make %s the active person"
 msgstr "Двойной щелчок сделает %s активным лицом"
 
@@ -852,7 +906,7 @@ msgstr "Двойной щелчок сделает %s активным лицом"
 msgid "Place Name"
 msgstr "Название Места"
 
-#: PlaceView.py:49
+#: PlaceView.py:49 dialog.glade:1443 places.glade:459 places.glade:849
 msgid "Church Parish"
 msgstr "Церковный Приход"
 
@@ -876,19 +930,19 @@ msgstr ""
 msgid "No description was provided"
 msgstr "Не было предоставлено описания"
 
-#: Plugins.py:233
+#: Plugins.py:237 plugins.glade:140
 msgid "Report Selection"
 msgstr "Выбор Отчетов"
 
-#: Plugins.py:249
+#: Plugins.py:253
 msgid "Tool Selection"
 msgstr "Выбор Инструментов"
 
-#: Plugins.py:271
+#: Plugins.py:275
 msgid "The following modules could not be loaded:"
 msgstr "Следующие модули не могли быть загружены:"
 
-#: Plugins.py:397 Plugins.py:408
+#: Plugins.py:401 Plugins.py:415
 msgid "Uncategorized"
 msgstr "Не отнесено к категории"
 
@@ -898,7 +952,7 @@ msgstr "Ошибка"
 
 #: QuestionDialog.py:86
 msgid "Warning"
-msgstr "Внимание"
+msgstr "Предупреждение"
 
 #: ReadXML.py:84 ReadXML.py:87 ReadXML.py:153 ReadXML.py:157
 #: plugins/ReadGedcom.py:132 plugins/ReadGedcom.py:136
@@ -912,7 +966,8 @@ msgstr "Ошибка при чтении %s"
 
 #: ReadXML.py:99
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
-msgstr "Вероятно файл либо поврежден, либо не является базой данных GRAMPS."
+msgstr ""
+"Вероятно файл либо испорчен, либо не является правильной базой данных GRAMPS."
 
 #: ReadXML.py:103
 msgid ""
@@ -923,7 +978,7 @@ msgid ""
 msgstr ""
 "Ваша база данных столкнулась с ошибкой в библиотеке сжатия данных.\n"
 "Ваши данные должны быть в порядке, но вы можете быть заинтересованы\n"
-"в отменне сжатия. Это может быть сделано в диалоге Свойств."
+"в отключении сжатия. Это может быть сделано в диалоге Свойства."
 
 #: ReadXML.py:192
 msgid "%s (revision %s)"
@@ -937,31 +992,31 @@ msgstr ""
 "Не смогла импортировать %s\n"
 "Файл был перемещен или уничтожен"
 
-#: RelImage.py:72 RelImage.py:75 RelImage.py:137 RelImage.py:140
+#: RelImage.py:70 RelImage.py:73 RelImage.py:134 RelImage.py:137
 #: gramps_main.py:751 gramps_main.py:755 gramps_main.py:763
 #: plugins/AncestorChart.py:113 plugins/DesGraph.py:210
-#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:473
-#: plugins/WriteGedcom.py:478
+#: plugins/DesGraph.py:219 plugins/WriteGedcom.py:486
+#: plugins/WriteGedcom.py:491
 msgid "Could not create %s"
 msgstr "Не смогла создать %s"
 
-#: RelImage.py:82
+#: RelImage.py:80
 msgid "Error creating the thumbnail : %s"
 msgstr "Ошибка при чтении пиктограммы : %s"
 
-#: RelImage.py:88
+#: RelImage.py:86
 msgid "Error copying %s"
 msgstr "Ошибка при копировании %s"
 
-#: RelImage.py:108 RelImage.py:119
+#: RelImage.py:106 RelImage.py:116
 msgid "Could not load image file %s"
 msgstr "Не смогла загрузить файл изображения %s"
 
-#: RelImage.py:147
+#: RelImage.py:144
 msgid "Could not replace %s"
 msgstr "Не смогла заменить %s"
 
-#: RelImage.py:152
+#: RelImage.py:149
 msgid ""
 "Could not create a thumbnail for %s\n"
 "The file has been moved or deleted"
@@ -969,7 +1024,7 @@ msgstr ""
 "Не смогла создать поктограмму для %s\n"
 "Файл был перемещен или уничтожен"
 
-#: RelImage.py:160
+#: RelImage.py:157
 msgid "Could not create a thumbnail for %s"
 msgstr "Не смогла создать пиктограмму для %s"
 
@@ -1133,7 +1188,7 @@ msgstr "Выходной Формат"
 msgid "Styles"
 msgstr "Стили"
 
-#: Report.py:542
+#: Report.py:542 styles.glade:377
 msgid "Style Editor"
 msgstr "Редактор Стилей"
 
@@ -1145,7 +1200,7 @@ msgstr "Параметры Бумаги"
 msgid "HTML Options"
 msgstr "Параметры HTML"
 
-#: Report.py:590
+#: Report.py:590 styles.glade:573
 msgid "Size"
 msgstr "Размер"
 
@@ -1157,7 +1212,7 @@ msgstr "Ориентация"
 msgid "Page Count"
 msgstr "Нумерация Страниц"
 
-#: Report.py:627
+#: Report.py:627 plugins/eventcmp.glade:192
 msgid "Template"
 msgstr "Образец"
 
@@ -1173,7 +1228,9 @@ msgstr "Выбрать Файл"
 msgid "Report Options"
 msgstr "Параметры Отчета"
 
-#: Report.py:703 plugins/FilterEditor.py:66
+#: Report.py:703 gramps.glade:245 gramps.glade:973 plugins/FilterEditor.py:66
+#: plugins/eventcmp.glade:522 plugins/gedcomexport.glade:157
+#: plugins/pafexport.glade:127
 msgid "Filter"
 msgstr "Фильтр"
 
@@ -1185,7 +1242,7 @@ msgstr "Поколения"
 msgid "Page break between generations"
 msgstr "Новая страница между поколениями"
 
-#: Report.py:815
+#: Report.py:820
 msgid ""
 "The filename that you gave is a directory.\n"
 "You need to provide a valid filename."
@@ -1198,7 +1255,7 @@ msgstr ""
 msgid "Relationship to %s"
 msgstr "Отношение к %s"
 
-#: SourceView.py:54
+#: SourceView.py:54 gramps.glade:4859 plugins.glade:255 srcsel.glade:144
 msgid "Author"
 msgstr "Автор"
 
@@ -1214,19 +1271,21 @@ msgstr "Этот источник в настоящий момент используется. Все равно уничтожить?"
 msgid "Error saving stylesheet"
 msgstr "Ошибка при сохранении стилевого листа"
 
-#: Utils.py:176
+#: Utils.py:176 edit_person.glade:989 edit_person.glade:5031
+#: edit_person.glade:5326 edit_person.glade:5621 marriage.glade:1797
+#: places.glade:1071
 msgid "Note"
 msgstr "Записка"
 
-#: Utils.py:186 Utils.py:188
+#: Utils.py:186 Utils.py:188 imagesel.glade:643
 msgid "Private"
 msgstr "Личное"
 
-#: Utils.py:524
+#: Utils.py:525
 msgid "default"
 msgstr "по умолчанию"
 
-#: VersionControl.py:262
+#: VersionControl.py:262 preferences.glade:561
 msgid "RCS"
 msgstr "RCS"
 
@@ -1242,7 +1301,170 @@ msgstr "Исламский"
 msgid "Persian"
 msgstr "Персидский"
 
-#: const.py:105
+#: child.glade:8
+msgid "Choose Child - GRAMPS"
+msgstr "Выбрать Ребенка - GRAMPS"
+
+#: child.glade:67
+msgid "Choose Child"
+msgstr "Выбрать Ребенка"
+
+#: config.glade:9
+msgid "Getting Started - GRAMPS"
+msgstr "Первые Шаги - GRAMPS"
+
+#: config.glade:29
+msgid "Getting Started"
+msgstr "Первые Шаги"
+
+#: config.glade:36
+msgid ""
+"Welcome to GRAMPS, the Genealogical Research\n"
+"and Analysis Management Programming System.\n"
+"\n"
+"Several options and information need to be gathered\n"
+"before GRAMPS is ready to be used. Any of this\n"
+"information can be changed in the future in the \n"
+"Preferences dialog under the Settings menu."
+msgstr ""
+"Добро пожаловать в GRAMPS,\n"
+"Генелаогическую Систему Программироввания\n"
+"Исследований и Управления Анализом.\n"
+"\n"
+"Некоторые параметры и определенная информация\n"
+"должны быть введены перед тем как GRAMPS \n"
+"готова к использованию. Любая часть этой \n"
+"информации может быть изменена в будущем\n"
+"в диалоге Настройки, в меню Свойства."
+
+#: config.glade:72
+msgid ""
+"In order to create valid GEDCOM files, the following information\n"
+"needs to be entered. If you do not plan to generate GEDCOM \n"
+"files, you may leave it blank."
+msgstr ""
+"Для создания правильных GEDCOM файлов необходимо\n"
+"ввести следующую информацию. Если вы не планируете\n"
+"создание GEDCOM файлов, то можете оствить эту часть\n"
+"незаполненной."
+
+#: config.glade:174 dialog.glade:1742 edit_person.glade:3558
+#: preferences.glade:1552
+msgid "State/Province"
+msgstr "Штат/Провинция"
+
+#: config.glade:222 preferences.glade:1652
+msgid "email"
+msgstr "Эл. почта"
+
+#: config.glade:246 dialog.glade:1790 edit_person.glade:3582
+#: preferences.glade:1602
+msgid "ZIP/Postal Code"
+msgstr "Индекс/Почтовый Код"
+
+#: config.glade:270 preferences.glade:1627
+msgid "Phone"
+msgstr "Телефон"
+
+#: config.glade:504
+msgid "Numerical Date Formats"
+msgstr "Численные Форматы Дат"
+
+#: config.glade:529
+msgid ""
+"There are three common formats for entering dates in a numerical format.\n"
+"Without some type of indication, GRAMPS cannot correctly tell what\n"
+"format you are using. Please indicate your preferred format for entering\n"
+"numerical dates"
+msgstr ""
+"Существует три общепринятых формата для ввода дат в численном\n"
+"формате. Без какого-либо указания GRAMPS не может правильно\n"
+"распознать испоьзуемый вами формат. Пожалуйста, обозначьте\n"
+"ваши предпочтения для ввода дат в численном формате."
+
+#: config.glade:568
+msgid "MM/DD/YYYY (United States)"
+msgstr "ММ/ДД/ГГГГ (Американский)"
+
+#: config.glade:586
+msgid "DD/MM/YYYY (European)"
+msgstr "ДД/ММ/ГГГГ (Европейский)"
+
+#: config.glade:605
+msgid "YYYY-MM-DD (ISO)"
+msgstr "ГГГГ-ММ-ДД (ISO)"
+
+#: config.glade:652
+msgid "Alternate Calendar Support"
+msgstr "Поддержка Альтернативных Календарей"
+
+#: config.glade:677
+msgid ""
+"By default, all dates stored by GRAMPS use the Gregorian calendar. This\n"
+"is normally sufficient for most users. Support may be enabled for the "
+"Julian,\nFrench Republican, and Hebrew calendar. If you believe that you will "
+"need one or\n"
+"more of these alternate calendars, enable alternate calendar support."
+msgstr ""
+"По умолчанию, GRAMPS хранит все даты используя Григорианский\n"
+"календарь. Обычно этого достаточно для большинства пользователей.\n"
+"Можно обеспечить поддержку для Юлианского, Французкого\n"
+"Республиканского и Еврейского календарей. Если вы считаете что вам\n"
+"понадобится один или более из этих альтернативных календарей,\n"
+"включите поддержку альтернативных календарей."
+
+#: config.glade:710
+msgid "Enable support for alternate calendars"
+msgstr "Включить поддержку альтернативных календарей"
+
+#: config.glade:749
+msgid "LDS Extensions"
+msgstr "Расширения LDS"
+
+#: config.glade:775
+msgid ""
+"GRAMPS has support for LDS Ordinances, which are special\n"
+"event types related to the Church of Jesus Christ of Latter Day Saints.\n"
+"\n"
+"You may choose to either enable or disable this support. You may\n"
+"change this option in the future in the Preferences dialog."
+msgstr ""
+"GRAMPS поддерживает Процедуры LDS, которые являются\n"
+"специальными типами событий связанных с Церковью Иисуса\n"
+"Христа Святых Последних Дней.\n"
+"\n"
+"Вы можете включить или выключить эту поддержку. Вы можете\n"
+"изменить эту настройку в будущем в диалоге Настройки."
+
+#: config.glade:808
+msgid "Enable LDS Ordinance Support"
+msgstr "Включить Поддержку Процедур LDS"
+
+#: config.glade:848
+msgid "Complete"
+msgstr "Завершено"
+
+#: config.glade:855
+msgid ""
+"GRAMPS is an Open Source project. Its success \n"
+"depends on the users. User feedback is important. \n"
+"Please join the mailing lists, submit bug reports,\n"
+"suggest improvements,  and see how you can \n"
+"contribute.\n"
+"\n"
+"Please enjoy using GRAMPS."
+msgstr ""
+"GRAMPS является проектом Открытого Кода\n"
+"(Open Source project). Успех проекта завист от\n"
+"его пользователей. Вклад пользователей важен.\n"
+"Пожалуйста, подписывайтесь на списки рассылки,\n"
+"присилайте сообщения об ошибках, предлагайте\n"
+"улучшения и думайте, как вы можете внести\n"
+"свой вклад.\n"
+"\n"
+"Наслаждайтесь, используя GRAMPS."
+
+#: const.py:106
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -1252,273 +1474,373 @@ msgstr ""
 "\t\t\t\t\t\t\t\t\t\t\t\t\n"
 "Перевод: Александр Ройтман <shura@alex.neuro.umn.edu>"
 
-#: const.py:119
+#: const.py:120 edit_person.glade:639 gramps.glade:5400
 msgid "male"
 msgstr "мужчина"
 
-#: const.py:120
+#: const.py:121 edit_person.glade:657 gramps.glade:5418
 msgid "female"
 msgstr "женщина"
 
-#: const.py:131 const.py:249
+#: const.py:132 const.py:251 gramps.glade:3446 gramps.glade:3641
+#: gramps.glade:4217 gramps.glade:4423 gramps.glade:6123 gramps.glade:6389
 msgid "Adopted"
 msgstr "Приемный"
 
-#: const.py:132
+#: const.py:133 gramps.glade:3468 gramps.glade:3663 gramps.glade:4239
+#: gramps.glade:4445 gramps.glade:6145 gramps.glade:6411
 msgid "Stepchild"
 msgstr "Пасынок/падчерица"
 
-#: const.py:133
+#: const.py:134
+msgid "Sponsored"
+msgstr "Спонсируемый"
+
+#: const.py:135 gramps.glade:3490 gramps.glade:3685 gramps.glade:6167
+#: gramps.glade:6433
 msgid "Foster"
 msgstr "Воспитанник"
 
-#: const.py:136 const.py:411 const.py:419
+#: const.py:138 const.py:413 const.py:421 gramps.glade:1167
+#: mergedata.glade:229
 msgid "Other"
 msgstr "Другое"
 
-#: const.py:145
+#: const.py:147 srcsel.glade:559
 msgid "Very Low"
 msgstr "Очень Низкая"
 
-#: const.py:146 plugins/Merge.py:107
+#: const.py:148 plugins/Merge.py:107 srcsel.glade:567
 msgid "Low"
 msgstr "Низкая"
 
-#: const.py:147
+#: const.py:149 srcsel.glade:575
 msgid "Normal"
 msgstr "Нормальная"
 
-#: const.py:148 plugins/Merge.py:115
+#: const.py:150 plugins/Merge.py:115 srcsel.glade:583
 msgid "High"
 msgstr "Высокая"
 
-#: const.py:149
+#: const.py:151 srcsel.glade:591
 msgid "Very High"
 msgstr "Очень Высокая"
 
-#: const.py:169
+#: const.py:171
 msgid "Annulment"
 msgstr "Аннулирование"
 
-#: const.py:170 const.py:264
+#: const.py:172 const.py:266
 msgid "Divorce Filing"
 msgstr "Заявление о Разводе"
 
-#: const.py:171
+#: const.py:173
 msgid "Divorce"
 msgstr "Развод"
 
-#: const.py:172
+#: const.py:174
 msgid "Engagement"
 msgstr "Помолвка"
 
-#: const.py:173
+#: const.py:175
 msgid "Marriage Contract"
 msgstr "Брачный Контракт"
 
-#: const.py:174
+#: const.py:176
 msgid "Marriage License"
 msgstr "Свидетельство о Браке"
 
-#: const.py:175
+#: const.py:177
 msgid "Marriage Settlement"
 msgstr "Брачное Соглашение"
 
-#: const.py:176
+#: const.py:178
 msgid "Marriage"
 msgstr "Брак"
 
-#: const.py:250
+#: const.py:252
 msgid "Alternate Birth"
 msgstr "Альтернативное Рождение"
 
-#: const.py:251
+#: const.py:253
 msgid "Alternate Death"
 msgstr "Альтернативная Смерть"
 
-#: const.py:252
+#: const.py:254
 msgid "Adult Christening"
 msgstr "Крещение Взрослого"
 
-#: const.py:253
+#: const.py:255
 msgid "Baptism"
 msgstr "Крещение"
 
-#: const.py:254
+#: const.py:256
 msgid "Bar Mitzvah"
 msgstr "Бар-Мицва"
 
-#: const.py:255
+#: const.py:257
 msgid "Bas Mitzvah"
 msgstr "Бат-Мицва"
 
-#: const.py:256
+#: const.py:258
 msgid "Blessing"
 msgstr "Благословение"
 
-#: const.py:257
+#: const.py:259
 msgid "Burial"
 msgstr "Захоронение"
 
-#: const.py:258
+#: const.py:260
 msgid "Cause Of Death"
 msgstr "Причина Смерти"
 
-#: const.py:259
+#: const.py:261
 msgid "Census"
 msgstr "Перепись"
 
-#: const.py:260
+#: const.py:262
 msgid "Christening"
 msgstr "Крещение"
 
-#: const.py:261
+#: const.py:263
 msgid "Confirmation"
 msgstr "Конфирмация"
 
-#: const.py:262
+#: const.py:264
 msgid "Cremation"
 msgstr "Кремация"
 
-#: const.py:263
+#: const.py:265
 msgid "Degree"
 msgstr "Степень"
 
-#: const.py:265
+#: const.py:267
 msgid "Education"
 msgstr "Образование"
 
-#: const.py:266
+#: const.py:268
 msgid "Elected"
 msgstr "Избран(а)"
 
-#: const.py:267
+#: const.py:269
 msgid "Emigration"
 msgstr "Эмиграция"
 
-#: const.py:268
+#: const.py:270
 msgid "First Communion"
 msgstr "Первое Причастие"
 
-#: const.py:269
+#: const.py:271
 msgid "Immigration"
 msgstr "Иммиграция"
 
-#: const.py:270
+#: const.py:272
 msgid "Graduation"
 msgstr "Выпуск"
 
-#: const.py:271
+#: const.py:273
 msgid "Medical Information"
 msgstr "Медицинская информация"
 
-#: const.py:272
+#: const.py:274
 msgid "Military Service"
 msgstr "Воинская Служба"
 
-#: const.py:273
+#: const.py:275
 msgid "Naturalization"
 msgstr "Натурализация"
 
-#: const.py:274
+#: const.py:276
 msgid "Nobility Title"
 msgstr "Дворянский Титул"
 
-#: const.py:275
+#: const.py:277
 msgid "Number of Marriages"
 msgstr "Количество Браков"
 
-#: const.py:276
+#: const.py:278
 msgid "Occupation"
 msgstr "Профессия"
 
-#: const.py:277
+#: const.py:279
 msgid "Ordination"
 msgstr "Назначение"
 
-#: const.py:278
+#: const.py:280
 msgid "Probate"
 msgstr "Подтверждение"
 
-#: const.py:279
+#: const.py:281
 msgid "Property"
 msgstr "Собственность"
 
-#: const.py:280
+#: const.py:282
 msgid "Religion"
 msgstr "Религия"
 
-#: const.py:281
+#: const.py:283
 msgid "Residence"
 msgstr "Место Жительства"
 
-#: const.py:282
+#: const.py:284
 msgid "Retirement"
 msgstr "Уход на Пенсию"
 
-#: const.py:283
+#: const.py:285
 msgid "Will"
 msgstr "Завещание"
 
-#: const.py:328
+#: const.py:330
 msgid "Caste"
 msgstr "Каста"
 
-#: const.py:330
+#: const.py:332
 msgid "Identification Number"
 msgstr "Идентификационный Номер"
 
-#: const.py:331
+#: const.py:333
 msgid "National Origin"
 msgstr "Национальное Происхождение"
 
-#: const.py:332
+#: const.py:334
 msgid "Social Security Number"
 msgstr "Номер Социальной Безопасности"
 
-#: const.py:407
+#: const.py:409
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr "Законные или гражданские отношения между мужем и женой"
 
-#: const.py:408
+#: const.py:410
 msgid "No legal or common-law relationship between man and woman"
 msgstr "Никаких законных или гражданских отношений между мужчиной и женщиной"
 
-#: const.py:408 const.py:416
+#: const.py:410 const.py:418
 msgid "Unmarried"
 msgstr "Не Женаты"
 
-#: const.py:409
+#: const.py:411
 msgid "An established relationship between members of the same sex"
 msgstr "Устоявшиеся отношения между лицами одного пола"
 
-#: const.py:410
+#: const.py:412
 msgid "Unknown relationship between a man and woman"
 msgstr "Отношения между мужчиной и женщиной неизвестны"
 
-#: const.py:411
+#: const.py:413
 msgid "An unspecified relationship between a man and woman"
 msgstr "Отношения между мужчиной и женщиной не обозначены"
 
-#: const.py:435
+#: const.py:437
 msgid "No definition available"
 msgstr "Нет определения"
 
-#: const.py:876
+#: const.py:878
 msgid "Also Known As"
 msgstr "Он(а) же"
 
-#: const.py:877
+#: const.py:879
 msgid "Birth Name"
 msgstr "Фамилия при Рождении"
 
-#: const.py:878
+#: const.py:880
 msgid "Married Name"
 msgstr "Фамилия в Браке"
 
-#: const.py:879
+#: const.py:881
 msgid "Other Name"
 msgstr "Другая Фамилия"
+
+#: dialog.glade:8 dialog.glade:1149
+msgid "Event Editor - GRAMPS"
+msgstr "Редактор Событий - GRAMPS"
+
+#: dialog.glade:74
+msgid "<b>Event Editor</b>"
+msgstr "<b>Редактор Событий</b>"
+
+#: dialog.glade:127
+msgid "Event Type"
+msgstr "Тип События"
+
+#: dialog.glade:287 edit_person.glade:2451 marriage.glade:538
+msgid "Cause"
+msgstr "Причина"
+
+#: dialog.glade:373 dialog.glade:1923
+msgid "Selects the calendar format for display"
+msgstr "Выбирает формат календаря для просмотра"
+
+#: dialog.glade:408 dialog.glade:1958
+msgid "French"
+msgstr "Французский"
+
+#: dialog.glade:484 dialog.glade:943 dialog.glade:1988 dialog.glade:2378
+#: dialog.glade:2925
+msgid "Private Record"
+msgstr "Личная Запись"
+
+#: dialog.glade:510 dialog.glade:969 dialog.glade:2014 dialog.glade:2998
+#: edit_person.glade:1425
+msgid "<b>General</b>"
+msgstr "<b>Общее</b>"
+
+#: dialog.glade:602 dialog.glade:1061 dialog.glade:2106 dialog.glade:3090
+#: gramps.glade:2114
+msgid "<b>Sources</b>"
+msgstr "<b>Источники</b>"
+
+#: dialog.glade:655 dialog.glade:1114 dialog.glade:2159 dialog.glade:3143
+msgid "<b>Note</b>"
+msgstr "<b>Записка</b>"
+
+#: dialog.glade:690
+msgid "Attribute Editor - GRAMPS"
+msgstr "Редактор Атрибутов - GRAMPS"
+
+#: dialog.glade:754
+msgid "<b>Attribute Editor</b>"
+msgstr "<b>Редактор Атрибутов</b>"
+
+#: dialog.glade:1506
+msgid "Address Editor - GRAMPS"
+msgstr "Редактор Адресов - GRAMPS"
+
+#: dialog.glade:1529 dialog.glade:2217 dialog.glade:2468 gramps.glade:4737
+#: marriage.glade:34
+msgid "Accept and close"
+msgstr "Принять и закрыть"
+
+#: dialog.glade:1571
+msgid "<b>Address Editor</b>"
+msgstr "<b>Редактор Адресов</b>"
+
+#: dialog.glade:1695 edit_person.glade:3486
+msgid "City/County"
+msgstr "Город/Область"
+
+#: dialog.glade:2194
+msgid "Internet Address Editor - GRAMPS"
+msgstr "Редактор Интернет-Адресов - GRAMPS"
+
+#: dialog.glade:2300 edit_person.glade:4472 places.glade:1326
+msgid "Web Address"
+msgstr "Web Адрес"
+
+#: dialog.glade:2445
+msgid "Alternate Name Editor - GRAMPS"
+msgstr "Редактор Альтернативных Имен - GRAMPS"
+
+#: dialog.glade:2483 gramps.glade:4752 marriage.glade:49
+msgid "Reject changes and close"
+msgstr "Отвергнуть измемения и закрыть"
+
+#: dialog.glade:2511
+msgid "<b>Alternate Name Editor</b>"
+msgstr "<b>Редактор Альтернативных Имен</b>"
+
+#: dialog.glade:2945 edit_person.glade:1161 edit_person.glade:1986
+msgid "Surname Prefix"
+msgstr "Приставка к Фамилии"
 
 #: docgen/AbiWordDoc.py:321
 msgid "AbiWord"
@@ -1536,7 +1858,7 @@ msgstr ""
 "Не смогла открыть %s\n"
 "Использую образец по умолчанию"
 
-#: docgen/HtmlDoc.py:415
+#: docgen/HtmlDoc.py:415 plugins/eventcmp.glade:164
 msgid "HTML"
 msgstr "HTML"
 
@@ -1553,11 +1875,11 @@ msgstr "KWord"
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: docgen/OpenDrawDoc.py:506 docgen/OpenOfficeDoc.py:572
+#: docgen/OpenDrawDoc.py:560 docgen/OpenOfficeDoc.py:572
 msgid "OpenOffice/StarOffice 6"
 msgstr "OpenOffice/StarOffice 6"
 
-#: docgen/PSDrawDoc.py:214
+#: docgen/PSDrawDoc.py:252
 msgid "PostScript"
 msgstr "PostScript"
 
@@ -1565,7 +1887,7 @@ msgstr "PostScript"
 msgid "The ReportLab modules are not installed"
 msgstr "Модули ReportLab не установлены"
 
-#: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:161
+#: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:217
 msgid "PDF"
 msgstr "PDF"
 
@@ -1573,9 +1895,226 @@ msgstr "PDF"
 msgid "Rich Text Format (RTF)"
 msgstr "Rich Text Format (RTF)"
 
-#: docgen/SvgDrawDoc.py:202
+#: docgen/SvgDrawDoc.py:221
 msgid "SVG (Scalable Vector Graphics)"
 msgstr "SVG (Scalable Vector Graphics)"
+
+#: edit_person.glade:10
+msgid "Edit Person - GRAMPS"
+msgstr "Правка Лиц - GRAMPS"
+
+#: edit_person.glade:34
+msgid "Accept changes and close dialog"
+msgstr "Принять изменения и закрыть диалог"
+
+#: edit_person.glade:70
+msgid "<b>New Person</b>"
+msgstr "<b>Новое Лицо</b>"
+
+#: edit_person.glade:259
+msgid "Invoke birth event editor"
+msgstr "Вызвать редактор событий рождения"
+
+#: edit_person.glade:261 edit_person.glade:514 gramps.glade:617 rule.glade:354
+#: rule.glade:757 styles.glade:214
+msgid "Edit"
+msgstr "Правка"
+
+#: edit_person.glade:342
+msgid "<b>Birth</b>"
+msgstr "<b>Рождение</b>"
+
+#: edit_person.glade:512
+msgid "Invoke death event editor"
+msgstr "Вызвать редактор событий смерти"
+
+#: edit_person.glade:595
+msgid "<b>Death</b>"
+msgstr "<b>Смерть</b>"
+
+#: edit_person.glade:696
+msgid "<b>Gender</b>"
+msgstr "<b>Пол</b>"
+
+#: edit_person.glade:820
+msgid "Nick Name"
+msgstr "Краткое Имя"
+
+#: edit_person.glade:942
+msgid "Select source for this name information"
+msgstr "Выбрать источник для данной информации об имени"
+
+#: edit_person.glade:987
+msgid "Enter/modify notes regarding this name"
+msgstr "Ввести/изменить записки касающиеся этого имени"
+
+#: edit_person.glade:1212
+msgid "<b>Preferred Name</b>"
+msgstr "<b>Предпочитаемое Имя</b>"
+
+#: edit_person.glade:1259
+msgid "<b>Image</b>"
+msgstr "<b>Изображение</b>"
+
+#: edit_person.glade:1306 marriage.glade:210
+msgid "GRAMPS ID"
+msgstr "GRAMPS ID номер"
+
+#: edit_person.glade:1381
+msgid "<b>Identification</b>"
+msgstr "<b>Идентификация</b>"
+
+#: edit_person.glade:1737 edit_person.glade:2523 edit_person.glade:3069
+#: edit_person.glade:3921 marriage.glade:393 marriage.glade:1024
+msgid "Primary Source"
+msgstr "Первичный Источник"
+
+#: edit_person.glade:1890 edit_person.glade:2671 edit_person.glade:3118
+#: edit_person.glade:3995 marriage.glade:709 marriage.glade:1145
+#: srcsel.glade:525
+msgid "Confidence"
+msgstr "Достоверность"
+
+#: edit_person.glade:2062
+msgid "<b>No Alternate Names</b>"
+msgstr "<b>Нет Альтернативных Имен</b>"
+
+#: edit_person.glade:2213
+msgid "Create an alternate name for this person"
+msgstr "Создать альтернативное имя для данного лица"
+
+#: edit_person.glade:2227
+msgid "Delete selected name"
+msgstr "Уничтожить выделенное имя"
+
+#: edit_person.glade:2253
+msgid "<b>Names</b>"
+msgstr "<b>Имена</b>"
+
+#: edit_person.glade:2745 marriage.glade:760
+msgid "<b>No Events</b>"
+msgstr "<b>Нет Событий</b>"
+
+#: edit_person.glade:2896
+msgid "Create a new event from the above data"
+msgstr "Создать новое событие из вышеприведенных данных"
+
+#: edit_person.glade:2910
+msgid "Delete the selected event"
+msgstr "Уничтожть выделенное событие"
+
+#: edit_person.glade:2943 marriage.glade:952
+msgid "<b>Events</b>"
+msgstr "<b>События</b>"
+
+#: edit_person.glade:3216 marriage.glade:1221
+msgid "<b>No Attributes</b>"
+msgstr "<b>Нет Атрибутов</b>"
+
+#: edit_person.glade:3367
+msgid "Create a new attribute from the above data"
+msgstr "Создать новый атрибут из вышеприведенных данных"
+
+#: edit_person.glade:3381 imagesel.glade:1227 imagesel.glade:2217
+#: marriage.glade:1384
+msgid "Delete the selected attribute"
+msgstr "Уничтожить выделенный атрибут"
+
+#: edit_person.glade:3414 marriage.glade:1410
+msgid "<b>Attributes</b>"
+msgstr "<b>Атрибуты</b>"
+
+#: edit_person.glade:4045
+msgid "<b>No Addresses</b>"
+msgstr "<b>Нет Адресов</b>"
+
+#: edit_person.glade:4202
+msgid "Create a new address from the above data"
+msgstr "Создать новый адрес используя вышеприведенные данные"
+
+#: edit_person.glade:4216
+msgid "Delete the selected address"
+msgstr "Уничтожить выделенный адрес"
+
+#: edit_person.glade:4249
+msgid "<b>Addresses</b>"
+msgstr "<b>Адреса</b>"
+
+#: edit_person.glade:4276
+msgid "Enter miscellaneous relevant data and documentation"
+msgstr "Редактировать различные связянные данные и документацию"
+
+#: edit_person.glade:4301 marriage.glade:1461
+msgid "<b>Notes</b>"
+msgstr "<b>Записки</b>"
+
+#: edit_person.glade:4361 gramps.glade:5094 marriage.glade:1521
+msgid "Place new media object in this gallery"
+msgstr "Поместить новый медиа-объект в данную галерею"
+
+#: edit_person.glade:4374 gramps.glade:5107 marriage.glade:1534
+msgid "Remove selected object from this gallery only"
+msgstr "Удалить выделенный объект только из данной галереи"
+
+#: edit_person.glade:4400 marriage.glade:1560
+msgid "<b>Gallery</b>"
+msgstr "<b>Галерея</b>"
+
+#: edit_person.glade:4549
+msgid "Go to this web page"
+msgstr "Пойти на данную web-страницу"
+
+#: edit_person.glade:4588
+msgid "Go"
+msgstr "Пойти"
+
+#: edit_person.glade:4681
+msgid "<b>Internet Addresses</b>"
+msgstr "<b>Адреса в Интернете</b>"
+
+#: edit_person.glade:4832
+msgid "Add an internet reference about this person"
+msgstr "Добавить интернет-ссылку о данном лице"
+
+#: edit_person.glade:4846
+msgid "Delete selected reference"
+msgstr "Уничтожить выделенную ссылку"
+
+#: edit_person.glade:4872
+msgid "<b>Internet</b>"
+msgstr "<b>Интернет</b>"
+
+#: edit_person.glade:4938 edit_person.glade:5209 edit_person.glade:5480
+#: marriage.glade:1817
+msgid "Temple"
+msgstr "Храм"
+
+#: edit_person.glade:5010 edit_person.glade:5305 edit_person.glade:5600
+#: gramps.glade:818 marriage.glade:1776 places.glade:1163
+#: plugins/IndivComplete.py:299 plugins/WebPage.py:204
+#: plugins/gedcomexport.glade:592 plugins/pkgexport.glade:226
+msgid "Sources"
+msgstr "Источники"
+
+#: edit_person.glade:5141
+msgid "<b>LDS Baptism</b>"
+msgstr "<b>LDS Крещение</b>"
+
+#: edit_person.glade:5412
+msgid "<b>Endowment</b>"
+msgstr "<b>Завещанное</b>"
+
+#: edit_person.glade:5504
+msgid "Parents"
+msgstr "Родители"
+
+#: edit_person.glade:5731
+msgid "<b>Sealed to Parents</b>"
+msgstr "<b>Приписан к Родителям</b>"
+
+#: edit_person.glade:5762 marriage.glade:1929
+msgid "<b>LDS</b>"
+msgstr "<b>LDS</b>"
 
 #: filters/After.py:54
 msgid "People with an event after ..."
@@ -1625,7 +2164,7 @@ msgstr "Лица с таки же кодом SoundEx как ..."
 msgid "Names with the specified SoundEx code"
 msgstr "Лица с данным кодом SoundEx"
 
-#: filters/MatchSndEx2.py:40
+#: filters/MatchSndEx2.py:40 plugins/soundex.glade:131
 msgid "SoundEx Code"
 msgstr "Код SoundEx"
 
@@ -1649,7 +2188,7 @@ msgstr "Лица с детьми"
 msgid "Names that match a regular expression"
 msgstr "Имена удлвлетворяющие регулярному выражению"
 
-#: filters/RegExMatch.py:52 filters/SubString.py:43
+#: filters/RegExMatch.py:52 filters/SubString.py:43 srcsel.glade:479
 msgid "Text"
 msgstr "Текст"
 
@@ -1657,7 +2196,483 @@ msgstr "Текст"
 msgid "Names that contain a substring"
 msgstr "Имена содержащие подстроку"
 
-#: gramps_main.py:92
+#: gramps.glade:11
+msgid "GRAMPS"
+msgstr "GRAMPS"
+
+#: gramps.glade:40
+msgid "_File"
+msgstr "Файл"
+
+#: gramps.glade:50
+msgid "_New"
+msgstr "Новый"
+
+#: gramps.glade:75
+msgid "_Revert"
+msgstr "Откатить"
+
+#: gramps.glade:96
+msgid "_Import"
+msgstr "Импорт"
+
+#: gramps.glade:112
+msgid "_Export"
+msgstr "Экспорт"
+
+#: gramps.glade:132
+msgid "Reload Plugins"
+msgstr "Перезагрузить Добавления"
+
+#: gramps.glade:171
+msgid "_Edit"
+msgstr "Правка"
+
+#: gramps.glade:180
+msgid "Find..."
+msgstr "Найти..."
+
+#: gramps.glade:201
+msgid "_Merge"
+msgstr "Слияние"
+
+#: gramps.glade:226
+msgid "_View"
+msgstr "Просмотр"
+
+#: gramps.glade:235
+msgid "Sidebar"
+msgstr "Боковая Панель"
+
+#: gramps.glade:259
+msgid "_Bookmarks"
+msgstr "Закладки"
+
+#: gramps.glade:268
+msgid "_Add Bookmark"
+msgstr "Добавить Закладку"
+
+#: gramps.glade:290
+msgid "_Edit Bookmarks"
+msgstr "Правка Закладок"
+
+#: gramps.glade:318
+msgid "Go to Bookmark"
+msgstr "Пойти к Закладке"
+
+#: gramps.glade:330
+msgid "_Reports"
+msgstr "Отчеты"
+
+#: gramps.glade:338
+msgid "_Tools"
+msgstr "Инструменты"
+
+#: gramps.glade:346
+msgid "_Settings"
+msgstr "Установки"
+
+#: gramps.glade:363
+msgid "_Default Person"
+msgstr "Лицо По Умолчанию"
+
+#: gramps.glade:388
+msgid "_Help"
+msgstr "Справка"
+
+#: gramps.glade:397
+msgid "_User's Manual"
+msgstr "Руководство Пользователя"
+
+#: gramps.glade:418
+msgid "_Writing Extensions"
+msgstr "Написание Расширений"
+
+#: gramps.glade:439
+msgid "GRAMPS _Home Page"
+msgstr "Домашняя Страница GRAMPS"
+
+#: gramps.glade:460
+msgid "GRAMPS _Mailing Lists"
+msgstr "Списки Рассылки GRAMPS"
+
+#: gramps.glade:481
+msgid "_Report a bug"
+msgstr "Сообщить об Ошибке"
+
+#: gramps.glade:490
+msgid "_Show Plugin Status"
+msgstr "Показать Стасус Добавлений"
+
+#: gramps.glade:536
+msgid "Open File"
+msgstr "Открыть Файл"
+
+#: gramps.glade:537
+msgid "Open"
+msgstr "Открыть"
+
+#: gramps.glade:547
+msgid "Save File"
+msgstr "Сохранить Файл"
+
+#: gramps.glade:548
+msgid "Save"
+msgstr "Сохранить"
+
+#: gramps.glade:558
+msgid "Make the default person the active person"
+msgstr "Сделать лицо по умолчанию активным лицом "
+
+#: gramps.glade:559
+msgid "Home"
+msgstr "Домой"
+
+#: gramps.glade:569
+msgid "Generate reports"
+msgstr "Генерировать Отчеты"
+
+#: gramps.glade:570
+msgid "Reports"
+msgstr "Отчеты"
+
+#: gramps.glade:583
+msgid "Run a tool"
+msgstr "Запустить инструмент"
+
+#: gramps.glade:584
+msgid "Tools"
+msgstr "Инструменты"
+
+#: gramps.glade:594 styles.glade:185
+msgid "Add"
+msgstr "Добавить"
+
+#: gramps.glade:607
+msgid "Remove"
+msgstr "Удалить"
+
+#: gramps.glade:772
+msgid "Pedigree"
+msgstr "Родословная"
+
+#: gramps.glade:910
+msgid "Media"
+msgstr "Медиа"
+
+#: gramps.glade:1079
+msgid "Show persons that do not match the filtering rule"
+msgstr "Показать лица не удовлетворяющие правилу фильтра"
+
+#: gramps.glade:1081 rule.glade:280
+msgid "Invert"
+msgstr "Обратить"
+
+#: gramps.glade:1199
+msgid "<b>People</b>"
+msgstr "<b>Люди</b>"
+
+#: gramps.glade:1257
+msgid "Double-click to edit the relationship information"
+msgstr "Двойной щелчок редактирует информацию об отношении"
+
+#: gramps.glade:1271
+msgid "<b>Spouse</b>"
+msgstr "<b>Супруг</b>"
+
+#: gramps.glade:1337
+msgid "<b>Active Person</b>"
+msgstr "<b>Активное Лицо</b>"
+
+#: gramps.glade:1373
+msgid "Adds a spouse"
+msgstr "Добавить супруга"
+
+#: gramps.glade:1403
+msgid "Removes the currently selected spouse"
+msgstr "Удаляет выделенного в настоящий момент супруга"
+
+#: gramps.glade:1449
+msgid "Make the active person's family the active family"
+msgstr "Сделать семью активного лица активной семьей"
+
+#: gramps.glade:1479
+msgid "Adds a new set of parents to the active person"
+msgstr "Добавляет активному лицу новый набор родителей"
+
+#: gramps.glade:1505
+msgid "Deletes the selected parents from the active person"
+msgstr "Удаляет выделенных родителей от активного лица"
+
+#: gramps.glade:1541
+msgid "Exchange the current spouse with the active person"
+msgstr "Поменять текущего супруга с активным лицом"
+
+#: gramps.glade:1610
+msgid "Make the selected spouse's family the active family"
+msgstr "Сделать семью выделенного супруга активной семьей"
+
+#: gramps.glade:1640
+msgid "Adds a new set of parents to the selected spouse"
+msgstr "Добавляет новый набор родителей к выделенному супругу"
+
+#: gramps.glade:1666
+msgid "Deletes the selected parents from the selected spouse"
+msgstr "Удаляет выделенных родителей от выделенного супруга"
+
+#: gramps.glade:1718 gramps.glade:1778
+msgid "Double-click to edit the selected parents"
+msgstr "Двойной щелчок редактирует выделенных родителей"
+
+#: gramps.glade:1732
+msgid "<b>Active Person's Parents</b>"
+msgstr "<b>Родители Активного Лица</b>"
+
+#: gramps.glade:1792
+msgid "<b>Spouse's  Parents</b>"
+msgstr "<b>Родители Супруга</b>"
+
+#: gramps.glade:1847
+msgid "<b>Children</b>"
+msgstr "<b>Дети</b>"
+
+#: gramps.glade:1889
+msgid "Make the selected child the active family"
+msgstr "Сделать выделенного ребенка активной семьей"
+
+#: gramps.glade:1915
+msgid "Adds a new child to the selected family"
+msgstr "Добавляет нового ребенка к выделенной семье"
+
+#: gramps.glade:1941
+msgid "Deletes the selected child from the selected family"
+msgstr "Удаляет выделенного ребенка от выделенной семьи"
+
+#: gramps.glade:2009
+msgid "<b>Family</b>"
+msgstr "<b>Семья</b>"
+
+#: gramps.glade:2056
+msgid "<b>Pedigree</b>"
+msgstr "<b>Родословная</b>"
+
+#: gramps.glade:2172
+msgid "<b>Places</b>"
+msgstr "<b>Места</b>"
+
+#: gramps.glade:2222
+msgid "<b>Preview</b>"
+msgstr "<b>Предварительный Просмотр</b>"
+
+#: gramps.glade:2336 imagesel.glade:965 imagesel.glade:1955
+msgid "Details"
+msgstr "Подробности"
+
+#: gramps.glade:2625
+msgid "<b>Information</b>"
+msgstr "<b>Информация</b>"
+
+#: gramps.glade:2691
+msgid "<b>Media</b>"
+msgstr "<b>Медиа</b>"
+
+#: gramps.glade:2740
+msgid "Select File - GRAMPS"
+msgstr "Выбрать Файл - GRAMPS"
+
+#: gramps.glade:2771
+msgid "Choose Spouse - GRAMPS"
+msgstr "Выбрать Супруга - GRAMPS"
+
+#: gramps.glade:2830
+msgid "Choose Spouse/Partner"
+msgstr "Выбрать Супруга/Партнера"
+
+#: gramps.glade:3004
+msgid "Relationship definition"
+msgstr "Определение Отношений"
+
+#: gramps.glade:3055
+msgid "Choose Parents - GRAMPS"
+msgstr "Выбрать Родителей - GRAMPS"
+
+#: gramps.glade:3121
+msgid "Choose Parents"
+msgstr "Выбрать Родителей"
+
+#: gramps.glade:3203 gramps.glade:6266
+msgid "<b>Father</b>"
+msgstr "<b>Отец</b>"
+
+#: gramps.glade:3272 gramps.glade:6584
+msgid "<b>Mother</b>"
+msgstr "<b>Мать</b>"
+
+#: gramps.glade:3314
+msgid "Father's relationship to child"
+msgstr "Отношение отца к ребенку"
+
+#: gramps.glade:3340
+msgid "Mother's relationship to child"
+msgstr "Отношение матери к ребенку"
+
+#: gramps.glade:3366
+msgid "Parents' relationship to each other"
+msgstr "Отношение родителей между собой"
+
+#: gramps.glade:3848
+msgid "<b>Relationships</b>"
+msgstr "<b>Отношения</b>"
+
+#: gramps.glade:3888
+msgid "Show all people"
+msgstr "Показать всех людей"
+
+#: gramps.glade:3913
+msgid "Add New Person"
+msgstr "Добавить Новое Лицо"
+
+#: gramps.glade:3946
+msgid "Add Child - GRAMPS"
+msgstr "Добавить Ребенка - GRAMPS"
+
+#: gramps.glade:4012
+msgid "<b>Add Children</b>"
+msgstr "<b>Добавить Детей</b>"
+
+#: gramps.glade:4104
+msgid "Hide people not likely to be a child of this family"
+msgstr "Спрятать лиц с малой вероятностью являющимися детьми в этой семье"
+
+#: gramps.glade:4131
+msgid "Relationship to Father"
+msgstr "Отношение к Отцу"
+
+#: gramps.glade:4343
+msgid "Relationship to Mother"
+msgstr "Отношение к Матери"
+
+#: gramps.glade:4551
+msgid "Marriage Editor - GRAMPS"
+msgstr "Редактор Браков - GRAMPS"
+
+#: gramps.glade:4615
+msgid "<b>Marriage Editor</b>"
+msgstr "<b>Редактор Браков</b>"
+
+#: gramps.glade:4648
+msgid "Edit marriage information"
+msgstr "Правка брачной информации"
+
+#: gramps.glade:4666
+msgid "Add a new spouse"
+msgstr "Добавить нового супруга"
+
+#: gramps.glade:4685
+msgid "Remove current spouse"
+msgstr "Удалить текущего супруга"
+
+#: gramps.glade:4712
+msgid "Source Editor - GRAMPS"
+msgstr "Редактор Источников - GRAMPS"
+
+#: gramps.glade:4780
+msgid "<b>Source Editor</b>"
+msgstr "<b>Редактор Источников</b>"
+
+#: gramps.glade:4883
+msgid "Publication Info"
+msgstr "Информация о Публикации"
+
+#: gramps.glade:4983
+msgid "<b><i>General</i></b>"
+msgstr "<b><i>Общее</i></b>"
+
+#: gramps.glade:5034
+msgid "<b><i>Note</i></b>"
+msgstr "<b><i>Записка</i></b>"
+
+#: gramps.glade:5133
+msgid "<b><i>Gallery</i></b>"
+msgstr "<b><i>Галерея</i></b>"
+
+#: gramps.glade:5178
+msgid "<b><i>References</i></b>"
+msgstr "<b><i>Ссылки</i></b>"
+
+#: gramps.glade:5213
+msgid "Add Person - GRAMPS"
+msgstr "Добавить Лицо - GRAMPS"
+
+#: gramps.glade:5277
+msgid "<b>Add Person</b>"
+msgstr "<b>Добавить Лицо</b>"
+
+#: gramps.glade:5551
+msgid "Open a Database - GRAMPS"
+msgstr "Открыть Базу Данных - GRAMPS"
+
+#: gramps.glade:5618
+msgid "<b>Open a Database</b>"
+msgstr "<b>Открыть Базу Данных</b>"
+
+#: gramps.glade:5652
+msgid "Open an Existing Database"
+msgstr "Открыть Существующую Базу Данных"
+
+#: gramps.glade:5671
+msgid "Create a New XML Database"
+msgstr "Создать Новую Базу Данных XML"
+
+#: gramps.glade:5690
+msgid "Create a New ZODB Database"
+msgstr "Создать Новую Базу Данных ZODB"
+
+#: gramps.glade:5717
+msgid "Question - GRAMPS"
+msgstr "Вопрос - GRAMPS"
+
+#: gramps.glade:5742
+msgid "Choose Spouse"
+msgstr "Выбрать Супруга"
+
+#: gramps.glade:5755
+msgid "New Relationship"
+msgstr "Новое Отношение"
+
+#: gramps.glade:5793
+msgid "Add a Spouse or Create a New Relationhip"
+msgstr "Добавить Супруга или Создать Новое Отношение"
+
+#: gramps.glade:5834
+msgid ""
+"No spouse has been defined for the current relationship.\n"
+"\n"
+"You can either define the spouse of the current relationship\n"
+"or create a new relationship."
+msgstr ""
+"В текущем отношении не определен супруг.\n"
+"\n"
+"Вы можете либо определить супруга в текущем отношении,\n"
+"либо создать новое отношение."
+
+#: gramps.glade:5871
+msgid "Modify Parents - GRAMPS"
+msgstr "Изменить Родителей - GRAMPS"
+
+#: gramps.glade:5936
+msgid "<b>Modify Parents</b>"
+msgstr "<b>Изменить Родителей</b>"
+
+#: gramps.glade:6017 gramps.glade:6530
+msgid "Name :"
+msgstr "Имя :"
+
+#: gramps.glade:6043 gramps.glade:6556
+msgid "Relationship :"
+msgstr "Отношение :"
+
+#: gramps_main.py:92 mergedata.glade:432 mergedata.glade:1021
 msgid "Death Date"
 msgstr "Дата Смерти"
 
@@ -1768,6 +2783,225 @@ msgstr "Вы хотите выбрать %s в качестве лица по умолчанию?"
 msgid "Set Home Person"
 msgstr "Установить Лицо По Умолчанию"
 
+#: imagesel.glade:9
+msgid "Select a Media Object - GRAMPS"
+msgstr "Выбрать Медиа-Объект - GRAMPS"
+
+#: imagesel.glade:74
+msgid "Select a Media Object"
+msgstr "Выбрать Медиа-Объект"
+
+#: imagesel.glade:152
+msgid "Preview"
+msgstr "Предварительный Просмотр"
+
+#: imagesel.glade:215 plugins/gedcomimport.glade:61
+msgid "File"
+msgstr "Файл"
+
+#: imagesel.glade:288
+msgid "Do not make a local copy"
+msgstr "Не делать локальной копии"
+
+#: imagesel.glade:312
+msgid "Select an image"
+msgstr "Выбрать изображение"
+
+#: imagesel.glade:362
+msgid "Change Local Media Object Properties - GRAMPS"
+msgstr "Изменить Локальные Свойства Медиа-Объекта - GRAMPS"
+
+#: imagesel.glade:428
+msgid "Change Local Media Object Properties"
+msgstr "Изменить Локальные Свойства Медиа-Объекта"
+
+#: imagesel.glade:594 imagesel.glade:1599
+msgid "Object Type"
+msgstr "Тип Объекта"
+
+#: imagesel.glade:868 imagesel.glade:2294 plugins/IndivComplete.py:149
+#: plugins/WebPage.py:463
+msgid "Notes"
+msgstr "Записки"
+
+#: imagesel.glade:1065 imagesel.glade:2055
+msgid "No Attributes"
+msgstr "Нет Атрибутов"
+
+#: imagesel.glade:1214
+msgid "Creates a new object attribute from the above data"
+msgstr "Создает новый атрибут объекта из вышеприведенных данных"
+
+#: imagesel.glade:1253 imagesel.glade:2243
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: imagesel.glade:1288
+msgid "Change Global Media Object Properties - GRAMPS"
+msgstr "Изменить Глобальные Свойства Медиа-Объекта - GRAMPS"
+
+#: imagesel.glade:1367
+msgid "Change Global Media Object Properties"
+msgstr "Изменить Глобальные Свойства Медиа-Объекта"
+
+#: imagesel.glade:1673
+msgid "General Information"
+msgstr "Общая Информация"
+
+#: imagesel.glade:1807
+msgid "Copies the object into the database"
+msgstr "Копирует объект в базу данных"
+
+#: imagesel.glade:1809
+msgid "Make Local Copy"
+msgstr "Сделать Локальную Копию"
+
+#: imagesel.glade:2204
+msgid "Creates a new attribute from the above data"
+msgstr "Создает новый атрибут из вышеприведенных данных"
+
+#: imagesel.glade:2338 places.glade:1626
+msgid "References"
+msgstr "Ссылки"
+
+#: marriage.glade:9
+msgid "Marriage/Relationship Editor - GRAMPS"
+msgstr "Редактор Браков/Отношений - GRAMPS"
+
+#: marriage.glade:77
+msgid "<b>Marriage/Relationship Editor</b>"
+msgstr "<b>Редактор Браков/Отношений</b>"
+
+#: marriage.glade:913
+msgid "Add new event for this marriage"
+msgstr "Добавить новые события для данного брака"
+
+#: marriage.glade:926
+msgid "Delete selected event"
+msgstr "Уничтожить выделенное событие"
+
+#: marriage.glade:1371
+msgid "Create a new attribute for this marriage"
+msgstr "Создать новый атрибут для данного брака"
+
+#: marriage.glade:1897
+msgid "<b>Spouse Sealing</b>"
+msgstr "<b>Соединение Супругов</b>"
+
+#: mergedata.glade:8
+msgid "Merge Places - GRAMPS"
+msgstr "Слить Места - GRAMPS"
+
+#: mergedata.glade:71
+msgid "Select the title for the merged place"
+msgstr "Выбрать название для объединенного места"
+
+#: mergedata.glade:182
+msgid "Place 1"
+msgstr "Место 1"
+
+#: mergedata.glade:205
+msgid "Place 2"
+msgstr "Место 2"
+
+#: mergedata.glade:268 plugins/merge.glade:8 plugins/merge.glade:247
+msgid "Merge People - GRAMPS"
+msgstr "Слить Людей - GRAMPS"
+
+#: mergedata.glade:293
+msgid "Merge and Close"
+msgstr "Слить и Закрыть"
+
+#: mergedata.glade:306
+msgid "Merge and Edit"
+msgstr "Слияние и Правка"
+
+#: mergedata.glade:344 plugins/merge.glade:309
+msgid "Merge People"
+msgstr "Слить Людей"
+
+#: mergedata.glade:504 mergedata.glade:1069
+msgid "Birth Place"
+msgstr "Место Рождения"
+
+#: mergedata.glade:528 mergedata.glade:1117
+msgid "Death Place"
+msgstr "Место Смерти"
+
+#: mergedata.glade:761 mergedata.glade:1288
+msgid "Spouses"
+msgstr "Супруги"
+
+#: mergedata.glade:979 plugins/Merge.py:215
+msgid "First Person"
+msgstr "Первое Лицо"
+
+#: mergedata.glade:1614 plugins/Merge.py:216
+msgid "Second Person"
+msgstr "Второе Лицо"
+
+#: mergedata.glade:1681
+msgid "Keep other name as an alternate name"
+msgstr "Сохранить другое имя в качестве альтернативного имени"
+
+#: mergedata.glade:1699
+msgid "Keep other birth event as an alternate birth event"
+msgstr ""
+"Сохранить другое событие рождения в качестве альтернативного события рождения"
+
+#: mergedata.glade:1717
+msgid "Keep other death event as an alternate death event"
+msgstr ""
+"Сохранить другое событие смерти в качестве альтернативного события смерти"
+
+#: places.glade:9
+msgid "Place Editor - GRAMPS"
+msgstr "Редактор Мест - GRAMPS"
+
+#: places.glade:75
+msgid "Place Editor"
+msgstr "Редактор Мест"
+
+#: places.glade:249
+msgid "Longitude"
+msgstr "Долгота"
+
+#: places.glade:273
+msgid "Latitude"
+msgstr "Широта"
+
+#: places.glade:925 places.glade:1020
+msgid "Other Names"
+msgstr "Другие Имена"
+
+#: places.glade:1260 plugins/WebPage.py:355
+msgid "Gallery"
+msgstr "Галерея"
+
+#: places.glade:1480
+msgid "Internet Addresses"
+msgstr "Адреса в Интернете"
+
+#: places.glade:1575
+msgid "Internet"
+msgstr "Интернет"
+
+#: plugins.glade:8
+msgid "Report Selection - GRAMPS"
+msgstr "Выбор Отчета - GRAMPS"
+
+#: plugins.glade:179
+msgid "Select a report from those available on the left."
+msgstr "Выбрать отчет из доступных слева"
+
+#: plugins.glade:279
+msgid "Author's Email"
+msgstr "Эл. Почта Автора"
+
+#: plugins.glade:445
+msgid "Plugin Status - GRAMPS"
+msgstr "Статус Добавлений - GRAMPS"
+
 #: plugins/AncestorChart.py:217 plugins/AncestorChart.py:424
 msgid "Ancestor Chart"
 msgstr "Карта Предков"
@@ -1775,6 +3009,7 @@ msgstr "Карта Предков"
 #: plugins/AncestorChart.py:217 plugins/AncestorChart.py:425
 #: plugins/DesGraph.py:308 plugins/DesGraph.py:459 plugins/FullFamily.py:105
 #: plugins/FullFamily.py:170 plugins/GraphViz.py:78 plugins/GraphViz.py:448
+#: plugins/TimeLine.py:310 plugins/TimeLine.py:448
 msgid "Graphical Reports"
 msgstr "Графические Отчеты"
 
@@ -1798,9 +3033,10 @@ msgstr "Позволяет вам настроить данные в рамках в отчете"
 
 #: plugins/AncestorChart.py:426 plugins/AncestorReport.py:386
 #: plugins/DescendReport.py:282 plugins/DetAncestralReport.py:826
-#: plugins/DetDescendantReport.py:899 plugins/FullFamily.py:171
-#: plugins/GraphViz.py:447 plugins/IndivComplete.py:663
-#: plugins/IndivSummary.py:496 plugins/Summary.py:146 plugins/WebPage.py:1251
+#: plugins/DetDescendantReport.py:899 plugins/FamilyGroup.py:562
+#: plugins/FullFamily.py:171 plugins/GraphViz.py:447
+#: plugins/IndivComplete.py:663 plugins/IndivSummary.py:496
+#: plugins/Summary.py:146 plugins/TimeLine.py:447 plugins/WebPage.py:1251
 msgid "Beta"
 msgstr "Бета"
 
@@ -1892,6 +3128,7 @@ msgstr "Таблица Предков"
 #: plugins/AncestorReport.py:225 plugins/AncestorReport.py:385
 #: plugins/DescendReport.py:124 plugins/DescendReport.py:281
 #: plugins/DetAncestralReport.py:827 plugins/DetDescendantReport.py:900
+#: plugins/FamilyGroup.py:344 plugins/FamilyGroup.py:561
 #: plugins/IndivComplete.py:446 plugins/IndivComplete.py:664
 #: plugins/IndivSummary.py:317 plugins/IndivSummary.py:497
 msgid "Text Reports"
@@ -1973,7 +3210,7 @@ msgstr "Поправлено %d нарушенных семейных отношений\n"
 
 #: plugins/Check.py:198
 msgid "1 media object was referenced, but not found\n"
-msgstr "Не найден 1 из медиа-объектов с актовной ссылкой\n"
+msgstr "Не найден 1 из медиа-объектов с активной ссылкой\n"
 
 #: plugins/Check.py:200
 msgid "%d media objects were referenced, but not found\n"
@@ -2027,7 +3264,8 @@ msgid "Provides a browsable hierarchy based on the active person"
 msgstr "Предоставляет просматриваемую иерархию основанную на активном лице"
 
 #: plugins/DescendReport.py:87 plugins/GraphViz.py:103
-#: plugins/IndivComplete.py:475 plugins/WriteGedcom.py:369
+#: plugins/IndivComplete.py:475 plugins/TimeLine.py:353
+#: plugins/WriteGedcom.py:373
 msgid "Descendants of %s"
 msgstr "Потомки %s"
 
@@ -2248,7 +3486,7 @@ msgstr "Подробный Отчет о Предках"
 msgid "Produces a detailed ancestral report"
 msgstr "Производит подробный отчет о предках"
 
-#: plugins/DetAncestralReport.py:934 plugins/DetDescendantReport.py:1003
+#: plugins/DetAncestralReport.py:936 plugins/DetDescendantReport.py:1005
 msgid " at the age of %d %s"
 msgstr " в возрасте %d %s"
 
@@ -2277,7 +3515,7 @@ msgid "Produces a detailed descendant report"
 msgstr "Производит подробный отчет о потомках"
 
 #: plugins/EventCmp.py:141 plugins/GraphViz.py:99 plugins/IndivComplete.py:483
-#: plugins/WebPage.py:922 plugins/WriteGedcom.py:365
+#: plugins/TimeLine.py:349 plugins/WebPage.py:922 plugins/WriteGedcom.py:369
 msgid "Entire Database"
 msgstr "Вся база данных"
 
@@ -2285,7 +3523,7 @@ msgstr "Вся база данных"
 msgid "No matches were found"
 msgstr "Не найдено соответствий"
 
-#: plugins/EventCmp.py:288
+#: plugins/EventCmp.py:288 plugins/FamilyGroup.py:167
 msgid "Death"
 msgstr "Смерть"
 
@@ -2301,7 +3539,45 @@ msgstr ""
 "Помогает в анализе данных путем обеспечения разработки специальных фильтров "
 "которые могут быть применены к базе данных для поиска сходных событий"
 
-#: plugins/FilterEditor.py:66
+#: plugins/FamilyGroup.py:117 plugins/FamilyGroup.py:344
+#: plugins/FamilyGroup.py:560
+msgid "Family Group Report"
+msgstr "Отчет о Семейной Группе"
+
+#: plugins/FamilyGroup.py:129
+msgid "Husband"
+msgstr "Муж"
+
+#: plugins/FamilyGroup.py:131
+msgid "Wife"
+msgstr "Жена"
+
+#: plugins/FamilyGroup.py:288 plugins/FamilyGroup.py:387
+msgid "Spouse"
+msgstr "Супруг"
+
+#: plugins/FamilyGroup.py:322 plugins/IndivComplete.py:271
+#: plugins/IndivSummary.py:168 plugins/WebPage.py:553
+msgid "Children"
+msgstr "Дети"
+
+#: plugins/FamilyGroup.py:348
+msgid "Family Group Report for %s"
+msgstr "Отчет о Семейной Группе для %s"
+
+#: plugins/FamilyGroup.py:353
+msgid "Save Family Group Report"
+msgstr "Сохранить Отчет о Семейной Группе"
+
+#: plugins/FamilyGroup.py:563
+msgid ""
+"Creates a family group report, showing information on a set of parents and "
+"their children."
+msgstr ""
+"Создает отчет о семейной группе показывающий информацию о нескольких "
+"родителях и их детях"
+
+#: plugins/FilterEditor.py:66 rule.glade:141
 msgid "Comment"
 msgstr "Коментарий"
 
@@ -2369,14 +3645,14 @@ msgstr "Граф Отношений"
 msgid "Graphviz File"
 msgstr "Graphviz Файл"
 
-#: plugins/GraphViz.py:107 plugins/IndivComplete.py:479 plugins/WebPage.py:934
-#: plugins/WriteGedcom.py:373
+#: plugins/GraphViz.py:107 plugins/IndivComplete.py:479
+#: plugins/TimeLine.py:357 plugins/WebPage.py:934 plugins/WriteGedcom.py:377
 msgid "Ancestors of %s"
 msgstr "Предки %s"
 
-#: plugins/GraphViz.py:111 plugins/WriteGedcom.py:377
+#: plugins/GraphViz.py:111 plugins/TimeLine.py:361 plugins/WriteGedcom.py:381
 msgid "People with common ancestor with %s"
-msgstr "Люди с общим предком с %s"
+msgstr "Лица, имеющие общего предка с %s"
 
 #: plugins/GraphViz.py:120
 msgid "Descendants <- Ancestors"
@@ -2455,11 +3731,11 @@ msgstr "Отношения не являющиеся рождением будут изображены на графе пунктиром"
 
 #: plugins/GraphViz.py:186
 msgid "Show family nodes"
-msgstr "Показывать семейные узлы"
+msgstr "Показать семейные узлы"
 
 #: plugins/GraphViz.py:191
 msgid "Families will show up as circles, linked to parents and children."
-msgstr "Семьи будут изображены кругами, связанными с родителями и детьми."
+msgstr "Семьи будут показаны кругами, связанными с родителями и детьми."
 
 #: plugins/GraphViz.py:203
 msgid "Top & Bottom Margins"
@@ -2511,10 +3787,6 @@ msgstr ""
 msgid "%(date)s in %(place)s."
 msgstr "%(date)s в %(place)s"
 
-#: plugins/IndivComplete.py:149 plugins/WebPage.py:463
-msgid "Notes"
-msgstr "Записки"
-
 #: plugins/IndivComplete.py:176
 msgid "Alternate Parents"
 msgstr "Поменять Родителей"
@@ -2527,15 +3799,6 @@ msgstr "Поменять Имена"
 #: plugins/WebPage.py:516
 msgid "Marriages/Children"
 msgstr "Браки/Дети"
-
-#: plugins/IndivComplete.py:271 plugins/IndivSummary.py:168
-#: plugins/WebPage.py:553
-msgid "Children"
-msgstr "Дети"
-
-#: plugins/IndivComplete.py:299 plugins/WebPage.py:204
-msgid "Sources"
-msgstr "Источники"
 
 #: plugins/IndivComplete.py:317 plugins/IndivSummary.py:291
 msgid "Individual Facts"
@@ -2594,16 +3857,8 @@ msgid "Medium"
 msgstr "Средняя"
 
 #: plugins/Merge.py:215
-msgid "First Person"
-msgstr "Первое Лицо"
-
-#: plugins/Merge.py:215
 msgid "Rating"
 msgstr "Рейтинг"
-
-#: plugins/Merge.py:216
-msgid "Second Person"
-msgstr "Второе Лицо"
 
 #: plugins/Merge.py:545
 msgid "Find possible duplicate people"
@@ -2641,25 +3896,25 @@ msgstr ""
 "Просматривает всю базу данных и пытается выделить титулы и краткие имена, "
 "возможно содержащиеся в имени лица."
 
-#: plugins/ReadGedcom.py:290
+#: plugins/ReadGedcom.py:296
 msgid "GEDCOM file ended unexpectedly"
-msgstr "GEDCOM файл неожиданно закончился"
+msgstr "Файл GEDCOM неожиданно закончился"
 
-#: plugins/ReadGedcom.py:306 plugins/ReadGedcom.py:318
+#: plugins/ReadGedcom.py:312 plugins/ReadGedcom.py:323
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr ""
 "Предупреждение: строка %d не была распознана, поэтому она игнорируется."
 
-#: plugins/ReadGedcom.py:364
+#: plugins/ReadGedcom.py:368
 msgid "Import Complete: %d seconds"
 msgstr "Имопрт Завершен: %d секунд"
 
-#: plugins/ReadGedcom.py:1695 plugins/ReadGedcom.py:1738
+#: plugins/ReadGedcom.py:1699 plugins/ReadGedcom.py:1742
 msgid "Import from GEDCOM"
 msgstr "Импорт из GEDCOM"
 
-#: plugins/ReadNative.py:47 plugins/ReadNative.py:55 plugins/ReadNative.py:58
-#: plugins/ReadNative.py:94
+#: plugins/ReadNative.py:47 plugins/ReadNative.py:58 plugins/ReadNative.py:61
+#: plugins/ReadNative.py:97
 msgid "Import from GRAMPS"
 msgstr "Импорт из GRAMPS"
 
@@ -3058,6 +4313,26 @@ msgstr "Просмотр"
 msgid "Provides a summary of the current database"
 msgstr "Предоставляет итоги текущей базы данных"
 
+#: plugins/TimeLine.py:309
+msgid "Timeline"
+msgstr "Временная Линия"
+
+#: plugins/TimeLine.py:315
+msgid "TimeLine File"
+msgstr "Файл Временной Линии"
+
+#: plugins/TimeLine.py:337
+msgid "Sort by"
+msgstr "Сортировать по"
+
+#: plugins/TimeLine.py:442
+msgid "Generates a timeline graph."
+msgstr "Генерирует график временной линии"
+
+#: plugins/TimeLine.py:446
+msgid "TimeLine Graph"
+msgstr "График Временной Линии"
+
 #: plugins/Verify.py:290
 msgid "Verify the database"
 msgstr "Проверить базу данных"
@@ -3073,10 +4348,6 @@ msgstr "ID номер"
 #: plugins/WebPage.py:322
 msgid "Return to the index of people"
 msgstr "Вернуться к индексу лиц"
-
-#: plugins/WebPage.py:355
-msgid "Gallery"
-msgstr "Галерея"
 
 #: plugins/WebPage.py:429
 msgid "Facts and Events"
@@ -3111,7 +4382,8 @@ msgstr "Не смогла создать каталог : %s"
 msgid "Include a link to the index page"
 msgstr "Поставить линк к главной странице"
 
-#: plugins/WebPage.py:845
+#: plugins/WebPage.py:845 plugins/gedcomexport.glade:429
+#: plugins/pafexport.glade:276
 msgid "Do not include records marked private"
 msgstr "Не включать записи помеченные как личные"
 
@@ -3183,13 +4455,25 @@ msgstr "Семьи Потомков %s"
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "Создает web (HTML) страницы дла отдельных лиц или для групп лиц."
 
-#: plugins/WriteGedcom.py:1029
+#: plugins/WriteGedcom.py:1076
 msgid "Export to GEDCOM"
 msgstr "Экспорт в GEDCOM"
 
 #: plugins/WritePkg.py:151
 msgid "Export to GRAMPS package"
 msgstr "Экспорт в пакет GRAMPS"
+
+#: plugins/changetype.glade:6
+msgid "Change Event Types - GRAMPS"
+msgstr "Поменять Типы Событий - GRAMPS"
+
+#: plugins/changetype.glade:69
+msgid "Change Event Type of"
+msgstr "Поменять Типы Событий"
+
+#: plugins/changetype.glade:137
+msgid "to"
+msgstr "на"
 
 #: plugins/count_anc.py:51
 msgid "Number of ancestors of \"%s\" by generation"
@@ -3215,6 +4499,262 @@ msgstr "Число предков"
 msgid "Counts number of ancestors of selected person"
 msgstr "Вычисляет число предков выделенного лица"
 
+#: plugins/desbrowse.glade:6
+msgid "Descendant Browser - GRAMPS"
+msgstr "Просмотр Потомков - GRAMPS"
+
+#: plugins/desbrowse.glade:69
+msgid "Descendant Browser"
+msgstr "Просмотр Потомков"
+
+#: plugins/eventcmp.glade:9
+msgid "Save as a Spreadsheet - GRAMPS"
+msgstr "Сохранить как Таблицу - GRAMPS"
+
+#: plugins/eventcmp.glade:71
+msgid "Save data as a spreadsheet"
+msgstr "Сохранить данные как таблицу"
+
+#: plugins/eventcmp.glade:105
+msgid "Save Data"
+msgstr "Сохранить Данные"
+
+#: plugins/eventcmp.glade:147
+msgid "OpenOffice Spreadsheet"
+msgstr "Таблица OpenOffice"
+
+#: plugins/eventcmp.glade:215
+msgid "Choose the HTML template"
+msgstr "Выбрать образец HTML"
+
+#: plugins/eventcmp.glade:252
+msgid "Format"
+msgstr "Формат"
+
+#: plugins/eventcmp.glade:287 plugins/eventcmp.glade:415
+msgid "Event Comparison - GRAMPS"
+msgstr "Сравнение Событий - GRAMPS"
+
+#: plugins/eventcmp.glade:354 plugins/eventcmp.glade:477
+msgid "Event Comparison"
+msgstr "Сравнение Событий"
+
+#: plugins/gedcomexport.glade:9 plugins/gedcomexport.glade:502
+msgid "Export GEDCOM file"
+msgstr "Экспорт GEDCOM файла"
+
+#: plugins/gedcomexport.glade:72 plugins/gedcomexport.glade:551
+#: plugins/pkgexport.glade:188
+msgid "GEDCOM Export"
+msgstr "GEDCOM Экспорт"
+
+#: plugins/gedcomexport.glade:106
+msgid "Export GEDCOM"
+msgstr "Экспорт GEDCOM"
+
+#: plugins/gedcomexport.glade:199
+msgid "ANSEL"
+msgstr "ANSEL"
+
+#: plugins/gedcomexport.glade:218
+msgid "UNICODE"
+msgstr "UNICODE"
+
+#: plugins/gedcomexport.glade:238 plugins/gedcomimport.glade:199
+msgid "Encoding"
+msgstr "Кодировка"
+
+#: plugins/gedcomexport.glade:287
+msgid "Copyright"
+msgstr "Копирайт (Copyright)"
+
+#: plugins/gedcomexport.glade:313
+msgid "Target"
+msgstr "Назначение"
+
+#: plugins/gedcomexport.glade:349
+msgid "Standard GEDCOM 5.5"
+msgstr "Стандарт GEDCOM 5.5"
+
+#: plugins/gedcomexport.glade:379
+msgid "Standard Copyright"
+msgstr "Стандартное Право Копирования (Copyright)"
+
+#: plugins/gedcomexport.glade:388
+msgid "GNU Free Documentation License"
+msgstr "Свободная Лицензия для Документации GNU"
+
+#: plugins/gedcomexport.glade:397
+msgid "No Copyright"
+msgstr "Нет Копирайта (No Copyright)"
+
+#: plugins/gedcomexport.glade:448 plugins/pafexport.glade:292
+msgid "Restrict data on living people"
+msgstr "Ограничить данные о живущих лицах"
+
+#: plugins/gedcomexport.glade:467 plugins/merge.glade:445
+#: plugins/pafexport.glade:261 styles.glade:794
+msgid "Options"
+msgstr "Параметры"
+
+#: plugins/gedcomimport.glade:6
+msgid "GEDCOM Import Status"
+msgstr "Статус Импорта GEDCOM"
+
+#: plugins/gedcomimport.glade:22
+msgid "GEDCOM Import"
+msgstr "Импорт GEDCOM"
+
+#: plugins/gedcomimport.glade:84
+msgid "Created by"
+msgstr "Создание:"
+
+#: plugins/gedcomimport.glade:107
+msgid "Version"
+msgstr "Версия"
+
+#: plugins/gedcomimport.glade:130
+msgid "Number of Families"
+msgstr "Число Семей"
+
+#: plugins/gedcomimport.glade:153
+msgid "Number of People"
+msgstr "Число Людей"
+
+#: plugins/gedcomimport.glade:176
+msgid "Number of Errors"
+msgstr "Число Ошибок"
+
+#: plugins/gedcomimport.glade:370
+msgid "Close window when complete"
+msgstr "Закрыть окно после завершения"
+
+#: plugins/merge.glade:24
+msgid "Determining Possible Merges"
+msgstr "Определяю Возможные Слияния"
+
+#: plugins/merge.glade:56
+msgid "Please be patient. This may take a while."
+msgstr "Пожалуйста, потерпите. Это может затянуться."
+
+#: plugins/merge.glade:118
+msgid "Merge List - GRAMPS"
+msgstr "Слить Список - GRAMPS"
+
+#: plugins/merge.glade:142
+msgid "Merge"
+msgstr "Слить"
+
+#: plugins/merge.glade:180
+msgid "Potential Merges"
+msgstr "Потенциальные Слияния"
+
+#: plugins/merge.glade:364
+msgid "Match Threshold"
+msgstr "Степень Порога Соответствия"
+
+#: plugins/merge.glade:405
+msgid "Use SoundEx codes for name matches"
+msgstr "Использовать коды SoundEx для сопоставления имен"
+
+#: plugins/merge.glade:422
+msgid "(Recommended only for English)"
+msgstr "(Рекомендуется только для Английского языка)"
+
+#: plugins/pafexport.glade:8
+msgid "Export PAF for PalmOS file"
+msgstr "Экспорт PAF файл для PalmOS"
+
+#: plugins/pafexport.glade:70
+msgid "PAF for PalmOS Export"
+msgstr "Экспорт PAF для PalmOS"
+
+#: plugins/pafexport.glade:157
+msgid "Information"
+msgstr "Информация"
+
+#: plugins/pafexport.glade:176
+msgid "Database name: "
+msgstr "Имя базы данных: "
+
+#: plugins/patchnames.glade:8
+msgid "Name and Title Extraction Tool - GRAMPS"
+msgstr "Инструмент Извлечения Имен и Титулов - GRAMPS"
+
+#: plugins/patchnames.glade:86
+msgid "Name and Title Extraction Tool"
+msgstr "Инструмент Извлечения Имен и Титулов"
+
+#: plugins/patchnames.glade:122
+msgid ""
+"Below is a list of the nicknames and titles that GRAMPS can extract from the "
+"\ncurrent database. If you select 'Yes', GRAMPS will modify your database as "
+"\nspecified below. If you do not approve of these changes, you should select "
+"\n'No', and your database will not be altered.\n"
+"\n"
+"Should the following changes be made?"
+msgstr ""
+"Ниже приведен список кратких имен и титулов которые GRAMPS может\n"
+"извлечь из текущей базы данных. Если вы выберете 'Да', GRAMPS\n"
+"изменит вашу базу данных в соответствии с нижеследующим. Если вы\n"
+"не одобряете эти изменения, выберете 'Нет' и ваша база данных не будет\n"
+"изменена.\n"
+"\n"
+"Произвести нижеследующие изменения?"
+
+#: plugins/pkgexport.glade:8
+msgid "Export GRAMPS package - GRAMPS"
+msgstr "Экспорт пакета GRAMPS - GRAMPS"
+
+#: plugins/pkgexport.glade:70
+msgid "GRAMPS package export"
+msgstr "Экспорт пакета GRAMPS"
+
+#: plugins/pkgexport.glade:139
+msgid "Export GRAMPS package"
+msgstr "Экспорт пакета GRAMPS"
+
+#: plugins/pkgexport.glade:299 plugins/pkgexport.glade:323
+#: plugins/pkgexport.glade:347 plugins/readgedcom.glade:54
+msgid "%P %%"
+msgstr "%P %%"
+
+#: plugins/readgedcom.glade:6
+msgid "GEDCOM Read Progress"
+msgstr "Прогресс Чтения GEDCOM"
+
+#: plugins/readgedcom.glade:22
+msgid "GEDCOM Import Progress"
+msgstr "Прогресс Импорта GEDCOM"
+
+#: plugins/relcalc.glade:8
+msgid "Relationship Calculator - GRAMPS"
+msgstr "Счетчик Отношений - GRAMPS"
+
+#: plugins/relcalc.glade:72
+msgid "name"
+msgstr "имя"
+
+#: plugins/soundex.glade:6
+msgid "SoundEx Code Generator - GRAMPS"
+msgstr "Генератор Кодов SoundEx - GRAMPS"
+
+#: plugins/soundex.glade:28
+msgid "Calculate SoundEx code for the name"
+msgstr "Вычислить код SoundEx для данного имени"
+
+#: plugins/soundex.glade:42
+msgid "Close Window"
+msgstr "Закрыть Окно"
+
+#: plugins/soundex.glade:70
+msgid "SoundEx Code Generator"
+msgstr "Генератор Кодов SoundEx"
+
+#: plugins/soundex.glade:186
+msgid "Name used to generate SoundEx code"
+msgstr "Имя использованное для вычисления кода SoundEx"
+
 #: plugins/soundgen.py:86
 msgid "Generate SoundEx codes"
 msgstr "Генерирует коды SoundEx"
@@ -3223,23 +4763,574 @@ msgstr "Генерирует коды SoundEx"
 msgid "Generates SoundEx codes for names"
 msgstr "Генерирует коды SoundEx для имен"
 
+#: plugins/summary.glade:8
+msgid "Database Summary - GRAMPS"
+msgstr "Итоги Базы Данных - GRAMPS"
+
+#: plugins/summary.glade:66
+msgid "Database Summary"
+msgstr "Итоги Базы Данных"
+
+#: plugins/verify.glade:8
+msgid "Database Verify - GRAMPS"
+msgstr "Проверить Базу Данных - GRAMPS"
+
+#: plugins/verify.glade:72
+msgid "Database Verify"
+msgstr "Проверить Базу Данных"
+
+#: plugins/verify.glade:112
+msgid "Verify - Settings"
+msgstr "Проверить - Свойства"
+
+#: plugins/verify.glade:152
+msgid "Maximum age"
+msgstr "Наибольший возраст"
+
+#: plugins/verify.glade:175
+msgid "Maximum husband-wife age difference"
+msgstr "Наибольшая разница в возрасте между мужем и женой"
+
+#: plugins/verify.glade:198
+msgid "Minimum age to marry"
+msgstr "Наименьший возраст для вступления в брак"
+
+#: plugins/verify.glade:221
+msgid "Maximum age to marry"
+msgstr "Наибольший возраст для вступления в брак"
+
+#: plugins/verify.glade:244
+msgid "Maximum number of spouses for a person"
+msgstr "Наибольшее число супругов для лица"
+
+#: plugins/verify.glade:267
+msgid "Maximum number of consecutive years of widowhood"
+msgstr "Наибольшее число лет подряд во вдовстве"
+
+#: plugins/verify.glade:290
+msgid "Maximum number of years between children"
+msgstr "Наибольшая разница в возрасте детей"
+
+#: plugins/verify.glade:313
+msgid "Maximum span of years for all children"
+msgstr "Наибольшее разница в возрасте между всеми детьми"
+
+#: plugins/verify.glade:528
+msgid "Women"
+msgstr "Женщины"
+
+#: plugins/verify.glade:545
+msgid "Minimum age to bear a child"
+msgstr "Наименьший возраст для рождения ребенка"
+
+#: plugins/verify.glade:568
+msgid "Maximum age to bear a child"
+msgstr "Наибольший возраст для рождения ребенка"
+
+#: plugins/verify.glade:635 plugins/verify.glade:797
+msgid "Maximum number of children"
+msgstr "Наибольшее число детей"
+
+#: plugins/verify.glade:690
+msgid "Men"
+msgstr "Мужчины"
+
+#: plugins/verify.glade:707
+msgid "Minimum age to father a child"
+msgstr "Наименьший возраст чтобы стать отцом"
+
+#: plugins/verify.glade:730
+msgid "Maximum age to father a child"
+msgstr "Наибольший возраст чтобы стать отцом"
+
+#: preferences.glade:9
+msgid "Preferences - GRAMPS"
+msgstr "Настройки - GRAMPS"
+
+#: preferences.glade:149
+msgid "GRAMPS Preferences"
+msgstr "Настройки GRAMPS"
+
+#: preferences.glade:222
+msgid ""
+"To change your preferences, select one of the subcategories in the menu on "
+"the left hand side of the window."
+msgstr ""
+"Чтобы изменить ваши настройки выберите одну из подкатегорий в меню с левой "
+"стороны окна"
+
+#: preferences.glade:293
+msgid "Default database directory"
+msgstr "Каталог базы данных по умолчанию"
+
+#: preferences.glade:321
+msgid "Select default database directory - GRAMPS"
+msgstr "Выбрать каталог базы данных по умолчанию - GRAMPS"
+
+#: preferences.glade:328
+msgid "The default directory for storing databases"
+msgstr "Каталог по умолчанию для хранения баз данных"
+
+#: preferences.glade:356
+msgid "Automatically load last database"
+msgstr "Автоматически загружать последнюю базу данных"
+
+#: preferences.glade:380
+msgid "Do not compress XML data file"
+msgstr "Не сжимать XML файл данных"
+
+#: preferences.glade:426
+msgid "Autosave interval (minutes)"
+msgstr "Интервал автосохранения (минуты)"
+
+#: preferences.glade:453
+msgid "Capitalize surnames"
+msgstr "Заглавные буквы для фамилий"
+
+#: preferences.glade:584
+msgid "Use Revision Control"
+msgstr "Использовать Контроль Ревизий"
+
+#: preferences.glade:608
+msgid "Prompt for comment on save"
+msgstr "Запрашивать комментарии при сохранении"
+
+#: preferences.glade:633
+msgid "Revison Control"
+msgstr "Контроль Ревизий"
+
+#: preferences.glade:699
+msgid "Enable autocompletion"
+msgstr "Включить автодополнение"
+
+#: preferences.glade:784
+msgid "Display only icons"
+msgstr "Показывать только пиктограммы"
+
+#: preferences.glade:803
+msgid "Display only text"
+msgstr "Показывать только текст"
+
+#: preferences.glade:823
+msgid "Display icons and text"
+msgstr "Показывать пиктограммы и текст"
+
+#: preferences.glade:844
+msgid "Toolbar"
+msgstr "Панель Инструментов"
+
+#: preferences.glade:885
+msgid "Active person's name only"
+msgstr "Только имя активного лица"
+
+#: preferences.glade:904
+msgid "Active person's name and GRAMPS ID"
+msgstr "Имя и GRAMPS ID номер активного лица"
+
+#: preferences.glade:925
+msgid "Status Bar"
+msgstr "Панель Статуса"
+
+#: preferences.glade:998
+msgid "Always display the LDS ordinance tabs"
+msgstr "Всегда показывать листы процедур LDS"
+
+#: preferences.glade:1060
+msgid "Show index numbers in child list"
+msgstr "Показывать индексационные номера в списке детей"
+
+#: preferences.glade:1080
+msgid "List display options"
+msgstr "Перечислить параметры вывода"
+
+#: preferences.glade:1154 preferences.glade:1293
+msgid "Date Format"
+msgstr "Форматы Дат"
+
+#: preferences.glade:1178
+msgid "Name Format"
+msgstr "Форматы Имен"
+
+#: preferences.glade:1250
+msgid "Display Formats"
+msgstr "Форматы Вывода"
+
+#: preferences.glade:1342
+msgid "Entry Formats"
+msgstr "Форматы Ввода"
+
+#: preferences.glade:1383
+msgid "Show calendar format selection menu"
+msgstr "Показывать меню выбора формата календаря"
+
+#: preferences.glade:1403
+msgid "Calendars"
+msgstr "Календари"
+
+#: preferences.glade:1945
+msgid "Preferred Text Format"
+msgstr "Предпочитаемый Формат Текста"
+
+#: preferences.glade:1971
+msgid "Preferred Paper Size"
+msgstr "Предпочитаемый Размер Бумаги"
+
+#: preferences.glade:1997
+msgid "Default report directory"
+msgstr "Каталог отчетов по умолчанию"
+
+#: preferences.glade:2023
+msgid "Default Web Site directory"
+msgstr "Каталог Web сайтов по умолчанию"
+
+#: preferences.glade:2051 preferences.glade:2087
+msgid "Select default report directory - GRAMPS"
+msgstr "Выбрать каталог отчетов по умолчанию - GRAMPS"
+
+#: preferences.glade:2058
+msgid "The default directory for the output of many report generators"
+msgstr "Каталог по умолчанию для результатов многих генераторов отчетов"
+
+#: preferences.glade:2094
+msgid "The default directory for the output of the Web Site report generators"
+msgstr "Каталог по умолчанию для результатов генераторов Web сайт отчетов"
+
+#: preferences.glade:2155
+msgid "Letter"
+msgstr "Письмо"
+
+#: preferences.glade:2163
+msgid "A4"
+msgstr "А4"
+
+#: preferences.glade:2185
+msgid "Preferred Graphical Format"
+msgstr "Предпочитаемый Графический Формат"
+
+#: preferences.glade:2310
+msgid "Make a reference to the object when the object is dropped"
+msgstr "Делать ссылку на объект когда объект отпущен"
+
+#: preferences.glade:2330
+msgid "Make a local copy when the object is dropped"
+msgstr "Делать локальную копию когда объект отпущен"
+
+#: preferences.glade:2351
+msgid "Display global properties editor when object is dropped"
+msgstr "Выводить редактор глобальных свойств когда объект отпущен"
+
+#: preferences.glade:2371
+msgid "Drag and Drop from an External Source"
+msgstr "Переноска Мышью из Внешнего Источника"
+
+#: preferences.glade:2413
+msgid "Display local properties editor when object is dropped"
+msgstr "Выводить редактор локальных свойств когда объект отпущен"
+
+#: preferences.glade:2433
+msgid "Drag and Drop from an Internal Source"
+msgstr "Переноска Мышью из Внутреннего Источника"
+
+#: preferences.glade:2631
+msgid "I"
+msgstr "I"
+
+#: preferences.glade:2655
+msgid "F"
+msgstr "F"
+
+#: preferences.glade:2679
+msgid "P"
+msgstr "P"
+
+#: preferences.glade:2703
+msgid "S"
+msgstr "S"
+
+#: preferences.glade:2727
+msgid "O"
+msgstr "O"
+
+#: preferences.glade:2749
+msgid "GRAMPS ID prefixes"
+msgstr "Префиксы GRAMPS ID номеров"
+
+#: preferences.glade:2791
+msgid "Allow internal GRAMPS ID numbers to be edited"
+msgstr "Разрешить правку внутренних GRAMPS ID номеров"
+
+#: preferences.glade:2811
+msgid "User Defined IDs"
+msgstr "ID Номера Определенные Пользователем"
+
+#: preferences.glade:2885
+msgid "Surname Guessing"
+msgstr "Угадывание Фамилии"
+
+#: preferences.glade:2932
+msgid "Customization"
+msgstr "Настройки"
+
+#: revision.glade:10
+msgid "Open a database - GRAMPS"
+msgstr "Открыть базу данных - GRAMPS"
+
+#: revision.glade:73
+msgid "<b>Open a database</b>"
+msgstr "<b>Открыть базу данных</b>"
+
+#: revision.glade:134
+msgid "Open a GRAMPS Database"
+msgstr "Открыть Базу Данных GRAMPS"
+
+#: revision.glade:171
+msgid "Revert to an older version from revision control"
+msgstr "Откатить к более старой версии из контроля ревизий"
+
+#: revision.glade:197
+msgid "Select an older revision - GRAMPS"
+msgstr "Выбрать более старую ревизию - GRAMPS"
+
+#: revision.glade:260
+msgid "Revert to an older revision"
+msgstr "Откатить к более старой ревизии"
+
+#: revision.glade:327
+msgid "Revison Control Comment - GRAMPS"
+msgstr "Коментарий Контроля Ревизий - GRAMPS"
+
+#: revision.glade:379
+msgid "Revision Control Comment"
+msgstr "Коментарий Контроля Ревизий"
+
+#: rule.glade:8
+msgid "Define Filter - GRAMPS"
+msgstr "Определить Фильтр - GRAMPS"
+
+#: rule.glade:74
+msgid "Define Filter"
+msgstr "Определить Фильтр"
+
+#: rule.glade:215
+msgid "Exactly one rule must apply"
+msgstr "Ровно одно правило должно выполняться"
+
+#: rule.glade:236
+msgid "At least one rule must apply"
+msgstr "Хотя бы одно правило должно выполняться"
+
+#: rule.glade:258
+msgid "All rules must apply"
+msgstr "Все правила должны выполняться"
+
+#: rule.glade:393
+msgid "Add Rule - GRAMPS"
+msgstr "Добавить Правило - GRAMPS"
+
+#: rule.glade:454
+msgid "Add Rule"
+msgstr "Добавить правило"
+
+#: rule.glade:492
+msgid "Rule"
+msgstr "Правило"
+
+#: rule.glade:590
+msgid "Values"
+msgstr "Значения"
+
+#: rule.glade:625
+msgid "User Defined Filters - GRAMPS"
+msgstr "Фильтры Определенные Пользователем - GRAMPS"
+
+#: rule.glade:676
+msgid "User Defined Filters"
+msgstr "Фильтры Определенные Пользователем"
+
+#: rule.glade:740
+msgid "Add a new filter"
+msgstr "Добавить новый фильтр"
+
+#: rule.glade:754
+msgid "Edit the selected filter"
+msgstr "Изменить выделенный фильтр"
+
+#: rule.glade:768
+msgid "Delete the selected filter"
+msgstr "Уничтожить выделенный фильтр"
+
+#: rule.glade:782
+msgid "Display people matching the filter"
+msgstr "Показать лиц соответствующих фильтру"
+
+#: rule.glade:822
+msgid "Test"
+msgstr "Проверка"
+
+#: rule.glade:865
+msgid "Test Filter - GRAMPS"
+msgstr "Пробный Фильтр - GRAMPS"
+
+#: srcsel.glade:8
+msgid "Source Information - GRAMPS"
+msgstr "Информация об Источниках - GRAMPS"
+
+#: srcsel.glade:73
+msgid "<b>Source Information</b>"
+msgstr "<b>Информация об Источниках</b>"
+
+#: srcsel.glade:120
+msgid "Publication Information"
+msgstr "Информация о Публикациях"
+
+#: srcsel.glade:502
+msgid "Comments"
+msgstr "Коментарии"
+
+#: srcsel.glade:613
+msgid "Volume/Film/Page"
+msgstr "Том/Пленка/Страница"
+
+#: srcsel.glade:659
+msgid "Source Reference Selection - GRAMPS"
+msgstr "Выбор Ссылок на Источники - GRAMPS"
+
+#: srcsel.glade:724
+msgid "<b>Source Reference Selection</b>"
+msgstr "<b>Выбор Ссылок на Источники</b>"
+
+#: srcsel.glade:764
+msgid "Double click will edit the selected source"
+msgstr "Двойной щелчок будет редактировать выделенный источник"
+
+#: styles.glade:9
+msgid "Document Styles - GRAMPS"
+msgstr "Стили Документов - GRAMPS"
+
+#: styles.glade:75
+msgid "Document Styles"
+msgstr "Стили Документов"
+
+#: styles.glade:263
+msgid "Delete"
+msgstr "Уничтожить"
+
+#: styles.glade:313
+msgid "Style Editor - GRAMPS"
+msgstr "Редактор Стилей - GRAMPS"
+
+#: styles.glade:415
+msgid "Style Name"
+msgstr "Название Стиля"
+
+#: styles.glade:456
+msgid "Paragraph Style"
+msgstr "Стиль Абзацев"
+
+#: styles.glade:526
+msgid "pt"
+msgstr "пункт"
+
+#: styles.glade:599
+msgid "Color"
+msgstr "Цвет"
+
+#: styles.glade:625
+msgid "Type Face"
+msgstr "Тип Шрифта"
+
+#: styles.glade:652
+msgid "Bold"
+msgstr "Жирный"
+
+#: styles.glade:675
+msgid "Italic"
+msgstr "Курсив"
+
+#: styles.glade:698
+msgid "Underline"
+msgstr "Подчеркнутый"
+
+#: styles.glade:727
+msgid "roman (Times)"
+msgstr "римский (Таймс)"
+
+#: styles.glade:745
+msgid "swiss (Arial, Helvetica)"
+msgstr "швейцарский (Ариал,Гельветика)"
+
+#: styles.glade:776 styles.glade:1363
+msgid "Pick a color"
+msgstr "Выбрать цвет"
+
+#: styles.glade:822
+msgid "Font Options"
+msgstr "Параметры Шрифта"
+
+#: styles.glade:865
+msgid "Background"
+msgstr "Фон"
+
+#: styles.glade:889
+msgid "Right Margin"
+msgstr "Правое Поле"
+
+#: styles.glade:913
+msgid "Left Margin"
+msgstr "Левое Поле"
+
+#: styles.glade:937
+msgid "Padding"
+msgstr "Запас"
+
+#: styles.glade:961 styles.glade:987 styles.glade:1013
+msgid "cm"
+msgstr "см"
+
+#: styles.glade:1107
+msgid "Alignment"
+msgstr "Выравнивание"
+
+#: styles.glade:1132
+msgid "Borders"
+msgstr "Границы"
+
+#: styles.glade:1167 styles.glade:1269
+msgid "left"
+msgstr "левый край"
+
+#: styles.glade:1187 styles.glade:1309
+msgid "right"
+msgstr "правый край"
+
+#: styles.glade:1208
+msgid "center"
+msgstr "центр"
+
+#: styles.glade:1229
+msgid "justify"
+msgstr "оба края"
+
+#: styles.glade:1289
+msgid "top"
+msgstr "верх"
+
+#: styles.glade:1329
+msgid "bottom"
+msgstr "низ"
+
+#: styles.glade:1383
+msgid "Paragraph Options"
+msgstr "Параметры Абзаца"
+
 #~ msgid "Up"
 #~ msgstr "Наверх"
 
 #~ msgid "Down"
 #~ msgstr "Вниз"
 
-#~ msgid "Delete"
-#~ msgstr "Уничтожить"
-
 #~ msgid "from"
 #~ msgstr "с"
-
-#~ msgid "to"
-#~ msgstr "на"
-
-#~ msgid "French"
-#~ msgstr "Французский"
 
 #~ msgid "ABOUT"
 #~ msgstr "ОКОЛО"
@@ -3250,146 +5341,32 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "AFTER"
 #~ msgstr "ПОСЛЕ"
 
-#~ msgid "Edit Person - GRAMPS"
-#~ msgstr "Правка Лиц - GRAMPS"
-
-#~ msgid "Accept changes and close dialog"
-#~ msgstr "Принять изменения и закрыть диалог"
-
-#~ msgid "New Person"
-#~ msgstr "Новое Лицо"
-
 #~ msgid "Select information source"
 #~ msgstr "Выбрать источник информации"
-
-#~ msgid "Invoke birth event editor"
-#~ msgstr "Вызвать редактор событий рождения"
-
-#~ msgid "Edit"
-#~ msgstr "Правка"
-
-#~ msgid "Invoke death event editor"
-#~ msgstr "Вызвать редактор событий смерти"
-
-#~ msgid "Preferred Name"
-#~ msgstr "Предпочитаемое Имя"
-
-#~ msgid "Nick Name"
-#~ msgstr "Краткое Имя"
-
-#~ msgid "Select source for this name information"
-#~ msgstr "Выбрать источник для данной информации об имени"
-
-#~ msgid "Enter/modify notes regarding this name"
-#~ msgstr "Ввести/изменить записки касающиеся этого имени"
 
 #~ msgid "Image"
 #~ msgstr "Изображение"
 
-#~ msgid "Identification"
-#~ msgstr "Идентификация"
-
-#~ msgid "GRAMPS ID"
-#~ msgstr "GRAMPS ID номер"
-
-#~ msgid "No Alternate Names"
-#~ msgstr "Нет Альтернативных Имен"
-
-#~ msgid "Primary Source"
-#~ msgstr "Первичный Источник"
-
-#~ msgid "Confidence"
-#~ msgstr "Достоверность"
-
-#~ msgid "Details"
-#~ msgstr "Подробности"
-
-#~ msgid "Create an alternate name for this person"
-#~ msgstr "Создать альтернативное имя для данного лица"
-
-#~ msgid "Add"
-#~ msgstr "Добавить"
-
 #~ msgid "Modify the selected name"
 #~ msgstr "Изменить выделенное имя"
-
-#~ msgid "Delete selected name"
-#~ msgstr "Уничтожить выделенное имя"
 
 #~ msgid "Names"
 #~ msgstr "Имена"
 
-#~ msgid "No Events"
-#~ msgstr "Нет Событий"
-
-#~ msgid "Cause"
-#~ msgstr "Причина"
-
-#~ msgid "Create a new event from the above data"
-#~ msgstr "Создать новое событие из вышеприведенных данных"
-
 #~ msgid "Update the selected event with the above data"
 #~ msgstr "Обновить выделенное событие используя вышеприведенные данные"
-
-#~ msgid "Delete the selected event"
-#~ msgstr "Уничтожть выделенное событие"
-
-#~ msgid "Events"
-#~ msgstr "События"
-
-#~ msgid "No Attributes"
-#~ msgstr "Нет Атрибутов"
-
-#~ msgid "Create a new attribute from the above data"
-#~ msgstr "Создать новый атрибут из вышеприведенных данных"
 
 #~ msgid "Update the selected attribute with the above data"
 #~ msgstr "Обновить выделенный атрибут используя вышеприведенные данные"
 
-#~ msgid "Delete the selected attribute"
-#~ msgstr "Уничтожить выделенный атрибут"
-
-#~ msgid "Attributes"
-#~ msgstr "Атрибуты"
-
-#~ msgid "No Addresses"
-#~ msgstr "Нет Адресов"
-
-#~ msgid "City/County"
-#~ msgstr "Город/Область"
-
-#~ msgid "State/Province"
-#~ msgstr "Штат/Провинция"
-
-#~ msgid "ZIP/Postal Code"
-#~ msgstr "Индекс/Почтовый Код"
-
 #~ msgid "Location"
 #~ msgstr "Местоположение"
-
-#~ msgid "Create a new address from the above data"
-#~ msgstr "Создать новый адрес используя вышеприведенные данные"
 
 #~ msgid "Update the selected address with the above data"
 #~ msgstr "Обновить выделенный адрес используя вышеприведенные данные"
 
-#~ msgid "Delete the selected address"
-#~ msgstr "Уничтожить выделенный адрес"
-
-#~ msgid "Addresses"
-#~ msgstr "Адреса"
-
-#~ msgid "Enter miscellaneous relevant data and documentation"
-#~ msgstr "Редактировать различные связянные данные и документацию"
-
-#~ msgid "Place new media object in this gallery"
-#~ msgstr "Поместить новый медиа-объект в данную галерею"
-
 #~ msgid "Add Media Object"
 #~ msgstr "Добавить Медиа-Объект"
-
-#~ msgid "Remove selected object from this gallery only"
-#~ msgstr "Удалить выделенный объект только из данной галереи"
 
 #~ msgid "Delete Media Object"
 #~ msgstr "Уничтожить Медиа-Объект"
@@ -3400,44 +5377,8 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Edit Properties"
 #~ msgstr "Редактировать Свойства"
 
-#~ msgid "Internet Addresses"
-#~ msgstr "Адреса в Интернете"
-
-#~ msgid "Web Address"
-#~ msgstr "Web Адрес"
-
-#~ msgid "Go to this web page"
-#~ msgstr "Пойти на данную web-страницу"
-
-#~ msgid "Go"
-#~ msgstr "Пойти"
-
-#~ msgid "Add an internet reference about this person"
-#~ msgstr "Добавить интернет-ссылку о данном лице"
-
 #~ msgid "Modify selected reference"
 #~ msgstr "Изменить выделенную ссылку"
-
-#~ msgid "Delete selected reference"
-#~ msgstr "Уничтожить выделенную ссылку"
-
-#~ msgid "Internet"
-#~ msgstr "Интернет"
-
-#~ msgid "LDS Baptism"
-#~ msgstr "LDS Крещение"
-
-#~ msgid "Temple"
-#~ msgstr "Храм"
-
-#~ msgid "Endowment"
-#~ msgstr "Завещанное"
-
-#~ msgid "Sealed to Parents"
-#~ msgstr "Приписан к Родителям"
-
-#~ msgid "Parents"
-#~ msgstr "Родители"
 
 #~ msgid "LDS"
 #~ msgstr "LDS"
@@ -3445,11 +5386,11 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Continue Editing"
 #~ msgstr "Продолжить Правку"
 
+#~ msgid "Individual Addresses"
+#~ msgstr "Индивидуальные Адреса"
+
 #~ msgid "List Colors"
 #~ msgstr "Цвета Списков"
-
-#~ msgid "Could not import %s - %s"
-#~ msgstr "Не смогла импортировать %s - %s"
 
 #~ msgid "Keep Object"
 #~ msgstr "Удержать Объекты"
@@ -3468,6 +5409,9 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "You requested too many places to edit at the same time"
 #~ msgstr "Вы затребовали слишком много мест для одновременной правки"
 
+#~ msgid "Missing Libraries"
+#~ msgstr "Отсутствующие Библиотеки"
+
 #~ msgid "%v of %u (%P%%)"
 #~ msgstr "%v из %u (%P%%)"
 
@@ -3477,207 +5421,14 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Keep Source"
 #~ msgstr "Удержать Источник"
 
-#~ msgid "Getting Started - GRAMPS"
-#~ msgstr "Первые Шаги - GRAMPS"
-
-#~ msgid "Getting Started"
-#~ msgstr "Первые Шаги"
-
-#~ msgid ""
-#~ "Welcome to GRAMPS, the Genealogical Research\n"
-#~ "and Analysis Management Programming System.\n"
-#~ "\n"
-#~ "Several options and information need to be gathered\n"
-#~ "before GRAMPS is ready to be used. Any of this\n"
-#~ "information can be changed in the future in the \n"
-#~ "Preferences dialog under the Settings menu."
-#~ msgstr ""
-#~ "Добро пожаловать в GRAMPS,\n"
-#~ "Генелаогическую Систему Программироввания\n"
-#~ "Исследований и Управления Анализом.\n"
-#~ "\n"
-#~ "Некоторые параметры и определенная информация\n"
-#~ "должны быть введены перед тем как GRAMPS \n"
-#~ "готова к использованию. Любая часть этой \n"
-#~ "информации может быть изменена в будущем\n"
-#~ "в диалоге Настройки, в меню Свойства."
-
-#~ msgid ""
-#~ "In order to create valid GEDCOM files, the following information\n"
-#~ "needs to be entered. If you do not plan to generate GEDCOM \n"
-#~ "files, you may leave it blank."
-#~ msgstr ""
-#~ "Для создания правильных GEDCOM файлов необходимо\n"
-#~ "ввести следующую информацию. Если вы не планируете\n"
-#~ "создание GEDCOM файлов, то можете оствить эту часть\n"
-#~ "незаполненной."
-
-#~ msgid "email"
-#~ msgstr "Эл. почта"
-
-#~ msgid "Phone"
-#~ msgstr "Телефон"
-
-#~ msgid "Numerical Date Formats"
-#~ msgstr "Численные Форматы Дат"
-
-#~ msgid ""
-#~ "There are three common formats for entering dates in a numerical format.\n"
-#~ "Without some type of indication, GRAMPS cannot correctly tell what\n"
-#~ "format you are using. Please indicate your preferred format for entering\n"
-#~ "numerical dates"
-#~ msgstr ""
-#~ "Существует три общепринятых формата для ввода дат в численном\n"
-#~ "формате. Без какого-либо указания GRAMPS не может правильно\n"
-#~ "распознать испоьзуемый вами формат. Пожалуйста, обозначьте\n"
-#~ "ваши предпочтения для ввода дат в численном формате."
-
-#~ msgid "MM/DD/YYYY (United States)"
-#~ msgstr "ММ/ДД/ГГГГ (Американский)"
-
-#~ msgid "DD/MM/YYYY (European)"
-#~ msgstr "ДД/ММ/ГГГГ (Европейский)"
-
-#~ msgid "YYYY-MM-DD (ISO)"
-#~ msgstr "ГГГГ-ММ-ДД (ISO)"
-
-#~ msgid "Alternate Calendar Support"
-#~ msgstr "Поддержка Альтернативных Календарей"
-
-#~ msgid ""
-#~ "By default, all dates stored by GRAMPS use the Gregorian calendar. This\n"
-#~ "is normally sufficient for most users. Support may be enabled for the "
-#~ "Julian,\n"
-#~ "French Republican, and Hebrew calendar. If you believe that you will need "
-#~ "one or\n"
-#~ "more of these alternate calendars, enable alternate calendar support."
-#~ msgstr ""
-#~ "По умолчанию, GRAMPS хранит все даты используя Григорианский\n"
-#~ "календарь. Обычно этого достаточно для большинства пользователей.\n"
-#~ "Можно обеспечить поддержку для Юлианского, Французкого\n"
-#~ "Республиканского и Еврейского календарей. Если вы считаете что вам\n"
-#~ "понадобится один или более из этих альтернативных календарей,\n"
-#~ "включите поддержку альтернативных календарей."
-
-#~ msgid "Enable support for alternate calendars"
-#~ msgstr "Включить поддержку альтернативных календарей"
-
-#~ msgid "LDS Extensions"
-#~ msgstr "Расширения LDS"
-
-#~ msgid ""
-#~ "GRAMPS has support for LDS Ordinances, which are special\n"
-#~ "event types related to the Church of Jesus Christ of Latter Day Saints.\n"
-#~ "\n"
-#~ "You may choose to either enable or disable this support. You may\n"
-#~ "change this option in the future in the Preferences dialog."
-#~ msgstr ""
-#~ "GRAMPS поддерживает Процедуры LDS, которые являются\n"
-#~ "специальными типами событий связанных с Церковью Иисуса\n"
-#~ "Христа Святых Последних Дней.\n"
-#~ "\n"
-#~ "Вы можете включить или выключить эту поддержку. Вы можете\n"
-#~ "изменить эту настройку в будущем в диалоге Настройки."
-
-#~ msgid "Enable LDS Ordinance Support"
-#~ msgstr "Включить Поддержку Процедур LDS"
-
-#~ msgid "Complete"
-#~ msgstr "Завершено"
-
-#~ msgid ""
-#~ "GRAMPS is an Open Source project. Its success \n"
-#~ "depends on the users. User feedback is important. \n"
-#~ "Please join the mailing lists, submit bug reports,\n"
-#~ "suggest improvements,  and see how you can \n"
-#~ "contribute.\n"
-#~ "\n"
-#~ "Please enjoy using GRAMPS."
-#~ msgstr ""
-#~ "GRAMPS является проектом Открытого Кода\n"
-#~ "(Open Source project). Успех проекта завист от\n"
-#~ "его пользователей. Вклад пользователей важен.\n"
-#~ "Пожалуйста, подписывайтесь на списки рассылки,\n"
-#~ "присилайте сообщения об ошибках, предлагайте\n"
-#~ "улучшения и думайте, как вы можете внести\n"
-#~ "свой вклад.\n"
-#~ "\n"
-#~ "Наслаждайтесь, используя GRAMPS."
-
-#~ msgid "Event Editor - GRAMPS"
-#~ msgstr "Редактор Событий - GRAMPS"
-
-#~ msgid "Event Editor"
-#~ msgstr "Редактор Событий"
-
-#~ msgid "Event Type"
-#~ msgstr "Тип События"
-
-#~ msgid "Selects the calendar format for display"
-#~ msgstr "Выбирает формат календаря для просмотра"
-
-#~ msgid "Private Record"
-#~ msgstr "Личная Запись"
-
-#~ msgid "Attribute Editor - GRAMPS"
-#~ msgstr "Редактор Атрибутов - GRAMPS"
-
-#~ msgid "Attribute Editor"
-#~ msgstr "Редактор Атрибутов"
-
-#~ msgid "Address Editor - GRAMPS"
-#~ msgstr "Редактор Адресов - GRAMPS"
-
-#~ msgid "Accept and close"
-#~ msgstr "Принять и закрыть"
-
-#~ msgid "Address Editor"
-#~ msgstr "Редактор Адресов"
-
-#~ msgid "Internet Address Editor - GRAMPS"
-#~ msgstr "Редактор Интернет-Адресов - GRAMPS"
-
-#~ msgid "Alternate Name Editor - GRAMPS"
-#~ msgstr "Редактор Альтернативных Имен - GRAMPS"
-
-#~ msgid "Reject changes and close"
-#~ msgstr "Отвергнуть измемения и закрыть"
-
-#~ msgid "Alternate Name Editor"
-#~ msgstr "Редактор Альтернативных Имен"
-
-#~ msgid "Missing Libraries"
-#~ msgstr "Отсутствующие Библиотеки"
-
-#~ msgid "GRAMPS"
-#~ msgstr "GRAMPS"
+#~ msgid "nroff/groff"
+#~ msgstr "nroff/groff"
 
 #~ msgid "_New Database"
 #~ msgstr "Новая База Данных"
 
 #~ msgid "Revert to last saved database"
 #~ msgstr "Откатить к последнему варианту сохраненной базы данных"
-
-#~ msgid "_Revert"
-#~ msgstr "Откатить"
-
-#~ msgid "_Import"
-#~ msgstr "Импорт"
-
-#~ msgid "_Export"
-#~ msgstr "Экспорт"
-
-#~ msgid "Reload Plugins"
-#~ msgstr "Перезагрузить Добавления"
-
-#~ msgid "_Edit"
-#~ msgstr "Правка"
-
-#~ msgid "_Find..."
-#~ msgstr "Найти"
-
-#~ msgid "_Merge"
-#~ msgstr "Слияние"
 
 #~ msgid "_People"
 #~ msgstr "Люди"
@@ -3697,74 +5448,14 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "_Media"
 #~ msgstr "Медиа-Объекты"
 
-#~ msgid "_Bookmarks"
-#~ msgstr "Закладки"
-
-#~ msgid "_Add Bookmark"
-#~ msgstr "Добавить Закладку"
-
-#~ msgid "_Edit Bookmarks"
-#~ msgstr "Правка Закладок"
-
-#~ msgid "Go to Bookmark"
-#~ msgstr "Пойти к Закладке"
-
-#~ msgid "_Reports"
-#~ msgstr "Отчеты"
-
-#~ msgid "_Tools"
-#~ msgstr "Инструменты"
-
-#~ msgid "Make the active person the default person"
-#~ msgstr "Сделать активное лицо лицом по умолчанию"
-
-#~ msgid "_Default Person"
-#~ msgstr "Лицо По Умолчанию"
-
-#~ msgid "_User's Manual"
-#~ msgstr "Руководство Пользователя"
-
-#~ msgid "_Writing Extensions"
-#~ msgstr "Написание Расширений"
-
-#~ msgid "GRAMPS _Home Page"
-#~ msgstr "Домашняя Страница GRAMPS"
-
 #~ msgid "Subscribe to mailing lists or browse archives"
 #~ msgstr "Подписаться на списки рассылки или просмотреть архивы"
-
-#~ msgid "GRAMPS _Mailing Lists"
-#~ msgstr "Списки Рассылки GRAMPS"
 
 #~ msgid "Report a bug to the GRAMPS bug tracking system"
 #~ msgstr "Послать сообщение об ошибке в систему отслеживания ошибок GRAMPS"
 
-#~ msgid "_Report a bug"
-#~ msgstr "Сообщить об Ошибке"
-
 #~ msgid "Shows the status of plugins that failed to load"
 #~ msgstr "Показывает стасус добавлений которые не смогли загрузиться"
-
-#~ msgid "_Show Plugin Status"
-#~ msgstr "Показать Стасус Добавлений"
-
-#~ msgid "Open File"
-#~ msgstr "Открыть Файл"
-
-#~ msgid "Open"
-#~ msgstr "Открыть"
-
-#~ msgid "Save File"
-#~ msgstr "Сохранить Файл"
-
-#~ msgid "Save"
-#~ msgstr "Сохранить"
-
-#~ msgid "Make the default person the active person"
-#~ msgstr "Сделать лицо по умолчанию активным лицом "
-
-#~ msgid "Home"
-#~ msgstr "Домой"
 
 #~ msgid "Display the list of people"
 #~ msgstr "Показать список лиц"
@@ -3775,9 +5466,6 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Show active person's anscestors"
 #~ msgstr "Показать предков активного лица"
 
-#~ msgid "Pedigree"
-#~ msgstr "Родословная"
-
 #~ msgid "Display the list of sources"
 #~ msgstr "Показать список источников"
 
@@ -3787,44 +5475,11 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Display the list of media objects"
 #~ msgstr "Показать список медиа-объектов"
 
-#~ msgid "Media"
-#~ msgstr "Медиа"
-
-#~ msgid "Generate reports"
-#~ msgstr "Генерировать Отчеты"
-
-#~ msgid "Reports"
-#~ msgstr "Отчеты"
-
-#~ msgid "Run a tool"
-#~ msgstr "Запустить инструмент"
-
-#~ msgid "Tools"
-#~ msgstr "Инструменты"
-
-#~ msgid "Show persons that do not match the filtering rule"
-#~ msgstr "Показать лица не удовлетворяющие правилу фильтра"
-
-#~ msgid "Invert"
-#~ msgstr "Обратить"
-
-#~ msgid "Add Person"
-#~ msgstr "Добавить Лицо"
-
 #~ msgid "Edit/View Person"
 #~ msgstr "Правка/Просмотр Лица"
 
-#~ msgid "Active Person"
-#~ msgstr "Активное Лицо"
-
 #~ msgid "Exchange active person and displayed spouse"
 #~ msgstr "Поменять активное лицо с показанным супругом"
-
-#~ msgid "Relationship"
-#~ msgstr "Отношения"
-
-#~ msgid "Spouse"
-#~ msgstr "Супруг"
 
 #~ msgid "Make this the preferred spouse"
 #~ msgstr "Сделать предпочитаемым супругом"
@@ -3834,9 +5489,6 @@ msgstr "Генерирует коды SoundEx для имен"
 
 #~ msgid "Make the current father the active person"
 #~ msgstr "Сделать текущего отца активным лицом"
-
-#~ msgid "Make the current mother the active person"
-#~ msgstr "Сделать текущую мать активным лицом"
 
 #~ msgid "Related by:"
 #~ msgstr "Связаны:"
@@ -3852,9 +5504,6 @@ msgstr "Генерирует коды SoundEx для имен"
 
 #~ msgid "Add/Edit/View"
 #~ msgstr "Добавить/Правка/Просмотр"
-
-#~ msgid "Make the selected child the active person"
-#~ msgstr "Сделать выделенного ребенка активным лицом"
 
 #~ msgid ""
 #~ "Click column headers to sort. When sorted by birth date, drag and drop to "
@@ -3875,12 +5524,6 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Add New Child"
 #~ msgstr "Добавить Нового Ребенка"
 
-#~ msgid "Remove selected child from this family"
-#~ msgstr "Удалить выделенного ребенка из этой семьи"
-
-#~ msgid "Remove Child"
-#~ msgstr "Удалить Ребенка"
-
 #~ msgid "Add Source"
 #~ msgstr "Добавить Источник"
 
@@ -3893,17 +5536,8 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Edit/View Place"
 #~ msgstr "Правка/Просмотр Места"
 
-#~ msgid "Preview"
-#~ msgstr "Предварительный Просмотр"
-
-#~ msgid "Information"
-#~ msgstr "Информация"
-
 #~ msgid "Edit Media Object"
 #~ msgstr "Правка Медиа-Объекта"
-
-#~ msgid "Select File - GRAMPS"
-#~ msgstr "Выбрать Файл - GRAMPS"
 
 #~ msgid "OK"
 #~ msgstr "OK"
@@ -3911,80 +5545,17 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Cancel"
 #~ msgstr "Отменить"
 
-#~ msgid "Choose Spouse - GRAMPS"
-#~ msgstr "Выбрать Супруга - GRAMPS"
-
-#~ msgid "Choose Spouse/Partner"
-#~ msgstr "Выбрать Супруга/Партнера"
-
 #~ msgid "Add new person"
 #~ msgstr "Добавить новое лицо"
 
-#~ msgid "Relationship definition"
-#~ msgstr "Определение Отношений"
-
-#~ msgid "Choose Parents - GRAMPS"
-#~ msgstr "Выбрать Родителей - GRAMPS"
-
-#~ msgid "Choose Parents"
-#~ msgstr "Выбрать Родителей"
-
-#~ msgid "Relationship to child"
-#~ msgstr "Отношение к ребенку"
-
-#~ msgid "Add New Person"
-#~ msgstr "Добавить Новое Лицо"
-
 #~ msgid "Parent Relationship"
 #~ msgstr "Родительские Отношения"
-
-#~ msgid "Add Child - GRAMPS"
-#~ msgstr "Добавить Ребенка - GRAMPS"
-
-#~ msgid "Add Children"
-#~ msgstr "Добавить Детей"
-
-#~ msgid "Hide people not likely to be a child of this family"
-#~ msgstr "Спрятать лиц с малой вероятностью являющимися детьми в этой семье"
-
-#~ msgid "Relationship to Father"
-#~ msgstr "Отношение к Отцу"
-
-#~ msgid "Relationship to Mother"
-#~ msgstr "Отношение к Матери"
-
-#~ msgid "Marriage Editor - GRAMPS"
-#~ msgstr "Редактор Браков - GRAMPS"
-
-#~ msgid "Marriage Editor"
-#~ msgstr "Редактор Браков"
-
-#~ msgid "Edit marriage information"
-#~ msgstr "Правка брачной информации"
-
-#~ msgid "Add a new spouse"
-#~ msgstr "Добавить нового супруга"
-
-#~ msgid "Remove current spouse"
-#~ msgstr "Удалить текущего супруга"
-
-#~ msgid "Source Editor - GRAMPS"
-#~ msgstr "Редактор Источников - GRAMPS"
-
-#~ msgid "Source Editor"
-#~ msgstr "Редактор Источников"
-
-#~ msgid "Publication Info"
-#~ msgstr "Информация о Публикации"
 
 #~ msgid "Category"
 #~ msgstr "Категория"
 
 #~ msgid "Item"
 #~ msgstr "Пункт"
-
-#~ msgid "References"
-#~ msgstr "Ссылки"
 
 #~ msgid "Add New Child - GRAMPS"
 #~ msgstr "Добавить Нового Ребенка - GRAMPS"
@@ -4002,47 +5573,6 @@ msgstr "Генерирует коды SoundEx для имен"
 
 #~ msgid "Add Data"
 #~ msgstr "Добавить Данные"
-
-#~ msgid "Add Person - GRAMPS"
-#~ msgstr "Добавить Лицо - GRAMPS"
-
-#~ msgid "Open a Database - GRAMPS"
-#~ msgstr "Открыть Базу Данных - GRAMPS"
-
-#~ msgid "Open a Database"
-#~ msgstr "Открыть Базу Данных"
-
-#~ msgid "Open an Existing Database"
-#~ msgstr "Открыть Существующую Базу Данных"
-
-#~ msgid "Create a New XML Database"
-#~ msgstr "Создать Новую Базу Данных XML"
-
-#~ msgid "Create a New ZODB Database"
-#~ msgstr "Создать Новую Базу Данных ZODB"
-
-#~ msgid "Question - GRAMPS"
-#~ msgstr "Вопрос - GRAMPS"
-
-#~ msgid "Choose Spouse"
-#~ msgstr "Выбрать Супруга"
-
-#~ msgid "New Relationship"
-#~ msgstr "Новое Отношение"
-
-#~ msgid "Add a Spouse or Create a New Relationhip"
-#~ msgstr "Добавить Супруга или Создать Новое Отношение"
-
-#~ msgid ""
-#~ "No spouse has been defined for the current relationship.\n"
-#~ "\n"
-#~ "You can either define the spouse of the current relationship\n"
-#~ "or create a new relationship."
-#~ msgstr ""
-#~ "В текущем отношении не определен супруг.\n"
-#~ "\n"
-#~ "Вы можете либо определить супруга в текущем отношении,\n"
-#~ "либо создать новое отношение."
 
 #~ msgid "Save Changes"
 #~ msgstr "Сохранить Изменения"
@@ -4099,178 +5629,65 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Do not change Home Person"
 #~ msgstr "Не изменять Лицо По Умолчанию"
 
-#~ msgid "Select a Media Object - GRAMPS"
-#~ msgstr "Выбрать Медиа-Объект - GRAMPS"
-
-#~ msgid "Select a Media Object"
-#~ msgstr "Выбрать Медиа-Объект"
-
-#~ msgid "File"
-#~ msgstr "Файл"
-
-#~ msgid "Do not make a local copy"
-#~ msgstr "Не делать локальной копии"
-
-#~ msgid "Select an image"
-#~ msgstr "Выбрать изображение"
-
-#~ msgid "Change Local Media Object Properties - GRAMPS"
-#~ msgstr "Изменить Локальные Свойства Медиа-Объекта - GRAMPS"
-
-#~ msgid "Change Local Media Object Properties"
-#~ msgstr "Изменить Локальные Свойства Медиа-Объекта"
-
-#~ msgid "Object Type"
-#~ msgstr "Тип Объекта"
-
-#~ msgid "Creates a new object attribute from the above data"
-#~ msgstr "Создает новый атрибут объекта из вышеприведенных данных"
-
 #~ msgid "Updates the selected object attribute with the above data"
 #~ msgstr ""
 #~ "Обновляет выделенный атрибут объекта используя вышеприведенные данные"
 
-#~ msgid "Change Global Media Object Properties - GRAMPS"
-#~ msgstr "Изменить Глобальные Свойства Медиа-Объекта - GRAMPS"
-
-#~ msgid "Change Global Media Object Properties"
-#~ msgstr "Изменить Глобальные Свойства Медиа-Объекта"
-
-#~ msgid "General Information"
-#~ msgstr "Общая Информация"
-
-#~ msgid "Copies the object into the database"
-#~ msgstr "Копирует объект в базу данных"
-
-#~ msgid "Make Local Copy"
-#~ msgstr "Сделать Локальную Копию"
-
-#~ msgid "Creates a new attribute from the above data"
-#~ msgstr "Создает новый атрибут из вышеприведенных данных"
-
 #~ msgid "Updates the selected attribute with the above data"
 #~ msgstr "Обновляет выделенный атрибут используя вышеприведенные данные"
-
-#~ msgid "Marriage/Relationship Editor - GRAMPS"
-#~ msgstr "Редактор Браков/Отношений - GRAMPS"
-
-#~ msgid "Marriage/Relationship Editor"
-#~ msgstr "Редактор Браков/Отношений"
-
-#~ msgid "Add new event for this marriage"
-#~ msgstr "Добавить новые события для данного брака"
 
 #~ msgid "Modify the selected event"
 #~ msgstr "Изменить выделенное событие"
 
-#~ msgid "Delete selected event"
-#~ msgstr "Уничтожить выделенное событие"
-
-#~ msgid "Create a new attribute for this marriage"
-#~ msgstr "Создать новый атрибут для данного брака"
-
 #~ msgid "Modify the selected attribute"
 #~ msgstr "Изменить выделенный атрибут"
-
-#~ msgid "Spouse Sealing"
-#~ msgstr "Соединение Супругов"
-
-#~ msgid "Merge Places - GRAMPS"
-#~ msgstr "Слить Места - GRAMPS"
-
-#~ msgid "Select the title for the merged place"
-#~ msgstr "Выбрать название для объединенного места"
-
-#~ msgid "Place 1"
-#~ msgstr "Место 1"
-
-#~ msgid "Place 2"
-#~ msgstr "Место 2"
-
-#~ msgid "Merge People - GRAMPS"
-#~ msgstr "Слить Людей - GRAMPS"
-
-#~ msgid "Merge and Close"
-#~ msgstr "Слить и Закрыть"
-
-#~ msgid "Merge and Edit"
-#~ msgstr "Слияние и Правка"
-
-#~ msgid "Merge People"
-#~ msgstr "Слить Людей"
-
-#~ msgid "Birth Place"
-#~ msgstr "Место Рождения"
-
-#~ msgid "Death Place"
-#~ msgstr "Место Смерти"
-
-#~ msgid "Spouses"
-#~ msgstr "Супруги"
-
-#~ msgid "Keep other name as an alternate name"
-#~ msgstr "Сохранить другое имя в качестве альтернативного имени"
-
-#~ msgid "Keep other birth event as an alternate birth event"
-#~ msgstr ""
-#~ "Сохранить другое событие рождения в качестве альтернативного события "
-#~ "рождения"
-
-#~ msgid "Keep other death event as an alternate death event"
-#~ msgstr ""
-#~ "Сохранить другое событие смерти в качестве альтернативного события смерти"
-
-#~ msgid "Place Editor - GRAMPS"
-#~ msgstr "Редактор Мест - GRAMPS"
-
-#~ msgid "Place Editor"
-#~ msgstr "Редактор Мест"
-
-#~ msgid "Longitude"
-#~ msgstr "Долгота"
-
-#~ msgid "Latitude"
-#~ msgstr "Широта"
-
-#~ msgid "Select"
-#~ msgstr "Выбрать"
-
-#~ msgid "Other Names"
-#~ msgstr "Другие Имена"
-
-#~ msgid "Report Selection - GRAMPS"
-#~ msgstr "Выбор Отчета - GRAMPS"
-
-#~ msgid "Select a report from those available on the left."
-#~ msgstr "Выбрать отчет из доступных слева"
 
 #~ msgid "Report Status"
 #~ msgstr "Статус Отчета"
 
-#~ msgid "Plugin Status - GRAMPS"
-#~ msgstr "Статус Добавлений - GRAMPS"
-
 #~ msgid "Document write failure"
 #~ msgstr "Ошибка Записи Документа"
 
-#~ msgid "Family Group Report"
-#~ msgstr "Отчет о Семейной Группе"
-
-#~ msgid "Husband"
-#~ msgstr "Муж"
-
-#~ msgid "Wife"
-#~ msgstr "Жена"
+#~ msgid "Convert surnames to all capital letters"
+#~ msgstr "Переписать фамилию заглавными букваи"
 
 #~ msgid ""
-#~ "Creates a family group report, showing information on a set of parents "
-#~ "and their children."
+#~ "Searches the entire database and converts all surnames to capital letters"
 #~ msgstr ""
-#~ "Создает отчет о семейной группе показывающий информацию о нескольких "
-#~ "родителях и их детях"
+#~ "Просматривает всю базу данных и преобразует все фамилии в заглавные буквы"
+
+#~ msgid "Include notes"
+#~ msgstr "Включить записки"
+
+#~ msgid "Replace Place with ______"
+#~ msgstr "Заменить Место на ______"
+
+#~ msgid "Replace Dates with ______"
+#~ msgstr "Заменить Даты на ______"
+
+#~ msgid "Compute age"
+#~ msgstr "Вычислить возраст"
+
+#~ msgid "Omit duplicate ancestors"
+#~ msgstr "Опустить повторяющихся предков"
+
+#~ msgid "Add descendant reference in child list"
+#~ msgstr "Добавить ссылку на потомков в список детей"
+
+#~ msgid "Include Photo/Images from Gallery"
+#~ msgstr "Включить Фото/Изображения из Галереи"
 
 #~ msgid "Quit"
 #~ msgstr "Выход"
+
+#~ msgid ""
+#~ "Failure reading %s: %s\n"
+#~ "First line should have been '0 HEAD'\n"
+#~ "but was '%s'"
+#~ msgstr ""
+#~ "Ошибка при чтении %s: %s\n"
+#~ "Первая строка должна была быть '0 HEAD'\n"
+#~ "а была '%s'"
 
 #~ msgid "Ancestors and Descendants of %s"
 #~ msgstr "Предки и Потомки %s"
@@ -4281,116 +5698,8 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Export to PAF for PalmOS"
 #~ msgstr "Экспорт в PAF для PalmOS"
 
-#~ msgid "Change Event Types - GRAMPS"
-#~ msgstr "Поменять Типы Событий - GRAMPS"
-
-#~ msgid "Change Event Type of"
-#~ msgstr "Поменять Типы Событий"
-
-#~ msgid "Descendant Browser - GRAMPS"
-#~ msgstr "Просмотр Потомков - GRAMPS"
-
-#~ msgid "Descendant Browser"
-#~ msgstr "Просмотр Потомков"
-
-#~ msgid "Save as a Spreadsheet - GRAMPS"
-#~ msgstr "Сохранить как Таблицу - GRAMPS"
-
-#~ msgid "Save data as a spreadsheet"
-#~ msgstr "Сохранить данные как таблицу"
-
-#~ msgid "Save Data"
-#~ msgstr "Сохранить Данные"
-
-#~ msgid "Format"
-#~ msgstr "Формат"
-
-#~ msgid "OpenOffice Spreadsheet"
-#~ msgstr "Таблица OpenOffice"
-
-#~ msgid "Choose the HTML template"
-#~ msgstr "Выбрать образец HTML"
-
-#~ msgid "Event Comparison - GRAMPS"
-#~ msgstr "Сравнение Событий - GRAMPS"
-
 #~ msgid "Save As..."
 #~ msgstr "Сохранить Как..."
-
-#~ msgid "Event Comparison"
-#~ msgstr "Сравнение Событий"
-
-#~ msgid "Export GEDCOM file"
-#~ msgstr "Экспорт GEDCOM файла"
-
-#~ msgid "GEDCOM Export"
-#~ msgstr "GEDCOM Экспорт"
-
-#~ msgid "Export GEDCOM"
-#~ msgstr "Экспорт GEDCOM"
-
-#~ msgid "Encoding"
-#~ msgstr "Кодировка"
-
-#~ msgid "ANSEL"
-#~ msgstr "ANSEL"
-
-#~ msgid "UNICODE"
-#~ msgstr "UNICODE"
-
-#~ msgid "Options"
-#~ msgstr "Параметры"
-
-#~ msgid "Target"
-#~ msgstr "Назначение"
-
-#~ msgid "Standard GEDCOM 5.5"
-#~ msgstr "Стандарт GEDCOM 5.5"
-
-#~ msgid "Restrict data on living people"
-#~ msgstr "Ограничить данные о живущих лицах"
-
-#~ msgid "%P %%"
-#~ msgstr "%P %%"
-
-#~ msgid "GEDCOM Import Status"
-#~ msgstr "Статус Импорта GEDCOM"
-
-#~ msgid "GEDCOM Import"
-#~ msgstr "Импорт GEDCOM"
-
-#~ msgid "Created by"
-#~ msgstr "Создание:"
-
-#~ msgid "Version"
-#~ msgstr "Версия"
-
-#~ msgid "Number of Families"
-#~ msgstr "Число Семей"
-
-#~ msgid "Number of People"
-#~ msgstr "Число Людей"
-
-#~ msgid "Number of Errors"
-#~ msgstr "Число Ошибок"
-
-#~ msgid "Close window when complete"
-#~ msgstr "Закрыть окно после завершения"
-
-#~ msgid "Determining Possible Merges"
-#~ msgstr "Определяю Возможные Слияния"
-
-#~ msgid "Please be patient. This may take a while."
-#~ msgstr "Пожалуйста, потерпите. Это может затянуться."
-
-#~ msgid "Merge List - GRAMPS"
-#~ msgstr "Слить Список - GRAMPS"
-
-#~ msgid "Merge"
-#~ msgstr "Слить"
-
-#~ msgid "Potential Merges"
-#~ msgstr "Потенциальные Слияния"
 
 #~ msgid "Person 1"
 #~ msgstr "Лицо 1"
@@ -4398,211 +5707,8 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Person 2"
 #~ msgstr "Лицо 2"
 
-#~ msgid "Match Threshold"
-#~ msgstr "Степень Порога Соответствия"
-
-#~ msgid "Use SoundEx codes for name matches"
-#~ msgstr "Использовать коды SoundEx для сопоставления имен"
-
-#~ msgid "(Recommended only for English)"
-#~ msgstr "(Рекомендуется только для Английского языка)"
-
-#~ msgid "Export PAF for PalmOS file"
-#~ msgstr "Экспорт PAF файл для PalmOS"
-
-#~ msgid "PAF for PalmOS Export"
-#~ msgstr "Экспорт PAF для PalmOS"
-
 #~ msgid "Export PAF for PalmOS"
 #~ msgstr "Экспорт PAF для PalmOS"
-
-#~ msgid "Database name: "
-#~ msgstr "Имя базы данных: "
-
-#~ msgid "Name and Title Extraction Tool - GRAMPS"
-#~ msgstr "Инструмент Извлечения Имен и Титулов - GRAMPS"
-
-#~ msgid "Name and Title Extraction Tool"
-#~ msgstr "Инструмент Извлечения Имен и Титулов"
-
-#~ msgid ""
-#~ "Below is a list of the nicknames and titles that GRAMPS can extract from "
-#~ "the \n"
-#~ "current database. If you select 'Yes', GRAMPS will modify your database "
-#~ "as \n"
-#~ "specified below. If you do not approve of these changes, you should "
-#~ "select \n"
-#~ "'No', and your database will not be altered.\n"
-#~ "\n"
-#~ "Should the following changes be made?"
-#~ msgstr ""
-#~ "Ниже приведен список кратких имен и титулов которые GRAMPS может\n"
-#~ "извлечь из текущей базы данных. Если вы выберете 'Да', GRAMPS\n"
-#~ "изменит вашу базу данных в соответствии с нижеследующим. Если вы\n"
-#~ "не одобряете эти изменения, выберете 'Нет' и ваша база данных не будет\n"
-#~ "изменена.\n"
-#~ "\n"
-#~ "Произвести нижеследующие изменения?"
-
-#~ msgid "Export GRAMPS package - GRAMPS"
-#~ msgstr "Экспорт пакета GRAMPS - GRAMPS"
-
-#~ msgid "GRAMPS package export"
-#~ msgstr "Экспорт пакета GRAMPS"
-
-#~ msgid "Export GRAMPS package"
-#~ msgstr "Экспорт пакета GRAMPS"
-
-#~ msgid "GEDCOM Read Progress"
-#~ msgstr "Прогресс Чтения GEDCOM"
-
-#~ msgid "GEDCOM Import Progress"
-#~ msgstr "Прогресс Импорта GEDCOM"
-
-#~ msgid "Relationship Calculator - GRAMPS"
-#~ msgstr "Счетчик Отношений - GRAMPS"
-
-#~ msgid "name"
-#~ msgstr "имя"
-
-#~ msgid "SoundEx Code Generator - GRAMPS"
-#~ msgstr "Генератор Кодов SoundEx - GRAMPS"
-
-#~ msgid "Calculate SoundEx code for the name"
-#~ msgstr "Вычислить код SoundEx для данного имени"
-
-#~ msgid "Close Window"
-#~ msgstr "Закрыть Окно"
-
-#~ msgid "SoundEx Code Generator"
-#~ msgstr "Генератор Кодов SoundEx"
-
-#~ msgid "Name used to generate SoundEx code"
-#~ msgstr "Имя использованное для вычисления кода SoundEx"
-
-#~ msgid "Database Summary - GRAMPS"
-#~ msgstr "Итоги Базы Данных - GRAMPS"
-
-#~ msgid "Database Summary"
-#~ msgstr "Итоги Базы Данных"
-
-#~ msgid "Database Verify - GRAMPS"
-#~ msgstr "Проверить Базу Данных - GRAMPS"
-
-#~ msgid "Database Verify"
-#~ msgstr "Проверить Базу Данных"
-
-#~ msgid "Verify - Settings"
-#~ msgstr "Проверить - Свойства"
-
-#~ msgid "Maximum age"
-#~ msgstr "Наибольший возраст"
-
-#~ msgid "Maximum husband-wife age difference"
-#~ msgstr "Наибольшая разница в возрасте между мужем и женой"
-
-#~ msgid "Minimum age to marry"
-#~ msgstr "Наименьший возраст для вступления в брак"
-
-#~ msgid "Maximum age to marry"
-#~ msgstr "Наибольший возраст для вступления в брак"
-
-#~ msgid "Maximum number of spouses for a person"
-#~ msgstr "Наибольшее число супругов для лица"
-
-#~ msgid "Maximum number of consecutive years of widowhood"
-#~ msgstr "Наибольшее число лет подряд во вдовстве"
-
-#~ msgid "Maximum number of years between children"
-#~ msgstr "Наибольшая разница в возрасте детей"
-
-#~ msgid "Maximum span of years for all children"
-#~ msgstr "Наибольшее разница в возрасте между всеми детьми"
-
-#~ msgid "Women"
-#~ msgstr "Женщины"
-
-#~ msgid "Minimum age to bear a child"
-#~ msgstr "Наименьший возраст для рождения ребенка"
-
-#~ msgid "Maximum age to bear a child"
-#~ msgstr "Наибольший возраст для рождения ребенка"
-
-#~ msgid "Maximum number of children"
-#~ msgstr "Наибольшее число детей"
-
-#~ msgid "Men"
-#~ msgstr "Мужчины"
-
-#~ msgid "Minimum age to father a child"
-#~ msgstr "Наименьший возраст чтобы стать отцом"
-
-#~ msgid "Maximum age to father a child"
-#~ msgstr "Наибольший возраст чтобы стать отцом"
-
-#~ msgid "Preferences - GRAMPS"
-#~ msgstr "Настройки - GRAMPS"
-
-#~ msgid "GRAMPS Preferences"
-#~ msgstr "Настройки GRAMPS"
-
-#~ msgid ""
-#~ "To change your preferences, select one of the subcategories in the menu "
-#~ "on the left hand side of the window."
-#~ msgstr ""
-#~ "Чтобы изменить ваши настройки выберите одну из подкатегорий в меню с "
-#~ "левой стороны окна"
-
-#~ msgid "Default database directory"
-#~ msgstr "Каталог базы данных по умолчанию"
-
-#~ msgid "Select default database directory - GRAMPS"
-#~ msgstr "Выбрать каталог базы данных по умолчанию - GRAMPS"
-
-#~ msgid "The default directory for storing databases"
-#~ msgstr "Каталог по умолчанию для хранения баз данных"
-
-#~ msgid "Automatically load last database"
-#~ msgstr "Автоматически загружать последнюю базу данных"
-
-#~ msgid "Do not compress XML data file"
-#~ msgstr "Не сжимать XML файл данных"
-
-#~ msgid "Autosave interval (minutes)"
-#~ msgstr "Интервал автосохранения (минуты)"
-
-#~ msgid "Revison Control"
-#~ msgstr "Контроль Ревизий"
-
-#~ msgid "Use Revision Control"
-#~ msgstr "Использовать Контроль Ревизий"
-
-#~ msgid "Prompt for comment on save"
-#~ msgstr "Запрашивать комментарии при сохранении"
-
-#~ msgid "Enable autocompletion"
-#~ msgstr "Включить автодополнение"
-
-#~ msgid "Toolbar"
-#~ msgstr "Панель Инструментов"
-
-#~ msgid "Display only icons"
-#~ msgstr "Показывать только пиктограммы"
-
-#~ msgid "Display only text"
-#~ msgstr "Показывать только текст"
-
-#~ msgid "Display icons and text"
-#~ msgstr "Показывать пиктограммы и текст"
-
-#~ msgid "Status Bar"
-#~ msgstr "Панель Статуса"
-
-#~ msgid "Active person's name only"
-#~ msgstr "Только имя активного лица"
-
-#~ msgid "Active person's name and GRAMPS ID"
-#~ msgstr "Имя и GRAMPS ID номер активного лица"
 
 #~ msgid "Active person's name and attribute"
 #~ msgstr "Имя и атрибут активного лица"
@@ -4610,14 +5716,8 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Use tabbed pages"
 #~ msgstr "Использовать листы"
 
-#~ msgid "Always display the LDS ordinance tabs"
-#~ msgstr "Всегда показывать листы процедур LDS"
-
 #~ msgid "Display attribute on Edit Person form"
 #~ msgstr "Показывать атрибуты на анкете Правки Лица"
-
-#~ msgid "List display options"
-#~ msgstr "Перечислить параметры вывода"
 
 #~ msgid "Do not display alternate names in person list"
 #~ msgstr "Не показывать альтернативные имена в списке лиц"
@@ -4625,17 +5725,11 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Show Detail Flags in display lists"
 #~ msgstr "Показывать Флажки Подробностей в выводимых списках"
 
-#~ msgid "Show index numbers in child list"
-#~ msgstr "Показывать индексационные номера в списке детей"
-
 #~ msgid "Display GRAMPS ID in lists"
 #~ msgstr "Показывать GRAMPS ID номера в списках"
 
 #~ msgid "Custom Colors"
 #~ msgstr "Цвета по Заказу"
-
-#~ msgid "Pick a color"
-#~ msgstr "Выбрать цвет"
 
 #~ msgid "Odd Row Foreground"
 #~ msgstr "Цвет Нечетных Строк"
@@ -4655,288 +5749,17 @@ msgstr "Генерирует коды SoundEx для имен"
 #~ msgid "Ancestor Foreground"
 #~ msgstr "Цвет Предков"
 
-#~ msgid "Display Formats"
-#~ msgstr "Форматы Вывода"
-
-#~ msgid "Date Format"
-#~ msgstr "Форматы Дат"
-
-#~ msgid "Name Format"
-#~ msgstr "Форматы Имен"
-
-#~ msgid "Entry Formats"
-#~ msgstr "Форматы Ввода"
-
-#~ msgid "Calendars"
-#~ msgstr "Календари"
-
-#~ msgid "Show calendar format selection menu"
-#~ msgstr "Показывать меню выбора формата календаря"
-
-#~ msgid "Preferred Text Format"
-#~ msgstr "Предпочитаемый Формат Текста"
-
-#~ msgid "Preferred Paper Size"
-#~ msgstr "Предпочитаемый Размер Бумаги"
-
-#~ msgid "Default report directory"
-#~ msgstr "Каталог отчетов по умолчанию"
-
-#~ msgid "Default Web Site directory"
-#~ msgstr "Каталог Web сайтов по умолчанию"
-
-#~ msgid "Select default report directory - GRAMPS"
-#~ msgstr "Выбрать каталог отчетов по умолчанию - GRAMPS"
-
-#~ msgid "The default directory for the output of many report generators"
-#~ msgstr "Каталог по умолчанию для результатов многих генераторов отчетов"
-
-#~ msgid ""
-#~ "The default directory for the output of the Web Site report generators"
-#~ msgstr "Каталог по умолчанию для результатов генераторов Web сайт отчетов"
-
-#~ msgid "A4"
-#~ msgstr "А4"
-
-#~ msgid "Letter"
-#~ msgstr "Письмо"
-
-#~ msgid "Preferred Graphical Format"
-#~ msgstr "Предпочитаемый Графический Формат"
-
-#~ msgid "Drag and Drop from an External Source"
-#~ msgstr "Переноска Мышью из Внешнего Источника"
-
-#~ msgid "Make a reference to the object when the object is dropped"
-#~ msgstr "Делать ссылку на объект когда объект отпущен"
-
-#~ msgid "Make a local copy when the object is dropped"
-#~ msgstr "Делать локальную копию когда объект отпущен"
-
-#~ msgid "Display global properties editor when object is dropped"
-#~ msgstr "Выводить редактор глобальных свойств когда объект отпущен"
-
-#~ msgid "Drag and Drop from an Internal Source"
-#~ msgstr "Переноска Мышью из Внутреннего Источника"
-
-#~ msgid "Display local properties editor when object is dropped"
-#~ msgstr "Выводить редактор локальных свойств когда объект отпущен"
-
-#~ msgid "GRAMPS ID prefixes"
-#~ msgstr "Префиксы GRAMPS ID номеров"
-
-#~ msgid "Media Object"
-#~ msgstr "Медиа-Объекты"
-
-#~ msgid "I"
-#~ msgstr "I"
-
-#~ msgid "F"
-#~ msgstr "F"
-
-#~ msgid "P"
-#~ msgstr "P"
-
-#~ msgid "S"
-#~ msgstr "S"
-
-#~ msgid "O"
-#~ msgstr "O"
-
-#~ msgid "User Defined IDs"
-#~ msgstr "ID Номера Определенные Пользователем"
-
-#~ msgid "Allow internal GRAMPS ID numbers to be edited"
-#~ msgstr "Разрешить правку внутренних GRAMPS ID номеров"
-
-#~ msgid "Customization"
-#~ msgstr "Настройки"
-
-#~ msgid "Surname Guessing"
-#~ msgstr "Угадывание Фамилии"
-
-#~ msgid "Open a database - GRAMPS"
-#~ msgstr "Открыть базу данных - GRAMPS"
-
-#~ msgid "Open a database"
-#~ msgstr "Открыть базу данных"
-
-#~ msgid "Open a GRAMPS Database"
-#~ msgstr "Открыть Базу Данных GRAMPS"
-
-#~ msgid "Revert to an older version from revision control"
-#~ msgstr "Откатить к более старой версии из контроля ревизий"
-
-#~ msgid "Select an older revision - GRAMPS"
-#~ msgstr "Выбрать более старую ревизию - GRAMPS"
-
-#~ msgid "Revert to an older revision"
-#~ msgstr "Откатить к более старой ревизии"
-
 #~ msgid "Revision"
 #~ msgstr "Ревизия"
 
 #~ msgid "Changed by"
 #~ msgstr "Изменено :"
 
-#~ msgid "Revison Control Comment - GRAMPS"
-#~ msgstr "Коментарий Контроля Ревизий - GRAMPS"
+#~ msgid "Select"
+#~ msgstr "Выбрать"
 
-#~ msgid "Revision Control Comment"
-#~ msgstr "Коментарий Контроля Ревизий"
-
-#~ msgid "Define Filter - GRAMPS"
-#~ msgstr "Определить Фильтр - GRAMPS"
-
-#~ msgid "Define Filter"
-#~ msgstr "Определить Фильтр"
-
-#~ msgid "Exactly one rule must apply"
-#~ msgstr "Ровно одно правило должно выполняться"
-
-#~ msgid "At least one rule must apply"
-#~ msgstr "Хотя бы одно правило должно выполняться"
-
-#~ msgid "All rules must apply"
-#~ msgstr "Все правила должны выполняться"
-
-#~ msgid "Rule"
-#~ msgstr "Правило"
-
-#~ msgid "Values"
-#~ msgstr "Значения"
-
-#~ msgid "Add Rule - GRAMPS"
-#~ msgstr "Добавить Правило - GRAMPS"
-
-#~ msgid "Add Rule"
-#~ msgstr "Добавить правило"
-
-#~ msgid "User Defined Filters - GRAMPS"
-#~ msgstr "Фильтры Определенные Пользователем - GRAMPS"
-
-#~ msgid "User Defined Filters"
-#~ msgstr "Фильтры Определенные Пользователем"
-
-#~ msgid "Add a new filter"
-#~ msgstr "Добавить новый фильтр"
-
-#~ msgid "Edit the selected filter"
-#~ msgstr "Изменить выделенный фильтр"
-
-#~ msgid "Delete the selected filter"
-#~ msgstr "Уничтожить выделенный фильтр"
-
-#~ msgid "Display people matching the filter"
-#~ msgstr "Показать лиц соответствующих фильтру"
-
-#~ msgid "Test"
-#~ msgstr "Проверка"
-
-#~ msgid "Test Filter - GRAMPS"
-#~ msgstr "Пробный Фильтр - GRAMPS"
-
-#~ msgid "Source Information - GRAMPS"
-#~ msgstr "Информация об Источниках - GRAMPS"
-
-#~ msgid "Source Information"
-#~ msgstr "Информация об Источниках"
-
-#~ msgid "Publication Information"
-#~ msgstr "Информация о Публикациях"
-
-#~ msgid "Volume/Film/Page"
-#~ msgstr "Том/Пленка/Страница"
-
-#~ msgid "Comments"
-#~ msgstr "Коментарии"
-
-#~ msgid "Source Reference Selection - GRAMPS"
-#~ msgstr "Выбор Ссылок на Источники - GRAMPS"
-
-#~ msgid "Source Reference Selection"
-#~ msgstr "Выбор Ссылок на Источники"
-
-#~ msgid "Document Styles - GRAMPS"
-#~ msgstr "Стили Документов - GRAMPS"
-
-#~ msgid "Document Styles"
-#~ msgstr "Стили Документов"
-
-#~ msgid "Style Editor - GRAMPS"
-#~ msgstr "Редактор Стилей - GRAMPS"
-
-#~ msgid "Style Name"
-#~ msgstr "Название Стиля"
-
-#~ msgid "Paragraph Style"
-#~ msgstr "Стиль Абзацев"
-
-#~ msgid "Font Options"
-#~ msgstr "Параметры Шрифта"
-
-#~ msgid "pt"
-#~ msgstr "пункт"
-
-#~ msgid "Color"
-#~ msgstr "Цвет"
-
-#~ msgid "Type Face"
-#~ msgstr "Тип Шрифта"
-
-#~ msgid "Bold"
-#~ msgstr "Жирный"
-
-#~ msgid "Underline"
-#~ msgstr "Подчеркнутый"
-
-#~ msgid "roman (Times)"
-#~ msgstr "римский (Таймс)"
-
-#~ msgid "swiss (Arial, Helvetica)"
-#~ msgstr "швейцарский (Ариал,Гельветика)"
-
-#~ msgid "Paragraph Options"
-#~ msgstr "Параметры Абзаца"
-
-#~ msgid "Background"
-#~ msgstr "Фон"
-
-#~ msgid "Right Margin"
-#~ msgstr "Правое Поле"
-
-#~ msgid "Left Margin"
-#~ msgstr "Левое Поле"
-
-#~ msgid "Padding"
-#~ msgstr "Запас"
-
-#~ msgid "cm"
-#~ msgstr "см"
-
-#~ msgid "Alignment"
-#~ msgstr "Выравнивание"
-
-#~ msgid "Borders"
-#~ msgstr "Границы"
-
-#~ msgid "left"
-#~ msgstr "левый край"
-
-#~ msgid "right"
-#~ msgstr "правый край"
-
-#~ msgid "center"
-#~ msgstr "центр"
-
-#~ msgid "justify"
-#~ msgstr "оба края"
-
-#~ msgid "top"
-#~ msgstr "верх"
-
-#~ msgid "bottom"
-#~ msgstr "низ"
+#~ msgid "Could not import %s - %s"
+#~ msgstr "Не смогла импортировать %s - %s"
 
 #~ msgid "class"
 #~ msgstr "класс"
@@ -4961,9 +5784,6 @@ msgstr "Генерирует коды SoundEx для имен"
 
 #~ msgid "Privacy Options"
 #~ msgstr "Параметры Личной Информации"
-
-#~ msgid "_New File"
-#~ msgstr "Новый Файл"
 
 #~ msgid ":"
 #~ msgstr ":"
