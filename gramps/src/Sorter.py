@@ -23,7 +23,7 @@ Provides a sorting interface to GtkCList widgets.
 """
 
 __author__ = "Donald N. Allingham"
-__version__ = "$Revision:"
+__version__ = "$Revision$"
 
 #-------------------------------------------------------------------------
 #
