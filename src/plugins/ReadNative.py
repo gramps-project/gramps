@@ -123,7 +123,7 @@ class ReadNative:
         for filename in files:
             oldfile = os.path.join(tmpdir_path,filename)
             newfile = os.path.join(dbdir_path,filename)
-	    if filename != const.xmlFile:
+	    if filename not in [const.xmlFile,const.xmlFile+'.bak']:
                 shutil.copy2( oldfile, newfile )
 
             os.remove( oldfile )
