@@ -22,12 +22,27 @@
 
 __author__ = "Don Allingham"
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+import os
+
+#-------------------------------------------------------------------------
+#
+# GTK/GNOME 
+#
+#-------------------------------------------------------------------------
 import gtk
 import gtk.glade
-import string
-import os
 import gobject
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import const
 import GenericFilter
 import AutoComp
@@ -47,7 +62,7 @@ _name2list = {
 
 #-------------------------------------------------------------------------
 #
-#
+# MyInteger - spin button with standard interface
 #
 #-------------------------------------------------------------------------
 class MyInteger(gtk.SpinButton):
@@ -65,7 +80,7 @@ class MyInteger(gtk.SpinButton):
 
 #-------------------------------------------------------------------------
 #
-#
+# MyFilters - Combo box with list of filters with a standard interface
 #
 #-------------------------------------------------------------------------
 class MyFilters(gtk.Combo):
@@ -96,7 +111,8 @@ class MyFilters(gtk.Combo):
 
 #-------------------------------------------------------------------------
 #
-#
+# MyPlaces - AutoCombo text entry with list of places attached. Provides
+#            a standard interface
 #
 #-------------------------------------------------------------------------
 class MyPlaces(gtk.Entry):
@@ -115,7 +131,7 @@ class MyPlaces(gtk.Entry):
 
 #-------------------------------------------------------------------------
 #
-#
+# MyID - Person/GRAMPS ID selection box with a standard interface
 #
 #-------------------------------------------------------------------------
 class MyID(gtk.HBox):
@@ -338,11 +354,11 @@ class FilterEditor:
         self.top.destroy()
 
     def on_ok_clicked(self,obj):
-        n = string.strip(self.fname.get_text())
+        n = self.fname.get_text().strip()
         if n == '':
             return
         self.filter.set_name(n)
-        self.filter.set_comment(string.strip(self.comment.get_text()))
+        self.filter.set_comment(self.comment.get_text().strip())
         for f in self.filterdb.get_filters()[:]:
             if n == f.get_name():
                 self.filterdb.get_filters().remove(f)
@@ -360,15 +376,15 @@ class FilterEditor:
         self.top.destroy()
         
     def on_add_clicked(self,obj):
-        self.edit_rule2(None,_('Add Rule'))
+        self.edit_rule(None,_('Add Rule'))
 
     def on_edit_clicked(self,obj):
         store,iter = self.rlist.get_selected()
         if iter:
             d = self.rlist.get_object(iter)
-            self.edit_rule2(d,_('Edit Rule'))
+            self.edit_rule(d,_('Edit Rule'))
 
-    def edit_rule2(self,val,label):
+    def edit_rule(self,val,label):
         self.pmap = {}
         self.add_places = []
 
@@ -532,16 +548,20 @@ class FilterEditor:
             value_list = []
             for x in t:
                 value_list.append(x.get_text())
-            new_rule = c(value_list)
             store,iter = self.rlist.get_selected()
-            if iter:
+            new_rule = c(value_list)
+            if self.active_rule:
                 rule = self.rlist.get_object(iter)
                 self.filter.delete_rule(rule)
             self.filter.add_rule(new_rule)
             self.draw_rules()
             self.rule_top.destroy()
-        except:
+        except KeyError:
             pass
+        except:
+            import DisplayTrace
+            self.rule_top.destroy()
+            DisplayTrace.DisplayTrace()
                                
     def rule_cancel(self,obj):
         self.rule_top.destroy()
