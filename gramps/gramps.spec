@@ -1,5 +1,5 @@
-%define ver      0.7.3
-%define rel      2
+%define ver      0.8.0
+%define rel      pre
 %define prefix   /usr
 
 Summary: Genealogical Research and Analysis Management Programming System.
@@ -18,6 +18,9 @@ Requires: pygnome >= 1.0.53
 Requires: _gladegnomemodule.so
 Requires: pyexpat.so
 
+%define skreq 0.1.4
+BuildRequires: scrollkeeper >= %skreq
+
 %description
 gramps (Genealogical Research and Analysis Management Programming
 System) is a GNOME based genealogy program supporting a Python
@@ -35,6 +38,7 @@ fi
 
 make
 
+
 %install
 rm -rf $RPM_BUILD_ROOT
 
@@ -46,27 +50,45 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-, root, root)
 
-%doc README COPYING TODO
-%{prefix}/share/gnome/help/gramps-manual/C/*
-%{prefix}/share/gnome/help/extending-gramps/C/*
-%{prefix}/bin/gramps
-%{prefix}/share/gnome/apps/Applications/gramps.desktop
-%{prefix}/share/pixmaps/gramps.png
-%{prefix}/share/locale/*/LC_MESSAGES/gramps.mo
-%{prefix}/share/gramps/*.py
-%{prefix}/share/gramps/data/*.xml
-%{prefix}/share/gramps/data/templates/*
-%{prefix}/share/gramps/*.pyo
-%{prefix}/share/gramps/*.so
-%{prefix}/share/gramps/*.glade
-%{prefix}/share/gramps/*.xpm
-%{prefix}/share/gramps/*.jpg
-%{prefix}/share/gramps/*.png
-%{prefix}/share/gramps/docgen/*.py
-%{prefix}/share/gramps/docgen/*.pyo
-%{prefix}/share/gramps/filters/*.py
-%{prefix}/share/gramps/filters/*.pyo
-%{prefix}/share/gramps/plugins/*.py
-%{prefix}/share/gramps/plugins/*.glade
-%{prefix}/share/gramps/plugins/*.pyo
+%doc README COPYING TODO INSTALL
 
+%{prefix}/bin/gramps
+
+%{_datadir}/gnome/help/gramps-manual/C/*
+%{_datadir}/gnome/help/extending-gramps/C/*
+
+%{_datadir}/gnome/apps/Applications/gramps.desktop
+%{_datadir}/pixmaps/gramps.png
+%{_datadir}/locale/*/LC_MESSAGES/gramps.mo
+
+%{_datadir}/gramps/*.xpm
+%{_datadir}/gramps/*.jpg
+%{_datadir}/gramps/*.png
+%{_datadir}/gramps/*.py
+%{_datadir}/gramps/*.pyo
+%{_datadir}/gramps/*.glade
+%{_datadir}/gramps/*.so
+%{_datadir}/gramps/docgen/*.py
+%{_datadir}/gramps/docgen/*.pyo
+%{_datadir}/gramps/filters/*.py
+%{_datadir}/gramps/filters/*.pyo
+%{_datadir}/gramps/plugins/*.py
+%{_datadir}/gramps/plugins/*.pyo
+%{_datadir}/gramps/plugins/*.glade
+%{_datadir}/gramps/data/gedcom.xml
+%{_datadir}/gramps/data/templates/*.tpkg
+%{_datadir}/gramps/data/templates/*.xml
+
+%{prefix}/man/man1/gramps.1*
+
+%{_datadir}/omf/gramps
+ 
+%post
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
+
+%postun
+if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
+
+%changelog
+* Fri Jun 14 2002 Donald Peterson <dpeterso@engr.ors.edu>
+- add scrollkeeper dependencies and some file cleanup

@@ -1,11 +1,46 @@
 dnl Process this file with autoconf to produce a configure script.
+dnl May need to run automake && aclocal first
 AC_INIT(src/gramps.py)
+AM_INIT_AUTOMAKE(gramps, 0.8.0)
+RELEASE=pre
 
-dnl Checks for programs.
+VERSIONSTRING=$VERSION
+if test x"$RELEASE" != "x"
+then
+  VERSIONSTRING="$VERSION-$RELEASE"
+fi
 
-PACKAGE=gramps
+AC_SUBST(PACKAGE)
+AC_SUBST(VERSION)
+AC_SUBST(RELEASE)
+AC_SUBST(VERSIONSTRING)
 
-AC_PATH_PROG(PYTHON, python)
+AC_PATH_PROG(MSGFMT, msgfmt)
+AC_SUBST(MSGFMT)
+
+LANGUAGES="sv de fr es it pt_BR ru da_DK"
+AC_SUBST(LANGUAGES)
+
+DISTLANGS=
+POFILES=
+MOFILES=
+for lang in $LANGUAGES; do
+ POFILES="$POFILES $lang.po"
+ MOFILES="$MOFILES $lang.mo"
+done
+AC_SUBST(POFILES)
+AC_SUBST(MOFILES)
+
+dnl Checks for programs.  
+dnl We first only check for python >= 1.5
+AM_PATH_PYTHON(1.5)
+
+dnl override automatic python detection with our own place
+pythondir=\${prefix}/share
+pyexecdir=\${prefix}/share
+pkgpythondir=\${prefix}/share/\${PACKAGE}
+pkgpyexecdir=\${prefix}/share/\${PACKAGE}
+
 AC_PATH_PROG(BINSH, sh)
 
 changequote(<<, >>)dnl
@@ -246,83 +281,45 @@ if test "$PYTHON22" != ""; then
   fi
 fi
 
-
 AC_MSG_RESULT(ok)
 
-dnl Checks for typedefs, structures, and compiler characteristics.
+dnl ======================================================
+dnl == Modern documentation tools (scrollkeeper) checks
+dnl == We may need a more recent version (GNOME2 will use
+dnl == scrollkeeper > 0.3) but basic scrollkeeper instructions
+dnl == use 0.1.4 example so we'll just check for that
+dnl ======================================================
+SCROLLKEEPER_REQUIRED=0.1.4
+AC_SUBST(SCROLLKEEPER_REQUIRED)
 
-AC_ARG_ENABLE(html,   [  --enable-html           Create HTML documentation from sgml files. (requires DocBook 0.6.9)], WANT_HTML="1", WANT_HTML="0")
-
-if test "$WANT_HTML" = "1"; then
-  AC_PATH_PROG(DOCBOOKHTML, db2html)
-  if test $DOCBOOKHTML; then
-dnl We need at least 0.6.9 to be safe
-    DOCBOOK_VER_STRING=
-    DB_VERSION=
-    REQ_VERSION=
-    AC_MSG_CHECKING(for docbook 0.6.9)
-    DOCBOOK_VER_STRING=`$DOCBOOKHTML -v | awk '{print $3}'`
-    DB_VERSION=`echo ${DOCBOOK_VER_STRING} | awk -F. '{print $[]1 * 1000 + $[]2 * 100 + $[]3;}'`
-    REQ_VERSION=609
-    if test "$DB_VERSION" -ne $REQ_VERSION; then
-      AC_MSG_RESULT([********
-    DocBook = 0.6.9 is required to safely build extra docs.  I found 
-    $DOCBOOK_VER_STRING so will not build/install them.
-  ********])  
-    DOCBOOKHTML=
-    fi
-  else
-    AC_MSG_RESULT([********
-    Failed to find docbook so will not create requested documentation.
-  ********])
-  fi
-  
-  if test $DOCBOOKHTML; then
-    AC_MSG_CHECKING(for correct gnome-doc DTD)
-    changequote(,)
-    cat > conftest.sgml <<EOF
-<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
-<!ENTITY version "0.0.1"> 
-]>
-<article id="index"> 
-  <artheader>
-   <title>Test</title>
-  </artheader>
-
-  <sect1 id="test">
-    <title>A Test</title>
-    <para>  
-    This is a test. 
-    </para>
-  </sect1>
-</article> 
-EOF
-    $DOCBOOKHTML conftest.sgml -o conftest >&5 2>dbconf.err 
-    testresult=`cat dbconf.err | wc | awk '{print $1}'`
-    changequote([, ])
-    if test $testresult = "0"; then
-      rm -f dbconf.err
-      AC_MSG_RESULT(ok)
-    else
-      AC_MSG_RESULT([
-  ********
-      I had some problem with the gnome-doc DTD.  Please install
-      gnome-doc-tools from http://people.redhat.com/dcm/software.html.
-      Refer to dbconf.err for details.
-      		  I will not create documentation.
-  ********])
-      DOCBOOKHTML=
-    fi  
-    rm -rf conftest 
-  fi
+dnl First see that *some* version of scrollkeeper is installed
+AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config, no)
+if test x$SCROLLKEEPER_CONFIG = xno; then
+  AC_MSG_ERROR(Couldn't find scrollkeeper-config.  Please install the scrollkeeper package.)
+  DISABLE_SCROLLKEEPER=1
+  AC_SUBST(DISABLE_SCROLLKEEPER)
 fi
+
+dnl ======================================================
+dnl == GNOME modified DTD's need jw, not db2html
+dnl ======================================================
+AC_PATH_PROG(JW, jw, no) 
+if test x$JW = xno; then
+  HAVE_JW="no"
+else
+  HAVE_JW="yes"
+fi
+AC_SUBST(HAVE_JW)
+
+dnl ======================================================
+dnl == end of modern doc tests
+dnl ======================================================
+
 
 AC_SUBST(BINSH)
 AC_SUBST(PYTHON)
 AC_SUBST(PYTHON_VERSION)
-AC_SUBST(PACKAGE)
 AC_SUBST(GNOMEHELP)
-AC_SUBST(DOCBOOKHTML)
 AC_SUBST(LIBS)
 
 AC_SUBST(P15_INCLUDES)
@@ -331,14 +328,21 @@ AC_SUBST(P21_INCLUDES)
 AC_SUBST(P22_INCLUDES)
 AC_SUBST(INTLLIBS)
 
-AC_OUTPUT(Makefile \
-	Makefile.comm\
-	src/Makefile\
-	src/plugins/Makefile\
-	src/docgen/Makefile\
-	src/filters/Makefile\
-	src/data/Makefile\
-	doc/gramps-manual/C/Makefile\
-	doc/extending-gramps/C/Makefile\
-	gramps.sh)
-
+AC_OUTPUT([
+Makefile 
+src/Makefile
+src/const.py
+src/docgen/Makefile
+src/filters/Makefile
+src/plugins/Makefile
+src/data/Makefile
+src/data/templates/Makefile
+src/po/Makefile
+doc/Makefile
+doc/gramps-manual/Makefile
+doc/gramps-manual/C/Makefile
+doc/extending-gramps/Makefile
+doc/extending-gramps/C/Makefile
+omf-install/Makefile
+gramps.spec
+gramps.sh])

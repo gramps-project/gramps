@@ -13,6 +13,8 @@
 # PARTICULAR PURPOSE.
 
 @SET_MAKE@
+
+# Process this file with automake to produce Makefile.in
 SHELL = @SHELL@
 
 srcdir = @srcdir@
@@ -33,6 +35,7 @@ infodir = @infodir@
 mandir = @mandir@
 includedir = @includedir@
 oldincludedir = /usr/include
+pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
 top_builddir = ../..
@@ -61,7 +64,6 @@ POST_UNINSTALL = :
 EXEEXT = @EXEEXT@
 OBJEXT = @OBJEXT@
 PATH_SEPARATOR = @PATH_SEPARATOR@
-pkgdatadir = ${datadir}/@PACKAGE@/data
 AMTAR = @AMTAR@
 AWK = @AWK@
 BINSH = @BINSH@
@@ -108,18 +110,11 @@ pkgpythondir = @pkgpythondir@
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-# This is the src/data level Makefile
-SUBDIRS = templates
-
-pkgdata_DATA = gedcom.xml 
-
-EXTRA_DIST = ${pkgdata_DATA}
-subdir = src/data
+SUBDIRS = C
+subdir = doc/extending-gramps
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 DIST_SOURCES =
-DATA = $(pkgdata_DATA)
-
 
 RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
 	uninstall-info-recursive all-recursive install-data-recursive \
@@ -132,28 +127,10 @@ all: all-recursive
 .SUFFIXES:
 $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  src/data/Makefile
+	  $(AUTOMAKE) --gnu  doc/extending-gramps/Makefile
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 uninstall-info-am:
-pkgdataDATA_INSTALL = $(INSTALL_DATA)
-install-pkgdataDATA: $(pkgdata_DATA)
-	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
-	@list='$(pkgdata_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f="`echo $$p | sed -e 's|^.*/||'`"; \
-	  echo " $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f"; \
-	  $(pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f; \
-	done
-
-uninstall-pkgdataDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(pkgdata_DATA)'; for p in $$list; do \
-	  f="`echo $$p | sed -e 's|^.*/||'`"; \
-	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
-	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
-	done
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.
@@ -291,10 +268,9 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-recursive
-all-am: Makefile $(DATA)
+all-am: Makefile
 installdirs: installdirs-recursive
 installdirs-am:
-	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
 
 install: install-recursive
 install-exec: install-exec-recursive
@@ -336,7 +312,7 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-pkgdataDATA
+install-data-am:
 
 install-exec-am:
 
@@ -354,7 +330,7 @@ mostlyclean: mostlyclean-recursive
 
 mostlyclean-am: mostlyclean-generic
 
-uninstall-am: uninstall-info-am uninstall-pkgdataDATA
+uninstall-am: uninstall-info-am
 
 uninstall-info: uninstall-info-recursive
 
@@ -365,13 +341,13 @@ uninstall-info: uninstall-info-recursive
 	install-data install-data-am install-data-recursive \
 	install-exec install-exec-am install-exec-recursive \
 	install-info install-info-am install-info-recursive install-man \
-	install-pkgdataDATA install-recursive install-strip \
-	installcheck installcheck-am installdirs installdirs-am \
-	installdirs-recursive maintainer-clean maintainer-clean-generic \
+	install-recursive install-strip installcheck installcheck-am \
+	installdirs installdirs-am installdirs-recursive \
+	maintainer-clean maintainer-clean-generic \
 	maintainer-clean-recursive mostlyclean mostlyclean-generic \
 	mostlyclean-recursive tags tags-recursive uninstall \
 	uninstall-am uninstall-info-am uninstall-info-recursive \
-	uninstall-pkgdataDATA uninstall-recursive
+	uninstall-recursive
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

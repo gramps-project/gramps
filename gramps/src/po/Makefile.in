@@ -103,52 +103,31 @@ ZIP = @ZIP@
 am__include = @am__include@
 am__quote = @am__quote@
 install_sh = @install_sh@
-pkgpyexecdir = @pkgpyexecdir@/filters
-pkgpythondir = @pkgpythondir@/filters
+pkgpyexecdir = @pkgpyexecdir@
+pkgpythondir = @pkgpythondir@
 pyexecdir = @pyexecdir@
 pythondir = @pythondir@
 
-# This is the src/filters level Makefile for Gramps
-# Use GNU make's ':=' syntax for nice wildcard use.
-# If not using GNU make, then list all .py files individually
-pkgpython_PYTHON := ${wildcard *.py}
-subdir = src/filters
+# This is the src/po level Makefile configuration
+EXTRA_DIST = ${POFILES}
+CLEANFILES = ${MOFILES}
+
+SUFFIXES = .po .mo
+subdir = src/po
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
 DIST_SOURCES =
-py_compile = $(top_srcdir)/py-compile
-DIST_COMMON = $(pkgpython_PYTHON) Makefile.am Makefile.in
+DIST_COMMON = Makefile.am Makefile.in
 all: all-am
 
 .SUFFIXES:
+.SUFFIXES: .po .mo
 $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu  src/filters/Makefile
+	  $(AUTOMAKE) --gnu  src/po/Makefile
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 uninstall-info-am:
-pkgpythonPYTHON_INSTALL = $(INSTALL_DATA)
-install-pkgpythonPYTHON: $(pkgpython_PYTHON)
-	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir)
-	@list='$(pkgpython_PYTHON)'; dlist=''; for p in $$list; do\
-	  if test -f $(srcdir)/$$p; then \
-	    d=`echo "$$p" | sed -e 's,^.*/,,'`; \
-	    dlist="$$dlist $$d"; \
-	    echo " $(pkgpythonPYTHON_INSTALL) $(srcdir)/$$p $(DESTDIR)$(pkgpythondir)/$$d"; \
-	    $(pkgpythonPYTHON_INSTALL) $(srcdir)/$$p $(DESTDIR)$(pkgpythondir)/$$d; \
-	  else :; fi; \
-	done; \
-	PYTHON=$(PYTHON) $(py_compile) --basedir $(DESTDIR)$(pkgpythondir) $$dlist
-
-uninstall-pkgpythonPYTHON:
-	@$(NORMAL_UNINSTALL)
-	list='$(pkgpython_PYTHON)'; for p in $$list; do \
-	  d=`echo "$$p" | sed -e 's,^.*/,,'`; \
-	  rm -f $(DESTDIR)$(pkgpythondir)/$$d; \
-	  rm -f $(DESTDIR)$(pkgpythondir)/$${d}c; \
-	  rm -f $(DESTDIR)$(pkgpythondir)/$${d}o; \
-	done
 tags: TAGS
 TAGS:
 
@@ -183,7 +162,6 @@ check: check-am
 all-am: Makefile
 
 installdirs:
-	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir)
 
 install: install-am
 install-exec: install-exec-am
@@ -202,6 +180,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-rm -f Makefile $(CONFIG_CLEAN_FILES) stamp-h stamp-h[0-9]*
@@ -225,7 +204,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-pkgpythonPYTHON
+install-data-am: install-data-local
 
 install-exec-am:
 
@@ -243,18 +222,34 @@ mostlyclean: mostlyclean-am
 
 mostlyclean-am: mostlyclean-generic
 
-uninstall-am: uninstall-info-am uninstall-pkgpythonPYTHON
+uninstall-am: uninstall-info-am uninstall-local
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am info info-am install \
-	install-am install-data install-data-am install-exec \
-	install-exec-am install-info install-info-am install-man \
-	install-pkgpythonPYTHON install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	uninstall uninstall-am uninstall-info-am \
-	uninstall-pkgpythonPYTHON
+	install-am install-data install-data-am install-data-local \
+	install-exec install-exec-am install-info install-info-am \
+	install-man install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic uninstall uninstall-am \
+	uninstall-info-am uninstall-local
 
+
+all: ${MOFILES}
+
+install-data-local:
+	for lang in ${LANGUAGES}; do \
+	   ${INSTALL} -d ${prefix}/share/locale/$$lang; \
+	   ${INSTALL} -d ${prefix}/share/locale/$$lang/LC_MESSAGES; \
+	   ${INSTALL_DATA} $$lang.mo ${prefix}/share/locale/$$lang/LC_MESSAGES/${PACKAGE}.mo; \
+	done	
+
+uninstall-local:
+	for lang in ${LANGUAGES}; do \
+	   rm -f ${prefix}/share/locale/$$lang/LC_MESSAGES/gramps.mo; \
+	done
+
+.po.mo:
+	${MSGFMT} $< -o $@
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
