@@ -770,7 +770,7 @@
 	    <draw_indicator>True</draw_indicator>
 	    <child>
 	      <left_attach>0</left_attach>
-	      <right_attach>1</right_attach>
+	      <right_attach>2</right_attach>
 	      <top_attach>0</top_attach>
 	      <bottom_attach>1</bottom_attach>
 	      <xpad>0</xpad>
@@ -843,7 +843,7 @@
 	      <object>propertybox</object>
 	      <last_modification_time>Sat, 09 Jun 2001 14:12:06 GMT</last_modification_time>
 	    </signal>
-	    <label>Show coded detail indicators on lists</label>
+	    <label>Show Detail Flags in display lists</label>
 	    <active>False</active>
 	    <draw_indicator>True</draw_indicator>
 	    <child>
@@ -882,6 +882,12 @@
 	<class>GtkEntry</class>
 	<name>resname</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:33:49 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
@@ -906,6 +912,12 @@
 	<class>GtkEntry</class>
 	<name>resaddr</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:34:37 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
@@ -930,6 +942,12 @@
 	<class>GtkEntry</class>
 	<name>rescity</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:00 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
@@ -954,6 +972,12 @@
 	<class>GtkEntry</class>
 	<name>resstate</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:18 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
@@ -978,6 +1002,12 @@
 	<class>GtkEntry</class>
 	<name>rescountry</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:38 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
@@ -1002,6 +1032,12 @@
 	<class>GtkEntry</class>
 	<name>respostal</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:35:53 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
@@ -1026,6 +1062,12 @@
 	<class>GtkEntry</class>
 	<name>resphone</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:36:08 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
@@ -1050,6 +1092,12 @@
 	<class>GtkEntry</class>
 	<name>resemail</name>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>changed</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 14 Jun 2001 14:36:27 GMT</last_modification_time>
+	</signal>
 	<editable>True</editable>
 	<text_visible>True</text_visible>
 	<text_max_length>0</text_max_length>
