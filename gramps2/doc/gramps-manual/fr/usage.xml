@@ -29,7 +29,7 @@
       <para>Pour commencer avec une nouvelle base de données, faites 
       <menuchoice><guimenu>Fichier</guimenu>
       <guimenuitem>Nouveau</guimenuitem></menuchoice>. Le dialogue
-      <guilabel>Créer une base de données</guilabel> sera présenter
+      <guilabel>Créer une base de données</guilabel> sera présenté
       pour donner le nom sous lequel les données seront sauvées. 
       Choisissez un <replaceable>répertoire vide</replaceable> pour votre
       nouvelle base de données (créez-le si nécessaire). </para> 
