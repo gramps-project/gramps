@@ -1,3 +1,7 @@
+2005-02-18  Eero Tamminen <eerot@sf>
+	* NEWS: Added notes about user visible GraphViz and StatisticsChart
+	  report changes/enhancements
+
 2005-02-20 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Update.
 
