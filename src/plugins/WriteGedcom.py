@@ -777,8 +777,6 @@ class GedcomWriter:
                 self.writeln("1 PUBL %s" % self.cnvtxt(source.getPubInfo()))
             if source.getAbbrev():
                 self.writeln("1 ABBR %s" % self.cnvtxt(source.getAbbrev()))
-            if source.getCallNumber():
-                self.writeln("1 CALN %s" % self.cnvtxt(source.getCallNumber()))
             if source.getNote():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.getNote()))
             index = index + 1
