@@ -20,7 +20,7 @@
 #
 
 #
-# Written by Egyeki Gergely <egeri@elte.hu>, 2003
+# Written by Egyeki Gergely <egeri@elte.hu>, 2004
 #
 
 #-------------------------------------------------------------------------
@@ -30,6 +30,7 @@
 #-------------------------------------------------------------------------
 
 import RelLib
+import Date
 
 from Relationship import apply_filter, is_spouse
 from Plugins import register_relcalc
@@ -45,7 +46,7 @@ _level =\
     ["", "", "másod", "harmad", "negyed", "ötöd", "hatod",
      "heted", "nyolcad", "kilenced", "tized", "tizenegyed", "tizenketted",
      "tizenharmad", "tizennegyed", "tizenötöd", "tizenhatod",
-     "tizenheted", "tizennyolcad", "tizenkilenced", "huszad"]
+     "tizenheted", "tizennyolcad", "tizenkilenced", "huszad","huszonegyed"]
 
 
 #-------------------------------------------------------------------------
@@ -83,13 +84,16 @@ def get_mother (level):
 
 def get_son (level):
     if   level == 0: return ""
-    elif level == 1: return "gyereke"
+    elif level == 1: return "fia"
     elif level == 2: return "unokája"
     else           : return "%s unokája" % (_level[level])
 
 
 def get_daughter (level):
-    return get_son(level)
+    if   level == 0: return ""
+    elif level == 1: return "lánya"
+    else           : return get_son(level)
+
 
 
 
@@ -102,7 +106,11 @@ def get_uncle (level):
 
 
 def get_aunt (level):
-    return get_uncle(level)
+    if   level == 0: return ""
+    elif level == 1: return "testvére"
+    elif level == 2: return "nagynénje"
+    else           : return "%s nagynénje" % (_level[level])
+
 
 
 
@@ -116,6 +124,7 @@ def get_niece(level):
 
 
 
+
 def get_male_cousin (level):
     if   level == 0: return ""
     elif level == 1: return "unokatestvére"
@@ -125,6 +134,28 @@ def get_female_cousin (level):
     return get_male_cousin(level)
 
 
+
+# brother and sister age differences
+
+def get_age_comp(orig_person,other_person):
+    # 0=nothing, -1=other is younger 1=other is older
+    orig_birth_event = orig_person.getBirth()
+    orig_birth_date = orig_birth_event.getDateObj()
+    other_birth_event = other_person.getBirth()
+    other_birth_date = other_birth_event.getDateObj()
+    if (orig_birth_date == "")or(other_birth_date == "") :return 0
+    else  :return Date.compare_dates(orig_birth_date,other_birth_date)
+          
+
+def get_age_brother (level):
+    if   level == 0  : return "testvére"
+    elif level == 1  : return "öccse"
+    else             : return "bátyja"
+
+def get_age_sister (level):
+    if   level == 0  : return "testvére"
+    elif level == 1  : return "húga"
+    else             : return "nővére"
 
 
 #-------------------------------------------------------------------------
@@ -144,6 +175,7 @@ def get_relationship(orig_person,other_person):
     secondList = []
     common = []
     rank = 9999999
+
 
     if orig_person == None:
         return ("nem meghatározható",[])
@@ -184,8 +216,10 @@ def get_relationship(orig_person,other_person):
         firstRel = secondMap[person.getId()]
 
 
+
     if firstRel == -1:
         return ("",[])
+
     elif firstRel == 0:
         if secondRel == 0:
             return ('',common)
@@ -193,21 +227,29 @@ def get_relationship(orig_person,other_person):
             return (get_father(secondRel),common)
         else:
             return (get_mother(secondRel),common)
+
     elif secondRel == 0:
         if other_person.getGender() == RelLib.Person.male:
             return (get_son(firstRel),common)
         else:
             return (get_daughter(firstRel),common)
+
     elif firstRel == 1:
         if other_person.getGender() == RelLib.Person.male:
-            return (get_uncle(secondRel),common)
+            if secondRel == 1:
+               return (get_age_brother(get_age_comp(orig_person,other_person)),common)
+            else :return (get_uncle(secondRel),common)
         else:
-            return (get_aunt(secondRel),common)
+            if secondRel == 1:
+               return (get_age_sister(get_age_comp(orig_person,other_person)),common)
+            else :return (get_aunt(secondRel),common)
+
     elif secondRel == 1:
         if other_person.getGender() == RelLib.Person.male:
             return (get_nephew(firstRel-1),common)
         else:
             return (get_niece(firstRel-1),common)
+
     else:
         if other_person.getGender() == RelLib.Person.male:
             return (get_male_cousin(firstRel-1), common)
@@ -222,7 +264,7 @@ def get_relationship(orig_person,other_person):
 #-------------------------------------------------------------------------
 
 register_relcalc(get_relationship,
-    ["hu", "HU", "hu_HU", "hu_HU.utf8"])
+    ["hu", "HU", "hu_HU", "hu_HU.utf8", "hu_HU.UTF8"])
 
 # Local variables:
 # buffer-file-coding-system: utf-8
