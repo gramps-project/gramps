@@ -823,7 +823,10 @@ class GedcomParser:
                 a.set_type("Number of Children")
                 a.set_value(matches[2])
                 self.family.add_attribute(a)
-            elif matches[1] in ["RIN", "SUBM", "REFN","CHAN","SOUR"]:
+            elif matches[1] == "SOUR":
+                source_ref = self.handle_source(matches,2)
+                self.family.add_source_reference(source_ref)
+            elif matches[1] in ["RIN", "SUBM", "REFN","CHAN"]:
                 self.ignore_sub_junk(2)
             elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
