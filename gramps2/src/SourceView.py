@@ -171,28 +171,27 @@ class SourceView:
                               self.topWindow)
 
     def on_delete_clicked(self,obj):
-        store,node = self.selection.get_selected()
-        if not node:
-            return
-        
-        handle = store.get_value(node,_HANDLE_COL)
-        source = self.parent.db.get_source_from_handle(handle)
+        mlist = []
+        self.selection.selected_foreach(self.blist,mlist)
 
-        the_lists = Utils.get_source_referents(handle,self.parent.db)
-        ans = EditSource.DelSrcQuery(source,self.parent.db,the_lists,
+        for handle in mlist:
+            source = self.parent.db.get_source_from_handle(handle)
+
+            the_lists = Utils.get_source_referents(handle,self.parent.db)
+            ans = EditSource.DelSrcQuery(source,self.parent.db,the_lists,
                                          self.model.delete_row_by_handle)
 
-        if filter(None,the_lists): # quick test for non-emptiness
-            msg = _('This source is currently being used. Deleting it '
-                    'will remove it from the database and from all '
-                    'records that reference it.')
-        else:
-            msg = _('Deleting source will remove it from the database.')
+            if filter(None,the_lists): # quick test for non-emptiness
+                msg = _('This source is currently being used. Deleting it '
+                        'will remove it from the database and from all '
+                        'records that reference it.')
+            else:
+                msg = _('Deleting source will remove it from the database.')
             
-        msg = "%s %s" % (msg,Utils.data_recover_msg)
-        QuestionDialog(_('Delete %s?') % source.get_title(), msg,
-                       _('_Delete Source'),ans.query_response,
-                       self.topWindow)
+            msg = "%s %s" % (msg,Utils.data_recover_msg)
+            QuestionDialog(_('Delete %s?') % source.get_title(), msg,
+                           _('_Delete Source'),ans.query_response,
+                           self.topWindow)
 
     def on_edit_clicked(self,obj):
         list_store, node = self.selection.get_selected()

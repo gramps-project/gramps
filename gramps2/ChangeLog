@@ -1,3 +1,6 @@
+2005-04-02  Don Allingham  <don@gramps-project.org>
+	* src/SourceView.py: fix multiple selection problem.
+
 2005-04-02  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditPerson.py: Remove unneeded arguments.
 	* src/Marriage.py: Remove unneeded arguments.
