@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 # Copyright (C) 2003  Tim Waugh
 #
 # This program is free software; you can redistribute it and/or modify
@@ -33,7 +33,7 @@ import Report
 import BaseDoc
 import RelLib
 import Errors
-import Relationship
+import Plugins
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
@@ -55,6 +55,8 @@ class ComprehensiveAncestorsReport (Report.Report):
         self.sources = []
         self.sourcerefs = []
         self.newpage = newpage
+        self.RelClass = Plugins.relationship_class
+        self.relationship = self.RelClass(database)
 
         table = BaseDoc.TableStyle ()
         table.set_column_widths ([15, 85])
@@ -224,7 +226,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     if self.gp:
                         break
 
-                relstring = Relationship.get_grandparents_string (self.start,
+                relstring = self.relationship.get_grandparents_string (self.start,
                                                                   self.gp)[0]
                 heading = _("%(name)s's maternal %(grandparents)s") % \
                           { 'name': self.first_name_or_nick (self.start),
@@ -247,7 +249,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     if self.gp:
                         break
 
-                relstring = Relationship.get_grandparents_string (self.start,
+                relstring = self.relationship.get_grandparents_string (self.start,
                                                                   self.gp)[0]
                 if thisgen == 2:
                     heading = _("%(name)s's %(parents)s") % \
@@ -430,7 +432,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     info += _(' in %(month_or_year)s') % \
                             {'month_or_year': dateobj.get_date ()}
 
-        placename = event.get_place_name ()
+        placename = self.database.find_place_from_id(event.get_place_id()).get_title()
         if placename:
             info += _(' in %(place)s') % {'place': placename}
         note = event.get_note ()
@@ -629,7 +631,8 @@ class ComprehensiveAncestorsReport (Report.Report):
         gender = person.get_gender ()
         first_marriage = 1
         ret = ''
-        for family in person.get_family_id_list ():
+        for family_id in person.get_family_id_list ():
+            family = self.database.find_family_from_id(family_id)
             mother = family.get_mother_id ()
             for spouse in [family.get_father_id (), mother]:
                 if spouse == person or not spouse:

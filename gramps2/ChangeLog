@@ -2,6 +2,8 @@
 	* src/Relationship.py: More corrections.
 	* src/plugins/rel_ru.py: Corrections. 
 	* src/gramps_main.py: Corrections. 
+	* src/plugins/Ancestors.py: Use get_grandparents_string which is
+	registered in Plugins (possibly from the relationship calculator).
 
 2004-02-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/RelCalc.py: Handle IDs properly
