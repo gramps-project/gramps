@@ -71,6 +71,7 @@ class NameEditor:
         self.group_as  = self.top.get_widget("group_as")
         self.title_field  = self.top.get_widget("alt_title")
         self.suffix_field = self.top.get_widget("alt_suffix")
+        self.patronymic_field = self.top.get_widget("patronymic")
         self.combo = self.top.get_widget("alt_surname_list")
 
         AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
@@ -132,6 +133,7 @@ class NameEditor:
             self.suffix_field.set_text(name.get_suffix())
             self.prefix_field.set_text(name.get_surname_prefix())
             self.type_field.set_text(_(name.get_type()))
+            self.patronymic_field.set_text(name.get_patronymic())
             self.priv.set_active(name.get_privacy())
             if name.get_note():
                 self.note_buffer.set_text(name.get_note())
@@ -226,6 +228,7 @@ class NameEditor:
         title = unicode(self.title_field.get_text())
         prefix = unicode(self.prefix_field.get_text())
         suffix = unicode(self.suffix_field.get_text())
+        patronymic = unicode(self.patronymic_field.get_text())
         note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
                                  self.note_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
@@ -280,13 +283,13 @@ class NameEditor:
                     self.name.set_group_as(grp_as)
             self.parent.lists_changed = 1
 
-        self.update_name(first,last,suffix,title,mtype,note,format,priv)
+        self.update_name(first,last,suffix,patronymic,title,mtype,note,format,priv)
         self.parent.lists_changed = 1
 
         self.callback(self.name)
         self.close(obj)
 
-    def update_name(self,first,last,suffix,title,type,note,format,priv):
+    def update_name(self,first,last,suffix,patronymic,title,type,note,format,priv):
         
         if self.name.get_first_name() != first:
             self.name.set_first_name(first)
@@ -298,6 +301,10 @@ class NameEditor:
 
         if self.name.get_suffix() != suffix:
             self.name.set_suffix(suffix)
+            self.parent.lists_changed = 1
+
+        if self.name.get_patronymic() != patronymic:
+            self.name.set_patronymic(patronymic)
             self.parent.lists_changed = 1
 
         if self.name.get_title() != title:
