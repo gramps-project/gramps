@@ -18,6 +18,7 @@ intl.bindtextdomain("gramps",locale)
 
 import gramps_main 
 import sys
+import locale
 
 try:
     if len(sys.argv) > 1:

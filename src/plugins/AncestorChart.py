@@ -40,7 +40,7 @@ _ = intl.gettext
 #
 #------------------------------------------------------------------------
 def pt2cm(pt):
-    return (float(pt)/72.0)*2.54
+    return (float(pt)/72.0)*(254.0/100.0)
 
 #------------------------------------------------------------------------
 #
@@ -161,14 +161,14 @@ class AncestorChart:
 	width = 0
         self.filter(self.start,1)
 
-	self.height = self.lines*pt2cm(1.25*self.font.get_size())
+	self.height = self.lines*pt2cm((125.0*self.font.get_size())/100.0)
 	self.box_width = pt2cm(self.box_width+20)
 
         start = self.doc.get_right_margin()
-	delta = (self.doc.get_usable_width() - (self.box_width + 0.5))/3.0
+	delta = (self.doc.get_usable_width() - (self.box_width + (5.0/10.0)))/3.0
         uh = self.doc.get_usable_height()
 
-        ystart = self.doc.get_top_margin() - ((self.height+0.3)/2.0)
+        ystart = self.doc.get_top_margin() - ((self.height+(3.0/10.0))/2.0)
         self.x = [start, start + delta, start + (2*delta), start + (3*delta)]
         self.y = [ ystart + (uh/2.0),   ystart + (uh/4.0),
                    ystart + 3*(uh/4.0), ystart + (uh/8.0),
