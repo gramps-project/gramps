@@ -350,7 +350,7 @@
 
   <!-- =============== Customization Sub-subsection ================ -->
       <sect3 id="prefs-db-id"> 
-        <title>&app; internal IDs</title> 
+        <title>GRAMPS internal IDs</title> 
 
 	<variablelist>
 
