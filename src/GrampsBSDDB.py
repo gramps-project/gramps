@@ -53,6 +53,11 @@ class GrampsBSDDB(GrampsDbBase):
         """creates a new GrampsDB"""
         GrampsDbBase.__init__(self)
 
+    def dbopen(self,name,dbname):
+        dbmap = dbshelve.DBShelf(self.env)
+        dbmap.open(name, dbname, db.DB_HASH, db.DB_CREATE, 0666)
+        return dbmap
+    
     def load(self,name,callback):
         if self.person_map:
             self.close()
@@ -65,13 +70,14 @@ class GrampsBSDDB(GrampsDbBase):
         self.env.open(os.path.dirname(name), flags)
             
         name = os.path.basename(name)
-        self.family_map = dbshelve.open(name, dbname="family", dbenv=self.env)
-        self.place_map  = dbshelve.open(name, dbname="places", dbenv=self.env)
-        self.source_map = dbshelve.open(name, dbname="sources",dbenv=self.env)
-        self.media_map  = dbshelve.open(name, dbname="media",  dbenv=self.env)
-        self.event_map  = dbshelve.open(name, dbname="events", dbenv=self.env)
-        self.metadata   = dbshelve.open(name, dbname="meta",   dbenv=self.env)
-        self.person_map = dbshelve.open(name, dbname="person", dbenv=self.env)
+
+        self.family_map = self.dbopen(name, "family")
+        self.place_map  = self.dbopen(name, "places")
+        self.source_map = self.dbopen(name, "sources")
+        self.media_map  = self.dbopen(name, "media")
+        self.event_map  = self.dbopen(name, "events")
+        self.metadata   = self.dbopen(name, "meta")
+        self.person_map = self.dbopen(name, "person")
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
