@@ -291,6 +291,9 @@ def exportData(database, filename, callback):
             
             write_line(g,"uid",person.getPafUid(),3)
             write_line(g,"nick",person.getNickName(),3)
+            pos = person.getPosition()
+            if pos != None:
+               g.write('      <pos>%d %d</pos>\n'% pos)
             dump_my_event(g,"Birth",person.getBirth(),3)
             dump_my_event(g,"Death",person.getDeath(),3)
             for event in person.getEventList():
@@ -310,7 +313,7 @@ def exportData(database, filename, callback):
 
             if len(person.getAddressList()) > 0:
                 for address in person.getAddressList():
-                    g.write('      <address%s">\n' % conf_priv(address))
+                    g.write('      <address%s>\n' % conf_priv(address))
                     write_line(g,"date",address.getDateObj().getSaveDate(),4)
                     write_line(g,"street",address.getStreet(),4)
                     write_line(g,"city",address.getCity(),4)
