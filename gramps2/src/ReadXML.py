@@ -162,6 +162,7 @@ def importData(database, filename, callback=None,cl=0):
                 os.mkdir(img_dir)
                 first = 0
             newfile = "%s/%s" % (img_dir,oldfile)
+
             try:
                 oldfilename = "%s/%s" % (basefile,oldfile)
                 shutil.copyfile(oldfilename,newfile)
@@ -170,9 +171,10 @@ def importData(database, filename, callback=None,cl=0):
                 except:
                     pass
                 mobject.set_path(newfile)
-                database.commit_media_object(mobject,None,self.change)
-            except:
-                pass
+                database.commit_media_object(mobject,None,change)
+            except (IOError,OSError),msg:
+                ErrorDialog(_('Could not copy file'),str(msg))
+                            
 
 #-------------------------------------------------------------------------
 #     def remove_clicked():
