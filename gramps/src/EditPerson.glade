@@ -1200,8 +1200,8 @@
 	      <handler>on_nameList_select_row</handler>
 	      <last_modification_time>Mon, 18 Dec 2000 22:29:26 GMT</last_modification_time>
 	    </signal>
-	    <columns>1</columns>
-	    <column_widths>80</column_widths>
+	    <columns>2</columns>
+	    <column_widths>450,50</column_widths>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -1211,6 +1211,19 @@
 	      <child_name>CList:title</child_name>
 	      <name>label57</name>
 	      <label>Alternate Names</label>
+	      <justify>GTK_JUSTIFY_CENTER</justify>
+	      <wrap>False</wrap>
+	      <xalign>0.5</xalign>
+	      <yalign>0.5</yalign>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	    </widget>
+
+	    <widget>
+	      <class>GtkLabel</class>
+	      <child_name>CList:title</child_name>
+	      <name>name_detail</name>
+	      <label>Details</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>0.5</xalign>
@@ -1636,8 +1649,8 @@
 		<handler>on_eventList_select_row</handler>
 		<last_modification_time>Fri, 01 Dec 2000 02:58:20 GMT</last_modification_time>
 	      </signal>
-	      <columns>3</columns>
-	      <column_widths>162,119,80</column_widths>
+	      <columns>4</columns>
+	      <column_widths>125,150,200,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -1673,6 +1686,19 @@
 		<child_name>CList:title</child_name>
 		<name>label109</name>
 		<label>Place</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>event_details</name>
+		<label>Details</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
@@ -1985,8 +2011,8 @@
 		<handler>on_attr_list_select_row</handler>
 		<last_modification_time>Tue, 01 May 2001 17:24:40 GMT</last_modification_time>
 	      </signal>
-	      <columns>2</columns>
-	      <column_widths>238,80</column_widths>
+	      <columns>3</columns>
+	      <column_widths>200,250,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -2009,6 +2035,19 @@
 		<child_name>CList:title</child_name>
 		<name>label139</name>
 		<label>Value</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>attr_details</name>
+		<label>Details</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
@@ -2509,8 +2548,8 @@
 		<handler>on_address_list_select_row</handler>
 		<last_modification_time>Wed, 23 May 2001 18:42:16 GMT</last_modification_time>
 	      </signal>
-	      <columns>2</columns>
-	      <column_widths>165,80</column_widths>
+	      <columns>3</columns>
+	      <column_widths>150,350,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -2533,6 +2572,19 @@
 		<child_name>CList:title</child_name>
 		<name>label151</name>
 		<label>Location</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>address_details</name>
+		<label>Details</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>

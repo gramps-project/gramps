@@ -181,6 +181,11 @@ class EditPerson:
         death = person.getDeath()
 
         self.get_widget("gid").set_text(str(person.getId()))
+        self.event_list.set_column_visibility(3,Config.show_detail)
+        self.name_list.set_column_visibility(1,Config.show_detail)
+        self.attr_list.set_column_visibility(2,Config.show_detail)
+        self.address_list.set_column_visibility(2,Config.show_detail)
+
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
             val = ""
@@ -263,7 +268,13 @@ class EditPerson:
         self.name_list.clear()
 
 	self.name_index = 0
+        attr = ""
         for name in self.person.getAlternateNames():
+            if Config.show_detail:
+                if name.getNote() != "":
+                    attr = "N"
+                if name.getSourceRef():
+                    attr = attr + "S"
             self.name_list.append([name.getName()])
             self.name_list.set_row_data(self.name_index,name)
             self.name_index = self.name_index + 1
@@ -317,8 +328,14 @@ class EditPerson:
         self.attr_list.clear()
 
 	self.attr_index = 0
+        detail = ""
         for attr in self.person.getAttributeList():
-            self.attr_list.append([attr.getType(),attr.getValue()])
+            if Config.show_detail:
+                if attr.getNote() != "":
+                    detail = "N"
+                if attr.getSourceRef():
+                    detail = detail + "S"
+            self.attr_list.append([attr.getType(),attr.getValue(),detail])
             self.attr_list.set_row_data(self.attr_index,attr)
             self.attr_index = self.attr_index + 1
 
@@ -343,11 +360,17 @@ class EditPerson:
         self.address_list.freeze()
         self.address_list.clear()
 
+        detail = ""
 	self.address_index = 0
         for address in self.person.getAddressList():
+            if Config.show_detail:
+                if address.getNote() != "":
+                    detail = "N"
+                if address.getSourceRef():
+                    detail = detail + "S"
             location = address.getCity() + " " + address.getState() + " " + \
                        address.getCountry()
-            self.address_list.append([address.getDate(),location])
+            self.address_list.append([address.getDate(),location,detail])
             self.address_list.set_row_data(self.address_index,address)
             self.address_index = self.address_index + 1
 
@@ -374,9 +397,15 @@ class EditPerson:
         self.event_list.clear()
 
         self.event_index = 0
+        attr = ""
         for event in self.person.getEventList():
+            if Config.show_detail:
+                if event.getNote() != "":
+                    attr = "N"
+                if event.getSourceRef():
+                    attr = attr + "S"
             self.event_list.append([event.getName(),event.getQuoteDate(),\
-                                    event.getPlace()])
+                                    event.getPlace(),attr])
             self.event_list.set_row_data(self.event_index,event)
             self.event_index = self.event_index + 1
 

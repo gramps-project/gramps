@@ -88,6 +88,7 @@ _name_format_list = [
 owner         = Researcher.Researcher()
 autoload      = 0
 usetabs       = 0
+show_detail   = 0
 hide_altnames = 0
 lastfile      = None
 nameof        = utils.normal_name
@@ -136,6 +137,7 @@ def loadConfig(call):
     global autoload
     global owner
     global usetabs
+    global show_detail
     global hide_altnames
     global lastfile
     global nameof
@@ -151,6 +153,7 @@ def loadConfig(call):
     _callback = call
     lastfile = gnome.config.get_string("/gramps/data/LastFile")
     usetabs = gnome.config.get_bool("/gramps/config/UseTabs")
+    show_detail = gnome.config.get_bool("/gramps/config/ShowDetail")
     status_bar = gnome.config.get_int("/gramps/config/StatusBar")
     display_attr = gnome.config.get_bool("/gramps/config/DisplayAttr")
     attr_name = gnome.config.get_string("/gramps/config/DisplayAttrName")
@@ -197,6 +200,8 @@ def loadConfig(call):
         autoload = 1
     if usetabs == None:
         usetabs = 0
+    if show_detail == None:
+        show_detail = 0
     if status_bar == None:
         status_bar = 0
     if hide_altnames == None:
@@ -290,10 +295,12 @@ def on_propertybox_apply(obj,page):
     global hide_altnames
     global paper_preference
     global output_preference
+    global show_detail
 
     if page != -1:
         return
     
+    show_detail = prefsTop.get_widget("showdetail").get_active()
     autoload = prefsTop.get_widget("autoload").get_active()
     display_attr = prefsTop.get_widget("attr_display").get_active()
     attr_name = string.strip(prefsTop.get_widget("attr_name").get_text())
@@ -313,6 +320,7 @@ def on_propertybox_apply(obj,page):
     output_preference = output_obj.get_data("d")
     
     gnome.config.set_bool("/gramps/config/UseTabs",usetabs)
+    gnome.config.set_bool("/gramps/config/ShowDetail",show_detail)
     gnome.config.set_int("/gramps/config/StatusBar",status_bar)
     gnome.config.set_bool("/gramps/config/DisplayAttr",display_attr)
     gnome.config.set_string("/gramps/config/DisplayAttrName",attr_name)
@@ -445,9 +453,11 @@ def display_preferences_box():
     pbox = prefsTop.get_widget("propertybox")
     auto = prefsTop.get_widget("autoload")
     tabs = prefsTop.get_widget("usetabs")
+    detail = prefsTop.get_widget("showdetail")
     display_attr_obj = prefsTop.get_widget("attr_display")
     display_altnames = prefsTop.get_widget("display_altnames")
     auto.set_active(autoload)
+    detail.set_active(show_detail)
     tabs.set_active(usetabs)
 
     display_attr_obj.set_active(display_attr)

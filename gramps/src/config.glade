@@ -150,35 +150,6 @@
 
       <widget>
 	<class>GtkCheckButton</class>
-	<name>display_altnames</name>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>toggled</name>
-	  <handler>on_object_toggled</handler>
-	  <object>propertybox</object>
-	  <last_modification_time>Sun, 22 Apr 2001 21:20:17 GMT</last_modification_time>
-	</signal>
-	<label>Do not display alternate names in person list</label>
-	<active>False</active>
-	<draw_indicator>True</draw_indicator>
-	<child>
-	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
-	  <top_attach>2</top_attach>
-	  <bottom_attach>3</bottom_attach>
-	  <xpad>5</xpad>
-	  <ypad>5</ypad>
-	  <xexpand>False</xexpand>
-	  <yexpand>False</yexpand>
-	  <xshrink>False</xshrink>
-	  <yshrink>False</yshrink>
-	  <xfill>True</xfill>
-	  <yfill>False</yfill>
-	</child>
-      </widget>
-
-      <widget>
-	<class>GtkCheckButton</class>
 	<name>attr_display</name>
 	<can_focus>True</can_focus>
 	<signal>
@@ -436,11 +407,103 @@
     <widget>
       <class>GtkTable</class>
       <name>table21</name>
-      <rows>1</rows>
+      <rows>2</rows>
       <columns>2</columns>
       <homogeneous>False</homogeneous>
       <row_spacing>0</row_spacing>
       <column_spacing>0</column_spacing>
+
+      <widget>
+	<class>GtkFrame</class>
+	<name>frame7</name>
+	<label>Status Bar</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <left_attach>1</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>0</top_attach>
+	  <bottom_attach>1</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>True</xexpand>
+	  <yexpand>True</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>True</yfill>
+	</child>
+
+	<widget>
+	  <class>GtkVBox</class>
+	  <name>vbox25</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>stat1</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:01 GMT</last_modification_time>
+	    </signal>
+	    <label>Active person's name only</label>
+	    <active>True</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>status</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>stat2</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:16 GMT</last_modification_time>
+	    </signal>
+	    <label>Active person's name and gramps ID</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>status</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkRadioButton</class>
+	    <name>stat3</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Wed, 30 May 2001 02:18:29 GMT</last_modification_time>
+	    </signal>
+	    <label>Active person's name and attribute</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <group>status</group>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+	</widget>
+      </widget>
 
       <widget>
 	<class>GtkFrame</class>
@@ -452,7 +515,7 @@
 	  <left_attach>0</left_attach>
 	  <right_attach>1</right_attach>
 	  <top_attach>0</top_attach>
-	  <bottom_attach>1</bottom_attach>
+	  <bottom_attach>2</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>False</xexpand>
@@ -725,19 +788,19 @@
 
       <widget>
 	<class>GtkFrame</class>
-	<name>frame7</name>
-	<label>Status Bar</label>
+	<name>frame8</name>
+	<label>List display options</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	<child>
 	  <left_attach>1</left_attach>
 	  <right_attach>2</right_attach>
-	  <top_attach>0</top_attach>
-	  <bottom_attach>1</bottom_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
-	  <xexpand>True</xexpand>
-	  <yexpand>True</yexpand>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
 	  <xshrink>False</xshrink>
 	  <yshrink>False</yshrink>
 	  <xfill>True</xfill>
@@ -746,24 +809,23 @@
 
 	<widget>
 	  <class>GtkVBox</class>
-	  <name>vbox25</name>
+	  <name>vbox26</name>
 	  <homogeneous>False</homogeneous>
 	  <spacing>0</spacing>
 
 	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>stat1</name>
+	    <class>GtkCheckButton</class>
+	    <name>display_altnames</name>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>toggled</name>
 	      <handler>on_object_toggled</handler>
 	      <object>propertybox</object>
-	      <last_modification_time>Wed, 30 May 2001 02:18:01 GMT</last_modification_time>
+	      <last_modification_time>Sun, 22 Apr 2001 21:20:17 GMT</last_modification_time>
 	    </signal>
-	    <label>Active person's name only</label>
-	    <active>True</active>
+	    <label>Do not display alternate names in person list</label>
+	    <active>False</active>
 	    <draw_indicator>True</draw_indicator>
-	    <group>status</group>
 	    <child>
 	      <padding>0</padding>
 	      <expand>False</expand>
@@ -772,40 +834,18 @@
 	  </widget>
 
 	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>stat2</name>
+	    <class>GtkCheckButton</class>
+	    <name>showdetail</name>
 	    <can_focus>True</can_focus>
 	    <signal>
 	      <name>toggled</name>
 	      <handler>on_object_toggled</handler>
 	      <object>propertybox</object>
-	      <last_modification_time>Wed, 30 May 2001 02:18:16 GMT</last_modification_time>
+	      <last_modification_time>Sat, 09 Jun 2001 14:12:06 GMT</last_modification_time>
 	    </signal>
-	    <label>Active person's name and gramps ID</label>
+	    <label>Show coded detail indicators on lists</label>
 	    <active>False</active>
 	    <draw_indicator>True</draw_indicator>
-	    <group>status</group>
-	    <child>
-	      <padding>0</padding>
-	      <expand>False</expand>
-	      <fill>False</fill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkRadioButton</class>
-	    <name>stat3</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>toggled</name>
-	      <handler>on_object_toggled</handler>
-	      <object>propertybox</object>
-	      <last_modification_time>Wed, 30 May 2001 02:18:29 GMT</last_modification_time>
-	    </signal>
-	    <label>Active person's name and attribute</label>
-	    <active>False</active>
-	    <draw_indicator>True</draw_indicator>
-	    <group>status</group>
 	    <child>
 	      <padding>0</padding>
 	      <expand>False</expand>
