@@ -247,6 +247,7 @@ class SourceEditor:
         self.parent = parent
         self.update = update
         self.source_ref = srcref
+	self.child_windows = []
         self.showSource = gtk.glade.XML(const.srcselFile, "sourceDisplay","gramps")
         self.sourceDisplay = self.get_widget("sourceDisplay")
 
@@ -257,6 +258,9 @@ class SourceEditor:
             "on_source_changed"     : self.on_source_changed,
             "on_add_src_clicked"    : self.add_src_clicked,
             "on_help_srcDisplay_clicked"   : self.on_help_clicked,
+            "on_ok_srcDisplay_clicked"   : self.on_sourceok_clicked,
+            "on_cancel_srcDisplay_clicked"   : self.close,
+            "on_sourceDisplay_delete_event"  : self.on_delete_event,
             })
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
@@ -280,18 +284,56 @@ class SourceEditor:
 
         self.draw(self.active_source)
         self.set_button()
-        self.sourceDisplay.show()
         if self.parent:
             self.sourceDisplay.set_transient_for(self.parent.window)
-        self.val = self.sourceDisplay.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_sourceok_clicked()
-        self.sourceDisplay.destroy()
+        self.parent.parent.child_windows.append(self)
+	self.add_itself_to_menu()
+        self.sourceDisplay.show()
+
+    def on_delete_event(self,obj,b):
+    	self.close_child_windows()
+        self.parent.parent.child_windows.remove(self)
+	self.remove_itself_from_menu()
+
+    def close(self,obj):
+	self.close_child_windows()
+        self.parent.parent.child_windows.remove(self)
+	self.remove_itself_from_menu()
+	Utils.destroy_passed_object(self.sourceDisplay)
+
+    def close_child_windows(self):
+	for child_window in self.child_windows:
+	    child_window.close()
+
+    def add_itself_to_menu(self):
+        if self.active_source:
+            label = self.active_source.get_title()
+        else:
+            label = _("New Source")
+	if not label.strip():
+	    label = _("New Source")
+	label = "%s: %s" % (_('Source Reference'),label)
+	self.parent_menu_item = gtk.MenuItem(label)
+	self.parent_menu_item.set_submenu(gtk.Menu())
+	self.parent_menu_item.show()
+	self.parent.parent.menu.append(self.parent_menu_item)
+	self.menu = self.parent_menu_item.get_submenu()
+	self.menu_item = gtk.MenuItem(_('Source Information'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+	self.menu.destroy()
+	self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','adv-si')
-        self.val = self.sourceDisplay.run()
 
     def set_button(self):
         if self.active_source:
@@ -352,7 +394,7 @@ class SourceEditor:
         else:
             self.title_menu.set_sensitive(0)
 
-    def on_sourceok_clicked(self):
+    def on_sourceok_clicked(self,obj):
 
         if self.active_source != self.db.find_source_from_id(self.source_ref.get_base_id()):
             self.source_ref.set_base_id(self.active_source)
@@ -382,6 +424,7 @@ class SourceEditor:
             self.update(self.parent,self.source_ref)
         
         Utils.modified()
+	self.close()
 
     def on_source_changed(self,obj):
         sel = obj.list.get_selection()

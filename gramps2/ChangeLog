@@ -6,6 +6,8 @@
 	* src/gramps_main.py: Get Windows menu and its submenu.
 	Pass Gramps class to the children -- first-class object editors.
 	* src/dialog.glade: Add handler. 
+	* src/srcsel.glade: Add handlers.
+	* src/Sources.py: Make SourceInfo non-modal, use Windows menu.
 
 2004-02-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Relationship.py: Factor out relationship distance computation.
