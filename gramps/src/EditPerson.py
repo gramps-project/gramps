@@ -256,6 +256,10 @@ class EditPerson:
             self.get_widget("user_colon").hide()
             self.get_widget("user_data").hide()
 
+        if Config.uselds:
+            self.get_widget("lds_tab").show()
+            self.get_widget("lds_page").show()
+        
         # initial values
         self.get_widget("activepersonTitle").set_text(Config.nameof(person))
         self.suffix.set_text(self.pname.getSuffix())
