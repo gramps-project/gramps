@@ -1,3 +1,7 @@
+2003-12-02  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleView.py (PeopleView.clear_person_tabs): initialize
+	the model2page map with the default list, instead of clearing it.
+
 2003-12-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.desktop: Add russian strings. Set encoding line to UTF-8.
 	* src/gramps_main.py (on_faq_activate): Switch Help->FAQ function 
@@ -27,7 +31,7 @@
 	* Makefile.am: No need for dist-hook.
 
 2003-12-01  Don Allingham  <dallingham@users.sourceforge.net>
-	* src/gramps_main.py: update person table after edit
+	* src/gramps_main.py: update person table after edit (BUG 851637)
 
 2003-12-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FamilyView.py (add_child_clicked): Call self.no_name() 
