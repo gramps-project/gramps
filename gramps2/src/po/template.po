@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Fri May 23 11:17:06 2003\n"
+"POT-Creation-Date: Fri May 23 11:50:40 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,16 +255,16 @@ msgstr ""
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr ""
 
-#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1480 revision.glade:131
+#: DbPrompter.py:65 DbPrompter.py:117 gramps_main.py:1475 revision.glade:131
 msgid "Open a database"
 msgstr ""
 
-#: DbPrompter.py:97 gramps_main.py:1528
+#: DbPrompter.py:97 gramps_main.py:1523
 msgid "Save database"
 msgstr ""
 
-#: DbPrompter.py:106 gramps_main.py:1129 gramps_main.py:1540
-#: gramps_main.py:1552
+#: DbPrompter.py:106 gramps_main.py:1124 gramps_main.py:1535
+#: gramps_main.py:1547
 msgid "No Comment Provided"
 msgstr ""
 
@@ -502,7 +502,7 @@ msgstr ""
 #: Plugins.py:455 Plugins.py:456 Plugins.py:457 Witness.py:71 const.py:171
 #: const.py:446 const.py:454 gramps.glade:3675 gramps.glade:3868
 #: gramps.glade:4290 gramps.glade:4470 gramps.glade:5946 gramps.glade:6192
-#: gramps_main.py:1726 plugins/WebPage.py:288
+#: gramps_main.py:1721 plugins/WebPage.py:288
 msgid "Unknown"
 msgstr ""
 
@@ -1029,7 +1029,7 @@ msgstr ""
 msgid "Place Name"
 msgstr ""
 
-#: PlaceView.py:147 gramps_main.py:623
+#: PlaceView.py:147 gramps_main.py:618
 msgid "Cannot merge people."
 msgstr ""
 
@@ -1093,17 +1093,17 @@ msgstr ""
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
 msgstr ""
 
-#: ReadXML.py:191 gramps_main.py:1182 plugins/Check.py:151
+#: ReadXML.py:191 gramps_main.py:1177 plugins/Check.py:151
 #: plugins/WriteCD.py:225 plugins/WritePkg.py:150
 msgid "Select file"
 msgstr ""
 
-#: ReadXML.py:220 gramps_main.py:1205 plugins/Check.py:168
+#: ReadXML.py:220 gramps_main.py:1200 plugins/Check.py:168
 #: plugins/WriteCD.py:247 plugins/WritePkg.py:173
 msgid "Media object could not be found"
 msgstr ""
 
-#: ReadXML.py:221 gramps_main.py:1206 plugins/Check.py:169
+#: ReadXML.py:221 gramps_main.py:1201 plugins/Check.py:169
 #: plugins/WriteCD.py:248 plugins/WritePkg.py:174
 msgid "%(file_name)s is referenced in the database, but no longer exists. The file may have been deleted or moved to a different location. You may choose to either remove the reference from the database, keep the reference to the missing file, or select a new file."
 msgstr ""
@@ -1130,8 +1130,8 @@ msgstr ""
 #: docgen/OpenOfficeDoc.py:561 docgen/PSDrawDoc.py:80 docgen/PSDrawDoc.py:83
 #: docgen/PdfDoc.py:156 docgen/PdfDoc.py:159 docgen/PdfDrawDoc.py:84
 #: docgen/PdfDrawDoc.py:86 docgen/RTFDoc.py:70 docgen/RTFDoc.py:73
-#: docgen/SvgDrawDoc.py:82 docgen/SvgDrawDoc.py:84 gramps_main.py:1236
-#: gramps_main.py:1241 gramps_main.py:1251 plugins/AncestorChart.py:113
+#: docgen/SvgDrawDoc.py:82 docgen/SvgDrawDoc.py:84 gramps_main.py:1231
+#: gramps_main.py:1236 gramps_main.py:1246 plugins/AncestorChart.py:113
 #: plugins/DesGraph.py:210 plugins/DesGraph.py:219 plugins/WriteGedcom.py:534
 #: plugins/WriteGedcom.py:539
 msgid "Could not create %s"
@@ -1428,7 +1428,7 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: SourceView.py:134 gramps_main.py:1317
+#: SourceView.py:134 gramps_main.py:1312
 msgid "Delete %s?"
 msgstr ""
 
@@ -2732,7 +2732,7 @@ msgstr ""
 msgid "_Export"
 msgstr ""
 
-#: gramps.glade:169 gramps_main.py:1497
+#: gramps.glade:169 gramps_main.py:1492
 msgid "_Revert"
 msgstr ""
 
@@ -3149,187 +3149,187 @@ msgstr ""
 msgid "Death date"
 msgstr ""
 
-#: gramps_main.py:128
+#: gramps_main.py:124
 msgid "GRAMPS is being run as the 'root' user."
 msgstr ""
 
-#: gramps_main.py:129
+#: gramps_main.py:125
 msgid "This account is not meant for normal appication use. Running user applications in the administrative account is rarely a wise idea, and can open up potential security risks."
 msgstr ""
 
-#: gramps_main.py:624
+#: gramps_main.py:619
 msgid "Exactly two people must be selected to perform a merge. A second person can be selected by holding down the control key while clicking on a the desired person."
 msgstr ""
 
-#: gramps_main.py:646 gramps_main.py:1463 gramps_main.py:2004
+#: gramps_main.py:641 gramps_main.py:1458 gramps_main.py:1999
 msgid "Save Changes Made to the Database?"
 msgstr ""
 
-#: gramps_main.py:647 gramps_main.py:1464 gramps_main.py:2005
+#: gramps_main.py:642 gramps_main.py:1459 gramps_main.py:2000
 msgid "Unsaved changes exist in the current database. If you close without saving, the changes you have made will be lost."
 msgstr ""
 
-#: gramps_main.py:731
+#: gramps_main.py:726
 msgid "Create a New Database"
 msgstr ""
 
-#: gramps_main.py:732
+#: gramps_main.py:727
 msgid "Creating a new database will close the existing database, discarding any unsaved changes. You will then be prompted to create a new database"
 msgstr ""
 
-#: gramps_main.py:735
+#: gramps_main.py:730
 msgid "_Create New Database"
 msgstr ""
 
-#: gramps_main.py:827 gramps_main.py:854 gramps_main.py:1579
+#: gramps_main.py:822 gramps_main.py:849 gramps_main.py:1574
 msgid "Updating display - this may take a few seconds..."
 msgstr ""
 
-#: gramps_main.py:829 gramps_main.py:856 gramps_main.py:1581
-#: gramps_main.py:1844
+#: gramps_main.py:824 gramps_main.py:851 gramps_main.py:1576
+#: gramps_main.py:1839
 msgid "Updating display..."
 msgstr ""
 
-#: gramps_main.py:902
+#: gramps_main.py:897
 msgid ""
 "An autosave file exists for %s.\n"
 "Should this be loaded instead of the last saved version?"
 msgstr ""
 
-#: gramps_main.py:907
+#: gramps_main.py:902
 msgid "An autosave file was detected"
 msgstr ""
 
-#: gramps_main.py:908
+#: gramps_main.py:903
 msgid "GRAMPS has detected an autosave file for the selected database. This file is more recent than the last saved database. This typically happens when GRAMPS was unexpected shutdown before the data was saved. You may load this file to try to recover any missing data."
 msgstr ""
 
-#: gramps_main.py:914
+#: gramps_main.py:909
 msgid "_Load autosave file"
 msgstr ""
 
-#: gramps_main.py:916
+#: gramps_main.py:911
 msgid "Load _saved database"
 msgstr ""
 
-#: gramps_main.py:950 gramps_main.py:1226
+#: gramps_main.py:945 gramps_main.py:1221
 msgid "Database could not be opened"
 msgstr ""
 
-#: gramps_main.py:951 gramps_main.py:1227
+#: gramps_main.py:946 gramps_main.py:1222
 msgid "%s is not a directory."
 msgstr ""
 
-#: gramps_main.py:952
+#: gramps_main.py:947
 msgid "You should select a directory that contains a data.gramps file or a gramps.zodb file."
 msgstr ""
 
-#: gramps_main.py:1219
+#: gramps_main.py:1214
 msgid "Saving %s ..."
 msgstr ""
 
-#: gramps_main.py:1228
+#: gramps_main.py:1223
 msgid "The file you should attempt to open should be a directory that contains a data.gramps file or a gramps.zodb file."
 msgstr ""
 
-#: gramps_main.py:1237
+#: gramps_main.py:1232
 msgid "An error was detected while attempting to create the file. The operating system reported \"%s\""
 msgstr ""
 
-#: gramps_main.py:1242 gramps_main.py:1252
+#: gramps_main.py:1237 gramps_main.py:1247
 msgid "An error was detected while trying to create the file"
 msgstr ""
 
-#: gramps_main.py:1284
+#: gramps_main.py:1279
 msgid "autosaving..."
 msgstr ""
 
-#: gramps_main.py:1287
+#: gramps_main.py:1282
 msgid "autosave complete"
 msgstr ""
 
-#: gramps_main.py:1289
+#: gramps_main.py:1284
 msgid "autosave failed"
 msgstr ""
 
-#: gramps_main.py:1318
+#: gramps_main.py:1313
 msgid "Deleting the person will remove the person from from the database. The data can only be recovered by closing the database without saving changes. This change will become permanent after you save the database."
 msgstr ""
 
-#: gramps_main.py:1323
+#: gramps_main.py:1318
 msgid "_Delete Person"
 msgstr ""
 
-#: gramps_main.py:1453
+#: gramps_main.py:1448
 msgid "%(relationship)s of %(person)s"
 msgstr ""
 
-#: gramps_main.py:1493
+#: gramps_main.py:1488
 msgid "Revert to last saved database?"
 msgstr ""
 
-#: gramps_main.py:1494
+#: gramps_main.py:1489
 msgid "Reverting to the last saved database will cause all unsaved changes to be lost, and the last saved database will be loaded."
 msgstr ""
 
-#: gramps_main.py:1500
+#: gramps_main.py:1495
 msgid "Could Not Revert to the Previous Database."
 msgstr ""
 
-#: gramps_main.py:1501
+#: gramps_main.py:1496
 msgid "GRAMPS could not find a previous version of the database"
 msgstr ""
 
-#: gramps_main.py:1811 gramps_main.py:1821
+#: gramps_main.py:1806 gramps_main.py:1816
 msgid "Loading %s..."
 msgstr ""
 
-#: gramps_main.py:1936
+#: gramps_main.py:1931
 msgid "No Home Person has been set."
 msgstr ""
 
-#: gramps_main.py:1937
+#: gramps_main.py:1932
 msgid "The Home Person may be set from the Settings menu."
 msgstr ""
 
-#: gramps_main.py:1943
+#: gramps_main.py:1938
 msgid "%s has been bookmarked"
 msgstr ""
 
-#: gramps_main.py:1946
+#: gramps_main.py:1941
 msgid "Could Not Set a Bookmark."
 msgstr ""
 
-#: gramps_main.py:1947
+#: gramps_main.py:1942
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
-#: gramps_main.py:1959
+#: gramps_main.py:1954
 msgid "Set %s as the Home Person"
 msgstr ""
 
-#: gramps_main.py:1960
+#: gramps_main.py:1955
 msgid "Once a Home Person is defined, pressing the Home button on the toolbar will make the home person the active person."
 msgstr ""
 
-#: gramps_main.py:1963
+#: gramps_main.py:1958
 msgid "_Set Home Person"
 msgstr ""
 
-#: gramps_main.py:2018 gramps_main.py:2022 gramps_main.py:2026
+#: gramps_main.py:2013 gramps_main.py:2017 gramps_main.py:2021
 msgid "Could not create database"
 msgstr ""
 
-#: gramps_main.py:2019 gramps_main.py:2023
+#: gramps_main.py:2014 gramps_main.py:2018
 msgid ""
 "The directory ~/.gramps/example could not be created.\n"
 msgstr ""
 
-#: gramps_main.py:2027
+#: gramps_main.py:2022
 msgid "The directory ~/.gramps/example could not be created."
 msgstr ""
 
-#: gramps_main.py:2034 gramps_main.py:2036
+#: gramps_main.py:2029 gramps_main.py:2031
 msgid "Example database not created"
 msgstr ""
 
