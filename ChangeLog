@@ -9,6 +9,7 @@
 2003-09-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SelectObject.py: Add module. 
 	* src/choose.glade: Add select_object dialog. 
+	* src/plugins/SimpleBookTitle.py: Add image options.
 
 2003-09-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FilterEditor.py (MyInteger): Fix type conversions. 

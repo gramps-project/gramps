@@ -24,7 +24,6 @@
 #------------------------------------------------------------------------
 import os
 import string
-import cStringIO
 
 #------------------------------------------------------------------------
 #
@@ -37,6 +36,8 @@ import RelLib
 import Errors
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
+import SelectObject
+import Utils
 
 import gtk
 import gnome
@@ -49,11 +50,13 @@ import gnome.ui
 #------------------------------------------------------------------------
 class SimpleBookTitle(Report.Report):
 
-    def __init__(self,database,person,title_string,copyright_string,doc,output,newpage=0):
+    def __init__(self,database,person,title_string,object_id,copyright_string,
+                        doc,output,newpage=0):
         self.map = {}
         self.database = database
         self.start = person
         self.title_string = title_string
+        self.object_id = object_id
         self.copyright_string = copyright_string
         self.doc = doc
         self.newpage = newpage
@@ -76,6 +79,10 @@ class SimpleBookTitle(Report.Report):
         self.doc.start_paragraph('SBT-Title')
         self.doc.write_text(self.title_string)
         self.doc.end_paragraph()
+
+        object = self.database.getObject(self.object_id)
+        name = object.getPath()
+        self.doc.add_photo(name,'center',10,10)
 
         self.doc.start_paragraph('SBT-Subtitle')
         self.doc.write_text(self.copyright_string)
@@ -117,9 +124,10 @@ _style_name = "default"
 
 _person_id = ""
 _title_string = ""
+_object_id = None
 _copyright_string = ""
 
-_options = ( _person_id, _title_string, _copyright_string )
+_options = ( _person_id, _title_string, _object_id, _copyright_string )
 
 
 #------------------------------------------------------------------------
@@ -147,7 +155,12 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             self.title_string = _('Title of the Book')
         
         if self.options[2]:
-            self.copyright_string = self.options[2]
+            self.object_id = self.options[2]
+        else:
+            self.object_id = None
+        
+        if self.options[3]:
+            self.copyright_string = self.options[3]
         else:
             import time
             dateinfo = time.localtime(time.time())
@@ -156,6 +169,18 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
 
         self.title_entry.set_text(self.title_string)
         self.copyright_entry.set_text(self.copyright_string)
+        if self.object_id:
+            object = self.db.getObject(self.object_id)
+            self.title_label.set_text(object.getDescription())
+            the_type = Utils.get_mime_description(object.getMimeType())
+            path = object.getPath()
+            thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
+            pexists = os.path.exists(path)
+            if pexists and os.path.exists(thumb_path):
+                self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
+            else:
+                icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
+                self.preview.set_from_pixbuf(icon_image)
 
         self.new_person = None
 
@@ -192,8 +217,23 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
     def add_user_options(self):
         self.title_entry = gtk.Entry()
         self.copyright_entry = gtk.Entry()
+        
+        self.frame = gtk.Frame()
+        self.preview = gtk.Image()
+        self.preview.set_size_request(96,96)
+        self.title_label = gtk.Label('')
+        self.select_obj_button = gtk.Button(_('Select...'))
+        self.select_obj_button.connect('clicked',self.select_obj)
+
+        table = gtk.Table(2,2)
+        table.set_row_spacings(6)
+        table.set_col_spacings(6)
+        table.attach(self.preview,0,1,0,1)
+        table.attach(self.title_label,0,1,1,2)
+        table.attach(self.select_obj_button,1,2,1,2,gtk.SHRINK|gtk.FILL)
 
         self.add_frame_option(_('Contents'),_('Title String'),self.title_entry)
+        self.add_frame_option(_('Contents'),_('Image'),table)
         self.add_frame_option(_('Contents'),_('Subtitle String'),self.copyright_entry)
 
     def parse_report_options_frame(self):
@@ -209,6 +249,23 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
     def on_cancel(self, obj):
         pass
 
+    def select_obj(self, obj):
+        s_o = SelectObject.SelectObject(self.db,_("Select an Object"))
+        object = s_o.run()
+        self.object_id = object.getId()
+
+        self.title_label.set_text(object.getDescription())
+        the_type = Utils.get_mime_description(object.getMimeType())
+        path = object.getPath()
+        thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
+        pexists = os.path.exists(path)
+        if pexists and os.path.exists(thumb_path):
+            self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
+        else:
+            icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
+            self.preview.set_from_pixbuf(icon_image)
+        
+
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
         and close the window."""
@@ -219,7 +276,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId() , self.title_string, self.copyright_string )
+        self.options = ( self.person.getId() , self.title_string, self.object_id, self.copyright_string )
         self.style_name = self.selected_style.get_name() 
    
 
@@ -239,13 +296,17 @@ def write_book_item(database,person,doc,options,newpage=0):
         else:
             title_string = _('Title of the Book')
         if options[2]:
-            copyright_string = options[2]
+            object_id = options[2]
+        else:
+            object_id = None
+        if options[3]:
+            copyright_string = options[3]
         else:
             import time
             dateinfo = time.localtime(time.time())
             name = database.getResearcher().getName()
             copyright_string = _('Copyright %d %s') % (dateinfo[0], name)
-        return SimpleBookTitle(database, person, title_string, copyright_string, doc, None, newpage )
+        return SimpleBookTitle(database, person, title_string, object_id, copyright_string, doc, None, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
