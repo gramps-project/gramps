@@ -24,8 +24,6 @@
 __author__ = 'Don Allingham'
 
 import GrampsCfg
-import const
-import Utils
 import string
 import gtk
 from gnome.ui import *
