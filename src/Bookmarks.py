@@ -78,7 +78,6 @@ class Bookmarks :
     def add(self,person_id):
         """appends the person to the bottom of the bookmarks"""
         if person_id not in self.bookmarks:
-            Utils.modified()
             self.bookmarks.append(person_id)
             self.redraw()
 

@@ -131,7 +131,6 @@ class AddMediaObject:
             name = filename
         mobj.set_path(name)
 
-        Utils.modified()
         if self.update:
             self.update()
         self.object = mobj

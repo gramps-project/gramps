@@ -141,7 +141,7 @@
 		  <property name="history_id">recentdbs</property>
 		  <property name="max_saved">10</property>
 		  <property name="browse_dialog_title" translatable="yes">Open a database</property>
-		  <property name="directory_entry">True</property>
+		  <property name="directory_entry">False</property>
 		  <property name="modal">True</property>
 
 		  <child internal-child="entry">

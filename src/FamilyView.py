@@ -728,7 +728,6 @@ class FamilyView:
 
         self.parent.db.commit_person(child)
         self.parent.db.commit_family(self.family)
-        Utils.modified()
         self.load_family()
 
     def remove_spouse(self,obj):
@@ -774,8 +773,6 @@ class FamilyView:
 
         if len(self.person.get_family_id_list()) <= 1:
             self.spouse_selection.set_mode(gtk.SELECTION_NONE)
-
-        Utils.modified()
 
     def spouse_swap(self,obj):
         if self.selected_spouse:
@@ -1232,7 +1229,6 @@ class FamilyView:
             person.remove_parent_family_id(fam[0])
 
         self.parent.db.commit_person(person)
-        Utils.modified()
         self.load_family()
 
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -1268,7 +1264,6 @@ class FamilyView:
                 return
             self.family.set_child_id_list(list)
             self.display_marriage(self.family)
-            Utils.modified()
             
     def drag_data_get(self,widget, context, sel_data, info, time):
         store,iter = self.child_selection.get_selected()

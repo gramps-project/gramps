@@ -32,6 +32,7 @@ __version__ = "$Revision$"
 #-------------------------------------------------------------------------
 from re import compile
 import os
+import os.path
 import types
 
 #-------------------------------------------------------------------------
@@ -2269,24 +2270,6 @@ class GrampsDB:
     def __init__(self):
         """creates a new GrampsDB"""
 
-        self.env = db.DBEnv()
-        flags = db.DB_CREATE|db.DB_INIT_MPOOL
-        
-        self.env.open(".", flags)
-        
-        self.person_map = dbshelve.open('person.db', dbname="person", dbenv=self.env)
-        self.family_map = dbshelve.open('person.db', dbname="family", dbenv=self.env)
-        self.place_map  = dbshelve.open('person.db', dbname="places", dbenv=self.env)
-        self.source_map = dbshelve.open('person.db', dbname="sources",dbenv=self.env)
-        self.media_map  = dbshelve.open('person.db', dbname="media",  dbenv=self.env)
-        self.event_map  = dbshelve.open('person.db', dbname="events", dbenv=self.env)
-
-        self.surnames = db.DB(self.env)
-        self.surnames.set_flags(db.DB_DUP)
-        self.surnames.open("person.db", "surnames", db.DB_HASH, flags=db.DB_CREATE)
-
-        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
-
         self.iprefix = "I%04d"
         self.sprefix = "S%04d"
         self.oprefix = "O%04d"
@@ -2297,6 +2280,37 @@ class GrampsDB:
         self.added_files = []
         self.genderStats = GenderStats ()
 
+        self.env = None
+        self.person_map = None
+        self.family_map = None
+        self.place_map  = None
+        self.source_map = None
+        self.media_map  = None
+        self.event_map  = None
+        self.surnames   = None
+
+    def load(self,name,callback):
+        if self.person_map:
+            self.close()
+            
+        self.env = db.DBEnv()
+        flags = db.DB_CREATE|db.DB_INIT_MPOOL|db.DB_PRIVATE
+
+        self.env.open(os.path.dirname(name), flags)
+        name = os.path.basename(name)
+        self.person_map = dbshelve.open(name, dbname="person", dbenv=self.env)
+        self.family_map = dbshelve.open(name, dbname="family", dbenv=self.env)
+        self.place_map  = dbshelve.open(name, dbname="places", dbenv=self.env)
+        self.source_map = dbshelve.open(name, dbname="sources",dbenv=self.env)
+        self.media_map  = dbshelve.open(name, dbname="media",  dbenv=self.env)
+        self.event_map  = dbshelve.open(name, dbname="events", dbenv=self.env)
+
+        self.surnames = db.DB(self.env)
+        self.surnames.set_flags(db.DB_DUP)
+        self.surnames.open(name, "surnames", db.DB_HASH, flags=db.DB_CREATE)
+
+        self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+
     def close(self):
         self.person_map.close()
         self.family_map.close()
@@ -2305,6 +2319,7 @@ class GrampsDB:
         self.media_map.close()
         self.event_map.close()
         self.surnames.close()
+        self.env.close()
 
     def get_added_media_objects(self):
         return self.added_files
@@ -2318,17 +2333,20 @@ class GrampsDB:
     def get_base(self):
         return ""
 
-    def need_autosave(self):
-        return 1
-
     def get_number_of_people(self):
         return len(self.person_map)
 
     def get_person_keys(self):
-        return self.person_map.keys()
+        if self.person_map:
+            return self.person_map.keys()
+        else:
+            return []
 
     def get_family_keys(self):
-        return self.family_map.keys()
+        if self.family_map:
+            return self.family_map.keys()
+        else:
+            return []
 
     def sort_by_name(self,f,s):
         n1 = self.person_map.get(str(f))[2].sname
@@ -2336,7 +2354,10 @@ class GrampsDB:
         return cmp(n1,n2)
 
     def sort_person_keys(self):
-        return self.person_map.keys()
+        if self.person_map:
+            return self.person_map.keys()
+        else:
+            return []
 #         keys = self.person_map.keys()
 #         if type(keys) == type([]):
 #             keys.sort(self.sort_by_name)
@@ -2921,13 +2942,18 @@ class GrampsDB:
         return cmp(fp,sp)
 
     def sort_place_keys(self):
-        keys = self.place_map.keys()
-        if type(keys) == type([]):
-            keys.sort(self.sortbyplace)
-        return keys
+        if self.place_map:
+            keys = self.place_map.keys()
+            if type(keys) == type([]):
+                keys.sort(self.sortbyplace)
+            return keys
+        return []
 
     def get_place_id_keys(self):
-        return self.place_map.keys()
+        if self.place_map:
+            return self.place_map.keys()
+        else:
+            return []
 
     def get_place_id(self,key):
         place = Place()
@@ -2941,10 +2967,14 @@ class GrampsDB:
         return place.get_display_info()
         
     def get_source_keys(self):
-        return self.source_map.keys()
+        if self.source_map:
+            return self.source_map.keys()
+        return []
 
     def get_object_keys(self):
-        return self.media_map.keys()
+        if self.media_map:
+            return self.media_map.keys()
+        return []
 
     def sortbysource(self,f,s):
         f1 = self.source_map[f][1].upper()

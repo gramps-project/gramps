@@ -573,8 +573,6 @@ class ChooseParents:
             self.db.commit_person(self.father)
         if self.mother:
             self.db.commit_person(self.mother)
-        Utils.modified()
-
 
 class ModifyParents:
     def __init__(self,db,person,family_id,family_update,full_update,parent_window=None):
@@ -679,7 +677,6 @@ class ModifyParents:
             self.person.remove_parent_family_id(self.family.get_id())
             self.person.add_parent_family_id(self.family.get_id(),mother_rel,father_rel)
             mod = 1
-            Utils.modified()
 
         if len(self.person.get_parent_family_id_list()):
             make_pref = self.pref.get_active()
@@ -688,12 +685,10 @@ class ModifyParents:
             if make_pref:
                 if self.family != plist[0]:
                     self.person.set_main_parent_family_id(self.family.get_id())
-                    Utils.modified()
                     mod = 1
             else:
                 if self.family == plist[0]:
                     self.person.set_main_parent_family_id(plist[0])
-                    Utils.modified()
                     mod = 1
 
         if mod:

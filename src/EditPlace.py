@@ -302,8 +302,6 @@ class EditPlace:
     def update_lists(self):
         self.place.set_url_list(self.ulist)
         self.place.set_alternate_locations(self.llist)
-        if self.lists_changed:
-            Utils.modified()
             
     def redraw_url_list(self):
         length = Utils.redraw_list(self.ulist,self.web_model,disp_url)
@@ -338,7 +336,6 @@ class EditPlace:
         text = unicode(field.get_text())
         if text != getf():
             setf(text)
-            Utils.modified()
     
     def on_place_apply_clicked(self,obj):
 
@@ -362,15 +359,12 @@ class EditPlace:
 
         if self.lists_changed:
             self.place.set_source_reference_list(self.srcreflist)
-            Utils.modified()
         
         if note != self.place.get_note():
             self.place.set_note(note)
-            Utils.modified()
 
         if format != self.place.get_note_format():
             self.place.set_note_format(format)
-            Utils.modified()
 
         self.gallery_ok = 1
         self.update_lists()
@@ -559,7 +553,6 @@ class DeletePlaceQuery:
         
     def query_response(self):
         self.db.remove_place(self.place.get_id())
-        Utils.modified()
 
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)

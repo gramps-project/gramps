@@ -92,19 +92,13 @@ class DbPrompter:
             "on_ok_button1_clicked": self.save_ok_button_clicked,
             "destroy_passed_object": self.cancel_button_clicked,
             })
-        if self.new:
-            wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Create database'))
-        else:
-            wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Save database'))
+        wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Create database'))
 
     def save_ok_button_clicked(self,obj):
         filename = obj.get_filename().encode('iso8859-1')
         if filename:
             Utils.destroy_passed_object(obj)
-            if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.db.display_comment_box(filename)
-            else:
-                self.db.save_file(filename,_("No Comment Provided"))
+            self.db.read_file(filename)
 
     def open_activate(self):
         wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
@@ -140,15 +134,8 @@ class DbPrompter:
 
         if not filename:
             return
-
         Utils.destroy_passed_object(obj)
-    
-        if self.getoldrev.get_active():
-            vc = VersionControl.RcsVersionControl(filename)
-            VersionControl.RevisionSelect(self.db.database,filename,vc,
-                                          self.db.load_revision,self.show)
-        else:
-            self.db.read_file(filename)
+        self.db.read_file(filename)
 
     def open_delete_event(self,obj,event):
         gtk.mainquit()

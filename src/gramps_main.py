@@ -72,7 +72,6 @@ import EditPerson
 import Find
 import VersionControl
 import ReadXML
-import GrampsXML
 
 #-------------------------------------------------------------------------
 #
@@ -153,10 +152,6 @@ class Gramps:
         else:
             import DbPrompter
             DbPrompter.DbPrompter(self,0,self.topWindow)
-
-        if self.db.need_autosave() and GrampsCfg.autosave_int != 0:
-            Utils.enable_autosave(self.autosave_database,
-                                  GrampsCfg.autosave_int)
 
         self.db.set_researcher(GrampsCfg.get_researcher())
 
@@ -325,8 +320,6 @@ class Gramps:
             "on_reload_plugins_activate" : Plugins.reload_plugins,
             "on_reports_clicked" : self.on_reports_clicked,
             "on_revert_activate" : self.on_revert_activate,
-            "on_save_activate" : self.on_save_activate,
-            "on_save_as_activate" : self.on_save_as_activate,
             "on_show_plugin_status" : self.on_show_plugin_status,
             "on_source_list_button_press" : self.source_view.button_press,
             "on_sources_activate" : self.on_sources_activate,
@@ -884,13 +877,6 @@ class Gramps:
 
         self.people_view.clear_person_tabs()
         
-        self.db = GrampsXML.GrampsXML()
-        self.db.set_iprefix(GrampsCfg.iprefix)
-        self.db.set_oprefix(GrampsCfg.oprefix)
-        self.db.set_fprefix(GrampsCfg.fprefix)
-        self.db.set_sprefix(GrampsCfg.sprefix)
-        self.db.set_pprefix(GrampsCfg.pprefix)
-
         self.relationship.set_db(self.db)
 
         self.place_view.change_db(self.db)
@@ -919,7 +905,6 @@ class Gramps:
             self.import_tool_callback()
 
     def import_tool_callback(self):
-        Utils.modified()
         self.people_view.clear_person_tabs()
         if Utils.wasHistory_broken():
             self.clear_history()
@@ -1042,20 +1027,6 @@ class Gramps:
         self.topWindow.set_resizable(gtk.FALSE)
         filename = os.path.normpath(os.path.abspath(filename))
 
-        base = os.path.basename(filename)
-        if base == const.xmlFile:
-            filename = os.path.dirname(filename)
-        elif base == "autosave.gramps":
-            filename = os.path.dirname(filename)
-        elif not os.path.isdir(filename):
-            import DbPrompter
-            DbPrompter.DbPrompter(self,0,self.topWindow)
-            self.displayError(_("Database could not be opened"),
-                              _("%s is not a directory.") % filename + ' ' + \
-                              _("You should select a directory that contains a "
-                                "data.gramps file."))
-            return
-
         self.clear_database()
         if self.load_database(filename) == 1:
             if filename[-1] == '/':
@@ -1073,10 +1044,7 @@ class Gramps:
         if filename:
             Utils.destroy_passed_object(obj)
             self.save_media(filename)
-            if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.display_comment_box(filename)
-            else:
-                self.save_file(filename,_("No Comment Provided"))
+            self.save_file(filename,_("No Comment Provided"))
 
     def save_media(self,filename):
         import RelImage
@@ -1172,6 +1140,7 @@ class Gramps:
 
     def save_file(self,filename,comment):        
 
+        print "save",filename
         path = filename
         filename = os.path.normpath(os.path.abspath(filename))
         self.status_text(_("Saving %s ...") % filename)
@@ -1203,8 +1172,8 @@ class Gramps:
         
         old_file = filename
         filename = "%s/%s" % (filename,self.db.get_base())
+        print filename
         try:
-            self.db.save(filename,self.load_progress)
             self.db.clear_added_media_objects()
         except (OSError,IOError), msg:
             emsg = _("Could not create %s") % filename
@@ -1340,8 +1309,6 @@ class Gramps:
         else:
             self.change_active_person(None)
         self.redraw_histmenu()
-
-        Utils.modified()
 
     def merge_update(self,p1,p2,old_id):
         self.people_view.remove_from_person_list(p1,old_id)
@@ -1493,30 +1460,6 @@ class Gramps:
         if button == gtk.RESPONSE_OK:
             self.on_ok_button2_clicked(fileSelector)
         fileSelector.destroy()
-
-    def on_save_activate(self,obj):
-        """Saves the file, first prompting for a comment if revision
-        control needs it"""
-        if not self.db.get_save_path():
-            self.on_save_as_activate(obj)
-        else:
-            if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.display_comment_box(self.db.get_save_path())
-            else:
-                msg = _("No Comment Provided")
-                self.save_file(self.db.get_save_path(),msg)
-
-    def on_save_activate_quit(self):
-        """Saves the file, first prompting for a comment if revision
-        control needs it"""
-        if not self.db.get_save_path():
-            self.on_save_as_activate(None)
-        else:
-            if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.display_comment_box(self.db.get_save_path())
-            else:
-                msg = _("No Comment Provided")
-                self.save_file(self.db.get_save_path(),msg)
 
     def display_comment_box(self,filename):
         """Displays a dialog box, prompting for a revison control comment"""
@@ -1685,7 +1628,6 @@ class Gramps:
     
         if res.get_name() == "" and owner.get_name():
             self.db.set_researcher(owner)
-            Utils.modified()
 
         self.setup_bookmarks()
 
@@ -1745,7 +1687,7 @@ class Gramps:
     
     def load_database(self,name):
 
-        filename = "%s/%s" % (name,const.xmlFile)
+        filename = name
         self.clear_database()
 
         self.status_text(_("Loading %s...") % name)
@@ -1825,7 +1767,6 @@ class Gramps:
             
     def set_person(self):
         self.db.set_default_person(self.active_person)
-        Utils.modified()
 
     def export_callback(self,obj,plugin_function):
         """Call the export plugin, with the active person and database"""
