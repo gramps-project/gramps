@@ -482,14 +482,16 @@ def on_reports_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_ok_button1_clicked(obj):
-    new_database_response(0)
     dbname = obj.get_data("dbname")
     getoldrev = obj.get_data("getoldrev")
-    filename = dbname.get_full_path(1)
+    filename = dbname.get_full_path(0)
     utils.destroy_passed_object(obj)
 
     if filename == "" or filename == None:
         return
+
+    if os.path.isdir(filename):
+        new_database_response(0)
     
     if getoldrev.get_active():
         vc = VersionControl.RcsVersionControl(filename)
