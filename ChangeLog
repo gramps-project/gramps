@@ -20,6 +20,8 @@
 	* src/PluginMgr.py: Switch to using short format names. 
 	* src/ReportOptions.py: Switch to using short format names.
 
+	* src/plugins/WebPage.py: Fix templates.
+
 2005-01-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/EditPlace.py (EditPlace.display_references):
 	Fix event and object references.
