@@ -29,6 +29,7 @@ import string
 import shutil
 import const
 import Utils
+import ListModel
 
 from re import compile
 
@@ -81,7 +82,6 @@ class RevisionComment:
 
         Utils.set_titles(self.win,self.top.get_widget('title'),_('Revision control comment'))
         self.text = self.top.get_widget("text")
-        self.win.editable_enters(self.text)
         self.win.show()
 
     def on_savecomment_clicked(self,obj):
@@ -111,11 +111,15 @@ class RevisionSelect:
         
         self.revlist = dialog.get_widget("revlist")
         l = self.vc.revision_list()
+
+        titles = [(_('Revision'),0,100),(_('Date'),1,100), (_('Changed by'),2,100),
+                  ('Comment',3,100)]
+        
+        self.model = ListModel.ListModel(self.revlist,titles)
+        
         index = 0
         for f in l:
-            self.revlist.append([f[0],f[1],f[3],f[2]])
-            self.revlist.set_row_data(index,f[0])
-            index = index + 1
+            self.model.add([f[0],f[1],f[3],f[2]],f[0])
 
     def on_cancel_clicked(self,obj):
         Utils.destroy_passed_object(obj)
@@ -123,8 +127,9 @@ class RevisionSelect:
             self.callback()
 
     def on_loadrev_clicked(self,obj):
-        if len(self.revlist.selection) > 0:
-            rev = self.revlist.get_row_data(self.revlist.selection[0])
+        objs = self.model.get_selected_objects()
+        if len(objs) > 0:
+            rev = objs[0]
             f = self.vc.get_version(rev)
             self.load(f,self.filename,rev)
             Utils.destroy_passed_object(obj)
