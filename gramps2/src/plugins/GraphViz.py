@@ -143,6 +143,26 @@ class GraphVizDialog(Report.ReportDialog):
 
         self.arrowstyle_optionmenu.set_menu(menu)
 
+        self.font_optionmenu = gtk.OptionMenu()
+        menu = gtk.Menu()
+
+        menuitem = gtk.MenuItem(_("TrueType"))
+        menuitem.set_data('t', 'Arial')
+        menuitem.show()
+        menu.append(menuitem)
+
+        menuitem = gtk.MenuItem(_("PostScript"))
+        menuitem.set_data('t', 'Helvetica')
+        menuitem.show()
+        menu.append(menuitem)
+
+        self.font_optionmenu.set_menu(menu)
+
+        self.add_frame_option(_("GraphViz Options"),
+                              _("Font Options"),
+                              self.font_optionmenu,
+                              _("Choose the font family."))
+
         self.add_frame_option(_("GraphViz Options"),
                               _("Arrowhead Options"),
                               self.arrowstyle_optionmenu,
@@ -287,6 +307,9 @@ class GraphVizDialog(Report.ReportDialog):
         self.show_families = self.show_families_cb.get_active()
         self.just_year = self.just_year_cb.get_active()
 
+        menu = self.font_optionmenu.get_menu()
+        self.fontstyle = menu.get_active().get_data('t')
+
     def make_report(self):
         """Create the object that will produce the GraphViz file."""
         width = self.paper.get_width_inches()
@@ -305,7 +328,8 @@ class GraphVizDialog(Report.ReportDialog):
                   self.tb_margin, self.lr_margin, self.hpages,
                   self.vpages, self.includedates, self.includeurl,
                   self.colorize, self.adoptionsdashed, self.arrowheadstyle,
-                  self.arrowtailstyle, self.show_families, self.just_year)
+                  self.arrowtailstyle, self.show_families, self.just_year,
+                  self.fontstyle)
 
         if self.print_report.get_active ():
             os.environ["DOT"] = self.target_path
@@ -328,7 +352,7 @@ def report(database,person):
 def write_dot(file, ind_list, orien, width, height, tb_margin,
               lr_margin, hpages, vpages, includedates, includeurl,
               colorize, adoptionsdashed, arrowheadstyle, arrowtailstyle,
-              show_families, just_year):
+              show_families, just_year, fontstyle):
     file.write("digraph g {\n")
     file.write("bgcolor=white;\n")
     file.write("rankdir=LR;\n")
@@ -344,7 +368,7 @@ def write_dot(file, ind_list, orien, width, height, tb_margin,
 
     if len(ind_list) > 1:
         dump_index(ind_list,file,includedates,includeurl,colorize,
-                   arrowheadstyle,arrowtailstyle,show_families,just_year)
+                   arrowheadstyle,arrowtailstyle,show_families,just_year,fontstyle)
         dump_person(ind_list,file,adoptionsdashed,arrowheadstyle,
                     arrowtailstyle,show_families)
 
@@ -412,7 +436,7 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
 #
 #------------------------------------------------------------------------
 def dump_index(person_list,file,includedates,includeurl,colorize,
-               arrowheadstyle,arrowtailstyle,show_families,just_year):
+               arrowheadstyle,arrowtailstyle,show_families,just_year,font):
     # The list of families for which we have output the node, so we
     # don't do it twice.
     families_done = []
@@ -447,7 +471,7 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
                 file.write('color=deeppink, ')
             else:
                 file.write('color=black, ')
-        file.write('fontname="Arial", label="%s"];\n' % utf8_to_latin(label))
+        file.write('fontname="%s", label="%s"];\n' % (font,utf8_to_latin(label)))
         # Output families's nodes.
         if show_families:
             family_list = person.getFamilyList()
@@ -466,7 +490,7 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
                                     marriage = '%i' % date.getYear()
                                 else:
                                     marriage = m.getDate()
-                    file.write('fontname="Arial", label="%s"];\n' % marriage)
+                    file.write('fontname="%s", label="%s"];\n' % (font,marriage))
                 # Link this person to all his/her families.
                 file.write('f%s -> p%s [' % (fid, id))
                 file.write('arrowhead=%s, arrowtail=%s, ' %
