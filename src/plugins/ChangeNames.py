@@ -78,8 +78,6 @@ class ChangeNames:
             self.parent.child_windows[self.__class__].present(None)
             return
         self.win_key = self.__class__
-        self.trans = db.transaction_begin()
-        self.trans.set_batch(True)
         self.name_list = []
 
         for name in self.db.get_surname_list():
@@ -164,6 +162,9 @@ class ChangeNames:
         self.window.present()
                 
     def on_ok_clicked(self,obj):
+        self.trans = self.db.transaction_begin()
+        self.trans.set_batch(True)
+        self.db.disable_signals()
         changelist = []
         for node in self.iter_list:
             if self.model.get_value(node,0):
@@ -182,8 +183,9 @@ class ChangeNames:
             if change:
                 self.db.commit_person(person,self.trans)
 
-        if anychange:
-            self.db.transaction_commit(self.trans,_("Capitalization changes"))
+        self.db.transaction_commit(self.trans,_("Capitalization changes"))
+        self.db.enable_signals()
+        self.db.request_rebuild()
         self.close(obj)
         self.cb(None,1)
         

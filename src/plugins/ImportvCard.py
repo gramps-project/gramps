@@ -104,6 +104,8 @@ class VCardParser:
         
     def parse_vCard_file(self):
         self.trans = self.db.transaction_begin()
+        self.trans.set_batch(True)
+        self.db.disable_signals()
         t = time.time()
         self.person = None
 
@@ -156,6 +158,8 @@ class VCardParser:
         msg = _('Import Complete: %d seconds') % t
 
         self.db.transaction_commit(self.trans,_("vCard import"))
+        self.db.enable_signals()
+        self.db.request_rebuild()
         
         return None
 

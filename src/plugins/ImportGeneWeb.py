@@ -106,6 +106,8 @@ class GeneWebParser:
         
     def parse_geneweb_file(self):
         self.trans = self.db.transaction_begin()
+        self.trans.set_batch(True)
+        self.db.disable_signals()
         t = time.time()
         self.index = 0
         self.fam_count = 0
@@ -155,6 +157,8 @@ class GeneWebParser:
         msg = _('Import Complete: %d seconds') % t
 
         self.db.transaction_commit(self.trans,_("GeneWeb import"))
+        self.db.enable_signals()
+        self.db.request_rebuild()
         
         print msg
         print "Families: %d" % len(self.fkeys)
