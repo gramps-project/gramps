@@ -20,25 +20,41 @@
 
 "Import from GEDCOM"
 
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
+import os
+import re
+import string
+import const
+import time
+
+#-------------------------------------------------------------------------
+#
+# GTK/GNOME Modules
+#
+#-------------------------------------------------------------------------
+import gtk
+import gnome.ui
+import libglade
+import gnome.mime
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 from RelLib import *
 import Date
 import latin_ansel
 import latin_utf8 
 import intl
+import Utils
 from GedcomInfo import *
 
 _ = intl.gettext
-
-import os
-import re
-import string
-import const
-import Utils
-
-import gtk
-import gnome.ui
-import libglade
-import gnome.mime
 
 ANSEL = 1
 UNICODE = 2
@@ -52,6 +68,11 @@ def nocnv(s):
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "jpg", "tiff", "pcx" ]
 
+#-------------------------------------------------------------------------
+#
+# GEDCOM events to GRAMPS events conversion
+#
+#-------------------------------------------------------------------------
 ged2gramps = {}
 for _val in const.personalConstantEvents.keys():
     _key = const.personalConstantEvents[_val]
@@ -64,6 +85,11 @@ for _val in const.familyConstantEvents.keys():
     if _key != "":
         ged2fam[_key] = _val
 
+#-------------------------------------------------------------------------
+#
+# regular expressions
+#
+#-------------------------------------------------------------------------
 intRE = re.compile(r"\s*(\d+)\s*$")
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
@@ -166,7 +192,9 @@ class GedcomParser:
         self.families_obj = window.get_widget("families")
         self.people_obj = window.get_widget("people")
         self.errors_obj = window.get_widget("errors")
+        self.close_done = window.get_widget('close_done')
         self.error_text_obj = window.get_widget("error_text")
+        self.window = window
         self.error_count = 0
         self.error_text_obj.set_point(0)
         self.error_text_obj.set_word_wrap(0)
@@ -262,6 +290,7 @@ class GedcomParser:
         self.backoff = 1
 
     def parse_gedcom_file(self):
+        t = time.time()
         self.index = 0
         self.fam_count = 0
         self.indi_count = 0
@@ -272,6 +301,10 @@ class GedcomParser:
         self.update(self.families_obj,str(self.fam_count))
         self.update(self.people_obj,str(self.indi_count))
         self.break_note_links()
+        t = time.time() - t
+        self.error_text_obj.insert_defaults(_('Import Complete: %d seconds') % t)
+        if self.close_done.get_active():
+            self.window.destroy()
 
     def break_note_links(self):
         for o in self.share_note:

@@ -65,13 +65,8 @@ _ = gettext
 #-------------------------------------------------------------------------
 class ImageSelect:
 
-    #---------------------------------------------------------------------
-    #
-    # __init__ - Creates an edit window.  Associates a person with the 
-    # window.
-    #
-    #---------------------------------------------------------------------
     def __init__(self, path, db):
+        """Creates an edit window.  Associates a person with the window."""
         self.path        = path;
         self.db          = db
         self.dataobj     = None
@@ -85,13 +80,13 @@ class ImageSelect:
         "should be overrridden"
         pass
 
-    #-------------------------------------------------------------------------
-    #
-    # create_add_dialog - Create the gnome dialog for selecting a new
-    # photo and entering its description.
-    #
-    #-------------------------------------------------------------------------
     def create_add_dialog(self):
+        """Create the gnome dialog for selecting a new photo and entering
+        its description.""" 
+
+        if self.path == '':
+            return
+            
         self.glade       = libglade.GladeXML(const.imageselFile,"imageSelect")
         window           = self.glade.get_widget("imageSelect")
         self.fname       = self.glade.get_widget("fname")
@@ -109,13 +104,8 @@ class ImageSelect:
         window.editable_enters(self.description)
         window.show()
 
-    #-------------------------------------------------------------------------
-    #
-    # on_name_changed - The filename has changed.  Verify it and load
-    # the picture.
-    #
-    #-------------------------------------------------------------------------
     def on_name_changed(self, obj):
+        """The filename has changed.  Verify it and load the picture."""
         filename = self.fname.get_text()
 
         basename = os.path.basename(filename)
@@ -134,12 +124,8 @@ class ImageSelect:
             else:
                 self.image.load_file(Utils.find_icon(type))
 
-    #-------------------------------------------------------------------------
-    #
-    # savephoto - Save the photo in the dataobj object.  (Required function)
-    #
-    #-------------------------------------------------------------------------
     def on_savephoto_clicked(self, obj):
+        """Save the photo in the dataobj object.  (Required function)"""
         filename = self.glade.get_widget("photosel").get_full_path(0)
         description = self.description.get_text()
 
@@ -169,13 +155,15 @@ class ImageSelect:
 
             if type[0:5] == "image":
                 if self.external.get_active() == 0:
-                    name = RelImage.import_media_object(filename,self.path,mobj.getId())
+                    name = RelImage.import_media_object(filename,self.path,
+                                                        mobj.getId())
                     mobj.setLocal(1)
             else:
                 if self.external.get_active() == 1:
                     name = filename
                 else:
-                    name = RelImage.import_media_object(filename,self.path,mobj.getId())
+                    name = RelImage.import_media_object(filename,self.path,
+                                                        mobj.getId())
                     mobj.setLocal(1)
             mobj.setPath(name)
             
@@ -204,18 +192,16 @@ class Gallery(ImageSelect):
             ('text/uri-list',0,2),
             ('application/x-rootwin-drop',0,1)]
 
-        icon_list.drag_dest_set(GTK.DEST_DEFAULT_ALL, t, GDK.ACTION_COPY | GDK.ACTION_MOVE)
-        icon_list.connect("drag_data_received", self.on_photolist_drag_data_received)
-
-        icon_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,
-                                   GDK.ACTION_COPY | GDK.ACTION_MOVE)
-        icon_list.connect("drag_data_get", self.on_photolist_drag_data_get)
+        if path:
+            icon_list.drag_dest_set(GTK.DEST_DEFAULT_ALL, t,
+                                    GDK.ACTION_COPY | GDK.ACTION_MOVE)
+            icon_list.connect("drag_data_received",
+                              self.on_photolist_drag_data_received)
+            icon_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,
+                                      GDK.ACTION_COPY | GDK.ACTION_MOVE)
+            icon_list.connect("drag_data_get",
+                              self.on_photolist_drag_data_get)
         
-
-        # Be paranoid - development only error messages
-        assert dataobj.addPhoto, "Gallery data object must contain an addPhoto routine."
-        assert dataobj.getPhotoList, "Gallery data object must contain an getPhotoList routine."
-
         # Remember arguments
         self.path      = path;
         self.dataobj   = dataobj;
@@ -225,31 +211,23 @@ class Gallery(ImageSelect):
         self.selectedIcon = -1
         self.currentImages = []
 
-    #-------------------------------------------------------------------------
-    #
-    # savephoto - Save the photo in the dataobj object.  (Required function)
-    #
-    #-------------------------------------------------------------------------
     def savephoto(self, photo):
-
+        """Save the photo in the dataobj object.  (Required function)"""
         self.db.addObject(photo)
         oref = ObjectRef()
         oref.setReference(photo)
         self.dataobj.addPhoto(oref)
         self.add_thumbnail(oref)
 
-    #-------------------------------------------------------------------------
-    #
-    # add_thumbnail - Scale the image and add it to the IconList. 
-    #
-    #-------------------------------------------------------------------------
     def add_thumbnail(self, photo):
+        """Scale the image and add it to the IconList."""
         object = photo.getReference()
         name = Utils.thumb_path(self.db.getSavePath(),object)
         try:
             thumb = GdkImlib.Image(name)
         except IOError,msg:
-            gnome.ui.GnomeErrorDialog(_("Could not import %s - %s") % (name,msg))
+            emsg = _("Could not import %s - %s") % (name,msg)
+            gnome.ui.GnomeErrorDialog(emsg)
             return
         self.icon_cache.append(thumb)
         description = object.getDescription()
@@ -257,14 +235,10 @@ class Gallery(ImageSelect):
             description = "%s..." % description[0:50]
         self.icon_list.append_imlib(thumb,description)
         
-    #-------------------------------------------------------------------------
-    #
-    # load_images - clears the currentImages list to free up any cached 
-    # Imlibs.  Then add each photo in the place's list of photos to the 
-    # photolist window.
-    #
-    #-------------------------------------------------------------------------
     def load_images(self):
+        """clears the currentImages list to free up any cached 
+        Imlibs.  Then add each photo in the place's list of photos to the 
+        photolist window."""
         self.icon_list.freeze()
         self.icon_list.clear()
         self.icon_cache = []
@@ -272,12 +246,8 @@ class Gallery(ImageSelect):
             self.add_thumbnail(photo)
         self.icon_list.thaw()
 
-    #-------------------------------------------------------------------------
-    #
-    # on_photo_select_icon - User clicked on a photo.  Remember which one.
-    #
-    #-------------------------------------------------------------------------
     def on_photo_select_icon(self, obj,iconNumber,event):
+        """User clicked on a photo.  Remember which one."""
         self.selectedIcon = iconNumber
 
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
@@ -378,23 +348,14 @@ class Gallery(ImageSelect):
             id = ref.getReference().getId()
             selection_data.set(selection_data.target, 8, id)	
 
-    #-------------------------------------------------------------------------
-    #
-    # on_add_photo_clicked - User wants to add a new photo.  Create a
-    # dialog to find out which photo they want.
-    #
-    #-------------------------------------------------------------------------
     def on_add_photo_clicked(self, obj):
+        """User wants to add a new photo.  Create a dialog to find out
+        which photo they want."""
         self.create_add_dialog()
 
-    #-------------------------------------------------------------------------
-    #
-    # on_delete_photo_clicked - User wants to delete a new photo.
-    # Remove it from the displayed thumbnails, and remove it from the
-    # dataobj photo list.
-    #
-    #-------------------------------------------------------------------------
     def on_delete_photo_clicked(self, obj):
+        """User wants to delete a new photo. Remove it from the displayed
+        thumbnails, and remove it from the dataobj photo list."""
         icon = self.selectedIcon
         if icon != -1:
             self.icon_list.remove(icon)
@@ -405,13 +366,9 @@ class Gallery(ImageSelect):
                 self.selectedIcon = 0
                 self.icon_list.select_icon(0)
 
-    #-------------------------------------------------------------------------
-    #
-    # on_button_press_event - Look for right-clicks on a
-    # picture and create a popup menu of the available actions.
-    #
-    #-------------------------------------------------------------------------
     def on_button_press_event(self, obj, event):
+        """Look for right-clicks on a picture and create a popup
+        menu of the available actions."""
         icon = self.selectedIcon
         if icon == -1:
             return
@@ -422,10 +379,11 @@ class Gallery(ImageSelect):
             item = gtk.GtkTearoffMenuItem()
             item.show()
             menu.append(item)
-            Utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
+            Utils.add_menuitem(menu,_("View in the default viewer"),
+                               None,self.popup_view_photo)
             object = photo.getReference()
             if object.getMimeType()[0:5] == "image":
-                Utils.add_menuitem(menu,_("Edit with the GIMP"),\
+                Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                    None,self.popup_edit_photo)
             Utils.add_menuitem(menu,_("Edit Object Properties"),None,
                                self.popup_change_description)
@@ -434,45 +392,31 @@ class Gallery(ImageSelect):
                                    self.popup_convert_to_private)
             menu.popup(None,None,None,0,0)
 
-    #-------------------------------------------------------------------------
-    #
-    # popup_view_photo - Open this picture in a picture viewer
-    #
-    #-------------------------------------------------------------------------
     def popup_view_photo(self, obj):
+        """Open this picture in a picture viewer"""
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
         Utils.view_photo(photo.getReference())
     
-    #-------------------------------------------------------------------------
-    #
-    # popup_edit_photo - Open this picture in a picture editor
-    #
-    #-------------------------------------------------------------------------
     def popup_edit_photo(self, obj):
+        """Open this picture in a picture editor"""
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
         if os.fork() == 0:
-            os.execvp(const.editor,[const.editor, photo.getReference().getPath()])
+            os.execvp(const.editor,[const.editor,
+                                    photo.getReference().getPath()])
     
-    #-------------------------------------------------------------------------
-    #
-    # popup_convert_to_private - Copy this picture into gramps private
-    # database instead of leaving it as an external data object.
-    #
-    #-------------------------------------------------------------------------
     def popup_convert_to_private(self, obj):
+        """Copy this picture into gramps private database instead of
+        leaving it as an external data object."""
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
         object = photo.getReference()
-        name = RelImage.import_media_object(object.getPath(),self.path,object.getId())
+        name = RelImage.import_media_object(object.getPath(),self.path,
+                                            object.getId())
         object.setPath(name)
         object.setLocal(1)
 
-    #-------------------------------------------------------------------------
-    #
-    # popup_change_description - Bring up a window allowing the user
-    # to edit the description of a picture.
-    #
-    #-------------------------------------------------------------------------
     def popup_change_description(self, obj):
+        """Bring up a window allowing the user to edit the description
+        of a picture."""
         if self.selectedIcon >=0:
             photo = self.dataobj.getPhotoList()[self.selectedIcon]
             LocalMediaProperties(photo,self.path)
@@ -491,7 +435,8 @@ class LocalMediaProperties:
         self.lists_changed = 0
         
         fname = self.object.getPath()
-        self.change_dialog = libglade.GladeXML(const.imageselFile,"change_description")
+        self.change_dialog = libglade.GladeXML(const.imageselFile,
+                                               "change_description")
         descr_window = self.change_dialog.get_widget("description")
         pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
@@ -510,7 +455,9 @@ class LocalMediaProperties:
             self.change_dialog.get_widget("path").set_text("<local>")
         else:
             self.change_dialog.get_widget("path").set_text(fname)
-        self.change_dialog.get_widget("type").set_text(Utils.get_mime_description(mtype))
+
+        mt = Utils.get_mime_description(mtype)
+        self.change_dialog.get_widget("type").set_text(mt)
         self.change_dialog.get_widget("notes").insert_defaults(photo.getNote())
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked" : Utils.destroy_passed_object,

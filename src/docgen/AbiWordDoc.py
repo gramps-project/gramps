@@ -93,7 +93,8 @@ class AbiWordDoc(TextDoc):
             self.f.write('<data>\n')
             for file_tuple in self.photo_list:
                 file = file_tuple[0]
-                base = "%s/%s_png" % (os.path.dirname(file),os.path.basename(file))
+                base = "%s/%s_png" % (os.path.dirname(file),
+                                      os.path.basename(file))
                 tag = string.replace(base,'.','_')
 
                 img = ImgManip.ImgManip(file)
