@@ -287,8 +287,8 @@ def write_dot(file, ind_list, orien, width, height, tb_margin,
     file.write("center=1;\n")
     file.write("margin=0.5;\n")
     file.write("ratio=fill;\n")
-    file.write("size=\"%3.1f,%3.1f\";\n" % ((width * hpages) - (lr_margin * 2) - ((hpages - 1) * 1.0),
-                                            (height * vpages) - (tb_margin * 2) - ((vpages - 1) * 1.0)))
+    file.write("size=\"%3.1f,%3.1f\";\n" % ((width*hpages)-(lr_margin*2)-((hpages-1)*1.0),
+                                            (height*vpages)-(tb_margin*2)-((vpages-1)*1.0)))
     file.write("page=\"%3.1f,%3.1f\";\n" % (width,height))
 
     if orien == PAPER_LANDSCAPE:
@@ -325,7 +325,7 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,arrowtailstyle):
         mother = family.getMother()
         if mother and mother in person_list:
             mid = string.replace(mother.getId(),'-','_')
-            file.write('p%s -> p%s ['  % (pid, fid))
+            file.write('p%s -> p%s ['  % (pid, mid))
             file.write('arrowhead=%s, arrowtail=%s, ' % (arrowheadstyle, arrowtailstyle))
             if adoptionsdashed and mrel != _("Birth"):
                 file.write('style=dashed')
