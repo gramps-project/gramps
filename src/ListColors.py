@@ -20,6 +20,13 @@
 
 from gtk import *
 
+import sys
+
+if sys.version[:3] == "1.5":
+    color_ok = 1
+else:
+    color_ok = 0
+
 enable  = 0
 oddbg   = (0xffff,0xffff,0xffff)
 evenbg  = (0xffff,0xffff,0xffff)
@@ -32,14 +39,15 @@ class ColorList:
         self.modval = 2*increment
         self.increment = increment
         self.clist = clist
-        self.oddbg = GdkColor(oddbg[0],oddbg[1],oddbg[2])
-        self.oddfg = GdkColor(oddfg[0],oddfg[1],oddfg[2])
-        self.evenbg = GdkColor(evenbg[0],evenbg[1],evenbg[2])
-        self.evenfg = GdkColor(evenfg[0],evenfg[1],evenfg[2])
+        if color_ok:
+            self.oddbg = GdkColor(oddbg[0],oddbg[1],oddbg[2])
+            self.oddfg = GdkColor(oddfg[0],oddfg[1],oddfg[2])
+            self.evenbg = GdkColor(evenbg[0],evenbg[1],evenbg[2])
+            self.evenfg = GdkColor(evenfg[0],evenfg[1],evenfg[2])
         
     def add(self,list):
         self.clist.append(list)
-        if enable:
+        if enable and color_ok:
             if self.index % self.modval < self.increment:
                 self.clist.set_background(self.index,self.oddbg)
                 self.clist.set_foreground(self.index,self.oddfg)
