@@ -626,16 +626,51 @@ class SingleDate:
             if self.month == -1:
                 retval = str(self.year)
             elif self.year == -1:
-                retval = "%d%s??%s??" % (self.month+1,sep,sep)
+                retval = "%02d%s??%s??" % (self.month+1,sep,sep)
             else:
-                retval = "%d%s??%s%d" % (self.month+1,sep,sep,self.year)
+                retval = "%02d%s??%s%04d" % (self.month+1,sep,sep,self.year)
         elif self.month == -1:
-            retval = "??%s%d%s%d" % (sep,self.day,sep,self.year)
+            retval = "??%s%02d%s%04d" % (sep,self.day,sep,self.year)
         else:
             if self.year == -1:
-                retval = "%d%s%d%s????" % (self.month+1,sep,self.day,sep)
+                retval = "%02d%s%02d%s????" % (self.month+1,sep,self.day,sep)
             else:
-                retval = "%d%s%d%s%d" % (self.month+1,sep,self.day,sep,self.year)
+                retval = "%02d%s%02d%s%04d" % (self.month+1,sep,self.day,sep,self.year)
+
+        if self.mode == SingleDate.about:
+            retval = "%s %s" % (_("ABT"),retval)
+
+        if self.mode == SingleDate.before:
+            retval = "%s %s" % (_("BEFORE"),retval)
+        elif self.mode == SingleDate.after:
+            retval = "%s %s" % (_("AFTER"),retval)
+
+        return retval
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def get_yyyymmdd(self,sep):
+        retval = ""
+        
+        if self.month == -1 and self.day == -1 and self.year == -1 :
+            pass
+        elif self.day == -1:
+            if self.month == -1:
+                retval = str(self.year)
+            elif self.year == -1:
+                retval = "????%s%02d%s??" % (sep,self.month+1,sep)
+            else:
+                retval = "%04d%s%02d%s??" % (self.year,sep,self.month+1,sep)
+        elif self.month == -1:
+            retval = "%04d%s??%s%02d" % (self.year,sep,sep,self.day)
+        else:
+            if self.year == -1:
+                retval = "????%02d%s%02d%s" % (self.month+1,sep,self.day,sep)
+            else:
+                retval = "%02d%s%02d%s%02d" % (self.year,sep,self.month+1,sep,self.day)
 
         if self.mode == SingleDate.about:
             retval = "%s %s" % (_("ABT"),retval)
@@ -685,16 +720,16 @@ class SingleDate:
             if self.month == -1:
                 retval = str(self.year)
             elif self.year == -1:
-                retval = "??%s%d%s??" % (sep,self.month+1,sep)
+                retval = "??%s%02d%s??" % (sep,self.month+1,sep)
             else:
-                retval = "??%s%d%s%d" % (sep,self.month+1,sep,self.year)
+                retval = "??%s%02d%s%04d" % (sep,self.month+1,sep,self.year)
         elif self.month == -1:
-            retval = "%d%s??%s%d" % (self.day,sep,sep,self.year)
+            retval = "%02d%s??%s%04d" % (self.day,sep,sep,self.year)
         else:
             if self.year == -1:
-                retval = "%d%s%d%s????" % (self.day,sep,self.month+1,sep)
+                retval = "%02d%s%02d%s????" % (self.day,sep,self.month+1,sep)
             else:
-                retval = "%d%s%d%s%d" % (self.day,sep,self.month+1,sep,self.year)
+                retval = "%02d%s%02d%s%04d" % (self.day,sep,self.month+1,sep,self.year)
 
         if self.mode == SingleDate.about:
             retval = "%s %s" % (_("ABT"),retval)
@@ -728,13 +763,39 @@ class SingleDate:
     def getFmt9(self):
         return self.get_ddmmyyyy(".")
 
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def getFmt11(self):
+        return self.get_yyyymmdd("/")
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def getFmt12(self):
+        return self.get_yyyymmdd("-")
+
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
+    def getFmt13(self):
+        return self.get_yyyymmdd(".")
+
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
     fmtFunc = [ getFmt1, getFmt2, getFmt3, getFmt4, getFmt5, getFmt6,
-                getFmt7, getFmt8, getFmt9, getFmt10 ]
+                getFmt7, getFmt8, getFmt9, getFmt10, getFmt11, getFmt12,
+                getFmt13]
 
     #--------------------------------------------------------------------
     #
@@ -824,7 +885,12 @@ class SingleDate:
                     self.day = int(matches[2])
                 except ValueError:
                     self.day = -1
-            else:
+                val = matches[3]
+                if val == None or val[0] == '?':
+                    self.year = -1
+                else:
+                    self.year = int(val)
+            elif Date.entryCode == 1:
                 try:
                     self.month = int(matches[2])-1
                     if self.month > 11:
@@ -835,11 +901,27 @@ class SingleDate:
                     self.day = int(matches[1])
                 except ValueError:
                     self.day = -1
-            val = matches[3]
-            if val == None or val[0] == '?':
-                self.year = -1
+                val = matches[3]
+                if val == None or val[0] == '?':
+                    self.year = -1
+                else:
+                    self.year = int(val)
             else:
-                self.year = int(val)
+                try:
+                    self.month = int(matches[2])-1
+                    if self.month > 11:
+                        raise Date.Error,text
+                except ValueError:
+                    self.month = -1
+                try:
+                    self.day = int(matches[3])
+                except ValueError:
+                    self.day = -1
+                val = matches[1]
+                if val == None or val[0] == '?':
+                    self.year = -1
+                else:
+                    self.year = int(val)
             return 1
 
         match = SingleDate.fmt1.match(text)

@@ -148,6 +148,11 @@ def deathday(person):
     else:
         return ""
     
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def delete_event(widget, event):
     widget.hide()
     if utils.wasModified():
@@ -217,42 +222,15 @@ def on_remove_child_clicked(obj):
     utils.modified()
     load_family()
 
-#-------------------------------------------------------------------------
-#
-# Called when the user selects the edit marriage button on the family
-# page.
-#
-#-------------------------------------------------------------------------
-def on_edit_marriage_clicked(obj):
-    global queryTop
-	
-    if not active_family:
-        add_spouse()
-        return
+def on_add_sp_clicked(obj):
+    add_spouse()
 
-    queryTop = libglade.GladeXML(const.gladeFile,"marriageQuery")
+def on_edit_sp_clicked(obj):
+    marriage_edit(active_family)
+
+def on_delete_sp_clicked(obj):
+    delete_spouse()
     
-    queryTop.signal_autoconnect({
-        "on_marriageQuery_clicked" : on_marriageQuery_clicked,
-        "destroy_passed_object" : utils.destroy_passed_object
-	})
-    marriageQuery = queryTop.get_widget("marriageQuery")
-    marriageQuery.show()
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def on_marriageQuery_clicked(obj):
-    if queryTop.get_widget("addSpouse").get_active():
-        add_spouse()
-    elif queryTop.get_widget("editMarriage").get_active():
-        marriage_edit(active_family)
-    else:
-        delete_spouse()
-    utils.destroy_passed_object(obj)
-
 #-------------------------------------------------------------------------
 #
 # 
@@ -261,6 +239,7 @@ def on_marriageQuery_clicked(obj):
 def on_add_child_clicked(obj):
     global select_child
     global addChildList
+    global childWindow
     
     select_child = None
 	
@@ -275,7 +254,8 @@ def on_add_child_clicked(obj):
 
     selectChild = childWindow.get_widget("selectChild")
     addChildList = childWindow.get_widget("addChild")
-    redraw_child_list(1)
+    addChildList.set_column_visibility(1,Config.id_visible)
+    redraw_child_list(2)
     selectChild.show()
 
 #-------------------------------------------------------------------------
@@ -292,7 +272,8 @@ def redraw_child_list(filter):
     for person in person_list:
         if filter and person.getMainFamily() != None:
             continue
-        addChildList.append([utils.phonebook_name(person),birthday(person)])
+        addChildList.append([utils.phonebook_name(person),birthday(person),\
+                             str(person.getId())])
         addChildList.set_row_data(index,person)
         index = index + 1
         
@@ -363,10 +344,13 @@ def on_addchild_ok_clicked(obj):
             active_family.setMother(active_person)
         active_person.addFamily(active_family)
 
-    if newChildWindow.get_widget("childStatus").get_active():
+    mrel = const.childRelations[newChildWindow.get_widget("mrel").get_text()]
+    frel = const.childRelations[newChildWindow.get_widget("frel").get_text()]
+
+    if mrel == "Birth" and frel == "Birth":
         person.setMainFamily(active_family)
     else:
-        person.addAltFamily(active_family,"Adopted")
+        person.addAltFamily(active_family,mrel,frel)
 
     active_family.addChild(person)
         
@@ -397,12 +381,18 @@ def on_save_child_clicked(obj):
             active_family.setMother(active_person)
 
     active_family.addChild(select_child)
-    family = select_child.getMainFamily()
-
-    if family != None:
-        family.removeChild(select_child)
 		
-    select_child.setMainFamily(active_family)
+    mrel = const.childRelations[childWindow.get_widget("mrel").get_text()]
+    frel = const.childRelations[childWindow.get_widget("frel").get_text()]
+
+    if mrel == "Birth" and frel == "Birth":
+        family = select_child.getMainFamily()
+        if family != None and family != active_family:
+            family.removeChild(select_child)
+
+        select_child.setMainFamily(active_family)
+    else:
+        select_child.addAltFamily(active_family,mrel,frel)
 
     utils.modified()
     utils.destroy_passed_object(obj)
@@ -427,37 +417,6 @@ def get_option_index(obj):
 # 
 #
 #-------------------------------------------------------------------------
-def on_rtype_clicked(obj,a):
-    global family_window
-    
-    active_item  = obj.get_active()
-    
-    index = get_option_index(obj)
-    type = const.childRelations[index]
-
-    select_father = None
-    select_mother = None
-
-    if type == "Birth":
-        fam = active_person.getMainFamily()
-        if fam:
-            select_father = fam.getFather()
-            select_mother = fam.getMother()
-    else:
-        for fam in active_person.getAltFamilyList():
-            if fam[1] == type:
-                select_father = fam[0].getFather()
-                select_mother = fam[0].getMother()
-
-    family_window.get_widget("fatherName").set_text(Config.nameof(select_father))
-    family_window.get_widget("motherName").set_text(Config.nameof(select_mother))
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-
 def on_choose_parents_clicked(obj):
     global select_mother
     global select_father
@@ -474,7 +433,6 @@ def on_choose_parents_clicked(obj):
     family_window.signal_autoconnect({
         "on_motherList_select_row" : on_motherList_select_row,
         "on_fatherList_select_row" : on_fatherList_select_row,
-        "on_rtype_clicked" : on_rtype_clicked,
         "on_save_parents_clicked" : on_save_parents_clicked,
         "destroy_passed_object" : utils.destroy_passed_object
         })
@@ -497,21 +455,18 @@ def on_choose_parents_clicked(obj):
     motherName.set_text(Config.nameof(select_mother))
     motherList.set_data("mother_text",motherName)
 
-    menu = family_window.get_widget("rtype")
-    
     if active_parents == active_person.getMainFamily():
-        menu.set_history(0)
+        family_window.get_widget("mrel").set_text(_("Birth"))
+        family_window.get_widget("frel").set_text(_("Birth"))
     else:
-        for fam in active_person.getAltFamilyList():
-            if active_parents == fam[0]:
-                type = fam[1]
+        for f in active_person.getAltFamilyList():
+            if f[0] == active_parents:
+                family_window.get_widget("mrel").set_text(_(f[1]))
+                family_window.get_widget("frel").set_text(_(f[2]))
                 break
-        if type == "Adopted":
-            menu.set_history(1)
         else:
-            menu.set_history(2)
-    
-    menu.get_menu().connect("deactivate",on_rtype_clicked,None)
+            family_window.get_widget("mrel").set_text(_("Unknown"))
+            family_window.get_widget("frel").set_text(_("Unknown"))
 
     people = database.getPersonMap().values()
     people.sort(sort.by_last_name)
@@ -530,7 +485,7 @@ def on_choose_parents_clicked(obj):
             mother_index = mother_index + 1
 
     familyDialog.show()
-	
+
 #-------------------------------------------------------------------------
 #
 # 
@@ -559,6 +514,8 @@ def new_database_response(val):
     const.marriageEvents = const.initialize_marriage_event_list()
     const.familyAttributes = const.initialize_family_attribute_list()
     const.familyRelations = const.initialize_family_relation_list()
+    const.places = []
+    
     database.new()
     topWindow.set_title("Gramps")
     active_person = None
@@ -591,7 +548,9 @@ def marriage_edit(family):
 #-------------------------------------------------------------------------
 def full_update():
     gtop.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
-    gtop.get_widget("child_list").set_column_visibility(4,Config.show_detail)
+    clist = gtop.get_widget("child_list")
+    clist.set_column_visibility(4,Config.show_detail)
+    clist.set_column_visibility(1,Config.id_visible)
     apply_filter()
     load_family()
     load_sources()
@@ -872,22 +831,24 @@ def find_family(father,mother):
 #
 #
 #-------------------------------------------------------------------------
-def change_family_type(family,type):
+def change_family_type(family,mrel,frel):
 
+    is_main = mrel == "Birth" and frel == "Birth"
+    
     if not family:
-        if type == "Birth":
+        if is_main:
             main = active_person.getMainFamily()
             if main:
                 main.removeChild(active_person)
             active_person.setMainFamily(None)
         else:
             for fam in active_person.getAltFamilyList():
-                if fam[1] == type:
+                if is_main:
                     active_person.removeAltFamily(fam[0])
                     fam.removeChild(active_person)
                     return
     elif family == active_person.getMainFamily():
-        if type != "Birth":
+        if is_main:
             utils.modified()
             active_person.setMainFamily(None)
             found = 0
@@ -903,21 +864,18 @@ def change_family_type(family,type):
     else:
         for fam in active_person.getAltFamilyList():
             if family == fam[0]:
-                if type == "Birth":
+                if is_main:
                     active_person.setMainFamily(family)
                     active_person.removeAltFamily(family)
                     utils.modified()
                     return
-                if type != fam[1]:
-                    fam[1] = type
+                if mrel != fam[1] or frel != fam[2]:
+                    active_person.removeAltFamily(family)
+                    active_person.addAltFamily(family,mrel,frel)
                     utils.modified()
                     return
-            if type == fam[1]:
-                active_person.removeAltFamily(fam[0])
-                fam[0].removeChild(active_person)
-                active_person.addAltFamily(family,type)
-                family.addChild(active_person)
-                utils.modified()
+        active_person.addAltFamily(family,mrel,frel)
+        utils.modified()
                 
 #-------------------------------------------------------------------------
 #
@@ -934,21 +892,10 @@ def on_save_parents_clicked(obj):
     else:    
         family = None
 
-    index = get_option_index(family_window.get_widget("rtype").get_menu())
-    type = const.childRelations[index]
+    mrel = family_window.get_widget("mrel").get_text()
+    frel = family_window.get_widget("frel").get_text()
 
-    if family != active_family:
-        utils.modified()
-        if index == 0:
-            active_person.setMainFamily(family)
-            if family:
-                family.addChild(active_person)
-        else:
-            active_person.addAltFamily(family,type)
-            if family:
-                family.addChild(active_person)
-    else:
-        change_family_type(family,type)
+    change_family_type(family,mrel,frel)
 
     active_mother = select_mother
     active_father = select_father
@@ -1125,6 +1072,23 @@ def add_spouse():
         spouseList.set_row_data(index,person)
         index = index + 1
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_delete_parents_clicked(obj):
+    if not active_parents:
+        return
+
+    active_parents.removeChild(active_person)
+    
+    if active_parents == active_person.getMainFamily():
+        active_person.setMainFamily(None)
+    else:
+        active_person.removeAltFamily(active_parents)
+    load_family()
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -1369,6 +1333,7 @@ def on_revert_activate(obj):
 #-------------------------------------------------------------------------
 def revert_query(value):
     if value == 0:
+        const.places = []
         const.personalEvents = const.initialize_personal_event_list()
         const.personalAttributes = const.initialize_personal_attribute_list()
         const.marriageEvents = const.initialize_marriage_event_list()
@@ -1663,7 +1628,7 @@ def load_family():
             menuitem.show()
             typeMenu.append(menuitem)
         for fam in family_types:
-            menuitem = GtkMenuItem(fam[1])
+            menuitem = GtkMenuItem("%s/%s" % (fam[2],fam[1]))
             menuitem.set_data("parents",fam[0])
             menuitem.connect("activate",on_current_type_changed)
             menuitem.show()
@@ -1698,6 +1663,8 @@ def load_family():
 
                 gtop.get_widget("fv_spouse").set_menu(myMenu)
             gtop.get_widget("lab_or_list").set_page(1)
+            gtop.get_widget("edit_sp").set_sensitive(1)
+            gtop.get_widget("delete_sp").set_sensitive(1)
         elif number_of_families == 1:
             gtop.get_widget("lab_or_list").set_page(0)
             family = active_person.getFamilyList()[0]
@@ -1710,6 +1677,8 @@ def load_family():
             fv_spouse1.set_text(Config.nameof(spouse))
             fv_spouse1.set_data("person",spouse)
             fv_spouse1.set_data("family",active_person.getFamilyList()[0])
+            gtop.get_widget("edit_sp").set_sensitive(1)
+            gtop.get_widget("delete_sp").set_sensitive(1)
         else:
             gtop.get_widget("lab_or_list").set_page(0)
             gtop.get_widget("fv_spouse1").set_text("")
@@ -1717,6 +1686,9 @@ def load_family():
             fv_spouse1.set_text("")
             fv_spouse1.set_data("person",None)
             fv_spouse1.set_data("family",None)
+            active_spouse = None
+            gtop.get_widget("edit_sp").set_sensitive(0)
+            gtop.get_widget("delete_sp").set_sensitive(0)
 
         if number_of_families > 0:
             display_marriage(active_person.getFamilyList()[0])
@@ -1859,17 +1831,17 @@ def display_marriage(family):
         child_list.sort(sort.by_birthdate)
         attr = ""
         for child in child_list:
-            status = "unknown"
+            status = _("unknown")
             if child.getGender():
                 gender = const.male
             else:
                 gender = const.female
             if child.getMainFamily() == family:
-                status = "Natural"
+                status = _("Birth")
             else:
                 for fam in child.getAltFamilyList():
                     if fam[0] == family:
-                        status = fam[1]
+                        status = "%s/%s" % (fam[2],fam[1])
 
             if Config.show_detail:
                 attr = ""
@@ -1887,7 +1859,8 @@ def display_marriage(family):
                 if len(child.getPhotoList()) > 0:
                     attr = attr + "P"
 
-            clist.append([Config.nameof(child),gender,birthday(child),status,attr])
+            clist.append([Config.nameof(child),str(child.getId()),\
+                          gender,birthday(child),status,attr])
             clist.set_row_data(i,child)
             i=i+1
             if i != 0:
@@ -1939,6 +1912,9 @@ def load_database(name):
         if ntype not in const.personalEvents:
             const.personalEvents.append(ntype)
 
+    const.places = database.getPlaces()
+    const.places.sort()
+    
     mylist = database.getFamilyEventTypes()
     for type in mylist:
         ntype = const.display_fevent(type)
@@ -2019,6 +1995,8 @@ def apply_filter():
     datacomp = DataFilter.compare
     clistadd = color_clist.add_with_data
     gname = utils.phonebook_from_name
+
+    person_list.set_column_visibility(1,Config.id_visible)
     
     for name_tuple in names:
         person = name_tuple[1]
@@ -2031,8 +2009,10 @@ def apply_filter():
                 gender = const.male
             else:
                 gender = const.female
-            clistadd([gname(name,alt),gender,person.getBirth().getQuoteDate(),\
-                      person.getDeath().getQuoteDate()],person)
+            bday = person.getBirth().getQuoteDate()
+            dday = person.getDeath().getQuoteDate()
+            clistadd([gname(name,alt),str(person.getId()), gender,bday, dday],\
+                     person)
         i = i + 1
 
     person_list.thaw()
@@ -2233,6 +2213,7 @@ def main(arg):
         "on_child_list_button_press_event" : on_child_list_button_press_event,
         "on_child_list_select_row" : on_child_list_select_row,
         "on_fv_prev_clicked" : on_fv_prev_clicked,
+        "on_delete_parents_clicked" : on_delete_parents_clicked,
         "on_contents_activate" : on_contents_activate,
         "on_choose_parents_clicked" : on_choose_parents_clicked, 
         "on_spouselist_changed" : on_spouselist_changed,
@@ -2247,7 +2228,9 @@ def main(arg):
         "on_save_activate" : on_save_activate,
         "on_revert_activate" : on_revert_activate,
         "on_add_child_clicked" : on_add_child_clicked,
-        "on_edit_marriage_clicked" : on_edit_marriage_clicked,
+        "on_edit_sp_clicked" : on_edit_sp_clicked,
+        "on_add_sp_clicked" : on_add_sp_clicked,
+        "on_delete_sp_clicked" : on_delete_sp_clicked,
         "on_remove_child_clicked" : on_remove_child_clicked,
         "on_new_clicked" : on_new_clicked,
         "on_add_bookmark_activate" : on_add_bookmark_activate,
@@ -2273,6 +2256,7 @@ def main(arg):
 
     database = RelDataBase()
     Config.loadConfig(full_update)
+    person_list.set_column_visibility(1,Config.id_visible)
     gtop.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
     gtop.get_widget("child_list").set_column_visibility(4,Config.show_detail)
         

@@ -238,9 +238,11 @@ class IndividualPage:
         self.doc.start_table("one","IndTable")
         self.write_normal_row("%s:" % _("Name"), name, name_obj.getSourceRef())
         if self.person.getGender() == Person.male:
-            self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
+            self.write_normal_row("%s:" % _("Gender"), \
+                                  _("Male"),None)
         else:
-            self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
+            self.write_normal_row("%s:" % _("Gender"), \
+                                  _("Female"),None)
 
         family = self.person.getMainFamily()
         if family:

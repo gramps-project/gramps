@@ -105,11 +105,12 @@ female       = _("female")
 
 output_formats = ["OpenOffice", "AbiWord", "PDF", "HTML" ]
 
-childRelations = [
-    "Birth",
-    "Adopted",
-    "Other"
-    ]
+childRelations = {
+    _("Birth") : "Birth",
+    _("Adopted") : "Adopted",
+    _("Stepchild") : "Stepchild",
+    _("Unknown") : "Unknown",
+    }
 
 #-------------------------------------------------------------------------
 #
@@ -171,6 +172,7 @@ def save_fevent(st):
 #-------------------------------------------------------------------------
 personalConstantEvents = {
     "Adopted"               : "ADOP",
+    "Adult Christening"     : "CHRA",
     "Alternate Birth"       : "BIRT",
     "Alternate Death"       : "DEAT",
     "Baptism (LDS)"         : "BAPL",
@@ -179,6 +181,7 @@ personalConstantEvents = {
     "Bas Mitzvah"           : "BASM",
     "Burial"                : "BURI",
     "Cause Of Death"        : "CAUS",
+    "Ordination"            : "ORID",
     "Census"                : "CENS",
     "Christening"           : "CHR" ,
     "Confirmation"          : "CONF",
@@ -188,21 +191,24 @@ personalConstantEvents = {
     "Education"             : "EDUC",
     "Elected"               : "_ELEC",
     "Emigration"            : "EMIG",
+    "First Communion"       : "FCOM",
     "Graduation"            : "GRAD",
     "Military Service"      : "_MILT", 
     "Naturalization"        : "NATU",
+    "Immigration"           : "IMMI",
     "Occupation"            : "OCCU",
     "Probate"               : "PROB",
     "Religion"              : "RELI",
-    "Residence"             : "RESI",
     "Residence"             : "RESI", 
-    "Retirement"            : "RETI"
+    "Retirement"            : "RETI",
+    "Will"                  : "WILL"
     }
 
 _pe_e2l = {
     "Adopted"               : _("Adopted"),
     "Alternate Birth"       : _("Alternate Birth"),
     "Alternate Death"       : _("Alternate Death"),
+    "Adult Christening"     : _("Adult Christening"),
     "Baptism (LDS)"         : _("Baptism (LDS)"),
     "Baptism"               : _("Baptism"),
     "Bar Mitzvah"           : _("Bar Mitzvah"),
@@ -218,14 +224,18 @@ _pe_e2l = {
     "Education"             : _("Education"),
     "Elected"               : _("Elected"),
     "Emigration"            : _("Emigration"),
+    "First Communion"       : _("First Communion"),
+    "Immigration"           : _("Immigration"),
     "Graduation"            : _("Graduation"),
     "Military Service"      : _("Military Service"), 
     "Naturalization"        : _("Naturalization"),
     "Occupation"            : _("Occupation"),
+    "Ordination"            : _("Ordination"),
     "Probate"               : _("Probate"),
     "Religion"              : _("Religion"),
     "Residence"             : _("Residence"),
     "Retirement"            : _("Retirement"),
+    "Will"                  : _("Will")
     }
 
 _pe_l2e = {}
@@ -260,14 +270,18 @@ def save_pevent(st):
 #
 #-------------------------------------------------------------------------
 personalConstantAttributes = {
+    "Caste"                 : "CAST",
     "Description"           : "DSCR",
     "Identification Number" : "IDNO",
+    "National Origin"       : "NATI",
     "Social Security Number": "SSN"
     }
 
 _pa_e2l = {
+    "Caste"                 : _("Caste"),
     "Description"           : _("Description"),
     "Identification Number" : _("Identification Number"),
+    "National Origin"       : _("National Origin"),
     "Social Security Number": _("Social Security Number")
     }
 
@@ -438,3 +452,4 @@ personalAttributes = initialize_personal_attribute_list()
 marriageEvents = initialize_marriage_event_list()
 familyAttributes = initialize_family_attribute_list()
 familyRelations = initialize_family_relation_list()
+places = []
