@@ -102,6 +102,13 @@ class StartupDialog:
                      'contribute.\n\nPlease enjoy using GRAMPS.'))
         return p
 
+    def get_string(self,key):
+        val = self.client.get_string(key)
+        if val == None:
+            return ""
+        else:
+            return val
+
     def complete(self,obj,obj2):
         self.client.set_string('/apps/gramps/researcher-name',self.name.get_text())
         self.client.set_string('/apps/gramps/researcher-addr',self.addr.get_text())
@@ -159,14 +166,14 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
-        self.name.set_text(self.client.get_string('/apps/gramps/researcher-name'))
-        self.addr.set_text(self.client.get_string('/apps/gramps/researcher-addr'))
-        self.city.set_text(self.client.get_string('/apps/gramps/researcher-city'))
-        self.state.set_text(self.client.get_string('/apps/gramps/researcher-state'))
-        self.postal.set_text(self.client.get_string('/apps/gramps/researcher-postal'))
-        self.country.set_text(self.client.get_string('/apps/gramps/researcher-country'))
-        self.phone.set_text(self.client.get_string('/apps/gramps/researcher-phone'))
-        self.email.set_text(self.client.get_string('/apps/gramps/researcher-email'))
+        self.name.set_text(self.get_string('/apps/gramps/researcher-name'))
+        self.addr.set_text(self.get_string('/apps/gramps/researcher-addr'))
+        self.city.set_text(self.get_string('/apps/gramps/researcher-city'))
+        self.state.set_text(self.get_string('/apps/gramps/researcher-state'))
+        self.postal.set_text(self.get_string('/apps/gramps/researcher-postal'))
+        self.country.set_text(self.get_string('/apps/gramps/researcher-country'))
+        self.phone.set_text(self.get_string('/apps/gramps/researcher-phone'))
+        self.email.set_text(self.get_string('/apps/gramps/researcher-email'))
 
         return p
 
