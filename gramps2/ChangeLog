@@ -1,3 +1,7 @@
+2004-11-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: Add check for empty family in 
+	display_marriage
+
 2004-11-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RecentFiles.py: Add to CVS. Support for recent-files API.
 	* src/Makefile.am: Ship RecentFiles.py.
