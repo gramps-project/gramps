@@ -1,0 +1,19 @@
+include @top_srcdir@/Makefile.comm
+
+MANSRC = ${EG}.sgml
+MANDIR = ${EG}
+
+all: ${MANDIR}/index.html
+
+${MANDIR}/index.html: ${MANSRC}
+	db2html -c catalog ${MANSRC} -o ${MANDIR}
+	
+install:
+	-${INSTALL} -d ${GNOMEHELP}/${EG}/C
+	-${INSTALL} ${EG}/*.html ${GNOMEHELP}/${EG}/C
+
+uninstall:
+	-rm -f ${GNOMEHELP}/${EG}/C/*.html
+	-rmdir ${GNOMEHELP}/${EG}/C/
+
+clean:
