@@ -1,3 +1,13 @@
+2003-11-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelImage.py: replace system call with Utils.search_for
+	* src/Utils.py: added search_for to look for an executable in the current
+	path
+
+2003-11-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* FAQ: removed question 18 (how fast is GRAMPS)
+	* src/PeopleStore.py: set sort data for top level nodes. Allows the first
+	and last nodes to be sorted properly.
+
 2003-11-24  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* FAQ: Added to CVS.
 
