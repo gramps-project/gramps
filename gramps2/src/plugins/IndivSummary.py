@@ -189,7 +189,7 @@ class IndivSummary(Report.Report):
             self.d.end_row()
             
             for event_handle in family.get_event_list():
-                event = self.database.find_event_from_handle(event_handle)
+                event = self.database.get_event_from_handle(event_handle)
                 self.write_fact(event)
 
             child_list = family.get_child_handle_list()
@@ -338,7 +338,7 @@ class IndivSummary(Report.Report):
         event_list = event_list + self.person.get_event_list()
         for event_handle in event_list:
             if event_handle:
-                event = self.database.find_event_from_handle(event_handle)
+                event = self.database.get_event_from_handle(event_handle)
                 self.write_fact(event)
         self.d.end_table()
 

@@ -971,7 +971,7 @@ class HasEvent(Rule):
         for event_handle in p.get_event_list():
             if not event_handle:
                 continue
-            event = db.find_event_from_handle(event_handle)
+            event = db.get_event_from_handle(event_handle)
             val = 1
             if self.list[0] and event.get_name() != self.list[0]:
                 val = 0
@@ -1027,7 +1027,7 @@ class HasFamilyEvent(Rule):
             for event_handle in f.get_event_list():
                 if not event_handle:
                     continue
-                event = db.find_event_from_handle(event_handle)
+                event = db.get_event_from_handle(event_handle)
                 val = 1
                 if self.list[0] and event.get_name() != self.list[0]:
                     val = 0
@@ -1137,7 +1137,7 @@ class HasBirth(Rule):
         event_handle = p.get_birth_handle()
         if not event_handle:
             return 0
-        event = db.find_event_from_handle(event_handle)
+        event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
         if len(self.list) > 2 and string.find(ed,self.list[2].upper())==-1:
             return 0
@@ -1184,7 +1184,7 @@ class HasDeath(Rule):
         event_handle = p.get_death_handle()
         if not event_handle:
             return 0
-        event = db.find_event_from_handle(event_handle)
+        event = db.get_event_from_handle(event_handle)
         ed = event.get_description().upper()
         if self.list[2] and string.find(ed,self.list[2].upper())==-1:
             return 0

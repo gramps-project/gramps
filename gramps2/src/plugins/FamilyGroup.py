@@ -156,7 +156,7 @@ class FamilyGroup:
         bdate = ""
         bplace = ""
         if birth_handle:
-            birth = self.db.find_event_from_handle(birth_handle)
+            birth = self.db.get_event_from_handle(birth_handle)
             bdate = birth.get_date()
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
@@ -166,7 +166,7 @@ class FamilyGroup:
         ddate = ""
         dplace = ""
         if death_handle:
-            death = self.db.find_event_from_handle(death_handle)
+            death = self.db.get_event_from_handle(death_handle)
             ddate = death.get_date()
             dplace_handle = death.get_place_handle()
             if dplace_handle:
@@ -301,12 +301,12 @@ class FamilyGroup:
         families = len(person.get_family_handle_list())
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            birth = self.db.find_event_from_handle(birth_handle)
+            birth = self.db.get_event_from_handle(birth_handle)
         else:
             birth = None
         death_handle = person.get_death_handle()
         if death_handle:
-            death = self.db.find_event_from_handle(death_handle)
+            death = self.db.get_event_from_handle(death_handle)
         else:
             death = None
         self.dump_child_event('FGR-TextChild1',_('Birth'),birth)
@@ -320,7 +320,7 @@ class FamilyGroup:
             family = self.db.get_family_from_handle(family_handle)
             for event_handle in family.get_event_list():
                 if event_handle:
-                    event = self.db.find_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     if event.get_name() == "Marriage":
                         m = event
                         break

@@ -531,7 +531,7 @@ class Person(PrimaryObject,SourceNote):
         if self.death_handle:
             return 0
         if self.birth_handle:
-            birth = db.find_event_from_handle(self.birth_handle)
+            birth = db.get_event_from_handle(self.birth_handle)
             if birth.get_date() != "":
                 return not_too_old(birth.get_date_object().get_start_date())
 
@@ -547,7 +547,7 @@ class Person(PrimaryObject,SourceNote):
                 for child_handle in family.get_child_handle_list():
                     child = db.get_person_from_handle(child_handle)
                     if child.birth_handle:
-                        child_birth = db.find_event_from_handle(child.birth_handle)
+                        child_birth = db.get_event_from_handle(child.birth_handle)
                         if child_birth.get_date() != "":
                             d = SingleDate (child_birth.get_date_object().
                                         get_start_date())
@@ -556,7 +556,7 @@ class Person(PrimaryObject,SourceNote):
                                 return 1
 
                     if child.death_handle:
-                        child_death = db.find_event_from_handle(child.death_handle)
+                        child_death = db.get_event_from_handle(child.death_handle)
                         if child_death.get_date() != "":
                             d = SingleDate (child_death.get_date_object().
                                         get_start_date())
@@ -580,7 +580,7 @@ class Person(PrimaryObject,SourceNote):
 
                     parent = db.get_person_from_handle(parent_id)
                     if parent.birth_handle:
-                        parent_birth = db.find_event_from_handle(parent.birth_handle)
+                        parent_birth = db.get_event_from_handle(parent.birth_handle)
                         if parent_birth.get_date():
                             d = SingleDate (parent_birth.get_date_object().
                                         get_start_date())
@@ -590,7 +590,7 @@ class Person(PrimaryObject,SourceNote):
                                 return 1
 
                     if parent.death_handle:
-                        parent_death = db.find_event_from_handle(parent.death_handle)
+                        parent_death = db.get_event_from_handle(parent.death_handle)
                         if parent_death.get_date() != "":
                             d = SingleDate (parent_death.get_date_object().
                                         get_start_date())
@@ -612,7 +612,7 @@ class Person(PrimaryObject,SourceNote):
                     continue
                 spouse = db.get_person_from_handle(spouse_id)
                 if spouse.birth_handle:
-                    spouse_birth = db.find_event_from_handle(spouse.birth_handle)
+                    spouse_birth = db.get_event_from_handle(spouse.birth_handle)
                     if spouse_birth.get_date() != "":
                         d = SingleDate (spouse_birth.get_date_object().
                                     get_start_date())
@@ -621,7 +621,7 @@ class Person(PrimaryObject,SourceNote):
                             return 0
 
                 if spouse.death_handle:
-                    spouse_death = db.find_event_from_handle(spouse.death_handle)
+                    spouse_death = db.get_event_from_handle(spouse.death_handle)
                     if spouse_death.get_date() != "":
                         d = SingleDate (spouse_birth.get_date_object().
                                     get_start_date())

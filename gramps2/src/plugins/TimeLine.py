@@ -186,13 +186,13 @@ class TimeLine:
             p = self.db.get_person_from_handle(p_id)
             b_id = p.get_birth_handle()
             if b_id:
-                b = self.db.find_event_from_handle(b_id).get_date_object().get_year()
+                b = self.db.get_event_from_handle(b_id).get_date_object().get_year()
             else:
                 b = Date.UNDEF
 
             d_id = p.get_death_handle()
             if d_id:
-                d = self.db.find_event_from_handle(d_id).get_date_object().get_year()
+                d = self.db.get_event_from_handle(d_id).get_date_object().get_year()
             else:
                 d = Date.UNDEF
 
@@ -284,13 +284,13 @@ class TimeLine:
             p = self.db.get_person_from_handle(p_id)
             b_id = p.get_birth_handle()
             if b_id:
-                b = self.db.find_event_from_handle(b_id).get_date_object().get_year()
+                b = self.db.get_event_from_handle(b_id).get_date_object().get_year()
             else:
                 b = Date.UNDEF
 
             d_id = p.get_death_handle()
             if d_id:
-                d = self.db.find_event_from_handle(d_id).get_date_object().get_year()
+                d = self.db.get_event_from_handle(d_id).get_date_object().get_year()
             else:
                 d = Date.UNDEF
 

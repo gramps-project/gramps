@@ -106,13 +106,13 @@ class Sort:
 
         birth_handle1 = first.get_birth_handle()
         if birth_handle1:
-            date1 = self.database.find_event_from_handle(birth_handle1).get_date_object()
+            date1 = self.database.get_event_from_handle(birth_handle1).get_date_object()
         else:
             date1 = Date.Date()
 
         birth_handle2 = second.get_birth_handle()
         if birth_handle2:
-            date2 = self.database.find_event_from_handle(birth_handle2).get_date_object()
+            date2 = self.database.get_event_from_handle(birth_handle2).get_date_object()
         else:
             date2 = Date.Date()
 
@@ -125,6 +125,6 @@ class Sort:
         """Sort routine for comparing two events by their dates. """
         if not (a_id and b_id):
             return 0
-        a = self.database.find_event_from_handle(a_id)
-        b = self.database.find_event_from_handle(b_id)
+        a = self.database.get_event_from_handle(a_id)
+        b = self.database.get_event_from_handle(b_id)
         return Date.compare_dates(a.get_date_object(),b.get_date_object())

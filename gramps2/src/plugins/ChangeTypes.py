@@ -84,7 +84,7 @@ class ChangeTypes:
             for event_handle in person.get_event_list():
                 if not event_handle:
                     continue
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 if event.get_name() == original:
                     event.set_name(new)
                     modified = modified + 1

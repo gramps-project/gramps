@@ -322,7 +322,7 @@ class DisplayChart:
             bdate = ""
             bplace = ""
             if birth_handle:
-                birth = self.db.find_event_from_handle(birth_handle)
+                birth = self.db.get_event_from_handle(birth_handle)
                 bdate = birth.get_date()
                 bplace_handle = birth.get_place_handle()
                 if bplace_handle:
@@ -331,7 +331,7 @@ class DisplayChart:
             ddate = ""
             dplace = ""
             if death_handle:
-                death = self.db.find_event_from_handle(death_handle)
+                death = self.db.get_event_from_handle(death_handle)
                 ddate = death.get_date()
                 dplace_handle = death.get_place_handle()
                 if dplace_handle:
@@ -341,7 +341,7 @@ class DisplayChart:
             for ievent_handle in elist:
                 if not ievent_handle:
                     continue
-                ievent = self.db.find_event_from_handle(ievent_handle)
+                ievent = self.db.get_event_from_handle(ievent_handle)
                 event_name = ievent.get_name()
                 if map.has_key(event_name):
                     map[event_name].append(ievent_handle)
@@ -364,7 +364,7 @@ class DisplayChart:
                         date = ""
                         place = ""
                         if event_handle:
-                            event = self.db.find_event_from_handle(event_handle)
+                            event = self.db.get_event_from_handle(event_handle)
                             date = event.get_date()
                             place_handle = event.get_place_handle()
                             if place_handle:
@@ -392,7 +392,7 @@ class DisplayChart:
             for event_handle in elist:
                 if not event_handle:
                     continue
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 name = event.get_name()
                 if not name:
                     break

@@ -172,8 +172,8 @@ class SelectChild:
     def redraw_child_list(self,filter):
         return
     
-        birth = self.db.find_event_from_handle(self.person.get_birth_handle())
-        death = self.db.find_event_from_handle(self.person.get_death_handle())
+        birth = self.db.get_event_from_handle(self.person.get_birth_handle())
+        death = self.db.get_event_from_handle(self.person.get_death_handle())
         if birth:
             bday = birth.get_date_object()
         else:
@@ -201,13 +201,13 @@ class SelectChild:
                 if slist.has_key(key) or person.get_main_parents_family_handle():
                     continue
             
-                birth_event = self.db.find_event_from_handle(person.get_birth_handle())
+                birth_event = self.db.get_event_from_handle(person.get_birth_handle())
                 if birth_event:
                     pbday = birth_event.get_date_object()
                 else:
                     pbday = None
 
-                death_event = self.db.find_event_from_handle(person.get_death_handle())
+                death_event = self.db.get_event_from_handle(person.get_death_handle())
                 if death_event:
                     pdday = death_event.get_date_object()
                 else:

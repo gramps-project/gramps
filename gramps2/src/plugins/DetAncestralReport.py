@@ -146,12 +146,12 @@ class DetAncestorReport(Report.Report):
                         name= "[" + str(self.prevGenIDs.get(child_handle)) + "] "+ name
 
                 if birth_handle:
-                    birth = self.database.find_event_from_handle(birth_handle)
+                    birth = self.database.get_event_from_handle(birth_handle)
                 else:
                     birth = None
 
                 if death_handle:
-                    death = self.database.find_event_from_handle(death_handle)
+                    death = self.database.get_event_from_handle(death_handle)
                 else:
                     death = None
 
@@ -302,7 +302,7 @@ class DetAncestorReport(Report.Report):
 
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            birth = self.database.find_event_from_handle(birth_handle)
+            birth = self.database.get_event_from_handle(birth_handle)
             date = birth.get_date_object().get_start_date()
             if birth.get_place_handle():
                 place = self.database.get_place_from_handle(birth.get_place_handle()).get_title()
@@ -361,7 +361,7 @@ class DetAncestorReport(Report.Report):
         t= ""
         death_handle = person.get_death_handle()
         if death_handle:
-            death = self.database.find_event_from_handle(death_handle)
+            death = self.database.get_event_from_handle(death_handle)
             date = death.get_date_object().get_start_date()
             if death.get_place_handle():
                 place = self.database.get_place_from_handle(death.get_place_handle()).get_title()
@@ -523,7 +523,7 @@ class DetAncestorReport(Report.Report):
 
                 for event_handle in fam.get_event_list():
                     if event_handle:
-                        event = self.database.find_event_from_handle(event_handle)
+                        event = self.database.get_event_from_handle(event_handle)
                         if event.get_name() == "Marriage":
                             marriage = event
                             break
@@ -1313,13 +1313,13 @@ class reportOptions:
 
         birth_handle = ind.get_birth_handle()
         if birth_handle:
-            birth = self.database.find_event_from_handle(birth_handle).get_date_object().get_start_date()
+            birth = self.database.get_event_from_handle(birth_handle).get_date_object().get_start_date()
             birth_year_valid = birth.get_year_valid()
         else:
             birth_year_valid = None
         death_handle = ind.get_death_handle()
         if death_handle:
-            death = self.database.find_event_from_handle(death_handle).get_date_object().get_start_date()
+            death = self.database.get_event_from_handle(death_handle).get_date_object().get_start_date()
             death_year_valid = death.get_year_valid()
         else:
             death_year_valid = None

@@ -79,14 +79,14 @@ class DescendantReport:
     def dump_dates(self, person):
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            birth = self.database.find_event_from_handle(birth_handle).get_date_object().get_start_date()
+            birth = self.database.get_event_from_handle(birth_handle).get_date_object().get_start_date()
             birth_year_valid = birth.get_year_valid()
         else:
             birth_year_valid = 0
 
         death_handle = person.get_death_handle()
         if death_handle:
-            death = self.database.find_event_from_handle(death_handle).get_date_object().get_start_date()
+            death = self.database.get_event_from_handle(death_handle).get_date_object().get_start_date()
             death_year_valid = death.get_year_valid()
         else:
             death_year_valid = 0

@@ -867,8 +867,8 @@ class FamilyView:
             self.clear()
             return
 
-        bd = self.parent.db.find_event_from_handle(self.person.get_birth_handle())
-        dd = self.parent.db.find_event_from_handle(self.person.get_death_handle())
+        bd = self.parent.db.get_event_from_handle(self.person.get_birth_handle())
+        dd = self.parent.db.get_event_from_handle(self.person.get_death_handle())
 
         if bd and dd:
             n = "%s [%s]\n\t%s %s\n\t%s %s " % (GrampsCfg.get_nameof()(self.person),
@@ -950,7 +950,7 @@ class FamilyView:
     def find_marriage(self,family):
         for event_handle in family.get_event_list():
             if event_handle:
-                event = self.parent.db.find_event_from_handle(event_handle)
+                event = self.parent.db.get_event_from_handle(event_handle)
                 if event.get_name() == "Marriage":
                     return event
         return None
@@ -1051,7 +1051,7 @@ class FamilyView:
             val = child.get_display_info()
             i += 1
             
-            event = self.parent.db.find_event_from_handle(val[3])
+            event = self.parent.db.get_event_from_handle(val[3])
             if event:
                 dval = event.get_date()
             else:
@@ -1416,7 +1416,7 @@ class FamilyView:
             child_handle = list[i]
             child = self.parent.db.get_person_from_handle(child_handle)
             birth_handle = child.get_birth_handle()
-            birth = self.parent.db.find_event_from_handle(birth_handle)
+            birth = self.parent.db.get_event_from_handle(birth_handle)
             if not birth:
                 continue
             bday = birth.get_date_object()

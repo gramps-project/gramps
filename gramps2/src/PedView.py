@@ -74,12 +74,12 @@ class DispBox:
         birth_handle = self.person.get_birth_handle()
         death_handle = self.person.get_death_handle()
         if birth_handle:
-            bd = db.find_event_from_handle(birth_handle).get_date()
+            bd = db.get_event_from_handle(birth_handle).get_date()
         else:
             bd = ""
 
         if death_handle:
-            dd = db.find_event_from_handle(death_handle).get_date()
+            dd = db.get_event_from_handle(death_handle).get_date()
         else:
             dd = ""
             
@@ -222,11 +222,11 @@ class PedigreeView:
                 birth_handle = t[0].get_birth_handle()
                 death_handle = t[0].get_death_handle()
                 if birth_handle:
-                    birth = self.parent.db.find_event_from_handle(birth_handle).get_date()
+                    birth = self.parent.db.get_event_from_handle(birth_handle).get_date()
                 else:
                     birth = u""
                 if death_handle:
-                    death = self.parent.db.find_event_from_handle(death_handle).get_date()
+                    death = self.parent.db.get_event_from_handle(death_handle).get_date()
                 else:
                     death = u""
                     

@@ -413,7 +413,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         for event_handle in person.get_event_list ():
             if not event_handle:
                 continue
-            event = self.database.find_event_from_handle(event_handle)
+            event = self.database.get_event_from_handle(event_handle)
             if event.get_name () == 'Occupation':
                 if occupation:
                     return ''
@@ -490,7 +490,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         birth_handle = person.get_birth_handle ()
         if birth_handle:
-            birth = self.database.find_event_from_handle(birth_handle)
+            birth = self.database.get_event_from_handle(birth_handle)
             date = birth.get_date ()
             if date:
                 ret += _(" b. %(date)s") % {'date': date}
@@ -498,7 +498,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         death_handle = person.get_death_handle ()
         if death_handle:
-            death = self.database.find_event_from_handle(death_handle)
+            death = self.database.get_event_from_handle(death_handle)
             date = death.get_date ()
             if date:
                 ret += _(" d. %(date)s)") % {'date': date}
@@ -510,14 +510,14 @@ class ComprehensiveAncestorsReport (Report.Report):
         ret = ''
         birth_handle = person.get_birth_handle ()
         if birth_handle:
-            birth = self.database.find_event_from_handle(birth_handle)
+            birth = self.database.get_event_from_handle(birth_handle)
             born_info = self.event_info (birth)
             if born_info:
                 ret = ", " + _("born") + born_info
 
         death_handle = person.get_death_handle()
         if death_handle:
-            death = self.database.find_event_from_handle(death_handle)
+            death = self.database.get_event_from_handle(death_handle)
             died_info = self.event_info (death)
             if died_info:
                 if born_info:
@@ -716,7 +716,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                 for event_handle in family.get_event_list():
                     if event_handle:
-                        event = self.database.find_event_from_handle(event_handle)
+                        event = self.database.get_event_from_handle(event_handle)
                         if event.get_name() == "Marriage":
                             marriage = event
                             break
@@ -807,7 +807,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         for event_handle in [person.get_birth_handle (), person.get_death_handle ()]:
             if not event_handle:
                 continue
-            event = self.database.find_event_from_handle(event_handle)
+            event = self.database.get_event_from_handle(event_handle)
             note = event.get_note ()
             note_format = event.get_note_format ()
             if note and (note_format != 0):
@@ -817,7 +817,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         for event_handle in event_handles:
             if not event_handle:
                 continue
-            event = self.database.find_event_from_handle(event_handle)
+            event = self.database.get_event_from_handle(event_handle)
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [self.event_info (event)]))
             paras.append ((self.doc.end_paragraph, []))

@@ -114,7 +114,7 @@ def add_familys_sources(db,family_handle,slist,private):
     family = db.get_family_from_handle(family_handle)
     for event_handle in family.get_event_list():
         if event_handle:
-            event = db.find_event_from_handle(event_handle)
+            event = db.get_event_from_handle(event_handle)
             if private and event.get_privacy():
                 continue
             for source_ref in event.get_source_references():
@@ -142,7 +142,7 @@ def add_persons_sources(db,person,slist,private):
     elist.append(person.get_death_handle())
     for event_handle in elist:
         if event_handle:
-            event = db.find_event_from_handle(event_handle)
+            event = db.get_event_from_handle(event_handle)
             if private and event.get_privacy():
                 continue
             for source_ref in event.get_source_references():
@@ -764,7 +764,7 @@ class GedcomWriter:
                 self.write_ord("SLGS",family.get_lds_sealing(),1,const.lds_ssealing)
 
                 for event_handle in family.get_event_list():
-                    event = self.db.find_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     if self.private and event.get_privacy():
                         continue
                     name = event.get_name()
@@ -871,14 +871,14 @@ class GedcomWriter:
 
         if not restricted:
             birth_handle = person.get_birth_handle()
-            birth = self.db.find_event_from_handle(birth_handle)
+            birth = self.db.get_event_from_handle(birth_handle)
             if birth_handle and not (self.private and birth.get_privacy()):
                 if not birth.get_date_object().is_empty() or birth.get_place_handle():
                     self.writeln("1 BIRT")
                     self.dump_event_stats(birth)
 
             death_handle = person.get_death_handle()
-            death = self.db.find_event_from_handle(death_handle)
+            death = self.db.get_event_from_handle(death_handle)
             if death_handle and not (self.private and death.get_privacy()):
                 if not death.get_date_object().is_empty() or death.get_place_handle():
                     self.writeln("1 DEAT")
@@ -891,7 +891,7 @@ class GedcomWriter:
             self.write_ord("SLGC",person.get_lds_sealing(),1,const.lds_csealing)
             
             for event_handle in person.get_event_list():
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 if self.private and event.get_privacy():
                     continue
                 name = event.get_name()

@@ -114,7 +114,7 @@ class Verify:
         """
         year = 0
         if event_handle:
-            event = self.db.find_event_from_handle(event_handle)
+            event = self.db.get_event_from_handle(event_handle)
             dateObj = event.get_date_object()
             if dateObj:
                 if dateObj.get_calendar().NAME != Gregorian.NAME:
@@ -158,7 +158,7 @@ class Verify:
 
             for event_handle in person.get_event_list():
                 if event_handle:
-                    event = self.db.find_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     event_name = event.get_name().lower()
                     if event.get_name() == "burial":
                         buryear = get_year( event )
@@ -318,7 +318,7 @@ class Verify:
 
                     for event_handle in family.get_event_list():
                         if event_handle:
-                            event = self.db.find_event_from_handle(event_handle)
+                            event = self.db.get_event_from_handle(event_handle)
                             if event.get_name() == "Marriage":
                                 marriage_id = event_handle
                                 break

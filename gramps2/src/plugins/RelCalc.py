@@ -98,7 +98,7 @@ class RelCalc:
             if p == self.person:
                 continue
             val = self.db.get_person_from_handle(key).get_display_info()
-            event = self.db.find_event_from_handle(val[3])
+            event = self.db.get_event_from_handle(val[3])
             event_date = ""
             if event:
                 event_date = event.get_date ()

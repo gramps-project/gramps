@@ -457,7 +457,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
         if includedates:
             birth_handle = person.get_birth_handle()
             if birth_handle:
-                birth_event = database.find_event_from_handle(birth_handle)
+                birth_event = database.get_event_from_handle(birth_handle)
                 if birth_event.get_date_object().get_year_valid():
                     if just_year:
                         birth = '%i' % birth_event.get_date_object().get_year()
@@ -467,7 +467,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
                 birth = ''
             death_handle = person.get_death_handle()
             if death_handle:
-                death_event = database.find_event_from_handle(death_handle)
+                death_event = database.get_event_from_handle(death_handle)
                 if death_event.get_date_object().get_year_valid():
                     if just_year:
                         death = '%i' % death_event.get_date_object().get_year()
@@ -504,7 +504,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
 
                     for event_handle in fam.get_event_list():
                         if event_handle:
-                            event = database.find_event_from_handle(event_handle)
+                            event = database.get_event_from_handle(event_handle)
                             if event.get_name() == "Marriage":
                                 m = event
                                 break

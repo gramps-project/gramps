@@ -93,15 +93,13 @@ class AddSpouse:
         birth_handle = self.person.get_birth_handle()
         death_handle = self.person.get_death_handle()
         
-        self.bday = self.db.find_event_from_handle(birth_handle)
-        self.dday = self.db.find_event_from_handle(death_handle)
         if birth_handle:
-            self.bday = self.db.find_event_from_handle(birth_handle).get_date_object()
+            self.bday = self.db.get_event_from_handle(birth_handle).get_date_object()
         else:
             self.bday = Date.Date()
             
         if death_handle:
-            self.dday = self.db.find_event_from_handle(death_handle).get_date_object()
+            self.dday = self.db.get_event_from_handle(death_handle).get_date_object()
         else:
             self.dday = Date.Date()
 
@@ -296,12 +294,12 @@ class AddSpouse:
         pb_id = person.get_birth_handle()
                 
         if pd_id:
-            pdday = self.db.find_event_from_handle(pd_id).get_date_object()
+            pdday = self.db.get_event_from_handle(pd_id).get_date_object()
         else:
             pdday = Date.Date()
 
         if pb_id:
-            pbday = self.db.find_event_from_handle(pb_id).get_date_object()
+            pbday = self.db.get_event_from_handle(pb_id).get_date_object()
         else:
             pbday = Date.Date()
                     
