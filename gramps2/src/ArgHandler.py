@@ -48,7 +48,7 @@ import DbPrompter
 import QuestionDialog
 import GrampsGconfKeys
 import RecentFiles
-import Plugins
+import PluginMgr
 import Report
 
 #-------------------------------------------------------------------------
@@ -530,12 +530,12 @@ class ArgHandler:
                 os._exit(1)
 
             found = False
-            for item in Plugins._cl:
+            for item in PluginMgr.cl_list:
                 if name == item[0]:
                     category = item[1]
                     report_class = item[2]
                     options_class = item[3]
-                    if category == const.CATEGORY_BOOK:
+                    if category in (const.CATEGORY_BOOK,const.CATEGORY_CODE):
                         options_class(self.parent.db,name,category,options_str_dict)
                     else:
                         Report.cl_report(self.parent.db,name,category,

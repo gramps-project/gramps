@@ -500,8 +500,7 @@ def build_tools_menu(top_menu,callback):
 # get_text_doc_menu
 #
 #-------------------------------------------------------------------------
-
-class GrampsDocFormatComboBox(gtk.ComboBox):
+class GrampsTextFormatComboBox(gtk.ComboBox):
 
     def set(self,tables,callback,obj=None,active=None):
         self.store = gtk.ListStore(str)

@@ -40,7 +40,6 @@ from types import ClassType, InstanceType
 #
 #-------------------------------------------------------------------------
 import gtk
-import gnome
 import gnome.ui
 
 #-------------------------------------------------------------------------
@@ -942,7 +941,7 @@ class ReportDialog(BareReportDialog):
     def get_default_basename(self):
         """What should the default name be?
         """
-        spath = self.get_stylesheet_savefile()
+        spath = self.options.handler.get_stylesheet_savefile()
         return spath.split('.')[0]
 
     def get_print_pagecount_map(self):
@@ -1320,6 +1319,7 @@ class ReportDialog(BareReportDialog):
         (self.paper,paper_name) = self.papersize_menu.get_value()
 
         self.options.handler.set_paper_name(paper_name)
+        self.options.handler.set_paper(self.paper)
 
         if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
             try:
@@ -1429,7 +1429,7 @@ class TextReportDialog(ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        self.format_menu = Plugins.GrampsDocFormatComboBox()
+        self.format_menu = Plugins.GrampsTextFormatComboBox()
         self.format_menu.set(self.doc_uses_tables(),
                              self.doc_type_changed, None, active)
 
@@ -1652,6 +1652,7 @@ class CommandLineReport:
         for paper in PaperMenu.paper_sizes:
             if paper.get_name() == self.options_dict['papers']:
                 self.paper = paper
+            self.option_class.handler.set_paper(self.paper)
         self.options_help['papers'].append(
             [ paper.get_name() for paper in PaperMenu.paper_sizes 
                         if paper.get_name() != 'Custom Size' ] )
@@ -1726,7 +1727,8 @@ def report(database,person,report_class,options_class,translated_name,name,categ
         dialog_class = TextReportDialog
     elif category == const.CATEGORY_DRAW:
         dialog_class = DrawReportDialog
-    elif category in (const.CATEGORY_BOOK,const.CATEGORY_VIEW):
+    elif category in (const.CATEGORY_BOOK,const.CATEGORY_VIEW,
+                        const.CATEGORY_CODE):
         report_class(database,person)
         return
     else:

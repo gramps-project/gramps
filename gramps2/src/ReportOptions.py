@@ -598,6 +598,18 @@ class OptionHandler:
     def set_paper_name(self,paper_name):
         self.paper_name = paper_name
 
+    def get_paper(self):
+        """
+        This method is for temporary storage, not for saving/restoring.
+        """
+        return self.paper
+
+    def set_paper(self,paper):
+        """
+        This method is for temporary storage, not for saving/restoring.
+        """
+        self.paper = paper
+
     def get_template_name(self):
         return self.template_name
 
