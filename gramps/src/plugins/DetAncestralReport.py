@@ -82,11 +82,28 @@ class DetAncestorReport(Report):
         #print "Children= ", len(family.getChildList())
         if num_children > 0:
             self.doc.start_paragraph("ChildTitle")
-            mother= family.getMother().getPrimaryName().getRegularName()
-            father= family.getFather().getPrimaryName().getRegularName()
+            mom = family.getMother()
+            dad = family.getFather()
+            if mom:
+                mother = mom.getPrimaryName().getRegularName()
+            if dad:
+                father = dad.getPrimaryName().getRegularName()
+
             if num_children == 1:
-                self.doc.write_text(_("Child of %s and %s is:") % (mother, father))
-            else: self.doc.write_text(_("Children of %s and %s are:") % (mother, father))
+                if mom and dad:
+                    self.doc.write_text(_("Child of %s and %s is:") % (mother, father))
+                elif mom:
+                    self.doc.write_text(_("Child of %s is:") % mother)
+                elif dad:
+                    self.doc.write_text(_("Child of %s is:") % father)
+            else:
+                if mom and dad:
+                    self.doc.write_text(_("Children of %s and %s are:") % (mother, father))
+                elif mom:
+                    self.doc.write_text(_("Children of %s are:") % mother)
+                elif dad:
+                    self.doc.write_text(_("Children of %s are:") % father)
+                    
             self.doc.end_paragraph()
 
             for child in family.getChildList():
