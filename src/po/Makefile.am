@@ -24,3 +24,8 @@ SUFFIXES = .po .mo
 	$(MSGFMT) -v temp.po -o $@
 	rm temp.po
 
+zh_CN.mo: zh_CN.po
+	iconv -f GB2312 -t UTF-8 zh_CN.po > temp.po
+	$(MSGFMT) -v temp.po -o $@
+	rm temp.po
+
