@@ -1,3 +1,5 @@
+dnl $Id$
+
 dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
 
@@ -18,9 +20,18 @@ AM_GCONF_SOURCE_2
 AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 
-AC_PATH_PROG(MSGFMT, msgfmt)
-AC_PATH_PROG(MSGCONV, msgconv)
-AC_PATH_PROG(ICONV, iconv)
+AC_PATH_PROG(MSGFMT, msgfmt,no)
+if test x$MSGFMT = xno; then
+  AC_MSG_ERROR(Couldn't find msgfmt program. Please install the GNU gettext package.)
+fi
+AC_PATH_PROG(MSGCONV, msgconv,no)
+if test x$MSGCONV = xno; then
+  AC_MSG_ERROR(Couldn't find msgconv program. Please install the GNU gettext package.)
+fi
+AC_PATH_PROG(ICONV, iconv,no)
+if test x$ICONV = xno; then
+  AC_MSG_ERROR(Couldn't find iconv program.)
+fi
 
 LANGUAGES="hu zh_CN cs da de es fr it nb nl no pl pt_BR ro ru sv eo" 
 AC_SUBST(LANGUAGES)
@@ -54,8 +65,29 @@ def out(str):
     f.close()
 "
 
-dnl Check if python bindings for gtk are installed
-PKG_CHECK_MODULES(PYGTK,pygtk-2.0 >= 2.3.4)
+AC_MSG_CHECKING(Python bindings for gtk2.4 (pygtk2>=2.3.4))
+cat > conftest.py <<EOF
+$pygtk_require
+try:
+    import gobject
+    version = gobject.pygtk_version
+    if version >= (2,3,4):
+        out("YES")
+    else:
+        out("No")
+except ImportError:
+    out("No")
+EOF
+$PYTHON conftest.py
+has_pygtk=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test YES != "$has_pygtk"
+then
+   AC_MSG_ERROR([
+
+**** The python bindings for gtk 2.4 (pygtk2>=2.3.4) could not be found.])
+fi
+AC_MSG_RESULT(ok)
 
 AC_MSG_CHECKING(Python bindings for gnome)
 cat > conftest.py <<EOF
@@ -142,7 +174,7 @@ rm -f conftest.out conftest.py
 if test YES != "$has_vfs"
 then
    AC_MSG_ERROR([
-**** The python bindings for gnome canvas (gnome-python2-vfs) could not be found.])
+**** The python bindings for GNOME VFS (gnome-python2-vfs) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 

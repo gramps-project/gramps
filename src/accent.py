@@ -18,11 +18,11 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 def deaccent(s):
     if not isinstance(s,unicode): return s
-    return ''.join([deaccentdata.get(c,'~') for c in s])
-
-# TODO: Add a few math symbols to the bottom.
+    return ''.join([deaccentdata.get(c,'?') for c in s])
 
 deaccentdata = {
     # 7-bit ASCII non-printable
