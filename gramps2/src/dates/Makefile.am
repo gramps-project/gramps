@@ -7,7 +7,8 @@ pkgdatadir = $(datadir)/@PACKAGE@/dates
 
 pkgdata_PYTHON = \
 	Date_ru.py\
-	Date_fr.py
+	Date_fr.py\
+	Date_es.py
 
 pkgpyexecdir = @pkgpyexecdir@/dates
 pkgpythondir = @pkgpythondir@/dates
