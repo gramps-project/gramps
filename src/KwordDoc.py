@@ -25,67 +25,7 @@ import time
 import StringIO
 import os
 import gzip
-
-_BLKSIZE=512
-
-
-nul = '\0'
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class TarFile:
-    def __init__(self,name):
-        self.name = name
-        self.f = gzip.open(name,"wb")
-        self.pos = 0
-        
-    def add_file(self,filename,mtime,iobuf):
-        iobuf.seek(0,2)
-        length = iobuf.tell()
-        iobuf.seek(0)
-
-        buf = filename
-        buf = buf + '\0'*(100-len(filename))
-        buf = buf + "0100664" + nul
-        buf = buf + "0000764" + nul
-        buf = buf + "0000764" + nul
-        buf = buf + "%011o" % length + nul
-        buf = buf + "%011o" % mtime + nul
-        buf = buf + "%s"
-        buf = buf + "0" + '\0'*100 + 'ustar  \0'
-        buf = buf + '\0'*32
-        buf = buf + '\0'*32
-        buf = buf + '\0'*183
-
-        chksum = 0
-        blank = "        "
-        temp = buf % (blank)
-        for c in temp:
-            chksum = chksum + ord(c)
-        sum = "%06o " % chksum
-        sum = sum + nul
-        buf = buf % sum
-
-        self.pos = self.pos + len(buf)
-        self.f.write(buf)
-
-        buf = iobuf.read(length)
-        self.f.write(buf)
-        self.pos = self.pos + length
-        rem = _BLKSIZE - (self.pos % _BLKSIZE)
-        if rem != 0:
-            self.f.write('\0' * rem)
-        self.pos = self.pos + rem
-
-
-    def close(self):
-        rem = (_BLKSIZE*20) - (self.pos % (_BLKSIZE*20))
-        if rem != 0:
-            self.f.write('\0' * rem)
-        self.f.close()
+from TarFile import TarFile
 
 #------------------------------------------------------------------------
 #
