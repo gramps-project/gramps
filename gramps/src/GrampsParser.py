@@ -876,27 +876,19 @@ class GrampsParser(handler.ContentHandler):
     #
     #
     #---------------------------------------------------------------------
+
+    def endElement(self,tag):
+
+        if self.func:
+            self.func(self,utf8_to_latin(self.data))
+        self.func_index = self.func_index - 1    
+        self.func,self.data = self.func_list[self.func_index]
+
     if sax == 1:
-
-        def endElement(self,tag):
-
-	    if self.func:
-                self.func(self,utf8_to_latin(self.data))
-            self.func_index = self.func_index - 1    
-            self.func,self.data = self.func_list[self.func_index]
-
         def characters(self, data, offset, length):
             if self.func:
                 self.data = self.data + data
     else:
-
-        def endElement(self,tag):
-
-	    if self.func:
-                self.func(self,self.data)
-            self.func_index = self.func_index - 1    
-            self.func,self.data = self.func_list[self.func_index]
-
         def characters(self, data):
             if self.func:
                 self.data = self.data + data
