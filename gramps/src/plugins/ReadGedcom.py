@@ -58,11 +58,11 @@ photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
 
 _ADDRX = [ "ADDR", "ADR1", "ADR2" ]
 
-ged2rel = {}
+ged2gramps = {}
 for val in const.personalConstantEvents.keys():
     key = const.personalConstantEvents[val]
     if key != "":
-        ged2rel[key] = val
+        ged2gramps[key] = val
 
 ged2fam = {}
 for val in const.familyConstantEvents.keys():
@@ -688,7 +688,7 @@ class GedcomParser:
             else:
                 event = Event()
                 try:
-                    event.setName(ged2rel[matches[1]])
+                    event.setName(ged2gramps[matches[1]])
                 except:
                     event.setName(matches[1])
                 if matches[2] != None:
@@ -977,8 +977,8 @@ class GedcomParser:
                 break
             elif matches[1] == "TYPE":
                 if event.getName() == "":
-                    if ged2rel.has_key(matches[2]):
-                        name = ged2rel[matches[2]]
+                    if ged2gramps.has_key(matches[2]):
+                        name = ged2gramps[matches[2]]
                     else:
                         name = matches[2]
                     event.setName(name)
@@ -1053,7 +1053,7 @@ class GedcomParser:
     #---------------------------------------------------------------------
     def parse_family_event(self,event,level):
         global ged2fam
-        global ged2rel
+        global ged2gramps
         
         while 1:
             matches = self.get_next()
@@ -1335,7 +1335,7 @@ class GedcomParser:
                 return
             else:
                 label = self.parse_label(level+1)
-                ged2rel[matches[1]] = label
+                ged2gramps[matches[1]] = label
 
     #---------------------------------------------------------------------
     #

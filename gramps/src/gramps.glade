@@ -193,6 +193,19 @@
 	      </signal>
 	      <stock_item>GNOMEUIINFO_MENU_FIND_ITEM</stock_item>
 	    </widget>
+
+	    <widget>
+	      <class>GtkPixmapMenuItem</class>
+	      <name>merge</name>
+	      <signal>
+		<name>activate</name>
+		<handler>on_merge_activate</handler>
+		<last_modification_time>Tue, 23 Oct 2001 13:34:57 GMT</last_modification_time>
+	      </signal>
+	      <label>_Merge</label>
+	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_CONVERT</stock_icon>
+	    </widget>
 	  </widget>
 	</widget>
 
@@ -820,7 +833,7 @@
 	    </signal>
 	    <columns>8</columns>
 	    <column_widths>250,60,70,150,100,5,5,5</column_widths>
-	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	    <selection_mode>GTK_SELECTION_EXTENDED</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
 
@@ -2379,7 +2392,7 @@
 	    </signal>
 	    <columns>6</columns>
 	    <column_widths>236,47,102,88,77,80</column_widths>
-	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+	    <selection_mode>GTK_SELECTION_EXTENDED</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
 

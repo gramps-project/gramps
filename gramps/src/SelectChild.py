@@ -88,8 +88,10 @@ class SelectChild:
             mtitle = _("Relationship to %s") % mname
             self.xml.get_widget("mlabel").set_text(mtitle)
 
-        self.xml.get_widget("mrel").set_text(_("Birth"))
-        self.xml.get_widget("frel").set_text(_("Birth"))
+        self.mrel = self.xml.get_widget("mrel")
+        self.frel = self.xml.get_widget("frel")
+        self.mrel.set_text(_("Birth"))
+        self.frel.set_text(_("Birth"))
     
         self.redraw_child_list(2)
         self.top.show()
@@ -171,7 +173,6 @@ class SelectChild:
 
     def on_save_child_clicked(self,obj):
         for row in self.add_child.selection:
-
             select_child = self.add_child.get_row_data(row)
             if self.family == None:
                 self.family = database.newFamily()
@@ -183,13 +184,13 @@ class SelectChild:
 
             self.family.addChild(select_child)
 		
-            mrel = const.childRelations[self.xml.get_widget("mrel").get_text()]
+            mrel = const.childRelations[self.mrel.get_text()]
             mother = self.family.getMother()
             if mother and mother.getGender() != Person.female:
                 if mrel == "Birth":
                     mrel = "Unknown"
                 
-            frel = const.childRelations[self.xml.get_widget("frel").get_text()]
+            frel = const.childRelations[self.frel.get_text()]
             father = self.family.getFather()
             if father and father.getGender() != Person.male:
                 if frel == "Birth":
