@@ -59,11 +59,12 @@ class DescendLine(GraphLayout):
                     self.maxy = pos
         self.elist.pop()
         
-    def depth(self,person,val=1.0):
+    def depth(self,person,val=0):
         for family in person.getFamilyList():
             clist = family.getChildList()
             val = val + len(clist)
             for child in clist:
-                val = self.depth(child,val)
-            val = val - 1.0
-        return val
+                d=self.depth(child)
+                if d > 0:
+                   val = val + d - 1 #first child is always on the same
+        return val                   #row as the parent, so subtract 1

@@ -65,7 +65,6 @@ class SourceView:
         self.db = db
         self.update = update
         self.list = glade.get_widget("source_list")
-        self.id2col = {}
         self.selection = self.list.get_selection()
         colno = 0
         for title in _column_headers:
@@ -88,28 +87,21 @@ class SourceView:
                                    gobject.TYPE_STRING)
         self.list.set_model(self.model)
         self.list.get_column(0).clicked()
-#        self.selection.connect('changed',self.list_row_changed)
 
     def change_db(self,db):
         self.db = db
 
     def load_sources(self):
         self.model.clear()
-        self.id2col = {}
 
         for key in self.db.getSourceKeys():
             val = self.db.getSourceDisplay(key)
                 
             iter = self.model.append()
-            self.id2col[key] = iter
             self.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
                            3, val[3], 4, val[4])
             self.list.connect('button-press-event',self.button_press)
                 
-    def list_row_changed(self,obj):
-        pass
-#        self.change_active_person(self.db.getPerson(id))
-    
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store,iter = self.selection.get_selected()
@@ -122,12 +114,13 @@ class SourceView:
         EditSource.EditSource(Source(),self.db,self.new_after_edit)
 
     def on_delete_clicked(self,obj):
-        if len(obj.selection) == 0:
+        
+        store,iter = self.selection.get_selected()
+        if not iter:
             return
-        else:
-            index = obj.selection[0]
-            
-        source = self.db.getSourceMap()[obj.get_row_data(index)]
+        
+        id = store.get_value(iter,1)
+        source = self.db.getSource(id)
 
         if self.is_used(source):
             ans = EditSource.DelSrcQuery(source,self.db,self.update)

@@ -58,7 +58,7 @@ import latin_utf8
 u2l = latin_utf8.utf8_to_latin
 _ = intl.gettext
 
-from QuesionDialog import  ErrorDialog
+from QuestionDialog import  ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -815,8 +815,8 @@ class ReportDialog:
             return None
 
         if not self.get_target_is_directory() and os.path.isdir(self.target_path):
-            GnomeErrorDialog(_("The filename that you gave is a directory.\n"
-                               "You need to provide a valid filename."))
+            ErrorDialog(_("The filename that you gave is a directory.\n"
+                          "You need to provide a valid filename."))
             return None
         
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)

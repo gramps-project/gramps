@@ -46,20 +46,20 @@ class ReadNative:
         self.db = database
         self.callback = cb
         
-        self.top = gtk.GtkFileSelection("%s - GRAMPS" % _("Import from GRAMPS"))
+        self.top = gtk.FileSelection("%s - GRAMPS" % _("Import from GRAMPS"))
         self.top.hide_fileop_buttons()
         self.top.ok_button.connect('clicked', self.on_ok_clicked)
         self.top.cancel_button.connect_object('clicked', Utils.destroy_passed_object,self.top)
         self.top.show()
 
     def show_display(self):
-        self.window = gtk.GtkWindow(title=_("Import from GRAMPS"))
-        vbox = gtk.GtkVBox()
+        self.window = gtk.Window(title=_("Import from GRAMPS"))
+        vbox = gtk.VBox()
         self.window.add(vbox)
-        label = gtk.GtkLabel(_("Import from GRAMPS"))
+        label = gtk.Label(_("Import from GRAMPS"))
         vbox.add(label)
-        adj = gtk.GtkAdjustment(lower=0,upper=100)
-        self.progress_bar = gtk.GtkProgressBar(adj)
+        adj = gtk.Adjustment(lower=0,upper=100)
+        self.progress_bar = gtk.ProgressBar(adj)
         vbox.add(self.progress_bar)
         self.window.show_all()
         

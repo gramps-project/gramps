@@ -41,7 +41,7 @@ import gtk
 import Utils
 import const
 import TextDoc
-
+import ListModel
 
 class StyleListDisplay:
     """
@@ -66,27 +66,26 @@ class StyleListDisplay:
             "on_ok_clicked" : self.on_ok_clicked,
             "on_add_clicked" : self.on_add_clicked,
             "on_delete_clicked" : self.on_delete_clicked,
+            "on_button_press" : self.on_button_press,
             "on_edit_clicked" : self.on_edit_clicked
             })
-        self.list = self.top.get_widget("list")
-        self.dialog = self.top.get_widget("styles")
+        
+        self.list = ListModel.ListModel(self.top.get_widget("list"),[('Style',10,10)])
         self.redraw()
 
     def redraw(self):
         """Redraws the list of styles that are current available"""
         
-        self.list.clear()
+        self.list.model.clear()
         sheet = self.sheetlist.get_style_sheet("default")
-        self.list.append(["default"])
-        self.list.set_row_data(0,("default",sheet))
+        self.list.add(["default"])
 
         index = 1
         for style in self.sheetlist.get_style_names():
             if style == "default":
                 continue
             sheet = self.sheetlist.get_style_sheet(style)
-            self.list.append([style])
-            self.list.set_row_data(index,(style,sheet))
+            self.list.add([style])
             index = index + 1
 
     def on_add_clicked(self,obj):
@@ -101,22 +100,33 @@ class StyleListDisplay:
         self.callback()
         self.sheetlist.save()
         Utils.destroy_passed_object(obj)
-    
+
+    def on_button_press(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            self.on_edit_clicked(obj)
+            
     def on_edit_clicked(self,obj):
         """
         Called with the EDIT button is clicked. Calls the StyleEditor to edit the
         selected style.
         """
-        if len(self.list.selection) > 0:
-            (name,style) = self.list.get_row_data(self.list.selection[0])
-            StyleEditor(name,style,self)
+        store,iter = self.list.selection.get_selected()
+        if not iter:
+            return
+        
+        name = self.list.model.get_value(iter,0)
+        style = self.sheetlist.get_style_sheet(name)
+        StyleEditor(name,style,self)
 
     def on_delete_clicked(self,obj):
         """Deletes teh selected style."""
-        if len(self.list.selection) > 0:
-            (name,style) = self.list.get_row_data(self.list.selection[0])
-            self.sheetlist.delete_style_sheet(name)
-            self.redraw()
+        store,iter = self.list.selection.get_selected()
+        if not iter:
+            return
+        name = self.list.model.get_value(iter,0)
+        style = self.sheetlist.get_style_sheet(name)
+        self.sheetlist.delete_style_sheet(name)
+        self.redraw()
 
 class StyleEditor:
     """
@@ -141,26 +151,23 @@ class StyleEditor:
         
         self.top.signal_autoconnect({
             "on_save_style_clicked" : self.on_save_style_clicked,
+            "fg_color_set":self.fg_color_set,
+            "bg_color_set":self.bg_color_set,
             "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         self.window = self.top.get_widget("editor")
         self.pnames = self.top.get_widget("name")
 
-        # Typing CR selects OK button
-        self.window.editable_enters(self.top.get_widget("rmargin"))
-        self.window.editable_enters(self.top.get_widget("lmargin"))
-        self.window.editable_enters(self.top.get_widget("pad"))
-
         self.top.get_widget("style_name").set_text(name)
-        myMenu = gtk.GtkMenu()
+        myMenu = gtk.Menu()
         first = 0
         for p_name in self.style.get_names():
             p = self.style.get_style(p_name)
             if first == 0:
                 self.draw(p)
                 first = 1
-            menuitem = gtk.GtkMenuItem(p_name)
+            menuitem = gtk.MenuItem(p_name)
             menuitem.set_data("o",p)
             menuitem.connect("activate",self.change_display)
             menuitem.show()
@@ -200,6 +207,12 @@ class StyleEditor:
         c = p.get_background_color()
         self.top.get_widget("bgcolor").set_i8(c[0],c[1],c[2],0)
 
+    def bg_color_set(self,obj,r,g,b,a):
+        print r,g,b,a
+
+    def fg_color_set(self,obj,r,g,b,a):
+        print r,g,b,ax
+        
     def save_paragraph(self,p):
         """Saves the current paragraph displayed on the dialog"""
         
@@ -231,9 +244,9 @@ class StyleEditor:
         p.set_right_border(self.top.get_widget("rborder").get_active())
         p.set_bottom_border(self.top.get_widget("bborder").get_active())
 
-        c = self.top.get_widget("color").get_i8()
+        c = fg.get_i8()
         font.set_color((c[0],c[1],c[2]))
-        c = self.top.get_widget("bgcolor").get_i8()
+        c = bg.get_i8()
         p.set_background_color((c[0],c[1],c[2]))
 
     def on_save_style_clicked(self,obj):

@@ -1865,7 +1865,7 @@
 				      </child>
 
 				      <child>
-					<widget class="GtkButton" id="button155">
+					<widget class="GtkButton" id="add_child_btn">
 					  <property name="visible">True</property>
 					  <property name="tooltip" translatable="yes">Adds a new child to the selected family</property>
 					  <property name="can_focus">True</property>
@@ -1891,7 +1891,7 @@
 				      </child>
 
 				      <child>
-					<widget class="GtkButton" id="button156">
+					<widget class="GtkButton" id="del_child_btn">
 					  <property name="visible">True</property>
 					  <property name="tooltip" translatable="yes">Deletes the selected child from the selected family</property>
 					  <property name="can_focus">True</property>

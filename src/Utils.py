@@ -264,21 +264,14 @@ def add_menuitem(menu,msg,obj,func):
 #-------------------------------------------------------------------------
 def view_photo(photo):
     type = photo.getMimeType()
-    prog = ""
-    open = ""
-    edit = ""
-    #for key in gnome.mime.get_keys(type):
-    #    if key == 'view':
-    #        prog = string.split(gnome.mime.get_value(type,key))
-    #    if key == 'open':
-    #        open = string.split(gnome.mime.get_value(type,key))
-    #    if key == 'edit':
-    #        edit = string.split(gnome.mime.get_value(type,key))
+    prog = grampslib.gnome_vfs_mime_get_value(type,'view')
+    open = grampslib.gnome_vfs_mime_get_value(type,'open')
+    edit = grampslib.gnome_vfs_mime_get_value(type,'edit')
     if prog == "" and open == "" and edit == "":
         #GnomeWarningDialog("Sorry, I cannot find a viewer for %s type" % type)
         return
 
-    if prog == "" and open == "":
+    if not prog and not open :
         prog = edit
     else:
         prog = open
@@ -359,8 +352,6 @@ def get_place_from_list(obj):
         return None
     else:
         return select[0].get_data(LISTOBJ)
-
-import os
 
 def find_icon(mtype):
     n = "%s/icons/%s.png" % (const.rootDir,string.replace(string.replace(mtype,'/','-'),'.','-'))
