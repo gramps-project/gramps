@@ -53,6 +53,8 @@ import libglade
 #-------------------------------------------------------------------------
 from RelLib import *
 from PedView import PedigreeView
+from PlaceView import PlaceView
+from SourceView import SourceView
 
 import ReadXML
 import Filter
@@ -94,6 +96,7 @@ id2col        = {}
 alt2col       = {}
 
 pedigree_view = None
+place_view    = None
 
 bookmarks     = None
 topWindow     = None
@@ -101,8 +104,6 @@ statusbar     = None
 gtop          = None
 notebook      = None
 person_list   = None
-source_list   = None
-place_list    = None
 media_list    = None
 mid           = None
 mtype         = None
@@ -115,13 +116,6 @@ nameArrow     = None
 idArrow       = None
 deathArrow    = None
 dateArrow     = None
-
-place_arrow   = None
-place_id_arrow= None
-city_arrow    = None
-county_arrow  = None
-state_arrow   = None
-country_arrow = None
 
 merge_button  = None
 sort_column   = 5
@@ -181,14 +175,7 @@ def on_merge_activate(obj):
             p2 = person_list.get_row_data(person_list.selection[1])
             MergeData.MergePeople(database,p1[0],p2[0],merge_update)
     elif page == 4:
-        if len(place_list.selection) != 2:
-            msg = _("Exactly two places must be selected to perform a merge")
-            GnomeErrorDialog(msg)
-        else:
-            import MergeData
-            p1 = place_list.get_row_data(place_list.selection[0])
-            p2 = place_list.get_row_data(place_list.selection[1])
-            MergeData.MergePlaces(database,p1,p2,load_places)
+        place_view.merge()
 
 #-------------------------------------------------------------------------
 #
@@ -419,8 +406,8 @@ def new_database_response(val):
     change_active_person(None)
     person_list.clear()
     load_family()
-    load_sources()
-    load_places()
+    source_view.load_sources()
+    place_view.load_places()
     load_media()
     
 #-------------------------------------------------------------------------
@@ -453,8 +440,8 @@ def full_update():
     clist.set_column_visibility(c_birth_order,Config.index_visible)
     apply_filter()
     load_family()
-    load_sources()
-    load_places()
+    source_view.load_sources()
+    place_view.load_places()
     pedigree_view.load_canvas(active_person)
     load_media()
 
@@ -471,209 +458,11 @@ def update_display(changed):
     elif page == 2:
         pedigree_view.load_canvas(active_person)
     elif page == 3:
-        load_sources()
+        source_view.load_sources()
     elif page == 4:
-        load_places()
+        place_view.load_places()
     else:
         load_media()
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def load_sources():
-    source_list.clear()
-    source_list.freeze()
-
-    if len(source_list.selection) > 0:
-        current_row = source_list.selection[0]
-    else:
-        current_row = 0
-
-    index = 0
-    for src in database.getSourceMap().values():
-        source_list.append([src.getTitle(),src.getAuthor()])
-        source_list.set_row_data(index,src)
-        index = index + 1
-
-    if index > 0:
-        source_list.select_row(current_row,0)
-        source_list.moveto(current_row)
-
-    source_list.thaw()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_src_list_button_press_event(obj,event):
-    if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        if len(obj.selection) > 0:
-            index = obj.selection[0]
-            source = obj.get_row_data(index)
-            EditSource.EditSource(source,database,update_display_after_edit)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_place_list_button_press_event(obj,event):
-    if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        if len(obj.selection) > 0:
-            index = obj.selection[0]
-            place = obj.get_row_data(index)
-            EditPlace.EditPlace(place,database,update_display_after_edit)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_source_clicked(obj):
-    EditSource.EditSource(Source(),database,new_source_after_edit)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_place_clicked(obj):
-    EditPlace.EditPlace(Place(),database,new_place_after_edit)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_delete_place_clicked(obj):
-    if len(obj.selection) == 0:
-        return
-    elif len(obj.selection) > 1:
-        msg = _("Currently, you can only delete one place at a time")
-        topWindow.error(msg)
-        return
-    else:
-        index = obj.selection[0]
-
-    used = 0
-    place = obj.get_row_data(index)
-    for p in database.getPersonMap().values():
-        for event in [p.getBirth(), p.getDeath()] + p.getEventList():
-            if event.getPlace() == place:
-                used = 1
-    for f in database.getFamilyMap().values():
-        for event in f.getEventList():
-            if event.getPlace() == place:
-                used = 1
-
-    if used == 1:
-        import EditPlace
-        ans = EditPlace.DeletePlaceQuery(place,database,update_display)
-        msg = _("This place is currently being used. Delete anyway?")
-        GnomeQuestionDialog(msg,ans.query_response)
-    else:
-        map = database.getPlaceMap()
-        del map[place.getId()]
-        utils.modified()
-        update_display(0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_delete_source_clicked(obj):
-    import EditSource
-    
-    if len(obj.selection) == 0:
-        return
-    else:
-        index = obj.selection[0]
-
-    source = obj.get_row_data(index)
-
-
-    if is_source_used(source):
-        msg = _("This source is currently being used. Delete anyway?")
-        ans = EditSource.DelSrcQuery(source,database,update_display)
-        GnomeQuestionDialog(msg,ans.query_response)
-    else:
-        map = database.getSourceMap()
-        del map[source.getId()]
-        utils.modified()
-        update_display(0)
-
-def is_source_used(source):
-    for p in database.getPlaceMap().values():
-        for sref in p.getSourceRefList():
-            if sref.getBase() == source:
-                return 1
-    for p in database.getPersonMap().values():
-        for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
-            for sref in v.getSourceRefList():
-                if sref.getBase() == source:
-                    return 1
-        for v in p.getAttributeList():
-            for sref in v.getSourceRefList():
-                if sref.getBase() == source:
-                    return 1
-        for v in p.getAlternateNames() + [p.getPrimaryName()]:
-            for sref in v.getSourceRefList():
-                if sref.getBase() == source:
-                    return 1
-        for v in p.getAddressList():
-            for sref in v.getSourceRefList():
-                if sref.getBase() == source:
-                    return 1
-    for p in database.getObjectMap().values():
-        for sref in p.getSourceRefList():
-            if sref.getBase() == source:
-                return 1
-    for p in database.getFamilyMap().values():
-        for v in p.getEventList():
-            for sref in v.getSourceRefList():
-                if sref.getBase() == source:
-                    return 1
-        for v in p.getAttributeList():
-            for sref in v.getSourceRefList():
-                if sref.getBase() == source:
-                    return 1
-    return 0
-
-#-------------------------------------------------------------------------
-#
-# Edit callbacks
-#
-#-------------------------------------------------------------------------
-def on_edit_source_clicked(obj):
-    if len(obj.selection) > 0:
-        index = obj.selection[0]
-        source = obj.get_row_data(index)
-        EditSource.EditSource(source,database,update_display_after_edit)
-
-def on_edit_place_clicked(obj):
-    """Display the selected places in the EditPlace display"""
-    if len(obj.selection) > 5:
-        msg = _("You requested too many places to edit at the same time")
-        GnomeErrorDialog(msg)
-    else:
-        for p in obj.selection:
-            place = obj.get_row_data(p)
-            EditPlace.EditPlace(place,database,update_display_after_edit)
-
-def new_source_after_edit(source):
-    database.addSource(source)
-    update_display(0)
-
-def new_place_after_edit(place):
-    database.addPlace(place)
-    update_display(0)
-
-def update_display_after_edit(place):
-    update_display(0)
 
 #-------------------------------------------------------------------------
 #
@@ -964,41 +753,6 @@ def on_person_list_click_column(obj,column):
     if id2col.has_key(active_person):
         row = person_list.find_row_from_data(id2col[active_person])
         person_list.moveto(row)
-
-
-def on_place_list_click_column(obj,column):
-    global p_sort_direct, p_sort_column
-
-    obj.freeze()
-    if len(obj.selection):
-        sel = obj.get_row_data(obj.selection[0])
-    else:
-        sel = None
-        
-    place_arrows = [ place_arrow, place_id_arrow, city_arrow,
-                     county_arrow, state_arrow, country_arrow ]
-
-    for a in place_arrows:
-        a.hide()
-    arrow = place_arrows[column]
-    if p_sort_column == column:
-        if p_sort_direct == SORT_DESCENDING:
-            p_sort_direct = SORT_ASCENDING
-            arrow.set(GTK.ARROW_DOWN,2)
-        else:
-            p_sort_direct = SORT_DESCENDING
-            arrow.set(GTK.ARROW_UP,2)
-    else:
-        p_sort_direct = SORT_ASCENDING
-        arrow.set(GTK.ARROW_DOWN,2)
-    p_sort_column = column
-    place_list.set_sort_type(p_sort_direct)
-    place_list.set_sort_column(p_sort_column + 6)
-    arrow.show()
-    place_list.sort()
-    if sel:
-        place_list.moveto(place_list.find_row_from_data(sel))
-    obj.thaw()
 
 #-------------------------------------------------------------------------
 #
@@ -1405,52 +1159,13 @@ def on_notebook1_switch_page(obj,junk,page):
         pedigree_view.load_canvas(active_person)
     elif page == 3:
         merge_button.set_sensitive(0)
-        load_sources()
+        source_view.load_sources()
     elif page == 4:
         merge_button.set_sensitive(1)
-        load_places()
+        place_view.load_places()
     elif page == 5:
         merge_button.set_sensitive(0)
         load_media()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def load_places():
-    place_list.freeze()
-    place_list.clear()
-
-    if len(place_list.selection) == 0:
-        current_row = 0
-    else:
-        current_row = place_list.selection[0]
-
-    index = 0
-    places = database.getPlaceMap().values()
-
-    u = string.upper
-    for src in places:
-        title = src.get_title()
-        id = src.getId()
-        mloc = src.get_main_location()
-        city = mloc.get_city()
-        county = mloc.get_county()
-        state = mloc.get_state()
-        country = mloc.get_country()
-        place_list.append([title,id,city,county,state,country,
-                           u(title), u(id), u(city), u(county), u(state), u(country)])
-        place_list.set_row_data(index,src)
-        index = index + 1
-
-    place_list.sort()
-
-    if index > 0:
-        place_list.select_row(current_row,0)
-        place_list.moveto(current_row)
-
-    place_list.thaw()
 
 #-------------------------------------------------------------------------
 #
@@ -2285,18 +2000,17 @@ def on_media_list_drag_data_received(w, context, x, y, data, info, time):
 #-------------------------------------------------------------------------
 
 def main(arg):
-    global pedigree_view
+    global pedigree_view, place_view, source_view
     global database, gtop
     global statusbar,notebook
-    global person_list, source_list, place_list, canvas, media_list
+    global person_list, source_list, canvas, media_list
     global topWindow, preview, merge_button
     global nameArrow, dateArrow, deathArrow, idArrow
     global cNameArrow, cDateArrow
-    global place_arrow, place_id_arrow, city_arrow, county_arrow
-    global state_arrow, country_arrow
     global mid, mtype, mdesc, mpath, mdetails
     
     rc_parse(const.gtkrcFile)
+    database = RelDataBase()
 
     Plugins.load_plugins(const.pluginsDir)
     Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
@@ -2314,7 +2028,6 @@ def main(arg):
     topWindow   = gtop.get_widget("gramps")
     person_list = gtop.get_widget("person_list")
     source_list = gtop.get_widget("source_list")
-    place_list  = gtop.get_widget("place_list")
     media_list  = gtop.get_widget("media_list")
     mid         = gtop.get_widget("mid")
     mtype       = gtop.get_widget("mtype")
@@ -2329,17 +2042,13 @@ def main(arg):
     dateArrow   = gtop.get_widget("dateSort")
     deathArrow  = gtop.get_widget("deathSort")
     merge_button= gtop.get_widget("merge")
-    place_arrow   = gtop.get_widget("place_arrow")
-    place_id_arrow= gtop.get_widget("place_id_arrow")
-    city_arrow    = gtop.get_widget("city_arrow")
-    county_arrow  = gtop.get_widget("county_arrow")
-    state_arrow   = gtop.get_widget("state_arrow")
-    country_arrow = gtop.get_widget("country_arrow")
 
     canvas = gtop.get_widget("canvas1")
     pedigree_view = PedigreeView(canvas,modify_statusbar,\
                                  statusbar,change_active_person,\
                                  load_person)
+    place_view = PlaceView(database,gtop,update_display)
+    source_view = SourceView(database,source_list,update_display)
 
     t = [ ('STRING', 0, 0),
           ('text/plain',0,0),
@@ -2355,15 +2064,6 @@ def main(arg):
     person_list.set_column_visibility(7,0)
     person_list.set_sort_column(sort_column)
     person_list.set_sort_type(sort_direct)
-
-    place_list.set_column_visibility(6,0)
-    place_list.set_column_visibility(7,0)
-    place_list.set_column_visibility(8,0)
-    place_list.set_column_visibility(9,0)
-    place_list.set_column_visibility(10,0)
-    place_list.set_column_visibility(11,0)
-    place_list.set_sort_column(p_sort_column +6 )
-    place_list.set_sort_type(p_sort_direct)
 
     fw = gtop.get_widget('filter')
     filter_list.set_menu(Filter.build_filter_menu(on_filter_name_changed,fw))
@@ -2382,8 +2082,8 @@ def main(arg):
         "on_add_bookmark_activate"          : on_add_bookmark_activate,
         "on_add_child_clicked"              : on_add_child_clicked,
         "on_add_new_child_clicked"          : on_add_new_child_clicked,
-        "on_add_place_clicked"              : on_add_place_clicked,
-        "on_add_source_clicked"             : on_add_source_clicked,
+        "on_add_place_clicked"              : place_view.on_add_place_clicked,
+        "on_add_source_clicked"             : source_view.on_add_source_clicked,
         "on_add_sp_clicked"                 : on_add_sp_clicked,
         "on_addperson_clicked"              : load_new_person,
         "on_apply_filter_clicked"           : on_apply_filter_clicked,
@@ -2398,8 +2098,8 @@ def main(arg):
         "on_default_person_activate"        : on_default_person_activate,
         "on_delete_parents_clicked"         : on_delete_parents_clicked,
         "on_delete_person_clicked"          : on_delete_person_clicked,
-        "on_delete_place_clicked"           : on_delete_place_clicked,
-        "on_delete_source_clicked"          : on_delete_source_clicked,
+        "on_delete_place_clicked"           : place_view.on_delete_place_clicked,
+        "on_delete_source_clicked"          : source_view.on_delete_source_clicked,
         "on_delete_media_clicked"           : on_delete_media_clicked,
         "on_delete_sp_clicked"              : on_delete_sp_clicked,
         "on_edit_active_person"             : load_active_person,
@@ -2408,8 +2108,8 @@ def main(arg):
         "on_edit_father_clicked"            : on_edit_father_clicked,
         "on_edit_media_clicked"             : on_edit_media_clicked,
         "on_edit_mother_clicked"            : on_edit_mother_clicked,
-        "on_edit_place_clicked"             : on_edit_place_clicked,
-        "on_edit_source_clicked"            : on_edit_source_clicked,
+        "on_edit_place_clicked"             : place_view.on_edit_place_clicked,
+        "on_edit_source_clicked"            : source_view.on_edit_source_clicked,
         "on_edit_sp_clicked"                : on_edit_sp_clicked,
         "on_edit_spouse_clicked"            : on_edit_spouse_clicked,
         "on_exit_activate"                  : on_exit_activate,
@@ -2428,8 +2128,8 @@ def main(arg):
         "on_person_list_button_press"       : on_person_list_button_press,
         "on_person_list_click_column"       : on_person_list_click_column,
         "on_person_list_select_row"         : on_person_list_select_row,
-        "on_place_list_button_press_event"  : on_place_list_button_press_event,
-        "on_place_list_click_column"        : on_place_list_click_column,
+        "on_place_list_button_press_event"  : place_view.on_button_press_event,
+        "on_place_list_click_column"        : place_view.on_click_column,
         "on_main_key_release_event"         : on_main_key_release_event,
         "on_add_media_clicked"              : create_add_dialog,
         "on_media_activate"                 : on_media_activate,
@@ -2445,7 +2145,7 @@ def main(arg):
         "on_revert_activate"                : on_revert_activate,
         "on_save_activate"                  : on_save_activate,
         "on_save_as_activate"               : on_save_as_activate,
-        "on_source_list_button_press_event" : on_src_list_button_press_event,
+        "on_source_list_button_press_event" : source_view.on_button_press_event,
         "on_sources_activate"               : on_sources_activate,
         "on_spouselist_changed"             : on_spouselist_changed,
         "on_swap_clicked"                   : on_swap_clicked,
@@ -2453,7 +2153,6 @@ def main(arg):
         "on_writing_extensions_activate"    : on_writing_extensions_activate,
         })	
 
-    database = RelDataBase()
     Config.loadConfig(full_update)
     person_list.set_column_visibility(1,Config.id_visible)
 
