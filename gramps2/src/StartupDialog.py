@@ -200,7 +200,7 @@ class StartupDialog:
         label = gtk.Label(_('There are three common formats for entering dates in a numerical\n'
                             'format. Without some type of indication, GRAMPS cannot correctly\n'
                             'tell what format you are using. Please indicate your preferred format\n'
-                            'for entering numerical dates'))
+                            'for entering numerical dates.'))
         box.add(label)
         align = gtk.Alignment(0.5,0)
         box.add(align)

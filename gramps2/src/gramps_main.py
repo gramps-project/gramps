@@ -1214,9 +1214,8 @@ class Gramps:
             if not os.path.isdir(filename):
                 self.displayError(_("Database could not be opened"),
                                   _("%s is not a directory.") % filename + ' ' + \
-                                  _("The file you should attempt to open should be "
-                                    "a directory that contains a data.gramps file or "
-                                    "a gramps.zodb file."))
+                                  _("You should select a directory that contains a "
+                                "data.gramps file or a gramps.zodb file."))
                 return
         else:
             try:
@@ -1307,7 +1306,7 @@ class Gramps:
             name = GrampsCfg.nameof(p) 
 
             QuestionDialog(_('Delete %s?') % name,
-                           _('Deleting the person will remove the person from '
+                           _('Deleting the person will remove the person '
                              'from the database. The data can only be '
                              'recovered by closing the database without saving '
                              'changes. This change will become permanent '
@@ -1931,7 +1930,7 @@ class Gramps:
             self.status_text(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
-            WarningDialog(_("Could Not Set a Bookmark."),
+            WarningDialog(_("Could Not Set a Bookmark"),
                           _("A bookmark could not be set because no one was selected."))
 
     def on_edit_bookmarks_activate(self,obj):
@@ -2005,11 +2004,11 @@ class Gramps:
                 except IOError,msg:
                     ErrorDialog(_('Could not create database'),
                         _('The directory ~/.gramps/example could not '
-                        'be created.' + '\n' + str(msg) ))
+                        'be created.') + '\n' + str(msg) )
                 except OSError,msg:
                     ErrorDialog(_('Could not create database'),
                         _('The directory ~/.gramps/example could not '
-                        'be created.' + '\n' + str(msg) ))
+                        'be created.') + '\n' + str(msg) )
                 except:
                     ErrorDialog(_('Could not create database'),
                         _('The directory ~/.gramps/example could not '

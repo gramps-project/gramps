@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  Donald N. Allingham
+# Copyright (C) 2001-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -201,7 +201,7 @@ class PlaceView:
 
             if used == 1:
                 ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
-                QuestionDialog(_('Delete %s') %  place.get_title(),
+                QuestionDialog(_('Delete %s?') %  place.get_title(),
                                _('This place is currently being used by at least one '
                                  'record in the database. Deleting it will remove it '
                                  'from the database and remove it from all records '

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001  Donald N. Allingham
+# Copyright (C) 2001-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -258,7 +258,7 @@ class MediaView:
                              'If you delete this object, it will be removed '
                              'from the database and from all records that '
                              'reference it.'),
-                           _('_Delete Media Object?'),
+                           _('_Delete Media Object'),
                            ans.query_response)
         else:
             self.db.removeObject(mobj.getId())
