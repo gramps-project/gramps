@@ -1365,7 +1365,7 @@ class GenericFilterList:
 #        except:
 #            return
 
-        f = open(self.file.encode('iso8859-1'),'w')
+        f = open(self.file.encode('utf-8'),'w')
         
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')

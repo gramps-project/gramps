@@ -450,17 +450,17 @@ class FilterEditor:
                 l = gtk.Label(v1)
                 l.set_alignment(1,0.5)
                 l.show()
-                if v == 'Place:':
+                if v == _('Place:'):
                     t = MyPlaces(self.pmap.keys())
-                elif v == 'Number of generations:':
+                elif v == _('Number of generations:'):
                     t = MyInteger(1,32)
-                elif v == 'ID:':
+                elif v == _('ID:'):
                     t = MyID(self.db)
-                elif v == 'Filter name:':
+                elif v == _('Filter name:'):
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
                     t = MySelect(_name2list[v1])
-                elif v == 'Inclusive:':
+                elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 else:
                     t = MyEntry()
@@ -489,7 +489,7 @@ class FilterEditor:
         #
         sel_node = None
         if self.active_rule:
-            sel_name = self.active_rule.name()
+            sel_name = _(self.active_rule.name())
         else:
             sel_name = ""
             
