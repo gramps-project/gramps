@@ -403,9 +403,15 @@ class XmlWriter:
 
         if len(objList) > 0:
             self.g.write("  <objects>\n")
-            objList.sort ()
-            for key in self.db.get_media_object_handles():
-                object = self.db.get_object_from_handle(key)
+            keys = self.db.get_media_object_handles()
+            sorted_keys = []
+            for key in keys:
+                object = self.db.get_object_from_handle (key)
+                tuple = (object.get_gramps_id (), object)
+                sorted_keys.append (tuple)
+
+            sorted_keys.sort ()
+            for (gramps_id, object) in sorted_keys:
                 self.write_object(object)
             self.g.write("  </objects>\n")
 
@@ -772,7 +778,7 @@ class XmlWriter:
         self.g.write("    </placeobj>\n")
 
     def write_object(self,object):
-        id = object.get_handle()
+        id = object.get_gramps_id()
         type = object.get_mime_type()
         path = object.get_path()
         if self.strip_photos:
