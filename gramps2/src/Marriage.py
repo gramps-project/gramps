@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -20,8 +20,13 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 import pickle
-import string
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -51,7 +56,6 @@ import GrampsKeys
 import NameDisplay
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -778,7 +782,7 @@ class Marriage:
             name = NameDisplay.displayer.display(mother)
         AttrEdit.AttributeEditor(
             self, attr, name, const.familyAttributes,
-            self.attr_edit_callback, self.update_sources)
+            self.attr_edit_callback, self.window, self.update_sources)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
@@ -801,7 +805,7 @@ class Marriage:
             name = NameDisplay.displayer.display(mother)
         AttrEdit.AttributeEditor(
             self, None, name, const.familyAttributes,
-            self.attr_edit_callback, self.update_sources)
+            self.attr_edit_callback, self.window, self.update_sources)
 
     def move_element(self,list,src,dest):
         if src == -1:
@@ -832,7 +836,7 @@ class Marriage:
 
     def get_place(self,makenew,trans=None):
         field = self.lds_place.child
-        text = string.strip(unicode(field.get_text()))
+        text = unicode(field.get_text()).strip()
         if text:
             if self.pmap.has_key(text):
                 return self.db.get_place_from_handle(self.pmap[text])
