@@ -70,6 +70,7 @@ class DisplayTrace:
                     'email message to gramps-bugs@lists.sourceforge.net\n\n'))
 
         msg.write("GRAMPS : %s\n" % const.version)
+        msg.write("LANG : %s\n" % os.environ['LANG'])
         msg.write("Python : %s.%s.%s %s\n" % (ver[0],ver[1],ver[2],ver[3]))
         msg.write("GTK : %s.%s.%s\n" % gtk.gtk_version)
         for n in _release_files:

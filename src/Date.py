@@ -56,15 +56,19 @@ FRENCH = 3
 #
 #-------------------------------------------------------------------------
 _fmonth = [
-    "Vendémiaire", "Brumaire",  "Frimaire", "Nivôse",   "Pluviôse",
-    "Ventôse",     "Germinal",  "Floréal",  "Prairial", "Messidor",
-    "Thermidor",   "Fructidor", "Extra",
+    unicode("Vendémiaire",'latin-1'),  unicode("Brumaire",'latin-1'),
+    unicode("Frimaire",'latin-1'),     unicode("Nivôse",'latin-1'),
+    unicode("Pluviôse",'latin-1'),     unicode("Ventôse",'latin-1'),
+    unicode("Germinal",'latin-1'),     unicode("Floréal",'latin-1'),
+    unicode("Prairial",'latin-1'),     unicode("Messidor",'latin-1'),
+    unicode("Thermidor",'latin-1'),    unicode("Fructidor",'latin-1'),
+    unicode("Extra",'latin-1'),
     ]
 
 _fmonth2num = {
-    "vend" : 0, "brum" : 1, "frim" : 2, "nivo" : 3, "pluv" : 4,
-    "vent" : 5, "germ" : 6, "flor" : 7, "prai" : 8, "mess" : 9,
-    "ther" :10, "fruc" :11, "extr" : 12,"comp" :12, "nivô" : 3
+    "vend" : 0, "brum" : 1, "frim" : 2, "nivo" : 3, "pluv" : 4, "vent" : 5,
+    "germ" : 6, "flor" : 7, "prai" : 8, "mess" : 9, "ther" :10, "fruc" :11,
+    "extr" : 12,"comp" :12, unicode("nivô",'latin-1') : 3
     }
 
 _hmonth = [
@@ -188,7 +192,6 @@ class Date:
         """ Returns true if any part of the date is valid"""
         return self.start.year != UNDEF or self.start.month != UNDEF or self.start.day != UNDEF
 
-
     def getIncomplete(self):
         return self.range == 0 and self.start.year == UNDEF or \
                self.start.month == UNDEF or self.start.day == UNDEF
@@ -307,7 +310,7 @@ class Date:
 
     def isEmpty(self):
         s = self.start
-        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not s.text
+        return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not self.text
 
     def isValid(self):
         return self.range != -1 
@@ -821,12 +824,16 @@ class SingleDate:
         if match:
             matches = match.groups()
             self.setMode(matches[0])
+            monthstr = unicode(matches[2]).lower()
             if l == 0:
-                mon = string.lower(matches[2])
+                mon = monthstr
             else:
-                mon = string.lower(matches[2])[0:l]
+                mon = monthstr[0:l]
             self.setYear(int(matches[3]))
-            self.setMonthStr(mon)
+            if month_map.has_key(mon):
+                self.setMonth(month_map[mon]+1)
+            else:
+                self.setMonth(UNDEF)
             self.setDay(int(matches[1]))
             return
         match = SingleDate.fmt3.match(text)
@@ -962,7 +969,7 @@ class SingleDate:
             day = 1
         else:
             day = self.day
-            
+
         if self.calendar == GREGORIAN:
             sdn = Calendar.gregorian_to_sdn(self.year,month,day)
         elif self.calendar == FRENCH:

@@ -18,45 +18,10 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import sys
+def utf8_to_latin(s):
+    return s.encode('iso-8859-1','replace')
 
-if sys.version[0] != '1':
-    def utf8_to_latin(s):
-        return s.encode('iso-8859-1','replace')
+def latin_to_utf8(s):
+    return unicode(s,'latin-1')
 
-    def latin_to_utf8(s):
-        return s
-
-else:
-    try:
-        import cStringIO
-    
-        from xml.unicode.utf8_iso import code_to_utf8
-        from xml.unicode.iso8859 import UTF8String
-
-        def utf8_to_latin(s):
-            y = UTF8String(s)
-            try:
-                return y.encode("iso-8859-1",'replace')
-            except:
-                return s
-
-        def latin_to_utf8(s):
-            buff = cStringIO.StringIO()
-            for c in s:
-                try:
-                    cv = code_to_utf8(1,c)
-                except Exception:
-                    cv = '?'
-                buff.write(cv)
-            ans = buff.getvalue()
-            buff.close()
-            return ans
-
-    except:
-        def utf8_to_latin(s):
-            return s
-
-        def latin_to_utf8(s):
-            return s
     

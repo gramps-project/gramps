@@ -126,7 +126,7 @@ def sdn_to_gregorian(sdn):
 	month = month + 3
     else:
 	year = year + 1
-	month = month + 9
+	month = month - 9
 
     # Adjust to the B.C./A.D. type numbering
     year = year - 4800

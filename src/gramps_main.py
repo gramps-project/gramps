@@ -182,7 +182,6 @@ class Gramps:
         self.pl_other    = self.gtop.get_widget("pl_other")
 
         self.ptabs.set_show_tabs(0)
-
         self.pl_page = [
             ListModel.ListModel(self.pl_other, pl_titles, self.row_changed,
                                 self.alpha_event, _sel_mode),
@@ -869,7 +868,7 @@ class Gramps:
             del_id = pid
 
         if self.id2col.has_key(del_id):
-            (model,iter,page) = self.id2col[del_id]
+            (model,iter) = self.id2col[del_id]
             model.remove(iter)
             del self.id2col[del_id]
             
@@ -1382,12 +1381,15 @@ class Gramps:
                                     self.alpha_event,_sel_mode)
         self.alpha_page[pg] = model
         for index in range(0,len(self.tab_list)):
-            if pg < self.tab_list[index]:
-                self.ptabs.insert_page(display,gtk.Label(pg),index)
-                self.ptabs.set_show_tabs(1)
-                self.tab_list.insert(index,pg)
-                self.pl_page.insert(index,model)
-                break
+            try:
+                if pg < self.tab_list[index]:
+                    self.ptabs.insert_page(display,gtk.Label(pg),index)
+                    self.ptabs.set_show_tabs(1)
+                    self.tab_list.insert(index,pg)
+                    self.pl_page.insert(index,model)
+                    break
+            except:
+                print index
         else:
             self.ptabs.insert_page(display,gtk.Label(pg),len(self.tab_list))
             self.ptabs.set_show_tabs(1)
