@@ -220,13 +220,3 @@ class GedInfoParser:
         elif tag == "residence":
             if u2l(attrs['val']) == 'place':
                 self.current.set_resi(RESIDENCE_PLAC)
-
-
-if __name__ == "__main__":
-
-    g = GedcomInfoDB()
-
-    print g.get_name_list()
-    o = g.get_description("Family Tree Maker")
-    for key in o.gramps2tag_map.keys():
-        print key,o.gramps2tag(key)

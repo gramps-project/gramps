@@ -917,6 +917,7 @@ class GedcomParser:
                 self.family.addPhoto(photo)
 
     def parse_residence(self,address,level):
+        note = ""
         while 1:
             matches = self.get_next()
 
@@ -1293,6 +1294,7 @@ class GedcomParser:
         
     def parse_name(self,name,level):
         """Parses the person's name information"""
+        note = ""
         while 1:
 	    matches = self.get_next()
 	    if int(matches[0]) < level:
@@ -1538,38 +1540,40 @@ class GedcomParser:
 
     def extract_date(self,text):
         dateobj = Date.Date()
-        match = fromtoRegexp.match(text)
-        if match:
-            (cal1,data1,cal2,data2) = match.groups()
-            if cal1 != cal2:
-                pass
-
-            if cal1 == "FRENCH R":
-                dateobj.set_calendar(Date.FRENCH)
-            elif cal1 == "JULIAN":
-                dateobj.set_calendar(Date.JULIAN)
-            elif cal1 == "HEBREW":
-                dateobj.set_calendar(Date.HEBREW)
-            dateobj.get_start_date().set(data1)
-            dateobj.get_stop_date().set(data2)
-            dateobj.set_range(1)
-            return dateobj
+        try:
+            match = fromtoRegexp.match(text)
+            if match:
+                (cal1,data1,cal2,data2) = match.groups()
+                if cal1 != cal2:
+                    pass
+                
+                if cal1 == "FRENCH R":
+                    dateobj.set_calendar(Date.FRENCH)
+                elif cal1 == "JULIAN":
+                    dateobj.set_calendar(Date.JULIAN)
+                elif cal1 == "HEBREW":
+                    dateobj.set_calendar(Date.HEBREW)
+                dateobj.get_start_date().set(data1)
+                dateobj.get_stop_date().set(data2)
+                dateobj.set_range(1)
+                return dateobj
         
-        match = calRegexp.match(text)
-        if match:
-            (abt,cal,data) = match.groups()
-            if cal == "FRENCH R":
-                dateobj.set_calendar(Date.FRENCH)
-            elif cal == "JULIAN":
-                dateobj.set_calendar(Date.JULIAN)
-            elif cal == "HEBREW":
-                dateobj.set_calendar(Date.HEBREW)
-            dateobj.set(data)
-            if abt:
-                dateobj.get_start_date().setMode(abt)
-        else:
-            dateobj.set(text)
-
+            match = calRegexp.match(text)
+            if match:
+                (abt,cal,data) = match.groups()
+                if cal == "FRENCH R":
+                    dateobj.set_calendar(Date.FRENCH)
+                elif cal == "JULIAN":
+                    dateobj.set_calendar(Date.JULIAN)
+                elif cal == "HEBREW":
+                    dateobj.set_calendar(Date.HEBREW)
+                    dateobj.set(data)
+                if abt:
+                    dateobj.get_start_date().setMode(abt)
+            else:
+                dateobj.set(text)
+        except:
+            dateobj.set_text(text)
         return dateobj
 
     def handle_source(self,matches,level):

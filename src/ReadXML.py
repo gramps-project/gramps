@@ -199,18 +199,3 @@ def loadRevision(database, file, filename, revision, callback=None):
 
     file.close()
     return 1
-
-
-if __name__ == "__main__":
-    import profile
-    import sys
-    import time
-    
-    database = GrampsDB()
-    t1 = time.time()
-    if len(sys.argv) > 2:
-        profile.run('loadData(database, sys.argv[1])')
-    else:
-        loadData(database,sys.argv[1])
-    t2 = time.time()
-    print t2-t1
