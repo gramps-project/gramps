@@ -22,10 +22,14 @@
 Provides a python evaluation window
 """
 import os
+import cStringIO
+import sys
+
 import gtk
 import gtk.glade
 
-from intl import gettext as _
+import Utils
+
 
 class EvalWindow:
 
@@ -34,9 +38,9 @@ class EvalWindow:
         self.glade = gtk.glade.XML(glade_file,"top")
 
         self.top = self.glade.get_widget("top")
-        self.display = self.glade.get_widget("display")
-        self.eval = self.glade.get_widget("eval")
-        self.ebuf = self.eval.get_buffer()
+        self.dbuf = self.glade.get_widget("display").get_buffer()
+        self.ebuf = self.glade.get_widget("eval").get_buffer()
+        self.error = self.glade.get_widget("error").get_buffer()
 
         self.glade.signal_autoconnect({
             "on_apply_clicked" : self.apply_clicked,
@@ -44,13 +48,27 @@ class EvalWindow:
             "on_clear_clicked" : self.clear_clicked,
             })
 
+        Utils.set_titles(self.top,self.glade.get_widget('title'),
+                         "Python Evaluation Window")
+
     def apply_clicked(self,obj):
         text = self.ebuf.get_text(self.ebuf.get_start_iter(),
                                   self.ebuf.get_end_iter(),gtk.FALSE)
+
+        outtext = cStringIO.StringIO()
+        errtext = cStringIO.StringIO()
+        sys.stdout = outtext
+        sys.stderr = errtext
         exec(text)
+        self.dbuf.set_text(outtext.getvalue())
+        self.error.set_text(errtext.getvalue())
+        sys.stdout = sys.__stdout__
+        sys.stderr = sys.__stderr__
 
     def clear_clicked(self,obj):
-        pass
+        self.dbuf.set_text("")
+        self.ebuf.set_text("")
+        self.error.set_text("")
 
     def close_clicked(self,obj):
         self.top.destroy()
@@ -68,8 +86,8 @@ def runtool(database,person,callback):
 
 register_tool(
     runtool,
-    _("Python evaluation window"),
-    category=_("Debug"),
-    description=_("Provides a window that can evaluate python code")
+    "Python evaluation window",
+    category="Debug",
+    description="Provides a window that can evaluate python code"
     )
         
