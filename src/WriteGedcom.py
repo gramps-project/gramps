@@ -1030,7 +1030,6 @@ class GedcomWriter:
                 photo_obj = self.db.get_object_from_handle(photo_obj_id)
                 if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
                     path = photo_obj.get_path ()
-                    print path
                     if not os.path.isfile(path):
                         continue
                     self.writeln('1 OBJE')
