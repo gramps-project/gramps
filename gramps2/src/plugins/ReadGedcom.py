@@ -176,7 +176,7 @@ def importData(database, filename, cb=None):
         statusWindow.destroy()
         cb(1)
     elif callback:
-        callback(1)
+        callback()
 
 #-------------------------------------------------------------------------
 #
@@ -701,12 +701,12 @@ class GedcomParser:
                     except:
                         names = (matches[2],"","","","")
                 if names[0]:
-                    name.setFirstName(names[0])
+                    name.setFirstName(names[0].strip())
                 if names[2]:
-                    name.setSurname(names[2])
-                    self.db.addSurname(names[2])
+                    name.setSurname(names[2].strip())
+                    self.db.addSurname(names[2].strip())
                 if names[4]:
-                    name.setSuffix(names[4])
+                    name.setSuffix(names[4].strip())
                 if name_cnt == 0:
                     self.person.setPrimaryName(name)
                 else:
