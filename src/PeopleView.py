@@ -38,7 +38,7 @@ import gtk.glade
 
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
-_sel_mode = gtk.SELECTION_MULTIPLE
+_sel_mode = gtk.SELECTION_SINGLE
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +47,16 @@ _sel_mode = gtk.SELECTION_MULTIPLE
 #-------------------------------------------------------------------------
 import PeopleModel
 import Filter
-import ColumnOrder
+
+column_names = [
+    _('Name'),
+    _('ID') ,
+    _('Gender'),
+    _('Birth Date'),
+    _('Birth Place'),
+    _('Death Date'),
+    _('Death Place'),
+    ]
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +72,6 @@ class PeopleView:
         self.pscroll = self.parent.gtop.get_widget("pscroll")
         self.person_tree = self.parent.gtop.get_widget("person_tree")
         self.person_tree.set_rules_hint(gtk.TRUE)
-        
         self.renderer = gtk.CellRendererText()
 
         self.columns = []
@@ -78,23 +86,31 @@ class PeopleView:
         column.set_resizable(gtk.TRUE)        
         column.set_clickable(gtk.TRUE)
         column.set_min_width(225)
+        column.set_sort_column_id(0)
         self.person_tree.append_column(column)
         self.columns = [column]
 
+        index = 1
         for pair in self.parent.db.get_column_order():
             if not pair[0]:
                 continue
-            name = ColumnOrder.column_names[pair[1]]
+            name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            column.set_clickable(gtk.TRUE)
-            column.set_min_width(75)
+            #column.set_clickable(gtk.TRUE)
+            column.set_min_width(60)
+            column.set_sort_column_id(0)
             self.columns.append(column)
             self.person_tree.append_column(column)
+            index += 1
 
     def build_tree(self):
         self.person_tree.set_model(None)
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
+
+        #self.sort_model = gtk.TreeModelSort(self.person_model)
+        #self.person_tree.set_model(self.sort_model)
+
         self.person_tree.set_model(self.person_model)
 
         self.person_selection = self.person_tree.get_selection()
@@ -114,14 +130,15 @@ class PeopleView:
         """Called with a row is changed. Check the selected objects from the person_tree
         to get the IDs of the selected objects. Set the active person to the first person
         in the list. If no one is selected, set the active person to None"""
-        selected_id_list = self.get_selected_objects()
-        if selected_id_list and selected_id_list[0]:
-            try:
-                person = self.parent.db.get_person(selected_id_list[0])
-                self.parent.change_active_person(person)
-            except:
-                self.parent.change_active_person(None)
-                self.person_tree.unselect()
+
+        selected_ids = self.get_selected_objects()
+
+        try:
+            person = self.parent.db.get_person(selected_ids[0])
+            self.parent.change_active_person(person)
+        except:
+            self.parent.change_active_person(None)
+            self.person_selection.unselect_all()
 
     def change_db(self,db):
         self.build_columns()
@@ -133,7 +150,6 @@ class PeopleView:
     def remove_from_person_list(self,person,old_id=None):
         """Remove the selected person from the list. A person object is expected,
         not an ID"""
-        print old_id, person.get_id()
         if old_id == None or person.get_id() == old_id:
             path = self.person_model.find_path(person.get_id())
             self.person_model.row_deleted(path)
@@ -180,12 +196,9 @@ class PeopleView:
         id = p.get_id()
         path = self.person_model.find_path(id)
         top_path = self.person_model.find_path(p.get_primary_name().get_surname())
-        self.person_tree.expand_row(top_path,1)
+        self.person_tree.expand_row(top_path,0)
         self.person_selection.select_path(path)
         self.person_tree.scroll_to_cell(path,None,1,0.5,0)
-
-#         itpath = model.model.get_path(iter)
-#         col = model.tree.get_column(0)
 
     def alpha_event(self,obj,a,b):
         self.parent.load_person(self.parent.active_person)

@@ -53,9 +53,7 @@ import RelLib
 import const
 import Utils
 import GrampsCfg
-import ListModel
-
-_titles = [(_('Name'),3,200),(_('ID'),1,50),(_('Birth date'),4,50),('',0,50),('',0,0)]
+import PeopleModel
 
 #-------------------------------------------------------------------------
 #
@@ -87,12 +85,23 @@ class ChooseParents:
         self.old_type = ""
         self.type = ""
         self.parent_selected = 0
+        self.renderer = gtk.CellRendererText()
 
-        birth_event = self.db.find_event_from_id(person.get_birth_id())
+        # set default filters
+        self.father_filter = self.likely_father_filter
+        self.mother_filter = self.likely_mother_filter
+
+        birth_event = self.db.find_event_from_id(self.person.get_birth_id())
         if birth_event:
-            self.date = birth_event.get_date_object()
+            self.bday = birth_event.get_date_object()
         else:
-            self.date = None
+            self.bday = None
+
+        death_event = self.db.find_event_from_id(self.person.get_death_id())
+        if death_event:
+            self.dday = death_event.get_date_object()
+        else:
+            self.dday = None
 
         if self.family:
             self.father = self.family.get_father_id()
@@ -113,7 +122,6 @@ class ChooseParents:
         self.fcombo = self.glade.get_widget("prel_combo")
         self.prel = self.glade.get_widget("prel")
         self.title = self.glade.get_widget("chooseTitle")
-        self.father_list = self.glade.get_widget("father_list")
         self.mother_list = self.glade.get_widget("mother_list")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
@@ -122,10 +130,8 @@ class ChooseParents:
         
         self.fcombo.set_popdown_strings(const.familyRelations)
 
-        self.fmodel = ListModel.ListModel(self.father_list, _titles,
-                                          self.father_list_select_row)
-        self.mmodel = ListModel.ListModel(self.mother_list, _titles,
-                                          self.mother_list_select_row)
+        self.build_father_list()
+        self.build_mother_list()
 
         for (f,mr,fr) in self.person.get_parent_family_id_list():
             if f == self.family:
@@ -142,7 +148,6 @@ class ChooseParents:
             self.type = "Married"
 
         self.prel.set_text(_(self.type))
-        self.redrawf()
         self.redrawm()
         
         self.glade.signal_autoconnect({
@@ -158,6 +163,36 @@ class ChooseParents:
 
         self.add_itself_to_menu()
         self.top.show()
+
+    def build_father_list(self):
+        self.father_list = self.glade.get_widget("father_list")
+        self.father_selection = self.father_list.get_selection()
+        self.father_selection.connect('changed',self.father_list_select_row)
+        self.add_columns(self.father_list)
+        self.redrawf()
+
+    def build_mother_list(self):
+        self.mother_list = self.glade.get_widget("mother_list")
+        self.mother_selection = self.mother_list.get_selection()
+        self.mother_selection.connect('changed',self.mother_list_select_row)
+        self.add_columns(self.mother_list)
+        self.redrawm()
+        
+    def add_columns(self,tree):
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(225)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(75)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
+        #column.set_resizable(gtk.TRUE)        
+        column.set_clickable(gtk.TRUE)
+        tree.append_column(column)
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -198,187 +233,79 @@ class ChooseParents:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
 
+    def all_males_filter(self,person):
+        return (person.get_gender() == RelLib.Person.male)
+
+    def all_females_filter(self,person):
+        return (person.get_gender() == RelLib.Person.female)
+
+    def likely_father_filter(self,person):
+        if person.get_gender() != RelLib.Person.male:
+            return 0
+        return self.likely_filter(person)
+
+    def likely_mother_filter(self,person):
+        if person.get_gender() != RelLib.Person.female:
+            return 0
+        return self.likely_filter(person)
+
+    def likely_filter(self,person):
+        birth_event = self.db.find_event_from_id(person.get_birth_id())
+        if birth_event:
+            pbday = birth_event.get_date_object()
+        else:
+            pbday = None
+                
+        death_event = self.db.find_event_from_id(person.get_death_id())
+        if death_event:
+            pdday = death_event.get_date_object()
+        else:
+            pdday = None
+ 
+        if self.bday and self.bday.get_year_valid():
+            if pbday and pbday.get_year_valid():
+                # reject if parents birthdate + 10 > child birthdate
+                if pbday.get_low_year()+10 > self.bday.get_high_year():
+                    return 0
+
+                # reject if parents birthdate + 90 < child birthdate 
+                if pbday.get_high_year()+90 < self.bday.get_low_year():
+                    return 0
+
+                if pdday and pdday.get_year_valid():
+                    # reject if parents birthdate + 10 > child deathdate 
+                    if self.dday and pbday.get_low_year()+10 > self.dday.get_high_year():
+                        return 0
+                
+        if self.dday and dday.get_year_valid():
+            if pbday and pbday.get_year_valid():
+                # reject if parents deathday + 3 < childs birth date 
+                if pdday and self.bday and pdday.get_high_year()+3 < self.bday.get_low_year():
+                    return 0
+
+            if pdday and pdday.get_year_valid():
+                # reject if parents deathday + 150 < childs death date 
+                if pdday.get_high_year() + 150 < self.dday.get_low_year():
+                    return 0
+        return 1
+
     def redrawf(self):
         """Redraws the potential father list"""
-
-        self.fmodel.clear()
-        self.fmodel.new_model()
-
-        person_id = self.person.get_id()
-
-        if self.father:
-            father_id = self.father.get_id()
-        else:
-            father_id = None
-            
-        birth_event = self.db.find_event_from_id(self.person.get_birth_id())
-        if birth_event:
-            bday = birth_event.get_date_object()
-        else:
-            bday = None
-        death_event = self.db.find_event_from_id(self.person.get_death_id())
-        if death_event:
-            dday = death_event.get_date_object()
-        else:
-            dday = None
-
-        person_list = []
-        for key in self.db.sort_person_keys():
-            if person_id == key:
-                continue
-
-            person = self.db.get_person(key)
-            if person.get_gender() != RelLib.Person.male:
-                continue
-
-            if not self.showallf.get_active():
-                
-                birth_event = self.db.find_event_from_id(person.get_birth_id())
-                if birth_event:
-                    pbday = birth_event.get_date_object()
-                else:
-                    pbday = None
-                
-                death_event = self.db.find_event_from_id(person.get_death_id())
-                if death_event:
-                    pdday = death_event.get_date_object()
-                else:
-                    pdday = None
- 
-                if bday and bday.getYearValid():
-                    if pbday and pbday.getYearValid():
-                        # reject if parents birthdate + 10 > child birthdate
-                        if pbday.getLowYear()+10 > bday.getHighYear():
-                            continue
-
-                        # reject if parents birthdate + 90 < child birthdate 
-                        if pbday.getHighYear()+90 < bday.getLowYear():
-                            continue
-
-                    if pdday and pdday.getYearValid():
-                        # reject if parents birthdate + 10 > child deathdate 
-                        if dday and pbday.getLowYear()+10 > dday.getHighYear():
-                            continue
-                
-                if dday and dday.getYearValid():
-                    if pbday and pbday.getYearValid():
-                        # reject if parents deathday + 3 < childs birth date 
-                        if pdday and bday and pdday.getHighYear()+3 < bday.getLowYear():
-                            continue
-
-                    if pdday and pdday.getYearValid():
-                        # reject if parents deathday + 150 < childs death date 
-                        if pdday.getHighYear() + 150 < dday.getLowYear():
-                            continue
-        
-            person_list.append(person.get_id())
-
-	for idval in person_list:
-            d = self.db.get_person_display(idval)
-            info = [d[0],d[1],d[3],d[5],d[6]]
-            if self.type == "Partners":
-                self.fmodel.add(info,d[1],father_id==d[1])
-            elif d[2] == const.male:
-                self.fmodel.add(info,d[1],father_id==d[1])
-
+        self.father_model = PeopleModel.PeopleModel(self.db, self.father_filter)
+        self.father_list.set_model(self.father_model)
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
             self.flabel.set_label("<b>%s</b>" % _("Fath_er"))
 
-        self.fmodel.connect_model()
-
-
     def redrawm(self):
         """Redraws the potential mother list"""
-
-        self.mmodel.clear()
-        self.mmodel.new_model()
-
-        person_id = self.person.get_id()
-
-        if self.mother:
-            mid = self.mother.get_id()
-        else:
-            mid = None
-            
-        birth_event = self.db.find_event_from_id(self.person.get_birth_id())
-        if birth_event:
-            bday = birth_event.get_date_object()
-        else:
-            bday = Date.Date()
-        death_event = self.db.find_event_from_id(self.person.get_death_id())
-        if death_event:
-            dday = death_event.get_date_object()
-        else:
-            dday = Date.Date()
-
-        person_list = []
-        for key in self.db.sort_person_keys():
-            if person_id == key:
-                continue
-
-            person = self.db.get_person(key)
-            if person.get_gender() != RelLib.Person.female:
-                continue
-
-            person = self.db.get_person(key)
-
-            if not self.showallm.get_active():
-                
-                birth_event = self.db.find_event_from_id(person.get_birth_id())
-                if birth_event:
-                    pbday = birth_event.get_date_object()
-                else:
-                    pbday = Date.Date()
-                
-                death_event = self.db.find_event_from_id(person.get_death_id())
-                if death_event:
-                    pdday = death_event.get_date_object()
-                else:
-                    pdday = Date.Date()
-
-                if bday and bday.getYearValid():
-                    if pbday and pbday.getYearValid():
-                        # reject if parents birthdate + 10 > child birthdate
-                        if pbday.getLowYear()+10 > bday.getHighYear():
-                            continue
-
-                        # reject if parents birthdate + 90 < child birthdate 
-                        if pbday.getHighYear()+90 < bday.getLowYear():
-                            continue
-
-                    if pdday and pdday.getYearValid():
-                        # reject if parents birthdate + 10 > child deathdate 
-                        if pbday.getLowYear()+10 > dday.getHighYear():
-                            continue
-                
-                if dday and dday.getYearValid():
-                    if pbday and pbday.getYearValid():
-                        # reject if parents deathday + 3 < childs birth date 
-                        if pdday and bday and pdday.getHighYear()+3 < bday.getLowYear():
-                            continue
-
-                    if pdday and pdday.getYearValid():
-                        # reject if parents deathday + 150 < childs death date 
-                        if pdday.getHighYear() + 150 < dday.getLowYear():
-                            continue
-        
-            person_list.append(person.get_id())
-
-	for idval in person_list:
-            d = self.db.get_person_display(idval)
-            info = [d[0],d[1],d[3],d[5],d[6]]
-            if self.type == "Partners":
-                self.mmodel.add(info,d[1],mid==d[1])
-            elif d[2] == const.female:
-                self.mmodel.add(info,d[1],mid==d[1])
-
+        self.mother_model = PeopleModel.PeopleModel(self.db, self.mother_filter)
+        self.mother_list.set_model(self.mother_model)
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mothe_r"))
-        self.mmodel.connect_model()
 
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changegd"""
@@ -389,9 +316,17 @@ class ChooseParents:
             self.redrawm()
 
     def showallf_toggled(self,obj):
+        if self.father_filter == self.likely_father_filter:
+            self.father_filter = self.all_males_filter
+        else:
+            self.father_filter = self.likely_father_filter
         self.redrawf()
 
     def showallm_toggled(self,obj):
+        if self.mother_filter == self.likely_mother_filter:
+            self.mother_filter = self.all_females_filter
+        else:
+            self.mother_filter = self.likely_mother_filter
         self.redrawm()
         
     def find_family(self,father_id,mother_id):
@@ -430,10 +365,9 @@ class ChooseParents:
         """Called when a row is selected in the mother list. Sets the
         active mother based off the id associated with the row."""
         
-        model, iter = self.mmodel.get_selected()
-        if iter:
-            id = model.get_value(iter,1)
-            self.mother = self.db.get_person(id)
+        idlist = self.get_selected_mother_ids()
+        if idlist and idlist[0]:
+            self.mother = self.db.get_person(idlist[0])
         else:
             self.mother = None
 
@@ -443,16 +377,32 @@ class ChooseParents:
             if len(family_id_list) >= 1:
                 family = self.db.find_family_from_id(family_id_list[0])
                 father_id = family.get_father_id()
-                self.fmodel.find(father_id)
-                self.fmodel.center_selected()
+                self.father_selection.select(father_id)
+                #self.father_model.center_selected()
+
+    def father_select_function(self,store,path,iter,id_list):
+        id_list.append(self.father_model.get_value(iter,1))
+
+    def mother_select_function(self,store,path,iter,id_list):
+        id_list.append(self.mother_model.get_value(iter,1))
+
+    def get_selected_father_ids(self):
+        mlist = []
+        self.father_selection.selected_foreach(self.father_select_function,mlist)
+        return mlist
+
+    def get_selected_mother_ids(self):
+        mlist = []
+        self.mother_selection.selected_foreach(self.mother_select_function,mlist)
+        return mlist
 
     def father_list_select_row(self,obj):
         """Called when a row is selected in the father list. Sets the
         active father based off the id associated with the row."""
-        model, iter = self.fmodel.get_selected()
-        if iter:
-            id = model.get_value(iter,1)
-            self.father = self.db.get_person(id)
+
+        idlist = self.get_selected_father_ids()
+        if idlist and idlist[0]:
+            self.father = self.db.get_person(idlist[0])
         else:
             self.father = None
 
@@ -462,8 +412,27 @@ class ChooseParents:
             if len(family_id_list) >= 1:
                 family = self.db.find_family_from_id(family_id_list[0])
                 mother_id = family.get_mother_id()
-                self.mmodel.find(mother_id)
-                self.mmodel.center_selected()
+                self.mother_selection.select(mother_id)
+                #self.mother_model.center_selected()
+
+    def mother_list_select_row(self,obj):
+        """Called when a row is selected in the father list. Sets the
+        active father based off the id associated with the row."""
+
+        idlist = self.get_selected_mother_ids()
+        if idlist and idlist[0]:
+            self.mother = self.db.get_person(idlist[0])
+        else:
+            self.mother = None
+
+        if not self.parent_selected and self.mother:
+            self.parent_selected = 1
+            family_id_list = self.mother.get_family_id_list()
+            if len(family_id_list) >= 1:
+                family = self.db.find_family_from_id(family_id_list[0])
+                father_id = family.get_father_id()
+                self.father_selection.select(father_id)
+                #self.father_model.center_selected()
 
     def save_parents_clicked(self,obj):
         """
@@ -529,11 +498,11 @@ class ChooseParents:
         if self.type == "Partners":
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.male:
-            self.fmodel.add(rdata,None,1)
-            self.fmodel.center_selected()
+            self.father_model.add(rdata,None,1)
+            self.father_model.center_selected()
         else:
-            self.mmodel.add(rdata,None,1)
-            self.mmodel.center_selected()
+            self.mother_model.add(rdata,None,1)
+            self.mother_model.center_selected()
         self.full_update()
         
     def add_parent_clicked(self,obj):

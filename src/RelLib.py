@@ -621,14 +621,6 @@ class MediaObject(SourceNote):
             (self.id, junk, self.path, self.mime, self.desc, self.attrlist,
              self.source_list, self.note) = data
     
-    def set_thumbnail(self,thumb):
-        """set the thumbnail"""
-        self.thumb = thumb
-
-    def get_thumbnail(self):
-        """return the thumbnail"""
-        return self.thumb
-
     def set_id(self,id):
         """Sets the gramps ID for the place object"""
         self.id = id
@@ -2578,13 +2570,13 @@ class GrampsDB:
     
     def get_default_person(self):
         """returns the default Person of the database"""
-        if self.metadata.has_key('default'):
-            person = Person()
-            data = self.person_map.get(self.metadata['default'])
-            person.unserialize(data)
-            return person
-        else:
-            return None
+        if self.metadata:
+            if self.metadata.has_key('default'):
+                person = Person()
+                data = self.person_map.get(self.metadata['default'])
+                person.unserialize(data)
+                return person
+        return None
 
     def get_person(self,id):
         """returns a Person from a GRAMPS's ID"""
@@ -2986,8 +2978,18 @@ class GrampsDB:
         return place
 
     def sortbyplace(self,f,s):
-        fp = self.place_map[f][0].upper()
-        sp = self.place_map[s][0].upper()
+        fp = self.place_map[f][1].upper()
+        sp = self.place_map[s][1].upper()
+        return cmp(fp,sp)
+
+    def sortbysource(self,f,s):
+        fp = self.source_map[f][1].upper()
+        sp = self.source_map[s][1].upper()
+        return cmp(fp,sp)
+
+    def sortbymedia(self,f,s):
+        fp = self.media_map[f][3].upper()
+        sp = self.media_map[s][3].upper()
         return cmp(fp,sp)
 
     def sort_place_keys(self):
@@ -2997,6 +2999,22 @@ class GrampsDB:
                 keys.sort(self.sortbyplace)
             return keys
         return []
+
+    def sort_media_keys(self):
+        if self.media_map:
+            keys = self.media_map.keys()
+            keys.sort(self.sortbymedia)
+            return keys
+        else:
+            return []
+
+    def sort_source_keys(self):
+        if self.source_map:
+            keys = self.source_map.keys()
+            keys.sort(self.sortbysource)
+            return keys
+        else:
+            return []
 
     def get_place_id_keys(self):
         if self.place_map:
@@ -3183,9 +3201,54 @@ class GrampsDB:
         if self.metadata != None:
             self.metadata['columns'] = list
 
+    def set_place_column_order(self,list):
+        if self.metadata != None:
+            self.metadata['place_columns'] = list
+
+    def set_source_column_order(self,list):
+        if self.metadata != None:
+            self.metadata['source_columns'] = list
+
+    def set_media_column_order(self,list):
+        if self.metadata != None:
+            self.metadata['media_columns'] = list
+
     def get_column_order(self):
         if self.metadata == None:
             return [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6)]
         else:
             return self.metadata.get('columns',[(1,1),(1,2),(1,3),(0,4),(1,5),(0,6)])
+
+    def get_place_column_order(self):
+        default = [(1,1),(1,2),(0,3),(1,4),(0,5),(1,6),(0,7),(0,8)]
+        if self.metadata == None:
+            return default
+        else:
+            cols = self.metadata.get('place_columns',default)
+            if len(cols) != len(default):
+                return cols + default[len(cols):]
+            else:
+                return cols
+
+    def get_source_column_order(self):
+        default = [(1,1),(1,2),(1,3),(0,4)]
+        if self.metadata == None:
+            return default
+        else:
+            cols = self.metadata.get('source_columns',default)
+            if len(cols) != len(default):
+                return cols + default[len(cols):]
+            else:
+                return cols
+
+    def get_media_column_order(self):
+        default = [(1,1),(1,2),(1,3)]
+        if self.metadata == None:
+            return default
+        else:
+            cols = self.metadata.get('meda_columns',default)
+            if len(cols) != len(default):
+                return cols + default[len(cols):]
+            else:
+                return cols
 

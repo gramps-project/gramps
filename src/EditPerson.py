@@ -1375,7 +1375,8 @@ class EditPerson:
         import NameEdit
         store,iter = self.ntree.get_selected()
         if iter:
-            NameEdit.NameEditor(self,self.ntree.get_object(iter),self.name_edit_callback,self.window)
+            NameEdit.NameEditor(self,self.ntree.get_object(iter),
+                                self.name_edit_callback,self.window)
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
@@ -1577,11 +1578,11 @@ class EditPerson:
             self.person.set_source_reference_list(self.srcreflist)
 
         self.update_lists()
-        self.db.commit_person(self.person)
-
         if self.callback:
             change = (self.orig_surname != surname) or (self.orig_id != idval)
             self.callback(self,change)
+
+        self.db.commit_person(self.person)
 
         self.close(1)
 

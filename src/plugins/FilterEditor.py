@@ -55,13 +55,12 @@ import SelectPerson
 from gettext import gettext as _
 
 _name2list = {
-    _('Personal event:')     : (const.personalEvents,const.personal_events),
-    _('Family event:')       : (const.marriageEvents,const.family_events),
-    _('Personal attribute:') : (const.personalAttributes,const.personal_attributes),
-    _('Family attribute:')   : (const.familyAttributes,const.family_attributes),
-    _('Relationship type:')  : (const.familyRelations,const.family_relations),
+    _('Personal event:')     : const.personal_events,
+    _('Family event:')       : const.family_events,
+    _('Personal attribute:') : const.personal_attributes,
+    _('Family attribute:')   : const.family_attributes,
+    _('Relationship type:')  : const.family_relations,
 }
-
 
 #-------------------------------------------------------------------------
 #
@@ -196,8 +195,9 @@ class MyID(gtk.HBox):
 #-------------------------------------------------------------------------
 class MySelect(gtk.Combo):
     
-    def __init__(self,list,transtable):
+    def __init__(self,transtable):
         gtk.Combo.__init__(self)
+        list = transtable.get_values()
         list.sort()
         self.set_popdown_strings(list)
         self.set_value_in_list(1,0)
@@ -465,7 +465,8 @@ class FilterEditor:
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
                     data =_name2list[v1]
-                    t = MySelect(data[0],data[1])
+                    print data, data.get_values()
+                    t = MySelect(data.get_values(),data)
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 else:

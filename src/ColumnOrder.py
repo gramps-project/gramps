@@ -28,24 +28,16 @@ import gtk.glade
 import const
 from gettext import gettext as _
 
-column_names = [
-    _('Name'),
-    _('ID') ,
-    _('Gender'),
-    _('Birth Date'),
-    _('Birth Place'),
-    _('Death Date'),
-    _('Death Place'),
-    ]
-
 class ColumnOrder:
 
-    def __init__(self,arglist,callback):
+    def __init__(self,arglist,column_names,callback):
         self.glade = gtk.glade.XML(const.gladeFile,"columns","gramps")
         self.top = self.glade.get_widget('columns')
         self.tree = self.glade.get_widget('list')
         self.arglist = arglist
         self.callback = callback
+
+        self.top.set_title("%s - GRAMPS" % _('Select Columns'))
 
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN,
                                    gobject.TYPE_STRING,

@@ -352,9 +352,39 @@ class Gramps:
         self.db.set_column_order(list)
         self.people_view.build_columns()
 
+    def set_place_column_order(self,list):
+        self.db.set_place_column_order(list)
+        self.place_view.build_columns()
+
+    def set_source_column_order(self,list):
+        self.db.set_source_column_order(list)
+        self.source_view.build_columns()
+
+    def set_media_column_order(self,list):
+        self.db.set_media_column_order(list)
+        self.media_view.build_columns()
+
     def column_order(self,obj):
         import ColumnOrder
-        ColumnOrder.ColumnOrder(self.db.get_column_order(),self.set_column_order)
+
+        cpage = self.views.get_current_page()
+        if cpage == PERSON_VIEW:
+            ColumnOrder.ColumnOrder(self.db.get_column_order(),
+                                    PeopleView.column_names,
+                                    self.set_column_order)
+        elif cpage == SOURCE_VIEW:
+            print self.db.get_source_column_order()
+            ColumnOrder.ColumnOrder(self.db.get_source_column_order(),
+                                    SourceView.column_names,
+                                    self.set_source_column_order)
+        elif cpage == PLACE_VIEW:
+            ColumnOrder.ColumnOrder(self.db.get_place_column_order(),
+                                    PlaceView.column_names,
+                                    self.set_place_column_order)
+        elif cpage == MEDIA_VIEW:
+            ColumnOrder.ColumnOrder(self.db.get_media_column_order(),
+                                    MediaView.column_names,
+                                    self.set_media_column_order)
         
     def clear_history(self):
         self.history = []
@@ -1336,10 +1366,13 @@ class Gramps:
         return 0
 
     def display_relationship(self):
+        default_person = self.db.get_default_person()
+        if not default_person:
+            return u''
         try:
-            pname = GrampsCfg.nameof(self.db.get_default_person())
+            pname = GrampsCfg.nameof(default_person)
             (name,plist) = self.relationship.get_relationship(
-                                    self.db.get_default_person(),
+                                    default_person,
                                     self.active_person)
             if name:
                 if plist == None:
@@ -1606,6 +1639,9 @@ class Gramps:
         self.statusbar.set_progress_percentage(1.0)
 
         self.people_view.change_db(self.db)
+        self.place_view.change_db(self.db)
+        self.source_view.change_db(self.db)
+        self.media_view.change_db(self.db)
         #self.full_update()
 
         self.change_active_person(self.find_initial_person())

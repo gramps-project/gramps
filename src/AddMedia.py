@@ -121,8 +121,6 @@ class AddMediaObject:
         mobj = RelLib.MediaObject()
         mobj.set_description(description)
         mobj.set_mime_type(type)
-        if type[0:5] == "image":
-            mobj.set_thumbnail(RelImage.build_thumbnail(filename,const.thumbScale))
         self.db.add_object(mobj)
         
         name = filename

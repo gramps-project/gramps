@@ -48,6 +48,8 @@ import GrampsCfg
 import const
 import ImageSelect
 import RelImage
+import ColumnOrder
+import DisplayModels
 
 from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
 
@@ -57,6 +59,13 @@ from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+
+column_names = [
+    _('Title'),
+    _('ID'),
+    _('Type'),
+    _('Path'),
+    ]
 
 #-------------------------------------------------------------------------
 #
@@ -74,35 +83,12 @@ class MediaView:
         self.mpath = glade.get_widget("mpath")
         self.mdetails = glade.get_widget("mdetails")
         self.preview = glade.get_widget("preview")
+        self.renderer = gtk.CellRendererText()
 
-        self.column_headers = [(_('Title'),4,350), (_('ID'),1,50),
-                               (_('Type'),2,70), (_('Path'),3,150), ('',4,0) ]
-
-        self.id2col = {}
+        self.model = DisplayModels.MediaModel(self.db)
         self.selection = self.list.get_selection()
 
-        colno = 0
-        for title in self.column_headers:
-            renderer = gtk.CellRendererText ()
-            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            if title[0] == '':
-                column.set_visible(gtk.FALSE)
-            else:
-                column.set_resizable(gtk.TRUE)
-                column.set_visible(gtk.TRUE)
-            if title[1] >= 0:
-                column.set_sort_column_id(title[1])
-            column.set_min_width(title[2])
-            self.list.append_column(column)
-
-        self.list.set_search_column(0)
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
         self.list.set_model(self.model)
-        self.list.get_column(0).clicked()
 
         t = [ ('STRING', 0, 0),
               ('text/plain',0,0),
@@ -129,6 +115,40 @@ class MediaView:
                 "If you would like to enable this feature, "
                 "install Python Imaging Library (PIL), available at http://www.pythonware.com/products/pil/ "
                 "or ImageMagick, available at http://www.imagemagick.org/"))
+        self.columns = []
+        self.build_columns()
+        self.build_tree()
+
+    def build_columns(self):
+        for column in self.columns:
+            self.list.remove_column(column)
+            
+        column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(225)
+        #column.set_sort_column_id(0)
+        self.list.append_column(column)
+        self.columns = [column]
+
+        index = 1
+        for pair in self.parent.db.get_media_column_order():
+            if not pair[0]:
+                continue
+            name = column_names[pair[1]]
+            column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
+            column.set_resizable(gtk.TRUE)
+            column.set_clickable(gtk.TRUE)
+            column.set_min_width(75)
+            column.set_sort_column_id(0)
+            self.columns.append(column)
+            self.list.append_column(column)
+            index += 1
+
+    def change_db(self,db):
+        self.db = db
+        self.build_columns()
+        self.build_tree()
 
     def goto(self,id):
         self.selection.unselect_all()
@@ -138,8 +158,15 @@ class MediaView:
         col = self.list.get_column (0)
         self.list.scroll_to_cell (itpath, col, gtk.TRUE, 0.5, 0)
 
-    def change_db(self,db):
-        self.db = db
+    def build_tree(self):
+        self.list.set_model(None)
+        self.model = DisplayModels.MediaModel(self.parent.db)
+
+        self.list.set_model(self.model)
+        self.selection = self.list.get_selection()
+        #self.selection.connect('changed',self.row_changed)
+        #self.list.connect('row_activated', self.alpha_event)
+        #self.model.connect('button-press-event',self.on_plist_button_press)        
 
     def on_select_row(self,obj):
         fexists = 1
@@ -247,22 +274,7 @@ class MediaView:
         ImageSelect.GlobalMediaProperties(self.db,self.obj,self.load_media)
 
     def load_media(self):
-        self.model.clear()
-        self.id2col = {}
-
-        object_keys = self.db.get_object_keys()
-
-        for src_key in object_keys:
-            src = self.db.find_object_from_id(src_key)
-            title = src.get_description()
-            id = src.get_id()
-            type = Utils.get_mime_description(src.get_mime_type())
-            path = src.get_path()
-            stitle = string.upper(title)
-
-            iter = self.model.append()
-            self.id2col[id] = iter
-            self.model.set(iter, 0, title, 1, id, 2, type, 3, path, 4, stitle)
+        pass
 
     def on_add_clicked(self,obj):
         """Add a new media object to the media list"""

@@ -52,7 +52,7 @@ import RelLib
 import const
 import Utils
 import GrampsCfg
-import ListModel
+import PeopleModel
 import Date
 
 #-------------------------------------------------------------------------
@@ -79,23 +79,49 @@ class AddSpouse:
         self.db = db
         self.update = update
         self.person = person
+        self.gender = self.person.get_gender()
         self.addperson = addperson
         self.active_family = family
 
+        self.filter_func = self.likely_filter
+
+        # determine the gender of the people to be loaded into
+        # the potential spouse list. If Partners is selected, use
+        # the same gender as the current person.
+
+        birth_id = self.person.get_birth_id()
+        death_id = self.person.get_death_id()
+        
+        self.bday = self.db.find_event_from_id(birth_id)
+        self.dday = self.db.find_event_from_id(death_id)
+        if birth_id:
+            self.bday = self.db.find_event_from_id(birth_id).get_date_object()
+        else:
+            self.bday = Date.Date()
+            
+        if death_id:
+            self.dday = self.db.find_event_from_id(death_id).get_date_object()
+        else:
+            self.dday = Date.Date()
+
         self.glade = gtk.glade.XML(const.gladeFile, "spouseDialog","gramps")
 
+        self.relation_def = self.glade.get_widget("reldef")
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouse_list")
         self.showall = self.glade.get_widget('showall')
 
-        titles = [ (_('Name'),3,200), (_('ID'),1,50), (_('Birth date'),4,50),
-                   ('',0,50), ('',0,0)]
+        self.set_gender()
+
+        self.renderer = gtk.CellRendererText()
+
+        self.slist = PeopleModel.PeopleModel(self.db,self.filter_func)
+        self.spouse_list.set_model(self.slist)
+        self.selection = self.spouse_list.get_selection()
+        self.selection.connect('changed',self.select_row)
+        self.add_columns(self.spouse_list)
         
-        self.slist = ListModel.ListModel(self.spouse_list, titles,
-                                         self.select_row )
-        
-        self.relation_def = self.glade.get_widget("reldef")
         self.ok = self.glade.get_widget('spouse_ok')
         self.ok.set_sensitive(0)
                      
@@ -105,6 +131,7 @@ class AddSpouse:
         Utils.set_titles(self.glade.get_widget('spouseDialog'),
                          self.glade.get_widget('title'),title,
                          _('Choose Spouse/Partner'))
+
 
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,
@@ -116,20 +143,43 @@ class AddSpouse:
             })
 
         self.relation_type.set_text(_("Married"))
-        self.relation_type_changed(None)
+        self.update_data()
         
+    def add_columns(self,tree):
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(225)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
+        column.set_resizable(gtk.TRUE)        
+        #column.set_clickable(gtk.TRUE)
+        column.set_min_width(75)
+        tree.append_column(column)
+        column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
+        #column.set_resizable(gtk.TRUE)        
+        column.set_clickable(gtk.TRUE)
+        tree.append_column(column)
+
     def on_spouse_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-quick')
+
+    def get_selected_ids(self):
+        mlist = []
+        self.selection.selected_foreach(self.select_function,mlist)
+        return mlist
+
+    def select_function(self,store,path,iter,id_list):
+        id_list.append(store.get_value(iter,1))
 
     def select_row(self,obj):
         """
         Called with a row has be unselected. Used to enable the OK button
         when a row has been selected.
         """
-
-        model,iter = self.slist.get_selected()
-        if iter:
+        idlist = self.get_selected_ids()
+        if idlist and idlist[0]:
             self.ok.set_sensitive(1)
         else:
             self.ok.set_sensitive(0)
@@ -156,7 +206,7 @@ class AddSpouse:
         person.set_gender(gen)
         EditPerson.EditPerson(self.parent,person,self.db,self.update_list)
 
-    def update_list(self,epo):
+    def update_list(self,epo,change):
         """
         Updates the potential spouse list after a person has been added
         to database. Called by the QuickAdd class when the dialog has
@@ -170,7 +220,7 @@ class AddSpouse:
         self.db.build_person_display(person.get_id())
         self.addperson(person)
         self.update_data(person.get_id())
-        self.slist.center_selected()
+        #self.slist.center_selected()
 
     def select_spouse_clicked(self,obj):
         """
@@ -178,12 +228,11 @@ class AddSpouse:
         selected from the list.
         """
 
-        model,iter = self.slist.get_selected()
-        if not iter:
+        idlist = self.get_selected_ids()
+        if not idlist or not idlist[0]:
             return
         
-        id = self.slist.get_object(iter)
-        spouse = self.db.get_person(id)
+        spouse = self.db.get_person(idlist[0])
 
         # don't do anything if the marriage already exists
         for f in self.person.get_family_id_list():
@@ -214,98 +263,84 @@ class AddSpouse:
     def relation_type_changed(self,obj):
         self.update_data()
 
+    def all_filter(self, person):
+        return person.get_gender() != self.sgender
+
+    def likely_filter(self, person):
+        if person.get_gender() == self.sgender:
+            return 0
+
+        pd_id = person.get_death_id()
+        pb_id = person.get_birth_id()
+                
+        if pd_id:
+            pdday = self.db.find_event_from_id(pd_id).get_date_object()
+        else:
+            pdday = Date.Date()
+
+        if pb_id:
+            pbday = self.db.find_event_from_id(pb_id).get_date_object()
+        else:
+            pbday = Date.Date()
+                    
+        if self.bday.get_year_valid():
+            if pbday.get_year_valid():
+                # reject if person birthdate differs more than
+                # 100 years from spouse birthdate 
+                if abs(pbday.get_year() - self.bday.get_year()) > 100:
+                    return 0
+
+            if pdday.get_year_valid():
+                # reject if person birthdate is after the spouse deathdate 
+                if self.bday.get_low_year() + 10 > pdday.get_high_year():
+                    return 0
+                
+                # reject if person birthdate is more than 100 years 
+                # before the spouse deathdate
+                if self.bday.get_high_year() + 100 < pdday.get_low_year():
+                    return 0
+
+        if self.dday.get_year_valid():
+            if pbday.get_year_valid():
+                # reject if person deathdate was prior to 
+                # the spouse birthdate 
+                if self.dday.get_high_year() < pbday.get_low_year() + 10:
+                    return 0
+
+            if pdday.get_year_valid():
+                # reject if person deathdate differs more than
+                # 100 years from spouse deathdate 
+                if abs(pdday.get_year() - self.dday.get_year()) > 100:
+                    return 0
+        return 1
+
+    def set_gender(self):
+        text = unicode(self.relation_type.get_text())
+        self.relation_def.set_text(const.relationship_def(text))
+        if text == _("Partners"):
+            if self.gender == RelLib.Person.male:
+                self.sgender = RelLib.Person.female
+            else:
+                self.sgender = RelLib.Person.male
+        else:
+            if self.gender == RelLib.Person.male:
+                self.sgender = RelLib.Person.male
+            else:
+                self.sgender = RelLib.Person.female
+
     def update_data(self,person = None):
         """
         Called whenever the relationship type changes. Rebuilds the
         the potential spouse list.
         """
 
-        text = unicode(self.relation_type.get_text())
-        self.relation_def.set_text(const.relationship_def(text))
-    
-        # determine the gender of the people to be loaded into
-        # the potential spouse list. If Partners is selected, use
-        # the same gender as the current person.
-        gender = self.person.get_gender()
-
-        birth_id = self.person.get_birth_id()
-        death_id = self.person.get_death_id()
-        
-        bday = self.db.find_event_from_id(birth_id)
-        dday = self.db.find_event_from_id(death_id)
-        if birth_id:
-            bday = self.db.find_event_from_id(birth_id).get_date_object()
-        else:
-            bday = Date.Date()
-            
-        if death_id:
-            dday = self.db.find_event_from_id(death_id).get_date_object()
-        else:
-            dday = Date.Date()
-
-        if text == _("Partners"):
-            if gender == RelLib.Person.male:
-                sgender = const.female
-            else:
-                sgender = const.male
-        else:
-            if gender == RelLib.Person.male:
-                sgender = const.male
-            else:
-                sgender = const.female
-
-        self.entries = []
-        self.slist.clear()
-        self.slist.new_model()
-        for key in self.db.sort_person_keys():
-            data = self.db.get_person_display(key)
-            if data[2] == sgender:
-                continue
-
-            if not self.showall.get_active():
-                pd_id = self.db.get_person(key).get_death_id()
-                pb_id = self.db.get_person(key).get_birth_id()
-                
-                if pd_id:
-                    pdday = self.db.find_event_from_id(pd_id).get_date_object()
-                else:
-                    pdday = Date.Date()
-                if pb_id:
-                    pbday = self.db.find_event_from_id(pb_id).get_date_object()
-                else:
-                    pbday = Date.Date()
-                    
-                if bday.getYearValid():
-                    if pbday.getYearValid():
-                        # reject if person birthdate differs more than
-                        # 100 years from spouse birthdate 
-                        if abs(pbday.getYear() - bday.getYear()) > 100:
-                            continue
-
-                    if pdday.getYearValid():
-                        # reject if person birthdate is after the spouse deathdate 
-                        if bday.getLowYear() + 10 > pdday.getHighYear():
-                            continue
-                
-                        # reject if person birthdate is more than 100 years 
-                        # before the spouse deathdate
-                        if bday.getHighYear() + 100 < pdday.getLowYear():
-                            continue
-
-                if dday.getYearValid():
-                    if pbday.getYearValid():
-                        # reject if person deathdate was prior to 
-                        # the spouse birthdate 
-                        if dday.getHighYear() < pbday.getLowYear() + 10:
-                            continue
-
-                    if pdday.getYearValid():
-                        # reject if person deathdate differs more than
-                        # 100 years from spouse deathdate 
-                        if abs(pdday.getYear() - dday.getYear()) > 100:
-                            continue
-            self.slist.add([data[0],data[1],data[3],data[5],data[6]],key,person==key)
-        self.slist.connect_model()
+        self.slist = PeopleModel.PeopleModel(self.db,self.filter_func)
+        self.spouse_list.set_model(self.slist)
 
     def on_show_toggled(self,obj):
+        if self.filter_func == self.likely_filter:
+            self.filter_func = self.all_filter
+        else:
+            self.filter_func = self.likely_filter
+        print self.filter_func
         self.update_data()
