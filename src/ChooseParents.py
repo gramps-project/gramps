@@ -149,6 +149,9 @@ class ChooseParents:
         self.fmodel.clear()
         self.mmodel.clear()
 
+        self.fmodel.new_model()
+        self.mmodel.new_model()
+        
         pkey = self.person.getId()
         gender = self.person.getGender()
         if self.father:
@@ -193,6 +196,9 @@ class ChooseParents:
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mother"))
             self.flabel.set_label("<b>%s</b>" % _("Father"))
+
+        self.fmodel.connect_model()
+        self.mmodel.connect_model()
 
     def not_likely(self,person):
         """
