@@ -74,6 +74,7 @@ class EditPerson:
         self.lists_changed = 0
         pid = "i%s" % person.getId()
 
+        self.load_obj = None
         self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
         self.gallery_widget = self.top.get_widget("photolist")
         self.gallery = ImageSelect.Gallery(person, self.path, pid, self.gallery_widget, self.db)
@@ -239,15 +240,9 @@ class EditPerson:
         self.nick.set_text(person.getNickName())
         self.title.set_text(self.pname.getTitle())
         self.update_birth_death()
+
+        self.load_person_image()
         
-        # load photos into the photo window
-        photo_list = person.getPhotoList()
-        if len(photo_list) != 0:
-            ph = photo_list[0]
-            object = ph.getReference()
-            if object.getMimeType()[0:5] == "image":
-                self.load_photo(object.getPath())
-    
         # set notes data
         self.notes_field.set_point(0)
         self.notes_field.insert_defaults(person.getNote())
@@ -570,12 +565,16 @@ class EditPerson:
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""
-        i = GdkImlib.Image(photo)
-        scale = float(const.picWidth)/float(max(i.rgb_height,i.rgb_width))
-        x = int(scale*(i.rgb_width))
-        y = int(scale*(i.rgb_height))
-        i = i.clone_scaled_image(x,y)
-        self.get_widget("personPix").load_imlib(i)
+        self.load_obj = photo
+        if photo == None:
+            self.get_widget("personPix").load_imlib(const.empty_image)
+        else:
+            i = GdkImlib.Image(photo)
+            scale = float(const.picWidth)/float(max(i.rgb_height,i.rgb_width))
+            x = int(scale*(i.rgb_width))
+            y = int(scale*(i.rgb_height))
+            i = i.clone_scaled_image(x,y)
+            self.get_widget("personPix").load_imlib(i)
 
     def update_lists(self):
         """Updates the person's lists if anything has changed"""
@@ -732,8 +731,23 @@ class EditPerson:
         import NoteEdit
         NoteEdit.NoteEditor(self.pname)
 
+    def load_person_image(self):
+        photo_list = self.person.getPhotoList()
+        if len(photo_list) != 0:
+            ph = photo_list[0]
+            object = ph.getReference()
+            if self.load_obj != object.getPath():
+                if object.getMimeType()[0:5] == "image":
+                    self.load_photo(object.getPath())
+                else:
+                    self.load_photo(None)
+        else:
+            self.load_photo(None)
+        
     def on_switch_page(self,obj,a,page):
-        if page == 6 and self.not_loaded:
+        if page == 0:
+            self.load_person_image()
+        elif page == 6 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()
 
