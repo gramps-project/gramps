@@ -692,7 +692,7 @@ class GrampsPreferences:
         self.osubmenu = gtk.GtkMenu()
         choice = 0
         index = 0
-        for name in Plugins.get_text_doc_list():
+        for name in [ _("No default format") ] + Plugins.get_text_doc_list():
             if name == output_preference:
                 choice = index
             item = gtk.GtkMenuItem(name)
@@ -707,7 +707,7 @@ class GrampsPreferences:
         self.gsubmenu = gtk.GtkMenu()
         choice = 0
         index = 0
-        for name in Plugins.get_draw_doc_list():
+        for name in [ _("No default format") ] + Plugins.get_draw_doc_list():
             if name == goutput_preference:
                 choice = index
             item = gtk.GtkMenuItem(name)
@@ -928,11 +928,6 @@ class GrampsPreferences:
         index_visible = self.top.get_widget("show_child_id").get_active()
         hide_altnames = self.top.get_widget("display_altnames").get_active()
         paper_obj = self.top.get_widget("paper_size").get_menu().get_active()
-
-        if self.osubmenu == None:
-            print "Warning! osubmenu is None"
-        if self.gsubmenu == None:
-            print "Warning! gsubmenu is None"
 
         output_obj = self.osubmenu.get_active()
         goutput_obj = self.gsubmenu.get_active()
