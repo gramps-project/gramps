@@ -1,9 +1,11 @@
 2003-07-20  Don Allingham  <dallingham@users.sourceforge.net>
-
 	* src/plugins/ReadGedcom.py: handle sources attached to a person (not
 	to an event), handle the PAF/FTW _MARNM extension.
 	* src/plugins/WebPage.py: added mini-ancestor tree patch from Daryle
 	C. Lewis
+	* src/GrampsParser.py: use findFamilyNoConflicts
+	* src/RelLib.py: remove findFamilyNoConflict
+	* src/docgen/LaTeXDoc.py: Fixed typo in latex generated comment
 
 2003-07-20  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Include source notes.  Adjusted default
