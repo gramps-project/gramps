@@ -92,6 +92,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def init(self):
 
+        assert(self.init_called==False)
+        self.init_called = True
+        
         current_locale = locale.getlocale()
         self.lang = current_locale[0]
         if self.lang:

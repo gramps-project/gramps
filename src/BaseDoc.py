@@ -1114,9 +1114,10 @@ class BaseDoc:
         self.media_list = []
         self.print_req = 0
         self.mode = TEXT_MODE
+        self.init_called = False
 
     def init(self):
-        pass
+        self.init_called = True
     
     def set_mode(self, mode):
         self.mode = mode
@@ -1189,6 +1190,7 @@ class BaseDoc:
         self.title = name
 
     def add_draw_style(self,name,style):
+        assert(self.init_called==False)
         self.draw_styles[name] = GraphicsStyle(style)
 
     def get_draw_style(self,name):
@@ -1204,6 +1206,7 @@ class BaseDoc:
         @param name: name of the table style
         @param style: TableStyle instance to be added
         """
+        assert(self.init_called==False)
         self.table_styles[name] = TableStyle(style)
 
     def add_cell_style(self,name,style):
@@ -1213,6 +1216,7 @@ class BaseDoc:
         @param name: name of the table cell style
         @param style: TableCellStyle instance to be added
         """
+        assert(self.init_called==False)
         self.cell_styles[name] = TableCellStyle(style)
 
     def open(self,filename):
@@ -1374,6 +1378,7 @@ class BaseDoc:
     def draw_wedge(self, style, centerx, centery, radius, start_angle,
                    end_angle, short_radius=0):
 
+        assert(self.init_called)
         while end_angle < start_angle:
             end_angle += 360
 

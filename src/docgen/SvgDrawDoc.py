@@ -141,9 +141,8 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
 
         self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1,y1))
         self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2,y2))
-        color = s.get_color()
-        self.f.write(' style="stroke:#%02x%02x%02x; stroke-width:%.2fpt;"/>\n' %
-                     (color[0],color[1],color[2],s.get_line_width()))
+        self.f.write('style="stroke:#%02x%02x%02x; ' % s.get_color())
+        self.f.write('stroke-width:%.2fpt;"/>\n' % s.get_line_width())
 
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
@@ -169,7 +168,8 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         self.f.write('y="%4.2fcm" ' % y1)
         self.f.write('width="%4.2fcm" ' % (x2-x1))
         self.f.write('height="%4.2fcm" ' % (y2-y1))
-        self.f.write('style="fill:#ffffff; stroke:#000000; ')
+        self.f.write('style="fill:##%02x%02x%02x; ' % s.get_fill_color())
+        self.f.write('stroke:#%02x%02x%02x; ' % s.get_color())
         self.f.write('stroke-width:%.2f;"/>\n' % s.get_line_width())
     
     def draw_box(self,style,text,x,y):
@@ -182,18 +182,21 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
         
         bh = box_style.get_height()
         bw = box_style.get_width()
-        self.f.write('<rect ')
-        self.f.write('x="%4.2fcm" ' % (x+0.15))
-        self.f.write('y="%4.2fcm" ' % (y+0.15))
-        self.f.write('width="%4.2fcm" ' % bw)
-        self.f.write('height="%4.2fcm" ' % bh)
-        self.f.write('style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n')
+        if box_style.get_shadow():
+            self.f.write('<rect ')
+            self.f.write('x="%4.2fcm" ' % (x+0.15))
+            self.f.write('y="%4.2fcm" ' % (y+0.15))
+            self.f.write('width="%4.2fcm" ' % bw)
+            self.f.write('height="%4.2fcm" ' % bh)
+            self.f.write('style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n')
         self.f.write('<rect ')
         self.f.write('x="%4.2fcm" ' % x)
         self.f.write('y="%4.2fcm" ' % y)
         self.f.write('width="%4.2fcm" ' % bw)
         self.f.write('height="%4.2fcm" ' % bh)
-        self.f.write('style="fill:#%02x%02x%02x; stroke:#000000; stroke-width:1;"/>\n' % box_style.get_fill_color())
+        self.f.write('style="fill:#%02x%02x%02x; ' % box_style.get_fill_color())
+        self.f.write('stroke:#%02x%02x%02x; ' % box_style.get_color())
+        self.f.write('stroke-width:%f;"/>\n' % box_style.get_line_width())
         if text != "":
             font = p.get_font()
             font_size = font.get_size()
