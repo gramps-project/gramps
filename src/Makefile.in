@@ -65,7 +65,7 @@ trans: po/template.po
 po/template.po: *.py *.glade */*.py */*.glade
 
 clean:
-	-rm -f core *.pyo *.pyc *.bak *~	
+	-rm -f core *.pyo *.pyc *.bak *.so *~	
 
 # Add PYTHON suffix rules to make's vocabulary
 .SUFFIXES: .py .pyo
