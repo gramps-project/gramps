@@ -1351,6 +1351,26 @@
 	      <fill>False</fill>
 	    </child>
 	  </widget>
+
+	  <widget>
+	    <class>GtkCheckButton</class>
+	    <name>show_child_id</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Mon, 29 Oct 2001 22:58:03 GMT</last_modification_time>
+	    </signal>
+	    <label>Show index numbers in child list</label>
+	    <active>False</active>
+	    <draw_indicator>True</draw_indicator>
+	    <child>
+	      <padding>0</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
 	</widget>
       </widget>
     </widget>

@@ -116,7 +116,11 @@ merge_button  = None
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
 DataFilter    = Filter.Filter("")
-c_birth_order = 6
+c_birth_order = 0
+c_name        = 1
+c_id          = 2
+c_birth_date  = 4
+c_details     = 6
 c_sort_column = c_birth_order
 c_sort_direct = SORT_ASCENDING
 
@@ -433,8 +437,9 @@ def full_update():
     person_list.clear()
     notebook.set_show_tabs(Config.usetabs)
     clist = gtop.get_widget("child_list")
-    clist.set_column_visibility(4,Config.show_detail)
-    clist.set_column_visibility(1,Config.id_visible)
+    clist.set_column_visibility(c_details,Config.show_detail)
+    clist.set_column_visibility(c_id,Config.id_visible)
+    clist.set_column_visibility(c_birth_order,Config.index_visible)
     apply_filter()
     load_family()
     load_sources()
@@ -1090,10 +1095,10 @@ def on_child_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_child_list_click_column(clist,column):
-    if column == 0:
-        child_change_sort(clist,0,gtop.get_widget("cNameSort"))
-    elif (column == 3) or (column == 6):
-        child_change_sort(clist,6,gtop.get_widget("cDateSort"))
+    if column == c_name:
+        child_change_sort(clist,c_name,gtop.get_widget("cNameSort"))
+    elif (column == c_birth_order) or (column == c_birth_date):
+        child_change_sort(clist,c_birth_order,gtop.get_widget("cDateSort"))
     else:
         return
 
@@ -1133,6 +1138,21 @@ def child_change_sort(clist,column,arrow):
 def sort_child_list(clist):
     clist.freeze()
     clist.sort()
+    if ListColors.get_enable():
+        try:
+            oddbg = GdkColor(ListColors.oddbg[0],ListColors.oddbg[1],ListColors.oddbg[2])
+            oddfg = GdkColor(ListColors.oddfg[0],ListColors.oddfg[1],ListColors.oddfg[2])
+            evenbg = GdkColor(ListColors.evenbg[0],ListColors.evenbg[1],ListColors.evenbg[2])
+            evenfg = GdkColor(ListColors.evenfg[0],ListColors.evenfg[1],ListColors.evenfg[2])
+            rows = clist.rows
+            for i in range(0,rows,2):
+                clist.set_background(i,oddbg)
+                clist.set_foreground(i,oddfg)
+                if i != rows:
+                    clist.set_background(i+1,evenbg)
+                    clist.set_foreground(i+1,evenfg)
+        except OverflowError:
+            pass
     clist.thaw()
 
 #-------------------------------------------------------------------------
@@ -1197,7 +1217,7 @@ def on_child_list_row_move(clist,fm,to):
     # Update the clist indices so any change of sorting works
     i = 0
     for tmp in clist_order:
-    	clist.set_text(i, c_birth_order, "%2d"%new_order[tmp])
+    	clist.set_text(i, c_birth_order, "%2d"%(new_order[tmp]+1))
         i = i + 1
 
     # Need to save the changed order
@@ -1818,8 +1838,8 @@ def display_marriage(family):
                 if len(child.getPhotoList()) > 0:
                     attr = attr + "P"
 
-            clist.append([Config.nameof(child),child.getId(),\
-                          gender,utils.birthday(child),status,attr,"%2d"%i])
+            clist.append(["%2d"%(i+1),Config.nameof(child),child.getId(),\
+                          gender,utils.birthday(child),status,attr])
             clist.set_row_data(i,child)
             i=i+1
             if i != 0:
@@ -1828,7 +1848,7 @@ def display_marriage(family):
             else:	
                 fv_prev.set_sensitive(0)
         clist.set_data("f",family)
-        clist.sort()
+        sort_child_list(clist)
     else:
         fv_prev.set_sensitive(0)
 		
@@ -2731,9 +2751,8 @@ def main(arg):
     database.set_sprefix(Config.sprefix)
     database.set_pprefix(Config.pprefix)
     child_list = gtop.get_widget("child_list")
-    child_list.set_column_visibility(4,Config.show_detail)
-    child_list.set_column_visibility(6,0)
-    child_list.set_column_visibility(7,0)
+    child_list.set_column_visibility(c_details,Config.show_detail)
+    child_list.set_column_justification(c_birth_order,JUSTIFY_RIGHT)
         
     if arg != None:
         read_file(arg)

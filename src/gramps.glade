@@ -1933,10 +1933,24 @@
 		<last_modification_time>Mon, 08 Oct 2001 20:31:41 GMT</last_modification_time>
 	      </signal>
 	      <columns>7</columns>
-	      <column_widths>210,60,85,150,75,50,25</column_widths>
+	      <column_widths>15,210,60,85,150,75,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	      <show_titles>True</show_titles>
 	      <shadow_type>GTK_SHADOW_IN</shadow_type>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<child_name>CList:title</child_name>
+		<name>label15</name>
+		<sensitive>False</sensitive>
+		<label></label>
+		<justify>GTK_JUSTIFY_RIGHT</justify>
+		<wrap>False</wrap>
+		<xalign>0.5</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+	      </widget>
 
 	      <widget>
 		<class>GtkHBox</class>
@@ -2095,19 +2109,6 @@
 		<child_name>CList:title</child_name>
 		<name>noteinfo</name>
 		<label>Details</label>
-		<justify>GTK_JUSTIFY_CENTER</justify>
-		<wrap>False</wrap>
-		<xalign>0.5</xalign>
-		<yalign>0.5</yalign>
-		<xpad>0</xpad>
-		<ypad>0</ypad>
-	      </widget>
-
-	      <widget>
-		<class>GtkLabel</class>
-		<child_name>CList:title</child_name>
-		<name>label15</name>
-		<label>Birth Order</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>0.5</xalign>
