@@ -498,7 +498,7 @@ class GedcomParser:
                 if self.fam_count % UPDATE == 0 and self.window:
                     self.update(self.families_obj,str(self.fam_count))
                 self.fam_count = self.fam_count + 1
-                self.family = self.find_or_create_family(matches[1])
+                self.family = self.find_or_create_family(matches[1][1:-1])
                 self.parse_family()
                 if self.addr != None:
                     father_handle = self.family.get_father_handle()
@@ -840,7 +840,7 @@ class GedcomParser:
                     self.person.set_lds_sealing(ord)
                 self.parse_ord(ord,2)
             elif matches[1] == "FAMS":
-                family = self.find_or_create_family(matches[2])
+                family = self.find_or_create_family(matches[2][1:-1])
                 self.person.add_family_handle(family.get_handle())
                 if note == "":
                     note = self.parse_optional_note(2)
@@ -849,7 +849,7 @@ class GedcomParser:
                 self.db.commit_family(family, self.trans)
             elif matches[1] == "FAMC":
                 type,note = self.parse_famc_type(2)
-                family = self.find_or_create_family(matches[2])
+                family = self.find_or_create_family(matches[2][1:-1])
                 
                 for f in self.person.get_parent_family_handle_list():
                     if f[0] == family.get_handle():
@@ -1162,7 +1162,7 @@ class GedcomParser:
             elif matches[1] == "DATE":
                 ord.set_date_object(self.extract_date(matches[2]))
             elif matches[1] == "FAMC":
-                ord.set_family_handle(self.find_or_create_family(matches[2]))
+                ord.set_family_handle(self.find_or_create_family(matches[2][1:-1]))
             elif matches[1] == "PLAC":
               try:
                 val = matches[2]
@@ -1258,7 +1258,7 @@ class GedcomParser:
             elif matches[1] == "SOUR":
                 event.add_source_reference(self.handle_source(matches,level+1))
             elif matches[1] == "FAMC":
-                family = self.find_or_create_family(matches[2])
+                family = self.find_or_create_family(matches[2][1:-1])
                 mrel,frel = self.parse_adopt_famc(level+1);
                 if self.person.get_main_parents_family_handle() == family.get_handle():
                     self.person.set_main_parent_family_handle(None)
