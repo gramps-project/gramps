@@ -1,5 +1,7 @@
 2003-10-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/sv.po: Typo in keyword. Fixes 820054.
+	* src/gramps_main.py (init_interface, redraw_histmenu): Add
+	accelerators to the navigation menus. 
 
 2003-10-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/Verify.py: handle different calendars properly
