@@ -36,6 +36,7 @@ pkgpython_PYTHON = \
 	TimeLine.py\
 	Verify.py\
 	WebPage.py\
+	WriteFtree.py\
 	WriteGedcom.py\
 	WritePkg.py\
 	WriteCD.py\

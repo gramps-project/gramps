@@ -486,7 +486,7 @@ def register_text_doc(name,classref, table, paper, style, ext,
     for n in _textdoc:
         if n[0] == name:
             return
-    _textdoc.append((name,classref,table,paper,style,ext,printable))
+    _textdoc.append((name,classref,table,paper,style,ext,print_report_label))
 
 #-------------------------------------------------------------------------
 #
