@@ -53,7 +53,6 @@ try:
 except:
     from latin_ansel import ansel_to_latin
     
-import ansel
 import latin_utf8 
 import intl
 import Utils
