@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!-- $Id$ -->
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
@@ -6,11 +7,13 @@
   <!ENTITY mainwin SYSTEM "mainwin.xml">
   <!ENTITY usage SYSTEM "usage.xml">
   <!ENTITY custom SYSTEM "custom.xml">
+  <!ENTITY faq SYSTEM "faq.xml">
+  <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "0.9.5">
-  <!ENTITY manrevision "2.3">
-  <!ENTITY date "September 2003">
+  <!ENTITY appversion "0.98.0">
+  <!ENTITY manrevision "2.4">
+  <!ENTITY date "December 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -104,6 +107,15 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@alex.neuro.umn.edu</email></para>
+                <para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>GRAMPS Manual V2.3</revnumber> 
+		<date>September 2003</date> 
 		<revdescription> 
 	  	<para role="author">Alex Roitman
 		    	<email>shura@alex.neuro.umn.edu</email></para>
@@ -269,6 +281,8 @@
   <sect1 id="appendices">
     <title>Appendices</title>
   
+      &faq;		    <!-- FAQ -->
+      &keybind;		<!-- Keybindings reference -->
       &filtref;		<!-- Filter rule reference -->
       &cmdline;		<!-- Command line reference -->
       

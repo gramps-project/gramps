@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+      <!-- =============== Appendices Subsection ================ -->
+      <sect2 id="keybind">
+      <title>Keybindings reference</title>
+      <para>This appendix contains the list of keybindings that are not 
+      displayed in menus of &app;.
+      </para>
+      
+        <!-- =============== Appendices Sub-subsection ================ -->
+    	<sect3 id="keybind-people">
+        <title>People View</title>
+        <para>The following bindings are available in the People View:</para>
+        
+          <variablelist>
+
+          <varlistentry><term>ENTER</term>
+          <listitem><para> Invoke <guilabel>Edit Person</guilabel> dialog 
+          with the selected person.
+          </para></listitem>
+          </varlistentry>
+
+
+          </variablelist>
+
+        </sect3>
+
+
+        <!-- =============== Appendices Sub-subsection ================ -->
+    	<sect3 id="keybind-family">
+        <title>Family View</title>
+        <para>The following bindings are available in the Family View:</para>
+        
+          <variablelist>
+
+          <varlistentry><term>ENTER</term>
+          <listitem><para> When focus is on the active person, invoke 
+          <guilabel>Edit Person</guilabel> dialog with the active person. 
+          When focus is in the <guilabel>Spouse</guilabel> box, edit the 
+          relationship between the active person and the selected spouse.
+          When focus is in the parents' box, edit relationship between the 
+          selected parents and the active person/selected spouse. When focus
+          is in the children box, edit relationship between the selected 
+          child and his/her parents (active person and selected spouse).
+          </para>
+          <para>In all cases, pressing <guilabel>ENTER</guilabel> somewhere is
+          equivalent to double-clicking on the appropriate selection.
+          </para>
+          </listitem>
+          </varlistentry>
+
+          <varlistentry><term>Shift+ENTER</term>
+          <listitem><para> When focus is on the <guilabel>Spouse</guilabel> 
+          box, invoke <guilabel>Edit Person</guilabel> dialog with the 
+          selected spouse. When focus is in the children box, 
+          invoke <guilabel>Edit Person</guilabel> dialog with the the selected 
+          child.
+          </para>
+          <para>In all cases, pressing <guilabel>Shift+ENTER</guilabel> 
+          somewhere is equivalent to shift-clicking on the appropriate 
+          selection.
+          </para>
+          </listitem>
+          </varlistentry>
+
+
+
+          </variablelist>
+
+        </sect3>
+
+      </sect2>

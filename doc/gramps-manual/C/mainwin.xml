@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
 
 <!-- ================ Main Window ================================ -->
   <sect1 id="gramps-mainwin"> 
@@ -128,10 +129,20 @@
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="people-view">
         <title>People View</title>
-	<para>When &app; opens a database, 
+	<para>When &app; first opens a database, 
 	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
 	and <xref linkend="noside-nofilt-fig"/>). The People View lists 
-        individuals whose data is stored in the database. The People View 
+        individuals whose data is stored in the database.</para>
+        
+        <para> The individuals are arranged in a tree-like structure, 
+        according to their family names. Every family name is a node of the 
+        tree. Clicking the arrow on the left of the node will toggle its 
+        expansion state. When expanded, the node's contents is listed in the 
+        window. When collapsed, the contents is rolled up and not visible. 
+        However, all the data is still intact, it is just not being displayed.
+        </para>
+        
+        <para>The People View 
         displays people's <guilabel>Names</guilabel>, 
         &app; <guilabel>ID</guilabel> numbers, 
         <guilabel>Gender</guilabel>, and 
