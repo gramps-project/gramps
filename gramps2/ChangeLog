@@ -1,3 +1,6 @@
+2004-10-09 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/tips.xml: Typo.
+
 2004-10-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleModel.py: sort top level nodes using locale.strcoll
 
