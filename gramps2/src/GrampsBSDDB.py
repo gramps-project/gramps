@@ -399,6 +399,7 @@ class GrampsBSDDB(GrampsDbBase):
         print 'Successfully finished all upgrades'
 
     def upgrade_2(self,child_rel_notrans):
+        print "Upgrading to DB version 2"
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -424,6 +425,7 @@ class GrampsBSDDB(GrampsDbBase):
         cursor.close()
 
     def upgrade_3(self):
+        print "Upgrading to DB version 3"
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -439,6 +441,7 @@ class GrampsBSDDB(GrampsDbBase):
         cursor.close()
 
     def upgrade_4(self,child_rel_notrans):
+        print "Upgrading to DB version 4"
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
@@ -474,65 +477,88 @@ class GrampsBSDDB(GrampsDbBase):
         cursor = self.get_media_cursor()
         data = cursor.first()
         while data:
+            changed = False
             handle,info = data
             obj = MediaObject()
             # can't use unserialize here, since the new class
             # defines tuples one element short
-            (obj.handle, obj.gramps_id, obj.path, obj.mime, obj.desc,
-            obj.attribute_list, obj.source_list, obj.note, obj.change,
-            obj.date, junk) = info
+            if len(info) == 11:
+                (obj.handle, obj.gramps_id, obj.path, obj.mime, obj.desc,
+                obj.attribute_list, obj.source_list, obj.note, obj.change,
+                obj.date, junk) = info
+                changed = True
+            else:
+                obj.unserialize(info)
             for src_ref in obj.source_list:
-                src_ref.note = src_ref.comments
-                del src_ref.comments
-            for attr in obj.attribute_list:
-                for src_ref in attr.source_list:
+                if 'comments' in dir(src_ref):
                     src_ref.note = src_ref.comments
                     del src_ref.comments
-            self.commit_media_object(obj,None)
+                    changed = True
+            for attr in obj.attribute_list:
+                for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+                        changed = True
+            if changed:
+                self.commit_media_object(obj,None)
             data = cursor.next()
         cursor.close()
         # person
         cursor = self.get_person_cursor()
         data = cursor.first()
         while data:
+            changed = False
             handle,info = data
             person = Person()
             person.unserialize(info)
-            changed = person.media_list or person.source_list or person.attribute_list
             for media_ref in person.media_list:
-                media_ref.attribute_list = media_ref.attrlist
-                del media_ref.attrlist
+                if 'attrlist' in dir(media_ref):
+                    media_ref.attribute_list = media_ref.attrlist
+                    del media_ref.attrlist
+                    changed = True
                 for src_ref in media_ref.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
                         src_ref.note = src_ref.comments
                         del src_ref.comments
+                        changed = True
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        if 'comments' in dir(src_ref):
+                            src_ref.note = src_ref.comments
+                            del src_ref.comments
+                            changed = True
             for src_ref in person.source_list:
-                src_ref.note = src_ref.comments
-                del src_ref.comments
-            for attr in person.attribute_list:
-                for src_ref in attr.source_list:
+                if 'comments' in dir(src_ref):
                     src_ref.note = src_ref.comments
                     del src_ref.comments
+                    changed = True
+            for attr in person.attribute_list:
+                for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+                        changed = True
             for o in [o for o in [person.lds_bapt,
                                 person.lds_endow,
                                 person.lds_seal] if o]:
                 for src_ref in o.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
+                    if 'comments' in dir(src_ref):
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+                        changed = True
             for name in person.alternate_names + [person.primary_name]:
                 for src_ref in name.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
+                    if 'comments' in dir(src_ref):
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+                        changed = True
             for addr in person.address_list:
                 for src_ref in addr.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                    changed = True
+                    if 'comments' in dir(src_ref):
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+                        changed = True
             if changed:
                 self.commit_person(person,None)
             data = cursor.next()
@@ -541,32 +567,43 @@ class GrampsBSDDB(GrampsDbBase):
         cursor = self.get_family_cursor()
         data = cursor.first()
         while data:
+            changed = False
             handle,info = data
             family = Family()
             family.unserialize(info)
-            changed = family.media_list or family.source_list or family.attribute_list
             for media_ref in family.media_list:
-                media_ref.attribute_list = media_ref.attrlist
-                del media_ref.attrlist
+                if 'attrlist' in dir(media_ref):
+                    media_ref.attribute_list = media_ref.attrlist
+                    del media_ref.attrlist
+                    changed = True
                 for src_ref in media_ref.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
                         src_ref.note = src_ref.comments
                         del src_ref.comments
+                        changed = True
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        if 'comments' in dir(src_ref):
+                            src_ref.note = src_ref.comments
+                            del src_ref.comments
+                            changed = True
             for src_ref in family.source_list:
-                src_ref.note = src_ref.comments
-                del src_ref.comments
-            for attr in family.attribute_list:
-                for src_ref in attr.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-            if family.lds_seal:
-                for src_ref in family.lds_seal.source_list:
+                if 'comments' in dir(src_ref):
                     src_ref.note = src_ref.comments
                     del src_ref.comments
                     changed = True
+            for attr in family.attribute_list:
+                for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+                        changed = True
+            if family.lds_seal:
+                for src_ref in family.lds_seal.source_list:
+                    if 'comments' in dir(src_ref):
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+                        changed = True
             if changed:
                 self.commit_family(family,None)
             data = cursor.next()
@@ -575,23 +612,32 @@ class GrampsBSDDB(GrampsDbBase):
         cursor = self.get_event_cursor()
         data = cursor.first()
         while data:
+            changed = False
             handle,info = data
             event = Event()
             event.unserialize(info)
             changed = event.media_list or event.source_list
             for media_ref in event.media_list:
-                media_ref.attribute_list = media_ref.attrlist
-                del media_ref.attrlist
+                if 'attrlist' in dir(media_ref):
+                    media_ref.attribute_list = media_ref.attrlist
+                    del media_ref.attrlist
+                    changed = True
                 for src_ref in media_ref.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
                         src_ref.note = src_ref.comments
                         del src_ref.comments
+                        changed = True
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        if 'comments' in dir(src_ref):
+                            src_ref.note = src_ref.comments
+                            del src_ref.comments
+                            changed = True
             for src_ref in event.source_list:
-                src_ref.note = src_ref.comments
-                del src_ref.comments
+                if 'comments' in dir(src_ref):
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                    changed = True
             if changed:
                 self.commit_event(event,None)
             data = cursor.next()
@@ -600,23 +646,31 @@ class GrampsBSDDB(GrampsDbBase):
         cursor = self.get_place_cursor()
         data = cursor.first()
         while data:
+            changed = False
             handle,info = data
             place = Place()
             place.unserialize(info)
-            changed = place.media_list or place.source_list
             for media_ref in place.media_list:
-                media_ref.attribute_list = media_ref.attrlist
-                del media_ref.attrlist
+                if 'attrlist' in dir(media_ref):
+                    media_ref.attribute_list = media_ref.attrlist
+                    del media_ref.attrlist
+                    changed = True
                 for src_ref in media_ref.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
                         src_ref.note = src_ref.comments
                         del src_ref.comments
+                        changed = True
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        if 'comments' in dir(src_ref):
+                            src_ref.note = src_ref.comments
+                            del src_ref.comments
+                            changed = True
             for src_ref in place.source_list:
-                src_ref.note = src_ref.comments
-                del src_ref.comments
+                if 'comments' in dir(src_ref):
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                    changed = True
             if changed:
                 self.commit_place(place,None)
             data = cursor.next()
@@ -625,20 +679,26 @@ class GrampsBSDDB(GrampsDbBase):
         cursor = self.get_source_cursor()
         data = cursor.first()
         while data:
+            changed = False
             handle,info = data
             source = Source()
             source.unserialize(info)
-            changed = source.media_list
             for media_ref in source.media_list:
-                media_ref.attribute_list = media_ref.attrlist
-                del media_ref.attrlist
+                if 'attrlist' in dir(media_ref):
+                    media_ref.attribute_list = media_ref.attrlist
+                    del media_ref.attrlist
+                    changed = True
                 for src_ref in media_ref.source_list:
-                    src_ref.note = src_ref.comments
-                    del src_ref.comments
-                for attr in media_ref.attribute_list:
-                    for src_ref in attr.source_list:
+                    if 'comments' in dir(src_ref):
                         src_ref.note = src_ref.comments
                         del src_ref.comments
+                        changed = True
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        if 'comments' in dir(src_ref):
+                            src_ref.note = src_ref.comments
+                            del src_ref.comments
+                            changed = True
             if changed:
                 self.commit_source(source,None)
             data = cursor.next()

@@ -1,3 +1,6 @@
+2005-04-05  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (upgrade_5): Make work with half-upgraded data.
+
 2005-04-05  Don Allingham  <don@gramps-project.org>
 	* src/DbPrompter.py: provide a better error message of DB open failure
 	* src/const.py.in: Add Martin Hawlisch and Richard Tayor to author list
