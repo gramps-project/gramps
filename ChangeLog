@@ -6,6 +6,8 @@
 	* src/FamilyView.py: Likewise. 
 	* src/SelectChild.py: Likewise.
 	* src/plugins/rel_ru.py: Likewise.
+	* src/GrampsCfg.py: Fix toolbar prefs. 
+	* src/intl.py: Import intl22.so for both 2.2 and 2.3 python versions.
 
 2003-08-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: removed #! at top of file

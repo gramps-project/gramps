@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ ver = sys.version[0:3]
 _trans = None
 
 try:
-    if ver == "2.2":
+    if ver in ["2.2","2.3"]:
         from intl22 import *
         status = None
     else:

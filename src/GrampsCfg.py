@@ -312,17 +312,17 @@ def get_string(value,defval=""):
 
 def get_bool(key,defval=0):
     v = client.get_bool(key)
-    if v:
-        return v
-    else:
+    if v == None:
         return defval
+    else:
+        return v
 
 def get_int(key,defval=0):
     v = client.get_int(key)
-    if v:
-        return v
-    else:
+    if v == None:
         return defval
+    else:
+        return v
 
 def set_int(key,value):
     client.set_int(key,value)
@@ -905,7 +905,7 @@ class GrampsPreferences:
         set_bool("/apps/gramps/capitalize",capitalize)
         set_bool("/apps/gramps/index-visible",index_visible)
         set_int("/apps/gramps/statusbar",status_bar)
-        set_int("/apps/gramps/toolbar",toolbar+1)
+        set_int("/apps/gramps/toolbar",toolbar)
         set_int("/apps/gramps/defaultview",defaultview)
         set_string("/apps/gramps/paper-preference",paper_preference)
         set_string("/apps/gramps/output-preference",output_preference)
