@@ -1,4 +1,6 @@
 Please read the COPYING file first.
+If building from source, also read the INSTALL file (at least through the
+"SUPER-SHORT VERSION") before going further.
 
 Requirements
 --------------------------------
@@ -17,14 +19,13 @@ Gramps documentation is supplied in the form of SGML files, which will be
 installed in the GNOME help path(*).  Recent versions of Nautilus and Galeon
 can generate HTML on-the-fly documents from these.  For more information on
 building HTML files (including info about packages that do and do not work
-with the documentation) see the INSTALL file.  To generate separate HTML
-documentation:
-
-1) Ensure the following packages are installed:
+with the documentation) see the INSTALL file.  To generate HTML
+documentation the following packages *MUST* installed:
 * db2html >= 0.6.9  (jw >= 1.1)  to convert the SGML -> HTML
 * gnome-doc-tools-2-1            for the GNOME documentation style sheets
 The former is part of the docbook-utils package, the latter can be found
-from the developer section at gnome.org. 
+from the developer section at gnome.org. (note that docbook-utils 0.6.10 is
+buggy)
 
 One also needs png support for sgml, which should be a part of the
 gnome-doc-tools package. The /etc/sgml/catalog file should
