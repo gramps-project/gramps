@@ -1187,7 +1187,7 @@ class GrampsDbBase:
         Returns the Person display common information stored in the
         database's metadata.
         """
-        default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7),(0,8)]
+        default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7),(0,8),(0,9,)]
         if self.metadata == None:
             return default
         else:

@@ -354,6 +354,7 @@ class Gramps:
             "on_abandon_activate" : self.exit_and_undo,
             "on_column_order_activate": self.column_order,
             "on_back_clicked" : self.back_clicked,
+            "on_scratchpad_clicked" : self.scratchpad_clicked,
             # FIXME: uncomment when fixed
             #"on_back_pressed" : self.back_pressed,
             "on_fwd_clicked" : self.fwd_clicked,
@@ -718,6 +719,10 @@ class Gramps:
             self.remove_item.set_sensitive(val)
             self.edit_item.set_sensitive(val)
         
+    def scratchpad_clicked(self,obj):
+        import ScratchPad
+        ScratchPad.ScratchPadWindow(self.db, self)
+
     def back_clicked(self,obj,step=1):
         if self.hindex > 0:
             try:
@@ -1387,7 +1392,7 @@ class Gramps:
                         child = self.db.get_person_from_handle(child_handle)
                         child.remove_parent_family_handle(family.get_handle())
                         self.db.commit_person(child,trans)
-                    self.db.delete_family(family.get_handle(),trans)
+                    self.db.remove_family(family.get_handle(),trans)
                 else:
                     family.set_father_handle(None)
             else:
@@ -1396,7 +1401,7 @@ class Gramps:
                         child = self.db.get_person_from_handle(child_handle)
                         child.remove_parent_family_handle(family)
                         self.db.commit_person(child,trans)
-                    self.db.delete_family(family,trans)
+                    self.db.remove_family(family,trans)
                 else:
                     family.set_mother_handle(None)
             self.db.commit_family(family,trans)

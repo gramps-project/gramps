@@ -1,3 +1,13 @@
+2005-03-19  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbBase.py: handle new column
+	* src/PeopleModel.py: add cause of death field
+	* src/PeopleView.py: add cause of death field
+	* src/gramps.glade: add scratchpad button
+	* src/gramps_main.py: add scratchpad button press callback
+	* src/plugins/ScratchPad.py: call alternate dialog 
+	* src/plugins/scratchpad.glade: provide alternate dialog based
+	on gtk.Dialog that implements the help button.
+
 2005-03-19  Alex Roitman  <shura@gramps-project.org>
 	* src/gramps.glade: Add date LED buttons for LDS dates.
 	* src/EditPerson.py (draw_lds): Add date LED buttons for LDS dates;
