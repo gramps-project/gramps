@@ -30,7 +30,7 @@ except ImportError:
     pass
 
 import gtk.glade
-import intl
+import gettext
 
 #-------------------------------------------------------------------------
 #
@@ -42,10 +42,14 @@ if os.environ.has_key("GRAMPSI18N"):
 else:
     loc = "/usr/share/locale"
 
-intl.bindtextdomain("gramps",loc)
-intl.bind_textdomain_codeset("gramps",'UTF-8')
-intl.textdomain("gramps")
-locale.setlocale(locale.LC_NUMERIC,"C")
+locale.setlocale(locale.LC_ALL,'')
+gettext.bindtextdomain("gramps",loc)
+gtk.glade.bindtextdomain("gramps",loc)
+
+gtk.glade.textdomain("gramps")
+gettext.textdomain("gramps")
+
+gettext.install("gramps",loc,unicode=1)
 
 #-------------------------------------------------------------------------
 #

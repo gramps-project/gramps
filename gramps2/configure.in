@@ -48,14 +48,6 @@ AC_PATH_PROG(ZIP, zip)
 
 AC_PROG_CC
 
-AC_CHECK_HEADER(libintl.h)
-
-AC_CHECK_LIB(c,textdomain,LIBS="",
- [ AC_CHECK_LIB(intl,textdomain,
-	LIBS="-lintl",
-	AC_MSG_ERROR("Could not find internationalization libraries"))
-        ])
-
 dnl Check for programs
 
 AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, "YES", "NO")
@@ -227,7 +219,6 @@ AC_SUBST(GPREFIX)
 
 AC_SUBST(GNOMEINC)
 AC_SUBST(GNOMELIB)
-AC_SUBST(INTLLIBS)
 
 AC_CONFIG_FILES([
 Makefile 
