@@ -102,7 +102,7 @@ headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
 snameRegexp= re.compile(r"/([^/]*)/")
 calRegexp = re.compile(r"\s*(ABT|BEF|AFT)?\s*@#D([^@]+)@\s*(.*)$")
-fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
+fromtoRegexp = re.compile(r"\s*(FROM|BET)\s+@#D([^@]+)@\s*(.*)\s+(AND|TO)\s+@#D([^@]+)@\s*(.*)$")
 
 #-------------------------------------------------------------------------
 #
@@ -1593,7 +1593,7 @@ class GedcomParser:
                     dateobj.set_calendar(Date.JULIAN)
                 elif cal == "HEBREW":
                     dateobj.set_calendar(Date.HEBREW)
-                    dateobj.set(data)
+                dateobj.set(data)
                 if abt:
                     dateobj.get_start_date().setMode(abt)
             else:
