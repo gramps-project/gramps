@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Thu Sep 18 22:31:51 2003\n"
-"PO-Revision-Date: 2003-11-23 21:26+0100\n"
+"PO-Revision-Date: 2003-11-25 01:24+0100\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -2328,7 +2328,7 @@ msgstr "Be_skrivelse:"
 
 #: dialog.glade:203 edit_person.glade:4164
 msgid "_Place:"
-msgstr "_Sted:"
+msgstr "Ste_d:"
 
 #: dialog.glade:231
 msgid "_Cause:"
@@ -2374,7 +2374,7 @@ msgstr "_Legg til..."
 #: places.glade:1554 rule.glade:212 rule.glade:876 srcsel.glade:857
 #: styles.glade:150
 msgid "_Edit..."
-msgstr "R_ediger..."
+msgstr "_Rediger..."
 
 #: dialog.glade:600 dialog.glade:803 dialog.glade:1258 dialog.glade:2351
 #: dialog.glade:3388 edit_person.glade:1768 edit_person.glade:2317
@@ -2483,7 +2483,7 @@ msgstr "P_rivat opplysning"
 
 #: dialog.glade:3005 edit_person.glade:178
 msgid "Family _prefix:"
-msgstr "F_orstavelse:"
+msgstr "Forst_avelse:"
 
 #: dialog.glade:3621 preferences.glade:2537
 msgid "_Person:"
@@ -2641,7 +2641,7 @@ msgstr "_mann"
 
 #: edit_person.glade:740
 msgid "fema_le"
-msgstr "kvinne"
+msgstr "k_vinne"
 
 #: edit_person.glade:760
 msgid "_unknown"
@@ -3418,7 +3418,7 @@ msgstr "Kjønn:"
 
 #: gramps.glade:6244
 msgid "_female"
-msgstr "kvinne"
+msgstr "k_vinne"
 
 #: gramps.glade:6472
 msgid "_Open an existing database"
@@ -6508,7 +6508,7 @@ msgstr "_Ny hendelsestype:"
 
 #: plugins/count_anc.py:51
 msgid "Number of ancestors of \"%s\" by generation"
-msgstr "Antall etterfølgere til \"%s\" etter generasjon"
+msgstr "Antall forfedre til \"%s\" etter generasjon"
 
 #: plugins/count_anc.py:61
 msgid "Generation %d has 1 individual.\n"
@@ -6520,15 +6520,15 @@ msgstr "Generasjon %d har %d personer.\n"
 
 #: plugins/count_anc.py:77
 msgid "Total ancestors in generations %d to -1 is %d .\n"
-msgstr "Totalt antall etterfølgere i generasjonene %d til -1 er %d .\n"
+msgstr "Totalt antall forfedre i generasjonene %d til -1 er %d .\n"
 
 #: plugins/count_anc.py:94
 msgid "Number of ancestors"
-msgstr "Antall etterfølgere"
+msgstr "Antall forfedre"
 
 #: plugins/count_anc.py:96
 msgid "Counts number of ancestors of selected person"
-msgstr "Teller antall etterkommere av valgte person"
+msgstr "Teller antall forfedre av valgte person"
 
 #: plugins/eval.glade:130
 msgid "<b>Evaluation Window</b>"
