@@ -1,3 +1,7 @@
+2005-03-23  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/RelLib.py: Added self.get_date() to get_text_data_child_list().
+	This way the date is searchable in the full-text search filter.
+
 2005-03-23  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (PrivacyBase): Add base class for privacy capabilities;
 	(PrivateSourceNote): Inherits from SourceNote and PrivacyBase;
