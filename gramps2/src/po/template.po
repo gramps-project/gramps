@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: Thu Jan 30 21:21:32 2003\n"
+"POT-Creation-Date: Sat Feb  1 08:40:59 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -393,11 +393,6 @@ msgstr ""
 msgid "Places"
 msgstr ""
 
-#: FamilyView.py:139 PlaceView.py:54 PlaceView.py:55 PlaceView.py:56
-#: PlaceView.py:57 PlaceView.py:58 PlaceView.py:59
-msgid ""
-msgstr ""
-
 #: FamilyView.py:140 gramps_main.py:91 plugins/IndivComplete.py:381
 #: plugins/IndivSummary.py:225 plugins/WebPage.py:284 plugins/WebPage.py:286
 #: plugins/WebPage.py:288
@@ -596,19 +591,15 @@ msgstr ""
 msgid "Matches the filter named"
 msgstr ""
 
-#: GenericFilter.py:838
-msgid "class"
-msgstr ""
-
-#: GenericFilter.py:880
+#: GenericFilter.py:881
 msgid "Local Filters"
 msgstr ""
 
-#: GenericFilter.py:895
+#: GenericFilter.py:896
 msgid "System Filters"
 msgstr ""
 
-#: GenericFilter.py:910
+#: GenericFilter.py:911
 msgid "Custom Filters"
 msgstr ""
 
@@ -1158,10 +1149,6 @@ msgstr ""
 msgid "User Template"
 msgstr ""
 
-#: Report.py:650
-msgid "HTML_Template"
-msgstr ""
-
 #: Report.py:651
 msgid "Choose File"
 msgstr ""
@@ -1540,7 +1527,7 @@ msgstr ""
 msgid "LaTeX"
 msgstr ""
 
-#: docgen/OpenDrawDoc.py:501 docgen/OpenOfficeDoc.py:572
+#: docgen/OpenDrawDoc.py:506 docgen/OpenOfficeDoc.py:572
 msgid "OpenOffice/StarOffice 6"
 msgstr ""
 
@@ -1560,7 +1547,7 @@ msgstr ""
 msgid "Rich Text Format (RTF)"
 msgstr ""
 
-#: docgen/SvgDrawDoc.py:132
+#: docgen/SvgDrawDoc.py:202
 msgid "SVG (Scalable Vector Graphics)"
 msgstr ""
 
@@ -2317,7 +2304,7 @@ msgid "Full Family Chart for %s"
 msgstr ""
 
 #: plugins/FullFamily.py:114
-msgid "Save Full Famly Chart"
+msgid "Save Full Family Chart"
 msgstr ""
 
 #: plugins/GraphViz.py:60 plugins/GraphViz.py:87

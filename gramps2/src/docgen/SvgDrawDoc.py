@@ -18,14 +18,28 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# python modules
+#
+#-------------------------------------------------------------------------
 import string
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 import Plugins
 from intl import gettext as _
-
 import TextDoc
 import DrawDoc
 
-
+#-------------------------------------------------------------------------
+#
+# SvgDrawDoc
+#
+#-------------------------------------------------------------------------
 class SvgDrawDoc(DrawDoc.DrawDoc):
 
     def __init__(self,styles,type,orientation):
@@ -78,11 +92,34 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         self.f.close()
     
     def draw_line(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
+
         self.f.write('<line x1="%4.2fcm" y1="%4.2fcm" ' % (x1*28.35,y1*28.35))
         self.f.write('x2="%4.2fcm" y2="%4.2fcm" ' % (x2*28.35,y2*28.35))
         self.f.write(' style="stroke:#000000;stroke-width=1"/>\n')
+
+    def draw_bar(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
+
+	s = self.draw_styles[style]
+        self.f.write('<rect ')
+        self.f.write('x="%4.2fcm" ' % x1)
+        self.f.write('y="%4.2fcm" ' % y1)
+        self.f.write('width="%4.2fcm" ' % (x2-x1))
+        self.f.write('height="%4.2fcm" ' % (y2-y1))
+        self.f.write('style="fill:#ffffff;stroke:#000000;')
+        self.f.write('stroke-width:%.2f"/>\n' % s.get_line_width())
     
     def draw_box(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
+
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 	p = self.style_list[para_name]
@@ -128,5 +165,38 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
                 self.f.write('">')
                 self.f.write(lines[i])
                 self.f.write('</text>\n')
+
+    def draw_text(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
         
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+	p = self.style_list[para_name]
+        
+        font = p.get_font()
+        font_size = font.get_size()
+        fs = (font_size/28.35) * 1.2
+        self.f.write('<text ')
+        self.f.write('x="%4.2fcm" ' % x)
+        self.f.write('y="%4.2fcm" ' % (y+fs))
+        self.f.write('style="fill:#%02x%02x%02x; '% font.get_color())
+        if font.get_bold():
+            self.f.write('font-weight="bold";')
+        if font.get_italic():
+            self.f.write('font-style="italic";')
+        self.f.write('font-size:%d;' % font_size)
+        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+            self.f.write('font-family=sans-serif;')
+        else:
+            self.f.write('font-family=serif;')
+        self.f.write('">')
+        self.f.write(text)
+        self.f.write('</text>\n')
+        
+#-------------------------------------------------------------------------
+#
+# Register document generator
+#
+#-------------------------------------------------------------------------
 Plugins.register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc);

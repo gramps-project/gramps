@@ -78,15 +78,58 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
 	self.f.showPage()
 
     def draw_line(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
+        stype = self.draw_styles[style]
+        if stype.get_line_style() == DrawDoc.SOLID:
+            self.f.setDash([],0)
+        else:
+            self.f.setDash([2,4],0)
+        self.f.setLineWidth(stype.get_line_width())
 	self.f.line(x1*cm,y1*cm,x2*cm,y2*cm)
 
+    def draw_bar(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
+        stype = self.draw_styles[style]
+        if stype.get_line_style() == DrawDoc.SOLID:
+            self.f.setDash([],0)
+        else:
+            self.f.setDash([2,4],0)
+        self.f.setLineWidth(stype.get_line_width())
+ 	self.f.rect(x1*cm,y1*cm,(x2-x1)*cm,(y2-y1)*cm,fill=0,stroke=1)
+
+    def draw_path(self,style,path,fill):
+        stype = self.draw_styles[style]
+        if stype.get_line_style() == DrawDoc.SOLID:
+            self.f.setDash([],0)
+        else:
+            self.f.setDash([2,4],0)
+        self.f.setLineWidth(stype.get_line_width())
+        
+        p = self.f.beginPath()
+        point = path[0]
+        p.moveTo((point[0]+self.lmargin)*cm,(point[1]+self.tmargin)*cm)
+        for point in path[1:]:
+            p.lineTo((point[0]+self.lmargin)*cm,(point[1]+self.tmargin)*cm)
+        p.close()
+        self.f.drawPath(p,stroke=1,fill=fill)
+
     def draw_box(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
+
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
 	p = self.style_list[para_name]
 
 	w = box_style.get_width()*cm
         h = box_style.get_height()*cm
+        self.f.setLineWidth(stype.get_line_width())
 
 	if box_style.get_shadow():
             self.f.setFillColorRGB(0.5,0.5,0.5)
@@ -103,13 +146,16 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
             lines = string.split(text,'\n')
             self.center_print(lines,font,x*cm,y*cm,w,h)
 
-    def write_at(self,style,text,x,y):
-	p = self.style_list[style]
+    def draw_text(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
 	font = p.get_font()
-
         self.f.setStrokeColor(make_color(font.get_color()))
-
-        self.left_print(text,font,x*cm,y*cm)
+        self.left_print(text,font,x*cm,(y*cm)+font.get_size())
 
     def center_print(self,lines,font,x,y,w,h):
         l = len(lines)

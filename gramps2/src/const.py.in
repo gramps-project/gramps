@@ -130,6 +130,7 @@ childRelations = {
     _("Birth")     : "Birth",
     _("Adopted")   : "Adopted",
     _("Stepchild") : "Stepchild",
+    _("Sponsored") : "Sponsored",
     _("Foster")    : "Foster",
     _("None")      : "None",
     _("Unknown")   : "Unknown",

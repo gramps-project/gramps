@@ -400,7 +400,7 @@ def birthday(person):
 def thumb_path(dir,mobj):
     type = mobj.getMimeType()
     if type[0:5] == "image":
-        thumb = "%s/.thumb/%s.jpg" % (dir,mobj.getId()) 
+        thumb = "%s/.thumb/%s.jpg" % (dir,mobj.getId())
         try:
             if RelImage.check_thumb(mobj.getPath(),thumb,const.thumbScale):
                 return thumb

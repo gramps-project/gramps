@@ -835,7 +835,8 @@ class FilterParser(handler.ContentHandler):
                     pass
             self.gfilter_list.add(self.f)
         elif tag == "rule":
-            name = _(attrs['class'])
+            cname = attrs['class']
+            name = _(cname)
             self.a = []
             self.cname = tasks[name]
         elif tag == "arg":
