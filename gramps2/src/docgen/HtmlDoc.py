@@ -336,7 +336,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'text/html'
-            app = GrampsMime.get_application_(apptype)
+            app = GrampsMime.get_application(apptype)
             os.environ["FILE"] = self.filename
             os.system ('%s "$FILE" &' % app[0])
 
