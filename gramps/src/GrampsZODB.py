@@ -184,16 +184,16 @@ class GrampsZODB(GrampsDB):
         self.root = self.conn.root()
         self.need_commit = 0
 
-        self.familyMap = self.get_object('fm')
+        self.familyMap = self.get_object('familyMap')
 
         if self.root.has_key('pm'):
-            self.personMap = self.root['pm']
+            self.personMap = self.root['personMap']
         else:
             self.personMap = PersonMap()
             self.root['pm'] = self.personMap
             self.need_commit = 1
 
-        self.personTable = self.get_display_table(self.personMap,'pmt')
+        self.personTable = self.get_display_table(self.personMap,'personTable')
 
         if self.root.has_key('surnames'):
             self.surnames = self.root['surnames']
@@ -204,11 +204,11 @@ class GrampsZODB(GrampsDB):
             self.root['surnames'] = self.surnames
             self.need_commit = 1
 
-        self.sourceMap = self.get_object('sm')
-        self.sourceTable = self.get_display_table(self.sourceMap,'smt')
+        self.sourceMap = self.get_object('sourceMap')
+        self.sourceTable = self.get_display_table(self.sourceMap,'sourceTable')
 
-        self.placeMap = self.get_object('plm')
-        self.placeTable = self.get_display_table(self.placeMap,'plmt')
+        self.placeMap = self.get_object('placeMap')
+        self.placeTable = self.get_display_table(self.placeMap,'placeTable')
         
         if self.root.has_key('default'):
             self.default = self.root['default']
