@@ -215,7 +215,8 @@ class SourceSelector:
 #
 #-------------------------------------------------------------------------
 class SourceTab:
-    def __init__(self,srclist,parent,top,window,clist,add_btn,edit_btn,del_btn):
+    def __init__(self,srclist,parent,top,window,clist,add_btn,
+                 edit_btn,del_btn,readonly=False):
         self.db = parent.db
         self.parent = parent
         self.list = srclist
@@ -224,6 +225,9 @@ class SourceTab:
         self.slist = clist
         self.selection = clist.get_selection()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+
+        add_btn.set_sensitive(not readonly)
+        del_btn.set_sensitive(not readonly)
 
         colno = 0
         for title in [ (_('ID'),0,100), (_('Title'),1,150)]:

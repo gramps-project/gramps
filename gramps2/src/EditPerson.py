@@ -464,14 +464,18 @@ class EditPerson:
 
         self.redraw_event_list()
         self.redraw_attr_list()
-        self.redraw_addr_list()
+        self.redraw_addr_list() 
         self.redraw_name_list()
         self.redraw_url_list()
         self.get_widget("notebook").set_current_page(0)
         self.given.grab_focus()
         self.add_itself_to_winsmenu()
 
-        self.get_widget('ok').set_sensitive(not self.db.readonly)
+        for i in ["ok", "add_aka", "aka_delete", "event_del",
+                  "event_add", "attr_add", "attr_del", "addr_add",
+                  "addr_del", "media_add", "media_sel", "media_del",
+                  "add_url", "delete_url", "add_src", "del_src" ]:
+            self.get_widget(i).set_sensitive(not self.db.readonly)
 
         self.window.show()
 
