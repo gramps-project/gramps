@@ -30,7 +30,7 @@
 	<textobject> 
 	<phrase>Shows &app; main window. Contains titlebar, menubar, 
 	      toolbar, sidebar, display area, statusbar, progressbar, and
-	      scrollbars. Menubar contains File, Edit, View, Bookmarks, 
+	      scrollbars. Menubar contains File, Edit, View, Go, Bookmarks, 
 	      Reports, Tools, Settings, and Help menus.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
