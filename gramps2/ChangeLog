@@ -6,6 +6,9 @@
 	
 	* src/docgen/HtmlDoc.py (start_bold, end_bold): Add functions (closes
 	bug #841277).
+	
+	* src/plugins/WebPage.py (IndividualPage.write_normal_row): Add separators
+	between the references (comma and space). 
 
 2003-11-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: Change column sizes on the FamilyView to

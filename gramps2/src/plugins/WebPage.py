@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Web Site/Generate Web Site"
 
 #------------------------------------------------------------------------
@@ -113,7 +115,7 @@ class IndividualPage:
         self.doc = doc
         self.use_id = id
         self.id_link = idlink
-	self.list = map
+        self.list = map
         self.private = private
         self.alive = person.probablyAlive() and restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
@@ -146,12 +148,17 @@ class IndividualPage:
         self.doc.start_paragraph("Data")
         self.doc.write_text(data)
         if sreflist:
+            first = 1
             for sref in sreflist:
-                self.doc.start_link("#s%d" % self.scnt)
                 self.doc.write_raw('<SUP>')
+                if first:
+                    first = 0
+                else:
+                    self.doc.write_text(', ')
+                self.doc.start_link("#s%d" % self.scnt)
                 self.doc.write_text('%d' % self.scnt)
-                self.doc.write_raw('</SUP>')
                 self.doc.end_link()
+                self.doc.write_raw('</SUP>')
                 self.scnt = self.scnt + 1
                 self.slist.append(sref)
         self.doc.end_paragraph()
