@@ -473,13 +473,13 @@ class GrampsParser:
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
         if self.family:
-            self.family.add_media_object(self.objref)
+            self.family.add_media_reference(self.objref)
         elif self.source:
-            self.source.add_media_object(self.objref)
+            self.source.add_media_reference(self.objref)
         elif self.person:
-            self.person.add_media_object(self.objref)
+            self.person.add_media_reference(self.objref)
         elif self.placeobj:
-            self.placeobj.add_media_object(self.objref)
+            self.placeobj.add_media_reference(self.objref)
 
     def start_object(self,attrs):
         self.object = self.db.find_object_from_id(attrs['id'])
@@ -530,13 +530,13 @@ class GrampsParser:
         self.photo.set_mime_type(Utils.get_mime_type(self.photo.get_path()))
         self.db.add_object(self.photo)
         if self.family:
-            self.family.add_media_object(self.pref)
+            self.family.add_media_reference(self.pref)
         elif self.source:
-            self.source.add_media_object(self.pref)
+            self.source.add_media_reference(self.pref)
         elif self.person:
-            self.person.add_media_object(self.pref)
+            self.person.add_media_reference(self.pref)
         elif self.placeobj:
-            self.placeobj.add_media_object(self.pref)
+            self.placeobj.add_media_reference(self.pref)
 
     def start_daterange(self,attrs):
         if self.source_ref:
@@ -1037,13 +1037,13 @@ class GrampsImportParser(GrampsParser):
         if attrs.has_key('priv'):
             self.objref.set_privacy(int(attrs['priv']))
         if self.family:
-            self.family.add_media_object(self.objref)
+            self.family.add_media_reference(self.objref)
         elif self.source:
-            self.source.add_media_object(self.objref)
+            self.source.add_media_reference(self.objref)
         elif self.person:
-            self.person.add_media_object(self.objref)
+            self.person.add_media_reference(self.objref)
         elif self.placeobj:
-            self.placeobj.add_media_object(self.objref)
+            self.placeobj.add_media_reference(self.objref)
 
     def start_object(self,attrs):
         self.object = self.db.find_object_no_conflicts(attrs['id'],self.MediaFileMap)

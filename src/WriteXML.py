@@ -188,14 +188,12 @@ class XmlWriter:
 
         date = string.split(time.ctime(time.time()))
         owner = self.db.get_researcher()
-        familyMap = self.db.get_family_id_map()
-        familyList = familyMap.keys ()
+        familyList = self.db.get_family_keys()
         person_len = self.db.get_number_of_people()
-        family_len = len(familyMap)
+        family_len = len(familyList)
         source_len = len(self.db.get_source_keys())
         place_len = len(self.db.get_place_id_keys())
-        objMap = self.db.get_object_map()
-        objList = objMap.keys ()
+        objList = self.db.get_object_keys()
         
         total = person_len + family_len + place_len + source_len
 
@@ -315,8 +313,8 @@ class XmlWriter:
             self.g.write("  <families>\n")
 
             familyList.sort ()            
-            for key in familyList:
-                family = familyMap[key]
+            for key in self.db.get_family_keys():
+                family = self.db.find_family_from_id(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
@@ -380,15 +378,15 @@ class XmlWriter:
         if len(objList) > 0:
             self.g.write("  <objects>\n")
             objList.sort ()
-            for key in objList:
-                object = objMap[key]
+            for key in self.db.get_object_keys():
+                object = self.db.find_object_from_id(key)
                 self.write_object(object)
             self.g.write("  </objects>\n")
 
         if len(self.db.get_bookmarks()) > 0:
             self.g.write("  <bookmarks>\n")
-            for person in self.db.get_bookmarks():
-                self.g.write('    <bookmark ref="%s"/>\n' % person.get_id())
+            for person_id in self.db.get_bookmarks():
+                self.g.write('    <bookmark ref="%s"/>\n' % person_id)
             self.g.write("  </bookmarks>\n")
 
         self.g.write("</database>\n")

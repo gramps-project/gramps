@@ -335,7 +335,7 @@ class MergePeople:
         self.merge_families()
 
         for photo in self.p2.get_media_list():
-            self.p1.add_media_object(photo)
+            self.p1.add_media_reference(photo)
 
         if self.p1.get_nick_name() == "":
             self.p1.set_nick_name(self.p2.get_nick_name())
@@ -860,7 +860,7 @@ class MergePlaces:
 
         # Copy photos from P2 to P1
         for photo in self.p2.get_media_list():
-            self.p1.add_media_object(photo)
+            self.p1.add_media_reference(photo)
 
         # Copy sources from P2 to P1
         for source in self.p2.get_source_references():

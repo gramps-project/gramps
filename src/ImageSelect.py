@@ -178,7 +178,7 @@ class ImageSelect:
         if (already_imported):
             oref = RelLib.MediaRef()
             oref.set_reference(already_imported)
-            self.dataobj.add_media_object(oref)
+            self.dataobj.add_media_reference(oref)
             self.add_thumbnail(oref)
         else:
             type = Utils.get_mime_type(filename)
@@ -369,7 +369,7 @@ class Gallery(ImageSelect):
         self.db.add_object(photo)
         oref = RelLib.MediaRef()
         oref.set_reference(photo)
-        self.dataobj.add_media_object(oref)
+        self.dataobj.add_media_reference(oref)
 
     def add_thumbnail(self, photo):
         """Scale the image and add it to the IconList."""
@@ -510,7 +510,7 @@ class Gallery(ImageSelect):
                 self.db.add_object(photo)
                 oref = RelLib.MediaRef()
                 oref.set_reference(photo)
-                self.dataobj.add_media_object(oref)
+                self.dataobj.add_media_reference(oref)
                 try:
                     id = photo.get_id()
                     name = RelImage.import_media_object(tfile,self.path,id)
@@ -549,7 +549,7 @@ class Gallery(ImageSelect):
                         index = index + 1
                     oref = RelLib.MediaRef()
                     oref.set_reference(self.db.find_object_from_id(data.data))
-                    self.dataobj.add_media_object(oref)
+                    self.dataobj.add_media_reference(oref)
                     self.add_thumbnail(oref)
                     self.parent.lists_changed = 1
                     if GrampsCfg.globalprop:
@@ -578,7 +578,7 @@ class Gallery(ImageSelect):
             return
         oref = RelLib.MediaRef()
         oref.set_reference(object)
-        self.dataobj.add_media_object(oref)
+        self.dataobj.add_media_reference(oref)
         self.add_thumbnail(oref)
 
         self.parent.lists_changed = 1
