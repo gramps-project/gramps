@@ -1252,6 +1252,7 @@ class Gramps:
 
         for sel in mlist:
             p = self.db.getPerson(sel)
+            self.active_person = p
             name = GrampsCfg.nameof(p) 
 
             QuestionDialog(_('Delete %s?') % name,
@@ -1262,6 +1263,8 @@ class Gramps:
                              'after you save the database.'),
                            _('_Delete Person'),
                            self.delete_person_response)
+
+        self.update_display(0)
 
     def delete_person_response(self):
         for family in self.active_person.getFamilyList():
@@ -1296,7 +1299,6 @@ class Gramps:
         else:
             self.change_active_person(None)
         self.redraw_histmenu()
-        self.update_display(0)
         Utils.modified()
 
     def merge_update(self,p1,p2,old_id):

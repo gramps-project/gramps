@@ -1,5 +1,8 @@
 2003-11-01  Tim Waugh  <twaugh@redhat.com>
 
+	* src/gramps_main.py (Gramps.delete_person_clicked): Fix removal
+	of multiple people at once (bug #834102).
+
 	* src/PeopleStore.py (PeopleStore.remove): Remove
 	surname element after last individual with that surname is
 	removed (bug #834105).
