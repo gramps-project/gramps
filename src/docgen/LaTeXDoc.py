@@ -3,6 +3,9 @@
 #
 # Copyright (C) 2000  Donald N. Allingham
 #
+# Modifications and feature additions:
+#               2002  Donald A. Peterson
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -130,12 +133,22 @@ class LaTeXDoc(TextDoc):
         for style_name in self.style_list.keys():
             style = self.style_list[style_name]
             font = style.get_font()
-
+	    size = font.get_size()
+	    
 	    self.latex_font[style_name] = TexFont()
 	    thisstyle = self.latex_font[style_name]
 	    
 	    thisstyle.font_beg = ""
 	    thisstyle.font_end = ""
+	    # Is there special alignment?  (default is left)
+	    align = style.get_alignment_text()
+	    if  align == "center":
+		thisstyle.font_beg = thisstyle.font_beg + "\\centerline{"
+		thisstyle.font_end = "}" + thisstyle.font_end 
+	    elif align == "right":
+		thisstyle.font_beg = thisstyle.font_beg + "\\hfill"
+
+	    # Establish font face and shape
 	    if font.get_type_face() == FONT_SANS_SERIF:
 		thisstyle.font_beg = thisstyle.font_beg + "\\sffamily"
 		thisstyle.font_end = "\\rmfamily" + thisstyle.font_end 
@@ -145,6 +158,36 @@ class LaTeXDoc(TextDoc):
 	    if font.get_italic() or font.get_underline():
 		thisstyle.font_beg = thisstyle.font_beg + "\\itshape"
 		thisstyle.font_end = "\\upshape" + thisstyle.font_end
+
+	    # Now determine font size 
+	    sflag = 0
+	    if size >= 22:
+		thisstyle.font_beg = thisstyle.font_beg + "\\Huge"
+		sflag = 1
+	    elif size >= 20:
+		thisstyle.font_beg = thisstyle.font_beg + "\\huge"
+		sflag = 1
+	    elif size >= 18:
+		thisstyle.font_beg = thisstyle.font_beg + "\\LARGE"
+		sflag = 1
+	    elif size >= 16:
+		thisstyle.font_beg = thisstyle.font_beg + "\\Large"
+		sflag = 1
+	    elif size >= 14:
+		thisstyle.font_beg = thisstyle.font_beg + "\\large"
+		sflag = 1
+	    elif size < 8:
+		thisstyle.font_beg = thisstyle.font_beg + "\\scriptsize"
+		sflag = 1
+	    elif size < 10:
+		thisstyle.font_beg = thisstyle.font_beg + "\\footnotesize"
+		sflag = 1
+	    elif size < 12:
+		thisstyle.font_beg = thisstyle.font_beg + "\\small"
+		sflag = 1
+	    
+	    if sflag == 1:
+		thisstyle.font_end = thisstyle.font_end + "\\normalsize"
 
 	    thisstyle.font_beg = thisstyle.font_beg + " "
 	    thisstyle.font_end = thisstyle.font_end + " "
@@ -321,9 +364,9 @@ class LaTeXDoc(TextDoc):
 	# x and y will be maximum width OR height in units of cm
 	mysize = 'width=%dcm,height=%dcm,keepaspectratio' % (x,y)
 	if pos == "right":
-	    self.f.write('\\fil\\includegraphics[%s]{%s}\n' % (mysize,picf))
+	    self.f.write('\\hfill\\includegraphics[%s]{%s}\n' % (mysize,picf))
 	elif pos == "left":
-	    self.f.write('\\includegraphics[%s]{%s}\\fil\n' % (mysize,picf))
+	    self.f.write('\\includegraphics[%s]{%s}\\hfill\n' % (mysize,picf))
 	else:
 	    self.f.write('\\centerline{\\includegraphics[%s]{%s}}\n' % (mysize,picf))
 		
