@@ -72,6 +72,7 @@ _HANDLE_COL = len(column_names)
 class MediaView:
     def __init__(self,parent,db,glade,update):
         self.parent = parent
+        self.parent.connect('database-changed',self.change_db)
         self.db = db
         self.list = glade.get_widget("media_list")
         self.mid = glade.get_widget("mid")

@@ -61,7 +61,7 @@ import DateHandler
 import TransTable
 import NameDisplay
 
-from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog
+from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog, QuestionDialog2
 
 from DdTargets import DdTargets
 
@@ -1681,6 +1681,18 @@ class EditPerson:
             self.person.set_death_handle(self.death.get_handle())
 
     def on_apply_person_clicked(self,obj):
+
+        if self.is_unknown.get_active():
+            dialog = QuestionDialog2(
+                _("Unknown gender specified"),
+                _("The gender of the person is currently unknown. "
+                  "Usually, this is a mistake. You may choose to "
+                  "either continue saving, or returning to the "
+                  "Edit Person dialog to fix the problem."),
+                _("Continue saving"), _("Return to window"),
+                self.window)
+            if not dialog.run():
+                return
 
         self.window.hide()
         trans = self.db.transaction_begin()

@@ -225,21 +225,20 @@ class ArgHandler:
         filename = os.path.normpath(os.path.abspath(filename))
         filetype = GrampsMime.get_type(filename)
         if filetype == const.app_gramps:
-            # FIXME: For some reason the following two lines are needed
-            # to prevent source view from getting out of sync. Makes no
-            # sense to me right now, but it seems to fix a problem and
-            # make no harm otherwise. Should remove when understood.
             import GrampsBSDDB
+            self.parent.db.close()
             self.parent.db = GrampsBSDDB.GrampsBSDDB()
             self.parent.read_file(filename)
             return 1
         elif filetype == const.app_gramps_xml:
             import GrampsXMLDB
+            self.parent.db.close()
             self.parent.db = GrampsXMLDB.GrampsXMLDB()
             self.parent.read_file(filename)
             return 1
         elif filetype == const.app_gedcom:
             import GrampsGEDDB
+            self.parent.db.close()
             self.parent.db = GrampsGEDDB.GrampsGEDDB()
             self.parent.read_file(filename)
             return 1

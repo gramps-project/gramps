@@ -69,6 +69,8 @@ class PeopleView:
     def __init__(self,parent):
         self.parent = parent
 
+        self.parent.connect('database-changed',self.change_db)
+
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
@@ -170,7 +172,7 @@ class PeopleView:
         self.parent.db.connect('person-update', self.person_updated)
         self.parent.db.connect('person-delete', self.person_removed)
         self.parent.db.connect('person-rebuild', self.redisplay_person_list)
-
+        self.apply_filter()
 
     def remove_from_person_list(self,person):
         """Remove the selected person from the list. A person object is

@@ -1,3 +1,21 @@
+2005-04-03  Don Allingham  <don@gramps-project.org>
+	* src/ArgHandler.py: Make sure all databases are closed before
+	creating a new one.
+	* src/DisplayModels.py: Calculate new nodes properly after a 
+	node has be deleted. The node hasn't been removed from the database
+	yet.
+	* src/EditPerson.py: Add check for unknown gender before closing
+	* src/EditSource.py: Remove unnecessary updates 
+	* src/GrampsBSDDB.py: check for open in close()
+	* src/GrampsDbBase.py: spelling error
+	* src/MediaView.py: connect to database-changed
+	* src/PedView.py: remove unused update function
+	* src/PeopleView.py: connect to database-changed 
+	* src/PlaceView.py: connect to database-changed 
+	* src/SourceView.py: connect to database-changed, remove unnecessary
+	callback
+	* src/gramps_main.py: add database-changed signal
+
 2005-04-03  Alex Roitman  <shura@gramps-project.org>
 	* src/AddMedia.py: Remove unneeded update argument.
 	* src/ArgHandler.py (auto_save_load): Mysterious workaround :-).
