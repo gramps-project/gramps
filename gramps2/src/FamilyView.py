@@ -282,11 +282,18 @@ class FamilyView:
             person = family.getMother()
         self.parent.change_active_person(person)
         self.load_family(family)
-        
+
+    def clear(self):
+        self.spouse_model.clear()
+        self.child_model.clear()
+        self.sp_parents_model.clear()
+        self.ap_parents_model.clear()
+        self.ap_data.set_text('')
 
     def load_family(self,family=None):
         self.person = self.parent.active_person
         if not self.person:
+            self.clear()
             return
 
         n = "%s\n\tb. %s\n\td. %s " % (GrampsCfg.nameof(self.person),

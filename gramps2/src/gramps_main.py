@@ -601,7 +601,9 @@ class Gramps:
         self.change_active_person(None)
         for model in self.pl_page:
             model.clear()
+        self.family_view.clear()
         self.family_view.load_family()
+        self.pedigree_view.clear()
         self.source_view.load_sources()
         self.place_view.load_places()
         self.media_view.load_media()
