@@ -46,11 +46,12 @@ _DIED = _('d.')
 
 class DispBox:
 
-    def __init__(self,root,style,x,y,w,h,person,db,change):
+    def __init__(self,root,style,x,y,w,h,person,db,change,edit):
         shadow = _PAD
         xpad = _PAD
         
         self.change = change
+        self.edit = edit
         self.x = x
         self.y = y
         self.w = w
@@ -121,9 +122,9 @@ class DispBox:
            shift doubleclick would change the active person, entering
            the box expands it to display more information, leaving a
            box returns it to the original size and information"""
-
         if event.type == gtk.gdk._2BUTTON_PRESS:
-            return 1
+            self.edit(self.person)
+            return 0
         elif event.type == gtk.gdk.ENTER_NOTIFY:
             self.expand()
             return 0
@@ -305,10 +306,9 @@ class PedigreeView:
                                               ypts[mindex], h, w, p[0], style, p[1])
                 p = list[i]
                 box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],self.parent.db,
-                              self.change_active_person)
+                              self.change_active_person, self.load_person)
                 self.boxes.append(box)
         self.change_active_person(person)
-
 
     def make_arrow_button(self,direction,function):
         """Make a button containing an arrow with the attached callback"""

@@ -70,7 +70,6 @@ import Bookmarks
 import GrampsCfg
 import EditPerson
 import Find
-import ReadXML
 import DbPrompter
 
 try:    # First try python2.3 and later: this is the future
@@ -1626,14 +1625,6 @@ class Gramps:
         self.db.clear_added_media_objects()
         return self.post_load(name)
 
-    def load_revision(self,f,name,revision):
-        filename = "%s/%s" % (name,self.db.get_base())
-        self.status_text(_('Loading %s...' % name))
-        if ReadXML.loadRevision(self.db,f,filename,revision,self.load_progress) == 0:
-            return 0
-        self.db.clear_added_media_objects()
-        return self.post_load(name)
-
     def setup_bookmarks(self):
         self.bookmarks = Bookmarks.Bookmarks(self.db,self.db.get_bookmarks(),
                                              self.gtop.get_widget("jump_to"),
@@ -1659,7 +1650,7 @@ class Gramps:
 
     def on_add_bookmark_activate(self,obj):
         if self.active_person:
-            self.bookmarks.add(self.active_person)
+            self.bookmarks.add(self.active_person.get_id())
             name = GrampsCfg.nameof(self.active_person)
             self.status_text(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)

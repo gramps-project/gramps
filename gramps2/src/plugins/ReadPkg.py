@@ -33,7 +33,7 @@ import os
 from QuestionDialog import ErrorDialog, WarningDialog
 import TarFile
 
-_title_string = _("Import from GRAMPS package")
+_title_string = _("GRAMPS package")
 #-------------------------------------------------------------------------
 #
 #

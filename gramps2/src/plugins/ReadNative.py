@@ -31,7 +31,7 @@ import gtk
 import const
 import os
 
-_title_string = _("Import from GRAMPS database")
+_title_string = _("GRAMPS XML database")
 
 #-------------------------------------------------------------------------
 #

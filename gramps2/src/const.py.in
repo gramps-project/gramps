@@ -62,7 +62,6 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
-papersize      = "file:%s/papersize.xml" % rootDir
 good_xpm       = "%s/good.png" % rootDir
 bad_xpm        = "%s/bad.png" % rootDir
 caution_xpm    = "%s/caution.png" % rootDir
@@ -93,10 +92,19 @@ filtersDir     = "%s/filters" % rootDir
 dataDir        = "%s/data" % rootDir
 gtkrcFile      = "%s/gtkrc" % rootDir
 template_dir   = "%s/templates" % dataDir
+papersize      = "file:%s/papersize.xml" % dataDir
 fdl            = "%s/fdl.txt" % dataDir
 
 startup        = 1
 dnd_images     = 1
+
+#-------------------------------------------------------------------------
+#
+# Paths to external programs
+#
+#-------------------------------------------------------------------------
+
+nosort_tree = os.environ.has_key('NOSORT') and os.environ['NOSORT'] == "1"
 
 #-------------------------------------------------------------------------
 #
@@ -877,3 +885,5 @@ notes_formats = [
     _("Flowed"), 
     _("Preformatted"),
 ]
+
+
