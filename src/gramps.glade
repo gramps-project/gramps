@@ -145,7 +145,7 @@
 	    <widget>
 	      <class>GtkMenuItem</class>
 	      <name>export1</name>
-	      <label>Export</label>
+	      <label>_Export</label>
 	      <right_justify>False</right_justify>
 	    </widget>
 
@@ -245,7 +245,7 @@
 		<handler>on_add_bookmark_activate</handler>
 		<last_modification_time>Wed, 14 Feb 2001 13:51:59 GMT</last_modification_time>
 	      </signal>
-	      <label>Add Bookmark</label>
+	      <label>_Add Bookmark</label>
 	      <right_justify>False</right_justify>
 	    </widget>
 
@@ -257,7 +257,7 @@
 		<handler>on_edit_bookmarks_activate</handler>
 		<last_modification_time>Wed, 14 Feb 2001 13:54:41 GMT</last_modification_time>
 	      </signal>
-	      <label>Edit Bookmarks</label>
+	      <label>_Edit Bookmarks</label>
 	      <right_justify>False</right_justify>
 	    </widget>
 
@@ -328,7 +328,7 @@
 		<handler>on_contents_activate</handler>
 		<last_modification_time>Tue, 05 Dec 2000 01:21:41 GMT</last_modification_time>
 	      </signal>
-	      <label>Contents</label>
+	      <label>_Manual</label>
 	      <right_justify>False</right_justify>
 	    </widget>
 
