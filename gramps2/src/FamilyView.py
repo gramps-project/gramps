@@ -546,11 +546,13 @@ class FamilyView:
     def child_rel(self,obj):
         handle = obj.get_data('o')
         person = self.parent.db.get_person_from_handle(handle)
-        SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
+        ChooseParents.ModifyParents(self.parent.db, person, self.family.get_handle(),
+                                    None,self.load_family)
         
     def child_rel_by_id(self,handle):
         person = self.parent.db.get_person_from_handle(handle)
-        SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
+        ChooseParents.ModifyParents(self.parent.db, person, self.family.get_handle(),
+                                    None,self.load_family)
 
     def spouse_changed(self,obj):
         if self.in_drag:

@@ -1,3 +1,14 @@
+2005-03-02  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddSpouse.py: use ComboBox instead of ComboBoxEntry for
+	handling child/parent relationships
+	* src/ChooseParents.py: use ComboBox instead of ComboBoxEntry for
+	handling child/parent relationships
+	* src/FamilyView.py: use ModifyParents instead of EditRel
+	* src/SelectChild.py: use ComboBox instead of ComboBoxEntry for
+	handling child/parent relationships. Remove EditRel class
+	* src/gramps.glade: use ComboBox instead of ComboBoxEntry for
+	handling child/parent relationships, delete editrel
+
 2005-03-02 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DbPrompter.py (ImportDbPrompter.chooser): Explicitly
 	import XML and GEDCOM.

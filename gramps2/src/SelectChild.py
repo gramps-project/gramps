@@ -87,39 +87,26 @@ class SelectChild:
         
         self.add_child = self.xml.get_widget("childlist")
 
-        if (self.family):
+        self.mrel = self.xml.get_widget("mrel_combo")
+        self.frel = self.xml.get_widget("frel_combo")
+
+        values = const.child_relations.get_values()
+        self.keys = []
+        for value in values:
+            self.keys.append(const.child_relations.find_key(value))
+        self.keys.sort()
+
+        self.build_list(self.mrel,"Birth")
+        self.build_list(self.frel,"Birth")
+
+        if self.family:
             father = self.db.get_person_from_handle(self.family.get_father_handle())
             mother = self.db.get_person_from_handle(self.family.get_mother_handle())
-
-            if father != None:
-                fname = NameDisplay.displayer.display(father)
-                label = _("Relationship to %(father)s") % {
-                    'father' : fname
-                    }
-                self.xml.get_widget("flabel").set_text(label)
-
-            if mother != None:
-                mname = NameDisplay.displayer.display(mother)
-                label = _("Relationship to %(mother)s") % {
-                    'mother' : mname
-                    }
-                self.xml.get_widget("mlabel").set_text(label)
         else:
-            fname = NameDisplay.displayer.display(self.person)
-            label = _("Relationship to %s") % fname
-            
             if self.person.get_gender() == RelLib.Person.MALE:
-                self.xml.get_widget("flabel").set_text(label)
-                self.xml.get_widget("mrel_combo").set_sensitive(0)
+                self.mrel.set_sensitive(False)
             else:
-                self.xml.get_widget("mlabel").set_text(label)
-                self.xml.get_widget("frel_combo").set_sensitive(0)
-
-        self.mrel = self.xml.get_widget("mrel")
-        self.frel = self.xml.get_widget("frel")
-        self.mrel.set_text(_("Birth"))
-
-        self.frel.set_text(_("Birth"))
+                self.frel.set_sensitive(False)
 
         self.refmodel = PeopleModel.PeopleModel(self.db)
 
@@ -128,6 +115,22 @@ class SelectChild:
         self.add_itself_to_menu()
         self.add_columns(self.add_child)
         self.top.show()
+
+    def build_list(self,opt_menu,sel):
+        cell = gtk.CellRendererText()
+        opt_menu.pack_start(cell,True)
+        opt_menu.add_attribute(cell,'text',0)
+        
+        store = gtk.ListStore(str)
+        sel_index = 0
+        index = 0
+        for val in self.keys:
+            if _(sel) == val:
+                sel_index = index
+            index += 1
+            store.append(row=[val])
+        opt_menu.set_model(store)
+        opt_menu.set_active(sel_index)
 
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
@@ -317,13 +320,13 @@ class SelectChild:
 
         self.family.add_child_handle(select_child.get_handle())
         
-        mrel = const.child_relations.find_value(self.mrel.get_text())
+        mrel = self.keys[self.mrel.get_active()]
         mother = self.db.get_person_from_handle(self.family.get_mother_handle())
         if mother and mother.get_gender() != RelLib.Person.FEMALE:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
-        frel = const.child_relations.find_value(self.frel.get_text())
+        frel = self.keys[self.frel.get_active()]
         father = self.db.get_person_from_handle(self.family.get_father_handle())
         if father and father.get_gender() !=RelLib.Person.MALE:
             if frel == "Birth":
