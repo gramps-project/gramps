@@ -645,9 +645,9 @@ class EditPerson:
         combo.set_active(index)
         if not lds_ord.is_empty():
             stat = lds_ord.get_status()
-            date.set_text(lds_ord.get_date())
         else:
             stat = 0
+        date.set_text(lds_ord.get_date())
 
         build_dropdown(place,self.place_list)
         if lds_ord and lds_ord.get_place_handle():
@@ -666,6 +666,11 @@ class EditPerson:
         self.ldsbap_temple.set_sensitive(not self.db.readonly)
         self.ldsbapplace = self.get_widget("lds_bap_place")
         self.ldsbapplace.set_editable(not self.db.readonly)
+        self.ldsbap_date_led = self.get_widget("ldsbap_stat")
+        self.ldsbap_date_led.set_sensitive(not self.db.readonly)
+        self.ldsbap_date_check = DateEdit.DateEdit(
+            self.lds_baptism.get_date_object(), self.ldsbap_date,
+            self.ldsbap_date_led, self.window)
 
         self.ldsend_date = self.get_widget("endowdate")
         self.ldsend_date.set_editable(not self.db.readonly)
@@ -675,6 +680,11 @@ class EditPerson:
         self.ldsendowplace.set_editable(not self.db.readonly)
         self.ldsendowstat = self.get_widget("endowstat")
         self.ldsendowstat.set_sensitive(not self.db.readonly)
+        self.ldsend_date_led = self.get_widget("endow_stat")
+        self.ldsend_date_led.set_sensitive(not self.db.readonly)
+        self.ldsend_date_check = DateEdit.DateEdit(
+            self.lds_endowment.get_date_object(), self.ldsend_date,
+            self.ldsend_date_led, self.window)
 
         self.ldsseal_date = self.get_widget("sealdate")
         self.ldsseal_temple = self.get_widget("sealtemple")
@@ -682,6 +692,11 @@ class EditPerson:
         self.ldsseal_date.set_editable(not self.db.readonly)
         self.ldsseal_temple.set_sensitive(not self.db.readonly)
         self.ldssealplace.set_editable(not self.db.readonly)
+        self.ldsseal_date_led = self.get_widget("seal_stat")
+        self.ldsseal_date_led.set_sensitive(not self.db.readonly)
+        self.ldsseal_date_check = DateEdit.DateEdit(
+            self.lds_sealing.get_date_object(), self.ldsseal_date,
+            self.ldsseal_date_led, self.window)
         
         self.ldsseal_fam = self.get_widget("sealparents")
         self.ldsseal_fam.set_sensitive(not self.db.readonly)

@@ -1,3 +1,9 @@
+2005-03-19  Alex Roitman  <shura@gramps-project.org>
+	* src/gramps.glade: Add date LED buttons for LDS dates.
+	* src/EditPerson.py (draw_lds): Add date LED buttons for LDS dates;
+	(lds_field): Always set date text for LDS dates.
+	* src/Marriage.py (__init__): Add date LED button for LDS date.
+
 2005-03-18  Alex Roitman  <shura@gramps-project.org>
 	* doc/gramps-manual/C/figures/export-druid.png: Update.
 	* doc/gramps-manual/C/gramps-manual.xml: Update.
