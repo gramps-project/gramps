@@ -128,6 +128,7 @@ def mk_thumb(source,dest,size):
         os.system(cmd)
     else:
         try:
+            print "Creating thumbnail",dest,"from",source
             im = PIL.Image.open(source)
             im.thumbnail((size,size))
             im.save(dest,"JPEG")

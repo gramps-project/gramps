@@ -23,6 +23,7 @@ from Researcher import *
 import const
 
 import string
+import Config
 import time
 import gzip
 import shutil
@@ -223,8 +224,11 @@ def exportData(database, filename, callback):
 
     if os.path.isfile(filename):
         shutil.copy(filename, filename + ".bak")
-        
-    g = gzip.open(filename,"wb")
+
+    if Config.uncompress:
+        g = open(filename,"w")
+    else:
+        g = gzip.open(filename,"wb")
 
     g.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n")
     g.write("<database>\n")

@@ -58,9 +58,21 @@ def importData(database, filename, callback):
 
     parser = make_parser()
     parser.setContentHandler(GrampsImportParser(database,callback,basefile))
-         
+
+    use_gzip = 1
     try:
-        xml_file = gzip.open(filename,"rb")
+        f = gzip.open(filename,"r")
+        f.read(1)
+        f.close()
+    except IOError,msg:
+        use_gzip = 0
+        f.close()
+
+    try:
+        if use_gzip:
+            xml_file = gzip.open(filename,"rb")
+        else:
+            xml_file = open(filename,"r")
     except IOError,msg:
         GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return 0
@@ -106,8 +118,20 @@ def loadData(database, filename, callback):
     parser = make_parser()
     parser.setContentHandler(GrampsParser(database,callback,basefile))
 
+    use_gzip = 1
     try:
-        xml_file = gzip.open(filename,"rb")
+        f = gzip.open(filename,"r")
+        f.read(1)
+        f.close()
+    except IOError,msg:
+        use_gzip = 0
+        f.close()
+
+    try:
+        if use_gzip:
+            xml_file = gzip.open(filename,"rb")
+        else:
+            xml_file = open(filename,"r")
     except IOError,msg:
         GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return 0
