@@ -1,3 +1,9 @@
+2003-06-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/ReadGedcom.py: removed unused variable
+	* src/latin_utf8.py: explicity state iso-8859-1 to unicode translation
+	* src/gramps_main.py: handle clearing of tabs better, eliminating
+	spurious tabs being added on a complete rebuild of the tabs.
+
 2003-06-25  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Handle page break option.
 	* src/Date.py: Make sure range is 0 when it should be.  Dates compare
