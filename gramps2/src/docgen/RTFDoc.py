@@ -128,9 +128,12 @@ class RTFDoc(BaseDoc.BaseDoc):
 
         if self.print_req:
             apptype = 'application/rtf'
-            prog = grampslib.default_application_command(apptype)
-            os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog[0])
+            try:
+                app = GrampsMime.get_application(apptype)[0]
+                os.environ["FILE"] = self.filename
+                os.system ('%s "$FILE" &' % app)
+            except:
+                pass
 
     #--------------------------------------------------------------------
     #

@@ -591,8 +591,8 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(type, PdfDoc, 1, 0, 1, ".html", print_label)
-    Plugins.register_draw_doc(type, PdfDoc, 1, 1,    ".pdf",  print_label)
+    Plugins.register_text_doc(type, PdfDoc, 1, 0, 1, ".pdf", print_label)
+    Plugins.register_draw_doc(type, PdfDoc, 1, 1,    ".pdf", print_label)
 except:
     Plugins.register_text_doc('PDF document', PdflDoc, 1, 0, 1,".pdf", None)
     Plugins.register_draw_doc('PDF document', PdfDoc,  1, 1,   ".pdf", None)
