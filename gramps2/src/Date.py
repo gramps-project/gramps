@@ -194,6 +194,14 @@ class Date:
         return compare_dates(self,other) == 0
 
     def set(self,text):
+        if text.strip() == "":
+            self.start = SingleDate()
+            self.stop = None
+            self.range = 0
+            self.text = ""
+            self.calendar = Gregorian.Gregorian()
+            return
+        
         try:
             match = Date.fmt.match(text)
             if match:
