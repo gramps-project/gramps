@@ -59,6 +59,10 @@ class NameEditor:
         self.combo = AutoComp.AutoCombo(slist,const.surnames)
         self.priv = self.top.get_widget("priv")
 
+        types = const.NameTypesMap.keys()
+        types.sort()
+        self.typecomp = AutoComp.AutoCombo(self.type_field,types)
+
         if self.name:
             self.srcreflist = self.name.getSourceRefList()
         else:
@@ -104,6 +108,7 @@ class NameEditor:
         priv = self.priv.get_active()
 
         type = self.type_field.entry.get_text()
+
         if const.NameTypesMap.has_key(type):
             type = const.NameTypesMap[type]
         else:
