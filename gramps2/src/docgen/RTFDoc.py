@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,15 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
+
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
+import string
 
 #------------------------------------------------------------------------
 #
@@ -355,6 +364,20 @@ class RTFDoc(BaseDoc.BaseDoc):
 	    index = index+1
 	self.f.write('}}\\par\n')
     
+    def write_note(self,text,format,style_name):
+        if format == 1:
+            for line in text.split('\n'):
+                self.start_paragraph(style_name)
+                self.write_text(line)
+                self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                line = line.replace('\n',' ')
+                line = string.join(string.split(line))
+                self.write_text(line)
+                self.end_paragraph()
+
     #--------------------------------------------------------------------
     #
     # Writes text. If braces are not currently open, open them. Loop 

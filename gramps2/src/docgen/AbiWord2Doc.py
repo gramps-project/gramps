@@ -27,6 +27,7 @@ Provides a BaseDoc based interface to the AbiWord document format.
 #
 #-------------------------------------------------------------------------
 import base64
+import string
 
 import BaseDoc
 import Errors
@@ -219,6 +220,20 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 
     def end_paragraph(self):
         self.f.write('</p>\n')
+
+    def write_note(self,text,format,style_name):
+        if format == 1:
+            for line in text.split('\n'):
+                self.start_paragraph(style_name)
+                self.write_text(line)
+                self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                line = line.replace('\n',' ')
+                line = string.join(string.split(line))
+                self.write_text(line)
+                self.end_paragraph()
 
     def write_text(self,text):
         text = text.replace('&','&amp;');       # Must be first

@@ -5,6 +5,9 @@
 #
 # Modifications and feature additions:
 #               2002-2003  Donald A. Peterson
+# 
+# Formatted notes addition:
+#               2003  Alex Roitman
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,6 +24,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
 """LaTeX document generator"""
 
 #------------------------------------------------------------------------
@@ -399,6 +403,16 @@ class LaTeXDoc(BaseDoc.BaseDoc):
 	else:
 	    self.f.write('\\centerline{\\includegraphics[%s]{%s}}\n' % (mysize,picf))
 		
+    def write_note(self,text,format,style_name):
+        """Write the note's text to the file, respecting the format"""
+        self.start_paragraph(style_name)
+        if format == 1:
+            self.f.write('\\begin{verbatim}')
+        self.write_text(text)
+        if format == 1:
+            self.f.write('\\end{verbatim}')
+        self.end_paragraph()
+
     def write_text(self,text):
         """Write the text to the file"""
 	if text == '\n':
