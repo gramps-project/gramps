@@ -184,6 +184,12 @@ class GedcomParser:
         self.error_count = 0
         self.error_text_obj.set_point(0)
         self.error_text_obj.set_word_wrap(0)
+
+        map = const.personalConstantAttributes
+        self.attrs = map.values()
+        self.gedattr = {}
+        for val in map.keys():
+            self.gedattr[map[val]] = val
         
         self.update(self.file_obj,file)
         self.code = 0
@@ -563,23 +569,33 @@ class GedcomParser:
 	    elif matches[1] == "EVEN":
                 event = Event()
 	        self.parse_person_event(event,2)
-                if string.strip(event.getName()) == "SSN":
+                n = string.strip(event.getName()) 
+                if n in self.attrs:
                     attr = Attribute()
-                    attr.setType("Social Security Number")
+                    attr.setType(self.gedattr[n])
                     attr.setValue(event.getDescription())
                     self.person.addAttribute(attr)
                 else:
                     self.person.addEvent(event)
             else:
                 event = Event()
-                try:
-                    event.setName(ged2gramps[matches[1]])
-                except:
+                n = string.strip(matches[1])
+                if ged2gramps.has_key(n):
+                    event.setName(ged2gramps[n])
+                elif self.gedattr.has_key(n):
+                    attr = Attribute()
+                    attr.setType(self.gedattr[n])
+                    attr.setValue(event.getDescription())
+                    self.person.addAttribute(attr)
+                    self.parse_person_attr(attr,2)
+                    continue
+                else:
                     event.setName(matches[1])
+                    
+	        self.parse_person_event(event,2)
                 if matches[2] != None:
                     event.setDescription(matches[2])
                 self.person.addEvent(event)
-	        self.parse_person_event(event,2)
 
     def parse_optional_note(self,level):
         note = ""
@@ -879,6 +895,54 @@ class GedcomParser:
 	        event.setDescription( "%s %s" % (event.getDescription(), matches[2]))
 	    elif matches[1] == "CONT":
 	        event.setDescription("%s\n%s" % (event.getDescription(),matches[2]))
+            else:
+	        self.barf(level+1)
+
+    def parse_person_attr(self,attr,level):
+        note = ""
+        while 1:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                break
+            elif matches[1] == "TYPE":
+                if attr.getType() == "":
+                    if ged2gramps.has_key(matches[2]):
+                        name = ged2gramps[matches[2]]
+                    else:
+                        name = matches[2]
+                    attr.setName(name)
+            elif matches[1] == ["CAUS", "DATE","TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                if matches[2] and matches[2][0] != "@":
+                    self.localref = self.localref + 1
+                    ref = "gsr%d" % self.localref
+                    s = self.db.findSource(ref,self.smap)
+                    source_ref.setBase(s)
+                    s.setTitle('Imported Source #%d' % self.localref)
+                    s.setNote(matches[2] + self.parse_continue_data(1))
+                    self.ignore_sub_junk(2)
+                else:
+                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                    self.parse_source_reference(source_ref,level+1)
+                attr.addSourceRef(source_ref)
+            elif matches[1] == "PLAC":
+                val = matches[2]
+                if attr.getValue() == "":
+                    attr.setValue(val)
+                    self.ignore_sub_junk(level+1)
+            elif matches[1] == "NOTE":
+                info = matches[2] + self.parse_continue_data(level+1)
+                if note == "":
+                    note = info
+                else:
+                    note = "\n%s" % info
+	    elif matches[1] == "CONC":
+	        attr.setValue( "%s %s" % (attr.getValue(), matches[2]))
+	    elif matches[1] == "CONT":
+	        attr.setValue("%s\n%s" % (attr.getValue(),matches[2]))
             else:
 	        self.barf(level+1)
 

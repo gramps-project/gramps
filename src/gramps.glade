@@ -1276,6 +1276,45 @@
       </widget>
 
       <widget>
+	<class>GtkScrolledWindow</class>
+	<name>scrolledwindow28</name>
+	<hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
+	<vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
+	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
+	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
+
+	<widget>
+	  <class>GnomeCanvas</class>
+	  <name>canvas1</name>
+	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>event</name>
+	    <handler>on_canvas1_event</handler>
+	    <last_modification_time>Sun, 02 Sep 2001 21:58:31 GMT</last_modification_time>
+	  </signal>
+	  <anti_aliased>False</anti_aliased>
+	  <scroll_x1>0</scroll_x1>
+	  <scroll_y1>0</scroll_y1>
+	  <scroll_x2>100</scroll_x2>
+	  <scroll_y2>100</scroll_y2>
+	  <pixels_per_unit>1</pixels_per_unit>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkLabel</class>
+	<child_name>Notebook:tab</child_name>
+	<name>label237</name>
+	<label>Pedigree</label>
+	<justify>GTK_JUSTIFY_CENTER</justify>
+	<wrap>False</wrap>
+	<xalign>0.5</xalign>
+	<yalign>0.5</yalign>
+	<xpad>0</xpad>
+	<ypad>0</ypad>
+      </widget>
+
+      <widget>
 	<class>GtkVBox</class>
 	<name>vbox2</name>
 	<homogeneous>False</homogeneous>
@@ -2307,45 +2346,6 @@
       </widget>
 
       <widget>
-	<class>GtkScrolledWindow</class>
-	<name>scrolledwindow28</name>
-	<hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
-	<vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
-	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
-	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
-
-	<widget>
-	  <class>GnomeCanvas</class>
-	  <name>canvas1</name>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>event</name>
-	    <handler>on_canvas1_event</handler>
-	    <last_modification_time>Sun, 02 Sep 2001 21:58:31 GMT</last_modification_time>
-	  </signal>
-	  <anti_aliased>False</anti_aliased>
-	  <scroll_x1>0</scroll_x1>
-	  <scroll_y1>0</scroll_y1>
-	  <scroll_x2>100</scroll_x2>
-	  <scroll_y2>100</scroll_y2>
-	  <pixels_per_unit>1</pixels_per_unit>
-	</widget>
-      </widget>
-
-      <widget>
-	<class>GtkLabel</class>
-	<child_name>Notebook:tab</child_name>
-	<name>label237</name>
-	<label>Pedigree</label>
-	<justify>GTK_JUSTIFY_CENTER</justify>
-	<wrap>False</wrap>
-	<xalign>0.5</xalign>
-	<yalign>0.5</yalign>
-	<xpad>0</xpad>
-	<ypad>0</ypad>
-      </widget>
-
-      <widget>
 	<class>GtkVBox</class>
 	<name>vbox33</name>
 	<homogeneous>False</homogeneous>
@@ -2379,7 +2379,7 @@
 	      <last_modification_time>Thu, 31 May 2001 17:22:45 GMT</last_modification_time>
 	    </signal>
 	    <columns>5</columns>
-	    <column_widths>293,60,344,5,5</column_widths>
+	    <column_widths>293,61,306,5,5</column_widths>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -2683,8 +2683,8 @@
 	      <handler>on_place_list_click_column</handler>
 	      <last_modification_time>Tue, 30 Oct 2001 18:18:53 GMT</last_modification_time>
 	    </signal>
-	    <columns>14</columns>
-	    <column_widths>222,47,102,88,77,80,5,5,5,5,5,5,5,5</column_widths>
+	    <columns>13</columns>
+	    <column_widths>213,47,107,88,77,80,29,1,1,1,1,1,1</column_widths>
 	    <selection_mode>GTK_SELECTION_EXTENDED</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
@@ -3085,19 +3085,6 @@
 		  </child>
 		</widget>
 	      </widget>
-	    </widget>
-
-	    <widget>
-	      <class>GtkLabel</class>
-	      <child_name>CList:title</child_name>
-	      <name>label276</name>
-	      <label></label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -3628,7 +3615,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label266</name>
-		<label>Description</label>
+		<label>Title</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>

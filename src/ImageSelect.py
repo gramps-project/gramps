@@ -130,25 +130,37 @@ class ImageSelect:
             GnomeErrorDialog(_("That is not a valid file name."));
             return
 
-        type = utils.get_mime_type(filename)
-        mobj = Photo()
-        if description == "":
-            description = os.path.basename(filename)
-        mobj.setDescription(description)
-        mobj.setMimeType(type)
-        self.savephoto(mobj)
+        already_imported = None
+        for o in self.db.getObjectMap().values():
+            if o.getPath() == filename:
+                already_imported = o
+                break
 
-        if type[0:5] == "image":
-            if self.external.get_active() == 0:
-                name = RelImage.import_media_object(filename,self.path,mobj.getId())
+        if (already_imported):
+            oref = ObjectRef()
+            oref.setReference(already_imported)
+            self.dataobj.addPhoto(oref)
+            self.add_thumbnail(oref)
         else:
-            if self.external.get_active() == 1:
-                name = filename
-                RelImage.mk_thumb(filename,self.path,mobj.getId())
-            else:
-                name = RelImage.import_media_object(filename,self.path,mobj.getId())
+            type = utils.get_mime_type(filename)
+            mobj = Photo()
+            if description == "":
+                description = os.path.basename(filename)
+                mobj.setDescription(description)
+            mobj.setMimeType(type)
+            self.savephoto(mobj)
 
-        mobj.setPath(name)
+            if type[0:5] == "image":
+                if self.external.get_active() == 0:
+                    name = RelImage.import_media_object(filename,self.path,mobj.getId())
+            else:
+                if self.external.get_active() == 1:
+                    name = filename
+                    RelImage.mk_thumb(filename,self.path,mobj.getId())
+                else:
+                    name = RelImage.import_media_object(filename,self.path,mobj.getId())
+
+            mobj.setPath(name)
 
         utils.modified()
         utils.destroy_passed_object(obj)
@@ -211,8 +223,6 @@ class Gallery(ImageSelect):
         oref = ObjectRef()
         oref.setReference(photo)
         self.dataobj.addPhoto(oref)
-        dest = "%s/.thumb/%s.jpg" % (self.db.getSavePath(),photo.getId())
-        RelImage.mk_thumb(photo.getPath(),dest,const.thumbScale)
         self.add_thumbnail(oref)
 
     #-------------------------------------------------------------------------

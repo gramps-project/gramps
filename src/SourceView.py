@@ -69,16 +69,20 @@ class SourceView:
         self.sort_arrow = [self.title_arrow, self.id_arrow, self.author_arrow]
         self.source_list.connect('click-column',self.click_column)
 
-        
         self.sort_col,self.sort_dir = Config.get_sort_cols("source",3,GTK.SORT_ASCENDING)
+        if self.sort_col >= len(self.sort_arrow):
+            self.sort_col = 0
+            
         self.source_list.set_sort_type(self.sort_dir)
         self.source_list.set_sort_column(self.sort_map[self.sort_col])
         self.set_arrow(self.sort_col)
 
     def set_arrow(self,column):
+
         for a in self.sort_arrow:
             a.hide()
 
+        print column
         a = self.sort_arrow[column]
         a.show()
         if self.sort_dir == GTK.SORT_ASCENDING:
