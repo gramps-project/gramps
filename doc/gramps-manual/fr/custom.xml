@@ -348,7 +348,7 @@
 	</varlistentry>
 
 	<varlistentry><term><guilabel>Glisser-Déposer depuis une source interne</guilabel></term>
-	<listitem><para>Cochez le choix <guilabel>Ouvrir l'éditeur de propriétés quand 
+	<para>Cochez le choix <guilabel>Ouvrir l'éditeur de propriétés quand 
 	un objet est déposé</guilabel> pour lancer l'éditeur de propriétés
 	après qu'un objet interne (à la base de données) a été déposé dans la Galerie. 
 	</para></listitem>
