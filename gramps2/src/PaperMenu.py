@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -129,6 +129,7 @@ except (IOError,OSError,SAXParseException):
     paper_sizes = [
         TextDoc.PaperStyle("Letter",27.94,21.59),
         TextDoc.PaperStyle("Legal",35.56,21.59),
+        TextDoc.PaperStyle("A3",42.0,29.7),
         TextDoc.PaperStyle("A4",29.7,21.0),
         TextDoc.PaperStyle("A5",21.0,14.8),
         TextDoc.PaperStyle("B4",35.3,25.0),
