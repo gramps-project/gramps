@@ -175,33 +175,9 @@ class ExistingDbPrompter:
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
             filetype = gnome.vfs.get_mime_type(filename)
-
             (the_path,the_file) = os.path.split(filename)
-            GrampsGconfKeys.save_last_import_dir(the_path)
-
-            success = False
-            if filetype == const.app_gramps:
-                choose.destroy()
-                self.parent.db = GrampsBSDDB.GrampsBSDDB()
-                msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
-                msg_top = msgxml.get_widget('load_message')
-                self.parent.read_file(filename)
-                msg_top.destroy()
-                success = True
-            elif filetype == const.app_gramps_xml:
-                choose.destroy()
-                self.parent.db = GrampsXMLDB.GrampsXMLDB()
-                self.parent.read_file(filename)
-                success = True
-            elif filetype == const.app_gedcom:
-                choose.destroy()
-                self.parent.db = GrampsGEDDB.GrampsGEDDB()
-                self.parent.read_file(filename)
-                success = True
-            
-            if success:
-                # Add the file to the recent items
-                RecentFiles.recent_files(filename,filetype)
+            choose.destroy()
+            if open_native(self.parent,filename,filetype):
                 return True
 
             # The above native formats did not work, so we need to 
@@ -209,7 +185,6 @@ class ExistingDbPrompter:
             # and create an empty native database to import data in
             for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
                 if filetype == mime_type or the_file == mime_type:
-                    choose.destroy()
                     QuestionDialog.OkDialog( _("Opening non-native format"), 
                                 _("New gramps database has to be set up "
                                   "when opening non-native formats. The "
@@ -225,7 +200,7 @@ class ExistingDbPrompter:
                         return False
             QuestionDialog.ErrorDialog( _("Could not open file: %s") % filename,
                         _('The type "%s" is not in the list of known file types') % filetype )
-        choose.destroy()
+        #choose.destroy()
         return False
 
 #-------------------------------------------------------------------------
@@ -382,8 +357,46 @@ class NewNativeDbPrompter:
                 self.parent.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
+            	self.parent.build_recent_menu()
                 return True
             else:
                 choose.destroy()
                 return False
         return False
+
+#-------------------------------------------------------------------------
+#
+# Helper function
+#
+#-------------------------------------------------------------------------
+def open_native(parent,filename,filetype):
+    """
+    Open native database and return the status.
+    """
+
+    (the_path,the_file) = os.path.split(filename)
+    GrampsGconfKeys.save_last_import_dir(the_path)
+
+    success = False
+    if filetype == const.app_gramps:
+        parent.db = GrampsBSDDB.GrampsBSDDB()
+        msgxml = gtk.glade.XML(const.gladeFile, "load_message","gramps")
+        msg_top = msgxml.get_widget('load_message')
+        parent.read_file(filename)
+        msg_top.destroy()
+        success = True
+    elif filetype == const.app_gramps_xml:
+        parent.db = GrampsXMLDB.GrampsXMLDB()
+        parent.read_file(filename)
+        success = True
+    elif filetype == const.app_gedcom:
+        parent.db = GrampsGEDDB.GrampsGEDDB()
+        parent.read_file(filename)
+        success = True
+
+    if success:
+        # Add the file to the recent items
+        RecentFiles.recent_files(filename,filetype)
+        parent.build_recent_menu()
+
+    return success

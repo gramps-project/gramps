@@ -224,6 +224,18 @@ class GrampsRecentFiles:
         # so simply inserting a new item in the beginning
         self.gramps_recent_files.insert(0,item2add)
 
+    def remove_filename(self,filename):
+        # First we need to walk the existing items to see 
+        # if our item is already there
+        found = False
+        for index in range(len(self.gramps_recent_files)):
+            if self.gramps_recent_files[index].get_path() == filename:
+                # Found it -- break here and pop that item
+                found = True
+                break
+        if found:
+            self.gramps_recent_files.pop(index)
+
     def save(self):
         """
         Attempt saving into XML.
@@ -370,7 +382,7 @@ class GrampsRecentParser:
 
 #-------------------------------------------------------------------------
 #
-# Helper function
+# Helper functions
 #
 #-------------------------------------------------------------------------
 def recent_files(filename,filetype):
@@ -398,7 +410,13 @@ def recent_files(filename,filetype):
     gramps_rf.add(gramps_item)
     gramps_rf.save()
 
+def remove_filename(filename):
+# GNOME will deal with missing item on its own -- who are we, mere mortals, 
+# to tell GNOME what do to?
+#    gnome_rf = GnomeRecentFiles()
+#    gnome_rf.remove_uri(uri)
+#    gnome_rf.save()
 
-
-
-
+    gramps_rf = GrampsRecentFiles()
+    gramps_rf.remove_filename(filename)
+    gramps_rf.save()

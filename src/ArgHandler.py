@@ -261,6 +261,7 @@ class ArgHandler:
             if success:
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,filetype)
+                self.parent.build_recent_menu()
             return
            
         if self.imports:
