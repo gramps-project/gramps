@@ -2183,7 +2183,6 @@ class GrampsDB(Persistent):
         else:
             source = Source()
             map[idVal] = self.addSource(source)
-        self.sourceTable[map[idVal]] = source.getDisplayInfo()
         return source
 
     def addSourceNoMap(self,source,index):
@@ -2203,7 +2202,6 @@ class GrampsDB(Persistent):
         else:
             source = Source()
             self.addSourceNoMap(source,val)
-            self.sourceTable[val] = source.getDisplayInfo()
         return source
 
     def addObject(self,object):
@@ -2334,7 +2332,10 @@ class GrampsDB(Persistent):
         return self.sourceTable[key]
 
     def getSource(self,key):
-        return self.sourceMap[key]
+        if self.sourceMap.has_key(key):
+            return self.sourceMap[key]
+        else:
+            return None
 
     def buildSourceDisplay(self,nkey,okey=None):
         if nkey != okey and okey != None:

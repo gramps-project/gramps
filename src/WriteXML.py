@@ -32,6 +32,8 @@ import time
 import shutil
 import os
 
+from gnome.ui import GnomeErrorDialog
+
 #-------------------------------------------------------------------------
 #
 # load GRAMPS libraries
@@ -71,7 +73,6 @@ def exportData(database, filename, callback):
         g = XmlWriter(database,callback,0,compress)
         g.write(filename)
     except:
-        from gnome.ui import GnomeErrorDialog
         import DisplayTrace
 
         DisplayTrace.DisplayTrace()
@@ -295,6 +296,12 @@ class XmlWriter:
             self.g.write("  <sources>\n")
             for key in self.db.getSourceKeys():
                 source = self.db.getSource(key)
+                if not source:
+                    d = self.db.getSourceDisplay(key)
+                    GnomeErrorDialog("Database inconsistency found with sources\n"
+                                     "Index found for %s (%s)\n"
+                                     "but not included in tables - attempting to fix" % (d[0],d[1]))
+                    continue
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
