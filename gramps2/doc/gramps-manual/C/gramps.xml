@@ -1443,7 +1443,7 @@
 	click <guibutton>Edit</guibutton> on the toolbar to invoke the 
 	following <guilabel>Place Editor</guilabel> dialog: </para>
 
-	<!-- ==== Figure: Source Editor dialog ==== -->
+	<!-- ==== Figure: Place Editor dialog ==== -->
 	<figure id="edit-plc-fig"> 
 	<title>Place Editor dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
@@ -1518,7 +1518,7 @@
 	The central part displays the list of all such sources references 
 	stored in the database. The buttons <guibutton>Add...</guibutton>, 
 	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
-	to correspondingly add, modify, and remove a a source reference  
+	to correspondingly add, modify, and remove a source reference  
 	to this place. Note that <guibutton>Edit...</guibutton> and 
 	<guibutton>Delete</guibutton> buttons become available only when 
 	a source reference is selected from the list. </para>
@@ -1621,8 +1621,8 @@
 	<variablelist>
 		<varlistentry><term><guilabel>General</guilabel></term>
 		<listitem><para> 
-	<guilabel>General</guilabel> tab allows the title which labels this
-	object in the database. The title can be typed in the appropriate 
+	<guilabel>General</guilabel> tab allows to edit the title which labels 
+	this object in the database. The title can be typed in the appropriate 
 	text entry field. If the object is not local (i.e. the corresponding
 	file does not reside under &app; database directory), the
 	<guibutton>Make a local copy</guibutton> button is available. 
@@ -1680,27 +1680,215 @@
 
       </sect3>
 
-<!--
-[ FIXME: STOPPED HERE ] 
--->
-
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-ev"> 
         <title>Edit Events</title> 
-	<para> </para>
+	<para> Events are edited through the following <guilabel>Event
+	Editor</guilabel> dialog: </para> 
+
+ 	<!-- ==== Figure: Event Editor dialog ==== -->
+	<figure id="edit-ev-fig"> 
+	<title>Event Editor dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-ev.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Event Editor dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para> The top of the window shows the dialog title including the name
+	of the person whose event is being edited. The central part of the 
+	window displays four notebook tabs containing different categories of 
+	available information. You can bring any tab to the top for viewing or 
+	editing by clicking on the appropriate tab heading. The bottom part has 
+	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons. 
+	Clicking <guibutton>OK</guibutton> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<guibutton>Cancel</guibutton> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </para> 
+	
+	<para>The tabs provide the following information categories of 
+	the event data: </para>
+
+	<variablelist>
+		<varlistentry><term><guilabel>General</guilabel></term>
+		<listitem><para> 
+	<guilabel>General</guilabel> tab allows editing of the most general
+	information about the event: its type, date, place, cause, adn
+	description. The type can be selected from available types listed 
+	in the <guilabel>Event type </guilabel> drop-down menu. The rest 
+	of the information can be typed in the appropriate text entry fields. 
+	Check the <guilabel>Private record</guilabel> box to mark this event
+	record as private. This will give you a chance to omit this event from
+	being included in the reports, if you choose so among the report 
+	generation options. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Sources</guilabel></term>
+		<listitem><para> 
+	<guilabel>Sources</guilabel> tab displays information about sources 
+	relevant to this event and the controls allowing its modification. 
+	The central part displays the list of all such sources references 
+	stored in the database. The buttons <guibutton>Add...</guibutton>, 
+	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	allow to correspondingly add, modify, and remove a source reference  
+	to this event. Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	a source reference is selected from the list. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Note</guilabel></term>
+		<listitem>
+	<para> <guilabel>Note</guilabel> tab displays any notes concerning 
+	the event. To add a note or modify existing notes simply edit the 
+	text in the text entry field.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Witnesses</guilabel></term>
+		<listitem><para> 
+	<guilabel>Witnesses</guilabel> tab displays information about witnesses 
+	relevant to this event and the controls allowing its modification. 
+	The central part displays the list of all such witnesses 
+	stored in the database. The buttons <guibutton>Add...</guibutton>, 
+	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	allow to correspondingly add, modify, and remove a witness reference  
+	to this event. Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	a witness reference is selected from the list. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-si"> 
         <title>Edit Source Information</title> 
-	<para> </para>
+	<para> When adding source references to events, places, etc., 
+	the following dialog appears: </para>
+
+ 	<!-- ==== Figure: Source Information dialog ==== -->
+	<figure id="edit-si-fig"> 
+	<title>Source Information dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-si.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Source Information dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para> The top of the window shows the dialog title. The central part 
+	displays the source information. The bottom part has 
+	<guibutton>OK</guibutton> and <guibutton>Cancel</guibutton> buttons.  
+	Clicking <guibutton>OK</guibutton> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<guibutton>Cancel</guibutton> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </para> 
+
+	<para>Note that this dialog does not let you
+	modify sources or create new sources. It only allows you to make a
+	reference to the existing source. To add or modify a source, switch to
+	the Sources View and click <guibutton>Add</guibutton> or
+	<guibutton>Edit</guibutton> on the toolbar, as appropriate. </para> 
+	
+	<para> The source can be selected from available sources listed in the
+	<guilabel>Title</guilabel> drop-down menu. You can also set the 
+	details specific for this particular reference: confidence,
+	volume/file/page. date, text, and comments. Choose the confidence 
+	level from the <guilabel>Confidence</guilabel> drop-down menu. 
+	The rest of the details can be typed in the appropriate text entry
+	fields. </para>
+
       </sect3>
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-an"> 
         <title>Edit Alternate Names</title> 
-	<para> </para>
-      </sect3>
+	<para> Alternate names are edited through the following 
+	<guilabel>Alternate Names Editor</guilabel> dialog: </para>
+
+ 	<!-- ==== Figure: Event Editor dialog ==== -->
+	<figure id="edit-an-fig"> 
+	<title>Alternate Names Editor dialog</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-an.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Alternate Names Editor dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+	
+	<para> The top of the window shows the dialog title including the name
+	of the person whose alternate name is being edited. The central part 
+	of the window displays three notebook tabs containing different 
+	categories of available information. You can bring any tab to the 
+	top for viewing or editing by clicking on the appropriate tab heading. 
+	The bottom part has <guibutton>OK</guibutton> and 
+	<guibutton>Cancel</guibutton> buttons. Clicking 
+	<guibutton>OK</guibutton> at any time will apply all the 
+	changes made in all tabs and close the dialog window. Clicking 
+	<guibutton>Cancel</guibutton> at any time will close the window without 
+	applying any changes. If any of the data in any tab was modified, 
+	the alert window will appear with the choices of closing the dialog 
+	without saving changes, canceling the initial cancel request, or saving 
+	the changes. </para> 
+	
+	<para>The tabs provide the following information categories of 
+	the alternate name data: </para>
+
+ 	<variablelist>
+		<varlistentry><term><guilabel>General</guilabel></term>
+		<listitem><para> 
+	<guilabel>General</guilabel> tab allows editing of the most general
+	information about the alternate name: given name, family name, family 
+	prefix, suffix, title, and type of the name. The information can be 
+	typed in the appropriate text entry fields. The family name and the 
+	type can be also selected from available choices listed in the 
+	appropriate drop-down menus. 
+	Check the <guilabel>Private record</guilabel> box to mark this name
+	record as private. This will give you a chance to omit this event from
+	being included in the reports, if you choose so among the report 
+	generation options. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Sources</guilabel></term>
+		<listitem><para> 
+	<guilabel>Sources</guilabel> tab displays information about sources 
+	relevant to this name and the controls allowing its modification. 
+	The central part displays the list of all such sources references 
+	stored in the database. The buttons <guibutton>Add...</guibutton>, 
+	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> 
+	allow to correspondingly add, modify, and remove a source reference  
+	to this name. Note that <guibutton>Edit...</guibutton> and 
+	<guibutton>Delete</guibutton> buttons become available only when 
+	a source reference is selected from the list. </para>
+		</listitem></varlistentry>
+	</variablelist>
+
+	<variablelist>
+		<varlistentry><term><guilabel>Note</guilabel></term>
+		<listitem>
+	<para> <guilabel>Note</guilabel> tab displays any notes concerning 
+	the name. To add a note or modify existing notes simply edit the 
+	text in the text entry field.
+	</para>
+		</listitem></varlistentry>
+	</variablelist>
+
+     </sect3>
       
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="adv-at"> 
@@ -1714,7 +1902,17 @@
 	<para> </para>
       </sect3>
       
+      <!-- ================ Usage Sub-subsection ================ -->
+      <sect3 id="adv-wit"> 
+        <title>Edit Witnesses</title> 
+	<para> </para>
+      </sect3>
+      
     </sect2>
+
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
