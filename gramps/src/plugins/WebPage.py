@@ -982,7 +982,7 @@ class WebReportDialog(ReportDialog):
     # Callback functions from the dialog
     #
     #------------------------------------------------------------------------
-    def on_nophotos_toggled(obj):
+    def on_nophotos_toggled(self,obj):
         """Keep the 'restrict photos' checkbox in line with the 'no
         photos' checkbox.  If there are no photos included, it makes
         no sense to worry about restricting which photos are included,
