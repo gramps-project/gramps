@@ -1258,7 +1258,7 @@ class Gramps:
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
         mlist = self.people_view.person_tree.get_selected_objects()
-        if mlist and self.active_person == self.db.get_person(mlist[0]):
+        if mlist and self.active_person.get_id() == mlist[0]:
             self.load_person(self.active_person)
 
     def load_active_person(self,obj):
@@ -1799,8 +1799,9 @@ class Gramps:
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()
         
-    def bookmark_callback(self,obj,person):
+    def bookmark_callback(self,obj,person_id):
         old_person = self.active_person
+        person = self.db.find_person_from_id(person_id)
         try:
             self.change_active_person(person)
             self.update_display(0)

@@ -189,15 +189,12 @@ class EditSource:
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
             name = GrampsCfg.nameof(p)
-            birth_event = self.db.find_event_from_id(p.get_birth_id())
-            death_event = self.db.find_event_from_id(p.get_death_id())
-            for v_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
-                v = self.db.find_event_from_id(v_id)
-                if not v:
-                    continue
-                for sref in v.get_source_references():
-                    if sref.get_base_id() == self.source.get_id():
-                        p_event_list.append((name,v.get_name()))
+            for event_id in p.get_event_list() + [p.get_birth_id(), p.get_death_id()]:
+                if event_id:
+                    event = self.db.find_event_from_id(event_id)
+                    for sref in event.get_source_references():
+                        if sref.get_base_id() == self.source.get_id():
+                            p_event_list.append((name,event.get_name()))
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
                     if sref.get_base_id() == self.source.get_id():
@@ -210,14 +207,16 @@ class EditSource:
                 for sref in v.get_source_references():
                     if sref.get_base_id() == self.source.get_id():
                         p_addr_list.append((name,v.get_street()))
-        for p in self.db.get_object_map().values():
-            name = p.get_description()
-            for sref in p.get_source_references():
+        for object_id in self.db.get_object_keys():
+            object = self.db.find_object_from_id(object_id)
+            name = object.get_description()
+            for sref in object.get_source_references():
                 if sref.get_base_id() == self.source.get_id():
                     m_list.append(name)
-        for p in self.db.get_family_id_map().values():
-            f_id = p.get_father_id()
-            m_id = p.get_mother_id()
+        for family_id in self.db.get_family_keys():
+            family = self.db.find_family_from_id(family_id)
+            f_id = family.get_father_id()
+            m_id = family.get_mother_id()
             f = self.db.find_person_from_id(f_id)
             m = self.db.find_person_from_id(m_id)
             if f and m:

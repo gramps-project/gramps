@@ -278,7 +278,7 @@ class Place(SourceNote):
         
         SourceNote.__init__(self,source)
         if source:
-            self.long = source.log
+            self.long = source.long
             self.lat = source.lat
             self.title = source.title
             self.main_loc = Location(source.main_loc)
@@ -290,8 +290,8 @@ class Place(SourceNote):
             for u in source.urls:
                 self.urls.append(Url(u))
             self.media_list = []
-            for photo in source.media_list:
-                self.media_list.append(MediaRef(photo))
+            for media_id in source.media_list:
+                self.media_list.append(MediaRef(media_id))
         else:
             self.long = ""
             self.lat = ""
@@ -377,9 +377,9 @@ class Place(SourceNote):
         if loc not in self.alt_loc:
             self.alt_loc.append(loc)
 
-    def add_media_object(self,photo):
+    def add_media_reference(self,media_id):
         """Adds a Photo object to the place object's image list"""
-        self.media_list.append(photo)
+        self.media_list.append(media_id)
 
     def get_media_list(self):
         """Returns the list of Photo objects"""
@@ -1296,9 +1296,9 @@ class Person(SourceNote):
 #         else:
 #             return e
 
-    def add_media_object(self,photo):
+    def add_media_reference(self,media_id):
         """adds a MediaObject instance to the image list"""
-        self.media_list.append(photo)
+        self.media_list.append(media_id)
 
     def get_media_list(self):
         """returns the list of MediaObjects"""
@@ -1970,9 +1970,9 @@ class Family(SourceNote):
         """sets the event list to the passed list"""
         self.event_list = list
 
-    def add_media_object(self,photo):
+    def add_media_reference(self,media_id):
         """Adds a MediaObject object to the Family instance's image list"""
-        self.media_list.append(photo)
+        self.media_list.append(media_id)
 
     def get_media_list(self):
         """Returns the list of MediaObject objects"""
@@ -2018,9 +2018,10 @@ class Source:
         """returns the gramps' ID of the Source instance"""
         return self.id
 
-    def add_media_object(self,photo):
+    #EARNEY, this should eventually be a list of ids not objects, right?
+    def add_media_reference(self,media_id):
         """Adds a MediaObject object to the Source instance's image list"""
-        self.media_list.append(photo)
+        self.media_list.append(media_id)
 
     def get_media_list(self):
         """Returns the list of MediaObject objects"""
@@ -2306,6 +2307,9 @@ class GrampsDB:
     def get_person_keys(self):
         return self.person_map.keys()
 
+    def get_family_keys(self):
+        return self.family_map.keys()
+
     def sort_by_name(self,f,s):
         n1 = self.person_map.get(str(f))[2].sname
         n2 = self.person_map.get(str(s))[2].sname
@@ -2441,9 +2445,13 @@ class GrampsDB:
         self.place2title = {}
         self.genderStats = GenderStats ()
 
+    #EARNEY, may eventually be able to use secondary indexes for this
+    #that way we will not have to track these with code.
     def get_surnames(self):
         return self.surnames
 
+    #this function may eventually become obsolete.. if we use
+    #secondary indexes.
     def add_surname(self,name):
         if name and name not in self.surnames:
             self.surnames.append(name)
@@ -2456,8 +2464,8 @@ class GrampsDB:
     def clean_bookmarks(self):
         """cleans up the bookmark list, removing empty slots"""
         new_bookmarks = []
-        for person in self.bookmarks:
-            new_bookmarks.append(person)
+        for person_id in self.bookmarks:
+            new_bookmarks.append(person_id)
         self.bookmarks = new_bookmarks
             
     def set_researcher(self,owner):
@@ -2489,7 +2497,7 @@ class GrampsDB:
         return person
 
     def get_person(self,id):
-        """returns a map of gramps's IDs to Person instances"""
+        """returns a Person from a GRAMPS's ID"""
         p = Person()
         data = self.person_map.get(str(id))
         p.unserialize(data)
@@ -2556,7 +2564,7 @@ class GrampsDB:
 
     def get_place_ids(self):
         """returns a list of Place instances"""
-        return self.place_map.values()
+        return self.place_map.keys() 
 
     def get_family_relation_types(self):
         """returns a list of all relationship types assocated with Family
@@ -2568,13 +2576,13 @@ class GrampsDB:
 
     def remove_person_id(self,id):
 #        self.genderStats.uncount_person (self.person_map[id])
-        del self.person_map[str(id)]
+        self.person_map.delete(str(id))
 
     def remove_source_id(self,id):
-        del self.source_map[str(id)]
+        self.source_map.delete(str(id))
 
     def remove_event_id(self,id):
-        del self.event_map[str(id)]
+        self.event_map.delete(str(id))
 
     def add_person_as(self,person):
         assert(person.get_id())
@@ -2614,8 +2622,8 @@ class GrampsDB:
             self.genderStats.count_person (person, self)
         return person
 
-    def has_person_id(self,val):
-        return self.person_map.get(str(val))
+    def has_person_id(self,val):            #what does this function do?
+        return self.person_map.get(str(val))  #EARNEY
 
     def find_person_from_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
@@ -2661,7 +2669,6 @@ class GrampsDB:
     def add_event(self,event):
         """adds a Event instance to the database, assigning it a gramps'
         ID number"""
-        return Event()
         index = self.eprefix % self.emap_index
         while self.event_map.get(str(index)):
             self.emap_index += 1
@@ -2835,10 +2842,10 @@ class GrampsDB:
         return index
 
     def remove_object(self,id):
-        del self.media_map[str(id)]
+        self.media_map.delete(str(id))
 
     def remove_place(self,id):
-        del self.place_map[str(id)]
+        self.place_map.delete(str(id))
 
     def add_place_as(self,place):
         self.place_map.put(str(place.get_id()),place.serialize())
@@ -2876,15 +2883,15 @@ class GrampsDB:
         self.lmap_index = self.lmap_index + 1
         return index
 
-    def find_place_from_id(self,val):
+    def find_place_from_id(self,id):
         """finds a Place in the database from the passed gramps' ID.
         If no such Place exists, a new Place is added to the database."""
 
-        data = self.place_map.get(str(val))
+        data = self.place_map.get(str(id))
         place = Place()
         if not data:
-            place.id = val
-            self.place_map.put(str(val),place.serialize())
+            place.id = id
+            self.place_map.put(str(id),place.serialize())
             self.lmap_index = self.lmap_index + 1
         else:
             place.unserialize(data)
@@ -2906,7 +2913,7 @@ class GrampsDB:
 
     def get_place_id(self,key):
         place = Place()
-        place.serialize(self.place_map.get(str(key)))
+        place.unserialize(self.place_map.get(str(key)))
         return place
 
     def get_place_display(self,key):
@@ -2938,7 +2945,9 @@ class GrampsDB:
         return source.get_display_info()
 
     def get_source(self,key):
-        return self.source_map[key]
+        source = Source()
+        source.unserialize(self.source_map[key])
+        return source
 
     def build_source_display(self,nkey,okey=None):
         pass
@@ -3012,7 +3021,7 @@ class GrampsDB:
     def delete_family(self,family_id):
         """deletes the Family instance from the database"""
         if self.family_map.get(str(family_id)):
-            del self.family_map[str(family_id)]
+            self.family_map.delete(str(family_id))
 
     def find_person_no_conflicts(self,idVal,map):
         """finds a Person in the database using the idVal and map

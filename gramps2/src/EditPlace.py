@@ -168,7 +168,7 @@ class EditPlace:
 
         self.top_window.signal_autoconnect({
             "on_switch_page"            : self.on_switch_page,
-            "on_addphoto_clicked"       : self.glry.on_add_photo_clicked,
+            "on_addphoto_clicked"       : self.glry.on_add_media_object_clicked,
             "on_selectphoto_clicked"    : self.glry.on_select_photo_clicked,
             "on_deletephoto_clicked"    : self.glry.on_delete_photo_clicked,
             "on_edit_photo_clicked"     : self.glry.on_edit_photo_clicked,

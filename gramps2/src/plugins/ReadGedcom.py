@@ -972,7 +972,7 @@ class GedcomParser:
                 self.db.add_object(photo)
                 oref = RelLib.MediaRef()
                 oref.set_reference(photo)
-                self.person.add_media_object(oref)
+                self.person.add_media_reference(oref)
 
     def parse_family_object(self,level):
         form = ""
@@ -1010,7 +1010,7 @@ class GedcomParser:
                 self.db.add_object(photo)
                 oref = RelLib.MediaRef()
                 oref.set_reference(photo)
-                self.family.add_media_object(photo)
+                self.family.add_media_reference(photo)
                 self.db.commit_family(self.family)
 
     def parse_residence(self,address,level):
