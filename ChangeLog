@@ -1,3 +1,14 @@
+2003-06-01  Tim Waugh  <twaugh@users.sourceforge.net>
+
+	* src/plugins/DetDescendantReport.py 
+	(DetDescendantReport.write_marriage):
+	Missing value for the format line parameter 
+
+	* src/plugins/FtmStyleDescendants.py 
+	(FtmDescendantReport.print_more_about): Print regular name in the
+	header of the "More About" dialog. Also add missing endnotes value.
+	(FtmDescendantReport.print_parents): Fix a typo in a format line value.
+
 2003-06-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 
 	* ChangeLog: trying out clcommit
