@@ -182,6 +182,7 @@ pkgpython_PYTHON = \
 	QuestionDialog.py\
 	QuickAdd.py\
 	ReadXML.py\
+	Relationship.py\
 	RelImage.py\
 	RelLib.py\
 	Report.py\
