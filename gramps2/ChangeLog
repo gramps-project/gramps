@@ -1,3 +1,6 @@
+2005-01-10  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditPlace.py: make reference lists work properly for places
+
 2005-01-10 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/StatisticsChart.py: Misc fixes.
 	* src/PluginMgr.py (reload_plugins): Remove function.
