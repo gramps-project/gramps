@@ -1174,9 +1174,9 @@ class Gramps:
         self.people_view.add_to_person_list(person,0)
     
     def load_new_person(self,obj):
-        self.active_person = RelLib.Person()
+        person = RelLib.Person()
         try:
-            EditPerson.EditPerson(self,self.active_person,self.db,
+            EditPerson.EditPerson(self,person,self.db,
                                   self.update_after_edit)
         except:
             DisplayTrace.DisplayTrace()
@@ -1438,6 +1438,7 @@ class Gramps:
             self.place_view.new_place_after_edit(p)
 
     def update_after_edit(self,epo,change=1):
+        self.active_person = epo.person
         if change:
             self.people_view.update_person_list(epo.person)
         else:

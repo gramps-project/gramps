@@ -259,12 +259,12 @@ class GedcomParser:
         self.filename = file
         self.index = 0
         self.backoff = 0
-        self.override = codeset != None
+        self.override = codeset
 
-        if self.override:
-            if self.override == 0:
+        if self.override != 0:
+            if self.override == 1:
                 self.cnv = ansel_to_utf8
-            elif self.override == 1:
+            elif self.override == 2:
                 self.cnv = latin_utf8.latin_to_utf8
             else:
                 self.cnv = nocnv
@@ -640,6 +640,7 @@ class GedcomParser:
             place.set_handle(intid)
             place.set_title(gramps_id)
             place.set_gramps_id(self.db.find_next_place_gramps_id())
+            self.db.add_place(place,self.trans)
             self.lid2id[gramps_id] = intid
         return place
 
