@@ -16,27 +16,28 @@
 	* src/gramps_main.py: rebuild display after preferences
 
 2003-11-13  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/ImageSelect.py (GlobalMediaProperties.__init__): Find labels from
-	XML; (redraw_attr_list): Change attribute label; (display_refs): Change
-	references label; (on_notebook_switch_page): change notes label.
+	* src/ImageSelect.py (GlobalMediaProperties.__init__): Find labels 
+	from XML; (redraw_attr_list): Change attribute label; 
+	(display_refs): Change references label; 
+	(on_notebook_switch_page): change notes label.
 	* src/imagesel.glade: Set meaningful label ids, remove bold markup.
 	
-	* src/docgen/HtmlDoc.py (start_bold, end_bold): Add functions (closes
-	bug #841277).
+	* src/docgen/HtmlDoc.py (start_bold, end_bold): Add functions 
+	(closes	bug #841277).
 	
-	* src/plugins/WebPage.py (IndividualPage.write_normal_row): Add separators
-	between the references (comma and space). 
+	* src/plugins/WebPage.py (IndividualPage.write_normal_row): 
+	Add separators between the references (comma and space). 
 
 	* src/data/templates/blue_edge.tpkg, src/data/templates/marble.tpkg,
 	src/data/templates/pink_marble.tpkg, src/data/templates/sepia.tpkg, 
-	src/data/templates/sky_border.tpkg: Remove from CVS (need to add binary
-	files using -kb flag). Add with -kb flag. Add charset info to the header of
-	all templates. 
+	src/data/templates/sky_border.tpkg: Remove from CVS (need to add 
+	binary files using -kb flag). Add with -kb flag. Add charset info 
+	to the header of all templates. 
 
 	* src/EditPerson.py: Fix LDS tab label behavior.
-	* src/Marriage.py: Fix LDS tab label behavior. Fix get_place for LDS (was
-	using Utils.get_place_from_list which uses deprecated gtk.List and does not
-	work).
+	* src/Marriage.py: Fix LDS tab label behavior. Fix get_place 
+	for LDS (was using Utils.get_place_from_list which uses deprecated 
+	gtk.List and does not work).
 
 2003-11-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: Change column sizes on the FamilyView to
