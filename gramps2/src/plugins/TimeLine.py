@@ -1,0 +1,453 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2003  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+"""
+TimeLine report
+"""
+
+#------------------------------------------------------------------------
+#
+# python modules
+#
+#------------------------------------------------------------------------
+import os
+
+#------------------------------------------------------------------------
+#
+# GNOME/gtk
+#
+#------------------------------------------------------------------------
+import gtk
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import Utils
+import Report
+import TextDoc
+import DrawDoc
+import GenericFilter
+import Errors
+import Date
+import FontScale
+import sort
+from QuestionDialog import ErrorDialog
+
+from intl import gettext as _
+
+#------------------------------------------------------------------------
+#
+# TimeLine
+#
+#------------------------------------------------------------------------
+class TimeLine:
+
+    def __init__(self,database,person,output,document,filter,title,sort_func):
+        """
+        Creates the TimeLine object that produces the report. This class
+        is used by the TimeLineDialog class. The arguments are:
+
+        database - the GRAMPS database
+        person   - currently selected person
+        output   - name of the output file
+        document - DrawDoc instance for the output file. Any class derived
+                   from DrawDoc may be used.
+        filter   - filtering function selected by the TimeLineDialog
+                   class.
+        """
+        self.d = document
+	self.filter = filter
+	self.db = database
+	self.person = person
+	self.output = output
+        self.title = title
+        self.sort_func = sort_func
+
+    def setup(self):
+        """
+        Define the graphics styles used by the report. Paragraph definitions
+        have already been defined in the document. The styles used are:
+
+        grid  - 0.5pt wide line dashed line. Used for the lines that make up
+                the grid.
+        line  - 0.5pt wide line. Used for the line connecting two endpoints
+                and for the birth marker.
+        solid - 0.5pt line with a black fill color. Used for the date of
+                death marker.
+        text  - Contains the Name paragraph style used for the individual's
+                name
+        title - Contains the Title paragraph style used for the title of
+                the document
+        label - Contains the Label paragraph style used for the year label's
+                in the document.
+        """
+        g = DrawDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_color((0,0,0))
+        self.d.add_draw_style("line",g)
+
+        g = DrawDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_color((0,0,0))
+        g.set_fill_color((0,0,0))
+        self.d.add_draw_style("solid",g)
+
+        g = DrawDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        self.d.add_draw_style("open",g)
+
+        g = DrawDoc.GraphicsStyle()
+        g.set_line_width(0.5)
+        g.set_line_style(DrawDoc.DASHED)
+        g.set_color((0,0,0))
+        self.d.add_draw_style("grid",g)
+
+        g = DrawDoc.GraphicsStyle()
+        g.set_paragraph_style("Name")
+        g.set_color((255,255,255))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        self.d.add_draw_style("text",g)
+
+        g = DrawDoc.GraphicsStyle()
+        g.set_paragraph_style("Title")
+        g.set_color((255,255,255))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        self.d.add_draw_style("title",g)
+
+        g = DrawDoc.GraphicsStyle()
+        g.set_paragraph_style("Label")
+        g.set_color((255,255,255))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        self.d.add_draw_style("label",g)
+
+    def write_report(self):
+
+        (low,high) = self.find_year_range()
+        st_size = self.name_size()
+
+        font = self.d.style_list['Name'].get_font()
+        
+        incr = pt2cm(font.get_size())
+        pad =  incr*.75
+        
+        x1,x2,y1,y2 = (0,0,0,0)
+
+        start = st_size+0.5
+        stop = self.d.get_usable_width()-0.5
+        size = (stop-start)
+        self.header = 2.0
+        
+	self.d.open(self.output)
+        self.d.start_page()
+        self.build_grid(low,high,start,stop)
+
+        index = 1
+        current = 1;
+        
+        length = len(self.plist)
+
+        self.plist.sort(self.sort_func)
+        
+        for p in self.plist:
+            b = p.getBirth().getDateObj().getYear()
+            d = p.getDeath().getDateObj().getYear()
+
+            n = p.getPrimaryName().getName()
+            self.d.draw_text('text',n,incr+pad,self.header + (incr+pad)*index)
+            
+            y1 = self.header + (pad+incr)*index
+            y2 = self.header + ((pad+incr)*index)+incr
+            y3 = (y1+y2)/2.0
+            w = 0.05
+            
+            if b != Date.UNDEF:
+                start_offset = ((float(b-low)/float(high-low)) * (size))
+                x1 = start+start_offset
+                path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
+                self.d.draw_path('line',path)
+
+            if d != Date.UNDEF:
+                start_offset = ((float(d-low)/float(high-low)) * (size))
+                x1 = start+start_offset
+                path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
+                self.d.draw_path('solid',path)
+
+            if b != Date.UNDEF and d != Date.UNDEF:
+                start_offset = ((float(b-low)/float(high-low)) * size) + w
+                stop_offset = ((float(d-low)/float(high-low)) * size) - w
+
+                x1 = start+start_offset
+                x2 = start+stop_offset
+                self.d.draw_line('open',x1,y3,x2,y3)
+
+            if (y2 + incr) >= self.d.get_usable_height():
+                if current != length:
+                    self.d.end_page()
+                    self.d.start_page()
+                    self.build_grid(low,high,start,stop)
+                index = 1
+                x1,x2,y1,y2 = (0,0,0,0)
+            else:
+                index += 1;
+            current += 1
+            
+        self.d.end_page()    
+	self.d.close()
+
+    def build_grid(self,year_low,year_high,start_pos,stop_pos):
+        """
+        Draws the grid outline for the chart. Sets the document label,
+        draws the vertical lines, and adds the year labels. Arguments
+        are:
+
+        year_low  - lowest year on the chart
+        year_high - highest year on the chart
+        start_pos - x position of the lowest leftmost grid line
+        stop_pos  - x position of the rightmost grid line
+        """
+        width = self.d.get_usable_width()
+
+        title_font = self.d.style_list['Title'].get_font()
+        normal_font = self.d.style_list['Name'].get_font()
+        label_font = self.d.style_list['Name'].get_font()
+
+        tstr_width = pt2cm(FontScale.string_width(title_font,self.title))
+
+        title_x = (width - tstr_width )/2.0
+        title_y = 0
+        self.d.draw_text('title',self.title,title_x,title_y)
+        
+        label_y = self.header - (pt2cm(normal_font.get_size())*1.2)
+        top_y = self.header
+        bottom_y = self.d.get_usable_height()
+        
+        incr = (year_high - year_low)/5
+        delta = (stop_pos - start_pos)/ 5
+
+        for val in range(0,6):
+            year_str = str(year_low + (incr*val))
+            year_width = pt2cm(FontScale.string_width(label_font,year_str))/2.0
+
+            xpos = start_pos+(val*delta)
+            label_xpos = start_pos+(val*delta) - year_width
+            
+            self.d.draw_text('label', year_str, label_xpos, label_y)
+            self.d.draw_line('grid', xpos, top_y, xpos, bottom_y)
+
+    def find_year_range(self):
+        low  =  999999
+	high = -999999
+	
+        self.plist = self.filter.apply(self.db,self.db.getPersonMap().values())
+
+	for p in self.plist:
+	    b = p.getBirth().getDateObj().getYear()
+	    d = p.getDeath().getDateObj().getYear()
+
+	    if b != Date.UNDEF:
+	       low = min(low,b)
+	       high = max(high,b)
+
+	    if d != Date.UNDEF:
+	       low = min(low,b)
+	       high = max(high,b)
+
+	low = (low/10)*10
+	high = ((high+9)/10)*10
+        
+        return (low,high)
+
+    def name_size(self):
+        self.plist = self.filter.apply(self.db,self.db.getPersonMap().values())
+
+        style_name = self.d.draw_styles['text'].get_paragraph_style()
+        font = self.d.style_list[style_name].get_font()
+        
+        size = 0
+	for p in self.plist:
+            n = p.getPrimaryName().getName()
+            size = max(FontScale.string_width(font,n),size)
+        return pt2cm(size)
+
+
+#------------------------------------------------------------------------
+#
+# TimeLineDialog
+#
+#------------------------------------------------------------------------
+class TimeLineDialog(Report.DrawReportDialog):
+
+    def __init__(self,database,person):
+        Report.DrawReportDialog.__init__(self,database,person)
+
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - %s - GRAMPS" % (_("Timeline"),
+                                     _("Graphical Reports"))
+
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("TimeLine File")
+
+    def get_report_generations(self):
+        """No generation options."""
+        return (0, 0)
+    
+    def add_user_options(self):
+        """
+        Override the base class add_user_options task to add a menu that allows
+        the user to select the sort method.
+        """
+        
+        self.sort_style = gtk.OptionMenu()
+        self.sort_menu = gtk.Menu()
+
+        for item in [(_("Birth Date"),sort.by_birthdate),(_("Name"),sort.by_last_name)]:
+            menuitem = gtk.MenuItem(item[0])
+            menuitem.set_data('sort',item[1])
+            menuitem.show()
+            self.sort_menu.append(menuitem)
+
+        self.sort_style.set_menu(self.sort_menu)
+        self.add_option(_('Sort by'),self.sort_style)
+
+        self.title_box = gtk.Entry()
+        self.title_box.show()
+        self.add_option(_('Title'),self.title_box)
+        
+    def get_report_filters(self):
+        """Set up the list of possible content filters."""
+
+        name = self.person.getPrimaryName().getName()
+        
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % name)
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
+
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % name)
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
+
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
+
+        return [all,des,ans,com]
+
+    def make_default_style(self):
+        """Make the default output style for the Ancestor Chart report."""
+        f = TextDoc.FontStyle()
+        f.set_size(10)
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
+        p = TextDoc.ParagraphStyle()
+        p.set_font(f)
+        self.default_style.add_style("Name",p)
+
+        f = TextDoc.FontStyle()
+        f.set_size(8)
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
+        p = TextDoc.ParagraphStyle()
+        p.set_font(f)
+        self.default_style.add_style("Label",p)
+
+        f = TextDoc.FontStyle()
+        f.set_size(14)
+        f.set_type_face(TextDoc.FONT_SANS_SERIF)
+        p = TextDoc.ParagraphStyle()
+        p.set_font(f)
+        self.default_style.add_style("Title",p)
+
+    def make_report(self):
+
+        title = self.title_box.get_text()
+        sort_func = self.sort_menu.get_active().get_data('sort')
+
+        try:
+            MyReport = TimeLine(self.db, self.person, self.target_path,
+				self.doc, self.filter, title, sort_func)
+	    MyReport.setup()
+            MyReport.write_report()
+        except Errors.ReportError, msg:
+            ErrorDialog(str(msg))
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+
+#------------------------------------------------------------------------
+#
+# point to centimeter convertion
+#
+#------------------------------------------------------------------------
+def pt2cm(val):
+    return (float(val)/28.3465)
+
+#------------------------------------------------------------------------
+#
+# Register the TimeLine report with the plugin system. The register_report
+# task of the Plugins module takes the following arguments.
+#
+# task - function that starts the task
+# name - Name of the report
+# status - alpha/beta/production
+# category - Category entry in the menu system.
+# author_name - Name of the author
+# author_email - Author's email address
+# description - function that returns the description of the report
+#
+#------------------------------------------------------------------------
+from Plugins import register_report
+
+def report(database,person):
+    """
+    report - task starts the report. The plugin system requires that the
+    task be in the format of task that takes a database and a person as
+    its arguments.
+    """
+    TimeLineDialog(database,person)
+
+def get_description():
+    """
+    get_description - returns a descriptive name for the report. The plugin
+    system uses this to provide a description in the report selector.
+    """
+    return _("Generates a timeline graph.")
+
+register_report(
+    task=report,
+    name=_("TimeLine Graph"),
+    status=(_("Beta")),
+    category=_("Graphical Reports"),
+    author_name="Donald N. Allingham",
+    author_email="dallingham@users.sourceforge.net",
+    description=get_description()
+    )
+
