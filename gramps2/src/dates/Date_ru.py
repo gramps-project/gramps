@@ -50,58 +50,64 @@ from DateDisplay import DateDisplay
 class DateParserRU(DateParser):
 
     modifier_to_int = {
-        'до'    : Date.MOD_BEFORE, 
-        'по'    : Date.MOD_BEFORE,
-        'после' : Date.MOD_AFTER,
-        'п.'    : Date.MOD_AFTER,
-        'п'    : Date.MOD_AFTER,
-        'с'     : Date.MOD_AFTER,
-        'ок' : Date.MOD_ABOUT,
-        'ок.'   : Date.MOD_ABOUT,
-        'около'    : Date.MOD_ABOUT,
-        'примерно'  : Date.MOD_ABOUT,
-        'прим'     : Date.MOD_ABOUT,
-        'прим.'     : Date.MOD_ABOUT,
-        'приблизительно'  : Date.MOD_ABOUT,
-        'приб.'  : Date.MOD_ABOUT,
-        'прибл.'  : Date.MOD_ABOUT,
-        'приб'  : Date.MOD_ABOUT,
-        'прибл'  : Date.MOD_ABOUT,
+        u'до'    : Date.MOD_BEFORE, 
+        u'по'    : Date.MOD_BEFORE,
+        u'после' : Date.MOD_AFTER,
+        u'п.'    : Date.MOD_AFTER,
+        u'п'    : Date.MOD_AFTER,
+        u'с'     : Date.MOD_AFTER,
+        u'ок' : Date.MOD_ABOUT,
+        u'ок.'   : Date.MOD_ABOUT,
+        u'около'    : Date.MOD_ABOUT,
+        u'примерно'  : Date.MOD_ABOUT,
+        u'прим'     : Date.MOD_ABOUT,
+        u'прим.'     : Date.MOD_ABOUT,
+        u'приблизительно'  : Date.MOD_ABOUT,
+        u'приб.'  : Date.MOD_ABOUT,
+        u'прибл.'  : Date.MOD_ABOUT,
+        u'приб'  : Date.MOD_ABOUT,
+        u'прибл'  : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        'григорианский'   : Date.CAL_GREGORIAN,
-        'г'                 : Date.CAL_GREGORIAN,
-        'юлианский'            : Date.CAL_JULIAN,
-        'ю'                 : Date.CAL_JULIAN,
-        'еврейский'         : Date.CAL_HEBREW,
-        'е'         : Date.CAL_HEBREW,
-        'исламский'         : Date.CAL_ISLAMIC,
-        'и'                 : Date.CAL_ISLAMIC,
-        'республиканский': Date.CAL_FRENCH,
-        'р'                 : Date.CAL_FRENCH,
-        'персидский'             : Date.CAL_PERSIAN,
-        'п'             : Date.CAL_PERSIAN,
+        u'григорианский'   : Date.CAL_GREGORIAN,
+        u'г'                 : Date.CAL_GREGORIAN,
+        u'юлианский'            : Date.CAL_JULIAN,
+        u'ю'                 : Date.CAL_JULIAN,
+        u'еврейский'         : Date.CAL_HEBREW,
+        u'е'         : Date.CAL_HEBREW,
+        u'исламский'         : Date.CAL_ISLAMIC,
+        u'и'                 : Date.CAL_ISLAMIC,
+        u'республиканский': Date.CAL_FRENCH,
+        u'р'                 : Date.CAL_FRENCH,
+        u'персидский'             : Date.CAL_PERSIAN,
+        u'п'             : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
-        'оценено'  : Date.QUAL_ESTIMATED,
-        'оцен.'       : Date.QUAL_ESTIMATED,
-        'оц.'        : Date.QUAL_ESTIMATED,
-        'оцен'       : Date.QUAL_ESTIMATED,
-        'оц'        : Date.QUAL_ESTIMATED,
-        'вычислено'      : Date.QUAL_CALCULATED,
-        'вычисл.'       : Date.QUAL_CALCULATED,
-        'выч.' : Date.QUAL_CALCULATED,
-        'вычисл'       : Date.QUAL_CALCULATED,
-        'выч' : Date.QUAL_CALCULATED,
+        u'оценено'  : Date.QUAL_ESTIMATED,
+        u'оцен.'       : Date.QUAL_ESTIMATED,
+        u'оц.'        : Date.QUAL_ESTIMATED,
+        u'оцен'       : Date.QUAL_ESTIMATED,
+        u'оц'        : Date.QUAL_ESTIMATED,
+        u'вычислено'      : Date.QUAL_CALCULATED,
+        u'вычисл.'       : Date.QUAL_CALCULATED,
+        u'выч.' : Date.QUAL_CALCULATED,
+        u'вычисл'       : Date.QUAL_CALCULATED,
+        u'выч' : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     = re.compile("(с|от)\s+(.+)\s+(по|до)\s+(.+)",
+        _span_1 = [u'с',u'от']
+        _span_2 = [u'по',u'до']
+        _range_1 = [u'между',u'меж',u'меж.']
+        _range_2 = [u'и']
+        self._span     = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" % 
+                                   ('|'.join(_span_1),'|'.join(_span_2)),
                            re.IGNORECASE)
-        self._range    = re.compile("(между|меж|меж.)\s+(.+)\s+(и)\s+(.+)",
+        self._range    = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" %
+                                   ('|'.join(_range_1),'|'.join(_range_2)),
                            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -112,16 +118,16 @@ class DateParserRU(DateParser):
 class DateDisplayRU(DateDisplay):
 
     calendar = (
-        "", " (юлианский)", 
-        " (еврейский)", 
-        " (республиканский)", 
-        " (персидский)", 
-        " (исламский)"
+        "", u" (юлианский)", 
+        u" (еврейский)", 
+        u" (республиканский)", 
+        u" (персидский)", 
+        u" (исламский)"
         )
 
-    _mod_str = ("","до ",
-        "после ",
-        "около ","","","")
+    _mod_str = ("",u"до ",
+        u"после ",
+        u"около ","","","")
     
     def display(self,date):
         """
@@ -141,11 +147,11 @@ class DateDisplayRU(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sс %s по %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return "%sс %s %s %s%s" % (qual_str,d1,u'по',d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sмежду %s и %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str,u'между',d1,u'и',d2,self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
             return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])

@@ -50,48 +50,54 @@ from DateDisplay import DateDisplay
 class DateParserFR(DateParser):
 
     modifier_to_int = {
-        'avant'    : Date.MOD_BEFORE, 
-        'av.'      : Date.MOD_BEFORE, 
-        'av'       : Date.MOD_BEFORE, 
-        'après' : Date.MOD_AFTER,
-        'ap.'    : Date.MOD_AFTER,
-        'ap'     : Date.MOD_AFTER,
-        'env.'   : Date.MOD_ABOUT,
-        'env'    : Date.MOD_ABOUT,
-        'circa'  : Date.MOD_ABOUT,
-        'c.'     : Date.MOD_ABOUT,
-        'vers'   : Date.MOD_ABOUT,
+        u'avant'    : Date.MOD_BEFORE, 
+        u'av.'      : Date.MOD_BEFORE, 
+        u'av'       : Date.MOD_BEFORE, 
+        u'après' : Date.MOD_AFTER,
+        u'ap.'    : Date.MOD_AFTER,
+        u'ap'     : Date.MOD_AFTER,
+        u'env.'   : Date.MOD_ABOUT,
+        u'env'    : Date.MOD_ABOUT,
+        u'circa'  : Date.MOD_ABOUT,
+        u'c.'     : Date.MOD_ABOUT,
+        u'vers'   : Date.MOD_ABOUT,
         }
 
     calendar_to_int = {
-        'grégorien'      : Date.CAL_GREGORIAN,
-        'g'                     : Date.CAL_GREGORIAN,
-        'julien'                : Date.CAL_JULIAN,
-        'j'                     : Date.CAL_JULIAN,
-        'hébreu'         : Date.CAL_HEBREW,
-        'h'                     : Date.CAL_HEBREW,
-        'islamique'             : Date.CAL_ISLAMIC,
-        'i'                     : Date.CAL_ISLAMIC,
-        'révolutionnaire': Date.CAL_FRENCH,
-        'r'                     : Date.CAL_FRENCH,
-        'perse'                 : Date.CAL_PERSIAN,
-        'p'                     : Date.CAL_PERSIAN,
+        u'grégorien'      : Date.CAL_GREGORIAN,
+        u'g'                     : Date.CAL_GREGORIAN,
+        u'julien'                : Date.CAL_JULIAN,
+        u'j'                     : Date.CAL_JULIAN,
+        u'hébreu'         : Date.CAL_HEBREW,
+        u'h'                     : Date.CAL_HEBREW,
+        u'islamique'             : Date.CAL_ISLAMIC,
+        u'i'                     : Date.CAL_ISLAMIC,
+        u'révolutionnaire': Date.CAL_FRENCH,
+        u'r'                     : Date.CAL_FRENCH,
+        u'perse'                 : Date.CAL_PERSIAN,
+        u'p'                     : Date.CAL_PERSIAN,
         }
 
     quality_to_int = {
-        'estimated'  : Date.QUAL_ESTIMATED,
-        'est.'       : Date.QUAL_ESTIMATED,
-        'est'        : Date.QUAL_ESTIMATED,
-        'calc.'      : Date.QUAL_CALCULATED,
-        'calc'       : Date.QUAL_CALCULATED,
-        'calculated' : Date.QUAL_CALCULATED,
+        u'estimated'  : Date.QUAL_ESTIMATED,
+        u'est.'       : Date.QUAL_ESTIMATED,
+        u'est'        : Date.QUAL_ESTIMATED,
+        u'calc.'      : Date.QUAL_CALCULATED,
+        u'calc'       : Date.QUAL_CALCULATED,
+        u'calculated' : Date.QUAL_CALCULATED,
         }
 
     def init_strings(self):
         DateParser.init_strings(self)
-        self._span     = re.compile("(de)\s+(.+)\s+(à)\s+(.+)",
+        _span_1 = [u'de']
+        _span_2 = [u'à']
+        _range_1 = [u'ent.',u'ent',u'entre']
+        _range_2 = [u'et']
+        self._span     = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" % 
+                                   ('|'.join(_span_1),'|'.join(_span_2)),
                            re.IGNORECASE)
-        self._range    = re.compile("(ent.|ent|entre)\s+(.+)\s+(et)\s+(.+)",
+        self._range    = re.compile("(%s)\s+(.+)\s+(%s)\s+(.+)" %
+                                   ('|'.join(_range_1),'|'.join(_range_2)),
                            re.IGNORECASE)
 
 #-------------------------------------------------------------------------
@@ -102,11 +108,11 @@ class DateParserFR(DateParser):
 class DateDisplayFR(DateDisplay):
 
     calendar = (
-        "", " (Julien)", " (Hébreu)", 
-        " (Révolutionnaire)", " (Perse)", " (Islamique)"
+        "", u" (Julien)", u" (Hébreu)", 
+        u" (Révolutionnaire)", u" (Perse)", u" (Islamique)"
         )
 
-    _mod_str = ("","avant ","après ","vers ","","","")
+    _mod_str = ("",u"avant ",u"après ",u"vers ","","","")
     
     def display(self,date):
         """
@@ -126,11 +132,11 @@ class DateDisplayFR(DateDisplay):
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sde %s à %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str,u'de',d1,u'à',d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sentre %s et %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return "%s%s %s %s %s%s" % (qual_str,u'entre',d1,u'et',d2,self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
             return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
