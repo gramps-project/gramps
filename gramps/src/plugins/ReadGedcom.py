@@ -45,12 +45,9 @@ db = None
 callback = None
 glade_file = None
 clear_data = 0
-is_ftw = 0
 
 def nocnv(s):
     return s
-
-_cnv = nocnv
 
 photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
                 "jpg", "tiff", "pcx" ]
@@ -70,8 +67,6 @@ for val in const.familyConstantEvents.keys():
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
-
-placemap = {}
 
 #-------------------------------------------------------------------------
 #
@@ -168,10 +163,12 @@ class GedcomParser:
         self.nmap = {}
         self.dir_path = os.path.dirname(file)
         self.localref = 0
+        self.placemap = {}
 
         self.f = open(file,"r")
         self.index = 0
         self.backoff = 0
+        self.cnv = nocnv
 
         self.file_obj = window.get_widget("file")
         self.encoding_obj = window.get_widget("encoding")
@@ -201,7 +198,7 @@ class GedcomParser:
 
     def get_next(self):
         if self.backoff == 0:
-            self.text = _cnv(string.strip(self.f.readline()))
+            self.text = self.cnv(string.strip(self.f.readline()))
             self.index = self.index + 1
             l = string.split(self.text, None, 2)
             ln = len(l)
@@ -260,11 +257,6 @@ class GedcomParser:
 	self.parse_header_head()
         self.parse_header_source()
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def parse_submitter(self):
 	matches = self.get_next()
 
@@ -382,15 +374,24 @@ class GedcomParser:
 	    if int(matches[0]) < level:
                 self.backup()
                 return (mrel,frel)
+            # FTW
             elif matches[1] == "_FREL":
                 if string.lower(matches[2]) != "natural":
                     frel = string.capitalize(matches[2])
+            # FTW
             elif matches[1] == "_MREL":
                 if string.lower(matches[2]) != "natural":
                     mrel = matches[2]
             elif matches[1] == "ADOP":
                 mrel = "Adopted"
                 frel = "Adopted"
+            # Legacy
+            elif matches[1] == "_STAT":
+                mrel = matches[2]
+                frel = matches[2]
+            # Legacy _PREF
+            elif matches[1][0] == "_":
+                pass
             else:
                 self.barf(level+1)
     
@@ -416,21 +417,23 @@ class GedcomParser:
                 mrel,frel = self.parse_ftw_relations(2)
                 child = self.db.findPerson(matches[2],self.pmap)
                 self.family.addChild(child)
-                if (mrel == "Birth" or mrel == "") and \
-                   (frel == "Birth" or frel == "") :
-                    child.setMainFamily(self.family)
+
+                for f in child.getAltFamilyList():
+                    if f[0] == self.family:
+                        break
                 else:
-                    if child.getMainFamily() == self.family:
-                        child.setMainFamily(None)
-                    child.addAltFamily(self.family,mrel,frel)
-	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
+                    if (mrel=="Birth" or mrel=="") and (frel=="Birth" or frel==""):
+                        child.setMainFamily(self.family)
+                    else:
+                        if child.getMainFamily() == self.family:
+                            child.setMainFamily(None)
+                        child.addAltFamily(self.family,mrel,frel)
+	    elif matches[1] == "NCHI":
                 a = Attribute()
                 a.setType("Number of Children")
                 a.setValue(matches[2])
                 self.family.addAttribute(a)
-	    elif matches[1] == "RIN" or matches[1] == "SUBM":  
-                pass
-            elif matches[1] in ["REFN","CHAN","SOUR"]:
+            elif matches[1] in ["RIN", "SUBM", "REFN","CHAN","SOUR"]:
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
@@ -488,10 +491,16 @@ class GedcomParser:
                 self.parse_name(name,2)
             elif matches[1] == "_UID":
                 self.person.setPafUid(matches[2])
-	    elif matches[1] in ["AFN","CHAN","REFN","SOUR"]:
-                self.ignore_sub_junk(2)
-	    elif matches[1] in ["ALIA", "ANCI","DESI","RIN","RFN"]:
-                pass
+            elif matches[1] == "ALIA":
+                aka = Name()
+                names = nameRegexp.match(matches[2]).groups()
+                if names[0]:
+                    aka.setFirstName(names[0])
+                if names[1]:
+                    aka.setSurname(names[1])
+                if names[2]:
+                    aka.setSuffix(names[2])
+                self.person.addAlternateName(aka)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
                     self.barf(2)
@@ -523,13 +532,20 @@ class GedcomParser:
 	    elif matches[1] == "FAMC":
                 type,note = self.parse_famc_type(2)
                 family = self.db.findFamily(matches[2],self.fmap)
-                if type == "" or type == "Birth":
-                    if self.person.getMainFamily() == None:
-                        self.person.setMainFamily(family)
-                    else:
-                        self.person.addAltFamily(family,"Unknown","Unknown")
+                
+                for f in self.person.getAltFamilyList():
+                    if f[0] == family:
+                        break
                 else:
-                    self.person.addAltFamily(family,type,type)
+                    if type == "" or type == "Birth":
+                        if self.person.getMainFamily() == None:
+                            self.person.setMainFamily(family)
+                        else:
+                            self.person.addAltFamily(family,"Unknown","Unknown")
+                    else:
+                        if self.person.getMainFamily() == family:
+                            self.person.setMainFamily(None)
+                        self.person.addAltFamily(family,type,type)
 	    elif matches[1] == "RESI":
                 addr = Address()
                 self.person.addAddress(addr)
@@ -555,7 +571,7 @@ class GedcomParser:
                 event = Event()
                 event.setName("Adopted")
                 self.person.addEvent(event)
-                self.parse_person_event(event,2)
+                self.parse_adopt_event(event,2)
 	    elif matches[1] == "DEAT":
                 event = Event()
                 if self.person.getDeath().getDate() != "" or \
@@ -577,6 +593,10 @@ class GedcomParser:
                     self.person.addAttribute(attr)
                 else:
                     self.person.addEvent(event)
+	    elif matches[1] in ["AFN","CHAN","REFN","SOUR"]:
+                self.ignore_sub_junk(2)
+	    elif matches[1] in ["ANCI","DESI","RIN","RFN"]:
+                pass
             else:
                 event = Event()
                 n = string.strip(matches[1])
@@ -624,7 +644,7 @@ class GedcomParser:
                 self.backup()
                 return (string.capitalize(type),note)
             elif matches[1] == "PEDI":
-                type = string.capitalize(matches[2])
+                type = matches[2]
             elif matches[1] == "_PRIMARY":
                 type = matches[1]
             elif matches[1] == "NOTE":
@@ -858,28 +878,20 @@ class GedcomParser:
                     source_ref.setBase(self.db.findSource(matches[2],self.smap))
                     self.parse_source_reference(source_ref,level+1)
                 event.addSourceRef(source_ref)
-            elif matches[1] == "FAMC":
-                family = self.db.findFamily(matches[2],self.fmap)
-                if event.getName() == "Birth":
-                    self.person.setMainFamily(family)
-                else:
-                    type = string.capitalize(event.getName())
-                    self.person.addAltFamily(family,type,type)
-                self.ignore_sub_junk(level+1)
             elif matches[1] == "PLAC":
                 val = matches[2]
                 n = string.strip(event.getName())
-                if is_ftw and n in ["Occupation","Degree","SSN"]:
+                if self.is_ftw and n in ["Occupation","Degree","SSN"]:
                     event.setDescription(val)
                     self.ignore_sub_junk(level+1)
                 else:
-                    if placemap.has_key(val):
-                        place = placemap[val]
+                    if self.placemap.has_key(val):
+                        place = self.placemap[val]
                     else:
                         place = Place()
                         place.set_title(matches[2])
                         self.db.addPlace(place)
-                        placemap[val] = place
+                        self.placemap[val] = place
                     event.setPlace(place)
                     self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS":
@@ -895,6 +907,87 @@ class GedcomParser:
 	        event.setDescription( "%s %s" % (event.getDescription(), matches[2]))
 	    elif matches[1] == "CONT":
 	        event.setDescription("%s\n%s" % (event.getDescription(),matches[2]))
+            else:
+	        self.barf(level+1)
+
+    def parse_adopt_event(self,event,level):
+        note = ""
+        while 1:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                if note != "":
+                    event.setNote(note)
+                self.backup()
+                break
+            elif matches[1] == "DATE":
+                event.setDate(matches[2])
+            elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                if matches[2] and matches[2][0] != "@":
+                    self.localref = self.localref + 1
+                    ref = "gsr%d" % self.localref
+                    s = self.db.findSource(ref,self.smap)
+                    source_ref.setBase(s)
+                    s.setTitle('Imported Source #%d' % self.localref)
+                    s.setNote(matches[2] + self.parse_continue_data(1))
+                    self.ignore_sub_junk(2)
+                else:
+                    source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                    self.parse_source_reference(source_ref,level+1)
+                event.addSourceRef(source_ref)
+            elif matches[1] == "FAMC":
+                family = self.db.findFamily(matches[2],self.fmap)
+                mrel,frel = self.parse_adopt_famc(level+1);
+                if self.person.getMainFamily() == family:
+                    self.person.setMainFamily(None)
+                self.person.addAltFamily(family,mrel,frel)
+            elif matches[1] == "PLAC":
+                val = matches[2]
+                n = string.strip(event.getName())
+                if self.is_ftw and n in ["Occupation","Degree","SSN"]:
+                    event.setDescription(val)
+                    self.ignore_sub_junk(level+1)
+                else:
+                    if self.placemap.has_key(val):
+                        place = self.placemap[val]
+                    else:
+                        place = Place()
+                        place.set_title(matches[2])
+                        self.db.addPlace(place)
+                        self.placemap[val] = place
+                    event.setPlace(place)
+                    self.ignore_sub_junk(level+1)
+            elif matches[1] == "CAUS":
+                info = matches[2] + self.parse_continue_data(level+1)
+                event.setCause(info)
+            elif matches[1] == "NOTE":
+                info = matches[2] + self.parse_continue_data(level+1)
+                if note == "":
+                    note = info
+                else:
+                    note = "\n%s" % info
+	    elif matches[1] == "CONC":
+	        event.setDescription( "%s %s" % (event.getDescription(), matches[2]))
+	    elif matches[1] == "CONT":
+	        event.setDescription("%s\n%s" % (event.getDescription(),matches[2]))
+            else:
+	        self.barf(level+1)
+
+    def parse_adopt_famc(self,level):
+        mrel = "Adopted"
+        frel = "Adopted"
+        while 1:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                return (mrel,frel)
+            elif matches[1] == "ADOP":
+                if matches[2] == "HUSB":
+                    mrel = "Birth"
+                elif matches[2] == "WIFE":
+                    frel = "Birth"
             else:
 	        self.barf(level+1)
 
@@ -982,13 +1075,13 @@ class GedcomParser:
                 event.addSourceRef(source_ref)
             elif matches[1] == "PLAC":
                 val = matches[2]
-                if placemap.has_key(val):
-                    place = placemap[val]
+                if self.placemap.has_key(val):
+                    place = self.placemap[val]
                 else:
                     place = Place()
                     place.set_title(matches[2])
                     self.db.addPlace(place)
-                    placemap[val] = place
+                    self.placemap[val] = place
                 event.setPlace(place)
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "NOTE":
@@ -1091,8 +1184,18 @@ class GedcomParser:
                 name.setSurname(matches[2])
 	    elif matches[1] == "NSFX":
                 name.setSuffix(matches[2])
-	    elif matches[1] == "NICK" or matches[1] == "_AKA":
+	    elif matches[1] == "NICK":
                 self.person.setNickName(matches[2])
+            elif matches[1] == "_AKA":
+                lname = string.split(matches[2])
+                l = len(lname)
+                if l == 1:
+                    self.person.setNickName(matches[2])
+                else:
+                    name = Name()
+                    name.setSurname(lname[-1])
+                    name.setFirstName(string.join(lname[0:l-1]))
+                self.person.addAlternateName(name)
             elif matches[1] == "SOUR":
                 source_ref = SourceRef()
                 source_ref.setBase(self.db.findSource(matches[2],self.smap))
@@ -1122,8 +1225,6 @@ class GedcomParser:
         self.index = self.index + 1
 
     def parse_header_source(self):
-        global is_ftw
-        global _cnv
         
         while 1:
 	    matches = self.get_next()
@@ -1135,7 +1236,7 @@ class GedcomParser:
                 if self.created_obj.get_text() == "":
                     self.update(self.created_obj,matches[2])
                 if matches[2] == "FTW":
-                    is_ftw = 1
+                    self.is_ftw = 1
    	    elif matches[1] == "NAME":
                 self.update(self.created_obj,matches[2])
    	    elif matches[1] == "VERS":
@@ -1158,10 +1259,10 @@ class GedcomParser:
                 if matches[2] == "UNICODE" or matches[2] == "UTF-8" or \
                    matches[2] == "UTF8":
                     self.code = UNICODE
-                    _cnv = latin_utf8.utf8_to_latin
+                    self.cnv = latin_utf8.utf8_to_latin
                 elif matches[2] == "ANSEL":
                     self.code = ANSEL
-                    _cnv = latin_ansel.ansel_to_latin
+                    self.cnv = latin_ansel.ansel_to_latin
                 self.ignore_sub_junk(2)
                 self.update(self.encoding_obj,matches[2])
    	    elif matches[1] == "GEDC":
