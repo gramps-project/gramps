@@ -72,16 +72,15 @@ class PeopleModel(gtk.GenericTreeModel):
         self.db = db
         self.visible = {}
         self.top_visible = {}
-        
-#        maps = self.db.get_people_view_maps()
-#        print 
-#        if maps[0] != None and len(maps[0]) != 0:
-#            self.top_path2iter = maps[0]
-#            self.iter2path = maps[1]
-#            self.path2iter = maps[2]
-#            self.sname_sub = maps[3]
-#        else:
-        self.rebuild_data()
+
+        maps = self.db.get_people_view_maps()
+        if maps[0] != None and len(maps[0]) != 0:
+            self.top_path2iter = maps[0]
+            self.iter2path = maps[1]
+            self.path2iter = maps[2]
+            self.sname_sub = maps[3]
+        else:
+            self.rebuild_data()
 
     def rebuild_data(self):
         self.top_path2iter = []
@@ -179,6 +178,7 @@ class PeopleModel(gtk.GenericTreeModel):
             try:
                 return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.db.person_map[str(node)],node)
             except:
+                print "except"
                 return u''
 
     def reset_visible(self):

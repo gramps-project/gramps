@@ -176,7 +176,6 @@ class Gramps:
             TipOfDay.TipOfDay()
 
         self.db.set_researcher(GrampsCfg.get_researcher())
-        #self.update_display(0)
 
     def date_format_key_update(self,client,cnxn_id,entry,data):
         GrampsCfg.set_calendar_date_format()
@@ -1212,6 +1211,9 @@ class Gramps:
         else:
             mlist = [ self.active_person.get_handle() ]
 
+        if len(mlist) == 0:
+            return
+        
         for sel in mlist:
             p = self.db.get_person_from_handle(sel)
             self.active_person = p
@@ -1225,8 +1227,6 @@ class Gramps:
                              'after you save the database.'),
                            _('_Delete Person'),
                            self.delete_person_response)
-
-        self.update_display(0)
 
     def delete_person_response(self):
         trans = self.db.transaction_begin()
@@ -1267,9 +1267,13 @@ class Gramps:
                 self.db.commit_family(family,trans)
 
         id = self.active_person.get_handle()
-        self.people_view.remove_from_person_list(self.active_person)
+
+        person = self.active_person
+        self.people_view.remove_from_person_list(person)
         self.people_view.remove_from_history(id)
         self.db.remove_person(id, trans)
+        self.people_view.delete_person(person)
+        self.people_view.person_model.rebuild_data()
 
         if self.hindex >= 0:
             self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
@@ -1457,9 +1461,11 @@ class Gramps:
             self.place_view.new_place_after_edit(p)
 
     def update_after_edit(self,epo,change=1):
-        if epo:
+        if change:
+            self.people_view.update_person_list(epo.person)
+        else:
             self.people_view.redisplay_person_list(epo.person)
-            self.family_view.load_family()
+        self.family_view.load_family()
         self.update_display(0)
         self.goto_active_person()
         
