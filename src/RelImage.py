@@ -57,11 +57,13 @@ def import_media_object(filename,path,base):
     if not os.path.exists(filename):
         GnomeErrorDialog(_("Could not import %s\nThe file has been moved or deleted") % filename)
         return ""
+
+    ext = os.path.splitext(filename)[1]
     
     type = Utils.get_mime_type(filename)
     if type[0:5] == "image":
-        name = "%s/%s.jpg" % (path,base)
-        base = "%s.jpg" % (base)
+        name = "%s/%s%s" % (path,base,ext)
+        #base = "%s%s" % (base,ext)
 
         thumb = "%s/.thumb" % (path)
 
@@ -76,7 +78,7 @@ def import_media_object(filename,path,base):
             return ""
         
         try:
-            path = "%s/%s" % (thumb,base)
+            path = "%s/%s.jpg" % (thumb,base)
             mk_thumb(filename,path,const.thumbScale)
         except:
             GnomeErrorDialog(_("Error creating the thumbnail : %s"))

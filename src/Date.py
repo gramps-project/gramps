@@ -179,6 +179,11 @@ class Date:
         """ Returns true if any part of the date is valid"""
         return self.start.year != UNDEF or self.start.month != UNDEF or self.start.day != UNDEF
 
+
+    def getIncomplete(self):
+        return self.range == 0 and self.start.year == UNDEF or \
+               self.start.month == UNDEF or self.start.day == UNDEF
+
     def getStopYear(self):
         if self.stop == None:
             self.stop = SingleDate()

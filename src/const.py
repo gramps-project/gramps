@@ -78,6 +78,7 @@ docgenDir      = "%s/docgen" % rootDir
 filtersDir     = "%s/filters" % rootDir
 dataDir        = "%s/data" % rootDir
 gtkrcFile      = "%s/gtkrc" % rootDir
+template_dir   = "%s/templates" % dataDir
 
 startup        = 1
 
@@ -87,7 +88,7 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.7.2"
+version      = "0.7.3pre"
 copyright    = "© 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton"]
 comments     = _("GRAMPS (Genealogical Research and Analysis Management Programming System) is a personal genealogy program.")

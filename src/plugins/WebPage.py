@@ -690,12 +690,14 @@ class WebReport(Report):
         doc.end_paragraph()
     
         person_list.sort(sort.by_last_name)
+        doc.write_text('<div class="PersonIndex">')
         for person in person_list:
             name = person.getPrimaryName().getName()
             doc.start_link("%s.html" % person.getId())
             doc.write_text(name)
             doc.end_link()
             doc.newline()
+        doc.write_text('<div class="PersonIndex"/>')
         doc.close()
         
     def write_report(self):
