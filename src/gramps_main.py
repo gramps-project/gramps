@@ -1291,32 +1291,32 @@ def display_comment_box(filename):
 def on_person_list1_activate(obj):
     """Switches to the person list view"""
     notebook.set_page(0)
-    merge_button.set_sensitive(1)
+    merge_button.show()
 
 def on_family1_activate(obj):
     """Switches to the family view"""
     notebook.set_page(1)
-    merge_button.set_sensitive(0)
+    merge_button.hide()
 
 def on_pedegree1_activate(obj):
     """Switches to the pedigree view"""
     notebook.set_page(2)
-    merge_button.set_sensitive(0)
+    merge_button.hide()
 
 def on_sources_activate(obj):
     """Switches to the sources view"""
     notebook.set_page(3)
-    merge_button.set_sensitive(0)
+    merge_button.hide()
 
 def on_places_activate(obj):
     """Switches to the places view"""
     notebook.set_page(4)
-    merge_button.set_sensitive(1)
+    merge_button.show()
 
 def on_media_activate(obj):
     """Switches to the media view"""
     notebook.set_page(5)
-    merge_button.set_sensitive(0)
+    merge_button.hide()
 
 #-------------------------------------------------------------------------
 #
