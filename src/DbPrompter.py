@@ -37,7 +37,6 @@ import gnome
 import Utils
 import const
 import GrampsCfg
-import VersionControl
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
