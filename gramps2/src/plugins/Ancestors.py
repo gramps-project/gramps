@@ -388,18 +388,19 @@ class ComprehensiveAncestorsReport (Report.Report):
                 info += ' ' + text[0].lower() + text[1:]
             elif dateobj.getValid ():
                 if dateobj.isRange ():
-                    info += ' '
+                    info += ' ' + dateobj.getDate ()
                 elif (dateobj.getDayValid () and
                     dateobj.getMonthValid () and
                     dateobj.getYearValid ()):
-                    info += ' on '
+                    info += _(' on %(specific_date)s') % \
+                            {'specific_date': dateobj.getDate ()}
                 else:
-                    info += ' in '
+                    info += _(' in %(month_or_year)s') % \
+                            {'month_or_year': dateobj.getDate ()}
 
-                info += dateobj.getDate ()
         placename = event.getPlaceName ()
         if placename:
-            info += ' in ' + placename
+            info += _(' in %(place)s') % {'place': placename}
         note = event.getNote ()
         if note or description:
             info += ' ('
@@ -433,13 +434,13 @@ class ComprehensiveAncestorsReport (Report.Report):
         birth = person.getBirth ()
         date = birth.getDate ()
         if date:
-            ret += " b. " + date
+            ret += _(" b. %(date)s") % {'date': date}
             ret += self.cite_sources (birth.getSourceRefList ())
 
         death = person.getDeath ()
         date = death.getDate ()
         if date:
-            ret += " d. " + date
+            ret += _(" d. %(date)s)") % {'date': date}
             ret += self.cite_sources (death.getSourceRefList ())
 
         return ret
@@ -474,10 +475,14 @@ class ComprehensiveAncestorsReport (Report.Report):
             return 'son'
 
     def parents_of (self, person):
-        childof = ('.  ' + self.Pronoun (person) + ' is the ' +
-                   self.son_or_daughter (person) + ' of ')
+        gender = person.getGender ()
+        if gender == RelLib.Person.female:
+            childof = '.  ' + _("She is the daughter of ")
+        else:
+            childof = '.  ' + _("He is the son of ")
+
         family = person.getMainParents ()
-        ret = ''
+        ret = '.  '
         if family:
             fathername = mothername = None
             father = family.getFather ()
@@ -490,13 +495,31 @@ class ComprehensiveAncestorsReport (Report.Report):
             if not mother and not father:
                 pass
             elif not father:
-                ret = childof + mothername
+                if gender == RelLib.Person.female:
+                    ret += _("She is the daughter of %(mother)s.") % \
+                           {'mother': mothername}
+                else:
+                    ret += _("He is the son of %(mother)s.") % \
+                           {'mother': mothername}
             elif not mother:
-                ret = childof + fathername
+                if gender == RelLib.Person.female:
+                    ret += _("She is the daughter of %(father)s.") % \
+                           {'father': fathername}
+                else:
+                    ret += _("He is the son of %(father)s.") % \
+                           {'father': fathername}
             else:
-                ret = childof + fathername + ' and ' + mothername
+                if gender == RelLib.Person.female:
+                    ret += \
+                        _("She is the daughter of %(father)s and %(mother)s.")%\
+                        {'father': fathername,
+                         'mother': mothername}
+                else:
+                    ret +=_("He is the son of %(father)s and %(mother)s.") % \
+                           {'father': fathername,
+                            'mother': mothername}
 
-        return ret + '.'
+        return ret
 
     def first_name_or_nick (self, person):
         nickname = person.getNickName ()
@@ -515,13 +538,13 @@ class ComprehensiveAncestorsReport (Report.Report):
         gender = person.getGender ()
         if gender == RelLib.Person.female:
             if name.getType () == 'Married Name':
-                return 'Mrs.'
+                return _('Mrs.')
 
-            return 'Miss'
+            return _('Miss')
         elif gender == RelLib.Person.male:
-            return 'Mr.'
+            return _('Mr.')
         else:
-            return '(gender unknown)'
+            return _('(gender unknown)')
 
     def cite_sources (self, sourcereflist):
         citation = ""
@@ -569,7 +592,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         if last.replace ('?', '') == '':
             if first_replaced == '':
-                name += ' (unknown)'
+                name += _(' (unknown)')
         else:
             name += ' ' + last
 
@@ -599,11 +622,11 @@ class ComprehensiveAncestorsReport (Report.Report):
                 child_count = len (childlist)
                 if ((listing_children or family != from_family) and
                     child_count > 0):
-                    children = ', and they had '
                     if child_count == 1:
-                        children += 'a child named '
+                        children = _(', and they had a child named ')
                     else:
-                        children += str (child_count) + ' children: '
+                        children += _(', and they had %d children: ') % \
+                                    child_count
 
                     count = 1
                     for child in childlist:
@@ -614,7 +637,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                         if child_count - count > 1:
                             children += ', '
                         elif child_count - count == 1:
-                            children += ' and '
+                            children += _(' and ')
 
                         count += 1
 
