@@ -24,9 +24,7 @@
 
 import RelLib
 import os
-import sort
 import Errors
-import string
 
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog

@@ -43,6 +43,7 @@ import const
 import Plugins
 import ImgManip
 import FontScale
+import grampslib
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +51,9 @@ import FontScale
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+
+
+_apptype = 'application/vnd.sun.xml.writer'
 
 #-------------------------------------------------------------------------
 #
@@ -361,12 +365,9 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self._write_meta_file()
         self._write_zip()
         if self.print_req:
-            import grampslib
-
-            apptype = 'application/vnd.sun.xml.writer'
-            prog = grampslib.default_application_command(apptype)
+            app = grampslib.default_application_command(_apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog)
+            os.system ('%s "$FILE" &' % app)
 
     def add_photo(self,name,pos,x_cm,y_cm):
 
@@ -826,8 +827,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('</text:span>\n</text:p>\n</draw:text-box>\n')
         
     def draw_path(self,style,path):
-        stype = self.draw_styles[style]
-
         minx = 9e12
         miny = 9e12
         maxx = 0
@@ -861,8 +860,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('"/>\n')
 
     def draw_line(self,style,x1,y1,x2,y2):
-	box_style = self.draw_styles[style]
-
         self.f.write('<draw:line draw:style="%s" '% style)
         self.f.write('svg:x1="%.3fcm" ' % x1)
         self.f.write('svg:y1="%.3fcm" ' % y1)
@@ -899,7 +896,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
     def draw_bar(self,style,x,y,x2,y2):
 	box_style = self.draw_styles[style]
-	para_name = box_style.get_paragraph_style()
 
 	self.f.write('<draw:rect text:anchor-type="paragraph" draw:style-name="')
 	self.f.write(style)
@@ -974,20 +970,36 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 #--------------------------------------------------------------------------
 print_label = None
 try:
-    import grampslib
     import Utils
     
-    apptype = 'application/vnd.sun.xml.writer'
-    prog = grampslib.default_application_command(apptype)
+    prog = grampslib.default_application_command(_apptype)
 
     if Utils.search_for(prog):
         print_label = _("Open in OpenOffice.org")
 except:
     pass
      
-Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,
-                           ".sxw",print_label)
-Plugins.register_book_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")
+Plugins.register_text_doc(
+    _("OpenOffice.org Writer"),
+    OpenOfficeDoc,
+    1,
+    1,
+    1,
+    ".sxw",
+    print_label)
 
-Plugins.register_draw_doc(_("OpenOffice.org Draw"),OpenOfficeDoc,1,1,".sxd",
-                          print_label);
+Plugins.register_book_doc(
+    _("OpenOffice.org Writer"),
+    OpenOfficeDoc,
+    1,
+    1,
+    1,
+    ".sxw")
+
+Plugins.register_draw_doc(
+    _("OpenOffice.org Draw"),
+    OpenOfficeDoc,
+    1,
+    1,
+    ".sxd",
+    print_label);

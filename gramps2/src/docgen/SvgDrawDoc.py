@@ -60,17 +60,8 @@ class SvgDrawDoc(BaseDoc.BaseDoc):
 
     def close(self):
         pass
-        
-    def start_paragraph(self,style_name):
-	pass
 
-    def end_paragraph(self):
-        pass
-
-    def write_text(self,text):
-        pass
-
-    def start_page(self,orientation=None):
+    def start_page(self):
 	self.page = self.page + 1
         if self.page != 1:
             name = "%s-%d.svg" % (self.root,self.page)

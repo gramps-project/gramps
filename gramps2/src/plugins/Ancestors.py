@@ -498,10 +498,6 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def parents_of (self, person):
         gender = person.getGender ()
-        if gender == RelLib.Person.female:
-            childof = '.  ' + _("She is the daughter of ")
-        else:
-            childof = '.  ' + _("He is the son of ")
 
         family = person.getMainParents ()
         ret = '.  '

@@ -30,7 +30,6 @@ from gettext import gettext as _
 import gtk
 import const
 import os
-import time
 from QuestionDialog import ErrorDialog, WarningDialog
 import TarFile
 

@@ -33,6 +33,7 @@ import const
 import Errors
 import BaseDoc
 import QuestionDialog
+import grampslib
 
 from gettext import gettext as _
 
@@ -257,7 +258,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
                 msg = m[1]
             self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],msg,m[2])
         else:
-            self.file_header = top
+            self.file_header = self.top
         self.file_header = self.process_line(self.file_header)
 
     def build_style_declaration(self):
@@ -334,12 +335,10 @@ class HtmlDoc(BaseDoc.BaseDoc):
         self.write_support_files()
 
         if self.print_req:
-            import grampslib
-
             apptype = 'text/html'
-            prog = grampslib.default_application_command(apptype)
+            app = grampslib.default_application_command(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog)
+            os.system ('%s "$FILE" &' % app)
 
     def write_support_files(self):
         if self.map:
@@ -473,7 +472,6 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
 print_label = None
 try:
-    import grampslib
     import Utils
 
     prog = grampslib.default_application_command("text/html")

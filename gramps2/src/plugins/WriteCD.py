@@ -27,7 +27,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import time
 import os
 from cStringIO import StringIO
 
@@ -50,7 +49,6 @@ import WriteXML
 import Utils
 import const
 import QuestionDialog
-import RelImage
 import ImgManip
 
 from gettext import gettext as _

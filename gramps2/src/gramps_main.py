@@ -434,7 +434,7 @@ class Gramps:
                 self.back.set_sensitive(0)
                 self.forward.set_sensitive(0)
         except:
-            self.clear_history
+            self.clear_history()
 
         self.gomenuitem.remove_submenu()
         self.gomenuitem.set_submenu(gomenu)
@@ -526,7 +526,7 @@ class Gramps:
                 self.fwdbtn.set_sensitive(1)
                 self.forward.set_sensitive(1)
             except:
-                self.clear_history
+                self.clear_history()
         else:
             self.backbtn.set_sensitive(0)
             self.back.set_sensitive(0)
@@ -552,7 +552,7 @@ class Gramps:
                 self.backbtn.set_sensitive(1)
                 self.back.set_sensitive(1)
             except:
-                self.clear_history
+                self.clear_history()
         else:
             self.fwdbtn.set_sensitive(0)
             self.forward.set_sensitive(0)
@@ -1613,7 +1613,7 @@ class Gramps:
     def update_after_merge(self,person,old_id):
         if person:
             self.people_view.remove_from_person_list(person.getId(),old_id)
-            self.db.buildPersonDisplay(person.getId(),original_id)
+            self.db.buildPersonDisplay(person.getId(),old_id)
             self.people_view.redisplay_person_list(person)
         self.update_display(0)
 

@@ -2742,7 +2742,7 @@ class GrampsDB:
         return self.sourceTable.keys()
 
     def sortbysource(self,f,s):
-        return cmp(self.sourceTable[f][3],self.placTable[s][3])
+        return cmp(self.sourceTable[f][3],self.sourceTable[s][3])
 
     def sortSourceKeys(self):
         keys = self.sourceTable.keys()

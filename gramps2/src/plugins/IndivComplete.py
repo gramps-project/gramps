@@ -26,7 +26,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import string
 
 #------------------------------------------------------------------------
 #
@@ -173,7 +172,7 @@ class IndivComplete(Report.Report):
         self.d.start_row()
         self.d.start_cell('IDS-NormalCell',2)
         format = self.person.getNoteFormat()
-        self.doc.write_note(note,format,'IDS-Normal')
+        self.d.write_note(note,format,'IDS-Normal')
         self.d.end_cell()
         self.d.end_row()
 
@@ -644,6 +643,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
+    return None
 
 #------------------------------------------------------------------------
 #

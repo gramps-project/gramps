@@ -126,16 +126,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         if self.print_req:
             run_print_dialog (self.filename)
         
-    def start_paragraph(self,style_name):
-	pass
-
-    def end_paragraph(self):
-        pass
-
     def write_text(self,text):
         pass
 
-    def start_page(self,orientation=None):
+    def start_page(self):
 	self.page = self.page + 1
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))

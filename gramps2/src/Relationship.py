@@ -26,6 +26,7 @@
 
 import RelLib
 import GrampsCfg
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #

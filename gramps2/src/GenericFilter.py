@@ -814,7 +814,7 @@ class IsParentOfFilterMatch(Rule):
         return self.map.has_key(p.getId())
 
     def init_list(self,p):
-        if fam in p.getMainParents():
+        for fam in p.getMainParents():
             for parent in [fam.getFather (), fam.getMother ()]:
                 if parent:
                     self.map[parent.getId()] = 1

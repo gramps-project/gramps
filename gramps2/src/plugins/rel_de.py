@@ -33,8 +33,8 @@
 #-------------------------------------------------------------------------
 
 import RelLib
-import GrampsCfg
 from Relationship import apply_filter as getallancestors
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
