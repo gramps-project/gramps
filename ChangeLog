@@ -1,11 +1,33 @@
+2004-06-20  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* configure.in: Bump up the version number. 
+	* src/gramps.py: Pass complete argument string. 
+	* src/gramps_main.py: Pass popt table to gnome_init().
+	Always enable argument handling. (read_xml,read_pkg): Add functions.
+	* src/const.py.in: Define popt table, add all gnome options.
+	* src/ArgHandler.py: Add long options for gramps-specific options.
+	Add handling for the first filename argument. Use 'gramps-xml'
+	to denote old gramps (XML) format. 
+	* src/DbPrompter.py: Add hint for the filename.
+	* src/plugins/ReadNative.py: Cosmetic changes.
+	* src/plugins/ReadPkg.py: Cosmetic changes.
+	* src/plugins/WritePkg.py: Typo. 
+	* src/data/gramps.xml: Add mime type for gramps package.
+	* src/data/gramps.applications: Add gramps package to the list.
+	* src/data/Makefile.am: Typo.
+
 2004-06-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DisplayModels,py: faster sorting of places 
 	* src/PlaceView,py: faster sorting of places 
 	* src/RelLib,py: faster sorting of places 
-	* src/gramp_main.py: removed new database info message
+	* src/gramps_main.py: removed new database info message
 
-2004-06-18  Jason Salaz <whatsizbucket@users.sourceforge.net>
-	* src/plugins/ReadGedcom.py Fixed typos preventing import. (i.e. set_type instead of SetType, etc.)
+2004-06-18  Jason Salaz  <whatsizbucket@users.sourceforge.net>
+	* src/plugins/ReadGedcom.py: Fixed typos preventing import. 
+	(i.e. set_type instead of SetType, etc.)
+
+2004-06-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* Release: Version 1.1.0 "And now for something completely different" 
+	released. 
 
 2004-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: fix index for place map

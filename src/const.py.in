@@ -149,18 +149,48 @@ unknown      = _("unknown")
 #
 #-------------------------------------------------------------------------
 
-longopts = [ 
-    "load-modules=", 
-    "help", 
-    "usage", 
-    "oaf-ior-fd=", 
-    "oaf-activate-iid=", 
-    "oaf-private", 
-    "disable-sound", 
-    "enable-sound", 
-    "espeaker=", 
-    "version", 
-    ]
+# (longName, shortName, type , default, flags, descrip , argDescrip)
+popt_table = [
+    ("import", 'i', str, None, 0, "Import file", "FILENAME"),
+    ("output", 'o', str, None, 0, "Write file",  "FILENAME"),
+    ("format", 'f', str, None, 0, 'Specify format', "FORMAT"),
+    ("action", 'a', str, None, 0, 'Specify action', "ACTION"),
+]
+
+longopts = [
+    "load-modules=",
+    "help",
+    "usage",
+    "oaf-ior-fd=",
+    "oaf-activate-iid=",
+    "oaf-private",
+    "disable-sound",
+    "enable-sound",
+    "espeaker=",
+    "version",
+    "gdk-debug=", 
+    "gdk-no-debug=",
+    "display=",
+    "screen=",
+    "sync",
+    "name=",
+    "class=",
+    "gtk-debug=", 
+    "gtk-no-debug=",
+    "g-fatal-warnings",
+    "gtk-module=",
+    "sm-client-id=",
+    "sm-config-prefix=",
+    "sm-disable",
+    "disable-crash-dialog",
+    "disable-sound",
+    "enable-sound",
+    "espeaker=",
+    "import=",
+    "output=",
+    "format=",
+    "action=",
+]
 
 shortopts = "i:o:f:a:?"
 

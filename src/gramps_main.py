@@ -70,6 +70,7 @@ import EditPerson
 import Find
 import DbPrompter
 import TipOfDay
+import ArgHandler
 
 from QuestionDialog import *
 
@@ -104,7 +105,9 @@ class Gramps:
 
     def __init__(self,args):
 
-        self.program = gnome.program_init('gramps',const.version)
+        self.program = gnome.program_init('gramps',const.version, 
+                    gnome.libgnome_module_info_get(), 
+                    args, const.popt_table)
         self.program.set_property('app-libdir','%s/lib' % const.prefixdir)
         self.program.set_property('app-datadir','%s/share/gramps' % const.prefixdir)
         self.program.set_property('app-sysconfdir','%s/etc' % const.prefixdir)
@@ -144,24 +147,10 @@ class Gramps:
         self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
         self.init_interface()
 
+        ArgHandler.ArgHandler(self,args)
+
         if GrampsCfg.usetips:
             TipOfDay.TipOfDay()
-
-        if args and len(args)==1:
-            if GrampsMime.get_type(args[0]) == "application/x-gramps":
-                if self.auto_save_load(args[0]) == 0:
-                    DbPrompter.DbPrompter(self,0,self.topWindow)
-            else:
-                import ArgHandler
-                ArgHandler.ArgHandler(self,args)
-        elif args:
-            import ArgHandler
-            ArgHandler.ArgHandler(self,args)
-        elif GrampsCfg.lastfile and GrampsCfg.autoload:
-            if self.auto_save_load(GrampsCfg.lastfile) == 0:
-                DbPrompter.DbPrompter(self,0,self.topWindow)
-        else:
-            DbPrompter.DbPrompter(self,0,self.topWindow)
 
         self.db.set_researcher(GrampsCfg.get_researcher())
 
@@ -1033,12 +1022,64 @@ class Gramps:
         import ReadGedcom
         
         filename = os.path.normpath(os.path.abspath(filename))
-        self.topWindow.set_title("%s - GRAMPS" % filename)
         try:
-            ReadGedcom.importData(self.db,filename)
+            ReadGedcom.importData(self.db,filename,None)
+            self.import_tool_callback()
         except:
             DisplayTrace.DisplayTrace()
-        self.full_update()
+
+    def read_xml(self,filename):
+        import ReadXML
+        
+        filename = os.path.normpath(os.path.abspath(os.path.join(filename,const.xmlFile)))
+
+        try:
+            ReadXML.importData(self.db,filename,None)
+            self.import_tool_callback()
+        except:
+            DisplayTrace.DisplayTrace()
+
+    def read_pkg(self,filename):
+        # Create tempdir, if it does not exist, then check for writability
+        tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
+        if not os.path.isdir(tmpdir_path):
+            try:
+                os.mkdir(tmpdir_path,0700)
+            except:
+                DisplayTrace.DisplayTrace()
+                return
+        elif not os.access(tmpdir_path,os.W_OK):
+            ErrorDialog( _("Cannot unpak archive"),
+                        _("Temporary directory %s is not writable") % tmpdir_path )
+            return
+        else:    # tempdir exists and writable -- clean it up if not empty
+            files = os.listdir(tmpdir_path) ;
+            for fn in files:
+                os.remove( os.path.join(tmpdir_path,fn) )
+
+        try:
+            import TarFile
+            t = TarFile.ReadTarFile(filename,tmpdir_path)
+            t.extract()
+            t.close()
+        except:
+            DisplayTrace.DisplayTrace()
+            return
+
+        dbname = os.path.join(tmpdir_path,const.xmlFile)  
+
+        try:
+            import ReadXML
+            ReadXML.importData(self.db,dbname,None)
+        except:
+            DisplayTrace.DisplayTrace()
+
+        # Clean up tempdir after ourselves
+        files = os.listdir(tmpdir_path) 
+        for fn in files:
+            os.remove(os.path.join(tmpdir_path,fn))
+        os.rmdir(tmpdir_path)
+        self.import_tool_callback()
 
     def read_file(self,filename):
         self.topWindow.set_resizable(gtk.FALSE)

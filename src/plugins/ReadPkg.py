@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #
 # Written by Alex Roitman, largely based on ReadNative.py by Don Allingham 
@@ -95,19 +97,19 @@ class ReadPkg:
             ErrorDialog( _("Temporary directory %s is not writable") % tmpdir_path )
             return
         else:    # tempdir exists and writable -- clean it up if not empty
-	    files = os.listdir(tmpdir_path) ;
+            files = os.listdir(tmpdir_path) ;
             for filename in files:
                 os.remove( os.path.join(tmpdir_path,filename) )
 
         try:
             t = TarFile.ReadTarFile(name,tmpdir_path)
-	    t.extract()
-	    t.close()
+            t.extract()
+            t.close()
         except:
             ErrorDialog(_("Error extracting into %s") % tmpdir_path )
             return
 
-	dbname = os.path.join(tmpdir_path,const.xmlFile)  
+        dbname = os.path.join(tmpdir_path,const.xmlFile)  
 
         try:
             importData(self.db,dbname,self.progress)
