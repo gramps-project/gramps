@@ -120,15 +120,13 @@
       creating your brand new database from scratch right away, choose new
       database. </para> 
 
-      <para>
-                 <note id="file-notdir-note">
+          <note id="file-notdir-note">
                <title>Selecting file</title>
 	      <para>
 	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
 	      for the database. Please select filename, as you would in any other application.
 	      </para>
            </note>
-           </para> 
 
       </sect1>
       
