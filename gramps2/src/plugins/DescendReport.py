@@ -169,6 +169,9 @@ class DescendantReportDialog(Report.TextReportDialog):
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
+        except Errors.FilterError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

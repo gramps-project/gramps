@@ -956,6 +956,7 @@ class Gramps:
         else:
             GrampsCfg.save_last_file("")
         self.topWindow.set_resizable(gtk.TRUE)
+        self.goto_active_person(1)
         
     def cl_import(self,filename,format):
         if format == 'gedcom':
@@ -1368,9 +1369,12 @@ class Gramps:
     def alpha_event(self,obj):
         self.load_person(self.active_person)
 
-    def goto_active_person(self):
+    def goto_active_person(self,first=0):
         if not self.active_person:
-            page = self.ptabs.get_current_page()
+            if first:
+                page = 0
+            else:
+                page = self.ptabs.get_current_page()
             self.person_tree = self.pl_page[page]
             self.person_list = self.pl_page[page].tree
             self.person_model = self.pl_page[page].model

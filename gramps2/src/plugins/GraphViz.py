@@ -268,7 +268,11 @@ class GraphVizDialog(Report.ReportDialog):
 
         file = open(self.target_path,"w")
 
-        ind_list = self.filter.apply(self.db, self.db.getPersonMap().values())
+        try:
+            ind_list = self.filter.apply(self.db, self.db.getPersonMap().values())
+        except Errors.FilterError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
 
         write_dot(file, ind_list, self.orien, width, height,
                   self.tb_margin, self.lr_margin, self.hpages,

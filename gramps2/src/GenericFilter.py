@@ -51,6 +51,7 @@ import const
 import RelLib
 import Date
 import Calendar
+import Errors
 from intl import gettext as _
 from Utils import for_each_ancestor
 
@@ -170,9 +171,19 @@ class IsDescendantOf(Rule):
         return 'Is a descendant of'
 
     def apply(self,db,p):
+        self.map = {}
+        self.orig = p
         return self.search(p)
 
     def search(self,p):
+        if self.map.has_key(p.getId()) == 1:
+            raise Errors.FilterError(_("Loop detected while applying filter"),
+                               _("A relationship loop was detected between %s [%s]"
+                                 "and %s [%s]. This is probably due to an error in the "
+                                 "database.") % (self.orig.getPrimaryName().getName(),
+                                                 self.orig.getId(),
+                                                 p.getPrimaryName().getName(),p.getId()))
+        self.map[p.getId()] = 1
         if p.getId() == self.list[0]:
             return 1
         for (f,r1,r2) in p.getParentList():
@@ -197,10 +208,20 @@ class IsDescendantFamilyOf(Rule):
         return "Is a descendant family member of"
 
     def apply(self,db,p):
+        self.map = {}
+        self.orig = p
         return self.search(p,1)
 
     def search(self,p,val):
+        if self.map.has_key(p.getId()):
+            Errors.FilterError(_("Loop detected while applying filter"),
+                               _("A relationship loop was detected between %s [%s]"
+                                 "and %s [%s]. This is probably due to an error in the "
+                                 "database.") % (self.orig.getPrimaryName().getName(),
+                                                 self.orig.getId(),
+                                                 p.getPrimaryName().getName(),p.getId()))
         if p.getId() == self.list[0]:
+            self.map[p.getId()] = 1
             return 1
         for (f,r1,r2) in p.getParentList():
             for p1 in [f.getMother(),f.getFather()]:
@@ -228,14 +249,28 @@ class IsAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person"""
 
     labels = [ _('ID:') ]
+
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        self.map = {}
     
     def name(self):
         return 'Is an ancestor of'
 
     def apply(self,db,p):
+        self.orig = p
         return self.search(p)
 
     def search(self,p):
+        if self.map.has_key(p.getId()) == 1:
+            raise Errors.FilterError(_("Loop detected while applying filter"),
+                                     _("A relationship loop was detected between %s [%s]"
+                                       "and %s [%s]. This is probably due to an error in the "
+                                       "database.") % (self.orig.getPrimaryName().getName(),
+                                                       self.orig.getId(),
+                                                       p.getPrimaryName().getName(),p.getId()))
+        self.map[p.getId()] = 1
+
         if p.getId() == self.list[0]:
             return 1
 
