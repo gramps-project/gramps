@@ -40,7 +40,7 @@ import gnome.ui
 #-------------------------------------------------------------------------
 from RelLib import *
 from GrampsParser import GrampsParser, GrampsImportParser
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -99,6 +99,16 @@ def importData(database, filename, callback):
         import traceback
         traceback.print_exc()
         return 0
+    except ValueError,msg:
+        if str(msg)[0:16] == "Incorrect length":
+            WarningDialog(_("Your database has encountered an error in the library "
+                            "that compresses the data.\nYour data should be okay, but "
+                            "you may want to consider disabling compression.\n"
+                            "This can be disabled in the Properties dialog."))
+        else:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+            return 0
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()

@@ -42,67 +42,17 @@ from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# Calendar Mappings
+# Constants
 #
 #-------------------------------------------------------------------------
-GREGORIAN = 0
-JULIAN = 1
-HEBREW = 2
-FRENCH = 3
-
-#-------------------------------------------------------------------------
-#
-# Month mappings
-#
-#-------------------------------------------------------------------------
-_fmonth = [
-    unicode("Vendémiaire",'latin-1'),  unicode("Brumaire",'latin-1'),
-    unicode("Frimaire",'latin-1'),     unicode("Nivôse",'latin-1'),
-    unicode("Pluviôse",'latin-1'),     unicode("Ventôse",'latin-1'),
-    unicode("Germinal",'latin-1'),     unicode("Floréal",'latin-1'),
-    unicode("Prairial",'latin-1'),     unicode("Messidor",'latin-1'),
-    unicode("Thermidor",'latin-1'),    unicode("Fructidor",'latin-1'),
-    unicode("Extra",'latin-1'),
-    ]
-
-_fmonth2num = {
-    "vend" : 0, "brum" : 1, "frim" : 2, "nivo" : 3, "pluv" : 4, "vent" : 5,
-    "germ" : 6, "flor" : 7, "prai" : 8, "mess" : 9, "ther" :10, "fruc" :11,
-    "extr" : 12,"comp" :12, unicode("nivô",'latin-1') : 3
-    }
-
-_hmonth = [
-    "Tishri", "Heshvan", "Kislev", "Tevet",  "Shevat", "AdarI",
-    "AdarII", "Nisan",  "Iyyar",   "Sivan",  "Tammuz", "Av",
-    "Elul",
-    ]
-
-_hmonth2num = {
-    "tishri" : 0, "heshvan" : 1, "kislev" : 2, "tevet" : 3,
-    "shevat" : 4, "adari"   : 5, "adarii" : 6, "nisan" : 7,
-    "iyyar"  : 8, "sivan"   : 9, "tammuz" :10, "av"    : 11,
-    "elul"   : 12,"tsh"     : 0, "csh"    : 1, "ksl"   : 2,
-    "tvt"    : 3, "shv"     : 4, "adr"    : 5, "ads"   : 6,
-    "nsn"    : 7, "iyr"     : 8, "svn"    : 9, "tmz"   : 10,
-    "aav"    :11, "ell"     :12,
-    }
-
-_mname = [
-    _("January"),   _("February"),  _("March"),    _("April"),
-    _("May"),       _("June"),      _("July"),     _("August"),
-    _("September"), _("October"),   _("November"), _("December")
-    ]
-
-_m2num = {
-    string.lower(_mname[0][0:3]): 0,   string.lower(_mname[1][0:3]): 1,
-    string.lower(_mname[2][0:3]): 2,   string.lower(_mname[3][0:3]): 3,
-    string.lower(_mname[4][0:3]): 4,   string.lower(_mname[5][0:3]): 5,
-    string.lower(_mname[6][0:3]): 6,   string.lower(_mname[7][0:3]): 7,
-    string.lower(_mname[8][0:3]): 8,   string.lower(_mname[9][0:3]): 9,
-    string.lower(_mname[10][0:3]): 10, string.lower(_mname[11][0:3]): 11
-    }
-
 UNDEF = -999999
+
+_calendar_val = [
+    Calendar.Gregorian,
+    Calendar.Julian,
+    Calendar.Hebrew,
+    Calendar.FrenchRepublic,
+    ]
 
 #-------------------------------------------------------------------------
 #
@@ -115,7 +65,6 @@ class Date:
     date ranges, and alternate calendars.
     """
     formatCode = 0
-    entryCode = 0
     
     Error = "Illegal Date"
 
@@ -139,13 +88,26 @@ class Date:
             self.stop = None
             self.range = 0
             self.text = ""
-            self.calendar = GREGORIAN
+            self.calendar = Calendar.Gregorian()
 
     def get_calendar(self):
         return self.calendar
 
     def set_calendar(self,val):
+        self.calendar = val()
+        self.start.convert_to(val)
+        if self.stop:
+            self.stop.convert_to(val)
+
+    def set_calendar_obj(self,val):
         self.calendar = val
+        self.start.convert_to_obj(val)
+        if self.stop:
+            self.stop.convert_to_obj(val)
+
+    def set_calendar_val(self,integer):
+        val = _calendar_val[integer]
+        self.calendar = val()
         self.start.convert_to(val)
         if self.stop:
             self.stop.convert_to(val)
@@ -251,62 +213,29 @@ class Date:
 
     def set_range(self,val):
         self.range = val
-
-    def get_fmt(self,func):
-	if self.range == 0:
-	    return func(self.start)
-        elif self.range == -1:
-            return self.text
-	else:
-            d1 = func(self.start)
-            d2 = func(self.stop)
-	    return _("from %(start_date)s to %(stop_date)s") % {
-                'start_date' : d1,
-                'stop_date' : d2 }
     
     def getDate(self):
-        return self.get_fmt(SingleDate.getDate)
+        if self.range == 0:
+            return self.start.getDate()
+        elif self.range == -1:
+            return "%s" % self.text
+        else:
+            return _("from %(start_date)s to %(stop_date)s") % {
+                'start_date' : self.start.getDate(),
+                'stop_date' : self.stop.getDate() }
 
     def getQuoteDate(self):
-        if self.calendar == GREGORIAN:
-            return self.getGregorianQuoteDate()
-        elif self.calendar == JULIAN:
-            return self.get_quote_date(_mname,_("Julian"))
-        elif self.calendar == HEBREW:
-            return self.get_quote_date(_hmonth,_("Hebrew"))
-        else:
-            return self.get_quote_date(_fmonth,_("French"))
-
-    def getGregorianQuoteDate(self):
         if self.range == 0:
-            return _func(self.start)
+            return self.start.getQuoteDate()
         elif self.range == -1:
             if self.text:
                 return '"%s"' % self.text
             else:
                 return ''
         else:
-            d1 = _func(self.start)
-            d2 = _func(self.stop)
             return _("from %(start_date)s to %(stop_date)s") % {
-                'start_date' : d1,
-                'stop_date' : d2 }
-
-    def get_quote_date(self,month_map,cal_str):
-        if self.range == 0:
-            return "%s (%s)" % (self.start.display_calendar(month_map),cal_str)
-        elif self.range == -1:
-            if self.text:
-                return '"%s (%s)"' % (self.text,cal_str)
-            else:
-                return ''
-        else:
-            d1 = self.start.display_calendar(month_map)
-            d2 = self.stop.display_calendar(month_map)
-            return _("from %(start_date)s to %(stop_date)s (%(calendar)s)") % {
-                'start_date' : d1,
-                'stop_data' :d2,
-                'calendar' : cal_str}
+                'start_date' : self.start.getQuoteDate(),
+                'stop_date' : self.stop.getQuoteDate() }
 
     def isEmpty(self):
         s = self.start
@@ -343,62 +272,6 @@ def get_format_code():
 #-------------------------------------------------------------------------
 class SingleDate:
     "Date handling"
-    
-    exact = 0
-    about = 1
-    before = 2
-    after = 3
-    
-    emname =[
-        'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
-        'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
-        ]
-
-    em2num ={
-        "jan" : 0, "feb" : 1, "mar" : 2, "apr" : 3,
-        "may" : 4, "jun" : 5, "jul" : 6, "aug" : 7,
-        "sep" : 8, "oct" : 9, "nov" : 10,"dec" : 11
-        }
-
-    m2v = {
-        _("abt")    : about ,  _("about")  : about,
-        _("abt.")   : about,   _("est")    : about ,
-        _("est.")   : about ,  _("circa")  : about,
-        _("around") : about,   _("before") : before,
-        _("bef")    : before,  _("bef.")   : before,
-        _("after")  : after,   _("aft.")   : after,
-        _("aft")    : after,
-            # And the untranslated versions for reading saved data from XML.
-        "abt"	: about,        "about"	: about,
-        "bef"   : before,       "bef."  : before,
-        "aft."  : after,        "abt."  : about,
-        "est."  : about,        "est"   : about,
-        "after"	: after,        "before": before,
-        "aft"   : after,
-        }
-
-    modifiers = '(' + \
-                _("abt\.?") + '|' + \
-                _("about") + '|' + \
-                _("est\.?") + '|' + \
-                _("circa") + '|' + \
-                _("around") + '|' + \
-                _("before") + '|' + \
-                _("after") + '|' + \
-                _("aft\.?") + '|' + \
-                _("bef\.?") + \
-                '|abt|aft|after|before|bef)'
-    
-    start = "^\s*" + modifiers + "?\s*"
-    
-    fmt1 = compile(start+"(\S+)(\s+\d+\s*,)?\s*([?\d]+)?\s*$", IGNORECASE)
-    fmt2 = compile(start+"(\d+)\.?\s+(\S+)(\s+\d+)?\s*$", IGNORECASE)
-    fmt3 = compile(start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
-                      IGNORECASE)
-    fmt7 = compile(start+r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$", IGNORECASE)
-    fmt4 = compile(start+"(\S+)\s+(\d+)\s*$", IGNORECASE)
-    fmt5 = compile(start+"(\d+)\s*$", IGNORECASE)
-    fmt6 = compile(start+"(\S+)\s*$", IGNORECASE)
 
     def __init__(self,source=None):
         if source:
@@ -411,49 +284,32 @@ class SingleDate:
             self.month = UNDEF
             self.day = UNDEF
             self.year = UNDEF
-            self.mode = SingleDate.exact
-            self.calendar = GREGORIAN
+            self.mode = Calendar.EXACT
+            self.calendar = Calendar.Gregorian()
 
     def setMode(self,val):
-        if not val:
-            self.mode = SingleDate.exact
-        else:
-            try:
-                self.mode = SingleDate.m2v[string.lower(val)]
-            except KeyError:
-                raise Date.Error,val
+        self.mode = self.calendar.set_mode_value(val)
 
     def setMonth(self,val):
         if val > 14 or val < 0:
             self.month = UNDEF
         else:
-            self.month = val - 1
+            self.month = val
 
     def setMonthVal(self,s):
-        try:
-            val = int(s)
-            self.month = val - 1
-        except:
-            self.month = UNDEF
+        self.month = self.calendar.set_value(s)
 
     def setDayVal(self,s):
-        try:
-            val = int(s)
-            self.day = val
-        except:
-            self.day = UNDEF
+        self.day = self.calendar.set_value(s)
 
     def setYearVal(self,s):
-        try:
-            val = int(s)
-            self.year = val
-        except:
+        if s:
+            self.year = self.calendar.set_value(s)
+        else:
             self.year = UNDEF
 
     def getMonth(self):
-        if self.month == UNDEF:
-            return UNDEF
-        return self.month + 1
+        return self.month
 
     def getMonthValid(self):
         return self.month != UNDEF
@@ -481,17 +337,7 @@ class SingleDate:
         return self.year != UNDEF or self.month != UNDEF or self.day != UNDEF
 
     def setMonthStr(self,text):
-        try:
-            self.month = _m2num[string.lower(text[0:3])]
-        except KeyError:
-            self.setMonthStrEng(text)
-
-    def setMonthStrEng(self,text):
-        try:
-            self.month = SingleDate.em2num[string.lower(text[0:3])]
-        except KeyError:
-            self.month = UNDEF
-            raise Date.Error,text
+        self.calendar.set_month_string(text)
 
     def getMonthStr(self):
 	return _mname[self.month]
@@ -539,11 +385,11 @@ class SingleDate:
             else:
                 retval = "%s %d, %d" % (month,self.day,self.year)
 
-        if self.mode == SingleDate.about:
+        if self.mode == Calendar.ABOUT:
 	    retval = _("about") + ' ' + retval
-        elif self.mode == SingleDate.before:
+        elif self.mode == Calendar.BEFORE:
             retval = _("before") + ' ' + retval
-        elif self.mode == SingleDate.after:
+        elif self.mode == Calendar.AFTER:
             retval = _("after") + ' ' + retval
         return retval
 
@@ -568,11 +414,11 @@ class SingleDate:
         else:
             retval =  str(self.year)
 
-        if self.mode == SingleDate.about:
+        if self.mode == Calendar.ABOUT:
             retval = "%s %s" % (_("abt"),retval)
-        elif self.mode == SingleDate.before:
+        elif self.mode == Calendar.BEFORE:
             retval = "%s %s" % (_("before"),retval)
-        elif self.mode == SingleDate.after:
+        elif self.mode == Calendar.AFTER:
             retval = "%s %s" % (_("after"),retval)
 
         return retval
@@ -598,11 +444,11 @@ class SingleDate:
             else:
                 retval = "%d %s %d" % (self.day,string.upper(month[0:3]),self.year)
 
-        if self.mode == SingleDate.about:
+        if self.mode == Calendar.ABOUT:
             retval = "%s %s" % (_("ABOUT"),retval)
-        elif self.mode == SingleDate.before:
+        elif self.mode == Calendar.BEFORE:
             retval = "%s %s" % (_("BEFORE"),retval)
-        elif self.mode == SingleDate.after:
+        elif self.mode == Calendar.AFTER:
             retval = "%s %s" % (_("AFTER"),retval)
         return retval
 
@@ -626,11 +472,11 @@ class SingleDate:
             else:
                 retval = "%d. %s %d" % (self.day,month,self.year)
 
-        if self.mode == SingleDate.about:
+        if self.mode == Calendar.ABOUT:
             retval = "%s %s" % (_("ABOUT"),retval)
-        elif self.mode == SingleDate.before:
+        elif self.mode == Calendar.BEFORE:
             retval = "%s %s" % (_("BEFORE"),retval)
-        elif self.mode == SingleDate.after:
+        elif self.mode == Calendar.AFTER:
             retval = "%s %s" % (_("AFTER"),retval)
 
         return retval
@@ -653,11 +499,11 @@ class SingleDate:
             else:
                 retval = "%02d%s%02d%s%04d" % (self.month+1,sep,self.day,sep,self.year)
 
-        if self.mode == SingleDate.about:
+        if self.mode == Calendar.ABOUT:
             retval = "%s %s" % (_("ABOUT"),retval)
-        elif self.mode == SingleDate.before:
+        elif self.mode == Calendar.BEFORE:
             retval = "%s %s" % (_("BEFORE"),retval)
-        elif self.mode == SingleDate.after:
+        elif self.mode == Calendar.AFTER:
             retval = "%s %s" % (_("AFTER"),retval)
 
         return retval
@@ -682,13 +528,13 @@ class SingleDate:
             else:
                 retval = "%02d%s%02d%s%02d" % (self.year,sep,self.month+1,sep,self.day)
 
-        if self.mode == SingleDate.about:
-            retval = "%s %s" % (_("ABOUT"),retval)
+        if self.mode == Calendar.ABOUT:
+            retval = "%s %s" % (_("about"),retval)
 
-        if self.mode == SingleDate.before:
-            retval = "%s %s" % (_("BEFORE"),retval)
-        elif self.mode == SingleDate.after:
-            retval = "%s %s" % (_("AFTER"),retval)
+        if self.mode == Calendar.BEFORE:
+            retval = "%s %s" % (_("before"),retval)
+        elif self.mode == Calendar.AFTER:
+            retval = "%s %s" % (_("after"),retval)
 
         return retval
 
@@ -721,11 +567,11 @@ class SingleDate:
             else:
                 retval = "%02d%s%02d%s%04d" % (self.day,sep,self.month+1,sep,self.year)
 
-        if self.mode == SingleDate.about:
+        if self.mode == Calendar.ABOUT:
             retval = "%s %s" % (_("ABOUT"),retval)
-        if self.mode == SingleDate.before:
+        if self.mode == Calendar.BEFORE:
             retval = "%s %s" % (_("BEFORE"),retval)
-        elif self.mode == SingleDate.after:
+        elif self.mode == Calendar.AFTER:
             retval = "%s %s" % (_("AFTER"),retval)
 
         return retval
@@ -757,38 +603,14 @@ class SingleDate:
                 _format7, _format8, _format9, _format10, _format11, _format12,
                 _format13]
 
-    def display_calendar(self,month_map):
-        d = ''
-        if self.year==UNDEF:
-            if self.month == UNDEF:
-                d = ""
-            elif self.day == UNDEF:
-                d = month_map[self.month]
-            else:
-                d = "%02d %s" % (self.day,month_map[self.month])
-        elif self.month == UNDEF:
-            d = str(self.year)
-        elif self.day == UNDEF:
-            d = "%s %d" % (month_map[self.month],self.year)
-        else:
-            d = "%02d %s %d" % (self.day,month_map[self.month],self.year)
-        if self.mode == SingleDate.about:
-	    d = _("about") + ' ' + d
-        elif self.mode == SingleDate.before:
-            d = _("before") + ' ' + d
-        elif self.mode == SingleDate.after:
-            d = _("after") + ' ' + d
-        return d
-
     def getDate(self):
-        if self.calendar == GREGORIAN:
-            return _func(self)
-        elif self.calendar == JULIAN:
-            return self.display_calendar(_mname)
-        elif self.calendar == HEBREW:
-            return self.display_calendar(_hmonth)
+        return self.calendar.display(self.year, self.month, self.day, self.mode)
+
+    def getQuoteDate(self):
+        if self.year == UNDEF and self.month == UNDEF and self.day == UNDEF:
+            return ""
         else:
-            return self.display_calendar(_fmonth)
+            return self.calendar.quote_display(self.year, self.month, self.day, self.mode)
 
     def setIsoDate(self,v):
         data = string.split(v)
@@ -799,9 +621,13 @@ class SingleDate:
         vals = string.split(v,'-')
         self.setYearVal(vals[0])
         if len(vals) > 1:
-            self.setMonthVal(vals[1])
+            self.setMonthVal(int(vals[1])-1)
+        else:
+            self.month = UNDEF
         if len(vals) > 2:
             self.setDayVal(vals[2])
+        else:
+            self.day = UNDEF
         
     def getModeVal(self):
         return self.mode
@@ -810,198 +636,17 @@ class SingleDate:
         self.mode = val
     
     def set(self,text):
-        if self.calendar == GREGORIAN:
-            self.set_gregorian(text)
-        elif self.calendar == JULIAN:
-            self.set_calendar(text,_m2num,3)
-        elif self.calendar == HEBREW:
-            self.set_calendar(text,_hmonth2num,0)
-        else:
-            self.set_calendar(text,_fmonth2num,4)
-
-    def set_calendar(self,text,month_map,l):
-        match = SingleDate.fmt2.match(text)
-        if match:
-            matches = match.groups()
-            self.setMode(matches[0])
-            monthstr = unicode(matches[2]).lower()
-            if l == 0:
-                mon = monthstr
-            else:
-                mon = monthstr[0:l]
-            self.setYear(int(matches[3]))
-            if month_map.has_key(mon):
-                self.setMonth(month_map[mon]+1)
-            else:
-                self.setMonth(UNDEF)
-            self.setDay(int(matches[1]))
-            return
-        match = SingleDate.fmt3.match(text)
-        if match:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.setYearVal(matches[3])
-            self.setMonthVal(matches[2])
-            self.setDayVal(matches[1])
-            return
-
-        match = SingleDate.fmt4.match(text)
-        if match:
-            matches = match.groups()
-            self.setMode(matches[0])
-            if l == 0:
-                mon = string.lower(matches[1])
-            else:
-                mon = string.lower(matches[1])[0:l]
-            self.setYearVal(matches[2])
-            self.setMonthStr(mon)
-            self.day = UNDEF
-            return
-
-        match = SingleDate.fmt5.match(text)
-        if match:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.setYearVal(matches[1])
-            self.month = UNDEF
-            self.day = UNDEF
-            return
-
-        self.year = UNDEF
-        self.month = UNDEF
-        self.day = UNDEF
-
-    def set_gregorian(self,text):
-        match = SingleDate.fmt2.match(text)
-        if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.setMonthStr(matches[2])
-            self.day = int(matches[1])
-            if len(matches) == 4 and matches[3] != None:
-                self.setYearVal(matches[3])
-            else:
-                self.year = UNDEF
-            return 1
+        self.year, self.month, self.day, self.mode = self.calendar.set(text)
         
-        match = SingleDate.fmt5.match(text)
-        if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.month = UNDEF
-            self.day = UNDEF
-            self.year = int(matches[1])
-            return 1
-
-        match = SingleDate.fmt7.match(text)
-        if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            if Date.entryCode == 2:
-                self.setMonthVal(matches[2])
-                self.setYearVal(matches[1])
-            else:
-                self.setMonthVal(matches[1])
-                self.setYearVal(matches[2])
-            if self.getMonth() > 13:
-                raise Date.Error
-            return 1
-
-        match = SingleDate.fmt3.match(text)
-        if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            if Date.entryCode == 0:
-                self.setMonthVal(matches[1])
-                self.setDayVal(matches[2])
-                self.setYearVal(matches[3])
-            elif Date.entryCode == 1:
-                self.setMonthVal(matches[2])
-                self.setDayVal(matches[1])
-                self.setYearVal(matches[3])
-            else:
-                self.setMonthVal(matches[2])
-                self.setDayVal(matches[3])
-                self.setYearVal(matches[1])
-            return 1
-
-        match = SingleDate.fmt1.match(text)
-        if match != None:
-            (mode,mon,day,year) = match.groups()
-            self.setMode(mode)
-            self.setMonthStr(mon)
-            if day:
-                self.setDayVal(int(string.replace(day,',','')))
-            else:
-                self.day = UNDEF
-            self.setYearVal(year)
-            return 1
-
-        match = SingleDate.fmt4.match(text)
-        if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.setMonthStr(matches[1])
-            self.day = UNDEF
-            if len(matches) == 4:
-                self.setYearVal(matches[3])
-            return 1
-
-        match = SingleDate.fmt6.match(text)
-        if match != None:
-            matches = match.groups()
-            self.setMode(matches[0])
-            self.setMonthVal(matches[1])
-            self.day = UNDEF
-            self.year = UNDEF
-            return 1
-
-        raise Date.Error,text
-
-    def get_sdn(self):
-        if self.year == UNDEF:
-            return 0
-        if self.month == UNDEF:
-            month = 1
-        else:
-            month = self.month + 1
-        if self.day == UNDEF:
-            day = 1
-        else:
-            day = self.day
-
-        if self.calendar == GREGORIAN:
-            sdn = Calendar.gregorian_to_sdn(self.year,month,day)
-        elif self.calendar == FRENCH:
-            sdn = Calendar.french_to_sdn(self.year,month,day)
-        if self.calendar == HEBREW:
-            sdn = Calendar.jewish_to_sdn(self.year,month,day)
-        if self.calendar == JULIAN:
-            sdn = Calendar.julian_to_sdn(self.year,month,day)
-        return sdn
-
     def convert_to(self,val):
-        if val == GREGORIAN:
-            self.convert_calendar(Calendar.sdn_to_gregorian,val)
-        elif val == JULIAN:
-            self.convert_calendar(Calendar.sdn_to_julian,val)
-        elif val == HEBREW:
-            self.convert_calendar(Calendar.sdn_to_jewish,val)
-        else:
-            self.convert_calendar(Calendar.sdn_to_french,val)
+        sdn = self.calendar.get_sdn(self.year, self.month, self.day)
+        self.calendar = val()
+        (self.year, self.month, self.day) = self.calendar.get_ymd(sdn)
 
-    def convert_calendar(self,func,mode):
-        sdn = self.get_sdn()
-        (y,m,d) = func(sdn)
-        self.calendar = mode
-        if y == 0 and m == 0 and d == 0:
-            self.year = UNDEF
-            self.month = UNDEF
-            self.day = UNDEF
-        else:
-            self.year = y
-            self.month = m-1
-            self.day = d
+    def convert_to_obj(self,val):
+        sdn = self.calendar.get_sdn(self.year, self.month, self.day)
+        self.calendar = val
+        (self.year, self.month, self.day) = self.calendar.get_ymd(sdn)
 
 #-------------------------------------------------------------------------
 #
@@ -1021,7 +666,7 @@ def not_too_old(date):
 #
 #-------------------------------------------------------------------------
 def compare_dates(f,s):
-    if f.calendar != s.calendar:
+    if f.calendar.NAME != s.calendar.NAME:
         return 1
     if f.range == -1 and s.range == -1:
         return cmp(f.text,s.text)
@@ -1047,4 +692,53 @@ def compare_dates(f,s):
             return cmp(first.day,second.day)
             
 _func = SingleDate.fmtFunc[0]
+
+
+if __name__ == "__main__":
+
+    a = Date()
+    a.set("24 May 1961")
+    print "Gregorian : ", a.getDate()
+    a.set(a.getDate())
+    print "Gregorian : ", a.getDate()
+
+    a.set_calendar(Calendar.Julian)
+    print "Julian : ", a.getDate()
+    a.set(a.getDate())
+    print "Julian : ", a.getDate()
+
+    a.set_calendar(Calendar.Gregorian)
+    print "Gregorian : ", a.getDate()
+    a.set(a.getDate())
+    print "Gregorian : ", a.getDate()
+
+    a.set_calendar(Calendar.Hebrew)
+    print "Hebrew : ", a.getDate()
+    a.set(a.getDate())
+    print "Hebrew : ", a.getDate()
+
+    a.set_calendar(Calendar.Gregorian)
+    print "Gregorian : ", a.getDate()
+    a.set(a.getDate())
+    print "Gregorian : ", a.getDate()
+
+    a.set_calendar(Calendar.Persian)
+    print "Persian : ", a.getDate()
+    a.set(a.getDate())
+    print "Persian : ", a.getDate()
+
+    a.set_calendar(Calendar.Gregorian)
+    print "Gregorian : ", a.getDate()
+    a.set(a.getDate())
+    print "Gregorian : ", a.getDate()
+
+    a.set_calendar(Calendar.Islamic)
+    print "Islamic : ", a.getDate()
+    a.set(a.getDate())
+    print "Islamic : ", a.getDate()
+
+    a.set_calendar(Calendar.Gregorian)
+    print "Gregorian : ", a.getDate()
+    a.set(a.getDate())
+    print "Gregorian : ", a.getDate()
 

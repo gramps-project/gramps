@@ -736,7 +736,7 @@ class GedcomWriter:
                 else:
                     self.g.write("1 EVEN\n")
                     self.g.write("2 TYPE %s\n" % self.cnvtxt(name))
-                self.g.write("2 PLAC %s\n" % self.cnvtxt(attr.getValue()))
+                self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(attr.getValue()),'\r',' '))
                 if attr.getNote():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.getNote()))
                 for srcref in attr.getSourceRefList():
@@ -764,7 +764,7 @@ class GedcomWriter:
                     text = addr_append(text,addr.getPostal())
                     text = addr_append(text,addr.getCountry())
                     if text:
-                        self.g.write("2 PLAC %s\n" % text)
+                        self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(text)),'\r',' ')
                 if addr.getNote():
                     self.write_long_text("NOTE",3,self.cnvtxt(addr.getNote()))
                 for srcref in addr.getSourceRefList():
@@ -861,7 +861,7 @@ class GedcomWriter:
         dateobj = event.getDateObj()
         self.print_date("2 DATE",dateobj)
         if event.getPlaceName():
-            self.g.write("2 PLAC %s\n" % self.cnvtxt(event.getPlaceName()))
+            self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(event.getPlaceName()),'\r',' '))
         if event.getCause():
             self.g.write("2 CAUS %s\n" % self.cnvtxt(event.getCause()))
         if event.getNote():
@@ -879,7 +879,7 @@ class GedcomWriter:
         if ord.getTemple():
             self.g.write('%d TEMP %s\n' % (index+1,ord.getTemple()))
         if ord.getPlaceName():
-            self.g.write("2 PLAC %s\n" % self.cnvtxt(ord.getPlaceName()))
+            self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(ord.getPlaceName()),'\r',' '))
         if ord.getStatus() != 0:
             self.g.write("2 STAT %s\n" % self.cnvtxt(statlist[ord.getStatus()]))
         if ord.getNote():

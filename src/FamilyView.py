@@ -266,8 +266,8 @@ class FamilyView:
         self.person = self.parent.active_person
         if not self.person:
             return
-        
-        n = "%s\n\tb. %s\n\td. %s" % (self.person.getPrimaryName().getName(),
+
+        n = "%s\n\tb. %s\n\td. %s " % (self.person.getPrimaryName().getName(),
                                       self.person.getBirth().getDate(),
                                       self.person.getDeath().getDate())
         self.ap_data.set_text(n,len(n))
@@ -275,6 +275,7 @@ class FamilyView:
         self.selected_spouse = None
         self.spouse_model.clear()
         self.child_model.clear()
+        self.sp_parents_model.clear()
         splist = self.person.getFamilyList()
         f = None
         first_family = None

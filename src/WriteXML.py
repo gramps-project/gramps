@@ -39,8 +39,8 @@ import os
 #-------------------------------------------------------------------------
 import const
 import GrampsCfg
+import Calendar
 from RelLib import *
-from Date import SingleDate
 from intl import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -65,7 +65,7 @@ def exportData(database, filename, callback):
     if os.path.isfile(filename):
         shutil.copy(filename, filename + ".bak")
 
-    compress = GrampsCfg.uncompress ==0 and _gzip_ok == 1
+    compress = GrampsCfg.uncompress == 0 and _gzip_ok == 1
 
     try:
         g = XmlWriter(database,callback,0,compress)
@@ -454,9 +454,8 @@ class XmlWriter:
         if date.isEmpty():
             return
 
-        cal = date.get_calendar()
         if cal != 0:
-            calstr = ' calendar="%s"' % self.fix(str(cal))
+            calstr = ' cformat="%s"' % date.get_calendar().NAME
         else:
             calstr = ''
 
@@ -469,11 +468,11 @@ class XmlWriter:
             mode = d1.getModeVal()
             dstr = d1.getIsoDate()
             
-            if mode == SingleDate.before:
+            if mode == Calendar.BEFORE:
                 pref = ' type="before"'
-            elif mode == SingleDate.after:
+            elif mode == Calendar.AFTER:
                 pref = ' type="after"'
-            elif mode == SingleDate.about:
+            elif mode == Calendar.ABOUT:
                 pref = ' type="about"'
             else:
                 pref = ""

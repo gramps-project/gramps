@@ -22,6 +22,6 @@ def utf8_to_latin(s):
     return s.encode('iso-8859-1','replace')
 
 def latin_to_utf8(s):
-    return unicode(s,'latin-1')
+    return unicode(s)
 
     

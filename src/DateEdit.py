@@ -67,6 +67,10 @@ class DateEdit:
         self.text_obj.connect('focus-out-event',self.check)
         self.check(None,None)
 
+    def set_calendar(self,cobj):
+        self.checkval.set_calendar_obj(cobj)
+        self.check(None,None)
+        
     def check(self,obj,val):
         """Called with the text box loses focus. If the string contains a
         valid date, sets the appropriate pixmap"""
