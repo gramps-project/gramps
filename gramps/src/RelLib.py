@@ -1204,6 +1204,10 @@ class Family:
         """returns the list of children"""
         return self.Children
 
+    def setChildList(self, list):
+        """sets the list of children"""
+        self.Children = list
+
     def getMarriage(self):
         """returns the marriage event of the Family. Obsolete"""
         for e in self.EventList:
