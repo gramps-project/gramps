@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
@@ -19,34 +19,34 @@
 <!-- =========== Getting Started ============================== -->
 
   <sect1 id="gramps-getting-started"> 
-    <title>A kezdetek</title> 
+    <title>Kezdés</title> 
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect2 id="gramps-start">
     <title>A &app; indítása</title>
-    <para>A &app; progrmamot a következő módokon indíthataja el:</para> 
+    <para>A &app; progrmamot a következő módokon indíthatja el:</para> 
     <variablelist>
     <varlistentry>
-	<term><guimenu>Applications</guimenu> menu</term>
-	<listitem><para>Choose <menuchoice><guisubmenu>Other</guisubmenu>
-	<guimenuitem>Gramps</guimenuitem></menuchoice>. </para></listitem>
+	<term><guimenu>Applicatons</guimenu> menüből</term>
+	<listitem><para>Válassza ki az <menuchoice><guisubmenu>Egyéb</guisubmenu>
+	<guimenuitem>Gramps</guimenuitem></menuchoice> menüpontot. </para></listitem>
     </varlistentry>
     <varlistentry>
-	<term>Command line</term>
-    	<listitem><para>To start &app; from a command line, type 
-        <command>gramps</command>, then press <keycap>Return</keycap>.</para>
+	<term>Parancssori indítás</term>
+    	<listitem><para>A &app; indításához, a parancssorba csak írja be, hogy 
+        <command>gramps</command> és nyomjon egy <keycap>Return</keycap>-t.</para>
 	
-	<para>If you would like &app; to open a specific database or to 
-        import a specific file on startup, you can supply the filename 
-        as a command line argument:</para>
+	<para>Ha azt szeretné, hogy a &app; induláskor egy megadott adatbázist 
+        nyisson meg vagy importáljon, akkor a fájlnevet a parancssorban megadhatja 
+        a következő módon:</para>
 
 	<para>
-	<command>gramps -i</command> <replaceable>filename.ged</replaceable>
+	<command>gramps -i</command> <replaceable>fájlnév.ged</replaceable>
     	</para> 
 
-    	<para>where <replaceable>filename.ged</replaceable> is the name 
-	of the file you	want to open/import. The detailed reference to the 
-        command line options is found in the <xref linkend="append-cmdline"/>. 
+    	<para>ahol a <replaceable>fájlnév.ged</replaceable> az adatbázis fájl neve 
+	amit megnyitni/importálni szeretne. Részletes leírás található a parancssori 
+        paraméterekről a <xref linkend="append-cmdline"/> oldalon. 
         </para></listitem>
     </varlistentry>
     </variablelist>
@@ -54,19 +54,19 @@
 
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
-      <title>Running &app; for the first time</title>
+      <title>A &app; első indításakor</title>
     <para> 
-    The first time you run the program, GRAMPS will display its 
-    Getting Started dialogs. Follow the directions guiding you through
-    <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
-    formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,
-    and <guilabel>LDS extensions</guilabel> sections. Most of the dialogs
-    are self-explanatory and will not be covered here.
+    Ha először futtatja a GRAMPS programot, akkor a Felhasználói Telepítés 
+    üzenetei fogadják a képernyőn. Kövesse az utasításokat az 
+    <guilabel>Információk a kutatóról</guilabel>, <guilabel>Dátum formátumok 
+    </guilabel>, <guilabel>Alternatív naptárak</guilabel> 
+    és a <guilabel>Mormon modul</guilabel> szekciókon keresztül. A párbeszédablakok 
+    többsége önmagáért beszél ezért bővebben nem tárgyaljuk őket. 
     </para>
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
-	<title>&app; Getting Started Window: Researcher Information</title> 
+	<title>&app; Felhasználói Telepítés Ablak: Információk a kutatóról</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -74,31 +74,31 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>Enter your personal information in the corresponding
-	text entry fields. Although &app; requests information about you, 
-	this information is used only so that &app; can create valid GEDCOM 
-	output files. A valid GEDCOM file requires information about the file_s 
-	creator. If you choose, you may leave the information empty, however
-	all the GEDCOM files you export will not be valid. 
+	<para> Itt adhatja meg személyes adatait a megfelelő 
+	szövegmezőkben. Habár a &app; kéri ezeket az információkat, 
+	ezek az adatok csak a szabályos GEDCOM fájlok készítéséhez kellenek.
+	Egy szabályos GEDCOM fájlban a készítőről információkat kell megadni. 
+	Üresen hagyhatja a mezőket, de ekkor az ön által készített 
+	GEDCOM fájlok nem lesznek szabályosak. 
 	</para>
 	
-	<para>This information can be entered at any time in the 
-	<guilabel>Preferences</guilabel> dialog, under the 
-	<guilabel>Usage</guilabel> category. 
+	<para>Ezek az információk bármikor megadhatóak a <guilabel>Szerkesztés</guilabel>
+	<guilabel>Tulajdonságok...</guilabel> párbeszédablak alatt a 
+	<guilabel>Használat</guilabel> almenüben. 
 	</para>
 
     </sect2>
 
     <!-- ================ Getting Started Subsection  -->
       <sect2 id="choose-db-start">
-      <title>Choosing a database on startup</title> 
-      <para>If &app; is started without any
-      database  to open, the following window will appear prompting you to 
-      choose what database to open. </para>
+      <title>Indításkor az adatbázis kiválasztása</title> 
+      <para>Ha a &app; úgy indul, hogy nem nyit meg egy adatbázist, akkor 
+      a képen látható ablak jelenik meg a megfelelő adatbázis megnyitásához. 
+      </para>
       
 	<!-- ==== Figure: Open existing/new database window ==== -->
 	<figure id="first-open"> 
-	<title>Open Database Window</title> 
+	<title>Adatbázis Megnyitása Ablak</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/first-open.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -106,27 +106,26 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
       
-      <para>If you would like to open an existing database, check the top radio
-      button and click the <guibutton>OK</guibutton> button. You will then be asked to 
-      specify the name of your existing database. If you would like to start
-      creating your brand new database from scratch right away, choose new XML
-      database. </para> 
+      <para>Ha egy már létező adatbázis szeretne megnyitni, akkor jelölje be a 
+      megfelelő rádiógombot és kattintson az 
+      <guibutton>OK</guibutton> gombra. Ezután megadhatja az adatbázisának a nevét. 
+      Ha egy új adatbázist szeretne létrehozni, akkor válassza az Új XML adatbázis 
+      létrehozását.</para> 
 
-      <para>NOTE: when starting new database, you should 
-      select an empty <replaceable>DIRECTORY</replaceable> 
-      and <replaceable>NOT a FILE</replaceable>. Create empty directory if 
-      needed. The directory you specify will be used by &app; to store 
-      database file <replaceable>data.gramps</replaceable> as well as any 
-      possible copies of media objects. This directory will be updated by &app; 
-      each time the database is saved. </para> 
+      <para>MEGJEGYZÉS: új adatbázis létrehozásakor, egy üres 
+      <replaceable>KÖNYVTÁRAT</replaceable> kell kiválasztania 
+      és <replaceable>NEM egy FÁJLT</replaceable>. Hozza létre az üres könyvtárat ha 
+      még nem hozta létre. A &app; a megadott könyvtárban tárolja a 
+      <replaceable>data.gramps</replaceable> adatbázis fájlt és minden egyéb 
+      média objektumot. A könyvtár tartalmát a &app; minden egyes 
+      mentésnél módosítja. </para> 
       
-      <para>NOTE: when opening an existing database, you should 
-      open a <replaceable>DIRECTORY</replaceable> and 
-      <replaceable>NOT a FILE</replaceable>. The directory you need to open 
-      should contain the  database file <replaceable>data.gramps</replaceable> 
-      as well as any possible copies of media objects. Such a directory is 
-      created by &app; when you start a new database and is updated each time 
-      the database is saved. </para> 
+      <para>MEGJEGYZÉS: egy már meglévő adatbázis megnyitásához, egy meglévő 
+      <replaceable>KÖNYVTÁRAT</replaceable> kell kiválasztania és 
+      <replaceable>NEM egy FÁJLT</replaceable>. A könyvtárnak tartalmaznia kell 
+      a <replaceable>data.gramps</replaceable> adatbázis fájlt és 
+      minden egyes média objektumot. A könyvtár tartalmát a &app; minden egyes 
+      mentésnél módosítja. </para> 
 
       </sect2>
       
@@ -164,44 +163,45 @@
     <sect2 id="get-help">
       <title>Segítség</title>
     <para> Minden esetben azonnali segítséget tud kapni a 
-    <menuchoice><guimenu>Súgó</guimenu></menuchoice> memüpont alatt: </para>
+    <menuchoice><guimenu>Súgó</guimenu></menuchoice> menüpont alatt: </para>
     
 	<variablelist>
 
 	<varlistentry><term>Felhasználói kézikönyv</term>
-	<listitem><para> Ezt válassza ki ha ennek a segítségnek a szövegét 
-	Segítség böngészőben szeretné megtekinteni.  </para></listitem>
+	<listitem><para> Ezt válassza ki ha ezt a segítséget 
+	szeretné megtekinteni.  </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>GYIK (FAQ)</term>
-	<listitem><para> Use this item to read Frequently Asked Questions
-	about &app; in the browser. </para></listitem>
+	<listitem><para> A Gyakran Intézett Kérdések (Frequently Asked Questions) 
+	megtekintéséhez a &app;ben ezt a menüpontot válassza ki. </para></listitem>
 	</varlistentry>
     
 	<varlistentry><term>GRAMPS honlap</term>
-	<listitem><para> Select this item to open home page of &app; in your
-	default web browser. </para></listitem>
+	<listitem><para> Ezt válassza ki, ha meg szeretné nézni a &app; 
+	honlapját az alapértelmezett böngészővel. </para></listitem>
 	</varlistentry>
     
 	<varlistentry><term>GRAMPS levelezőlista</term>
-	<listitem><para> Choose this item to direct your web browser 
-	to the &app; mailing list archives. </para></listitem>
+	<listitem><para> E menüpont segítségével a webböngészőjével megnézheti 
+	a &app; levelezési arhívumát. </para></listitem>
 	</varlistentry>
     
 	<varlistentry><term>Hiba jelzése</term>
-	<listitem><para> Use this item to file a bug report against &app; 
-	with the bug tracking system.  </para></listitem>
+	<listitem><para> A hibakövető rendszernek e menüpont segítségével 
+        tudja a &app; program hibáit jelezni. </para></listitem>
 	</varlistentry>
     
 	<varlistentry><term>Modul állapot megjelenítése</term>
-	<listitem><para> Use this item to display the status of loaded 
-	plugins. </para></listitem>
+	<listitem><para> A betöltődött modulok állapota tekinthető meg.
+	</para></listitem>
 	</varlistentry>
     
 	<varlistentry><term>Példa adatbázis megnyitása</term>
-	<listitem><para> Select this item to load the example database shipped
-	with &app;. This database is composed of fictitious people and serves as
-	a useful example for learning how to work with &app;. </para></listitem>
+	<listitem><para> Válassza ki ez a menüpontot, ha a &app; példa adatbázisát 
+        szeretné megnyitni. Ez az adatbázis a valóságban nem létező személyekből 
+        áll. Hasznos példa a &app; működésének és használatának a megértéséhez. 
+        </para></listitem>
 	</varlistentry>
     
 	</variablelist>

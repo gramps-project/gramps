@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
@@ -46,7 +46,7 @@
   Template last modified Apr 11, 2002
 -->
 <!-- =============Document Header ============================= -->
-<article id="index" lang="en">
+<article id="index" lang="hu">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
@@ -57,9 +57,7 @@
 
 <!-- translators: uncomment this: -->
 
-  <copyright>
-   <year>2004</year>
-   <holder>Gergely Egyeki (Hungarian Translation)</holder>
+  <copyright> <year>2004</year> <holder>Gergely Egyeki (Hungarian Translation)</holder>
   </copyright>
 
 
@@ -191,15 +189,23 @@
       </revision> 
     </revhistory> 
 
-    <releaseinfo>This manual describes version &appversion; of GRAMPS.
+    <releaseinfo>Ez a felhasználói segítség a GRAMPS &appversion; verziójának a 
+     használatát írja le.
     </releaseinfo> 
     <legalnotice> 
-      <title>Feedback</title> 
-      <para>To report a bug or make a suggestion regarding the &app; application or
-      this manual, follow the directions in the <ulink url="ghelp:gnome-feedback"
-	  type="help">GNOME Feedback Page</ulink>. 
+      <title>Visszajelzés</title> 
+      <para>A &app;el kapcsolatos hibák vagy ötletek jelzéséhez 
+      kövesse a <ulink url="ghelp:gnome-feedback"
+	  type="help">GNOME Feedback Page</ulink> oldalon megadott útmutatásokat. 
       </para>
+    </legalnotice> 
+
 <!-- Translators may also add here feedback address for translations -->
+    <legalnotice> 
+      <title>Egyéb visszajelzés</title> 
+      <para>A &app; fordításához és helyes magyar működésének elősegítéséhez 
+            szívesen várom a visszajelzéseket az egeri@elte.hu címre. 
+      </para>
     </legalnotice> 
   </articleinfo> 
 
@@ -209,41 +215,36 @@
 <!-- ============= Document Body ============================= -->
 <!-- ============= Introduction ============================== -->
   <sect1 id="gramps-intro"> 
-    <title>Introduction</title> 
-    <para> &app; is a genealogical 
-    application. &app; is an acronym for the 
-    Genealogical Research and Analysis Management Programming System. To put 
-    it shortly, it allows you to store, edit, and research genealogical data 
-    using your computer. Its functionality is somewhat common to other 
-    genealogical programs. However, &app; offers some unique features. </para> 
+    <title>Bevezetés</title> 
+    <para> &app; egy családfakezelő program.
+    &app; név rövidítése a Genealogical Research and Analysis Management 
+    Programming System szavaknak (Leszármazáskutató és Elemző Programrendszer). 
+    Röviden, a program lehetővé teszi családi-öröklési adatok tárolását, 
+    szerkesztését és elemzését. A &app; alapjában véve a többi családfaprogramhoz 
+    közel áll, de jónéhány speciális lehetőséggel is szolgál. </para> 
 
     <sect2 id="why-gramps">
-      <title>Why &app;?</title>
-      <para> &app; was conceived under the concept
-      that most genealogy programs were designed to provide the researcher the 
-      capability to input information related to a particular family tree.  
-      Most of these programs have allowed for the arranging and storing of
-      information consistent with the GEDCOM standards. They usually provide
-      means for displaying descendant or ancestral relationships by means of
-      graphical displays, charts, or reports.  These may be augmented with 
-      pictures or other media to enhance the data.  Most provide for inputting 
-      data on unconnected individuals/families that may or may not have a 
-      relationship to the primary surname being researched.  Various other 
-      enhancements may also be provided in the genealogical program that 
-      allows for different degrees of importing and exporting data from other 
-      programs and printing the data contained in the various reports. </para>
+      <title>Miért éppen a &app;et?</title>
+      <para> &app; hasonló célokkal jött létre mint a legtöbb családfakutató 
+      program, amelyek a kutatónak lehetőséget biztosítanak egy adott család adatinak a
+      feldolgozására.
+      Ezen programok többsége az adatait képes GEDCOM 
+      formátumában tárolni. Általában az utódok és az ősök kapcsolatait 
+      diagramok, grafikonok, összesítők segítségével jelenítik meg.
+      Némelyiknek ezen képességeit képekkel vagy egyéb multimédiás anyagokkal bővíteni lehet.
+      A programok többségével különálló, egy családhoz sem tartozó egyéneket is 
+      fel lehet venni az adatbázisba; különböző elemzések véget.
+      Ezenkívül különböző fájlformátumok importálásával és exportálásával is fel lehetnek 
+      ruházva.</para>
       
-      <para> &app;, on the other hand, attempts to
-      provide all of the common capabilities of these programs, but, more
-      importantly, to provide an additional capability of integration not common
-      to these programs.  This is the ability to input any bits and pieces of
-      information directly into &app; and
-      rearrange/manipulate any/all data events in the entire data base (in any
-      order or sequence) to assist the user in doing research, analysis and
-      correlation with the potential of filling relationship gaps.  In short, it 
-      is a tool that provides a way to input all your research into one place and 
-      do your analysis and correlation using the speed, power, and accuracy of 
-      your computer instead of pencils and unmanageable reams of paper. </para>
+      <para> A &app; képes mindezen fentebb felsorolt funkciókra, de 
+      ami még fontosabb, hogy lehetőség van a program eszközeinek a bővítésére. 
+      Ez segítséget nyújt az adatok különféle bevitelére a &app;be; segít 
+      átrendezni/átalakítani részben/teljesen az adatbázist (bármilyen sorrendben). 
+      Röviden szólva, ez egy olyan eszköz ami lehetőséget biztosít a felkutatott 
+      információk egy adott helyre gyűjtésére; mindenféle segítséget megad ezen adatok
+      elemzésére, összehasonlítására a számítógép teljesítményének a 
+      felhasználásával, hatalmas papírmunkát elkerülve. </para>
     </sect2>
   </sect1> <!-- ================ End Intro ================================ -->
   
@@ -272,30 +273,29 @@
       manual, this is the place to put it. 
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
-    <title>About &app;</title> 
-    <para> &app; was written by Donald N. Allingham
+    <title>&app; Névjegye</title> 
+    <para> A &app;  Donald N. Allingham készítette  
       (<email>dallingham@users.sourceforge.net</email>). 
-      To find more information about &app;, please visit the 
-      <ulink url="http://gramps.sourceforge.net" type="http">GRAMPS Project 
-      Web page</ulink>. </para>
+      További információkért, kérem látogasson el a 
+      <ulink url="http://gramps.sourceforge.net" type="http">GRAMPS Projekt 
+      Honlap</ulink> oldalra. </para>
     <para>
-      To report a bug or make a suggestion regarding this application or
-      this manual, use the help menu in &app;, or follow the directions 
-      in this <ulink url="ghelp:gnome-feedback"  type="help">document</ulink>.
+      Hiba vagy ötletek jelzéséhez használja a &app; Segítség menüjét vagy 
+      kövesse a <ulink url="ghelp:gnome-feedback"  type="help">ezen leírás</ulink>
+      utasításait.
     </para>
 
-    <para> This program is distributed under the terms of the GNU
-      General Public license as published by the Free Software
-      Foundation; either version 2 of the License, or (at your option)
-      any later version. A copy of this license can be found at this
-      <ulink url="ghelp:gpl" type="help">link</ulink>, or in the file
-      COPYING included with the source code of this program. </para>
+    <para> Ez a program a Free Software Foundation által készített, 
+      GNU General Public license 2 vagy későbbi verziói alapján van közreadva.
+      A licensz másolata elérhető az 
+      <ulink url="ghelp:gpl" type="help">alábbi címen</ulink> vagy a 
+      COPYING fájlban a forráskódban. </para>
 
   </sect1> <!-- ============= End About ============================= -->
 
 <!-- ============= Appendices ================================== -->
   <sect1 id="appendices">
-    <title>Appendices</title>
+    <title>Melléklet</title>
   
       &faq;		    <!-- FAQ -->
       &keybind;		<!-- Keybindings reference -->
