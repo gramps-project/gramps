@@ -108,7 +108,7 @@ class ReportPlugins:
             "destroy_passed_object"   : Utils.destroy_passed_object
             })
 
-        tree = self.dialog.get_widget("tree1")
+        tree = self.dialog.get_widget("tree")
         self.run_tool = None
         build_tree(tree,_reports,self.on_node_selected)
 
@@ -136,7 +136,7 @@ class ReportPlugins:
         i,m = gtk.create_pixmap_from_xpm_d(gtk.GtkWindow(),None,xpm)
         img.set(i,m)
     
-        self.dialog.get_widget("report_title").set_text(title)
+        self.dialog.get_widget("title").set_text(title)
         self.run_tool = obj.get_data(TASK)
 
 #-------------------------------------------------------------------------
@@ -183,7 +183,7 @@ class ToolPlugins:
         title = obj.get_data(TITLE)
     
         self.dialog.get_widget("description").set_text(doc)
-        self.dialog.get_widget("pluginTitle").set_text(title)
+        self.dialog.get_widget("title").set_text(title)
         self.run_tool = obj.get_data(TASK)
 
 
