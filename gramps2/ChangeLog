@@ -1,4 +1,4 @@
-2004-11-08 Alex Roitman  <shura@alex.neuro.umn.edu>
+2004-11-09 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/WriteGedcom.py: Remove extraneous import.
 
 2004-11-08  Don Allingham  <dallingham@users.sourceforge.net>
