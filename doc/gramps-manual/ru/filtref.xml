@@ -82,13 +82,14 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-event">
-        <title>Event filters</title>
-        <para>This category includes the following rules that match people
-        based on their recorded events:</para>
+        <title>Фильтры событий</title>
+        <para>Эта категория включает правила, выявляющая лиц на основании их 
+        событий:</para>
           <variablelist>
 
-          <varlistentry><term>Has the birth</term>
-          <listitem><para> This rule matches people whose birth event 
+          <varlistentry><term>С рождением</term>
+          <listitem><para> Это правило выявляет тех людей, у кого событие рождения
+          This rule matches people whose birth event 
           matches specified values for Date, Place, and Description. 
           The rule returns a match even if the person's birth event matches 
           the value partially. The matching rules are case-insensitive. 
