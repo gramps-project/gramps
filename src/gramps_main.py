@@ -1613,7 +1613,7 @@ class Gramps:
         self.DataFilter = class_init(qualifer)
         self.DataFilter.set_invert(invert_filter)
         self.model_used = {}
-        self.apply_filter(self.person_model)
+        self.apply_filter(self.person_tree)
 
     def on_filter_name_changed(self,obj):
         filter = obj.get_data("filter")
@@ -1865,9 +1865,9 @@ class Gramps:
                     model.remove(iter)
                     del self.id2col[key]
 
-
         for i in self.pl_page:
             i.sort()
+
         self.modify_statusbar()
 
     def create_new_panel(self,pg):
