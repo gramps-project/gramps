@@ -140,7 +140,7 @@ def importData(database, filename, callback=None,cl=0):
             return 0
 
     xml_file.close()
-    
+
     # copy all local images into <database>.images directory
     db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
     db_base = os.path.basename(database.get_save_path())

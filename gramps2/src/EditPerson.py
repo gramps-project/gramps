@@ -1620,7 +1620,9 @@ class EditPerson:
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
-                self.db.add_place(place)
+                trans = self.db.start_transaction()
+                self.db.add_place(place,trans)
+                self.db.add_transaction(trans,_('Add Place (%s)' % text))
                 self.pdmap[text] = place.get_id()
                 self.add_places.append(place)
                 return place.get_id()

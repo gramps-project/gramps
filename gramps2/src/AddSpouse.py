@@ -117,7 +117,7 @@ class AddSpouse:
 
         self.renderer = gtk.CellRendererText()
 
-        self.slist = PeopleModel.PeopleModel(self.db,self.filter_func)
+        self.slist = PeopleModel.PeopleModel(self.db)
         self.spouse_list.set_model(self.slist)
         self.selection = self.spouse_list.get_selection()
         self.selection.connect('changed',self.select_row)
@@ -342,7 +342,7 @@ class AddSpouse:
         the potential spouse list.
         """
 
-        self.slist = PeopleModel.PeopleModel(self.db,self.filter_func)
+        self.slist = PeopleModel.PeopleModel(self.db)
         self.spouse_list.set_model(self.slist)
 
     def on_show_toggled(self,obj):

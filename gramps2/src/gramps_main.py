@@ -917,10 +917,11 @@ class Gramps:
             self.import_tool_callback()
 
     def import_tool_callback(self):
-        self.people_view.build_tree()
+        self.people_view.person_model.rebuild_data()
         if Utils.wasHistory_broken():
             self.clear_history()
             Utils.clearHistory_broken()
+        self.people_view.change_db(self.db)
         self.people_view.apply_filter()
         if not self.active_person:
             self.change_active_person(self.find_initial_person())
@@ -1472,7 +1473,6 @@ class Gramps:
                                 _("New gramps database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
                                 self.topWindow)
                         DbPrompter.DbPrompter(self,1,self.topWindow,filename)
-                        print "filename:", filename
                         importData(self.db,filename)
                         self.import_tool_callback()
                         opened = 1
@@ -1858,6 +1858,7 @@ class Gramps:
     def import_callback(self,obj,plugin_function):
         """Call the import plugin"""
         plugin_function(self.db,self.active_person,self.import_tool_callback)
+        self.people_view.person_model.rebuild_data()
         self.topWindow.set_title("%s - GRAMPS" % self.db.get_save_path())
 
     def on_preferences_activate(self,obj):

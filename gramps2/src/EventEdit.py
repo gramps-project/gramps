@@ -102,7 +102,7 @@ class EventEditor:
             # in translated languages with the 'Death' event, which is a partial match
             # to other events
             if not transname in elist:
-                list.append(transname)
+                elist.append(transname)
         else:
             self.srcreflist = []
             self.witnesslist = []

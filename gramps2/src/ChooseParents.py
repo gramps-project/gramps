@@ -298,12 +298,10 @@ class ChooseParents:
 
     def redrawf(self):
         """Redraws the potential father list"""
-        self.father_nsort = PeopleModel.PeopleModel(self.db, self.father_filter)
-        if self.nosort:
-            self.father_model = self.father_nsort
-        else:
-            self.father_model = gtk.TreeModelSort(self.father_nsort)
+        self.father_nsort = PeopleModel.PeopleModel(self.db)
+        self.father_model = gtk.TreeModelSort(self.father_nsort)
         self.father_list.set_model(self.father_model)
+        
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
@@ -311,13 +309,10 @@ class ChooseParents:
 
     def redrawm(self):
         """Redraws the potential mother list"""
-        self.mother_nsort = PeopleModel.PeopleModel(self.db, self.mother_filter)
-        if self.nosort:
-            self.mother_model = self.mother_nsort
-        else:
-            self.mother_model = gtk.TreeModelSort(self.mother_nsort)
-            
+        self.mother_nsort = PeopleModel.PeopleModel(self.db)
+        self.mother_model = gtk.TreeModelSort(self.mother_nsort)
         self.mother_list.set_model(self.mother_model)
+        
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
@@ -401,10 +396,14 @@ class ChooseParents:
                 #self.father_model.center_selected()
 
     def father_select_function(self,store,path,iter,id_list):
-        id_list.append(self.father_model.get_value(iter,PeopleModel.COLUMN_INT_ID))
+        if len(path) != 1:
+            val = self.father_model.get_value(iter,PeopleModel.COLUMN_INT_ID)
+            id_list.append(val)
 
     def mother_select_function(self,store,path,iter,id_list):
-        id_list.append(self.mother_model.get_value(iter,PeopleModel.COLUMN_INT_ID))
+        if len(path) != 1:
+            val = self.mother_model.get_value(iter,PeopleModel.COLUMN_INT_ID)
+            id_list.append(val)
 
     def get_selected_father_ids(self):
         mlist = []
