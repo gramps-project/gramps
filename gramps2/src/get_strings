@@ -116,9 +116,10 @@ import getopt
 import tokenize
 import operator
 import re
+import string
+import os
 
 from xml.sax import make_parser,handler,SAXParseException
-
 
 intRe = re.compile("^\d+$")
 
@@ -137,90 +138,76 @@ __version__ = '1.4'
 default_keywords = ['_']
 EMPTYSTRING = ''
 
-import sys
-import string
-import xmllib
 
-class TranslatableStringParser(xmllib.XMLParser):
+_int_re = re.compile("^\d+$")
+_ignore = { ':' : 0, '*' : 0, }
+
+class GladeExtractor:
+
     def __init__(self,msgs):
-        xmllib.XMLParser.__init__(self)
-        self.filename = None
         self.strings = msgs
-        self.data = ""
 
-    def add_string(self, string):
+    def add_string(self, string, lineno):
         if string == "":
             return
         if _ignore.has_key(string):
             return
-        entry = (self.filename, self.lineno)
+        entry = (self.file, lineno)
         if self.strings.has_key(string):
             self.strings[string][entry] = 0
         else:
             self.strings[string] = {entry: 0}
 
-    def read_file(self, filename):
-        self.reset()
-        self.filename = filename
-        fp = open(filename, "r")
-        data = fp.read(8192)
-        while data:
-            self.feed(data)
-            data = fp.read(8192)
-        fp.close()
+    def parse(self,file):
+        self.p = make_parser()
+        self.p.setContentHandler(GladeParser(self,file))
+        filename = "file://" + os.path.abspath(file)
+        self.file = file
+        self.p.parse(filename)
 
-    def syntax_error(self, message):
-        sys.stderr.write("%s:%d: %s\n" % (self.filename, self.lineno,
-                                          message))
-        sys.exit(1)
+class GladeParser(handler.ContentHandler):
+    """
+    SAX parsing class for the StyleSheetList XML file.
+    """
+    
+    def __init__(self,parent,filename):
+        """
+        Creates a SheetParser class that populates the passed StyleSheetList
+        class.
 
-    def unknown_starttag(self, tag, attrs):
-        self.data = ""
-        
-    def handle_data(self, data):
-        self.data = self.data + data
-
-    def translate_this_string(self):
-        if not intRe.match(self.data):
-            self.add_string(self.data)
-
-	# this list should include all tags for which translation should occur
-    end_label        = translate_this_string
-    end_title        = translate_this_string
-    end_text         = translate_this_string
-    end_format       = translate_this_string
-    end_copyright    = translate_this_string
-    end_comments     = translate_this_string
-    end_preview_text = translate_this_string
-    end_tooltip      = translate_this_string
-
-    def end_items(self):
-        for item in string.split(self.data, '\n'):
-            self.add_string(item)
-
-class XMLParser(handler.ContentHandler):
-    def __init__(self,name,msgs):
-        self.filename = name
-        self.strings = msgs
+        sheetlist - StyleSheetList instance to be loaded from the file.
+        """
         handler.ContentHandler.__init__(self)
+        self.parent = parent
+        self.translate = 0
+        self.text = ""
+        self.filename = filename
+        self.lineno = 0
         
     def startElement(self,tag,attrs):
-        if tag == "filter":
-            self.add_string(attrs['name'])
+        """
+        Overridden class that handles the start of a XML element
+        """
+        if tag == "property":
+            if attrs.has_key('translatable'):
+                self.text = ""
+                if attrs['translatable'] == 'yes':
+                    self.translate = 1
+                else:
+                    self.translate = 0
+
+    def endElement(self,tag):
+        "Overridden class that handles the start of a XML element"
+        if self.translate:
+            if not _int_re.match(self.text):
+                self.parent.add_string(self.text, self.locator.getLineNumber())
+        self.translate = 0
 
     def setDocumentLocator(self,locator):
         self.locator = locator
 
-    def add_string(self, string):
-        if string == "":
-            return
-        if _ignore.has_key(string):
-            return
-        entry = (self.filename, self.locator.getLineNumber())
-        if self.strings.has_key(string):
-            self.strings[string][entry] = 0
-        else:
-            self.strings[string] = {entry: 0}
+    def characters(self, data):
+        self.text = self.text + data
 
 # The normal pot-file header. msgmerge and Emacs's po-mode work better if it's
 # there.
@@ -231,7 +218,7 @@ pot_header = _('''\
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\\n"
+"Project-Id-Version: GRAMPS VERSION\\n"
 "POT-Creation-Date: %(time)s\\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"
@@ -509,12 +496,12 @@ def main():
 
     # slurp through all the files
     eater = TokenEater(options)
-    p = TranslatableStringParser(eater.get_messages())
+    p = GladeExtractor(eater.get_messages())
     
     for filename in args:
         if filename[-5:] == 'glade':
             print 'Working on %s' % filename
-            p.read_file(filename)
+            p.parse(filename)
         elif filename[-3:] == 'xml':
             print 'Working on %s' % filename
             try:
