@@ -199,6 +199,7 @@ class Date:
             if match:
                 matches = match.groups()
                 self.start.set(matches[1])
+		self.range = 0
                 if self.stop == None:
                     self.stop = SingleDate()
                 self.stop.calendar = self.calendar
@@ -210,6 +211,7 @@ class Date:
             if match:
                 matches = match.groups()
                 self.start.set(matches[0])
+		self.range = 0
                 if self.stop == None:
                     self.stop = SingleDate()
                 self.stop.calendar = self.calendar
@@ -438,6 +440,8 @@ def compare_dates(f,s):
         return cmp(f.text,s.text)
     if f.range == -1 or s.range == -1:
         return -1
+    if f.range != s.range:
+        return 1
     
     first = f.get_start_date()
     second = s.get_start_date()
