@@ -89,7 +89,6 @@ class Gramps:
         self.active_mother = None
         self.active_parents = None
         self.parents_index = 0
-        self.spouse_index = 0
         self.active_person = None
         self.active_spouse = None
         self.bookmarks = None
@@ -182,6 +181,8 @@ class Gramps:
         self.spouse_pref = self.gtop.get_widget("prefrel")
         self.spouse_edit = self.gtop.get_widget("edit_sp")
         self.spouse_del  = self.gtop.get_widget("delete_sp")
+        self.spouse_combo= self.gtop.get_widget("spouse_combo")
+        self.spouse_tab  = self.gtop.get_widget("spouse_tab")
 
         self.person_list.set_column_visibility(5,0)
         self.person_list.set_column_visibility(6,0)
@@ -216,8 +217,7 @@ class Gramps:
             "on_preffam_clicked"                : self.on_preferred_fam_toggled,
             "on_family_up_clicked"              : self.family_up_clicked,
             "on_family_down_clicked"            : self.family_down_clicked,
-            "on_spouse_up_clicked"              : self.spouse_up_clicked,
-            "on_spouse_down_clicked"            : self.spouse_down_clicked,
+            "on_spouse_list_changed"            : self.spouse_list_changed,
             "on_prefrel_toggled"                : self.on_preferred_rel_toggled,
             "on_about_activate"                 : self.on_about_activate,
             "on_add_bookmark_activate"          : self.on_add_bookmark_activate,
@@ -1274,13 +1274,9 @@ class Gramps:
     def on_swap_clicked(self,obj):
         if not self.active_person:
             return
-        if len(self.active_person.getFamilyList()) > 1:
-            spouse = self.spouse_menu.get_menu().get_active().get_data("person")
-        else:
-            spouse = self.spouse_text.get_data("person")
 
-        if spouse:
-            self.change_active_person(spouse)
+        if self.active_spouse:
+            self.change_active_person(self.active_spouse)
             self.load_family()
 
     def on_apply_filter_clicked(self,obj):
@@ -1381,6 +1377,41 @@ class Gramps:
             EditPerson.EditPerson(person,self.database,
                                   self.update_after_edit)
 
+    def build_spouse_dropdown(self):
+        mymap = {}
+        mynmap = {}
+        list = []
+        for f in self.active_person.getFamilyList():
+            if self.active_person == f.getFather():
+                if f.getMother() == None:
+                    sname = _("Unknown")
+                else:
+                    sname = GrampsCfg.nameof(f.getMother())
+            else:
+                if f.getFather() == None:
+                    sname = _("Unknown")
+                else:
+                    sname = GrampsCfg.nameof(f.getFather())
+            l = gtk.GtkLabel(sname)
+            l.show()
+            l.set_alignment(0,0.5)
+            c = gtk.GtkListItem()
+            c.add(l)
+            c.set_data('d',f)
+            c.show()
+            list.append(c)
+            if f == self.active_family:
+                sel = c
+            mymap[f] = c
+            mynmap[f] = sname
+            self.spouse_combo.disable_activate()
+            self.spouse_combo.list.clear_items(0,-1)
+            self.spouse_combo.list.append_items(list)
+            self.spouse_combo.list.select_child(sel)
+            
+        for v in mymap.keys():
+            self.spouse_combo.set_item_string(mymap[v],mynmap[v])
+
     def load_family(self,family=None):
         if family != None:
             self.active_family = family
@@ -1392,9 +1423,7 @@ class Gramps:
                     self.active_family = flist[0]
                 else:
                     self.active_family = None
-    
-        self.spouse_index = 0
-
+            
         family_types = []
 
         main_family = None
@@ -1425,21 +1454,14 @@ class Gramps:
             if number_of_families > 1:
                 if self.active_family == None:
                     self.active_family = flist[0]
-                else:
-                    for f in flist:
-                        if f == self.active_family:
-                            break
-                        self.spouse_index = self.spouse_index + 1
 
                 self.pref_spouse.show()
-                self.multi_spouse.show()
+                self.spouse_tab.set_page(1)
                 if self.active_family == flist[0]:
                     self.pref_spouse.set_sensitive(0)
-                    msg = _("Preferred Relationship (%d of %d)") % (self.spouse_index+1,
-                                                                    len(flist))
+                    msg = _("Preferred Relationship")
                 else:
-                    msg = _("Relationship (%d of %d)") % (self.spouse_index+1,
-                                                          len(flist))
+                    msg = _("Relationship")
                     self.pref_spouse.set_sensitive(1)
 
                 self.gtop.get_widget('rel_frame').set_label(msg)
@@ -1448,12 +1470,13 @@ class Gramps:
                 else:
                     spouse = self.active_family.getMother()
 
+                self.build_spouse_dropdown()
                 self.spouse_text.set_text(GrampsCfg.nameof(spouse))
                 self.spouse_edit.set_sensitive(1)
                 self.spouse_del.set_sensitive(1)
             elif number_of_families == 1:
                 self.pref_spouse.hide()
-                self.multi_spouse.hide()
+                self.spouse_tab.set_page(0)
                 f = self.active_person.getFamilyList()[0]
                 if self.active_person != f.getFather():
                     spouse = f.getFather()
@@ -1466,7 +1489,7 @@ class Gramps:
                 self.gtop.get_widget('rel_frame').set_label(_("Relationship"))
             else:
                 self.pref_spouse.hide()
-                self.multi_spouse.hide()
+                self.spouse_tab.set_page(0)
                 self.spouse_text.set_text("")
                 self.active_spouse = None
                 self.spouse_edit.set_sensitive(0)
@@ -1483,7 +1506,7 @@ class Gramps:
         else:
             self.spouse_text.set_text("")
             self.display_marriage(None)
-        
+
     def change_parents(self,family):
         """Switches to a different set of parents on the Family View"""
         
@@ -1845,27 +1868,25 @@ class Gramps:
         self.active_parents = flist[self.parents_index][0]
         self.change_parents(self.active_parents)
 
-    def spouse_up_clicked(self,obj):
+    def spouse_list_changed(self,obj):
         if self.active_family == None:
             return
-        flist = self.active_person.getFamilyList()
-        if self.spouse_index == 0:
-            self.spouse_index = len(flist)-1
+        select = self.spouse_combo.list.get_selection()
+        if len(select) == 0:
+            self.active_family = None
         else:
-            self.spouse_index = self.spouse_index - 1
-        self.active_family = flist[self.spouse_index]
-        self.load_family()
+            self.active_family = select[0].get_data('d')
 
-    def spouse_down_clicked(self,obj):
-        if self.active_family == None:
-            return
-        flist = self.active_person.getFamilyList()
-        if self.spouse_index == len(flist)-1:
-            self.spouse_index = 0
+        if self.active_family == self.active_person.getFamilyList()[0]:
+            self.pref_spouse.set_sensitive(0)
+            msg = _("Preferred Relationship")
         else:
-            self.spouse_index = self.spouse_index + 1
-        self.active_family = flist[self.spouse_index]
-        self.load_family()
+            msg = _("Relationship")
+            self.pref_spouse.set_sensitive(1)
+            
+        self.gtop.get_widget('rel_frame').set_label(msg)
+        
+        self.display_marriage(self.active_family)
 
     def export_callback(self,obj,plugin_function):
         """Call the export plugin, with the active person and database"""
