@@ -1,3 +1,6 @@
+2004-01-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/ReadGedcom.py: More source parsing cleanups. 
+
 2004-01-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/ReadGedcom.py: Correct level in parsing LDS ordinance
 	source references. Support for source description-type references. 
