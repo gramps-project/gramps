@@ -46,8 +46,9 @@ import gnome.vfs
 import WriteXML
 import Utils
 import const
-from QuestionDialog import MissingMediaDialog
+import QuestionDialog
 import RelImage
+import ImgManip
 
 from intl import gettext as _
 
@@ -91,35 +92,50 @@ class PackageWriter:
         self.top.signal_autoconnect(dic)
         self.top.get_widget("packageExport").show()
 
-    def vfs_copy(self,dir_name,filename,newfilename=""):
-    	# Everything has to be ascii for the CD
-	dir_name = dir_name.encode('ascii')
-    	filename = filename.encode('ascii')
-    	newfilename = newfilename.encode('ascii')
+    def copy_file(self,src,dest):
+        original = open(src,"r")
+        destobj = gnome.vfs.URI(dest)
+        target = gnome.vfs.create(destobj,gnome.vfs.OPEN_WRITE)
+        done = 0
+        while 1:
+            buf = original.read(2048)
+            if buf == '':
+                break
+            else:
+                target.write(buf)
+        target.close()
+        original.close()
 
-    	orig_file = open(filename,"r")
-	if not newfilename:
-	    newfilename = filename
-	new_vfsname = 'burn:///%s/%s' % (dir_name,newfilename)
-	new_file = gnome.vfs.create(new_vfsname,gnome.vfs.OPEN_WRITE) 
-    	buf = orig_file.read()
-    	new_file.write(buf)
-    	orig_file.close()
-    	new_file.close()
-
+    def make_thumbnail(self,dbname,root,path):
+        img = ImgManip.ImgManip(path)
+        data = img.jpg_scale_data(const.thumbScale,const.thumbScale)
+        
+        uri = gnome.vfs.URI('burn:///%s/.thumb/%s.jpg' % (dbname,root))
+        th = gnome.vfs.create(uri,gnome.vfs.OPEN_WRITE)
+        th.write(data)
+        th.close()
+                       
     def on_ok_clicked(self,obj):
         Utils.destroy_passed_object(obj)
 
         base = os.path.basename(self.db.getSavePath())
-        thumb_base = os.path.join(base,'.thumb')
 
-        gnome.vfs.make_directory('burn:///%s' % base,gnome.vfs.OPEN_WRITE)
-        gnome.vfs.make_directory('burn:///%s' % thumb_base,gnome.vfs.OPEN_WRITE)
+        try:
+            uri = gnome.vfs.URI('burn:///%s' % base)
+            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
+        except gnome.vfs.error, msg:
+            print msg
+
+        try:
+            uri = gnome.vfs.URI('burn:///%s/.thumb' % base)
+            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
+        except gnome.vfs.error, msg:
+            print msg
 
         #--------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = ObjectMap[ObjectId]
+            mobj = self.db.getObject(self.object_id)
             for p in self.db.getFamilyMap().values():
                 nl = p.getPhotoList()
                 for o in nl:
@@ -147,7 +163,7 @@ class PackageWriter:
                     if o.getReference() == mobj:
                         nl.remove(o) 
                 p.setPhotoList(nl)
-            self.db.removeObject(ObjectId) 
+            self.db.removeObject(self.object_id) 
             Utils.modified() 
     
         def leave_clicked():
@@ -163,15 +179,10 @@ class PackageWriter:
                 newfile = fs_top.get_filename()
                 fs_top.destroy()
                 if os.path.isfile(newfile):
-    	    	    nbase = os.path.basename(newfile)
-		    self.vfs_copy(base,newfile,obase)
+                    self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
     	    	    ntype = Utils.get_mime_type(newfile)
 		    if ntype[0:5] == "image":
-		    	(oname,oext) = os.path.splitext(obase)
-		    	thumb_name = "%s.jpg" % oname 
-			thumb_dest = "%s/.thumb/%s" % (opath,thumb_name)
-		    	RelImage.check_thumb(newfile,thumb_dest,const.thumbScale)
-		    	self.vfs_copy(thumb_base,thumb_dest,thumb_name)
+                        self.make_thumbnail(base,obase,newfile)
 		    
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
             fs_top.hide_fileop_buttons()
@@ -184,23 +195,18 @@ class PackageWriter:
 
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
-	ObjectMap = self.db.getObjectMap()
-        for ObjectId in ObjectMap.keys():
-            oldfile = ObjectMap[ObjectId].getPath()
-            opath = os.path.dirname(oldfile)
-	    obase = os.path.basename(oldfile)
+
+        for obj in self.db.getObjectMap().values():
+            oldfile = obj.getPath()
+            root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
-    	    	self.vfs_copy(base,oldfile,obase)
-    	    	otype = Utils.get_mime_type(oldfile)
-		if otype[0:5] == "image":
-		    (oname,oext) = os.path.splitext(obase)
-		    thumb_name = "%s.jpg" % oname 
-		    thumb_dest = "%s/.thumb/%s" % (opath,thumb_name)
-		    RelImage.check_thumb(oldfile,thumb_dest,const.thumbScale)
-		    self.vfs_copy(thumb_base,thumb_dest,thumb_name)
+                self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
+                if obj.getMimeType()[0:5] == "image":
+                    self.make_thumbnail(base,root,obj.getPath())
             else:
                 # File is lost => ask what to do
-                MissingMediaDialog(_("Media object could not be found"),
+                self.object_id = obj.getId()
+                QuestionDialog.MissingMediaDialog(_("Media object could not be found"),
 	            _("%(file_name)s is referenced in the database, but no longer exists. " 
                         "The file may have been deleted or moved to a different location. " 
                         "You may choose to either remove the reference from the database, " 
@@ -214,7 +220,6 @@ class PackageWriter:
         gfile = WriteXML.XmlWriter(self.db,None,1)
         gfile.write_handle(g)
         g.close()
-
     
 #-------------------------------------------------------------------------
 #
