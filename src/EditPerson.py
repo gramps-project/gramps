@@ -270,7 +270,7 @@ class EditPerson:
         if GrampsCfg.uselds \
                         or (not self.lds_baptism.isEmpty()) \
                         or (not self.lds_endowment.isEmpty()) \
-                        or (not self._sealing.isEmpty()):
+                        or (not self.lds_sealing.isEmpty()):
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
             if (not self.lds_baptism.isEmpty()) \
