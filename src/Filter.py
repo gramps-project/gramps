@@ -127,12 +127,14 @@ def load_filters(dir):
 #
 #
 #-------------------------------------------------------------------------
-def build_filter_menu(callback):
+def build_filter_menu(callback,fw):
     myMenu = gtk.GtkMenu()
     for filter in _filter_list:
         menuitem = gtk.GtkMenuItem(filter[1])
         myMenu.append(menuitem)
-        menuitem.set_data("filter",filter[0])
+        menuitem.set_data("filter",fw)
+        menuitem.set_data("name",filter[1])
+        menuitem.set_data("function",filter[0])
         menuitem.set_data("qual",filter[2])
         menuitem.connect("activate",callback)
         menuitem.show()

@@ -2028,7 +2028,7 @@ def on_apply_filter_clicked(obj):
     invert_filter = gtop.get_widget("invert").get_active()
     qualifer = gtop.get_widget("filter").get_text()
     menu = gtop.get_widget(FILTERNAME).get_menu()
-    class_init = menu.get_active().get_data("filter")
+    class_init = menu.get_active().get_data("function")
     DataFilter = class_init(qualifer)
     DataFilter.set_invert(invert_filter)
     apply_filter()
@@ -2039,7 +2039,8 @@ def on_apply_filter_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_filter_name_changed(obj):
-    gtop.get_widget("filter").set_sensitive(obj.get_data("qual"))
+    filter = obj.get_data("filter")
+    filter.set_sensitive(obj.get_data("qual"))
 
 #-------------------------------------------------------------------------
 #
@@ -2969,9 +2970,10 @@ def main(arg):
     person_list.set_sort_column(sort_column)
     person_list.set_sort_type(sort_direct)
 
-    filter_list.set_menu(Filter.build_filter_menu(on_filter_name_changed))
+    fw = gtop.get_widget('filter')
+    filter_list.set_menu(Filter.build_filter_menu(on_filter_name_changed,fw))
     
-    gtop.get_widget("filter").set_sensitive(0)
+    fw.set_sensitive(0)
 
     # set the window icon 
     topWindow.set_icon(GtkPixmap(topWindow,const.logo))

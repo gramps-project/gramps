@@ -63,10 +63,10 @@ from OpenSpreadSheet import *
 
 OBJECT   = "o"
 INDEX    = "i"
-FUNCTION = "f"
-QUALIFIER= "q"
-FILTER   = "x"
-NAME     = "n"
+FILTER   = "filter"
+FUNCTION = "function"
+QUALIFIER= "qual"
+NAME     = "name"
 
 #------------------------------------------------------------------------
 #
@@ -197,17 +197,8 @@ class EventComparison:
         self.filter_list_obj.set_data(OBJECT,self)
 
         self.filter_list = []
-        
-        myMenu = GtkMenu()
-        for filter in Filter.filterMap.keys():
-            menuitem = GtkMenuItem(filter)
-            myMenu.append(menuitem)
-            menuitem.set_data(FILTER,Filter.filterMap[filter])
-            menuitem.set_data(FUNCTION,Filter.filterEnb[filter])
-            menuitem.set_data(NAME,filter)
-            menuitem.set_data(QUALIFIER,qualifier)
-            menuitem.connect("activate",on_filter_name_changed)
-            menuitem.show()
+
+        myMenu  = Filter.build_filter_menu(on_filter_name_changed,qualifier)
         self.filter_menu.set_menu(myMenu)
 
         top.set_data(OBJECT,self)
@@ -538,7 +529,7 @@ def on_add_clicked(obj):
     qualifier = myobj.filterDialog.get_widget("qualifier").get_text()
     menu = myobj.filter_menu.get_menu()
 
-    function = menu.get_active().get_data(FILTER)
+    function = menu.get_active().get_data(FUNCTION)
     name = menu.get_active().get_data(NAME)
 
     myfilter = function(qualifier)
@@ -554,7 +545,6 @@ def on_add_clicked(obj):
     else:
         invert_text = "no"
 
-    print name, qualifier, invert_text
     myobj.filter_list_obj.append([name,qualifier,invert_text])
 
 #-------------------------------------------------------------------------
@@ -563,9 +553,7 @@ def on_add_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_filter_name_changed(obj):
-    function = obj.get_data(FUNCTION)
-    qualifier = obj.get_data(QUALIFIER)
-    qualifier.set_sensitive(function())
+    obj.get_data(FILTER).set_sensitive(obj.get_data(QUALIFIER))
 
 #-------------------------------------------------------------------------
 #
