@@ -63,7 +63,7 @@ BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
 
 #-------------------------------------------------------------------------
 #
-# wrapper classes to provide objecy specific listing in the ListView
+# wrapper classes to provide object specific listing in the ListView
 #
 #-------------------------------------------------------------------------
 
@@ -471,6 +471,32 @@ class ScratchPersonLink(ScratchPadWrapper):
 
 #-------------------------------------------------------------------------
 #
+# Wrapper classes to deal with lists of objects
+#
+#-------------------------------------------------------------------------
+
+class ScratchDropList(object):
+
+    def __init__(self,db,obj_list):
+        self._db = db
+        self._obj_list = pickle.loads(obj_list)
+
+    def get_objects(self):
+        return [self._cls(self._db,obj) for obj in self._obj_list]
+
+class ScratchPersonLinkList(ScratchDropList):
+
+    DROP_TARGETS = [DdTargets.PERSON_LINK_LIST]
+    DRAG_TARGET  = None
+
+    def __init__(self,db,obj_list):
+        ScratchDropList.__init__(self,db,obj_list)
+        self._cls = ScratchPersonLink
+    
+
+
+#-------------------------------------------------------------------------
+#
 # ScratchPadListModel class
 #
 #-------------------------------------------------------------------------
@@ -562,6 +588,7 @@ class ScratchPadListView:
         self.register_wrapper_class(ScratchPadText)
         self.register_wrapper_class(ScratchMediaObj)
         self.register_wrapper_class(ScratchPersonLink)
+        self.register_wrapper_class(ScratchPersonLinkList)
         
 
     def register_wrapper_class(self,wrapper_class):
@@ -643,17 +670,26 @@ class ScratchPadListView:
 
         o = wrapper_class(self._db,sel_data)
 
-        drop_info = widget.get_dest_row_at_pos(x, y)
-        if drop_info:
-            path, position = drop_info
-            iter = model.get_iter(path)
-            if (position == gtk.TREE_VIEW_DROP_BEFORE
-                or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
-                model.insert_before(iter,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
-            else:
-                model.insert_after(iter,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+        # If the wrapper object is a subclass of ScratchDropList then
+        # the drag data was a list of objects and we need to decode
+        # all of them.
+        if isinstance(o,ScratchDropList):
+            o_list = o.get_objects()
         else:
-            model.append([o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+            o_list = [o]
+            
+        for o in o_list:
+            drop_info = widget.get_dest_row_at_pos(x, y)
+            if drop_info:
+                path, position = drop_info
+                iter = model.get_iter(path)
+                if (position == gtk.TREE_VIEW_DROP_BEFORE
+                    or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
+                    model.insert_before(iter,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+                else:
+                    model.insert_after(iter,[o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+            else:
+                model.append([o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
             
 
         # remember time for double drop workaround.

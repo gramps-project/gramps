@@ -21,6 +21,13 @@
 
 # $Id$
 
+
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
+import cPickle as pickle
 #-------------------------------------------------------------------------
 #
 # internationalization
@@ -87,6 +94,7 @@ class PeopleView:
         self.person_selection = self.person_tree.get_selection()
         self.person_selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.person_selection.connect('changed',self.row_changed)
+        self.person_selection.connect('changed',self.set_dnd_target)
         self.person_tree.connect('row_activated', self.alpha_event)
         self.person_tree.connect('button-press-event',
                                  self.on_plist_button_press)
@@ -94,9 +102,6 @@ class PeopleView:
         #
         # DnD support
         #
-        self.person_tree.drag_source_set(BUTTON1_MASK,
-                                         [DdTargets.PERSON_LINK.target()],
-                                         ACTION_COPY)
         self.person_tree.connect('drag_data_get', self.person_drag_data_get)
 
     def person_drag_data_get(self, widget, context, sel_data, info, time):
@@ -105,9 +110,22 @@ class PeopleView:
         if len(selected_ids) == 1:
             sel_data.set(sel_data.target, 8, selected_ids[0])
         elif len(selected_ids) > 1:
-            # TBD
-            pass
-        
+            sel_data.set(DdTargets.PERSON_LINK_LIST.drag_type,8,
+                         pickle.dumps(selected_ids))
+            
+    def set_dnd_target(self,obj):
+        selected_ids = self.get_selected_objects()
+
+        if len(selected_ids) == 1:
+            self.person_tree.drag_source_set(BUTTON1_MASK,
+                                             [DdTargets.PERSON_LINK.target()],
+                                             ACTION_COPY)
+        elif len(selected_ids) > 1:
+            self.person_tree.drag_source_set(BUTTON1_MASK,
+                                             [DdTargets.PERSON_LINK_LIST.target()],
+                                             ACTION_COPY)
+                 
+
 
     def sort_clicked(self,obj):
         for col in self.columns:
