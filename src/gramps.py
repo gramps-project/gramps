@@ -46,7 +46,11 @@ locale.setlocale(locale.LC_ALL,'')
 gettext.bindtextdomain("gramps",loc)
 gtk.glade.bindtextdomain("gramps",loc)
 
-gtk.glade.textdomain("gramps")
+try:
+    gtk.glade.textdomain("gramps")
+except:
+    pass
+
 gettext.textdomain("gramps")
 
 gettext.install("gramps",loc,unicode=1)
