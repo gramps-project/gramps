@@ -281,9 +281,9 @@ class GrampsParser:
             mrel = ""
             frel = ""
             if attrs.has_key("mrel"):
-                mrel = attrs["mrel"]
+                mrel = u2l(attrs["mrel"])
             if attrs.has_key("frel"):
-                frel = attrs["frel"]
+                frel = u2l(attrs["frel"])
             if mrel=="Birth" and frel=="Birth":
                 self.person.MainFamily = family
             else:
@@ -413,8 +413,8 @@ class GrampsParser:
         if attrs.has_key("calendar"):
             d.set_calendar(int(attrs['calendar']))
 
-        d.get_start_date().setIsoDate(attrs['start'])
-        d.get_stop_date().setIsoDate(attrs['stop'])
+        d.get_start_date().setIsoDate(u2l(attrs['start']))
+        d.get_stop_date().setIsoDate(u2l(attrs['stop']))
         d.range = 1
         
     def start_dateval(self,attrs):
@@ -430,10 +430,10 @@ class GrampsParser:
         if attrs.has_key("calendar"):
             d.set_calendar(int(attrs['calendar']))
 
-        d.get_start_date().setIsoDate(attrs['val'])
+        d.get_start_date().setIsoDate(u2l(attrs['val']))
         
         if attrs.has_key("type"):
-            d.get_start_date().setMode(attrs['type'])
+            d.get_start_date().setMode(u2l(attrs['type']))
         else:
             d.get_start_date().setMode(None)
 
