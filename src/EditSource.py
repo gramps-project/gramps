@@ -165,6 +165,9 @@ class EditSource:
         if len(p_name_list) > 0:
             for p in p_name_list:
                 slist.append([_("Individual Names"),p[0],p[1]])
+        if len(p_addr_list) > 0:
+            for p in p_addr_list:
+                slist.append([_("Individual Addresses"),p[0],p[1]])
         if len(f_event_list) > 0:
             for p in f_event_list:
                 slist.append([_("Family Events"),p[0],

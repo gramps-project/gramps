@@ -176,7 +176,7 @@ class EditPerson:
         self.event_src_field = self.get_widget("event_srcinfo")
         self.event_conf_field = self.get_widget("event_conf")
         self.attr_conf_field = self.get_widget("attr_conf")
-        self.addr_conf_field = self.get_widget("attr_conf")
+        self.addr_conf_field = self.get_widget("addr_conf")
         self.name_conf_field = self.get_widget("name_conf")
         self.attr_src_field = self.get_widget("attr_srcinfo")
         self.name_src_field = self.get_widget("name_srcinfo")
