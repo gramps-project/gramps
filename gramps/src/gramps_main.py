@@ -52,6 +52,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 from RelLib import *
+from PedView import PedigreeView
 
 import ReadXML
 import Filter
@@ -92,6 +93,8 @@ active_spouse = None
 id2col        = {}
 alt2col       = {}
 
+pedigree_view = None
+
 bookmarks     = None
 topWindow     = None
 statusbar     = None
@@ -120,7 +123,6 @@ county_arrow  = None
 state_arrow   = None
 country_arrow = None
 
-canvas        = None
 merge_button  = None
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
@@ -144,8 +146,6 @@ c_sort_direct = SORT_ASCENDING
 NOTEBOOK    = "notebook1"
 FILESEL     = "fileselection"
 FILTERNAME  = "filter_list"
-PAD         = 3
-CANVASPAD   = 20
 
 #-------------------------------------------------------------------------
 #
@@ -455,7 +455,7 @@ def full_update():
     load_family()
     load_sources()
     load_places()
-    load_canvas()
+    pedigree_view.load_canvas(active_person)
     load_media()
 
 def update_display(changed):
@@ -469,7 +469,7 @@ def update_display(changed):
     elif page == 1:
         load_family()
     elif page == 2:
-        load_canvas()
+        pedigree_view.load_canvas(active_person)
     elif page == 3:
         load_sources()
     elif page == 4:
@@ -1402,7 +1402,7 @@ def on_notebook1_switch_page(obj,junk,page):
         load_family()
     elif page == 2:
         merge_button.set_sensitive(0)
-        load_canvas()
+        pedigree_view.load_canvas(active_person)
     elif page == 3:
         merge_button.set_sensitive(0)
         load_sources()
@@ -2279,371 +2279,12 @@ def on_media_list_drag_data_received(w, context, x, y, data, info, time):
 
 #-------------------------------------------------------------------------
 #
-# Create the list of ancestors for the pedigree chart
-#
-#-------------------------------------------------------------------------
-def find_tree(person,index,depth,list,val=0):
-
-    if depth > 5 or person == None:
-        return
-    family = person.getMainFamily()
-    frel = 0
-    mrel = 0
-    if family == None:
-        l = person.getAltFamilyList()
-        if len(l) > 0:
-            (family,m,f) = l[0]
-            mrel = (m != "Birth")
-            frel = (f != "Birth")
-            
-    list[index] = (person,val)
-    if family != None:
-        father = family.getFather()
-        if father != None:
-            find_tree(father,(2*index)+1,depth+1,list,frel)
-        mother = family.getMother()
-        if mother != None:
-            find_tree(mother,(2*index)+2,depth+1,list,mrel)
-
-#-------------------------------------------------------------------------
-#
-# Draw the pedigree chart
-#
-#-------------------------------------------------------------------------
-canvas_items = []
-
-def load_canvas():
-    global canvas_items 
-    
-    root = canvas.root()
-
-    for i in canvas_items:
-        i.destroy()
-    if active_person == None:
-        return
-
-    h = 0
-    w = 0
-
-    cx1,cy1,cx2,cy2 = canvas.get_allocation()
-    canvas.set_scroll_region(cx1,cy1,cx2,cy2)
-        
-    style = canvas['style']
-    font = style.font
-
-    list = [None]*31
-    find_tree(active_person,0,1,list)
-    for t in list:
-        if t:
-            n = t[0].getPrimaryName().getName()
-            h = max(h,font.height(n)+2*PAD)
-            w = max(w,font.width(n)+2*PAD)
-            w = max(w,font.width("d. %s" % t[0].getDeath().getDate())+2*PAD)
-            w = max(w,font.width("b. %s" % t[0].getBirth().getDate())+2*PAD)
-
-    cpad = max(h+4,CANVASPAD)
-    cw = (cx2-cx1-(2*cpad))
-    ch = (cy2-cy1-(2*cpad))
-
-    if 5*w < cw and 24*h < ch:
-        gen = 31
-        xdiv = 5.0
-    elif 4*w < cw and 12*h < ch:
-        gen = 15
-        xdiv = 4.0
-    else:
-        gen = 7
-        xdiv = 3.0
-
-    for c in canvas_items:
-        c.destroy()
-
-    xpts = build_x_coords(cw/xdiv,cpad)
-    ypts = build_y_coords(ch/32.0)
-
-    childcnt = 0
-    for family in active_person.getFamilyList():
-        if len(family.getChildList()) > 0:
-            a = GtkArrow(at=GTK.ARROW_LEFT)
-            cnv_button = GtkButton()
-            cnv_button.add(a)
-            a.show()
-            cnv_button.connect("clicked",on_arrow_left_clicked)
-
-            cnv_button.show()
-            item = root.add("widget",
-                            widget=cnv_button,
-                            x=cx1,
-                            y=ypts[0]+(h/2.0), 
-                            height=h,
-                            width=h,
-                            size_pixels=1,
-                            anchor=GTK.ANCHOR_WEST)
-            canvas_items = [item, cnv_button, a]
-            break
-    else:
-        canvas_items = []
-
-    if list[1]:
-        p = list[1]
-        add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[1],h)
-        
-    if list[2]:
-        p = list[2]
-        add_parent_button(root,canvas_items,p[0],cx2-PAD,ypts[2],h)
-
-    for i in range(gen):
-        if list[i]:
-            if i < int(gen/2):
-                findex = (2*i)+1 
-                mindex = findex+1
-                if list[findex]:
-                    p = list[findex]
-                    draw_canvas_line(root, xpts[i], ypts[i], xpts[findex],
-                                     ypts[findex], h, w, p[0], style, p[1])
-                if list[mindex]:
-                    p = list[mindex]
-                    draw_canvas_line(root,xpts[i],ypts[i], xpts[mindex],
-                                     ypts[mindex], h, w, p[0], style, p[1])
-            p = list[i]
-            add_box(root,xpts[i],ypts[i],w,h,p[0],style)
-
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_arrow_left_clicked(obj):
-    if active_person:
-        myMenu = GtkMenu()
-        for family in active_person.getFamilyList():
-            for child in family.getChildList():
-                menuitem = GtkMenuItem(Config.nameof(child))
-                myMenu.append(menuitem)
-                menuitem.set_data("person",child)
-                menuitem.connect("activate",on_childmenu_changed)
-                menuitem.show()
-        myMenu.popup(None,None,None,0,0)
-    return 1
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_childmenu_changed(obj):
-    person = obj.get_data("person")
-    if person:
-        change_active_person(person)
-        load_canvas()
-    return 1
-    
-def add_parent_button(root,item_list,parent,x,y,h):
-    a = GtkArrow(at=GTK.ARROW_RIGHT)
-    cnv_button = GtkButton()
-    cnv_button.add(a)
-    a.show()
-    cnv_button.connect("clicked",change_to_parent)
-    cnv_button.set_data("p",parent)
-
-    cnv_button.show()
-    item = root.add("widget", widget=cnv_button, x=x, y=y+(h/2), height=h,
-                    width=h, size_pixels=1, anchor=GTK.ANCHOR_EAST)
-    item_list.append(a)
-    item_list.append(item)
-    item_list.append(cnv_button)
-
-def change_to_parent(obj):
-    person = obj.get_data("p")
-    change_active_person(person)
-    load_canvas()
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def draw_canvas_line(root,x1,y1,x2,y2,h,w,data,style,ls):
-    startx = x1+(w/2.0)
-    pts = [startx,y1, startx,y2+(h/2.0), x2,y2+(h/2.0)]
-    item = root.add("line",
-                    width_pixels=2,
-                    points=pts,
-                    line_style=ls,
-                    fill_color_gdk=style.black)
-    item.set_data("p",data)
-    item.connect("event",line_event)
-    canvas_items.append(item)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def build_x_coords(xincr,cpad):
-
-    return [cpad] + [xincr+cpad]*2 + [xincr*2+cpad]*4 +\
-           [xincr*3+cpad]*8 + [xincr*4+cpad]*16
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def build_y_coords(yincr):
-    return [ yincr*16, yincr*8,  yincr*24, yincr*4,  yincr*12,
-             yincr*20, yincr*28, yincr*2,  yincr*6,  yincr*10,
-             yincr*14, yincr*18, yincr*22, yincr*26, yincr*30,
-             yincr,    yincr*3,  yincr*5,  yincr*7,  yincr*9,
-             yincr*11, yincr*13, yincr*15, yincr*17, yincr*19,
-             yincr*21, yincr*23, yincr*25, yincr*27, yincr*29, yincr*31]
-    
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def add_box(root,x,y,bwidth,bheight,person,style):
-    shadow = PAD
-    xpad = PAD
-
-    name = person.getPrimaryName().getName()
-    group = root.add("group",x=x,y=y)
-    canvas_items.append(group)
-    item = group.add("rect",
-                     x1=shadow,
-                     y1=shadow,
-                     x2=bwidth+shadow,
-                     y2=bheight+shadow,
-                     outline_color_gdk=style.dark[STATE_NORMAL],
-                     fill_color_gdk=style.dark[STATE_NORMAL])
-    canvas_items.append(item)
-    item = group.add("rect",
-                     x1=0,
-                     y1=0,
-                     x2=bwidth,
-                     y2=bheight,
-                     outline_color_gdk=style.bg[STATE_NORMAL],
-                     fill_color_gdk=style.white)
-    canvas_items.append(item)
-    item = group.add("text",
-                     x=xpad,
-                     y=bheight/2.0,
-                     fill_color_gdk=style.text[STATE_NORMAL],
-                     font_gdk=style.font,
-                     text=name,
-                     anchor=ANCHOR_WEST)
-    canvas_items.append(item)
-    group.connect('event',box_event)
-    group.set_data('p',person)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def box_event(obj,event):
-    if event.type == GDK._2BUTTON_PRESS:
-        if event.button == 1:
-            if (event.state & GDK.SHIFT_MASK) or (event.state & GDK.CONTROL_MASK):
-                change_active_person(obj.get_data("p"))
-                load_canvas()
-            else:
-                load_person(obj.get_data('p'))
-            return 1
-    elif event.type == GDK.ENTER_NOTIFY:
-        obj.raise_to_top()
-        box = obj.children()[1]
-        x,y,w,h = box.get_bounds()
-        box.set(x1=x,y1=y,x2=w,y2=h*3)
-        box2 = obj.children()[0]
-        x,y,w,h1 = box2.get_bounds()
-        box2.set(x1=x,y1=y,x2=w,y2=(3*h)+PAD)
-        person = obj.get_data('p')
-        obj.add("text",
-                font_gdk=canvas['style'].font,
-                fill_color_gdk=canvas['style'].text[STATE_NORMAL],
-                text="b. %s" % person.getBirth().getDate(),
-                anchor=ANCHOR_WEST,
-                x=PAD,
-                y=h+(h/2))
-        obj.add("text",
-                font_gdk=canvas['style'].font,
-                fill_color_gdk=canvas['style'].text[STATE_NORMAL],
-                text="d. %s" % person.getDeath().getDate(),
-                anchor=ANCHOR_WEST,
-                x=PAD,
-                y=2*h+(h/2))
-        statusbar.set_status(_("Doubleclick to edit, Shift-Doubleclick to make the active person"))
-    elif event.type == GDK.LEAVE_NOTIFY:
-        ch = obj.children()
-        length = len(ch)
-        if length <= 3:
-            return 1
-        box = obj.children()[1]
-        x,y,w,h = box.get_bounds()
-        box.set(x1=x,y1=y,x2=w,y2=h/3)
-        box2 = obj.children()[0]
-        x,y,w,h1 = box2.get_bounds()
-        box2.set(x1=x,y1=y,x2=w,y2=(h/3)+PAD)
-        if length > 4:
-            ch[4].destroy()
-        if length > 3:
-            ch[3].destroy()
-        modify_statusbar()
-        canvas.update_now()
-        
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def line_event(obj,event):
-    if event.type == GDK._2BUTTON_PRESS:
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-            change_active_person(obj.get_data("p"))
-            load_canvas()
-    elif event.type == GDK.ENTER_NOTIFY:
-        obj.set(fill_color_gdk=canvas['style'].bg[STATE_SELECTED],
-                width_pixels=4)
-        name = Config.nameof(obj.get_data("p"))
-        msg = _("Double clicking will make %s the active person") % name
-        statusbar.set_status(msg)
-    elif event.type == GDK.LEAVE_NOTIFY:
-        obj.set(fill_color_gdk=canvas['style'].black, width_pixels=2)
-        modify_statusbar()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-ox1 = 0
-ox2 = 0
-oy1 = 0
-oy2 = 0
-
-def on_canvas1_event(obj,event):
-    global ox1,ox2,oy1,oy2
-
-    if event.type == GDK.EXPOSE:
-        cx1,cy1,cx2,cy2 = canvas.get_allocation()
-        if ox1 != cx1 or ox2 != cx2 or oy1 != cy1 or oy2 != cy2:
-            ox1 = cx1
-            ox2 = cx2
-            oy1 = cy1
-            oy2 = cy2
-            load_canvas()
-    return 0
-
-#-------------------------------------------------------------------------
-#
 # Main program
 #
 #-------------------------------------------------------------------------
 
 def main(arg):
+    global pedigree_view
     global database, gtop
     global statusbar,notebook
     global person_list, source_list, place_list, canvas, media_list
@@ -2671,7 +2312,6 @@ def main(arg):
     statusbar   = gtop.get_widget("statusbar")
     topWindow   = gtop.get_widget("gramps")
     person_list = gtop.get_widget("person_list")
-    canvas      = gtop.get_widget("canvas1")
     source_list = gtop.get_widget("source_list")
     place_list  = gtop.get_widget("place_list")
     media_list  = gtop.get_widget("media_list")
@@ -2694,11 +2334,17 @@ def main(arg):
     county_arrow  = gtop.get_widget("county_arrow")
     state_arrow   = gtop.get_widget("state_arrow")
     country_arrow = gtop.get_widget("country_arrow")
-    
+
+    canvas = gtop.get_widget("canvas1")
+    pedigree_view = PedigreeView(canvas,modify_statusbar,\
+                                 statusbar,change_active_person,\
+                                 load_person)
+
     t = [ ('STRING', 0, 0),
           ('text/plain',0,0),
           ('text/uri-list',0,2),
           ('application/x-rootwin-drop',0,1)]
+
     media_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,GDK.ACTION_COPY)
     media_list.drag_dest_set(DEST_DEFAULT_ALL,t,GDK.ACTION_COPY|GDK.ACTION_MOVE)
     cNameArrow  = gtop.get_widget("cNameSort")
@@ -2740,8 +2386,8 @@ def main(arg):
         "on_add_sp_clicked"                 : on_add_sp_clicked,
         "on_addperson_clicked"              : load_new_person,
         "on_apply_filter_clicked"           : on_apply_filter_clicked,
-        "on_arrow_left_clicked"             : on_arrow_left_clicked,
-        "on_canvas1_event"                  : on_canvas1_event,
+        "on_arrow_left_clicked"             : pedigree_view.on_show_child_menu,
+        "on_canvas1_event"                  : pedigree_view.on_canvas1_event,
         "on_child_list_button_press_event"  : on_child_list_button_press_event,
         "on_child_list_select_row"          : on_child_list_select_row,
         "on_child_list_click_column"        : on_child_list_click_column,
