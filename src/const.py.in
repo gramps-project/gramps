@@ -920,4 +920,11 @@ NameTypesMap = {
     _("Other Name")    : "Other Name",
     }
 
+InverseNameTypesMap = {
+    "Also Known As" : _("Also Known As"),
+    "Birth Name"    : _("Birth Name"),
+    "Married Name"  : _("Married Name"),
+    "Other Name"    : _("Other Name"),
+    }
+
 logical_functions = ['or', 'and', 'xor', 'one']

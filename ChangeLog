@@ -1,3 +1,10 @@
+2003-06-13  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/const.py.in: Add InverseNameTypesMap.
+	* src/plugins/IndivComplete.py: Use InverseNameTypesMap for 
+	alternate names.
+	* src/EditPerson.py (on_name_select_row): Display translated 
+	name type. 
+
 2003-06-13  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/OpenOfficeDoc.py: Escape special XML characters. 
 	* src/docgen/HtmlDoc.py: Properly build style declaration.

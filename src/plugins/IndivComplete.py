@@ -217,7 +217,7 @@ class IndivComplete:
         self.d.end_row()
         
         for name in self.person.getAlternateNames():
-            type = const.NameTypesMap[name.getType()]
+            type = const.InverseNameTypesMap[name.getType()]
             self.d.start_row()
             self.normal_cell(type)
             text = name.getRegularName()

@@ -1133,7 +1133,7 @@ class EditPerson:
             self.alt_last_field.set_text(name.getSurname())
             self.alt_suffix_field.set_text(name.getSuffix())
             self.alt_prefix_field.set_text(name.getSurnamePrefix())
-            self.name_type_field.set_text(name.getType())
+            self.name_type_field.set_text(const.InverseNameTypesMap[name.getType()])
             if len(name.getSourceRefList()) > 0:
                 psrc = name.getSourceRefList()[0]
                 self.name_src_field.set_text(short(psrc.getBase().getTitle()))
