@@ -47,7 +47,6 @@ class SoundGen:
         self.glade = gtk.glade.XML(glade_file,"soundEx")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_combo_insert_text"  : Utils.combo_insert_text,
             "on_apply_clicked"      : self.on_apply_clicked,
         })
 

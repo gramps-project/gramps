@@ -134,10 +134,9 @@ class Merge:
         self.show()
     
     def progress_update(self,val):
-        self.progress.set_value(val)
+        self.progress.update(val/100.0)
         while gtk.events_pending():
             gtk.mainiteration()
-
 
     def find_potentials(self,thresh):
         top = gtk.glade.XML(self.glade_file,"message")
