@@ -10,6 +10,12 @@
 	* src/po/de.po: Change Priesterweihe to Ordination.
 	* src/plugins/FamilyGroup.py: Translation corrections.
 
+	* src/EditPerson.py: Rename photo into media.
+	* src/EditPlace.py: Rename photo into media.
+	* src/EditSource.py: Rename photo into media.
+	* src/ImageSelect.py: Rename photo into media.
+	* src/Marriage.py: Rename photo into media.
+
 2004-02-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ImageSelect.py: Corrections.
 	* src/RelLib.py: Corrections. 
