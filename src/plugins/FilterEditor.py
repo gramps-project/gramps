@@ -410,6 +410,7 @@ class FilterEditor:
         self.rule = gtk.glade.XML(const.filterFile,'rule_editor',"gramps")
         self.rule_top = self.rule.get_widget('rule_editor')
         self.valuebox = self.rule.get_widget('valuebox')
+        self.valuebox.set_sensitive(0)
         self.rname = self.rule.get_widget('ruletree')
         self.rule_name = self.rule.get_widget('rulename')
 
@@ -427,7 +428,8 @@ class FilterEditor:
         list = []
         keylist = GenericFilter.tasks.keys()
         keylist.sort()
-        for name in keylist:
+        for xname in keylist:
+            name = unicode(xname)
             cname = GenericFilter.tasks[name]
             arglist = cname.labels
             vallist = []
@@ -536,7 +538,7 @@ class FilterEditor:
         store,iter = self.selection.get_selected()
         if iter:
             try:
-                key = store.get_value(iter,0)
+                key = unicode(store.get_value(iter,0))
                 self.display_values(key)
             except:
                 self.valuebox.set_sensitive(0)
@@ -559,6 +561,7 @@ class FilterEditor:
 
     def rule_ok(self,obj):
         name = unicode(self.rule_name.get_text())
+        print name
         try:
             page = self.name2page[name]
             (n,c,v,t) = self.page[page]
@@ -574,6 +577,7 @@ class FilterEditor:
             self.draw_rules()
             self.rule_top.destroy()
         except KeyError:
+            print name, self.name2page
             pass
         except:
             import DisplayTrace
