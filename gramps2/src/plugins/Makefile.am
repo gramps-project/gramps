@@ -30,7 +30,6 @@ pkgdata_PYTHON = \
 	IndivSummary.py\
 	Merge.py\
 	PatchNames.py\
-	ReadGedcom.py\
 	ReadPkg.py\
 	ReadNative.py\
 	RelCalc.py\
@@ -41,7 +40,6 @@ pkgdata_PYTHON = \
 	Verify.py\
 	WebPage.py\
 	WriteFtree.py\
-	WriteGedcom.py\
 	WritePkg.py\
 	WriteCD.py\
 	rel_ru.py\
@@ -61,8 +59,6 @@ GLADEFILES = \
 	changetype.glade\
 	desbrowse.glade\
 	eventcmp.glade\
-	gedcomexport.glade\
-	gedcomimport.glade\
 	merge.glade\
 	patchnames.glade\
 	relcalc.glade\
