@@ -427,7 +427,7 @@
 	  <name>private</name>
 	  <border_width>3</border_width>
 	  <can_focus>True</can_focus>
-	  <label>Do not include records marked &quot;Private&quot;</label>
+	  <label>Do not include records marked private</label>
 	  <active>True</active>
 	  <draw_indicator>True</draw_indicator>
 	  <child>

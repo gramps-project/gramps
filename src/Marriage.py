@@ -107,6 +107,7 @@ class Marriage:
         self.descr_field = self.get_widget("marriageDescription")
         self.type_field  = self.get_widget("marriage_type")
         self.notes_field = self.get_widget("marriageNotes")
+        self.gid = self.get_widget("gid")
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
         self.attr_value = self.get_widget("attr_value")
@@ -126,6 +127,8 @@ class Marriage:
         self.type_field.set_popdown_strings(const.familyRelations)
         frel = const.display_frel(family.getRelationship())
         self.type_field.entry.set_text(frel)
+        self.gid.set_text(family.getId())
+        self.gid.set_editable(Config.id_edit)
         
         # stored object data
         top_window.set_data(MARRIAGE,self)
@@ -232,6 +235,10 @@ def did_data_change(obj):
     if family_obj.lists_changed:
         changed = 1
 
+    idval = family_obj.gid.get_text()
+    if family_obj.family.getId() != idval:
+        changed = 1
+
     return changed
 
 #-------------------------------------------------------------------------
@@ -282,6 +289,20 @@ def on_delete_event(obj,b):
 #-------------------------------------------------------------------------
 def on_close_marriage_editor(obj):
     family_obj = obj.get_data(MARRIAGE)
+
+    idval = family_obj.gid.get_text()
+    family = family_obj.family
+    if idval != family.getId():
+        m = family_obj.db.getFamilyMap() 
+        if not m.has_key(idval):
+            if m.has_key(family.getId()):
+                del m[family.getId()]
+                m[idval] = family
+            family.setId(idval)
+            utils.modified()
+        else:
+            msg1 = _("GRAMPS ID value was not changed.")
+            GnomeWarningDialog("%s" % msg1)
 
     relation = family_obj.type_field.entry.get_text()
     if const.save_frel(relation) != family_obj.family.getRelationship():

@@ -1139,6 +1139,7 @@ def save_person(obj):
                 del m[person.getId()]
                 m[idval] = person
             person.setId(idval)
+            utils.modified()
         else:
             n = Config.nameof(m[idval])
             msg1 = _("GRAMPS ID value was not changed.")

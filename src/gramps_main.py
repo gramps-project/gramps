@@ -679,6 +679,8 @@ def on_choose_parents_clicked(obj):
         "on_motherList_select_row" : on_mother_list_select_row,
         "on_fatherList_select_row" : on_father_list_select_row,
         "on_save_parents_clicked" : on_save_parents_clicked,
+        "on_addmother_clicked" : on_addmother_clicked,
+        "on_addfather_clicked" : on_addfather_clicked,
         "on_prel_changed" : on_prel_changed,
         "destroy_passed_object" : utils.destroy_passed_object
         })
@@ -1475,6 +1477,53 @@ def load_new_person(obj):
     global active_person
     active_person = Person()
     EditPerson.EditPerson(active_person,database,new_after_edit)
+
+def on_addfather_clicked(obj):
+    xml = libglade.GladeXML(const.gladeFile,"addperson")
+    top = xml.get_widget("addperson")
+    xml.get_widget("male").set_active(1)
+    xml.signal_autoconnect({
+        "on_addfather_close": on_addparent_close,
+        "destroy_passed_object" : utils.destroy_passed_object
+        })
+    top.set_data("o",obj)
+    top.set_data("xml",xml)
+
+def on_addmother_clicked(obj):
+    xml = libglade.GladeXML(const.gladeFile,"addperson")
+    top = xml.get_widget("addperson")
+    xml.get_widget("female").set_active(1)
+    xml.signal_autoconnect({
+        "on_addfather_close": on_addparent_close,
+        "destroy_passed_object" : utils.destroy_passed_object
+        })
+    top.set_data("o",obj)
+    top.set_data("xml",xml)
+
+def on_addparent_close(obj):
+    global select_father
+    global select_mother
+    
+    prel = obj.get_data("o")
+    xml = obj.get_data("xml")
+    surname = xml.get_widget("surname").get_text()
+    given = xml.get_widget("given").get_text()
+    person = Person()
+    database.addPerson(person)
+    name = Name()
+    name.setSurname(surname)
+    name.setFirstName(given)
+    person.setPrimaryName(name)
+    if xml.get_widget("male").get_active():
+        person.setGender(Person.male)
+        select_father = person
+    else:
+        person.setGender(Person.female)
+        select_mother = person
+    utils.modified()
+    
+    on_prel_changed(prel)
+    utils.destroy_passed_object(obj)
 
 #-------------------------------------------------------------------------
 #
