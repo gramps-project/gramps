@@ -318,7 +318,7 @@ class RelCalc:
 
         Utils.set_titles(self.glade.get_widget('relcalc'),
                          self.glade.get_widget('title'),
-                         _('Relationshp to %s') % name,
+                         _('Relationship to %s') % name,
                          _('Relationship calculator'))
     
         self.people = self.glade.get_widget("peopleList")
