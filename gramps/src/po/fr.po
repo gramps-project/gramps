@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.8.1_cvs\n"
 "POT-Creation-Date: Sun Nov 24 08:27:08 2002\n"
-"PO-Revision-Date: 2002-12-18 14:58+0100\n"
+"PO-Revision-Date: 2002-12-20 11:41+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3165,7 +3165,7 @@ msgstr "Impossible d'ouvrir %s"
 
 #: plugins/AncestorReport.py:73 plugins/AncestorReport.py:227
 msgid "Ahnentafel Report for %s"
-msgstr "Édition Ahnentafel pour %s"
+msgstr "Liste Ahnentafel pour %s"
 
 #: plugins/AncestorReport.py:86 plugins/DetAncestralReport.py:629
 #: plugins/DetDescendantReport.py:653
@@ -3242,7 +3242,7 @@ msgstr ", et fût inhumé le %s."
 
 #: plugins/AncestorReport.py:223 plugins/AncestorReport.py:381
 msgid "Ahnentafel Report"
-msgstr "Édition Ahnentafel"
+msgstr "Liste Ahnentafel"
 
 #: plugins/AncestorReport.py:223 plugins/AncestorReport.py:382
 #: plugins/DescendReport.py:129 plugins/DescendReport.py:284
@@ -3251,7 +3251,7 @@ msgstr "Édition Ahnentafel"
 #: plugins/IndivComplete.py:447 plugins/IndivComplete.py:662
 #: plugins/IndivSummary.py:332 plugins/IndivSummary.py:522
 msgid "Text Reports"
-msgstr "Éditions de texte"
+msgstr "Liste au format texte"
 
 #: plugins/AncestorReport.py:232 plugins/DetAncestralReport.py:677
 msgid "Save Ancestor Report"
@@ -3394,7 +3394,7 @@ msgstr "Descendants de %s"
 
 #: plugins/DescendReport.py:129 plugins/DescendReport.py:283
 msgid "Descendant Report"
-msgstr "Édition de descendance"
+msgstr "Liste Simplifiée des Descendants"
 
 #: plugins/DescendReport.py:133 plugins/DetDescendantReport.py:640
 msgid "Descendant Report for %s"
@@ -3638,11 +3638,11 @@ msgstr "Inclure les Photos et Images de la Gallerie"
 
 #: plugins/DetAncestralReport.py:958
 msgid "Detailed Ancestral Report"
-msgstr "Liste détaillée des Ancêtres"
+msgstr "Liste Détaillée des Ascendants"
 
 #: plugins/DetAncestralReport.py:961
 msgid "Produces a detailed ancestral report"
-msgstr "Produit une liste généalogique détaillée"
+msgstr "Produit une liste détaillée des ascendants"
 
 #: plugins/DetAncestralReport.py:1063 plugins/DetDescendantReport.py:956
 msgid " at the age of %d %s"
@@ -3689,7 +3689,7 @@ msgstr ""
 #: plugins/FamilyGroup.py:107 plugins/FamilyGroup.py:339
 #: plugins/FamilyGroup.py:549
 msgid "Family Group Report"
-msgstr "Édition d'un Groupe Familial"
+msgstr "Edition d'un Groupe Familial"
 
 #: plugins/FamilyGroup.py:119
 msgid "Husband"
@@ -3701,11 +3701,11 @@ msgstr "Femme"
 
 #: plugins/FamilyGroup.py:343
 msgid "Family Group Report for %s"
-msgstr "Édition du Groupe Familial de %s"
+msgstr "Edition du Groupe Familial de %s"
 
 #: plugins/FamilyGroup.py:348
 msgid "Save Family Group Report"
-msgstr "Enregistrer l'Édition du Groupe Familial"
+msgstr "Enregistrer l'Edition du Groupe Familial"
 
 #: plugins/FamilyGroup.py:552
 msgid ""
@@ -3954,15 +3954,15 @@ msgstr "Inclure une Source d'information"
 #: plugins/IndivComplete.py:447 plugins/IndivComplete.py:451
 #: plugins/IndivComplete.py:660
 msgid "Complete Individual Report"
-msgstr "Liste Individuelle détaillée"
+msgstr "Liste Individuelle Complète"
 
 #: plugins/IndivComplete.py:456
 msgid "Save Complete Individual Report"
-msgstr "Enregistrer une Liste Individuelle détaillée"
+msgstr "Enregistrer une Liste Individuelle Complète"
 
 #: plugins/IndivComplete.py:663
 msgid "Produces a complete report on the selected people."
-msgstr "Produit un rapport détaillé de la personne sélectionnée."
+msgstr "Produit une liste complète de la personne sélectionnée."
 
 #: plugins/IndivSummary.py:332 plugins/IndivSummary.py:520
 msgid "Individual Summary"
@@ -3978,7 +3978,7 @@ msgstr "Sauver une image individuelle"
 
 #: plugins/IndivSummary.py:523
 msgid "Produces a detailed report on the selected person."
-msgstr "Produit un rapport détaillé de la personne sélectionnée."
+msgstr "Produit une liste détaillée de la personne sélectionnée."
 
 #: plugins/Merge.py:92
 msgid "Medium"
@@ -5043,7 +5043,7 @@ msgstr "Ne pas afficher les autres dénominations dans la liste des individus"
 
 #: preferences.glade:1062
 msgid "Show Detail Flags in display lists"
-msgstr "Liste détaillée"
+msgstr "Afficher les Détails dans la liste"
 
 #: preferences.glade:1082
 msgid "Show index numbers in child list"
