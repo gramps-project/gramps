@@ -2,7 +2,6 @@
 	* NEWS: Update.
 	* src/Exporter.py: Clean up, add doc strings.
 	* src/plugins/WriteGedcom.py: Change registration. 
-	Use command-line export for the time being (all defaults).
 
 2004-07-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: Handle the new file selector
