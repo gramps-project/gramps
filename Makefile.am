@@ -1,6 +1,6 @@
 # copyright (C) 2000 Sun Microsystems, Inc.
 
-SUBDIRS = src doc
+SUBDIRS = src doc omf-install example
 
 EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS
 

@@ -235,6 +235,15 @@ dnl     by anything besides scrollkeeper in our setup
 dnl ==================================
 localstatedir=/var/lib
 
+if test ${prefix} = "NONE" ; then
+   GPREFIX="/usr/local"
+else
+   GPREFIX="${prefix}"
+fi
+
+dnl ======================================================
+dnl == end of modern doc tests
+dnl ======================================================
 SCROLLKEEPER_BUILD_REQUIRED=0.3.5
 AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 
@@ -244,6 +253,7 @@ AC_SUBST(PYTHON)
 AC_SUBST(PYTHON_VERSION)
 AC_SUBST(GNOMEHELP)
 AC_SUBST(LIBS)
+AC_SUBST(GPREFIX)
 
 AC_SUBST(P15_INCLUDES)
 AC_SUBST(P20_INCLUDES)
@@ -268,5 +278,10 @@ src/po/Makefile
 doc/Makefile
 doc/gramps-manual/Makefile
 doc/gramps-manual/C/Makefile	
+doc/extending-gramps/Makefile
+doc/extending-gramps/C/Makefile
+example/Makefile
+example/gramps/Makefile
+omf-install/Makefile
 gramps.spec
 gramps.sh])
