@@ -103,12 +103,14 @@ class EditSource:
         f_event_list = []
         f_attr_list = []
         p_list = []
-        for p in self.db.getPlaceMap().values():
+        for key in self.db.getPlaceKeys():
+            p = self.db.getPlace(key) 
             name = p.get_title()
             for sref in p.getSourceRefList():
                 if sref.getBase() == self.source:
                     p_list.append(name)
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
             name = GrampsCfg.nameof(p)
             for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
                 for sref in v.getSourceRefList():
@@ -235,7 +237,8 @@ class DelSrcQuery:
         del self.db.getSourceMap()[self.source.getId()]
         Utils.modified()
 
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.getPerson(key)
             for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
                 self.delete_source(v)
 
@@ -258,8 +261,8 @@ class DelSrcQuery:
         for p in self.db.getObjectMap().values():
             self.delete_source(p)
 
-        for p in self.db.getPlaceMap().values():
-            self.delete_source(p)
+        for key in self.db.getPlaceKeys():
+            self.delete_source(self.db.getPlace(key))
 
         self.update(0)
 

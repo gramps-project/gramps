@@ -131,12 +131,12 @@ class ChooseParents:
         self.mother_list.append(["Unknown","",""])
         self.mother_list.set_row_data(0,None)
 
-        people = self.db.getPersonMap().values()
         father_index = 1
         mother_index = 1
         fsel = 0
         msel = 0
-        for person in people:
+        for key in self.db.getPersonKeys():
+            person = self.db.getPerson(key)
             if person == self.person:
                 continue
             if person.getGender() == RelLib.Person.unknown:
@@ -179,7 +179,6 @@ class ChooseParents:
         else:
             self.mlabel.set_label(_("Mother"))
             self.flabel.set_label(_("Father"))
-
 
     def parent_relation_changed(self,obj):
         self.old_type = self.type

@@ -2024,7 +2024,8 @@ class GrampsDB(Persistent):
         """returns a list of all Attribute types assocated with Person
         instances in the database"""
         map = {}
-        for person in self.personMap.values():
+        for key in self.personTable.keys():
+            person = self.personMap[key]
             for attr in person.getAttributeList():
                 map[attr.getType()] = 1
         return map.keys()
@@ -2290,7 +2291,10 @@ class GrampsDB(Persistent):
 
     def getPlaceKeys(self):
         return self.placeTable.keys()
-    
+
+    def getPlace(self,key):
+        return self.placeMap[key]
+
     def getPlaceDisplay(self,key):
         return self.placeTable[key]
         
@@ -2299,6 +2303,9 @@ class GrampsDB(Persistent):
     
     def getSourceDisplay(self,key):
         return self.sourceTable[key]
+
+    def getSource(self,key):
+        return self.sourceMap[key]
 
     def buildSourceDisplay(self,nkey,okey=None):
         if nkey != okey and okey != None:

@@ -632,7 +632,8 @@ class GlobalMediaProperties:
         index = 0
         ref = self.change_dialog.get_widget("refinfo")
         ref.connect('button-press-event',self.button_press)
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     ref.append([_("Person"),p.getId(),GrampsCfg.nameof(p)])
@@ -644,13 +645,15 @@ class GlobalMediaProperties:
                     ref.append([_("Family"),p.getId(),Utils.family_name(p)])
                     ref.set_row_data(index,(Marriage.Marriage,p,self.db))
                     index = index + 1
-        for p in self.db.getSourceMap().values():
+        for key in self.db.getSourceKeys():
+            p = self.db.getSource(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     ref.append([_("Source"),p.getId(),p.getTitle()])
                     ref.set_row_data(index,(EditSource.EditSource,p,self.db))
                     index = index + 1
-        for p in self.db.getPlaceMap().values():
+        for key in self.db.getPlaceKeys():
+            p = self.db.getPlace(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     ref.append([_("Place"),p.getId(),p.get_title()])

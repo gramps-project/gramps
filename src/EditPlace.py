@@ -324,7 +324,8 @@ class EditPlace:
     def display_references(self):
         pevent = []
         fevent = []
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
             for event in [p.getBirth(), p.getDeath()] + p.getEventList():
                 if event.getPlace() == self.place:
                     pevent.append((p,event))
@@ -403,7 +404,8 @@ class DeletePlaceQuery:
         del self.db.getPlaceMap()[self.place.getId()]
         Utils.modified()
 
-        for p in self.db.getPersonMap().values():
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
             for event in [p.getBirth(), p.getDeath()] + p.getEventList():
                 if event.getPlace() == self.place:
                     event.setPlace(None)
