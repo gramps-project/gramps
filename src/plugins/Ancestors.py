@@ -504,13 +504,17 @@ class ComprehensiveAncestorsReport (Report.Report):
         t = name.getTitle ()
         if t:
             return t
-        if person.getGender () == RelLib.Person.female:
+
+        gender = person.getGender ()
+        if gender == RelLib.Person.female:
             if name.getType () == 'Married Name':
                 return 'Mrs.'
 
             return 'Miss'
-
-        return 'Mr.'
+        elif gender == RelLib.Person.male:
+            return 'Mr.'
+        else:
+            return '(gender unknown)'
 
     def cite_sources (self, sourcereflist):
         citation = ""
