@@ -60,6 +60,210 @@ import BaseDoc
 import NameDisplay
 import ReportUtils
 
+_css = [
+    'BODY {',
+    'font-family: "Arial", "Helvetica", sans-serif;',
+    'letter-spacing: 0.05em;',
+    'background-color: #fafaff;',
+    'color: #003;',
+    '}',
+    '',
+    'P,BLOCKQUOTE {',
+    'font-size: 14px;',
+    '}',
+    '',
+    'DIV {',
+    'margin: 2px;',
+    'padding: 2px;',
+    '}',
+    '',
+    'TD {',
+    'vertical-align: top;',
+    '}',
+    '',
+    'H1 {',
+    'font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;',
+    'font-weight: bolder;',
+    'font-size:	160%;',
+    'margin: 2px;',
+    '}',
+    'H2 {',
+    'font-family: "Verdana", "Bistream Vera Sans", "Arial", "Helvetica", sans-serif;',
+    'font-weight: bolder;',
+    'font-style: italic;',
+    'font-size:	150%;',
+    '}',
+    'H3 {',
+    'font-weight: bold;',
+    'margin: 0;',
+    'padding-top: 10px;',
+    'padding-bottom: 10px;',
+    'color: #336;',
+    '}',
+    'H4 {',
+    'margin-top: 1em;',
+    'margin-bottom: 0.3em;',
+    'padding-left: 4px;',
+    'background-color: #667;',
+    'color: #fff;',
+    '}',
+    'H5 {',
+    'margin-bottom: 0.5em;',
+    '}',
+    'H6 {',
+    'font-weight: normal;',
+    'font-style: italic;',
+    'font-size:	100%;',
+    'margin-left: 1em;',
+    'margin-top: 1.3em;',
+    'margin-bottom: 0.8em;',
+    '}',
+    '',
+    'HR {',
+    'height: 0;',
+    'width: 0;',
+    'margin: 0;',
+    'margin-top: 1px;',
+    'margin-bottom: 1px;',
+    'padding: 0;',
+    'border-top: 0;	/* Hack: Mozilla work-around to eliminate "groove" */',
+    'border-color: #e0e0e9;',
+    '}',
+    '',
+    'A:link {',
+    'color: #006;',
+    'text-decoration: underline;',
+    '}',
+    'A:visited {',
+    'color: #669;',
+    'text-decoration: underline;',
+    '}',
+    'A:hover {',
+    'background-color: #eef;',
+    'color: #000;',
+    'text-decoration: underline;',
+    '}',
+    'A:active {',
+    'background-color: #eef;',
+    'color: #000;',
+    'text-decoration: none;',
+    '}',
+    '',
+    '/* Custom {{{1',
+    '*/',
+    '',
+    '.navheader {',
+    'padding: 4px;',
+    'background-color: #e0e0e9;',
+    'margin: 2px;',
+    '}',
+    '.navtitle {',
+    'font-size:	160%;',
+    'color: #669;',
+    'margin: 2px;',
+    '',
+    '}',
+    '.navbyline {',
+    'float: right;',
+    'font-size: 14px;',
+    'margin: 2px;',
+    'padding: 4px;',
+    '}',
+    '.nav {',
+    'margin: 0;',
+    'margin-bottom: 4px;',
+    'padding: 0;',
+    'font-size: 14px;',
+    'font-weight: bold;',
+    '',
+    '',
+    '',
+    '}',
+    '',
+    '',
+    '.summaryarea {',
+    'min-height: 100px;',
+    '/* Hack: IE Dynamic Expression to set the width */',
+    'height: expression(document.body.clientHeight < 1 ? "100px" : "100px" );',
+    '}',
+    '',
+    '.portrait {',
+    'justify: center;',
+    'margin: 5px;',
+    'margin-right: 20px;',
+    'padding: 3px;',
+    'border-color: #336;',
+    'border-width: 1px;',
+    '}',
+    '.snapshot {',
+    'float: right;',
+    'margin: 5px;',
+    'margin-right: 20px;',
+    'padding: 3px;',
+    '}',
+    '.thumbnail {',
+    'height: 100px;',
+    'border-color: #336;',
+    'border-width: 1px;',
+    '}',
+    '',
+    '.leftwrap {',
+    'float: left;',
+    'margin: 2px;',
+    'margin-right: 10px;',
+    '}',
+    '.rightwrap {',
+    'float: right;',
+    'margin: 2px;',
+    'margin-left: 10px;',
+    '}',
+    '',
+    'TABLE.infolist {',
+    'border: 0;',
+    '/*width: 100%;*/',
+    'font-size: 14px;',
+    '}',
+    'TD.category {',
+    'padding: 3px;	/* Defines spacing between rows */',
+    'padding-right: 3em;',
+    '/*width: 10%;*/',
+    'font-weight: bold;',
+    '}',
+    'TD.field {',
+    'padding: 3px;	/* Defines spacing between rows */',
+    'padding-right: 3em;',
+    '/*width: 15%;*/',
+    '',
+    '}',
+    'TD.data {',
+    'padding: 3px;	/* Defines spacing between rows */',
+    'padding-right: 3em;',
+    'font-weight: bold;',
+    '}',
+    '',
+    '',
+    '.pedigree {',
+    'margin: 0;',
+    'margin-left: 2em;',
+    'padding: 0;',
+    'background-color: #e0e0e9;',
+    'border: 1px;',
+    '}',
+    '.pedigreeind {',
+    'font-size: 14px;',
+    'margin: 0;',
+    'padding: 2em;',
+    'padding-top: 0.25em;',
+    'padding-bottom: 0.5em;',
+    '}',
+    '',
+    '',
+    '.footer {',
+    'margin: 1em;',
+    'font-size: 12px;',
+    'float: right;',
+    '}',
+    ]
 #------------------------------------------------------------------------
 #
 # 
@@ -77,22 +281,114 @@ class IndividualPage:
         self.person = person
         self.db = db
         self.ind_list = ind_list
+        self.dirpath = dirpath
 
         gramps_id = self.person.get_gramps_id()
-        author = db.get_researcher().get_name()
-        sort_name = NameDisplay.displayer.sorted(self.person)
+        self.sort_name = NameDisplay.displayer.sorted(self.person)
+        self.name = NameDisplay.displayer.sorted(self.person)
         
         self.f = open(os.path.join(dirpath,"%s.html" % gramps_id), "w")
-        self.f.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">\n')
+        self.f.write('<!DOCTYPE HTML PUBLIC ')
+        self.f.write('"-//W3C//DTD HTML 4.01 Transitional//EN">\n')
         self.f.write('<html>\n')
         self.f.write('<head>\n')
 	self.f.write('<title>My Family Tree</title>\n')
 	self.f.write('<meta http-equiv="Content-Type" content="text/html; ')
         self.f.write('charset=ISO-8859-1">\n')
-	self.f.write('<link href="main1.css" rel="stylesheet" type="text/css">\n')
+	self.f.write('<link href="navwebpage.css" ')
+        self.f.write('rel="stylesheet" type="text/css">\n')
 	self.f.write('<link href="favicon.png" rel="Shortcut Icon">\n')
         self.f.write('</head>\n')
         self.f.write('<body>\n')
+
+        self.display_header()
+        self.display_general()
+        self.display_events()
+        self.display_relationships()
+        self.display_narrative()
+        self.display_sources()
+        self.display_pedigree()
+        self.display_footer()
+
+        self.f.write('</body>\n')
+        self.f.write('</html>\n')
+        self.f.close()
+
+    def display_sources(self):
+	self.f.write('<h4>Sources</h4>\n')
+	self.f.write('<hr>\n')
+
+	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
+	self.f.write('<tr><td class="field">1. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">2. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">3. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">4. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('<tr><td class="field">5. Author, Title, Publisher, Date.</td></tr>\n')
+	self.f.write('</table>\n')
+
+    def display_pedigree(self):
+
+        parent_handle_list = self.person.get_parent_family_handle_list()
+        if parent_handle_list:
+            (parent_handle, mrel,frel) = parent_handle_list[0]
+            family = self.db.get_family_from_handle(parent_handle)
+            father_id = family.get_father_handle()
+            mother_id = family.get_mother_handle()
+            mother = self.db.get_person_from_handle(mother_id)
+            father = self.db.get_person_from_handle(father_id)
+        else:
+            family = None
+            father = None
+            mother = None
+        
+	self.f.write('<h4>Pedigree</h4>\n')
+	self.f.write('<hr>\n')
+        self.f.write('\n')
+	self.f.write('<br>\n')
+        self.f.write('\n')
+	self.f.write('<table class="pedigree">\n')
+        self.f.write('<tr><td>\n')
+        if father or mother:
+            self.f.write('<blockquote class="pedigreeind">\n')
+            if father:
+                self.pedigree_person(father)
+            if mother:
+                self.pedigree_person(mother)
+        self.f.write('<blockquote class="pedigreeind">\n')
+        if family:
+            for child_handle in family.get_child_handle_list():
+                if child_handle == self.person.handle:
+                    self.f.write('| <strong>%s</strong><br>\n' % self.name)
+                    self.pedigree_family()
+                else:
+                    child = self.db.get_person_from_handle(child_handle)
+                    self.pedigree_person(child)
+        else:
+            self.f.write('| <strong>%s</strong><br>\n' % self.name)
+            self.pedigree_family()
+
+#         self.f.write('&bull; Spouse 1<br>\n')
+#         self.f.write('<blockquote class="pedigreeind">\n')
+#         self.f.write('| Child<br>\n')
+#         self.f.write('| Child<br>\n')
+#         self.f.write('</blockquote>\n')
+#         self.f.write('&bull; Spouse 2<br>\n')
+#         self.f.write('<blockquote class="pedigreeind">\n')
+#         self.f.write('| Child<br>\n')
+#         self.f.write('| Child<br>\n')
+#         self.f.write('</blockquote>\n')
+#         self.f.write('| Sybling, Younger<br>\n')
+#        self.f.write('| Sybling, Younger<br>\n')
+
+        self.f.write('</blockquote>\n')
+        if father or mother:
+            self.f.write('</blockquote>\n')
+        self.f.write('</td>\n')
+        self.f.write('</tr>\n')
+	self.f.write('</table>\n')
+
+    def display_header(self):
+        author = self.db.get_researcher().get_name()
 	self.f.write('<div class="navheader">\n')
         self.f.write('  <div class="navbyline">By: %s</div>\n' % author)
         self.f.write('  <h1 class="navtitle">My Family Tree</h1>\n')
@@ -110,21 +406,29 @@ class IndividualPage:
         self.f.write('\n')
         self.f.write('\n')
 
-	self.f.write('<div class="snapshot">\n')
-        self.f.write('<a href="portrait.html">')
-        self.f.write('<img class="thumbnail" src="portrait.jpg" ')
-        self.f.write('alt="portrait" height="100">')
-        self.f.write('</a>\n')
-	self.f.write('</div>\n')
+    def display_general(self):
+        photolist = self.person.get_media_list()
+        if photolist:
+            photo_handle = photolist[0].get_reference_handle()
+            photo = self.db.get_object_from_handle(photo_handle)
+            
+            newpath = self.person.gramps_id + os.path.splitext(photo.get_path())[1]
+            shutil.copyfile(photo.get_path(),os.path.join(self.dirpath,newpath))
+            self.f.write('<div class="snapshot">\n')
+            self.f.write('<a href="%s">' % newpath)
+            self.f.write('<img class="thumbnail"  border="0" src="%s" ' % newpath)
+            self.f.write('height="100"></a>')
+            self.f.write('</div>\n')
 
 	self.f.write('<div class="summaryarea">\n')
-        self.f.write('<h3>%s</h3>\n' % sort_name)
+        self.f.write('<h3>%s</h3>\n' % self.sort_name)
         self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         self.f.write('border="0">\n')
 
         # Gender
         self.f.write('<tr><td class="field">Gender</td>\n')
-        self.f.write('<td class="data">%s</td>\n' % self.gender_map[person.get_gender()])
+        gender = self.gender_map[self.person.gender]
+        self.f.write('<td class="data">%s</td>\n' % gender)
         self.f.write('</tr>\n')
 
         # Birth
@@ -148,14 +452,14 @@ class IndividualPage:
 	self.f.write('</div>\n')
         self.f.write('\n')
 
-        # Events
+    def display_events(self):
 	self.f.write('<h4>Events</h4>\n')
 	self.f.write('<hr>\n')
 	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" ')
         self.f.write('border="0">\n')
 
         for event_id in self.person.get_event_list():
-            event = db.get_event_from_handle(event_id)
+            event = self.db.get_event_from_handle(event_id)
 
             self.f.write('<tr><td class="field">%s</td>\n' % event.get_name())
             self.f.write('<td class="data">\n')
@@ -166,10 +470,7 @@ class IndividualPage:
 	self.f.write('</table>\n')
         self.f.write('\n')
 
-        # Relationships
-
-        self.display_relationships(self.person)
-
+    def display_narrative(self):
 	self.f.write('<h4>Narrative</h4>\n')
 	self.f.write('<hr>\n')
 
@@ -184,59 +485,12 @@ class IndividualPage:
                 text = "</p><p>".join(text.split("\n"))
             self.f.write('<p>%s</p>\n' % text)
 
-	self.f.write('<h4>Sources</h4>\n')
-	self.f.write('<hr>\n')
-	self.f.write('<table class="infolist" cellpadding="0" cellspacing="0" border="0">\n')
-	self.f.write('<tr><td class="field">1. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">2. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">3. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">4. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('<tr><td class="field">5. Author, Title, Publisher, Date.</td></tr>\n')
-	self.f.write('</table>\n')
-        self.f.write('\n')
-	self.f.write('<h4>Pedigree</h4>\n')
-	self.f.write('<hr>\n')
-        self.f.write('\n')
-	self.f.write('<br>\n')
-        self.f.write('\n')
-	self.f.write('<table class="pedigree">\n')
-        self.f.write('<tr><td>\n')
-        self.f.write('<blockquote class="pedigreeind">\n')
-        self.f.write('| <a href="lastfirstmiddle-father.html">Father</a><br>\n')
-        self.f.write('| Mother<br>\n')
-        self.f.write('<blockquote class="pedigreeind">\n')
-        self.f.write('| Sybling, Older<br>\n')
-        self.f.write('| <b>Individual</b><br>\n')
-        self.f.write('&bull; Spouse 1<br>\n')
-        self.f.write('<blockquote class="pedigreeind">\n')
-        self.f.write('| Child<br>\n')
-        self.f.write('| Child<br>\n')
-        self.f.write('</blockquote>\n')
-        self.f.write('&bull; Spouse 2<br>\n')
-        self.f.write('<blockquote class="pedigreeind">\n')
-        self.f.write('| Child<br>\n')
-        self.f.write('| Child<br>\n')
-        self.f.write('</blockquote>\n')
-        self.f.write('| Sybling, Younger<br>\n')
-        self.f.write('| Sybling, Younger<br>\n')
-        self.f.write('</blockquote>\n')
-        self.f.write('</blockquote>\n')
-        self.f.write('</td>\n')
-        self.f.write('</tr>\n')
-	self.f.write('</table>\n')
-        self.f.write('\n')
-        self.f.write('\n')
-        self.f.write('\n')
+    def display_footer(self):
 	self.f.write('<br>\n')
 	self.f.write('<br>\n')
 	self.f.write('<hr>\n')
 	self.f.write('<div class="footer">This page generated from <a href="http://gramps.sourceforge.net">GRAMPS</a> on 13 December 2004.</div>\n')
-        self.f.write('\n')
-        self.f.write('\n')
-        self.f.write('</body>\n')
-        self.f.write('</html>\n')
-        self.f.close()
-
+        
     def display_father(self,handle):
         use_link = handle in self.ind_list
         person = self.db.get_person_from_handle(handle)
@@ -261,9 +515,9 @@ class IndividualPage:
             self.f.write('</a>\n')
         self.f.write('</td>\n')
 
-    def display_relationships(self,person):
-        parent_list = person.get_parent_family_handle_list()
-        family_list = person.get_family_handle_list()
+    def display_relationships(self):
+        parent_list = self.person.get_parent_family_handle_list()
+        family_list = self.person.get_family_handle_list()
 
         if not parent_list and not family_list:
             return
@@ -303,7 +557,7 @@ class IndividualPage:
                         use_link = child_handle in self.ind_list
                         child = self.db.get_person_from_handle(child_handle)
                         if use_link:
-                            self.f.write('<a href="%s.html">' % person.get_gramps_id())
+                            self.f.write('<a href="%s.html">' % self.person.get_gramps_id())
                         self.f.write(NameDisplay.displayer.display(child))
                         if use_link:
                             self.f.write('</a>\n')
@@ -355,6 +609,31 @@ class IndividualPage:
             self.f.write(self.format_event(event))
             self.f.write('</td>\n')
             self.f.write('</tr>\n')
+
+    def pedigree_person(self,person,bullet='|'):
+        person_link = person.handle in self.ind_list
+        self.f.write('%s ' % bullet)
+        if person_link:
+            self.f.write('<a href="%s.html">' % person.gramps_id)
+        self.f.write(NameDisplay.displayer.display(person))
+        if person_link:
+            self.f.write('</a>')
+        self.f.write('<br>\n')
+
+    def pedigree_family(self):
+        for family_handle in self.person.get_family_handle_list():
+            rel_family = self.db.get_family_from_handle(family_handle)
+            spouse_handle = ReportUtils.find_spouse(self.person,rel_family)
+            if spouse_handle:
+                spouse = self.db.get_person_from_handle(spouse_handle)
+                self.pedigree_person(spouse,'&bull;')
+            childlist = rel_family.get_child_handle_list()
+            if childlist:
+                self.f.write('<blockquote class="pedigreeind">\n')
+                for child_handle in childlist:
+                    child = self.db.get_person_from_handle(child_handle)
+                    self.pedigree_person(child)
+                self.f.write('</blockquote>\n')
 
     def format_event(self,event):
         descr = event.get_description()
@@ -788,6 +1067,8 @@ class WebReport(Report.Report):
             progress_steps = progress_steps+1
         self.progress_bar_setup(float(progress_steps))
 
+        self.write_css(dir_name)
+
         for person_handle in ind_list:
             person = self.database.get_person_from_handle(person_handle)
             idoc = IndividualPage(self.database,person, dir_name, ind_list)
@@ -814,6 +1095,11 @@ class WebReport(Report.Report):
                 gtk.main_iteration()
         self.progress_bar_done()
 
+    def write_css(self,dir_name):
+        f = open(os.path.join(dir_name,"navwebpage.css"), "w")
+        f.write('\n'.join(_css))
+        f.close()
+                 
     def add_styles(self,doc):
         tbl = BaseDoc.TableStyle()
         tbl.set_width(100)
