@@ -844,11 +844,9 @@ class FamilyView:
 
             for id in [father_id, mother_id]:
                 if id:
-                    print p.get_family_handle_list()
                     p = self.db.find_person_from_handle(id)
                     p.remove_family_handle(self.family.get_handle())
                     self.parent.db.commit_person(p,trans)
-                    print p.get_family_handle_list()
 
             if len(self.person.get_family_handle_list()) > 0:
                 handle = self.person.get_family_handle_list()[0]

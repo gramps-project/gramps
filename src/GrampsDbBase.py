@@ -114,6 +114,9 @@ class GrampsDbBase:
         self.place2title = {}
         self.name_groups = {}
 
+    def get_person_cursor(self):
+        assert False, "Needs to be overridden in the derived class"
+
     def load(self,name,callback):
         """
         Opens the specified database. The method needs to be overridden

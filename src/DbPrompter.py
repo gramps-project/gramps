@@ -185,12 +185,13 @@ class ExistingDbPrompter:
             # and create an empty native database to import data in
             for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
                 if filetype == mime_type or the_file == mime_type:
-                    QuestionDialog.OkDialog( _("Opening non-native format"), 
-                                _("New gramps database has to be set up "
-                                  "when opening non-native formats. The "
-                                  "following dialog will let you select "
-                                  "the new database."),
-                                self.parent_window)
+                    QuestionDialog.OkDialog(
+                        _("Opening non-native format"), 
+                        _("New gramps database has to be set up "
+                          "when opening non-native formats. The "
+                          "following dialog will let you select "
+                          "the new database."),
+                        self.parent_window)
                     prompter = NewNativeDbPrompter(self.parent,self.parent_window)
                     if prompter.chooser():
                         importData(self.parent.db,filename)
@@ -198,8 +199,9 @@ class ExistingDbPrompter:
                         return True
                     else:
                         return False
-            QuestionDialog.ErrorDialog( _("Could not open file: %s") % filename,
-                        _('The type "%s" is not in the list of known file types') % filetype )
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename,
+                _('The type "%s" is not in the list of known file types') % filetype )
         #choose.destroy()
         return False
 
@@ -283,8 +285,9 @@ class ImportDbPrompter:
                     importData(self.parent.db,filename)
                     self.parent.import_tool_callback()
                     return True
-            QuestionDialog.ErrorDialog( _("Could not open file: %s") % filename,
-                        _('The type "%s" is not in the list of known file types') % filetype )
+            QuestionDialog.ErrorDialog(
+                _("Could not open file: %s") % filename,
+                _('The type "%s" is not in the list of known file types') % filetype )
         choose.destroy()
         return False
 

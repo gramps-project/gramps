@@ -93,9 +93,13 @@ class PeopleModel(gtk.GenericTreeModel):
         if not self.db.is_open():
             return
 
-        for person_handle in self.db.get_person_handles(sort_handles=False):
+        cursor = self.db.get_person_cursor()
 
-            person = self.db.get_person_from_handle(person_handle)
+        data = cursor.first()
+        while data:
+            person = Person()
+            person_handle = data[0]
+            person.unserialize(data[1])
             grp_as = person.get_primary_name().get_group_as()
             sn = person.get_primary_name().get_surname()
             if grp_as:
@@ -108,6 +112,9 @@ class PeopleModel(gtk.GenericTreeModel):
             else:
                 self.sname_sub[surname] = [person_handle]
 
+            data = cursor.next()
+        cursor.close()
+        
         self.top_path2iter = self.sname_sub.keys()
         self.top_path2iter.sort(locale.strcoll)
         for name in self.top_path2iter:
