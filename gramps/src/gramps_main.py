@@ -1231,14 +1231,17 @@ def on_ok_button2_clicked(obj):
     filename = obj.get_filename()
     if filename:
         utils.destroy_passed_object(obj)
-        save_file(filename)
+        if Config.usevc and Config.vc_comment:
+            display_comment_box(filename)
+        else:
+            save_file(filename,_("No Comment Provided"))
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def save_file(filename):        
+def save_file(filename,comment):        
     import WriteXML
     import VersionControl
 
@@ -1280,7 +1283,7 @@ def save_file(filename):
 
     if Config.usevc:
         vc = VersionControl.RcsVersionControl(path)
-        vc.checkin(filename,"comments not supported yet",not Config.uncompress)
+        vc.checkin(filename,comment,not Config.uncompress)
                
     statusbar.set_status("")
     statusbar.set_progress(0)
@@ -1983,35 +1986,52 @@ def on_save_as_activate(obj):
     fileSelector = wFs.get_widget(FILESEL)
     fileSelector.show()
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_save_activate(obj):
+    """Saves the file, first prompting for a comment if revision control needs it"""
     if not database.getSavePath():
         on_save_as_activate(obj)
     else:
-        save_file(database.getSavePath())
+        if Config.usevc and Config.vc_comment:
+            display_comment_box(database.getSavePath())
+        else:
+            save_file(database.getSavePath(),_("No Comment Provided"))
 
-#-------------------------------------------------------------------------
-#
-# Switch notebook pages from menu
-#
-#-------------------------------------------------------------------------
+def display_comment_box(filename):
+    """Displays a dialog box, prompting for a revison control comment"""
+    top = libglade.GladeXML(const.gladeFile,"revcom")
+    rc = top.get_widget("revcom")
+    tbox = top.get_widget("text")
+    
+    rc.editable_enters(tbox)
+    rc.set_data("f",filename)
+    rc.set_data("t",tbox)
+    top.signal_autoconnect({
+        "on_savecomment_clicked" : on_savecomment_clicked,
+        })
+
+def on_savecomment_clicked(obj):
+    """Saves the database, passing the revison control comment to the save routine"""
+    save_file(obj.get_data("f"),obj.get_data("t").get_text())
+    utils.destroy_passed_object(obj)
+    
 def on_person_list1_activate(obj):
+    """Switches to the person list view"""
     notebook.set_page(0)
 
 def on_family1_activate(obj):
+    """Switches to the family view"""
     notebook.set_page(1)
 
 def on_pedegree1_activate(obj):
+    """Switches to the pedigree view"""
     notebook.set_page(2)
 
 def on_sources_activate(obj):
+    """Switches to the sources view"""
     notebook.set_page(3)
 
 def on_places_activate(obj):
+    """Switches to the places view"""
     notebook.set_page(4)
 
 #-------------------------------------------------------------------------
