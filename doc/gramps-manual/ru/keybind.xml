@@ -18,15 +18,15 @@
 
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-keybind">
-      <title>Keybindings reference</title>
-      <para>This appendix contains the list of keybindings that are not 
-      displayed in menus of &app;.
+      <title>Справка назначения клавиш</title>
+      <para>Это приложение содержит список назначений клавиш, ктотрые не 
+      показаны в меню &app;.
       </para>
       
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="keybind-people">
-        <title>People View</title>
-        <para>The following bindings are available in the People View:</para>
+        <title>Вид Людей</title>
+        <para>Следующие назначения доступны в Виде Людей:</para>
         
         <informaltable frame="topbot"> 
         <tgroup cols="2"> 
@@ -34,15 +34,15 @@
         <colspec colname="col2"/> 
         <thead> 
         <row valign="top">
-          <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-          <entry colname="col2" valign="top"><para>Function</para></entry> 
+          <entry colname="col1" colsep="0" valign="top"><para>Клавиша</para></entry>
+          <entry colname="col2" valign="top"><para>Функция</para></entry> 
         </row> 
         </thead>
         <tbody> 
         <row valign="top"> 
-          <entry><para><keycap>Enter</keycap></para></entry> 
-          <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog 
-          with the selected person.</para></entry> 
+          <entry><para><keycap>Enter<keycap></para></entry> 
+          <entry><para>Вызвать диалог <guilabel>Правка Лица</guilabel> 
+          с выбанным лицом.</para></entry> 
         </row>  
         </tbody> 
         </tgroup>
@@ -53,14 +53,14 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="keybind-family">
-        <title>Family View</title>
-        <para>The bindings available in the Family View depend on where the
-        focus is. The following tables list the bindings for all focus 
-        targets.</para>
+        <title>Вид Семьи</title>
+        <para>Назначения, доступные в Виде Семьи, зависят от того, где находится 
+        фокус. Следующие таблицы перечисляют назначения для всех состояний 
+        фокуса.</para>
         
           <variablelist>
 
-          <varlistentry><term>Focus on the Active Person</term>
+          <varlistentry><term>Фокус на Активном Лице</term>
           <listitem>
 
           <informaltable frame="topbot"> 
@@ -69,23 +69,24 @@
           <colspec colname="col2"/> 
           <thead> 
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
+            <entry colname="col1" colsep="0" valign="top"><para>Клавиша</para></entry>
+            <entry colname="col2" valign="top"><para>Функция</para></entry> 
           </row> 
           </thead>
           <tbody> 
           <row valign="top"> 
             <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Invoke <guilabel>Edit Person</guilabel> dialog with 
-            the active person.</para></entry> 
+            <entry><para>Вызвать диалог <guilabel>Правка Лица</guilabel> 
+          с Активным Лицом.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Ctrl</keycap>+<keycap>Down</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Right</keycap></para></entry> 
-            <entry><para>Swap the Active Person and the selected spouse.
-            Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family  
-            View.</para></entry> 
+            или <keycap>Ctrl</keycap>+<keycap>Right</keycap></para></entry> 
+            <entry><para>Поменять Активное Лицо и выбранного супруга. 
+            Используйте <keycap>Ctrl</keycap>+<keycap>Down</keycap> 
+            в стандартном Виде Семьи и
+            <keycap>Ctrl</keycap>+<keycap>Right</keycap> в альтернативном Виде
+            Семьи.</para></entry> 
           </row>  
           </tbody> 
           </tgroup>
@@ -95,7 +96,7 @@
           </varlistentry>
 
 
-          <varlistentry><term>Focus on the Spouse box</term>
+          <varlistentry><term>Фокус в списке Супругов</term>
           <listitem>
           
           <informaltable frame="topbot"> 
@@ -104,43 +105,41 @@
           <colspec colname="col2"/> 
           <thead> 
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
+            <entry colname="col1" colsep="0" valign="top"><para>Клавиша</para></entry>
+            <entry colname="col2" valign="top"><para>Функция</para></entry> 
           </row> 
           </thead>
           <tbody> 
           <row valign="top"> 
             <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit relationship between the Active Person and 
-            the selected spouse.</para></entry> 
+            <entry><para>Правка отношения между Активным Лицом и выбранным 
+            супругом. </para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit the personal information for the selected
-            spouse.</para></entry> 
+            <entry><para>Правка личной информации выбранного супруга.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a person from the database to the spouse 
-            list.</para></entry> 
+            <entry><para>Добавить лицо из базы данных к списку супругов.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new person to the database and to the spouse 
-            list.</para></entry> 
+            <entry><para>Добавить новое лтцо в базу данных и к списку 
+            супругов.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Delete</keycap></para></entry> 
-            <entry><para>Delete the selected spouse from the spouse 
-            list. The spouse is not deleted from the database.</para></entry> 
+            <entry><para>Удалить выбранного супруга из списка супругов. Супруг не 
+            удаляется из базы данных. </para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Ctrl</keycap>+<keycap>Up</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Left</keycap></para></entry> 
-            <entry><para>Swap the selected spouse and the Active Person.
-            Use <keycap>Ctrl</keycap>+<keycap>Down</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Right</keycap> in alternative Family  
-            View.</para></entry> 
+            или <keycap>Ctrl</keycap>+<keycap>Left</keycap></para></entry> 
+            <entry><para>Поменять выбранного супруга и Активное Лицо. Используйте
+            <keycap>Ctrl</keycap>+<keycap>Down</keycap> в стандартном Виде Семьи и
+            <keycap>Ctrl</keycap>+<keycap>Right</keycap> в альтернативном Виде
+            Семьи.</para></entry> 
           </row>  
           </tbody> 
           </tgroup>
@@ -150,7 +149,7 @@
           </varlistentry>
 
 
-          <varlistentry><term>Focus on the Parents box</term>
+          <varlistentry><term>Фокус в списке Родителей</term>
           <listitem>
           
           <informaltable frame="topbot"> 
@@ -159,39 +158,35 @@
           <colspec colname="col2"/> 
           <thead> 
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
+            <entry colname="col1" colsep="0" valign="top"><para>Клавиша</para></entry>
+            <entry colname="col2" valign="top"><para>Функция</para></entry> 
           </row> 
           </thead>
           <tbody> 
           <row valign="top"> 
             <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit relationship between the parents and their 
-            child (either the Active Person or the selected spouse, depending 
-            which parents box the focus is in).</para></entry> 
+            <entry><para>Правка отношений между родителями и их ребёнком (либо 
+            Активным Лицом, либо выбранным супругом, в зависимости от того, в каком
+            списке находится фокус).</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new set of parents from the database to the 
-            list.</para></entry> 
-          </row>  
-          <row valign="top"> 
-            <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new set of parents to the database and to the 
-            list.</para></entry> 
+            <entry><para>Добавить новый набор родителей из базы данных к 
+            списку.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Delete</keycap></para></entry> 
-            <entry><para>Delete the selected parents from the list. 
-            The parents are not deleted from the database.</para></entry> 
+            <entry><para>Удалить выбранных родителей из списка. Родители
+            не удаляются из базы данных.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Ctrl</keycap>+<keycap>Right</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Down</keycap></para></entry> 
-            <entry><para>Make the selected parents the active family.
-            Use <keycap>Ctrl</keycap>+<keycap>Right</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Down</keycap> in alternative Family  
-            View.</para></entry> 
+            или <keycap>Ctrl</keycap>+<keycap>Down</keycap></para></entry> 
+            <entry><para>Сделать выбранных родителей активной семьёй.
+            Используйте <keycap>Ctrl</keycap>+<keycap>Right</keycap> 
+            в стадартном Виде Семьи и 
+            <keycap>Ctrl</keycap>+<keycap>Down</keycap> в альтернативном 
+            Виде.</para></entry> 
           </row>  
           </tbody> 
           </tgroup>
@@ -201,7 +196,7 @@
           </varlistentry>
 
 
-          <varlistentry><term>Focus on the Children box</term>
+          <varlistentry><term>Фокус в списке Детей</term>
           <listitem>
           
           <informaltable frame="topbot"> 
@@ -210,44 +205,43 @@
           <colspec colname="col2"/> 
           <thead> 
           <row valign="top">
-            <entry colname="col1" colsep="0" valign="top"><para>Key</para></entry>
-            <entry colname="col2" valign="top"><para>Function</para></entry> 
+            <entry colname="col1" colsep="0" valign="top"><para>Клавиша</para></entry>
+            <entry colname="col2" valign="top"><para>Функция</para></entry> 
           </row> 
           </thead>
           <tbody> 
           <row valign="top"> 
             <entry><para><keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit relationship between the child and his/her  
-            parents (the Active Person and the selected 
-            spouse).</para></entry> 
+            <entry><para>Правка отношений между ребёнком и его родителями (Активным 
+            лицом и выбранным супругом).</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Shift</keycap>+<keycap>Enter</keycap></para></entry> 
-            <entry><para>Edit the personal information for the selected
-            child.</para></entry> 
+            <entry><para>Прака личной информации выбранного ребёнка.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new person from the database to the children 
-            list.</para></entry> 
+            <entry><para>Добавить новое лицо из базы данных к списку 
+            детей.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Shift</keycap>+<keycap>Insert</keycap></para></entry> 
-            <entry><para>Add a new person to the database and to the children
-            list.</para></entry> 
+            <entry><para>Добавить новое лицо в базу данных и к списку 
+            детей.</para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Delete</keycap></para></entry> 
-            <entry><para>Delete the selected child from the list. 
-            The child is not deleted from the database.</para></entry> 
+            <entry><para>Удалить выбранного ребёнка из списка. Ребёнок не удаляется
+            из базы данных. </para></entry> 
           </row>  
           <row valign="top"> 
             <entry><para><keycap>Ctrl</keycap>+<keycap>Left</keycap> 
-            or <keycap>Ctrl</keycap>+<keycap>Up</keycap></para></entry> 
-            <entry><para>Make the selected child the Active Person.
-            Use <keycap>Ctrl</keycap>+<keycap>Left</keycap> in standard Family View and
-            <keycap>Ctrl</keycap>+<keycap>Up</keycap> in alternative Family  
-            View.</para></entry> 
+            или <keycap>Ctrl</keycap>+<keycap>Up</keycap></para></entry> 
+            <entry><para>Сделать выбранно ребёнка Активным лицом. 
+            Используйте <keycap>Ctrl</keycap>+<keycap>Left</keycap> 
+            в стандартном Виде Семьи и
+            <keycap>Ctrl</keycap>+<keycap>Up</keycap> в альтернативном 
+            Виде Семьи.</para></entry> 
           </row>  
           </tbody> 
           </tgroup>

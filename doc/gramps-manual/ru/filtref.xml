@@ -18,60 +18,61 @@
 
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-filtref">
-      <title>Filter rules reference</title>
-      <para>This appendix lists of all the filter rules currently defined 
-      in &app;. Each of these rules is available for use when creating custom 
-      filters. The rules are listed by their categories. 
+      <title>Справка правил фильтров</title>
+      <para>Это приложение перечисляет все правила фильтров, опредлённые 
+      в настоящий момент в &app;. Каждое из этих правил доступно при создании 
+      фильтров на заказ. Правила перечислены по их категориям.
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-general">
-        <title>General filters</title>
-        <para>This category includes the following most general rules:</para>
+        <title>Общие фильтры</title>
+        <para>Эта категория включает наиболее общие правила:</para>
         
           <variablelist>
 
-          <varlistentry><term>Everyone</term>
-          <listitem><para> This rule matches any person in the database.
-          As such it is not very useful on its own except for testing purposes.
-          However, it may be useful in combinations with other rules. 
+          <varlistentry><term>Каждый</term>
+          <listitem><para> Это правило выявляет каждое лицо в базе данных. Как 
+          таковое, оно не очень полезно само по себе. Однако, оно может быть 
+          полезно в комбинации с другими правилами.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a name</term>
-          <listitem><para> This rule matches any person whose name 
-          matches the specified value in full or in part. For example, 
-          Marta Ericsdotter will be matched by the rule using the 
-          value "eric" for the family name. 
+          <varlistentry><term>С именем</term>
+          <listitem><para>Это правило выявляет лица, чьи именя соответствуют 
+          указанному значению, полностью или частично. Например, Мария Рыкова 
+          будет выявлена этим правилом, использующим "рык" в качестве значения
+          для фамилии.
           </para>
 
-          <para> Separate values can be used for Given name, Family name, 
-          Suffix, and the Title. The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          name. To use just one value, leave the other values empty. 
+          <para> Различные значения могут быть использованы для Имени, Фамилии, 
+          Суффикса, и Титула. Правило выявляет лицо в том и только том случае, если 
+          все не пустые значения (частично) соответствуют имени лица. Чтобы 
+          использовать только одно значение, оставьте оставьте остальные значения 
+          пустыми. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the Id</term>
-          <listitem><para> This rule matches any person with a specified
-          &app; ID. The rule returns a match only if the ID is matched 
-          exactly. 
+          <varlistentry><term>Имеет Id</term>
+          <listitem><para> Это правило выявляет лицо с указанным 
+          &app; ID. Правило выявляет лицо только в случае точного 
+          соответствия ID. 
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made. 
+          <para> Вы можете либо ввести ID в поле ввода текста, либо выбрать
+          лицо путём щелчка по кнопке <guibutton>Выбрать...</guibutton>. 
+          В последнем случае, ID появится в текстовом поле после того, как 
+          выбор сделан.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a female</term>
-          <listitem><para> This rule matches any female person. 
+          <varlistentry><term>Является женщиной</term>
+          <listitem><para> Это правило выявляет всех лиц женского пола.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a male</term>
-          <listitem><para> This rule matches any male person. 
+          <varlistentry><term>Является мужчиной</term>
+          <listitem><para> Это правило выявляет всех лиц мужского пола.
           </para></listitem>
           </varlistentry>
 

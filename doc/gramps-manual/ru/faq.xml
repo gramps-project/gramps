@@ -231,137 +231,141 @@ type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>Why can I not add/remove/edit columns to the lists 
-      in People View and Family View?</term>
+      <varlistentry><term>Почему нельзя добавить/удалить/редактировать колонки
+      в списках Вида Людей и Вида Семьи?</term>
       <listitem><para> 
-This will be addressed after the TreeModelSort bug is fixed in pygtk,
-see <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
+Эта проблема будет решена, когда будет поправлена ошибка в структуре 
+TreeModelSort в библиотеке pygtk,
+см. <ulink url="http://bugzilla.gnome.org/show_bug.cgi?id=125172" 
 type="http">http://bugzilla.gnome.org/show_bug.cgi?id=125172</ulink>
- for the details.
-Once the patch is committed and incorporated into pygtk, we will add the 
-ability to add/remove/edit sortable columns.
+ для более подробной информации. После того, как поправка войдет в 
+ библотеку, мы добавим возможность добавлять/удалять/редактировать
+ упорядочиваемые колонки.
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>I would like to contribute to &app; by writing 
-      my favorite report. How do I do that?</term>
+      <varlistentry><term>Я хочу внести вклад в &app; путём написания своего
+      любимого отчёта. Как мне это сделать?</term>
       <listitem><para> 
-The easiest way to contribute to reports, filters, tools, etc. is to copy 
-an existing &app; report, filter, or tool. If you can create what you want 
-by modifying existing code -- great! If your idea does not fit into the logic
-of any existing &app; tool, the <ulink 
+      Самый простой способ внести вклад в отчёты, фильтры, инструменты, и т.д. -- 
+      скопиолвать существующий в &app; отчёт, фильтр или инструмент. Если Вы можете
+      создать то, что хотите, путём изменения существующего кода -- отлично! Если 
+      Ваша идея не укладывается в структуру какого-либо существующего в &app; 
+      инструмента, <ulink 
 url="http://gramps.sourceforge.net/phpwiki/index.php/GrampsDevelopersPage" 
-type="http">following page</ulink> may provide some help in writing your 
-own plugin from scratch.
+type="http">следующая страница</ulink> может помочь в написании Вашего 
+расширения с самого начала.
 
-If you need more help or would like to discuss your idea with us, 
-please do not hesitate to contact us at <ulink 
+Если Вам нужна дополнительная помощь, или если Вы хотите обсудить Вашу идею,
+пожадуйста, не стесняйтесь писать нам по адресу <ulink 
 url="mailto:gramps-devel@lists.sf.net" 
 type="mailto">gramps-devel@lists.sf.net</ulink>
 </para>
 
 <para>
-To test your work in progress, you may save your plugin under
-<replaceable>$HOME/.gramps/plugins</replaceable> directory and it should 
-be found and imported on startup. 
-The correctly written plugin will register itself with &app;, create menu 
-item, and so on.</para>
+Чтобы проверять Вашу работу по мере продвижения, Вы можете сохранить своё 
+расширение в каталоге <replaceable>$HOME/.gramps/plugins</replaceable> 
+и в этом случае оно должно быть найдено и импортировано при старте. Правильно
+написанное расширение зарегистрирует себя с &app;, создаст элементы меню, 
+и т.д.</para>
 
 <para>
-If you are happy with your plugin and would like to contribute your code 
-back to the &app; project, you are very welcome to do so by contacting us 
-at <ulink url="mailto:gramps-devel@lists.sf.net" 
+Если Вы довольны своим расширением и хотите внести Ваш код в проект &app;,
+пожалуйста напишите нам по адресу <ulink url="mailto:gramps-devel@lists.sf.net" 
 type="mailto">gramps-devel@lists.sf.net</ulink>
       </para></listitem>
       </varlistentry>
 
 
-      <varlistentry><term>I found a bug and I want it fixed right now! 
-      What do I do?</term>
+      <varlistentry><term>Я нашёл ошибку и хочу, чтобы она была исправлена
+      сейчас же! Что мне делать?</term>
       <listitem><para> 
-The best thing you can do is to fix the bug and send the patch to
-<ulink url="mailto:gramps-devel@lists.sf.net" 
+Лучшее, что Вы можете сделать, это исправить ошибку и прислать поправку
+по адресу <ulink url="mailto:gramps-devel@lists.sf.net" 
 type="mailto">gramps-devel@lists.sf.net</ulink> :-)</para>
 
 <para>
-The next best thing would be to submit a good bug report. This can be done in
-one of the two ways: (1) send your report to 
+Следующее лучшее за этим действие -- заполнить хороший отчёт об ошибке.
+Это можно сделать одним из двух способов: (1) послать Ваш отчёт по адресу
 <ulink url="mailto:gramps-bugs@lists.sf.net" 
 type="mailto">gramps-bugs@lists.sf.net</ulink>
-or (2) file your report with the bug tracker system at 
+или (2) заполнить Ваш отчёт в системе отслеживания ошибок на сайте
 <ulink url="http://sf.net/tracker/?group_id=25770" type="http">
 http://sf.net/tracker/?group_id=25770&amp;atid=385137</ulink>
-(this function is also available by selecting 
-<menuchoice><guisubmenu>Help</guisubmenu><guimenuitem>Report a 
-bug</guimenuitem></menuchoice> from gramps main menu). </para>
+(эта фунция также доступна выбором 
+<menuchoice><guisubmenu>Справка</guisubmenu><guimenuitem>Заполнить 
+сообщение об ошибке</guimenuitem></menuchoice> из главного 
+меню &app;). </para>
 
-<para>A good bug report would include: </para>
+<para>Хороший отчёт об ошибке включает в себя: </para>
 
 <itemizedlist>
 
 <listitem><para>   
-Version of gramps you were using when you encountered the bug 
-(available through <menuchoice><guisubmenu>Help</guisubmenu>
-<guimenuitem>About</guimenuitem></menuchoice> menu item).
+Версию &app;, которую Вы использовали в момент обнаружения ошибки
+(доступна через элемент меню <menuchoice><guisubmenu>Справка</guisubmenu>
+<guimenuitem>О программе</guimenuitem></menuchoice>).
 </para></listitem>
 
 <listitem><para>
-Language under which gramps was run
-(available by executing </para>
+Язык, на котором производилась работа &app; (доступен путём выполнения 
+команды </para>
    <para><command>echo $LANG</command></para>
-<para>in your terminal).
+<para>в терминале).
 </para></listitem>
 
 <listitem><para>
-Symptoms indicating that this is indeed a bug.
+Симптомы, показывающие, что это действительно ошибка.
 </para></listitem>
 
 <listitem><para>
-Any Traceback messages, error messages, warnings, etc, 
-that showed up in your terminal or a in separate traceback window.
+Любые сообщения Traceback, сообщения об ошибках, предупреждения, и т.д., 
+которые были показаны в терминале или в отдельном окне.
 </para></listitem>
 
 </itemizedlist>
 
-<para>Most problems can be fixed quickly provided there is enough information. 
-To ensure this, please follow up on your bug reports. In particular, if you 
-file a bug report with sf.net bug tracker, PLEASE log in to sf.net before 
-filing 
-(register your free account if you don't have one). Then we will have a way 
-of contacting you should we need more information. If you choose to file your 
-report anonymously, at least check every so often whether your report page 
-has something new posted, as it probably would.</para>
+<para>Большинство проблем может быть быстро поправлено, при наличии 
+полной информации. Чтобы обеспечить это, пожалуйста участвуйте в расследовании 
+Вашего отчёта. В частности, если Вы заполняете отчёт в системе отслеживания 
+ошибок на sf.net, ПОЖАЛУЙСТА зарегистрируйтесь в sf.net перед заполнением 
+(получите бесплатный счёт, если у Вас его нет). Тогда у нас будет способ конакта
+с Вами, если нам понадобится дополнительная информация. Если Вы решаете 
+заполнить свой отчёт анонимно, по-крайней мере, проверяйте время от времени, 
+нет ли на Вашем отчёте нового сообщения, т.к. скорее всего оно там будет.
+</para>
 
-<para>If the above explanations seem vague, please follow 
-<ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" 
-type="http">this link.</ulink>
+<para>Если вышеизложенные объяснения кажутся туманными, пожалуйста
+посетите <ulink url="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html" 
+type="http">этот сайт.</ulink>
 
       </para></listitem>
       </varlistentry>
 
-      <varlistentry><term>It is obvious that &app; absolutely needs to 
-      become a (client-server/web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/C#/You-name-it) 
-      application. When is this going to happen?</term>
+      <varlistentry><term>Совершенно очевидно, что &app; точно должа быть 
+      преобразована в 
+      (client-server/web-based/PHP/weblog/Javascript/C++/distributed/KDE/Motif/Tcl/Win32/C#/You-name-it) 
+      приложение. Когда это призойдёт?</term>
       <listitem><para> 
-The surest way to see it happen is to get it done by yourself. Since
-&app; is free/open source, nobody prevents you from taking all of the
-code and continuing its development in whatever direction you see fit.
-In doing so, you may consider giving your new project another name to
-avoid confusion with the continuing &app; development. If you would
-like the &app; project to provide advice, expertise, filters, etc., 
-we will gladly cooperate with your new project, to ensure compatability 
-or import/export options to your new format of a project.</para>
+      Самый верный способ дождаться этого, это сделать всё самому. Поскольку &app; 
+      является свободным ПО/открытым кодом, никто не препятствует Вам взять
+      весь код и продолжать его разработку в любом направлении, которое Вам нравится.
+      В процессе этого, Вы можете рассмотреть новое имя для Вашего нового проекта, 
+      чтобы не приводить к путанице с продолжающейся разработкой &app;. Еслы Вы 
+      хотите получить от проекта &app; совет, опыт, фильтры и т.д., мы с радостью будем 
+      сотрудничать с Вашим новым проектом, с целью обеспечения сомвестимости или 
+      возможностей импорта/экспорта для нового формата Вашего проекта. <para>
 
 <para>                                                                                
-If, however, you would like the &app; project to to adopt your strategy,
-you would need to convince &app; developers that your strategy is good
-for &app; and superior to the present development strategy.</para>
+Если же вы хотите, чтобы проект &app; принял Вашу стратегию, Вам придётся убедить
+разработчиков &app; в том, что Ваша стратегия хороша для &app; и лучше текущей 
+стратегии.</para>
 
 <para>                                                                                
-HINT: if &app; developers are still not convinced after about three
-messages sent to gramps-devel, maybe you are better off on your own
-rather than with a company of retards who can't fully realize the
-potential of your great idea :-)
+НАМЁК: если разработчики &app; всё ещё не убеждены после примерно трех 
+сообщений, посланных в gramps-devel, быть может Вам лучше работать самому,
+чем в компании тормозов, которые не в состоянии полностью оценить потенциал
+Вашей великой идеи :-)
 
       </para></listitem>
       </varlistentry>
