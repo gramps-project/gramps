@@ -58,9 +58,9 @@ from gettext import gettext as _
 _LINE_SPACING = 20  
 
 # Font constants -- specific for gnome-print
-_FONT_SANS_SERIF    = "Serif"
-_FONT_SERIF         = "Sans"
-_FONT_MONOSPACE     = "Monospace"
+_FONT_SANS_SERIF    = "Arial"
+_FONT_SERIF         = "Times New Roman"
+_FONT_MONOSPACE     = "Courier New"
 _FONT_BOLD          = "Bold"
 _FONT_ITALIC        = "Italic"
 _FONT_BOLD_ITALIC   = "Bold Italic"
