@@ -69,8 +69,7 @@ class SelectObject:
     def __init__(self,db,title):
 
         self.db = db
-        gladefile = "%s/choose.glade" % const.rootDir
-        self.glade = gtk.glade.XML(gladefile,"select_object","gramps")
+        self.glade = gtk.glade.XML(const.gladeFile,"select_object","gramps")
         self.top = self.glade.get_widget('select_object')
         title_label = self.glade.get_widget('object_title')
         self.object_tree = self.glade.get_widget('object_tree')

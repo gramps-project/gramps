@@ -56,8 +56,7 @@ class SelectPerson:
         self.renderer = gtk.CellRendererText()
         self.db = db
         self.filter = filter
-        gladefile = "%s/choose.glade" % const.rootDir
-        self.glade = gtk.glade.XML(gladefile,"select","gramps")
+        self.glade = gtk.glade.XML(const.gladeFile,"select","gramps")
         self.top = self.glade.get_widget('select')
         title_label = self.glade.get_widget('title')
         self.filter_select = self.glade.get_widget('filter')
