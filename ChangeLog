@@ -1,3 +1,10 @@
+2004-01-19  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/AncestorChart2.py: Add hotkeys to check button labels.
+	Add scale, compress, and title options support to the book dialog.
+	* src/plugins/book.glade: Reduce minimum window height to 600 pixels.
+	* src/plugins/WriteCD.py (on_ok_clicked): Correct indentation.
+	* src/GrampsCfg.py (loadConfig, save_data): Correctly parse gconf key.
+
 2004-01-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/AncestorChart2.py: more multipage improvements
 	* src/plugins/Makefile.am: export AncestorChart2.py

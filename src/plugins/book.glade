@@ -6,7 +6,7 @@
 
 <widget class="GtkWindow" id="top">
   <property name="width_request">600</property>
-  <property name="height_request">700</property>
+  <property name="height_request">600</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Book</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -410,7 +410,7 @@
 		<widget class="GtkVBox" id="vbox8">
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
-		  <property name="spacing">8</property>
+		  <property name="spacing">2</property>
 
 		  <child>
 		    <widget class="GtkButton" id="button52">

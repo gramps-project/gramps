@@ -259,13 +259,13 @@ class PackageWriter:
                             "keep the reference to the missing file, or select a new file." 
                             ) % { 'file_name' : oldfile },
                         remove_clicked, leave_clicked, select_clicked)
-                        missmedia_action = mmd.default_action
-                    elif missmedia_action == 1:
-                        remove_clicked()
-                    elif missmedia_action == 2:
-                        leave_clicked()
-                    elif missmedia_action == 3:
-                        select_clicked()
+                    missmedia_action = mmd.default_action
+                elif missmedia_action == 1:
+                    remove_clicked()
+                elif missmedia_action == 2:
+                    leave_clicked()
+                elif missmedia_action == 3:
+                    select_clicked()
 
         # Write XML now
         g = gnome.vfs.create('burn:///%s/data.gramps' % base,gnome.vfs.OPEN_WRITE )
