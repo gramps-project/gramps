@@ -13,6 +13,7 @@ MOSTLYCLEANFILES =
 gdirdir=$(DESTDIR)$(prefix)/share/gramps
 
 gdir_PYTHON = \
+	accent.py \
 	AddMedia.py\
 	AddrEdit.py\
 	AddSpouse.py\

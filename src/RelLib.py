@@ -286,7 +286,7 @@ class Person(PrimaryObject,SourceNote):
         dday = self.death_handle
         return [ GrampsCfg.get_display_name()(self), self.gramps_id,
                  gender, bday, dday, self.get_primary_name().get_sort_name(),
-                 bday, dday, GrampsCfg.get_display_surname()(self.primary_name)]
+                 GrampsCfg.get_display_surname()(self.primary_name)]
                                           
     def set_primary_name(self,name):
         """sets the primary name of the Person to the specified
@@ -814,7 +814,10 @@ class Event(PrimaryObject,DataObj):
             self.name = source.name
             self.cause = source.cause
             self.media_list = [MediaRef(media_id) for media_id in source.media_list]
-            self.witness = source.witness[:]
+            if source.witness != None:
+                self.witness = source.witness[:]
+            else:
+                self.witness = None
         else:
             self.place = u''
             self.date = None

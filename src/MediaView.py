@@ -87,7 +87,8 @@ class MediaView:
         self.topWindow = glade.get_widget("gramps")
         self.renderer = gtk.CellRendererText()
 
-        self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.db))
+        # self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.db))
+        self.model = DisplayModels.MediaModel(self.db)
 
         self.selection = self.list.get_selection()
 
@@ -128,8 +129,6 @@ class MediaView:
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)
 
-        column.set_clickable(gtk.TRUE)
-        column.set_sort_column_id(0)
         column.set_min_width(225)
         self.list.append_column(column)
         self.columns = [column]
@@ -141,8 +140,6 @@ class MediaView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            column.set_clickable(gtk.TRUE)
-            column.set_sort_column_id(index)
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
@@ -154,8 +151,8 @@ class MediaView:
         self.build_tree()
 
     def build_tree(self):
-        self.list.set_model(None)
         self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
+        # self.model = DisplayModels.MediaModel(self.parent.db)
             
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()

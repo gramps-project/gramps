@@ -95,9 +95,7 @@ class PeopleView:
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,weight=PeopleModel.COLUMN_BOLD)
         column.set_resizable(gtk.TRUE)        
         column.set_min_width(225)
-        column.set_clickable(gtk.TRUE)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
-        column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
         self.person_tree.append_column(column)
         self.columns = [column]
 
@@ -108,18 +106,15 @@ class PeopleView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            column.set_clickable(gtk.TRUE)
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
-            column.set_sort_column_id(index)
             self.columns.append(column)
             self.person_tree.append_column(column)
             index += 1
 
     def build_tree(self):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
-        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.sort_model = self.person_model.filter_new()
         self.person_tree.set_model(self.sort_model)
 
     def blist(self, store, path, iter, id_list):
@@ -150,8 +145,7 @@ class PeopleView:
         self.person_model = PeopleModel.PeopleModel(db)
         if not maps[0]:
             self.build_tree()
-        self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
-        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.sort_model = self.person_model.filter_new()
         self.person_tree.set_model(self.sort_model)
 
     def remove_from_person_list(self,person):
@@ -261,7 +255,6 @@ class PeopleView:
         
     def redisplay_person_list(self,person):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
-        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.sort_model = self.person_model.filter_new()
         self.person_tree.set_model(self.sort_model)
         

@@ -80,7 +80,7 @@ class PlaceView:
 
         self.renderer = gtk.CellRendererText()
 
-        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
+        self.model = DisplayModels.PlaceModel(self.parent.db)
             
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
@@ -94,8 +94,6 @@ class PlaceView:
             
         column = gtk.TreeViewColumn(_('Place Name'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)
-        column.set_clickable(gtk.TRUE)
-        column.set_sort_column_id(0)
 
         column.set_min_width(225)
         self.list.append_column(column)
@@ -108,25 +106,20 @@ class PlaceView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            column.set_clickable(gtk.TRUE)
-            column.set_sort_column_id(index)
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
-
-    def on_click(self,column):
-        self.click_col = column
 
     def change_db(self,db):
         self.build_columns()
         self.build_tree()
 
     def build_tree(self):
-        self.list.set_model(None)
-        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
+        self.model = DisplayModels.PlaceModel(self.parent.db)
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
+        self.selection.set_mode(gtk.SELECTION_MULTIPLE)
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
