@@ -27,9 +27,9 @@ import os
 #
 #-------------------------------------------------------------------------
 try:
-    from xml.sax import make_parser,handler
+    from xml.sax import make_parser,handler,SAXParseException
 except:
-    from _xmlplus.sax import make_parser,handler
+    from _xmlplus.sax import make_parser,handler,SAXParseException
 
 FONT_SANS_SERIF = 0
 FONT_SERIF = 1
@@ -483,9 +483,7 @@ class StyleSheetList:
             parser = make_parser()
             parser.setContentHandler(SheetParser(self))
             parser.parse(self.file)
-        except IOError:
-            pass
-        except OSError:
+        except (IOError,OSError,SAXParseException):
             pass
         
 #------------------------------------------------------------------------
