@@ -68,8 +68,8 @@ except:
 #-------------------------------------------------------------------------
 def exportData(database, filename, callback):
     if os.path.isfile(filename):
-        shutil.copyfile(filename, filename + ".bak")
         try:
+            shutil.copyfile(filename, filename + ".bak")
             shutil.copystat(filename, filename + ".bak")
         except:
             pass
@@ -77,7 +77,9 @@ def exportData(database, filename, callback):
     compress = GrampsCfg.uncompress == 0 and _gzip_ok == 1
 
     try:
+        print "xmlwriter"
         g = XmlWriter(database,callback,0,compress)
+        print "done"
         g.write(filename)
     except:
         import DisplayTrace
@@ -128,14 +130,39 @@ class XmlWriter:
         """
         Write the database to the specified file.
         """
+
+        base = os.path.dirname(filename)
+        if os.path.isdir(base):
+            if not os.access(base,os.W_OK) or not os.access(base,os.R_OK):
+                ErrorDialog(_('Failure writing %s') % filename,
+                            _("The database cannot be saved because you do not "
+                              "have permission to write to the directory. "
+                              "Please make sure you have write access to the "
+                              "directory and try again."))
+                return
+            
+        if os.path.exists(filename):
+            if not os.access(filename,os.W_OK):
+                ErrorDialog(_('Failure writing %s') % filename,
+                            _("The database cannot be saved because you do not "
+                              "have permission to write to the file. "
+                              "Please make sure you have write access to the "
+                              "file and try again."))
+                return
+        
         self.fileroot = os.path.dirname(filename)
-        if self.compress:
-            try:
-                g = gzip.open(filename,"wb")
-            except:
+        try:
+            if self.compress:
+                try:
+                    g = gzip.open(filename,"wb")
+                except:
+                    g = open(filename,"w")
+            else:
                 g = open(filename,"w")
-        else:
-            g = open(filename,"w")
+        except IOError,msg:
+            ErrorDialog(_('Failure writing %s') % filename,msg)
+            return
+
         self.g = codecs.getwriter("utf8")(g)
 
         self.write_xml_data()

@@ -1200,7 +1200,7 @@ class Gramps:
             self.db.clear_added_media_objects()
         except (OSError,IOError), msg:
             emsg = _("Could not create %s") % filename
-            ErrorDialog(emsg,_("An error was detected while trying to create the file"))
+            ErrorDialog(emsg,msg)
             return
         
         self.db.setSavePath(old_file)
