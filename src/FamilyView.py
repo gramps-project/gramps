@@ -28,7 +28,6 @@
 import gtk
 import gtk.glade
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK
-from gobject import TYPE_STRING, TYPE_INT
 
 #-------------------------------------------------------------------------
 #
@@ -189,7 +188,7 @@ class FamilyView:
 
         already_init = self.cadded[fv]
         
-        self.ap_model = gtk.ListStore(TYPE_STRING)
+        self.ap_model = gtk.ListStore(str)
         self.ap_data.set_model(self.ap_model)
         if not already_init:
             column = gtk.TreeViewColumn('',gtk.CellRendererText(),text=0)
@@ -197,7 +196,7 @@ class FamilyView:
             self.ap_data.connect('button-press-event',self.ap_button_press)
             self.ap_data.connect('key-press-event',self.ap_key_press)
 
-        self.ap_parents_model = gtk.ListStore(TYPE_STRING)
+        self.ap_parents_model = gtk.ListStore(str)
         self.ap_parents.set_model(self.ap_parents_model)
         self.ap_selection = self.ap_parents.get_selection()
         if not already_init:
@@ -206,7 +205,7 @@ class FamilyView:
             self.ap_parents.connect('button-press-event',self.ap_par_button_press)
             self.ap_parents.connect('key-press-event',self.ap_par_key_press)
 
-        self.sp_parents_model = gtk.ListStore(TYPE_STRING)
+        self.sp_parents_model = gtk.ListStore(str)
         self.sp_parents.set_model(self.sp_parents_model)
         self.sp_selection = self.sp_parents.get_selection()
         if not already_init:
@@ -215,7 +214,7 @@ class FamilyView:
             self.sp_parents.connect('button-press-event',self.sp_par_button_press)
             self.sp_parents.connect('key-press-event',self.sp_par_key_press)
 
-        self.spouse_model = gtk.ListStore(TYPE_STRING,TYPE_STRING)
+        self.spouse_model = gtk.ListStore(str,str)
         self.spouse_list.set_model(self.spouse_model)
         self.spouse_selection = self.spouse_list.get_selection()
         if not already_init:
@@ -1049,13 +1048,13 @@ class FamilyView:
         self.parent.db.transaction_commit(trans,_("Remove from family (%s)") % n)
 
     def display_marriage(self,family):
-        hlist = family.get_child_handle_list()
-        self.child_model = DisplayModels.ChildModel(hlist,self.parent.db)
-        self.child_list.set_model(self.child_model)
-
         if not family:
             self.family = None
             return
+
+        hlist = family.get_child_handle_list()
+        self.child_model = DisplayModels.ChildModel(hlist,self.parent.db)
+        self.child_list.set_model(self.child_model)
         self.family = self.parent.db.get_family_from_handle(family.get_handle())
 
         if self.family.get_father_handle() == self.person.get_handle():
