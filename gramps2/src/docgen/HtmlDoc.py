@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 import os
 import string
 import re
@@ -426,6 +428,12 @@ class HtmlDoc(BaseDoc.BaseDoc):
             self.f.write('&nbsp;')
         self.empty = 0
         self.f.write('</p>\n')
+
+    def start_bold(self):
+        self.f.write('<b>')
+
+    def end_bold(self):
+        self.f.write('</b>')
 
     def write_text(self,text):
         text = string.replace(text,'&','&amp;');       # Must be first

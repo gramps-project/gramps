@@ -1,3 +1,12 @@
+2003-11-13  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ImageSelect.py (GlobalMediaProperties.__init__): Find labels from
+	XML; (redraw_attr_list): Change attribute label; (display_refs): Change
+	references label; (on_notebook_switch_page): change notes label.
+	* src/imagesel.glade: Set meaningful label ids, remove bold markup.
+	
+	* src/docgen/HtmlDoc.py (start_bold, end_bold): Add functions (closes
+	bug #841277).
+
 2003-11-12  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/FamilyView.py: Change column sizes on the FamilyView to
 	fit with the new column
@@ -18,12 +27,12 @@
 	* src/Marriage.py (__init__): Find soucre label from XML;
 	(on_switch_page): Add function.
 	* src/marriage.glade: Set meaningful label ids, remove bold markup.
-	* src/EditSource.py (__init__): Find soucre label from XML.
+	* src/EditSource.py (__init__): Find labels from XML.
 	* src/gramps.glade: Set meaningful label ids, remove bold markup.
-	* src/EventEdit.py: (__init__): Find soucre label from XML;
+	* src/EventEdit.py: (__init__): Find labels from XML;
 	(on_switch_page): Add function.
 	* src/Witness.py (WitnessTab.redraw): Change label upon redraw.
-	* src/NameEdit.py: (__init__): Find soucre label from XML;
+	* src/NameEdit.py: (__init__): Find labels from XML;
 	(on_switch_page): Add function.
 
 2003-11-12  Tim Waugh  <twaugh@redhat.com>
