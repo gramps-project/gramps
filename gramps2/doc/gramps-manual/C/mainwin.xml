@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2004  Alexander Roitman
 
 	  Permission is granted to copy, distribute and/or modify this
 	  document under the terms of the GNU Free Documentation
@@ -392,6 +392,44 @@
 	the Active person the Active person. Again, the display is re-adjusted 
 	to show four generations, starting from the newly selected Active 
 	person.</para> 
+
+	<!-- ==== Figure: Pedigree View ==== -->
+	<figure id="pedigree-anchor-fig"> 
+	<title>Pedigree View with the Anchor</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/pedigree-anchor.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Pedigree View with the anchor set.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+    
+    <para>An additional advanced scheme of labeling generations exists in 
+    Pedigree View. It becomes available by setting the anchor on some active 
+    person. If the anchor is set, the generations are labeled as follows. 
+    The anchor
+    person (and his/her generation) is labeled as <guilabel>0</guilabel>. 
+    The ancestor generations are numbered with positive integers 
+    (<guilabel>1</guilabel>, <guilabel>2</guilabel>, <guilabel>3</guilabel>, 
+    etc.) while the descendant generations are numbered with negative integers
+    (<guilabel>-1</guilabel>, <guilabel>-2</guilabel>, <guilabel>-3</guilabel>, 
+    etc.). In all cases, the number represents the number of generations 
+    between the labeled generation and the anchor person. In this mode, 
+    you can travel along the extensive pedigree line and see the number 
+    of generations counting from the anchor person.</para>
+    
+    <para>To set the anchor, select the <guilabel>Set anchor</guilabel> menu
+    item from the right-click context menu, when the desired person is the 
+    Active person in the Pedigree View. The labels will change immediately, 
+    and the name of the anchor person will appear at the lower left corner
+    of the display area. 
+    The set anchor person will stay in effect until either the anchor is 
+    removed (by selecting the <guilabel>Remove anchor</guilabel> item from the 
+    context menu) or until the active person chosen is unrelated to the anchor 
+    person. The latter move can be made using extensive navigation tools 
+    available in &app;, see <xref linkend="gramps-nav"/> for the detailed 
+    reference. 
+    </para>
+
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->

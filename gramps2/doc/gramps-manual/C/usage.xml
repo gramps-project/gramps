@@ -3,7 +3,7 @@
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2004  Alexander Roitman
 
 	  Permission is granted to copy, distribute and/or modify this
 	  document under the terms of the GNU Free Documentation
@@ -167,6 +167,15 @@
      in the database, and it will be in the consistent state. Use this option
      if the replacement is readily available. 
      </para></listitem>
+
+     <listitem>
+     <para>To automatically use the selection made in this dialog for 
+     all missing media files, check the <guilabel>Use this selection for all 
+     missing media files</guilabel> box. This will remember your choice
+     and use it for all media files missing during this import, so that no 
+     further dialogs will be presented. Use this option if you anticipate 
+     many missing files and want to deal with all of them in the same manner.
+     </para></listitem>
     
      </itemizedlist>	
 
@@ -297,6 +306,15 @@
      if the replacement is readily available. 
      </para></listitem>
     
+     <listitem>
+     <para>To automatically use the selection made in this dialog for 
+     all missing media files, check the <guilabel>Use this selection for all 
+     missing media files</guilabel> box. This will remember your choice
+     and use it for all media files missing during this export, so that no 
+     further dialogs will be presented. Use this option if you anticipate 
+     many missing files and want to deal with all of them in the same manner.
+     </para></listitem>
+
      </itemizedlist>	
 
     </sect2>
@@ -439,7 +457,8 @@
         invoke the <guilabel>Edit Person</guilabel> Dialog 
 	(<xref linkend="edit-pers-fig"/>). Then, select the 
 	<guilabel>Gallery</guilabel> tab, and click the 
-	<guibutton>Add...</guibutton> button to invoke the <guilabel>Select a media 
+	<guibutton>Add from file...</guibutton> button to invoke 
+    the <guilabel>Select a media 
 	object</guilabel> dialog. Type the filename or select a file with the 
 	image, then provide a title for that image. To prevent the file from
 	being copied into your database directory, check the <guilabel>Do not
@@ -450,8 +469,8 @@
 	switch to the Family View (<xref linkend="family-fig"/>) and then
 	double-click on the Spouse box invoke the <guilabel>Marriage/Relationship 
 	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add...</guibutton> button to add 
-        an image. </para>
+	tab and click the <guibutton>Add from file...</guibutton> button to add 
+    an image. </para>
 
 	<para> To add images related to a source or a place, first switch to 
 	the Sources View (<xref linkend="sources-fig"/>) or Places 
@@ -460,14 +479,14 @@
 	or click the <guibutton>Edit</guibutton> icon on the toolbar to invoke the 
 	<guilabel>Source Editor</guilabel> (or <guilabel>Place 
 	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
-	tab and click the <guibutton>Add...</guibutton> button to add 
+	tab and click the <guibutton>Add from file...</guibutton> button to add 
         an image. </para>
 
 	<para> Finally, to add images that are generally related to the 
 	database but not limited to any person, relationship, source, or place 
 	in particular, switch to the Media View (<xref linkend="media-fig"/>). 
 	Then click the <guibutton>Add</guibutton> icon on the toolbar to 
-        add an image. 
+    add an image. 
 	If you have already added any images to any individual galleries, 
 	you will also find them listed in the Media View. </para>
 
@@ -761,6 +780,17 @@
 	naturally fit into the Parameter-Value pairs available to Attributes. 
 	To add a note or modify existing notes simply edit the text in the 
 	text entry field.
+    </para>
+    
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -824,9 +854,11 @@
 	generic &app; icon is displayed instead. Note that the first available
 	image in the gallery will be also displayed in the
 	<guilabel>Image</guilabel> area in the <guilabel>General</guilabel> 
-	tab. The buttons <guibutton>Add...</guibutton>,
+	tab. The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
 	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
 	to this person. Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
@@ -1070,6 +1102,18 @@
 	Attributes. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
 	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
+	</para>
+
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1107,10 +1151,13 @@
 	modification of such. The central part shows the list of all such media objects. 
 	For media object which are valid image files previews of images are 
 	displayed. For other objects such as audio files, movie files, etc., a 
-	generic &app; icon is displayed instead. The buttons 
-	<guibutton>Add...</guibutton>, <guibutton>Edit...</guibutton>, 
-	and <guibutton>Remove</guibutton> allow	you to correspondingly add, modify, 
-	and remove a media object reference to this relationship. 
+	generic &app; icon is displayed instead. 
+    The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
+	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
+	to this relationship. 
 	Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
@@ -1180,9 +1227,9 @@
 		<varlistentry><term><guilabel>General</guilabel></term>
 		<listitem><para>The  
 	<guilabel>General</guilabel> tab allows editing of the most general
-	information about the source: its title, author, and publication
-	information. This information can be typed in the appropriate 
-	text entry fields. 
+	information about the source: its title, author, abbreviated title, 
+    and publication	information. 
+    This information can be typed in the appropriate text entry fields. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1193,6 +1240,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the source. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1206,10 +1264,13 @@
 	such media objects. For media object which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-	The buttons <guibutton>Add...</guibutton>,
+    The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
 	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
-	to this source. Note that the <guibutton>Edit...</guibutton> and 
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
+	to this source.
+    Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
@@ -1296,7 +1357,7 @@
 	the details of the currently selected name in the list (if any). 
 	The buttons <guibutton>Add...</guibutton>, 
 	<guibutton>Edit...</guibutton>, and <guibutton>Delete</guibutton> allow 
-	you to correspondingly add, modify, and remove a name record 
+	you to correspondingly add, modify, and remove a place record 
 	from the database. Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Delete</guibutton> buttons become available only when 
 	a name is selected from the list. </para>
@@ -1309,6 +1370,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the place. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1337,10 +1409,13 @@
 	such media objects. For media objects which are valid image files 
 	previews of images are displayed. For other objects such as audio 
 	files, movie files, etc., a generic &app; icon is displayed instead. 
-	The buttons <guibutton>Add...</guibutton>, 
+    The buttons <guibutton>Add from file...</guibutton>,
+    <guibutton>Add from database...</guibutton>,
 	<guibutton>Edit...</guibutton>, and <guibutton>Remove</guibutton> allow
-	you to correspondingly add, modify, and remove a media object reference 
-	to this source. Note that the <guibutton>Edit...</guibutton> and 
+	you to correspondingly add a new image, add a reference to an image already
+    stored in the database, modify, and remove a media object reference 
+	to this place. 
+    Note that the <guibutton>Edit...</guibutton> and 
 	<guibutton>Remove</guibutton> buttons become available only when 
 	a media object is selected from the list. 
 	</para>
@@ -1464,6 +1539,17 @@
 	not naturally fit into the Parameter-Value pairs available to 
 	Attributes. To add a note or modify existing notes simply edit the 
 	text in the text entry field. </para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1559,6 +1645,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the event. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1697,6 +1794,17 @@
 	the name. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
 	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1774,8 +1882,19 @@
 		<varlistentry><term><guilabel>Note</guilabel></term>
 		<listitem>
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
-	the attribute . To add a note or modify existing notes simply edit the 
+	the attribute. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1824,7 +1943,8 @@
 		<listitem><para>The 
 	<guilabel>General</guilabel> tab allows editing of the most general
 	information about the address: date, street address, city or county, 
-	state or province, country, and the postal code. The information can 
+	state or province, country, the postal code, and the phone number. 
+    The information can 
 	be typed in the appropriate text entry fields. 
 	Check the <guilabel>Private record</guilabel> box to mark this address 
 	record as private. This will give you a chance to omit this address 
@@ -1854,6 +1974,17 @@
 	<para>The <guilabel>Note</guilabel> tab displays any notes concerning 
 	the address. To add a note or modify existing notes simply edit the 
 	text in the text entry field.
+	</para>
+
+    <para>The <guilabel>Format</guilabel> option allows you to set the 
+    appearance of the note in the output (i.e. in reports and web pages). 
+    Selecting 
+    <guilabel>Flowed</guilabel> will replace all multiple spaces, tabs, 
+    and single end-of-line characters with single space in the output. 
+    The two consecutive new lines (i.e. an empty line) denote a new paragraph.
+    Selecting <guilabel>Preformatted</guilabel> will honor all multiple spaces
+    tabs, and new lines, so that the output will appear as it is entered
+    into the text entry field. 
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -2251,6 +2382,15 @@
 	entries. </para></listitem>
 	</varlistentry>
 
+	<varlistentry><term>Ancestor Chart (Wall Chart)</term>
+	<listitem><para>This report is similar to the Ancestor Chart report. 
+    It provides more options which make it useful for generating huge charts
+    suitable for a poster or a wall chart. These options include the ability
+    to compress the report (getting rid of an empty space) and the option
+    to fit the whole chart onto a single page. In the latter case, the
+    contents of the chart is scaled down appropriately. </para></listitem>
+	</varlistentry>
+
 	<varlistentry><term>Descendant Graph</term>
 	<listitem><para>This report generates a graph of people who are
 	descendants of the Active person. Specific options include 
@@ -2280,7 +2420,13 @@
 
 	<para>Common options for graphical reports are the filename of the
 	output, the format of the output, selected style, page size and 
-	orientation. </para>
+	orientation. Optionally, the reports can be immediately opened
+    with the default application (set in the main GNOME 
+    <menuchoice><guimenu>Desktop Preferenes</guimenu>
+    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Preferred 
+    Applications</replaceable></guimenuitem></menuchoice> dialog). 
+    </para>
 
       </sect3>
 
@@ -2387,7 +2533,14 @@
 	output, the format of the output, selected style, page size and 
 	orientation. For HTML reports, there is no page information. 
 	Instead, HTML options include the choice of the HTML template, 
-	either available in &app; or a custom template defined by you. </para>
+	either available in &app; or a custom template defined by you. 
+    Optionally, the reports can be immediately opened
+    with the default application (set in the main GNOME 
+    <menuchoice><guimenu>Desktop Preferenes</guimenu>
+    <guisubmenu><replaceable>Advanced</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Preferred 
+    Applications</replaceable></guimenuitem></menuchoice> dialog). 
+    </para>
 
       </sect3>
 

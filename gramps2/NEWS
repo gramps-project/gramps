@@ -14,7 +14,9 @@ Version 1.0.0 -- the "Stable as a tombstone" release
 * Manual is translated into French (Michel Guitel), German (Sebastian Vöcking),
   Hungarian (Egyeki Gergely), and Russian (Alex Roitman) languages.
 * Relationship calculators for German (Dr. Martin Senftleben) and 
-  Hungarian (Egyeki Gergely) languages. 
+  Hungarian (Egyeki Gergely) languages.
+* Improved AncestorChart is capable for compressing the output (getting rid
+  of the empty space) and scaling the contents to a single page. 
 * Numerous bugfixes.
 
 Version 0.98.0 -- the "Round me off" release
