@@ -11,6 +11,7 @@ Version 0.1.4
 * Start of a generic output formatter for report generation. Currently
   supports HTML, OpenOffice (625+), and AbiWord (0.7.13+).  Allows 
   control of paragraph and font styles.
+* Added into CVS on sourceforge
 
 Version 0.1.3
 
