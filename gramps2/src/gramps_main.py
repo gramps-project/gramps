@@ -425,7 +425,10 @@ class Gramps:
         for item in gramps_rf.gramps_recent_files:
             index = index + 1
             name = os.path.basename(item.get_path())
-            menu_item = gtk.MenuItem(name,False)
+            if gtk.pygtk_version < (2,4,0):
+                menu_item = gtk.MenuItem(name)
+            else:
+                menu_item = gtk.MenuItem(name,False)
             menu_item.connect("activate",self.recent_callback,
                             item.get_path(),item.get_mime())
             menu_item.show()

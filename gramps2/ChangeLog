@@ -1,3 +1,7 @@
+2005-01-05  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: detect pygtk_version before passing
+	False for markup on MenuItem
+
 2005-01-05 Douglas S. Blank  <dblank@brynmawr.edu>
 	* src/Utils.py (roman): Proper implementation.
 
