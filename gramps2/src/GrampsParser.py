@@ -652,15 +652,16 @@ class GrampsParser:
     def stop_event(self,tag):
         self.event.name = self.event_type
 
+        self.db.add_event(self.event)
         if self.family:
-            self.family.add_event(self.event)
+            self.family.add_event_id(self.event.get_id())
         else:
             if self.event_type == "Birth":
-                self.person.set_birth(self.event)
+                self.person.set_birth_id(self.event.get_id())
             elif self.event_type == "Death":
-                self.person.set_death(self.event)
+                self.person.set_death_id(self.event.get_id())
             else:
-                self.person.add_event(self.event)
+                self.person.add_event_id(self.event.get_id())
         self.event = None
 
     def stop_name(self,tag):

@@ -67,7 +67,7 @@ class EventEditor:
         self.plist = []
         self.pmap = {}
         self.elist = list
-        
+
         for key in self.parent.db.get_place_id_keys():
             p = self.parent.db.get_place_display(key)
             self.pmap[p[0]] = key
@@ -150,7 +150,12 @@ class EventEditor:
             if (def_placename):
                 self.place_field.set_text(def_placename)
             else:
-                self.place_field.set_text(event.get_place_name())
+                place_id = event.get_place_id()
+                if place_id:
+                    place_name = u""
+                else:
+                    place_name = self.db.find_place_from_id(place_id).get_title()
+                self.place_field.set_text(place_name)
 
             self.date_field.set_text(self.date.get_date())
             self.cause_field.set_text(event.get_cause())
@@ -266,9 +271,14 @@ class EventEditor:
         self.callback(self.event)
 
     def update_event(self,name,date,place,desc,note,format,priv,cause):
-        if self.event.get_place_id() != place:
-            self.event.set_place_id(place)
-            self.parent.lists_changed = 1
+        if place:
+            if self.event.get_place_id() != place.get_id():
+                self.event.set_place_id(place.get_id())
+                self.parent.lists_changed = 1
+        else:
+            if self.event.get_place_id():
+                self.event.set_place_id(None)
+                self.parent.lists_changed = 1
         
         if self.event.get_name() != self.trans(name):
             self.event.set_name(self.trans(name))
