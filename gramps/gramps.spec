@@ -1,4 +1,4 @@
-%define ver      0.3.2
+%define ver      0.4.0
 %define rel      1
 %define prefix   /usr
 
@@ -19,11 +19,9 @@ Requires: pygnome-libglade
 Requires: PyXML
 
 %description
-GRAMPS is an acronym for the Genealogical Research and Analysis
-Management Programming System.  It was conceived under the concept
-that most genealogy programs were designed to provide the
-researcher the capability to input information related to a
-particular family tree.
+gramps (Genealogical Research and Analysis Management Programming
+System) is a GNOME based genealogy program supporting a Python
+based plugin system.
 
 %prep
 %setup
