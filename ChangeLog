@@ -1,3 +1,6 @@
+2003-12-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/ru/getstart.xml: Translation update.
+
 2003-12-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: Add phone to address, postal code and phone to
 	place
