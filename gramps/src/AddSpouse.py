@@ -82,6 +82,7 @@ class AddSpouse:
             "on_select_spouse_clicked" : self.on_select_spouse_clicked,
             "on_new_spouse_clicked"    : self.on_new_spouse_clicked,
             "on_rel_type_changed"      : self.on_rel_type_changed,
+            "on_combo_insert_text"     : utils.combo_insert_text,
             "destroy_passed_object"    : utils.destroy_passed_object
             })
 

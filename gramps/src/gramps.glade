@@ -3591,6 +3591,12 @@
 	      <handler>on_rel_type_changed</handler>
 	      <last_modification_time>Sat, 14 Jul 2001 15:29:20 GMT</last_modification_time>
 	    </signal>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>rel_combo</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:53:38 GMT</last_modification_time>
+	    </signal>
 	    <editable>False</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -3881,7 +3887,7 @@
 
 	<widget>
 	  <class>GtkCombo</class>
-	  <name>combo6</name>
+	  <name>mrel_combo</name>
 	  <value_in_list>True</value_in_list>
 	  <ok_if_empty>False</ok_if_empty>
 	  <case_sensitive>True</case_sensitive>
@@ -3905,6 +3911,12 @@ Unknown
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>mrel</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>mrel_combo</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:46:06 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -4074,7 +4086,7 @@ Unknown
 
 	<widget>
 	  <class>GtkCombo</class>
-	  <name>combo5</name>
+	  <name>frel_combo</name>
 	  <value_in_list>True</value_in_list>
 	  <ok_if_empty>False</ok_if_empty>
 	  <case_sensitive>True</case_sensitive>
@@ -4098,6 +4110,12 @@ Unknown
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>frel</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>frel_combo</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:47:01 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -4168,6 +4186,12 @@ Unknown
 	      <name>changed</name>
 	      <handler>on_prel_changed</handler>
 	      <last_modification_time>Sun, 15 Jul 2001 14:33:47 GMT</last_modification_time>
+	    </signal>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>prel_combo</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:47:51 GMT</last_modification_time>
 	    </signal>
 	    <editable>False</editable>
 	    <text_visible>True</text_visible>
@@ -4448,7 +4472,7 @@ Unknown
 
 	<widget>
 	  <class>GtkCombo</class>
-	  <name>combo3</name>
+	  <name>mrel_combo</name>
 	  <value_in_list>True</value_in_list>
 	  <ok_if_empty>False</ok_if_empty>
 	  <case_sensitive>True</case_sensitive>
@@ -4471,6 +4495,12 @@ Unknown
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>mrel</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>mrel_combo</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:46:06 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -4507,7 +4537,7 @@ Unknown
 
       <widget>
 	<class>GtkCombo</class>
-	<name>combo4</name>
+	<name>frel_combo</name>
 	<value_in_list>True</value_in_list>
 	<ok_if_empty>False</ok_if_empty>
 	<case_sensitive>True</case_sensitive>
@@ -4539,6 +4569,12 @@ Unknown
 	  <child_name>GtkCombo:entry</child_name>
 	  <name>frel</name>
 	  <can_focus>True</can_focus>
+	  <signal>
+	    <name>insert_text</name>
+	    <handler>on_combo_insert_text</handler>
+	    <object>frel_combo</object>
+	    <last_modification_time>Thu, 18 Oct 2001 01:55:01 GMT</last_modification_time>
+	  </signal>
 	  <editable>True</editable>
 	  <text_visible>True</text_visible>
 	  <text_max_length>0</text_max_length>
@@ -5522,7 +5558,7 @@ Unknown
 	    <widget>
 	      <class>GtkEntry</class>
 	      <child_name>GtkCombo:entry</child_name>
-	      <name>combo-entry1</name>
+	      <name>source</name>
 	      <can_focus>True</can_focus>
 	      <has_focus>True</has_focus>
 	      <signal>
@@ -5530,6 +5566,12 @@ Unknown
 		<handler>on_source_changed</handler>
 		<object>source_title</object>
 		<last_modification_time>Thu, 16 Aug 2001 19:46:31 GMT</last_modification_time>
+	      </signal>
+	      <signal>
+		<name>insert_text</name>
+		<handler>on_combo_insert_text</handler>
+		<object>source_title</object>
+		<last_modification_time>Thu, 18 Oct 2001 01:57:50 GMT</last_modification_time>
 	      </signal>
 	      <editable>False</editable>
 	      <text_visible>True</text_visible>
@@ -6190,6 +6232,12 @@ Unknown
 	      <child_name>GtkCombo:entry</child_name>
 	      <name>mrel</name>
 	      <can_focus>True</can_focus>
+	      <signal>
+		<name>insert_text</name>
+		<handler>on_combo_insert_text</handler>
+		<object>mcombo</object>
+		<last_modification_time>Thu, 18 Oct 2001 01:59:11 GMT</last_modification_time>
+	      </signal>
 	      <editable>True</editable>
 	      <text_visible>True</text_visible>
 	      <text_max_length>0</text_max_length>
@@ -6284,6 +6332,12 @@ Unknown
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>frel</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>fcombo</object>
+	      <last_modification_time>Thu, 18 Oct 2001 01:59:26 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>

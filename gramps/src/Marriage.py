@@ -77,6 +77,7 @@ class Marriage:
             "on_add_attr_clicked" : self.on_add_attr_clicked,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_attr_list_select_row" : self.on_attr_list_select_row,
+            "on_combo_insert_text"  : utils.combo_insert_text,
             "on_close_marriage_editor" : self.on_close_marriage_editor,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_delete_event" : self.on_delete_event,

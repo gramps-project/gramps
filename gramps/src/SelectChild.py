@@ -65,6 +65,7 @@ class SelectChild:
         self.xml = libglade.GladeXML(const.gladeFile,"selectChild")
     
         self.xml.signal_autoconnect({
+            "on_combo_insert_text"     : utils.combo_insert_text,
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_show_toggled"          : self.on_show_toggled,
             "destroy_passed_object"    : utils.destroy_passed_object
@@ -222,6 +223,7 @@ class NewChild:
         self.xml = libglade.GladeXML(const.gladeFile,"addChild")
         self.xml.signal_autoconnect({
             "on_addchild_ok_clicked" : self.on_addchild_ok_clicked,
+            "on_combo_insert_text"   : utils.combo_insert_text,
             "destroy_passed_object" : utils.destroy_passed_object
             })
 

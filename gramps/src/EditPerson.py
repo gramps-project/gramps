@@ -89,6 +89,7 @@ class EditPerson:
             "on_aka_update_clicked"     : self.on_aka_update_clicked,
             "on_apply_person_clicked"   : self.on_apply_person_clicked,
             "on_attr_list_select_row"   : self.on_attr_list_select_row,
+            "on_combo_insert_text"      : utils.combo_insert_text,
             "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
             "on_edit_death_clicked"     : self.on_edit_death_clicked,
             "on_delete_address_clicked" : self.on_delete_addr_clicked,

@@ -91,6 +91,7 @@ class NameEditor:
 
         self.top.signal_autoconnect({
             "destroy_passed_object"   : utils.destroy_passed_object,
+            "on_combo_insert_text"    : utils.combo_insert_text,
             "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
             "on_source_clicked"       : self.on_name_source_clicked
             })
