@@ -1,3 +1,10 @@
+2004-10-08  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: support for locale selected patronymic
+	names. Allow patronymic name to be substituted for prefix on
+	the display
+	* src/RelLib.py: add __cmp__ for Name
+	* src/gramps.glade: provide name for the prefix field
+
 2004-10-08 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsCfg.py (build): Typo.
 

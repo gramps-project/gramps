@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import pickle
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +59,7 @@ import Date
 import DateHandler
 import TransTable
 
-from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
+from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog
 
 from gettext import gettext as _
 
@@ -79,6 +80,15 @@ pycode_tgts = [('url', 0, 0),
                ('pattr', 0, 2),
                ('paddr', 0, 3)]
 
+
+_use_patronymic = [
+    "ru","RU","ru_RU","koi8r","ru_koi8r","russian","Russian",
+    "ru_RU.koi8r","ru_RU.KOI8-R","ru_RU.utf8","ru_RU.UTF8",
+    "ru_RU.utf-8","ru_RU.UTF-8","ru_RU.iso88595","ru_RU.iso8859-5",
+    "ru_RU.iso-8859-5"
+    ]
+    
+
 #-------------------------------------------------------------------------
 #
 # EditPerson class
@@ -86,6 +96,8 @@ pycode_tgts = [('url', 0, 0),
 #-------------------------------------------------------------------------
 class EditPerson:
 
+    use_patronymic = os.environ.get('LANG') in _use_patronymic
+    
     def __init__(self,parent,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
@@ -201,7 +213,6 @@ class EditPerson:
         self.name_source = self.get_widget("name_source")
         self.gid = self.get_widget("gid")
         self.slist = self.get_widget("slist")
-
         self.general_label = self.get_widget("general_label")
         self.names_label = self.get_widget("names_label")
         self.events_label = self.get_widget("events_label")
@@ -213,6 +224,12 @@ class EditPerson:
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
         self.get_widget("changed").set_text(person.get_change_display())
+
+        self.prefix_label = self.get_widget('prefix_label')
+
+        if self.use_patronymic:
+            self.prefix_label.set_text(_('Patronymic:'))
+            self.prefix_label.set_use_underline(True)
 
         self.orig_birth = self.db.get_event_from_handle(person.get_birth_handle())
         self.orig_death = self.db.get_event_from_handle(person.get_death_handle())
@@ -1118,8 +1135,11 @@ class EditPerson:
             changed = True
         if suffix != name.get_suffix():
             changed = True
-        if prefix != name.get_surname_prefix():
-            changed = True
+        if self.use_patronymic:
+            if prefix != name.get_patronymic():
+                changed = True
+            elif prefix != name.get_surname_prefix():
+                changed = True
         if surname.upper() != name.get_surname().upper():
             changed = True
         if ntype != const.NameTypesMap.find_value(name.get_type()):
@@ -1479,8 +1499,12 @@ class EditPerson:
         if suffix != name.get_suffix():
             name.set_suffix(suffix)
 
-        if prefix != name.get_surname_prefix():
-            name.set_surname_prefix(prefix)
+        if self.use_patronymic:
+            if prefix != name.get_patronymic():
+                name.set_patronymic(prefix)
+        else:
+            if prefix != name.get_surname_prefix():
+                name.set_surname_prefix(prefix)
 
         if const.NameTypesMap.has_value(ntype):
             ntype = const.NameTypesMap.find_key(ntype)
@@ -1501,7 +1525,7 @@ class EditPerson:
 
         name.set_source_reference_list(self.pname.get_source_references())
 
-        if not name.are_equal(self.person.get_primary_name()):
+        if name != self.person.get_primary_name():
             self.person.set_primary_name(name)
 
         if nick != self.person.get_nick_name():
@@ -1655,7 +1679,10 @@ class EditPerson:
         self.pname.set_type(const.NameTypesMap.find_value(ntype))
         self.pname.set_suffix(unicode(self.suffix.get_text()))
         self.pname.set_surname(unicode(self.surname.get_text()))
-        self.pname.set_surname_prefix(unicode(self.prefix.get_text()))
+        if self.use_patronymic:
+            self.pname.set_patronymic(unicode(self.prefix.get_text()))
+        else:
+            self.pname.set_surname_prefix(unicode(self.prefix.get_text()))
         self.pname.set_first_name(unicode(self.given.get_text()))
         self.pname.set_title(unicode(self.title.get_text()))
 
@@ -1769,7 +1796,10 @@ class EditPerson:
         self.get_widget("activepersonTitle").set_text(name)
         self.get_widget("activepersonTitle").set_use_markup(gtk.TRUE)
         self.suffix.set_text(self.pname.get_suffix())
-        self.prefix.set_text(self.pname.get_surname_prefix())
+        if self.use_patronymic:
+            self.prefix.set_text(self.pname.get_patronymic())
+        else:
+            self.prefix.set_text(self.pname.get_surname_prefix())
 
         self.surname.set_text(self.pname.get_surname())
         self.given.set_text(self.pname.get_first_name())

@@ -1958,34 +1958,38 @@ class Name(DataObj):
             else:
                 return "%s %s, %s" % (first, self.surname.upper(), self.suffix)
 
-    def are_equal(self,other):
-        """compares to names to see if they are equal, return 0 if they
-        are not"""
+    def __cmp__(self,other):
+        """
+        compares to names to see if they are equal, return 0 if they
+        are not
+        """
         if self.first_name != other.first_name:
-            return 0
+            return 1
         if self.surname != other.surname:
-            return 0
+            return 1
+        if self.patronymic != other.patronymic:
+            return 1
         if self.prefix != other.prefix:
-            return 0
+            return 1
         if self.suffix != other.suffix:
-            return 0
+            return 1
         if self.title != other.title:
-            return 0
+            return 1
         if self.type != other.type:
-            return 0
+            return 1
         if self.private != other.private:
-            return 0
+            return 1
         if self.get_note() != other.get_note():
-            return 0
+            return 1
         if len(self.get_source_references()) != len(other.get_source_references()):
-            return 0
+            return 1
         index = 0
         olist = other.get_source_references()
         for a in self.get_source_references():
             if not a.are_equal(olist[index]):
-                return 0
-            index = index + 1
-        return 1
+                return True
+            index += 1
+        return 0
 
 class Url:
     """Contains information related to internet Uniform Resource Locators,
