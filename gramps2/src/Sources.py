@@ -480,7 +480,6 @@ class SourceEditor:
         if self.update:
             self.update(self.parent,self.source_ref)
         
-        Utils.modified()
         self.close(obj)
 
     def on_source_changed(self,obj):

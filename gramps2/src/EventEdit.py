@@ -276,7 +276,6 @@ class EventEditor:
                 self.parent.db.add_place(place)
                 self.pmap[text] = place.get_id()
                 self.plist.append(place)
-                Utils.modified()
                 return place
             else:
                 return None

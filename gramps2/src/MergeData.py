@@ -230,8 +230,6 @@ class MergePeople:
                 one.add_source_reference(xsrc)
 
     def on_merge_clicked(self,obj):
-        Utils.modified()
-
         list = self.p1.get_alternate_names()[:]
         for xdata in self.p2.get_alternate_names():
             for data in list:
@@ -903,6 +901,5 @@ class MergePlaces:
         self.db.build_place_display(self.p1.get_id(),old_id)
         
         self.update(self.p1.get_id())
-        Utils.modified()
         Utils.destroy_passed_object(obj)
 

@@ -306,31 +306,22 @@ class EditSource:
 
         if author != self.source.get_author():
             self.source.set_author(author)
-            Utils.modified()
         
         if title != self.source.get_title():
             self.source.set_title(title)
-            Utils.modified()
         
         if pubinfo != self.source.get_publication_info():
             self.source.set_publication_info(pubinfo)
-            Utils.modified()
         
         if abbrev != self.source.get_abbreviation():
             self.source.set_abbreviation(abbrev)
-            Utils.modified()
         
         if note != self.source.get_note():
             self.source.set_note(note)
-            Utils.modified()
 
         if format != self.source.get_note_format():
             self.source.set_note_format(format)
-            Utils.modified()
 
-        if self.lists_changed:
-            Utils.modified()
-        
         self.gallery_ok = 1
 
         if self.callback:
@@ -371,7 +362,6 @@ class DelSrcQuery:
 
     def query_response(self):
         self.db.remove_source_id(self.source.get_id())
-        Utils.modified()
 
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)

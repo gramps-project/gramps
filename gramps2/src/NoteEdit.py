@@ -123,5 +123,4 @@ class NoteEditor:
                                buffer.get_end_iter(),gtk.FALSE))
         if text != self.data.get_note():
             self.data.set_note(text)
-            Utils.modified()
         self.close(obj)

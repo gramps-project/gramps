@@ -192,7 +192,6 @@ class AddSpouse:
                 Utils.destroy_passed_object(obj)
                 return
 
-        Utils.modified()
         if not self.active_family:
             self.active_family = self.db.new_family()
             self.person.add_family_id(self.active_family.get_id())

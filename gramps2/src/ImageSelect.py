@@ -492,7 +492,6 @@ class Gallery(ImageSelect):
                     photo.setLocal(1)
                 self.parent.lists_changed = 1
                 if GrampsCfg.globalprop:
-                    Utils.modified()
                     GlobalMediaProperties(self.db,photo,None)
             elif protocol != "":
                 import urllib
@@ -524,7 +523,6 @@ class Gallery(ImageSelect):
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
                 if GrampsCfg.globalprop:
-                    Utils.modified()
                     GlobalMediaProperties(self.db,photo,None)
             else:
                 if self.db.get_object_map().has_key(data.data):
@@ -544,7 +542,6 @@ class Gallery(ImageSelect):
                                     del nl[index]
                                     nl = nl[0:icon_index] + [item] + nl[icon_index:]
                                 self.dataobj.set_media_list(nl)
-                                Utils.modified()
                                 self.parent.lists_changed = 1
                                 self.load_images()
                                 return
@@ -556,7 +553,6 @@ class Gallery(ImageSelect):
                     self.parent.lists_changed = 1
                     if GrampsCfg.globalprop:
                         LocalMediaProperties(oref,self.path,self,self.parent_window)
-                    Utils.modified()
                 
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
         if info == 1:
@@ -821,14 +817,11 @@ class LocalMediaProperties:
             self.photo.set_note(text)
             self.photo.set_privacy(priv)
             self.parent.lists_changed = 1
-            Utils.modified()
         if format != self.photo.get_note_format():
             self.photo.set_note_format(format)
-            Utils.modified()
         if self.lists_changed:
             self.photo.set_attribute_list(self.alist)
             self.parent.lists_changed = 1
-            Utils.modified()
         self.db.commit_media_object(self.object)
 
     def on_help_clicked(self, obj):
@@ -1060,13 +1053,10 @@ class GlobalMediaProperties:
         if text != note or desc != self.object.get_description():
             self.object.set_note(text)
             self.object.set_description(desc)
-            Utils.modified()
         if format != self.object.get_note_format():
             self.object.set_note_format(format)
-            Utils.modified()
         if self.lists_changed:
             self.object.set_attribute_list(self.alist)
-            Utils.modified()
         if self.update != None:
             self.update()
         self.db.commit_media_object(self.object)
@@ -1124,7 +1114,6 @@ class DeleteMediaQuery:
         
     def query_response(self):
         del self.db.get_object_map()[self.media.get_id()]
-        Utils.modified()
 
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)

@@ -302,7 +302,6 @@ class MediaView:
                            ans.query_response)
         else:
             self.db.remove_object(mobj.get_id())
-            Utils.modified()
             self.update(0)
 
     def is_object_used(self,mobj):
@@ -363,7 +362,6 @@ class MediaView:
                 description = os.path.basename(name)
                 photo.set_description(description)
                 self.db.add_object(photo)
-                Utils.modified()
                 self.load_media()
                 if GrampsCfg.mediaref == 0:
                     name = RelImage.import_media_object(name,
@@ -402,7 +400,6 @@ class MediaView:
                 except:
                     photo.set_path(tfile)
                     return
-                Utils.modified()
                 self.db.commit_media_object(photo)
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,None)

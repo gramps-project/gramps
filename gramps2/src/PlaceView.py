@@ -265,7 +265,6 @@ class PlaceView:
             else:
                 self.db.remove_place(place.get_id())
                 self.update(0)
-                Utils.modified()
 
     def on_edit_clicked(self,obj):
         """Display the selected places in the EditPlace display"""

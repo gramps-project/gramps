@@ -565,7 +565,6 @@ class Marriage:
                     del m[family.get_id()]
                     m[idval] = family
                 family.set_id(idval)
-                Utils.modified()
             else:
                 WarningDialog(_("GRAMPS ID value was not changed."),
                               _('The GRAMPS ID that you chose for this '
@@ -587,22 +586,18 @@ class Marriage:
                         self.family.set_father_id(mother)
                         self.family.set_mother_id(father)
                     self.family.set_relationship(val)
-                Utils.modified()
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                   self.notes_buffer.get_end_iter(),gtk.FALSE))
         if text != self.family.get_note():
             self.family.set_note(text)
-            Utils.modified()
 
         format = self.preform.get_active()
         if format != self.family.get_note_format():
             self.family.set_note_format(format)
-            Utils.modified()
 
         if self.complete.get_active() != self.family.get_complete():
             self.family.set_complete(self.complete.get_active())
-            Utils.modified()
 
         date = unicode(self.lds_date.get_text())
         temple = unicode(self.lds_temple.entry.get_text())
@@ -621,30 +616,22 @@ class Marriage:
                 ord.set_status(self.seal_stat)
                 ord.set_place_id(place)
                 self.family.set_lds_sealing(ord)
-                Utils.modified()
         else:
             d = Date.Date()
             d.set(date)
             if Date.compare_dates(d,ord.get_date_object()) != 0:
                 ord.set_date_object(d)
-                Utils.modified()
             if ord.get_temple() != temple:
                 ord.set_temple(temple)
-                Utils.modified()
             if ord.get_status() != self.seal_stat:
                 ord.set_status(self.seal_stat)
-                Utils.modified()
             if ord.get_place_id() != place.get_id():
                 ord.set_place_id(place.get_id())
-                Utils.modified()
 
         if self.lists_changed:
             self.family.set_source_reference_list(self.srcreflist)
-            Utils.modified()
 
         self.update_lists()
-        if self.lists_changed:
-            Utils.modified()
         self.update_fv(self.family)
         self.db.commit_family(self.family)
 

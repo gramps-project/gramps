@@ -1,3 +1,8 @@
+2004-02-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: switch to DB as default, remove save option
+	* src/RelLib.py: setup DB environment better
+	* src/DbPrompter.py: handle save/open with new DBs
+
 2004-02-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: media reference fixes
 	* src/MediaView.py: media reference fixes

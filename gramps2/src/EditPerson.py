@@ -1593,7 +1593,6 @@ class EditPerson:
                 self.db.add_place(place)
                 self.pdmap[text] = place.get_id()
                 self.add_places.append(place)
-                Utils.modified()
                 return place.get_id()
             else:
                 return ''

@@ -192,7 +192,6 @@ class SourceView:
                            ans.query_response,self.topWindow)
         else:
             self.db.remove_source_id(source.get_id())
-            Utils.modified()
             self.update(0)
 
     def is_used(self,source):
