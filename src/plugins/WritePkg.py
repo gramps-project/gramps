@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -104,6 +104,7 @@ class PackageWriter:
         gnome.help_display('gramps-manual','export-data')
 
     def export(self, filename):
+        missmedia_action = 0
         #--------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
@@ -178,13 +179,21 @@ class PackageWriter:
                 g.close()
             else:
                 # File is lost => ask what to do
-                MissingMediaDialog(_("Media object could not be found"),
-	            _("%(file_name)s is referenced in the database, but no longer exists. " 
-                        "The file may have been deleted or moved to a different location. " 
-                        "You may choose to either remove the reference from the database, " 
-                        "keep the reference to the missing file, or select a new file." 
-                        ) % { 'file_name' : oldfile },
-                    remove_clicked, leave_clicked, select_clicked)
+                if missmedia_action == 0:
+                    mmd = MissingMediaDialog(_("Media object could not be found"),
+    	            _("%(file_name)s is referenced in the database, but no longer exists. " 
+                            "The file may have been deleted or moved to a different location. " 
+                            "You may choose to either remove the reference from the database, " 
+                            "keep the reference to the missing file, or select a new file." 
+                            ) % { 'file_name' : oldfile },
+                        remove_clicked, leave_clicked, select_clicked)
+                    missmedia_action = mmd.default_action
+                elif missmedia_action == 1:
+                    remove_clicked()
+                elif missmedia_action == 2:
+                    leave_clicked()
+                elif missmedia_action == 3:
+                    select_clicked()
         
         # Write XML now
         g = StringIO()
