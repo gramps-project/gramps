@@ -1764,7 +1764,7 @@ echo "${ECHO_T}no" >&6
 fi
 
 
-LANGUAGES="hu zh_CN cs da_DK de es fr it nb nl pl pt_BR ro ru sv"
+LANGUAGES="hu zh_CN cs da_DK de es fr it nb nl no pl pt_BR ro ru sv"
 
 
 DISTLANGS=
