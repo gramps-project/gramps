@@ -199,7 +199,7 @@ class BareReportDialog:
     frame_pad = 5
     border_pad = 6
 
-    def __init__(self,database,person,option_class,name):
+    def __init__(self,database,person,option_class,name,translated_name):
         """Initialize a dialog to request that the user select options
         for a basic *bare* report."""
 
@@ -209,7 +209,7 @@ class BareReportDialog:
             self.options = option_class(name)
         elif type(option_class) == InstanceType:
             self.options = option_class
-        self.report_name = name
+        self.report_name = translated_name
         self.init_interface()
 
     def init_interface(self):
@@ -813,12 +813,12 @@ class ReportDialog(BareReportDialog):
     dialog for a stand-alone report.
     """
 
-    def __init__(self,database,person,option_class,name=''):
+    def __init__(self,database,person,option_class,name,translated_name):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
-        BareReportDialog.__init__(self,database,person,option_class,name)
+        BareReportDialog.__init__(self,database,person,option_class,name,translated_name)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
@@ -1333,12 +1333,12 @@ class ReportDialog(BareReportDialog):
 class TextReportDialog(ReportDialog):
     """A class of ReportDialog customized for text based reports."""
 
-    def __init__(self,database,person,options,name=''):
+    def __init__(self,database,person,options,name,translated_name):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
         self.category = const.CATEGORY_TEXT
-        ReportDialog.__init__(self,database,person,options,name)
+        ReportDialog.__init__(self,database,person,options,name,translated_name)
 
     #------------------------------------------------------------------------
     #
@@ -1379,12 +1379,12 @@ class TextReportDialog(ReportDialog):
 
 class DrawReportDialog(ReportDialog):
     """A class of ReportDialog customized for drawing based reports."""
-    def __init__(self,database,person,opt,name=''):
+    def __init__(self,database,person,opt,name,translated_name):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
         self.category = const.CATEGORY_DRAW
-        ReportDialog.__init__(self,database,person,opt,name)
+        ReportDialog.__init__(self,database,person,opt,name,translated_name)
 
     #------------------------------------------------------------------------
     #
@@ -1635,7 +1635,7 @@ class CommandLineReport:
 #
 #------------------------------------------------------------------------
 # Standalone GUI report generic task
-def report(database,person,report_class,options_class,category,name):
+def report(database,person,report_class,options_class,translated_name,name,category):
     """
     report - task starts the report. The plugin system requires that the
     task be in the format of task that takes a database and a person as
@@ -1652,7 +1652,7 @@ def report(database,person,report_class,options_class,category,name):
     else:
         dialog_class = ReportDialog
 
-    dialog = dialog_class(database,person,options_class,name)
+    dialog = dialog_class(database,person,options_class,name,translated_name)
     response = dialog.window.run()
     if response == True:
         try:

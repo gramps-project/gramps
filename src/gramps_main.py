@@ -1691,10 +1691,10 @@ class Gramps:
     def on_preferences_activate(self,obj):
         GrampsCfg.display_preferences_box(self.db)
     
-    def menu_report(self,obj,task,report_class,options_class,category,name):
+    def menu_report(self,obj,task,report_class,options_class,translated_name,name,category):
         """Call the report plugin selected from the menus"""
         if self.active_person:
-            task(self.db,self.active_person,report_class,options_class,category,name)
+            task(self.db,self.active_person,report_class,options_class,translated_name,name,category)
 
     def menu_tools(self,obj,task):
         """Call the tool plugin selected from the menus"""

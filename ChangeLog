@@ -10,6 +10,11 @@
 
 	* various: Merge REP_OPT branch with HEAD.
 
+	* src/Plugins.py: Use category to register cl report.
+	* src/Report.py: Handle showing options centrally.
+	* src/gramps_main.py: Remove name and category from options.
+	* src/plugins/BookReport.py: Handle showing options centrally.
+
 2004-12-20 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ArgHandler.py: Single out Book by category.
 	* src/Plugins.py: Use category to register cl report.

@@ -100,6 +100,7 @@ class BookItem:
         self.style_file = ""
         self.style_name = "default"
         self.make_default_style = None
+        self.item_name = ""
 
     def get_registered_item(self,name):
         """ 
@@ -773,7 +774,7 @@ class BookReportSelector:
         row = self.bk_model.get_selected_row()
         item = self.book.get_item(row)
         option_class = item.option_class
-        item_dialog = BookItemDialog(self.db,option_class,data[0])
+        item_dialog = BookItemDialog(self.db,option_class,item.item_name,data[0])
         response = item_dialog.window.run()
         if response == True and item_dialog.person and data[1] != _("Title"): 
             self.bk_model.model.set_value(iter,2,
@@ -906,13 +907,13 @@ class BookItemDialog(Report.BareReportDialog):
     in a way specific for this report. This is a book item dialog.
     """
 
-    def __init__(self,database,option_class,name=''):
+    def __init__(self,database,option_class,name,translated_name):
 
         self.database = database
         self.option_class = option_class
         self.person = self.database.get_person_from_gramps_id(self.option_class.handler.get_person_id())
         self.new_person = None
-        Report.BareReportDialog.__init__(self,database,self.person,option_class,name)
+        Report.BareReportDialog.__init__(self,database,self.person,option_class,name,translated_name)
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
@@ -943,7 +944,8 @@ class BookReportDialog(Report.ReportDialog):
 
     def __init__(self,database,person,book,options):
         self.options = options
-        Report.BareReportDialog.__init__(self,database,person,options,'book')
+        Report.BareReportDialog.__init__(self,database,person,options,
+                    'book',_("Book Report"))
         self.book = book
         self.database = database 
         self.person = person

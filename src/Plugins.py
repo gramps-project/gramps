@@ -574,7 +574,7 @@ def register_report(
     (junk,standalone_task) = divmod(modes,2**Report.MODE_GUI)
     if standalone_task:
         _register_standalone(report_class,options_class,translated_name,
-                        category,description,
+                        name,category,description,
                         status,author_name,author_email)
 
     (junk,book_item_task) = divmod(modes-standalone_task,2**Report.MODE_BKI)
@@ -588,8 +588,8 @@ def register_report(
     if command_line_task:
         _register_cl_report(name,category,report_class,options_class)
 
-def _register_standalone(report_class, options_class, name,
-                    category=_("Uncategorized"),
+def _register_standalone(report_class, options_class, translated_name, 
+                    name, category,
                     description=_unavailable,
                     status=_("Unknown"),
                     author_name=_("Unknown"),
@@ -604,7 +604,7 @@ def _register_standalone(report_class, options_class, name,
             del_index = i
     if del_index != -1:
         del _reports[del_index]
-    _reports.append((report_class, options_class, 
+    _reports.append((report_class, options_class, translated_name, 
             category, name, description, status, author_name, author_email))
 
 def _register_book_item(translated_name,category,report_class,option_class,name):
@@ -744,13 +744,16 @@ def build_report_menu(top_menu,callback):
     
     hash_data = {}
     for report in _reports:
-        standalone_category = const.standalone_categories[report[2]]
+        standalone_category = const.standalone_categories[report[3]]
         if hash_data.has_key(standalone_category):
             hash_data[standalone_category].append(
-                    (report[3],report[0],report[1],report[2]))
+                    (report[0],report[1],report[2],report[4],report[3]))
         else:
             hash_data[standalone_category] = [
-                    (report[3],report[0],report[1],report[2])]
+                    (report[0],report[1],report[2],report[4],report[3])]
+
+#   0               1               2           3       4
+#report_class, options_class, translated_name, name, category,
 
     catlist = hash_data.keys()
     catlist.sort()
@@ -764,9 +767,9 @@ def build_report_menu(top_menu,callback):
         lst = hash_data[key]
         lst.sort()
         for name in lst:
-            subentry = gtk.MenuItem("%s..." % name[0])
+            subentry = gtk.MenuItem("%s..." % name[2])
             subentry.show()
-            subentry.connect("activate",callback,Report.report,name[1],name[2],name[3],name[0])
+            subentry.connect("activate",callback,Report.report,name[0],name[1],name[2],name[3],name[4])
             submenu.append(subentry)
     top_menu.set_submenu(report_menu)
 
