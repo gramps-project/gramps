@@ -1,3 +1,6 @@
+2004-10-17 Julio Sanchez <julio.sanchez@gmail.com>
+	* src/plugins/rel_es.py: Correct levels.
+
 2004-10-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ReadGedcom.py: allow default when selecting override, add
 	the place properly on import

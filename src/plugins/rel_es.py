@@ -204,18 +204,18 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
     def get_aunt(self,level):
         if level<len(_sister_level):
             return _sister_level[level]
-        elif (level-1)<len(_level_name_female):
-            return "%s tía abuela" % (_level_name_female[level-1])
+        elif (level-2)<len(_level_name_female):
+            return "%s tía abuela" % (_level_name_female[level-2])
         else:
-            return "%d-ésima tía abuela" % (level-1)
+            return "%d-ésima tía abuela" % (level-2)
 
     def get_uncle(self,level):
         if level<len(_brother_level):
             return _brother_level[level]
-        elif (level-1)<len(_level_name_male_a):
-            return "%s tío abuelo" % (_level_name_male_a[level-1])
+        elif (level-2)<len(_level_name_male_a):
+            return "%s tío abuelo" % (_level_name_male_a[level-2])
         else:
-            return "%d-ésimo tío abuelo" % (level-1)
+            return "%d-ésimo tío abuelo" % (level-2)
 
     def get_nephew(self,level):
         if level<len(_nephew_level):
