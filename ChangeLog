@@ -23,6 +23,9 @@
 	Update filter ComboBox in the main window.
 	* src/gramps_main.py (init_filters): Clear layout before rebuilding.
 
+	* src/ChooseParents.py: Stop parent selection window from being
+	modal; fix child/parent relations from strings to integers.
+
 2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py: Typo.
 	* src/EditPerson.py (on_add_addr_clicked): Typos.
