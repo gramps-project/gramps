@@ -132,12 +132,12 @@ class Marriage:
         mid = family.get_mother_id()
 
         if fid:
-            father = self.db.find_person_from_id(family.get_father_id())
+            father = self.db.try_to_find_person_from_id(family.get_father_id())
         else:
             father = None
 
         if mid:
-            mother = self.db.find_person_from_id(family.get_mother_id())
+            mother = self.db.try_to_find_person_from_id(family.get_mother_id())
         else:
             mother = None
         
@@ -393,11 +393,11 @@ class Marriage:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_id = src.get_base_id()
-                    newbase = self.db.find_source_from_id(base_id)
+                    newbase = self.db.try_to_find_source_from_id(base_id)
                     src.set_base_id(newbase)
                 place = foo.get_place_id()
                 if place:
-                    foo.set_place_id(self.db.find_place_from_id(place.get_id()))
+                    foo.set_place_id(self.db.try_to_find_place_from_id(place.get_id()))
                 self.elist.insert(row,foo)
 
             self.lists_changed = 1
@@ -425,7 +425,7 @@ class Marriage:
                 foo = pickle.loads(data[2]);
                 for src in foo.get_source_references():
                     base_id = src.get_base_id()
-                    newbase = self.db.find_source_from_id(base_id)
+                    newbase = self.db.try_to_find_source_from_id(base_id)
                     src.set_base_id(newbase)
                 self.alist.insert(row,foo)
 
@@ -471,7 +471,7 @@ class Marriage:
             place_id = event.get_place_id()
             
             if place_id:
-                place_name = self.db.find_place_from_id(place_id).get_title()
+                place_name = self.db.try_to_find_place_from_id(place_id).get_title()
             else:
                 place_name = ""
             iter = self.etree.add([const.display_fevent(event.get_name()),
@@ -678,7 +678,7 @@ class Marriage:
         self.date_field.set_text(event.get_date())
         place_id = event.get_place_id()
         if place_id:
-            place_name = self.db.find_place_from_id(place_id).get_title()
+            place_name = self.db.try_to_find_place_from_id(place_id).get_title()
         else:
             place_name = u""
         self.place_field.set_text(place_name)
@@ -687,7 +687,7 @@ class Marriage:
         if len(event.get_source_references()) > 0:
             psrc_ref = event.get_source_references()[0]
             psrc_id = psrc_ref.get_base_id()
-            psrc = self.db.find_source_from_id(psrc_id)
+            psrc = self.db.try_to_find_source_from_id(psrc_id)
             self.event_src_field.set_text(psrc.get_title())
             self.event_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
         else:
@@ -706,7 +706,7 @@ class Marriage:
         if len(attr.get_source_references()) > 0:
             psrc_ref = attr.get_source_references()[0]
             psrc_id = psrc_ref.get_base_id()
-            psrc = self.db.find_source_from_id(psrc_id)
+            psrc = self.db.try_to_find_source_from_id(psrc_id)
             self.attr_src_field.set_text(psrc.get_title())
             self.attr_conf_field.set_text(const.confidence[psrc_ref.get_confidence_level()])
         else:
@@ -723,8 +723,8 @@ class Marriage:
 
         father_id = self.family.get_father_id()
         mother_id = self.family.get_mother_id()
-        father = self.db.find_person_from_id(father_id)
-        mother = self.db.find_person_from_id(mother_id)
+        father = self.db.try_to_find_person_from_id(father_id)
+        mother = self.db.try_to_find_person_from_id(mother_id)
         if father and mother:
             name = _("%s and %s") % (father.get_primary_name().get_name(),
                                          mother.get_primary_name().get_name())
@@ -744,8 +744,8 @@ class Marriage:
         import AttrEdit
         father_id = self.family.get_father_id()
         mother_id = self.family.get_mother_id()
-        father = self.db.find_person_from_id(father_id)
-        mother = self.db.find_person_from_id(mother_id)
+        father = self.db.try_to_find_person_from_id(father_id)
+        mother = self.db.try_to_find_person_from_id(mother_id)
         if father and mother:
             name = _("%s and %s") % (father.get_primary_name().get_name(),
                                      mother.get_primary_name().get_name())
@@ -788,7 +788,7 @@ class Marriage:
         text = string.strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.db.find_place_from_id(self.pmap[text],trans)
+                return self.db.try_to_find_place_from_id(self.pmap[text],trans)
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)

@@ -70,7 +70,7 @@ class WitnessTab:
             if s.get_type() == RelLib.Event.ID:
                 id = s.get_value()
                 if self.db.has_person_id(id):
-                    n = self.db.find_person_from_id(id).get_primary_name().get_name()
+                    n = self.db.try_to_find_person_from_id(id).get_primary_name().get_name()
                 else:
                     n = _('Unknown')
                 self.model.add([n,s.get_value()],s)
@@ -149,7 +149,7 @@ class WitnessEditor:
             if self.ref.get_type():
                 self.in_db.set_active(1)
                 self.idval = self.ref.get_value()
-                person = self.db.find_person_from_id(self.idval)
+                person = self.db.try_to_find_person_from_id(self.idval)
                 self.name.set_text(person.get_primary_name().get_regular_name())
             else:
                 self.name.set_text(self.ref.get_value())

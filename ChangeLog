@@ -26,6 +26,15 @@
 	* src/plugins/changetype.glade: HIGify dialog.
 	* src/plugins/PatchNames.py: Correct transaction.
 
+	* src/RelLib.py (Transaction.__len__): Redefine length. 
+	* src/ChooseParents.py, src/EditPerson.py, src/EditSource.py, 
+	src/EventEdit.py, src/FamilyView.py, src/gramps_main.py, 
+	src/ImageSelect.py, src/Marriage.py, src/MediaView.py, 
+	src/PedView.py, src/PeopleModel.py, src/PlaceView.py,
+	src/SelectChild.py, src/SelectObject.py, src/Sources.py, 
+	src/SourceView.py, src/Utils.py, src/Witness.py, 
+	src/WriteXML.py: Switch from find_* to try_to_find_* methods.
+
 2004-05-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleModel.py: temporary fix for add person update
 	* src/PeopleView.py: temporary fix for add person update

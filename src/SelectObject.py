@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003  Donald N. Allingham
+# Copyright (C) 2003-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #
 # Written by Alex Roitman, 
@@ -98,7 +100,7 @@ class SelectObject:
         self.object_model.new_model()
 
         for key in self.db.get_object_keys():
-            object = self.db.find_object_from_id(key,None)
+            object = self.db.try_to_find_object_from_id(key,None)
             title = object.get_description()
             the_id = object.get_id()
             the_type = Utils.get_mime_description(object.get_mime_type())
@@ -115,7 +117,7 @@ class SelectObject:
             return
         data = self.object_model.get_data(iter,range(self.ncols))
         the_id = data[4]
-        object = self.db.find_object_from_id(the_id,None)
+        object = self.db.try_to_find_object_from_id(the_id,None)
         the_type = Utils.get_mime_description(object.get_mime_type())
         path = object.get_path()
 
@@ -148,7 +150,7 @@ class SelectObject:
             if iter:
                 data = self.object_model.get_data(iter,range(self.ncols))
                 the_id = data[4]
-                return_value = self.db.find_object_from_id(the_id,None)
+                return_value = self.db.try_to_find_object_from_id(the_id,None)
             else:
                 return_value = None
             self.top.destroy()

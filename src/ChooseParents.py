@@ -80,7 +80,7 @@ class ChooseParents:
         self.parent = parent
         self.db = db
         self.child_windows = {}
-        self.person = self.db.find_person_from_id(person.get_id())
+        self.person = self.db.try_to_find_person_from_id(person.get_id())
         if family:
             self.family = self.db.find_family_from_id(family.get_id())
         else:
@@ -370,11 +370,11 @@ class ChooseParents:
         family.add_child_id(self.person.get_id())
 
         if father_id:
-            self.father = self.db.find_person_from_id(father_id)
+            self.father = self.db.try_to_find_person_from_id(father_id)
             self.father.add_family_id(family.get_id())
             self.db.commit_person(self.father,trans)
         if mother_id:
-            self.mother = self.db.find_person_from_id(mother_id)
+            self.mother = self.db.try_to_find_person_from_id(mother_id)
             self.mother.add_family_id(family.get_id())
             self.db.commit_person(self.mother,trans)
 
@@ -432,7 +432,7 @@ class ChooseParents:
             if len(family_id_list) >= 1:
                 family = self.db.find_family_from_id(family_id_list[0])
                 mother_id = family.get_mother_id()
-                mother = self.db.find_person_from_id(mother_id)
+                mother = self.db.try_to_find_person_from_id(mother_id)
                 sname = mother.get_primary_name().get_surname()
                 tpath = self.mother_nsort.on_get_path(sname)
                 self.mother_list.expand_row(tpath,0)
@@ -456,7 +456,7 @@ class ChooseParents:
             if len(family_id_list) >= 1:
                 family = self.db.find_family_from_id(family_id_list[0])
                 father_id = family.get_mother_id()
-                father = self.db.find_person_from_id(father_id)
+                father = self.db.try_to_find_person_from_id(father_id)
                 sname = father.get_primary_name().get_surname()
                 tpath = self.father_nsort.on_get_path(sname)
                 self.father_list.expand_row(tpath,0)
@@ -594,7 +594,7 @@ class ChooseParents:
             self.db.commit_person(self.father,trans)
         if self.mother:
             self.db.commit_person(self.mother,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Choose Parents"))
 
 class ModifyParents:
     def __init__(self,db,person,family_id,family_update,full_update,parent_window=None):
@@ -613,8 +613,8 @@ class ModifyParents:
         self.family_update = family_update
         self.full_update = full_update
         
-        self.father = self.db.find_person_from_id(self.family.get_father_id())
-        self.mother = self.db.find_person_from_id(self.family.get_mother_id())
+        self.father = self.db.try_to_find_person_from_id(self.family.get_father_id())
+        self.mother = self.db.try_to_find_person_from_id(self.family.get_mother_id())
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
         self.top = self.glade.get_widget("modparents")

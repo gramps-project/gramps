@@ -837,7 +837,7 @@ class FamilyView:
             person_id = family.get_father_id()
         else:
             person_id = family.get_mother_id()
-        person = self.parent.db.find_person_from_id(person_id,None)
+        person = self.parent.db.try_to_find_person_from_id(person_id)
         self.parent.change_active_person(person)
 
         n = person.get_primary_name().get_name()
@@ -857,7 +857,7 @@ class FamilyView:
 
         if self.parent.active_person:
             id = self.parent.active_person.get_id()
-            self.person = self.parent.db.find_person_from_id(id,None)
+            self.person = self.parent.db.try_to_find_person_from_id(id)
         else:
             self.person = None
             self.clear()
@@ -909,7 +909,7 @@ class FamilyView:
             flist[f] = iter
                 
             if sp_id:
-                sp = self.parent.db.find_person_from_id(sp_id,None)
+                sp = self.parent.db.try_to_find_person_from_id(sp_id)
                 event = self.find_marriage(fm)
                 if event:
                     mdate = " - %s" % event.get_date()
@@ -955,8 +955,8 @@ class FamilyView:
             fam = self.parent.db.find_family_from_id(f)
             father_id = fam.get_father_id()
             mother_id = fam.get_mother_id()
-            f = self.parent.db.find_person_from_id(father_id,None)
-            m = self.parent.db.find_person_from_id(mother_id,None)
+            f = self.parent.db.try_to_find_person_from_id(father_id)
+            m = self.parent.db.try_to_find_person_from_id(mother_id)
             father = self.nameof(_("Father"),f,frel)
             mother = self.nameof(_("Mother"),m,mrel)
 
@@ -1001,13 +1001,13 @@ class FamilyView:
         if self.family.get_father_id() == self.person.get_id():
             sp_id = self.family.get_mother_id()
             if sp_id:
-                self.selected_spouse = self.parent.db.find_person_from_id(sp_id,None)
+                self.selected_spouse = self.parent.db.try_to_find_person_from_id(sp_id)
             else:
                 self.selected_spouse = None
         else:
             sp_id = self.family.get_father_id()
             if sp_id:
-                self.selected_spouse = self.parent.db.find_person_from_id(sp_id,None)
+                self.selected_spouse = self.parent.db.try_to_find_person_from_id(sp_id)
             else:
                 self.selected_spouse = None
 
@@ -1024,7 +1024,7 @@ class FamilyView:
         for child_id in child_list:
             status = _("Unknown")
 
-            child = self.parent.db.find_person_from_id(child_id,None)
+            child = self.parent.db.try_to_find_person_from_id(child_id)
             for fam in child.get_parent_family_id_list():
                 if fam[0] == self.family.get_id():
                     if self.person == self.family.get_father_id():
@@ -1381,9 +1381,9 @@ class FamilyView:
         prev_date = "00000000"
         for i in range(len(list)):
             child_id = list[i]
-            child = self.parent.db.find_person_from_id(child_id,None)
+            child = self.parent.db.try_to_find_person_from_id(child_id)
             birth_id = child.get_birth_id()
-            birth = self.parent.db.find_event_from_id(birth_id)
+            birth = self.parent.db.try_to_find_event_from_id(birth_id)
             if not birth:
                 continue
             bday = birth.get_date_object()

@@ -356,7 +356,7 @@ class Gramps:
     def undo(self,*args):
         self.db.undo()
         if self.active_person:
-            p = self.db.try_to_find_person_from_id(self.active_person.get_id(),None)
+            p = self.db.try_to_find_person_from_id(self.active_person.get_id())
             self.change_active_person(p)
         self.place_view.change_db(self.db)
         self.people_view.change_db(self.db)
@@ -503,7 +503,7 @@ class Gramps:
                     hotkey = "_%s" % chr(ord('a')+num-11)
                 elif num >= 21:
                     break
-                person = self.db.find_person_from_id(pid)
+                person = self.db.try_to_find_person_from_id(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
                     (hotkey,person.get_primary_name().get_name(),pid))
                 item.connect("activate",self.back_clicked,num)
@@ -1091,7 +1091,7 @@ class Gramps:
         #-------------------------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.find_object_from_id(ObjectId,trans)
+            mobj = self.db.try_to_find_object_from_id(ObjectId)
             for p in self.db.get_family_id_map().values():
                 nl = p.get_media_list()
                 for o in nl:
@@ -1147,13 +1147,13 @@ class Gramps:
                 name = choose.get_filename()
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
-                    object = self.db.find_object_from_id(ObjectId,trans)
+                    object = self.db.try_to_find_object_from_id(ObjectId)
                     object.set_path(name)
             choose.destroy()
 
         #-------------------------------------------------------------------------
         for ObjectId in self.db.get_object_keys():
-            object = self.db.find_object_from_id(ObjectId,trans)
+            object = self.db.try_to_find_object_from_id(ObjectId)
             if 0:
                 oldfile = object.get_path()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
@@ -1288,7 +1288,7 @@ class Gramps:
             if self.active_person.get_id() == family.get_father_id():
                 if family.get_mother_id() == None:
                     for child_id in family.get_child_id_list():
-                        child = self.db.find_person_from_id(child_id,trans)
+                        child = self.db.try_to_find_person_from_id(child_id)
                         child.remove_parent_family_id(family.get_id())
                         self.db.commit_person(child,trans)
                     self.db.delete_family(family.get_id(),trans)
@@ -1297,7 +1297,7 @@ class Gramps:
             else:
                 if family.get_father_id() == None:
                     for child_id in family.get_child_id_list():
-                        child = self.db.find_person_from_id(child_id,trans)
+                        child = self.db.try_to_find_person_from_id(child_id)
                         child.remove_parent_family_id(family)
                         self.db.commit_person(child,trans)
                     self.db.delete_family(family,trans)
@@ -1317,7 +1317,7 @@ class Gramps:
         self.db.remove_person_id(id, trans)
 
         if self.hindex >= 0:
-            self.active_person = self.db.find_person_from_id(self.history[self.hindex],trans)
+            self.active_person = self.db.try_to_find_person_from_id(self.history[self.hindex])
         else:
             self.change_active_person(None)
         self.db.add_transaction(trans,_("Delete Person (%s)") % n)
@@ -1342,8 +1342,7 @@ class Gramps:
             self.modify_statusbar()
         elif self.active_person == None or \
                person.get_id() != self.active_person.get_id():
-            self.active_person = self.db.find_person_from_id(person.get_id(),
-                                                             None)
+            self.active_person = self.db.try_to_find_person_from_id(person.get_id())
             self.modify_statusbar()
             self.set_buttons(1)
             if person:
@@ -1369,8 +1368,7 @@ class Gramps:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
         else:
-            self.active_person = self.db.find_person_from_id(person.get_id(),
-                                                             None)
+            self.active_person = self.db.try_to_find_person_from_id(person.get_id())
             self.set_buttons(1)
         
     def modify_statusbar(self):
@@ -1674,7 +1672,7 @@ class Gramps:
         
     def bookmark_callback(self,obj,person_id):
         old_person = self.active_person
-        person = self.db.find_person_from_id(person_id,None)
+        person = self.db.try_to_find_person_from_id(person_id)
         try:
             self.change_active_person(person)
             self.update_display(0)
