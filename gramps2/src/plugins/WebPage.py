@@ -82,6 +82,9 @@ class HtmlLinkDoc(HtmlDoc.HtmlDoc):
     """
     Version of the HtmlDoc class the provides the ability to create a link
     """
+    def write_linktarget(self,path):
+        self.f.write('<A NAME="%s"></A>' % path)
+
     def start_link(self,path):
         self.f.write('<A HREF="%s">' % path)
 
@@ -208,9 +211,8 @@ class IndividualPage:
         index = 1
         for sref in self.slist:
             self.doc.start_paragraph("SourceParagraph")
-            self.doc.start_link("s%d" % index)
+            self.doc.write_linktarget("s%d" % index)
             self.doc.write_text('%d. ' % index)
-            self.doc.end_link()
             index = index + 1
             self.write_info(sref.getBase().getTitle())
             self.write_info(sref.getBase().getAuthor())
