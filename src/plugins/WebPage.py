@@ -658,11 +658,11 @@ class WebReport(Report.Report):
             except IndexError:
                 print "Month index error - %d" % mon
                 retval = str(year)
-        if mode == Date.SingleDate.about:
+        if mode == Date.Calendar.ABOUT:
             retval = "ABT %s"  % retval
-        elif mode == Date.SingleDate.before:
+        elif mode == Date.Calendar.BEFORE:
             retval = "BEF %s" % retval
-        elif mode == Date.SingleDate.after:
+        elif mode == Date.Calendar.AFTER:
             retval = "AFT %s" % retval
         return retval
 
