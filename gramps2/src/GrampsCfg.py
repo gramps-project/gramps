@@ -100,7 +100,7 @@ panellist = [
     (_("Display"),
      [( _("General"), 5),
       ( _("Dates and Calendars"), 6),
-      ( _("Tool and Status Bars"), 4)]),
+      ( _("Toolbar and Statusbar"), 4)]),
     (_("Usage"),
      [( _("Find"), 3),
       ( _("Report Preferences"), 8),
