@@ -115,7 +115,7 @@ def importData(database, filename, callback):
     xml_file.close()
     
     # Rename media files if they were conflicting with existing ones
-    ObjectMap = parser.db.getObjectMap()
+    ObjectMap = database.getObjectMap()
     newpath = database.getSavePath()
     for OldMediaID in parser.MediaFileMap.keys():
         NewMediaID = parser.MediaFileMap[OldMediaID]
@@ -124,9 +124,42 @@ def importData(database, filename, callback):
 	(junk,oldext) = os.path.splitext(os.path.basename(oldfile))
         oldfile = os.path.join(basefile,OldMediaID+oldext)
         newfile = os.path.join(newpath,NewMediaID+oldext)
-        shutil.copy2(oldfile,newfile)
-        ObjectMap[NewMediaID].setPath(os.path.join(newfile))
-        ObjectMap[NewMediaID].setLocal(1)
+        try:
+	    shutil.copy2(oldfile,newfile)
+            ObjectMap[NewMediaID].setPath(os.path.join(newfile))
+            ObjectMap[NewMediaID].setLocal(1)
+        except:
+            # File is lost => remove all references and the object itself
+            mobj = ObjectMap[NewMediaID]
+            for p in database.getFamilyMap().values():
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in database.getPersonKeys():
+                p = database.getPerson(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in database.getSourceKeys():
+                p = database.getSource(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in database.getPlaceKeys():
+                p = database.getPlace(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            
+            database.removeObject(NewMediaID) 
     
     return 1
 
