@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Tue May 27 12:15:23 2003\n"
+"POT-Creation-Date: Tue May 27 12:56:19 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4411,8 +4411,9 @@ msgstr ""
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:473 plugins/FtmStyleDescendants.py:865
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s$(death_endnotes)s."
+#: plugins/FtmStyleAncestors.py:473 plugins/FtmStyleDescendants.py:516
+#: plugins/FtmStyleDescendants.py:865
+msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
 #: plugins/FtmStyleAncestors.py:482 plugins/FtmStyleDescendants.py:525
@@ -4487,8 +4488,9 @@ msgstr ""
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:615 plugins/FtmStyleDescendants.py:1012
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s$(death_endnotes)s."
+#: plugins/FtmStyleAncestors.py:615 plugins/FtmStyleDescendants.py:653
+#: plugins/FtmStyleDescendants.py:1012
+msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
 #: plugins/FtmStyleAncestors.py:623
@@ -4500,12 +4502,13 @@ msgstr ""
 msgid "%(female_name)s%(endnotes)s died %(death_date)s in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:638
-msgid "%(female_name)s%(endnotes)s died %(death_date)s$(death_endotes)s."
+#: plugins/FtmStyleAncestors.py:638 plugins/FtmStyleDescendants.py:1036
+msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:645
-msgid "%(female_name)s%(endnotes)s died in %(death_place)s$(death_endnotes)s."
+#: plugins/FtmStyleAncestors.py:645 plugins/FtmStyleDescendants.py:682
+#: plugins/FtmStyleDescendants.py:1044
+msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
 #: plugins/FtmStyleAncestors.py:663 plugins/FtmStyleDescendants.py:1063
@@ -4616,10 +4619,6 @@ msgstr ""
 msgid "%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:516
-msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
 #: plugins/FtmStyleDescendants.py:533 plugins/FtmStyleDescendants.py:882
 msgid "%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
@@ -4636,20 +4635,12 @@ msgstr ""
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s."
 msgstr ""
 
-#: plugins/FtmStyleDescendants.py:653
-msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, and died in %(death_place)s%(death_endnotes)s."
-msgstr ""
-
 #: plugins/FtmStyleDescendants.py:661 plugins/FtmStyleDescendants.py:1020
 msgid "%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s."
 msgstr ""
 
 #: plugins/FtmStyleDescendants.py:675
 msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:682 plugins/FtmStyleDescendants.py:1044
-msgid "%(female_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s."
 msgstr ""
 
 #: plugins/FtmStyleDescendants.py:688
@@ -4666,10 +4657,6 @@ msgstr ""
 
 #: plugins/FtmStyleDescendants.py:949
 msgid "%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s %(birth_endnotes)s."
-msgstr ""
-
-#: plugins/FtmStyleDescendants.py:1036
-msgid "%(female_name)s%(endnotes)s died %(death_date)s%(death_endotes)s."
 msgstr ""
 
 #: plugins/FtmStyleDescendants.py:1127 plugins/FtmStyleDescendants.py:1311
