@@ -32,7 +32,6 @@ import os
 import md5
 import gtk
 
-
 class GrampsInMemCursor(GrampsCursor):
     """
     Cursor class for in-memory database classes. Since the in-memory
