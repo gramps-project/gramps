@@ -1,3 +1,7 @@
+2003-12-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/HtmlDoc.py (write_note): Set monospace font family 
+	for a preformatted note.
+
 2003-12-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteFtree.py (FtreeWriter.export): make sure that the 
 	parents are in the id_map array

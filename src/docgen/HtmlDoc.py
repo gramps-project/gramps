@@ -437,7 +437,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
 
     def write_note(self,text,format,style_name):
         if format == 1:
-            self.f.write('<pre class=%s>' % style_name)
+            self.f.write('<pre class=%s style="font-family: courier, monospace">' % style_name)
             self.write_text(text)
             self.f.write('</pre>')
         elif format == 0:
