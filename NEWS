@@ -1,5 +1,14 @@
 Version 0.9.2
 * Fixed duplicate place problem.
+* Language-specific relationship calculation framework. 
+  Volunteers needed to create language-specific plugins. 
+* New Family Tree Maker style reports (Ancestor and Descendant).
+* Import from GRAMPS package. 
+* Proper handling of media files in imports, exports, and Save As.
+* Fixed Getting Started druid.
+* New category of Tools: Debug, featuring Python evaluation window
+  and Show uncollected objects.
+
 
 Version 0.9.1
 * Custom paper sizes may be set for reports
