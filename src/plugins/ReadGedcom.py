@@ -831,6 +831,8 @@ class GedcomParser:
                 self.parse_person_event(event,2)
             elif matches[1] == "EVEN":
                 event = RelLib.Event()
+                if matches[2]:
+                    event.setDescription(matches[2])
                 self.parse_person_event(event,2)
                 n = string.strip(event.getName()) 
                 if n in self.attrs:
