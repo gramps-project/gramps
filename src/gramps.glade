@@ -5334,8 +5334,8 @@ Unknown
 
       <widget>
 	<class>GtkLabel</class>
-	<name>mlabel</name>
-	<label>Relationship to Mother</label>
+	<name>flabel</name>
+	<label>Relationship to Father</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -5380,7 +5380,7 @@ Unknown
 
 	<widget>
 	  <class>GtkCombo</class>
-	  <name>mrel_combo</name>
+	  <name>frel_combo</name>
 	  <value_in_list>True</value_in_list>
 	  <ok_if_empty>False</ok_if_empty>
 	  <case_sensitive>True</case_sensitive>
@@ -5419,8 +5419,8 @@ Unknown
 
       <widget>
 	<class>GtkLabel</class>
-	<name>flabel</name>
-	<label>Relationship to Father</label>
+	<name>mlabel</name>
+	<label>Relationship to Mother</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
@@ -5445,7 +5445,7 @@ Unknown
 
       <widget>
 	<class>GtkCombo</class>
-	<name>frel_combo</name>
+	<name>mrel_combo</name>
 	<value_in_list>True</value_in_list>
 	<ok_if_empty>False</ok_if_empty>
 	<case_sensitive>True</case_sensitive>
@@ -6332,8 +6332,8 @@ Unknown
 
 	<widget>
 	  <class>GtkLabel</class>
-	  <name>mlabel</name>
-	  <label>Relationship to Mother</label>
+	  <name>flabel</name>
+	  <label>Relationship to Father</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
@@ -6470,7 +6470,7 @@ Unknown
 
 	  <widget>
 	    <class>GtkCombo</class>
-	    <name>mcombo</name>
+	    <name>fcombo</name>
 	    <value_in_list>True</value_in_list>
 	    <ok_if_empty>False</ok_if_empty>
 	    <case_sensitive>True</case_sensitive>
@@ -6535,8 +6535,8 @@ Unknown
 
 	<widget>
 	  <class>GtkLabel</class>
-	  <name>flabel</name>
-	  <label>Relationship to Father</label>
+	  <name>mlabel</name>
+	  <label>Relationship to Mother</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
@@ -6561,7 +6561,7 @@ Unknown
 
 	<widget>
 	  <class>GtkCombo</class>
-	  <name>fcombo</name>
+	  <name>mcombo</name>
 	  <value_in_list>True</value_in_list>
 	  <ok_if_empty>False</ok_if_empty>
 	  <case_sensitive>True</case_sensitive>
