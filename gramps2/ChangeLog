@@ -1,3 +1,10 @@
+2004-11-20  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/ChangeNames.py: Add a plugin to change capitalization
+	of family names
+	* src/plugins/changenames.glade: interface for ChangeNames plugin
+	* src/plugins/Makefile.am: Added new files
+	* src/plugins/PatchNames.py: display GRAMPS id instead of internal id
+
 2004-11-19 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Plugins.py: Remove redundant list of failed plugins.
 	Properly reload plugins. Work around what seems to be a Python bug.
