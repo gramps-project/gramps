@@ -1,5 +1,3 @@
-# copyright (C) 2000 Sun Microsystems, Inc.
-
 SUBDIRS = src doc example
 
 EXTRA_DIST = autogen.sh gramps.spec.in gramps.spec gramps-mdk.spec gramps-mdk.spec.in COPYING-DOCS FAQ

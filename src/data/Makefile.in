@@ -142,6 +142,7 @@ pkgdata_DATA = gedcom.xml \
 	       tips.xml \
 	       gnome-mime-application-x-gramps.png \
 	       gramps.applications \
+	       gramps.desktop \
 	       gramps.svg \
 	       gramps.keys \
                gramps.mime
@@ -453,8 +454,6 @@ uninstall-info: uninstall-info-recursive
 
 
 install-data-local:
-	$(INSTALL) -d $(DESTDIR)$(prefix)/share/pixmaps
-	$(INSTALL_DATA) gramps.png $(DESTDIR)$(prefix)/share/pixmaps
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) gramps.desktop $(DESTDIR)$(prefix)/share/applications
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/
@@ -468,7 +467,6 @@ install-data-local:
 	update-mime-database $(DESTDIR)$(prefix)/share/mime
 
 uninstall-local:
-	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
 	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
 	-rm $(DESTDIR)$(prefix)/share/icons/gnome/48x48/mimetypes/gnome-mime-application-x-gramps.png
 	-rm $(DESTDIR)$(prefix)/share/mime-info/gramps.keys
