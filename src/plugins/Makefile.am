@@ -24,6 +24,7 @@ pkgpython_PYTHON = \
 	Merge.py\
 	PatchNames.py\
 	ReadGedcom.py\
+	ReadPkg.py\
 	ReadNative.py\
 	RelCalc.py\
 	ReorderIds.py\
@@ -34,7 +35,9 @@ pkgpython_PYTHON = \
 	WebPage.py\
 	WriteGedcom.py\
 	WritePkg.py\
-	eval.py\
+	WriteCD.py\
+	rel_ru.py\
+        eval.py\
 	leak.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
@@ -53,7 +56,8 @@ GLADEFILES = \
 	relcalc.glade\
 	soundex.glade\
 	summary.glade\
-	verify.glade
+	verify.glade\
+        cdexport.glade
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
