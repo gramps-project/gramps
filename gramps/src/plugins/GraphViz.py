@@ -174,7 +174,7 @@ class GraphVizDialog(ReportDialog):
         self.add_frame_option(_("GraphViz Options"),
                               '',
                               self.show_families_cb,
-                              _("Families will show up as circles, linked"
+                              _("Families will show up as circles, linked "
                                 "to parents and children."))
 
         tb_margin_adj = gtk.GtkAdjustment(value=0.5, lower=0.25,
