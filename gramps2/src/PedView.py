@@ -369,7 +369,8 @@ class PedigreeView:
                 self.load_canvas(childlist[0])
             elif len(childlist) > 1:
                 myMenu = gtk.Menu()
-                for child in childlist:
+                for child_id in childlist:
+                    child = self.parent.db.find_person_from_id(child_id)
                     cname = GrampsCfg.nameof(child)
                     menuitem = gtk.MenuItem(None)
                     if find_children(child):
