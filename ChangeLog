@@ -1,3 +1,9 @@
+2004-08-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: make a distiction between adding a person
+	and editing a person.
+	* src/PeopleView.py: drop unused goto_active_person parameter
+	* srcgramps_main.py: drop unused goto_active_person parameter
+
 2004-08-27  Tim Waugh  <twaugh@redhat.com>
 	* src/SelectObject.py (SelectObject.redraw): Use GRAMPS ID for
 	user display.

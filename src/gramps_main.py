@@ -1,4 +1,4 @@
-
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2004  Donald N. Allingham
@@ -1294,8 +1294,8 @@ class Gramps:
         self.people_view.redisplay_person_list(p1)
         self.update_display(0)
     
-    def goto_active_person(self,first=0):
-        self.people_view.goto_active_person(first)
+    def goto_active_person(self):
+        self.people_view.goto_active_person()
             
     def change_active_person(self,person,force=0):
         if person == None:

@@ -1614,7 +1614,10 @@ class EditPerson:
         if self.lists_changed:
             self.person.set_source_reference_list(self.srcreflist)
 
-        self.db.commit_person(self.person, trans)
+        if self.person.get_handle() == None:
+            self.db.add_person(self.person, trans)
+        else:
+            self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
         self.update_lists()
