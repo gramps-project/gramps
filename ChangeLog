@@ -2,6 +2,8 @@
 	 * src/gramps_main.py (import_tool_callback): Set home person.
 
 2004-08-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: simplify internal iter handling.
+	Move to a single list instead of multiple dictionaries.
 	* src/ChooseParents.py: use get_family_from_handle instead
 	of find_family_from_handle
 
