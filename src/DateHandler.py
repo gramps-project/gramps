@@ -78,7 +78,7 @@ def get_date_formats():
 
 def set_format(val):
     try:
-        _lang_to_display[_lang].formats = val
+        _lang_to_display[_lang].set_format(val)
     except:
         pass
 
