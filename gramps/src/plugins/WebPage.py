@@ -96,7 +96,7 @@ class IndividualPage:
         self.doc = doc
         self.list = list
         self.private = private
-        self.alive = probably_alive(person) or restrict
+        self.alive = probably_alive(person) and restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.usecomments = not uc
         self.dir = dir_name
@@ -292,6 +292,8 @@ class IndividualPage:
     #--------------------------------------------------------------------
     def write_facts(self):
 
+        if self.alive:
+            return
         self.doc.start_paragraph("EventsTitle")
         self.doc.write_text(_("Facts and Events"))
         self.doc.end_paragraph()
@@ -333,7 +335,7 @@ class IndividualPage:
     #--------------------------------------------------------------------
     def write_notes(self):
 
-        if self.person.getNote() == "":
+        if self.person.getNote() == "" or self.alive:
             return
         
         self.doc.start_paragraph("NotesTitle")
@@ -394,22 +396,26 @@ class IndividualPage:
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
             if spouse:
-                self.doc.start_link("%s.html" % spouse.getId())
+                if spouse in self.list:
+                    self.doc.start_link("%s.html" % spouse.getId())
                 self.doc.write_text(spouse.getPrimaryName().getRegularName())
-                self.doc.end_link()
+                if spouse in self.list:
+                    self.doc.end_link()
             else:
                 self.doc.write_text(_("unknown"))
             self.doc.end_paragraph()
             self.doc.end_cell()
             self.doc.end_row()
             
-            for event in family.getEventList():
-                if event.getPrivacy() == 0:
-                    self.write_fam_fact(event)
+            if not self.alive:
+                for event in family.getEventList():
+                    if event.getPrivacy() == 0:
+                        self.write_fam_fact(event)
 
             child_list = family.getChildList()
             if len(child_list) > 0:
-
+                
+                self.doc.start_row()
                 self.doc.start_cell("NormalCell")
                 self.doc.start_paragraph("Label")
                 self.doc.write_text(_("Children"))
@@ -425,9 +431,11 @@ class IndividualPage:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    self.doc.start_link("%s.html" % child.getId())
+                    if child in self.list:
+                        self.doc.start_link("%s.html" % child.getId())
                     self.doc.write_text(child.getPrimaryName().getRegularName())
-                    self.doc.end_link()
+                    if child in self.list:
+                        self.doc.end_link()
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.end_row()

@@ -296,6 +296,7 @@ class HtmlDoc(TextDoc):
         self.f.write('<td valign="top"')
         if span > 1:
             self.f.write(' colspan="' + str(span) + '"')
+            self.col = self.col + 1
         else:
             self.f.write(' width="')
             self.f.write(str(self.tbl.get_column_width(self.col)))
