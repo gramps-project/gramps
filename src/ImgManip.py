@@ -28,6 +28,7 @@ import const
 #-------------------------------------------------------------------------
 try:
     import PIL.Image
+    import StringIO
     no_pil = 0
 except:
     import popen2
@@ -39,183 +40,150 @@ except:
 
 class ImgManip:
     def __init__(self,source):
-        self.source = source
+        self.src = source
+
+    if no_pil:
+
+        def size(self):
+            img = GdkImlib.Image(self.src)
+            return (img.rgb_width,img.rgb_height)
+
+        def fmt_thumbnail(self,dest,width,height,cnv):
+            w = int(width)
+            h = int(height)
+            cmd = "%s -geometry %dx%d '%s' '%s:%s'" % (const.convert,w,h,self.src,cnv,dest)
+            os.system(cmd)
+
+        def fmt_convert(self,dest,cnv):
+            cmd = "%s '%s' '%s:%s'" % (const.convert,self.src,cnv,dest)
+            os.system(cmd)
+
+        def fmt_data(self,cnv):
+            cmd = "%s '%s' '%s:-'" % (const.convert,cnv,self.src)
+            r,w = popen2.popen2(cmd)
+            buf = r.read()
+            r.close()
+            w.close()
+            return buf
+
+        def fmt_scale_data(self,x,y,cnv):
+            cmd = "%s -geometry %dx%d '%s' '%s:-'" % (const.convert,x,y,cnv,self.src)
+            r,w = popen2.popen2(cmd)
+            buf = r.read()
+            r.close()
+            w.close()
+            return buf
+
+        def eps_data(self):
+            return self.fmt_data("eps")
+
+        def eps_scale_data(self,x,y):
+            return self.fmt_scale_data("eps")
+
+    else:
+
+        def size(self):
+            return PIL.Image.open(self.src).size
+
+        def fmt_thumbnail(self,dest,width,height,pil):
+            im = PIL.Image.open(self.src)
+            im.thumbnail((width,height))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(dest,pil)
+        
+        def fmt_convert(self,dest,pil):
+            im = PIL.Image.open(self.src)
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(dest,pil)
+
+        def fmt_data(self,pil):
+            im = PIL.Image.open(self.src)
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            return im.tostring(pil,"RGB")
+
+        def fmt_scale_data(self,x,y,pil):
+            im = PIL.Image.open(self.src)
+            im.thumbnail((x,y))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            return im.tostring(pil,"RGB")
+
+        def eps_data(self):
+            g = StringIO.StringIO()
+            im = PIL.Image.open(self.src)
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(g,"eps")
+            g.seek(0)
+            buf = g.read()
+            g.close()
+            return buf
+
+        def eps_scale_data(self,x,y):
+
+            # need to write to a file-like object, otherwise
+            # PIL won't generate the header information
+            g = StringIO.StringIO()
+            im = PIL.Image.open(self.src)
+            im.thumbnail((x,y))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            im.save(g,"eps")
+            g.seek(0)
+            buf = g.read()
+            g.close()
+            return buf
 
     def jpg_thumbnail(self,dest,width,height):
-        if no_pil:
-            w = int(width)
-            h = int(height)
-            cmd = "%s -geometry %dx%d '%s' 'jpg:%s'" % (const.convert,w,h,self.source,dest)
-            os.system(cmd)
-        else:
-            im = PIL.Image.open(self.source)
-            im.thumbnail((width,height))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,"JPEG")
-
-    def size(self):
-        if no_pil:
-            img = GdkImlib.Image(self.source)
-            return (img.rgb_width,img.rgb_height)
-        else:
-            return PIL.Image.open(self.source).size
-    
-    def jpg_data(self):
-        if no_pil:
-            cmd = "%s '%s' 'jpg:-'" % (const.convert,self.source)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-        else:
-            im = PIL.Image.open(self.source)
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            return im.tostring("jpeg","RGB")
-
-    def jpg_scale_data(self,x,y):
-        if no_pil:
-            cmd = "%s -geometry %dx%d '%s' 'jpg:-'" % (const.convert,x,y,self.source)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-        else:
-            im = PIL.Image.open(self.source)
-            im.thumbnail((x,y))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            return im.tostring("jpeg","RGB")
-
-    def eps_data(self):
-        if no_pil:
-            cmd = "%s '%s' 'eps:-'" % (const.convert,self.source)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-        else:
-            import StringIO
-
-            g = StringIO.StringIO()
-            im = PIL.Image.open(self.source)
-            im.save(g,"eps")
-            g.seek(0)
-            buf = g.read()
-            g.close()
-            return buf
-
-    def eps_scale_data(self,x,y):
-        if no_pil:
-            cmd = "%s -geometry %dx%d '%s' 'eps:-'" % (const.convert,x,y,self.source)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-        else:
-            import StringIO
-
-            g = StringIO.StringIO()
-            im = PIL.Image.open(self.source)
-            im.thumbnail((x,y))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(g,"eps")
-            g.seek(0)
-            buf = g.read()
-            g.close()
-            return buf
-
-    def eps_thumbnail(self,dest,width,height):
-        if no_pil:
-            w = int(width)
-            h = int(height)
-            cmd = "%s -geometry %dx%d '%s' 'eps:%s'" % (const.convert,w,h,self.source,dest)
-            os.system(cmd)
-        else:
-            im = PIL.Image.open(self.source)
-            im.thumbnail((width,height))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,"eps")
-
-    def eps_convert(self,dest):
-        if no_pil:
-            cmd = "%s -geometry '%s' 'eps:%s'" % (const.convert,self.source,dest)
-            os.system(cmd)
-        else:
-            im = PIL.Image.open(self.source)
-            im.thumbnail((width,height))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,"eps")
-
-
-    def png_data(self):
-        if no_pil:
-            cmd = "%s -geometry '%s' 'jpg:-'" % (const.convert,self.source)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-        else:
-            im = PIL.Image.open(self.source)
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            return im.tostring("png","RGB")
-
-    def png_scale_data(self,x,y):
-        if no_pil:
-            cmd = "%s -geometry %dx%d '%s' 'jpg:-'" % (const.convert,x,y,self.source)
-            r,w = popen2.popen2(cmd)
-            buf = r.read()
-            r.close()
-            w.close()
-            return buf
-        else:
-            im = PIL.Image.open(self.source)
-            im.thumbnail((x,y))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            return im.tostring("png","RGB")
+        self.fmt_thumbnail(dest,width,height,"jpeg")
 
     def png_thumbnail(self,dest,width,height):
-        if no_pil:
-            w = int(width)
-            h = int(height)
-            cmd = "%s -geometry %dx%d '%s' 'png:%s'" % (const.convert,w,h,self.source,dest)
-            os.system(cmd)
-        else:
-            im = PIL.Image.open(self.source)
-            im.thumbnail((width,height))
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,"PNG")
+        self.fmt_thumbnail(dest,width,height,"png")
 
-    def png_convert(self,dest)
-        if no_pil:
-            cmd = "%s '%s' 'png:%s'" % (const.convert,self.source,dest)
-            os.system(cmd)
-        else:
-            im = PIL.Image.open(self.source)
-            if im.mode != 'RGB':
-                im.draft('RGB',im.size)
-                im = im.convert("RGB")
-            im.save(dest,"PNG")
+    def eps_thumbnail(self,dest,width,height):
+        self.fmt_thumbnail(dest,width,height,"eps")
 
-            
+    def jpg_convert(self,dest):
+        self.fmt_convert(dest,"jpeg")
+
+    def png_convert(self,dest):
+        self.fmt_convert(dest,"png")
+
+    def eps_convert(self,dest):
+        self.fmt_convert(dest,"eps")
+
+    def jpg_data(self):
+        return self.fmt_data("jpeg")
+
+    def png_data(self):
+        return self.fmt_data("png")
+
+    def jpg_scale_data(self,x,y):
+        return self.fmt(x,y,"jpeg")
+
+    def png_scale_data(self,x,y):
+        return self.fmt(x,y,"png")
+
+
+if __name__ == "__main__":
+
+    import sys
+    
+    img = ImgManip(sys.argv[1])
+    img.jpg_thumbnail("foo.jpg",50,50)
+    img.png_thumbnail("foo.png",50,50)
+    img.eps_thumbnail("foo.eps",50,50)
+
+
+
+
+
