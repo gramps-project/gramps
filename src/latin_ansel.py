@@ -117,8 +117,7 @@ def latin_to_ansel(s):
                     buff.write(ansel[0])
                     buff.write(ansel[1])
                 except Exception,e:
-                    from traceback import print_exc
-                    print_exc()
+                    print "ANSEL decoding error: %x: %s" % (c,orig)
         s = s[1:]
     ans = buff.getvalue()
     buff.close()
