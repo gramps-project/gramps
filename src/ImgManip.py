@@ -91,6 +91,22 @@ class ImgManip:
                 im = im.convert("RGB")
             return im.tostring("jpeg","RGB")
 
+    def jpg_scale_data(self,x,y):
+        if no_pil:
+            cmd = "%s -geometry %dx%d '%s' 'jpg:-'" % (const.convert,x,y,self.source)
+            r,w = popen2.popen2(cmd)
+            buf = r.read()
+            r.close()
+            w.close()
+            return buf
+        else:
+            im = PIL.Image.open(self.source)
+            im.thumbnail((x,y))
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            return im.tostring("jpeg","RGB")
+
     def eps_data(self):
         if no_pil:
             cmd = "%s '%s' 'eps:-'" % (const.convert,self.source)
@@ -123,7 +139,7 @@ class ImgManip:
 
             g = StringIO.StringIO()
             im = PIL.Image.open(self.source)
-            im.thumbnail((width,height))
+            im.thumbnail((x,y))
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
@@ -132,6 +148,21 @@ class ImgManip:
             buf = g.read()
             g.close()
             return buf
+
+    def png_data(self):
+        if no_pil:
+            cmd = "%s -geometry '%s' 'jpg:-'" % (const.convert,self.source)
+            r,w = popen2.popen2(cmd)
+            buf = r.read()
+            r.close()
+            w.close()
+            return buf
+        else:
+            im = PIL.Image.open(self.source)
+            if im.mode != 'RGB':
+                im.draft('RGB',im.size)
+                im = im.convert("RGB")
+            return im.tostring("png","RGB")
 
     def png_scale_data(self,x,y):
         if no_pil:
@@ -143,9 +174,10 @@ class ImgManip:
             return buf
         else:
             im = PIL.Image.open(self.source)
-            im.thumbnail((width,height))
+            im.thumbnail((x,y))
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
             return im.tostring("png","RGB")
+
             
