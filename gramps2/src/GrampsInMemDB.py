@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -186,35 +186,49 @@ class GrampsInMemDB(GrampsDbBase):
     def get_person_from_gramps_id(self,val):
         handle = self.id_trans.get(str(val))
         if handle:
-            return self.person_map[handle]
-        else:
-            return None
+            data = self.person_map[handle]
+            if data:
+                person = Person()
+                person.unserialize(data)
+                return person
+        return None
 
     def get_family_from_gramps_id(self,val):
         handle = self.fid_trans.get(str(val))
         if handle:
-            return self.family_map[handle]
-        else:
-            return None
+            data = self.family_map[handle]
+            if data:
+                family = Family()
+                family.unserialize(data)
+                return family
+        return None
 
     def get_place_from_gramps_id(self,val):
         handle = self.pid_trans.get(str(val))
         if handle:
-            return self.place_map[handle]
-        else:
-            return None
+            data = self.place_map[handle]
+            if data:
+                place = Place()
+                place.unserialize(data)
+                return place
+        return None
 
     def get_source_from_gramps_id(self,val):
         handle = self.sid_trans.get(str(val))
         if handle:
-            return self.source_map[handle]
-        else:
-            return None
+            data = self.source_map[handle]
+            if data:
+                source = Source()
+                source.unserialize(data)
+                return source
+        return None
 
     def get_object_from_gramps_id(self,val):
         handle = self.oid_trans.get(str(val))
         if handle:
-            return self.media_map[handle]
-        else:
-            return None
-
+            data = self.media_map[handle]
+            if data:
+                obj = MediaObject()
+                obj.unserialize(data)
+                return obj
+        return None
