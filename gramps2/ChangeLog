@@ -1,4 +1,4 @@
-2004-04-23  Alex Roitman  <shura@alex.neuro.umn.edu>
+2004-04-24  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/RTFDoc.py: Typo.
 	* src/Utils.py (get_xpm_image): Add function.
 	* src/plugins/AncestorReport.py (get_xpm_image): Remove 
