@@ -49,7 +49,7 @@ import gnome.ui
 #-------------------------------------------------------------------------
 import const
 import Utils
-import Plugins
+import PluginMgr
 import QuestionDialog
 import GrampsKeys
 
@@ -376,7 +376,7 @@ class Exporter:
     def build_exports(self):
         """
         This method builds its own list of available exports. 
-        The list is built from the Plugins._exports list 
+        The list is built from the PluginMgr.export_list list 
         and from the locally defined exports (i.e. native export defined here).
         """
         native_title = _('GRAMPS _GRDB database')
@@ -390,4 +390,4 @@ class Exporter:
 
         self.exports = [ (native_export,native_title,native_description,
                     native_config,native_ext) ]
-        self.exports = self.exports + [ item for item in Plugins._exports ]
+        self.exports = self.exports + [ item for item in PluginMgr.export_list ]

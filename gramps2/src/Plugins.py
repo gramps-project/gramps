@@ -511,9 +511,9 @@ class GrampsTextFormatComboBox(gtk.ComboBox):
 
         out_pref = GrampsKeys.get_output_preference()
         index = 0
-        _textdoc.sort()
+        PluginMgr.textdoc_list.sort()
         active_index = 0
-        for item in _textdoc:
+        for item in PluginMgr.textdoc_list:
             if tables and item[2] == 0:
                 continue
             name = item[0]
@@ -528,22 +528,22 @@ class GrampsTextFormatComboBox(gtk.ComboBox):
         self.set_active(active_index)
 
     def get_label(self):
-        return _textdoc[self.get_active()][0]
+        return PluginMgr.textdoc_list[self.get_active()][0]
 
     def get_reference(self):
-        return _textdoc[self.get_active()][1]
+        return PluginMgr.textdoc_list[self.get_active()][1]
 
     def get_paper(self):
-        return _textdoc[self.get_active()][3]
+        return PluginMgr.textdoc_list[self.get_active()][3]
 
     def get_styles(self):
-        return _textdoc[self.get_active()][4]
+        return PluginMgr.textdoc_list[self.get_active()][4]
 
     def get_ext(self):
-        return _textdoc[self.get_active()][5]
+        return PluginMgr.textdoc_list[self.get_active()][5]
 
     def get_printable(self):
-        return _textdoc[self.get_active()][6]
+        return PluginMgr.textdoc_list[self.get_active()][6]
 
 class GrampsDrawFormatComboBox(gtk.ComboBox):
 
@@ -556,9 +556,9 @@ class GrampsDrawFormatComboBox(gtk.ComboBox):
 
         out_pref = GrampsKeys.get_output_preference()
         index = 0
-        _drawdoc.sort()
+        PluginMgr.drawdoc_list.sort()
         active_index = 0
-        for item in _drawdoc:
+        for item in PluginMgr.drawdoc_list:
             if tables and item[2] == 0:
                 continue
             name = item[0]
@@ -573,22 +573,22 @@ class GrampsDrawFormatComboBox(gtk.ComboBox):
         self.set_active(active_index)
 
     def get_reference(self):
-        return _drawdoc[self.get_active()][1]
+        return PluginMgr.drawdoc_list[self.get_active()][1]
 
     def get_label(self):
-        return _drawdoc[self.get_active()][0]
+        return PluginMgr.drawdoc_list[self.get_active()][0]
 
     def get_paper(self):
-        return _drawdoc[self.get_active()][2]
+        return PluginMgr.drawdoc_list[self.get_active()][2]
 
     def get_styles(self):
-        return _drawdoc[self.get_active()][3]
+        return PluginMgr.drawdoc_list[self.get_active()][3]
 
     def get_ext(self):
-        return _drawdoc[self.get_active()][4]
+        return PluginMgr.drawdoc_list[self.get_active()][4]
 
     def get_printable(self):
-        return _drawdoc[self.get_active()][5]
+        return PluginMgr.drawdoc_list[self.get_active()][5]
 
 class GrampsBookFormatComboBox(gtk.ComboBox):
 
@@ -601,10 +601,10 @@ class GrampsBookFormatComboBox(gtk.ComboBox):
 
         out_pref = GrampsKeys.get_output_preference()
         index = 0
-        _drawdoc.sort()
+        PluginMgr.drawdoc_list.sort()
         active_index = 0
         self.data = []
-        for item in _bookdoc:
+        for item in PluginMgr.bookdoc_list:
             if tables and item[2] == 0:
                 continue
             self.data.append(item)
