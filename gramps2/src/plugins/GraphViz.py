@@ -96,7 +96,7 @@ class GraphViz:
                   returning the list of filters.
         font    - Font to use.
         arrow   - Arrow styles for heads and tails.
-        sfa     - Whether to show family nodes.
+        sfn     - Whether to show family nodes.
         incid   - Whether to include IDs.
         incda   - Whether to include dates.
         yearso  - Use years only.
@@ -127,8 +127,9 @@ class GraphViz:
         self.includeurl = self.options_class.handler.options_dict['url']
         self.colorize = self.options_class.handler.options_dict['color']
         self.adoptionsdashed = self.options_class.handler.options_dict['dashedl']
-        self.show_families = self.options_class.handler.options_dict['sfa']
+        self.show_families = self.options_class.handler.options_dict['sfn']
         self.just_year = self.options_class.handler.options_dict['yearso']
+        self.placecause = self.options_class.handler.options_dict['repb']
         self.font = self.options_class.handler.options_dict['font']
         if self.font == 'tt':
             self.fontname = _TT_FONT
@@ -250,21 +251,13 @@ class GraphViz:
                 birth_handle = person.get_birth_handle()
                 if birth_handle:
                     birth_event = self.database.get_event_from_handle(birth_handle)
-                    if birth_event.get_date_object().get_year_valid():
-                        if self.just_year:
-                            birth = '%i' % birth_event.get_date_object().get_year()
-                        else:
-                            birth = birth_event.get_date()
+                    birth = self.dump_event(birth_event)
                 else:
                     birth = ''
                 death_handle = person.get_death_handle()
                 if death_handle:
                     death_event = self.database.get_event_from_handle(death_handle)
-                    if death_event.get_date_object().get_year_valid():
-                        if self.just_year:
-                            death = '%i' % death_event.get_date_object().get_year()
-                        else:
-                            death = death_event.get_date()
+                    death = self.dump_event(death_event)
                 else:
                     death = ''
                 label = label + '\\n(%s - %s)' % (birth, death)
@@ -304,13 +297,7 @@ class GraphViz:
                             m = None
     
                         if m:
-                            do = m.get_date_object()
-                            if do:
-                                if do.get_year_valid():
-                                    if self.just_year:
-                                        marriage = '%i' % do.get_year()
-                                    else:
-                                        marriage = m.get_date()
+                            marriage = self.dump_event(m)
                         if self.includeid:
                             marriage = marriage + " (%s)" % fid
                         self.f.write('fontname="%s", label="%s"];\n' 
@@ -321,6 +308,32 @@ class GraphViz:
                                (self.arrowheadstyle, self.arrowtailstyle))
                     self.f.write('style=solid];\n')
     
+    def dump_event(self,event):
+        """
+        Compile an event label.
+        
+        Based on the data availability and preferences, we select one
+        of the following for a given event:
+            year only
+            complete date
+            place name
+            cause
+            empty string
+        """
+        if event.get_date_object().get_year_valid():
+            if self.just_year:
+                return '%i' % event.get_date_object().get_year()
+            else:
+                return event.get_date()
+        elif self.placecause:
+            place_handle = event.get_place_handle()
+            place = self.database.get_place_from_handle(place_handle)
+            if place and place.get_title():
+                return place.get_title()
+            else:
+                return event.get_cause()
+        return ''
+
     def write_header(self):
         """
         Write header listing the options used.
@@ -335,7 +348,7 @@ class GraphViz:
         self.f.write(" *           IDs        : %s\n" % bool(self.includeid))
         self.f.write(" *           dates      : %s\n" % bool(self.includedates))
         self.f.write(" *   just year          : %s\n" % bool(self.just_year))
-#        self.f.write(" *   place or cause     : %s\n" % self.placecause)
+        self.f.write(" *   place or cause     : %s\n" % bool(self.placecause))
         self.f.write(" *   colorize           : %s\n" % bool(self.colorize))
         self.f.write(" *   dashed adoptions   : %s\n" % bool(self.adoptionsdashed))
         self.f.write(" *   show family nodes  : %s\n" % bool(self.show_families))
@@ -369,11 +382,11 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict = {
             'font'      : 'tt',
             'arrow'     : 'd',
-            'sfa'       : 0,
+            'sfn'       : 0,
             'incid'     : 1,
             'incda'     : 1,
             'yearso'    : 0,
-#            'repb'  : 1,
+            'repb'      : 1,
             'url'       : 1,
             'color'     : 1,
             'dashedl'   : 1,
@@ -395,7 +408,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                             'da\tDescendants <-> Ancestors',
                             '""\tDescendants - Ancestors'],
                             False),
-            'sfa'       : ("=0/1","Whether to show family nodes.",
+            'sfn'       : ("=0/1","Whether to show family nodes.",
                             ["Do not show family nodes","Show family nodes"],
                             True),
             'incid'     : ("=0/1","Whether to include dates.",
@@ -407,9 +420,9 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'yearso'    : ("=0/1","Whether to use years only.",
                             ["Do not use years only","Use years only"],
                             True),
-#            'repb'      : ("=0/1","Whether to cite sources.",
-#                            ["Do not cite sources","Cite sources"],
-#                            True),
+            'repb'      : ("=0/1","Whether to replace missing dates with place/cause.",
+                            ["Do not replace blank dates","Replace blank dates"],
+                            True),
             'url'       : ("=0/1","Whether to include URLs.",
                             ["Do not include URLs","Include URLs"],
                             True),
@@ -543,6 +556,14 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 
         self.includedates_cb.connect('toggled',self.toggle_date)
 
+        self.place_cause_cb = gtk.CheckButton(_("Place/cause when no date"))
+        self.place_cause_cb.set_active(self.options_dict['repb'])
+        dialog.add_frame_option(_("GraphViz Options"), '',
+                              self.place_cause_cb,
+                              _("When no birth, marriage, or death date "
+                                "is available, the correspondent place field "
+                                "(or cause field when blank place) will be used."))
+
         self.includeurl_cb = gtk.CheckButton(_("Include URLs"))
         self.includeurl_cb.set_active(self.options_dict['url'])
         dialog.add_frame_option(_("GraphViz Options"), '',
@@ -570,7 +591,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                                 "as dashed lines in the graph."))
 
         self.show_families_cb = gtk.CheckButton(_("Show family nodes"))
-        self.show_families_cb.set_active(self.options_dict['sfa'])
+        self.show_families_cb.set_active(self.options_dict['sfn'])
         dialog.add_frame_option(_("GraphViz Options"), '',
                               self.show_families_cb,
                               _("Families will show up as ellipses, linked "
@@ -623,6 +644,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 
     def toggle_date(self,obj):
         self.just_year_cb.set_sensitive(self.includedates_cb.get_active())
+        self.place_cause_cb.set_sensitive(self.includedates_cb.get_active())
 
     def parse_user_options(self,dialog):
         self.options_dict['arrow'] = \
@@ -635,8 +657,9 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.options_dict['dashedl'] = int(self.adoptionsdashed_cb.get_active())
         self.options_dict['pagesh'] = self.hpages_sb.get_value_as_int()
         self.options_dict['pagesv'] = self.hpages_sb.get_value_as_int()
-        self.options_dict['sfa'] = int(self.show_families_cb.get_active())
+        self.options_dict['sfn'] = int(self.show_families_cb.get_active())
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
+        self.options_dict['repb'] = int(self.place_cause_cb.get_active())
         self.options_dict['font'] = \
                 self.font_options[self.font_box.get_active()][1]
         if self.handler.report_name == "rel_graph2":

@@ -1,3 +1,9 @@
+2005-01-14 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/GraphViz.py: Restore "Place/cause when no date"
+	option that was available before in RelGraph; rename 'show
+	family nodes' into 'sfn'.
+	* src/plugins/StatisticsChart.py: Rename 'sort' into 'sortby'.
+
 2005-01-13 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Typos.
 	* src/plugins/WebPage.py: Typos.
