@@ -869,10 +869,13 @@ class GedcomParser:
                         self.refn[self.person.get_id()] = int(matches[2])
                     except:
                         pass
-            elif matches[1] in ["AFN","CHAN","REFN","ASSO"]:
+            elif matches[1] in ["AFN","RFN","_UID"]:
+                attr = RelLib.Attribute()
+                attr.setType(matches[1])
+                attr.setValue(matches[2])
+                self.person.addAttribute(attr)
+            elif matches[1] in ["CHAN","ASSO","ANCI","DESI","RIN"]:
                 self.ignore_sub_junk(2)
-            elif matches[1] in ["ANCI","DESI","RIN","RFN","_UID"]:
-                pass
             else:
                 event = RelLib.Event()
                 n = string.strip(matches[1])

@@ -1,3 +1,7 @@
+2004-06-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/WriteGedcom.py: brought up to date
+	* src/gramps_main.py: beta warning
+
 2004-06-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py: Pass parent to GlobalMediaProperties; typos. 
 	* src/SelectObject.py: Typos. 
