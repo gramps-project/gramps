@@ -1,7 +1,7 @@
 2003-07-28  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/GraphViz.py: Adapt.
-	* src/Report.py, src/TextDoc.py, src/DrawDoc.py: More support for
-	making printable output formats.
+	* src/Report.py, src/TextDoc.py, src/DrawDoc.py, src/Plugins.py: More
+	support for making printable output formats.
 	* src/docgen/PSDrawDoc.py, src/docgen/PdfDrawDoc.py: Make these
 	output formats printable.
 

@@ -480,12 +480,13 @@ def register_tool(task, name,
 # Text document registration
 #
 #-------------------------------------------------------------------------
-def register_text_doc(name,classref, table, paper, style, ext):
+def register_text_doc(name,classref, table, paper, style, ext,
+                      print_report_label = None):
     """Register a text document generator"""
     for n in _textdoc:
         if n[0] == name:
             return
-    _textdoc.append((name,classref,table,paper,style,ext))
+    _textdoc.append((name,classref,table,paper,style,ext,printable))
 
 #-------------------------------------------------------------------------
 #
@@ -504,12 +505,13 @@ def register_book_doc(name,classref, table, paper, style, ext):
 # Drawing document registration
 #
 #-------------------------------------------------------------------------
-def register_draw_doc(name,classref,paper,style, ext):
+def register_draw_doc(name,classref,paper,style, ext,
+                      print_report_label = None):
     """Register a drawing document generator"""
     for n in _drawdoc:
         if n[0] == name:
             return
-    _drawdoc.append((name,classref,paper,style,ext))
+    _drawdoc.append((name,classref,paper,style,ext,print_report_label))
 
 #-------------------------------------------------------------------------
 #
@@ -643,7 +645,6 @@ def build_import_menu(top_menu,callback):
 #
 #-------------------------------------------------------------------------
 def get_text_doc_menu(main_menu,tables,callback,obj=None):
-
     index = 0
     myMenu = gtk.Menu()
     _textdoc.sort()
@@ -657,6 +658,7 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
         menuitem.set_data("paper",item[3])
         menuitem.set_data("ext",item[5])
         menuitem.set_data("obj",obj)
+        menuitem.set_data("printable",item[6])
         if callback:
             menuitem.connect("activate",callback)
         menuitem.show()
@@ -743,13 +745,14 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
 
     index = 0
     myMenu = gtk.Menu()
-    for (name,classref,paper,styles,ext) in _drawdoc:
+    for (name,classref,paper,styles,ext,printable) in _drawdoc:
         menuitem = gtk.MenuItem(name)
         menuitem.set_data("name",classref)
         menuitem.set_data("styles",styles)
         menuitem.set_data("paper",paper)
         menuitem.set_data("ext",ext)
         menuitem.set_data("obj",obj)
+        menuitem.set_data("printable",printable)
         if callback:
             menuitem.connect("activate",callback)
         menuitem.show()
