@@ -142,8 +142,8 @@ class OpenDrawDoc(DrawDoc):
         if os.path.isfile(self.filename):
             os.unlink(self.filename)
 
-        os.system("cd " + self.tempdir + "; " + const.zipcmd + " " \
-                  + self.filename + " .")
+        os.system("cd '" + self.tempdir + "'; " + const.zipcmd + " '" \
+                  + self.filename + "' .")
 
         os.unlink(self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml")
         os.unlink(self.tempdir + os.sep + "content.xml")

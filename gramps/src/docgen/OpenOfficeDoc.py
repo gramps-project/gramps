@@ -307,7 +307,7 @@ class OpenOfficeDoc(TextDoc):
         if os.path.isfile(self.filename):
             os.unlink(self.filename)
 
-        os.system("cd %s; %s %s ." % (self.tempdir,const.zipcmd,self.filename))
+        os.system("cd '%s'; %s '%s' ." % (self.tempdir,const.zipcmd,self.filename))
 
         os.unlink(self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml")
         os.unlink(self.tempdir + os.sep + "content.xml")

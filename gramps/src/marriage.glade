@@ -895,6 +895,11 @@
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	    <show_titles>True</show_titles>
 	    <shadow_type>GTK_SHADOW_IN</shadow_type>
+            <signal>
+              <name>button_press_event</name>
+              <handler>on_event_button_press</handler>
+              <last_modification_time>Thu, 14 Nov 2002 20:51:00 GMT</last_modification_time>
+            </signal>
 	    <child>
 	      <padding>0</padding>
 	      <expand>True</expand>
@@ -1395,6 +1400,11 @@
 		<name>select_row</name>
 		<handler>on_attr_list_select_row</handler>
 		<last_modification_time>Sat, 02 Jun 2001 18:58:35 GMT</last_modification_time>
+              </signal>
+              <signal>
+                <name>button_press_event</name>
+                <handler>on_attr_button_press</handler>
+                <last_modification_time>Thu, 14 Nov 2002 20:51:00 GMT</last_modification_time>
 	      </signal>
 	      <columns>3</columns>
 	      <column_widths>200,250,50</column_widths>
