@@ -1,3 +1,7 @@
+2004-12-21 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/AsciiDoc.py (reformat_para): Correctly check for
+	empty paragraph.
+
 2004-12-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: Add display messages during load
 	* src/GrampsBSDDB.py: Add display messages during load
