@@ -20,7 +20,6 @@
 
 "View/Number of ancestors"
 
-from RelLib import *
 import os
 import Utils
 from intl import gettext as _

@@ -42,8 +42,6 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-
 import WriteXML
 import TarFile
 import Utils

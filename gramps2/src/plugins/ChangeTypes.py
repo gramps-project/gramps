@@ -22,7 +22,6 @@
 
 import os
 
-import gnome.ui
 import gtk
 import gtk.glade
 

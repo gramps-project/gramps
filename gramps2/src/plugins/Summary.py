@@ -33,8 +33,8 @@ import posixpath
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from RelLib import *
 import Utils
+import RelLib
 from intl import gettext as _
 
 #------------------------------------------------------------------------
@@ -95,7 +95,7 @@ def report(database,person):
             disconnected = disconnected + 1
         if person.getBirth().getDate() == "":
             missing_bday = missing_bday + 1
-        if person.getGender() == Person.female:
+        if person.getGender() == RelLib.Person.female:
             females = females + 1
         else:
             males = males + 1
