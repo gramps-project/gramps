@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Thu Apr 17 22:12:29 2003\n"
+"POT-Creation-Date: Thu Apr 17 22:14:57 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2187,10 +2187,6 @@ msgstr ""
 msgid "SVG (Scalable Vector Graphics)"
 msgstr ""
 
-#: docgen/TextBufDoc.py:169
-msgid "Text Buffer Preview"
-msgstr ""
-
 #: edit_person.glade:33
 msgid "Abandon changes and close window"
 msgstr ""
@@ -3384,9 +3380,8 @@ msgid "Ancestor Chart"
 msgstr ""
 
 #: plugins/AncestorChart.py:218 plugins/AncestorChart.py:427
-#: plugins/DesGraph.py:308 plugins/DesGraph.py:460 plugins/FullFamily.py:105
-#: plugins/FullFamily.py:170 plugins/GraphViz.py:78 plugins/GraphViz.py:448
-#: plugins/TimeLine.py:316 plugins/TimeLine.py:461
+#: plugins/DesGraph.py:308 plugins/DesGraph.py:460 plugins/GraphViz.py:78
+#: plugins/GraphViz.py:448 plugins/TimeLine.py:316 plugins/TimeLine.py:461
 msgid "Graphical Reports"
 msgstr ""
 
@@ -3399,38 +3394,33 @@ msgid "Save Ancestor Chart"
 msgstr ""
 
 #: plugins/AncestorChart.py:239 plugins/DesGraph.py:325
-#: plugins/FullFamily.py:126
 msgid "Display Format"
 msgstr ""
 
 #: plugins/AncestorChart.py:240 plugins/DesGraph.py:326
-#: plugins/FullFamily.py:127
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr ""
 
 #: plugins/AncestorChart.py:249 plugins/AncestorReport.py:262
 #: plugins/DesGraph.py:335 plugins/FamilyGroup.py:417
-#: plugins/FtmStyleAncestors.py:231 plugins/IndivComplete.py:528
-#: plugins/IndivSummary.py:371
+#: plugins/IndivComplete.py:528 plugins/IndivSummary.py:371
 msgid "The basic style used for the text display."
 msgstr ""
 
 #: plugins/AncestorChart.py:428 plugins/AncestorReport.py:389
 #: plugins/DescendReport.py:284 plugins/DetAncestralReport.py:972
 #: plugins/DetDescendantReport.py:850 plugins/FamilyGroup.py:566
-#: plugins/FtmStyleAncestors.py:358 plugins/FullFamily.py:171
 #: plugins/GraphViz.py:447 plugins/IndivComplete.py:667
 #: plugins/IndivSummary.py:500 plugins/Summary.py:150 plugins/TimeLine.py:460
 #: plugins/WebPage.py:1267
 msgid "Beta"
 msgstr ""
 
-#: plugins/AncestorChart.py:429 plugins/FullFamily.py:172
+#: plugins/AncestorChart.py:429
 msgid "Produces a graphical ancestral tree graph"
 msgstr ""
 
 #: plugins/AncestorReport.py:75 plugins/AncestorReport.py:229
-#: plugins/FtmStyleAncestors.py:196
 msgid "Ahnentafel Report for %s"
 msgstr ""
 
@@ -3508,7 +3498,6 @@ msgid " and was buried in %s."
 msgstr ""
 
 #: plugins/AncestorReport.py:225 plugins/AncestorReport.py:387
-#: plugins/FtmStyleAncestors.py:192
 msgid "Ahnentafel Report"
 msgstr ""
 
@@ -3516,25 +3505,22 @@ msgstr ""
 #: plugins/DescendReport.py:124 plugins/DescendReport.py:283
 #: plugins/DetAncestralReport.py:973 plugins/DetDescendantReport.py:851
 #: plugins/FamilyGroup.py:344 plugins/FamilyGroup.py:565
-#: plugins/FtmStyleAncestors.py:192 plugins/FtmStyleAncestors.py:357
 #: plugins/IndivComplete.py:446 plugins/IndivComplete.py:668
 #: plugins/IndivSummary.py:317 plugins/IndivSummary.py:501
 msgid "Text Reports"
 msgstr ""
 
 #: plugins/AncestorReport.py:234 plugins/DetAncestralReport.py:677
-#: plugins/FtmStyleAncestors.py:201
 msgid "Save Ancestor Report"
 msgstr ""
 
 #: plugins/AncestorReport.py:248 plugins/DescendReport.py:148
-#: plugins/FamilyGroup.py:408 plugins/FtmStyleAncestors.py:216
-#: plugins/IndivComplete.py:502 plugins/IndivSummary.py:345
-#: plugins/TimeLine.py:399 plugins/WebPage.py:960
+#: plugins/FamilyGroup.py:408 plugins/IndivComplete.py:502
+#: plugins/IndivSummary.py:345 plugins/TimeLine.py:399 plugins/WebPage.py:960
 msgid "The style used for the title of the page."
 msgstr ""
 
-#: plugins/AncestorReport.py:257 plugins/FtmStyleAncestors.py:226
+#: plugins/AncestorReport.py:257
 msgid "The style used for the generation header."
 msgstr ""
 
@@ -4097,60 +4083,6 @@ msgstr ""
 msgid "The System Filter Editor builds custom filters that can be used by anyone on the system to select people included in reports, exports, and other utilities."
 msgstr ""
 
-#: plugins/FtmStyleAncestors.py:73 plugins/GraphViz.py:107
-#: plugins/IndivComplete.py:479 plugins/TimeLine.py:367 plugins/WebPage.py:933
-#: plugins/WriteGedcom.py:381
-msgid "Ancestors of %s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:86
-msgid "Generation No. %d"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:120
-msgid "born %(date)s in %(place)s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:125
-msgid "born on %(date)s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:130
-msgid "born in %(place)s"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:150
-msgid "died %(date)s in %(place)s. "
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:155
-msgid "died on %(date)s. "
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:160
-msgid "died in %(place)s. "
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:356
-msgid "FTM Style Ancestor Report"
-msgstr ""
-
-#: plugins/FtmStyleAncestors.py:359
-msgid "Produces a textual ancestral report similar to Family Tree Maker."
-msgstr ""
-
-#: plugins/FullFamily.py:105 plugins/FullFamily.py:169
-msgid "Full Family Chart"
-msgstr ""
-
-#: plugins/FullFamily.py:109
-msgid "Full Family Chart for %s"
-msgstr ""
-
-#: plugins/FullFamily.py:114
-msgid "Save Full Family Chart"
-msgstr ""
-
 #: plugins/GraphViz.py:60 plugins/GraphViz.py:87
 msgid "Single (scaled)"
 msgstr ""
@@ -4169,6 +4101,11 @@ msgstr ""
 
 #: plugins/GraphViz.py:83
 msgid "Graphviz File"
+msgstr ""
+
+#: plugins/GraphViz.py:107 plugins/IndivComplete.py:479
+#: plugins/TimeLine.py:367 plugins/WebPage.py:933 plugins/WriteGedcom.py:381
+msgid "Ancestors of %s"
 msgstr ""
 
 #: plugins/GraphViz.py:111 plugins/TimeLine.py:371 plugins/WriteGedcom.py:385
