@@ -2965,6 +2965,7 @@ class GrampsDB:
         If no such Person exists, a new Person is added to the database."""
 
         data = self.person_map.get(str(val))
+        print data
 
         if data:
             person = Person()
@@ -2979,7 +2980,6 @@ class GrampsDB:
 
         person = Person()
         data = self.person_map.get(str(val))
-
         if data:
             person.unserialize(data)
         else:
@@ -3557,10 +3557,15 @@ class GrampsDB:
             self.metadata['media_columns'] = list
 
     def get_column_order(self):
+        default = [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6),(0,7)]
         if self.metadata == None:
-            return [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6)]
+            return default
         else:
-            return self.metadata.get('columns',[(1,1),(1,2),(1,3),(0,4),(1,5),(0,6)])
+            cols = self.metadata.get('columns',default)
+            if len(cols) != len(default):
+                return cols + default[len(cols):]
+            else:
+                return cols
 
     def get_place_column_order(self):
         default = [(1,1),(1,2),(0,3),(1,4),(0,5),(1,6),(0,7),(0,8)]

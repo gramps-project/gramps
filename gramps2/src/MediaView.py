@@ -177,7 +177,7 @@ class MediaView:
         
         id = store.get_value(iter,1)
         
-        mobj = self.db.try_to_find_object_from_id(id,None)
+        mobj = self.db.try_to_find_object_from_id(id)
         type = mobj.get_mime_type()
         type_name = Utils.get_mime_description(type)
         path = mobj.get_path()

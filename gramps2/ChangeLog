@@ -1,3 +1,9 @@
+2004-06-02  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: support for Spouse column
+	* src/MediaView.py: fix try_to_find_object_from_id
+	* src/PeopleModel.py:  support for Spouse column
+	* src/RelLib.py: handle expanding columns
+
 2004-05-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditSource.py: try_to_find_person_from_id fix
 	* src/PedView.py: try_to_find_person_from_id fix
