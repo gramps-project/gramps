@@ -392,7 +392,7 @@ def exportData(database, filename, callback):
                     write_line(g,"attr_value",attr.getValue(),5)
                     dump_source_ref(g,attr.getSourceRef(),5)
                     writeNote(g,"note",attr.getNote(),5)
-                    g.write('      </attribute>\n')
+                    g.write('        </attribute>\n')
                 g.write('      </attributes>\n')
             writeNote(g,"note",family.getNote(),3)
             g.write("    </family>\n")
