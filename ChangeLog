@@ -1,3 +1,13 @@
+2003-06-10  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Plugins.py: Add more values for book item registration.
+	* src/plugins/FtmStyleDescendants.py: Comply with book changes.
+	* src/plugins/FtmStyleAncestors.py: Likewise.
+	* src/plugins/BookReport.py: Rewrite most of the code using new classes:
+	BookItem, Book, BookList, BookParser, BookListDisplay. Add
+	open/save/edit functionality. 
+	* src/plugins/book.glade: Add new dialog for BookListDisplay. Also add
+	a text entry field for saving book and new buttons: Open, Edit, Save.
+
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* src/styles.glade: - scrolling fix
 	* src/dialog.glade: - scrolling fix

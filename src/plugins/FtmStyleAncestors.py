@@ -718,7 +718,7 @@ class FtmAncestorReport(Report.Report):
             self.doc.write_text(' ');
 
 
-def _make_default_style(self):
+def _make_default_style(default_style):
     """Make the default output style for the FTM Style Ancestral report."""
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
@@ -728,7 +728,7 @@ def _make_default_style(self):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
-    self.default_style.add_style("Title",para)
+    default_style.add_style("Title",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -738,27 +738,27 @@ def _make_default_style(self):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
-    self.default_style.add_style("Generation",para)
+    default_style.add_style("Generation",para)
     
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    self.default_style.add_style("Entry",para)
+    default_style.add_style("Entry",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    self.default_style.add_style("Details",para)
+    default_style.add_style("Details",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    self.default_style.add_style("SubEntry",para)
+    default_style.add_style("SubEntry",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    self.default_style.add_style("Endnotes",para)
+    default_style.add_style("Endnotes",para)
 
 
 #------------------------------------------------------------------------
@@ -793,7 +793,7 @@ class FtmAncestorReportDialog(Report.TextReportDialog):
         return "ftm_ancestor_report.xml"
     
     def make_default_style(self):
-        _make_default_style(self)
+        _make_default_style(self.default_style)
 
     def make_report(self):
         """Create the object that will produce the FTM Style Ancestral Report.
@@ -826,18 +826,13 @@ def report(database,person):
 # Set up sane defaults for the book_item
 #
 #------------------------------------------------------------------------
-class FakeObj(object):
-    pass
+_style_file = "ftm_ancestor_report.xml"
+_style_name = "default" 
 
-fo = FakeObj()
-fo.default_style = TextDoc.StyleSheet()
-
-_make_default_style(fo)
-_style = fo.default_style
-
+_person_id = ""
 _max_gen = 10
 _pg_brk = 0
-_options = [ None, _max_gen, _pg_brk ]
+_options = [ _person_id, _max_gen, _pg_brk ]
 
 def options_dialog(database,person):
     FtmAncestorBareReportDialog(database,person) 
@@ -858,10 +853,13 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
         else:
             self.person = person
         Report.BareReportDialog.__init__(self,database,self.person)
-        self.make_default_style = _make_default_style
-        self.max_gen = self.options[1] 
-        self.pg_brk = self.options[2]
-        self.style = stl
+
+        def make_default_style(self):
+            _make_default_style(self.default_style)
+
+        self.max_gen = int(self.options[1]) 
+        self.pg_brk = int(self.options[2])
+        self.style_name = stl
         self.new_person = None
 
         self.generations_spinbox.set_value(self.max_gen)
@@ -884,11 +882,8 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
 
     def get_stylesheet_savefile(self):
         """Where to save styles for this report."""
-        return "ftm_ancestor_report.xml"
+        return _style_file
     
-    def make_default_style(self):
-        _make_default_style(self)
-
     def on_cancel(self, obj):
         pass
 
@@ -903,7 +898,7 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
         self.options = [ self.person.getId(), self.max_gen, self.pg_brk ]
-        self.style = self.selected_style 
+        self.style_name = self.selected_style.get_name() 
    
 
 #------------------------------------------------------------------------
@@ -917,8 +912,8 @@ def write_book_item(database,person,doc,options,newpage=0):
     try:
         if options[0]:
             person = database.getPerson(options[0])
-        max_gen = options[1]
-        pg_brk = options[2]
+        max_gen = int(options[1])
+        pg_brk = int(options[2])
         MyReport = FtmAncestorReport(database, person, 
             max_gen, pg_brk, doc, None, newpage )
         MyReport.write_report()
@@ -1040,13 +1035,15 @@ register_report(
     author_email="dallingham@users.sourceforge.net"
     )
 
-# register_book_item( name, category, dialog, write_item, get_options, get_style)
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
 register_book_item( 
     _("FTM Style Ancestor Report"), 
     _("Text"),
     FtmAncestorBareReportDialog,
     write_book_item,
     _options,
-    _style
-    )
+    _style_name,
+    _style_file,
+    _make_default_style
+   )
 

@@ -523,13 +523,13 @@ def relationship_function():
 # Book item registration
 #
 #-------------------------------------------------------------------------
-def register_book_item(name,category,options_dialog,write_book_item,options,style):
+def register_book_item(name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style):
     """Register a book item"""
     
     for n in _bkitems:
         if n[0] == name:
             return
-    _bkitems.append((name,category,options_dialog,write_book_item,options,style))
+    _bkitems.append((name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style))
 
 #-------------------------------------------------------------------------
 #
