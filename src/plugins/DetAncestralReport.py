@@ -198,11 +198,11 @@ class DetAncestorReport(Report.Report):
     def write_person(self, key, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
 
-        self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
-
         person = self.map[key]
         if rptOptions.addImages == reportOptions.Yes:
             self.insert_images(person)
+
+        self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
         name = person.get_primary_name().get_regular_name()
 
@@ -533,10 +533,10 @@ class DetAncestorReport(Report.Report):
                         firstName= fam.get_father_id().get_primary_name().get_first_name()
 
                 if person != "":
-                    self.doc.start_paragraph("DAR-Entry")
-
                     if rptOptions.addImages == reportOptions.Yes:
                         self.insert_images(ind)
+
+                    self.doc.start_paragraph("DAR-Entry")
 
                     if rptOptions.firstName == reportOptions.No:
                         firstName= heshe
@@ -563,16 +563,11 @@ class DetAncestorReport(Report.Report):
     def insert_images(self, person):
 
         photos = person.get_media_list()
-        paragraph_started = 0
         for photo in photos :
             object = photo.get_reference()
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
-                if not paragraph_started:
-                    self.doc.start_paragraph("DAR-Entry")
-                    paragraph_started = 1
                 self.doc.add_media_object(file,"row",4.0,4.0)
-            self.doc.end_paragraph()
 
     #--------------------------------------------------------------------
     #
