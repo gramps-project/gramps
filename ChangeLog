@@ -1,3 +1,7 @@
+2003-12-09  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Plugins.py (PluginDialog.__init__): catch the attribute
+	error that is thown if gtk does not support gtk_tooltips_data.get
+
 2003-12-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/ru/getstart.xml: Translation update.
 	* src/plugins/WriteGedcom.py (export_data): Correct researcher's 
