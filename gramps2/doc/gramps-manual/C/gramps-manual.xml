@@ -3,7 +3,7 @@
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "0.9.3">
-  <!ENTITY manrevision "2.3">
+  <!ENTITY manrevision "2.2">
   <!ENTITY date "July 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
@@ -98,16 +98,6 @@
       <revision> 
 		<revnumber>GRAMPS Manual V&manrevision;</revnumber> 
 		<date>&date;</date> 
-		<revdescription> 
-	  		<para role="author">Donald Peterson
-	    	<email>dpeterson@sigmaxi.org</email>
-	  		</para>
-	  		<para role="publisher">GRAMPS Project</para>
-		</revdescription> 
-      </revision> 
-      <revision> 
-		<revnumber>GRAMPS Manual V2.2;</revnumber> 
-		<date>July 2003</date> 
 		<revdescription> 
 	  		<para role="author">Alex Roitman
 	    	<email>shura@alex.neuro.umn.edu</email>
