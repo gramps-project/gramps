@@ -187,8 +187,6 @@ class ArgHandler:
         filename = os.path.normpath(os.path.abspath(filename))
         filetype = GrampsMime.get_type(filename)
         if filetype == const.app_gramps:
-            import GrampsBSDDB
-            self.parent.db = GrampsBSDDB.GrampsBSDDB()
             self.parent.read_file(filename)
             return 1
         elif filetype == const.app_gramps_xml:

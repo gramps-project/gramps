@@ -1,5 +1,6 @@
 2004-08-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EdirPerson.py (__init__): Typos.
+	* src/ArgHandler.py (auto_save_load): Remove new db creation for BSDDB.
 
 2004-08-23  Jim Smart  <jim@jimsmart.org>
 	* src/PeopleModel.py: enhanced column_spouse
