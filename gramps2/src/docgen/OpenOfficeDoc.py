@@ -35,7 +35,7 @@ import time
 #
 #-------------------------------------------------------------------------
 import Errors
-import TextDoc
+import BaseDoc
 import const
 import Plugins
 import ImgManip
@@ -52,16 +52,25 @@ from gettext import gettext as _
 # OpenOfficeDoc
 #
 #-------------------------------------------------------------------------
-class OpenOfficeDoc(TextDoc.TextDoc):
+class OpenOfficeDoc(BaseDoc.BaseDoc):
 
-    def __init__(self,styles,type,template,orientation):
-        TextDoc.TextDoc.__init__(self,styles,type,template,orientation)
+    def __init__(self,styles,type,template,orientation=BaseDoc.PAPER_PORTRAIT):
+        BaseDoc.BaseDoc.__init__(self,styles,type,template,orientation)
         self.f = None
         self.filename = None
         self.level = 0
         self.time = "0000-00-00T00:00:00"
         self.new_page = 0
         self.new_cell = 0
+        self.page = 0
+        self.first_page = 1
+
+    def set_mode(self, mode):
+        self.mode = mode
+        if self.first_page == 0:
+            self.page_break(mode)
+        else:
+            self.first_page = 0
 
     def open(self,filename):
         t = time.localtime(time.time())
@@ -80,8 +89,10 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             self.f = open(self.content_xml,"wb")
         except IOError,msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.content_xml, msg)
+            pass
             raise Errors.ReportError(errmsg)
         except:
+            pass
             raise Errors.ReportError("Could not create %s" % self.content_xml)
 
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -113,9 +124,43 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.f.write('style:font-pitch="variable"/>\n')
         self.f.write('</office:font-decls>\n')
         self.f.write('<office:automatic-styles>\n')
+        self.f.write('<style:style style:name="docgen_page_break" style:family="paragraph">\n')
+        self.f.write('<style:properties fo:break-before="page"/>\n')
+        self.f.write('</style:style>\n')
         self.f.write('<style:style style:name="GSuper" style:family="text">')
         self.f.write('<style:properties style:text-position="super 58%"/>')
         self.f.write('</style:style>\n')
+
+	for style_name in self.draw_styles.keys():
+            style = self.draw_styles[style_name]
+            self.f.write('<style:style style:name="')
+  	    self.f.write(style_name)
+	    self.f.write('" style:family="graphics" ')
+	    self.f.write('style:parent-style-name="standard">\n')
+	    self.f.write('<style:properties ')
+            if style.color[0] == 255 and style.color[1] == 255 and style.color[2] == 255:
+                self.f.write('draw:fill="none" ')
+            else:
+                self.f.write('draw:fill="solid" ')
+
+            self.f.write('draw:fill-color="#%02x%02x%02x" ' % style.get_fill_color())
+                
+            if style.get_line_style() == BaseDoc.DASHED:
+                self.f.write('draw:color="#cccccc" ')
+            else:
+                self.f.write('draw:color="#%02x%02x%02x" ' % style.get_color())
+                
+            
+            if style.get_line_width():
+                self.f.write('draw:stroke="solid" ')
+            else:
+                self.f.write('draw:stroke="none" ')
+            if style.get_shadow():
+		self.f.write('draw:shadow="visible" ')
+            else:
+		self.f.write('draw:shadow="hidden" ')
+	    self.f.write('/>\n')
+  	    self.f.write('</style:style>\n')
 
         for style_name in self.style_list.keys():
 	    style = self.style_list[style_name]
@@ -248,11 +293,10 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             os.system ('/usr/bin/oowriter "$FILE" &')
 
     def add_photo(self,name,pos,x_cm,y_cm):
-
         image = ImgManip.ImgManip(name)
         (x,y) = image.size()
         ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
-
+        
         if ratio < 1:
             act_width = x_cm
             act_height = y_cm*ratio
@@ -359,6 +403,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.styles_xml, msg)
             raise Errors.ReportError(errmsg)
         except:
+            pass
             raise Errors.ReportError(_("Could not create %s") % self.styles_xml)
                                      
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -420,18 +465,18 @@ class OpenOfficeDoc(TextDoc.TextDoc):
                 self.f.write('fo:keep-with-next="true" ')
 
             align = style.get_alignment()
-	    if align == TextDoc.PARA_ALIGN_LEFT:
+	    if align == BaseDoc.PARA_ALIGN_LEFT:
 	       self.f.write('fo:text-align="start" ')
-            elif align == TextDoc.PARA_ALIGN_RIGHT:
+            elif align == BaseDoc.PARA_ALIGN_RIGHT:
                self.f.write('fo:text-align="end" ')
-            elif align == TextDoc.PARA_ALIGN_CENTER:
+            elif align == BaseDoc.PARA_ALIGN_CENTER:
                self.f.write('fo:text-align="center" ')
                self.f.write('style:justify-single-word="false" ')
             else:
                self.f.write('fo:text-align="justify" ')
                self.f.write('style:justify-single-word="false" ')
             font = style.get_font()
-            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                 self.f.write('style:font-name="Arial" ')
             else:
                 self.f.write('style:font-name="Times New Roman" ')
@@ -474,7 +519,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.f.write('<style:properties fo:page-width="%.3fcm" ' % self.width)
         self.f.write('fo:page-height="%.3fcm" ' % self.height)
         self.f.write('style:num-format="1" ')
-        if self.orientation == TextDoc.PAPER_PORTRAIT:
+        if self.orientation == BaseDoc.PAPER_PORTRAIT:
             self.f.write('style:print-orientation="portrait" ')
         else:
             self.f.write('style:print-orientation="landscape" ')
@@ -496,18 +541,41 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.f.write('<office:master-styles>\n')
         self.f.write('<style:master-page style:name="Standard" ')
         self.f.write('style:page-master-name="pm1"/>\n')
+	self.f.write('<draw:layer-set>\n')
+	self.f.write('<draw:layer draw:name="layout" draw:locked="false" ')
+	self.f.write('draw:printable="true" draw:visible="true"/>\n')
+	self.f.write('<draw:layer draw:name="background" draw:locked="false" ')
+	self.f.write('draw:printable="true" draw:visible="true"/>\n')
+	self.f.write('<draw:layer draw:name="backgroundobjects" ')
+	self.f.write('draw:locked="false" draw:printable="true" draw:visible="true"/>\n')
+	self.f.write('<draw:layer draw:name="controls" draw:locked="false" ')
+	self.f.write('draw:printable="true" draw:visible="true"/>\n')
+	self.f.write('<draw:layer draw:name="measurelines" draw:locked="false" ')
+	self.f.write('draw:printable="true" draw:visible="true"/>\n')
+	self.f.write('</draw:layer-set>\n')
+	self.f.write('<style:master-page style:name="Home" ')
+	self.f.write('style:page-master-name="PM0" draw:style-name="dp1"/>\n')
         self.f.write('</office:master-styles>\n')
         self.f.write('</office:document-styles>\n')
 	self.f.close()
 
-    def page_break(self):
-        self.new_page = 1
+    def page_break(self, graphics=-1):
+        if self.mode == BaseDoc.GRAPHICS_MODE:
+            self.f.write('</text:p>\n')
+        if graphics != -1:
+            self.mode = graphics
+            
+        if self.mode == BaseDoc.GRAPHICS_MODE:
+            self.page = self.page + 1
+            self.f.write('<text:p text:style-name="docgen_page_break">')
+        else:
+            self.new_page = 1
         
     def start_paragraph(self,style_name,leader=None):
 	style = self.style_list[style_name]
 	self.level = style.get_header_level()
         if self.new_page == 1:
-            self.new_page = 0
+            self.new_page = 0 
             name = "NL%s" % style_name
         else:
             name = style_name
@@ -530,10 +598,10 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.new_cell = 1
 
     def write_text(self,text):
-        text = string.replace(text,'&','&amp;');       # Must be first
-        text = string.replace(text,'<','&lt;');
-        text = string.replace(text,'>','&gt;');
-        text = string.replace(text,'\n','<text:line-break/>')
+        text = text.replace('&','&amp;')       # Must be first
+        text = text.replace('<','&lt;')
+        text = text.replace('>','&gt;')
+        text = text.replace('\n','<text:line-break/>')
         text = text.replace('&lt;super&gt;','<text:span text:style-name="GSuper">')
         text = text.replace('&lt;/super&gt;','</text:span>')
 	self.f.write(text)
@@ -547,7 +615,9 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.manifest_xml, msg)
             raise Errors.ReportError(errmsg)
         except:
+            pass
             raise Errors.ReportError(_("Could not create %s") % self.manifest_xml)
+
 
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
@@ -583,6 +653,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             errmsg = "%s\n%s" % (_("Could not create %s") % self.meta_xml, msg)
             raise Errors.ReportError(errmsg)
         except:
+            pass
             raise Errors.ReportError(_("Could not create %s") % self.meta_xml)
 
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -620,10 +691,162 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 	self.f.write('</office:document-meta>\n')
 	self.f.close()
 
+    def rotate_text(self,style,text,x,y,angle):
+
+        stype = self.draw_styles[style]
+        pname = stype.get_paragraph_style()
+        p = self.style_list[pname]
+	font = p.get_font()
+        size = font.get_size()
+
+        height = size*(len(text))
+        width = 0
+        for line in text:
+            width = max(width,FontScale.string_width(font,line))
+        wcm = (width/72.0)*2.54
+        hcm = (height/72.0)*2.54
+
+        rangle = -((pi/180.0) * angle)
+
+        self.f.write('<draw:text-box draw:style-name="%s" ' % style)
+        self.f.write('draw:layer="layout" svg:width="%.3fcm" ' % wcm)
+        self.f.write('svg:height="%.3fpt" ' % hcm)
+        self.f.write('draw:transform="rotate (%.8f) ' % rangle)
+        xloc = x-((wcm/2.0)*cos(-rangle)) + self.lmargin
+        yloc = y-((hcm)*sin(-rangle)) + self.tmargin
+        self.f.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
+        self.f.write('>')
+        self.f.write('<text:p><text:span text:style-name="T%s">' % pname)
+        self.write_text(string.join(text,'\n'))
+        self.f.write('</text:span></text:p></draw:text-box>\n')
+
+    def draw_path(self,style,path):
+        stype = self.draw_styles[style]
+
+        minx = 9e12
+        miny = 9e12
+        maxx = 0
+        maxy = 0
+
+        for point in path:
+            minx = min(point[0],minx)
+            miny = min(point[1],miny)
+            maxx = max(point[0],maxx)
+            maxy = max(point[1],maxy)
+
+        self.f.write('<draw:polygon draw:style-name="%s" draw:layer="layout" ' % style)
+        x = int((minx+self.lmargin)*1000)
+        y = int((miny+self.tmargin)*1000)
+        
+        self.f.write('svg:x="%d" svg:y="%d" ' % (x,y))
+        self.f.write('svg:viewBox="0 0 %d %d" ' % (int(maxx-minx)*1000,int(maxy-miny)*1000))
+        self.f.write('svg:width="%.4fcm" ' % (maxx-minx))
+        self.f.write('svg:height="%.4fcm" ' % (maxy-miny))
+        
+        point = path[0]
+        x1 = int((point[0]-minx)*1000)
+        y1 = int((point[1]-miny)*1000)
+        self.f.write('draw:points="%d,%d' % (x1,y1))
+
+        for point in path[1:]:
+            x1 = int((point[0]-minx)*1000)
+            y1 = int((point[1]-miny)*1000)
+            self.f.write(' %d,%d' % (x1,y1))
+        self.f.write('"/>\n')
+
+    def draw_line(self,style,x1,y1,x2,y2):
+        x1 = x1 + self.lmargin
+        x2 = x2 + self.lmargin
+        y1 = y1 + self.tmargin
+        y2 = y2 + self.tmargin
+	box_style = self.draw_styles[style]
+
+        self.f.write('<draw:line draw:style="')
+        self.f.write(style)
+        self.f.write('" svg:x1="%.3fcm" ' % x1)
+        self.f.write('svg:y1="%.3fcm" ' % y1)
+        self.f.write('svg:x2="%.3fcm" ' % x2)
+        self.f.write('svg:y2="%.3fcm" ' % y2)
+        self.f.write('/>\n')
+
+    def draw_text(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+
+        pstyle = self.style_list[para_name]
+        font = pstyle.get_font()
+        sw = FontScale.string_width(font,text)*1.3
+
+	self.f.write('<draw:text-box draw:style-name="')
+	self.f.write(style)
+	self.f.write('" draw:layer="layout" ')
+        # fix this
+	self.f.write('svg:width="%.3fcm" ' % sw)
+	self.f.write('svg:height="%.4fpt" ' % (font.get_size()*1.4))
+
+	self.f.write('svg:x="%.3fcm" ' % float(x))
+        self.f.write('svg:y="%.3fcm">' % float(y))
+        self.f.write('<text:p text:style-name="P1">')
+        self.f.write('<text:span text:style-name="T%s">' % para_name)
+        self.f.write(text)
+        self.f.write('</text:span></text:p>')
+        self.f.write('</draw:text-box>\n')
+
+    def draw_bar(self,style,x,y,x2,y2):
+        x = x + self.lmargin
+        x2 = x2 + self.lmargin
+        y = y + self.tmargin
+        y2 = y2 + self.tmargin
+
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+
+	self.f.write('<draw:rect text:anchor-type="paragraph" draw:style-name="')
+	self.f.write(style)
+	self.f.write('" draw:z-index="0" ')
+	self.f.write('svg:width="%.3fcm" ' % float(x2-x))
+	self.f.write('svg:height="%.3fcm" ' % float(y2-y))
+	self.f.write('svg:x="%.3fcm" ' % float(x))
+        self.f.write('svg:y="%.3fcm">' % float(y))
+        self.f.write('</draw:rect>\n')
+
+    def draw_box(self,style,text,x,y):
+        x = x + self.lmargin
+        y = y + self.tmargin
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+
+	self.f.write('<draw:rect text:anchor-type="paragraph" draw:style-name="')
+	self.f.write(style)
+	self.f.write('" draw:z-index="0" ')
+	self.f.write('svg:width="%.3fcm" ' % box_style.get_width())
+	self.f.write('svg:height="%.3fcm" ' % box_style.get_height())
+	self.f.write('svg:x="%.3fcm" ' % float(x))
+        self.f.write('svg:y="%.3fcm"' % float(y))
+	if text != "":
+            text = string.replace(text,'\t','<text:tab-stop/>')
+            text = string.replace(text,'\n','<text:line-break/>')
+            self.f.write('>\n')
+  	    self.f.write('<text:p text:style-name="P1">')
+	    self.f.write('<text:span text:style-name="T%s">' % para_name)
+	    self.f.write(text)
+            self.f.write('</text:span></text:p>\n')
+            self.f.write('</draw:rect>\n')
+        else:
+            self.f.write('/>\n')
+
 print_label = None
 if os.access ("/usr/bin/oowriter", os.X_OK):
     print_label = _("Open in OpenOffice.org")
-
+     
+#--------------------------------------------------------------------------
+#
+# Register plugins
+#
+#--------------------------------------------------------------------------
 Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,
-                          ".sxw",print_label)
+                           ".sxw",print_label)
 Plugins.register_book_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")
+
