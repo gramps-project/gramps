@@ -10,7 +10,7 @@ install-data-local:
 	   $(INSTALL) -d $(DESTDIR)$(prefix)/share/locale/$$lang/LC_MESSAGES; \
 	   $(INSTALL_DATA) $$lang.mo $(DESTDIR)$(prefix)/share/locale/$$lang/LC_MESSAGES/$(PACKAGE).mo; \
 	done	
-	
+
 uninstall-local:
 	for lang in $(LANGUAGES); do \
 	   rm -f $(DESTDIR)$(prefix)/share/locale/$$lang/LC_MESSAGES/gramps.mo; \
@@ -20,4 +20,7 @@ uninstall-local:
 SUFFIXES = .po .mo
 
 .po.mo:
-	$(MSGFMT) -v $< -o $@
+	@MSGCONV@ --to-code=UTF-8 $< -o temp.po
+	$(MSGFMT) -v temp.po -o $@
+	rm temp.po
+
