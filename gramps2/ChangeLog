@@ -1,21 +1,30 @@
 2004-08-19  Don Allingham  <dallingham@users.sourceforge.net>
-	* PeopleModel.py: simplify model interface
-        * AddSpouse.py: get_family_from_handle fixes
-	* EditPerson.py: get_family_from_handle fixes
-	* EditSource.py: get_family_from_handle fixes
-	* GraphLayout.py: get_family_from_handle fixes
-	* ImageSelect.py: get_family_from_handle fixes
-	* MediaView.py: get_family_from_handle fixes
-	* MergeData.py: get_family_from_handle fixes
-	* PlaceView.py: get_family_from_handle fixes
-	* ReadXML.py: get_family_from_handle fixes
-	* RelLib.py: get_family_from_handle fixes
-	* Relationship.py: get_family_from_handle fixes
-	* SelectChild.py: get_family_from_handle fixes
-	* SourceView.py: get_family_from_handle fixes
-	* SubstKeywords.py: get_family_from_handle fixes
-	* WriteXML.py: get_family_from_handle fixes
-	* gramps_main.py: get_family_from_handle fixes
+	* src/AutoComp.py: remove double display of data
+	* src/FamilyView.py: remove unused check
+	* src/GrampsBSDDB.py: search by gramps_id
+	* src/GrampsDbBase.py: search by gramps_id, unicode/str conversions
+	* src/Marriage.py: handle gramps_id editing
+	* src/ReadXML.py: fix handle/gramps_id on import
+	* src/plugins/RelCalc.py: display date instead of event handle
+	* src/Relationship.py: family handles working
+	* src/PeopleModel.py: comment out unused functions
+	* src/PeopleModel.py: simplify model interface
+	* src/AddSpouse.py: get_family_from_handle fixes
+	* src/EditPerson.py: get_family_from_handle fixes
+	* src/EditSource.py: get_family_from_handle fixes
+	* src/GraphLayout.py: get_family_from_handle fixes
+	* src/ImageSelect.py: get_family_from_handle fixes
+	* src/MediaView.py: get_family_from_handle fixes
+	* src/MergeData.py: get_family_from_handle fixes
+	* src/PlaceView.py: get_family_from_handle fixes
+	* src/ReadXML.py: get_family_from_handle fixes
+	* src/RelLib.py: get_family_from_handle fixes
+	* src/Relationship.py: get_family_from_handle fixes
+	* src/SelectChild.py: get_family_from_handle fixes
+	* src/SourceView.py: get_family_from_handle fixes
+	* src/SubstKeywords.py: get_family_from_handle fixes
+	* src/WriteXML.py: get_family_from_handle fixes
+	* src/gramps_main.py: get_family_from_handle fixes
 	* plugins/AncestorChart.py: get_family_from_handle fixes
 	* plugins/AncestorChart2.py: get_family_from_handle fixes
 	* plugins/AncestorReport.py: get_family_from_handle fixes

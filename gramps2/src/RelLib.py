@@ -502,14 +502,6 @@ class Person(PrimaryObject,SourceNote):
         else:
             return self.parent_family_list[0][0]
 
-    def get_main_parents_family_handle(self):
-        """returns the main Family of the Person, the Family in which the
-        Person is a natural born child"""
-        if len(self.parent_family_list) == 0:
-            return (None,None,None)
-        else:
-            return self.parent_family_list[0]
-
     def set_lds_baptism(self,ord):
         """Sets the LDS Baptism ordinance"""
         self.lds_bapt = ord

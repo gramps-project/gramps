@@ -278,6 +278,7 @@ class GrampsParser:
         self.tlist = []
         self.conf = 2
         self.gid2id = {}
+        self.gid2fid = {}
         
         self.ord = None
         self.objref = None
@@ -329,6 +330,7 @@ class GrampsParser:
         self.func = None
         self.witness_comment = ""
         self.idswap = {}
+        self.fidswap = {}
 
         self.func_map = {
             "address"    : (self.start_address, self.stop_address),
@@ -414,25 +416,46 @@ class GrampsParser:
             }
 
     def find_person_by_gramps_id(self,gramps_id):
-        person = RelLib.Person()
         intid = self.gid2id.get(gramps_id)
         if intid:
-            person.unserialize(self.db.person_map.get(intid))
+            person = self.db.get_person_from_handle(intid)
         else:
             intid = Utils.create_id()
+            person = RelLib.Person()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
             self.db.add_person(person,self.trans)
             self.gid2id[gramps_id] = intid
         return person
 
+    def find_family_by_gramps_id(self,gramps_id):
+        intid = self.gid2fid.get(gramps_id)
+        if intid:
+            family = self.db.get_family_from_handle(intid)
+        else:
+            intid = Utils.create_id()
+            family = RelLib.Family()
+            family.set_handle(intid)
+            family.set_gramps_id(gramps_id)
+            self.db.add_family(family,self.trans)
+            self.gid2fid[gramps_id] = intid
+        return family
+
     def map_gid(self,id):
         if not self.idswap.get(id):
-            if self.db.id_trans.get(str(id)):
+            if self.db.get_person_from_gramps_id(id):
                 self.idswap[id] = self.db.find_next_person_gramps_id()
             else:
                 self.idswap[id] = id
         return self.idswap[id]
+
+    def map_fid(self,id):
+        if not self.fidswap.get(id):
+            if self.db.get_family_from_gramps_id(id):
+                self.fidswap[id] = self.db.find_next_family_gramps_id()
+            else:
+                self.fidswap[id] = id
+        return self.fidswap[id]
 
     def parse(self,file):
         self.trans = self.db.transaction_begin()
@@ -444,7 +467,7 @@ class GrampsParser:
             
         self.db.set_researcher(self.owner)
         if self.tempDefault != None:
-            id = self.tempDefault
+            id = self.map_gid(self.tempDefault)
             person = self.find_person_by_gramps_id(id)
             if person:
                 self.db.set_default_person_handle(person.get_handle())
@@ -477,8 +500,8 @@ class GrampsParser:
         self.ord.set_status(int(attrs['val']))
 
     def start_sealed_to(self,attrs):
-        id = self.map_gid(attrs['ref'])
-        self.ord.set_family_handle(self.db.find_family_from_handle(id,self.trans))
+        id = self.map_fid(attrs['ref'])
+        self.ord.set_family_handle(self.find_family_by_gramps_id(id))
         
     def start_place(self,attrs):
         self.placeobj = self.db.find_place_from_handle(attrs['ref'],self.trans)
@@ -578,7 +601,8 @@ class GrampsParser:
             self.address.private = int(attrs["priv"])
 
     def start_bmark(self,attrs):
-        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
+        id = self.map_gid(attrs["ref"])
+        person = self.find_person_by_gramps_id(id)
         self.db.bookmarks.append(person.get_handle())
 
     def start_person(self,attrs):
@@ -635,7 +659,7 @@ class GrampsParser:
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.find_family_from_handle(attrs["id"],self.trans)
+        self.family = self.find_family_by_gramps_id(self.map_fid(attrs["id"]))
         
         if attrs.has_key("type"):
             self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],
@@ -646,7 +670,7 @@ class GrampsParser:
             self.family.set_complete_flag(0)
 
     def start_childof(self,attrs):
-        family = self.db.find_family_from_handle(attrs["ref"],self.trans)
+        family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
         if attrs.has_key("mrel"):
             mrel = attrs["mrel"]
         else:
@@ -658,7 +682,8 @@ class GrampsParser:
         self.person.add_parent_family_handle(family.get_handle(),mrel,frel)
 
     def start_parentin(self,attrs):
-        self.person.add_family_handle(attrs["ref"])
+        family = self.find_family_by_gramps_id(self.map_fid(attrs["ref"]))
+        self.person.add_family_handle(family.get_handle())
 
     def start_name(self,attrs):
         if not self.in_witness:

@@ -32,6 +32,9 @@ def find_surname(key,data):
 def find_idmap(key,data):
     return str(data[1])
 
+def find_fidmap(key,data):
+    return str(data[1])
+
 def find_eventname(key,data):
     return str(data[1])
 
@@ -76,11 +79,16 @@ class GrampsBSDDB(GrampsDbBase):
         self.id_trans.set_flags(db.DB_DUP)
         self.id_trans.open(name, "idtrans", db.DB_HASH, flags=db.DB_CREATE)
 
+        self.fid_trans = db.DB(self.env)
+        self.fid_trans.set_flags(db.DB_DUP)
+        self.fid_trans.open(name, "fidtrans", db.DB_HASH, flags=db.DB_CREATE)
+
         self.eventnames = db.DB(self.env)
         self.eventnames.set_flags(db.DB_DUP)
         self.eventnames.open(name, "eventnames", db.DB_HASH, flags=db.DB_CREATE)
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
         self.person_map.associate(self.id_trans, find_idmap, db.DB_CREATE)
+        self.person_map.associate(self.fid_trans, find_fidmap, db.DB_CREATE)
         self.event_map.associate(self.eventnames, find_eventname, db.DB_CREATE)
 
         self.undodb = db.DB()
@@ -106,6 +114,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.surnames.close()
         self.eventnames.close()
         self.id_trans.close()
+        self.fid_trans.close()
         self.env.close()
         self.undodb.close()
 
@@ -167,3 +176,26 @@ class GrampsBSDDB(GrampsDbBase):
             transaction.add(EVENT_KEY,handle,old_data)
         self.event_map.delete(str(handle))
 
+    def get_person_from_gramps_id(self,val):
+        """finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, a new Person is added to the database."""
+
+        data = self.id_trans.get(str(val))
+        if data:
+            person = Person()
+            person.unserialize(cPickle.loads(data))
+            return person
+        else:
+            return None
+
+    def get_family_from_gramps_id(self,val):
+        """finds a Person in the database from the passed gramps' ID.
+        If no such Person exists, a new Person is added to the database."""
+
+        data = self.fid_trans.get(str(val))
+        if data:
+            family = Family()
+            family.unserialize(cPickle.loads(data))
+            return family
+        else:
+            return None
