@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,9 +30,9 @@ import string
 # constants 
 #
 #-------------------------------------------------------------------------
-IGNORE = "~!@#$%^&*()_+=-`[]\|;:'/?.,<>\" \t\f\v"
-TABLE  = string.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 
-                          '01230120022455012623010202')
+IGNORE = "HW~!@#$%^&*()_+=-`[]\|;:'/?.,<>\" \t\f\v"
+TABLE  = string.maketrans('ABCDEFGIJKLMNOPQRSTUVXYZ', 
+                          '012301202245501262301202')
 
 #-------------------------------------------------------------------------
 #
