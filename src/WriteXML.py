@@ -453,9 +453,9 @@ def exportData(database, filename, callback):
             country = fix(loc.get_country())
             county = fix(loc.get_county())
             if city or state or country or county:
-                g.write('      <location city="%s" ' % city)
-                g.write('county="%s" state="%s" ' % (county,state))
-                g.write('country="%s"/>\n' % country)
+                g.write('      <location city="%s"' % city)
+                g.write(' county="%s" state="%s"' % (county,state))
+                g.write(' country="%s"/>\n' % country)
             for loc in place.get_alternate_locations():
                 city = fix(loc.get_city())
                 state = fix(loc.get_state())
@@ -463,8 +463,8 @@ def exportData(database, filename, callback):
                 county = fix(loc.get_county())
                 if city or state or country or county:
                     g.write('      <location type="alternate"')
-                    g.write('city="%s" county="%s" state="%s" country="%s"/>\n' \
-                        % (city,county,state,country))
+                    g.write(' city="%s" county="%s"' % (city,county))
+                    g.write(' state="%s" country="%s"/>\n' % (state,country))
             for photo in place.getPhotoList():
                 path = photo.getPath()
                 l = len(fileroot)
