@@ -1,4 +1,6 @@
 2004-08-16  Tim Waugh  <twaugh@redhat.com>
+	* src/gramps_main.py (__init__): Update display after initialization.
+	This fixes a display problem when family view is the default.
 	* src/RelLib.py: Fixed typo.
 	* gramps.spec.in, gramps-mdk.spec.in: Fixed.
 	* src/data/gramps.desktop: Fixed.
