@@ -1441,7 +1441,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=gramps
- VERSION=0.8.0-rc1
+ VERSION=0.8.0rc1
 
 
 cat >>confdefs.h <<_ACEOF
