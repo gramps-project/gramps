@@ -382,15 +382,10 @@ class PedigreeView:
 
         if depth > 5 or person == None:
             return
-        family = person.getMainFamily()
-        frel = 0
-        mrel = 0
-        if family == None:
-            l = person.getAltFamilyList()
-            if len(l) > 0:
-                (family,m,f) = l[0]
-                mrel = (m != "Birth")
-                frel = (f != "Birth")
+        (family,m,f) = person.getMainFamilyRel()
+        if family:
+            mrel = (m != "Birth")
+            frel = (f != "Birth")
             
         list[index] = (person,val)
         if family != None:
