@@ -521,6 +521,9 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         self.new_cell = 1
 
     def write_text(self,text):
+        text = string.replace(text,'&','&amp;');       # Must be first
+        text = string.replace(text,'<','&lt;');
+        text = string.replace(text,'>','&gt;');
         text = string.replace(text,'\n','<text:line-break/>')
 	self.f.write(text)
 
