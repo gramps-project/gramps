@@ -232,8 +232,6 @@ class DelSrcQuery:
             object.setSourceRefList(l)
 
     def query_response(self):
-        if ans == 1:
-            return
         del self.db.getSourceMap()[self.source.getId()]
         Utils.modified()
 

@@ -434,15 +434,17 @@ class Gramps:
         """Display the GRAMPS manual"""
         import gnome.help
 	url = gnome.help.file_find_file("gramps-manual","gramps-manual.sgml")
-	url = "gnome-help:"+url
-        gnome.help.goto(url)
+        if url:
+            url = "gnome-help:"+url
+            gnome.help.goto(url)
 
     def on_writing_extensions_activate(self,obj):
         """Display the Extending GRAMPS manual"""
         import gnome.help
         url = gnome.help.file_find_file("extending-gramps","extending-gramps.sgml")
-	url = "gnome-help:"+url
-        gnome.help.goto(url)
+        if url:
+            url = "gnome-help:"+url
+            gnome.help.goto(url)
     
     def on_remove_child_clicked(self,obj):
         if not self.active_family or not self.active_child or not self.active_person:
@@ -1568,7 +1570,7 @@ class Gramps:
                 self.spouse_edit.set_sensitive(0)
                 self.spouse_del.set_sensitive(0)
                 msg = _("No Relationship")
-                self.gtop.get_widget('rel_frame').set_label()
+                self.gtop.get_widget('rel_frame').set_label(msg)
 
             if number_of_families > 0:
                 if not family:

@@ -144,7 +144,7 @@ class EventComparison:
         if len(plist) == 0:
             gnome.ui.GnomeWarningDialog(_("No matches were found"))
         else:
-            DisplayChart(p_list)
+            DisplayChart(plist)
 
 #------------------------------------------------------------------------
 #
