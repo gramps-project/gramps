@@ -12,13 +12,12 @@ pycomp		= ${srcdir}/py-compile
 all:
 	${pycomp} *.py
 
-
 install:
 	${INSTALL} -d ${docgen}
-	${INSTALL} *.py *.pyo *.glade ${docgen}
+	${INSTALL} *.py *.pyo ${docgen}
 
 uninstall:
-	rm ${docgen}/*.py ${docgen}/*.pyo ${docgen}/*.glade ${docgen}/*.xpm
+	rm ${docgen}/*.py ${docgen}/*.pyo 
 	-rmdir ${docgen}
 
 clean:
