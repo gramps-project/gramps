@@ -69,7 +69,7 @@ class AncestorChart:
 
     def __init__(self,database,person,max,display,doc,output,newpage=0):
         self.doc = doc
-        self.doc.creator(database.getResearcher().getName())
+        self.doc.creator(database.get_researcher().get_name())
         self.map = {}
         self.text = {}
         self.start = person
@@ -109,10 +109,10 @@ class AncestorChart:
 
 	self.lines = max(self.lines,len(self.text[index]))    
 
-        family = person.getMainParents()
+        family = person.get_main_parents_family_id()
         if family != None:
-            self.filter(family.getFather(),index*2)
-            self.filter(family.getMother(),(index*2)+1)
+            self.filter(family.get_father_id(),index*2)
+            self.filter(family.get_mother_id(),(index*2)+1)
 
     def write_report(self):
 
@@ -318,7 +318,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -377,7 +377,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.report_text )
+        self.options = ( self.person.get_id(), self.max_gen, self.report_text )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -390,7 +390,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         disp_format = options[2]
         return AncestorChart(database, person, max_gen,

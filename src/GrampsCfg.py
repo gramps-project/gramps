@@ -98,10 +98,10 @@ _date_entry_list = [
     ]
 
 _name_format_list = [
-    (_("Firstname Surname"),  Utils.normal_name, Utils.phonebook_name, lambda x: x.getSurname()),
-    (_("Surname, Firstname"), Utils.phonebook_name, Utils.phonebook_name, lambda x: x.getSurname()),
-    (_("Firstname SURNAME"),  Utils.upper_name, Utils.phonebook_upper_name, lambda x : x.getUpperSurname()),
-    (_("SURNAME, Firstname"), Utils.phonebook_upper_name, Utils.phonebook_upper_name, lambda x: x.getUpperSurname()),
+    (_("Firstname Surname"),  Utils.normal_name, Utils.phonebook_name, lambda x: x.get_surname()),
+    (_("Surname, Firstname"), Utils.phonebook_name, Utils.phonebook_name, lambda x: x.get_surname()),
+    (_("Firstname SURNAME"),  Utils.upper_name, Utils.phonebook_upper_name, lambda x : x.get_upper_surname()),
+    (_("SURNAME, Firstname"), Utils.phonebook_upper_name, Utils.phonebook_upper_name, lambda x: x.get_upper_surname()),
     ]
 
 panellist = [
@@ -143,7 +143,7 @@ uncompress    = 0
 lastfile      = None
 nameof        = Utils.normal_name
 display_name  = Utils.normal_name
-display_surname = lambda x : x.getSurname()
+display_surname = lambda x : x.get_surname()
 status_bar    = 1
 toolbar       = gtk.TOOLBAR_BOTH
 save_toolbar  = gtk.TOOLBAR_BOTH

@@ -67,10 +67,10 @@ class AncestorReport(Report.Report):
             return
         self.map[index] = person
     
-        family = person.getMainParents()
+        family = person.get_main_parents_family_id()
         if family != None:
-            self.filter(family.getFather(),index*2,generation+1)
-            self.filter(family.getMother(),(index*2)+1,generation+1)
+            self.filter(family.get_father_id(),index*2,generation+1)
+            self.filter(family.get_mother_id(),(index*2)+1,generation+1)
 
     def write_report(self):
 
@@ -79,7 +79,7 @@ class AncestorReport(Report.Report):
 
         self.filter(self.start,1)
         
-        name = self.start.getPrimaryName().getRegularName()
+        name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("AHN-Title")
         title = _("Ahnentafel Report for %s") % name
         self.doc.write_text(title)
@@ -101,7 +101,7 @@ class AncestorReport(Report.Report):
 
             self.doc.start_paragraph("AHN-Entry","%s." % str(key))
             person = self.map[key]
-            name = person.getPrimaryName().getRegularName()
+            name = person.get_primary_name().get_regular_name()
         
             self.doc.start_bold()
             self.doc.write_text(name)
@@ -113,98 +113,98 @@ class AncestorReport(Report.Report):
 
             # Check birth record
         
-            birth = person.getBirth()
+            birth = person.get_birth()
             if birth:
-                date = birth.getDateObj().get_start_date()
-                place = birth.getPlaceName()
+                date = birth.get_date_object().get_start_date()
+                place = birth.get_place_name()
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.getDate() != "" or place != "":
-                    if date.getDate() != "":
+                if date.get_date() != "" or place != "":
+                    if date.get_date() != "":
                         if date.getDayValid() and date.getMonthValid():
                             if place != "":
                                 t = _("%s was born on %s in %s. ") % \
-                                    (name,date.getDate(),place)
+                                    (name,date.get_date(),place)
                             else:
                                 t = _("%s was born on %s. ") % \
-                                    (name,date.getDate())
+                                    (name,date.get_date())
                         else:
                             if place != "":
                                 t = _("%s was born in the year %s in %s. ") % \
-                                    (name,date.getDate(),place)
+                                    (name,date.get_date(),place)
                             else:
                                 t = _("%s was born in the year %s. ") % \
-                                    (name,date.getDate())
+                                    (name,date.get_date())
                         self.doc.write_text(t)
 
-            death = person.getDeath()
+            death = person.get_death()
             buried = None
-            for event in person.getEventList():
-                if string.lower(event.getName()) == "burial":
+            for event in person.get_event_list():
+                if string.lower(event.get_name()) == "burial":
                     buried = event
         
             if death:
-                date = death.getDateObj().get_start_date()
-                place = death.getPlaceName()
+                date = death.get_date_object().get_start_date()
+                place = death.get_place_name()
                 if place[-1:] == '.':
                     place = place[:-1]
-                if date.getDate() != "" or place != "":
-                    if person.getGender() == RelLib.Person.male:
+                if date.get_date() != "" or place != "":
+                    if person.get_gender() == RelLib.Person.male:
                         male = 1
                     else:
                         male = 0
 
-                    if date.getDate() != "":
+                    if date.get_date() != "":
                         if date.getDayValid() and date.getMonthValid():
                             if male:
                                 if place != "":
                                     t = _("He died on %s in %s") % \
-                                        (date.getDate(),place)
+                                        (date.get_date(),place)
                                 else:
-                                    t = _("He died on %s") % date.getDate()
+                                    t = _("He died on %s") % date.get_date()
                             else:
                                 if place != "":
                                     t = _("She died on %s in %s") % \
-                                        (date.getDate(),place)
+                                        (date.get_date(),place)
                                 else:
-                                    t = _("She died on %s") % date.getDate()
+                                    t = _("She died on %s") % date.get_date()
                         else:
                             if male:
                                 if place != "":
                                     t = _("He died in the year %s in %s") % \
-                                        (date.getDate(),place)
+                                        (date.get_date(),place)
                                 else:
-                                    t = _("He died in the year %s") % date.getDate()
+                                    t = _("He died in the year %s") % date.get_date()
                             else:
                                 if place != "":
                                     t = _("She died in the year %s in %s") % \
-                                        (date.getDate(),place)
+                                        (date.get_date(),place)
                                 else:
-                                    t = _("She died in the year %s") % date.getDate()
+                                    t = _("She died in the year %s") % date.get_date()
 
                         self.doc.write_text(t)
 
                     if buried:
-                        date = buried.getDateObj().get_start_date()
-                        place = buried.getPlaceName()
+                        date = buried.get_date_object().get_start_date()
+                        place = buried.get_place_name()
                         if place[-1:] == '.':
                             place = place[:-1]
-                        if date.getDate() != "" or place != "":
-                            if date.getDate() != "":
+                        if date.get_date() != "" or place != "":
+                            if date.get_date() != "":
                                 if date.getDayValid() and date.getMonthValid():
                                     if place != "":
                                         t = _(", and was buried on %s in %s.") % \
-                                            (date.getDate(),place)
+                                            (date.get_date(),place)
                                     else:
                                         t = _(", and was buried on %s.") % \
-                                            date.getDate()
+                                            date.get_date()
                                 else:
                                     if place != "":
                                         t = _(", and was buried in the year %s in %s.") % \
-                                            (date.getDate(),place)
+                                            (date.get_date(),place)
                                     else:
                                         t = _(", and was buried in the year %s.") % \
-                                            date.getDate()
+                                            date.get_date()
                             else:
                                 t = _(" and was buried in %s." % place)
                         self.doc.write_text(t)
@@ -305,7 +305,7 @@ class AncestorBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -354,7 +354,7 @@ class AncestorBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name() 
 
 #------------------------------------------------------------------------
@@ -367,7 +367,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         return AncestorReport(database, person, max_gen, pg_brk, doc, None, newpage )

@@ -77,11 +77,12 @@ class EditPerson:
 
     def __init__(self,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
+
         self.person = person
-        self.original_id = person.getId()
+        self.original_id = person.get_id()
         self.db = db
         self.callback = callback
-        self.path = db.getSavePath()
+        self.path = db.get_save_path()
         self.not_loaded = 1
         self.lds_not_loaded = 1
         self.lists_changed = 0
@@ -90,11 +91,11 @@ class EditPerson:
         self.pdmap = {}
         self.add_places = []
         self.should_guess_gender = (self.original_id == '' and
-                                    person.getGender () ==
+                                    person.get_gender () ==
                                     RelLib.Person.unknown)
 
-        for key in db.getPlaceKeys():
-            p = db.getPlaceDisplay(key)
+        for key in db.get_place_id_keys():
+            p = db.get_place_display(key)
             self.pdmap[p[0]] = key
             
         self.load_obj = None
@@ -195,18 +196,18 @@ class EditPerson:
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
 
-        self.death = RelLib.Event(person.getDeath())
-        self.birth = RelLib.Event(person.getBirth())
-        self.pname = RelLib.Name(person.getPrimaryName())
+        self.death = RelLib.Event(person.get_death())
+        self.birth = RelLib.Event(person.get_birth())
+        self.pname = RelLib.Name(person.get_primary_name())
 
-        self.elist = person.getEventList()[:]
-        self.nlist = person.getAlternateNames()[:]
-        self.alist = person.getAttributeList()[:]
-        self.ulist = person.getUrlList()[:]
-        self.plist = person.getAddressList()[:]
+        self.elist = person.get_event_list()[:]
+        self.nlist = person.get_alternate_names()[:]
+        self.alist = person.get_attribute_list()[:]
+        self.ulist = person.get_url_list()[:]
+        self.plist = person.get_address_list()[:]
 
         if person:
-            self.srcreflist = person.getSourceRefList()
+            self.srcreflist = person.get_source_references()
         else:
             self.srcreflist = []
 
@@ -223,7 +224,7 @@ class EditPerson:
             Utils.bold_label(self.inet_label)
         if self.plist:
             Utils.bold_label(self.addr_label)
-        if self.person.getPhotoList():
+        if self.person.get_photo_list():
             Utils.bold_label(self.gallery_label)
 
         # event display
@@ -262,24 +263,24 @@ class EditPerson:
         place_list.sort()
         self.autoplace = AutoComp.AutoCombo(self.bpcombo, place_list)
         self.autodeath = AutoComp.AutoCombo(self.dpcombo, place_list, self.autoplace)
-        self.comp = AutoComp.AutoCombo(self.sncombo,self.db.getSurnames())
+        self.comp = AutoComp.AutoCombo(self.sncombo,self.db.get_surnames())
             
-        self.gid.set_text(person.getId())
+        self.gid.set_text(person.get_id())
         self.gid.set_editable(GrampsCfg.id_edit)
 
-        self.lds_baptism = RelLib.LdsOrd(self.person.getLdsBaptism())
-        self.lds_endowment = RelLib.LdsOrd(self.person.getLdsEndowment())
-        self.lds_sealing = RelLib.LdsOrd(self.person.getLdsSeal())
+        self.lds_baptism = RelLib.LdsOrd(self.person.get_lds_baptism())
+        self.lds_endowment = RelLib.LdsOrd(self.person.get_lds_endowment())
+        self.lds_sealing = RelLib.LdsOrd(self.person.get_lds_sealing())
 
         if GrampsCfg.uselds \
-                        or (not self.lds_baptism.isEmpty()) \
-                        or (not self.lds_endowment.isEmpty()) \
-                        or (not self.lds_sealing.isEmpty()):
+                        or (not self.lds_baptism.is_empty()) \
+                        or (not self.lds_endowment.is_empty()) \
+                        or (not self.lds_sealing.is_empty()):
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
-            if (not self.lds_baptism.isEmpty()) \
-                        or (not self.lds_endowment.isEmpty()) \
-                        or (not self.lds_sealing.isEmpty()):
+            if (not self.lds_baptism.is_empty()) \
+                        or (not self.lds_endowment.is_empty()) \
+                        or (not self.lds_sealing.is_empty()):
                 Utils.bold_label(self.lds_tab)
 
         types = const.NameTypesMap.get_values()
@@ -287,21 +288,21 @@ class EditPerson:
         self.autotype = AutoComp.AutoCombo(self.ntype_field,types)
         self.write_primary_name()
         
-        if person.getGender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.male:
             self.is_male.set_active(1)
-        elif person.getGender() == RelLib.Person.female:
+        elif person.get_gender() == RelLib.Person.female:
             self.is_female.set_active(1)
         else:
             self.is_unknown.set_active(1)
 
-        self.nick.set_text(person.getNickName())
+        self.nick.set_text(person.get_nick_name())
         self.load_person_image()
         
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
-        if person.getNote():
-            self.notes_buffer.set_text(person.getNote())
-            if person.getNoteObj().getFormat() == 1:
+        if person.get_note():
+            self.notes_buffer.set_text(person.get_note())
+            if person.get_note_object().get_format() == 1:
                 self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
@@ -333,11 +334,11 @@ class EditPerson:
 
         self.bdate_check = DateEdit.DateEdit(self.bdate,
                                              self.get_widget("birth_stat"))
-        self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
+        self.bdate_check.set_calendar(self.birth.get_date_object().get_calendar())
 
         self.ddate_check = DateEdit.DateEdit(self.ddate,
                                              self.get_widget("death_stat"))
-        self.ddate_check.set_calendar(self.death.getDateObj().get_calendar())
+        self.ddate_check.set_calendar(self.death.get_date_object().get_calendar())
 
         self.top.signal_autoconnect({
             "destroy_passed_object"     : self.on_cancel_edit,
@@ -390,7 +391,7 @@ class EditPerson:
                                            self.top.get_widget('edit_src'),
                                            self.top.get_widget('del_src'))
 
-        if self.person.getComplete():
+        if self.person.get_complete():
             self.complete.set_active(1)
 
         self.redraw_event_list()
@@ -417,11 +418,11 @@ class EditPerson:
 
     def lds_field(self,ord,combo,date,place):
         combo.set_popdown_strings(_temple_names)
-        if not ord.isEmpty():
-            stat = ord.getStatus()
-            date.set_text(ord.getDate())
-            if ord.getTemple() != "":
-                name = const.lds_temple_to_abrev[ord.getTemple()]
+        if not ord.is_empty():
+            stat = ord.get_status()
+            date.set_text(ord.get_date())
+            if ord.get_temple() != "":
+                name = const.lds_temple_to_abrev[ord.get_temple()]
             else:
                 name = ""
             combo.entry.set_text(name)
@@ -430,8 +431,9 @@ class EditPerson:
             combo.entry.set_text("")
 
         AutoComp.AutoEntry(place,None,self.autoplace)
-        if ord and ord.getPlace():
-            place.set_text(ord.getPlace().get_title())
+        if ord and ord.get_place_id():
+            ord_place = self.db.find_place_from_id(ord.get_place_id())
+            place.set_text(ord_place.get_title())
         return stat
 
     def draw_lds(self):
@@ -467,7 +469,7 @@ class EditPerson:
                                         self.ldsseal_date,
                                         self.ldssealplace)
         if self.lds_sealing:
-            self.ldsfam = self.lds_sealing.getFamily()
+            self.ldsfam = self.lds_sealing.get_family_id()
         else:
             self.ldsfam = None
 
@@ -480,14 +482,14 @@ class EditPerson:
         
         index = 0
         hist = 0
-        flist = [self.person.getMainParents()]
-        for (fam,mrel,frel) in self.person.getParentList():
+        flist = [self.person.get_main_parents_family_id()]
+        for (fam,mrel,frel) in self.person.get_parent_family_id_list():
             flist.append(fam)
         for fam in flist:
             if fam == None:
                 continue
-            f = fam.getFather()
-            m = fam.getMother()
+            f = fam.get_father_id()
+            m = fam.get_mother_id()
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
                     'father' : GrampsCfg.nameof(f),
@@ -554,13 +556,13 @@ class EditPerson:
                         self.seal_stat)
 
     def set_lds_bap(self,obj):
-        self.lds_baptism.setStatus(obj.get_data("val"))
+        self.lds_baptism.set_status(obj.get_data("val"))
 
     def set_lds_endow(self,obj):
-        self.lds_endowment.setStatus(obj.get_data("val"))
+        self.lds_endowment.set_status(obj.get_data("val"))
 
     def set_lds_seal(self,obj):
-        self.lds_sealing.setStatus(obj.get_data("val"))
+        self.lds_sealing.set_status(obj.get_data("val"))
     
     def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
         row = self.etree.get_row_at(x,y)
@@ -571,17 +573,17 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != 'pevent':
                 return
-            elif person == self.person.getId():
+            elif person == self.person.get_id():
                 self.move_element(self.elist,self.etree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
-                for src in foo.getSourceRefList():
-                    base = src.getBase()
-                    newbase = self.db.findSourceNoMap(base.getId())
-                    src.setBase(newbase)
-                place = foo.getPlace()
+                for src in foo.get_source_references():
+                    base_id = src.get_base_id()
+                    newbase = self.db.find_source_from_id(base_id)
+                    src.set_base_id(newbase)
+                place = foo.get_place_id()
                 if place:
-                    foo.setPlace(self.db.findPlaceNoMap(place.getId()))
+                    foo.set_place_id(place.get_id())
                 self.elist.insert(row,foo)
 
             self.lists_changed = 1
@@ -599,7 +601,7 @@ class EditPerson:
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
-        data = str(('pevent',self.person.getId(),pickled));
+        data = str(('pevent',self.person.get_id(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def ev_drag_begin(self, context, a):
@@ -620,7 +622,7 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != "url":
                 return
-            elif person == self.person.getId():
+            elif person == self.person.get_id():
                 self.move_element(self.ulist,self.wtree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
@@ -637,7 +639,7 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('url',self.person.getId(),pickled));
+            data = str(('url',self.person.get_id(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
 
     def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -649,14 +651,14 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != 'pattr':
                 return
-            elif person == self.person.getId():
+            elif person == self.person.get_id():
                 self.move_element(self.alist,self.atree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
-                for src in foo.getSourceRefList():
-                    base = src.getBase()
-                    newbase = self.db.findSourceNoMap(base.getId())
-                    src.setBase(newbase)
+                for src in foo.get_source_references():
+                    base_id = src.get_base_id()
+                    newbase = self.db.find_source_from_id(base_id)
+                    src.set_base_id(newbase)
                 self.alist.append(foo)
             self.lists_changed = 1
             self.redraw_attr_list()
@@ -670,7 +672,7 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('pattr',self.person.getId(),pickled));
+            data = str(('pattr',self.person.get_id(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
             
     def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -682,14 +684,14 @@ class EditPerson:
             exec 'person = "%s"' % data[1]
             if mytype != 'paddr':
                 return
-            elif person == self.person.getId():
+            elif person == self.person.get_id():
                 self.move_element(self.plist,self.ptree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
-                for src in foo.getSourceRefList():
-                    base = src.getBase()
-                    newbase = self.db.findSourceNoMap(base.getId())
-                    src.setBase(newbase)
+                for src in foo.get_source_references():
+                    base_id = src.get_base_id()
+                    newbase = self.db.find_source_from_id(base_id)
+                    src.set_base_id(newbase)
                 self.plist.insert(row,foo)
                 
             self.lists_changed = 1
@@ -701,7 +703,7 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('paddr',self.person.getId(),pickled));
+            data = str(('paddr',self.person.get_id(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
 
     def ad_drag_begin(self, context, a):
@@ -719,7 +721,7 @@ class EditPerson:
         self.ntree.clear()
         self.nmap = {}
         for name in self.nlist:
-            iter = self.ntree.add([name.getName(),_(name.getType())],name)
+            iter = self.ntree.add([name.get_name(),_(name.get_type())],name)
             self.nmap[str(name)] = iter
         if self.nlist:
             self.ntree.select_row(0)
@@ -751,9 +753,9 @@ class EditPerson:
         self.ptree.clear()
         self.pmap = {}
         for addr in self.plist:
-            location = "%s %s %s %s" % (addr.getStreet(),addr.getCity(),
-                                        addr.getState(),addr.getCountry())
-            iter = self.ptree.add([addr.getDate(),location],addr)
+            location = "%s %s %s %s" % (addr.get_street(),addr.get_city(),
+                                        addr.get_state(),addr.get_country())
+            iter = self.ptree.add([addr.get_date(),location],addr)
             self.pmap[str(addr)] = iter
         if self.plist:
             self.ptree.select_row(0)
@@ -766,7 +768,7 @@ class EditPerson:
         self.atree.clear()
         self.amap = {}
         for attr in self.alist:
-            iter = self.atree.add([const.display_pattr(attr.getType()),attr.getValue()],attr)
+            iter = self.atree.add([const.display_pattr(attr.get_type()),attr.get_value()],attr)
             self.amap[str(attr)] = iter
         if self.alist:
             self.atree.select_row(0)
@@ -809,8 +811,9 @@ class EditPerson:
         self.etree.clear()
         self.emap = {}
         for event in self.elist:
-            iter = self.etree.add([const.display_pevent(event.getName()),event.getDescription(),
-                                    event.getQuoteDate(),event.getPlaceName()],event)
+            pname = place_title(self.db,event)
+            iter = self.etree.add([const.display_pevent(event.get_name()),event.get_description(),
+                                    event.get_quote_date(),pname],event)
             self.emap[str(event)] = iter
         if self.elist:
             self.etree.select_row(0)
@@ -851,13 +854,13 @@ class EditPerson:
     def on_add_url_clicked(self,obj):
         """Invokes the url editor to add a new name"""
         import UrlEdit
-        pname = self.person.getPrimaryName().getName()
+        pname = self.person.get_primary_name().get_name()
         UrlEdit.UrlEditor(self,pname,None,self.url_edit_callback,self.window)
 
     def on_add_attr_clicked(self,obj):
         """Brings up the AttributeEditor for a new attribute"""
         import AttrEdit
-        pname = self.person.getPrimaryName().getName()
+        pname = self.person.get_primary_name().get_name()
         AttrEdit.AttributeEditor(self,None,pname,const.personalAttributes,
                                  self.attr_edit_callback,self.window)
 
@@ -878,7 +881,7 @@ class EditPerson:
     def on_event_add_clicked(self,obj):
         """Brings up the EventEditor for a new event"""
         import EventEdit
-        pname = self.person.getPrimaryName().getName()
+        pname = self.person.get_primary_name().get_name()
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_event,None,None,0,self.event_edit_callback)
 
@@ -888,14 +891,14 @@ class EditPerson:
         
         import EventEdit
         self.update_birth = 1
-        pname = self.person.getPrimaryName().getName()
+        pname = self.person.get_primary_name().get_name()
         event = self.birth
-        event.setDate(unicode(self.bdate.get_text()))
+        event.set_date(unicode(self.bdate.get_text()))
         def_placename = unicode(self.bplace.get_text())
 
         p = self.get_place(self.bplace)
         if p:
-            event.setPlace(p)
+            event.set_place_id(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_event,event,def_placename,1,
                               self.event_edit_callback)
@@ -906,14 +909,14 @@ class EditPerson:
         
         import EventEdit
         self.update_death = 1
-        pname = self.person.getPrimaryName().getName()
+        pname = self.person.get_primary_name().get_name()
         event = self.death
-        event.setDate(unicode(self.ddate.get_text()))
+        event.set_date(unicode(self.ddate.get_text()))
         def_placename = unicode(self.dplace.get_text())
 
         p = self.get_place(self.dplace)
         if p:
-            event.setPlace(p)
+            event.set_place_id(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_event,event,def_placename,1,
                               self.event_edit_callback)
@@ -960,7 +963,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change():
-            n = "<i>%s</i>" % self.person.getPrimaryName().getRegularName()
+            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
             SaveDialog(_('Save changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -977,7 +980,7 @@ class EditPerson:
         """If the data has changed, give the user a chance to cancel
         the close window"""
         if self.did_data_change():
-            n = "<i>%s</i>" % self.person.getPrimaryName().getRegularName()
+            n = "<i>%s</i>" % self.person.get_primary_name().get_regular_name()
             SaveDialog(_('Save Changes to %s?') % n,
                        _('If you close without saving, the changes you '
                          'have made will be lost'),
@@ -999,8 +1002,8 @@ class EditPerson:
         original record"""
 
         surname = unicode(self.surname_field.get_text())
-        self.birth.setDate(unicode(self.bdate.get_text()))
-        self.death.setDate(unicode(self.ddate.get_text()))
+        self.birth.set_date(unicode(self.bdate.get_text()))
+        self.death.set_date(unicode(self.ddate.get_text()))
 
         ntype = unicode(self.ntype_field.entry.get_text())
         suffix = unicode(self.suffix.get_text())
@@ -1017,28 +1020,28 @@ class EditPerson:
         idval = unicode(self.gid.get_text())
 
         changed = 0
-        name = self.person.getPrimaryName()
+        name = self.person.get_primary_name()
 
-        if self.complete.get_active() != self.person.getComplete():
+        if self.complete.get_active() != self.person.get_complete():
             changed = 1
 
-        if self.person.getId() != idval:
+        if self.person.get_id() != idval:
             changed = 1
-        if suffix != name.getSuffix():
+        if suffix != name.get_suffix():
             changed = 1
-        if prefix != name.getSurnamePrefix():
+        if prefix != name.get_surname_prefix():
             changed = 1
-        if surname.upper() != name.getSurname().upper():
+        if surname.upper() != name.get_surname().upper():
             changed = 1
-        if ntype != const.NameTypesMap.find_value(name.getType()):
+        if ntype != const.NameTypesMap.find_value(name.get_type()):
             changed = 1
-        if given != name.getFirstName():
+        if given != name.get_first_name():
             changed = 1
-        if nick != self.person.getNickName():
+        if nick != self.person.get_nick_name():
             changed = 1
-        if title != name.getTitle():
+        if title != name.get_title():
             changed = 1
-        if self.pname.getNote() != name.getNote():
+        if self.pname.get_note() != name.get_note():
             changed = 1
         if self.lds_not_loaded == 0 and self.check_lds():
             changed = 1
@@ -1047,73 +1050,73 @@ class EditPerson:
         dplace = unicode(string.strip(self.dplace.get_text()))
 
         if self.pdmap.has_key(bplace):
-            p1 = self.db.getPlaceMap()[self.pdmap[bplace]]
+            self.birth.set_place_id(self.pdmap[bplace])
         else:
             p1 = None
             if bplace != "":
                 changed = 1
-        self.birth.setPlace(p1)
+            self.birth.set_place_id('')
 
         if self.pdmap.has_key(dplace):
-            p1 = self.db.getPlaceMap()[self.pdmap[dplace]]
+            self.death.set_place_id(self.pdmap[dplace])
         else:
             p1 = None
             if dplace != "":
                 changed = 1
-        self.death.setPlace(p1)
+            self.death.set_place_id('')
 
-        if not self.birth.are_equal(self.person.getBirth()):
+        if not self.birth.are_equal(self.person.get_birth()):
             changed = 1
-        if not self.death.are_equal(self.person.getDeath()):
+        if not self.death.are_equal(self.person.get_death()):
             changed = 1
-        if male and self.person.getGender() != RelLib.Person.male:
+        if male and self.person.get_gender() != RelLib.Person.male:
             changed = 1
-        elif female and self.person.getGender() != RelLib.Person.female:
+        elif female and self.person.get_gender() != RelLib.Person.female:
             changed = 1
-        elif unknown and self.person.getGender() != RelLib.Person.unknown:
+        elif unknown and self.person.get_gender() != RelLib.Person.unknown:
             changed = 1
-        if text != self.person.getNote() or self.lists_changed:
+        if text != self.person.get_note() or self.lists_changed:
             changed = 1
-        if format != self.person.getNoteFormat():
+        if format != self.person.get_note_format():
             changed = 1
 
         if self.lds_not_loaded == 0:
-            if not self.lds_baptism.are_equal(self.person.getLdsBaptism()):
+            if not self.lds_baptism.are_equal(self.person.get_lds_baptism()):
                 changed= 1
 
-            if not self.lds_endowment.are_equal(self.person.getLdsEndowment()):
+            if not self.lds_endowment.are_equal(self.person.get_lds_endowment()):
                 changed = 1
 
-            if not self.lds_sealing.are_equal(self.person.getLdsSeal()):
+            if not self.lds_sealing.are_equal(self.person.get_lds_sealing()):
                 changed = 1
                 
         return changed
 
     def check_lds(self):
-        self.lds_baptism.setDate(unicode(self.ldsbap_date.get_text()))
+        self.lds_baptism.set_date(unicode(self.ldsbap_date.get_text()))
         temple = unicode(self.ldsbap_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
-            self.lds_baptism.setTemple(const.lds_temple_codes[temple])
+            self.lds_baptism.set_temple(const.lds_temple_codes[temple])
         else:
-            self.lds_baptism.setTemple("")
-        self.lds_baptism.setPlace(self.get_place(self.ldsbapplace,1))
+            self.lds_baptism.set_temple("")
+        self.lds_baptism.set_place_id(self.get_place(self.ldsbapplace,1))
 
-        self.lds_endowment.setDate(unicode(self.ldsend_date.get_text()))
+        self.lds_endowment.set_date(unicode(self.ldsend_date.get_text()))
         temple = unicode(self.ldsend_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
-            self.lds_endowment.setTemple(const.lds_temple_codes[temple])
+            self.lds_endowment.set_temple(const.lds_temple_codes[temple])
         else:
-            self.lds_endowment.setTemple("")
-        self.lds_endowment.setPlace(self.get_place(self.ldsendowplace,1))
+            self.lds_endowment.set_temple("")
+        self.lds_endowment.set_place_id(self.get_place(self.ldsendowplace,1))
 
-        self.lds_sealing.setDate(unicode(self.ldsseal_date.get_text()))
+        self.lds_sealing.set_date(unicode(self.ldsseal_date.get_text()))
         temple = unicode(self.ldsseal_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
-            self.lds_sealing.setTemple(const.lds_temple_codes[temple])
+            self.lds_sealing.set_temple(const.lds_temple_codes[temple])
         else:
-            self.lds_sealing.setTemple("")
-        self.lds_sealing.setFamily(self.ldsfam)
-        self.lds_sealing.setPlace(self.get_place(self.ldssealplace,1))
+            self.lds_sealing.set_temple("")
+        self.lds_sealing.set_family_id(self.ldsfam)
+        self.lds_sealing.set_place_id(self.get_place(self.ldssealplace,1))
 
     def on_event_delete_clicked(self,obj):
         """Delete the selected event"""
@@ -1122,20 +1125,22 @@ class EditPerson:
             self.redraw_event_list()
 
     def update_birth_death(self):
-        self.bdate.set_text(self.birth.getDate())
-        self.bplace.set_text(self.birth.getPlaceName())
-        self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
-        self.ddate.set_text(self.death.getDate())
-        self.ddate_check.set_calendar(self.death.getDateObj().get_calendar())
-        self.dplace.set_text(self.death.getPlaceName())
-        self.dplace.set_text(self.death.getPlaceName())
+        self.bdate.set_text(self.birth.get_date())
+
+        self.bplace.set_text(place_title(self.db,self.birth))
+        self.dplace.set_text(place_title(self.db,self.death))
+
+        self.bdate.set_text(self.birth.get_date())
+        self.bdate_check.set_calendar(self.birth.get_date_object().get_calendar())
+        self.ddate.set_text(self.death.get_date())
+        self.ddate_check.set_calendar(self.death.get_date_object().get_calendar())
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
         store,iter = self.atree.get_selected()
         if iter:
             attr = self.atree.get_object(iter)
-            pname = self.person.getPrimaryName().getName()
+            pname = self.person.get_primary_name().get_name()
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
                                      self.attr_edit_callback,self.window)
 
@@ -1150,7 +1155,7 @@ class EditPerson:
         import UrlEdit
         store,iter = self.wtree.get_selected()
         if iter:
-            pname = self.person.getPrimaryName().getName()
+            pname = self.person.get_primary_name().get_name()
             url = self.wtree.get_object(iter)
             UrlEdit.UrlEditor(self,pname,url,self.url_edit_callback,self.window)
 
@@ -1160,7 +1165,7 @@ class EditPerson:
         store,iter = self.etree.get_selected()
         if not iter:
             return
-        pname = self.person.getPrimaryName().getName()
+        pname = self.person.get_primary_name().get_name()
         event = self.etree.get_object(iter)
         EventEdit.EventEditor(self,pname,const.personalEvents,
                               const.save_event,event,None,0,
@@ -1171,15 +1176,16 @@ class EditPerson:
         if iter:
             row = store.get_path(iter)
             event = self.elist[row[0]]
-            self.event_date_field.set_text(event.getDate())
-            self.event_place_field.set_text(event.getPlaceName())
-            self.event_name_field.set_text(const.display_pevent(event.getName()))
-            self.event_cause_field.set_text(event.getCause())
-            self.event_descr_field.set_text(short(event.getDescription()))
-            if len(event.getSourceRefList()) > 0:
-                psrc = event.getSourceRefList()[0]
-                self.event_src_field.set_text(short(psrc.getBase().getTitle()))
-                self.event_conf_field.set_text(const.confidence[psrc.getConfidence()])
+            self.event_date_field.set_text(event.get_date())
+            self.event_place_field.set_text(place_title(self.db,event))
+            self.event_name_field.set_text(const.display_pevent(event.get_name()))
+            self.event_cause_field.set_text(event.get_cause())
+            self.event_descr_field.set_text(short(event.get_description()))
+            if len(event.get_source_references()) > 0:
+                psrc_id = event.get_source_references()[0].get_base_id()
+                psrc = self.db.find_source_from_id(psrc_id)
+                self.event_src_field.set_text(short(psrc.get_base_id().get_title()))
+                self.event_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
             else:
                 self.event_src_field.set_text('')
                 self.event_conf_field.set_text('')
@@ -1200,17 +1206,18 @@ class EditPerson:
         store,iter = self.ptree.get_selected()
         if iter:
             addr = self.ptree.get_object(iter)
-            self.addr_start.set_text(addr.getDate())
-            self.addr_street.set_text(addr.getStreet())
-            self.addr_city.set_text(addr.getCity())
-            self.addr_state.set_text(addr.getState())
-            self.addr_country.set_text(addr.getCountry())
-            self.addr_postal.set_text(addr.getPostal())
-            self.addr_phone.set_text(addr.getPhone())
-            if len(addr.getSourceRefList()) > 0:
-                psrc = addr.getSourceRefList()[0]
-                self.addr_conf_field.set_text(const.confidence[psrc.getConfidence()])
-                self.addr_src_field.set_text(short(psrc.getBase().getTitle()))
+            self.addr_start.set_text(addr.get_date())
+            self.addr_street.set_text(addr.get_street())
+            self.addr_city.set_text(addr.get_city())
+            self.addr_state.set_text(addr.get_state())
+            self.addr_country.set_text(addr.get_country())
+            self.addr_postal.set_text(addr.get_postal_code())
+            self.addr_phone.set_text(addr.get_phone())
+            if len(addr.get_source_references()) > 0:
+                psrc_id = addr.get_source_references()[0].get_base_id()
+                psrc = self.db.find_source_from_id(psrc_id)
+                self.addr_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
+                self.addr_src_field.set_text(short(psrc.get_base_id().get_title()))
             else:
                 self.addr_src_field.set_text('')
                 self.addr_conf_field.set_text('')
@@ -1233,16 +1240,17 @@ class EditPerson:
         store,iter = self.ntree.get_selected()
         if iter:
             name = self.ntree.get_object(iter)
-            self.alt_given_field.set_text(name.getFirstName())
-            self.alt_title_field.set_text(name.getTitle())
-            self.alt_last_field.set_text(name.getSurname())
-            self.alt_suffix_field.set_text(name.getSuffix())
-            self.alt_prefix_field.set_text(name.getSurnamePrefix())
-            self.name_type_field.set_text(const.NameTypesMap.find_value(name.getType()))
-            if len(name.getSourceRefList()) > 0:
-                psrc = name.getSourceRefList()[0]
-                self.name_src_field.set_text(short(psrc.getBase().getTitle()))
-                self.name_conf_field.set_text(const.confidence[psrc.getConfidence()])
+            self.alt_given_field.set_text(name.get_first_name())
+            self.alt_title_field.set_text(name.get_title())
+            self.alt_last_field.set_text(name.get_surname())
+            self.alt_suffix_field.set_text(name.get_suffix())
+            self.alt_prefix_field.set_text(name.get_surname_prefix())
+            self.name_type_field.set_text(const.NameTypesMap.find_value(name.get_type()))
+            if len(name.get_source_references()) > 0:
+                psrc_id = name.get_source_references()[0].get_base_id()
+                psrc = self.db.find_source_from_id(psrc_id)
+                self.name_src_field.set_text(short(psrc.get_base_id().get_title()))
+                self.name_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
             else:
                 self.name_src_field.set_text('')
                 self.name_conf_field.set_text('')
@@ -1282,12 +1290,13 @@ class EditPerson:
         store,iter = self.atree.get_selected()
         if iter:
             attr = self.atree.get_object(iter)
-            self.attr_type.set_text(const.display_pattr(attr.getType()))
-            self.attr_value.set_text(short(attr.getValue()))
-            if len(attr.getSourceRefList()) > 0:
-                psrc = attr.getSourceRefList()[0]
-                self.attr_src_field.set_text(short(psrc.getBase().getTitle()))
-                self.attr_conf_field.set_text(const.confidence[psrc.getConfidence()])
+            self.attr_type.set_text(const.display_pattr(attr.get_type()))
+            self.attr_value.set_text(short(attr.get_value()))
+            if len(attr.get_source_references()) > 0:
+                psrc_id = attr.get_source_references()[0].get_base_id()
+                psrc = self.db.find_source_from_id(psrc_id)
+                self.attr_src_field.set_text(short(psrc.get_base_id().get_title()))
+                self.attr_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
             else:
                 self.attr_src_field.set_text('')
                 self.attr_conf_field.set_text('')
@@ -1340,13 +1349,13 @@ class EditPerson:
     def update_lists(self):
         """Updates the person's lists if anything has changed"""
         if self.lists_changed:
-            self.person.setEventList(self.elist)
-            self.person.setAlternateNames(self.nlist)
-            self.person.setUrlList(self.ulist)
-            self.person.setAttributeList(self.alist)
-            self.person.setAddressList(self.plist)
-            self.person.setBirth(self.birth)
-            self.person.setDeath(self.death)
+            self.person.set_event_list(self.elist)
+            self.person.set_alternate_names(self.nlist)
+            self.person.set_url_list(self.ulist)
+            self.person.set_attribute_list(self.alist)
+            self.person.set_address_list(self.plist)
+            self.person.set_birth(self.birth)
+            self.person.set_death(self.death)
             Utils.modified()
 
     def on_apply_person_clicked(self,obj):
@@ -1361,16 +1370,16 @@ class EditPerson:
 
         name = self.pname
 
-        self.birth.setDate(unicode(self.bdate.get_text()))
-        self.birth.setPlace(self.get_place(self.bplace,1))
+        self.birth.set_date(unicode(self.bdate.get_text()))
+        self.birth.set_place_id(self.get_place(self.bplace,1))
 
-        if idval != self.person.getId():
-            m = self.db.getPersonMap() 
+        if idval != self.person.get_id():
+            m = self.db.get_person_id_map() 
             if not m.has_key(idval):
-                if m.has_key(self.person.getId()):
-                    del m[self.person.getId()]
+                if m.has_key(self.person.get_id()):
+                    del m[self.person.get_id()]
                     m[idval] = self.person
-                self.person.setId(idval)
+                self.person.set_id(idval)
                 Utils.modified()
             else:
                 n = GrampsCfg.nameof(m[idval])
@@ -1381,105 +1390,107 @@ class EditPerson:
                     'person' : n }
                 WarningDialog(msg1,msg2)
 
-        if suffix != name.getSuffix():
-            name.setSuffix(suffix)
+        if suffix != name.get_suffix():
+            name.set_suffix(suffix)
 
-        if prefix != name.getSurnamePrefix():
-            name.setSurnamePrefix(prefix)
+        if prefix != name.get_surname_prefix():
+            name.set_surname_prefix(prefix)
 
         if const.NameTypesMap.has_value(ntype):
             ntype = const.NameTypesMap.find_key(ntype)
         else:
             ntype = "Birth Name"
 
-        if ntype != name.getType():
-            name.setType(ntype)
+        if ntype != name.get_type():
+            name.set_type(ntype)
             
-        if surname != name.getSurname():
-            name.setSurname(surname)
-            self.db.addSurname(surname)
+        if surname != name.get_surname():
+            name.set_surname(surname)
+            self.db.add_surname(surname)
 
-        if given != name.getFirstName():
-            name.setFirstName(given)
+        if given != name.get_first_name():
+            name.set_first_name(given)
 
-        if title != name.getTitle():
-            name.setTitle(title)
+        if title != name.get_title():
+            name.set_title(title)
 
-        name.setSourceRefList(self.pname.getSourceRefList())
+        name.set_source_reference_list(self.pname.get_source_references())
 
-        if not name.are_equal(self.person.getPrimaryName()):
-            self.person.setPrimaryName(name)
+        if not name.are_equal(self.person.get_primary_name()):
+            self.person.set_primary_name(name)
             Utils.modified()
 
-        if nick != self.person.getNickName():
-            self.person.setNickName(nick)
+        if nick != self.person.get_nick_name():
+            self.person.set_nick_name(nick)
             Utils.modified()
 
         self.pdmap.clear()
-        for key in self.db.getPlaceKeys():
-            p = self.db.getPlaceDisplay(key)
+        for key in self.db.get_place_id_keys():
+            p = self.db.get_place_display(key)
             self.pdmap[p[0]] = key
 
-        if not self.person.getBirth().are_equal(self.birth):
-            self.person.setBirth(self.birth)
+        if not self.person.get_birth().are_equal(self.birth):
+            self.person.set_birth(self.birth)
             Utils.modified()
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
-        family = self.person.getMainParents()
+        family = self.person.get_main_parents_family_id()
         if (family):
-            new_order = reorder_child_list(self.person,family.getChildList())
-            family.setChildList(new_order)
-        for (family, rel1, rel2) in self.person.getParentList():
-            new_order = reorder_child_list(self.person,family.getChildList())
-            family.setChildList(new_order)
+            f = self.db.find_family_no_map(family)
+            new_order = reorder_child_list(self.person,f.get_child_id_list())
+            f.set_child_id_list(new_order)
+        for (family, rel1, rel2) in self.person.get_parent_family_id_list():
+            f = self.db.find_family_no_map(family)
+            new_order = reorder_child_list(self.person,f.get_child_id_list())
+            f.set_child_id_list(new_order)
     
-        self.death.setDate(unicode(self.ddate.get_text()))
-        self.death.setPlace(self.get_place(self.dplace,1))
+        self.death.set_date(unicode(self.ddate.get_text()))
+        self.death.set_place_id(self.get_place(self.dplace,1))
 
-        if not self.person.getDeath().are_equal(self.death):
-            self.person.setDeath(self.death)
+        if not self.person.get_death().are_equal(self.death):
+            self.person.set_death(self.death)
             Utils.modified()
 
         male = self.is_male.get_active()
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
         error = 0
-        if male and self.person.getGender() != RelLib.Person.male:
-            self.person.setGender(RelLib.Person.male)
-            for temp_family in self.person.getFamilyList():
-                if self.person == temp_family.getMother():
-                    if temp_family.getFather() != None:
+        if male and self.person.get_gender() != RelLib.Person.male:
+            self.person.set_gender(RelLib.Person.male)
+            for temp_family in self.person.get_family_id_list():
+                if self.person == temp_family.get_mother_id():
+                    if temp_family.get_father_id() != None:
                         error = 1
                     else:
-                        temp_family.setMother(None)
-                        temp_family.setFather(self.person)
+                        temp_family.set_mother_id(None)
+                        temp_family.set_father_id(self.person)
             Utils.modified()
-        elif female and self.person.getGender() != RelLib.Person.female:
-            self.person.setGender(RelLib.Person.female)
-            for temp_family in self.person.getFamilyList():
-                if self.person == temp_family.getFather():
-                    if temp_family.getMother() != None:
+        elif female and self.person.get_gender() != RelLib.Person.female:
+            self.person.set_gender(RelLib.Person.female)
+            for temp_family in self.person.get_family_id_list():
+                if self.person == temp_family.get_father_id():
+                    if temp_family.get_mother_id() != None:
                         error = 1
                     else:
-                        temp_family.setFather(None)
-                        temp_family.setMother(self.person)
+                        temp_family.set_father_id(None)
+                        temp_family.set_mother_id(self.person)
             Utils.modified()
-        elif unknown and self.person.getGender() != RelLib.Person.unknown:
-            self.person.setGender(RelLib.Person.unknown)
-            for temp_family in self.person.getFamilyList():
-                if self.person == temp_family.getFather():
-                    if temp_family.getMother() != None:
+        elif unknown and self.person.get_gender() != RelLib.Person.unknown:
+            self.person.set_gender(RelLib.Person.unknown)
+            for temp_family in self.person.get_family_id_list():
+                if self.person == temp_family.get_father_id():
+                    if temp_family.get_mother_id() != None:
                         error = 1
                     else:
-                        temp_family.setFather(None)
-                        temp_family.setMother(self.person)
-                if self.person == temp_family.getMother():
-                    if temp_family.getFather() != None:
+                        temp_family.set_father_id(None)
+                        temp_family.set_mother_id(self.person)
+                if self.person == temp_family.get_mother_id():
+                    if temp_family.get_father_id() != None:
                         error = 1
                     else:
-                        temp_family.setMother(None)
-                        temp_family.setFather(self.person)
+                        temp_family.set_mother_id(None)
+                        temp_family.set_father_id(self.person)
             Utils.modified()
 
         if error == 1:
@@ -1492,38 +1503,38 @@ class EditPerson:
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE))
 
-        if text != self.person.getNote():
-            self.person.setNote(text)
+        if text != self.person.get_note():
+            self.person.set_note(text)
             Utils.modified()
 
         format = self.preform.get_active()
-        if format != self.person.getNoteFormat():
-            self.person.setNoteFormat(format)
+        if format != self.person.get_note_format():
+            self.person.set_note_format(format)
             Utils.modified()
 
-        if self.complete.get_active() != self.person.getComplete():
-            self.person.setComplete(self.complete.get_active())
+        if self.complete.get_active() != self.person.get_complete():
+            self.person.set_complete(self.complete.get_active())
             Utils.modified()
 
         if self.lds_not_loaded == 0:
             self.check_lds()
-            ord = RelLib.LdsOrd(self.person.getLdsBaptism())
+            ord = RelLib.LdsOrd(self.person.get_lds_baptism())
             if not self.lds_baptism.are_equal(ord):
-                self.person.setLdsBaptism(self.lds_baptism)
+                self.person.set_lds_baptism(self.lds_baptism)
                 Utils.modified()
 
-            ord = RelLib.LdsOrd(self.person.getLdsEndowment())
+            ord = RelLib.LdsOrd(self.person.get_lds_endowment())
             if not self.lds_endowment.are_equal(ord):
-                self.person.setLdsEndowment(self.lds_endowment)
+                self.person.set_lds_endowment(self.lds_endowment)
                 Utils.modified()
 
-            ord = RelLib.LdsOrd(self.person.getLdsSeal())
+            ord = RelLib.LdsOrd(self.person.get_lds_sealing())
             if not self.lds_sealing.are_equal(ord):
-                self.person.setLdsSeal(self.lds_sealing)
+                self.person.set_lds_sealing(self.lds_sealing)
                 Utils.modified()
 
         if self.lists_changed:
-            self.person.setSourceRefList(self.srcreflist)
+            self.person.set_source_reference_list(self.srcreflist)
             Utils.modified()
 
         self.update_lists()
@@ -1537,26 +1548,26 @@ class EditPerson:
         text = unicode(string.strip(field.get_text()))
         if text:
             if self.pdmap.has_key(text):
-                return self.db.getPlaceMap()[self.pdmap[text]]
+                return self.pdmap[text]
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
-                self.db.addPlace(place)
-                self.pdmap[text] = place.getId()
+                self.db.add_place(place)
+                self.pdmap[text] = place.get_id()
                 self.add_places.append(place)
                 Utils.modified()
-                return place
+                return place.get_id()
             else:
-                return None
+                return ''
         else:
-            return None
+            return ''
 
     def on_primary_name_source_clicked(self,obj):
-        Sources.SourceSelector(self.pname.getSourceRefList(),self,
+        Sources.SourceSelector(self.pname.get_source_references(),self,
                                self.update_primary_name)
 
     def update_primary_name(self,list):
-        self.pname.setSourceRefList(list)
+        self.pname.set_source_reference_list(list)
         self.lists_changed = 1
 
     def on_name_note_clicked(self,obj):
@@ -1564,11 +1575,11 @@ class EditPerson:
         NoteEdit.NoteEditor(self.pname,self.window)
 
     def on_ldsbap_source_clicked(self,obj):
-        Sources.SourceSelector(self.lds_baptism.getSourceRefList(),
+        Sources.SourceSelector(self.lds_baptism.get_source_references(),
                                self,self.update_ldsbap_list)
 
     def update_ldsbap_list(self,list):
-        self.lds_baptism.setSourceRefList(list)
+        self.lds_baptism.set_source_reference_list(list)
         self.lists_changed = 1
         
     def on_ldsbap_note_clicked(self,obj):
@@ -1576,11 +1587,11 @@ class EditPerson:
         NoteEdit.NoteEditor(self.lds_baptism,self.window)
 
     def on_ldsendow_source_clicked(self,obj):
-        Sources.SourceSelector(self.lds_endowment.getSourceRefList(),
+        Sources.SourceSelector(self.lds_endowment.get_source_references(),
                                self,self.set_ldsendow_list)
 
     def set_ldsendow_list(self,list):
-        self.lds_endowment.setSourceRefList(list)
+        self.lds_endowment.set_source_reference_list(list)
         self.lists_changed = 1
 
     def on_ldsendow_note_clicked(self,obj):
@@ -1588,11 +1599,11 @@ class EditPerson:
         NoteEdit.NoteEditor(self.lds_endowment,self.window)
 
     def on_ldsseal_source_clicked(self,obj):
-        Sources.SourceSelector(self.lds_sealing.getSourceRefList(),
+        Sources.SourceSelector(self.lds_sealing.get_source_references(),
                                self,self.lds_seal_list)
 
     def lds_seal_list(self,list):
-        self.lds_sealing.setSourceRefList(list)
+        self.lds_sealing.set_source_reference_list(list)
         self.lists_changed = 1
 
     def on_ldsseal_note_clicked(self,obj):
@@ -1600,25 +1611,25 @@ class EditPerson:
         NoteEdit.NoteEditor(self.lds_sealing,self.window)
 
     def load_person_image(self):
-        photo_list = self.person.getPhotoList()
+        photo_list = self.person.get_photo_list()
         if photo_list:
             ph = photo_list[0]
-            object = ph.getReference()
-            if self.load_obj != object.getPath():
-                if object.getMimeType()[0:5] == "image":
-                    self.load_photo(object.getPath())
+            object = ph.get_reference()
+            if self.load_obj != object.get_path():
+                if object.get_mime_type()[0:5] == "image":
+                    self.load_photo(object.get_path())
                 else:
                     self.load_photo(None)
         else:
             self.load_photo(None)
 
     def update_birth_info(self):
-        self.bdate.set_text(self.birth.getDate())
-        self.bplace.set_text(self.birth.getPlaceName())
+        self.bdate.set_text(self.birth.get_date())
+        self.bplace.set_text(place_title(self.db,self.birth))
 
     def update_death_info(self):
-        self.ddate.set_text(self.death.getDate())
-        self.dplace.set_text(self.death.getPlaceName())
+        self.ddate.set_text(self.death.get_date())
+        self.dplace.set_text(place_title(self.db,self.death))
         
     def on_switch_page(self,obj,a,page):
         if page == 0:
@@ -1639,9 +1650,9 @@ class EditPerson:
 
         if self.lds_not_loaded == 0:
             self.check_lds()
-        if self.lds_baptism.isEmpty() \
-                        and self.lds_endowment.isEmpty() \
-                        and self.lds_sealing.isEmpty():
+        if self.lds_baptism.is_empty() \
+                        and self.lds_endowment.is_empty() \
+                        and self.lds_sealing.is_empty():
             Utils.unbold_label(self.lds_tab)
         else:
             Utils.bold_label(self.lds_tab)
@@ -1663,14 +1674,14 @@ class EditPerson:
         name = '<span size="larger" weight="bold">%s</span>' % GrampsCfg.nameof(self.person)
         self.get_widget("activepersonTitle").set_text(name)
         self.get_widget("activepersonTitle").set_use_markup(gtk.TRUE)
-        self.suffix.set_text(self.pname.getSuffix())
-        self.prefix.set_text(self.pname.getSurnamePrefix())
+        self.suffix.set_text(self.pname.get_suffix())
+        self.prefix.set_text(self.pname.get_surname_prefix())
 
-        self.surname_field.set_text(self.pname.getSurname())
-        self.given.set_text(self.pname.getFirstName())
+        self.surname_field.set_text(self.pname.get_surname())
+        self.given.set_text(self.pname.get_first_name())
 
-        self.ntype_field.entry.set_text(_(self.pname.getType()))
-        self.title.set_text(self.pname.getTitle())
+        self.ntype_field.entry.set_text(_(self.pname.get_type()))
+        self.title.set_text(self.pname.get_title())
 
 #-------------------------------------------------------------------------
 # 
@@ -1685,7 +1696,7 @@ def birth_dates_in_order(list):
     prev_date = "00000000"
     for i in range(len(list)):
         child = list[i]
-        bday = child.getBirth().getDateObj()
+        bday = child.get_birth().get_date_object()
         child_date = sort.build_sort_date(bday)
         if (child_date == "99999999"):
             continue
@@ -1710,13 +1721,13 @@ def reorder_child_list(person, list):
         return(list)
 
     # Build the person's date string once
-    person_bday = sort.build_sort_date(person.getBirth().getDateObj())
+    person_bday = sort.build_sort_date(person.get_birth().get_date_object())
 
     # First, see if the person needs to be moved forward in the list
     index = list.index(person)
     target = index
     for i in range(index-1, -1, -1):
-        other_bday = sort.build_sort_date(list[i].getBirth().getDateObj())
+        other_bday = sort.build_sort_date(list[i].get_birth().get_date_object())
         if (other_bday == "99999999"):
             continue;
         if (person_bday < other_bday):
@@ -1725,7 +1736,7 @@ def reorder_child_list(person, list):
     # Now try moving to a later position in the list
     if (target == index):
         for i in range(index, len(list)):
-            other_bday = sort.build_sort_date(list[i].getBirth().getDateObj())
+            other_bday = sort.build_sort_date(list[i].get_birth().get_date_object())
             if (other_bday == "99999999"):
                 continue;
             if (person_bday > other_bday):
@@ -1743,3 +1754,10 @@ def short(val,size=60):
         return "%s..." % val[0:size]
     else:
         return val
+
+def place_title(db,event):
+    pid = event.get_place_id()
+    if pid:
+        return db.find_place_from_id(pid).get_title()
+    else:
+        return u''

@@ -155,11 +155,11 @@ class FindPerson(FindBase):
         
         FindBase.__init__(self,task,_("Find Person"),db,valid_map)
         self.list = []
-        for val in db.sortPersonKeys():
-            self.list.append(db.getPersonDisplay(val))
+        for val in db.sort_person_keys():
+            self.list.append(db.get_person_display(val))
 
     def get_value(self,id):
-        return self.db.getPerson(id)
+        return self.db.get_person(id)
     
 #-------------------------------------------------------------------------
 #
@@ -213,7 +213,7 @@ class FindMedia(FindBase):
         
         FindBase.__init__(self,task,_("Find Media Object"),db)
         self.list = []
-        for n in self.db.getObjectMap().values():
-            self.list.append((n.getDescription(),n.getId()))
+        for n in self.db.get_object_map().values():
+            self.list.append((n.get_description(),n.get_id()))
         self.list.sort()
         

@@ -90,7 +90,7 @@ class AttributeEditor:
         self.window = self.top.get_widget("attr_edit")
         
         if attrib:
-            self.srcreflist = self.attrib.getSourceRefList()
+            self.srcreflist = self.attrib.get_source_references()
         else:
             self.srcreflist = []
 
@@ -110,14 +110,14 @@ class AttributeEditor:
         AutoComp.AutoCombo(self.attrib_menu,list)
 
         if attrib != None:
-            self.type_field.set_text(attrib.getType())
-            self.value_field.set_text(attrib.getValue())
-            self.priv.set_active(attrib.getPrivacy())
+            self.type_field.set_text(attrib.get_type())
+            self.value_field.set_text(attrib.get_value())
+            self.priv.set_active(attrib.get_privacy())
 
-            if attrib.getNote():
-                self.note_field.get_buffer().set_text(attrib.getNote())
+            if attrib.get_note():
+                self.note_field.get_buffer().set_text(attrib.get_note())
                 Utils.bold_label(self.notes_label)
-            	if attrib.getNoteFormat() == 1:
+            	if attrib.get_note_format() == 1:
                     self.preform.set_active(1)
             	else:
                     self.flowed.set_active(1)
@@ -171,7 +171,7 @@ class AttributeEditor:
             self.attrib = RelLib.Attribute()
             self.parent.alist.append(self.attrib)
 
-        self.attrib.setSourceRefList(self.srcreflist)
+        self.attrib.set_source_reference_list(self.srcreflist)
         self.update(type,value,note,format,priv)
         self.callback(self.attrib)
 
@@ -185,11 +185,11 @@ class AttributeEditor:
     def update(self,type,value,note,format,priv):
         """Compares the data items, and updates if necessary"""
         ntype = const.save_pattr(type)
-        self.check(self.attrib.getType,self.attrib.setType,ntype)
-        self.check(self.attrib.getValue,self.attrib.setValue,value)
-        self.check(self.attrib.getNote,self.attrib.setNote,note)
-        self.check(self.attrib.getNoteFormat,self.attrib.setNoteFormat,format)
-        self.check(self.attrib.getPrivacy,self.attrib.setPrivacy,priv)
+        self.check(self.attrib.get_type,self.attrib.set_type,ntype)
+        self.check(self.attrib.get_value,self.attrib.set_value,value)
+        self.check(self.attrib.get_note,self.attrib.set_note,note)
+        self.check(self.attrib.get_note_format,self.attrib.set_note_format,format)
+        self.check(self.attrib.get_privacy,self.attrib.set_privacy,priv)
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()

@@ -141,17 +141,17 @@ class AddSpouse:
 
         relation = const.save_frel(unicode(self.relation_type.get_text()))
         if relation == "Partners":
-            if self.person.getGender() == RelLib.Person.male:
+            if self.person.get_gender() == RelLib.Person.male:
                 gen = RelLib.Person.male
             else:
                 gen = RelLib.Person.female
-        elif self.person.getGender() == RelLib.Person.male:
+        elif self.person.get_gender() == RelLib.Person.male:
             gen = RelLib.Person.female
         else:
             gen = RelLib.Person.male
 
         person = RelLib.Person()
-        person.setGender(gen)
+        person.set_gender(gen)
         EditPerson.EditPerson(person,self.db,self.update_list)
 
     def update_list(self,epo):
@@ -161,13 +161,13 @@ class AddSpouse:
         been closed.
         """
         person = epo.person
-        if person.getId() == "":
-            self.db.addPerson(person)
+        if person.get_id() == "":
+            self.db.add_person(person)
         else:
-            self.db.addPersonNoMap(person,person.getId())
-        self.db.buildPersonDisplay(person.getId())
+            self.db.add_person_no_map(person,person.get_id())
+        self.db.build_person_display(person.get_id())
         self.addperson(person)
-        self.update_data(person.getId())
+        self.update_data(person.get_id())
         self.slist.center_selected()
 
     def select_spouse_clicked(self,obj):
@@ -181,28 +181,29 @@ class AddSpouse:
             return
         
         id = self.slist.get_object(iter)
-        spouse = self.db.getPerson(id)
+        spouse = self.db.get_person(id)
 
         # don't do anything if the marriage already exists
-        for f in self.person.getFamilyList():
-            if spouse == f.getMother() or spouse == f.getFather():
+        for f in self.person.get_family_id_list():
+            fam = self.db.find_family_from_id(f)
+            if spouse.get_id() == fam.get_mother_id() or spouse.get_id() == fam.get_father_id():
                 Utils.destroy_passed_object(obj)
                 return
 
         Utils.modified()
         if not self.active_family:
-            self.active_family = self.db.newFamily()
-            self.person.addFamily(self.active_family)
-        spouse.addFamily(self.active_family)
+            self.active_family = self.db.new_family()
+            self.person.add_family_id(self.active_family.get_id())
+        spouse.add_family_id(self.active_family.get_id())
 
-        if self.person.getGender() == RelLib.Person.male:
-            self.active_family.setMother(spouse)
-            self.active_family.setFather(self.person)
+        if self.person.get_gender() == RelLib.Person.male:
+            self.active_family.set_mother_id(spouse.get_id())
+            self.active_family.set_father_id(self.person.get_id())
         else:	
-            self.active_family.setFather(spouse)
-            self.active_family.setMother(self.person)
+            self.active_family.set_father_id(spouse.get_id())
+            self.active_family.set_mother_id(self.person.get_id())
 
-        self.active_family.setRelationship(const.save_frel(unicode(self.relation_type.get_text())))
+        self.active_family.set_relationship(const.save_frel(unicode(self.relation_type.get_text())))
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
 
@@ -221,9 +222,9 @@ class AddSpouse:
         # determine the gender of the people to be loaded into
         # the potential spouse list. If Partners is selected, use
         # the same gender as the current person.
-        gender = self.person.getGender()
-        bday = self.person.getBirth().getDateObj()
-        dday = self.person.getDeath().getDateObj()
+        gender = self.person.get_gender()
+        bday = self.person.get_birth().get_date_object()
+        dday = self.person.get_death().get_date_object()
 
         if text == _("Partners"):
             if gender == RelLib.Person.male:
@@ -239,14 +240,14 @@ class AddSpouse:
         self.entries = []
         self.slist.clear()
         self.slist.new_model()
-        for key in self.db.sortPersonKeys():
-            data = self.db.getPersonDisplay(key)
+        for key in self.db.sort_person_keys():
+            data = self.db.get_person_display(key)
             if data[2] == sgender:
                 continue
 
             if not self.showall.get_active():
-                pdday = self.db.getPerson(key).getDeath().getDateObj()
-                pbday = self.db.getPerson(key).getBirth().getDateObj()
+                pdday = self.db.get_person(key).get_death().get_date_object()
+                pbday = self.db.get_person(key).get_birth().get_date_object()
 
                 if bday.getYearValid():
                     if pbday.getYearValid():

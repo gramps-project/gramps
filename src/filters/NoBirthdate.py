@@ -27,7 +27,7 @@ class NoBirthdate(Filter.Filter):
     "People without a birth date"
 
     def match(self,person):
-        return person.getBirth().getDate() == ""
+        return person.get_birth().get_date() == ""
 
 #------------------------------------------------------------------------
 #

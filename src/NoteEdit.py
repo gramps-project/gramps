@@ -72,7 +72,7 @@ class NoteEditor:
         scroll.show()
         vbox.pack_start(scroll, gtk.TRUE, gtk.TRUE, 0)
 
-        self.entry.get_buffer().set_text(self.data.getNote())
+        self.entry.get_buffer().set_text(self.data.get_note())
 
         self.top.add_button(gtk.STOCK_CANCEL,1)
         self.top.add_button(gtk.STOCK_OK,0)
@@ -89,6 +89,6 @@ class NoteEditor:
         buffer = self.entry.get_buffer()
         text = unicode(buffer.get_text(buffer.get_start_iter(),
                                buffer.get_end_iter(),gtk.FALSE))
-        if text != self.data.getNote():
-            self.data.setNote(text)
+        if text != self.data.get_note():
+            self.data.set_note(text)
             Utils.modified()

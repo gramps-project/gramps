@@ -88,8 +88,8 @@ class SimpleBookTitle(Report.Report):
         self.doc.end_paragraph()
 
         if self.object_id:
-            object = self.database.getObject(self.object_id)
-            name = object.getPath()
+            object = self.database.get_object(self.object_id)
+            name = object.get_path()
             if self.image_size:
                 image_size = self.image_size
             else:
@@ -207,7 +207,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
 
@@ -239,7 +239,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         else:
             import time
             dateinfo = time.localtime(time.time())
-            name = self.db.getResearcher().getName()
+            name = self.db.get_researcher().get_name()
             self.footer_string = _('Copyright %d %s') % (dateinfo[0], name)
 
         self.title_entry.set_text(self.title_string)
@@ -247,11 +247,11 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.footer_entry.set_text(self.footer_string)
         self.size_menu.set_history(self.size_index)
         if self.object_id:
-            object = self.db.getObject(self.object_id)
-            self.obj_title.set_text(object.getDescription())
-            the_type = Utils.get_mime_description(object.getMimeType())
-            path = object.getPath()
-            thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
+            object = self.db.get_object(self.object_id)
+            self.obj_title.set_text(object.get_description())
+            the_type = Utils.get_mime_description(object.get_mime_type())
+            path = object.get_path()
+            thumb_path = Utils.thumb_path(self.db.get_save_path(),object)
             pexists = os.path.exists(path)
             if pexists and os.path.exists(thumb_path):
                 self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
@@ -361,13 +361,13 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         s_o = SelectObject.SelectObject(self.db,_("Select an Object"))
         object = s_o.run()
         if object:
-            self.object_id = object.getId()
+            self.object_id = object.get_id()
         else:
             return
-        self.obj_title.set_text(object.getDescription())
-        the_type = Utils.get_mime_description(object.getMimeType())
-        path = object.getPath()
-        thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
+        self.obj_title.set_text(object.get_description())
+        the_type = Utils.get_mime_description(object.get_mime_type())
+        path = object.get_path()
+        thumb_path = Utils.thumb_path(self.db.get_save_path(),object)
         pexists = os.path.exists(path)
         if pexists and os.path.exists(thumb_path):
             self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
@@ -381,13 +381,13 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         a_o = AddMedia.AddMediaObject(self.db)
         object = a_o.run()
         if object:
-            self.object_id = object.getId()
+            self.object_id = object.get_id()
         else:
             return
-        self.obj_title.set_text(object.getDescription())
-        the_type = Utils.get_mime_description(object.getMimeType())
-        path = object.getPath()
-        thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
+        self.obj_title.set_text(object.get_description())
+        the_type = Utils.get_mime_description(object.get_mime_type())
+        path = object.get_path()
+        thumb_path = Utils.thumb_path(self.db.get_save_path(),object)
         pexists = os.path.exists(path)
         if pexists and os.path.exists(thumb_path):
             self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
@@ -408,7 +408,7 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
 
-        self.options = ( self.person.getId(), 
+        self.options = ( self.person.get_id(), 
                     self.title_string, self.subtitle_string, 
                     self.object_id, self.size_index, self.footer_string )
         self.style_name = self.selected_style.get_name() 
@@ -423,7 +423,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         if options[1]:
             title_string = options[1]
         else:
@@ -446,7 +446,7 @@ def write_book_item(database,person,doc,options,newpage=0):
         else:
             import time
             dateinfo = time.localtime(time.time())
-            name = database.getResearcher().getName()
+            name = database.get_researcher().get_name()
             footer_string = _('Copyright %d %s') % (dateinfo[0], name)
         return SimpleBookTitle(database, person, 
                 title_string, subtitle_string, object_id, size, 

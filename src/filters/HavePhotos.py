@@ -27,7 +27,7 @@ class HavePhotos(Filter.Filter):
     "People who have images"
 
     def match(self,person):
-        return len(person.getPhotoList()) > 0
+        return len(person.get_photo_list()) > 0
 
 #------------------------------------------------------------------------
 #

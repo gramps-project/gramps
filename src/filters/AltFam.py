@@ -27,7 +27,7 @@ class HaveAltFamilies(Filter.Filter):
     "People who were adopted"
 
     def match(self,person):
-        for vals in person.getParentList():
+        for vals in person.get_parent_family_id_list():
             if vals[1] == "Adopted" or vals[2] == "Adopted":
                 return 1
         return 0

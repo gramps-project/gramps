@@ -141,7 +141,7 @@ def get_relationship(orig_person,other_person):
 
     for person in firstList:
         if person in secondList:
-            new_rank = firstMap[person.getId()]
+            new_rank = firstMap[person.get_id()]
             if new_rank < rank:
                 rank = new_rank
                 common = [ person ]
@@ -155,43 +155,43 @@ def get_relationship(orig_person,other_person):
 
     if length == 1:
         person = common[0]
-        secondRel = firstMap[person.getId()]
-        firstRel = secondMap[person.getId()]
+        secondRel = firstMap[person.get_id()]
+        firstRel = secondMap[person.get_id()]
     elif length == 2:
         p1 = common[0]
-        secondRel = firstMap[p1.getId()]
-        firstRel = secondMap[p1.getId()]
+        secondRel = firstMap[p1.get_id()]
+        firstRel = secondMap[p1.get_id()]
     elif length > 2:
         person = common[0]
-        secondRel = firstMap[person.getId()]
-        firstRel = secondMap[person.getId()]
+        secondRel = firstMap[person.get_id()]
+        firstRel = secondMap[person.get_id()]
 
     if firstRel == -1:
         return ("",[])
     elif firstRel == 0:
         if secondRel == 0:
             return ('',common)
-        elif other_person.getGender() == RelLib.Person.male:
+        elif other_person.get_gender() == RelLib.Person.male:
             return (get_father(secondRel),common)
         else:
             return (get_mother(secondRel),common)
     elif secondRel == 0:
-        if other_person.getGender() == RelLib.Person.male:
+        if other_person.get_gender() == RelLib.Person.male:
             return (get_son(firstRel),common)
         else:
             return (get_daughter(firstRel),common)
     elif firstRel == 1:
-        if other_person.getGender() == RelLib.Person.male:
+        if other_person.get_gender() == RelLib.Person.male:
             return (get_uncle(secondRel),common)
         else:
             return (get_aunt(secondRel),common)
     elif secondRel == 1:
-        if other_person.getGender() == RelLib.Person.male:
+        if other_person.get_gender() == RelLib.Person.male:
             return (get_nephew(firstRel-1),common)
         else:
             return (get_niece(firstRel-1),common)
     else:
-        if other_person.getGender() == RelLib.Person.male:
+        if other_person.get_gender() == RelLib.Person.male:
             return (get_male_cousin(firstRel-1, secondRel-1), common)
         else:
             return (get_female_cousin(firstRel-1, secondRel-1), common)

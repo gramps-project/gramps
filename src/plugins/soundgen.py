@@ -63,8 +63,8 @@ class SoundGen:
         self.name.connect('changed',self.on_apply_clicked)
 
         names = []
-        for person in self.db.getPersonMap().values():
-            lastname = person.getPrimaryName().getSurname()
+        for person in self.db.get_person_id_map().values():
+            lastname = person.get_primary_name().get_surname()
             if lastname not in names:
                 names.append(lastname)
 
@@ -73,7 +73,7 @@ class SoundGen:
                                            names)
 
         if active_person:
-            n = active_person.getPrimaryName().getSurname()
+            n = active_person.get_primary_name().get_surname()
             self.name.set_text(n)
             try:
                 se_text = soundex.soundex(n)

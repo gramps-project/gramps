@@ -53,7 +53,7 @@ class EditSource:
         self.source = source
         self.db = db
         self.callback = func
-        self.path = db.getSavePath()
+        self.path = db.get_save_path()
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
@@ -81,20 +81,20 @@ class EditSource:
         self.refinfo = self.top_window.get_widget("refinfo")
         
         self.title = self.top_window.get_widget("source_title")
-        self.title.set_text(source.getTitle())
-        self.author.set_text(source.getAuthor())
-        self.pubinfo.set_text(source.getPubInfo())
-        self.abbrev.set_text(source.getAbbrev())
+        self.title.set_text(source.get_title())
+        self.author.set_text(source.get_author())
+        self.pubinfo.set_text(source.get_publication_info())
+        self.abbrev.set_text(source.get_abbreviation())
 
-        if source.getNote():
-            self.notes_buffer.set_text(source.getNote())
+        if source.get_note():
+            self.notes_buffer.set_text(source.get_note())
             Utils.bold_label(self.notes_label)
-            if source.getNoteFormat() == 1:
+            if source.get_note_format() == 1:
             	self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
 
-        if self.source.getPhotoList():
+        if self.source.get_photo_list():
             Utils.bold_label(self.gallery_label)
 
         self.top_window.signal_autoconnect({
@@ -107,7 +107,7 @@ class EditSource:
             "on_sourceEditor_help_clicked" : self.on_help_clicked,
             })
 
-        if self.source.getId() == "":
+        if self.source.get_id() == "":
             self.top_window.get_widget("edit_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -139,39 +139,39 @@ class EditSource:
         f_event_list = []
         f_attr_list = []
         p_list = []
-        for key in self.db.getPlaceKeys():
-            p = self.db.getPlace(key) 
+        for key in self.db.get_place_id_keys():
+            p = self.db.get_place_id(key) 
             name = p.get_title()
-            for sref in p.getSourceRefList():
-                if sref.getBase() == self.source:
+            for sref in p.get_source_references():
+                if sref.get_base_id() == self.source.get_id():
                     p_list.append(name)
-        for key in self.db.getPersonKeys():
-            p = self.db.getPerson(key)
+        for key in self.db.get_person_keys():
+            p = self.db.get_person(key)
             name = GrampsCfg.nameof(p)
-            for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == self.source:
-                        p_event_list.append((name,v.getName()))
-            for v in p.getAttributeList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == self.source:
-                        p_attr_list.append((name,v.getType()))
-            for v in p.getAlternateNames() + [p.getPrimaryName()]:
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == self.source:
-                        p_name_list.append((name,v.getName()))
-            for v in p.getAddressList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == self.source:
-                        p_addr_list.append((name,v.getStreet()))
-        for p in self.db.getObjectMap().values():
-            name = p.getDescription()
-            for sref in p.getSourceRefList():
-                if sref.getBase() == self.source:
+            for v in p.get_event_list() + [p.get_birth(), p.get_death()]:
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == self.source.get_id():
+                        p_event_list.append((name,v.get_name()))
+            for v in p.get_attribute_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == self.source.get_id():
+                        p_attr_list.append((name,v.get_type()))
+            for v in p.get_alternate_names() + [p.get_primary_name()]:
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == self.source.get_id():
+                        p_name_list.append((name,v.get_name()))
+            for v in p.get_address_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == self.source.get_id():
+                        p_addr_list.append((name,v.get_street()))
+        for p in self.db.get_object_map().values():
+            name = p.get_description()
+            for sref in p.get_source_references():
+                if sref.get_base_id() == self.source.get_id():
                     m_list.append(name)
-        for p in self.db.getFamilyMap().values():
-            f = p.getFather()
-            m = p.getMother()
+        for p in self.db.get_family_id_map().values():
+            f = p.get_father_id()
+            m = p.get_mother_id()
             if f and m:
                 name = _("%(father)s and %(mother)s") % {
                     "father" : GrampsCfg.nameof(f),
@@ -180,14 +180,14 @@ class EditSource:
                 name = GrampsCfg.nameof(f)
             else:
                 name = GrampsCfg.nameof(m)
-            for v in p.getEventList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == self.source:
-                        f_event_list.append((name,v.getName()))
-            for v in p.getAttributeList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == self.source:
-                        f_attr_list.append((name,v.getType()))
+            for v in p.get_event_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == self.source.get_id():
+                        f_event_list.append((name,v.get_name()))
+            for v in p.get_attribute_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == self.source.get_id():
+                        f_attr_list.append((name,v.get_type()))
 
         slist = self.top_window.get_widget('slist')
 
@@ -245,28 +245,28 @@ class EditSource:
                                   self.notes_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
 
-        if author != self.source.getAuthor():
-            self.source.setAuthor(author)
+        if author != self.source.get_author():
+            self.source.set_author(author)
             Utils.modified()
         
-        if title != self.source.getTitle():
-            self.source.setTitle(title)
+        if title != self.source.get_title():
+            self.source.set_title(title)
             Utils.modified()
         
-        if pubinfo != self.source.getPubInfo():
-            self.source.setPubInfo(pubinfo)
+        if pubinfo != self.source.get_publication_info():
+            self.source.set_publication_info(pubinfo)
             Utils.modified()
         
-        if abbrev != self.source.getAbbrev():
-            self.source.setAbbrev(abbrev)
+        if abbrev != self.source.get_abbreviation():
+            self.source.set_abbreviation(abbrev)
             Utils.modified()
         
-        if note != self.source.getNote():
-            self.source.setNote(note)
+        if note != self.source.get_note():
+            self.source.set_note(note)
             Utils.modified()
 
-        if format != self.source.getNoteFormat():
-            self.source.setNoteFormat(format)
+        if format != self.source.get_note_format():
+            self.source.set_note_format(format)
             Utils.modified()
 
 	if self.lists_changed:
@@ -302,43 +302,43 @@ class DelSrcQuery:
     def delete_source(self,object):
         m = 0
         l = []
-        for sref in object.getSourceRefList():
-            if sref.getBase() != self.source:
+        for sref in object.get_source_references():
+            if sref.get_base_id() != self.source.get_id():
                 l.append(sref)
             else:
                 m = 1
         if m:
-            object.setSourceRefList(l)
+            object.set_source_reference_list(l)
 
     def query_response(self):
-        self.db.removeSource(self.source.getId())
+        self.db.remove_source_id(self.source.get_id())
         Utils.modified()
 
-        for key in self.db.getPersonKeys():
-            p = self.db.getPerson(key)
-            for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
+        for key in self.db.get_person_keys():
+            p = self.db.get_person(key)
+            for v in p.get_event_list() + [p.get_birth(), p.get_death()]:
                 self.delete_source(v)
 
-            for v in p.getAttributeList():
+            for v in p.get_attribute_list():
                 self.delete_source(v)
 
-            for v in p.getAlternateNames() + [p.getPrimaryName()]:
+            for v in p.get_alternate_names() + [p.get_primary_name()]:
                 self.delete_source(v)
 
-            for v in p.getAddressList():
+            for v in p.get_address_list():
                 self.delete_source(v)
 
-        for p in self.db.getFamilyMap().values():
-            for v in p.getEventList():
+        for p in self.db.get_family_id_map().values():
+            for v in p.get_event_list():
                 self.delete_source(v)
 
-            for v in p.getAttributeList():
+            for v in p.get_attribute_list():
                 self.delete_source(v)
 
-        for p in self.db.getObjectMap().values():
+        for p in self.db.get_object_map().values():
             self.delete_source(p)
 
-        for key in self.db.getPlaceKeys():
-            self.delete_source(self.db.getPlace(key))
+        for key in self.db.get_place_id_keys():
+            self.delete_source(self.db.get_place_id(key))
 
         self.update(0)

@@ -68,17 +68,17 @@ class EventEditor:
         self.pmap = {}
         self.elist = list
         
-        for key in self.parent.db.getPlaceKeys():
-            p = self.parent.db.getPlaceDisplay(key)
+        for key in self.parent.db.get_place_id_keys():
+            p = self.parent.db.get_place_display(key)
             self.pmap[p[0]] = key
 
         if event:
-            self.srcreflist = self.event.getSourceRefList()
+            self.srcreflist = self.event.get_source_references()
             self.witnesslist = self.event.get_witness_list()
             if not self.witnesslist:
                 self.witnesslist = []
-            self.date = Date.Date(self.event.getDateObj())
-            transname = const.display_event(event.getName())
+            self.date = Date.Date(self.event.get_date_object())
+            transname = const.display_event(event.get_name())
             # add the name to the list if it is not already there. This tends to occur
             # in translated languages with the 'Death' event, which is a partial match
             # to other events
@@ -150,18 +150,18 @@ class EventEditor:
             if (def_placename):
                 self.place_field.set_text(def_placename)
             else:
-                self.place_field.set_text(event.getPlaceName())
+                self.place_field.set_text(event.get_place_name())
 
-            self.date_field.set_text(self.date.getDate())
-            self.cause_field.set_text(event.getCause())
-            self.descr_field.set_text(event.getDescription())
-            self.priv.set_active(event.getPrivacy())
+            self.date_field.set_text(self.date.get_date())
+            self.cause_field.set_text(event.get_cause())
+            self.descr_field.set_text(event.get_description())
+            self.priv.set_active(event.get_privacy())
             
-            self.note_field.get_buffer().set_text(event.getNote())
-            if event.getNote():
-            	self.note_field.get_buffer().set_text(event.getNote())
+            self.note_field.get_buffer().set_text(event.get_note())
+            if event.get_note():
+            	self.note_field.get_buffer().set_text(event.get_note())
                 Utils.bold_label(self.notes_label)
-            	if event.getNoteFormat() == 1:
+            	if event.get_note_format() == 1:
                     self.preform.set_active(1)
             	else:
                     self.flowed.set_active(1)
@@ -214,19 +214,19 @@ class EventEditor:
         cobj = obj.get_data("d")
         self.date.set(unicode(self.date_field.get_text()))
         self.date.set_calendar(cobj)
-        self.date_field.set_text(self.date.getDate())
+        self.date_field.set_text(self.date.get_date())
         self.date_check.set_calendar(cobj())
         
     def get_place(self,field,makenew=0):
         text = strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.parent.db.getPlaceMap()[self.pmap[text]]
+                return self.parent.db.get_place_id_map()[self.pmap[text]]
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
-                self.parent.db.addPlace(place)
-                self.pmap[text] = place.getId()
+                self.parent.db.add_place(place)
+                self.pmap[text] = place.get_id()
                 self.plist.append(place)
                 Utils.modified()
                 return place
@@ -257,7 +257,7 @@ class EventEditor:
 
         if self.event == None:
             self.event = RelLib.Event()
-            self.event.setSourceRefList(self.srcreflist)
+            self.event.set_source_reference_list(self.srcreflist)
             self.event.set_witness_list(self.witnesslist)
             self.parent.elist.append(self.event)
         
@@ -266,41 +266,41 @@ class EventEditor:
         self.callback(self.event)
 
     def update_event(self,name,date,place,desc,note,format,priv,cause):
-        if self.event.getPlace() != place:
-            self.event.setPlace(place)
+        if self.event.get_place_id() != place:
+            self.event.set_place_id(place)
             self.parent.lists_changed = 1
         
-        if self.event.getName() != self.trans(name):
-            self.event.setName(self.trans(name))
+        if self.event.get_name() != self.trans(name):
+            self.event.set_name(self.trans(name))
             self.parent.lists_changed = 1
         
-        if self.event.getDescription() != desc:
-            self.event.setDescription(desc)
+        if self.event.get_description() != desc:
+            self.event.set_description(desc)
             self.parent.lists_changed = 1
 
-        if self.event.getNote() != note:
-            self.event.setNote(note)
+        if self.event.get_note() != note:
+            self.event.set_note(note)
             self.parent.lists_changed = 1
 
-        if self.event.getNoteFormat() != format:
-            self.event.setNoteFormat(format)
+        if self.event.get_note_format() != format:
+            self.event.set_note_format(format)
             self.parent.lists_changed = 1
 
-        dobj = self.event.getDateObj()
+        dobj = self.event.get_date_object()
 
-        self.event.setSourceRefList(self.srcreflist)
+        self.event.set_source_reference_list(self.srcreflist)
         self.event.set_witness_list(self.witnesslist)
         
         if Date.compare_dates(dobj,date) != 0:
-            self.event.setDateObj(date)
+            self.event.set_date_object(date)
             self.parent.lists_changed = 1
 
-        if self.event.getCause() != cause:
-            self.event.setCause(cause)
+        if self.event.get_cause() != cause:
+            self.event.set_cause(cause)
             self.parent.lists_changed = 1
 
-        if self.event.getPrivacy() != priv:
-            self.event.setPrivacy(priv)
+        if self.event.get_privacy() != priv:
+            self.event.set_privacy(priv)
             self.parent.lists_changed = 1
 
     def on_switch_page(self,obj,a,page):

@@ -38,10 +38,10 @@ class EventBefore(Filter.Filter):
         Filter.Filter.__init__(self,text)
 
     def match(self,p):
-        for event in p.getEventList() + [p.getBirth(), p.getDeath()]:
-            if self.date.getDate() == "" or event.getDate() == "":
+        for event in p.get_event_list() + [p.get_birth(), p.get_death()]:
+            if self.date.get_date() == "" or event.get_date() == "":
                 continue
-            if event.getDateObj().less_than(self.date):
+            if event.get_date_object().less_than(self.date):
                 return 1
         return 0
 

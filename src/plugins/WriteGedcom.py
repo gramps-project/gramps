@@ -113,20 +113,20 @@ _get_int = re.compile('([0-9]+)')
 #
 #-------------------------------------------------------------------------
 def add_familys_sources(family,slist,private):
-    for event in family.getEventList():
-        if private and event.getPrivacy():
+    for event in family.get_event_list():
+        if private and event.get_privacy():
             continue
-        for source_ref in event.getSourceRefList():
-            sbase = source_ref.getBase()
-            if sbase != None and not slist.has_key(sbase.getId()):
-                slist[sbase.getId()] = 1
-    for attr in family.getAttributeList():
-        if private and attr.getPrivacy():
+        for source_ref in event.get_source_references():
+            sbase = source_ref.get_base_id()
+            if sbase != None and not slist.has_key(sbase.get_id()):
+                slist[sbase.get_id()] = 1
+    for attr in family.get_attribute_list():
+        if private and attr.get_privacy():
             continue
-        for source_ref in attr.getSourceRefList():
-            sbase = source_ref.getBase()
-            if sbase != None and not slist.has_key(sbase.getId()):
-                slist[sbase.getId()] = 1
+        for source_ref in attr.get_source_references():
+            sbase = source_ref.get_base_id()
+            if sbase != None and not slist.has_key(sbase.get_id()):
+                slist[sbase.get_id()] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -134,41 +134,41 @@ def add_familys_sources(family,slist,private):
 #
 #-------------------------------------------------------------------------
 def add_persons_sources(person,slist,private):
-    elist = person.getEventList()[:]
+    elist = person.get_event_list()[:]
 
-    elist.append(person.getBirth())
-    elist.append(person.getDeath())
+    elist.append(person.get_birth())
+    elist.append(person.get_death())
     for event in elist:
-        if private and event.getPrivacy():
+        if private and event.get_privacy():
             continue
-        for source_ref in event.getSourceRefList():
-            sbase = source_ref.getBase()
-            if sbase != None and not slist.has_key(sbase.getId()):
-                slist[sbase.getId()] = 1
+        for source_ref in event.get_source_references():
+            sbase = source_ref.get_base_id()
+            if sbase != None and not slist.has_key(sbase.get_id()):
+                slist[sbase.get_id()] = 1
 
-    for event in person.getAddressList():
-        if private and event.getPrivacy():
+    for event in person.get_address_list():
+        if private and event.get_privacy():
             continue
-        for source_ref in event.getSourceRefList():
-            sbase = source_ref.getBase()
-            if sbase != None and not slist.has_key(sbase.getId()):
-                slist[sbase.getId()] = 1
+        for source_ref in event.get_source_references():
+            sbase = source_ref.get_base_id()
+            if sbase != None and not slist.has_key(sbase.get_id()):
+                slist[sbase.get_id()] = 1
 
-    for event in person.getAttributeList():
-        if private and event.getPrivacy():
+    for event in person.get_attribute_list():
+        if private and event.get_privacy():
             continue
-        for source_ref in event.getSourceRefList():
-            sbase = source_ref.getBase()
-            if sbase != None and not slist.has_key(sbase.getId()):
-                slist[sbase.getId()] = 1
+        for source_ref in event.get_source_references():
+            sbase = source_ref.get_base_id()
+            if sbase != None and not slist.has_key(sbase.get_id()):
+                slist[sbase.get_id()] = 1
 
-    for name in person.getAlternateNames() + [person.getPrimaryName()]:
-        if private and name.getPrivacy():
+    for name in person.get_alternate_names() + [person.get_primary_name()]:
+        if private and name.get_privacy():
             continue
-        for source_ref in name.getSourceRefList():
-            sbase = source_ref.getBase()
-            if sbase != None and not slist.has_key(sbase.getId()):
-                slist[sbase.getId()] = 1
+        for source_ref in name.get_source_references():
+            sbase = source_ref.get_base_id()
+            if sbase != None and not slist.has_key(sbase.get_id()):
+                slist[sbase.get_id()] = 1
 
 #-------------------------------------------------------------------------
 #
@@ -187,8 +187,8 @@ def addr_append(text,data):
 #
 #-------------------------------------------------------------------------
 def sortById(first,second):
-    fid = first.getId()
-    sid = second.getId()
+    fid = first.get_id()
+    sid = second.get_id()
 
     if fid == sid:
         return 0
@@ -390,17 +390,17 @@ class GedcomWriter:
             all.add_rule(GenericFilter.Everyone([]))
 
             des = GenericFilter.GenericFilter()
-            des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
-            des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+            des.set_name(_("Descendants of %s") % person.get_primary_name().get_name())
+            des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
 
             ans = GenericFilter.GenericFilter()
-            ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
-            ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+            ans.set_name(_("Ancestors of %s") % person.get_primary_name().get_name())
+            ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
 
             com = GenericFilter.GenericFilter()
             com.set_name(_("People with common ancestor with %s") %
-                         person.getPrimaryName().getName())
-            com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+                         person.get_primary_name().get_name())
+            com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_id()]))
 
             self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
             filter_obj.set_menu(self.filter_menu)
@@ -419,7 +419,7 @@ class GedcomWriter:
             target_obj.set_menu(myMenu)
             self.target_menu = myMenu
 
-            pathname = os.path.join (os.path.dirname(db.getSavePath()),
+            pathname = os.path.join (os.path.dirname(db.get_save_path()),
                                      "export.ged")
         
             filetgt = self.topDialog.get_widget('fileentry1')
@@ -484,12 +484,12 @@ class GedcomWriter:
         name = unicode(self.topDialog.get_widget("filename").get_text())
 
         if cfilter == None:
-            for p in self.db.getPersonKeys():
+            for p in self.db.get_person_keys():
                 self.plist[p] = 1
         else:
             try:
-                for p in cfilter.apply(self.db, self.db.getPersonMap().values()):
-                    self.plist[p.getId()] = 1
+                for p in cfilter.apply(self.db, self.db.get_person_id_map().values()):
+                    self.plist[p.get_id()] = 1
             except Errors.FilterError, msg:
                 (m1,m2) = msg.messages()
                 ErrorDialog(m1,m2)
@@ -498,11 +498,11 @@ class GedcomWriter:
         self.flist = {}
         self.slist = {}
         for key in self.plist.keys():
-            p = self.db.getPerson(key)
+            p = self.db.get_person(key)
             add_persons_sources(p,self.slist,self.private)
-            for family in p.getFamilyList():
+            for family in p.get_family_id_list():
                 add_familys_sources(family,self.slist,self.private)
-                self.flist[family.getId()] = 1
+                self.flist[family.get_id()] = 1
                 
         Utils.destroy_passed_object(obj)
 
@@ -538,7 +538,7 @@ class GedcomWriter:
         self.private = 0
         self.copy = 0
 
-        for p in self.db.getPersonKeys():
+        for p in self.db.get_person_keys():
             self.plist[p] = 1
 
         gedmap = GedcomInfo.GedcomInfoDB()
@@ -561,11 +561,11 @@ class GedcomWriter:
         self.slist = {}
 
         for key in self.plist.keys():
-            p = self.db.getPerson(key)
+            p = self.db.get_person(key)
             add_persons_sources(p,self.slist,self.private)
-            for family in p.getFamilyList():
+            for family in p.get_family_id_list():
                 add_familys_sources(family,self.slist,self.private)
-                self.flist[family.getId()] = 1
+                self.flist[family.get_id()] = 1
 
         self.export_data(self.name)
 
@@ -609,31 +609,31 @@ class GedcomWriter:
         self.writeln('2 FORM LINEAGE-LINKED')
         self.gnu_fdl()
         self.writeln("0 @SUBM@ SUBM")
-        owner = self.db.getResearcher()
-        if owner.getName():
-            self.writeln("1 NAME %s" % self.cnvtxt(owner.getName()))
+        owner = self.db.get_researcher()
+        if owner.get_name():
+            self.writeln("1 NAME %s" % self.cnvtxt(owner.get_name()))
         else:
             self.writeln('1 NAME Not Provided')
 
-        if owner.getAddress():
+        if owner.get_address():
             cnt = 0
-            self.writeln("1 ADDR %s" % self.cnvtxt(owner.getAddress()))
-            if owner.getCity():
-                self.writeln("2 CONT %s" % self.cnvtxt(owner.getCity()))
+            self.writeln("1 ADDR %s" % self.cnvtxt(owner.get_address()))
+            if owner.get_city():
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.get_city()))
                 cnt = 1
-            if owner.getState():
-                self.writeln("2 CONT %s" % self.cnvtxt(owner.getState()))
+            if owner.get_state():
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.get_state()))
                 cnt = 1
-            if owner.getPostalCode():
-                self.writeln("2 CONT %s" % self.cnvtxt(owner.getPostalCode()))
+            if owner.get_postal_code():
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.get_postal_code()))
                 cnt = 1
-            if owner.getCountry():
-                self.writeln("2 CONT %s" % self.cnvtxt(owner.getCountry()))
+            if owner.get_country():
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.get_country()))
                 cnt = 1
             if cnt == 0:
                 self.writeln('2 CONT Not Provided')
-            if owner.getPhone():
-                self.writeln("1 PHON %s" % self.cnvtxt(owner.getPhone()))
+            if owner.get_phone():
+                self.writeln("1 PHON %s" % self.cnvtxt(owner.get_phone()))
         else:
             self.writeln('1 ADDR Not Provided')
             self.writeln('2 CONT Not Provided')
@@ -643,7 +643,7 @@ class GedcomWriter:
         nump = float(len(self.plist))
         index = 0.0
         for key in pkeys:
-            self.write_person(self.db.getPerson(key))
+            self.write_person(self.db.get_person(key))
             index = index + 1
             if index%100 == 0 and not self.cl:
                 self.pbar.set_fraction(index/nump)
@@ -669,10 +669,10 @@ class GedcomWriter:
         y = t[0]
         
         if self.copy == 0:
-            o = self.db.getResearcher().getName()
+            o = self.db.get_researcher().get_name()
             self.writeln('1 COPR Copyright (c) %d %s.' % (y,o))
         elif self.copy == 1:
-            o = self.db.getResearcher().getName()
+            o = self.db.get_researcher().get_name()
             self.writeln('1 COPR Copyright (c) %d %s. See additional copyright NOTE below.' % (y,o))
 
     def gnu_fdl(self):
@@ -683,7 +683,7 @@ class GedcomWriter:
         
         t = time.localtime(time.time())
         y = t[0]
-        o = self.db.getResearcher().getName()
+        o = self.db.get_researcher().get_name()
         
         self.writeln('1 NOTE       Copyright (c) %d %s.' % (y,o))
         try:
@@ -698,27 +698,27 @@ class GedcomWriter:
         nump = float(len(self.flist))
         index = 0.0
         for key in self.flist.keys():
-            family = self.db.getFamily(key)
+            family = self.db.get_family_id(key)
             father_alive = mother_alive = 0
-            self.writeln("0 @%s@ FAM" % self.fid(family.getId()))
+            self.writeln("0 @%s@ FAM" % self.fid(family.get_id()))
             self.frefn(family)
-            person = family.getFather()
-            if person != None and self.plist.has_key(person.getId()):
-                self.writeln("1 HUSB @%s@" % self.pid(person.getId()))
-                father_alive = person.probablyAlive()
+            person = family.get_father_id()
+            if person != None and self.plist.has_key(person.get_id()):
+                self.writeln("1 HUSB @%s@" % self.pid(person.get_id()))
+                father_alive = person.probably_alive()
 
-            person = family.getMother()
-            if person != None and self.plist.has_key(person.getId()):
-                self.writeln("1 WIFE @%s@" % self.pid(person.getId()))
-                mother_alive = person.probablyAlive()
+            person = family.get_mother_id()
+            if person != None and self.plist.has_key(person.get_id()):
+                self.writeln("1 WIFE @%s@" % self.pid(person.get_id()))
+                mother_alive = person.probably_alive()
 
             if not self.restrict or ( not father_alive and not mother_alive ):
-                self.write_ord("SLGS",family.getLdsSeal(),1,const.lds_ssealing)
+                self.write_ord("SLGS",family.get_lds_sealing(),1,const.lds_ssealing)
 
-                for event in family.getEventList():
-                    if self.private and event.getPrivacy():
+                for event in family.get_event_list():
+                    if self.private and event.get_privacy():
                         continue
-                    name = event.getName()
+                    name = event.get_name()
                     val = ""
                     if const.familyConstantEvents.has_key(name):
                         val = const.familyConstantEvents[name]
@@ -727,23 +727,23 @@ class GedcomWriter:
                         
                     if val:
                         self.writeln("1 %s %s" % (self.cnvtxt(val),
-                                                  self.cnvtxt(event.getDescription())))
+                                                  self.cnvtxt(event.get_description())))
                     else:	
-                        self.writeln("1 EVEN %s" % self.cnvtxt(event.getDescription()))
+                        self.writeln("1 EVEN %s" % self.cnvtxt(event.get_description()))
                         self.writeln("2 TYPE %s" % self.cnvtxt(name))
 					
                     self.dump_event_stats(event)
 
-            for person in family.getChildList():
-                if not self.plist.has_key(person.getId()):
+            for person in family.get_child_id_list():
+                if not self.plist.has_key(person.get_id()):
                     continue
-                self.writeln("1 CHIL @%s@" % self.pid(person.getId()))
+                self.writeln("1 CHIL @%s@" % self.pid(person.get_id()))
                 if self.adopt == GedcomInfo.ADOPT_FTW:
-                    if person.getMainParents() == family:
+                    if person.get_main_parents_family_id() == family:
                         self.writeln('2 _FREL Natural')
                         self.writeln('2 _MREL Natural')
                     else:
-                        for f in person.getParentList():
+                        for f in person.get_parent_family_id_list():
                             if f[0] == family:
                                 self.writeln('2 _FREL %s' % f[2])
                                 self.writeln('2 _MREL %s' % f[1])
@@ -766,18 +766,18 @@ class GedcomWriter:
         nump = float(len(self.slist))
         index = 0.0
         for key in self.slist.keys():
-            source = self.db.getSource(key)
-            self.writeln("0 @%s@ SOUR" % self.sid(source.getId()))
-            if source.getTitle():
-                self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.getTitle()),248,1,self.nl))
-            if source.getAuthor():
-                self.writeln("1 AUTH %s" % self.cnvtxt(source.getAuthor()))
-            if source.getPubInfo():
-                self.writeln("1 PUBL %s" % self.cnvtxt(source.getPubInfo()))
+            source = self.db.get_source(key)
+            self.writeln("0 @%s@ SOUR" % self.sid(source.get_id()))
+            if source.get_title():
+                self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.get_title()),248,1,self.nl))
+            if source.get_author():
+                self.writeln("1 AUTH %s" % self.cnvtxt(source.get_author()))
+            if source.get_publication_info():
+                self.writeln("1 PUBL %s" % self.cnvtxt(source.get_publication_info()))
             if source.getAbbrev():
                 self.writeln("1 ABBR %s" % self.cnvtxt(source.getAbbrev()))
-            if source.getNote():
-                self.write_long_text("NOTE",1,self.cnvtxt(source.getNote()))
+            if source.get_note():
+                self.write_long_text("NOTE",1,self.cnvtxt(source.get_note()))
             index = index + 1
             if index % 100 == 0 and not self.cl:
                 self.sbar.set_fraction(index/nump)
@@ -787,66 +787,62 @@ class GedcomWriter:
             self.sbar.set_fraction(1.0)
 
     def write_person(self,person):
-        self.writeln("0 @%s@ INDI" % self.pid(person.getId()))
-        restricted = self.restrict and person.probablyAlive ()
+        self.writeln("0 @%s@ INDI" % self.pid(person.get_id()))
+        restricted = self.restrict and person.probably_alive ()
         self.prefn(person)
-        primaryname = person.getPrimaryName ()
+        primaryname = person.get_primary_name ()
         if restricted and self.living:
             primaryname = RelLib.Name (primaryname)
-            primaryname.setFirstName ("Living")
+            primaryname.set_first_name ("Living")
             nickname = ""
         else:
-            primaryname = person.getPrimaryName ()
-            nickname = person.getNickName ()
+            primaryname = person.get_primary_name ()
+            nickname = person.get_nick_name ()
 
         if restricted and self.exclnotes:
             primaryname = RelLib.Name (primaryname)
-            primaryname.setNote ('')
+            primaryname.set_note ('')
 
         if restricted and self.exclsrcs:
             primaryname = RelLib.Name (primaryname)
-            primaryname.setSourceRefList ([])
+            primaryname.set_source_reference_list ([])
 
         self.write_person_name(primaryname, nickname)
 
         if (self.altname == GedcomInfo.ALT_NAME_STD and
             not (restricted and self.living)):
-            for name in person.getAlternateNames():
+            for name in person.get_alternate_names():
                 self.write_person_name(name,"")
     
-        if person.getGender() == RelLib.Person.male:
+        if person.get_gender() == RelLib.Person.male:
             self.writeln("1 SEX M")
-        elif person.getGender() == RelLib.Person.female:	
+        elif person.get_gender() == RelLib.Person.female:	
             self.writeln("1 SEX F")
 
         if not restricted:
 
-            birth = person.getBirth()
-            if not (self.private and birth.getPrivacy()):
-                if not birth.getDateObj().isEmpty() or birth.getPlaceName():
+            birth = person.get_birth()
+            if not (self.private and birth.get_privacy()):
+                if not birth.get_date_object().is_empty() or birth.get_place_name():
                     self.writeln("1 BIRT")
                     self.dump_event_stats(birth)
 				
-            death = person.getDeath()
-            if not (self.private and death.getPrivacy()):
-                if not death.getDateObj().isEmpty() or death.getPlaceName():
+            death = person.get_death()
+            if not (self.private and death.get_privacy()):
+                if not death.get_date_object().is_empty() or death.get_place_name():
                     self.writeln("1 DEAT")
                     self.dump_event_stats(death)
 
-            uid = person.getPafUid()
-            if uid:
-                self.writeln("1 _UID %s" % uid)
-            
             ad = 0
 
-            self.write_ord("BAPL",person.getLdsBaptism(),1,const.lds_baptism)
-            self.write_ord("ENDL",person.getLdsEndowment(),1,const.lds_baptism)
-            self.write_ord("SLGC",person.getLdsSeal(),1,const.lds_csealing)
+            self.write_ord("BAPL",person.get_lds_baptism(),1,const.lds_baptism)
+            self.write_ord("ENDL",person.get_lds_endowment(),1,const.lds_baptism)
+            self.write_ord("SLGC",person.get_lds_sealing(),1,const.lds_csealing)
             
-            for event in person.getEventList():
-                if self.private and event.getPrivacy():
+            for event in person.get_event_list():
+                if self.private and event.get_privacy():
                     continue
-                name = event.getName()
+                name = event.get_name()
                 val = ""
                 if const.personalConstantEvents.has_key(name):
                     val = const.personalConstantEvents[name]
@@ -857,14 +853,14 @@ class GedcomWriter:
                     ad = 1
                     self.writeln('1 ADOP')
                     fam = None
-                    for f in person.getParentList():
+                    for f in person.get_parent_family_id_list():
                         mrel = string.lower(f[1])
                         frel = string.lower(f[2])
                         if mrel=="adopted" or frel=="adopted":
                             fam = f[0]
                             break
                     if fam:
-                        self.writeln('2 FAMC @%s@' % self.fid(fam.getId()))
+                        self.writeln('2 FAMC @%s@' % self.fid(fam.get_id()))
                         if mrel == frel:
                             self.writeln('3 ADOP BOTH')
                         elif mrel == "adopted":
@@ -873,24 +869,24 @@ class GedcomWriter:
                             self.writeln('3 ADOP HUSB')
                 elif val :
                     self.writeln("1 %s %s" % (self.cnvtxt(val),\
-                                              self.cnvtxt(event.getDescription())))
+                                              self.cnvtxt(event.get_description())))
                 else:
-                    self.writeln("1 EVEN %s" % self.cnvtxt(event.getDescription()))
-                    self.writeln("2 TYPE %s" % self.cnvtxt(event.getName()))
+                    self.writeln("1 EVEN %s" % self.cnvtxt(event.get_description()))
+                    self.writeln("2 TYPE %s" % self.cnvtxt(event.get_name()))
 
                 self.dump_event_stats(event)
 
-            if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.getParentList()) != 0:
+            if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.get_parent_family_id_list()) != 0:
                 self.writeln('1 ADOP')
                 fam = None
-                for f in person.getParentList():
+                for f in person.get_parent_family_id_list():
                     mrel = string.lower(f[1])
                     frel = string.lower(f[2])
                     if mrel=="adopted" or frel=="adopted":
                         fam = f[0]
                         break
                 if fam:
-                    self.writeln('2 FAMC @%s@' % self.fid(fam.getId()))
+                    self.writeln('2 FAMC @%s@' % self.fid(fam.get_id()))
                     if mrel == frel:
                         self.writeln('3 ADOP BOTH')
                     elif mrel == "adopted":
@@ -898,10 +894,10 @@ class GedcomWriter:
                     else:
                         self.writeln('3 ADOP HUSB')
 
-            for attr in person.getAttributeList():
-                if self.private and attr.getPrivacy():
+            for attr in person.get_attribute_list():
+                if self.private and attr.get_privacy():
                     continue
-                name = attr.getType()
+                name = attr.get_type()
                 if const.personalConstantAttributes.has_key(name):
                     val = const.personalConstantAttributes[name]
                 else:
@@ -911,53 +907,53 @@ class GedcomWriter:
                 else:
                     self.writeln("1 EVEN")
                     self.writeln("2 TYPE %s" % self.cnvtxt(name))
-                self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(attr.getValue()),'\r',' '))
-                if attr.getNote():
-                    self.write_long_text("NOTE",2,self.cnvtxt(attr.getNote()))
-                for srcref in attr.getSourceRefList():
+                self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(attr.get_value()),'\r',' '))
+                if attr.get_note():
+                    self.write_long_text("NOTE",2,self.cnvtxt(attr.get_note()))
+                for srcref in attr.get_source_references():
                     self.write_source_ref(2,srcref)
 
-            for addr in person.getAddressList():
-                if self.private and addr.getPrivacy():
+            for addr in person.get_address_list():
+                if self.private and addr.get_privacy():
                     continue
                 self.writeln("1 RESI")
-                self.print_date("2 DATE",addr.getDateObj())
+                self.print_date("2 DATE",addr.get_date_object())
                 if self.resi == 0:
-                    self.write_long_text("ADDR",2,self.cnvtxt(addr.getStreet()))
-                    if addr.getCity():
-                        self.writeln("3 CITY %s" % self.cnvtxt(addr.getCity()))
-                    if addr.getState():
-                        self.writeln("3 STAE %s" % self.cnvtxt(addr.getState()))
-                    if addr.getPostal():
-                        self.writeln("3 POST %s" % self.cnvtxt(addr.getPostal()))
-                    if addr.getCountry():
-                        self.writeln("3 CTRY %s" % self.cnvtxt(addr.getCountry()))
-                    if addr.getPhone():
-                        self.writeln("2 PHON %s" % self.cnvtxt(addr.getPhone()))
+                    self.write_long_text("ADDR",2,self.cnvtxt(addr.get_street()))
+                    if addr.get_city():
+                        self.writeln("3 CITY %s" % self.cnvtxt(addr.get_city()))
+                    if addr.get_state():
+                        self.writeln("3 STAE %s" % self.cnvtxt(addr.get_state()))
+                    if addr.get_postal_code():
+                        self.writeln("3 POST %s" % self.cnvtxt(addr.get_postal_code()))
+                    if addr.get_country():
+                        self.writeln("3 CTRY %s" % self.cnvtxt(addr.get_country()))
+                    if addr.get_phone():
+                        self.writeln("2 PHON %s" % self.cnvtxt(addr.get_phone()))
                 else:
-                    text = addr.getStreet()
-                    text = addr_append(text,addr.getCity())
-                    text = addr_append(text,addr.getState())
-                    text = addr_append(text,addr.getPostal())
-                    text = addr_append(text,addr.getCountry())
-                    text = addr_append(text,addr.getPhone())
+                    text = addr.get_street()
+                    text = addr_append(text,addr.get_city())
+                    text = addr_append(text,addr.get_state())
+                    text = addr_append(text,addr.get_postal_code())
+                    text = addr_append(text,addr.get_country())
+                    text = addr_append(text,addr.get_phone())
                     if text:
                         self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(text),'\r',' '))
-                if addr.getNote():
-                    self.write_long_text("NOTE",2,self.cnvtxt(addr.getNote()))
-                for srcref in addr.getSourceRefList():
+                if addr.get_note():
+                    self.write_long_text("NOTE",2,self.cnvtxt(addr.get_note()))
+                for srcref in addr.get_source_references():
                     self.write_source_ref(2,srcref)
 
             if self.images:
-                photos = person.getPhotoList ()
+                photos = person.get_photo_list ()
             else:
                 photos = []
 
             for photo in photos:
-                if photo.ref.getMimeType() == "image/jpeg":
+                if photo.ref.get_mime_type() == "image/jpeg":
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')
-                    path = photo.ref.getPath ()
+                    path = photo.ref.get_path ()
                     dirname = os.path.join (self.dirname, self.images_path)
                     basename = os.path.basename (path)
                     self.writeln('2 FILE %s' % os.path.join(self.images_path,
@@ -974,20 +970,20 @@ class GedcomWriter:
                               "wb").writelines (file (path,
                                                       "rb").xreadlines ())
 
-        for family in person.getParentList():
-            if self.flist.has_key(family[0].getId()):
-                self.writeln("1 FAMC @%s@" % self.fid(family[0].getId()))
+        for family in person.get_parent_family_id_list():
+            if self.flist.has_key(family[0].get_id()):
+                self.writeln("1 FAMC @%s@" % self.fid(family[0].get_id()))
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
                     if string.lower(family[1]) == "adopted":
                         self.writeln("2 PEDI Adopted")
         
-        for family in person.getFamilyList():
-            if family != None and self.flist.has_key(family.getId()):
-                self.writeln("1 FAMS @%s@" % self.fid(family.getId()))
+        for family in person.get_family_id_list():
+            if family != None and self.flist.has_key(family.get_id()):
+                self.writeln("1 FAMS @%s@" % self.fid(family.get_id()))
 
         if not restricted:
             if self.obje:
-                for url in person.getUrlList():
+                for url in person.get_url_list():
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM URL')
                     if url.get_description():
@@ -996,8 +992,8 @@ class GedcomWriter:
                         self.writeln('2 FILE %s' % url.get_path())
 
         if not restricted or not self.exclnotes:
-            if person.getNote():
-                self.write_long_text("NOTE",1,self.cnvtxt(person.getNote()))
+            if person.get_note():
+                self.write_long_text("NOTE",1,self.cnvtxt(person.get_note()))
 
     def write_long_text(self,tag,level,note):
         if self.conc == GedcomInfo.CONC_OK:
@@ -1064,41 +1060,41 @@ class GedcomWriter:
                     ll = len(line)
     
     def dump_event_stats(self,event):
-        dateobj = event.getDateObj()
+        dateobj = event.get_date_object()
         self.print_date("2 DATE",dateobj)
-        if event.getPlaceName():
-            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(event.getPlaceName()),'\r',' '))
-        if event.getCause():
-            self.writeln("2 CAUS %s" % self.cnvtxt(event.getCause()))
-        if event.getNote():
-            self.write_long_text("NOTE",2,self.cnvtxt(event.getNote()))
-        for srcref in event.getSourceRefList():
+        if event.get_place_name():
+            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(event.get_place_name()),'\r',' '))
+        if event.get_cause():
+            self.writeln("2 CAUS %s" % self.cnvtxt(event.get_cause()))
+        if event.get_note():
+            self.write_long_text("NOTE",2,self.cnvtxt(event.get_note()))
+        for srcref in event.get_source_references():
             self.write_source_ref(2,srcref)
 
     def write_ord(self,name,ord,index,statlist):
         if ord == None:
             return
         self.writeln('%d %s' % (index,name))
-        self.print_date("%d DATE" % (index + 1), ord.getDateObj())
-        if ord.getFamily():
-            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.getFamily().getId())))
-        if ord.getTemple():
-            self.writeln('%d TEMP %s' % (index+1,ord.getTemple()))
-        if ord.getPlaceName():
-            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(ord.getPlaceName()),'\r',' '))
-        if ord.getStatus() != 0:
-            self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.getStatus()]))
-        if ord.getNote():
-            self.write_long_text("NOTE",index+1,self.cnvtxt(ord.getNote()))
-        for srcref in ord.getSourceRefList():
+        self.print_date("%d DATE" % (index + 1), ord.get_date_object())
+        if ord.get_family_id():
+            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.get_family_id().get_id())))
+        if ord.get_temple():
+            self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
+        if ord.get_place_name():
+            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(ord.get_place_name()),'\r',' '))
+        if ord.get_status() != 0:
+            self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.get_status()]))
+        if ord.get_note():
+            self.write_long_text("NOTE",index+1,self.cnvtxt(ord.get_note()))
+        for srcref in ord.get_source_references():
             self.write_source_ref(index+1,srcref)
 
     def print_date(self,prefix,date):
         start = date.get_start_date()
-        val = date.getText()
+        val = date.get_text()
         if val:
             self.writeln("%s %s" % (prefix,self.cnvtxt(val)))
-        elif not date.isEmpty ():
+        elif not date.is_empty ():
             if date.isRange():
                 val = "FROM %s TO %s" % (make_date(start),
                                          make_date(date.get_stop_date()))
@@ -1107,13 +1103,13 @@ class GedcomWriter:
             self.writeln("%s %s" % (prefix,val))
 
     def write_person_name(self,name,nick):
-        firstName = self.cnvtxt(name.getFirstName())
-        surName = self.cnvtxt(name.getSurname())
+        firstName = self.cnvtxt(name.get_first_name())
+        surName = self.cnvtxt(name.get_surname())
         surName = surName.replace('/','?')
-        surPref = self.cnvtxt(name.getSurnamePrefix())
+        surPref = self.cnvtxt(name.get_surname_prefix())
         surPref = surPref.replace('/','?')
-        suffix = self.cnvtxt(name.getSuffix())
-        title = self.cnvtxt(name.getTitle())
+        suffix = self.cnvtxt(name.get_suffix())
+        title = self.cnvtxt(name.get_title())
         if suffix == "":
             if not surPref:
                 self.writeln("1 NAME %s /%s/" % (firstName,surName))
@@ -1125,7 +1121,7 @@ class GedcomWriter:
             else:
                 self.writeln("1 NAME %s /%s/, %s" % (firstName,surName,suffix))
 
-        if name.getFirstName():
+        if name.get_first_name():
             self.writeln("2 GIVN %s" % firstName)
         if self.prefix:
             if surPref:
@@ -1138,68 +1134,68 @@ class GedcomWriter:
             elif surName:
                 self.writeln("2 SURN %s" % surName)
                 
-        if name.getSuffix():
+        if name.get_suffix():
             self.writeln("2 NSFX %s" % suffix)
-        if name.getTitle():
+        if name.get_title():
             self.writeln("2 NPFX %s" % title)
         if nick:
             self.writeln('2 NICK %s' % nick)
-        if name.getNote():
-            self.write_long_text("NOTE",2,self.cnvtxt(name.getNote()))
-        for srcref in name.getSourceRefList():
+        if name.get_note():
+            self.write_long_text("NOTE",2,self.cnvtxt(name.get_note()))
+        for srcref in name.get_source_references():
             self.write_source_ref(2,srcref)
 
     def write_source_ref(self,level,ref):
-        if ref.getBase() == None:
+        if ref.get_base_id() == None:
             return
 
         if self.source_refs:
             self.writeln("%d SOUR @%s@" %
-                         (level,self.sid(ref.getBase().getId())))
-            if ref.getPage() != "":
-                self.write_long_text("PAGE",level+1,self.cnvtxt(ref.getPage()))
+                         (level,self.sid(ref.get_base_id().get_id())))
+            if ref.get_page() != "":
+                self.write_long_text("PAGE",level+1,self.cnvtxt(ref.get_page()))
 
-            ref_text = ref.getText()
-            if ref_text != "" or not ref.getDate().isEmpty():
+            ref_text = ref.get_text()
+            if ref_text != "" or not ref.get_date().is_empty():
                 self.writeln('%d DATA' % (level+1))
                 if ref_text != "":
                     self.write_long_text("TEXT",level+2,self.cnvtxt(ref_text))
                 pfx = "%d DATE" % (level+2)
-                self.print_date(pfx,ref.getDate())
+                self.print_date(pfx,ref.get_date())
         else:
             # We put title, page, and date on the SOUR line.
             # Not using CONC and CONT because GeneWeb does not support these.
             # TEXT and NOTE will be ignored by GeneWeb, but we can't
             # output paragaphs in SOUR without CONT.
-            sbase = ref.getBase()
-            if sbase and sbase.getTitle():
-                txt = sbase.getTitle() + ".  "
+            sbase = ref.get_base_id()
+            if sbase and sbase.get_title():
+                txt = sbase.get_title() + ".  "
             else:
                 txt = ""
-            if ref.getPage():
-                txt = txt + ref.getPage() + ".  "
+            if ref.get_page():
+                txt = txt + ref.get_page() + ".  "
             self.g.write("%d SOUR %s" % (level,self.cnvtxt(txt)))
-            if not ref.getDate().isEmpty():
-                self.print_date("", ref.getDate())
+            if not ref.get_date().is_empty():
+                self.print_date("", ref.get_date())
             else:
                 self.writeln("")
-            if ref.getText():
-                ref_text = ref.getText()
+            if ref.get_text():
+                ref_text = ref.get_text()
                 self.write_long_text("TEXT",level+1,self.cnvtxt(ref_text))
 
-        if ref.getComments():
-            self.write_long_text("NOTE",level+1,self.cnvtxt(ref.getComments()))
+        if ref.get_comments():
+            self.write_long_text("NOTE",level+1,self.cnvtxt(ref.get_comments()))
         
     def fid(self,id):
         return id
 
     def prefn(self,person):
-        match = _get_int.search(person.getId())
+        match = _get_int.search(person.get_id())
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
 
     def frefn(self,family):
-        match = _get_int.search(family.getId())
+        match = _get_int.search(family.get_id())
         if match:
             self.writeln('1 REFN %d' % int(match.groups()[0]))
     

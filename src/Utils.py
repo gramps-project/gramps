@@ -146,54 +146,54 @@ def wasHistory_broken():
 #-------------------------------------------------------------------------
 def phonebook_name(person):
     if person:
-        return person.getPrimaryName().getName()
+        return person.get_primary_name().get_name()
     else:
         return u''
 
 def phonebook_upper_name(person):
     if person:
-        return person.getPrimaryName().getUpperName()
+        return person.get_primary_name().get_upper_name()
     else:
         return u''
 
 def normal_name(person):
     if person:
-        return person.getPrimaryName().getRegularName()
+        return person.get_primary_name().get_regular_name()
     else:
         return u''
 
 def upper_name(person):
     if person:
-        return person.getPrimaryName().getRegularUpperName()
+        return person.get_primary_name().get_regular_upper_name()
     else:
         return u''
 
 def family_name(family):
     """Builds a name for the family from the parents names"""
-    father = family.getFather()
-    mother = family.getMother()
+    father = family.get_father_id()
+    mother = family.get_mother_id()
     if father and mother:
-        fname = father.getPrimaryName().getName()
-        mname = mother.getPrimaryName().getName()
+        fname = father.get_primary_name().get_name()
+        mname = mother.get_primary_name().get_name()
         name = _("%s and %s") % (fname,mname)
     elif father:
-        name = father.getPrimaryName().getName()
+        name = father.get_primary_name().get_name()
     else:
-        name = mother.getPrimaryName().getName()
+        name = mother.get_primary_name().get_name()
     return name
 
 def family_upper_name(family):
     """Builds a name for the family from the parents names"""
-    father = family.getFather()
-    mother = family.getMother()
+    father = family.get_father_id()
+    mother = family.get_mother_id()
     if father and mother:
-        fname = father.getPrimaryName().getUpperName()
-        mname = mother.getPrimaryName().getUpperName()
+        fname = father.get_primary_name().get_upper_name()
+        mname = mother.get_primary_name().get_upper_name()
         name = _("%s and %s") % (fname,mname)
     elif father:
-        name = father.getPrimaryName().getUpperName()
+        name = father.get_primary_name().get_upper_name()
     else:
-        name = mother.getPrimaryName().getUpperName()
+        name = mother.get_primary_name().get_upper_name()
     return name
         
 
@@ -221,16 +221,16 @@ def get_detail_flags(obj,priv=1):
 #
 #-------------------------------------------------------------------------
 def get_detail_text(obj,priv=1):
-    if obj.getNote() != "":
+    if obj.get_note() != "":
         details = "%s" % _("Note")
     else:
         details = ""
-    if len(obj.getSourceRefList()) > 0:
+    if len(obj.get_source_references()) > 0:
         if details == "":
             details = _("Source")
         else:
             details = "%s, %s" % (details,_("Source"))
-    if priv and obj.getPrivacy() == 1:
+    if priv and obj.get_privacy() == 1:
         if details == "":
             details = _("Private")
         else:
@@ -302,14 +302,14 @@ def add_menuitem(menu,msg,obj,func):
 #
 #-------------------------------------------------------------------------
 def view_photo(photo):
-    type = photo.getMimeType()
+    type = photo.get_mime_type()
     prog = grampslib.default_application_command(type)
 
     if not prog:
         return
     
     args = string.split(prog)
-    args.append(photo.getPath())
+    args.append(photo.get_path())
     
     if os.fork() == 0:
         os.execvp(args[0],args)
@@ -344,7 +344,7 @@ def attach_places(values,combo,place):
     mymap = {}
     placenamemap = {}
     for src in values:
-        placenamemap["%s [%s]" % (src.get_title(),src.getId())] = src
+        placenamemap["%s [%s]" % (src.get_title(),src.get_id())] = src
     placenames = placenamemap.keys()
     placenames.sort()
     for key in placenames:
@@ -442,17 +442,17 @@ def get_mime_description(type):
 #-------------------------------------------------------------------------
 def birthday(person):
     if person:
-        return person.getBirth().getQuoteDate()
+        return person.get_birth().get_quote_date()
     else:
         return ""
 
 def thumb_path(dir,mobj):
-    type = mobj.getMimeType()
+    type = mobj.get_mime_type()
 
     if type[0:5] == "image":
-        thumb = "%s/.thumb/%s.jpg" % (dir,mobj.getId())
+        thumb = "%s/.thumb/%s.jpg" % (dir,mobj.get_id())
         try:
-            if RelImage.check_thumb(mobj.getPath(),thumb,const.thumbScale):
+            if RelImage.check_thumb(mobj.get_path(),thumb,const.thumbScale):
                 return thumb
             else:
                 return find_icon(type)
@@ -528,7 +528,7 @@ def for_each_ancestor(start, func, data):
     doneIds = {}
     while len(todo):
         p = todo.pop()
-        pid = p.getId()
+        pid = p.get_id()
         # Don't process the same Id twice.  This can happen
         # if there is a cycle in the database, or if the
         # initial list contains X and some of X's ancestors.
@@ -537,9 +537,9 @@ def for_each_ancestor(start, func, data):
         doneIds[pid] = 1
         if func(data,pid):
             return 1
-        for fam, mrel, frel in p.getParentList():
-            f = fam.getFather()
-            m = fam.getMother()
+        for fam, mrel, frel in p.get_parent_family_id_list():
+            f = fam.get_father_id()
+            m = fam.get_mother_id()
             if f: todo.append(f)
             if m: todo.append(m)
     return 0

@@ -187,14 +187,14 @@ class XmlWriter:
     def write_xml_data(self):
 
         date = string.split(time.ctime(time.time()))
-        owner = self.db.getResearcher()
-        familyMap = self.db.getFamilyMap()
+        owner = self.db.get_researcher()
+        familyMap = self.db.get_family_id_map()
         familyList = familyMap.keys ()
-        person_len = self.db.getPersonLength()
+        person_len = self.db.get_number_of_people()
         family_len = len(familyMap)
-        source_len = len(self.db.getSourceKeys())
-        place_len = len(self.db.getPlaceKeys())
-        objMap = self.db.getObjectMap()
+        source_len = len(self.db.get_source_keys())
+        place_len = len(self.db.get_place_id_keys())
+        objMap = self.db.get_object_map()
         objList = objMap.keys ()
         
         total = person_len + family_len + place_len + source_len
@@ -210,14 +210,14 @@ class XmlWriter:
         self.g.write(" sources=\"%d\"" % source_len)
         self.g.write(" places=\"%d\"/>\n" % place_len)
         self.g.write("    <researcher>\n")
-        self.write_line("resname",owner.getName(),3)
-        self.write_line("resaddr",owner.getAddress(),3)
-        self.write_line("rescity",owner.getCity(),3)
-        self.write_line("resstate",owner.getState(),3)
-        self.write_line("rescountry",owner.getCountry(),3)
-        self.write_line("respostal",owner.getPostalCode(),3)
-        self.write_line("resphone",owner.getPhone(),3)
-        self.write_line("resemail",owner.getEmail(),3)
+        self.write_line("resname",owner.get_name(),3)
+        self.write_line("resaddr",owner.get_address(),3)
+        self.write_line("rescity",owner.get_city(),3)
+        self.write_line("resstate",owner.get_state(),3)
+        self.write_line("rescountry",owner.get_country(),3)
+        self.write_line("respostal",owner.get_postal_code(),3)
+        self.write_line("resphone",owner.get_phone(),3)
+        self.write_line("resemail",owner.get_email(),3)
         self.g.write("    </researcher>\n")
         self.g.write("  </header>\n")
 
@@ -226,16 +226,16 @@ class XmlWriter:
 
         if person_len > 0:
             self.g.write("  <people")
-            person = self.db.getDefaultPerson()
+            person = self.db.get_default_person()
             if person:
-                self.g.write(' default="%s"' % person.getId())
+                self.g.write(' default="%s"' % person.get_id())
             self.g.write(">\n")
 
-            keys = self.db.getPersonKeys()
+            keys = self.db.get_person_keys()
             keys.sort ()
             for key in keys:
                 try:
-                    person = self.db.getPerson(key)
+                    person = self.db.get_person(key)
                 except:
                     print "Key error %s" % key
                     continue
@@ -245,52 +245,48 @@ class XmlWriter:
                 count = count + 1
             
                 self.write_id("person",person,2)
-                if person.getGender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.male:
                     self.write_line("gender","M",3)
-                elif person.getGender() == RelLib.Person.female:
+                elif person.get_gender() == RelLib.Person.female:
                     self.write_line("gender","F",3)
                 else:
                     self.write_line("gender","U",3)
-                self.dump_name("name",person.getPrimaryName(),3)
-                for name in person.getAlternateNames():
+                self.dump_name("name",person.get_primary_name(),3)
+                for name in person.get_alternate_names():
                     self.dump_name("aka",name,3)
             
-                self.write_line("uid",person.getPafUid(),3)
-                self.write_line("nick",person.getNickName(),3)
-                pos = person.getPosition()
-                if pos != None:
-                    self.g.write('      <pos x="%d" y="%d"/>\n'% pos)
-                self.dump_my_event("Birth",person.getBirth(),3)
-                self.dump_my_event("Death",person.getDeath(),3)
-                for event in person.getEventList():
+                self.write_line("nick",person.get_nick_name(),3)
+                self.dump_my_event("Birth",person.get_birth(),3)
+                self.dump_my_event("Death",person.get_death(),3)
+                for event in person.get_event_list():
                     self.dump_event(event,3)
                 
-                self.dump_ordinance("baptism",person.getLdsBaptism(),3)
-                self.dump_ordinance("endowment",person.getLdsEndowment(),3)
-                self.dump_ordinance("sealed_to_parents",person.getLdsSeal(),3)
+                self.dump_ordinance("baptism",person.get_lds_baptism(),3)
+                self.dump_ordinance("endowment",person.get_lds_endowment(),3)
+                self.dump_ordinance("sealed_to_parents",person.get_lds_sealing(),3)
 
-                self.write_photo_list(person.getPhotoList())
+                self.write_photo_list(person.get_photo_list())
 
-                if len(person.getAddressList()) > 0:
-                    for address in person.getAddressList():
+                if len(person.get_address_list()) > 0:
+                    for address in person.get_address_list():
                         self.g.write('      <address%s>\n' % conf_priv(address))
-                        self.write_date(address.getDateObj(),4)
-                        self.write_line("street",address.getStreet(),4)
-                        self.write_line("city",address.getCity(),4)
-                        self.write_line("state",address.getState(),4)
-                        self.write_line("country",address.getCountry(),4)
-                        self.write_line("postal",address.getPostal(),4)
-                        self.write_line("phone",address.getPhone(),4)
-                        if address.getNote() != "":
-                            self.write_note("note",address.getNoteObj(),4)
-                        for s in address.getSourceRefList():
+                        self.write_date(address.get_date_object(),4)
+                        self.write_line("street",address.get_street(),4)
+                        self.write_line("city",address.get_city(),4)
+                        self.write_line("state",address.get_state(),4)
+                        self.write_line("country",address.get_country(),4)
+                        self.write_line("postal",address.get_postal_code(),4)
+                        self.write_line("phone",address.get_phone(),4)
+                        if address.get_note() != "":
+                            self.write_note("note",address.get_note_object(),4)
+                        for s in address.get_source_references():
                             self.dump_source_ref(s,4)
                         self.g.write('      </address>\n')
 
-                self.write_attribute_list(person.getAttributeList())
-                self.write_url_list(person.getUrlList())
+                self.write_attribute_list(person.get_attribute_list())
+                self.write_url_list(person.get_url_list())
 
-                for alt in person.getParentList():
+                for alt in person.get_parent_family_id_list():
                     if alt[1] != "Birth":
                         mrel=' mrel="%s"' % alt[1]
                     else:
@@ -300,13 +296,13 @@ class XmlWriter:
                     else:
                         frel=''
                     self.g.write("      <childof ref=\"%s\"%s%s/>\n" % \
-                            (alt[0].getId(), mrel, frel))
+                            (alt[0], mrel, frel))
 
-                for family in person.getFamilyList():
+                for family in person.get_family_id_list():
                     self.write_ref("parentin",family,3)
 
-                self.write_note("note",person.getNoteObj(),3)
-                for s in person.getSourceRefList():
+                self.write_note("note",person.get_note_object(),3)
+                for s in person.get_source_references():
                     self.dump_source_ref(s,4)
 
                 self.g.write("    </person>\n")
@@ -323,55 +319,51 @@ class XmlWriter:
                 count = count + 1
             
                 self.write_family_id(family,2)
-                self.write_ref("father",family.getFather(),3)
-                self.write_ref("mother",family.getMother(),3)
-                pos = family.getPosition()
-                if pos != None:
-                    self.g.write('      <pos x="%d" y="%d"/>\n'% pos)
-
-                for event in family.getEventList():
+                self.write_ref("father",family.get_father_id(),3)
+                self.write_ref("mother",family.get_mother_id(),3)
+                for event in family.get_event_list():
                     self.dump_event(event,3)
-                self.dump_ordinance("sealed_to_spouse",family.getLdsSeal(),3)
+                self.dump_ordinance("sealed_to_spouse",family.get_lds_sealing(),3)
 
-                self.write_photo_list(family.getPhotoList())
+                self.write_photo_list(family.get_photo_list())
 
-                if len(family.getChildList()) > 0:
-                    for person in family.getChildList():
+                if len(family.get_child_id_list()) > 0:
+                    for person in family.get_child_id_list():
                         self.write_ref("child",person,3)
-                self.write_attribute_list(family.getAttributeList())
-                self.write_note("note",family.getNoteObj(),3)
-                for s in family.getSourceRefList():
+                self.write_attribute_list(family.get_attribute_list())
+                self.write_note("note",family.get_note_object(),3)
+                for s in family.get_source_references():
                     self.dump_source_ref(s,3)
                 self.g.write("    </family>\n")
             self.g.write("  </families>\n")
 
         if source_len > 0:
             self.g.write("  <sources>\n")
-            keys = self.db.getSourceKeys ()
+            keys = self.db.get_source_keys ()
             keys.sort ()
             for key in keys:
-                source = self.db.getSource(key)
+                source = self.db.get_source(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
-                self.g.write("    <source id=\"" + source.getId() + "\">\n")
-                self.write_force_line("stitle",source.getTitle(),3)
-                self.write_line("sauthor",source.getAuthor(),3)
-                self.write_line("spubinfo",source.getPubInfo(),3)
-                self.write_line("sabbrev",source.getAbbrev(),3)
-                if source.getNote() != "":
-                    self.write_note("note",source.getNoteObj(),3)
-                self.write_photo_list(source.getPhotoList())
+                self.g.write("    <source id=\"" + source.get_id() + "\">\n")
+                self.write_force_line("stitle",source.get_title(),3)
+                self.write_line("sauthor",source.get_author(),3)
+                self.write_line("spubinfo",source.get_publication_info(),3)
+                self.write_line("sabbrev",source.get_abbreviation(),3)
+                if source.get_note() != "":
+                    self.write_note("note",source.get_note_object(),3)
+                self.write_photo_list(source.get_photo_list())
                 self.g.write("    </source>\n")
             self.g.write("  </sources>\n")
 
         if place_len > 0:
             self.g.write("  <places>\n")
-            keys = self.db.getPlaceKeys()
+            keys = self.db.get_place_id_keys()
             keys.sort ()
             for key in keys:
                 try:
-                    place = self.db.getPlace(key)
+                    place = self.db.get_place_id(key)
                     if self.callback and count % delta == 0:
                         self.callback(float(count)/float(total))
                     self.write_place_obj(place)
@@ -389,10 +381,10 @@ class XmlWriter:
                 self.write_object(object)
             self.g.write("  </objects>\n")
 
-        if len(self.db.getBookmarks()) > 0:
+        if len(self.db.get_bookmarks()) > 0:
             self.g.write("  <bookmarks>\n")
-            for person in self.db.getBookmarks():
-                self.g.write('    <bookmark ref="%s"/>\n' % person.getId())
+            for person in self.db.get_bookmarks():
+                self.g.write('    <bookmark ref="%s"/>\n' % person.get_id())
             self.g.write("  </bookmarks>\n")
 
         self.g.write("</database>\n")
@@ -413,7 +405,7 @@ class XmlWriter:
         if indent != 0:
             self.g.write("  " * indent)
         
-        format = noteobj.getFormat()
+        format = noteobj.get_format()
         if format:
             self.g.write('<%s format="%d">' % (val,format))
         else:
@@ -433,7 +425,7 @@ class XmlWriter:
 			
     def dump_event(self,event,index=1):
         if event:
-            self.dump_my_event(event.getName(),event,index)
+            self.dump_my_event(event.get_name(),event,index)
 
     def write_witness(self,witness_list,index):
         if not witness_list:
@@ -462,16 +454,16 @@ class XmlWriter:
         sp = "  " * index
         name = const.save_event(name) 
         self.g.write('%s<event type="%s"%s>\n' % (sp,self.fix(name),conf_priv(event)))
-        self.write_date(event.getDateObj(),index+1)
+        self.write_date(event.get_date_object(),index+1)
 
         self.write_witness(event.get_witness_list(),index+1)
-        self.write_ref("place",event.getPlace(),index+1)
-        self.write_line("cause",event.getCause(),index+1)
-        self.write_line("description",event.getDescription(),index+1)
-        if event.getNote():
-            self.write_note("note",event.getNoteObj(),index+1)
+        self.write_ref("place",event.get_place_id(),index+1)
+        self.write_line("cause",event.get_cause(),index+1)
+        self.write_line("description",event.get_description(),index+1)
+        if event.get_note():
+            self.write_note("note",event.get_note_object(),index+1)
             
-        for s in event.getSourceRefList():
+        for s in event.get_source_references():
             self.dump_source_ref(s,index+1)
         self.g.write("%s</event>\n" % sp)
 
@@ -482,62 +474,62 @@ class XmlWriter:
         sp = "  " * index
         sp2 = "  " * (index+1)
         self.g.write('%s<lds_ord type="%s">\n' % (sp,self.fix(name)))
-        dateobj = ord.getDateObj()
-        if dateobj != None and not dateobj.isEmpty():
+        dateobj = ord.get_date_object()
+        if dateobj != None and not dateobj.is_empty():
             self.write_date(dateobj,index+1)
-        if ord.getTemple():
-            self.g.write('%s<temple val="%s"/>\n' % (sp2,self.fix(ord.getTemple())))
-        self.write_ref("place",ord.getPlace(),index+1)
-        if ord.getStatus() != 0:
-            self.g.write('%s<status val="%d"/>\n' % (sp2,ord.getStatus()))
-        if ord.getFamily():
-            self.g.write('%s<sealed_to ref="%s"/>\n' % (sp2,self.fix(ord.getFamily().getId())))
-        if ord.getNote() != "":
-            self.write_note("note",ord.getNoteObj(),index+1)
-        for s in ord.getSourceRefList():
+        if ord.get_temple():
+            self.g.write('%s<temple val="%s"/>\n' % (sp2,self.fix(ord.get_temple())))
+        self.write_ref("place",ord.get_place_id(),index+1)
+        if ord.get_status() != 0:
+            self.g.write('%s<status val="%d"/>\n' % (sp2,ord.get_status()))
+        if ord.get_family_id():
+            self.g.write('%s<sealed_to ref="%s"/>\n' % (sp2,self.fix(ord.get_family_id().get_id())))
+        if ord.get_note() != "":
+            self.write_note("note",ord.get_note_object(),index+1)
+        for s in ord.get_source_references():
             self.dump_source_ref(s,index+1)
         self.g.write('%s</lds_ord>\n' % sp)
     
     def dump_source_ref(self,source_ref,index=1):
-        source = source_ref.getBase()
+        source = self.db.find_source_from_id(source_ref.get_base_id())
         if source:
-            p = source_ref.getPage()
-            c = source_ref.getComments()
-            t = source_ref.getText()
-            d = source_ref.getDate()
-            q = source_ref.getConfidence()
+            p = source_ref.get_page()
+            c = source_ref.get_comments()
+            t = source_ref.get_text()
+            d = source_ref.get_date()
+            q = source_ref.get_confidence_level()
             self.g.write("  " * index)
-            if p == "" and c == "" and t == "" and d.isEmpty() and q == 2:
-                self.g.write('<sourceref ref="%s"/>\n' % source.getId())
+            if p == "" and c == "" and t == "" and d.is_empty() and q == 2:
+                self.g.write('<sourceref ref="%s"/>\n' % source.get_id())
             else:
                 if q == 2:
-                    self.g.write('<sourceref ref="%s">\n' % source.getId())
+                    self.g.write('<sourceref ref="%s">\n' % source.get_id())
                 else:
-                    self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.getId(),q))
+                    self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.get_id(),q))
                 self.write_line("spage",p,index+1)
                 self.write_text("scomments",c,index+1)
                 self.write_text("stext",t,index+1)
                 self.write_date(d,index+1)
                 self.g.write("%s</sourceref>\n" % ("  " * index))
 
-    def write_ref(self,label,person,index=1):
-        if person:
-            self.g.write('%s<%s ref="%s"/>\n' % ("  "*index,label,person.getId()))
+    def write_ref(self,label,id,index=1):
+        if id:
+            self.g.write('%s<%s ref="%s"/>\n' % ("  "*index,label,id))
 
     def write_id(self,label,person,index=1):
         if person:
-            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.getId()))
-            comp = person.getComplete()
+            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_id()))
+            comp = person.get_complete()
             if comp:
                 self.g.write(' complete="1"')
             self.g.write('>\n')
 
     def write_family_id(self,family,index=1):
         if family:
-            rel = family.getRelationship()
-            comp = family.getComplete()
+            rel = family.get_relationship()
+            comp = family.get_complete()
             sp = "  " * index
-            self.g.write('%s<family id="%s"' % (sp,family.getId()))
+            self.g.write('%s<family id="%s"' % (sp,family.get_id()))
             if comp:
                 self.g.write(' complete="1"')
             if rel != "":
@@ -559,7 +551,7 @@ class XmlWriter:
 
     def write_date(self,date,indent=1):
         sp = '  '*indent
-        if date.isEmpty():
+        if date.is_empty():
             return
 
         name = date.get_calendar().NAME
@@ -588,7 +580,7 @@ class XmlWriter:
             
             self.g.write('%s<dateval val="%s"%s%s/>\n' % (sp,dstr,pref,calstr))
         else:
-            self.g.write('%s<datestr val="%s"/>\n' %(sp,self.fix(date.getText())))
+            self.g.write('%s<datestr val="%s"/>\n' %(sp,self.fix(date.get_text())))
 
     def write_force_line(self,label,value,indent=1):
         if value != None:
@@ -596,18 +588,18 @@ class XmlWriter:
 
     def dump_name(self,label,name,index=1):
         sp = "  "*index
-        type = name.getType()
+        type = name.get_type()
         if type:
             self.g.write('%s<%s type="%s"%s>\n' % (sp,label,type,conf_priv(name)))
         else:
             self.g.write('%s<%s%s>\n' % (sp,label,conf_priv(name)))
-        self.write_line("first",name.getFirstName(),index+1)
+        self.write_line("first",name.get_first_name(),index+1)
         self.write_last(name,index+1)
-        self.write_line("suffix",name.getSuffix(),index+1)
-        self.write_line("title",name.getTitle(),index+1)
-        if name.getNote() != "":
-            self.write_note("note",name.getNoteObj(),index+1)
-        for s in name.getSourceRefList():
+        self.write_line("suffix",name.get_suffix(),index+1)
+        self.write_line("title",name.get_title(),index+1)
+        if name.get_note() != "":
+            self.write_note("note",name.get_note_object(),index+1)
+        for s in name.get_source_references():
             self.dump_source_ref(s,index+1)
     
         self.g.write('%s</%s>\n' % (sp,label))
@@ -674,39 +666,39 @@ class XmlWriter:
         sp = '  ' * indent
         for attr in list:
             self.g.write('%s<attribute%s type="%s" value="%s"' % \
-                         (sp,conf_priv(attr),const.save_attr(attr.getType()),
-                         self.fix(attr.getValue())))
-            slist = attr.getSourceRefList()
-            note = attr.getNote()
+                         (sp,conf_priv(attr),const.save_attr(attr.get_type()),
+                         self.fix(attr.get_value())))
+            slist = attr.get_source_references()
+            note = attr.get_note()
             if note == "" and len(slist) == 0:
                 self.g.write('/>\n')
             else:
                 self.g.write('>\n')
-                for s in attr.getSourceRefList():
+                for s in attr.get_source_references():
                     self.dump_source_ref(s,indent+1)
-                self.write_note("note",attr.getNoteObj(),4)
+                self.write_note("note",attr.get_note_object(),4)
                 self.g.write('%s</attribute>\n' % sp)
 
     def write_photo_list(self,list,indent=3):
         sp = '  '*indent
         for photo in list:
-            mobj = photo.getReference()
-            self.g.write('%s<objref ref="%s"' % (sp,mobj.getId()))
-            if photo.getPrivacy():
+            mobj = photo.get_reference()
+            self.g.write('%s<objref ref="%s"' % (sp,mobj.get_id()))
+            if photo.get_privacy():
                 self.g.write(' priv="1"')
-            proplist = photo.getAttributeList()
-            if len(proplist) == 0 and photo.getNote() == "":
+            proplist = photo.get_attribute_list()
+            if len(proplist) == 0 and photo.get_note() == "":
                 self.g.write("/>\n")
             else:
                 self.g.write(">\n")
                 self.write_attribute_list(proplist,indent+1)
-                self.write_note("note",photo.getNoteObj(),indent+1)
+                self.write_note("note",photo.get_note_object(),indent+1)
                 self.g.write('%s</objref>\n' % sp)
 
     def write_url_list(self,list):
         for url in list:
             self.g.write('      <url priv="%d" href="%s"' % \
-                         (url.getPrivacy(),self.fix(url.get_path())))
+                         (url.get_privacy(),self.fix(url.get_path())))
             if url.get_description() != "":
                 self.g.write(' description="%s"' % self.fix(url.get_description()))
             self.g.write('/>\n')
@@ -715,13 +707,13 @@ class XmlWriter:
         title = self.fix(place.get_title())
         long = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
-        id = place.getId()
+        id = place.get_id()
         main_loc = place.get_main_location()
-        llen = len(place.get_alternate_locations()) + len(place.getUrlList()) + \
-               len(place.getPhotoList()) + len(place.getSourceRefList())
+        llen = len(place.get_alternate_locations()) + len(place.get_url_list()) + \
+               len(place.get_photo_list()) + len(place.get_source_references())
                                                       
         ml_empty = main_loc.is_empty()
-        note = place.getNote()
+        note = place.get_note()
 
         if title == "":
             title = self.fix(self.build_place_title(place.get_main_location()))
@@ -740,18 +732,18 @@ class XmlWriter:
         self.dump_location(main_loc)
         for loc in place.get_alternate_locations():
             self.dump_location(loc)
-        self.write_photo_list(place.getPhotoList())
-        self.write_url_list(place.getUrlList())
+        self.write_photo_list(place.get_photo_list())
+        self.write_url_list(place.get_url_list())
         if note != "":
-            self.write_note("note",place.getNoteObj(),3)
-        for s in place.getSourceRefList():
+            self.write_note("note",place.get_note_object(),3)
+        for s in place.get_source_references():
             self.dump_source_ref(s,3)
         self.g.write("    </placeobj>\n")
 
     def write_object(self,object):
-        id = object.getId()
-        type = object.getMimeType()
-        path = object.getPath()
+        id = object.get_id()
+        type = object.get_mime_type()
+        path = object.get_path()
         if self.strip_photos:
             path = os.path.basename(path)
         else:
@@ -760,17 +752,17 @@ class XmlWriter:
                 if self.fileroot == path[0:l]:
                     path = path[l+1:]
         self.g.write('    <object id="%s" src="%s" mime="%s"' % (id,path,type))
-        self.g.write(' description="%s"' % self.fix(object.getDescription()))
-        alist = object.getAttributeList()
-        note = object.getNote()
-        slist = object.getSourceRefList()
+        self.g.write(' description="%s"' % self.fix(object.get_description()))
+        alist = object.get_attribute_list()
+        note = object.get_note()
+        slist = object.get_source_references()
         if len(alist) == 0 and len(slist) == 0 and note == "":
             self.g.write('/>\n')
         else:
             self.g.write('>\n')
             self.write_attribute_list(alist)
             if note != "":
-                self.write_note("note",object.getNoteObj(),3)
+                self.write_note("note",object.get_note_object(),3)
             for s in slist:
                 self.dump_source_ref(s,3)
             self.g.write("    </object>\n")
@@ -781,8 +773,8 @@ class XmlWriter:
 #
 #-------------------------------------------------------------------------
 def sortById(first,second):
-    fid = first.getId()
-    sid = second.getId()
+    fid = first.get_id()
+    sid = second.get_id()
 
     if fid < sid:
         return -1
@@ -795,7 +787,7 @@ def sortById(first,second):
 #
 #-------------------------------------------------------------------------
 def conf_priv(obj):
-    if obj.getPrivacy() != 0:
-        return ' priv="%d"' % obj.getPrivacy()
+    if obj.get_privacy() != 0:
+        return ' priv="%d"' % obj.get_privacy()
     else:
         return ''

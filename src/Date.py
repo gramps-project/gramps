@@ -181,7 +181,7 @@ class Date:
             self.stop.calendar = self.calendar
         return self.stop.day
 
-    def getText(self):
+    def get_text(self):
         return self.text
 
     def greater_than(self,other):
@@ -241,19 +241,19 @@ class Date:
     def set_range(self,val):
         self.range = val
     
-    def getDate(self):
+    def get_date(self):
         if self.range == 0:
-            return self.start.getDate()
+            return self.start.get_date()
         elif self.range == -1:
             return self.text
         else:
             return _("from %(start_date)s to %(stop_date)s") % {
-                'start_date' : self.start.getDate(),
-                'stop_date' : self.stop.getDate() }
+                'start_date' : self.start.get_date(),
+                'stop_date' : self.stop.get_date() }
 
-    def getQuoteDate(self):
+    def get_quote_date(self):
         if self.range == 0:
-            return self.start.getQuoteDate()
+            return self.start.get_quote_date()
         elif self.range == -1:
             if self.text:
                 return '"%s"' % self.text
@@ -261,10 +261,10 @@ class Date:
                 return ''
         else:
             return _("from %(start_date)s to %(stop_date)s") % {
-                'start_date' : self.start.getQuoteDate(),
-                'stop_date' : self.stop.getQuoteDate() }
+                'start_date' : self.start.get_quote_date(),
+                'stop_date' : self.stop.get_quote_date() }
 
-    def isEmpty(self):
+    def is_empty(self):
         s = self.start
         return s.year==UNDEF and s.month==UNDEF and s.day==UNDEF and not self.text
 
@@ -376,10 +376,10 @@ class SingleDate:
         return "%s%s%s" % (y,m,d)
         
 
-    def getDate(self):
+    def get_date(self):
         return self.calendar.display(self.year, self.month, self.day, self.mode)
 
-    def getQuoteDate(self):
+    def get_quote_date(self):
         if self.year == UNDEF and self.month == UNDEF and self.day == UNDEF:
             return ""
         else:

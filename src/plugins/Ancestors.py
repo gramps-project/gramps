@@ -125,7 +125,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         self.write_paragraphs (self.person (self.start, suppress_children = 1,
                                             needs_name = 1))
-        families = [self.start.getMainParents ()]
+        families = [self.start.get_main_parents_family_id ()]
         if len (families) > 0:
             self.generation (self.max_generations, families, [], [self.start])
 
@@ -137,9 +137,9 @@ class ComprehensiveAncestorsReport (Report.Report):
             i = 1
             for source in self.sources:
                 self.doc.start_paragraph ("AR-Entry")
-                self.doc.write_text ("[%d] %s" % (i, source.getTitle ()))
-                author = source.getAuthor ()
-                pubinfo = source.getPubInfo ()
+                self.doc.write_text ("[%d] %s" % (i, source.get_title ()))
+                author = source.get_author ()
+                pubinfo = source.get_publication_info ()
                 extra = author
                 if pubinfo:
                     if extra:
@@ -149,8 +149,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                     self.doc.write_text ('; %s' % extra)
                 self.doc.end_paragraph ()
 
-                note = source.getNote ()
-                format = source.getNoteFormat ()
+                note = source.get_note ()
+                format = source.get_note_format ()
                 if note:
                     self.doc.write_note (note, format, "AR-Details")
 
@@ -180,8 +180,8 @@ class ComprehensiveAncestorsReport (Report.Report):
         ret = []
         if not family:
             return ret
-        father = family.getFather ()
-        mother = family.getMother ()
+        father = family.get_father_id ()
+        mother = family.get_mother_id ()
         if father:
             ret.extend (self.person (father,
                                      short_form = father in already_described,
@@ -196,7 +196,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                                      needs_name = not father,
                                      from_family = family))
 
-        children = family.getChildList ()
+        children = family.get_child_id_list ()
         if len (children):
             ret.append ((self.doc.start_paragraph, ['AR-ChildTitle']))
             ret.append ((self.doc.write_text, [_('Their children:')]))
@@ -219,8 +219,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                 people.extend (self.family (family, already_described))
 
             if thisgen > 2 and len (mfamilies):
-                for self.gp in [mfamilies[0].getFather (),
-                                mfamilies[0].getMother ()]:
+                for self.gp in [mfamilies[0].get_father_id (),
+                                mfamilies[0].get_mother_id ()]:
                     if self.gp:
                         break
 
@@ -242,8 +242,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                 self.doc.start_paragraph ("AR-Heading")
                 families = pfamilies
                 families.extend (mfamilies)
-                for self.gp in [families[0].getFather (),
-                                families[0].getMother ()]:
+                for self.gp in [families[0].get_father_id (),
+                                families[0].get_mother_id ()]:
                     if self.gp:
                         break
 
@@ -265,17 +265,17 @@ class ComprehensiveAncestorsReport (Report.Report):
                 next_pfamilies = []
                 next_mfamilies = []
                 for family in families:
-                    father = family.getFather ()
+                    father = family.get_father_id ()
                     if father:
                         already_described.append (father)
-                        father_family = father.getMainParents ()
+                        father_family = father.get_main_parents_family_id ()
                         if father_family:
                             next_pfamilies.append (father_family)
 
-                    mother = family.getMother ()
+                    mother = family.get_mother_id ()
                     if mother:
                         already_described.append (mother)
-                        mother_family = mother.getMainParents ()
+                        mother_family = mother.get_main_parents_family_id ()
                         if mother_family:
                             next_mfamilies.append (mother_family)
 
@@ -292,7 +292,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         ret = []
         name = self.person_name (person)
         if name:
-            photos = person.getPhotoList ()
+            photos = person.get_photo_list ()
 
             bits = ''
             bits += self.short_occupation (person)
@@ -313,24 +313,24 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                 spouse = []
                 if from_family:
-                    from_family_father = from_family.getFather ()
-                    from_family_mother = from_family.getMother ()
+                    from_family_father = from_family.get_father_id ()
+                    from_family_mother = from_family.get_mother_id ()
                 else:
                     from_family_father = from_family_mother = None
 
-                for family in person.getFamilyList ():
-                    for partner in [family.getFather (),
-                                    family.getMother ()]:
+                for family in person.get_family_id_list ():
+                    for partner in [family.get_father_id (),
+                                    family.get_mother_id ()]:
                         if partner == person or not partner:
                             continue
 
                         if (suppress_children or
                             (partner != from_family_father and
                              partner != from_family_mother)):
-                            for photo in partner.getPhotoList ()[:1]:
-                                if photo.ref.getMimeType()[0:5] == "image":
+                            for photo in partner.get_photo_list ()[:1]:
+                                if photo.ref.get_mime_type()[0:5] == "image":
                                     spouse.append ((self.doc.add_photo,
-                                                    [photo.ref.getPath (),
+                                                    [photo.ref.get_path (),
                                                      'right', 2, 2]))
 
                 if suppress_children and len (already_described):
@@ -359,9 +359,9 @@ class ComprehensiveAncestorsReport (Report.Report):
                 else:
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     for photo in photos[:1]:
-                        if photo.ref.getMimeType()[0:5] == "image":
+                        if photo.ref.get_mime_type()[0:5] == "image":
                             ret.append ((self.doc.add_photo,
-                                         [photo.ref.getPath (), 'left', 2, 2]))
+                                         [photo.ref.get_path (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))
 
                 ret.append ((self.doc.start_cell, ["AR-Entry"]))
@@ -391,12 +391,12 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def short_occupation (self, person):
         occupation = ''
-        for event in person.getEventList ():
-            if event.getName () == 'Occupation':
+        for event in person.get_event_list ():
+            if event.get_name () == 'Occupation':
                 if occupation:
                     return ''
 
-                occupation = event.getDescription ()
+                occupation = event.get_description ()
 
         if occupation:
             return ' (%s)' % occupation
@@ -405,36 +405,36 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def event_info (self, event):
         info = ''
-        name = event.getName ()
-        description = event.getDescription ()
+        name = event.get_name ()
+        description = event.get_description ()
         if name != 'Birth' and name != 'Death' and name != 'Marriage':
             info += const.display_pevent (name)
             if description:
                 info += ': ' + description
                 description = None
 
-        dateobj = event.getDateObj ()
+        dateobj = event.get_date_object ()
         if dateobj:
-            text = dateobj.getText ()
+            text = dateobj.get_text()
             if text:
                 info += ' ' + text[0].lower() + text[1:]
             elif dateobj.getValid ():
                 if dateobj.isRange ():
-                    info += ' ' + dateobj.getDate ()
+                    info += ' ' + dateobj.get_date ()
                 elif (dateobj.getDayValid () and
                     dateobj.getMonthValid () and
                     dateobj.getYearValid ()):
                     info += _(' on %(specific_date)s') % \
-                            {'specific_date': dateobj.getDate ()}
+                            {'specific_date': dateobj.get_date ()}
                 else:
                     info += _(' in %(month_or_year)s') % \
-                            {'month_or_year': dateobj.getDate ()}
+                            {'month_or_year': dateobj.get_date ()}
 
-        placename = event.getPlaceName ()
+        placename = event.get_place_name ()
         if placename:
             info += _(' in %(place)s') % {'place': placename}
-        note = event.getNote ()
-        note_format = event.getNoteFormat ()
+        note = event.get_note ()
+        note_format = event.get_note_format ()
         inline_note = note and (note_format == 0)
         if inline_note or description:
             info += ' ('
@@ -446,46 +446,46 @@ class ComprehensiveAncestorsReport (Report.Report):
                 info += note
             info += ')'
 
-        info += self.cite_sources (event.getSourceRefList ())
+        info += self.cite_sources (event.get_source_references ())
         return info
 
     def address_info (self, address):
-        info = _('Address:') + ' %s %s %s %s' % (address.getStreet (),
-                                                 address.getCity (),
-                                                 address.getState (),
-                                                 address.getCountry ())
+        info = _('Address:') + ' %s %s %s %s' % (address.get_street (),
+                                                 address.get_city (),
+                                                 address.get_state (),
+                                                 address.get_country ())
 
         info = info.rstrip ()
-        date = address.getDate ()
+        date = address.get_date ()
         if date:
             info += ', ' + date
 
-        info += self.cite_sources (address.getSourceRefList ())
+        info += self.cite_sources (address.get_source_references ())
         return info
 
     def abbrev_born_died (self, person):
         ret = ''
-        birth = person.getBirth ()
-        date = birth.getDate ()
+        birth = person.get_birth ()
+        date = birth.get_date ()
         if date:
             ret += _(" b. %(date)s") % {'date': date}
-            ret += self.cite_sources (birth.getSourceRefList ())
+            ret += self.cite_sources (birth.get_source_references ())
 
-        death = person.getDeath ()
-        date = death.getDate ()
+        death = person.get_death ()
+        date = death.get_date ()
         if date:
             ret += _(" d. %(date)s)") % {'date': date}
-            ret += self.cite_sources (death.getSourceRefList ())
+            ret += self.cite_sources (death.get_source_references ())
 
         return ret
 
     def long_born_died (self, person):
         ret = ''
-        born_info = self.event_info (person.getBirth ())
+        born_info = self.event_info (person.get_birth ())
         if born_info:
             ret = ", " + _("born") + born_info
 
-        died_info = self.event_info (person.getDeath ())
+        died_info = self.event_info (person.get_death ())
         if died_info:
             if born_info:
                 ret += '; '
@@ -497,16 +497,16 @@ class ComprehensiveAncestorsReport (Report.Report):
         return ret
 
     def parents_of (self, person):
-        gender = person.getGender ()
+        gender = person.get_gender ()
 
-        family = person.getMainParents ()
+        family = person.get_main_parents_family_id ()
         ret = '.  '
         if family:
             fathername = mothername = None
-            father = family.getFather ()
+            father = family.get_father_id ()
             if father:
                 fathername = self.person_name (father)
-            mother = family.getMother ()
+            mother = family.get_mother_id ()
             if mother:
                 mothername = self.person_name (mother)
 
@@ -540,22 +540,22 @@ class ComprehensiveAncestorsReport (Report.Report):
         return ret
 
     def first_name_or_nick (self, person):
-        nickname = person.getNickName ()
+        nickname = person.get_nick_name ()
         if nickname:
             return nickname
 
-        name = person.getPrimaryName ().getFirstName ()
+        name = person.get_primary_name ().get_first_name ()
         return name.split (' ')[0]
 
     def title (self, person):
-        name = person.getPrimaryName ()
-        t = name.getTitle ()
+        name = person.get_primary_name ()
+        t = name.get_title ()
         if t:
             return t
 
-        gender = person.getGender ()
+        gender = person.get_gender ()
         if gender == RelLib.Person.female:
-            if name.getType () == 'Married Name':
+            if name.get_type () == 'Married Name':
                 return _('Mrs.')
 
             return _('Miss')
@@ -572,7 +572,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     continue
 
                 self.sourcerefs.append (ref)
-                source = ref.getBase ()
+                source = ref.get_base_id ()
                 if source in self.sources:
                     ind = self.sources.index (source) + 1
                 else:
@@ -580,7 +580,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     ind = len (self.sources)
 
                 citation += "[%d" % ind
-                comments = ref.getComments ()
+                comments = ref.get_comments ()
                 if comments and comments.find ('\n') == -1:
                     citation += " - %s" % comments.rstrip ('.')
 
@@ -589,21 +589,21 @@ class ComprehensiveAncestorsReport (Report.Report):
         return citation
 
     def person_name (self, person):
-        primary = person.getPrimaryName ()
+        primary = person.get_primary_name ()
 
-        name = primary.getTitle ()
+        name = primary.get_title ()
         if name:
             name += ' '
 
-        first = primary.getFirstName ()
-        last = primary.getSurname ()
+        first = primary.get_first_name ()
+        last = primary.get_surname ()
         first_replaced = first.replace ('?', '')
         if first_replaced == '':
             name += self.title (person)
         else:
             name += first
 
-        nick = person.getNickName ()
+        nick = person.get_nick_name ()
         if nick:
             nick.strip ('"')
             name += ' ("%s")' % nick
@@ -614,29 +614,29 @@ class ComprehensiveAncestorsReport (Report.Report):
         else:
             name += ' ' + last
 
-        suffix = primary.getSuffix ()
+        suffix = primary.get_suffix ()
         if suffix:
             name += ', ' + suffix
 
-        type = primary.getType ()
+        type = primary.get_type ()
         if type != 'Birth Name':
             name += ' (%s)' % type
 
-        name += self.cite_sources (primary.getSourceRefList ())
+        name += self.cite_sources (primary.get_source_references ())
         return name
 
     def married_whom (self, person, from_family, listing_children = 0):
-        gender = person.getGender ()
+        gender = person.get_gender ()
         first_marriage = 1
         ret = ''
-        for family in person.getFamilyList ():
-            mother = family.getMother ()
-            for spouse in [family.getFather (), mother]:
+        for family in person.get_family_id_list ():
+            mother = family.get_mother_id ()
+            for spouse in [family.get_father_id (), mother]:
                 if spouse == person or not spouse:
                     continue
 
                 children = ''
-                childlist = family.getChildList ()
+                childlist = family.get_child_id_list ()
                 child_count = len (childlist)
                 if ((listing_children or family != from_family) and
                     child_count > 0):
@@ -649,8 +649,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                     count = 1
                     for child in childlist:
                         children += self.first_name_or_nick (child)
-                        children += self.cite_sources (child.getPrimaryName ().
-                                                       getSourceRefList ())
+                        children += self.cite_sources (child.get_primary_name ().
+                                                       get_source_references ())
                         children += self.abbrev_born_died (child)
                         if child_count - count > 1:
                             children += ', '
@@ -659,7 +659,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                         count += 1
 
-                marriage = family.getMarriage ()
+                marriage = family.get_marriage ()
                 if not first_marriage:
                     if gender == RelLib.Person.female:
                         ret += _('  She later married %(name)s') % \
@@ -690,11 +690,11 @@ class ComprehensiveAncestorsReport (Report.Report):
         return ret
 
     def inline_notes (self, person):
-        name_note = person.getPrimaryName ().getNote ()
+        name_note = person.get_primary_name ().get_note ()
         if not (name_note == '' or name_note.find ('\n') != -1):
             return _('  Note about their name: ') + name_note
-        note = person.getNote ()
-        if not (person.getNoteFormat () != 0 or
+        note = person.get_note ()
+        if not (person.get_note_format () != 0 or
                 note == '' or note.find ('\n') != -1):
             return '  ' + note
 
@@ -714,8 +714,8 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def long_notes (self, person, suppress_children = 0,
                     already_described = []):
-        note = person.getNote ()
-        format = person.getNoteFormat ()
+        note = person.get_note ()
+        format = person.get_note_format ()
         if format != 0:
             paras = [ (self.doc.write_note, [note, format, 'AR-Details']) ]
         elif note != '' and note.find ('\n') != -1:
@@ -723,9 +723,9 @@ class ComprehensiveAncestorsReport (Report.Report):
         else:
             paras = []
 
-        names = person.getAlternateNames ()
-        events = person.getEventList ()
-        addresses = person.getAddressList ()
+        names = person.get_alternate_names ()
+        events = person.get_event_list ()
+        addresses = person.get_address_list ()
         if (len (events) + len (addresses) + len (names)) > 0:
             paras.append ((self.doc.start_paragraph, ['AR-SubEntry']))
             paras.append ((self.doc.write_text,
@@ -736,13 +736,13 @@ class ComprehensiveAncestorsReport (Report.Report):
         for name in names:
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text,
-                         [const.NameTypesMap.find_value(name.getType ()) +
-                            ': ' + name.getRegularName ()]))
+                           [const.NameTypesMap.find_value(name.get_type ()) +
+                            ': ' + name.get_regular_name ()]))
             paras.append ((self.doc.end_paragraph, []))
 
-        for event in [person.getBirth (), person.getDeath ()]:
-            note = event.getNote ()
-            note_format = event.getNoteFormat ()
+        for event in [person.get_birth (), person.get_death ()]:
+            note = event.get_note ()
+            note_format = event.get_note_format ()
             if note and (note_format != 0):
                 paras.append ((self.doc.write_note, [note, format,
                                                      'AR-Details']))
@@ -751,8 +751,8 @@ class ComprehensiveAncestorsReport (Report.Report):
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [self.event_info (event)]))
             paras.append ((self.doc.end_paragraph, []))
-            note = event.getNote ()
-            note_format = event.getNoteFormat ()
+            note = event.get_note ()
+            note_format = event.get_note_format ()
             if note and (note_format != 0):
                 paras.append ((self.doc.write_note, [note, format,
                                                      'AR-Details']))
@@ -927,7 +927,7 @@ class ComprehensiveAncestorsBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -987,7 +987,7 @@ class ComprehensiveAncestorsBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.pg_brk, self.opt_cite )
+        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk, self.opt_cite )
         self.style_name = self.selected_style.get_name() 
 
 #------------------------------------------------------------------------
@@ -1000,7 +1000,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         opt_cite = int(options[3])

@@ -30,7 +30,7 @@ class MatchSndEx2(Filter.Filter):
     "Names with SoundEx code of ..."
 
     def match(self,person):
-        return self.text == soundex.soundex(person.getPrimaryName().getSurname())
+        return self.text == soundex.soundex(person.get_primary_name().get_surname())
 
 #------------------------------------------------------------------------
 #

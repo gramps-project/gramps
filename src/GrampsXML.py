@@ -39,18 +39,18 @@ class GrampsXML(RelLib.GrampsDB):
         
     def load(self,name,callback):
         ReadXML.loadData(self,name,callback)
-        for key in self.personMap.keys():
-            person = self.personMap[key]
-            self.addSurname(person.getPrimaryName().getSurname())
+        for key in self.person_map.keys():
+            person = self.person_map[key]
+            self.add_surname(person.get_primary_name().get_surname())
         
         self.placeTable = {}
-        for key in self.placeMap.keys():
-            place = self.placeMap[key]
-            self.placeTable[key] = place.getDisplayInfo()
+        for key in self.place_map.keys():
+            place = self.place_map[key]
+            self.place_table[key] = place.get_display_info()
 
         self.sourceTable = {}
-        for key in self.sourceMap.keys():
-            src = self.sourceMap[key]
-            self.sourceTable[key] = src.getDisplayInfo()
+        for key in self.source_map.keys():
+            src = self.source_map[key]
+            self.source_table[key] = src.get_display_info()
 
         return 1

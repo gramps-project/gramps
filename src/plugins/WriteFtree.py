@@ -108,17 +108,17 @@ class FtreeWriter:
             all.add_rule(GenericFilter.Everyone([]))
         
             des = GenericFilter.GenericFilter()
-            des.set_name(_("Descendants of %s") % person.getPrimaryName().getName())
-            des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+            des.set_name(_("Descendants of %s") % person.get_primary_name().get_name())
+            des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
         
             ans = GenericFilter.GenericFilter()
-            ans.set_name(_("Ancestors of %s") % person.getPrimaryName().getName())
-            ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+            ans.set_name(_("Ancestors of %s") % person.get_primary_name().get_name())
+            ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
         
             com = GenericFilter.GenericFilter()
             com.set_name(_("People with common ancestor with %s") %
-                     person.getPrimaryName().getName())
-            com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+                     person.get_primary_name().get_name())
+            com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_id()]))
         
             self.filter_menu = GenericFilter.build_filter_menu([all,des,ans,com])
             self.filter.set_menu(self.filter_menu)
@@ -149,12 +149,12 @@ class FtreeWriter:
     def export(self, filename, cfilter, restrict ):
 
         if cfilter == None:
-            for p in self.db.getPersonKeys():
+            for p in self.db.get_person_keys():
                 self.plist[p] = 1
         else:
             try:
-                for p in cfilter.apply(self.db, self.db.getPersonMap().values()):
-                    self.plist[p.getId()] = 1
+                for p in cfilter.apply(self.db, self.db.get_person_id_map().values()):
+                    self.plist[p.get_id()] = 1
             except Errors.FilterError, msg:
                 (m1,m2) = msg.messages()
                 ErrorDialog(m1,m2)
@@ -164,10 +164,10 @@ class FtreeWriter:
         id_map = {}
         id_name = {}
         for key in self.plist:
-            pn = self.db.getPerson(key).getPrimaryName()
+            pn = self.db.get_person(key).get_primary_name()
             fn = ""
-            sn = pn.getSurname()
-            items = pn.getFirstName().split()
+            sn = pn.get_surname()
+            items = pn.get_first_name().split()
             if len(items) > 0:
                 n = "%s %s" % (items[0],sn)
             else:
@@ -191,28 +191,28 @@ class FtreeWriter:
         f = open(filename,"w")
 
         for key in self.plist:
-            p = self.db.getPerson(key)
+            p = self.db.get_person(key)
             name = id_name[key]
             father = ""
             mother = ""
             email = ""
             web = ""
 
-            family = p.getMainParents()
+            family = p.get_main_parents_family_id()
             if family:
-                if family.getFather() and id_map.has_key(family.getFather().getId()):
-                    father = id_map[family.getFather().getId()]
-                if family.getMother() and id_map.has_key(family.getMother().getId()):
-                    mother = id_map[family.getMother().getId()]
+                if family.get_father_id() and id_map.has_key(family.get_father_id().get_id()):
+                    father = id_map[family.get_father_id().get_id()]
+                if family.get_mother_id() and id_map.has_key(family.get_mother_id().get_id()):
+                    mother = id_map[family.get_mother_id().get_id()]
 
             #
             # Calculate Date
             #
-            birth = p.getBirth().getDateObj()
-            death = p.getDeath().getDateObj()
+            birth = p.get_birth().get_date_object()
+            death = p.get_death().get_date_object()
 
             if restrict:
-                alive = p.probablyAlive()
+                alive = p.probably_alive()
             else:
                 alive = 0
                 

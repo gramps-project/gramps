@@ -36,13 +36,13 @@ class EventPlace(Filter.Filter):
         Filter.Filter.__init__(self,text)
 
     def match(self,person):
-        list = person.getEventList()[:]
-        list.append(person.getBirth())
-        list.append(person.getDeath())
+        list = person.get_event_list()[:]
+        list.append(person.get_birth())
+        list.append(person.get_death())
         for event in list:
-            if self.regexp.search(event.getPlaceName()):
+            if self.regexp.search(event.get_place_name()):
                 return 1
-            place = event.getPlace()
+            place = event.get_place_id()
             if not place:
                 continue
             locs = [place.get_main_location()] + place.get_alternate_locations()

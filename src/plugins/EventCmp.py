@@ -165,7 +165,7 @@ class EventComparison:
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
 
-        plist = cfilter.apply(self.db,self.db.getPersonMap().values())
+        plist = cfilter.apply(self.db,self.db.get_person_id_map().values())
 
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
@@ -243,13 +243,13 @@ class DisplayChart:
 
     def build_row_data(self):
         for individual in self.my_list:
-            name = individual.getPrimaryName().getName()
-            birth = individual.getBirth()
-            death = individual.getDeath()
+            name = individual.get_primary_name().get_name()
+            birth = individual.get_birth()
+            death = individual.get_death()
             map = {}
-            elist = individual.getEventList()[:]
+            elist = individual.get_event_list()[:]
             for ievent in elist:
-                event_name = ievent.getName()
+                event_name = ievent.get_name()
                 if map.has_key(event_name):
                     map[event_name].append(ievent)
                 else:
@@ -260,15 +260,15 @@ class DisplayChart:
             while done == 0:
                 added = 0
                 if first:
-                    tlist = [name,"%s\n%s" % (birth.getDate(),birth.getPlaceName()),
-                             "%s\n%s" % (death.getDate(),death.getPlaceName())]
+                    tlist = [name,"%s\n%s" % (birth.get_date(),birth.get_place_name()),
+                             "%s\n%s" % (death.get_date(),death.get_place_name())]
                 else:
                     tlist = ["","",""]
                 for ename in self.event_titles[3:]:
                     if map.has_key(ename) and len(map[ename]) > 0:
                         event = map[ename][0]
                         del map[ename][0]
-                        tlist.append("%s\n%s" % (event.getDate(), event.getPlaceName()))
+                        tlist.append("%s\n%s" % (event.get_date(), event.get_place_name()))
                         added = 1
                     else:
                         tlist.append("")
@@ -286,9 +286,9 @@ class DisplayChart:
         name, birth, and death. This should be the column titles of the report"""
         map = {}
         for individual in self.my_list:
-            elist = individual.getEventList()
+            elist = individual.get_event_list()
             for event in elist:
-                name = event.getName()
+                name = event.get_name()
                 if not name:
                     break
                 if map.has_key(name):

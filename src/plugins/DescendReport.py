@@ -58,7 +58,7 @@ _DIED = _('d.')
 class DescendantReport:
 
     def __init__(self,database,person,max,pgbrk,doc,output,newpage=0):
-        self.creator = database.getResearcher().getName()
+        self.creator = database.get_researcher().get_name()
         self.name = output
         self.person = person
         self.max_generations = max
@@ -73,8 +73,8 @@ class DescendantReport:
             self.standalone = 0
         
     def dump_dates(self, person):
-        birth = person.getBirth().getDateObj().get_start_date()
-        death = person.getDeath().getDateObj().get_start_date()
+        birth = person.get_birth().get_date_object().get_start_date()
+        death = person.get_death().get_date_object().get_start_date()
         if birth.getYearValid() or death.getYearValid():
             self.doc.write_text(' (')
             if birth.getYearValid():
@@ -89,7 +89,7 @@ class DescendantReport:
         if self.newpage:
             self.doc.page_break()
         self.doc.start_paragraph("DR-Title")
-        name = self.person.getPrimaryName().getRegularName()
+        name = self.person.get_primary_name().get_regular_name()
         self.doc.write_text(_("Descendants of %s") % name)
         self.dump_dates(self.person)
         self.doc.end_paragraph()
@@ -102,7 +102,7 @@ class DescendantReport:
         if level != 0:
             self.doc.start_paragraph("DR-Level%d" % level)
             self.doc.write_text("%d." % level)
-            self.doc.write_text(person.getPrimaryName().getRegularName())
+            self.doc.write_text(person.get_primary_name().get_regular_name())
             self.dump_dates(person)
             self.doc.end_paragraph()
 
@@ -110,8 +110,8 @@ class DescendantReport:
             return
         
         childlist = []
-        for family in person.getFamilyList():
-            for child in family.getChildList():
+        for family in person.get_family_id_list():
+            for child in family.get_child_id_list():
                 childlist.append(child)
 
         childlist.sort(sort.by_birthdate)
@@ -198,7 +198,7 @@ class DescendantBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
 
@@ -248,7 +248,7 @@ class DescendantBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -261,7 +261,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         return DescendantReport(database, person, max_gen,

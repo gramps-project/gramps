@@ -175,15 +175,15 @@ class MyID(gtk.HBox):
         if val == None:
             self.set_text('')
         else:
-            self.set_text(val.getId())
+            self.set_text(val.get_id())
         
     def get_text(self):
         return unicode(self.entry.get_text())
 
     def set_text(self,val):
         try:
-            p = self.db.getPerson(val)
-            n = p.getPrimaryName().getName()
+            p = self.db.get_person(val)
+            n = p.get_primary_name().get_name()
             self.tooltips.set_tip(self.entry,n)
         except:
             self.tooltips.set_tip(self.entry,_('Not a valid person'))
@@ -293,7 +293,7 @@ class FilterEditor:
         store,iter = self.clist.get_selected()
         if iter:
             filt = self.clist.get_object(iter)
-            list = filt.apply(self.db,self.db.getPersonMap().values())
+            list = filt.apply(self.db,self.db.get_person_id_map().values())
             ShowResults(list)
 
     def delete_filter(self,obj):
@@ -404,7 +404,7 @@ class FilterEditor:
         self.pmap = {}
         self.add_places = []
 
-        for p in self.db.getPlaces():
+        for p in self.db.get_place_ids():
             self.pmap[p.get_title()] = p
 
         self.active_rule = val
@@ -600,7 +600,7 @@ class ShowResults:
 
         n = []
         for p in plist:
-            n.append ("%s [%s]\n" % (p.getPrimaryName().getName(),p.getId()))
+            n.append ("%s [%s]\n" % (p.get_primary_name().get_name(),p.get_id()))
 
         n.sort ()
         text.get_buffer().set_text(string.join (n, ''))

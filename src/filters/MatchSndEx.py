@@ -32,7 +32,7 @@ class MatchSndEx(Filter.Filter):
         Filter.Filter.__init__(self,text)
         
     def match(self,person):
-        return self.sndex == soundex.soundex(person.getPrimaryName().getSurname())
+        return self.sndex == soundex.soundex(person.get_primary_name().get_surname())
 
 #------------------------------------------------------------------------
 #

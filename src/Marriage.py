@@ -73,19 +73,19 @@ class Marriage:
         """Initializes the Marriage class, and displays the window"""
         self.family = family
         self.db = db
-        self.path = db.getSavePath()
+        self.path = db.get_save_path()
         self.cb = callback
         self.update_fv = update
         self.pmap = {}
         self.add_places = []
 
         if family:
-            self.srcreflist = family.getSourceRefList()
+            self.srcreflist = family.get_source_references()
         else:
             self.srcreflist = []
 
-        for key in db.getPlaceKeys():
-            p = db.getPlaceDisplay(key)
+        for key in db.get_place_id_keys():
+            p = db.get_place_display(key)
             self.pmap[p[0]] = key
 
         self.top = gtk.glade.XML(const.marriageFile,"marriageEditor","gramps")
@@ -122,8 +122,8 @@ class Marriage:
             "on_switch_page" : self.on_switch_page
             })
 
-        title = _("%s and %s") % (GrampsCfg.nameof(family.getFather()),
-                                  GrampsCfg.nameof(family.getMother()))
+        title = _("%s and %s") % (GrampsCfg.nameof(family.get_father_id()),
+                                  GrampsCfg.nameof(family.get_mother_id()))
 
         Utils.set_title_label(self.top,title)
         
@@ -162,8 +162,8 @@ class Marriage:
         self.flowed = self.get_widget("mar_flowed")
         self.preform = self.get_widget("mar_preform")
 
-        self.elist = family.getEventList()[:]
-        self.alist = family.getAttributeList()[:]
+        self.elist = family.get_event_list()[:]
+        self.alist = family.get_attribute_list()[:]
         self.lists_changed = 0
 
         # set initial data
@@ -180,9 +180,9 @@ class Marriage:
                                          self.on_update_attr_clicked)
 
         self.type_field.set_popdown_strings(const.familyRelations)
-        frel = const.display_frel(family.getRelationship())
+        frel = const.display_frel(family.get_relationship())
         self.type_field.entry.set_text(frel)
-        self.gid.set_text(family.getId())
+        self.gid.set_text(family.get_id())
         self.gid.set_editable(GrampsCfg.id_edit)
 
         self.lds_temple.set_popdown_strings(_temple_names)
@@ -191,23 +191,23 @@ class Marriage:
         place_list.sort()
         self.autoplace = AutoComp.AutoCombo(self.lds_place, place_list)
 
-        ord = self.family.getLdsSeal()
+        ord = self.family.get_lds_sealing()
         if ord:
-            if ord.getPlace():
-                self.lds_place.entry.set_text(ord.getPlace().get_title())
-            self.lds_date.set_text(ord.getDate())
-            if ord.getTemple() != "":
-                name = const.lds_temple_to_abrev[ord.getTemple()]
+            if ord.get_place_id():
+                self.lds_place.entry.set_text(ord.get_place_id().get_title())
+            self.lds_date.set_text(ord.get_date())
+            if ord.get_temple() != "":
+                name = const.lds_temple_to_abrev[ord.get_temple()]
             else:
                 name = ""
             self.lds_temple.entry.set_text(name)
-            self.seal_stat = ord.getStatus()
+            self.seal_stat = ord.get_status()
         else:
             self.lds_temple.entry.set_text("")
             self.lds_place.entry.set_text("")
             self.seal_stat = 0
 
-        if self.family.getComplete():
+        if self.family.get_complete():
             self.complete.set_active(1)
 
         self.build_seal_menu()
@@ -231,10 +231,10 @@ class Marriage:
 
         # set notes data
         self.notes_buffer = self.notes_field.get_buffer()
-        if family.getNote():
-            self.notes_buffer.set_text(family.getNote())
+        if family.get_note():
+            self.notes_buffer.set_text(family.get_note())
             Utils.bold_label(self.notes_label)
-    	    if family.getNoteFormat() == 1:
+    	    if family.get_note_format() == 1:
     	    	self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
@@ -276,18 +276,18 @@ class Marriage:
         self.seal_stat = obj.get_data("val")
 
     def lds_src_clicked(self,obj):
-        ord = self.family.getLdsSeal()
+        ord = self.family.get_lds_sealing()
         if ord == None:
             ord = RelLib.LdsOrd()
-            self.family.setLdsSeal(ord)
-        Sources.SourceSelector(ord.getSourceRefList(),self)
+            self.family.set_lds_sealing(ord)
+        Sources.SourceSelector(ord.get_source_references(),self)
 
     def lds_note_clicked(self,obj):
         import NoteEdit
-        ord = self.family.getLdsSeal()
+        ord = self.family.get_lds_sealing()
         if ord == None:
             ord = RelLib.LdsOrd()
-            self.family.setLdsSeal(ord)
+            self.family.set_lds_sealing(ord)
         NoteEdit.NoteEditor(ord)
 
     def on_up_clicked(self,obj):
@@ -332,17 +332,17 @@ class Marriage:
             exec 'family = "%s"' % data[1]
             if mytype != 'fevent':
                 return
-            elif family == self.family.getId():
+            elif family == self.family.get_id():
                 self.move_element(self.elist,self.etree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
-                for src in foo.getSourceRefList():
-                    base = src.getBase()
-                    newbase = self.db.findSourceNoMap(base.getId())
-                    src.setBase(newbase)
-                place = foo.getPlace()
+                for src in foo.get_source_references():
+                    base_id = src.get_base_id()
+                    newbase = self.db.find_source_from_id(base_id)
+                    src.set_base_id(newbase)
+                place = foo.get_place_id()
                 if place:
-                    foo.setPlace(self.db.findPlaceNoMap(place.getId()))
+                    foo.set_place_id(self.db.find_place_from_id(place.get_id()))
                 self.elist.insert(row,foo)
 
             self.lists_changed = 1
@@ -353,7 +353,7 @@ class Marriage:
         
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
-        data = str(('fevent',self.family.getId(),pickled));
+        data = str(('fevent',self.family.get_id(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
     def at_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
@@ -364,14 +364,14 @@ class Marriage:
             exec 'family = "%s"' % data[1]
             if mytype != 'fevent':
                 return
-            elif family == self.family.getId():
+            elif family == self.family.get_id():
                 self.move_element(self.elist,self.etree.get_selected_row(),row)
             else:
                 foo = pickle.loads(data[2]);
-                for src in foo.getSourceRefList():
-                    base = src.getBase()
-                    newbase = self.db.findSourceNoMap(base.getId())
-                    src.setBase(newbase)
+                for src in foo.get_source_references():
+                    base_id = src.get_base_id()
+                    newbase = self.db.find_source_from_id(base_id)
+                    src.set_base_id(newbase)
                 self.alist.insert(row,foo)
 
             self.lists_changed = 1
@@ -382,12 +382,12 @@ class Marriage:
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
-        data = str(('fattr',self.family.getId(),pickled));
+        data = str(('fattr',self.family.get_id(),pickled));
         selection_data.set(selection_data.target, bits_per, data)
 
     def update_lists(self):
-        self.family.setEventList(self.elist)
-        self.family.setAttributeList(self.alist)
+        self.family.set_event_list(self.elist)
+        self.family.set_attribute_list(self.alist)
 
     def attr_edit_callback(self,attr):
         self.redraw_attr_list()
@@ -397,7 +397,7 @@ class Marriage:
         self.atree.clear()
         self.amap = {}
         for attr in self.alist:
-            d = [const.display_fattr(attr.getType()),attr.getValue()]
+            d = [const.display_fattr(attr.get_type()),attr.get_value()]
             iter = self.atree.add(d,attr)
             self.amap[str(attr)] = iter
         if self.alist:
@@ -410,7 +410,7 @@ class Marriage:
         self.etree.clear()
         self.emap = {}
         for data in self.elist:
-            iter = self.etree.add([const.display_fevent(data.getName()),data.getQuoteDate(),data.getPlaceName()],data)
+            iter = self.etree.add([const.display_fevent(data.get_name()),data.get_quote_date(),data.get_place_name()],data)
             self.emap[str(data)] = iter
         if self.elist:
             self.etree.select_row(0)
@@ -424,26 +424,26 @@ class Marriage:
     def did_data_change(self):
         changed = 0
         relation = unicode(self.type_field.entry.get_text())
-        if const.save_frel(relation) != self.family.getRelationship():
+        if const.save_frel(relation) != self.family.get_relationship():
             changed = 1
 
-        if self.complete.get_active() != self.family.getComplete():
+        if self.complete.get_active() != self.family.get_complete():
             changed = 1
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                   self.notes_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
 
-        if text != self.family.getNote():
+        if text != self.family.get_note():
             changed = 1
-        if format != self.family.getNoteFormat():
+        if format != self.family.get_note_format():
             changed = 1
         
         if self.lists_changed:
             changed = 1
 
         idval = unicode(self.gid.get_text())
-        if self.family.getId() != idval:
+        if self.family.get_id() != idval:
             changed = 1
 
         date = unicode(self.lds_date.get_text())
@@ -455,17 +455,17 @@ class Marriage:
 
         place = self.get_place(1)
         
-        ord = self.family.getLdsSeal()
+        ord = self.family.get_lds_sealing()
         if not ord:
             if date or temple or place or self.seal_stat:
                 changed = 1
         else:
             d = Date.Date()
             d.set(date)
-            if Date.compare_dates(d,ord.getDateObj()) != 0 or \
-               ord.getTemple() != temple or \
-               ord.getPlace() != place or \
-               ord.getStatus() != self.seal_stat:
+            if Date.compare_dates(d,ord.get_date_object()) != 0 or \
+               ord.get_temple() != temple or \
+               ord.get_place_id() != place or \
+               ord.get_status() != self.seal_stat:
                 changed = 1
 
         return changed
@@ -497,13 +497,13 @@ class Marriage:
     def save(self):
         idval = unicode(self.gid.get_text())
         family = self.family
-        if idval != family.getId():
-            m = self.db.getFamilyMap() 
+        if idval != family.get_id():
+            m = self.db.get_family_id_map() 
             if not m.has_key(idval):
-                if m.has_key(family.getId()):
-                    del m[family.getId()]
+                if m.has_key(family.get_id()):
+                    del m[family.get_id()]
                     m[idval] = family
-                family.setId(idval)
+                family.set_id(idval)
                 Utils.modified()
             else:
                 WarningDialog(_("GRAMPS ID value was not changed."),
@@ -511,36 +511,36 @@ class Marriage:
                                 'relationship is already being used.'))
 
         relation = unicode(self.type_field.entry.get_text())
-        father = self.family.getFather()
-        mother = self.family.getMother()
+        father = self.family.get_father_id()
+        mother = self.family.get_mother_id()
         if father and mother:
-            if const.save_frel(relation) != self.family.getRelationship():
-                if father.getGender() == mother.getGender():
-                    self.family.setRelationship("Partners")
+            if const.save_frel(relation) != self.family.get_relationship():
+                if father.get_gender() == mother.get_gender():
+                    self.family.set_relationship("Partners")
                 else:
                     val = const.save_frel(relation)
                     if val == "Partners":
                         val = "Unknown"
-                    if father.getGender() == RelLib.Person.female or \
-                       mother.getGender() == RelLib.Person.male:
-                        self.family.setFather(mother)
-                        self.family.setMother(father)
-                    self.family.setRelationship(val)
+                    if father.get_gender() == RelLib.Person.female or \
+                       mother.get_gender() == RelLib.Person.male:
+                        self.family.set_father_id(mother)
+                        self.family.set_mother_id(father)
+                    self.family.set_relationship(val)
                 Utils.modified()
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                   self.notes_buffer.get_end_iter(),gtk.FALSE))
-        if text != self.family.getNote():
-            self.family.setNote(text)
+        if text != self.family.get_note():
+            self.family.set_note(text)
             Utils.modified()
 
         format = self.preform.get_active()
-        if format != self.family.getNoteFormat():
-            self.family.setNoteFormat(format)
+        if format != self.family.get_note_format():
+            self.family.set_note_format(format)
             Utils.modified()
 
-        if self.complete.get_active() != self.family.getComplete():
-            self.family.setComplete(self.complete.get_active())
+        if self.complete.get_active() != self.family.get_complete():
+            self.family.set_complete(self.complete.get_active())
             Utils.modified()
 
         date = unicode(self.lds_date.get_text())
@@ -551,37 +551,37 @@ class Marriage:
             temple = ""
         place = self.get_place(1)
 
-        ord = self.family.getLdsSeal()
+        ord = self.family.get_lds_sealing()
         if not ord:
             if date or temple or place or self.seal_stat:
                 ord = RelLib.LdsOrd()
-                ord.setDate(date)
-                ord.setTemple(temple)
-                ord.setStatus(self.seal_stat)
-                ord.setPlace(place)
-                self.family.setLdsSeal(ord)
+                ord.set_date(date)
+                ord.set_temple(temple)
+                ord.set_status(self.seal_stat)
+                ord.set_place_id(place)
+                self.family.set_lds_sealing(ord)
                 Utils.modified()
         else:
             d = Date.Date()
             d.set(date)
-            if Date.compare_dates(d,ord.getDateObj()) != 0:
-                ord.setDateObj(d)
+            if Date.compare_dates(d,ord.get_date_object()) != 0:
+                ord.set_date_object(d)
                 Utils.modified()
-            if ord.getTemple() != temple:
-                ord.setTemple(temple)
+            if ord.get_temple() != temple:
+                ord.set_temple(temple)
                 Utils.modified()
-            if ord.getStatus() != self.seal_stat:
-                ord.setStatus(self.seal_stat)
+            if ord.get_status() != self.seal_stat:
+                ord.set_status(self.seal_stat)
                 Utils.modified()
-            if ord.getPlace() != place:
-                ord.setPlace(place)
+            if ord.get_place_id() != place:
+                ord.set_place_id(place)
                 Utils.modified()
 
         self.gallery.close(1)
         Utils.destroy_passed_object(self.get_widget("marriageEditor"))
 
         if self.lists_changed:
-            self.family.setSourceRefList(self.srcreflist)
+            self.family.set_source_reference_list(self.srcreflist)
             Utils.modified()
 
         self.update_lists()
@@ -626,18 +626,19 @@ class Marriage:
             return
         event = self.etree.get_object(iter)
     
-        self.date_field.set_text(event.getDate())
-        self.place_field.set_text(event.getPlaceName())
-        self.cause_field.set_text(event.getCause())
-        self.name_field.set_label(const.display_fevent(event.getName()))
-        if len(event.getSourceRefList()) > 0:
-            psrc = event.getSourceRefList()[0]
-            self.event_src_field.set_text(psrc.getBase().getTitle())
-            self.event_conf_field.set_text(const.confidence[psrc.getConfidence()])
+        self.date_field.set_text(event.get_date())
+        self.place_field.set_text(event.get_place_name())
+        self.cause_field.set_text(event.get_cause())
+        self.name_field.set_label(const.display_fevent(event.get_name()))
+        if len(event.get_source_references()) > 0:
+            psrc_id = event.get_source_references()[0].get_id()
+            psrc = self.db.find_source_from_id(psrc_id)
+            self.event_src_field.set_text(psrc.get_base_id().get_title())
+            self.event_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
         else:
             self.event_src_field.set_text('')
             self.event_conf_field.set_text('')
-        self.descr_field.set_text(event.getDescription())
+        self.descr_field.set_text(event.get_description())
 
     def on_attr_list_select_row(self,obj):
         model,iter = self.atree.get_selected()
@@ -645,12 +646,13 @@ class Marriage:
             return
         attr = self.atree.get_object(iter)
 
-        self.attr_type.set_label(const.display_fattr(attr.getType()))
-        self.attr_value.set_text(attr.getValue())
-        if len(attr.getSourceRefList()) > 0:
-            psrc = attr.getSourceRefList()[0]
-            self.attr_src_field.set_text(psrc.getBase().getTitle())
-            self.attr_conf_field.set_text(const.confidence[psrc.getConfidence()])
+        self.attr_type.set_label(const.display_fattr(attr.get_type()))
+        self.attr_value.set_text(attr.get_value())
+        if len(attr.get_source_references()) > 0:
+            psrc_id = attr.get_source_references()[0].get_id()
+            psrc = self.db.find_source_from_id(psrc_id)
+            self.attr_src_field.set_text(psrc.get_base_id().get_title())
+            self.attr_conf_field.set_text(const.confidence[psrc.get_confidence_level()])
         else:
             self.attr_src_field.set_text('')
             self.attr_conf_field.set_text('')
@@ -663,15 +665,15 @@ class Marriage:
 
         attr = self.atree.get_object(iter)
 
-        father = self.family.getFather()
-        mother = self.family.getMother()
+        father = self.family.get_father_id()
+        mother = self.family.get_mother_id()
         if father and mother:
-            name = _("%s and %s") % (father.getPrimaryName().getName(),
-                                         mother.getPrimaryName().getName())
+            name = _("%s and %s") % (father.get_primary_name().get_name(),
+                                         mother.get_primary_name().get_name())
         elif father:
-            name = father.getPrimaryName().getName()
+            name = father.get_primary_name().get_name()
         else:
-            name = mother.getPrimaryName().getName()
+            name = mother.get_primary_name().get_name()
         AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes,
                                  self.attr_edit_callback)
 
@@ -682,15 +684,15 @@ class Marriage:
 
     def on_add_attr_clicked(self,obj):
         import AttrEdit
-        father = self.family.getFather()
-        mother = self.family.getMother()
+        father = self.family.get_father_id()
+        mother = self.family.get_mother_id()
         if father and mother:
-            name = _("%s and %s") % (father.getPrimaryName().getName(),
-                                     mother.getPrimaryName().getName())
+            name = _("%s and %s") % (father.get_primary_name().get_name(),
+                                     mother.get_primary_name().get_name())
         elif father:
-            name = father.getPrimaryName().getName()
+            name = father.get_primary_name().get_name()
         else:
-            name = mother.getPrimaryName().getName()
+            name = mother.get_primary_name().get_name()
         AttrEdit.AttributeEditor(self,None,name,const.familyAttributes,
                                  self.attr_edit_callback)
 
@@ -727,12 +729,12 @@ class Marriage:
         text = string.strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.db.getPlaceMap()[self.pmap[text]]
+                return self.db.get_place_id_map()[self.pmap[text]]
             elif makenew:
                 place = RelLib.Place()
                 place.set_title(text)
-                self.db.addPlace(place)
-                self.pmap[text] = place.getId()
+                self.db.add_place(place)
+                self.pmap[text] = place.get_id()
                 self.add_places.append(place)
                 Utils.modified()
                 return place

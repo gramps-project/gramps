@@ -71,7 +71,7 @@ class IndivComplete(Report.Report):
         self.d = document
         self.use_srcs = use_srcs
         self.filter = filter
-        c = database.getResearcher().getName()
+        c = database.get_researcher().get_name()
         self.d.creator(c)
         self.map = {}
         self.database = database
@@ -119,10 +119,10 @@ class IndivComplete(Report.Report):
     def write_fact(self,event):
         if event == None:
             return
-        name = _(event.getName())
-        date = event.getDate()
-        place = event.getPlaceName()
-        description = event.getDescription()
+        name = _(event.get_name())
+        date = event.get_date()
+        place = event.get_place_name()
+        description = event.get_description()
         if date == "":
             if place == "":
                 return
@@ -139,8 +139,8 @@ class IndivComplete(Report.Report):
         self.d.start_row()
         self.normal_cell(name)
         if self.use_srcs:
-            for s in event.getSourceRefList():
-                text = "%s [%s]" % (text,s.getBase().getId())
+            for s in event.get_source_references():
+                text = "%s [%s]" % (text,s.get_base_id().get_id())
                 self.slist.append(s)
         self.normal_cell(text)
         self.d.end_row()
@@ -157,7 +157,7 @@ class IndivComplete(Report.Report):
         self.d.end_row()
 
     def write_note(self):
-        note = self.person.getNote()
+        note = self.person.get_note()
         if note == '':
             return
         self.d.start_table('note','IDS-IndTable')
@@ -171,7 +171,7 @@ class IndivComplete(Report.Report):
 
         self.d.start_row()
         self.d.start_cell('IDS-NormalCell',2)
-        format = self.person.getNoteFormat()
+        format = self.person.get_note_format()
         self.d.write_note(note,format,'IDS-Normal')
         self.d.end_cell()
         self.d.end_row()
@@ -182,7 +182,7 @@ class IndivComplete(Report.Report):
 
     def write_alt_parents(self):
 
-        if len(self.person.getParentList()) < 2:
+        if len(self.person.get_parent_family_id_list()) < 2:
             return
         
         self.d.start_table("altparents","IDS-IndTable")
@@ -194,22 +194,22 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for (family,mrel,frel) in self.person.getParentList():
-            if family == self.person.getMainParents():
+        for (family,mrel,frel) in self.person.get_parent_family_id_list():
+            if family == self.person.get_main_parents_family_id():
                 continue
             
-            father = family.getFather()
+            father = family.get_father_id()
             if father:
-                fname = father.getPrimaryName().getRegularName()
-                frel = const.childRelations[frel]
+                fname = father.get_primary_name().get_regular_name()
+                frel = const.child_relations[frel]
                 self.write_p_entry(_('Father'),fname,frel)
             else:
                 self.write_p_entry(_('Father'),'','')
 
-            mother = family.getMother()
+            mother = family.get_mother_id()
             if mother:
-                fname = mother.getPrimaryName().getRegularName()
-                frel = const.childRelations[frel]
+                fname = mother.get_primary_name().get_regular_name()
+                frel = const.child_relations(frel)
                 self.write_p_entry(_('Mother'),fname,frel)
             else:
                 self.write_p_entry(_('Mother'),'','')
@@ -220,7 +220,7 @@ class IndivComplete(Report.Report):
 
     def write_alt_names(self):
 
-        if len(self.person.getAlternateNames()) < 1:
+        if len(self.person.get_alternate_names()) < 1:
             return
         
         self.d.start_table("altparents","IDS-IndTable")
@@ -232,14 +232,14 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for name in self.person.getAlternateNames():
-            type = const.NameTypesMap.find_value(name.getType())
+        for name in self.person.get_alternate_names():
+            type = const.NameTypesMap.find_value(name.get_type())
             self.d.start_row()
             self.normal_cell(type)
-            text = name.getRegularName()
+            text = name.get_regular_name()
             if self.use_srcs:
-                for s in name.getSourceRefList():
-                    text = "%s [%s]" % (text,s.getBase().getId())
+                for s in name.get_source_references():
+                    text = "%s [%s]" % (text,s.get_base_id().get_id())
                     self.slist.append(s)
             self.normal_cell(text)
             self.d.end_row()
@@ -249,7 +249,7 @@ class IndivComplete(Report.Report):
         
     def write_families(self):
 
-        if len(self.person.getFamilyList()) == 0:
+        if len(self.person.get_family_id_list()) == 0:
             return
         
         self.d.start_table("three","IDS-IndTable")
@@ -261,16 +261,16 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for family in self.person.getFamilyList():
-            if self.person == family.getFather():
-                spouse = family.getMother()
+        for family in self.person.get_family_id_list():
+            if self.person == family.get_father_id():
+                spouse = family.get_mother_id()
             else:
-                spouse = family.getFather()
+                spouse = family.get_father_id()
             self.d.start_row()
             self.d.start_cell("IDS-NormalCell",2)
             self.d.start_paragraph("IDS-Spouse")
             if spouse:
-                text = spouse.getPrimaryName().getRegularName()
+                text = spouse.get_primary_name().get_regular_name()
             else:
                 text = _("unknown")
             self.d.write_text(text)
@@ -278,10 +278,10 @@ class IndivComplete(Report.Report):
             self.d.end_cell()
             self.d.end_row()
             
-            for event in family.getEventList():
+            for event in family.get_event_list():
                 self.write_fact(event)
 
-            child_list = family.getChildList()
+            child_list = family.get_child_id_list()
             if len(child_list) > 0:
                 self.d.start_row()
                 self.normal_cell(_("Children"))
@@ -290,12 +290,12 @@ class IndivComplete(Report.Report):
                 self.d.start_paragraph("IDS-Normal")
                 
                 first = 1
-                for child in family.getChildList():
+                for child in family.get_child_id_list():
                     if first == 1:
                         first = 0
                     else:
                         self.d.write_text('\n')
-                    self.d.write_text(child.getPrimaryName().getRegularName())
+                    self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
                 self.d.end_row()
@@ -319,9 +319,9 @@ class IndivComplete(Report.Report):
         
         for source in self.slist:
             self.d.start_row()
-            sname = source.getBase()
-            self.normal_cell(sname.getId())
-            self.normal_cell(sname.getTitle())
+            sname = source.get_base_id()
+            self.normal_cell(sname.get_id())
+            self.normal_cell(sname.get_title())
             self.d.end_row()
         self.d.end_table()
 
@@ -335,8 +335,8 @@ class IndivComplete(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        event_list = [ self.person.getBirth(), self.person.getDeath() ]
-        event_list = event_list + self.person.getEventList()
+        event_list = [ self.person.get_birth(), self.person.get_death() ]
+        event_list = event_list + self.person.get_event_list()
         for event in event_list:
             self.write_fact(event)
         self.d.end_table()
@@ -354,7 +354,7 @@ class IndivComplete(Report.Report):
         if self.newpage:
             self.d.page_break()
 
-        plist = self.database.getPersonMap().values()
+        plist = self.database.get_person_id_map().values()
         if self.filter:
             ind_list = self.filter.apply(self.database,plist)
         else:
@@ -371,8 +371,8 @@ class IndivComplete(Report.Report):
             self.d.page_break()
         self.slist = []
         
-        photo_list = self.person.getPhotoList()
-        name = self.person.getPrimaryName().getRegularName()
+        photo_list = self.person.get_photo_list()
+        name = self.person.get_primary_name().get_regular_name()
         self.d.start_paragraph("IDS-Title")
         self.d.write_text(_("Summary of %s") % name)
         self.d.end_paragraph()
@@ -381,9 +381,9 @@ class IndivComplete(Report.Report):
         self.d.end_paragraph()
 
         if len(photo_list) > 0:
-            object = photo_list[0].getReference()
-            if object.getMimeType()[0:5] == "image":
-                file = object.getPath()
+            object = photo_list[0].get_reference()
+            if object.get_mime_type()[0:5] == "image":
+                file = object.get_path()
                 self.d.start_paragraph("IDS-Normal")
                 self.d.add_photo(file,"row",4.0,4.0)
                 self.d.end_paragraph()
@@ -392,33 +392,33 @@ class IndivComplete(Report.Report):
 
         self.d.start_row()
         self.normal_cell("%s:" % _("Name"))
-        name = self.person.getPrimaryName()
-        text = name.getRegularName()
+        name = self.person.get_primary_name()
+        text = name.get_regular_name()
         if self.use_srcs:
-            for s in name.getSourceRefList():
+            for s in name.get_source_references():
                 self.slist.append(s)
-                text = "%s [%s]" % (text,s.getBase().getId())
+                text = "%s [%s]" % (text,s.get_base_id().get_id())
         self.normal_cell(text)
         self.d.end_row()
 
         self.d.start_row()
         self.normal_cell("%s:" % _("Gender"))
-        if self.person.getGender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.male:
             self.normal_cell(_("Male"))
         else:
             self.normal_cell(_("Female"))
         self.d.end_row()
 
-        family = self.person.getMainParents()
+        family = self.person.get_main_parents_family_id()
         if family:
-            father_inst = family.getFather()
+            father_inst = family.get_father_id()
             if father_inst:
-                father = father_inst.getPrimaryName().getRegularName()
+                father = father_inst.get_primary_name().get_regular_name()
             else:
                 father = ""
-            mother_inst = family.getMother()
+            mother_inst = family.get_mother_id()
             if mother_inst:
-                mother = mother_inst.getPrimaryName().getRegularName()
+                mother = mother_inst.get_primary_name().get_regular_name()
             else:
                 mother = ""
         else:
@@ -555,7 +555,7 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -610,7 +610,7 @@ class IndivCompleteBareReportDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
         self.filter_num = self.filter_combo.get_history()
-        self.options = ( self.person.getId(), self.max_gen, self.pg_brk, self.filter_num )
+        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk, self.filter_num )
         self.style_name = self.selected_style.get_name()
 
 
@@ -624,7 +624,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         filter_num = int(options[3])
@@ -697,19 +697,19 @@ def _make_default_style(default_style):
 def _get_report_filters(person):
     """Set up the list of possible content filters."""
 
-    name = person.getPrimaryName().getName()
+    name = person.get_primary_name().get_name()
         
     filt_id = GenericFilter.GenericFilter()
     filt_id.set_name(name)
-    filt_id.add_rule(GenericFilter.HasIdOf([person.getId()]))
+    filt_id.add_rule(GenericFilter.HasIdOf([person.get_id()]))
 
     des = GenericFilter.GenericFilter()
     des.set_name(_("Descendants of %s") % name)
-    des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+    des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
         
     ans = GenericFilter.GenericFilter()
     ans.set_name(_("Ancestors of %s") % name)
-    ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+    ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
 
     all = GenericFilter.GenericFilter()
     all.set_name(_("Entire Database"))

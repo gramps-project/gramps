@@ -66,33 +66,33 @@ class SubstKeywords:
     def __init__(self,person):
         """Creates a new object and associates a person with it."""
 
-        self.n = person.getPrimaryName().getRegularName()
-        self.N = person.getPrimaryName().getName()
-        self.b = person.getBirth().getDate()
-        self.d = person.getDeath().getDate()
-        self.B = person.getBirth().getPlaceName()
-        self.D = person.getDeath().getPlaceName()
-        self.i = str(person.getId())
+        self.n = person.get_primary_name().get_regular_name()
+        self.N = person.get_primary_name().get_name()
+        self.b = person.get_birth().get_date()
+        self.d = person.get_death().get_date()
+        self.B = person.get_birth().get_place_name()
+        self.D = person.get_death().get_place_name()
+        self.i = str(person.get_id())
 
         self.s = ""
         self.S = ""
         self.m = ""
         self.M = ""
         
-        if person.getFamilyList():
-            f = person.getFamilyList()[0]
-            if f.getFather() == person:
-                if f.getMother():
-                    self.s = f.getMother().getPrimaryName().getRegularName()
-                    self.S = f.getMother().getPrimaryName().getName()
+        if person.get_family_id_list():
+            f = person.get_family_id_list()[0]
+            if f.get_father_id() == person:
+                if f.get_mother_id():
+                    self.s = f.get_mother_id().get_primary_name().get_regular_name()
+                    self.S = f.get_mother_id().get_primary_name().get_name()
             else:
-                if f.getFather():
-                    self.s = f.getFather().getPrimaryName().getRegularName()
-                    self.S = f.getFather().getPrimaryName().getName()
-            for e in f.getEventList():
-                if e.getName() == 'Marriage':
-                    self.m = e.getDate()
-                    self.M = e.getPlaceName()
+                if f.get_father_id():
+                    self.s = f.get_father_id().get_primary_name().get_regular_name()
+                    self.S = f.get_father_id().get_primary_name().get_name()
+            for e in f.get_event_list():
+                if e.get_name() == 'Marriage':
+                    self.m = e.get_date()
+                    self.M = e.get_place_name()
 
     def replace(self,line):
         """Returns a new line of text with the substitutions performed."""

@@ -148,11 +148,11 @@ class MediaView:
         
         id = store.get_value(iter,1)
         
-        mobj = self.db.findObjectNoMap(id)
-        type = mobj.getMimeType()
+        mobj = self.db.find_object_from_id(id)
+        type = mobj.get_mime_type()
         type_name = Utils.get_mime_description(type)
-        path = mobj.getPath()
-        thumb_path = Utils.thumb_path(self.db.getSavePath(),mobj)
+        path = mobj.get_path()
+        thumb_path = Utils.thumb_path(self.db.get_save_path(),mobj)
         pexists = os.path.exists(path)
         if pexists and os.path.exists(thumb_path):
             self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
@@ -162,9 +162,9 @@ class MediaView:
             if not pexists:
                 fexists = 0
         
-        self.mid.set_text(mobj.getId())
+        self.mid.set_text(mobj.get_id())
         self.mtype.set_text(type_name)
-        self.mdesc.set_text(mobj.getDescription())
+        self.mdesc.set_text(mobj.get_description())
         if len(path) == 0 or fexists == 0:
             self.mpath.set_text(_("The file no longer exists"))
         elif path[0] == "/":
@@ -189,13 +189,13 @@ class MediaView:
         store,iter = self.selection.get_selected()
         if iter:
             id = store.get_value(iter,1)
-            object = self.db.findObjectNoMap(id)
+            object = self.db.find_object_from_id(id)
             self.obj = object
             Utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
-            if object.getMimeType()[0:5] == "image":
+            if object.get_mime_type()[0:5] == "image":
                 Utils.add_menuitem(menu,_("Edit with the GIMP"),\
                                    None,self.popup_edit_photo)
-            if object.getLocal() == 0:
+            if object.get_local() == 0:
                 Utils.add_menuitem(menu,_("Convert to local copy"),None,
                                    self.popup_convert_to_private)
             item = gtk.MenuItem()
@@ -225,14 +225,14 @@ class MediaView:
     
     def popup_edit_photo(self, obj):
         if os.fork() == 0:
-            os.execvp(const.editor,[const.editor, self.obj.getPath()])
+            os.execvp(const.editor,[const.editor, self.obj.get_path()])
     
     def popup_convert_to_private(self, obj):
-        path = self.db.getSavePath()
-        id = self.obj.getId()
-        name = RelImage.import_media_object(self.obj.getPath(),path,id)
+        path = self.db.get_save_path()
+        id = self.obj.get_id()
+        name = RelImage.import_media_object(self.obj.get_path(),path,id)
         if name:
-            self.obj.setPath(name)
+            self.obj.set_path(name)
             self.obj.setLocal(1)
 
     def popup_change_description(self, obj):
@@ -242,16 +242,16 @@ class MediaView:
         self.model.clear()
         self.id2col = {}
 
-        objects = self.db.getObjectMap().values()
+        objects = self.db.get_object_map().values()
 
         for src in objects:
-            title = src.getDescription()
-            id = src.getId()
-            type = Utils.get_mime_description(src.getMimeType())
-            if src.getLocal():
+            title = src.get_description()
+            id = src.get_id()
+            type = Utils.get_mime_description(src.get_mime_type())
+            if src.get_local():
                 path = _("<local copy>")
             else:
-                path = src.getPath()
+                path = src.get_path()
             stitle = string.upper(title)
 
             iter = self.model.append()
@@ -271,7 +271,7 @@ class MediaView:
         list_store, iter = self.selection.get_selected()
         if iter:
             id = list_store.get_value(iter,1)
-            object = self.db.getObject(id)
+            object = self.db.get_object(id)
             ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
 
     def on_delete_clicked(self,obj):
@@ -280,7 +280,7 @@ class MediaView:
             return
 
         id = store.get_value(iter,1)
-        mobj = self.db.getObject(id)
+        mobj = self.db.get_object(id)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.update)
             QuestionDialog(_('Delete Media Object?'),
@@ -291,29 +291,29 @@ class MediaView:
                            _('_Delete Media Object'),
                            ans.query_response)
         else:
-            self.db.removeObject(mobj.getId())
+            self.db.remove_object(mobj.get_id())
             Utils.modified()
             self.update(0)
 
     def is_object_used(self,mobj):
-        for p in self.db.getFamilyMap().values():
-            for o in p.getPhotoList():
-                if o.getReference() == mobj:
+        for p in self.db.get_family_id_map().values():
+            for o in p.get_photo_list():
+                if o.get_reference() == mobj:
                     return 1
-        for key in self.db.getPersonKeys():
-            p = self.db.getPerson(key)
-            for o in p.getPhotoList():
-                if o.getReference() == mobj:
+        for key in self.db.get_person_keys():
+            p = self.db.get_person(key)
+            for o in p.get_photo_list():
+                if o.get_reference() == mobj:
                     return 1
-        for key in self.db.getSourceKeys():
-            p = self.db.getSource(key)
-            for o in p.getPhotoList():
-                if o.getReference() == mobj:
+        for key in self.db.get_source_keys():
+            p = self.db.get_source(key)
+            for o in p.get_photo_list():
+                if o.get_reference() == mobj:
                     return 1
-        for key in self.db.getPlaceKeys():
-            p = self.db.getPlace(key)
-            for o in p.getPhotoList():
-                if o.getReference() == mobj:
+        for key in self.db.get_place_id_keys():
+            p = self.db.get_place_id(key)
+            for o in p.get_photo_list():
+                if o.get_reference() == mobj:
                     return 1
         return 0
 
@@ -322,9 +322,9 @@ class MediaView:
         if not iter:
             return
         if (const.dnd_images):
-            object = self.db.getObject(store.get_value(iter,1))
-            mtype = object.getMimeType()
-            name = Utils.thumb_path(self.db.getSavePath(),object)
+            object = self.db.get_object(store.get_value(iter,1))
+            mtype = object.get_mime_type()
+            name = Utils.thumb_path(self.db.get_save_path(),object)
             pix = gtk.gdk.pixbuf_new_from_file(name)
             context.set_icon_pixbuf(pix,0,0)
 
@@ -347,19 +347,19 @@ class MediaView:
                 name = file
                 mime = Utils.get_mime_type(name)
                 photo = RelLib.Photo()
-                photo.setPath(name)
-                photo.setMimeType(mime)
+                photo.set_path(name)
+                photo.set_mime_type(mime)
                 description = os.path.basename(name)
-                photo.setDescription(description)
-                self.db.addObject(photo)
+                photo.set_description(description)
+                self.db.add_object(photo)
                 Utils.modified()
                 self.load_media()
                 if GrampsCfg.mediaref == 0:
                     name = RelImage.import_media_object(name,
-                                                        self.db.getSavePath(),
-                                                        photo.getId())
+                                                        self.db.get_save_path(),
+                                                        photo.get_id())
                     if name:
-                        photo.setPath(name)
+                        photo.set_path(name)
                         photo.setLocal(1)
                 Utils.modified()
                 if GrampsCfg.globalprop:
@@ -374,22 +374,22 @@ class MediaView:
                     return
                 mime = Utils.get_mime_type(tfile)
                 photo = RelLib.Photo()
-                photo.setMimeType(mime)
-                photo.setDescription(d)
+                photo.set_mime_type(mime)
+                photo.set_description(d)
                 photo.setLocal(1)
-                photo.setPath(tfile)
-                self.db.addObject(photo)
+                photo.set_path(tfile)
+                self.db.add_object(photo)
                 oref = RelLib.ObjectRef()
-                oref.setReference(photo)
+                oref.set_reference(photo)
                 try:
-                    id = photo.getId()
-                    path = self.db.getSavePath()
+                    id = photo.get_id()
+                    path = self.db.get_save_path()
                     name = RelImage.import_media_object(tfile,path,id)
                     if name:
                         photo.setLocal(1)
-                        photo.setPath(name)
+                        photo.set_path(name)
                 except:
-                    photo.setPath(tfile)
+                    photo.set_path(tfile)
                     return
                 Utils.modified()
                 if GrampsCfg.globalprop:

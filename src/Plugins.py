@@ -89,8 +89,6 @@ _bkitems = []
 #-------------------------------------------------------------------------
 import Relationship
 
-_relcalc_task = Relationship.get_relationship
-
 #-------------------------------------------------------------------------
 #
 #
@@ -545,10 +543,8 @@ def register_relcalc(func, languages):
     except:
         pass
 
-def relationship_function():
-    global _relcalc_task
-    return _relcalc_task
-
+def relationship_function(db):
+    return Relationship.RelationshipCalculator(db)
 
 #-------------------------------------------------------------------------
 #

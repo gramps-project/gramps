@@ -30,7 +30,7 @@ class TransTable:
         for key in map.keys():
             val = unicode(map[key])
             self.map[key] = val
-            self.rmap[val] = key
+            self.rmap[val] = unicode(key)
             
     def add_pair(self,first,second):
         first = unicode(first)

@@ -94,8 +94,8 @@ class DesBrowse:
         self.model.set(item,0,GrampsCfg.nameof(person))
         self.model.set(item,1,person)
         prev = None
-        for family in person.getFamilyList():
-            for child in family.getChildList():
+        for family in person.get_family_id_list():
+            for child in family.get_child_id_list():
                 prev = self.add_to_tree(item,prev,child)
         return item
     

@@ -465,18 +465,18 @@ class FamilyView:
         model, iter = self.child_selection.get_selected()
         if not iter:
             return
-        child = self.parent.db.getPerson(self.child_model.get_value(iter,2))
+        child = self.parent.db.get_person(self.child_model.get_value(iter,2))
         try:
             EditPerson.EditPerson(child, self.parent.db, self.spouse_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
     def child_rel(self,obj):
-        person = self.parent.db.getPerson(obj.get_data(Utils.OBJECT))
+        person = self.parent.db.get_person(obj.get_data(Utils.OBJECT))
         SelectChild.EditRel(person,self.family,self.load_family)
         
     def child_rel_by_id(self,id):
-        person = self.parent.db.getPerson(id)
+        person = self.parent.db.get_person(id)
         SelectChild.EditRel(person,self.family,self.load_family)
 
     def spouse_changed(self,obj):
@@ -485,7 +485,9 @@ class FamilyView:
             self.display_marriage(None)
         else:
             row = model.get_path(iter)
-            self.display_marriage(self.person.getFamilyList()[row[0]])
+            id = self.person.get_family_id_list()[row[0]]
+            fam = self.parent.db.find_family_from_id(id)
+            self.display_marriage(fam)
 
     def build_spouse_menu(self,event):
 
@@ -528,7 +530,7 @@ class FamilyView:
 
     def set_preferred_spouse(self,obj):
         if self.selected_spouse:
-            self.person.setPreferred(self.family)
+            self.person.set_preferred_family_id(self.family)
             self.load_family()
             
     def edit_spouse_callback(self,obj):
@@ -581,10 +583,10 @@ class FamilyView:
 
     def add_spouse(self,obj):
         person = RelLib.Person()
-        if self.person.getGender() == RelLib.Person.male:
-            person.setGender(RelLib.Person.female)
+        if self.person.get_gender() == RelLib.Person.male:
+            person.set_gender(RelLib.Person.female)
         else:
-            person.setGender(RelLib.Person.male)
+            person.set_gender(RelLib.Person.male)
         try:
             EditPerson.EditPerson(person, self.parent.db, self.new_spouse_after_edit)
         except:
@@ -593,7 +595,7 @@ class FamilyView:
     def spouse_after_edit(self,epo):
         ap = self.parent.active_person
         if epo:
-            self.parent.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
+            self.parent.db.build_person_display(epo.person.get_id(),epo.original_id)
             self.parent.people_view.remove_from_person_list(epo.person,epo.original_id)
             self.parent.people_view.redisplay_person_list(epo.person)
 
@@ -601,23 +603,23 @@ class FamilyView:
         self.load_family(self.family)
         
     def new_spouse_after_edit(self,epo):
-        if epo.person.getId() == "":
-            self.parent.db.addPerson(epo.person)
+        if epo.person.get_id() == "":
+            self.parent.db.add_person(epo.person)
         else:
-            self.parent.db.addPersonNoMap(epo.person,epo.person.getId())
-        self.parent.db.buildPersonDisplay(epo.person.getId())
+            self.parent.db.add_person_no_map(epo.person,epo.person.get_id())
+        self.parent.db.build_person_display(epo.person.get_id())
         self.parent.people_view.add_to_person_list(epo.person,0)
 
-        self.family = self.parent.db.newFamily()
-        self.person.addFamily(self.family)
-        epo.person.addFamily(self.family)
+        self.family = self.parent.db.new_family()
+        self.person.add_family_id(self.family.get_id())
+        epo.person.add_family_id(self.family.get_id())
 
-        if self.person.getGender() == RelLib.Person.male:
-            self.family.setMother(epo.person)
-            self.family.setFather(self.person)
+        if self.person.get_gender() == RelLib.Person.male:
+            self.family.set_mother_id(epo.person)
+            self.family.set_father_id(self.person)
         else:	
-            self.family.setFather(epo.person)
-            self.family.setMother(self.person)
+            self.family.set_father_id(epo.person)
+            self.family.set_mother_id(self.person)
         
         self.load_family(self.family)
         
@@ -640,8 +642,8 @@ class FamilyView:
             name = self.icelandic(0)
         else:
             name = self.no_name(0)
-        person.getPrimaryName().setSurname(name[1])
-        person.getPrimaryName().setSurnamePrefix(name[0])
+        person.get_primary_name().set_surname(name[1])
+        person.get_primary_name().set_surname_prefix(name[0])
 
         try:
             EditPerson.EditPerson(person, self.parent.db, self.new_child_after_edit)
@@ -650,38 +652,38 @@ class FamilyView:
 
     def update_person_list(self,person):
         if not self.family:
-            self.family = self.parent.db.newFamily()
-            person.addFamily(self.family)
-            if person.getGender() == RelLib.Person.male:
-                self.family.setFather(person)
+            self.family = self.parent.db.new_family()
+            person.add_family_id(self.family.get_id())
+            if person.get_gender() == RelLib.Person.male:
+                self.family.set_father_id(person)
             else:
-                self.family.setMother(person)
+                self.family.set_mother_id(person)
 
-        self.family.addChild(person)
-        person.addAltFamily(self.family,"Birth","Birth")
+        self.family.add_child_id(person)
+        person.add_parent_family_id(self.family.get_id(),"Birth","Birth")
         self.parent.update_person_list(person)
         self.load_family(self.family)
             
     def new_child_after_edit(self,epo):
         
-        if epo.person.getId() == "":
-            self.parent.db.addPerson(epo.person)
+        if epo.person.get_id() == "":
+            self.parent.db.add_person(epo.person)
         else:
-            self.parent.db.addPersonNoMap(epo.person,epo.person.getId())
+            self.parent.db.add_person_no_map(epo.person,epo.person.get_id())
             
-        self.parent.db.buildPersonDisplay(epo.person.getId())
+        self.parent.db.build_person_display(epo.person.get_id())
         self.parent.people_view.add_to_person_list(epo.person,0)
 
         if not self.family:
-            self.family = self.parent.db.newFamily()
-            self.person.addFamily(self.family)
-            if self.person.getGender() == RelLib.Person.male:
-                self.family.setFather(self.person)
+            self.family = self.parent.db.new_family()
+            self.person.add_family_id(self.family.get_id())
+            if self.person.get_gender() == RelLib.Person.male:
+                self.family.set_father_id(self.person)
             else:
-                self.family.setMother(self.person)
+                self.family.set_mother_id(self.person)
 
-        self.family.addChild(epo.person)
-        epo.person.addAltFamily(self.family,"Birth","Birth")
+        self.family.add_child_id(epo.person)
+        epo.person.add_parent_family_id(self.family.get_id(),"Birth","Birth")
         self.display_marriage(self.family)
 
     def select_child_clicked(self,obj):
@@ -703,16 +705,16 @@ class FamilyView:
             return
 
         id = self.child_model.get_value(iter,2)
-        child = self.parent.db.getPerson(id)
+        child = self.parent.db.get_person(id)
 
-        self.family.removeChild(child)
-        child.removeAltFamily(self.family)
+        self.family.remove_child_id(child)
+        child.remove_parent_family_id(self.family)
         
-        if len(self.family.getChildList()) == 0:
-            if self.family.getFather() == None:
-                self.delete_family_from(self.family.getMother())
-            elif self.family.getMother() == None:
-                self.delete_family_from(self.family.getFather())
+        if len(self.family.get_child_id_list()) == 0:
+            if self.family.get_father_id() == None:
+                self.delete_family_from(self.family.get_mother_id())
+            elif self.family.get_mother_id() == None:
+                self.delete_family_from(self.family.get_father_id())
 
         Utils.modified()
         self.load_family()
@@ -727,32 +729,32 @@ class FamilyView:
                              'remove the spouse from the database'),
                            _('_Remove Spouse'),
                            self.really_remove_spouse)
-        elif self.family and not self.family.getChildList():
+        elif self.family and not self.family.get_child_id_list():
             self.really_remove_spouse()
                        
     def really_remove_spouse(self):
         """Delete the currently selected spouse from the family"""
         if self.person == None:
             return
-        if self.selected_spouse == self.family.getFather():
-            self.family.setFather(None)
+        if self.selected_spouse == self.family.get_father_id():
+            self.family.set_father_id(None)
         else:
-            self.family.setMother(None)
+            self.family.set_mother_id(None)
 
         if self.selected_spouse:
-            self.selected_spouse.removeFamily(self.family)
+            self.selected_spouse.remove_family_id(self.family.get_id())
 
-        if len(self.family.getChildList()) == 0:
-            self.person.removeFamily(self.family)
-            self.parent.db.deleteFamily(self.family)
-            if len(self.person.getFamilyList()) > 0:
-                self.load_family(self.person.getFamilyList()[0])
+        if len(self.family.get_child_id_list()) == 0:
+            self.person.remove_family_id(self.family.get_id())
+            self.parent.db.delete_family(self.family.get_id())
+            if len(self.person.get_family_id_list()) > 0:
+                self.load_family(self.person.get_family_id_list()[0])
             else:
                 self.load_family()
         else:
             self.load_family()
 
-        if len(self.person.getFamilyList()) <= 1:
+        if len(self.person.get_family_id_list()) <= 1:
             self.spouse_selection.set_mode(gtk.SELECTION_NONE)
 
         Utils.modified()
@@ -771,21 +773,23 @@ class FamilyView:
     def change_families(self,person):
         if not person:
             return
-        plist = person.getParentList()
+        plist = person.get_parent_family_id_list()
 
         if len(plist) == 0:
             return
         if len(plist) == 1:
-            family,m,r = plist[0]
+            family_id,m,r = plist[0]
         else:
             model, iter = self.ap_selection.get_selected()
             path = model.get_path(iter)
-            family,m,r = plist[path[0]]
+            family_id,m,r = plist[path[0]]
+        family = self.parent.db.find_family_from_id(family_id)
 
-        if family.getFather():
-            person = family.getFather()
+        if family.get_father_id():
+            person_id = family.get_father_id()
         else:
-            person = family.getMother()
+            person_id = family.get_mother_id()
+        person = self.parent.db.find_person_from_id(person_id)
         self.parent.change_active_person(person)
         self.load_family(family)
 
@@ -797,13 +801,14 @@ class FamilyView:
         self.ap_model.clear()
 
     def load_family(self,family=None):
+        
         self.person = self.parent.active_person
         if not self.person:
             self.clear()
             return
 
-        bd = self.person.getBirth().getDate()
-        dd = self.person.getDeath().getDate()
+        bd = self.person.get_birth().get_date()
+        dd = self.person.get_death().get_date()
 
         if bd and dd:
             n = "%s\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
@@ -824,7 +829,7 @@ class FamilyView:
         self.spouse_model.clear()
         self.child_model.clear()
         self.sp_parents_model.clear()
-        splist = self.person.getFamilyList()
+        splist = self.person.get_family_id_list()
 
         if len(splist) > 1:
             self.spouse_selection.set_mode(gtk.SELECTION_SINGLE)
@@ -836,35 +841,39 @@ class FamilyView:
         for f in splist:
             if not f:
                 continue
-            if f.getFather() == self.person:
-                sp = f.getMother()
+            fm = self.parent.db.find_family_no_map(f)
+            
+            if fm.get_father_id() == self.person.get_id():
+                sp_id = fm.get_mother_id()
             else:
-                sp = f.getFather()
+                sp_id = fm.get_father_id()
+            sp = self.parent.db.find_person_from_id(sp_id)
 
             iter = self.spouse_model.append()
-            flist[f.getId()] = iter
+            flist[f] = iter
                 
             if sp:
-                if f.getMarriage():
-                    mdate = " - %s" % f.getMarriage().getDate()
+                if fm.get_marriage():
+                    mdate = " - %s" % fm.get_marriage().get_date()
                 else:
                     mdate = ""
                 v = "%s\n\t%s%s" % (GrampsCfg.nameof(sp),
-                                    const.display_frel(f.getRelationship()),
+                                    const.display_frel(fm.get_relationship()),
                                     mdate)
                 self.spouse_model.set(iter,0,v)
             else:
                 self.spouse_model.set(iter,0,"%s\n" % _("<double click to add spouse>"))
 
-        if family in splist:
+        if family and family.get_id() in flist:
             self.display_marriage(family)
-            iter = flist[family.getId()]
+            iter = flist[family.get_id()]
             self.spouse_selection.select_iter(iter)
         elif len(flist) > 0:
-            f = splist[0]
-            iter = flist[f.getId()]
+            fid = splist[0]
+            fam = self.parent.db.find_family_from_id(fid)
+            self.display_marriage(fam)
+            iter = flist[fid]
             self.spouse_selection.select_iter(iter)
-            self.display_marriage(f)
         else:
             self.display_marriage(None)
 
@@ -874,12 +883,16 @@ class FamilyView:
         model.clear()
         sel = None
         selection = tree.get_selection()
-        list = person.getParentList()
+        list = person.get_parent_family_id_list()
 
         for (f,mrel,frel) in list:
-
-            father = self.nameof(_("Father"),f.getFather(),frel)
-            mother = self.nameof(_("Mother"),f.getMother(),mrel)
+            fam = self.parent.db.get_family_id(f)
+            father_id = fam.get_father_id()
+            mother_id = fam.get_mother_id()
+            f = self.parent.db.find_person_from_id(father_id)
+            m = self.parent.db.find_person_from_id(mother_id)
+            father = self.nameof(_("Father"),f,frel)
+            mother = self.nameof(_("Mother"),m,mrel)
 
             iter = model.append()
             if not sel:
@@ -900,25 +913,25 @@ class FamilyView:
             return _("%s: unknown") % (l)
 
     def delete_family_from(self,person):
-        person.removeFamily(self.family)
-        self.parent.db.deleteFamily(self.family)
-        flist = self.person.getFamilyList()
+        person.remove_family_id(self.family.get_id())
+        self.parent.db.delete_family(self.family.get_id())
+        flist = self.person.get_family_id_list()
         if len(flist) > 0:
             self.family = flist[0]
         else:
             self.family = None
 
     def display_marriage(self,family):
-
         self.child_model.clear()
+
         self.family = family
         if not family:
             return
 
-        if family.getFather() == self.person:
-            self.selected_spouse = family.getMother()
+        if family.get_father_id() == self.person:
+            self.selected_spouse = self.parent.db.find_person_from_id(family.get_mother_id())
         else:
-            self.selected_spouse = family.getFather()
+            self.selected_spouse = self.parent.db.find_person_from_id(family.get_father_id())
 
         if self.selected_spouse:
             self.update_list(self.sp_parents_model,self.sp_parents,
@@ -926,34 +939,30 @@ class FamilyView:
 
         i = 0
         fiter = None
-        child_list = list(family.getChildList())
+        child_list = list(family.get_child_id_list())
 
         self.child_map = {}
 
-        for child in child_list:
+        for child_id in child_list:
             status = _("Unknown")
-            for fam in child.getParentList():
+
+            child = self.parent.db.find_person_from_id(child_id)
+            for fam in child.get_parent_family_id_list():
                 if fam[0] == family:
-                    if self.person == family.getFather():
+                    if self.person == family.get_father_id():
                         status = "%s/%s" % (_(fam[2]),_(fam[1]))
                     else:
                         status = "%s/%s" % (_(fam[1]),_(fam[2]))
 
             iter = self.child_model.append()
-            self.child_map[iter] = child.getId()
+            self.child_map[iter] = child.get_id()
             
             if fiter == None:
                 fiter = self.child_model.get_path(iter)
-            val = self.parent.db.getPersonDisplay(child.getId())
+            val = self.parent.db.get_person_display(child.get_id())
             i += 1
-            self.child_model.set(iter,
-                                 0,i,
-                                 1,val[0],
-                                 2,val[1],
-                                 3,val[2],
-                                 4,val[3],
-                                 5,status,
-                                 6,val[6])
+            self.child_model.set(iter,0,i,1,val[0],2,val[1],3,val[2],
+                                 4,val[3],5,status,6,val[6])
 
     def build_parents_menu(self,family,event):
         """Builds the menu that allows editing operations on the child list"""
@@ -1043,7 +1052,7 @@ class FamilyView:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.person,self.ap_selection)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            plist = self.person.getParentList()
+            plist = self.person.get_parent_family_id_list()
 
             if len(plist) == 0:
                 self.build_parents_nosel_menu(event)
@@ -1064,7 +1073,7 @@ class FamilyView:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1: 
             self.parent_editor(self.selected_spouse,self.sp_selection)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            plist = self.selected_spouse.getParentList()
+            plist = self.selected_spouse.get_parent_family_id_list()
             if len(plist) == 0:
                 self.build_sp_parents_nosel_menu(event)
                 return
@@ -1084,7 +1093,7 @@ class FamilyView:
             self.parent_add(self.selected_spouse)
 
     def del_parents_clicked(self,obj):
-        if len(self.person.getParentList()) == 0:
+        if len(self.person.get_parent_family_id_list()) == 0:
             return
         n = GrampsCfg.nameof(self.person)
         QuestionDialog(_('Remove Parents of %s') % n,
@@ -1099,7 +1108,7 @@ class FamilyView:
         self.parent_deleter(self.person,self.ap_selection)
 
     def del_sp_parents(self,obj):
-        if not self.selected_spouse or len(self.selected_spouse.getParentList()) == 0:
+        if not self.selected_spouse or len(self.selected_spouse.get_parent_family_id_list()) == 0:
             return
         n = GrampsCfg.nameof(self.selected_spouse)
         QuestionDialog(_('Remove Parents of %s') % n,
@@ -1118,10 +1127,10 @@ class FamilyView:
         model, iter = self.child_selection.get_selected()
         if iter:
             id = self.child_model.get_value(iter,2)
-            self.parent.change_active_person(self.parent.db.getPerson(id))
+            self.parent.change_active_person(self.parent.db.get_person(id))
             self.load_family()
         else:
-            list = self.family.getChildList()
+            list = self.family.get_child_id_list()
             if len(list) == 1:
                 self.parent.change_active_person(list[0])
                 self.load_family()
@@ -1130,7 +1139,7 @@ class FamilyView:
         if not person:
             return
 
-        plist = person.getParentList()
+        plist = person.get_parent_family_id_list()
 
         if len(plist) == 0:
             return
@@ -1165,26 +1174,26 @@ class FamilyView:
     def parent_deleter(self,person,selection):
         if not person:
             return
-        plist = person.getParentList()
+        plist = person.get_parent_family_id_list()
         if len(plist) == 0:
             return
         if len(plist) == 1:
-            person.clearAltFamilyList()
+            person.clear_parent_family_id_list()
         else:
             model, iter = selection.get_selected()
             if not iter:
                 return
 
             row = model.get_path(iter)
-            fam = person.getParentList()[row[0]]
-            person.removeAltFamily(fam[0])
+            fam = person.get_parent_family_id_list()[row[0]]
+            person.remove_parent_family_id(fam[0])
         Utils.modified()
         self.load_family()
 
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):
         path = self.child_list.get_path_at_pos(x,y)
         if path == None:
-            row = len(self.family.getChildList())
+            row = len(self.family.get_child_id_list())
         else:
             row = path[0][0] -1
         
@@ -1202,7 +1211,7 @@ class FamilyView:
 
             spath = s.get_path(i)
             src = spath[0] 
-            list = self.family.getChildList()
+            list = self.family.get_child_id_list()
 
             obj = list[src]
             list.remove(obj)
@@ -1212,7 +1221,7 @@ class FamilyView:
                 WarningDialog(_("Attempt to Reorder Children Failed"),
                               _("Children must be ordered by their birth dates."))
                 return
-            self.family.setChildList(list)
+            self.family.set_child_id_list(list)
             self.display_marriage(self.family)
             Utils.modified()
             
@@ -1226,14 +1235,14 @@ class FamilyView:
         sel_data.set(sel_data.target, bits_per, data)
 
     def north_american(self,val):
-        if self.person.getGender() == RelLib.Person.male:
-            pname = self.person.getPrimaryName()
-            return (pname.getSurnamePrefix(),pname.getSurname())
+        if self.person.get_gender() == RelLib.Person.male:
+            pname = self.person.get_primary_name()
+            return (pname.get_surname_prefix(),pname.get_surname())
         elif self.family:
-            f = self.family.getFather()
+            f = self.family.get_father_id()
             if f:
-                pname = f.getPrimaryName()
-                return (pname.getSurnamePrefix(),pname.getSurname())
+                pname = f.get_primary_name()
+                return (pname.get_surname_prefix(),pname.get_surname())
         return ("","")
 
     def no_name(self,val):
@@ -1241,12 +1250,12 @@ class FamilyView:
 
     def latin_american(self,val):
         if self.family:
-            father = self.family.getFather()
-            mother = self.family.getMother()
+            father = self.family.get_father_id()
+            mother = self.family.get_mother_id()
             if not father or not mother:
                 return ("","")
-            fsn = father.getPrimaryName().getSurname()
-            msn = mother.getPrimaryName().getSurname()
+            fsn = father.get_primary_name().get_surname()
+            msn = mother.get_primary_name().get_surname()
             if not father or not mother:
                 return ("","")
             try:
@@ -1258,12 +1267,12 @@ class FamilyView:
 
     def icelandic(self,val):
         fname = ""
-        if self.person.getGender() == RelLib.Person.male:
-            fname = self.person.getPrimaryName().getFirstName()
+        if self.person.get_gender() == RelLib.Person.male:
+            fname = self.person.get_primary_name().get_first_name()
         elif self.family:
-            f = self.family.getFather()
+            f = self.family.get_father_id()
             if f:
-                fname = f.getPrimaryName().getFirstName()
+                fname = f.get_primary_name().get_first_name()
         if fname:
             fname = fname.split()[0]
         if val == 0:
@@ -1304,7 +1313,7 @@ def birth_dates_in_order(list):
     prev_date = "00000000"
     for i in range(len(list)):
         child = list[i]
-        bday = child.getBirth().getDateObj()
+        bday = child.get_birth().get_date_object()
         child_date = sort.build_sort_date(bday)
         if (child_date == "99999999"):
             continue

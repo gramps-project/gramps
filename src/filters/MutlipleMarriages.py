@@ -27,7 +27,7 @@ class MultipleMarriages(Filter.Filter):
     "People with multiple marriage records"
 
     def match(self,person):
-        return len(person.getFamilyList()) > 1
+        return len(person.get_family_id_list()) > 1
 
 #------------------------------------------------------------------------
 #

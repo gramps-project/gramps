@@ -81,10 +81,10 @@ class PatchNames:
         self.title_list = []
         self.nick_list = []
 
-        for key in self.db.getPersonKeys():
+        for key in self.db.get_person_keys():
         
-            person = self.db.getPerson(key)
-            first = person.getPrimaryName().getFirstName()
+            person = self.db.get_person(key)
+            first = person.get_primary_name().get_first_name()
             match = _title_re.match(first)
             if match:
                 groups = match.groups()
@@ -151,23 +151,23 @@ class PatchNames:
         self.title_hash = {}
         
         for (id,name,nick) in self.nick_list:
-            p = self.db.getPerson(id)
+            p = self.db.get_person(id)
             iter = self.model.append()
             self.model.set_value(iter,0,1)
             self.model.set_value(iter,1,id)
             self.model.set_value(iter,2,_('Nickname'))
             self.model.set_value(iter,3,nick)
-            self.model.set_value(iter,4,p.getPrimaryName().getName())
+            self.model.set_value(iter,4,p.get_primary_name().get_name())
             self.nick_hash[id] = iter
             
         for (id,title,nick) in self.title_list:
-            p = self.db.getPerson(id)
+            p = self.db.get_person(id)
             iter = self.model.append()
             self.model.set_value(iter,0,1)
             self.model.set_value(iter,1,id)
             self.model.set_value(iter,2,_('Title'))
             self.model.set_value(iter,3,nick)
-            self.model.set_value(iter,4,p.getPrimaryName().getName())
+            self.model.set_value(iter,4,p.get_primary_name().get_name())
             self.title_hash[id] = iter
                 
     def on_ok_clicked(self,obj):
@@ -175,22 +175,22 @@ class PatchNames:
             iter = self.nick_hash[grp[0]]
             val = self.model.get_value(iter,0)
             if val:
-                p = self.db.getPerson(grp[0])
-                name = p.getPrimaryName()
-                name.setFirstName(grp[1])
-                p.setNickName(grp[2])
-                self.db.buildPersonDisplay(grp[0])
+                p = self.db.get_person(grp[0])
+                name = p.get_primary_name()
+                name.set_first_name(grp[1])
+                p.set_nick_name(grp[2])
+                self.db.build_person_display(grp[0])
                 Utils.modified()
 
         for grp in self.title_list:
             iter = self.title_hash[grp[0]]
             val = self.model.get_value(iter,0)
             if val:
-                p = self.db.getPerson(grp[0])
-                name = p.getPrimaryName()
-                name.setFirstName(grp[2])
-                name.setTitle(grp[1])
-                self.db.buildPersonDisplay(grp[0])
+                p = self.db.get_person(grp[0])
+                name = p.get_primary_name()
+                name.set_first_name(grp[2])
+                name.set_title(grp[1])
+                self.db.build_person_display(grp[0])
                 Utils.modified()
 
         Utils.destroy_passed_object(obj)

@@ -118,9 +118,10 @@ class SourceSelector:
     def redraw(self):
         self.model.clear()
         for s in self.list:
-            base = s.getBase()
+            base_id = s.get_base_id()
+            base = self.db.find_source_from_id(base_id)
             iter = self.model.append()
-            self.model.set(iter,0,base.getId(),1,base.getTitle())
+            self.model.set(iter,0,base_id,1,base.get_title())
 
     def src_ok_clicked(self):
         del self.orig[:]
@@ -197,9 +198,10 @@ class SourceTab:
     def redraw(self):
         self.model.clear()
         for s in self.list:
-            base = s.getBase()
+            base_id = s.get_base_id()
             iter = self.model.append()
-            self.model.set(iter,0,base.getId(),1,base.getTitle())
+            base = self.db.find_source_from_id(base_id)
+            self.model.set(iter,0,base_id,1,base.get_title())
         if self.list:
             Utils.bold_label(self.parent.sources_label)
         else:
@@ -262,7 +264,7 @@ class SourceEditor:
         self.conf_menu = self.get_widget("conf")
         self.ok = self.get_widget("ok")
         Utils.build_confidence_menu(self.conf_menu)
-        self.conf_menu.set_history(srcref.getConfidence())
+        self.conf_menu.set_history(srcref.get_confidence_level())
         self.list = []
 
         self.title_menu.list.select_item(0)
@@ -272,7 +274,7 @@ class SourceEditor:
         self.pub_field = self.get_widget("spubinfo")
 
         if self.source_ref:
-            self.active_source = self.source_ref.getBase()
+            self.active_source = self.db.find_source_from_id(self.source_ref.get_base_id())
         else:
             self.active_source = None
 
@@ -305,33 +307,33 @@ class SourceEditor:
         self.title_menu.list.remove_items(self.list)
         if self.source_ref:
             spage = self.get_widget("spage")
-            spage.get_buffer().set_text(self.source_ref.getPage())
-            date = self.source_ref.getDate()
+            spage.get_buffer().set_text(self.source_ref.get_page())
+            date = self.source_ref.get_date()
             if date:
-                self.get_widget("sdate").set_text(date.getDate())
+                self.get_widget("sdate").set_text(date.get_date())
 
             text = self.get_widget("stext")
-            text.get_buffer().set_text(self.source_ref.getText())
+            text.get_buffer().set_text(self.source_ref.get_text())
 
             scom = self.get_widget("scomment")
-            scom.get_buffer().set_text(self.source_ref.getComments())
-            src = self.source_ref.getBase()
+            scom.get_buffer().set_text(self.source_ref.get_comments())
+            src = self.db.find_source_from_id(self.source_ref.get_base_id())
             self.active_source = src
             if src:
-                self.author_field.set_text(src.getAuthor())
-                self.pub_field.set_text(src.getPubInfo())
+                self.author_field.set_text(src.get_author())
+                self.pub_field.set_text(src.get_publication_info())
         else:
             self.author_field.set_text("")
             self.pub_field.set_text("")
 
-        values = self.db.getSourceMap().values()
+        values = self.db.get_source_map().values()
         values.sort(by_title)
         
         sel_child = None
         self.list = []
         self.active_source = sel
         for src in values:
-            l = gtk.Label("%s [%s]" % (src.getTitle(),src.getId()))
+            l = gtk.Label("%s [%s]" % (src.get_title(),src.get_id()))
             l.show()
             l.set_alignment(0,0.5)
             c = gtk.ListItem()
@@ -352,8 +354,8 @@ class SourceEditor:
 
     def on_sourceok_clicked(self):
 
-        if self.active_source != self.source_ref.getBase():
-            self.source_ref.setBase(self.active_source)
+        if self.active_source != self.db.find_source_from_id(self.source_ref.get_base_id()):
+            self.source_ref.set_base_id(self.active_source)
         
         date = unicode(self.get_widget("sdate").get_text())
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')
@@ -370,11 +372,11 @@ class SourceEditor:
         page = unicode(buffer.get_text(buffer.get_start_iter(),
                                buffer.get_end_iter(),gtk.FALSE))
 
-        self.source_ref.setPage(page)
-        self.source_ref.getDate().set(date)
-        self.source_ref.setText(text)
-        self.source_ref.setComments(comments)
-        self.source_ref.setConfidence(conf)
+        self.source_ref.set_page(page)
+        self.source_ref.get_date().set(date)
+        self.source_ref.set_text(text)
+        self.source_ref.set_comments(comments)
+        self.source_ref.set_confidence_level(conf)
 
         if self.update:
             self.update(self.parent,self.source_ref)
@@ -387,12 +389,12 @@ class SourceEditor:
             self.active_source = sel[0].get_data("s")
             
             if self.active_source:
-                self.author_field.set_text(self.active_source.getAuthor())
-                self.pub_field.set_text(self.active_source.getPubInfo())
+                self.author_field.set_text(self.active_source.get_author())
+                self.pub_field.set_text(self.active_source.get_publication_info())
             self.set_button()
 
     def update_display(self,source):
-        self.db.addSource(source)
+        self.db.add_source(source)
         self.draw(source)
 #        self.update(0)
 
@@ -402,4 +404,4 @@ class SourceEditor:
 
         
 def by_title(first,second):
-    return cmp(first.getTitle(),second.getTitle())
+    return cmp(first.get_title(),second.get_title())

@@ -32,6 +32,7 @@ __version__ = "$Revision$"
 #-------------------------------------------------------------------------
 from re import compile
 import os
+import types
 
 #-------------------------------------------------------------------------
 #
@@ -82,48 +83,48 @@ class SourceNote:
         else:
             self.note = None
 
-    def addSourceRef(self,id) :
+    def add_source_reference(self,id) :
         """Set the source reference"""
         self.source_list.append(id)
 
-    def getSourceRefList(self) :
+    def get_source_references(self) :
         """Return the source reference"""
         return self.source_list
 
-    def setSourceRefList(self,list) :
+    def set_source_reference_list(self,list) :
         """Replaces the source reference"""
         self.source_list = list
 
-    def setNote(self,text):
+    def set_note(self,text):
         """Set the note to the given text"""
         if self.note == None:
             self.note = Note()
         self.note.set(text)
 
-    def getNote(self):
+    def get_note(self):
         """Return the current note"""
         if self.note == None:
             return ""
         else:
             return self.note.get() 
 
-    def setNoteFormat(self,val):
+    def set_note_format(self,val):
         """Set the note's format to the given value"""
         if self.note:
-            self.note.setFormat(val)
+            self.note.set_format(val)
 
-    def getNoteFormat(self):
+    def get_note_format(self):
         """Return the current note's format"""
         if self.note == None:
             return 0
         else:
-            return self.note.getFormat()
+            return self.note.get_format()
 
-    def setNoteObj(self,obj):
+    def set_note_object(self,obj):
         """Change the note object instance to obj"""
         self.note = obj
 
-    def getNoteObj(self):
+    def get_note_object(self):
         """Return in note instance, not just the text"""
         return self.note
 
@@ -149,71 +150,72 @@ class LdsOrd(SourceNote):
             self.status = 0
             self.place = None
 
-    def getPlaceName(self):
+    def get_place_name(self):
         """returns the title of the Place associated with the Ordinance"""
         if self.place:
             return self.place.get_title()
         else:
             return ""
 
-    def setPlace(self,place):
+    def set_place_id(self,place):
         """sets the Place instance of the Event"""
+        assert(type(place) == types.StringType or type(place) == types.UnicodeType)
         self.place = place
 
-    def getPlace(self):
+    def get_place_id(self):
         """returns the Place instance of the Event"""
         return self.place 
 
-    def setFamily(self,family):
+    def set_family_id(self,family):
         """Sets the family associated with the LDS ordinance"""
         self.famc = family
 
-    def getFamily(self):
+    def get_family_id(self):
         """Gets the family associated with the LDS ordinance"""
         return self.famc
 
-    def setStatus(self,val):
+    def set_status(self,val):
         """Sets the status of the LDS ordinance"""
         self.status = val
 
-    def getStatus(self):
+    def get_status(self):
         """Gets the status of the LDS ordinance"""
         return self.status
 
-    def setDate(self, date) :
+    def set_date(self, date) :
         """attempts to sets the date of the LdsOrd instance"""
         if not self.date:
             self.date = Date()
         self.date.set(date)
 
-    def getDate(self) :
+    def get_date(self) :
         """returns a string representation of the date of the LdsOrd instance"""
         if self.date:
-            return self.date.getDate()
+            return self.date.get_date()
         return ""
 
-    def getDateObj(self):
+    def get_date_object(self):
         """returns the Date object associated with the LdsOrd"""
         if not self.date:
             self.date = Date()
        	return self.date
 
-    def setDateObj(self,date):
+    def set_date_object(self,date):
         """sets the Date object associated with the LdsOrd"""
         self.date = date
 
-    def setTemple(self,temple):
+    def set_temple(self,temple):
         """Sets the temple assocated with the LDS ordinance"""
         self.temple = temple
 
-    def getTemple(self):
+    def get_temple(self):
         """Gets the temple assocated with the LDS ordinance"""
         return self.temple
 
-    def isEmpty(self):
+    def is_empty(self):
         """Returns 1 if the LDS ordidance is actually empty"""
         if (self.famc or 
-                (self.date and not self.date.isEmpty()) or 
+                (self.date and not self.date.is_empty()) or 
                 self.temple or 
                 self.status or 
                 self.place):
@@ -224,7 +226,7 @@ class LdsOrd(SourceNote):
     def are_equal(self,other):
         """returns 1 if the specified ordinance is the same as the instance"""
         if other == None:
-            if self.isEmpty():
+            if self.is_empty():
                 return 1
             else:
                 return 0
@@ -232,13 +234,13 @@ class LdsOrd(SourceNote):
             self.place != other.place or
             self.status != other.status or
             self.temple != other.temple or
-            compare_dates(self.getDateObj(),other.getDateObj()) or
-            len(self.getSourceRefList()) != len(other.getSourceRefList())):
+            compare_dates(self.get_date_object(),other.get_date_object()) or
+            len(self.get_source_references()) != len(other.get_source_references())):
             return 0
 
         index = 0
-        olist = other.getSourceRefList()
-        for a in self.getSourceRefList():
+        olist = other.get_source_references()
+        for a in self.get_source_references():
             if not a.are_equal(olist[index]):
                 return 0
             index = index + 1
@@ -256,11 +258,11 @@ class DataObj(SourceNote):
         else:
             self.private = 0
 
-    def setPrivacy(self,val):
+    def set_privacy(self,val):
         """Sets or clears the privacy flag of the data"""
         self.private = val
 
-    def getPrivacy(self):
+    def get_privacy(self):
         """Returns the privacy level of the data"""
         return self.private
 
@@ -287,9 +289,9 @@ class Place(SourceNote):
             self.urls = []
             for u in source.urls:
                 self.urls.append(Url(u))
-            self.photoList = []
-            for photo in source.photoList:
-                self.photoList.append(ObjectRef(photo))
+            self.photo_list = []
+            for photo in source.photo_list:
+                self.photo_list.append(ObjectRef(photo))
         else:
             self.long = ""
             self.lat = ""
@@ -298,25 +300,25 @@ class Place(SourceNote):
             self.alt_loc = []
             self.id = ""
             self.urls = []
-            self.photoList = []
+            self.photo_list = []
             
-    def getUrlList(self):
+    def get_url_list(self):
         """Return the list of URLs"""
         return self.urls
 
-    def setUrlList(self,list):
+    def set_url_list(self,list):
         """Replace the current URL list with the new one"""
         self.urls = list
 
-    def addUrl(self,url):
+    def add_url(self,url):
         """Add a URL to the URL list"""
         self.urls.append(url)
     
-    def setId(self,id):
+    def set_id(self,id):
         """Sets the gramps ID for the place object"""
         self.id = id
 
-    def getId(self):
+    def get_id(self):
         """Returns the gramps ID for the place object"""
         return self.id
     
@@ -367,19 +369,19 @@ class Place(SourceNote):
         if loc not in self.alt_loc:
             self.alt_loc.append(loc)
 
-    def addPhoto(self,photo):
+    def add_photo(self,photo):
         """Adds a Photo object to the place object's image list"""
-        self.photoList.append(photo)
+        self.photo_list.append(photo)
 
-    def getPhotoList(self):
+    def get_photo_list(self):
         """Returns the list of Photo objects"""
-        return self.photoList
+        return self.photo_list
 
-    def setPhotoList(self,list):
+    def set_photo_list(self,list):
         """Sets the list of Photo objects"""
-        self.photoList = list
+        self.photo_list = list
 
-    def getDisplayInfo(self):
+    def get_display_info(self):
         """Gets the display information associated with the object. This includes
         the information that is used for display and for sorting. Returns a list
         consisting of 13 strings. These are: Place Title, Place ID, Main Location
@@ -410,35 +412,35 @@ class Researcher:
         self.phone = ""
         self.email = ""
 
-    def getName(self):
+    def get_name(self):
         """returns the database owner's name"""
         return self.name
 
-    def getAddress(self):
+    def get_address(self):
         """returns the database owner's address"""
         return self.addr
 
-    def getCity(self):
+    def get_city(self):
         """returns the database owner's city"""
         return self.city
 
-    def getState(self):
+    def get_state(self):
         """returns the database owner's state"""
         return self.state
 
-    def getCountry(self):
+    def get_country(self):
         """returns the database owner's country"""
         return self.country
 
-    def getPostalCode(self):
+    def get_postal_code(self):
         """returns the database owner's postal code"""
         return self.postal
 
-    def getPhone(self):
+    def get_phone(self):
         """returns the database owner's phone number"""
         return self.phone
 
-    def getEmail(self):
+    def get_email(self):
         """returns the database owner's email"""
         return self.email
 
@@ -565,11 +567,11 @@ class Note:
         """adds the text to the note's contents"""
         self.text = self.text + text
 
-    def setFormat(self,format):
+    def set_format(self,format):
         """set the format to the passed value"""
         self.format = format
 
-    def getFormat(self):
+    def get_format(self):
         """return the note's format"""
         return self.format
 
@@ -598,55 +600,55 @@ class Photo(SourceNote):
             self.mime = ""
             self.desc = ""
 
-    def setLocal(self,val):
+    def set_local(self,val):
         """set or clear the local flag"""
         self.local = val
 
-    def getLocal(self):
+    def get_local(self):
         """return the local flag"""
         return self.local
 
-    def setId(self,id):
+    def set_id(self,id):
         """Sets the gramps ID for the place object"""
         self.id = id
 
-    def getId(self):
+    def get_id(self):
         """Returns the gramps ID for the place object"""
         return self.id
 
-    def setMimeType(self,type):
+    def set_mime_type(self,type):
         self.mime = type
 
-    def getMimeType(self):
+    def get_mime_type(self):
         return self.mime
     
-    def setPath(self,path):
+    def set_path(self,path):
         """set the file path to the passed path"""
         self.path = os.path.normpath(path)
 
-    def getPath(self):
+    def get_path(self):
         """return the file path"""
         return self.path
 
-    def setDescription(self,text):
+    def set_description(self,text):
         """sets the description of the image"""
         self.desc = text
 
-    def getDescription(self):
+    def get_description(self):
         """returns the description of the image"""
         return self.desc
 
-    def addAttribute(self,attr):
+    def add_attribute(self,attr):
         """Adds a propery to the Photo object. This is not used by gramps,
         but provides a means for XML users to attach other properties to
         the image"""
         self.attrlist.append(attr)
 
-    def getAttributeList(self):
+    def get_attribute_list(self):
         """returns the property list associated with the image"""
         return self.attrlist
 
-    def setAttributeList(self,list):
+    def set_attribute_list(self,list):
         self.attrlist = list
 
 
@@ -665,50 +667,50 @@ class ObjectRef:
             self.ref = None
             self.note = None
 
-    def setPrivacy(self,val):
+    def set_privacy(self,val):
         """Sets or clears the privacy flag of the data"""
         self.private = val
 
-    def getPrivacy(self):
+    def get_privacy(self):
         """Returns the privacy level of the data"""
         return self.private
 
-    def setReference(self,obj):
+    def set_reference(self,obj):
         self.ref = obj
 
-    def getReference(self):
+    def get_reference(self):
         return self.ref
 
-    def setNote(self,text):
+    def set_note(self,text):
         """Set the note to the given text"""
         if self.note == None:
             self.note = Note()
         self.note.set(text)
 
-    def getNote(self):
+    def get_note(self):
         """Return the current note"""
         if self.note == None:
             return ""
         else:
             return self.note.get() 
 
-    def setNoteFormat(self,val):
+    def set_note_format(self,val):
         """Set the note's format to the given value"""
         if self.note:
-            self.note.setFormat(val)
+            self.note.set_format(val)
 
-    def getNoteFormat(self):
+    def get_note_format(self):
         """Return the current note's format"""
         if self.note == None:
             return 0
         else:
-            return self.note.getFormat()
+            return self.note.get_format()
 
-    def setNoteObj(self,obj):
+    def set_note_object(self,obj):
         """Change the note object instance to obj"""
         self.note = obj
 
-    def getNoteObj(self):
+    def get_note_object(self):
         """Return in note instance, not just the text"""
         return self.note
 
@@ -716,17 +718,17 @@ class ObjectRef:
         """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
     
-    def addAttribute(self,attr):
+    def add_attribute(self,attr):
         """Adds a propery to the Photo object. This is not used by gramps,
         but provides a means for XML users to attach other properties to
         the image"""
         self.attrlist.append(attr)
 
-    def getAttributeList(self):
+    def get_attribute_list(self):
         """returns the property list associated with the image"""
         return self.attrlist
 
-    def setAttributeList(self,list):
+    def set_attribute_list(self,list):
         """sets the property list associated with the image"""
         self.attrlist = list
 
@@ -745,19 +747,19 @@ class Attribute(DataObj):
             self.type = ""
             self.value = ""
 
-    def setType(self,val):
+    def set_type(self,val):
         """sets the type (or key) of the Attribute instance"""
         self.type = val
 
-    def getType(self):
+    def get_type(self):
         """returns the type (or key) or the Attribute instance"""
         return self.type
 
-    def setValue(self,val):
+    def set_value(self,val):
         """sets the value of the Attribute instance"""
         self.value = val
 
-    def getValue(self):
+    def get_value(self):
         """returns the value of the Attribute instance"""
         return self.value
 
@@ -787,58 +789,58 @@ class Address(DataObj):
             self.date = Date()
             self.phone = ""
 
-    def setDate(self,text):
+    def set_date(self,text):
         """attempts to sets the date that the person lived at the address
         from the passed string"""
         self.date.set(text)
 
-    def getDate(self):
+    def get_date(self):
         """returns a string representation of the date that the person
         lived at the address"""
-        return self.date.getDate()
+        return self.date.get_date()
 
-    def getPrefDate(self):
+    def get_preferred_date(self):
         """returns a string representation of the date that the person
         lived at the address"""
-        return self.date.getPrefDate()
+        return self.date.get_preferred_date()
 
-    def getDateObj(self):
+    def get_date_object(self):
         """returns the Date object associated with the Address"""
         return self.date
 
-    def setDateObj(self,obj):
+    def set_date_object(self,obj):
         """sets the Date object associated with the Address"""
         self.date = obj
 
-    def setStreet(self,val):
+    def set_street(self,val):
         """sets the street portion of the Address"""
         self.street = val
 
-    def getStreet(self):
+    def get_street(self):
         """returns the street portion of the Address"""
         return self.street
 
-    def setPhone(self,val):
+    def set_phone(self,val):
         """sets the phone number portion of the Address"""
         self.phone = val
 
-    def getPhone(self):
+    def get_phone(self):
         """returns the phone number portion of the Address"""
         return self.phone
 
-    def setCity(self,val):
+    def set_city(self,val):
         """sets the city portion of the Address"""
         self.city = val
 
-    def getCity(self):
+    def get_city(self):
         """returns the city portion of the Address"""
         return self.city
 
-    def setState(self,val):
+    def set_state(self,val):
         """sets the state portion of the Address"""
         self.state = val
 
-    def getState(self):
+    def get_state(self):
         """returns the state portion of the Address"""
         return self.state
 
@@ -846,15 +848,15 @@ class Address(DataObj):
         """sets the country portion of the Address"""
         self.country = val
 
-    def getCountry(self):
+    def get_country(self):
         """returns the country portion of the Address"""
         return self.country
 
-    def setPostal(self,val):
+    def set_postal_code(self,val):
         """sets the postal code of the Address"""
         self.postal = val
 
-    def getPostal(self):
+    def get_postal_code(self):
         """returns the postal code of the Address"""
         return self.postal
 
@@ -867,166 +869,166 @@ class Name(DataObj):
         DataObj.__init__(self,source)
         
         if source:
-            self.FirstName = source.FirstName
-            self.Surname = source.Surname
-            self.Suffix = source.Suffix
-            self.Title = source.Title
+            self.first_name = source.first_name
+            self.surname = source.surname
+            self.suffix = source.suffix
+            self.title = source.title
             self.type = source.type
-            self.Prefix = source.Prefix
+            self.prefix = source.prefix
             self.sname = source.sname
         else:
-            self.FirstName = ""
-            self.Surname = ""
-            self.Suffix = ""
-            self.Title = ""
+            self.first_name = ""
+            self.surname = ""
+            self.suffix = ""
+            self.title = ""
             self.type = "Birth Name"
-            self.Prefix = ""
+            self.prefix = ""
             self.sname = '@'
 
-    def getSurnamePrefix(self):
-        return self.Prefix
+    def get_surname_prefix(self):
+        return self.prefix
 
-    def setSurnamePrefix(self,val):
-        self.Prefix = val
+    def set_surname_prefix(self,val):
+        self.prefix = val
 
-    def setType(self,type):
+    def set_type(self,type):
         """sets the type of the Name instance"""
         self.type = type
 
-    def getType(self):
+    def get_type(self):
         """returns the type of the Name instance"""
         return self.type
 
     def build_sort_name(self):
-        if self.Surname:
-            self.sname = "%-25s%-30s%s" % (self.Surname.upper(),self.FirstName.upper(),self.Suffix.upper())
+        if self.surname:
+            self.sname = "%-25s%-30s%s" % (self.surname.upper(),self.first_name.upper(),self.suffix.upper())
         else:
             self.sname = "@"
 
-    def setFirstName(self,name):
+    def set_first_name(self,name):
         """sets the given name for the Name instance"""
-        self.FirstName = name
+        self.first_name = name
         self.build_sort_name()
 
-    def setSurname(self,name):
+    def set_surname(self,name):
         """sets the surname (or last name) for the Name instance"""
-        self.Surname = name
+        self.surname = name
         self.build_sort_name()
 
-    def setSuffix(self,name):
+    def set_suffix(self,name):
         """sets the suffix (such as Jr., III, etc.) for the Name instance"""
-        self.Suffix = name
+        self.suffix = name
         self.build_sort_name()
 
-    def getSortName(self):
+    def get_sort_name(self):
         return self.sname
     
-    def getFirstName(self):
+    def get_first_name(self):
         """returns the given name for the Name instance"""
-        return self.FirstName
+        return self.first_name
 
-    def getSurname(self):
+    def get_surname(self):
         """returns the surname (or last name) for the Name instance"""
-        return self.Surname
+        return self.surname
 
-    def getUpperSurname(self):
+    def get_upper_surname(self):
         """returns the surname (or last name) for the Name instance"""
-        return self.Surname.upper()
+        return self.surname.upper()
 
-    def getSuffix(self):
+    def get_suffix(self):
         """returns the suffix for the Name instance"""
-        return self.Suffix
+        return self.suffix
 
-    def setTitle(self,title):
+    def set_title(self,title):
         """sets the title (Dr., Reverand, Captain) for the Name instance"""
-        self.Title = title
+        self.title = title
 
-    def getTitle(self):
+    def get_title(self):
         """returns the title for the Name instance"""
-        return self.Title
+        return self.title
 
-    def getName(self):
+    def get_name(self):
         """returns a name string built from the components of the Name
-        instance, in the form of Surname, Firstname"""
+        instance, in the form of surname, Firstname"""
         
-        if self.Suffix:
-            if self.Prefix:
-                return "%s %s, %s %s" % (self.Prefix, self.Surname, self.FirstName, self.Suffix)
+        if self.suffix:
+            if self.prefix:
+                return "%s %s, %s %s" % (self.prefix, self.surname, self.first_name, self.suffix)
             else:
-                return "%s, %s %s" % (self.Surname, self.FirstName, self.Suffix)
+                return "%s, %s %s" % (self.surname, self.first_name, self.suffix)
         else:
-            if self.Prefix:
-                return "%s %s, %s" % (self.Prefix,self.Surname, self.FirstName)
+            if self.prefix:
+                return "%s %s, %s" % (self.prefix,self.surname, self.first_name)
             else:
-                return "%s, %s" % (self.Surname, self.FirstName)
+                return "%s, %s" % (self.surname, self.first_name)
 
-    def getUpperName(self):
+    def get_upper_name(self):
         """returns a name string built from the components of the Name
-        instance, in the form of Surname, Firstname"""
+        instance, in the form of surname, Firstname"""
         
-        if self.Suffix:
-            if self.Prefix:
-                return "%s %s, %s %s" % (self.Prefix.upper(), self.Surname.upper(), self.FirstName, self.Suffix)
+        if self.suffix:
+            if self.prefix:
+                return "%s %s, %s %s" % (self.prefix.upper(), self.surname.upper(), self.first_name, self.suffix)
             else:
-                return "%s, %s %s" % (self.Surname.upper(), self.FirstName, self.Suffix)
+                return "%s, %s %s" % (self.surname.upper(), self.first_name, self.suffix)
         else:
-            if self.Prefix:
-                return "%s %s, %s" % (self.Prefix.upper(), self.Surname.upper(), self.FirstName)
+            if self.prefix:
+                return "%s %s, %s" % (self.prefix.upper(), self.surname.upper(), self.first_name)
             else:
-                return "%s, %s" % (self.Surname.upper(), self.FirstName)
+                return "%s, %s" % (self.surname.upper(), self.first_name)
 
-    def getRegularName(self):
+    def get_regular_name(self):
         """returns a name string built from the components of the Name
-        instance, in the form of Firstname Surname"""
-        if (self.Suffix == ""):
-            if self.Prefix:
-                return "%s %s %s" % (self.FirstName, self.Prefix, self.Surname)
+        instance, in the form of Firstname surname"""
+        if (self.suffix == ""):
+            if self.prefix:
+                return "%s %s %s" % (self.first_name, self.prefix, self.surname)
             else:
-                return "%s %s" % (self.FirstName, self.Surname)
+                return "%s %s" % (self.first_name, self.surname)
         else:
-            if self.Prefix:
-                return "%s %s %s, %s" % (self.FirstName, self.Prefix, self.Surname, self.Suffix)
+            if self.prefix:
+                return "%s %s %s, %s" % (self.first_name, self.prefix, self.surname, self.suffix)
             else:
-                return "%s %s, %s" % (self.FirstName, self.Surname, self.Suffix)
+                return "%s %s, %s" % (self.first_name, self.surname, self.suffix)
 
-    def getRegularUpperName(self):
+    def get_regular_upper_name(self):
         """returns a name string built from the components of the Name
-        instance, in the form of Firstname Surname"""
-        if (self.Suffix == ""):
-            if self.Prefix:
-                return "%s %s %s" % (self.FirstName, self.Prefix.upper(), self.Surname.upper())
+        instance, in the form of Firstname surname"""
+        if (self.suffix == ""):
+            if self.prefix:
+                return "%s %s %s" % (self.first_name, self.prefix.upper(), self.surname.upper())
             else:
-                return "%s %s" % (self.FirstName, self.Surname.upper())
+                return "%s %s" % (self.first_name, self.surname.upper())
         else:
-            if self.Prefix:
-                return "%s %s %s, %s" % (self.FirstName, self.Prefix.upper(), self.Surname.upper(), self.Suffix)
+            if self.prefix:
+                return "%s %s %s, %s" % (self.first_name, self.prefix.upper(), self.surname.upper(), self.suffix)
             else:
-                return "%s %s, %s" % (self.FirstName, self.Surname.upper(), self.Suffix)
+                return "%s %s, %s" % (self.first_name, self.surname.upper(), self.suffix)
 
     def are_equal(self,other):
         """compares to names to see if they are equal, return 0 if they
         are not"""
-        if self.FirstName != other.FirstName:
+        if self.first_name != other.first_name:
             return 0
-        if self.Surname != other.Surname:
+        if self.surname != other.surname:
             return 0
-        if self.Prefix != other.Prefix:
+        if self.prefix != other.prefix:
             return 0
-        if self.Suffix != other.Suffix:
+        if self.suffix != other.suffix:
             return 0
-        if self.Title != other.Title:
+        if self.title != other.title:
             return 0
         if self.type != other.type:
             return 0
         if self.private != other.private:
             return 0
-        if self.getNote() != other.getNote():
+        if self.get_note() != other.get_note():
             return 0
-        if len(self.getSourceRefList()) != len(other.getSourceRefList()):
+        if len(self.get_source_references()) != len(other.get_source_references()):
             return 0
         index = 0
-        olist = other.getSourceRefList()
-        for a in self.getSourceRefList():
+        olist = other.get_source_references()
+        for a in self.get_source_references():
             if not a.are_equal(olist[index]):
                 return 0
             index = index + 1
@@ -1047,11 +1049,11 @@ class Url:
             self.desc = ""
             self.private = 0
 
-    def setPrivacy(self,val):
+    def set_privacy(self,val):
         """sets the privacy flag for the URL instance"""
         self.private = val
 
-    def getPrivacy(self):
+    def get_privacy(self):
         """returns the privacy flag for the URL instance"""
         return self.private
 
@@ -1093,21 +1095,19 @@ class Person(SourceNote):
         """creates a new Person instance"""
         SourceNote.__init__(self)
         self.id = id
-        self.PrimaryName = None
-        self.EventList = []
-        self.FamilyList = []
-        self.AltFamilyList = []
-        self.photoList = []
+        self.primary_name = None
+        self.event_list = []
+        self.family_list = []
+        self.parent_family_list = []
+        self.photo_list = []
         self.nickname = ""
-        self.alternateNames = []
+        self.alternate_names = []
         self.gender = 2
         self.death = None
         self.birth = None
-        self.addressList = []
-        self.attributeList = []
+        self.address_list = []
+        self.attribute_list = []
         self.urls = []
-        self.paf_uid = ""
-        self.position = None
         self.ancestor = None
         self.lds_bapt = None
         self.lds_endow = None
@@ -1119,94 +1119,98 @@ class Person(SourceNote):
         # GenderStats.count_person.
         self.db = None
 
-    def setComplete(self,val):
+    def serialize(self):
+        return (self.id, self.gender, 
+                self.primary_name, self.alternate_names, self.nickname, 
+                self.death, self.birth, self.event_list,
+                self.family_list, self.parent_family_list,
+                self.photo_list, 
+                self.address_list,
+                self.attribute_list,
+                self.urls,
+                self.lds_bapt, self.lds_endow, self.lds_seal,
+                self.complete)
+
+    def set_complete(self,val):
         self.complete = val
 
-    def getComplete(self):
+    def get_complete(self):
         return self.complete
 
-    def getDisplayInfo(self):
+    def get_display_info(self):
         if self.gender == Person.male:
             gender = const.male
         elif self.gender == Person.female:
             gender = const.female
         else:
             gender = const.unknown
-        bday = self.getBirth().getDateObj()
-        dday = self.getDeath().getDateObj()
+        bday = self.get_birth().get_date_object()
+        dday = self.get_death().get_date_object()
         return [ GrampsCfg.display_name(self),self.id,gender,
-                 bday.getQuoteDate(), dday.getQuoteDate(),
-                 self.getPrimaryName().getSortName(),
+                 bday.get_quote_date(), dday.get_quote_date(),
+                 self.get_primary_name().get_sort_name(),
                  sort.build_sort_date(bday),sort.build_sort_date(dday),
-                 GrampsCfg.display_surname(self.PrimaryName)]
+                 GrampsCfg.display_surname(self.primary_name)]
                                           
-    def setPrimaryName(self,name):
+    def set_primary_name(self,name):
         """sets the primary name of the Person to the specified
         Name instance"""
         db = self.db
         if db:
             db.genderStats.uncount_person (self)
 
-        self.PrimaryName = name
+        self.primary_name = name
 	
         if db:
             db.genderStats.count_person (self, db)
 
-    def getPrimaryName(self):
+    def get_primary_name(self):
         """returns the Name instance marked as the Person's primary name"""
-        if not self.PrimaryName:
-            self.PrimaryName = Name()
-        return self.PrimaryName
+        if not self.primary_name:
+            self.primary_name = Name()
+        return self.primary_name
 
-    def setPafUid(self,val):
-        """sets Personal Ancestral File UID value"""
-        self.paf_uid = val
-	
-    def getPafUid(self) :
-        """returns the Personal Ancestral File UID value"""
-        return self.paf_uid
-
-    def getAlternateNames(self):
+    def get_alternate_names(self):
         """returns the list of alternate Names"""
-        return self.alternateNames
+        return self.alternate_names
 
-    def setAlternateNames(self,list):
+    def set_alternate_names(self,list):
         """changes the list of alternate names to the passed list"""
-        self.alternateNames = list
+        self.alternate_names = list
 
-    def addAlternateName(self,name):
+    def add_alternate_name(self,name):
         """adds an alternate Name instance to the list"""
-        self.alternateNames.append(name)
+        self.alternate_names.append(name)
 
-    def getUrlList(self):
+    def get_url_list(self):
         """returns the list of URL instances"""
         return self.urls
 
-    def setUrlList(self,list):
+    def set_url_list(self,list):
         """sets the list of URL instances to list"""
         self.urls = list
 
-    def addUrl(self,url):
+    def add_url(self,url):
         """adds a URL instance to the list"""
         self.urls.append(url)
     
-    def setId(self,id):
+    def set_id(self,id):
         """sets the gramps ID for the Person"""
         self.id = str(id)
 
-    def getId(self):
+    def get_id(self):
         """returns the gramps ID for the Person"""
         return self.id
 
-    def setNickName(self,name):
+    def set_nick_name(self,name):
         """sets the nickname for the Person"""
         self.nickname = name
 
-    def getNickName(self) :
+    def get_nick_name(self) :
         """returns the nickname for the Person"""
         return self.nickname
 
-    def setGender(self,val) :
+    def set_gender(self,val) :
         """sets the gender of the Person"""
         db = self.db
         if db:
@@ -1217,33 +1221,33 @@ class Person(SourceNote):
         if db:
             db.genderStats.count_person (self, db)
 
-    def getGender(self) :
+    def get_gender(self) :
         """returns the gender of the Person"""
         return self.gender
 
-    def setBirth(self,event) :
+    def set_birth(self,event) :
         """sets the birth event to the passed event"""
         self.birth = event
 
-    def setDeath(self,event) :
+    def set_death(self,event) :
         """sets the death event to the passed event"""
         self.death = event
 
-    def getBirth(self) :
+    def get_birth(self) :
         """returns the birth event"""
         if self.birth == None:
             self.birth = Event()
             self.birth.name = "Birth"
         return self.birth
 
-    def getDeath(self) :
+    def get_death(self) :
         """returns the death event"""
         if self.death == None:
             self.death = Event()
             self.death.name = "Death"
         return self.death
 
-    def getValidDeath(self):
+    def get_valid_death(self):
         e = self.death
         if e == None:
             return None
@@ -1253,7 +1257,7 @@ class Person(SourceNote):
         else:
             return e
 
-    def getValidBirth(self):
+    def get_valid_birth(self):
         e = self.birth
         if e == None:
             return None
@@ -1263,197 +1267,200 @@ class Person(SourceNote):
         else:
             return e
 
-    def addPhoto(self,photo):
+    def add_photo(self,photo):
         """adds a Photo instance to the image list"""
-        self.photoList.append(photo)
+        self.photo_list.append(photo)
 
-    def getPhotoList(self):
+    def get_photo_list(self):
         """returns the list of Photos"""
-        return self.photoList
+        return self.photo_list
 
-    def setPhotoList(self,list):
+    def set_photo_list(self,list):
         """Sets the list of Photo objects"""
-        self.photoList = list
+        self.photo_list = list
 
-    def addEvent(self,event):
+    def add_event(self,event):
         """adds an Event to the event list"""
-        self.EventList.append(event)
+        self.event_list.append(event)
 
-    def getEventList(self):
+    def get_event_list(self):
         """returns the list of Event instances"""
-        return self.EventList
+        return self.event_list
 
-    def setEventList(self,list):
+    def set_event_list(self,list):
         """sets the event list to the passed list"""
-        self.EventList = list
+        self.event_list = list
 
-    def addFamily(self,family):
+    def add_family_id(self,family_id):
         """adds the specified Family instance to the list of
         families/marriages/partnerships in which the person is a
         parent or spouse"""
-        self.FamilyList.append(family)
+        assert(type(family_id) == types.StringType or type(family_id) == types.UnicodeType)
+        
+        self.family_list.append(family_id)
 
-    def setPreferred(self,family):
-        if family in self.FamilyList:
-            self.FamilyList.remove(family)
-            self.FamilyList = [family] + self.FamilyList
+    def set_preferred_family_id(self,family):
+        if family in self.family_list:
+            self.family_list.remove(family)
+            self.family_list = [family] + self.family_list
 
-    def getFamilyList(self) :
+    def get_family_id_list(self) :
         """returns the list of Family instances in which the
         person is a parent or spouse"""
-        return self.FamilyList
+        return self.family_list
 
-    def clearFamilyList(self) :
-        self.FamilyList = []
+    def clear_family_id_list(self) :
+        self.family_list = []
 
-    def removeFamily(self,family):
+    def remove_family_id(self,family):
         """removes the specified Family instance from the list
         of marriages/partnerships"""
-        if family in self.FamilyList:
-            self.FamilyList.remove(family)
+        assert(type(family) == types.StringType or type(family) == types.UnicodeType)
+        if family in self.family_list:
+            self.family_list.remove(family)
 
-    def addAddress(self,address):
+    def add_address(self,address):
         """adds the Address instance to the list of addresses"""
-        self.addressList.append(address)
+        self.address_list.append(address)
 
-    def removeAddress(self,address):
+    def remove_address(self,address):
         """removes the Address instance from the list of addresses"""
-        if address in self.addressList:
-            self.addressList.remove(address)
+        if address in self.address_list:
+            self.address_list.remove(address)
 
-    def getAddressList(self):
+    def get_address_list(self):
         """returns the list of addresses"""
-        return self.addressList
+        return self.address_list
 
-    def setAddressList(self,list):
+    def set_address_list(self,list):
         """sets the address list to the specified list"""
-        self.addressList = list
+        self.address_list = list
 
-    def addAttribute(self,attribute):
+    def add_attribute(self,attribute):
         """adds an Attribute instance to the attribute list"""
-        self.attributeList.append(attribute)
+        self.attribute_list.append(attribute)
 
-    def removeAttribute(self,attribute):
+    def remove_attribute(self,attribute):
         """removes the specified Attribute instance from the attribute list"""
-        if attribute in self.attributeList:
-            self.attributeList.remove(attribute)
+        if attribute in self.attribute_list:
+            self.attribute_list.remove(attribute)
 
-    def getAttributeList(self):
+    def get_attribute_list(self):
         """returns the attribute list"""
-        return self.attributeList
+        return self.attribute_list
 
-    def setAttributeList(self,list):
+    def set_attribute_list(self,list):
         """sets the attribute list to the specified list"""
-        self.attributeList = list
+        self.attribute_list = list
 
-    def getParentList(self):
+    def get_parent_family_id_list(self):
         """returns the list of alternate Family instances, in which the Person
         is a child of the family, but not a natural child of both parents"""
-        return self.AltFamilyList
+        return self.parent_family_list
 
-    def addAltFamily(self,family,mrel,frel):
+    def add_parent_family_id(self,family,mrel,frel):
         """adds a Family to the alternate family list, indicating the
         relationship to the mother (mrel) and the father (frel)"""
-        self.AltFamilyList.append((family,mrel,frel))
+        assert(type(family) == types.StringType or type(family) == types.UnicodeType)
+        self.parent_family_list.append((family,mrel,frel))
 
-    def clearAltFamilyList(self):
-        self.AltFamilyList = []
+    def clear_parent_family_id_list(self):
+        self.parent_family_list = []
 
-    def removeAltFamily(self,family):
+    def remove_parent_family_id(self,family):
         """removes a Family instance from the alternate family list"""
-        for f in self.AltFamilyList[:]:
+        assert(type(family) == types.StringType or type(family) == types.UnicodeType)
+        for f in self.parent_family_list[:]:
+            assert(type(f[0]) == types.StringType or type(f[0]) == types.UnicodeType)
             if f[0] == family:
-                self.AltFamilyList.remove(f)
+                self.parent_family_list.remove(f)
                 return f
         else:
             return None
 
-    def changeAltFamily(self,family,mrel,frel):
+    def change_parent_family_id(self,family,mrel,frel):
         """removes a Family instance from the alternate family list"""
         index = 0
-        for f in self.AltFamilyList[:]:
+        assert(type(family) == types.StringType or type(family) == types.UnicodeType)
+        for f in self.parent_family_list[:]:
             if f[0] == family:
-                self.AltFamilyList[index] = (family,mrel,frel)
+                self.parent_family_list[index] = (family,mrel,frel)
             index += 1
 
     def has_family(self,family):
-        for f in self.AltFamilyList:
+        assert(type(family) == types.StringType or type(family) == types.UnicodeType)
+        for f in self.parent_family_list:
+            assert(type(f[0]) == types.StringType or type(f[0]) == types.UnicodeType)
             if f[0] == family:
                 return f
         else:
             return None
 
-    def setMainParents(self,family):
+    def set_main_parent_family_id(self,family):
         """sets the main Family of the Person, the Family in which the
         Person is a natural born child"""
-        f = self.removeAltFamily(family)
+        assert(type(family) == types.StringType or type(family) == types.UnicodeType)
+        f = self.remove_parent_family_id(family)
         if f:
-            self.AltFamilyList = [f] + self.AltFamilyList
+            self.parent_family_list = [f] + self.parent_family_list
         
-    def getMainParents(self):
+    def get_main_parents_family_id(self):
         """returns the main Family of the Person, the Family in which the
         Person is a natural born child"""
-        if len(self.AltFamilyList) == 0:
+        if len(self.parent_family_list) == 0:
             return None
         else:
-            return self.AltFamilyList[0][0]
+            return self.parent_family_list[0][0]
 
-    def getMainParentsRel(self):
+    def get_main_parents_family_idRel(self):
         """returns the main Family of the Person, the Family in which the
         Person is a natural born child"""
-        if len(self.AltFamilyList) == 0:
+        if len(self.parent_family_list) == 0:
             return (None,None,None)
         else:
-            return self.AltFamilyList[0]
+            return self.parent_family_list[0]
 
-    def setPosition(self,pos):
-        """sets a graphical location pointer for graphic display (x,y)"""
-        self.position = pos
-
-    def getPosition(self):
-        """returns a graphical location pointer for graphic display (x,y)"""
-        return self.position
-
-    def setAncestor(self, value):
+    def set_ancestor(self, value):
         """set ancestor flag and recurse"""
         self.ancestor = value
-        for (family,m,f) in self.AltFamilyList:
-            if family.Father:
-                # Don't waste time if the ancestor is already flagged.
-                # This will happen when cousins marry.
-                if not family.Father.getAncestor():
-                    family.Father.setAncestor(value)
-            if family.getMother():
-                if not family.Mother.getAncestor():
-                    family.Mother.setAncestor(value)
+#         for (fam,m,f) in self.parent_family_list:
+#             family
+#             if family.Father:
+#                 # Don't waste time if the ancestor is already flagged.
+#                 # This will happen when cousins marry.
+#                 if not family.Father.get_ancestor():
+#                     family.Father.set_ancestor(value)
+#             if family.get_mother_id():
+#                 if not family.Mother.get_ancestor():
+#                     family.Mother.set_ancestor(value)
 
-    def getAncestor(self):
+    def get_ancestor(self):
         return self.ancestor
 
-    def setLdsBaptism(self,ord):
+    def set_lds_baptism(self,ord):
         self.lds_bapt = ord
 
-    def getLdsBaptism(self):
+    def get_lds_baptism(self):
         return self.lds_bapt
 
-    def setLdsEndowment(self,ord):
+    def set_lds_endowment(self,ord):
         self.lds_endow = ord
 
-    def getLdsEndowment(self):
+    def get_lds_endowment(self):
         return self.lds_endow
 
-    def setLdsSeal(self,ord):
+    def set_lds_sealing(self,ord):
         self.lds_seal = ord
 
-    def getLdsSeal(self):
+    def get_lds_sealing(self):
         return self.lds_seal
 
-    def probablyAlive(self):
+    def probably_alive(self):
         """Returns true if the person may be alive."""
         if not self.death.is_empty ():
             return 0
-        if self.birth.getDate() != "":
-            return not_too_old(self.birth.getDateObj().get_start_date())
+        if self.birth.get_date() != "":
+            return not_too_old(self.birth.get_date_object().get_start_date())
 
         # Neither birth nor death events are available.  Try looking
         # for descendants that were born more than a lifespan ago.
@@ -1462,17 +1469,17 @@ class Person(SourceNote):
         max_generation = 60
         max_age_difference = 60
         def descendants_too_old (person, years):
-            for family in person.getFamilyList ():
-                for child in family.getChildList ():
-                    if child.birth.getDate () != "":
-                        d = SingleDate (child.birth.getDateObj ().
+            for family in person.get_family_id_list():
+                for child in family.get_child_id_list():
+                    if child.birth.get_date () != "":
+                        d = SingleDate (child.birth.get_date_object ().
                                         get_start_date ())
                         d.setYear (d.getYear () - years)
                         if not not_too_old (d):
                             return 1
 
-                    if child.death.getDate () != "":
-                        d = SingleDate (child.death.getDateObj ().
+                    if child.death.get_date () != "":
+                        d = SingleDate (child.death.get_date_object ().
                                         get_start_date ())
                         if not not_too_old (d):
                             return 1
@@ -1485,22 +1492,22 @@ class Person(SourceNote):
 
         # What about their parents?
         def parents_too_old (person, age_difference):
-            family = person.getMainParents ()
+            family = person.get_main_parents_family_id ()
             if family:
-                for parent in [family.getFather (), family.getMother ()]:
+                for parent in [family.get_father_id (), family.get_mother_id ()]:
                     if not parent:
                         continue
 
-                    if parent.birth.getDate () != "":
-                        d = SingleDate (parent.birth.getDateObj ().
+                    if parent.birth.get_date () != "":
+                        d = SingleDate (parent.birth.get_date_object ().
                                         get_start_date ())
                         d.setYear (d.getYear () + max_generation +
                                    age_difference)
                         if not not_too_old (d):
                             return 1
 
-                    if parent.death.getDate () != "":
-                        d = SingleDate (parent.death.getDateObj ().
+                    if parent.death.get_date () != "":
+                        d = SingleDate (parent.death.get_date_object ().
                                         get_start_date ())
                         d.setYear (d.getYear () + age_difference)
                         if not not_too_old (d):
@@ -1511,21 +1518,21 @@ class Person(SourceNote):
 
         # As a last resort, trying seeing if their spouse's age gives
         # any clue.
-        for family in self.getFamilyList ():
-            for spouse in [family.getFather (), family.getMother ()]:
+        for family in self.get_family_id_list ():
+            for spouse in [family.get_father_id (), family.get_mother_id ()]:
                 if not spouse:
                     continue
                 if spouse == self:
                     continue
-                if spouse.birth.getDate () != "":
-                    d = SingleDate (spouse.birth.getDateObj().
+                if spouse.birth.get_date () != "":
+                    d = SingleDate (spouse.birth.get_date_object().
                                     get_start_date ())
                     d.setYear (d.getYear () + max_age_difference)
                     if not not_too_old (d):
                         return 0
 
-                if spouse.death.getDate () != "":
-                    d = SingleDate (spouse.birth.getDateObj().
+                if spouse.death.get_date () != "":
+                    d = SingleDate (spouse.birth.get_date_object().
                                     get_start_date ())
                     d.setYear (d.getYear () - min_generation)
                     if not not_too_old (d):
@@ -1562,7 +1569,7 @@ class Event(DataObj):
             except:
                 self.witness = None
         else:
-            self.place = None
+            self.place = u''
             self.date = None
             self.description = ""
             self.name = ""
@@ -1585,13 +1592,13 @@ class Event(DataObj):
             self.witness = [value]
         
     def is_empty(self):
-        date = self.getDateObj()
-        place = self.getPlace()
+        date = self.get_date_object()
+        place = self.get_place_id()
         description = self.description
         cause = self.cause
         name = self.name
         if (not name or name == "Birth" or name == "Death") and \
-           date.isEmpty() and not place and not description and not cause:
+           date.is_empty() and not place and not description and not cause:
             return 1
         else:
             return 0
@@ -1601,7 +1608,7 @@ class Event(DataObj):
         self.name = name
         self.place = place
         self.description = description
-        self.setDate(date)
+        self.set_date(date)
         
     def are_equal(self,other):
         """returns 1 if the specified event is the same as the instance"""
@@ -1610,90 +1617,84 @@ class Event(DataObj):
         if (self.name != other.name or self.place != other.place or
             self.description != other.description or self.cause != other.cause or
             self.private != other.private or
-            compare_dates(self.getDateObj(),other.getDateObj()) or
-            len(self.getSourceRefList()) != len(other.getSourceRefList())):
+            compare_dates(self.get_date_object(),other.get_date_object()) or
+            len(self.get_source_references()) != len(other.get_source_references())):
             return 0
 
         index = 0
-        olist = other.getSourceRefList()
-        for a in self.getSourceRefList():
+        olist = other.get_source_references()
+        for a in self.get_source_references():
             if not a.are_equal(olist[index]):
                 return 0
             index = index + 1
 
         return 1
         
-    def setName(self,name):
+    def set_name(self,name):
         """sets the name of the Event"""
         self.name = name
 
-    def getName(self):
+    def get_name(self):
         """returns the name of the Event"""
         return self.name
 
-    def setPlace(self,place):
+    def set_place_id(self,place):
         """sets the Place instance of the Event"""
+        assert(type(place) == types.StringType or type(place) == types.UnicodeType)
         self.place = place
 
-    def getPlace(self):
+    def get_place_id(self):
         """returns the Place instance of the Event"""
         return self.place 
 
-    def setCause(self,cause):
+    def set_cause(self,cause):
         """sets the cause of the Event"""
         self.cause = cause
 
-    def getCause(self):
+    def get_cause(self):
         """returns the cause of the Event"""
         return self.cause 
 
-    def getPlaceName(self):
-        """returns the title of the Place associated with the Event"""
-        if self.place:
-            return self.place.get_title()
-        else:
-            return ""
-
-    def setDescription(self,description):
+    def set_description(self,description):
         """sets the description of the Event instance"""
         self.description = description
 
-    def getDescription(self) :
+    def get_description(self) :
         """returns the description of the Event instance"""
         return self.description 
 
-    def setDate(self, date) :
+    def set_date(self, date) :
         """attempts to sets the date of the Event instance"""
         if not self.date:
             self.date = Date()
         self.date.set(date)
 
-    def getDate(self) :
+    def get_date(self) :
         """returns a string representation of the date of the Event instance"""
         if self.date:
-            return self.date.getDate()
+            return self.date.get_date()
         return ""
 
-    def getPrefDate(self) :
+    def get_preferred_date(self) :
         """returns a string representation of the date of the Event instance"""
         if self.date:
-            return self.date.getDate()
+            return self.date.get_date()
         return ""
 
-    def getQuoteDate(self) :
+    def get_quote_date(self) :
         """returns a string representation of the date of the Event instance,
         enclosing the results in quotes if it is not a valid date"""
         if self.date:
-            return self.date.getQuoteDate()
+            return self.date.get_quote_date()
         return ""
 
-    def getDateObj(self):
+    def get_date_object(self):
         """returns the Date object associated with the Event"""
         if not self.date:
             self.date = Date()
        	return self.date
 
-    def setDateObj(self,date):
+    def set_date_object(self,date):
         """sets the Date object associated with the Event"""
         self.date = date
 
@@ -1727,171 +1728,164 @@ class Family(SourceNote):
     def __init__(self):
         """creates a new Family instance"""
         SourceNote.__init__(self)
-        self.Father = None
-        self.Mother = None
-        self.Children = []
-        self.Marriage = None
-        self.Divorce = None
+        father_id = None
+        self.mother_id = None
+        self.child_list = []
         self.type = "Married"
-        self.EventList = []
+        self.event_list = []
         self.id = ""
-        self.photoList = []
-        self.attributeList = []
-        self.position = None
+        self.photo_list = []
+        self.attribute_list = []
         self.lds_seal = None
         self.complete = 0
 
-    def setComplete(self,val):
+    def set_complete(self,val):
         self.complete = val
 
-    def getComplete(self):
+    def get_complete(self):
         return self.complete
 
-    def setLdsSeal(self,ord):
+    def set_lds_sealing(self,ord):
         self.lds_seal = ord
 
-    def getLdsSeal(self):
+    def get_lds_sealing(self):
         return self.lds_seal
 
-    def setPosition(self,pos):
-        """sets a graphical location pointer for graphic display (x,y)"""
-        self.position = pos
-
-    def getPosition(self):
-        """returns a graphical location pointer for graphic display (x,y)"""
-        return self.position
-
-    def addAttribute(self,attribute) :
+    def add_attribute(self,attribute) :
         """adds an Attribute instance to the attribute list"""
-        self.attributeList.append(attribute)
+        self.attribute_list.append(attribute)
 
-    def removeAttribute(self,attribute):
+    def remove_attribute(self,attribute):
         """removes the specified Attribute instance from the attribute list"""
-        if attribute in self.attributeList:
-            self.attributeList.remove(attribute)
+        if attribute in self.attribute_list:
+            self.attribute_list.remove(attribute)
 
-    def getAttributeList(self) :
+    def get_attribute_list(self) :
         """returns the attribute list"""
-        return self.attributeList
+        return self.attribute_list
 
-    def setAttributeList(self,list) :
+    def set_attribute_list(self,list) :
         """sets the attribute list to the specified list"""
-        self.attributeList = list
+        self.attribute_list = list
 
-    def setId(self,id) :
+    def set_id(self,id) :
         """sets the gramps ID for the Family"""
        	self.id = str(id)
 
-    def getId(self) :
+    def get_id(self) :
         """returns the gramps ID for the Family"""
        	return self.id
 
-    def setRelationship(self,type):
+    def set_relationship(self,type):
         """assigns a string indicating the relationship between the
         father and the mother"""
         self.type = type
 
-    def getRelationship(self):
+    def get_relationship(self):
         """returns a string indicating the relationship between the
         father and the mother"""
         return self.type
     
-    def setFather(self,person):
+    def set_father_id(self,person_id):
         """sets the father of the Family to the specfied Person"""
-        update = self.someChildIsAncestor()
-        if update and self.Father:
-            self.Father.setAncestor(0)
-        self.Father = person
-        if update and self.Father:
-            self.Father.setAncestor(1)
+        update = self.some_child_is_ancestor()
+#        if update and father_id:
+#            father_id.set_ancestor(0)
+        self.father_id = person_id
+#        if update and father_id:
+#            father_id.set_ancestor(1)
 
-    def getFather(self):
+    def get_father_id(self):
         """returns the father of the Family"""
-       	return self.Father
+       	return father_id
 
-    def setMother(self,person):
+    def set_mother_id(self,person):
         """sets the mother of the Family to the specfied Person"""
-        update = self.someChildIsAncestor()
-        if self.Mother and update:
-            self.Mother.setAncestor(0)
-        self.Mother = person
-        if update and self.Mother:
-            self.Mother.setAncestor(1)
+        update = self.some_child_is_ancestor()
+#        if self.mother_id and update:
+#            self.mother_id.set_ancestor(0)
+        self.mother_id = person
+#        if update and self.mother_id:
+#            self.mother_id.set_ancestor(1)
 
-    def getMother(self):
+    def get_mother_id(self):
         """returns the mother of the Family"""
-       	return self.Mother
+       	return self.mother_id
 
-    def addChild(self,person):
+    def add_child_id(self,person):
         """adds the specfied Person as a child of the Family, adding it
         to the child list"""
-        if person not in self.Children:
-            self.Children.append(person)
-        if person.getAncestor():
-            if self.Father:
-                self.Father.setAncestor(1)
-            if self.Mother:
-                self.Mother.setAncestor(1)
+        assert(type(person) == types.StringType or type(person) == types.UnicodeType)
+
+        if person not in self.child_list:
+            self.child_list.append(person)
+#        if person.get_ancestor():
+#            if father_id:
+#                father_id.set_ancestor(1)
+#            if self.mother_id:
+#                self.mother_id.set_ancestor(1)
             
-    def removeChild(self,person):
+    def remove_child_id(self,person):
         """removes the specified Person from the child list"""
-        if person in self.Children:
-            self.Children.remove(person)
-        if person.getAncestor():
-            if self.Father:
-                self.Father.setAncestor(0)
-            if self.Mother:
-                self.Mother.setAncestor(0)
+        assert(type(person) == types.StringType or type(person) == types.UnicodeType)
 
-    def getChildList(self):
+        if person in self.child_list:
+            self.child_list.remove(person)
+#        if person.get_ancestor():
+#            if father_id:
+#                father_id.set_ancestor(0)
+#            if self.mother_id:
+#                self.mother_id.set_ancestor(0)
+
+    def get_child_id_list(self):
         """returns the list of children"""
-        return self.Children
+        return self.child_list
 
-    def setChildList(self, list):
+    def set_child_id_list(self, list):
         """sets the list of children"""
-        self.Children = list[:]
+        self.child_list = list[:]
 
-    def getMarriage(self):
+    def get_marriage(self):
         """returns the marriage event of the Family. Obsolete"""
-        for e in self.EventList:
-            if e.getName() == "Marriage":
+        for e in self.event_list:
+            if e.get_name() == "Marriage":
                 return e
         return None
 
-    def getDivorce(self):
+    def get_divorce(self):
         """returns the divorce event of the Family. Obsolete"""
-        for e in self.EventList:
-            if e.getName() == "Divorce":
+        for e in self.event_list:
+            if e.get_name() == "Divorce":
                 return e
         return None
 
-    def addEvent(self,event):
+    def add_event(self,event):
         """adds an Event to the event list"""
-        self.EventList.append(event)
+        self.event_list.append(event)
 
-    def getEventList(self) :
+    def get_event_list(self) :
         """returns the list of Event instances"""
-        return self.EventList
+        return self.event_list
 
-    def setEventList(self,list) :
+    def set_event_list(self,list) :
         """sets the event list to the passed list"""
-        self.EventList = list
+        self.event_list = list
 
-    def addPhoto(self,photo):
+    def add_photo(self,photo):
         """Adds a Photo object to the Family instance's image list"""
-        self.photoList.append(photo)
+        self.photo_list.append(photo)
 
-    def getPhotoList(self):
+    def get_photo_list(self):
         """Returns the list of Photo objects"""
-        return self.photoList
+        return self.photo_list
 
-    def setPhotoList(self,list):
+    def set_photo_list(self,list):
         """Sets the list of Photo objects"""
-        self.photoList = list
+        self.photo_list = list
 
-    def someChildIsAncestor(self):
-        for child in self.Children:
-            if (child.getAncestor()):
+    def some_child_is_ancestor(self):
+        for child in self.child_list:
+            if (child.get_ancestor()):
                 return 1
         return None
 
@@ -1904,62 +1898,62 @@ class Source:
         self.author = ""
         self.pubinfo = ""
         self.note = Note()
-        self.photoList = []
+        self.photo_list = []
         self.id = ""
         self.abbrev = ""
         
-    def getDisplayInfo(self):
+    def get_display_info(self):
         return [self.title,self.id,self.author,self.title.upper(),self.author.upper()]
 
-    def setId(self,newId):
+    def set_id(self,newId):
         """sets the gramps' ID for the Source instance"""
         self.id = str(newId)
 
-    def getId(self):
+    def get_id(self):
         """returns the gramps' ID of the Source instance"""
         return self.id
 
-    def addPhoto(self,photo):
+    def add_photo(self,photo):
         """Adds a Photo object to the Source instance's image list"""
-        self.photoList.append(photo)
+        self.photo_list.append(photo)
 
-    def getPhotoList(self):
+    def get_photo_list(self):
         """Returns the list of Photo objects"""
-        return self.photoList
+        return self.photo_list
 
-    def setPhotoList(self,list):
+    def set_photo_list(self,list):
         """Sets the list of Photo objects"""
-        self.photoList = list
+        self.photo_list = list
 
-    def setTitle(self,title):
+    def set_title(self,title):
         """sets the title of the Source"""
         self.title = title
 
-    def getTitle(self):
+    def get_title(self):
         """returns the title of the Source"""
         return self.title
 
-    def setNote(self,text):
+    def set_note(self,text):
         """sets the text of the note attached to the Source"""
         self.note.set(text)
 
-    def getNote(self):
+    def get_note(self):
         """returns the text of the note attached to the Source"""
         return self.note.get()
 
-    def setNoteFormat(self,val):
+    def set_note_format(self,val):
         """Set the note's format to the given value"""
-        self.note.setFormat(val)
+        self.note.set_format(val)
 
-    def getNoteFormat(self):
+    def get_note_format(self):
         """Return the current note's format"""
-        return self.note.getFormat()
+        return self.note.get_format()
 
-    def setNoteObj(self,obj):
+    def set_note_object(self,obj):
         """sets the Note instance attached to the Source"""
         self.note = obj
 
-    def getNoteObj(self):
+    def get_note_object(self):
         """returns the Note instance attached to the Source"""
         return self.note
 
@@ -1967,27 +1961,27 @@ class Source:
         """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
-    def setAuthor(self,author):
+    def set_author(self,author):
         """sets the author of the Source"""
         self.author = author
 
-    def getAuthor(self):
+    def get_author(self):
         """returns the author of the Source"""
         return self.author
 
-    def setPubInfo(self,text):
+    def set_publication_info(self,text):
         """sets the publication information of the Source"""
         self.pubinfo = text
 
-    def getPubInfo(self):
+    def get_publication_info(self):
         """returns the publication information of the Source"""
         return self.pubinfo
 
-    def setAbbrev(self,abbrev):
+    def set_abbreviation(self,abbrev):
         """sets the title abbreviation of the Source"""
         self.abbrev = abbrev
 
-    def getAbbrev(self):
+    def get_abbreviation(self):
         """returns the title abbreviation of the Source"""
         return self.abbrev
 
@@ -1999,6 +1993,7 @@ class SourceRef:
         """creates a new SourceRef, copying from the source if present"""
         if source:
             self.confidence = source.confidence
+            assert(type(source.ref) == types.StringType or type(source.ref) == types.UnicodeType)
             self.ref = source.ref
             self.page = source.page
             self.date = Date(source.date)
@@ -2012,55 +2007,56 @@ class SourceRef:
             self.comments = Note()
             self.text = ""
 
-    def setConfidence(self,val):
+    def set_confidence_level(self,val):
         """Sets the confidence level"""
         self.confidence = val
 
-    def getConfidence(self):
+    def get_confidence_level(self):
         """Returns the confidence level"""
         return self.confidence
         
-    def setBase(self,ref):
+    def set_base_id(self,ref):
         """sets the Source instance to which the SourceRef refers"""
+        assert(type(ref) == types.StringType or type(ref) == types.UnicodeType)
         self.ref = ref
 
-    def getBase(self):
+    def get_base_id(self):
         """returns the Source instance to which the SourceRef refers"""
         return self.ref
     
-    def setDate(self,date):
+    def set_date(self,date):
         """sets the Date instance of the SourceRef"""
         self.date = date
 
-    def getDate(self):
+    def get_date(self):
         """returns the Date instance of the SourceRef"""
         return self.date
 
-    def setPage(self,page):
+    def set_page(self,page):
         """sets the page indicator of the SourceRef"""
         self.page = page
 
-    def getPage(self):
+    def get_page(self):
         """gets the page indicator of the SourceRef"""
         return self.page
 
-    def setText(self,text):
+    def set_text(self,text):
         """sets the text related to the SourceRef"""
         self.text = text
 
-    def getText(self):
+    def get_text(self):
         """returns the text related to the SourceRef"""
         return self.text
 
-    def setNoteObj(self,note):
+    def set_note_object(self,note):
         """Change the Note instance to obj"""
         self.comments = note
 
-    def setComments(self,comments):
+    def set_comments(self,comments):
         """sets the comments about the SourceRef"""
         self.comments.set(comments)
 
-    def getComments(self):
+    def get_comments(self):
         """returns the comments about the SourceRef"""
         return self.comments.get()
 
@@ -2071,9 +2067,9 @@ class SourceRef:
                 return 0
             if compare_dates(self.date,other.date) != 0:
                 return 0
-            if self.getText() != other.getText():
+            if self.get_text() != other.get_text():
                 return 0
-            if self.getComments() != other.getComments():
+            if self.get_comments() != other.get_comments():
                 return 0
             if self.confidence != other.confidence:
                 return 0
@@ -2092,7 +2088,7 @@ class GenderStats:
         self.stats = {}
 
     def _get_key (self, person):
-        name = person.getPrimaryName ().getFirstName ()
+        name = person.get_primary_name ().get_first_name ()
         return self._get_key_from_name (name)
 
     def _get_key_from_name (self, name):
@@ -2111,7 +2107,7 @@ class GenderStats:
         if not name:
             return
 
-        gender = person.getGender ()
+        gender = person.get_gender ()
         (male, female, unknown) = self.name_stats (name)
         if not undo:
             increment = 1
@@ -2158,12 +2154,12 @@ class GrampsDB:
     def __init__(self):
         """creates a new GrampsDB"""
         self.surnames = []
-        self.personMap = {}
-        self.placeTable = {}
-        self.placeMap = {}
-        self.sourceTable = {}
-        self.sourceMap = {}
-        self.familyMap = {}
+        self.person_map = {}
+        self.place_table = {}
+        self.place_map = {}
+        self.source_table = {}
+        self.source_map = {}
+        self.family_map = {}
         self.iprefix = "I%d"
         self.sprefix = "S%d"
         self.oprefix = "O%d"
@@ -2191,37 +2187,37 @@ class GrampsDB:
     def need_autosave(self):
         return 1
 
-    def getPersonLength(self):
-        return len(self.personMap)
+    def get_number_of_people(self):
+        return len(self.person_map)
 
-    def getPersonKeys(self):
-        return self.personMap.keys()
+v    def get_person_keys(self):
+        return self.person_map.keys()
 
-    def sortbyname(self,f,s):
-        n1 = self.personMap[f].PrimaryName.sname
-        n2 = self.personMap[s].PrimaryName.sname
+    def sort_by_name(self,f,s):
+        n1 = self.person_map[f].primary_name.sname
+        n2 = self.person_map[s].primary_name.sname
         return cmp(n1,n2)
 
-    def sortPersonKeys(self):
-        keys = self.personMap.keys()
+    def sort_person_keys(self):
+        keys = self.person_map.keys()
         if type(keys) == type([]):
-            keys.sort(self.sortbyname)
+            keys.sort(self.sort_by_name)
         return keys
 
-    def getPersonDisplay(self,key):
-        return self.personMap[key].getDisplayInfo()
+    def get_person_display(self,key):
+        return self.person_map[key].get_display_info()
 
-    def buildPersonDisplay(self,nkey,okey=None):
-        person = self.personMap[nkey]
-        self.addSurname(person.getPrimaryName().getSurname())
+    def build_person_display(self,nkey,okey=None):
+        person = self.person_map[nkey]
+        self.add_surname(person.get_primary_name().get_surname())
 
-    def rebuildPersonTable(self):
+    def rebuild_person_table(self):
         pass
         
-    def buildPlaceDisplay(self,nkey,okey=None):
+    def build_place_display(self,nkey,okey=None):
         if okey and nkey != okey:
-            del self.placeTable[okey]
-        self.placeTable[nkey] = self.placeMap[nkey].getDisplayInfo()
+            del self.place_table[okey]
+        self.place_table[nkey] = self.place_map[nkey].get_display_info()
         
     def set_iprefix(self,val):
         if val:
@@ -2272,28 +2268,28 @@ class GrampsDB:
         """initializes the GrampsDB to empty values"""
 
         # eliminate memory reference cycles for 1.5.2 garbage collection 
-        for f in self.familyMap.values():
+        for f in self.family_map.values():
             f.Father = None
             f.Mother = None
             f.Children = []
-        self.familyMap = {}
+        self.family_map = {}
 
-        for p in self.personMap.values():
-            p.clearAltFamilyList()
-            p.clearFamilyList()
+        for p in self.person_map.values():
+            p.clear_parent_family_id_list()
+            p.clear_family_id_list()
 
         self.surnames = []
-        self.personMap = {}
-        self.sourceMap = {}
-        self.sourceTable = {}
-        self.placeMap  = {}
-        self.placeTable = {}
-        self.objectMap = {}
-        self.smapIndex = 0
-        self.pmapIndex = 0
-        self.fmapIndex = 0
-        self.lmapIndex = 0
-        self.omapIndex = 0
+        self.person_map = {}
+        self.source_map = {}
+        self.source_table = {}
+        self.place_map  = {}
+        self.place_table = {}
+        self.object_map = {}
+        self.smap_index = 0
+        self.pmap_index = 0
+        self.fmap_index = 0
+        self.lmap_index = 0
+        self.omap_index = 0
         self.default = None
         self.owner = Researcher()
         self.bookmarks = []
@@ -2301,15 +2297,15 @@ class GrampsDB:
         self.place2title = {}
         self.genderStats = GenderStats ()
 
-    def getSurnames(self):
+    def get_surnames(self):
         return self.surnames
 
-    def addSurname(self,name):
+    def add_surname(self,name):
         if name and name not in self.surnames:
             self.surnames.append(name)
             self.surnames.sort()
     
-    def getBookmarks(self):
+    def get_bookmarks(self):
         """returns the list of Person instances in the bookmarks"""
         return self.bookmarks
 
@@ -2320,153 +2316,153 @@ class GrampsDB:
             new_bookmarks.append(person)
         self.bookmarks = new_bookmarks
             
-    def setResearcher(self,owner):
+    def set_researcher(self,owner):
         """sets the information about the owner of the database"""
-        self.owner.set(owner.getName(),owner.getAddress(),owner.getCity(),\
-                       owner.getState(),owner.getCountry(),\
-                       owner.getPostalCode(),owner.getPhone(),owner.getEmail())
+        self.owner.set(owner.get_name(),owner.get_address(),owner.get_city(),\
+                       owner.get_state(),owner.get_country(),\
+                       owner.get_postal_code(),owner.get_phone(),owner.get_email())
 
-    def getResearcher(self):
+    def get_researcher(self):
         """returns the Researcher instance, providing information about
         the owner of the database"""
         return self.owner
 
-    def setDefaultPerson(self,person):
+    def set_default_person(self,person):
         """sets the default Person to the passed instance"""
         if (self.default):
-            self.default.setAncestor(0)
+            self.default.set_ancestor(0)
         self.default = person
         if person:
-            self.default.setAncestor(1)
+            self.default.set_ancestor(1)
     
-    def getDefaultPerson(self):
+    def get_default_person(self):
         """returns the default Person of the database"""
         return self.default
 
-    def getPerson(self,id):
+    def get_person(self,id):
         """returns a map of gramps's IDs to Person instances"""
-        return self.personMap[id]
+        return self.person_map[id]
 
-    def getPersonMap(self):
+    def get_person_id_map(self):
         """returns a map of gramps's IDs to Person instances"""
-        return self.personMap
+        return self.person_map
 
-    def setPersonMap(self,map):
+    def set_person_id_map(self,map):
         """sets the map of gramps's IDs to Person instances"""
         # Should recalculate self.genderStats here.
-        self.personMap = map
+        self.person_map = map
 
-    def getPlaceMap(self):
+    def get_place_id_map(self):
         """returns a map of gramps's IDs to Place instances"""
-        return self.placeMap
+        return self.place_map
 
-    def setPlaceMap(self,map):
+    def set_place_id_map(self,map):
         """sets the map of gramps's IDs to Place instances"""
-        self.placeMap = map
+        self.place_map = map
 
-    def getFamilyMap(self):
+    def get_family_id_map(self):
         """returns a map of gramps's IDs to Family instances"""
-        return self.familyMap
+        return self.family_map
 
-    def getFamily(self,id):
+    def get_family_id(self,id):
         """returns a map of gramps's IDs to Family instances"""
-        return self.familyMap[id]
+        return self.family_map[id]
 
-    def setFamilyMap(self,map):
+    def set_family_id_map(self,map):
         """sets the map of gramps's IDs to Family instances"""
-        self.familyMap = map
+        self.family_map = map
 
-    def getSourceMap(self):
+    def get_source_map(self):
         """returns a map of gramps's IDs to Source instances"""
-        return self.sourceMap
+        return self.source_map
 
-    def getObjectMap(self):
+    def get_object_map(self):
         """returns a map of gramps's IDs to Object instances"""
-        return self.objectMap
+        return self.object_map
 
-    def getSavePath(self):
+    def get_save_path(self):
         """returns the save path of the file, or "" if one does not exist"""
         return self.path
 
-    def setSavePath(self,path):
+    def set_save_path(self,path):
         """sets the save path for the database"""
         self.path = path
 
-    def getPersonEventTypes(self):
+    def get_person_event_types(self):
         """returns a list of all Event types assocated with Person
         instances in the database"""
         map = {}
-        for person in self.personMap.values():
-            for event in person.getEventList():
-                map[event.getName()] = 1
+        for person in self.person_map.values():
+            for event in person.get_event_list():
+                map[event.get_name()] = 1
         return map.keys()
 
-    def getPersonAttributeTypes(self):
+    def get_person_attribute_types(self):
         """returns a list of all Attribute types assocated with Person
         instances in the database"""
         map = {}
-        for key in self.personMap.keys():
-            person = self.personMap[key]
-            for attr in person.getAttributeList():
-                map[attr.getType()] = 1
+        for key in self.person_map.keys():
+            person = self.person_map[key]
+            for attr in person.get_attribute_list():
+                map[attr.get_type()] = 1
         return map.keys()
 
-    def getFamilyAttributeTypes(self):
+    def get_family_attribute_types(self):
         """returns a list of all Attribute types assocated with Family
         instances in the database"""
         map = {}
-        for family in self.familyMap.values():
-            for attr in family.getAttributeList():
-                map[attr.getType()] = 1
+        for family in self.family_map.values():
+            for attr in family.get_attribute_list():
+                map[attr.get_type()] = 1
         return map.keys()
 
-    def getFamilyEventTypes(self):
+    def get_family_event_types(self):
         """returns a list of all Event types assocated with Family
         instances in the database"""
         map = {}
-        for family in self.familyMap.values():
-            for attr in family.getEventList():
-                map[attr.getName()] = 1
+        for family in self.family_map.values():
+            for attr in family.get_event_list():
+                map[attr.get_name()] = 1
         return map.keys()
 
-    def getPlaces(self):
+    def get_place_ids(self):
         """returns a list of Place instances"""
-        return self.placeMap.values()
+        return self.place_map.values()
 
-    def getFamilyRelationTypes(self):
+    def get_family_relation_types(self):
         """returns a list of all relationship types assocated with Family
         instances in the database"""
         map = {}
-        for family in self.familyMap.values():
-            map[family.getRelationship()] = 1
+        for family in self.family_map.values():
+            map[family.get_relationship()] = 1
         return map.keys()
 
-    def removePerson(self,id):
-        self.genderStats.uncount_person (self.personMap[id])
-        del self.personMap[id]
+    def remove_person_id(self,id):
+        self.genderStats.uncount_person (self.person_map[id])
+        del self.person_map[id]
 
-    def removeSource(self,id):
-        del self.sourceMap[id]
-        del self.sourceTable[id]
+    def remove_source_id(self,id):
+        del self.source_map[id]
+        del self.source_table[id]
 
-    def addPersonAs(self,person):
-        self.personMap[person.getId()] = person
+    def add_person_as(self,person):
+        self.person_map[person.get_id()] = person
         self.genderStats.count_person (person, self)
-        return person.getId()
+        return person.get_id()
     
-    def addPerson(self,person):
+    def add_person(self,person):
         """adds a Person to the database, assigning a gramps' ID"""
-        index = self.iprefix % self.pmapIndex
-        while self.personMap.has_key(index):
-            self.pmapIndex = self.pmapIndex + 1
-            index = self.iprefix % self.pmapIndex
-        person.setId(index)
-        self.personMap[index] = person
-        self.pmapIndex = self.pmapIndex + 1
+        index = self.iprefix % self.pmap_index
+        while self.person_map.has_key(index):
+            self.pmap_index = self.pmap_index + 1
+            index = self.iprefix % self.pmap_index
+        person.set_id(index)
+        self.person_map[index] = person
+        self.pmap_index = self.pmap_index + 1
         self.genderStats.count_person (person, self)
         return index
 
-    def findPerson(self,idVal,map):
+    def find_person(self,idVal,map):
         """finds a Person in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Person exists, a new Person instance
@@ -2477,207 +2473,190 @@ class GrampsDB:
 
         idVal = str(idVal)
         if map.has_key(idVal):
-            person = self.personMap[map[idVal]]
+            person = self.person_map[map[idVal]]
         else:
             person = Person()
-            map[idVal] = self.addPerson(person)
+            map[idVal] = self.add_person(person)
             self.genderStats.count_person (person, self)
         return person
 
-    def findPersonNoMap(self,val):
+    def find_person_from_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
         
-        person = self.personMap.get(val)
+        person = self.person_map.get(val)
         if not person:
             person = Person()
             person.id = val
-            self.personMap[val] = person
-            self.pmapIndex = self.pmapIndex+1
+            self.person_map[val] = person
+            self.pmap_index = self.pmap_index+1
             self.genderStats.count_person (person, self)
         return person
 
-    def addPersonNoMap(self,person,id):
+    def add_person_no_map(self,person,id):
         """adds a Person to the database if the gramps' ID is known"""
         
         id = str(id)
-        person.setId(id)
-        self.personMap[id] = person
-        self.pmapIndex = self.pmapIndex+1
+        person.set_id(id)
+        self.person_map[id] = person
+        self.pmap_index = self.pmap_index+1
         self.genderStats.count_person (person, self)
         return id
 
-    def addSource(self,source):
+    def add_source(self,source):
         """adds a Source instance to the database, assigning it a gramps'
         ID number"""
         
-        index = self.sprefix % self.smapIndex
-        while self.sourceMap.has_key(index):
-            self.smapIndex = self.smapIndex + 1
-            index = self.sprefix % self.smapIndex
-        source.setId(index)
-        self.sourceMap[index] = source
-        self.sourceTable[index] = source.getDisplayInfo()
-        self.smapIndex = self.smapIndex + 1
+        index = self.sprefix % self.smap_index
+        while self.source_map.has_key(index):
+            self.smap_index = self.smap_index + 1
+            index = self.sprefix % self.smap_index
+        source.set_id(index)
+        self.source_map[index] = source
+        self.source_table[index] = source.get_display_info()
+        self.smap_index = self.smap_index + 1
         return index
 
-    def addSourceNoMap(self,source,index):
+    def add_source_no_map(self,source,index):
         """adds a Source to the database if the gramps' ID is known"""
-        source.setId(index)
-        self.sourceMap[index] = source
-        self.smapIndex = self.smapIndex + 1
-        self.sourceTable[index] = source.getDisplayInfo()
+        source.set_id(index)
+        self.source_map[index] = source
+        self.smap_index = self.smap_index + 1
+        self.source_table[index] = source.get_display_info()
         return index
 
-    def findSource(self,idVal,map):
+    def find_source(self,idVal,map):
         """finds a Source in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Source exists, a new Source instance
         is created.
 
         idVal - external ID number
-        map - map build by findSource of external to gramp's IDs"""
+        map - map build by find_source of external to gramp's IDs"""
         
         if map.has_key(idVal):
-            source = self.sourceMap[map[idVal]]
+            source = self.source_map[map[idVal]]
         else:
             source = Source()
-            map[idVal] = self.addSource(source)
-            self.sourceTable[map[idVal]] = source.getDisplayInfo()
+            map[idVal] = self.add_source(source)
+            self.source_table[map[idVal]] = source.get_display_info()
         return source
 
-    def findSourceNoMap(self,val):
+    def find_source_from_id(self,val):
         """finds a Source in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
 
-        if self.sourceMap.has_key(val):
-            source = self.sourceMap[val]
+        if self.source_map.has_key(val):
+            source = self.source_map[val]
         else:
             source = Source()
-            self.addSourceNoMap(source,val)
-            self.sourceTable[val] = source.getDisplayInfo()
+            self.add_source_no_map(source,val)
+            self.source_table[val] = source.get_display_info()
         return source
 
-    def addObject(self,object):
+    def add_object(self,object):
         """adds an Object instance to the database, assigning it a gramps'
         ID number"""
         
-        index = self.oprefix % self.omapIndex
-        while self.objectMap.has_key(index):
-            self.omapIndex = self.omapIndex + 1
-            index = self.oprefix % self.omapIndex
-        object.setId(index)
-        self.objectMap[index] = object
-        self.omapIndex = self.omapIndex + 1
+        index = self.oprefix % self.omap_index
+        while self.object_map.has_key(index):
+            self.omap_index = self.omap_index + 1
+            index = self.oprefix % self.omap_index
+        object.set_id(index)
+        self.object_map[index] = object
+        self.omap_index = self.omap_index + 1
         self.added_files.append(object)
         
         return index
 
-    def getObject(self,id):
-        return self.objectMap[id]
+    def get_object(self,id):
+        return self.object_map[id]
 
-    def findObject(self,idVal,map):
+    def find_object(self,idVal,map):
         """finds an Object in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Object exists, a new Object instance
         is created.
 
         idVal - external ID number
-        map - map build by findObject of external to gramp's IDs"""
+        map - map build by find_object of external to gramp's IDs"""
         
         idVal = str(idVal)
         if map.has_key(idVal):
-            object = self.objectMap[map[idVal]]
+            object = self.object_map[map[idVal]]
         else:
             object = Photo()
-            map[idVal] = self.addObject(object)
+            map[idVal] = self.add_object(object)
         return object
 
-    def findObjectNoConflicts(self,idVal,map):
+    def find_object_no_conflicts(self,idVal,map):
         """finds an Object in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Object exists, a new Object instance
         is created.
 
         idVal - external ID number
-        map - map build by findObject of external to gramp's IDs"""
+        map - map build by find_object of external to gramp's IDs"""
         
         idVal = str(idVal)
         if map.has_key(idVal):
-            object = self.objectMap[map[idVal]]
+            object = self.object_map[map[idVal]]
         else:
             object = Photo()
-            if self.objectMap.has_key(idVal):
-                map[idVal] = self.addObject(object)
+            if self.object_map.has_key(idVal):
+                map[idVal] = self.add_object(object)
             else:
-                map[idVal] = self.addObjectNoMap(object,idVal)
+                map[idVal] = self.add_object_no_map(object,idVal)
         return object
 
-    def addObjectNoMap(self,object,index):
+    def add_object_no_map(self,object,index):
         """adds an Object to the database if the gramps' ID is known"""
         index = str(index)
-        object.setId(index)
-        self.objectMap[index] = object
-        self.omapIndex = self.omapIndex + 1
+        object.set_id(index)
+        self.object_map[index] = object
+        self.omap_index = self.omap_index + 1
         self.added_files.append(object)
         return index
 
-    def findObjectNoMap(self,idVal):
+    def find_object_from_id(self,idVal):
         """finds an Object in the database from the passed gramps' ID.
         If no such Source exists, a new Source is added to the database."""
 
         val = str(idVal)
-        if self.objectMap.has_key(val):
-            object = self.objectMap[val]
+        if self.object_map.has_key(val):
+            object = self.object_map[val]
         else:
             object = Photo()
-            self.addObjectNoMap(object,val)
+            self.add_object_no_map(object,val)
         return object
 
-    def addPlace(self,place):
+    def add_place(self,place):
         """adds a Place instance to the database, assigning it a gramps'
         ID number"""
 
-        index = self.pprefix % self.lmapIndex
-        while self.placeMap.has_key(index):
-            self.lmapIndex = self.lmapIndex + 1
-            index = self.pprefix % self.lmapIndex
-        place.setId(index)
-        self.placeMap[index] = place
-        self.lmapIndex = self.lmapIndex + 1
-        self.placeTable[index] = place.getDisplayInfo()
+        index = self.pprefix % self.lmap_index
+        while self.place_map.has_key(index):
+            self.lmap_index = self.lmap_index + 1
+            index = self.pprefix % self.lmap_index
+        place.set_id(index)
+        self.place_map[index] = place
+        self.lmap_index = self.lmap_index + 1
+        self.place_table[index] = place.get_display_info()
         return index
 
-    def removeObject(self,id):
-        del self.objectMap[id]
+    def remove_object(self,id):
+        del self.object_map[id]
 
-    def removePlace(self,id):
-        del self.placeMap[id]
-        del self.placeTable[id]
+    def remove_place(self,id):
+        del self.place_map[id]
+        del self.place_table[id]
 
-    def addPlaceAs(self,place):
-        self.placeMap[place.getId()] = place
-        self.placeTable[place.getId()] = place.getDisplayInfo()
-        return place.getId()
+    def add_place_as(self,place):
+        self.place_map[place.get_id()] = place
+        self.place_table[place.get_id()] = place.get_display_info()
+        return place.get_id()
         
-    def findPlace(self,idVal,map):
-        """finds a Place in the database using the idVal and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Place exists, a new Place instance
-        is created.
-
-        idVal - external ID number
-        map - map build by findPlace of external to gramp's IDs"""
-
-        idVal = str(idVal)
-        if map.has_key(idVal):
-            place = self.placeMap[map[idVal]]
-        else:
-            place = Place()
-            map[idVal] = self.addPlace(place)
-        return place
-
-    def findPlaceNoConflicts(self,idVal,map):
+    def find_place_no_conflicts(self,idVal,map):
         """finds a Place in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Place exists, a new Place instance
@@ -2687,140 +2666,145 @@ class GrampsDB:
         map - map build by findPlace of external to gramp's IDs"""
 
         if map.has_key(idVal):
-            place = self.placeMap[map[idVal]]
+            place = self.place_map[map[idVal]]
         else:
             place = Place()
-            if self.placeMap.has_key(idVal):
-                map[idVal] = self.addPlace(place)
+            if self.place_map.has_key(idVal):
+                map[idVal] = self.add_place(place)
             else:
-                place.setId(idVal)
-                map[idVal] = self.addPlaceAs(place)
+                place.set_id(idVal)
+                map[idVal] = self.add_place_as(place)
         return place
 
-    def addPlaceNoMap(self,place,index):
+    def add_place_no_map(self,place,index):
         """adds a Place to the database if the gramps' ID is known"""
 
         index = str(index)
-        place.setId(index)
-        self.placeMap[index] = place
-        self.lmapIndex = self.lmapIndex + 1
-        self.placeTable[index] = place.getDisplayInfo()
+        place.set_id(index)
+        self.place_map[index] = place
+        self.lmap_index = self.lmap_index + 1
+        self.place_table[index] = place.get_display_info()
         return index
 
-    def findPlaceNoMap(self,val):
+    def find_place_from_id(self,val):
         """finds a Place in the database from the passed gramps' ID.
         If no such Place exists, a new Place is added to the database."""
 
-        place = self.placeMap.get(val)
+        place = self.place_map.get(val)
         if not place:
             place = Place()
             place.id = val
-            self.placeMap[val] = place
-            self.lmapIndex = self.lmapIndex + 1
-            self.placeTable[val] = place.getDisplayInfo()
+            self.place_map[val] = place
+            self.lmap_index = self.lmap_index + 1
+            self.place_table[val] = place.get_display_info()
         return place
 
     def sortbyplace(self,f,s):
-        return cmp(self.placeTable[f][7],self.placeTable[s][7])
+        return cmp(self.place_table[f][7],self.place_table[s][7])
 
-    def sortPlaceKeys(self):
-        keys = self.placeTable.keys()
+    def sort_place_keys(self):
+        keys = self.place_map.keys()
         if type(keys) == type([]):
             keys.sort(self.sortbyplace)
         return keys
 
-    def getPlaceKeys(self):
-        return self.placeTable.keys()
+    def get_place_id_keys(self):
+        return self.place_map.keys()
 
-    def getPlace(self,key):
-        return self.placeMap[key]
+    def get_place_id(self,key):
+        return self.place_map[key]
 
-    def getPlaceDisplay(self,key):
-        return self.placeTable[key]
+    def get_place_display(self,key):
+        return self.place_table[key]
         
-    def getSourceKeys(self):
-        return self.sourceTable.keys()
+    def get_source_keys(self):
+        return self.source_table.keys()
 
     def sortbysource(self,f,s):
-        return cmp(self.sourceTable[f][3],self.sourceTable[s][3])
+        return cmp(self.source_table[f][3],self.source_table[s][3])
 
-    def sortSourceKeys(self):
-        keys = self.sourceTable.keys()
+    def set_source_keys(self):
+        keys = self.source_table.keys()
         if type(keys) == type([]):
             keys.sort(self.sortbyplace)
         return keys
     
-    def getSourceDisplay(self,key):
-        return self.sourceTable[key]
+    def get_source_display(self,key):
+        return self.source_table[key]
 
-    def getSource(self,key):
-        return self.sourceMap[key]
+    def get_source(self,key):
+        return self.source_map[key]
 
-    def buildSourceDisplay(self,nkey,okey=None):
+    def build_source_display(self,nkey,okey=None):
         if nkey != okey and okey != None:
-            del self.sourceTable[okey]
-        if self.sourceTable.has_key(nkey):
-            del self.sourceTable[nkey]
-        self.sourceTable[nkey] = self.sourceMap[nkey].getDisplayInfo()
+            del self.source_table[okey]
+        if self.source_table.has_key(nkey):
+            del self.source_table[nkey]
+        self.source_table[nkey] = self.source_map[nkey].get_display_info()
         
-    def newFamily(self):
+    def new_family(self):
         """adds a Family to the database, assigning a gramps' ID"""
-        index = self.fprefix % self.fmapIndex
-        while self.familyMap.has_key(index):
-            self.fmapIndex = self.fmapIndex + 1
-            index = self.fprefix % self.fmapIndex
-        self.fmapIndex = self.fmapIndex + 1
+        index = self.fprefix % self.fmap_index
+        while self.family_map.has_key(index):
+            self.fmap_index = self.fmap_index + 1
+            index = self.fprefix % self.fmap_index
+        self.fmap_index = self.fmap_index + 1
         family = Family()
-        family.setId(index)
-        self.familyMap[index] = family
+        family.set_id(index)
+        self.family_map[index] = family
         return family
 
-    def newFamilyNoMap(self,id):
+    def new_family_no_map(self,id):
         """finds a Family in the database from the passed gramps' ID.
         If no such Family exists, a new Family is added to the database."""
 
         family = Family()
         id = str(id)
-        family.setId(id)
-        self.familyMap[id] = family
-        self.fmapIndex = self.fmapIndex + 1
+        family.set_id(id)
+        self.family_map[id] = family
+        self.fmap_index = self.fmap_index + 1
         return family
 
-    def findFamily(self,idVal,map):
+    def find_family_with_map(self,idVal,map):
         """finds a Family in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Family exists, a new Family instance
         is created.
 
         idVal - external ID number
-        map - map build by findFamily of external to gramp's IDs"""
+        map - map build by find_family_with_map of external to gramp's IDs"""
 
         if map.has_key(idVal):
-            family = self.familyMap[map[idVal]]
+            family = self.family_map[map[idVal]]
         else:
-            family = self.newFamily()
-            map[idVal] = family.getId()
+            family = self.new_family()
+            map[idVal] = family.get_id()
         return family
 
-    def findFamilyNoMap(self,val):
+    def find_family_no_map(self,val):
         """finds a Family in the database from the passed gramps' ID.
         If no such Family exists, a new Family is added to the database."""
 
-        family = self.familyMap.get(val)
+        family = self.family_map.get(val)
         if not family:
             family = Family()
             family.id = val
-            self.familyMap[val] = family
-            self.fmapIndex = self.fmapIndex + 1
+            self.family_map[val] = family
+            self.fmap_index = self.fmap_index + 1
         return family
 
-    def deleteFamily(self,family):
+    def find_family_from_id(self,val):
+        """finds a Family in the database from the passed gramps' ID.
+        If no such Family exists, a new Family is added to the database."""
+
+        return self.family_map.get(val)
+
+    def delete_family(self,family_id):
         """deletes the Family instance from the database"""
-        if self.familyMap.has_key(family.getId()):
-            del self.familyMap[family.getId()]
+        if self.family_map.has_key(family_id):
+            del self.family_map[family_id]
 
-
-    def findPersonNoConflicts(self,idVal,map):
+    def find_person_no_conflicts(self,idVal,map):
         """finds a Person in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Person exists, a new Person instance
@@ -2830,17 +2814,17 @@ class GrampsDB:
         map - map build by findPerson of external to gramp's IDs"""
 
         if map.has_key(idVal):
-            person = self.personMap[map[idVal]]
+            person = self.person_map[map[idVal]]
         else:
             person = Person()
-            if self.personMap.has_key(idVal):
-                map[idVal] = self.addPerson(person)
+            if self.person_map.has_key(idVal):
+                map[idVal] = self.add_person(person)
             else:
-                person.setId(idVal)
-                map[idVal] = self.addPersonAs(person)
+                person.set_id(idVal)
+                map[idVal] = self.add_person_as(person)
         return person
 
-    def findFamilyNoConflicts(self,idVal,map):
+    def find_family_no_conflicts(self,idVal,map):
         """finds a Family in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Family exists, a new Family instance
@@ -2850,16 +2834,16 @@ class GrampsDB:
         map - map build by findFamily of external to gramp's IDs"""
 
         if map.has_key(idVal):
-            family = self.familyMap[map[idVal]]
+            family = self.family_map[map[idVal]]
         else:
-            if self.familyMap.has_key(idVal):
-                family = self.newFamily()
+            if self.family_map.has_key(idVal):
+                family = self.new_family()
             else:
-                family = self.newFamilyNoMap(idVal)
-            map[idVal] = family.getId()
+                family = self.new_family_no_map(idVal)
+            map[idVal] = family.get_id()
         return family
 
-    def findSourceNoConflicts(self,idVal,map):
+    def find_source_no_conflicts(self,idVal,map):
         """finds a Source in the database using the idVal and map
         variables to translate between the external ID and gramps'
         internal ID. If no such Source exists, a new Source instance
@@ -2869,11 +2853,11 @@ class GrampsDB:
         map - map build by findSource of external to gramp's IDs"""
         
         if map.has_key(idVal):
-            source = self.sourceMap[map[idVal]]
+            source = self.source_map[map[idVal]]
         else:
             source = Source()
-            if self.sourceMap.has_key(idVal):
-                map[idVal] = self.addSource(source)
+            if self.source_map.has_key(idVal):
+                map[idVal] = self.add_source(source)
             else:
-                map[idVal] = self.addSource(source)
+                map[idVal] = self.add_source(source)
         return source

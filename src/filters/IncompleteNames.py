@@ -27,8 +27,8 @@ class IncompleteNames(Filter.Filter):
     "People with incomplete names"
 
     def match(self,person):
-        name = person.getPrimaryName()
-        return name.getFirstName() == "" or name.getSurname() == ""
+        name = person.get_primary_name()
+        return name.get_first_name() == "" or name.get_surname() == ""
 
 #------------------------------------------------------------------------
 #

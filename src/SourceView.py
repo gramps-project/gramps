@@ -113,8 +113,8 @@ class SourceView:
                                    gobject.TYPE_STRING)
         self.map = {}
         
-        for key in self.db.getSourceKeys():
-            val = self.db.getSourceDisplay(key)
+        for key in self.db.get_source_keys():
+            val = self.db.get_source_display(key)
                 
             iter = self.model.append()
             self.map[val[1]] = iter
@@ -127,7 +127,7 @@ class SourceView:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store,iter = self.selection.get_selected()
             id = store.get_value(iter,1)
-            source = self.db.getSource(id)
+            source = self.db.get_source(id)
             EditSource.EditSource(source,self.db,self.topWindow,self.update_display)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
@@ -170,58 +170,58 @@ class SourceView:
             return
         
         id = store.get_value(iter,1)
-        source = self.db.getSource(id)
+        source = self.db.get_source(id)
 
         if self.is_used(source):
             ans = EditSource.DelSrcQuery(source,self.db,self.update)
 
-            QuestionDialog(_('Delete %s?') % source.getTitle(),
+            QuestionDialog(_('Delete %s?') % source.get_title(),
                            _('This source is currently being used. Deleting it '
                              'will remove it from the database and from all '
                              'records that reference it.'),
                            _('_Delete Source'),
                            ans.query_response,self.topWindow)
         else:
-            self.db.removeSource(source.getId())
+            self.db.remove_source_id(source.get_id())
             Utils.modified()
             self.update(0)
 
     def is_used(self,source):
-        for key in self.db.getPlaceKeys():
-            p = self.db.getPlace(key)
-            for sref in p.getSourceRefList():
-                if sref.getBase() == source:
+        for key in self.db.get_place_id_keys():
+            p = self.db.get_place_id(key)
+            for sref in p.get_source_references():
+                if sref.get_base_id() == source.get_id():
                     return 1
-        for key in self.db.getPersonKeys():
-            p = self.db.getPerson(key)
-            for v in p.getEventList() + [p.getBirth(), p.getDeath()]:
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == source:
+        for key in self.db.get_person_keys():
+            p = self.db.get_person(key)
+            for v in p.get_event_list() + [p.get_birth(), p.get_death()]:
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == source.get_id():
                         return 1
-            for v in p.getAttributeList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == source:
+            for v in p.get_attribute_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == source.get_id():
                         return 1
-            for v in p.getAlternateNames() + [p.getPrimaryName()]:
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == source:
+            for v in p.get_alternate_names() + [p.get_primary_name()]:
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == source.get_id():
                         return 1
-            for v in p.getAddressList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == source:
+            for v in p.get_address_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == source.get_id():
                         return 1
-        for p in self.db.getObjectMap().values():
-            for sref in p.getSourceRefList():
-                if sref.getBase() == source:
+        for p in self.db.get_object_map().values():
+            for sref in p.get_source_references():
+                if sref.get_base_id() == source.get_id():
                     return 1
-        for p in self.db.getFamilyMap().values():
-            for v in p.getEventList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == source:
+        for p in self.db.get_family_id_map().values():
+            for v in p.get_event_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == source.get_id():
                         return 1
-            for v in p.getAttributeList():
-                for sref in v.getSourceRefList():
-                    if sref.getBase() == source:
+            for v in p.get_attribute_list():
+                for sref in v.get_source_references():
+                    if sref.get_base_id() == source.get_id():
                         return 1
         return 0
 
@@ -229,14 +229,14 @@ class SourceView:
         list_store, iter = self.selection.get_selected()
         if iter:
             id = list_store.get_value(iter,1)
-            source = self.db.getSource(id)
+            source = self.db.get_source(id)
             EditSource.EditSource(source, self.db, self.topWindow, self.update_display)
 
     def new_after_edit(self,source):
-        self.db.addSource(source)
+        self.db.add_source(source)
         self.update(0)
 
     def update_display(self,place):
-        self.db.buildSourceDisplay(place.getId())
+        self.db.build_source_display(place.get_id())
         self.update(0)
 

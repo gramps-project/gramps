@@ -29,7 +29,7 @@ class IsComplete(Filter.Filter):
     "People with complete information"
 
     def match(self,person):
-        return person.getComplete() == 1
+        return person.get_complete() == 1
 
 #------------------------------------------------------------------------
 #

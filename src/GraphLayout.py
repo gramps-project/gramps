@@ -51,8 +51,8 @@ class DescendLine(GraphLayout):
         if pos > self.maxy:
             self.maxy = pos
             
-        for family in person.getFamilyList():
-            for child in family.getChildList():
+        for family in person.get_family_id_list():
+            for child in family.get_child_id_list():
                 self.space_for(child,level+1.0,pos)
                 pos = pos + max(self.depth(child),1)
                 if pos > self.maxy:
@@ -60,8 +60,8 @@ class DescendLine(GraphLayout):
         self.elist.pop()
         
     def depth(self,person,val=0):
-        for family in person.getFamilyList():
-            clist = family.getChildList()
+        for family in person.get_family_id_list():
+            clist = family.get_child_id_list()
             val = val + len(clist)
             for child in clist:
                 d=self.depth(child)

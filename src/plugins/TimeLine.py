@@ -184,10 +184,10 @@ class TimeLine:
         self.plist.sort(self.sort_func)
         
         for p in self.plist:
-            b = p.getBirth().getDateObj().getYear()
-            d = p.getDeath().getDateObj().getYear()
+            b = p.get_birth().get_date_object().getYear()
+            d = p.get_death().get_date_object().getYear()
 
-            n = p.getPrimaryName().getName()
+            n = p.get_primary_name().get_name()
             self.d.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
             
             y1 = self.header + (pad+incr)*index
@@ -269,11 +269,11 @@ class TimeLine:
         low  =  999999
 	high = -999999
 	
-        self.plist = self.filter.apply(self.db,self.db.getPersonMap().values())
+        self.plist = self.filter.apply(self.db,self.db.get_person_id_map().values())
 
 	for p in self.plist:
-	    b = p.getBirth().getDateObj().getYear()
-	    d = p.getDeath().getDateObj().getYear()
+	    b = p.get_birth().get_date_object().getYear()
+	    d = p.get_death().get_date_object().getYear()
 
 	    if b != Date.UNDEF:
 	       low = min(low,b)
@@ -294,14 +294,14 @@ class TimeLine:
         return (low,high)
 
     def name_size(self):
-        self.plist = self.filter.apply(self.db,self.db.getPersonMap().values())
+        self.plist = self.filter.apply(self.db,self.db.get_person_id_map().values())
 
         style_name = self.d.draw_styles['TLG-text'].get_paragraph_style()
         font = self.d.style_list[style_name].get_font()
         
         size = 0
 	for p in self.plist:
-            n = p.getPrimaryName().getName()
+            n = p.get_primary_name().get_name()
             size = max(FontScale.string_width(font,n),size)
         return pt2cm(size)
 
@@ -347,7 +347,7 @@ def _make_default_style(default_style):
 def _get_report_filters(person):
     """Set up the list of possible content filters."""
 
-    name = person.getPrimaryName().getName()
+    name = person.get_primary_name().get_name()
         
     all = GenericFilter.GenericFilter()
     all.set_name(_("Entire Database"))
@@ -355,15 +355,15 @@ def _get_report_filters(person):
 
     des = GenericFilter.GenericFilter()
     des.set_name(_("Descendants of %s") % name)
-    des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+    des.add_rule(GenericFilter.IsDescendantOf([person.get_id()]))
 
     ans = GenericFilter.GenericFilter()
     ans.set_name(_("Ancestors of %s") % name)
-    ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+    ans.add_rule(GenericFilter.IsAncestorOf([person.get_id()]))
 
     com = GenericFilter.GenericFilter()
     com.set_name(_("People with common ancestor with %s") % name)
-    com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+    com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_id()]))
 
     return [all,des,ans,com]
 
@@ -432,7 +432,7 @@ class TimeLineDialog(Report.DrawReportDialog):
         self.add_option(_('Sort by'),self.sort_style)
 
         self.title_box = gtk.Entry()
-        self.title_box.set_text(self.get_header(self.person.getPrimaryName().getName()))
+        self.title_box.set_text(self.get_header(self.person.get_primary_name().get_name()))
         self.title_box.show()
         self.add_option(_('Title'),self.title_box)
         
@@ -516,7 +516,7 @@ class TimeLineBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -600,7 +600,7 @@ class TimeLineBareDialog(Report.BareReportDialog):
         self.sort_func_num = self.sort_style.get_history()
         self.title_str = unicode(self.title_box.get_text())
 
-        self.options = ( self.person.getId(), self.filter_num, 
+        self.options = ( self.person.get_id(), self.filter_num, 
             self.sort_func_num, self.title_str )
         self.style_name = self.selected_style.get_name()
 
@@ -614,7 +614,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         filter_num = int(options[1])
         filters = _get_report_filters(person)
         afilter = filters[filter_num]

@@ -75,10 +75,10 @@ def ancestors_of(p1,list):
     if p1 == None or p1 in list:
         return
     list.append(p1)
-    f1 = p1.getMainParents()
+    f1 = p1.get_main_parents_family_id()
     if f1 != None:
-        ancestors_of(f1.getFather(),list)
-        ancestors_of(f1.getMother(),list)
+        ancestors_of(f1.get_father_id(),list)
+        ancestors_of(f1.get_mother_id(),list)
 
 #-------------------------------------------------------------------------
 #
@@ -98,8 +98,8 @@ class Merge:
         self.update = callback
         self.use_soundex = 1
 
-        self.family_list = database.getFamilyMap().values()[:]
-        self.person_list = database.getPersonMap().values()[:]
+        self.family_list = database.get_family_id_map().values()[:]
+        self.person_list = database.get_person_id_map().values()[:]
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"merge.glade")
@@ -156,29 +156,29 @@ class Merge:
         males = {}
         females = {}
         for p1 in self.person_list:
-            key = self.gen_key(p1.getPrimaryName().getSurname())
-            if p1.getGender() == RelLib.Person.male:
+            key = self.gen_key(p1.get_primary_name().get_surname())
+            if p1.get_gender() == RelLib.Person.male:
                 if males.has_key(key):
-                    males[key].append(p1.getId())
+                    males[key].append(p1.get_id())
                 else:
-                    males[key] = [p1.getId()]
+                    males[key] = [p1.get_id()]
             else:
                 if females.has_key(key):
-                    females[key].append(p1.getId())
+                    females[key].append(p1.get_id())
                 else:
-                    females[key] = [p1.getId()]
+                    females[key] = [p1.get_id()]
                 
         length = len(self.person_list)
 
         num = 0
         for p1 in self.person_list:
-            p1key = p1.getId()
+            p1key = p1.get_id()
             if num % 25 == 0:
                 self.progress_update((float(num)/float(length))*100)
             num = num + 1
 
-            key = self.gen_key(p1.getPrimaryName().getSurname())
-            if p1.getGender() == RelLib.Person.male:
+            key = self.gen_key(p1.get_primary_name().get_surname())
+            if p1.get_gender() == RelLib.Person.male:
                 remaining = males[key]
             else:
                 remaining = females[key]
@@ -188,7 +188,7 @@ class Merge:
                 index = index + 1
                 if p1key == p2key:
                     continue
-                p2 = self.db.getPerson(p2key)
+                p2 = self.db.get_person(p2key)
                 if self.map.has_key(p2key):
                     (v,c) = self.map[p2key]
                     if v == p1:
@@ -235,19 +235,19 @@ class Merge:
             if self.dellist.has_key(p1):
                 continue
             (p2,c) = self.map[p1]
-            p2key = p2.getId()
+            p2key = p2.get_id()
             if self.dellist.has_key(p2key):
                 p2 = self.dellist[p2key]
             if p1 == p2:
                 continue
-            list.append((c,p1,p2.getId()))
+            list.append((c,p1,p2.get_id()))
 
         self.list.clear()
         for (c,p1,p2) in list:
             c1 = "%5.2f" % c
             c2 = "%5.2f" % (100-c)
-            pn1 = self.db.getPerson(p1).getPrimaryName().getName()
-            pn2 = self.db.getPerson(p2).getPrimaryName().getName()
+            pn1 = self.db.get_person(p1).get_primary_name().get_name()
+            pn2 = self.db.get_person(p2).get_primary_name().get_name()
             self.list.add([c, pn1, pn2,c2],(p1,p2))
 
     def on_do_merge_clicked(self,obj):
@@ -256,15 +256,15 @@ class Merge:
             return
 
         (p1,p2) = self.list.get_object(iter)
-        pn1 = self.db.getPerson(p1)
-        pn2 = self.db.getPerson(p2)
+        pn1 = self.db.get_person(p1)
+        pn2 = self.db.get_person(p2)
         MergeData.MergePeople(self.db,pn1,pn2,self.on_update)
 
     def on_update(self,p1,p2,old_id):
-        self.dellist[p2.getId()] = p1.getId()
+        self.dellist[p2.get_id()] = p1.get_id()
         for key in self.dellist.keys():
-            if self.dellist[key] == p2.getId():
-                self.dellist[key] = p1.getId()
+            if self.dellist[key] == p2.get_id():
+                self.dellist[key] = p1.get_id()
         self.redraw()
         
     def update_and_destroy(self,obj):
@@ -311,9 +311,9 @@ class Merge:
             return s1 == s2
 
     def date_match(self,date1,date2):
-        if date1.getDate() == "" or date2.getDate() == "":
+        if date1.get_date() == "" or date2.get_date() == "":
             return 0
-        if date1.getDate() == date2.getDate():
+        if date1.get_date() == date2.get_date():
             return 1
 
         if date1.isRange() or date2.isRange():
@@ -363,10 +363,10 @@ class Merge:
         if not name1 or not name:
             return 0
     
-        srn1 = name.getSurname()
-        sfx1 = name.getSuffix()
-        srn2 = name1.getSurname()
-        sfx2 = name1.getSuffix()
+        srn1 = name.get_surname()
+        sfx1 = name.get_suffix()
+        srn2 = name1.get_surname()
+        sfx2 = name1.get_suffix()
 
         if not self.name_compare(srn1,srn2):
             return -1
@@ -374,11 +374,11 @@ class Merge:
             if sfx1 != "" and sfx2 != "":
                 return -1
 
-        if name.getFirstName() == name1.getFirstName():
+        if name.get_first_name() == name1.get_first_name():
             return 1
         else:
-            list1 = string.split(name.getFirstName())
-            list2 = string.split(name1.getFirstName())
+            list1 = string.split(name.get_first_name())
+            list2 = string.split(name1.get_first_name())
 
             if len(list1) < len(list2):
                 return self.list_reduce(list1,list2)
@@ -423,34 +423,34 @@ class Merge:
         
     def compare_people(self,p1,p2):
 
-        name1 = p1.getPrimaryName()
-        name2 = p2.getPrimaryName()
+        name1 = p1.get_primary_name()
+        name2 = p2.get_primary_name()
 
         chance = self.name_match(name1,name2)
         if chance == -1  :
             return -1
 
-        birth1 = p1.getBirth()
-        death1 = p1.getDeath()
-        birth2 = p2.getBirth()
-        death2 = p2.getDeath()
+        birth1 = p1.get_birth()
+        death1 = p1.get_death()
+        birth2 = p2.get_birth()
+        death2 = p2.get_death()
 
-        value = self.date_match(birth1.getDateObj(),birth2.getDateObj()) 
+        value = self.date_match(birth1.get_date_object(),birth2.get_date_object()) 
         if value == -1 :
             return -1
         chance = chance + value
 
-        value = self.date_match(death1.getDateObj(),death2.getDateObj()) 
+        value = self.date_match(death1.get_date_object(),death2.get_date_object()) 
         if value == -1 :
             return -1
         chance = chance + value
 
-        value = self.place_match(birth1.getPlace(),birth2.getPlace()) 
+        value = self.place_match(birth1.get_place_id(),birth2.get_place_id()) 
         if value == -1 :
             return -1
         chance = chance + value
 
-        value = self.place_match(death1.getPlace(),death2.getPlace()) 
+        value = self.place_match(death1.get_place_id(),death2.get_place_id()) 
         if value == -1 :
             return -1
         chance = chance + value
@@ -465,12 +465,12 @@ class Merge:
         if p1 in ancestors:
             return -1
         
-        f1 = p1.getMainParents()
-        f2 = p2.getMainParents()
+        f1 = p1.get_main_parents_family_id()
+        f2 = p2.get_main_parents_family_id()
 
         if f1 and f2:
-            dad1 = get_name_obj(f1.getFather())
-            dad2 = get_name_obj(f2.getFather())
+            dad1 = get_name_obj(f1.get_father_id())
+            dad2 = get_name_obj(f2.get_father_id())
             
             value = self.name_match(dad1,dad2)
             
@@ -479,8 +479,8 @@ class Merge:
 
             chance = chance + value
             
-            mom1 = get_name_obj(f1.getMother())
-            mom2 = get_name_obj(f2.getMother())
+            mom1 = get_name_obj(f1.get_mother_id())
+            mom2 = get_name_obj(f2.get_mother_id())
 
             value = self.name_match(mom1,mom2)
             if value == -1:
@@ -488,11 +488,11 @@ class Merge:
             
             chance = chance + value
 
-        for f1 in p1.getFamilyList():
-            for f2 in p2.getFamilyList():
-                if p1.getGender() == RelLib.Person.female:
-                    father1 = f1.getFather()
-                    father2 = f2.getFather()
+        for f1 in p1.get_family_id_list():
+            for f2 in p2.get_family_id_list():
+                if p1.get_gender() == RelLib.Person.female:
+                    father1 = f1.get_father_id()
+                    father2 = f2.get_father_id()
                     if father1 and father2:
                         if father1 == father2:
                             chance = chance + 1
@@ -503,8 +503,8 @@ class Merge:
                             if value != -1:
                                 chance = chance + value
                 else:
-                    mother1 = f1.getMother()
-                    mother2 = f2.getMother()
+                    mother1 = f1.get_mother_id()
+                    mother2 = f2.get_mother_id()
                     if mother1 and mother2:
                         if mother1 == mother2:
                             chance = chance + 1
@@ -521,11 +521,11 @@ class Merge:
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % ( GrampsCfg.nameof(p),p.getId())
+    return "%s (%s)" % ( GrampsCfg.nameof(p),p.get_id())
 
 def get_name_obj(person):
     if person:
-        return person.getPrimaryName()
+        return person.get_primary_name()
     else:
         return None
     
@@ -547,7 +547,7 @@ def runTool(database,active_person,callback):
 #
 #-------------------------------------------------------------------------
 def by_id(p1,p2):
-    return cmp(p1.getId(),p2.getId())
+    return cmp(p1.get_id(),p2.get_id())
 
 #-------------------------------------------------------------------------
 #

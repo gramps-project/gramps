@@ -144,7 +144,7 @@ class ArgHandler:
                 if os.path.isfile(os.path.join(self.impdir_path,fn)):
                     os.remove(os.path.join(self.impdir_path,fn))
             self.parent.clear_database()
-            self.parent.db.setSavePath(self.impdir_path)
+            self.parent.db.set_save_path(self.impdir_path)
             for imp in imports:
                 print "Importing: file %s, format %s." % (imp[0],imp[1])
                 self.cl_import(imp[0],imp[1])
@@ -270,9 +270,9 @@ class ArgHandler:
             try:
                 # Write media files first, since the database may be modified 
                 # during the process (i.e. when removing object)
-                ObjectMap = self.parent.db.getObjectMap()
+                ObjectMap = self.parent.db.get_object_map()
                 for ObjectId in ObjectMap.keys():
-                    oldfile = ObjectMap[ObjectId].getPath()
+                    oldfile = ObjectMap[ObjectId].get_path()
                     base = os.path.basename(oldfile)
                     if os.path.isfile(oldfile):
                         g = open(oldfile,"rb")

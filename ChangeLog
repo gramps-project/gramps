@@ -1,3 +1,6 @@
+2004-02-13  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py, etc.: move away from references to ids
+
 2004-02-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps.1.in, doc/gramps.1: Typo. New date. 
 	* doc/gramps-manual/fr/getstart.xml: Comment out old ZODB section.
@@ -119,8 +122,15 @@
 	* doc/gramps-manual/fr/figures/*.png: Update figures.
 
 2004-01-31  Don Allingham  <dallingham@users.sourceforge.net>
+<<<<<<< ChangeLog
+<<<<<<< ChangeLog
+	* src/PeopleView.py (PeopleView.add_to_person_list): don't attempt to sort the
+	model unless it has be assigned.
+=======
+=======
 	* src/SourceView.py: handle column sorting properly
 	* src/PlaceView.py: handle column sorting properly
+>>>>>>> 1.658
 	* src/gramps_main.py: better error messages on database write failure
 	* src/WriteXML.py: better error messages on database write failure
 	* src/GrampsXML.py: better error messages on database write failure
@@ -144,9 +154,10 @@
 2004-01-31  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleView.py (PeopleView.add_to_person_list): don't attempt to sort the
 	model unless it has be assigned.
+>>>>>>> 1.655
 	* src/TransTable.py: make sure returned valued is in unicode format
 	* src/plugins/Ancestors.py: fix InverseNameTypesMap problem
-	* src/plugins/IndivComplete.py: fix InverseNameTypesMap problem
+	* src/plugins/IndivComplete.py: fix InverseNameTypesMap problem.
 
 2004-01-30  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/AncestorChart2.py (write_book_item): 
