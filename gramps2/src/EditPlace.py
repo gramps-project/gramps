@@ -119,8 +119,8 @@ class EditPlace:
         self.build_columns(self.loc_list, [(_('City'),150), (_('County'),100),
                                            (_('State'),100), (_('Country'),50)])
         self.loc_list.set_model(self.loc_model)
-        self.sel = self.loc_list.get_selection()
-        self.sel.connect('changed',self.on_loc_list_select_row)
+        self.loc_sel = self.loc_list.get_selection()
+        self.loc_sel.connect('changed',self.on_loc_list_select_row)
 
         self.title.set_text(place.get_title())
         mloc = place.get_main_location()
@@ -281,19 +281,24 @@ class EditPlace:
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
-        if len(obj.selection) > 0:
-            row = obj.selection[0]
-            if self.place:
+        store,iter = self.web_list.get_selection().get_selected()
+        if iter:
+            row = store.get_path(iter)
+            url = self.ulist[row[0]]
+            if url:
                 name = _("Internet Address Editor for %s") % self.place.get_title()
             else:
                 name = _("Internet Address Editor")
-            UrlEdit.UrlEditor(self,name,obj.get_row_data(row))
+            UrlEdit.UrlEditor(self,name,url)
 
     def on_update_loc_clicked(self,obj):
         import LocEdit
-        if obj.selection:
-            row = obj.selection[0]
-            LocEdit.LocationEditor(self,obj.get_row_data(row))
+
+        store,iter = self.loc_sel.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            loc = self.llist[row[0]]
+            LocEdit.LocationEditor(self,loc)
 
     def on_delete_url_clicked(self,obj):
         if Utils.delete_selected(obj,self.ulist):
@@ -331,14 +336,23 @@ class EditPlace:
             self.web_go.set_sensitive(1)
             self.web_description.set_text(url.get_description())
 
-    def on_loc_list_select_row(self,obj,row,b,c):
-        loc = obj.get_row_data(row)
+    def on_loc_list_select_row(self,obj):
+        store,iter = self.loc_sel.get_selected()
+        if not iter:
+            self.loc_city.set_text('')
+            self.loc_county.set_text('')
+            self.loc_state.set_text('')
+            self.loc_parish.set_text('')
+            self.loc_country.set_text('')
+        else:
+            row = store.get_path(iter)
+            loc = self.llist[row[0]]
 
-        self.loc_city.set_text(loc.get_city())
-        self.loc_county.set_text(loc.get_county())
-        self.loc_state.set_text(loc.get_state())
-        self.loc_parish.set_text(loc.get_parish())
-        self.loc_country.set_text(loc.get_country())
+            self.loc_city.set_text(loc.get_city())
+            self.loc_county.set_text(loc.get_county())
+            self.loc_state.set_text(loc.get_state())
+            self.loc_parish.set_text(loc.get_parish())
+            self.loc_country.set_text(loc.get_country())
 
     def display_references(self):
         pevent = []
