@@ -246,7 +246,7 @@
 	<figure id="druid-fig"> 
 	<title>&app; Getting Started Window: Researcher Information</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/druid.png" format="PNG"/></imageobject>
+		fileref="figures/researcher.png" format="PNG"/></imageobject>
 	<textobject> 
 	<phrase>Shows Researcher Information Window. </phrase>
 	</textobject></mediaobject></screenshot></figure>
@@ -859,7 +859,7 @@
 	<figure id="missing-media-im"> 
 	<title>Missing Media dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/druid.png" format="PNG"/></imageobject>
+		fileref="figures/missing-media.png" format="PNG"/></imageobject>
 	<textobject> 
 	<phrase>Shows Missing Media dialog.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
@@ -976,7 +976,7 @@
 	<figure id="missing-media-ex"> 
 	<title>Missing Media dialog</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/druid.png" format="PNG"/></imageobject>
+		fileref="figures/missing-media.png" format="PNG"/></imageobject>
 	<textobject> 
 	<phrase>Shows Missing Media dialog.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
