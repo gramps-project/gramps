@@ -176,7 +176,7 @@ class EditPerson:
             "on_makeprimary_clicked" : on_primary_photo_clicked,
             "on_name_list_select_row" : on_name_list_select_row,
             "on_name_note_clicked" : on_name_note_clicked,
-            "on_name_source_clicked" : on_name_source_clicked,
+            "on_name_source_clicked" : on_primary_name_source_clicked,
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_photolist_select_icon" : on_photo_select_icon,
             "on_showsource_clicked" : on_showsource_clicked,
@@ -1462,7 +1462,7 @@ def on_death_source_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_name_source_clicked(obj):
+def on_primary_name_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
     Sources.SourceEditor(epo.person.getPrimaryName(),epo.db)
 
