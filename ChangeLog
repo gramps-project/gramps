@@ -1,3 +1,19 @@
+2004-05-04  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetDescendantReport.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead.
+	* src/plugins/DetAncestralReport.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead.
+	* src/plugins/FtmStyleDescendants.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead.
+	* src/plugins/FtmStyleAncestors.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead.
+	* src/plugins/FamilyGroup.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead.
+	* src/plugins/IndivComplete.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead.
+	* src/plugins/IndivSummary.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead; Convert to db.
+
 2004-05-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetDescendantReport.py: Convert to db interface.
 	* src/plugins/DetAncestralReport.py: Translate string.
