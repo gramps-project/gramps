@@ -46,7 +46,7 @@ class NameDisplay:
         displayed in upper case.
         @type use_upper: bool
         """
-        self.use_upper = use_upper
+        self.force_upper = use_upper
 
     def use_upper(self,upper):
         """
@@ -57,7 +57,7 @@ class NameDisplay:
         displayed in upper case.
         @type upper: bool
         """
-        self.use_upper = upper
+        self.force_upper = upper
 
     def sorted(self,person):
         """
@@ -139,7 +139,7 @@ class NameDisplay:
         else:
             first = name.first_name
 
-        if self.use_upper:
+        if self.force_upper:
             last = name.surname.upper()
         else:
             last = name.surname
@@ -167,7 +167,7 @@ class NameDisplay:
         else:
             first = name.first_name
 
-        if self.use_upper:
+        if self.force_upper:
             last = name.surname.upper()
         else:
             last = name.surname

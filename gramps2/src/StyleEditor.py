@@ -88,7 +88,7 @@ class StyleListDisplay:
         self.redraw()
         if parent_window:
             self.window.set_transient_for(parent_window)
-        response = self.window.run()
+        self.window.run()
         self.window.destroy()
 
     def redraw(self):

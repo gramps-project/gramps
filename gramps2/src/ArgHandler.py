@@ -529,7 +529,6 @@ class ArgHandler:
                 print "Report name not given. Please use name=reportname"
                 os._exit(1)
 
-            found = False
             for item in PluginMgr.cl_list:
                 if name == item[0]:
                     category = item[1]
@@ -541,11 +540,10 @@ class ArgHandler:
                     else:
                         Report.cl_report(self.parent.db,name,category,
                                 report_class,options_class,options_str_dict)
-                    found = True
                     return
 
             print "Unknown report name. Available names are:"
-            for item in Plugins._cl:
+            for item in PluginMgr.cl_list:
                 print "   %s" % item[0]
         else:
             print "Unknown action: %s." % action

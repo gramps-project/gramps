@@ -46,6 +46,7 @@ import Utils
 import GrampsKeys
 import const
 import ImageSelect
+import ImgManip
 import RelImage
 import DisplayModels
 import GrampsMime
@@ -178,7 +179,7 @@ class MediaView:
         mtype = mobj.get_mime_type()
         path = mobj.get_path()
         type_name = Utils.get_mime_description(mtype)
-        image = self.db.get_thumbnail_image(mobj.get_handle())
+        image = ImgManip.get_thumbnail_image(path)
         if image != None:
             self.preview.set_from_pixbuf(image)
         else:
@@ -258,13 +259,6 @@ class MediaView:
         if os.fork() == 0:
             os.execvp(const.editor,[const.editor, self.obj.get_path()])
     
-    def popup_convert_to_private(self, obj):
-        path = self.db.get_save_path()
-        handle = self.obj.get_handle()
-        self.db.set_thumbnail_image(handle,path)
-        if name:
-            self.obj.set_path(name)
-
     def popup_change_description(self, obj):
         ImageSelect.GlobalMediaProperties(self.db,self.obj,
                                           self.update_display,
@@ -360,7 +354,7 @@ class MediaView:
         if (const.dnd_images):
             handle = store.get_value(node,5)
             obj = self.db.get_object_from_handle(handle)
-            image = self.db.get_thumbnail_image(obj.get_handle())
+            image = ImgManip.get_thumbnail_image(obj.get_path())
             context.set_icon_pixbuf(image,0,0)
 
     def on_drag_data_get(self, w, context, selection_data, info, time):
@@ -389,8 +383,6 @@ class MediaView:
                 photo.set_description(description)
                 trans = self.db.transaction_begin()
                 self.db.add_object(photo,trans)
-                if GrampsKeys.get_media_reference() == 0:
-                    self.db.set_thumbnail_image(photo.get_handle(),name)
 
                 self.db.commit_media_object(photo,trans)
                 self.db.transaction_commit(trans,_("Add Media Object"))
@@ -416,13 +408,6 @@ class MediaView:
                 self.db.add_object(photo,trans)
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
-                try:
-                    handle = photo.get_handle()
-                    path = self.db.get_save_path()
-                    self.db.set_thumbnail_image(handle,path)
-                except:
-                    photo.set_path(tfile)
-                    return
 
                 self.db.commit_media_object(photo,trans)
                 self.db.transaction_commit(trans,_("Add Media Object"))

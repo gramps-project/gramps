@@ -184,8 +184,6 @@ class PlaceView:
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
         
-        trans = self.parent.db.transaction_begin()
-        
         for place_handle in mlist:
             used = 0
             for key in self.parent.db.get_person_handles(sort_handles=False):

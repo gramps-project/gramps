@@ -183,7 +183,7 @@ class ExistingDbPrompter:
             # The above native formats did not work, so we need to 
             # look up the importer for this format
             # and create an empty native database to import data in
-            for (importData,mime_filter,mime_type,native_format) in Plugin.import_list:
+            for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
                 if filetype == mime_type or the_file == mime_type:
                     QuestionDialog.OkDialog(
                         _("Opening non-native format"), 

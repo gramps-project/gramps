@@ -49,7 +49,6 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_
 import const
 import Utils
 import GrampsKeys
-import GrampsCfg
 import GrampsMime
 import ImageSelect
 import AutoComp

@@ -69,10 +69,9 @@ def history_broken():
 # force_unicode
 #
 #-------------------------------------------------------------------------
-_t = type(u'')
 
 def force_unicode(n):
-    if type(n) != _t:
+    if type(n) != unicode:
         return (unicode(n).lower(),unicode(n))
     else:
         return (n.lower(),n)

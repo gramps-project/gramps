@@ -60,6 +60,7 @@ import Sources
 import DateEdit
 import DateHandler
 import Date
+import ImgManip
 from QuestionDialog import ErrorDialog
 
 _IMAGEX = 140
@@ -270,7 +271,8 @@ class Gallery(ImageSelect):
     def on_drag_begin(self,obj,context):
         if const.dnd_images:
             handle = self.sel_obj.get_reference_handle()
-            pix = self.db.get_thumbnail_image(handle)
+            media_obj = self.db.get_object_from_handle(handle)
+            pix = self.db.get_thumbnail_image(media_obj.get_path())
             context.set_icon_pixbuf(pix,0,0)
 
     def item_event(self, widget, event=None):
@@ -356,7 +358,6 @@ class Gallery(ImageSelect):
         self.db.add_object(photo,None)
         oref = RelLib.MediaRef()
         oref.set_reference_handle(photo.get_handle())
-        self.db.set_thumbnail_image(photo.get_handle(),photo.get_path())
         self.dataobj.add_media_reference(oref)
 
     def add_thumbnail(self, photo):
@@ -375,9 +376,8 @@ class Gallery(ImageSelect):
                 description = "%s..." % description[0:20]
 
             try:
-                image = self.db.get_thumbnail_image(oid)
-                if not image:
-                    image = gtk.gdk.pixbuf_new_from_file(const.icon)
+                media_obj = self.db.get_object_from_handle(oid)
+                image = ImgManip.get_thumbnail_image(media_obj.get_path())
             except gobject.GError,msg:
                 ErrorDialog(str(msg))
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
@@ -471,8 +471,6 @@ class Gallery(ImageSelect):
                 photo.set_description(root)
                 self.savephoto(photo)
                 if GrampsKeys.get_media_reference() == 0:
-                    self.db.set_thumbnail_image(photo.get_handle(),
-                                                self.path)
                     photo.set_path(name)
                 self.parent.lists_changed = 1
                 if GrampsKeys.get_media_global():
@@ -497,8 +495,6 @@ class Gallery(ImageSelect):
                 oref.set_reference_handle(photo.get_handle())
                 self.dataobj.add_media_reference(oref)
                 try:
-                    handle = photo.get_handle()
-                    self.db.set_thumbnail_image(handle,self.path)
                     photo.set_path(name)
                 except:
                     photo.set_path(tfile)
@@ -623,13 +619,6 @@ class Gallery(ImageSelect):
             obj = self.db.get_object_from_handle(photo.get_reference_handle())
             os.execvp(const.editor,[const.editor, obj.get_path()])
     
-    def popup_convert_to_private(self, obj):
-        """Copy this picture into gramps private database instead of
-        leaving it as an external data object."""
-        photo = obj.get_data('o')
-        obj = self.db.get_object_from_handle(photo.get_reference_handle())
-        self.db.set_thumbnail_image(obj.get_handle(),obj.get_path())
-
     def popup_change_description(self, obj):
         """Bring up a window allowing the user to edit the description
         of a picture."""
@@ -703,7 +692,7 @@ class LocalMediaProperties:
         descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
 
-        self.pix = self.db.get_thumbnail_image(self.obj.get_handle())
+        self.pix = ImgManip.get_thumbnail_image(self.obj.get_path())
         self.pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.get_privacy())
@@ -970,7 +959,7 @@ class GlobalMediaProperties:
 
         self.descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
-        pb = self.db.get_thumbnail_image(self.obj.get_handle())
+        pb = ImgManip.get_thumbnail_image(self.obj.get_path())
         self.pixmap.set_from_pixbuf(pb)
 
         self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
