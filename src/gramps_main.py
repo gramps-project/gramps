@@ -913,13 +913,33 @@ class Gramps:
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
+        all.set_name(_("People with multiple marriage records"))
+        all.add_rule(GenericFilter.MultipleMarriages([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
         all.set_name(_("People without a birth date"))
         all.add_rule(GenericFilter.NoBirthdate([]))
         filter_list.append(all)
 
         all = GenericFilter.GenericFilter()
-        all.set_name(_("People with multiple marriage records"))
-        all.add_rule(GenericFilter.MultipleMarriages([]))
+        all.set_name(_("People with incomplete events"))
+        all.add_rule(GenericFilter.PersonWithIncompleteEvent([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Families with incomplete events"))
+        all.add_rule(GenericFilter.FamilyWithIncompleteEvent([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People probably alive"))
+        all.add_rule(GenericFilter.ProbablyAlive([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People marked private"))
+        all.add_rule(GenericFilter.PeoplePrivate([]))
         filter_list.append(all)
 
         self.filter_model = GenericFilter.FilterStore(filter_list)

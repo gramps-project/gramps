@@ -58,6 +58,7 @@ import DateHandler
 import NameDisplay
 from TransTable import TransTable
 from Utils import for_each_ancestor
+from Utils import probably_alive
 
 #-------------------------------------------------------------------------
 #
@@ -1675,6 +1676,119 @@ class NoBirthdate(Rule):
         return 0
 
 #-------------------------------------------------------------------------
+# "People with incomplete events"
+#-------------------------------------------------------------------------
+
+
+class PersonWithIncompleteEvent(Rule):
+    """People with incomplete events"""
+
+    labels = []
+
+    def name(self):
+        return 'People with incomplete events'
+
+    def description(self):
+        return _("Matches persons with missing date or place in an event")
+
+    def category(self):
+        return _('Event filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
+            event = db.get_event_from_handle(event_handle)
+            if event:
+                if not event.get_place_handle():
+                    return 1
+                if not event.get_date_object():
+                    return 1
+        return 0
+
+#-------------------------------------------------------------------------
+# "Families with incomplete events"
+#-------------------------------------------------------------------------
+
+
+class FamilyWithIncompleteEvent(Rule):
+    """Families with incomplete events"""
+
+    labels = []
+
+    def name(self):
+        return 'Families with incomplete events'
+
+    def description(self):
+        return _("Matches persons with missing date or place in an event of the family")
+
+    def category(self):
+        return _('Event filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        for family_handle in p.get_family_handle_list():
+            family = db.get_family_from_handle(family_handle)
+            for event_handle in family.get_event_list():
+                event = db.get_event_from_handle(event_handle)
+                if event:
+                    if not event.get_place_handle():
+                        return 1
+                    if not event.get_date_object():
+                        return 1
+        return 0
+
+
+#-------------------------------------------------------------------------
+# "People probably alive"
+#-------------------------------------------------------------------------
+
+
+class ProbablyAlive(Rule):
+    """People probably alive"""
+
+    labels = []
+
+    def name(self):
+        return 'People probably alive'
+
+    def description(self):
+        return _("Matches persons without indications of death that are not too old")
+
+    def category(self):
+        return _('General filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        return probably_alive(p,db)
+
+#-------------------------------------------------------------------------
+# "People marked private"
+#-------------------------------------------------------------------------
+
+
+class PeoplePrivate(Rule):
+    """People marked private"""
+
+    labels = []
+
+    def name(self):
+        return 'People marked private'
+
+    def description(self):
+        return _("Matches persons that are indicated as private")
+
+    def category(self):
+        return _('General filters')
+
+
+    def apply(self,db,p_id):
+        p = db.get_person_from_handle(p_id)
+        return p.get_privacy()
+
+#-------------------------------------------------------------------------
 #
 # GenericFilter
 #
@@ -1853,8 +1967,11 @@ tasks = {
     unicode(_("People with no marriage records"))      : NeverMarried,
     unicode(_("People with multiple marriage records")): MultipleMarriages,
     unicode(_("People without a birth date"))          : NoBirthdate,
-
-}
+    unicode(_("People with incomplete events"))        : PersonWithIncompleteEvent,
+    unicode(_("Families with incomplete events"))      : FamilyWithIncompleteEvent,
+    unicode(_("People probably alive"))                : ProbablyAlive,
+    unicode(_("People marked private"))                : PeoplePrivate,
+    }
 
 #-------------------------------------------------------------------------
 #
