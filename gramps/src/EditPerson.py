@@ -49,6 +49,7 @@ import Date
 from RelLib import *
 import ImageSelect
 import sort
+import AutoComp
 
 from intl import gettext
 _ = gettext
@@ -231,7 +232,8 @@ class EditPerson:
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
         
-        utils.attach_surnames(self.get_widget("lastNameList"))
+        if Config.autocomp:
+            AutoComp.AutoComp(self.surname_field,const.surnames)
 
         self.gid.set_text(person.getId())
         self.gid.set_editable(Config.id_edit)
