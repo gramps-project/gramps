@@ -101,11 +101,11 @@
       
 	<!-- ==== Figure: Open existing/new database window ==== -->
 	<figure id="first-open"> 
-	<title>Datenbank öffnen Fenster</title> 
+	<title>"Datenbank öffnen"-Fenster</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/first-open.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Zeigt Datenbank öffnen Fenster.  </phrase>
+	<phrase>Zeigt "Datenbank öffnen"-Fenster.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
       

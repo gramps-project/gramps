@@ -18,43 +18,50 @@
 
 <!-- ================ Main Window ================================ -->
   <sect1 id="gramps-mainwin"> 
-    <title>Main Window</title> 
-    <para>When you open a database (either existing or brand new), 
-    the following window is displayed.</para>
+    <title>Hauptfenster</title> 
+    <para>Wenn Sie eine Datenbank öffnen (entweder eine bestehende oder
+    eine neue), wird das folgende Fenster angezeigt.</para>
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
-	<title>&app; Main Window</title> 
+	<title>&app; Hauptfenster</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows &app; main window. Contains titlebar, menubar, 
-	      toolbar, sidebar, display area, statusbar, progressbar, and
-	      scrollbars. Menubar contains File, Edit, View, Bookmarks, 
-	      Reports, Tools, Settings, and Help menus.  </phrase>
+	<phrase>Zeigt Hauptfenster von &app;. Es enthält die Titelzeile,
+	      die Menüleiste, die Werkzeugleiste, die Seitenleiste, das
+	      Ansichtsfeld, die Statuszeile, die Fortschrittsbalken und die
+	      Scrollbalken. Die Menüleiste enthält das Datei-, das Bearbeiten-,
+	      das Gehe zu-, das Lesezeichen-, das Berichte-, das Werkzeuge-
+	      und das Hilfe-Menü.
+        </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-    <para>The &app; window contains the following elements: </para>
+    <para>Das &app;-Fenster enthält die folgenden Elemente: </para>
       <variablelist>
-      <varlistentry><term>Menubar</term>
-	<listitem><para>The menubar is located at the very top of the window
-        (right below the window title) and provides access to all features of
-	&app; through its menus.</para></listitem>
+      <varlistentry><term>Menuleiste</term>
+	<listitem><para>
+	Die Menüleiste ist ganz oben im Fenster angeordnet (direkt unter
+	der Titelzeile) und bietet Zugriff auf all Funktionen von &app;
+	durch seine Menüs.
+        </para></listitem>
       </varlistentry>
-      <varlistentry><term>Toolbar</term>
-	<listitem><para> The toolbar is located immediately below the menubar. 
-        The toolbar provides access to the most frequently used functions 
-        of &app;. The appearance of the toolbar 
-        can be adjusted in the <guilabel>Preferences</guilabel> 
-	dialog. </para></listitem>
+      <varlistentry><term>Werkzeugleiste</term>
+	<listitem><para>Die Werkzeugleiste befindet sich sofort The toolbar
+        unter der Menüzeile. Die Werkzeugleiste bietet Zugriff auf die
+        am häufigsten benutzen Funktionen von &app;. Das Erscheinsbild der
+        Werkzeugleise kann im <guilabel>Einstellungen</guilabel>-Dialog
+        angepasst werden.
+        </para></listitem>
       </varlistentry>
-      <varlistentry><term>Progressbar</term>
-	<listitem><para>The progressbar is located in the lower left corner 
-	of the &app; window. It displays the 
-	progress of time consuming operations, such as opening and saving 
-	large data bases, importing and exporting to other formats, generating 
-	web sites, etc. </para></listitem>
+      <varlistentry><term>Fortschrittsbalken</term>
+	<listitem><para>
+	Der Fortschrittsbalken befindet sich in der unteren linken Ecke des
+	&app;-Fensters. Es zeigt den Fortschritt von größeren Operationen,
+	wie dem Öffnen und Speichern von großen Datenbanken, dem Import und
+	Export von anderen Formaten, dem Erstellen von Webseiten usw.
+        </para></listitem>
       </varlistentry>
       <varlistentry><term>Statusbar</term>
 	<listitem><para>The statusbar is located to the right of the 
