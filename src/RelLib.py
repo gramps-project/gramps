@@ -276,7 +276,11 @@ class DataObj(SourceNote):
 
     def __init__(self,source=None):
         """
-        Create a new DataObj, copying data from a source object if provided
+        Initialize a DataObj. If the source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: DateObj
         """
         SourceNote.__init__(self,source)
         
@@ -288,12 +292,19 @@ class DataObj(SourceNote):
     def set_privacy(self,val):
         """
         Sets or clears the privacy flag of the data
+
+        @param val: value to assign to the privacy flag. True indicates that the
+           record is private, False indicates that it is public.
+        @type val: bool
         """
         self.private = val
 
     def get_privacy(self):
         """
-        Returns the privacy level of the data
+        Returns the privacy level of the data. 
+
+        @returns: True indicates that the record is private
+        @rtype: bool
         """
         return self.private
 
@@ -395,7 +406,7 @@ class Person(PrimaryObject,DataObj):
     def unserialize(self,data):
         """
         Converts the data held in a tuple created by the serialize method
-        back into the data in an Person structure.
+        back into the data in a Person object.
 
         @param data: tuple containing the persistent data associated the
             Person object
@@ -1469,10 +1480,10 @@ class Event(PrimaryObject,DataObj):
 
     def add_media_reference(self,media_ref):
         """
-        Adds a media reference to this object.
+        Adds a L{MediaRef} instance to the object's media list.
 
-        @param media_ref: The media reference to be added to the
-            Event's list of media references.
+        @param media_ref: L{MediaRef} instance to be added to the object's
+            media list.
         @type media_ref: L{MediaRef}
         """
         self.media_list.append(media_ref)
@@ -1726,14 +1737,19 @@ class Event(PrimaryObject,DataObj):
         self.date = date
 
 class Place(PrimaryObject,SourceNote):
-    """Contains information related to a place, including multiple address
+    """
+    Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
-    a collection of images and URLs, a note and a source"""
+    a collection of images and URLs, a note and a source
+    """
     
     def __init__(self,source=None):
-        """Creates a new Place object.
+        """
+        Creates a new Place object, copying from the source if present.
 
-        source - Object to copy. If none supplied, create an empty place object"""
+        @param source: A Place object used to initialize the new Place
+        @type source: Place
+        """
         PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
         if source:
@@ -1761,7 +1777,7 @@ class Place(PrimaryObject,SourceNote):
 
     def serialize(self):
         """
-        Converts the data held in the event to a Python tuple that
+        Converts the data held in the Place to a Python tuple that
         represents all the data elements. This method is used to convert
         the object into a form that can easily be saved to a database.
 
@@ -1770,6 +1786,10 @@ class Place(PrimaryObject,SourceNote):
         target database cannot handle complex types (such as objectes or
         lists), the database is responsible for converting the data into
         a form that it can use.
+
+        @returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 self.main_loc, self.alt_loc, self.urls, self.media_list,
@@ -1778,82 +1798,183 @@ class Place(PrimaryObject,SourceNote):
     def unserialize(self,data):
         """
         Converts the data held in a tuple created by the serialize method
-        back into the data in an Event structure.
+        back into the data in a Place object.
+
+        @param data: tuple containing the persistent data associated the
+            Person object
+        @type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
          self.main_loc, self.alt_loc, self.urls, self.media_list,
          self.source_list, self.note, self.change) = data
             
     def get_url_list(self):
-        """Return the list of URLs"""
+        """
+        Returns the list of L{Url} instances associated with the Place
+
+        @returns: List of L{Url} instances
+        @rtype: list
+        """
         return self.urls
 
-    def set_url_list(self,list):
-        """Replace the current URL list with the new one"""
-        self.urls = list
+    def set_url_list(self,url_list):
+        """
+        Sets the list of L{Url} instances to passed the list.
+
+        @param url_list: List of L{Url} instances
+        @type url_list: list
+        """
+        self.urls = url_list
 
     def add_url(self,url):
-        """Add a URL to the URL list"""
+        """
+        Adds a L{Url} instance to the Place's list of L{Url} instances
+
+        @param url: L{Url} instance to be added to the Place's list of
+            related web sites.
+        @type url: L{Url}
+        """
         self.urls.append(url)
     
-    def set_title(self,name):
-        """Sets the title of the place object"""
-        self.title = name
+    def set_title(self,title):
+        """
+        Sets the descriptive title of the Place object
+
+        @param title: descriptive title to assign to the Place
+        @type title: str
+        """
+        self.title = title
 
     def get_title(self):
-        """Returns the title of the place object"""
+        """
+        Returns the descriptive title of the Place object
+
+        @returns: Returns the descriptive title of the Place
+        @rtype: str
+        """
         return self.title
 
-    def set_longitude(self,long):
-        """Sets the longitude of the place"""
-        self.long = long
+    def set_longitude(self,longitude):
+        """
+        Sets the longitude of the Place object
+
+        @param longitude: longitude to assign to the Place
+        @type longitude: str
+        """
+        self.long = longitude
 
     def get_longitude(self):
-        """Returns the longitude of the place"""
+        """
+        Returns the longitude of the Place object
+
+        @returns: Returns the longitude of the Place
+        @rtype: str
+        """
         return self.long
 
-    def set_latitude(self,long):
-        """Sets the latitude of the place"""
-        self.lat = long
+    def set_latitude(self,latitude):
+        """
+        Sets the latitude of the Place object
+
+        @param latitude: latitude to assign to the Place
+        @type latitude: str
+        """
+        self.lat = latitude
 
     def get_latitude(self):
-        """Returns the latitude of the place"""
+        """
+        Returns the latitude of the Place object
+
+        @returns: Returns the latitude of the Place
+        @rtype: str
+        """
         return self.lat
 
     def get_main_location(self):
-        """Returns the Location object representing the primary information"""
+        """
+        Returns the L{Location} object representing the primary information for the
+        Place instance. If a L{Location} hasn't been assigned yet, an empty one is
+        created.
+
+        @returns: Returns the L{Location} instance representing the primary location
+            information about the Place
+        @rtype: L{Location}
+        """
         if not self.main_loc:
             self.main_loc = Location()
         return self.main_loc
 
-    def set_main_location(self,loc):
-        """Assigns the main location to the Location object passed"""
-        self.main_loc = loc
+    def set_main_location(self,location):
+        """
+        Assigns the main location information about the Place to the L{Location}
+        object passed
+
+        @param location: L{Location} instance to assign to as the main information for
+            the Place
+        @type location: L{Location}
+        """
+        self.main_loc = location
 
     def get_alternate_locations(self):
-        """Returns a list of alternate location information objects"""
+        """
+        Returns a list of alternate L{Location} objects the present alternate information
+        about the current Place. A Place can have more than one L{Location}, since names
+        and jurisdictions can change over time for the same place.
+
+        @returns: Returns the alternate L{Location}s for the Place
+        @rtype: list of L{Location} objects
+        """
         return self.alt_loc
 
-    def set_alternate_locations(self,list):
-        """Replaces the current alternate location list with the new one"""
-        self.alt_loc = list
+    def set_alternate_locations(self,location_list):
+        """
+        Replaces the current alternate L{Location} object list with the new one.
 
-    def add_alternate_locations(self,loc):
-        """Adds a Location to the alternate location list"""
-        if loc not in self.alt_loc:
-            self.alt_loc.append(loc)
+        @param location_list: The list of L{Location} objects to assign to the Place's
+            internal list
+        @type location_list: list of L{Location} objects
+        """
+        self.alt_loc = location_list
 
-    def add_media_reference(self,media_id):
-        """Adds a MediaObject object to the place object's image list"""
-        self.media_list.append(media_id)
+    def add_alternate_locations(self,location):
+        """
+        Adds a L{Location} object to the alternate location list
+
+        @param location: L{Location} instance to add
+        @type location: L{Location}
+        """
+        if location not in self.alt_loc:
+            self.alt_loc.append(location)
+
+    def add_media_reference(self,media_ref):
+        """
+        Adds a L{MediaRef} instance to the object's media list.
+
+        @param media_ref: L{MediaRef} instance to be added to the objects's
+            media list.
+        @type media_ref: L{MediaRef}
+        """
+        self.media_list.append(media_ref)
 
     def get_media_list(self):
-        """Returns the list of MediaObject objects"""
+        """
+        Returns the list of L{MediaRef} instances associated with the object
+
+        @returns: list of L{MediaRef} instances associated with the object
+        @rtype: list
+        """
         return self.media_list
 
-    def set_media_list(self,list):
-        """Sets the list of MediaObject objects"""
-        self.media_list = list
+    def set_media_list(self,media_ref_list):
+        """
+        Sets the list of L{MediaRef} instances associated with the object.
+        It replaces the previous list.
+
+        @param media_ref_list: list of L{MediaRef} instances to be assigned
+            to the object.
+        @type media_ref_list: list
+        """
+        self.media_list = media_ref_list
 
     def get_display_info(self):
         """Gets the display information associated with the object. This includes
@@ -1874,11 +1995,19 @@ class Place(PrimaryObject,SourceNote):
                     self.title.upper(), '','','','','']
         
 class MediaObject(PrimaryObject,SourceNote):
-    """Containter for information about an image file, including location,
-    description and privacy"""
+    """
+    Containter for information about an image file, including location,
+    description and privacy
+    """
     
     def __init__(self,source=None):
-        """Create a new MediaObject object, copying from the source if provided"""
+        """
+        Initialize a MediaObject. If source is not None, then object
+        is initialized from values of the source object.
+
+        @param source: Object used to initialize the new object
+        @type source: MediaObject
+        """
         PrimaryObject.__init__(self,source)
         SourceNote.__init__(self,source)
 
@@ -1911,6 +2040,10 @@ class MediaObject(PrimaryObject,SourceNote):
         target database cannot handle complex types (such as objectes or
         lists), the database is responsible for converting the data into
         a form that it can use.
+
+        @returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.path, self.mime,
                 self.desc, self.attrlist, self.source_list, self.note,
@@ -1920,43 +2053,93 @@ class MediaObject(PrimaryObject,SourceNote):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Event structure.
+
+        @param data: tuple containing the persistent data associated the object
+        @type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          self.attrlist, self.source_list, self.note, self.change,
          self.date, self.place) = data
     
-    def set_place_handle(self,place):
-        """sets the Place instance of the Event"""
-        self.place = place
+    def set_place_handle(self,place_handle):
+        """
+        Sets the handle of the L{Place} instance associated with the MediaRef
+
+        @param place_handle: L{Place} database handle
+        @type place_handle: str
+        """
+        self.place = place_handle
 
     def get_place_handle(self):
-        """returns the Place instance of the Event"""
+        """
+        Returns the database handle of the L{Place} assocated with
+        the object.
+
+        @returns: L{Place} database handle
+        @rtype: str
+        """
         return self.place 
 
     def get_date(self) :
-        """returns a string representation of the date of the Event instance"""
+        """
+        Returns a string representation of the date of the instance
+        based off the default date display format determined by the
+        locale's L{DateDisplay} instance.
+
+        @return: Returns a string representing the object's date
+        @rtype: str
+        """
         if self.date:
             return DateHandler.displayer.display(self.date)
         return u""
 
     def get_date_object(self):
-        """returns the Date object associated with the Event"""
+        """
+        Returns the L{Date} instance associated with the object.
+
+        @return: Returns the object's L{Date} instance.
+        @rtype: L{Date}
+        """
         if not self.date:
             self.date = Date.Date()
         return self.date
 
     def set_date(self, date) :
-        """attempts to sets the date of the Event instance"""
+        """
+        Sets the date of the object. The date is parsed into a L{Date} instance.
+
+        @param date: String representation of a date. The locale specific
+            L{DateParser} is used to parse the string into a GRAMPS L{Date}
+            object.
+        @type date: str
+        """
         self.date = DateHandler.parser.parse(date)
 
     def set_date_object(self,date):
-        """sets the Date object associated with the Event"""
+        """
+        Sets the L{Date} instance associated with the object.
+
+        @param date: L{Date} instance to be assigned to the object
+        @type date: L{Date}
+        """
         self.date = date
 
     def set_mime_type(self,type):
+        """
+        Sets the MIME type associated with the MediaObject
+
+        @param type: MIME type to be assigned to the object
+        @type type: str
+        """
         self.mime = type
 
     def get_mime_type(self):
+        """
+        Returns the MIME type associated with the MediaObject
+
+        @returns: Returns the associated MIME type
+        @rtype: str
+        """
         return self.mime
     
     def set_path(self,path):
@@ -2017,17 +2200,35 @@ class Source(PrimaryObject):
          self.pubinfo, self.note, self.media_list,
          self.abbrev, self.change, self.datamap) = data
         
-    def add_media_reference(self,media_id):
-        """Adds a MediaObject object to the Source instance's image list"""
-        self.media_list.append(media_id)
+    def add_media_reference(self,media_ref):
+        """
+        Adds a L{MediaRef} instance to the object's media list.
+
+        @param media_ref: L{MediaRef} instance to be added to the objects's
+            media list.
+        @type media_ref: L{MediaRef}
+        """
+        self.media_list.append(media_ref)
 
     def get_media_list(self):
-        """Returns the list of MediaObject objects"""
+        """
+        Returns the list of L{MediaRef} instances associated with the object
+
+        @returns: list of L{MediaRef} instances associated with the object
+        @rtype: list
+        """
         return self.media_list
 
-    def set_media_list(self,list):
-        """Sets the list of MediaObject objects"""
-        self.media_list = list
+    def set_media_list(self,media_ref_list):
+        """
+        Sets the list of L{MediaRef} instances associated with the object.
+        It replaces the previous list.
+
+        @param media_ref_list: list of L{MediaRef} instances to be assigned
+            to the object.
+        @type media_ref_list: list
+        """
+        self.media_list = media_ref_list
 
     def get_data_map(self):
         """Returns the data map of attributes for the source"""
@@ -2042,11 +2243,21 @@ class Source(PrimaryObject):
         self.datamap[key] = value
 
     def set_title(self,title):
-        """sets the title of the Source"""
+        """
+        Sets the descriptive title of the Source object
+
+        @param title: descriptive title to assign to the Source
+        @type title: str
+        """
         self.title = title
 
     def get_title(self):
-        """returns the title of the Source"""
+        """
+        Returns the descriptive title of the Place object
+
+        @returns: Returns the descriptive title of the Place
+        @rtype: str
+        """
         return self.title
 
     def set_note(self,text):
@@ -2153,25 +2364,49 @@ class LdsOrd(SourceNote):
         return self.status
 
     def set_date(self, date) :
-        """attempts to sets the date of the ordinance"""
+        """
+        Sets the date of the object. The date is parsed into a L{Date} instance.
+
+        @param date: String representation of a date. The locale specific
+            L{DateParser} is used to parse the string into a GRAMPS L{Date}
+            object.
+        @type date: str
+        """
         if not self.date:
             self.date = Date.Date()
         DateHandler.parser.set_date(self.date,date)
 
     def get_date(self) :
-        """returns a string representation of the date of the ordinance"""
+        """
+        Returns a string representation of the date of the instance
+        based off the default date display format determined by the
+        locale's L{DateDisplay} instance.
+
+        @return: Returns a string representing the object's date
+        @rtype: str
+        """
         if self.date:
             return DateHandler.displayer.display(self.date)
         return u""
 
     def get_date_object(self):
-        """returns the Date object associated with the ordinance"""
+        """
+        Returns the L{Date} instance associated with the object.
+
+        @return: Returns the object's L{Date} instance.
+        @rtype: L{Date}
+        """
         if not self.date:
             self.date = Date.Date()
         return self.date
 
     def set_date_object(self,date):
-        """sets the Date object associated with the ordinance"""
+        """
+        Sets the L{Date} instance associated with the object.
+
+        @param date: L{Date} instance to be assigned to the object
+        @type date: L{Date}
+        """
         self.date = date
 
     def set_temple(self,temple):
@@ -2446,11 +2681,22 @@ class MediaRef(SourceNote):
             self.rect = None
 
     def set_privacy(self,val):
-        """Sets or clears the privacy flag of the data"""
+        """
+        Sets or clears the privacy flag of the data
+
+        @param val: value to assign to the privacy flag. True indicates that the
+           record is private, False indicates that it is public.
+        @type val: bool
+        """
         self.private = val
 
     def get_privacy(self):
-        """Returns the privacy level of the data"""
+        """
+        Returns the privacy level of the data. 
+
+        @returns: True indicates that the record is private
+        @rtype: bool
+        """
         return self.private
 
     def set_rectangle(self,coord):
@@ -2537,25 +2783,47 @@ class Address(DataObj):
             self.date = Date.Date()
             self.phone = ""
 
-    def set_date(self,text):
-        """attempts to sets the date that the person lived at the address
-        from the passed string"""
-        self.date = DateHandler.parser.parse(text)
+    def set_date(self,date):
+        """
+        Sets the date of the object. The date is parsed into a L{Date} instance.
+
+        @param date: String representation of a date. The locale specific
+            L{DateParser} is used to parse the string into a GRAMPS L{Date}
+            object.
+        @type date: str
+        """
+        self.date = DateHandler.parser.parse(date)
 
     def get_date(self):
-        """returns a string representation of the date that the person
-        lived at the address"""
+        """
+        Returns a string representation of the date of the instance
+        based off the default date display format determined by the
+        locale's L{DateDisplay} instance.
+
+        @return: Returns a string representing the object's date
+        @rtype: str
+        """
         if self.date:
             return DateHandler.displayer.display(self.date)
         return u""
 
     def get_date_object(self):
-        """returns the Date object associated with the Address"""
+        """
+        Returns the L{Date} instance associated with the object.
+
+        @return: Returns the object's L{Date} instance.
+        @rtype: L{Date}
+        """
         return self.date
 
-    def set_date_object(self,obj):
-        """sets the Date object associated with the Address"""
-        self.date = obj
+    def set_date_object(self,date):
+        """
+        Sets the L{Date} instance associated with the object.
+
+        @param date: L{Date} instance to be assigned to the object
+        @type date: L{Date}
+        """
+        self.date = date
 
     def set_street(self,val):
         """sets the street portion of the Address"""
@@ -2967,11 +3235,22 @@ class Url:
             self.private = 0
 
     def set_privacy(self,val):
-        """sets the privacy flag for the URL instance"""
+        """
+        Sets or clears the privacy flag of the data
+
+        @param val: value to assign to the privacy flag. True indicates that the
+           record is private, False indicates that it is public.
+        @type val: bool
+        """
         self.private = val
 
     def get_privacy(self):
-        """returns the privacy flag for the URL instance"""
+        """
+        Returns the privacy level of the data. 
+
+        @returns: True indicates that the record is private
+        @rtype: bool
+        """
         return self.private
 
     def set_path(self,path):
@@ -3016,11 +3295,22 @@ class Witness:
         self.private = False
 
     def set_privacy(self,val):
-        """Sets or clears the privacy flag of the data"""
+        """
+        Sets or clears the privacy flag of the data
+
+        @param val: value to assign to the privacy flag. True indicates that the
+           record is private, False indicates that it is public.
+        @type val: bool
+        """
         self.private = val
 
     def get_privacy(self):
-        """Returns the privacy level of the data"""
+        """
+        Returns the privacy level of the data. 
+
+        @returns: True indicates that the record is private
+        @rtype: bool
+        """
         return self.private
 
     def set_type(self,type):
@@ -3065,11 +3355,22 @@ class SourceRef:
             self.private = False
 
     def set_privacy(self,val):
-        """Sets or clears the privacy flag of the data"""
+        """
+        Sets or clears the privacy flag of the data
+
+        @param val: value to assign to the privacy flag. True indicates that the
+           record is private, False indicates that it is public.
+        @type val: bool
+        """
         self.private = val
 
     def get_privacy(self):
-        """Returns the privacy level of the data"""
+        """
+        Returns the privacy level of the data. 
+
+        @returns: True indicates that the record is private
+        @rtype: bool
+        """
         return self.private
 
     def set_confidence_level(self,val):
