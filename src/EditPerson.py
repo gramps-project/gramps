@@ -193,7 +193,7 @@ class EditPerson:
         birth = person.getBirth()
         death = person.getDeath()
 
-        self.get_widget("gid").set_text(person.getId())
+        self.get_widget("gid").set_text(": %s" % person.getId())
         self.event_list.set_column_visibility(3,Config.show_detail)
         self.name_list.set_column_visibility(1,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
@@ -209,7 +209,7 @@ class EditPerson:
                 if attr.getType() == const.save_pattr(Config.attr_name):
                     val = attr.getValue()
                     break
-            self.get_widget("user_data").set_text(val)
+            self.get_widget("user_data").set_text(": %s" % val)
                 
         else:
             self.get_widget("user_label").hide()
@@ -516,10 +516,10 @@ def on_name_list_select_row(obj,row,b,c):
     name = obj.get_row_data(row)
 
     epo.name_frame.set_label(name.getName())
-    epo.alt_given_field.set_text(name.getFirstName())
-    epo.alt_last_field.set_text(name.getSurname())
-    epo.alt_suffix_field.set_text(name.getSuffix())
-    epo.name_details_field.set_text(get_detail_text(name))
+    epo.alt_given_field.set_text(": %s" % name.getFirstName())
+    epo.alt_last_field.set_text(": %s" % name.getSurname())
+    epo.alt_suffix_field.set_text(": %s" % name.getSuffix())
+    epo.name_details_field.set_text(": %s" % get_detail_text(name))
 
 #-------------------------------------------------------------------------
 #
@@ -534,8 +534,8 @@ def on_web_list_select_row(obj,row,b,c):
     epo = obj.get_data(EDITPERSON)
     url = obj.get_row_data(row)
 
-    epo.web_url.set_text(url.get_path())
-    epo.web_description.set_text(url.get_description())
+    epo.web_url.set_text(":%s " % url.get_path())
+    epo.web_description.set_text(": %s" % url.get_description())
 
 #-------------------------------------------------------------------------
 #
@@ -551,8 +551,8 @@ def on_attr_list_select_row(obj,row,b,c):
     attr = obj.get_row_data(row)
 
     epo.attr_type.set_label(const.display_pattr(attr.getType()))
-    epo.attr_value.set_text(attr.getValue())
-    epo.attr_details_field.set_text(get_detail_text(attr))
+    epo.attr_value.set_text(": %s" % attr.getValue())
+    epo.attr_details_field.set_text(": %s" % get_detail_text(attr))
 
 #-------------------------------------------------------------------------
 #
@@ -569,13 +569,13 @@ def on_address_list_select_row(obj,row,b,c):
 
     epo.address_label.set_label("%s %s %s" % \
                                 (a.getCity(),a.getState(),a.getCountry()))
-    epo.address_start.set_text(a.getDate())
-    epo.address_street.set_text(a.getStreet())
-    epo.address_city.set_text(a.getCity())
-    epo.address_state.set_text(a.getState())
-    epo.address_country.set_text(a.getCountry())
-    epo.address_postal.set_text(a.getPostal())
-    epo.addr_details_field.set_text(get_detail_text(a))
+    epo.address_start.set_text(": %s" % a.getDate())
+    epo.address_street.set_text(": %s" % a.getStreet())
+    epo.address_city.set_text(": %s" % a.getCity())
+    epo.address_state.set_text(": %s" % a.getState())
+    epo.address_country.set_text(": %s" % a.getCountry())
+    epo.address_postal.set_text(": %s" % a.getPostal())
+    epo.addr_details_field.set_text(": %s" % get_detail_text(a))
 
 #-------------------------------------------------------------------------
 #
@@ -806,11 +806,11 @@ def on_event_select_row(obj,row,b,c):
     event = obj.get_row_data(row)
 
     epo = obj.get_data(EDITPERSON)
-    epo.event_date_field.set_text(event.getDate())
-    epo.event_place_field.set_text(event.getPlace())
-    epo.event_name_field.set_label(const.display_pevent(event.getName()))
-    epo.event_descr_field.set_text(event.getDescription())
-    epo.event_details_field.set_text(get_detail_text(event))
+    epo.event_date_field.set_text(": %s" % event.getDate())
+    epo.event_place_field.set_text(": %s" % event.getPlace())
+    epo.event_name_field.set_label(": %s" % const.display_pevent(event.getName()))
+    epo.event_descr_field.set_text(": %s" % event.getDescription())
+    epo.event_details_field.set_text(": %s" % get_detail_text(event))
 
 #-------------------------------------------------------------------------
 #
