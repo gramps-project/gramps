@@ -1,3 +1,11 @@
+2004-09-18  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsInMemDB.py: new base class for in memory databases, such
+	as XML or GEDCOM
+	* src/GrampGEDDB.py: use new GrampsInMemDB base class
+	* src/GrampXMLDB.py: use new GrampsInMemDB base class
+	* src/Makefile.am: add GrampsInMemDB.py
+	* src/ReadGedcom.py: remove debug statements
+
 2004-09-18 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateEdit.py (DateEdit): Take care of both the button and 
 	the LED pixmap now; Invoke DateEditorDialog if the button is pressed;
