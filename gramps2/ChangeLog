@@ -1,4 +1,10 @@
-2003-06-07  Don Allingham  <dona@localhost.localdomain>
+2003-06-07  Don Allingham  <dallingham@users.sourceforge.net>
+
+	* src/EditPerson.py: Allow a default gender to be specified if a new
+	person is being added
+	* src/AddSpouse.py: All EditPerson dialog instead of QuickAdd
+
+2003-06-07  Don Allingham  <dallingham@users.sourceforge.net>
 
 	* src/FamilyView.py: Call marriage editor with callback to update
 	the family view
