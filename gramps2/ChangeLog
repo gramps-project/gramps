@@ -1,3 +1,12 @@
+2005-02-16 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EditSource.py (DelSrcQuery.query_response): Typos.
+	* src/ImageSelect.py (DeleteMediaQuery.query_response): Typo.
+	* src/GrampsInMemDB.py (remove_place,remove_object): Add methods;
+	(remove_person,remove_source,remove_family): Correctly remove from
+	id_trans table.
+	* src/FamilyView.py (parent_deleter,really_remove_spouse):
+	Use get_ instead of find_ functions.
+	
 2005-02-15  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddMedia.py: handle "note only" media object
 	* src/DisplayModels.py: handle media type of None
