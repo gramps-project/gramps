@@ -3,12 +3,11 @@
 # Copyright (C) 2002 Free Software Foundation, Inc. 
 # Alex Roitman <shura@alex.neuro.umn.edu>, 2002. 
 # 
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.3-snap20020406\n"
 "POT-Creation-Date: Wed Apr 10 10:02:15 2002\n"
-"PO-Revision-Date: 2002-04-10 12:31-0500\n"
+"PO-Revision-Date: 2002-04-10 18:07-0500\n"
 "Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -908,7 +907,7 @@ msgstr "Название Фильтра"
 
 #: GenericFilter.py:584
 msgid "Everyone"
-msgstr "Каждый"
+msgstr "Кто угодно"
 
 #: GenericFilter.py:585
 msgid "Has the Id"
@@ -956,7 +955,7 @@ msgstr "С семейным событием"
 
 #: GenericFilter.py:596
 msgid "Has the personal attribute"
-msgstr "С личным событием"
+msgstr "С личным атрибутом"
 
 #: GenericFilter.py:597
 msgid "Has the family attribute"
@@ -4588,11 +4587,11 @@ msgstr "Наибольшая разница в возрасте между мужем и женой"
 
 #: plugins/verify.glade:239
 msgid "Minimum age to marry"
-msgstr "Наименьший возраст для брака"
+msgstr "Наименьший возраст для вступления в брак"
 
 #: plugins/verify.glade:265
 msgid "Maximum age to marry"
-msgstr "Наибольший возраст для брака"
+msgstr "Наибольший возраст для вступления в брак"
 
 #: plugins/verify.glade:291
 msgid "Maximum number of spouses for a person"
@@ -4604,11 +4603,11 @@ msgstr "Наибольшее число лет подряд во вдовстве"
 
 #: plugins/verify.glade:343
 msgid "Maximum number of years between children"
-msgstr "Наибольшее число лет между детьми"
+msgstr "Наибольшая разница в возрасте детей"
 
 #: plugins/verify.glade:369
 msgid "Maximum span of years for all children"
-msgstr "Наибольшее число лет между всеми детьми"
+msgstr "Наибольшее разница в возрасте между всеми детьми"
 
 #: plugins/verify.glade:400
 msgid "8"
@@ -4854,7 +4853,7 @@ msgstr "Форматы Имен"
 
 #: preferences.glade:1608
 msgid "Entry Formats"
-msgstr "Ворматы Ввода"
+msgstr "Форматы Ввода"
 
 #: preferences.glade:1681
 msgid "Calendars"
