@@ -319,7 +319,6 @@ class RTFDoc(TextDoc):
     def add_photo(self,name,pos,x_cm,y_cm):
 	im = ImgManip.ImgManip(name)
         nx,ny = im.size()
-        buf = im.jpg_data()
 
         ratio = float(x_cm)*float(ny)/(float(y_cm)*float(nx))
 
@@ -330,10 +329,10 @@ class RTFDoc(TextDoc):
             act_height = y_cm
             act_width = x_cm/ratio
 
+        buf = im.jpg_scale_data(int(act_width*40),int(act_height*40))
+
         act_width = twips(act_width)
         act_height = twips(act_height)
-        
-        im.thumbnail((int(act_width*40),int(act_height*40)))
 
 	self.f.write('{\*\shppict{\\pict\\jpegblip')
         self.f.write('\\picwgoal%d\\pichgoal%d\n' % (act_width,act_height))
