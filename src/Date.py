@@ -138,6 +138,12 @@ class Date:
             return 0
         else:
             return 1
+
+    def isRange(self):
+        if self.range == -1:
+            return 0
+        else:
+            return 1
         
     #--------------------------------------------------------------------
     #

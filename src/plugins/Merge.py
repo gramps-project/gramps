@@ -710,6 +710,12 @@ class Merge:
         if date1.getDate() == date2.getDate():
             return 1
 
+        if date1.isRange() or date2.isRange():
+            return self.range_compare(date1,date2)
+
+        date1 = date1.get_start_date()
+        date2 = date2.get_start_date()
+        
         if date1.getYear() == date2.getYear():
             if date1.getMonth() == date2.getMonth():
                 return 0.75
@@ -719,6 +725,37 @@ class Merge:
                 return -1
         else:
             return -1
+
+    #-----------------------------------------------------------------
+    #
+    #
+    #
+    #-----------------------------------------------------------------
+    def range_compare(self,date1,date2):
+        if date1.isRange() and date2.isRange():
+            if date1.get_start_date() >= date2.get_start_date() and \
+               date1.get_start_date() <= date2.get_stop_date() or \
+               date2.get_start_date() >= date1.get_start_date() and \
+               date2.get_start_date() <= date1.get_stop_date() or \
+               date1.get_stop_date() >= date2.get_start_date() and \
+               date1.get_stop_date() <= date2.get_stop_date() or \
+               date2.get_stop_date() >= date1.get_start_date() and \
+               date2.get_stop_date() <= date1.get_stop_date():
+                return 0.5
+            else:
+                return -1
+        elif date2.isRange():
+            if date1.get_start_date() >= date2.get_start_date() and \
+               date1.get_start_date() <= date2.get_stop_date():
+                return 0.5
+            else:
+                return -1
+        else:
+            if date2.get_start_date() >= date1.get_start_date() and \
+               date2.get_start_date() <= date1.get_stop_date():
+                return 0.5
+            else:
+                return -1
 
     #-----------------------------------------------------------------
     #
