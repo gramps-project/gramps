@@ -1,7 +1,10 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl May need to run automake && aclocal first
-AC_INIT(src/gramps.py)
-AM_INIT_AUTOMAKE(gramps, 0.9.3)
+
+AC_PREREQ(2.57)
+AC_INIT(gramps, 0.9.3, gramps-bugs@lists.sourceforge.net)
+AC_CONFIG_SRCDIR(src/gramps.py)
+AM_INIT_AUTOMAKE(1.6.3)
 RELEASE=0.CVS$(date +%G%m%d)
 
 VERSIONSTRING=$VERSION
@@ -10,13 +13,10 @@ then
   VERSIONSTRING="$VERSION-$RELEASE"
 fi
 
-AC_SUBST(PACKAGE)
-AC_SUBST(VERSION)
 AC_SUBST(RELEASE)
 AC_SUBST(VERSIONSTRING)
 
 AC_PATH_PROG(MSGFMT, msgfmt)
-AC_SUBST(MSGFMT)
 
 LANGUAGES="cs da_DK de es fr it nl pl pt_BR ro ru sv" 
 AC_SUBST(LANGUAGES)
@@ -52,9 +52,6 @@ else
 fi
 
 AC_PATH_PROG(ZIP, zip)
-
-AC_PROG_INSTALL
-AC_PROG_MAKE_SET
 
 AC_PROG_CC
 
@@ -249,24 +246,15 @@ dnl ======================================================
 SCROLLKEEPER_BUILD_REQUIRED=0.3.5
 AC_SUBST(SCROLLKEEPER_BUILD_REQUIRED)
 
-AC_SUBST(BINSH)
-AC_SUBST(SWIG)
-AC_SUBST(PYTHON)
-AC_SUBST(PYTHON_VERSION)
 AC_SUBST(GNOMEHELP)
-AC_SUBST(LIBS)
 AC_SUBST(GPREFIX)
 
-AC_SUBST(P15_INCLUDES)
-AC_SUBST(P20_INCLUDES)
-AC_SUBST(P21_INCLUDES)
 AC_SUBST(P22_INCLUDES)
 AC_SUBST(GNOMEINC)
 AC_SUBST(GNOMELIB)
-AC_SUBST(GPREF)
 AC_SUBST(INTLLIBS)
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile 
 src/Makefile
 src/const.py
@@ -284,3 +272,4 @@ example/Makefile
 example/gramps/Makefile
 gramps.spec
 gramps.sh])
+AC_OUTPUT
