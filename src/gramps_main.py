@@ -601,6 +601,11 @@ class Gramps:
         self.model2page = {}
         self.model_used = {}
 
+        self.pl_page = [
+            ListModel.ListModel(self.pl_other, self.pl_titles, self.row_changed,
+                                self.alpha_event, _sel_mode),
+            ]
+
         self.person_tree = self.pl_page[-1]
         self.person_list = self.pl_page[-1].tree
         self.person_model = self.pl_page[-1].model
@@ -641,7 +646,19 @@ class Gramps:
     def tool_callback(self,val):
         if val:
             Utils.modified()
+            for i in range(0,len(self.tab_list)):
+                self.ptabs.remove_page(0)
+            self.ptabs.set_show_tabs(0)
+
+            self.pl_page = [
+                ListModel.ListModel(self.pl_other, self.pl_titles, self.row_changed,
+                                    self.alpha_event, _sel_mode),
+                ]
+
+            self.tab_list = []
             self.alpha_page = {}
+            self.model2page = {}
+            self.model_used = {}
             self.full_update()
         
     def full_update(self):
@@ -1411,13 +1428,19 @@ class Gramps:
         self.status_text("")
 
     def complete_rebuild(self):
+        self.topWindow.set_resizable(gtk.FALSE)
+        for i in range(0,len(self.tab_list)):
+            self.ptabs.remove_page(0)
+        self.ptabs.set_show_tabs(0)
         self.id2col = {}
         self.model_used = {}
-        #self.alpha_page = {}
+        self.model2page = {}
+        self.alpha_page = {}
         self.tab_list = []
         self.apply_filter()
         self.goto_active_person()
         self.modify_statusbar()
+        self.topWindow.set_resizable(gtk.TRUE)
 
     def apply_filter(self,current_model=None):
 
@@ -1541,7 +1564,6 @@ class Gramps:
         """Call the import plugin"""
         plugin_function(self.db,self.active_person,self.tool_callback)
         self.topWindow.set_title("%s - GRAMPS" % self.db.getSavePath())
-        self.full_update()
 
     def on_preferences_activate(self,obj):
         GrampsCfg.display_preferences_box(self.db)

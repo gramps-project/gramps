@@ -2189,7 +2189,8 @@ class GrampsDB(Persistent):
     def addPersonAs(self,person):
         self.personMap[person.getId()] = person
         self.personTable[person.getId()] = person.getDisplayInfo()
-        
+        return person.getId()
+    
     def addPerson(self,person):
         """adds a Person to the database, assigning a gramps' ID"""
         index = self.iprefix % self.pmapIndex
@@ -2220,16 +2221,6 @@ class GrampsDB(Persistent):
             self.personTable[map[idVal]] = person.getDisplayInfo()
         return person
 
-    def addPersonNoMap(self,person,id):
-        """adds a Person to the database if the gramps' ID is known"""
-        
-        id = str(id)
-        person.setId(id)
-        self.personMap[id] = person
-        self.pmapIndex = self.pmapIndex+1
-        self.personTable[id] = person.getDisplayInfo()
-        return id
-
     def findPersonNoMap(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
@@ -2243,6 +2234,16 @@ class GrampsDB(Persistent):
             self.personTable[val] = person.getDisplayInfo()
         return person
 
+    def addPersonNoMap(self,person,id):
+        """adds a Person to the database if the gramps' ID is known"""
+        
+        id = str(id)
+        person.setId(id)
+        self.personMap[id] = person
+        self.pmapIndex = self.pmapIndex+1
+        self.personTable[id] = person.getDisplayInfo()
+        return id
+
     def addSource(self,source):
         """adds a Source instance to the database, assigning it a gramps'
         ID number"""
@@ -2255,6 +2256,14 @@ class GrampsDB(Persistent):
         self.sourceMap[index] = source
         self.sourceTable[index] = source.getDisplayInfo()
         self.smapIndex = self.smapIndex + 1
+        return index
+
+    def addSourceNoMap(self,source,index):
+        """adds a Source to the database if the gramps' ID is known"""
+        source.setId(index)
+        self.sourceMap[index] = source
+        self.smapIndex = self.smapIndex + 1
+        self.sourceTable[index] = source.getDisplayInfo()
         return index
 
     def findSource(self,idVal,map):
@@ -2271,16 +2280,8 @@ class GrampsDB(Persistent):
         else:
             source = Source()
             map[idVal] = self.addSource(source)
-        self.sourceTable[map[idVal]] = source.getDisplayInfo()
+            self.sourceTable[map[idVal]] = source.getDisplayInfo()
         return source
-
-    def addSourceNoMap(self,source,index):
-        """adds a Source to the database if the gramps' ID is known"""
-        source.setId(index)
-        self.sourceMap[index] = source
-        self.smapIndex = self.smapIndex + 1
-        self.sourceTable[index] = source.getDisplayInfo()
-        return index
 
     def findSourceNoMap(self,val):
         """finds a Source in the database from the passed gramps' ID.
@@ -2325,6 +2326,26 @@ class GrampsDB(Persistent):
         else:
             object = Photo()
             map[idVal] = self.addObject(object)
+        return object
+
+    def findObjectNoConflicts(self,idVal,map):
+        """finds an Object in the database using the idVal and map
+        variables to translate between the external ID and gramps'
+        internal ID. If no such Object exists, a new Object instance
+        is created.
+
+        idVal - external ID number
+        map - map build by findObject of external to gramp's IDs"""
+        
+        idVal = str(idVal)
+        if map.has_key(idVal):
+            object = self.objectMap[map[idVal]]
+        else:
+            object = Photo()
+            if self.objectMap.has_key(idVal):
+                map[idVal] = self.addObject(object)
+            else:
+                map[idVal] = self.addObjectNoMap(object,idVal)
         return object
 
     def addObjectNoMap(self,object,index):
@@ -2390,6 +2411,27 @@ class GrampsDB(Persistent):
         else:
             place = Place()
             map[idVal] = self.addPlace(place)
+        return place
+
+    def findPlaceNoConflicts(self,idVal,map):
+        """finds a Place in the database using the idVal and map
+        variables to translate between the external ID and gramps'
+        internal ID. If no such Place exists, a new Place instance
+        is created.
+
+        idVal - external ID number
+        map - map build by findPlace of external to gramp's IDs"""
+
+        idVal = str(idVal)
+        if map.has_key(idVal):
+            place = self.placeMap[map[idVal]]
+        else:
+            place = Place()
+            if self.placeMap.has_key(idVal):
+                map[idVal] = self.addPlace(place)
+            else:
+                place.setid(idVal)
+                map[idVal] = self.addPlaceAs(place)
         return place
 
     def addPlaceNoMap(self,place,index):
@@ -2496,5 +2538,61 @@ class GrampsDB(Persistent):
         if self.familyMap.has_key(family.getId()):
             del self.familyMap[family.getId()]
 
-        
 
+    def findPersonNoConflicts(self,idVal,map):
+        """finds a Person in the database using the idVal and map
+        variables to translate between the external ID and gramps'
+        internal ID. If no such Person exists, a new Person instance
+        is created.
+
+        idVal - external ID number
+        map - map build by findPerson of external to gramp's IDs"""
+
+        if map.has_key(idVal):
+            person = self.personMap[map[idVal]]
+        else:
+            person = Person()
+            if self.personMap.has_key(idVal):
+                map[idVal] = self.addPerson(person)
+            else:
+                person.setId(idVal)
+                map[idVal] = self.addPersonAs(person)
+        return person
+
+    def findFamilyNoConflicts(self,idVal,map):
+        """finds a Family in the database using the idVal and map
+        variables to translate between the external ID and gramps'
+        internal ID. If no such Family exists, a new Family instance
+        is created.
+
+        idVal - external ID number
+        map - map build by findFamily of external to gramp's IDs"""
+
+        if map.has_key(idVal):
+            family = self.familyMap[map[idVal]]
+        else:
+            if self.familyMap.has_key(idVal):
+                family = self.newFamily()
+            else:
+                family = self.newFamilyNoMap(idVal)
+            map[idVal] = family.getId()
+        return family
+
+    def findSourceNoConflicts(self,idVal,map):
+        """finds a Source in the database using the idVal and map
+        variables to translate between the external ID and gramps'
+        internal ID. If no such Source exists, a new Source instance
+        is created.
+
+        idVal - external ID number
+        map - map build by findSource of external to gramp's IDs"""
+        
+        if map.has_key(idVal):
+            source = self.sourceMap[map[idVal]]
+        else:
+            source = Source()
+            if self.sourceMap.has_key(idVal):
+                map[idVal] = self.addSource(source)
+            else:
+                map[idVal] = self.addSource(source,idVal)
+        return source

@@ -46,6 +46,7 @@ class ReadNative:
         
         self.top = gtk.FileSelection("%s - GRAMPS" % _("Import from GRAMPS"))
         self.top.hide_fileop_buttons()
+        #self.top.set_directory_entry(1)
         self.top.ok_button.connect('clicked', self.on_ok_clicked)
         self.top.cancel_button.connect('clicked', self.close_window)
         self.top.show()
@@ -83,9 +84,11 @@ class ReadNative:
         self.callback(1)
 
     def progress(self,val):
-        self.progress_bar.set_value(val*100.0)
-        while gtk.events_pending():
-            gtk.mainiteration()
+        pass
+
+#        self.progress_bar.set_percentage(val)
+#        while gtk.events_pending():
+#            gtk.mainiteration()
         
 #------------------------------------------------------------------------
 #
