@@ -14,10 +14,12 @@ install:
 	${INSTALL} -d ${data}
 	${INSTALL} -d ${data}/templates
 	${INSTALL} gedcom.xml ${data}
-	${INSTALL} templates/* ${data}/templates
+	${INSTALL} -m 644 templates/*.tpkg ${data}/templates
+	${INSTALL} -m 644 templates/*.xml ${data}/templates
 
 uninstall:
-
+	-rm -rf ${data}/templates
+	
 clean:
 
 
