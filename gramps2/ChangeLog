@@ -1,5 +1,10 @@
 2003-08-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/GraphViz.py (make_doc_menu): Add paper option to the menu.
+	* src/GenericFilter.py: Fixes for existing filters (ancestors and
+	descendants used to include the original person). 
+	Four new filters: ancestors and descendants more and less than so many
+	generations away. 
+	* NEWS: Compile preliminary contents for the next release. 
 
 2003-08-02  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/dialog.glade: Consistent tooltips.
