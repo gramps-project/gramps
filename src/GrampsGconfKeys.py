@@ -211,7 +211,7 @@ def get_person_id_prefix():
     return get_string("/apps/gramps/preferences/iprefix")
 
 def get_event_id_prefix():
-    return get_string("/apps/gramps/preferences/iprefix")
+    return get_string("/apps/gramps/preferences/eprefix")
 
 def save_iprefix(val):
     set_string_as_id_prefix("/apps/gramps/preferences/iprefix",val)

@@ -361,7 +361,7 @@ def get_person_id_prefix():
     return get_string("preferences", "iprefix")
 
 def get_event_id_prefix():
-    return get_string("preferences", "iprefix")
+    return get_string("preferences", "eprefix")
 
 def save_iprefix(val):
     set_string_as_id_prefix("preferences", "iprefix",val)
