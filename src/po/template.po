@@ -1684,7 +1684,7 @@ msgid "Parents"
 msgstr ""
 
 #: glade.c:806
-msgid "Pedegree"
+msgid "Pedigree"
 msgstr ""
 
 #: glade.c:809
@@ -2393,7 +2393,7 @@ msgid "_New File"
 msgstr ""
 
 #: glade.c:1157
-msgid "_Pedegree"
+msgid "_Pedigree"
 msgstr ""
 
 #: glade.c:1160

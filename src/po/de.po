@@ -1655,7 +1655,7 @@ msgid "Parents"
 msgstr "Eltern"
 
 #: glade.c:788
-msgid "Pedegree"
+msgid "Pedigree"
 msgstr "Stammbaum"
 
 #: glade.c:791
@@ -2350,7 +2350,7 @@ msgid "_New File"
 msgstr "_Neue Datei"
 
 #: glade.c:1127
-msgid "_Pedegree"
+msgid "_Pedigree"
 msgstr "_Stammbaum"
 
 #: glade.c:1130

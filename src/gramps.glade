@@ -209,7 +209,7 @@
 		<handler>on_pedegree1_activate</handler>
 		<last_modification_time>Sun, 22 Oct 2000 23:08:36 GMT</last_modification_time>
 	      </signal>
-	      <label>_Pedegree</label>
+	      <label>_Pedigree</label>
 	      <right_justify>False</right_justify>
 	    </widget>
 
@@ -459,7 +459,7 @@
 	    <object>notebook1</object>
 	    <last_modification_time>Tue, 07 Nov 2000 14:34:15 GMT</last_modification_time>
 	  </signal>
-	  <label>Pedegree</label>
+	  <label>Pedigree</label>
 	  <icon>pedegree.xpm</icon>
 	</widget>
 
@@ -2351,7 +2351,7 @@
 	<class>GtkLabel</class>
 	<child_name>Notebook:tab</child_name>
 	<name>label3</name>
-	<label>Pedegree</label>
+	<label>Pedigree</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
