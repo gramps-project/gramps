@@ -115,6 +115,16 @@
 	  		<para role="publisher">GRAMPS Project</para>
 		</revdescription> 
       </revision> 
+      <revision> 
+		<revnumber>gramps User Manual V1.0</revnumber> 
+		<date>2001</date> 
+		<revdescription> 
+	  		<para role="author">Donald N. Allingham 
+	    	<email>dallingham@users.sourceforge.net</email>
+	  		</para>
+	  		<para role="publisher">GRAMPS Project</para>
+		</revdescription> 
+      </revision> 
     </revhistory> 
 
     <releaseinfo>This manual describes version &appversion; of GRAMPS.
@@ -319,7 +329,7 @@
       <varlistentry><term>Toolbar. </term>
 	<listitem><para> The toolbar provides access to the most frequently 
 	used functions of <application>&app;</application>. The appearance of 
-	the toolbar can be adjusted in <<guilabel>Preferences</guilabel> 
+	the toolbar can be adjusted in <guilabel>Preferences</guilabel> 
 	dialog. </para></listitem>
       </varlistentry>
       <varlistentry><term>Progress bar. </term>
