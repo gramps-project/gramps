@@ -89,7 +89,8 @@ class MediaView:
             else:
                 column.set_resizable(gtk.TRUE)
                 column.set_visible(gtk.TRUE)
-            column.set_sort_column_id(title[1])
+            if title[1] >= 0:
+                column.set_sort_column_id(title[1])
             column.set_min_width(title[2])
             self.list.append_column(column)
 

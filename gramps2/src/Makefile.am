@@ -25,21 +25,19 @@ pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop
 #EXTRA_DIST =@DISTLANGS@
 
 
-all: ${INTLLIBS}
+all: ${INTLLIBS} grampslib.so
 
 DIST_SOURCES = intl.c
 dist_pkgdata_DATA = ${pkgdata_DATA} 
 
 # These can prbably be done in a better or more elegant/generic way 
 # eventually (libtool?), but this works.
-intl15.so: intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) @P15_INCLUDES@ -DVER15 -o $@ intl.c
-intl20.so: intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) @P20_INCLUDES@ -DVER20 -o $@ intl.c
-intl21.so: intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) @P21_INCLUDES@ -DVER21 -o $@ intl.c
 intl22.so: intl.c
 	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ intl.c
+
+grampslib.so: grampslib.i
+	swig -python grampslib.i 
+	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c -lgnomevfs-2
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 

@@ -32,8 +32,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk
-#import gnome.util
-#from gnome.ui import GnomeWarningDialog
+import grampslib
 
 #-------------------------------------------------------------------------
 #
@@ -48,8 +47,7 @@ import RelImage
 # internationalization
 #
 #-------------------------------------------------------------------------
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -362,45 +360,26 @@ def get_place_from_list(obj):
     else:
         return select[0].get_data(LISTOBJ)
 
+import os
+
 def find_icon(mtype):
-    icon = None
-    nicon = None
-#    for k in gnome.mime.get_keys(mtype):
-#    if k == "icon-filename":
-#        icon = gnome.mime.get_value(mtype,k)
-#    elif k == "icon_filename":
-#        nicon = gnome.mime.get_value(mtype,k)
-#    if nicon:
-#	p = "%s/%s" % (gnome.util.pixmap_file("nautilus"),nicon)
-#	if os.path.isfile(p):
-#            return p
-#	p = "%s.png" % p
-#	if os.path.isfile(p):
-#            return p
-    if icon:
-        return icon
-    return const.icon
+    n = "%s/icons/%s.png" % (const.rootDir,string.replace(string.replace(mtype,'/','-'),'.','-'))
+    if os.path.isfile(n):
+        return n
+    else:
+        return const.icon
 
 def get_mime_type(file):
-    if file[-4:] == ".jpg":
-        return "image/jpeg"
+    type = grampslib.gnome_vfs_mime_type_from_name(file)
+    if type:
+        return type
     return "unknown"
 
-#    if os.path.isfile(file) or os.path.isdir(file):
-#	mtype = gnome.mime.type_of_file(file)
-#	if len(string.split(mtype,"/")) != 2:
-#            mtype = gnome.mime.type(file)
-#    else:
-#        mtype = gnome.mime.type(file)
-#    return mtype
-
 def get_mime_description(type):
+    value = grampslib.gnome_vfs_mime_get_description(type)
+    if value:
+        return value
     return ""
-#    for key in gnome.mime.get_keys(type):
-#        if key == "description":
-#            return gnome.mime.get_value(type,key)
-#    return type
-
 
 #-------------------------------------------------------------------------
 #
@@ -552,3 +531,22 @@ def build_string_optmenu(mapping, start_val):
         myMenu.set_active(start_index)
     return myMenu
 
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_columns(tree,list):
+    cnum = 0
+    for name in list:
+        renderer = gtk.CellRendererText()
+        column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
+        column.set_min_width(name[1])
+        if name[2] >= 0:
+            column.set_sort_column_id(name[2])
+        if name[0] == '':
+            column.set_clickable(gtk.TRUE)
+            column.set_visible(gtk.FALSE)
+        cnum = cnum + 1
+        tree.append_column(column)

@@ -664,12 +664,6 @@ class Gramps:
         else:
             obj.set_sensitive(0)
 
-    def on_fv_prev_clicked(self,obj):
-        """makes the currently select child the active person"""
-        if self.active_child:
-            self.change_active_person(self.active_child)
-            self.family_view.load_family()
-
     def on_add_child_clicked(self,obj):
         """Select an existing child to add to the active family"""
         import SelectChild

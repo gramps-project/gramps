@@ -31,6 +31,7 @@ import string
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import gobject
 import gtk
 import gnome.ui
 import gnome.canvas
@@ -52,6 +53,7 @@ import EditPerson
 import Marriage
 import EditPlace
 import EditSource
+import ListModel
 
 from QuestionDialog import ErrorDialog
 from intl import gettext as _
@@ -494,8 +496,14 @@ class LocalMediaProperties:
         self.attr_type = self.change_dialog.get_widget("attr_type")
         self.attr_value = self.change_dialog.get_widget("attr_value")
         self.attr_details = self.change_dialog.get_widget("attr_details")
+
+
         self.attr_list = self.change_dialog.get_widget("attr_list")
-        
+        self.attr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
+        Utils.build_columns(self.attr_list, [(_('Attribute'),150,-1), (_('Value'),100,-1)])
+        self.attr_list.set_model(self.attr_model)
+        self.attr_list.get_selection().connect('changed',self.on_attr_list_select_row)
+
         descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
 
@@ -512,7 +520,6 @@ class LocalMediaProperties:
 
         mt = Utils.get_mime_description(mtype)
         self.change_dialog.get_widget("type").set_text(mt)
-        print self.photo
         self.change_dialog.get_widget("notes").get_buffer().set_text(self.photo.getNote())
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked" : Utils.destroy_passed_object,
@@ -520,7 +527,6 @@ class LocalMediaProperties:
             "on_down_clicked" : self.on_down_clicked,
             "on_ok_clicked" : self.on_ok_clicked,
             "on_apply_clicked" : self.on_apply_clicked,
-            "on_attr_list_select_row" : self.on_attr_list_select_row,
             "on_add_attr_clicked": self.on_add_attr_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
@@ -528,21 +534,19 @@ class LocalMediaProperties:
         self.redraw_attr_list()
 
     def on_up_clicked(self,obj):
-        if len(obj.selection) == 0:
-            return
-        row = obj.selection[0]
-        if row != 0:
-            obj.select_row(row-1,0)
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            # select row
 
     def on_down_clicked(self,obj):
-        if len(obj.selection) == 0:
-            return
-        row = obj.selection[0]
-        if row != obj.rows-1:
-            obj.select_row(row+1,0)
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            # select row
 
     def redraw_attr_list(self):
-        Utils.redraw_list(self.alist,self.attr_list,disp_attr)
+        Utils.redraw_list(self.alist,self.attr_model,disp_attr)
         
     def on_apply_clicked(self, obj):
         priv = self.change_dialog.get_widget("private").get_active()
@@ -563,17 +567,24 @@ class LocalMediaProperties:
         Utils.destroy_passed_object(obj)
         
     def on_attr_list_select_row(self,obj,row,b,c):
-        attr = obj.get_row_data(row)
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            attr = self.alist[row[0]]
 
-        self.attr_type.set_label(attr.getType())
-        self.attr_value.set_text(attr.getValue())
-        self.attr_details.set_text(Utils.get_detail_text(attr))
-
+            self.attr_type.set_label(attr.getType())
+            self.attr_value.set_text(attr.getValue())
+        else:
+            self.attr_type.set_label('')
+            self.attr_value.set_text('')
+            
     def on_update_attr_clicked(self,obj):
         import AttrEdit
-        if len(obj.selection) > 0:
-            row = obj.selection[0]
-            attr = obj.get_row_data(row)
+
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            attr = self.alist[row[0]]
             AttrEdit.AttributeEditor(self,attr,"Media Object",
                                      Plugins.get_image_attributes())
 
@@ -610,7 +621,12 @@ class GlobalMediaProperties:
         self.attr_type = self.change_dialog.get_widget("attr_type")
         self.attr_value = self.change_dialog.get_widget("attr_value")
         self.attr_details = self.change_dialog.get_widget("attr_details")
+
         self.attr_list = self.change_dialog.get_widget("attr_list")
+        self.attr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
+        Utils.build_columns(self.attr_list, [(_('Attribute'),150,-1), (_('Value'),100,-1)])
+        self.attr_list.set_model(self.attr_model)
+        self.attr_list.get_selection().connect('changed',self.on_attr_list_select_row)
         
         self.descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
@@ -630,7 +646,6 @@ class GlobalMediaProperties:
             "on_down_clicked"        : self.on_down_clicked,
             "on_ok_clicked"          : self.on_ok_clicked,
             "on_apply_clicked"       : self.on_apply_clicked,
-            "on_attr_list_select_row": self.on_attr_list_select_row,
             "on_add_attr_clicked"    : self.on_add_attr_clicked,
             "on_notebook_switch_page": self.on_notebook_switch_page,
             "on_make_local_clicked"  : self.on_make_local_clicked,
@@ -640,18 +655,16 @@ class GlobalMediaProperties:
         self.redraw_attr_list()
 
     def on_up_clicked(self,obj):
-        if len(obj.selection) == 0:
-            return
-        row = obj.selection[0]
-        if row != 0:
-            obj.select_row(row-1,0)
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            # select row
 
     def on_down_clicked(self,obj):
-        if len(obj.selection) == 0:
-            return
-        row = obj.selection[0]
-        if row != obj.rows-1:
-            obj.select_row(row+1,0)
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            # select row
 
     def update_info(self):
         fname = self.object.getPath()
@@ -673,50 +686,44 @@ class GlobalMediaProperties:
             self.update()
 
     def redraw_attr_list(self):
-        Utils.redraw_list(self.alist,self.attr_list,disp_attr)
+        Utils.redraw_list(self.alist,self.attr_model,disp_attr)
 
     def button_press(self,obj,event):
-        if len(obj.selection) <= 0:
+        store,iter = self.refmodel.selection.get_selected()
+        if not iter:
             return
-        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-            data = obj.get_row_data(obj.selection[0])
-            if data != None:
-                data[0](data[1],data[2])
-        
+        if event.button == 1 and event.type == gtk.gdk._2BUTTON_PRESS:
+            pass
+            
     def display_refs(self):
         if self.refs == 1:
             return
         self.refs = 1
-        index = 0
-        ref = self.change_dialog.get_widget("refinfo")
+
+        self.refmodel = ListModel.ListModel(self.change_dialog.get_widget("refinfo"),
+                                            [(_('Type'),150),(_('ID'),75),(_('Value'),100)])
+        ref = self.refmodel.tree 
+
         ref.connect('button-press-event',self.button_press)
         for key in self.db.getPersonKeys():
             p = self.db.getPerson(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
-                    ref.append([_("Person"),p.getId(),GrampsCfg.nameof(p)])
-                    ref.set_row_data(index,(EditPerson.EditPerson,p,self.db))
-                    index = index + 1
+                    self.refmodel.add([_("Person"),p.getId(),GrampsCfg.nameof(p)])
         for p in self.db.getFamilyMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
-                    ref.append([_("Family"),p.getId(),Utils.family_name(p)])
-                    ref.set_row_data(index,(Marriage.Marriage,p,self.db))
-                    index = index + 1
+                    self.refmodel.add([_("Family"),p.getId(),Utils.family_name(p)])
         for key in self.db.getSourceKeys():
             p = self.db.getSource(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
-                    ref.append([_("Source"),p.getId(),p.getTitle()])
-                    ref.set_row_data(index,(EditSource.EditSource,p,self.db))
-                    index = index + 1
+                    self.refmodel.add([_("Source"),p.getId(),p.getTitle()])
         for key in self.db.getPlaceKeys():
             p = self.db.getPlace(key)
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
-                    ref.append([_("Place"),p.getId(),p.get_title()])
-                    ref.set_row_data(index,(EditPlace.EditPlace,p,self.db))
-                    index = index + 1
+                    self.refmodel.add([_("Place"),p.getId(),p.get_title()])
         
     def on_notebook_switch_page(self,obj,junk,page):
         if page == 3:
@@ -741,17 +748,24 @@ class GlobalMediaProperties:
         Utils.destroy_passed_object(obj)
         
     def on_attr_list_select_row(self,obj,row,b,c):
-        attr = obj.get_row_data(row)
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            attr = self.alist[row[0]]
 
-        self.attr_type.set_label(attr.getType())
-        self.attr_value.set_text(attr.getValue())
-        self.attr_details.set_text(Utils.get_detail_text(attr))
+            self.attr_type.set_label(attr.getType())
+            self.attr_value.set_text(attr.getValue())
+        else:
+            self.attr_type.set_label('')
+            self.attr_value.set_text('')
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
-        if len(obj.selection) > 0:
-            row = obj.selection[0]
-            attr = obj.get_row_data(row)
+
+        store,iter = obj.get_selected()
+        if iter:
+            row = store.get_path(iter)
+            attr = self.alist[row[0]]
             AttrEdit.AttributeEditor(self,attr,"Media Object",
                                      Plugins.get_image_attributes())
 
