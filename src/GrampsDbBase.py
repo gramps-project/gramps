@@ -977,25 +977,25 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             (key, handle, data) = transaction.get_record(record_id)
             if key == PERSON_KEY:
                 if data == None:
-                    self.emit('person-delete',([str(handle),]))
+                    self.emit('person-delete',([str(handle)],))
                     del self.person_map[str(handle)]
                 else:
                     self.person_map[str(handle)] = data
-                    self.emit('person-update',([str(handle),]))
+                    self.emit('person-update',([str(handle)],))
             elif key == FAMILY_KEY:
                 if data == None:
-                    self.emit('family-delete',([str(handle),]))
+                    self.emit('family-delete',([str(handle)],))
                     del self.family_map[str(handle)]
                 else:
                     self.family_map[str(handle)] = data
-                    self.emit('family-update',([str(handle),]))
+                    self.emit('family-update',([str(handle)],))
             elif key == SOURCE_KEY:
                 if data == None:
-                    self.emit('source-delete',([str(handle),]))
+                    self.emit('source-delete',([str(handle)],))
                     del self.source_map[str(handle)]
                 else:
                     self.source_map[str(handle)] = data
-                    self.emit('source-update',([str(handle),]))
+                    self.emit('source-update',([str(handle)],))
             elif key == EVENT_KEY:
                 if data == None:
                     del self.event_map[str(handle)]
@@ -1003,17 +1003,17 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                     self.event_map[str(handle)] = data
             elif key == PLACE_KEY:
                 if data == None:
-                    self.emit('place-delete',([str(handle),]))
+                    self.emit('place-delete',([str(handle)],))
                     del self.place_map[str(handle)]
                 else:
                     self.place_map[str(handle)] = data
-                    self.emit('place-update',([str(handle),]))
+                    self.emit('place-update',([str(handle)],))
             elif key == MEDIA_KEY:
                 if data == None:
-                    self.emit('media-delete',([str(handle),]))
+                    self.emit('media-delete',([str(handle)],))
                     del self.media_map[str(handle)]
                 else:
-                    self.emit('media-update',([str(handle),]))
+                    self.emit('media-update',([str(handle)],))
                     self.media_map[str(handle)] = data
 
         if self.undo_callback:

@@ -464,9 +464,9 @@ class Date:
 
     def is_empty(self):
         """
-        Returns True if the date is a date range or a date span.
+        Returns True if the date contains no information (empty text).
         """
-        return self.modifier == MOD_TEXTONLY
+        return self.modifier == MOD_TEXTONLY and not self.text
         
     def is_compound(self):
         """

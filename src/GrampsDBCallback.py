@@ -120,7 +120,7 @@ class GrampsDBCallback(object):
             for (k,v) in s.items():
                 if self.__signal_map.has_key(k):
                     # signal name clash
-                    sys.err.write("Warning: signal name clash: ", str(k))
+                    sys.err.write("Warning: signal name clash: %s\n" % str(k))
                 self.__signal_map[k] = v
 
         # self.__signal_map now contains the connonical list
@@ -130,7 +130,7 @@ class GrampsDBCallback(object):
     def connect(self, signal_name, callback):
         # Check that signal exists.
         if signal_name not in self.__signal_map.keys():
-            sys.stderr.write("Warning: attempt to connect to unknown signal: ", str(signal_name))
+            sys.stderr.write("Warning: attempt to connect to unknown signal: %s\n" % str(signal_name))
             return
         
         # Add callable to callback_map
@@ -146,28 +146,29 @@ class GrampsDBCallback(object):
         
         # Check signal exists
         if signal_name not in self.__signal_map.keys():
-            sys.stderr.write("Warning: attempt to emit to unknown signal: ", str(signal_name))
+            sys.stderr.write("Warning: attempt to emit to unknown signal: %s\n"
+                                % str(signal_name))
             return
 
         # type check arguments
         arg_types = self.__signal_map[signal_name]
         if arg_types == None and len(args) > 0:
             sys.stderr.write("Warning: signal emitted with "\
-                             "wrong number of args: ", str(signal_name))
+                             "wrong number of args: %s\n" % str(signal_name))
             return
 
         if len(args) > 0:
             if len(args) != len(arg_types):
                 sys.stderr.write("Warning: signal emitted with "\
-                                 "wrong number of args: ", str(signal_name))
+                                 "wrong number of args: %s\n" % str(signal_name))
                 return
 
             if arg_types != None:
                 for i in range(0,len(arg_types)):
                     if not isinstance(args[i],arg_types[i]):
                         sys.stderr.write("Warning: signal emitted with "\
-                                         "wrong arg types: %s" % (str(signal_name),))
-                        sys.stderr.write("arg passed was: %s type should be: %s"
+                                         "wrong arg types: %s\n" % (str(signal_name),))
+                        sys.stderr.write("    arg passed was: %s, type should be: %s\n"
                                          % (args[i],repr(arg_types[i])))
                         return 
 
@@ -181,9 +182,9 @@ class GrampsDBCallback(object):
                              type(cb) == types.MethodType: # call func
                         cb(*args)
                     else:
-                        sys.stderr.write("Warning: badly formed entry in callback map")
+                        sys.stderr.write("Warning: badly formed entry in callback map.\n")
                 except:
-                    sys.stderr.write("Warning: exception occured in callback function.")
+                    sys.stderr.write("Warning: exception occured in callback function.\n")
 
     #
     # instance signals control methods
