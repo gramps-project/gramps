@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	  User Manual for Gramps - a GTK+/GNOME based genealogy program
+
+	  Copyright (C) 2003  Alexander Roitman
+
+	  Permission is granted to copy, distribute and/or modify this
+	  document under the terms of the GNU Free Documentation
+	  License (GFDL), Version 1.1 or any later version published
+	  by the Free Software Foundation with no Invariant Sections,
+	  no Front-Cover Texts, and no Back-Cover Texts. 
+          A copy of the license is included in the file COPYING-DOCS 
+          distributed with this manual.
+-->
+
+<!-- $Id$ -->
+
+<!-- =========== Getting Started ============================== -->
+
+  <sect1 id="gramps-getting-started"> 
+    <title>Getting Started</title> 
+
+    <!-- ================ Getting Started Subsection ====== -->
+    <sect2 id="gramps-start">
+    <title>To Start &app;</title>
+    <para>You can start &app; in the following ways:</para> 
+    <variablelist>
+    <varlistentry>
+	<term><guimenu>Applications</guimenu> menu</term>
+	<listitem><para>Choose <menuchoice><guisubmenu>Other</guisubmenu>
+	<guimenuitem>Gramps</guimenuitem></menuchoice>. </para></listitem>
+    </varlistentry>
+    <varlistentry>
+	<term>Command line</term>
+    	<listitem><para>To start &app; from a command line, type 
+        <command>gramps</command>, then press <keycap>Return</keycap>.</para>
+	
+	<para>If you would like &app; to open a specific database or to 
+        import a specific file on startup, you can supply the filename 
+        as a command line argument:</para>
+
+	<para>
+	<command>gramps -i</command> <replaceable>filename.ged</replaceable>
+    	</para> 
+
+    	<para>where <replaceable>filename.ged</replaceable> is the name 
+	of the file you	want to open/import. The detailed reference to the 
+        command line options is found in the <xref linkend="append-cmdline"/>. 
+        </para></listitem>
+    </varlistentry>
+    </variablelist>
+    </sect2>
+
+    <!-- ================ Getting Started Subsection ==== -->
+    <sect2 id="run-1st-time">
+      <title>Running &app; for the first time</title>
+    <para> 
+    The first time you run the program, GRAMPS will display its 
+    Getting Started dialogs. Follow the directions guiding you through
+    <guilabel>Researcher information</guilabel>, <guilabel>Numerical date 
+    formats</guilabel>, <guilabel>Alternate calendar support</guilabel>,
+    and <guilabel>LDS extensions</guilabel> sections. Most of the dialogs
+    are self-explanatory and will not be covered here.
+    </para>
+    
+	<!-- ==== Figure: Getting Started Druid Window ==== -->
+	<figure id="druid-fig"> 
+	<title>&app; Getting Started Window: Researcher Information</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/researcher.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Researcher Information Window. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>Enter your personal information in the corresponding
+	text entry fields. Although &app; requests information about you, 
+	this information is used only so that &app; can create valid GEDCOM 
+	output files. A valid GEDCOM file requires information about the file's 
+	creator. If you choose, you may leave the information empty, however
+	all the GEDCOM files you export will not be valid. 
+	</para>
+	
+	<para>This information can be entered at any time in the 
+	<guilabel>Preferences</guilabel> dialog, under the 
+	<guilabel>Usage</guilabel> category. 
+	</para>
+
+    </sect2>
+
+    <!-- ================ Getting Started Subsection  -->
+      <sect2 id="choose-db-start">
+      <title>Choosing a database on startup</title> 
+      <para>If &app; is started without any
+      database  to open, the following window will appear prompting you to 
+      choose what database to open. </para>
+      
+	<!-- ==== Figure: Open existing/new database window ==== -->
+	<figure id="first-open"> 
+	<title>Open Database Window</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/first-open.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Open Database Window.  </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+      
+      <para>If you would like to open an existing database, check the top radio
+      button and click the <guibutton>OK</guibutton> button. You will then be asked to 
+      specify the name of your existing database. If you would like to start
+      creating your brand new database from scratch right away, choose new XML
+      database. </para> 
+
+      <para>NOTE: when starting new database, you should 
+      select an empty <replaceable>DIRECTORY</replaceable> 
+      and <replaceable>NOT a FILE</replaceable>. Create empty directory if 
+      needed. The directory you specify will be used by &app; to store 
+      database file <replaceable>data.gramps</replaceable> as well as any 
+      possible copies of media objects. This directory will be updated by &app; 
+      each time the database is saved. </para> 
+      
+      <para>NOTE: when opening an existing database, you should 
+      open a <replaceable>DIRECTORY</replaceable> and 
+      <replaceable>NOT a FILE</replaceable>. The directory you need to open 
+      should contain the  database file <replaceable>data.gramps</replaceable> 
+      as well as any possible copies of media objects. Such a directory is 
+      created by &app; when you start a new database and is updated each time 
+      the database is saved. </para> 
+
+      </sect2>
+      
+<!-- ================ Getting Started Sub-subsection  
+      <sect3 id="zodb-support">
+        <title>Optional ZODB support</title> 
+
+      <para>If either StandaloneZODB or Zope is installed on your system, 
+      &app; will give you the third option of 
+      creating a new ZODB database. You can choose to start your new database 
+      in either XML or ZODB format. Both formats have their strong and weak 
+      points.</para>
+
+      <para>XML stands for eXtensible Markup Language, and is a human readable
+      structured description of data. It could be easily parsed by other 
+      programs should the need occur. It stores only the data itself. Its weak 
+      point is the relatively low speed of processing large data files. </para>
+
+      <para>ZODB stands for Zope Object Database and provides the full-fledged
+      database support. ZODB files are not human readable. They contain a
+      certain overhead to assist working with large data structures. However,
+      ZODB provides a significant speed-up when the database size is large (over
+      a few thousand people). </para>
+
+      <para>Its is hard to tell which format is better, since this is a typical
+      trade-off situation. If you are starting your research then you are likely
+      to be fine with the regular XML database. If you have tons of data to
+      import describing thousands upon thousands of people, then you are
+      probably better off with ZODB. </para>
+
+      </sect3>
+-->
+
+    <!-- ================ Getting Started Subsection ==== -->
+    <sect2 id="get-help">
+      <title>Obtaining Help</title>
+    <para> At any time, the following items are available for immediate aid
+    from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
+    
+	<variablelist>
+
+	<varlistentry><term>User manual</term>
+	<listitem><para> Choose this item to read the text of this manual 
+	in the help browser.  </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>FAQ</term>
+	<listitem><para> Use this item to read Frequently Asked Questions
+	about &app; in the browser. </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>GRAMPS home page</term>
+	<listitem><para> Select this item to open home page of &app; in your
+	default web browser. </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>GRAMPS mailing lists</term>
+	<listitem><para> Choose this item to direct your web browser 
+	to the &app; mailing list archives. </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>Report a bug</term>
+	<listitem><para> Use this item to file a bug report against &app; 
+	with the bug tracking system.  </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>Show plugin status</term>
+	<listitem><para> Use this item to display the status of loaded 
+	plugins. </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>Open example database</term>
+	<listitem><para> Select this item to load the example database shipped
+	with &app;. This database is composed of fictitious people and serves as
+	a useful example for learning how to work with &app;. </para></listitem>
+	</varlistentry>
+    
+	</variablelist>
+    </sect2>
+
+  </sect1> <!-- ================ End Getting Started ======================== -->
