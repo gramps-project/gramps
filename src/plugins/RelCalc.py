@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Utilities/Relationship calculator"
 
@@ -91,6 +93,8 @@ class RelCalc:
         self.clist.new_model()
         for key in self.db.getPersonKeys():
             p = self.db.getPerson(key)
+            if p == self.person:
+                continue
             val = self.db.getPersonDisplay(key)
             self.clist.add([val[0],val[1],val[3],val[5],val[6]],p.getId())
 
