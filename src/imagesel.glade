@@ -1229,7 +1229,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>change_global</name>
-  <title>Gramps - Change Global Medial Object Properties</title>
+  <title>Gramps - Change Global Media Object Properties</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
