@@ -3,6 +3,7 @@
 	HaveAltFamilies,HavePhotos,HaveChildren,NeverMarried,
 	MultipleMarriages,NoBirthdate): Add filter rules.
 	* src/gramps_main.py (init_filters): Add new filters to the menu.
+	* src/plugins/NavWebPage.py: Catch invalid HomeNote object
 
 2005-03-09  Don Allingham  <don@gramps-project.org>
 	* src/ChooseParents.py: Fix widget sensitivity problem, assign
