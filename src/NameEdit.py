@@ -219,7 +219,6 @@ class NameEditor:
         
         if self.name.get_surname() != last:
             self.name.set_surname(last)
-            self.parent.db.add_surname(last)
             self.parent.lists_changed = 1
 
         if self.name.get_suffix() != suffix:
