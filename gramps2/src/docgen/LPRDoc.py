@@ -50,7 +50,7 @@ if gnomeprint.Context.__dict__.has_key('grestore'):
 else:
     support_photos = 0
     print "LPRDoc: Photos and rotated text (used in TimeChart)"
-    print "        are not supported for direct priting."
+    print "        are not supported for direct printing."
     print "        Get gnome-python from CVS" 
     print "        or wait for the next gnome-python release."
 ### end FIXME ###
