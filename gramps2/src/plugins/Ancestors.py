@@ -367,11 +367,13 @@ class ComprehensiveAncestorsReport (Report.Report):
     def event_info (self, event):
         info = ''
         name = event.getName ()
+        description = event.getDescription ()
         if name != 'Birth' and name != 'Death' and name != 'Marriage':
             info += name
-            description = event.getDescription ()
             if description:
                 info += ': ' + description
+                description = None
+
         dateobj = event.getDateObj ()
         if dateobj:
             text = dateobj.getText ()
@@ -392,8 +394,15 @@ class ComprehensiveAncestorsReport (Report.Report):
         if placename:
             info += ' in ' + placename
         note = event.getNote ()
-        if note:
-            info += ' (' + note + ')'
+        if note or description:
+            info += ' ('
+            if description:
+                info += description
+            if note:
+                if description:
+                    info += '; '
+                info += note
+            info += ')'
 
         info += self.cite_sources (event.getSourceRefList ())
         return info
@@ -631,14 +640,21 @@ class ComprehensiveAncestorsReport (Report.Report):
         else:
             paras = []
 
+        names = person.getAlternateNames ()
         events = person.getEventList ()
         addresses = person.getAddressList ()
-        if (len (events) + len (addresses)) > 0:
+        if (len (events) + len (addresses) + len (names)) > 0:
             paras.append ((self.doc.start_paragraph, ['SubEntry']))
             paras.append ((self.doc.write_text,
                            ["More about " +
                             self.first_name_or_nick (person) +
                             ":"]))
+            paras.append ((self.doc.end_paragraph, []))
+
+        for name in names:
+            paras.append ((self.doc.start_paragraph, ['Details']))
+            paras.append ((self.doc.write_text, [name.getType () + ': ' +
+                                                 name.getRegularName ()]))
             paras.append ((self.doc.end_paragraph, []))
 
         for event in events:
