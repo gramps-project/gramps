@@ -130,6 +130,7 @@ class Gramps:
         # a GrampsXML or GrampsZODB
 
         self.history = []
+        self.mhistory = []
         self.hindex = -1
                 
         self.db = RelLib.GrampsDB()
@@ -465,24 +466,27 @@ class Gramps:
         self.edit_button.set_sensitive(val)
         
     def redraw_histmenu(self):
-        """Create the pulldown history menu"""
+        """Create the history submenu of the Go menu"""
         self.hist_gomenuitem.remove_submenu()
         if len(self.history) > 0:
             self.histmenu = gtk.Menu()
-            start =  max(self.hindex-9,0)
-            pids = self.history[start:self.hindex+1]
+            pids = self.mhistory[:]
             pids.reverse()
             num = 0
+            haveit = []
             for pid in pids:
-                person = self.db.getPerson(pid)
-                item = gtk.MenuItem("_%d. %s [%s]" % 
-                    (num,person.getPrimaryName().getName(),pid))
-                item.connect("activate",self.bookmark_callback,person)
-                item.show()
-                self.histmenu.append(item)
-                self.hist_gomenuitem.set_submenu(self.histmenu)
-                self.hist_gomenuitem.set_sensitive(1)
-                num = num + 1
+                if num < 10:
+                    if pid not in haveit:
+                        haveit.append(pid)
+                        person = self.db.getPerson(pid)
+                        item = gtk.MenuItem("_%d. %s [%s]" % 
+                            (num,person.getPrimaryName().getName(),pid))
+                        item.connect("activate",self.bookmark_callback,person)
+                        item.show()
+                        self.histmenu.append(item)
+                        self.hist_gomenuitem.set_submenu(self.histmenu)
+                        self.hist_gomenuitem.set_sensitive(1)
+                        num = num + 1
         else:
             self.hist_gomenuitem.set_sensitive(0)
 
@@ -493,6 +497,7 @@ class Gramps:
                 self.active_person = self.db.getPerson(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
+                self.mhistory.append(self.history[self.hindex])
                 self.redraw_histmenu()
                 self.set_buttons(1)
                 if self.hindex == 0:
@@ -518,6 +523,7 @@ class Gramps:
                 self.active_person = self.db.getPerson(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
+                self.mhistory.append(self.history[self.hindex])
                 self.redraw_histmenu()
                 self.set_buttons(1)
                 if self.hindex == len(self.history)-1:
@@ -881,6 +887,7 @@ class Gramps:
         const.familyRelations = const.init_family_relation_list()
 
         self.history = []
+        self.mhistory = []
         self.hindex = -1
 
         self.clear_person_tabs()
@@ -1531,6 +1538,7 @@ class Gramps:
                     self.fwdbtn.set_sensitive(0)
                     self.forward.set_sensitive(0)
                 self.history.append(person.getId())
+                self.mhistory.append(person.getId())
                 self.hindex += 1
                 self.redraw_histmenu()
 
