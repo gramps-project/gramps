@@ -1,3 +1,7 @@
+2005-03-29  Alex Roitman  <shura@gramps-project.org>
+	* src/Witness.py (WitnessEditor.__init__): Work around missing
+	reference.
+
 2005-03-29  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py (on_object_select_row): fixed the drop of 
 	text into TextView widgets.
