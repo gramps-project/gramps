@@ -1489,26 +1489,21 @@ class FtmDescendantReport(Report.Report):
 # 
 #
 #------------------------------------------------------------------------
-class FtmDescendantOptions:
+class FtmDescendantOptions(ReportOptions.ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
-        # Options specific for this report
-        self.options_dict = {}
-        self.options_help = {}
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
 
+    def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
             'max_gen'       : 10,
             'page_breaks'    : 0,
         }
-
-        self.options_dict.update(self.enable_dict)
-        self.handler = ReportOptions.OptionHandler(name,
-                                            self.options_dict,person_id)
 
     def make_default_style(self,default_style):
         """Make the default output style for the FTM Style Descendant report."""

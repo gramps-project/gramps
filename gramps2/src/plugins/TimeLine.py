@@ -366,13 +366,16 @@ class TimeLine:
 # 
 #
 #------------------------------------------------------------------------
-class TimeLineOptions:
+class TimeLineOptions(ReportOptions.ReportOptions):
 
     """
     Defines options and provides handling interface.
     """
 
     def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
+
+    def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
             'sortby'    : 0,
@@ -387,14 +390,11 @@ class TimeLineOptions:
                             "Whatever String You Wish"),
         }
 
+    def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
             'filter'    : 0,
         }
-
-        self.options_dict.update(self.enable_dict)
-        self.handler = ReportOptions.OptionHandler(name,
-                                            self.options_dict,person_id)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Timeline report."""
