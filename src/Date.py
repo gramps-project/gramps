@@ -459,9 +459,9 @@ def compare_dates(f,s):
         return cmp(first.year,second.year)
     elif first.month != second.month:
         return cmp(first.month,second.month)
-    elif f.range != 1:
+    elif first.day != second.day:
         return cmp(first.day,second.day)
-    else:
+    elif f.range == 1:
         first = f.get_stop_date()
         second = s.get_stop_date()
         if first.mode != second.mode:
@@ -472,3 +472,4 @@ def compare_dates(f,s):
             return cmp(first.month,second.month)
         else:
             return cmp(first.day,second.day)
+    return 0
