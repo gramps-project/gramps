@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ from latin_utf8 import latin_to_utf8
 
 import time
 import StringIO
+import string
 import gzip
 
 import Errors
@@ -363,7 +364,8 @@ class KwordDoc(TextDoc.TextDoc):
         self.tbl= self.table_styles[style_name]
         self.cell_left= (self.lmargin * 72)/ 2.54
         self.tbl_width= ((self.width - self.lmargin - self.rmargin) * 72 ) / 2.54
-        self.f.write(' </FRAMESET> \n')
+        if self.frameset_flg == 1:
+            self.f.write(' </FRAMESET> \n')
         self.cell_row= 0
         self.cell_col= 0
         self.frameset_flg= 0
@@ -435,6 +437,7 @@ class KwordDoc(TextDoc.TextDoc):
         pass
 
     def write_text(self,text):
+        text = string.replace(text,'&','&amp;');       # Must be first
 	self.text = self.text + text
 
 Plugins.register_text_doc(_("KWord"),KwordDoc,1,1,1,".kwd")
