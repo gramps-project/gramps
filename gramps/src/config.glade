@@ -2675,7 +2675,7 @@ information.</text>
       <title_color>125,104,74</title_color>
       <background_color>225,220,197</background_color>
       <logo_background_color>191,191,191</logo_background_color>
-      <logo_image>gramps.xpm</logo_image>
+      <logo_image>gramps.png</logo_image>
 
       <widget>
 	<class>GtkVBox</class>
@@ -3192,13 +3192,20 @@ anytime in the program's preference settings</label>
 	<last_modification_time>Sun, 24 Dec 2000 00:38:03 GMT</last_modification_time>
       </signal>
       <title>Complete</title>
-      <text>Please enjoy using Gramps.</text>
+      <text>GRAMPS is an Open Source project. Its success 
+depends on the users. User feedback is important. 
+Please join the mailing lists, submit bug reports,
+suggest improvements,  and see how you can 
+contribute.
+
+Please enjoy using GRAMPS.</text>
       <background_color>225,220,197</background_color>
       <logo_background_color>191,191,191</logo_background_color>
       <textbox_color>255,255,255</textbox_color>
       <text_color>0,0,0</text_color>
       <title_color>125,104,74</title_color>
-      <logo_image>gramps.xpm</logo_image>
+      <logo_image>gramps.png</logo_image>
+      <watermark_image>splash.jpg</watermark_image>
     </widget>
   </widget>
 </widget>

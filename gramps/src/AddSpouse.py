@@ -127,7 +127,7 @@ class AddSpouse:
         self.person.addFamily(family)
         spouse.addFamily(family)
 
-        if self.person.getGender() == Person.male:
+        if self.person.getGender() == RelLib.Person.male:
             family.setMother(spouse)
             family.setFather(self.person)
         else:	
