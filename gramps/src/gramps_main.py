@@ -199,8 +199,7 @@ def save_query(value):
     """Catch the reponse to the save on exit question"""
     if value == 0:
         on_save_activate_quit()
-    else:
-        mainquit(gtop)
+    mainquit(gtop)
 
 #-------------------------------------------------------------------------
 #
