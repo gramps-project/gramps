@@ -721,6 +721,10 @@ class Person(PrimaryObject,PrivateObject,MediaBase):
         elif classname == 'Family':
             return handle in self.family_list + \
                         [item[0] for item in self.parent_family_list ]
+        elif classname == 'Place':
+            return handle in [ordinance.place 
+                for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]
+                if ordinance]
         return False
 
     def _remove_handle_references(self,classname,handle_list):
@@ -739,6 +743,10 @@ class Person(PrimaryObject,PrivateObject,MediaBase):
             new_list = [ item for item in self.parent_family_list \
                                         if item[0] not in handle_list ]
             self.parent_family_list = new_list
+        elif classname == 'Place':
+            for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]:
+                if ordinance.place in handle_list:
+                    ordinance.place == None
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Event':
@@ -761,6 +769,10 @@ class Person(PrimaryObject,PrivateObject,MediaBase):
                 else:
                     new_list.append(item)
             self.parent_family_list = new_list
+        elif classname == 'Place':
+            for ordinance in [self.lds_bapt,self.lds_endow,self.lds_seal]:
+                if ordinance.place == old_handle:
+                    ordinance.place == new_handle
 
     def get_text_data_list(self):
         """
@@ -1483,6 +1495,8 @@ class Family(PrimaryObject,SourceNote,MediaBase):
             return handle in self.event_list
         elif classname == 'Person':
             return handle in self.child_list + [self.father_handle,self.mother_handle]
+        elif classname == 'Place':
+            return bool(self.lds_seal) and self.lds_seal.place == handle
         return False
 
     def _remove_handle_references(self,classname,handle_list):
@@ -1498,6 +1512,9 @@ class Family(PrimaryObject,SourceNote,MediaBase):
                 self.father_handle = None
             if self.mother_handle in handle_list:
                 self.mother_handle = None
+        elif classname == 'Place':
+            if self.lds_seal and self.lds_seal.place in handle_list:
+                self.lds_seal.place = None
 
     def _replace_handle_reference(self,classname,old_handle,new_handle):
         if classname == 'Event':
@@ -1512,6 +1529,9 @@ class Family(PrimaryObject,SourceNote,MediaBase):
                 self.father_handle = new_handle
             if self.mother_handle == old_handle:
                 self.mother_handle = new_handle
+        elif classname == 'Place':
+            if self.lds_seal and self.lds_seal.place == old_handle:
+                self.lds_seal.place = new_handle
 
     def get_text_data_child_list(self):
         """
