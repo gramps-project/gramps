@@ -1,3 +1,6 @@
+2003-09-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/RTFDoc.py: Fixed double printing of lines
+
 2003-09-26  Lorenzo Cappelletti  <lorenzo.cappelletti@email.it>
 	* src/po/it.po: Italian translation.
 
