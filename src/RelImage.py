@@ -26,6 +26,8 @@
 import os
 import const
 import intl
+import string
+import utils
 from gnome.ui import *
 
 _ = intl.gettext
@@ -38,49 +40,47 @@ except:
 
 #-------------------------------------------------------------------------
 #
-# import_photo
+# import_media_object
 #
 #-------------------------------------------------------------------------
-def import_photo(filename,path,prefix):
-    import gnome.mime
+def import_media_object(filename,path,base):
     import shutil
 
-    type = gnome.mime.type_of_file(filename)
-    if type[0:6] != "image/":
-        GnomeErrorDialog(_("Currently only image files are supported"))
-        return None
-        
-    for index in range(0,1000):
-        name = "%s%s%s_%d.jpg" % (path,os.sep,prefix,index)
-        base = "%s_%d.jpg" % (prefix,index)
-        if os.path.exists(name) == 0:
-            break
+    type = utils.get_mime_type(filename)
+    if type[0:5] == "image":
+        name = "%s/%s.jpg" % (path,base)
+        base = "%s.jpg" % (base)
 
-    thumb = "%s%s.thumb" % (path,os.sep)
+        thumb = "%s/.thumb" % (path)
 
-    try:
-        if not os.path.exists(thumb):
-            os.mkdir(thumb)
-    except IOError,msg:
-        GnomeErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
-    except:
-        GnomeErrorDialog(_("Could not create %s") % thumb)
+        try:
+            if not os.path.exists(thumb):
+                os.mkdir(thumb)
+        except IOError,msg:
+            GnomeErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
+        except:
+            GnomeErrorDialog(_("Could not create %s") % thumb)
         
-    try:
-        path = "%s%s%s" % (thumb,os.sep,base)
+        try:
+            path = "%s/%s" % (thumb,base)
         
-        mk_thumb(filename,path,const.thumbScale)
+            mk_thumb(filename,path,const.thumbScale)
         
-        if type == "image/jpeg":
-            shutil.copy(filename,name)
-        else:
-            if no_pil:
-                cmd = "%s '%s' '%s'" % (const.convert,filename,name)
-                os.system(cmd)
+            if type == "image/jpeg":
+                shutil.copy(filename,name)
             else:
-                PIL.Image.open(filename).save(name)
-    except:
-        return None
+                if no_pil:
+                    cmd = "%s '%s' '%s'" % (const.convert,filename,name)
+                    os.system(cmd)
+                else:
+                    PIL.Image.open(filename).save(name)
+        except:
+            return None
+    else:
+        bname = os.path.basename(filename)
+        l = string.split(bname,'.')
+        name = "%s/%s.%s" % (path,base,l[-1])
+        shutil.copy(filename,name)
 
     return name
 

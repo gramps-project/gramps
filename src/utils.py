@@ -20,6 +20,7 @@
 
 import gtk
 import gnome.mime
+from gnome.ui import *
 import string
 import os
 import const
@@ -247,8 +248,27 @@ def add_menuitem(menu,msg,obj,func):
 #
 #-------------------------------------------------------------------------
 def view_photo(photo):
-    type = gnome.mime.type(photo.getPath())
-    prog = string.split(gnome.mime.get_value(type,'view'))
+    type = photo.getMimeType()
+    prog = ""
+    open = ""
+    edit = ""
+    for key in gnome.mime.get_keys(type):
+        print key,gnome.mime.get_value(type,key)
+        if key == 'view':
+            prog = string.split(gnome.mime.get_value(type,key))
+        if key == 'open':
+            open = string.split(gnome.mime.get_value(type,key))
+        if key == 'edit':
+            edit = string.split(gnome.mime.get_value(type,key))
+    if prog == "" and open == "" and edit == "":
+        GnomeWarningDialog("Sorry, I cannot find a viewer for %s type" % type)
+        return
+
+    if prog == "" and open == "":
+        prog = edit
+    else:
+        prog = open
+    
     args = []
     for val in prog:
         if val == "%f":
@@ -256,6 +276,7 @@ def view_photo(photo):
         else:
             args.append(val)
     
+    print args
     if os.fork() == 0:
         os.execvp(args[0],args)
 
@@ -312,3 +333,39 @@ def get_place_from_list(obj):
         return None
     else:
         return select[0].get_data(LISTOBJ)
+
+def find_icon(mtype):
+    icon = None
+    nicon = None
+    for k in gnome.mime.get_keys(mtype):
+        if k == "icon-filename":
+            icon = gnome.mime.get_value(mtype,k)
+        elif k == "icon_filename":
+            nicon = gnome.mime.get_value(mtype,k)
+    if nicon:
+	p = "%s/%s" % (gnome.util.pixmap_file("nautilus"),nicon)
+	if os.path.isfile(p):
+            print "n",p
+            return p
+	p = "%s.png" % p
+	if os.path.isfile(p):
+            print "n",p
+            return p
+    if icon:
+        return icon
+    return ""
+
+def get_mime_type(file):
+    if os.path.isfile(file) or os.path.isdir(file):
+	mtype = gnome.mime.type_of_file(file)
+	if len(string.split(mtype,"/")) != 2:
+            mtype = gnome.mime.type(file)
+    else:
+        mtype = gnome.mime.type(file)
+    return mtype
+
+def get_mime_description(type):
+    for key in gnome.mime.get_keys(type):
+        if key == "description":
+            return gnome.mime.get_value(type,key)
+    return type

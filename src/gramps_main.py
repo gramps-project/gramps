@@ -42,7 +42,6 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
-
 import GDK
 import GTK
 import libglade
@@ -1681,7 +1680,7 @@ def remove_from_person_list(person):
         del id2col[person]
         del alt2col[person]
 
-        if row <= person_list.rows:
+        if row > person_list.rows:
             (active_person,alt) = person_list.get_row_data(row)
     person_list.thaw()
     
@@ -2118,6 +2117,7 @@ def load_places():
 def on_media_list_select_row(obj,row,b,c):
     mobj = obj.get_row_data(row)
     type = mobj.getMimeType()
+    type_name = utils.get_mime_description(type)
     path = mobj.getPath()
     if type[0:5] == "image":
         dir = os.path.dirname(path)
@@ -2126,9 +2126,10 @@ def on_media_list_select_row(obj,row,b,c):
         RelImage.check_thumb(path,thumb,const.thumbScale)
         preview.load_file(thumb)
     else:
-        pass
+        preview.load_file(utils.find_icon(type))
+                          
     mid.set_text(mobj.getId())
-    mtype.set_text(type)
+    mtype.set_text(type_name)
     mdesc.set_text(mobj.getDescription())
     if path[0] == "/":
         mpath.set_text(path)
@@ -2156,7 +2157,7 @@ def load_media():
     for src in objects:
         title = src.getDescription()
         id = src.getId()
-        type = src.getMimeType()
+        type = utils.get_mime_description(src.getMimeType())
         if src.getLocal():
             path = "<local copy>"
         else:
@@ -3338,8 +3339,12 @@ def main(arg):
     dateArrow   = gtop.get_widget("dateSort")
     deathArrow  = gtop.get_widget("deathSort")
 
-    t = [('STRING', 0, 0)]
+    t = [ ('STRING', 0, 0),
+          ('text/plain',0,0),
+          ('text/uri-list',0,2),
+          ('application/x-rootwin-drop',0,1)]
     media_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,GDK.ACTION_COPY)
+    media_list.drag_dest_set(DEST_DEFAULT_ALL,t,GDK.ACTION_COPY|GDK.ACTION_MOVE)
     person_list.set_column_visibility(5,0)
     person_list.set_column_visibility(6,0)
     person_list.set_column_visibility(7,0)
@@ -3406,9 +3411,11 @@ def main(arg):
         "on_person_list_select_row"         : on_person_list_select_row,
         "on_place_list_button_press_event"  : on_place_list_button_press_event,
         "on_main_key_release_event"         : on_main_key_release_event,
+        "on_add_media_clicked"              : create_add_dialog,
         "on_media_activate"                 : on_media_activate,
         "on_media_list_select_row"          : on_media_list_select_row,
         "on_media_list_drag_data_get"       : on_media_list_drag_data_get,
+        "on_media_list_drag_data_received"  : on_media_list_drag_data_received,
         "on_places_activate"                : on_places_activate,
         "on_preferences_activate"           : on_preferences_activate,
         "on_remove_child_clicked"           : on_remove_child_clicked,
@@ -3462,6 +3469,80 @@ def on_canvas1_event(obj,event):
             oy2 = cy2
             load_canvas()
     return 0
+
+def create_add_dialog(obj):
+    glade       = libglade.GladeXML(const.imageselFile,"imageSelect")
+    window      = glade.get_widget("imageSelect")
+    fname       = glade.get_widget("fname")
+    image       = glade.get_widget("image")
+    description = glade.get_widget("photoDescription")
+    external    = glade.get_widget("private")
+    
+    glade.signal_autoconnect({
+        "on_savephoto_clicked" : on_savephoto_clicked,
+        "on_name_changed" : on_name_changed,
+        "destroy_passed_object" : utils.destroy_passed_object
+        })
+    
+    window.editable_enters(description)
+    window.set_data("t",glade)
+    window.show()
+
+def on_savephoto_clicked(obj):
+    glade = obj.get_data("t")
+    filename = glade.get_widget("photosel").get_full_path(0)
+    description = glade.get_widget("photoDescription").get_text()
+    external = glade.get_widget("private")
+
+    if os.path.exists(filename) == 0:
+        GnomeErrorDialog(_("That is not a valid file name."));
+        return
+
+    type = utils.get_mime_type(filename)
+    mobj = Photo()
+    if description == "":
+        description = os.path.basename(filename)
+    mobj.setDescription(description)
+    mobj.setMimeType(type)
+    database.addObject(mobj)
+
+    if external.get_active() == 0:
+        path = database.getSavePath()
+        name = RelImage.import_media_object(filename,path,mobj.getId())
+    mobj.setPath(name)
+
+    utils.modified()
+    load_media()
+    utils.destroy_passed_object(obj)
+
+def on_name_changed(obj):
+    glade = obj.get_data('t')
+    filename = glade.get_widget("fname").get_text()
+    if os.path.isfile(filename):
+        type = utils.get_mime_type(filename)
+        if type[0:5] == "image":
+            image = RelImage.scale_image(filename,const.thumbScale)
+            glade.get_widget("image").load_imlib(image)
+        else:
+            glade.get_widget("image").load_file(utils.find_icon(type))
+
+def on_media_list_drag_data_received(w, context, x, y, data, info, time):
+    if data and data.format == 8:
+        d = string.strip(string.replace(data.data,'\0',' '))
+        if d[0:5] == "file:":
+            name = d[5:]
+            mime = utils.get_mime_type(name)
+            photo = Photo()
+            photo.setPath(name)
+            photo.setMimeType(mime)
+            description = os.path.basename(name)
+            photo.setDescription(description)
+            database.addObject(photo)
+            utils.modified()
+            w.drag_finish(context, TRUE, FALSE, time)
+            load_media()
+        else:
+            w.drag_finish(context, FALSE, FALSE, time)
 
 #-------------------------------------------------------------------------
 #

@@ -34,7 +34,6 @@ import string
 from gtk import *
 from gnome.ui import *
 import GDK
-import gnome.mime
 import libglade
 import GdkImlib
 
@@ -103,8 +102,12 @@ class ImageSelect:
     def on_name_changed(self, obj):
         filename = self.fname.get_text()
         if os.path.isfile(filename):
-            image = RelImage.scale_image(filename,const.thumbScale)
-            self.image.load_imlib(image)
+            type = utils.get_mime_type(filename)
+            if type[0:5] == "image":
+                image = RelImage.scale_image(filename,const.thumbScale)
+                self.image.load_imlib(image)
+            else:
+                self.image.load_file(utils.find_icon(type))
 
     #-------------------------------------------------------------------------
     #
@@ -119,24 +122,31 @@ class ImageSelect:
             GnomeErrorDialog(_("That is not a valid file name."));
             return
 
-        if self.external.get_active() == 1:
-            if os.path.isfile(filename):
-                name = filename
-                thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,os.path.basename(filename))
-                RelImage.mk_thumb(filename,thumb,const.thumbScale)
-            else:
-                return
-        else:
-            name = RelImage.import_photo(filename,self.path,self.prefix)
-            if name == None:
-                return
-        
-        photo = Photo()
-        photo.setPath(name)
-        photo.setDescription(description)
-        photo.setMimeType(gnome.mime.type_or_default_of_file(name,"unknown"))
+        type = utils.get_mime_type(filename)
+        mobj = Photo()
+        if description == "":
+            description = os.path.basename(name)
+        mobj.setDescription(description)
+        mobj.setMimeType(type)
+        self.savephoto(mobj)
 
-        self.savephoto(photo)
+        if type[0:5] == "image":
+            if self.external.get_active() == 1:
+                if os.path.isfile(filename):
+                    name = filename
+                    thumb = "%s/.thumb/%s.jpg" % (self.path,mobj.getId())
+                    RelImage.mk_thumb(filename,thumb,const.thumbScale)
+                else:
+                    return
+            else:
+                name = RelImage.import_media_object(filename,self.path,mobj.getId())
+        else:
+            if self.external.get_active() == 1:
+                name = filename
+            else:
+                name = RelImage.import_media_object(filename,self.path,mobj.getId())
+
+        mobj.setPath(name)
 
         utils.modified()
         utils.destroy_passed_object(obj)
@@ -166,11 +176,11 @@ class Gallery(ImageSelect):
             ('text/uri-list',0,2),
             ('application/x-rootwin-drop',0,1)]
 
-        icon_list.drag_dest_set(DEST_DEFAULT_ALL, t, GDK.ACTION_COPY)
+        icon_list.drag_dest_set(DEST_DEFAULT_ALL, t, GDK.ACTION_COPY | GDK.ACTION_MOVE)
         icon_list.connect("drag_data_received", self.on_photolist_drag_data_received)
 
         icon_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,\
-                                   GDK.ACTION_COPY)
+                                   GDK.ACTION_COPY | GDK.ACTION_MOVE)
         icon_list.connect("drag_data_get", self.on_photolist_drag_data_get)
         
 
@@ -210,11 +220,11 @@ class Gallery(ImageSelect):
         object = photo.getReference()
         path = object.getPath()
         src = os.path.basename(path)
-        if object.getLocal():
-            thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
+        if object.getMimeType()[0:5] == "image":
+            thumb = "%s/.thumb/%s.jpg" % (self.path,object.getId())
+            RelImage.check_thumb(path,thumb,const.thumbScale)
         else:
-            thumb = "%s%s.thumb%s%s.jpg" % (self.path,os.sep,os.sep,os.path.basename(src))
-        RelImage.check_thumb(path,thumb,const.thumbScale)
+            thumb = utils.find_icon(object.getMimeType())
         self.icon_list.append(thumb,object.getDescription())
         
     #-------------------------------------------------------------------------
@@ -244,22 +254,25 @@ class Gallery(ImageSelect):
             d = string.strip(string.replace(data.data,'\0',' '))
             if d[0:5] == "file:":
                 name = d[5:]
-                mime = gnome.mime.type_or_default_of_file(name,"unknown")
-                if mime[0:5] == "image":
-                    photo = Photo()
-                    photo.setPath(name)
-                    photo.setMimeType(mime)
-                    self.savephoto(photo)
-                else:
-                    print name,mime
+                mime = utils.get_mime_type(name)
+                photo = Photo()
+                photo.setPath(name)
+                photo.setMimeType(mime)
+                description = os.path.basename(name)
+                photo.setDescription(description)
+                self.savephoto(photo)
             else:
                 if self.db.getObjectMap().has_key(data.data):
-                    w.drag_finish(context, TRUE, FALSE, time)
+                    for p in self.dataobj.getPhotoList():
+                        if data.data == p.getReference().getId():
+                            w.drag_finish(context, TRUE, FALSE, time)
+                            return
                     oref = ObjectRef()
                     oref.setReference(self.db.findObjectNoMap(data.data))
                     self.dataobj.addPhoto(oref)
                     self.add_thumbnail(oref)
                     utils.modified()
+            w.drag_finish(context, TRUE, FALSE, time)
 	else:
             w.drag_finish(context, FALSE, FALSE, time)
                 
@@ -292,6 +305,11 @@ class Gallery(ImageSelect):
         if icon != -1:
             self.icon_list.remove(icon)
             del self.dataobj.getPhotoList()[icon]
+            if len(self.dataobj.getPhotoList()) == 0:
+                self.selectedIcon = -1
+            else:
+                self.selectedIcon = 0
+                self.icon_list.select_icon(0)
 
     #-------------------------------------------------------------------------
     #
@@ -310,9 +328,9 @@ class Gallery(ImageSelect):
             item = GtkTearoffMenuItem()
             item.show()
             menu.append(item)
-            utils.add_menuitem(menu,_("View Object"),None,self.popup_view_photo)
-            utils.add_menuitem(menu,_("Edit Object"),None,self.popup_edit_photo)
-            utils.add_menuitem(menu,_("Edit Description"),None,
+            utils.add_menuitem(menu,_("View in the default viewer"),None,self.popup_view_photo)
+            utils.add_menuitem(menu,_("Edit in the default editor"),None,self.popup_edit_photo)
+            utils.add_menuitem(menu,_("Edit Object Properties"),None,
                                self.popup_change_description)
             object = photo.getReference()
             if object.getLocal() == 0:
@@ -362,17 +380,31 @@ class Gallery(ImageSelect):
     def popup_change_description(self, obj):
         photo = self.dataobj.getPhotoList()[self.selectedIcon]
         object = photo.getReference()
+        path = object.getPath()
+        src = os.path.basename(path)
+    
         self.change_dialog = libglade.GladeXML(const.imageselFile,"change_description")
-    
         window = self.change_dialog.get_widget("change_description")
-        text = self.change_dialog.get_widget("text")
-        text.set_text(object.getDescription())
-    
-        image2 = RelImage.scale_image(object.getPath(),200.0)
-        self.change_dialog.get_widget("photo").load_imlib(image2)
+        self.change_dialog.get_widget("description").set_text(object.getDescription())
+        pixmap = self.change_dialog.get_widget("pixmap")
+        mtype = object.getMimeType()
+        if mtype[0:5] == "image":
+            thumb = "%s/.thumb/%s" % (self.path,object.getId())
+            RelImage.check_thumb(path,thumb,const.thumbScale)
+            pixmap.load_file(thumb)
+        else:
+            pixmap.load_file(utils.find_icon(mtype))
+
+        self.change_dialog.get_widget("gid").set_text(object.getId())
+        self.change_dialog.get_widget("description").set_text(object.getDescription())
+        if object.getLocal():
+            self.change_dialog.get_widget("path").set_text("<local>")
+        else:
+            self.change_dialog.get_widget("path").set_text(path)
+        self.change_dialog.get_widget("type").set_text(utils.get_mime_description(mtype))
+        self.change_dialog.get_widget("notes").insert_defaults(photo.getNote())
         window.set_data("p",photo)
-        window.set_data("t",text)
-        window.editable_enters(text)
+        window.set_data("t",self.change_dialog)
         self.change_dialog.signal_autoconnect({
             "on_cancel_clicked" : utils.destroy_passed_object,
             "on_ok_clicked" : self.new_desc_ok_clicked,
@@ -386,11 +418,11 @@ class Gallery(ImageSelect):
     #-------------------------------------------------------------------------
     def new_desc_apply_clicked(self, obj):
         photo = obj.get_data("p")
-        object = photo.getReference()
-        text = obj.get_data("t").get_text()
-        if text != object.getDescription():
-            object.setDescription(text)
-            self.load_images()
+        top = obj.get_data('t')
+        text = top.get_widget("notes").get_chars(0,-1)
+        note = photo.getNote()
+        if text != note:
+            photo.setNote(text)
             utils.modified()
 
     #-------------------------------------------------------------------------
