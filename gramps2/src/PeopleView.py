@@ -153,7 +153,8 @@ class PeopleView:
             del_id = pid
 
         if self.id2col.has_key(del_id):
-            model.remove(self.id2iter[del_id])
+            (model,iter) = self.id2col[del_id]
+            model.remove(iter)
             del self.id2col[del_id]
             
             if person == self.parent.active_person:
@@ -189,7 +190,7 @@ class PeopleView:
             self.id2col[key] = (model,iter)
 
             if change:
-                self.change_active_person(person)
+                self.parent.change_active_person(person)
                 self.goto_active_person()
             model.sort()
 
@@ -372,4 +373,7 @@ class PeopleView:
             menu.append(item)
         menu.popup(None,None,None,0,0)
         
+    def redisplay_person_list(self,person):
+        self.add_to_person_list(person,1)
+
 
