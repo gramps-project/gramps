@@ -20,16 +20,18 @@
 
 "Generate files/Descendant Report"
 
-import RelLib
-import const
 import os
 import re
 import sort
 import string
-import OpenOffice
-import utils
 
+import RelLib
 import const
+import utils
+import const
+from TextDoc import *
+from OpenOfficeDoc import *
+from HtmlDoc import *
 
 from gtk import *
 from gnome.ui import *
@@ -41,44 +43,42 @@ from libglade import *
 #
 #------------------------------------------------------------------------
 class DescendantReport:
-    def __init__(self,name,person):
-        self.name = name
-        self.person = person
-
-    def setup(self):
-        pass
-
-    def report(self):
-        pass
-
-    def end(self):
-        pass
-    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class OpenOfficeDesReport(DescendantReport):
 
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,name,person,db):
+    def __init__(self,name,person,db,doc):
         self.creator = db.getResearcher().getName()
-        DescendantReport.__init__(self,name,person)
+        self.name = name
+        self.person = person
+        self.doc = doc
         
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
-    def setup(self,template):
-        self.open_office = OpenOffice.OpenOfficeCore(self.name,template,\
-                                                     ".sxw",self.creator)
-        self.file = self.open_office.setup()
+    def setup(self):
+
+        f = FontStyle()
+        f.set_size(14)
+        f.set_type_face(FONT_SANS_SERIF)
+        f.set_bold(1)
+        p = ParagraphStyle()
+        p.set_font(f)
+        
+        self.doc.add_style("Title",p)
+
+        f = FontStyle()
+        for i in range(1,10):
+            p = ParagraphStyle()
+            p.set_font(f)
+            p.set_left_margin(float(i-1))
+            self.doc.add_style("Level" + str(i),p)
+            
+        self.doc.open(self.name)
 
     #--------------------------------------------------------------------
     #
@@ -86,7 +86,7 @@ class OpenOfficeDesReport(DescendantReport):
     #
     #--------------------------------------------------------------------
     def end(self):
-        self.open_office.end()
+        self.doc.close()
 
     #--------------------------------------------------------------------
     #
@@ -94,10 +94,10 @@ class OpenOfficeDesReport(DescendantReport):
     #
     #--------------------------------------------------------------------
     def report(self):
-        self.file.write('<text:p text:style-name="Title">')
-        self.file.write('Descendants of ')
-        self.file.write(self.person.getPrimaryName().getRegularName())
-        self.file.write('</text:p>\n')
+        self.doc.start_paragraph("Title")
+        self.doc.write_text('Descendants of ')
+        self.doc.write_text(self.person.getPrimaryName().getRegularName())
+        self.doc.end_paragraph()
         self.dump(1,self.person)
 
     #--------------------------------------------------------------------
@@ -106,97 +106,22 @@ class OpenOfficeDesReport(DescendantReport):
     #
     #--------------------------------------------------------------------
     def dump(self,level,person):
-        self.file.write('<text:p text:style-name="P' + str(level) + '">')
-        self.file.write(str(level) + '. ')
-        self.file.write(person.getPrimaryName().getRegularName())
+        self.doc.start_paragraph("Level" + str(level))
+        self.doc.write_text(str(level) + '. ')
+        self.doc.write_text(person.getPrimaryName().getRegularName())
 
-        birth = person.getBirth().getDateObj().getYear()
-        death = person.getDeath().getDateObj().getYear()
+        birth = person.getBirth().getDateObj().get_start_date().getYear()
+        death = person.getDeath().getDateObj().get_start_date().getYear()
         if birth != -1 or death != -1:
-            self.file.write(' (')
+            self.doc.write_text(' (')
             if birth != -1:
-                self.file.write('b. ' + str(birth))
+                self.doc.write_text('b. ' + str(birth))
             if death != -1:
                 if birth != -1:
-                    self.file.write(', ')
-                self.file.write('d. ' + str(death))
-            self.file.write(')')
-        self.file.write('</text:p>\n')
-
-        for family in person.getFamilyList():
-            for child in family.getChildList():
-                self.dump(level+1,child)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class AbiwordDesReport(DescendantReport):
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def setup(self,template):
-        if self.name[-4:] != ".abw":
-            self.name = self.name + ".abw"
-        self.file = open(self.name,"w")
-        self.file.write('<?xml version="1.0" encoding="ISO-8859-1"?>\n')
-        self.file.write('<abiword version="0.7.12">\n')
-        self.file.write('<section>\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def end(self):
-
-        self.file.write('</section>\n')
-        self.file.write('</abiword>\n')
-        self.file.close()
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def report(self):
-        self.file.write('<p style="Heading 1">')
-        self.file.write('Descendants of ')
-        self.file.write(self.person.getPrimaryName().getRegularName())
-        self.file.write('</p>\n')
-        self.dump(1,self.person)
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def dump(self,level,person):
-        self.file.write('<p style="Normal"')
-        if level > 1:
-            self.file.write(' props="margin-left:')
-            val = float(level-1) / 2.0
-            self.file.write("%6.3fin\"" % (val))
-        self.file.write('>')
-        self.file.write(str(level) + '. ')
-        self.file.write(person.getPrimaryName().getRegularName())
-
-        birth = person.getBirth().getDateObj().getYear()
-        death = person.getDeath().getDateObj().getYear()
-        if birth != -1 or death != -1:
-            self.file.write(' (')
-            if birth != -1:
-                self.file.write('b. ' + str(birth))
-            if death != -1:
-                if birth != -1:
-                    self.file.write(', ')
-                self.file.write('d. ' + str(death))
-            self.file.write(')')
-        self.file.write('</p>\n')
+                    self.doc.write_text(', ')
+                self.doc.write_text('d. ' + str(death))
+            self.doc.write_text(')')
+        self.doc.end_paragraph()
 
         for family in person.getFamilyList():
             for child in family.getChildList():
@@ -209,6 +134,8 @@ class AbiwordDesReport(DescendantReport):
 #------------------------------------------------------------------------
 class DesReportWindow:
     def __init__(self,person,db):
+        import PaperMenu
+        
         self.person = person
 
         glade_file = os.path.dirname(__file__) + os.sep + "desreport.glade"
@@ -218,6 +145,10 @@ class DesReportWindow:
             "on_html_toggled": on_html_toggled,
             "on_save_clicked": on_save_clicked
             })
+
+        PaperMenu.make_paper_menu(self.top.get_widget("papersize"))
+        PaperMenu.make_orientation_menu(self.top.get_widget("orientation"))
+        
         mytop = self.top.get_widget("dialog1")
         mytop.set_data("o",self)
         mytop.set_data("d",db)
@@ -244,14 +175,21 @@ def on_save_clicked(obj):
     if file == "":
         return
 
+    paper_obj = myobj.top.get_widget("papersize")
+    paper = paper_obj.get_menu().get_active().get_data("i")
+
+    orien_obj = myobj.top.get_widget("orientation")
+    orien = orien_obj.get_menu().get_active().get_data("i")
+
     if myobj.top.get_widget("openoffice").get_active():
-        report = OpenOfficeDesReport(file,myobj.person,db)
+        document = OpenOfficeDoc(paper,orien)
     elif myobj.top.get_widget("abiword").get_active():
-        report = AbiwordDesReport(file,myobj.person)
+        document = AbiWordDoc(paper,orien)
     else:
         return
 
-    report.setup(const.dataDir + os.sep + "deslist.sxw")
+    report = DescendantReport(file,myobj.person,db,document)
+    report.setup()
     report.report()
     report.end()
 
@@ -263,11 +201,15 @@ def on_save_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_html_toggled(obj):
-    myobj = obj.get_data(OBJECT)
-    if myobj.form.get_widget("html").get_active():
-        myobj.form.get_widget("htmltemplate").set_sensitive(1)
+    myobj = obj.get_data("o")
+    if myobj.top.get_widget("html").get_active():
+        myobj.top.get_widget("htmltemplate").set_sensitive(1)
+        myobj.top.get_widget("papersize").set_sensitive(0)
+        myobj.top.get_widget("orientation").set_sensitive(0)
     else:
-        myobj.form.get_widget("htmltemplate").set_sensitive(0)
+        myobj.top.get_widget("htmltemplate").set_sensitive(0)
+        myobj.top.get_widget("papersize").set_sensitive(1)
+        myobj.top.get_widget("orientation").set_sensitive(1)
 
 #------------------------------------------------------------------------
 #
