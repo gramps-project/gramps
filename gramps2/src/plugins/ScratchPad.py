@@ -196,15 +196,22 @@ class ScratchPadWindow:
                 exec 'data = %s' % o[0]['data']
                 exec 'mytype = "%s"' % data[0]
                 target = DdTargets.get_dd_type_from_type_name(mytype).target()
+                self.object_list.drag_source_unset()
+                self.object_list.drag_source_set(BUTTON1_MASK, [target], ACTION_COPY)
+
             
             # Union with text targets
             elif len([target for target \
                       in obj_targets if DdTargets.is_text_type(target)]) > 0:
-                target = DdTargets.TEXT.target()
+                targets = DdTargets.all_text_targets()
 
-            self.object_list.drag_source_unset()
-            self.object_list.drag_source_set(BUTTON1_MASK, [target], ACTION_COPY)
+                self.object_list.drag_source_unset()
+                self.object_list.drag_source_set(BUTTON1_MASK, targets, ACTION_COPY)
 
+            else:
+                self.object_list.drag_source_unset()
+
+        
         
     def on_update_object_clicked(self, obj):
         pass
@@ -215,6 +222,7 @@ class ScratchPadWindow:
     def object_drag_data_get(self,widget, context, sel_data, info, time):
         
         o = self.otree.get_selected_objects()
+
         
         if len(o):
             bits_per = 8; # we're going to pass a string
@@ -225,6 +233,7 @@ class ScratchPadWindow:
             if len([target for target \
                     in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
 
+                
                 exec 'data = %s' % o[0]['data']
                 exec 'mytype = "%s"' % data[0]
                 exec 'person = "%s"' % data[1]
@@ -235,6 +244,7 @@ class ScratchPadWindow:
             # Union with text targets
             elif len([target for target \
                       in obj_targets if DdTargets.is_text_type(target)]) > 0:
+
                 send_data = str(o[0]['data'])
 
             sel_data.set(sel_data.target, bits_per, send_data)
