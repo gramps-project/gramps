@@ -53,6 +53,13 @@ import ListColors
 from intl import gettext
 _ = gettext
 
+_surname_styles = [
+    _("North American (Father's surname)"),
+    _("None"),
+    _("Latin American (Combination of mother's and father's surname)"),
+    _("Icelandic (Father's surname with son/daughter indicator"),
+    ]
+
 _date_format_list = [
     _("Month Day, Year"),
     _("MON Day, Year"),
@@ -112,6 +119,7 @@ toolbar       = 2
 calendar      = 0
 paper_preference = None
 output_preference = None
+lastnamegen   = None
 report_dir    = "./"
 web_dir       = "./"
 db_dir        = "./"
@@ -187,6 +195,7 @@ def loadConfig(call):
     global _callback
     global paper_preference
     global output_preference
+    global lastnamegen
     global report_dir
     global web_dir
     global db_dir
@@ -228,6 +237,7 @@ def loadConfig(call):
     dateEntry = get_int("/gramps/config/dateEntry")
     paper_preference = get_string("/gramps/config/paperPreference")
     output_preference = get_string("/gramps/config/outputPreference")
+    lastnamegen = get_int("/gramps/config/surnameGuessing")
     _name_format = get_int("/gramps/config/nameFormat")
 
     iprefix = get_string("/gramps/config/iprefix")
@@ -348,6 +358,9 @@ def loadConfig(call):
     set_format_code(dateFormat)
     Date.entryCode = dateEntry
 
+    if lastnamegen == None or lastnamegen == 0:
+        lastnamegen = 0
+
     if _name_format == None or _name_format == 0:
         _name_format = 0
         nameof = utils.normal_name
@@ -461,7 +474,8 @@ def on_propertybox_apply(obj,page):
     global report_dir
     global web_dir
     global db_dir
-
+    global lastnamegen
+    
     if page != -1:
         return
 
@@ -592,6 +606,10 @@ def on_propertybox_apply(obj,page):
     name_tuple = _name_format_list[active_name]
     nameof = name_tuple[1]
     set_int("/gramps/config/nameFormat",active_name)
+
+    format_menu = prefsTop.get_widget("lastnamegen").get_menu()
+    lastnamegen = format_menu.get_active().get_data(DATA)
+    set_int("/gramps/config/surnameGuessing",lastnamegen)
 
     name = prefsTop.get_widget("resname").get_text()
     addr = prefsTop.get_widget("resaddr").get_text()
@@ -783,6 +801,20 @@ def display_preferences_box(db):
         menu.append(item)
     menu.set_active(choice)
     paper_obj.set_menu(menu)
+
+    lastnamegen_obj = prefsTop.get_widget("lastnamegen")
+    menu = gtk.GtkMenu()
+    choice = 0
+    for index in range(0,len(_surname_styles)):
+        name = _surname_styles[index]
+        item = gtk.GtkMenuItem(name)
+        item.set_data(OBJECT,pbox)
+        item.set_data(DATA,index)
+        item.connect("activate", on_format_toggled)
+        item.show()
+        menu.append(item)
+    menu.set_active(lastnamegen)
+    lastnamegen_obj.set_menu(menu)
 
     output_obj = prefsTop.get_widget("output_format")
     menu = gtk.GtkMenu()

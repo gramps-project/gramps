@@ -44,6 +44,7 @@ import const
 import sort
 import utils
 import Config
+import string
 
 class SelectChild:
 
@@ -206,7 +207,7 @@ class SelectChild:
 
 class NewChild:
 
-    def __init__(self,db,family,person,update):
+    def __init__(self,db,family,person,update,autoname=3):
         self.db = db
         self.person = person
         self.family = family
@@ -215,9 +216,21 @@ class NewChild:
         self.xml = libglade.GladeXML(const.gladeFile,"addChild")
         self.xml.signal_autoconnect({
             "on_addchild_ok_clicked" : self.on_addchild_ok_clicked,
-            "on_combo_insert_text"   : utils.combo_insert_text,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "on_combo_insert_text"   : self.combo_insert_text,
+            "on_male_toggled"        : self.on_male_toggled,
+            "on_female_toggled"      : self.on_female_toggled,
+            "on_gender_toggled"      : self.on_gender_toggled,
+            "destroy_passed_object"  : utils.destroy_passed_object
             })
+
+        if autoname == 0:
+            self.update_surname = self.north_american
+        elif autoname == 2:
+            self.update_surname = self.latin_american
+        elif autoname == 3:
+            self.update_surname = self.icelandic
+        else:
+            self.update_surname = self.no_name
 
         self.mrel = self.xml.get_widget("mrel")
         self.frel = self.xml.get_widget("frel")
@@ -226,13 +239,7 @@ class NewChild:
         self.given = self.xml.get_widget("childGiven")
         utils.attach_surnames(self.xml.get_widget("surname_combo"))
 
-        surname = ""
-        if self.person.getGender() == Person.male:
-            surname = self.person.getPrimaryName().getSurname()
-        elif self.family:
-            f = self.family.getFather()
-            if f:
-                surname = f.getPrimaryName().getSurname()
+        self.surname.set_text(self.update_surname(2))
 
         if self.family:
             father = self.family.getFather()
@@ -258,7 +265,6 @@ class NewChild:
                 self.xml.get_widget("mlabel").set_text(label)
                 self.xml.get_widget("fcombo").set_sensitive(0)
 
-        self.surname.set_text(surname)
         self.mrel.set_text(_("Birth"))
         self.frel.set_text(_("Birth"))
 
@@ -268,7 +274,65 @@ class NewChild:
         self.top.editable_enters(self.mrel)
         self.top.editable_enters(self.frel)
         self.top.show()
-        
+
+    def on_male_toggled(self,obj):
+        if obj.get_active():
+            txt = self.surname.get_text()
+            if txt == "" or txt == self.update_surname(1):
+                self.surname.set_text(self.update_surname(0))
+            
+    def on_female_toggled(self,obj):
+        if obj.get_active():
+            txt = self.surname.get_text()
+            if txt == "" or txt == self.update_surname(0):
+                self.surname.set_text(self.update_surname(1))
+
+    def on_gender_toggled(self,obj):
+        pass
+
+    def combo_insert_text(self,combo,new_text,new_text_len,i_dont_care):
+        utils.combo_insert_text(combo,new_text,new_text_len,i_dont_care)
+
+    def north_american(self,val):
+        if self.person.getGender() == Person.male:
+            return self.person.getPrimaryName().getSurname()
+        elif self.family:
+            f = self.family.getFather()
+            if f:
+                return f.getPrimaryName().getSurname()
+        return ""
+
+    def no_name(self,val):
+        return ""
+
+    def latin_american(self,val):
+        if self.family:
+            father = self.family.getFather()
+            mother = self.family.getMother()
+            if not father or not mother:
+                return ""
+            fsn = father.getPrimaryName().getSurname()
+            msn = mother.getPrimaryName().getSurname()
+            if not father or not mother:
+                return ""
+            return "%s %s" % (string.split(fsn)[0],string.split(msn)[0])
+        else:
+            return ""
+
+    def icelandic(self,val):
+        if self.person.getGender() == Person.male:
+            surname = self.person.getPrimaryName().getSurname()
+        elif self.family:
+            f = self.family.getFather()
+            if f:
+                surname = f.getPrimaryName().getSurname()
+        if val == 0:
+            return "%ssson" % surname
+        elif val == 1:
+            return "%sdóttir" % surname
+        else:
+            return ""
+
     def on_addchild_ok_clicked(self,obj):
     
         surname = self.surname.get_text()

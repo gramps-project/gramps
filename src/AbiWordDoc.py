@@ -33,7 +33,6 @@ from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 import string
-from utils import fl2txt
 
 #-------------------------------------------------------------------------
 #
@@ -81,16 +80,14 @@ class AbiWordDoc(TextDoc):
             self.f.write('orientation="portrait" ')
         else:
             self.f.write('orientation="landscape" ')
-        self.f.write('width="%s" ' % fl2txt("%.4f",self.width/2.54))
-        self.f.write('height="%s" ' % fl2txt("%.4f",self.height/2.54))
+        self.f.write('width="%.4f" ' self.width/2.54)
+        self.f.write('height="%.4f" ' % self.height/2.54)
         self.f.write('units="inch" page-scale="1.000000"/>\n')
         self.f.write('<section ')
         rmargin = float(self.rmargin)/2.54
         lmargin = float(self.lmargin)/2.54
-        self.f.write('props="page-margin-right:%sin; ' % \
-                     fl2txt("%.4f",rmargin))
-        self.f.write('page-margin-left:%sin"' % \
-                     fl2txt("%.4f",lmargin))
+        self.f.write('props="page-margin-right:%.4fin; ' % rmargin)
+        self.f.write('page-margin-left:%.4fin"' % lmargin)
         self.f.write('>\n')
 
     def close(self):
@@ -142,10 +139,8 @@ class AbiWordDoc(TextDoc):
 
         self.f.write('<image dataid="')
         self.f.write(tag)
-        width = fl2txt("%.3f",act_width)
-        height = fl2txt("%.3f",act_height)
-        self.f.write('" props="width:%sin; ' % width)
-        self.f.write('height:%sin"/>'  % height)
+        self.f.write('" props="width:%.3fin; ' % act_width)
+        self.f.write('height:%.3fin"/>'  % act_height)
 
     def start_paragraph(self,style_name,leader=None):
         style = self.style_list[style_name]
@@ -159,13 +154,13 @@ class AbiWordDoc(TextDoc):
             self.f.write('text-align:center;')
         else:
             self.f.write('text-align:justify;')
-        rmargin = fl2txt("%.4f",float(style.get_right_margin())/2.54)
-        lmargin = fl2txt("%.4f",float(style.get_left_margin())/2.54)
-        indent = fl2txt("%.4f",float(style.get_first_indent())/2.54)
-        self.f.write(' margin-right:%sin;' % rmargin)
-        self.f.write(' margin-left:%sin;' % lmargin)
-        self.f.write(' tabstops:%sin/L;' % lmargin)
-        self.f.write(' text-indent:%sin' % indent)
+        rmargin = float(style.get_right_margin())/2.54
+        lmargin = float(style.get_left_margin())/2.54
+        indent = float(style.get_first_indent())/2.54
+        self.f.write(' margin-right:%.4fin;' % rmargin)
+        self.f.write(' margin-left:%.4fin;' % lmargin)
+        self.f.write(' tabstops:%.4fin/L;' % lmargin)
+        self.f.write(' text-indent:%.4fin' % indent)
         self.f.write('">')
         font = style.get_font()
         self.f.write('<c props="font-family:')
