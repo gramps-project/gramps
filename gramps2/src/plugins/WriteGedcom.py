@@ -59,6 +59,8 @@ import ansel_utf8
 from intl import gettext as _
 from QuestionDialog import ErrorDialog
 
+_title_string = _("Export to GEDCOM")
+
 def keep_utf8(s):
     return s
 
@@ -1143,7 +1145,4 @@ class GedcomWriter:
 #-------------------------------------------------------------------------
 from Plugins import register_export
 
-register_export(writeData,_("Export to GEDCOM"))
-
-    
-    
+register_export(writeData, "%s..." % _title_string )
