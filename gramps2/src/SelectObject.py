@@ -98,15 +98,12 @@ class SelectObject:
         self.object_model.clear()
         self.object_model.new_model()
 
-        for key in self.db.get_object_map().keys():
+        for key in self.db.get_object_keys():
             object = self.db.get_object(key)
             title = object.get_description()
             the_id = object.get_id()
             the_type = Utils.get_mime_description(object.get_mime_type())
-            if object.get_local():
-                path = "<local copy>"
-            else:
-                path = object.get_path()
+            path = object.get_path()
             self.object_model.add([title,the_id,the_type,path],key)
 
         self.object_model.connect_model()

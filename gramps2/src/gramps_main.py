@@ -792,22 +792,7 @@ class Gramps:
         can delete any thumbnail images. The thumbnails may or may not exist, depending
         on if the image was previewed.
         """
-        for obj in self.db.get_added_media_objects():
-            if obj.get_local():
-                try:
-                    os.unlink(obj.get_path())
-                except IOError:
-                    pass
-                except:
-                    DisplayTrace.DisplayTrace()
-            thumb = "%s/.thumb/%s.jpg" % (self.db.get_save_path(),obj.get_id())
-            if os.path.isfile(thumb):
-                try:
-                    os.unlink(thumb)
-                except IOError:
-                    pass
-                except:
-                    DisplayTrace.DisplayTrace()
+        pass
 
     def on_about_activate(self,obj):
         """Displays the about box.  Called from Help menu"""
@@ -1095,7 +1080,7 @@ class Gramps:
         #-------------------------------------------------------------------------
         for ObjectId in self.db.get_object_keys():
             object = self.db.find_object_from_id(ObjectId)
-            if object.get_local():
+            if 0:
                 oldfile = object.get_path()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
                 newfile = os.path.join(filename,os.path.basename(oldfile))

@@ -597,33 +597,33 @@ class MediaObject(SourceNote):
         if source:
             self.path = source.path
             self.mime = source.mime
-            self.local = source.local
             self.desc = source.desc
             self.id = source.id
+            self.thumb = source.thumb
             for attr in source.attrlist:
                 self.attrlist.append(Attribute(attr))
         else:
             self.id = ""
-            self.local = 0
             self.path = ""
             self.mime = ""
             self.desc = ""
+            self.thumb = None
 
     def serialize(self):
-        return (self.id, self.local, self.path, self.mime, self.desc, self.attrlist,
+        return (self.id, self.path, self.mime, self.desc, self.attrlist,
                 self.source_list, self.note)
 
     def unserialize(self,data):
-        (self.id, self.local, self.path, self.mime, self.desc, self.attrlist,
+        (self.id, self.thumb, self.path, self.mime, self.desc, self.attrlist,
          self.source_list, self.note) = data
     
-    def set_local(self,val):
-        """set or clear the local flag"""
-        self.local = val
+    def set_thumbnail(self,thumb):
+        """set the thumbnail"""
+        self.thumb = thumb
 
-    def get_local(self):
-        """return the local flag"""
-        return self.local
+    def get_thumbnail(self):
+        """return the thumbnail"""
+        return self.thumb
 
     def set_id(self,id):
         """Sets the gramps ID for the place object"""
