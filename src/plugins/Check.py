@@ -55,10 +55,10 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 # runTool
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback):
+def runTool(database,active_person,callback,parent=None):
 
     try:
-        checker = CheckIntegrity(database)
+        checker = CheckIntegrity(database,parent)
         checker.check_for_broken_family_links()
         checker.cleanup_missing_photos(0)
         checker.check_parent_relationships()
@@ -77,7 +77,7 @@ def runTool(database,active_person,callback):
 #-------------------------------------------------------------------------
 class CheckIntegrity:
     
-    def __init__(self,db):
+    def __init__(self,db,parent):
         self.db = db
         self.bad_photo = []
         self.replaced_photo = []

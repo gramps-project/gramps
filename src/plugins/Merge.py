@@ -71,15 +71,12 @@ def is_initial(name):
 #
 #
 #-------------------------------------------------------------------------
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 class Merge:
 
-    def __init__(self,database,callback):
+    def __init__(self,database,callback,parent):
         self.db = database
+        self.parent = parent
+        self.win_key = self
         self.map = {}
         self.list = []
         self.index = 0
@@ -114,13 +111,38 @@ class Merge:
         self.menu = top.get_widget("menu")
         self.menu.set_menu(my_menu)
 
-        Utils.set_titles(top.get_widget('dialog'), top.get_widget('title'),
+        self.dialog_window = top.get_widget('dialog')
+        Utils.set_titles(self.dialog_window, top.get_widget('title'),
                          _('Merge people'))
 
         top.signal_autoconnect({
             "on_merge_ok_clicked" : self.on_merge_ok_clicked,
-            "destroy_passed_object" : Utils.destroy_passed_object
+            "destroy_passed_object" : self.close,
+            "on_delete_merge_event"   : self.on_delete_event,
             })
+        self.add_itself_to_menu()
+        self.dialog_window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.dialog_window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_('Merge people'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.dialog_window.present()
 
     def ancestors_of(self,p1_id,id_list):
         if (not p1_id) or (p1_id in id_list):
@@ -136,7 +158,7 @@ class Merge:
     def on_merge_ok_clicked(self,obj):
         active = self.menu.get_menu().get_active().get_data("v")
         self.use_soundex = self.soundex_obj.get_active()
-        Utils.destroy_passed_object(obj)
+        self.close(obj)
         self.find_potentials(active)
         self.show()
     
@@ -221,8 +243,9 @@ class Merge:
         
         self.mlist = top.get_widget("mlist")
         top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
+            "destroy_passed_object" : self.close_show,
             "on_do_merge_clicked" : self.on_do_merge_clicked,
+            "on_delete_show_event" : self.on_delete_show_event,
             })
 
         mtitles = [(_('Rating'),3,75),(_('First Person'),1,200),
@@ -231,6 +254,29 @@ class Merge:
                                         event_func=self.on_do_merge_clicked)
         
         self.redraw()
+        self.add_show_to_menu()
+        self.window.show()
+
+    def on_delete_show_event(self,obj,b):
+        self.remove_show_from_menu()
+
+    def close_show(self,obj):
+        self.remove_show_from_menu()
+        self.window.destroy()
+
+    def add_show_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_('Potential Merges'))
+        self.parent_menu_item.connect("activate",self.present_show)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_show_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present_show(self,obj):
+        self.window.present()
 
     def redraw(self):
         list = []
@@ -258,7 +304,7 @@ class Merge:
         (p1,p2) = self.list.get_object(iter)
         pn1 = self.db.find_person_from_id(p1)
         pn2 = self.db.find_person_from_id(p2)
-        MergeData.MergePeople(self.db,pn1,pn2,self.on_update)
+        MergeData.MergePeople(self.parent,self.db,pn1,pn2,self.on_update)
 
     def on_update(self,p1_id,p2_id,old_id):
         self.dellist[p2_id] = p1_id
@@ -562,7 +608,11 @@ class Merge:
 
         return chance
 
-
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def name_of(p):
     if not p:
         return ""
@@ -579,9 +629,9 @@ def get_name_obj(person):
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback):
+def runTool(database,active_person,callback,parent=None):
     try:
-        Merge(database,callback)
+        Merge(database,callback,parent)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -608,4 +658,3 @@ register_tool(
     description=_("Searches the entire database, looking for "
                   "individual entries that may represent the same person.")
     )
-

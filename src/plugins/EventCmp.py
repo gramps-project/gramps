@@ -211,7 +211,7 @@ class EventComparison:
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))
         else:
-            DisplayChart(self.db,plist,self.parent)
+            DisplayChart(self.db,plist,self)
 
 #------------------------------------------------------------------------
 #
@@ -248,6 +248,9 @@ class DisplayChart:
         self.db = database
         self.my_list = people_list
         self.row_data = []
+        self.parent = parent
+        self.win_key = self
+        self.save_form = None
         
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "eventcmp.glade"
@@ -255,13 +258,14 @@ class DisplayChart:
         self.topDialog = gtk.glade.XML(self.glade_file,"view","gramps")
         self.topDialog.signal_autoconnect({
             "on_write_table"        : self.on_write_table,
-            "destroy_passed_object" : Utils.destroy_passed_object
+            "destroy_passed_object" : self.close,
+            "on_view_delete_event"  : self.on_delete_event,
             })
 
-        self.top = self.topDialog.get_widget("view")
+        self.window = self.topDialog.get_widget("view")
         self.eventlist = self.topDialog.get_widget('treeview')
 
-        Utils.set_titles(self.top, self.topDialog.get_widget('title'),
+        Utils.set_titles(self.window, self.topDialog.get_widget('title'),
                          _('Event Comparison'))
     
         self.sort = Sort.Sort(self.db)
@@ -270,7 +274,33 @@ class DisplayChart:
         self.event_titles = self.make_event_titles()
         self.build_row_data()
         self.draw_clist_display()
-        self.top.show()
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+        if self.save_form:
+            self.save_form.destroy()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        if self.save_form:
+            self.save_form.destroy()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(_("Event Comparison"))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def draw_clist_display(self):
 
