@@ -83,7 +83,7 @@ class ImageSelect:
         self.dataobj     = None
         self.parent      = parent
         self.canvas_list = {}
-        self.p_map = {}
+        self.p_map       = {}
 
     def add_thumbnail(self, photo):
         "should be overrridden"
@@ -240,17 +240,17 @@ class Gallery(ImageSelect):
 
     def close(self):
         self.iconlist.hide()
-        for a in self.canvas_list:
+        for a in self.canvas_list.values():
             a[0].destroy()
             a[1].destroy()
             a[2].destroy()
-            
         self.p_map = None
         self.canvas_list = None
-        self.iconlist.destroy()
         
     def on_canvas1_event(self,obj,event):
-        """Handle resize events over the canvas, redrawing if the size changes"""
+        """
+        Handle resize events over the canvas, redrawing if the size changes
+        """
 
     def item_event(self, widget, event=None):
 

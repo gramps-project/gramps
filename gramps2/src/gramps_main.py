@@ -787,7 +787,6 @@ class Gramps:
                 pass
 
     def autosave_database(self):
-
         path = self.db.getSavePath()
         if not path:
             return
@@ -901,19 +900,15 @@ class Gramps:
         self.active_person = person
         self.modify_statusbar()
         if person:
-            self.report_menu.set_sensitive(1)
-            self.tools_menu.set_sensitive(1)
-            self.report_button.set_sensitive(1)
-            self.tool_button.set_sensitive(1)
-            self.remove_button.set_sensitive(1)
-            self.edit_button.set_sensitive(1)
+            val = 1
         else:
-            self.report_menu.set_sensitive(0)
-            self.tools_menu.set_sensitive(0)
-            self.report_button.set_sensitive(0)
-            self.tool_button.set_sensitive(0)
-            self.remove_button.set_sensitive(0)
-            self.edit_button.set_sensitive(0)
+            val = 0
+        self.report_menu.set_sensitive(val)
+        self.tools_menu.set_sensitive(val)
+        self.report_button.set_sensitive(val)
+        self.tool_button.set_sensitive(val)
+        self.remove_button.set_sensitive(val)
+        self.edit_button.set_sensitive(val)
     
     def modify_statusbar(self):
         if self.active_person == None:

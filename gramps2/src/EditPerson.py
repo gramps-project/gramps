@@ -179,33 +179,33 @@ class EditPerson:
         self.plist = person.getAddressList()[:]
 
         # event display
-        etitles = [(_('Event'),0,150),(_('Description'),1,150),
-                   (_('Date'),3,100),(_('Place'),4,100)]
+        etitles = [(_('Event'),-1,150),(_('Description'),-1,150),
+                   (_('Date'),-1,100),(_('Place'),-1,100)]
         
         self.etree = ListModel.ListModel(self.event_list,etitles,
                                          self.on_event_select_row,
                                          self.on_event_update_clicked)
 
         # attribute display
-        atitles = [(_('Attribute'),0,150),(_('Value'),1,150)]
+        atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
         self.atree = ListModel.ListModel(self.attr_list,atitles,
                                          self.on_attr_select_row,
                                          self.on_update_attr_clicked)
                                          
         # address display
-        ptitles = [(_('Date'),0,150),(_('Address'),1,150)]
+        ptitles = [(_('Date'),-1,150),(_('Address'),-1,150)]
         self.ptree = ListModel.ListModel(self.addr_list, ptitles,
                                          self.on_addr_select_row,
                                          self.on_update_addr_clicked)
 
         # name display
-        ntitles = [(_('Name'),0,250),(_('Type'),1,100)]
+        ntitles = [(_('Name'),-1,250),(_('Type'),-1,100)]
         self.ntree = ListModel.ListModel(self.name_list,ntitles,
                                          self.on_name_select_row)
         self.ntree.tree.connect('event',self.aka_double_click)
 
         # web display
-        wtitles = [(_('Path'),0,250),(_('Description'),1,100)]
+        wtitles = [(_('Path'),-1,250),(_('Description'),-1,100)]
         self.wtree = ListModel.ListModel(self.web_list,wtitles,
                                          self.on_web_select_row,
                                          self.on_update_url_clicked)
@@ -249,6 +249,7 @@ class EditPerson:
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
         self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.event_list.connect('drag_data_get', self.ev_drag_data_get)
+        self.event_list.connect('drag_begin', self.ev_drag_begin)
         self.event_list.connect('drag_data_received',
                                 self.ev_drag_data_received)
 
@@ -349,7 +350,7 @@ class EditPerson:
             stat = 0
             combo.entry.set_text("")
 
-#        AutoComp.AutoEntry(place,None,self.autoplace)
+        AutoComp.AutoEntry(place,None,self.autoplace)
         if ord and ord.getPlace():
             place.set_text(ord.getPlace().get_title())
         return stat
@@ -465,99 +466,134 @@ class EditPerson:
         self.seal_stat = obj.get_data("val")
     
     def ev_drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        print context, info, time
+        row = self.etree.get_row_at(x,y)
+        
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if person == self.person.getId() or mytype != 'pevent':
+            if mytype != 'pevent':
                 return
-            foo = pickle.loads(data[2]);
-            for src in foo.getSourceRefList():
-                base = src.getBase()
-                newbase = self.db.findSourceNoMap(base.getId())
-                src.setBase(newbase)
-            place = foo.getPlace()
-            if place:
-                foo.setPlace(self.db.findPlaceNoMap(place.getId()))
-            self.elist.append(foo)
+            elif person == self.person.getId():
+                self.move_element(self.elist,self.etree.get_selected_row(),row)
+            else:
+                foo = pickle.loads(data[2]);
+                for src in foo.getSourceRefList():
+                    base = src.getBase()
+                    newbase = self.db.findSourceNoMap(base.getId())
+                    src.setBase(newbase)
+                place = foo.getPlace()
+                if place:
+                    foo.setPlace(self.db.findPlaceNoMap(place.getId()))
+                self.elist.insert(row,foo)
+
             self.lists_changed = 1
             self.redraw_event_list()
 
+    def move_element(self,list,src,dest):
+        if src == -1:
+            return
+        obj = list[src]
+        list.remove(obj)
+        list.insert(dest,obj)
+
     def ev_drag_data_get(self,widget, context, sel_data, info, time):
-        store, iter = widget.get_selection().get_selected()
-        ev = store.get_value(iter,4)
+        ev = self.etree.get_selected_objects()
 
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev);
+        pickled = pickle.dumps(ev[0]);
         data = str(('pevent',self.person.getId(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
+    def ev_drag_begin(self, context, a):
+        return
+        icon = self.etree.get_icon()
+        t = self.etree.tree
+        (x,y) = icon.get_size()
+        mask = gtk.gdk.Pixmap(self.window.window,x,y,1)
+        mask.draw_rectangle(t.get_style().white_gc, gtk.TRUE, 0,0,x,y)
+        t.drag_source_set_icon(t.get_colormap(),icon,mask)
+
     def url_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        row = self.wtree.get_row_at(x,y)
+        
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if person == self.person.getId() or mytype != 'url':
+            if mytype != "url":
                 return
-            foo = pickle.loads(data[2]);
-            self.ulist.append(foo)
+            elif person == self.person.getId():
+                self.move_element(self.ulist,self.wtree.get_selected_row(),row)
+            else:
+                foo = pickle.loads(data[2]);
+                self.ulist.append(foo)
             self.lists_changed = 1
             self.redraw_url_list()
 
     def url_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = widget.get_row_data(widget.focus_row)
+        ev = self.wtree.get_selected_objects()
         
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev);
+        pickled = pickle.dumps(ev[0]);
         data = str(('url',self.person.getId(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        row = self.atree.get_row_at(x,y)
+
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if person == self.person.getId() or mytype != 'pattr':
+            if mytype != 'pattr':
                 return
-            foo = pickle.loads(data[2]);
-            for src in foo.getSourceRefList():
-                base = src.getBase()
-                newbase = self.db.findSourceNoMap(base.getId())
-                src.setBase(newbase)
-            self.alist.append(foo)
+            elif person == self.person.getId():
+                self.move_element(self.alist,self.atree.get_selected_row(),row)
+            else:
+                foo = pickle.loads(data[2]);
+                for src in foo.getSourceRefList():
+                    base = src.getBase()
+                    newbase = self.db.findSourceNoMap(base.getId())
+                    src.setBase(newbase)
+                self.alist.append(foo)
             self.lists_changed = 1
             self.redraw_attr_list()
 
     def at_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = widget.get_row_data(widget.focus_row)
+        ev = self.atree.get_selected_objects()
         
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev);
+        pickled = pickle.dumps(ev[0]);
         data = str(('pattr',self.person.getId(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
+        row = self.ptree.get_row_at(x,y)
+
         if sel_data and sel_data.data:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if person == self.person.getId() or mytype != 'paddr':
+            if mytype != 'paddr':
                 return
-            foo = pickle.loads(data[2]);
-            for src in foo.getSourceRefList():
-                base = src.getBase()
-                newbase = self.db.findSourceNoMap(base.getId())
-                src.setBase(newbase)
-            self.plist.append(foo)
+            elif person == self.person.getId():
+                self.move_element(self.plist,self.ptree.get_selected_row(),row)
+            else:
+                foo = pickle.loads(data[2]);
+                for src in foo.getSourceRefList():
+                    base = src.getBase()
+                    newbase = self.db.findSourceNoMap(base.getId())
+                    src.setBase(newbase)
+                self.plist.append(foo)
             self.lists_changed = 1
             self.redraw_addr_list()
 
     def ad_drag_data_get(self,widget, context, sel_data, info, time):
-        ev = widget.get_row_data(widget.focus_row)
+        ev = self.ptree.get_selected_objects()
         
         bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev);
+        pickled = pickle.dumps(ev[0]);
         data = str(('paddr',self.person.getId(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 

@@ -139,7 +139,8 @@ class AutoCombo(AutoCompBase):
         button1.connect("button-release-event",self.setval)
         self.vals = [""]
         self.inb = 0
-
+        widget.set_popdown_strings(plist)
+        
     def setval(self,widget,event):
         """Callback task called on the button release"""
         
@@ -148,8 +149,6 @@ class AutoCombo(AutoCompBase):
         if self.nl == string.lower(text):
             gtk.Editable.set_position(self.entry.entry,self.l)
             gtk.Editable.select_region(self.entry.entry,self.l,-1)
-#            self.entry.entry.set_position(self.l)
-#            self.entry.entry.select_region(self.l, -1)
             
     def build_list(self,widget,event):
         """Internal task that builds the popdown strings. This task is called when the

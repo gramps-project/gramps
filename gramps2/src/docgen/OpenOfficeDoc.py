@@ -18,23 +18,39 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Standard Python Modules 
+#
+#-------------------------------------------------------------------------
 import os
 import tempfile
 import string
+import zipfile
+import time
 
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from TextDoc import *
-from latin_utf8 import latin_to_utf8
 import const
 import Plugins
-from intl import gettext as _
 import ImgManip
 
-try:
-    from codecs import *
-except:
-    def EncodedFile(a,b,c):
-        return a
+#-------------------------------------------------------------------------
+#
+# internationalization
+#
+#-------------------------------------------------------------------------
+from intl import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# OpenOfficeDoc
+#
+#-------------------------------------------------------------------------
 class OpenOfficeDoc(TextDoc):
 
     def __init__(self,styles,type,template,orientation):
@@ -46,8 +62,6 @@ class OpenOfficeDoc(TextDoc):
         self.new_page = 0
 
     def open(self,filename):
-        import time
-
         t = time.localtime(time.time())
         self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % \
                     (t[0],t[1],t[2],t[3],t[4],t[5])
@@ -58,13 +72,9 @@ class OpenOfficeDoc(TextDoc):
             self.filename = filename
             
         tempfile.tempdir = "/tmp"
-        self.tempdir = tempfile.mktemp()
-        os.mkdir(self.tempdir,0700)
-        os.mkdir(self.tempdir + os.sep + "Pictures")
-        os.mkdir(self.tempdir + os.sep + "META-INF")
-            
-        fname = self.tempdir + os.sep + "content.xml"
-        self.f = EncodedFile(open(fname,"wb"),'latin-1','utf-8')
+
+        self.content_xml = tempfile.mktemp()
+        self.f = open(self.content_xml,"wb")
 
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
@@ -220,7 +230,6 @@ class OpenOfficeDoc(TextDoc):
         self._write_styles_file()
         self._write_manifest()
         self._write_meta_file()
-        self._write_photos()
         self._write_zip()
 
     def add_photo(self,name,pos,x_cm,y_cm):
@@ -264,7 +273,7 @@ class OpenOfficeDoc(TextDoc):
     def start_table(self,name,style_name):
         self.f.write('<table:table table:name="')
 	self.f.write(name)
-	self.f.write('" table:style-name="' + style_name + '">\n')
+	self.f.write('" table:style-name="%s">\n' % style_name)
 	table = self.table_styles[style_name]
 	for col in range(0,table.get_columns()):
 	    self.f.write('<table:table-column table:style-name="')
@@ -285,7 +294,7 @@ class OpenOfficeDoc(TextDoc):
         self.f.write(style_name)
         self.f.write('" table:value-type="string"')
         if span > 1:
-            self.f.write(' table:number-columns-spanned="' + str(span) + '">\n')
+            self.f.write(' table:number-columns-spanned="%s">\n' % span)
 	else:	     
 	    self.f.write('>\n')
 
@@ -302,26 +311,25 @@ class OpenOfficeDoc(TextDoc):
 
     def _write_zip(self):
         
-        if os.path.isfile(self.filename):
-            os.unlink(self.filename)
-
-        os.system("cd %s; %s %s ." % (self.tempdir,const.zipcmd,self.filename))
-
-        os.unlink(self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml")
-        os.unlink(self.tempdir + os.sep + "content.xml")
-        os.unlink(self.tempdir + os.sep + "meta.xml")
-        os.unlink(self.tempdir + os.sep + "styles.xml")
+        file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
+        file.write(self.manifest_xml,"META-INF/manifest.xml")
+        file.write(self.content_xml,"content.xml")
+        file.write(self.meta_xml,"meta.xml")
+        file.write(self.styles_xml,"styles.xml")
+        
         for image in self.photo_list:
             base = os.path.basename(image[0])
-            os.unlink(self.tempdir + os.sep + "Pictures" + os.sep + base)
-        os.rmdir(self.tempdir + os.sep + "Pictures")
-        os.rmdir(self.tempdir + os.sep + "META-INF")
-        os.rmdir(self.tempdir)
+            file.write(image[0],"Pictures/%s" % base)
+        file.close()
+
+        os.unlink(self.manifest_xml)
+        os.unlink(self.content_xml)
+        os.unlink(self.meta_xml)
+        os.unlink(self.styles_xml)
         
     def _write_styles_file(self):
-	file = self.tempdir + os.sep + "styles.xml"
-
-	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
+        self.styles_xml = tempfile.mktemp()
+	self.f = open(self.styles_xml,"wb")
         
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
@@ -478,7 +486,7 @@ class OpenOfficeDoc(TextDoc):
             self.f.write(name)
 	    self.f.write('" text:level="' + str(self.level) + '">')
         if leader != None:
-            self.f.write(latin_to_utf8(leader))
+            self.f.write(leader)
             self.f.write('<text:tab-stop/>')
 
     def end_paragraph(self):
@@ -489,25 +497,11 @@ class OpenOfficeDoc(TextDoc):
 
     def write_text(self,text):
         text = string.replace(text,'\n','<text:line-break/>')
-	self.f.write(latin_to_utf8(text))
-
-    def _write_photos(self):
-        import shutil
-
-        for file_tuple in self.photo_list:
-            file = file_tuple[0]
-            base = os.path.basename(file)
-            image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
-
-            try:
-                shutil.copy(file,image_name)
-            except IOError,msg:
-                import gnome.ui
-                gnome.ui.GnomeErrorDialog(_("Error copying %s") + "\n" + msg)
+	self.f.write(text)
 
     def _write_manifest(self):
-	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"
-	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
+        self.manifest_xml = tempfile.mktemp()
+	self.f = open(self.manifest_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
         self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
@@ -533,9 +527,9 @@ class OpenOfficeDoc(TextDoc):
 	self.f.close()
 
     def _write_meta_file(self):
-	file = self.tempdir + os.sep + "meta.xml"
-        name = latin_to_utf8(self.name)
-	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
+        name = self.name
+        self.meta_xml = tempfile.mktemp()
+	self.f = open(self.meta_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
 	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
