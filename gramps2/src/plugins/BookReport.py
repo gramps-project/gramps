@@ -85,6 +85,9 @@ class BookItem:
     def __init__(self,name=None):
         """
         Creates a new empty BookItem.
+        
+        name:   if not None then the book item is retreived 
+                from the book item registry using name for lookup
         """
 
         self.name = ""
@@ -99,6 +102,11 @@ class BookItem:
             self.get_registered_item(name)
         
     def clear(self):
+        """
+        Clear the contents of the book item.
+        
+        Everything gets set to empty values except for the style_name"""
+
         self.name = ""
         self.category = ""
         self.dialog = None
@@ -109,6 +117,12 @@ class BookItem:
         self.make_default_style = None
 
     def get_registered_item(self,name):
+        """ 
+        Retrieve the item from the book item registry.
+        
+        name:   a name used for lookup.
+        """
+
         self.clear()
         for item in Plugins._bkitems:
             if item[0] == name:
@@ -122,33 +136,67 @@ class BookItem:
                 self.make_default_style = item[7]
 
     def get_name(self):
+        """
+        Returns the name of the item.
+        """
         return self.name
 
     def get_category(self):
+        """
+        Returns the category of the item.
+        """
         return self.category
 
     def get_dialog(self):
+        """
+        Returns the callable cofigurator dialog.
+        """
         return self.dialog
 
     def get_write_item(self):
+        """
+        Returns the report-writing function of the item.
+        """
         return self.write_item
 
     def set_options(self,options):
+        """
+        Sets the options for the item.
+        
+        options:    list of options to set.
+        """
         self.options = options
 
     def get_options(self):
+        """
+        Returns the list of options for the item.
+        """
         return self.options
 
     def set_style_name(self,style_name):
+        """
+        Sets the style name for the item.
+        
+        style_name: name of the style to set.
+        """
         self.style_name = style_name
 
     def get_style_name(self):
+        """
+        Returns the style name of the item.
+        """
         return self.style_name
 
     def get_style_file(self):
+        """
+        Returns the style file name for the item.
+        """
         return self.style_file
 
     def get_make_default_style(self):
+        """
+        Returns the function to make default style for the item.
+        """
         return self.make_default_style
 
 #------------------------------------------------------------------------
@@ -158,15 +206,15 @@ class BookItem:
 #------------------------------------------------------------------------
 class Book:
     """
-    Interface into the user's defined book -- a collection of book items.
+    Interface into the user-defined book -- a collection of book items.
     """
 
     def __init__(self,obj=None):
         """
         Creates a new empty Book.
 
-        obj - if not None, creates the Book from the values in
-              obj, instead of creating an empty Book.
+        obj:    if not None, creates the Book from the values in
+                obj, instead of creating an empty Book.
         """
 
         self.name = ""
@@ -177,36 +225,85 @@ class Book:
             self.item_list = []
         
     def set_name(self,name):
+        """
+        Sets the name of the book.
+        
+        name:   the name to set.
+        """
         self.name = name
 
     def get_name(self):
+        """
+        Returns the name of the book.
+        """
         return self.name
 
     def get_dbname(self):
+        """
+        Returns the name of the database file used for the book.
+        """
         return self.dbname
 
     def set_dbname(self,name):
+        """
+        Sets the name of the database file used for the book.
+
+        name:   a filename to set.
+        """
         self.dbname = name
 
     def clear(self):
+        """
+        Clears the contents of the book.
+        """
         self.item_list = []
 
     def append_item(self,item):
+        """
+        Adds an item to the book.
+        
+        item:   an item to append.
+        """
         self.item_list.append(item)
 
     def insert_item(self,index,item):
+        """
+        Inserts an item into the given position in the book.
+        
+        index:  a position index. 
+        item:   an item to append.
+        """
         self.item_list.insert(index,item)
 
     def pop_item(self,index):
+        """
+        Pop an item from given position in the book.
+        
+        index:  a position index. 
+        """
         return self.item_list.pop(index)
 
     def get_item(self,index):
+        """
+        Returns an item at a given position in the book.
+        
+        index:  a position index. 
+        """
         return self.item_list[index]
 
     def set_item(self,index,item):
+        """
+        Sets an item at a given position in the book.
+        
+        index:  a position index. 
+        item:   an item to set.
+        """
         self.item_list[index] = item
 
     def get_item_list(self):
+        """
+        Returns list of items in the current book.
+        """
         return self.item_list
 
 #------------------------------------------------------------------------
@@ -216,7 +313,8 @@ class Book:
 #------------------------------------------------------------------------
 class BookList:
     """
-    Interface into the user's defined list of books.  
+    Interface into the user-defined list of books.  
+
     BookList is loaded from a specified XML file if it exists.
     """
 
@@ -225,7 +323,7 @@ class BookList:
         Creates a new BookList from the books that may be defined in the 
         specified file.
 
-        file - XML file that contains style definitions
+        file:   XML file that contains book items definitions
         """
 
         self.bookmap = {}
@@ -237,7 +335,7 @@ class BookList:
         Removes a book from the list. Since each book must have a
         unique name, the name is used to delete the book.
 
-        name - Name of the book to delete
+        name:   name of the book to delete
         """
         del self.bookmap[name]
 
@@ -251,7 +349,7 @@ class BookList:
         """
         Returns the Book associated with the name
 
-        name - name associated with the desired Book.
+        name:   name associated with the desired Book.
         """
         return self.bookmap[name]
 
@@ -263,8 +361,8 @@ class BookList:
         """
         Adds or replaces a Book in the BookList. 
 
-        name - name assocated with the Book to add or replace.
-        book - definition of the Book
+        name:   name assocated with the Book to add or replace.
+        book:   definition of the Book
         """
         self.bookmap[name] = book
 
@@ -318,7 +416,7 @@ class BookParser(handler.ContentHandler):
         """
         Creates a BookParser class that populates the passed booklist.
 
-        booklist - BookList to be loaded from the file.
+        booklist:   BookList to be loaded from the file.
         """
         handler.ContentHandler.__init__(self)
         self.booklist = booklist
@@ -348,7 +446,7 @@ class BookParser(handler.ContentHandler):
             self.s = attrs['name']
 
     def endElement(self,tag):
-        "Overridden class that handles the start of a XML element"
+        "Overridden class that handles the end of a XML element"
         if tag == "item":
             self.i.set_options(self.o)
             self.i.set_style_name(self.s)
@@ -363,15 +461,17 @@ class BookParser(handler.ContentHandler):
 #------------------------------------------------------------------------
 class BookListDisplay:
     """
-    Shows the list of available books. 
-    Allows the user to selecta book from the list.
+    Interface into a dialog with the list of available books. 
+
+    Allows the user to select and/or delete a book from the list.
     """
 
     def __init__(self,booklist,nodelete=0):
         """
         Creates a BookListDisplay object that displays the books in BookList.
 
-        booklist - books that are displayed
+        booklist:   books that are displayed
+        nodelete:   if not 0 then the Delete button is hidden
         """
         
         self.booklist = booklist
@@ -417,7 +517,7 @@ class BookListDisplay:
             path = self.blist.model.get_path(iter)
 
     def on_booklist_ok_clicked(self,obj):
-        """Return selected book. """
+        """Returns selected book. Saves the current list into xml file."""
         store,iter = self.blist.get_selected()
         if iter:
             data = self.blist.get_data(iter,[0])
@@ -425,6 +525,11 @@ class BookListDisplay:
         self.booklist.save()
 
     def on_booklist_delete_clicked(self,obj):
+        """
+        Deletes selected book from the list.
+        
+        This change is not final. OK button has to be clicked to save the list.
+        """
         store,iter = self.blist.get_selected()
         if not iter:
             return
@@ -442,6 +547,12 @@ class BookListDisplay:
 #
 #-------------------------------------------------------------------------
 class BookReportSelector:
+    """
+    Interface into a dialog setting up the book. 
+
+    Allows the user to add/remove/reorder/setup items for the current book
+    and to clear/load/save/edit whole books.
+    """
 
     def __init__(self,db,person):
         self.db = db
@@ -503,7 +614,11 @@ class BookReportSelector:
         self.top.destroy()
 
     def draw_avail_list(self):
-        """Draw the list with the selections available for the book."""
+        """
+        Draw the list with the selections available for the book.
+        
+        The selections are read from the book item registry.
+        """
 
         if not Plugins._bkitems:
             return
@@ -521,15 +636,20 @@ class BookReportSelector:
             self.avail_tree.scroll_to_cell(path,col,1,1,0.0)
 
     def open_book(self,book):
+        """
+        Open the book: set the current set of selections to this book's items.
+        
+        book:   the book object to load.
+        """
         if book.get_dbname() == self.db.getSavePath():
             same_db = 1
         else:
             same_db = 0
             WarningDialog(_('Different database'), _(
-                'This book was created with the references to database %s.\n'
+                'This book was created with the references to database %s.\n\n'
                 'This makes references to the central person saved in the book invalid.\n\n' 
                 'Therefore, the central person for each item is being set ' 
-                'to the default person of the currently opened database.' )
+                'to the active person of the currently opened database.' )
                 % book.get_dbname() )
             
         self.book.clear()
@@ -548,9 +668,13 @@ class BookReportSelector:
             pname = self.db.getPerson(options[0])
             data.append(pname.getPrimaryName().getRegularName())
             self.bk_model.add(data)
-            
 
     def on_add_clicked(self,obj):
+        """
+        Add an item to the current selections. 
+        
+        Use the selected available item to get the item's name in the registry.
+        """
         store,iter = self.av_model.get_selected()
         if not iter:
             return
@@ -565,6 +689,9 @@ class BookReportSelector:
         self.book.append_item(item)
 
     def on_remove_clicked(self,obj):
+        """
+        Remove the item from the current list of selections.
+        """
         store,iter = self.bk_model.get_selected()
         if not iter:
             return
@@ -573,10 +700,16 @@ class BookReportSelector:
         self.bk_model.remove(iter)
 
     def on_clear_clicked(self,obj):
+        """
+        Clear the whole current book.
+        """
         self.bk_model.clear()
         self.book.clear()
 
     def on_up_clicked(self,obj):
+        """
+        Move the currently selected item one row up in the selection list.
+        """
         row = self.bk_model.get_selected_row()
         if not row or row == -1:
             return
@@ -588,6 +721,9 @@ class BookReportSelector:
         self.book.insert_item(row-1,item)
 
     def on_down_clicked(self,obj):
+        """
+        Move the currently selected item one row down in the selection list.
+        """
         row = self.bk_model.get_selected_row()
         if row + 1 >= self.bk_model.count or row == -1:
 	    return
@@ -599,6 +735,9 @@ class BookReportSelector:
         self.book.insert_item(row+1,item)
 
     def on_setup_clicked(self,obj):
+        """
+        Configure currently selected item.
+        """
         store,iter = self.bk_model.get_selected()
         if not iter:
             return
@@ -618,20 +757,31 @@ class BookReportSelector:
         self.book.set_item(row,item)
 
     def bk_double_click(self,obj,event):
+        """
+        Double-click on the current book selection is the same as setup.
+        """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_setup_clicked(obj)
 
     def av_double_click(self,obj,event):
+        """
+        Double-click on the available selection is the same as add.
+        """
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.on_add_clicked(obj)
 
     def on_book_ok_clicked(self,obj): 
-        item_list = self.book.item_list
-        if item_list:
+        """
+        Run final BookReportDialog with the current book. 
+        """
+        if self.book.item_list:
             BookReportDialog(self.db,self.person,self.book)
         self.top.destroy()
 
     def on_save_clicked(self,obj):
+        """
+        Save the current book in the xml booklist file. 
+        """
         self.book_list = BookList(self.file)
         name = self.name_entry.get_text()
         self.book.set_name(name)
@@ -640,6 +790,9 @@ class BookReportSelector:
         self.book_list.save()
 
     def on_open_clicked(self,obj):
+        """
+        Run the BookListDisplay dialog to present the choice of books to open. 
+        """
         self.book_list = BookList(self.file)
         booklistdisplay = BookListDisplay(self.book_list,1)
         booklistdisplay.top.destroy()
@@ -648,6 +801,9 @@ class BookReportSelector:
             self.open_book(book)
 
     def on_edit_clicked(self,obj):
+        """
+        Run the BookListDisplay dialog to present the choice of books to delete. 
+        """
         self.book_list = BookList(self.file)
         booklistdisplay = BookListDisplay(self.book_list)
         booklistdisplay.top.destroy()
@@ -658,6 +814,12 @@ class BookReportSelector:
 #
 #------------------------------------------------------------------------
 class BookReportDialog(Report.ReportDialog):
+    """
+    A usual Report.Dialog subclass. 
+    
+    Creates a dialog selecting target, format, and paper/HTML options.
+    """
+
     def __init__(self,database,person,book):
         import TextDoc
         Report.BareReportDialog.__init__(self,database,person)
@@ -665,6 +827,7 @@ class BookReportDialog(Report.ReportDialog):
         self.database = database 
         self.person = person
         
+        # FIXME:
         # dirty hack to use the style of the first item for the whole book
         for item in self.book.get_item_list():
             name = item.get_name()

@@ -4,7 +4,8 @@
 
 2003-06-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FtmStyleAncestors.py, src/plugins/FtmStyleDescendants.py:
-	Remove options_dialog function -- it is not nedded anymore. 
+	Remove options_dialog function as it is not nedded anymore.
+	* src/plugins/BookReport.py: Add lots of doc strings.
 
 2003-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: added select/edit buttions to family view
