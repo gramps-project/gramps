@@ -1245,7 +1245,6 @@ class EditPerson:
             Utils.modified()
 
     def on_apply_person_clicked(self,obj):
-    
         surname = self.surname_field.get_text()
         suffix = self.suffix.get_text()
         prefix = self.prefix.get_text()

@@ -3,8 +3,8 @@
 # If not using GNU make, then list all .py files individually
 
 pkgpython_PYTHON = \
-	AbiWordDoc.py\	
 	AbiWord2Doc.py\
+	AbiWordDoc.py\
 	HtmlDoc.py\
 	KwordDoc.py\
 	LaTeXDoc.py\
