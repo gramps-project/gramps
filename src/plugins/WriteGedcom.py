@@ -202,7 +202,9 @@ def add_persons_sources(person):
             continue
         source_ref = event.getSourceRef()
         if source_ref != None:
-            source_list.append(source_ref)
+            sbase = source_ref.getBase()
+            if sbase != None and sbase not in source_list:
+                source_list.append(sbase)
 
 #-------------------------------------------------------------------------
 #
@@ -215,7 +217,9 @@ def add_familys_sources(family):
             continue
         source_ref = event.getSourceRef()
         if source_ref != None:
-            source_list.append(source_ref)
+            sbase = source_ref.getBase()
+            if sbase != None and sbase not in source_list:
+                source_list.append(sbase)
 
 #-------------------------------------------------------------------------
 #
@@ -539,6 +543,7 @@ def exportData(database, filename):
             g.write("1 CHIL @I%s@\n" % person.getId())
 
     for source in source_list:
+        print source
         g.write("0 @S%s@ SOUR\n" % source.getId())
         if source.getTitle() != "":
             g.write("1 TITL %s\n" % cnvtxt(source.getTitle()))
