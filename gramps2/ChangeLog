@@ -1,3 +1,6 @@
+2003-09-08  Tim Waugh  <twaugh@redhat.com>
+	* src/Makefile.am: Ship SelectObject.py.
+
 2003-09-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (__init__): Pass parent window to DbPrompter.
 	* src/DbPrompter.py (show): Gracefully deal with empty parent.
