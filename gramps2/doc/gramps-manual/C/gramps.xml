@@ -316,24 +316,24 @@
 
     <para>The &app; window contains the following elements: </para>
       <variablelist>
-      <varlistentry><term>Menubar. </term>
+      <varlistentry><term>Menubar</term>
 	<listitem><para>The menubar provides access to all features of
 	<application>&app;</application> through its menus.</para></listitem>
       </varlistentry>
-      <varlistentry><term>Toolbar. </term>
+      <varlistentry><term>Toolbar</term>
 	<listitem><para> The toolbar provides access to the most frequently 
 	used functions of <application>&app;</application>. The appearance of 
 	the toolbar can be adjusted in <guilabel>Preferences</guilabel> 
 	dialog. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Progress bar. </term>
+      <varlistentry><term>Progress bar</term>
 	<listitem><para>The progress bar is located in the lower left corner 
 	of the &app; window. It displays the 
 	progress of time consuming operations, such as opening and saving 
 	large data bases, importing and exporting to other formats, generating 
 	web-sites, etc. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Statusbar. </term>
+      <varlistentry><term>Statusbar</term>
 	<listitem><para>The statusbar is located to the right of the progress
 	bar, on the very bottom of the &app; window. 
 	It displays information about current <application>&app;</application> 
@@ -341,15 +341,22 @@
 	The behavior of the Status line can be adjusted in 
 	<guilabel>Preferences</guilabel> dialog. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Display area. </term>
+      <varlistentry><term>Display area</term>
 	<listitem><para>The largest area in the center of the
 	&app; window is the display area.  
 	It shows certain aspects of genealogical information, depending on the 
-	currently selected View. There are six Views available 
-	in <application>&app;</application>: <xref linkend="people-view"/>, 
-	<xref linkend="family-view"/>, <xref linkend="pedigree-view"/>, 
-	<xref linkend="sources-view"/>, <xref linkend="places-view"/>, 
-	and <xref linkend="media-view"/>. </para></listitem>
+	currently selected View. The following six Views are available 
+	in <application>&app;</application>: 
+	<itemizedlist>	
+	<listitem><para>People View</para></listitem>
+	<listitem><para>Family View</para></listitem>
+	<listitem><para>Pedigree View</para></listitem>
+	<listitem><para>Sources View</para></listitem>
+	<listitem><para>Places View</para></listitem>
+	<listitem><para>Media View</para></listitem>
+
+	</itemizedlist>
+	</para></listitem>
       </varlistentry>
       </variablelist>
 
@@ -415,7 +422,8 @@
       <sect3 id="people-view">
         <title>People View</title>
 	<para>When <application>&app;</application> opens a database, 
-	the View is set to the People View. People View lists individuals 
+	the View is set to the People View (<xref linkend="side-nofilt-fig"/> 
+	and <xref linkend="noside-nofilt-fig"/>). People View lists individuals 
 	whose data is stored in the database. People View displays people's 
 	<guilabel>Names</guilabel>, &app; <guilabel>ID</guilabel> numbers, 
 	<guilabel>Gender</guilabel>, and 
@@ -578,7 +586,7 @@
 	The two lines that converge on the box represent ties with the 
 	person's Father (top line) and mother (bottom line). Solid lines 
 	represent birth relations, while dashed lines represent non-birth 
-	relations (such as adoption, step-parentship, guardianship, etc.). 
+	relations (such as adoption, step-parenthood, guardianship, etc.). 
 	When the mouse moves over the white box, it expands to display the 
 	corresponding person's dates of birth and death. When the mouse is 
 	placed over the family line, the line changes color to indicate an 
@@ -857,7 +865,7 @@
       <sect3 id="gramps-add-pers"> 
         <title>To Add a Person</title> 
 	<para> To add a person to the database, switch to the People View 
-	(<xref linkend="view-modes"/>) and then click 
+	(<xref linkend="people-view"/>) and then click 
 	<guibutton>Add</guibutton> on the toolbar. 
 	Enter any data you know about this person into the <guilabel>Edit 
 	Person</guilabel> Dialog (see <xref linkend="adv-pers"/> 
@@ -870,7 +878,7 @@
       <sect3 id="gramps-spec-rel"> 
         <title>To Specify a Relationship</title> 
 	<para>To specify a relationship, first switch to the Family View 
-	(<xref linkend="view-modes"/>). Then click <guibutton>+</guibutton>
+	(<xref linkend="family-view"/>). Then click <guibutton>+</guibutton>
 	button on the right of the spouse box. Select a spouse/partner from the
 	list and specify their relationship using the menu at the bottom. If
 	necessary, you can add a person to the list by clicking 
@@ -884,7 +892,7 @@
       <sect3 id="gramps-spec-par"> 
         <title>To Specify Parents</title> 
 	<para>To specify parents of an active person, first switch to the 
-	Family View (<xref linkend="view-modes"/>). Then click
+	Family View (<xref linkend="family-view"/>). Then click
 	<guibutton>+</guibutton> button on the right of the active person's
 	parents list-box. Select the parents from two lists and specify the
 	parents' relationships to the active person using menus at the bottom. 
@@ -910,7 +918,7 @@
       <sect3 id="gramps-spec-ch"> 
         <title>To Specify Children</title> 
 	<para>To specify children of an active person, switch to the 
-	Family View (<xref linkend="view-modes"/>) and then 
+	Family View (<xref linkend="family-view"/>) and then 
 	click <guibutton>+</guibutton> button on the 
 	right of the children list-box. Select a child from the list and 
 	specify	child's relationship with father and mother using menus 
@@ -932,7 +940,7 @@
 	generally related to the database (e.g. group family photos). </para>
 	
 	<para> To add images related to a single person, switch to the 
-	People View (<xref linkend="view-modes"/>), select a person, and 
+	People View (<xref linkend="people-view"/>), select a person, and 
 	then click <guibutton>Edit</guibutton> on the toolbar to invoke 
 	the <guilabel>Edit Person</guilabel> Dialog 
 	(<xref linkend="adv-pers"/>). Then, select the 
@@ -945,23 +953,23 @@
 	done. </para>
 
 	<para> To add images related to a relationship (e.g. marriage), 
-	switch to the Family View (<xref linkend="view-modes"/>) and then
+	switch to the Family View (<xref linkend="family-view"/>) and then
 	double click on the Spouse box invoke <guilabel>Marriage/Relationship 
 	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
 	tab and click <guibutton>Add...</guibutton> to add an image. </para>
 
 	<para> To add images related to a source or a place, first switch to 
-	the Sources View or Places View, respectively 
-	(<xref linkend="view-modes"/>). Then select the appropriate source or
-	place and then either double click on it or click 
-	<guibutton>Edit</guibutton> on the toolbar to invoke 
+	the Sources View (<xref linkend="sources-view"/>) or Places 
+	View (<xref linkend="places-view"/>), respectively. Then select the 
+	appropriate source or place and then either double click on it 
+	or click <guibutton>Edit</guibutton> on the toolbar to invoke 
 	<guilabel>Source Editor</guilabel> (or <guilabel>Place
 	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
 	tab and click <guibutton>Add...</guibutton> to add an image. </para>
 
 	<para> Finally, to add images that are generally related to the 
 	database but not limited to any person, relationship, source, or place 
-	in particular, switch to the Media View (<xref linkend="view-modes"/>). 
+	in particular, switch to the Media View (<xref linkend="media-view"/>). 
 	Then click <guibutton>Add</guibutton> on the toolbar to add an image. 
 	If you have already added any images to any individual galleries, 
 	you will also find the listed in the Media View. </para>
@@ -981,7 +989,8 @@
         <title>To Edit Sources and Places</title> 
 
 	<para> To add a source or a place to the database, switch to 
-	the appropriate Sources or Places View (<xref linkend="view-modes"/>). 
+	the appropriate Sources View (<xref linkend="sources-view"/>) or 
+	Places View (<xref linkend="places-view"/>). 
 	Then click <guibutton>Add</guibutton> on the toolbar to add a
 	source/place. Enter the information into the <guilabel>Source 
 	Editor</guilabel> (or <guilabel>Place Editor</guilabel>) dialog. 
@@ -2400,31 +2409,53 @@
 	<variablelist>
 
 	<varlistentry><term>Individual Summary</term>
-	<listitem><para></para></listitem>
+	<listitem><para>This report produces a detailed summary on the 
+	active person. The report includes all the facts known to the 
+	database about that person. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Family Group Report</term>
-	<listitem><para></para></listitem>
+	<listitem><para>This creates a family group report, showing
+	information on a set of parents and their children. Specific 
+	options: the spouse (available only if the active person has more
+	than one spouse). </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Detailed Descendant Report</term>
-	<listitem><para></para></listitem>
+	<listitem><para>This report covers in detail the descendants of the
+	active person. It includes vital (birth and death) as well as 
+	marriages. Specific options: number of forward generations 
+	to consider. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Detailed Ancestral Report</term>
-	<listitem><para></para></listitem>
+	<listitem><para>This report covers in detail the ancestors of the
+	active person. It includes vital (birth and death) as well as 
+	marriages. Specific options: number of backward generations 
+	to consider, as well as a variety of options on what exactly 
+	contents to include. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Descendant Report</term>
-	<listitem><para></para></listitem>
+	<listitem><para>This report produces brief description 
+	of descendants of the active person. Specific options: number 
+	of forward generations to consider. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Complete Individual Report</term>
-	<listitem><para></para></listitem>
+	<listitem><para>This report provides individual summaries similar to
+	that of the Individual Summary report. The advantage of this report 
+	is the specific filter option. Depending on the filter choice (active
+	person only, his or her descendants, his or her ancestors, or entire
+	database), the report may contain from one to many individual 
+	summaries. Another option for this report is the inclusion of 
+	source information when listing events. </para></listitem>
 	</varlistentry>
 
 	<varlistentry><term>Ahnentafel Report</term>
-	<listitem><para></para></listitem>
+	<listitem><para>
+	[ FIXME: Someone who know exactly what this is has to fill it in. ]
+	</para></listitem>
 	</varlistentry>
 
 	</variablelist>
@@ -2435,22 +2466,47 @@
 	Instead, HTML options includes the choice of the HTML template, 
 	either available in &app; or custom template defined by you. </para>
 
-<!--
-[ FIXME: STOPPED HERE ] 
--->
       </sect3>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-view"> 
 	<title>View</title> 
-	<para> </para>
+	<para> View reports represent overall summaries of the database 
+	information available immediately for on-screen viewing. 
+	The following view reports are currently available in &app;:</para>
 
-      </sect3>
+	<variablelist>
+
+	<varlistentry><term>Number of ancestors</term>
+	<listitem><para>This report displays the number of ancestors of the
+	active person. </para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Summary of the database</term>
+	<listitem><para>This report displays the overall statistics concerning
+	number of individuals of each gender, various incomplete entries
+	statistics, as well as family and media statistics. </para></listitem>
+	</varlistentry>
+
+	</variablelist>
+     </sect3>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-web"> 
 	<title>Web Page</title> 
-	<para> </para>
+
+	<para> This report generates web pages, either for a selected 
+	individual (active person) or a set of individuals. The options 
+	for this report are broken down into contents, privacy, and advanced 
+	options. The contents options include the filter (determine the 
+	scope of the database to consider), number of generations to consider, 
+	destination directory for the images, and a link to the index page.
+	Privacy options allow you to omit private records, restrict 
+	information on living people, to skip images (either all or those of 
+	living people), and to omit comments and text in source information. 
+	Finally, the advanced options allow to include optional &app; ID, 
+	create a GENDEX index, and specify the extension of the resulting 
+	files. </para>
 
       </sect3>
 
@@ -2460,6 +2516,10 @@
     <sect2 id="gramps-tools"> 
         <title>Running Tools</title> 
 	<para> </para>
+
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="tools-ae"> 
