@@ -658,13 +658,13 @@ class FtmDescendantReport(Report.Report):
 
                 self.doc.start_row()
                 self.doc.start_cell('FTD-Normal')
-                self.doc.start_paragraph('FTD-Details')
+                self.doc.start_paragraph('FTD-Child-Num')
                 self.doc.write_text("%d." % index)
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 
                 self.doc.start_cell('FTD-Normal')
-                self.doc.start_paragraph('FTD-Details')
+                self.doc.start_paragraph('FTD-Child-Num')
                 self.doc.write_text("%s." % string.lower(Utils.roman(child_index)))
                 self.doc.end_paragraph()
                 self.doc.end_cell()
@@ -1395,6 +1395,11 @@ def _make_default_style(default_style):
     para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("FTD-Details",para)
     
+    para = BaseDoc.ParagraphStyle()
+    para.set(lmargin=0.0,pad=0.05)
+    para.set_description(_('The style used for numbering children.'))
+    default_style.add_style("FTD-Child-Num",para)
+
     para = BaseDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
