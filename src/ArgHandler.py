@@ -259,15 +259,8 @@ class ArgHandler:
                 print "Exiting..." 
                 os._exit(1)
             if success:
-                rf = RecentFiles.RecentFiles()
-                item = RecentFiles.RecentItem(
-                            u='file://%s' % filename,
-                            m=filetype,
-                            t=int(time.time()),
-                            p=False,
-                            g=['Gramps'])
-                rf.add(item)
-                rf.save()
+                # Add the file to the recent items
+                RecentFiles.recent_files(filename,filetype)
             return
            
         if self.imports:

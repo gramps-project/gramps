@@ -37,20 +37,23 @@ import xml.parsers.expat
 # Constants
 #
 #-------------------------------------------------------------------------
-FILENAME    = "~/.recently-used"
-MAX_ITEMS = 500
+GNOME_FILENAME  = "~/.recently-used"
+MAX_GNOME_ITEMS = 500
+
+GRAMPS_FILENAME = "~/.gramps/recent-files.xml"
+MAX_GRAMPS_ITEMS = 10
 
 #-------------------------------------------------------------------------
 #
-# RecentItem
+# GnomeRecentItem
 #
 #-------------------------------------------------------------------------
-class RecentItem:
+class GnomeRecentItem:
     """
-    Interface to a single recent-items item
+    Interface to a single GNOME recent-items item
     """
 
-    def __init__(self,u="",m="",t="",p=False,g=[]):
+    def __init__(self,u="",m="",t=0,p=False,g=[]):
         self.uri = u
         self.mime = m
         self.time = t
@@ -93,22 +96,58 @@ class RecentItem:
 
 #-------------------------------------------------------------------------
 #
-# RecentFiles
+# GnomeRecentItem
 #
 #-------------------------------------------------------------------------
-class RecentFiles:
+class GrampsRecentItem:
     """
-    Interface to a RecentFiles collection
+    Interface to a single GRAMPS recent-items item
+    """
+
+    def __init__(self,p="",m="",t=0):
+        self.path = p
+        self.mime = m
+        self.time = t
+
+    def set_path(self,val):
+        self.path = val
+
+    def get_path(self):
+        return self.path
+
+    def set_mime(self,val):
+        self.mime = val
+
+    def get_mime(self):
+        return self.mime
+
+    def set_time(self,val):
+        self.time = int(val)
+
+    def get_time(self):
+        return self.time
+
+    def __cmp__(self,other_item):
+        return cmp(self.time,other_item.time)
+
+#-------------------------------------------------------------------------
+#
+# GnomeRecentFiles
+#
+#-------------------------------------------------------------------------
+class GnomeRecentFiles:
+    """
+    Interface to a GnomeRecentFiles collection
     """
 
     def __init__(self):
-        parser = RecentParser()
-        self.recent_files = parser.get()
+        gnome_parser = GnomeRecentParser()
+        self.gnome_recent_files = gnome_parser.get()
 
     def add(self,item2add):
         # First we need to walk the existing items to see 
         # if our item is already there
-        for item in self.recent_files:
+        for item in self.gnome_recent_files:
             if item.get_uri() == item2add.get_uri():
                 # Found it -- modify timestamp and add all groups 
                 # to the item's groups
@@ -118,11 +157,11 @@ class RecentFiles:
                 return
         # At this point we walked the items and not found one,
         # so simply inserting a new item in the beginning
-        self.recent_files.insert(0,item2add)
+        self.gnome_recent_files.insert(0,item2add)
 
     def save(self):
         """
-        Attempt saving into XML.
+        Attempt saving into XML, both for GNOME-wide and GRAMPS files.
         The trick is not to fail under any circumstances.
         """
         try:
@@ -132,16 +171,17 @@ class RecentFiles:
 
     def do_save(self):
         """
-        Saves the current RecentFiles collection to the associated file.
+        Saves the current GNOME RecentFiles collection to the associated file.
         """
-        xml_file = file(os.path.expanduser(FILENAME),'w')
+        xml_file = file(os.path.expanduser(GNOME_FILENAME),'w')
         fcntl.lockf(xml_file,fcntl.LOCK_EX)
         xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         xml_file.write('<RecentFiles>\n')
         index = 0
-        for item in self.recent_files:
-            if index > MAX_ITEMS:
+        for item in self.gnome_recent_files:
+            if index > MAX_GNOME_ITEMS:
                 break
+            index = index + 1
             xml_file.write('  <RecentItem>\n')
             xml_file.write('    <URI>%s</URI>\n' % item.get_uri())
             xml_file.write('    <Mime-Type>%s</Mime-Type>\n' % item.get_mime())
@@ -159,19 +199,78 @@ class RecentFiles:
 
 #-------------------------------------------------------------------------
 #
-# RecentParser
+# GrampsRecentFiles
 #
 #-------------------------------------------------------------------------
-class RecentParser:
+class GrampsRecentFiles:
     """
-    Parsing class for the RecentFiles collection.
+    Interface to a GrampsRecentFiles collection
+    """
+
+    def __init__(self):
+        gramps_parser = GrampsRecentParser()
+        self.gramps_recent_files = gramps_parser.get()
+
+    def add(self,item2add):
+        # First we need to walk the existing items to see 
+        # if our item is already there
+        for item in self.gramps_recent_files:
+            if item.get_path() == item2add.get_path():
+                # Found it -- modify timestamp and add all groups 
+                # to the item's groups
+                item.set_time(item2add.get_time())
+                return
+        # At this point we walked the items and not found one,
+        # so simply inserting a new item in the beginning
+        self.gramps_recent_files.insert(0,item2add)
+
+    def save(self):
+        """
+        Attempt saving into XML.
+        The trick is not to fail under any circumstances.
+        """
+        try:
+            self.do_save()
+        except:
+            pass
+
+    def do_save(self):
+        """
+        Saves the current GRAMPS RecentFiles collection to the associated file.
+        """
+        xml_file = file(os.path.expanduser(GRAMPS_FILENAME),'w')
+        fcntl.lockf(xml_file,fcntl.LOCK_EX)
+        xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+        xml_file.write('<RecentFiles>\n')
+        index = 0
+        for item in self.gramps_recent_files:
+            index = index + 1
+            if index > MAX_GRAMPS_ITEMS:
+                break
+            xml_file.write('  <RecentItem>\n')
+            xml_file.write('    <Path>%s</Path>\n' % item.get_path())
+            xml_file.write('    <Mime-Type>%s</Mime-Type>\n' % item.get_mime())
+            xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
+            xml_file.write('  </RecentItem>\n')
+        xml_file.write('</RecentFiles>\n')
+        fcntl.lockf(xml_file,fcntl.LOCK_UN)
+        xml_file.close()
+
+#-------------------------------------------------------------------------
+#
+# GnomeRecentParser
+#
+#-------------------------------------------------------------------------
+class GnomeRecentParser:
+    """
+    Parsing class for the GnomeRecentParser collection.
     """
     
     def __init__(self):
         self.recent_files = []
 
         try:
-            xml_file = open(os.path.expanduser(FILENAME))
+            xml_file = open(os.path.expanduser(GNOME_FILENAME))
             fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
             p = xml.parsers.expat.ParserCreate()
@@ -191,7 +290,7 @@ class RecentParser:
     def startElement(self,tag,attrs):
         self.tlist = []
         if tag == "RecentItem":
-            self.item = RecentItem()
+            self.item = GnomeRecentItem()
         elif tag == "Groups":
             self.groups = []
 
@@ -216,3 +315,90 @@ class RecentParser:
 
     def characters(self, data):
         self.tlist.append(data)
+
+#-------------------------------------------------------------------------
+#
+# GrampsRecentParser
+#
+#-------------------------------------------------------------------------
+class GrampsRecentParser:
+    """
+    Parsing class for the GrampsRecentFiles collection.
+    """
+    
+    def __init__(self):
+        self.recent_files = []
+
+        try:
+            xml_file = open(os.path.expanduser(GRAMPS_FILENAME))
+            fcntl.lockf(xml_file,fcntl.LOCK_SH)
+
+            p = xml.parsers.expat.ParserCreate()
+            p.StartElementHandler = self.startElement
+            p.EndElementHandler = self.endElement
+            p.CharacterDataHandler = self.characters
+            p.ParseFile(xml_file)
+
+            fcntl.lockf(xml_file,fcntl.LOCK_UN)
+            xml_file.close()
+        except:
+            pass
+
+    def get(self):
+        return self.recent_files
+
+    def startElement(self,tag,attrs):
+        self.tlist = []
+        if tag == "RecentItem":
+            self.item = GrampsRecentItem()
+
+    def endElement(self,tag):
+
+        text = ''.join(self.tlist)
+
+        if tag == "RecentItem":
+            self.recent_files.append(self.item)
+        elif tag == "Path":
+            self.item.set_path(text)
+        elif tag == "Mime-Type":
+            self.item.set_mime(text)
+        elif tag == "Timestamp":
+            self.item.set_time(int(text))
+
+    def characters(self, data):
+        self.tlist.append(data)
+
+#-------------------------------------------------------------------------
+#
+# Helper function
+#
+#-------------------------------------------------------------------------
+def recent_files(filename,filetype):
+    """
+    Add an entry to both GNOME and GRAMPS recent-items storages.
+    """
+
+    the_time = int(time.time())
+    # Add the file to the recent items
+    gnome_rf = GnomeRecentFiles()
+    gnome_item = GnomeRecentItem(
+        u='file://%s' % filename,
+        m=filetype,
+        t=the_time,
+        p=False,
+        g=['Gramps'])
+    gnome_rf.add(gnome_item)
+    gnome_rf.save()
+
+    gramps_rf = GrampsRecentFiles()
+    gramps_item = GrampsRecentItem(
+        p=filename,
+        m=filetype,
+        t=the_time)
+    gramps_rf.add(gramps_item)
+    gramps_rf.save()
+
+
+
+
+

@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import time
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -202,15 +201,7 @@ class ExistingDbPrompter:
             
             if success:
                 # Add the file to the recent items
-                rf = RecentFiles.RecentFiles()
-                item = RecentFiles.RecentItem(
-                            u='file://%s' % filename,
-                            m=filetype,
-                            t=int(time.time()),
-                            p=False,
-                            g=['Gramps'])
-                rf.add(item)
-                rf.save()
+                RecentFiles.recent_files(filename,filetype)
                 return True
 
             # The above native formats did not work, so we need to 
@@ -390,15 +381,7 @@ class NewNativeDbPrompter:
                 choose.destroy()
                 self.parent.read_file(filename)
                 # Add the file to the recent items
-                rf = RecentFiles.RecentFiles()
-                item = RecentFiles.RecentItem(
-                            u='file://%s' % filename,
-                            m=const.app_gramps,
-                            t=int(time.time()),
-                            p=False,
-                            g=['Gramps'])
-                rf.add(item)
-                rf.save()
+                RecentFiles.recent_files(filename,const.app_gramps)
                 return True
             else:
                 choose.destroy()

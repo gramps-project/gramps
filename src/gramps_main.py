@@ -73,6 +73,7 @@ import TipOfDay
 import ArgHandler
 import Exporter
 import RelImage
+import RecentFiles
 
 from QuestionDialog import *
 
@@ -269,6 +270,7 @@ class Gramps:
         self.spouse_tab  = self.gtop.get_widget("spouse_tab")
         self.undolabel   = self.gtop.get_widget('undolabel')
         self.redolabel   = self.gtop.get_widget('redolabel')
+        self.open_recent = self.gtop.get_widget('open_recent1')
 
         self.db.set_undo_callback(self.undo_callback)
         self.db.set_redo_callback(self.redo_callback)
@@ -281,6 +283,8 @@ class Gramps:
 
         self.build_plugin_menus()
         self.init_filters()
+
+        self.build_recent_menu()
 
         self.toolbar.set_style(GrampsCfg.get_toolbar_style())
         self.views.set_show_tabs(0)
@@ -403,6 +407,25 @@ class Gramps:
         self.topWindow.add_accel_group(self.accel_group)
         self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
         self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_FORWARD)
+
+    def build_recent_menu(self):
+        gramps_rf = RecentFiles.GrampsRecentFiles()
+        gramps_rf.gramps_recent_files.sort()
+        gramps_rf.gramps_recent_files.reverse()
+        recent_menu = gtk.Menu()
+        recent_menu.show()
+        index = 0
+        for item in gramps_rf.gramps_recent_files:
+            index = index + 1
+            name = os.path.basename(item.get_path())
+            menu_item = gtk.MenuItem(name,False)
+            menu_item.connect("activate",self.recent_callback,item.get_path())
+            menu_item.show()
+            recent_menu.append(menu_item)
+        self.open_recent.set_submenu(recent_menu)
+
+    def recent_callback(self,obj,filename):
+        print "Will open %s when finished" % filename
 
     def undo_callback(self,text):
         if text == None:
