@@ -236,7 +236,9 @@ class XmlWriter:
             self.g.write("  <people")
             person = self.db.get_default_person()
             if person:
-                self.g.write(' home="%s"' % person.get_handle())
+                self.g.write(' default="%s" home="%s"' %
+                             (person.get_gramps_id (),
+                              person.get_handle()))
             self.g.write(">\n")
 
             keys = self.db.get_person_handles(sort_handles=False)
