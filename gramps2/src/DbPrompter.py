@@ -121,8 +121,7 @@ class DbPrompter:
         if GrampsCfg.db_dir:
             self.dbname.set_default_path(GrampsCfg.db_dir)
             self.dbname.set_filename(GrampsCfg.db_dir)
-            self.photosel.gtk_entry().set_position(len(GrampsCfg.db_dir))
-
+            self.dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
         self.getoldrev.set_sensitive(GrampsCfg.usevc)
 
     def cancel_button_clicked(self,obj):
