@@ -51,7 +51,7 @@
 			  <accelerator key="N" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image438">
+			    <widget class="GtkImage" id="image455">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-new</property>
 			      <property name="icon_size">1</property>
@@ -73,7 +73,7 @@
 			  <accelerator key="O" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image439">
+			    <widget class="GtkImage" id="image456">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-open</property>
 			      <property name="icon_size">1</property>
@@ -95,7 +95,7 @@
 			  <accelerator key="S" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image440">
+			    <widget class="GtkImage" id="image457">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-save</property>
 			      <property name="icon_size">1</property>
@@ -116,7 +116,7 @@
 			  <signal name="activate" handler="on_save_as_activate" last_modification_time="Tue, 01 Apr 2003 03:50:28 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image441">
+			    <widget class="GtkImage" id="image458">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-save-as</property>
 			      <property name="icon_size">1</property>
@@ -150,7 +150,7 @@
 			  <property name="use_underline">True</property>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image442">
+			    <widget class="GtkImage" id="image459">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -171,7 +171,7 @@
 			  <signal name="activate" handler="on_revert_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image443">
+			    <widget class="GtkImage" id="image460">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-revert-to-saved</property>
 			      <property name="icon_size">1</property>
@@ -192,7 +192,7 @@
 			  <signal name="activate" handler="on_reload_plugins_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image444">
+			    <widget class="GtkImage" id="image461">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-refresh</property>
 			      <property name="icon_size">1</property>
@@ -217,9 +217,10 @@
 			  <property name="label" translatable="yes">_Quit</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_exit_activate" last_modification_time="Tue, 01 Apr 2003 03:49:05 GMT"/>
+			  <accelerator key="Q" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image445">
+			    <widget class="GtkImage" id="image462">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-quit</property>
 			      <property name="icon_size">1</property>
@@ -254,7 +255,7 @@
 			  <accelerator key="F" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image446">
+			    <widget class="GtkImage" id="image463">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-find</property>
 			      <property name="icon_size">1</property>
@@ -275,7 +276,7 @@
 			  <signal name="activate" handler="on_merge_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image447">
+			    <widget class="GtkImage" id="image464">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-convert</property>
 			      <property name="icon_size">1</property>
@@ -343,7 +344,7 @@
 			  <accelerator key="D" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image448">
+			    <widget class="GtkImage" id="image465">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-index</property>
 			      <property name="icon_size">1</property>
@@ -365,7 +366,7 @@
 			  <accelerator key="B" modifiers="GDK_CONTROL_MASK" signal="activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image449">
+			    <widget class="GtkImage" id="image466">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-book-open</property>
 			      <property name="icon_size">1</property>
@@ -429,7 +430,7 @@
 			  <signal name="activate" handler="on_preferences1_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image450">
+			    <widget class="GtkImage" id="image467">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-preferences</property>
 			      <property name="icon_size">1</property>
@@ -450,7 +451,7 @@
 			  <signal name="activate" handler="on_default_person_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image451">
+			    <widget class="GtkImage" id="image468">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-home</property>
 			      <property name="icon_size">1</property>
@@ -484,7 +485,7 @@
 			  <signal name="activate" handler="on_contents_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image452">
+			    <widget class="GtkImage" id="image469">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-help</property>
 			      <property name="icon_size">1</property>
@@ -511,7 +512,7 @@
 			  <signal name="activate" handler="on_gramps_home_page_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image453">
+			    <widget class="GtkImage" id="image470">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-jump-to</property>
 			      <property name="icon_size">1</property>
@@ -532,7 +533,7 @@
 			  <signal name="activate" handler="on_gramps_mailing_lists_activate"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image454">
+			    <widget class="GtkImage" id="image471">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-mail</property>
 			      <property name="icon_size">1</property>
@@ -586,7 +587,7 @@
 			  <signal name="activate" handler="on_about_activate" last_modification_time="Tue, 01 Apr 2003 03:44:24 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image455">
+			    <widget class="GtkImage" id="image472">
 			      <property name="visible">True</property>
 			      <property name="stock">gnome-stock-about</property>
 			      <property name="icon_size">1</property>
