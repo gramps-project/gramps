@@ -18,13 +18,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Import from Gramps"
+#
+# Modified by Alex Roitman to handle media object files.
+#
+
+"Import from Gramps database"
 
 from ReadXML import *
 import Utils
 from intl import gettext as _
 import gtk
 import const
+import os
+import shutil
 
 #-------------------------------------------------------------------------
 #
@@ -44,9 +50,8 @@ class ReadNative:
         self.db = database
         self.callback = cb
         
-        self.top = gtk.FileSelection("%s - GRAMPS" % _("Import from GRAMPS"))
+        self.top = gtk.FileSelection("%s - GRAMPS" % _("Import from GRAMPS database"))
         self.top.hide_fileop_buttons()
-        #self.top.set_directory_entry(1)
         self.top.ok_button.connect('clicked', self.on_ok_clicked)
         self.top.cancel_button.connect('clicked', self.close_window)
         self.top.show()
@@ -56,10 +61,10 @@ class ReadNative:
         
     def show_display(self):
         self.window = gtk.Window()
-        self.window.set_title(_("Import from GRAMPS"))
+        self.window.set_title(_("Import from GRAMPS database"))
         vbox = gtk.VBox()
         self.window.add(vbox)
-        label = gtk.Label(_("Import from GRAMPS"))
+        label = gtk.Label(_("Import from GRAMPS database"))
         vbox.add(label)
         adj = gtk.Adjustment(lower=0,upper=100)
         self.progress_bar = gtk.ProgressBar(adj)
@@ -68,34 +73,76 @@ class ReadNative:
         
     def on_ok_clicked(self,obj):
 
-        name = self.top.get_filename()
-        if name == "":
+        imp_dbpath = self.top.get_filename()
+        if imp_dbpath == "":
             return
 
-        name = "%s/%s" % (name,const.xmlFile)
         Utils.destroy_passed_object(self.top)
         self.show_display()
+
+        # Create tempdir, if it does not exist, then check for writability
+        tmpdir_path = os.path.expanduser("~/.gramps/tmp" )
+        if not os.path.isdir(tmpdir_path):
+            try:
+                os.mkdir(tmpdir_path,0700)
+            except:
+                ErrorDialog( _("Could not create temporary directory %s") % 
+                                tmpdir_path )
+                return
+        elif not os.access(tmpdir_path,os.W_OK):
+            ErrorDialog( _("Temporary directory %s is not writable") % tmpdir_path )
+            return
+        else:    # tempdir exists and writable -- clean it up if not empty
+	    files = os.listdir(tmpdir_path) ;
+            for filename in files:
+                os.remove( os.path.join(tmpdir_path,filename) )
+
+        # Copy all files from imp_dbpath to tmpdir_path
+        files = os.listdir(imp_dbpath)
+        for filename in files:
+            oldfile = os.path.join(imp_dbpath,filename)
+            newfile = os.path.join(tmpdir_path,filename)
+            try:
+                shutil.copy2( oldfile, newfile )
+            except:	
+            # These are .* files, and dirs under database dir -- ignore them
+                pass
+
+	dbname = os.path.join(tmpdir_path,const.xmlFile)  
+
         try:
-            importData(self.db,name,self.progress)
+            importData(self.db,dbname,self.progress)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
-        self.window.destroy()
+        
+        # Clean up tempdir after ourselves
+        files = os.listdir(tmpdir_path) 
+
+        dbdir_path = self.db.getSavePath() 
+        for filename in files:
+            oldfile = os.path.join(tmpdir_path,filename)
+            newfile = os.path.join(dbdir_path,filename)
+	    if filename != const.xmlFile:
+                shutil.copy2( oldfile, newfile )
+
+            os.remove( oldfile )
+
+        os.rmdir(tmpdir_path)
+	
+	self.window.destroy()
         self.callback(1)
 
     def progress(self,val):
-        pass
-
-#        self.progress_bar.set_percentage(val)
-#        while gtk.events_pending():
-#            gtk.mainiteration()
+        self.progress_bar.set_value(val*100.0)
+        while gtk.events_pending():
+            gtk.mainiteration()
         
 #------------------------------------------------------------------------
 #
-# 
+#  Register with the plugin system
 #
 #------------------------------------------------------------------------
 from Plugins import register_import
 
-register_import(readData,_("Import from GRAMPS"))
-
+register_import(readData,_("Import from GRAMPS database"))

@@ -95,11 +95,10 @@ class ReadPkg:
         elif not os.access(tmpdir_path,os.W_OK):
             ErrorDialog( _("Temporary directory %s is not writable") % tmpdir_path )
             return
-
-        # Clean up tempdir, if it is not empty
-	files = os.listdir(tmpdir_path) ;
-        for filename in files:
-            os.remove( os.path.join(tmpdir_path,filename) )
+        else:    # tempdir exists and writable -- clean it up if not empty
+	    files = os.listdir(tmpdir_path) ;
+            for filename in files:
+                os.remove( os.path.join(tmpdir_path,filename) )
 
         try:
             t = TarFile.ReadTarFile(name,tmpdir_path)
@@ -147,4 +146,3 @@ class ReadPkg:
 from Plugins import register_import
 
 register_import(readData,_("Import from GRAMPS package"))
-
