@@ -213,6 +213,10 @@ class Place(SourceNote):
         """Returns the list of Photo objects"""
         return self.photoList
 
+    def setPhotoList(self,list):
+        """Sets the list of Photo objects"""
+        self.photoList = list
+
 class Researcher:
     """Contains the information about the owner of the database"""
     
@@ -839,6 +843,10 @@ class Person:
         """returns the list of Photos"""
         return self.photoList
 
+    def setPhotoList(self,list):
+        """Sets the list of Photo objects"""
+        self.photoList = list
+
     def addEvent(self,event):
         """adds an Event to the event list"""
         self.EventList.append(event)
@@ -991,7 +999,7 @@ class Event(DataObj):
             self.cause = source.cause
         else:
             self.place = None
-            self.date = Date()
+            self.date = None
             self.description = ""
             self.name = ""
             self.cause = ""
@@ -1072,24 +1080,34 @@ class Event(DataObj):
 
     def setDate(self, date) :
         """attempts to sets the date of the Event instance"""
-       	self.date.set(date)
+        if not self.date:
+            self.date = Date()
+        self.date.set(date)
 
     def getDate(self) :
         """returns a string representation of the date of the Event instance"""
-       	return self.date.getDate()
+        if self.date:
+            return self.date.getDate()
+        return ""
 
     def getQuoteDate(self) :
         """returns a string representation of the date of the Event instance,
         enclosing the results in quotes if it is not a valid date"""
-       	return self.date.getQuoteDate()
+        if self.date:
+            return self.date.getQuoteDate()
+        return ""
 
     def getDateObj(self):
         """returns the Date object associated with the Event"""
+        if not self.date:
+            self.date = Date()
        	return self.date
 
     def getSaveDate(self) :
         """returns the date of the Event in the form wanted by gramps XML save"""
-       	return self.date.getSaveDate()
+        if not self.date:
+            return self.date.getSaveDate()
+        return ""
 
 class Family:
     """Represents a family unit in the gramps database"""
@@ -1245,6 +1263,10 @@ class Family:
         """Returns the list of Photo objects"""
         return self.photoList
 
+    def setPhotoList(self,list):
+        """Sets the list of Photo objects"""
+        self.photoList = list
+
 class Source:
     """A record of a source of information"""
     
@@ -1273,6 +1295,10 @@ class Source:
     def getPhotoList(self):
         """Returns the list of Photo objects"""
         return self.photoList
+
+    def setPhotoList(self,list):
+        """Sets the list of Photo objects"""
+        self.photoList = list
 
     def setTitle(self,title):
         """sets the title of the Source"""
