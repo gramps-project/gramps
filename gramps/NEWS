@@ -1,4 +1,8 @@
-Version 0.6.0pre
+Version 0.6.1
+* Fixed Family View/Pedigree View button swap
+* Updated Spanish translation
+
+Version 0.6.0
 * Support for QUAY, NCHI, and CAUS on GEDCOM import. GEDCOM
   import is significantly faster.
 * Support for multiple sources per item.
