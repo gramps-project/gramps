@@ -277,11 +277,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             transaction.add(PERSON_KEY,handle,old_data)
 
         self.person_map[handle] = person.serialize()
-        if transaction and not transaction.batch:
-            if old_data:
-                self.emit('person-update',([handle],))
-            else:
-                self.emit('person-add',([handle],))
+        if transaction and old_data:
+            self.emit('person-update',([handle],))
+        else:
+            self.emit('person-add',([handle],))
           
     def commit_media_object(self,obj,transaction,change_time=None):
         """
@@ -299,12 +298,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             old_data = self.media_map.get(handle)
             transaction.add(MEDIA_KEY,handle,old_data)
         self.media_map[handle] = obj.serialize()
-        if transaction and not transaction.batch:
-            if old_data:
-                self.emit('media-update',([handle],))
-            else:
-                self.emit('media-add',([handle],))
-
+        if transaction and old_data:
+            self.emit('media-update',([handle],))
+        else:
+            self.emit('media-add',([handle],))
+            
     def commit_source(self,source,transaction,change_time=None):
         """
         Commits the specified Source to the database, storing the changes
@@ -321,11 +319,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             old_data = self.source_map.get(handle)
             transaction.add(SOURCE_KEY,handle,old_data)
         self.source_map[handle] =  source.serialize()
-        if transaction and not transaction.batch:
-            if old_data:
-                self.emit('source-update',([handle],))
-            else:
-                self.emit('source-add',([handle],))
+        if transaction and old_data:
+            self.emit('source-update',([handle],))
+        else:
+            self.emit('source-add',([handle],))
 
     def commit_place(self,place,transaction,change_time=None):
         """
@@ -343,12 +340,11 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             old_data = self.place_map.get(handle)
             transaction.add(PLACE_KEY,handle,old_data)
         self.place_map[handle] = place.serialize()
-        if transaction and not transaction.batch:
-            if old_data:
-                self.emit('place-update',([handle],))
-            else:
-                self.emit('place-add',([handle],))
-
+        if transaction and old_data:
+            self.emit('place-update',([handle],))
+        else:
+            self.emit('place-add',([handle],))
+            
     def commit_event(self,event,transaction,change_time=None):
         """
         Commits the specified Event to the database, storing the changes
@@ -383,11 +379,10 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             transaction.add(FAMILY_KEY,handle,old_data)
         self.family_map[handle] = family.serialize()
 
-        if transaction and not transaction.batch:
-            if old_data:
-                self.emit('family-update',([handle],))
-            else:
-                self.emit('family-add',([handle],))
+        if transaction and old_data:
+            self.emit('family-update',([handle],))
+        else:
+            self.emit('family-add',([handle],))
 
     def find_next_person_gramps_id(self):
         """
@@ -537,8 +532,7 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
                 if transaction != None:
                     transaction.add(PERSON_KEY, val, None)
                 self.person_map[str(val)] = person.serialize()
-                if transaction and not transaction.batch:
-                    self.emit('person-add', ([str(val)],))
+                self.emit('person-add', ([str(val)],))
             self.genderStats.count_person (person, self)
         return person
 
@@ -966,9 +960,6 @@ class GrampsDbBase(GrampsDBCallback.GrampsDBCallback):
             
         if self.undo_callback:
             self.undo_callback(_("_Undo %s") % transaction.get_description())
-
-        if transaction and transaction.batch:
-            self.request_rebuild()
 
     def undo(self):
         """

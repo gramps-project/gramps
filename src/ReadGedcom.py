@@ -473,6 +473,7 @@ class GedcomParser:
             self.trans.set_batch(True)
         else:
             self.trans = None
+        self.db.disable_signals()
         t = time.time()
         self.index = 0
         self.fam_count = 0
@@ -497,8 +498,8 @@ class GedcomParser:
 
         if use_trans:
             self.db.transaction_commit(self.trans,_("GEDCOM import"))
-        else:
-            self.db.request_rebuild()
+        self.db.enable_signals()
+        self.db.request_rebuild()
         
         if self.window:
             self.infomsg("\n%s" % msg)
@@ -828,7 +829,7 @@ class GedcomParser:
                                                           mrel, frel)
                         break
                 else:
-                    if mrel in rel_types and frel in reltypes:
+                    if mrel in rel_types and frel in rel_types:
                         child.set_main_parent_family_handle(self.family.get_handle())
                     else:
                         if child.get_main_parents_family_handle() == self.family:
@@ -1548,7 +1549,7 @@ class GedcomParser:
             elif matches[1] == "DATA":
                 date,text = self.parse_source_data(level+1)
                 d = self.dp.parse(date)
-                source.set_date(d)
+                source.set_date_object(d)
                 source.set_text(text)
             elif matches[1] in ["OBJE","REFN","TEXT"]:
                 self.ignore_sub_junk(level+1)

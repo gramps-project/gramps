@@ -533,11 +533,15 @@ class GrampsParser:
         return self.oidswap[handle]
 
     def parse(self,file,use_trans=True):
+
         if use_trans:
             self.trans = self.db.transaction_begin()
             self.trans.set_batch(True)
         else:
             self.trans = None
+
+        self.db.disable_signals()
+
         p = ParserCreate()
         p.StartElementHandler = self.startElement
         p.EndElementHandler = self.endElement
@@ -561,8 +565,8 @@ class GrampsParser:
         del p
         if use_trans:
             self.db.transaction_commit(self.trans,_("GRAMPS XML import"))
-        else:
-            self.db.request_rebuild()
+        self.db.enable_signals()
+        self.db.request_rebuild()
 
     def start_lds_ord(self,attrs):
         atype = attrs['type']
