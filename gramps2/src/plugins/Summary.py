@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,22 +48,10 @@ from gnome.ui import *
 
 #------------------------------------------------------------------------
 #
-# 
+# Build the text of the report
 #
 #------------------------------------------------------------------------
-def report(database,person):
-    
-    base = os.path.dirname(__file__)
-    glade_file = "%s/summary.glade" % base
-
-    topDialog = gtk.glade.XML(glade_file,"summary")
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : Utils.destroy_passed_object,
-    })
-
-    Utils.set_titles(topDialog.get_widget('summary'),
-                     topDialog.get_widget('title'),
-                     _('Database summary'))
+def build_report(database,person):
 
     personList = database.getPersonMap().values()
     familyList = database.getFamilyMap().values()
@@ -131,6 +119,30 @@ def report(database,person):
         text = text + "----------------------------\n"
         for p in notfound:
             text = text + "%s\n" % p
+    
+    return text
+    
+#------------------------------------------------------------------------
+#
+# Output report in a window
+#
+#------------------------------------------------------------------------
+def report(database,person):
+    
+    text = build_report(database,person)
+    
+    base = os.path.dirname(__file__)
+    glade_file = "%s/summary.glade" % base
+
+    topDialog = gtk.glade.XML(glade_file,"summary")
+    topDialog.signal_autoconnect({
+        "destroy_passed_object" : Utils.destroy_passed_object,
+    })
+
+    Utils.set_titles(topDialog.get_widget('summary'),
+                     topDialog.get_widget('title'),
+                     _('Database summary'))
+
     
     top = topDialog.get_widget("summary")
     textwindow = topDialog.get_widget("textwindow")
