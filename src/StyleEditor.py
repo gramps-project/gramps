@@ -20,7 +20,7 @@
 
 import libglade
 import gtk
-import utils
+import Utils
 import ListColors
 import const
 
@@ -40,7 +40,7 @@ class StyleListDisplay:
         self.sheetlist = stylesheetlist
         self.top = libglade.GladeXML(const.stylesFile,"styles")
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_list_select_row" : on_list_select_row,
             "on_ok_clicked" : on_ok_clicked,
             "on_add_clicked" : on_add_clicked,
@@ -92,7 +92,7 @@ def on_ok_clicked(obj):
 
     top.callback(top.object)
     top.sheetlist.save()
-    utils.destroy_passed_object(obj)
+    Utils.destroy_passed_object(obj)
     
 #------------------------------------------------------------------------
 #
@@ -143,7 +143,7 @@ class StyleEditor:
         
         self.top.signal_autoconnect({
             "on_save_style_clicked" : on_save_style_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         self.window = self.top.get_widget("editor")
@@ -272,7 +272,7 @@ def on_save_style_clicked(obj):
     top.save_paragraph(p)
     top.parent.sheetlist.set_style_sheet(name,top.style)
     top.parent.redraw()
-    utils.destroy_passed_object(obj)
+    Utils.destroy_passed_object(obj)
     
 
 

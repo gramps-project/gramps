@@ -20,7 +20,7 @@
 
 "Graphical Reports/Ancestor Chart"
 
-import Config
+import GrampsCfg
 import os
 import string
 
@@ -88,10 +88,10 @@ class AncestorChart:
         B = person.getBirth().getPlaceName()
         D = person.getDeath().getPlaceName()
         i = "%s" % person.getId()
-        A = Config.attr_name
+        A = GrampsCfg.attr_name
         a = ""
         for attr in person.getAttributeList():
-            if attr.getType() == Config.attr_name:
+            if attr.getType() == GrampsCfg.attr_name:
                 a = attr.getValue()
                 break
 

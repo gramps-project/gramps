@@ -19,8 +19,8 @@
 #
 
 import RelLib
-import utils
-import Config
+import Utils
+import GrampsCfg
 import const
 
 from intl import gettext
@@ -53,21 +53,21 @@ class MergePeople:
         self.glade.signal_autoconnect({
             "on_merge_clicked" : self.on_merge_clicked,
             "on_next_clicked" : self.on_merge_edit_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             })
 
-        label_text = "Merge %s and %s" % (Config.nameof(person1),Config.nameof(person2))
+        label_text = "Merge %s and %s" % (GrampsCfg.nameof(person1),GrampsCfg.nameof(person2))
         self.glade.get_widget("progress").set_text(label_text)
         f1 = person1.getMainFamily()
         f2 = person2.getMainFamily()
         
-        name1 = Config.nameof(person1)
+        name1 = GrampsCfg.nameof(person1)
         death1 = person1.getDeath().getDate()
         dplace1 = self.place_name(person1.getDeath())
         birth1 = person1.getBirth().getDate()
         bplace1 = self.place_name(person1.getBirth())
 
-        name2 = Config.nameof(person2)
+        name2 = GrampsCfg.nameof(person2)
         death2 = person2.getDeath().getDate()
         dplace2 = self.place_name(person2.getDeath())
         birth2 = person2.getBirth().getDate()
@@ -157,7 +157,7 @@ class MergePeople:
                 if spouse == None:
                     name = "unknown"
                 else:
-                    name = "%s (%s)" % (Config.nameof(spouse),spouse.getId())
+                    name = "%s (%s)" % (GrampsCfg.nameof(spouse),spouse.getId())
                 self.glade.get_widget("spouse1").append([name])
 
         length = min(len(p2list),3)
@@ -172,7 +172,7 @@ class MergePeople:
                 if spouse == None:
                     name = "unknown"
                 else:
-                    name = "%s (%s)" % (Config.nameof(spouse),spouse.getId())
+                    name = "%s (%s)" % (GrampsCfg.nameof(spouse),spouse.getId())
                 self.glade.get_widget("spouse2").append([name])
 
         if name1 != name2:
@@ -231,7 +231,7 @@ class MergePeople:
     #
     #---------------------------------------------------------------------
     def on_merge_clicked(self,obj):
-        utils.modified()
+        Utils.modified()
 
         list = self.p1.getAlternateNames()[:]
         for xdata in self.p2.getAlternateNames():
@@ -345,9 +345,9 @@ class MergePeople:
         try:
             del self.db.getPersonMap()[self.p2.getId()]
         except:
-            print "%s is not in the person map!" % (Config.nameof(self.p2))
+            print "%s is not in the person map!" % (GrampsCfg.nameof(self.p2))
         self.update(self.p1,self.p2)
-        utils.destroy_passed_object(self.top)
+        Utils.destroy_passed_object(self.top)
         
     #---------------------------------------------------------------------
     #
@@ -579,8 +579,8 @@ def compare_people(p1,p2):
                     if father1 == father2:
                         chance = chance + 1
                     else:
-                        fname1 = Config.nameof(father1)
-                        fname2 = Config.nameof(father2)
+                        fname1 = GrampsCfg.nameof(father1)
+                        fname2 = GrampsCfg.nameof(father2)
                         value = name_match(fname1,fname2)
                         if value != -1:
                             chance = chance + value
@@ -591,8 +591,8 @@ def compare_people(p1,p2):
                     if mother1 == mother2:
                         chance = chance + 1
                     else:
-                        mname1 = Config.nameof(mother1)
-                        mname2 = Config.nameof(mother2)
+                        mname1 = GrampsCfg.nameof(mother1)
+                        mname2 = GrampsCfg.nameof(mother2)
                         value = name_match(mname1,mname2)
                         if value != -1:
                             chance = chance + value
@@ -786,7 +786,7 @@ def ancestors_of(p1,list):
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % ( Config.nameof(p),p.getId())
+    return "%s (%s)" % ( GrampsCfg.nameof(p),p.getId())
 
 #-------------------------------------------------------------------------
 #
@@ -808,7 +808,7 @@ class MergePlaces:
         self.t3.set_text(place1.get_title())
         
         self.glade.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_merge_places_clicked" : self.on_merge_places_clicked,
             })
         self.top.show()
@@ -860,6 +860,6 @@ class MergePlaces:
                     event.setPlace(self.p1)
         del self.db.getPlaceMap()[self.p2.getId()]
         self.update()
-        utils.modified()
-        utils.destroy_passed_object(obj)
+        Utils.modified()
+        Utils.destroy_passed_object(obj)
 

@@ -21,10 +21,10 @@
 "Database Processing/Merge people"
 
 import RelLib
-import utils
+import Utils
 import soundex
 import intl
-import Config
+import GrampsCfg
 _ = intl.gettext
 
 import string
@@ -104,13 +104,13 @@ class Merge:
 
         top.signal_autoconnect({
             "on_merge_ok_clicked" : self.on_merge_ok_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
     def on_merge_ok_clicked(self,obj):
         active = self.menu.get_menu().get_active().get_data("v")
         self.use_soundex = self.soundex_obj.get_active()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         self.find_potentials(active)
         self.show()
     
@@ -186,7 +186,7 @@ class Merge:
         self.window = top.get_widget("mergelist")
         self.mlist = top.get_widget("mlist")
         top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_do_merge_clicked" : self.on_do_merge_clicked,
             })
         self.mlist.connect('button-press-event',self.button_press_event)
@@ -241,7 +241,7 @@ class Merge:
         
     def update_and_destroy(self,obj):
         self.update(1)
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         
     def list_reduce(self,list1,list2):
         value = 0
@@ -487,7 +487,7 @@ class Merge:
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % ( Config.nameof(p),p.getId())
+    return "%s (%s)" % ( GrampsCfg.nameof(p),p.getId())
 
 def get_name_obj(person):
     if person:

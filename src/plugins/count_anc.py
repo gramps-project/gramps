@@ -26,7 +26,7 @@ import posixpath
 import re
 import sort
 import string
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -40,7 +40,7 @@ def report(database,person):
     glade_file = base + os.sep + "summary.glade"
     topDialog = GladeXML(glade_file,"summary")
     topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
     })
     thisgen = []
     allgen = []

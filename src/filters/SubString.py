@@ -22,7 +22,7 @@
 
 import Filter
 import string
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -30,7 +30,7 @@ class SubString(Filter.Filter):
     "Names that contain a substring"
 
     def match(self,person):
-        return string.find(utils.phonebook_name(person),self.text) >= 0
+        return string.find(Utils.phonebook_name(person),self.text) >= 0
 
 #------------------------------------------------------------------------
 #

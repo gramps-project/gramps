@@ -25,7 +25,7 @@ import os
 import string
 import time
 import const
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -531,7 +531,7 @@ def on_ok_clicked(obj):
     filter()
     
     exportData(db,name)
-    utils.destroy_passed_object(obj)
+    Utils.destroy_passed_object(obj)
     
 #-------------------------------------------------------------------------
 #
@@ -550,7 +550,7 @@ def writeData(database,person):
     glade_file = base + os.sep + "pafexport.glade"
         
     dic = {
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
         "on_ok_clicked" : on_ok_clicked
         }
 

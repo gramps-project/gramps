@@ -26,7 +26,7 @@ import posixpath
 import re
 import sort
 import string
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -155,7 +155,7 @@ def report(database,person):
 		else:
 	            boxes.append( (x, y, (personList[id].getGender() == Person.female), id ) )
 		    personList[id].setPosition( (x,y) )
-		    utils.modified()
+		    Utils.modified()
             else:
 	        print "just lost person with key %s" % (id)
 
@@ -368,7 +368,7 @@ def button_release_event(widget, event):
  		id = b[3]
 		person = db.findPersonNoMap(id)
 		person.setPosition( (b[0], b[1]) )
-                utils.modified()
+                Utils.modified()
     redraw_tree( widget )
     return TRUE
     

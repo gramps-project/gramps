@@ -45,8 +45,8 @@ import string
 #-------------------------------------------------------------------------
 from RelLib import *
 import EditPlace
-import utils
-import Config
+import Utils
+import GrampsCfg
 
 from intl import gettext
 _ = gettext
@@ -86,7 +86,7 @@ class PlaceView:
 
         # Restore the previous sort column
         
-        self.sort_col,self.sort_dir = Config.get_sort_cols("place",0,GTK.SORT_ASCENDING)
+        self.sort_col,self.sort_dir = GrampsCfg.get_sort_cols("place",0,GTK.SORT_ASCENDING)
         self.set_arrow(self.sort_col)
         self.place_list.set_sort_column(self.sort_map[self.sort_col])
         self.place_list.set_sort_type(self.sort_dir)
@@ -104,7 +104,7 @@ class PlaceView:
         self.place_list.freeze()
         self.place_list.clear()
 
-        self.place_list.set_column_visibility(1,Config.id_visible)
+        self.place_list.set_column_visibility(1,GrampsCfg.id_visible)
         
         index = 0
         u = string.upper
@@ -184,7 +184,7 @@ class PlaceView:
         self.set_arrow(column)
         self.place_list.set_sort_type(self.sort_dir)
         self.place_list.set_sort_column(self.sort_map[self.sort_col])
-        Config.save_sort_cols("place",self.sort_col,self.sort_dir)
+        GrampsCfg.save_sort_cols("place",self.sort_col,self.sort_dir)
 
         self.place_list.sort()
         if sel:
@@ -253,7 +253,7 @@ class PlaceView:
             obj.remove(index)
             map = self.db.getPlaceMap()
             del map[place.getId()]
-            utils.modified()
+            Utils.modified()
 
     def on_edit_place_clicked(self,obj):
         """Display the selected places in the EditPlace display"""

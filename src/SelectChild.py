@@ -42,8 +42,8 @@ from RelLib import *
 
 import const
 import sort
-import utils
-import Config
+import Utils
+import GrampsCfg
 import string
 import AutoComp
 
@@ -64,13 +64,13 @@ class SelectChild:
         self.xml.signal_autoconnect({
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_show_toggled"          : self.on_show_toggled,
-            "destroy_passed_object"    : utils.destroy_passed_object
+            "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
         self.select_child_list = {}
         self.top = self.xml.get_widget("selectChild")
         self.add_child = self.xml.get_widget("addChild")
-        self.add_child.set_column_visibility(1,Config.id_visible)
+        self.add_child.set_column_visibility(1,GrampsCfg.id_visible)
 
         if (self.family):
             father = self.family.getFather()
@@ -161,8 +161,8 @@ class SelectChild:
 
         person_list.sort(sort.by_last_name)
         for person in person_list:
-            self.add_child.append([utils.phonebook_name(person),
-                                   utils.birthday(person),
+            self.add_child.append([Utils.phonebook_name(person),
+                                   Utils.birthday(person),
                                    person.getId()])
             self.add_child.set_row_data(index,person)
             index = index + 1
@@ -202,9 +202,9 @@ class SelectChild:
             else:
                 select_child.addAltFamily(self.family,mrel,frel)
 
-            utils.modified()
+            Utils.modified()
         
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         self.redraw(self.family)
         
     def on_show_toggled(self,obj):
@@ -225,7 +225,7 @@ class NewChild:
             "on_male_toggled"        : self.on_male_toggled,
             "on_female_toggled"      : self.on_female_toggled,
             "on_gender_toggled"      : self.on_gender_toggled,
-            "destroy_passed_object"  : utils.destroy_passed_object
+            "destroy_passed_object"  : Utils.destroy_passed_object
             })
 
         if autoname == 0:
@@ -242,7 +242,7 @@ class NewChild:
         self.top  = self.xml.get_widget("addChild")
         self.surname = self.xml.get_widget("surname")
         self.given = self.xml.get_widget("childGiven")
-        if Config.autocomp:
+        if GrampsCfg.autocomp:
             self.comp = AutoComp.AutoEntry(self.surname,const.surnames)
 
         self.surname.set_text(self.update_surname(2))
@@ -297,7 +297,7 @@ class NewChild:
         pass
 
     def combo_insert_text(self,combo,new_text,new_text_len,i_dont_care):
-        utils.combo_insert_text(combo,new_text,new_text_len,i_dont_care)
+        Utils.combo_insert_text(combo,new_text,new_text_len,i_dont_care)
 
     def north_american(self,val):
         if self.person.getGender() == Person.male:
@@ -383,8 +383,8 @@ class NewChild:
         # must do an apply filter here to make sure the main window gets updated
     
         self.update(self.family,person,[])
-        utils.modified()
-        utils.destroy_passed_object(obj)
+        Utils.modified()
+        Utils.destroy_passed_object(obj)
         self.new_child = person
 
     def other_update(self,arg1,plist):

@@ -22,7 +22,7 @@
 
 import libglade
 from ReadXML import *
-import utils
+import Utils
 import intl
 
 _ = intl.gettext
@@ -53,7 +53,7 @@ def readData(database,active_person,cb):
     glade_file = base + os.sep + "grampsimport.glade"
         
     dic = {
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
         "on_ok_clicked" : on_ok_clicked
         }
 
@@ -78,7 +78,7 @@ def on_ok_clicked(obj):
     name = topDialog.get_widget("filename").get_text()
     name = name + os.sep + const.indexFile
 
-    utils.destroy_passed_object(obj)
+    Utils.destroy_passed_object(obj)
     importData(db,name,progress)
     callback(1)
 

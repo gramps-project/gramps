@@ -28,7 +28,7 @@ from libglade import *
 
 import RelLib
 import soundex
-import utils
+import Utils
 import intl
 
 _ = intl.gettext
@@ -50,8 +50,8 @@ class SoundGen:
 
         self.glade = GladeXML(glade_file,"soundEx")
         self.glade.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "on_combo_insert_text"  : utils.combo_insert_text,
+            "destroy_passed_object" : Utils.destroy_passed_object,
+            "on_combo_insert_text"  : Utils.combo_insert_text,
             "on_apply_clicked"      : self.on_apply_clicked,
         })
 

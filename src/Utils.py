@@ -167,10 +167,10 @@ def destroy_passed_object(obj):
 #
 #-------------------------------------------------------------------------
 def get_detail_flags(obj,priv=1):
-    import Config
+    import GrampsCfg
     
     detail = ""
-    if Config.show_detail:
+    if GrampsCfg.show_detail:
         if obj.getNote() != "":
             detail = "N"
         if len(obj.getSourceRefList()) > 0:

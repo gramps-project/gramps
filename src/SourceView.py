@@ -41,8 +41,8 @@ import gnome.ui
 #-------------------------------------------------------------------------
 from RelLib import *
 import EditSource
-import utils
-import Config
+import Utils
+import GrampsCfg
 
 #-------------------------------------------------------------------------
 #
@@ -69,7 +69,7 @@ class SourceView:
         self.sort_arrow = [self.title_arrow, self.id_arrow, self.author_arrow]
         self.source_list.connect('click-column',self.click_column)
 
-        self.sort_col,self.sort_dir = Config.get_sort_cols("source",3,GTK.SORT_ASCENDING)
+        self.sort_col,self.sort_dir = GrampsCfg.get_sort_cols("source",3,GTK.SORT_ASCENDING)
         if self.sort_col >= len(self.sort_arrow):
             self.sort_col = 0
             
@@ -113,7 +113,7 @@ class SourceView:
         obj.set_sort_type(self.sort_dir)
         obj.set_sort_column(new_col)
         self.sort_col = new_col
-        Config.save_sort_cols("source",self.sort_col,self.sort_dir)
+        GrampsCfg.save_sort_cols("source",self.sort_col,self.sort_dir)
         obj.sort()
         if data:
             row = obj.find_row_from_data(data)
@@ -129,7 +129,7 @@ class SourceView:
 
         self.source_list.clear()
         self.source_list.freeze()
-        self.source_list.set_column_visibility(1,Config.id_visible)
+        self.source_list.set_column_visibility(1,GrampsCfg.id_visible)
 
         index = 0
         for src in self.db.getSourceMap().values():
@@ -174,7 +174,7 @@ class SourceView:
         else:
             map = self.db.getSourceMap()
             del map[source.getId()]
-            utils.modified()
+            Utils.modified()
             self.update(0)
 
     def is_source_used(self,source):

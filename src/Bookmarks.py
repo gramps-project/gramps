@@ -34,7 +34,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -81,7 +81,7 @@ class Bookmarks :
     def add(self,person):
         """appends the person to the bottom of the bookmarks"""
         if person not in self.bookmarks:
-            utils.modified()
+            Utils.modified()
             self.bookmarks.append(person)
             self.redraw()
 

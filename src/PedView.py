@@ -26,7 +26,7 @@ import GTK
 import GDK
 import gtk
 
-import Config
+import GrampsCfg
 
 from intl import gettext
 _ = gettext
@@ -178,7 +178,7 @@ class PedigreeView:
             myMenu = gtk.GtkMenu()
             for family in self.active_person.getFamilyList():
                 for child in family.getChildList():
-                    menuitem = gtk.GtkMenuItem(Config.nameof(child))
+                    menuitem = gtk.GtkMenuItem(GrampsCfg.nameof(child))
                     myMenu.append(menuitem)
                     menuitem.set_data(_PERSON,child)
                     menuitem.connect("activate",self.on_childmenu_changed)
@@ -358,7 +358,7 @@ class PedigreeView:
         elif event.type == GDK.ENTER_NOTIFY:
             obj.set(fill_color_gdk=style.bg[GTK.STATE_SELECTED],
                     width_pixels=4)
-            name = Config.nameof(person)
+            name = GrampsCfg.nameof(person)
             msg = _("Double clicking will make %s the active person") % name
             self.sb.set_status(msg)
         elif event.type == GDK.LEAVE_NOTIFY:

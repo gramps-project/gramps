@@ -33,7 +33,7 @@ import os
 import re
 import string
 import const
-import utils
+import Utils
 
 import gtk
 import gnome.ui
@@ -93,17 +93,17 @@ def importData(database, filename):
     statusWindow = statusTop.get_widget("status")
     statusTop.get_widget("close").set_sensitive(0)
     statusTop.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object
+        "destroy_passed_object" : Utils.destroy_passed_object
         })
 
     try:
         g = GedcomParser(database,filename,statusTop)
     except IOError,msg:
-        utils.destroy_passed_object(statusWindow)
+        Utils.destroy_passed_object(statusWindow)
         gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename + str(msg))
         return
     except:
-        utils.destroy_passed_object(statusWindow)
+        Utils.destroy_passed_object(statusWindow)
         gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return
 
@@ -111,7 +111,7 @@ def importData(database, filename):
 
     statusTop.get_widget("close").set_sensitive(1)
 
-    utils.modified()
+    Utils.modified()
     if callback:
         callback(1)
 
@@ -803,7 +803,7 @@ class GedcomParser:
                 photo = Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
-                photo.setMimeType(utils.get_mime_type(path))
+                photo.setMimeType(Utils.get_mime_type(path))
                 self.db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
@@ -838,7 +838,7 @@ class GedcomParser:
                 photo = Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
-                photo.setMimeType(utils.get_mime_type(path))
+                photo.setMimeType(Utils.get_mime_type(path))
                 self.db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
@@ -873,7 +873,7 @@ class GedcomParser:
                 photo = Photo()
                 photo.setPath(path)
                 photo.setDescription(title)
-                photo.setMimeType(utils.get_mime_type(path))
+                photo.setMimeType(Utils.get_mime_type(path))
                 self.db.addObject(photo)
                 oref = ObjectRef()
                 oref.setReference(photo)
@@ -1647,7 +1647,7 @@ def on_ok_clicked(obj):
     else:
         clear_data = 0
 
-    utils.destroy_passed_object(obj)
+    Utils.destroy_passed_object(obj)
     importData(db,name)
     
 #-------------------------------------------------------------------------
@@ -1667,7 +1667,7 @@ def readData(database,active_person,cb):
     glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
         
     dic = {
-        "destroy_passed_object" : utils.destroy_passed_object,
+        "destroy_passed_object" : Utils.destroy_passed_object,
         "on_ok_clicked" : on_ok_clicked
         }
 

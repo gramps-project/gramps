@@ -23,7 +23,7 @@
 import os
 import re
 import intl
-import utils
+import Utils
 
 _ = intl.gettext
 
@@ -83,7 +83,7 @@ class PatchNames:
 
             self.top = libglade.GladeXML(glade_file,"summary")
             self.top.signal_autoconnect({
-                "destroy_passed_object" : utils.destroy_passed_object,
+                "destroy_passed_object" : Utils.destroy_passed_object,
                 "on_ok_clicked" : self.on_ok_clicked
                 })
             self.top.get_widget("textwindow").show_string(msg)
@@ -96,15 +96,15 @@ class PatchNames:
             name = grp[0].getPrimaryName()
             name.setFirstName(grp[1])
             grp[0].setNickName(grp[2])
-            utils.modified()
+            Utils.modified()
 
         for grp in self.title_list:
             name = grp[0].getPrimaryName()
             name.setFirstName(grp[2])
             name.setTitle(grp[1])
-            utils.modified()
+            Utils.modified()
 
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         self.cb(1)
         
 #------------------------------------------------------------------------

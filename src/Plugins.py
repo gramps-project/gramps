@@ -50,8 +50,8 @@ from re import compile
 #
 #-------------------------------------------------------------------------
 import const
-import utils
-import Config
+import Utils
+import GrampsCfg
 from intl import gettext
 _ = gettext
 
@@ -103,7 +103,7 @@ class ReportPlugins:
         self.dialog.signal_autoconnect({
             "on_report_apply_clicked" : self.on_apply_clicked,
             "on_report_ok_clicked"    : self.on_apply_clicked,
-            "destroy_passed_object"   : utils.destroy_passed_object
+            "destroy_passed_object"   : Utils.destroy_passed_object
             })
 
         tree = self.dialog.get_widget("tree1")
@@ -113,7 +113,7 @@ class ReportPlugins:
     def on_apply_clicked(self,obj):
         """Execute the selected report"""
 
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         if self.run_tool:
             self.run_tool(self.db,self.active)
 
@@ -159,7 +159,7 @@ class ToolPlugins:
         self.dialog.signal_autoconnect({
             "on_apply_clicked"      : self.on_apply_clicked,
             "on_ok_clicked"         : self.on_apply_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
 
         tree = self.dialog.get_widget("tree")
@@ -169,7 +169,7 @@ class ToolPlugins:
     def on_apply_clicked(self,obj):
         """Execute the selected tool."""
 
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         if self.run_tool:
             self.run_tool(self.db,self.active,self.update)
 
@@ -487,7 +487,7 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == Config.output_preference:
+        if name == GrampsCfg.output_preference:
             myMenu.set_active(index)
             callback(menuitem)
         index = index + 1
@@ -536,7 +536,7 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == Config.goutput_preference:
+        if name == GrampsCfg.goutput_preference:
             myMenu.set_active(index)
         if callback:
             callback(menuitem)

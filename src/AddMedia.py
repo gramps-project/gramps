@@ -53,7 +53,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 import RelImage
 import RelLib
 
@@ -82,7 +82,7 @@ class AddMediaObject:
         self.glade.signal_autoconnect({
             "on_savephoto_clicked"  : self.on_savephoto_clicked,
             "on_name_changed"       : self.on_name_changed,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "destroy_passed_object" : Utils.destroy_passed_object
             })
         
         self.window.editable_enters(self.description)
@@ -102,7 +102,7 @@ class AddMediaObject:
             GnomeErrorDialog(msgstr % filename)
             return
 
-        type = utils.get_mime_type(filename)
+        type = Utils.get_mime_type(filename)
         if description == "":
             description = os.path.basename(filename)
 
@@ -119,9 +119,9 @@ class AddMediaObject:
             name = filename
         mobj.setPath(name)
 
-        utils.modified()
+        Utils.modified()
         self.update()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
         
     def on_name_changed(self,obj):
         """
@@ -139,9 +139,9 @@ class AddMediaObject:
         self.temp_name = root
 
         if os.path.isfile(filename):
-            type = utils.get_mime_type(filename)
+            type = Utils.get_mime_type(filename)
             if type[0:5] == 'image':
                 image = RelImage.scale_image(filename,const.thumbScale)
                 self.image.load_imlib(image)
             else:
-                self.image.load_file(utils.find_icon(type))
+                self.image.load_file(Utils.find_icon(type))

@@ -20,7 +20,7 @@
 
 import TextDoc
 import gtk
-import Config
+import GrampsCfg
 
 from intl import gettext
 _ = gettext
@@ -48,7 +48,7 @@ def make_paper_menu(main_menu):
         menuitem.set_data("i",paper)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == Config.paper_preference:
+        if name == GrampsCfg.paper_preference:
             myMenu.set_active(index)
         index = index + 1
     main_menu.set_menu(myMenu)

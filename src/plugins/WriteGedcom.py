@@ -25,7 +25,7 @@ import os
 import string
 import time
 import const
-import utils
+import Utils
 import intl
 import Date
 _ = intl.gettext
@@ -410,7 +410,7 @@ class GedcomWriter:
         
         self.topDialog = libglade.GladeXML(glade_file,"gedcomExport")
         self.topDialog.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_ok_clicked" : self.on_ok_clicked
             })
         
@@ -484,13 +484,13 @@ class GedcomWriter:
 
         (self.plist,self.flist,self.slist) = filter(self.db,self.person,self.private)
     
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
         glade_file = "%s/gedcomexport.glade" % os.path.dirname(__file__)
 
         self.exprogress = libglade.GladeXML(glade_file,"exportprogress")
         self.exprogress.signal_autoconnect({
-            "on_close_clicked" : utils.destroy_passed_object
+            "on_close_clicked" : Utils.destroy_passed_object
             })
 
         self.fbar = self.exprogress.get_widget("fbar")
@@ -499,7 +499,7 @@ class GedcomWriter:
         self.progress = self.exprogress.get_widget('exportprogress')
 
         closebtn = self.exprogress.get_widget("close")
-        closebtn.connect("clicked",utils.destroy_passed_object)
+        closebtn.connect("clicked",Utils.destroy_passed_object)
         closebtn.set_sensitive(0)
 
         self.export_data(name)

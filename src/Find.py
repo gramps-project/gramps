@@ -24,9 +24,9 @@
 __author__ = 'Don Allingham'
 
 import libglade
-import Config
+import GrampsCfg
 import const
-import utils
+import Utils
 import string
 import gtk
 import AutoComp
@@ -45,7 +45,7 @@ class Find:
         self.task = task
         self.xml = libglade.GladeXML(const.findFile,"find")
         self.xml.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_next_clicked"       : self.on_next_clicked,
             "on_prev_clicked"       : self.on_prev_clicked,
             })
@@ -57,7 +57,7 @@ class Find:
         for n in plist:
             self.nlist.append(n.getPrimaryName().getName())
             
-        if Config.autocomp:
+        if GrampsCfg.autocomp:
             self.comp = AutoComp.AutoEntry(self.entry,self.nlist)
 
         self.next = self.xml.get_widget("next")

@@ -31,7 +31,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 from RelLib import *
 
 #-------------------------------------------------------------------------
@@ -58,7 +58,7 @@ class UrlEditor:
             self.priv.set_active(url.getPrivacy())
 
         self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
+            "destroy_passed_object" : Utils.destroy_passed_object,
             "on_url_edit_ok_clicked" : self.on_url_edit_ok_clicked
             })
 
@@ -73,7 +73,7 @@ class UrlEditor:
         
         self.update_url(des,addr,priv)
         self.parent.redraw_url_list()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def update_url(self,des,addr,priv):
         if self.url.get_path() != addr:

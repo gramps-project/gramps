@@ -22,7 +22,7 @@
 
 import Filter
 import re
-import utils
+import Utils
 import intl
 _ = intl.gettext
 
@@ -41,7 +41,7 @@ class RegExMatch(Filter.Filter):
         if self.ok == 0:
             return 0
         else:
-            return self.regexp.search(utils.phonebook_name(person))
+            return self.regexp.search(Utils.phonebook_name(person))
 
 #------------------------------------------------------------------------
 #

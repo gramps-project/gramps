@@ -22,6 +22,7 @@
 
 import os
 import intl
+import Utils
 
 _ = intl.gettext
 
@@ -154,7 +155,7 @@ class GraphVizDialog(ReportDialog):
         """Build a one item menu of document types that are
         appropriate for this report."""
         map = {"Graphviz (dot)" : None}
-        myMenu = utils.build_string_optmenu(map, None)
+        myMenu = Utils.build_string_optmenu(map, None)
         self.format_menu.set_menu(myMenu)
 
     def make_document(self):

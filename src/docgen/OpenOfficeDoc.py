@@ -25,7 +25,6 @@ import string
 from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
-import utils
 import Plugins
 import intl
 import ImgManip

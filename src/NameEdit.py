@@ -31,7 +31,7 @@ import libglade
 #
 #-------------------------------------------------------------------------
 import const
-import utils
+import Utils
 from RelLib import *
 
 from intl import gettext
@@ -53,7 +53,7 @@ class NameEditor:
         self.surname_field = self.top.get_widget("alt_last")
         self.suffix_field = self.top.get_widget("alt_suffix")
         self.note_field = self.top.get_widget("alt_note")
-        utils.attach_surnames(self.top.get_widget("alt_surname_list"))
+        Utils.attach_surnames(self.top.get_widget("alt_surname_list"))
         self.priv = self.top.get_widget("priv")
 
         if self.name:
@@ -81,8 +81,8 @@ class NameEditor:
             self.note_field.set_word_wrap(1)
 
         self.top.signal_autoconnect({
-            "destroy_passed_object"   : utils.destroy_passed_object,
-            "on_combo_insert_text"    : utils.combo_insert_text,
+            "destroy_passed_object"   : Utils.destroy_passed_object,
+            "on_combo_insert_text"    : Utils.combo_insert_text,
             "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
             "on_source_clicked"       : self.on_name_source_clicked
             })
@@ -107,7 +107,7 @@ class NameEditor:
         self.parent.lists_changed = 1
 
         self.parent.redraw_name_list()
-        utils.destroy_passed_object(obj)
+        Utils.destroy_passed_object(obj)
 
     def update_name(self,first,last,suffix,note,priv):
         
