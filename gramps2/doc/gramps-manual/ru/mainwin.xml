@@ -18,65 +18,65 @@
 
 <!-- ================ Main Window ================================ -->
   <sect1 id="gramps-mainwin"> 
-    <title>Main Window</title> 
-    <para>When you open a database (either existing or brand new), 
-    the following window is displayed.</para>
+    <title>Главное Окно</title> 
+    <para>Когда Вы открываете базу данных (новую или уже существующую), 
+    появляется следующее окно.</para>
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
-	<title>&app; Main Window</title> 
+	<title>Главное Окно &app;</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows &app; main window. Contains titlebar, menubar, 
-	      toolbar, sidebar, display area, statusbar, progressbar, and
-	      scrollbars. Menubar contains File, Edit, View, Bookmarks, 
-	      Reports, Tools, Settings, and Help menus.  </phrase>
+	<phrase>Показывет главное окно &app;. Оно содержит панель 
+	названия, панель меню, боковую панель, площадь просмотра,
+	панель статуса, панель прогресса, и панель скроллинга. Панель 
+	меню содержит элементы Файл, Правка, Вид, Иди, Закладки, 
+	Отчёты, Инструменты, и Справка. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-    <para>The &app; window contains the following elements: </para>
+    <para>Окно &app; содержит следующие элементы: </para>
       <variablelist>
-      <varlistentry><term>Menubar</term>
-	<listitem><para>The menubar is located at the very top of the window
-        (right below the window title) and provides access to all features of
-	&app; through its menus.</para></listitem>
+      <varlistentry><term>Панель Меню</term>
+	<listitem><para>Панель меню расположена в самом верху окна
+	(сразу под названием)	и предоставляет доступ ко всем функциям 
+	&app; через свои элементы. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Toolbar</term>
-	<listitem><para> The toolbar is located immediately below the menubar. 
-        The toolbar provides access to the most frequently used functions 
-        of &app;. The appearance of the toolbar 
-        can be adjusted in the <guilabel>Preferences</guilabel> 
-	dialog. </para></listitem>
+      <varlistentry><term>Панель Инструментов</term>
+	<listitem><para> Панель инструментов находится сразу под 
+	панелью меню. Панель инструментов предоставляет доступ к наиболее
+	часто используемым функциям &app;. Вид панели инструментов 
+	настраивается в диалоге <guilabel>Настройки</guilabel>.
+	 </para></listitem>
       </varlistentry>
-      <varlistentry><term>Progressbar</term>
-	<listitem><para>The progressbar is located in the lower left corner 
-	of the &app; window. It displays the 
-	progress of time consuming operations, such as opening and saving 
-	large data bases, importing and exporting to other formats, generating 
-	web sites, etc. </para></listitem>
+      <varlistentry><term>Панель Прогресса</term>
+	<listitem><para>Панель Прогресса расположена в нижнем левом
+	углу окна &app;. Она показывает прогресс операций, занимающих
+	много времени, таких, как открытие и сохранение больших баз данных,
+	импорт и экспорт в другие форматы, генерация веб сайтов, 
+	и т.д. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Statusbar</term>
-	<listitem><para>The statusbar is located to the right of the 
-        progressbar, on the very bottom of the &app; window. 
-	It displays information about current &app; 
-	activity and contextual information about the menu items. 
-	The behavior of the statusbar can be adjusted in 
-	<guilabel>Preferences</guilabel> dialog. </para></listitem>
+      <varlistentry><term>Панель Статуса</term>
+	<listitem><para>Панель статуса находится справа от панели 
+	прогресса, в самом низу окна &app;. Она показывает информацию 
+	о текущей активности &app; и контекстную информацию об 
+	элементах меню. Поведение панели статуса настраивается в
+	диалоге <guilabel>Настройки</guilabel>. </para></listitem>
       </varlistentry>
-      <varlistentry><term>Display area</term>
-	<listitem><para>The largest area in the center of the
-	&app; window is the display area.  
-	It shows certain aspects of genealogical information, depending on the 
-	currently selected View. The following six Views are available 
-	in &app;: 
+      <varlistentry><term>Площадь Просмотра</term>
+	<listitem><para>Наибольшая площадь в центре окна &app; 
+	является площадью просмотра. Она показывает определённые 
+	аспекты генеалогической информации, в зависимости от 
+	выбранного Вида. &app; предоставляет следующие шесть 
+	Видов: 
 	<itemizedlist>	
-	<listitem><para>People View</para></listitem>
-	<listitem><para>Family View</para></listitem>
-	<listitem><para>Pedigree View</para></listitem>
-	<listitem><para>Sources View</para></listitem>
-	<listitem><para>Places View</para></listitem>
-	<listitem><para>Media View</para></listitem>
+	<listitem><para>Люди</para></listitem>
+	<listitem><para>Семья</para></listitem>
+	<listitem><para>Родословная</para></listitem>
+	<listitem><para>Источники</para></listitem>
+	<listitem><para>Места</para></listitem>
+	<listitem><para>Медиа</para></listitem>
 
 	</itemizedlist>
 	</para></listitem>
