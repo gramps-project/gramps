@@ -4,8 +4,8 @@
 # #
 # #	$Id$
 # #	$Log$
-# #	Revision 1.5  2001/11/11 00:55:56  dallingham
-# #	Getting ready for 0.6.0
+# #	Revision 1.6  2001/11/11 15:30:02  dallingham
+# #	Updated Spanish translation
 # #
 # #	Revision 1.4  2001/09/29 01:51:30  dallingham
 # #	Updated documenation
@@ -1526,7 +1526,7 @@ msgid "GRAMPS ID value was not changed."
 msgstr "El número de identificación GRAMPS no fue cambiado"
 
 #: glade.c:659
-msgid "GRAMPS ID prefixes"
+msgid "GRAMPS id prefixes"
 msgstr "prefijos de identificación GRAMPS"
 
 #: glade.c:2091
@@ -2229,7 +2229,7 @@ msgid "Married"
 msgstr "Casados"
 
 #: glade.c:1007
-msgid "Match Threshold"
+msgid "Match Treshold"
 msgstr "Umbral de Concordancia"
 
 #: glade.c:1010
