@@ -1456,8 +1456,7 @@ class EditPerson:
             attr = self.atree.get_object(node)
             pname = self.name_display.display(self.person)
             AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes,
-                                     self.attr_edit_callback,self.window,
-                                     self.update_sources)
+                                     self.attr_edit_callback,self.window)
 
     def on_update_addr_clicked(self,obj):
         import AddrEdit
@@ -1465,7 +1464,7 @@ class EditPerson:
         if node:
             AddrEdit.AddressEditor(
                 self, self.ptree.get_object(node), self.addr_edit_callback,
-                self.window, self.update_sources)
+                self.window)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -1650,8 +1649,7 @@ class EditPerson:
         store,node = self.ntree.get_selected()
         if node:
             NameEdit.NameEditor(self, self.ntree.get_object(node),
-                                self.name_edit_callback, self.window,
-                                self.update_sources)
+                                self.name_edit_callback, self.window)
 
     def load_photo(self,photo):
         """loads, scales, and displays the person's main photo"""

@@ -801,7 +801,7 @@ class Marriage:
             name = NameDisplay.displayer.display(mother)
         AttrEdit.AttributeEditor(
             self, attr, name, const.familyAttributes,
-            self.attr_edit_callback, self.window, self.update_sources)
+            self.attr_edit_callback, self.window)
 
     def on_delete_attr_clicked(self,obj):
         if Utils.delete_selected(obj,self.alist):
@@ -824,7 +824,7 @@ class Marriage:
             name = NameDisplay.displayer.display(mother)
         AttrEdit.AttributeEditor(
             self, None, name, const.familyAttributes,
-            self.attr_edit_callback, self.window, self.update_sources)
+            self.attr_edit_callback, self.window)
 
     def move_element(self,list,src,dest):
         if src == -1:
