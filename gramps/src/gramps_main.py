@@ -60,6 +60,7 @@ from MediaView import MediaView
 
 from QuestionDialog import QuestionDialog
 
+import DisplayTrace
 import Filter
 import const
 import Plugins
@@ -73,6 +74,8 @@ import Marriage
 import Find
 import VersionControl
 import ReadXML
+import AddSpouse
+import ChooseParents
 
 from GrampsXML import GrampsXML
 try:
@@ -476,7 +479,6 @@ class Gramps:
         
     def on_add_sp_clicked(self,obj):
         """Add a new spouse to the current person"""
-        import AddSpouse
         if self.active_person:
             if self.active_family and not self.active_spouse:
                 top = libglade.GladeXML(const.gladeFile, "add_or_new")
@@ -487,18 +489,27 @@ class Gramps:
                     })
                 self.addornew = top.get_widget('add_or_new')
             else:
-                AddSpouse.AddSpouse(self.db,self.active_person,
-                                    self.load_family,self.redisplay_person_list)
+                try:
+                    AddSpouse.AddSpouse(self.db,self.active_person,
+                                        self.load_family,self.redisplay_person_list)
+                except:
+                    DisplayTrace.DisplayTrace()
+                    
     def add_new_choose_spouse(self,obj):
-        import AddSpouse
         Utils.destroy_passed_object(self.addornew)
-        AddSpouse.SetSpouse(self.db,self.active_person,self.active_family,
-                            self.load_family, self.redisplay_person_list)
+        try:
+            AddSpouse.SetSpouse(self.db,self.active_person,self.active_family,
+                                self.load_family, self.redisplay_person_list)
+        except:
+            DisplayTrace.DisplayTrace()
 
     def on_edit_sp_clicked(self,obj):
         """Edit the marriage information for the current family"""
         if self.active_person:
-            Marriage.Marriage(self.active_family,self.db,self.new_after_edit)
+            try:
+                Marriage.Marriage(self.active_family,self.db,self.new_after_edit)
+            except:
+                DisplayTrace.DisplayTrace()
 
     def on_delete_sp_clicked(self,obj):
         """Delete the currently selected spouse from the family"""
@@ -569,18 +580,23 @@ class Gramps:
         """Create a new child to add to the existing family"""
         import SelectChild
         if self.active_person:
-            SelectChild.NewChild(self.db,self.active_family,
-                                 self.active_person,self.update_after_newchild,
-                                 self.update_after_edit,
-                                 GrampsCfg.lastnamegen)
+            try:
+                SelectChild.NewChild(self.db,self.active_family,
+                                     self.active_person,self.update_after_newchild,
+                                     self.update_after_edit,
+                                     GrampsCfg.lastnamegen)
+            except:
+                DisplayTrace.DisplayTrace()
 
     def on_choose_parents_clicked(self,obj):
-        import ChooseParents
         if self.active_person:
-            ChooseParents.ChooseParents(self.db,self.active_person,
-                                        self.active_parents,self.load_family,
-                                        self.full_update)
-    
+            try:
+                ChooseParents.ChooseParents(self.db,self.active_person,
+                                            self.active_parents,self.load_family,
+                                            self.full_update)
+            except:
+                DisplayTrace.DisplayTrace()
+                
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
         
@@ -735,7 +751,10 @@ class Gramps:
         import ReadGedcom
         
         self.topWindow.set_title("%s - GRAMPS" % filename)
-        ReadGedcom.importData(self.db,filename)
+        try:
+            ReadGedcom.importData(self.db,filename)
+        except:
+            DisplayTrace.DisplayTrace()
         self.full_update()
 
     def read_file(self,filename):
@@ -872,8 +891,11 @@ class Gramps:
 
     def load_new_person(self,obj):
         self.active_person = Person()
-        EditPerson.EditPerson(self.active_person,self.db,
-                              self.new_after_edit)
+        try:
+            EditPerson.EditPerson(self.active_person,self.db,
+                                  self.new_after_edit)
+        except:
+            DisplayTrace.DisplayTrace()
 
     def on_delete_person_clicked(self,obj):
         if len(self.person_list.selection) == 1:
@@ -1284,7 +1306,10 @@ class Gramps:
 
     def load_person(self,person):
         if person:
-            EditPerson.EditPerson(person, self.db, self.update_after_edit)
+            try:
+                EditPerson.EditPerson(person, self.db, self.update_after_edit)
+            except:
+                DisplayTrace.DisplayTrace()
 
     def build_spouse_dropdown(self):
         list = []

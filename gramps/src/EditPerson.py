@@ -75,6 +75,7 @@ class EditPerson:
     def __init__(self,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
         self.person = person
+        print 1/0
         self.original_id = person.getId()
         self.db = db
         self.callback = callback
