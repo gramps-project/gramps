@@ -168,9 +168,9 @@ def on_merge_activate(obj):
             gnome.ui.GnomeErrorDialog(msg)
         else:
             import MergeData
-            p1 = person_list.get_row_data(person_list.selection[0])
-            p2 = person_list.get_row_data(person_list.selection[1])
-            MergeData.MergePeople(database,p1[0],p2[0],merge_update)
+            (p1,x) = person_list.get_row_data(person_list.selection[0])
+            (p2,x) = person_list.get_row_data(person_list.selection[1])
+            MergeData.MergePeople(database,p1,p2,merge_update)
     elif page == 4:
         place_view.merge()
 
@@ -604,8 +604,8 @@ def load_selected_people(obj):
         gnome.ui.GnomeErrorDialog(msg)
     else:
         for p in person_list.selection:
-            person = person_list.get_row_data(p)
-            load_person(person[0])
+            (person,x) = person_list.get_row_data(p)
+            load_person(person)
 
 def load_active_person(obj):
     load_person(active_person)
@@ -695,7 +695,7 @@ def remove_from_person_list(person):
         del alt2col[person]
 
         if row > person_list.rows:
-            (active_person,alt) = person_list.get_row_data(row)
+            (active_person,x) = person_list.get_row_data(row)
     person_list.thaw()
     
 def merge_update(p1,p2):
@@ -724,7 +724,7 @@ def on_delete_parents_clicked(obj):
 #-------------------------------------------------------------------------
 def on_person_list_select_row(obj,row,b,c):
     if row == obj.selection[0]:
-        person,alt = obj.get_row_data(row)
+        (person,x) = obj.get_row_data(row)
         change_active_person(person)
 
 #-------------------------------------------------------------------------
@@ -856,7 +856,7 @@ def goto_active_person():
             person_list.unselect_all()
             person_list.select_row(0,0)
             person_list.moveto(0)
-            person,alt = person_list.get_row_data(0)
+            (person,x) = person_list.get_row_data(0)
             change_active_person(person)	
     
 #-------------------------------------------------------------------------
@@ -1296,7 +1296,7 @@ def redisplay_person_list(person):
 
         if Config.hide_altnames == 0:
             for name in person.getAlternateNames():
-                pos2 = (person,1)
+                pos2 = (person,0)
                 alt2col[person].append(pos2)
                 person_list.insert(0,[gname(name,1),person.getId(),
                                       gender,bday.getQuoteDate(),
@@ -1694,7 +1694,7 @@ def displayError(msg):
 def apply_filter():
     global id2col
     global alt2col
-    
+
     person_list.freeze()
     datacomp = DataFilter.compare
     gname = utils.phonebook_from_name
@@ -1702,6 +1702,8 @@ def apply_filter():
     person_list.set_column_visibility(1,Config.id_visible)
     new_alt2col = {}
     
+    bsn = sort.build_sort_name
+    bsd = sort.build_sort_date
     for person in database.getPersonMap().values():
         if datacomp(person):
             if id2col.has_key(person):
@@ -1718,16 +1720,15 @@ def apply_filter():
             else:
                 gender = const.unknown
 
+            name = person.getPrimaryName()
             bday = person.getBirth().getDateObj()
             dday = person.getDeath().getDateObj()
-            sort_bday = sort.build_sort_date(bday)
-            sort_dday = sort.build_sort_date(dday)
+            sort_bday = bsd(bday)
+            sort_dday = bsd(dday)
             qbday = bday.getQuoteDate()
             qdday = dday.getQuoteDate()
             pid = person.getId()
-            bsn = sort.build_sort_name
 
-            name = person.getPrimaryName()
             values = [gname(name,0), pid, gender, qbday, qdday,
                       bsn(name), sort_bday, sort_dday ]
             person_list.insert(0,values)
@@ -1735,9 +1736,9 @@ def apply_filter():
 
             if Config.hide_altnames:
                 continue
-                
+
             for name in person.getAlternateNames():
-                pos = (person,1)
+                pos = (person,0)
                 new_alt2col[person].append(pos)
 
                 values = [gname(name,1), pid, gender, qbday, qdday,
