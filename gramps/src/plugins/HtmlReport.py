@@ -215,7 +215,7 @@ def report(database,person):
 
     name = person.getPrimaryName().getName()
     topDialog.get_widget("personName").set_text(name)
-    topDialog.get_widget("prefix").get_text("ind")
+    topDialog.get_widget("prefix").get_text()
 
     top.show()
     
