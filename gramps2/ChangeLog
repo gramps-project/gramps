@@ -1,6 +1,7 @@
 2004-08-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ReadXML.py: Fix file copy problem, handle copy failure
-	* src/src/ImageSelect.py: Display GRAMPS ID, not DB handle
+	* src/ImageSelect.py: Display GRAMPS ID, not DB handle
+	* src/WriteGedcom.py: handle image file problems when exporting
 
 2004-08-24  Martin Hawlisch <loshawlos@users.sourceforge.net>
 	* src/plugins/WebPage.py: web page enhancements, including
