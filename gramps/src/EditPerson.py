@@ -90,6 +90,7 @@ class EditPerson:
         self.event_place_field = self.get_widget("eventPlace")
         self.event_date_field  = self.get_widget("eventDate")
         self.event_descr_field = self.get_widget("eventDescription")
+        self.event_details_field = self.get_widget("event_details")
         self.photo_list = self.get_widget("photolist")
         self.attr_list = self.get_widget("attr_list")
         self.attr_type = self.get_widget("attr_type")
@@ -112,7 +113,7 @@ class EditPerson:
         self.alt_given_field = self.get_widget("alt_given")
         self.alt_last_field = self.get_widget("alt_last")
         self.alt_suffix_field = self.get_widget("alt_suffix")
-        self.surname = self.get_widget("surname")
+        self.surname_field = self.get_widget("surname")
         self.suffix = self.get_widget("suffix")
         self.given = self.get_widget("givenName")
         self.nick = self.get_widget("nickname")
@@ -123,8 +124,6 @@ class EditPerson:
         self.dplace = self.get_widget("deathPlace")
         self.is_male = self.get_widget("genderMale")
         self.is_female = self.get_widget("genderFemale")
-        self.event_note = self.get_widget("event_note")
-        self.event_source = self.get_widget("event_source")
         self.addr_note = self.get_widget("addr_note")
         self.addr_source = self.get_widget("addr_source")
         self.attr_note = self.get_widget("attr_note")
@@ -169,7 +168,6 @@ class EditPerson:
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_addphoto_clicked" : on_add_photo_clicked,
             "on_deletephoto_clicked" : on_delete_photo_clicked,
-            "on_event_note_clicked" : on_event_note_clicked,
             "on_showsource_clicked" : on_showsource_clicked,
             "on_applyPerson_clicked" : on_apply_person_clicked
             })
@@ -177,11 +175,6 @@ class EditPerson:
         if len(self.surname_list) > 0:
             self.surname_list.sort()
             self.get_widget("lastNameList").set_popdown_strings(self.surname_list)
-
-        event_names = self.get_widget("personalEvents")
-
-        event_names.set_popdown_strings(const.personalEvents)
-        event_names.entry.set_text("")
 
         attr_names = self.get_widget("attribute")
         attr_names.set_popdown_strings(const.personalAttributes)
@@ -199,7 +192,7 @@ class EditPerson:
         if len(const.places) > 0:
             self.get_widget("dp_combo").set_popdown_strings(const.places)
             self.get_widget("bp_combo").set_popdown_strings(const.places)
-            self.get_widget("eventPlace_combo").set_popdown_strings(const.places)
+#            self.get_widget("eventPlace_combo").set_popdown_strings(const.places)
 
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
@@ -217,7 +210,8 @@ class EditPerson:
         # initial values
         self.get_widget("activepersonTitle").set_text(Config.nameof(person))
         self.suffix.set_text(name.getSuffix())
-        self.surname.set_text(name.getSurname())
+
+        self.surname_field.set_text(name.getSurname())
         self.given.set_text(name.getFirstName())
 
         if person.getGender() == Person.male:
@@ -449,11 +443,6 @@ class EditPerson:
                 current_row = current_row - 1
             self.event_list.select_row(current_row,0)
             self.event_list.moveto(current_row,0)
-            self.event_note.set_sensitive(1)
-            self.event_source.set_sensitive(1)
-        else:
-            self.event_note.set_sensitive(0)
-            self.event_source.set_sensitive(0)
             
         self.event_list.set_data(INDEX,current_row)
         self.event_list.thaw()
@@ -496,6 +485,7 @@ class EditPerson:
     #-------------------------------------------------------------------------
     def load_photo(self,photo):
         self.get_widget("personPix").load_file(photo)
+
 
 #-------------------------------------------------------------------------
 #
@@ -811,30 +801,7 @@ def on_add_address_clicked(obj):
 def on_event_add_clicked(obj):
 
     edit_person_obj = obj.get_data(EDITPERSON)
-    
-    date = edit_person_obj.event_date_field.get_text()
-    place= edit_person_obj.event_place_field.get_text()
-    name = edit_person_obj.event_name_field.get_text()
-    desc = edit_person_obj.event_descr_field.get_text()
-
-    event = Event()
-    event.set(name,date,place,desc)
-	
-    if name not in const.personalEvents:
-        const.personalEvents.append(name)
-        menu = edit_person_obj.get_widget("personalEvents")
-        menu.set_popdown_strings(const.personalEvents)
-
-    if place not in const.places:
-        const.places.append(place)
-        const.places.sort()
-        edit_person_obj.get_widget("dp_combo").set_popdown_strings(const.places)
-        edit_person_obj.get_widget("bp_combo").set_popdown_strings(const.places)
-        edit_person_obj.get_widget("eventPlace_combo").set_popdown_strings(const.places)
-
-    edit_person_obj.person.addEvent(event)
-    edit_person_obj.redraw_event_list()
-    utils.modified()
+    editor = EventEditor(edit_person_obj,None)
 
 #-------------------------------------------------------------------------
 #
@@ -877,19 +844,7 @@ def on_event_update_clicked(obj):
 
     edit_person_obj = obj.get_data(EDITPERSON)
     event = obj.get_row_data(row)
-
-    date  = edit_person_obj.event_date_field.get_text()
-    place = edit_person_obj.event_place_field.get_text()
-    name  = edit_person_obj.event_name_field.get_text()
-    desc  = edit_person_obj.event_descr_field.get_text()
-
-    if name not in const.personalEvents:
-        const.personalEvents.append(name)
-        menu = edit_person_obj.get_widget("personalEvents")
-        menu.set_popdown_strings(const.personalEvents)
-
-    update_event(event,name,date,place,desc)
-    edit_person_obj.redraw_event_list()
+    editor = EventEditor(edit_person_obj,event)
 
 #-------------------------------------------------------------------------
 #
@@ -905,8 +860,19 @@ def on_event_select_row(obj,row,b,c):
     edit_person_obj = obj.get_data(EDITPERSON)
     edit_person_obj.event_date_field.set_text(event.getDate())
     edit_person_obj.event_place_field.set_text(event.getPlace())
-    edit_person_obj.event_name_field.set_text(const.display_pevent(event.getName()))
+    edit_person_obj.event_name_field.set_label(const.display_pevent(event.getName()))
     edit_person_obj.event_descr_field.set_text(event.getDescription())
+
+    if event.getNote() != "":
+        details = _("Note")
+    else:
+        details = ""
+    if event.getSourceRef().getBase() != None:
+        if details == "":
+            details = _("Source")
+        else:
+            details = "%s, %s" % (_("Note"),_("Source"))
+    edit_person_obj.event_details_field.set_text(details)
 
 #-------------------------------------------------------------------------
 #
@@ -978,7 +944,7 @@ def on_primary_photo_clicked(obj):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_event(event,name,date,place,desc):
+def update_event(event,name,date,place,desc,note):
     if event.getPlace() != place:
         event.setPlace(place)
         utils.modified()
@@ -989,6 +955,10 @@ def update_event(event,name,date,place,desc):
         
     if event.getDescription() != desc:
         event.setDescription(desc)
+        utils.modified()
+
+    if event.getNote() != note:
+        event.setNote(note)
         utils.modified()
 
     if event.getDate() != date:
@@ -1188,31 +1158,6 @@ def on_save_note_clicked(obj):
         utils.modified()
 
     utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_event_note_clicked(obj):
-    row = obj.get_data(INDEX)
-    data = obj.get_row_data(row)
-    edit_person_obj = obj.get_data(EDITPERSON)
-    if row >= 0:
-        editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-        textobj = editnote.get_widget("notetext")
-        en_obj = editnote.get_widget("editnote")
-        en_obj.set_data("n",data)
-        en_obj.set_data("w",textobj)
-
-        textobj.set_point(0)
-        textobj.insert_defaults(data.getNote())
-        textobj.set_word_wrap(1)
-        
-        editnote.signal_autoconnect({
-            "on_save_note_clicked" : on_save_note_clicked,
-            "destroy_passed_object" : utils.destroy_passed_object
-            })
 
 #-------------------------------------------------------------------------
 #
@@ -1468,3 +1413,73 @@ def on_browse_clicked(obj):
     if path != "":
         gnome.url.show(path)
 
+
+#-------------------------------------------------------------------------
+#
+# EventEditor class
+#
+#-------------------------------------------------------------------------
+class EventEditor:
+
+    def __init__(self,parent,event):
+        self.parent = parent
+        self.event = event
+        self.top = libglade.GladeXML(const.editPersonFile, "event_edit")
+        self.window = self.top.get_widget("event_edit")
+        self.name_field  = self.top.get_widget("eventName")
+        self.place_field = self.top.get_widget("eventPlace")
+        self.date_field  = self.top.get_widget("eventDate")
+        self.descr_field = self.top.get_widget("eventDescription")
+        self.note_field = self.top.get_widget("eventNote")
+        self.event_menu = self.top.get_widget("personalEvents")
+
+        name = parent.person.getPrimaryName().getName()
+        
+        self.top.get_widget("eventTitle").set_text(_("Event Editor for %s") % name) 
+        self.event_menu.set_popdown_strings(const.personalEvents)
+        if event != None:
+            self.name_field.set_text(event.getName())
+            self.place_field.set_text(event.getPlace())
+            self.date_field.set_text(event.getDate())
+            self.descr_field.set_text(event.getDescription())
+            self.note_field.set_point(0)
+            self.note_field.insert_defaults(event.getNote())
+            self.note_field.set_word_wrap(1)
+
+        self.window.set_data("o",self)
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_event_edit_ok_clicked" : on_event_edit_ok_clicked,
+            "on_event_edit_apply_clicked" : on_event_edit_apply_clicked
+            })
+            
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_event_edit_apply_clicked(obj):
+    ee = obj.get_data("o")
+    event = ee.event
+
+    ename = ee.name_field.get_text()
+    edate = ee.date_field.get_text()
+    eplace = ee.place_field.get_text()
+    enote = ee.note_field.get_chars(0,-1)
+    edesc = ee.descr_field.get_text()
+
+    if event == None:
+        event = Event()
+        ee.parent.person.addEvent(event)
+        
+    update_event(event,ename,edate,eplace,edesc,enote)
+    ee.parent.redraw_event_list()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_event_edit_ok_clicked(obj):
+    on_event_edit_apply_clicked(obj)
+    utils.destroy_passed_object(obj)
