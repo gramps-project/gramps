@@ -543,7 +543,11 @@ class GedcomParser:
                 return
 	    elif matches[1] == "NAME":
                 name = Name()
-                names = nameRegexp.match(matches[2]).groups()
+                try:
+                    names = nameRegexp.match(matches[2]).groups()
+                except:
+                    print matches
+                    print self.index
                 if names[0]:
                     name.setFirstName(names[0])
                 if names[1]:
@@ -644,6 +648,8 @@ class GedcomParser:
                     event.setName(ged2rel[matches[1]])
                 except:
                     event.setName(matches[1])
+                if matches[2] != None:
+                    event.setDescription(matches[2])
                 self.person.addEvent(event)
 	        self.parse_person_event(event,2)
 
@@ -881,6 +887,8 @@ class GedcomParser:
                     event.setName(name)
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
+            elif matches[1] == "TIME":
+                self.ignore_sub_junk(level+1)
             elif matches[1] == "AGE" or matches[1] == "AGNC":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS" or matches[1] == "ADDR":
@@ -941,6 +949,8 @@ class GedcomParser:
                         event.setName(matches[2])
             elif matches[1] == "DATE":
                 event.setDate(matches[2])
+            elif matches[1] == "TIME":
+                self.ignore_sub_junk(level+1)
             elif matches[1] == "AGE" or matches[1] == "AGNC":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "CAUS" or matches[1] == "ADDR":
