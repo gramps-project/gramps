@@ -297,6 +297,8 @@ def dump_event_stats(g,event):
         g.write("2 DATE %s\n" % cnvtxt(event.getSaveDate()))
     if event.getPlaceName() != "":
         g.write("2 PLAC %s\n" % cnvtxt(event.getPlaceName()))
+    if event.getCause() != "":
+        g.write("2 CAUS %s\n" % cnvtxt(event.getCause()))
     if event.getNote() != "":
         write_long_text(g,"NOTE",2,event.getNote())
     for srcref in event.getSourceRefList():
