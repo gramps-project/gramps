@@ -35,6 +35,7 @@ import re
 import sort
 import string
 import time
+import shutil
 
 from gtk import *
 from gnome.ui import *
@@ -86,11 +87,6 @@ class HtmlLinkDoc(HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,doc):
         self.person = person
         self.doc = doc
@@ -212,6 +208,10 @@ class IndividualPage:
             self.doc.end_paragraph()
 
     def write_info(self,info):
+        """Writes a line of text, after stripping leading and trailing
+           spaces. If the last character is not a period, the period is
+           appended to produce a sentance"""
+        
         info = string.strip(info)
         if info != "":
             if info[-1] == '.':
@@ -219,12 +219,9 @@ class IndividualPage:
             else:
                 self.doc.write_text("%s. " % info)
                 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def create_page(self):
+        """Generate the HTML page for the specific person"""
+        
         filebase = "%s.html" % self.person.getId()
         self.doc.open("%s%s%s" % (self.dir,os.sep,filebase))
 
@@ -232,28 +229,38 @@ class IndividualPage:
         name_obj = self.person.getPrimaryName()
         name = name_obj.getRegularName()
 
+        # Write out the title line.
+        
         self.doc.start_paragraph("Title")
         self.doc.write_text(_("Summary of %s") % name)
         self.doc.end_paragraph()
 
+        # blank line for spacing
+
         self.doc.start_paragraph("Data")
         self.doc.end_paragraph()
 
+        # look for the primary media object if photos have been requested.
+        # make sure that the media object is an image. If so, insert it
+        # into the document.
+        
         if self.photos and len(photo_list) > 0:
             object = photo_list[0].getReference()
-            file = object.getPath()
-            self.doc.start_paragraph("Data")
-            self.doc.add_photo(file,4.0,4.0)
-            self.doc.end_paragraph()
+            if object.getMimeType()[0:5] == "image":
+                file = object.getPath()
+                self.doc.start_paragraph("Data")
+                self.doc.add_photo(file,4.0,4.0)
+                self.doc.end_paragraph()
 
+        # Start the first table, which consists of basic information, including
+        # name, gender, and parents
+        
         self.doc.start_table("one","IndTable")
         self.write_normal_row("%s:" % _("Name"), name, name_obj.getSourceRefList())
         if self.person.getGender() == Person.male:
-            self.write_normal_row("%s:" % _("Gender"), \
-                                  _("Male"),None)
+            self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
         else:
-            self.write_normal_row("%s:" % _("Gender"), \
-                                  _("Female"),None)
+            self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
 
         family = self.person.getMainFamily()
         if family:
@@ -263,6 +270,8 @@ class IndividualPage:
             self.write_link_row("%s:" % _("Father"), None)
             self.write_link_row("%s:" % _("Mother"), None)
         self.doc.end_table()
+
+        # Another blank line between the tables
         
         self.doc.start_paragraph("Data")
         self.doc.end_paragraph()
@@ -270,6 +279,15 @@ class IndividualPage:
         self.write_facts()
         self.write_notes()
         self.write_families()
+
+        # if inclusion of photos has been enabled, write the photo
+        # gallery.
+
+        if self.photos:
+            self.write_gallery()
+
+        # write source information
+        
         if self.scnt > 1:
             self.write_sources()
 
@@ -280,13 +298,70 @@ class IndividualPage:
             self.doc.end_link()
             self.doc.end_paragraph()
 
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def close(self):
+        """Close the document"""
         self.doc.close()
+
+    def write_gallery(self):
+        """Write the image gallery. Add images that are not marked
+           as private, creating a thumbnail and copying the original
+           image to the directory."""
+
+        # build a list of the images to add, but skip the first image,
+        # since it has been used at the top of the page.
+        
+        my_list = []
+        index = 0
+        for object in self.person.getPhotoList():
+            if object.getReference().getMimeType()[0:5] == "image":
+                if object.getPrivacy() == 0 and index != 0:
+                    my_list.append(object)
+            index = 1
+            
+        # if no images were found, return
+        
+        if len(my_list) == 0:
+            return
+
+        self.doc.start_paragraph("Data")
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("GalleryTitle")
+        self.doc.write_text(_("Gallery"))
+        self.doc.end_paragraph()
+
+        self.doc.start_table("gallery","IndTable")
+        for obj in my_list:
+            self.doc.start_row()
+            self.doc.start_cell("NormalCell")
+            self.doc.start_paragraph("Data")
+            src = obj.getReference().getPath()
+            base = os.path.basename(src)
+            self.doc.start_link("images/%s" % base)
+            self.doc.add_photo(src,1.5,1.5)
+            shutil.copy(src,"%s/images/%s" % (self.dir,base))
+            self.doc.end_link()
+            
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.start_cell("NormalCell")
+            description = obj.getReference().getDescription()
+            if description != "":
+                self.doc.start_paragraph("PhotoDescription")
+                self.doc.write_text(description)
+                self.doc.end_paragraph()
+            if obj.getNote() != "":
+                self.doc.start_paragraph("PhotoNote")
+                self.doc.write_text(obj.getNote())
+                self.doc.end_paragraph()
+            elif obj.getReference().getNote() != "":
+                self.doc.start_paragraph("PhotoNote")
+                self.doc.write_text(obj.getReference().getNote())
+                self.doc.end_paragraph()
+            self.doc.end_cell()
+            self.doc.end_row()
+        self.doc.end_table()
+        
 
     #--------------------------------------------------------------------
     #
@@ -654,6 +729,12 @@ def report(database,person):
     font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
     p = ParagraphStyle()
     p.set(font=font,bborder=1)
+    styles.add_style("GalleryTitle",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
+    p = ParagraphStyle()
+    p.set(font=font,bborder=1)
     styles.add_style("FamilyTitle",p)
     
     font = FontStyle()
@@ -673,6 +754,18 @@ def report(database,person):
     p = ParagraphStyle()
     p.set_font(font)
     styles.add_style("Data",p)
+
+    font = FontStyle()
+    font.set(bold=1,face=FONT_SANS_SERIF,size=12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("PhotoDescription",p)
+
+    font = FontStyle()
+    font.set(size=12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("PhotoNote",p)
 
     font = FontStyle()
     font.set_size(10)
@@ -869,85 +962,3 @@ register_report(
     description=_("Generates web (HTML) pages for individuals, or a set of individuals.")
     )
 
-
-if __name__ == "__main__":
-    import profile
-    import sys
-    import ReadXML
-    
-    def task(styles,ind_list):
-        my_map = {}
-        for l in ind_list:
-            my_map[l] = 1
-
-        doc = HtmlLinkDoc(styles,None)
-        for person in ind_list:
-            tdoc = HtmlLinkDoc(styles,None,doc)
-            idoc = IndividualPage(person,1,1,1,1,1,my_map,"/home/dona/scratch",tdoc)
-            idoc.create_page()
-            idoc.close()
-                
-    styles = StyleSheet()
-    font = FontStyle()
-    font.set(bold=1, face=FONT_SANS_SERIF, size=16)
-    p = ParagraphStyle()
-    p.set(align=PARA_ALIGN_CENTER,font=font)
-    styles.add_style("Title",p)
-    
-    font = FontStyle()
-    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-    p = ParagraphStyle()
-    p.set(font=font,bborder=1)
-    styles.add_style("EventsTitle",p)
-
-    font = FontStyle()
-    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-    p = ParagraphStyle()
-    p.set(font=font,bborder=1)
-    styles.add_style("NotesTitle",p)
-
-    font = FontStyle()
-    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-    p = ParagraphStyle()
-    p.set(font=font,bborder=1)
-    styles.add_style("SourcesTitle",p)
-
-    font = FontStyle()
-    font.set(bold=1,face=FONT_SANS_SERIF,size=12,italic=1)
-    p = ParagraphStyle()
-    p.set(font=font,bborder=1)
-    styles.add_style("FamilyTitle",p)
-    
-    font = FontStyle()
-    font.set(bold=1,face=FONT_SANS_SERIF,size=12)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("Spouse",p)
-
-    font = FontStyle()
-    font.set(size=12,italic=1)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("Label",p)
-
-    font = FontStyle()
-    font.set_size(12)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("Data",p)
-
-    font = FontStyle()
-    font.set_size(10)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("SourceParagraph",p)
-
-    font = FontStyle()
-    font.set_size(12)
-    p = ParagraphStyle()
-    p.set_font(font)
-    styles.add_style("NotesParagraph",p)
-
-    db = RelDataBase()
-    ReadXML.loadData(db,sys.argv[1])
-    profile.run('task(styles,db.getPersonMap().values())')

@@ -394,8 +394,8 @@ class ParagraphStyle:
 #
 #------------------------------------------------------------------------
 class StyleSheetList:
-    def __init__(self,file,default):
-        self.map = { "default" : default }
+    def __init__(self,file,defstyle):
+        self.map = { "default" : defstyle }
         self.file = os.path.expanduser("~/.gramps/" + file)
         self.parse()
 
@@ -512,7 +512,7 @@ class SheetParser(handler.ContentHandler):
 
     def startElement(self,tag,attrs):
         if tag == "sheet":
-            self.s = StyleSheet()
+            self.s = StyleSheet(self.sheetlist.map["default"])
             self.sname = attrs['name']
         elif tag == "font":
             self.f = FontStyle()

@@ -2156,7 +2156,7 @@
 	    <class>GtkText</class>
 	    <name>notes</name>
 	    <can_focus>True</can_focus>
-	    <editable>False</editable>
+	    <editable>True</editable>
 	    <text></text>
 	  </widget>
 	</widget>
