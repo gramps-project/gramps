@@ -140,6 +140,15 @@ class EditPlace:
         self.top = self.top_window.get_widget("placeEditor")
         self.top.set_data(_PLACE,self)
 
+        # Typing CR selects OK button
+        self.top.editable_enters(self.title);
+        self.top.editable_enters(self.city);
+        self.top.editable_enters(self.county);
+        self.top.editable_enters(self.state);
+        self.top.editable_enters(self.country);
+        self.top.editable_enters(self.longitude);
+        self.top.editable_enters(self.latitude);
+        
         if self.place.getId() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
@@ -331,8 +340,10 @@ def on_add_photo_clicked(obj):
     edit_place.fname = image_select.get_widget("fname")
     edit_place.add_image = image_select.get_widget("image")
     edit_place.external = image_select.get_widget("private")
-    image_select.get_widget("imageSelect").set_data(_PLACE,edit_place)
-    image_select.get_widget("imageSelect").show()
+    window = image_select.get_widget("imageSelect")
+    window.editable_enters(image_select.get_widget("photoDescription"))
+    window.set_data(_PLACE,edit_place)
+    window.show()
 
 #-------------------------------------------------------------------------
 #
@@ -452,6 +463,7 @@ def on_change_description(obj):
     window.get_widget("dialog1").set_data("p",photo)
     window.get_widget("dialog1").set_data("t",text)
     window.get_widget("dialog1").set_data("m",obj.get_data("m"))
+    window.get_widget("dialog1").editable_enters(text)
     window.signal_autoconnect({
         "on_cancel_clicked" : utils.destroy_passed_object,
         "on_ok_clicked" : on_ok_clicked,
@@ -729,6 +741,12 @@ class LocationEditor:
         self.state  = self.top.get_widget("state")
         self.county = self.top.get_widget("county")
         self.country = self.top.get_widget("country")
+
+        # Typing CR selects OK button
+        self.window.editable_enters(self.city);
+        self.window.editable_enters(self.county);
+        self.window.editable_enters(self.state);
+        self.window.editable_enters(self.country);
 
         if parent.place:
             name = _("Location Editor for %s") % parent.place.get_title()

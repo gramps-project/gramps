@@ -305,6 +305,10 @@ def on_add_sp_clicked(obj):
     top.set_data(GIVEN,dialog.get_widget("given"))
     top.set_data(SURNAME,dialog.get_widget("surname"))
 
+    # Typing CR selects 'Add Existing' button
+    top.editable_enters(dialog.get_widget("given"))
+    top.editable_enters(dialog.get_widget("surname"))
+
     dialog.signal_autoconnect({
         "on_spouseList_select_row" : on_spouse_list_select_row,
         "on_select_spouse_clicked" : on_select_spouse_clicked,
@@ -532,6 +536,13 @@ def on_add_new_child_clicked(obj):
     new_child_win.get_widget("mrel").set_text(_("Birth"))
     new_child_win.get_widget("frel").set_text(_("Birth"))
 
+    # Typing CR selects OK button
+    window = new_child_win.get_widget("addChild")
+    window.editable_enters(new_child_win.get_widget("childGiven"))
+    window.editable_enters(new_child_win.get_widget("childSurname"))
+    window.editable_enters(new_child_win.get_widget("mrel"))
+    window.editable_enters(new_child_win.get_widget("frel"))
+    
 #-------------------------------------------------------------------------
 #
 # 

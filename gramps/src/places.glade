@@ -15,30 +15,40 @@
 </project>
 
 <widget>
-  <class>GtkDialog</class>
+  <class>GnomeDialog</class>
   <name>placeEditor</name>
   <title>Gramps - Place Editor</title>
-  <type>GTK_WINDOW_TOPLEVEL</type>
+  <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
   <allow_shrink>True</allow_shrink>
   <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
+  <auto_close>False</auto_close>
+  <hide_on_close>False</hide_on_close>
 
   <widget>
     <class>GtkVBox</class>
-    <child_name>Dialog:vbox</child_name>
+    <child_name>GnomeDialog:vbox</child_name>
     <name>dialog-vbox12</name>
     <homogeneous>False</homogeneous>
     <spacing>0</spacing>
+    <child>
+      <padding>4</padding>
+      <expand>True</expand>
+      <fill>True</fill>
+    </child>
 
     <widget>
-      <class>GtkHBox</class>
-      <child_name>Dialog:action_area</child_name>
+      <class>GtkHButtonBox</class>
+      <child_name>GnomeDialog:action_area</child_name>
       <name>dialog-action_area12</name>
-      <border_width>10</border_width>
-      <homogeneous>True</homogeneous>
-      <spacing>5</spacing>
+      <layout_style>GTK_BUTTONBOX_END</layout_style>
+      <spacing>8</spacing>
+      <child_min_width>85</child_min_width>
+      <child_min_height>27</child_min_height>
+      <child_ipad_x>7</child_ipad_x>
+      <child_ipad_y>0</child_ipad_y>
       <child>
 	<padding>0</padding>
 	<expand>False</expand>
@@ -47,49 +57,32 @@
       </child>
 
       <widget>
-	<class>GtkHButtonBox</class>
-	<name>hbuttonbox25</name>
-	<layout_style>GTK_BUTTONBOX_END</layout_style>
-	<spacing>8</spacing>
-	<child_min_width>85</child_min_width>
-	<child_min_height>27</child_min_height>
-	<child_ipad_x>7</child_ipad_x>
-	<child_ipad_y>0</child_ipad_y>
-	<child>
-	  <padding>0</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
-	</child>
+	<class>GtkButton</class>
+	<name>button126</name>
+	<can_default>True</can_default>
+	<has_default>True</has_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>on_apply_clicked</handler>
+	  <object>placeEditor</object>
+	  <last_modification_time>Sat, 18 Aug 2001 17:26:41 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
+      </widget>
 
-	<widget>
-	  <class>GtkButton</class>
-	  <name>button126</name>
-	  <can_default>True</can_default>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>clicked</name>
-	    <handler>on_apply_clicked</handler>
-	    <object>placeEditor</object>
-	    <last_modification_time>Sat, 18 Aug 2001 17:26:41 GMT</last_modification_time>
-	  </signal>
-	  <stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
-	  <relief>GTK_RELIEF_NORMAL</relief>
-	</widget>
-
-	<widget>
-	  <class>GtkButton</class>
-	  <name>button127</name>
-	  <can_default>True</can_default>
-	  <can_focus>True</can_focus>
-	  <signal>
-	    <name>clicked</name>
-	    <handler>destroy_passed_object</handler>
-	    <object>placeEditor</object>
-	    <last_modification_time>Thu, 18 Jan 2001 02:52:48 GMT</last_modification_time>
-	  </signal>
-	  <stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
-	  <relief>GTK_RELIEF_NORMAL</relief>
-	</widget>
+      <widget>
+	<class>GtkButton</class>
+	<name>button127</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>destroy_passed_object</handler>
+	  <object>placeEditor</object>
+	  <last_modification_time>Thu, 18 Jan 2001 02:52:48 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
       </widget>
     </widget>
 
@@ -130,9 +123,9 @@
 	<class>GtkHSeparator</class>
 	<name>hseparator13</name>
 	<child>
-	  <padding>0</padding>
-	  <expand>True</expand>
-	  <fill>True</fill>
+	  <padding>5</padding>
+	  <expand>False</expand>
+	  <fill>False</fill>
 	</child>
       </widget>
 
@@ -406,6 +399,7 @@
 	    <class>GtkEntry</class>
 	    <name>place_title</name>
 	    <can_focus>True</can_focus>
+	    <has_focus>True</has_focus>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>

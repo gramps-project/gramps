@@ -20,6 +20,8 @@
 
 import cStringIO
 
+ANSEL_ERROR = "ANSEL Error"
+
 _s1 = { 
     0xEA : { ord('A') : 0xC5, ord('a') : 0xE5  },
     0xE8 : { ord('A') : 0xC4, ord('E') : 0xCB, ord('I') : 0xCF,	ord('O') : 0xD6,	
@@ -79,8 +81,6 @@ def ansel_to_latin(s):
         try:
             head,s = ansel_to_code(s)
         except Exception:
-            from traceback import print_exc
-            print_exc()
             head = s[0]
             s = s[1:0]
         buff.write(head)

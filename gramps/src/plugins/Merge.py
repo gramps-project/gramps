@@ -772,8 +772,17 @@ class Merge:
     #
     #
     #---------------------------------------------------------------------
-    def place_match(self,name1,name2):
+    def place_match(self,p1,p2):
+        if p1 == None:
+            name1 = ""
+        else:
+            name1 = p1.get_title()
 
+        if p2 == None:
+            name2 = ""
+        else:
+            name2 = p2.get_title()
+        
         if name1 == "" or name2 == "":
             return 0
         if name1 == name2:

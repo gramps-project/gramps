@@ -139,6 +139,10 @@ class Marriage:
         self.notes_field.insert_defaults(family.getNote())
         self.notes_field.set_word_wrap(1)
 
+        # Typing CR selects OK button
+        top_window.editable_enters(self.notes_field);
+        top_window.editable_enters(self.get_widget("combo-entry1"));
+        
         self.redraw_events()
         self.redraw_attr_list()
         top_window.show()
@@ -524,21 +528,22 @@ def on_delete_photo_clicked(obj):
 def on_add_photo_clicked(obj):
 
     marriage_obj = obj.get_data(MARRIAGE)
-    
     imageSelect = libglade.GladeXML(const.imageselFile,"imageSelect")
+    marriage_obj.imageSelect = imageSelect
+    
     imageSelect.signal_autoconnect({
         "on_savephoto_clicked" : on_savephoto_clicked,
         "on_name_changed" : on_name_changed,
         "destroy_passed_object" : utils.destroy_passed_object
         })
-    imageSelect.get_widget("imageSelect").set_data(MARRIAGE,marriage_obj)
-    imageSelect.get_widget("imageSelect").show()
 
     marriage_obj.fname = image_select.get_widget("fname")
     marriage_obj.add_image = image_select.get_widget("image")
     marriage_obj.external = image_select.get_widget("private")
-
-    marriage_obj.imageSelect = imageSelect
+    window = imageSelect.get_widget("imageSelect")
+    window.editable_enters(image_select.get_widget("photoDescription"))
+    window.set_data(MARRIAGE,marriage_obj)
+    window.show()
 
 #-------------------------------------------------------------------------
 #
@@ -614,6 +619,7 @@ def on_change_description(obj):
     window.get_widget("dialog1").set_data("p",photo)
     window.get_widget("dialog1").set_data("t",text)
     window.get_widget("dialog1").set_data("m",obj.get_data("m"))
+    window.get_widget("dialog1").editable_enters(text)
     window.signal_autoconnect({
         "on_cancel_clicked" : utils.destroy_passed_object,
         "on_ok_clicked" : on_ok_clicked,
@@ -729,6 +735,12 @@ class EventEditor:
         self.top.get_widget("eventTitle").set_text(name) 
         self.event_menu.set_popdown_strings(const.marriageEvents)
 
+        # Typing CR selects OK button
+        self.window.editable_enters(self.name_field);
+        self.window.editable_enters(self.place_field);
+        self.window.editable_enters(self.date_field);
+        self.window.editable_enters(self.descr_field);
+
         utils.build_confidence_menu(self.conf_menu)
 
         values = self.parent.db.getPlaceMap().values()
@@ -833,6 +845,10 @@ class AttributeEditor:
         else:
             self.srcref = SourceRef()
         
+        # Typing CR selects OK button
+        self.window.editable_enters(self.type_field);
+        self.window.editable_enters(self.value_field);
+
         father = parent.family.getFather()
         mother = parent.family.getMother()
         if father and mother:

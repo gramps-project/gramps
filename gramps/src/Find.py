@@ -52,6 +52,7 @@ class Find:
         self.top = self.xml.get_widget("find")
         self.top.set_data(_OBJECT,self)
         self.entry = self.xml.get_widget("entry1")
+        self.top.editable_enters(self.entry)
 
     def find_next(self):
         """Advances to the next person that matches the dialog text"""
