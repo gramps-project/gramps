@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000, 2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +53,8 @@ from intl import gettext as _
 #-------------------------------------------------------------------------
 class EventEditor:
 
-    def __init__(self,parent,name,list,trans,event,def_placename,read_only,cb):
+    def __init__(self,parent,name,list,trans,event,def_placename,read_only,cb,
+                 def_event=None):
         self.parent = parent
         self.event = event
         self.trans = trans
@@ -137,7 +138,9 @@ class EventEditor:
             
             self.note_field.get_buffer().set_text(event.getNote())
         else:
-            if (def_placename):
+            if def_event:
+                self.name_field.set_text(def_event)
+            if def_placename:
                 self.place_field.set_text(def_placename)
         self.date_check = DateEdit(self.date_field,self.top.get_widget("date_stat"))
 

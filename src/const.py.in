@@ -1,7 +1,7 @@
-#
+#                                                     -*- python -*-
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000, 2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -533,6 +533,7 @@ def init_family_relation_list():
 personalEvents = init_personal_event_list()
 personalAttributes = init_personal_attribute_list()
 marriageEvents = init_marriage_event_list()
+defaultMarriageEvent = _fe_e2l["Marriage"]
 familyAttributes = init_family_attribute_list()
 familyRelations = init_family_relation_list()
 places = []
