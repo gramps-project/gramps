@@ -1,4 +1,17 @@
 Version 1.1.1 -- the "Rat cake, rat sorbet, rat pudding, or strawberry tart" release
+* GeneWeb Import/Export filters (Martin Hawlisch), GeneWeb mime type.
+* Rework of the Date support. Separate classes for parsing and display,
+  allowing easy localization not limited to English sentences. Utilization
+  of locale info for numerical date parsing and display. New DateEditor
+  dialog for building precise date when parsing fails. 
+* Lots of stuff ported over from STABLE, see NEWS in stable version for details.
+* Installation improvements
+* Removal of PIL dependency.
+* Numerous interface improvements.
+* In-memory editing for GRAMPS XML and GEDCOM data.
+* Proper support for same sex relationships.
+* Proper use of GConf: schemas with the description strings, partitioning of 
+  the preferences into subdirectories, error checking, change notifications.
 * New "Save as" wizard interface: replaces old Export and Save as options.
   Note: this is still unfinished at the 1.1.1 release time, please be patient.
 * New Find interface for People View.
@@ -12,7 +25,7 @@ Version 1.1.1 -- the "Rat cake, rat sorbet, rat pudding, or strawberry tart" rel
   Spouses, Siblings, Children, and Parents.
 * Command line arguments handling is back on track.
 * Sorting improvements.
-* Numerous bug fixes.
+* Huge number of bug fixes.
 
 Version 1.1.0 -- the "And now for something completely different" release
 * Berkeley database backend!!! Many thanks to Billy Earney for db expertise!

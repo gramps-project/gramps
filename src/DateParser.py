@@ -42,6 +42,31 @@ class DateParser:
     # determine the code set returned by nl_langinfo
     _codeset = locale.nl_langinfo(locale.CODESET)
 
+    _rfc_mons = (
+        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset),
+        )
+
+    _rfc_days = (
+        unicode(locale.nl_langinfo(locale.ABDAY_1),_codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_2),_codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_3),_codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_4),_codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_5),_codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_6),_codeset),
+        unicode(locale.nl_langinfo(locale.ABDAY_7),_codeset),
+        )
+
     month_to_int = {
         unicode(locale.nl_langinfo(locale.MON_1),_codeset).lower()   : 1,
         unicode(locale.nl_langinfo(locale.ABMON_1),_codeset).lower() : 1,
@@ -149,6 +174,9 @@ class DateParser:
         'calculated' : Date.QUAL_CALCULATED,
         }
     
+    _rfc_mon_str  = '(' + '|'.join(_rfc_mons) + ')'
+    _rfc_day_str  = '(' + '|'.join(_rfc_days) + ')'
+        
     _qual_str = '(' + '|'.join(
         [ key.replace('.','\.') for key in quality_to_int.keys() ]
         ) + ')'
@@ -196,6 +224,8 @@ class DateParser:
                            re.IGNORECASE)
     _numeric  = re.compile("((\d+)[/\.])?((\d+)[/\.])?(\d+)")
     _iso      = re.compile("(\d+)-(\d+)-(\d+)")
+    _rfc      = re.compile("%s,\s+(\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d:\d\d\s+(\+|-)\d\d\d\d" 
+                        % (_rfc_day_str,_rfc_mon_str))
 
 
     def __init__(self):
@@ -298,6 +328,14 @@ class DateParser:
             y = self._get_int(groups[0])
             m = self._get_int(groups[1])
             d = self._get_int(groups[2])
+            return (d,m,y,False)
+
+        match = self._rfc.match(text)
+        if match:
+            groups = match.groups()
+            d = self._get_int(groups[1])
+            m = self.month_to_int[groups[2].lower()]
+            y = self._get_int(groups[3])
             return (d,m,y,False)
 
         match = self._numeric.match(text)
