@@ -1,13 +1,12 @@
-# translation of fr_new.po to Français
 # Gramps French translation
 # Copyright (C) 2001,2003, 2004 Free Software Foundation, Inc.
 # translation of fr.po to Français
 # Laurent Protois <laurent.protois@free.fr>, 2001-2004.
 msgid ""
 msgstr ""
-"Project-Id-Version: fr_new\n"
+"Project-Id-Version: fr\n"
 "POT-Creation-Date: Mon Jan 26 08:48:33 2004\n"
-"PO-Revision-Date: 2004-01-26 09:02+0100\n"
+"PO-Revision-Date: 2004-01-26 09:16+0100\n"
 "Last-Translator: Laurent Protois <laurent.protois@free.fr>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2255,9 +2254,8 @@ msgstr ""
 #: const.py:128
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
-"TRADUCTEURS:"
-"Michel Guitel        (Documentation)"
-"Laurent Protois    (Logiciel)"
+"Michel Guitel       (Documentation)\n"
+"Laurent Protois   (Logiciel)"
 
 #: const.py:172 const.py:284 gramps.glade:4543 gramps.glade:4736
 #: gramps.glade:5176 gramps.glade:5356 gramps.glade:6979 gramps.glade:7225
