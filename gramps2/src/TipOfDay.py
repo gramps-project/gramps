@@ -46,7 +46,7 @@ class TipOfDay:
             else:
                 index += 1
         
-        GrampsCfg.client.set_bool("/apps/gramps/use-tips",use.get_active())
+        GrampsCfg.save_usetips(use.get_active())
         top.destroy()
 
 class TipParser:

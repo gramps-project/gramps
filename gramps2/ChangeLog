@@ -1,3 +1,11 @@
+2004-07-19  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/GrampsCfg.py: More re-work of gconf usage.
+	* src/StartupDialog.py: Access keys through GrampsCfg methods.
+	* src/TipOfDay.py: Access keys through GrampsCfg methods.
+	* src/gramps_main.py: More re-work of gconf usage.
+	* src/data/gramps.schemas: More re-work of gconf usage.
+	* src/gramps.glade: Hotkey corrections.
+
 2004-07-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/gramps.schemas: Cleanup.
 	* src/data/Makefile.am: Clen up install rule. Add uninstall rule.

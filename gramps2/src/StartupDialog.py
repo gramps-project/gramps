@@ -25,20 +25,12 @@ import gtk.glade
 import gnome
 import gnome.ui
 
-try:
-    import gconf
-except ImportError:
-    import gnome.gconf
-    gconf = gnome.gconf
+import GrampsCfg
 
 from gettext import gettext as _
 
-_StartupEntry = "/apps/gramps/startup"
-
 def need_to_run():
-    client = gconf.client_get_default()
-    client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
-    val = client.get_int(_StartupEntry)
+    val = GrampsCfg.get_startup()
     if val < const.startup:
         return 1
     return 0
@@ -55,8 +47,6 @@ class StartupDialog:
         self.bg_color = gtk.gdk.color_parse('#e1dbc5')
         self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
         self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
-
-        self.client = gconf.client_get_default()
 
         d = gnome.ui.Druid()
         self.w.add(d)
@@ -106,33 +96,26 @@ class StartupDialog:
                      'contribute.\n\nPlease enjoy using GRAMPS.'))
         return p
 
-    def get_string(self,key):
-        val = self.client.get_string(key)
-        if val == None:
-            return ""
-        else:
-            return val
-
     def complete(self,obj,obj2):
-        self.client.set_string('/apps/gramps/researcher-name',unicode(self.name.get_text()))
-        self.client.set_string('/apps/gramps/researcher-addr',unicode(self.addr.get_text()))
-        self.client.set_string('/apps/gramps/researcher-city',unicode(self.city.get_text()))
-        self.client.set_string('/apps/gramps/researcher-state',unicode(self.state.get_text()))
-        self.client.set_string('/apps/gramps/researcher-postal',unicode(self.postal.get_text()))
-        self.client.set_string('/apps/gramps/researcher-country',unicode(self.country.get_text()))
-        self.client.set_string('/apps/gramps/researcher-phone',unicode(self.phone.get_text()))
-        self.client.set_string('/apps/gramps/researcher-email',unicode(self.email.get_text()))
+        GrampsCfg.save_researcher_name(unicode(self.name.get_text()))
+        GrampsCfg.save_researcher_addr(unicode(self.addr.get_text()))
+        GrampsCfg.save_researcher_city(unicode(self.city.get_text()))
+        GrampsCfg.save_researcher_state(unicode(self.state.get_text()))
+        GrampsCfg.save_researcher_postal(unicode(self.postal.get_text()))
+        GrampsCfg.save_researcher_country(unicode(self.country.get_text()))
+        GrampsCfg.save_researcher_phone(unicode(self.phone.get_text()))
+        GrampsCfg.save_researcher_email(unicode(self.email.get_text()))
 
         if self.date1.get_active():
-            self.client.set_int("/apps/gramps/date-entry",0)
+            GrampsCfg.save_date_entry(0)
         elif self.date2.get_active():
-            self.client.set_int("/apps/gramps/date-entry",1)
+            GrampsCfg.save_date_entry(1)
         elif self.date3.get_active():
-            self.client.set_int("/apps/gramps/date-entry",2)
+            GrampsCfg.save_date_entry(2)
             
-        self.client.set_bool("/apps/gramps/show-calendar",self.calendar.get_active())
-        self.client.set_bool("/apps/gramps/use-lds",self.lds.get_active())
-        self.client.set_int(_StartupEntry,const.startup)
+        GrampsCfg.save_calendar(self.calendar.get_active())
+        GrampsCfg.save_uselds(self.lds.get_active())
+        GrampsCfg.save_startup(const.startup)
         self.w.destroy()
         self.task(self.args)
         
@@ -170,7 +153,7 @@ class StartupDialog:
         box.add(table)
         box.show_all()
 
-        name = self.get_string('/apps/gramps/researcher-name')
+        name = GrampsCfg.get_researcher_name()
         if name.strip() == "":
             import pwd
             import os
@@ -181,13 +164,13 @@ class StartupDialog:
                 name = ""
 
         self.name.set_text(name)
-        self.addr.set_text(self.get_string('/apps/gramps/researcher-addr'))
-        self.city.set_text(self.get_string('/apps/gramps/researcher-city'))
-        self.state.set_text(self.get_string('/apps/gramps/researcher-state'))
-        self.postal.set_text(self.get_string('/apps/gramps/researcher-postal'))
-        self.country.set_text(self.get_string('/apps/gramps/researcher-country'))
-        self.phone.set_text(self.get_string('/apps/gramps/researcher-phone'))
-        self.email.set_text(self.get_string('/apps/gramps/researcher-email'))
+        self.addr.set_text(GrampsCfg.get_researcher_addr())
+        self.city.set_text(GrampsCfg.get_researcher_city())
+        self.state.set_text(GrampsCfg.get_researcher_state())
+        self.postal.set_text(GrampsCfg.get_researcher_postal())
+        self.country.set_text(GrampsCfg.get_researcher_country())
+        self.phone.set_text(GrampsCfg.get_researcher_phone())
+        self.email.set_text(GrampsCfg.get_researcher_email())
 
         return p
 
@@ -217,7 +200,7 @@ class StartupDialog:
         self.date2 = gtk.RadioButton(label=_("DD/MM/YYYY (European)"),group=self.date1)
         self.date3 = gtk.RadioButton(label=_("YYYY-MM-DD (ISO)"),group=self.date1)
 
-        val = self.client.get_int("/apps/gramps/date-entry")
+        val = GrampsCfg.get_date_entry()
             
         if val == 0:
             self.date1.set_active(1)
@@ -257,7 +240,7 @@ class StartupDialog:
         
         self.calendar = gtk.CheckButton(label=_("Enable support for alternate calendars"))
 
-        self.calendar.set_active(self.client.get_bool("/apps/gramps/show-calendar"))
+        self.calendar.set_active(GrampsCfg.get_calendar())
         
         align.add(self.calendar)
         
@@ -288,7 +271,7 @@ class StartupDialog:
         
         self.lds = gtk.CheckButton(label=_("Enable LDS ordinance support"))
 
-        self.lds.set_active(self.client.get_bool("/apps/gramps/use-lds"))
+        self.lds.set_active(GrampsCfg.get_uselds())
 
         align.add(self.lds)
         
