@@ -21,9 +21,6 @@
 FONT_SANS_SERIF = 0
 FONT_SERIF = 1
 
-PAPER_US_LETTER = 0
-PAPER_A4 = 1
-
 PAPER_PORTRAIT  = 0
 PAPER_LANDSCAPE = 1
 
@@ -144,13 +141,6 @@ class TableStyle:
             self.width = 0
             self.columns = 0
             self.colwid = [ 0 ] * 10
-#        self.cells = {}
-
-#    def add_cell_style(self,name,style):
-#        self.cells[name] = style
-
-#    def get_cell_styles(self,name,style):
-#        return self.cells
 
     def set_width(self,width):
         self.width = width
@@ -240,6 +230,7 @@ class ParagraphStyle:
 	    self.right_border = p.right_border
 	    self.left_border = p.left_border
             self.pad = p.pad
+            self.bgcolor = p.bgcolor
         else:
             self.font    = FontStyle()
             self.rmargin = 0
@@ -252,8 +243,7 @@ class ParagraphStyle:
 	    self.right_border = 0
 	    self.left_border = 0
             self.pad = 0
-
-        self.actfont = self.font
+            self.bgcolor = (255,255,255)
 
     def set_header_level(self,level):
         self.level = level
@@ -287,6 +277,12 @@ class ParagraphStyle:
 
     def set_left_border(self,val):
         self.left_border = val
+
+    def get_background_color(self):
+        return self.bgcolor
+
+    def set_background_color(self,color):
+        self.bgcolor = color
 
     def get_left_border(self):
         return self.left_border
@@ -347,12 +343,15 @@ class TextDoc:
         self.rmargin = 2.54
                 
         self.font = FontStyle()
-        self.actfont = self.font
         self.style_list = {}
 	self.table_styles = {}
         self.cell_styles = {}
         self.name = ""
+        self.photo_list = []
 
+    def add_photo(self,name,x,y):
+        pass
+    
     def get_usable_width(self):
         return self.width - (self.rmargin + self.lmargin)
 
@@ -370,18 +369,6 @@ class TextDoc:
 
     def add_cell_style(self,name,style):
         self.cell_styles[name] = TableCellStyle(style)
-
-    def change_font(self,font):
-        self.actfont = FontStyle(font)
-
-    def restore_font(self):
-        self.actfont = self.font
-
-    def get_default_font(self):
-        return self.font
-
-    def get_active_font(self):
-        return self.actfont
 
     def open(self,filename):
         pass

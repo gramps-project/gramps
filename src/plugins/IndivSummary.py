@@ -81,6 +81,7 @@ class IndivSummary:
         font.set_type_face(FONT_SANS_SERIF)
         font.set_size(16)
         p = ParagraphStyle()
+        p.set_alignment(PARA_ALIGN_CENTER)
         p.set_font(font)
         self.d.add_style("Title",p)
 
@@ -137,64 +138,6 @@ class IndivSummary:
     # 
     #
     #--------------------------------------------------------------------
-    def write_header(self):
-        pass
-    
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_spouse(self,person):
-        if person:
-            name = person.getPrimaryName().getRegularName()
-        else:
-            name = "unknown"
-        self.file.write('<table:table-row>\n')
-        self.file.write('<table:table-cell ')
-        self.file.write('table:number-columns-spanned="2" ')
-        self.file.write('table:value-type=\"string\">\n')
-        self.file.write('<text:p text:style-name="P2">')
-        self.file.write(name)
-        self.file.write('</text:p>\n')
-        self.file.write("</table:table-cell>\n")
-        self.file.write("<table:covered-table-cell/>\n")
-        self.file.write("</table:table-row>\n")
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_general(self):
-
-        self.file.write('<table:table table:name="Table1" table:style-name="Table1">\n')
-        self.file.write('<table:table-column table:style-name="Table1.A"/>\n')
-        self.file.write('<table:table-column table:style-name="Table1.B"/>\n')
-
-        name = self.person.getPrimaryName().getRegularName()
-        self.write_simple_row("Name:",name)
-        if self.person.getGender() == RelLib.Person.male:
-            self.write_simple_row("Gender:","Male")
-        else:
-            self.write_simple_row("Gender:","Female")
-        family = self.person.getMainFamily()
-        if family:
-            father = family.getFather().getPrimaryName().getRegularName()
-            mother = family.getMother().getPrimaryName().getRegularName()
-        else:
-            father = ""
-            mother = ""
-        self.write_simple_row("Father:",father)
-        self.write_simple_row("Mother:",mother)
-            
-        self.file.write('</table:table>\n')
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
     def write_fact(self,event):
         if event == None:
             return
@@ -227,29 +170,6 @@ class IndivSummary:
         self.d.end_cell()
         self.d.end_row()
         
-
-    #--------------------------------------------------------------------
-    #
-    # 
-    #
-    #--------------------------------------------------------------------
-    def write_facts(self):
-
-        self.file.write('<text:p text:style-name="Standard"/>')
-        self.file.write('<table:table table:name="Table2" table:style-name="Table1">\n')
-        self.file.write('<table:table-column table:style-name="Table1.A"/>\n')
-        self.file.write('<table:table-column table:style-name="Table1.B"/>\n')
-
-        self.write_header_row("Individual Facts")
-        event_list = [ self.person.getBirth(), self.person.getDeath() ]
-        event_list = event_list + self.person.getEventList()
-        
-        for event in event_list:
-            self.write_fact(event)
-
-        self.file.write('</table:table>\n')
-
-
     #--------------------------------------------------------------------
     #
     # 
@@ -316,24 +236,7 @@ class IndivSummary:
     #
     #--------------------------------------------------------------------
     def write_report(self):
-#        photo_list = self.person.getPhotoList()
-#        if len(photo_list) > 0:
-#            import GdkImlib
-#            file = photo_list[0].getPath()
-#            image = GdkImlib.Image(file)
-#            height = image.rgb_height
-#            scale = float(height)/150.0
-#            width = int(image.rgb_width * scale)
-#            height = int(height * scale)
-#            base = os.path.basename(file)
-#            image_name = self.open_office.add_image(base)
-#            cmd = const.convert + " -size " + str(width) + "x150 "\
-#                  + file + " " + image_name
-#            os.system(cmd)
-#            self.scale = float(height)/float(width)
-#            self.image = base
-#        else:
-#            self.image = ""
+        photo_list = self.person.getPhotoList()
             
         self.d.start_paragraph("Title")
         self.d.write_text('Summary of ')
@@ -342,6 +245,13 @@ class IndivSummary:
 
         self.d.start_paragraph("Normal")
         self.d.end_paragraph()
+
+        if len(photo_list) > 0:
+            file = photo_list[0].getPath()
+            self.d.start_paragraph("Normal")
+            self.d.add_photo(file,300,300)
+            self.d.end_paragraph()
+
         self.d.start_table("one","IndTable")
 
         self.d.start_row()
