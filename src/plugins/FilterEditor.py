@@ -91,10 +91,10 @@ class MyInteger(gtk.SpinButton):
         self.show()
 
     def get_text(self):
-        return str(self.get_value())
+        return str(self.get_value_as_int())
 
     def set_text(self,val):
-        self.set_value(val)
+        self.set_value(int(val))
 
 #-------------------------------------------------------------------------
 #
