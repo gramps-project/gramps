@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------
 
 import RelLib
-import GrampsCfg
+import types
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -247,32 +247,34 @@ class RelationshipCalculator:
                 return 0
         return 0
 
-    def get_relationship(self,orig_person,other_person):
+    def get_relationship_distance(self,orig_person,other_person):
         """
-        returns a string representping the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
+        Returns a tuple (firstRel,secondRel,common):
+        
+        firstRel    Number of generations from the orig_person to their
+                    closest common ancestor
+        secondRel   Number of generations from the other_person to their
+                    closest common ancestor
+        common      list of their common ancestors, the closest is the first
+        
+        is returned
         """
+        
+        firstRel = -1
+        secondRel = -1
+        common = []
+
         firstMap = {}
         firstList = []
         secondMap = {}
         secondList = []
-        common = []
         rank = 9999999
-
-        if orig_person == None:
-            return ("undefined",[])
-
-        if orig_person == other_person:
-            return ('', [])
-
-        if self.is_spouse(orig_person,other_person):
-            return ("spouse",[])
 
         try:
             self.apply_filter(orig_person,0,firstList,firstMap)
             self.apply_filter(other_person,0,secondList,secondMap)
         except RuntimeError,msg:
-            return (_("Relationship loop detected"),None)
+            return (firstRel,secondRel,_("Relationship loop detected"))
 
         for person_id in firstList:
             if person_id in secondList:
@@ -283,17 +285,38 @@ class RelationshipCalculator:
                 elif new_rank == rank:
                     common.append(person_id)
 
-        firstRel = -1
-        secondRel = -1
-
         if common:
             person_id = common[0]
             secondRel = firstMap[person_id]
             firstRel = secondMap[person_id]
 
-        if firstRel == -1:
+        return (firstRel,secondRel,common)
+
+    def get_relationship(self,orig_person,other_person):
+        """
+        returns a string representping the relationshp between the two people,
+        along with a list of common ancestors (typically father,mother) 
+        """
+
+        if orig_person == None:
+            return ("undefined",[])
+
+        if orig_person == other_person:
+            return ('', [])
+
+        if self.is_spouse(orig_person,other_person):
+            return ("spouse",[])
+
+        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
+        
+        if type(common) == types.StringType or type(common) == types.UnicodeType:
+            return (common,[])
+        elif common:
+            person_id = common[0]
+        else:
             return ("",[])
-        elif firstRel == 0:
+
+        if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
             elif other_person.get_gender() == RelLib.Person.male:
@@ -327,42 +350,21 @@ class RelationshipCalculator:
         returns a string representing the relationshp between the two people,
         along with a list of common ancestors (typically father,mother) 
         """
-        firstMap = {}
-        firstList = []
-        secondMap = {}
-        secondList = []
-        common = []
-        rank = 9999999
-        
         if orig_person == None:
             return ("undefined",[])
 
         if orig_person == other_person:
             return ('', [])
         
-        try:
-            self.apply_filter(orig_person,0,firstList,firstMap)
-            self.apply_filter(other_person,0,secondList,secondMap)
-        except RuntimeError,msg:
-            return (_("Relationship loop detected"),None)
-    
-        for person_id in firstList:
-            if person_id in secondList:
-                new_rank = firstMap[person_id]
-                if new_rank < rank:
-                    rank = new_rank
-                    common = [ person_id ]
-                elif new_rank == rank:
-                    common.append(person_id)
-
-        firstRel = -1
-        secondRel = -1
-
-        if common:
+        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
+        
+        if type(common) == types.StringType or type(common) == types.UnicodeType:
+            return (common,[])
+        elif common:
             person_id = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
-            
+        else:
+            return ("",[])
+
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)

@@ -34,6 +34,7 @@
 
 import RelLib
 import Relationship
+import types
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -341,50 +342,25 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Special cases: relation strings "", "undefined" and "spouse".
         """
 
-        firstMap = {}
-        firstList = []
-        secondMap = {}
-        secondList = []
-        common = []
-        rank = 9999999
-    
         if orig_person == None:
             return ("undefined",[])
     
-        firstName = orig_person.get_primary_name().get_regular_name()
-        secondName = other_person.get_primary_name().get_regular_name()
-    
         if orig_person == other_person:
             return ('', [])
+
         if self.is_spouse(orig_person,other_person):
             return ("spouse",[])
 
-        try:
-            self.apply_filter(orig_person,0,firstList,firstMap)
-            self.apply_filter(other_person,0,secondList,secondMap)
-        except RuntimeError,msg:
-            return (_("Relationship loop detected"),None)
-    
-        for person_id in firstList:
-            if person_id in secondList:
-                new_rank = firstMap[person_id]
-                if new_rank < rank:
-                    rank = new_rank
-                    common = [ person_id ]
-                elif new_rank == rank:
-                    common.append(person_id)
-
-        firstRel = -1
-        secondRel = -1
-
-        if common:
+        (firstRel,secondRel,common) = self.get_relationship_distance(orig_person,other_person)
+        
+        if type(common) == types.StringType or type(common) == types.UnicodeType:
+            return (common,[])
+        elif common:
             person_id = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
-    
-        if firstRel == -1:
+        else:
             return ("",[])
-        elif firstRel == 0:
+
+        if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
             elif other_person.get_gender() == RelLib.Person.male:
@@ -417,57 +393,6 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             else:
                 return (self.get_junior_female_cousin(secondRel-1,firstRel-1),common)
     
-
-    def get_grandparents_string(self,orig_person,other_person):
-        """
-        returns a string representing the relationshp between the two people,
-        along with a list of common ancestors (typically father,mother) 
-        """
-        firstMap = {}
-        firstList = []
-        secondMap = {}
-        secondList = []
-        common = []
-        rank = 9999999
-
-        if orig_person == None:
-            return ("undefined",[])
-
-        if orig_person == other_person:
-            return ('', [])
-
-        try:
-            self.apply_filter(orig_person,0,firstList,firstMap)
-            self.apply_filter(other_person,0,secondList,secondMap)
-        except RuntimeError,msg:
-            return (_("Relationship loop detected"),None)
-    
-        for person_id in firstList:
-            if person_id in secondList:
-                new_rank = firstMap[person_id]
-                if new_rank < rank:
-                    rank = new_rank
-                    common = [ person_id ]
-                elif new_rank == rank:
-                    common.append(person_id)
-
-        firstRel = -1
-        secondRel = -1
-
-        if common:
-            person = common[0]
-            secondRel = firstMap[person_id]
-            firstRel = secondMap[person_id]
-
-        if firstRel == 0:
-            if secondRel == 0:
-                return ('',common)
-            else:
-                return (self.get_parents(secondRel),common)
-        else:
-            return None
-
-
 #-------------------------------------------------------------------------
 #
 # Register this class with the Plugins system 
