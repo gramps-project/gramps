@@ -21,6 +21,8 @@
 import os
 import tempfile
 import string
+import zipfile
+
 import Plugins
 from intl import gettext as _
 
@@ -53,14 +55,9 @@ class OpenDrawDoc(DrawDoc):
             self.filename = filename
             
         tempfile.tempdir = "/tmp"
-        self.tempdir = tempfile.mktemp()
-        os.mkdir(self.tempdir,0700)
-        os.mkdir(self.tempdir + os.sep + "Pictures")
-        os.mkdir(self.tempdir + os.sep + "META-INF")
+        self.content_xml = tempfile.mktemp()
+        self.f = open(self.content_xml,"wb")
 
-        fname = self.tempdir + os.sep + "content.xml"
-        self.f = open(fname,"wb")
-        
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -131,25 +128,25 @@ class OpenDrawDoc(DrawDoc):
 
     def _write_zip(self):
         
-        if os.path.isfile(self.filename):
-            os.unlink(self.filename)
+        file = zipfile.ZipFile(self.filename,"w",zipfile.ZIP_DEFLATED)
+        file.write(self.manifest_xml,"META-INF/manifest.xml")
+        file.write(self.content_xml,"content.xml")
+        file.write(self.meta_xml,"meta.xml")
+        file.write(self.styles_xml,"styles.xml")
+        
+#        for image in self.photo_list:
+#            base = os.path.basename(image[0])
+#            file.write(image[0],"Pictures/%s" % base)
+        file.close()
 
-        os.system("cd " + self.tempdir + "; " + const.zipcmd + " " \
-                  + self.filename + " .")
-
-        os.unlink(self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml")
-        os.unlink(self.tempdir + os.sep + "content.xml")
-        os.unlink(self.tempdir + os.sep + "meta.xml")
-        os.unlink(self.tempdir + os.sep + "styles.xml")
-#        for image in self.image_list:
-#            os.unlink(self.tempdir + os.sep + "Pictures" + os.sep + image)
-        os.rmdir(self.tempdir + os.sep + "Pictures")
-        os.rmdir(self.tempdir + os.sep + "META-INF")
-        os.rmdir(self.tempdir)
+        os.unlink(self.manifest_xml)
+        os.unlink(self.content_xml)
+        os.unlink(self.meta_xml)
+        os.unlink(self.styles_xml)
         
     def _write_styles_file(self):
-	file = self.tempdir + os.sep + "styles.xml"
-	self.f = open(file,"wb")
+        self.styles_xml = tempfile.mktemp()
+	self.f = open(self.styles_xml,"wb")
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -339,8 +336,8 @@ class OpenDrawDoc(DrawDoc):
 	self.f.write(text)
 
     def _write_manifest(self):
-	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"
-	self.f = open(file,"wb")
+        self.manifest_xml = tempfile.mktemp()
+	self.f = open(self.manifest_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
         self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
@@ -361,9 +358,9 @@ class OpenDrawDoc(DrawDoc):
 	self.f.close()
 
     def _write_meta_file(self):
-	file = self.tempdir + os.sep + "meta.xml"
         name = self.name
-	self.f = open(file,"wb")
+        self.meta_xml = tempfile.mktemp()
+	self.f = open(self.meta_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
 	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')

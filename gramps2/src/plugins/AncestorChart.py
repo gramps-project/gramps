@@ -117,7 +117,8 @@ class AncestorChart:
 	try:
             self.doc.close()
         except:
-            print _("Document write failure")
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
     #--------------------------------------------------------------------
     #
