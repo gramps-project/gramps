@@ -1,3 +1,8 @@
+2003-06-08  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py, src/plugins/BookReport.py, 
+	src/plugins/FtmStyleDescendants.py: Fix changing center person -- only
+	remember change if OK was clicked.
+
 2003-06-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Clean up the split into BareReportDialog and
 	ReportDialog classes.
