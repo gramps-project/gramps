@@ -30,6 +30,7 @@ __version__ = "$Revision$"
 
 import Date
 import locale
+import time
 
 class DateDisplay:
     """
@@ -37,7 +38,7 @@ class DateDisplay:
     """
 
     formats = (
-        "YYYY-MM-DD", "MM/DD/YYYY", "Month Day, Year",
+        "YYYY-MM-DD (ISO)", "Numerical", "Month Day, Year",
         "MON DAY, YEAR", "Day Month Year", "DAY MON YEAR"
         )
 
@@ -88,6 +89,8 @@ class DateDisplay:
         unicode(locale.nl_langinfo(locale.ABMON_11),_codeset),
         unicode(locale.nl_langinfo(locale.ABMON_12),_codeset),
         )
+
+    _tformat = locale.nl_langinfo(locale.D_FMT)
     
     _hebrew = (
         "", "Tishri", "Heshvan", "Kislev", "Tevet", "Shevat",
@@ -127,7 +130,7 @@ class DateDisplay:
             self.format = 0
         else:
             self.format = format
-            
+
         self.display_cal = [
             self._display_gregorian,
             self._display_julian,
@@ -204,14 +207,11 @@ class DateDisplay:
             else:
                 return "%s-%d-%d" % (year,date_val[1],date_val[0])
         elif self.format == 1:
-            # MM/DD/YYYY (American numericalO)
-            if date_val[0] == 0:
-                if date_val[1] == 0:
-                    return "%d" % date_val[2]
-                else:
-                    return "%d/%d" % (date_val[1],date_val[2])
+            if date_val[0] == 0 and date_val[1] == 0:
+                return str(date_val[2])
             else:
-                return "%d/%d/%d" % (date_val[1],date_val[0],date_val[2])
+                return time.strftime(self._tformat,(date_val[2],date_val[1],
+                                                    date_val[0],0,0,0,0,0,0))
         elif self.format == 2:
             # Month Day, Year
             if date_val[0] == 0:

@@ -1,7 +1,17 @@
+2004-09-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateDisplay.py: use LC_TIME and D_FMT to determine
+	the locale date format
+	* src/DateHandler.py: en.US to en_US
+	* src/ReadGedcom.py: Allow user overriding of character set
+	* src/StartupDialog.py: remove date entry setting
+	* src/gedcomimport.glade: Allow user overriding of character set
+	* src/gramps.py: set LC_TIME based of LANG
+	* src/data/gramps.schemas: remove date entry setting
+
 2004-09-23  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Date.py: display calendar
 	* src/DateParser.py: parse based on calendars
-	* src/DateDisplay.py: use unicode encodings for french monts
+	* src/DateDisplay.py: use unicode encodings for french months
 
 2004-09-22  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: change sort mechanism to new Date sort value

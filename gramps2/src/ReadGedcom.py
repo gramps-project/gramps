@@ -125,6 +125,33 @@ def importData(database, filename, cb=None):
 
     global callback
 
+    f = open(filename,"r")
+
+    ansel = False
+    gramps = False
+    for index in range(0,50):
+        line = f.readline().split()
+        if line[1] == 'CHAR' and line[2] == "ANSEL":
+            ansel = True
+        if line[1] == 'SOUR' and line[2] == "GRAMPS":
+            gramps = True
+    f.close()
+
+    if not gramps and ansel:
+        glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
+        top = gtk.glade.XML(glade_file,'encoding','gramps')
+        code = top.get_widget('codeset')
+        code.set_active(0)
+        dialog = top.get_widget('encoding')
+        dialog.run()
+        codeset = code.get_active()
+        dialog.destroy()
+    else:
+        codeset = None
+    import2(database, filename, cb, codeset)
+        
+
+def import2(database, filename, cb, codeset):
     # add some checking here
 
     glade_file = "%s/gedcomimport.glade" % os.path.dirname(__file__)
@@ -143,7 +170,7 @@ def importData(database, filename, cb=None):
         })
 
     try:
-        g = GedcomParser(database,filename,statusTop)
+        g = GedcomParser(database,filename,statusTop, codeset)
     except IOError,msg:
         Utils.destroy_passed_object(statusWindow)
         ErrorDialog(_("%s could not be opened\n") % filename,str(msg))
@@ -202,7 +229,7 @@ class GedcomParser:
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
 
-    def __init__(self, dbase, file, window):
+    def __init__(self, dbase, file, window, codeset):
         self.dp = DateParser.DateParser()
         self.db = dbase
         self.person = None
@@ -230,7 +257,17 @@ class GedcomParser:
         self.filename = file
         self.index = 0
         self.backoff = 0
-        self.cnv = nocnv
+        self.override = codeset != None
+
+        if self.override:
+            if self.override == 0:
+                self.cnv = ansel_to_utf8
+            elif self.override == 1:
+                self.cnv = latin_utf8.latin_to_utf8
+            else:
+                self.cnv = nocnv
+        else:
+            self.cnv = nocnv
 
         self.geddir = os.path.dirname(os.path.normpath(os.path.abspath(file)))
     
@@ -1554,7 +1591,7 @@ class GedcomParser:
                 if genby == "GRAMPS":
                     self.gedsource = self.gedmap.get_from_source_tag(matches[2])
                     self.broken_conc = self.gedsource.get_conc()
-            elif matches[1] == "CHAR":
+            elif matches[1] == "CHAR" and not self.override:
                 if matches[2] == "UNICODE" or matches[2] == "UTF-8" or matches[2] == "UTF8":
                     self.cnv = nocnv
                 elif matches[2] == "ANSEL":
@@ -1564,6 +1601,8 @@ class GedcomParser:
                 self.ignore_sub_junk(2)
                 if self.window:
                     self.update(self.encoding_obj,matches[2])
+                else:
+                    self.update(self.encoding_obj,_("Overridden"))
             elif matches[1] == "GEDC":
                 self.ignore_sub_junk(2)
             elif matches[1] == "_SCHEMA":

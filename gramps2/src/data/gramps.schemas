@@ -29,20 +29,6 @@
       </schema>
 
       <schema>
-        <key>/schemas/apps/gramps/preferences/date-entry</key>
-        <applyto>/apps/gramps/preferences/date-entry</applyto>
-        <owner>gramps</owner>
-        <type>int</type>
-        <default>0</default>
-        <locale name="C">
-          <short>Date entry format</short>
-          <long>This key determines the date entry format. O corresponds to
-          the MM/DD/YYYY (US format), 1 corrsponds to DD/MM/YYYY (European 
-          format), and 2 corresponds to YYYY-MM-DD (ISO format).</long>
-        </locale>
-      </schema>
-
-      <schema>
         <key>/schemas/apps/gramps/preferences/date-format</key>
         <applyto>/apps/gramps/preferences/date-format</applyto>
         <owner>gramps</owner>
