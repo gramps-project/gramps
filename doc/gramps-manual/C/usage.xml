@@ -606,10 +606,15 @@
         edit the corresponding event (birth or death) details.
 	The field <guilabel>ID</guilabel> displays an internal 
 	&app; ID number which identifies the user in the
-	database. Finally, the <guilabel>Image</guilabel> area shows the first
+	database. The <guilabel>Image</guilabel> area shows the first
 	image available in the <guilabel>Gallery</guilabel> of this 
         person (if any exist).
 	</para>
+	
+	<para>Finally, the <guilabel>Information is complete</guilabel> check
+	button provides the way to mark whether this person's record is 
+	complete or 
+	not. </para>
 		</listitem></varlistentry>
 	</variablelist>
 	
@@ -1010,9 +1015,12 @@
 	information about the relationship: the relationship type. 
 	The available types (such as married, partners, etc.) can be chosen 
 	from the drop-down <guilabel>Relationship type</guilabel> menu. 
-	The non-editable field <guilabel>ID</guilabel> displays an internal &app; 
-	ID number which identifies this relationship in the database. 
-	</para>
+	The non-editable field <guilabel>ID</guilabel> displays an 
+	internal &app; ID number which identifies this relationship in 
+	the database. 
+	Finally, the <guilabel>Information is complete</guilabel> check
+	button provides the way to mark whether this relationship's record is 
+	complete or not. </para>
 		</listitem></varlistentry>
 	</variablelist>
 	
@@ -2409,28 +2417,31 @@
 
 	<para> The <guilabel>Book name</guilabel> text entry field is used to
         save the book (a set of configured selections) for future use.
-        The pane on the left-hand side lists the items available for inclusion in the 
-        book. The pane on the right-hand side lists the currently selected items in
+        The top pane lists the items available for inclusion in the 
+        book. The bottom pane lists the currently selected items in
         the order they will appear in the book. </para>
         
-	<para> The top set of buttons between the panes operates on the 
-        selected book item. Click the <guibutton>Add</guibutton> button to add selected 
-        item from the available list to the current book. Click the 
-        <guibutton>Remove</guibutton> button to remove an item from the current book.
-        Use <guibutton>Up</guibutton> and <guibutton>Down</guibutton> to change
-        the items order in the current book. Click the <guibutton>Setup</guibutton>
-        button to configure the options of the selected item of the current book. 
-        </para>
-        
-	<para> The bottom set of buttons between the panes operates on the 
-        whole book. Click the <guibutton>Clear</guibutton> button to clear all items from
-        the current book. Click the <guibutton>Save</guibutton> button to save the current
-        book (under the name typed in the <guilabel>Book name</guilabel> text
-        entry field) for future use. Note that saving the book also saves the 
-        configuration for each item. Click the <guibutton>Open</guibutton> button to load
+	<para> The horizontal set of buttons by the <guilabel>Book 
+	name</guilabel> field operates on the whole book. Click 
+	the <guibutton>Clear</guibutton> button to clear all items from
+        the current book. Click the <guibutton>Save</guibutton> button to 
+	save the current book (under the name typed in 
+	the <guilabel>Book name</guilabel> text entry field) for future use. 
+	Note that saving the book also saves the configuration for each item. 
+	Click the <guibutton>Open</guibutton> button to load
         the book from the list of previously saved books. Finally, click the 
         <guibutton>Edit books</guibutton> button to evoke the editable list of
-        available books.  
+        available books.  </para>
+	
+	<para> The vertical set of buttons to the right of the bottom pane
+	operates on the 
+	selected book item. Click the <guibutton>Add</guibutton> button to 
+	add selected item from the available list to the current book. Click 
+	the <guibutton>Remove</guibutton> button to remove an item from the 
+	current book. Use <guibutton>Up</guibutton> and 
+	<guibutton>Down</guibutton> to change the items order in the current 
+	book. Click the <guibutton>Setup</guibutton> button to configure the 
+	options of the selected item of the current book. 
         </para>
 
 	<para> The configuration dialogs evoked by <guibutton>Setup</guibutton>
@@ -2439,8 +2450,8 @@
         almost all book items is the center person: the person on whom the
         item is centered. Thanks to this option, you can create a book with
         items centered on different people (e.g. your mom's and dad's 
-        ancestors as separate chapters). By default, the center person is set to
-        the active person. </para> 
+        ancestors as separate chapters). By default, the center person is 
+	set to the active person. </para> 
 
 	<para>Almost all items available for inclusion in the book are textual 
         or graphical reports, and are therefore available in the form of standalone 

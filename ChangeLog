@@ -1,6 +1,12 @@
 2003-12-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/ReadGedcom.py (parse_source): Stop TEXT messing
 	up the title; add ABBR to the note field (was ignored).
+	* doc/gramps-manual/C/faq.xml: Link to referenced cites.    
+	* doc/gramps-manual/C/usage.xml: Document the completeness flag.
+	Describe new layout of book report.
+	* doc/gramps-manual/C/mainwin.xml: Document children menu markup
+	in Pedigree View.
+	* NEWS: Minor corrections. 
 
 2003-12-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleView.py (PeopleView.clear_person_tabs): initialize
