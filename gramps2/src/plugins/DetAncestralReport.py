@@ -680,12 +680,6 @@ def _make_default_style(default_style):
     para.set_description(_('The style used for the first personal entry.'))
     default_style.add_style("DAR-First-Entry",para)
 
-    table = BaseDoc.TableStyle()
-    table.set_width(1000)
-    table.set_columns(3)
-    table.set_column_width(1,"30%")
-    #self.default_style.add_style("Images",table)
-
 #------------------------------------------------------------------------
 #
 #

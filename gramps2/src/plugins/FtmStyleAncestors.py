@@ -62,7 +62,7 @@ class FtmAncestorReport(Report.Report):
         else:
             self.standalone = 0
         self.sref_map = {}
-        self.sref_index = 1
+        self.sref_index = 0
         
     def apply_filter(self,person,index,generation=1):
         if person == None or generation > self.max_generations:
@@ -463,9 +463,18 @@ class FtmAncestorReport(Report.Report):
                 if not first:
                     msg.write(',')
                 first = 0
-                msg.write("%d" % self.sref_index)
-                self.sref_map[self.sref_index] = ref
-                self.sref_index += 1
+                ref_base = ref.get_base_id()
+                the_key = 0
+                for key in self.sref_map.keys():
+                    if ref_base == self.sref_map[key].get_base_id():
+                        the_key = key
+                        break
+                if the_key:
+                    msg.write("%d" % the_key)
+                else:
+                    self.sref_index += 1
+                    self.sref_map[self.sref_index] = ref
+                    msg.write("%d" % self.sref_index)
             msg.write('</super>')
         str = msg.getvalue()
         msg.close()

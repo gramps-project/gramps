@@ -198,7 +198,7 @@ if test YES != "$has_pygtk"
 then
    AC_MSG_ERROR([
 
-**** The python bindings for glade (pytgk2-libglade) could not be found.])
+**** The python bindings for glade (pygtk2-libglade) could not be found.])
 fi
 AC_MSG_RESULT(ok)
 
