@@ -316,7 +316,7 @@ class AncestorsReport (Report.Report):
         if dateobj:
             text = dateobj.getText ()
             if text:
-                info += ' in ' + text
+                info += ' ' + text[0].lower() + text[1:]
             elif dateobj.getValid ():
                 if (dateobj.getDayValid () and
                     dateobj.getMonthValid () and
