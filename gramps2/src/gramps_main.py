@@ -1068,6 +1068,7 @@ class Gramps:
         
         self.topWindow.set_resizable(gtk.TRUE)
         self.people_view.apply_filter()
+        self.goto_active_person()
         return 1
 
     def on_ok_button2_clicked(self,obj):
@@ -1140,7 +1141,7 @@ class Gramps:
             fs_top.cancel_button.connect('clicked',fs_close_window)
             fs_top.show()
             fs_top.run()
-
+            
         #-------------------------------------------------------------------------
         for ObjectId in self.db.get_object_keys():
             object = self.db.find_object_from_id(ObjectId)
@@ -1570,7 +1571,7 @@ class Gramps:
         self.db.set_save_path(name)
         res = self.db.get_researcher()
         owner = GrampsCfg.get_researcher()
-    
+        
         if res.get_name() == "" and owner.get_name():
             self.db.set_researcher(owner)
 
@@ -1621,7 +1622,6 @@ class Gramps:
         #self.full_update()
 
         self.change_active_person(self.find_initial_person())
-        self.goto_active_person()
         self.statusbar.set_progress_percentage(0.0)
         return 1
 
@@ -1784,7 +1784,4 @@ def set_panel(obj):
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
     Gramps(None)
-    if ver[0] == 2 and ver[1] >= 3:
-        gtk.main()
-    else:
-        gtk.mainloop()
+    gtk.main()
