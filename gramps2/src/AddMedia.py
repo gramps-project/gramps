@@ -124,7 +124,7 @@ class AddMediaObject:
         mobj.set_description(description)
         mobj.set_mime_type(mtype)
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         self.db.add_object(mobj,trans)
         
         name = filename
@@ -132,7 +132,7 @@ class AddMediaObject:
 
         self.object = mobj
         self.db.commit_media_object(mobj,trans)
-        self.db.add_transaction(trans,_("Add Media Object"))
+        self.db.transaction_commit(trans,_("Add Media Object"))
         if self.update:
             self.update()
         

@@ -389,7 +389,7 @@ class GedcomParser:
 
     def parse_gedcom_file(self):
         
-        self.trans = self.db.start_transaction()
+        self.trans = self.db.transaction_begin()
         t = time.time()
         self.index = 0
         self.fam_count = 0
@@ -410,7 +410,7 @@ class GedcomParser:
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
 
-        self.db.add_transaction(self.trans,_("GEDCOM import"))
+        self.db.transaction_commit(self.trans,_("GEDCOM import"))
         
         if self.window:
             self.infomsg("\n%s" % msg)
@@ -1773,7 +1773,7 @@ class GedcomParser:
 
                 # new ID is not used
                 if not self.db.has_person_handle(new_key):
-                    self.db.remove_person_handle(pid,self.trans)
+                    self.db.remove_person(pid,self.trans)
                     person.set_handle(new_key)
                     person.set_gramps_id(new_key)
                     self.db.add_person(person,self.trans)
@@ -1781,7 +1781,7 @@ class GedcomParser:
                     tp = self.db.get_person_from_handle(new_key,self.trans)
                     # same person, just change it
                     if person == tp:
-                        self.db.remove_person_handle(pid,self.trans)
+                        self.db.remove_person(pid,self.trans)
                         person.set_handle(new_key)
                         person.set_gramps_id(new_key)
                         self.db.add_person(person,self.trans)

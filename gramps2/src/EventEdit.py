@@ -81,14 +81,14 @@ class EventEditor:
         values = {}
         for v in elist:
             values[v] = 1
-        for v in self.db.get_eventnames():
+        for v in self.db.get_person_event_type_list():
             values[v] = 1
             
         self.elist = values.keys()
         self.elist.sort()
 
-        for key in self.parent.db.get_place_handle_keys():
-            p = self.parent.db.get_place_display(key)
+        for key in self.parent.db.get_place_handles():
+            p = self.parent.db.get_place_from_handle(key).get_display_info()
             self.pmap[p[0]] = key
 
         if event:
@@ -302,7 +302,7 @@ class EventEditor:
 
     def on_event_edit_ok_clicked(self,obj):
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         
         ename = unicode(self.event_menu.child.get_text())
         self.date.set(unicode(self.date_field.get_text()))
@@ -331,7 +331,7 @@ class EventEditor:
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause,trans)
-        self.db.add_transaction(trans,_("Edit Event"))
+        self.db.transaction_commit(trans,_("Edit Event"))
         self.close(obj)
         self.parent.redraw_event_list()
         self.callback(self.event)

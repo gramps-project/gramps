@@ -69,7 +69,6 @@ import Utils
 import Bookmarks
 import GrampsCfg
 import EditPerson
-import Find
 import DbPrompter
 import TipOfDay
 import ArgHandler
@@ -188,11 +187,12 @@ class Gramps:
         GrampsCfg.set_calendar_date_entry()
 
     def researcher_key_update(self,client,cnxn_id,entry,data):
-        self.db.set_iprefix(GrampsCfg.get_iprefix())
-        self.db.set_fprefix(GrampsCfg.get_fprefix())
-        self.db.set_sprefix(GrampsCfg.get_sprefix())
-        self.db.set_oprefix(GrampsCfg.get_oprefix())
-        self.db.set_pprefix(GrampsCfg.get_pprefix())
+        self.db.set_person_id_prefix(GrampsCfg.get_person_id_prefix())
+        self.db.set_family_id_prefix(GrampsCfg.get_family_id_prefix())
+        self.db.set_source_id_prefix(GrampsCfg.get_source_id_prefix())
+        self.db.set_object_id_prefix(GrampsCfg.get_object_id_prefix())
+        self.db.set_place_id_prefix(GrampsCfg.get_place_id_prefix())
+        self.db.set_event_id_prefix(GrampsCfg.get_event_id_prefix())
 
     def statusbar_key_update(self,client,cnxn_id,entry,data):
         self.modify_statusbar()
@@ -276,8 +276,8 @@ class Gramps:
         self.undolabel   = self.gtop.get_widget('undolabel')
         self.redolabel   = self.gtop.get_widget('redolabel')
 
-        self.db.set_undo_label(self.undolabel)
-        self.db.set_redo_label(self.redolabel)
+        self.db.set_undo_callback(self.undo_callback)
+        self.db.set_redo_callback(self.redo_callback)
 
         self.child_model = gtk.ListStore(
             gobject.TYPE_INT, gobject.TYPE_STRING, gobject.TYPE_STRING,
@@ -405,6 +405,25 @@ class Gramps:
         self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
         self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_FORWARD)
 
+    def undo_callback(self,text):
+        if text == None:
+            self.undolabel.set_sensitive(0)
+            self.undolabel.get_children()[0].set_text(_("_Undo"))
+        else:
+            self.undolabel.set_sensitive(1)
+            label = self.undolabel.get_children()[0]
+            label.set_text(text)
+            label.set_use_underline(1)
+
+    def redo_callback(self,text):
+        if text == None:
+            self.redolabel.set_sensitive(0)
+            self.redolabel.get_children()[0].set_text(_("_Redo"))
+        else:
+            self.redolabel.set_sensitive(1)
+            label = self.redolabel.get_children()[0]
+            label.set_text(text)
+            label.set_use_underline(1)
 
     def undo(self,*args):
         self.db.undo()
@@ -418,8 +437,8 @@ class Gramps:
         self.media_view.change_db(self.db)
         self.family_view.load_family()
 
-    def set_column_order(self,list):
-        self.db.set_column_order(list)
+    def set_person_column_order(self,list):
+        self.db.set_person_column_order(list)
         self.people_view.build_columns()
 
     def set_place_column_order(self,list):
@@ -439,9 +458,9 @@ class Gramps:
 
         cpage = self.views.get_current_page()
         if cpage == PERSON_VIEW:
-            ColumnOrder.ColumnOrder(self.db.get_column_order(),
+            ColumnOrder.ColumnOrder(self.db.get_person_column_order(),
                                     PeopleView.column_names,
-                                    self.set_column_order)
+                                    self.set_person_column_order)
         elif cpage == SOURCE_VIEW:
             ColumnOrder.ColumnOrder(self.db.get_source_column_order(),
                                     SourceView.column_names,
@@ -1078,21 +1097,21 @@ class Gramps:
                     if o.get_reference_handle() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
-            for key in self.db.get_person_keys():
+            for key in self.db.get_person_handles(sort_handles=False):
                 p = self.db.get_person_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
-            for key in self.db.get_source_keys():
+            for key in self.db.get_source_handles():
                 p = self.db.get_source_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
-            for key in self.db.get_place_handle_keys():
+            for key in self.db.get_place_handles():
                 p = self.db.get_place_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
@@ -1100,9 +1119,9 @@ class Gramps:
                         nl.remove(o) 
                 p.set_media_list(nl)
 
-            trans = self.db.start_transaction()
+            trans = self.db.transaction_begin()
             self.db.remove_object(ObjectId)
-            self.db.add_transaction(trans,_("Save Media Object"))
+            self.db.transaction_commit(trans,_("Save Media Object"))
     
         def leave_clicked():
             # File is lost => do nothing, leave as is
@@ -1132,7 +1151,7 @@ class Gramps:
             choose.destroy()
 
         #-------------------------------------------------------------------------
-        for ObjectId in self.db.get_object_keys():
+        for ObjectId in self.db.get_media_object_handles():
             object = self.db.get_object_from_handle(ObjectId)
             if 0:
                 oldfile = object.get_path()
@@ -1207,12 +1226,12 @@ class Gramps:
         self.update_display(0)
 
     def delete_person_response(self):
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         
         n = self.active_person.get_primary_name().get_regular_name()
 
         if self.db.get_default_person() == self.active_person:
-            self.db.set_default_person(None)
+            self.db.set_default_person_handle(None)
 
         for family_handle in self.active_person.get_family_handle_list():
             if not family_handle:
@@ -1247,13 +1266,13 @@ class Gramps:
         id = self.active_person.get_handle()
         self.people_view.remove_from_person_list(self.active_person)
         self.people_view.remove_from_history(id)
-        self.db.remove_person_handle(id, trans)
+        self.db.remove_person(id, trans)
 
         if self.hindex >= 0:
             self.active_person = self.db.get_person_from_handle(self.history[self.hindex])
         else:
             self.change_active_person(None)
-        self.db.add_transaction(trans,_("Delete Person (%s)") % n)
+        self.db.transaction_commit(trans,_("Delete Person (%s)") % n)
         self.redraw_histmenu()
 
     def merge_update(self,p1,p2,old_id):
@@ -1516,7 +1535,7 @@ class Gramps:
     def find_initial_person(self):
         person = self.db.get_default_person()
         if not person:
-            the_ids = self.db.get_person_keys()
+            the_ids = self.db.get_person_handles(sort_handles=False)
             if the_ids:
                 the_ids.sort()
                 person = self.db.get_person_from_handle(the_ids[0])
@@ -1533,7 +1552,6 @@ class Gramps:
             return 0
             
         self.status_text('')
-        self.db.clear_added_media_objects()
         return self.post_load(name)
 
     def setup_bookmarks(self):
@@ -1598,7 +1616,7 @@ class Gramps:
                            self.set_person)
             
     def set_person(self):
-        self.db.set_default_person(self.active_person)
+        self.db.set_default_person_handle(self.active_person.get_handle())
 
     def export_callback(self,obj,plugin_function):
         """Call the export plugin, with the active person and database"""

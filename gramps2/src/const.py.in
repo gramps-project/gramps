@@ -109,14 +109,6 @@ dnd_images     = 1
 
 #-------------------------------------------------------------------------
 #
-# Paths to external programs
-#
-#-------------------------------------------------------------------------
-
-nosort_tree = os.environ.has_key('NOSORT') and os.environ['NOSORT'] == "1"
-
-#-------------------------------------------------------------------------
-#
 # About box information
 #
 #-------------------------------------------------------------------------
@@ -145,10 +137,8 @@ translators = _('TRANSLATORS: Translate this to your name in your native languag
 # Constants
 #
 #-------------------------------------------------------------------------
-picWidth     = 200.0
 thumbScale   = 96.0
 xmlFile      = "data.gramps"
-zodbFile     = "gramps.zodb"
 male         = _("male")
 female       = _("female")
 unknown      = _("unknown")
@@ -271,9 +261,6 @@ family_events = TransTable( {
 def display_fevent(st):
     return family_events.find_value(st)
 
-def save_fevent(st):
-    return family_events.find_key(st)
-
 #-------------------------------------------------------------------------
 #
 # 
@@ -364,9 +351,6 @@ personal_events = TransTable({
 def display_pevent(st):
     return personal_events.find_value(st)
 
-def save_pevent(st):
-    return personal_events.find_key(st)
-
 #-------------------------------------------------------------------------
 #
 # Merged functions for events: personal, family, whatever else 
@@ -434,22 +418,12 @@ family_attributes = TransTable({"Number of Children" : _("Number of Children")})
 def display_fattr(st):
     return family_attributes.find_value(st)
 
-def save_fattr(st):
-    return family_attributes.find_key(st)
-
 #-------------------------------------------------------------------------
 #
 # Merged functions for attributes: personal, family, whatever else 
 # there might be in the future. 
 #
 #-------------------------------------------------------------------------
-def display_attr(st):
-    if personal_attributes.has_key(st):
-        return personal_attributes.find_value(st)
-    if family_attributes.has_key(st):
-        return family_attributes.find_value(st)
-    return _(st)
-
 def save_attr(st):
     if personal_attributes.has_value(st):
         return personal_attributes.find_key(st)
@@ -483,9 +457,6 @@ family_relations = [
 # 
 #
 #-------------------------------------------------------------------------
-def display_frel(st):
-    return family_relations.find_value(st)
-
 def save_frel(st):
     try:
         return family_relations[st][0]

@@ -115,12 +115,12 @@ class SelectPerson:
 
         return
     
-        for key in self.db.sort_person_keys():
+        for key in self.db.get_person_handles(sort_handles=True):
             person = self.db.get_person_from_handle(key)
             if self.use_filter and not self.filter(person):
                 continue
                 
-            data = self.db.get_person_display(key)
+            data = self.db.get_person_from_handle(key).get_display_info()
             gender = person.get_gender()
             if gender == RelLib.Person.plist:
                 self.mmodel.add([data[0],data[1],data[3],data[5],data[6]],key)

@@ -198,12 +198,12 @@ class XmlWriter:
 
         date = string.split(time.ctime(time.time()))
         owner = self.db.get_researcher()
-        familyList = self.db.get_family_keys()
+        familyList = self.db.get_family_handles()
         person_len = self.db.get_number_of_people()
         family_len = len(familyList)
-        source_len = len(self.db.get_source_keys())
-        place_len = len(self.db.get_place_handle_keys())
-        objList = self.db.get_object_keys()
+        source_len = len(self.db.get_source_handles())
+        place_len = len(self.db.get_place_handles())
+        objList = self.db.get_media_object_handles()
         
         total = person_len + family_len + place_len + source_len
 
@@ -240,18 +240,14 @@ class XmlWriter:
                 self.g.write(' default="%s"' % person.get_gramps_id())
             self.g.write(">\n")
 
-            keys = self.db.get_person_keys()
+            keys = self.db.get_person_handles(sort_handles=False)
             keys.sort ()
             for key in keys:
-                try:
-                    person = self.db.get_person_from_handle(key)
-                except:
-                    print "Key error %s" % key
-                    continue
+                person = self.db.get_person_from_handle(key)
                 
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
-                count = count + 1
+                count += 1
             
                 self.write_id("person",person,2)
                 if person.get_gender() == RelLib.Person.male:
@@ -324,7 +320,7 @@ class XmlWriter:
             self.g.write("  <families>\n")
 
             familyList.sort ()            
-            for key in self.db.get_family_keys():
+            for key in self.db.get_family_handles():
                 family = self.db.find_family_from_handle(key)
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
@@ -354,7 +350,7 @@ class XmlWriter:
 
         if source_len > 0:
             self.g.write("  <sources>\n")
-            keys = self.db.get_source_keys ()
+            keys = self.db.get_source_handles ()
             keys.sort ()
             for key in keys:
                 source = self.db.get_source_from_handle(key)
@@ -374,7 +370,7 @@ class XmlWriter:
 
         if place_len > 0:
             self.g.write("  <places>\n")
-            keys = self.db.get_place_handle_keys()
+            keys = self.db.get_place_handles()
             keys.sort ()
             for key in keys:
                 try:
@@ -391,7 +387,7 @@ class XmlWriter:
         if len(objList) > 0:
             self.g.write("  <objects>\n")
             objList.sort ()
-            for key in self.db.get_object_keys():
+            for key in self.db.get_media_object_handles():
                 object = self.db.get_object_from_handle(key)
                 self.write_object(object)
             self.g.write("  </objects>\n")
@@ -536,7 +532,7 @@ class XmlWriter:
     def write_id(self,label,person,index=1):
         if person:
             self.g.write('%s<%s id="%s"' % ("  "*index,label,person.get_gramps_id()))
-            comp = person.get_complete()
+            comp = person.get_complete_flag()
             if comp:
                 self.g.write(' complete="1"')
             self.g.write('>\n')
@@ -544,7 +540,7 @@ class XmlWriter:
     def write_family_handle(self,family,index=1):
         if family:
             rel = family.get_relationship()
-            comp = family.get_complete()
+            comp = family.get_complete_flag()
             sp = "  " * index
             self.g.write('%s<family id="%s"' % (sp,family.get_handle()))
             if comp:

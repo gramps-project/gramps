@@ -556,11 +556,11 @@ class GedcomWriter:
             self.nl = self.option_box.nl
             
             if self.option_box.cfilter == None:
-                for p in self.db.get_person_keys():
+                for p in self.db.get_person_handles(sort_handles=False):
                     self.plist[p] = 1
             else:
                 try:
-                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_keys()):
+                    for p in self.option_box.cfilter.apply(self.db, self.db.get_person_handles(sort_handles=False)):
                         self.plist[p] = 1
                 except Errors.FilterError, msg:
                     (m1,m2) = msg.messages()
@@ -582,7 +582,7 @@ class GedcomWriter:
         self.copy = 0
         self.images = 0
 
-        for p in self.db.get_person_keys():
+        for p in self.db.get_person_handles(sort_handles=False):
             self.plist[p] = 1
 
         gedmap = GedcomInfo.GedcomInfoDB()

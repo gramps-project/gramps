@@ -124,7 +124,7 @@ class GrampsBSDDB(GrampsDbBase):
         self.env        = None
         self.metadata   = None
 
-    def get_surnames(self):
+    def get_surname_list(self):
         names = self.surnames.keys()
         a = {}
         for name in names:
@@ -133,7 +133,7 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return vals
 
-    def get_eventnames(self):
+    def get_person_event_type_list(self):
         names = self.eventnames.keys()
         a = {}
         for name in names:
@@ -142,20 +142,26 @@ class GrampsBSDDB(GrampsDbBase):
         vals.sort()
         return vals
 
-    def remove_person_handle(self,handle,transaction):
+    def remove_person(self,handle,transaction):
         self.genderStats.uncount_person (self.person_map[handle])
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
         self.person_map.delete(handle)
 
-    def remove_source_handle(self,handle,transaction):
+    def remove_source(self,handle,transaction):
         if transaction != None:
             old_data = self.source_map.get(str(handle))
             transaction.add(SOURCE_KEY,handle,old_data)
         self.source_map.delete(str(handle))
 
-    def remove_event_handle(self,handle,transaction):
+    def remove_family_handle(self,handle,transaction):
+        if transaction != None:
+            old_data = self.family_map.get(str(handle))
+            transaction.add(FAMILY_KEY,handle,old_data)
+        self.family_map.delete(str(handle))
+
+    def remove_event(self,handle,transaction):
         if transaction != None:
             old_data = self.event_map.get(str(handle))
             transaction.add(EVENT_KEY,handle,old_data)

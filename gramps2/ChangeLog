@@ -1,3 +1,6 @@
+2004-08-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* various: Updated cleaned up API
+
 2004-08-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GenericFilter.py: fixed find/get_family_from_handle
 	* src/WriteGedcom.py: fixed find/get_family_from_handle

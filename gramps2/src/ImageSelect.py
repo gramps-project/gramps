@@ -168,8 +168,8 @@ class ImageSelect:
 
         already_imported = None
 
-        trans = self.db.start_transaction()
-        for o_id in self.db.get_object_keys():
+        trans = self.db.transaction_begin()
+        for o_id in self.db.get_media_object_handles():
             o = self.db.get_object_from_handle(o_id)
             if o.get_path() == filename:
                 already_imported = o
@@ -194,7 +194,7 @@ class ImageSelect:
             mobj.set_path(filename)
             self.db.commit_media_object(mobj,trans)
 
-        self.db.add_transaction(trans,'Edit Media Objects')
+        self.db.transaction_commit(trans,'Edit Media Objects')
             
         self.parent.lists_changed = 1
         self.load_images()
@@ -819,9 +819,9 @@ class LocalMediaProperties:
             self.parent.lists_changed = 1
             self.parent.parent.lists_changed = 1
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         self.db.commit_media_object(self.object,trans)
-        self.db.add_transaction(trans,_("Edit Media Object"))
+        self.db.transaction_commit(trans,_("Edit Media Object"))
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1056,25 +1056,25 @@ class GlobalMediaProperties:
         self.refmodel = ListModel.ListModel(self.change_dialog.get_widget("refinfo"),
                                             titles,event_func=self.button_press)
         any = 0
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
                     self.refmodel.add([_("Person"),p.get_handle(),GrampsCfg.get_nameof()(p)])
                     any = 1
-        for key in self.db.get_family_keys():
+        for key in self.db.get_family_handles():
             p = self.db.find_family_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
                     self.refmodel.add([_("Family"),p.get_handle(),Utils.family_name(p,self.db)])
                     any = 1
-        for key in self.db.get_source_keys():
+        for key in self.db.get_source_handles():
             p = self.db.get_source_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
                     self.refmodel.add([_("Source"),p.get_handle(),p.get_title()])
                     any = 1
-        for key in self.db.get_place_handle_keys():
+        for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key)
             for o in p.get_media_list():
                 if o.get_reference_handle() == self.object.get_handle():
@@ -1111,9 +1111,9 @@ class GlobalMediaProperties:
             self.object.set_source_reference_list(self.srcreflist)
         if self.update != None:
             self.update()
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         self.db.commit_media_object(self.object,trans)
-        self.db.add_transaction(trans,_("Edit Media Object"))
+        self.db.transaction_commit(trans,_("Edit Media Object"))
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1167,9 +1167,9 @@ class DeleteMediaQuery:
         self.update = update
         
     def query_response(self):
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             nl = []
             change = 0
@@ -1182,7 +1182,7 @@ class DeleteMediaQuery:
                 p.set_media_list(nl)
                 self.db.commit_person(p,trans)
 
-        for fid in self.db.get_family_keys():
+        for fid in self.db.get_family_handles():
             p = self.db.find_family_from_handle(fid)
             nl = []
             change = 0
@@ -1195,7 +1195,7 @@ class DeleteMediaQuery:
                 p.set_media_list(nl)
                 self.db.commit_family(p,trans)
 
-        for key in self.db.get_source_keys():
+        for key in self.db.get_source_handles():
             sid = self.db.get_source_from_handle(key)
             nl = []
             change = 0
@@ -1208,7 +1208,7 @@ class DeleteMediaQuery:
                 p.set_media_list(nl)
                 self.db.commit_source(p,trans)
 
-        for key in self.db.get_place_handle_keys():
+        for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key)
             nl = []
             change = 0
@@ -1222,7 +1222,7 @@ class DeleteMediaQuery:
                 self.db.commit_place(p,trans)
 
         self.db.remove_object(self.media.get_handle(),trans)
-        self.db.add_transaction(trans,_("Remove Media Object"))
+        self.db.transaction_commit(trans,_("Remove Media Object"))
         if self.update:
             self.update()
 

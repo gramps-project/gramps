@@ -93,11 +93,11 @@ class RelCalc:
                                                        ('',-1,0),('',-1,0)],
                                          self.on_apply_clicked)
         self.clist.new_model()
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             if p == self.person:
                 continue
-            val = self.db.get_person_display(key)
+            val = self.db.get_person_from_handle(key).get_display_info()
             self.clist.add([val[0],val[1],val[3],val[5],val[6]],p.get_handle())
 
         self.clist.connect_model()

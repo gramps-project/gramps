@@ -186,11 +186,11 @@ class PlaceView:
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
         
-        trans = self.parent.db.start_transaction()
+        trans = self.parent.db.transaction_begin()
         
         for place in mlist:
             used = 0
-            for key in self.parent.db.get_person_keys():
+            for key in self.parent.db.get_person_handles(sort_handles=False):
                 p = self.parent.db.get_person_from_handle(key)
                 event_list = []
                 for e in [p.get_birth_handle(),p.get_death_handle()] + p.get_event_list():
@@ -207,7 +207,7 @@ class PlaceView:
                     if event.get_place_handle() == place.get_handle():
                         used = 1
 
-            for fid in self.parent.db.get_family_keys():
+            for fid in self.parent.db.get_family_handles():
                 f = self.parent.db.find_family_from_handle(fid)
                 event_list = []
                 for e in f.get_event_list():
@@ -230,9 +230,9 @@ class PlaceView:
                                _('_Delete Place'),
                                ans.query_response)
             else:
-                trans = self.parent.db.start_transaction()
+                trans = self.parent.db.transaction_begin()
                 self.parent.db.remove_place(place.get_handle(),trans)
-                self.parent.db.add_transaction(trans,_("Delete Place (%s)") % place.title())
+                self.parent.db.transaction_commit(trans,_("Delete Place (%s)") % place.title())
                 self.build_tree()
 
     def on_edit_clicked(self,obj):

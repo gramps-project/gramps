@@ -408,7 +408,7 @@ class RelGraphDialog(Report.ReportDialog):
 
         try:
             self.individual_set =\
-                Set(self.filter.apply(self.db, self.db.get_person_keys()))
+                Set(self.filter.apply(self.db, self.db.get_person_handles(sort_handles=False)))
             self.individual_set.add(self.person.get_handle())
         except Errors.FilterError, msg:
             from QuestionDialog import ErrorDialog
@@ -586,7 +586,7 @@ def _write_graph_record (self):
         filter = GenericFilter.GenericFilter()
         filter.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle()]))
         natural_relatives =\
-            Set(filter.apply(self.db, self.db.get_person_keys()))
+            Set(filter.apply(self.db, self.db.get_person_handles(sort_handles=False)))
         natural_relatives.add(self.person.get_handle())
     else:
         natural_relatives = self.individual_set

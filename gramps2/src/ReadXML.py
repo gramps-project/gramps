@@ -152,7 +152,7 @@ def importData(database, filename, callback=None,cl=0):
     img_dir = "%s/%s.images" % (db_dir,db_base)
     first = not os.path.exists(img_dir)
     
-    for m_id in database.get_object_keys():
+    for m_id in database.get_media_object_handles():
         mobject = database.get_object_from_handle(m_id)
         oldfile = mobject.get_path()
         if oldfile[0] != '/':
@@ -176,28 +176,28 @@ def importData(database, filename, callback=None,cl=0):
 #     def remove_clicked():
 #         # File is lost => remove all references and the object itself
 #         mobj = database.find_object_from_handle(NewMediaID)
-#         for fid in database.get_family_keys():
+#         for fid in database.get_family_handles():
 #             p = database.find_family_from_handle(fid)
 #             nl = p.get_media_list()
 #             for o in nl:
 #                 if o.get_reference() == mobj:
 #                     nl.remove(o) 
 #             p.set_media_list(nl)
-#         for key in database.get_person_keys():
+#         for key in database.get_person_handles(sort_handles=False):
 #             p = database.find_person_from_handle(key)
 #             nl = p.get_media_list()
 #             for o in nl:
 #                 if o.get_reference_handle() == mobj.get_handle():
 #                     nl.remove(o) 
 #             p.set_media_list(nl)
-#         for key in database.get_source_keys():
+#         for key in database.get_source_handles():
 #             p = database.find_source_from_handle(key)
 #             nl = p.get_media_list()
 #             for o in nl:
 #                 if o.get_reference_handle() == mobj.get_handle():
 #                     nl.remove(o) 
 #             p.set_media_list(nl)
-#         for key in database.get_place_handle_keys():
+#         for key in database.get_place_handles():
 #             p = database.find_place_from_handle(key)
 #             nl = p.get_media_list()
 #             for o in nl:
@@ -429,13 +429,13 @@ class GrampsParser:
     def map_gid(self,id):
         if not self.idswap.get(id):
             if self.db.id_trans.get(str(id)):
-                self.idswap[id] = self.db.find_next_gramps_id()
+                self.idswap[id] = self.db.find_next_person_gramps_id()
             else:
                 self.idswap[id] = id
         return self.idswap[id]
 
     def parse(self,file):
-        self.trans = self.db.start_transaction()
+        self.trans = self.db.transaction_begin()
         p = xml.parsers.expat.ParserCreate()
         p.StartElementHandler = self.startElement
         p.EndElementHandler = self.endElement
@@ -454,7 +454,7 @@ class GrampsParser:
         del self.func_map
         del self.func_list
         del p
-        self.db.add_transaction(self.trans,_("GRAMPS XML import"))
+        self.db.transaction_commit(self.trans,_("GRAMPS XML import"))
 
     def start_lds_ord(self,attrs):
         type = attrs['type']
@@ -590,9 +590,9 @@ class GrampsParser:
         self.person = self.find_person_by_gramps_id(new_id)
         
         if attrs.has_key("complete"):
-            self.person.set_complete(int(attrs['complete']))
+            self.person.set_complete_flag(int(attrs['complete']))
         else:
-            self.person.set_complete(0)
+            self.person.set_complete_flag(0)
 
     def start_people(self,attrs):
         if attrs.has_key("default"):
@@ -641,9 +641,9 @@ class GrampsParser:
             self.family.set_relationship(_FAMILY_TRANS.get(attrs["type"],
                                                            const.FAMILY_UNKNOWN))
         if attrs.has_key("complete"):
-            self.family.set_complete(int(attrs['complete']))
+            self.family.set_complete_flag(int(attrs['complete']))
         else:
-            self.family.set_complete(0)
+            self.family.set_complete_flag(0)
 
     def start_childof(self,attrs):
         family = self.db.find_family_from_handle(attrs["ref"],self.trans)

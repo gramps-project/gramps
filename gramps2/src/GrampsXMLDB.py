@@ -71,16 +71,16 @@ class GrampsXMLDB(GrampsDbBase):
     def close(self):
         WriteXML.quick_write(self,self.filename)
 
-    def get_surnames(self):
+    def get_surname_list(self):
         a = {}
-        for person_id in self.get_person_keys():
+        for person_id in self.get_person_handles(sort_handles=False):
             p = self.get_person_from_handle(person_id)
             a[p.get_primary_name().get_surname()] = 1
         vals = a.keys()
         vals.sort()
         return vals
 
-    def get_eventnames(self):
+    def get_person_event_type_list(self):
         names = self.eventnames.keys()
         a = {}
         for name in names:
@@ -89,20 +89,26 @@ class GrampsXMLDB(GrampsDbBase):
         vals.sort()
         return vals
 
-    def remove_person_handle(self,handle,transaction):
+    def remove_person(self,handle,transaction):
         self.genderStats.uncount_person (self.person_map[handle])
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)
         del self.person_map[handle]
 
-    def remove_source_handle(self,handle,transaction):
+    def remove_source(self,handle,transaction):
         if transaction != None:
             old_data = self.source_map.get(str(handle))
             transaction.add(SOURCE_KEY,handle,old_data)
         del self.source_map[str(handle)]
 
-    def remove_event_handle(self,handle,transaction):
+    def remove_family_handle(self,handle,transaction):
+        if transaction != None:
+            old_data = self.family_map.get(str(handle))
+            transaction.add(FAMILY_KEY,handle,old_data)
+        del self.family_map[str(handle)]
+
+    def remove_event(self,handle,transaction):
         if transaction != None:
             old_data = self.event_map.get(str(handle))
             transaction.add(EVENT_KEY,handle,old_data)

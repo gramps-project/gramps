@@ -550,10 +550,10 @@ class FamilyView:
     def set_preferred_spouse(self,obj):
         if self.selected_spouse:
             self.person.set_preferred_family_handle(self.family)
-            trans = self.parent.db.start_transaction()
+            trans = self.parent.db.transaction_begin()
             self.parent.db.commit_person(self.person,trans)
             n = self.person.get_primary_name().get_regular_name()
-            self.parent.db.add_transaction(trans,_("Set Preferred Spouse (%s)") % n)
+            self.parent.db.transaction_commit(trans,_("Set Preferred Spouse (%s)") % n)
             self.load_family()
             
     def edit_spouse_callback(self,obj):
@@ -622,7 +622,7 @@ class FamilyView:
         if epo:
             self.parent.db.commit_person(epo.person,trans)
             n = epo.person.get_primary_name().get_regular_name()
-            self.parent.db.add_transaction(trans,_("Add Person (%s)") % n)
+            self.parent.db.transaction_commit(trans,_("Add Person (%s)") % n)
             self.parent.people_view.remove_from_person_list(epo.person)
             self.parent.people_view.redisplay_person_list(epo.person)
 
@@ -632,7 +632,8 @@ class FamilyView:
     def new_spouse_after_edit(self,epo,trans):
 
         self.parent.db.add_person(epo.person,trans)
-        self.family = self.parent.db.new_family(trans)
+        self.family = RelLib.Family()
+        self.parent.db.add_family(self.family,trans)
 
         self.parent.people_view.add_to_person_list(epo.person,0)
         self.person.add_family_handle(self.family.get_handle())
@@ -681,8 +682,11 @@ class FamilyView:
             DisplayTrace.DisplayTrace()
 
     def update_person_list(self,person):
+        trans = self.db.transaction_begin()
+
         if not self.family:
-            self.family = self.parent.db.new_family()
+            self.family = RelLib.Family()
+            self.parent.db.add_family(self.family,trans)
             person.add_family_handle(self.family.get_handle())
             if person.get_gender() == RelLib.Person.male:
                 self.family.set_father_handle(person)
@@ -693,6 +697,9 @@ class FamilyView:
         person.add_parent_family_handle(self.family.get_handle(),"Birth","Birth")
         self.parent.update_person_list(person)
         self.load_family(self.family)
+        self.db.commit_person(person,trans)
+        self.db.commit_family(self.family,trans)
+        self.db.transaction_commit(trans,_("Modify family"))
             
     def new_child_after_edit(self,epo,trans):
         
@@ -700,7 +707,8 @@ class FamilyView:
         self.parent.people_view.add_to_person_list(epo.person,0)
 
         if not self.family:
-            self.family = self.parent.db.new_family()
+            self.family = RelLib.Family()
+            self.parent.db.add_family(self.family,trans)
             self.person.add_family_handle(self.family.get_handle())
             if self.person.get_gender() == RelLib.Person.male:
                 self.family.set_father_handle(self.person.get_handle())
@@ -734,7 +742,7 @@ class FamilyView:
         id = self.child_model.get_value(iter,7)
         child = self.parent.db.get_person_from_handle(id)
 
-        trans = self.parent.db.start_transaction()
+        trans = self.parent.db.transaction_begin()
         
         self.family.remove_child_handle(child.get_handle())
         child.remove_parent_family_handle(self.family.get_handle())
@@ -748,7 +756,7 @@ class FamilyView:
         self.parent.db.commit_person(child,trans)
         self.parent.db.commit_family(self.family,trans)
         n = child.get_primary_name().get_regular_name()
-        self.parent.db.add_transaction(trans,_("Remove Child (%s)") % n)
+        self.parent.db.transaction_commit(trans,_("Remove Child (%s)") % n)
         
         self.load_family()
 
@@ -775,7 +783,7 @@ class FamilyView:
         else:
             self.family.set_mother_handle(None)
 
-        trans = self.parent.db.start_transaction()
+        trans = self.parent.db.transaction_begin()
         
         if self.selected_spouse:
             self.selected_spouse.remove_family_handle(self.family.get_handle())
@@ -796,7 +804,7 @@ class FamilyView:
         else:
             self.load_family(self.family)
         n = self.person.get_primary_name().get_regular_name()
-        self.parent.db.add_transaction(trans,_("Remove Spouse (%s)") % n)
+        self.parent.db.transaction_commit(trans,_("Remove Spouse (%s)") % n)
 
         if len(self.person.get_family_handle_list()) <= 1:
             self.spouse_selection.set_mode(gtk.SELECTION_NONE)
@@ -825,7 +833,7 @@ class FamilyView:
             model, iter = self.ap_selection.get_selected()
             path = model.get_path(iter)
             family_handle,m,r = plist[path[0]]
-        family = self.parent.db.find_family_from_handle(family_handle)
+        family = self.parent.db.get_family_from_handle(family_handle)
 
         if family.get_father_handle():
             person_handle = family.get_father_handle()
@@ -835,9 +843,9 @@ class FamilyView:
         self.parent.change_active_person(person)
 
         n = person.get_primary_name().get_name()
-        trans = self.parent.db.start_transaction()
+        trans = self.parent.db.transaction_begin()
         self.parent.db.commit_family(family,trans)
-        self.parent.db.add_transaction(trans,_("Select Parents (%s)") % n)
+        self.parent.db.transaction_commit(trans,_("Select Parents (%s)") % n)
         self.load_family(family)
 
     def clear(self):
@@ -899,7 +907,7 @@ class FamilyView:
         for f in splist:
             if not f:
                 continue
-            fm = self.parent.db.find_family_from_handle(f,None)
+            fm = self.parent.db.get_family_from_handle(f)
             
             if fm.get_father_handle() == self.person.get_handle():
                 sp_id = fm.get_mother_handle()
@@ -982,7 +990,7 @@ class FamilyView:
             return _("%s: unknown") % (l)
 
     def delete_family_from(self,person):
-        trans = self.parent.db.start_transaction()
+        trans = self.parent.db.transaction_begin()
         person.remove_family_handle(self.family.get_handle(),trans)
         self.parent.db.delete_family(self.family.get_handle(),trans)
         flist = self.person.get_family_handle_list()
@@ -991,7 +999,7 @@ class FamilyView:
         else:
             self.family = None
         n = person.get_primary_name().get_name()
-        self.parent.db.add_transaction(trans,_("Remove from family (%s)") % n)
+        self.parent.db.transaction_commit(trans,_("Remove from family (%s)") % n)
 
     def display_marriage(self,family):
         self.child_model.clear()
@@ -1040,7 +1048,7 @@ class FamilyView:
             
             if fiter == None:
                 fiter = self.child_model.get_path(iter)
-            val = self.parent.db.get_person_display(child.get_handle())
+            val = child.get_display_info()
             i += 1
             
             event = self.parent.db.find_event_from_handle(val[3])
@@ -1267,7 +1275,7 @@ class FamilyView:
         if not person:
             return
 
-        trans = self.parent.db.start_transaction()
+        trans = self.parent.db.transaction_begin()
         plist = person.get_parent_family_handle_list()
 
         if len(plist) == 0:
@@ -1300,7 +1308,7 @@ class FamilyView:
 
         self.parent.db.commit_person(person,trans)
         n = person.get_primary_name().get_regular_name()
-        self.parent.db.add_transaction(trans,_("Remove Parents (%s)") % n)
+        self.parent.db.transaction_commit(trans,_("Remove Parents (%s)") % n)
         
         self.load_family()
 
@@ -1336,9 +1344,9 @@ class FamilyView:
                               _("Children must be ordered by their birth dates."))
                 return
             self.family.set_child_handle_list(list)
-            trans = self.parent.db.start_transaction()
+            trans = self.parent.db.transaction_begin()
             self.parent.db.commit_family(self.family,trans)
-            self.parent.db.add_transaction(trans,_('Reorder children'))
+            self.parent.db.transaction_commit(trans,_('Reorder children'))
             self.display_marriage(self.family)
             
     def drag_data_get(self,widget, context, sel_data, info, time):

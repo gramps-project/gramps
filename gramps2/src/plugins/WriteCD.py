@@ -145,7 +145,7 @@ class PackageWriter:
                                        "2 %s " % str(msg))
             return
 
-        for obj_id in self.db.get_object_keys():
+        for obj_id in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
@@ -200,7 +200,7 @@ class PackageWriter:
         #--------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            for p_id in self.db.get_family_keys():
+            for p_id in self.db.get_family_handles():
                 p = self.db.find_family_from_handle(p_id)
                 nl = p.get_media_list()
                 for o in nl:
@@ -209,7 +209,7 @@ class PackageWriter:
                 p.set_media_list(nl)
                 self.db.commit_family(p,None)
                 
-            for key in self.db.get_person_keys():
+            for key in self.db.get_person_handles(sort_handles=False):
                 p = self.db.get_person_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
@@ -217,7 +217,7 @@ class PackageWriter:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_person(p,None)
-            for key in self.db.get_source_keys():
+            for key in self.db.get_source_handles():
                 p = self.db.get_source_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
@@ -225,7 +225,7 @@ class PackageWriter:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_source(p,None)
-            for key in self.db.get_place_handle_keys():
+            for key in self.db.get_place_handles():
                 p = self.db.get_place_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
@@ -233,7 +233,7 @@ class PackageWriter:
                         nl.remove(o) 
                 p.set_media_list(nl)
                 self.db.commit_place(p,None)
-            for key in self.db.get_event_keys():
+            for key in self.db.get_event_handles():
                 p = self.db.find_event_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
@@ -272,7 +272,7 @@ class PackageWriter:
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
 
-        for obj_id in self.db.get_object_keys():
+        for obj_id in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)

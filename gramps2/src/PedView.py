@@ -485,7 +485,7 @@ class PedigreeView:
         if depth > 5 or person == None:
             return
 
-        (family_handle,m,f) = person.get_main_parents_family_handleRel()
+        (family_handle,m,f) = person.get_main_parents_family_handle()
         if family_handle:
             mrel = (m != "Birth")
             frel = (f != "Birth")

@@ -95,7 +95,7 @@ class DescendantReport:
         else:
             self.standalone = 0
 
-        plist = self.database.get_person_keys()
+        plist = self.database.get_person_handles(sort_handles=False)
         self.layout = GraphLayout.DescendLine(self.database,plist,person.get_handle())
         (self.v,self.e) = self.layout.layout()
         

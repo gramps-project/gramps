@@ -136,7 +136,7 @@ class PeopleModel(gtk.GenericTreeModel):
         if not self.db.is_open():
             return
 
-        for person_handle in self.db.get_person_keys():
+        for person_handle in self.db.get_person_handles(sort_handles=False):
 
             person = self.db.get_person_from_handle(person_handle)
             surname = unicode(person.get_primary_name().get_surname())
@@ -147,7 +147,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 self.sname_sub[surname] = [person_handle]
 
         sval = 0
-        name_list = self.db.get_surnames()
+        name_list = self.db.get_surname_list()
         for name in name_list:
             if self.sname_sub.has_key(name):
                 self.top_iter2path[name] = (sval,)
@@ -181,7 +181,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
             inscol = 0
             sval = 0
-            name_list = self.db.get_surnames()
+            name_list = self.db.get_surname_list()
             for name in name_list:
                 if self.sname_sub.has_key(name):
                     self.top_iter2path[name] = (sval,)

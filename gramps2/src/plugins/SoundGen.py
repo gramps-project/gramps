@@ -68,7 +68,7 @@ class SoundGen:
         self.name.connect('changed',self.on_apply_clicked)
 
         names = []
-        for person_handle in self.db.get_person_keys():
+        for person_handle in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(person_handle)
             lastname = person.get_primary_name().get_surname()
             if lastname not in names:

@@ -195,7 +195,7 @@ class SelectChild:
                     slist[c] = 1
             
         person_list = []
-        for key in self.db.sort_person_keys():
+        for key in self.db.get_person_handles(sort_handles=True):
             person = self.db.get_person_from_handle(key)
             if filter:
                 if slist.has_key(key) or person.get_main_parents_family_handle():
@@ -243,7 +243,7 @@ class SelectChild:
 
         iter = None
         for idval in person_list:
-            dinfo = self.db.get_person_display(idval)
+            dinfo = self.db.get_person_from_handle(idval).get_display_info()
             rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
             new_iter = self.refmodel.add(rdata)
             names = dinfo[0].split(',')
@@ -282,9 +282,12 @@ class SelectChild:
                         _("A person cannot be linked as his/her own child"),
                         self.top)
             return
+
+        trans = self.db.transaction_begin()
         
         if self.family == None:
-            self.family = self.db.new_family()
+            self.family = RelLib.Family()
+            self.db.add_family(self.family,trans)
             self.person.add_family_handle(self.family.get_handle())
             if self.person.get_gender() == RelLib.Person.male:
                 self.family.set_father_handle(self.person)
@@ -313,11 +316,10 @@ class SelectChild:
 
         select_child.add_parent_family_handle(self.family.get_handle(),mrel,frel)
 
-        trans = self.db.start_transaction()
         self.db.commit_person(select_child,trans)
         self.db.commit_family(self.family,trans)
         n = select_child.get_primary_name().get_regular_name()
-        self.db.add_transaction(trans,_("Add Child to Family (%s)") % n)
+        self.db.transaction_commit(trans,_("Add Child to Family (%s)") % n)
 
         self.redraw(self.family)
         self.close(obj)
@@ -449,10 +451,10 @@ class EditRel:
                 frel = "Unknown"
 
         self.child.change_parent_family_handle(self.family.get_handle(),mrel,frel)
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         self.db.commit_person(self.child,trans)
         n = self.child.get_primary_name().get_regular_name()
-        self.db.add_transaction(trans,_("Parent Relationships (%s)") % n)
+        self.db.transaction_commit(trans,_("Parent Relationships (%s)") % n)
         
         self.update()
         self.top.destroy()

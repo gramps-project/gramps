@@ -316,7 +316,7 @@ class ChooseParents:
         self.father_nsort.reset_visible()
         self.build_exclude_list()
         
-        for pid in self.db.get_person_keys():
+        for pid in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(pid)
             visible = self.father_filter(person)
             if visible:
@@ -339,7 +339,7 @@ class ChooseParents:
         self.mother_nsort.reset_visible()
         self.build_exclude_list()
         
-        for pid in self.db.get_person_keys():
+        for pid in self.db.get_person_handles(sort_handles=False):
             person = self.db.get_person_from_handle(pid)
             visible = self.mother_filter(person)
             if visible:
@@ -385,7 +385,7 @@ class ChooseParents:
         if not father_handle and not mother_handle:
             return None
 	
-        for family_handle in self.db.get_family_keys():
+        for family_handle in self.db.get_family_handles():
             family = self.db.find_family_from_handle(family_handle)
             if family.get_father_handle() == father_handle and family.get_mother_handle() == mother_handle:
                 family.add_child_handle(self.person.get_handle())
@@ -396,10 +396,11 @@ class ChooseParents:
                 self.db.commit_family(family,trans)
                 return family
 
-        family = self.db.new_family(trans)
+        family = RelLib.Family()
         family.set_father_handle(father_handle)
         family.set_mother_handle(mother_handle)
         family.add_child_handle(self.person.get_handle())
+        self.db.add_family(family,trans)
 
         if father_handle:
             self.father = self.db.get_person_from_handle(father_handle)
@@ -515,7 +516,7 @@ class ChooseParents:
         except KeyError:
             father_rel = const.child_relations.find_value("Birth")
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         if self.father or self.mother:
             if self.mother and not self.father:
                 if self.mother.get_gender() == RelLib.Person.male:
@@ -561,7 +562,7 @@ class ChooseParents:
             self.change_family_type(self.family,mother_rel,father_rel)
             self.db.commit_family(self.family,trans)
         self.family_update(None)
-        self.db.add_transaction(trans,_("Choose Parents"))
+        self.db.transaction_commit(trans,_("Choose Parents"))
         self.close(obj)
 
     def add_new_parent(self,epo,trans):
@@ -625,14 +626,14 @@ class ChooseParents:
         else:
             self.person.add_parent_family_handle(family.get_handle(),mother_rel,father_rel)
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         self.db.commit_person(self.person,trans)
         self.db.commit_family(family,trans)
         if self.father:
             self.db.commit_person(self.father,trans)
         if self.mother:
             self.db.commit_person(self.mother,trans)
-        self.db.add_transaction(trans,_("Choose Parents"))
+        self.db.transaction_commit(trans,_("Choose Parents"))
 
 class ModifyParents:
     def __init__(self,db,person,family_handle,family_update,full_update,parent_window=None):
@@ -752,7 +753,7 @@ class ModifyParents:
                     mod = 1
 
         if mod:
-            trans = self.db.start_transaction()
+            trans = self.db.transaction_begin()
             self.db.commit_person(self.person,trans)
-            self.db.add_transaction(trans,_("Modify Parents"))
+            self.db.transaction_commit(trans,_("Modify Parents"))
             self.family_update(None)

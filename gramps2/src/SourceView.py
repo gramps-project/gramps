@@ -76,10 +76,7 @@ class SourceView:
 
         self.renderer = gtk.CellRendererText()
 
-        if const.nosort_tree:
-            self.model = DisplayModels.SourceModel(self.parent.db)
-        else:
-            self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.parent.db))
+        self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.parent.db))
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
 
@@ -92,9 +89,8 @@ class SourceView:
             
         column = gtk.TreeViewColumn(_('Title'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)
-        if not const.nosort_tree:
-            column.set_clickable(gtk.TRUE)
-            column.set_sort_column_id(0)
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(0)
         column.set_min_width(225)
         self.list.append_column(column)
         self.columns = [column]
@@ -106,9 +102,8 @@ class SourceView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            if not const.nosort_tree:
-                column.set_clickable(gtk.TRUE)
-                column.set_sort_column_id(index)
+            column.set_clickable(gtk.TRUE)
+            column.set_sort_column_id(index)
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
@@ -123,10 +118,7 @@ class SourceView:
 
     def build_tree(self):
         self.list.set_model(None)
-        if const.nosort_tree:
-            self.model = DisplayModels.SourceModel(self.parent.db)
-        else:
-            self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.parent.db))
+        self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.parent.db))
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
 
@@ -197,19 +189,19 @@ class SourceView:
                            _('_Delete Source'),
                            ans.query_response,self.topWindow)
         else:
-            trans = self.parent.db.start_transaction()
-            self.parent.db.remove_source_handle(source.get_handle(),trans)
+            trans = self.parent.db.transaction_begin()
+            self.parent.db.remove_source(source.get_handle(),trans)
             n = source.get_title()
-            self.parent.db.add_transaction(trans,_("Delete Source (%s)") % n)
+            self.parent.db.transaction_commit(trans,_("Delete Source (%s)") % n)
             self.build_tree()
 
     def is_used(self,source):
-        for key in self.parent.db.get_place_handle_keys():
+        for key in self.parent.db.get_place_handles():
             p = self.parent.db.get_place_from_handle(key)
             for sref in p.get_source_references():
                 if sref.get_base_handle() == source.get_handle():
                     return 1
-        for key in self.parent.db.get_person_keys():
+        for key in self.parent.db.get_person_handles(sort_handles=False):
             p = self.parent.db.get_person_from_handle(key)
             for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
                 v = self.parent.db.find_event_from_handle(v_id)
@@ -229,12 +221,12 @@ class SourceView:
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == source.get_handle():
                         return 1
-        for p_id in self.parent.db.get_object_keys():
+        for p_id in self.parent.db.get_media_object_handles():
             p = self.parent.db.get_object_from_handle(p_id)
             for sref in p.get_source_references():
                 if sref.get_base_handle() == source.get_handle():
                     return 1
-        for p_id in self.parent.db.get_family_keys():
+        for p_id in self.parent.db.get_family_handles():
             p = self.parent.db.find_family_from_handle(p_id)
             for v_id in p.get_event_list():
                 v = self.parent.db.find_event_from_handle(v_id)

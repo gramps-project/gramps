@@ -325,7 +325,7 @@ class GraphVizDialog(Report.ReportDialog):
         file = open(self.target_path,"w")
 
         try:
-            ind_list = self.filter.apply(self.db, self.db.get_person_keys())
+            ind_list = self.filter.apply(self.db, self.db.get_person_handles(sort_handles=False))
         except Errors.FilterError, msg:
             from QuestionDialog import ErrorDialog
             (m1,m2) = msg.messages()

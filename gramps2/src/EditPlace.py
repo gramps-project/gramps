@@ -201,7 +201,7 @@ class EditPlace:
                                            self.top_window.get_widget('edit_src'),
                                            self.top_window.get_widget('del_src'))
         
-        if self.place.get_handle() == "":
+        if self.place.get_handle() == None:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -368,9 +368,9 @@ class EditPlace:
 
         self.update_lists()
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         self.db.commit_place(self.place,trans)
-        self.db.add_transaction(trans,_("Edit Place (%s)") % self.place.get_title())
+        self.db.transaction_commit(trans,_("Edit Place (%s)") % self.place.get_title())
         
         if self.callback:
             self.callback(self.place)
@@ -477,13 +477,13 @@ class EditPlace:
         pevent = []
         fevent = []
         msg = ""
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place:
                     pevent.append((p,event))
-        for family_handle in self.db.get_family_keys():
+        for family_handle in self.db.get_family_handles():
             f = self.db.get_family_from_handle(family_handle)
             for event_handle in f.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
@@ -555,11 +555,11 @@ class DeletePlaceQuery:
         self.update = update
         
     def query_response(self):
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         
         self.db.remove_place(self.place.get_handle(),trans)
 
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
@@ -567,7 +567,7 @@ class DeletePlaceQuery:
                     event.set_place_handle(None)
                     self.db.commit_event(event,trans)
 
-        for fid in self.db.get_family_keys():
+        for fid in self.db.get_family_handles():
             f = self.db.get_family_from_handle(fid)
             for event_handle in f.get_event_list():
                 event = self.db.find_event_from_handle(event_handle)
@@ -575,5 +575,5 @@ class DeletePlaceQuery:
                     event.set_place_handle(None)
                     self.db.commit_event(event,trans)
 
-        self.db.add_transaction(trans,_("Delete Place (%s)") % self.place.get_title())
+        self.db.transaction_commit(trans,_("Delete Place (%s)") % self.place.get_title())
         self.update(None)

@@ -125,7 +125,7 @@ class Verify:
 
     def on_apply_clicked(self,obj):
 
-        personList = self.db.get_person_keys()
+        personList = self.db.get_person_handles(sort_handles=False)
 
         oldage = int(self.top.get_widget("oldage").get_text())
         hwdif = int(self.top.get_widget("hwdif").get_text())

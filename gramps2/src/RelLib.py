@@ -1,4 +1,4 @@
-#
+
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2004  Donald N. Allingham
@@ -60,41 +60,47 @@ CONF_VERY_LOW  = 0
 
 #-------------------------------------------------------------------------
 #
-# Primary Object
+# Class definitions
 #
 #-------------------------------------------------------------------------
 
 class PrimaryObject:
+    """
+    The base class for all primary objects in the database. Primary objects
+    are the core objects in the database. Each object has a database handle
+    and a GRAMPS ID value. The database handle is used as the record number
+    for the database, and the GRAMPS ID is the user visible version.
+    """
 
     def __init__(self,source=None):
+        """
+        Initialize a PrimaryObject. If source is None, both the ID and handle
+        are assigned as empty strings. If source is not None, then object
+        is initialized from values of the source object.
+        """
         if source:
             self.gramps_id = source.gramps_id
             self.handle = source.handle
         else:
-            self.gramps_id = ""
-            self.handle = ""
+            self.gramps_id = None
+            self.handle = None
 
     def set_handle(self,handle):
-        """Sets the database handle for the place object"""
+        """Sets the database handle for the primary object"""
         self.handle = handle
 
     def get_handle(self):
-        """Returns the database handle for the place object"""
+        """Returns the database handle for the primary object"""
         return self.handle
 
     def set_gramps_id(self,gramps_id):
-        """Sets the GRAMPS ID for the place object"""
+        """Sets the GRAMPS ID for the primary object"""
         self.gramps_id = gramps_id
 
     def get_gramps_id(self):
-        """Returns the GRAMPS ID for the place object"""
+        """Returns the GRAMPS ID for the primary object"""
         return self.gramps_id
 
-#-------------------------------------------------------------------------
-#
-# SourceNote
-#
-#-------------------------------------------------------------------------
 class SourceNote:
     """Base class for storing source references and notes"""
     
@@ -102,16 +108,13 @@ class SourceNote:
         """Create a new SourceNote, copying from source if not None"""
         
         self.source_list = []
+        self.note = None
 
         if source:
             for sref in source.source_list:
                 self.source_list.append(SourceRef(sref))
             if source.note:
                 self.note = Note(source.note.get())
-            else:
-                self.note = None
-        else:
-            self.note = None
 
     def add_source_reference(self,handle) :
         """Set the source reference"""
@@ -162,126 +165,6 @@ class SourceNote:
         """Creates a unique instance of the current note"""
         self.note = Note(self.note.get())
 
-#-------------------------------------------------------------------------
-#
-# LdsOrd
-#
-#-------------------------------------------------------------------------
-class LdsOrd(SourceNote):
-    """LDS Ordinance support"""
-    def __init__(self,source=None):
-        """Creates a LDS Ordinance instance"""
-        SourceNote.__init__(self,source)
-        if source:
-            self.famc = source.famc
-            self.date = Date(source.date)
-            self.temple = source.temple
-            self.status = source.status
-            self.place = source.place
-        else:
-            self.famc = None
-            self.date = None
-            self.temple = ""
-            self.status = 0
-            self.place = None
-
-    def get_place_name(self):
-        """returns the title of the Place associated with the Ordinance"""
-        if self.place:
-            return self.place.get_title()
-        else:
-            return ""
-
-    def set_place_handle(self,place):
-        """sets the Place instance of the Event"""
-        self.place = place
-
-    def get_place_handle(self):
-        """returns the Place instance of the Event"""
-        return self.place 
-
-    def set_family_handle(self,family):
-        """Sets the family associated with the LDS ordinance"""
-        self.famc = family
-
-    def get_family_handle(self):
-        """Gets the family associated with the LDS ordinance"""
-        return self.famc
-
-    def set_status(self,val):
-        """Sets the status of the LDS ordinance"""
-        self.status = val
-
-    def get_status(self):
-        """Gets the status of the LDS ordinance"""
-        return self.status
-
-    def set_date(self, date) :
-        """attempts to sets the date of the LdsOrd instance"""
-        if not self.date:
-            self.date = Date()
-        self.date.set(date)
-
-    def get_date(self) :
-        """returns a string representation of the date of the LdsOrd instance"""
-        if self.date:
-            return self.date.get_date()
-        return ""
-
-    def get_date_object(self):
-        """returns the Date object associated with the LdsOrd"""
-        if not self.date:
-            self.date = Date()
-       	return self.date
-
-    def set_date_object(self,date):
-        """sets the Date object associated with the LdsOrd"""
-        self.date = date
-
-    def set_temple(self,temple):
-        """Sets the temple assocated with the LDS ordinance"""
-        self.temple = temple
-
-    def get_temple(self):
-        """Gets the temple assocated with the LDS ordinance"""
-        return self.temple
-
-    def is_empty(self):
-        """Returns 1 if the LDS ordidance is actually empty"""
-        if (self.famc or 
-                (self.date and not self.date.is_empty()) or 
-                self.temple or 
-                self.status or 
-                self.place):
-            return 0
-        else:
-            return 1
-        
-    def are_equal(self,other):
-        """returns 1 if the specified ordinance is the same as the instance"""
-        if other == None:
-            return self.is_empty()
-        if (self.famc != other.famc or
-            self.place != other.place or
-            self.status != other.status or
-            self.temple != other.temple or
-            compare_dates(self.get_date_object(),other.get_date_object()) or
-            len(self.get_source_references()) != len(other.get_source_references())):
-            return 0
-
-        index = 0
-        olist = other.get_source_references()
-        for a in self.get_source_references():
-            if not a.are_equal(olist[index]):
-                return 0
-            index = index + 1
-        return 1
-
-#-------------------------------------------------------------------------
-#
-# DataObj
-#
-#-------------------------------------------------------------------------
 class DataObj(SourceNote):
     """Base class for data elements, providing source, note, and privacy data"""
 
@@ -302,11 +185,821 @@ class DataObj(SourceNote):
         """Returns the privacy level of the data"""
         return self.private
 
-#-------------------------------------------------------------------------
-#
-# Place
-#
-#-------------------------------------------------------------------------
+class Person(PrimaryObject,SourceNote):
+    """
+    GRAMPS Person record. Represents an individual person. Contains all
+    information about the person, including names, events, attributes,
+    and other information.
+    """
+    
+    unknown = 2
+    male = 1
+    female = 0
+
+    def __init__(self,handle=""):
+        """creates a new Person instance"""
+        PrimaryObject.__init__(self)
+        SourceNote.__init__(self)
+        self.primary_name = Name()
+        self.event_list = []
+        self.family_list = []
+        self.parent_family_list = []
+        self.media_list = []
+        self.nickname = ""
+        self.alternate_names = []
+        self.gender = Person.unknown
+        self.death_handle = None
+        self.birth_handle = None
+        self.address_list = []
+        self.attribute_list = []
+        self.urls = []
+        self.lds_bapt = None
+        self.lds_endow = None
+        self.lds_seal = None
+        self.complete = 0
+
+        # We hold a reference to the GrampsDB so that we can maintain
+        # its genderStats.  It doesn't get set here, but from
+        # GenderStats.count_person.
+        self.db = None
+        
+    def serialize(self):
+        """
+        Converts the data held in the event to a Python tuple that
+        represents all the data elements. This method is used to convert
+        the object into a form that can easily be saved to a database.
+
+        These elements may be primative Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objectes or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+        """
+        return (self.handle, self.gramps_id, self.gender, 
+                self.primary_name, self.alternate_names, self.nickname, 
+                self.death_handle, self.birth_handle, self.event_list,
+                self.family_list, self.parent_family_list,
+                self.media_list, self.address_list, self.attribute_list,
+                self.urls, self.lds_bapt, self.lds_endow, self.lds_seal,
+                self.complete, self.source_list, self.note)
+
+    def unserialize(self,data):
+        """
+        Converts the data held in a tuple created by the serialize method
+        back into the data in an Event structure.
+        """
+        (self.handle, self.gramps_id, self.gender, self.primary_name,
+         self.alternate_names, self.nickname, self.death_handle,
+         self.birth_handle, self.event_list, self.family_list,
+         self.parent_family_list, self.media_list, self.address_list,
+         self.attribute_list, self.urls, self.lds_bapt, self.lds_endow,
+         self.lds_seal, self.complete, self.source_list, self.note) = data
+            
+    def set_complete_flag(self,val):
+        """
+        Sets or clears the complete flag, which is used to indicate that the
+        Person's data is considered to be complete.
+        """
+        self.complete = val
+
+    def get_complete_flag(self):
+        """
+        Gets the complete flag, which is used to indicate that the
+        Person's data is considered to be complete.
+        """
+        return self.complete
+
+    def get_display_info(self):
+        """
+        Returns a list consisting of the information typically used for a display.
+        The data consists of: Display Name, ID, Gender, Date of Birth,
+        Date of Death, sort name, etc.
+        """
+        if self.gender == Person.male:
+            gender = const.male
+        elif self.gender == Person.female:
+            gender = const.female
+        else:
+            gender = const.unknown
+        bday = self.birth_handle
+        dday = self.death_handle
+        return [ GrampsCfg.get_display_name()(self), self.gramps_id,
+                 gender, bday, dday, self.get_primary_name().get_sort_name(),
+                 bday, dday, GrampsCfg.get_display_surname()(self.primary_name)]
+                                          
+    def set_primary_name(self,name):
+        """sets the primary name of the Person to the specified
+        Name instance"""
+        db = self.db
+        if db:
+            db.genderStats.uncount_person (self)
+        self.primary_name = name
+        if db:
+            db.genderStats.count_person (self, db)
+
+    def get_primary_name(self):
+        """returns the Name instance marked as the Person's primary name"""
+        return self.primary_name
+
+    def get_alternate_names(self):
+        """returns the list of alternate Names"""
+        return self.alternate_names
+
+    def set_alternate_names(self,list):
+        """changes the list of alternate names to the passed list"""
+        self.alternate_names = list
+
+    def add_alternate_name(self,name):
+        """adds an alternate Name instance to the list"""
+        self.alternate_names.append(name)
+
+    def get_url_list(self):
+        """returns the list of URL instances"""
+        return self.urls
+
+    def set_url_list(self,list):
+        """sets the list of URL instances to list"""
+        self.urls = list
+
+    def add_url(self,url):
+        """adds a URL instance to the list"""
+        self.urls.append(url)
+    
+    def set_nick_name(self,name):
+        """sets the nickname for the Person"""
+        self.nickname = name
+
+    def get_nick_name(self) :
+        """returns the nickname for the Person"""
+        return self.nickname
+
+    def set_gender(self,val) :
+        """sets the gender of the Person"""
+        db = self.db
+        if db:
+            db.genderStats.uncount_person (self)
+        self.gender = val
+        if db:
+            db.genderStats.count_person (self, db)
+
+    def get_gender(self) :
+        """returns the gender of the Person"""
+        return self.gender
+
+    def set_birth_handle(self,event_handle) :
+        """sets the birth event to the passed event"""
+        self.birth_handle = event_handle
+
+    def set_death_handle(self,event_handle) :
+        """sets the death event to the passed event"""
+        self.death_handle = event_handle
+
+    def get_birth_handle(self) :
+        """returns the birth event"""
+        return self.birth_handle
+
+    def get_death_handle(self) :
+        """returns the death event"""
+        return self.death_handle
+
+    def add_media_reference(self,media_id):
+        """adds a MediaObject instance to the image list"""
+        self.media_list.append(media_id)
+
+    def get_media_list(self):
+        """returns the list of MediaObjects"""
+        return self.media_list
+
+    def set_media_list(self,list):
+        """Sets the list of MediaObject objects"""
+        self.media_list = list
+
+    def add_event_handle(self,event_handle):
+        """adds an Event to the event list"""
+        self.event_list.append(event_handle)
+
+    def get_event_list(self):
+        """returns the list of Event instances"""
+        return self.event_list
+
+    def set_event_list(self,elist):
+        """sets the event list to the passed list"""
+        self.event_list = elist
+
+    def add_family_handle(self,family_handle):
+        """adds the specified Family instance to the list of
+        families/marriages/partnerships in which the person is a
+        parent or spouse"""
+
+        self.family_list.append(family_handle)
+
+    def set_preferred_family_handle(self,family):
+        if family in self.family_list:
+            self.family_list.remove(family)
+            self.family_list = [family] + self.family_list
+
+    def get_family_handle_list(self) :
+        """returns the list of Family instances in which the
+        person is a parent or spouse"""
+        return self.family_list
+
+    def clear_family_handle_list(self) :
+        """
+        Removes all familyts from the family list.
+        """
+        self.family_list = []
+
+    def remove_family_handle(self,family):
+        """removes the specified Family instance from the list
+        of marriages/partnerships"""
+        if family in self.family_list:
+            self.family_list.remove(family)
+
+    def add_address(self,address):
+        """adds the Address instance to the list of addresses"""
+        self.address_list.append(address)
+
+    def remove_address(self,address):
+        """removes the Address instance from the list of addresses"""
+        if address in self.address_list:
+            self.address_list.remove(address)
+
+    def get_address_list(self):
+        """returns the list of addresses"""
+        return self.address_list
+
+    def set_address_list(self,alist):
+        """sets the address list to the specified list"""
+        self.address_list = alist
+
+    def add_attribute(self,attribute):
+        """adds an Attribute instance to the attribute list"""
+        self.attribute_list.append(attribute)
+
+    def remove_attribute(self,attribute):
+        """removes the specified Attribute instance from the attribute list"""
+        if attribute in self.attribute_list:
+            self.attribute_list.remove(attribute)
+
+    def get_attribute_list(self):
+        """returns the attribute list"""
+        return self.attribute_list
+
+    def set_attribute_list(self,list):
+        """sets the attribute list to the specified list"""
+        self.attribute_list = list
+
+    def get_parent_family_handle_list(self):
+        """returns the list of alternate Family instances, in which the Person
+        is a child of the family, but not a natural child of both parents"""
+        return self.parent_family_list
+
+    def add_parent_family_handle(self,family,mrel,frel):
+        """adds a Family to the alternate family list, indicating the
+        relationship to the mother (mrel) and the father (frel)"""
+        self.parent_family_list.append((family,mrel,frel))
+
+    def clear_parent_family_handle_list(self):
+        self.parent_family_list = []
+
+    def remove_parent_family_handle(self,family):
+        """removes a Family instance from the alternate family list"""
+        for f in self.parent_family_list[:]:
+            if f[0] == family:
+                self.parent_family_list.remove(f)
+                return f
+        else:
+            return None
+
+    def change_parent_family_handle(self,family,mrel,frel):
+        """removes a Family instance from the alternate family list"""
+        index = 0
+        for f in self.parent_family_list[:]:
+            if f[0] == family:
+                self.parent_family_list[index] = (family,mrel,frel)
+            index += 1
+
+    def has_family(self,family):
+        for f in self.parent_family_list:
+            if f[0] == family:
+                return f
+        else:
+            return None
+
+    def set_main_parent_family_handle(self,family):
+        """sets the main Family of the Person, the Family in which the
+        Person is a natural born child"""
+        f = self.remove_parent_family_handle(family)
+        if f:
+            self.parent_family_list = [f] + self.parent_family_list
+        
+    def get_main_parents_family_handle(self):
+        """returns the main Family of the Person, the Family in which the
+        Person is a natural born child"""
+        if len(self.parent_family_list) == 0:
+            return None
+        else:
+            return self.parent_family_list[0][0]
+
+    def get_main_parents_family_handle(self):
+        """returns the main Family of the Person, the Family in which the
+        Person is a natural born child"""
+        if len(self.parent_family_list) == 0:
+            return (None,None,None)
+        else:
+            return self.parent_family_list[0]
+
+    def set_lds_baptism(self,ord):
+        """Sets the LDS Baptism ordinance"""
+        self.lds_bapt = ord
+
+    def get_lds_baptism(self):
+        """Gets the LDS Baptism ordinance"""
+        return self.lds_bapt
+
+    def set_lds_endowment(self,ord):
+        """Sets the LDS Endowment ordinance"""
+        self.lds_endow = ord
+
+    def get_lds_endowment(self):
+        """Gets the LDS Endowment ordinance"""
+        return self.lds_endow
+
+    def set_lds_sealing(self,ord):
+        """Sets the LDS Sealing ordinance"""
+        self.lds_seal = ord
+
+    def get_lds_sealing(self):
+        """Gets the LDS Sealing ordinance"""
+        return self.lds_seal
+
+    def probably_alive(self,db):
+        """Returns true if the person may be alive."""
+        if self.death_handle:
+            return 0
+        if self.birth_handle:
+            birth = db.find_event_from_handle(self.birth_handle)
+            if birth.get_date() != "":
+                return not_too_old(birth.get_date_object().get_start_date())
+
+        # Neither birth nor death events are available.  Try looking
+        # for descendants that were born more than a lifespan ago.
+
+        min_generation = 13
+        max_generation = 60
+        max_age_difference = 60
+        def descendants_too_old (person, years):
+            for family_handle in person.get_family_handle_list():
+                family = db.find_family_from_handle(family_handle)
+                for child_handle in family.get_child_handle_list():
+                    child = db.get_person_from_handle(child_handle)
+                    if child.birth_handle:
+                        child_birth = db.find_event_from_handle(child.birth_handle)
+                        if child_birth.get_date() != "":
+                            d = SingleDate (child_birth.get_date_object().
+                                        get_start_date())
+                            d.set_year (d.get_year() - years)
+                            if not not_too_old (d):
+                                return 1
+
+                    if child.death_handle:
+                        child_death = db.find_event_from_handle(child.death_handle)
+                        if child_death.get_date() != "":
+                            d = SingleDate (child_death.get_date_object().
+                                        get_start_date())
+                            if not not_too_old (d):
+                                return 1
+
+                    if descendants_too_old (child, years + min_generation):
+                        return 1
+
+        if descendants_too_old (self, min_generation):
+            return 0
+
+        # What about their parents?
+        def parents_too_old (person, age_difference):
+            family_handle = person.get_main_parents_family_handle()
+            if family_handle:
+                family = db.find_family_from_handle(family_handle)
+                for parent_id in [family.get_father_handle(), family.get_mother_handle()]:
+                    if not parent_id:
+                        continue
+
+                    parent = db.get_person_from_handle(parent_id)
+                    if parent.birth_handle:
+                        parent_birth = db.find_event_from_handle(parent.birth_handle)
+                        if parent_birth.get_date():
+                            d = SingleDate (parent_birth.get_date_object().
+                                        get_start_date())
+                            d.set_year (d.get_year() + max_generation +
+                                   age_difference)
+                            if not not_too_old (d):
+                                return 1
+
+                    if parent.death_handle:
+                        parent_death = db.find_event_from_handle(parent.death_handle)
+                        if parent_death.get_date() != "":
+                            d = SingleDate (parent_death.get_date_object().
+                                        get_start_date())
+                            d.set_year (d.get_year() + age_difference)
+                            if not not_too_old (d):
+                                return 1
+
+        if parents_too_old (self, 0):
+            return 0
+
+        # As a last resort, trying seeing if their spouse's age gives
+        # any clue.
+        for family_handle in self.get_family_handle_list():
+            family = db.find_family_from_handle(family_handle)
+            for spouse_id in [family.get_father_handle(), family.get_mother_handle()]:
+                if not spouse_id:
+                    continue
+                if spouse_id == self.handle:
+                    continue
+                spouse = db.get_person_from_handle(spouse_id)
+                if spouse.birth_handle:
+                    spouse_birth = db.find_event_from_handle(spouse.birth_handle)
+                    if spouse_birth.get_date() != "":
+                        d = SingleDate (spouse_birth.get_date_object().
+                                    get_start_date())
+                        d.set_year (d.get_year() + max_age_difference)
+                        if not not_too_old (d):
+                            return 0
+
+                if spouse.death_handle:
+                    spouse_death = db.find_event_from_handle(spouse.death_handle)
+                    if spouse_death.get_date() != "":
+                        d = SingleDate (spouse_birth.get_date_object().
+                                    get_start_date())
+                        d.set_year (d.get_year() - min_generation)
+                        if not not_too_old (d):
+                            return 0
+
+                if parents_too_old (spouse, max_age_difference):
+                    return 0
+
+        return 1
+
+class Family(PrimaryObject,SourceNote):
+    """
+    GRAMPS Family record. Represents a family unit, which defines the
+    relationship between people. This can consist of a single person and
+    a set of children, or two people with a defined relationship and an
+    optional set of children. The relationship between people may be either
+    opposite sex or same sex.
+    """
+
+    def __init__(self):
+        """creates a new Family instance"""
+        PrimaryObject.__init__(self)
+        SourceNote.__init__(self)
+        self.father_handle = None
+        self.mother_handle = None
+        self.child_list = []
+        self.type = const.FAMILY_MARRIED
+        self.event_list = []
+        self.media_list = []
+        self.attribute_list = []
+        self.lds_seal = None
+        self.complete = 0
+
+
+    def serialize(self):
+        """
+        Converts the data held in the event to a Python tuple that
+        represents all the data elements. This method is used to convert
+        the object into a form that can easily be saved to a database.
+
+        These elements may be primative Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objectes or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+        """
+        return (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
+                self.child_list, self.type, self.event_list,
+                self.media_list, self.attribute_list, self.lds_seal,
+                self.complete, self.source_list, self.note)
+
+    def unserialize(self, data):
+        """
+        Converts the data held in a tuple created by the serialize method
+        back into the data in an Event structure.
+        """
+        (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
+         self.child_list, self.type, self.event_list,
+         self.media_list, self.attribute_list, self.lds_seal,
+         self.complete, self.source_list, self.note) = data
+
+    def set_complete_flag(self,val):
+        self.complete = val
+
+    def get_complete_flag(self):
+        return self.complete
+
+    def set_lds_sealing(self,ord):
+        self.lds_seal = ord
+
+    def get_lds_sealing(self):
+        return self.lds_seal
+
+    def add_attribute(self,attribute) :
+        """adds an Attribute instance to the attribute list"""
+        self.attribute_list.append(attribute)
+
+    def remove_attribute(self,attribute):
+        """removes the specified Attribute instance from the attribute list"""
+        if attribute in self.attribute_list:
+            self.attribute_list.remove(attribute)
+
+    def get_attribute_list(self) :
+        """returns the attribute list"""
+        return self.attribute_list
+
+    def set_attribute_list(self,list) :
+        """sets the attribute list to the specified list"""
+        self.attribute_list = list
+
+    def set_relationship(self,type):
+        """assigns a string indicating the relationship between the
+        father and the mother"""
+        self.type = type
+
+    def get_relationship(self):
+        """returns a string indicating the relationship between the
+        father and the mother"""
+        return self.type
+    
+    def set_father_handle(self,person_handle):
+        """sets the father of the Family to the specfied Person"""
+        self.father_handle = person_handle
+
+    def get_father_handle(self):
+        """returns the father of the Family"""
+       	return self.father_handle
+
+    def set_mother_handle(self,person):
+        """sets the mother of the Family to the specfied Person"""
+        self.mother_handle = person
+
+    def get_mother_handle(self):
+        """returns the mother of the Family"""
+       	return self.mother_handle
+
+    def add_child_handle(self,person):
+        """adds the specfied Person as a child of the Family, adding it
+        to the child list"""
+        if person not in self.child_list:
+            self.child_list.append(person)
+            
+    def remove_child_handle(self,person):
+        """removes the specified Person from the child list"""
+        if person in self.child_list:
+            self.child_list.remove(person)
+
+    def get_child_handle_list(self):
+        """returns the list of children"""
+        return self.child_list
+
+    def set_child_handle_list(self, list):
+        """sets the list of children"""
+        self.child_list = list[:]
+
+    def add_event_handle(self,event_handle):
+        """adds an Event to the event list"""
+        self.event_list.append(event_handle)
+
+    def get_event_list(self) :
+        """returns the list of Event instances"""
+        return self.event_list
+
+    def set_event_list(self,list) :
+        """sets the event list to the passed list"""
+        self.event_list = list
+
+    def add_media_reference(self,media_id):
+        """Adds a MediaObject object to the Family instance's image list"""
+        self.media_list.append(media_id)
+
+    def get_media_list(self):
+        """Returns the list of MediaObject objects"""
+        return self.media_list
+
+    def set_media_list(self,list):
+        """Sets the list of MediaObject objects"""
+        self.media_list = list
+
+class Event(PrimaryObject,DataObj):
+    """
+    GRAMPS Event record. A GRAMPS event is some type of action that occurred
+    at a particular place at a particular time, such as a birth, death, or
+    marriage.
+    """
+
+    NAME = 0
+    ID = 1
+    
+    def __init__(self,source=None):
+        """creates a new Event instance, copying from the source if present"""
+
+        PrimaryObject.__init__(self,source)
+        DataObj.__init__(self,source)
+        
+        if source:
+            self.place = source.place
+            self.date = Date(source.date)
+            self.description = source.description
+            self.name = source.name
+            self.cause = source.cause
+            self.media_list = [MediaRef(media_id) for media_id in source.media_list]
+            self.witness = source.witness[:]
+        else:
+            self.place = u''
+            self.date = None
+            self.description = ""
+            self.name = ""
+            self.cause = ""
+            self.witness = None
+            self.media_list = []
+
+    def serialize(self):
+        """
+        Converts the data held in the event to a Python tuple that
+        represents all the data elements. This method is used to convert
+        the object into a form that can easily be saved to a database.
+
+        These elements may be primative Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objectes or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+        """
+        return (self.handle, self.gramps_id, self.name, self.date,
+                self.description, self.place, self.cause, self.private,
+                self.source_list, self.note, self.witness, self.media_list)
+
+    def unserialize(self,data):
+        """
+        Converts the data held in a tuple created by the serialize method
+        back into the data in an Event structure.
+        """
+        (self.handle, self.gramps_id, self.name, self.date, self.description,
+         self.place, self.cause, self.private, self.source_list,
+         self.note, self.witness, self.media_list) = data
+
+    def add_media_reference(self,media_id):
+        """Adds a MediaObject object to the Event object's image list"""
+        self.media_list.append(media_id)
+
+    def get_media_list(self):
+        """Returns the list of MediaObject objects"""
+        return self.media_list
+
+    def set_media_list(self,mlist):
+        """Sets the list of MediaObject objects"""
+        self.media_list = mlist
+
+    def get_witness_list(self):
+        """Returns the list of Witness objects associated with the Event"""
+        return self.witness
+
+    def set_witness_list(self,list):
+        """
+        Sets the Witness list to a copy of the list passed to the method.
+        """
+        if list:
+            self.witness = list[:]
+        else:
+            self.witness = None
+
+    def add_witness(self,value):
+        """
+        Adds a Witness object to the current witness list.
+        """
+        if self.witness:
+            self.witness.append(value)
+        else:
+            self.witness = [value]
+        
+    def is_empty(self):
+        
+        date = self.get_date_object()
+        place = self.get_place_handle()
+        description = self.description
+        cause = self.cause
+        name = self.name
+        return (not name or name == "Birth" or name == "Death") and \
+                   date.is_empty() and not place and not description and not cause)
+
+    def set(self,name,date,place,description):
+        """sets the name, date, place, and description of an Event instance"""
+        self.name = name
+        self.place = place
+        self.description = description
+        self.set_date(date)
+        
+    def are_equal(self,other):
+        """returns 1 if the specified event is the same as the instance"""
+        if other == None:
+            return 0
+        if (self.name != other.name or self.place != other.place or
+            self.description != other.description or self.cause != other.cause or
+            self.private != other.private or
+            compare_dates(self.get_date_object(),other.get_date_object()) or
+            len(self.get_source_references()) != len(other.get_source_references())):
+            return 0
+
+        index = 0
+        olist = other.get_source_references()
+        for a in self.get_source_references():
+            if not a.are_equal(olist[index]):
+                return 0
+            index = index + 1
+
+        witness_list = self.get_witness_list()
+        other_list = other.get_witness_list()
+        if (not witness_list) and (not other_list):
+            return 1
+        elif not (witness_list and other_list):
+            return 0
+        for a in witness_list:
+            if a in other_list:
+                other_list.remove(a)
+            else:
+                return 0
+        if other_list:
+            return 0
+
+        return 1
+        
+    def set_name(self,name):
+        """sets the name of the Event"""
+        self.name = name
+
+    def get_name(self):
+        """returns the name of the Event"""
+        return self.name
+
+    def set_place_handle(self,place):
+        """sets the Place instance of the Event"""
+        self.place = place
+
+    def get_place_handle(self):
+        """returns the Place instance of the Event"""
+        return self.place 
+
+    def set_cause(self,cause):
+        """sets the cause of the Event"""
+        self.cause = cause
+
+    def get_cause(self):
+        """returns the cause of the Event"""
+        return self.cause 
+
+    def set_description(self,description):
+        """sets the description of the Event instance"""
+        self.description = description
+
+    def get_description(self) :
+        """returns the description of the Event instance"""
+        return self.description 
+
+    def set_date(self, date) :
+        """attempts to sets the date of the Event instance"""
+        if not self.date:
+            self.date = Date()
+        self.date.set(date)
+
+    def get_date(self) :
+        """returns a string representation of the date of the Event instance"""
+        if self.date:
+            return self.date.get_date()
+        return ""
+
+    def get_preferred_date(self) :
+        """returns a string representation of the date of the Event instance"""
+        if self.date:
+            return self.date.get_date()
+        return ""
+
+    def get_quote_date(self) :
+        """returns a string representation of the date of the Event instance,
+        enclosing the results in quotes if it is not a valid date"""
+        if self.date:
+            return self.date.get_quote_date()
+        return ""
+
+    def get_date_object(self):
+        """returns the Date object associated with the Event"""
+        if not self.date:
+            self.date = Date()
+       	return self.date
+
+    def set_date_object(self,date):
+        """sets the Date object associated with the Event"""
+        self.date = date
+
 class Place(PrimaryObject,SourceNote):
     """Contains information related to a place, including multiple address
     information (since place names can change with time), longitude, latitude,
@@ -342,11 +1035,26 @@ class Place(PrimaryObject,SourceNote):
             self.media_list = []
 
     def serialize(self):
+        """
+        Converts the data held in the event to a Python tuple that
+        represents all the data elements. This method is used to convert
+        the object into a form that can easily be saved to a database.
+
+        These elements may be primative Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objectes or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+        """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 self.main_loc, self.alt_loc, self.urls, self.media_list,
                 self.source_list, self.note)
 
     def unserialize(self,data):
+        """
+        Converts the data held in a tuple created by the serialize method
+        back into the data in an Event structure.
+        """
         (self.handle, self.gramps_id, self.title, self.long, self.lat, self.main_loc,
          self.alt_loc, self.urls, self.media_list, self.source_list,
          self.note) = data
@@ -411,15 +1119,15 @@ class Place(PrimaryObject,SourceNote):
             self.alt_loc.append(loc)
 
     def add_media_reference(self,media_id):
-        """Adds a Photo object to the place object's image list"""
+        """Adds a MediaObject object to the place object's image list"""
         self.media_list.append(media_id)
 
     def get_media_list(self):
-        """Returns the list of Photo objects"""
+        """Returns the list of MediaObject objects"""
         return self.media_list
 
     def set_media_list(self,list):
-        """Sets the list of Photo objects"""
+        """Sets the list of MediaObject objects"""
         self.media_list = list
 
     def get_display_info(self):
@@ -440,11 +1148,298 @@ class Place(PrimaryObject,SourceNote):
             return [self.title,self.gramps_id,'','','','','',
                     self.title.upper(), '','','','','']
         
-#-------------------------------------------------------------------------
-#
-# Researcher
-#
-#-------------------------------------------------------------------------
+class MediaObject(PrimaryObject,SourceNote):
+    """Containter for information about an image file, including location,
+    description and privacy"""
+    
+    def __init__(self,source=None):
+        """Create a new MediaObject object, copying from the source if provided"""
+        PrimaryObject.__init__(self,source)
+        SourceNote.__init__(self,source)
+
+        self.attrlist = []
+        if source:
+            self.path = source.path
+            self.mime = source.mime
+            self.desc = source.desc
+            self.thumb = source.thumb
+            for attr in source.attrlist:
+                self.attrlist.append(Attribute(attr))
+        else:
+            self.path = ""
+            self.mime = ""
+            self.desc = ""
+            self.thumb = None
+
+    def serialize(self):
+        """
+        Converts the data held in the event to a Python tuple that
+        represents all the data elements. This method is used to convert
+        the object into a form that can easily be saved to a database.
+
+        These elements may be primative Python types (string, integers),
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objectes or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
+        """
+        return (self.handle, self.gramps_id, self.path, self.mime,
+                self.desc, self.attrlist, self.source_list, self.note)
+
+    def unserialize(self,data):
+        """
+        Converts the data held in a tuple created by the serialize method
+        back into the data in an Event structure.
+        """
+        (self.handle, self.gramps_id, self.path, self.mime, self.desc,
+         self.attrlist, self.source_list, self.note) = data
+    
+    def set_mime_type(self,type):
+        self.mime = type
+
+    def get_mime_type(self):
+        return self.mime
+    
+    def set_path(self,path):
+        """set the file path to the passed path"""
+        self.path = os.path.normpath(path)
+
+    def get_path(self):
+        """return the file path"""
+        return self.path
+
+    def set_description(self,text):
+        """sets the description of the image"""
+        self.desc = text
+
+    def get_description(self):
+        """returns the description of the image"""
+        return self.desc
+
+    def add_attribute(self,attr):
+        """Adds a propery to the MediaObject object. This is not used by gramps,
+        but provides a means for XML users to attach other properties to
+        the image"""
+        self.attrlist.append(attr)
+
+    def get_attribute_list(self):
+        """returns the property list associated with the image"""
+        return self.attrlist
+
+    def set_attribute_list(self,list):
+        self.attrlist = list
+
+class Source(PrimaryObject):
+    """A record of a source of information"""
+    
+    def __init__(self):
+        """creates a new Source instance"""
+        PrimaryObject.__init__(self)
+        self.title = ""
+        self.author = ""
+        self.pubinfo = ""
+        self.note = Note()
+        self.media_list = []
+        self.abbrev = ""
+
+    def serialize(self):
+        return (self.handle, self.gramps_id, self.title, self.author,
+                self.pubinfo, self.note, self.media_list, self.abbrev)
+
+    def unserialize(self,data):
+        """
+        Converts the data held in a tuple created by the serialize method
+        back into the data in an Event structure.
+        """
+        (self.handle, self.gramps_id, self.title, self.author,
+         self.pubinfo, self.note, self.media_list, self.abbrev) = data
+        
+    def get_display_info(self):
+        return [self.title,self.gramps_id,self.author,self.title.upper(),self.author.upper()]
+
+    def add_media_reference(self,media_id):
+        """Adds a MediaObject object to the Source instance's image list"""
+        self.media_list.append(media_id)
+
+    def get_media_list(self):
+        """Returns the list of MediaObject objects"""
+        return self.media_list
+
+    def set_media_list(self,list):
+        """Sets the list of MediaObject objects"""
+        self.media_list = list
+
+    def set_title(self,title):
+        """sets the title of the Source"""
+        self.title = title
+
+    def get_title(self):
+        """returns the title of the Source"""
+        return self.title
+
+    def set_note(self,text):
+        """sets the text of the note attached to the Source"""
+        self.note.set(text)
+
+    def get_note(self):
+        """returns the text of the note attached to the Source"""
+        return self.note.get()
+
+    def set_note_format(self,val):
+        """Set the note's format to the given value"""
+        self.note.set_format(val)
+
+    def get_note_format(self):
+        """Return the current note's format"""
+        return self.note.get_format()
+
+    def set_note_object(self,obj):
+        """sets the Note instance attached to the Source"""
+        self.note = obj
+
+    def get_note_object(self):
+        """returns the Note instance attached to the Source"""
+        return self.note
+
+    def unique_note(self):
+        """Creates a unique instance of the current note"""
+        self.note = Note(self.note.get())
+
+    def set_author(self,author):
+        """sets the author of the Source"""
+        self.author = author
+
+    def get_author(self):
+        """returns the author of the Source"""
+        return self.author
+
+    def set_publication_info(self,text):
+        """sets the publication information of the Source"""
+        self.pubinfo = text
+
+    def get_publication_info(self):
+        """returns the publication information of the Source"""
+        return self.pubinfo
+
+    def set_abbreviation(self,abbrev):
+        """sets the title abbreviation of the Source"""
+        self.abbrev = abbrev
+
+    def get_abbreviation(self):
+        """returns the title abbreviation of the Source"""
+        return self.abbrev
+
+class LdsOrd(SourceNote):
+    """
+    Class that contains information about LDS Ordinances. LDS
+    ordinances are similar to events, but have very specific additional
+    information related to data collected by the Church of Jesus Christ
+    of Latter Day Saints (Morman church). The LDS church is the largest
+    source of genealogical information in the United States.
+    """
+    def __init__(self,source=None):
+        """Creates a LDS Ordinance instance"""
+        SourceNote.__init__(self,source)
+        if source:
+            self.famc = source.famc
+            self.date = Date(source.date)
+            self.temple = source.temple
+            self.status = source.status
+            self.place = source.place
+        else:
+            self.famc = None
+            self.date = None
+            self.temple = ""
+            self.status = 0
+            self.place = None
+
+    def set_place_handle(self,place):
+        """sets the Place database handle of the ordinance"""
+        self.place = place
+
+    def get_place_handle(self):
+        """returns the Place handle of the ordinance"""
+        return self.place 
+
+    def set_family_handle(self,family):
+        """Sets the Family database handle associated with the LDS ordinance"""
+        self.famc = family
+
+    def get_family_handle(self):
+        """Gets the Family database handle associated with the LDS ordinance"""
+        return self.famc
+
+    def set_status(self,val):
+        """
+        Sets the status of the LDS ordinance. The status is a text string
+        that matches a predefined set of strings."""
+        self.status = val
+
+    def get_status(self):
+        """Gets the status of the LDS ordinance"""
+        return self.status
+
+    def set_date(self, date) :
+        """attempts to sets the date of the ordinance"""
+        if not self.date:
+            self.date = Date()
+        self.date.set(date)
+
+    def get_date(self) :
+        """returns a string representation of the date of the ordinance"""
+        if self.date:
+            return self.date.get_date()
+        return ""
+
+    def get_date_object(self):
+        """returns the Date object associated with the ordinance"""
+        if not self.date:
+            self.date = Date()
+       	return self.date
+
+    def set_date_object(self,date):
+        """sets the Date object associated with the ordinance"""
+        self.date = date
+
+    def set_temple(self,temple):
+        """Sets the temple assocated with the ordinance"""
+        self.temple = temple
+
+    def get_temple(self):
+        """Gets the temple assocated with the ordinance"""
+        return self.temple
+
+    def is_empty(self):
+        """Returns 1 if the ordidance is actually empty"""
+        if (self.famc or 
+                (self.date and not self.date.is_empty()) or 
+                self.temple or 
+                self.status or 
+                self.place):
+            return 0
+        else:
+            return 1
+        
+    def are_equal(self,other):
+        """returns 1 if the specified ordinance is the same as the instance"""
+        if other == None:
+            return self.is_empty()
+        if (self.famc != other.famc or
+            self.place != other.place or
+            self.status != other.status or
+            self.temple != other.temple or
+            compare_dates(self.get_date_object(),other.get_date_object()) or
+            len(self.get_source_references()) != len(other.get_source_references())):
+            return 0
+
+        index = 0
+        olist = other.get_source_references()
+        for a in self.get_source_references():
+            if not a.are_equal(olist[index]):
+                return 0
+            index = index + 1
+        return 1
+
 class Researcher:
     """Contains the information about the owner of the database"""
     
@@ -510,11 +1505,6 @@ class Researcher:
         if email:
             self.email = email.strip()
 
-#-------------------------------------------------------------------------
-#
-# Location
-#
-#-------------------------------------------------------------------------
 class Location:
     """Provides information about a place, including city, county, state,
     and country. Multiple Location objects can represent the same place,
@@ -600,11 +1590,6 @@ class Location:
         """returns the country name of the Location object"""
         return self.country
 
-#-------------------------------------------------------------------------
-#
-# Note
-#
-#-------------------------------------------------------------------------
 class Note:
     """Provides general text information"""
     
@@ -633,82 +1618,6 @@ class Note:
         """return the note's format"""
         return self.format
 
-#-------------------------------------------------------------------------
-#
-# MediaObject
-#
-#-------------------------------------------------------------------------
-class MediaObject(PrimaryObject,SourceNote):
-    """Containter for information about an image file, including location,
-    description and privacy"""
-    
-    def __init__(self,source=None):
-        """Create a new MediaObject object, copying from the source if provided"""
-        PrimaryObject.__init__(self,source)
-        SourceNote.__init__(self,source)
-
-        self.attrlist = []
-        if source:
-            self.path = source.path
-            self.mime = source.mime
-            self.desc = source.desc
-            self.thumb = source.thumb
-            for attr in source.attrlist:
-                self.attrlist.append(Attribute(attr))
-        else:
-            self.path = ""
-            self.mime = ""
-            self.desc = ""
-            self.thumb = None
-
-    def serialize(self):
-        return (self.handle, self.gramps_id, self.path, self.mime,
-                self.desc, self.attrlist, self.source_list, self.note)
-
-    def unserialize(self,data):
-        (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         self.attrlist, self.source_list, self.note) = data
-    
-    def set_mime_type(self,type):
-        self.mime = type
-
-    def get_mime_type(self):
-        return self.mime
-    
-    def set_path(self,path):
-        """set the file path to the passed path"""
-        self.path = os.path.normpath(path)
-
-    def get_path(self):
-        """return the file path"""
-        return self.path
-
-    def set_description(self,text):
-        """sets the description of the image"""
-        self.desc = text
-
-    def get_description(self):
-        """returns the description of the image"""
-        return self.desc
-
-    def add_attribute(self,attr):
-        """Adds a propery to the MediaObject object. This is not used by gramps,
-        but provides a means for XML users to attach other properties to
-        the image"""
-        self.attrlist.append(attr)
-
-    def get_attribute_list(self):
-        """returns the property list associated with the image"""
-        return self.attrlist
-
-    def set_attribute_list(self,list):
-        self.attrlist = list
-
-#-------------------------------------------------------------------------
-#
-# MediaRef
-#
-#-------------------------------------------------------------------------
 class MediaRef(SourceNote):
     """Media reference class"""
     def __init__(self,source=None):
@@ -755,11 +1664,6 @@ class MediaRef(SourceNote):
         """sets the property list associated with the image"""
         self.attrlist = list
 
-#-------------------------------------------------------------------------
-#
-# Attribute
-#
-#-------------------------------------------------------------------------
 class Attribute(DataObj):
     """Provides a simple key/value pair for describing properties. Used
     by the Person and Family objects to store descriptive information."""
@@ -791,11 +1695,6 @@ class Attribute(DataObj):
         """returns the value of the Attribute instance"""
         return self.value
 
-#-------------------------------------------------------------------------
-#
-# Address
-#
-#-------------------------------------------------------------------------
 class Address(DataObj):
     """Provides address information for a person"""
 
@@ -892,11 +1791,6 @@ class Address(DataObj):
         """returns the postal code of the Address"""
         return self.postal
 
-#-------------------------------------------------------------------------
-#
-# Name
-#
-#-------------------------------------------------------------------------
 class Name(DataObj):
     """Provides name information about a person. A person may have more
     that one name throughout his or her life."""
@@ -1071,11 +1965,6 @@ class Name(DataObj):
             index = index + 1
         return 1
 
-#-------------------------------------------------------------------------
-#
-# Url
-#
-#-------------------------------------------------------------------------
 class Url:
     """Contains information related to internet Uniform Resource Locators,
     allowing gramps to store information about internet resources"""
@@ -1125,688 +2014,15 @@ class Url:
             return 0
         return 1
 
-#-------------------------------------------------------------------------
-#
-# Person
-#
-#-------------------------------------------------------------------------
-class Person(PrimaryObject,SourceNote):
-    """Represents an individual person in the gramps database"""
-    
-    unknown = 2
-    male = 1
-    female = 0
-
-    def __init__(self,handle=""):
-        """creates a new Person instance"""
-        PrimaryObject.__init__(self)
-        SourceNote.__init__(self)
-        self.primary_name = Name()
-        self.event_list = []
-        self.family_list = []
-        self.parent_family_list = []
-        self.media_list = []
-        self.nickname = ""
-        self.alternate_names = []
-        self.gender = 2
-        self.death_handle = None
-        self.birth_handle = None
-        self.address_list = []
-        self.attribute_list = []
-        self.urls = []
-        self.ancestor = None
-        self.lds_bapt = None
-        self.lds_endow = None
-        self.lds_seal = None
-        self.complete = 0
-
-        # We hold a reference to the GrampsDB so that we can maintain
-        # its genderStats.  It doesn't get set here, but from
-        # GenderStats.count_person.
-        self.db = None
-        
-    def serialize(self):
-        return (self.handle, self.gramps_id, self.gender, 
-                self.primary_name, self.alternate_names, self.nickname, 
-                self.death_handle, self.birth_handle, self.event_list,
-                self.family_list, self.parent_family_list,
-                self.media_list, 
-                self.address_list,
-                self.attribute_list,
-                self.urls,
-                self.lds_bapt, self.lds_endow, self.lds_seal,
-                self.complete,
-                self.source_list,
-                self.note)
-
-    def unserialize(self,data):
-        (self.handle, self.gramps_id, self.gender, 
-         self.primary_name, self.alternate_names, self.nickname, 
-         self.death_handle, self.birth_handle, self.event_list,
-         self.family_list, self.parent_family_list,
-         self.media_list, 
-         self.address_list,
-         self.attribute_list,
-         self.urls,
-         self.lds_bapt, self.lds_endow, self.lds_seal,
-         self.complete, self.source_list, self.note) = data
-            
-    def set_complete(self,val):
-        self.complete = val
-
-    def get_complete(self):
-        return self.complete
-
-    def get_display_info(self):
-        if self.gender == Person.male:
-            gender = const.male
-        elif self.gender == Person.female:
-            gender = const.female
-        else:
-            gender = const.unknown
-        bday = self.birth_handle
-        dday = self.death_handle
-        return [ GrampsCfg.get_display_name()(self),
-                 self.gramps_id,
-                 gender,
-                 bday,
-                 dday,
-                 self.get_primary_name().get_sort_name(),
-                 bday, dday,
-                 GrampsCfg.get_display_surname()(self.primary_name)]
-                                          
-    def set_primary_name(self,name):
-        """sets the primary name of the Person to the specified
-        Name instance"""
-        db = self.db
-        if db:
-            db.genderStats.uncount_person (self)
-
-        self.primary_name = name
-	
-        if db:
-            db.genderStats.count_person (self, db)
-
-    def get_primary_name(self):
-        """returns the Name instance marked as the Person's primary name"""
-        if not self.primary_name:
-            self.primary_name = Name()
-        return self.primary_name
-
-    def get_alternate_names(self):
-        """returns the list of alternate Names"""
-        return self.alternate_names
-
-    def set_alternate_names(self,list):
-        """changes the list of alternate names to the passed list"""
-        self.alternate_names = list
-
-    def add_alternate_name(self,name):
-        """adds an alternate Name instance to the list"""
-        self.alternate_names.append(name)
-
-    def get_url_list(self):
-        """returns the list of URL instances"""
-        return self.urls
-
-    def set_url_list(self,list):
-        """sets the list of URL instances to list"""
-        self.urls = list
-
-    def add_url(self,url):
-        """adds a URL instance to the list"""
-        self.urls.append(url)
-    
-    def set_nick_name(self,name):
-        """sets the nickname for the Person"""
-        self.nickname = name
-
-    def get_nick_name(self) :
-        """returns the nickname for the Person"""
-        return self.nickname
-
-    def set_gender(self,val) :
-        """sets the gender of the Person"""
-        db = self.db
-        if db:
-            db.genderStats.uncount_person (self)
-
-        self.gender = val
-
-        if db:
-            db.genderStats.count_person (self, db)
-
-    def get_gender(self) :
-        """returns the gender of the Person"""
-        return self.gender
-
-    def set_birth_handle(self,event_handle) :
-        """sets the birth event to the passed event"""
-        self.birth_handle = event_handle
-
-    def set_death_handle(self,event_handle) :
-        """sets the death event to the passed event"""
-        self.death_handle = event_handle
-
-    def get_birth_handle(self) :
-        """returns the birth event"""
-        return self.birth_handle
-
-    def get_death_handle(self) :
-        """returns the death event"""
-        return self.death_handle
-
-    def add_media_reference(self,media_id):
-        """adds a MediaObject instance to the image list"""
-        self.media_list.append(media_id)
-
-    def get_media_list(self):
-        """returns the list of MediaObjects"""
-        return self.media_list
-
-    def set_media_list(self,list):
-        """Sets the list of MediaObject objects"""
-        self.media_list = list
-
-    def add_event_handle(self,event_handle):
-        """adds an Event to the event list"""
-        self.event_list.append(event_handle)
-
-    def get_event_list(self):
-        """returns the list of Event instances"""
-        return self.event_list
-
-    def set_event_list(self,elist):
-        """sets the event list to the passed list"""
-        self.event_list = elist
-
-    def add_family_handle(self,family_handle):
-        """adds the specified Family instance to the list of
-        families/marriages/partnerships in which the person is a
-        parent or spouse"""
-
-        self.family_list.append(family_handle)
-
-    def set_preferred_family_handle(self,family):
-        if family in self.family_list:
-            self.family_list.remove(family)
-            self.family_list = [family] + self.family_list
-
-    def get_family_handle_list(self) :
-        """returns the list of Family instances in which the
-        person is a parent or spouse"""
-        return self.family_list
-
-    def clear_family_handle_list(self) :
-        self.family_list = []
-
-    def remove_family_handle(self,family):
-        """removes the specified Family instance from the list
-        of marriages/partnerships"""
-        if family in self.family_list:
-            self.family_list.remove(family)
-
-    def add_address(self,address):
-        """adds the Address instance to the list of addresses"""
-        self.address_list.append(address)
-
-    def remove_address(self,address):
-        """removes the Address instance from the list of addresses"""
-        if address in self.address_list:
-            self.address_list.remove(address)
-
-    def get_address_list(self):
-        """returns the list of addresses"""
-        return self.address_list
-
-    def set_address_list(self,alist):
-        """sets the address list to the specified list"""
-        self.address_list = alist
-
-    def add_attribute(self,attribute):
-        """adds an Attribute instance to the attribute list"""
-        self.attribute_list.append(attribute)
-
-    def remove_attribute(self,attribute):
-        """removes the specified Attribute instance from the attribute list"""
-        if attribute in self.attribute_list:
-            self.attribute_list.remove(attribute)
-
-    def get_attribute_list(self):
-        """returns the attribute list"""
-        return self.attribute_list
-
-    def set_attribute_list(self,list):
-        """sets the attribute list to the specified list"""
-        self.attribute_list = list
-
-    def get_parent_family_handle_list(self):
-        """returns the list of alternate Family instances, in which the Person
-        is a child of the family, but not a natural child of both parents"""
-        return self.parent_family_list
-
-    def add_parent_family_handle(self,family,mrel,frel):
-        """adds a Family to the alternate family list, indicating the
-        relationship to the mother (mrel) and the father (frel)"""
-        self.parent_family_list.append((family,mrel,frel))
-
-    def clear_parent_family_handle_list(self):
-        self.parent_family_list = []
-
-    def remove_parent_family_handle(self,family):
-        """removes a Family instance from the alternate family list"""
-        for f in self.parent_family_list[:]:
-            if f[0] == family:
-                self.parent_family_list.remove(f)
-                return f
-        else:
-            return None
-
-    def change_parent_family_handle(self,family,mrel,frel):
-        """removes a Family instance from the alternate family list"""
-        index = 0
-        for f in self.parent_family_list[:]:
-            if f[0] == family:
-                self.parent_family_list[index] = (family,mrel,frel)
-            index += 1
-
-    def has_family(self,family):
-        for f in self.parent_family_list:
-            if f[0] == family:
-                return f
-        else:
-            return None
-
-    def set_main_parent_family_handle(self,family):
-        """sets the main Family of the Person, the Family in which the
-        Person is a natural born child"""
-        f = self.remove_parent_family_handle(family)
-        if f:
-            self.parent_family_list = [f] + self.parent_family_list
-        
-    def get_main_parents_family_handle(self):
-        """returns the main Family of the Person, the Family in which the
-        Person is a natural born child"""
-        if len(self.parent_family_list) == 0:
-            return None
-        else:
-            return self.parent_family_list[0][0]
-
-    def get_main_parents_family_handleRel(self):
-        """returns the main Family of the Person, the Family in which the
-        Person is a natural born child"""
-        if len(self.parent_family_list) == 0:
-            return (None,None,None)
-        else:
-            return self.parent_family_list[0]
-
-    def set_ancestor(self, value):
-        """set ancestor flag and recurse"""
-        self.ancestor = value
-#         for (fam,m,f) in self.parent_family_list:
-#             family
-#             if family.Father:
-#                 # Don't waste time if the ancestor is already flagged.
-#                 # This will happen when cousins marry.
-#                 if not family.Father.get_ancestor():
-#                     family.Father.set_ancestor(value)
-#             if family.get_mother_handle():
-#                 if not family.Mother.get_ancestor():
-#                     family.Mother.set_ancestor(value)
-
-    def get_ancestor(self):
-        return self.ancestor
-
-    def set_lds_baptism(self,ord):
-        self.lds_bapt = ord
-
-    def get_lds_baptism(self):
-        return self.lds_bapt
-
-    def set_lds_endowment(self,ord):
-        self.lds_endow = ord
-
-    def get_lds_endowment(self):
-        return self.lds_endow
-
-    def set_lds_sealing(self,ord):
-        self.lds_seal = ord
-
-    def get_lds_sealing(self):
-        return self.lds_seal
-
-    def probably_alive(self,db):
-        """Returns true if the person may be alive."""
-        if self.death_handle:
-            return 0
-        if self.birth_handle:
-            birth = db.find_event_from_handle(self.birth_handle)
-            if birth.get_date() != "":
-                return not_too_old(birth.get_date_object().get_start_date())
-
-        # Neither birth nor death events are available.  Try looking
-        # for descendants that were born more than a lifespan ago.
-
-        min_generation = 13
-        max_generation = 60
-        max_age_difference = 60
-        def descendants_too_old (person, years):
-            for family_handle in person.get_family_handle_list():
-                family = db.find_family_from_handle(family_handle)
-                for child_handle in family.get_child_handle_list():
-                    child = db.get_person_from_handle(child_handle)
-                    if child.birth_handle:
-                        child_birth = db.find_event_from_handle(child.birth_handle)
-                        if child_birth.get_date() != "":
-                            d = SingleDate (child_birth.get_date_object().
-                                        get_start_date())
-                            d.set_year (d.get_year() - years)
-                            if not not_too_old (d):
-                                return 1
-
-                    if child.death_handle:
-                        child_death = db.find_event_from_handle(child.death_handle)
-                        if child_death.get_date() != "":
-                            d = SingleDate (child_death.get_date_object().
-                                        get_start_date())
-                            if not not_too_old (d):
-                                return 1
-
-                    if descendants_too_old (child, years + min_generation):
-                        return 1
-
-        if descendants_too_old (self, min_generation):
-            return 0
-
-        # What about their parents?
-        def parents_too_old (person, age_difference):
-            family_handle = person.get_main_parents_family_handle()
-            if family_handle:
-                family = db.find_family_from_handle(family_handle)
-                for parent_id in [family.get_father_handle(), family.get_mother_handle()]:
-                    if not parent_id:
-                        continue
-
-                    parent = db.get_person_from_handle(parent_id)
-                    if parent.birth_handle:
-                        parent_birth = db.find_event_from_handle(parent.birth_handle)
-                        if parent_birth.get_date():
-                            d = SingleDate (parent_birth.get_date_object().
-                                        get_start_date())
-                            d.set_year (d.get_year() + max_generation +
-                                   age_difference)
-                            if not not_too_old (d):
-                                return 1
-
-                    if parent.death_handle:
-                        parent_death = db.find_event_from_handle(parent.death_handle)
-                        if parent_death.get_date() != "":
-                            d = SingleDate (parent_death.get_date_object().
-                                        get_start_date())
-                            d.set_year (d.get_year() + age_difference)
-                            if not not_too_old (d):
-                                return 1
-
-        if parents_too_old (self, 0):
-            return 0
-
-        # As a last resort, trying seeing if their spouse's age gives
-        # any clue.
-        for family_handle in self.get_family_handle_list():
-            family = db.find_family_from_handle(family_handle)
-            for spouse_id in [family.get_father_handle(), family.get_mother_handle()]:
-                if not spouse_id:
-                    continue
-                if spouse_id == self.handle:
-                    continue
-                spouse = db.get_person_from_handle(spouse_id)
-                if spouse.birth_handle:
-                    spouse_birth = db.find_event_from_handle(spouse.birth_handle)
-                    if spouse_birth.get_date() != "":
-                        d = SingleDate (spouse_birth.get_date_object().
-                                    get_start_date())
-                        d.set_year (d.get_year() + max_age_difference)
-                        if not not_too_old (d):
-                            return 0
-
-                if spouse.death_handle:
-                    spouse_death = db.find_event_from_handle(spouse.death_handle)
-                    if spouse_death.get_date() != "":
-                        d = SingleDate (spouse_birth.get_date_object().
-                                    get_start_date())
-                        d.set_year (d.get_year() - min_generation)
-                        if not not_too_old (d):
-                            return 0
-
-                if parents_too_old (spouse, max_age_difference):
-                    return 0
-
-        return 1
-    
-#-------------------------------------------------------------------------
-#
-# Event
-#
-#-------------------------------------------------------------------------
-class Event(PrimaryObject,DataObj):
-    """Event record, recording the event type, description, place, and date
-    of a particular event"""
-
-    NAME = 0
-    ID = 1
-    
-    def __init__(self,source=None):
-        """creates a new Event instance, copying from the source if present"""
-
-        PrimaryObject.__init__(self,source)
-        DataObj.__init__(self,source)
-        
-        if source:
-            self.place = source.place
-            self.date = Date(source.date)
-            self.description = source.description
-            self.name = source.name
-            self.cause = source.cause
-            self.media_list = [MediaRef(media_id) for media_id in source.media_list]
-            try:
-                if source.witness:
-                    self.witness = source.witness[:]
-                else:
-                    self.witness = None
-            except:
-                self.witness = None
-        else:
-            self.place = u''
-            self.date = None
-            self.description = ""
-            self.name = ""
-            self.cause = ""
-            self.witness = None
-            self.media_list = []
-
-    def clone(self,source):
-        self.place = source.place
-        self.date = Date(source.date)
-        self.description = source.description
-        self.name = source.name
-        self.cause = source.cause
-        self.handle = source.handle
-        self.gramps_id = source.gramps_id
-        self.private = source.private
-        self.source_list = source.source_list[:]
-        self.note = source.note
-        self.media_list = [MediaRef(media_id) for media_id in source.media_list]
-        try:
-            if source.witness:
-                self.witness = source.witness[:]
-            else:
-                self.witness = None
-        except:
-            self.witness = None
-
-    def serialize(self):
-        return (self.handle, self.gramps_id, self.name, self.date, self.description,
-                self.place, self.cause, self.private, self.source_list,
-                self.note, self.witness, self.media_list)
-
-    def unserialize(self,data):
-        (self.handle, self.gramps_id, self.name, self.date, self.description,
-         self.place, self.cause, self.private, self.source_list,
-         self.note, self.witness, self.media_list) = data
-
-    def add_media_reference(self,media_id):
-        """Adds a Photo object to the Event object's image list"""
-        self.media_list.append(media_id)
-
-    def get_media_list(self):
-        """Returns the list of Photo objects"""
-        return self.media_list
-
-    def set_media_list(self,mlist):
-        """Sets the list of Photo objects"""
-        self.media_list = mlist
-
-    def get_witness_list(self):
-        return self.witness
-
-    def set_witness_list(self,list):
-        if list:
-            self.witness = list[:]
-        else:
-            self.witness = None
-
-    def add_witness(self,value):
-        if self.witness:
-            self.witness.append(value)
-        else:
-            self.witness = [value]
-        
-    def is_empty(self):
-        date = self.get_date_object()
-        place = self.get_place_handle()
-        description = self.description
-        cause = self.cause
-        name = self.name
-        if (not name or name == "Birth" or name == "Death") and \
-           date.is_empty() and not place and not description and not cause:
-            return 1
-        else:
-            return 0
-
-    def set(self,name,date,place,description):
-        """sets the name, date, place, and description of an Event instance"""
-        self.name = name
-        self.place = place
-        self.description = description
-        self.set_date(date)
-        
-    def are_equal(self,other):
-        """returns 1 if the specified event is the same as the instance"""
-        if other == None:
-            return 0
-        if (self.name != other.name or self.place != other.place or
-            self.description != other.description or self.cause != other.cause or
-            self.private != other.private or
-            compare_dates(self.get_date_object(),other.get_date_object()) or
-            len(self.get_source_references()) != len(other.get_source_references())):
-            return 0
-
-        index = 0
-        olist = other.get_source_references()
-        for a in self.get_source_references():
-            if not a.are_equal(olist[index]):
-                return 0
-            index = index + 1
-
-        witness_list = self.get_witness_list()
-        other_list = other.get_witness_list()
-        if (not witness_list) and (not other_list):
-            return 1
-        elif not (witness_list and other_list):
-            return 0
-        for a in witness_list:
-            if a in other_list:
-                other_list.remove(a)
-            else:
-                return 0
-        if other_list:
-            return 0
-
-        return 1
-        
-    def set_name(self,name):
-        """sets the name of the Event"""
-        self.name = name
-
-    def get_name(self):
-        """returns the name of the Event"""
-        return self.name
-
-    def set_place_handle(self,place):
-        """sets the Place instance of the Event"""
-        self.place = place
-
-    def get_place_handle(self):
-        """returns the Place instance of the Event"""
-        return self.place 
-
-    def set_cause(self,cause):
-        """sets the cause of the Event"""
-        self.cause = cause
-
-    def get_cause(self):
-        """returns the cause of the Event"""
-        return self.cause 
-
-    def set_description(self,description):
-        """sets the description of the Event instance"""
-        self.description = description
-
-    def get_description(self) :
-        """returns the description of the Event instance"""
-        return self.description 
-
-    def set_date(self, date) :
-        """attempts to sets the date of the Event instance"""
-        if not self.date:
-            self.date = Date()
-        self.date.set(date)
-
-    def get_date(self) :
-        """returns a string representation of the date of the Event instance"""
-        if self.date:
-            return self.date.get_date()
-        return ""
-
-    def get_preferred_date(self) :
-        """returns a string representation of the date of the Event instance"""
-        if self.date:
-            return self.date.get_date()
-        return ""
-
-    def get_quote_date(self) :
-        """returns a string representation of the date of the Event instance,
-        enclosing the results in quotes if it is not a valid date"""
-        if self.date:
-            return self.date.get_quote_date()
-        return ""
-
-    def get_date_object(self):
-        """returns the Date object associated with the Event"""
-        if not self.date:
-            self.date = Date()
-       	return self.date
-
-    def set_date_object(self,date):
-        """sets the Date object associated with the Event"""
-        self.date = date
-
-#-------------------------------------------------------------------------
-#
-# Witness
-#
-#-------------------------------------------------------------------------
 class Witness:
+    """
+    The Witness class is used to represent a person who may or may
+    not be in the database. If the person is in the database, the
+    type will be Event.ID, and the value with be the database handle
+    for the person. If the person is not in the database, the type
+    will be Event.NAME, and the value will be a string representing
+    the person's name.
+    """
     def __init__(self,type=Event.NAME,val="",comment=""):
         self.set_type(type)
         self.set_value(val)
@@ -1829,280 +2045,6 @@ class Witness:
 
     def get_comment(self):
         return self.comment
-
-#-------------------------------------------------------------------------
-#
-# Family
-#
-#-------------------------------------------------------------------------
-class Family(PrimaryObject,SourceNote):
-    """Represents a family unit in the gramps database"""
-
-    def __init__(self):
-        """creates a new Family instance"""
-        PrimaryObject.__init__(self)
-        SourceNote.__init__(self)
-        self.father_handle = None
-        self.mother_handle = None
-        self.child_list = []
-        self.type = const.FAMILY_MARRIED
-        self.event_list = []
-        self.media_list = []
-        self.attribute_list = []
-        self.lds_seal = None
-        self.complete = 0
-
-
-    def serialize(self):
-        return (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-                self.child_list, self.type, self.event_list,
-                self.media_list, self.attribute_list, self.lds_seal,
-                self.complete, self.source_list, self.note)
-
-    def unserialize(self, data):
-        (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
-         self.child_list, self.type, self.event_list,
-         self.media_list, self.attribute_list, self.lds_seal,
-         self.complete, self.source_list, self.note) = data
-
-    def set_complete(self,val):
-        self.complete = val
-
-    def get_complete(self):
-        return self.complete
-
-    def set_lds_sealing(self,ord):
-        self.lds_seal = ord
-
-    def get_lds_sealing(self):
-        return self.lds_seal
-
-    def add_attribute(self,attribute) :
-        """adds an Attribute instance to the attribute list"""
-        self.attribute_list.append(attribute)
-
-    def remove_attribute(self,attribute):
-        """removes the specified Attribute instance from the attribute list"""
-        if attribute in self.attribute_list:
-            self.attribute_list.remove(attribute)
-
-    def get_attribute_list(self) :
-        """returns the attribute list"""
-        return self.attribute_list
-
-    def set_attribute_list(self,list) :
-        """sets the attribute list to the specified list"""
-        self.attribute_list = list
-
-    def set_relationship(self,type):
-        """assigns a string indicating the relationship between the
-        father and the mother"""
-        self.type = type
-
-    def get_relationship(self):
-        """returns a string indicating the relationship between the
-        father and the mother"""
-        return self.type
-    
-    def set_father_handle(self,person_handle):
-        """sets the father of the Family to the specfied Person"""
-#        update = self.some_child_is_ancestor()
-#        if update and father_handle:
-#            father_handle.set_ancestor(0)
-        self.father_handle = person_handle
-#        if update and father_handle:
-#            father_handle.set_ancestor(1)
-
-    def get_father_handle(self):
-        """returns the father of the Family"""
-       	return self.father_handle
-
-    def set_mother_handle(self,person):
-        """sets the mother of the Family to the specfied Person"""
-#        update = self.some_child_is_ancestor()
-#        if self.mother_handle and update:
-#            self.mother_handle.set_ancestor(0)
-        self.mother_handle = person
-#        if update and self.mother_handle:
-#            self.mother_handle.set_ancestor(1)
-
-    def get_mother_handle(self):
-        """returns the mother of the Family"""
-       	return self.mother_handle
-
-    def add_child_handle(self,person):
-        """adds the specfied Person as a child of the Family, adding it
-        to the child list"""
-        if person not in self.child_list:
-            self.child_list.append(person)
-#        if person.get_ancestor():
-#            if father_handle:
-#                father_handle.set_ancestor(1)
-#            if self.mother_handle:
-#                self.mother_handle.set_ancestor(1)
-            
-    def remove_child_handle(self,person):
-        """removes the specified Person from the child list"""
-        if person in self.child_list:
-            self.child_list.remove(person)
-#        if person.get_ancestor():
-#            if father_handle:
-#                father_handle.set_ancestor(0)
-#            if self.mother_handle:
-#                self.mother_handle.set_ancestor(0)
-
-    def get_child_handle_list(self):
-        """returns the list of children"""
-        return self.child_list
-
-    def set_child_handle_list(self, list):
-        """sets the list of children"""
-        self.child_list = list[:]
-
-#     def get_marriage(self):
-#         """returns the marriage event of the Family. Obsolete"""
-#         for e in self.event_list:
-#             if e.get_name() == "Marriage":
-#                 return e
-#         return None
-
-    def get_divorce(self):
-        """returns the divorce event of the Family. Obsolete"""
-        for e in self.event_list:
-            if e.get_name() == "Divorce":
-                return e
-        return None
-
-    def add_event_handle(self,event_handle):
-        """adds an Event to the event list"""
-        self.event_list.append(event_handle)
-
-    def get_event_list(self) :
-        """returns the list of Event instances"""
-        return self.event_list
-
-    def set_event_list(self,list) :
-        """sets the event list to the passed list"""
-        self.event_list = list
-
-    def add_media_reference(self,media_id):
-        """Adds a MediaObject object to the Family instance's image list"""
-        self.media_list.append(media_id)
-
-    def get_media_list(self):
-        """Returns the list of MediaObject objects"""
-        return self.media_list
-
-    def set_media_list(self,list):
-        """Sets the list of MediaObject objects"""
-        self.media_list = list
-
-    def some_child_is_ancestor(self):
-        for child in self.child_list:
-            if (child.get_ancestor()):
-                return 1
-        return None
-
-#-------------------------------------------------------------------------
-#
-# Source
-#
-#-------------------------------------------------------------------------
-class Source(PrimaryObject):
-    """A record of a source of information"""
-    
-    def __init__(self):
-        """creates a new Source instance"""
-        PrimaryObject.__init__(self)
-        self.title = ""
-        self.author = ""
-        self.pubinfo = ""
-        self.note = Note()
-        self.media_list = []
-        self.abbrev = ""
-
-    def serialize(self):
-        return (self.handle, self.gramps_id, self.title, self.author,
-                self.pubinfo, self.note, self.media_list, self.abbrev)
-
-    def unserialize(self,data):
-        (self.handle, self.gramps_id, self.title, self.author,
-         self.pubinfo, self.note, self.media_list, self.abbrev) = data
-        
-    def get_display_info(self):
-        return [self.title,self.gramps_id,self.author,self.title.upper(),self.author.upper()]
-
-    def add_media_reference(self,media_id):
-        """Adds a MediaObject object to the Source instance's image list"""
-        self.media_list.append(media_id)
-
-    def get_media_list(self):
-        """Returns the list of MediaObject objects"""
-        return self.media_list
-
-    def set_media_list(self,list):
-        """Sets the list of MediaObject objects"""
-        self.media_list = list
-
-    def set_title(self,title):
-        """sets the title of the Source"""
-        self.title = title
-
-    def get_title(self):
-        """returns the title of the Source"""
-        return self.title
-
-    def set_note(self,text):
-        """sets the text of the note attached to the Source"""
-        self.note.set(text)
-
-    def get_note(self):
-        """returns the text of the note attached to the Source"""
-        return self.note.get()
-
-    def set_note_format(self,val):
-        """Set the note's format to the given value"""
-        self.note.set_format(val)
-
-    def get_note_format(self):
-        """Return the current note's format"""
-        return self.note.get_format()
-
-    def set_note_object(self,obj):
-        """sets the Note instance attached to the Source"""
-        self.note = obj
-
-    def get_note_object(self):
-        """returns the Note instance attached to the Source"""
-        return self.note
-
-    def unique_note(self):
-        """Creates a unique instance of the current note"""
-        self.note = Note(self.note.get())
-
-    def set_author(self,author):
-        """sets the author of the Source"""
-        self.author = author
-
-    def get_author(self):
-        """returns the author of the Source"""
-        return self.author
-
-    def set_publication_info(self,text):
-        """sets the publication information of the Source"""
-        self.pubinfo = text
-
-    def get_publication_info(self):
-        """returns the publication information of the Source"""
-        return self.pubinfo
-
-    def set_abbreviation(self,abbrev):
-        """sets the title abbreviation of the Source"""
-        self.abbrev = abbrev
-
-    def get_abbreviation(self):
-        """returns the title abbreviation of the Source"""
-        return self.abbrev
 
 class SourceRef:
     """Source reference, containing detailed information about how a
@@ -2200,12 +2142,12 @@ class SourceRef:
         """Creates a unique instance of the current note"""
         self.comments = Note(self.comments.get())
 
-#-------------------------------------------------------------------------
-#
-# GenderStats
-#
-#-------------------------------------------------------------------------
 class GenderStats:
+    """
+    Class for keeping track of statistics related to Given Name vs.
+    Gender. This allows the tracking of the liklihood of a person's
+    given name indicating the gender of the person.
+    """
     def __init__ (self,stats={}):
         if stats == None:
             self.stats = {}

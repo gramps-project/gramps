@@ -206,7 +206,7 @@ class EventComparison:
     def on_apply_clicked(self,obj):
         cfilter = self.filter_menu.get_active().get_data("filter")
 
-        plist = cfilter.apply(self.db,self.db.get_person_keys())
+        plist = cfilter.apply(self.db,self.db.get_person_handles(sort_handles=False))
 
         if len(plist) == 0:
             WarningDialog(_("No matches were found"))

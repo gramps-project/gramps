@@ -70,7 +70,7 @@ class NameEditor:
         self.combo = self.top.get_widget("alt_surname_list")
         self.surname_field = self.top.get_widget("alt_last")
 
-        AutoComp.fill_combo(self.combo,self.parent.db.get_surnames())
+        AutoComp.fill_combo(self.combo,self.parent.db.get_surname_list())
 
         self.type_field = self.top.get_widget("name_type")
         self.note_field = self.top.get_widget("alt_note")

@@ -121,7 +121,7 @@ class EditSource:
             "on_sourceEditor_delete_event" : self.on_delete_event,
             })
 
-        if self.source.get_handle() == "":
+        if self.source.get_handle() == None:
             self.top_window.get_widget("edit_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -190,13 +190,13 @@ class EditSource:
         f_event_list = []
         f_attr_list = []
         p_list = []
-        for key in self.db.get_place_handle_keys():
+        for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key) 
             name = p.get_title()
             for sref in p.get_source_references():
                 if sref.get_base_handle() == self.source.get_handle():
                     p_list.append(name)
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             name = GrampsCfg.get_nameof()(p)
             for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
@@ -217,13 +217,13 @@ class EditSource:
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         p_addr_list.append((name,v.get_street()))
-        for object_handle in self.db.get_object_keys():
+        for object_handle in self.db.get_media_object_handles():
             object = self.db.get_object_from_handle(object_handle)
             name = object.get_description()
             for sref in object.get_source_references():
                 if sref.get_base_handle() == self.source.get_handle():
                     m_list.append(name)
-        for family_handle in self.db.get_family_keys():
+        for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
             f_id = family.get_father_handle()
             m_id = family.get_mother_handle()
@@ -327,9 +327,9 @@ class EditSource:
 
         self.gallery_ok = 1
 
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         self.db.commit_source(self.source,trans)
-        self.db.add_transaction(trans,_("Edit Source (%s)") % title)
+        self.db.transaction_commit(trans,_("Edit Source (%s)") % title)
         
         if self.callback:
             self.callback(self.source)
@@ -369,9 +369,9 @@ class DelSrcQuery:
         return m
 
     def query_response(self):
-        trans = self.db.start_transaction()
+        trans = self.db.transaction_begin()
         
-        for key in self.db.get_person_keys():
+        for key in self.db.get_person_handles(sort_handles=False):
             commit = 0
             p = self.db.get_person_from_handle(key)
             for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
@@ -390,7 +390,7 @@ class DelSrcQuery:
             if commit > 0:
                 self.db.commit_person(p,trans)
 
-        for p_id in self.db.get_family_keys():
+        for p_id in self.db.get_family_handles():
             commit = 0
             p = self.db.find_family_from_handle(p_id)
             for v_id in p.get_event_list():
@@ -403,16 +403,16 @@ class DelSrcQuery:
             if commit > 0:
                 self.db.commit_family(p,trans)
 
-        for p_id in self.db.get_object_keys():
+        for p_id in self.db.get_media_object_handles():
             p = self.db.get_object_from_handle(p_id,trans)
             if self.delete_source(p):
                 self.db.commit_media_object(p,trans)
 
-        for key in self.db.get_place_handle_keys():
+        for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key)
             if self.delete_source(self.db.get_place_from_handle(key)):
                 self.db.commit_place(p,trans)
 
-        self.db.remove_source_handle(self.source.get_handle(),trans)
-        self.db.add_transaction(trans,_("Delete Source (%s)") % self.source.get_title())
+        self.db.remove_source(self.source.get_handle(),trans)
+        self.db.transaction_commit(trans,_("Delete Source (%s)") % self.source.get_title())
         self.update()
