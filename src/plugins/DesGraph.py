@@ -41,9 +41,8 @@ import gtk
 #------------------------------------------------------------------------
 import GraphLayout
 import FontScale
-import DrawDoc
 import Report
-import TextDoc
+import BaseDoc
 import Errors
 
 from SubstKeywords import SubstKeywords
@@ -233,14 +232,14 @@ class DescendantReport:
 	self.maxx = int(self.doc.get_usable_width()/(self.box_width+_sep))
         self.maxy = int(self.doc.get_usable_height()/(self.height+_sep))
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_height(self.height)
         g.set_width(self.box_width)
         g.set_paragraph_style("DG-Normal")
         g.set_shadow(1)
         self.doc.add_draw_style("box",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         self.doc.add_draw_style("line",g)
 
     def print_page(self, plist,elist,r,c):
@@ -306,10 +305,10 @@ class DescendantReport:
 #------------------------------------------------------------------------
 def _make_default_style(default_style):
     """Make the default output style for the Descendant Graph report."""
-    f = TextDoc.FontStyle()
+    f = BaseDoc.FontStyle()
     f.set_size(9)
-    f.set_type_face(TextDoc.FONT_SANS_SERIF)
-    p = TextDoc.ParagraphStyle()
+    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    p = BaseDoc.ParagraphStyle()
     p.set_font(f)
     p.set_description(_('The basic style used for the text display.'))
     default_style.add_style("DG-Normal",p)
