@@ -64,7 +64,7 @@ class SelectChild:
         self.xml = gtk.glade.XML(const.gladeFile,"select_child","gramps")
     
         if person:
-            self.default_name = person.getPrimaryName().getSurname().upper()
+            self.default_name = person.get_primary_name().get_surname().upper()
         else:
             self.default_name = ""
 
@@ -84,27 +84,27 @@ class SelectChild:
         self.add_child = self.xml.get_widget("childlist")
 
         if (self.family):
-            father = self.family.getFather()
-            mother = self.family.getMother()
+            father = self.family.get_father_id()
+            mother = self.family.get_mother_id()
 
             if father != None:
-                fname = father.getPrimaryName().getName()
+                fname = father.get_primary_name().get_name()
                 label = _("Relationship to %(father)s") % {
                     'father' : fname
                     }
                 self.xml.get_widget("flabel").set_text(label)
 
             if mother != None:
-                mname = mother.getPrimaryName().getName()
+                mname = mother.get_primary_name().get_name()
                 label = _("Relationship to %(mother)s") % {
                     'mother' : mname
                     }
                 self.xml.get_widget("mlabel").set_text(label)
         else:
-            fname = self.person.getPrimaryName().getName()
+            fname = self.person.get_primary_name().get_name()
             label = _("Relationship to %s") % fname
             
-            if self.person.getGender() == RelLib.Person.male:
+            if self.person.get_gender() == RelLib.Person.male:
                 self.xml.get_widget("flabel").set_text(label)
                 self.xml.get_widget("mrel_combo").set_sensitive(0)
             else:
@@ -133,28 +133,29 @@ class SelectChild:
     def redraw_child_list(self,filter):
         self.refmodel.clear()
         self.refmodel.new_model()
-        bday = self.person.getBirth().getDateObj()
-        dday = self.person.getDeath().getDateObj()
+        bday = self.person.get_birth().get_date_object()
+        dday = self.person.get_death().get_date_object()
 
         slist = {}
-        for f in self.person.getParentList():
+        for f in self.person.get_parent_family_id_list():
             if f:
-                if f[0].getFather():
-                    slist[f[0].getFather().getId()] = 1
-                elif f[0].getMother():
-                    slist[f[0].getMother().getId()] = 1
-                for c in f[0].getChildList():
-                    slist[c.getId()] = 1
+                family = self.db.find_family_no_map(f[0])
+                if family.get_father_id():
+                    slist[family.get_father_id()] = 1
+                elif family.get_mother_id():
+                    slist[ffamily.get_mother_id()] = 1
+                for c in family.get_child_id_list():
+                    slist[c.get_id()] = 1
             
         person_list = []
-        for key in self.db.sortPersonKeys():
-            person = self.db.getPerson(key)
+        for key in self.db.sort_person_keys():
+            person = self.db.get_person(key)
             if filter:
-                if slist.has_key(key) or person.getMainParents():
+                if slist.has_key(key) or person.get_main_parents_family_id():
                     continue
             
-                pdday = person.getDeath().getDateObj()
-                pbday = person.getBirth().getDateObj()
+                pdday = person.get_death().get_date_object()
+                pbday = person.get_birth().get_date_object()
 
         	if bday.getYearValid():
                     if pbday.getYearValid():
@@ -182,11 +183,11 @@ class SelectChild:
                         if pdday.getLowYear() > dday.getHighYear() + 150:
                             continue
         
-            person_list.append(person.getId())
+            person_list.append(person.get_id())
 
         iter = None
         for idval in person_list:
-            dinfo = self.db.getPersonDisplay(idval)
+            dinfo = self.db.get_person_display(idval)
             rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
             new_iter = self.refmodel.add(rdata)
             names = dinfo[0].split(',')
@@ -211,30 +212,30 @@ class SelectChild:
             return
 
         id = self.refmodel.model.get_value(iter,1)
-        select_child = self.db.getPerson(id)
+        select_child = self.db.get_person(id)
         if self.family == None:
-            self.family = self.db.newFamily()
-            self.person.addFamily(self.family)
-            if self.person.getGender() == RelLib.Person.male:
-                self.family.setFather(self.person)
+            self.family = self.db.new_family()
+            self.person.add_family_id(self.family.get_id())
+            if self.person.get_gender() == RelLib.Person.male:
+                self.family.set_father_id(self.person)
             else:	
-                self.family.setMother(self.person)
+                self.family.set_mother_id(self.person)
                 
-        self.family.addChild(select_child)
+        self.family.add_child_id(select_child)
 		
-        mrel = const.childRelations[unicode(self.mrel.get_text())]
-        mother = self.family.getMother()
-        if mother and mother.getGender() != RelLib.Person.female:
+        mrel = const.child_relations(self.mrel.get_text())
+        mother = self.family.get_mother_id()
+        if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
-        frel = const.childRelations[unicode(self.frel.get_text())]
-        father = self.family.getFather()
-        if father and father.getGender() !=RelLib. Person.male:
+        frel = const.child_relations(self.frel.get_text())
+        father = self.family.get_father_id()
+        if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":
                 frel = "Unknown"
 
-        select_child.addAltFamily(self.family,mrel,frel)
+        select_child.add_parent_family_id(self.family.get_id(),mrel,frel)
 
         Utils.modified()
         self.top.destroy()
@@ -244,13 +245,13 @@ class SelectChild:
         self.redraw_child_list(not obj.get_active())
 
     def north_american(self,val):
-        if self.person.getGender() == Person.male:
-            return self.person.getPrimaryName().getSurname()
+        if self.person.get_gender() == Person.male:
+            return self.person.get_primary_name().get_surname()
         elif self.family:
-            f = self.family.getFather()
+            f = self.family.get_father_id()
             if f:
-                pname = f.getPrimaryName()
-                return (pname.getSurnamePrefix(),pname.getSurname())
+                pname = f.get_primary_name()
+                return (pname.get_surname_prefix(),pname.get_surname())
         return ("","")
 
     def no_name(self,val):
@@ -258,12 +259,12 @@ class SelectChild:
 
     def latin_american(self,val):
         if self.family:
-            father = self.family.getFather()
-            mother = self.family.getMother()
+            father = self.family.get_father_id()
+            mother = self.family.get_mother_id()
             if not father or not mother:
                 return ("","")
-            fsn = father.getPrimaryName().getSurname()
-            msn = mother.getPrimaryName().getSurname()
+            fsn = father.get_primary_name().get_surname()
+            msn = mother.get_primary_name().get_surname()
             if not father or not mother:
                 return ("","")
             try:
@@ -275,12 +276,12 @@ class SelectChild:
 
     def icelandic(self,val):
         fname = ""
-        if self.person.getGender() == Person.male:
-            fname = self.person.getPrimaryName().getFirstName()
+        if self.person.get_gender() == Person.male:
+            fname = self.person.get_primary_name().get_first_name()
         elif self.family:
-            f = self.family.getFather()
+            f = self.family.get_father_id()
             if f:
-                fname = f.getPrimaryName().getFirstName()
+                fname = f.get_primary_name().get_first_name()
         if fname:
             fname = fname.split()[0]
         if val == 0:
@@ -306,15 +307,15 @@ class EditRel:
         self.mcombo = self.xml.get_widget('mrel_combo')
         self.fcombo = self.xml.get_widget('frel_combo')
 
-        name = child.getPrimaryName().getName()
+        name = child.get_primary_name().get_name()
         Utils.set_titles(self.top,self.xml.get_widget('title'),
                          _('Relationships of %s') % name)
 
-        father = self.family.getFather()
-        mother = self.family.getMother()
+        father = self.family.get_father_id()
+        mother = self.family.get_mother_id()
 
         if father:
-            fname = father.getPrimaryName().getName()
+            fname = father.get_primary_name().get_name()
             val = _("Relationship to %(father)s") % {
                 'father' : fname }
             self.fdesc.set_text('<b>%s</b>' % val)
@@ -325,7 +326,7 @@ class EditRel:
             self.fcombo.set_sensitive(0)
 
         if mother:
-            mname = mother.getPrimaryName().getName()
+            mname = mother.get_primary_name().get_name()
             val = _("Relationship to %(mother)s") % {
                 'mother' : mname }
             self.mdesc.set_text('<b>%s</b>' % val)
@@ -340,7 +341,7 @@ class EditRel:
             "destroy_passed_object"    : self.close
             })
 
-        f = self.child.has_family(self.family)
+        f = self.child.has_family(self.family.get_id())
         self.fentry.set_text(_(f[2]))
         self.mentry.set_text(_(f[1]))
         
@@ -352,18 +353,18 @@ class EditRel:
         self.top.destroy()
 
     def on_ok_clicked(self,obj):
-        mrel = const.childRelations[unicode(self.mentry.get_text())]
-        mother = self.family.getMother()
-        if mother and mother.getGender() != RelLib.Person.female:
+        mrel = const.child_relations(self.mentry.get_text())
+        mother = self.family.get_mother_id()
+        if mother and mother.get_gender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
-        frel = const.childRelations[unicode(self.fentry.get_text())]
-        father = self.family.getFather()
-        if father and father.getGender() !=RelLib. Person.male:
+        frel = const.child_relations(self.fentry.get_text())
+        father = self.family.get_father_id()
+        if father and father.get_gender() !=RelLib. Person.male:
             if frel == "Birth":
                 frel = "Unknown"
 
-        self.child.changeAltFamily(self.family,mrel,frel)
+        self.child.change_parent_family_id(self.family,mrel,frel)
         self.update()
         self.top.destroy()

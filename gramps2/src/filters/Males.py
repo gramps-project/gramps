@@ -28,7 +28,7 @@ class Males(Filter.Filter):
     "Males"
 
     def match(self,person):
-        return person.getGender() == RelLib.Person.male
+        return person.get_gender() == RelLib.Person.male
 
 #------------------------------------------------------------------------
 #

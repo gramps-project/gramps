@@ -141,7 +141,7 @@ class Gramps:
         self.db.set_pprefix(GrampsCfg.pprefix)
 
         GrampsCfg.loadConfig(self.pref_callback)
-        self.relationship = Plugins.relationship_function()
+        self.relationship = Plugins.relationship_function(self.db)
         self.init_interface()
 
         if args:
@@ -157,10 +157,10 @@ class Gramps:
             Utils.enable_autosave(self.autosave_database,
                                   GrampsCfg.autosave_int)
 
-        self.db.setResearcher(GrampsCfg.get_researcher())
+        self.db.set_researcher(GrampsCfg.get_researcher())
 
     def pref_callback(self,val):
-        self.db.rebuildPersonTable()
+        self.db.rebuild_person_table()
         self.modify_statusbar()
         self.family_view.init_interface()
         self.people_view.clear_person_tabs()
@@ -423,9 +423,9 @@ class Gramps:
                         break
                     if pid not in haveit:
                         haveit.append(pid)
-                        person = self.db.getPerson(pid)
+                        person = self.db.get_person(pid)
                         item = gtk.MenuItem("_%d. %s [%s]" % 
-                                            (num,person.getPrimaryName().getName(),pid))
+                                            (num,person.get_primary_name().get_name(),pid))
                         item.connect("activate",self.bookmark_callback,person)
                         item.show()
                         gomenu.append(item)
@@ -455,9 +455,9 @@ class Gramps:
                     hotkey = "_%s" % chr(ord('a')+num-11)
                 elif num >= 21:
                     break
-                person = self.db.getPerson(pid)
+                person = self.db.get_person(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,person.getPrimaryName().getName(),pid))
+                    (hotkey,person.get_primary_name().get_name(),pid))
                 item.connect("activate",self.back_clicked,num)
                 item.show()
                 backhistmenu.append(item)
@@ -483,9 +483,9 @@ class Gramps:
                     hotkey = "_%s" % chr(ord('a')+num-11)
                 elif num >= 21:
                     break
-                person = self.db.getPerson(pid)
+                person = self.db.get_person(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
-                    (hotkey,person.getPrimaryName().getName(),pid))
+                    (hotkey,person.get_primary_name().get_name(),pid))
                 item.connect("activate",self.fwd_clicked,num)
                 item.show()
                 fwdhistmenu.append(item)
@@ -511,7 +511,7 @@ class Gramps:
         if self.hindex > 0:
             try:
                 self.hindex -= step
-                self.active_person = self.db.getPerson(self.history[self.hindex])
+                self.active_person = self.db.get_person(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
                 self.mhistory.append(self.history[self.hindex])
@@ -537,7 +537,7 @@ class Gramps:
         if self.hindex+1 < len(self.history):
             try:
                 self.hindex += step
-                self.active_person = self.db.getPerson(self.history[self.hindex])
+                self.active_person = self.db.get_person(self.history[self.hindex])
                 self.modify_statusbar()
                 self.update_display(0)
                 self.mhistory.append(self.history[self.hindex])
@@ -660,7 +660,7 @@ class Gramps:
         Plugins.build_export_menu(export_menu,self.export_callback)
         Plugins.build_import_menu(import_menu,self.import_callback)
 
-        self.relationship = Plugins.relationship_function()
+        self.relationship = Plugins.relationship_function(self.db)
 
     def init_filters(self):
 
@@ -742,8 +742,8 @@ class Gramps:
                 ErrorDialog(msg,msg2)
             else:
                 import MergeData
-                p1 = self.db.getPerson(mlist[0])
-                p2 = self.db.getPerson(mlist[1])
+                p1 = self.db.get_person(mlist[0])
+                p2 = self.db.get_person(mlist[1])
                 MergeData.MergePeople(self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
         elif page == PLACE_VIEW:
@@ -806,14 +806,14 @@ class Gramps:
         on if the image was previewed.
         """
         for obj in self.db.get_added_media_objects():
-            if obj.getLocal():
+            if obj.get_local():
                 try:
-                    os.unlink(obj.getPath())
+                    os.unlink(obj.get_path())
                 except IOError:
                     pass
                 except:
                     DisplayTrace.DisplayTrace()
-            thumb = "%s/.thumb/%s.jpg" % (self.db.getSavePath(),obj.getId())
+            thumb = "%s/.thumb/%s.jpg" % (self.db.get_save_path(),obj.get_id())
             if os.path.isfile(thumb):
                 try:
                     os.unlink(thumb)
@@ -940,7 +940,7 @@ class Gramps:
         elif page == SOURCE_VIEW:
             self.source_view.load_sources()
         elif page == PLACE_VIEW:
-            if len(self.db.getPlaceKeys()) > 2000:
+            if len(self.db.get_place_id_keys()) > 2000:
                 self.status_text(_('Updating display - this may take a few seconds...'))
             else:
                 self.status_text(_('Updating display...'))
@@ -1078,34 +1078,34 @@ class Gramps:
         def remove_clicked():
             # File is lost => remove all references and the object itself
             mobj = ObjectMap[ObjectId]
-            for p in self.db.getFamilyMap().values():
-                nl = p.getPhotoList()
+            for p in self.db.get_family_id_map().values():
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPersonKeys():
-                p = self.db.getPerson(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_person_keys():
+                p = self.db.get_person(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getSourceKeys():
-                p = self.db.getSource(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_source_keys():
+                p = self.db.get_source(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPlaceKeys():
-                p = self.db.getPlace(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_place_id_keys():
+                p = self.db.get_place_id(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            self.db.removeObject(ObjectId) 
+                p.set_photo_list(nl)
+            self.db.remove_object(ObjectId) 
     
         def leave_clicked():
             # File is lost => do nothing, leave as is
@@ -1120,7 +1120,7 @@ class Gramps:
                 name = fs_top.get_filename()
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
-                    ObjectMap[ObjectId].setPath(newfile)
+                    ObjectMap[ObjectId].set_path(newfile)
                 Utils.destroy_passed_object(fs_top)
 
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
@@ -1131,13 +1131,13 @@ class Gramps:
             fs_top.run()
 
         #-------------------------------------------------------------------------
-        ObjectMap = self.db.getObjectMap()
+        ObjectMap = self.db.get_object_map()
         for ObjectId in ObjectMap.keys():
-            if ObjectMap[ObjectId].getLocal():
-                oldfile = ObjectMap[ObjectId].getPath()
+            if ObjectMap[ObjectId].get_local():
+                oldfile = ObjectMap[ObjectId].get_path()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
                 newfile = os.path.join(filename,os.path.basename(oldfile))
-                ObjectMap[ObjectId].setPath(newfile)
+                ObjectMap[ObjectId].set_path(newfile)
                 if os.path.isfile(oldfile):
                     RelImage.import_media_object(oldfile,filename,base)
                 else:
@@ -1203,14 +1203,14 @@ class Gramps:
             ErrorDialog(emsg,msg)
             return
         
-        self.db.setSavePath(old_file)
+        self.db.set_save_path(old_file)
         GrampsCfg.save_last_file(old_file)
 
         if GrampsCfg.usevc:
             vc = VersionControl.RcsVersionControl(path)
             vc.checkin(filename,comment,not GrampsCfg.uncompress)
 
-        filename = self.db.getSavePath()
+        filename = self.db.get_save_path()
         if filename[-1] == '/':
             filename = filename[:-1]
         name = os.path.basename(filename)
@@ -1228,7 +1228,7 @@ class Gramps:
                 pass
 
     def autosave_database(self):
-        path = self.db.getSavePath()
+        path = self.db.get_save_path()
         if not path:
             return 1
         
@@ -1251,7 +1251,7 @@ class Gramps:
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
         mlist = self.people_view.person_tree.get_selected_objects()
-        if mlist and self.active_person == self.db.getPerson(mlist[0]):
+        if mlist and self.active_person == self.db.get_person(mlist[0]):
             self.load_person(self.active_person)
 
     def load_active_person(self,obj):
@@ -1273,10 +1273,10 @@ class Gramps:
         if cpage == PERSON_VIEW:
             mlist = self.people_view.person_tree.get_selected_objects()
         else:
-            mlist = [ self.active_person.getId() ]
+            mlist = [ self.active_person.get_id() ]
 
         for sel in mlist:
-            p = self.db.getPerson(sel)
+            p = self.db.get_person(sel)
             self.active_person = p
             name = GrampsCfg.nameof(p) 
 
@@ -1293,38 +1293,42 @@ class Gramps:
 
     def delete_person_response(self):
 
-        if self.db.getDefaultPerson() == self.active_person:
-            self.db.setDefaultPerson(None)
+        if self.db.get_default_person() == self.active_person:
+            self.db.set_default_person(None)
 
-        for family in self.active_person.getFamilyList():
-            if not family:
+        for family_id in self.active_person.get_family_id_list():
+            if not family_id:
                 continue
-            if self.active_person == family.getFather():
-                if family.getMother() == None:
-                    for child in family.getChildList():
-                        child.removeAltFamily(family)
-                    self.db.deleteFamily(family)
+            family = self.db.find_family_from_id(family_id)
+            if self.active_person.get_id() == family.get_father_id():
+                if family.get_mother_id() == None:
+                    for child_id in family.get_child_id_list():
+                        child = self.db.find_person_from_id(child_id)
+                        child.remove_parent_family_id(family.get_id())
+                    self.db.delete_family(family.get_id())
                 else:
-                    family.setFather(None)
+                    family.set_father_id(None)
             else:
-                if family.getFather() == None:
-                    for child in family.getChildList():
-                        child.removeAltFamily(family)
-                    self.db.deleteFamily(family)
+                if family.get_father_id() == None:
+                    for child_id in family.get_child_id_list():
+                        child = self.db.find_person_from_id(child_id)
+                        child.remove_parent_family_id(family)
+                    self.db.delete_family(family)
                 else:
-                    family.setMother(None)
+                    family.set_mother_id(None)
 
-        for (family,mrel,frel) in self.active_person.getParentList():
-            if family:
-                family.removeChild(self.active_person)
+        for (family_id,mrel,frel) in self.active_person.get_parent_family_id_list():
+            if family_id:
+                family = self.db.find_family_from_id(family_id)
+                family.remove_child_id(self.active_person.get_id())
             
         self.people_view.remove_from_history(self.active_person)
-        self.db.removePerson(self.active_person.getId())
-        self.people_view.remove_from_person_list(self.active_person)
+        self.db.remove_person_id(self.active_person.get_id())
+        self.people_view.remove_from_person_list(self.active_person.get_id())
         self.people_view.person_model.sort_column_changed()
 
         if self.hindex >= 0:
-            self.active_person = self.db.getPerson(self.history[self.hindex])
+            self.active_person = self.db.get_person(self.history[self.hindex])
         else:
             self.change_active_person(None)
         self.redraw_histmenu()
@@ -1351,8 +1355,8 @@ class Gramps:
                 if self.hindex+1 < len(self.history):
                     self.history = self.history[0:self.hindex+1]
 
-                self.history.append(person.getId())
-                self.mhistory.append(person.getId())
+                self.history.append(person.get_id())
+                self.mhistory.append(person.get_id())
                 self.hindex += 1
                 self.redraw_histmenu()
 
@@ -1382,7 +1386,7 @@ class Gramps:
         else:
             if GrampsCfg.status_bar <= 1:
                 pname = GrampsCfg.nameof(self.active_person)
-                name = "[%s] %s" % (self.active_person.getId(),pname)
+                name = "[%s] %s" % (self.active_person.get_id(),pname)
             else:
                 name = self.display_relationship()
             self.status_text(name)
@@ -1390,9 +1394,9 @@ class Gramps:
 
     def display_relationship(self):
         try:
-            pname = GrampsCfg.nameof(self.db.getDefaultPerson())
-            (name,plist) = self.relationship(self.db.getDefaultPerson(),
-                                             self.active_person)
+            pname = GrampsCfg.nameof(self.db.get_default_person())
+            (name,plist) = self.relationship.get_relationship(self.db.get_default_person(),
+                                                              self.active_person)
 
             if name:
                 if plist == None:
@@ -1444,7 +1448,7 @@ class Gramps:
 
     def on_revert_activate(self,obj):
         
-        if self.db.getSavePath() != "":
+        if self.db.get_save_path() != "":
             QuestionDialog(_('Revert to last saved database?'),
                            _('Reverting to the last saved database '
                              'will cause all unsaved changes to be lost, and '
@@ -1463,7 +1467,7 @@ class Gramps:
         const.familyAttributes = const.init_family_attribute_list()
         const.familyRelations = const.init_family_relation_list()
         
-        file = self.db.getSavePath()
+        file = self.db.get_save_path()
         self.db.new()
         self.active_person = None
         self.place_loaded = 0
@@ -1485,26 +1489,26 @@ class Gramps:
     def on_save_activate(self,obj):
         """Saves the file, first prompting for a comment if revision
         control needs it"""
-        if not self.db.getSavePath():
+        if not self.db.get_save_path():
             self.on_save_as_activate(obj)
         else:
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.display_comment_box(self.db.getSavePath())
+                self.display_comment_box(self.db.get_save_path())
             else:
                 msg = _("No Comment Provided")
-                self.save_file(self.db.getSavePath(),msg)
+                self.save_file(self.db.get_save_path(),msg)
 
     def on_save_activate_quit(self):
         """Saves the file, first prompting for a comment if revision
         control needs it"""
-        if not self.db.getSavePath():
+        if not self.db.get_save_path():
             self.on_save_as_activate(None)
         else:
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
-                self.display_comment_box(self.db.getSavePath())
+                self.display_comment_box(self.db.get_save_path())
             else:
                 msg = _("No Comment Provided")
-                self.save_file(self.db.getSavePath(),msg)
+                self.save_file(self.db.get_save_path(),msg)
 
     def display_comment_box(self,filename):
         """Displays a dialog box, prompting for a revison control comment"""
@@ -1540,7 +1544,7 @@ class Gramps:
 
     def on_places_activate(self,obj):
         """Switches to the places view"""
-        if len(self.db.getPlaceKeys()) > 2000:
+        if len(self.db.get_place_id_keys()) > 2000:
             self.status_text(_('Updating display - this may take a few seconds...'))
         else:
             self.status_text(_('Updating display...'))
@@ -1596,11 +1600,11 @@ class Gramps:
 
     def new_after_edit(self,epo):
         if epo:
-            if epo.person.getId() == "":
-                self.db.addPerson(epo.person)
+            if epo.person.get_id() == "":
+                self.db.add_person(epo.person)
             else:
-                self.db.addPersonNoMap(epo.person,epo.person.getId())
-            self.db.buildPersonDisplay(epo.person.getId())
+                self.db.add_person_no_map(epo.person,epo.person.get_id())
+            self.db.build_person_display(epo.person.get_id())
             self.change_active_person(epo.person)
             self.people_view.redisplay_person_list(epo.person)
         if self.views.get_current_page() in [FAMILY_VIEW1,FAMILY_VIEW2]:
@@ -1614,15 +1618,15 @@ class Gramps:
 
     def update_after_edit(self,epo):
         if epo:
-            self.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
+            self.db.build_person_display(epo.person.get_id(),epo.original_id)
             self.people_view.remove_from_person_list(epo.person,epo.original_id)
             self.people_view.redisplay_person_list(epo.person)
         self.update_display(0)
 
     def update_after_merge(self,person,old_id):
         if person:
-            self.people_view.remove_from_person_list(person.getId(),old_id)
-            self.db.buildPersonDisplay(person.getId(),old_id)
+            self.people_view.remove_from_person_list(person.get_id(),old_id)
+            self.db.build_person_display(person.get_id(),old_id)
             self.people_view.redisplay_person_list(person)
         self.update_display(0)
 
@@ -1667,41 +1671,41 @@ class Gramps:
         gtk.threads_leave()
 
     def post_load(self,name):
-        self.db.setSavePath(name)
-        res = self.db.getResearcher()
+        self.db.set_save_path(name)
+        res = self.db.get_researcher()
         owner = GrampsCfg.get_researcher()
     
-        if res.getName() == "" and owner.getName():
-            self.db.setResearcher(owner)
+        if res.get_name() == "" and owner.get_name():
+            self.db.set_researcher(owner)
             Utils.modified()
 
         self.setup_bookmarks()
 
         try:
-            mylist = self.db.getPersonEventTypes()
+            mylist = self.db.get_person_event_types()
             for type in mylist:
                 ntype = const.display_pevent(type)
                 if ntype not in const.personalEvents:
                     const.personalEvents.append(ntype)
                     
-            mylist = self.db.getFamilyEventTypes()
+            mylist = self.db.get_family_event_types()
             for type in mylist:
                 ntype = const.display_fevent(type)
                 if ntype not in const.marriageEvents:
                     const.marriageEvents.append(ntype)
 
-            mylist = self.db.getPersonAttributeTypes()
+            mylist = self.db.get_person_attribute_types()
             for type in mylist:
                 ntype = const.display_pattr(type)
                 if ntype not in const.personalAttributes:
                     const.personalAttributes.append(ntype)
 
-            mylist = self.db.getFamilyAttributeTypes()
+            mylist = self.db.get_family_attribute_types()
             for type in mylist:
                 if type not in const.familyAttributes:
                     const.familyAttributes.append(type)
 
-            mylist = self.db.getFamilyRelationTypes()
+            mylist = self.db.get_family_relation_types()
             for type in mylist:
                 if type not in const.familyRelations:
                     const.familyRelations.append(type)
@@ -1720,12 +1724,12 @@ class Gramps:
         return 1
 
     def find_initial_person(self):
-        person = self.db.getDefaultPerson()
+        person = self.db.get_default_person()
         if not person:
-            the_ids = self.db.getPersonMap().keys()
+            the_ids = self.db.get_person_id_map().keys()
             if the_ids:
                 the_ids.sort()
-                person = self.db.getPerson(the_ids[0])
+                person = self.db.get_person(the_ids[0])
         return person
     
     def load_database(self,name):
@@ -1750,7 +1754,7 @@ class Gramps:
         return self.post_load(name)
 
     def setup_bookmarks(self):
-        self.bookmarks = Bookmarks.Bookmarks(self.db.getBookmarks(),
+        self.bookmarks = Bookmarks.Bookmarks(self.db.get_bookmarks(),
                                              self.gtop.get_widget("jump_to"),
                                              self.bookmark_callback)
 
@@ -1764,7 +1768,7 @@ class Gramps:
         self.modify_statusbar()
 
     def on_home_clicked(self,obj):
-        temp = self.db.getDefaultPerson()
+        temp = self.db.get_default_person()
         if temp:
             self.change_active_person(temp)
             self.update_display(0)
@@ -1799,7 +1803,7 @@ class Gramps:
     
     def on_default_person_activate(self,obj):
         if self.active_person:
-            name = self.active_person.getPrimaryName().getRegularName()
+            name = self.active_person.get_primary_name().get_regular_name()
             QuestionDialog(_('Set %s as the Home Person') % name,
                            _('Once a Home Person is defined, pressing the '
                              'Home button on the toolbar will make the home '
@@ -1808,7 +1812,7 @@ class Gramps:
                            self.set_person)
             
     def set_person(self):
-        self.db.setDefaultPerson(self.active_person)
+        self.db.set_default_person(self.active_person)
         Utils.modified()
 
     def export_callback(self,obj,plugin_function):
@@ -1823,7 +1827,7 @@ class Gramps:
     def import_callback(self,obj,plugin_function):
         """Call the import plugin"""
         plugin_function(self.db,self.active_person,self.import_tool_callback)
-        self.topWindow.set_title("%s - GRAMPS" % self.db.getSavePath())
+        self.topWindow.set_title("%s - GRAMPS" % self.db.get_save_path())
 
     def on_preferences_activate(self,obj):
         GrampsCfg.display_preferences_box(self.db)

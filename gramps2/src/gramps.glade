@@ -780,7 +780,7 @@
 		  <property name="tooltip" translatable="yes">Make the Home Person the active person</property>
 		  <property name="label" translatable="yes">Home</property>
 		  <property name="use_underline">True</property>
-		  <property name="stock_pixmap">gtk-home</property>
+		  <property name="icon">home.png</property>
 		  <signal name="clicked" handler="on_home_clicked"/>
 		</widget>
 	      </child>

@@ -75,7 +75,7 @@ _hline = " "    # Everything is underlined, so use blank
 #
 #------------------------------------------------------------------------
 def by_date(a,b):
-    return Date.compare_dates(a.getDateObj(),b.getDateObj())
+    return Date.compare_dates(a.get_date_object(),b.get_date_object())
 
 #------------------------------------------------------------------------
 #
@@ -108,16 +108,17 @@ class HtmlLinkDoc(HtmlDoc.HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,person,photos,restrict,private,uc,link,mini_tree,map,
+    def __init__(self,db,person,photos,restrict,private,uc,link,mini_tree,map,
                  dir_name,imgdir,doc,id,idlink,ext):
         self.person = person
+        self.db = db
         self.ext = ext
         self.doc = doc
         self.use_id = id
         self.id_link = idlink
         self.list = map
         self.private = private
-        self.alive = person.probablyAlive() and restrict
+        self.alive = person.probably_alive() and restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.usecomments = not uc
         self.dir = dir_name
@@ -127,7 +128,7 @@ class IndividualPage:
         self.scnt = 1
         self.image_dir = imgdir
 
-        name = person.getPrimaryName().getRegularName()
+        name = person.get_primary_name().get_regular_name()
         self.doc.set_title(_("Summary of %s") % name)
         self.doc.fix_title()
         
@@ -212,7 +213,7 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def write_link_row(self,title,person):
+    def write_link_row(self,title,person_id):
         self.doc.start_row()
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Label")
@@ -222,13 +223,14 @@ class IndividualPage:
 
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
-        if person:
-            if self.list.has_key(person.getId()):
-                self.doc.start_link("%s.%s" % (person.getId(),self.ext))
-	        self.doc.write_text(person.getPrimaryName().getRegularName())
+        if person_id:
+            person = self.db.find_person_from_id(person_id)
+            if self.list.has_key(person.get_id()):
+                self.doc.start_link("%s.%s" % (person.get_id(),self.ext))
+	        self.doc.write_text(person.get_primary_name().get_regular_name())
                 self.doc.end_link()
             else:
-	        self.doc.write_text(person.getPrimaryName().getRegularName())
+	        self.doc.write_text(person.get_primary_name().get_regular_name())
 
         self.doc.end_paragraph()
         self.doc.end_cell()
@@ -245,14 +247,16 @@ class IndividualPage:
             self.doc.write_linktarget("s%d" % index)
             self.doc.write_text('%d. ' % index)
             index = index + 1
-            self.write_info(sref.getBase().getTitle())
-            self.write_info(sref.getBase().getAuthor())
-            self.write_info(sref.getBase().getPubInfo())
-            self.write_info(sref.getDate().getDate())
-            self.write_info(sref.getPage())
+            base_id = sref.get_base_id()
+            base = self.db.find_source_from_id(base_id)
+            self.write_info(base.get_title())
+            self.write_info(base.get_author())
+            self.write_info(base.get_publication_info())
+            self.write_info(sref.get_date().get_date())
+            self.write_info(sref.get_page())
             if self.usecomments:
-                self.write_info(sref.getText())
-                self.write_info(sref.getComments())
+                self.write_info(sref.get_text())
+                self.write_info(sref.get_comments())
             self.doc.end_paragraph()
 
     def write_info(self,info):
@@ -260,7 +264,7 @@ class IndividualPage:
            spaces. If the last character is not a period, the period is
            appended to produce a sentance"""
         
-        info = string.strip(info)
+        info = info.strip()
         if info != "":
             if info[-1] == '.':
                 self.doc.write_text("%s " % info)
@@ -268,14 +272,14 @@ class IndividualPage:
                 self.doc.write_text("%s. " % info)
                 
     def write_tree(self,ind_list):
-        if not self.mini_tree or not self.person.getMainParents():
+        if not self.mini_tree or not self.person.get_main_parents_family_id():
             return
         self.doc.start_paragraph("FamilyTitle")
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("Data")
         self.doc.write_raw('<PRE>\n')
-        tree = MiniTree(self.person,self.doc,ind_list)
+        tree = MiniTree(self.db,self.person,self.doc,ind_list)
         for line in tree.lines:
             if line: self.doc.write_raw(line + '\n')
         self.doc.write_raw('</PRE>\n')
@@ -284,12 +288,12 @@ class IndividualPage:
     def create_page(self,ind_list):
         """Generate the HTML page for the specific person"""
         
-        filebase = "%s.%s" % (self.person.getId(),self.ext)
+        filebase = "%s.%s" % (self.person.get_id(),self.ext)
         self.doc.open("%s/%s" % (self.dir,filebase))
 
-        photo_list = self.person.getPhotoList()
-        name_obj = self.person.getPrimaryName()
-        name = name_obj.getRegularName()
+        photo_list = self.person.get_photo_list()
+        name_obj = self.person.get_primary_name()
+        name = name_obj.get_regular_name()
 
         # Write out the title line.
         
@@ -307,9 +311,9 @@ class IndividualPage:
         # into the document.
         
         if self.photos and len(photo_list) > 0:
-            object = photo_list[0].getReference()
-            if object.getMimeType()[0:5] == "image":
-                file = object.getPath()
+            object = photo_list[0].get_reference()
+            if object.get_mime_type()[0:5] == "image":
+                file = object.get_path()
                 if os.path.isfile(file):
                     self.doc.start_paragraph("Data")
                     self.doc.add_photo(file,"row",4.0,4.0)
@@ -319,26 +323,27 @@ class IndividualPage:
         # name, gender, and parents
         
         self.doc.start_table("one","IndTable")
-        self.write_normal_row("%s:" % _("Name"), name, name_obj.getSourceRefList())
+        self.write_normal_row("%s:" % _("Name"), name, name_obj.get_source_references())
         if self.use_id:
             if self.id_link:
-                val = '<a href="%s">%s</a>' % (self.id_link,self.person.getId())
-                val = string.replace(val,'*',self.person.getId())
+                val = '<a href="%s">%s</a>' % (self.id_link,self.person.get_id())
+                val = val.replace('*',self.person.get_id())
             else:
-                val = self.person.getId()
+                val = self.person.get_id()
             self.write_id_row("%s:" % _("ID Number"),val)
             
-        if self.person.getGender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.male:
             self.write_normal_row("%s:" % _("Gender"), _("Male"),None)
-        elif self.person.getGender() == RelLib.Person.female:
+        elif self.person.get_gender() == RelLib.Person.female:
             self.write_normal_row("%s:" % _("Gender"), _("Female"),None)
         else:
             self.write_normal_row("%s:" % _("Gender"), _("Unknown"),None)
 
-        family = self.person.getMainParents()
-        if family:
-            self.write_link_row("%s:" % _("Father"), family.getFather())
-            self.write_link_row("%s:" % _("Mother"), family.getMother())
+        family_id = self.person.get_main_parents_family_id()
+        if family_id:
+            family = self.db.find_family_from_id(family_id)
+            self.write_link_row("%s:" % _("Father"), family.get_father_id())
+            self.write_link_row("%s:" % _("Mother"), family.get_mother_id())
         else:
             self.write_link_row("%s:" % _("Father"), None)
             self.write_link_row("%s:" % _("Mother"), None)
@@ -388,9 +393,9 @@ class IndividualPage:
         
         my_list = []
         index = 0
-        for object in self.person.getPhotoList():
-            if object.getReference().getMimeType()[0:5] == "image":
-                if object.getPrivacy() == 0 and index != 0:
+        for object in self.person.get_photo_list():
+            if object.get_reference().get_mime_type()[0:5] == "image":
+                if object.get_privacy() == 0 and index != 0:
                     my_list.append(object)
             index = 1
             
@@ -409,9 +414,9 @@ class IndividualPage:
         self.doc.start_table("gallery","IndTable")
         for obj in my_list:
             try:
-                src = obj.getReference().getPath()
+                src = obj.get_reference().get_path()
                 junk,ext = os.path.splitext(src)
-                base = '%s%s' % (obj.getReference().getId(),ext)
+                base = '%s%s' % (obj.get_reference().get_id(),ext)
                 
                 if self.image_dir:
                     shutil.copyfile(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
@@ -439,15 +444,15 @@ class IndividualPage:
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.start_cell("NoteCell")
-                description = obj.getReference().getDescription()
+                description = obj.get_reference().get_description()
                 if description != "":
                     self.doc.start_paragraph("PhotoDescription")
                     self.doc.write_text(description)
                     self.doc.end_paragraph()
-                if obj.getNote() != "":
-                    self.doc.write_note(obj.getNote(),obj.getNoteFormat(),"PhotoNote")
-                elif obj.getReference().getNote() != "":
-                    self.doc.write_note(obj.getReference().getNote(),obj.getReference().getNoteFormat(),"PhotoNote")
+                if obj.get_note() != "":
+                    self.doc.write_note(obj.get_note(),obj.get_note_format(),"PhotoNote")
+                elif obj.get_reference().get_note() != "":
+                    self.doc.write_note(obj.get_reference().get_note(),obj.get_reference().get_note_format(),"PhotoNote")
                 self.doc.end_cell()
                 self.doc.end_row()
             except IOError:
@@ -465,17 +470,21 @@ class IndividualPage:
             return
         count = 0
         
-        event_list = [ self.person.getBirth(), self.person.getDeath() ]
-        event_list = event_list + self.person.getEventList()
+        event_list = [ self.person.get_birth(), self.person.get_death() ]
+        event_list = event_list + self.person.get_event_list()
         event_list.sort(by_date)
         for event in event_list:
-            if event.getPrivacy():
+            if event.get_privacy():
                 continue
-            name = _(event.getName())
-            date = event.getDate()
-            descr = event.getDescription()
-            place = event.getPlaceName()
-            srcref = event.getSourceRefList()
+            name = _(event.get_name())
+            date = event.get_date()
+            descr = event.get_description()
+            place_id = event.get_place_id()
+            if place_id:
+                place = self.db.find_place_from_id(place_id).get_title()
+            else:
+                place = ""
+            srcref = event.get_source_references()
 
             if date == "" and descr == "" and place == "" and len(srcref) == 0:
                 continue
@@ -512,23 +521,27 @@ class IndividualPage:
 
     def write_notes(self):
 
-        if self.person.getNote() == "" or self.alive:
+        if self.person.get_note() == "" or self.alive:
             return
         
         self.doc.start_paragraph("NotesTitle")
         self.doc.write_text(_("Notes"))
         self.doc.end_paragraph()
 
-        self.doc.write_note(self.person.getNote(),self.person.getNoteFormat(),"NotesParagraph")
+        self.doc.write_note(self.person.get_note(),self.person.get_note_format(),"NotesParagraph")
 
     def write_fam_fact(self,event):
 
         if event == None:
             return
-        name = _(event.getName())
-        date = event.getDate()
-        place = event.getPlaceName()
-        descr = event.getDescription()
+        name = _(event.get_name())
+        date = event.get_date()
+        place_id = event.get_place_id()
+        if place_id:
+            place = self.db.find_place_from_id(place_id).get_title()
+        else:
+            place = ""
+        descr = event.get_description()
         if descr != "" and descr[-1] == ".":
             descr = descr[0:-1]
         if place != "" and place[-1] == ".":
@@ -563,7 +576,7 @@ class IndividualPage:
         self.write_marriage_row([name, val])
 
     def write_families(self):
-        if len(self.person.getFamilyList()) == 0:
+        if len(self.person.get_family_id_list()) == 0:
             return
         
         self.doc.start_paragraph("FamilyTitle")
@@ -572,21 +585,23 @@ class IndividualPage:
 
         self.doc.start_table("three","IndTable")
         
-        for family in self.person.getFamilyList():
-            if self.person == family.getFather():
-                spouse = family.getMother()
+        for family_id in self.person.get_family_id_list():
+            family = self.db.find_family_from_id(family_id)
+            if self.person.get_id() == family.get_father_id():
+                spouse_id = family.get_mother_id()
             else:
-                spouse = family.getFather()
+                spouse_id = family.get_father_id()
             self.doc.start_row()
             self.doc.start_cell("NormalCell",2)
             self.doc.start_paragraph("Spouse")
-            if spouse:
-                if self.list.has_key(spouse.getId()):
-                    self.doc.start_link("%s.%s" % (spouse.getId(),self.ext))
-                    self.doc.write_text(spouse.getPrimaryName().getRegularName())
+            if spouse_id:
+                spouse = self.db.find_person_from_id(spouse_id)
+                if self.list.has_key(spouse_id):
+                    self.doc.start_link("%s.%s" % (spouse_id,self.ext))
+                    self.doc.write_text(spouse.get_primary_name().get_regular_name())
                     self.doc.end_link()
                 else:
-                    self.doc.write_text(spouse.getPrimaryName().getRegularName())
+                    self.doc.write_text(spouse.get_primary_name().get_regular_name())
             else:
                 self.doc.write_text(_("unknown"))
             self.doc.end_paragraph()
@@ -594,11 +609,11 @@ class IndividualPage:
             self.doc.end_row()
             
             if not self.alive:
-                for event in family.getEventList():
-                    if event.getPrivacy() == 0:
+                for event in family.get_event_list():
+                    if event.get_privacy() == 0:
                         self.write_fam_fact(event)
 
-            child_list = family.getChildList()
+            child_list = family.get_child_id_list()
             if len(child_list) > 0:
                 
                 self.doc.start_row()
@@ -612,14 +627,15 @@ class IndividualPage:
                 self.doc.start_paragraph("Data")
                 
                 first = 1
-                for child in family.getChildList():
-                    name = child.getPrimaryName().getRegularName()
+                for child_id in family.get_child_id_list():
+                    child = self.db.find_person_from_id(child_id)
+                    name = child.get_primary_name().get_regular_name()
                     if first == 1:
                         first = 0
                     else:
                         self.doc.write_text('\n')
-                    if self.list.has_key(child.getId()):
-                        self.doc.start_link("%s.%s" % (child.getId(),self.ext))
+                    if self.list.has_key(child_id):
+                        self.doc.start_link("%s.%s" % (child_id,self.ext))
                         self.doc.write_text(name)
                         self.doc.end_link()
                     else:
@@ -662,8 +678,8 @@ class WebReport(Report.Report):
     
     def make_date(self,date):
         start = date.get_start_date()
-        if date.isEmpty():
-            val = date.getText()
+        if date.is_empty():
+            val = date.get_text()
         elif date.isRange():
             val = "FROM %s TO %s" % (self.subdate(start),
                                      self.subdate(date.get_stop_date()))
@@ -719,22 +735,22 @@ class WebReport(Report.Report):
         except:
             return
         for p in person_list:
-            name = p.getPrimaryName()
-            firstName = name.getFirstName()
-            surName = name.getSurname()
-            suffix = name.getSuffix()
+            name = p.get_primary_name()
+            firstName = name.get_first_name()
+            surName = name.get_surname()
+            suffix = name.get_suffix()
 
-            f.write("%s.%s|" % (p.getId(),self.ext))
+            f.write("%s.%s|" % (p.get_id(),self.ext))
             f.write("%s|" % surName)
             if suffix == "":
                 f.write("%s /%s/|" % (firstName,surName))
             else:
                 f.write("%s /%s/, %s|" % (firstName,surName, suffix))
-            for e in [p.getBirth(),p.getDeath()]:
+            for e in [p.get_birth(),p.get_death()]:
                 if e:
-                    f.write("%s|" % self.make_date(e.getDateObj()))
-                    if e.getPlace():
-                        f.write('%s|' % e.getPlace().get_title())
+                    f.write("%s|" % self.make_date(e.get_date_object()))
+                    if e.get_place_id():
+                        f.write('%s|' % e.get_place_id().get_title())
                     else:
                         f.write('|')
                 else:
@@ -758,7 +774,7 @@ class WebReport(Report.Report):
 
         a = {}
         for person in person_list:
-            n = person.getPrimaryName().getSurname()
+            n = person.get_primary_name().get_surname()
             if n:
                 a[n[0]] = 1
             else:
@@ -772,14 +788,14 @@ class WebReport(Report.Report):
         last = ''
         end_col = 0
         for person in person_list:
-            name = person.getPrimaryName().getName()
+            name = person.get_primary_name().get_name()
             if name and name[0] != last:
                 last = name[0]
                 doc.start_paragraph('IndexLabel')
                 doc.write_text(name[0])
                 doc.end_paragraph()
                 col_len = col_len - 1
-            doc.start_link("%s.%s" % (person.getId(),self.ext))
+            doc.start_link("%s.%s" % (person.get_id(),self.ext))
             doc.write_text(name)
             doc.end_link()
             if col_len <= 0 and end_col == 0:
@@ -832,7 +848,7 @@ class WebReport(Report.Report):
                                  image_dir_name)
                 return
     
-        ind_list = self.filter.apply(self.db,self.db.getPersonMap().values())
+        ind_list = self.filter.apply(self.db,self.db.get_person_id_map().values())
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
@@ -844,13 +860,13 @@ class WebReport(Report.Report):
 
         my_map = {}
         for l in ind_list:
-            my_map[l.getId()] = l
+            my_map[l.get_id()] = l
         for person in ind_list:
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             tdoc.set_extension(self.ext)
-            tdoc.set_keywords([person.getPrimaryName().getSurname(),
-                               person.getPrimaryName().getRegularName()])
-            idoc = IndividualPage(person, self.photos, self.restrict,
+            tdoc.set_keywords([person.get_primary_name().get_surname(),
+                               person.get_primary_name().get_regular_name()])
+            idoc = IndividualPage(self.db,person, self.photos, self.restrict,
                                   self.private, self.srccomments,
                                   self.include_link, self.include_mini_tree,
                                   my_map, dir_name, self.image_dir, tdoc,
@@ -979,7 +995,7 @@ class WebReportDialog(Report.ReportDialog):
     def get_report_filters(self):
         """Set up the list of possible content filters."""
 
-        name = self.person.getPrimaryName().getName()
+        name = self.person.get_primary_name().get_name()
         
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -987,15 +1003,15 @@ class WebReportDialog(Report.ReportDialog):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Direct Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_id()]))
 
         df = GenericFilter.GenericFilter()
         df.set_name(_("Descendant Families of %s") % name)
-        df.add_rule(GenericFilter.IsDescendantFamilyOf([self.person.getId()]))
+        df.add_rule(GenericFilter.IsDescendantFamilyOf([self.person.get_id()]))
         
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_id()]))
 
         return [all,des,df,ans]
 
@@ -1174,12 +1190,12 @@ class WebReportDialog(Report.ReportDialog):
         self.private = self.no_private.get_active()
         self.img_dir_text = unicode(self.imgdir.get_text())
 
-        self.html_ext = string.strip(unicode(self.ext.entry.get_text()))
+        self.html_ext = unicode(self.ext.entry.get_text().strip())
         if self.html_ext[0] == '.':
             self.html_ext = self.html_ext[1:]
         self.use_id = self.include_id.get_active()
         self.use_gendex = self.gendex.get_active()
-        self.id_link = string.strip(unicode(self.linkpath.get_text()))
+        self.id_link = unicode(self.linkpath.get_text().strip())
         self.srccomments = self.no_comments.get_active()
         if self.no_images.get_active() == 1:
             self.photos = 0
@@ -1231,28 +1247,32 @@ class MiniTree:
     class.  I'm sure that someone with more knowledge of GRAMPS can make
     it much cleaner.
     """
-    def __init__(self,person,doc,map):
+    def __init__(self,db,person,doc,map):
         self.map = map
+        self.db = db
         self.doc = doc
         self.person = person
         self.lines = [ "" for i in range(9) ]
-        name = self.person.getPrimaryName().getRegularName()
+        name = self.person.get_primary_name().get_regular_name()
         self.lines[4] = name
         indent = (len(name) - 1) / 2
         self.lines[3] = self.lines[5] = self.lines[6] = ' ' * indent + '|'
         self.draw_parents(person,2,6,indent,1)
 
     def draw_parents(self, person, father_line, mother_line, indent, recurse):
-        family = person.getMainParents()
-        if not family: return
+        family_id = person.get_main_parents_family_id()
+        if not family_id: return
 
+        family = self.db.find_family_from_id(family_id)
         father_name = mother_name = ""
-        father = family.getFather()
-        mother = family.getMother()
-        if father:
-            father_name = father.getPrimaryName().getRegularName()
-        if mother:
-            mother_name = mother.getPrimaryName().getRegularName()
+        father_id = family.get_father_id()
+        mother_id = family.get_mother_id()
+        if father_id:
+            father = self.db.find_person_from_id(father_id)
+            father_name = father.get_primary_name().get_regular_name()
+        if mother_id:
+            mother = self.db.find_person_from_id(mother_id)
+            mother_name = mother.get_primary_name().get_regular_name()
         pad = len(father_name)
         if pad < len(mother_name):
             pad = len(mother_name)
@@ -1282,8 +1302,8 @@ class MiniTree:
         self.lines[line] += ' ' * (indent-len(self.lines[line])) + text
 
     def draw_link(self, line, person, name):
-        if person and person.getId() and self.map.has_key(person.getId()):
-            self.lines[line] += "<A HREF='%s%s'>%s</A>" % (person.getId(),
+        if person and person.get_id() and self.map.has_key(person.get_id()):
+            self.lines[line] += "<A HREF='%s%s'>%s</A>" % (person.get_id(),
                                                            self.doc.ext, name)
         else:
             self.lines[line] += "<U>%s</U>" % name

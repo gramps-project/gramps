@@ -28,8 +28,8 @@ class HaveChildren(Filter.Filter):
 
     def match(self,person):
         val = 0
-        for family in person.getFamilyList():
-            if len(family.getChildList()) > 0:
+        for family in person.get_family_id_list():
+            if len(family.get_child_id_list()) > 0:
                 val = 1
                 break
         return val

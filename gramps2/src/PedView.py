@@ -37,7 +37,7 @@ import pango
 #-------------------------------------------------------------------------
 import GrampsCfg
 from gettext import gettext as _
-from Relationship import apply_filter
+#from Relationship import apply_filter
 
 _PAD       = 3
 _CANVASPAD = 3
@@ -60,8 +60,8 @@ class DispBox:
         self.root = root
 
         self.name = GrampsCfg.nameof(person)
-        bd = person.getBirth().getDate()
-        dd = person.getDeath().getDate()
+        bd = person.get_birth().get_date()
+        dd = person.get_death().get_date()
         if bd and dd:
             self.exp = "%s\n%s %s\n%s %s" % (self.name,_BORN,bd,_DIED,dd )
         elif bd:
@@ -196,8 +196,8 @@ class PedigreeView:
         for t in list:
             if t:
                 for n in [GrampsCfg.nameof(t[0]),
-                          u'%s %s' % (_BORN,t[0].getBirth().getDate()),
-                          u'%s %s' % (_DIED,t[0].getDeath().getDate())]:
+                          u'%s %s' % (_BORN,t[0].get_birth().get_date()),
+                          u'%s %s' % (_DIED,t[0].get_death().get_date())]:
                     try:
                         a.set_text(n,len(n))
                     except TypeError:
@@ -233,8 +233,9 @@ class PedigreeView:
                                         anchor=gtk.ANCHOR_WEST)
         self.canvas_items.append(self.anchor_txt)
 
-        for family in self.active_person.getFamilyList():
-            if len(family.getChildList()) > 0:
+        for family_id in self.active_person.get_family_id_list():
+            family = self.parent.db.find_family_from_id(family_id)
+            if len(family.get_child_id_list()) > 0:
                 button,arrow = self.make_arrow_button(gtk.ARROW_LEFT,
                                                       self.on_show_child_menu)
                 item = self.root.add(gnome.canvas.CanvasWidget, widget=button,
@@ -323,7 +324,7 @@ class PedigreeView:
     def make_anchor_label(self):
         """Make a label containing the name of the anchored person"""
         if self.anchor:
-            anchor_string = self.anchor.getPrimaryName().getRegularName()
+            anchor_string = self.anchor.get_primary_name().get_regular_name()
             return "%s: %s" % (_("Anchor"),anchor_string)
         else:
             return ""
@@ -338,8 +339,9 @@ class PedigreeView:
 
             def find_children(p):
                 childlist = []
-                for family in p.getFamilyList():
-                    for child in family.getChildList():
+                for family_id in p.get_family_id_list():
+                    family = self.parent.db.find_family_from_id(family_id)
+                    for child in family.get_child_id_list():
                         childlist.append(child)
                 return childlist
 
@@ -450,18 +452,22 @@ class PedigreeView:
 
         if depth > 5 or person == None:
             return
-        (family,m,f) = person.getMainParentsRel()
-        if family:
+
+        (family_id,m,f) = person.get_main_parents_family_idRel()
+        if family_id:
             mrel = (m != "Birth")
             frel = (f != "Birth")
-            
+
+        family = self.parent.db.find_family_from_id(family_id)
         list[index] = (person,val)
         if family != None:
-            father = family.getFather()
-            if father != None:
+            father_id = family.get_father_id()
+            if father_id != None:
+                father = self.parent.db.find_person_from_id(father_id)
                 self.find_tree(father,(2*index)+1,depth+1,list,frel)
-            mother = family.getMother()
-            if mother != None:
+            mother_id = family.get_mother_id()
+            if mother_id != None:
+                mother = self.parent.db.find_person_from_id(mother_id)
                 self.find_tree(mother,(2*index)+2,depth+1,list,mrel)
 
     def on_canvas1_event(self,obj,event):
@@ -539,6 +545,9 @@ def get_distance(orig_person,other_person):
     if orig_person == other_person:
         return 0
 
+    return 0
+    # FIX THIS
+
     try:
         apply_filter(orig_person,0,firstList,firstMap)
         apply_filter(other_person,0,secondList,secondMap)
@@ -547,7 +556,7 @@ def get_distance(orig_person,other_person):
     
     for person in firstList:
         if person in secondList:
-            new_rank = firstMap[person.getId()]
+            new_rank = firstMap[person.get_id()]
             if new_rank < rank:
                 rank = new_rank
                 common = [ person ]
@@ -563,8 +572,8 @@ def get_distance(orig_person,other_person):
     length = len(common)
     
     person = common[0]
-    secondRel = secondMap[person.getId()]
-    firstRel = firstMap[person.getId()]
+    secondRel = secondMap[person.get_id()]
+    firstRel = firstMap[person.get_id()]
     if firstRel == None or secondRel == None:
         return None
     return firstRel-secondRel

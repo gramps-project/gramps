@@ -48,7 +48,7 @@ class CountAncestors:
         thisgen = []
         allgen = []
         thisgen.append(person)
-        title = _("Number of ancestors of \"%s\" by generation") % person.getPrimaryName().getName()
+        title = _("Number of ancestors of \"%s\" by generation") % person.get_primary_name().get_name()
         text = text + title + ':\n'
         thisgensize=1
         gen=1
@@ -64,10 +64,10 @@ class CountAncestors:
             temp = thisgen
             thisgen = []
             for person in temp:
-                family = person.getMainParents()
+                family = person.get_main_parents_family_id()
                 if family != None:
-                    father = family.getFather()
-                    mother = family.getMother()
+                    father = family.get_father_id()
+                    mother = family.get_mother_id()
                     if father != None:
                         thisgen.append(father)
                     if mother != None:

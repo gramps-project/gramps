@@ -69,13 +69,13 @@ class EditPlace:
         self.db = parent.db
         self.parent = parent
         self.callback = func
-        self.path = parent.db.getSavePath()
+        self.path = parent.db.get_save_path()
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
 	self.gallery_ok = 0
         if place:
-            self.srcreflist = place.getSourceRefList()
+            self.srcreflist = place.get_source_references()
         else:
             self.srcreflist = []
 
@@ -121,7 +121,7 @@ class EditPlace:
         self.loc_parish  = self.top_window.get_widget("loc_parish")
         self.loc_country = self.top_window.get_widget("loc_country")
 
-        self.ulist = place.getUrlList()[:]
+        self.ulist = place.get_url_list()[:]
         self.llist = place.get_alternate_locations()[:]
 
         self.loc_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING,
@@ -155,15 +155,15 @@ class EditPlace:
         self.preform = self.top_window.get_widget("place_preform")
 
         self.note_buffer = self.note.get_buffer()
-        if place.getNote():
-            self.note_buffer.set_text(place.getNote())
+        if place.get_note():
+            self.note_buffer.set_text(place.get_note())
             Utils.bold_label(self.notes_label)
-            if place.getNoteFormat() == 1:
+            if place.get_note_format() == 1:
                 self.preform.set_active(1)
             else:
                 self.flowed.set_active(1)
 
-        if self.place.getPhotoList():
+        if self.place.get_photo_list():
             Utils.bold_label(self.gallery_label)
 
         self.top_window.signal_autoconnect({
@@ -189,7 +189,7 @@ class EditPlace:
                                            self.top_window.get_widget('edit_src'),
                                            self.top_window.get_widget('del_src'))
         
-        if self.place.getId() == "":
+        if self.place.get_id() == "":
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -232,7 +232,7 @@ class EditPlace:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'place = "%s"' % data[1]
-            if place == self.place.getId() or mytype != 'url':
+            if place == self.place.get_id() or mytype != 'url':
                 return
             foo = pickle.loads(data[2]);
             self.ulist.append(foo)
@@ -244,11 +244,11 @@ class EditPlace:
         ev = self.web_model.get_selected_objects()[0]
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
-        data = str(('url',self.place.getId(),pickled));
+        data = str(('url',self.place.get_id(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def update_lists(self):
-        self.place.setUrlList(self.ulist)
+        self.place.set_url_list(self.ulist)
         self.place.set_alternate_locations(self.llist)
         if self.lists_changed:
             Utils.modified()
@@ -308,16 +308,16 @@ class EditPlace:
         self.set(self.latitude,self.place.get_latitude,
                  self.place.set_latitude)
 
-	if self.lists_changed:
-            self.place.setSourceRefList(self.srcreflist)
+        if self.lists_changed:
+            self.place.set_source_reference_list(self.srcreflist)
             Utils.modified()
         
-        if note != self.place.getNote():
-            self.place.setNote(note)
+        if note != self.place.get_note():
+            self.place.set_note(note)
             Utils.modified()
 
-        if format != self.place.getNoteFormat():
-            self.place.setNoteFormat(format)
+        if format != self.place.get_note_format():
+            self.place.set_note_format(format)
             Utils.modified()
 
 	self.gallery_ok = 1
@@ -426,14 +426,14 @@ class EditPlace:
         pevent = []
         fevent = []
         msg = ""
-        for key in self.db.getPersonKeys():
-            p = self.db.getPerson(key)
-            for event in [p.getBirth(), p.getDeath()] + p.getEventList():
-                if event.getPlace() == self.place:
+        for key in self.db.get_person_keys():
+            p = self.db.get_person(key)
+            for event in [p.get_birth(), p.get_death()] + p.get_event_list():
+                if event.get_place_id() == self.place:
                     pevent.append((p,event))
-        for f in self.db.getFamilyMap().values():
-            for event in f.getEventList():
-                if event.getPlace() == self.place:
+        for f in self.db.get_family_id_map().values():
+            for event in f.get_event_list():
+                if event.get_place_id() == self.place:
                     fevent.append((f,event))
                     
         any = 0
@@ -444,7 +444,7 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in pevent:
-                msg = msg + ( t % (GrampsCfg.nameof(e[0]),e[0].getId(),_(e[1].getName())))
+                msg = msg + ( t % (GrampsCfg.nameof(e[0]),e[0].get_id(),_(e[1].get_name())))
 
         if len(fevent) > 0:
             any = 1
@@ -453,8 +453,8 @@ class EditPlace:
             t = _("%s [%s]: event %s\n")
 
             for e in fevent:
-                father = e[0].getFather()
-                mother = e[0].getMother()
+                father = e[0].get_father_id()
+                mother = e[0].get_mother_id()
                 if father and mother:
                     fname = _("%(father)s and %(mother)s")  % {
 		    	    "father" : GrampsCfg.nameof(father),
@@ -464,7 +464,7 @@ class EditPlace:
                 else:
                     fname = "%s" % GrampsCfg.nameof(mother)
 
-                msg = msg + ( t % (fname,e[0].getId(),_(e[1].getName())))
+                msg = msg + ( t % (fname,e[0].get_id(),_(e[1].get_name())))
 
         self.refinfo.get_buffer().set_text(msg)
         if any:
@@ -501,17 +501,17 @@ class DeletePlaceQuery:
         self.update = update
         
     def query_response(self):
-        self.db.removePlace(self.place.getId())
+        self.db.remove_place(self.place.get_id())
         Utils.modified()
 
-        for key in self.db.getPersonKeys():
-            p = self.db.getPerson(key)
-            for event in [p.getBirth(), p.getDeath()] + p.getEventList():
-                if event.getPlace() == self.place:
-                    event.setPlace(None)
-        for f in self.db.getFamilyMap().values():
-            for event in f.getEventList():
-                if event.getPlace() == self.place:
-                    event.setPlace(None)
+        for key in self.db.get_person_keys():
+            p = self.db.get_person(key)
+            for event in [p.get_birth(), p.get_death()] + p.get_event_list():
+                if event.get_place_id() == self.place:
+                    event.set_place_id(None)
+        for f in self.db.get_family_id_map().values():
+            for event in f.get_event_list():
+                if event.get_place_id() == self.place:
+                    event.set_place_id(None)
 
         self.update(None)

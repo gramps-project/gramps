@@ -89,27 +89,27 @@ class CheckIntegrity:
 
     def check_for_broken_family_links(self):
         self.broken_links = []
-        for key in self.db.getFamilyMap().keys():
-            family = self.db.getFamily(key)
-            father = family.getFather()
-            mother = family.getMother()
+        for key in self.db.get_family_id_map().keys():
+            family = self.db.get_family_id(key)
+            father = family.get_father_id()
+            mother = family.get_mother_id()
 
-            if father and family not in father.getFamilyList():
+            if father and family not in father.get_family_id_list():
                 Utils.modified()
                 self.broken_parent_links.append((father,family))
-                father.addFamily(family)
-            if mother and family not in mother.getFamilyList():
+                father.add_family_id(family)
+            if mother and family not in mother.get_family_id_list():
                 Utils.modified()
                 self.broken_parent_links.append((mother,family))
-                mother.addFamily(family)
-            for child in family.getChildList():
-                if family == child.getMainParents():
+                mother.add_family_id(family)
+            for child in family.get_child_id_list():
+                if family == child.get_main_parents_family_id():
                     continue
-                for family_type in child.getParentList():
+                for family_type in child.get_parent_family_id_list():
                     if family_type[0] == family:
                         break
                 else:
-                    family.removeChild(child)
+                    family.remove_child_id(child)
                     Utils.modified()
                     self.broken_links.append((child,family))
 
@@ -119,35 +119,35 @@ class CheckIntegrity:
         def remove_clicked():
             # File is lost => remove all references and the object itself
             mobj = ObjectMap[ObjectId]
-            for p in self.db.getFamilyMap().values():
-                nl = p.getPhotoList()
+            for p in self.db.get_family_id_map().values():
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPersonKeys():
-                p = self.db.getPerson(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_person_keys():
+                p = self.db.get_person(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getSourceKeys():
-                p = self.db.getSource(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_source_keys():
+                p = self.db.get_source(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPlaceKeys():
-                p = self.db.getPlace(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_place_id_keys():
+                p = self.db.get_place_id(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
+                p.set_photo_list(nl)
             self.removed_photo.append(ObjectMap[ObjectId])
-            self.db.removeObject(ObjectId) 
+            self.db.remove_object(ObjectId) 
             Utils.modified()
     
         def leave_clicked():
@@ -179,9 +179,9 @@ class CheckIntegrity:
             fs_top.destroy()
 
         #-------------------------------------------------------------------------
-        ObjectMap = self.db.getObjectMap()
+        ObjectMap = self.db.get_object_map()
         for ObjectId in ObjectMap.keys():
-            photo_name = ObjectMap[ObjectId].getPath()
+            photo_name = ObjectMap[ObjectId].get_path()
             if not os.path.isfile(photo_name):
                 if cl:
                     print "Warning: media file %s was not found." \
@@ -205,53 +205,53 @@ class CheckIntegrity:
                         select_clicked()
 
     def cleanup_empty_families(self,automatic):
-        for key in self.db.getFamilyMap().keys():
-            family = self.db.getFamily(key)
-            if family.getFather() == None and family.getMother() == None:
+        for key in self.db.get_family_id_map().keys():
+            family = self.db.get_family_id(key)
+            if family.get_father_id() == None and family.get_mother_id() == None:
                 Utils.modified()
                 self.empty_family.append(family)
                 self.delete_empty_family(family)
 
     def delete_empty_family(self,family):
-        for key in self.db.getPersonKeys():
-            child = self.db.getPerson(key)
-            child.removeAltFamily(family)
-        self.db.deleteFamily(family)
+        for key in self.db.get_person_keys():
+            child = self.db.get_person(key)
+            child.remove_parent_family_id(family.get_id())
+        self.db.delete_family(family.get_id())
 
     def check_parent_relationships(self):
-        for key in self.db.getFamilyMap().keys():
-            family = self.db.getFamily(key)
-            father = family.getFather()
-            mother = family.getMother()
-            type = family.getRelationship()
+        for key in self.db.get_family_id_map().keys():
+            family = self.db.get_family_id(key)
+            father = family.get_father_id()
+            mother = family.get_mother_id()
+            type = family.get_relationship()
 
             if not father and not mother:
                 continue
             elif father == None:
-                if mother.getGender() == RelLib.Person.male:
-                    family.setFather(mother)
-                    family.setMother(None)
+                if mother.get_gender() == RelLib.Person.male:
+                    family.set_father_id(mother)
+                    family.set_mother_id(None)
             elif mother == None:
-                if father.getGender() == RelLib.Person.female:
-                    family.setMother(father)
-                    family.setFather(None)
+                if father.get_gender() == RelLib.Person.female:
+                    family.set_mother_id(father)
+                    family.set_father_id(None)
             else:
-                fgender = father.getGender()
-                mgender = mother.getGender()
+                fgender = father.get_gender()
+                mgender = mother.get_gender()
                 if type != "Partners":
                     if fgender == mgender and fgender != RelLib.Person.unknown:
-                        family.setRelationship("Partners")
+                        family.set_relationship("Partners")
                         self.fam_rel.append(family)
                     elif fgender == RelLib.Person.female or mgender == RelLib.Person.male:
-                        family.setFather(mother)
-                        family.setMother(father)
+                        family.set_father_id(mother)
+                        family.set_mother_id(father)
                         self.fam_rel.append(family)
                 elif fgender != mgender:
-                    family.setRelationship("Unknown")
+                    family.set_relationship("Unknown")
                     self.fam_rel.append(family)
                     if fgender == RelLib.Person.female or mgender == RelLib.Person.male:
-                        family.setFather(mother)
-                        family.setMother(father)
+                        family.set_father_id(mother)
+                        family.set_mother_id(father)
 
     def build_report(self,cl=0):
         bad_photos = len(self.bad_photo)
@@ -280,16 +280,16 @@ class CheckIntegrity:
             else:
                 self.text.write(_("%d broken child/family links were found\n") % blink)
             for c in self.broken_links:
-                cn = c[0].getPrimaryName().getName()
-                f = c[1].getFather()
-                m = c[1].getMother()
+                cn = c[0].get_primary_name().get_name()
+                f = c[1].get_father_id()
+                m = c[1].get_mother_id()
                 if f and m:
-                    pn = _("%s and %s") % (f.getPrimaryName().getName(),\
-                                           m.getPrimaryName().getName())
+                    pn = _("%s and %s") % (f.get_primary_name().get_name(),\
+                                           m.get_primary_name().get_name())
                 elif f:
-                    pn = f.getPrimaryName().getName()
+                    pn = f.get_primary_name().get_name()
                 elif m:
-                    pn = m.getPrimaryName().getName()
+                    pn = m.get_primary_name().get_name()
                 else:
                     pn = _("unknown")
                 self.text.write('\t')
@@ -301,16 +301,16 @@ class CheckIntegrity:
             else:
                 self.text.write(_("%d broken spouse/family links were found\n") % plink)
             for c in self.broken_parent_links:
-                cn = c[0].getPrimaryName().getName()
-                f = c[1].getFather()
-                m = c[1].getMother()
+                cn = c[0].get_primary_name().get_name()
+                f = c[1].get_father_id()
+                m = c[1].get_mother_id()
                 if f and m:
-                    pn = _("%s and %s") % (f.getPrimaryName().getName(),\
-                                           m.getPrimaryName().getName())
+                    pn = _("%s and %s") % (f.get_primary_name().get_name(),\
+                                           m.get_primary_name().get_name())
                 elif f:
-                    pn = f.getPrimaryName().getName()
+                    pn = f.get_primary_name().get_name()
                 else:
-                    pn = m.getPrimaryName().getName()
+                    pn = m.get_primary_name().get_name()
                     self.text.write('\t')
                     self.text.write(_("%s was restored to the family of %s\n") % (cn,pn))
 

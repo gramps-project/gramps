@@ -107,13 +107,13 @@ class SelectPerson:
         self.umodel.clear()
         self.umodel.new_model()
 
-        for key in self.db.sortPersonKeys():
-            person = self.db.getPerson(key)
+        for key in self.db.sort_person_keys():
+            person = self.db.get_person(key)
             if self.use_filter and not self.filter(person):
                 continue
                 
-            data = self.db.getPersonDisplay(key)
-            gender = person.getGender()
+            data = self.db.get_person_display(key)
+            gender = person.get_gender()
             if gender == RelLib.Person.male:
                 self.mmodel.add([data[0],data[1],data[3],data[5],data[6]],key)
             elif gender == RelLib.Person.female:
@@ -140,7 +140,7 @@ class SelectPerson:
             model,iter = lmodel.get_selected()
             if iter:
                 id = lmodel.get_object(iter)
-                return_value = self.db.getPerson(id)
+                return_value = self.db.get_person(id)
             else:
                 return_value = None
             self.top.destroy()

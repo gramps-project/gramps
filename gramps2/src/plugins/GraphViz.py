@@ -98,7 +98,7 @@ class GraphVizDialog(Report.ReportDialog):
     def get_report_filters(self):
         """Set up the list of possible content filters."""
 
-        name = self.person.getPrimaryName().getName()
+        name = self.person.get_primary_name().get_name()
         
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -106,15 +106,15 @@ class GraphVizDialog(Report.ReportDialog):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId(),1]))
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_id(),1]))
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId(),1]))
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_id(),1]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_id()]))
 
         return [all,des,ans,com]
 
@@ -321,7 +321,7 @@ class GraphVizDialog(Report.ReportDialog):
         file = open(self.target_path,"w")
 
         try:
-            ind_list = self.filter.apply(self.db, self.db.getPersonMap().values())
+            ind_list = self.filter.apply(self.db, self.db.get_person_id_map().values())
         except Errors.FilterError, msg:
             from QuestionDialog import ErrorDialog
             (m1,m2) = msg.messages()
@@ -388,20 +388,20 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
     # Hash people in a dictionary for faster inclusion checking.
     person_dict = {}
     for p in person_list:
-        person_dict[p.getId()] = 1
+        person_dict[p.get_id()] = 1
 
     for person in person_list:
-        pid = string.replace(person.getId(),'-','_')
-        for family, mrel, frel in person.getParentList():
-            father   = family.getFather()
-            mother   = family.getMother()
+        pid = string.replace(person.get_id(),'-','_')
+        for family, mrel, frel in person.get_parent_family_id_list():
+            father   = family.get_father_id()
+            mother   = family.get_mother_id()
             fadopted = frel != _("Birth")
             madopted = mrel != _("Birth")
             if (show_families and
-                (father and person_dict.has_key(father.getId()) or
-                 mother and person_dict.has_key(mother.getId()))):
+                (father and person_dict.has_key(father.get_id()) or
+                 mother and person_dict.has_key(mother.get_id()))):
                 # Link to the family node.
-                famid = string.replace(family.getId(),'-','_')
+                famid = string.replace(family.get_id(),'-','_')
                 file.write('p%s -> f%s ['  % (pid, famid))
                 file.write('arrowhead=%s, arrowtail=%s, ' %
                            (arrowheadstyle, arrowtailstyle))
@@ -412,8 +412,8 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
                 file.write('];\n')
             else:
                 # Link to the parents' nodes directly.
-                if father and person_dict.has_key(father.getId()):
-                    fid = string.replace(father.getId(),'-','_')
+                if father and person_dict.has_key(father.get_id()):
+                    fid = string.replace(father.get_id(),'-','_')
                     file.write('p%s -> p%s ['  % (pid, fid))
                     file.write('arrowhead=%s, arrowtail=%s, ' %
                                (arrowheadstyle, arrowtailstyle))
@@ -422,8 +422,8 @@ def dump_person(person_list,file,adoptionsdashed,arrowheadstyle,
                     else:
                         file.write('style=solid')
                     file.write('];\n')
-                if mother and person_dict.has_key(mother.getId()):
-                    mid = string.replace(mother.getId(),'-','_')
+                if mother and person_dict.has_key(mother.get_id()):
+                    mid = string.replace(mother.get_id(),'-','_')
                     file.write('p%s -> p%s ['  % (pid, mid))
                     file.write('arrowhead=%s, arrowtail=%s, ' %
                                (arrowheadstyle, arrowtailstyle))
@@ -445,21 +445,21 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
     families_done = []
     for person in person_list:
         # Output the person's node.
-        label = person.getPrimaryName().getName()
-        id = string.replace(person.getId(),'-','_')
+        label = person.get_primary_name().get_name()
+        id = string.replace(person.get_id(),'-','_')
         if includedates:
-            if person.getBirth().getDateObj().getYearValid():
+            if person.get_birth().get_date_object().getYearValid():
                 if just_year:
-                    birth = '%i' % person.getBirth().getDateObj().getYear()
+                    birth = '%i' % person.get_birth().get_date_object().getYear()
                 else:
-                    birth = person.getBirth().getDate()
+                    birth = person.get_birth().get_date()
             else:
                 birth = ''
-            if person.getDeath().getDateObj().getYearValid():
+            if person.get_death().get_date_object().getYearValid():
                 if just_year:
-                    death = '%i' % person.getDeath().getDateObj().getYear()
+                    death = '%i' % person.get_death().get_date_object().getYear()
                 else:
-                    death = person.getDeath().getDate()
+                    death = person.get_death().get_date()
             else:
                 death = ''
             label = label + '\\n(%s - %s)' % (birth, death)
@@ -467,7 +467,7 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
         if includeurl:
             file.write('URL="%s.html", ' % id)
         if colorize:
-            gender = person.getGender()
+            gender = person.get_gender()
             if gender == person.male:
                 file.write('color=dodgerblue4, ')
             elif gender == person.female:
@@ -477,22 +477,22 @@ def dump_index(person_list,file,includedates,includeurl,colorize,
         file.write('fontname="%s", label="%s"];\n' % (font,utf8_to_latin(label)))
         # Output families's nodes.
         if show_families:
-            family_list = person.getFamilyList()
+            family_list = person.get_family_id_list()
             for fam in family_list:
-                fid = string.replace(fam.getId(),'-','_')
+                fid = string.replace(fam.get_id(),'-','_')
                 if fam not in families_done:
                     families_done.append(fam)
                     file.write('f%s [shape=ellipse, ' % fid)
                     marriage = ""
-                    m = fam.getMarriage()
+                    m = fam.get_marriage()
                     if m != None:
-                        do = m.getDateObj()
+                        do = m.get_date_object()
                         if do != None:
                             if do.getYearValid():
                                 if just_year:
                                     marriage = '%i' % do.getYear()
                                 else:
-                                    marriage = m.getDate()
+                                    marriage = m.get_date()
                     file.write('fontname="%s", label="%s"];\n' % (font,marriage))
                 # Link this person to all his/her families.
                 file.write('f%s -> p%s [' % (fid, id))

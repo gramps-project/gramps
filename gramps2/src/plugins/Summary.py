@@ -53,8 +53,8 @@ from gnome.ui import *
 #------------------------------------------------------------------------
 def build_report(database,person):
 
-    personList = database.getPersonMap().values()
-    familyList = database.getFamilyMap().values()
+    personList = database.get_person_id_map().values()
+    familyList = database.get_family_id_map().values()
 
     with_photos = 0
     total_photos = 0
@@ -67,32 +67,32 @@ def build_report(database,person):
     namelist = []
     notfound = []
     
-    pobjects = len(database.getObjectMap().values())
-    for photo in database.getObjectMap().values():
+    pobjects = len(database.get_object_map().values())
+    for photo in database.get_object_map().values():
         try:
-            bytes = bytes + posixpath.getsize(photo.getPath())
+            bytes = bytes + posixpath.getsize(photo.get_path())
         except:
-            notfound.append(photo.getPath())
+            notfound.append(photo.get_path())
         
     for person in personList:
-        length = len(person.getPhotoList())
+        length = len(person.get_photo_list())
         if length > 0:
             with_photos = with_photos + 1
             total_photos = total_photos + length
                 
-        name = person.getPrimaryName()
-        if name.getFirstName() == "" or name.getSurname() == "":
+        name = person.get_primary_name()
+        if name.get_first_name() == "" or name.get_surname() == "":
             incomp_names = incomp_names + 1
-        if person.getMainParents() == None and len(person.getFamilyList()) == 0:
+        if person.get_main_parents_family_id() == None and len(person.get_family_id_list()) == 0:
             disconnected = disconnected + 1
-        if person.getBirth().getDate() == "":
+        if person.get_birth().get_date() == "":
             missing_bday = missing_bday + 1
-        if person.getGender() == RelLib.Person.female:
+        if person.get_gender() == RelLib.Person.female:
             females = females + 1
         else:
             males = males + 1
-        if name.getSurname() not in namelist:
-            namelist.append(name.getSurname())
+        if name.get_surname() not in namelist:
+            namelist.append(name.get_surname())
             
     text = _("Individuals") + "\n"
     text = text + "----------------------------\n"

@@ -85,7 +85,7 @@ class AddressEditor:
         self.db = self.parent.db
         self.addr = addr
         self.callback = callback
-        name = parent.person.getPrimaryName().getName()
+        name = parent.person.get_primary_name().get_name()
         if name == ", ":
             text = _("Address Editor")
         else:
@@ -97,19 +97,19 @@ class AddressEditor:
                          text,_('Address Editor'))
 
         if self.addr:
-            self.srcreflist = self.addr.getSourceRefList()
-            self.addr_start.set_text(self.addr.getDate())
-            self.street.set_text(self.addr.getStreet())
-            self.city.set_text(self.addr.getCity())
-            self.state.set_text(self.addr.getState())
-            self.country.set_text(self.addr.getCountry())
-            self.postal.set_text(self.addr.getPostal())
-            self.phone.set_text(self.addr.getPhone())
-            self.priv.set_active(self.addr.getPrivacy())
-            if self.addr.getNote():
-                self.note_field.get_buffer().set_text(self.addr.getNote())
+            self.srcreflist = self.addr.get_source_references()
+            self.addr_start.set_text(self.addr.get_date())
+            self.street.set_text(self.addr.get_street())
+            self.city.set_text(self.addr.get_city())
+            self.state.set_text(self.addr.get_state())
+            self.country.set_text(self.addr.get_country())
+            self.postal.set_text(self.addr.get_postal_code())
+            self.phone.set_text(self.addr.get_phone())
+            self.priv.set_active(self.addr.get_privacy())
+            if self.addr.get_note():
+                self.note_field.get_buffer().set_text(self.addr.get_note())
                 Utils.bold_label(self.notes_label)
-            	if addr.getNoteFormat() == 1:
+            	if addr.get_note_format() == 1:
                     self.preform.set_active(1)
             	else:
                     self.flowed.set_active(1)
@@ -162,7 +162,7 @@ class AddressEditor:
         if self.addr == None:
             self.addr = RelLib.Address()
             self.parent.plist.append(self.addr)
-        self.addr.setSourceRefList(self.srcreflist)
+        self.addr.set_source_reference_list(self.srcreflist)
 
         self.update(date,street,city,state,country,postal,phone,note,format,priv)
         self.callback(self.addr)
@@ -179,19 +179,19 @@ class AddressEditor:
         d = Date.Date()
         d.set(date)
 
-        if self.addr.getDate() != d.getDate():
-            self.addr.setDate(date)
+        if self.addr.get_date() != d.get_date():
+            self.addr.set_date(date)
             self.parent.lists_changed = 1
         
-        self.check(self.addr.getStreet,self.addr.setStreet,street)
-        self.check(self.addr.getCountry,self.addr.setCountry,country)
-        self.check(self.addr.getCity,self.addr.setCity,city)
-        self.check(self.addr.getState,self.addr.setState,state)
-        self.check(self.addr.getPostal,self.addr.setPostal,postal)
-        self.check(self.addr.getPhone,self.addr.setPhone,phone)
-        self.check(self.addr.getNote,self.addr.setNote,note)
-        self.check(self.addr.getNoteFormat,self.addr.setNoteFormat,format)
-        self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)
+        self.check(self.addr.get_street,self.addr.set_street,street)
+        self.check(self.addr.get_country,self.addr.setCountry,country)
+        self.check(self.addr.get_city,self.addr.set_city,city)
+        self.check(self.addr.get_state,self.addr.set_state,state)
+        self.check(self.addr.get_postal_code,self.addr.set_postal_code,postal)
+        self.check(self.addr.get_phone,self.addr.set_phone,phone)
+        self.check(self.addr.get_note,self.addr.set_note,note)
+        self.check(self.addr.get_note_format,self.addr.set_note_format,format)
+        self.check(self.addr.get_privacy,self.addr.set_privacy,priv)
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()

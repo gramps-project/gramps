@@ -67,7 +67,7 @@ class UrlEditor:
         if url != None:
             self.des.set_text(url.get_description())
             self.addr.set_text(url.get_path())
-            self.priv.set_active(url.getPrivacy())
+            self.priv.set_active(url.get_privacy())
 
         self.top.signal_autoconnect({
             "on_help_url_clicked" : self.on_help_clicked,
@@ -106,7 +106,7 @@ class UrlEditor:
             self.url.set_description(des)
             self.parent.lists_changed = 1
 
-        if self.url.getPrivacy() != priv:
-            self.url.setPrivacy(priv)
+        if self.url.get_privacy() != priv:
+            self.url.set_privacy(priv)
             self.parent.lists_changed = 1
 

@@ -83,7 +83,7 @@ class Bookmarks :
 
     def add_to_menu(self,person):
         """adds a person's name to the drop down menu"""
-        item = gtk.MenuItem(person.getPrimaryName().getName())
+        item = gtk.MenuItem(person.get_primary_name().get_name())
         item.connect("activate", self.callback, person)
         item.show()
         self.myMenu.append(item)
@@ -141,7 +141,7 @@ class Bookmarks :
         self.draw_window()
         index = 0
         for person in self.bookmarks:
-            self.namelist.append([person.getPrimaryName().getName()])
+            self.namelist.append([person.get_primary_name().get_name()])
             self.namelist.set_row_data(index,person)
             index = index + 1
 

@@ -42,54 +42,54 @@ class PersonWrapper:
     def __init__(self, real, map):
         self._real = real
         self._map_ref = PersistentReference(map)
-        self.id = real.getId()
-        self.PrimaryName = real.getPrimaryName()
-        self.gender = real.getGender()
-        self.birth = real.getBirth()
-        self.death = real.getDeath()
+        self.id = real.get_id()
+        self.PrimaryName = real.get_primary_name()
+        self.gender = real.get_gender()
+        self.birth = real.get_birth()
+        self.death = real.get_death()
 
     def _notifyChange(self):
         # Trigger a change to the PersonMap.
         self._map_ref.getOb()[self.id] = self
 
-    def getId(self):
+    def get_id(self):
         return self.id
 
-    def setId(self, id):
-        self._real.setId(id)
-        self.id = self._real.getId()
+    def set_id(self, id):
+        self._real.set_id(id)
+        self.id = self._real.get_id()
         self._notifyChange()
 
-    def getPrimaryName(self):
+    def get_primary_name(self):
         return self.PrimaryName
 
-    def setPrimaryName(self, name):
-        self._real.setPrimaryName(name)
-        self.PrimaryName = self._real.getPrimaryName()
+    def set_primary_name(self, name):
+        self._real.set_primary_name(name)
+        self.PrimaryName = self._real.get_primary_name()
         self._notifyChange()
 
-    def getGender(self):
+    def get_gender(self):
         return self.gender
 
-    def setGender(self, gender):
-        self._real.setGender(gender)
-        self.gender = self._real.getGender()
+    def set_gender(self, gender):
+        self._real.set_gender(gender)
+        self.gender = self._real.get_gender()
         self._notifyChange()
 
-    def getBirth(self):
+    def get_birth(self):
         return self.birth
 
-    def setBirth(self, birth):
-        self._real.setBirth(birth)
-        self.birth = self._real.getBirth()
+    def set_birth(self, birth):
+        self._real.set_birth(birth)
+        self.birth = self._real.get_birth()
         self._notifyChange()
 
-    def getDeath(self):
+    def get_death(self):
         return self.death
 
-    def setDeath(self, death):
-        self._real.setDeath(death)
-        self.death = self._real.getDeath()
+    def set_death(self, death):
+        self._real.set_death(death)
+        self.death = self._real.get_death()
         self._notifyChange()
 
 
@@ -177,7 +177,7 @@ class GrampsZODB(RelLib.GrampsDB):
             table = OOBTree()
             for key in src.keys():
                 obj = src[key]
-                table[key] = obj.getDisplayInfo()
+                table[key] = obj.get_display_info()
             self.root[tag] = table
             self.need_commit = 1
         return table
@@ -205,7 +205,7 @@ class GrampsZODB(RelLib.GrampsDB):
             self.surnames = PersistentList()
             for key in self.personMap.keys():
                 person = self.personMap[key]
-                self.addSurname(person.getPrimaryName().getSurname())
+                self.add_surname(person.get_primary_name().get_surname())
             self.root['surnames'] = self.surnames
             self.need_commit = 1
 
@@ -232,9 +232,9 @@ class GrampsZODB(RelLib.GrampsDB):
             get_transaction().commit()
         return 1
 
-    def setDefaultPerson(self,person):
+    def set_default_person(self,person):
         """sets the default Person to the passed instance"""
-        RelLib.GrampsDB.setDefaultPerson(self,person)
+        RelLib.GrampsDB.set_default_person(self,person)
         self.root['default'] = person
         
 

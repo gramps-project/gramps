@@ -174,7 +174,7 @@ class AncestorChart:
                  title,newpage=0):
         self.doc = doc
         self.title = title.strip()
-        self.doc.creator(database.getResearcher().getName())
+        self.doc.creator(database.get_researcher().get_name())
         self.map = {}
         self.text = {}
         self.start = person
@@ -225,10 +225,10 @@ class AncestorChart:
 
 	self.lines = max(self.lines,len(self.text[index]))    
 
-        family = person.getMainParents()
+        family = person.get_main_parents_family_id()
         if family:
-            self.filter(family.getFather(),index*2)
-            self.filter(family.getMother(),(index*2)+1)
+            self.filter(family.get_father_id(),index*2)
+            self.filter(family.get_mother_id(),(index*2)+1)
 
     def write_report(self):
 
@@ -445,7 +445,7 @@ class AncestorChartDialog(Report.DrawReportDialog):
 
     def add_user_options(self):
         self.title=gtk.Entry()
-        self.title.set_text(self.get_header(self.person.getPrimaryName().getName()))
+        self.title.set_text(self.get_header(self.person.get_primary_name().get_name()))
         self.title.show()
         self.add_option(_('Title'),self.title)
         self.compress = gtk.CheckButton(_('Co_mpress chart'))
@@ -545,7 +545,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -590,7 +590,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
 
     def get_the_title(self,person):
         """The header line at the top of the dialog contents."""
-        return _("Ancestor Chart for %s") % person.getPrimaryName().getName()
+        return _("Ancestor Chart for %s") % person.get_primary_name().get_name()
 
     def get_header(self,name):
         """The header line at the top of the dialog contents"""
@@ -646,7 +646,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.report_text, 
+        self.options = ( self.person.get_id(), self.max_gen, self.report_text, 
                         self.do_compress, self.the_title )
         self.style_name = self.selected_style.get_name()
 
@@ -660,7 +660,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         disp_format = options[2]
         compress = int(options[3])

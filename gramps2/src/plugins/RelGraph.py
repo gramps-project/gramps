@@ -126,7 +126,7 @@ class RelGraphDialog(Report.ReportDialog):
     def get_report_filters(self):
         """Set up the list of possible content filters."""
 
-        name = self.person.getPrimaryName().getName()
+        name = self.person.get_primary_name().get_name()
 
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
@@ -134,19 +134,19 @@ class RelGraphDialog(Report.ReportDialog):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_id()]))
 
         fam = GenericFilter.GenericFilter()
         fam.set_name(_("Descendant family members of %s") % name)
-        fam.add_rule(GenericFilter.IsDescendantFamilyOf([self.person.getId()]))
+        fam.add_rule(GenericFilter.IsDescendantFamilyOf([self.person.get_id()]))
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_id()]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
+        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.get_id()]))
 
         return [all, des, fam, ans, com]
 
@@ -392,7 +392,7 @@ class RelGraphDialog(Report.ReportDialog):
 
         try:
             self.IndividualSet =\
-                Set(self.filter.apply(self.db, self.db.getPersonMap().values()))
+                Set(self.filter.apply(self.db, self.db.get_person_id_map().values()))
             self.IndividualSet.add(self.person)
         except Errors.FilterError, msg:
             from QuestionDialog import ErrorDialog
@@ -491,11 +491,11 @@ def _writeGraphBox (self):
         _writeNode(self.File, shape='ellipse', color='black',
                    fontname=self.FontStyle)
         for individual in individualNodes:
-            for family in individual.getFamilyList():
+            for family in individual.get_family_id_list():
                 if family not in familyNodes:
                     familyNodes.add(family)
-                    familyId = _getFamilyId(family)
-                    label = _getFamilyLabel(self, family)
+                    familyId = _get_family_idId(family)
+                    label = _get_family_idLabel(self, family)
                     _writeNode(self.File, familyId, label)
     # Links each individual to their parents/family
     self.File.write('\n// Individual edges\n')
@@ -504,12 +504,12 @@ def _writeGraphBox (self):
     for individual in individualNodes:
         individualId = _getIndividualId(individual)
         for family, motherRelShip, fatherRelShip\
-                in individual.getParentList():
-            father = family.getFather()
-            mother = family.getMother()
+                in individual.get_parent_family_id_list():
+            father = family.get_father_id()
+            mother = family.get_mother_id()
             if self.ShowFamilies and family in familyNodes:
                 # edge from an individual to their family
-                familyId = _getFamilyId(family)
+                familyId = _get_family_idId(family)
                 style = _getEdgeStyle(self, fatherRelShip, motherRelShip)
                 _writeEdge(self.File, individualId, familyId, style)
             else:
@@ -528,12 +528,12 @@ def _writeGraphBox (self):
         _writeEdge(self.File, style="solid", arrowHead=self.ArrowHeadStyle,
                    arrowTail=self.ArrowTailStyle)
         for family in familyNodes:
-            familyId = _getFamilyId(family)
-            father = family.getFather()
+            familyId = _get_family_idId(family)
+            father = family.get_father_id()
             if father and father in individualNodes:
                 fatherId = _getIndividualId(father)
                 _writeEdge(self.File, familyId, fatherId)
-            mother = family.getMother()
+            mother = family.get_mother_id()
             if mother and mother in individualNodes:
                 motherId = _getIndividualId(mother)
                 _writeEdge(self.File, familyId, motherId)
@@ -542,9 +542,9 @@ def _writeGraphBox (self):
     females = 0
     unknowns = 0
     for individual in individualNodes:
-        if individual.getGender() == individual.male:
+        if individual.get_gender() == individual.male:
             males = males + 1
-        elif individual.getGender() == individual.female:
+        elif individual.get_gender() == individual.female:
             females = females + 1
         else:
             unknowns = unknowns + 1
@@ -571,9 +571,9 @@ def _writeGraphRecord (self):
         # naturalRelatives (direct descendants) and its complementary
         # subset (in-law relatives).
         filter = GenericFilter.GenericFilter()
-        filter.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
+        filter.add_rule(GenericFilter.IsDescendantOf([self.person.get_id()]))
         naturalRelatives =\
-            Set(filter.apply(self.db, self.db.getPersonMap().values()))
+            Set(filter.apply(self.db, self.db.get_person_id_map().values()))
         naturalRelatives.add(self.person)
     else:
         naturalRelatives = self.IndividualSet
@@ -584,13 +584,13 @@ def _writeGraphRecord (self):
         familyId = _getIndividualId(individual)
         # If both husband and wife are members of the IndividualSet,
         # only one record, with the husband first, is displayed.
-        if individual.getGender() == individual.female:
+        if individual.get_gender() == individual.female:
             # There are exactly three cases where a female node is added:
             family = None       # no family
             husbands = []       # filtered-in husbands (naturalRelatives)
             unknownHusbands = 0 # filtered-out/unknown husbands
-            for family in individual.getFamilyList():
-                husband = family.getFather()
+            for family in individual.get_family_id_list():
+                husband = family.get_father_id()
                 if husband and husband in self.IndividualSet:
                     if  husband not in naturalRelatives:
                         husbands.append(husband)
@@ -600,14 +600,14 @@ def _writeGraphRecord (self):
                 familyNodes[familyId] = [individual] + husbands
         else:
             familyNodes[familyId] = [individual]
-            for family in individual.getFamilyList():
-                wife = family.getMother()
+            for family in individual.get_family_id_list():
+                wife = family.get_mother_id()
                 if wife in self.IndividualSet:
                     familyNodes[familyId].append(wife)
     # Writes out all family records
     for familyId, family in familyNodes.items():
         (color, url) = _getIndividualData(self, familyNodes[familyId][0])
-        label = _getFamilyRecordLabel(self, familyNodes[familyId])
+        label = _get_family_idRecordLabel(self, familyNodes[familyId])
         _writeNode(self.File, familyId, label, color, url)
     # Links individual's record to their parents' record
     # The arrow goes from the individual port of a family record
@@ -619,9 +619,9 @@ def _writeGraphRecord (self):
         for individualFrom in familyFrom:
             individualFromId = _getIndividualId(individualFrom)
             for family, motherRelShip, fatherRelShip\
-                    in individualFrom.getParentList():
-                father = family.getFather()
-                mother = family.getMother()
+                    in individualFrom.get_parent_family_id_list():
+                father = family.get_father_id()
+                mother = family.get_mother_id()
                 # Things are complicated here because a parent may or
                 # or may not exist.
                 if father:
@@ -658,13 +658,13 @@ def _writeGraphRecord (self):
     for familyId, family in familyNodes.items():
         marriages = marriages + (len(family) - 1)
         for individual in family:
-            if individual.getGender() == individual.male\
+            if individual.get_gender() == individual.male\
                    and individual not in males:
                 males.add(individual)
-            elif individual.getGender() == individual.female\
+            elif individual.get_gender() == individual.female\
                      and individual not in females:
                 females.add(individual)
-            elif individual.getGender() == individual.unknown\
+            elif individual.get_gender() == individual.unknown\
                      and individual not in unknowns:
                 unknowns.add(individual)
     _writeStats(self.File, len(males), len(females), len(unknowns), marriages)
@@ -676,7 +676,7 @@ def _writeGraphRecord (self):
 #------------------------------------------------------------------------
 def _getIndividualId (individual):
     """Returns an individual id suitable for dot"""
-    return individual.getId()
+    return individual.get_id()
 
 #------------------------------------------------------------------------
 #
@@ -688,7 +688,7 @@ def _getIndividualData (self, individual):
     # color
     color = ''
     if self.Colorize:
-        gender = individual.getGender()
+        gender = individual.get_gender()
         if gender == individual.male:
             color = 'dodgerblue4'
         elif gender == individual.female:
@@ -708,17 +708,17 @@ def _getIndividualData (self, individual):
 def _getEventLabel (self, event):
     """Returns a formatted string of event data suitable for a label"""
     if self.IncludeDates and event:
-        dateObj = event.getDateObj()
+        dateObj = event.get_date_object()
         if dateObj.getYearValid():
             if self.JustYear:
                 return "%i" % dateObj.getYear()
             else:
-                return dateObj.getDate()
+                return dateObj.get_date()
         elif self.PlaceCause:
-            if event.getPlaceName():
-                return event.getPlaceName()
+            if event.get_place_name():
+                return event.get_place_name()
             else:
-                return event.getCause()
+                return event.get_cause()
     return ''
 
 #------------------------------------------------------------------------
@@ -734,13 +734,13 @@ def _getIndividualLabel (self, individual, marriageEvent=None, family=None):
     individual's and family's IDs.
     """
     # Get data ready
-    individualId = individual.getId()
-    name = individual.getPrimaryName().getName()
+    individualId = individual.get_id()
+    name = individual.get_primary_name().get_name()
     if self.IncludeDates:
-        birth = _getEventLabel(self, individual.getBirth())
-        death = _getEventLabel(self, individual.getDeath())
+        birth = _getEventLabel(self, individual.get_birth())
+        death = _getEventLabel(self, individual.get_death())
         if marriageEvent != None:
-            familyId = family.getId()
+            familyId = family.get_id()
             marriage = _getEventLabel(self, marriageEvent)
     # Id
     if self.IncludeId:
@@ -773,32 +773,32 @@ def _getEdgeStyle (self, fatherRelShip, motherRelShip="Birth"):
 
 #------------------------------------------------------------------------
 #
-# _getFamilyId
+# _get_family_idId
 #
 #------------------------------------------------------------------------
-def _getFamilyId (family):
+def _get_family_idId (family):
     """Returns a family id suitable for dot"""
-    return family.getId()
+    return family.get_id()
 
 #------------------------------------------------------------------------
 #
-# _getFamilyLabel
+# _get_family_idLabel
 #
 #------------------------------------------------------------------------
-def _getFamilyLabel (self, family):
+def _get_family_idLabel (self, family):
     """Returns a formatted string of family data suitable for a label"""
-    marriage = _getEventLabel(self, family.getMarriage())
+    marriage = _getEventLabel(self, family.get_marriage())
     if self.IncludeId:
-        return "%s\\n%s" % (family.getId(), marriage)
+        return "%s\\n%s" % (family.get_id(), marriage)
     else:
         return marriage
 
 #------------------------------------------------------------------------
 #
-# _getFamilyRecordLabel
+# _get_family_idRecordLabel
 #
 #------------------------------------------------------------------------
-def _getFamilyRecordLabel (self, record):
+def _get_family_idRecordLabel (self, record):
     """Returns a formatted string of a family record suitable for a label"""
     labels = []
     spouse = record[0]
@@ -808,9 +808,9 @@ def _getFamilyRecordLabel (self, record):
             label = _getIndividualLabel(self, individual)
         else:
             marriageEvent = Event()
-            for individualFamily in individual.getFamilyList():
-                if individualFamily in spouse.getFamilyList():
-                    marriageEvent = individualFamily.getMarriage()
+            for individualFamily in individual.get_family_id_list():
+                if individualFamily in spouse.get_family_id_list():
+                    marriageEvent = individualFamily.get_marriage()
                     if not marriageEvent:
                         marriageEvent = Event()
                     break

@@ -139,13 +139,13 @@ class PackageWriter:
             print msg
             os._exit(1)
 
-        for obj in self.db.getObjectMap().values():
-            oldfile = obj.getPath()
+        for obj in self.db.get_object_map().values():
+            oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
-                if obj.getMimeType()[0:5] == "image":
-                    self.make_thumbnail(base,root,obj.getPath())
+                if obj.get_mime_type()[0:5] == "image":
+                    self.make_thumbnail(base,root,obj.get_path())
             else:
                 print "Warning: media file %s was not found," % root,\
                     "so it was ignored."
@@ -164,7 +164,7 @@ class PackageWriter:
         Utils.destroy_passed_object(obj)
         missmedia_action = 0
 
-        base = os.path.basename(self.db.getSavePath())
+        base = os.path.basename(self.db.get_save_path())
 
         try:
             uri = gnome.vfs.URI('burn:///%s' % base)
@@ -181,35 +181,35 @@ class PackageWriter:
         #--------------------------------------------------------
         def remove_clicked():
             # File is lost => remove all references and the object itself
-            mobj = self.db.getObject(self.object_id)
-            for p in self.db.getFamilyMap().values():
-                nl = p.getPhotoList()
+            mobj = self.db.get_object(self.object_id)
+            for p in self.db.get_family_id_map().values():
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPersonKeys():
-                p = self.db.getPerson(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_person_keys():
+                p = self.db.get_person(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getSourceKeys():
-                p = self.db.getSource(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_source_keys():
+                p = self.db.get_source(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPlaceKeys():
-                p = self.db.getPlace(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_place_id_keys():
+                p = self.db.get_place_id(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            self.db.removeObject(self.object_id) 
+                p.set_photo_list(nl)
+            self.db.remove_object(self.object_id) 
             Utils.modified() 
     
         def leave_clicked():
@@ -241,16 +241,16 @@ class PackageWriter:
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
 
-        for obj in self.db.getObjectMap().values():
-            oldfile = obj.getPath()
+        for obj in self.db.get_object_map().values():
+            oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
-                if obj.getMimeType()[0:5] == "image":
-                    self.make_thumbnail(base,root,obj.getPath())
+                if obj.get_mime_type()[0:5] == "image":
+                    self.make_thumbnail(base,root,obj.get_path())
             else:
                 # File is lost => ask what to do
-                self.object_id = obj.getId()
+                self.object_id = obj.get_id()
                 if missmedia_action == 0:
                     mmd = QuestionDialog.MissingMediaDialog(_("Media object could not be found"),
 	                _("%(file_name)s is referenced in the database, but no longer exists. " 

@@ -85,11 +85,11 @@ class ChooseParents:
         self.type = ""
         self.parent_selected = 0
 
-        self.date = person.getBirth().getDateObj()
+        self.date = person.get_birth().get_date_object()
 
         if self.family:
-            self.father = self.family.getFather()
-            self.mother = self.family.getMother()
+            self.father = self.family.get_father_id()
+            self.mother = self.family.get_mother_id()
         else:
             self.mother = None
             self.father = None
@@ -120,7 +120,7 @@ class ChooseParents:
         self.mmodel = ListModel.ListModel(self.mother_list, _titles,
                                           self.mother_list_select_row)
 
-        for (f,mr,fr) in self.person.getParentList():
+        for (f,mr,fr) in self.person.get_parent_family_id_list():
             if f == self.family:
                 self.mother_rel.set_text(_(mr))
                 self.father_rel.set_text(_(fr))
@@ -130,7 +130,7 @@ class ChooseParents:
             self.father_rel.set_text(_("Birth"))
 
         if self.family:
-            self.type = self.family.getRelationship()
+            self.type = self.family.get_relationship()
         else:
             self.type = "Married"
 
@@ -159,29 +159,29 @@ class ChooseParents:
         self.fmodel.clear()
         self.fmodel.new_model()
 
-        pkey = self.person.getId()
+        pkey = self.person.get_id()
 
         if self.father:
-            fid = self.father.getId()
+            fid = self.father.get_id()
         else:
             fid = None
             
-        bday = self.person.getBirth().getDateObj()
-        dday = self.person.getDeath().getDateObj()
+        bday = self.person.get_birth().get_date_object()
+        dday = self.person.get_death().get_date_object()
 
         person_list = []
-        for key in self.db.sortPersonKeys():
+        for key in self.db.sort_person_keys():
             if pkey == key:
                 continue
 
-            person = self.db.getPerson(key)
-            if person.getGender() != person.male:
+            person = self.db.get_person(key)
+            if person.get_gender() != person.male:
                 continue
 
             if not self.showallf.get_active():
                 
-                pdday = person.getDeath().getDateObj()
-                pbday = person.getBirth().getDateObj()
+                pdday = person.get_death().get_date_object()
+                pbday = person.get_birth().get_date_object()
 
         	if bday.getYearValid():
                     if pbday.getYearValid():
@@ -209,10 +209,10 @@ class ChooseParents:
                         if pdday.getHighYear() + 150 < dday.getLowYear():
                             continue
         
-            person_list.append(person.getId())
+            person_list.append(person.get_id())
 
 	for idval in person_list:
-            d = self.db.getPersonDisplay(idval)
+            d = self.db.get_person_display(idval)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
                 self.fmodel.add(info,d[1],fid==d[1])
@@ -233,31 +233,31 @@ class ChooseParents:
         self.mmodel.clear()
         self.mmodel.new_model()
 
-        pkey = self.person.getId()
+        pkey = self.person.get_id()
 
         if self.mother:
-            mid = self.mother.getId()
+            mid = self.mother.get_id()
         else:
             mid = None
             
-        bday = self.person.getBirth().getDateObj()
-        dday = self.person.getDeath().getDateObj()
+        bday = self.person.get_birth().get_date_object()
+        dday = self.person.get_death().get_date_object()
 
         person_list = []
-        for key in self.db.sortPersonKeys():
+        for key in self.db.sort_person_keys():
             if pkey == key:
                 continue
 
-            person = self.db.getPerson(key)
-            if person.getGender() != person.female:
+            person = self.db.get_person(key)
+            if person.get_gender() != person.female:
                 continue
 
-            person = self.db.getPerson(key)
+            person = self.db.get_person(key)
 
             if not self.showallm.get_active():
                 
-                pdday = person.getDeath().getDateObj()
-                pbday = person.getBirth().getDateObj()
+                pdday = person.get_death().get_date_object()
+                pbday = person.get_birth().get_date_object()
 
         	if bday.getYearValid():
                     if pbday.getYearValid():
@@ -285,10 +285,10 @@ class ChooseParents:
                         if pdday.getHighYear() + 150 < dday.getLowYear():
                             continue
         
-            person_list.append(person.getId())
+            person_list.append(person.get_id())
 
 	for idval in person_list:
-            d = self.db.getPersonDisplay(idval)
+            d = self.db.get_person_display(idval)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
                 self.mmodel.add(info,d[1],mid==d[1])
@@ -323,22 +323,22 @@ class ChooseParents:
         if not father and not mother:
             return None
 	
-        families = self.db.getFamilyMap().values()
+        families = self.db.get_family_id_map().values()
         for family in families:
-            if family.getFather() == father and family.getMother() == mother:
+            if family.get_father_id() == father and family.get_mother_id() == mother:
                 return family
-            elif family.getFather() == mother and family.getMother() == father:
+            elif family.get_father_id() == mother and family.get_mother_id() == father:
                 return family
 
-        family = self.db.newFamily()
-        family.setFather(father)
-        family.setMother(mother)
-        family.addChild(self.person)
+        family = self.db.new_family()
+        family.set_father_id(father)
+        family.set_mother_id(mother)
+        family.add_child_id(self.person)
     
         if father:
-            father.addFamily(family)
+            father.add_family_id(family.get_id())
         if mother:
-            mother.addFamily(family)
+            mother.add_family_id(family.get_id())
         return family
 
     def mother_list_select_row(self,obj):
@@ -348,16 +348,16 @@ class ChooseParents:
         model, iter = self.mmodel.get_selected()
         if iter:
             id = model.get_value(iter,1)
-            self.mother = self.db.getPerson(id)
+            self.mother = self.db.get_person(id)
         else:
             self.mother = None
 
         if not self.parent_selected and self.mother:
             self.parent_selected = 1
-            list = self.mother.getFamilyList()
+            list = self.mother.get_family_id_list()
             if len(list) >= 1:
-                father = list[0].getFather()
-                self.fmodel.find(father.getId())
+                father = list[0].get_father_id()
+                self.fmodel.find(father.get_id())
                 self.fmodel.center_selected()
 
     def father_list_select_row(self,obj):
@@ -366,16 +366,16 @@ class ChooseParents:
         model, iter = self.fmodel.get_selected()
         if iter:
             id = model.get_value(iter,1)
-            self.father = self.db.getPerson(id)
+            self.father = self.db.get_person(id)
         else:
             self.father = None
 
         if not self.parent_selected and self.father:
             self.parent_selected = 1
-            list = self.father.getFamilyList()
+            list = self.father.get_family_id_list()
             if len(list) >= 1:
-                mother = list[0].getMother()
-                self.mmodel.find(mother.getId())
+                mother = list[0].get_mother_id()
+                self.mmodel.find(mother.get_id())
                 self.mmodel.center_selected()
 
     def save_parents_clicked(self,obj):
@@ -384,30 +384,30 @@ class ChooseParents:
         of the main perosn.
         """
         try:
-            mother_rel = const.childRelations[unicode(self.mother_rel.get_text())]
+            mother_rel = const.child_relations(self.mother_rel.get_text())
         except KeyError:
-            mother_rel = const.childRelations["Birth"]
+            mother_rel = const.child_relations("Birth")
 
         try:
-            father_rel = const.childRelations[unicode(self.father_rel.get_text())]
+            father_rel = const.child_relations(self.father_rel.get_text())
         except KeyError:
-            father_rel = const.childRelations["Birth"]
+            father_rel = const.childRelations("Birth")
 
         if self.father or self.mother:
             if self.mother and not self.father:
-                if self.mother.getGender() == RelLib.Person.male:
+                if self.mother.get_gender() == RelLib.Person.male:
                     self.father = self.mother
                     self.mother = None
                 self.family = self.find_family(self.father,self.mother)
             elif self.father and not self.mother: 
-                if self.father.getGender() == RelLib.Person.female:
+                if self.father.get_gender() == RelLib.Person.female:
                     self.mother = self.father
                     self.father = None
                 self.family = self.find_family(self.father,self.mother)
-            elif self.mother.getGender() != self.father.getGender():
+            elif self.mother.get_gender() != self.father.get_gender():
                 if self.type == "Partners":
                     self.type = "Unknown"
-                if self.father.getGender() == RelLib.Person.female:
+                if self.father.get_gender() == RelLib.Person.female:
                     x = self.father
                     self.father = self.mother
                     self.mother = x
@@ -420,7 +420,7 @@ class ChooseParents:
 
         Utils.destroy_passed_object(obj)
         if self.family:
-            self.family.setRelationship(self.type)
+            self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
         self.family_update(None)
 
@@ -429,21 +429,21 @@ class ChooseParents:
         depending on the gender of the person."""
 
         person = epo.person
-        id = person.getId()
+        id = person.get_id()
 
         if id == "":
-            id = self.db.addPerson(person)
+            id = self.db.add_person(person)
         else:
-            self.db.addPersonNoMap(person,id)
-        self.db.buildPersonDisplay(id)
+            self.db.add_person_no_map(person,id)
+        self.db.build_person_display(id)
 
         self.type = const.save_frel(unicode(self.prel.get_text()))
-        dinfo = self.db.getPersonDisplay(id)
+        dinfo = self.db.get_person_display(id)
         rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
 
         if self.type == "Partners":
             self.parent_relation_changed(self.prel)
-        elif person.getGender() == RelLib.Person.male:
+        elif person.get_gender() == RelLib.Person.male:
             self.fmodel.add(rdata,None,1)
             self.fmodel.center_selected()
         else:
@@ -456,7 +456,7 @@ class ChooseParents:
         class to create a new person."""
         
         person = RelLib.Person()
-        person.setGender(RelLib.Person.male)
+        person.set_gender(RelLib.Person.male)
         
         try:
             import EditPerson
@@ -470,18 +470,18 @@ class ChooseParents:
         Changes the family type of the specified family. If the family
         is None, the the relationship type shoud be deleted.
         """
-        if self.person not in family.getChildList():
-            family.addChild(self.person)
-        for fam in self.person.getParentList():
+        if self.person not in family.get_child_id_list():
+            family.add_child_id(self.person)
+        for fam in self.person.get_parent_family_id_list():
             if family == fam[0]:
                 if mother_rel == fam[1] and father_rel == fam[2]:
                     return
                 if mother_rel != fam[1] or father_rel != fam[2]:
-                    self.person.removeAltFamily(family)
-                    self.person.addAltFamily(family,mother_rel,father_rel)
+                    self.person.remove_parent_family_id(family.get_id())
+                    self.person.add_parent_family_id(family.get_id(),mother_rel,father_rel)
                     break
         else:
-            self.person.addAltFamily(family,mother_rel,father_rel)
+            self.person.add_parent_family_id(family.get_id(),mother_rel,father_rel)
         Utils.modified()
 
 
@@ -502,8 +502,8 @@ class ModifyParents:
         self.family_update = family_update
         self.full_update = full_update
         
-        self.father = self.family.getFather()
-        self.mother = self.family.getMother()
+        self.father = self.family.get_father_id()
+        self.mother = self.family.get_mother_id()
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
         self.top = self.glade.get_widget("modparents")
@@ -519,7 +519,7 @@ class ModifyParents:
 
         self.orig_mrel = _("Birth")
         self.orig_frel = _("Birth")
-        for (f,mr,fr) in self.person.getParentList():
+        for (f,mr,fr) in self.person.get_parent_family_id_list():
             if f == self.family:
                 self.orig_mrel = _(mr)
                 self.orig_frel = _(fr)
@@ -533,7 +533,7 @@ class ModifyParents:
 
         self.title.set_use_markup(gtk.TRUE)
 
-        if self.family.getRelationship() == "Partners":
+        if self.family.get_relationship() == "Partners":
             self.mlabel.set_label('<b>%s</b>' % _("Parent"))
             self.flabel.set_label('<b>%s</b>' % _("Parent"))
         else:
@@ -542,22 +542,22 @@ class ModifyParents:
 
 
         if self.father:
-            fname = self.father.getPrimaryName().getName()
+            fname = self.father.get_primary_name().get_name()
             self.glade.get_widget("fname").set_text(fname)
         else:
             self.father_rel.set_sensitive(0)
             
         if self.mother:
-            mname = self.mother.getPrimaryName().getName()
+            mname = self.mother.get_primary_name().get_name()
             self.glade.get_widget("mname").set_text(mname)
         else:
             self.mother_rel.set_sensitive(0)
 
         self.pref = self.glade.get_widget('preferred')
-        if len(self.person.getParentList()) > 1:
+        if len(self.person.get_parent_family_id_list()) > 1:
             self.glade.get_widget('pref_label').show()
             self.pref.show()
-            if family == self.person.getParentList()[0]:
+            if family == self.person.get_parent_family_id_list()[0]:
                 self.pref.set_active(1)
             else:
                 self.pref.set_active(0)
@@ -580,28 +580,28 @@ class ModifyParents:
         Called with the OK button nis pressed. Saves the selected people as parents
         of the main perosn.
         """
-        mother_rel = const.childRelations[unicode(self.mother_rel.get_text())]
-        father_rel = const.childRelations[unicode(self.father_rel.get_text())]
+        mother_rel = const.childRelations(self.mother_rel.get_text())
+        father_rel = const.childRelations(self.father_rel.get_text())
         mod = 0
 
         if mother_rel != self.orig_mrel or father_rel != self.orig_frel:
-            self.person.removeAltFamily(self.family)
-            self.person.addAltFamily(self.family,mother_rel,father_rel)
+            self.person.remove_parent_family_id(self.family)
+            self.person.add_parent_family_id(self.family,mother_rel,father_rel)
             mod = 1
             Utils.modified()
 
-        if len(self.person.getParentList()):
+        if len(self.person.get_parent_family_id_list()):
             make_pref = self.pref.get_active()
 
-            plist = self.person.getParentList()
+            plist = self.person.get_parent_family_id_list()
             if make_pref:
                 if self.family != plist[0]:
-                    self.person.setMainParents(self.family)
+                    self.person.set_main_parent_family_id(self.family)
                     Utils.modified()
                     mod = 1
             else:
                 if self.family == plist[0]:
-                    self.person.setMainParents(plist[0])
+                    self.person.set_main_parent_family_id(plist[0])
                     Utils.modified()
                     mod = 1
 

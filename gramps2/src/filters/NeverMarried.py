@@ -27,7 +27,7 @@ class NeverMarried(Filter.Filter):
     "People with no marriage records"
 
     def match(self,person):
-        return len(person.getFamilyList()) == 0
+        return len(person.get_family_id_list()) == 0
 
 #------------------------------------------------------------------------
 #

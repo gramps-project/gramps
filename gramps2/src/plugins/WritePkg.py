@@ -109,34 +109,34 @@ class PackageWriter:
         def remove_clicked():
             # File is lost => remove all references and the object itself
             mobj = ObjectMap[ObjectId]
-            for p in self.db.getFamilyMap().values():
-                nl = p.getPhotoList()
+            for p in self.db.get_family_id_map().values():
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPersonKeys():
-                p = self.db.getPerson(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_person_keys():
+                p = self.db.get_person(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getSourceKeys():
-                p = self.db.getSource(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_source_keys():
+                p = self.db.get_source(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            for key in self.db.getPlaceKeys():
-                p = self.db.getPlace(key)
-                nl = p.getPhotoList()
+                p.set_photo_list(nl)
+            for key in self.db.get_place_id_keys():
+                p = self.db.get_place_id(key)
+                nl = p.get_photo_list()
                 for o in nl:
-                    if o.getReference() == mobj:
+                    if o.get_reference() == mobj:
                         nl.remove(o) 
-                p.setPhotoList(nl)
-            self.db.removeObject(ObjectId)
+                p.set_photo_list(nl)
+            self.db.remove_object(ObjectId)
             Utils.modified() 
 
         def leave_clicked():
@@ -169,9 +169,9 @@ class PackageWriter:
         
         # Write media files first, since the database may be modified 
         # during the process (i.e. when removing object)
-        ObjectMap = self.db.getObjectMap()
+        ObjectMap = self.db.get_object_map()
         for ObjectId in ObjectMap.keys():
-            oldfile = ObjectMap[ObjectId].getPath()
+            oldfile = ObjectMap[ObjectId].get_path()
             base = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
                 g = open(oldfile,"rb")

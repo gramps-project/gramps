@@ -98,15 +98,15 @@ class SelectObject:
         self.object_model.clear()
         self.object_model.new_model()
 
-        for key in self.db.getObjectMap().keys():
-            object = self.db.getObject(key)
-            title = object.getDescription()
-            the_id = object.getId()
-            the_type = Utils.get_mime_description(object.getMimeType())
-            if object.getLocal():
+        for key in self.db.get_object_map().keys():
+            object = self.db.get_object(key)
+            title = object.get_description()
+            the_id = object.get_id()
+            the_type = Utils.get_mime_description(object.get_mime_type())
+            if object.get_local():
                 path = "<local copy>"
             else:
-                path = object.getPath()
+                path = object.get_path()
             self.object_model.add([title,the_id,the_type,path],key)
 
         self.object_model.connect_model()
@@ -119,11 +119,11 @@ class SelectObject:
             return
         data = self.object_model.get_data(iter,range(self.ncols))
         the_id = data[4]
-        object = self.db.getObject(the_id)
-        the_type = Utils.get_mime_description(object.getMimeType())
-        path = object.getPath()
+        object = self.db.get_object(the_id)
+        the_type = Utils.get_mime_description(object.get_mime_type())
+        path = object.get_path()
 
-        thumb_path = Utils.thumb_path(self.db.getSavePath(),object)
+        thumb_path = Utils.thumb_path(self.db.get_save_path(),object)
         pexists = os.path.exists(path)
         if pexists and os.path.exists(thumb_path):
             self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
@@ -133,9 +133,9 @@ class SelectObject:
             if not pexists:
                 fexists = 0
         
-        self.object_id.set_text(object.getId())
+        self.object_id.set_text(object.get_id())
         self.object_type.set_text(the_type)
-        self.object_desc.set_text(object.getDescription())
+        self.object_desc.set_text(object.get_description())
         if len(path) == 0 or fexists == 0:
             self.object_path.set_text(_("The file no longer exists"))
         elif path[0] == "/":
@@ -152,7 +152,7 @@ class SelectObject:
             if iter:
                 data = self.object_model.get_data(iter,range(self.ncols))
                 the_id = data[4]
-                return_value = self.db.getObject(the_id)
+                return_value = self.db.get_object(the_id)
             else:
                 return_value = None
             self.top.destroy()

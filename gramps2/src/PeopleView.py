@@ -86,7 +86,7 @@ class PeopleView:
         mlist = self.person_tree.get_selected_objects()
         if mlist and mlist[0]:
             try:
-                self.parent.change_active_person(self.parent.db.getPerson(mlist[0]))
+                self.parent.change_active_person(self.parent.db.get_person(mlist[0]))
             except:
                 self.parent.change_active_person(None)
                 self.person_tree.unselect()
@@ -141,7 +141,7 @@ class PeopleView:
             model.clear()
 
     def remove_from_person_list(self,person,old_id=None):
-        pid = person.getId()
+        pid = person.get_id()
         if old_id:
             del_id = old_id
         else:
@@ -157,7 +157,7 @@ class PeopleView:
                 self.parent.active_person = None
     
     def remove_from_history(self,person,old_id=None):
-        pid = person.getId()
+        pid = person.get_id()
         if old_id:
             del_id = old_id
         else:
@@ -185,8 +185,8 @@ class PeopleView:
         self.goto_active_person()
 
     def add_to_person_list(self,person,change):
-        key = person.getId()
-        val = self.parent.db.getPersonDisplay(person.getId())
+        key = person.get_id()
+        val = self.parent.db.get_person_display(person.get_id())
         pg = unicode(val[5])
         pg = pg[0]
         model = None
@@ -223,8 +223,8 @@ class PeopleView:
             self.ptabs.set_current_page(page)
             return
         
-        id = self.parent.active_person.getId()
-        val = self.parent.db.getPersonDisplay(id)
+        id = self.parent.active_person.get_id()
+        val = self.parent.db.get_person_display(id)
         if self.id2col.has_key(id):
             (model,iter) = self.id2col[id]
         else:
@@ -274,9 +274,9 @@ class PeopleView:
         if current_model == None:
             self.id2col = {}
 
-        for key in self.parent.db.sortPersonKeys():
-            person = self.parent.db.getPerson(key)
-            val = self.parent.db.getPersonDisplay(key)
+        for key in self.parent.db.sort_person_keys():
+            person = self.parent.db.get_person(key)
+            val = self.parent.db.get_person_display(key)
             pg = val[5]
             if pg and pg != '@':
                 pg = pg[0]
@@ -405,7 +405,7 @@ class PeopleView:
         self.add_to_person_list(person,1)
 
     def update_person_list(self,person,old_id):
-        key = person.getId()
+        key = person.get_id()
         if old_id != key:
             (model,iter) = self.id2col[old_id]
             del self.id2col[old_id]
@@ -413,7 +413,7 @@ class PeopleView:
         else:
             (model,iter) = self.id2col[key]
             
-        val = self.parent.db.getPersonDisplay(person.getId())
+        val = self.parent.db.get_person_display(person.get_id())
         pg = unicode(val[5])[0]
         if self.DataFilter.compare(person):
             col = 0

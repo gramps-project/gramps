@@ -653,7 +653,7 @@ class BookReportSelector:
         
         book:   the book object to load.
         """
-        if book.get_dbname() == self.db.getSavePath():
+        if book.get_dbname() == self.db.get_save_path():
             same_db = 1
         else:
             same_db = 0
@@ -671,7 +671,7 @@ class BookReportSelector:
             item = BookItem(name)
             options = saved_item.get_options()
             if not same_db or not options[0]:
-                options[0] = self.person.getId()
+                options[0] = self.person.get_id()
             item.set_options(options)
             item.set_style_name(saved_item.get_style_name())
             self.book.append_item(item)
@@ -680,8 +680,8 @@ class BookReportSelector:
             if data[1] == _("Title"):
                 data.append(_("Not Applicable"))
             else:
-                pname = self.db.getPerson(options[0])
-                data.append(pname.getPrimaryName().getRegularName())
+                pname = self.db.get_person(options[0])
+                data.append(pname.get_primary_name().get_regular_name())
             self.bk_model.add(data)
 
     def on_add_clicked(self,obj):
@@ -697,12 +697,12 @@ class BookReportSelector:
         if data[1] == _("Title"):
             data.append(_("Not Applicable"))
         else:
-            data.append(self.person.getPrimaryName().getRegularName())
+            data.append(self.person.get_primary_name().get_regular_name())
         self.bk_model.add(data)
         item = BookItem(data[0])
         options = item.get_options()
         if not options[0]:
-            options[0] = self.person.getId()
+            options[0] = self.person.get_id()
             item.set_options(options)
         self.book.append_item(item)
 
@@ -769,7 +769,7 @@ class BookReportSelector:
         opt_dlg.window.destroy()
         if opt_dlg.person and data[1] != _("Title"): 
             self.bk_model.model.set_value(iter,2,
-                opt_dlg.person.getPrimaryName().getRegularName())
+                opt_dlg.person.get_primary_name().get_regular_name())
         item.set_options(opt_dlg.options)
         item.set_style_name(opt_dlg.style_name)
         self.book.set_item(row,item)
@@ -863,7 +863,7 @@ class BookReportSelector:
         self.book_list = BookList(self.file)
         name = unicode(self.name_entry.get_text())
         self.book.set_name(name)
-        self.book.set_dbname(self.db.getSavePath())
+        self.book.set_dbname(self.db.get_save_path())
         self.book_list.set_book(name,self.book)
         self.book_list.save()
 

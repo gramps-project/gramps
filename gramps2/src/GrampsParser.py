@@ -185,7 +185,6 @@ class GrampsParser:
             "street"     : (None, self.stop_street),
             "suffix"     : (None, self.stop_suffix),
             "title"      : (None, self.stop_title),
-            "uid"        : (None, self.stop_uid),
             "url"        : (self.start_url, None)
             }
 
@@ -197,12 +196,12 @@ class GrampsParser:
         p.CharacterDataHandler = self.characters
         p.ParseFile(file)
             
-        self.db.setResearcher(self.owner)
+        self.db.set_researcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
-            if self.db.personMap.has_key(id) and self.db.getDefaultPerson() == None:
-                person = self.db.personMap[id]
-                self.db.setDefaultPerson(person)
+            if self.db.person_map.has_key(id) and self.db.get_default_person() == None:
+                person = self.db.person_map[id]
+                self.db.set_default_person(person)
 
         for key in self.func_map.keys():
             del self.func_map[key]
@@ -215,33 +214,33 @@ class GrampsParser:
         self.ord = RelLib.LdsOrd()
         if self.person:
             if type == "baptism":
-                self.person.setLdsBaptism(self.ord)
+                self.person.set_lds_baptism(self.ord)
             elif type == "endowment":
-                self.person.setLdsEndowment(self.ord)
+                self.person.set_lds_endowment(self.ord)
             elif type == "sealed_to_parents":
-                self.person.setLdsSeal(self.ord)
+                self.person.set_lds_sealing(self.ord)
         elif self.family:
             if type == "sealed_to_spouse":
-                self.family.setLdsSeal(self.ord)
+                self.family.set_lds_sealing(self.ord)
 
     def start_temple(self,attrs):
-        self.ord.setTemple(attrs['val'])
+        self.ord.set_temple(attrs['val'])
 
     def start_status(self,attrs):
-        self.ord.setStatus(int(attrs['val']))
+        self.ord.set_status(int(attrs['val']))
 
     def start_sealed_to(self,attrs):
         id = attrs['ref']
-        self.ord.setFamily(self.db.findFamilyNoMap(id))
+        self.ord.set_family_id(self.db.find_family_no_map(id))
         
     def start_place(self,attrs):
         if attrs.has_key('ref'):
-            self.placeobj = self.db.findPlaceNoMap(attrs['ref'])
+            self.placeobj = self.db.find_place_from_id(attrs['ref'])
         else:
             self.placeobj = None
 
     def start_placeobj(self,attrs):
-        self.placeobj = self.db.findPlaceNoMap(attrs['id'])
+        self.placeobj = self.db.find_place_from_id(attrs['id'])
         title = attrs['title']
         if title == "":
             title = attrs['id']
@@ -309,23 +308,23 @@ class GrampsParser:
         if attrs.has_key("priv"):
             self.attribute.private = int(attrs["priv"])
         if attrs.has_key('type'):
-            self.attribute.setType(const.save_attr(attrs["type"]))
+            self.attribute.set_type(const.save_attr(attrs["type"]))
         if attrs.has_key('value'):
-            self.attribute.setValue(attrs["value"])
+            self.attribute.set_value(attrs["value"])
         if self.photo:
-            self.photo.addAttribute(self.attribute)
+            self.photo.add_attribute(self.attribute)
         elif self.object:
-            self.object.addAttribute(self.attribute)
+            self.object.add_attribute(self.attribute)
         elif self.objref:
-            self.objref.addAttribute(self.attribute)
+            self.objref.add_attribute(self.attribute)
         elif self.person:
-            self.person.addAttribute(self.attribute)
+            self.person.add_attribute(self.attribute)
         elif self.family:
-            self.family.addAttribute(self.attribute)
+            self.family.add_attribute(self.attribute)
 
     def start_address(self,attrs):
         self.address = RelLib.Address()
-        self.person.addAddress(self.address)
+        self.person.add_address(self.address)
         if attrs.has_key("conf"):
             self.address.conf = int(attrs["conf"])
         else:
@@ -334,31 +333,31 @@ class GrampsParser:
             self.address.private = int(attrs["priv"])
 
     def start_bmark(self,attrs):
-        person = self.db.findPersonNoMap(attrs["ref"])
+        person = self.db.find_person_from_id(attrs["ref"])
         self.db.bookmarks.append(person)
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.person = self.db.findPersonNoMap(attrs["id"])
+        self.person = self.db.find_person_from_id(attrs["id"])
         if attrs.has_key("complete"):
-            self.person.setComplete(int(attrs['complete']))
+            self.person.set_complete(int(attrs['complete']))
         else:
-            self.person.setComplete(0)
+            self.person.set_complete(0)
 
     def start_people(self,attrs):
         if attrs.has_key("default"):
             self.tempDefault = attrs["default"]
 
     def start_father(self,attrs):
-        self.family.Father = self.db.findPersonNoMap(attrs["ref"])
+        self.family.set_father_id(attrs["ref"])
 
     def start_mother(self,attrs):
-        self.family.Mother = self.db.findPersonNoMap(attrs["ref"])
+        self.family.set_mother_id(attrs["ref"])
     
     def start_child(self,attrs):
-        self.family.Children.append(self.db.findPersonNoMap(attrs["ref"]))
+        self.family.add_child_id(attrs["ref"])
 
     def start_url(self,attrs):
 
@@ -374,11 +373,11 @@ class GrampsParser:
             url.set_path(attrs["href"])
             url.set_description(desc)
             if attrs.has_key("priv"):
-                url.setPrivacy(int(attrs['priv']))
+                url.set_privacy(int(attrs['priv']))
             if self.person:
-                self.person.addUrl(url)
+                self.person.add_url(url)
             elif self.placeobj:
-                self.placeobj.addUrl(url)
+                self.placeobj.add_url(url)
         except KeyError:
             return
 
@@ -386,18 +385,18 @@ class GrampsParser:
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.findFamilyNoMap(attrs["id"])
+        self.family = self.db.find_family_no_map(attrs["id"])
         if attrs.has_key("type"):
-            self.family.setRelationship(const.save_frel(attrs["type"]))
+            self.family.set_relationship(const.save_frel(attrs["type"]))
         else:
-            self.family.setRelationship("")
+            self.family.set_relationship("")
         if attrs.has_key("complete"):
-            self.family.setComplete(int(attrs['complete']))
+            self.family.set_complete(int(attrs['complete']))
         else:
-            self.family.setComplete(0)
+            self.family.set_complete(0)
 
     def start_childof(self,attrs):
-        family = self.db.findFamilyNoMap(attrs["ref"])
+        family = self.db.find_family_no_map(attrs["ref"])
         if attrs.has_key("mrel"):
             mrel = attrs["mrel"]
         else:
@@ -406,95 +405,95 @@ class GrampsParser:
             frel = attrs["frel"]
         else:
             frel = "Birth"
-        self.person.AltFamilyList.append((family,mrel,frel))
+        self.person.add_parent_family_id(family.get_id(),mrel,frel)
 
     def start_parentin(self,attrs):
-        self.person.FamilyList.append(self.db.findFamilyNoMap(attrs["ref"]))
+        self.person.add_family_id(attrs["ref"])
 
     def start_name(self,attrs):
         if not self.in_witness:
             self.name = RelLib.Name()
             if attrs.has_key("type"):
-                self.name.setType(attrs["type"])
+                self.name.set_type(attrs["type"])
             if attrs.has_key("conf"):
-                self.name.conf = int(attrs["conf"])
+                self.name.set_confidence(int(attrs["conf"]))
             else:
                 self.name.conf = 2
             if attrs.has_key("priv"):
-                self.name.private = int(attrs["priv"])
+                self.name.set_privacy(int(attrs["priv"]))
 
     def start_last(self,attrs):
         if attrs.has_key('prefix'):
-            self.name.Prefix = attrs['prefix']
+            self.name.set_prefix(attrs['prefix'])
         
     def start_note(self,attrs):
         self.in_note = 1
         self.note = RelLib.Note()
         if attrs.has_key("format"):
-            self.note.setFormat(int(attrs['format']))
+            self.note.set_format(int(attrs['format']))
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
-        source = self.db.findSourceNoMap(attrs["ref"])
+        source = self.db.find_source_from_id(attrs["ref"])
         if attrs.has_key("conf"):
             self.source_ref.confidence = int(attrs["conf"])
         else:
             self.source_ref.confidence = self.conf
-        self.source_ref.setBase(source)
+        self.source_ref.set_base_id(source.get_id())
         if self.photo:
-            self.photo.addSourceRef(self.source_ref)
+            self.photo.add_source_reference(self.source_ref)
         elif self.ord:
-            self.ord.addSourceRef(self.source_ref)
+            self.ord.add_source_reference(self.source_ref)
         elif self.object:
-            self.object.addSourceRef(self.source_ref)
+            self.object.add_source_reference(self.source_ref)
         elif self.event:
-            self.event.addSourceRef(self.source_ref)
+            self.event.add_source_reference(self.source_ref)
         elif self.address:
-            self.address.addSourceRef(self.source_ref)
+            self.address.add_source_reference(self.source_ref)
         elif self.name:
-            self.name.addSourceRef(self.source_ref)
+            self.name.add_source_reference(self.source_ref)
         elif self.attribute:
-            self.attribute.addSourceRef(self.source_ref)
+            self.attribute.add_source_reference(self.source_ref)
         elif self.placeobj:
-            self.placeobj.addSourceRef(self.source_ref)
+            self.placeobj.add_source_reference(self.source_ref)
         elif self.family:
-            self.family.addSourceRef(self.source_ref)
+            self.family.add_source_reference(self.source_ref)
         elif self.person:
-            self.person.addSourceRef(self.source_ref)
+            self.person.add_source_reference(self.source_ref)
 
     def start_source(self,attrs):
         if self.num_srcs > 0:
             if self.callback != None and self.count % self.increment == 0:
                 self.callback(float(self.count)/float(self.entries))
             self.count = self.count + 1
-        self.source = self.db.findSourceNoMap(attrs["id"])
+        self.source = self.db.find_source_from_id(attrs["id"])
 
     def start_objref(self,attrs):
         self.objref = RelLib.ObjectRef()
-        self.objref.setReference(self.db.findObjectNoMap(attrs['ref']))
+        self.objref.set_reference(self.db.find_object_from_id(attrs['ref']))
         if attrs.has_key('priv'):
-            self.objref.setPrivacy(int(attrs['priv']))
+            self.objref.set_privacy(int(attrs['priv']))
         if self.family:
-            self.family.addPhoto(self.objref)
+            self.family.add_photo(self.objref)
         elif self.source:
-            self.source.addPhoto(self.objref)
+            self.source.add_photo(self.objref)
         elif self.person:
-            self.person.addPhoto(self.objref)
+            self.person.add_photo(self.objref)
         elif self.placeobj:
-            self.placeobj.addPhoto(self.objref)
+            self.placeobj.add_photo(self.objref)
 
     def start_object(self,attrs):
-        self.object = self.db.findObjectNoMap(attrs['id'])
-        self.object.setMimeType(attrs['mime'])
-        self.object.setDescription(attrs['description'])
+        self.object = self.db.find_object_from_id(attrs['id'])
+        self.object.set_mime_type(attrs['mime'])
+        self.object.set_description(attrs['description'])
         src = attrs["src"]
         if src:
             if src[0] != '/':
-                self.object.setPath("%s/%s" % (self.base,src))
-                self.object.setLocal(1)
+                self.object.set_path("%s/%s" % (self.base,src))
+                self.object.set_local(1)
             else:
-                self.object.setPath(src)
-                self.object.setLocal(0)
+                self.object.set_path(src)
+                self.object.set_local(0)
 
     def stop_object(self,tag):
         self.object = None
@@ -505,46 +504,46 @@ class GrampsParser:
     def start_photo(self,attrs):
         self.photo = RelLib.Photo()
         self.pref = RelLib.ObjectRef()
-        self.pref.setReference(self.photo)
+        self.pref.set_reference(self.photo)
         
         for key in attrs.keys():
             if key == "descrip" or key == "description":
-                self.photo.setDescription(attrs[key])
+                self.photo.set_description(attrs[key])
             elif key == "priv":
-                self.pref.setPrivacy(int(attrs[key]))
+                self.pref.set_privacy(int(attrs[key]))
             elif key == "src":
                 src = attrs["src"]
                 if src[0] != '/':
-                    self.photo.setPath("%s/%s" % (self.base,src))
-                    self.photo.setLocal(1)
+                    self.photo.set_path("%s/%s" % (self.base,src))
+                    self.photo.set_local(1)
                 else:
-                    self.photo.setPath(src)
-                    self.photo.setLocal(0)
+                    self.photo.set_path(src)
+                    self.photo.set_local(0)
             else:
                 a = RelLib.Attribute()
-                a.setType(key)
-                a.setValue(attrs[key])
-                self.photo.addAttribute(a)
-        self.photo.setMimeType(Utils.get_mime_type(self.photo.getPath()))
-        self.db.addObject(self.photo)
+                a.set_type(key)
+                a.set_value(attrs[key])
+                self.photo.add_attribute(a)
+        self.photo.set_mime_type(Utils.get_mime_type(self.photo.get_path()))
+        self.db.add_object(self.photo)
         if self.family:
-            self.family.addPhoto(self.pref)
+            self.family.add_photo(self.pref)
         elif self.source:
-            self.source.addPhoto(self.pref)
+            self.source.add_photo(self.pref)
         elif self.person:
-            self.person.addPhoto(self.pref)
+            self.person.add_photo(self.pref)
         elif self.placeobj:
-            self.placeobj.addPhoto(self.pref)
+            self.placeobj.add_photo(self.pref)
 
     def start_daterange(self,attrs):
         if self.source_ref:
-            d = self.source_ref.getDate()
+            d = self.source_ref.get_date()
         elif self.ord:
-            d = self.ord.getDateObj()
+            d = self.ord.get_date_object()
         elif self.address:
-            d = self.address.getDateObj()
+            d = self.address.get_date_object()
         else:
-            d = self.event.getDateObj()
+            d = self.event.get_date_object()
 
         if attrs.has_key("calendar"):
             d.set_calendar_val(int(attrs['calendar']))
@@ -558,13 +557,13 @@ class GrampsParser:
         
     def start_dateval(self,attrs):
         if self.source_ref:
-            d = self.source_ref.getDate()
+            d = self.source_ref.get_date()
         elif self.ord:
-            d = self.ord.getDateObj()
+            d = self.ord.get_date_object()
         elif self.address:
-            d = self.address.getDateObj()
+            d = self.address.get_date_object()
         else:
-            d = self.event.getDateObj()
+            d = self.event.get_date_object()
 
         if attrs.has_key("calendar"):
             d.set_calendar_val(int(attrs['calendar']))
@@ -581,13 +580,13 @@ class GrampsParser:
 
     def start_datestr(self,attrs):
         if self.source_ref:
-            d = self.source_ref.getDate()
+            d = self.source_ref.get_date()
         elif self.ord:
-            d = self.ord.getDateObj()
+            d = self.ord.get_date_object()
         elif self.address:
-            d = self.address.getDateObj()
+            d = self.address.get_date_object()
         else:
-            d = self.event.getDateObj()
+            d = self.event.get_date_object()
 
         d.set(attrs['val'])
 
@@ -626,10 +625,10 @@ class GrampsParser:
         self.in_witness = 0
 
     def stop_attr_type(self,tag):
-        self.attribute.setType(tag)
+        self.attribute.set_type(tag)
 
     def stop_attr_value(self,tag):
-        self.attribute.setValue(tag)
+        self.attribute.set_value(tag)
 
     def stop_address(self,tag):
         self.address = None
@@ -644,7 +643,7 @@ class GrampsParser:
         if self.placeobj.get_title() == "":
             loc = self.placeobj.get_main_location()
             self.placeobj.set_title(build_place_title(loc))
-        self.db.buildPlaceDisplay(self.placeobj.getId())
+        self.db.build_place_display(self.placeobj.get_id())
         self.placeobj = None
 
     def stop_family(self,tag):
@@ -654,24 +653,24 @@ class GrampsParser:
         self.event.name = self.event_type
 
         if self.family:
-            self.family.EventList.append(self.event)
+            self.family.add_event(self.event)
         else:
             if self.event_type == "Birth":
-                self.person.setBirth(self.event)
+                self.person.set_birth(self.event)
             elif self.event_type == "Death":
-                self.person.setDeath(self.event)
+                self.person.set_death(self.event)
             else:
-                self.person.EventList.append(self.event)
+                self.person.add_event(self.event)
         self.event = None
 
     def stop_name(self,tag):
         if self.in_witness:
             self.witness = RelLib.Witness(RelLib.Event.NAME,tag)
         else:
-            if self.name.getType() == "":
-                self.name.setType("Birth Name")
-            self.person.setPrimaryName (self.name)
-            self.person.getPrimaryName().build_sort_name()
+            if self.name.get_type() == "":
+                self.name.set_type("Birth Name")
+            self.person.set_primary_name (self.name)
+            self.person.get_primary_name().build_sort_name()
             self.name = None
 
     def stop_ref(self,tag):
@@ -684,96 +683,93 @@ class GrampsParser:
             else:
                 self.placeobj = RelLib.Place()
                 self.placeobj.set_title(tag)
-                self.db.addPlace(self.placeobj)
+                self.db.add_place(self.placeobj)
                 self.place_map[tag] = self.placeobj
         if self.ord:
-            self.ord.setPlace(self.placeobj)
+            self.ord.set_place_id(self.placeobj)
         else:
-            self.event.place = self.placeobj
+            self.event.place = self.placeobj.get_id()
         self.placeobj = None
         
-    def stop_uid(self,tag):
-        self.person.setPafUid(tag)
-
     def stop_date(self,tag):
         if tag:
             if self.address:
-                self.address.setDate(tag)
+                self.address.set_date(tag)
             else:
-                self.event.setDate(tag)
+                self.event.set_date(tag)
 
     def stop_first(self,tag):
-        self.name.FirstName = tag
+        self.name.set_first_name(tag)
 
     def stop_families(self,tag):
         self.family = None
 
     def stop_person(self,tag):
-        self.db.buildPersonDisplay(self.person.getId())
+        self.db.build_person_display(self.person.get_id())
         self.person = None
 
     def stop_description(self,tag):
-        self.event.setDescription(tag)
+        self.event.set_description(tag)
 
     def stop_cause(self,tag):
-        self.event.setCause(tag)
+        self.event.set_cause(tag)
 
     def stop_gender(self,tag):
         t = tag
         if t == "M":
-            self.person.setGender (RelLib.Person.male)
+            self.person.set_gender (RelLib.Person.male)
         elif t == "F":
-            self.person.setGender (RelLib.Person.female)
+            self.person.set_gender (RelLib.Person.female)
         else:
-            self.person.setGender (RelLib.Person.unknown)
+            self.person.set_gender (RelLib.Person.unknown)
 
     def stop_stitle(self,tag):
-        self.source.setTitle(tag)
+        self.source.set_title(tag)
 
     def stop_sourceref(self,tag):
         self.source_ref = None
 
     def stop_source(self,tag):
-        self.db.buildSourceDisplay(self.source.getId())
+        self.db.build_source_display(self.source.get_id())
         self.source = None
 
     def stop_sauthor(self,tag):
-        self.source.setAuthor(tag)
+        self.source.set_author(tag)
 
     def stop_sdate(self,tag):
         date = Date.Date()
         date.set(tag)
-        self.source_ref.setDate(date)
+        self.source_ref.set_date(date)
         
     def stop_phone(self,tag):
-        self.address.setPhone(tag)
+        self.address.set_phone(tag)
 
     def stop_street(self,tag):
-        self.address.setStreet(tag)
+        self.address.set_street(tag)
 
     def stop_city(self,tag):
-        self.address.setCity(tag)
+        self.address.set_city(tag)
 
     def stop_state(self,tag):
-        self.address.setState(tag)
+        self.address.set_state(tag)
         
     def stop_country(self,tag):
         self.address.setCountry(tag)
 
     def stop_postal(self,tag):
-        self.address.setPostal(tag)
+        self.address.set_postal_code(tag)
 
     def stop_spage(self,tag):
-        self.source_ref.setPage(tag)
+        self.source_ref.set_page(tag)
 
     def stop_lds_ord(self,tag):
         self.ord = None
 
     def stop_spubinfo(self,tag):
-        self.source.setPubInfo(tag)
+        self.source.set_publication_info(tag)
 
     def stop_sabbrev(self,tag):
-        self.source.setAbbrev(tag)
+        self.source.set_abbreviation(tag)
         
     def stop_stext(self,tag):
         if self.use_p:
@@ -781,7 +777,7 @@ class GrampsParser:
             note = fix_spaces(self.stext_list)
         else:
             note = tag
-        self.source_ref.setText(note)
+        self.source_ref.set_text(note)
 
     def stop_scomments(self,tag):
         if self.use_p:
@@ -789,23 +785,23 @@ class GrampsParser:
             note = fix_spaces(self.scomments_list)
         else:
             note = tag
-        self.source_ref.setComments(note)
+        self.source_ref.set_comments(note)
 
     def stop_last(self,tag):
         if self.name:
-            self.name.Surname = tag
+            self.name.set_surname(tag)
 
     def stop_suffix(self,tag):
         if self.name:
-            self.name.Suffix = tag
+            self.name.set_suffix(tag)
 
     def stop_title(self,tag):
         if self.name:
-            self.name.Title = tag
+            self.name.set_title(tag)
 
     def stop_nick(self,tag):
         if self.person:
-            self.person.setNickName(tag)
+            self.person.set_nick_name(tag)
 
     def stop_note(self,tag):
         self.in_note = 0
@@ -817,29 +813,29 @@ class GrampsParser:
         self.note.set(text)
 
         if self.address:
-            self.address.setNoteObj(self.note)
+            self.address.set_note_object(self.note)
         elif self.ord:
-            self.ord.setNoteObj(self.note)
+            self.ord.set_note_object(self.note)
         elif self.attribute:
-            self.attribute.setNoteObj(self.note)
+            self.attribute.set_note_object(self.note)
         elif self.object:
-            self.object.setNoteObj(self.note)
+            self.object.set_note_object(self.note)
         elif self.objref:
-            self.objref.setNoteObj(self.note)
+            self.objref.set_note_object(self.note)
         elif self.photo:
-            self.photo.setNoteObj(self.note)
+            self.photo.set_note_object(self.note)
         elif self.name:
-            self.name.setNoteObj(self.note)
+            self.name.set_note_object(self.note)
         elif self.source:
-            self.source.setNoteObj(self.note)
+            self.source.set_note_object(self.note)
         elif self.event:
-            self.event.setNoteObj(self.note)
+            self.event.set_note_object(self.note)
         elif self.person:
-            self.person.setNoteObj(self.note)
+            self.person.set_note_object(self.note)
         elif self.family:
-            self.family.setNoteObj(self.note)
+            self.family.set_note_object(self.note)
         elif self.placeobj:
-            self.placeobj.setNoteObj(self.note)
+            self.placeobj.set_note_object(self.note)
 
     def stop_research(self,tag):
         self.owner.set(self.resname, self.resaddr, self.rescity, self.resstate,
@@ -879,9 +875,9 @@ class GrampsParser:
             self.scomments_list.append(tag)
 
     def stop_aka(self,tag):
-        self.person.addAlternateName(self.name)
-        if self.name.getType() == "":
-            self.name.setType("Also Known As")
+        self.person.add_alternate_name(self.name)
+        if self.name.get_type() == "":
+            self.name.set_type("Also Known As")
         self.name = None
 
     def startElement(self,tag,attrs):
@@ -936,7 +932,7 @@ class GrampsImportParser(GrampsParser):
         self.func_map["parentin"] = (self.start_parentin,None)
 
     def start_childof(self,attrs):
-        family = self.db.findFamilyNoConflicts(attrs["ref"],self.fmap)
+        family = self.db.find_family_no_conflicts(attrs["ref"],self.fmap)
         if attrs.has_key("mrel"):
             mrel = attrs["mrel"]
         else:
@@ -945,81 +941,81 @@ class GrampsImportParser(GrampsParser):
             frel = attrs["frel"]
         else:
             frel = "Birth"
-        self.person.AltFamilyList.append((family,mrel,frel))
+        self.person.add_parent_family_id((family.get_id(),mrel,frel))
 
     def start_parentin(self,attrs):
-        self.person.FamilyList.append(self.db.findFamilyNoConflicts(attrs["ref"],self.fmap))
+        self.person.add_family_id(attrs["ref"])
 
     def start_bmark(self,attrs):
-        person = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
+        person = self.db.find_person_no_conflicts(attrs["ref"],self.pmap)
         self.db.bookmarks.append(person)
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.person = self.db.findPersonNoConflicts(attrs["id"],self.pmap)
+        self.person = self.db.find_person_no_conflicts(attrs["id"],self.pmap)
         if attrs.has_key("complete"):
-            self.person.setComplete(int(attrs['complete']))
+            self.person.set_complete(int(attrs['complete']))
         else:
-            self.person.setComplete(0)
+            self.person.set_complete(0)
 
     def start_father(self,attrs):
-        self.family.Father = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
+        self.family.set_father_id(attrs["ref"])
 
     def start_mother(self,attrs):
-        self.family.Mother = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
+        self.family.set_mother_id(attrs["ref"])
     
     def start_child(self,attrs):
-        self.family.Children.append(self.db.findPersonNoConflicts(attrs["ref"],self.pmap))
+        self.family.add_child_id(attrs["ref"])
 
     def start_family(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.family = self.db.findFamilyNoConflicts(attrs["id"],self.fmap)
+        self.family = self.db.find_family_no_conflicts(attrs["id"],self.fmap)
         if attrs.has_key("type"):
-            self.family.setRelationship(const.save_frel(attrs["type"]))
+            self.family.set_relationship(const.save_frel(attrs["type"]))
         if attrs.has_key("complete"):
-            self.family.setComplete(int(attrs['complete']))
+            self.family.set_complete(int(attrs['complete']))
         else:
-            self.family.setComplete(0)
+            self.family.set_complete(0)
 
     def start_source(self,attrs):
-        self.source = self.db.findSourceNoConflicts(attrs["id"],self.smap)
+        self.source = self.db.find_source_no_conflicts(attrs["id"],self.smap)
 
     def start_sourceref(self,attrs):
         self.source_ref = RelLib.SourceRef()
-        source = self.db.findSourceNoConflicts(attrs["ref"],self.smap)
+        source = self.db.find_source_no_conflicts(attrs["ref"],self.smap)
         if attrs.has_key("conf"):
             self.source_ref.confidence = int(attrs["conf"])
         else:
             self.source_ref.confidence = self.conf
-        self.source_ref.setBase(source)
+        self.source_ref.set_base_id(source.get_id())
         if self.photo:
-            self.photo.addSourceRef(self.source_ref)
+            self.photo.add_source_reference(self.source_ref)
         elif self.ord:
-            self.ord.addSourceRef(self.source_ref)
+            self.ord.add_source_reference(self.source_ref)
         elif self.object:
-            self.object.addSourceRef(self.source_ref)
+            self.object.add_source_reference(self.source_ref)
         elif self.event:
-            self.event.addSourceRef(self.source_ref)
+            self.event.add_source_reference(self.source_ref)
         elif self.address:
-            self.address.addSourceRef(self.source_ref)
+            self.address.add_source_reference(self.source_ref)
         elif self.name:
-            self.name.addSourceRef(self.source_ref)
+            self.name.add_source_reference(self.source_ref)
         elif self.attribute:
-            self.attribute.addSourceRef(self.source_ref)
+            self.attribute.add_source_reference(self.source_ref)
         elif self.placeobj:
-            self.placeobj.addSourceRef(self.source_ref)
+            self.placeobj.add_source_reference(self.source_ref)
         elif self.family:
-            self.family.addSourceRef(self.source_ref)
+            self.family.add_source_reference(self.source_ref)
 
     def start_place(self,attrs):
-        self.placeobj = self.db.findPlaceNoConflicts(attrs['ref'],self.lmap)
+        self.placeobj = self.db.find_place_no_conflicts(attrs['ref'],self.lmap)
 
     def start_placeobj(self,attrs):
-        self.placeobj = self.db.findPlaceNoConflicts(attrs['id'],self.lmap)
+        self.placeobj = self.db.find_place_no_conflicts(attrs['id'],self.lmap)
         title = attrs['title']
         if title == "":
             title = attrs['id']
@@ -1032,30 +1028,30 @@ class GrampsImportParser(GrampsParser):
 
     def start_objref(self,attrs):
         self.objref = RelLib.ObjectRef()
-        self.objref.setReference(self.db.findObjectNoConflicts(attrs['ref'],self.MediaFileMap))
+        self.objref.set_reference(self.db.find_object_no_conflicts(attrs['ref'],self.MediaFileMap))
         if attrs.has_key('priv'):
-            self.objref.setPrivacy(int(attrs['priv']))
+            self.objref.set_privacy(int(attrs['priv']))
         if self.family:
-            self.family.addPhoto(self.objref)
+            self.family.add_photo(self.objref)
         elif self.source:
-            self.source.addPhoto(self.objref)
+            self.source.add_photo(self.objref)
         elif self.person:
-            self.person.addPhoto(self.objref)
+            self.person.add_photo(self.objref)
         elif self.placeobj:
-            self.placeobj.addPhoto(self.objref)
+            self.placeobj.add_photo(self.objref)
 
     def start_object(self,attrs):
-        self.object = self.db.findObjectNoConflicts(attrs['id'],self.MediaFileMap)
-        self.object.setMimeType(attrs['mime'])
-        self.object.setDescription(attrs['description'])
+        self.object = self.db.find_object_no_conflicts(attrs['id'],self.MediaFileMap)
+        self.object.set_mime_type(attrs['mime'])
+        self.object.set_description(attrs['description'])
         src = attrs["src"]
         if src:
             if src[0] != '/':
-                self.object.setPath("%s/%s" % (self.db.getSavePath(),src))
-                self.object.setLocal(1)
+                self.object.set_path("%s/%s" % (self.db.get_save_path(),src))
+                self.object.set_local(1)
             else:
-                self.object.setPath(src)
-                self.object.setLocal(0)
+                self.object.set_path(src)
+                self.object.set_local(0)
 
 def append_value(orig,val):
     if orig:

@@ -26,8 +26,8 @@ from gettext import gettext as _
 class EventType(Filter.Filter):
 
     def match(self,person):
-        for event in person.getEventList():
-            if event.getName() == self.text:
+        for event in person.get_event_list():
+            if event.get_name() == self.text:
                 return 1
         return 0
     

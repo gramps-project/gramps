@@ -69,10 +69,10 @@ class FtmAncestorReport(Report.Report):
             return
         self.map[index] = (person,generation)
     
-        family = person.getMainParents()
+        family = person.get_main_parents_family_id()
         if family != None:
-            self.apply_filter(family.getFather(),index*2,generation+1)
-            self.apply_filter(family.getMother(),(index*2)+1,generation+1)
+            self.apply_filter(family.get_father_id(),index*2,generation+1)
+            self.apply_filter(family.get_mother_id(),(index*2)+1,generation+1)
 
     def write_report(self):
 
@@ -81,7 +81,7 @@ class FtmAncestorReport(Report.Report):
 
         self.apply_filter(self.start,1)
         
-        name = self.start.getPrimaryName().getRegularName()
+        name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("FTA-Title")
         title = _("Ancestors of %s") % name
         self.doc.write_text(title)
@@ -101,28 +101,28 @@ class FtmAncestorReport(Report.Report):
                 self.doc.end_paragraph()
                 old_gen = generation
 
-            pri_name = person.getPrimaryName()
+            pri_name = person.get_primary_name()
             self.doc.start_paragraph("FTA-Entry","%d." % key)
-            name = pri_name.getRegularName()
+            name = pri_name.get_regular_name()
             self.doc.start_bold()
             self.doc.write_text(name)
             self.doc.end_bold()
 
             # Check birth record
         
-            birth = person.getBirth()
-            bplace = birth.getPlaceName()
-            bdate = birth.getDate()
+            birth = person.get_birth()
+            bplace = birth.get_place_name()
+            bdate = birth.get_date()
 
-            death = person.getDeath()
-            dplace = death.getPlaceName()
-            ddate = death.getDate()
+            death = person.get_death()
+            dplace = death.get_place_name()
+            ddate = death.get_date()
 
             birth_valid = bdate != "" or bplace != ""
             death_valid = ddate != "" or dplace != ""
 
             if birth_valid or death_valid:
-                if person.getGender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.male:
                     if bdate:
                         if bplace:
                             if ddate:
@@ -426,24 +426,24 @@ class FtmAncestorReport(Report.Report):
         keys.sort()
         for key in keys:
             srcref = self.sref_map[key]
-            base = srcref.getBase()
+            base = srcref.get_base_id()
             
             self.doc.start_paragraph('FTA-Endnotes',"%d." % key)
-            self.doc.write_text(base.getTitle())
+            self.doc.write_text(base.get_title())
 
-            for item in [ base.getAuthor(), base.getPubInfo(), base.getAbbrev(),
-                          srcref.getDate().getDate(),]:
+            for item in [ base.get_author(), base.get_publication_info(), base.getAbbrev(),
+                          srcref.get_date().get_date(),]:
                 if item:
                     self.doc.write_text('; %s' % item)
 
-            item = srcref.getText()
+            item = srcref.get_text()
             if item:
                 self.doc.write_text('; ')
                 self.doc.write_text(_('Text:'))
                 self.doc.write_text(' ')
                 self.doc.write_text(item)
 
-            item = srcref.getComments()
+            item = srcref.get_comments()
             if item:
                 self.doc.write_text('; ')
                 self.doc.write_text(_('Comments:'))
@@ -455,7 +455,7 @@ class FtmAncestorReport(Report.Report):
 
     def endnotes(self,obj):
         msg = cStringIO.StringIO()
-        slist = obj.getSourceRefList()
+        slist = obj.get_source_references()
         if slist:
             msg.write('<super>')
             first = 1
@@ -472,44 +472,44 @@ class FtmAncestorReport(Report.Report):
         return str
 
     def print_notes(self,person):
-        note = person.getNote()
+        note = person.get_note()
         if not note.strip():
             return
         self.doc.start_paragraph('FTA-SubEntry')
         self.doc.write_text(_('Notes for %(person)s:') % { 
-        	'person' : person.getPrimaryName().getRegularName()} )
+        	'person' : person.get_primary_name().get_regular_name()} )
         self.doc.end_paragraph()
-        format = person.getNoteFormat()
+        format = person.get_note_format()
         self.doc.write_note(note,format,'FTA-Details')
         
     def print_more_about(self,person):
 
         first = 1
         ncount = 0
-        for name in person.getAlternateNames():
+        for name in person.get_alternate_names():
             if first:
                 self.doc.start_paragraph('FTA-SubEntry')
                 self.doc.write_text(_('More about %(person_name)s:') % { 
-                	'person_name' : person.getPrimaryName().getRegularName() })
+                	'person_name' : person.get_primary_name().get_regular_name() })
                 self.doc.end_paragraph()
                 first = 0
             self.doc.start_paragraph('FTA-Details')
             self.doc.write_text(_('Name %(count)d: %(name)s%(endnotes)s') % {
-                'count' : ncount, 'name' : name.getRegularName(),
+                'count' : ncount, 'name' : name.get_regular_name(),
                 'endnotes' : self.endnotes(name),
                 })
             self.doc.end_paragraph()
             ncount += 1
             
-        for event in person.getEventList():
-            date = event.getDate()
-            place = event.getPlace()
+        for event in person.get_event_list():
+            date = event.get_date()
+            place = event.get_place_id()
 
             if not date and not place:
                 continue
             if first:
                 self.doc.start_paragraph('FTA-SubEntry')
-                name = person.getPrimaryName().getRegularName()
+                name = person.get_primary_name().get_regular_name()
                 self.doc.write_text(_('More about %(person_name)s:') % { 
                 	'person_name' : name })
                 self.doc.end_paragraph()
@@ -518,100 +518,100 @@ class FtmAncestorReport(Report.Report):
             self.doc.start_paragraph('FTA-Details')
             if date and place:
                 self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s') % {
-                    'event_name' : event.getName(),
-                    'date' : event.getDate(),
+                    'event_name' : event.get_name(),
+                    'date' : event.get_date(),
                     'endnotes' : self.endnotes(event),
-                    'place' : event.getPlaceName() })
+                    'place' : event.get_place_name() })
             elif date:
                 self.doc.write_text(_('%(event_name)s: %(date)s%(endnotes)s') % {
-                    'event_name' : event.getName(),
+                    'event_name' : event.get_name(),
                     'endnotes' : self.endnotes(event),
-                    'date' : event.getDate()})
+                    'date' : event.get_date()})
             else:
                 self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s') % {
-                    'event_name' : event.getName(),
+                    'event_name' : event.get_name(),
                     'endnotes' : self.endnotes(event),
-                    'place' : event.getPlaceName() })
+                    'place' : event.get_place_name() })
             self.doc.end_paragraph()
 
     def print_spouse(self,person):
-        family_list = person.getFamilyList()
+        family_list = person.get_family_id_list()
         if not family_list:
             return
         family = family_list[0]
-        if family.getFather() == person:
-            spouse = family.getMother()
+        if family.get_father_id() == person:
+            spouse = family.get_mother_id()
         else:
-            spouse = family.getFather()
+            spouse = family.get_father_id()
         if not spouse:
             return
-        event = family.getMarriage()
+        event = family.get_marriage()
         if not event:
             return
-        date = event.getDate()
-        place = event.getPlaceName()
+        date = event.get_date()
+        place = event.get_place_name()
 
         if date and place:
-            if person.getGender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'endnotes' : self.endnotes(event),
                     'date' : date,
                     'place' : place})
             else:
                 self.doc.write_text(_('She married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'date' : date,
                     'endnotes' : self.endnotes(event),
                     'place' : place})
         elif date:
-            if person.getGender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s %(date)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'endnotes' : self.endnotes(event),
                     'date' : date,})
             else:
                 self.doc.write_text(_('She married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'endnotes' : self.endnotes(event),
                     'place' : place,})
         elif place:
-            if person.getGender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'endnotes' : self.endnotes(event),
                     'place' : place})
             else:
                 self.doc.write_text(_('She married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'endnotes' : self.endnotes(event),
                     'place' : place})
         else:
-            if person.getGender() == RelLib.Person.male:
+            if person.get_gender() == RelLib.Person.male:
                 self.doc.write_text(_('He married %(spouse)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'endnotes' : self.endnotes(event),
                     })
             else:
                 self.doc.write_text(_('She married %(spouse)s%(endnotes)s.') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'spouse' : spouse.get_primary_name().get_regular_name(),
                     'endnotes' : self.endnotes(event),
                     })
         self.doc.write_text(' ')
 
-        death = spouse.getDeath()
-        dplace = death.getPlaceName()
-        ddate = death.getDate()
+        death = spouse.get_death()
+        dplace = death.get_place_name()
+        ddate = death.get_date()
         
-        birth = spouse.getBirth()
-        bplace = birth.getPlaceName()
-        bdate = birth.getDate()
+        birth = spouse.get_birth()
+        bplace = birth.get_place_name()
+        bdate = birth.get_date()
         
         death_valid = ddate != "" or dplace != ""
         birth_valid = bdate != "" or bplace != ""
 
         if birth_valid or death_valid:
-            if spouse.getGender() == RelLib.Person.male:
+            if spouse.get_gender() == RelLib.Person.male:
                 if bdate:
                     if bplace:
                         if ddate:
@@ -886,58 +886,58 @@ class FtmAncestorReport(Report.Report):
 
 
     def print_parents(self,person,dead):
-        family = person.getMainParents()
+        family = person.get_main_parents_family_id()
         if family:
-            mother = family.getMother()
-            father = family.getFather()
-            if person.getGender() == RelLib.Person.male:
+            mother = family.get_mother_id()
+            father = family.get_father_id()
+            if person.get_gender() == RelLib.Person.male:
                 if mother and father:
                     if dead:
                         self.doc.write_text(_("He was the son of %(father)s and %(mother)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(),
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(),
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                     else:
                         self.doc.write_text(_("He is the son of %(father)s and %(mother)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(),
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(),
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                 elif mother:
                     if dead:
                         self.doc.write_text(_("He was the son of %(mother)s.") % {
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                     else:
                         self.doc.write_text(_("He is the son of %(mother)s.") % {
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                 elif father:
                     if dead:
                         self.doc.write_text(_("He was the son of %(father)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(), })
                     else:
                         self.doc.write_text(_("He is the son of %(father)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(), })
             else:
                 if mother and father:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(father)s and %(mother)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(),
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(),
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                     else:
                         self.doc.write_text(_("She is the daughter of %(father)s and %(mother)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(),
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(),
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                 elif mother:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(mother)s.") % {
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                     else:
                         self.doc.write_text(_("She is the daughter of %(mother)s.") % {
-                            'mother' : mother.getPrimaryName().getRegularName(), })
+                            'mother' : mother.get_primary_name().get_regular_name(), })
                 elif father:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(father)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(), })
                     else:
                         self.doc.write_text(_("She is the daughter of %(father)s.") % {
-                            'father' : father.getPrimaryName().getRegularName(), })
+                            'father' : father.get_primary_name().get_regular_name(), })
             self.doc.write_text(' ');
 
 
@@ -1072,7 +1072,7 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -1121,7 +1121,7 @@ class FtmAncestorBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name() 
    
 
@@ -1135,7 +1135,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         return FtmAncestorReport(database, person, max_gen, pg_brk, doc, None, newpage )

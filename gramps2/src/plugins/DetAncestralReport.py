@@ -79,10 +79,10 @@ class DetAncestorReport(Report.Report):
             return
         self.map[index] = person
 
-        family = person.getMainParents()
+        family = person.get_main_parents_family_id()
         if family != None:
-            self.filter(family.getFather(),index*2)
-            self.filter(family.getMother(),(index*2)+1)
+            self.filter(family.get_father_id(),index*2)
+            self.filter(family.get_mother_id(),(index*2)+1)
 
 
     def write_children(self, family, rptOptions):
@@ -109,14 +109,14 @@ class DetAncestorReport(Report.Report):
                 NAME                                            0
         """
 
-        num_children= len(family.getChildList())
+        num_children= len(family.get_child_id_list())
         if num_children > 0:
             self.doc.start_paragraph("DAR-ChildTitle")
-            if family.getMother() != None:
-                mother= family.getMother().getPrimaryName().getRegularName()
+            if family.get_mother_id() != None:
+                mother= family.get_mother_id().get_primary_name().get_regular_name()
             else: mother= "unknown"
-            if family.getFather() != None:
-                father= family.getFather().getPrimaryName().getRegularName()
+            if family.get_father_id() != None:
+                father= family.get_father_id().get_primary_name().get_regular_name()
             else: father= "unknown"
             self.doc.start_bold()
             if num_children == 1:
@@ -125,72 +125,72 @@ class DetAncestorReport(Report.Report):
             self.doc.end_bold()
             self.doc.end_paragraph()
 
-            for child in family.getChildList():
+            for child in family.get_child_id_list():
                 self.doc.start_paragraph("DAR-ChildList")
-                name= child.getPrimaryName().getRegularName()
-                birth= child.getBirth()
-                death= child.getDeath()
+                name= child.get_primary_name().get_regular_name()
+                birth= child.get_birth()
+                death= child.get_death()
                 if rptOptions.childRef == reportOptions.Yes:
-                    childID= child.getId()
+                    childID= child.get_id()
                     if self.prevGenIDs.get(childID) != None:
                         name= "[" + str(self.prevGenIDs.get(childID)) + "] "+ name
-                if birth.getDate() != "":
-                    if birth.getPlaceName() != "":
-                        if death.getDate() != "":
-                            if death.getPlaceName() != "":
+                if birth.get_date() != "":
+                    if birth.get_place_name() != "":
+                        if death.get_date() != "":
+                            if death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Born: %s %s Died: %s %s") % \
-                                    (name, birth.getDate(), birth.getPlaceName(),
-                                     death.getDate(), death.getPlaceName()))  # f
+                                    (name, birth.get_date(), birth.get_place_name(),
+                                     death.get_date(), death.get_place_name()))  # f
                             else:
                                 self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
-                                    (name, birth.getDate(), birth.getPlaceName(),
-                                     death.getDate()))                    # e
-                        elif death.getPlaceName() != "":
+                                    (name, birth.get_date(), birth.get_place_name(),
+                                     death.get_date()))                    # e
+                        elif death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
-                                    (name, birth.getDate(), birth.getPlaceName(),
-                                     death.getPlaceName()))                   # d
+                                    (name, birth.get_date(), birth.get_place_name(),
+                                     death.get_place_name()))                   # d
                         else:   self.doc.write_text(_("- %s Born: %s %s") % \
-                                    (name, birth.getDate(), birth.getPlaceName())) # c
+                                    (name, birth.get_date(), birth.get_place_name())) # c
                     else:
-                        if death.getDate() != "":
-                            if death.getPlaceName() != "":
+                        if death.get_date() != "":
+                            if death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
-                                    (name, birth.getDate(), death.getDate(), \
-                                     death.getPlaceName()))                    # b
+                                    (name, birth.get_date(), death.get_date(), \
+                                     death.get_place_name()))                    # b
                             else:
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, birth.getDate(), death.getDate())) # a
-                        elif death.getPlaceName() != "":
+                                    (name, birth.get_date(), death.get_date())) # a
+                        elif death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, birth.getDate(), death.getPlaceName())) # 9
+                                    (name, birth.get_date(), death.get_place_name())) # 9
                         else:   self.doc.write_text(_("- %s Born: %s") % \
-                                    (name, birth.getDate()))               # 8
+                                    (name, birth.get_date()))               # 8
                 else:
-                    if birth.getPlaceName() != "":
-                        if death.getDate() != "":
-                            if death.getPlaceName() != "":
+                    if birth.get_place_name() != "":
+                        if death.get_date() != "":
+                            if death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
-                                    (name, birth.getPlaceName(),                  \
-                                     death.getDate(), death.getPlaceName()))  # 7
+                                    (name, birth.get_place_name(),                  \
+                                     death.get_date(), death.get_place_name()))  # 7
                             else:
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, birth.getPlaceName(), death.getDate())) # 6
-                        elif death.getPlaceName() != "":
+                                    (name, birth.get_place_name(), death.get_date())) # 6
+                        elif death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, birth.getPlaceName(), death.getPlaceName())) # 5
+                                    (name, birth.get_place_name(), death.get_place_name())) # 5
                         else:   self.doc.write_text(_("- %s Born: %s") % \
-                                    (name, birth.getPlaceName()))             # 4
+                                    (name, birth.get_place_name()))             # 4
                     else:
-                        if death.getDate() != "":
-                            if death.getPlaceName() != "":
+                        if death.get_date() != "":
+                            if death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Died: %s %s") % \
-                                    (name, death.getDate(), death.getPlaceName())) # 3
+                                    (name, death.get_date(), death.get_place_name())) # 3
                             else:
                                 self.doc.write_text(_("- %s Died: %s") % \
-                                    (name, death.getDate()))               # 2
-                        elif death.getPlaceName() != "":
+                                    (name, death.get_date()))               # 2
+                        elif death.get_place_name() != "":
                                 self.doc.write_text(_("- %s Died: %s") % \
-                                    (name, death.getPlaceName())) # 1
+                                    (name, death.get_place_name())) # 1
                         else:   self.doc.write_text(_("- %s") % name)          # 0
 
                 self.doc.end_paragraph()
@@ -204,11 +204,11 @@ class DetAncestorReport(Report.Report):
         if rptOptions.addImages == reportOptions.Yes:
             self.insert_images(person)
 
-        name = person.getPrimaryName().getRegularName()
+        name = person.get_primary_name().get_regular_name()
 
         if rptOptions.firstName == reportOptions.Yes:
-            firstName= person.getPrimaryName().getFirstName()
-        elif person.getGender() == RelLib.Person.male:
+            firstName= person.get_primary_name().get_first_name()
+        elif person.get_gender() == RelLib.Person.male:
             firstName= _("He")
         else:
             firstName= _("She")
@@ -223,13 +223,13 @@ class DetAncestorReport(Report.Report):
             keys.sort()
             for dkey in keys:
                 if dkey >= key: break
-                if self.map[key].getId() == self.map[dkey].getId():
+                if self.map[key].get_id() == self.map[dkey].get_id():
                     self.doc.write_text(_(" is the same person as [%s].") % str(dkey))
                     self.doc.end_paragraph()
                     return 1	# Duplicate person
 
         # Check birth record
-        birth = person.getBirth()
+        birth = person.get_birth()
         if birth:
             self.write_birth(person, rptOptions)
         self.write_death(person, firstName, rptOptions)
@@ -239,13 +239,13 @@ class DetAncestorReport(Report.Report):
 
         if key == 1:  self.write_mate(person, rptOptions)
 
-        if person.getNote() != "" and rptOptions.includeNotes == reportOptions.Yes:
+        if person.get_note() != "" and rptOptions.includeNotes == reportOptions.Yes:
             self.doc.start_paragraph("DAR-NoteHeader")
             self.doc.start_bold()
             self.doc.write_text(_("Notes for %s" % name))
             self.doc.end_bold()
             self.doc.end_paragraph()
-            self.doc.write_note(person.getNote(),person.getNoteFormat(),"DAR-Entry")
+            self.doc.write_note(person.get_note(),person.get_note_format(),"DAR-Entry")
 
         return 0		# Not duplicate person
 
@@ -262,24 +262,24 @@ class DetAncestorReport(Report.Report):
                was born in ____________.
         """
 
-        birth = person.getBirth()
+        birth = person.get_birth()
         if birth:
-            date = birth.getDateObj().get_start_date()
-            if birth.getPlaceName() != "":
-                place = birth.getPlaceName()
+            date = birth.get_date_object().get_start_date()
+            if birth.get_place_name() != "":
+                place = birth.get_place_name()
                 if place[-1:] == '.':
                     place = place[:-1]
             elif rptOptions.blankDate == reportOptions.Yes:
                 place= "______________"
             else: place= ""
 
-            if date.getDate() != "":
+            if date.get_date() != "":
                 if date.getDayValid() and date.getMonthValid() and \
                         rptOptions.fullDate == reportOptions.Yes:
                     if place != "":
-                        self.doc.write_text(_(" was born on %s in %s.") % (date.getDate(), place))
+                        self.doc.write_text(_(" was born on %s in %s.") % (date.get_date(), place))
                     else:
-                        self.doc.write_text(_(" was born on %s.") % date.getDate())
+                        self.doc.write_text(_(" was born on %s.") % date.get_date())
                 elif place != "":
                     self.doc.write_text(_(" was born in the year %s in %s.") % \
                               (date.getYear(), place))
@@ -320,19 +320,19 @@ class DetAncestorReport(Report.Report):
             .
         """
         t= ""
-        death = person.getDeath()
+        death = person.get_death()
         if death != None:
-            date = death.getDateObj().get_start_date()
-            place = death.getPlaceName()
+            date = death.get_date_object().get_start_date()
+            place = death.get_place_name()
             if place[-1:] == '.':
                 place = place[:-1]
             elif place == "" and rptOptions.blankPlace == reportOptions.Yes:
                 place= "_____________"
 
-            if date.getDate() != "":
+            if date.get_date() != "":
                 if date.getDay() and date.getMonth() and \
                             rptOptions.fullDate == reportOptions.Yes:
-                    fulldate= date.getDate()
+                    fulldate= date.get_date()
                 elif date.getMonth() and rptOptions.fullDate == reportOptions.Yes:
                     fulldate= "%s %s" % (date.getMonth(), date.getYear())
                 else: fulldate= ""
@@ -359,20 +359,20 @@ class DetAncestorReport(Report.Report):
             else: return
 
         t= ""
-        famList= person.getFamilyList()
+        famList= person.get_family_id_list()
         if len(famList) > 0:
             for fam in famList:
                 buried= None
                 if buried:
-                    date = buried.getDateObj().get_start_date()
-                    place = buried.getPlaceName()
+                    date = buried.get_date_object().get_start_date()
+                    place = buried.get_place_name()
                     if place[-1:] == '.':
                         place = place[:-1]
                     fulldate= ""
-                    if date.getDate() != "":
+                    if date.get_date() != "":
                         if date.getDayValid() and date.getMonthValid() and \
                                         rptOptions.fullDate == reportOptions.Yes:
-                            fulldate= date.getDate()
+                            fulldate= date.get_date()
                     elif rptOptions.blankDate == reportOptions.Yes:
                             fulldate= "___________"
 
@@ -398,17 +398,17 @@ class DetAncestorReport(Report.Report):
         FIRSTNAME was the daughter of FATHER.
         FIRSTNAME was the daughter of MOTHER.
         """
-        ext_family= person.getMainParents()
+        ext_family= person.get_main_parents_family_id()
         if ext_family != None:
-            if ext_family.getFather() != None:
-                father= ext_family.getFather().getPrimaryName().getRegularName()
+            if ext_family.get_father_id() != None:
+                father= ext_family.get_father_id().get_primary_name().get_regular_name()
             else: father= ""
-            if ext_family.getMother() != None:
-                mother= ext_family.getMother().getPrimaryName().getRegularName()
+            if ext_family.get_mother_id() != None:
+                mother= ext_family.get_mother_id().get_primary_name().get_regular_name()
             else: mother= ""
 
             if father != "" or mother != "":
-                if person.getGender() == RelLib.Person.male:
+                if person.get_gender() == RelLib.Person.male:
                     if father != "":
                         if mother != "":
                             self.doc.write_text(_(" %s was the son of %s and %s.") % \
@@ -442,7 +442,7 @@ class DetAncestorReport(Report.Report):
         HE/SHE married on FULLDATE.
         HE/SHE married in PLACE.
         """
-        famList= person.getFamilyList()
+        famList= person.get_family_id_list()
         if len(famList) > 0:
             fam_num= 0
             endOfSent= ""
@@ -450,9 +450,9 @@ class DetAncestorReport(Report.Report):
                 fam_num= fam_num + 1
                 spouse= ""
                 t= ""
-                if person.getGender() == RelLib.Person.male:
-                    if fam.getMother() != None:
-                        spouse= fam.getMother().getPrimaryName().getRegularName()
+                if person.get_gender() == RelLib.Person.male:
+                    if fam.get_mother_id() != None:
+                        spouse= fam.get_mother_id().get_primary_name().get_regular_name()
                     if fam_num == 1:
                         heshe= _("He")
                     elif fam_num < len(famList):
@@ -465,25 +465,25 @@ class DetAncestorReport(Report.Report):
                         heshe= _(",")
                     else: heshe= _("and she")
 
-                    if fam.getFather() != None:
-                        spouse= fam.getFather().getPrimaryName().getRegularName()
+                    if fam.get_father_id() != None:
+                        spouse= fam.get_father_id().get_primary_name().get_regular_name()
 
-                marriage= fam.getMarriage()
+                marriage= fam.get_marriage()
                 fulldate= ""
                 place= ""
                 if marriage != None:
-                    if marriage.getPlace() != None and \
-                            marriage.getPlaceName() != "":
-                        place= marriage.getPlaceName()
+                    if marriage.get_place_id() != None and \
+                            marriage.get_place_name() != "":
+                        place= marriage.get_place_name()
                     elif rptOptions.blankPlace == reportOptions.Yes:
                         place= "____________"
 
-                    date= marriage.getDateObj()
+                    date= marriage.get_date_object()
                     if date != None:
                         if date.getYearValid():
                             if date.getDayValid() and date.getMonthValid() and \
                                     rptOptions.fullDate == reportOptions.Yes:
-                                fulldate= date.getDate()
+                                fulldate= date.get_date()
                             elif rptOptions.blankDate == reportOptions.Yes:
                                 fulldate= "__________"
 
@@ -515,22 +515,22 @@ class DetAncestorReport(Report.Report):
     def write_mate(self, mate, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
 
-        famList= mate.getFamilyList()
+        famList= mate.get_family_id_list()
         if len(famList) > 0:
             for fam in famList:
                 person= ""
-                if mate.getGender() == RelLib.Person.male:
-                    if fam.getMother() != None:
-                        ind= fam.getMother()
-                        person= fam.getMother().getPrimaryName().getRegularName()
-                        firstName= fam.getMother().getPrimaryName().getFirstName()
+                if mate.get_gender() == RelLib.Person.male:
+                    if fam.get_mother_id() != None:
+                        ind= fam.get_mother_id()
+                        person= fam.get_mother_id().get_primary_name().get_regular_name()
+                        firstName= fam.get_mother_id().get_primary_name().get_first_name()
                         heshe= _("She")
                 else:
                     heshe= _("He")
-                    if fam.getFather() != None:
-                        ind= fam.getFather()
-                        person= fam.getFather().getPrimaryName().getRegularName()
-                        firstName= fam.getFather().getPrimaryName().getFirstName()
+                    if fam.get_father_id() != None:
+                        ind= fam.get_father_id()
+                        person= fam.get_father_id().get_primary_name().get_regular_name()
+                        firstName= fam.get_father_id().get_primary_name().get_first_name()
 
                 if person != "":
                     self.doc.start_paragraph("DAR-Entry")
@@ -552,7 +552,7 @@ class DetAncestorReport(Report.Report):
                     self.doc.end_paragraph()
 
                     if rptOptions.listChildren == reportOptions.Yes \
-                               and mate.getGender() == RelLib.Person.male:
+                               and mate.get_gender() == RelLib.Person.male:
                         self.write_children(fam, rptOptions)
 
     #--------------------------------------------------------------------
@@ -562,12 +562,12 @@ class DetAncestorReport(Report.Report):
     #--------------------------------------------------------------------
     def insert_images(self, person):
 
-        photos = person.getPhotoList()
+        photos = person.get_photo_list()
         paragraph_started = 0
         for photo in photos :
-            object = photo.getReference()
-            if object.getMimeType()[0:5] == "image":
-                file = object.getPath()
+            object = photo.get_reference()
+            if object.get_mime_type()[0:5] == "image":
+                file = object.get_path()
                 if not paragraph_started:
                     self.doc.start_paragraph("DAR-Entry")
                     paragraph_started = 1
@@ -587,7 +587,7 @@ class DetAncestorReport(Report.Report):
         #rptOpt= reportOptions()
         rptOpt = self.rptOpt
 
-        name = self.start.getPrimaryName().getRegularName()
+        name = self.start.get_primary_name().get_regular_name()
         self.doc.start_paragraph("DAR-Title")
         title = _("Detailed Ancestral Report for %s") % name
         self.doc.write_text(title)
@@ -612,13 +612,13 @@ class DetAncestorReport(Report.Report):
                     self.genIDs.clear()
 
             person = self.map[key]
-            self.genIDs[person.getId()]= key
+            self.genIDs[person.get_id()]= key
             dupPerson= self.write_person(key, rptOpt)
             if dupPerson == 0:		# Is this a duplicate ind record
-                if person.getGender() == RelLib.Person.female and  \
+                if person.get_gender() == RelLib.Person.female and  \
                          rptOpt.listChildren == reportOptions.Yes and  \
-                         len(person.getFamilyList()) > 0:
-                    family= person.getFamilyList()[0]
+                         len(person.get_family_id_list()) > 0:
+                    family= person.get_family_id_list()[0]
                     self.write_children(family, rptOpt)
 
                 #if rptOpt.addImages == reportOptions.Yes:
@@ -922,7 +922,7 @@ class DetAncestorBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -1094,7 +1094,7 @@ class DetAncestorBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.pg_brk, 
+        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk, 
             self.first_name, self.full_date, self.list_children, 
             self.include_notes, self.place, self.date, self.age, 
             self.dup_persons, self.child_ref, self.images )
@@ -1111,7 +1111,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         rptOpt = reportOptions()
@@ -1304,8 +1304,8 @@ class reportOptions:
         null
         """
 
-        birth= ind.getBirth().getDateObj().get_start_date()
-        death= ind.getDeath().getDateObj().get_start_date()
+        birth= ind.get_birth().get_date_object().get_start_date()
+        death= ind.get_death().get_date_object().get_start_date()
         self.t= ""
         if birth.getYearValid() and death.getYearValid():
             self.age= death.getYear() - birth.getYear()

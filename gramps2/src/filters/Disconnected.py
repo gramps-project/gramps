@@ -27,7 +27,7 @@ class Disconnected(Filter.Filter):
     "Disconnected individuals"
 
     def match(self,person):
-        return person.getMainParents() == None and len(person.getFamilyList()) == 0
+        return person.get_main_parents_family_id() == None and len(person.get_family_id_list()) == 0
 
 #------------------------------------------------------------------------
 #

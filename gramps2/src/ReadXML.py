@@ -145,34 +145,34 @@ def importData(database, filename, callback,cl=0):
     def remove_clicked():
         # File is lost => remove all references and the object itself
         mobj = ObjectMap[NewMediaID]
-        for p in database.getFamilyMap().values():
-            nl = p.getPhotoList()
+        for p in database.get_family_id_map().values():
+            nl = p.get_photo_list()
             for o in nl:
-                if o.getReference() == mobj:
+                if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.setPhotoList(nl)
-        for key in database.getPersonKeys():
-            p = database.getPerson(key)
-            nl = p.getPhotoList()
+            p.set_photo_list(nl)
+        for key in database.get_person_keys():
+            p = database.get_person(key)
+            nl = p.get_photo_list()
             for o in nl:
-                if o.getReference() == mobj:
+                if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.setPhotoList(nl)
-        for key in database.getSourceKeys():
-            p = database.getSource(key)
-            nl = p.getPhotoList()
+            p.set_photo_list(nl)
+        for key in database.get_source_keys():
+            p = database.get_source(key)
+            nl = p.get_photo_list()
             for o in nl:
-                if o.getReference() == mobj:
+                if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.setPhotoList(nl)
-        for key in database.getPlaceKeys():
-            p = database.getPlace(key)
-            nl = p.getPhotoList()
+            p.set_photo_list(nl)
+        for key in database.get_place_id_keys():
+            p = database.get_place_id(key)
+            nl = p.get_photo_list()
             for o in nl:
-                if o.getReference() == mobj:
+                if o.get_reference() == mobj:
                     nl.remove(o) 
-            p.setPhotoList(nl)
-        database.removeObject(NewMediaID) 
+            p.set_photo_list(nl)
+        database.remove_object(NewMediaID) 
 
 
     def leave_clicked():
@@ -204,15 +204,15 @@ def importData(database, filename, callback,cl=0):
 #-------------------------------------------------------------------------
 
     # Rename media files if they were conflicting with existing ones
-    ObjectMap = database.getObjectMap()
-    newpath = database.getSavePath()
+    ObjectMap = database.get_object_map()
+    newpath = database.get_save_path()
     for OldMediaID in parser.MediaFileMap.keys():
         NewMediaID = parser.MediaFileMap[OldMediaID]
-        oldfile = ObjectMap[NewMediaID].getPath()
+        oldfile = ObjectMap[NewMediaID].get_path()
         (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
         oldfile = os.path.join(basefile,OldMediaID+oldext)
         newfile = os.path.join(newpath,NewMediaID+oldext)
-    	ObjectMap[NewMediaID].setPath(newfile)
+    	ObjectMap[NewMediaID].set_path(newfile)
         ObjectMap[NewMediaID].setLocal(1)
         try:
 	    shutil.copyfile(oldfile,newfile)

@@ -70,7 +70,7 @@ class IndivSummary(Report.Report):
     def __init__(self,database,person,output,document,newpage=0):
         self.d = document
         
-        c = database.getResearcher().getName()
+        c = database.get_researcher().get_name()
         self.d.creator(c)
         self.map = {}
         self.database = database
@@ -111,10 +111,10 @@ class IndivSummary(Report.Report):
     def write_fact(self,event):
         if event == None:
             return
-        name = const.display_event(event.getName())
-        date = event.getDate()
-        place = event.getPlaceName()
-        description = event.getDescription()
+        name = const.display_event(event.get_name())
+        date = event.get_date()
+        place = event.get_place_name()
+        description = event.get_description()
         if date == "":
             if place == "":
                 return
@@ -158,26 +158,26 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
         
-        for family in self.person.getFamilyList():
-            if self.person == family.getFather():
-                spouse = family.getMother()
+        for family in self.person.get_family_id_list():
+            if self.person == family.get_father_id():
+                spouse = family.get_mother_id()
             else:
-                spouse = family.getFather()
+                spouse = family.get_father_id()
             self.d.start_row()
             self.d.start_cell("IVS-NormalCell",2)
             self.d.start_paragraph("IVS-Spouse")
             if spouse:
-                self.d.write_text(spouse.getPrimaryName().getRegularName())
+                self.d.write_text(spouse.get_primary_name().get_regular_name())
             else:
                 self.d.write_text(_("unknown"))
             self.d.end_paragraph()
             self.d.end_cell()
             self.d.end_row()
             
-            for event in family.getEventList():
+            for event in family.get_event_list():
                 self.write_fact(event)
 
-            child_list = family.getChildList()
+            child_list = family.get_child_id_list()
             if len(child_list) > 0:
                 self.d.start_row()
                 self.d.start_cell("IVS-NormalCell")
@@ -190,12 +190,12 @@ class IndivSummary(Report.Report):
                 self.d.start_paragraph("IVS-Normal")
                 
                 first = 1
-                for child in family.getChildList():
+                for child in family.get_child_id_list():
                     if first == 1:
                         first = 0
                     else:
                         self.d.write_text('\n')
-                    self.d.write_text(child.getPrimaryName().getRegularName())
+                    self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
                 self.d.end_row()
@@ -206,9 +206,9 @@ class IndivSummary(Report.Report):
         if self.newpage:
             self.d.page_break()
 
-        photo_list = self.person.getPhotoList()
+        photo_list = self.person.get_photo_list()
 
-        name = self.person.getPrimaryName().getRegularName()
+        name = self.person.get_primary_name().get_regular_name()
         self.d.start_paragraph("IVS-Title")
         self.d.write_text(_("Summary of %s") % name)
         self.d.end_paragraph()
@@ -217,9 +217,9 @@ class IndivSummary(Report.Report):
         self.d.end_paragraph()
 
         if len(photo_list) > 0:
-            object = photo_list[0].getReference()
-            if object.getMimeType()[0:5] == "image":
-                file = object.getPath()
+            object = photo_list[0].get_reference()
+            if object.get_mime_type()[0:5] == "image":
+                file = object.get_path()
                 self.d.start_paragraph("IVS-Normal")
                 self.d.add_photo(file,"row",4.0,4.0)
                 self.d.end_paragraph()
@@ -235,7 +235,7 @@ class IndivSummary(Report.Report):
 
         self.d.start_cell("IVS-NormalCell")
         self.d.start_paragraph("IVS-Normal")
-        self.d.write_text(self.person.getPrimaryName().getRegularName())
+        self.d.write_text(self.person.get_primary_name().get_regular_name())
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
@@ -249,7 +249,7 @@ class IndivSummary(Report.Report):
 
         self.d.start_cell("IVS-NormalCell")
         self.d.start_paragraph("IVS-Normal")
-        if self.person.getGender() == RelLib.Person.male:
+        if self.person.get_gender() == RelLib.Person.male:
             self.d.write_text(_("Male"))
         else:
             self.d.write_text(_("Female"))
@@ -257,16 +257,16 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        family = self.person.getMainParents()
+        family = self.person.get_main_parents_family_id()
         if family:
-            father_inst = family.getFather()
+            father_inst = family.get_father_id()
             if father_inst:
-                father = father_inst.getPrimaryName().getRegularName()
+                father = father_inst.get_primary_name().get_regular_name()
             else:
                 father = ""
-            mother_inst = family.getMother()
+            mother_inst = family.get_mother_id()
             if mother_inst:
-                mother = mother_inst.getPrimaryName().getRegularName()
+                mother = mother_inst.get_primary_name().get_regular_name()
             else:
                 mother = ""
         else:
@@ -314,8 +314,8 @@ class IndivSummary(Report.Report):
         self.d.end_cell()
         self.d.end_row()
 
-        event_list = [ self.person.getBirth(), self.person.getDeath() ]
-        event_list = event_list + self.person.getEventList()
+        event_list = [ self.person.get_birth(), self.person.get_death() ]
+        event_list = event_list + self.person.get_event_list()
         for event in event_list:
             self.write_fact(event)
         self.d.end_table()
@@ -493,7 +493,7 @@ class IndivSummaryBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -545,7 +545,7 @@ class IndivSummaryBareReportDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.max_gen, self.pg_brk )
+        self.options = ( self.person.get_id(), self.max_gen, self.pg_brk )
         self.style_name = self.selected_style.get_name()
 
 
@@ -559,7 +559,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         return IndivSummary(database, person, None, doc, newpage)

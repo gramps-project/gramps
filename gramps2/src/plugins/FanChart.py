@@ -58,7 +58,7 @@ class FanChart:
 
     def __init__(self,database,person,display,doc,output,newpage=0):
         self.doc = doc
-        self.doc.creator(database.getResearcher().getName())
+        self.doc.creator(database.get_researcher().get_name())
         self.map = {}
         self.text = {}
         self.start = person
@@ -162,10 +162,10 @@ class FanChart:
 
 	self.lines = max(self.lines,len(self.text[index-1]))    
 
-        family = person.getMainParents()
+        family = person.get_main_parents_family_id()
         if family != None:
-            self.filter(family.getFather(),index*2)
-            self.filter(family.getMother(),(index*2)+1)
+            self.filter(family.get_father_id(),index*2)
+            self.filter(family.get_mother_id(),(index*2)+1)
 
     def write_report(self):
 
@@ -183,7 +183,7 @@ class FanChart:
 
         self.doc.start_page()
         
-        n = self.start.getPrimaryName().getRegularName()
+        n = self.start.get_primary_name().get_regular_name()
         self.doc.center_text('t', _('Five Generation Fan Chart for %s') % n, center, 0)
 
         self.circle_5(center,y,block_size)
@@ -197,9 +197,9 @@ class FanChart:
             self.doc.close()
 
     def get_info(self,person):
-        pn = person.getPrimaryName()
-        b = person.getBirth().getDateObj().getYear()
-        d = person.getDeath().getDateObj().getYear()
+        pn = person.get_primary_name()
+        b = person.get_birth().get_date_object().getYear()
+        d = person.get_death().get_date_object().getYear()
         if b == Calendar.UNDEF:
             b = ""
         if d == Calendar.UNDEF:
@@ -210,7 +210,7 @@ class FanChart:
         else:
             val = ""
             
-        return [ pn.getFirstName(), pn.getSurname(), val ]
+        return [ pn.get_first_name(), pn.get_surname(), val ]
 
     def circle_1(self,center,y,size):
         (xc,yc) = self.doc.draw_wedge("FC-c1", center, y, size, 180, 360)
@@ -377,7 +377,7 @@ class FanChartBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -422,7 +422,7 @@ class FanChartBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), )
+        self.options = ( self.person.get_id(), )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -435,7 +435,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         return FanChart(database, person, 
                                    "%n", doc, None, newpage )
     except Errors.ReportError, msg:

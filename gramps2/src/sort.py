@@ -90,8 +90,8 @@ def by_last_name(first, second):
 def by_birthdate(first, second) :
     """Sort routine for comparing two people by birth dates. If the birth dates
     are equal, sorts by name"""
-    date1 = first.getBirth().getDateObj()
-    date2 = second.getBirth().getDateObj()
+    date1 = first.get_birth().get_date_object()
+    date2 = second.get_birth().get_date_object()
     val = Date.compare_dates(date1,date2)
     if val == 0:
         return by_last_name(first,second)

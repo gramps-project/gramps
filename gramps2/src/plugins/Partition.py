@@ -61,34 +61,34 @@ prefix = "/tmp/test"
 def work_on_person( db, person ):
    global personSeen
    
-   if (len(person.getFamilyList()) + len(person.getParentList())) > 0:
+   if (len(person.get_family_id_list()) + len(person.get_parent_family_id_list())) > 0:
      database = db
    else:
      database = database_for_unlinked_persons
    
-   if( database.getPersonMap().has_key( person.getId() ) ):
+   if( database.get_person_id_map().has_key( person.get_id() ) ):
       return
    
-   database.addPersonNoMap( person, person.getId() )
+   database.add_person_no_map( person, person.get_id() )
    personSeen.append(person)
    
-   for source_ref in person.getPrimaryName().getSourceRefList():
+   for source_ref in person.get_primary_name().get_source_references():
       work_on_sourceref( database, source_ref)
    
-   for name in person.getAlternateNames():
-      for source_ref in name.getSourceRefList():
+   for name in person.get_alternate_names():
+      for source_ref in name.get_source_references():
          work_on_sourceref( database, source_ref)
 
-   work_on_event( database, person.getBirth() )
-   work_on_event( database, person.getDeath() )
-   for event in person.getEventList():
+   work_on_event( database, person.get_birth() )
+   work_on_event( database, person.get_death() )
+   for event in person.get_event_list():
       work_on_event(database, event)
 		    
    # recursion
-   for fam in person.getFamilyList():
+   for fam in person.get_family_id_list():
      work_on_family( database, fam )
 	  
-   for fam in person.getParentList():
+   for fam in person.get_parent_family_id_list():
      work_on_family( database, fam[0] )
        
 #-------------------------------------------------------------------------
@@ -98,27 +98,27 @@ def work_on_person( db, person ):
 #-------------------------------------------------------------------------
 def work_on_family( database, family ):
    global familySeen
-   if database.getFamilyMap().has_key( family.getId() ):
+   if database.get_family_id_map().has_key( family.get_id() ):
       return
       
-   database.getFamilyMap()[family.getId()] = family 
+   database.get_family_id_map()[family.get_id()] = family 
    familySeen.append(family)
    
-   work_on_event( database, family.getMarriage() )
-   for event in family.getEventList():
+   work_on_event( database, family.get_marriage() )
+   for event in family.get_event_list():
       work_on_event(database, event)
 
    
    # recursion
-   father = family.getFather()
+   father = family.get_father_id()
    if( father != None ):
      work_on_person( database, father )
 	 
-   mother = family.getMother()
+   mother = family.get_mother_id()
    if( mother != None ):
      work_on_person( database, mother )
 	 
-   for person in family.getChildList():
+   for person in family.get_child_id_list():
       work_on_person( database, person )
 
 #-------------------------------------------------------------------------
@@ -130,14 +130,14 @@ def work_on_sourceref( database, source_ref ):
    if source_ref == None:
       return
       
-   source = source_ref.getBase()
+   source = source_ref.get_base_id()
    if source == None:
       return
    
-   if database.getSourceMap().has_key(source.getId()):
+   if database.get_source_map().has_key(source.get_id()):
       return
       
-   database.addSourceNoMap( source, source.getId() );
+   database.add_source_no_map( source, source.get_id() );
 
 
 #-------------------------------------------------------------------------
@@ -149,10 +149,10 @@ def work_on_event( database, event ):
    if event == None:
       return
       
-   for source_ref in event.getSourceRefList():
+   for source_ref in event.get_source_references():
       work_on_sourceref( database, source_ref)
       
-   work_on_place( database, event.getPlace() )
+   work_on_place( database, event.get_place_id() )
 
 
 #-------------------------------------------------------------------------
@@ -164,9 +164,9 @@ def work_on_place( database, place ):
    if place == None:
       return
       
-   if place in database.getPlaces():
+   if place in database.get_place_ids():
       return
-   database.addPlaceNoMap(place, place.getId())
+   database.add_place_no_map(place, place.get_id())
 
 #-------------------------------------------------------------------------
 #
@@ -180,12 +180,12 @@ def report(db, person):
     
     text = "=== Partitions ===\n"
     count = 0
-    for p in db.getPersonMap().values():
+    for p in db.get_person_id_map().values():
        if not p in personSeen:
           database = RelLib.GrampsDB()
           work_on_person( database, p )
 	  
-	  person_len = len(database.getPersonKeys())
+	  person_len = len(database.get_person_keys())
 	  if person_len > 0:
              g = WriteXML.XmlWriter(database,None,0,0)
              g.write(prefix+str(count)+".xml")
@@ -194,7 +194,7 @@ def report(db, person):
 
     g = WriteXML.XmlWriter(database_for_unlinked_persons,None,0,0)
     g.write(prefix+".xml")
-    text += "partition "+prefix+".xml written ( "+str(len(database_for_unlinked_persons.getPersonKeys()))+" persons)\n"
+    text += "partition "+prefix+".xml written ( "+str(len(database_for_unlinked_persons.get_person_keys()))+" persons)\n"
 
     base = os.path.dirname(__file__)
     glade_file = "%s/summary.glade" % base

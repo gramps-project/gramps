@@ -121,8 +121,8 @@ class PlaceView:
                                    gobject.TYPE_STRING)
         self.id2col = {}
 
-        for key in self.db.sortPlaceKeys():
-            val = self.db.getPlaceDisplay(key)
+        for key in self.db.sort_place_keys():
+            val = self.db.get_place_display(key)
                 
             iter = self.model.append()
             self.id2col[key] = iter
@@ -197,12 +197,12 @@ class PlaceView:
         menu.popup(None,None,None,event.button,event.time)
 
     def new_place_after_edit(self,place):
-        self.db.addPlace(place)
+        self.db.add_place(place)
         self.update(0)
 
     def update_display(self,place):
         if place:
-            self.db.buildPlaceDisplay(place.getId())
+            self.db.build_place_display(place.get_id())
         self.update(0)
 
     def on_add_place_clicked(self,obj):
@@ -214,25 +214,25 @@ class PlaceView:
 
         for place in mlist:
             used = 0
-            for key in self.db.getPersonKeys():
-                p = self.db.getPerson(key)
-                event_list = [p.getBirth(), p.getDeath()] + p.getEventList()[:]
-                if p.getLdsBaptism():
-                    event_list.append(p.getLdsBaptism())
-                if p.getLdsEndowment():
-                    event_list.append(p.getLdsEndowment())
-                if p.getLdsSeal():
-                    event_list.append(p.getLdsSeal())
+            for key in self.db.get_person_keys():
+                p = self.db.get_person(key)
+                event_list = [p.get_birth(), p.get_death()] + p.get_event_list()[:]
+                if p.get_lds_baptism():
+                    event_list.append(p.get_lds_baptism())
+                if p.get_lds_endowment():
+                    event_list.append(p.get_lds_endowment())
+                if p.get_lds_sealing():
+                    event_list.append(p.get_lds_sealing())
                 for event in event_list:
-                    if event.getPlace() == place:
+                    if event.get_place_id() == place:
                         used = 1
 
-            for f in self.db.getFamilyMap().values():
-                event_list = f.getEventList()[:]
-                if f.getLdsSeal():
-                    event_list.append(f.getLdsSeal())
+            for f in self.db.get_family_id_map().values():
+                event_list = f.get_event_list()[:]
+                if f.get_lds_sealing():
+                    event_list.append(f.get_lds_sealing())
                 for event in event_list:
-                    if event.getPlace() == place:
+                    if event.get_place_id() == place:
                         used = 1
 
             if used == 1:
@@ -245,7 +245,7 @@ class PlaceView:
                                _('_Delete Place'),
                                ans.query_response)
             else:
-                self.db.removePlace(place.getId())
+                self.db.remove_place(place.get_id())
                 self.update(0)
                 Utils.modified()
 
@@ -258,5 +258,5 @@ class PlaceView:
             EditPlace.EditPlace(self, place, self.update_display)
 
     def blist(self,store,path,iter,list):
-        id = self.db.getPlace(store.get_value(iter,1))
+        id = self.db.get_place_id(store.get_value(iter,1))
         list.append(id)

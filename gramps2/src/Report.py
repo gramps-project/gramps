@@ -396,7 +396,7 @@ class BareReportDialog:
         """Set up the title bar of the dialog.  This function relies
         on the get_title() customization function for what the title
         should be."""
-        self.name = self.person.getPrimaryName().getRegularName()
+        self.name = self.person.get_primary_name().get_regular_name()
         self.window.set_title(self.get_title())
 
     def setup_header(self):
@@ -432,7 +432,7 @@ class BareReportDialog:
         self.tbl.attach(center_label,0,4,self.col,self.col+1)
         self.col += 1
 
-        name = self.person.getPrimaryName().getRegularName()
+        name = self.person.get_primary_name().get_regular_name()
         self.person_label = gtk.Label( "%s" % name )
         self.person_label.set_alignment(0.0,0.5)
         self.tbl.attach(self.person_label,2,3,self.col,self.col+1)
@@ -737,7 +737,7 @@ class BareReportDialog:
         new_person = sel_person.run()
         if new_person:
             self.new_person = new_person
-            new_name = new_person.getPrimaryName().getRegularName()
+            new_name = new_person.get_primary_name().get_regular_name()
 	    if new_name:
                 self.person_label.set_text( "<i>%s</i>" % new_name )
                 self.person_label.set_use_markup(gtk.TRUE)

@@ -63,7 +63,7 @@ class NameEditor:
         self.note_field = self.top.get_widget("alt_note")
         self.slist = self.top.get_widget('slist')
         slist = self.top.get_widget("alt_surname_list")
-        self.combo = AutoComp.AutoCombo(slist,self.parent.db.getSurnames())
+        self.combo = AutoComp.AutoCombo(slist,self.parent.db.get_surnames())
         self.priv = self.top.get_widget("priv")
         self.sources_label = self.top.get_widget("sourcesName")
         self.notes_label = self.top.get_widget("noteName")
@@ -76,11 +76,11 @@ class NameEditor:
         self.typecomp = AutoComp.AutoEntry(self.type_field.entry,types)
 
         if self.name:
-            self.srcreflist = self.name.getSourceRefList()
+            self.srcreflist = self.name.get_source_references()
         else:
             self.srcreflist = []
 
-        full_name = parent.person.getPrimaryName().getName()
+        full_name = parent.person.get_primary_name().get_name()
 
         alt_title = self.top.get_widget("title")
 
@@ -105,16 +105,16 @@ class NameEditor:
             })
 
         if name != None:
-            self.given_field.set_text(name.getFirstName())
-            self.surname_field.set_text(name.getSurname())
-            self.title_field.set_text(name.getTitle())
-            self.suffix_field.set_text(name.getSuffix())
-            self.type_field.entry.set_text(_(name.getType()))
-            self.priv.set_active(name.getPrivacy())
-            if name.getNote():
-            	self.note_buffer.set_text(name.getNote())
+            self.given_field.set_text(name.get_first_name())
+            self.surname_field.set_text(name.get_surname())
+            self.title_field.set_text(name.get_title())
+            self.suffix_field.set_text(name.get_suffix())
+            self.type_field.entry.set_text(_(name.get_type()))
+            self.priv.set_active(name.get_privacy())
+            if name.get_note():
+            	self.note_buffer.set_text(name.get_note())
                 Utils.bold_label(self.notes_label)
-            	if name.getNoteFormat() == 1:
+            	if name.get_note_format() == 1:
                     self.preform.set_active(1)
             	else:
                     self.flowed.set_active(1)
@@ -152,7 +152,7 @@ class NameEditor:
             self.name = RelLib.Name()
             self.parent.nlist.append(self.name)
         
-        self.name.setSourceRefList(self.srcreflist)
+        self.name.set_source_reference_list(self.srcreflist)
         
         self.update_name(first,last,suffix,title,type,note,format,priv)
         self.parent.lists_changed = 1
@@ -161,37 +161,37 @@ class NameEditor:
 
     def update_name(self,first,last,suffix,title,type,note,format,priv):
         
-        if self.name.getFirstName() != first:
-            self.name.setFirstName(first)
+        if self.name.get_first_name() != first:
+            self.name.set_first_name(first)
             self.parent.lists_changed = 1
         
-        if self.name.getSurname() != last:
-            self.name.setSurname(last)
-            self.parent.db.addSurname(last)
+        if self.name.get_surname() != last:
+            self.name.set_surname(last)
+            self.parent.db.add_surname(last)
             self.parent.lists_changed = 1
 
-        if self.name.getSuffix() != suffix:
-            self.name.setSuffix(suffix)
+        if self.name.get_suffix() != suffix:
+            self.name.set_suffix(suffix)
             self.parent.lists_changed = 1
 
-        if self.name.getTitle() != title:
-            self.name.setTitle(title)
+        if self.name.get_title() != title:
+            self.name.set_title(title)
             self.parent.lists_changed = 1
 
-        if self.name.getType() != type:
-            self.name.setType(type)
+        if self.name.get_type() != type:
+            self.name.set_type(type)
             self.parent.lists_changed = 1
 
-        if self.name.getNote() != note:
-            self.name.setNote(note)
+        if self.name.get_note() != note:
+            self.name.set_note(note)
             self.parent.lists_changed = 1
 
-        if self.name.getNoteFormat() != format:
-            self.name.setNoteFormat(format)
+        if self.name.get_note_format() != format:
+            self.name.set_note_format(format)
             self.parent.lists_changed = 1
 
-        if self.name.getPrivacy() != priv:
-            self.name.setPrivacy(priv)
+        if self.name.get_privacy() != priv:
+            self.name.set_privacy(priv)
             self.parent.lists_changed = 1
         
     def on_switch_page(self,obj,a,page):

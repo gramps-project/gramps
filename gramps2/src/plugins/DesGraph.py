@@ -76,7 +76,7 @@ class DescendantReport:
 
     def __init__(self,database,person,display,doc,output,newpage=0):
         self.doc = doc
-        self.doc.creator(database.getResearcher().getName())
+        self.doc.creator(database.get_researcher().get_name())
         self.map = {}
         self.text = {}
         self.start = person
@@ -92,24 +92,24 @@ class DescendantReport:
         else:
             self.standalone = 0
 
-        plist = database.getPersonMap().values()
+        plist = database.get_person_id_map().values()
         self.layout = GraphLayout.DescendLine(plist,person)
         (self.v,self.e) = self.layout.layout()
         
         self.text = {}
         for (p,x,y) in self.v:
 
-            self.text[p.getId()] = []
+            self.text[p.get_id()] = []
             subst = SubstKeywords(p)
             for line in self.display:
-                self.text[p.getId()].append(subst.replace(line))
+                self.text[p.get_id()].append(subst.replace(line))
 
             self.font = self.doc.style_list["DG-Normal"].get_font()
-            for line in self.text[p.getId()]:
+            for line in self.text[p.get_id()]:
                 new_width = FontScale.string_width(self.font,line)
                 self.box_width = max(self.box_width,new_width)
 
-            self.lines = max(self.lines,len(self.text[p.getId()]))    
+            self.lines = max(self.lines,len(self.text[p.get_id()]))    
 
     def write_report(self):
 
@@ -255,7 +255,7 @@ class DescendantReport:
 
         if plist:
             for (p,x,y) in plist:
-                name = string.join(self.text[p.getId()],"\n")
+                name = string.join(self.text[p.get_id()],"\n")
                 x = (x-1)*delta + left + _sep
                 y = (y-1)*(self.height+_sep)+top
                 self.doc.draw_box("box",name,x,y)
@@ -399,7 +399,7 @@ class DescendantGraphBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.getPerson(self.options[0])
+            self.person = self.db.get_person(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -456,7 +456,7 @@ class DescendantGraphBareDialog(Report.BareReportDialog):
         
         if self.new_person:
             self.person = self.new_person
-        self.options = ( self.person.getId(), self.report_text )
+        self.options = ( self.person.get_id(), self.report_text )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -469,7 +469,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.getPerson(options[0])
+            person = database.get_person(options[0])
         disp_format = options[1]
         return DescendantReport(database, person, 
                                    disp_format, doc, None, newpage )
