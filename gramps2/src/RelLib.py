@@ -1980,7 +1980,7 @@ class Event(PrimaryObject,PrivateSourceNote,MediaBase,DateBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.description,self.name,self.cause]
+        return [self.description,self.name,self.cause,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -2515,7 +2515,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.path,self.mime,self.desc]
+        return [self.path,self.mime,self.desc,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -2790,7 +2790,7 @@ class LdsOrd(SourceNote,DateBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.temple]
+        return [self.temple,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -3233,7 +3233,7 @@ class Address(PrivateSourceNote,DateBase):
         @rtype: list
         """
         return [self.street,self.city,self.state,self.country,
-                self.postal,self.phone]
+                self.postal,self.phone,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -3341,7 +3341,7 @@ class Name(PrivateSourceNote,DateBase):
         @rtype: list
         """
         return [self.first_name,self.surname,self.suffix,self.title,
-                self.type,self.prefix,self.patronymic]
+                self.type,self.prefix,self.patronymic,self.get_date()]
 
     def get_text_data_child_list(self):
         """
@@ -3722,7 +3722,7 @@ class SourceRef(BaseObject,DateBase,PrivacyBase):
         @return: Returns the list of all textual attributes of the object.
         @rtype: list
         """
-        return [self.page,self.text]
+        return [self.page,self.text,self.get_date()]
 
     def get_text_data_child_list(self):
         """
