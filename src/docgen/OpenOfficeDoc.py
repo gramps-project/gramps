@@ -354,8 +354,12 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self._write_meta_file()
         self._write_zip()
         if self.print_req:
+            import grampslib
+
+            apptype = 'application/vnd.sun.xml.writer'
+            prog = grampslib.default_application_command(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('/usr/bin/oowriter "$FILE" &')
+            os.system ('%s "$FILE" &' % prog)
 
     def add_photo(self,name,pos,x_cm,y_cm):
 
