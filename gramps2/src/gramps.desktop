@@ -1,10 +1,11 @@
 [Desktop Entry]
+Encoding=Legacy-Mixed
 Name=GRAMPS Genealogy System
 Name[sv]=GRAMPS
 Comment=Manage genealogical information, perform genealogical research and analysis
 Comment[sv]=Ett släktforskningsprogram
 Exec=gramps
 Icon=gramps.png
-Terminal=0
+Terminal=false
 Type=Application
 StartupNotify=true

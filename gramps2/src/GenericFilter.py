@@ -94,7 +94,13 @@ class Rule:
     
     def name(self): 
         return 'None'
+
+    def category(self): 
+        return _('Miscellaneous filters')
     
+    def description(self):
+        return _('No description')
+
     def check(self):
         return len(self.list) == len(self.labels)
 
@@ -121,6 +127,12 @@ class Everyone(Rule):
     def name(self):
         return 'Everyone'
 
+    def category(self): 
+        return _('General filters')
+    
+    def description(self):
+        return _('Matches everyone in the database')
+
     def apply(self,db,p):
         return 1
 
@@ -130,12 +142,18 @@ class Everyone(Rule):
 #
 #-------------------------------------------------------------------------
 class HasIdOf(Rule):
-    """Rule that checks for a person with a specific GID"""
+    """Rule that checks for a person with a specific GRAMPS ID"""
 
     labels = [ _('ID:') ]
     
     def name(self):
         return 'Has the Id'
+
+    def description(self):
+        return _("Matches the person with a specified GRAMPS ID")
+
+    def category(self):
+        return _('General filters')
 
     def apply(self,db,p):
         return p.getId() == self.list[0]
@@ -152,6 +170,12 @@ class IsFemale(Rule):
     
     def name(self):
         return 'Is a female'
+
+    def category(self): 
+        return _('General filters')
+    
+    def description(self):
+        return _('Matches all females')
 
     def apply(self,db,p):
         return p.getGender() == RelLib.Person.female
@@ -175,6 +199,12 @@ class IsDescendantOf(Rule):
     def name(self):
         return 'Is a descendant of'
 
+    def category(self): 
+        return _('Descendant filters')
+    
+    def description(self):
+        return _('Matches all descendants for the specified person')
+
     def apply(self,db,p):
         self.orig = p
 
@@ -185,8 +215,6 @@ class IsDescendantOf(Rule):
         return self.map.has_key(p.getId())
 
     def init_list(self,p,first):
-#        if self.map.has_key(p.getId()) == 1:
-#            loop_error(self.orig,p)
         if not first:
             self.map[p.getId()] = 1
         
@@ -211,6 +239,12 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     def name(self):
         return 'Is a descendant of filter match'
 
+    def category(self): 
+        return _('Descendant filters')
+
+    def description(self):
+        return _("Matches people that are descendants of someone matched by a filter")
+    
     def apply(self,db,p):
         self.orig = p
 
@@ -241,6 +275,13 @@ class IsLessThanNthGenerationDescendantOf(Rule):
     def name(self):
         return 'Is a descendant of person not more than N generations away'
 
+    def category(self): 
+        return _('Descendant filters')
+
+    def description(self):
+        return _("Matches people that are descendants of a specified person "
+                 "not more than N generations away")
+    
     def apply(self,db,p):
         self.orig = p
 
@@ -251,8 +292,6 @@ class IsLessThanNthGenerationDescendantOf(Rule):
         return self.map.has_key(p.getId())
 
     def init_list(self,p,gen):
-#        if self.map.has_key(p.getId()) == 1:
-#            loop_error(self.orig,p)
         if gen:
             self.map[p.getId()] = 1
             if gen >= int(self.list[1]):
@@ -281,6 +320,13 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
     def name(self):
         return 'Is a descendant of person at least N generations away'
 
+    def description(self):
+        return _("Matches people that are descendants of a specified "
+                 "person at least N generations away")
+    
+    def category(self):
+        return _("Descendant filters")
+
     def apply(self,db,p):
         self.orig = p
 
@@ -291,8 +337,6 @@ class IsMoreThanNthGenerationDescendantOf(Rule):
         return self.map.has_key(p.getId())
 
     def init_list(self,p,gen):
-#        if self.map.has_key(p.getId()) == 1:
-#            loop_error(self.orig,p)
         if gen >= int(self.list[1]):
             self.map[p.getId()] = 1
 
@@ -331,8 +375,6 @@ class IsChildOfFilterMatch(Rule):
         return self.map.has_key(p.getId())
 
     def init_list(self,p):
-#        if self.map.has_key(p.getId()) == 1:
-#            loop_error(self.orig,p)
         for fam in p.getFamilyList():
             for child in fam.getChildList():
                 self.map[child.getId()] = 1
@@ -351,14 +393,19 @@ class IsDescendantFamilyOf(Rule):
     def name(self):
         return "Is a descendant family member of"
 
+    def category(self): 
+        return _('Descendant filters')
+
+    def description(self):
+        return _("Matches people that are  descendants or the spouse "
+                 "of a descendant of a specified person")
+    
     def apply(self,db,p):
         self.map = {}
         self.orig = p
         return self.search(p,1)
 
     def search(self,p,val):
-#        if self.map.has_key(p.getId()):
-#            loop_error(self.orig,p)
         if p.getId() == self.list[0]:
             self.map[p.getId()] = 1
             return 1
@@ -982,26 +1029,6 @@ class IsSpouseOfFilterMatch(Rule):
                     return 1
         return 0
 
-#-------------------------------------------------------------------------
-#
-# loop_error
-#
-#-------------------------------------------------------------------------
-# def loop_error(p1,p2):
-#     p1name = p1.getPrimaryName().getName()
-#     p2name = p2.getPrimaryName().getName()
-#     p1id = p1.getId()
-#     p2id = p2.getId()
-#     raise Errors.FilterError(_("Loop detected while applying filter"),
-#                              _("A relationship loop was detected between %(person1_name)s "
-#                                "[%(person1_id)s] and %(person2_name)s [%(person2_id)s]. "
-#                                "This is probably due to an error in the "
-#                                "database.") % {
-#         "person1_name" : p1name,
-#         "person1_id" : p1id,
-#         "person2_name" : p2name,
-#         "person2_id" : p2id})
-    
 #-------------------------------------------------------------------------
 #
 # GenericFilter
