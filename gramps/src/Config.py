@@ -114,8 +114,6 @@ panellist = [
 #
 #-------------------------------------------------------------------------
 
-owner         = Researcher()
-prefsTop      = None
 iprefix       = "I"
 oprefix       = "O"
 sprefix       = "S"
@@ -158,7 +156,6 @@ localprop     = 1
 #-------------------------------------------------------------------------
 _name_format  = 0
 _callback     = None
-_druid        = None
 
 #-------------------------------------------------------------------------
 #
@@ -193,7 +190,6 @@ def make_path(path):
 def loadConfig(call):
     global autoload
     global autosave_int
-    global owner
     global usetabs
     global uselds
     global autocomp
@@ -211,7 +207,6 @@ def loadConfig(call):
     global nameof
     global display_attr
     global attr_name
-    global _druid
     global _name_format
     global _callback
     global paper_preference
@@ -285,15 +280,6 @@ def loadConfig(call):
         db_dir = "./"
     else:
         db_dir = os.path.normpath(db_dir) + os.sep
-
-    name = get_string("/gramps/researcher/name")
-    addr = get_string("/gramps/researcher/addr")
-    city = get_string("/gramps/researcher/city")
-    state = get_string("/gramps/researcher/state")
-    country = get_string("/gramps/researcher/country")
-    postal = get_string("/gramps/researcher/postal")
-    phone = get_string("/gramps/researcher/phone")
-    email = get_string("/gramps/researcher/email")
 
     en = get_bool("/gramps/color/enableColors")
     if en == None:
@@ -388,15 +374,6 @@ def loadConfig(call):
     else:
         nameof = utils.phonebook_name
         
-    if name == None:
-        _druid = libglade.GladeXML(const.configFile,"initDruid")
-        _druid.signal_autoconnect({
-            "destroy_passed_object" : druid_cancel_clicked,
-            "on_initDruid_finish" : on_initDruid_finish
-            })
-    else:
-        owner.set(name,addr,city,state,country,postal,phone,email)
-        
     make_path(os.path.expanduser("~/.gramps"))
     make_path(os.path.expanduser("~/.gramps/filters"))
     make_path(os.path.expanduser("~/.gramps/plugins"))
@@ -415,37 +392,19 @@ def save_last_file(file):
 # 
 #
 #-------------------------------------------------------------------------
-def on_initDruid_finish(obj,b):
-    global owner
-    
-    name = _druid.get_widget("dresname").get_text()
-    addr = _druid.get_widget("dresaddr").get_text()
-    city = _druid.get_widget("drescity").get_text()
-    state = _druid.get_widget("dresstate").get_text()
-    country = _druid.get_widget("drescountry").get_text()
-    postal = _druid.get_widget("drespostal").get_text()
-    phone = _druid.get_widget("dresphone").get_text()
-    email = _druid.get_widget("dresemail").get_text()
+def get_researcher():
+    n = get_string("/gramps/researcher/name")
+    a = get_string("/gramps/researcher/addr")
+    c = get_string("/gramps/researcher/city")
+    s = get_string("/gramps/researcher/state")
+    ct = get_string("/gramps/researcher/country")
+    p = get_string("/gramps/researcher/postal")
+    ph = get_string("/gramps/researcher/phone")
+    e = get_string("/gramps/researcher/email")
 
-    owner.set(name,addr,city,state,country,postal,phone,email)
-    store_researcher(owner)
-    utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def store_researcher(res):
-    set_string("/gramps/researcher/name",res.name)
-    set_string("/gramps/researcher/addr",res.addr)
-    set_string("/gramps/researcher/city",res.city)
-    set_string("/gramps/researcher/state",res.state)
-    set_string("/gramps/researcher/country",res.country)
-    set_string("/gramps/researcher/postal",res.postal)
-    set_string("/gramps/researcher/phone",res.phone)
-    set_string("/gramps/researcher/email",res.email)
-    sync()
+    owner = Researcher()
+    owner.set(n,a,c,s,ct,p,ph,e)
+    return owner
     
 #-------------------------------------------------------------------------
 #
@@ -777,14 +736,23 @@ class GrampsPreferences:
         name_menu.set_active(_name_format)
         name_option.set_menu(name_menu)
 
-        self.top.get_widget("resname").set_text(owner.getName())
-        self.top.get_widget("resaddr").set_text(owner.getAddress())
-        self.top.get_widget("rescity").set_text(owner.getCity())
-        self.top.get_widget("resstate").set_text(owner.getState())
-        self.top.get_widget("rescountry").set_text(owner.getCountry())
-        self.top.get_widget("respostal").set_text(owner.getPostalCode())
-        self.top.get_widget("resphone").set_text(owner.getPhone())
-        self.top.get_widget("resemail").set_text(owner.getEmail())
+        cname = get_string("/gramps/researcher/name")
+        caddr = get_string("/gramps/researcher/addr")
+        ccity = get_string("/gramps/researcher/city")
+        cstate = get_string("/gramps/researcher/state")
+        ccountry = get_string("/gramps/researcher/country")
+        cpostal = get_string("/gramps/researcher/postal")
+        cphone = get_string("/gramps/researcher/phone")
+        cemail = get_string("/gramps/researcher/email")
+
+        self.top.get_widget("resname").set_text(cname)
+        self.top.get_widget("resaddr").set_text(caddr)
+        self.top.get_widget("rescity").set_text(ccity)
+        self.top.get_widget("resstate").set_text(cstate)
+        self.top.get_widget("rescountry").set_text(ccountry)
+        self.top.get_widget("respostal").set_text(cpostal)
+        self.top.get_widget("resphone").set_text(cphone)
+        self.top.get_widget("resemail").set_text(cemail)
 
         cwidget = self.top.get_widget(ODDFGCOLOR)
         cwidget.set_i16(ListColors.oddfg[0],ListColors.oddfg[1],\
@@ -888,10 +856,10 @@ class GrampsPreferences:
 
     def on_propertybox_apply(self,obj):
         global nameof
-        global owner
         global usetabs
         global uselds
         global autocomp
+        global autosave_int
         global mediaref
         global globalprop
         global localprop
@@ -919,6 +887,7 @@ class GrampsPreferences:
         global web_dir
         global db_dir
         global lastnamegen
+        global autoload
     
         show_detail = self.top.get_widget("showdetail").get_active()
         autoload = self.top.get_widget("autoload").get_active()
@@ -1075,8 +1044,14 @@ class GrampsPreferences:
         save_config_color(EVENBGCOLOR,ListColors.evenbg)
         save_config_color(ANCESTORFGCOLOR,ListColors.ancestorfg)
         
-        owner.set(name,addr,city,state,country,postal,phone,email)
-        store_researcher(owner)
+        set_string("/gramps/researcher/name",name)
+        set_string("/gramps/researcher/addr",addr)
+        set_string("/gramps/researcher/city",city)
+        set_string("/gramps/researcher/state",state)
+        set_string("/gramps/researcher/country",country)
+        set_string("/gramps/researcher/postal",postal)
+        set_string("/gramps/researcher/phone",phone)
+        set_string("/gramps/researcher/email",email)
         
         self.db.set_iprefix(iprefix)
         self.db.set_fprefix(fprefix)
@@ -1153,13 +1128,5 @@ def save_sort_cols(name,col,dir):
     set_int("/gramps/sort/%s_col" % name, col)
     set_int("/gramps/sort/%s_dir" % name, dir)
     sync()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def druid_cancel_clicked(obj,a):
-    utils.destroy_passed_object(obj)
 
 

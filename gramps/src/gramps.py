@@ -5,6 +5,7 @@ import intl
 import os
 import gtk
 import gnome.ui
+import gnome.config
 import locale
 
 if os.environ.has_key("GRAMPSI18N"):
@@ -21,11 +22,17 @@ import gramps_main
 import sys
 import locale
 
+if len(sys.argv) > 1:
+    arg = sys.argv[1]
+else:
+    arg = None
+
 try:
-    if len(sys.argv) > 1:
-        gramps_main.main(sys.argv[1])
+    if gnome.config.get_string("/gramps/researcher/name") == None:
+        from StartupDialog import StartupDialog
+        StartupDialog(gramps_main.main,arg)
     else:
-        gramps_main.main(None)
+        gramps_main.main(arg)
 except:
     traceback.print_exc()
         
@@ -34,4 +41,5 @@ except:
     traceback.print_exc(file=errfile)
     errfile.close()
 
+gtk.mainloop()
 

@@ -353,14 +353,22 @@ class Researcher:
 
     def set(self,name,addr,city,state,country,postal,phone,email):
         """sets the information about the database owner"""
-        self.name = strip(name)
-        self.addr = strip(addr)
-        self.city = strip(city)
-        self.state = strip(state)
-        self.country = strip(country)
-        self.postal = strip(postal)
-        self.phone = strip(phone)
-        self.email = strip(email)
+        if name:
+            self.name = strip(name)
+        if addr:
+            self.addr = strip(addr)
+        if city:
+            self.city = strip(city)
+        if state:
+            self.state = strip(state)
+        if country:
+            self.country = strip(country)
+        if postal:
+            self.postal = strip(postal)
+        if phone:
+            self.phone = strip(phone)
+        if email:
+            self.email = strip(email)
 
 class Location:
     """Provides information about a place, including city, county, state,
