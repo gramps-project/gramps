@@ -47,10 +47,10 @@ class QuickAdd:
         surname = self.xml.get_widget("surname").get_text()
         given = self.xml.get_widget("given").get_text()
         person = RelLib.Person()
-        self.db.addPerson(person)
         name = person.getPrimaryName()
         name.setSurname(surname)
         name.setFirstName(given)
+        self.db.addPerson(person)
         if self.xml.get_widget("male").get_active():
             person.setGender(RelLib.Person.male)
             self.father = person
