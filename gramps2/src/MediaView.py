@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2003  Donald N. Allingham
+# Copyright (C) 2001-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -120,6 +120,7 @@ class MediaView:
 
         self.update = update
         self.list.connect('button-press-event',self.on_button_press_event)
+        self.list.connect('key-press-event',self.key_press)
         self.selection.connect('changed',self.on_select_row)
         if not (RelImage.is_pil() or RelImage.is_cnv() ):
 	    WarningDialog(_("Thumbnails not available")
@@ -179,6 +180,13 @@ class MediaView:
             return 1
         elif event.button == 3:
             self.build_context_menu(event)
+            return 1
+        return 0
+
+    def key_press(self,obj,event):
+        if event.keyval == gtk.gdk.keyval_from_name("Return") \
+                                        and not event.state:
+            self.on_edit_clicked(obj)
             return 1
         return 0
 

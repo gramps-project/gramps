@@ -198,7 +198,7 @@ class DetAncestorReport(Report.Report):
     def write_person(self, key, rptOptions):
         """Output birth, death, parentage, marriage and notes information """
 
-        self.doc.start_paragraph("DAR-Entry","%s." % str(key))
+        self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
 
         person = self.map[key]
         if rptOptions.addImages == reportOptions.Yes:
@@ -640,6 +640,7 @@ def _make_default_style(default_style):
     para.set_font(font)
     para.set_header_level(1)
     para.set(pad=0.5)
+    para.set_description(_('The style used for the title of the page.'))
     default_style.add_style("DAR-Title",para)
 
     font = BaseDoc.FontStyle()
@@ -648,6 +649,7 @@ def _make_default_style(default_style):
     para.set_font(font)
     para.set_header_level(2)
     para.set(pad=0.5)
+    para.set_description(_('The style used for the generation header.'))
     default_style.add_style("DAR-Generation",para)
 
     font = BaseDoc.FontStyle()
@@ -655,15 +657,17 @@ def _make_default_style(default_style):
     para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     #para.set_header_level(3)
-    para.set_left_margin(0.0)   # in centimeters
+    para.set_left_margin(1.0)   # in centimeters
     para.set(pad=0.5)
+    para.set_description(_('The style used for the children list title.'))
     default_style.add_style("DAR-ChildTitle",para)
 
     font = BaseDoc.FontStyle()
     font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
     para = BaseDoc.ParagraphStyle()
     para.set_font(font)
-    para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
+    para.set(first_indent=0.0,lmargin=1.0,pad=0.25)
+    para.set_description(_('The style used for the children list.'))
     default_style.add_style("DAR-ChildList",para)
 
     para = BaseDoc.ParagraphStyle()
@@ -671,8 +675,14 @@ def _make_default_style(default_style):
     default_style.add_style("DAR-NoteHeader",para)
 
     para = BaseDoc.ParagraphStyle()
-    para.set(first_indent=0.5,lmargin=0.0,pad=0.25)
+    para.set(first_indent=0.5,lmargin=1.0,pad=0.25)
+    para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("DAR-Entry",para)
+
+    para = BaseDoc.ParagraphStyle()
+    para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+    para.set_description(_('The style used for the first personal entry.'))
+    default_style.add_style("DAR-First-Entry",para)
 
     table = BaseDoc.TableStyle()
     table.set_width(1000)

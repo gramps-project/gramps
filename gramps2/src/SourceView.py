@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2001-2003  Donald N. Allingham
+# Copyright (C) 2001-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -121,6 +121,7 @@ class SourceView:
             self.model.set(iter, 0, val[0], 1, val[1], 2, val[2],
                            3, val[3], 4, val[4])
             self.list.connect('button-press-event',self.button_press)
+            self.list.connect('key-press-event',self.key_press)
         self.list.set_model(self.model)
                 
     def button_press(self,obj,event):
@@ -134,6 +135,13 @@ class SourceView:
             self.build_context_menu(event)
             return 1
         return 0
+
+    def key_press(self,obj,event):
+    	if event.keyval == gtk.gdk.keyval_from_name("Return") \
+    	    	    	    	    	and not event.state:
+    	    self.on_edit_clicked(obj)
+    	    return 1
+    	return 0
 
     def build_context_menu(self,event):
         """Builds the menu with editing operations on the source's list"""

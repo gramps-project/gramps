@@ -1,3 +1,26 @@
+2004-02-14  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DetDescendantReport.py: Add style descriptions
+	for the paragraphs. Add first entry style. Change defaults to be
+	similar to the FTM style reports. 
+	* src/plugins/DetAncestralReport.py: Add style descriptions
+	for the paragraphs. Add first entry style. Change defaults to be
+	similar to the FTM style reports. 
+	* src/StyleEditor.py (draw, save_paragraph): Allow users
+	to adjust first line indent.
+	* src/styles.glade: Add first line indent entry.
+	* src/plugins/Check.py (delete_empty_family): Remove families
+	in which person is a parent, not only a child. 
+	* src/gramps_main.py (post_load): Use display_frel and 
+	display_fattr.
+	* src/MediaView.py (key_press): Add function.
+	* src/PlaceView.py (key_press): Add function.
+	* src/SourceView.py (key_press): Add function.
+	* src/plugins/WebPage.py: Add tab with index page options.
+
+2004-02-13  Egyeki Gergely  <egeri@elte.hu>
+	* src/po/hu.po: Update
+	* doc/gramps-manual/hu/filtref.xml: Update
+
 2004-02-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Marriage.py: fix title and places
 	* src/FamilyView.py: fix child relations and spouse's parents

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 """
 Paragraph/Font style editor
@@ -224,6 +226,7 @@ class StyleEditor:
         self.top.get_widget("rmargin").set_text(locale.str(p.get_right_margin()))
         self.top.get_widget("lmargin").set_text(locale.str(p.get_left_margin()))
         self.top.get_widget("pad").set_text(locale.str(p.get_padding()))
+        self.top.get_widget("indent").set_text(locale.str(p.get_first_indent()))
         self.top.get_widget("tborder").set_active(p.get_top_border())
         self.top.get_widget("lborder").set_active(p.get_left_border())
         self.top.get_widget("rborder").set_active(p.get_right_border())
@@ -270,6 +273,7 @@ class StyleEditor:
         p.set_right_margin(Utils.gfloat(self.top.get_widget("rmargin").get_text()))
         p.set_left_margin(Utils.gfloat(self.top.get_widget("lmargin").get_text()))
         p.set_padding(Utils.gfloat(self.top.get_widget("pad").get_text()))
+        p.set_first_indent(Utils.gfloat(self.top.get_widget("indent").get_text()))
         p.set_top_border(self.top.get_widget("tborder").get_active())
         p.set_left_border(self.top.get_widget("lborder").get_active())
         p.set_right_border(self.top.get_widget("rborder").get_active())

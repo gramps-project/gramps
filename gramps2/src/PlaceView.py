@@ -98,6 +98,7 @@ class PlaceView:
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
         self.list.connect('button-press-event',self.button_press)
+        self.list.connect('key-press-event',self.key_press)
         self.topWindow = self.glade.get_widget("gramps")
 
     def on_click(self,column):
@@ -167,6 +168,13 @@ class PlaceView:
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
+            return 1
+        return 0
+
+    def key_press(self,obj,event):
+        if event.keyval == gtk.gdk.keyval_from_name("Return") \
+                                        and not event.state:
+            self.on_edit_clicked(obj)
             return 1
         return 0
 

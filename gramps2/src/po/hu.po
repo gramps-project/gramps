@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Tue Feb  3 21:41:23 2004\n"
-"PO-Revision-Date: 2004-02-04 23:59+0100\n"
+"PO-Revision-Date: 2004-02-12 22:08+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2578,7 +2578,7 @@ msgstr "Házassági név"
 
 #: const.py:466
 msgid "Other Name"
-msgstr "Más név"
+msgstr "Egyéb név"
 
 #: const.py:861
 msgid "Child"
@@ -7128,7 +7128,7 @@ msgstr "Nem lehet létrehozni a könyvtárat : %s"
 
 #: plugins/WebPage.py:902
 msgid "Include a link to the index page"
-msgstr "Index oldalra hivatkozás hozzáadása"
+msgstr "Főoldalra mutató link hozzáadása"
 
 #: plugins/WebPage.py:903 plugins/pafexport.glade:276
 msgid "Do not include records marked private"
@@ -7168,7 +7168,7 @@ msgstr "Fájl kiterjesztés"
 
 #: plugins/WebPage.py:913
 msgid "Include short ancestor tree"
-msgstr "Rövidített ősökfa hozzáadása"
+msgstr "Kicsinyített családfa hozzáadása"
 
 #: plugins/WebPage.py:940
 msgid "Privacy"
@@ -7196,11 +7196,11 @@ msgstr "Célkönyvtár"
 
 #: plugins/WebPage.py:989
 msgid "Direct Descendants of %s"
-msgstr "%s egyenes leszármazottjai"
+msgstr "%s egyenes leszármazottai"
 
 #: plugins/WebPage.py:993
 msgid "Descendant Families of %s"
-msgstr "%s utódainak a családjai"
+msgstr "%s utódainak a családja"
 
 #: plugins/WebPage.py:1031
 msgid "The style used for the header that identifies facts and events."
