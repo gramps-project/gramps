@@ -57,6 +57,7 @@ import GedcomInfo
 import ansel_utf8
 
 from intl import gettext as _
+from QuestionDialog import ErrorDialog
 
 def keep_utf8(s):
     return s
@@ -471,8 +472,8 @@ class GedcomWriter:
             "on_close_clicked" : Utils.destroy_passed_object
             })
 
-        Utils.set_titles(self.topDialog.get_widget('exportprogress'),
-                         self.topDialog.get_widget('title'),
+        Utils.set_titles(self.exprogress.get_widget('exportprogress'),
+                         self.exprogress.get_widget('title'),
                          _('GEDCOM export'))
 
         self.fbar = self.exprogress.get_widget("fbar")
@@ -491,12 +492,12 @@ class GedcomWriter:
         try:
             self.g = open(filename,"w")
         except IOError,msg:
-            msg = "%s\n%s" % (_("Could not create %s") % filename,str(msg))
-            gnome.ui.GnomeErrorDialog(msg)
+            msg2 = _("Could not create %s") % filename
+            ErrorDialog(msg2,str(msg))
             self.progress.destroy()
             return
         except:
-            gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename)
+            ErrorDialog(_("Could not create %s") % filename)
             self.progress.destroy()
             return
 
