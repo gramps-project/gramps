@@ -368,7 +368,7 @@ class SourceEditor:
                                             date_stat,
                                             self.sourceDisplay)
 
-        self.draw(self.active_source)
+        self.draw(self.active_source,fresh=True)
         self.set_button()
         if self.parent:
             self.sourceDisplay.set_transient_for(self.parent.window)
@@ -431,8 +431,8 @@ class SourceEditor:
         """returns the widget associated with the specified name"""
         return self.showSource.get_widget(name)
 
-    def draw(self,sel = None):
-        if self.source_ref:
+    def draw(self,sel=None,fresh=False):
+        if self.source_ref and fresh:
             spage = self.get_widget("spage")
             spage.get_buffer().set_text(self.source_ref.get_page())
 
@@ -517,7 +517,7 @@ class SourceEditor:
         self.set_button()
 
     def update_display(self,source):
-        self.draw(source)
+        self.draw(source,fresh=False)
 
     def add_src_clicked(self,obj):
         import EditSource
