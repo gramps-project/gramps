@@ -46,7 +46,6 @@ GLADEFILES = \
 	pafexport.glade\
 	patchnames.glade\
 	pkgexport.glade\
-	readgedcom.glade\
 	relcalc.glade\
 	soundex.glade\
 	summary.glade\
