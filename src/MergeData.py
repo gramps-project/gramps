@@ -391,7 +391,7 @@ class MergePeople:
             #
             if tgt_family in self.p1.get_family_handle_list():
                 if tgt_family.get_father_handle() != None and \
-                   src_family in tgt_father.get_family_handle_list():
+                   src_family in tgt_family.get_family_handle_list():
                     tgt_family.get_father_handle().remove_family_handle(src_family)
                 if tgt_family.get_mother_handle() != None and \
                    src_family in tgt_family.get_mother_handle().get_family_handle_list():
@@ -485,6 +485,7 @@ class MergePeople:
                 self.delete_empty_family(family)
 
     def delete_empty_family(self,family_handle):
+        family = self.db.get_family_from_handle(family_handle)
         for child in family.get_child_handle_list():
             if child.get_main_parents_family_handle() == family_handle:
                 child.set_main_parent_family_handle(None)
@@ -887,7 +888,7 @@ class MergePlaces:
 
         # loop through people, changing event references to P2 to P1
         for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             for event in [p.get_birth(), p.get_death()] + p.get_event_list():
                 if event.get_place_handle() == self.p2:
                     event.set_place_handle(self.p1)

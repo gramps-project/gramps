@@ -133,7 +133,7 @@ class DescendantReport:
 
         childlist.sort(self.by_birthdate)
         for child_handle in childlist:
-            child = self.database.try_to_find_person_from_handle(child_handle)
+            child = self.database.get_person_from_handle(child_handle)
             self.dump(level+1,child)
 
 #------------------------------------------------------------------------
@@ -216,7 +216,7 @@ class DescendantBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
 
@@ -279,7 +279,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         return DescendantReport(database, person, max_gen,

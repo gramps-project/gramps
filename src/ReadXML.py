@@ -153,7 +153,7 @@ def importData(database, filename, callback=None,cl=0):
     first = not os.path.exists(img_dir)
     
     for m_id in database.get_object_keys():
-        mobject = database.try_to_find_object_from_handle(m_id)
+        mobject = database.get_object_from_handle(m_id)
         oldfile = mobject.get_path()
         if oldfile[0] != '/':
             if first:

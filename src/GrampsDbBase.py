@@ -20,17 +20,22 @@
 
 # $Id$
 
+#-------------------------------------------------------------------------
+#
+# libraries
+#
+#-------------------------------------------------------------------------
 from RelLib import *
 import cPickle
-
-_UNDO_SIZE      = 1000
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
-# ID regular expression
+# constants
 #
 #-------------------------------------------------------------------------
-_id_reg = compile("%\d+d")
+_UNDO_SIZE = 1000
+_id_reg    = compile("%\d+d")
 
 #-------------------------------------------------------------------------
 #
@@ -55,6 +60,7 @@ class GrampsDbBase:
         self.added_files = []
         self.genderStats = GenderStats()
 
+        self.id_trans = None
         self.env = None
         self.person_map = None
         self.family_map = None
@@ -172,12 +178,12 @@ class GrampsDbBase:
             transaction.add(PERSON_KEY,handle,old_data)
         self.person_map[handle] = person.serialize()
           
-    def commit_media_object(self,object,transaction):
-        handle = str(object.get_handle())
+    def commit_media_object(self,obj,transaction):
+        handle = str(obj.get_handle())
         if transaction != None:
             old_data = self.media_map.get(handle)
             transaction.add(MEDIA_KEY,handle,old_data)
-        self.media_map[str(object.get_handle())] = object.serialize()
+        self.media_map[str(obj.get_handle())] = obj.serialize()
 
     def commit_source(self,source,transaction):
         handle = str(source.get_handle())
@@ -474,7 +480,7 @@ class GrampsDbBase:
         if trans != None:
             trans.add(PERSON_KEY, person.get_handle(),None)
         self.person_map[person.get_handle()] = person.serialize()
-#        self.genderStats.count_person (person, self)
+        self.genderStats.count_person (person, self)
         return person.get_handle()
     
     def add_person(self,person,trans):
@@ -493,7 +499,7 @@ class GrampsDbBase:
     def has_family_handle(self,val):            
         return self.family_map.has_key(str(val))
 
-    def try_to_find_person_from_handle(self,val):
+    def get_person_from_handle(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
 
@@ -505,7 +511,7 @@ class GrampsDbBase:
         else:
             return None
 
-    def try_to_find_person_from_gramps_id(self,val):
+    def get_person_from_gramps_id(self,val):
         """finds a Person in the database from the passed gramps' ID.
         If no such Person exists, a new Person is added to the database."""
 
@@ -545,7 +551,7 @@ class GrampsDbBase:
             if trans != None:
                 trans.add(PERSON_KEY, val, None)
             self.person_map[val] = person.serialize()
-#            self.genderStats.count_person (person, self)
+            self.genderStats.count_person (person, self)
         return person
 
     def add_person_no_map(self,person,handle,trans):
@@ -555,7 +561,7 @@ class GrampsDbBase:
         if trans != None:
             trans.add(PERSON_KEY, handle, None)
         self.person_map.set(handle,person.serialize())
-#        self.genderStats.count_person (person, self)
+        self.genderStats.count_person (person, self)
         return handle
 
     def add_source(self,source,trans):
@@ -640,7 +646,7 @@ class GrampsDbBase:
             map[handle] = self.add_event(event,trans)
         return event
 
-    def try_to_find_source_from_handle(self,val):
+    def get_source_from_handle(self,val):
         """finds a Source in the database from the passed gramps' ID.
         If no such Source exists, None is returned."""
 
@@ -674,7 +680,7 @@ class GrampsDbBase:
         else:
             return None
 
-    def add_object(self,object,trans):
+    def add_object(self,obj,trans):
         """adds an Object instance to the database, assigning it a gramps'
         ID number"""
         
@@ -682,12 +688,12 @@ class GrampsDbBase:
         while self.media_map.get(str(index)):
             self.omap_index = self.omap_index + 1
             index = self.oprefix % self.omap_index
-        object.set_handle(index)
+        obj.set_handle(index)
         if trans != None:
             trans.add(MEDIA_KEY,index,None)
-        self.media_map[str(index)] = object.serialize()
+        self.media_map[str(index)] = obj.serialize()
         self.omap_index = self.omap_index + 1
-        self.added_files.append(object)
+        self.added_files.append(obj)
         
         return index
 
@@ -701,28 +707,28 @@ class GrampsDbBase:
         map - map build by find_object of external to gramp's IDs"""
         
         handle = str(handle)
-        object = MediaObject()
+        obj = MediaObject()
         if map.has_key(handle):
-            object.unserialize(self.media_map.get(str(map[handle])))
+            obj.unserialize(self.media_map.get(str(map[handle])))
         else:
             if self.media_map.get(str(handle)):
-                map[handle] = self.add_object(object,trans)
+                map[handle] = self.add_object(obj,trans)
             else:
-                map[handle] = self.add_object_no_map(object,handle,trans)
-        return object
+                map[handle] = self.add_object_no_map(obj,handle,trans)
+        return obj
 
-    def add_object_no_map(self,object,index,trans):
+    def add_object_no_map(self,obj,index,trans):
         """adds an Object to the database if the gramps' ID is known"""
         index = str(index)
-        object.set_handle(index)
+        obj.set_handle(index)
         if trans != None:
             trans.add(MEDIA_KEY,index,None)
-        self.media_map[str(index)] = object.serialize()
+        self.media_map[str(index)] = obj.serialize()
         self.omap_index = self.omap_index + 1
-        self.added_files.append(object)
+        self.added_files.append(obj)
         return index
 
-    def try_to_find_object_from_handle(self,handle):
+    def get_object_from_handle(self,handle):
         """finds an Object in the database from the passed gramps' ID.
         If no such Object exists, None is returned."""
 
@@ -738,12 +744,12 @@ class GrampsDbBase:
         """finds an Object in the database from the passed gramps' ID.
         If no such Object exists, a new Object is added to the database."""
 
-        object = MediaObject()
+        obj = MediaObject()
         if self.media_map.get(str(handle)):
-            object.unserialize(self.media_map.get(str(handle)))
+            obj.unserialize(self.media_map.get(str(handle)))
         else:
-            self.add_object_no_map(object,handle,trans)
-        return object
+            self.add_object_no_map(obj,handle,trans)
+        return obj
 
     def has_object_handle(self,handle):
         """finds an Object in the database from the passed gramps' ID.
@@ -828,7 +834,7 @@ class GrampsDbBase:
             place.unserialize(data)
         return place
 
-    def try_to_find_place_from_handle(self,handle):
+    def get_place_from_handle(self,handle):
         """finds a Place in the database from the passed gramps' ID.
         If no such Place exists, None is returned."""
 
@@ -887,11 +893,6 @@ class GrampsDbBase:
         else:
             return []
 
-    def get_place_handle(self,key):
-        place = Place()
-        place.unserialize(self.place_map.get(str(key)))
-        return place
-
     def get_place_display(self,key):
         # fix this up better
         place = Place()
@@ -928,11 +929,6 @@ class GrampsDbBase:
         source = Source()
         source.unserialize(self.source_map.get(str(key)))
         return source.get_display_info()
-
-    def get_source(self,key):
-        source = Source()
-        source.unserialize(self.source_map[key])
-        return source
 
     def build_source_display(self,nkey,okey=None):
         pass

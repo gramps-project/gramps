@@ -141,7 +141,7 @@ class CustomTextDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -259,7 +259,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         top_text = options[1]
         middle_text = options[2]
         bottom_text = options[3]

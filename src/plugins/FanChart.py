@@ -164,7 +164,7 @@ class FanChart:
 
         self.lines = max(self.lines,len(self.text[index-1]))    
 
-        person = self.database.try_to_find_person_from_handle(person_handle)
+        person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.find_family_from_handle(family_handle)
@@ -201,7 +201,7 @@ class FanChart:
             self.doc.close()
 
     def get_info(self,person_handle):
-        person = self.database.try_to_find_person_from_handle(person_handle)
+        person = self.database.get_person_from_handle(person_handle)
         pn = person.get_primary_name()
 
         birth_handle = person.get_birth_handle()
@@ -392,7 +392,7 @@ class FanChartBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -450,7 +450,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         return FanChart(database, person, 
                                    "%n", doc, None, newpage )
     except Errors.ReportError, msg:

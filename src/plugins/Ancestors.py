@@ -138,7 +138,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
             i = 1
             for source_handle in self.sources:
-                source = self.database.try_to_find_source_from_handle(source_handle)
+                source = self.database.get_source_from_handle(source_handle)
                 self.doc.start_paragraph ("AR-Entry")
                 self.doc.write_text ("[%d] %s" % (i, source.get_title ()))
                 author = source.get_author ()
@@ -186,8 +186,8 @@ class ComprehensiveAncestorsReport (Report.Report):
             return ret
         father_handle = family.get_father_handle ()
         mother_handle = family.get_mother_handle ()
-        father = self.database.try_to_find_person_from_handle(father_handle)
-        mother = self.database.try_to_find_person_from_handle(mother_handle)
+        father = self.database.get_person_from_handle(father_handle)
+        mother = self.database.get_person_from_handle(mother_handle)
         if father:
             ret.extend (self.person (father_handle,
                                      short_form = father_handle in already_described,
@@ -209,7 +209,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             ret.append ((self.doc.end_paragraph, []))
 
             for child_handle in children_ids:
-                child = self.database.try_to_find_person_from_handle(child_handle)
+                child = self.database.get_person_from_handle(child_handle)
                 ret.extend (self.person (child_handle, suppress_children = 1,
                                          short_form=child_handle in already_described,
                                          already_described = already_described,
@@ -232,7 +232,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                         break
 
                 relstring = self.relationship.get_grandparents_string (self.start,
-                               self.database.try_to_find_person_from_handle(self.gp))[0]
+                               self.database.get_person_from_handle(self.gp))[0]
                 heading = _("%(name)s's maternal %(grandparents)s") % \
                           { 'name': self.first_name_or_nick (self.start),
                             'grandparents': relstring }
@@ -255,7 +255,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                         break
 
                 relstring = self.relationship.get_grandparents_string (self.start,
-                                                                  self.database.try_to_find_person_from_handle(self.gp))[0]
+                                                                  self.database.get_person_from_handle(self.gp))[0]
                 if thisgen == 2:
                     heading = _("%(name)s's %(parents)s") % \
                               { 'name': self.first_name_or_nick (self.start),
@@ -274,7 +274,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 for family_handle in family_handles:
                     family = self.database.find_family_from_handle(family_handle)
                     father_handle = family.get_father_handle ()
-                    father = self.database.try_to_find_person_from_handle(father_handle)
+                    father = self.database.get_person_from_handle(father_handle)
                     if father:
                         already_described.append (father_handle)
                         father_family_handle = father.get_main_parents_family_handle ()
@@ -283,7 +283,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                             next_pfamily_handles.append (father_family_handle)
 
                     mother_handle = family.get_mother_handle ()
-                    mother = self.database.try_to_find_person_from_handle(mother_handle)
+                    mother = self.database.get_person_from_handle(mother_handle)
                     if mother:
                         already_described.append (mother_handle)
                         mother_family_handle = mother.get_main_parents_family_handle ()
@@ -302,7 +302,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 needs_name = 0,
                 from_family = None):
         ret = []
-        person = self.database.try_to_find_person_from_handle(person_handle)
+        person = self.database.get_person_from_handle(person_handle)
         name = self.person_name (person_handle)
         if name:
             photos = person.get_media_list ()
@@ -335,7 +335,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     family = self.database.find_family_from_handle(family_handle)
                     for partner_id in [family.get_father_handle (),
                                     family.get_mother_handle ()]:
-                        partner = self.database.try_to_find_person_from_handle(partner_id)
+                        partner = self.database.get_person_from_handle(partner_id)
                         if partner_id == person_handle or not partner:
                             continue
 
@@ -344,7 +344,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                              partner != from_family_mother)):
                             for media_ref in partner.get_media_list ()[:1]:
                                 object_handle = media_ref.get_reference_handle()
-                                mobject = self.database.try_to_find_object_from_handle(object_handle)
+                                mobject = self.database.get_object_from_handle(object_handle)
                                 if mobject.get_mime_type()[0:5] == "image":
                                     spouse.append ((self.doc.add_media_object,
                                                     [mobject.get_path (),
@@ -377,7 +377,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     for media_ref in photos[:1]:
                         object_handle = media_ref.get_reference_handle()
-                        mobject = self.database.try_to_find_object_from_handle(object_handle)
+                        mobject = self.database.get_object_from_handle(object_handle)
                         if mobject.get_mime_type()[0:5] == "image":
                             ret.append ((self.doc.add_media_object,
                                          [mobject.get_path (), 'left', 2, 2]))
@@ -452,7 +452,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     info += _(' in %(month_or_year)s') % \
                             {'month_or_year': dateobj.get_date ()}
 
-        placename = self.database.try_to_find_place_from_handle(event.get_place_handle()).get_title()
+        placename = self.database.get_place_from_handle(event.get_place_handle()).get_title()
         if placename:
             info += _(' in %(place)s') % {'place': placename}
         note = event.get_note ()
@@ -531,7 +531,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def parents_of (self, person_handle):
         ret = '.  '
-        person = self.database.try_to_find_person_from_handle(person_handle)
+        person = self.database.get_person_from_handle(person_handle)
         gender = person.get_gender ()
 
         family_handle = person.get_main_parents_family_handle ()
@@ -540,11 +540,11 @@ class ComprehensiveAncestorsReport (Report.Report):
             fathername = mothername = None
             father_handle = family.get_father_handle ()
             if father_handle:
-                #father = self.database.try_to_find_person_from_handle(father_handle)
+                #father = self.database.get_person_from_handle(father_handle)
                 fathername = self.person_name (father_handle)
             mother_handle = family.get_mother_handle ()
             if mother_handle:
-                #mother = self.database.try_to_find_person_from_handle(mother_handle)
+                #mother = self.database.get_person_from_handle(mother_handle)
                 mothername = self.person_name (mother_handle)
 
             if not mother_handle and not father_handle:
@@ -632,7 +632,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         return citation
 
     def person_name (self, person_handle):
-        person = self.database.try_to_find_person_from_handle(person_handle)
+        person = self.database.get_person_from_handle(person_handle)
         primary = person.get_primary_name ()
 
         name = primary.get_title ()
@@ -683,9 +683,9 @@ class ComprehensiveAncestorsReport (Report.Report):
         for family_handle in person.get_family_handle_list ():
             family = self.database.find_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle ()
-            mother = self.database.try_to_find_person_from_handle(mother_handle)
+            mother = self.database.get_person_from_handle(mother_handle)
             for spouse_id in [family.get_father_handle (), mother_handle]:
-                spouse = self.database.try_to_find_person_from_handle(spouse_id)
+                spouse = self.database.get_person_from_handle(spouse_id)
                 if spouse_id == person.get_handle() or not spouse_id:
                     continue
 
@@ -702,7 +702,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                     count = 1
                     for child_handle in childlist:
-                        child = self.database.try_to_find_person_from_handle(child_handle)
+                        child = self.database.get_person_from_handle(child_handle)
                         children += self.first_name_or_nick (child)
                         children += self.cite_sources (child.get_primary_name ().
                                                        get_source_references ())
@@ -997,7 +997,7 @@ class ComprehensiveAncestorsBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -1070,7 +1070,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         opt_cite = int(options[3])

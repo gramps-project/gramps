@@ -67,7 +67,6 @@ class SourceView:
     def __init__(self,parent,db,glade,update):
         self.parent = parent
         self.glade = glade
-        self.db = db
         self.update = update
         self.list = glade.get_widget("source_list")
         self.list.connect('button-press-event',self.button_press)        
@@ -76,9 +75,9 @@ class SourceView:
         self.renderer = gtk.CellRendererText()
 
         if const.nosort_tree:
-            self.model = DisplayModels.SourceModel(self.db)
+            self.model = DisplayModels.SourceModel(self.parent.db)
         else:
-            self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.db))
+            self.model = gtk.TreeModelSort(DisplayModels.SourceModel(self.parent.db))
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
 
@@ -133,8 +132,8 @@ class SourceView:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             store,iter = self.selection.get_selected()
             id = store.get_value(iter,1)
-            source = self.db.get_source(id)
-            EditSource.EditSource(source,self.db,self.parent,
+            source = self.parent.db.get_source_from_handle(id)
+            EditSource.EditSource(source,self.parent.db,self.parent,
                                   self.topWindow,self.update_display)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
@@ -175,7 +174,7 @@ class SourceView:
         menu.popup(None,None,None,event.button,event.time)
 
     def on_add_clicked(self,obj):
-        EditSource.EditSource(RelLib.Source(),self.db,self.parent,
+        EditSource.EditSource(RelLib.Source(),self.parent.db,self.parent,
                               self.topWindow,self.new_after_edit)
 
     def on_delete_clicked(self,obj):
@@ -184,10 +183,10 @@ class SourceView:
             return
         
         id = store.get_value(iter,1)
-        source = self.db.get_source(id)
+        source = self.parent.db.get_source_from_handle(id)
 
         if self.is_used(source):
-            ans = EditSource.DelSrcQuery(source,self.db,self.build_tree)
+            ans = EditSource.DelSrcQuery(source,self.parent.db,self.build_tree)
 
             QuestionDialog(_('Delete %s?') % source.get_title(),
                            _('This source is currently being used. Deleting it '
@@ -196,22 +195,22 @@ class SourceView:
                            _('_Delete Source'),
                            ans.query_response,self.topWindow)
         else:
-            trans = self.db.start_transaction()
-            self.db.remove_source_handle(source.get_handle(),trans)
+            trans = self.parent.db.start_transaction()
+            self.parent.db.remove_source_handle(source.get_handle(),trans)
             n = source.get_title()
-            self.db.add_transaction(trans,_("Delete Source (%s)") % n)
+            self.parent.db.add_transaction(trans,_("Delete Source (%s)") % n)
             self.build_tree()
 
     def is_used(self,source):
-        for key in self.db.get_place_handle_keys():
-            p = self.db.get_place_handle(key)
+        for key in self.parent.db.get_place_handle_keys():
+            p = self.parent.db.get_place_from_handle(key)
             for sref in p.get_source_references():
                 if sref.get_base_handle() == source.get_handle():
                     return 1
-        for key in self.db.get_person_keys():
-            p = self.db.get_person(key)
+        for key in self.parent.db.get_person_keys():
+            p = self.parent.db.get_person_from_handle(key)
             for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
-                v = self.db.find_event_from_handle(v_id)
+                v = self.parent.db.find_event_from_handle(v_id)
                 if v:
                     for sref in v.get_source_references():
                         if sref.get_base_handle() == source.get_handle():
@@ -228,15 +227,15 @@ class SourceView:
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == source.get_handle():
                         return 1
-        for p_id in self.db.get_object_keys():
-            p = self.db.try_to_find_object_from_handle(p_id)
+        for p_id in self.parent.db.get_object_keys():
+            p = self.parent.db.get_object_from_handle(p_id)
             for sref in p.get_source_references():
                 if sref.get_base_handle() == source.get_handle():
                     return 1
-        for p_id in self.db.get_family_keys():
-            p = self.db.find_family_from_handle(p_id)
+        for p_id in self.parent.db.get_family_keys():
+            p = self.parent.db.find_family_from_handle(p_id)
             for v_id in p.get_event_list():
-                v = self.db.find_event_from_handle(v_id)
+                v = self.parent.db.find_event_from_handle(v_id)
                 if v:
                     for sref in v.get_source_references():
                         if sref.get_base_handle() == source.get_handle():
@@ -251,12 +250,12 @@ class SourceView:
         list_store, iter = self.selection.get_selected()
         if iter:
             id = list_store.get_value(iter,1)
-            source = self.db.get_source(id)
-            EditSource.EditSource(source, self.db, self.parent,
+            source = self.parent.db.get_source_from_handle(id)
+            EditSource.EditSource(source, self.parent.db, self.parent,
                                   self.topWindow, self.update_display)
 
     def new_after_edit(self,source):
-        self.db.add_source(source)
+        self.parent.db.add_source(source)
         self.build_tree()
 
     def update_display(self,place):

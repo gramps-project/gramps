@@ -98,9 +98,9 @@ class CheckIntegrity:
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             if father_handle:
-                father = self.db.try_to_find_person_from_handle(father_handle)
+                father = self.db.get_person_from_handle(father_handle)
             if mother_handle:
-                mother = self.db.try_to_find_person_from_handle(mother_handle)
+                mother = self.db.get_person_from_handle(mother_handle)
 
             if father_handle and family_handle not in father.get_family_handle_list():
                 self.broken_parent_links.append((father_handle,family_handle))
@@ -111,7 +111,7 @@ class CheckIntegrity:
                 mother.add_family_handle(family_handle)
                 self.db.commit_person(mother,self.trans)
             for child_handle in family.get_child_handle_list():
-                child = self.db.try_to_find_person_from_handle(child_handle)
+                child = self.db.get_person_from_handle(child_handle)
                 if family_handle == child.get_main_parents_family_handle():
                     continue
                 for family_type in child.get_parent_family_handle_list():
@@ -128,7 +128,7 @@ class CheckIntegrity:
         def remove_clicked():
             # File is lost => remove all references and the object itself
             for person_handle in self.db.get_family_keys():
-                p = self.db.try_to_find_person_from_handle(person_handle)
+                p = self.db.get_person_from_handle(person_handle)
                 nl = p.get_media_list()
                 changed = 0
                 for o in nl:
@@ -140,7 +140,7 @@ class CheckIntegrity:
                     self.db.commit_person(p,self.trans)
                     
             for key in self.db.get_person_keys():
-                p = self.db.try_to_find_person_from_handle(key)
+                p = self.db.get_person_from_handle(key)
                 nl = p.get_media_list()
                 changed = 0
                 for o in nl:
@@ -152,7 +152,7 @@ class CheckIntegrity:
                     self.db.commit_person(p,self.trans)
                     
             for key in self.db.get_source_keys():
-                p = self.db.try_to_find_source_from_handle(key)
+                p = self.db.get_source_from_handle(key)
                 nl = p.get_media_list()
                 changed = 0
                 for o in nl:
@@ -207,7 +207,7 @@ class CheckIntegrity:
         #-------------------------------------------------------------------------
         
         for ObjectId in self.db.get_object_keys():
-            obj = self.db.try_to_find_object_from_handle(ObjectId)
+            obj = self.db.get_object_from_handle(ObjectId)
             photo_name = obj.get_path()
             if not os.path.isfile(photo_name):
                 if cl:
@@ -240,7 +240,7 @@ class CheckIntegrity:
 
     def delete_empty_family(self,family_handle):
         for key in self.db.get_person_keys():
-            child = self.db.try_to_find_person_from_handle(key)
+            child = self.db.get_person_from_handle(key)
             child.remove_parent_family_handle(family_handle)
             child.remove_family_handle(family_handle)
         self.db.delete_family(family_handle,self.trans)
@@ -251,9 +251,9 @@ class CheckIntegrity:
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()
             if father_handle:
-            	father = self.db.try_to_find_person_from_handle(father_handle)
+            	father = self.db.get_person_from_handle(father_handle)
             if mother_handle:
-                mother = self.db.try_to_find_person_from_handle(mother_handle)
+                mother = self.db.get_person_from_handle(mother_handle)
             type = family.get_relationship()
 
             if not father_handle and not mother_handle:
@@ -316,11 +316,11 @@ class CheckIntegrity:
             else:
                 self.text.write(_("%d broken child/family links were found\n") % blink)
             for (person_handle,family_handle) in self.broken_links:
-                person = self.db.try_to_find_person_from_handle(person_handle)
+                person = self.db.get_person_from_handle(person_handle)
                 family = self.db.find_family_from_handle(family_handle)
                 cn = person.get_primary_name().get_name()
-                f = self.db.try_to_find_person_from_handle(family.get_father_handle())
-                m = self.db.try_to_find_person_from_handle(family.get_mother_handle())
+                f = self.db.get_person_from_handle(family.get_father_handle())
+                m = self.db.get_person_from_handle(family.get_mother_handle())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())
@@ -339,11 +339,11 @@ class CheckIntegrity:
             else:
                 self.text.write(_("%d broken spouse/family links were found\n") % plink)
             for (person_handle,family_handle) in self.broken_parent_links:
-                person = self.db.try_to_find_person_from_handle(person_handle)
+                person = self.db.get_person_from_handle(person_handle)
                 family = self.db.find_family_from_handle(family_handle)
                 cn = person.get_primary_name().get_name()
-                f = self.db.try_to_find_person_from_handle(family.get_father_handle())
-                m = self.db.try_to_find_person_from_handle(family.get_mother_handle())
+                f = self.db.get_person_from_handle(family.get_father_handle())
+                m = self.db.get_person_from_handle(family.get_mother_handle())
                 if f and m:
                     pn = _("%s and %s") % (f.get_primary_name().get_name(),\
                                            m.get_primary_name().get_name())

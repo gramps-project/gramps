@@ -123,8 +123,8 @@ def family_name(family,db):
     """Builds a name for the family from the parents names"""
     father_handle = family.get_father_handle()
     mother_handle = family.get_mother_handle()
-    father = db.try_to_find_person_from_handle(father_handle)
-    mother = db.try_to_find_person_from_handle(mother_handle)
+    father = db.get_person_from_handle(father_handle)
+    mother = db.get_person_from_handle(mother_handle)
     if father and mother:
         fname = father.get_primary_name().get_name()
         mname = mother.get_primary_name().get_name()
@@ -139,8 +139,8 @@ def family_upper_name(family,db):
     """Builds a name for the family from the parents names"""
     father_handle = family.get_father_handle()
     mother_handle = family.get_mother_handle()
-    father = db.try_to_find_person_from_handle(father_handle)
-    mother = db.try_to_find_person_from_handle(mother_handle)
+    father = db.get_person_from_handle(father_handle)
+    mother = db.get_person_from_handle(mother_handle)
     if father and mother:
         fname = father.get_primary_name().get_upper_name()
         mname = mother.get_primary_name().get_upper_name()

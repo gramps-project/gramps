@@ -74,7 +74,7 @@ class GrampsXMLDB(GrampsDbBase):
     def get_surnames(self):
         a = {}
         for person_id in self.get_person_keys():
-            p = self.try_to_find_person_from_handle(person_id)
+            p = self.get_person_from_handle(person_id)
             a[p.get_primary_name().get_surname()] = 1
         vals = a.keys()
         vals.sort()
@@ -90,7 +90,7 @@ class GrampsXMLDB(GrampsDbBase):
         return vals
 
     def remove_person_handle(self,handle,transaction):
-#        self.genderStats.uncount_person (self.person_map[handle])
+        self.genderStats.uncount_person (self.person_map[handle])
         if transaction != None:
             old_data = self.person_map.get(handle)
             transaction.add(PERSON_KEY,handle,old_data)

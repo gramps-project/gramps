@@ -172,8 +172,8 @@ class RelationshipCalculator:
         family_handle = person.get_main_parents_family_handle()
         family = self.db.find_family_from_handle(family_handle)
         if family != None:
-            father = self.db.try_to_find_person_from_handle(family.get_father_handle())
-            mother = self.db.try_to_find_person_from_handle(family.get_mother_handle())
+            father = self.db.get_person_from_handle(family.get_father_handle())
+            mother = self.db.get_person_from_handle(family.get_mother_handle())
             self.apply_filter(father,index+1,plist,pmap)
             self.apply_filter(mother,index+1,plist,pmap)
 

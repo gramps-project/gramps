@@ -190,7 +190,7 @@ class PlaceView:
         for place in mlist:
             used = 0
             for key in self.db.get_person_keys():
-                p = self.db.try_to_find_person_from_handle(key)
+                p = self.db.get_person_from_handle(key)
                 event_list = []
                 for e in [p.get_birth_handle(),p.get_death_handle()] + p.get_event_list():
                     event = self.db.find_event_from_handle(e)
@@ -243,7 +243,7 @@ class PlaceView:
             EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):
-        id = self.db.get_place_handle(store.get_value(iter,1))
+        id = self.db.get_place_from_handle(store.get_value(iter,1))
         list.append(id)
 
     def merge(self):

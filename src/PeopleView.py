@@ -139,7 +139,7 @@ class PeopleView:
         selected_ids = self.get_selected_objects()
 
         try:
-            person = self.parent.db.get_person(selected_ids[0])
+            person = self.parent.db.get_person_from_handle(selected_ids[0])
             self.parent.change_active_person(person)
         except:
             self.parent.change_active_person(None)

@@ -485,18 +485,18 @@ class FamilyView:
         model, iter = self.child_selection.get_selected()
         if not iter:
             return
-        child = self.parent.db.get_person(self.child_model.get_value(iter,7))
+        child = self.parent.db.get_person_from_handle(self.child_model.get_value(iter,7))
         try:
             EditPerson.EditPerson(self.parent, child, self.parent.db, self.spouse_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
     def child_rel(self,obj):
-        person = self.parent.db.get_person(obj.get_data(Utils.OBJECT))
+        person = self.parent.db.get_person_from_handle(obj.get_data(Utils.OBJECT))
         SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
         
     def child_rel_by_id(self,id):
-        person = self.parent.db.get_person(id)
+        person = self.parent.db.get_person_from_handle(id)
         SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
 
     def spouse_changed(self,obj):
@@ -740,7 +740,7 @@ class FamilyView:
             return
 
         id = self.child_model.get_value(iter,7)
-        child = self.parent.db.get_person(id)
+        child = self.parent.db.get_person_from_handle(id)
 
         trans = self.parent.db.start_transaction()
         
@@ -838,7 +838,7 @@ class FamilyView:
             person_handle = family.get_father_handle()
         else:
             person_handle = family.get_mother_handle()
-        person = self.parent.db.try_to_find_person_from_handle(person_handle)
+        person = self.parent.db.get_person_from_handle(person_handle)
         self.parent.change_active_person(person)
 
         n = person.get_primary_name().get_name()
@@ -858,7 +858,7 @@ class FamilyView:
 
         if self.parent.active_person:
             id = self.parent.active_person.get_handle()
-            self.person = self.parent.db.try_to_find_person_from_handle(id)
+            self.person = self.parent.db.get_person_from_handle(id)
         else:
             self.person = None
             self.clear()
@@ -917,7 +917,7 @@ class FamilyView:
             flist[f] = iter
                 
             if sp_id:
-                sp = self.parent.db.try_to_find_person_from_handle(sp_id)
+                sp = self.parent.db.get_person_from_handle(sp_id)
                 event = self.find_marriage(fm)
                 if event:
                     mdate = " - %s" % event.get_date()
@@ -964,8 +964,8 @@ class FamilyView:
             fam = self.parent.db.find_family_from_handle(f)
             father_handle = fam.get_father_handle()
             mother_handle = fam.get_mother_handle()
-            f = self.parent.db.try_to_find_person_from_handle(father_handle)
-            m = self.parent.db.try_to_find_person_from_handle(mother_handle)
+            f = self.parent.db.get_person_from_handle(father_handle)
+            m = self.parent.db.get_person_from_handle(mother_handle)
             father = self.nameof(_("Father"),f,frel)
             mother = self.nameof(_("Mother"),m,mrel)
 
@@ -1011,13 +1011,13 @@ class FamilyView:
         if self.family.get_father_handle() == self.person.get_handle():
             sp_id = self.family.get_mother_handle()
             if sp_id:
-                self.selected_spouse = self.parent.db.try_to_find_person_from_handle(sp_id)
+                self.selected_spouse = self.parent.db.get_person_from_handle(sp_id)
             else:
                 self.selected_spouse = None
         else:
             sp_id = self.family.get_father_handle()
             if sp_id:
-                self.selected_spouse = self.parent.db.try_to_find_person_from_handle(sp_id)
+                self.selected_spouse = self.parent.db.get_person_from_handle(sp_id)
             else:
                 self.selected_spouse = None
 
@@ -1034,7 +1034,7 @@ class FamilyView:
         for child_handle in child_list:
             status = _("Unknown")
 
-            child = self.parent.db.try_to_find_person_from_handle(child_handle)
+            child = self.parent.db.get_person_from_handle(child_handle)
             for fam in child.get_parent_family_handle_list():
                 if fam[0] == self.family.get_handle():
                     if self.person == self.family.get_father_handle():
@@ -1221,13 +1221,13 @@ class FamilyView:
         model, iter = self.child_selection.get_selected()
         if iter:
             id = self.child_model.get_value(iter,2)
-            child = self.parent.db.try_to_find_person_from_gramps_id(id)
+            child = self.parent.db.get_person_from_gramps_id(id)
             self.parent.change_active_person(child)
             self.load_family()
         else:
             list = self.family.get_child_handle_list()
             if len(list) == 1:
-                p = self.parent.db.try_to_find_person_from_handle(list[0])
+                p = self.parent.db.get_person_from_handle(list[0])
                 self.parent.change_active_person(p)
                 self.load_family()
 
@@ -1289,7 +1289,7 @@ class FamilyView:
             row = model.get_path(iter)
             family_handle = person.get_parent_family_handle_list()[row[0]][0]
             person.remove_parent_family_handle(family_handle)
-            fam = self.parent.db.try_to_find_family_from_handle(family_handle)
+            fam = self.parent.db.get_family_from_handle(family_handle)
 
             if len(fam.get_child_handle_list()) == 0:
                 father_handle = fam.get_father_handle()
@@ -1413,7 +1413,7 @@ class FamilyView:
         prev_date = "00000000"
         for i in range(len(list)):
             child_handle = list[i]
-            child = self.parent.db.try_to_find_person_from_handle(child_handle)
+            child = self.parent.db.get_person_from_handle(child_handle)
             birth_handle = child.get_birth_handle()
             birth = self.parent.db.find_event_from_handle(birth_handle)
             if not birth:

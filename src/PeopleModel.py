@@ -138,7 +138,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
         for person_handle in self.db.get_person_keys():
 
-            person = self.db.try_to_find_person_from_handle(person_handle)
+            person = self.db.get_person_from_handle(person_handle)
             surname = unicode(person.get_primary_name().get_surname())
 
             if self.sname_sub.has_key(surname):
@@ -377,7 +377,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    return self.db.try_to_find_place_from_handle(place_handle).get_title()
+                    return self.db.get_place_from_handle(place_handle).get_title()
         return u""
 
     def column_death_place(self,data):
@@ -386,7 +386,7 @@ class PeopleModel(gtk.GenericTreeModel):
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    return self.db.try_to_find_place_from_handle(place_handle).get_title()
+                    return self.db.get_place_from_handle(place_handle).get_title()
         return u""
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]

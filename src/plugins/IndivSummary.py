@@ -118,7 +118,7 @@ class IndivSummary(Report.Report):
         date = event.get_date()
         place_handle = event.get_place_handle()
         if place_handle:
-            place_obj = self.database.try_to_find_place_from_handle(place_handle)
+            place_obj = self.database.get_place_from_handle(place_handle)
             place = place_obj.get_title()
         else:
             place = ""
@@ -178,7 +178,7 @@ class IndivSummary(Report.Report):
             self.d.start_cell("IVS-NormalCell",2)
             self.d.start_paragraph("IVS-Spouse")
             if spouse_id:
-                spouse = self.database.try_to_find_person_from_handle(spouse_id)
+                spouse = self.database.get_person_from_handle(spouse_id)
                 self.d.write_text(spouse.get_primary_name().get_regular_name())
             else:
                 self.d.write_text(_("unknown"))
@@ -208,7 +208,7 @@ class IndivSummary(Report.Report):
                         first = 0
                     else:
                         self.d.write_text('\n')
-                    child = self.database.try_to_find_person_from_handle(child_handle)
+                    child = self.database.get_person_from_handle(child_handle)
                     self.d.write_text(child.get_primary_name().get_regular_name())
                 self.d.end_paragraph()
                 self.d.end_cell()
@@ -232,7 +232,7 @@ class IndivSummary(Report.Report):
 
         if len(media_list) > 0:
             object_handle = media_list[0].get_reference_handle()
-            object = self.database.try_to_find_object_from_handle(object_handle)
+            object = self.database.get_object_from_handle(object_handle)
             if object.get_mime_type()[0:5] == "image":
                 file = object.get_path()
                 self.d.start_paragraph("IVS-Normal")
@@ -277,13 +277,13 @@ class IndivSummary(Report.Report):
             family = self.database.find_family_from_handle(fam_id)
             father_handle = family.get_father_handle()
             if father_handle:
-                dad = self.database.try_to_find_person_from_handle(father_handle)
+                dad = self.database.get_person_from_handle(father_handle)
                 father = dad.get_primary_name().get_regular_name()
             else:
                 father = ""
             mother_handle = family.get_mother_handle()
             if mother_handle:
-                mom = self.database.try_to_find_person_from_handle(mother_handle)
+                mom = self.database.get_person_from_handle(mother_handle)
                 mother = mom.get_primary_name().get_regular_name()
             else:
                 mother = ""
@@ -423,7 +423,7 @@ class IndivSummaryBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -489,7 +489,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         return IndivSummary(database, person, None, doc, newpage)

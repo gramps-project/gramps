@@ -69,7 +69,7 @@ class SoundGen:
 
         names = []
         for person_handle in self.db.get_person_keys():
-            person = self.db.try_to_find_person_from_handle(person_handle)
+            person = self.db.get_person_from_handle(person_handle)
             lastname = person.get_primary_name().get_surname()
             if lastname not in names:
                 names.append(lastname)

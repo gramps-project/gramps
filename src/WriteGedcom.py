@@ -570,7 +570,7 @@ class GedcomWriter:
             self.flist = {}
             self.slist = {}
             for key in self.plist.keys():
-                p = self.db.get_person(key)
+                p = self.db.get_person_from_handle(key)
                 add_persons_sources(self.db,p,self.slist,self.option_box.private)
                 for family_handle in p.get_family_handle_list():
                     add_familys_sources(self.db,family_handle,self.slist,self.option_box.private)
@@ -605,7 +605,7 @@ class GedcomWriter:
         self.slist = {}
 
         for key in self.plist.keys():
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             add_persons_sources(self.db,p,self.slist,self.private)
             for family_handle in p.get_family_handle_list():
                 add_familys_sources(self.db,family_handle,self.slist,self.private)
@@ -686,7 +686,7 @@ class GedcomWriter:
         nump = float(len(self.plist))
         index = 0.0
         for key in pkeys:
-            self.write_person(self.db.get_person(key))
+            self.write_person(self.db.get_person_from_handle(key))
             index = index + 1
             #if index%100 == 0 and not self.cl:
             #    self.pbar.set_fraction(index/nump)
@@ -748,14 +748,14 @@ class GedcomWriter:
             self.frefn(family_handle)
             person_handle = family.get_father_handle()
             if person_handle != None and self.plist.has_key(person_handle):
-                person = self.db.try_to_find_person_from_handle(person_handle)
+                person = self.db.get_person_from_handle(person_handle)
                 gramps_id = person.get_gramps_id()
                 self.writeln("1 HUSB @%s@" % gramps_id)
                 father_alive = person.probably_alive(self.db)
 
             person_handle = family.get_mother_handle()
             if person_handle != None and self.plist.has_key(person_handle):
-                person = self.db.try_to_find_person_from_handle(person_handle)
+                person = self.db.get_person_from_handle(person_handle)
                 gramps_id = person.get_gramps_id()
                 self.writeln("1 WIFE @%s@" % gramps_id)
                 mother_alive = person.probably_alive(self.db)
@@ -786,7 +786,7 @@ class GedcomWriter:
             for person_handle in family.get_child_handle_list():
                 if not self.plist.has_key(person_handle):
                     continue
-                person = self.db.try_to_find_person_from_handle(person_handle)
+                person = self.db.get_person_from_handle(person_handle)
                 self.writeln("1 CHIL @%s@" % person.get_gramps_id())
                 if self.adopt == GedcomInfo.ADOPT_FTW:
                     if person.get_main_parents_family_handle() == family.get_handle():
@@ -816,7 +816,7 @@ class GedcomWriter:
         nump = float(len(self.slist))
         index = 0.0
         for key in self.slist.keys():
-            source = self.db.try_to_find_source_from_handle(key)
+            source = self.db.get_source_from_handle(key)
             self.writeln("0 @%s@ SOUR" % self.sid(source.get_handle()))
             if source.get_title():
                 self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.get_title()),248,1,self.nl))
@@ -1008,7 +1008,7 @@ class GedcomWriter:
 
             for photo in photos:
                 photo_obj_id = photo.get_reference_handle()
-                photo_obj = self.db.try_to_find_object_from_handle(photo_obj_id)
+                photo_obj = self.db.get_object_from_handle(photo_obj_id)
                 if photo_obj and photo_obj.get_mime_type() == "image/jpeg":
                     self.writeln('1 OBJE')
                     self.writeln('2 FORM jpeg')
@@ -1122,7 +1122,7 @@ class GedcomWriter:
         dateobj = event.get_date_object()
         self.print_date("2 DATE",dateobj)
         if event.get_place_handle():
-            place_name = self.db.try_to_find_place_from_handle(event.get_place_handle()).get_title()
+            place_name = self.db.get_place_from_handle(event.get_place_handle()).get_title()
             self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(place_name),'\r',' '))
         if event.get_cause():
             self.writeln("2 CAUS %s" % self.cnvtxt(event.get_cause()))
@@ -1141,7 +1141,7 @@ class GedcomWriter:
         if ord.get_temple():
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
         if ord.get_place_handle():
-            place_name = self.db.try_to_find_place_from_handle(ord.get_place_handle()).get_title()
+            place_name = self.db.get_place_from_handle(ord.get_place_handle()).get_title()
             self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(place_name),'\r',' '))
         if ord.get_status() != 0:
             self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.get_status()]))

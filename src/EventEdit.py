@@ -173,7 +173,7 @@ class EventEditor:
                 if not place_handle:
                     place_name = u""
                 else:
-                    place_name = self.db.try_to_find_place_from_handle(place_handle).get_title()
+                    place_name = self.db.get_place_from_handle(place_handle).get_title()
                 self.place_field.set_text(place_name)
 
             self.date_field.set_text(self.date.get_date())

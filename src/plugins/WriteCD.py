@@ -146,7 +146,7 @@ class PackageWriter:
             return
 
         for obj_id in self.db.get_object_keys():
-            obj = self.db.try_to_find_object_from_handle(obj_id)
+            obj = self.db.get_object_from_handle(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):
@@ -210,7 +210,7 @@ class PackageWriter:
                 self.db.commit_family(p,None)
                 
             for key in self.db.get_person_keys():
-                p = self.db.try_to_find_person_from_handle(key)
+                p = self.db.get_person_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == self.object_handle:
@@ -218,7 +218,7 @@ class PackageWriter:
                 p.set_media_list(nl)
                 self.db.commit_person(p,None)
             for key in self.db.get_source_keys():
-                p = self.db.try_to_find_source_from_handle(key)
+                p = self.db.get_source_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == self.object_handle:
@@ -226,7 +226,7 @@ class PackageWriter:
                 p.set_media_list(nl)
                 self.db.commit_source(p,None)
             for key in self.db.get_place_handle_keys():
-                p = self.db.try_to_find_place_from_handle(key)
+                p = self.db.get_place_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == self.object_handle:
@@ -273,7 +273,7 @@ class PackageWriter:
         # during the process (i.e. when removing object)
 
         for obj_id in self.db.get_object_keys():
-            obj = self.db.try_to_find_object_from_handle(obj_id)
+            obj = self.db.get_object_from_handle(obj_id)
             oldfile = obj.get_path()
             root = os.path.basename(oldfile)
             if os.path.isfile(oldfile):

@@ -69,7 +69,7 @@ class AncestorReport(Report.Report):
             return
         self.map[index] = person_handle
 
-        person = self.database.try_to_find_person_from_handle(person_handle)
+        person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.find_family_from_handle(family_handle)
@@ -105,7 +105,7 @@ class AncestorReport(Report.Report):
 
             self.doc.start_paragraph("AHN-Entry","%s." % str(key))
             person_handle = self.map[key]
-            person = self.database.try_to_find_person_from_handle(person_handle)
+            person = self.database.get_person_from_handle(person_handle)
             name = person.get_primary_name().get_regular_name()
         
             self.doc.start_bold()
@@ -124,7 +124,7 @@ class AncestorReport(Report.Report):
                 date = birth.get_date_object().get_start_date()
                 place_handle = birth.get_place_handle()
                 if place_handle:
-                    place = self.database.try_to_find_place_from_handle(place_handle).get_title()
+                    place = self.database.get_place_from_handle(place_handle).get_title()
                 else:
                     place = u''
                 if place[-1:] == '.':
@@ -159,7 +159,7 @@ class AncestorReport(Report.Report):
                 date = death.get_date_object().get_start_date()
                 place_handle = death.get_place_handle()
                 if place_handle:
-                    place = self.database.try_to_find_place_from_handle(place_handle).get_title()
+                    place = self.database.get_place_from_handle(place_handle).get_title()
                 else:
                     place = u''
                 if place[-1:] == '.':
@@ -204,7 +204,7 @@ class AncestorReport(Report.Report):
                         date = buried.get_date_object().get_start_date()
                         place_handle = buried.get_place_handle()
                         if place_handle:
-                            place = self.database.try_to_find_place_from_handle(place_handle).get_title()
+                            place = self.database.get_place_from_handle(place_handle).get_title()
                         else:
                             place = u''
                         if place[-1:] == '.':
@@ -325,7 +325,7 @@ class AncestorBareReportDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -387,7 +387,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         max_gen = int(options[1])
         pg_brk = int(options[2])
         return AncestorReport(database, person, max_gen, pg_brk, doc, None, newpage )

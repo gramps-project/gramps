@@ -79,8 +79,8 @@ class Sort:
     def by_last_name(self,first_id,second_id):
         """Sort routine for comparing two last names. If last names are equal,
         uses the given name and suffix"""
-        first = self.database.try_to_find_person_from_handle(first_id)
-        second = self.database.try_to_find_person_from_handle(second_id)
+        first = self.database.get_person_from_handle(first_id)
+        second = self.database.get_person_from_handle(second_id)
         
         name1 = first.get_primary_name()
         name2 = second.get_primary_name()
@@ -101,8 +101,8 @@ class Sort:
     def by_birthdate(self,first_id,second_id):
         """Sort routine for comparing two people by birth dates. If the birth dates
         are equal, sorts by name"""
-        first = self.database.try_to_find_person_from_handle(first_id)
-        second = self.database.try_to_find_person_from_handle(second_id)
+        first = self.database.get_person_from_handle(first_id)
+        second = self.database.get_person_from_handle(second_id)
 
         birth_handle1 = first.get_birth_handle()
         if birth_handle1:

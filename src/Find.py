@@ -159,7 +159,7 @@ class FindPerson(FindBase):
             self.list.append(db.get_person_display(val))
 
     def get_value(self,id):
-        return self.db.get_person(id)
+        return self.db.get_person_from_handle(id)
     
 #-------------------------------------------------------------------------
 #

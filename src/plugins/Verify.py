@@ -147,7 +147,7 @@ class Verify:
         warn = cStringIO.StringIO()
 
         for person_handle in personList:
-            person = self.db.try_to_find_person_from_handle(person_handle)
+            person = self.db.get_person_from_handle(person_handle)
             idstr = "%s (%s)" % (person.get_primary_name().get_name(),person_handle)
 
             # individual checks
@@ -278,9 +278,9 @@ class Verify:
                 mother_handle = family.get_mother_handle()
                 father_handle = family.get_father_handle()
                 if mother_handle:
-                    mother = self.db.try_to_find_person_from_handle(mother_handle)
+                    mother = self.db.get_person_from_handle(mother_handle)
                 if father_handle:
-                    father = self.db.try_to_find_person_from_handle(father_handle)
+                    father = self.db.get_person_from_handle(father_handle)
                 if mother_handle and father_handle:
                     if ( mother.get_gender() == father.get_gender() ) and mother.get_gender() != RelLib.Person.unknown:
                         warn.write( _("Homosexual marriage: %s in family %s.\n") % ( idstr, family.get_handle() ) )
@@ -293,7 +293,7 @@ class Verify:
                 else:
                    spouse_id = father_handle
                 if spouse_id:
-                    spouse = self.db.try_to_find_person_from_handle(spouse_id)
+                    spouse = self.db.get_person_from_handle(spouse_id)
                     if person.get_gender() == RelLib.Person.male and \
                            person.get_primary_name().get_surname() == spouse.get_primary_name().get_surname():
                         warn.write( _("Husband and wife with the same surname: %s in family %s, and %s.\n") % (
@@ -323,7 +323,7 @@ class Verify:
                         for child_handle in family.get_child_handle_list():
                             cnum = cnum + 1
                             if maryear == 0:
-                                child = self.db.try_to_find_person_from_handle(child_handle)
+                                child = self.db.get_person_from_handle(child_handle)
                                 birthyear = self.get_year( child.get_birth_handle() )
                             if birthyear > 0:
                                 maryear = birthyear-cnum
@@ -391,7 +391,7 @@ class Verify:
                     cbyears = []
                     for child_handle in family.get_child_handle_list():
                         nkids = nkids+1
-                        child = self.db.try_to_find_person_from_handle(child_handle)
+                        child = self.db.get_person_from_handle(child_handle)
                         cbyear = self.get_year( child.get_birth_handle() )
                         if cbyear:
                             cbyears.append(cbyear)

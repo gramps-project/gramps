@@ -80,7 +80,7 @@ class ChooseParents:
         self.parent = parent
         self.db = db
         self.child_windows = {}
-        self.person = self.db.try_to_find_person_from_handle(person.get_handle())
+        self.person = self.db.get_person_from_handle(person.get_handle())
         if family:
             self.family = self.db.find_family_from_handle(family.get_handle())
         else:
@@ -317,7 +317,7 @@ class ChooseParents:
         self.build_exclude_list()
         
         for pid in self.db.get_person_keys():
-            person = self.db.try_to_find_person_from_handle(pid)
+            person = self.db.get_person_from_handle(pid)
             visible = self.father_filter(person)
             if visible:
                 self.father_nsort.set_visible(pid,visible)
@@ -340,7 +340,7 @@ class ChooseParents:
         self.build_exclude_list()
         
         for pid in self.db.get_person_keys():
-            person = self.db.try_to_find_person_from_handle(pid)
+            person = self.db.get_person_from_handle(pid)
             visible = self.mother_filter(person)
             if visible:
                 self.mother_nsort.set_visible(pid,visible)
@@ -402,11 +402,11 @@ class ChooseParents:
         family.add_child_handle(self.person.get_handle())
 
         if father_handle:
-            self.father = self.db.try_to_find_person_from_handle(father_handle)
+            self.father = self.db.get_person_from_handle(father_handle)
             self.father.add_family_handle(family.get_handle())
             self.db.commit_person(self.father,trans)
         if mother_handle:
-            self.mother = self.db.try_to_find_person_from_handle(mother_handle)
+            self.mother = self.db.get_person_from_handle(mother_handle)
             self.mother.add_family_handle(family.get_handle())
             self.db.commit_person(self.mother,trans)
 
@@ -419,7 +419,7 @@ class ChooseParents:
         
         idlist = self.get_selected_mother_handles()
         if idlist and idlist[0]:
-            self.mother = self.db.get_person(idlist[0])
+            self.mother = self.db.get_person_from_handle(idlist[0])
         else:
             self.mother = None
 
@@ -458,7 +458,7 @@ class ChooseParents:
 
         idlist = self.get_selected_father_handles()
         if idlist and idlist[0]:
-            self.father = self.db.get_person(idlist[0])
+            self.father = self.db.get_person_from_handle(idlist[0])
         else:
             self.father = None
 
@@ -468,7 +468,7 @@ class ChooseParents:
             if len(family_handle_list) >= 1:
                 family = self.db.find_family_from_handle(family_handle_list[0])
                 mother_handle = family.get_mother_handle()
-                mother = self.db.try_to_find_person_from_handle(mother_handle)
+                mother = self.db.get_person_from_handle(mother_handle)
                 sname = mother.get_primary_name().get_surname()
                 tpath = self.mother_nsort.on_get_path(sname)
                 self.mother_list.expand_row(tpath,0)
@@ -482,7 +482,7 @@ class ChooseParents:
 
         idlist = self.get_selected_mother_handles()
         if idlist and idlist[0]:
-            self.mother = self.db.get_person(idlist[0])
+            self.mother = self.db.get_person_from_handle(idlist[0])
         else:
             self.mother = None
 
@@ -492,7 +492,7 @@ class ChooseParents:
             if len(family_handle_list) >= 1:
                 family = self.db.find_family_from_handle(family_handle_list[0])
                 father_handle = family.get_mother_handle()
-                father = self.db.try_to_find_person_from_handle(father_handle)
+                father = self.db.get_person_from_handle(father_handle)
                 sname = father.get_primary_name().get_surname()
                 tpath = self.father_nsort.on_get_path(sname)
                 self.father_list.expand_row(tpath,0)
@@ -656,8 +656,8 @@ class ModifyParents:
         self.family_update = family_update
         self.full_update = full_update
         
-        self.father = self.db.try_to_find_person_from_handle(self.family.get_father_handle())
-        self.mother = self.db.try_to_find_person_from_handle(self.family.get_mother_handle())
+        self.father = self.db.get_person_from_handle(self.family.get_father_handle())
+        self.mother = self.db.get_person_from_handle(self.family.get_mother_handle())
 
         self.glade = gtk.glade.XML(const.gladeFile,"modparents","gramps")
         self.top = self.glade.get_widget("modparents")

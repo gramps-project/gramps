@@ -111,7 +111,7 @@ class AncestorChart:
 
         self.lines = max(self.lines,len(self.text[index]))    
 
-        person = self.database.try_to_find_person_from_handle(person_handle)
+        person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
             family = self.database.find_family_from_handle(family_handle)
@@ -322,7 +322,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -394,7 +394,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         max_gen = int(options[1])
         disp_format = options[2]
         return AncestorChart(database, person, max_gen,

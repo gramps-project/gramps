@@ -164,7 +164,7 @@ class FtreeWriter:
         id_map = {}
         id_name = {}
         for key in self.plist:
-            pn = self.db.get_person(key).get_primary_name()
+            pn = self.db.get_person_from_handle(key).get_primary_name()
             fn = ""
             sn = pn.get_surname()
             items = pn.get_first_name().split()
@@ -191,7 +191,7 @@ class FtreeWriter:
         f = open(filename,"w")
 
         for key in self.plist:
-            p = self.db.get_person(key)
+            p = self.db.get_person_from_handle(key)
             name = id_name[key]
             father = ""
             mother = ""

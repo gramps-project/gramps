@@ -135,7 +135,7 @@ class FamilyGroup:
         if not person_handle:
             return
         
-        person = self.db.try_to_find_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
         
         if person.get_gender() == RelLib.Person.male:
             id = _("Husband")
@@ -160,7 +160,7 @@ class FamilyGroup:
             bdate = birth.get_date()
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
-                bplace = self.db.try_to_find_place_from_handle(bplace_handle).get_title()
+                bplace = self.db.get_place_from_handle(bplace_handle).get_title()
         
         death_handle = person.get_death_handle()
         ddate = ""
@@ -170,7 +170,7 @@ class FamilyGroup:
             ddate = death.get_date()
             dplace_handle = death.get_place_handle()
             if dplace_handle:
-                dplace = self.db.try_to_find_place_from_handle(dplace_handle).get_title()
+                dplace = self.db.get_place_from_handle(dplace_handle).get_title()
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -215,10 +215,10 @@ class FamilyGroup:
             family = self.db.find_family_from_handle(family_handle)
             father_handle = family.get_father_handle() 
             if father_handle:
-                father_name = self.db.try_to_find_person_from_handle(father_handle).get_primary_name().get_regular_name()
+                father_name = self.db.get_person_from_handle(father_handle).get_primary_name().get_regular_name()
             mother_handle = family.get_mother_handle() 
             if mother_handle:
-                mother_name = self.db.try_to_find_person_from_handle(mother_handle).get_primary_name().get_regular_name()
+                mother_name = self.db.get_person_from_handle(mother_handle).get_primary_name().get_regular_name()
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")
@@ -255,7 +255,7 @@ class FamilyGroup:
             date = event.get_date()
             place_handle = event.get_place_handle()
             if place_handle:
-                place = self.db.try_to_find_place_from_handle(place_handle).get_title()
+                place = self.db.get_place_from_handle(place_handle).get_title()
 
         self.doc.start_row()
         self.doc.start_cell(text)
@@ -281,7 +281,7 @@ class FamilyGroup:
         
     def dump_child(self,index,person_handle):
 
-        person = self.db.try_to_find_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
         self.doc.start_row()
         self.doc.start_cell('FGR-TextChild1')
         self.doc.start_paragraph('FGR-ChildText')
@@ -344,7 +344,7 @@ class FamilyGroup:
             self.doc.start_cell('FGR-TextContentsEnd',2)
             self.doc.start_paragraph('FGR-Normal')
             if spouse_id:
-                spouse = self.db.try_to_find_person_from_handle(spouse_id)
+                spouse = self.db.get_person_from_handle(spouse_id)
                 self.doc.write_text(spouse.get_primary_name().get_regular_name())
             self.doc.end_paragraph()
             self.doc.end_cell()
@@ -499,7 +499,7 @@ class FamilyGroupBareDialog(Report.BareReportDialog):
         self.options = opt
         self.db = database
         if self.options[0]:
-            self.person = self.db.get_person(self.options[0])
+            self.person = self.db.get_person_from_handle(self.options[0])
         else:
             self.person = person
         self.style_name = stl
@@ -617,7 +617,7 @@ def write_book_item(database,person,doc,options,newpage=0):
     All user dialog has already been handled and the output file opened."""
     try:
         if options[0]:
-            person = database.get_person(options[0])
+            person = database.get_person_from_handle(options[0])
         spouse_name = options[1]
         spouse_map = _build_spouse_map(database,person)
         if spouse_map:
@@ -704,7 +704,7 @@ def _build_spouse_map(database,person):
         else:
             spouse_id = family.get_father_handle()
         if spouse_id:
-            spouse = database.try_to_find_person_from_handle(spouse_id)
+            spouse = database.get_person_from_handle(spouse_id)
             name = spouse.get_primary_name().get_name()
         else:
             name= _("unknown")
