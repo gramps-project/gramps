@@ -38,7 +38,6 @@ from intl import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -51,10 +50,9 @@ import const
 import Utils
 import GrampsCfg
 import ListModel
-
+import Date
 
 _titles = [(_('Name'),3,200),(_('ID'),1,50),(_('Birth Date'),4,50),('',0,50),('',0,0)]
-
 
 #-------------------------------------------------------------------------
 #
@@ -83,7 +81,9 @@ class ChooseParents:
         self.full_update = full_update
         self.old_type = ""
         self.type = ""
-        
+
+        self.date = person.getBirth().getDateObj()
+
         if self.family:
             self.father = self.family.getFather()
             self.mother = self.family.getMother()
@@ -102,8 +102,9 @@ class ChooseParents:
         self.mother_list = self.glade.get_widget("mother_list")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
+        self.showall = self.glade.get_widget('showall')
+        
         self.fcombo.set_popdown_strings(const.familyRelations)
-
 
         self.fmodel = ListModel.ListModel(self.father_list, _titles,
                                           self.father_list_select_row)
@@ -132,6 +133,7 @@ class ChooseParents:
             "on_save_parents_clicked"  : self.save_parents_clicked,
             "on_add_parent_clicked"    : self.add_parent_clicked,
             "on_prel_changed"          : self.parent_relation_changed,
+            "on_showall_toggled"       : self.showall_toggled,
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
@@ -155,12 +157,18 @@ class ChooseParents:
         else:
             mid = None
             
+        compare = self.date.isValid() and not self.showall.get_active()
+            
         for key in self.db.getPersonKeys():
             if pkey == key:
                 continue
             if gender == const.unknown:
                 continue
 
+            p = self.db.getPerson(key)
+            if compare and self.not_likely(p):
+                continue
+                
             d = self.db.getPersonDisplay(key)
             info = [d[0],d[1],d[3],d[5],d[6]]
             if self.type == "Partners":
@@ -178,12 +186,25 @@ class ChooseParents:
             self.mlabel.set_label(_("Mother"))
             self.flabel.set_label(_("Father"))
 
+    def not_likely(self,person):
+        """
+        Rough attempt to eliminate a few non-realistic relationships. If the person
+        was born after the primary person, he or she can't be a parent.
+        """
+        bdate = person.getBirth().getDateObj()
+        if bdate.isValid() and Date.compare_dates(self.date,bdate) < 1:
+            return 1
+        return 0
+
     def parent_relation_changed(self,obj):
         """Called everytime the parent relationship information is changegd"""
         self.old_type = self.type
         self.type = const.save_frel(obj.get_text())
         if self.old_type == "Partners" or self.type == "Partners":
             self.redraw()
+
+    def showall_toggled(self,obj):
+        self.redraw()
         
     def find_family(self,father,mother):
         """
