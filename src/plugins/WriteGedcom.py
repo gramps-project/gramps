@@ -630,11 +630,10 @@ class GedcomWriter:
             if owner.getCountry():
                 self.writeln("2 CONT %s" % self.cnvtxt(owner.getCountry()))
                 cnt = 1
-            if owner.getPhone():
-                self.writeln("2 PHON %s" % self.cnvtxt(owner.getPhone()))
-                cnt = 1
             if cnt == 0:
                 self.writeln('2 CONT Not Provided')
+            if owner.getPhone():
+                self.writeln("1 PHON %s" % self.cnvtxt(owner.getPhone()))
         else:
             self.writeln('1 ADDR Not Provided')
             self.writeln('2 CONT Not Provided')
@@ -933,12 +932,15 @@ class GedcomWriter:
                         self.writeln("3 POST %s" % self.cnvtxt(addr.getPostal()))
                     if addr.getCountry():
                         self.writeln("3 CTRY %s" % self.cnvtxt(addr.getCountry()))
+                    if addr.getPhone():
+                        self.writeln("2 PHON %s" % self.cnvtxt(addr.getPhone()))
                 else:
                     text = addr.getStreet()
                     text = addr_append(text,addr.getCity())
                     text = addr_append(text,addr.getState())
                     text = addr_append(text,addr.getPostal())
                     text = addr_append(text,addr.getCountry())
+                    text = addr_append(text,addr.getPhone())
                     if text:
                         self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(text),'\r',' '))
                 if addr.getNote():
