@@ -46,10 +46,12 @@ http://gramps.sourceforge.net/help.html
 (*) More precisely, they are installed in ${prefix}/share/gnome/help, where
 ${prefix} is given by the --prefix= option to configure.  If this is
 different from where your standard GNOME installation looks for help files
-and documentation, then set your GNOMEDIR environment variable to this path
-before starting gramps. For example,
-in tcsh: setenv GNOMEDIR /usr/local/share/gnome/help
-in bash: GNOMEDIR=/usr/local/share/gnome/help ; export GNOMEDIR
+and documentation, then set your GNOMEDIR environment variable to the
+${prefix} path before starting gramps. For example, if you are installing
+gramps in /usr/local/, then type the following:
+in tcsh: setenv GNOMEDIR /usr/local/
+in bash: GNOMEDIR=/usr/local/ ; export GNOMEDIR
+
 
 Building on non-Linux systems: i18n support and GNU make
 --------------------------------------------------------
