@@ -50,6 +50,7 @@ class PedigreeView:
         self.sb = status_bar
         self.change_active_person = change_active
         self.load_person = lp
+        self.presel_descendants = []
 
     def load_canvas(self,person):
         """Redraws the pedigree view window, using the passed person
@@ -58,7 +59,9 @@ class PedigreeView:
         for i in self.canvas_items:
             i.destroy()
 
-	self.active_person = person
+        if person is not self.active_person:
+            del self.presel_descendants[:]
+            self.active_person = person
         if person == None:
             return
 
@@ -100,11 +103,12 @@ class PedigreeView:
             xdiv = 3.0
 
         xpts = self.build_x_coords(cw/xdiv,cpad)
-        ypts = self.build_y_coords(ch/32.0)
+        ypts = self.build_y_coords((ch - h)/32.0, h)
 
         for family in self.active_person.getFamilyList():
             if len(family.getChildList()) > 0:
-                button,arrow = self.make_arrow_button(GTK.ARROW_LEFT,self.on_show_child_menu)
+                button,arrow = self.make_arrow_button(GTK.ARROW_LEFT,
+                                                      self.on_show_child_menu)
                 item = self.root.add("widget", widget=button,
                                      x=x1, y=ypts[0]+(h/2.0), 
                                      height=h, width=h,
@@ -121,6 +125,15 @@ class PedigreeView:
         if list[2]:
             p = list[2]
             self.add_parent_button(p[0],x2-_PAD,ypts[2],h)
+
+        gen_no = len(self.presel_descendants) + 1
+        for i in range(int(xdiv)):
+            item = self.root.add("text", x=(cw*i/xdiv + cpad), y=h,
+                                 text=str(gen_no),
+                                 font_gdk=style.font,
+                                 anchor=GTK.ANCHOR_WEST)
+            self.canvas_items.append(item)
+            gen_no = gen_no + 1
 
         for i in range(gen):
             if list[i]:
@@ -151,11 +164,17 @@ class PedigreeView:
         return (button, arrow)
 
     def on_show_child_menu(self,obj):
-        """Build and display the menu attached to the left pointing arrow
-           button. The menu consists of the children of the current root
-           person of the tree. Attach a child to each menu item."""
+        """User clicked button to move to child of active person"""
 
-        if self.active_person:
+        if self.presel_descendants:
+            # Go to a previously selected child.
+            person = self.presel_descendants.pop(-1)
+            self.active_person = person
+            self.load_canvas(person)
+        elif self.active_person:
+            # Build and display the menu attached to the left pointing arrow
+            # button. The menu consists of the children of the current root
+            # person of the tree. Attach a child to each menu item.
             myMenu = gtk.GtkMenu()
             for family in self.active_person.getFamilyList():
                 for child in family.getChildList():
@@ -195,7 +214,11 @@ class PedigreeView:
         """Callback to right pointing arrow button. Gets the person
            attached to the button and change the root person to that
            person, redrawing the view."""
-        self.load_canvas(obj.get_data(_PERSON))
+        person = obj.get_data(_PERSON)
+        if self.active_person:
+            self.presel_descendants.append(self.active_person)
+            self.active_person = person
+        self.load_canvas(person)
     
     def draw_canvas_line(self,x1,y1,x2,y2,h,w,data,style,ls):
         """Draw an two segment line between the x,y point pairs. Attach
@@ -216,13 +239,14 @@ class PedigreeView:
         return [cpad] + [x+cpad]*2 + [x*2+cpad]*4 + \
                [x*3+cpad]*8 + [x*4+cpad]*16
 
-    def build_y_coords(self,y):
+    def build_y_coords(self, y, top_pad):
         """Build the array of y coordinates for the possible positions
            on the pedegree view."""
-        return [ y*16, y*8,  y*24, y*4,  y*12, y*20, y*28, y*2,  
-                 y*6,  y*10, y*14, y*18, y*22, y*26, y*30, y,    
-                 y*3,  y*5,  y*7,  y*9,  y*11, y*13, y*15, y*17, 
-                 y*19, y*21, y*23, y*25, y*27, y*29, y*31]
+        res = [ y*16, y*8,  y*24, y*4,  y*12, y*20, y*28, y*2,  
+                y*6,  y*10, y*14, y*18, y*22, y*26, y*30, y,    
+                y*3,  y*5,  y*7,  y*9,  y*11, y*13, y*15, y*17, 
+                y*19, y*21, y*23, y*25, y*27, y*29, y*31 ]
+        return map(lambda coord, top_pad=top_pad: coord + top_pad, res)
     
     def add_box(self,x,y,bwidth,bheight,person,style):
         """Draw a box of the specified size at the specified location.
@@ -270,6 +294,7 @@ class PedigreeView:
                 person = obj.get_data(_PERSON)
                 if (event.state & GDK.SHIFT_MASK) or (event.state & GDK.CONTROL_MASK):
                     self.change_active_person(person)
+                    del self.presel_descendants[:]
                     self.load_canvas(person)
                 else:
                     self.load_person(person)

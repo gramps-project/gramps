@@ -1241,7 +1241,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button86</name>
-	      <tooltip>Creates a new event from the above data</tooltip>
+	      <tooltip>Creates a new object attribute from the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1257,7 +1257,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button87</name>
-	      <tooltip>Updates the selected event with the above data</tooltip>
+	      <tooltip>Updates the selected object attribute with the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1273,7 +1273,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button88</name>
-	      <tooltip>Delete the selected event</tooltip>
+	      <tooltip>Delete the selected attribute</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1840,6 +1840,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>makelocal</name>
+	      <tooltip>Copies the object into the database</tooltip>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>clicked</name>
@@ -2241,7 +2242,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button93</name>
-	      <tooltip>Creates a new event from the above data</tooltip>
+	      <tooltip>Creates a new attribute from the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -2257,7 +2258,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button94</name>
-	      <tooltip>Updates the selected event with the above data</tooltip>
+	      <tooltip>Updates the selected attribute with the above data</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -2273,7 +2274,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button95</name>
-	      <tooltip>Delete the selected event</tooltip>
+	      <tooltip>Delete the selected attribute</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>

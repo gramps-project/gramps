@@ -65,56 +65,64 @@ try:
     import OpenOfficeDoc
     _textdoc.append((_OpenOffice, _has_tables, _paper, _styles))
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import OpenDrawDoc
     _drawdoc.append(_OpenOffice)
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import AbiWordDoc
     _textdoc.append((_AbiWord, _no_tables, _paper, _styles))
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import PdfDoc
     _textdoc.append((_PDF, _has_tables, _paper, _styles))
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import PdfDrawDoc
     _drawdoc.append(_PDF)
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import HtmlDoc
     _textdoc.append((_HTML, _has_tables, _template, _styles))
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import KwordDoc
     _textdoc.append((_KWord, _no_tables, _paper, _styles))
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import RTFDoc
     _textdoc.append((_RTF, _has_tables, _paper, _styles))
 except:
-    pass
+    import traceback
+    traceback.print_exc()
 
 try:
     import LaTeXDoc
     _textdoc.append((_LATEX, _no_tables, _paper, _no_styles))
 except:
-    pass
-
+    import traceback
+    traceback.print_exc()
 
 #-------------------------------------------------------------------------
 #

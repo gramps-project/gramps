@@ -251,7 +251,10 @@ class Gallery(ImageSelect):
         name = utils.thumb_path(self.db.getSavePath(),object)
         thumb = GdkImlib.Image(name)
         self.icon_cache.append(thumb)
-        self.icon_list.append_imlib(thumb,object.getDescription())
+        description = object.getDescription()
+        if len(description) > 50:
+            description = "%s..." % description[0:50]
+        self.icon_list.append_imlib(thumb,description)
         
     #-------------------------------------------------------------------------
     #

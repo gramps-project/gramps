@@ -584,7 +584,7 @@
       reference in the gallery adding some specific information, such
       as &quot;Aunt Martha is the third person from the right in the
       second row&quot;. Clicking the <guibutton>Edit
-      Properites</guibutton> allows you to edit the local properties.
+      Properties</guibutton> allows you to edit the local properties.
       </para>
       <figure id="localmedia">
         <title>Local Media Properties</title>
@@ -870,7 +870,7 @@
     screen, or by choosing the
       <menuchoice>
         <guimenu>View</guimenu>
-        <guimenuitem>Pedgree</guimenuitem> 
+        <guimenuitem>Pedigree</guimenuitem> 
       </menuchoice>
     entry from the menus.
     </para>
@@ -920,7 +920,7 @@
     person. <xref linkend="navfigure-fig"> shows navigation using this
     method. When the mouse is over one of the lines connecting
     individuals, the line widens and becomes highlighted. In this
-    case, double clcking on the line would make Hjalmar Smith the
+    case, double clicking on the line would make Hjalmar Smith the
     active person.
     </para>
   </sect1>
@@ -1009,7 +1009,7 @@
       Media objects can be either local or external to a
       <application>GRAMPS</application> database. If
       <application>GRAMPS</application> is told to import an object as
-      alocal object, it will make its own copy of the file in the
+      a local object, it will make its own copy of the file in the
       database directory. If the object is not imported as a local
       object, the original file is used.
       </para>
@@ -1036,8 +1036,8 @@
       Objects may also be added using the <guibutton>Add Media
       Object</guibutton> button. This will add the object to the Media
       View, but not to any gallery. When you select the file to be
-      added, a preview will be displayed in the preview window. The
-      the file is an image, the image will be displayed. Otherwise, an
+      added, a preview will be displayed in the preview window. If the
+      file is an image, the image will be displayed. Otherwise, an
       icon representing the file type will be displayed. In the dialog
       box, you may choose to either import the object as a local
       object, or leave it as an external object.
@@ -1141,7 +1141,7 @@
       Bookmarks work similar to bookmarks in HTML browsers.  They
       allow you to quickly jump to a person, making that person the
       active person. This allows you to avoid searching for them
-      everytime you want to add/change something in their information.
+      every time you want to add/change something in their information.
       </para>
       <figure id="gotobookmark">
         <title>Using Bookmarks</title>
@@ -1205,7 +1205,7 @@
     <application>RCS</application> system to handle revisions.
     </para>
     <para>
-    Revison control is enabled in the Revision Control tab of the
+    Revision control is enabled in the Revision Control tab of the
     preferences dialog. Once enabled, every save is logged into the
     revision control database. If you have enabled prompting for a
     comment, then a dialog box will be displayed on every save asking
@@ -1239,7 +1239,7 @@
       will display a dialog box that will allow you to choose which version 
       you would like to view. The dialog box displays the version number, the
       date the version was saved, who saved the database, and any comment supplied 
-      when the datbase was saved.
+      when the database was saved.
       <figure id="revcontrol">
         <title>Choosing a revision</title>
         <screenshot>
@@ -1254,7 +1254,7 @@
       database. If you do not save the retrieved database, it will not
       replace the current version. If for some reason you accidentally
       save the retrieved database when you did not want to replace the
-      current version, you can always use the revison control
+      current version, you can always use the revision control
       mechanism to get back the version you replaced.
       </para>
       <para>
@@ -1308,7 +1308,7 @@
           <listitem>
             <para>
 	    <application>GRAMPS</application> normally compresses its
-	    data file to conserve disk space. If you do not whish to
+	    data file to conserve disk space. If you do not wish to
 	    have the file compressed, selecting this option will cause
 	    <application>GRAMPS</application> to leave the file
 	    uncompressed.  This may be desirable if other applications
@@ -1340,7 +1340,7 @@
           <listitem>
             <para>
 	    This option allows advanced users to edit the internal
-	    <application>GRAMPS</application> indentification strings
+	    <application>GRAMPS</application> identification strings
 	    for certain entries.
 	    </para>
           </listitem>
@@ -1369,7 +1369,7 @@
       </figure>
       <para>
       The <interface>Formats</interface> tab allows you to change the
-      display formats of several different typs of data. This includes
+      display formats of several different types of data. This includes
       dates and names.
       </para>
       <variablelist>
@@ -1552,7 +1552,7 @@
     Selecting one of those options you can then change the font (font
     face, size, color, and options) for each Paragraph Style along
     with the Paragraph Options (Alignment, background color, margins,
-    and dorders).  Once you are satisfied with the style you are ready
+    and borders).  Once you are satisfied with the style you are ready
     to proceed with the generation of your report.  The next step is
     to choose the options (if any for that specific report) and then
     Choose the Template (for HTML format only) and click OK.  Your
@@ -1742,7 +1742,7 @@ appear in every GRAMPS generated file.
         <term>Relationship calculator</term>
 	<listitem>
 	  <para>
-	  Calulates the relationship between two people.
+	  Calculates the relationship between two people.
 	  </para>
 	</listitem>
       </varlistentry>

@@ -20,7 +20,7 @@
     <handler>on_delete_event</handler>
     <last_modification_time>Fri, 03 Aug 2001 22:30:26 GMT</last_modification_time>
   </signal>
-  <title>Gramps - Marriage/Relationship Editor</title>
+  <title>Marriage/Relationship Editor - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -63,6 +63,7 @@
       <widget>
 	<class>GtkButton</class>
 	<name>button107</name>
+	<tooltip>Accept and close</tooltip>
 	<can_default>True</can_default>
 	<has_default>True</has_default>
 	<can_focus>True</can_focus>
@@ -78,6 +79,7 @@
       <widget>
 	<class>GtkButton</class>
 	<name>button108</name>
+	<tooltip>Reject changes and close</tooltip>
 	<can_default>True</can_default>
 	<can_focus>True</can_focus>
 	<signal>
@@ -892,6 +894,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>marriageAddBtn</name>
+	      <tooltip>Add new event for this marriage</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -907,6 +910,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>marriageUpdateBtn</name>
+	      <tooltip>Modify the selected event</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -922,6 +926,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>marriageDeleteBtn</name>
+	      <tooltip>Delete selected event</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1300,6 +1305,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button103</name>
+	      <tooltip>Create a new attribute for this marriage</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1315,6 +1321,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button104</name>
+	      <tooltip>Modify the selected attribute</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1330,6 +1337,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button105</name>
+	      <tooltip>Delete the selected attribute</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1457,6 +1465,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button100</name>
+	      <tooltip>Place new media object in this gallery</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1472,6 +1481,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button101</name>
+	      <tooltip>Remove selected object from this gallery only</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
@@ -1487,6 +1497,7 @@
 	    <widget>
 	      <class>GtkButton</class>
 	      <name>button109</name>
+	      <tooltip>Modify selected object</tooltip>
 	      <can_default>True</can_default>
 	      <can_focus>True</can_focus>
 	      <signal>
