@@ -817,7 +817,7 @@ class GedcomWriter:
         index = 0.0
         for key in self.slist.keys():
             source = self.db.get_source_from_handle(key)
-            self.writeln("0 @%s@ SOUR" % self.sid(source.get_handle()))
+            self.writeln("0 @%s@ SOUR" % self.sid(source.get_gramps_id()))
             if source.get_title():
                 self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.get_title()),248,1,self.nl))
             if source.get_author():
@@ -912,7 +912,7 @@ class GedcomWriter:
                             fam = f[0]
                             break
                     if fam:
-                        self.writeln('2 FAMC @%s@' % self.fid(fam.get_handle()))
+                        self.writeln('2 FAMC @%s@' % self.fid(fam.get_gramps_id()))
                         if mrel == frel:
                             self.writeln('3 ADOP BOTH')
                         elif mrel == "adopted":
@@ -938,7 +938,7 @@ class GedcomWriter:
                         fam = f[0]
                         break
                 if fam:
-                    self.writeln('2 FAMC @%s@' % self.fid(fam.get_handle()))
+                    self.writeln('2 FAMC @%s@' % self.fid(fam.get_gramps_id()))
                     if mrel == frel:
                         self.writeln('3 ADOP BOTH')
                     elif mrel == "adopted":
@@ -1137,7 +1137,7 @@ class GedcomWriter:
         self.writeln('%d %s' % (index,name))
         self.print_date("%d DATE" % (index + 1), ord.get_date_object())
         if ord.get_family_handle():
-            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.get_family_handle().get_handle())))
+            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.get_family_handle().get_gramps_id())))
         if ord.get_temple():
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
         if ord.get_place_handle():
