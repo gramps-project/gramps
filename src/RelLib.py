@@ -551,7 +551,7 @@ class Person(PrimaryObject,SourceNote):
         max_age_difference = 60
         def descendants_too_old (person, years):
             for family_handle in person.get_family_handle_list():
-                family = db.find_family_from_handle(family_handle)
+                family = db.get_family_from_handle(family_handle)
                 for child_handle in family.get_child_handle_list():
                     child = db.get_person_from_handle(child_handle)
                     if child.birth_handle:

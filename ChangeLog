@@ -1,4 +1,6 @@
 2004-08-19  Tim Waugh  <twaugh@redhat.com>
+	* src/RelLib.py (probably_alive): Use get_family_from_handle instead
+	of find_family_from_handle.
 	* src/WriteGedcom.py (get_persons_sources): Remove extra calls to
 	get_handle() to prevent traceback.
 	* src/gramps_main.py (import_tool_callback): Set home person.
