@@ -273,19 +273,20 @@ class PeopleModel(gtk.GenericTreeModel):
         return data[_NAME_COL].get_sort_name()
 
     def column_spouse(self,data):
-        id = data[0]
-        if data[_FAMILY_COL]:
-            fid = data[_FAMILY_COL][0]
-        else:
-            return u""
-        d2 = self.db.family_map.get(str(fid))
-        if fid and d2 :
-            if d2[1] == id:
-                return self.db.person_map.get(str(d2[2]))[_NAME_COL].get_name()
-            else:
-                return self.db.person_map.get(str(d2[1]))[_NAME_COL].get_name()
-        else:
-            return u""
+	spouses_names = u""
+        handle = data[0]
+        for family_handle in data[_FAMILY_COL]:
+            family = self.db.get_family_from_handle(family_handle)
+            for spouse_id in [family.get_father_handle(), family.get_mother_handle()]:
+                if not spouse_id:
+                    continue
+                if spouse_id == handle:
+                    continue
+                spouse = self.db.get_person_from_handle(spouse_id)
+                if len(spouses_names) > 0:
+                    spouses_names += ", "
+                spouses_names += spouse.get_primary_name().get_regular_name()
+	return spouses_names
 
     def column_name(self,data):
         return data[_NAME_COL].get_name()
