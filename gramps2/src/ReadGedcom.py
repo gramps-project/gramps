@@ -360,6 +360,10 @@ class GedcomParser:
         
         if os.path.isfile(fullname):
             return (1,fullname)
+        other = os.path.join(altpath,fullname)
+        tries.append(other)
+        if os.path.isfile(other):
+            return (1,other)
         other = os.path.join(altpath,os.path.basename(fullname))
         tries.append(other)
         if os.path.isfile(other):
@@ -1071,7 +1075,7 @@ class GedcomParser:
     def parse_person_object(self,level):
         form = ""
         filename = ""
-        title = ""
+        title = "no title"
         note = ""
         while 1:
             matches = self.get_next()
@@ -1109,6 +1113,7 @@ class GedcomParser:
                 photo.set_description(title)
                 photo.set_mime_type(Utils.get_mime_type(path))
                 self.db.add_object(photo, self.trans)
+                self.db.set_thumbnail_image(photo.get_handle(),path)
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
                 self.person.add_media_reference(oref)
