@@ -65,12 +65,13 @@ _ = gettext
 #-------------------------------------------------------------------------
 class ImageSelect:
 
-    def __init__(self, path, db):
+    def __init__(self, path, db, parent):
         """Creates an edit window.  Associates a person with the window."""
-        self.path        = path;
-        self.db          = db
-        self.dataobj     = None
-        self.icon_cache  = []
+        self.path       = path;
+        self.db         = db
+        self.dataobj    = None
+        self.icon_cache = []
+        self.parent     =  parent
 
     def add_thumbnail(self, photo):
         "should be overrridden"
@@ -169,7 +170,7 @@ class ImageSelect:
                     mobj.setLocal(1)
             mobj.setPath(name)
             
-        Utils.modified()
+        self.parent.lists_changed = 1
         Utils.destroy_passed_object(obj)
         self.load_images()
 
@@ -185,8 +186,8 @@ class ImageSelect:
 #
 #-------------------------------------------------------------------------
 class Gallery(ImageSelect):
-    def __init__(self, dataobj, path, icon_list, db):
-        ImageSelect.__init__(self, path, db)
+    def __init__(self, dataobj, path, icon_list, db, parent):
+        ImageSelect.__init__(self, path, db, parent)
 
         t = [
             ('STRING', 0, 0),
@@ -272,8 +273,9 @@ class Gallery(ImageSelect):
                     name = RelImage.import_media_object(name,self.path,photo.getId())
                     photo.setPath(name)
                     photo.setLocal(1)
-                Utils.modified()
+                self.parent.lists_changed = 1
                 if GrampsCfg.globalprop:
+                    Utils.modified()
                     GlobalMediaProperties(self.db,photo,None)
             elif protocol != "":
                 import urllib
@@ -305,8 +307,9 @@ class Gallery(ImageSelect):
                     w.drag_finish(context, 1, 0, time)
                     return
                 self.add_thumbnail(oref)
-                Utils.modified()
+                self.parent.lists_changed = 1
                 if GrampsCfg.globalprop:
+                    Utils.modified()
                     GlobalMediaProperties(self.db,photo,None)
             else:
                 if self.db.getObjectMap().has_key(data.data):
@@ -328,6 +331,7 @@ class Gallery(ImageSelect):
                                     nl = nl[0:icon_index] + [item] + nl[icon_index:]
                                 self.dataobj.setPhotoList(nl)
                                 Utils.modified()
+                                self.parent.lists_changed = 1
                                 self.load_images()
                                 return
                         index = index + 1
@@ -335,6 +339,7 @@ class Gallery(ImageSelect):
                     oref.setReference(self.db.findObjectNoMap(data.data))
                     self.dataobj.addPhoto(oref)
                     self.add_thumbnail(oref)
+                    self.parent.lists_changed = 1
                     if GrampsCfg.globalprop:
                         LocalMediaProperties(oref,self.path)
                     Utils.modified()
@@ -361,7 +366,10 @@ class Gallery(ImageSelect):
         icon = self.selectedIcon
         if icon != -1:
             self.icon_list.remove(icon)
-            del self.dataobj.getPhotoList()[icon]
+            list = self.dataobj.getPhotoList()
+            del list[icon]
+            self.dataobj.setPhotoList(list)
+            self.parent.lists_changed = 1
             if len(self.dataobj.getPhotoList()) == 0:
                 self.selectedIcon = -1
             else:
@@ -498,9 +506,11 @@ class LocalMediaProperties:
         if text != note or priv != self.photo.getPrivacy():
             self.photo.setNote(text)
             self.photo.setPrivacy(priv)
+            self.parent.lists_changed = 1
             Utils.modified()
         if self.lists_changed:
             self.photo.setAttributeList(self.alist)
+            self.parent.lists_changed = 1
             Utils.modified()
 
     def on_ok_clicked(self, obj):
@@ -673,9 +683,11 @@ class GlobalMediaProperties:
         if text != note or desc != self.object.getDescription():
             self.object.setNote(text)
             self.object.setDescription(desc)
+            self.parent.lists_changed = 1
             Utils.modified()
         if self.lists_changed:
             self.object.setAttributeList(self.alist)
+            self.parent.lists_changed = 1
             Utils.modified()
         if self.update != None:
             self.update()

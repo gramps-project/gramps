@@ -94,7 +94,7 @@ class EditPerson:
         self.load_obj = None
         self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
         gwidget = self.top.get_widget("photolist")
-        self.gallery = ImageSelect.Gallery(person, self.path, gwidget, self.db)
+        self.gallery = ImageSelect.Gallery(person, self.path, gwidget, self.db, self)
 
         self.name_update_btn = self.top.get_widget('aka_update')
         self.name_delete_btn = self.top.get_widget('aka_delete')
@@ -780,12 +780,8 @@ class EditPerson:
         text = self.notes_field.get_chars(0,-1)
         idval = self.gid.get_text()
 
-#        self.pmap = {}
-#        for key in db.getPlaceKeys():
-#            p = db.getPlaceDisplay(key)
-#            self.pmap[p[0]] = key
-
         changed = 0
+        print self.lists_changed
         name = self.person.getPrimaryName()
 
         if self.person.getId() != idval:
