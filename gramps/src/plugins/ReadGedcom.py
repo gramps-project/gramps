@@ -21,6 +21,7 @@
 "Import from GEDCOM"
 
 from RelLib import *
+import Date
 import latin_ansel
 import latin_utf8 
 import intl
@@ -67,6 +68,8 @@ for val in const.familyConstantEvents.keys():
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
+calRegexp = re.compile(r"\s*@#D([^@]+)@\s*(.*)$")
+fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 
 #-------------------------------------------------------------------------
 #
@@ -558,8 +561,6 @@ class GedcomParser:
                 addr.setStreet(matches[2] + self.parse_continue_data(2))
                 self.parse_address(addr,2)
                 self.person.addAddress(addr)
-#	    elif matches[1] == "TITL":
-#                self.person.getPrimaryName().setTitle(matches[2])
 	    elif matches[1] == "BIRT":
                 event = Event()
                 if self.person.getBirth().getDate() != "" or \
@@ -789,7 +790,7 @@ class GedcomParser:
                 self.backup()
                 return 
             elif matches[1] == "DATE":
-                address.setDate(matches[2])
+                address.setDateObj(self.extract_date(matches[2]))
 	    elif matches[1] == "ADDR":
                 address.setStreet(matches[2] + self.parse_continue_data(2))
                 self.parse_address(address,level+1)
@@ -864,7 +865,8 @@ class GedcomParser:
                         name = matches[2]
                     event.setName(name)
             elif matches[1] == "DATE":
-                event.setDate(matches[2])
+                foo = self.extract_date(matches[2])
+                event.setDateObj(foo)
             elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
@@ -927,7 +929,7 @@ class GedcomParser:
                 self.backup()
                 break
             elif matches[1] == "DATE":
-                event.setDate(matches[2])
+                event.setDateObj(self.extract_date(matches[2]))
             elif matches[1] == ["TIME","ADDR","AGE","AGNC","STAT","TEMP","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
@@ -1070,7 +1072,7 @@ class GedcomParser:
                     except:
                         event.setName(matches[2])
             elif matches[1] == "DATE":
-                event.setDate(matches[2])
+                event.setDateObj(self.extract_date(matches[2]))
             elif matches[1] == ["TIME","AGE","AGNC","CAUS","ADDR","STAT","TEMP","HUSB","WIFE","OBJE"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
@@ -1126,7 +1128,7 @@ class GedcomParser:
                 source.setPage(matches[2] + self.parse_continue_data(level+1))
             elif matches[1] == "DATA":
                 date,text = self.parse_source_data(level+1)
-                d = Date()
+                d = Date.Date()
                 d.set(date)
                 source.setDate(d)
                 source.setText(text)
@@ -1407,6 +1409,39 @@ class GedcomParser:
                 date.time = matches[2]
             else:
 	        self.barf(level+1)
+
+    def extract_date(self,text):
+        dateobj = Date.Date()
+        match = fromtoRegexp.match(text)
+        if match:
+            (cal1,data1,cal2,data2) = match.groups()
+            if cal1 != cal2:
+                pass
+
+            if cal1 == "FRENCH R":
+                dateobj.set_calendar(Date.FRENCH)
+            elif cal1 == "JULIAN":
+                dateobj.set_calendar(Date.JULIAN)
+            elif cal1 == "HEBREW":
+                dateobj.set_calendar(Date.HEBREW)
+            dateobj.get_start_date().set(data1)
+            dateobj.get_stop_date().set(data2)
+            dateobj.set_range(1)
+            return dateobj
+        
+        match = calRegexp.match(text)
+        if match:
+            (cal,data) = match.groups()
+            if cal == "FRENCH R":
+                dateobj.set_calendar(Date.FRENCH)
+            elif cal == "JULIAN":
+                dateobj.set_calendar(Date.JULIAN)
+            elif cal == "HEBREW":
+                dateobj.set_calendar(Date.HEBREW)
+            dateobj.set(data)
+        else:
+            dateobj.set(text)
+        return dateobj
 
 #-------------------------------------------------------------------------
 #
