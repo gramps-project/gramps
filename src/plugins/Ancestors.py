@@ -117,7 +117,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         self.doc.end_paragraph()
 
         self.doc.start_paragraph ("AR-Heading")
-        self.doc.write_text ("Generation 1")
+        self.doc.write_text (_("Generation 1"))
         self.doc.end_paragraph ()
 
         self.write_paragraphs (self.person (self.start, suppress_children = 1,
@@ -128,7 +128,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         if len (self.sources) > 0:
             self.doc.start_paragraph ("AR-Heading")
-            self.doc.write_text ("Sources")
+            self.doc.write_text (_("Sources"))
             self.doc.end_paragraph ()
 
             i = 1
@@ -188,7 +188,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         children = family.getChildList ()
         if len (children):
             ret.append ((self.doc.start_paragraph, ['AR-ChildTitle']))
-            ret.append ((self.doc.write_text, ['Their children:']))
+            ret.append ((self.doc.write_text, [_('Their children:')]))
             ret.append ((self.doc.end_paragraph, []))
 
             for child in children:
@@ -322,7 +322,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 if len (photos) == 0:
                     ret.append ((self.doc.start_cell, ["AR-NoPhoto"]))
                     ret.append ((self.doc.start_paragraph, ["AR-NoPhotoText"]))
-                    ret.append ((self.doc.write_text, ["(no photo)"]))
+                    ret.append ((self.doc.write_text, [_("(no photo)")]))
                     ret.append ((self.doc.end_paragraph, []))
                     ret.append ((self.doc.end_cell, []))
                 else:
@@ -336,7 +336,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                 ret.append ((self.doc.start_paragraph, ["AR-Entry"]))
                 ret.append ((self.doc.write_text, [name]))
                 if short_form:
-                    ret.append ((self.doc.write_text, [" (mentioned above)."]))
+                    ret.append ((self.doc.write_text,
+                                 [_(" (mentioned above).")]))
                 else:
                     ret.append ((self.doc.write_text, [bits]))
 
@@ -414,10 +415,10 @@ class ComprehensiveAncestorsReport (Report.Report):
         return info
 
     def address_info (self, address):
-        info = 'Address: %s %s %s %s' % (address.getStreet (),
-                                         address.getCity (),
-                                         address.getState (),
-                                         address.getCountry ())
+        info = _('Address:') + ' %s %s %s %s' % (address.getStreet (),
+                                                 address.getCity (),
+                                                 address.getState (),
+                                                 address.getCountry ())
 
         info = info.rstrip ()
         date = address.getDate ()
@@ -640,7 +641,7 @@ class ComprehensiveAncestorsReport (Report.Report):
     def inline_notes (self, person):
         name_note = person.getPrimaryName ().getNote ()
         if not (name_note == '' or name_note.find ('\n') != -1):
-            return '  Note about their name: ' + name_note
+            return _('  Note about their name: ') + name_note
         note = person.getNote ()
         if not (note == '' or note.find ('\n') != -1):
             return '  ' + note
@@ -673,9 +674,8 @@ class ComprehensiveAncestorsReport (Report.Report):
         if (len (events) + len (addresses) + len (names)) > 0:
             paras.append ((self.doc.start_paragraph, ['AR-SubEntry']))
             paras.append ((self.doc.write_text,
-                           ["More about " +
-                            self.first_name_or_nick (person) +
-                            ":"]))
+                           [_("More about %(name):") %
+                            {'name': self.first_name_or_nick (person)}]))
             paras.append ((self.doc.end_paragraph, []))
 
         for name in names:
