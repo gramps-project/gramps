@@ -1,3 +1,18 @@
+2003-07-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Plugins.py: fixed call in _textdoc.append (typo)
+	* src/plugins/Makefile.am: Add WriteFtree.py
+
+2003-07-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ChooseParents.py: Used EditPerson dialog instead of quick add,
+	select added parent in list
+	* src/gramps_main.py: eliminated importing of string, display 
+	error if no person selected when trying to export
+	* src/ListModel.py : explicitly delete renderers and columns due
+	to memory leak in pygtk 1.99.16
+	* src/PlaceView.py: explictly delete model due to above memory leak
+	* src/plugins/pkgexport.glade: don't set height of window
+	* src/plugins/WriteFtree.py: export to Web Family Tree
+
 2003-07-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: handle autosave more gracefully
 
