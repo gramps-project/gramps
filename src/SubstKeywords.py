@@ -107,7 +107,7 @@ class SubstKeywords:
                 if mother_handle:
                     mother = database.get_person_from_handle(mother_handle)
                     self.s = NameDisplay.displayer.display(mother)
-                    self.S = NameDIsplay.displayer.sorted(mother)
+                    self.S = NameDisplay.displayer.sorted(mother)
             else:
                 if father_handle:
                     father = database.get_person_from_handle(father_handle)

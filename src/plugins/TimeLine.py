@@ -29,7 +29,6 @@ Timeline report
 # python modules
 #
 #------------------------------------------------------------------------
-import os
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -44,12 +43,10 @@ import gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-import Utils
+from Utils import pt2cm
 import Report
 import BaseDoc
 import GenericFilter
-import Errors
-import Date
 import Sort
 import ReportOptions
 from QuestionDialog import ErrorDialog
@@ -178,7 +175,7 @@ class TimeLine(Report.Report):
 
         font = self.doc.style_list['TLG-Name'].get_font()
         
-        incr = Utils.pt2cm(font.get_size())
+        incr = pt2cm(font.get_size())
         pad =  incr*.75
         
         x1,x2,y1,y2 = (0,0,0,0)
@@ -273,7 +270,7 @@ class TimeLine(Report.Report):
 
         self.doc.center_text('TLG-title',self.title,width/2.0,0)
         
-        label_y = self.header - (Utils.pt2cm(normal_font.get_size())*1.2)
+        label_y = self.header - (pt2cm(normal_font.get_size())*1.2)
         top_y = self.header
         bottom_y = self.doc.get_usable_height()
         
@@ -338,7 +335,7 @@ class TimeLine(Report.Report):
             p = self.database.get_person_from_handle(p_id)
             n = p.get_primary_name().get_name()
             size = max(self.doc.string_width(font,n),size)
-        return Utils.pt2cm(size)
+        return pt2cm(size)
 
 #------------------------------------------------------------------------
 #

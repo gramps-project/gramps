@@ -11,6 +11,12 @@
 	* src/plugins/FamilyGroup.py: Convert to new scheme.
 	* src/Report.py: Typos.
 
+	* src/plugins/FanChart.py: Convert to new scheme.
+	* src/SubstKeywords.py (SubstKeywords.__init__): Typo.
+	* src/plugins/TimeLine.py: Remove unneeded imports.
+	* src/plugins/FamilyGroup.py: Remove unneeded imports.
+	* src/plugins/Ancestors.py: Remove unneeded imports.
+
 2004-12-31  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: remove name display options
 	* src/GrampsCfg.py: remove name displaying functions
