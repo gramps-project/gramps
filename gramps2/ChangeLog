@@ -10,6 +10,9 @@
 	* src/plugins/Summary.py: Convert to new scheme.
 	* src/plugins/CountAncestors.py: Convert to new scheme.
 
+	* src/plugins/RelGraph.py: Remove from CVS.
+	* src/plugins/GraphViz.py: Minor fixes. Still not converted yet.
+
 2005-01-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: move strip_id from Utils
 	* src/GrampsCfg.py: use ComboBox for toolbar selection

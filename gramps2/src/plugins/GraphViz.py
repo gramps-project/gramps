@@ -28,7 +28,7 @@
 #
 #------------------------------------------------------------------------
 import os
-import string
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -47,8 +47,6 @@ import Report
 import BaseDoc
 import GenericFilter
 import Errors
-
-from gettext import gettext as _
 from latin_utf8 import utf8_to_latin
 
 #------------------------------------------------------------------------
@@ -395,7 +393,7 @@ def dump_person(database,person_list,file,adoptionsdashed,arrowheadstyle,
         person_dict[p_id] = 1
 
     for person_handle in person_list:
-        pid = string.replace(person_handle,'-','_')
+        pid = person_handle.replace('-','_')
         person = database.get_person_from_handle(person_handle)
         for family_handle, mrel, frel in person.get_parent_family_handle_list():
             family = database.get_family_from_handle(family_handle)
@@ -407,7 +405,7 @@ def dump_person(database,person_list,file,adoptionsdashed,arrowheadstyle,
                 (father_handle and person_dict.has_key(father_handle) or
                  mother_handle and person_dict.has_key(mother_handle))):
                 # Link to the family node.
-                famid = string.replace(family_handle,'-','_')
+                famid = family_handle.replace('-','_')
                 file.write('p%s -> f%s ['  % (pid, famid))
                 file.write('arrowhead=%s, arrowtail=%s, ' %
                            (arrowheadstyle, arrowtailstyle))
@@ -419,7 +417,7 @@ def dump_person(database,person_list,file,adoptionsdashed,arrowheadstyle,
             else:
                 # Link to the parents' nodes directly.
                 if father_handle and person_dict.has_key(father_handle):
-                    fid = string.replace(father_handle,'-','_')
+                    fid = father_handle.replace('-','_')
                     file.write('p%s -> p%s ['  % (pid, fid))
                     file.write('arrowhead=%s, arrowtail=%s, ' %
                                (arrowheadstyle, arrowtailstyle))
@@ -429,7 +427,7 @@ def dump_person(database,person_list,file,adoptionsdashed,arrowheadstyle,
                         file.write('style=solid')
                     file.write('];\n')
                 if mother_handle and person_dict.has_key(mother_handle):
-                    mid = string.replace(mother_handle,'-','_')
+                    mid = mother_handle.replace('-','_')
                     file.write('p%s -> p%s ['  % (pid, mid))
                     file.write('arrowhead=%s, arrowtail=%s, ' %
                                (arrowheadstyle, arrowtailstyle))
@@ -453,7 +451,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
         person = database.get_person_from_handle(person_handle)
         # Output the person's node.
         label = person.get_primary_name().get_name()
-        id = string.replace(person_handle,'-','_')
+        id = person_handle.replace('-','_')
         if includedates:
             birth_handle = person.get_birth_handle()
             if birth_handle:
@@ -495,7 +493,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
         if show_families:
             family_list = person.get_family_handle_list()
             for fam_id in family_list:
-                fid = string.replace(fam_id,'-','_')
+                fid = fam_id.replace('-','_')
                 if fam_id not in families_done:
                     families_done.append(fam_id)
                     file.write('f%s [shape=ellipse, ' % fid)
