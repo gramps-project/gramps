@@ -655,24 +655,24 @@ class IsAncestorOf(Rule):
         if not self.init:
             self.init = 1
             root_id = self.list[0]
-            self.init_ancestor_list(root_id,first)
+            self.init_ancestor_list(db,root_id,first)
         return self.map.has_key(p_id)
 
-    def init_ancestor_list(self,p_id,first):
+    def init_ancestor_list(self,db,p_id,first):
         if not first:
             self.map[p_id] = 1
         
-        p = self.db.get_person_from_handle(p_id)
+        p = db.get_person_from_handle(p_id)
         fam_id = p.get_main_parents_family_handle()
-        fam = self.db.get_family_from_handle(fam_id)
+        fam = db.get_family_from_handle(fam_id)
         if fam:
             f_id = fam.get_father_handle()
             m_id = fam.get_mother_handle()
         
             if f_id:
-                self.init_ancestor_list(f_id,0)
+                self.init_ancestor_list(db,f_id,0)
             if m_id:
-                self.init_ancestor_list(m_id,0)
+                self.init_ancestor_list(db,m_id,0)
 
 #-------------------------------------------------------------------------
 #
@@ -713,7 +713,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
             filt = MatchesFilter(self.list)
             for person_handle in db.get_person_handles(sort_handles=False):
                 if filt.apply (db, person_handle):
-                    self.init_ancestor_list (person_handle,first)
+                    self.init_ancestor_list (db,person_handle,first)
         return self.map.has_key(p_id)
 
 #-------------------------------------------------------------------------
@@ -863,7 +863,7 @@ class IsParentOfFilterMatch(Rule):
 
     def init_list(self,p_id):
         p = self.db.get_person_from_handle(p_id)
-        for fam_id in p.get_main_parents_family_handle():
+        for fam_id,frel,mrel in p.get_parent_family_handle_list():
             fam = self.db.get_family_from_handle(fam_id)
             for parent_id in [fam.get_father_handle (), fam.get_mother_handle ()]:
                 if parent_id:
@@ -1105,7 +1105,7 @@ class HasRelationship(Rule):
         for f_id in p.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
             cnt = cnt + len(f.get_child_handle_list())
-            if self.list[1] and f.get_relationship() == self.list[1]:
+            if self.list[1]  and int(self.list[1]) == f.get_relationship():
                 rel_type = 1
 
         # if number of relations specified
@@ -1353,7 +1353,7 @@ class MatchesFilter(Rule):
         return 'Matches the filter named'
 
     def apply(self,db,p_id):
-        for filt in SystemFilters.get_filter():
+        for filt in SystemFilters.get_filters():
             if filt.get_name() == self.list[0]:
                 return filt.check(p_id)
         for filt in CustomFilters.get_filters():

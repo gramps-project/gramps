@@ -30,7 +30,7 @@ __author__ = "Don Allingham"
 #
 #-------------------------------------------------------------------------
 import os
-import string
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -52,7 +52,6 @@ import AutoComp
 import ListModel
 import Utils
 import SelectPerson
-from gettext import gettext as _
 
 _name2list = {
     _('Personal event:')     : const.personal_events,
@@ -110,27 +109,28 @@ class MyFilters(gtk.ComboBox):
     
     def __init__(self,filters):
         gtk.ComboBox.__init__(self)
+        store = gtk.ListStore(str)
+        self.set_model(store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        self.flist = [ f.get_name() for f in filters ]
+        self.flist.sort()
 
-        flist = []
-        for f in filters:
-            flist.append(f.get_name())
-        flist.sort()
-        if len(flist) == 0:
-            self.ok = 0
-            self.set_sensitive(0)
-        else:
-            self.ok = 1
-            AutoComp.fill_option_text(self,flist)
+        for fname in self.flist:
+            store.append(row=[fname])
+        self.set_active(0)
         self.show()
         
     def get_text(self):
-        if self.ok:
-            return unicode(AutoComp.get_option(self))
-        else:
+        active = self.get_active()
+        if active < 0:
             return ""
+        return self.flist[active]
 
     def set_text(self,val):
-        self.entry.set_text(val)
+        if val in self.flist:
+            self.set_active(self.flist.index(val))
 
 #-------------------------------------------------------------------------
 #
@@ -205,32 +205,42 @@ class MySelect(gtk.ComboBoxEntry):
         self.show()
         
     def get_text(self):
-        return self.transtable.find_key(unicode(self.entry.get_text()))
+        return self.transtable.find_key(unicode(self.child.get_text()))
 
     def set_text(self,val):
-        self.entry.set_text(_(val))
+        self.child.set_text(_(val))
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-class MyListSelect(gtk.ComboBoxEntry):
+class MyListSelect(gtk.ComboBox):
     
     def __init__(self,data_list):
-        gtk.ComboBoxEntry.__init__(self)
-        new_list = []
+        gtk.ComboBox.__init__(self)
+        store = gtk.ListStore(str)
+        self.set_model(store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+        self.data_list = data_list
+
         for item in data_list:
-            new_list.append(item[0])
-        new_list.sort()
-        AutoComp.fill_combo(self,new_list)
+            store.append(row=[item[0]])
+        self.set_active(0)
         self.show()
         
     def get_text(self):
-        return self.transtable.find_key(unicode(self.entry.get_text()))
-
+        active = self.get_active()
+        if active < 0:
+            return str(-1)
+        return str(active)
+    
     def set_text(self,val):
-        self.entry.set_text(_(val))
+        active = int(val)
+        if active >=0:
+            self.set_active(active)
 
 #-------------------------------------------------------------------------
 #
@@ -575,8 +585,8 @@ class EditRule:
         self.page_num = 0
         self.page = []
         self.name2page = {}
-        map = {}
-        list = []
+        the_map = {}
+        the_list = []
         keylist = GenericFilter.tasks.keys()
         keylist.sort()
         for name in keylist:
@@ -585,21 +595,24 @@ class EditRule:
             vallist = []
             tlist = []
             self.page.append((name,cname,vallist,tlist))
-            table = gtk.Table(3,len(arglist))
-            table.set_border_width(6)
-            table.set_col_spacings(6)
-            table.set_row_spacings(6)
-            table.show()
             pos = 0
             l2 = gtk.Label(name)
             l2.set_alignment(0,0.5)
             l2.show()
-            c = gtk.ListItem()
-            c.add(l2)
+            c = gtk.TreeView()
             c.set_data('d',pos)
             c.show()
-            list.append(c)
-            map[name] = c
+            the_list.append(c)
+            the_map[name] = c
+            # Only add a table with parameters if there are any parameters
+            if arglist:
+                table = gtk.Table(3,len(arglist))
+            else:
+                table = gtk.Table(1,1)
+            table.set_border_width(6)
+            table.set_col_spacings(6)
+            table.set_row_spacings(6)
+            table.show()
             for v in arglist:
                 v1 = _(v)
                 l = gtk.Label(v1)
@@ -652,9 +665,9 @@ class EditRule:
         else:
             self.sel_name = ""
             
-        for v in map.keys():
-            filter = GenericFilter.tasks[v]([None])
-            category = filter.category()
+        for v in the_map.keys():
+            the_filter = GenericFilter.tasks[v]([None])
+            category = the_filter.category()
             if top_level.has_key(category):
                 top_level[category].append(v)
             else:
@@ -735,8 +748,8 @@ class EditRule:
         self.notebook.set_current_page(page)
         self.valuebox.set_sensitive(1)
         self.rule_name.set_text(key)
-        filter = GenericFilter.tasks[key]([None])
-        self.rule.get_widget('description').set_text(filter.description())
+        the_filter = GenericFilter.tasks[key]([None])
+        self.rule.get_widget('description').set_text(the_filter.description())
 
     def rule_ok(self,obj):
         name = unicode(self.rule_name.get_text())
@@ -793,7 +806,7 @@ class ShowResults:
                         (p.get_primary_name().get_name(),p.get_gramps_id()))
 
         n.sort ()
-        text.get_buffer().set_text(string.join (n, ''))
+        text.get_buffer().set_text(''.join(n))
 
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
