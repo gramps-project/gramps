@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+import gtk
+
 _modifiedFlag  = 0
 
 #-------------------------------------------------------------------------
@@ -69,7 +71,7 @@ def phonebook_name(person):
 #-------------------------------------------------------------------------
 def phonebook_from_name(name,alt):
     if alt:
-        return name.getName() + " *"
+        return "%s *" % name.getName()
     else:
         return name.getName()
 
@@ -91,8 +93,6 @@ def normal_name(person):
 #
 #-------------------------------------------------------------------------
 def destroy_passed_object(obj):
-    import gtk
-    
     obj.destroy()
     while gtk.events_pending():
         gtk.mainiteration()
