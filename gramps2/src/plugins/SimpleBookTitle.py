@@ -137,6 +137,8 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
             self.person = self.db.getPerson(self.options[0])
         else:
             self.person = person
+
+	self.style_name = stl
         Report.BareReportDialog.__init__(self,database,self.person)
 
         if self.options[1]:
@@ -155,7 +157,6 @@ class SimpleBookTitleDialog(Report.BareReportDialog):
         self.title_entry.set_text(self.title_string)
         self.copyright_entry.set_text(self.copyright_string)
 
-        self.style_name = stl
         self.new_person = None
 
         self.window.run()
