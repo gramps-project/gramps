@@ -1243,7 +1243,7 @@ class HasAttribute(Rule):
         p = db.get_person_from_handle(p_id)
         for attr in p.get_attribute_list():
             name_match = self.list[0] == attr.get_type()
-            value_match = self.list[1] and\
+            value_match = \
                     attr.get_value().upper().find(self.list[1].upper()) != -1
             if name_match and value_match:
                 return 1
@@ -1270,7 +1270,7 @@ class HasFamilyAttribute(Rule):
             f = db.get_family_from_handle(f_id)
             for attr in f.get_attribute_list():
                 name_match = self.list[0] == attr.get_type()
-                value_match = self.list[1] and\
+                value_match = \
                         attr.get_value().upper().find(self.list[1].upper()) != -1
                 if name_match and value_match:
                     return 1
