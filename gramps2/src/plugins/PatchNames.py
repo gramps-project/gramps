@@ -221,7 +221,7 @@ class PatchNames:
                 name.set_title(grp[1].strip())
                 self.db.commit_person(p,self.trans)
 
-        self.db.add_transaction(self.trans)
+        self.db.add_transaction(self.trans,_("Extract information from names"))
         self.close(obj)
         self.cb(1)
         

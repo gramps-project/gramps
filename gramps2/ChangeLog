@@ -22,6 +22,10 @@
 	src/Sort.py, src/GenericFilter.py, src/SubstKeywords.py,
 	src/GraphLayout.py: Switch from find_* to try_to_find_* methods.
 
+	* src/plugins/ChangeTypes.py: Correct transaction.
+	* src/plugins/changetype.glade: HIGify dialog.
+	* src/plugins/PatchNames.py: Correct transaction.
+
 2004-05-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleModel.py: temporary fix for add person update
 	* src/PeopleView.py: temporary fix for add person update

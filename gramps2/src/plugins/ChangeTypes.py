@@ -40,13 +40,8 @@ import AutoComp
 #-------------------------------------------------------------------------
 def runTool(database,person,callback,parent=None):
     try:
-        trans = database.start_transaction()
-        ChangeTypes(database,person,parent,trans)
-        database.add_transaction(trans,_('Change types'))
+        ChangeTypes(database,person,parent)
     except:
-        database.add_transaction(trans,_('Change types'))
-        database.undo()
-
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
@@ -56,11 +51,10 @@ def runTool(database,person,callback,parent=None):
 #
 #-------------------------------------------------------------------------
 class ChangeTypes:
-    def __init__(self,db,person,parent,trans):
+    def __init__(self,db,person,parent):
         self.person = person
         self.db = db
-        self.trans = trans
-
+        self.trans = db.start_transaction()
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
@@ -101,6 +95,7 @@ class ChangeTypes:
             msg = _("%d event records were modified") % modified
             
         OkDialog(_('Change types'),msg)
+        self.db.add_transaction(self.trans,_('Change types'))
         Utils.destroy_passed_object(obj)
 
 #------------------------------------------------------------------------
