@@ -133,7 +133,6 @@ GRAPHICS = \
 
 # Other stuff that we need to install
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
-nodist_pkgdata_DATA = grampslib.so
 
 EXTRA_DIST = grampslib.i grampslib_wrap.c
 
@@ -165,6 +164,8 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
+	$(INSTALL) -d $(pkglibdir)
+	$(INSTALL_DATA) $(srcdir)/grampslib.so $(pkglibdir)
 
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png

@@ -240,7 +240,6 @@ GRAPHICS = \
 
 # Other stuff that we need to install
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
-nodist_pkgdata_DATA = grampslib.so
 
 EXTRA_DIST = grampslib.i grampslib_wrap.c
 subdir = src
@@ -248,7 +247,7 @@ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = const.py
 DIST_SOURCES =
 py_compile = $(top_srcdir)/py-compile
-DATA = $(dist_pkgdata_DATA) $(nodist_pkgdata_DATA)
+DATA = $(dist_pkgdata_DATA)
 
 
 RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
@@ -305,24 +304,6 @@ install-dist_pkgdataDATA: $(dist_pkgdata_DATA)
 uninstall-dist_pkgdataDATA:
 	@$(NORMAL_UNINSTALL)
 	@list='$(dist_pkgdata_DATA)'; for p in $$list; do \
-	  f="`echo $$p | sed -e 's|^.*/||'`"; \
-	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
-	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
-	done
-nodist_pkgdataDATA_INSTALL = $(INSTALL_DATA)
-install-nodist_pkgdataDATA: $(nodist_pkgdata_DATA)
-	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)
-	@list='$(nodist_pkgdata_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f="`echo $$p | sed -e 's|^.*/||'`"; \
-	  echo " $(nodist_pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f"; \
-	  $(nodist_pkgdataDATA_INSTALL) $$d$$p $(DESTDIR)$(pkgdatadir)/$$f; \
-	done
-
-uninstall-nodist_pkgdataDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(nodist_pkgdata_DATA)'; for p in $$list; do \
 	  f="`echo $$p | sed -e 's|^.*/||'`"; \
 	  echo " rm -f $(DESTDIR)$(pkgdatadir)/$$f"; \
 	  rm -f $(DESTDIR)$(pkgdatadir)/$$f; \
@@ -467,7 +448,7 @@ check: check-recursive
 all-am: Makefile $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir) $(DESTDIR)$(pkgdatadir) $(DESTDIR)$(pkgdatadir)
+	$(mkinstalldirs) $(DESTDIR)$(pkgpythondir) $(DESTDIR)$(pkgdatadir)
 
 install: install-recursive
 install-exec: install-exec-recursive
@@ -512,7 +493,7 @@ info: info-recursive
 info-am:
 
 install-data-am: install-data-local install-dist_pkgdataDATA \
-	install-nodist_pkgdataDATA install-pkgpythonPYTHON
+	install-pkgpythonPYTHON
 
 install-exec-am:
 
@@ -531,8 +512,7 @@ mostlyclean: mostlyclean-recursive
 mostlyclean-am: mostlyclean-generic
 
 uninstall-am: uninstall-dist_pkgdataDATA uninstall-info-am \
-	uninstall-local uninstall-nodist_pkgdataDATA \
-	uninstall-pkgpythonPYTHON
+	uninstall-local uninstall-pkgpythonPYTHON
 
 uninstall-info: uninstall-info-recursive
 
@@ -544,16 +524,14 @@ uninstall-info: uninstall-info-recursive
 	install-data-recursive install-dist_pkgdataDATA install-exec \
 	install-exec-am install-exec-recursive install-info \
 	install-info-am install-info-recursive install-man \
-	install-nodist_pkgdataDATA install-pkgpythonPYTHON \
-	install-recursive install-strip installcheck installcheck-am \
-	installdirs installdirs-am installdirs-recursive \
-	maintainer-clean maintainer-clean-generic \
+	install-pkgpythonPYTHON install-recursive install-strip \
+	installcheck installcheck-am installdirs installdirs-am \
+	installdirs-recursive maintainer-clean maintainer-clean-generic \
 	maintainer-clean-recursive mostlyclean mostlyclean-generic \
 	mostlyclean-recursive tags tags-recursive uninstall \
 	uninstall-am uninstall-dist_pkgdataDATA uninstall-info-am \
 	uninstall-info-recursive uninstall-local \
-	uninstall-nodist_pkgdataDATA uninstall-pkgpythonPYTHON \
-	uninstall-recursive
+	uninstall-pkgpythonPYTHON uninstall-recursive
 
 
 all-local: grampslib.so
@@ -584,6 +562,8 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
+	$(INSTALL) -d $(pkglibdir)
+	$(INSTALL_DATA) $(srcdir)/grampslib.so $(pkglibdir)
 
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
