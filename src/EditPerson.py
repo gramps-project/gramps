@@ -132,7 +132,7 @@ class EditPerson:
             "on_ldsendow_src_clicked"   : self.on_ldsendow_source_clicked,
             "on_ldsseal_src_clicked"    : self.on_ldsseal_source_clicked,
             "on_name_source_clicked"    : self.on_primary_name_source_clicked,
-            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
+            "on_photolist_button_press_event" : self.gallery.on_button_press_event,
             "on_photolist_select_icon"  : self.gallery.on_photo_select_icon,
             "on_update_address_clicked" : self.on_update_addr_clicked,
             "on_update_attr_clicked"    : self.on_update_attr_clicked,
@@ -395,11 +395,10 @@ class EditPerson:
         self.redraw_url_list()
         self.window.show()
 
-
     def build_bap_menu(self):
         menu = gtk.GtkMenu()
         index = 0
-        for val in const.lds_baptism_index:
+        for val in const.lds_baptism:
             menuitem = gtk.GtkMenuItem(val)
             menuitem.set_data("val",index)
             menuitem.connect('activate',self.set_lds_bap)
@@ -412,7 +411,7 @@ class EditPerson:
     def build_endow_menu(self):
         menu = gtk.GtkMenu()
         index = 0
-        for val in const.lds_baptism_index:
+        for val in const.lds_baptism:
             menuitem = gtk.GtkMenuItem(val)
             menuitem.set_data("val",index)
             menuitem.connect('activate',self.set_lds_endow)
@@ -425,7 +424,7 @@ class EditPerson:
     def build_seal_menu(self):
         menu = gtk.GtkMenu()
         index = 0
-        for val in const.lds_csealing_index:
+        for val in const.lds_csealing:
             menuitem = gtk.GtkMenuItem(val)
             menuitem.set_data("val",index)
             menuitem.connect('activate',self.set_lds_seal)
@@ -713,7 +712,8 @@ class EditPerson:
             gnome.url.show(text)
         
     def on_cancel_edit(self,obj):
-        """If the data has changed, give the user a chance to cancel the close window"""
+        """If the data has changed, give the user a chance to cancel
+        the close window"""
         if self.did_data_change():
             q = _("Are you sure you want to abandon your changes?")
             GnomeQuestionDialog(q,self.cancel_callback)
@@ -754,38 +754,73 @@ class EditPerson:
 
         if self.person.getId() != idval:
             changed = 1
-        if suffix != name.getSuffix() or surname != name.getSurname():
+        if suffix != name.getSuffix():
             changed = 1
-        if given != name.getFirstName() or nick != self.person.getNickName():
+        if surname != name.getSurname():
+            changed = 1
+        if given != name.getFirstName():
+            changed = 1
+        if nick != self.person.getNickName():
             changed = 1
         if title != name.getTitle():
             changed = 1
         if self.pname.getNote() != name.getNote():
             changed = 1
 
+        if self.lds_not_loaded == 0 and self.check_lds():
+            changed == 1
+
+        bplace = string.strip(self.bplace.get_text())
+        dplace = string.strip(self.dplace.get_text())
+
+        p1 = utils.get_place_from_list(self.bpcombo)
+        if p1 == None and bplace != "":
+            changed = 1
+
+        self.birth.setPlace(p1)
+        p1 = utils.get_place_from_list(self.dpcombo)
+        if p1 == None and dplace != "":
+            changed = 1
+        self.death.setPlace(p1)
+
+
+        if not self.birth.are_equal(self.person.getBirth()):
+            changed = 1
+        if not self.death.are_equal(self.person.getDeath()):
+            changed = 1
+        if male and self.person.getGender() != Person.male:
+            changed = 1
+        elif female and self.person.getGender() != Person.female:
+            changed = 1
+        elif unknown and self.person.getGender() != Person.unknown:
+            changed = 1
+        if text != self.person.getNote() or self.lists_changed:
+            changed = 1
+
+        return changed
+
+    def check_lds(self):
         date = self.ldsbap_date.get_text()
         temple = self.ldsbap_temple.entry.get_text()
         place = utils.get_place_from_list(self.ldsbapplace)
-        
+
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
         ord = self.person.getLdsBaptism()
+
         if not ord:
-            if date or temple:
-                changed = 1
+            if date or temple or place or self.bap_stat:
+                return 1
         else:
             d = Date()
             d.set(date)
-            if compare_dates(d,ord.getDateObj()) != 0:
-                changed = 1
-            elif ord.getPlace() != place:
-                changed = 1
-            elif ord.getStatus() != self.bap_stat:
-                changed = 1
-            elif ord.getTemple() != temple:
-                changed = 1
+            if compare_dates(d,ord.getDateObj()) != 0 or \
+               ord.getPlace() != place or \
+               ord.getStatus() != self.bap_stat or \
+               ord.getTemple() != temple:
+                return 1
 
         date = self.ldsend_date.get_text()
         temple = self.ldsend_temple.entry.get_text()
@@ -796,20 +831,18 @@ class EditPerson:
         else:
             temple = ""
         ord = self.person.getLdsEndowment()
+
         if not ord:
-            if date or temple:
-                changed = 1
+            if date or temple or place or self.end_stat:
+                return 1
         else:
             d = Date()
             d.set(date)
-            if compare_dates(d,ord.getDateObj()) != 0:
-                changed = 1
-            elif ord.getPlace() != place:
-                changed = 1
-            elif ord.getStatus() != self.end_stat:
-                changed = 1
-            elif ord.getTemple() != temple:
-                changed = 1
+            if compare_dates(d,ord.getDateObj()) != 0 or \
+               ord.getPlace() != place or \
+               ord.getStatus() != self.end_stat or \
+               ord.getTemple() != temple:
+                return 1
 
         date = self.ldsseal_date.get_text()
         temple = self.ldsseal_temple.entry.get_text()
@@ -821,51 +854,19 @@ class EditPerson:
             
         ord = self.person.getLdsSeal()
         if not ord:
-            if date or temple or self.ldsfam:
-                changed = 1
+            if date or temple or self.ldsfam or self.seal_stat:
+                return 1
         else:
             d = Date()
             d.set(date)
-            if compare_dates(d,ord.getDateObj()) != 0:
-                changed = 1
-            elif ord.getPlace() != place:
-                changed = 1
-            elif ord.getTemple() != temple:
-                changed = 1
-            elif ord.getStatus() != self.seal_stat:
-                changed = 1
-            elif ord.getFamily() != self.ldsfam:
-                changed = 1
+            if compare_dates(d,ord.getDateObj()) != 0 or \
+               ord.getPlace() != place or \
+               ord.getTemple() != temple or \
+               ord.getStatus() != self.seal_stat or \
+               ord.getFamily() != self.ldsfam:
+                return 1
 
-        bplace = string.strip(self.bplace.get_text())
-        dplace = string.strip(self.dplace.get_text())
-
-        p1 = utils.get_place_from_list(self.bpcombo)
-        if p1 == None and bplace != "":
-            changed = 1
-        self.birth.setPlace(p1)
-
-        p1 = utils.get_place_from_list(self.dpcombo)
-        if p1 == None and dplace != "":
-            changed = 1
-        self.death.setPlace(p1)
-
-        if not self.birth.are_equal(self.person.getBirth()):
-            changed = 1
-
-        if not self.death.are_equal(self.person.getDeath()):
-            changed = 1
-
-        if male and self.person.getGender() != Person.male:
-            changed = 1
-        elif female and self.person.getGender() != Person.female:
-            changed = 1
-        elif unknown and self.person.getGender() != Person.unknown:
-            changed = 1
-        if text != self.person.getNote() or self.lists_changed:
-            changed = 1
-
-        return changed
+        return 0
 
     def on_event_delete_clicked(self,obj):
         """Delete the selected event"""

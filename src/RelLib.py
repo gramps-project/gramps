@@ -152,6 +152,25 @@ class LdsOrd(SourceNote):
     def getTemple(self):
         return self.temple
 
+    def are_equal(self,other):
+        """returns 1 if the spdcified ordinance is the same as the instance"""
+        if other == None:
+            return 0
+        if (self.famc != other.famc or
+            self.place != other.place or
+            self.temple != other.temple or
+            compare_dates(self.getDateObj(),other.getDateObj()) or
+            len(self.getSourceRefList()) != len(other.getSourceRefList())):
+            return 0
+
+        index = 0
+        olist = other.getSourceRefList()
+        for a in self.getSourceRefList():
+            if not a.are_equal(olist[index]):
+                return 0
+            index = index + 1
+        return 1
+
 class DataObj(SourceNote):
     """Base class for data elements, providing source, note, and privacy data"""
 
@@ -981,12 +1000,8 @@ class Person:
     def removeFamily(self,family):
         """removes the specified Family instance from the list
         of marriages/partnerships"""
-        index = 0
-        for fam in self.FamilyList:
-            if fam == family:
-                del self.FamilyList[index]
-                return
-            index = index + 1
+        if family in self.FamilyList:
+            self.FamilyList.remove(family)
 
     def addAddress(self,address):
         """adds the Address instance to the list of addresses"""
@@ -994,12 +1009,8 @@ class Person:
 
     def removeAddress(self,address):
         """removes the Address instance from the list of addresses"""
-        index = 0
-        for addr in self.addressList:
-            if addr == address:
-                del self.addressList[index]
-                return
-            index = index + 1
+        for address in self.addressList:
+            self.addressList.remove(address)
 
     def getAddressList(self):
         """returns the list of addresses"""
@@ -1015,12 +1026,8 @@ class Person:
 
     def removeAttribute(self,attribute):
         """removes the specified Attribute instance from the attribute list"""
-        index = 0
-        for attr in self.attributeList:
-            if attr == attribute:
-                del self.attributeList[index]
-                return
-            index = index + 1
+        for attribute in self.attributeList:
+            self.attributeList.remove(attribute)
 
     def getAttributeList(self):
         """returns the attribute list"""
@@ -1042,12 +1049,8 @@ class Person:
 
     def removeAltFamily(self,family):
         """removes a Family instance from the alternate family list"""
-        index = 0
-        for fam in self.AltFamilyList:
-            if fam[0] == family:
-                del self.AltFamilyList[index]
-                return
-            index = index + 1
+        for family in self.AltFamilyList:
+            self.AltFamilyList.remove(family)
 
     def setMainFamily(self,family):
         """sets the main Family of the Person, the Family in which the
@@ -1297,12 +1300,8 @@ class Family:
 
     def removeAttribute(self,attribute):
         """removes the specified Attribute instance from the attribute list"""
-        index = 0
-        for attr in self.attributeList:
-            if attr == attribute:
-                del self.attributeList[index]
-                return
-            index = index + 1
+        for attribute in self.attributeList:
+            self.attributeList.remove(attribute)
 
     def getAttributeList(self) :
         """returns the attribute list"""
@@ -1380,17 +1379,17 @@ class Family:
         if person.ancestor:
             if self.Father:
                 self.Father.setAncestor(1)
-            if (self.Mother):
+            if self.Mother:
                 self.Mother.setAncestor(1)
             
-
     def removeChild(self,person):
         """removes the specified Person from the child list"""
-        self.Children.remove(person)
+        if person in self.Children:
+           self.Children.remove(person)
         if person.ancestor:
             if self.Father:
                 self.Father.setAncestor(0)
-            if (self.Mother):
+            if self.Mother:
                 self.Mother.setAncestor(0)
 
     def getChildList(self):

@@ -75,15 +75,17 @@ def import_media_object(filename,path,base):
                 os.mkdir(thumb)
         except IOError,msg:
             GnomeErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
+            return ""
         except:
             GnomeErrorDialog(_("Could not create %s") % thumb)
+            return ""
         
         try:
             path = "%s/%s" % (thumb,base)
             mk_thumb(filename,path,const.thumbScale)
             shutil.copy(filename,name)
         except:
-            return None
+            return ""
     else:
         bname = os.path.basename(filename)
         l = string.split(bname,'.')

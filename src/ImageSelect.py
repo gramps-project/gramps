@@ -72,7 +72,12 @@ class ImageSelect:
     def __init__(self, path, db):
         self.path        = path;
         self.db          = db
+        self.dataobj     = None
 
+    def add_thumbnail(self, photo):
+        "should be overrridden"
+        pass
+    
     #-------------------------------------------------------------------------
     #
     # create_add_dialog - Create the gnome dialog for selecting a new
@@ -309,8 +314,7 @@ class Gallery(ImageSelect):
                 try:
                     id = photo.getId()
                     name = RelImage.import_media_object(tfile,self.path,id)
-                    if name != None and name != "":
-                        photo.setPath(name)
+                    photo.setPath(name)
                 except:
                     photo.setPath(tfile)
                     w.drag_finish(context, 1, 0, time)
@@ -390,11 +394,11 @@ class Gallery(ImageSelect):
 
     #-------------------------------------------------------------------------
     #
-    # on_photolist_button_press_event - Look for right-clicks on a
+    # on_button_press_event - Look for right-clicks on a
     # picture and create a popup menu of the available actions.
     #
     #-------------------------------------------------------------------------
-    def on_photolist_button_press_event(self, obj, event):
+    def on_button_press_event(self, obj, event):
         icon = self.selectedIcon
         if icon == -1:
             return

@@ -71,8 +71,8 @@ class Marriage:
         self.gallery = ImageSelect.Gallery(family, self.path, plwidget, db)
         self.top.signal_autoconnect({
             "destroy_passed_object" : self.on_cancel_edit,
-            "on_up_clicked"             : self.on_up_clicked,
-            "on_down_clicked"           : self.on_down_clicked,
+            "on_up_clicked" : self.on_up_clicked,
+            "on_down_clicked" : self.on_down_clicked,
             "on_add_attr_clicked" : self.on_add_attr_clicked,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_attr_list_select_row" : self.on_attr_list_select_row,
@@ -80,13 +80,15 @@ class Marriage:
             "on_close_marriage_editor" : self.on_close_marriage_editor,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_delete_event" : self.on_delete_event,
+            "on_lds_src_clicked" : self.lds_src_clicked,
+            "on_lds_note_clicked" : self.lds_note_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_marriageAddBtn_clicked" : self.on_add_clicked,
             "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
             "on_marriageEventList_select_row" : self.on_select_row,
             "on_marriageUpdateBtn_clicked" : self.on_update_clicked,
-            "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
+            "on_photolist_button_press_event" : self.gallery.on_button_press_event,
             "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
@@ -114,7 +116,9 @@ class Marriage:
         self.attr_details_field = self.get_widget("attr_details")
         self.lds_date = self.get_widget("lds_date")
         self.lds_temple = self.get_widget("lds_temple")
-
+        self.lds_status = self.get_widget("lds_status")
+        self.lds_place = self.get_widget("lds_place")
+        
         self.event_list.set_column_visibility(3,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
 
@@ -125,23 +129,32 @@ class Marriage:
         # set initial data
         self.gallery.load_images()
 
+
         self.type_field.set_popdown_strings(const.familyRelations)
         frel = const.display_frel(family.getRelationship())
         self.type_field.entry.set_text(frel)
         self.gid.set_text(family.getId())
         self.gid.set_editable(Config.id_edit)
 
-        ord = family.getLdsSeal()
         self.lds_temple.set_popdown_strings(_temple_names)
+
+        plist = self.db.getPlaceMap().values()
+        ord = self.family.getLdsSeal()
         if ord:
+            utils.attach_places(plist,self.lds_place,ord.getPlace())
             self.lds_date.set_text(ord.getDate())
             if ord.getTemple() != "":
                 name = const.lds_temple_to_abrev[ord.getTemple()]
             else:
                 name = ""
             self.lds_temple.entry.set_text(name)
+            self.seal_stat = ord.getStatus()
         else:
+            utils.attach_places(plist,self.lds_place,None)
             self.lds_temple.entry.set_text("")
+            self.seal_stat = 0
+
+        self.build_seal_menu()
         
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,GDK.ACTION_COPY)
         self.event_list.drag_source_set(GDK.BUTTON1_MASK, pycode_tgts, GDK.ACTION_COPY)
@@ -165,6 +178,38 @@ class Marriage:
         self.redraw_event_list()
         self.redraw_attr_list()
         top_window.show()
+
+    def build_seal_menu(self):
+        menu = gtk.GtkMenu()
+        index = 0
+        for val in const.lds_ssealing:
+            menuitem = gtk.GtkMenuItem(val)
+            menuitem.set_data("val",index)
+            menuitem.connect('activate',self.set_lds_seal)
+            menuitem.show()
+            menu.append(menuitem)
+            index = index + 1
+        self.lds_status.set_menu(menu)
+        self.lds_status.set_history(self.seal_stat)
+
+    def set_lds_seal(self,obj):
+        self.seal_stat = obj.get_data("val")
+
+    def lds_src_clicked(self,obj):
+        import Sources
+        ord = self.family.getLdsSeal()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsSeal(ord)
+        Sources.SourceSelector(ord.getSourceRefList(),self,src_changed)
+
+    def lds_note_clicked(self,obj):
+        import NoteEdit
+        ord = self.family.getLdsSeal()
+        if ord == None:
+            ord = LdsOrd()
+            self.person.setLdsSeal(ord)
+        NoteEdit.NoteEditor(ord)
 
     def on_up_clicked(self,obj):
         if len(obj.selection) == 0:
@@ -271,16 +316,20 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
+
+        place = utils.get_place_from_list(self.lds_place)
+        
         ord = self.family.getLdsSeal()
         if not ord:
-            if date or temple:
+            if date or temple or place or self.seal_stat:
                 changed = 1
         else:
             d = Date()
             d.set(date)
-            if compare_dates(d,ord.getDateObj()) != 0:
-                changed = 1
-            elif ord.getTemple() != temple:
+            if compare_dates(d,ord.getDateObj()) != 0 or \
+               ord.getTemple() != temple or \
+               ord.getPlace() != place or \
+               ord.getStatus() != self.seal_stat:
                 changed = 1
 
         return changed
@@ -341,12 +390,16 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
+        place = utils.get_place_from_list(self.lds_place)
+
         ord = self.family.getLdsSeal()
         if not ord:
-            if date or temple:
+            if date or temple or place or self.seal_stat:
                 ord = LdsOrd()
                 ord.setDate(date)
                 ord.setTemple(temple)
+                ord.setStatus(self.seal_stat)
+                ord.setPlace(place)
                 self.family.setLdsSeal(ord)
                 utils.modified()
         else:
@@ -357,6 +410,12 @@ class Marriage:
                 utils.modified()
             if ord.getTemple() != temple:
                 ord.setTemple(temple)
+                utils.modified()
+            if ord.getStatus() != self.seal_stat:
+                ord.setStatus(self.seal_stat)
+                utils.modified()
+            if ord.getPlace() != place:
+                ord.setPlace(place)
                 utils.modified()
 
         utils.destroy_passed_object(self.get_widget("marriageEditor"))
@@ -463,3 +522,5 @@ def cancel_callback(a):
     if a==0:
         utils.destroy_passed_object(quit)
 
+def src_changed(parent):
+    parent.lists_changed = 1

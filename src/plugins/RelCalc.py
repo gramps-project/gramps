@@ -315,7 +315,7 @@ class RelCalc:
             text = msg % (firstName,secondName)
         elif firstRel == 0:
             if secondRel == 0:
-                text = "%s and $s are the same person." % (firstName,secondName)
+                text = "%s and %s are the same person." % (firstName,secondName)
             elif other_person.getGender() == RelLib.Person.male:
                 text = get_father(firstName,secondName,secondRel)
             else:
