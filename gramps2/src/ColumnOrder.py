@@ -78,6 +78,5 @@ class ColumnOrder:
 
     def toggled(self, cell, path, model):
         node = model.get_iter((int(path),))
-        value = model.get_value(node,0)
-        value = not value
+        value = not model.get_value(node,0)
         model.set(node,0,value)

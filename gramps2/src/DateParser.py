@@ -34,7 +34,6 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import re
-import time
 import locale
 import calendar
 
