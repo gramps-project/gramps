@@ -115,7 +115,7 @@ authors      = [
     ]
 
 documenters  = [
-    'Alex Roitman',
+    'Alexander Roitman',
     ]
 
 translators = _('TRANSLATORS: Translate this to your name in your native language')
