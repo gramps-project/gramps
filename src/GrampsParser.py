@@ -59,6 +59,7 @@ class GrampsParser:
         self.tlist = []
         self.conf = 2
         
+        self.ord = None
         self.objref = None
         self.object = None
         self.pref = None
@@ -117,7 +118,24 @@ class GrampsParser:
             if self.db.personMap.has_key(id):
                 person = self.db.personMap[id]
                 self.db.setDefaultPerson(person)
-    
+
+    def start_lds_ord(self,attrs):
+        type = u2l(attrs['type'])
+        self.ord = LdsOrd()
+        if type == "baptism":
+            self.person.setLdsBaptism(self.ord)
+        elif type == "endowment":
+            self.person.setLdsEndowment(self.ord)
+        else:
+            self.person.setLdsSeal(self.ord)
+
+    def start_temple(self,attrs):
+        self.ord.setTemple(u2l(attrs['val']))
+
+    def start_sealed_to(self,attrs):
+        id = u2l(attrs['ref'])
+        self.ord.setFamily(self.db.findFamilyNoMap(id))
+        
     def start_place(self,attrs):
         if attrs.has_key('ref'):
             self.placeobj = self.db.findPlaceNoMap(u2l(attrs['ref']))
@@ -391,7 +409,9 @@ class GrampsParser:
         d.get_stop_date().setIsoDate(attrs['stop'])
         
     def start_dateval(self,attrs):
-        if self.address:
+        if self.ord:
+            d = self.ord.getDateObj()
+        elif self.address:
             d = self.address.getDateObj()
         else:
             d = self.event.getDateObj()
@@ -405,10 +425,11 @@ class GrampsParser:
             d.get_start_date().setMode(attrs['type'])
         else:
             d.get_start_date().setMode(None)
-            
 
     def start_datestr(self,attrs):
-        if self.address:
+        if self.ord:
+            d = self.ord.getDateObj()
+        elif self.address:
             d = self.address.getDateObj()
         else:
             d = self.event.getDateObj()
@@ -542,6 +563,9 @@ class GrampsParser:
 
     def stop_spage(self,tag):
         self.source_ref.setPage(u2l(tag))
+
+    def stop_lds_ord(self,tag):
+        self.ord = None
 
     def stop_spubinfo(self,tag):
         self.source.setPubInfo(u2l(tag))
@@ -699,6 +723,9 @@ class GrampsParser:
         "places"     : (None, stop_places),
         "placeobj"   : (start_placeobj,stop_placeobj),
         "location"   : (start_location,None),
+        "lds_ord"    : (start_lds_ord, stop_lds_ord),
+        "temple"     : (start_temple, None),
+        "sealed_to"  : (start_sealed_to, None),
         "coord"      : (start_coord,None),
         "pos"        : (start_pos, None),
         "postal"     : (None, stop_postal),

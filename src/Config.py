@@ -494,7 +494,7 @@ def on_propertybox_apply(obj,page):
     output_preference = output_obj.get_data(DATA)
     
     set_bool("/gramps/config/UseTabs",usetabs)
-    set_bool("/gramps/config/MakeReference",makeref)
+    set_bool("/gramps/config/MakeReference",mediaref)
     set_bool("/gramps/config/DisplayGlobal",globalprop)
     set_bool("/gramps/config/DisplayLocal",localprop)
     set_bool("/gramps/config/ShowCalendar",calendar)
@@ -661,6 +661,7 @@ def display_preferences_box(db):
     index_vis = prefsTop.get_widget("show_child_id")
     tabs = prefsTop.get_widget("usetabs")
     mr = prefsTop.get_widget("mediaref")
+    mc = prefsTop.get_widget("mediacopy")
     dg = prefsTop.get_widget("globalprop")
     dl = prefsTop.get_widget("localprop")
     cal = prefsTop.get_widget("calendar")
@@ -673,7 +674,10 @@ def display_preferences_box(db):
     auto.set_active(autoload)
     detail.set_active(show_detail)
     tabs.set_active(usetabs)
-    mr.set_active(mediaref)
+    if mediaref:
+        mr.set_active(1)
+    else:
+        mc.set_active(1)
     dg.set_active(globalprop)
     dl.set_active(localprop)
     cal.set_active(calendar)

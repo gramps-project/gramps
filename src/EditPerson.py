@@ -44,6 +44,7 @@ import GDK
 import const
 import utils
 import Config
+import Date
 from RelLib import *
 import ImageSelect
 import sort
@@ -176,7 +177,14 @@ class EditPerson:
         self.name_note = self.get_widget("name_note")
         self.name_source = self.get_widget("name_source")
         self.gid = self.get_widget("gid")
-
+        self.ldsbap_date = self.get_widget("ldsbapdate")
+        self.ldsbap_temple = self.get_widget("ldsbaptemple")
+        self.ldsend_date = self.get_widget("endowdate")
+        self.ldsend_temple = self.get_widget("endowtemple")
+        self.ldsseal_date = self.get_widget("sealdate")
+        self.ldsseal_temple = self.get_widget("sealtemple")
+        self.ldsseal_fam = self.get_widget("sealparents")
+        
         self.elist = person.getEventList()[:]
         self.nlist = person.getAlternateNames()[:]
         self.alist = person.getAttributeList()[:]
@@ -247,7 +255,58 @@ class EditPerson:
         self.notes_field.insert_defaults(person.getNote())
         self.notes_field.set_word_wrap(1)
 
+        # lds stuff
+        ord = person.getLdsBaptism()
+        if ord:
+            self.ldsbap_temple.entry.set_text(ord.getTemple())
+            self.ldsbap_date.set_text(ord.getDate())
 
+        ord = person.getLdsEndowment()
+        if ord:
+            self.ldsend_temple.entry.set_text(ord.getTemple())
+            self.ldsend_date.set_text(ord.getDate())
+
+        ord = person.getLdsSeal()
+        if ord:
+            self.ldsseal_temple.entry.set_text(ord.getTemple())
+            self.ldsseal_date.set_text(ord.getDate())
+            self.ldsfam = ord.getFamily()
+        else:
+            self.ldsfam = None
+
+        myMenu = gtk.GtkMenu()
+        item = gtk.GtkMenuItem(_("None"))
+        item.set_data("f",None)
+        item.connect("activate",self.menu_changed)
+        item.show()
+        myMenu.append(item)
+        
+        index = 0
+        hist = 0
+        for fam in [person.getMainFamily()] + person.getAltFamilyList():
+            if fam == None:
+                continue
+            f = fam.getFather()
+            m = fam.getMother()
+            if f and m:
+                name = _("%s and %s") % (Config.nameof(f),Config.nameof(m))
+            elif f:
+                name = Config.nameof(f)
+            elif m:
+                name = Config.nameof(m)
+            else:
+                name = _("unknown")
+            item = gtk.GtkMenuItem(name)
+            item.set_data("f",fam)
+            item.connect("activate",self.menu_changed)
+            item.show()
+            myMenu.append(item)
+            index = index + 1
+            if fam == self.ldsfam:
+                hist = index
+        self.ldsseal_fam.set_menu(myMenu)
+        self.ldsseal_fam.set_history(hist)
+        
         # draw lists
         self.redraw_event_list()
         self.redraw_attr_list()
@@ -256,6 +315,9 @@ class EditPerson:
         self.redraw_url_list()
         self.window.show()
 
+    def menu_changed(self,obj):
+        self.ldsfam = obj.get_data("f")
+        
     def get_widget(self,str):
         """returns the widget related to the passed string"""
         return self.top.get_widget(str)
@@ -462,6 +524,50 @@ class EditPerson:
             changed = 1
         if self.pname.getNote() != name.getNote():
             changed = 1
+
+        date = self.ldsbap_date.get_text()
+        temple = self.ldsbap_temple.entry.get_text()
+        ord = self.person.getLdsBaptism()
+        if not ord:
+            if date or temple:
+                changed = 1
+        else:
+            d = Date()
+            d.set(date)
+            if compare_dates(d,ord.getDateObj()) != 0:
+                changed = 1
+            elif ord.getTemple() != temple:
+                changed = 1
+
+        date = self.ldsend_date.get_text()
+        temple = self.ldsend_temple.entry.get_text()
+        ord = self.person.getLdsEndowment()
+        if not ord:
+            if date or temple:
+                changed = 1
+        else:
+            d = Date()
+            d.set(date)
+            if compare_dates(d,ord.getDateObj()) != 0:
+                changed = 1
+            elif ord.getTemple() != temple:
+                changed = 1
+
+        date = self.ldsseal_date.get_text()
+        temple = self.ldsseal_temple.entry.get_text()
+        ord = self.person.getLdsSeal()
+        if not ord:
+            if date or temple or self.ldsfam:
+                changed = 1
+        else:
+            d = Date()
+            d.set(date)
+            if compare_dates(d,ord.getDateObj()) != 0:
+                changed = 1
+            elif ord.getTemple() != temple:
+                changed = 1
+            elif ord.getFamily() != self.ldsfam:
+                changed = 1
 
         bplace = string.strip(self.bplace.get_text())
         dplace = string.strip(self.dplace.get_text())
@@ -778,6 +884,40 @@ class EditPerson:
             self.person.setNote(text)
             utils.modified()
 
+        date = self.ldsbap_date.get_text()
+        temple = self.ldsbap_temple.entry.get_text()
+        ord = self.person.getLdsBaptism()
+        update_ord(self.person.setLdsBaptism,ord,date,temple)
+
+        date = self.ldsend_date.get_text()
+        temple = self.ldsend_temple.entry.get_text()
+        ord = self.person.getLdsEndowment()
+        update_ord(self.person.setLdsEndowment,ord,date,temple)
+
+        date = self.ldsseal_date.get_text()
+        temple = self.ldsseal_temple.entry.get_text()
+        ord = self.person.getLdsSeal()
+        if not ord:
+            if self.ldsfam or date or temple:
+                ord = LdsOrd()
+                ord.setDate(date)
+                ord.setTemple(temple)
+                ord.setFamily(self.ldsfam)
+                self.person.setLdsSeal(ord)
+                utils.modified()
+        else:
+            d = Date()
+            d.set(date)
+            if compare_dates(d,ord.getDateObj()) != 0:
+                ord.setDateObj(date)
+                utils.modified()
+            if ord.getTemple() != temple:
+                ord.setTemple(temple)
+                utils.modified()
+            if ord.getFamily() != self.ldsfam:
+                ord.setFamily(self.ldsfam)
+                utils.modified()
+
         self.update_lists()
         if self.callback:
             self.callback(self)
@@ -810,6 +950,24 @@ class EditPerson:
         elif page == 6 and self.not_loaded:
             self.not_loaded = 0
             self.gallery.load_images()
+
+def update_ord(func,ord,date,temple):
+    if not ord:
+        if (date or temple):
+            ord = LdsOrd()
+            ord.setDate(date)
+            ord.setTemple(temple)
+            func(ord)
+            utils.modified()
+    else:
+        d = Date()
+        d.set(date)
+        if compare_dates(d,ord.getDateObj()) != 0:
+            ord.setDateObj(d)
+            utils.modified()
+        elif ord.getTemple() != temple:
+            ord.setTemple(temple)
+            utils.modified()
 
 #-------------------------------------------------------------------------
 #

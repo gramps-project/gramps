@@ -624,9 +624,10 @@ class GlobalMediaProperties:
     def button_press(self,obj,event):
         if len(obj.selection) <= 0:
             return
-        data = obj.get_row_data(obj.selection[0])
-        if data != None:
-            data[0](data[1],data[2])
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            data = obj.get_row_data(obj.selection[0])
+            if data != None:
+                data[0](data[1],data[2])
         
     def display_refs(self):
         index = 0

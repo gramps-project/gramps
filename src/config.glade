@@ -2004,6 +2004,12 @@ AbiWord
 	    <name>mediaref</name>
 	    <border_width>5</border_width>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Fri, 30 Nov 2001 01:29:56 GMT</last_modification_time>
+	    </signal>
 	    <label>Make a reference to the object when the object is dropped</label>
 	    <active>True</active>
 	    <draw_indicator>True</draw_indicator>
@@ -2020,6 +2026,12 @@ AbiWord
 	    <name>mediacopy</name>
 	    <border_width>5</border_width>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Fri, 30 Nov 2001 01:30:09 GMT</last_modification_time>
+	    </signal>
 	    <label>Make a local copy when the object is dropped</label>
 	    <active>False</active>
 	    <draw_indicator>True</draw_indicator>
@@ -2036,6 +2048,12 @@ AbiWord
 	    <name>globalprop</name>
 	    <border_width>5</border_width>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Fri, 30 Nov 2001 01:30:24 GMT</last_modification_time>
+	    </signal>
 	    <label>Display global properties editor when object is dropped</label>
 	    <active>True</active>
 	    <draw_indicator>True</draw_indicator>
@@ -2072,6 +2090,12 @@ AbiWord
 	    <name>localprop</name>
 	    <border_width>5</border_width>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>toggled</name>
+	      <handler>on_object_toggled</handler>
+	      <object>propertybox</object>
+	      <last_modification_time>Fri, 30 Nov 2001 01:30:36 GMT</last_modification_time>
+	    </signal>
 	    <label>Display local properties editor when object is dropped</label>
 	    <active>True</active>
 	    <draw_indicator>True</draw_indicator>

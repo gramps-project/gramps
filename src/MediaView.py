@@ -29,6 +29,8 @@ from RelLib import *
 import utils
 import os
 import Config
+import const
+import RelImage
 
 from intl import gettext
 _ = gettext
