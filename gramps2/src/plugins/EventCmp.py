@@ -31,10 +31,10 @@ import Utils
 import string
 import const
 import GenericFilter
+import ListModel
 from TextDoc import *
 from OpenSpreadSheet import *
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 import gnome.ui
 import gtk
@@ -167,11 +167,8 @@ def by_value(first,second):
 #
 #-------------------------------------------------------------------------
 def fix(line):
-    l = string.strip(line)
-    l = string.replace(l,'&','&amp;')
-    l = string.replace(l,'>','&gt;')
-    l = string.replace(l,'<','&lt;')
-    return string.replace(l,'"','&quot;')
+    l = line.strip().replace('&','&amp;').replace(l,'>','&gt;')
+    return l.replace(l,'<','&lt;').replace(l,'"','&quot;')
 
 #-------------------------------------------------------------------------
 #
@@ -193,7 +190,7 @@ class DisplayChart:
             })
 
         self.top = self.topDialog.get_widget("view")
-        self.table = self.topDialog.get_widget("addarea")
+        self.eventlist = self.topDialog.get_widget('treeview')
     
         self.my_list.sort(sort.by_last_name)
 
@@ -204,17 +201,19 @@ class DisplayChart:
 
     def draw_clist_display(self):
 
-        eventlist = gtk.CList(len(self.event_titles),self.event_titles)
-        self.table.add(eventlist)
-        eventlist.show()
+        titles = []
+        index = 0
+        for v in self.event_titles:
+            titles.append((v,150,index))
+            index = index + 1
+            
+        self.list = ListModel.ListModel(self.eventlist,titles)
+        for data in self.row_data:
+            self.list.add(data)
 
-        for (top,bottom) in self.row_data:
-            eventlist.append(top)
-            eventlist.append(bottom)
-
-        for index in range(0,len(self.event_titles)):
-            width = min(150,eventlist.optimal_column_width(index))
-            eventlist.set_column_width(index,width)
+#        for index in range(0,len(self.event_titles)):
+#            width = min(150,eventlist.optimal_column_width(index))
+#            self.eventlist.set_column_width(index,width)
 
     def build_row_data(self):
         for individual in self.my_list:
@@ -235,29 +234,26 @@ class DisplayChart:
             while done == 0:
                 added = 0
                 if first:
-                    tlist = [name,birth.getDate(),death.getDate()]
-                    blist = ["",birth.getPlaceName(),death.getPlaceName()]
+                    tlist = [name,"%s\n%s" % (birth.getDate(),birth.getPlaceName()),
+                             "%s\n%s" % (death.getDate(),death.getPlaceName())]
                 else:
                     tlist = ["","",""]
-                    blist = ["","",""]
                 for ename in self.event_titles[3:]:
                     if map.has_key(ename) and len(map[ename]) > 0:
                         event = map[ename][0]
                         del map[ename][0]
-                        tlist.append(event.getDate())
-                        blist.append(event.getPlaceName())
+                        tlist.append("%s\n%s" % (event.getDate(), event.getPlaceName()))
                         added = 1
                     else:
                         tlist.append("")
-                        blist.append("")
                 
                 if first:
                     first = 0
-                    self.row_data.append((tlist,blist))
+                    self.row_data.append(tlist)
                 elif added == 0:
                     done = 1
                 else:
-                    self.row_data.append((tlist,blist))
+                    self.row_data.append(tlist)
 
     def make_event_titles(self):
         """Creates the list of unique event types, along with the person's
@@ -330,6 +326,8 @@ register_tool(
     runTool,
     _("Compare individual events"),
     category=_("Analysis and Exploration"),
-    description=_("Aids in the analysis of data by allowing the development of custom filters that can be applied to the database to find similar events")
+    description=_("Aids in the analysis of data by allowing the "
+                  "development of custom filters that can be applied "
+                  "to the database to find similar events")
     )
 

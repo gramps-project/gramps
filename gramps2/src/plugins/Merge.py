@@ -24,6 +24,7 @@ import RelLib
 import Utils
 import soundex
 import GrampsCfg
+import ListModel
 from intl import gettext as _ 
 
 import string
@@ -43,11 +44,16 @@ def is_initial(name):
     if len(name) > 2:
         return 0
     elif len(name) == 2:
-        if name[0] in string.uppercase and name[1] == '.':
+        if name[0] == name[0].upper() and name[1] == '.':
             return 1
     else:
-        return name[0] in string.uppercase
+        return name[0] == name[0].upper()
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def ancestors_of(p1,list):
     if p1 == None or p1 in list:
         return
@@ -113,9 +119,11 @@ class Merge:
         self.show()
     
     def progress_update(self,val):
-        self.progress.set_value(val)
-        while gtk.events_pending():
-            gtk.mainiteration()
+        pass
+#        self.progress.set_value(val)
+#        while gtk.events_pending():
+#            gtk.mainiteration()
+
 
     def find_potentials(self,thresh):
         top = gtk.glade.XML(self.glade_file,"message")
@@ -131,19 +139,20 @@ class Merge:
             key = self.gen_key(p1.getPrimaryName().getSurname())
             if p1.getGender() == RelLib.Person.male:
                 if males.has_key(key):
-                    males[key].append(p1)
+                    males[key].append(p1.getId())
                 else:
-                    males[key] = [p1]
+                    males[key] = [p1.getId()]
             else:
                 if females.has_key(key):
-                    females[key].append(p1)
+                    females[key].append(p1.getId())
                 else:
-                    females[key] = [p1]
+                    females[key] = [p1.getId()]
                 
         length = len(self.person_list)
 
         num = 0
         for p1 in self.person_list:
+            p1key = p1.getId()
             if num % 25 == 0:
                 self.progress_update((float(num)/float(length))*100)
             num = num + 1
@@ -155,26 +164,27 @@ class Merge:
                 remaining = females[key]
 
             index = 0
-            for p2 in remaining:
+            for p2key in remaining:
                 index = index + 1
-                if p1 == p2:
+                if p1key == p2key:
                     continue
-                if self.map.has_key(p2):
-                    (v,c) = self.map[p2]
+                p2 = self.db.getPerson(p2key)
+                if self.map.has_key(p2key):
+                    (v,c) = self.map[p2key]
                     if v == p1:
                         continue
                     
                 chance = self.compare_people(p1,p2)
                 if chance >= thresh:
-                    if self.map.has_key(p1):
-                        val = self.map[p1]
+                    if self.map.has_key(p1key):
+                        val = self.map[p1key]
                         if val[1] > chance:
-                            self.map[p1] = (p2,chance)
+                            self.map[p1key] = (p2,chance)
                     else:
-                        self.map[p1] = (p2,chance)
+                        self.map[p1key] = (p2,chance)
 
-        self.list = self.map.keys()[:]
-        self.list.sort(by_id)
+        self.list = self.map.keys()
+        self.list.sort()
         self.length = len(self.list)
         self.topWin.destroy()
         self.dellist = {}
@@ -188,6 +198,12 @@ class Merge:
             "on_do_merge_clicked" : self.on_do_merge_clicked,
             })
         self.mlist.connect('button-press-event',self.button_press_event)
+
+        self.list = ListModel.ListModel(self.mlist,
+                                        [(_('Rating'),75,0),
+                                         (_('First Person'),200,1),
+                                         (_('Second Person'),200,2)])
+        
         self.redraw()
 
     def redraw(self):
@@ -196,39 +212,41 @@ class Merge:
             if self.dellist.has_key(p1):
                 continue
             (p2,c) = self.map[p1]
-            if self.dellist.has_key(p2):
-                p2 = self.dellist[p2]
+            p2key = p2.getId()
+            if self.dellist.has_key(p2key):
+                p2 = self.dellist[p2key]
             if p1 == p2:
                 continue
-            list.append((c,p1,p2))
+            list.append((c,p1,p2.getId()))
         list.sort()
         list.reverse()
 
         index = 0
-        self.mlist.freeze()
-        self.mlist.clear()
+        self.match_map = {}
+        self.list.clear()
         for (c,p1,p2) in list:
             c = "%5.2f" % c
-            self.mlist.append([c, name_of(p1), name_of(p2)])
-            self.mlist.set_row_data(index,(p1,p2))
+            pn1 = self.db.getPerson(p1)
+            pn2 = self.db.getPerson(p2)
+            self.list.add([c, name_of(pn1), name_of(pn2)])
+            self.match_map[index] = (p1,p2)
             index = index + 1
-        self.mlist.thaw()
 
     def button_press_event(self,obj,event):
-        if event.button != 1 or event.type != GDK._2BUTTON_PRESS:
+        if event.button != 1 or event.type != gtk.gdk._2BUTTON_PRESS:
             return
-        if len(self.mlist.selection) <= 0:
-            return
-        row = self.mlist.selection[0]
-        (p1,p2) = self.mlist.get_row_data(row)
-        MergeData.MergePeople(self.db,p1,p2,self.on_update)
+        self.on_do_merge_clicked(obj)
 
     def on_do_merge_clicked(self,obj):
-        if len(self.mlist.selection) != 1:
+        store,iter = self.list.selection.get_selected()
+        if not iter:
             return
-        row = self.mlist.selection[0]
-        (p1,p2) = self.mlist.get_row_data(row)
-        MergeData.MergePeople(self.db,p1,p2,self.on_update)
+
+        row = self.list.model.get_path(iter)
+        (p1,p2) = self.match_map[row[0]]
+        pn1 = self.db.getPerson(p1)
+        pn2 = self.db.getPerson(p2)
+        MergeData.MergePeople(self.db,pn1,pn2,self.on_update)
 
     def on_update(self,p1,p2):
         self.dellist[p2] = p1
@@ -389,7 +407,7 @@ class Merge:
 
         name1 = p1.getPrimaryName()
         name2 = p2.getPrimaryName()
-                
+
         chance = self.name_match(name1,name2)
         if chance == -1  :
             return -1
@@ -524,6 +542,7 @@ register_tool(
     runTool,
     _("Find possible duplicate people"),
     category=_("Database Processing"),
-    description=_("Searches the entire database, looking for individual entries that may represent the same person.")
+    description=_("Searches the entire database, looking for "
+                  "individual entries that may represent the same person.")
     )
 
