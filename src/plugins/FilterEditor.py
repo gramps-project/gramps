@@ -336,7 +336,7 @@ class FilterEditor:
         if iter:
             filt = self.clist.get_object(iter)
             id_list = filt.apply(self.db,self.db.get_person_keys())
-            ShowResults(self.db,id_list)
+            ShowResults(self,self.db,id_list,filt.get_name())
 
     def delete_filter(self,obj):
         store,iter = self.clist.get_selected()
@@ -356,7 +356,11 @@ class EditFilter:
         self.filterdb = parent.filterdb
         
         self.parent = parent
-        self.win_key = self
+        if self.parent.child_windows.has_key(self.filter):
+            self.parent.child_windows[self.filter].present(None)
+            return
+        else:
+            self.win_key = self.filter
         self.child_windows = {}
 
         self.glade = gtk.glade.XML(const.filterFile,'define_filter',"gramps")
@@ -485,7 +489,7 @@ class EditFilter:
             op = 'and'
         self.filter.set_logical_op(op)
         self.filterdb.add(self.filter)
-        self.draw_filters()
+        self.parent.draw_filters()
         self.close(obj)
         
     def on_add_clicked(self,obj):
@@ -512,14 +516,22 @@ class EditFilter:
 class EditRule:
     def __init__(self,parent,val,label):
         
-        self.pmap = {}
-        self.add_places = []
-        self.win_key = self
-        self.child_windows = {}
-        
         self.parent = parent
+        self.win_key = self
+        if val:
+            if self.parent.child_windows.has_key(val):
+                self.parent.child_windows[val].present(None)
+                return
+            else:
+                self.win_key = val
+        else:
+            self.win_key = self
+
         self.db = parent.parent.db
         self.filterdb = parent.filterdb
+
+        self.pmap = {}
+        self.add_places = []
 
         for p_id in self.db.get_place_ids():
             p = self.db.find_place_from_id(p_id)
@@ -712,13 +724,13 @@ class EditRule:
             value_list = []
             for x in t:
                 value_list.append(unicode(x.get_text()))
-            store,iter = self.rlist.get_selected()
+            store,iter = self.parent.rlist.get_selected()
             new_rule = c(value_list)
             if self.active_rule:
-                rule = self.rlist.get_object(iter)
-                self.filter.delete_rule(rule)
-            self.filter.add_rule(new_rule)
-            self.draw_rules()
+                rule = self.parent.rlist.get_object(iter)
+                self.parent.filter.delete_rule(rule)
+            self.parent.filter.add_rule(new_rule)
+            self.parent.draw_rules()
             self.window.destroy()
         except KeyError:
             pass
@@ -728,16 +740,27 @@ class EditRule:
             DisplayTrace.DisplayTrace()
                                
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 class ShowResults:
-    def __init__(self,db,id_list):
+    def __init__(self,parent,db,id_list,filtname):
+        self.parent = parent
+        self.win_key = self
+        self.filtname = filtname
         self.glade = gtk.glade.XML(const.filterFile,'test',"gramps")
-        self.top = self.glade.get_widget('test')
+        self.window = self.glade.get_widget('test')
         text = self.glade.get_widget('text')
 
-        Utils.set_titles(self.top, self.glade.get_widget('title'),
+        Utils.set_titles(self.window, self.glade.get_widget('title'),
                          _('Filter Test'))
         
-        self.glade.signal_autoconnect({'on_close_clicked' : self.close})
+        self.glade.signal_autoconnect({
+            'on_close_clicked' : self.close,
+            "on_test_delete_event" : self.on_delete_event,
+            })
 
         n = []
         for p_id in id_list:
@@ -746,9 +769,33 @@ class ShowResults:
 
         n.sort ()
         text.get_buffer().set_text(string.join (n, ''))
+
+        self.window.set_transient_for(self.parent.window)
+        self.add_itself_to_menu()
+        self.window.show()
             
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
     def close(self,obj):
-        self.top.destroy()
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        label = self.filtname
+        label = "%s: %s" % (_('Test'),label)
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
 #-------------------------------------------------------------------------
 #
