@@ -67,7 +67,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
 
-    def __init__(self,database,callback,base,is_import):
+    def __init__(self,database,callback,base):
         self.call = None
         self.stext_list = []
         self.scomments_list = []
@@ -75,25 +75,17 @@ class GrampsParser(handler.ContentHandler):
 
         self.use_p = 0
         self.in_note = 0
-        self.in_attribute = 0
         self.in_old_attr = 0
         self.in_stext = 0
         self.in_scomments = 0
-        self.in_people = 0
-        self.in_name = 0
         self.db = database
         self.base = base
-        self.in_family = 0
-        self.in_source_ref = 0
-        self.in_source = 0
-        self.in_address = 0
-        self.in_event = 0
         self.person = None
         self.family = None
         self.address = None
         self.source = None
         self.source_ref = None
-        self.is_import = is_import
+        self.attribute = None
 
         self.resname = ""
         self.resaddr = "" 
@@ -152,7 +144,6 @@ class GrampsParser(handler.ContentHandler):
     def start_event(self,attrs):
         self.event = Event()
         self.event_type = string.capwords(attrs["type"])
-        self.in_event = 1
         
     #---------------------------------------------------------------------
     #
@@ -160,16 +151,15 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_attribute(self,attrs):
-        self.in_attribute = 1
         self.attribute = Attribute()
         if attrs.has_key('type'):
             self.in_old_attr = 1
             self.attribute.setType(string.capwords(attrs["type"]))
         else:
             self.in_old_attr = 0
-        if self.in_people:
+        if self.person:
             self.person.addAttribute(self.attribute)
-        elif self.in_family:
+        elif self.family:
             self.family.addAttribute(self.attribute)
 
     #---------------------------------------------------------------------
@@ -178,7 +168,6 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_address(self,attrs):
-        self.in_address = 1
         self.address = Address()
         self.person.addAddress(self.address)
 
@@ -188,10 +177,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_bmark(self,attrs):
-        if self.is_import:
-            person = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
-        else:
-            person = self.db.findPersonNoMap(attrs["ref"])
+        person = self.db.findPersonNoMap(attrs["ref"])
         self.db.bookmarks.append(person)
 
     #---------------------------------------------------------------------
@@ -203,10 +189,7 @@ class GrampsParser(handler.ContentHandler):
         if self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        if self.is_import:
-            self.person = self.db.findPerson("x%s" % attrs["id"],self.pmap)
-        else:
-            self.person = self.db.findPersonNoMap(attrs["id"])
+        self.person = self.db.findPersonNoMap(attrs["id"])
 
     #---------------------------------------------------------------------
     #
@@ -214,10 +197,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_people(self,attrs):
-        self.in_family = 0
-        self.in_people = 1
-        self.in_source = 0
-        if self.is_import == 0 and attrs.has_key("default"):
+        if attrs.has_key("default"):
             self.tempDefault = int(attrs["default"])
 
     #---------------------------------------------------------------------
@@ -226,10 +206,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_father(self,attrs):
-        if self.is_import:
-            father = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
-        else:
-            father = self.db.findPersonNoMap(attrs["ref"])
+        father = self.db.findPersonNoMap(attrs["ref"])
         self.family.setFather(father)
 
     #---------------------------------------------------------------------
@@ -238,10 +215,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_mother(self,attrs):
-        if self.is_import:
-            mother = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
-        else:
-            mother = self.db.findPersonNoMap(attrs["ref"])
+        mother = self.db.findPersonNoMap(attrs["ref"])
         self.family.setMother(mother)
     
     #---------------------------------------------------------------------
@@ -250,10 +224,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_child(self,attrs):
-        if self.is_import:
-            child = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
-        else:
-            child = self.db.findPersonNoMap(attrs["ref"])
+        child = self.db.findPersonNoMap(attrs["ref"])
         self.family.addChild(child)
 
     #---------------------------------------------------------------------
@@ -285,10 +256,7 @@ class GrampsParser(handler.ContentHandler):
         if self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        if self.is_import:
-            self.family = self.db.findFamily(attrs["id"],self.fmap)
-        else:
-            self.family = self.db.findFamilyNoMap(attrs["id"])
+        self.family = self.db.findFamilyNoMap(attrs["id"])
         if attrs.has_key("type"):
             self.family.setRelationship(attrs["type"])
 
@@ -298,10 +266,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_childof(self,attrs):
-        if self.is_import:
-            family = self.db.findFamily(attrs["ref"],self.fmap)
-        else:
-            family = self.db.findFamilyNoMap(attrs["ref"])
+        family = self.db.findFamilyNoMap(attrs["ref"])
         if attrs.has_key("type"):
             type = attrs["type"]
             self.person.addAltFamily(family,type)
@@ -314,10 +279,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_parentin(self,attrs):
-        if self.is_import:
-            family = self.db.findFamily(attrs["ref"],self.fmap)
-        else:
-            family = self.db.findFamilyNoMap(attrs["ref"])
+        family = self.db.findFamilyNoMap(attrs["ref"])
         self.person.addFamily(family)
 
     #---------------------------------------------------------------------
@@ -327,7 +289,6 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_name(self,attrs):
         self.name = Name()
-        self.in_name = 1
         
     #---------------------------------------------------------------------
     #
@@ -342,41 +303,17 @@ class GrampsParser(handler.ContentHandler):
     #
     #
     #---------------------------------------------------------------------
-    def start_families(self,attrs):
-        self.in_family = 1
-        self.in_people = 0
-        self.in_source = 0
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def start_sources(self,attrs):
-        self.in_family = 0
-        self.in_people = 0
-        self.in_source = 1
-        
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_sourceref(self,attrs):
         self.source_ref = SourceRef()
-        self.in_source_ref = 1
-        if self.is_import:
-            self.source = self.db.findSource(attrs["ref"],self.smap)
-        else:
-            self.source = self.db.findSourceNoMap(attrs["ref"])
+        self.source = self.db.findSourceNoMap(attrs["ref"])
         self.source_ref.setBase(self.source)
-        if self.in_address:
+        if self.address:
             self.address.setSourceRef(self.source_ref)
-        elif self.in_name:
+        elif self.name:
             self.name.setSourceRef(self.source_ref)
-        elif self.in_event:
+        elif self.event:
             self.event.setSourceRef(self.source_ref)
-        elif self.in_attribute:
+        elif self.attribute:
             self.attribute.setSourceRef(self.source_ref)
         else: 
             print "Sorry, I'm lost"
@@ -387,10 +324,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_source(self,attrs):
-        if self.is_import:
-            self.source = self.db.findSource(attrs["id"],self.smap)
-        else:
-            self.source = self.db.findSourceNoMap(attrs["id"])
+        self.source = self.db.findSourceNoMap(attrs["id"])
 
     #---------------------------------------------------------------------
     #
@@ -408,9 +342,9 @@ class GrampsParser(handler.ContentHandler):
         else:
             photo.setPath(src)
             photo.setPrivate(0)
-        if self.in_family == 1:
+        if self.family:
             self.family.addPhoto(photo)
-        if self.in_source == 1:
+        if self.source:
             self.source.addPhoto(photo)
         else:
             self.person.addPhoto(photo)
@@ -430,10 +364,10 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_attribute(self,tag):
-        self.in_attribute = 0
         if self.in_old_attr:
             self.attribute.setValue(tag)
         self.in_old_attr = 0
+        self.attribute = None
 
     #---------------------------------------------------------------------
     #
@@ -457,7 +391,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_address(self,tag):
-        self.in_address = 0
+        self.address = None
         
     #---------------------------------------------------------------------
     #
@@ -465,7 +399,6 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_event(self,tag):
-        self.in_event = 0
         self.event.setName(self.event_type)
 
         if self.event_type == "Birth":
@@ -476,10 +409,11 @@ class GrampsParser(handler.ContentHandler):
             self.family.setMarriage(self.event)
         elif self.event_type == "Divorce":
             self.family.setDivorce(self.event)
-        elif self.in_people == 1:
+        elif self.person:
             self.person.addEvent(self.event)
         else:
             self.family.addEvent(self.event)
+        self.event = None
 
     #---------------------------------------------------------------------
     #
@@ -488,7 +422,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_name(self,tag):
         self.person.setPrimaryName(self.name)
-        self.in_name = 0
+        self.name = None
 
     #---------------------------------------------------------------------
     #
@@ -513,7 +447,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_date(self,tag):
         if tag:
-            if self.in_address:
+            if self.address:
                 self.address.setDate(tag)
             else:
                 self.event.getDateObj().quick_set(tag)
@@ -525,6 +459,22 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_first(self,tag):
         self.name.setFirstName(tag)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_family(self,tag):
+        self.family = None
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_person(self,tag):
+        self.person = None
 
     #---------------------------------------------------------------------
     #
@@ -559,7 +509,15 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_sourceref(self,tag):
-        self.in_source_ref = 0
+        self.source_ref = None
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_source(self,tag):
+        self.source = None
 
     #---------------------------------------------------------------------
     #
@@ -688,19 +646,19 @@ class GrampsParser(handler.ContentHandler):
             note = fix_spaces(self.note_list)
         else:
             note = tag
-        if self.in_address == 1:
+        if self.address:
             self.address.setNote(note)
-        elif self.in_attribute == 1:
+        elif self.attribute:
             self.attribute.setNote(note)
-        elif self.in_name == 1:
+        elif self.name:
             self.name.setNote(note)
-        elif self.in_source == 1:
+        elif self.source:
             self.source.setNote(note)
-        elif self.in_event == 1:
+        elif self.event:
             self.event.setNote(note)
-        elif self.in_people == 1:
+        elif self.person:
             self.person.setNote(note)
-        elif self.in_family == 1:
+        elif self.family:
             self.family.setNote(note)
         self.note_list = []
 
@@ -817,7 +775,7 @@ class GrampsParser(handler.ContentHandler):
         "date"       : (None, stop_date),
         "description": (None, stop_description),
         "event"      : (start_event, stop_event),
-        "families"   : (start_families, None),
+        "families"   : (None, None),
         "family"     : (start_family, None),
         "father"     : (start_father, None),
         "first"      : (None, stop_first),
@@ -831,7 +789,7 @@ class GrampsParser(handler.ContentHandler):
         "p"          : (None, stop_ptag),
         "parentin"   : (start_parentin,None),
         "people"     : (start_people, None),
-        "person"     : (start_person, None),
+        "person"     : (start_person, stop_person),
         "img"        : (start_photo, None),
         "place"      : (None, stop_place),
         "postal"     : (None, stop_postal),
@@ -848,9 +806,9 @@ class GrampsParser(handler.ContentHandler):
         "scallno"    : (None, stop_scallno),
         "scomments"  : (None, stop_scomments),
         "sdate"      : (None,stop_sdate),
-        "source"     : (start_source, None),
+        "source"     : (start_source, stop_source),
         "sourceref"  : (start_sourceref, stop_sourceref),
-        "sources"    : (start_sources, None),
+        "sources"    : (None, None),
         "spage"      : (None, stop_spage),
         "spubinfo"   : (None, stop_spubinfo),
         "state"      : (None, stop_state),
@@ -904,4 +862,113 @@ class GrampsParser(handler.ContentHandler):
             if self.func:
                 self.data = self.data + data
 
+
+
+#-------------------------------------------------------------------------
+#
+# Gramps database parsing class.  Derived from SAX XML parser
+#
+#-------------------------------------------------------------------------
+class GrampsImportParser(handler.ContentHandler):
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_bmark(self,attrs):
+        person = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        self.db.bookmarks.append(person)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_person(self,attrs):
+        if self.count % self.increment == 0:
+            self.callback(float(self.count)/float(self.entries))
+        self.count = self.count + 1
+        self.person = self.db.findPerson("x%s" % attrs["id"],self.pmap)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_father(self,attrs):
+        father = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        self.family.setFather(father)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_mother(self,attrs):
+        mother = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        self.family.setMother(mother)
+    
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_child(self,attrs):
+        child = self.db.findPerson("x%s" % attrs["ref"],self.pmap)
+        self.family.addChild(child)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_family(self,attrs):
+        if self.count % self.increment == 0:
+            self.callback(float(self.count)/float(self.entries))
+        self.count = self.count + 1
+        self.family = self.db.findFamily(attrs["id"],self.fmap)
+        if attrs.has_key("type"):
+            self.family.setRelationship(attrs["type"])
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_childof(self,attrs):
+        family = self.db.findFamily(attrs["ref"],self.fmap)
+        if attrs.has_key("type"):
+            type = attrs["type"]
+            self.person.addAltFamily(family,type)
+        else:
+            self.person.setMainFamily(family)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_sourceref(self,attrs):
+        self.source_ref = SourceRef()
+        self.source = self.db.findSource(attrs["ref"],self.smap)
+        self.source_ref.setBase(self.source)
+        if self.address:
+            self.address.setSourceRef(self.source_ref)
+        elif self.name:
+            self.name.setSourceRef(self.source_ref)
+        elif self.event:
+            self.event.setSourceRef(self.source_ref)
+        elif self.attribute:
+            self.attribute.setSourceRef(self.source_ref)
+        else: 
+            print "Sorry, I'm lost"
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def start_source(self,attrs):
+        self.source = self.db.findSource(attrs["id"],self.smap)
 
