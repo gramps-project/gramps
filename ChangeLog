@@ -1,3 +1,8 @@
+2004-12-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: documentation
+	* src/Report.py: change finish_report to end_report
+	* src/DateHandler.py: remove debugging statement
+
 2004-12-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Plugins.py: add GrampsBookFormatComboBox class
 	* src/Report.py: Roll common functions into Report class

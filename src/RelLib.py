@@ -249,19 +249,19 @@ class SourceNote:
 
     def set_note_object(self,note_obj):
         """
-        Replaces the current Note object associated with the object
+        Replaces the current L{Note} object associated with the object
 
-        @param note_obj: New Note object to be assigned
-        @type note_obj: Note
+        @param note_obj: New L{Note} object to be assigned
+        @type note_obj: L{Note}
         """
         self.note = note_obj
 
     def get_note_object(self):
         """
-        Returns the Note instance associated with the object.
+        Returns the L{Note} instance associated with the object.
 
-        @returns: Note object assocated with the object
-        @rtype: Note
+        @returns: L{Note} object assocated with the object
+        @rtype: L{Note}
         """
         return self.note
 
@@ -1031,11 +1031,24 @@ class Person(PrimaryObject,SourceNote):
 
 class Family(PrimaryObject,SourceNote):
     """
-    GRAMPS Family record. Represents a family unit, which defines the
-    relationship between people. This can consist of a single person and
-    a set of children, or two people with a defined relationship and an
-    optional set of children. The relationship between people may be either
-    opposite sex or same sex.
+    Introduction
+    ============
+    The Family record is the GRAMPS in-memory representation of the
+    relationships between people. It contains all the information
+    related to the relationship.
+    
+    Usage
+    =====
+    Family objects are usually created in one of two ways.
+
+      1. Creating a new Family object, which is then initialized and
+         added to the database.
+      2. Retrieving an object from the database using the records
+         handle.
+
+    Once a Family object has been modified, it must be committed
+    to the database using the database object's commit_family function,
+    or the changes will be lost.
     """
 
     MARRIED     = 0
@@ -1045,7 +1058,11 @@ class Family(PrimaryObject,SourceNote):
     OTHER       = 4
     
     def __init__(self):
-        """creates a new Family instance"""
+        """
+        Creates a new Family instance. After initialization, most
+        data items have empty or null values, including the database
+        handle.
+        """
         PrimaryObject.__init__(self)
         SourceNote.__init__(self)
         self.father_handle = None
@@ -1058,7 +1075,6 @@ class Family(PrimaryObject,SourceNote):
         self.lds_seal = None
         self.complete = 0
 
-
     def serialize(self):
         """
         Converts the data held in the event to a Python tuple that
@@ -1070,6 +1086,10 @@ class Family(PrimaryObject,SourceNote):
         target database cannot handle complex types (such as objectes or
         lists), the database is responsible for converting the data into
         a form that it can use.
+
+        @returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
                 self.child_list, self.type, self.event_list,
@@ -1080,7 +1100,7 @@ class Family(PrimaryObject,SourceNote):
     def unserialize(self, data):
         """
         Converts the data held in a tuple created by the serialize method
-        back into the data in an Event structure.
+        back into the data in a Family structure.
         """
         (self.handle, self.gramps_id, self.father_handle, self.mother_handle,
          self.child_list, self.type, self.event_list,
@@ -1088,105 +1108,280 @@ class Family(PrimaryObject,SourceNote):
          self.complete, self.source_list, self.note, self.change) = data
 
     def set_complete_flag(self,val):
+        """
+        Sets or clears the complete flag, which is used to indicate that the
+        Family's data is considered to be complete.
+
+        @param val: True indicates the Family object is considered to be
+            complete
+        @type val: bool
+        """
         self.complete = val
 
     def get_complete_flag(self):
+        """
+        Returns the complete flag, which is used to indicate that the
+        Family's data is considered to be complete.
+
+        @return: True indicates that the Family's record is considered to
+            be complete.
+        @rtype: bool
+        """
         return self.complete
 
-    def set_lds_sealing(self,ord):
-        self.lds_seal = ord
+    def set_lds_sealing(self,lds_ord):
+        """
+        Sets the LDS Sealing ordinance. An ordinance can be removed
+        by assigning to None.
+
+        @param lds_ord: L{LdsOrd} to assign as the LDS Sealing ordinance.
+        @type lds_ord: L{LdsOrd}
+        """
+        self.lds_seal = lds_ord
 
     def get_lds_sealing(self):
+        """
+        Returns the LDS Sealing ordinance.
+
+        @returns: returns the L{LdsOrd} instance assigned as the LDS
+        Sealing ordinance, or None if no ordinance has been assigned.
+        @rtype: L{LdsOrd}
+        """
         return self.lds_seal
 
     def add_attribute(self,attribute) :
-        """adds an Attribute instance to the attribute list"""
+        """
+        Adds the L{Attribute} instance to the Family's list of attributes
+
+        @param attribute: L{Attribute} instance to add to the Family's
+            address list
+        @type attribute: list
+        """
         self.attribute_list.append(attribute)
 
     def remove_attribute(self,attribute):
-        """removes the specified Attribute instance from the attribute list"""
+        """
+        Removes the specified L{Attribute} instance from the attribute list
+        If the instance does not exist in the list, the operation has
+        no effect.
+
+        @param attribute: L{Attribute} instance to remove from the list
+        @type attribute: L{Attribute}
+
+        @return: True if the attribute was removed, False if it was not
+            in the list.
+        @rtype: bool
+        """
         if attribute in self.attribute_list:
             self.attribute_list.remove(attribute)
 
     def get_attribute_list(self) :
-        """returns the attribute list"""
+        """
+        Returns the list of L{Attribute} instances associated with the
+        Famliy
+        @return: Returns the list of L{Attribute} instances
+        @rtype: list
+        """
         return self.attribute_list
 
-    def set_attribute_list(self,list) :
-        """sets the attribute list to the specified list"""
-        self.attribute_list = list
+    def set_attribute_list(self,attribute_list) :
+        """
+        Assigns the passed list to the Family's list of L{Attribute} instances.
 
-    def set_relationship(self,type):
-        """assigns a string indicating the relationship between the
-        father and the mother"""
-        self.type = type
+        @param attribute_list: List of L{Attribute} instances to ba associated
+            with the Person
+        @type attribute_list: list
+        """
+        self.attribute_list = attribute_list
+
+    def set_relationship(self,relationship_type):
+        """
+        Sets the relationship type between the people identified as the
+        father and mother in the relationship. The valid values are:
+
+            - C{Family.MARRIED} : indicates a legally recognized married
+                relationship between two individuals. This may be either
+                an opposite or a same sex relationship.
+            - C{Family.UNMARRIED} : indicates a relationship between two
+                individuals that is not a legally recognized relationship.
+            - C{Family.CIVIL_UNION} : indicates a legally recongnized,
+                non-married relationship between two individuals of the
+                same sex.
+            - C{Family.UNKNOWN} : indicates that the type of relationship
+                between the two individuals is not know.
+            - C{Family.OTHER} : indicates that the type of relationship
+                between the two individuals does not match any of the
+                other types.
+
+        @param relationship_type: Relationship type between the father
+            and mother of the relationship.
+        @type relationship_type: int
+        """
+        self.type = relationship_type
 
     def get_relationship(self):
-        """returns a string indicating the relationship between the
-        father and the mother"""
+        """
+        Returns the relationship type between the people identified as the
+        father and mother in the relationship.
+        """
         return self.type
     
     def set_father_handle(self,person_handle):
-        """sets the father of the Family to the specfied Person"""
+        """
+        Sets the database handle for L{Person} that corresponds to
+        male of the relationship. For a same sex relationship, this
+        can represent either of people involved in the relationship.
+
+        @param person_handle: L{Person} database handle
+        @type person_handle: str
+        """
         self.father_handle = person_handle
 
     def get_father_handle(self):
-        """returns the father of the Family"""
+        """
+        Returns the database handle of the L{Person} identified as
+        the father of the Family.
+
+        @returns: L{Person} database handle
+        @rtype: str
+        """
        	return self.father_handle
 
-    def set_mother_handle(self,person):
-        """sets the mother of the Family to the specfied Person"""
+    def set_mother_handle(self,person_handle):
+        """
+        Sets the database handle for L{Person} that corresponds to
+        male of the relationship. For a same sex relationship, this
+        can represent either of people involved in the relationship.
+
+        @param person_handle: L{Person} database handle
+        @type person_handle: str
+        """
         self.mother_handle = person
 
     def get_mother_handle(self):
-        """returns the mother of the Family"""
+        """
+        Returns the database handle of the L{Person} identified as
+        the mother of the Family.
+
+        @returns: L{Person} database handle
+        @rtype: str
+        """
        	return self.mother_handle
 
-    def add_child_handle(self,person):
-        """adds the specfied Person as a child of the Family, adding it
-        to the child list"""
-        if person not in self.child_list:
-            self.child_list.append(person)
+    def add_child_handle(self,person_handle):
+        """
+        Adds the database handle for L{Person} to the Family's list
+        of children.
+
+        @param person_handle: L{Person} database handle
+        @type person_handle: str
+        """
+        if person_handle not in self.child_list:
+            self.child_list.append(person_handle)
             
-    def remove_child_handle(self,person):
-        """removes the specified Person from the child list"""
-        if person in self.child_list:
-            self.child_list.remove(person)
+    def remove_child_handle(self,person_handle):
+        """
+        Removes the database handle for L{Person} to the Family's list
+        of children if the L{Person} is already in the list.
+
+        @param person_handle: L{Person} database handle
+        @type person_handle: str
+        @return: True if the handle was removed, False if it was not
+            in the list.
+        @rtype: bool
+        """
+        if person_handle in self.child_list:
+            self.child_list.remove(person_handle)
+            return True
+        else:
+            return False
 
     def get_child_handle_list(self):
-        """returns the list of children"""
+        """
+        Returns the list of L{Person} handles identifying the children
+        of the Family.
+
+        @return: Returns the list of L{Person} handles assocated with
+            the Family.
+        @rtype: list
+        """
         return self.child_list
 
-    def set_child_handle_list(self, list):
-        """sets the list of children"""
-        self.child_list = list[:]
+    def set_child_handle_list(self, child_list):
+        """
+        Assigns the passed list to the Family's list children.
+
+        @param child_list: List of L{Person} handles to ba associated
+            as the Family's list of children.
+        @type child_list: list of L{Person} handles
+        """
+        self.child_list = child_list
 
     def add_event_handle(self,event_handle):
-        """adds an L{Event} to the event list"""
+        """
+        Adds the L{Event} to the Family instance's L{Event} list. This is
+        accomplished by assigning the handle of a valid L{Event} in the
+        current database.
+        
+        @param event_handle: handle of the L{Event} to be added to the
+            Person's L{Event} list.
+        @type event_handle: str
+        """
         self.event_list.append(event_handle)
 
     def get_event_list(self) :
-        """returns the list of L{Event} instances"""
+        """
+        Returns the list of handles associated with L{Event} instances.
+
+        @returns: Returns the list of L{Event} handles associated with
+            the Family instance.
+        @rtype: list
+        """
         return self.event_list
 
-    def set_event_list(self,list) :
-        """sets the event list to the passed list"""
-        self.event_list = list
+    def set_event_list(self,event_list) :
+        """
+        Sets the Family instance's L{Event} list to the passed list.
 
-    def add_media_reference(self,media_id):
-        """Adds a MediaObject object to the Family instance's image list"""
-        self.media_list.append(media_id)
+        @param event_list: List of valid L{Event} handles
+        @type event_list: list
+        """
+        self.event_list = event_list
+
+    def add_media_reference(self,media_ref):
+        """
+        Adds a L{MediaRef} instance to the Family's media list.
+
+        @param media_ref: L{MediaRef} instance to be added to the Family's
+            media list.
+        @type media_ref: L{MediaRef}
+        """
+        self.media_list.append(media_ref)
 
     def get_media_list(self):
-        """Returns the list of MediaObject objects"""
+        """
+        Returns the list of L{MediaRef} instances associated with the Family
+
+        @returns: list of L{MediaRef} instances associated with the Family
+        @rtype: list
+        """
         return self.media_list
 
-    def set_media_list(self,list):
-        """Sets the list of MediaObject objects"""
-        self.media_list = list
+    def set_media_list(self,media_ref_list):
+        """
+        Sets the list of L{MediaRef} instances associated with the Person.
+        It replaces the previous list.
+
+        @param media_ref_list: list of L{MediaRef} instances to be assigned
+            to the Person.
+        @type media_ref_list: list
+        """
+        self.media_list = media_ref_list
 
 class Event(PrimaryObject,DataObj):
     """
+    Introduction
+    ============
     The Event record is used to store information about some type of
     action that occurred at a particular place at a particular time,
     such as a birth, death, or marriage.
@@ -1197,7 +1392,7 @@ class Event(PrimaryObject,DataObj):
     
     def __init__(self,source=None):
         """
-        creates a new Event instance, copying from the source if present
+        Creates a new Event instance, copying from the source if present
 
         @param source: An event used to initialize the new event
         @type source: Event
@@ -1237,6 +1432,10 @@ class Event(PrimaryObject,DataObj):
         target database cannot handle complex types (such as objectes or
         lists), the database is responsible for converting the data into
         a form that it can use.
+
+        @returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        @rtype: tuple
         """
         return (self.handle, self.gramps_id, self.name, self.date,
                 self.description, self.place, self.cause, self.private,
@@ -1247,64 +1446,106 @@ class Event(PrimaryObject,DataObj):
         """
         Converts the data held in a tuple created by the serialize method
         back into the data in an Event structure.
+
+        @param data: tuple containing the persistent data associated the
+            Person object
+        @type data: tuple
         """
         (self.handle, self.gramps_id, self.name, self.date, self.description,
          self.place, self.cause, self.private, self.source_list,
          self.note, self.witness, self.media_list, self.change) = data
 
-    def add_media_reference(self,media_id):
-        """Adds a MediaObject object to the Event object's image list"""
-        self.media_list.append(media_id)
+    def add_media_reference(self,media_ref):
+        """
+        Adds a media reference to this object.
+
+        @param media_ref: The media reference to be added to the
+            Event's list of media references.
+        @type media_ref: L{MediaRef}
+        """
+        self.media_list.append(media_ref)
 
     def get_media_list(self):
-        """Returns the list of MediaObject objects"""
+        """
+        Returns the list of media references associated with the object.
+
+        @return: Returns the list of L{MediaRef} objects assocated with
+            the object.
+        @rtype: list
+        """
         return self.media_list
 
-    def set_media_list(self,mlist):
-        """Sets the list of MediaObject objects"""
-        self.media_list = mlist
+    def set_media_list(self,media_list):
+        """
+        Assigns the passed list to the Event's list of media references.
+
+        @param media_list: List of media references to ba associated
+            with the Event
+        @type media_list: list of L{MediaRef} instances
+        """
+        self.media_list = media_list
 
     def get_witness_list(self):
-        """Returns the list of Witness objects associated with the Event"""
+        """
+        Returns the list of L{Witness} instances associated with the Event.
+
+        @return: Returns the list of L{Witness} objects assocated with
+            the object.
+        @rtype: list
+        """
         return self.witness
 
-    def set_witness_list(self,list):
+    def set_witness_list(self,witness_list):
         """
-        Sets the Witness list to a copy of the list passed to the method.
+        Assigns the passed list to the object's list of L{Witness}
+        instances. To clear the list, None should be passed.
+
+        @param witness_list: List of L{Witness} instances to ba associated
+            with the Event.
+        @type witness_list: list
         """
-        if list:
-            self.witness = list[:]
+        if witness_list:
+            self.witness = witness_list
         else:
             self.witness = None
 
-    def add_witness(self,value):
+    def add_witness(self,witness):
         """
-        Adds a Witness object to the current witness list.
+        Adds the L{Witness} instance to the Event's witness list.
+
+        @param witness: The L{Witness} instance to be added to the
+            Event's list of L{Witness} instances.
+        @type witness: L{Witness}
         """
         if self.witness:
-            self.witness.append(value)
+            self.witness.append(witness)
         else:
-            self.witness = [value]
+            self.witness = [witness]
         
     def is_empty(self):
-        
+        """
+        Returns True if the Event is an empty object (no values set).
+
+        @returns: True if the Event is empty
+        @rtype: bool
+        """
         date = self.get_date_object()
         place = self.get_place_handle()
         description = self.description
         cause = self.cause
         name = self.name
-        return (not name or name == "Birth" or name == "Death") and \
-                   date.is_empty() and not place and not description and not cause
+        return ((not name or name == "Birth" or name == "Death") and 
+                date.is_empty() and not place and not description and not cause)
 
-    def set(self,name,date,place,description):
-        """sets the name, date, place, and description of an Event instance"""
-        self.name = name
-        self.place = place
-        self.description = description
-        self.set_date(date)
-        
     def are_equal(self,other):
-        """returns 1 if the specified event is the same as the instance"""
+        """
+        Returns True if the passed Event is equivalent to the current Event.
+
+        @param other: Event to compare against
+        @type other: Event
+        @returns: True if the Events are equal
+        @rtype: bool
+        """
         if other == None:
             other = Event (None)
         if (self.name != other.name or self.place != other.place or
@@ -1312,92 +1553,163 @@ class Event(PrimaryObject,DataObj):
             self.private != other.private or
             (not self.get_date_object().is_equal(other.get_date_object())) or
             len(self.get_source_references()) != len(other.get_source_references())):
-            return 0
+            return False
 
         index = 0
         olist = other.get_source_references()
         for a in self.get_source_references():
             if not a.are_equal(olist[index]):
-                return 0
-            index = index + 1
+                return False
+            index += 1
 
         witness_list = self.get_witness_list()
         other_list = other.get_witness_list()
         if (not witness_list) and (not other_list):
-            return 1
+            return True
         elif not (witness_list and other_list):
-            return 0
+            return False
         for a in witness_list:
             if a in other_list:
                 other_list.remove(a)
             else:
-                return 0
+                return False
         if other_list:
-            return 0
-
-        return 1
+            return False
+        return True
         
     def set_name(self,name):
-        """sets the name of the Event"""
+        """
+        Sets the name of the Event to the passed string.
+
+        @param name: Name to assign to the Event
+        @type name: str
+        """
         self.name = name
 
     def get_name(self):
-        """returns the name of the Event"""
+        """
+        Returns the name of the Event.
+
+        @return: Name of the Event
+        @rtype: str
+        """
         return self.name
 
-    def set_place_handle(self,place):
-        """sets the Place instance of the Event"""
-        self.place = place
+    def set_place_handle(self,place_handle):
+        """
+        Sets the database handle for L{Place} associated with the
+        Event.
+
+        @param place_handle: L{Place} database handle
+        @type place_handle: str
+        """
+        self.place = place_handle
 
     def get_place_handle(self):
-        """returns the Place instance of the Event"""
+        """
+        Returns the database handle of the L{Place} assocated with
+        the Event.
+
+        @returns: L{Place} database handle
+        @rtype: str
+        """
         return self.place 
 
     def set_cause(self,cause):
-        """sets the cause of the Event"""
+        """
+        Sets the cause of the Event to the passed string. The string
+        may contain any information.
+
+        @param cause: Cause to assign to the Event
+        @type cause: str
+        """
         self.cause = cause
 
     def get_cause(self):
-        """returns the cause of the Event"""
+        """
+        Returns the cause of the Event.
+
+        @return: Returns the cause of the Event
+        @rtype: str
+        """
         return self.cause 
 
     def set_description(self,description):
-        """sets the description of the Event instance"""
+        """
+        Sets the description of the Event to the passed string. The string
+        may contain any information.
+
+        @param description: Description to assign to the Event
+        @type description: str
+        """
         self.description = description
 
     def get_description(self) :
-        """returns the description of the Event instance"""
+        """
+        Returns the description of the Event.
+
+        @return: Returns the description of the Event
+        @rtype: str
+        """
         return self.description 
 
     def set_date(self, date) :
-        """attempts to sets the date of the Event instance"""
+        """
+        Sets the date of the Event instance. The date is parsed into
+        a L{Date} instance.
+
+        @param date: String representation of a date. The locale specific
+            L{DateParser} is used to parse the string into a GRAMPS L{Date}
+            object.
+        @type date: str
+        """
         self.date = DateHandler.parser.parse(date)
 
     def get_date(self) :
-        """returns a string representation of the date of the Event instance"""
+        """
+        Returns a string representation of the date of the Event instance
+        based off the default date display format determined by the
+        locale's L{DateDisplay} instance.
+
+        @return: Returns a string representing the Event's date
+        @rtype: str
+        """
         if self.date:
             return DateHandler.displayer.display(self.date)
         return u""
 
-    def get_preferred_date(self) :
-        """returns a string representation of the date of the Event instance"""
-        return self.get_date()
-
     def get_quote_date(self) :
-        """returns a string representation of the date of the Event instance,
-        enclosing the results in quotes if it is not a valid date"""
+        """
+        Returns a string representation of the date of the Event instance
+        based off the default date display format determined by the
+        locale's L{DateDisplay} instance. The date is enclosed in
+        quotes if the L{Date} is not a valid date.
+
+        @return: Returns a string representing the Event's date
+        @rtype: str
+        """
         if self.date:
             return DateHandler.displayer.quote_display(self.date)
         return u""
 
     def get_date_object(self):
-        """returns the Date object associated with the Event"""
+        """
+        Returns the L{Date} object associated with the Event.
+
+        @return: Returns a Event's L{Date} instance.
+        @rtype: L{Date}
+        """
         if not self.date:
             self.date = Date.Date()
        	return self.date
 
     def set_date_object(self,date):
-        """sets the Date object associated with the Event"""
+        """
+        Sets the L{Date} object associated with the Event.
+
+        @param date: L{Date} instance to be assigned to the Event
+        @type date: L{Date}
+        """
         self.date = date
 
 class Place(PrimaryObject,SourceNote):
@@ -1864,9 +2176,9 @@ class LdsOrd(SourceNote):
                 self.temple or 
                 self.status or 
                 self.place):
-            return 0
+            return False
         else:
-            return 1
+            return True
         
     def are_equal(self,other):
         """returns 1 if the specified ordinance is the same as the instance"""
@@ -1878,15 +2190,15 @@ class LdsOrd(SourceNote):
             self.temple != other.temple or
             not self.get_date_object().is_equal(other.get_date_object()) or
             len(self.get_source_references()) != len(other.get_source_references())):
-            return 0
+            return False
 
         index = 0
         olist = other.get_source_references()
         for a in self.get_source_references():
             if not a.are_equal(olist[index]):
-                return 0
-            index = index + 1
-        return 1
+                return False
+            index += 1
+        return True
 
 class Researcher:
     """Contains the information about the owner of the database"""
@@ -2039,31 +2351,65 @@ class Location:
         return self.country
 
 class Note:
-    """Provides general text information"""
+    """
+    Introduction
+    ============
+    The Note class defines a text note. The note may be preformatted
+    or 'flowed', which indicates that it text string is considered
+    to be in paragraphs, separated by newlines.
+    """
     
     def __init__(self,text = ""):
-        """create a new Note object from the passed string"""
+        """
+        Creates a new Note object, initializing from the passed string.
+        """
         self.text = text
         self.format = 0
 
     def set(self,text):
-        """set the note contents to the passed string"""
+        """
+        Sets the text associated with the note to the passed string.
+
+        @param text: Text string defining the note contents.
+        @type text: str
+        """
         self.text = text
 
     def get(self):
-        """return the note contents"""
+        """
+        Return the text string associated with the note.
+        @returns: Returns the text string defining the note contents.
+        @rtype: str
+        """
         return self.text
 
     def append(self,text):
-        """adds the text to the note's contents"""
+        """
+        Appends the specified text to the text associated with the note.
+
+        @param text: Text string to be appended to the note.
+        @type text: str
+        """
         self.text = self.text + text
 
     def set_format(self,format):
-        """set the format to the passed value"""
+        """
+        Sets the format of the note to the passed value. The value can
+        either indicate Flowed or Preformatted.
+
+        @param format: 0 indicates Flowed, 1 indicates Preformated
+        @type format: int
+        """
         self.format = format
 
     def get_format(self):
-        """return the note's format"""
+        """
+        Returns the format of the note. The value can either indicate
+        Flowed or Preformatted.
+
+        @returns: 0 indicates Flowed, 1 indicates Preformated
+        @rtype: int
+        """
         return self.format
 
 class MediaRef(SourceNote):
@@ -2081,7 +2427,7 @@ class MediaRef(SourceNote):
                 self.attrlist.append(Attribute(attr))
             self.rect = source.rect
         else:
-            self.private = 0
+            self.private = False
             self.ref = None
             self.note = None
             self.rect = None
@@ -2189,11 +2535,6 @@ class Address(DataObj):
         if self.date:
             return DateHandler.displayer.display(self.date)
         return u""
-
-    def get_preferred_date(self):
-        """returns a string representation of the date that the person
-        lived at the address"""
-        return self.date.get_preferred_date()
 
     def get_date_object(self):
         """returns the Date object associated with the Address"""
@@ -2706,23 +3047,23 @@ class SourceRef:
         return self.comments.get()
 
     def are_equal(self,other):
-        """returns 1 if the passed SourceRef is equal to the current"""
+        """returns True if the passed SourceRef is equal to the current"""
         if self.ref and other.ref:
             if self.page != other.page:
-                return 0
+                return False
             if self.date != other.date:
-                return 0
+                return False
             if self.get_text() != other.get_text():
-                return 0
+                return False
             if self.get_comments() != other.get_comments():
-                return 0
+                return False
             if self.confidence != other.confidence:
-                return 0
-            return 1
+                return False
+            return True
         elif not self.ref and not other.ref:
-            return 1
+            return True
         else:
-            return 0
+            return False
         
     def unique_note(self):
         """Creates a unique instance of the current note"""
