@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -41,10 +41,10 @@ def need_to_run():
 
 class StartupDialog:
 
-    def __init__(self,task,arg):
+    def __init__(self,task,args):
 
         self.task = task
-        self.arg = arg
+        self.args = args
 
         self.w = gtk.Window()
         self.fg_color = gtk.gdk.color_parse('#7d684a')
@@ -69,7 +69,7 @@ class StartupDialog:
         self.w.show_all()
 
     def close(self,obj):
-        self.task(self.arg)
+        self.task(self.args)
 
     def build_page1(self):
         p = gnome.ui.DruidPageEdge(0)
@@ -130,7 +130,7 @@ class StartupDialog:
         self.client.set_int("/apps/gramps/UseLDS",self.lds.get_active())
         self.client.set_int(_StartupEntry,const.startup)
         self.w.destroy()
-        self.task(self.arg)
+        self.task(self.args)
         
     def build_page2(self):
         p = gnome.ui.DruidPageStandard()
