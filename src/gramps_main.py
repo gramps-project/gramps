@@ -1507,21 +1507,22 @@ class Gramps:
         if family:
             family.removeChild(self.active_person)
             
+        self.people_view.remove_from_history(self.active_person)
         self.db.removePerson(self.active_person.getId())
         self.people_view.remove_from_person_list(self.active_person)
         self.people_view.person_model.sort_column_changed()
-        try:
-            self.mhistory = self.mhistory[:-2]
-            self.change_active_person(self.mhistory[-2])
-        except:
-            self.mhistory = []
-            self.change_active_person(None)
+
+        self.change_active_person(None)
+        self.redraw_histmenu()
         self.update_display(0)
         Utils.modified()
 
     def merge_update(self,p1,p2,old_id):
         self.people_view.remove_from_person_list(p1,old_id)
         self.people_view.remove_from_person_list(p2)
+        self.people_view.remove_from_history(p1,old_id)
+        self.people_view.remove_from_history(p2)
+        self.redraw_histmenu()
         self.people_view.redisplay_person_list(p1)
         self.update_display(0)
     

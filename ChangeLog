@@ -1,3 +1,9 @@
+2003-10-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (delete_person_response): Add remove_from_history
+	call before deleting the person.
+	* src/PeopleView.py (remove_from_history): Add function; 
+	(row_changed) Remove extra change_active_person() call.
+
 2003-10-06  Tim Waugh  <twaugh@redhat.com>
 	* src/Makefile.am: Ship PeopleView.py and PeopleStore.py.
 
