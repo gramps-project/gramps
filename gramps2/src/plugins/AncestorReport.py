@@ -79,7 +79,7 @@ class AncestorReport(Report.Report):
         self.filter(self.start,1)
         
         name = self.start.getPrimaryName().getRegularName()
-        self.doc.start_paragraph("Title")
+        self.doc.start_paragraph("AHN:Title")
         title = _("Ahnentafel Report for %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
@@ -92,13 +92,13 @@ class AncestorReport(Report.Report):
             if generation == 0 or key >= ( 1 << 30):
                 if self.pgbrk and generation > 0:
                     self.doc.page_break()
-                self.doc.start_paragraph("Generation")
+                self.doc.start_paragraph("AHN:Generation")
                 t = _("%s Generation") % AncestorReport.gen[generation+1]
                 self.doc.write_text(t)
                 self.doc.end_paragraph()
                 generation = generation + 1
 
-            self.doc.start_paragraph("Entry","%s." % str(key))
+            self.doc.start_paragraph("AHN:Entry","%s." % str(key))
             person = self.map[key]
             name = person.getPrimaryName().getRegularName()
         
@@ -391,7 +391,7 @@ def _make_default_style(default_style):
     para.set_header_level(1)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
-    default_style.add_style("Title",para)
+    default_style.add_style("AHN:Title",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -400,12 +400,12 @@ def _make_default_style(default_style):
     para.set_header_level(2)
     para.set(pad=0.5)
     para.set_description(_('The style used for the generation header.'))
-    default_style.add_style("Generation",para)
+    default_style.add_style("AHN:Generation",para)
     
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("Entry",para)
+    default_style.add_style("AHN:Entry",para)
 
 #------------------------------------------------------------------------
 #

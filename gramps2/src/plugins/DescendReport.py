@@ -88,7 +88,7 @@ class DescendantReport:
     def write_report(self):
         if self.newpage:
             self.doc.page_break()
-        self.doc.start_paragraph("Title")
+        self.doc.start_paragraph("DR:Title")
         name = self.person.getPrimaryName().getRegularName()
         self.doc.write_text(_("Descendants of %s") % name)
         self.dump_dates(self.person)
@@ -100,7 +100,7 @@ class DescendantReport:
     def dump(self,level,person):
 
         if level != 0:
-            self.doc.start_paragraph("Level%d" % level)
+            self.doc.start_paragraph("DR:Level%d" % level)
             self.doc.write_text("%d." % level)
             self.doc.write_text(person.getPrimaryName().getRegularName())
             self.dump_dates(person)
@@ -291,7 +291,7 @@ def _make_default_style(default_style):
     p.set_header_level(1)
     p.set_font(f)
     p.set_description(_("The style used for the title of the page."))
-    default_style.add_style("Title",p)
+    default_style.add_style("DR:Title",p)
 
     f = TextDoc.FontStyle()
     for i in range(1,32):
@@ -299,7 +299,7 @@ def _make_default_style(default_style):
         p.set_font(f)
         p.set_left_margin(max(10.0,float(i-1)))
         p.set_description(_("The style used for the level %d display.") % i)
-        default_style.add_style("Level%d" % i,p)
+        default_style.add_style("DR:Level%d" % i,p)
 
 #------------------------------------------------------------------------
 #

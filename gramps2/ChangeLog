@@ -1,3 +1,22 @@
+2003-07-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (open_example): Fix destination name when copying
+	files (was directory name).
+	* doc/gramps-manual/C/gramps-manual.xml: Reflect name change for
+	Comprehensive Ancestors Report.
+	* src/plugins/AncestorReport.py: Prefixed style names ("AHN:").
+	* src/plugins/Ancestors.py: Prefixed style names ("AR:").
+	* src/plugins/DescendReport.py: Prefixed style names ("DR:").
+	* src/plugins/DetAncestralReport.py: Prefixed style names ("DAR:"). 
+	* src/plugins/DetDescendantReport.py: Prefixed style names ("DDR:"). 
+	* src/plugins/FtmStyleAncestors.py: Prefixed style names ("FTA:").
+	* src/plugins/FtmStyleDescendants.py: Prefixed style names ("FTD:").
+	* src/plugins/FamilyGroup.py: Prefixed style names ("FGR:").
+	* src/plugins/CustomBookText.py: Prefixed style names ("CBT:").
+	* src/plugins/SimpleBookTitle.py: Prefixed style names ("SBT:").
+	Rename "Copyright string" with "Subtitle string".
+	* src/plugins/BookReport.py (BookReportDialog.__init__): Finally, 
+	clear the style problem. 
+
 2003-07-17  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Handle unknown genders and missing
 	first names.  Include grandchildren's birth dates in

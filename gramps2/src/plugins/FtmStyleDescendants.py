@@ -77,10 +77,10 @@ class FtmDescendantReport(Report.Report):
         tbl.set_column_width(0,10)
         tbl.set_column_width(1,5)
         tbl.set_column_width(2,85)
-        self.doc.add_table_style('ChildTable',tbl)
+        self.doc.add_table_style('FTD:ChildTable',tbl)
 
         cell = TextDoc.TableCellStyle()
-        self.doc.add_cell_style('Normal',cell)
+        self.doc.add_cell_style('FTD:Normal',cell)
 
     def apply_filter(self,person,index,generation=1):
 
@@ -108,7 +108,7 @@ class FtmDescendantReport(Report.Report):
         self.apply_filter(self.start,1)
         
         name = self.start.getPrimaryName().getRegularName()
-        self.doc.start_paragraph("Title")
+        self.doc.start_paragraph("FTD:Title")
         title = _("Descendants of %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
@@ -119,7 +119,7 @@ class FtmDescendantReport(Report.Report):
         for generation in generations:
             if self.pgbrk and generation > 1:
                 self.doc.page_break()
-            self.doc.start_paragraph("Generation")
+            self.doc.start_paragraph("FTD:Generation")
             t = _("Generation No. %d") % generation
             self.doc.write_text(t)
             self.doc.end_paragraph()
@@ -130,7 +130,7 @@ class FtmDescendantReport(Report.Report):
                 person = self.anc_map[key]
 
                 pri_name = person.getPrimaryName()
-                self.doc.start_paragraph("Entry","%d." % key)
+                self.doc.start_paragraph("FTD:Entry","%d." % key)
                 name = pri_name.getRegularName()
                 self.doc.start_bold()
                 self.doc.write_text(name)
@@ -231,7 +231,7 @@ class FtmDescendantReport(Report.Report):
         if not keys:
             return
 
-        self.doc.start_paragraph('Generation')
+        self.doc.start_paragraph('FTD:Generation')
         self.doc.write_text(_('Endnotes'))
         self.doc.end_paragraph()
         
@@ -240,7 +240,7 @@ class FtmDescendantReport(Report.Report):
             srcref = self.sref_map[key]
             base = srcref.getBase()
             
-            self.doc.start_paragraph('Endnotes',"%d." % key)
+            self.doc.start_paragraph('FTD:Endnotes',"%d." % key)
             self.doc.write_text(base.getTitle())
 
             for item in [ base.getAuthor(), base.getPubInfo(), base.getCallNumber(),
@@ -287,12 +287,12 @@ class FtmDescendantReport(Report.Report):
         note = person.getNote()
         if not note.strip():
             return
-        self.doc.start_paragraph('SubEntry')
+        self.doc.start_paragraph('FTD:SubEntry')
         self.doc.write_text(_('Notes for %(person)s:') % { 
             'person' : person.getPrimaryName().getRegularName()} )
         self.doc.end_paragraph()
         for line in note.split('\n'):
-            self.doc.start_paragraph('Details')
+            self.doc.start_paragraph('FTD:Details')
             self.doc.write_text(line.strip())
             self.doc.end_paragraph()
         
@@ -302,12 +302,12 @@ class FtmDescendantReport(Report.Report):
         ncount = 1
         for name in person.getAlternateNames():
             if first:
-                self.doc.start_paragraph('SubEntry')
+                self.doc.start_paragraph('FTD:SubEntry')
                 self.doc.write_text(_('More about %(person_name)s:') % { 
                    'person_name' : person.getPrimaryName().getRegularName() })
                 self.doc.end_paragraph()
                 first = 0
-            self.doc.start_paragraph('Details')
+            self.doc.start_paragraph('FTD:Details')
             self.doc.write_text(_('Name %(count)d: %(name)s%(endnotes)s') % {
                 'count' : ncount, 'name' : name.getRegularName(),
                 'endnotes' : self.endnotes(name),
@@ -322,13 +322,13 @@ class FtmDescendantReport(Report.Report):
             if not date and not place:
                 continue
             if first:
-                self.doc.start_paragraph('SubEntry')
+                self.doc.start_paragraph('FTD:SubEntry')
                 name = person.getPrimaryName().getRegularName()
                 self.doc.write_text(_('More about %(person_name)s:') % { 'person_name' : name })
                 self.doc.end_paragraph()
                 first = 0
 
-            self.doc.start_paragraph('Details')
+            self.doc.start_paragraph('FTD:Details')
             if date and place:
                 self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s') % {
                     'event_name' : event.getName(),
@@ -366,12 +366,12 @@ class FtmDescendantReport(Report.Report):
                 if not date and not place:
                     continue
                 if first:
-                    self.doc.start_paragraph('SubEntry')
+                    self.doc.start_paragraph('FTD:SubEntry')
                     self.doc.write_text(_('More about %(husband)s and %(wife)s:') % { 'husband' : husband, 'wife' : wife })
                     self.doc.end_paragraph()
                     first = 0
 
-                self.doc.start_paragraph('Details')
+                self.doc.start_paragraph('FTD:Details')
                 if date and place:
                     self.doc.write_text(_('%(event_name)s: %(date)s, %(place)s%(endnotes)s') % {
                         'event_name' : event.getName(),
@@ -414,30 +414,30 @@ class FtmDescendantReport(Report.Report):
 
                 if first:
                     first = 0
-                    self.doc.start_paragraph('SubEntry')
+                    self.doc.start_paragraph('FTD:SubEntry')
                     if spouse:
                         self.doc.write_text(_('Children of %(person_name)s and %(spouse_name)s are:') % { 
                             'person_name' : name,  'spouse_name' : spouse.getPrimaryName().getRegularName() })
                     else:
                         self.doc.write_text(_('Children of %(person_name)s are:') % { 'person_name' : name })
                     self.doc.end_paragraph()
-                    self.doc.start_table(family.getId(),'ChildTable')
+                    self.doc.start_table(family.getId(),'FTD:ChildTable')
 
                 self.doc.start_row()
-                self.doc.start_cell('Normal')
-                self.doc.start_paragraph('Details')
+                self.doc.start_cell('FTD:Normal')
+                self.doc.start_paragraph('FTD:Details')
                 self.doc.write_text("%d." % index)
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 
-                self.doc.start_cell('Normal')
-                self.doc.start_paragraph('Details')
+                self.doc.start_cell('FTD:Normal')
+                self.doc.start_paragraph('FTD:Details')
                 self.doc.write_text("%s." % string.lower(Utils.roman(child_index)))
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 
-                self.doc.start_cell('Normal')
-                self.doc.start_paragraph('Details')
+                self.doc.start_cell('FTD:Normal')
+                self.doc.start_paragraph('FTD:Details')
 
                 death = child.getDeath()
                 dplace = death.getPlaceName()
@@ -1140,7 +1140,7 @@ def _make_default_style(default_style):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
-    default_style.add_style("Title",para)
+    default_style.add_style("FTD:Title",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -1150,27 +1150,27 @@ def _make_default_style(default_style):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
-    default_style.add_style("Generation",para)
+    default_style.add_style("FTD:Generation",para)
     
     para = TextDoc.ParagraphStyle()
     para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("Entry",para)
+    default_style.add_style("FTD:Entry",para)
     
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("Details",para)
+    default_style.add_style("FTD:Details",para)
     
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("SubEntry",para)
+    default_style.add_style("FTD:SubEntry",para)
     
     para = TextDoc.ParagraphStyle()
     para.set(pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("Endnotes",para)
+    default_style.add_style("FTD:Endnotes",para)
 
 
 #------------------------------------------------------------------------
