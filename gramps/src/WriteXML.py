@@ -487,9 +487,6 @@ def exportData(database, filename, callback):
         GnomeErrorDialog(_("Failure writing %s, original file restored") % filename)
         shutil.copy(filename + ".bak", filename)
 
-    if not g.closed:
-        g.close()
-
 def write_xml_data(database, g, callback, sp):
 
     global strip_photo
