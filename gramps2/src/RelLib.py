@@ -895,9 +895,15 @@ class Name(DataObj):
         """returns a name string built from the components of the Name
         instance, in the form of Firstname Surname"""
         if (self.Suffix == ""):
-            return "%s %s" % (self.FirstName, self.Surname)
+            if self.Prefix:
+                return "%s %s %s" % (self.FirstName, self.Prefix, self.Surname)
+            else:
+                return "%s %s" % (self.FirstName, self.Surname)
         else:
-            return "%s %s, %s" % (self.FirstName, self.Surname, self.Suffix)
+            if self.Prefix:
+                return "%s %s %s, %s" % (self.FirstName, self.Prefix, self.Surname, self.Suffix)
+            else:
+                return "%s %s, %s" % (self.FirstName, self.Surname, self.Suffix)
 
     def are_equal(self,other):
         """compares to names to see if they are equal, return 0 if they

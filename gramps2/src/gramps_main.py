@@ -159,7 +159,6 @@ class Gramps:
         """
         self.gtop = gtk.glade.XML(const.gladeFile, "gramps")
         self.topWindow   = self.gtop.get_widget("gramps")
-        self.topWindow.hide()
 
         self.report_button = self.gtop.get_widget("reports")
         self.tool_button  = self.gtop.get_widget("tools")
@@ -1295,16 +1294,12 @@ class Gramps:
         self.gtop.get_widget("filter").set_text("")
     
         self.statusbar.set_progress_percentage(1.0)
-        self.full_update()
 
         person = self.db.getDefaultPerson()
         if person:
             self.active_person = person
-#        elif self.person_list.rows > 0:
-#            id = self.person_list.get_row_data(0)
-#            self.active_person = self.db.getPerson(id)
 
-        self.goto_active_person()
+        self.full_update()
         self.statusbar.set_progress_percentage(0.0)
         return 1
     
@@ -1337,10 +1332,6 @@ class Gramps:
         self.status_text("")
 
     def complete_rebuild(self):
-        keys = self.alpha_page.keys()
-
-        for key in keys:
-            self.alpha_page[key].new_model()
         self.id2col = {}
         self.model_used = {}
 
@@ -1355,18 +1346,14 @@ class Gramps:
             if pg != '@':
                 if not self.alpha_page.has_key(pg):
                     self.create_new_panel(pg)
-                model = self.alpha_page[pg]
-            else:
-                model = self.default_list
 
         self.apply_filter()
-        for key in keys:
-            self.alpha_page[key].connect_model()
 
         self.goto_active_person()
         self.modify_statusbar()
 
     def apply_filter(self,current_model=None):
+
         self.status_text(_('Updating display...'))
 
         datacomp = self.DataFilter.compare

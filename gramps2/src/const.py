@@ -126,6 +126,7 @@ translators  =  u'Radek Malcic <malcic@atlas.cz> - Czech\n' \
                u'Marcos Bedinelli - Brazilian-Portuguese (Portugu\xeas do Brasil)\n' \
                u'Alex Roitman <shura@alex.neuro.umn.edu> - Russian\n' \
                u'Jens Arvidsson <arvid-jens@algonet.se> - Swedish (Svenska)' \
+               u'Tino Meinen <a.t.meinen@chello.nl> - Dutch' \
 
 
 
