@@ -775,8 +775,10 @@ def tool_callback(val):
 #-------------------------------------------------------------------------
 def full_update():
     global id2col
+    global alt2col
     
     id2col = {}
+    alt2col = {}
     person_list.clear()
     gtop.get_widget(NOTEBOOK).set_show_tabs(Config.usetabs)
     clist = gtop.get_widget("child_list")
@@ -2360,6 +2362,7 @@ def apply_filter():
         if datacomp(person):
             
             if id2col.has_key(person):
+                new_alt2col[person] = alt2col[person]
                 continue
             pos = (person,0)
             id2col[person] = pos
