@@ -4036,6 +4036,12 @@
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>combo-entry1</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>ldsbaptemple</object>
+	      <last_modification_time>Sat, 01 Dec 2001 04:25:20 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -4174,6 +4180,12 @@
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>entry3</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>endowtemple</object>
+	      <last_modification_time>Sat, 01 Dec 2001 04:25:44 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
@@ -4291,6 +4303,12 @@
 	    <child_name>GtkCombo:entry</child_name>
 	    <name>entry5</name>
 	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>insert_text</name>
+	      <handler>on_combo_insert_text</handler>
+	      <object>sealtemple</object>
+	      <last_modification_time>Sat, 01 Dec 2001 04:26:04 GMT</last_modification_time>
+	    </signal>
 	    <editable>True</editable>
 	    <text_visible>True</text_visible>
 	    <text_max_length>0</text_max_length>
