@@ -128,6 +128,9 @@ class Gramps:
 
         # This will never contain data - It will be replaced by either
         # a GrampsXML or GrampsZODB
+
+        self.history = []
+        self.hindex = -1
         
         self.db = RelLib.GrampsDB()
         self.db.set_iprefix(GrampsCfg.iprefix)
@@ -373,6 +376,8 @@ class Gramps:
         self.editbtn = self.gtop.get_widget('editbtn')
 
         self.gtop.signal_autoconnect({
+            "on_back_clicked" : self.back_clicked,
+            "on_fwd_clicked" : self.fwd_clicked,
             "on_editbtn_clicked" : self.edit_button_clicked,
             "on_addbtn_clicked" : self.add_button_clicked,
             "on_removebtn_clicked" : self.remove_button_clicked,
@@ -444,7 +449,36 @@ class Gramps:
             self.views.set_current_page(1)
             
         self.topWindow.show()
+
+    def set_buttons(self,val):
+        self.report_menu.set_sensitive(val)
+        self.tools_menu.set_sensitive(val)
+        self.report_button.set_sensitive(val)
+        self.tool_button.set_sensitive(val)
+        self.remove_button.set_sensitive(val)
+        self.edit_button.set_sensitive(val)
         
+    def back_clicked(self,obj):
+        if self.hindex > 0:
+            try:
+                self.hindex -= 1
+                self.active_person = self.db.getPerson(self.history[self.hindex])
+                self.modify_statusbar()
+                self.goto_active_person()
+            except:
+                self.set_buttons(0)
+
+    def fwd_clicked(self,obj):
+        if self.hindex+1 < len(self.history):
+            try:
+                self.hindex += 1
+                self.active_person = self.db.getPerson(self.history[self.hindex])
+                self.modify_statusbar()
+                self.goto_active_person()
+                self.set_buttons(1)
+            except:
+                self.set_buttons(0)
+
     def change_alpha_page(self,obj,junk,page):
         """Change the page. Be careful not to take action while the pages
         are begin removed. If clearing_tabs is set, then we don't do anything"""
@@ -786,6 +820,9 @@ class Gramps:
         const.marriageEvents = const.init_marriage_event_list()
         const.familyAttributes = const.init_family_attribute_list()
         const.familyRelations = const.init_family_relation_list()
+
+        self.history = []
+        self.hindex = -1
 
         self.clear_person_tabs()
         
@@ -1427,18 +1464,17 @@ class Gramps:
         if person != self.active_person:
             self.active_person = person
             self.modify_statusbar()
+            if person:
+                if self.hindex+1 < len(self.history):
+                    self.history = self.history[0:self.hindex+1]
+                self.history.append(person.getId())
+                self.hindex += 1
+                    
         if person:
-            val = 1
+            self.set_buttons(1)
         else:
-            val = 0
+            self.set_buttons(0)
         
-        self.report_menu.set_sensitive(val)
-        self.tools_menu.set_sensitive(val)
-        self.report_button.set_sensitive(val)
-        self.tool_button.set_sensitive(val)
-        self.remove_button.set_sensitive(val)
-        self.edit_button.set_sensitive(val)
-    
     def modify_statusbar(self):
         
         if self.active_person == None:
@@ -1800,8 +1836,7 @@ class Gramps:
         self.statusbar.set_progress_percentage(1.0)
 
         person = self.db.getDefaultPerson()
-        if person:
-            self.active_person = person
+        self.change_active_person(person)
 
         self.full_update()
         self.statusbar.set_progress_percentage(0.0)
