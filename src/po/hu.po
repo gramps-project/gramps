@@ -1,6 +1,3 @@
-# translation of hu.po to 
-# translation of hu.po to
-# translation of hu.po to
 # translation of hu.po to Hungarian
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
@@ -10,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 2004-01-07 20:01+0100\n"
+"PO-Revision-Date: 2004-01-09 12:18+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -276,7 +273,7 @@ msgstr "(és|-ig|-)"
 
 #: Date.py:250 Date.py:263
 msgid "from %(start_date)s to %(stop_date)s"
-msgstr "%(start_date)s -tól %(stop_date)s-ig"
+msgstr "%(start_date)s -tól %(stop_date)s -ig"
 
 #: DbPrompter.py:61 DbPrompter.py:110 gramps_main.py:1413 revision.glade:131
 msgid "Open a database"
@@ -305,7 +302,7 @@ msgid ""
 msgstr ""
 "GRAMPS-ben egy belső hiba történt.\n"
 "Kérem mentse az alábbi üzenetet és küldje el a\n"
-"http://sourceforge.net/projects/gramps vagy \n"
+"http://sourceforge.net/projects/gramps -ről vagy \n"
 "küldjön email-t a gramps-bugs@lists.sourceforge címre.\n"
 "\n"
 
@@ -401,8 +398,8 @@ msgid ""
 "You have attempted to change the GRAMPS ID to a value of %(grampsid)s. This "
 "value is already used by %(person)s."
 msgstr ""
-"Megkisérelte a GRAMPS ID cseréjét %(grampsid)s értékre. %(person)s használja "
-"ezt az értéket."
+"GRAMPS ID cseréjét próbálta meg a %(grampsid)s értékre, de ezt az értéket "
+"%(person)s már használja."
 
 #: EditPerson.py:1476
 msgid "Problem changing the gender"
@@ -413,7 +410,7 @@ msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
 msgstr ""
-"A nem megváltoztatása problémákat jelenthet a házassági információban.\n"
+"A nem megváltoztatása problémákat jelent a házassági információban.\n"
 "Kérem ellenőrizze a személy házasságait."
 
 #: EditPlace.py:86
@@ -494,7 +491,7 @@ msgstr "Média objektumok"
 
 #: EditSource.py:212 gramps.glade:1095
 msgid "Places"
-msgstr "Helyek"
+msgstr "Helyszínek"
 
 #: EventEdit.py:92 EventEdit.py:97
 msgid "Event Editor"
@@ -538,7 +535,7 @@ msgstr "Állapot"
 
 #: FamilyView.py:301 PeopleView.py:380
 msgid "Add Bookmark"
-msgstr "Könyvjelző hozzáadása"
+msgstr "Könyvjelzőhöz adás"
 
 #: FamilyView.py:304 FamilyView.py:325 FamilyView.py:348 FamilyView.py:371
 #: PedView.py:451 PeopleView.py:388
@@ -636,7 +633,7 @@ msgstr "Szülők menü"
 
 #: FamilyView.py:936 FamilyView.py:967
 msgid "Make the selected parents the active family"
-msgstr "A kijelölt szülők legyenek az aktív család"
+msgstr "A kijelölt szülők legyenek az aktív családban"
 
 #: FamilyView.py:939 FamilyView.py:970
 msgid "Remove parents"
@@ -644,7 +641,7 @@ msgstr "Szülők törlése"
 
 #: FamilyView.py:948
 msgid "Spouse Parents Menu"
-msgstr "Házasodott szülők menü"
+msgstr "Házasságban élő szülők menü"
 
 #: FamilyView.py:1032 FamilyView.py:1047
 msgid "Remove Parents of %s"
@@ -657,7 +654,7 @@ msgid ""
 "between the parents is not removed."
 msgstr ""
 "Egy személy szüleinek az eltávolítása eltávolítja a személyt mint a szülők "
-"gyerekét. A szülők nem kerülnek törlésre és a kapcsolat a szülők között "
+"gyerekét. A szülők nem kerülnek törlésre, a kapcsolat a szülők között "
 "megmarad."
 
 #: FamilyView.py:1037 FamilyView.py:1052
@@ -851,11 +848,11 @@ msgstr "Egy szűrő által megadott emberrel való közös ősöknek a keresése
 
 #: GenericFilter.py:857
 msgid "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Egy szűrő által megadott ember közös ősök"
+msgstr "Egy szűrő által megadott ember közös ősei"
 
 #: GenericFilter.py:891
 msgid "Matches all males"
-msgstr "Összes férfi megvizsgálása:"
+msgstr "Összes férfi megvizsgálása"
 
 #: GenericFilter.py:904 GenericFilter.py:951 GenericFilter.py:1053
 #: GenericFilter.py:1093 edit_person.glade:1885 edit_person.glade:3795
@@ -958,7 +955,7 @@ msgstr "Hiányos névvel rendelkező személy megvizsgálása."
 
 #: GenericFilter.py:1249
 msgid "Matches the person married to someone matching a filter"
-msgstr "Egy szűrő által megadott személyhez házasodott ember megvizsgálása"
+msgstr "Egy szűrő által megadott személyhez hozzáházasodott ember megvizsgálása"
 
 #: GenericFilter.py:1396
 msgid "Everyone"
@@ -1090,11 +1087,11 @@ msgstr "Hónap Nap, Év"
 
 #: GrampsCfg.py:78
 msgid "MON Day, Year"
-msgstr "Hó Nap, Év"
+msgstr "HÓ Nap, Év"
 
 #: GrampsCfg.py:79
 msgid "Day MON Year"
-msgstr "Nap Hó Év"
+msgstr "Nap HÓ Év"
 
 #: GrampsCfg.py:80
 msgid "MM/DD/YYYY"
@@ -1238,7 +1235,7 @@ msgstr "Média objektum"
 
 #: ImageSelect.py:582
 msgid "Open in %s"
-msgstr "%s -ban/-ben megnyitás"
+msgstr "%s -ben megnyitás"
 
 #: ImageSelect.py:585 MediaView.py:196
 msgid "Edit with the GIMP"
@@ -1318,7 +1315,7 @@ msgid ""
 msgstr ""
 "Nincsen használható eszköz a bemutatókép létrehozásához. Ha használni "
 "szeretné ezt a funkciót akkor telepítse a Python Imaging Library -t (PIL), "
-"elérhető a http://www.pythonware.com/products/pil/  címen vagy használja az "
+"elérhető a http://www.pythonware.com/products/pil/ címen vagy használja az "
 "ImageMagick-et, letölthető a http://www.imagemagick.org/ címről."
 
 #: MediaView.py:169 SelectObject.py:140
@@ -1335,7 +1332,7 @@ msgstr "Tulajdonságok Szerkesztése"
 
 #: MediaView.py:286
 msgid "Delete Media Object?"
-msgstr "Média Objektum törlése?"
+msgstr "Törli a Média Objektumot?"
 
 #: MediaView.py:287
 msgid ""
@@ -1355,11 +1352,11 @@ msgstr "Kép importálása nem sikerült"
 
 #: MergeData.py:65
 msgid "Merge Places"
-msgstr "Helyek összevonása"
+msgstr "Helyszínek összevonása"
 
 #: MergeData.py:65
 msgid "Select the title for the merged place"
-msgstr "Válasszon egy címet az összevont helyeknek"
+msgstr "Válasszon egy címet az összevont helyszínnek"
 
 #: MergeData.py:82
 msgid "Merge %s and %s"
@@ -1421,7 +1418,7 @@ msgstr "Helyiség név"
 
 #: PlaceView.py:147
 msgid "Cannot merge places."
-msgstr "Helyek nem összevonhatóak"
+msgstr "Helyszínek nem összevonhatóak"
 
 #: PlaceView.py:148
 msgid ""
@@ -1543,7 +1540,7 @@ msgstr ""
 "%(file_name)s nyilván van tartva az adatbázisban, de már nem létezik. Lehet, "
 "hogy a fájl le lett törölve vagy át lett helyezve. Az adatbázisból "
 "eltávolíthatja, új fájlt választhat ki vagy megtarthatja a jelenlegi "
-"állapotot."
+"állapotát."
 
 #: ReadXML.py:272 ReadXML.py:276
 msgid "%s could not be opened."
@@ -1555,7 +1552,7 @@ msgstr "%s (ellenőrzés %s)"
 
 #: RelImage.py:57
 msgid "The file has been moved or deleted"
-msgstr "A fájl át lett helyezve vagy töröltetett"
+msgstr "A fájl át lett helyezve vagy törölve lett"
 
 #: RelImage.py:71 RelImage.py:74 RelImage.py:147 RelImage.py:150
 #: docgen/AbiWord2Doc.py:71 docgen/AbiWord2Doc.py:74 docgen/AbiWordDoc.py:70
@@ -1603,7 +1600,7 @@ msgstr "Nem lehet létrehozni bemutatóképet %s részére"
 
 #: RelImage.py:163
 msgid "The file has been moved or deleted."
-msgstr "A fájl át lett helyezve vagy töröltetett."
+msgstr "A fájl át lett helyezve vagy törölve lett."
 
 #: Relationship.py:225
 msgid "Relationship loop detected"
@@ -1832,7 +1829,7 @@ msgstr "Oldalszám"
 
 #: Report.py:1107 Report.py:1112
 msgid "HTML Options"
-msgstr "HTML Opciók"
+msgstr "HTML Tulajdonságok"
 
 #: Report.py:1114 plugins/eventcmp.glade:192
 msgid "Template"
@@ -1958,8 +1955,8 @@ msgid ""
 msgstr ""
 "GRAMPS egy szabad forrású projekt. Fejlesztése nagyban függ a "
 "felhasználóktól. A felhasználói visszajelzések nagyon fontosak nekünk. "
-"Kérjük látogassa a levelező listánkat, a hibákat jelezze. Szívesen vesszük "
-"fejlesztési elképzeléseit, és ha teheti, működjön együtt velünk.\n"
+"Kérjük látogassa a levelező listánkat, ahol szívesen vesszük a hibajelzéseit "
+"fejlesztési elképzeléseit; és ha teheti, segítsen nekünk.\n"
 "\n"
 "Élvezze a GRAMPS használatát!"
 
@@ -2006,7 +2003,7 @@ msgstr "Telefon:"
 
 #: StartupDialog.py:168
 msgid "Email:"
-msgstr "email:"
+msgstr "Email:"
 
 #: StartupDialog.py:196
 msgid "Numerical date formats"
@@ -2019,9 +2016,9 @@ msgid ""
 "tell what format you are using. Please indicate your preferred format\n"
 "for entering numerical dates."
 msgstr ""
-"Három megszokott formátum van a dátumok megadására. Előzetes információk "
-"nélkül a GRAMPS nem tudja eldönteni melyiket használja. Kérem adja meg az ön "
-"által kedvelt formát."
+"Három általánosa használt formátum van a dátumok megadására.\n"
+"Előzetes információk nélkül a GRAMPS nem tudja eldönteni melyiket használja.\n"
+"Kérem adja meg az ön által kedvelt formát."
 
 #: StartupDialog.py:216
 msgid "MM/DD/YYYY (United States)"
@@ -2049,7 +2046,7 @@ msgid ""
 msgstr ""
 "Alapbeállításként minden GRAMPS által tárolt dátum a Gregorián naptárat\n"
 "használja. Ez a legtöbb felhasználónak megfelelő. Rendelkezésre áll még \n"
-"Julián, Francia köztársasági és héber naptár. Ha úgy gondolja, hogy\n"
+"Julián, Francia köztársasági és Héber naptár. Ha úgy gondolja, hogy\n"
 "szűksége van ezek használatára akkor engedélyezze az alternatív\n"
 "naptárak használatát.\n"
 
@@ -2059,7 +2056,7 @@ msgstr "Alternatív naptárak támogatásának engedélyezése"
 
 #: StartupDialog.py:274
 msgid "LDS extensions"
-msgstr "LSD kiterjesztések"
+msgstr "Mormon bővítések"
 
 #: StartupDialog.py:283
 msgid ""
@@ -2069,16 +2066,15 @@ msgid ""
 "You may choose to either enable or disable this support. You may\n"
 "change this option in the future in the Preferences dialog."
 msgstr ""
-"GRAMPS támogatja az LDS ünnepeket, melyek speciális események\n"
-"a Jézus Krisztus Utolsó Napi Szentek Egyházánál.\n"
-"(Church of Jesus Christ of Latter Day Saints)\n"
+"GRAMPS engedélyezheti a Mormon (Churc of Jesus Christ of Latter Day Saints)\n"
+"ünnepeket.\n"
 "\n"
 "Engedélyezheted vagy tilthatod ezek használatát. Ezt a beállítást később\n"
 "módosíthatod a Tulajdonságok párbeszédablakban."
 
 #: StartupDialog.py:294
 msgid "Enable LDS ordinance support"
-msgstr "LDS ünnepek támogatása"
+msgstr "Mormon ünnepek támogatása"
 
 #: StyleEditor.py:68
 msgid "Document Styles"
@@ -2302,7 +2298,7 @@ msgstr "Felnőttkori megkeresztelés"
 
 #: const.py:293
 msgid "Baptism"
-msgstr "Keresztelése:"
+msgstr "Keresztelés"
 
 #: const.py:294
 msgid "Bar Mitzvah"
@@ -2330,7 +2326,7 @@ msgstr "Népszámlálás"
 
 #: const.py:300
 msgid "Christening"
-msgstr "Keresztelése:"
+msgstr "Keresztelő"
 
 #: const.py:301
 msgid "Confirmation"
@@ -2342,11 +2338,11 @@ msgstr "Hamvasztás"
 
 #: const.py:303
 msgid "Degree"
-msgstr "Iskolai végzettsége:"
+msgstr "Képzettség"
 
 #: const.py:305
 msgid "Education"
-msgstr "Tanulmányai:"
+msgstr "Tanulmányok"
 
 #: const.py:306
 msgid "Elected"
@@ -2462,7 +2458,7 @@ msgstr "Ismeretlen kapcsolat egy férfi és egy nő között"
 
 #: const.py:495
 msgid "An unspecified relationship between a man and woman"
-msgstr "Egy nem meghatározott kapcsolat egy férfi és egy nő között"
+msgstr "Egy meghatározhatatlan kapcsolat egy férfi és egy nő között"
 
 #: const.py:519
 msgid "No definition available"
@@ -2555,7 +2551,7 @@ msgstr "_Hozzáadás..."
 #: places.glade:927 places.glade:1128 places.glade:1280 places.glade:1567
 #: rule.glade:212 rule.glade:876 srcsel.glade:883 styles.glade:150
 msgid "_Edit..."
-msgstr "_Szerkesztés..."
+msgstr "S_zerkesztés..."
 
 #: dialog.glade:612 dialog.glade:815 dialog.glade:1282 dialog.glade:2404
 #: dialog.glade:3468 edit_person.glade:1781 edit_person.glade:2330
@@ -2693,7 +2689,7 @@ msgstr "AbiWord (1.0.x verzió)"
 
 #: docgen/HtmlDoc.py:158 docgen/HtmlDoc.py:183
 msgid "The marker '<!-- START -->' was not in the template"
-msgstr "A(z)  '<-- START -->;' szimbólum nincsen a sémában"
+msgstr "A '<!-- START -->' szimbólum nincsen a sémában"
 
 #: docgen/HtmlDoc.py:194 docgen/HtmlDoc.py:200
 msgid ""
@@ -3033,11 +3029,11 @@ msgstr "Internet"
 
 #: edit_person.glade:4115
 msgid "<b>LDS baptism</b>"
-msgstr "<b>LDS keresztség</b>"
+msgstr "<b>Mormon keresztség</b>"
 
 #: edit_person.glade:4211
 msgid "LDS _temple:"
-msgstr "LDS _templom:"
+msgstr "Mormon _templom:"
 
 #: edit_person.glade:4280 edit_person.glade:4579 edit_person.glade:4755
 #: marriage.glade:1847
@@ -3050,11 +3046,11 @@ msgstr "<b>Kiházasítás</b>"
 
 #: edit_person.glade:4419
 msgid "LDS te_mple:"
-msgstr "LDS _templom:"
+msgstr "Mormon _templom:"
 
 #: edit_person.glade:4447 preferences.glade:2486
 msgid "P_lace:"
-msgstr "_Helyek:"
+msgstr "_Helyszínek:"
 
 #: edit_person.glade:4616
 msgid "Dat_e:"
@@ -3062,7 +3058,7 @@ msgstr "_Dátum:"
 
 #: edit_person.glade:4687
 msgid "LD_S temple:"
-msgstr "LD_S templom:"
+msgstr "M_ormon templom:"
 
 #: edit_person.glade:4841
 msgid "Pa_rents:"
@@ -3074,7 +3070,7 @@ msgstr "<b>Szülői hitelesítés</b>"
 
 #: edit_person.glade:4920 marriage.glade:1897
 msgid "LDS"
-msgstr "LDS"
+msgstr "Mormon"
 
 #: errdialogs.glade:161
 msgid "Close _without saving"
@@ -3122,7 +3118,7 @@ msgstr "Kapcsolat nélküli egyének"
 
 #: filters/EventPlace.py:68
 msgid "People with an event location of ..."
-msgstr "Emberek a következő helyen történt eseményekkel"
+msgstr "Emberek a megadott helyen történt eseményekkel"
 
 #: filters/EventType.py:40
 msgid "People who have an event type of ..."
@@ -3205,7 +3201,7 @@ msgstr "_Fájl"
 
 #: gramps.glade:48
 msgid "_New"
-msgstr "_Új"
+msgstr "Ú_j"
 
 #: gramps.glade:70
 msgid "_Open..."
@@ -3213,11 +3209,11 @@ msgstr "_Megnyitás..."
 
 #: gramps.glade:92
 msgid "_Save"
-msgstr "_Mentés"
+msgstr "M_entés"
 
 #: gramps.glade:114
 msgid "Save _As..."
-msgstr "Mentés más_ként..."
+msgstr "Men_tés másként..."
 
 #: gramps.glade:141
 msgid "_Import"
@@ -3233,7 +3229,7 @@ msgstr "_Visszaállítás"
 
 #: gramps.glade:190
 msgid "Re_load plugins"
-msgstr "Modulok _újrabetöltése"
+msgstr "Modulok ú_jrabetöltése"
 
 #: gramps.glade:217
 msgid "_Quit"
@@ -3241,7 +3237,7 @@ msgstr "_Kilépés"
 
 #: gramps.glade:243
 msgid "_Edit"
-msgstr "_Szerkesztés"
+msgstr "S_zerkesztés"
 
 #: gramps.glade:252 gramps.glade:817
 msgid "Add a new item"
@@ -3257,7 +3253,7 @@ msgstr "A kiválasztott elem szerkesztése"
 
 #: gramps.glade:299
 msgid "E_dit..."
-msgstr "_Szerkesztés..."
+msgstr "S_zerkesztés..."
 
 #: gramps.glade:314
 msgid "_Find..."
@@ -3273,7 +3269,7 @@ msgstr "_Tulajdonságok..."
 
 #: gramps.glade:385
 msgid "Set _Home person..."
-msgstr "Központi személy kiválasztása..."
+msgstr "_Központi személy kiválasztása..."
 
 #: gramps.glade:410
 msgid "_View"
@@ -3285,11 +3281,11 @@ msgstr "_Szűrő"
 
 #: gramps.glade:429
 msgid "_Sidebar"
-msgstr "_Szélső menü"
+msgstr "_Oldalsó eszköztár"
 
 #: gramps.glade:439
 msgid "_Toolbar"
-msgstr "_Eszközök"
+msgstr "_Fő eszköztár"
 
 #: gramps.glade:461
 msgid "_Bookmarks"
@@ -3297,15 +3293,15 @@ msgstr "_Könyvjelzők"
 
 #: gramps.glade:470
 msgid "_Add bookmark"
-msgstr "_Könyvjelző hozzáadása"
+msgstr "Könyvjelző hozzá_adása"
 
 #: gramps.glade:492
 msgid "_Edit bookmarks..."
-msgstr "_Könyvjelzők szerkesztése..."
+msgstr "Könyvjelzők s_zerkesztése..."
 
 #: gramps.glade:520
 msgid "_Go to bookmark"
-msgstr "_Könyvjelzőhöz"
+msgstr "_Könyvjelző elem kiválasztása"
 
 #: gramps.glade:532
 msgid "_Reports"
@@ -3317,7 +3313,7 @@ msgstr "_Eszközök"
 
 #: gramps.glade:548
 msgid "_Help"
-msgstr "_Segítség"
+msgstr "_Súgó"
 
 #: gramps.glade:557
 msgid "_User manual"
@@ -3405,7 +3401,7 @@ msgstr "Eszközök"
 
 #: gramps.glade:818
 msgid "Add"
-msgstr "Hozzáad"
+msgstr "Hozzáadás"
 
 #: gramps.glade:833
 msgid "Remove"
@@ -3553,7 +3549,7 @@ msgstr "<b>Források</b>"
 
 #: gramps.glade:3162
 msgid "<b>Places</b>"
-msgstr "<b>Helyek</b>"
+msgstr "<b>Helyszínek</b>"
 
 #: gramps.glade:3561
 msgid "<b>Media</b>"
@@ -3736,7 +3732,7 @@ msgstr ""
 
 #: gramps_main.py:865
 msgid "_Create New Database"
-msgstr "_Új adatbázis létrehozása"
+msgstr "Ú_j adatbázis létrehozása"
 
 #: gramps_main.py:951 gramps_main.py:1530
 msgid "Updating display - this may take a few seconds..."
@@ -3856,7 +3852,7 @@ msgstr "A központi személy a Beállítások menüből változtatható meg."
 
 #: gramps_main.py:1767
 msgid "%s has been bookmarked"
-msgstr "%s be lett rakva a könyvjelzőkhöz"
+msgstr "%s be lett rakva a könyvjelzőhöz"
 
 #: gramps_main.py:1770
 msgid "Could Not Set a Bookmark"
@@ -3872,7 +3868,7 @@ msgstr "Nem lehet egy személyt elérni"
 
 #: gramps_main.py:1783
 msgid "Either stale bookmark or broken history caused by IDs reorder."
-msgstr "ID-k átrendezéséből adódhat könyvjelző vagy eseménylista meghibásodás."
+msgstr "ID-k átrendezéséből könyvjelző vagy eseménylista meghibásodás adódhat."
 
 #: gramps_main.py:1791
 msgid "Set %s as the Home Person"
@@ -4478,7 +4474,7 @@ msgstr "Könyv lista"
 #: plugins/BookReport.py:600 plugins/BookReport.py:940
 #: plugins/BookReport.py:1089
 msgid "Book Report"
-msgstr "Összesítőkönyv "
+msgstr "Összesítőkönyv"
 
 #: plugins/BookReport.py:603
 msgid "New Book"
@@ -4574,7 +4570,7 @@ msgstr "Bizalmas események típusának átnevezése"
 #: plugins/ChangeTypes.py:104 plugins/Check.py:353 plugins/Merge.py:554
 #: plugins/PatchNames.py:209 plugins/ReorderIds.py:130
 msgid "Database Processing"
-msgstr "Adatbázis feldolgozás"
+msgstr "Adatbázis feldolgozása"
 
 #: plugins/ChangeTypes.py:105
 msgid "Allows all the events of a certain name to be renamed to a new name"
@@ -4586,11 +4582,11 @@ msgstr "Nincsen hiba"
 
 #: plugins/Check.py:253
 msgid "The database has passed internal checks"
-msgstr "Az adatbázis átment a belső ellenőrzésen"
+msgstr "Az adatbázis megfelelt a belső ellenőrzésnek"
 
 #: plugins/Check.py:259
 msgid "1 broken child/family link was fixed\n"
-msgstr "1 rossz gyermek/család mutató ki lett javítva\n"
+msgstr "1 rossz gyermek/család mutató lett kijavítva\n"
 
 #: plugins/Check.py:261
 msgid "%d broken child/family links were found\n"
@@ -4602,7 +4598,7 @@ msgstr "%s el lett távolítva a %s családból\n"
 
 #: plugins/Check.py:280
 msgid "1 broken spouse/family link was fixed\n"
-msgstr "1 rossz házastárs/család mutató ki lett javítva\n"
+msgstr "1 rossz házastárs/család mutató lett kijavítva\n"
 
 #: plugins/Check.py:282
 msgid "%d broken spouse/family links were found\n"
@@ -4630,35 +4626,35 @@ msgstr "%d hibás családi kapcsolat lett kijavítva\n"
 
 #: plugins/Check.py:306
 msgid "1 media object was referenced, but not found\n"
-msgstr "1 média objektum hivatkozás van de nem található\n"
+msgstr "1 média objektum hivatkozás van, de nem elérhető\n"
 
 #: plugins/Check.py:308
 msgid "%d media objects were referenced, but not found\n"
-msgstr "%d média objektum hivatkozás van de nem található\n"
+msgstr "%d média objektum hivatkozás van, de nem elérhető\n"
 
 #: plugins/Check.py:310
 msgid "Reference to 1 missing media object was kept\n"
-msgstr "Hivatkozás 1 elveszett média objektumra meg lett tartva\n"
+msgstr "Hivatkozás 1 elveszett média objektumra lett megtartva\n"
 
 #: plugins/Check.py:312
 msgid "References to %d media objects were kept\n"
-msgstr "Hivatkozás %d elveszett média objektumra meg lett tartva\n"
+msgstr "Hivatkozás %d elveszett média objektumra lett megtartva\n"
 
 #: plugins/Check.py:314
 msgid "1 missing media object was replaced\n"
-msgstr "1 elveszett média objektum át lett helyezve\n"
+msgstr "1 elveszett média objektum lett áthelyezve\n"
 
 #: plugins/Check.py:316
 msgid "%d missing media objects were replaced\n"
-msgstr "%d elveszett média objektum át lett helyezve\n"
+msgstr "%d elveszett média objektum lett áthelyezve\n"
 
 #: plugins/Check.py:318
 msgid "1 missing media object was removed\n"
-msgstr "1 elveszett média objektum el lett távolítva\n"
+msgstr "1 elveszett média objektum lett eltávolítva\n"
 
 #: plugins/Check.py:320
 msgid "%d missing media objects were removed\n"
-msgstr "%d elveszett média objektum el lett távolítva\n"
+msgstr "%d elveszett média objektum lett eltávolítva\n"
 
 #: plugins/Check.py:334
 msgid "Check Integrity"
@@ -4666,7 +4662,7 @@ msgstr "Integritás ellenőrzés"
 
 #: plugins/Check.py:352
 msgid "Check and repair database"
-msgstr "adatbázis ellenőrzése és rendbehozatala"
+msgstr "Adatbázis ellenőrzése és rendbehozatala"
 
 #: plugins/Check.py:354
 msgid "Checks the database for integrity problems, fixing the problems that it can"
@@ -4735,11 +4731,11 @@ msgstr "Utód böngésző"
 
 #: plugins/Desbrowser.py:120
 msgid "Interactive descendant browser"
-msgstr "Párbeszédes utód böngésző"
+msgstr "Utód böngésző"
 
 #: plugins/Desbrowser.py:121 plugins/EventCmp.py:353
 msgid "Analysis and Exploration"
-msgstr "Elemzés és Felfedezés"
+msgstr "Elemzés és Felderítés"
 
 #: plugins/Desbrowser.py:122
 msgid "Provides a browsable hierarchy based on the active person"
@@ -5041,7 +5037,7 @@ msgstr "Korszámítás"
 #: plugins/DetAncestralReport.py:821 plugins/DetAncestralReport.py:1041
 #: plugins/DetDescendantReport.py:1051
 msgid "Omit duplicate ancestors"
-msgstr "Megkettőződött ősök elhagyása"
+msgstr "Kettőződött ősök elhagyása"
 
 #: plugins/DetAncestralReport.py:825 plugins/DetAncestralReport.py:1045
 #: plugins/DetDescendantReport.py:834 plugins/DetDescendantReport.py:1055
@@ -5109,7 +5105,7 @@ msgstr "%s részletes utódösszesítője"
 
 #: plugins/DetDescendantReport.py:830
 msgid "Omit duplicate people"
-msgstr "Megkettőződött emberek elhagyása"
+msgstr "Kettőződött emberek elhagyása"
 
 #: plugins/DetDescendantReport.py:1009 plugins/DetDescendantReport.py:1258
 #: plugins/DetDescendantReport.py:1269
@@ -5156,9 +5152,7 @@ msgstr "Egyéni események összehasonlítása"
 msgid ""
 "Aids in the analysis of data by allowing the development of custom filters "
 "that can be applied to the database to find similar events"
-msgstr ""
-"Az adatok elemzésében segít, egyéni szűrők fejlesztésének megengedésével, "
-"amik alkalmazhatók hasonló események megkeresésére"
+msgstr "Az adatok elemzésében segít a speciális szűrők használta"
 
 #: plugins/FamilyGroup.py:133
 msgid "Husband"
@@ -5875,8 +5869,8 @@ msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr ""
-"Annak az évnek a hozzáadása amikor az egyén született és/vagy meghalt a "
-"grafikon csomópont címkéknél."
+"A grafikon csomópontba annak azoknak az éveknek a hozzáadása amikor "
+"az egyén született és/vagy meghalt."
 
 #: plugins/GraphViz.py:183 plugins/RelGraph.py:238
 msgid "Limit dates to years only"
@@ -5915,19 +5909,19 @@ msgstr ""
 
 #: plugins/GraphViz.py:213 plugins/RelGraph.py:275
 msgid "Indicate non-birth relationships with dashed lines"
-msgstr "Szaggatott vonallal jelölése a nem születési kapcsolatoknak"
+msgstr "A nem 'édes' szülői kapcsolatok szaggatott vonallal vannak jelezve"
 
 #: plugins/GraphViz.py:218 plugins/RelGraph.py:280
 msgid "Non-birth relationships will show up as dashed lines in the graph."
-msgstr "Szaggatott vonallal jelölése a nem születési kapcsolatoknak a grafikonban."
+msgstr "A nem 'édes' szülői kapcsolatok szaggatott vonallal vannak jelezve a grafikonon."
 
 #: plugins/GraphViz.py:221 plugins/RelGraph.py:215
 msgid "Show family nodes"
-msgstr "Csalás csomópontok megjelenítése"
+msgstr "Család csomópontok megjelenítése"
 
 #: plugins/GraphViz.py:226 plugins/RelGraph.py:220
 msgid "Families will show up as ellipses, linked to parents and children."
-msgstr "A családok ellipszisként jelennek meg, gyermekekhez és szülőkhöz kapcsolva."
+msgstr "A családok ellipszisként jelennek meg a gyermekeket és szülőket egybefogva."
 
 #: plugins/GraphViz.py:237 plugins/GraphViz.py:240 plugins/GraphViz.py:250
 #: plugins/GraphViz.py:257 plugins/RelGraph.py:291 plugins/RelGraph.py:294
@@ -5954,8 +5948,7 @@ msgid ""
 "horizontally."
 msgstr ""
 "GraphViz nagyon széles grafikonokat tud létrehozni a grafikonoknak az "
-"oldalak derékszögeinél való kiterjesztésével. Ez vízszintesen szabályozza az "
-"oldalakat."
+"oldalakon túl való rajzolással."
 
 #: plugins/GraphViz.py:258 plugins/RelGraph.py:312
 msgid "Number of Vertical Pages"
@@ -5968,8 +5961,7 @@ msgid ""
 "vertically."
 msgstr ""
 "GraphViz nagyon széles grafikonokat tud létrehozni a grafikonoknak az "
-"oldalak derékszögeinél való kiterjesztésével. Ez függőlegesen szabályozza az "
-"oldalakat."
+"oldalakon túl való rajzolással."
 
 #: plugins/GraphViz.py:280 plugins/RelGraph.py:347
 msgid "Generate print output"
@@ -5984,7 +5976,7 @@ msgid ""
 msgstr ""
 "Kapcsolat grafikon létrehozása, jelenleg csak GraphViz formátumban. GraphViz "
 "átalakítható postscript, jpeg, png, vrml, svg és egyéb formátumokká. Ha "
-"többet szeretne tudni vagy egy GraphViz másolatot szeretne látogassa el a "
+"többet szeretne tudni vagy GraphViz programot szeretne látogassa el a "
 "http://www.graphviz.org címre."
 
 #: plugins/IndivComplete.py:134
@@ -6104,13 +6096,15 @@ msgstr "Második személy"
 
 #: plugins/Merge.py:553
 msgid "Find possible duplicate people"
-msgstr "Lehetséges megkettőződések megkeresése"
+msgstr "Lehetséges kettőződések megkeresése"
 
 #: plugins/Merge.py:555
 msgid ""
 "Searches the entire database, looking for individual entries that may "
 "represent the same person."
-msgstr "Keresés az egész adatbázisban egyének bejegyzéseiért amik megegyezhetnek."
+msgstr ""
+"Az egész adatbázisban keresés olyan egyének bejegyzései után "
+"amik megegyezhetnek."
 
 #: plugins/PatchNames.py:103
 msgid "No modifications made"
@@ -6180,9 +6174,9 @@ msgid ""
 "systems available on this system:\n"
 "\n"
 msgstr ""
-"A képek elérési útvonala a Windows stílusban a következő helyet használja a "
+"A képek elérési útvonala Windows stílusban a következő helyet használja a "
 "képek megtalálásához. Ezek az útvonalak ezen a rendszeren lévő Windowsos "
-"fájlrendszeren alapulnak.\n"
+"fájlrendszeren alapulnak:\n"
 "\n"
 
 #: plugins/ReadGedcom.py:283
@@ -6191,8 +6185,8 @@ msgid ""
 "searched for in the same directory in which the GEDCOM file exists (%s).\n"
 msgstr ""
 "A képek amelyek nem találhatók a GEDCOM fájlban megadott elérési útvonalon "
-"azokat a rendszer abban a könyvtárban keresi ahol a GEDCOM fájl elérhető (%"
-"s).\n"
+"azokat a rendszer abban a könyvtárban keresi ahol a GEDCOM fájl található "
+"(%s).\n"
 
 #: plugins/ReadGedcom.py:341
 msgid "GEDCOM file ended unexpectedly"
@@ -6200,7 +6194,7 @@ msgstr "GEDCOM fájl váratlanul véget ért"
 
 #: plugins/ReadGedcom.py:357 plugins/ReadGedcom.py:367
 msgid "Warning: line %d was not understood, so it was ignored."
-msgstr "Figyelmeztetés: %d sor nem értelmezhető, így elutasítva"
+msgstr "Figyelmeztetés: %d sor nem értelmezhető, így elutasítva."
 
 #: plugins/ReadGedcom.py:402
 msgid "Import Complete: %d seconds"
@@ -6217,7 +6211,7 @@ msgid ""
 "\tThe following paths were tried:\n"
 "\t\t"
 msgstr ""
-"\tA próbált útvonal:\n"
+"\tA következő útvonal lett kipróbálva:\n"
 "\t\t"
 
 #: plugins/ReadNative.py:34
@@ -6238,7 +6232,7 @@ msgstr "Ideiglenes %s könyvtár nem írható"
 
 #: plugins/ReadPkg.py:108
 msgid "Error extracting into %s"
-msgstr "Hiba lépett fel %s -ba/-be exportáláskor"
+msgstr "Hiba lépett fel %s fájlba exportáláskor"
 
 #: plugins/RelCalc.py:83 plugins/RelCalc.py:159
 msgid "Relationship calculator"
@@ -6250,7 +6244,7 @@ msgstr "Születési idő"
 
 #: plugins/RelCalc.py:118
 msgid "Their common ancestor is %s."
-msgstr "%s közös ősök. "
+msgstr "%s a közös ős."
 
 #: plugins/RelCalc.py:122
 msgid "Their common ancestors are %s and %s."
@@ -6294,7 +6288,7 @@ msgstr "Egyéni és családi ID-k hozzáadása."
 
 #: plugins/RelGraph.py:246
 msgid "Place/cause when no date"
-msgstr "Hely/ok amikor nincsen dátum"
+msgstr "Helyek/okok amikor nincsen dátum"
 
 #: plugins/RelGraph.py:251
 msgid ""
@@ -6441,7 +6435,7 @@ msgstr "Adatbázis összesítő"
 
 #: plugins/Summary.py:161
 msgid "Summary of the database"
-msgstr "adatbázis összesítő"
+msgstr "Adatbázis összesítő"
 
 #: plugins/Summary.py:163 plugins/count_anc.py:95
 msgid "View"
@@ -6822,7 +6816,7 @@ msgstr "Kivételek listázása a jelentésekhez vagy az adatbázisban ellenőrz�
 
 #: plugins/WebPage.py:328
 msgid "ID Number"
-msgstr "Id szám"
+msgstr "ID szám"
 
 #: plugins/WebPage.py:372
 msgid "Return to the index of people"
@@ -6867,11 +6861,11 @@ msgstr "Bizalmas mezők kihagyása"
 
 #: plugins/WebPage.py:908 plugins/pafexport.glade:292
 msgid "Restrict information on living people"
-msgstr "Az adatok élő emberekre való korlátozása"
+msgstr "Csak az _élő embereket"
 
 #: plugins/WebPage.py:909
 msgid "Do not use images"
-msgstr "Nincsenek képek"
+msgstr "Képek kihagyása"
 
 #: plugins/WebPage.py:910
 msgid "Do not use images for living people"
@@ -6899,7 +6893,7 @@ msgstr "Fájl kiterjesztés"
 
 #: plugins/WebPage.py:917
 msgid "Include short ancestor tree"
-msgstr "Rövid ősök fa hozzáadása"
+msgstr "Rövidített ősökfa hozzáadása"
 
 #: plugins/WebPage.py:944
 msgid "Privacy"
@@ -7011,7 +7005,7 @@ msgstr "Exportálás GRAMPS csomagba"
 
 #: plugins/WritePkg.py:88
 msgid "Package export"
-msgstr "Csomag exportálás"
+msgstr "Exportálás csomagba"
 
 #: plugins/book.glade:11
 msgid "Book"
@@ -7069,8 +7063,8 @@ msgid ""
 "After exporting, go to the <b>burn:///</b> directory in nautilus and select "
 "the Write to CD button."
 msgstr ""
-"CD-re való exportáláskor nem íródik meg rögtön a CD. Csak a nautilus-cd-"
-"burner-t indítja el, hogy a nautilus-ból meg lehessen\n"
+"CD-re való exportálással nem íródik meg közvetlenül a CD. Csak a nautilus-cd-"
+"író indul el, hogy a nautilus-ból meg lehessen\n"
 "írni a CD-t.\n"
 "\n"
 "Az exportálás után menjen a <b>burn:///</b> könyvtárba a nautilusban és "
@@ -7092,7 +7086,7 @@ msgstr "_Eredeti esemény típusa:"
 
 #: plugins/changetype.glade:270
 msgid "_New event type:"
-msgstr "_Új esemény típusa:"
+msgstr "Ú_j esemény típusa:"
 
 #: plugins/count_anc.py:51
 msgid "Number of ancestors of \"%s\" by generation"
@@ -7108,7 +7102,7 @@ msgstr "%d generációban %d személy van.\n"
 
 #: plugins/count_anc.py:77
 msgid "Total ancestors in generations %d to -1 is %d .\n"
-msgstr "%d -tól -1-ig lévő generációkban az ősök száma: %d.\n"
+msgstr "%d -tól -1 -ig lévő generációkban az ősök száma: %d.\n"
 
 #: plugins/count_anc.py:94
 msgid "Number of ancestors"
@@ -7227,7 +7221,7 @@ msgstr "<b>Kódolás</b>"
 #: plugins/gedcomexport.glade:367 plugins/merge.glade:340
 #: plugins/writeftree.glade:160 styles.glade:674
 msgid "<b>Options</b>"
-msgstr "<b>Opciók</b>"
+msgstr "<b>Tulajdonságok</b>"
 
 #: plugins/gedcomexport.glade:393
 msgid "_Do not include records marked private"
@@ -7235,7 +7229,7 @@ msgstr "_Bizalmas mezők kihagyása"
 
 #: plugins/gedcomexport.glade:415 plugins/writeftree.glade:185
 msgid "_Restrict data on living people"
-msgstr "Az adatok élő emberekre való _korlátozása"
+msgstr "Csak az _élő embereket"
 
 #: plugins/gedcomexport.glade:438
 msgid "_ANSEL"
@@ -7251,7 +7245,7 @@ msgstr "AN_SI (ISO-8859-1)"
 
 #: plugins/gedcomexport.glade:514
 msgid "Use _Living as first name"
-msgstr "Az _élők keresztneveinek a használata"
+msgstr "Az é_lők keresztneveinek a használata"
 
 #: plugins/gedcomexport.glade:549
 msgid "Exclude _notes"
@@ -7263,7 +7257,7 @@ msgstr "_Források kihagyása"
 
 #: plugins/gedcomexport.glade:606
 msgid "Reference images from path:  "
-msgstr "képi hivatkozások a következő helyről:  "
+msgstr "Képi hivatkozások a következő helyről:  "
 
 #: plugins/gedcomexport.glade:627
 msgid "media"
@@ -7327,7 +7321,7 @@ msgstr "_Egyesítés"
 
 #: plugins/merge.glade:316
 msgid "<b>Match Threshold</b>"
-msgstr "<b>Küszöb keresése</b>"
+msgstr "<b>Keresési küszöb</b>"
 
 #: plugins/merge.glade:365
 msgid "Use soundex codes"
@@ -7351,7 +7345,7 @@ msgstr "Adatbázis neve: "
 
 #: plugins/pafexport.glade:261
 msgid "Options"
-msgstr "Opciók"
+msgstr "Tulajdonságok"
 
 #: plugins/patchnames.glade:50
 msgid ""
@@ -7407,19 +7401,19 @@ msgstr "Legnagyobb férj-feleség korkülönbség"
 
 #: plugins/verify.glade:234
 msgid "Minimum age to marry"
-msgstr "A legkisebb életkor amikor házasodott valaki"
+msgstr "A legfiatalabban megházasodott életkora"
 
 #: plugins/verify.glade:258
 msgid "Maximum age to marry"
-msgstr "A legnagyobb életkor amikor házasodott valaki"
+msgstr "A legidősebben megházasodott életkora"
 
 #: plugins/verify.glade:282
 msgid "Maximum number of spouses for a person"
-msgstr "A legtöbb házassággal rendelkező személy"
+msgstr "A legnagyobb házassággszám"
 
 #: plugins/verify.glade:306
 msgid "Maximum number of consecutive years of widowhood"
-msgstr "A legtöbb év amíg valaki folyamatosan özvegy volt"
+msgstr "A leghosszabb idő amíg valaki özvegy volt"
 
 #: plugins/verify.glade:330
 msgid "Maximum number of years between children"
@@ -7447,7 +7441,7 @@ msgstr "Legtöbb gyermekszám"
 
 #: plugins/verify.glade:740
 msgid "<b>Men</b>"
-msgstr "<b>férfiak</b>"
+msgstr "<b>Férfiak</b>"
 
 #: plugins/verify.glade:764
 msgid "Minimum age to father a child"
@@ -7459,7 +7453,7 @@ msgstr "A legkésőbb apává váló életkora"
 
 #: plugins/verify.glade:903
 msgid "Estimate missing dates"
-msgstr "Ismeretlen dátumok megbecslése"
+msgstr "Pontatlan dátumok megbecslése"
 
 #: preferences.glade:8
 msgid "GRAMPS Preferences"
@@ -7543,11 +7537,11 @@ msgstr "Csak Szöveg"
 
 #: preferences.glade:768
 msgid "Text Below Icons"
-msgstr "Szöveg alatta az ikonok"
+msgstr "Szöveg és alatta az Ikonok"
 
 #: preferences.glade:776
 msgid "Text Beside Icons"
-msgstr "Szöveg mellette az ikonok"
+msgstr "Szöveg és mellette az Ikonok"
 
 #: preferences.glade:790
 msgid "GNOME Settings"
@@ -7567,7 +7561,7 @@ msgstr "<b>Állapotjelző</b>"
 
 #: preferences.glade:929
 msgid "_Always display the LDS ordinance tabs"
-msgstr "_Mindig jelenítse meg az LDS ünnepeket"
+msgstr "_Mindig jelenítse meg a Mormon ünnepeket"
 
 #: preferences.glade:952
 msgid "_Show index numbers in child list"
@@ -7883,7 +7877,7 @@ msgstr "Új forrás létrehozása"
 
 #: srcsel.glade:399
 msgid "_New..."
-msgstr "_Új..."
+msgstr "Ú_j..."
 
 #: srcsel.glade:620
 msgid "<b>Source selection</b>"
