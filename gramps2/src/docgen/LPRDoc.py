@@ -494,21 +494,21 @@ class LPRDoc(BaseDoc.BaseDoc):
     def open(self,filename):
         """Sets up initialization."""
         #set up variables needed to keep track of which state we are in
-        self.__in_table = 0
-        self.__in_cell = 0
-        self.__page_count = 0
-        self.__page_open = 0
+        self.in_table = 0
+        self.in_cell = 0
+        self.page_count = 0
+        self.page_open = 0
         self.brand_new_page = 0        
         self.paragraph = None
-        self.__cell_data = []
-        self.__table_data = []
+        self.cell_data = []
+        self.table_data = []
 
         #create main variables for this print job
-        self.__job = gnomeprint.Job(gnomeprint.config_default())
-        self.__pc = self.__job.get_context()
+        self.job = gnomeprint.Job(gnomeprint.config_default())
+        self.gpc = self.job.get_context()
 
         #find out what the width and height of the page is
-        width, height = gnomeprint.job_get_page_size_from_config(self.__job.get_config())
+        width, height = gnomeprint.job_get_page_size_from_config(self.job.get_config())
 
         self.left_margin = cm2u(self.get_left_margin()) 
         self.right_margin = width - cm2u(self.get_right_margin()) 
@@ -521,11 +521,11 @@ class LPRDoc(BaseDoc.BaseDoc):
     def close(self):
         """Clean up and close the document."""
         #gracefully end page before we close the doc if a page is open
-        if self.__page_open:
+        if self.page_open:
            self.end_page()
 
-        self.__job.close()
-        self.__show_print_dialog()
+        self.job.close()
+        self.show_print_dialog()
 
     def start_page(self,orientation=None):
         """Create a new page."""
@@ -533,23 +533,23 @@ class LPRDoc(BaseDoc.BaseDoc):
         if self.brand_new_page:
             return
         #reset variables dealing with opening a page
-        if (self.__page_open):
+        if (self.page_open):
             self.end_page()
 
-        self.__page_open = 1
-        self.__page_count += 1
-        self.__x = self.left_margin
-        self.__y = self.top_margin
+        self.page_open = 1
+        self.page_count += 1
+        self.x = self.left_margin
+        self.y = self.top_margin
         
-        self.__pc.beginpage(str(self.__page_count))
-        self.__pc.moveto(self.__x, self.__y)
+        self.gpc.beginpage(str(self.page_count))
+        self.gpc.moveto(self.x, self.y)
         self.brand_new_page = 1
 
     def end_page(self):
         """Close the current page."""
-        if (self.__page_open):
-            self.__page_open = 0
-            self.__pc.showpage()
+        if (self.page_open):
+            self.page_open = 0
+            self.gpc.showpage()
         self.brand_new_page = 0
 
     def page_break(self):
@@ -570,9 +570,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         # Add previously held text to the paragraph, 
         # then add line break directive, 
         # then start accumulating further text 
-        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
+        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
         self.paragraph.add_piece(_LINE_BREAK,"")
-        self.__paragraph_text = ""
+        self.paragraph_text = ""
         self.brand_new_page = 0
 
     def start_paragraph(self,style_name,leader=None):
@@ -581,10 +581,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         We assume a linebreak at the end of each paragraph."""
         # Instantiate paragraph object and initialize buffers
         self.paragraph = GnomePrintParagraph(self.style_list[style_name])
-        self.__paragraph_directive = ""
-        self.__paragraph_text = ""
+        self.paragraph_directive = ""
+        self.paragraph_text = ""
         if leader:
-            self.__paragraph_text += leader + " "
+            self.paragraph_text += leader + " "
         self.brand_new_page = 0
     
     def end_paragraph(self):
@@ -592,119 +592,119 @@ class LPRDoc(BaseDoc.BaseDoc):
         # Add current text/directive to paragraoh,
         # then either add paragrah to the list of cell's paragraphs
         # or print it right away if not in cell
-        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
-        if self.__in_cell:
+        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        if self.in_cell:
             # We're inside cell. Add paragrah to celldata
-            self.__cell_data.append(self.paragraph)
+            self.cell_data.append(self.paragraph)
         else:
             # paragraph not in table: write it right away
-            self.__x, self.__y = self.write_paragraph(self.paragraph,
-                                        self.__x, self.__y, 
+            self.x, self.y = self.write_paragraph(self.paragraph,
+                                        self.x, self.y, 
                                         self.right_margin - self.left_margin)
         self.paragraph = None
         self.brand_new_page = 0
             
     def start_bold(self):
         """Bold face."""
-        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
-        self.__paragraph_directive = _BOLD
-        self.__paragraph_text = ""
+        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        self.paragraph_directive = _BOLD
+        self.paragraph_text = ""
         self.brand_new_page = 0
         
     def end_bold(self):
         """End bold face."""
-        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
-        self.__paragraph_directive = ""
-        self.__paragraph_text = ""
+        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        self.paragraph_directive = ""
+        self.paragraph_text = ""
         self.brand_new_page = 0
 
     def start_superscript(self):
-        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
-        self.__paragraph_directive = _SUPER
-        self.__paragraph_text = ""
+        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        self.paragraph_directive = _SUPER
+        self.paragraph_text = ""
         self.brand_new_page = 0
                                                                                 
     def end_superscript(self):
-        append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
-        self.__paragraph_directive = ""
-        self.__paragraph_text = ""
+        append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+        self.paragraph_directive = ""
+        self.paragraph_text = ""
         self.brand_new_page = 0
                                                                                 
     def start_table(self,name,style_name):
         """Begin new table."""
         # initialize table, compute its width, find number of columns
-        self.__table_data = []
-        self.__in_table = 1
-        self.__tbl_style = self.table_styles[style_name]
-        self.__ncols = self.__tbl_style.get_columns()
+        self.table_data = []
+        self.in_table = 1
+        self.tbl_style = self.table_styles[style_name]
+        self.ncols = self.tbl_style.get_columns()
         self.rownum = -1
-        self.__table_width = (self.right_margin - self.left_margin) * \
-                            self.__tbl_style.get_width() / 100.0
-        self.__cell_widths = []
-        self.__cell_styles = []
+        self.table_width = (self.right_margin - self.left_margin) * \
+                            self.tbl_style.get_width() / 100.0
+        self.cell_widths = []
+        self.cell_styles = []
         self.brand_new_page = 0
 
     def end_table(self):
         """Close the table environment."""
         # output table contents
-        self.__output_table()
-        self.__in_table = 0
-        self.__y = self.__advance_line(self.__y)
+        self.output_table()
+        self.in_table = 0
+        self.y = self.advance_line(self.y)
         self.brand_new_page = 0
 
     def start_row(self):
         """Begin a new row."""
         # Initialize row, compute cell widths
-        self.__row_data = []
+        self.row_data = []
         self.rownum = self.rownum + 1
         self.cellnum = -1
-        self.__span = 1
-        self.__cell_widths.append([0] * self.__ncols)
-        self.__cell_styles.append([None] * self.__ncols)
-        for cell in range(self.__ncols):
-            self.__cell_widths[self.rownum][cell] = self.__table_width * \
-                            self.__tbl_style.get_column_width(cell) / 100.0
+        self.span = 1
+        self.cell_widths.append([0] * self.ncols)
+        self.cell_styles.append([None] * self.ncols)
+        for cell in range(self.ncols):
+            self.cell_widths[self.rownum][cell] = self.table_width * \
+                            self.tbl_style.get_column_width(cell) / 100.0
         self.brand_new_page = 0
 
     def end_row(self):
         """End the row (new line)."""
         # add row data to the data we have for the current table
-        self.__table_data.append(self.__row_data)
+        self.table_data.append(self.row_data)
         self.brand_new_page = 0
             
     def start_cell(self,style_name,span=1):
         """Add an entry to the table."""
         # Initialize a cell, take care of span>1 cases
         self.brand_new_page = 0
-        self.__in_cell = 1
-        self.__cell_data = []
-        self.cellnum = self.cellnum + self.__span
-        self.__span = span
-        self.__cell_styles[self.rownum][self.cellnum] = \
+        self.in_cell = 1
+        self.cell_data = []
+        self.cellnum = self.cellnum + self.span
+        self.span = span
+        self.cell_styles[self.rownum][self.cellnum] = \
                                     self.cell_styles[style_name]
-        for __extra_cell in range(1,span):
-            self.__cell_widths[self.rownum][self.cellnum] += \
-                self.__cell_widths[self.rownum][self.cellnum + __extra_cell]
-            self.__cell_widths[self.rownum][self.cellnum + __extra_cell] = 0
+        for extra_cell in range(1,span):
+            self.cell_widths[self.rownum][self.cellnum] += \
+                self.cell_widths[self.rownum][self.cellnum + extra_cell]
+            self.cell_widths[self.rownum][self.cellnum + extra_cell] = 0
 
     def end_cell(self):
         """Prepares for next cell."""
         # append the cell text to the row data
-        self.__in_cell = 0
-        self.__row_data.append(self.__cell_data)
+        self.in_cell = 0
+        self.row_data.append(self.cell_data)
         self.brand_new_page = 0
 
     def add_photo(self,name,pos,x,y):
         """Add photo to report."""
 
         photo = GnomePrintPhoto(name,pos,x,y)
-        if self.__in_cell:
+        if self.in_cell:
             # We're inside cell. Add photo to celldata
-            self.__cell_data.append(photo)
+            self.cell_data.append(photo)
         else:
             # photo not in table: write it right away
-            self.__x, self.__y = self.write_photo(photo,
-                                        self.__x, self.__y, 
+            self.x, self.y = self.write_photo(photo,
+                                        self.x, self.y, 
                                         self.right_margin - self.left_margin)
         self.brand_new_page = 0
 
@@ -729,24 +729,24 @@ class LPRDoc(BaseDoc.BaseDoc):
         if y - height < self.bottom_margin:
             self.end_page()
             self.start_page()
-            y = self.__y
+            y = self.y
 
-        self.__pc.gsave()
-        self.__pc.translate(x,y-height)
-        self.__pc.scale(width,height)
+        self.gpc.gsave()
+        self.gpc.translate(x,y-height)
+        self.gpc.scale(width,height)
         
         if photo.get_has_alpha():
-            self.__pc.rgbaimage(photo.get_image(), 
+            self.gpc.rgbaimage(photo.get_image(), 
                                 photo.get_image_width(), 
                                 photo.get_image_height(), 
                                 photo.get_rowstride())
         else:
-            self.__pc.rgbimage(photo.get_image(), 
+            self.gpc.rgbimage(photo.get_image(), 
                                 photo.get_image_width(), 
                                 photo.get_image_height(), 
                                 photo.get_rowstride())
 
-        self.__pc.grestore()
+        self.gpc.grestore()
         x = x
         y = y - height
         return (x,y)
@@ -758,25 +758,25 @@ class LPRDoc(BaseDoc.BaseDoc):
         super_count = text.count('<super>')
         for num in range(super_count):
             start = text.find('<super>')
-            self.__paragraph_text = self.__paragraph_text + text[:start]
-            append_to_paragraph(self.paragraph,self.__paragraph_directive,self.__paragraph_text)
-            self.__paragraph_text = ""
+            self.paragraph_text = self.paragraph_text + text[:start]
+            append_to_paragraph(self.paragraph,self.paragraph_directive,self.paragraph_text)
+            self.paragraph_text = ""
             text = text[start+7:]
 
             start = text.find('</super>')
-            self.__paragraph_text = self.__paragraph_text + text[:start]
-            append_to_paragraph(self.paragraph,_SUPER,self.__paragraph_text)
-            self.__paragraph_text = ""
+            self.paragraph_text = self.paragraph_text + text[:start]
+            append_to_paragraph(self.paragraph,_SUPER,self.paragraph_text)
+            self.paragraph_text = ""
             text = text[start+8:]
 
-        self.__paragraph_text = self.__paragraph_text + text
+        self.paragraph_text = self.paragraph_text + text
 
     def write_note(self,text,format,style_name):
         self.brand_new_page = 0
         if format == 1:
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
-                self.__paragraph_directive = _MONO
+                self.paragraph_directive = _MONO
                 self.write_text(line)
                 self.end_paragraph()
         elif format == 0:
@@ -788,7 +788,7 @@ class LPRDoc(BaseDoc.BaseDoc):
                 self.end_paragraph()
 
     #function to help us advance a line 
-    def __advance_line(self,y,paragraph=None):
+    def advance_line(self,y,paragraph=None):
         self.brand_new_page = 0
         if paragraph:
             spacing = paragraph.fontstyle.get_size() * _EXTRA_SPACING_FACTOR
@@ -796,11 +796,11 @@ class LPRDoc(BaseDoc.BaseDoc):
             spacing = _LINE_SPACING
         new_y = y - spacing
         if y < self.bottom_margin:
-            x = self.__x
+            x = self.x
             self.end_page()
             self.start_page()
-            new_y = self.__y
-            self.__x = x
+            new_y = self.y
+            self.x = x
         return new_y
 
     def write_paragraph(self,paragraph,x,y,width):
@@ -831,7 +831,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             self.end_page()
             self.start_page()
             x = left_margin
-            y = self.__y
+            y = self.y
 
         if y != self.top_margin:
             y = y - cm2u(paragraph.style.get_padding())
@@ -888,9 +888,9 @@ class LPRDoc(BaseDoc.BaseDoc):
                     spacer = " "
                 the_text = spacer + the_text
 
-                self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-                self.__pc.moveto(x, y)
-                self.__pc.show(the_text)
+                self.gpc.setfont(find_font_from_fontstyle(fontstyle))
+                self.gpc.moveto(x, y)
+                self.gpc.show(the_text)
                 x = x + get_text_width(the_text,fontstyle)
                 if directive == _SUPER:
                     y = y - _SUPER_ELEVATION_FRACTION * fontstyle.get_size()
@@ -901,75 +901,75 @@ class LPRDoc(BaseDoc.BaseDoc):
             else:
                 no_space = 1
 
-            y = self.__advance_line(y,paragraph)
+            y = self.advance_line(y,paragraph)
             x = left_margin
 
         x = x - cm2u(paragraph.style.get_left_margin())
         y = y - cm2u(paragraph.style.get_padding())
         return (x,y)
 
-    def __output_table(self):
+    def output_table(self):
         """Do calcs on data in table and output data in a formatted way."""
         self.brand_new_page = 0
-        __min_col_size = [0] * self.__ncols
-        __max_vspace = [0] * len(self.__table_data)
+        min_col_size = [0] * self.ncols
+        max_vspace = [0] * len(self.table_data)
 
-        for __row_num in range(len(self.__table_data)):
-            __row = self.__table_data[__row_num][:]
-            #do calcs on each __row and keep track on max length of each column
-            for __col in range(self.__ncols):
-                if not self.__cell_widths[__row_num][__col]:
+        for row_num in range(len(self.table_data)):
+            row = self.table_data[row_num][:]
+            #do calcs on each row and keep track on max length of each column
+            for col in range(self.ncols):
+                if not self.cell_widths[row_num][col]:
                     continue
 
-                padding = cm2u(self.__cell_styles[__row_num][__col].get_padding())
-                __max = 0
-                for paragraph in __row[__col]:
-                    __min = paragraph.get_min_width()
-                    if __min > __min_col_size[__col]:
-                        __min_col_size[__col] = __min
+                padding = cm2u(self.cell_styles[row_num][col].get_padding())
+                the_max = 0
+                for paragraph in row[col]:
+                    the_min = paragraph.get_min_width()
+                    if the_min > min_col_size[col]:
+                        min_col_size[col] = the_min
 
-                    __max += paragraph.get_height(
-                                        self.__cell_widths[__row_num][__col])
-                __max += 2 * padding
-                if __max > __max_vspace[__row_num]:
-                    __max_vspace[__row_num] = __max
+                    the_max += paragraph.get_height(
+                                        self.cell_widths[row_num][col])
+                the_max += 2 * padding
+                if the_max > max_vspace[row_num]:
+                    max_vspace[row_num] = the_max
 
         #is table width larger than the width of the paper?
-        __min_table_width = 0
-        for __size in __min_col_size:
-            __min_table_width = __min_table_width + __size
+        min_table_width = 0
+        for size in min_col_size:
+            min_table_width = min_table_width + size
 
-        if __min_table_width > (self.right_margin - self.left_margin):
+        if min_table_width > (self.right_margin - self.left_margin):
             print "LPRDoc: Table does not fit onto the page."
 
         #for now we will assume left justification of tables
         #output data in table
-        for __row_num in range(len(self.__table_data)):
-            __row = self.__table_data[__row_num]
+        for row_num in range(len(self.table_data)):
+            row = self.table_data[row_num]
             # If this row puts us below the bottom, start new page here
-            if self.__y - __max_vspace[__row_num] < self.bottom_margin:
+            if self.y - max_vspace[row_num] < self.bottom_margin:
                 self.end_page()
                 self.start_page()
 
-            __x = self.left_margin         #reset so that x is at margin
-            col_y = self.__y    # all columns start at the same height
-            for __col in range(self.__ncols):
-                if not self.__cell_widths[__row_num][__col]:
+            x = self.left_margin         #reset so that x is at margin
+            col_y = self.y    # all columns start at the same height
+            for col in range(self.ncols):
+                if not self.cell_widths[row_num][col]:
                     continue
-                self.__y = col_y
-                padding = cm2u(self.__cell_styles [__row_num][__col].get_padding())
-                for paragraph in __row[__col]:
+                self.y = col_y
+                padding = cm2u(self.cell_styles [row_num][col].get_padding())
+                for paragraph in row[col]:
                     if paragraph.__class__.__name__ == 'GnomePrintPhoto':
                         write_item = self.write_photo
                     else:
                         write_item = self.write_paragraph
-                    junk, self.__y = write_item(paragraph,
-                                     __x + padding, self.__y - padding, 
-                                     self.__cell_widths[__row_num][__col] \
+                    junk, self.y = write_item(paragraph,
+                                     x + padding, self.y - padding, 
+                                     self.cell_widths[row_num][col] \
                                             - 2 * padding)
 
-                __x = __x + self.__cell_widths[__row_num][__col]    # set up margin for this row
-            self.__y = col_y - __max_vspace[__row_num]
+                x = x + self.cell_widths[row_num][col]    # set up margin for this row
+            self.y = col_y - max_vspace[row_num]
 
     #------------------------------------------------------------------------
     #
@@ -979,8 +979,8 @@ class LPRDoc(BaseDoc.BaseDoc):
 
     def horizontal_line(self):
         self.brand_new_page = 0
-        self.__pc.moveto(self.left_margin, self.__y)
-        self.__pc.lineto(self.right_margin, self.__y)
+        self.gpc.moveto(self.left_margin, self.y)
+        self.gpc.lineto(self.right_margin, self.y)
 
     def draw_path(self,style,path):
         self.brand_new_page = 0
@@ -990,29 +990,29 @@ class LPRDoc(BaseDoc.BaseDoc):
         point = path[0]
         x = cm2u(point[0]) + self.left_margin
         y = self.top_margin - cm2u(point[1])
-        self.__pc.moveto(x,y)
+        self.gpc.moveto(x,y)
 
         for point in path[1:]:
             x = cm2u(point[0]) + self.left_margin
             y = self.top_margin - cm2u(point[1])
-            self.__pc.lineto(x,y)
-        self.__pc.closepath()
-        self.__pc.stroke()
+            self.gpc.lineto(x,y)
+        self.gpc.closepath()
+        self.gpc.stroke()
 
         point = path[0]
         x = cm2u(point[0]) + self.left_margin
         y = self.top_margin - cm2u(point[1])
-        self.__pc.moveto(x,y)
+        self.gpc.moveto(x,y)
 
         for point in path[1:]:
             x = cm2u(point[0]) + self.left_margin
             y = self.top_margin - cm2u(point[1])
-            self.__pc.lineto(x,y)
-        self.__pc.closepath()
+            self.gpc.lineto(x,y)
+        self.gpc.closepath()
 
-        self.__pc.setrgbcolor(color[0],color[1],color[2])
-        self.__pc.fill()
-        self.__pc.setrgbcolor(0,0,0)
+        self.gpc.setrgbcolor(color[0],color[1],color[2])
+        self.gpc.fill()
+        self.gpc.setrgbcolor(0,0,0)
         
     def draw_box(self,style,text,x,y):
         #assuming that we start drawing box from current position
@@ -1028,7 +1028,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         bh = cm2u(box_style.get_height())
         bw = cm2u(box_style.get_width())
 
-        self.__pc.rect_stroked(x,y,bw,-bh) 
+        self.gpc.rect_stroked(x,y,bw,-bh) 
 
         if text:
             lines = text.split('\n')
@@ -1037,9 +1037,9 @@ class LPRDoc(BaseDoc.BaseDoc):
             for line in lines:
                 if not line.split():
                     continue
-                self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-                self.__pc.moveto(start_x,start_y)
-                self.__pc.show(line)
+                self.gpc.setfont(find_font_from_fontstyle(fontstyle))
+                self.gpc.moveto(start_x,start_y)
+                self.gpc.show(line)
                 start_y -= fontstyle.get_size() * _EXTRA_SPACING_FACTOR
 
     def write_at (self, style, text, x, y):
@@ -1047,14 +1047,14 @@ class LPRDoc(BaseDoc.BaseDoc):
         para_style = self.style_list[style]
         fontstyle = para_style.get_font()
 
-        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-        self.__pc.moveto(cm2u(x), cm2u(y))
-        self.__pc.show(text)
+        self.gpc.setfont(find_font_from_fontstyle(fontstyle))
+        self.gpc.moveto(cm2u(x), cm2u(y))
+        self.gpc.show(text)
 
     def draw_bar(self, style, x1, y1, x2, y2):
         self.brand_new_page = 0
-        self.__pc.moveto(x1, y1)
-        self.__pc.lineto(x2, y2)
+        self.gpc.moveto(x1, y1)
+        self.gpc.lineto(x2, y2)
 
     def draw_text(self,style,text,x,y):
         self.brand_new_page = 0
@@ -1066,9 +1066,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         start_x = self.left_margin + cm2u(x)
         start_y = self.top_margin - cm2u(y) - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
         
-        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-        self.__pc.moveto(start_x,start_y)
-        self.__pc.show(text)
+        self.gpc.setfont(find_font_from_fontstyle(fontstyle))
+        self.gpc.moveto(start_x,start_y)
+        self.gpc.show(text)
                                                                                 
     def center_text(self,style,text,x,y):
         self.brand_new_page = 0
@@ -1081,9 +1081,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         start_x = self.left_margin + cm2u(x) - 0.5 * width
         start_y = self.top_margin - cm2u(y) \
                 - fontstyle.get_size() * _EXTRA_SPACING_FACTOR
-        self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-        self.__pc.moveto(start_x, start_y)
-        self.__pc.show(text)
+        self.gpc.setfont(find_font_from_fontstyle(fontstyle))
+        self.gpc.moveto(start_x, start_y)
+        self.gpc.show(text)
                                                                                 
     def rotate_text(self,style,text,x,y,angle):
         self.brand_new_page = 0
@@ -1100,9 +1100,9 @@ class LPRDoc(BaseDoc.BaseDoc):
         x_start = self.left_margin + cm2u(x)
         size = fontstyle.get_size()
 
-        self.__pc.gsave()
-        self.__pc.translate(x_start,y_start)
-        self.__pc.rotate(-angle)
+        self.gpc.gsave()
+        self.gpc.translate(x_start,y_start)
+        self.gpc.rotate(-angle)
 
         this_y = 0
         for line in text:
@@ -1110,12 +1110,12 @@ class LPRDoc(BaseDoc.BaseDoc):
                 continue
             width = get_text_width(line,fontstyle)
             this_x = -0.5 * width
-            self.__pc.setfont(find_font_from_fontstyle(fontstyle))
-            self.__pc.moveto(this_x,this_y)
-            self.__pc.show(line)
+            self.gpc.setfont(find_font_from_fontstyle(fontstyle))
+            self.gpc.moveto(this_x,this_y)
+            self.gpc.show(line)
             this_y -= size * _EXTRA_SPACING_FACTOR
 
-        self.__pc.grestore()
+        self.gpc.grestore()
                                                                                 
     def draw_line(self,style,x1,y1,x2,y2):
         self.brand_new_page = 0
@@ -1123,7 +1123,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         x2 = cm2u(x2) + self.left_margin
         y1 = self.top_margin - cm2u(y1)
         y2 = self.top_margin - cm2u(y2)
-        self.__pc.line_stroked(x1,y1,x2,y2)
+        self.gpc.line_stroked(x1,y1,x2,y2)
 
     #------------------------------------------------------------------------
     #
@@ -1132,36 +1132,40 @@ class LPRDoc(BaseDoc.BaseDoc):
     #------------------------------------------------------------------------
 
     #function to print text to a printer
-    def __do_print(self,dialog, job):
-        __pc = gnomeprint.Context(dialog.get_config())
-        job.render(__pc)
-        __pc.close()
+    def do_print(self,dialog,job):
+        ggpc = gnomeprint.Context(dialog.get_config())
+        job.render(ggpc)
+        gpc.close()
  
     #I believe this is a print preview
-    def __show_preview(self, dialog):
-         __w = gnomeprint.ui.JobPreview(self.__job, _("Print Preview"))
-         __w.set_property('allow-grow', 1)
-         __w.set_property('allow-shrink', 1)
-         __w.set_transient_for(dialog)
-         __w.show_all()
+    def show_preview(self,dialog):
+         w = gnomeprint.ui.JobPreview(self.job, _("Print Preview"))
+         w.set_property('allow-grow', 1)
+         w.set_property('allow-shrink', 1)
+         w.set_transient_for(dialog)
+         w.show_all()
  
     #function used to get users response and do a certain
     #action depending on that response
-    def __print_dialog_response(self, dialog, resp, job):
+    def print_dialog_response(self, dialog, resp, job):
          if resp == gnomeprint.ui.DIALOG_RESPONSE_PREVIEW:
-            self.__show_preview(dialog)
+            self.show_preview(dialog)
          elif resp == gnomeprint.ui.DIALOG_RESPONSE_CANCEL:
             dialog.destroy()
          elif resp == gnomeprint.ui.DIALOG_RESPONSE_PRINT:
-            self.__do_print(dialog, self.__job)
+            self.do_print(dialog, self.job)
             dialog.destroy()
 
     #function displays a window that allows user to choose 
     #to print, show, etc
-    def __show_print_dialog(self):
-         __dialog = gnomeprint.ui.Dialog(self.__job, _("Print..."), 0)
-         __dialog.connect('response', self.__print_dialog_response, self.__job)
-         __dialog.show()
+    def show_print_dialog(self):
+        dialog = gnomeprint.ui.Dialog(self.job, _("Print..."), 
+                        gnomeprint.ui.DIALOG_RANGE|gnomeprint.ui.DIALOG_COPIES)
+        dialog.construct_range_page(
+                        gnomeprint.ui.RANGE_ALL|gnomeprint.ui.RANGE_RANGE, 
+                        1, self.page_count, "A", "Pages: ")
+        dialog.connect('response', self.print_dialog_response, self.job)
+        dialog.show()
 
 #------------------------------------------------------------------------
 #
