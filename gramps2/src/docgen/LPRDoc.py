@@ -22,7 +22,7 @@
 #
 
 # Written by Billy C. Earney, 2003-2004
-# Modified by Alex Roitman, 2004
+# Modified by Alex Roitman, 2004-2005
 
 # $Id$
 
@@ -33,7 +33,7 @@
 # python modules 
 #
 #------------------------------------------------------------------------
-import string
+from string import punctuation
 from gettext import gettext as _
 
 #------------------------------------------------------------------------
@@ -80,6 +80,9 @@ _SUPER_SIZE_REDUCTION = 2
 
 # Factor which multiplies the font size to get line spacing for the font
 _EXTRA_SPACING_FACTOR = 1.1
+
+# Grey color to use for box shadows
+_SHADOW_COLOR = (192,192,192)
 
 # Font constants -- specific for gnome-print
 _TTF_FREEFONT = ( 
@@ -785,7 +788,7 @@ class LPRDoc(BaseDoc.BaseDoc):
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
-                line = string.join(string.split(line))
+                line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
@@ -880,11 +883,11 @@ class LPRDoc(BaseDoc.BaseDoc):
                 elif piece_num == end_piece:
                     the_textlist = textlist[:end_word]
 
-                the_text = string.join(the_textlist)
+                the_text = ' '.join(the_textlist)
                 if piece_num == start_piece \
                                 or directive == _SUPER \
                                 or no_space \
-                                or (the_text and the_text[0] in string.punctuation):
+                                or (the_text and the_text[0] in punctuation):
                     spacer = ""
                 else:
                     spacer = " "
@@ -1030,7 +1033,24 @@ class LPRDoc(BaseDoc.BaseDoc):
         bh = cm2u(box_style.get_height())
         bw = cm2u(box_style.get_width())
 
-        self.gpc.rect_stroked(x,y,bw,-bh) 
+        if box_style.get_shadow():
+            ss = cm2u(box_style.get_shadow_space())
+            color = [ val/255.0 for val in _SHADOW_COLOR ]
+            path = (
+                (x+ss,y-bh), (x+ss,y-bh-ss), (x+bw+ss,y-bh-ss),
+                (x+bw+ss,y-ss), (x+bw,y-ss), (x+bw,y-bh), (x+ss,y-bh),
+            )
+            x_i,y_i = path[0]
+            self.gpc.moveto(x_i,y_i)
+            for (x_i,y_i) in path[1:]:
+                self.gpc.lineto(x_i,y_i)
+            self.gpc.closepath()
+            
+            self.gpc.setrgbcolor(color[0],color[1],color[2])
+            self.gpc.fill()
+            self.gpc.setrgbcolor(0,0,0)
+
+        self.gpc.rect_stroked(x,y,bw,-bh)
 
         if text:
             lines = text.split('\n')
