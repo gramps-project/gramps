@@ -483,6 +483,7 @@ class GedcomParser:
         while 1:
 	    matches = self.get_next()
 
+            print matches[0],matches[1],matches[2]
 	    if int(matches[0]) == 0:
                 self.backup()
                 return
@@ -504,19 +505,18 @@ class GedcomParser:
 	    elif matches[1] == "AFN":
                 pass
 	    elif matches[1] == "CHAN":
-                self.ignore_sub_junk(1)
+                self.ignore_sub_junk(2)
 	    elif matches[1] == "ALIA":
                 pass
 	    elif matches[1] == "ANCI" or matches[1] == "DESI":
                 pass
 	    elif matches[1] == "REFN":
-                self.ignore_sub_junk(1)
+                self.ignore_sub_junk(2)
 	    elif matches[1] == "SOUR":
-                self.ignore_sub_junk(1)
+                self.ignore_sub_junk(2)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
                     self.barf(2)
-#                    self.ignore_sub_junk(2)
                 else:
                     self.parse_person_object(2)
             elif matches[1] == "NOTE":
@@ -539,7 +539,9 @@ class GedcomParser:
 	    elif matches[1] == "EVEN":
                 pass
 	    elif matches[1] == "FAMS":
-                self.person.addFamily(self.db.findFamily(matches[2],self.fmap))
+                family = self.db.findFamily(matches[2],self.fmap)
+                print self.person.getPrimaryName().getName(),matches[2]
+                self.person.addFamily(family)
                 note = self.parse_optional_note(2)
 	    elif matches[1] == "FAMC":
                 type,note = self.parse_famc_type(2)
