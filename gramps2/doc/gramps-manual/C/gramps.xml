@@ -225,7 +225,7 @@
       <title>Running &app; for the first time</title>
     <para> 
  <!--
-[ FIXME: STOPPED HERE ] 
+[ FIXME: NEED TO RUN DRUID ] 
 -->
     The first time you run the program, GRAMPS will display its 
     Getting Started screens. </para>
@@ -241,7 +241,7 @@
 	<!-- ==== End of Figure ==== -->
 
  <!--
-[ FIXME: STOPPED HERE ] 
+[ FIXME: NEED TO RUN DRUID ] 
 -->
 
     <!-- ================ Getting Started Sub-subsection  -->
@@ -786,20 +786,21 @@
       gramps database, all local media objects, and copies of all external 
       media objects. </para>
       
-      <para>To import such package into your <application>&app;</application>
-      database, choose <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>Import</guimenuitem>
-      <guimenuitem>Import from GRAMPS</guimenuitem></menuchoice>. Select a
-      package to be imported from <guilabel>Import from GRAMPS</guilabel> 
+      <para>To import data from such a package into your
+      <application>&app;</application> database, choose 
+      <menuchoice><guimenu>File</guimenu><guimenuitem>Import</guimenuitem> 
+      <guimenuitem>Import from GRAMPS</guimenuitem></menuchoice>, then select 
+      a package to be imported from the <guilabel>Import from GRAMPS</guilabel> 
       dialog. </para> 
     </sect2>
- <!--
-[ FIXME: STOPPED HERE ] 
--->
+
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-edit"> 
       <title>Editing</title> 
 	<para> </para>
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-pers"> 
