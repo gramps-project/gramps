@@ -87,7 +87,7 @@ startup        = 1
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.7.2pre"
+version      = "0.7.2pre-snap20020202"
 copyright    = "© 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham", "David Hampton"]
 comments     = _("Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program.")

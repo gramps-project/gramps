@@ -57,156 +57,222 @@ def filter(person,index,list,map):
 def get_cousin(f,s,level,removed):
     if level == 1:
         if removed == 0:
-            return _("%s is the first cousin of %s.") %(f,s)
+            return _("%(p1)s is the first cousin of %(p2)s.") % {
+                'p1' : f, 'p2' : s}
         elif removed == 1:
-            return _("%s is the first cousin once removed of %s.") %(f,s)
+            return _("%(p1)s is the first cousin once removed of %(p2)s.") % {
+                'p1' : f, 'p2' : s}
         elif removed == 2:
-            return _("%s is the first cousin twice removed of %s.") %(f,s)
+            return _("%(p1)s is the first cousin twice removed of %(p2)s.") % {
+                'p1' : f,'p2' : s}
         else:
-            return _("%s is the first cousin %d times removed of %s.") % (f,s,removed)
+            return _("%(p1)s is the first cousin %(removed)d times removed of %(p2)s.") % {
+                'p1' :f, 'p2' :s, 'removed' : removed}
     elif level == 2:
         if removed == 0:
-            return _("%s is the second cousin of %s.") %(f,s)
+            return _("%(p1)s is the second cousin of %(p2)s.") % {
+                'p1' : f, 'p2' : s }
         elif removed == 1:
-            return _("%s is the second cousin once removed of %s.") %(f,s)
+            return _("%(p1)s is the second cousin once removed of %(p2)s.") % {
+                'p1' : f, 'p2' : s }
         elif removed == 2:
-            return _("%s is the second cousin twice removed of %s.") %(f,s)
+            return _("%(p1)s is the second cousin twice removed of %(p2)s.") % {
+                'p1' : f, 'p2' : s }
         else:
-            return _("%s is the second cousin %d times removed of %s.") % (f,s,removed)
+            return _("%(p1)s is the second cousin %(removed)d times removed of %(p2)s.") % {
+                'p1' : f, 'p2' : s, 'removed' : removed }
     elif level == 3:
         if removed == 0:
-            return _("%s is the third cousin of %s.") %(f,s)
+            return _("%(p1)s is the third cousin of %(p2)s.") % {
+                'p1' : f, 'p2' : s }
         elif removed == 1:
-            return _("%s is the third cousin once removed of %s.") %(f,s)
+            return _("%(p1)s is the third cousin once removed of %(p2)s.") % {
+                'p1' : f, 'p2' : s }
         elif removed == 2:
-            return _("%s is the third cousin twice removed of %s.") %(f,s)
+            return _("%(p1)s is the third cousin twice removed of %(p2)s.") % {
+                'p1' : f, 'p2' : s }
         else:
-            return _("%s is the third cousin %d times removed of %s.") % (f,s,removed)
+            return _("%(p1)s is the third cousin %(removed)d times removed of %(p1)s.") % {
+                'p1' : f, 'p2' : s, 'removed' : removed }
     else:
         if removed == 0:
-            return _("%s is the %dth cousin of %s.") %(f,level,s)
+            return _("%(p1)s is the %(level)dth cousin of %(p2)s.") % {
+                'p1': f, 'level': level, 'p2' : s }
         elif removed == 1:
-            return _("%s is the %dth cousin once removed of %s.") %(f,level,s)
+            return _("%(p1)s is the %(level)dth cousin once removed of %(p2)s.") % {
+                'p1': f, 'level': level, 'p2' : s }
         elif removed == 2:
-            return _("%s is the %dth cousin twice removed of %s.") %(f,level,s)
+            return _("%(p1)s is the %(level)dth cousin twice removed of %(p2)s.") % {
+                'p1': f, 'level': level, 'p2' : s }
         else:
-            return _("%s is the %dth cousin %d times removed of %s.") % (f,level,s,removed)
+            return _("%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s.") % {
+                'p1': f, 'level': level, 'removed' : removed, 'p2' : s }
 
 def get_father(f,s,level):
     if level == 1:
-        return _("%s is the father of %s.") % (s,f)
+        return _("%(p1)s is the father of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the grandfather of %s.") % (s,f)
+        return _("%(p1)s is the grandfather of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the great grandfather of %s.") % (s,f)
+        return _("%(p1)s is the great grandfather of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the second great grandfather of %s.") % (s,f)
+        return _("%(p1)s is the second great grandfather of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the third great grandfather of %s.") % (s,f)
+        return _("%(p1)s is the third great grandfather of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great grandfather of %s.") % (s,level-2,f)
+        return _("%(p1)s is the %(level)dth great grandfather of %(p2)s.") % {
+            'p1': s, 'level' : level-2, 'p2': f }
 
 def get_son(f,s,level):
     if level == 1:
-        return _("%s is the son of %s.") % (s,f)
+        return _("%(p1)s is the son of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the grandson of %s.") % (s,f)
+        return _("%(p1)s is the grandson of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the great grandson of %s.") % (s,f)
+        return _("%(p1)s is the great grandson of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the second great grandson of %s.") % (s,f)
+        return _("%(p1)s is the second great grandson of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the third great grandson of %s.") % (s,f)
+        return _("%(p1)s is the third great grandson of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great grandson of %s.") % (s,level-2,f)
+        return _("%(p1)s is the %(level)dth great grandson of %(p2)s.") % {
+            'p1': s, 'level' : level-2, 'p2': f }
 
 def get_mother(f,s,level):
     if level == 1:
-        return _("%s is the mother of %s.") % (s,f)
+        return _("%(p1)s is the mother of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the grandmother of %s.") % (s,f)
+        return _("%(p1)s is the grandmother of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the great grandmother of %s.") % (s,f)
+        return _("%(p1)s is the great grandmother of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the second great grandmother of %s.") % (s,f)
+        return _("%(p1)s is the second great grandmother of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the third great grandmother of %s.") % (s,f)
+        return _("%(p1)s is the third great grandmother of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great grandmother of %s.") % (s,level-2,f)
+        return _("%(p1)s is the %(level)dth great grandmother of %(p2)s.") % {
+            'p1': s, 'level' : level-2, 'p2': f }
 
 def get_daughter(f,s,level):
     if level == 1:
-        return _("%s is the daughter of %s.") % (s,f)
+        return _("%(p1)s is the daughter of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the granddaughter of %s.") % (s,f)
+        return _("%(p1)s is the granddaughter of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the great granddaughter of %s.") % (s,f)
+        return _("%(p1)s is the great granddaughter of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the second great granddaughter of %s.") % (s,f)
+        return _("%(p1)s is the second great granddaughter of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the third great granddaughter of %s.") % (s,f)
+        return _("%(p1)s is the third great granddaughter of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great granddaughter of %s.") % (s,level-2,f)
+        return _("%(p1)s is the %(level)dth great granddaughter of %(p2)s.") % {
+            'p1': s, 'level' : level-2, 'p2': f }
 
 def get_aunt(f,s,level):
     if level == 1:
-        return _("%s is the sister of %s.") % (s,f)
+        return _("%(p1)s is the sister of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the aunt of %s.") % (s,f)
+        return _("%(p1)s is the aunt of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the grandaunt of %s.") % (s,f)
+        return _("%(p1)s is the grandaunt of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the great grandaunt of %s.") % (s,f)
+        return _("%(p1)s is the great grandaunt of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the second great grandaunt of %s.") % (s,f)
+        return _("%(p1)s is the second great grandaunt of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 6:
-        return _("%s is the third great grandaunt of %s.") % (s,f)
+        return _("%(p1)s is the third great grandaunt of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great grandaunt of %s.") % (s,level-3,f)
+        return _("%(p1)s is the %(level)dth great grandaunt of %(p2)s.") % {
+            'p1': s, 'level' : level-3, 'p2': f }
 
 def get_uncle(f,s,level):
     if level == 1:
-        return _("%s is the brother of %s.") % (s,f)
+        return _("%(p1)s is the brother of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the uncle of %s.") % (s,f)
+        return _("%(p1)s is the uncle of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the granduncle of %s.") % (s,f)
+        return _("%(p1)s is the granduncle of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the great granduncle of %s.") % (s,f)
+        return _("%(p1)s is the great granduncle of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the second great granduncle of %s.") % (s,f)
+        return _("%(p1)s is the second great granduncle of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 6:
-        return _("%s is the third great granduncle of %s.") % (s,f)
+        return _("%(p1)s is the third great granduncle of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great granduncle of %s.") % (s,level-3,f)
+        return _("%(p1)s is the %(level)dth great granduncle of %(p2)s.") % {
+            'p1': s, 'level' : level-3, 'p2': f }
 
 def get_nephew(f,s,level):
     if level == 1:
-        return _("%s is the nephew of %s.") % (s,f)
+        return _("%(p1)s is the nephew of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the grandnephew of %s.") % (s,f)
+        return _("%(p1)s is the grandnephew of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the great grandnephew of %s.") % (s,f)
+        return _("%(p1)s is the great grandnephew of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the second great grandnephew of %s.") % (s,f)
+        return _("%(p1)s is the second great grandnephew of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the third great grandnephew of %s.") % (s,f)
+        return _("%(p1)s is the third great grandnephew of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great grandnephew of %s.") % (s,level-2,f)
+        return _("%(p1)s is the %(level)dth great grandnephew of %(p2)s.") % {
+            'p1': s, 'level' : level-2, 'p2': f }
 
 def get_niece(f,s,level):
     if level == 1:
-        return _("%s is the niece of %s.") % (s,f)
+        return _("%(p1)s is the niece of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 2:
-        return _("%s is the grandniece of %s.") % (s,f)
+        return _("%(p1)s is the grandniece of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 3:
-        return _("%s is the great grandniece of %s.") % (s,f)
+        return _("%(p1)s is the great grandniece of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 4:
-        return _("%s is the second great grandniece of %s.") % (s,f)
+        return _("%(p1)s is the second great grandniece of %(p2)s.") % {
+            'p1': s, 'p2': f }
     elif level == 5:
-        return _("%s is the third great grandniece of %s.") % (s,f)
+        return _("%(p1)s is the third great grandniece of %(p2)s.") % {
+            'p1': s, 'p2': f }
     else:
-        return _("%s is the %dth great grandniece of %s.") % (s,level-2,f)
+        return _("%(p1)s is the %(level)dth great grandniece of %(p2)s.") % {
+            'p1': s, 'level' : level-2, 'p2': f }
 
 #-------------------------------------------------------------------------
 #
@@ -295,15 +361,21 @@ class RelCalc:
             firstRel = secondMap[person]
             name = person.getPrimaryName().getRegularName()
             commontext = " " + _("Their common ancestor is %s.") % name
-        elif length > 1:
+        elif length == 2:
+            p1 = common[0]
+            p2 = common[1]
+            secondRel = firstMap[p1]
+            firstRel = secondMap[p1]
+            commontext = " " + _("Their common ancestors are %s and %s") % \
+                         (p1.getPrimaryName().getRegularName(),\
+                          p2.getPrimaryName().getRegularName())
+        elif length > 2:
             index = 0
-            commontext = " Their common ancestors are "
+            commontext = " " + _("Their common ancestors are : ")
             for person in common:
                 secondRel = firstMap[person]
                 firstRel = secondMap[person]
-                if length == index + 1:
-                    commontext = commontext + " and "
-                elif index != 0:
+                if index != 0:
                     commontext = commontext + ", "
                 commontext = commontext + person.getPrimaryName().getRegularName()
                 index = index + 1
@@ -315,7 +387,7 @@ class RelCalc:
             text = msg % (firstName,secondName)
         elif firstRel == 0:
             if secondRel == 0:
-                text = "%s and %s are the same person." % (firstName,secondName)
+                text = _("%s and %s are the same person.") % (firstName,secondName)
             elif other_person.getGender() == RelLib.Person.male:
                 text = get_father(firstName,secondName,secondRel)
             else:

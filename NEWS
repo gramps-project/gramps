@@ -1,3 +1,11 @@
+Version 0.7.2
+* Python Imaging Library no longer required for several report
+  formats.
+* Ability to rerun Startup dialog when necessary
+* More information in the Startup dialog
+* Fewer intermediate files when handling images for reports
+* Reports are now plugins, stored in the DocGen library
+
 Version 0.7.1
 * A database must now be open at all times. Prevents the problem of
   not having a place to put files.
