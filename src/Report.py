@@ -454,7 +454,10 @@ class ReportDialog:
         if not self.get_target_is_directory():
             fname = self.target_fileentry.get_full_path(0)
             (path,ext) = os.path.splitext(fname)
-            fname = path + obj.get_data('ext')
+
+            ext_val = obj.get_data('ext')
+            if ext_val:
+                fname = path + ext_val
             self.target_fileentry.set_filename(fname)
 
         # Does this report format use styles?
