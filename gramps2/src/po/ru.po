@@ -1,15 +1,15 @@
 # Russian translation for Gramps; Русский перевод для GRAMPS
-# Copyright (C) 2002-2003 Free Software Foundation, Inc.
-# Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2003.
-# Alexander Bogdashevsky <sanderb@kezomba.com>, 2003.
+# Copyright (C) 2002-2004 Free Software Foundation, Inc.
+# Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2004.
+# Alexander Bogdashevsky <sanderb@kezomba.com>, 2004.
 # 
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gramps 0.98.0\n"
+"Project-Id-Version: gramps 1.0.0\n"
 "POT-Creation-Date: Thu Jan 22 23:56:16 2004\n"
-"PO-Revision-Date: 2004-01-26 00:06-0500\n"
-"Last-Translator: Alexander Bogdashevsky <sanderb@kezomba.com>\n"
+"PO-Revision-Date: 2004-01-27 10:37-0600\n"
+"Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1560,7 +1560,7 @@ msgstr "Лицо"
 #: ImageSelect.py:964
 #: gramps.glade:954
 msgid "Family"
-msgstr "Семьи"
+msgstr "Семья"
 
 #: ImageSelect.py:970
 #: Utils.py:230
@@ -2612,7 +2612,7 @@ msgstr "GRAMPS (Программная система управления ге�
 
 #: const.py:128
 msgid "TRANSLATORS: Translate this to your name in your native language"
-msgstr "Александр Ройтман, Александр Богдашевский"
+msgstr "Александр Ройтман\nАлександр Богдашевский"
 
 #: const.py:172
 #: const.py:284
@@ -3819,7 +3819,7 @@ msgstr "Открыть Web страницу"
 #: gramps.glade:453
 #: places.glade:1922
 msgid "_Go"
-msgstr "П_ереход"
+msgstr "И_ди"
 
 #: edit_person.glade:4228
 msgid "Delete selected reference"
@@ -4130,7 +4130,7 @@ msgstr "_Боковая панель"
 
 #: gramps.glade:439
 msgid "_Toolbar"
-msgstr "_Инструменты"
+msgstr "_Панель инструментов"
 
 #: gramps.glade:461
 msgid "_Bookmarks"
