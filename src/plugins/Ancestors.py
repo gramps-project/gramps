@@ -131,13 +131,19 @@ class ComprehensiveAncestorsReport (Report.Report):
             self.doc.write_text ("Sources")
             self.doc.end_paragraph ()
 
-            self.doc.start_paragraph ("AR-Entry")
             i = 1
             for source in self.sources:
-                self.doc.write_text ("[%d] %s\n" % (i, source.getTitle ()))
-                i += 1
+                self.doc.start_paragraph ("AR-Entry")
+                self.doc.write_text ("[%d] %s" % (i, source.getTitle ()))
+                self.doc.end_paragraph ()
 
-            self.doc.end_paragraph ()
+                note = source.getNote ()
+                if note:
+                    self.doc.start_paragraph ("AR-Details")
+                    self.doc.write_text (note)
+                    self.doc.end_paragraph ()
+
+                i += 1
 
         if self.standalone:
             self.doc.close()
@@ -724,13 +730,14 @@ def _make_default_style(default_style):
     details_font = TextDoc.FontStyle()
     details_font.set(face=TextDoc.FONT_SANS_SERIF,size=8,italic=1)
     para = TextDoc.ParagraphStyle()
-    para.set(lmargin=1.5,pad=0,font = details_font)
+    para.set(lmargin=2.7,pad=0,font = details_font)
     para.set_description(_('Style for details about a person.'))
     default_style.add_style("AR-Details",para)
 
     para = TextDoc.ParagraphStyle()
-    para.set(lmargin=1.0,pad=0.25)
+    para.set(lmargin=2.5,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
+    para.set_header_level (4)
     default_style.add_style("AR-SubEntry",para)
 
     para = TextDoc.ParagraphStyle()
@@ -739,8 +746,9 @@ def _make_default_style(default_style):
     default_style.add_style("AR-Endnotes",para)
 
     para = TextDoc.ParagraphStyle()
-    para.set(lmargin=2.5,pad=0.05)
+    para.set(lmargin=1.0,pad=0.05)
     para.set_description(_('Introduction to the children.'))
+    para.set_header_level (3)
     default_style.add_style("AR-ChildTitle",para)
 
 
