@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -66,6 +68,9 @@ class EditSource:
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.note = self.top_window.get_widget("source_note")
         self.notes_buffer = self.note.get_buffer()
+        self.gallery_label = self.top_window.get_widget("gallerySourceEditor")
+        self.refs_label = self.top_window.get_widget("refsSourceEditor")
+        self.notes_label = self.top_window.get_widget("notesSourceEditor")
         
         self.refinfo = self.top_window.get_widget("refinfo")
         
@@ -90,6 +95,7 @@ class EditSource:
         if parent_window:
             self.top.set_transient_for(parent_window)
 
+        self.display_references()
         self.top.show()
         val = self.top.run()
         if val == gtk.RESPONSE_OK:
@@ -164,31 +170,46 @@ class EditSource:
         titles = [(_('Source Type'),0,150),(_('Object'),1,150),(_('Value'),2,150)]
         
         self.model = ListModel.ListModel(slist,titles)
+        any = 0
         if len(p_event_list) > 0:
+            any = 1
             for p in p_event_list:
                 self.model.add([_("Individual Events"),p[0],
                                 const.display_pevent(p[1])])
         if len(p_attr_list) > 0:
+            any = 1
             for p in p_attr_list:
                 self.model.add([_("Individual Attributes"),p[0],
                                const.display_pattr(p[1])])
         if len(p_name_list) > 0:
+            any = 1
             for p in p_name_list:
                 self.model.add([_("Individual Names"),p[0],p[1]])
         if len(f_event_list) > 0:
+            any = 1
             for p in f_event_list:
                 self.model.add([_("Family Events"),p[0],
                                 const.display_fevent(p[1])])
         if len(f_attr_list) > 0:
+            any = 1
             for p in f_event_list:
                 self.model.add([_("Family Attributes"),p[0],
                                 const.display_fattr(p[1])])
         if len(m_list) > 0:
+            any = 1
             for p in m_list:
                 self.model.add([_("Media Objects"),p,''])
         if len(p_list) > 0:
+            any = 1
             for p in p_list:
                 self.model.add([_("Places"),p,''])
+        
+        if any:
+            Utils.bold_label(self.refs_label)
+        else:
+            Utils.unbold_label(self.refs_label)
+            
+        self.ref_not_loaded = 0
 
     def on_source_apply_clicked(self):
 
@@ -226,6 +247,12 @@ class EditSource:
         elif page == 3 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             self.display_references()
+        text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
+                                self.notes_buffer.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)
 
 
 class DelSrcQuery:

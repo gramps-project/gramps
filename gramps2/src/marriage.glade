@@ -103,6 +103,7 @@
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
+	      <signal name="switch_page" handler="on_switch_page" last_modification_time="Wed, 12 Nov 2003 18:22:42 GMT"/>
 
 	      <child>
 		<widget class="GtkHBox" id="hbox16">
@@ -834,11 +835,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label98">
+		<widget class="GtkLabel" id="eventsMarriage">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Events&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Events</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_RIGHT</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1229,11 +1230,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label203">
+		<widget class="GtkLabel" id="attrMarriage">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Attributes&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Attributes</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1280,11 +1281,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label99">
+		<widget class="GtkLabel" id="notesMarriage">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Notes&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Notes</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1401,11 +1402,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label262">
+		<widget class="GtkLabel" id="sourcesMarriage">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Sources&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Sources</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1531,11 +1532,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label201">
+		<widget class="GtkLabel" id="galleryMarriage">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Gallery&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Gallery</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1878,11 +1879,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label232">
+		<widget class="GtkLabel" id="ldsMarriage">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;LDS&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">LDS</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>

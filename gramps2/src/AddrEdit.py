@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
+
 """
 The AddrEdit module provides the AddressEditor class. This provides a
 mechanism for the user to edit address information.
@@ -71,8 +74,11 @@ class AddressEditor:
         self.note_field = self.top.get_widget("addr_note")
         self.priv = self.top.get_widget("priv")
         self.slist = self.top.get_widget("slist")
+        self.sources_label = self.top.get_widget("sourcesAddr")
+        self.notes_label = self.top.get_widget("noteAddr")
 
         self.parent = parent
+        self.db = self.parent.db
         self.addr = addr
         self.callback = callback
         name = parent.person.getPrimaryName().getName()
@@ -96,10 +102,12 @@ class AddressEditor:
             self.postal.set_text(self.addr.getPostal())
             self.priv.set_active(self.addr.getPrivacy())
             self.note_field.get_buffer().set_text(self.addr.getNote())
+            if self.addr.getNote():
+                Utils.bold_label(self.notes_label)
         else:
             self.srcreflist = []
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
                                            self.top, self.window, self.slist,
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('edit_src'),
@@ -107,6 +115,10 @@ class AddressEditor:
 
         date_stat = self.top.get_widget("date_stat")
         self.date_check = DateEdit(self.addr_start,date_stat)
+
+        self.top.signal_autoconnect({
+            "on_switch_page" : self.on_switch_page
+            })
 
         if parent_window:
             self.window.set_transient_for(parent_window)
@@ -162,3 +174,10 @@ class AddressEditor:
         self.check(self.addr.getNote,self.addr.setNote,note)
         self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)
 
+    def on_switch_page(self,obj,a,page):
+        buf = self.note_field.get_buffer()
+        text = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)

@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # python modules
@@ -135,9 +137,17 @@ class EditPlace:
         self.latitude.set_text(place.get_latitude())
         self.refinfo = self.top_window.get_widget("refinfo")
         self.slist = self.top_window.get_widget("slist")
+        self.sources_label = self.top_window.get_widget("sourcesPlaceEdit")
+        self.names_label = self.top_window.get_widget("namesPlaceEdit")
+        self.notes_label = self.top_window.get_widget("notesPlaceEdit")
+        self.gallery_label = self.top_window.get_widget("galleryPlaceEdit")
+        self.inet_label = self.top_window.get_widget("inetPlaceEdit")
+        self.refs_label = self.top_window.get_widget("refsPlaceEdit")
 
         self.note_buffer = self.note.get_buffer()
-        self.note_buffer.set_text(place.getNote())
+        if place.getNote():
+            self.note_buffer.set_text(place.getNote())
+            Utils.bold_label(self.notes_label)
 
         self.top_window.signal_autoconnect({
             "destroy_passed_object"     : self.close,
@@ -177,6 +187,7 @@ class EditPlace:
 
         self.redraw_url_list()
         self.redraw_location_list()
+        self.display_references()
 
     def close(self,obj):
         self.glry.close()
@@ -222,18 +233,22 @@ class EditPlace:
         if length > 0:
             self.web_go.set_sensitive(1)
             self.web_edit.set_sensitive(1)
+            Utils.bold_label(self.inet_label)
         else:
             self.web_edit.set_sensitive(0)
             self.web_go.set_sensitive(0)
             self.web_url.set_text("")
             self.web_description.set_text("")
+            Utils.unbold_label(self.inet_label)
 
     def redraw_location_list(self):
         Utils.redraw_list(self.llist,self.loc_model,disp_loc)
         if len(self.llist) > 0:
             self.loc_edit.set_sensitive(1)
+            Utils.bold_label(self.names_label)
         else:
             self.loc_edit.set_sensitive(0)
+            Utils.unbold_label(self.names_label)
 
     def on_web_go_clicked(self,obj):
         import gnome.url
@@ -286,6 +301,12 @@ class EditPlace:
         elif page == 6 and self.ref_not_loaded:
             self.ref_not_loaded = 0
             self.display_references()
+        text = self.note_buffer.get_text(self.note_buffer.get_start_iter(),
+                                self.note_buffer.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -379,7 +400,9 @@ class EditPlace:
                 if event.getPlace() == self.place:
                     fevent.append((f,event))
                     
+        any = 0
         if len(pevent) > 0:
+            any = 1
             msg = msg + _("People") + "\n"
             msg = msg + "_________________________\n\n"
             t = _("%s [%s]: event %s\n")
@@ -388,6 +411,7 @@ class EditPlace:
                 msg = msg + ( t % (GrampsCfg.nameof(e[0]),e[0].getId(),e[1].getName()))
 
         if len(fevent) > 0:
+            any = 1
             msg = msg + "\n%s\n" % _("Families")
             msg = msg + "_________________________\n\n"
             t = _("%s [%s]: event %s\n")
@@ -405,6 +429,10 @@ class EditPlace:
                 msg = msg + ( t % (fname,e[0].getId(),e[1].getName()))
 
         self.refinfo.get_buffer().set_text(msg)
+        if any:
+            Utils.bold_label(self.refs_label)
+        
+        self.ref_not_loaded = 0
         
 #-------------------------------------------------------------------------
 #

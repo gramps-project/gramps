@@ -17,6 +17,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$ 
+
 """
 The AttrEdit module provides the AddressEditor class. This provides a
 mechanism for the user to edit address information.
@@ -65,6 +68,7 @@ class AttributeEditor:
         """
 
         self.parent = parent
+        self.db = self.parent.db
         self.attrib = attrib
         self.top = gtk.glade.XML(const.dialogFile, "attr_edit","gramps")
         self.type_field  = self.top.get_widget("attr_type")
@@ -74,6 +78,8 @@ class AttributeEditor:
         self.attrib_menu = self.top.get_widget("attr_menu")
         self.source_field = self.top.get_widget("attr_source")
         self.priv = self.top.get_widget("priv")
+        self.sources_label = self.top.get_widget("sourcesAttr")
+        self.notes_label = self.top.get_widget("noteAttr")
         self.callback = callback
 
         self.window = self.top.get_widget("attr_edit")
@@ -83,7 +89,7 @@ class AttributeEditor:
         else:
             self.srcreflist = []
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self.parent,self.top,
+        self.sourcetab = Sources.SourceTab(self.srcreflist,self,self.top,
                                            self.window, self.slist,
                                            self.top.get_widget('add_src'),
                                            self.top.get_widget('edit_src'),
@@ -104,10 +110,13 @@ class AttributeEditor:
             self.priv.set_active(attrib.getPrivacy())
 
             self.note_field.get_buffer().set_text(attrib.getNote())
+            if attrib.getNote():
+                Utils.bold_label(self.notes_label)
 
         self.top.signal_autoconnect({
             "on_add_src_clicked" : self.add_source,
             "on_del_src_clicked" : self.del_source,
+            "on_switch_page" : self.on_switch_page
             })
 
         if parent_window:
@@ -158,3 +167,10 @@ class AttributeEditor:
         self.check(self.attrib.getNote,self.attrib.setNote,note)
         self.check(self.attrib.getPrivacy,self.attrib.setPrivacy,priv)
 
+    def on_switch_page(self,obj,a,page):
+        buf = self.note_field.get_buffer()
+        text = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
+        if text:
+            Utils.bold_label(self.notes_label)
+        else:
+            Utils.unbold_label(self.notes_label)

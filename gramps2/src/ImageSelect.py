@@ -433,6 +433,11 @@ class Gallery(ImageSelect):
             self.iconlist.set_scroll_region(0,0,self.x,self.cy)
         else:
             self.iconlist.set_scroll_region(0,0,self.x,self.y)
+        
+        if self.dataobj.getPhotoList():
+            Utils.bold_label(self.parent.gallery_label)
+        else:
+            Utils.unbold_label(self.parent.gallery_label)
 
     def get_index(self,obj,x,y):
         x_offset = x/(_IMAGEX+_PAD)

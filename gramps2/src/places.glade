@@ -978,11 +978,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label263">
+		<widget class="GtkLabel" id="namesPlaceEdit">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Other names&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Other names</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1029,11 +1029,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label253">
+		<widget class="GtkLabel" id="notesPlaceEdit">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Note</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1177,11 +1177,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label282">
+		<widget class="GtkLabel" id="sourcesPlaceEdit">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Sources&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Sources</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1331,11 +1331,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label254">
+		<widget class="GtkLabel" id="galleryPlaceEdit">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Gallery&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Gallery</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1688,11 +1688,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label261">
+		<widget class="GtkLabel" id="inetPlaceEdit">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Internet&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Internet</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1739,11 +1739,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label278">
+		<widget class="GtkLabel" id="refsPlaceEdit">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;References&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">References</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>

@@ -191,6 +191,10 @@ class SourceTab:
             base = s.getBase()
             iter = self.model.append()
             self.model.set(iter,0,base.getId(),1,base.getTitle())
+        if self.list:
+            Utils.bold_label(self.parent.sources_label)
+        else:
+            Utils.unbold_label(self.parent.sources_label)
 
     def update_clist(self,inst,ref):
         inst.redraw()

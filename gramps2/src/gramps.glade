@@ -5777,11 +5777,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label205">
+		<widget class="GtkLabel" id="notesSourceEditor">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Note</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -5935,11 +5935,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label206">
+		<widget class="GtkLabel" id="gallerySourceEditor">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Gallery&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Gallery</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -5980,11 +5980,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label274">
+		<widget class="GtkLabel" id="refsSourceEditor">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;References&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">References</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>

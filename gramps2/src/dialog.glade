@@ -100,6 +100,7 @@
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
+	      <signal name="switch_page" handler="on_switch_page" last_modification_time="Wed, 12 Nov 2003 17:45:51 GMT"/>
 
 	      <child>
 		<widget class="GtkTable" id="table21">
@@ -644,11 +645,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label272">
+		<widget class="GtkLabel" id="sourcesEvent">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Sources&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Sources</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -698,11 +699,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label273">
+		<widget class="GtkLabel" id="notesEvent">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Note</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -847,11 +848,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label291">
+		<widget class="GtkLabel" id="witnessesEvent">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Witnesses&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Witnesses</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_LEFT</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -976,6 +977,7 @@
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
+	      <signal name="switch_page" handler="on_switch_page" last_modification_time="Wed, 12 Nov 2003 18:09:36 GMT"/>
 
 	      <child>
 		<widget class="GtkTable" id="table22">
@@ -1302,11 +1304,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label278">
+		<widget class="GtkLabel" id="sourcesAttr">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Sources&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Sources</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1354,11 +1356,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label279">
+		<widget class="GtkLabel" id="noteAttr">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Note</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -1842,6 +1844,7 @@
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
+	      <signal name="switch_page" handler="on_switch_page" last_modification_time="Wed, 12 Nov 2003 18:09:04 GMT"/>
 
 	      <child>
 		<widget class="GtkTable" id="table26">
@@ -2395,11 +2398,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label283">
+		<widget class="GtkLabel" id="sourcesAddr">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Sources&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Sources</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -2448,11 +2451,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label284">
+		<widget class="GtkLabel" id="noteAddr">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Note</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -2825,6 +2828,7 @@
 	      <property name="tab_pos">GTK_POS_TOP</property>
 	      <property name="scrollable">False</property>
 	      <property name="enable_popup">False</property>
+	      <signal name="switch_page" handler="on_switch_page" last_modification_time="Wed, 12 Nov 2003 18:00:13 GMT"/>
 
 	      <child>
 		<widget class="GtkTable" id="table23">
@@ -3432,11 +3436,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label288">
+		<widget class="GtkLabel" id="sourcesName">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Sources&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Sources</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
@@ -3485,11 +3489,11 @@
 	      </child>
 
 	      <child>
-		<widget class="GtkLabel" id="label289">
+		<widget class="GtkLabel" id="noteName">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">&lt;b&gt;Note&lt;/b&gt;</property>
+		  <property name="label" translatable="yes">Note</property>
 		  <property name="use_underline">False</property>
-		  <property name="use_markup">True</property>
+		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
 		  <property name="wrap">False</property>
 		  <property name="selectable">False</property>
