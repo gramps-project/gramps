@@ -135,6 +135,41 @@ class MyFilters(gtk.ComboBox):
 
 #-------------------------------------------------------------------------
 #
+# MySource - Combo box with list of sources with a standard interface
+#
+#-------------------------------------------------------------------------
+class MySource(gtk.ComboBox):
+    
+    def __init__(self,db):
+        gtk.ComboBox.__init__(self)
+        self.db = db
+        store = gtk.ListStore(str)
+        self.set_model(store)
+        cell = gtk.CellRendererText()
+        self.pack_start(cell,True)
+        self.add_attribute(cell,'text',0)
+
+        self.slist = []
+        for src_handle in self.db.get_source_handles(sort_handles=True):
+            src = self.db.get_source_from_handle(src_handle)
+            self.slist.append(src.get_gramps_id())
+            store.append(row=[src.get_title()])
+
+        self.set_active(0)
+        self.show()
+        
+    def get_text(self):
+        active = self.get_active()
+        if active < 0:
+            return ""
+        return self.slist[active]
+
+    def set_text(self,val):
+        if val in self.slist:
+            self.set_active(self.slist.index(val))
+
+#-------------------------------------------------------------------------
+#
 # MyPlaces - AutoCombo text entry with list of places attached. Provides
 #            a standard interface
 #
@@ -641,6 +676,8 @@ class EditRule:
                     t = MyInteger(1,32)
                 elif v == _('ID:'):
                     t = MyID(self.db)
+                elif v == _('Source ID:'):
+                    t = MySource(self.db)
                 elif v == _('Filter name:'):
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
@@ -655,7 +692,7 @@ class EditRule:
                     t = MyBoolean(_('Use exact case of letters'))
                 elif v == _('Regular-Expression matching:'):
                     t = MyBoolean(_('Use regular expression'))
-                else:
+                else:                    
                     t = MyEntry()
                 tlist.append(t)
                 table.attach(l,1,2,pos,pos+1,gtk.FILL,0,5,5)

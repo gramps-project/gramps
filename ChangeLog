@@ -1,3 +1,7 @@
+2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/GenericFilter.py: Added HasSourceOf rule
+	* src/plugins/FilterEditor.py: Added MySource combobox for selecting source IDs.
+
 2005-04-06  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/PedView.py: Truncate place names because they tend to be loooong.
 
