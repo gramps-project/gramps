@@ -644,7 +644,8 @@ class DetDescendantReport(Report):
         generation = 0
         need_header = 1
 
-        for generation in xrange(self.max_generations):
+#        for generation in xrange(self.max_generations):
+        for generation in xrange(len(self.genKeys)):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
             self.doc.start_paragraph("Generation")
@@ -654,7 +655,6 @@ class DetDescendantReport(Report):
             if rptOpt.childRef == reportOptions.Yes:
                 self.prevGenIDs= self.genIDs.copy()
                 self.genIDs.clear()
-
 
             for key in self.genKeys[generation]:
                 person = self.map[key]
@@ -799,7 +799,7 @@ class DetDescendantReportDialog(TextReportDialog):
         ReportDialog.parse_report_options_frame(self)
 
         # get values from the widgets
-        if self.use_link.get_active():
+        if self.first_name_option.get_active():
             self.firstName = reportOptions.Yes
         else:
             self.firstName = reportOptions.No

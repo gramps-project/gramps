@@ -168,7 +168,7 @@ class DetAncestorReport(Report):
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.getPlaceName(), death.getDate())) # 6
                         elif death.getPlaceName() != "":
-                                self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
+                                self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.getPlaceName(), death.getPlaceName())) # 5
                         else:   self.doc.write_text(_("- %s Born: %s") % \
                                     (name, birth.getPlaceName()))             # 4
