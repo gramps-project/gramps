@@ -353,7 +353,7 @@ class GeneWebParser:
             self.current_family.add_event_handle(sep.get_handle())
 
         if not married:
-            self.current_family.set_relationship(const.FAMILY_UNMARRIED)
+            self.current_family.set_relationship(RelLib.Family.UNMARRIED)
             
         self.db.commit_family(self.current_family,self.trans)
         return idx

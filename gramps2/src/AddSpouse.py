@@ -139,7 +139,7 @@ class AddSpouse:
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-        self.rel_combo.set_active(const.FAMILY_MARRIED)
+        self.rel_combo.set_active(RelLib.Family.MARRIED)
         self.update_data()
         
     def add_columns(self,tree):
@@ -189,7 +189,7 @@ class AddSpouse:
         import EditPerson
 
         relation = self.rel_combo.get_active()
-        if relation == const.FAMILY_CIVIL_UNION:
+        if relation == RelLib.Family.CIVIL_UNION:
             if self.person.get_gender() == RelLib.Person.male:
                 gen = RelLib.Person.male
             else:
@@ -335,7 +335,7 @@ class AddSpouse:
         return 1
 
     def set_gender(self):
-        if self.rel_combo.get_active() == const.FAMILY_CIVIL_UNION:
+        if self.rel_combo.get_active() == RelLib.Family.CIVIL_UNION:
             if self.gender == RelLib.Person.male:
                 self.sgender = RelLib.Person.female
             else:

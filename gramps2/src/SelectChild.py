@@ -424,7 +424,7 @@ class EditRel:
             "destroy_passed_object"    : self.close
             })
 
-        f = self.child.has_family(self.family.get_handle())
+        f = self.child.get_parent_family(self.family.get_handle())
         if f:
             self.fentry.set_text(_(f[2]))
             self.mentry.set_text(_(f[1]))

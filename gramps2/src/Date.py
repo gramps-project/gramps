@@ -206,7 +206,7 @@ class Date:
     def get_modifier(self):
         """
         Returns an integer indicating the calendar selected. The valid
-        values are:
+        values are::
         
            MOD_NONE       = no modifier (default)
            MOD_BEFORE     = before
@@ -227,7 +227,7 @@ class Date:
     def get_quality(self):
         """
         Returns an integer indicating the calendar selected. The valid
-        values are:
+        values are::
         
            QUAL_NONE       = normal (default)
            QUAL_ESTIMATED  = estimated
@@ -244,7 +244,7 @@ class Date:
     def get_calendar(self):
         """
         Returns an integer indicating the calendar selected. The valid
-        values are:
+        values are::
 
            CAL_GREGORIAN  - Gregorian calendar
            CAL_JULIAN     - Julian calendar
@@ -399,20 +399,20 @@ class Date:
 
     def set(self,quality,modifier,calendar,value,text=None):
         """
-        Sets the date to the specified value. Parameters are:
+        Sets the date to the specified value. Parameters are::
 
-        quality  - The date quality for the date (see get_quality
-                   for more information)
-        modified - The date modifier for the date (see get_modifier
-                   for more information)
-        calendar - The calendar associated with the date (see
-                   get_calendar for more information).
-        value    - A tuple representing the date information. For a
-                   non-compound date, the format is (DD,MM,YY,slash)
-                   and for a compound date the tuple stores data as
-                   (DD,MM,YY,slash1,DD,MM,YY,slash2)
-        text     - A text string holding either the verbatim user input
-                   or a comment relating to the date.
+          quality  - The date quality for the date (see get_quality
+                     for more information)
+          modified - The date modifier for the date (see get_modifier
+                     for more information)
+          calendar - The calendar associated with the date (see
+                     get_calendar for more information).
+          value    - A tuple representing the date information. For a
+                     non-compound date, the format is (DD,MM,YY,slash)
+                     and for a compound date the tuple stores data as
+                     (DD,MM,YY,slash1,DD,MM,YY,slash2)
+          text     - A text string holding either the verbatim user input
+                     or a comment relating to the date.
 
         The sort value is recalculated.
         """

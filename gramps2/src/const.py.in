@@ -444,12 +444,6 @@ def save_attr(st):
 #
 #-------------------------------------------------------------------------
 
-FAMILY_MARRIED     = 0
-FAMILY_UNMARRIED   = 1
-FAMILY_CIVIL_UNION = 2
-FAMILY_UNKNOWN     = 3
-FAMILY_OTHER       = 4
-
 
 family_relations = [
     (_("Married"),     _("A legal or common-law relationship between a husband and wife")),

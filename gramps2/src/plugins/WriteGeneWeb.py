@@ -482,7 +482,7 @@ class GeneWebWriter:
             if eng_source != "":
                 ret = ret + "#ms %s " % self.rem_spaces( m_source)
         else:
-            if family.get_relationship() != const.FAMILY_MARRIED:
+            if family.get_relationship() != RelLib.Family.MARRIED:
                 """Not married or engaged"""
                 ret = ret + " #nm "
 
