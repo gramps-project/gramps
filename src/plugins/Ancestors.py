@@ -34,6 +34,7 @@ import BaseDoc
 import RelLib
 import Errors
 import Plugins
+from Utils import get_xpm_image
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
@@ -129,7 +130,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                                             needs_name = 1))
         family_ids = [self.start.get_main_parents_family_id ()]
         if len (family_ids) > 0:
-            self.generation (self.max_generations, family_ids, [], [self.start])
+            self.generation (self.max_generations, family_ids, [], [self.start.get_id()])
 
         if len (self.sources) > 0:
             self.doc.start_paragraph ("AR-Heading")
@@ -190,14 +191,14 @@ class ComprehensiveAncestorsReport (Report.Report):
         mother = self.database.find_person_from_id(mother_id)
         if father:
             ret.extend (self.person (father_id,
-                                     short_form = father in already_described,
+                                     short_form = father_id in already_described,
                                      already_described = already_described,
                                      needs_name = not mother,
                                      from_family = family))
 
         if mother:
             ret.extend (self.person (mother_id,
-                                     short_form = mother in already_described,
+                                     short_form = mother_id in already_described,
                                      already_described = already_described,
                                      needs_name = not father,
                                      from_family = family))
@@ -211,7 +212,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             for child_id in children_ids:
                 child = self.database.find_person_from_id(child_id)
                 ret.extend (self.person (child_id, suppress_children = 1,
-                                         short_form=child in already_described,
+                                         short_form=child_id in already_described,
                                          already_described = already_described,
                                          needs_name = 1,
                                          from_family = family))
@@ -276,7 +277,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     father_id = family.get_father_id ()
                     father = self.database.find_person_from_id(father_id)
                     if father:
-                        already_described.append (father)
+                        already_described.append (father_id)
                         father_family_id = father.get_main_parents_family_id ()
                         father_family = self.database.find_family_from_id(father_family_id)
                         if father_family:
@@ -285,7 +286,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                     mother_id = family.get_mother_id ()
                     mother = self.database.find_person_from_id(mother_id)
                     if mother:
-                        already_described.append (mother)
+                        already_described.append (mother_id)
                         mother_family_id = mother.get_main_parents_family_id ()
                         mother_family = self.database.find_family_from_id(mother_family_id)
                         if mother_family:
@@ -342,10 +343,11 @@ class ComprehensiveAncestorsReport (Report.Report):
                         if (suppress_children or
                             (partner != from_family_father and
                              partner != from_family_mother)):
-                            for photo in partner.get_media_list ()[:1]:
-                                if photo.ref.get_mime_type()[0:5] == "image":
+                            for object_id in partner.get_media_list ()[:1]:
+                                mobject = self.database.find_object_from_id(object_id)
+                                if mobject.get_mime_type()[0:5] == "image":
                                     spouse.append ((self.doc.add_media_object,
-                                                    [photo.ref.get_path (),
+                                                    [mobject.get_path (),
                                                      'right', 2, 2]))
 
                 if suppress_children and len (already_described):
@@ -373,10 +375,11 @@ class ComprehensiveAncestorsReport (Report.Report):
                     ret.append ((self.doc.end_cell, []))
                 else:
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
-                    for photo in photos[:1]:
-                        if photo.ref.get_mime_type()[0:5] == "image":
+                    for object_id in photos[:1]:
+                        mobject = self.database.find_object_from_id(object_id)
+                        if mobject.get_mime_type()[0:5] == "image":
                             ret.append ((self.doc.add_media_object,
-                                         [photo.ref.get_path (), 'left', 2, 2]))
+                                         [mobject.get_path (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))
 
                 ret.append ((self.doc.start_cell, ["AR-Entry"]))
@@ -406,7 +409,10 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def short_occupation (self, person):
         occupation = ''
-        for event in person.get_event_list ():
+        for event_id in person.get_event_list ():
+            if not event_id:
+                continue
+            event = self.database.find_event_from_id(event_id)
             if event.get_name () == 'Occupation':
                 if occupation:
                     return ''
@@ -433,12 +439,12 @@ class ComprehensiveAncestorsReport (Report.Report):
             text = dateobj.get_text()
             if text:
                 info += ' ' + text[0].lower() + text[1:]
-            elif dateobj.getValid ():
-                if dateobj.isRange ():
+            elif dateobj.get_valid ():
+                if dateobj.is_range ():
                     info += ' ' + dateobj.get_date ()
-                elif (dateobj.getDayValid () and
-                    dateobj.getMonthValid () and
-                    dateobj.getYearValid ()):
+                elif (dateobj.get_day_valid () and
+                    dateobj.get_month_valid () and
+                    dateobj.get_year_valid ()):
                     info += _(' on %(specific_date)s') % \
                             {'specific_date': dateobj.get_date ()}
                 else:
@@ -480,34 +486,45 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def abbrev_born_died (self, person):
         ret = ''
-        birth = person.get_birth ()
-        date = birth.get_date ()
-        if date:
-            ret += _(" b. %(date)s") % {'date': date}
-            ret += self.cite_sources (birth.get_source_references ())
 
-        death = person.get_death ()
-        date = death.get_date ()
-        if date:
-            ret += _(" d. %(date)s)") % {'date': date}
-            ret += self.cite_sources (death.get_source_references ())
+        birth_id = person.get_birth_id ()
+        if birth_id:
+            birth = self.database.find_event_from_id(birth_id)
+            date = birth.get_date ()
+            if date:
+                ret += _(" b. %(date)s") % {'date': date}
+                ret += self.cite_sources (birth.get_source_references ())
+
+        death_id = person.get_death_id ()
+        if death_id:
+            death = self.database.find_event_from_id(death_id)
+            date = death.get_date ()
+            if date:
+                ret += _(" d. %(date)s)") % {'date': date}
+                ret += self.cite_sources (death.get_source_references ())
 
         return ret
 
     def long_born_died (self, person):
         ret = ''
-        born_info = self.event_info (person.get_birth ())
-        if born_info:
-            ret = ", " + _("born") + born_info
-
-        died_info = self.event_info (person.get_death ())
-        if died_info:
+        birth_id = person.get_birth_id ()
+        if birth_id:
+            birth = self.database.find_event_from_id(birth_id)
+            born_info = self.event_info (birth)
             if born_info:
-                ret += '; '
-            else:
-                ret += ', '
+                ret = ", " + _("born") + born_info
 
-            ret += _('died') + died_info
+        death_id = person.get_death_id()
+        if death_id:
+            death = self.database.find_event_from_id(death_id)
+            died_info = self.event_info (death)
+            if died_info:
+                if born_info:
+                    ret += '; '
+                else:
+                    ret += ', '
+
+                ret += _('died') + died_info
 
         return ret
 
@@ -654,7 +671,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             mother = self.database.find_person_from_id(mother_id)
             for spouse_id in [family.get_father_id (), mother_id]:
                 spouse = self.database.find_person_from_id(spouse_id)
-                if spouse == person or not spouse:
+                if spouse_id == person.get_id() or not spouse_id:
                     continue
 
                 children = ''
@@ -682,7 +699,16 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                         count += 1
 
-                marriage = family.get_marriage ()
+                for event_id in family.get_event_list():
+                    if event_id:
+                        event = self.database.find_event_from_id(event_id)
+                        if event.get_name() == "Marriage":
+                            marriage = event
+                            break
+                else:
+                    continue
+
+                #marriage = family.get_marriage ()
                 if not first_marriage:
                     if gender == RelLib.Person.female:
                         ret += _('  She later married %(name)s') % \
@@ -747,9 +773,9 @@ class ComprehensiveAncestorsReport (Report.Report):
             paras = []
 
         names = person.get_alternate_names ()
-        events = person.get_event_list ()
+        event_ids = person.get_event_list ()
         addresses = person.get_address_list ()
-        if (len (events) + len (addresses) + len (names)) > 0:
+        if (len (event_ids) + len (addresses) + len (names)) > 0:
             paras.append ((self.doc.start_paragraph, ['AR-SubEntry']))
             paras.append ((self.doc.write_text,
                            [_("More about %(name)s:") %
@@ -763,14 +789,20 @@ class ComprehensiveAncestorsReport (Report.Report):
                             ': ' + name.get_regular_name ()]))
             paras.append ((self.doc.end_paragraph, []))
 
-        for event in [person.get_birth (), person.get_death ()]:
+        for event_id in [person.get_birth_id (), person.get_death_id ()]:
+            if not event_id:
+                continue
+            event = self.database.find_event_from_id(event_id)
             note = event.get_note ()
             note_format = event.get_note_format ()
             if note and (note_format != 0):
                 paras.append ((self.doc.write_note, [note, format,
                                                      'AR-Details']))
 
-        for event in events:
+        for event_id in event_ids:
+            if not event_id:
+                continue
+            event = self.database.find_event_from_id(event_id)
             paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [self.event_info (event)]))
             paras.append ((self.doc.end_paragraph, []))
@@ -1038,96 +1070,6 @@ def write_book_item(database,person,doc,options,newpage=0):
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_xpm_image():
-    return [
-        "48 48 33 1",
-        " 	c None",
-        ".	c #1A1A1A",
-        "+	c #847B6E",
-        "@	c #B7AC9C",
-        "#	c #D1D1D0",
-        "$	c #EEE2D0",
-        "%	c #6A655C",
-        "&	c #868686",
-        "*	c #F1EADF",
-        "=	c #5C5854",
-        "-	c #B89C73",
-        ";	c #E2C8A1",
-        ">	c #55524C",
-        ",	c #F5EEE6",
-        "'	c #4F4E4C",
-        ")	c #A19C95",
-        "!	c #B3966E",
-        "~	c #CDC8BF",
-        "{	c #F6F2ED",
-        "]	c #A6A5A4",
-        "^	c #413F3F",
-        "/	c #D8D1C5",
-        "(	c #968977",
-        "_	c #BAB9B6",
-        ":	c #FAFAF9",
-        "<	c #BEA27B",
-        "[	c #E9DAC2",
-        "}	c #9D9385",
-        "|	c #E4E3E3",
-        "1	c #7A7062",
-        "2	c #E6D3B4",
-        "3	c #BAA488",
-        "4	c #322E2B",
-        "                                                ",
-        "                                                ",
-        "             (+(+++++111%1%%%%===%1             ",
-        "             +______________@_@)&==1            ",
-        "             +_::::::::::::::*|#_&&}>           ",
-        "             &_:::::::::::::::{|#]1~}^          ",
-        "             +_::::::::::::::::{|#=|~&4         ",
-        "             +_::::]]]]]]]]:::::|{':|~&4        ",
-        "             +_::::::::::::::::::{'::|~&4       ",
-        "             +_:::::::::::::::::::'*::|~&^      ",
-        "             +_:::::::::::::::::::'|*::|~}>     ",
-        "             1_::::]]]]]]]]]]]]:::'~|{::|_}%    ",
-        "             1_:::::::::::::::::::'..4^'=1+%1   ",
-        "             +_::::]]]]]]]]]]]]:::|__])&+%=^%   ",
-        "             1_::::::::::::::::::::|#__)&&+'^   ",
-        "             1_::::]]]]]]]]]::::::::|#~_])&%^   ",
-        "             1_::::::::::::::::::::{||#~_])14   ",
-        "             1_::::]]]]]]]]]]]]]]]]]]&}#~_]+4   ",
-        "             1_::::::::::::::::::{{{{||#~~@&4   ",
-        "             %_::::]]]]]]]]]]]]]]]])))}(~~~&4   ",
-        "             %_:::::::::::::::::{{{{{*|#/~_(4   ",
-        "             %_::::]]]]]]]]]]]]]]])))))}2;/}4   ",
-        "             %_:::::::::::::::{{{{{***||[#~}4   ",
-        "             %_::::]]]]]]]]]])]))))))))}2/;)4   ",
-        "             %_::::::::::::::{{{{{**|$$[/2~!4   ",
-        "             %_::::]]]]]]]]){{{{******$$[2/}4   ",
-        "             %_::::::::::::{{{{****$$$$$[2/!4   ",
-        "             =_::::]]]]]]])]))))))))})}}[2/!4   ",
-        "             %_:::::::::{{{{{{**|$$$$$$[[2;)4   ",
-        "             =_::::]]]])]]))))))))))}}}}[22!4   ",
-        "             %_::::::::{{{{{|**|$$[$[[[[[22}4   ",
-        "             =_::::]]])])))))))))}}}}}}}222-4   ",
-        "             =_:::::{{{{{|{*|$$$$$[[[[22222!4   ",
-        "             =_::::)]])))))))))}}}}}}(}(2;2-4   ",
-        "             =_:::{{{{{{***|$$$$$[[[[22222;-4   ",
-        "             =_:::{])))))))))}}}}}}}(}((2;;<4   ",
-        "             >_:{{{{{{**|$$$$$[[[[22222;2;;-4   ",
-        "             >_{{{{)))))))}}}}}}}(!(((((;;;-4   ",
-        "             >_{{{{|**|*$$$$$[[[[22222;;;;;!4   ",
-        "             '_{{{{****$$$$$2[[222222;2;;;;-4   ",
-        "             '@{{****$$$$$[[[2[222;;2;;;;;;!4   ",
-        "             >]{******$$$[$[2[[2222;;;;;;;;!4   ",
-        "             '_****$$$$[$[[[[2222;2;;;;;;;;!4   ",
-        "             '@__@@@@@@@33<3<<<<<<-<-!!!!!!!4   ",
-        "             44444444444444444444444444444444   ",
-        "                                                ",
-        "                                                ",
-        "                                                "]
 
 #------------------------------------------------------------------------
 #

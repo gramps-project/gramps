@@ -1,4 +1,12 @@
 2004-04-23  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/RTFDoc.py: Typo.
+	* src/Utils.py (get_xpm_image): Add function.
+	* src/plugins/AncestorReport.py (get_xpm_image): Remove 
+	function, import it from Utils.py instead. 
+	* src/plugins/Ancestors.py (get_xpm_image): Remove function;
+	Bring up to the database interface. 
+
+2004-04-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/RTFDoc.py: Completely switch from grampslib.
 	* src/docgen/PdfDoc.py: Typo.
 	* src/docgen/HtmlDoc.py: Typo.
