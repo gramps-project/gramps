@@ -459,7 +459,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         
         for key in self.style_list.keys():
             style = self.style_list[key]
-            self.f.write('<style:style style:name="T%s" ' % key)
+            self.f.write('<style:style style:name="%s" ' % key)
             self.f.write('style:family="paragraph" ')
             self.f.write('style:parent-style-name="Standard" ')
             self.f.write('style:class="text">\n')
