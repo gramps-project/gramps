@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,27 +24,57 @@
 Show uncollected objects in a window.
 """
 
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
+from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
 import gtk
 import gtk.glade
 import gc
-import string
 
-from gettext import gettext as _
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import Utils
 
+#-------------------------------------------------------------------------
+#
+# Actual tool
+#
+#-------------------------------------------------------------------------
 class Leak:
 
     def __init__(self,parent):
         self.parent = parent
-        self.win_key = self
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
 
         glade_file = "%s/%s" % (os.path.dirname(__file__),"leak.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
         self.top = self.glade.get_widget("top")
+        self.top.set_icon(self.parent.topWindow.get_icon())
         self.eval = self.glade.get_widget("eval")
         self.ebuf = self.eval.get_buffer()
         gc.set_debug(gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_OBJECTS | gc.DEBUG_SAVEALL)
+
+        self.title = _('Uncollected Objects Tool')
+        Utils.set_titles(self.top,
+                     self.glade.get_widget('title'),
+                     self.title)
 
         self.glade.signal_autoconnect({
             "on_apply_clicked" : self.apply_clicked,
@@ -65,7 +95,7 @@ class Leak:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Uncollected objects'))
+        self.parent_menu_item = gtk.MenuItem(self.title)
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)
@@ -83,7 +113,7 @@ class Leak:
         if len(gc.garbage):
             for each in gc.garbage:
                 mylist.append(str(each))
-            self.ebuf.set_text(_("Uncollected objects:\n\n") + string.join(mylist,'\n\n'))
+            self.ebuf.set_text(_("Uncollected objects:\n\n") + '\n\n'.join(mylist))
         else:
             self.ebuf.set_text(_("No uncollected objects\n") + str(gc.get_debug()))
 

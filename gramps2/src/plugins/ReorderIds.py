@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,20 +25,44 @@ Change id IDs of all the elements in the database to conform to the
 scheme specified in the database's prefix ids
 """
 
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import re
-import Utils
 from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+import Utils
+from QuestionDialog import WarningDialog
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 
 def runTool(db,active_person,callback,parent):
     """Changed person, family, object, source, and place ids"""
+    #FIXME -- Remove when the tool is back from the dead
+    WarningDialog(_('Tool currently unavailable'),
+                _('This tool has not yet been brought up to date '
+                'after transition to the database, sorry.'),parent.topWindow)
+    return
+    
+    #FIXME
     try:
         ReorderIds(db,callback)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
+#-------------------------------------------------------------------------
+#
+# Actual tool
+#
+#-------------------------------------------------------------------------
 class ReorderIds:
 
     def __init__(self,db,callback):
@@ -52,7 +76,7 @@ class ReorderIds:
         self.reorder(db.get_place_handle_map(),db.pprefix,db.build_place_display)
         callback(1)
         
-    def reorder_person():
+    def reorder_person(self):
         dups = []
         newids = {}
         key_list = []

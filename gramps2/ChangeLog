@@ -5,6 +5,14 @@
 	* src/plugins/summary.glade: non-modal dialog.
 	* src/plugins/Verify.py (VerifyResults): Use title once.
 
+	* src/plugins/ChangeTypes.py: icon, window management, single instance.
+	* src/plugins/changetype.glade: delete event.
+	* src/plugins/ReorderIds.py: Disable for the time being.
+	* src/plugins/Eval.py: icon, window management, single instance.
+	* src/plugins/eval.glade: dialog.
+	* src/plugins/Leak.py: icon, window management, single instance.
+	* src/plugins/leak.glade: dialog.
+
 2005-03-24  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/DdTargets.py: new module to manage drag and drop target data.
 	* src/Makefile.am: added DdTargets.py
