@@ -1,3 +1,8 @@
+2004-01-31  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/TransTable.py: make sure returned valued is in unicode format
+	* src/plugins/Ancestors.py: fix InverseNameTypesMap problem
+	* src/plugins/IndivComplete.py: fix InverseNameTypesMap problem
+
 2004-01-30  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/AncestorChart2.py (write_book_item): 
 	Treat unconfigured title. 
