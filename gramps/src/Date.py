@@ -1024,7 +1024,6 @@ def compare_dates(f,s):
         return cmp(f.text,s.text)
     if f.range == -1 or s.range == -1:
         return -1
-    
     first = f.get_start_date()
     second = s.get_start_date()
     if first.year != second.year:
@@ -1033,6 +1032,8 @@ def compare_dates(f,s):
         return cmp(first.month,second.month)
     elif f.range != 1:
         return cmp(first.day,second.day)
+    elif first.mode != second.mode:
+        return 1
     else:
         first = f.get_stop_date()
         second = s.get_stop_date()
@@ -1040,8 +1041,10 @@ def compare_dates(f,s):
             return cmp(first.year,second.year)
         elif first.month != second.month:
             return cmp(first.month,second.month)
-        else:
+        else if first.mode == second.mode:
             return cmp(first.day,second.day)
+        else:
+            return 1
             
 _func = SingleDate.fmtFunc[0]
 
