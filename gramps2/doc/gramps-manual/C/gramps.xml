@@ -27,14 +27,9 @@
   <articleinfo> 
     <title>&app; Manual V&manrevision;</title>       
 
-    <copyright> 
-      <year>2003</year> 
-      <holder>Alex Roitman</holder> 
-    </copyright> 
-    <copyright> 
-      <year>2001</year> 
-      <holder>Donald N. Allingham</holder> 
-    </copyright>
+    <copyright> <year>2003</year> <holder>Alex Roitman</holder> </copyright> 
+    <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
+
 <!-- translators: uncomment this:
 
   <copyright>
@@ -46,9 +41,7 @@
 <!-- An address can be added to the publisher information.  If a role is 
      not specified, the publisher/author is the same for all versions of the 
      document.  -->
-    <publisher> 
-      <publishername> GRAMPS Project </publishername> 
-    </publisher> 
+    <publisher> <publishername> GRAMPS Project </publishername> </publisher> 
 
    &legal;
    <!-- This file  contains link to license for the documentation (GNU FDL), and 
@@ -87,7 +80,6 @@
       </othercredit>
 -->
     </authorgroup>
-
 
 <!-- According to GNU FDL, revision history is mandatory if you are -->
 <!-- modifying/reusing someone else's document.  If not, you can omit it. -->
@@ -137,12 +129,8 @@
     </legalnotice> 
   </articleinfo> 
 
-  <indexterm zone="index"> 
-    <primary>MY-GNOME-APP</primary> 
-  </indexterm> 
-  <indexterm zone="index"> 
-    <primary>mygnomeapp</primary> 
-  </indexterm>
+  <indexterm zone="index"> <primary>GRAMPS</primary> </indexterm> 
+  <indexterm zone="index"> <primary>gramps</primary> </indexterm>
 
 <!-- ============= Document Body ============================= -->
 <!-- ============= Introduction ============================== -->
@@ -225,9 +213,12 @@
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="run-1st-time">
       <title>Running &app; for the first time</title>
-    <para>[ FIXME: RE-WORK THIS WITH SCREENSHOTS BEGIN ]
+    <para> 
+ <!--
+[ FIXME: STOPPED HERE ] 
+-->
     The first time you run the program, GRAMPS will display its 
-    Getting Started screens.
+    Getting Started screens. </para>
     
 	<!-- ==== Figure: Getting Started Druid Window ==== -->
 	<figure id="druid-fig"> 
@@ -239,7 +230,9 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-    <para>[ FIXME: RE-WORK THIS WITH SCREENSHOTS END ]</para>
+ <!--
+[ FIXME: STOPPED HERE ] 
+-->
 
     <!-- ================ Getting Started Sub-subsection  -->
       <sect3 id="choose-db-start">
@@ -664,7 +657,7 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="new-db"> 
       <title>Starting New Database</title> 
-      <para>To start a new database, choose <guimenu>File</guimenu>
+      <para>To start a new database, choose <menuchoice><guimenu>File</guimenu>
       <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
       prompted with the <guilabel>Save Database</guilabel> dialog asking 
       to specify the name under which the new database will be stored. 
@@ -675,7 +668,8 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="save-db"> 
       <title>Saving Database</title> 
-      <para>To save changes made to your database, choose <guimenu>File</guimenu>
+      <para>To save changes made to your database, choose <menuchoice>
+      <guimenu>File</guimenu>
       <guimenuitem>Save</guimenuitem></menuchoice> or click
       <guibutton>Save</guibutton> on the Toolbar. The Status line will then 
       display <guilabel>Saving <replaceable>filename</replaceable>...</guilabel> 
@@ -690,7 +684,7 @@
       open <application>&app;</application> database. 
       <application>&app;</application> can import GEDCOM data files from a 
       number of software packages, as long as they comply with GEDCOM 
-      standards. To import GEDCOM file, choose <guimenu>File</guimenu>
+      standards. To import GEDCOM file, choose <menuchoice><guimenu>File</guimenu>
       <guimenuitem>Import</guimenuitem><guimenuitem>Import from 
       GEDCOM</guimenuitem></menuchoice>. You will then be prompted with the
       <guilabel>Open File</guilabel> dialog asking to specify the GEDCOM file
@@ -710,14 +704,15 @@
 	<phrase>Shows GEDCOM Import Window. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
-      
+    </sect2>  
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="export-gedcom"> 
       <title>Exporting GEDCOM Data</title> 
       <para>Exporting GEDCOM data allows you to share any portion of you 
       <application>&app;</application> database with other researchers 
       by way of standard GEDCOM files. To export into GEDCOM file, 
-      choose <guimenu>File</guimenu><guimenuitem>Export</guimenuitem>
+      choose <menuchoice> <guimenu>File</guimenu>
+      <guimenuitem>Export</guimenuitem>
       <guimenuitem>Export to GEDCOM</guimenuitem></menuchoice>. The following 
       <guilabel>Export GEDCOM file</guilabel> dialog will appear.</para>
 
@@ -741,7 +736,11 @@
       <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not include
       records marked private</guilabel> to disable the output of private
       records. Check <guilabel>Restrict data on living people</guilabel>
-      to [ FIXME : do what exactly? ] </para>
+      to 
+ <!--
+[ FIXME: What exactly? ] 
+-->
+      </para>
 
       <para>Upon starting the export, <application>&app;</application> will 
       display the following GEDCOM export progress window with the progress 
@@ -761,45 +760,77 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-package-impex"> 
       <title>Importing and Exporting &app; Packages</title> 
+      <para> <application>&app;</application> provides a way to make your 
+      <application>&app;</application> database completely portable. This might 
+      prove useful, for instance, when you need to move your database to 
+      another machine or to share it with somebody, while retaining all the 
+      features provided by <application>&app;</application>. To accomplish 
+      this, choose <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>Export</guimenuitem>
+      <guimenuitem>Export to GRAMPS Package</guimenuitem></menuchoice>. The
+      <guilabel>GRAMPS Package Export</guilabel> window will appear. Type
+      the desired package name into the text entry area or click 
+      <guibutton>Browse...</guibutton> to select the file using the 
+      <guilabel>Save File</guilabel> dialog. The resulting package is
+      gzip-compressed tar archive (also known as tarball) which contains 
+      gramps database, all local media objects, and copies of all external 
+      media objects. </para>
+      
+      <para>To import such package into your <application>&app;</application>
+      database, choose <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>Import</guimenuitem>
+      <guimenuitem>Import from GRAMPS</guimenuitem></menuchoice>. Select a
+      package to be imported from <guilabel>Import from GRAMPS</guilabel> 
+      dialog. </para> 
     </sect2>
-
+ <!--
+[ FIXME: STOPPED HERE ] 
+-->
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-edit"> 
       <title>Editing</title> 
+	<para> </para>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-pers"> 
         <title>Edit Personal Data</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-rel"> 
         <title>Edit Relationship Data</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-child"> 
         <title>Edit Children Data</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-parent"> 
         <title>Edit Parental Data</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-sources"> 
         <title>Edit Sources</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-places"> 
         <title>Edit Places</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-edit-media"> 
         <title>Edit Media Objects</title> 
+	<para> </para>
       </sect3>
 
     </sect2>
@@ -807,25 +838,30 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
        <title>Nevigation</title> 
+	<para> </para>
        
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-default"> 
         <title>Setting Default Person</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-bookmk"> 
         <title>Bookmarking People</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-family"> 
         <title>Using Family View</title> 
+	<para> </para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-pedigree"> 
         <title>Using Pedigree View</title> 
+	<para> </para>
       </sect3>
 
    </sect2>
@@ -833,10 +869,12 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gen-reports"> 
         <title>Generating Reports</title> 
+	<para> </para>
    </sect2>
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-tools"> 
         <title>Running Tools</title> 
+	<para> </para>
     </sect2>
 
   </sect1> <!-- ================ End Usage ============== -->
@@ -859,706 +897,92 @@
 <!-- =============== Customization Subsection ================ -->
     <sect2 id="gramps-prefs-usage"> 
       <title>Usage</title> 
+	<para> </para>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-usage-find"> 
+        <title>Find</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-usage-report"> 
+        <title>Report Preferences</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-usage-res"> 
+        <title>Researcher Information</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-usage-guess"> 
+        <title>Data Guessing</title> 
+	<para> </para>
+      </sect3>
+
     </sect2>
 
-[ FIXME: STOPPED HERE ] 
-    
-    
+<!-- =============== Customization Subsection ================ -->
+    <sect2 id="gramps-prefs-display"> 
+      <title>Display</title> 
+	<para> </para>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-display-gen"> 
+        <title>General</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-display-date"> 
+        <title>Dates and Calendar</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-display-bars"> 
+        <title>Tool and Status Bars</title> 
+	<para> </para>
+      </sect3>
+
+    </sect2>
+
+<!-- =============== Customization Subsection ================ -->
+    <sect2 id="gramps-prefs-db"> 
+      <title>Database</title> 
+	<para> </para>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-db-gen"> 
+        <title>General</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-db-media"> 
+        <title>Media Objects</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-db-id"> 
+        <title>&app; internal IDs</title> 
+	<para> </para>
+      </sect3>
+
+  <!-- =============== Customization Sub-subsection ================ -->
+      <sect3 id="prefs-db-rcs"> 
+        <title>Revision Control</title> 
+	<para> </para>
+      </sect3>
+
+    </sect2>
+
   </sect1> <!-- ================ End Customization ================== -->
 
-
-<Preferences
-<	Usage
-<		Find
-<		Report Preferences
-<		Researcher Information
-<		Data Guessing
-<	Display
-<		General
-<		Dates and Calendars
-<		Tools and Status Bars
-<	Database
-<		General
-<		Media Objects
-<		GRAMPS Internal IDs
-<		Revision Control
-<Authors
-<License
-
-      <variablelist> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Interpolation type</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify the
-	      interpolation method that
-	      &app; uses when the
-	      application resizes images. Select one of the following
-	      options:</para>
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Nearest neighbor</guilabel> </para> 
-		<para>This method of interpolation takes a location in the
-		  original image and replicates the pixel that is
-		  nearest to this location. When 
-		  you zoom in on an image, the pixels are
-		  replicated. When you zoom out of an 
-		  image, the image loses some of its detail. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Bilinear</guilabel> </para> 
-		<para>This is a simple and fast method of interpolation. When
-		  you zoom in on an image, &app; uses up to four
-		  adjacent pixels to compute the colors of the new
-		  pixels. When you zoom out of 
-		  an image, &app; averages regions of color in the
-		  existing image to compute the colors of the pixels. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Hyperbolic</guilabel> </para> 
-		<para>This is a high-quality, slow method of interpolation. The
-		  application performs interpolation on the image in
-		  the manner described in 
-		  Digital Image Warping by George Wolberg.</para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>Nearest neighbor</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Transparency type</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify how
-	      &app; displays transparent or partially opaque
-	      backgrounds in images. Select one of the following options:</para> 
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Dark checks</guilabel> </para> 
-		<para>This option displays black and dark gray checks.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Midtone checks</guilabel> </para> 
-		<para>This option displays dark gray and light gray
-		  checks.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Light checks</guilabel> </para> 
-		<para>This option displays light gray and white checks.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Black only</guilabel> </para> 
-		<para>This option displays solid black.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Gray only</guilabel> </para> 
-		<para>This option displays solid gray.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>White only</guilabel> </para> 
-		<para>This option displays solid white.</para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>Dark checks</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Check size</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify the size of the checks
-	      to use to display transparent or partially opaque
-	      backgrounds in images. This 
-	      option is only relevant if you choose 
-	      <guilabel>Dark checks</guilabel>, 
-	      <guilabel>Midtone checks</guilabel>, or 
-	      <guilabel>Light checks</guilabel> from the 
-	      <guilabel>Transparency type</guilabel> drop-down list box.
-	      Select one of the following options:</para> 
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Small</guilabel></para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Medium</guilabel></para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Large</guilabel></para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>Small</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Dither type</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify the dithering method
-	      to use to display images. Dithering is a technique that
-	      is used to simulate 
-	      colors in the original image file but that your system
-	      can not display. Select 
-	      one of the following options:</para> 
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>None</guilabel> </para> 
-		<para>This option does not use dithering. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Normal (pseudocolor)</guilabel> </para> 
-		<para>This option performs dithering on pseudocolor displays,
-		  which use a limited palette of colors. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Maximum (high color)</guilabel> </para> 
-		<para>This option performs dithering on pseudocolor and high
-		  color displays. </para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>None</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Two-pass scrolling</guilabel> </term> 
-	  <listitem> 
-	    <para>Select this option to render an image in two passes
-	      when you scroll the image quickly. The first pass
-	      renders a low quality version of the image. The second
-	      pass renders a full quality version of the image over
-	      the low quality version. Two-pass scrolling enables you
-	      to view at least a low quality version of the image at
-	      all times regardless of how quickly you scroll the
-	      image. 
-	    </para>
-	    <para>Default: unselected.</para> 
-	  </listitem> 
-	</varlistentry> 
-      </variablelist> 
-    </sect2>
-
-
-
-
-
-
-
-
-
-
-
-      , then click 
-	<guibutton>OK</guibutton>. To open another image in a new window,
-	choose 
-	<menuchoice> 
-	  <guimenu>File</guimenu> 
-	  <guimenuitem>Create New Window</guimenuitem> 
-	</menuchoice>. Choose 
-	<menuchoice> 
-	  <guimenu>File</guimenu> 
-	  <guimenuitem>Open Image</guimenuitem> 
-	</menuchoice> 
-	to select the file that you want to open. You can also drag an image
-	from another application such as a file manager to the &app;
-	window. If the &app; window is empty, the application displays
-	the image in the window. If the window is not empty, the
-	application starts a new window to display the file. The
-	application displays the name of the image file and the size
-	of the image in pixels in the titlebar of the window. </para>
-      <para>
-	If you try to open an image file format that &app; does
-	not recognize, the application displays an error
-	message.
-      </para>
-      <caution>
-      <para>This is a caution.</para>
-      </caution>
-    </sect2> 
-    <!-- ================ Usage Subsection ================================ -->
-	 <sect2 id="myapp-manipulate-view"> 
-      <title>To Manipulate the View of an Image</title> 
-      <para>You can use the following methods to resize the view of an image in
-	the &app; window:</para> 
-      <itemizedlist> 
-	<listitem> 
-	  <para>To enlarge the view of an image, choose 
-	    <menuchoice> 
-	      <guimenu>View</guimenu> 
-	      <guimenuitem>Zoom In</guimenuitem> 
-	    </menuchoice>.</para> 
-	</listitem> 
-	<listitem> 
-	  <para>To shrink the view of an image, choose 
-	    <menuchoice> 
-	      <guimenu>View</guimenu> 
-	      <guimenuitem>Zoom Out</guimenuitem> 
-	    </menuchoice>.</para> 
-	</listitem> 
-	<listitem> 
-	  <para>To view the image at its actual size, choose 
-	    <menuchoice> 
-	      <guimenu>View</guimenu> 
-	      <guimenuitem>Zoom 1:1</guimenuitem> 
-	    </menuchoice>. </para> 
-	</listitem> 
-	<listitem> 
-	  <para>To enlarge or shrink the view of an image so that the image
-	    fits the &app; window, choose 
-	    <menuchoice> 
-	      <guimenu>View</guimenu> 
-	      <guimenuitem>Fit to Window</guimenuitem> 
-	    </menuchoice>.</para> 
-	</listitem> 
-	<listitem> 
-	  <para>To enlarge or shrink the image to a specific zoom factor,
-	    choose 
-	    <menuchoice> 
-	      <guimenu>View</guimenu> 
-	      <guimenuitem>Zoom factor</guimenuitem> 
-	    </menuchoice>, then choose the appropriate zoom factor from the
-	    drop-down list.</para> 
-	</listitem> 
-	<listitem> 
-	  <para>To display the image in full screen mode, choose 
-	    <menuchoice> 
-	      <guimenu>View</guimenu> 
-	      <guimenuitem>Full Screen</guimenuitem> 
-	    </menuchoice>. Full screen mode displays the image in a window that
-	    fills the full screen. The window does not contain a
-	    window frame, titlebar, 
-	    menubar, or toolbar. To exit from this mode, press the 
-	    <keycap>Esc</keycap> key or 
-	    <keycombo>
-              <keycap>Ctrl</keycap>
-	      <keycap>W</keycap>
-	    </keycombo>.
-	  </para> 
-	</listitem> 
-      </itemizedlist> 
-      <tip>
-      <para>This is a tip.</para>
-      </tip>
-    </sect2> 
-    <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="myapp-scroll-image"> 
-      <title>To Scroll an Image</title> 
-      <para>To scroll around an image that is larger than the image window or
-	full screen window, you can use the following methods:</para> 
-      <itemizedlist> 
-	<listitem> 
-	  <para>Use the arrow keys on the keyboard.</para> 
-	</listitem> 
-	<listitem> 
-	  <para>Drag the image in the opposite direction to the direction in
-	    which you want to scroll. For example, if you want to
-	      scroll down the image, 
-	    drag the image upwards in the window.</para> 
-	</listitem> 
-	<listitem> 
-	  <para>Use the scrollbars on the window.</para> 
-	</listitem> 
-      </itemizedlist> 
-    </sect2>
-    <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="myapp-close-image"> 
-      <title>To Close an Image</title> 
-      <para>To close an image, choose 
-	<menuchoice> 
-	  <guimenu>File</guimenu> 
-	  <guimenuitem>Close This Window</guimenuitem> 
-	</menuchoice>. If the window is the last
-	&app; window open, the application exits. </para> 
-      <para>To quit &app; and close all of the
-	windows that you opened in the current session, choose 
-	<menuchoice> 
-	  <guimenu>File</guimenu> 
-	  <guimenuitem>Exit</guimenuitem> 
-	</menuchoice>. </para> 
-      <warning>
-      <para>This is a warning.</para>
-      </warning>
-    </sect2> 
-  </sect1>
-  <!-- ============= Customization ============================= -->
-  <!-- Use this section to describe how to customize the application. -->
-  <sect1 id="myapp-prefs"> 
-    <title>Settings</title> 
-    <para>To configure &app;, choose 
-      <menuchoice> 
-	<guimenu>Settings</guimenu> 
-	<guimenuitem>Preferences</guimenuitem> 
-      </menuchoice>. The 
-      <guilabel>Preferences</guilabel> dialog contains the following tabbed
-      sections:</para> 
-    <itemizedlist> 
-      <listitem> 
-	<para> 
-	  <xref linkend="myapp-prefs-display"/></para> 
-      </listitem> 
-      <listitem> 
-	<para> 
-	  <xref linkend="myapp-prefs-viewers"/></para> 
-      </listitem> 
-    </itemizedlist>
-<!-- =============== Customization Subsection ================ -->
-<!-- Use a new section to describe different tabbed sections on the Settings or Preferences
-	     dialog. -->
-    <sect2 id="myapp-prefs-display"> 
-      <title>Display</title> 
-      <variablelist> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Interpolation type</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify the
-	      interpolation method that
-	      &app; uses when the
-	      application resizes images. Select one of the following
-	      options:</para>
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Nearest neighbor</guilabel> </para> 
-		<para>This method of interpolation takes a location in the
-		  original image and replicates the pixel that is
-		  nearest to this location. When 
-		  you zoom in on an image, the pixels are
-		  replicated. When you zoom out of an 
-		  image, the image loses some of its detail. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Bilinear</guilabel> </para> 
-		<para>This is a simple and fast method of interpolation. When
-		  you zoom in on an image, &app; uses up to four
-		  adjacent pixels to compute the colors of the new
-		  pixels. When you zoom out of 
-		  an image, &app; averages regions of color in the
-		  existing image to compute the colors of the pixels. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Hyperbolic</guilabel> </para> 
-		<para>This is a high-quality, slow method of interpolation. The
-		  application performs interpolation on the image in
-		  the manner described in 
-		  Digital Image Warping by George Wolberg.</para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>Nearest neighbor</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Transparency type</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify how
-	      &app; displays transparent or partially opaque
-	      backgrounds in images. Select one of the following options:</para> 
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Dark checks</guilabel> </para> 
-		<para>This option displays black and dark gray checks.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Midtone checks</guilabel> </para> 
-		<para>This option displays dark gray and light gray
-		  checks.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Light checks</guilabel> </para> 
-		<para>This option displays light gray and white checks.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Black only</guilabel> </para> 
-		<para>This option displays solid black.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Gray only</guilabel> </para> 
-		<para>This option displays solid gray.</para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>White only</guilabel> </para> 
-		<para>This option displays solid white.</para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>Dark checks</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Check size</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify the size of the checks
-	      to use to display transparent or partially opaque
-	      backgrounds in images. This 
-	      option is only relevant if you choose 
-	      <guilabel>Dark checks</guilabel>, 
-	      <guilabel>Midtone checks</guilabel>, or 
-	      <guilabel>Light checks</guilabel> from the 
-	      <guilabel>Transparency type</guilabel> drop-down list box.
-	      Select one of the following options:</para> 
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Small</guilabel></para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Medium</guilabel></para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Large</guilabel></para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>Small</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Dither type</guilabel> </term> 
-	  <listitem> 
-	    <para>Use this drop-down list box to specify the dithering method
-	      to use to display images. Dithering is a technique that
-	      is used to simulate 
-	      colors in the original image file but that your system
-	      can not display. Select 
-	      one of the following options:</para> 
-	    <itemizedlist> 
-	      <listitem> 
-		<para> 
-		  <guilabel>None</guilabel> </para> 
-		<para>This option does not use dithering. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Normal (pseudocolor)</guilabel> </para> 
-		<para>This option performs dithering on pseudocolor displays,
-		  which use a limited palette of colors. </para> 
-	      </listitem> 
-	      <listitem> 
-		<para> 
-		  <guilabel>Maximum (high color)</guilabel> </para> 
-		<para>This option performs dithering on pseudocolor and high
-		  color displays. </para> 
-	      </listitem> 
-	    </itemizedlist> 
-	    <para>Default: 
-	      <guilabel>None</guilabel>.</para> 
-	  </listitem> 
-	</varlistentry> 
-	<varlistentry> 
-	  <term> 
-	    <guilabel>Two-pass scrolling</guilabel> </term> 
-	  <listitem> 
-	    <para>Select this option to render an image in two passes
-	      when you scroll the image quickly. The first pass
-	      renders a low quality version of the image. The second
-	      pass renders a full quality version of the image over
-	      the low quality version. Two-pass scrolling enables you
-	      to view at least a low quality version of the image at
-	      all times regardless of how quickly you scroll the
-	      image. 
-	    </para>
-	    <para>Default: unselected.</para> 
-	  </listitem> 
-	</varlistentry> 
-      </variablelist> 
-    </sect2>
-    <!-- ============= Customization Subsection ===================== -->
-    <!-- Another tabbed section on the Preferences dialog. -->
-    <sect2 id="myapp-prefs-viewers"> 
-      <title>Viewers</title> 
-      <para>You can set the following viewer preferences: 
-	<itemizedlist> 
-	  <listitem> 
-	    <para> 
-	      <xref linkend="myapp-viewer-prefs-image-window"/></para> 
-	  </listitem> 
-	  <listitem> 
-	    <para> 
-	      <xref linkend="myapp-viewer-prefs-full-screen"/></para> 
-	  </listitem> 
-	</itemizedlist> </para> 
-      <sect3 id="myapp-viewer-prefs-image-window"> 
-	<title>Image Windows</title> 
-	<para>The 
-	  <guilabel>Image Windows</guilabel> group contains the preferences
-	  that you can set to view images in image windows.</para> 
-	<variablelist> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Use scrollbars</guilabel> </term> 
-	    <listitem> 
-	      <para>Use this drop-down list box to specify when to use
-		scrollbars to scroll through an image. Select one of
-		the following options:</para> 
-	      <itemizedlist> 
-		<listitem> 
-		  <para> 
-		    <guilabel>Never</guilabel> </para> 
-		  <para>This option never displays scrollbars. You can use the
-		    arrow keys on the keyboard or the mouse to scroll
-		    through the image. </para>  
-		</listitem> 
-		<listitem> 
-		  <para> 
-		    <guilabel>Only if image does not fit</guilabel> </para> 
-		  <para>This option displays scrollbars when the image is
-		    larger than the image window.</para> 
-		</listitem> 
-	      </itemizedlist> 
-	      <para>Default: 
-		<guilabel>Never</guilabel>.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Pick window size and zoom factor
-		automatically</guilabel> </term> 
-	    <listitem> 
-	      <para>Select this option to resize the image window to fit the
-		image or to resize the image to fit the image
-		window. If the image is small, 
-		&app; resizes the image window to fit the image. If
-		the image is large, &app; resizes the image to fit
-		the image window. </para> 
-	      <para>Default: unselected.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Open images in a new window</guilabel> </term> 
-	    <listitem> 
-	      <para>Select this option to open a new
-		&app; window each time you open an image. If you do
-		not select this option, &app; replaces the existing
-		image with the new image when you open an image. </para> 
-	      <para>Default: unselected.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	</variablelist> 
-      </sect3> 
-      <sect3 id="myapp-viewer-prefs-full-screen"> 
-	<title>Full Screen</title> 
-	<para>The 
-	  <guilabel>Full Screen</guilabel> group contains the preferences that
-	  you can set to view images in full screen mode.</para> 
-	<variablelist> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Use scrollbars</guilabel> </term> 
-	    <listitem> 
-	      <para>Use this drop-down list box to specify when to use
-		scrollbars to scroll through an image. Select one of the following
-		options:</para> 
-	      <itemizedlist> 
-		<listitem> 
-		  <para> 
-		    <guilabel>Never</guilabel> </para> 
-		  <para>This option never displays scrollbars. You can use the
-		    arrow keys on the keyboard or the mouse to scroll
-		    through the image. </para>  
-		</listitem> 
-		<listitem> 
-		  <para> 
-		    <guilabel>Only if image does not fit</guilabel> </para> 
-		  <para>This option displays scrollbars when the image is
-		    larger than the full screen. </para> 
-		</listitem> 
-	      </itemizedlist> 
-	      <para>Default: 
-		<guilabel>Never</guilabel>.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Use 1:1 zoom factor</guilabel> </term> 
-	    <listitem> 
-	      <para>Select this option to use the 1:1 zoom factor when you open
-		an image. The 1:1 zoom factor displays the image at
-		its actual size. </para>  
-	      <para>Default: selected.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Use same zoom factor as image window</guilabel> </term>
-	    
-	    <listitem> 
-	      <para>Select this option to use the same zoom factor that the
-		application uses to display the image in an image
-	      window. </para>  
-	      <para>Default: unselected.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Fit all images to screen</guilabel> </term> 
-	    <listitem> 
-	      <para>Select this option to resize images to fill the full screen
-		when you open the images in full screen mode. </para> 
-	      <para>Default: unselected.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Fit standard-sized images to screen</guilabel> </term> 
-	    <listitem> 
-	      <para>Select this option to automatically resize images
-		that are the same size as standard screens so that the
-		images fill the full screen when you open them in full
-		screen mode. If you select this option, &app; ignores
-		the settings for the previous three options when you
-		open an image that is the same size as a standard
-		screen.  Examples of standard screen sizes are 640 x
-		480 pixels, 1024 x 768 pixels, and so on. </para>
-	      <para>Default: unselected.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	  <varlistentry> 
-	    <term> 
-	      <guilabel>Put a bevel around the edge of the screen</guilabel>
-	    </term> 
-	    <listitem> 
-	      <para>Select this option to display a 3D beveled border around
-		the full screen view of an image. </para> 
-	      <para>Default: unselected.</para> 
-	    </listitem> 
-	  </varlistentry> 
-	</variablelist> 
-      </sect3> 
-    </sect2> 
-  </sect1>
 <!-- ============= Bugs ================================== -->
 <!-- This section is optional and is commented out by default. 
      You can use it to describe known bugs and limitations of the 
