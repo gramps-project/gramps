@@ -12,7 +12,9 @@ all:
 
 install:
 	${INSTALL} -d ${data}
+	${INSTALL} -d ${data}/templates
 	${INSTALL} gedcom.xml ${data}
+	${INSTALL} templates/* ${data}/templates
 
 uninstall:
 

@@ -27,9 +27,5 @@
   Python 2.0 provides a zip interface, so this may need to hold off until 
   the move is made to Python 2.0.
 * Sort all lists
-* Implement a "Preferred Family" concept for each person. Currently, the 
-  alternate family/main family is kind of awkward, since the main family
-  must now be the birth family. Many people would view an adopted family
-  as the main family.
 * Startup tips.
 * And a whole lot more....

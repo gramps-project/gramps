@@ -1,4 +1,4 @@
-%define ver      0.7.2
+%define ver      0.7.3
 %define rel      1
 %define prefix   /usr
 
@@ -55,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/locale/*/LC_MESSAGES/gramps.mo
 %{prefix}/share/gramps/*.py
 %{prefix}/share/gramps/data/*.xml
+%{prefix}/share/gramps/data/templates/*
 %{prefix}/share/gramps/*.pyo
 %{prefix}/share/gramps/*.so
 %{prefix}/share/gramps/*.glade

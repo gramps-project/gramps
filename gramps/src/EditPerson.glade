@@ -9,7 +9,10 @@
   <pixmaps_directory>pixmaps</pixmaps_directory>
   <language>C</language>
   <gnome_support>True</gnome_support>
-  <gettext_support>True</gettext_support>
+  <gettext_support>False</gettext_support>
+  <output_main_file>False</output_main_file>
+  <output_support_files>False</output_support_files>
+  <output_build_files>False</output_build_files>
 </project>
 
 <widget>
