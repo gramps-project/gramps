@@ -202,7 +202,8 @@ class OpenOfficeDoc(TextDoc):
         self.f.write(' style:parent-name="Graphics">')
         self.f.write('<style:properties style:vertical-pos="from-top"')
         self.f.write(' style:vertical-rel="paragraph"')
-        self.f.write(' style:horizontal-pos="from-left" syle:horizontal-rel="paragraph"')
+        self.f.write(' style:horizontal-pos="from-left"')
+        self.f.write(' style:horizontal-rel="paragraph"')
         self.f.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
         self.f.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
         self.f.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
@@ -307,8 +308,7 @@ class OpenOfficeDoc(TextDoc):
         if os.path.isfile(self.filename):
             os.unlink(self.filename)
 
-        os.system("cd " + self.tempdir + "; " + const.zipcmd + " " \
-                  + self.filename + " .")
+        os.system("cd %s; %s %s ." % (self.tempdir,const.zipcmd,self.filename))
 
         os.unlink(self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml")
         os.unlink(self.tempdir + os.sep + "content.xml")
