@@ -248,8 +248,9 @@ def loadConfig(call):
     id_edit = get_bool("/apps/gramps/id-edit")
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
-    gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style")
+    gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style","BOTH")
     gnome_toolbar = eval("gtk.TOOLBAR_%s" % string.upper(gnome_toolbar_str))
+        
     save_toolbar = get_int("/apps/gramps/toolbar",5)
     if save_toolbar == 5:
         toolbar = gnome_toolbar
