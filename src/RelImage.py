@@ -57,8 +57,14 @@ def import_photo(filename,path,prefix):
             break
 
     thumb = path+os.sep+".thumb"
-    if not os.path.exists(thumb):
-        os.mkdir(thumb)
+
+    try:
+        if not os.path.exists(thumb):
+            os.mkdir(thumb)
+    except IOError,msg:
+        GnomeErrorDialog(_("Could not create %s") % thumb + "\n" + str(msg))
+    except:
+        GnomeErrorDialog(_("Could not create %s") % thumb)
         
     try:
         path = thumb + os.sep + base
@@ -107,8 +113,15 @@ def scale_image(path,size):
 def mk_thumb(source,dest,size):
 
     dir = os.path.dirname(dest)
-    if not os.path.exists(dir):
-        os.mkdir(dir)
+    try:
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+    except IOError,msg:
+        GnomeErrorDialog(_("Could not create %s") % dir + "\n" + str(msg))
+        return
+    except:
+        GnomeErrorDialog(_("Could not create %s") % dir)
+        return
 
     if no_pil:
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
