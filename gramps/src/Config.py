@@ -175,9 +175,11 @@ def loadConfig(call):
     phone = gnome.config.get_string("/gramps/researcher/phone")
     email = gnome.config.get_string("/gramps/researcher/email")
 
-    ListColors.enable = gnome.config.get_bool("/gramps/color/enableColors")
-    if ListColors.enable == None:
-        ListColors.enable = 0
+    en = gnome.config.get_bool("/gramps/color/enableColors")
+    if en == None:
+        en = 0
+
+    ListColors.set_enable(en)
 
     ListColors.oddfg = get_config_color(ODDFGCOLOR,(0,0,0))
     ListColors.oddbg = get_config_color(ODDBGCOLOR,(0xffff,0xffff,0xffff))
@@ -211,7 +213,7 @@ def loadConfig(call):
     if dateEntry == None:
         dateEntry = 0
 
-    Date.formatCode = dateFormat
+    set_format_code(dateFormat)
     Date.entryCode = dateEntry
 
     if _name_format == None or _name_format == 0:
@@ -334,7 +336,7 @@ def on_propertybox_apply(obj,page):
     format_menu = prefsTop.get_widget("date_format").get_menu()
     active = format_menu.get_active().get_data("i")
 
-    Date.formatCode = active
+    set_format_code(active)
     gnome.config.set_int("/gramps/config/dateFormat",active)
 
     format_menu = prefsTop.get_widget("date_entry_format").get_menu()
@@ -361,8 +363,8 @@ def on_propertybox_apply(obj,page):
     phone = prefsTop.get_widget("resphone").get_text()
     email = prefsTop.get_widget("resemail").get_text()
 
-    ListColors.enable = prefsTop.get_widget("enableColors").get_active()
-    gnome.config.set_bool("/gramps/color/enableColors",ListColors.enable)
+    ListColors.set_enable(prefsTop.get_widget("enableColors").get_active())
+    gnome.config.set_bool("/gramps/color/enableColors",ListColors.get_enable())
     
     ListColors.oddfg = prefsTop.get_widget(ODDFGCOLOR).get_i16()
     ListColors.oddbg = prefsTop.get_widget(ODDBGCOLOR).get_i16()
@@ -509,7 +511,7 @@ def display_preferences_box():
         item.connect("activate", on_format_toggled)
         item.show()
         date_menu.append(item)
-    date_menu.set_active(Date.formatCode)
+    date_menu.set_active(Date.get_format_code())
     date_option.set_menu(date_menu)
 
     date_entry = prefsTop.get_widget("date_entry_format")
@@ -546,9 +548,6 @@ def display_preferences_box():
     prefsTop.get_widget("resphone").set_text(owner.getPhone())
     prefsTop.get_widget("resemail").set_text(owner.getEmail())
 
-    if ListColors.enable == None:
-        ListColors.enable = 0
-
     cwidget = prefsTop.get_widget(ODDFGCOLOR)
     cwidget.set_i16(ListColors.oddfg[0],ListColors.oddfg[1],\
                     ListColors.oddfg[2],0xffff)
@@ -565,11 +564,11 @@ def display_preferences_box():
     cwidget.set_i16(ListColors.evenbg[0],ListColors.evenbg[1],\
                     ListColors.evenbg[2],0xffff)
 
-    prefsTop.get_widget("enableColors").set_active(ListColors.enable)
-    prefsTop.get_widget(ODDFGCOLOR).set_sensitive(ListColors.enable)
-    prefsTop.get_widget(ODDBGCOLOR).set_sensitive(ListColors.enable)
-    prefsTop.get_widget(EVENBGCOLOR).set_sensitive(ListColors.enable)
-    prefsTop.get_widget(EVENFGCOLOR).set_sensitive(ListColors.enable)
+    prefsTop.get_widget("enableColors").set_active(ListColors.get_enable())
+    prefsTop.get_widget(ODDFGCOLOR).set_sensitive(ListColors.get_enable())
+    prefsTop.get_widget(ODDBGCOLOR).set_sensitive(ListColors.get_enable())
+    prefsTop.get_widget(EVENBGCOLOR).set_sensitive(ListColors.get_enable())
+    prefsTop.get_widget(EVENFGCOLOR).set_sensitive(ListColors.get_enable())
         
     pbox.set_modified(0)
     pbox.show()
