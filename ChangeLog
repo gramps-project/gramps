@@ -15,6 +15,7 @@
 	* src/ImageSelect.py: Add note format support.
 	* src/EditPerson.py: Clean up note format support.
 	* src/Marriage.py: Add note format support.
+	* doc/gramps-manual/ru/mainwin.xml: Translation update.
 
 2003-12-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/AbiWordDoc.py: removed the 1.0 version of AbiWord, since
