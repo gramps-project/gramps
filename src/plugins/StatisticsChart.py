@@ -447,15 +447,16 @@ class StatisticsChart(Report.Report):
         filterfun = filters[filter_num]
 
         options = options_class.handler.options_dict
+        self.bar_items = options['bar_items']
         year_from = options['year_from']
         year_to = options['year_to']
         gender = options['gender']
 
         # title needs both data extraction method name + gender name
         if gender == Person.male:
-            genders = _("men")
+            genders = _("Men")
         elif gender == Person.female:
-            genders = _("women")
+            genders = _("Women")
         else:
             genders = None
 
@@ -477,11 +478,11 @@ class StatisticsChart(Report.Report):
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
             # document heading
-            mapping['title'] = table[0]
+            mapping['chart_title'] = table[0]
             if genders:
-                heading = "%(genders)s born %(year_from)04d-%(year_to)04d: %(title)s" % mapping
+                heading = "%(genders)s born %(year_from)04d-%(year_to)04d: %(chart_title)s" % mapping
             else:
-                heading = "Persons born %(year_from)04d-%(year_to)04d: %(title)s" % mapping
+                heading = "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s" % mapping
             self.data.append((heading, table[1], lookup))
 	#DEBUG
 	#print heading
@@ -518,25 +519,13 @@ class StatisticsChart(Report.Report):
         Define the graphics styles used by the report. Paragraph definitions
         have already been defined in the document. The styles used are:
 
-        SC-bar - A red bar with 0.5pt black line.
-        SC-text  - Contains the SC-Name paragraph style used for
-                the individual's name
         SC-title - Contains the SC-Title paragraph style used for
                 the title of the document
+        SC-text  - Contains the SC-Name paragraph style used for
+                the individual's name
+        SC-color-N - The colors for drawing pies.
+        SC-bar - A red bar with 0.5pt black line.
         """
-        g = BaseDoc.GraphicsStyle()
-        g.set_line_width(0.8)
-        g.set_color((0,0,0))
-        g.set_fill_color((255,0,0))
-        self.doc.add_draw_style("SC-bar",g)
-
-        g = BaseDoc.GraphicsStyle()
-        g.set_paragraph_style("SC-Text")
-        g.set_color((0,0,0))
-        g.set_fill_color((255,255,255))
-        g.set_line_width(0)
-        self.doc.add_draw_style("SC-text",g)
-
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("SC-Title")
         g.set_color((0,0,0))
@@ -545,17 +534,111 @@ class StatisticsChart(Report.Report):
         g.set_width(self.doc.get_usable_width())
         self.doc.add_draw_style("SC-title",g)
 
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("SC-Text")
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        self.doc.add_draw_style("SC-text",g)
+
+	width = 0.8
+        self.colors = 7
+        # red
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,0,0))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-color-0",g)
+        # green
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((0,255,0))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-color-1",g)
+        # blue
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((0,0,255))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-color-2",g)
+        # yellow
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,255,0))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-color-3",g)
+        # purple
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((255,0,255))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-color-4",g)
+        # cyan
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((0,255,255))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-color-5",g)
+        # gray
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style('SC-Text')
+        g.set_color((0,0,0))
+        g.set_fill_color((200,200,200))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-color-6",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_color((0,0,0))
+        g.set_fill_color((255,0,0))
+        g.set_line_width(width)
+        self.doc.add_draw_style("SC-bar",g)
+
 
     def write_report(self):
         "output the selected statistics..."
 
         for data in self.data:
             self.doc.start_page()
-            self.output_chart(data[0], data[1], data[2])
+            if len(data[2]) < self.bar_items:
+                self.output_piechart(data[0], data[1], data[2])
+            else:
+                self.output_barchart(data[0], data[1], data[2])
             self.doc.end_page()    
 
 
-    def output_chart(self, title, data, lookup):
+    def output_piechart(self, title, data, lookup):
+
+        # set layout variables
+        middle = self.doc.get_usable_width() / 2
+        
+        # start output
+        self.doc.center_text('SC-title', title, middle, 0)
+        yoffset = ReportUtils.pt2cm(self.doc.style_list['SC-Title'].get_font().get_size())
+        
+        # collect data for output
+        color = 0
+        chart_data = []
+        for key in lookup:
+            style = "SC-color-%d" % color
+            # graphics style, value, and it's label
+            chart_data.append((style, data[key], key))
+            color = (color+1) % self.colors
+        
+        # output data...
+        radius = middle - 2
+        yoffset = yoffset + 1 + radius
+        ReportUtils.draw_pie_chart(self.doc, middle, yoffset, radius, chart_data, -90)
+        yoffset = yoffset + radius + 1
+	ReportUtils.draw_legend(self.doc, 2, yoffset, chart_data)
+
+
+    def output_barchart(self, title, data, lookup):
 
         pt2cm = ReportUtils.pt2cm
         font = self.doc.style_list['SC-Text'].get_font()
@@ -626,7 +709,8 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
             'reverse'   : 0,
             'year_from' : 1700,
             'year_to'   : time.localtime()[0],
-            'no_years'  : 0
+            'no_years'  : 0,
+	    'bar_items' : 8
         }
         for key in _Extract.extractors:
             self.options_dict[key] = 0
@@ -643,11 +727,13 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                                 ["Do not sort in reverse", "Sort in reverse"],
                                 True),
             'year_from' : ("=num", "Birth year from which to include people",
-                                "earlier than 'year_to' value"),
+                                "Earlier than 'year_to' value"),
             'year_to'   : ("=num", "Birth year until which to include people",
-                                "smaller than %d" % self.options_dict['year_to']),
+                                "Smaller than %d" % self.options_dict['year_to']),
             'no_years'  : ("=0/1", "Whether to include people without birth years",
-                                ["Do not include", "Include"], True)
+                                ["Do not include", "Include"], True),
+	    'bar_items' : ("=num", "Use barchart instead of piechart with this many or more items",
+                                "Number of items with which piecharts still look good...")
         }
         for key in _Extract.extractors:
             self.options_help[key] = ("=0/1", _Extract.extractors[key][0],
@@ -765,6 +851,13 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         tip = _("Select which genders are included into statistics.")
         dialog.add_option(_("Genders included"), self.gender_menu, tip)
 
+        # max. pie item selection
+        tip = _("With fewer items pie chart and legend will be used instead of a bar chart.")
+        self.bar_items = gtk.Entry(2)
+        self.bar_items.set_text(str(self.options_dict['bar_items']))
+	dialog.add_option("Min. bar char items", self.bar_items, tip)
+
+        # -------------------------------------------------
         # List of available charts on a separate option tab
 	idx = 0
 	half = (len(_Extract.extractors)+1)/2
@@ -786,7 +879,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         hbox.show_all()
 
         # Note about children
-        label = gtk.Label(_("Note that children can be both biological or adopted."))
+        label = gtk.Label(_("Note that both biological and adopted children are taken into account."))
 	dialog.add_frame_option("Chart Selection", "", label)
 
 	
@@ -800,6 +893,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         self.options_dict['year_from'] = int(self.from_box.get_text())
         self.options_dict['no_years'] = int(self.no_years.get_active())
         self.options_dict['gender'] = _options.genders[self.gender_menu.get_active()][0]
+        self.options_dict['bar_items'] = int(self.bar_items.get_text())
         for key in _Extract.extractors:
             self.options_dict[key] = int(self.charts[key].get_active())
 
