@@ -5,7 +5,7 @@
 # translation of template.po to Norsk Bokmål
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
-# Frode Jemtland <frode.jemtland@skolelinux.no>, 2003.
+# Frode Jemtland <frode.jemtland@skolelinux.no>, 2003, 2004.
 # Axel Bojer <axelb@skolelinux.no>, 2003.
 # Axel Bojer <axelb@skolelinux.no.no>, 2003.
 #
@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 2003-12-15 16:28+0100\n"
-"Last-Translator: Axel Bojer <axelb@skolelinux.no>\n"
-"Language-Team: Norsk Bokmål <i18n-nb@lister.ping.uio.no>\n"
+"PO-Revision-Date: 2004-01-20 20:13+0100\n"
+"Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
+"Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3448,7 +3448,6 @@ msgid "_Invert"
 msgstr "_Inverter"
 
 #: gramps.glade:1332
-#, fuzzy
 msgid "Apply filter using the selected controls"
 msgstr "Bruk filteret med de valgte kontrollene"
 
@@ -7551,9 +7550,8 @@ msgid "<b>Statusbar</b>"
 msgstr "<b>Statuslinje</b>"
 
 #: preferences.glade:929
-#, fuzzy
 msgid "_Always display the LDS ordinance tabs"
-msgstr "Vis _alltid faneblader med SDH-vedtekter"
+msgstr "Vis _alltid faneblader med SDH ordinanser"
 
 #: preferences.glade:952
 msgid "_Show index numbers in child list"
