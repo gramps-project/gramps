@@ -72,6 +72,7 @@ class AddressEditor:
         self.state = self.top.get_widget("state")
         self.country = self.top.get_widget("country")
         self.postal = self.top.get_widget("postal")
+        self.phone = self.top.get_widget("phone")
         self.note_field = self.top.get_widget("addr_note")
         self.priv = self.top.get_widget("priv")
         self.slist = self.top.get_widget("slist")
@@ -101,6 +102,7 @@ class AddressEditor:
             self.state.set_text(self.addr.getState())
             self.country.set_text(self.addr.getCountry())
             self.postal.set_text(self.addr.getPostal())
+            self.phone.set_text(self.addr.getPhone())
             self.priv.set_active(self.addr.getPrivacy())
             self.note_field.get_buffer().set_text(self.addr.getNote())
             if self.addr.getNote():
@@ -144,6 +146,7 @@ class AddressEditor:
         city = self.city.get_text()
         state = self.state.get_text()
         country = self.country.get_text()
+        phone = self.phone.get_text()
         postal = self.postal.get_text()
         b = self.note_field.get_buffer()
         note = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
@@ -154,7 +157,7 @@ class AddressEditor:
             self.parent.plist.append(self.addr)
         self.addr.setSourceRefList(self.srcreflist)
 
-        self.update(date,street,city,state,country,postal,note,priv)
+        self.update(date,street,city,state,country,postal,phone,note,priv)
         self.callback(self.addr)
 
     def check(self,get,set,data):
@@ -164,7 +167,7 @@ class AddressEditor:
             set(data)
             self.parent.lists_changed = 1
             
-    def update(self,date,street,city,state,country,postal,note,priv):
+    def update(self,date,street,city,state,country,postal,phone,note,priv):
         """Compares the data items, and updates if necessary"""
         d = Date.Date()
         d.set(date)
@@ -178,6 +181,7 @@ class AddressEditor:
         self.check(self.addr.getCity,self.addr.setCity,city)
         self.check(self.addr.getState,self.addr.setState,state)
         self.check(self.addr.getPostal,self.addr.setPostal,postal)
+        self.check(self.addr.getPhone,self.addr.setPhone,phone)
         self.check(self.addr.getNote,self.addr.setNote,note)
         self.check(self.addr.getPrivacy,self.addr.setPrivacy,priv)
 
