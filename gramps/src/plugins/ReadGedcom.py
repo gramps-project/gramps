@@ -36,6 +36,7 @@ import shutil
 from gtk import *
 from gnome.ui import *
 from libglade import *
+import gnome.mime
 
 ANSEL = 1
 UNICODE = 2
@@ -45,6 +46,9 @@ db = None
 callback = None
 glade_file = None
 clear_data = 0
+
+photo_types = [ "jpeg", "bmp", "pict", "pntg", "tpic", "png", "gif",
+                "tiff", "pcx" ]
 
 ged2rel = {}
 for val in const.personalConstantEvents.keys():
@@ -67,11 +71,20 @@ nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
 #
 #-------------------------------------------------------------------------
 def find_file(fullname,altpath):
+    print "trying",fullname
     if os.path.isfile(fullname):
-        return fullname
+        type = gnome.mime.type(fullname)
+        if type[0:6] != "image/":
+            return ""
+        else:
+            return fullname
     other = altpath + os.sep + os.path.basename(fullname)
     if os.path.isfile(other):
-        return other
+        type = gnome.mime.type(other)
+        if type[0:6] != "image/":
+            return ""
+        else:
+            return other
     else:
         return ""
 
@@ -85,7 +98,6 @@ def importData(database, filename):
     global topDialog
     global glade_file
     global statusWindow
-    
 
     # add some checking here
 
@@ -154,6 +166,7 @@ class GedcomParser:
         self.fmap = {}
         self.smap = {}
         self.nmap = {}
+        self.dir_path = os.path.dirname(file)
         f = open(file,"r")
         self.lines = f.readlines()
         f.close()
@@ -215,6 +228,16 @@ class GedcomParser:
         self.error_count = self.error_count + 1
         self.update(self.errors_obj,str(self.error_count))
         self.ignore_sub_junk(level)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def warn(self,msg):
+        self.error_text_obj.insert_defaults(msg)
+        self.error_count = self.error_count + 1
+        self.update(self.errors_obj,str(self.error_count))
 
     #---------------------------------------------------------------------
     #
@@ -424,6 +447,12 @@ class GedcomParser:
                 event.setName("Divorce")
                 self.family.setDivorce(event)
                 self.parse_family_event(event,2)
+	    elif matches[1] == "OBJE":
+                if matches[2] and matches[2][0] == '@':
+                    self.barf(2)
+#                    self.ignore_sub_junk(2)
+                else:
+                    self.parse_family_object(2)
             elif matches[1] == "NOTE":
                 if matches[2] and matches[2][0] != "@":
                     note = matches[1] + self.parse_continue_data(1)
@@ -486,7 +515,8 @@ class GedcomParser:
                 self.ignore_sub_junk(1)
 	    elif matches[1] == "OBJE":
                 if matches[2] and matches[2][0] == '@':
-                    self.ignore_sub_junk(2)
+                    self.barf(2)
+#                    self.ignore_sub_junk(2)
                 else:
                     self.parse_person_object(2)
             elif matches[1] == "NOTE":
@@ -625,7 +655,7 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
             if matches[1] == "FORM":
-                form = matches[2]
+                form = string.lower(matches[2])
             elif matches[1] == "TITL":
                 title = matches[2]
             elif matches[1] == "FILE":
@@ -638,11 +668,65 @@ class GedcomParser:
             else:
 	        self.barf(level+1)
 
-        if form == "URL":
+        if form == "url":
             url = Url(file,title)
             self.person.addUrl(url)
+        elif form in photo_types:
+            path = find_file(file,self.dir_path)
+            if path == "":
+                self.warn(_("Could not import %s: either the file could not be found, or it was not a valid image") % file + "\n")
+            else:
+                photo = Photo()
+                photo.setPath(path)
+                photo.setDescription(title)
+                self.person.addPhoto(photo)
         else:
-            print "*",form,title
+            self.warn(_("Could not import %s: currently an unknown file type") % \
+                      file + "\n")
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_family_object(self,level):
+        form = ""
+        file = ""
+        title = ""
+        note = ""
+        while 1:
+            matches = self.get_next()
+            if matches[1] == "FORM":
+                form = string.lower(matches[2])
+            elif matches[1] == "TITL":
+                title = matches[2]
+            elif matches[1] == "FILE":
+                file = matches[2]
+            elif matches[1] == "NOTE":
+                note = matches[2] + self.parse_continue_data(level+1)
+	    elif int(matches[0]) < level:
+                self.backup()
+                break
+            else:
+	        self.barf(level+1)
+
+        if form == "url":
+            pass
+#            url = Url(file,title)
+#            self.family.addUrl(url)
+        elif form in photo_types:
+            path = find_file(file,self.dir_path)
+            if path == "":
+                self.warn("Could not import %s: the file could not be found\n" % \
+                          file)
+            else:
+                photo = Photo()
+                photo.setPath(path)
+                photo.setDescription(title)
+                self.family.addPhoto(photo)
+        else:
+            self.warn("Could not import %s: current an unknown file type\n" % \
+                      file)
 
     #---------------------------------------------------------------------
     #
