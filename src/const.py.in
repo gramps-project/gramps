@@ -42,6 +42,9 @@ editor  = "gimp"
 zipcmd  = "zip -r -q"
 convert = "convert"
 
+pixdir = "/usr/share/pixmaps"
+nautdir = "/usr/share/pixmaps/nautilus"
+
 #-------------------------------------------------------------------------
 #
 # Paths to files - assumes that files reside in the same directory as

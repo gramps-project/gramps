@@ -332,9 +332,43 @@ def get_place_from_list(obj):
     else:
         return select[0].get_data(LISTOBJ)
 
+def nautilus_icon(icon,type):
+    import GrampsCfg
+    
+    theme = GrampsCfg.client.get_string("/desktop/gnome/file_views/icon_theme")
+
+    if icon :
+        newicon = "%s/%s/%s.png" % (const.nautdir,theme,icon)
+        if os.path.isfile(newicon):
+            return newicon
+        else:
+            newicon = "%s/document-icons/%s.png" % (const.pixdir,icon)
+            if os.path.isfile(newicon):
+                return newicon
+        return None
+    elif type == "x-directory/":
+        if theme:
+            newicon = "%s/%s/i-directory.png" % (const.nautdir,theme)
+        else:
+            newicon = "%s/gnome-folder.png" % const.pixdir
+        if os.path.isfile(newicon):
+            return newicon
+        return None
+    else:
+        icontmp = type.replace('/','-')
+        if theme:
+            newicon = "%s/%s/gnome-%s.png" % (const.nautdir,theme,icontmp)
+            if os.path.isfile(newicon):
+                return newicon
+            else:
+                newicon = "%s/document-icons/gnome-%s.png" % (const.nautdir,icontmp)
+                if os.path.isfile(newicon):
+                    return newicon
+        return None
+
 def find_icon(mtype):
-    n = "%s/icons/%s.png" % (const.rootDir,string.replace(string.replace(mtype,'/','-'),'.','-'))
-    if os.path.isfile(n):
+    n = nautilus_icon(None,mtype)
+    if n:
         return n
     else:
         return const.icon

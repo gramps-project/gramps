@@ -1080,3 +1080,4 @@ def save_filter(val):
 
 def get_filter():
     return get_bool("/gramps/config/filter")
+
