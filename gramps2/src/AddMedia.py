@@ -145,7 +145,6 @@ class AddMediaObject:
 
             if type[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
-                self.image.set_from_pixbuf(image)
             else:
-                i = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
-            self.image.set_from_pixbuf(i)
+                image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
+            self.image.set_from_pixbuf(image)

@@ -103,7 +103,7 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         self.f.setLineWidth(stype.get_line_width())
  	self.f.rect(x1*cm,y1*cm,(x2-x1)*cm,(y2-y1)*cm,fill=0,stroke=1)
 
-    def draw_path(self,style,path,fill):
+    def draw_path(self,style,path):
         stype = self.draw_styles[style]
         if stype.get_line_style() == DrawDoc.SOLID:
             self.f.setDash([],0)
@@ -117,7 +117,13 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         for point in path[1:]:
             p.lineTo((point[0]+self.lmargin)*cm,(point[1]+self.tmargin)*cm)
         p.close()
-        self.f.drawPath(p,stroke=1,fill=fill)
+
+        fill = stype.get_color()
+        
+        if fill[0] == 0:
+            self.f.drawPath(p,stroke=1,fill=1)
+        else:
+            self.f.drawPath(p,stroke=1,fill=0)
 
     def draw_box(self,style,text,x,y):
         x = x + self.lmargin

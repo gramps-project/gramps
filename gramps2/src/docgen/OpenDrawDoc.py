@@ -143,7 +143,7 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
             self._write_meta_file()
             self._write_zip()
         except:
-            Errors.ReportError("Could not create %s" % self.filename)
+            raise Errors.ReportError("Could not create %s" % self.filename)
 
     def _write_zip(self):
         
@@ -244,7 +244,14 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 	    self.f.write('" style:family="graphics" ')
 	    self.f.write('style:parent-style-name="standard">\n')
 	    self.f.write('<style:properties ')
-            self.f.write('draw:fill-color="#%02x%02x%02x" ' % style.get_color())
+            if style.color[0] == 0 and style.color[1] == 0 and style.color[2] == 0:
+                self.f.write('draw:fill="solid" ')
+            else:
+                self.f.write('draw:fill="none" ')
+                
+            if style.get_line_style() == DrawDoc.DASHED:
+                self.f.write('draw:color="#cccccc" ')
+            
             if style.get_line_width():
                 self.f.write('draw:stroke="solid" ')
             else:
@@ -422,17 +429,54 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
     def end_page(self):
 	self.f.write('</draw:page>\n')
 
+    def draw_path(self,style,path):
+        stype = self.draw_styles[style]
+
+        minx = 9e12
+        miny = 9e12
+        maxx = 0
+        maxy = 0
+
+        for point in path:
+            minx = min(point[0],minx)
+            miny = min(point[1],miny)
+            maxx = max(point[0],maxx)
+            maxy = max(point[1],maxy)
+
+        self.f.write('<draw:polygon draw:style-name="%s" draw:layer="layout" ' % style)
+        x = int((minx+self.lmargin)*1000)
+        y = int((miny+self.tmargin)*1000)
+        
+        self.f.write('svg:x="%d" svg:y="%d" ' % (x,y))
+        self.f.write('svg:viewBox="0 0 %d %d" ' % (int(maxx-minx)*1000,int(maxy-miny)*1000))
+        self.f.write('svg:width="%.4fcm" ' % (maxx-minx))
+        self.f.write('svg:height="%.4fcm" ' % (maxy-miny))
+        
+        point = path[0]
+        x1 = int((point[0]-minx)*1000)
+        y1 = int((point[1]-miny)*1000)
+        self.f.write('draw:points="%d,%d' % (x1,y1))
+
+        for point in path[1:]:
+            x1 = int((point[0]-minx)*1000)
+            y1 = int((point[1]-miny)*1000)
+            self.f.write(' %d,%d' % (x1,y1))
+        self.f.write('"/>\n')
+
     def draw_line(self,style,x1,y1,x2,y2):
         x1 = x1 + self.lmargin
         x2 = x2 + self.lmargin
         y1 = y1 + self.tmargin
         y2 = y2 + self.tmargin
+	box_style = self.draw_styles[style]
+
         self.f.write('<draw:line draw:style="')
         self.f.write(style)
         self.f.write('" svg:x1="%.3fcm" ' % x1)
         self.f.write('svg:y1="%.3fcm" ' % y1)
         self.f.write('svg:x2="%.3fcm" ' % x2)
-        self.f.write('svg:y2="%.3fcm"/>\n' % y2)
+        self.f.write('svg:y2="%.3fcm" ' % y2)
+        self.f.write('/>\n')
 
     def draw_text(self,style,text,x,y):
         x = x + self.lmargin

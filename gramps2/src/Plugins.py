@@ -128,8 +128,10 @@ class PluginDialog:
         self.img = self.dialog.get_widget("image")
         self.description = self.dialog.get_widget("description")
         self.status = self.dialog.get_widget("report_status")
-        self.label = self.dialog.get_widget("report_label")
         self.title = self.dialog.get_widget("title")
+        self.author_name = self.dialog.get_widget("author_name")
+        self.author_email = self.dialog.get_widget("author_email")
+        self.statbox = self.dialog.get_widget("statbox")
         
         self.run_tool = None
         self.build_tree(list)
@@ -153,7 +155,9 @@ class PluginDialog:
         store,iter = self.selection.get_selected()
         path = store.get_path(iter)
         if not iter or not self.imap.has_key(path):
+            self.statbox.hide()
             return 
+        self.statbox.show()
         data = self.imap[path]
 
         title = data[0]
@@ -161,16 +165,16 @@ class PluginDialog:
         doc = data[2]
         xpm = data[3]
         status = data[4]
+        author = data[5]
+        email = data[6]
 
-        #st = string.join(xpm,'\n')
-        #image = gtk.gdk.pixbuf_new_from_inline(len(st),st,0)
         self.description.set_text(doc)
-        self.status.set_text(": %s" % status)
-        self.label.show()
-        #self.img.set_from_pixbuf(image)
+        self.status.set_text(status)
         self.title.set_text(title)
+        self.author_name.set_text(author)
+        self.author_email.set_text(email)
 
-        self.dialog.get_widget("title").set_text(title)
+        self.title.set_text(title)
         self.run_tool = task
 
     def build_tree(self,list):
@@ -178,7 +182,7 @@ class PluginDialog:
         in the lists. The list must consist of a tuples with the following
         format:
         
-        (task_to_call, category, report name, description, image, status)
+        (task_to_call, category, report name, description, image, status, author_name, author_email)
         
         Items in the same category are grouped under the same submen. The
         task_to_call is bound to the 'select' callback of the menu entry."""
@@ -188,7 +192,7 @@ class PluginDialog:
         # build the tree items and group together based on the category name
         item_hash = {}
         for report in list:
-            t = (report[2],report[0],report[3],report[4],report[5])
+            t = (report[2],report[0],report[3],report[4],report[5],report[6],report[7])
             if item_hash.has_key(report[1]):
                 item_hash[report[1]].append(t)
             else:
@@ -397,22 +401,28 @@ def register_report(task, name,
                     category=_("Uncategorized"),
                     description=_unavailable,
                     xpm=None,
-                    status=_("Unknown")):
+                    status=_("Unknown"),
+                    author_name=_("Unknown"),
+                    author_email=_("Unknown")
+                    ):
     """Register a report with the plugin system"""
     
     if xpm == None:
         xpm = no_image()
-    _reports.append((task, category, name, description, xpm, status))
+    _reports.append((task, category, name, description, xpm, status, author_name, author_email))
 
 def register_tool(task, name,
                   category=_("Uncategorized"),
                   description=_unavailable,
                   xpm=None,
-                  status=_("Unknown")):
+                  status=_("Unknown"),
+                  author_name=_("Unknown"),
+                  author_email=_("Unknown")
+                  ):
     """Register a tool with the plugin system"""
     if xpm == None:
         xpm = no_image()
-    _tools.append((task, category, name, description, xpm, status))
+    _tools.append((task, category, name, description, xpm, status, author_name, author_name))
 
 
 def register_text_doc(name,classref, table, paper, style):
