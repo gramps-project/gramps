@@ -4,7 +4,7 @@
   <!ENTITY legal SYSTEM "legal.xml">
   <!ENTITY appversion "0.9.1">
   <!ENTITY manrevision "2.0">
-  <!ENTITY date "March 2003">
+  <!ENTITY date "April 2003">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -293,6 +293,48 @@
 
       </sect3>
     </sect2>
+    <!-- ================ Getting Started Subsection ==== -->
+    <sect2 id="get-help">
+      <title>Obtaining Help</title>
+    <para> At any time, the following items are available for immediate aid
+    from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
+    
+	<variablelist>
+
+	<varlistentry><term>User manual</term>
+	<listitem><para> Choose this item to read the text of this manual 
+	in the help browser.  </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>GRAMPS home page</term>
+	<listitem><para> Select this item to open home page of &app; in your
+	default web browser. </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>GRAMPS mailing lists</term>
+	<listitem><para> Choose this item to direct your web browser 
+	to the &app; mailing list archives. </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>Report a bug</term>
+	<listitem><para> Use this item to file a bug report against &app; 
+	with the bug tracking system.  </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>Show plugin status</term>
+	<listitem><para> Use this item to display the status of loaded 
+	plugins. </para></listitem>
+	</varlistentry>
+    
+	<varlistentry><term>Open example database</term>
+	<listitem><para> Select this item to load an example database shipped
+	with &app;. This database is composed of fictious people and serves as
+	a useful example when learning how to work with &app;. </para></listitem>
+	</varlistentry>
+    
+	</variablelist>
+    </sect2>
+
   </sect1> <!-- ================ End Getting Started ======================== -->
   
 <!-- ================ Main Window ================================ -->
@@ -963,7 +1005,7 @@
 	View (<xref linkend="places-fig"/>), respectively. Then select the 
 	appropriate source or place and then either double click on it 
 	or click <guibutton>Edit</guibutton> on the toolbar to invoke the 
-	<guilabel>Source Editor</guilabel> (or <guilabel>Place
+	<guilabel>Source Editor</guilabel> (or <guilabel>Place 
 	Editor</guilabel>) dialog. Select the <guilabel>Gallery</guilabel> 
 	tab and click <guibutton>Add...</guibutton> to add an image. </para>
 
@@ -998,7 +1040,7 @@
 
 	<para> To edit information about sources and places already present
 	in the database, switch to the appropriate view, select an entry
-	you would like to view/modify, and then click
+	you would like to view/modify, and then click 
 	<guibutton>Edit</guibutton> on the toolbar. 
 	</para>
 
@@ -1019,7 +1061,7 @@
 	<variablelist>
 	<varlistentry><term>From the People View:</term><listitem><para> 
 	  Double-click the name of the person whose data you would like 
-	  to edit, or select the name by single click and then click
+	  to edit, or select the name by single click and then click 
 	  <guibutton>Edit</guibutton> on the toolbar.
 	  </para></listitem></varlistentry>
 	<varlistentry><term>From the Family View:</term><listitem><para>
@@ -1296,7 +1338,7 @@
 	allowing data modification. The bottom part displays the list of all 
 	such Internet addresses stored in the database. The top part shows the
 	details of the currently selected addresses in the list (if any). 
-	The buttons <guibutton>Add...</guibutton>,
+	The buttons <guibutton>Add...</guibutton>, 
 	<guibutton>Edit...</guibutton>,  and <guibutton>Delete</guibutton> 
 	allow you to correspondingly add, modify, and remove an Internet address 
 	record from the database. The button <guibutton>Go</guibutton> allows
@@ -1492,7 +1534,8 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 	
-	<para> The top of the window shows the <guilabel>Source Editor</guilabel>
+	<para> The top of the window shows the <guilabel>Source
+	Editor</guilabel> 
 	title of the dialog. The main part of the window displays four notebook 
 	tabs containing different categories of available information. You can 
 	bring any tab to the top for viewing or editing by clicking on the 
@@ -1588,7 +1631,7 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para> The top of the window shows the <guilabel>Place Editor</guilabel>
+	<para> The top of the window shows the <guilabel>Place Editor</guilabel> 
 	title of the dialog. The main part of the window displays seven 
 	notebook tabs containing different categories of available information. 
 	You can bring any tab to the top for viewing or editing by clicking on 
@@ -2367,7 +2410,7 @@
 	<para> You can manage your bookmarks by choosing 
 	<menuchoice><guimenu>Bookmarks</guimenu>
 	<guimenuitem>Edit bookmarks</guimenuitem></menuchoice>. This opens
-	the following<guilabel>Edit Bookmarks</guilabel> dialog with the 
+	the following <guilabel>Edit Bookmarks</guilabel> dialog with the 
 	list of	bookmarks and the controls to modify this list. </para>
 	
  	<!-- ==== Figure: Edit Bookmarks dialog ==== -->
@@ -2944,7 +2987,7 @@
 
 	<varlistentry><term><guilabel>Show calendar format selection menu</guilabel></term>
 	<listitem><para> Check this box to enable the calendar format selection 
-	menu when you are entering dates in the <guilabel>Event
+	menu when you are entering dates in the <guilabel>Event 
 	Editor</guilabel> dialog. 
 	</para></listitem>
 	</varlistentry>
