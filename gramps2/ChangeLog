@@ -1,3 +1,9 @@
+2004-01-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/FilterEditor.py: handle unicode characters
+	* src/PeopleStore.py: handle corrupt iter
+	* src/GenericFilter.py: handle unicode
+	* src/docgen/PSDrawDoc.py: handle iso-8859-1 characters
+
 2004-01-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/AncestorChart2.py: Add hotkeys to check button labels.
 	Add scale, compress, and title options support to the book dialog.
