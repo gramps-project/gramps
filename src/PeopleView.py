@@ -154,7 +154,8 @@ class PeopleView:
 
         if self.id2col.has_key(del_id):
             (model,iter) = self.id2col[del_id]
-            model.remove(iter)
+            if iter:
+                model.remove(iter)
             del self.id2col[del_id]
             
             if person == self.parent.active_person:
@@ -302,7 +303,8 @@ class PeopleView:
             else:
                 if self.id2col.has_key(key):
                     (model,iter) = self.id2col[key]
-                    model.remove(iter)
+                    if iter:
+                        model.remove(iter)
                     del self.id2col[key]
 
         for i in self.pl_page:
