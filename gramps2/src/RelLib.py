@@ -3104,7 +3104,7 @@ class MediaRef(PrivateSourceNote,AttributeBase):
     """Media reference class"""
     def __init__(self,source=None):
 
-        SourceNote.__init__(self,source)
+        PrivateSourceNote.__init__(self,source)
         AttributeBase.__init__(self,source)
 
         if source:
