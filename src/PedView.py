@@ -61,6 +61,11 @@ _CANVASPAD = 3
 _PERSON    = "p"
 _BORN = _('b.')
 _DIED = _('d.')
+_BAPT = _('bap.')
+_CHRI = _('chr.')
+_BURI = _('bur.')
+_CREM = _('crem.')
+
 
 #-------------------------------------------------------------------------
 #
@@ -77,6 +82,7 @@ class DispBox:
         shadow = _PAD
         xpad = _PAD
         
+        self.db = db
         self.change = change
         self.edit = edit
         self.build_menu = build_menu
@@ -88,28 +94,9 @@ class DispBox:
         self.root = root
 
         self.name = NameDisplay.displayer.display(person)
-        birth_handle = self.person.get_birth_handle()
-        death_handle = self.person.get_death_handle()
-        if birth_handle:
-            bd = db.get_event_from_handle(birth_handle).get_date()
-        else:
-            bd = ""
-
-        if death_handle:
-            dd = db.get_event_from_handle(death_handle).get_date()
-        else:
-            dd = ""
-            
-        if bd and dd:
-            self.exp = "%s\n%s %s\n%s %s" % (self.name,_BORN,bd,_DIED,dd )
-        elif bd:
-            self.exp = "%s\n%s %s" % (self.name,_BORN,bd )
-        elif dd:
-            self.exp = "%s\n%s %s" % (self.name,_DIED,dd )
-        else:
-            self.exp = "%s" % self.name
-
         
+        self.exp = build_detail_string( db, person)
+
         self.group = self.root.add(CanvasGroup,x=x,y=y)
         self.shadow = self.group.add(
             CanvasRect, x1=shadow, y1=shadow, x2=w+shadow, y2=h+shadow,
@@ -130,6 +117,7 @@ class DispBox:
         self.group.connect('event',self.group_event)
         self.group.set_data(_PERSON,person.get_handle())
 
+  
     def cleanup(self):
         self.shadow.destroy()
         self.bkgnd.destroy()
@@ -229,23 +217,12 @@ class PedigreeView:
         
         for t in lst:
             if t:
-                birth_handle = t[0].get_birth_handle()
-                death_handle = t[0].get_death_handle()
-                if birth_handle:
-                    birth = self.parent.db.get_event_from_handle(birth_handle).get_date()
-                else:
-                    birth = u""
-                if death_handle:
-                    death = self.parent.db.get_event_from_handle(death_handle).get_date()
-                else:
-                    death = u""
-                    
-                for n in [NameDisplay.displayer.display(t[0]), u'%s %s' % (_BORN,birth),
-                          u'%s %s' % (_DIED,death)]:
+                boxtext = build_detail_string(self.parent.db,t[0]).encode("UTF-8")
+                for line in boxtext.split("\n"):
                     try:
-                        a.set_text(n,len(n))
+                        a.set_text(line,len(line))
                     except TypeError:
-                        a.set_text(n)
+                        a.set_text(line)
                     (w1,h1) = a.get_pixel_size()
                     h = max(h,h1)
                     w = max(w,w1)
@@ -759,3 +736,56 @@ def find_parents(db,p):
         if mother_handle not in parentlist:
             parentlist.append(mother_handle)
     return parentlist
+
+#-------------------------------------------------------------------------
+#
+# Functions to build the text displayed in the details view of a DispBox
+# aditionally used by PedigreeView to get the largest area covered by a DispBox
+#
+#-------------------------------------------------------------------------
+def build_detail_string(db,person):
+
+    detail_text = NameDisplay.displayer.display(person)
+
+    def format_event(db, label, event):
+        if not event:
+            return u""
+        ed = event.get_date()
+        ep = None
+        place_handle = event.get_place_handle()
+        if place_handle:
+            place_title = db.get_place_from_handle(place_handle).get_title()
+            if place_title != "":
+                ep = place_title
+        if ep:
+            return u"\n%s %s, %s" % (label,ed,ep)
+        return u"\n%s %s" % (label,ed)
+
+    
+    birth_handle = person.get_birth_handle()
+    if birth_handle:
+        detail_text += format_event(db, _BORN, db.get_event_from_handle(birth_handle))
+    else:
+        for event_handle in person.get_event_list():
+            event = db.get_event_from_handle(event_handle)
+            if event.get_name() == "Baptism":
+                detail_text += format_event(db, _BAPT, event)
+                break
+            if event.get_name() == "Christening":
+                detail_text += format_event(db, _CHRI, event)
+                break
+
+    death_handle = person.get_death_handle()
+    if death_handle:
+        detail_text += format_event(db, _DIED, db.get_event_from_handle(death_handle))
+    else:
+        for event_handle in person.get_event_list():
+            event = db.get_event_from_handle(event_handle)
+            if event.get_name() == "Burial":
+                detail_text += format_event(db, _BURI, event)
+                break
+            if event.get_name() == "Cremation":
+                detail_text += format_event(db, _CREM, event)
+                break
+
+    return detail_text

@@ -1,3 +1,11 @@
+2005-04-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/PedView.py: Show Baptism/Burial as fallback for birth/death; Moved text
+	generation for details view out of DispBox class so that PedigreeView can use the
+	same string for max size calculation.
+	* src/PeopleModel.py: Show Baptism/Burial as fallback for birth/death. Based on
+	patch from Jim Smart.
+	* src/PeopleView.py: Enable makup that PeopleModel can render fallback data in italics.
+
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDBCallback.py: added support for disconnecting callbacks,
 	better test code and lots of logging. Improved the comments.

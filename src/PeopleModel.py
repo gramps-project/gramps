@@ -28,6 +28,7 @@
 from gettext import gettext as _
 import time
 import locale
+import cgi
 
 #-------------------------------------------------------------------------
 #
@@ -57,6 +58,7 @@ _GENDER_COL= 2
 _NAME_COL  = 3
 _DEATH_COL = 6
 _BIRTH_COL = 7
+_EVENT_COL = 8
 _FAMILY_COL= 9
 _CHANGE_COL= 21
 
@@ -141,15 +143,15 @@ class PeopleModel(gtk.GenericTreeModel):
         return locale.strcoll(f[0],s[0])
 
     def on_get_flags(self):
-	'''returns the GtkTreeModelFlags for this particular type of model'''
-	return gtk.TREE_MODEL_ITERS_PERSIST
+        '''returns the GtkTreeModelFlags for this particular type of model'''
+        return gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
         return len(COLUMN_DEFS)
 
     def on_get_path(self, node):
-	'''returns the tree path (a tuple of indices at the various
-	levels) for a particular node.'''
+        '''returns the tree path (a tuple of indices at the various
+        levels) for a particular node.'''
         try:
             return (self.top_path2iter.index(node),)
         except:
@@ -198,7 +200,7 @@ class PeopleModel(gtk.GenericTreeModel):
         pass
 
     def on_iter_next(self, node):
-	'''returns the next node at this level of the tree'''
+        '''returns the next node at this level of the tree'''
         try:
             path = self.top_path2iter.index(node)
             if path+1 == len(self.top_path2iter):
@@ -216,7 +218,7 @@ class PeopleModel(gtk.GenericTreeModel):
             return self.path2iter.get((node,0))
 
     def on_iter_has_child(self, node):
-	'''returns true if this node has children'''
+        '''returns true if this node has children'''
         if node == None:
             return len(self.sname_sub)
         if self.sname_sub.has_key(node) and len(self.sname_sub[node]) > 0:
@@ -243,7 +245,7 @@ class PeopleModel(gtk.GenericTreeModel):
             return None
 
     def on_iter_parent(self, node):
-	'''returns the parent of this node'''
+        '''returns the parent of this node'''
         path = self.iter2path.get(node)
         if path:
             return path[0]
@@ -253,7 +255,7 @@ class PeopleModel(gtk.GenericTreeModel):
         return data[_NAME_COL].get_sort_name()
 
     def column_spouse(self,data,node):
-	spouses_names = u""
+        spouses_names = u""
         handle = data[0]
         for family_handle in data[_FAMILY_COL]:
             family = self.db.get_family_from_handle(family_handle)
@@ -266,7 +268,7 @@ class PeopleModel(gtk.GenericTreeModel):
                 if len(spouses_names) > 0:
                     spouses_names += ", "
                 spouses_names += NameDisplay.displayer.display(spouse)
-	return spouses_names
+        return spouses_names
 
     def column_name(self,data,node):
         return NameDisplay.displayer.sorted_name(data[_NAME_COL])
@@ -282,15 +284,29 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_birth_day(self,data,node):
         if data[_BIRTH_COL]:
-            return self.db.get_event_from_handle(data[_BIRTH_COL]).get_date()
-        else:
-            return u""
+            birth = self.db.get_event_from_handle(data[_BIRTH_COL])
+            if birth.get_date() and birth.get_date() != "":
+                return cgi.escape(birth.get_date())
+        
+        for event_handle in data[_EVENT_COL]:
+            event = self.db.get_event_from_handle(event_handle)
+            if event.name in ["Baptism", "Christening"] and event.get_date() != "":
+                return "<i>" + cgi.escape(event.get_date()) + "</i>"
+        
+        return u""
 
     def column_death_day(self,data,node):
         if data[_DEATH_COL]:
-            return self.db.get_event_from_handle(data[_DEATH_COL]).get_date()
-        else:
-            return u""
+            death = self.db.get_event_from_handle(data[_DEATH_COL])
+            if death.get_date() and death.get_date() != "":
+                return cgi.escape(death.get_date())
+        
+        for event_handle in data[_EVENT_COL]:
+            event = self.db.get_event_from_handle(event_handle)
+            if event.name in ["Burial", "Cremation"] and event.get_date() != "":
+                return "<i>" + cgi.escape(event.get_date()) + "</i>"
+        
+        return u""
 
     def column_cause_of_death(self,data,node):
         if data[_DEATH_COL]:
@@ -302,18 +318,42 @@ class PeopleModel(gtk.GenericTreeModel):
         if data[_BIRTH_COL]:
             event = self.db.get_event_from_handle(data[_BIRTH_COL])
             if event:
+                  place_handle = event.get_place_handle()
+                  if place_handle:
+                    place_title = self.db.get_place_from_handle(place_handle).get_title()
+                    if place_title != "":
+                        return cgi.escape(place_title)
+        
+        for event_handle in data[_EVENT_COL]:
+            event = self.db.get_event_from_handle(event_handle)
+            if event.name in ["Baptism", "Christening"]:
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    return self.db.get_place_from_handle(place_handle).get_title()
+                    place_title = self.db.get_place_from_handle(place_handle).get_title()
+                    if place_title != "":
+                        return "<i>" + cgi.escape(place_title) + "</i>"
+        
         return u""
 
     def column_death_place(self,data,node):
         if data[_DEATH_COL]:
             event = self.db.get_event_from_handle(data[_DEATH_COL])
             if event:
+                  place_handle = event.get_place_handle()
+                  if place_handle:
+                    place_title = self.db.get_place_from_handle(place_handle).get_title()
+                    if place_title != "":
+                        return cgi.escape(place_title)
+        
+        for event_handle in data[_EVENT_COL]:
+            event = self.db.get_event_from_handle(event_handle)
+            if event.name in ["Baptism", "Christening"]:
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    return self.db.get_place_from_handle(place_handle).get_title()
+                    place_title = self.db.get_place_from_handle(place_handle).get_title()
+                    if place_title != "":
+                        return "<i>" + cgi.escape(place_title) + "</i>"
+        
         return u""
 
     def column_int_id(self,data,node):
