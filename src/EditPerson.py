@@ -129,6 +129,8 @@ class EditPerson:
         self.top_window.signal_autoconnect({
             "on_death_note_clicked" : on_death_note_clicked,
             "on_death_source_clicked" : on_death_source_clicked,
+            "on_name_note_clicked" : on_name_note_clicked,
+            "on_name_source_clicked" : on_name_source_clicked,
             "on_birth_note_clicked" : on_birth_note_clicked,
             "on_birth_source_clicked" : on_birth_source_clicked,
             "on_eventAddBtn_clicked" : on_event_add_clicked,
@@ -1189,6 +1191,29 @@ def on_birth_note_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
+def on_name_note_clicked(obj):
+    edit_person_obj = obj.get_data(EDITPERSON)
+    editnote = libglade.GladeXML(const.editnoteFile,"editnote")
+    data = edit_person_obj.person.getPrimaryName()
+    textobj = editnote.get_widget("notetext")
+    en_obj = editnote.get_widget("editnote")
+    en_obj.set_data("n",data)
+    en_obj.set_data("w",textobj)
+
+    textobj.set_point(0)
+    textobj.insert_defaults(data.getNote())
+    textobj.set_word_wrap(1)
+        
+    editnote.signal_autoconnect({
+        "on_save_note_clicked" : on_save_note_clicked,
+        "destroy_passed_object" : utils.destroy_passed_object
+    })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_death_note_clicked(obj):
     edit_person_obj = obj.get_data(EDITPERSON)
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
@@ -1215,6 +1240,15 @@ def on_death_note_clicked(obj):
 def on_death_source_clicked(obj):
     edit_person_obj = obj.get_data(EDITPERSON)
     Sources.SourceEditor(edit_person_obj.person.getDeath(),edit_person_obj.db)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_name_source_clicked(obj):
+    edit_person_obj = obj.get_data(EDITPERSON)
+    Sources.SourceEditor(edit_person_obj.person.getPrimaryName(),edit_person_obj.db)
 
 #-------------------------------------------------------------------------
 #
