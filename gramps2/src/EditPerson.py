@@ -327,6 +327,8 @@ class EditPerson:
         self.redraw_name_list()
         self.redraw_url_list()
 
+        self.given.grab_focus()
+
     def build_columns(self,tree,list):
         cnum = 0
         for name in list:
@@ -536,11 +538,12 @@ class EditPerson:
 
     def url_drag_data_get(self,widget, context, sel_data, info, time):
         ev = self.wtree.get_selected_objects()
-        
-        bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev[0]);
-        data = str(('url',self.person.getId(),pickled));
-        sel_data.set(sel_data.target, bits_per, data)
+
+        if len(ev):
+            bits_per = 8; # we're going to pass a string
+            pickled = pickle.dumps(ev[0]);
+            data = str(('url',self.person.getId(),pickled));
+            sel_data.set(sel_data.target, bits_per, data)
 
     def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
         row = self.atree.get_row_at(x,y)
@@ -568,12 +571,13 @@ class EditPerson:
 
     def at_drag_data_get(self,widget, context, sel_data, info, time):
         ev = self.atree.get_selected_objects()
-        
-        bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev[0]);
-        data = str(('pattr',self.person.getId(),pickled));
-        sel_data.set(sel_data.target, bits_per, data)
 
+        if len(ev):
+            bits_per = 8; # we're going to pass a string
+            pickled = pickle.dumps(ev[0]);
+            data = str(('pattr',self.person.getId(),pickled));
+            sel_data.set(sel_data.target, bits_per, data)
+            
     def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
         row = self.ptree.get_row_at(x,y)
 
@@ -599,10 +603,11 @@ class EditPerson:
     def ad_drag_data_get(self,widget, context, sel_data, info, time):
         ev = self.ptree.get_selected_objects()
         
-        bits_per = 8; # we're going to pass a string
-        pickled = pickle.dumps(ev[0]);
-        data = str(('paddr',self.person.getId(),pickled));
-        sel_data.set(sel_data.target, bits_per, data)
+        if len(ev):
+            bits_per = 8; # we're going to pass a string
+            pickled = pickle.dumps(ev[0]);
+            data = str(('paddr',self.person.getId(),pickled));
+            sel_data.set(sel_data.target, bits_per, data)
 
     def ad_drag_begin(self, context, a):
         return

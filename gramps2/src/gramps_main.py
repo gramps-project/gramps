@@ -158,6 +158,8 @@ class Gramps:
         widgets that it will need.
         """
         self.gtop = gtk.glade.XML(const.gladeFile, "gramps")
+        self.topWindow   = self.gtop.get_widget("gramps")
+        self.topWindow.hide()
 
         self.report_button = self.gtop.get_widget("reports")
         self.tool_button  = self.gtop.get_widget("tools")
@@ -182,7 +184,6 @@ class Gramps:
         self.sidebar_btn = self.gtop.get_widget("sidebar1")
         self.filter_btn  = self.gtop.get_widget("filter1")
         self.statusbar   = self.gtop.get_widget("statusbar")
-        self.topWindow   = self.gtop.get_widget("gramps")
 
         self.ptabs       = self.gtop.get_widget("ptabs")
         self.pl_other    = self.gtop.get_widget("pl_other")
@@ -317,6 +318,7 @@ class Gramps:
 
         self.enable_sidebar(self.use_sidebar)
         self.enable_filter(self.use_filter)
+        self.topWindow.show()
         
     def change_alpha_page(self,obj,junk,page):
         self.person_tree = self.pl_page[page]

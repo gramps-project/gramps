@@ -54,9 +54,10 @@ class NoteEditor:
         
         vbox = gtk.VBox()
         self.top.vbox.pack_start(vbox,gtk.TRUE,gtk.TRUE,0)
-        vbox.pack_start(gtk.Label(_("Edit Note")), gtk.FALSE, gtk.FALSE, 10)
+	label = gtk.Label('<span weight="bold" size="larger">%s</span>' % _('Edit Note'))
+	label.set_use_markup(gtk.TRUE)
+        vbox.pack_start(label, gtk.FALSE, gtk.FALSE, 10)
 
-        vbox.pack_start(gtk.HSeparator(), gtk.FALSE, gtk.TRUE, 5)
         self.entry = gtk.TextView()
         self.entry.set_editable(gtk.TRUE)
         self.entry.show()
@@ -64,13 +65,14 @@ class NoteEditor:
         scroll = gtk.ScrolledWindow()
         scroll.add(self.entry)
         scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
+        scroll.set_shadow_type(gtk.SHADOW_IN)
         scroll.show()
         vbox.pack_start(scroll, gtk.TRUE, gtk.TRUE, 0)
 
         self.entry.get_buffer().set_text(self.data.getNote())
 
-        self.top.add_button(gtk.STOCK_OK,0)
         self.top.add_button(gtk.STOCK_CANCEL,1)
+        self.top.add_button(gtk.STOCK_OK,0)
         self.top.show_all()
         
         if self.top.run() == 0:
