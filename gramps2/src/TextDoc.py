@@ -151,9 +151,17 @@ class PaperStyle:
         "Returns the page height in cm"
         return self.height
 
+    def set_height(self,height):
+        "Sets the page height in cm"
+        self.height = height
+
     def get_width(self):
         "Returns the page width in cm"
         return self.width
+
+    def set_width(self,width):
+        "Sets the page width in cm"
+        self.width = width
 
     def get_height_inches(self):
         "Returns the page height in inches"
