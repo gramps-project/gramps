@@ -1143,11 +1143,11 @@ msgstr "Famille"
 
 #: LocEdit.py:66
 msgid "Location Editor for %s"
-msgstr "Édition Ahnentafel pour %s"
+msgstr "Éditeur de Lieu pour %s"
 
 #: LocEdit.py:68 dialog.glade:1465
 msgid "Location Editor"
-msgstr "Affichage de l'endroit"
+msgstr "Éditeur de Lieu"
 
 #: Marriage.py:107 Marriage.py:512 Marriage.py:530 Utils.py:135
 #: plugins/Check.py:161 plugins/Check.py:180
@@ -3398,7 +3398,7 @@ msgstr "Édition de descendance"
 
 #: plugins/DescendReport.py:133 plugins/DetDescendantReport.py:640
 msgid "Descendant Report for %s"
-msgstr "Liste des descendants de %s"
+msgstr "Liste des Descendants de %s"
 
 #: plugins/DescendReport.py:138 plugins/DetDescendantReport.py:701
 msgid "Save Descendant Report"
@@ -3590,7 +3590,7 @@ msgstr "  %s se maria le %s à %s"
 
 #: plugins/DetAncestralReport.py:615 plugins/DetAncestralReport.py:672
 msgid "Detailed Ancestral Report for %s"
-msgstr "Édition Ahnentafel pour %s"
+msgstr "Liste Détaillée des Ancêtres de %s"
 
 #: plugins/DetAncestralReport.py:668 plugins/DetDescendantReport.py:692
 msgid "Gramps - Ahnentafel Report"
@@ -3654,11 +3654,11 @@ msgstr "  %s marrié(e)"
 
 #: plugins/DetDescendantReport.py:696
 msgid "Detailed Descendant Report for %s"
-msgstr "Liste détaillée des descendants de %s"
+msgstr "Liste Détaillée des Descendants de %s"
 
 #: plugins/DetDescendantReport.py:851
 msgid "Detailed Descendant Report"
-msgstr "Liste détaillée des descendants"
+msgstr "Liste Détaillée des Descendants"
 
 #: plugins/DetDescendantReport.py:854
 msgid "Produces a detailed descendant report"
@@ -3689,7 +3689,7 @@ msgstr ""
 #: plugins/FamilyGroup.py:107 plugins/FamilyGroup.py:339
 #: plugins/FamilyGroup.py:549
 msgid "Family Group Report"
-msgstr "Édition d'un group familial"
+msgstr "Édition d'un Groupe Familial"
 
 #: plugins/FamilyGroup.py:119
 msgid "Husband"
@@ -3701,18 +3701,18 @@ msgstr "Femme"
 
 #: plugins/FamilyGroup.py:343
 msgid "Family Group Report for %s"
-msgstr "Édition du groupe familial de %s"
+msgstr "Édition du Groupe Familial de %s"
 
 #: plugins/FamilyGroup.py:348
 msgid "Save Family Group Report"
-msgstr "Enregistrer la liste familiale"
+msgstr "Enregistrer l'Édition du Groupe Familial"
 
 #: plugins/FamilyGroup.py:552
 msgid ""
 "Creates a family group report, showing information on a set of parents and "
 "their children."
 msgstr ""
-"Crée l'édition d'un groupe familial, comprenant un groupe de parents et "
+"Crée l'édition d'un groupe familial, comprenant les parents et "
 "leurs enfants."
 
 #: plugins/FilterEditor.py:380
