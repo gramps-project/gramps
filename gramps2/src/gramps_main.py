@@ -1426,6 +1426,7 @@ class Gramps:
     def on_import_activate(self,obj):
         prompter = DbPrompter.ImportDbPrompter(self,self.topWindow)
         prompter.chooser()
+        self.update_display()
 
     def on_saveas_activate(self,obj):
         prompter = DbPrompter.NewSaveasDbPrompter(self,self.topWindow)
@@ -1545,7 +1546,8 @@ class Gramps:
     def load_person(self,person):
         if person:
             try:
-                EditPerson.EditPerson(self, person, self.db, self.update_after_edit)
+                EditPerson.EditPerson(self, person, self.db,
+                                      self.update_after_edit)
             except:
                 DisplayTrace.DisplayTrace()
 
@@ -1717,10 +1719,12 @@ class Gramps:
     def on_preferences_activate(self,obj):
         GrampsCfg.display_preferences_box(self.db)
     
-    def menu_report(self,obj,task,report_class,options_class,translated_name,name,category):
+    def menu_report(self,obj,task,report_class,options_class,
+                    translated_name,name,category):
         """Call the report plugin selected from the menus"""
         if self.active_person:
-            task(self.db,self.active_person,report_class,options_class,translated_name,name,category)
+            task(self.db,self.active_person,report_class,
+                 options_class,translated_name,name,category)
 
     def menu_tools(self,obj,task):
         """Call the tool plugin selected from the menus"""
