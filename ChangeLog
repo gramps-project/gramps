@@ -3,6 +3,7 @@
 	* src/preferences.glade: Likewise.
 	* src/gramps_main.py (pref_callback): Update statusbar from prefs
 	(needed for Family View).
+	* NEWS: Instant prefs.
 
 2003-10-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Correct tooltips. 
