@@ -585,12 +585,17 @@ class GlobalMediaProperties:
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_attr_list_select_row": self.on_attr_list_select_row,
             "on_add_attr_clicked"    : self.on_add_attr_clicked,
+            "on_attr_button_press"   : self.attr_double_click,
             "on_notebook_switch_page": self.on_notebook_switch_page,
             "on_make_local_clicked"  : self.on_make_local_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
         self.redraw_attr_list()
+
+    def attr_double_click(self,obj,event):
+         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+             self.on_update_attr_clicked(obj)
 
     def on_up_clicked(self,obj):
         if len(obj.selection) == 0:

@@ -23,6 +23,7 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
+import GDK
 import gtk
 import libglade
 
@@ -55,6 +56,7 @@ class SourceSelector:
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_add_src_clicked"    : self.on_add_src_clicked,
+            "on_src_button_press"   : self.src_double_click,
             "on_del_src_clicked"    : self.on_del_src_clicked,
             "on_edit_src_clicked"   : self.on_edit_src_clicked,
             "on_src_ok_clicked"     : self.on_src_ok_clicked,
@@ -67,6 +69,10 @@ class SourceSelector:
         self.srcsort = Sorter.Sorter(self.slist, slist_map, 'source')
         self.redraw()
         self.sourcesel.show()
+        
+    def src_double_click(self,obj,event):
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            self.on_edit_src_clicked(obj)
 
     def redraw(self):
         index = 0
@@ -128,6 +134,7 @@ class SourceTab:
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_add_src_clicked"    : self.on_add_src_clicked,
+            "on_src_button_press"   : self.src_double_click,
             "on_del_src_clicked"    : self.on_del_src_clicked,
             "on_edit_src_clicked"   : self.on_edit_src_clicked,
             })
@@ -136,6 +143,10 @@ class SourceTab:
         
         self.srcsort = Sorter.Sorter(self.slist, slist_map, 'source')
         self.redraw()
+
+    def src_double_click(self,obj,event):
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            self.on_edit_src_clicked(obj)
 
     def redraw(self):
         index = 0
@@ -298,7 +309,7 @@ class SourceEditor:
         id = obj.list.get_selection()[0].get_data("s")
         self.active_source = self.db.getSource(id)
 
-        if self.active_source == None:
+        if self.active_source != None:
             self.author_field.set_text(self.active_source.getAuthor())
             self.pub_field.set_text(self.active_source.getPubInfo())
 

@@ -70,6 +70,9 @@ class HtmlLinkDoc(HtmlDoc):
     def newline(self):
         self.f.write('<BR>\n')
 
+    def write_raw(self,text):
+        self.f.write(text)
+
 #------------------------------------------------------------------------
 #
 # 
@@ -116,7 +119,9 @@ class IndividualPage:
         if sreflist:
             for sref in sreflist:
                 self.doc.start_link("#s%d" % self.scnt)
-                self.doc.write_text("<SUP>%d</SUP>" % self.scnt)
+                self.doc.write_raw("<SUP>")
+                self.doc.write_text("%d" % self.scnt)
+                self.doc.write_raw("</SUP>")
                 self.doc.end_link()
                 self.scnt = self.scnt + 1
                 self.slist.append(sref)
@@ -182,7 +187,9 @@ class IndividualPage:
         index = 1
         for sref in self.slist:
             self.doc.start_paragraph("SourceParagraph")
-            self.doc.write_text('<A NAME="s%d">%d. ' % (index,index))
+            self.doc.start_link("s%d" % index)
+            self.doc.write_text('%d. ' % index)
+            self.doc.end_link()
             index = index + 1
             self.write_info(sref.getBase().getTitle())
             self.write_info(sref.getBase().getAuthor())
@@ -700,8 +707,8 @@ class WebReport(Report):
         col_len = len(person_list) + len(a.keys())
         col_len = col_len/2
         
-        doc.write_text('<table width="100%" border="0">')
-        doc.write_text('<tr><td width="50%" valign="top">')
+        doc.write_raw('<table width="100%" border="0">')
+        doc.write_raw('<tr><td width="50%" valign="top">')
         last = ''
         end_col = 0
         for person in person_list:
@@ -716,7 +723,7 @@ class WebReport(Report):
             doc.write_text(name)
             doc.end_link()
             if col_len <= 0 and end_col == 0:
-                doc.write_text('</td><td valign="top">')
+                doc.write_raw('</td><td valign="top">')
                 doc.start_paragraph('IndexLabel')
                 doc.write_text(_("%s (continued)") % name[0])
                 doc.end_paragraph()
@@ -724,7 +731,7 @@ class WebReport(Report):
             else:
                 doc.newline()
             col_len = col_len - 1
-        doc.write_text('</td></tr></table>')
+        doc.write_raw('</td></tr></table>')
         doc.close()
         doc.write_support_files()
         

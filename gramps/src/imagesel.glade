@@ -2177,6 +2177,11 @@
 		<handler>on_attr_list_select_row</handler>
 		<last_modification_time>Tue, 01 May 2001 17:24:40 GMT</last_modification_time>
 	      </signal>
+             <signal>
+               <name>button_press_event</name>
+               <handler>on_attr_button_press</handler>
+               <last_modification_time>Thu, 14 Nov 2002 20:51:00 GMT</last_modification_time>
+              </signal>
 	      <columns>3</columns>
 	      <column_widths>200,250,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>

@@ -138,6 +138,8 @@ class EditPlace:
             "on_web_list_select_row"    : self.on_web_list_select_row,
             "on_web_go_clicked"         : self.on_web_go_clicked,
             "on_loc_list_select_row"    : self.on_loc_list_select_row,
+            "on_web_list_button_press"  : self.web_list_double_click,
+            "on_loc_list_button_press"  : self.loc_list_double_click,
             "on_apply_clicked"          : self.on_place_apply_clicked
             })
 
@@ -298,6 +300,14 @@ class EditPlace:
     def on_add_loc_clicked(self,obj):
         import LocEdit
         LocEdit.LocationEditor(self,None)
+
+    def web_list_double_click(self,obj,event):
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
+            self.on_update_url_clicked(obj)
+
+    def loc_list_double_click(self,obj,event):
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
+            self.on_update_loc_clicked(obj)
 
     def on_web_list_select_row(self,obj,row,b,c):
         url = obj.get_row_data(row)

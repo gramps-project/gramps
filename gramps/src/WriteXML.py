@@ -451,6 +451,7 @@ class XmlWriter:
 
     def write_date(self,date,indent=1):
         sp = '  '*indent
+
         if date.isEmpty():
             return
 
