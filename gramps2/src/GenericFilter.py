@@ -1129,7 +1129,7 @@ class HasDeath(Rule):
         if self.date:
             if date_cmp(self.date,event.getDateObj()) == 0:
                 return 0
-        pn = p.getPlaceName().upper()
+        pn = event.getPlaceName().upper()
         if self.list[1] and find(pn,self.list[1].upper()) == -1:
             return 0
         return 1
