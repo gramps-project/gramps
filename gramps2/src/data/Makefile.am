@@ -20,7 +20,7 @@ install-schemas:
 	$(INSTALL_DATA) gramps.schemas $(DESTDIR)/etc/gconf/schemas
 	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \
 		gconftool-2 --makefile-install-rule gramps.schemas
-	pkill gconfd
+	pkill -HUP gconfd
 
 install-data-local:    install-schemas
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
