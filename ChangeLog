@@ -7,6 +7,7 @@
 	name in the alternate name list
 	* src/docgen/OpenDrawDoc.py: add support for superscripts
 	* src/docgen/OpenOfficeDoc.py: add support for superscripts
+	* src/docgen/KwordDoc.py: add support for superscripts
 
 2003-06-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/const.py.in: Add InverseNameTypesMap.
