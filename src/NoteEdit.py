@@ -90,9 +90,11 @@ class NoteEditor:
         
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
+        self.parent.child_windows.remove(self)
 
     def close(self,obj):
         self.remove_itself_from_menu()
+        self.parent.child_windows.remove(self)
         self.top.destroy()
 
     def add_itself_to_menu(self):

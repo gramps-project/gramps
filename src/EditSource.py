@@ -129,6 +129,7 @@ class EditSource:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.parent.child_windows.remove(self)
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -138,6 +139,7 @@ class EditSource:
         self.gallery.close(self.gallery_ok)
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.parent.child_windows.remove(self)
         self.top.destroy()
         
     def close_child_windows(self):
