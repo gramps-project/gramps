@@ -22,20 +22,7 @@ from RelLib import *
 
 import string
 import utils
-
-#-------------------------------------------------------------------------
-#
-# Find a parser. xml.sax should be available, but it is possible that
-# someone has removed it in favor of the PyXML distribution, which
-# defined a _xmlplux.sax
-#
-#-------------------------------------------------------------------------
-try:
-    from xml.sax import handler
-    from xml.sax import make_parser
-except:
-    from _xmlplus.sax import handler
-    from _xmlplus.sax import make_parser
+import xml.parsers.expat
     
 #-------------------------------------------------------------------------
 #
@@ -62,7 +49,7 @@ def fix_spaces(text_list):
 # Gramps database parsing class.  Derived from SAX XML parser
 #
 #-------------------------------------------------------------------------
-class GrampsParser(handler.ContentHandler):
+class GrampsParser:
 
     #---------------------------------------------------------------------
     #
@@ -122,22 +109,12 @@ class GrampsParser(handler.ContentHandler):
 	self.func_index = 0
 	self.func = None
 
-        handler.ContentHandler.__init__(self)
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def setDocumentLocator(self,locator):
-        self.locator = locator
-
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
-    def endDocument(self):
+    def parse(self,file):
+        p = xml.parsers.expat.ParserCreate()
+        p.StartElementHandler = self.startElement
+        p.EndElementHandler = self.endElement
+        p.CharacterDataHandler = self.characters
+        p.ParseFile(file)
         self.db.setResearcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
@@ -145,32 +122,17 @@ class GrampsParser(handler.ContentHandler):
                 person = self.db.personMap[id]
                 self.db.setDefaultPerson(person)
     
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_place(self,attrs):
         if attrs.has_key('ref'):
             self.placeobj = self.db.findPlaceNoMap(u2l(attrs['ref']))
         else:
             self.placeobj = None
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_placeobj(self,attrs):
         self.placeobj = self.db.findPlaceNoMap(u2l(attrs['id']))
         self.placeobj.set_title(u2l(attrs['title']))
         self.locations = 0
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def start_location(self,attrs):
         loc = Location()
         if attrs.has_key('city'):

@@ -158,6 +158,64 @@ class OpenOfficeDoc(TextDoc):
         self.f.write('<style:style style:name="Tbold" style:family="text">\n')
         self.f.write('<style:properties fo:font-weight="bold"/>\n')
         self.f.write('</style:style>\n')
+
+        #Begin photo style
+        self.f.write('<style:style style:name="Left" style:family="graphics"')
+        self.f.write(' style:parent-name="photo">')
+        self.f.write('<style:properties style:run-through="foreground"')
+        self.f.write(' style:wrap="parallel"')
+        self.f.write(' style:numer-wrapped-paragraphs="no-limit"')
+        self.f.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
+        self.f.write(' style:vertical-rel="paragraph-content"')
+        self.f.write(' style:horizontal-pos="left"')
+        self.f.write(' style:horizontal-rel="paragraph-contnet"')
+        self.f.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
+        self.f.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
+        self.f.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
+        self.f.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.f.write(' draw:color-mode="standard"/>')
+        self.f.write('</style:style>\n')
+
+        self.f.write('<style:style style:name="Right" style:family="graphics"')
+        self.f.write(' style:parent-name="photo">')
+        self.f.write('<style:properties style:run-through="foreground"')
+        self.f.write(' style:wrap="parallel"')
+        self.f.write(' style:numer-wrapped-paragraphs="no-limit"')
+        self.f.write(' style:wrap-contour="false" style:vertical-pos="from-top"')
+        self.f.write(' style:vertical-rel="paragraph-content"')
+        self.f.write(' style:horizontal-pos="right"')
+        self.f.write(' style:horizontal-rel="paragraph-contnet"')
+        self.f.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
+        self.f.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
+        self.f.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
+        self.f.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.f.write(' draw:color-mode="standard"/>')
+        self.f.write('</style:style>\n')
+
+        self.f.write('<style:style style:name="Single" style:family="graphics"')
+        self.f.write(' style:parent-name="Graphics">')
+        self.f.write('<style:properties style:vertical-pos="from-top"')
+        self.f.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
+        self.f.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
+        self.f.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
+        self.f.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.f.write(' draw:color-mode="standard"/>')
+        self.f.write('</style:style>\n')
+
+        self.f.write('<style:style style:name="Row" style:family="graphics"')
+        self.f.write(' style:parent-name="Graphics">')
+        self.f.write('<style:properties style:vertical-pos="from-top"')
+        self.f.write(' style:vertical-rel="paragraph"')
+        self.f.write(' style:horizontal-pos="from-left" syle:horizontal-rel="paragraph"')
+        self.f.write(' style:mirror="none" fo:clip="rect(0cm 0cm 0cm 0cm)"')
+        self.f.write(' draw:luminance="0%" draw:contrast="0" draw:red="0%"')
+        self.f.write(' draw:green="0%" draw:blue="0%" draw:gamma="1"')
+        self.f.write(' draw:color-inversion="false" draw:transparency="-100%"')
+        self.f.write(' draw:color-mode="standard"/>')
+        self.f.write('</style:style>\n')
+
+        #end of Photo style edits
+
         self.f.write('</office:automatic-styles>\n')
         self.f.write('<office:body>\n')
 
@@ -171,25 +229,33 @@ class OpenOfficeDoc(TextDoc):
         self._write_photos()
         self._write_zip()
 
-    def add_photo(self,name,x,y):
+    def add_photo(self,name,pos,x_cm,y_cm):
         import GdkImlib
 
         image = GdkImlib.Image(name)
         scale = float(image.rgb_width)/float(image.rgb_height)
-        act_width = x * scale
-        act_height = y * scale
+        act_width = int(((x_cm * scale)*2.54)*72)
+        act_height = int(((y_cm * scale)*2.54)*72)
 
-        self.photo_list.append((name,int(act_width)*40,int(act_height)*40))
+        self.photo_list.append((name,act_width,act_height))
 
         base = os.path.basename(name)
         tag = string.replace(base,'.','_')
         
-        self.f.write('<draw:image draw:style-name="photo" ')
+        if pos == "left":
+            self.f.write('<draw:image draw:style-name="Left" ')
+        elif pos == "right":
+            self.f.write('<draw:image draw:style-name="Right" ')
+        elif pos == "single":
+            self.f.write('<draw:image draw:style-name="Single" ')
+        else:
+            self.f.write('<draw:image draw:style-name="Row" ')
+
         self.f.write('draw:name="')
         self.f.write(tag)
         self.f.write('" text:anchor-type="paragraph" ')
-        self.f.write('svg:width="%scm" ' % cnv("%.3f",act_width))
-        self.f.write('svg:height="%scm" ' % cnv("%.3f",act_height))
+        self.f.write('svg:width="%scm" ' % cnv("%.3f",x_cm*scale))
+        self.f.write('svg:height="%scm" ' % cnv("%.3f",y_cm*scale))
         self.f.write('draw:z-index="0" ')
         self.f.write('xlink:href="#Pictures/')
         self.f.write(base)

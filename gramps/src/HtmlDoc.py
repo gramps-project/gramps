@@ -258,7 +258,7 @@ class HtmlDoc(TextDoc):
             self.f.write(line)
         self.f.close()
 
-    def add_photo(self,name,x,y):
+    def add_photo(self,name,pos,x,y):
 	if no_pil:
 	    return
 
@@ -293,8 +293,15 @@ class HtmlDoc(TextDoc):
         except:
             return
 
-        self.f.write('<img src="images/%s" border="0" width="%d" height="%d">\n' % \
-                     (refname,pixx,pixy))
+        if pos == "right":
+            xtra = ' align="right"'
+        elif pos == "left" :
+            xtra = ' align="left"'
+        else:
+            xtra = ''
+            
+        self.f.write('<img src="images/%s" border="0" width="%d" height="%d"%s>\n' % \
+                     (refname,pixx,pixy,xtra))
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]

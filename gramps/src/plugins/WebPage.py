@@ -257,7 +257,7 @@ class IndividualPage:
             if object.getMimeType()[0:5] == "image":
                 file = object.getPath()
                 self.doc.start_paragraph("Data")
-                self.doc.add_photo(file,4.0,4.0)
+                self.doc.add_photo(file,"row",4.0,4.0)
                 self.doc.end_paragraph()
 
         # Start the first table, which consists of basic information, including
@@ -346,7 +346,7 @@ class IndividualPage:
             src = obj.getReference().getPath()
             base = os.path.basename(src)
             self.doc.start_link("images/%s" % base)
-            self.doc.add_photo(src,1.5,1.5)
+            self.doc.add_photo(src,"row",1.5,1.5)
             shutil.copy(src,"%s/images/%s" % (self.dir,base))
             self.doc.end_link()
             

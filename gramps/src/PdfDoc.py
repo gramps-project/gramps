@@ -257,7 +257,7 @@ class PdfDoc(TextDoc):
 
         self.col = self.col + self.span
 
-    def add_photo(self,name,x,y):
+    def add_photo(self,name,pos,x,y):
         if no_pil == 0:
             im = PIL.Image.open(name)
 

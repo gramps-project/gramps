@@ -325,7 +325,7 @@ class RTFDoc(TextDoc):
     # photo.
     #
     #--------------------------------------------------------------------
-    def add_photo(self,name,x,y):
+    def add_photo(self,name,pos,x_cm,y_cm):
 	if no_pil:
 	    return
 
@@ -336,11 +336,12 @@ class RTFDoc(TextDoc):
         scale = float(ny)/float(nx)
         if scale > 1:
             scale = 1.0/scale
-        act_width = twips(x * scale)
-        act_height = twips(y * scale)
+        act_width = twips(x_cm * scale)
+        act_height = twips(y_cm * scale)
         im.thumbnail((int(act_width*40),int(act_height*40)))
 
-	self.f.write('{\*\shppict{\\pict\\jpegblip\\picwgoal%d\\pichgoal%d\n' % (x,y))
+	self.f.write('{\*\shppict{\\pict\\jpegblip')
+        self.f.write('\\picwgoal%d\\pichgoal%d\n' % (act_width,act_height))
 	index = 1
 	for i in buf:
 	    self.f.write('%02x' % ord(i))
