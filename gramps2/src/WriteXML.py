@@ -300,12 +300,12 @@ class XmlWriter:
                 self.write_url_list(person.get_url_list())
 
                 for alt in person.get_parent_family_handle_list():
-                    if alt[1] != "Birth":
-                        mrel=' mrel="%s"' % alt[1]
+                    if alt[1] != RelLib.Person.CHILD_REL_BIRTH:
+                        mrel=' mrel="%s"' % const.child_rel_notrans[alt[1]]
                     else:
                         mrel=''
                     if alt[2] != "Birth":
-                        frel=' frel="%s"' % alt[2]
+                        frel=' frel="%s"' % const.child_rel_notrans[alt[2]]
                     else:
                         frel=''
                     parent_family = self.db.get_family_from_handle (alt[0])

@@ -83,6 +83,10 @@ file_systems = {
     "SMBFS"   : _('Networked Windows file system')
     }
 
+rel_types = (RelLib.Person.CHILD_REL_BIRTH,
+             RelLib.Person.CHILD_REL_UNKWN,
+             RelLib.Person.CHILD_REL_NONE)
+
 #-------------------------------------------------------------------------
 #
 # GEDCOM events to GRAMPS events conversion
@@ -744,8 +748,8 @@ class GedcomParser:
                 self.barf(level+1)
 
     def parse_ftw_relations(self,level):
-        mrel = "Birth"
-        frel = "Birth"
+        mrel = RelLib.Person.CHILD_REL_BIRTH
+        frel = RelLib.Person.CHILD_REL_BIRTH
         
         while 1:
             matches = self.get_next()
@@ -759,14 +763,16 @@ class GedcomParser:
             # FTW
             elif matches[1] == "_MREL":
                 if matches[2].lower() != "natural":
-                    mrel = matches[2]
+                    mrel = RelLib.Person.CHILD_REL_BIRTH
             elif matches[1] == "ADOP":
-                mrel = "Adopted"
-                frel = "Adopted"
+                mrel = RelLib.Person.CHILD_REL_ADOPT
+                frel = RelLib.Person.CHILD_REL_ADOPT
             # Legacy
             elif matches[1] == "_STAT":
-                mrel = matches[2]
-                frel = matches[2]
+                mrel = RelLib.Person.CHILD_REL_BIRTH
+                frel = RelLib.Person.CHILD_REL_BIRTH
+                #mrel = matches[2]
+                #frel = matches[2]
             # Legacy _PREF
             elif matches[1][0] == "_":
                 pass
@@ -811,7 +817,7 @@ class GedcomParser:
                     if f[0] == self.family.get_handle():
                         break
                 else:
-                    if (mrel=="Birth" or mrel=="") and (frel=="Birth" or frel==""):
+                    if mrel in rel_types and frel in reltypes:
                         child.set_main_parent_family_handle(self.family.get_handle())
                     else:
                         if child.get_main_parents_family_handle() == self.family:
@@ -963,11 +969,11 @@ class GedcomParser:
                     if f[0] == handle:
                         break
                 else:
-                    if ftype == "" or ftype == "Birth":
+                    if ftype in rel_types:
                         if self.person.get_main_parents_family_handle() == None:
                             self.person.set_main_parent_family_handle(handle)
                         else:
-                            self.person.add_parent_family_handle(handle,"Unknown","Unknown")
+                            self.person.add_parent_family_handle(handle,RelLib.Person.CHILD_REL_UNKWN,RelLib.Person.CHILD_REL_UNKWN)
                     else:
                         if self.person.get_main_parents_family_handle() == handle:
                             self.person.set_main_parent_family_handle(None)
@@ -1420,9 +1426,9 @@ class GedcomParser:
                 return (mrel,frel)
             elif matches[1] == "ADOP":
                 if matches[2] == "HUSB":
-                    mrel = "Birth"
+                    mrel = RelLib.Person.CHILD_REL_BIRTH
                 elif matches[2] == "WIFE":
-                    frel = "Birth"
+                    frel = RelLib.Person.CHILD_REL_BIRTH
             else:
                 self.barf(level+1)
         return None

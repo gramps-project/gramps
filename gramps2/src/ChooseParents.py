@@ -151,8 +151,8 @@ class ChooseParents:
                 frel = fr
                 break
         else:
-            mrel = "Birth"
-            frel = "Birth"
+            mrel = RelLib.Person.CHILD_REL_BIRTH
+            frel = RelLib.Person.CHILD_REL_BIRTH
 
         if self.family:
             self.type = self.family.get_relationship()
@@ -172,14 +172,9 @@ class ChooseParents:
             "on_familyDialog_delete_event" : self.on_delete_event,
             })
 
-        values = const.child_relations.get_values()
-        self.keys = []
-        for value in values:
-            self.keys.append(const.child_relations.find_key(value))
-        self.keys.sort()
-
-        self.build_list(self.mcombo,mr)
-        self.build_list(self.fcombo,fr)
+        self.keys = const.child_rel_list
+        self.build_list(self.mcombo,mrel)
+        self.build_list(self.fcombo,frel)
         
         self.val = self.top.run()
         if self.val == gtk.RESPONSE_OK:
@@ -192,15 +187,10 @@ class ChooseParents:
         opt_menu.add_attribute(cell,'text',0)
         
         store = gtk.ListStore(str)
-        sel_index = 0
-        index = 0
         for val in self.keys:
-            if _(sel) == val:
-                sel_index = index
-            index += 1
             store.append(row=[val])
         opt_menu.set_model(store)
-        opt_menu.set_active(sel_index)
+        opt_menu.set_active(sel)
 
     def build_father_list(self):
         self.father_selection = self.father_list.get_selection()
@@ -432,12 +422,12 @@ class ChooseParents:
         try:
             mother_rel = self.keys[self.mcombo.get_active()]
         except KeyError:
-            mother_rel = "Birth"
+            mother_rel = RelLib.Person.CHILD_REL_BIRTH
 
         try:
             father_rel = self.keys[self.fcombo.get_active()]
         except KeyError:
-            father_rel = "Birth"
+            father_rel = RelLib.Person.CHILD_REL_BIRTH
 
         trans = self.db.transaction_begin()
         if self.father or self.mother:
@@ -592,12 +582,12 @@ class ModifyParents:
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
 
-        self.orig_mrel = _("Birth")
-        self.orig_frel = _("Birth")
+        self.orig_mrel = RelLib.Person.CHILD_REL_BIRTH
+        self.orig_frel = RelLib.Person.CHILD_REL_BIRTH
         for (f,mr,fr) in self.person.get_parent_family_handle_list():
             if f == self.family.get_handle():
-                self.orig_mrel = _(mr)
-                self.orig_frel = _(fr)
+                self.orig_mrel = mr
+                self.orig_frel = fr
 
         self.glade.signal_autoconnect({
             "on_parents_help_clicked"  : self.on_help_clicked,
@@ -645,11 +635,7 @@ class ModifyParents:
             self.mcombo.set_sensitive(False)
             self.glade.get_widget('ok').set_sensitive(False)
 
-        values = const.child_relations.get_values()
-        self.keys = []
-        for value in values:
-            self.keys.append(const.child_relations.find_key(value))
-        self.keys.sort()
+        self.keys = const.child_rel_list
 
         self.build_list(self.mcombo,self.orig_mrel)
         self.build_list(self.fcombo,self.orig_frel)
@@ -663,15 +649,10 @@ class ModifyParents:
         cell = gtk.CellRendererText()
         
         store = gtk.ListStore(str)
-        sel_index = 0
-        index = 0
         for val in self.keys:
-            if _(sel) == val:
-                sel_index = index
-            index += 1
             store.append(row=[val])
         opt_menu.set_model(store)
-        opt_menu.set_active(sel_index)
+        opt_menu.set_active(sel)
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""

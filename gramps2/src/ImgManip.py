@@ -110,9 +110,6 @@ def set_thumbnail_image(path):
         pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
         pixbuf.save(_build_thumb_path(path),"jpeg")
     except:
-        import traceback
-        traceback.print_stack()
-        
         print "Could not create thumbnail for",path
 
 def get_thumbnail_image(path):

@@ -1583,9 +1583,10 @@ class Gramps:
         if res.get_name() == "" and owner.get_name():
             self.db.set_researcher(owner)
 
-        if callback:
-            callback(_('Setting up bookmarks...'))
         self.setup_bookmarks()
+        if callback and self.db.need_upgrade():
+            callback(_('Upgrading database...'))
+            self.db.upgrade()
 
         GrampsKeys.save_last_file(name)
         self.gtop.get_widget("filter").set_text("")

@@ -325,6 +325,15 @@ class Person(PrimaryObject,DataObj):
     MALE = 1
     FEMALE = 0
 
+    CHILD_REL_NONE  = 0
+    CHILD_REL_BIRTH = 1
+    CHILD_REL_ADOPT = 2
+    CHILD_REL_STEP  = 3
+    CHILD_REL_SPONS = 4
+    CHILD_REL_FOST  = 5
+    CHILD_REL_UNKWN = 6
+    CHILD_REL_OTHER = 7
+
     def __init__(self):
         """
         Creates a new Person instance. After initialization, most

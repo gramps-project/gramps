@@ -165,6 +165,12 @@ class GrampsDbBase:
         self.place2title = {}
         self.name_groups = {}
 
+    def need_upgrade(self):
+        return False
+
+    def upgrade(self):
+        pass
+
     def create_id(self):
         s = ""
         for val in [ int(time.time()*10000) & 0x7fffffff,

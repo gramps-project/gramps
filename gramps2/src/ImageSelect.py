@@ -384,12 +384,14 @@ class Gallery(ImageSelect):
                     image = ImgManip.get_thumbnail_image(media_obj.get_path())
                 else:
                     image = Utils.find_mime_type_pixbuf(mtype)
+                if not image:
+                    image = gtk.gdk.pixbuf_new_from_file(const.icon)
             except gobject.GError,msg:
                 ErrorDialog(str(msg))
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
             except:
                 image = gtk.gdk.pixbuf_new_from_file(const.icon)
-            
+
             x = image.get_width()
             y = image.get_height()
 
