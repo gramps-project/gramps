@@ -105,7 +105,7 @@ class HtmlDoc(BaseDoc.BaseDoc):
             self.top = source.top
             self.bottom = source.bottom
             self.base = source.base
-            self.file_header = source.file_header
+            self.fix_title(source.file_header)
             self.style_declaration = source.style_declaration
             self.table_styles = source.table_styles;
             self.cell_styles = source.cell_styles;
@@ -240,11 +240,20 @@ class HtmlDoc(BaseDoc.BaseDoc):
         self.f.write(self.style_declaration)
 
     def build_header(self):
-        top = string.join(self.top, "")
-        match = t_header_line_re.match(top)
+        self.fix_title(string.join(self.top, ""))
+
+    def fix_title(self,msg=None):
+        if msg == None:
+            match = t_header_line_re.match(self.file_header)
+        else:
+            match = t_header_line_re.match(msg)
         if match:
             m = match.groups()
-            self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],m[1],m[2])
+            if self.title:
+                msg = self.title
+            else:
+                msg = m[1]
+            self.file_header = '%s<TITLE>%s</TITLE>%s\n' % (m[0],msg,m[2])
         else:
             self.file_header = top
         self.file_header = self.process_line(self.file_header)

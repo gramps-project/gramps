@@ -127,7 +127,8 @@ class IndividualPage:
 
         name = person.getPrimaryName().getRegularName()
         self.doc.set_title(_("Summary of %s") % name)
-
+        self.doc.fix_title()
+        
     #--------------------------------------------------------------------
     #
     # 
