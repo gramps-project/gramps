@@ -1,6 +1,7 @@
 2004-03-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Support for paragraph's margins and
 	the first indent properties. Font-specific line spacing. 
+	Padding in paragraphs.
 
 2004-03-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: New paragraph formatting algorithm.
