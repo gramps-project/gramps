@@ -601,10 +601,7 @@ class Gramps:
         self.model2page = {}
         self.model_used = {}
 
-        self.pl_page = [
-            ListModel.ListModel(self.pl_other, self.pl_titles, self.row_changed,
-                                self.alpha_event, _sel_mode),
-            ]
+        self.pl_page = [ self.pl_page[-1] ]
 
         self.person_tree = self.pl_page[-1]
         self.person_list = self.pl_page[-1].tree
@@ -1503,10 +1500,23 @@ class Gramps:
             except:
                 print index
         else:
-            self.ptabs.insert_page(display,gtk.Label(pg),len(self.tab_list))
+            #added by EARNEY on 5/5/2003
+            #modified the block below because sometimes certain
+            #letters under people panel
+            #will not load properly after a quick add
+            #(ie, adding a parent under the family panel)
+            index=len(self.tab_list)
+            self.ptabs.insert_page(display,gtk.Label(pg),index)
             self.ptabs.set_show_tabs(1)
-            self.tab_list.append(pg)
-            self.pl_page = self.pl_page[0:-1] + [model,self.default_list]
+            self.tab_list.insert(index,pg)
+            self.pl_page.insert(index,model)
+
+            #instead of the following..
+            #self.ptabs.insert_page(display,gtk.Label(pg),len(self.tab_list))
+            #self.ptabs.set_show_tabs(1)
+            #self.tab_list.append(pg)
+            #self.pl_page = self.pl_page[0:-1] + [model,self.default_list]
+
 
         for index in range(0,len(self.tab_list)):
             model = self.alpha_page[self.tab_list[index]]
