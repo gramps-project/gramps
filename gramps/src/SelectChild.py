@@ -320,16 +320,19 @@ class NewChild:
             return ""
 
     def icelandic(self,val):
+        fname = ""
         if self.person.getGender() == Person.male:
-            surname = self.person.getPrimaryName().getSurname()
+            fname = self.person.getPrimaryName().getFirstName()
         elif self.family:
             f = self.family.getFather()
             if f:
-                surname = f.getPrimaryName().getSurname()
+                fname = f.getPrimaryName().getFirstName()
+        if fname:
+            fname = string.split(fname)[0]
         if val == 0:
-            return "%ssson" % surname
+            return "%ssson" % fname
         elif val == 1:
-            return "%sdóttir" % surname
+            return "%sdóttir" % fname
         else:
             return ""
 
