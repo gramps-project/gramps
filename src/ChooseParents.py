@@ -515,6 +515,18 @@ class ModifyParents:
         else:
             self.mother_rel.set_sensitive(0)
 
+        self.pref = self.glade.get_widget('preferred')
+        if len(self.person.getParentList()) > 1:
+            self.glade.get_widget('pref_label').show()
+            self.pref.show()
+            if family == self.person.getParentList()[0]:
+                self.pref.set_active(1)
+            else:
+                self.pref.set_active(0)
+
+        self.top.show()
+
+
     def quit(self,obj):
         self.top.destroy()
         
@@ -525,11 +537,29 @@ class ModifyParents:
         """
         mother_rel = const.childRelations[self.mother_rel.get_text()]
         father_rel = const.childRelations[self.father_rel.get_text()]
+        mod = 0
 
         Utils.destroy_passed_object(self.top)
         if mother_rel != self.orig_mrel or father_rel != self.orig_frel:
             self.person.removeAltFamily(self.family)
             self.person.addAltFamily(self.family,mother_rel,father_rel)
-            self.family_update(None)
+            mod = 1
             Utils.modified()
 
+        if len(self.person.getParentList()):
+            make_pref = self.pref.get_active()
+
+            plist = self.person.getParentList()
+            if make_pref:
+                if self.family != plist[0]:
+                    self.person.setMainParents(self.family)
+                    Utils.modified()
+                    mod = 1
+            else:
+                if self.family == plist[0]:
+                    self.person.setMainParents(plist[0])
+                    Utils.modified()
+                    mod = 1
+
+        if mod:
+            self.family_update(None)

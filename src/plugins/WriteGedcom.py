@@ -1081,7 +1081,7 @@ class GedcomWriter:
             self.writeln("%d SOUR @%s@" %
                          (level,self.sid(ref.getBase().getId())))
             if ref.getPage() != "":
-                self.writeln("%d PAGE %s" % (level+1,ref.getPage()))
+                self.write_long_text("PAGE",level+1,self.cnvtxt(ref.getPage()))
 
             ref_text = ref.getText()
             if ref_text != "" or not ref.getDate().isEmpty():

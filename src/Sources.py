@@ -275,7 +275,8 @@ class SourceEditor:
     def draw(self,sel = None):
         self.title_menu.list.remove_items(self.list)
         if self.source_ref:
-            self.get_widget("spage").set_text(self.source_ref.getPage())
+            spage = self.get_widget("spage")
+            spage.get_buffer().set_text(self.source_ref.getPage())
             date = self.source_ref.getDate()
             if date:
                 self.get_widget("sdate").set_text(date.getDate())
@@ -324,7 +325,6 @@ class SourceEditor:
         if self.active_source != self.source_ref.getBase():
             self.source_ref.setBase(self.active_source)
         
-        page = self.get_widget("spage").get_text()
         date = self.get_widget("sdate").get_text()
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')
 
@@ -334,6 +334,10 @@ class SourceEditor:
 
         buffer = self.get_widget("stext").get_buffer()
         text = buffer.get_text(buffer.get_start_iter(),
+                               buffer.get_end_iter(),gtk.FALSE)
+
+        buffer = self.get_widget('spage').get_buffer()
+        page = buffer.get_text(buffer.get_start_iter(),
                                buffer.get_end_iter(),gtk.FALSE)
 
         self.source_ref.setPage(page)
