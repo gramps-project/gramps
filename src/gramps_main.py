@@ -2442,7 +2442,6 @@ def box_event(obj,event):
                 load_person(obj.get_data('p'))
             return 1
     elif event.type == GDK.ENTER_NOTIFY:
-        canvas = gtop.get_widget("canvas1")
         obj.raise_to_top()
         box = obj.children()[1]
         x,y,w,h = box.get_bounds()
@@ -2466,7 +2465,6 @@ def box_event(obj,event):
                 x=PAD,
                 y=2*h+(h/2))
     elif event.type == GDK.LEAVE_NOTIFY:
-        canvas = gtop.get_widget("canvas1")
         ch = obj.children()
         length = len(ch)
         if length <= 3:
@@ -2494,14 +2492,12 @@ def line_event(obj,event):
             change_active_person(obj.get_data("p"))
             load_canvas()
     elif event.type == GDK.ENTER_NOTIFY:
-        canvas = gtop.get_widget("canvas1")
         obj.set(fill_color_gdk=canvas['style'].bg[STATE_SELECTED],
                 width_pixels=4)
         name = Config.nameof(obj.get_data("p"))
         msg = _("Double clicking will make %s the active person") % name
         statusbar.set_status(msg)
     elif event.type == GDK.LEAVE_NOTIFY:
-        canvas = gtop.get_widget("canvas1")
         obj.set(fill_color_gdk=canvas['style'].black, width_pixels=2)
         modify_statusbar()
 
