@@ -1,3 +1,10 @@
+2005-02-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: more readonly support
+	* src/NoteEdit.py: more readonly support
+	* src/Sources.py: more readonly support
+	* src/gramps_main.py: more readonly support
+	* src/gramps.glade: more readonly support
+
 2005-02-17 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py (write_at): Correct vertical offset.
 	* src/docgen/PdfDoc.py (write_at,draw_bar): Add functions.

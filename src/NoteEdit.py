@@ -44,7 +44,8 @@ import Utils
 #-------------------------------------------------------------------------
 class NoteEditor:
     """Displays a simple text editor that allows a person to edit a note"""
-    def __init__(self,data,parent,parent_window=None,callback=None):
+    def __init__(self,data,parent,parent_window=None,callback=None,
+                 readonly=False):
 
         self.parent = parent
         self.callback = callback
@@ -59,6 +60,7 @@ class NoteEditor:
         self.data = data
         self.parent_window = parent_window
         self.glade = gtk.glade.XML(const.gladeFile,"note_edit")
+        self.readonly = readonly
         self.draw()
 
     def draw(self):
@@ -72,15 +74,17 @@ class NoteEditor:
         if self.callback:
             self.title_entry = self.glade.get_widget('title')
             self.title_entry.set_text(self.data.get_description())
+            self.title_entry.set_editable(not self.readonly)
         else:
             self.glade.get_widget('tbox').hide()
 
         self.entry = self.glade.get_widget('note')
-        self.entry.set_editable(gtk.TRUE)
         self.entry.get_buffer().set_text(self.data.get_note())
+        self.entry.set_editable(not self.readonly)
 
         cancel_button = self.glade.get_widget('cancel')
         ok_button = self.glade.get_widget('ok')
+        ok_button.set_sensitive(not self.readonly)
         cancel_button.connect("clicked",self.close)
         ok_button.connect("clicked",self.on_save_note_clicked)
         self.top.connect("delete_event",self.on_delete_event)

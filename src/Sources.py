@@ -92,9 +92,12 @@ class SourceSelector:
         self.slist = self.top.get_widget("slist")
         self.edit = self.top.get_widget('edit')
         self.delete = self.top.get_widget('delete')
+        self.delete.set_sensitive(not self.db.readonly)
         self.selection = self.slist.get_selection()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.slist.set_model(self.model)
+        self.top.get_widget('add').set_sensitive(not self.db.readonly)
+        self.top.get_widget('ok').set_sensitive(not self.db.readonly)
 
         colno = 0
         for title in [ (_('ID'),0,100), (_('Title'),1,150)]:
