@@ -11,6 +11,14 @@
 	* doc/gramps-manual/C/Makefile.am: Ship new files. 
 	* doc/gramps-manual/C/Makefile.in: Likewise. 
 	* src/latin_utf8.py (latin_to_utf8): Convert to unicode only if needed. 
+	* doc/gramps-manual/C/figures/cfe-ar.png: Add figure. 
+	* doc/gramps-manual/C/figures/bookreport.png: Update figure. 
+	* doc/gramps-manual/C/figures/gedcom-export.png: Likewise. 
+	* doc/gramps-manual/C/figures/first-open.png: Likewise. 
+	* doc/gramps-manual/C/figures/mainwin.png: Likewise. 
+	* doc/gramps-manual/C/figures/side-filt.png: Likewise. 
+	* doc/gramps-manual/C/figures/sources.png: Likewise. 
+	* doc/gramps-manual/C/figures/media.png: Likewise. 
 
 2003-09-21  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/book.glade: Minor improvements to the dialogs. 
