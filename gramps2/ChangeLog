@@ -22,6 +22,7 @@
 	* src/plugins/IndivSummary.py: Likewise. 
 	* src/plugins/FamilyGroup.py: Likewise. 
 	* src/plugins/DetAncestralReport.py: Likewise. 
+	* src/po/ru.po: Updated Russian translation for 0.9.3.
 
 2003-07-10  Tim Waugh  <twaugh@redhat.com>
 	* src/Relationship.py: Fix '[...]teenth' relationship name typos.
