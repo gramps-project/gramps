@@ -28,7 +28,8 @@ import os
 import cStringIO
 import gtk
 import gtk.glade
-from QuestionDialog import OkDialog
+from QuestionDialog import OkDialog, MissingMediaDialog
+import shutil
 
 #-------------------------------------------------------------------------
 #
@@ -58,6 +59,8 @@ class CheckIntegrity:
     def __init__(self,db):
         self.db = db
         self.bad_photo = []
+        self.replaced_photo = []
+        self.removed_photo = []
         self.empty_family = []
         self.broken_links = []
         self.broken_parent_links = []
@@ -90,9 +93,78 @@ class CheckIntegrity:
                     self.broken_links.append((child,family))
 
     def cleanup_missing_photos(self):
-        for photo in self.db.getObjectMap().values():
-            if not os.path.isfile(photo.getPath()):
-                self.bad_photo.append(photo)
+        #-------------------------------------------------------------------------
+        def remove_clicked():
+            # File is lost => remove all references and the object itself
+            mobj = ObjectMap[ObjectId]
+            for p in self.db.getFamilyMap().values():
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getPersonKeys():
+                p = self.db.getPerson(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getSourceKeys():
+                p = self.db.getSource(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            for key in self.db.getPlaceKeys():
+                p = self.db.getPlace(key)
+                nl = p.getPhotoList()
+                for o in nl:
+                    if o.getReference() == mobj:
+                        nl.remove(o) 
+                p.setPhotoList(nl)
+            self.removed_photo.append(ObjectMap[ObjectId])
+            self.db.removeObject(ObjectId) 
+            Utils.modified()
+    
+        def leave_clicked():
+            self.bad_photo.append(ObjectMap[ObjectId])
+
+
+        def select_clicked():
+            # File is lost => select a file to replace the lost one
+            def fs_close_window(obj):
+                fs_top.destroy()
+
+            def fs_ok_clicked(obj):
+                name = fs_top.get_filename()
+                if os.path.isfile(name):
+                    shutil.copy2(name,photo_name)
+                    self.replaced_photo.append(ObjectMap[ObjectId])
+                else:
+                    self.bad_photo.append(ObjectMap[ObjectId])
+                Utils.destroy_passed_object(fs_top)
+
+            fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
+            fs_top.hide_fileop_buttons()
+            fs_top.ok_button.connect('clicked',fs_ok_clicked)
+            fs_top.cancel_button.connect('clicked',fs_close_window)
+            fs_top.show()
+            fs_top.run()
+
+        #-------------------------------------------------------------------------
+        ObjectMap = self.db.getObjectMap()
+        for ObjectId in ObjectMap.keys():
+            photo_name = ObjectMap[ObjectId].getPath()
+            if not os.path.isfile(photo_name):
+                MissingMediaDialog(_("Media object could not be found"),
+                    _("%(file_name)s is referenced in the database, but no longer exists. " 
+                    "The file may have been deleted or moved to a different location. " 
+                    "You may choose to either remove the reference from the database, " 
+                    "keep the reference to the missing file, or select a new file." 
+                    ) % { 'file_name' : photo_name },
+                remove_clicked, leave_clicked, select_clicked)
 
     def cleanup_empty_families(self,automatic):
         for key in self.db.getFamilyMap().keys():
@@ -135,7 +207,10 @@ class CheckIntegrity:
                         family.setMother(father)
 
     def report(self):
-        photos = len(self.bad_photo)
+        bad_photos = len(self.bad_photo)
+        replaced_photos = len(self.replaced_photo)
+        removed_photos = len(self.removed_photo)
+        photos = bad_photos + replaced_photos + removed_photos
         efam = len(self.empty_family)
         blink = len(self.broken_links)
         plink = len(self.broken_parent_links)
@@ -199,6 +274,18 @@ class CheckIntegrity:
             text.write(_("1 media object was referenced, but not found\n"))
         elif photos > 1:
             text.write(_("%d media objects were referenced, but not found\n") % photos)
+        if bad_photos == 1:
+            text.write(_("Reference to 1 missing media object was kept\n"))
+        elif bad_photos > 1:
+            text.write(_("References to %d media objects were kept\n") % bad_photos)
+        if replaced_photos == 1:
+            text.write(_("1 missing media object was replaced\n"))
+        elif replaced_photos > 1:
+            text.write(_("%d missing media objects were replaced\n") % replaced_photos)
+        if removed_photos == 1:
+            text.write(_("1 missing media object was removed\n"))
+        elif removed_photos > 1:
+            text.write(_("%d missing media objects were removed\n") % removed_photos)
 
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "summary.glade"
