@@ -42,7 +42,8 @@ pkgpython_PYTHON = \
 	rel_ru.py\
         eval.py\
 	leak.py\
-        SimpleBookTitle.py
+        SimpleBookTitle.py\
+        CustomBookText.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins

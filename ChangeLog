@@ -14,6 +14,10 @@
 	* src/plugins/WriteCD.py: Likewise.
 	* src/plugins/WriteGedcom.py: Likewise.
 	* src/Plugins.py: Add "..." at menu generation.
+	* src/edit_person.glade: Add colon after "Type" label.
+	* src/dialog.glade: Add accelerator to "Address" label of AddrEdit.
+	* src/po/template.po: Update the above corrections in template.
+	* src/plugins/Makefile.am: Ship CustomBookText.py
 
 2003-07-14  Donald Peterson  <dpeterson@sigmaxi.org>
 	* src/docgen/LaTeXDoc.py: Regress UNICODE support to be only a
