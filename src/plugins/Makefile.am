@@ -17,6 +17,7 @@ pkgpython_PYTHON = \
 	DetDescendantReport.py\
 	EventCmp.py\
 	FamilyGroup.py\
+	FanChart.py\
 	FtmStyleAncestors.py\
 	FtmStyleDescendants.py\
 	FilterEditor.py\
