@@ -1,3 +1,10 @@
+2004-11-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: Allow the photo to accept events, allowing us
+	to display a popup menu similar to galleries
+	* src/gramps.glade: Add eventbox to the image, allowing events
+	* src/MediaView.py: use object handle instead of gramps ID when
+	getting value from the list.
+
 2004-11-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/PatchNames.py: add the ability to detect
 	common surname prefixes

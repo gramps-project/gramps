@@ -49,6 +49,7 @@ import const
 import Utils
 import GrampsGconfKeys
 import GrampsCfg
+import GrampsMime
 import ImageSelect
 import AutoComp
 import ListModel
@@ -58,6 +59,7 @@ import DateEdit
 import Date
 import DateHandler
 import TransTable
+import ImageSelect
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog
 
@@ -223,6 +225,9 @@ class EditPerson:
         self.inet_label = self.get_widget("inet_label")
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
+        self.person_photo = self.get_widget("personPix")
+        self.eventbox = self.get_widget("eventbox1")
+
         self.get_widget("changed").set_text(person.get_change_display())
 
         self.prefix_label = self.get_widget('prefix_label')
@@ -455,6 +460,8 @@ class EditPerson:
         if self.person.get_complete_flag():
             self.complete.set_active(1)
 
+        self.eventbox.connect('button-press-event',self.image_button_press)
+
         self.redraw_event_list()
         self.redraw_attr_list()
         self.redraw_addr_list()
@@ -464,6 +471,67 @@ class EditPerson:
         self.given.grab_focus()
         self.add_itself_to_winsmenu()
         self.window.show()
+
+    def image_button_press(self,obj,event):
+        if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+
+            media_list = self.person.get_media_list()
+            if media_list:
+                ph = media_list[0]
+                object_handle = ph.get_reference_handle()
+                obj = self.db.get_object_from_handle(object_handle)
+                ImageSelect.LocalMediaProperties(ph,obj.get_path(),self,self.window)
+        elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            media_list = self.person.get_media_list()
+            if media_list:
+                ph = media_list[0]
+                self.show_popup(ph,event)
+
+    def show_popup(self, photo, event):
+        """Look for right-clicks on a picture and create a popup
+        menu of the available actions."""
+        
+        menu = gtk.Menu()
+        menu.set_title(_("Media Object"))
+        obj = self.db.get_object_from_handle(photo.get_reference_handle())
+        mtype = obj.get_mime_type()
+        progname = GrampsMime.get_application(mtype)
+        
+        if progname and len(progname) > 1:
+            Utils.add_menuitem(menu,_("Open in %s") % progname[1],
+                               photo,self.popup_view_photo)
+        if mtype[0:5] == "image":
+            Utils.add_menuitem(menu,_("Edit with the GIMP"),
+                               photo,self.popup_edit_photo)
+        Utils.add_menuitem(menu,_("Edit Object Properties"),photo,
+                           self.popup_change_description)
+        menu.popup(None,None,None,event.button,event.time)
+
+    def popup_view_photo(self, obj):
+        """Open this picture in a picture viewer"""
+        media_list = self.person.get_media_list()
+        if media_list:
+            ph = media_list[0]
+            object_handle = ph.get_reference_handle()
+            Utils.view_photo(self.db.get_object_from_handle(object_handle))
+
+    def popup_edit_photo(self, obj):
+        """Open this picture in a picture editor"""
+        media_list = self.person.get_media_list()
+        if media_list:
+            ph = media_list[0]
+            object_handle = ph.get_reference_handle()
+            if os.fork() == 0:
+                obj = self.db.get_object_from_handle(object_handle)
+                os.execvp(const.editor,[const.editor, obj.get_path()])
+
+    def popup_change_description(self,obj):
+        media_list = self.person.get_media_list()
+        if media_list:
+            ph = media_list[0]
+            object_handle = ph.get_reference_handle()
+            obj = self.db.get_object_from_handle(object_handle)
+            ImageSelect.LocalMediaProperties(ph,obj.get_path(),self,self.window)
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -1442,7 +1510,7 @@ class EditPerson:
         """loads, scales, and displays the person's main photo"""
         self.load_obj = photo
         if photo == None:
-            self.get_widget("personPix").hide()
+            self.person_photo.hide()
         else:
             try:
                 i = pixbuf_new_from_file(photo)
@@ -1451,10 +1519,10 @@ class EditPerson:
                 x = int(scale*(i.get_width()))
                 y = int(scale*(i.get_height()))
                 i = i.scale_simple(x,y,INTERP_BILINEAR)
-                self.get_widget("personPix").set_from_pixbuf(i)
-                self.get_widget("personPix").show()
+                self.person_photo.set_from_pixbuf(i)
+                self.person_photo.show()
             except:
-                self.get_widget("personPix").hide()
+                self.person_photo.hide()
 
     def update_lists(self):
         """Updates the person's lists if anything has changed"""
