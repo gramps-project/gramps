@@ -21,7 +21,7 @@ GLADEFILES := ${wildcard *.glade}
 GRAPHICS := ${wildcard *.xpm} ${wildcard *.png} ${wildcard *.jpg}
 
 # Other stuff that we need to install
-pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop
+pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop grampslib.so
 
 EXTRA_DIST = grampslib.i
 

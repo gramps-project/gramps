@@ -97,7 +97,6 @@ PYTHON_PLATFORM = @PYTHON_PLATFORM@
 PYTHON_PREFIX = @PYTHON_PREFIX@
 PYTHON_VERSION = @PYTHON_VERSION@
 RELEASE = @RELEASE@
-SCROLLKEEPER_CONFIG = @SCROLLKEEPER_CONFIG@
 SCROLLKEEPER_REQUIRED = @SCROLLKEEPER_REQUIRED@
 STRIP = @STRIP@
 SWIG = @SWIG@
@@ -482,7 +481,7 @@ install-data-hook:
 	rm -rf $(DESTDIR)$(scrollkeeper_localstate_dir)
 	$(mkinstalldirs) $(DESTDIR)$(scrollkeeper_localstate_dir)
 	$(mkinstalldirs) $(DESTDIR)$(localstatedir)/log
-	scrollkeeper-rebuilddb -p $(DESTDIR)$(scrollkeeper_localstate_dir)
+#	scrollkeeper-rebuilddb -p $(DESTDIR)$(scrollkeeper_localstate_dir)
 
 # Remove generated files
 uninstall-local:
