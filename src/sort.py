@@ -20,6 +20,7 @@
 
 from RelLib import *
 from Date import *
+import string
 
 #-------------------------------------------------------------------------
 #
@@ -29,7 +30,7 @@ from Date import *
 def build_sort_name(person):
     n = person[0]
     nm = "%-25s%-30s%s" % (n.Surname,n.FirstName,n.Suffix)
-    return (nm,person)
+    return (string.upper(nm),person)
 
 #-------------------------------------------------------------------------
 #

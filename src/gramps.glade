@@ -5394,7 +5394,7 @@ Unknown
 
 	  <widget>
 	    <class>GtkCombo</class>
-	    <name>combo1</name>
+	    <name>mcombo</name>
 	    <value_in_list>True</value_in_list>
 	    <ok_if_empty>False</ok_if_empty>
 	    <case_sensitive>True</case_sensitive>
@@ -5479,7 +5479,7 @@ Unknown
 
 	<widget>
 	  <class>GtkCombo</class>
-	  <name>combo2</name>
+	  <name>fcombo</name>
 	  <value_in_list>True</value_in_list>
 	  <ok_if_empty>False</ok_if_empty>
 	  <case_sensitive>True</case_sensitive>
