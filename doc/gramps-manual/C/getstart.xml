@@ -24,6 +24,9 @@
 
 
     <title>Getting Started</title> 
+    
+    <para>This chapter provides the most basic information on starting &app; and
+    obtaining help. Please procede to the following chapters for more information.</para>
 
     <!-- ================ Getting Started Subsection ====== -->
     <sect1 id="gramps-start">
@@ -45,11 +48,12 @@
         as a command line argument:</para>
 
 	<para>
-	<command>gramps -i</command> <replaceable>filename.ged</replaceable>
+	<command>gramps</command> <filename>filename.grdb</filename>
     	</para> 
 
-    	<para>where <replaceable>filename.ged</replaceable> is the name 
-	of the file you	want to open/import. The detailed reference to the 
+    	<para>where <filename>filename.grdb</filename> is the name 
+	of the file you want to open. The command line provides many more ways
+	to start &app; and perform different tasks. The detailed reference to the 
         command line options is found in the <xref linkend="append-cmdline"/>. 
         </para></listitem>
     </varlistentry>
@@ -88,7 +92,7 @@
 	
 	<para>This information can be entered at any time in the 
 	<guilabel>Preferences</guilabel> dialog, under the 
-	<guilabel>Usage</guilabel> category. 
+	<guilabel>Database/Researcher Information</guilabel> category. 
 	</para>
 
     </sect1>
@@ -113,24 +117,18 @@
       <para>If you would like to open an existing database, check the top radio
       button and click the <guibutton>OK</guibutton> button. You will then be asked to 
       specify the name of your existing database. If you would like to start
-      creating your brand new database from scratch right away, choose new XML
+      creating your brand new database from scratch right away, choose new
       database. </para> 
 
-      <para>NOTE: when starting new database, you should 
-      select an empty <replaceable>DIRECTORY</replaceable> 
-      and <replaceable>NOT a FILE</replaceable>. Create empty directory if 
-      needed. The directory you specify will be used by &app; to store 
-      database file <replaceable>data.gramps</replaceable> as well as any 
-      possible copies of media objects. This directory will be updated by &app; 
-      each time the database is saved. </para> 
-      
-      <para>NOTE: when opening an existing database, you should 
-      open a <replaceable>DIRECTORY</replaceable> and 
-      <replaceable>NOT a FILE</replaceable>. The directory you need to open 
-      should contain the  database file <replaceable>data.gramps</replaceable> 
-      as well as any possible copies of media objects. Such a directory is 
-      created by &app; when you start a new database and is updated each time 
-      the database is saved. </para> 
+      <para>
+                 <note id="file-notdir-note">
+               <title>Selecting file</title>
+	      <para>
+	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
+	      for the database. Please select filename, as you would in any other application.
+	      </para>
+           </note>
+           </para> 
 
       </sect1>
       

@@ -120,6 +120,17 @@
 	This approach requires holding all data in memory, so it is only useful for small databases
 	(depending on the available memory size). In such mode, the data is automatically
 	saved upon exit, to mimic the functionality of the real database.
+
+           <warning id="gedcom-inmem1-warn">
+               <title>GEDCOM EDITING</title>
+	      <para>
+		Please keep in mind that some information in GEDCOM file may be lost
+		during import into &app;. Simply opening and viewing the file will not change it.
+		However, if any changes were made and they were not abandoned upon exit,
+		exiting &app; will save the data, with the possible data loss.
+	      </para>
+           </warning>                
+
 	</para></listitem>
       </varlistentry>
 

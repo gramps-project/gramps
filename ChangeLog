@@ -1,3 +1,11 @@
+2005-02-15 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* doc/gramps-manual/C/authors.xml: Add list of contributors.
+	* doc/gramps-manual/C/getstart.xml: Update.
+	* doc/gramps-manual/C/gramps-manual.xml: Update.
+	* doc/gramps-manual/C/legal.xml: Update.
+	* doc/gramps-manual/C/preface.xml: Update.
+	* doc/gramps-manual/C/figures/first-open.png: New shot.
+
 2005-02-14 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetAncestralReport.py: Typos.
 	* src/plugins/DetDescendantReport.py: Typos.
