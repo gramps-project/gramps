@@ -485,25 +485,25 @@ class Merge:
 
         birth1_id = p1.get_birth_handle()
         if birth1_id:
-            birth1 = self.db.find_event_from_handle(birth1_id)
+            birth1 = self.db.get_event_from_handle(birth1_id)
         else:
             birth1 = RelLib.Event()
 
         death1_id = p1.get_death_handle()
         if death1_id:
-            death1 = self.db.find_event_from_handle(death1_id)
+            death1 = self.db.get_event_from_handle(death1_id)
         else:
             death1 = RelLib.Event()
 
         birth2_id = p2.get_birth_handle()
         if birth2_id:
-            birth2 = self.db.find_event_from_handle(birth2_id)
+            birth2 = self.db.get_event_from_handle(birth2_id)
         else:
             birth2 = RelLib.Event()
 
         death2_id = p2.get_death_handle()
         if death2_id:
-            death2 = self.db.find_event_from_handle(death2_id)
+            death2 = self.db.get_event_from_handle(death2_id)
         else:
             death2 = RelLib.Event()
 

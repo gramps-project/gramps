@@ -187,7 +187,7 @@ class PlaceView:
                 p = self.parent.db.get_person_from_handle(key)
                 event_list = []
                 for e in [p.get_birth_handle(),p.get_death_handle()] + p.get_event_list():
-                    event = self.parent.db.find_event_from_handle(e)
+                    event = self.parent.db.get_event_from_handle(e)
                     if event:
                         event_list.append(event)
                 if p.get_lds_baptism():
@@ -204,7 +204,7 @@ class PlaceView:
                 f = self.parent.db.get_family_from_handle(fid)
                 event_list = []
                 for e in f.get_event_list():
-                    event = self.parent.db.find_event_from_handle(e)
+                    event = self.parent.db.get_event_from_handle(e)
                     if event:
                         event_list.append(event)
                 if f.get_lds_sealing():

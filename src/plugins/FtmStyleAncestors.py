@@ -116,7 +116,7 @@ class FtmAncestorReport(Report.Report):
             birth_handle = person.get_birth_handle()
             if birth_handle:
                 birth_valid = 1
-                birth = self.database.find_event_from_handle(birth_handle)
+                birth = self.database.get_event_from_handle(birth_handle)
                 place_handle = birth.get_place_handle()
                 if place_handle:
                     bplace = self.database.get_place_from_handle(place_handle).get_title()
@@ -131,7 +131,7 @@ class FtmAncestorReport(Report.Report):
             death_handle = person.get_death_handle()
             if death_handle:
                 death_valid = 1
-                death = self.database.find_event_from_handle(death_handle)
+                death = self.database.get_event_from_handle(death_handle)
                 place_handle = death.get_place_handle()
                 if place_handle:
                     dplace = self.database.get_place_from_handle(place_handle).get_title()
@@ -533,7 +533,7 @@ class FtmAncestorReport(Report.Report):
             ncount += 1
             
         for event_handle in person.get_event_list():
-            event = self.database.find_event_from_handle(event_handle)
+            event = self.database.get_event_from_handle(event_handle)
             date = event.get_date()
             place_handle = event.get_place_handle()
             if place_handle:
@@ -589,7 +589,7 @@ class FtmAncestorReport(Report.Report):
 
         for event_handle in family.get_event_list():
             if event_handle:
-                event = self.database.find_event_from_handle(event_handle)
+                event = self.database.get_event_from_handle(event_handle)
                 if event.get_name() == "Marriage":
                     break
         else:
@@ -653,7 +653,7 @@ class FtmAncestorReport(Report.Report):
         death_handle = spouse.get_death_handle()
         if death_handle:
             death_valid = 1
-            death = self.database.find_event_from_handle(death_handle)
+            death = self.database.get_event_from_handle(death_handle)
             ddate = death.get_date()
             place_handle = death.get_place_handle()
             if place_handle:
@@ -668,7 +668,7 @@ class FtmAncestorReport(Report.Report):
         birth_handle = spouse.get_birth_handle()
         if birth_handle:
             birth_valid = 1
-            birth = self.database.find_event_from_handle(birth_handle)
+            birth = self.database.get_event_from_handle(birth_handle)
             bdate = birth.get_date()
             place_handle = birth.get_place_handle()
             if place_handle:

@@ -96,13 +96,13 @@ class ChooseParents:
         self.father_filter = self.likely_father_filter
         self.mother_filter = self.likely_mother_filter
 
-        birth_event = self.db.find_event_from_handle(self.person.get_birth_handle())
+        birth_event = self.db.get_event_from_handle(self.person.get_birth_handle())
         if birth_event:
             self.bday = birth_event.get_date_object()
         else:
             self.bday = None
 
-        death_event = self.db.find_event_from_handle(self.person.get_death_handle())
+        death_event = self.db.get_event_from_handle(self.person.get_death_handle())
         if death_event:
             self.dday = death_event.get_date_object()
         else:
@@ -264,13 +264,13 @@ class ChooseParents:
     def likely_filter(self,person):
         if person.get_handle() == self.person.get_handle():
             return 0
-        birth_event = self.db.find_event_from_handle(person.get_birth_handle())
+        birth_event = self.db.get_event_from_handle(person.get_birth_handle())
         if birth_event:
             pbday = birth_event.get_date_object()
         else:
             pbday = None
                 
-        death_event = self.db.find_event_from_handle(person.get_death_handle())
+        death_event = self.db.get_event_from_handle(person.get_death_handle())
         if death_event:
             pdday = death_event.get_date_object()
         else:

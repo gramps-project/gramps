@@ -479,7 +479,7 @@ class Marriage:
         self.etree.clear()
         self.emap = {}
         for event_handle in self.elist:
-            event = self.db.find_event_from_handle(event_handle)
+            event = self.db.get_event_from_handle(event_handle)
             if not event:
                 continue
             place_handle = event.get_place_handle()

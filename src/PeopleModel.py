@@ -295,19 +295,19 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_birth_day(self,data):
         if data[_BIRTH_COL]:
-            return self.db.find_event_from_handle(data[_BIRTH_COL]).get_date()
+            return self.db.get_event_from_handle(data[_BIRTH_COL]).get_date()
         else:
             return u""
 
     def column_death_day(self,data):
         if data[_DEATH_COL]:
-            return self.db.find_event_from_handle(data[_DEATH_COL]).get_date()
+            return self.db.get_event_from_handle(data[_DEATH_COL]).get_date()
         else:
             return u""
         
     def column_birth_place(self,data):
         if data[_BIRTH_COL]:
-            event = self.db.find_event_from_handle(data[_BIRTH_COL])
+            event = self.db.get_event_from_handle(data[_BIRTH_COL])
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:
@@ -316,7 +316,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_death_place(self,data):
         if data[_DEATH_COL]:
-            event = self.db.find_event_from_handle(data[_DEATH_COL])
+            event = self.db.get_event_from_handle(data[_DEATH_COL])
             if event:
                 place_handle = event.get_place_handle()
                 if place_handle:

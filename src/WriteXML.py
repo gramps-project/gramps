@@ -261,12 +261,12 @@ class XmlWriter:
                     self.dump_name("aka",name,3)
             
                 self.write_line("nick",person.get_nick_name(),3)
-                birth = self.db.find_event_from_handle(person.get_birth_handle())
-                death = self.db.find_event_from_handle(person.get_death_handle())
+                birth = self.db.get_event_from_handle(person.get_birth_handle())
+                death = self.db.get_event_from_handle(person.get_death_handle())
                 self.dump_my_event("Birth",birth,3)
                 self.dump_my_event("Death",death,3)
                 for event_handle in person.get_event_list():
-                    event = self.db.find_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     self.dump_event(event,3)
                 
                 self.dump_ordinance("baptism",person.get_lds_baptism(),3)
@@ -332,7 +332,7 @@ class XmlWriter:
                 self.write_ref("father",fid,3)
                 self.write_ref("mother",mid,3)
                 for event_handle in family.get_event_list():
-                    event = self.db.find_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     self.dump_event(event,3)
                 self.dump_ordinance("sealed_to_spouse",family.get_lds_sealing(),3)
 

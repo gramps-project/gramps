@@ -516,7 +516,7 @@ class IndividualPage:
         for event_handle in event_handle_list:
             if not event_handle:
                 continue
-            event = self.db.find_event_from_handle(event_handle)
+            event = self.db.get_event_from_handle(event_handle)
             if event.get_privacy():
                 continue
             name = _(event.get_name())
@@ -654,7 +654,7 @@ class IndividualPage:
             if not self.alive:
                 for event_handle in family.get_event_list():
                     if event_handle:
-                        event = self.db.find_event_from_handle(event_handle)
+                        event = self.db.get_event_from_handle(event_handle)
                         if event.get_privacy() == 0:
                             self.write_fam_fact(event)
 
@@ -804,7 +804,7 @@ class WebReport(Report.Report):
                 f.write("%s /%s/, %s|" % (firstName,surName, suffix))
             for e_id in [p.get_birth_handle(),p.get_death_handle()]:
                 if e_id:
-                    e = self.db.find_event_from_handle(e_id)
+                    e = self.db.get_event_from_handle(e_id)
                 else:
                     continue
                 if e:
@@ -889,7 +889,7 @@ class WebReport(Report.Report):
                     if self.birth_dates:
                         birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
                         if birth_handle:
-                            birth_event = self.db.find_event_from_handle(birth_handle)
+                            birth_event = self.db.get_event_from_handle(birth_handle)
                             if self.year_only:
                                 birth_dobj = birth_event.get_date_object()
                                 if birth_dobj.get_year_valid():
@@ -940,7 +940,7 @@ class WebReport(Report.Report):
                     if self.birth_dates:
                         birth_handle = self.db.get_person_from_handle(person_handle).get_birth_handle()
                         if birth_handle:
-                            birth_event = self.db.find_event_from_handle(birth_handle)
+                            birth_event = self.db.get_event_from_handle(birth_handle)
                             if self.year_only:
                                 birth_dobj = birth_event.get_date_object()
                                 if birth_dobj.get_year_valid():

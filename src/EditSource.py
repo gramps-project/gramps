@@ -240,7 +240,7 @@ class EditSource:
             else:
                 name = GrampsCfg.get_nameof()(m)
             for v_id in p.get_event_list():
-                v = self.db.find_event_from_handle(v_id)
+                v = self.db.get_event_from_handle(v_id)
                 if not v:
                     continue
                 for sref in v.get_source_references():
@@ -375,7 +375,7 @@ class DelSrcQuery:
             commit = 0
             p = self.db.get_person_from_handle(key)
             for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
-                v = self.db.find_event_from_handle(v_id)
+                v = self.db.get_event_from_handle(v_id)
                 if v:
                     commit += self.delete_source(v)
 
@@ -394,7 +394,7 @@ class DelSrcQuery:
             commit = 0
             p = self.db.get_family_from_handle(p_id)
             for v_id in p.get_event_list():
-                v = self.db.find_event_from_handle(v_id)
+                v = self.db.get_event_from_handle(v_id)
                 if v:
                     commit += self.delete_source(v)
 

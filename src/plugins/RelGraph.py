@@ -720,7 +720,7 @@ def _get_individual_data (self, individual_id):
 def _get_event_label (self, event_handle):
     """Returns a formatted string of event data suitable for a label"""
     if self.IncludeDates and event_handle:
-        event = self.db.find_event_from_handle(event_handle)
+        event = self.db.get_event_from_handle(event_handle)
         date_obj = event.get_date_object()
         if date_obj.get_year_valid():
             if self.JustYear:
@@ -797,7 +797,7 @@ def _get_family_handle_label (self, family_handle):
     fam = self.db.get_family_from_handle(family_handle)
     for event_handle in fam.get_event_list():
         if event_handle:
-            event = self.db.find_event_from_handle(event_handle)
+            event = self.db.get_event_from_handle(event_handle)
             if event.get_name() == "Marriage":
                 marriage_event_handle = event_handle
                 break
@@ -831,7 +831,7 @@ def _get_family_handle_record_label (self, record):
                     individual_family = self.db.get_family_from_handle(individual_family_handle)
                     for event_handle in individual_family.get_event_list():
                         if event_handle:
-                            event = self.db.find_event_from_handle(event_handle)
+                            event = self.db.get_event_from_handle(event_handle)
                             if event.get_name() == "Marriage":
                                 marriage_event_handle = event_handle
                                 break

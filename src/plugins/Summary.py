@@ -94,7 +94,7 @@ def build_report(database,person):
             disconnected = disconnected + 1
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            birth = database.find_event_from_handle(birth_handle)
+            birth = database.get_event_from_handle(birth_handle)
             if not birth.get_date():
                 missing_bday = missing_bday + 1
         else:

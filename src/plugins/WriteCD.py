@@ -234,7 +234,7 @@ class PackageWriter:
                 p.set_media_list(nl)
                 self.db.commit_place(p,None)
             for key in self.db.get_event_handles():
-                p = self.db.find_event_from_handle(key)
+                p = self.db.get_event_from_handle(key)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == self.object_handle:

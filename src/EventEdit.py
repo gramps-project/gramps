@@ -294,7 +294,7 @@ class EventEditor:
         text = strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
-                return self.parent.db.find_event_from_handle(self.pmap[text])
+                return self.parent.db.get_event_from_handle(self.pmap[text])
             else:
                 return None
         else:

@@ -120,7 +120,7 @@ class AncestorReport(Report.Report):
         
             birth_handle = person.get_birth_handle()
             if birth_handle:
-                birth = self.database.find_event_from_handle(birth_handle)
+                birth = self.database.get_event_from_handle(birth_handle)
                 date = birth.get_date_object().get_start_date()
                 place_handle = birth.get_place_handle()
                 if place_handle:
@@ -149,13 +149,13 @@ class AncestorReport(Report.Report):
 
             buried = None
             for event_handle in person.get_event_list():
-                event = self.database.find_event_from_handle(event_handle)
+                event = self.database.get_event_from_handle(event_handle)
                 if string.lower(event.get_name()) == "burial":
                     buried = event
         
             death_handle = person.get_death_handle()
             if death_handle:
-                death = self.database.find_event_from_handle(death_handle)
+                death = self.database.get_event_from_handle(death_handle)
                 date = death.get_date_object().get_start_date()
                 place_handle = death.get_place_handle()
                 if place_handle:

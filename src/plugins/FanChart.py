@@ -205,7 +205,7 @@ class FanChart:
 
         birth_handle = person.get_birth_handle()
         if birth_handle:
-            b = self.database.find_event_from_handle(birth_handle).get_date_object().get_year()
+            b = self.database.get_event_from_handle(birth_handle).get_date_object().get_year()
             if b == Calendar.UNDEF:
                 b = ""
         else:
@@ -213,7 +213,7 @@ class FanChart:
 
         death_handle = person.get_death_handle()
         if death_handle:
-            d = self.database.find_event_from_handle(death_handle).get_date_object().get_year()
+            d = self.database.get_event_from_handle(death_handle).get_date_object().get_year()
             if d == Calendar.UNDEF:
                 d = ""
         else:

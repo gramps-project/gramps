@@ -210,8 +210,8 @@ class EditPerson:
         self.gallery_label = self.get_widget("gallery_label")
         self.lds_tab = self.get_widget("lds_tab")
 
-        self.orig_birth = self.db.find_event_from_handle(person.get_birth_handle())
-        self.orig_death = self.db.find_event_from_handle(person.get_death_handle())
+        self.orig_birth = self.db.get_event_from_handle(person.get_birth_handle())
+        self.orig_death = self.db.get_event_from_handle(person.get_death_handle())
         self.death = RelLib.Event(self.orig_death)
         self.birth = RelLib.Event(self.orig_birth)
         self.pname = RelLib.Name(person.get_primary_name())
@@ -893,7 +893,7 @@ class EditPerson:
         self.etree.clear()
         self.emap = {}
         for event_handle in self.elist:
-            event = self.db.find_event_from_handle(event_handle)
+            event = self.db.get_event_from_handle(event_handle)
             pname = place_title(self.db,event)
             node = self.etree.add([const.display_pevent(event.get_name()),event.get_description(),
                                     event.get_quote_date(),pname],event)
@@ -1255,7 +1255,7 @@ class EditPerson:
         store,node = obj.get_selected()
         if node:
             row = store.get_path(node)
-            event = self.db.find_event_from_handle(self.elist[row[0]])
+            event = self.db.get_event_from_handle(self.elist[row[0]])
             self.event_date_field.set_text(event.get_date())
             self.event_place_field.set_text(place_title(self.db,event))
             self.event_name_field.set_text(const.display_pevent(event.get_name()))
@@ -1770,7 +1770,7 @@ class EditPerson:
             child_handle = list[i]
             child = self.db.get_person_from_handle(child_handle)
             if child.get_birth_handle():
-                event = self.db.find_event_from_handle(child.get_birth_handle())
+                event = self.db.get_event_from_handle(child.get_birth_handle())
                 bday = event.get_date_object()
                 child_date = Sort.build_sort_date(bday)
             else:
@@ -1792,7 +1792,7 @@ class EditPerson:
         # Build the person's date string once
         event_handle = person.get_birth_handle()
         if event_handle:
-            event = self.db.find_event_from_handle(event_handle)
+            event = self.db.get_event_from_handle(event_handle)
             person_bday = Sort.build_sort_date(event.get_date_object())
         else:
             person_bday = "99999999"
@@ -1805,7 +1805,7 @@ class EditPerson:
             other = self.db.get_person_from_handle(list[i])
             event_handle = other.get_birth_handle()
             if event_handle:
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 other_bday = Sort.build_sort_date(event.get_date_object())
                 if (other_bday == "99999999"):
                     continue;
@@ -1820,7 +1820,7 @@ class EditPerson:
                 other = self.db.get_person_from_handle(list[i])
                 event_handle = other.get_birth_handle()
                 if event_handle:
-                    event = self.db.find_event_from_handle(event_handle)
+                    event = self.db.get_event_from_handle(event_handle)
                     other_bday = Sort.build_sort_date(event.get_date_object())
                     if (other_bday == "99999999"):
                         continue;

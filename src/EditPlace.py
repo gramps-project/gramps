@@ -480,13 +480,13 @@ class EditPlace:
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place:
                     pevent.append((p,event))
         for family_handle in self.db.get_family_handles():
             f = self.db.get_family_from_handle(family_handle)
             for event_handle in f.get_event_list():
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place:
                     fevent.append((f,event))
                     
@@ -562,7 +562,7 @@ class DeletePlaceQuery:
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             for event_handle in [p.get_birth_handle(), p.get_death_handle()] + p.get_event_list():
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place.get_handle():
                     event.set_place_handle(None)
                     self.db.commit_event(event,trans)
@@ -570,7 +570,7 @@ class DeletePlaceQuery:
         for fid in self.db.get_family_handles():
             f = self.db.get_family_from_handle(fid)
             for event_handle in f.get_event_list():
-                event = self.db.find_event_from_handle(event_handle)
+                event = self.db.get_event_from_handle(event_handle)
                 if event and event.get_place_handle() == self.place.get_handle():
                     event.set_place_handle(None)
                     self.db.commit_event(event,trans)

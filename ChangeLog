@@ -7,6 +7,25 @@
 	* src/Sources.py (draw): Correctly sort, use gramps id when
 	displaying sources; (redraw): Use gramps id in the list view.
 
+	* src/AddSpouse.py, src/ChooseParents.py, src/EditPerson.py,
+	src/EditPlace.py, src/EditSource.py, src/EventEdit.py,
+	src/FamilyView.py, src/GenericFilter.py, 
+	src/Marriage.py, src/PedView.py, src/PeopleModel.py,
+	src/PlaceView.py, src/RelLib.py, src/SelectChild.py,
+	src/Sort.py, src/SourceView.py, src/SubstKeywords.py,
+	src/WriteGedcom.py, src/WriteXML.py, src/plugins/AncestorReport.py,
+	src/plugins/Ancestors.py, src/plugins/ChangeTypes.py, 
+	src/plugins/DescendReport.py, src/plugins/DetDescendantReport.py,
+	src/plugins/EventCmp.py, src/plugins/FamilyGroup.py,
+	src/plugins/FanChart.py, src/plugins/FtmStyleAncestors.py,
+	src/plugins/FtmStyleDescendants.py, src/plugins/GraphViz.py,
+	src/plugins/IndivComplete.py, src/plugins/IndivSummary.py,
+	src/plugins/Merge.py, src/plugins/RelCalc.py, src/plugins/RelGraph.py,
+	src/plugins/Summary.py, src/plugins/TimeLine.py, src/plugins/Verify.py,
+	src/plugins/WebPage.py, src/plugins/WriteCD.py, 
+	src/plugins/WritePkg.py, src/plugins/DetAncestralReport.py:
+	Use get_event_from_handle (not find_ ).
+
 2004-08-20  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: update family display after EditPerson
 	* src/EditPerson.py: fix callback

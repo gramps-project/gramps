@@ -148,7 +148,7 @@ class FtmDescendantReport(Report.Report):
                 bplace = ""
                 bdate = ""
                 if birth_handle:
-                    birth = self.database.find_event_from_handle(birth_handle)
+                    birth = self.database.get_event_from_handle(birth_handle)
                     bdate = birth.get_date()
                     bplace_handle = birth.get_place_handle()
                     if bplace_handle:
@@ -158,7 +158,7 @@ class FtmDescendantReport(Report.Report):
                 dplace = ""
                 ddate = ""
                 if death_handle:
-                    death = self.database.find_event_from_handle(death_handle)
+                    death = self.database.get_event_from_handle(death_handle)
                     ddate = death.get_date()
                     dplace_handle = death.get_place_handle()
                     if dplace_handle:
@@ -563,7 +563,7 @@ class FtmDescendantReport(Report.Report):
         for event_handle in person.get_event_list():
             if not event_handle:
                 continue
-            event = self.database.find_event_from_handle(event_handle)
+            event = self.database.get_event_from_handle(event_handle)
             date = event.get_date()
             place_handle = event.get_place_handle()
             if place_handle:
@@ -619,7 +619,7 @@ class FtmDescendantReport(Report.Report):
             for event_handle in family.get_event_list():
                 if not event_handle:
                     continue
-                event = self.database.find_event_from_handle(event_handle)
+                event = self.database.get_event_from_handle(event_handle)
                 date = event.get_date()
                 place_handle = event.get_place_handle()
                 if place_handle:
@@ -714,7 +714,7 @@ class FtmDescendantReport(Report.Report):
                 bplace = ""
                 bdate = ""
                 if birth_handle:
-                    birth = self.database.find_event_from_handle(birth_handle)
+                    birth = self.database.get_event_from_handle(birth_handle)
                     bdate = birth.get_date()
                     bplace_handle = birth.get_place_handle()
                     if bplace_handle:
@@ -724,7 +724,7 @@ class FtmDescendantReport(Report.Report):
                 dplace = ""
                 ddate = ""
                 if death_handle:
-                    death = self.database.find_event_from_handle(death_handle)
+                    death = self.database.get_event_from_handle(death_handle)
                     ddate = death.get_date()
                     dplace_handle = death.get_place_handle()
                     if dplace_handle:
@@ -1011,7 +1011,7 @@ class FtmDescendantReport(Report.Report):
         
         for event_handle in family.get_event_list():
             if event_handle:
-                event = self.database.find_event_from_handle(event_handle)
+                event = self.database.get_event_from_handle(event_handle)
                 if event.get_name() == "Marriage":
                     break
         else:
@@ -1076,7 +1076,7 @@ class FtmDescendantReport(Report.Report):
         bplace = ""
         bdate = ""
         if birth_handle:
-            birth = self.database.find_event_from_handle(birth_handle)
+            birth = self.database.get_event_from_handle(birth_handle)
             bdate = birth.get_date()
             bplace_handle = birth.get_place_handle()
             if bplace_handle:
@@ -1086,7 +1086,7 @@ class FtmDescendantReport(Report.Report):
         dplace = ""
         ddate = ""
         if death_handle:
-            death = self.database.find_event_from_handle(death_handle)
+            death = self.database.get_event_from_handle(death_handle)
             ddate = death.get_date()
             dplace_handle = death.get_place_handle()
             if dplace_handle:
