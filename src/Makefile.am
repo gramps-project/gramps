@@ -1,3 +1,4 @@
+# $Id$
 # This is the src level Makefile for Gramps
 SUBDIRS = docgen plugins dates data po 
 
@@ -112,7 +113,9 @@ gdir_PYTHON = \
 	GrampsIniKeys.py\
 	GrampsGconfKeys.py\
 	RecentFiles.py\
-	ReportOptions.py
+	ReportOptions.py\
+	ReadGrdb.py\
+	WriteGrdb.py
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually

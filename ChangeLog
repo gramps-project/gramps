@@ -1,3 +1,6 @@
+2005-02-02 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Makefile.am: Ship ReadGrdb.py and WriteGrdb.py.
+
 2005-02-01 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Proper translatable strings for generation numbers.
 	* src/ReportUtils.py: More report-related methods.
