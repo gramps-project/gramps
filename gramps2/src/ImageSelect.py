@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000, 2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -147,7 +147,7 @@ class ImageSelect:
         if os.path.exists(filename) == 0:
             msgstr = _("Cannot import %s")
             msgstr2 = _("The filename supplied could not be found.")
-            ErrorDialog(msgstr,msgstr2)
+            ErrorDialog(msgstr % filename, msgstr2)
             return
 
         already_imported = None
@@ -958,4 +958,3 @@ class DeleteMediaQuery:
 
         if self.update:
             self.update(0)
-

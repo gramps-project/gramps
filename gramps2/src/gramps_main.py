@@ -534,20 +534,46 @@ class Gramps:
                        self.quit,
                        self.save_query)
         else:
+            self.delete_abandoned_photos()
             self.db.close()
             gtk.mainquit()
 
     def save_query(self):
         """Catch the reponse to the save on exit question"""
         self.on_save_activate_quit()
+        self.delete_abandoned_photos()
         self.db.close()
         gtk.mainquit()
 
     def quit(self):
         """Catch the reponse to the save on exit question"""
+        self.delete_abandoned_photos()
         self.db.close()
         gtk.mainquit()
         
+    def delete_abandoned_photos(self):
+        """
+        We only want to delete local objects, not external objects, however, we
+        can delete any thumbnail images. The thumbnails may or may not exist, depending
+        on if the image was previewed.
+        """
+        for obj in self.db.get_added_media_objects():
+            if obj.getLocal():
+                try:
+                    os.unlink(obj.getPath())
+                except IOError:
+                    pass
+                except:
+                    DisplayTrace.DisplayTrace()
+            thumb = "%s/.thumb/%s.jpg" % (self.db.getSavePath(),obj.getId())
+            if os.path.isfile(thumb):
+                try:
+                    os.unlink(thumb)
+                except IOError:
+                    pass
+                except:
+                    DisplayTrace.DisplayTrace()
+
     def on_about_activate(self,obj):
         """Displays the about box.  Called from Help menu"""
         pixbuf = gtk.gdk.pixbuf_new_from_file(const.logo)
@@ -584,6 +610,26 @@ class Gramps:
         import DbPrompter
         self.clear_database(2)
         DbPrompter.DbPrompter(self,1)
+
+    def clear_person_tabs(self):
+
+        for i in range(0,len(self.tab_list)):
+            self.ptabs.remove_page(0)
+        self.ptabs.set_show_tabs(0)
+        self.id2col = {}
+        self.tab_list = []
+        self.alpha_page = {}
+        self.model2page = {}
+        self.model_used = {}
+
+        self.default_list.clear()
+        self.pl_page = [
+            self.default_list
+            ]
+
+        self.person_tree = self.pl_page[-1]
+        self.person_list = self.pl_page[-1].tree
+        self.person_model = self.pl_page[-1].model
     
     def clear_database(self,zodb=1):
         """Clear out the database if permission was granted"""
@@ -593,20 +639,8 @@ class Gramps:
         const.familyAttributes = const.init_family_attribute_list()
         const.familyRelations = const.init_family_relation_list()
 
-        for i in range(0,len(self.tab_list)):
-            self.ptabs.remove_page(0)
-        self.ptabs.set_show_tabs(0)
-        self.tab_list = []
-        self.alpha_page = {}
-        self.model2page = {}
-        self.model_used = {}
-
-        self.pl_page = [ self.pl_page[-1] ]
-
-        self.person_tree = self.pl_page[-1]
-        self.person_list = self.pl_page[-1].tree
-        self.person_model = self.pl_page[-1].model
-
+        self.clear_person_tabs()
+        
         if zodb == 1:
             self.db = GrampsZODB.GrampsZODB()
         elif zodb == 2:
@@ -643,21 +677,8 @@ class Gramps:
     def tool_callback(self,val):
         if val:
             Utils.modified()
-            for i in range(0,len(self.tab_list)):
-                self.ptabs.remove_page(0)
-            self.ptabs.set_show_tabs(0)
-
-            self.pl_page = [
-                ListModel.ListModel(self.pl_other, self.pl_titles, self.row_changed,
-                                    self.alpha_event, _sel_mode),
-                ]
-
-            self.tab_list = []
-            self.alpha_page = {}
-            self.model2page = {}
-            self.model_used = {}
-            self.full_update()
-        
+            self.complete_rebuild()
+            
     def full_update(self):
         """Brute force display update, updating all the pages"""
 
@@ -856,11 +877,12 @@ class Gramps:
         filename = "%s/%s" % (filename,self.db.get_base())
         try:
             self.db.save(filename,self.load_progress)
+            self.db.clear_added_media_objects()
         except (OSError,IOError), msg:
             emsg = _("Could not create %s") % filename
             ErrorDialog(emsg,_("An error was detected while trying to create the file"))
             return
-
+        
         self.db.setSavePath(old_file)
         GrampsCfg.save_last_file(old_file)
 
@@ -1060,7 +1082,6 @@ class Gramps:
             else:
                 return ""
         except:
-            import DisplayTrace
             DisplayTrace.DisplayTrace()
 	
     def on_open_activate(self,obj):
@@ -1406,6 +1427,7 @@ class Gramps:
             self.status_text('')
             return 0
         self.status_text('')
+        self.db.clear_added_media_objects()
         return self.post_load(name)
 
     def load_revision(self,f,name,revision):
@@ -1413,6 +1435,7 @@ class Gramps:
         self.status_text(_('Loading %s...' % name))
         if ReadXML.loadRevision(self.db,f,filename,revision,self.load_progress) == 0:
             return 0
+        self.db.clear_added_media_objects()
         return self.post_load(name)
 
     def setup_bookmarks(self):
@@ -1426,14 +1449,6 @@ class Gramps:
 
     def complete_rebuild(self):
         self.topWindow.set_resizable(gtk.FALSE)
-        for i in range(0,len(self.tab_list)):
-            self.ptabs.remove_page(0)
-        self.ptabs.set_show_tabs(0)
-        self.id2col = {}
-        self.model_used = {}
-        self.model2page = {}
-        self.alpha_page = {}
-        self.tab_list = []
         self.apply_filter()
         self.goto_active_person()
         self.modify_statusbar()

@@ -1924,7 +1924,14 @@ class GrampsDB(Persistent):
         self.sourceMap = {}
         self.placeMap = {}
         self.new()
+        self.added_files = []
 
+    def get_added_media_objects(self):
+        return self.added_files
+
+    def clear_added_media_objects(self):
+        self.added_files = []
+        
     def get_type(self):
         return 'GrampsDB'
 
@@ -2306,6 +2313,8 @@ class GrampsDB(Persistent):
         object.setId(index)
         self.objectMap[index] = object
         self.omapIndex = self.omapIndex + 1
+        self.added_files.append(object)
+        
         return index
 
     def getObject(self,id):
@@ -2354,6 +2363,7 @@ class GrampsDB(Persistent):
         object.setId(index)
         self.objectMap[index] = object
         self.omapIndex = self.omapIndex + 1
+        self.added_files.append(object)
         return index
 
     def findObjectNoMap(self,idVal):
