@@ -81,13 +81,14 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,person,photos,restrict,list,dir_name,doc):
+    def __init__(self,person,photos,restrict,link,list,dir_name,doc):
         self.person = person
         self.doc = doc
         self.list = list
         self.alive = probably_alive(person) or restrict
         self.photos = (photos == 2) or (photos == 1 and not self.alive)
         self.dir = dir_name
+        self.link = link
 
         tbl = TableStyle()
         tbl.set_width(100)
@@ -200,6 +201,13 @@ class IndividualPage:
         
         self.write_facts()
         self.write_families()
+
+        if self.link:
+            self.doc.start_paragraph("Normal")
+            self.doc.start_link("index.html")
+            self.doc.write_text(_("Return to the index of people"))
+            self.doc.end_link()
+            self.doc.end_paragraph()
 
     #--------------------------------------------------------------------
     #
@@ -586,6 +594,7 @@ def on_ok_clicked(obj):
     restrict = topDialog.get_widget("restrict").get_active()
     restrict_photos = topDialog.get_widget("restrict_photos").get_active()
     no_photos = topDialog.get_widget("nophotos").get_active()
+    include_link = topDialog.get_widget("include_link").get_active()
 
     if dir_name == None:
         dir_name = os.getcwd()
@@ -622,7 +631,8 @@ def on_ok_clicked(obj):
 
     for person in ind_list:
         doc = HtmlLinkDoc(styles,templ_name)
-        idoc = IndividualPage(person,photos,restrict,ind_list,dir_name,doc)
+        idoc = IndividualPage(person,photos,restrict,include_link, \
+                              ind_list,dir_name,doc)
         idoc.create_page()
         idoc.close()
         
