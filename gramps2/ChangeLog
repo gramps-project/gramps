@@ -1,3 +1,7 @@
+2003-07-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* gramps.sh.in: Don't override an existing PYTHONPATH environment
+	variable
+
 2003-07-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/BookReport.py: Make a list of options from a tuple.
 	* src/plugins/AncestorReport.py: Register options as a tuple.
