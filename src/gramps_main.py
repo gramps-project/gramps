@@ -1536,6 +1536,8 @@ class Gramps:
         else:
             self.people_view.redisplay_person_list(epo.person)
         self.family_view.load_family()
+        self.place_view.build_tree()
+        self.source_view.build_tree()
         self.update_display(0)
         self.goto_active_person()
         
