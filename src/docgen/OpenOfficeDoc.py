@@ -967,16 +967,21 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 #
 #--------------------------------------------------------------------------
 print_label = None
-if os.access ("/usr/bin/oowriter", os.X_OK):
-    print_label = _("Open in OpenOffice.org")
+try:
+    import grampslib
+    import Utils
+    
+    apptype = 'application/vnd.sun.xml.writer'
+    prog = grampslib.default_application_command(apptype)
+
+    if Utils.search_for(prog):
+        print_label = _("Open in OpenOffice.org")
+except:
+    pass
      
 Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,
                            ".sxw",print_label)
 Plugins.register_book_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")
-
-print_label = None
-if os.access ("/usr/bin/oodraw", os.X_OK):
-    print_label = _("Open in OpenOffice.org")
 
 Plugins.register_draw_doc(_("OpenOffice.org Draw"),OpenOfficeDoc,1,1,".sxd",
                           print_label);

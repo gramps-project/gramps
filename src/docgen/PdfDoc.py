@@ -175,7 +175,14 @@ class PdfDoc(BaseDoc.BaseDoc):
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
-#            raise Errors.ReportError(_("Could not create %s") % self.filename)
+
+        if self.print_req:
+            import grampslib
+
+            apptype = 'application/pdf'
+            prog = grampslib.default_application_command(apptype)
+            os.environ["FILE"] = self.filename
+            os.system ('%s "$FILE" &' % prog)
 
     def page_break(self):
         self.story.append(PageBreak())
@@ -565,12 +572,24 @@ def make_color(c):
 #
 #------------------------------------------------------------------------
 
+try:
+    import grampslib
+    import Utils
+
+    prog = grampslib.default_application_command("application/pdf")
+    desc = grampslib.default_application_name("application/pdf")
+    if Utils.search_for(prog):
+        print_label=_("Open in %s") % desc
+except:
+    print_label = None
+
 Plugins.register_draw_doc(
     _("PDF"),
     PdfDoc,
     1,
     1,
-    ".pdf"
+    ".pdf",
+    print_label
     )
 
 Plugins.register_text_doc(
@@ -579,7 +598,8 @@ Plugins.register_text_doc(
     table=1,
     paper=1,
     style=1,
-    ext=".pdf"
+    ext=".pdf",
+    print_report_label=print_label
     )
 
 Plugins.register_book_doc(

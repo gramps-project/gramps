@@ -31,6 +31,7 @@ Provides a BaseDoc based interface to the AbiWord document format.
 #-------------------------------------------------------------------------
 import base64
 import string
+import os
 
 import BaseDoc
 import Errors
@@ -175,6 +176,14 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.f.write('</abiword>\n')
         self.f.close()
 
+        if self.print_req:
+            import grampslib
+
+            apptype = 'application/x-abiword'
+            prog = grampslib.default_application_command(apptype)
+            os.environ["FILE"] = self.filename
+            os.system ('%s "$FILE" &' % prog)
+
     def add_photo(self,name,pos,x_cm,y_cm):
 
         try:
@@ -297,4 +306,20 @@ class AbiWordDoc(BaseDoc.BaseDoc):
     def end_cell(self):
         self.f.write('</cell>\n')
 
-Plugins.register_text_doc(_("AbiWord"),AbiWordDoc,1,1,1,".abw")
+#--------------------------------------------------------------------------
+#
+# Register plugins
+#
+#--------------------------------------------------------------------------
+
+try:
+    import grampslib
+    import Utils
+
+    prog = grampslib.default_application_command("application/x-abiword")
+    if Utils.search_for(prog):
+        print_label=_("Open in AbiWord")
+except:
+    print_label = None
+    
+Plugins.register_text_doc(_("AbiWord"),AbiWordDoc,1,1,1,".abw", print_label)
