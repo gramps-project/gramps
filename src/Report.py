@@ -211,7 +211,8 @@ class Report:
         creator = database.get_researcher().get_name()
         self.doc.creator(creator)
 
-        if options_class.get_output():
+        output = options_class.get_output()
+        if output:
             self.standalone = True
             self.doc.open(options_class.get_output())
             self.doc.init()
@@ -225,7 +226,7 @@ class Report:
     def write_report(self):
         pass
 
-    def finish_report(self):
+    def end_report(self):
         if self.standalone:
             self.doc.close()
             

@@ -120,8 +120,6 @@ load_plugins(datesDir)
 try:
     parser = _lang_to_parser[_lang]()
 except:
-    import traceback
-    traceback.print_stack()
     print "Date parser for",_lang,"not available, using default"
     parser = DateParser.DateParser()
 
