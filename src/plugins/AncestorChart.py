@@ -255,7 +255,7 @@ class AncestorChartDialog(DrawReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return _("Gramps - Ancestor Chart")
+        return "%s - %s - GRAMPS" % (_("Ancestor Chart"),_("Graphical Reports"))
 
     def get_header(self, name):
         """The header line at the top of the dialog contents."""

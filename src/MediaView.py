@@ -126,16 +126,27 @@ class MediaView:
         obj.thaw()
 
     def on_select_row(self,obj,row,b,c):
+        fexists = 1
+        
         mobj = obj.get_row_data(row)
         type = mobj.getMimeType()
         type_name = utils.get_mime_description(type)
         path = mobj.getPath()
-        self.preview.load_file(utils.thumb_path(self.db.getSavePath(),mobj))
+        thumb_path = utils.thumb_path(self.db.getSavePath(),mobj)
+        pexists = os.path.exists(path)
+        if pexists and os.path.exists(thumb_path):
+            self.preview.load_file(thumb_path)
+        else:
+            self.preview.load_file(utils.find_icon(type))
+            if not pexists:
+                fexists = 0
         
         self.mid.set_text(mobj.getId())
         self.mtype.set_text(type_name)
         self.mdesc.set_text(mobj.getDescription())
-        if path[0] == "/":
+        if len(path) == 0 or fexists == 0:
+            self.mpath.set_text(_("The file no longer exists"))
+        elif path[0] == "/":
             self.mpath.set_text(path)
         else:
             self.mpath.set_text("<local>")
@@ -175,8 +186,9 @@ class MediaView:
         path = self.db.getSavePath()
         id = self.obj.getId()
         name = RelImage.import_media_object(self.obj.getPath(),path,id)
-        self.obj.setPath(name)
-        self.obj.setLocal(1)
+        if name:
+            self.obj.setPath(name)
+            self.obj.setLocal(1)
 
     def popup_change_description(self, obj):
         ImageSelect.GlobalMediaProperties(self.db,self.obj,self.load_media)
@@ -304,8 +316,9 @@ class MediaView:
                     name = RelImage.import_media_object(name,
                                                         self.db.getSavePath(),
                                                         photo.getId())
-                    photo.setPath(name)
-                    photo.setLocal(1)
+                    if name:
+                        photo.setPath(name)
+                        photo.setLocal(1)
                 utils.modified()
                 if Config.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media)
@@ -332,8 +345,9 @@ class MediaView:
                     id = photo.getId()
                     path = self.db.getSavePath()
                     name = RelImage.import_media_object(tfile,path,id)
-                    photo.setLocal(1)
-                    photo.setPath(name)
+                    if name:
+                        photo.setLocal(1)
+                        photo.setPath(name)
                 except:
                     photo.setPath(tfile)
                     w.drag_finish(context, 1, 0, time)

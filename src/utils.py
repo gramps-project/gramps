@@ -420,8 +420,10 @@ def thumb_path(dir,mobj):
     if type[0:5] == "image":
         thumb = "%s/.thumb/%s.jpg" % (dir,mobj.getId()) 
         try:
-            RelImage.check_thumb(mobj.getPath(),thumb,const.thumbScale)
-            return thumb
+            if RelImage.check_thumb(mobj.getPath(),thumb,const.thumbScale):
+                return thumb
+            else:
+                return find_icon(type)
         except:
             return find_icon(type)
     else:

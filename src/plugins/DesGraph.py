@@ -310,7 +310,7 @@ class DescendantReportDialog(DrawReportDialog):
         DrawReportDialog.__init__(self,database,person)
 
     def get_title(self):
-        return _("Gramps - Descendant Graph")
+        return "%s - %s - GRAMPS" % (_("Descendant Graph"),_("Graphical Reports"))
 
     def get_header(self,name):
         return _("Descendant Graph for %s") % name

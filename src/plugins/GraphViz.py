@@ -126,7 +126,7 @@ class GraphVizDialog(ReportDialog):
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog"""
-        return _("Gramps - Generate Relationship Graphs")
+        return "%s - %s - GRAMPS" % (_("Relationship Graph"),_("Graphical Reports"))
 
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
@@ -283,7 +283,7 @@ from Plugins import register_report
 
 register_report(
     report,
-    _("Relationship graph"),
+    _("Relationship Graph"),
     status=(_("Beta")),
     category=_("Graphical Reports"),
     description=get_description()
