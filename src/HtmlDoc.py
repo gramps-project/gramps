@@ -56,8 +56,8 @@ _bottom = [
 
 class HtmlDoc(TextDoc):
 
-    def __init__(self,template):
-        TextDoc.__init__(self,PaperStyle("",0,0),None)
+    def __init__(self,styles,template):
+        TextDoc.__init__(self,styles,PaperStyle("",0,0),None)
         self.f = None
         self.filename = None
         self.template = template

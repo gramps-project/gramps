@@ -180,6 +180,7 @@
       <widget>
 	<class>GtkFrame</class>
 	<name>frame1</name>
+	<border_width>5</border_width>
 	<label>Format</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -214,7 +215,64 @@
 
       <widget>
 	<class>GtkFrame</class>
+	<name>frame3</name>
+	<border_width>5</border_width>
+	<label>Styles</label>
+	<label_xalign>0</label_xalign>
+	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
+	<child>
+	  <padding>0</padding>
+	  <expand>True</expand>
+	  <fill>True</fill>
+	</child>
+
+	<widget>
+	  <class>GtkHBox</class>
+	  <name>hbox3</name>
+	  <homogeneous>False</homogeneous>
+	  <spacing>0</spacing>
+
+	  <widget>
+	    <class>GtkOptionMenu</class>
+	    <name>style_menu</name>
+	    <border_width>10</border_width>
+	    <can_focus>True</can_focus>
+	    <items>default
+</items>
+	    <initial_choice>0</initial_choice>
+	    <child>
+	      <padding>0</padding>
+	      <expand>True</expand>
+	      <fill>True</fill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkButton</class>
+	    <name>button17</name>
+	    <border_width>10</border_width>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_style_edit_clicked</handler>
+	      <object>dialog1</object>
+	      <last_modification_time>Tue, 05 Jun 2001 14:39:29 GMT</last_modification_time>
+	    </signal>
+	    <label>Style Editor</label>
+	    <relief>GTK_RELIEF_NORMAL</relief>
+	    <child>
+	      <padding>5</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+	  </widget>
+	</widget>
+      </widget>
+
+      <widget>
+	<class>GtkFrame</class>
 	<name>frame2</name>
+	<border_width>5</border_width>
 	<label>Options</label>
 	<label_xalign>0</label_xalign>
 	<shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
@@ -393,7 +451,6 @@
 	      <widget>
 		<class>GnomeFileEntry</class>
 		<name>htmltemplate</name>
-		<sensitive>False</sensitive>
 		<history_id>HtmlTemplate</history_id>
 		<max_saved>10</max_saved>
 		<title>Choose the HTML template</title>

@@ -33,6 +33,7 @@ import const
 import utils
 import const
 from TextDoc import *
+from StyleEditor import *
 import FindDoc
 
 from gtk import *
@@ -63,23 +64,6 @@ class DescendantReport:
     #
     #--------------------------------------------------------------------
     def setup(self):
-
-        f = FontStyle()
-        f.set_size(14)
-        f.set_type_face(FONT_SANS_SERIF)
-        f.set_bold(1)
-        p = ParagraphStyle()
-        p.set_font(f)
-        
-        self.doc.add_style("Title",p)
-
-        f = FontStyle()
-        for i in range(1,10):
-            p = ParagraphStyle()
-            p.set_font(f)
-            p.set_left_margin(float(i-1))
-            self.doc.add_style("Level" + str(i),p)
-            
         self.doc.open(self.name)
 
     #--------------------------------------------------------------------
@@ -144,7 +128,7 @@ class DesReportWindow:
         self.top = GladeXML(glade_file,"dialog1")
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
-            "on_html_toggled": on_html_toggled,
+            "on_style_edit_clicked" : on_style_edit_clicked,
             "on_save_clicked": on_save_clicked
             })
 
@@ -156,9 +140,46 @@ class DesReportWindow:
         
         mytop = self.top.get_widget("dialog1")
 
+        f = FontStyle()
+        f.set_size(14)
+        f.set_type_face(FONT_SANS_SERIF)
+        f.set_bold(1)
+        p = ParagraphStyle()
+        p.set_font(f)
+        
+        sheet = StyleSheet()
+        sheet.add_style("Title",p)
+
+        f = FontStyle()
+        for i in range(1,10):
+            p = ParagraphStyle()
+            p.set_font(f)
+            p.set_left_margin(float(i-1))
+            sheet.add_style("Level" + str(i),p)
+
+        self.style_sheet_list = StyleSheetList("descend_report",sheet)
+        build_menu(self)
+
         mytop.set_data("o",self)
         mytop.set_data("d",db)
         mytop.show()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def build_menu(object):
+
+    myMenu = GtkMenu()
+
+    for style in object.style_sheet_list.get_style_names():
+        menuitem = GtkMenuItem(style)
+        menuitem.set_data("d",object.style_sheet_list.get_style_sheet(style))
+        menuitem.show()
+        myMenu.append(menuitem)
+
+    object.top.get_widget("style_menu").set_menu(myMenu)
         
 #------------------------------------------------------------------------
 #
@@ -180,6 +201,15 @@ def option_switch(obj):
 #------------------------------------------------------------------------
 def report(database,person):
     report = DesReportWindow(person,database)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def on_style_edit_clicked(obj):
+    myobj = obj.get_data("o")
+    StyleListDisplay(myobj.style_sheet_list,build_menu,myobj)
 
 #-------------------------------------------------------------------------
 #
@@ -205,7 +235,8 @@ def on_save_clicked(obj):
     item = myobj.top.get_widget("format").get_menu().get_active()
     format = item.get_data("name")
     
-    doc = FindDoc.make_text_doc(format,paper,orien,template)
+    styles = myobj.top.get_widget("style_menu").get_menu().get_active().get_data("d")
+    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
 
     report = DescendantReport(file,myobj.person,db,doc)
     report.setup()
@@ -213,22 +244,6 @@ def on_save_clicked(obj):
     report.end()
 
     utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_html_toggled(obj):
-    myobj = obj.get_data("o")
-    if myobj.top.get_widget("html").get_active():
-        myobj.top.get_widget("htmltemplate").set_sensitive(1)
-        myobj.top.get_widget("papersize").set_sensitive(0)
-        myobj.top.get_widget("orientation").set_sensitive(0)
-    else:
-        myobj.top.get_widget("htmltemplate").set_sensitive(0)
-        myobj.top.get_widget("papersize").set_sensitive(1)
-        myobj.top.get_widget("orientation").set_sensitive(1)
 
 #------------------------------------------------------------------------
 #
@@ -238,6 +253,11 @@ def on_html_toggled(obj):
 def get_description():
     return _("Generates a list of descendants of the active person")
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 def get_name():
     return _("Generate files/Descendant Report")
 

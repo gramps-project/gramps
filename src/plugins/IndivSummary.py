@@ -32,6 +32,7 @@ import intl
 _ = intl.gettext
 
 from TextDoc import *
+from StyleEditor import *
 import FindDoc
 
 from gtk import *
@@ -45,6 +46,8 @@ from libglade import *
 #------------------------------------------------------------------------
 active_person = None
 db = None
+styles = StyleSheet()
+style_sheet_list = None
 
 #------------------------------------------------------------------------
 #
@@ -74,38 +77,6 @@ class IndivSummary:
     #
     #--------------------------------------------------------------------
     def setup(self):
-        font = FontStyle()
-        font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(16)
-        p = ParagraphStyle()
-        p.set_alignment(PARA_ALIGN_CENTER)
-        p.set_font(font)
-        self.d.add_style("Title",p)
-
-        font = FontStyle()
-        font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(12)
-        font.set_italic(1)
-        p = ParagraphStyle()
-        p.set_font(font)
-        self.d.add_style("TableTitle",p)
-
-        font = FontStyle()
-        font.set_bold(1)
-        font.set_type_face(FONT_SANS_SERIF)
-        font.set_size(12)
-        p = ParagraphStyle()
-        p.set_font(font)
-        self.d.add_style("Spouse",p)
-
-        font = FontStyle()
-        font.set_size(12)
-        p = ParagraphStyle()
-        p.set_font(font)
-        self.d.add_style("Normal",p)
-
         tbl = TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
@@ -361,6 +332,7 @@ def report(database,person):
     global topDialog
     global glade_file
     global db
+    global style_sheet_list
     
     active_person = person
     db = database
@@ -376,12 +348,72 @@ def report(database,person):
 
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
-    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),0,option_switch)
+    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),1,option_switch)
+
+    font = FontStyle()
+    font.set_bold(1)
+    font.set_type_face(FONT_SANS_SERIF)
+    font.set_size(16)
+    p = ParagraphStyle()
+    p.set_alignment(PARA_ALIGN_CENTER)
+    p.set_font(font)
+    styles.add_style("Title",p)
+    
+    font = FontStyle()
+    font.set_bold(1)
+    font.set_type_face(FONT_SANS_SERIF)
+    font.set_size(12)
+    font.set_italic(1)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("TableTitle",p)
+    
+    font = FontStyle()
+    font.set_bold(1)
+    font.set_type_face(FONT_SANS_SERIF)
+    font.set_size(12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("Spouse",p)
+
+    font = FontStyle()
+    font.set_size(12)
+    p = ParagraphStyle()
+    p.set_font(font)
+    styles.add_style("Normal",p)
+
+    style_sheet_list = StyleSheetList("individual_summary",styles)
+    build_menu(None)
 
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
+        "on_style_edit_clicked" : on_style_edit_clicked,
         "on_save_clicked" : on_save_clicked
         })
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def build_menu(object):
+    menu = topDialog.get_widget("style_menu")
+
+    myMenu = GtkMenu()
+    for style in style_sheet_list.get_style_names():
+        menuitem = GtkMenuItem(style)
+        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
+        menuitem.show()
+        myMenu.append(menuitem)
+    menu.set_menu(myMenu)
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+def on_style_edit_clicked(obj):
+    StyleListDisplay(style_sheet_list,build_menu,None)
 
 #------------------------------------------------------------------------
 #
@@ -418,7 +450,9 @@ def on_save_clicked(obj):
     item = topDialog.get_widget("format").get_menu().get_active()
     format = item.get_data("name")
     
-    doc = FindDoc.make_text_doc(format,paper,orien,template)
+    styles = topDialog.get_widget("style_menu").get_menu().get_active().get_data("d")
+    
+    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
 
     MyReport = IndivSummary(db,active_person,outputName,doc)
 

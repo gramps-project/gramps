@@ -18,6 +18,23 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+import string
+import os
+import xml.sax
+import xml.sax.saxutils
+
+#-------------------------------------------------------------------------
+#
+# Try to abstract SAX1 from SAX2
+#
+#-------------------------------------------------------------------------
+try:
+    import xml.sax.saxexts
+    sax = 1
+except:
+    sax = 2
+
+
 FONT_SANS_SERIF = 0
 FONT_SERIF = 1
 
@@ -28,6 +45,12 @@ PARA_ALIGN_CENTER = 0
 PARA_ALIGN_LEFT   = 1 
 PARA_ALIGN_RIGHT  = 2
 PARA_ALIGN_JUSTIFY= 3
+
+def cnv2color(text):
+    c0 = string.atoi(text[1:3],16)
+    c1 = string.atoi(text[3:5],16)
+    c2 = string.atoi(text[5:7],16)
+    return (c0,c1,c2)
 
 #------------------------------------------------------------------------
 #
@@ -78,6 +101,20 @@ class FontStyle:
             self.color  = (0,0,0)
             self.under  = 0
             
+    def set(self,face=None,size=None,italic=None,bold=None,underline=None,color=None):
+        if face != None:
+            self.set_type_face(face)
+        if size != None:
+            self.set_size(size)
+        if italic != None:
+            self.set_italic(italic)
+        if bold != None:
+            self.set_bold(bold)
+        if underline != None:
+            self.set_underline(underline)
+        if color != None:
+            self.set_color(color)
+
     def set_italic(self,val):
         "0 disables italics, 1 enables italics"
         self.italic = val
@@ -245,6 +282,30 @@ class ParagraphStyle:
             self.pad = 0
             self.bgcolor = (255,255,255)
 
+    def set(self,rmargin=None,lmargin=None,first_indent=None,align=None,\
+            tborder=None,bborder=None,rborder=None,lborder=None,pad=None,
+            bgcolor=None):
+        if pad != None:
+            self.set_padding(pad)
+        if tborder != None:
+            self.set_top_border(tborder)
+        if bborder != None:
+            self.set_bottom_border(bborder)
+        if rborder != None:
+            self.set_right_border(rborder)
+        if lborder != None:
+            self.set_left_border(lborder)
+        if bgcolor != None:
+            self.set_background_color(bgcolor)
+        if align != None:
+            self.set_alignment(align)
+        if rmargin != None:
+            self.set_right_margin(rmargin)
+        if lmargin != None:
+            self.set_left_margin(lmargin)
+        if first_indent != None:
+            self.set_first_indent(first_indent)
+            
     def set_header_level(self,level):
         self.level = level
 
@@ -255,7 +316,7 @@ class ParagraphStyle:
         self.font = FontStyle(font)
 
     def get_font(self):
-        return FontStyle(self.font)
+        return self.font
 
     def set_padding(self,val):
         self.pad = val
@@ -328,8 +389,169 @@ class ParagraphStyle:
 # 
 #
 #------------------------------------------------------------------------
+class StyleSheetList:
+    def __init__(self,file,default):
+        self.map = { "default" : default }
+        self.file = os.path.expanduser("~/.gramps/" + file)
+        self.parse()
+
+    def get_style_sheet(self,name):
+        return self.map[name]
+
+    def get_style_names(self):
+        return self.map.keys()
+
+    def set_style_sheet(self,name,style):
+        if name != "default":
+            self.map[name] = style
+
+    def save(self):
+        f = open(self.file,"w")
+        f.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n")
+        f.write('<stylelist>\n')
+        for name in self.map.keys():
+            if name == "default":
+                continue
+            sheet = self.map[name]
+            f.write('<sheet name="%s">\n' % name)
+            for p_name in sheet.get_names():
+                p = sheet.get_style(p_name)
+                f.write('<style name="%s">\n' % p_name)
+                font = p.get_font()
+                f.write('<font face="%d" ' % font.get_type_face())
+                f.write('size="%d" ' % font.get_size())
+                f.write('italic="%d" ' % font.get_italic())
+                f.write('bold="%d" ' % font.get_bold())
+                f.write('underline="%d" ' % font.get_bold())
+                f.write('color="#%02x%02x%02x"/>\n' % font.get_color())
+                f.write('<para rmargin="%.3f" ' % p.get_right_margin())
+                f.write('lmargin="%.3f" ' % p.get_left_margin())
+                f.write('first="%.3f" ' % p.get_first_indent())
+                f.write('pad="%.3f" ' % p.get_padding())
+                f.write('bgcolor="#%02x%02x%02x" ' % p.get_background_color())
+                f.write('align="%d" ' % p.get_alignment())
+                f.write('tborder="%d" ' % p.get_top_border())
+                f.write('lborder="%d" ' % p.get_left_border())
+                f.write('rborder="%d" ' % p.get_right_border())
+                f.write('bborder="%d"/>\n' % p.get_bottom_border())
+                f.write('</style>\n')
+            f.write('</sheet>\n')
+        f.write('</stylelist>\n')
+        f.close()
+            
+
+    def parse(self):
+        try:
+            f = open(self.file,"r")
+        except:
+            return
+
+        if sax == 1:
+            parser = xml.sax.saxexts.make_parser()
+            parser.setDocumentHandler(SheetParser(self))
+            parser.setErrorHandler(xml.sax.saxutils.ErrorRaiser())
+            parser.parseFile(f)
+        else:
+            parser = xml.sax.make_parser()
+            parser.setContentHandler(SheetParser(self))
+            parser.parse(f)
+        
+        f.close()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class StyleSheet:
+    def __init__(self,obj=None):
+        self.style_list = {}
+        if obj != None:
+            for style_name in obj.style_list.keys():
+                style = obj.style_list[style_name]
+                self.style_list[style_name] = ParagraphStyle(style)
+
+    def clear(self):
+        self.style_list = {}
+
+    def add_style(self,name,style):
+        self.style_list[name] = ParagraphStyle(style)
+
+    def get_names(self):
+        return self.style_list.keys()
+
+    def get_styles(self):
+        return self.style_list
+
+    def get_style(self,name):
+        return self.style_list[name]
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+class SheetParser(xml.sax.handler.ContentHandler):
+    def __init__(self,sheetlist):
+        xml.sax.handler.ContentHandler.__init__(self)
+        self.sheetlist = sheetlist
+        self.f = None
+        self.p = None
+        self.s = None
+        self.sname = None
+        self.pname = None
+        
+    def setDocumentLocator(self,locator):
+        self.locator = locator
+
+    def startElement(self,tag,attrs):
+        if tag == "sheet":
+            self.s = StyleSheet()
+            self.sname = attrs['name']
+        elif tag == "font":
+            self.f = FontStyle()
+            self.f.set_type_face(int(attrs['face']))
+            self.f.set_size(int(attrs['size']))
+            self.f.set_italic(int(attrs['italic']))
+            self.f.set_bold(int(attrs['bold']))
+            self.f.set_underline(int(attrs['underline']))
+            self.f.set_color(cnv2color(attrs['color']))
+        elif tag == "para":
+            self.p.set_right_margin(float(attrs['rmargin']))
+            self.p.set_left_margin(float(attrs['lmargin']))
+            self.p.set_first_indent(float(attrs['first']))
+            self.p.set_padding(float(attrs['pad']))
+            self.p.set_alignment(int(attrs['align']))
+            self.p.set_right_border(int(attrs['rborder']))
+            self.p.set_left_border(int(attrs['lborder']))
+            self.p.set_top_border(int(attrs['tborder']))
+            self.p.set_bottom_border(int(attrs['bborder']))
+            self.p.set_background_color(cnv2color(attrs['bgcolor']))
+        elif tag == "style":
+            self.p = ParagraphStyle()
+            self.pname = attrs['name']
+
+    def endElement(self,tag):
+        if tag == "style":
+            self.p.set_font(self.f)
+            self.s.add_style(self.pname,self.p)
+        elif tag == "sheet":
+            self.sheetlist.set_style_sheet(self.sname,self.s)
+            
+    if sax == 1:
+        def characters(self, data, offset, length):
+            pass
+    else:
+        def characters(self, data):
+            pass
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 class TextDoc:
-    def __init__(self,type,orientation=PAPER_PORTRAIT):
+    def __init__(self,styles,type,orientation=PAPER_PORTRAIT):
         self.orientation = orientation
         if orientation == PAPER_PORTRAIT:
             self.width = type.get_width()
@@ -344,7 +566,7 @@ class TextDoc:
         self.rmargin = 2.54
                 
         self.font = FontStyle()
-        self.style_list = {}
+        self.style_list = styles.get_styles()
 	self.table_styles = {}
         self.cell_styles = {}
         self.name = ""
@@ -361,9 +583,6 @@ class TextDoc:
 
     def creator(self,name):
         self.name = name
-
-    def add_style(self,name,style):
-        self.style_list[name] = ParagraphStyle(style)
 
     def add_table_style(self,name,style):
         self.table_styles[name] = TableStyle(style)
@@ -415,3 +634,4 @@ class TextDoc:
 
     def write_text(self,text):
         pass
+

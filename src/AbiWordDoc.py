@@ -35,8 +35,8 @@ except:
 
 class AbiWordDoc(TextDoc):
 
-    def __init__(self,type,orientation):
-        TextDoc.__init__(self,type,orientation)
+    def __init__(self,styles,type,orientation):
+        TextDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.level = 0
         self.new_page = 0
