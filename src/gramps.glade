@@ -725,10 +725,9 @@
 
 	  <child>
 	    <widget class="GtkToolbar" id="toolbar1">
-	      <property name="border_width">1</property>
 	      <property name="visible">True</property>
 	      <property name="orientation">GTK_ORIENTATION_HORIZONTAL</property>
-	      <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
+	      <property name="toolbar_style">GTK_TOOLBAR_BOTH_HORIZ</property>
 	      <property name="tooltips">True</property>
 
 	      <child>
