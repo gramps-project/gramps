@@ -505,6 +505,7 @@ class Gramps(GrampsDBCallback.GrampsDBCallback):
         self.emit('database-changed',(self.db,))
 
     def exit_and_undo(self,*args):
+        self.db.disable_signals()
         self.db.abort_changes()
         self.db.set_people_view_maps((None,None,None,None))
         gtk.main_quit()

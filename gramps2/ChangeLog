@@ -1,5 +1,11 @@
 2005-04-04  Don Allingham  <don@gramps-project.org>
 	* src/MedaiView.py: pass handle instead of GRAMPS ID during drag-n-drop
+	* src/GrampsBSDDB.py: remove transaction.batch in favor of signal suppression
+	* src/GrampsDbBase.py: remove transaction.batch in favor of signal suppression
+	* src/GrampsInMemDB.py: remove transaction.batch in favor of signal suppression
+	* src/ReadGedcom.py: fix relation typo, enable/disable signals around import 
+	* src/ReadXML.py: enable/disable signals around import 
+	* src/gramps_main.py: disable signals before undo and exit
 
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDBCallback.py: Don't check callbacks if the dict is empty.
