@@ -24,13 +24,9 @@ try:
         gramps_main.main(None)
 except:
 
+    traceback.print_exc()
     fname = os.path.expanduser("~/gramps.err")
     errfile = open(fname,"w")
     traceback.print_exc(file=errfile)
     errfile.close()
 
-    import gnome.ui
-
-    msg1 = _("gramps has encountered an internal error.")
-    msg2 = _("The error log has been saved to %s.") % fname
-    gnome.ui.GnomeWarningDialog("%s\n%s" % (msg1,msg2))
