@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
 "POT-Creation-Date: Wed May  1 16:53:26 2002\n"
-"PO-Revision-Date: 2002-05-03 23:38+02:00\n"
+"PO-Revision-Date: 2002-05-06 20:18+02:00\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3952,8 +3952,7 @@ msgstr ""
 
 #: plugins/RelCalc.py:99
 msgid "%(p1)s is the %(level)dth cousin of %(p2)s."
-msgstr ""
-"%(p1)s ist ein(e) entfernte(r) Cousin(e) von %(p2)s (USA: %2$d cousin)."
+msgstr "%(p1)s ist ein(e) entfernte(r) Cousin(e) von %(p2)s (USA: %(level)d cousin)."
 
 #: plugins/RelCalc.py:102
 msgid "%(p1)s is the %(level)dth cousin once removed of %(p2)s."
@@ -4095,7 +4094,7 @@ msgstr "%(p1)s ist eine Urururgroﬂtante von %(p2)s."
 
 #: plugins/RelCalc.py:211
 msgid "%(p1)s is the %(level)dth great grandaunt of %(p2)s."
-msgstr "%(p1)s ist eine Groﬂtante %(level). Grades von %(p2)s."
+msgstr "%(p1)s ist eine Groﬂtante %(level)d. Grades von %(p2)s."
 
 #: plugins/RelCalc.py:216
 msgid "%(p1)s is the brother of %(p2)s."
