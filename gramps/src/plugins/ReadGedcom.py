@@ -135,7 +135,16 @@ def importData(database, filename, cb=None):
         gnome.ui.GnomeErrorDialog(_("%s could not be opened\n") % filename)
         return
 
-    close = g.parse_gedcom_file()
+    try:
+        close = g.parse_gedcom_file()
+    except GedcomParser.BadFile, msg:
+        Utils.destroy_passed_object(statusWindow)
+        gnome.ui.GnomeErrorDialog(_("Failure reading %s: %s\n"
+                                    "First line should have been '0 HEAD'\n"
+                                    "but was '%s'") %
+                                  (filename,GedcomParser.BadFile,msg))
+        return
+    
     g.resolve_refns()
 
     statusTop.get_widget("close").set_sensitive(1)

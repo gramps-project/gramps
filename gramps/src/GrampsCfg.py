@@ -359,11 +359,17 @@ def get_int(key,defval=0):
     else:
         return defval
 
+def set_int(key,value):
+    gnome.config.set_int(key,value)
+
 def set_bool(key,value):
     gnome.config.set_bool(key,value)
 
 def set_string(key,value):
     gnome.config.set_string(key,value)
+
+def sync():
+    gnome.config.sync()
     
 #-------------------------------------------------------------------------
 #
