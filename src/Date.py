@@ -141,6 +141,15 @@ class Date:
             self.stop.calendar = self.calendar
         return self.stop
 
+    def getLowYear(self):
+        return self.start.getYear()
+        
+    def getHighYear(self):
+        if self.stop == None:
+            return self.start.getYear()
+        else:
+            return self.stop.getYear()
+
     def getYear(self):
         return self.start.year
 
