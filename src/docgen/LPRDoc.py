@@ -680,7 +680,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.row_data.append(self.cell_data)
         self.brand_new_page = 0
 
-    def add_photo(self,name,pos,x,y):
+    def add_media_object(self,name,pos,x,y):
         """Add photo to report."""
 
         photo = GnomePrintPhoto(name,pos,x,y)
