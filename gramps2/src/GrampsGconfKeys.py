@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -89,10 +89,10 @@ def save_statusbar(val):
     set_int("/apps/gramps/interface/statusbar",val,(0,1,2))
 
 def get_toolbar():
-    return get_int("/apps/gramps/interface/toolbar",(0,1,2,3,5))
+    return get_int("/apps/gramps/interface/toolbar",(-1,0,1,2,3))
 
 def save_toolbar(val):
-    set_int("/apps/gramps/interface/toolbar",val,(0,1,2,3,5))
+    set_int("/apps/gramps/interface/toolbar",val,(-1,0,1,2,3))
 
 def get_toolbar_on():
     return get_bool("/apps/gramps/interface/toolbar-on")

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -80,19 +80,6 @@ panellist = [
 
 
 # Not exactly gconf keys, but the functions directly dependent on them
-
-def get_toolbar_style():
-    saved_toolbar = GrampsKeys.get_toolbar()
-    if saved_toolbar in range(4):
-        return saved_toolbar
-    else:
-        try:
-            gnome_toolbar_str = GrampsKeys.client.get_string("/desktop/gnome/interface/toolbar_style")
-            gnome_toolbar = eval("gtk.TOOLBAR_%s" % 
-                        gnome_toolbar_str.replace('-','_').upper())
-        except:
-            gnome_toolbar = 2
-        return gnome_toolbar
 
 def set_calendar_date_format():
     format_list = DateHandler.get_date_formats()
@@ -234,9 +221,9 @@ class GrampsPreferences:
                 lambda obj: GrampsKeys.save_statusbar(2-obj.get_active()))
 
         toolbarmenu = self.top.get_widget("tooloptmenu")
-        toolbarmenu.set_active(GrampsKeys.get_toolbar()-1)
+        toolbarmenu.set_active(GrampsKeys.get_toolbar()+1)
         toolbarmenu.connect('changed',
-                lambda obj: GrampsKeys.save_toolbar(obj.get_active()+1))
+                lambda obj: GrampsKeys.save_toolbar(obj.get_active()-1))
 
         pvbutton = self.top.get_widget('pvbutton')
         fvbutton = self.top.get_widget('fvbutton')
