@@ -428,13 +428,13 @@ def find_icon(mtype):
         return const.icon
 
 def get_mime_type(file):
-    type = gnome.vfs.get_mime_type(file)
+    type = grampslib.gnome_vfs_mime_type_from_name(file)
     if type:
         return type
     return "unknown"
 
 def get_mime_description(type):
-    value = gnome.vfs.mime_get_description(type)
+    value = grampslib.gnome_vfs_mime_get_description(type)
     if value:
         return value
     return ""
@@ -455,7 +455,7 @@ def thumb_path(dir,mobj):
     type = mobj.get_mime_type()
 
     if type[0:5] == "image":
-        thumb = "%s/.thumb/%s.jpg" % (dir,mobj.get_id())
+        thumb = "%s/.thumb/%s.jpg" % (os.path.dirname(dir),mobj.get_id())
         try:
             if RelImage.check_thumb(mobj.get_path(),thumb,const.thumbScale):
                 return thumb

@@ -944,6 +944,7 @@ class GlobalMediaProperties:
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             "on_help_clicked" : self.on_help_clicked,
             })
+
         self.redraw_attr_list()
         self.display_refs()
 
@@ -1012,7 +1013,8 @@ class GlobalMediaProperties:
                 if o.get_reference_id() == self.object.get_id():
                     self.refmodel.add([_("Person"),p.get_id(),GrampsCfg.nameof(p)])
                     any = 1
-        for p in self.db.get_family_id_map().values():
+        for key in self.db.get_family_keys():
+            p = self.db.find_family_from_id(key)
             for o in p.get_media_list():
                 if o.get_reference_get_id() == self.object.get_id():
                     self.refmodel.add([_("Family"),p.get_id(),Utils.family_name(p,self.db)])

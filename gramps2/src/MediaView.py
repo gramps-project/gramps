@@ -281,7 +281,7 @@ class MediaView:
         list_store, iter = self.selection.get_selected()
         if iter:
             id = list_store.get_value(iter,1)
-            object = self.db.get_object(id)
+            object = self.db.find_object_from_id(id)
             ImageSelect.GlobalMediaProperties(self.db,object,self.load_media)
 
     def on_delete_clicked(self,obj):
