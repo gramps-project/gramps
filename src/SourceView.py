@@ -42,8 +42,6 @@ import const
 
 from QuestionDialog import QuestionDialog
 
-_HANDLE_COL = 7
-
 #-------------------------------------------------------------------------
 #
 # internationalization
@@ -60,6 +58,8 @@ column_names = [
     _('Publication Information'),
     _('Last Changed'),
     ]
+
+_HANDLE_COL = len(column_names)
 
 #-------------------------------------------------------------------------
 #
@@ -94,7 +94,6 @@ class SourceView:
         self.list.append_column(column)
         self.columns = [column]
 
-        index = 1
         for pair in self.parent.db.get_source_column_order():
             if not pair[0]:
                 continue
@@ -104,7 +103,6 @@ class SourceView:
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
-            index += 1
 
     def on_click(self,column):
         self.click_col = column
@@ -126,18 +124,18 @@ class SourceView:
             source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source,self.parent.db,self.parent,
                                   self.topWindow,self.update_display)
-            return 1
+            return True
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
-            return 1
-        return 0
+            return True
+        return False
 
     def key_press(self,obj,event):
     	if event.keyval == gtk.gdk.keyval_from_name("Return") \
     	    	    	    	    	and not event.state:
     	    self.on_edit_clicked(obj)
-    	    return 1
-    	return 0
+    	    return True
+    	return False
 
     def build_context_menu(self,event):
         """Builds the menu with editing operations on the source's list"""
@@ -168,6 +166,14 @@ class SourceView:
         EditSource.EditSource(RelLib.Source(),self.parent.db,self.parent,
                               self.topWindow,self.new_after_edit)
 
+    def delete_source(self,source):
+        trans = self.parent.db.transaction_begin()
+        source_handle = source.get_handle()
+        self.parent.db.remove_source(source_handle,trans)
+        title_msg = _("Delete Source (%s)") % source.get_title()
+        self.parent.db.transaction_commit(trans,title_msg)
+        self.model.delete_row_by_handle(source_handle)
+
     def on_delete_clicked(self,obj):
         store,node = self.selection.get_selected()
         if not node:
@@ -177,7 +183,8 @@ class SourceView:
         source = self.parent.db.get_source_from_handle(handle)
 
         if self.is_used(source):
-            ans = EditSource.DelSrcQuery(source,self.parent.db,self.build_tree)
+            ans = EditSource.DelSrcQuery(source,self.parent.db,
+                                         self.model.delete_row_by_handle)
 
             QuestionDialog(_('Delete %s?') % source.get_title(),
                            _('This source is currently being used. Deleting it '
@@ -186,18 +193,14 @@ class SourceView:
                            _('_Delete Source'),
                            ans.query_response,self.topWindow)
         else:
-            trans = self.parent.db.transaction_begin()
-            self.parent.db.remove_source(source.get_handle(),trans)
-            n = source.get_title()
-            self.parent.db.transaction_commit(trans,_("Delete Source (%s)") % n)
-            self.build_tree()
+            self.delete_source(source)
 
     def is_used(self,source):
         for key in self.parent.db.get_place_handles():
             p = self.parent.db.get_place_from_handle(key)
             for sref in p.get_source_references():
                 if sref.get_base_handle() == source.get_handle():
-                    return 1
+                    return True
         for key in self.parent.db.get_person_handles(sort_handles=False):
             p = self.parent.db.get_person_from_handle(key)
             for v_id in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
@@ -205,24 +208,24 @@ class SourceView:
                 if v:
                     for sref in v.get_source_references():
                         if sref.get_base_handle() == source.get_handle():
-                            return 1
+                            return True
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == source.get_handle():
-                        return 1
+                        return True
             for v in p.get_alternate_names() + [p.get_primary_name()]:
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == source.get_handle():
-                        return 1
+                        return True
             for v in p.get_address_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == source.get_handle():
-                        return 1
+                        return True
         for p_id in self.parent.db.get_media_object_handles():
             p = self.parent.db.get_object_from_handle(p_id)
             for sref in p.get_source_references():
                 if sref.get_base_handle() == source.get_handle():
-                    return 1
+                    return True
         for p_id in self.parent.db.get_family_handles():
             p = self.parent.db.get_family_from_handle(p_id)
             for v_id in p.get_event_list():
@@ -230,25 +233,23 @@ class SourceView:
                 if v:
                     for sref in v.get_source_references():
                         if sref.get_base_handle() == source.get_handle():
-                            return 1
+                            return True
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == source.get_handle():
-                        return 1
-        return 0
+                        return True
+        return False
 
     def on_edit_clicked(self,obj):
         list_store, node = self.selection.get_selected()
         if node:
             handle = list_store.get_value(node,_HANDLE_COL)
-            print handle
             source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source, self.parent.db, self.parent,
                                   self.topWindow, self.update_display)
 
     def new_after_edit(self,source):
-        self.parent.db.add_source(source)
         self.build_tree()
 
-    def update_display(self,place):
-        self.build_tree()
+    def update_display(self,source):
+        self.model.update_row_by_handle(source.get_handle())

@@ -83,14 +83,7 @@ class PeopleModel(gtk.GenericTreeModel):
         else:
             self.rebuild_data()
 
-#        self.connect('row-deleted',self.on_row_deleted)
-#        self.connect('row-inserted',self.on_row_inserted)
-    
     def rebuild_data(self):
-
-        import traceback
-
-        print traceback.print_stack()
 
         self.top_path2iter = []
         self.iter2path = {}

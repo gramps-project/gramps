@@ -173,10 +173,18 @@ class PlaceView:
         EditPlace.EditPlace(self.parent,RelLib.Place(),self.new_place_after_edit)
 
     def new_place_after_edit(self,place):
-        self.parent.db.add_place(place)
+        self.build_tree()
 
     def update_display(self,place):
-        self.build_tree()
+        self.model.update_row_by_handle(place.get_handle())
+
+    def delete_place(self,place):
+        trans = self.parent.db.transaction_begin()
+        place_handle = place.get_handle()
+        self.parent.db.remove_place(place_handle,trans)
+        title_msg = _("Delete Place (%s)") % place.get_title()
+        self.parent.db.transaction_commit(trans,title_msg)
+        self.model.delete_row_by_handle(place_handle)
 
     def on_delete_clicked(self,obj):
         mlist = []
@@ -184,7 +192,7 @@ class PlaceView:
         
         trans = self.parent.db.transaction_begin()
         
-        for place in mlist:
+        for place_handle in mlist:
             used = 0
             for key in self.parent.db.get_person_handles(sort_handles=False):
                 p = self.parent.db.get_person_from_handle(key)
@@ -200,24 +208,27 @@ class PlaceView:
                 if p.get_lds_sealing():
                     event_list.append(p.get_lds_sealing())
                 for event in event_list:
-                    if event.get_place_handle() == place.get_handle():
-                        used = 1
+                    if event:
+                        if event.get_place_handle() == place_handle:
+                            used = 1
 
             for fid in self.parent.db.get_family_handles():
                 f = self.parent.db.get_family_from_handle(fid)
                 event_list = []
-                for e in f.get_event_list():
-                    event = self.parent.db.get_event_from_handle(e)
+                for event_id in f.get_event_list():
+                    event = self.parent.db.get_event_from_handle(event_id)
                     if event:
                         event_list.append(event)
                 if f.get_lds_sealing():
                     event_list.append(f.get_lds_sealing())
                 for event in event_list:
-                    if event.get_place_handle() == place.get_handle():
+                    if event.get_place_handle() == place_handle:
                         used = 1
 
+            place = self.parent.db.get_place_from_handle(place_handle)
             if used == 1:
-                ans = EditPlace.DeletePlaceQuery(place,self.parent.db,self.update_display)
+                ans = EditPlace.DeletePlaceQuery(place,self.parent.db,
+                                                 self.model.delete_row_by_handle)
                 QuestionDialog(_('Delete %s?') %  place.get_title(),
                                _('This place is currently being used by at least one '
                                  'record in the database. Deleting it will remove it '
@@ -226,17 +237,15 @@ class PlaceView:
                                _('_Delete Place'),
                                ans.query_response)
             else:
-                trans = self.parent.db.transaction_begin()
-                self.parent.db.remove_place(place.get_handle(),trans)
-                self.parent.db.transaction_commit(trans,_("Delete Place (%s)") % place.title())
-                self.build_tree()
-
+                self.delete_place(place)
+                
     def on_edit_clicked(self,obj):
         """Display the selected places in the EditPlace display"""
         mlist = []
         self.selection.selected_foreach(self.blist,mlist)
 
-        for place in mlist:
+        for place_handle in mlist:
+            place = self.parent.db.get_place_from_handle(place_handle)
             EditPlace.EditPlace(self.parent, place, self.update_display)
 
     def blist(self,store,path,iter,list):

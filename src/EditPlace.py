@@ -371,7 +371,10 @@ class EditPlace:
         self.update_lists()
 
         trans = self.db.transaction_begin()
-        self.db.commit_place(self.place,trans)
+        if self.place.get_handle():
+            self.db.commit_place(self.place,trans)
+        else:
+            self.db.add_place(self.place,trans)
         self.db.transaction_commit(trans,_("Edit Place (%s)") % self.place.get_title())
         
         if self.callback:
@@ -578,4 +581,4 @@ class DeletePlaceQuery:
                     self.db.commit_event(event,trans)
 
         self.db.transaction_commit(trans,_("Delete Place (%s)") % self.place.get_title())
-        self.update(None)
+        self.update(self.place.get_handle())
