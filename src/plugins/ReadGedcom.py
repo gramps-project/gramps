@@ -285,7 +285,8 @@ class GedcomParser:
         if self.backoff == 0:
             next_line = self.f.readline()
             self.text = string.translate(next_line.strip(),self.trans,self.delc)
-            if self.text == '':
+
+            if not self.text:
                 raise Errors.GedcomError(_("GEDCOM file ended unexpectedly"))
 
             try:
@@ -293,7 +294,7 @@ class GedcomParser:
             except:
                 self.text = string.translate(self.text,self.trans2)
             
-            self.index = self.index + 1
+            self.index += 1
             l = string.split(self.text, None, 2)
             ln = len(l)
             try:

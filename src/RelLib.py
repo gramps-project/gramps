@@ -1021,7 +1021,6 @@ class Person(Persistent):
                 bday.getQuoteDate(), dday.getQuoteDate(),
                 sort.build_sort_name(self.getPrimaryName()),
                 sort.build_sort_date(bday),sort.build_sort_date(dday)]
-                
                                           
     def setPrimaryName(self,name):
         """sets the primary name of the Person to the specified
