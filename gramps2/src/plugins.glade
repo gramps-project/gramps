@@ -43,6 +43,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button105">
 	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Perform selected action</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="label">gtk-apply</property>
@@ -56,6 +57,7 @@
 	  <child>
 	    <widget class="GtkButton" id="button104">
 	      <property name="visible">True</property>
+	      <property name="tooltip" translatable="yes">Perform selected action and close this dialog</property>
 	      <property name="can_default">True</property>
 	      <property name="can_focus">True</property>
 	      <property name="label">gtk-ok</property>
