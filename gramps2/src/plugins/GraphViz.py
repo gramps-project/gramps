@@ -165,6 +165,8 @@ class GraphVizDialog(Report.ReportDialog):
                                 "month or day nor date approximation "
                                 "or interval are shown."))
 
+        self.includedates_cb.connect('toggled',self.toggle_date)
+
         self.includeurl_cb = gtk.CheckButton(_("Include URLs"))
         self.includeurl_cb.set_active(1)
         self.add_frame_option(_("GraphViz Options"), '',
@@ -209,10 +211,10 @@ class GraphVizDialog(Report.ReportDialog):
         self.tb_margin_sb = gtk.SpinButton(adjustment=tb_margin_adj, digits=2)
         self.lr_margin_sb = gtk.SpinButton(adjustment=lr_margin_adj, digits=2)
 
-        self.add_frame_option(_("GraphViz Options"),
+        self.add_frame_option(_("Page Options"),
                               _("Top & Bottom Margins"),
                               self.tb_margin_sb)
-        self.add_frame_option(_("GraphViz Options"),
+        self.add_frame_option(_("Page Options"),
                               _("Left & Right Margins"),
                               self.lr_margin_sb)
 
@@ -222,14 +224,14 @@ class GraphVizDialog(Report.ReportDialog):
         self.hpages_sb = gtk.SpinButton(adjustment=hpages_adj, digits=0)
         self.vpages_sb = gtk.SpinButton(adjustment=vpages_adj, digits=0)
 
-        self.add_frame_option(_("GraphViz Options"),
+        self.add_frame_option(_("Page Options"),
                               _("Number of Horizontal Pages"),
                               self.hpages_sb,
                               _("GraphViz can create very large graphs by "
                                 "spreading the graph across a rectangular "
                                 "array of pages. This controls the number "
                                 "pages in the array horizontally."))
-        self.add_frame_option(_("GraphViz Options"),
+        self.add_frame_option(_("Page Options"),
                               _("Number of Vertical Pages"),
                               self.vpages_sb,
                               _("GraphViz can create very large graphs "
@@ -237,6 +239,12 @@ class GraphVizDialog(Report.ReportDialog):
                                 "rectangular array of pages. This "
                                 "controls the number pages in the array "
                                 "vertically."))
+
+    def toggle_date(self,obj):
+        if self.includedates_cb.get_active():
+            self.just_year_cb.set_sensitive(1)
+        else:
+            self.just_year_cb.set_sensitive(0)
 
     def make_doc_menu(self):
         """Build a one item menu of document types that are
