@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import string
 import zipfile
 import time
 import locale
@@ -45,6 +44,7 @@ import PluginMgr
 import ImgManip
 import FontScale
 import GrampsMime
+from ReportUtils import pt2cm
 
 #-------------------------------------------------------------------------
 #
@@ -703,7 +703,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
-                line = string.join(line.split())
+                line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 
@@ -810,7 +810,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.cntnt.write('<text:p text:style-name="X%s">' % pname)
 
         self.cntnt.write('<text:span text:style-name="F%s">\n' % pname)
-        self.write_text(string.join(text,'\n'))
+        self.write_text('\n'.join(text))
         self.cntnt.write('</text:span>\n</text:p>\n</draw:text-box>\n')
         
     def draw_path(self,style,path):
@@ -971,14 +971,6 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	    self.cntnt.write(text)
             self.cntnt.write('</text:p>\n')
         self.cntnt.write('</draw:text-box>\n')
-
-#------------------------------------------------------------------------
-#
-# point to centimeter convertion
-#
-#------------------------------------------------------------------------
-def pt2cm(val):
-    return (float(val)/28.3465)
 
 #--------------------------------------------------------------------------
 #

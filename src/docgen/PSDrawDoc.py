@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import string
 from math import pi, cos, sin
+from gettext import gettext as _
         
 #-------------------------------------------------------------------------
 #
@@ -35,17 +35,7 @@ import PluginMgr
 import Errors
 import BaseDoc
 from Report import run_print_dialog
-
-from gettext import gettext as _
-
-
-#-------------------------------------------------------------------------
-#
-# pt2cm - points to cm conversion
-#
-#-------------------------------------------------------------------------
-def pt2cm(val):
-    return (float(val)/72.0)*2.54
+from ReportUtils import pt2cm
 
 #-------------------------------------------------------------------------
 #
@@ -59,7 +49,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f = None
         self.filename = None
         self.level = 0
-	self.page = 0
+        self.page = 0
 
     def fontdef(self,para):
         font = para.get_font()
@@ -143,7 +133,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         pass
 
     def start_page(self):
-	self.page = self.page + 1
+        self.page = self.page + 1
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))
         if self.orientation != BaseDoc.PAPER_PORTRAIT:
@@ -182,8 +172,8 @@ class PSDrawDoc(BaseDoc.BaseDoc):
 
     def draw_text(self,style,text,x1,y1):
         stype = self.draw_styles[style]
-	para_name = stype.get_paragraph_style()
-	p = self.style_list[para_name]
+        para_name = stype.get_paragraph_style()
+        p = self.style_list[para_name]
 
         x1 = x1 + self.lmargin
         y1 = y1 + self.tmargin + pt2cm(p.get_font().get_size())
@@ -252,7 +242,7 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         stype = self.draw_styles[style]
         pname = stype.get_paragraph_style()
         p = self.style_list[pname]
-	font = p.get_font()
+        font = p.get_font()
 
         size = font.get_size()
 
@@ -344,9 +334,9 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         x = x + self.lmargin
         y = y + self.tmargin
 
-	box_style = self.draw_styles[style]
-	para_name = box_style.get_paragraph_style()
-	p = self.style_list[para_name]
+        box_style = self.draw_styles[style]
+        para_name = box_style.get_paragraph_style()
+        p = self.style_list[para_name]
         (junk,fdef) = self.encode_text(p,text)
         
         bh = box_style.get_height()
@@ -379,10 +369,10 @@ class PSDrawDoc(BaseDoc.BaseDoc):
         self.f.write('closepath\n')
         self.f.write('%.4f setlinewidth\n' % box_style.get_line_width())
         self.f.write('%.4f %.4f %.4f setrgbcolor stroke\n' % rgb_color(box_style.get_color()))
-	if text != "":
+        if text != "":
             (text,fdef) = self.encode_text(p,text)
             self.f.write(fdef)
-            lines = string.split(text,'\n')
+            lines = '\n'.split(text)
             nlines = len(lines)
             mar = 10/28.35
             f_in_cm = p.get_font().get_size()/28.35
