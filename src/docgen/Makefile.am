@@ -18,3 +18,9 @@ pkgpython_PYTHON = \
 
 pkgpyexecdir = @pkgpyexecdir@/docgen
 pkgpythondir = @pkgpythondir@/docgen
+
+GRAMPS_PY_MODPATH = "../"
+
+pycheck: 
+	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
+	pychecker $(pkgpython_PYTHON));

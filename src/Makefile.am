@@ -5,7 +5,7 @@ SUBDIRS = docgen filters plugins data po calendars
 GVFSINC = @GPREF@
 CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
-CLEANFILES = ${INTLLIBS} grampslib.so
+CLEANFILES = $(INTLLIBS) grampslib.so
 MOSTLYCLEANFILES = 
 INTLLIBS= intl22.so
 
@@ -93,8 +93,9 @@ pkgpython_PYTHON = \
 	Witness.py\
 	WriteXML.py
 
-# Use GNU make's ':=' syntax for nice wildcard use.
+# Could use GNU make's ':=' syntax for nice wildcard use.
 # If not using GNU make, then list all files individually
+# The latter is more portable and POSIX-friendly :)
 GLADEFILES = \
 	config.glade\
 	dialog.glade\
@@ -130,39 +131,42 @@ GRAPHICS = \
 	splash.jpg
 
 # Other stuff that we need to install
-pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop grampslib.so
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
+nodist_pkgdata_DATA = grampslib.so $(INTLLIBS)
 
-EXTRA_DIST = grampslib.i
+EXTRA_DIST = grampslib.i intl.c grampslib_wrap.c
 
-all: ${INTLLIBS} grampslib.so
+all-local: $(INTLLIBS) grampslib.so
 
-DIST_SOURCES = intl.c grampslib_wrap.c
-dist_pkgdata_DATA = ${pkgdata_DATA} 
-
-# These can prbably be done in a better or more elegant/generic way 
+# These can probably be done in a better or more elegant/generic way 
 # eventually (libtool?), but this works.
-intl22.so: intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ intl.c
+intl22.so: $(srcdir)/intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ $(srcdir)/intl.c
 
-grampslib.so: grampslib_wrap.c
-	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c $(LDFLAGS) 
+grampslib.so: $(srcdir)/grampslib_wrap.c
+	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
 # But, since the template depends on everything from here, we allow this
 # one exception.
-trans: po/template.po
+# Build po/template.po.
+.PHONY: trans
+trans:
 	./build_po
 
-check: 
+pycheck: 
+	for d in $(SUBDIRS) ; do \
+          (cd $$d; make pycheck); \
+	done;
 	pychecker $(pkgpython_PYTHON)
-
+	
 install-data-local:
-	${INSTALL} -d ${prefix}/share/pixmaps
-	${INSTALL_DATA} gramps.png ${prefix}/share/pixmaps
-	${INSTALL} -d ${prefix}/share/gnome/apps/Applications
-	${INSTALL_DATA} gramps.desktop ${prefix}/share/gnome/apps/Applications
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/pixmaps
+	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
+	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
+	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 
 uninstall-local:
-	-rm ${prefix}/share/pixmaps/gramps.png
-	-rm ${prefix}/share/gnome/apps/Applications/gramps.desktop
+	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png
+	-rm $(DESTDIR)$(prefix)/share/gnome/apps/Applications/gramps.desktop
