@@ -134,7 +134,7 @@ GRAPHICS := ${wildcard *.xpm} ${wildcard *.png} ${wildcard *.jpg}
 pkgdata_DATA = ${INTLLIBS} ${GLADEFILES} ${GRAPHICS} gramps.desktop
 
 DIST_SOURCES = intl.c
-dist_pkgdata_DATA = ${pkgdata_DATA} 
+dist_pkgdata_DATA = ${GLADEFILES} ${GRAPHICS} gramps.desktop
 subdir = src
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = const.py
