@@ -2358,8 +2358,11 @@ def load_canvas():
                            startx,yfactor[(i*2)+1]+(h/2),
                            xfactor[(i*2)+1],yfactor[(i*2)+1]+(h/2)]
                     item = root.add("line",
+                                    width_pixels=2,
                                     points=pts,
                                     fill_color_gdk=style.black)
+                    item.set_data("p",list[(2*i)+1])
+                    item.connect("event",line_event)
                     canvas_items.append(item)
                 if list[(2*i)+2]:
                     pts = [startx,yfactor[i]+h,
@@ -2367,13 +2370,17 @@ def load_canvas():
                            xfactor[(i*2)+2],yfactor[(i*2)+2]+(h/2)]
                     item = root.add("line",
                                     points=pts,
+                                    width_pixels=2,
                                     fill_color_gdk=style.black)
+                    item.set_data("p",list[(2*i)+2])
+                    item.connect("event",line_event)
                     canvas_items.append(item)
             add_box(root,xfactor[i],yfactor[i],w,h,list[i],style)
                     
     old_gen = gen
     old_h = h
     old_w = w
+
     
 #-------------------------------------------------------------------------
 #
@@ -2462,6 +2469,23 @@ def box_event(obj,event):
         obj.children()[3].destroy()
         canvas.update_now()
         
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def line_event(obj,event):
+    if event.type == GDK._2BUTTON_PRESS:
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            change_active_person(obj.get_data("p"))
+            load_canvas()
+    elif event.type == GDK.ENTER_NOTIFY:
+        canvas = gtop.get_widget("canvas1")
+        obj.set(fill_color_gdk=canvas['style'].bg[STATE_SELECTED])
+    elif event.type == GDK.LEAVE_NOTIFY:
+        canvas = gtop.get_widget("canvas1")
+        obj.set(fill_color_gdk=canvas['style'].black)
+
 #-------------------------------------------------------------------------
 #
 #
