@@ -67,6 +67,8 @@ class SourceSelector:
             })
 
         self.slist = self.top.get_widget("slist")
+        self.edit = self.top.get_widget('edit')
+        self.delete = self.top.get_widget('delete')
         self.selection = self.slist.get_selection()
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
         self.slist.set_model(self.model)
@@ -82,8 +84,21 @@ class SourceSelector:
             column.set_min_width(title[2])
             self.slist.append_column (column)
 
+        self.selection.connect('changed',self.selection_changed)
+
+        self.delete.set_sensitive(gtk.FALSE)
+        self.edit.set_sensitive(gtk.FALSE)
         self.redraw()
         self.sourcesel.show()
+
+    def selection_changed(self,obj):
+        (store,iter) = self.selection.get_selected()
+        if iter:
+            self.delete.set_sensitive(gtk.TRUE)
+            self.edit.set_sensitive(gtk.TRUE)
+        else:
+            self.delete.set_sensitive(gtk.FALSE)
+            self.edit.set_sensitive(gtk.FALSE)
 
     def redraw(self):
         self.model.clear()
@@ -220,15 +235,22 @@ class SourceEditor:
         self.showSource.signal_autoconnect({
             "on_sourceok_clicked"   : self.on_sourceok_clicked,
             "on_source_changed"     : self.on_source_changed,
+            "on_add_src_clicked"    : self.add_src_clicked,
             "destroy_passed_object" : Utils.destroy_passed_object
             })
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
         self.title_menu.set_data("o",self)
         self.conf_menu = self.get_widget("conf")
+        self.ok = self.get_widget("ok")
         Utils.build_confidence_menu(self.conf_menu)
         self.conf_menu.set_history(srcref.getConfidence())
+        self.list = []
 
+
+        self.title_menu.list.select_item(0)
+        self.title_menu.list.remove_items(self.title_menu.list.get_selection())
+        
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
@@ -236,14 +258,23 @@ class SourceEditor:
             self.active_source = self.source_ref.getBase()
         else:
             self.active_source = None
+
         self.draw()
+        self.set_button()
         self.sourceDisplay.show()
+
+    def set_button(self):
+        if self.active_source:
+            self.ok.set_sensitive(1)
+        else:
+            self.ok.set_sensitive(0)
 
     def get_widget(self,name):
         """returns the widget associated with the specified name"""
         return self.showSource.get_widget(name)
 
-    def draw(self):
+    def draw(self,sel = None):
+        self.title_menu.list.remove_items(self.list)
         if self.source_ref:
             self.get_widget("spage").set_text(self.source_ref.getPage())
             date = self.source_ref.getDate()
@@ -267,7 +298,8 @@ class SourceEditor:
         values = self.db.getSourceMap().values()
 
         sel_child = None
-        list = []
+        self.list = []
+        self.active_source = sel
         for src in values:
             l = gtk.Label("%s [%s]" % (src.getTitle(),src.getId()))
             l.show()
@@ -276,16 +308,17 @@ class SourceEditor:
             c.add(l)
             c.set_data("s",src)
             c.show()
-            list.append(c)
+            self.list.append(c)
             if self.active_source == src:
                 sel_child = c
 
-        self.title_menu.list.append_items(list)
+        self.title_menu.list.append_items(self.list)
         
         if sel_child:
             self.title_menu.list.select_child(sel_child)
 
     def on_sourceok_clicked(self,obj):
+
         if self.active_source != self.source_ref.getBase():
             self.source_ref.setBase(self.active_source)
         
@@ -314,11 +347,23 @@ class SourceEditor:
         Utils.destroy_passed_object(obj)
 
     def on_source_changed(self,obj):
-        self.active_source = obj.list.get_selection()[0].get_data("s")
+        sel = obj.list.get_selection()
+        if sel:
+            self.active_source = sel[0].get_data("s")
+            
+            if self.active_source:
+                self.author_field.set_text(self.active_source.getAuthor())
+                self.pub_field.set_text(self.active_source.getPubInfo())
+            self.set_button()
 
-        if self.active_source:
-            self.author_field.set_text(self.active_source.getAuthor())
-            self.pub_field.set_text(self.active_source.getPubInfo())
-               
+    def update_display(self,source):
+        self.db.addSource(source)
+        self.draw(source)
+#        self.update(0)
+
+    def add_src_clicked(self,obj):
+        import EditSource
+        import RelLib
+        EditSource.EditSource(RelLib.Source(),self.db, self.update_display)
 
         

@@ -88,7 +88,7 @@ class EditSource:
 
 
         if self.source.getId() == "":
-            self.top_window.get_widget("add_photo").set_sensitive(0)
+            self.top_window.get_widget("edit_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
     def close(self,obj):

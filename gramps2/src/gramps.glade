@@ -4805,7 +4805,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="button156">
+			    <widget class="GtkButton" id="edit_photo">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">_Edit...</property>

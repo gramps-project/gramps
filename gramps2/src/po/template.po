@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Sun Mar 23 08:23:05 2003\n"
+"POT-Creation-Date: Sun Mar 23 20:30:36 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: AddSpouse.py:85 ChooseParents.py:55 FamilyView.py:138 ImageSelect.py:824
 #: MediaView.py:59 PlaceView.py:48 SelectChild.py:105 SourceView.py:54
-#: Sources.py:75 Sources.py:145 Witness.py:54 gramps_main.py:93
+#: Sources.py:77 Sources.py:160 Witness.py:54 gramps_main.py:93
 #: plugins/RelCalc.py:326
 msgid "ID"
 msgstr ""
@@ -927,7 +927,7 @@ msgstr ""
 msgid "The GRAMPS ID that you chose for this relationship is already being used."
 msgstr ""
 
-#: MediaView.py:59 SourceView.py:54 Sources.py:75 Sources.py:145
+#: MediaView.py:59 SourceView.py:54 Sources.py:77 Sources.py:160
 #: plugins/TimeLine.py:347
 msgid "Title"
 msgstr ""
@@ -1392,7 +1392,7 @@ msgstr ""
 msgid "Source Reference Selection"
 msgstr ""
 
-#: Sources.py:218
+#: Sources.py:233
 msgid "Source Information"
 msgstr ""
 
@@ -1666,23 +1666,23 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: const.py:167 srcsel.glade:493
+#: const.py:167 srcsel.glade:418
 msgid "Very Low"
 msgstr ""
 
-#: const.py:168 plugins/Merge.py:107 srcsel.glade:501
+#: const.py:168 plugins/Merge.py:107 srcsel.glade:426
 msgid "Low"
 msgstr ""
 
-#: const.py:169 srcsel.glade:509
+#: const.py:169 srcsel.glade:434
 msgid "Normal"
 msgstr ""
 
-#: const.py:170 plugins/Merge.py:115 srcsel.glade:517
+#: const.py:170 plugins/Merge.py:115 srcsel.glade:442
 msgid "High"
 msgstr ""
 
-#: const.py:171 srcsel.glade:525
+#: const.py:171 srcsel.glade:450
 msgid "Very High"
 msgstr ""
 
@@ -1927,7 +1927,7 @@ msgid "_Event type:"
 msgstr ""
 
 #: dialog.glade:148 dialog.glade:1866 edit_person.glade:304
-#: edit_person.glade:4046 srcsel.glade:190
+#: edit_person.glade:4046 srcsel.glade:166
 msgid "_Date:"
 msgstr ""
 
@@ -1970,7 +1970,7 @@ msgstr ""
 #: gramps.glade:3906 gramps.glade:4795 imagesel.glade:981 imagesel.glade:1763
 #: marriage.glade:746 marriage.glade:1140 marriage.glade:1327 places.glade:899
 #: places.glade:1100 places.glade:1251 places.glade:1537 rule.glade:340
-#: rule.glade:804 srcsel.glade:810 styles.glade:138
+#: rule.glade:804 srcsel.glade:831 styles.glade:138
 msgid "_Add..."
 msgstr ""
 
@@ -1980,7 +1980,7 @@ msgstr ""
 #: edit_person.glade:3820 gramps.glade:4811 imagesel.glade:997
 #: imagesel.glade:1779 marriage.glade:762 marriage.glade:1156
 #: marriage.glade:1343 places.glade:915 places.glade:1115 places.glade:1267
-#: places.glade:1553 rule.glade:358 rule.glade:823 srcsel.glade:826
+#: places.glade:1553 rule.glade:358 rule.glade:823 srcsel.glade:847
 #: styles.glade:150
 msgid "_Edit..."
 msgstr ""
@@ -1991,7 +1991,7 @@ msgstr ""
 #: gramps.glade:4831 imagesel.glade:1015 imagesel.glade:1797
 #: marriage.glade:779 marriage.glade:1173 marriage.glade:1360 places.glade:931
 #: places.glade:1131 places.glade:1283 places.glade:1639 rule.glade:376
-#: rule.glade:858 srcsel.glade:843 styles.glade:162
+#: rule.glade:858 srcsel.glade:864 styles.glade:162
 msgid "_Delete"
 msgstr ""
 
@@ -2083,7 +2083,7 @@ msgid "T_ype:"
 msgstr ""
 
 #: dialog.glade:2962 edit_person.glade:229 gramps.glade:4520
-#: imagesel.glade:235 imagesel.glade:1434 places.glade:119 srcsel.glade:320
+#: imagesel.glade:235 imagesel.glade:1434 places.glade:119 srcsel.glade:296
 msgid "_Title:"
 msgstr ""
 
@@ -3319,7 +3319,7 @@ msgstr ""
 msgid "Status:"
 msgstr ""
 
-#: plugins.glade:255 srcsel.glade:296
+#: plugins.glade:255 srcsel.glade:272
 msgid "Author:"
 msgstr ""
 
@@ -5677,30 +5677,42 @@ msgid "_Confidence:"
 msgstr ""
 
 #: srcsel.glade:138
-msgid "<b>Source details</b>"
-msgstr ""
-
-#: srcsel.glade:162
 msgid "_Volume/Film/Page:"
 msgstr ""
 
-#: srcsel.glade:218
+#: srcsel.glade:194
 msgid "Te_xt:"
 msgstr ""
 
-#: srcsel.glade:245
+#: srcsel.glade:221
 msgid "Co_mments:"
 msgstr ""
 
-#: srcsel.glade:272
+#: srcsel.glade:248
 msgid "Publication information:"
 msgstr ""
 
-#: srcsel.glade:459
+#: srcsel.glade:333
+msgid "Selects an existing source from the Source View"
+msgstr ""
+
+#: srcsel.glade:388
+msgid "Creates a new source"
+msgstr ""
+
+#: srcsel.glade:390
+msgid "_New..."
+msgstr ""
+
+#: srcsel.glade:632
 msgid "<b>Source selection</b>"
 msgstr ""
 
-#: srcsel.glade:783
+#: srcsel.glade:656
+msgid "<b>Source details</b>"
+msgstr ""
+
+#: srcsel.glade:804
 msgid "Double click will edit the selected source"
 msgstr ""
 
