@@ -101,7 +101,7 @@
     All plugins are written in the <application>python</application>
     language.
     </para>
-    <sect2 id="intro_filter">
+    <sect2 id="intro-filter">
       <title>Filters</title>
       <para>
       A filter is a plugin that be used to temporarily display or hide
@@ -114,7 +114,7 @@
       Filters should never alter a database.
       </para>
     </sect2>
-    <sect2 id="intro_report">
+    <sect2 id="intro-report">
       <title>Reports</title>
       <para>
       A report is a plugin that generates output. The output may be in
@@ -136,7 +136,7 @@
       A report should never alter the database.
       </para>
     </sect2>
-    <sect2 id="intro_tool">
+    <sect2 id="intro-tool">
       <title>Tools</title>
       <para>
       A tool is a plugin that alters the database. It may perform
@@ -159,7 +159,7 @@
       A tool is allowed (and usually expected) to alter the database.
       </para>
     </sect2>
-    <sect2 id="intro_import">
+    <sect2 id="intro-import">
       <title>Import Filters</title>
       <para>
       An import filter is a plugin that adds information from another
@@ -179,7 +179,7 @@
       An import filter is allowed to modify the database.
       </para>
     </sect2>
-    <sect2 id="intro_export">
+    <sect2 id="intro-export">
       <title>Export Filters</title>
       <para>
       An export filter is a plugin that translates the gramps database
@@ -717,7 +717,7 @@ for family in person.getFamilyList():
     </para>
     <para>
     This manual was written by Don Allingham
-    (<email>donaldallingham@home.com</email>).
+    (<email>dallingham@users.sourceforge.net</email>).
     </para>
 
 <!-- For translations: uncomment this:
