@@ -750,7 +750,7 @@ class FormatComboBox(gtk.ComboBox):
         return '.dot'
 
     def get_printable(self):
-        return _("Generate print output")
+        return None
 
     def get_clname(self):
         return 'dot'
@@ -794,7 +794,7 @@ class GraphicsFormatComboBox(gtk.ComboBox):
         return _formats[self.get_active()][1]
 
     def get_printable(self):
-        return _("Generate print output")
+        return None
 
     def get_clname(self):
         return 'print'
@@ -850,7 +850,7 @@ class GraphVizGraphics(Report.Report):
         GraphViz(self.database,self.start_person,self.options_class)
 
     def end_report(self):
-        os.system('dot -T%s -o %s %s ; rm %s' %
+        os.system('dot -T%s -o%s %s ; rm %s' %
                     (self.the_format,self.user_output,
                     self.junk_output,self.junk_output))
 
