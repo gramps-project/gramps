@@ -55,6 +55,8 @@ class ChooseParents:
         self.family = family
         self.family_update = family_update
         self.full_update = full_update
+        self.old_type = ""
+        self.type = ""
         
         if self.family:
             self.father = self.family.getFather()
@@ -76,6 +78,11 @@ class ChooseParents:
         self.mlabel = self.glade.get_widget("mlabel")
         self.fcombo.set_popdown_strings(const.familyRelations)
 
+        self.mother_list.set_column_visibility(2,0)
+        self.father_list.set_column_visibility(2,0)
+        self.mother_list.set_sort_column(2)
+        self.father_list.set_sort_column(2)
+        
         for (f,mr,fr) in self.person.getParentList():
             if f == self.family:
                 self.mother_rel.set_text(_(mr))
@@ -85,6 +92,10 @@ class ChooseParents:
             self.mother_rel.set_text(_("Birth"))
             self.father_rel.set_text(_("Birth"))
 
+        self.type = self.family.getRelationship()
+        self.prel.set_text(_(self.type))
+        self.redraw()
+        
         self.glade.signal_autoconnect({
             "on_motherList_select_row" : self.mother_list_select_row,
             "on_fatherList_select_row" : self.father_list_select_row,
@@ -97,29 +108,22 @@ class ChooseParents:
 
         text = _("Choose the Parents of %s") % GrampsCfg.nameof(self.person)
         self.title.set_text(text)
-        if self.family:
-            self.prel.set_text(_(self.family.getRelationship()))
-        else:
-            self.parent_relation_changed(self.prel)
         self.top.show()
 
-    def parent_relation_changed(self,obj):
-
-        type = obj.get_text()
+    def redraw(self):
 
         self.father_list.freeze()
         self.mother_list.freeze()
         self.father_list.clear()
         self.mother_list.clear()
 
-        self.father_list.append(["Unknown",""])
+        self.father_list.append(["Unknown","",""])
         self.father_list.set_row_data(0,None)
 
-        self.mother_list.append(["Unknown",""])
+        self.mother_list.append(["Unknown","",""])
         self.mother_list.set_row_data(0,None)
 
         people = self.db.getPersonMap().values()
-        people.sort(sort.by_last_name)
         father_index = 1
         mother_index = 1
         fsel = 0
@@ -133,8 +137,10 @@ class ChooseParents:
                 fsel = father_index
             if self.mother == person:
                 msel = mother_index
-            rdata = [Utils.phonebook_name(person),Utils.birthday(person)]
-            if type == "Partners":
+            name = person.getPrimaryName()
+            rdata = [Utils.phonebook_name(person),Utils.birthday(person),
+                     sort.build_sort_name(name)]
+            if self.type == "Partners":
                 self.father_list.append(rdata)
                 self.father_list.set_row_data(father_index,person)
                 father_index = father_index + 1
@@ -151,20 +157,28 @@ class ChooseParents:
                 mother_index = mother_index + 1
 
         self.mother_list.select_row(msel,0)
-        self.mother_list.moveto(msel,0)
+        self.mother_list.sort()
         self.father_list.select_row(fsel,0)
-        self.father_list.moveto(fsel,0)
-        
-        if type == "Partners":
+        self.father_list.sort()
+        self.mother_list.thaw()
+        self.father_list.thaw()
+        self.father_list.moveto(self.father_list.selection[0],0)
+        self.mother_list.moveto(self.mother_list.selection[0],0)
+
+        if self.type == "Partners":
             self.mlabel.set_label(_("Parent"))
             self.flabel.set_label(_("Parent"))
         else:
             self.mlabel.set_label(_("Mother"))
             self.flabel.set_label(_("Father"))
 
-        self.mother_list.thaw()
-        self.father_list.thaw()
 
+    def parent_relation_changed(self,obj):
+        self.old_type = self.type
+        self.type = const.save_frel(obj.get_text())
+        if self.old_type == "Partners" or self.type == "Partners":
+            self.redraw()
+        
     def find_family(self,father,mother):
         """
         Finds the family associated with the father and mother.
@@ -200,7 +214,6 @@ class ChooseParents:
     def save_parents_clicked(self,obj):
         mother_rel = const.childRelations[self.mother_rel.get_text()]
         father_rel = const.childRelations[self.father_rel.get_text()]
-        type = const.save_frel(self.prel.get_text())
 
         msel = self.mother_list.selection
         fsel = self.father_list.selection
@@ -217,27 +230,45 @@ class ChooseParents:
                     self.father = None
                 self.family = self.find_family(self.father,self.mother)
             elif self.mother.getGender() != self.father.getGender():
-                if type == "Partners":
-                    type = "Unknown"
+                if self.type == "Partners":
+                    self.type = "Unknown"
                 if self.father.getGender() == RelLib.Person.female:
                     x = self.father
                     self.father = self.mother
                     self.mother = x
                 self.family = self.find_family(self.father,self.mother)
             else:
-                type = "Partners"
+                self.type = "Partners"
                 self.family = self.find_family(self.father,self.mother)
         else:    
             self.family = None
 
         Utils.destroy_passed_object(obj)
         if self.family:
-            self.family.setRelationship(type)
+            self.family.setRelationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
         self.family_update(None)
 
     def add_new_parent(self,person):
-        self.parent_relation_changed(self.prel)
+        self.type = const.save_frel(self.prel.get_text())
+        rdata = [Utils.phonebook_name(person),Utils.birthday(person),
+                 sort.build_sort_name(person.getPrimaryName())]
+
+        if self.type == "Partners":
+            self.parent_relation_changed(self.prel)
+        elif person.getGender() == RelLib.Person.male:
+            self.father_list.insert(0,rdata)
+            self.father_list.set_row_data(0,person)
+            self.father_list.select_row(0,0)
+            self.father_list.sort()
+            self.father_list.moveto(self.father_list.selection[0],0)
+        else:
+            self.mother_list.insert(0,rdata)
+            self.mother_list.set_row_data(0,person)
+            self.mother_list.select_row(0,0)
+            self.mother_list.moveto(0,0)
+            self.mother_list.sort()
+            self.mother_list.moveto(self.mother_list.selection[0],0)
         self.full_update()
         
     def add_parent_clicked(self,obj):
