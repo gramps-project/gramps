@@ -329,7 +329,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_source(self,attrs):
-        self.source = self.db.findSourceNoMap(ul2(attrs["id"]))
+        self.source = self.db.findSourceNoMap(u2l(attrs["id"]))
 
     #---------------------------------------------------------------------
     #
@@ -841,7 +841,7 @@ class GrampsParser(handler.ContentHandler):
 	    f,self.func = GrampsParser.func_map[tag]
             if f:
                 f(self,attrs)
-        except:
+        except KeyError:
             GrampsParser.func_map[tag] = (None,None)
             self.func = None
 
