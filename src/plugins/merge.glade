@@ -745,7 +745,7 @@
 		  <class>GtkLabel</class>
 		  <child_name>CList:title</child_name>
 		  <name>label51</name>
-		  <label>label51</label>
+		  <label></label>
 		  <justify>GTK_JUSTIFY_CENTER</justify>
 		  <wrap>False</wrap>
 		  <xalign>0.5</xalign>
@@ -1399,7 +1399,7 @@
 		  <class>GtkLabel</class>
 		  <child_name>CList:title</child_name>
 		  <name>label50</name>
-		  <label>label48</label>
+		  <label></label>
 		  <justify>GTK_JUSTIFY_CENTER</justify>
 		  <wrap>False</wrap>
 		  <xalign>0.5</xalign>
@@ -1497,7 +1497,7 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label41</name>
-	  <label>Match  Rating : </label>
+	  <label>Match Rating :</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>

@@ -859,7 +859,7 @@
 	  <widget>
 	    <class>GtkFrame</class>
 	    <name>frame6</name>
-	    <label>Indentification</label>
+	    <label>Identification</label>
 	    <label_xalign>0</label_xalign>
 	    <shadow_type>GTK_SHADOW_ETCHED_IN</shadow_type>
 	    <child>

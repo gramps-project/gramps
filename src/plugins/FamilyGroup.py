@@ -428,7 +428,10 @@ def report(database,person):
             spouse = family.getMother()
         else:
             spouse = family.getFather()
-        item = GtkMenuItem(spouse.getPrimaryName().getName())
+        if spouse:
+            item = GtkMenuItem(spouse.getPrimaryName().getName())
+        else:
+            item = GtkMenuItem("unknown")
         item.set_data("f",family)
         item.show()
         my_menu.append(item)
@@ -496,7 +499,7 @@ def on_save_clicked(obj):
     item = topDialog.get_widget("format").get_menu().get_active()
     format = item.get_data("name")
     
-    doc = FindDoc.make_text_doc(format,paper,orien,template)
+    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
     
     MyReport = FamilyGroup(db,family,outputName,doc)
 

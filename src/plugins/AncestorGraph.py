@@ -381,7 +381,7 @@ def mysort(first, second) :
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Produces a graphical ancestral tree graph")
+    return _("Displays an ancestral tree graph")
 
 def get_name():
     return _("View/View an ancestor graph")
