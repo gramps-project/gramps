@@ -189,7 +189,7 @@ class IsDescendantOf(Rule):
     """Rule that checks for a person that is a descendant
     of a specified person"""
 
-    labels = [ _('ID:') ]
+    labels = [ _('ID:'), _('Inclusive:') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -207,11 +207,15 @@ class IsDescendantOf(Rule):
 
     def apply(self,db,p):
         self.orig = p
+        if int(self.list[1]):
+            first = 0
+        else:
+            first = 1
 
         if not self.init:
             self.init = 1
             root = db.getPerson(self.list[0])
-            self.init_list(root,1)
+            self.init_list(root,first)
         return self.map.has_key(p.getId())
 
     def init_list(self,p,first):
@@ -231,7 +235,7 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     """Rule that checks for a person that is a descendant
     of someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
+    labels = [ _('Filter name:'), _('Inclusive:') ]
 
     def __init__(self,list):
         IsDescendantOf.__init__(self,list)
@@ -247,13 +251,17 @@ class IsDescendantOfFilterMatch(IsDescendantOf):
     
     def apply(self,db,p):
         self.orig = p
+        if int(self.list[1]):
+            first = 0
+        else:
+            first = 1
 
         if not self.init:
             self.init = 1
             filter = MatchesFilter(self.list)
             for person in db.getPersonMap ().values ():
                 if filter.apply (db, person):
-                    self.init_list (person, 1)
+                    self.init_list (person, first)
         return self.map.has_key(p.getId())
 
 #-------------------------------------------------------------------------
@@ -363,6 +371,12 @@ class IsChildOfFilterMatch(Rule):
     def name(self):
         return 'Is a child of filter match'
 
+    def description(self):
+        return _("Matches the person that is a child of someone matched by a filter")
+
+    def category(self):
+        return _('Family filters')
+
     def apply(self,db,p):
         self.orig = p
 
@@ -397,7 +411,7 @@ class IsDescendantFamilyOf(Rule):
         return _('Descendant filters')
 
     def description(self):
-        return _("Matches people that are  descendants or the spouse "
+        return _("Matches people that are descendants or the spouse "
                  "of a descendant of a specified person")
     
     def apply(self,db,p):
@@ -423,7 +437,6 @@ class IsDescendantFamilyOf(Rule):
                 if s:
                     if self.search(s,0):
                         return 1
-            
         return 0
 
 #-------------------------------------------------------------------------
@@ -434,7 +447,7 @@ class IsDescendantFamilyOf(Rule):
 class IsAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person"""
 
-    labels = [ _('ID:') ]
+    labels = [ _('ID:'), _('Inclusive:') ]
 
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -444,12 +457,22 @@ class IsAncestorOf(Rule):
     def name(self):
         return 'Is an ancestor of'
 
+    def description(self):
+        return _("Matches people that are ancestors of a specified person")
+    
+    def category(self):
+        return _("Ancestral filters")
+
     def apply(self,db,p):
         self.orig = p
+        if int(self.list[1]):
+            first = 0
+        else:
+            first = 1
         if not self.init:
             self.init = 1
             root = db.getPerson(self.list[0])
-            self.init_ancestor_list(root,1)
+            self.init_ancestor_list(root,first)
         return self.map.has_key(p.getId())
 
     def init_ancestor_list(self,p,first):
@@ -477,7 +500,7 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     """Rule that checks for a person that is an ancestor of
     someone matched by a filter"""
 
-    labels = [ _('Filter name:') ]
+    labels = [ _('Filter name:'), _('Inclusive:') ]
 
     def __init__(self,list):
         IsAncestorOf.__init__(self,list)
@@ -485,14 +508,25 @@ class IsAncestorOfFilterMatch(IsAncestorOf):
     def name(self):
         return 'Is an ancestor of filter match'
 
+    def description(self):
+        return _("Matches people that are ancestors "
+            "of of someone matched by a filter")
+    
+    def category(self):
+        return _("Ancestral filters")
+
     def apply(self,db,p):
         self.orig = p
+        if int(self.list[1]):
+            first = 0
+        else:
+            first = 1
         if not self.init:
             self.init = 1
-            filter = MatchesFilter(self.list)
+            filter = MatchesFilter(self.list[0])
             for person in db.getPersonMap ().values ():
                 if filter.apply (db, person):
-                    self.init_ancestor_list (person,1)
+                    self.init_ancestor_list (person,first)
         return self.map.has_key(p.getId())
 
 #-------------------------------------------------------------------------
@@ -513,6 +547,13 @@ class IsLessThanNthGenerationAncestorOf(Rule):
     
     def name(self):
         return 'Is an ancestor of person not more than N generations away'
+
+    def description(self):
+        return _("Matches people that are ancestors "
+            "of a specified person not more than N generations away")
+    
+    def category(self):
+        return _("Ancestral filters")
 
     def apply(self,db,p):
         self.orig = p
@@ -559,6 +600,13 @@ class IsMoreThanNthGenerationAncestorOf(Rule):
     def name(self):
         return 'Is an ancestor of person at least N generations away'
 
+    def description(self):
+        return _("Matches people that are ancestors "
+            "of a specified person at least N generations away")
+    
+    def category(self):
+        return _("Ancestral filters")
+
     def apply(self,db,p):
         self.orig = p
         if not self.init:
@@ -602,6 +650,12 @@ class IsParentOfFilterMatch(Rule):
     def name(self):
         return 'Is a parent of filter match'
 
+    def description(self):
+        return _("Matches the person that is a parent of someone matched by a filter")
+
+    def category(self):
+        return _('Family filters')
+
     def apply(self,db,p):
         self.orig = p
 
@@ -634,6 +688,13 @@ class HasCommonAncestorWith(Rule):
 
     def name(self):
         return 'Has a common ancestor with'
+
+    def description(self):
+        return _("Matches people that have a common ancestor "
+            "with a specified person")
+    
+    def category(self):
+        return _("Ancestral filters")
 
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -674,6 +735,13 @@ class HasCommonAncestorWithFilterMatch(HasCommonAncestorWith):
     def name(self):
         return 'Has a common ancestor with filter match'
 
+    def description(self):
+        return _("Matches people that have a common ancestor "
+            "with someone matched by a filter")
+    
+    def category(self):
+        return _("Ancestral filters")
+
     def __init__(self,list):
         HasCommonAncestorWith.__init__(self,list)
 
@@ -698,6 +766,12 @@ class IsMale(Rule):
     def name(self):
         return 'Is a male'
 
+    def category(self): 
+        return _('General filters')
+    
+    def description(self):
+        return _('Matches all males')
+
     def apply(self,db,p):
         return p.getGender() == RelLib.Person.male
 
@@ -721,6 +795,12 @@ class HasEvent(Rule):
 
     def name(self):
         return 'Has the personal event'
+
+    def description(self):
+        return _("Matches the person with a personal event of a particular value")
+
+    def category(self):
+        return _('Event filters')
 
     def apply(self,db,p):
         for event in p.getEventList():
@@ -763,6 +843,12 @@ class HasFamilyEvent(Rule):
     def name(self):
         return 'Has the family event'
 
+    def description(self):
+        return _("Matches the person with a family event of a particular value")
+
+    def category(self):
+        return _('Event filters')
+
     def apply(self,db,p):
         for f in p.getFamilyList():
             for event in f.getEventList():
@@ -796,6 +882,12 @@ class HasRelationship(Rule):
 
     def name(self):
         return 'Has the relationships'
+
+    def description(self):
+        return _("Matches the person who has a particular relationship")
+
+    def category(self):
+        return _('Family filters')
 
     def apply(self,db,p):
         rel_type = 0
@@ -853,6 +945,12 @@ class HasBirth(Rule):
     def name(self):
         return 'Has the birth'
 
+    def description(self):
+        return _("Matches the person with a birth of a particular value")
+
+    def category(self):
+        return _('Event filters')
+
     def apply(self,db,p):
         event = p.getBirth()
         ed = event.getDescription().upper()
@@ -886,6 +984,12 @@ class HasDeath(Rule):
 
     def name(self):
         return 'Has the death'
+
+    def description(self):
+        return _("Matches the person with a death of a particular value")
+
+    def category(self):
+        return _('Event filters')
 
     def apply(self,db,p):
         event = p.getDeath()
@@ -961,6 +1065,12 @@ class HasNameOf(Rule):
     def name(self):
         return 'Has a name'
     
+    def description(self):
+        return _("Matches the person with a specified (partial) name")
+
+    def category(self):
+        return _('General filters')
+
     def apply(self,db,p):
         self.f = self.list[0]
         self.l = self.list[1]
@@ -1016,6 +1126,12 @@ class IsSpouseOfFilterMatch(Rule):
 
     def name(self):
         return 'Is spouse of filter match'
+
+    def description(self):
+        return _("Matches the person married to someone matching a filter")
+
+    def category(self):
+        return _('Family filters')
 
     def apply(self,db,p):
         filter = MatchesFilter (self.list)

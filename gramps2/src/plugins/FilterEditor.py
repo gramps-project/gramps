@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,6 +59,24 @@ _name2list = {
     _('Relationship type:')  : const.familyRelations,
 }
 
+
+#-------------------------------------------------------------------------
+#
+# MyBoolean - check button with standard interface
+#
+#-------------------------------------------------------------------------
+class MyBoolean(gtk.CheckButton):
+
+    def __init__(self,label=None):
+        gtk.CheckButton.__init__(self,label)
+        self.show()
+
+    def get_text(self):
+        return str(int(self.get_active()))
+
+    def set_text(self,val):
+        is_active = not not int(val)
+        self.set_active(is_active)
 
 #-------------------------------------------------------------------------
 #
@@ -448,6 +466,8 @@ class FilterEditor:
                     t = MyFilters(self.filterdb.get_filters())
                 elif _name2list.has_key(v1):
                     t = MySelect(_name2list[v1])
+                elif v == 'Inclusive:':
+                    t = MyBoolean(_('Include original person'))
                 else:
                     t = MyEntry()
                 tlist.append(t)
