@@ -165,14 +165,32 @@ class SingleDate:
     after = 3
     
     entryCode = 0
-    
-    mname = [ "January", "February", "March", "April",
-              "May", "June", "July", "August", "September",
-              "October", "November", "December" ]
 
-    m2num = { "jan" : 0, "feb" : 1, "mar" : 2, "apr" : 3,
-              "may" : 4, "jun" : 5, "jul" : 6, "aug" : 7,
-              "sep" : 8, "oct" : 9, "nov" : 10,"dec" : 11 }
+    mname = [ _("January"),
+              _("February"),
+              _("March"),
+              _("April"),
+              _("May"),
+              _("June"),
+              _("July"),
+              _("August"),
+              _("September"),
+              _("October"),
+              _("November"),
+              _("December") ]
+
+    m2num = { string.lower(mname[0][0:3]) : 0,
+              string.lower(mname[1][0:3]) : 1,
+              string.lower(mname[2][0:3]) : 2,
+              string.lower(mname[3][0:3]) : 3,
+              string.lower(mname[4][0:3]) : 4,
+              string.lower(mname[5][0:3]) : 5,
+              string.lower(mname[6][0:3]) : 6,
+              string.lower(mname[7][0:3]) : 7,
+              string.lower(mname[8][0:3]) : 8,
+              string.lower(mname[9][0:3]) : 9,
+              string.lower(mname[10][0:3]) : 10,
+              string.lower(mname[11][0:3]) : 11 }
 
     m2v = { _("abt")    : about ,
             _("about")  : about,
