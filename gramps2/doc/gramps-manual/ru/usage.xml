@@ -167,125 +167,119 @@
     <sect2 id="export-data"> 
       <title>Экспорт данных</title> 
       
-      <para>Exporting allows you to share any portion of your &app; database 
-      with other researchers as well as to make your database completely 
-      portable to another computer. Currently, &app; 
-      can export data  to three different formats: CD, GEDCOM, &app; package, 
-      and Web Family Tree. All of these are available as items of
-      <menuchoice><guimenu>File</guimenu>  
-      <guisubmenu>Export</guisubmenu></menuchoice> submenu.</para>
+      <para>Экспорт позволяет Вам сделать любую часть Вашей базы данных
+      &app; доступной для других исследователей, а также сделать её полностью
+      портативной для переноса на другой компьютер. В настоящий момент &app; 
+      может экспортировать данные в четыре различных формата: CD, GEDCOM, пакет 
+      &app; package, и Web Family Tree. Все эти возможности доступны в качестве элементов
+      меню <menuchoice><guimenu>Файл</guimenu>  
+      <guisubmenu>Экспорт</guisubmenu></menuchoice>.</para>
 
-      <para>Exporting to CD will prepare you database directory with all its
-      contents to be recorded to the CD. This is done through the 
-      <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
-      CD, go to the <guilabel>burn:///</guilabel> location by  
-      selecting <menuchoice><guimenu>Go</guimenu>  
-      <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu. Your
-      database directory will show up. To record it onto the CD, click the CD
-      icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu>  
-      <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
+      <para>Экспорт в CD формат приготовит Вашу базу данных со всем содержимым 
+      для записи  на CD. Запись осуществляется из адреса 
+      <guilabel>burn:///</guilabel> в Наутилусе. После экспорта в CD, пойдите по адресу
+      <guilabel>burn:///</guilabel> путём выбора <menuchoice><guimenu>Иди</guimenu>  
+      <guisubmenu>Создание CD</guisubmenu></menuchoice> из меню Наутилуса.
+      Вы увидите каталог Вашей базы данных. Для записи на CD, щёлкните пиктограмму
+      CD в панели инструментов Наутилуса или выберите 
+      <menuchoice><guimenu>Файл</guimenu>  
+      <guisubmenu>Запись на CD</guisubmenu></menuchoice> в меню  Наутилуса.
       </para>
 
-      <para>Exporting to GEDCOM will create a GEDCOM file, according to the
-      settings set in the following dialog:</para>
+      <para>Экспорт в GEDCOM создаст файл GEDCOM, согласно установкам, выбранным 
+      в следующем диалоге:</para>
       
 	<!-- ==== Figure: GEDCOM Export ==== -->
 	<figure id="gedcom-export-fig"> 
-	<title>Export GEDCOM File dialog</title> 
+	<title>Диалог экспорта в GEDCOM</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/gedcom-export.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Export GEDCOM File dialog</phrase>
+	<phrase>Показан Диалог экспорта в GEDCOM</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Export ==== -->
 
-      <para>Type the desired GEDCOM filename into the text entry box or
-      click the <guibutton>Browse...</guibutton> button to evoke the  
-      <guilabel>Save File</guilabel> dialog. 
-      Choose the desired <guilabel>Encoding</guilabel> of the exported file. 
-      Use the <guilabel>Filter</guilabel>
-      pop-up menu to limit the scope of the export according to the stated rule. 
-      Use the <guilabel>Target</guilabel> menu to select the desired GEDCOM 
-      dialect. Select your copyright statement from the 
-      <guilabel>Copyright</guilabel> menu. Check <guilabel>Do not include
-      records marked private</guilabel> to disable the output of private
-      records. Check <guilabel>Restrict data on living people</guilabel>
-      to limit living people's data to family ties. With this option, 
-      information concerning birth, death, addresses, various events, 
-      etc. will be omitted in the exported GEDCOM file. If this option is selected, 
-      you can further choose whether to use the word "Living" as first name, exclude
-      notes, and exclude sources for the living people. Check <guilabel>Reference 
-      images from path</guilabel> to tell &app; to use the specific path for your 
-      images when writing image references in GEDCOM. 
+      <para>Введите имя файла GEDCOM в поле ввода текста или щелкните кнопку
+      <guibutton>Просмотреть...</guibutton> для вызова диалога
+      <guilabel>Сохранить файл</guilabel>. 
+      Выберите желаемую  <guilabel>Кодировку</guilabel> экспортируемого файла.
+      Используйте меню <guilabel>Фильтр</guilabel>, чтобы ограничить экспортируемую 
+      порцию данных согласно установленному правилу. Используйте меню 
+      <guilabel>Назначение</guilabel> для выбора желаемого диалекта GEDCOM. 
+      Выберите Ваши условия копирования из меню <guilabel>Copyright</guilabel>. 
+      Отметьте <guilabel>Не включать частные записи</guilabel>, чтобы подавить вывод
+      частных записей. Отметьте <guilabel>Ограничить данные о живущих лицах</guilabel>,
+      чтобы свести данные о живущих людях к семейным связям. С этой опцией информация, 
+      касающаяся рождений, смертей, адресов, различных событий и т.д. будет опущена 
+      в экспортируемом файле GEDCOM. Если эта опция отмечена, Вы можете добавить 
+      дополнительно заменить имя словом "Живущий", убрать комментарии и исключить 
+      источники для живущих лиц. Отметьте <guilabel>Ссылаться на изображения из 
+      каталога</guilabel>, чтобы указать &app; на специальный путь для Ваших изображений
+      при создании ссылок на изобрадения в Вашем GEDCOM файле. 
       </para>
 
-      <para>Upon starting the export, &app; will 
-      display the following GEDCOM export progress window with the 
-      progressbars reflecting the current state of exporting. </para>
+      <para>После начала экспорта, &app; покажет следующее окно прогресса экспорта 
+      GEDCOM с индикатором прогресса, отражающим текущее состояние экспорта.</para>
 
 	<!-- ==== Figure: GEDCOM Export ==== -->
 	<figure id="gedcom-export-progress-fig"> 
-	<title>Export GEDCOM progress dialog</title> 
+	<title>Окно прогресса экспорта GEDCOM</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/gedcom-export-progress.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Export GEDCOM progress dialog. </phrase>
+	<phrase>Показано окно прогресса экспорта GEDCOM. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Export ==== -->
 
-      <para>Exporting to &app; package will create a gzip-compressed tar 
-      archive (also known as tarball) which contains gramps database, all 
-      local media objects, and copies of all external media objects. This is a
-      useful format for moving your database to another machine or for sharing 
-      it with somebody, while retaining all the features provided 
-      by &app;.
+      <para>Экспорт в пакет &app; создаёт сжатый (gzip) tar архив (так называемый
+      тарбол), который содержит базу данных &app;, все локальные медиа-объекты и копии
+      всех внешних медиа-объектов. Это удобный формат для перемещения Вашей базы 
+      данных на другой компьютер или пересылки кому-либо, с сохранением всех 
+      возможностей, доступных в &app;.
       </para>
       
-      <para>Exporting to Web Family Tree will create the text file suitable 
-      as an input for the WFT program. Use the <guilabel>Filter</guilabel>
-      pop-up menu to limit the scope of the export according to the stated rule.
-      Check <guilabel>Restrict data on living people</guilabel> to limit living 
-      people's data to family ties.
-      </para>
+      <para>Экспорт в Web Family Tree созаёт текстовый файл, годящийся для ввода в
+      программу WFT. Используйте меню <guilabel>Фильтр</guilabel> для ограничения
+      экспортируемых данных согласно указанному правилу. Отметьте <guilabel>Ограничить 
+      данные о живущих лицах</guilabel>, чтобы свести данные о живущих людях к 
+      семейным связям.</para>
 
-      <para>If a media file is not found during export, the following dialog
-      will prompt you for the possible actions:</para>
+      <para>Если медиа-файл не найден во время экспорта, следующий диалог предложит
+      Вам возможные действия:</para>
 
 	<!-- ==== Figure: Missing media window  ==== -->
 	<figure id="missing-media-ex"> 
-	<title>Missing Media dialog</title> 
+	<title>Диалог утерянного файла</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/missing-media.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Missing Media dialog.  </phrase>
+	<phrase>Показан диалог утерянного файла.  </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
      <itemizedlist>	
      <listitem>
-     <para>To remove the object corresponding to the missing file as well as
-      all the references to that object from various database records, click
-      the <guibutton>Remove Object</guibutton> button. This will alter your 
-      database so that it will be in the consistent state, but all the 
-      references to the missing file will be gone. Use this option if the 
-      file is irrevocably lost and there is no possibility of ever replacing 
-      it. </para>
+     <para>Чтобы удалить объект, соответствующий утерянному файлу, а также все ссылки 
+     на этот
+     объект из различных записей базы данных, щёлкните кнопку <guibutton>Удалить 
+     объект</guibutton>. Это изменит Вашу базу данных так, что она будет находится в 
+     корректном состоянии, но все ссылки на утерянный файл пропадут. Используйте этот
+     вариант, если файл потерян безвозвратно и нет никакой возможности когда-либо его 
+     заменить.</para>
       </listitem>
 
      <listitem>
-     <para>To keep the reference to the object corresponding to the missing 
-     file, click the <guibutton>Keep Reference</guibutton> button. 
-     This will leave things as is, i.e. in the inconsistent state.
-     You could supply the missing file later, in which case you will have
-     to copy it into your database directory. Choose this option if the
-     replacement is possible, but not available right now. </para></listitem>
+     <para>Чтобы сохранить ссылки на объект, соответствующий утерянному файлу, 
+     щёлкните кнопку <guibutton>Сохранить ссылку</guibutton>. Это оставит всё как есть,
+     т.е. в некорректном состоянии. Вы можете указать пропавший файл позднее, в этом 
+     случае Вам нужно будет скопировать его в каталог Вашей базы данных. Выберите 
+     этот вариант, если замена возможна, но не прямо сейчас.</para></listitem>
 
      <listitem>
-     <para>To supply the missing file during export, click the 
-     <guibutton>Select File</guibutton> button. This will copy the file you
-     select in place of the missing file. No references will be altered
-     in the database, and it will be in the consistent state. Use this option
-     if the replacement is readily available. 
+     <para>Чтобы заменть файл в момент экспорта, щёлкните кнопку 
+     <guibutton>Выбрать файл</guibutton>. Это скопирует указанный файл на место 
+     утерянного. Никакие ссылки не будут изменены в базе данных, которая будет находится
+     в корректном состоянии. Используйте этот вариант, если замена возможна сейчас.
      </para></listitem>
     
      </itemizedlist>	
@@ -294,33 +288,32 @@
 
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-edit-quick"> 
-      <title>Editing Data: Quick Start</title> 
-	<para> Editing any portion of data allows you to amend and/or 
-	modify information stored in the database. The available editing 
-	options include editing personal data, relationship data, data about
-	children and parents, and information about sources, places, and media
-	objects used in the database. In short, any data stored in the 
-	database can be edited! Adding a new piece of information is in fact
-	creating an appropriate empty data structure and subsequent 
-	editing of that empty structure. </para>
+      <title>Правка данных: быстрый старт</title> 
+	<para> Правка любой порции данных позволяет Вам дополнить или изменить информацию,
+	содержащуюся в базе данных. Возможные варианты правки включают правку личной
+	информации, семейной информации, данных об отношениях рожителей и детей, а также
+	данных об источниках, местах и медиа-объектах, используемых в базе данных. Коротко
+	говоря, любая информация, хранимая в базе данных, доступна для редактирования!
+	Добавление новой информации, в действительности, есть ничто иное, как создание
+	соответствующей пустой структуры данных с последующей правкой этой структуры.
+	</para>
     
-    <para>This section refers mainly to the menu items and buttons as the main 
-    way of interacting with &app;. In addition to this, &app; provides an 
-    extensive set of keybindings. The detailed reference to the keybindings 
-    is found in the <xref linkend="append-keybind"/>.
+    <para>Этот раздел в основном ссылается на элементы меню и кнопки, как главный
+    способ всзаимодействия с &app;. В дополнение к этому, &app; предоставляет широкий
+    набор клавишных назначений. Для подробной справки по назначениям клавиш 
+    см. <xref linkend="append-keybind"/>.
     </para>
 
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-add-pers"> 
-        <title>To Add a Person</title> 
-	<para> To add a person to the database, switch to the People View 
-	(<xref linkend="side-nofilt-fig"/>) and then click the 
-	<guibutton>Add</guibutton> on the toolbar. 
-	Enter any data you know about this person into the <guilabel>Edit 
-	Person</guilabel> Dialog (see <xref linkend="edit-pers-fig"/> 
-	for details). To edit information about a person already present 
-	in the database, select an entry you would like to view/modify, 
-	and then click the <guibutton>Edit</guibutton> icon on the toolbar. </para> 
+        <title>Добавить лицо</title> 
+	<para> Чтобы добавть лицо в базу данных, перейдите в Вид Людей 
+	(<xref linkend="side-nofilt-fig"/>) и щёлкните кнопку <guibutton>Добавить</guibutton> 
+	на панели инструментов. Введите данные, известные об этом человеке, в диалоге 
+	<guilabel>Правка личной информации</guilabel> (подробнее, см. 
+	<xref linkend="edit-pers-fig"/>). Для правки данных о лице, уже содержащемся в базе
+	данных, выберите запись, которую Вы хотите просмотреть/править, и щёлкните кнопку
+	<guibutton>Правка</guibutton> на панели инструментов. </para> 
         
         <para>You can also use <guilabel>Add...</guilabel> and 
         <guilabel>Edit...</guilabel> menu items available under 

@@ -17,6 +17,8 @@
 	build_child_menu, build_spouse_menu, build_parents_menu, 
 	build_sp_parents_menu): Ditch stock Home item.
 	* src/EditPlace.py (display_references): Translate event names.
+	* doc/gramps-manual/ru/filtref.xml: Update.
+	* doc/gramps-manual/ru/usage.xml: Update.
 
 2004-01-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/FilterEditor.py: handle unicode characters
