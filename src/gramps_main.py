@@ -387,6 +387,11 @@ class Gramps:
         self.enable_filter(GrampsCfg.get_filter())
         self.toolbar_btn.set_active(GrampsCfg.get_toolbar_on())
         self.enable_toolbar(GrampsCfg.get_toolbar_on())
+
+        if not GrampsCfg.get_screen_size_checked():
+            GrampsCfg.save_screen_size_checked(1)
+            if gtk.gdk.screen_width() <= 900:
+                GrampsCfg.save_view(0)
         self.sidebar_btn.set_active(GrampsCfg.get_view())
         self.enable_sidebar(GrampsCfg.get_view())
 
