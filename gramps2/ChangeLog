@@ -1,4 +1,5 @@
 2003-09-19  Tim Waugh  <twaugh@redhat.com>
+	* gramps.spec.in: Own %{_datadir}/gramps directory.
 	* src/Makefile.am: Fix build when builddir != srcdir.
 	* gramps.spec.in: Ship grampslib.so.
 

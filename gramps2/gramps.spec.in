@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/gramps.png
 
 %{_libdir}/gramps
-%{_datadir}/gramps/*
+%{_datadir}/gramps
 %{_datadir}/omf/gramps
 
 %post
@@ -90,6 +90,7 @@ if which scrollkeeper-update>/dev/null 2>&1; then scrollkeeper-update; fi
  
 %changelog
 * Fri Sep 19 2003 Tim Waugh <twaugh@redhat.com>
+- Own %%{_datadir/gramps directory.
 - Ship %%{_libdir}/gramps.
 * Mon May 20 2003 Donald Peterson <dpeterson@sigmaxi.org>
 - Override RPMs default of localstatedir to /var/lib..
