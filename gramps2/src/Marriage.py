@@ -375,8 +375,7 @@ class Marriage:
             QuestionDialog(_('Abandon Changes'),
                            _("Data was modified. Are you sure you "
                              "want to abandon your changes?"),
-                           _('Abandon Changes'),self.cancel_callback,
-                           _('Continue Editing'))
+                           self.cancel_callback)
         else:
             Utils.destroy_passed_object(obj)
 

@@ -38,6 +38,7 @@ from intl import gettext as _
 import Utils
 import GrampsCfg
 from RelLib import Person
+from QuestionDialog import QuestionDialog
 
 import AddSpouse
 import SelectChild
@@ -190,6 +191,13 @@ class FamilyView:
         self.load_family()
 
     def remove_spouse(self,obj):
+        if self.selected_spouse:
+            name = self.selected_spouse.getPrimaryName().getRegularName()
+            QuestionDialog(_('Delete Spouse'),
+                           _('Do you wish to remove %s as a spouse?') % name,
+                           self.really_remove_spouse)
+                       
+    def really_remove_spouse(self):
         """Delete the currently selected spouse from the family"""
         if self.person == None:
             return
@@ -399,12 +407,27 @@ class FamilyView:
         self.parent_add(self.person)
 
     def add_sp_parents(self,obj):
-        self.parent_editor(self.selected_spouse,self.sp_selection)
+        if self.selected_spouse:
+            self.parent_add(self.selected_spouse)
 
     def del_parents_clicked(self,obj):
+        if len(self.person.getParentList()) == 0:
+            return
+        QuestionDialog(_('Delete Parents'),
+                       _('Do you wish to remove the selected parents?'),
+                       self.really_del_parents)
+        
+    def really_del_parents(self):
         self.parent_deleter(self.person,self.ap_selection)
 
     def del_sp_parents(self,obj):
+        if not self.selected_spouse or len(self.selected_spouse.getParentList()) == 0:
+            return
+        QuestionDialog(_('Delete Parents'),
+                       _('Do you wish to remove the selected parents?'),
+                       self.really_del_parents)
+
+    def really_del_parents(self):
         self.parent_deleter(self.selected_spouse,self.sp_selection)
 
     def child_back(self,obj):
@@ -442,7 +465,6 @@ class FamilyView:
     def parent_add(self,person):
         if not person:
             return
-
         try:
             ChooseParents.ChooseParents(self.parent.db,person,None,
                                         self.load_family,self.parent.full_update)
@@ -452,12 +474,9 @@ class FamilyView:
     def parent_deleter(self,person,selection):
         if not person:
             return
-
         plist = person.getParentList()
-
         if len(plist) == 0:
             return
-        
         if len(plist) == 1:
             person.clearAltFamilyList()
         else:
@@ -468,6 +487,7 @@ class FamilyView:
             row = model.get_path(iter)
             fam = person.getParentList()[row[0]]
             person.removeAltFamily(fam[0])
+        Utils.modified()
         self.load_family()
 
         

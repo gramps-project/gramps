@@ -137,7 +137,6 @@ class EditPerson:
             "on_ldsendow_src_clicked"   : self.on_ldsendow_source_clicked,
             "on_ldsseal_src_clicked"    : self.on_ldsseal_source_clicked,
             "on_name_source_clicked"    : self.on_primary_name_source_clicked,
-            "on_photolist_select_icon"  : self.gallery.on_photo_select_icon,
             "on_update_address_clicked" : self.on_update_addr_clicked,
             "on_update_attr_clicked"    : self.on_update_attr_clicked,
             "on_update_url_clicked"     : self.on_update_url_clicked,
@@ -746,9 +745,7 @@ class EditPerson:
         if self.did_data_change():
             QuestionDialog(_('Abandon Changes'),
                            _("Are you sure you want to abandon your changes?"),
-                           _("Abandon Changes"),
-                           self.cancel_callback,
-                           _("Continue Editing"))
+                           self.cancel_callback)
         else:
             Utils.destroy_passed_object(obj)
 
@@ -758,9 +755,7 @@ class EditPerson:
         if self.did_data_change():
             QuestionDialog(_('Abandon Changes'),
                            _("Are you sure you want to abandon your changes?"),
-                           _("Abandon Changes"),
-                           self.cancel_callback,
-                           _("Continue Editing"))
+                           self.cancel_callback)
             return 1
         else:
             Utils.destroy_passed_object(obj)

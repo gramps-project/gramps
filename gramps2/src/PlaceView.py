@@ -203,8 +203,7 @@ class PlaceView:
             ans = EditPlace.DeletePlaceQuery(place,self.db,self.update_display)
             QuestionDialog(_('Delete Place'),
                            _("This place is currently being used. Delete anyway?"),
-                           _('Delete Place'),ans.query_response,
-                           _('Keep Place'))
+                           ans.query_response)
         else:
             self.db.removePlace(place.getId())
             self.update(0)

@@ -47,10 +47,7 @@ import gnome.ui
 #-------------------------------------------------------------------------
 from RelLib import *
 import Date
-try:
-    from ansel import ansel_to_latin
-except:
-    from latin_ansel import ansel_to_latin
+from ansel_utf8 import ansel_to_utf8
     
 import latin_utf8 
 import Utils
@@ -135,7 +132,7 @@ def importData(database, filename, cb=None):
 
     close = g.parse_gedcom_file()
     g.resolve_refns()
-
+    
     statusTop.get_widget("close").set_sensitive(1)
     if close:
         statusWindow.destroy()
@@ -1412,10 +1409,12 @@ class GedcomParser:
                 if matches[2] == "UNICODE" or matches[2] == "UTF-8" or \
                    matches[2] == "UTF8":
                     self.code = UNICODE
-                    self.cnv = latin_utf8.utf8_to_latin
+                    self.cnv = nocnv
                 elif matches[2] == "ANSEL":
                     self.code = ANSEL
-                    self.cnv = ansel_to_latin
+                    self.cnv = ansel_to_utf8
+                else:
+                    self.cnv = latin_to_utf8
                 self.ignore_sub_junk(2)
                 self.update(self.encoding_obj,matches[2])
    	    elif matches[1] == "GEDC":

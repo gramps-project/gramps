@@ -199,7 +199,6 @@ _drag_targets = [
     ('text/uri-list',0,2),
     ('application/x-rootwin-drop',0,1)]
 
-
 #-------------------------------------------------------------------------
 #
 # Gallery class - This class handles all the logic underlying a
@@ -505,19 +504,21 @@ class Gallery(ImageSelect):
     def on_delete_photo_clicked(self, obj):
         """User wants to delete a new photo. Remove it from the displayed
         thumbnails, and remove it from the dataobj photo list."""
-        icon = self.selectedIcon
-        if icon != -1:
-            self.icon_list.remove(icon)
-            list = self.dataobj.getPhotoList()
-            del list[icon]
-            self.dataobj.setPhotoList(list)
-            self.parent.lists_changed = 1
-            if len(self.dataobj.getPhotoList()) == 0:
-                self.selectedIcon = -1
-            else:
-                self.selectedIcon = 0
-                self.icon_list.select_icon(0)
 
+        if self.sel:
+            (i,t,b,photo) = self.p_map[self.sel]
+            val = self.canvas_list[photo.getReference().getId()]
+            val[0].hide()
+            val[1].hide()
+            val[2].hide()
+            val[3].hide()
+
+            l = self.dataobj.getPhotoList()
+            l.remove(photo)
+            self.dataobj.setPhotoList(l)
+            self.parent.lists_changed = 1
+            self.load_images()
+        
     def show_popup(self, photo):
         """Look for right-clicks on a picture and create a popup
         menu of the available actions."""
