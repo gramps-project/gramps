@@ -57,8 +57,9 @@ pkgdata_PYTHON = \
 	rel_no.py\
 	rel_sv.py\
 	ImportGeneWeb.py\
-	WriteGeneWeb.py
-	
+	WriteGeneWeb.py\
+	rel_es.py
+
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins
