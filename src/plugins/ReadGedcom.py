@@ -1764,7 +1764,7 @@ def readData(database,active_person,cb):
     file_top = gtk.FileSelection("%s - GRAMPS" % _title_string)
     file_top.hide_fileop_buttons()
     file_top.ok_button.connect('clicked', on_ok_clicked)
-    file_top.cancel_button.connect('clicked', Utils.destroy_passed_object)
+    file_top.cancel_button.connect('clicked', on_cancel_clicked)
     file_top.show()
 
 #-------------------------------------------------------------------------
@@ -1783,6 +1783,9 @@ def on_ok_clicked(obj):
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
+
+def on_cancel_clicked(obj):
+    file_top.destroy()
 
 #-------------------------------------------------------------------------
 #
