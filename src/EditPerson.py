@@ -144,6 +144,10 @@ class EditPerson:
         self.ulist = person.getUrlList()[:]
         self.plist = person.getAddressList()[:]
 
+        self.death = Event(person.getDeath())
+        self.birth = Event(person.getBirth())
+        self.pname = Name(person.getPrimaryName())
+
         self.selectedIcon = -1
         
         self.top_window.signal_autoconnect({
@@ -179,7 +183,6 @@ class EditPerson:
             "on_name_source_clicked" : on_primary_name_source_clicked,
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_photolist_select_icon" : on_photo_select_icon,
-            "on_showsource_clicked" : on_showsource_clicked,
             "on_update_address_clicked" : on_update_address_clicked,
             "on_update_attr_clicked" : on_update_attr_clicked,
             "on_update_url_clicked" : on_update_url_clicked,
@@ -189,10 +192,6 @@ class EditPerson:
         if len(const.surnames) > 0:
             const.surnames.sort()
             self.get_widget("lastNameList").set_popdown_strings(const.surnames)
-
-        name = person.getPrimaryName()
-        birth = person.getBirth()
-        death = person.getDeath()
 
         self.get_widget("gid").set_text(": %s" % person.getId())
         self.event_list.set_column_visibility(3,Config.show_detail)
@@ -218,10 +217,10 @@ class EditPerson:
 
         # initial values
         self.get_widget("activepersonTitle").set_text(Config.nameof(person))
-        self.suffix.set_text(name.getSuffix())
+        self.suffix.set_text(self.pname.getSuffix())
 
-        self.surname_field.set_text(name.getSurname())
-        self.given.set_text(name.getFirstName())
+        self.surname_field.set_text(self.pname.getSurname())
+        self.given.set_text(self.pname.getFirstName())
 
         if person.getGender() == Person.male:
             self.is_male.set_active(1)
@@ -229,11 +228,11 @@ class EditPerson:
             self.is_female.set_active(1)
 
         self.nick.set_text(person.getNickName())
-        self.title.set_text(name.getTitle())
-        self.bdate.set_text(birth.getDate())
-        self.bplace.set_text(birth.getPlace())
-        self.ddate.set_text(death.getDate())
-        self.dplace.set_text(death.getPlace())
+        self.title.set_text(self.pname.getTitle())
+        self.bdate.set_text(self.birth.getDate())
+        self.bplace.set_text(self.birth.getPlace())
+        self.ddate.set_text(self.death.getDate())
+        self.dplace.set_text(self.death.getPlace())
         
         # load photos into the photo window
         photo_list = person.getPhotoList()
@@ -526,28 +525,30 @@ def did_data_change(obj):
     gender = epo.is_male.get_active()
     text = epo.notes_field.get_chars(0,-1)
 
-    name = person.getPrimaryName()
-    birth  = person.getBirth()
-    death  = person.getDeath()
-
     changed = 0
+    name = person.getPrimaryName()
+    
     if suffix != name.getSuffix() or surname != name.getSurname():
         changed = 1
     if given != name.getFirstName() or nick != person.getNickName():
         changed = 1
     if title != name.getTitle():
         changed = 1
-
-    newBirth = Event()
-    newBirth.set("Birth",bdate,bplace,"")
-    if newBirth.compare(birth):
+    if epo.pname.getNote() != name.getNote():
+        changed = 1
+    if not epo.pname.getSourceRef().are_equal(name.getSourceRef()):
         changed = 1
 
-    newDeath = Event()
-    newDeath.set("Death",ddate,dplace,"")
-    if newDeath.compare(death):
+    epo.birth.setDate(bdate)
+    epo.birth.setPlace(bplace)
+    if not epo.birth.are_equal(epo.person.getBirth()):
         changed = 1
-        
+
+    epo.death.setDate(ddate)
+    epo.death.setPlace(dplace)
+    if not epo.death.are_equal(epo.person.getDeath()):
+        changed = 1
+
     if gender and person.getGender() == Person.female:
         changed = 1
     if not gender and person.getGender() == Person.male:
@@ -1223,58 +1224,48 @@ def save_person(obj):
     nick = epo.nick.get_text()
     title = epo.title.get_text()
 
-    name = person.getPrimaryName()
+    name = epo.pname
 
     if suffix != name.getSuffix():
         name.setSuffix(suffix)
-        utils.modified()
 
     if surname != name.getSurname():
         name.setSurname(surname)
         if surname not in const.surnames:
             const.surnames.append(surname)
             const.surnames.sort()
-        utils.modified()
 
     if given != name.getFirstName():
         name.setFirstName(given)
+
+    if title != name.getTitle():
+        name.setTitle(title)
+
+    if not name.are_equal(epo.person.getPrimaryName()):
+        epo.person.setPrimaryName(name)
         utils.modified()
 
     if nick != person.getNickName():
         person.setNickName(nick)
         utils.modified()
 
-    if title != name.getTitle():
-        name.setTitle(title)
-        utils.modified()
-
-    birth  = person.getBirth()
-    bdate  = epo.bdate.get_text()
     bplace = epo.bplace.get_text()
-    
-    death  = person.getDeath()
-    ddate  = epo.ddate.get_text()
     dplace = epo.dplace.get_text()
+    
+    epo.birth.setDate(epo.bdate.get_text())
+    epo.birth.setPlace(bplace)
+    if not person.getBirth().are_equal(epo.birth):
+        person.setBirth(epo.birth)
+    
+    epo.death.setDate(epo.ddate.get_text())
+    epo.death.setPlace(dplace)
+    if not person.getDeath().are_equal(epo.death):
+        person.setDeath(epo.death)
 
     for place in [ dplace, bplace ]:
         if place not in const.places:
             const.places.append(place)
             const.places.sort()
-
-    newBirth = Event()
-    newBirth.set("Birth",bdate,bplace,"")
-    
-    if newBirth.compare(birth):
-        person.setBirth(newBirth)
-        utils.modified()
-
-    newDeath = Event()
-
-    newDeath.set("Death",ddate,dplace,"")
-
-    if newDeath.compare(death):
-        person.setDeath(newDeath)
-        utils.modified()
 
     gender = epo.is_male.get_active()
     error = 0
@@ -1391,7 +1382,7 @@ def on_save_note_clicked(obj):
 def on_birth_note_clicked(obj):
     epo = obj.get_data(EDITPERSON)
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-    data = epo.person.getBirth()
+    data = epo.birth
     textobj = editnote.get_widget("notetext")
     en_obj = editnote.get_widget("editnote")
     en_obj.set_data("n",data)
@@ -1414,7 +1405,7 @@ def on_birth_note_clicked(obj):
 def on_name_note_clicked(obj):
     epo = obj.get_data(EDITPERSON)
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
-    data = epo.person.getPrimaryName()
+    data = epo.pname
     textobj = editnote.get_widget("notetext")
     en_obj = editnote.get_widget("editnote")
     en_obj.set_data("n",data)
@@ -1438,7 +1429,7 @@ def on_death_note_clicked(obj):
     epo = obj.get_data(EDITPERSON)
     editnote = libglade.GladeXML(const.editnoteFile,"editnote")
     textobj = editnote.get_widget("notetext")
-    data = epo.person.getDeath()
+    data = epo.death
     en_obj = editnote.get_widget("editnote")
     en_obj.set_data("n",data)
     en_obj.set_data("w",textobj)
@@ -1459,7 +1450,7 @@ def on_death_note_clicked(obj):
 #-------------------------------------------------------------------------
 def on_death_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(epo.person.getDeath(),epo.db)
+    Sources.SourceEditor(epo.death.getSourceRef(),epo.db)
 
 #-------------------------------------------------------------------------
 #
@@ -1468,7 +1459,7 @@ def on_death_source_clicked(obj):
 #-------------------------------------------------------------------------
 def on_primary_name_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(epo.person.getPrimaryName(),epo.db)
+    Sources.SourceEditor(epo.pname.getSourceRef(),epo.db)
 
 #-------------------------------------------------------------------------
 #
@@ -1477,18 +1468,7 @@ def on_primary_name_source_clicked(obj):
 #-------------------------------------------------------------------------
 def on_birth_source_clicked(obj):
     epo = obj.get_data(EDITPERSON)
-    Sources.SourceEditor(epo.person.getBirth(),epo.db)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_showsource_clicked(obj):
-    row = obj.get_data(INDEX)
-    epo = obj.get_data(EDITPERSON)
-    if row >= 0:
-        Sources.SourceEditor(obj.get_row_data(row),epo.db)
+    Sources.SourceEditor(epo.birth.getSourceRef(),epo.db)
 
 #-------------------------------------------------------------------------
 #
@@ -1741,7 +1721,7 @@ def on_event_edit_ok_clicked(obj):
     if update_event(event,ename,edate,eplace,edesc,enote,epriv,econf):
         ee.parent.events_changed = 1
         
-    if not source_refs_equal(event.getSourceRef(),ee.srcref):
+    if not event.getSourceRef().are_equal(ee.srcref):
         event.setSourceRef(ee.srcref)
         ee.parent.events_changed = 1
         
@@ -1845,7 +1825,7 @@ def on_attrib_edit_ok_clicked(obj):
     if update_attrib(attrib,type,value,note,priv,conf):
         ee.parent.attr_changed = 1
         
-    if not source_refs_equal(attrib.getSourceRef(),ee.srcref):
+    if not attrib.getSourceRef().are_equal(ee.srcref):
         attrib.setSourceRef(ee.srcref)
         ee.parent.events_changed = 1
 
@@ -1952,7 +1932,7 @@ def on_name_edit_ok_clicked(obj):
     if update_name(name,first,last,suffix,note,priv,conf):
         ee.parent.name_changed = 1
 
-    if not source_refs_equal(name.getSourceRef(),ee.srcref):
+    if not name.getSourceRef().are_equal(ee.srcref):
         name.setSourceRef(ee.srcref)
         ee.parent.name_changed = 1
 
@@ -2066,7 +2046,7 @@ def on_addr_edit_ok_clicked(obj):
     if update_address(addr,date,street,city,state,country,postal,note,priv,conf):
         ee.parent.addr_changed = 1
         
-    if not source_refs_equal(addr.getSourceRef(),ee.srcref):
+    if not addr.getSourceRef().are_equal(ee.srcref):
         addr.setSourceRef(ee.srcref)
         ee.parent.addr_changed = 1
 
@@ -2166,22 +2146,3 @@ def get_detail_text(obj):
             details = "%s, %s" % (details,_("Private"))
     return details
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def source_refs_equal(one,two):
-    if not one or not two:
-        return 0
-    if one.ref != two.ref:
-        return 0
-    if one.page != two.page:
-        return 0
-    if one.date != two.date:
-        return 0
-    if one.comments != two.comments:
-        return 0
-    if one.text != two.text:
-        return 0
-    return 1

@@ -89,7 +89,6 @@ class Marriage:
             "on_marriageUpdateBtn_clicked" : on_update_clicked,
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_photolist_select_icon" : on_photo_select_icon,
-            "on_showsource_clicked" : on_showsource_clicked,
             "on_update_attr_clicked" : on_update_attr_clicked,
             })
 
@@ -377,8 +376,8 @@ def on_close_marriage_editor(obj):
     if family_obj.events_changed:
         utils.modified()
 
-    family_obj.update_events()
-    if family_obj.events_changed:
+    family_obj.update_attributes()
+    if family_obj.attr_changed:
         utils.modified()
 
 #-------------------------------------------------------------------------
@@ -519,18 +518,6 @@ def update_event(event,name,date,place,desc,note,priv,conf):
         changed = 1
         
     return changed
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_showsource_clicked(obj):
-    import Sources
-
-    row = obj.get_data(INDEX)
-    family_obj = obj.get_data(MARRIAGE)
-    if row >= 0:
-        Sources.SourceEditor(obj.get_row_data(row),family_obj.db)
 
 #-------------------------------------------------------------------------
 #
@@ -776,6 +763,10 @@ class EventEditor:
     def __init__(self,parent,event):
         self.parent = parent
         self.event = event
+        if self.event:
+            self.srcref = SourceRef(self.event.getSourceRef())
+        else:
+            self.srcref = SourceRef()
         self.top = libglade.GladeXML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
@@ -847,7 +838,7 @@ class EventEditor:
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.event,ee.parent.db,ee.source_field)
+    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
 #
@@ -873,7 +864,12 @@ def on_event_edit_ok_clicked(obj):
     if update_event(event,ename,edate,eplace,edesc,enote,epriv,econf):
         ee.parent.events_changed = 1
         
+    if not source_refs_equal(event.getSourceRef(),ee.srcref):
+        event.setSourceRef(ee.srcref)
+        ee.parent.events_changed = 1
+
     ee.parent.redraw_events()
+
     utils.destroy_passed_object(obj)
 
 
@@ -896,7 +892,11 @@ class AttributeEditor:
         self.source_field = self.top.get_widget("attr_source")
         self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
-
+        if self.attrib:
+            self.srcref = SourceRef(self.attrib.getSourceRef())
+        else:
+            self.srcref = SourceRef()
+        
         father = parent.family.getFather()
         mother = parent.family.getMother()
         if father and mother:
@@ -954,7 +954,7 @@ class AttributeEditor:
 #-------------------------------------------------------------------------
 def on_attrib_source_clicked(obj):
     ee = obj.get_data("o")
-    Sources.SourceEditor(ee.attrib,ee.parent.db,ee.source_field)
+    Sources.SourceEditor(ee.srcref,ee.parent.db,ee.source_field)
             
 #-------------------------------------------------------------------------
 #
@@ -978,9 +978,14 @@ def on_attrib_edit_ok_clicked(obj):
     if update_attrib(attrib,type,value,note,priv,conf):
         ee.parent.attr_changed = 1
         
+    if not source_refs_equal(attrib.getSourceRef(),ee.srcref):
+        attrib.setSourceRef(ee.srcref)
+        ee.parent.attr_changed = 1
+
     ee.parent.redraw_attr_list()
     utils.destroy_passed_object(obj)
 
+#-------------------------------------------------------------------------
 #
 #
 #
@@ -1017,3 +1022,23 @@ def get_detail_text(obj):
         else:
             details = "%s, %s" % (details,_("Private"))
     return details
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def source_refs_equal(one,two):
+    if not one or not two:
+        return 0
+    if one.ref != two.ref:
+        return 0
+    if one.page != two.page:
+        return 0
+    if one.date != two.date:
+        return 0
+    if one.comments != two.comments:
+        return 0
+    if one.text != two.text:
+        return 0
+    return 1

@@ -66,11 +66,11 @@ class SourceEditor:
     # __init__ - Creates a source editor window associated with an event
     #
     #---------------------------------------------------------------------
-    def __init__(self,active_entry,database,update=None):
+    def __init__(self,srcref,database,update=None):
 
         self.db = database
         self.update = update
-        self.active_entry = active_entry
+        self.source_ref = srcref
         self.showSource = libglade.GladeXML(const.gladeFile, "sourceDisplay")
         self.showSource.signal_autoconnect({
             "on_sourceok_clicked" : on_sourceok_clicked,
@@ -82,10 +82,6 @@ class SourceEditor:
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
-        if active_entry:
-            self.source_ref = active_entry.getSourceRef()
-        else:
-            self.source_ref = None
         self.active_source = None
         self.draw()
         self.sourceDisplay.set_data(SOURCEDISP,self)
@@ -168,28 +164,23 @@ class SourceEditor:
 def on_sourceok_clicked(obj):
 
     src_edit = obj.get_data(SOURCEDISP)
-    
-    current_source_ref = src_edit.active_entry.getSourceRef()
-    if current_source_ref == None:
-        current_source_ref = SourceRef()
-        src_edit.active_entry.setSourceRef(current_source_ref)
-        
-    if src_edit.active_source != current_source_ref.getBase():
-        src_edit.active_entry.getSourceRef().setBase(src_edit.active_source)
-        utils.modified()
+
+    if src_edit.active_source != src_edit.source_ref.getBase():
+        src_edit.source_ref.setBase(src_edit.active_source)
+
     page = src_edit.get_widget("spage").get_text()
     date = src_edit.get_widget("sdate").get_text()
     text = src_edit.get_widget("stext").get_chars(0,-1)
     comments = src_edit.get_widget("scomment").get_chars(0,-1)
 
-    current_source_ref.setPage(page)
-    current_source_ref.getDate().set(date)
-    current_source_ref.setText(text)
-    current_source_ref.setComments(comments)
+    src_edit.source_ref.setPage(page)
+    src_edit.source_ref.getDate().set(date)
+    src_edit.source_ref.setText(text)
+    src_edit.source_ref.setComments(comments)
 
     if src_edit.update:
-        if current_source_ref.getBase():
-            val = current_source_ref.getBase().getTitle()
+        if src_edit.source_ref.getBase():
+            val = src_edit.source_ref.getBase().getTitle()
         else:
             val = ""
         src_edit.update.set_text(val)
