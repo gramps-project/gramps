@@ -231,7 +231,6 @@ class GedcomParser:
     
         self.trans = string.maketrans('','')
         self.delc = self.trans[0:31]
-
         self.trans2 = self.trans[0:128] + ('?' * 128)
         
         self.window = window
@@ -264,7 +263,7 @@ class GedcomParser:
             mypaths = []
             f = open("/proc/mounts","r")
 
-            for line in f.readlines():
+            for line in f.xreadlines():
                 paths = string.split(line)
                 ftype = paths[2].upper()
                 if ftype in file_systems.keys():
@@ -330,7 +329,7 @@ class GedcomParser:
     def update(self,field,text):
         field.set_text(text)
         while gtk.events_pending():
-            gtk.mainiteration()
+            gtk.main_iteration()
 
     def get_next(self):
         if self.backoff == 0:
@@ -492,12 +491,16 @@ class GedcomParser:
                     father = self.family.get_father_id()
                     if father:
                         father.add_address(self.addr)
+                        self.db.commit_person(father)
                     mother = self.family.get_mother_id()
                     if mother:
                         mother.add_address(self.addr)
+                        self.db.commit_person(mother)
                     for child in self.family.get_child_id_list():
                         child.add_address(self.addr)
+                        self.db.commit_person(child)
                 self.db.commit_family(self.family)
+                del self.family
             elif matches[2] == "INDI":
                 if self.indi_count % UPDATE == 0 and self.window:
                     self.update(self.people_obj,str(self.indi_count))
@@ -505,9 +508,10 @@ class GedcomParser:
                 id = matches[1]
                 id = id[1:-1]
                 self.person = self.find_or_create_person(id)
-                self.added[self.person.get_id()] = self.person
+                self.added[self.person.get_id()] = 1
                 self.parse_individual()
                 self.db.commit_person(self.person)
+                del self.person
             elif matches[2] in ["SUBM","SUBN","REPO"]:
                 self.ignore_sub_junk(1)
             elif matches[1] in ["SUBM","SUBN","OBJE","_EVENT_DEFN"]:
@@ -670,6 +674,7 @@ class GedcomParser:
                 self.family.add_event_id(event.get_id())
                 self.parse_family_event(event,2)
                 self.db.commit_event(event)
+                del event
 
     def parse_note_base(self,matches,obj,level,old_note,task):
         note = old_note
@@ -1704,23 +1709,25 @@ class GedcomParser:
         prefix = self.db.iprefix
         index = 0
         new_pmax = self.db.pmap_index
-        for pid, person in self.added.items():
+        for pid in self.added.keys():
             index = index + 1
             if self.refn.has_key(pid):
                 val = self.refn[pid]
                 new_key = prefix % val
                 new_pmax = max(new_pmax,val)
 
+                person = self.db.find_person_from_id(pid)
+
                 # new ID is not used
                 if not self.db.has_person_id(new_key):
-                    self.db.remove_person_id(person.get_id())
+                    self.db.remove_person_id(pid)
                     person.set_id(new_key)
-                    self.db.add_person_as(person)
+                    self.db.add_person(person)
                 else:
                     tp = self.db.find_person_from_id(new_key)
                     # same person, just change it
                     if person == tp:
-                        self.db.remove_person_id(person.get_id())
+                        self.db.remove_person_id(pid)
                         person.set_id(new_key)
                         self.db.add_person_as(person)
                     # give up trying to use the refn as a key
@@ -1729,8 +1736,11 @@ class GedcomParser:
 
         self.db.pmap_index = new_pmax
 
-global file_top
-
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def readData(database,active_person,cb):
     global db
     global callback
@@ -1738,51 +1748,39 @@ def readData(database,active_person,cb):
     
     db = database
     callback = cb
-    
-    file_top = gtk.FileSelection("%s - GRAMPS" % _title_string)
-    file_top.hide_fileop_buttons()
-    file_top.ok_button.connect('clicked', on_ok_clicked)
-    file_top.cancel_button.connect('clicked', on_cancel_clicked)
-    file_top.show()
+
+    choose = gtk.FileChooserDialog("%s - GRAMPS" % _title_string,
+                                   None,
+                                   gtk.FILE_CHOOSER_ACTION_OPEN,
+                                   (gtk.STOCK_CANCEL,
+                                    gtk.RESPONSE_CANCEL,
+                                    gtk.STOCK_OPEN,
+                                    gtk.RESPONSE_OK))
+    filter = gtk.FileFilter()
+    filter.set_name(_('GEDCOM files'))
+    filter.add_pattern('*.ged')
+    filter.add_pattern('*.GED')
+    choose.add_filter(filter)
+        
+    filter = gtk.FileFilter()
+    filter.set_name(_('All files'))
+    filter.add_pattern('*')
+    choose.add_filter(filter)
+
+    response = choose.run()
+    choose.destroy()
+    if response == gtk.RESPONSE_OK:
+        filename = choose.get_filename()
+        try:
+            importData(db,filename)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def on_ok_clicked(obj):
-
-    name = file_top.get_filename()
-    if name == "":
-        return
-    Utils.destroy_passed_object(file_top)
-    try:
-        importData(db,name)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-
-def on_cancel_clicked(obj):
-    file_top.destroy()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-
-if __name__ == "__main__":
-    import sys
-    import GrampsXML
-    import profile
-    
-    print "Reading %s" % sys.argv[1]
-
-    db = GrampsXML.GrampsXML()
-    g = GedcomParser(db,sys.argv[1],None)
-    profile.run('g.parse_gedcom_file()')
-    g.resolve_refns()
-    
-else:
-    from Plugins import register_import
-    register_import(readData,_title_string)
+from Plugins import register_import
+register_import(readData,_title_string)
