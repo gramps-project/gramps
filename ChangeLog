@@ -1,3 +1,8 @@
+2003-07-14  Donald Peterson  <dpeterson@sigmaxi.org>
+	* src/docgen/LaTeXDoc.py: Regress UNICODE support to be only a
+	commented line in the output rather than implemented by default
+	since not all LaTeX installations include ucs.sty by default.
+
 2003-07-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Plugins.py (PluginDialog.build_tree): Remove reverse() call.
 	* doc/gramps-manual/C/gramps-manual.xml: More corrections.
