@@ -54,6 +54,7 @@ if os.environ.has_key('GRAMPSDIR'):
 else:
     rootDir = "."
 
+custom_filters = "~/.gramps/custom_filters.xml"
 icon           = "%s/gramps.xpm" % rootDir
 logo           = "%s/logo.png" % rootDir
 gladeFile      = "%s/gramps.glade" % rootDir
@@ -73,6 +74,8 @@ srcselFile     = "%s/srcsel.glade" % rootDir
 findFile       = "%s/find.glade" % rootDir
 mergeFile      = "%s/mergedata.glade" % rootDir
 traceFile      = "%s/trace.glade" % rootDir
+filterFile     = "%s/rule.glade" % rootDir
+
 pluginsDir     = "%s/plugins" % rootDir
 docgenDir      = "%s/docgen" % rootDir
 filtersDir     = "%s/filters" % rootDir
