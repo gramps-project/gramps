@@ -106,7 +106,7 @@ class EvalWindow:
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_tool
+from PluginMgr import register_tool
 
 def runtool(database,person,callback,parent):
     EvalWindow(parent)

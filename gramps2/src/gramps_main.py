@@ -63,6 +63,7 @@ import GenericFilter
 import DisplayTrace
 import const
 import Plugins
+import PluginMgr
 import Utils
 import Bookmarks
 import GrampsGconfKeys
@@ -140,7 +141,7 @@ class Gramps:
                             "contain bugs which could corrupt your database."))
             GrampsGconfKeys.save_betawarn(1)
 
-        self.RelClass = Plugins.relationship_class
+        self.RelClass = PluginMgr.relationship_class
         self.relationship = self.RelClass(self.db)
         self.gtop = gtk.glade.XML(const.gladeFile, "gramps", "gramps")
         self.init_interface()
@@ -820,15 +821,15 @@ class Gramps:
         self.report_menu.set_sensitive(0)
         self.tools_menu.set_sensitive(0)
         
-        Plugins.load_plugins(const.docgenDir)
-        Plugins.load_plugins(os.path.expanduser("~/.gramps/docgen"))
-        Plugins.load_plugins(const.pluginsDir)
-        Plugins.load_plugins(os.path.expanduser("~/.gramps/plugins"))
+        PluginMgr.load_plugins(const.docgenDir)
+        PluginMgr.load_plugins(os.path.expanduser("~/.gramps/docgen"))
+        PluginMgr.load_plugins(const.pluginsDir)
+        PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
 
         Plugins.build_report_menu(self.report_menu,self.menu_report)
         Plugins.build_tools_menu(self.tools_menu,self.menu_tools)
 
-        self.RelClass = Plugins.relationship_class
+        self.RelClass = PluginMgr.relationship_class
         self.relationship = self.RelClass(self.db)
 
     def init_filters(self):

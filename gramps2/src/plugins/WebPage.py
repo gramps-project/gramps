@@ -72,8 +72,6 @@ _month = [
 _hline = " "    # Everything is underlined, so use blank
 _BORN = _('b.')
 
-_dd = DateHandler.create_display()
-
 #------------------------------------------------------------------------
 #
 # HtmlLinkDoc
@@ -235,7 +233,7 @@ class IndividualPage:
             self.write_info(base.get_title())
             self.write_info(base.get_author())
             self.write_info(base.get_publication_info())
-            self.write_info(_dd.display(sref.get_date()))
+            self.write_info(DateHander.displayer.display(sref.get_date()))
             self.write_info(sref.get_page())
             if self.usecomments:
                 self.write_info(sref.get_text())
@@ -799,7 +797,7 @@ class WebReport(Report.Report):
                 else:
                     continue
                 if e:
-                    f.write("%s|" % _dd.display(e.get_date_object()))
+                    f.write("%s|" % DateHander.displayer.display(e.get_date_object()))
                     if e.get_place_handle():
                         f.write('%s|' % self.db.get_place_from_handle(e.get_place_handle()).get_title())
                     else:
@@ -1744,7 +1742,7 @@ def report(database,person):
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
 
 register_report(
     report,

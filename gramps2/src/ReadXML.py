@@ -1440,5 +1440,5 @@ _filter = gtk.FileFilter()
 _filter.set_name(_('GRAMPS XML databases'))
 _filter.add_pattern(_mime_type)
 
-from Plugins import register_import
+from PluginMgr import register_import
 register_import(importData,_filter,_mime_type,1)

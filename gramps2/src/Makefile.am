@@ -78,6 +78,7 @@ gdir_PYTHON = \
 	PeopleModel.py\
 	PlaceView.py\
 	Plugins.py\
+	PluginMgr.py\
 	QuestionDialog.py\
 	ReadGedcom.py \
 	ReadXML.py\

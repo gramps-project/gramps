@@ -590,7 +590,8 @@ class IndivCompleteOptions(ReportOptions.ReportOptions):
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
+
 register_report(
     name = 'indiv_complete',
     category = const.CATEGORY_TEXT,

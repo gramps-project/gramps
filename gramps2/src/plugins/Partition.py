@@ -220,7 +220,7 @@ def report(db, person):
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
 
 register_report(
     report,

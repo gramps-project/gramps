@@ -469,7 +469,8 @@ class TimeLineOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
+
 register_report(
     name = 'timeline',
     category = const.CATEGORY_DRAW,

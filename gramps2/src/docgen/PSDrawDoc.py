@@ -31,7 +31,7 @@ from math import pi, cos, sin
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Plugins
+import PluginMgr
 import Errors
 import BaseDoc
 from Report import run_print_dialog
@@ -401,5 +401,5 @@ def rgb_color(color):
     b = float(color[2])/255.0
     return (r,g,b)
         
-Plugins.register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps",
+PluginMgr.register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps",
                           _("Print a copy"));

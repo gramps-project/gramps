@@ -95,7 +95,7 @@ class Leak:
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_tool
+from PluginMgr import register_tool
 
 def runtool(database,person,callback,parent=None):
     Leak(parent)

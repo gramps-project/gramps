@@ -187,5 +187,6 @@ _filter = gtk.FileFilter()
 _filter.set_name(_('GRAMPS packages'))
 _filter.add_mime_type(_mime_type)
 
-from Plugins import register_import
+from PluginMgr import register_import
+
 register_import(impData,_filter,_mime_type)

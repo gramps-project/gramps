@@ -58,7 +58,7 @@ from RelLib import Person
 import const
 import Utils
 import ListModel
-import Plugins
+import PluginMgr
 import Report
 import BaseDoc
 from QuestionDialog import WarningDialog
@@ -110,7 +110,7 @@ class BookItem:
         """
 
         self.clear()
-        for item in Plugins._bkitems:
+        for item in PluginMgr.bkitems_list:
             if item[0] == name:
                 self.name = item[0]
                 self.category = item[1]
@@ -642,10 +642,10 @@ class BookReportSelector:
         The selections are read from the book item registry.
         """
 
-        if not Plugins._bkitems:
+        if not PluginMgr.bkitems_list:
             return
 
-        for book_item in Plugins._bkitems:
+        for book_item in PluginMgr.bkitems_list:
             data = [ book_item[0], book_item[1] ] 
             new_iter = self.av_model.add(data)
 
@@ -1097,7 +1097,7 @@ def cl_report(database,name,category,options_str_dict):
 # 
 #
 #------------------------------------------------------------------------
-Plugins.register_report(
+PluginMgr.register_report(
     name = 'book',
     category = const.CATEGORY_BOOK,
     report_class = BookReportSelector,

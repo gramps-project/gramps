@@ -317,7 +317,7 @@ class FanChartOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
 register_report(
     name = 'fan_chart',
     category = const.CATEGORY_DRAW,

@@ -35,7 +35,7 @@ import os
 
 import BaseDoc
 import Errors
-import Plugins
+import PluginMgr
 import ImgManip
 import GrampsMime
 
@@ -327,6 +327,6 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(mtype,AbiWordDoc,1,1,1,".abw", print_label)
+    PluginMgr.register_text_doc(mtype,AbiWordDoc,1,1,1,".abw", print_label)
 except:
-    Plugins.register_text_doc(_('AbiWord document'),AbiWordDoc,1,1,1,".abw", None)
+    PluginMgr.register_text_doc(_('AbiWord document'),AbiWordDoc,1,1,1,".abw", None)

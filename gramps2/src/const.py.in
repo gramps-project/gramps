@@ -875,7 +875,6 @@ lds_ssealing = [
     _("Submitted"),    _("Uncleared"),
     ]
     
-logical_functions = ['or', 'and', 'xor', 'one']
 
 notes_formats = [
     _("Flowed"), 

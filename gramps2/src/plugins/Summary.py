@@ -166,7 +166,8 @@ class SummaryReport:
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
+
 register_report(
     name = 'summary',
     category = const.CATEGORY_VIEW,

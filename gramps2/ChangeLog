@@ -1,3 +1,9 @@
+2005-01-04  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Plugins.py: move non-gui functions to PluginMgr.py
+	* src/PluginMgr.py: Non-gui functions for plugins
+	* src/Makefile.am: Added PluginMgr.py
+	* various: switch from Plugins to PluginMgr
+
 2005-01-03  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsDbBase.py: move all thumbnail creation here to have
 	a common thumbnail scheme.

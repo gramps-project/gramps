@@ -35,7 +35,7 @@ import GrampsMime
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import Plugins
+import PluginMgr
 import Errors
 
 from gettext import gettext as _
@@ -367,7 +367,7 @@ try:
     else:
         print_label=None
 
-    Plugins.register_text_doc(mtype,AsciiDoc,1,1,1,".txt", print_label)
+    PluginMgr.register_text_doc(mtype,AsciiDoc,1,1,1,".txt", print_label)
 except:
-    Plugins.register_text_doc(_("Plain Text"),AsciiDoc,1,1,1,".txt", None)
+    PluginMgr.register_text_doc(_("Plain Text"),AsciiDoc,1,1,1,".txt", None)
 

@@ -537,7 +537,7 @@ class FamilyGroupOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
 register_report(
     name = 'family_group',
     category = const.CATEGORY_TEXT,

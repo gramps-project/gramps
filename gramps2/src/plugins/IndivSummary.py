@@ -384,7 +384,8 @@ class IndivSummaryOptions(ReportOptions.ReportOptions):
 # Register plugins
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
+
 register_report(
     name = 'individual_summary',
     category = const.CATEGORY_TEXT,

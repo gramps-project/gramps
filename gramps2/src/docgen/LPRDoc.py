@@ -61,7 +61,7 @@ else:
 #
 #------------------------------------------------------------------------
 import BaseDoc
-import Plugins
+import PluginMgr
 
 #------------------------------------------------------------------------
 #
@@ -1161,7 +1161,7 @@ class LPRDoc(BaseDoc.BaseDoc):
 # Register the document generator with the system
 #
 #------------------------------------------------------------------------
-Plugins.register_text_doc(
+PluginMgr.register_text_doc(
     name=_("Print..."),
     classref=LPRDoc,
     table=1,
@@ -1172,7 +1172,7 @@ Plugins.register_text_doc(
     clname='print')
     
 
-Plugins.register_book_doc(
+PluginMgr.register_book_doc(
     _("Print..."),
     LPRDoc,
     1,
@@ -1181,7 +1181,7 @@ Plugins.register_book_doc(
     "",
     'print')
 
-Plugins.register_draw_doc(
+PluginMgr.register_draw_doc(
     _("Print..."),
     LPRDoc,
     1,

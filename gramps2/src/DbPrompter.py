@@ -46,7 +46,7 @@ import gnome
 import Utils
 import const
 import QuestionDialog
-import Plugins
+import PluginMgr
 import GrampsBSDDB
 import GrampsXMLDB
 import GrampsGEDDB
@@ -156,7 +156,7 @@ class ExistingDbPrompter:
         choose.add_filter(mime_filter)
 
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
+        for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
             if not native_format:
                 choose.add_filter(mime_filter)
         
@@ -183,7 +183,7 @@ class ExistingDbPrompter:
             # The above native formats did not work, so we need to 
             # look up the importer for this format
             # and create an empty native database to import data in
-            for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
+            for (importData,mime_filter,mime_type,native_format) in Plugin.import_list:
                 if filetype == mime_type or the_file == mime_type:
                     QuestionDialog.OkDialog(
                         _("Opening non-native format"), 
@@ -252,7 +252,7 @@ class ImportDbPrompter:
 #        choose.add_filter(mime_filter)
 
         # Add more data type selections if opening existing db
-        for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
+        for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
             choose.add_filter(mime_filter)
         
         # Suggested folder: try last open file, import, then last export, 
@@ -279,7 +279,7 @@ class ImportDbPrompter:
 
             (the_path,the_file) = os.path.split(filename)
             GrampsGconfKeys.save_last_import_dir(the_path)
-            for (importData,mime_filter,mime_type,native_format) in Plugins._imports:
+            for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
                 if filetype == mime_type or the_file == mime_type:
                     choose.destroy()
                     importData(self.parent.db,filename)

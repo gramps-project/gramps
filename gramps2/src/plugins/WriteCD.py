@@ -311,6 +311,6 @@ class PackageWriter:
 # Register the plugin
 #
 #-------------------------------------------------------------------------
-from Plugins import register_export
+from PluginMgr import register_export
 
 register_export(writeData,_title_string)

@@ -2014,5 +2014,5 @@ def create_id():
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_import
+from PluginMgr import register_import
 register_import(importData,_filter,_mime_type,1)

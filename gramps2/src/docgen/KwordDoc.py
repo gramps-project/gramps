@@ -31,7 +31,7 @@ import os
 
 import Errors
 from TarFile import TarFile
-import Plugins
+import PluginMgr
 import ImgManip
 import GrampsMime
 
@@ -495,7 +495,7 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(mtype, KwordDoc, 1, 0, 1, ".kwd", print_label)
+    PluginMgr.register_text_doc(mtype, KwordDoc, 1, 0, 1, ".kwd", print_label)
 except:
-    Plugins.register_text_doc(_('KWord'), KwordDoc, 1, 0, 1, ".kwd", print_label)
+    PluginMgr.register_text_doc(_('KWord'), KwordDoc, 1, 0, 1, ".kwd", print_label)
 

@@ -33,7 +33,7 @@ from math import pi, cos, sin, fabs
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-import Plugins
+import PluginMgr
 from gettext import gettext as _
 import BaseDoc
 import Errors
@@ -258,4 +258,4 @@ def units(val):
 # Register document generator
 #
 #-------------------------------------------------------------------------
-Plugins.register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc,1,1,".svg");
+PluginMgr.register_draw_doc(_("SVG (Scalable Vector Graphics)"),SvgDrawDoc,1,1,".svg");

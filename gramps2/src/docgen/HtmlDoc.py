@@ -25,7 +25,7 @@ import string
 import re
 import time
 
-import Plugins
+import PluginMgr
 import ImgManip
 import TarFile
 import const
@@ -486,6 +486,6 @@ try:
         print_label=_("Open in %s") % prog[1]
     else:
         print_label=None
-    Plugins.register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
+    PluginMgr.register_text_doc(mtype,HtmlDoc,1,0,1,".html", print_label)
 except:
-    Plugins.register_text_doc(_('HTML'),HtmlDoc,1,0,1,".html", None)
+    PluginMgr.register_text_doc(_('HTML'),HtmlDoc,1,0,1,".html", None)

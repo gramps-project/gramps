@@ -977,7 +977,7 @@ class DetDescendantOptions(ReportOptions.ReportOptions):
 #
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from PluginMgr import register_report
 register_report(
     name = 'det_descendant_report',
     category = const.CATEGORY_TEXT,

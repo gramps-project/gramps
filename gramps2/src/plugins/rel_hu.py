@@ -33,7 +33,7 @@
 import RelLib
 import Date
 import Relationship
-from Plugins import register_relcalc
+from PluginMgr import register_relcalc
 import types
 from gettext import gettext as _
 

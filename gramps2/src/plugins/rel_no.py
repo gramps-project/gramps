@@ -273,7 +273,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 # Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
-from Plugins import register_relcalc
+from PluginMgr import register_relcalc
 
 register_relcalc(RelationshipCalculator,
     ["nb","nn","no", "nb_NO","nn_NO","no_NO","nb_NO.UTF8","nn_NO.UTF8","no_NO.UTF8",

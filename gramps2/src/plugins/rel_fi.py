@@ -216,7 +216,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
 # Register this class with the Plugins system 
 #
 #-------------------------------------------------------------------------
-from Plugins import register_relcalc
+from PluginMgr import register_relcalc
 
 register_relcalc(RelationshipCalculator,
     ["fi","FI","fi_FI","finnish","Finnish","fi_FI.UTF8","fi_FI@euro","fi_FI.UTF8@euro",

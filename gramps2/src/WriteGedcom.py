@@ -1240,5 +1240,5 @@ _description = _('GEDCOM is used to transfer data between genealogy programs. '
 _config = (_('GEDCOM export options'),GedcomWriterOptionBox)
 _filename = 'ged'
 
-from Plugins import register_export
+from PluginMgr import register_export
 register_export(exportData,_title,_description,_config,_filename)
