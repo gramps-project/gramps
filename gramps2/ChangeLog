@@ -2,9 +2,9 @@
 	* src/GrampsCfg.py (GrampsPreferences.select): Conditional get_path(). 
 	* src/Plugins.py (PluginDialog.on_node_selected): Likewise.
 	* src/plugins/BookReport.py (BookReportDialog.__init__): Do not 
-        initiale book to the empty book (was losing selected style info).
+	initiale book to the empty book (was losing selected style info).
 	* src/plugins/FtmStyleDescendants.py (FtmDescendantReport.__init__): 
-        Call setup() to obtain complete style information.
+	Call setup() to obtain complete style information.
 	* src/plugins/IndivComplete.py (IndivComplete.__init__): Likewise.
 	* src/plugins/IndivSummary.py (IndivSummary.__init__): Likewise.
 
