@@ -248,10 +248,12 @@ class CheckIntegrity:
                                            m.getPrimaryName().getName())
                 elif f:
                     pn = f.getPrimaryName().getName()
-                else:
+                elif m:
                     pn = m.getPrimaryName().getName()
+                else:
+                    pn = _("unknown")
                 self.text.write('\t')
-                self.text.write('_("%s was removed from the family of %s\n") % (cn,pn)')
+                self.text.write(_("%s was removed from the family of %s\n") % (cn,pn))
 
         if plink > 0:
             if plink == 1:

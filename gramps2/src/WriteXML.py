@@ -77,7 +77,7 @@ def exportData(database, filename, callback):
 
         DisplayTrace.DisplayTrace() 
         ErrorDialog(_("Failure writing %s") % filename,
-                    _("An attempt is begin made to recover the original file"))
+                    _("An attempt is being made to recover the original file"))
         shutil.copy(filename + ".bak", filename)
 
 #-------------------------------------------------------------------------
