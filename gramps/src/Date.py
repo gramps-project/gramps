@@ -1,4 +1,4 @@
-#
+
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000  Donald N. Allingham
@@ -240,7 +240,9 @@ class SingleDate:
                       re.IGNORECASE)
     quick= re.compile(start + "(\d+)?\s(\S\S\S)?\s(\d+)?",
                       re.IGNORECASE)
-    fmt3 = re.compile(start + "(\d+)\s*[./-]\s*(\d+)\s*[./-]\s*(\d+)\s*$",
+    fmt3 = re.compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
+                      re.IGNORECASE)
+    fmt7 = re.compile(start + r"([?\d]+)\s*[./-]\s*([?\d]+)\s*$",
                       re.IGNORECASE)
     fmt4 = re.compile(start + "(\S+)\s+(\d+)\s*$",
                       re.IGNORECASE)
@@ -540,7 +542,7 @@ class SingleDate:
             else:
                 retval = "%d/??/%d" % (self.month+1,self.year)
         elif self.month == -1:
-            retval = "%d" % self.year
+            retval = "??-%d-%d" % (self.day,self.year)
         else:
             if self.year == -1:
                 retval = "%d/%d/????" % (self.month+1,self.day)
@@ -575,7 +577,7 @@ class SingleDate:
             else:
                 retval = "%d-??-%d" % (self.month+1,self.year)
         elif self.month == -1:
-            retval = "%d" % self.year
+            retval = "??-%d-%d" % (self.day,self.year)
         else:
             if self.year == -1:
                 retval = "%d-%d-????" % (self.month+1,self.day)
@@ -610,7 +612,7 @@ class SingleDate:
             else:
                 retval = "??/%d/%d" % (self.month+1,self.year)
         elif self.month == -1:
-            retval = "%d" % self.year
+            retval = "%d/??/%d" % (self.day,self.year)
         else:
             if self.year == -1:
                 retval = "%d/%d/????" % (self.day,self.month+1)
@@ -644,7 +646,7 @@ class SingleDate:
             else:
                 retval = "??-%d-%d" % (self.month+1,self.year)
         elif self.month == -1:
-            retval = "%d" % self.year
+            retval = "%d-??-%d" % (self.day,self.year)
         elif self.year == -1:
             retval = "%d-%d-????" % (self.day,self.month+1)
         else:
@@ -722,16 +724,42 @@ class SingleDate:
             self.setYear(string.atoi(matches[1]))
             return 1
 
+        match = SingleDate.fmt7.match(text)
+        if match != None:
+            matches = match.groups()
+            self.getMode(matches[0])
+            try:
+                self.setMonth(string.atoi(matches[1]))
+            except:
+                self.setMonth(-1)
+            try:
+                self.setYear(string.atoi(matches[2]))
+            except:
+                self.setYear(-1)
+            return 1
+
         match = SingleDate.fmt3.match(text)
         if match != None:
             matches = match.groups()
             self.getMode(matches[0])
             if Date.entryCode == 0:
-                self.setMonth(string.atoi(matches[1]))
-                self.setDay(string.atoi(matches[2]))
+                try:
+                    self.setMonth(string.atoi(matches[1]))
+                except:
+                    self.setMonth(-1)
+                try:
+                    self.setDay(string.atoi(matches[2]))
+                except:
+                    self.setDay(-1)
             else:
-                self.setMonth(string.atoi(matches[2]))
-                self.setDay(string.atoi(matches[1]))
+                try:
+                    self.setMonth(string.atoi(matches[2]))
+                except:
+                    self.setMonth(-1)
+                try:
+                    self.setDay(string.atoi(matches[1]))
+                except:
+                    self.setDay(-1)
             val = matches[3]
             if val == None or val[0] == '?':
                 self.setYear(-1)
@@ -839,6 +867,8 @@ if __name__ == "__main__":
         checkit("11 JAN 1923")
         checkit("11-1-1929")
         checkit("4/3/1203")
+        checkit("3/1203")
+        checkit("?/3/1203")
         checkit("January 4, 1923")
         checkit("before 3/3/1239")
         checkit("est 2-3-1023")

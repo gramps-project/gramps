@@ -1,3 +1,26 @@
+Version 0.1.5
+
+* Plenty of bug fixes in the report generators and merging due to the
+  previous addition of date ranges.
+* Added PDF file type generation for reports. Depends on the reportlab
+  package (available at www.reportlab.com).  If the package is not
+  installed, gramps will run, but without PDF generation ability.
+* Will use the Python Imaging Library if present to handle images.  If
+  not, it will revert to the old method of using Imagick (convert).
+* The user can select an attribute (from the attribute list) to display
+  on the Edit Person window.
+* The internal gramps ID is now displayed on the Edit Person window.
+* Marriage types can now be recorded.
+* Addresses now use a single date instead of multiple dates, since 
+  dates can now deal with ranges.
+* Due to a bug in Python 2.0/GTK interaction, list colors are disabled
+  for Python 2.0 and above.
+* configure script now properly deals with Python include paths,
+  eliminating the need to hand edit the src/Makefile to get gramps to
+  run under Python 2.X.
+* Photos are now displayed properly again in the Edit Person gallery.
+* Family notes are now implemented.
+
 Version 0.1.4
 
 * Implemented date ranges.  Valid forms are "from <date> to <date>" and

@@ -188,6 +188,7 @@ def on_ok_clicked(obj):
          txtcolor,
          bdrcolor,
          font)
+
     displayWindow.show()
 
     utils.destroy_passed_object(obj)

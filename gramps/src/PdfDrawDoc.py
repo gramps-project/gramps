@@ -104,8 +104,6 @@ class PdfDrawDoc(DrawDoc):
         start_y = (y + h/2.0 + l/2.0 + l) - ((l*size) + ((l-1)*0.2))/2.0
         start_x = (x + w/2.0)
 
-        print y,y+h,start_y
-        
         self.f.saveState()
         self.f.setFillColor(make_color(font.get_color()))
         if font.get_type_face() == FONT_SANS_SERIF:

@@ -449,9 +449,6 @@ def on_choose_parents_clicked(obj):
     global select_father
     global family_window
 
-#    select_father = active_father
-#    select_mother = active_mother
-
     if active_parents:
         select_father = active_parents.getFather()
         select_mother = active_parents.getMother()
@@ -725,8 +722,12 @@ def find_family(father,mother):
     family = database.newFamily()
     family.setFather(father)
     family.setMother(mother)
-    father.addFamily(family)
-    mother.addFamily(family)
+    
+    if father:
+        father.addFamily(family)
+
+    if mother:
+        mother.addFamily(family)
 
     return family
 
@@ -865,7 +866,8 @@ def on_select_spouse_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_active_person(obj):
-    load_person(active_person)
+    if active_person:
+        load_person(active_person)
 
 #-------------------------------------------------------------------------
 #
@@ -873,7 +875,8 @@ def on_edit_active_person(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_spouse_clicked(obj):
-    load_person(active_spouse)
+    if active_spouse:
+        load_person(active_spouse)
 
 #-------------------------------------------------------------------------
 #
@@ -881,7 +884,8 @@ def on_edit_spouse_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_mother_clicked(obj):
-    load_person(active_mother)
+    if active_mother:
+        load_person(active_mother)
 
 #-------------------------------------------------------------------------
 #
@@ -889,7 +893,8 @@ def on_edit_mother_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_father_clicked(obj):
-    load_person(active_father)
+    if active_father:
+        load_person(active_father)
 
 #-------------------------------------------------------------------------
 #
@@ -1483,8 +1488,6 @@ def load_person(person):
 #-------------------------------------------------------------------------
 def load_family():
     global active_mother
-    global active_father
-    global active_family
     global active_parents
     global active_spouse
     
@@ -1612,11 +1615,15 @@ def change_parents(family):
         fv_mother.set_text("")
         mother_next.set_sensitive(0)
         father_next.set_sensitive(0)
+        active_father = None
+        active_mother = None
     else :
         fv_father.set_text("")
         fv_mother.set_text("")
         mother_next.set_sensitive(0)
         father_next.set_sensitive(0)
+        active_father = None
+        active_mother = None
 
 #-------------------------------------------------------------------------
 #

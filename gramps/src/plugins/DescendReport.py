@@ -107,7 +107,6 @@ class DescendantReport:
         self.doc.start_paragraph("Title")
         name = self.person.getPrimaryName().getRegularName()
         self.doc.write_text(_("Descendants of %s") % name)
-        self.doc.write_text()
         self.doc.end_paragraph()
         self.dump(1,self.person)
 
