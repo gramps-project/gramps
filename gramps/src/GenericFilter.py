@@ -39,7 +39,7 @@ except:
 #-------------------------------------------------------------------------
 import types
 import os
-from string import find,join
+from string import find,join,strip,replace
 
 #-------------------------------------------------------------------------
 #
@@ -48,6 +48,8 @@ from string import find,join
 #-------------------------------------------------------------------------
 from RelLib import *
 import Date
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
@@ -82,6 +84,9 @@ class Rule:
 
     def values(self):
         return self.list
+
+    def trans_name(self):
+        return _(self.name())
     
     def name(self): 
         return 'None'
@@ -123,7 +128,7 @@ class Everyone(Rule):
 class HasIdOf(Rule):
     """Rule that checks for a person with a specific GID"""
 
-    labels = [ 'ID' ]
+    labels = [ _('ID') ]
     
     def name(self):
         return 'Has the Id'
@@ -156,7 +161,7 @@ class IsDescendantOf(Rule):
     """Rule that checks for a person that is a descendant
     of a specified person"""
 
-    labels = ['ID']
+    labels = [ _('ID') ]
     
     def name(self):
         return 'Is a descendant of'
@@ -182,7 +187,7 @@ class IsDescendantOf(Rule):
 class IsAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person"""
 
-    labels = ['ID']
+    labels = [ _('ID') ]
     
     def name(self):
         return 'Is an ancestor of'
@@ -225,7 +230,7 @@ class IsMale(Rule):
 class HasEvent(Rule):
     """Rule that checks for a person with a particular value"""
 
-    labels = [ 'Event', 'Date', 'Place', 'Description' ]
+    labels = [ _('Personal Event'), _('Date'), _('Place'), _('Description') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -236,19 +241,114 @@ class HasEvent(Rule):
             self.date = None
 
     def name(self):
-        return 'Has the event'
+        return 'Has the personal event'
 
     def apply(self,p):
         for event in p.getEventList():
+            val = 1
             if self.list[0] and event.getName() != self.list[0]:
-                return 0
+                val = 0
             if self.list[3] and find(event.getDescription(),self.list[3])==-1:
-                return 0
+                val = 0
             if self.date:
-                return date_cmp(self.date,event.getDateObj())
+                if date_cmp(self.date,event.getDateObj()):
+                    val = 0
             if self.list[2] and find(p.getPlaceName(),self.list[2]) == -1:
+                val = 0
+            if val == 1:
+                return 1
+        return 0
+
+#-------------------------------------------------------------------------
+#
+# HasFamilyEvent
+#
+#-------------------------------------------------------------------------
+class HasFamilyEvent(Rule):
+    """Rule that checks for a person who has a relationship event
+    with a particular value"""
+
+    labels = [ _('Family Event'), _('Date'), _('Place'), _('Description') ]
+    
+    def __init__(self,list):
+        Rule.__init__(self,list)
+        if self.list[0]:
+            self.date = Date.Date()
+            self.date.set(self.list[0])
+        else:
+            self.date = None
+
+    def name(self):
+        return 'Has the family event'
+
+    def apply(self,p):
+        for f in p.getFamilyList():
+            for event in f.getEventList():
+                val = 1
+                if self.list[0] and event.getName() != self.list[0]:
+                    val = 0
+                v = self.list[3]
+                if v and find(event.getDescription(),v)==-1:
+                    val = 0
+                if self.date:
+                    if date_cmp(self.date,event.getDateObj()):
+                        val = 0
+                if self.list[2] and find(p.getPlaceName(),self.list[2]) == -1:
+                    val = 0
+                if val == 1:
+                    return 1
+        return 0
+
+#-------------------------------------------------------------------------
+#
+# HasRelationship
+#
+#-------------------------------------------------------------------------
+class HasRelationship(Rule):
+    """Rule that checks for a person who has a particular relationship"""
+
+    labels = [ _('Number of Relationships'),
+               _('Relationship Type'),
+               _('Number of Children') ]
+
+    def name(self):
+        return 'Has the relationships'
+
+    def apply(self,p):
+        rel_type = 0
+        cnt = 0
+        num_rel = len(p.getFamilyList())
+
+        # count children and look for a relationship type match
+        for f in p.getFamilyList():
+            cnt = cnt + len(f.getChildList())
+            if self.list[1] and f.getRelationship() == self.list[1]:
+                rel_type = 1
+        rval = 0
+
+        # if number of relations specified
+        if self.list[0]:
+            try:
+                v = int(self.list[0])
+            except:
                 return 0
-        return 1
+            if v != num_rel:
+                return 0
+
+        # number of childred
+        if self.list[2]:
+            try:
+                v = int(self.list[2])
+            except:
+                return 0
+            if v != cnt:
+                return 0
+
+        # relation
+        if self.list[1]:
+            return rel_type == 1
+        else:
+            return 1
 
 #-------------------------------------------------------------------------
 #
@@ -258,7 +358,7 @@ class HasEvent(Rule):
 class HasBirth(Rule):
     """Rule that checks for a person with a birth of a particular value"""
 
-    labels = [ 'Date', 'Place', 'Description' ]
+    labels = [ _('Date'), _('Place'), _('Description') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -276,7 +376,8 @@ class HasBirth(Rule):
         if self.list[2] and find(event.getDescription(),self.list[2])==-1:
             return 0
         if self.date:
-            return date_cmp(self.date,event.getDateObj())
+            if date_cmp(self.date,event.getDateObj()) == 0:
+                return 0
         if self.list[1] and find(p.getPlaceName(),self.list[1]) == -1:
             return 0
         return 1
@@ -289,7 +390,7 @@ class HasBirth(Rule):
 class HasDeath(Rule):
     """Rule that checks for a person with a death of a particular value"""
 
-    labels = [ 'Date', 'Place', 'Description' ]
+    labels = [ _('Date'), _('Place'), _('Description') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -307,7 +408,8 @@ class HasDeath(Rule):
         if self.list[2] and find(event.getDescription(),self.list[2])==-1:
             return 0
         if self.date:
-            date_cmp(self.date,event.getDateObj())
+            if date_cmp(self.date,event.getDateObj()) == 0:
+                return 0
         if self.list[1] and find(p.getPlaceName(),self.list[1]) == -1:
             return 0
         return 1
@@ -318,12 +420,12 @@ class HasDeath(Rule):
 #
 #-------------------------------------------------------------------------
 class HasAttribute(Rule):
-    """Rule that checks for a person with a particular attribute"""
+    """Rule that checks for a person with a particular personal attribute"""
 
-    labels = [ 'Attribute', 'Value' ]
+    labels = [ _('Personal Attribute'), _('Value') ]
     
     def name(self):
-        return 'Has the attribute'
+        return 'Has the personal attribute'
 
     def apply(self,p):
         for event in p.getAttributes():
@@ -335,13 +437,38 @@ class HasAttribute(Rule):
 
 #-------------------------------------------------------------------------
 #
+# HasFamilyAttribute
+#
+#-------------------------------------------------------------------------
+class HasFamilyAttribute(Rule):
+    """Rule that checks for a person with a particular family attribute"""
+
+    labels = [ _('Family Attribute'), _('Value') ]
+    
+    def name(self):
+        return 'Has the family attribute'
+
+    def apply(self,p):
+        for f in p.getFamilyList():
+            for event in f.getAttributes():
+                val = 1
+                if self.list[0] and event.getType() != self.list[0]:
+                    val = 0
+                if self.list[1] and find(event.getValue(),self.list[1])==-1:
+                    val = 0
+                if val == 1:
+                    return 1
+        return 0
+
+#-------------------------------------------------------------------------
+#
 # HasNameOf
 #
 #-------------------------------------------------------------------------
 class HasNameOf(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = ['Given Name','Surname','Suffix','Title']
+    labels = [_('Given Name'),_('Surname'),_('Suffix'),_('Title')]
     
     def name(self):
         return 'Has a name'
@@ -352,15 +479,18 @@ class HasNameOf(Rule):
         self.s = self.list[2]
         self.t = self.list[3]
         for name in [p.getPrimaryName()] + p.getAlternateNames():
+            val = 1
             if self.f and find(name.getFirstName(),self.f) == -1:
-                return 0
+                val = 0
             if self.l and find(name.getSurname(),self.l) == -1:
-                return 0
+                val = 0
             if self.s and find(name.getSuffix(),self.s) == -1:
-                return 0
+                val = 0
             if self.t and find(name.getTitle(),self.t) == -1:
-                return 0
-        return 1
+                val = 0
+            if val == 1:
+                return 1
+        return 0
     
 #-------------------------------------------------------------------------
 #
@@ -417,17 +547,20 @@ class GenericFilter:
 #
 #-------------------------------------------------------------------------
 tasks = {
-    "Everyone"             : Everyone,
-    "Has the Id"           : HasIdOf,
-    "Has a name"           : HasNameOf,
-    "Has the death"        : HasDeath,
-    "Has the birth"        : HasBirth,
-    "Is the descendant of" : IsDescendantOf,
-    "Is an ancestor of"    : IsAncestorOf,
-    "Is a female"          : IsFemale,
-    "Is a male"            : IsMale,
-    "Has the event"        : HasEvent,
-    "Has the attribute"    : HasAttribute,
+    _("Everyone")                   : Everyone,
+    _("Has the Id")                 : HasIdOf,
+    _("Has a name")                 : HasNameOf,
+    _("Has the relationships")      : HasRelationship,
+    _("Has the death")              : HasDeath,
+    _("Has the birth")              : HasBirth,
+    _("Is the descendant of")       : IsDescendantOf,
+    _("Is an ancestor of")          : IsAncestorOf,
+    _("Is a female")                : IsFemale,
+    _("Is a male")                  : IsMale,
+    _("Has the personal event")     : HasEvent,
+    _("Has the family event")       : HasFamilyEvent,
+    _("Has the personal attribute") : HasAttribute,
+    _("Has the family attribute")   : HasFamilyAttribute,
     }
 
 #-------------------------------------------------------------------------
@@ -457,6 +590,13 @@ class GenericFilterList:
         except (IOError,OSError,SAXParseException):
             pass
 
+    def fix(self,line):
+        l = strip(line)
+        l = replace(l,'&','&amp;')
+        l = replace(l,'>','&gt;')
+        l = replace(l,'<','&lt;')
+        return replace(l,'"','&quot;')
+
     def save(self):
         try:
             f = open(self.file,'w')
@@ -466,15 +606,15 @@ class GenericFilterList:
         f.write("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n")
         f.write('<filters>\n')
         for i in self.filter_list:
-            f.write('  <filter name="%s"' % i.get_name())
+            f.write('  <filter name="%s"' % self.fix(i.get_name()))
             comment = i.get_comment()
             if comment:
-                f.write(' comment="%s"' % comment)
+                f.write(' comment="%s"' % self.fix(comment))
             f.write('>\n')
             for rule in i.get_rules():
-                f.write('    <rule class="%s">\n' % rule.name())
+                f.write('    <rule class="%s">\n' % self.fix(rule.name()))
                 for v in rule.values():
-                    f.write('      <arg value="%s"/>\n' % v)
+                    f.write('      <arg value="%s"/>\n' % self.fix(v))
                 f.write('    </rule>\n')
             f.write('  </filter>\n')
         f.write('</filters>\n')

@@ -30,38 +30,16 @@ import sort
 import Utils
 import string
 import ListColors
-import Filter
 import const
+import GenericFilter
 from TextDoc import *
 from OpenSpreadSheet import *
 import intl
+_ = intl.gettext
 
 import gtk
 import gnome.ui
 import libglade
-
-import xml.parsers.expat
-
-_ = intl.gettext
-
-#-------------------------------------------------------------------------
-#
-# Unicode to latin conversion
-#
-#-------------------------------------------------------------------------
-from latin_utf8 import utf8_to_latin
-u2l = utf8_to_latin
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-
-FILTER   = "filter"
-FUNCTION = "function"
-QUALIFIER= "qual"
-NAME     = "name"
 
 #------------------------------------------------------------------------
 #
@@ -141,196 +119,41 @@ class EventComparison:
         self.glade_file = base + os.sep + "eventcmp.glade"
         self.qual = 0
 
-        xml = os.path.expanduser("~/.gramps/eventcmp.xml")
-        self.interface = ComplexFilterFile(xml)
-
         self.filterDialog = libglade.GladeXML(self.glade_file,"filters")
         self.filterDialog.signal_autoconnect({
-            "on_add_clicked"         : self.on_add_clicked,
-            "on_delete_clicked"      : self.on_delete_clicked,
-            "on_filter_save_clicked" : self.on_filter_save_clicked,
-            "on_filter_load_clicked" : self.on_filter_load_clicked,
             "on_apply_clicked"       : self.on_apply_clicked,
             "destroy_passed_object"  : Utils.destroy_passed_object
             })
     
         top =self.filterDialog.get_widget("filters")
-        self.filter_menu = self.filterDialog.get_widget("filter_list")
-        self.filter_list_obj = self.filterDialog.get_widget("active_filters")
-        qualifier = self.filterDialog.get_widget("qualifier")
+        filters = self.filterDialog.get_widget("filter_list")
 
-        self.filter_list = []
+        myMenu = gtk.GtkMenu()
 
-        myMenu  = Filter.build_filter_menu(self.on_filter_name_changed,qualifier)
-        self.filter_menu.set_menu(myMenu)
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
 
+        flist = GenericFilter.GenericFilterList(const.custom_filters)
+        flist.load()
+        for f in [all] + flist.get_filters():
+            menuitem = gtk.GtkMenuItem(_(f.get_name()))
+            myMenu.append(menuitem)
+            menuitem.set_data("filter",f)
+            menuitem.show()
+        self.filter_menu = myMenu
+        filters.set_menu(myMenu)
         top.show()
 
     def on_apply_clicked(self,obj):
-        my_list = []
+        cfilter = self.filter_menu.get_active().get_data("filter")
 
-        for person in self.db.getPersonMap().values():
-            for filter in self.filter_list:
-                if not filter.compare(person):
-                    break
-            else:
-                my_list.append(person)
+        plist = cfilter.apply(self.db.getPersonMap().values())
 
-        if len(my_list) == 0:
+        if len(plist) == 0:
             gnome.ui.GnomeWarningDialog(_("No matches were found"))
         else:
-            DisplayChart(my_list)
-
-    def on_delete_clicked(self,obj):
-        if len(self.filter_list_obj.selection) != 1:
-            return
-        
-        row = self.filter_list_obj.selection[0]
-        self.filter_list_obj.remove(row)
-        self.filter_list_obj.unselect_all()
-        del self.filter_list[row]
-
-    def on_add_clicked(self,obj):
-
-        invert = self.filterDialog.get_widget("invert").get_active()
-        qwidget = self.filterDialog.get_widget("qualifier")
-
-        if self.qual:
-            qualifier = qwidget.get_text()
-        else:
-            qualifier = ""
-            
-        menu = self.filter_menu.get_menu()
-
-        function = menu.get_active().get_data(FUNCTION)
-        name = menu.get_active().get_data(NAME)
-
-        myfilter = function(qualifier)
-        myfilter.set_invert(invert)
-    
-        self.filter_list.append(myfilter)
-        if invert:
-            invert_text = "yes"
-        else:
-            invert_text = "no"
-
-        self.filter_list_obj.append([name,qualifier,invert_text])
-
-    def on_filter_save_clicked(self,obj):
-        self.load_dialog = libglade.GladeXML(self.glade_file,"filter_file")
-        self.filter_combo = self.load_dialog.get_widget("filter_combo")
-        self.load_dialog.get_widget("title").set_text("Save complex filter")
-        names = self.interface.get_filter_names()
-        if len(names) > 0:
-            self.filter_combo.set_popdown_strings(names)
-        self.load_dialog.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "combo_insert_text"     : Utils.combo_insert_text,
-            "on_load_filter"        : self.on_save_filter,
-            })
-
-    def on_filter_load_clicked(self,obj):
-        self.load_dialog = libglade.GladeXML(self.glade_file,"filter_file")
-        self.filter_combo = self.load_dialog.get_widget("filter_combo")
-        self.load_dialog.get_widget("title").set_text("Load complex filter")
-        names = self.interface.get_filter_names()
-        if len(names) > 0:
-            self.filter_combo.set_popdown_strings(names)
-        self.load_dialog.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "combo_insert_text"     : Utils.combo_insert_text,
-            "on_load_filter"        : self.on_load_filter,
-            })
-
-    def on_load_filter(self,obj):
-        name = self.load_dialog.get_widget("name").get_text()
-        self.filter_list = self.interface.get_filter(name)
-        self.filter_list_obj.freeze()
-        self.filter_list_obj.clear()
-        for f in self.filter_list:
-            if f.get_invert():
-                invert = "yes"
-            else:
-                invert = "no"
-            name = str(f.__class__)
-            name = Filter.get_filter_description(name)
-            self.filter_list_obj.append([name,f.get_text(),invert])
-        self.filter_list_obj.thaw()
-        Utils.destroy_passed_object(obj)
-
-    def on_save_filter(self,obj):
-        name = self.load_dialog.get_widget("name").get_text()
-        self.interface.save_filter(name,self.filter_list)
-        Utils.destroy_passed_object(obj)
-        
-    def on_filter_name_changed(self,obj):
-        self.qual = obj.get_data(QUALIFIER)
-        obj.get_data(FILTER).set_sensitive(self.qual)
-
-
-class ComplexFilterFile:
-    def __init__(self,name):
-        self.filters = {}
-        self.fname = name
-        try:
-            f = open(self.fname)
-            parser = ComplexFilterParser(self)
-            parser.parse(f)
-            f.close()
-        except IOError:
-            pass
-
-    def get_filter_names(self):
-        return self.filters.keys()
-
-    def get_filter(self,name):
-        if self.filters.has_key(name):
-            return self.filters[name]
-        else:
-            return []
-
-    def save_filter(self,name,filter_list):
-        self.filters[name] = filter_list
-        
-        f = open(self.fname,"w")
-        f.write('<?xml version="1.0" encoding="iso-8859-1"?>\n')
-        f.write('<filterlist>\n')
-        for name in self.filters.keys():
-            f.write('  <complex_filter name="%s">\n' % name)
-            for filter in self.filters[name]:
-                val = (filter.get_name(),filter.get_text(),filter.get_invert())
-                f.write('    <filter name="%s" text="%s" invert="%d"/>\n' % val)
-            f.write('  </complex_filter>\n')
-        f.write('</filterlist>\n')
-        f.close()
-
-class ComplexFilterParser:
-    def __init__(self,parent):
-        self.parent = parent
-        self.curfilter = []
-        self.curname = ""
-
-    def parse(self,f):
-        p = xml.parsers.expat.ParserCreate()
-        p.StartElementHandler = self.startElement
-        p.EndElementHandler = self.endElement
-        p.ParseFile(f)
-
-    def startElement(self,tag,attrs):
-        tag = u2l(tag)
-        if tag == "complex_filter":
-            self.curname = u2l(attrs['name'])
-            self.curfilter = []
-        elif tag == "filter":
-            name = u2l(attrs['name'])
-            qual = u2l(attrs['text'])
-            invert = int(attrs['invert'])
-            f = Filter.make_filter_from_name(name,qual,invert)
-            self.curfilter.append(f)
-
-    def endElement(self,tag):
-        if u2l(tag) == "complex_filter":
-            self.parent.filters[self.curname] = self.curfilter
+            DisplayChart(p_list)
 
 #------------------------------------------------------------------------
 #
