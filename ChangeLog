@@ -1,8 +1,14 @@
-2005-02-18  Eero Tamminen <eerot@sf>
+2005-02-22 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* configure.in: Bump up the version.
+
+2005-02-21  Don Allingham  <dallingham@users.sourceforge.net>
+	* Release: Version 1.1.90 "Successful encyclopedia salesman" released.
+
+2005-02-21  Eero Tamminen <eerot@sf>
 	* NEWS: Added notes about user visible GraphViz and StatisticsChart
 	  report changes/enhancements
 
-2005-02-20 Alex Roitman  <shura@alex.neuro.umn.edu>
+2005-02-21 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Update.
 
 	* src/docgen/PSDrawDoc.py (draw_text,write_at):
