@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Generate files/Descendant Report"
 
@@ -46,6 +48,7 @@ import BaseDoc
 import Errors
 
 from SubstKeywords import SubstKeywords
+from Utils import get_xpm_image
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -75,14 +78,15 @@ def pt2cm(pt):
 class DescendantReport:
 
     def __init__(self,database,person,display,doc,output,newpage=0):
+        self.database = database
         self.doc = doc
         self.doc.creator(database.get_researcher().get_name())
         self.map = {}
         self.text = {}
         self.start = person
         self.output = output
-	self.box_width = 0
-	self.height = 0
+        self.box_width = 0
+        self.height = 0
         self.lines = 0
         self.display = display
         self.newpage = newpage
@@ -92,24 +96,24 @@ class DescendantReport:
         else:
             self.standalone = 0
 
-        plist = database.get_person_id_map().values()
-        self.layout = GraphLayout.DescendLine(plist,person)
+        plist = self.database.get_person_keys()
+        self.layout = GraphLayout.DescendLine(self.database,plist,person.get_id())
         (self.v,self.e) = self.layout.layout()
         
         self.text = {}
-        for (p,x,y) in self.v:
+        for (p_id,x,y) in self.v:
 
-            self.text[p.get_id()] = []
-            subst = SubstKeywords(p)
+            self.text[p_id] = []
+            subst = SubstKeywords(self.database,p_id)
             for line in self.display:
-                self.text[p.get_id()].append(subst.replace(line))
+                self.text[p_id].append(subst.replace(line))
 
             self.font = self.doc.style_list["DG-Normal"].get_font()
-            for line in self.text[p.get_id()]:
+            for line in self.text[p_id]:
                 new_width = FontScale.string_width(self.font,line)
                 self.box_width = max(self.box_width,new_width)
 
-            self.lines = max(self.lines,len(self.text[p.get_id()]))    
+            self.lines = max(self.lines,len(self.text[p_id]))
 
     def write_report(self):
 
@@ -129,7 +133,7 @@ class DescendantReport:
             self.pg.append([None]*(cols+1))
             self.ln.append([None]*(cols+1))
 
-        for (p,x,y) in self.v:
+        for (p_id,x,y) in self.v:
             r = int((y-1)/self.maxy)
             c = int((x-1)/self.maxx)
 
@@ -137,9 +141,9 @@ class DescendantReport:
             ny = y - (self.maxy)*r
             l = self.pg[r]
             if l[c] == None:
-                l[c] = [(p,nx,ny)]
+                l[c] = [(p_id,nx,ny)]
             else:
-                l[c].append((p,nx,ny))
+                l[c].append((p_id,nx,ny))
 
         for (x1,y1,x2,y2) in self.e:
             r1 = int((y1-1)/self.maxy)
@@ -226,10 +230,10 @@ class DescendantReport:
         """calc - calculate the maximum width that a box needs to be. From
         that and the page dimensions, calculate the proper place to put
         the elements on a page."""
-	self.height = self.lines*pt2cm(1.25*self.font.get_size())
-	self.box_width = pt2cm(self.box_width+20)
+        self.height = self.lines*pt2cm(1.25*self.font.get_size())
+        self.box_width = pt2cm(self.box_width+20)
 
-	self.maxx = int(self.doc.get_usable_width()/(self.box_width+_sep))
+        self.maxx = int(self.doc.get_usable_width()/(self.box_width+_sep))
         self.maxy = int(self.doc.get_usable_height()/(self.height+_sep))
 
         g = BaseDoc.GraphicsStyle()
@@ -254,8 +258,8 @@ class DescendantReport:
         right = self.doc.get_usable_width() - (2*_sep)
 
         if plist:
-            for (p,x,y) in plist:
-                name = string.join(self.text[p.get_id()],"\n")
+            for (p_id,x,y) in plist:
+                name = string.join(self.text[p_id],"\n")
                 x = (x-1)*delta + left + _sep
                 y = (y-1)*(self.height+_sep)+top
                 self.doc.draw_box("box",name,x,y)
@@ -482,96 +486,6 @@ def write_book_item(database,person,doc,options,newpage=0):
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def get_xpm_image():
-    return [
-        "48 48 33 1",
-        " 	c None",
-        ".	c #1A1A1A",
-        "+	c #7E7C76",
-        "@	c #918E8A",
-        "#	c #B6AEA2",
-        "$	c #E2CAA6",
-        "%	c #E6D6B6",
-        "&	c #322E2A",
-        "*	c #423E3E",
-        "=	c #EADEC6",
-        "-	c #F2EADE",
-        ";	c #4E4E4E",
-        ">	c #56524E",
-        ",	c #5E5A56",
-        "'	c #F6EEE6",
-        ")	c #9A968A",
-        "!	c #66665E",
-        "~	c #F6F2EE",
-        "{	c #C6C6C1",
-        "]	c #A6967E",
-        "^	c #8D8A86",
-        "/	c #736D62",
-        "(	c #E6E6E6",
-        "_	c #FAFAF9",
-        ":	c #DEDAD6",
-        "<	c #AAA6A2",
-        "[	c #EEE6D2",
-        "}	c #BABABA",
-        "|	c #878680",
-        "1	c #8A7E6E",
-        "2	c #78756F",
-        "3	c #B89D78",
-        "4	c #D9CEB9",
-        "                                                ",
-        "                                                ",
-        "             1^111122/////!!!,!,>!2             ",
-        "             1}}}}}}}}}}}}}}#}<)^,,2            ",
-        "             1}__~___________~(4}11)>           ",
-        "             1}_______________~(4#+{)*          ",
-        "             1}~_______________~::,({^&         ",
-        "             1}_________________((;_({^&        ",
-        "             1}__|++++___+2//2___+;__({^&       ",
-        "             1}__++++2|||///2/|2|2;(__({^*      ",
-        "             +}__|++++_@_+2/22_^_+;:~__({)>     ",
-        "             2}________@_______|__;{:'__({)!    ",
-        "             /}________@_______|__;..&**,!2!2   ",
-        "             1}________@_______|__({}<)^2!,*!   ",
-        "             /}________@_______|_|222+#<)^2>*   ",
-        "             /}________@_______^^|+22/{}<)@!*   ",
-        "             /}________@_________|++++{{}<)+&   ",
-        "             /}________@___________~'(:4{}<2&   ",
-        "             /}________@__________~~((::{{}1&   ",
-        "             /}________^_|+2++__~_~_--%:${}^&   ",
-        "             /}________+@2++++__~_~~'-::44{^&   ",
-        "             !}________@_+++++~_~~~''-=::$$)&   ",
-        "             !}________@_______~~~~-'-[:%{4]&   ",
-        "             !}________@_____~~~~'('--=[:4{]&   ",
-        "             !}________@_____~~(~'--([[==%4]&   ",
-        "             !}________@~+++++~~'++2+2===$4]&   ",
-        "             !}________2@+++++||)2+|2/[==%4]&   ",
-        "             ,}________+_2++2|''[+222+=%=%$]&   ",
-        "             ,}________+~~'~---(-[[[=[==%%4]&   ",
-        "             !}________+~~~'~''-=[[===%=%%%3&   ",
-        "             ,}_______~+~~--(--[[{=====%=%$]&   ",
-        "             ,}_______~+~|+222[[=+1222%%$%%3&   ",
-        "             ,}_____~_~++/+++/+/+/222/=%%%$3&   ",
-        "             ,}_____~~~-'+2221[2=2212/%%%$$3&   ",
-        "             ,}___~_~~~-('-[[[=+=%=%%%%%%$$3&   ",
-        "             >}___~~''-''-=[=[=2==%=%%%$$%$3&   ",
-        "             >}_~_~~'-'-[-[[===2==%$%$%$$$$3&   ",
-        "             >#_~~-'''-[-[[=[==2%22+22$$$$$3&   ",
-        "             >}~~~~-(--[[======12/2/2/$$$$$3&   ",
-        "             ;#~~-'''-(=[=[==%=%%2+2//$$$$$]&   ",
-        "             >#~~-(-=-[[[====%%%%%%$$$$$$$$3&   ",
-        "             ;#-~''--[===[==$=%%$%$$$$$$}$$3&   ",
-        "             ;#---[[[[[==%==%%$%$%$$$$$$$$$3&   ",
-        "             ;#}#######3333333333333333333]3&   ",
-        "             &&&&&&&&&*&&*&&*&*&&&&&&&&.&&.&&   ",
-        "                                                ",
-        "                                                ",
-        "                                                "]
 
 #------------------------------------------------------------------------
 #

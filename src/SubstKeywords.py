@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 """
 Provides the SubstKeywords class that will replace keywords in a passed
@@ -63,36 +65,61 @@ class SubstKeywords:
     $M -> Place of preferred marriage
     """
     
-    def __init__(self,person):
+    def __init__(self,database,person_id):
         """Creates a new object and associates a person with it."""
 
+        person = database.find_person_from_id(person_id)
         self.n = person.get_primary_name().get_regular_name()
         self.N = person.get_primary_name().get_name()
-        self.b = person.get_birth().get_date()
-        self.d = person.get_death().get_date()
-        self.B = person.get_birth().get_place_name()
-        self.D = person.get_death().get_place_name()
-        self.i = str(person.get_id())
-
+        self.b = ""
+        self.B = ""
+        self.d = ""
+        self.D = ""
         self.s = ""
         self.S = ""
         self.m = ""
         self.M = ""
         
+        birth_id = person.get_birth_id()
+        if birth_id:
+            birth = database.find_event_from_id(birth_id)
+            self.b = birth.get_date()
+            bplace_id = birth.get_place_id()
+            if bplace_id:
+                self.B = database.find_place_from_id(bplace_id).get_title()
+        death_id = person.get_death_id()
+        if death_id:
+            death = database.find_event_from_id(death_id)
+            self.d = death.get_date()
+            dplace_id = death.get_place_id()
+            if dplace_id:
+                self.D = database.find_place_from_id(dplace_id).get_title()
+        self.i = str(person_id)
+
         if person.get_family_id_list():
-            f = person.get_family_id_list()[0]
-            if f.get_father_id() == person:
-                if f.get_mother_id():
-                    self.s = f.get_mother_id().get_primary_name().get_regular_name()
-                    self.S = f.get_mother_id().get_primary_name().get_name()
+            f_id = person.get_family_id_list()[0]
+            f = database.find_family_from_id(f_id)
+            father_id = f.get_father_id()
+            mother_id = f.get_mother_id
+            if father_id == person_id:
+                if mother_id:
+                    mother = database.find_person_from_id(mother_id)
+                    self.s = mother.get_primary_name().get_regular_name()
+                    self.S = mother.get_primary_name().get_name()
             else:
-                if f.get_father_id():
-                    self.s = f.get_father_id().get_primary_name().get_regular_name()
-                    self.S = f.get_father_id().get_primary_name().get_name()
-            for e in f.get_event_list():
+                if father_id:
+                    father = database.find_person_from_id(father_id)
+                    self.s = father.get_primary_name().get_regular_name()
+                    self.S = father.get_primary_name().get_name()
+            for e_id in f.get_event_list():
+                if not e_id:
+                    continue
+                e = database.find_event_from_id(e_id)
                 if e.get_name() == 'Marriage':
                     self.m = e.get_date()
-                    self.M = e.get_place_name()
+                    mplace_id = e.get_place_id()
+                    if mplace_id:
+                        self.M = database.find_place_from_id(mplace_id).get_title()
 
     def replace(self,line):
         """Returns a new line of text with the substitutions performed."""
