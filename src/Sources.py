@@ -37,7 +37,7 @@ import gtk.glade
 import gnome
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
 from gobject import TYPE_PYOBJECT
-import pickle
+import cPickle as pickle
 
 #-------------------------------------------------------------------------
 #
