@@ -206,8 +206,7 @@ GLADEFILES = \
 	gramps.glade\
 	mergedata.glade\
 	plugins.glade\
-	rule.glade\
-	styles.glade
+	rule.glade
 
 
 GRAPHICS = \
@@ -227,7 +226,7 @@ GRAPHICS = \
 
 
 # Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop papersize.xml
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
