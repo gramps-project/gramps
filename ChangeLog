@@ -1,4 +1,11 @@
 2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/DdTargets.py: added PERSON_LINK_LIST target.
+	* src/FamilyView.py: corrected bug when person is droped if there is no current 
+	family.
+	* src/PeopleView.py: enabled dnd of lists of people.
+	* src/plugins/ScratchPad.py: support lists of people.
+
+2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDBCallback.py: improved error reporting when there is an error in 
 	a callback function. Added unittest for exception in callback function.
 

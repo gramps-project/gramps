@@ -106,6 +106,7 @@ class _DdTargets(object):
         self.MEDIAOBJ  = _DdType(self,'mediaobj')
 
         self.PERSON_LINK  = _DdType(self,'person-link')
+        self.PERSON_LINK_LIST  = _DdType(self,'person-link-list')
 
         self.FAMILY_EVENT     = _DdType(self,'fevent')
         self.FAMILY_ATTRIBUTE = _DdType(self,'fattr')
@@ -120,7 +121,8 @@ class _DdTargets(object):
                                   self.SOURCEREF,
                                   self.NAME,
                                   self.MEDIAOBJ,
-                                  self.PERSON_LINK]
+                                  self.PERSON_LINK,
+                                  self.PERSON_LINK_LIST]
         
         self.CHILD     = _DdType(self,'child')
         self.SPOUSE    = _DdType(self,'spouce')

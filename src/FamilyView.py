@@ -1389,17 +1389,13 @@ class FamilyView:
         self.load_family()
 
     def drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        path = self.child_list.get_path_at_pos(x,y)
-        if path == None:
-            row = len(self.family.get_child_handle_list())
-        else:
-            row = path[0][0] -1
 
         if DdTargets.PERSON_LINK.drag_type in context.targets:
             drop_person_handle = sel_data.data
             
             # Check child is not already in the family
-            if drop_person_handle in self.family.get_child_handle_list():
+            if self.family and \
+                   drop_person_handle in self.family.get_child_handle_list():
                 return
 
             family = self.family
@@ -1429,6 +1425,13 @@ class FamilyView:
             self.display_marriage(family)
         
         elif sel_data and sel_data.data:
+
+            path = self.child_list.get_path_at_pos(x,y)
+            if path == None:
+                row = len(self.family.get_child_handle_list())
+            else:
+                row = path[0][0] -1
+
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
