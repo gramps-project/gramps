@@ -78,5 +78,8 @@ def exportData(database, filename, person=None, callback=None):
     for handle in database.event_map.keys():
         new_database.event_map.put(str(handle),
                 database.event_map.get(str(handle)))
+    for handle in database.metadata.keys():
+        new_database.metadata.put(str(handle),
+                database.metadata.get(str(handle)))
 
     new_database.close()
