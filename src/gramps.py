@@ -7,13 +7,12 @@ import gtk
 import gnome.ui
 import locale
 
-intl.textdomain("gramps")
-
 if os.environ.has_key("GRAMPSI18N"):
     loc = os.environ["GRAMPSI18N"]
 else:
     loc = "locale"
     
+intl.textdomain("gramps")
 intl.bindtextdomain("gramps",loc)
 
 locale.setlocale(locale.LC_NUMERIC,"C")

@@ -70,7 +70,6 @@ for val in const.familyConstantEvents.keys():
 lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
 headRE = re.compile(r"\s*(\d+)\s+HEAD")
 nameRegexp= re.compile(r"/?([^/]*)(/([^/]*)(/([^/]*))?)?")
-#nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
 calRegexp = re.compile(r"\s*@#D([^@]+)@\s*(.*)$")
 fromtoRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)$")
 
