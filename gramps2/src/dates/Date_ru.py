@@ -2,7 +2,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -128,6 +128,13 @@ class DateDisplayRU(DateDisplay):
         u"после ",
         u"около ","","","")
     
+    _qual_str = ("","оцен ","вычисл ")
+
+    formats = (
+        "ГГГГ-ММ-ДД (ISO)", "Численный", "Месяц День, Год",
+        "МЕС ДД, ГГГГГ", "День Месяц, Год", "ДД МЕС, ГГГГГ"
+        )
+
     def display(self,date):
         """
         Returns a text string representing the date.
@@ -162,4 +169,3 @@ class DateDisplayRU(DateDisplay):
 #-------------------------------------------------------------------------
 from DateHandler import register_datehandler
 register_datehandler(('ru_RU','russian'),DateParserRU, DateDisplayRU)
-    
