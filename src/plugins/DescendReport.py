@@ -76,10 +76,29 @@ class DescendantReport:
     # 
     #
     #--------------------------------------------------------------------
+    def dump_dates(self, person):
+        birth = person.getBirth().getDateObj().get_start_date()
+        death = person.getDeath().getDateObj().get_start_date()
+        if birth.getYearValid() or death.getYearValid():
+            self.doc.write_text(' (')
+            if birth.getYearValid():
+                self.doc.write_text('b. ' + str(birth.getYear()))
+            if death.getYearValid():
+                if birth.getYearValid():
+                    self.doc.write_text(', ')
+                self.doc.write_text('d. ' + str(death.getYear()))
+            self.doc.write_text(')')
+        
+    #--------------------------------------------------------------------
+    #
+    # 
+    #
+    #--------------------------------------------------------------------
     def report(self):
         self.doc.start_paragraph("Title")
         name = self.person.getPrimaryName().getRegularName()
         self.doc.write_text(_("Descendants of %s") % name)
+        self.dump_dates(self.person)
         self.doc.end_paragraph()
         self.dump(0,self.person)
 
@@ -94,18 +113,7 @@ class DescendantReport:
             self.doc.start_paragraph("Level" + str(level))
             self.doc.write_text(str(level) + '. ')
             self.doc.write_text(person.getPrimaryName().getRegularName())
-
-            birth = person.getBirth().getDateObj().get_start_date().getYear()
-            death = person.getDeath().getDateObj().get_start_date().getYear()
-            if birth != -1 or death != -1:
-                self.doc.write_text(' (')
-                if birth != -1:
-                    self.doc.write_text('b. ' + str(birth))
-                if death != -1:
-                    if birth != -1:
-                        self.doc.write_text(', ')
-                    self.doc.write_text('d. ' + str(death))
-                self.doc.write_text(')')
+            self.dump_dates(person)
             self.doc.end_paragraph()
 
         childlist = []

@@ -267,19 +267,22 @@ def make_date(subdate,mmap):
     mon = subdate.getMonth()
     year = subdate.getYear()
     mode = subdate.getModeVal()
+    day_valid = subdate.getDayValid()
+    mon_valid = subdate.getMonthValid()
+    year_valid = subdate.getYearValid()
 
-    if day == Date.UNDEF:
-        if mon == Date.UNDEF:
+    if not day_valid:
+        if not mon_valid:
             retval = str(year)
-        elif year == Date.UNDEF:
+        elif not year_valid:
             retval = mmap[mon]
         else:
             retval = "%s %d" % (mmap[mon],year)
-    elif mon == Date.UNDEF:
+    elif not mon_valid:
         retval = str(year)
     else:
         month = mmap[mon]
-        if year == Date.UNDEF:
+        if not year_valid:
             retval = "%d %s ????" % (day,month)
         else:
             retval = "%d %s %d" % (day,month,year)
@@ -324,20 +327,20 @@ def gedcom_date(date):
 #-------------------------------------------------------------------------
 def ged_subdate(date):
         
-    if date.month == -1 and date.day == -1 and date.year == -1 :
+    if not date.getValid():
         return ""
-    elif date.day == -1:
-        if date.month == -1:
+    elif not date.getDayValid():
+        if not date.getMonthValid():
             retval = str(date.year)
-        elif date.year == -1:
+        elif not date.getYearValid():
             retval = "(%s)" % Date.SingleDate.emname[date.month]
         else:	
             retval = "%s %d" % (Date.SingleDate.emname[date.month],date.year)
-    elif date.month == -1:
+    elif not date.getMonthValid():
         retval = str(date.year)
     else:
         month = Date.SingleDate.emname[date.month]
-        if date.year == -1:
+        if not date.getYearValid():
             retval = "(%d %s)" % (date.day,month)
         else:
             retval = "%d %s %d" % (date.day,month,date.year)
@@ -989,10 +992,10 @@ class GedcomWriter:
         if death.getDate() != "":
             return 0
         if birth.getDate() != "":
-            year = birth.getDateObj().getYear()
+            year = birth.getDateObj()
             time_struct = time.localtime(time.time())
             current_year = time_struct[0]
-            if year != -1 and current_year - year > 110:
+            if year.getYearValid() and current_year - year.getYear() > 110:
                 return 0
         return 1
 

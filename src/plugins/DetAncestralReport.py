@@ -127,9 +127,9 @@ class DetAncestorReport:
     def write_children(self, family):
         """ List children """
 
-        print "family: ", family.__dict__
+        #print "family: ", family.__dict__
         num_children= len(family.getChildList())
-        print "Children= ", len(family.getChildList())
+        #print "Children= ", len(family.getChildList())
         if num_children > 0:
             self.doc.start_paragraph("ChildTitle")
             mother= family.getMother().getPrimaryName().getRegularName()
@@ -220,7 +220,7 @@ class DetAncestorReport:
             else: place= ""
 
             if date.getDate() != "":
-                if date.getDay() != -1 and date.getMonth() != -1 and \
+                if date.getDayValid() and date.getMonthValid() and \
                         rptOptions.fullDate == reportOptions.Yes:
                     if place != "":
                         self.doc.write_text(" was born on %s in %s." % (date.getDate(), place))
@@ -296,7 +296,7 @@ class DetAncestorReport:
                         place = place[:-1]
                     fulldate= ""
                     if date.getDate() != "":
-                        if date.getDay() != -1 and date.getMonth() != -1 and \
+                        if date.getDayValid() and date.getMonthValid() and \
                                         rptOptions.fullDate == reportOptions.Yes:
                             fulldate= date.getDate()
                     elif rptOptions.blankDate == reportOptions.Yes:
@@ -375,8 +375,8 @@ class DetAncestorReport:
                     date= marriage.getDateObj()
                     fulldate= ""
                     if date != None:
-                        if date.getYear() != -1:
-                            if date.getDay() != -1 and date.getMonth() != -1 and \
+                        if date.getYearValid():
+                            if date.getDayValid() and date.getMonthValid() and \
                                     rptOptions.fullDate == reportOptions.Yes:
                                 fulldate= date.getDate()
                             elif rptOptions.blankDate == reportOptions.Yes:
@@ -790,13 +790,13 @@ class reportOptions:
         #print "birth=", birth.__dict__
         #print "death=", death.__dict__
         self.t= ""
-        if birth.getYear() != -1 and death.getYear() != -1:
+        if birth.getYearValid() and death.getYearValid():
             self.age= death.getYear() - birth.getYear()
             self.units= "year"
-            if birth.getMonth() != -1 and death.getMonth() != -1:
+            if birth.getMonthValid() and death.getMonthValid():
                 if birth.getMonth() > death.getMonth():
                     self.age= self.age -1
-                if birth.getDay() != -1 and death.getDay() != -1:
+                if birth.getDayValid() and death.getDayValid():
                     if birth.getMonth() == death.getMonth() and birth.getDay() > death.getDay():
                         self.age= self.age -1
                         self.units= "month"

@@ -108,9 +108,6 @@ class SelectChild:
         bday = self.person.getBirth().getDateObj()
         dday = self.person.getDeath().getDateObj()
 
-        bday_valid = (bday.getYear() != -1)
-        dday_valid = (dday.getYear() != -1)
-    
         slist = []
         for f in [self.person.getMainFamily()] + self.person.getFamilyList():
             if f:
@@ -132,8 +129,8 @@ class SelectChild:
                 pdday = person.getDeath().getDateObj()
                 pbday = person.getBirth().getDateObj()
 
-                if bday_valid:
-                    if pbday.getYear() != -1:
+        	if bday.getYearValid():
+                    if pbday.getYearValid():
 
                         # reject if child birthdate < parents birthdate + 10
                         if pbday.getLowYear() < bday.getHighYear()+10:
@@ -143,19 +140,19 @@ class SelectChild:
                         if pbday.getLowYear() > bday.getHighYear()+90:
                             continue
 
-                    if pdday.getYear() != -1:
+                    if pdday.getYearValid():
                         # reject if child deathdate < parents birthdate+ 10
                         if pdday.getLowYear() < bday.getHighYear()+10:
                             continue
                 
-                if dday_valid:
-                    if pbday.getYear() != -1:
+                if dday.getYearValid():
+                    if pbday.getYearValid():
                     
                         # reject if childs birth date > parents deathday + 3
                         if pdday.getLowYear() > dday.getHighYear()+3:
                             continue
 
-                    if pdday.getYear() != -1:
+                    if pdday.getYearValid():
 
                         # reject if childs death date > parents deathday + 150
                         if pbday.getLowYear() > dday.getHighYear() + 150:

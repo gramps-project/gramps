@@ -622,7 +622,7 @@ def date_match(date1,date2):
     if date1.getYear() == date2.getYear():
         if date1.getMonth() == date2.getMonth():
             return 0.75
-        if date1.getMonth() == -1 or date2.getMonth() == -1:
+        if not date1.getMonthValid() or not date2.getMonthValid():
             return 0.75
         else:
             return -1
