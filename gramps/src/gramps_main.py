@@ -696,51 +696,6 @@ def read_file(filename):
         statusbar.set_status("")
         Config.save_last_file("")
 
-    active_person = None
-    for person in database.getPersonMap().values():
-        if active_person == None:
-            active_person = person
-        lastname = person.getPrimaryName().getSurname()
-        if lastname and lastname not in const.surnames:
-            const.surnames.append(lastname)
-            
-    statusbar.set_progress(1.0)
-    full_update()
-    statusbar.set_progress(0.0)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def read_revision(filename,rev):
-    base = os.path.basename(filename)
-    if base == const.indexFile:
-        filename = os.path.dirname(filename)
-    elif not os.path.isdir(filename):
-        displayError(_("%s is not a directory") % filename)
-        return
-
-    statusbar.set_status(_("Loading %s ...") % filename)
-
-    if load_database(filename) == 1:
-        topWindow.set_title("%s - %s" % (_("Gramps"),filename))
-    else:
-        statusbar.set_status("")
-        Config.save_last_file("")
-
-    active_person = None
-    for person in database.getPersonMap().values():
-        if active_person == None:
-            active_person = person
-        lastname = person.getPrimaryName().getSurname()
-        if lastname and lastname not in const.surnames:
-            const.surnames.append(lastname)
-            
-    statusbar.set_progress(1.0)
-    full_update()
-    statusbar.set_progress(0.0)
-
 #-------------------------------------------------------------------------
 #
 # Called from the fileselector, when the OK button is pressed (Save
@@ -1879,6 +1834,16 @@ def post_load(name):
     person = database.getDefaultPerson()
     if person:
         active_person = person
+    for person in database.getPersonMap().values():
+        if active_person == None:
+            active_person = person
+        lastname = person.getPrimaryName().getSurname()
+        if lastname and lastname not in const.surnames:
+            const.surnames.append(lastname)
+
+    statusbar.set_progress(1.0)
+    full_update()
+    statusbar.set_progress(0.0)
     return 1
     
 #-------------------------------------------------------------------------
