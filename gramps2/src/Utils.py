@@ -441,14 +441,28 @@ def create_id():
 def probably_alive(person,db,current_year=None):
     """Returns true if the person may be alive."""
     if person.death_handle:
-        return False
+        if not current_year:
+            return False
+        else:
+            death = db.get_event_from_handle(person.death_handle)
+            if death.get_date_object().get_start_date() != Date.EMPTY:
+                if death.get_date_object().get_year < current_year:
+                    return False
+            else:
+                return False
     
     # Look for Cause Of Death, Burial or Cremation events.
     # These are fairly good indications that someone's not alive.
     for ev_handle in person.event_list:
         ev = db.get_event_from_handle(ev_handle)
         if ev and ev.name in ["Cause Of Death", "Burial", "Cremation"]:
-            return False
+            if not current_year:
+                return False
+            if ev.get_date_object().get_start_date() != Date.EMPTY:
+                if ev.get_date_object().get_year < current_year:
+                    return False
+            else:
+                return False
 
     if person.birth_handle:
         birth = db.get_event_from_handle(person.birth_handle)
@@ -497,6 +511,8 @@ def not_too_old(date,current_year=None):
         time_struct = time.localtime(time.time())
         current_year = time_struct[0]
     year = date.get_year()
+    if year > current_year:
+        return False
     return not( year != 0 and current_year - year > 110)
 
 #-------------------------------------------------------------------------
