@@ -430,6 +430,8 @@ class Gramps:
         Plugins.build_export_menu(export_menu,self.export_callback)
         Plugins.build_import_menu(import_menu,self.import_callback)
 
+        self.relationship = Plugins.relationship_function()
+
     def init_filters(self):
 
         Filter.load_filters(const.filtersDir)
