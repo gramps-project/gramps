@@ -120,9 +120,11 @@ class PlaceView:
             self.model.delete_row_by_handle(handle)
 
     def change_db(self,db):
-        db.add_place_callbacks(
-            'place_view', self.place_add, self.place_update,
-            self.place_delete, self.build_tree)
+        db.connect('place-add',    self.place_add)
+        db.connect('place-update', self.place_update)
+        db.connect('place-delete', self.place_delete)
+        db.connect('place-rebuild',self.build_tree)
+
         self.build_columns()
         self.build_tree()
 

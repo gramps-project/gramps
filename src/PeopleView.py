@@ -88,9 +88,10 @@ class PeopleView:
         self.person_tree.connect('button-press-event',
                                  self.on_plist_button_press)
 
-        self.parent.db.add_person_callbacks(
-            'person_view', self.person_added, self.person_updated,
-            self.person_removed, self.redisplay_person_list)
+        self.parent.db.connect('person-add', self.person_added)
+        self.parent.db.connect('person-update', self.person_updated)
+        self.parent.db.connect('person-delete', self.person_removed)
+        self.parent.db.connect('person-rebuild', self.redisplay_person_list)
 
     def sort_clicked(self,obj):
         for col in self.columns:
@@ -164,9 +165,12 @@ class PeopleView:
         self.build_columns()
         self.person_model = PeopleModel.PeopleModel(db,self.DataFilter)
         self.person_tree.set_model(self.person_model)
-        self.parent.db.add_person_callbacks(
-            'person_view', self.person_added, self.person_updated,
-            self.person_removed, self.redisplay_person_list)
+
+        self.parent.db.connect('person-add', self.person_added)
+        self.parent.db.connect('person-update', self.person_updated)
+        self.parent.db.connect('person-delete', self.person_removed)
+        self.parent.db.connect('person-rebuild', self.redisplay_person_list)
+
 
     def remove_from_person_list(self,person):
         """Remove the selected person from the list. A person object is

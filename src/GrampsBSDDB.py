@@ -278,7 +278,7 @@ class GrampsBSDDB(GrampsDbBase):
             if transaction != None:
                 transaction.add(PERSON_KEY,handle,person.serialize())
             if transaction and not transaction.batch:
-                self.run_person_delete_callbacks([str(handle)])
+                self.emit('person-delete',([str(handle)],))
             self.person_map.delete(str(handle))
 
     def remove_source(self,handle,transaction):
@@ -287,7 +287,7 @@ class GrampsBSDDB(GrampsDbBase):
                 old_data = self.source_map.get(str(handle))
                 transaction.add(SOURCE_KEY,handle,old_data)
             if transaction and not transaction.batch:
-                self.run_source_delete_callbacks([handle])
+                self.emit('source-delete',([handle],))
             self.source_map.delete(str(handle))
 
     def remove_family(self,handle,transaction):
@@ -296,7 +296,7 @@ class GrampsBSDDB(GrampsDbBase):
                 old_data = self.family_map.get(str(handle))
                 transaction.add(FAMILY_KEY,handle,old_data)
             if transaction and not transaction.batch:
-                self.run_family_delete_callbacks([str(handle)])
+                self.emit('family-delete',([str(handle)],))
             self.family_map.delete(str(handle))
 
     def remove_event(self,handle,transaction):
@@ -312,7 +312,7 @@ class GrampsBSDDB(GrampsDbBase):
                 old_data = self.place_map.get(handle)
                 transaction.add(PLACE_KEY,handle,old_data)
             if transaction and not transaction.batch:
-                self.run_person_delete_callbacks([handle])
+                self.emit('place-delete',([handle],))
             self.place_map.delete(str(handle))
 
     def remove_object(self,handle,transaction):
