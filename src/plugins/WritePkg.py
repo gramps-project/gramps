@@ -85,7 +85,7 @@ class PackageWriter:
         def remove_clicked():
             # File is lost => remove all references and the object itself
             for p_id in self.db.get_family_handles():
-                p = self.db.find_family_from_handle(p_id)
+                p = self.db.get_family_from_handle(p_id)
                 nl = p.get_media_list()
                 for o in nl:
                     if o.get_reference_handle() == m_id:

@@ -201,7 +201,7 @@ class PlaceView:
                         used = 1
 
             for fid in self.parent.db.get_family_handles():
-                f = self.parent.db.find_family_from_handle(fid)
+                f = self.parent.db.get_family_from_handle(fid)
                 event_list = []
                 for e in f.get_event_list():
                     event = self.parent.db.find_event_from_handle(e)

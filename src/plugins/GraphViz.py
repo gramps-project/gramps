@@ -398,7 +398,7 @@ def dump_person(database,person_list,file,adoptionsdashed,arrowheadstyle,
         pid = string.replace(person_handle,'-','_')
         person = database.get_person_from_handle(person_handle)
         for family_handle, mrel, frel in person.get_parent_family_handle_list():
-            family = database.find_family_from_handle(family_handle)
+            family = database.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             fadopted  = frel != _("Birth")
@@ -500,7 +500,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
                     families_done.append(fam_id)
                     file.write('f%s [shape=ellipse, ' % fid)
                     marriage = ""
-                    fam = database.find_family_from_handle(fam_id)
+                    fam = database.get_family_from_handle(fam_id)
 
                     for event_handle in fam.get_event_list():
                         if event_handle:

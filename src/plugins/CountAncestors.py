@@ -70,7 +70,7 @@ class CountAncestors:
                 person = database.get_person_from_handle(person_handle)
                 family_handle = person.get_main_parents_family_handle()
                 if family_handle:
-                    family = database.find_family_from_handle(family_handle)
+                    family = database.get_family_from_handle(family_handle)
                     father_handle = family.get_father_handle()
                     mother_handle = family.get_mother_handle()
                     if father_handle:

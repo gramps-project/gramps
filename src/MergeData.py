@@ -362,7 +362,7 @@ class MergePeople:
             mother = self.p1.get_handle()
 
         for myfamily_handle in self.db.get_family_handles():
-            myfamily = self.db.find_family_from_handle(myfamily_handle)
+            myfamily = self.db.get_family_from_handle(myfamily_handle)
             if myfamily.get_father_handle() == father and myfamily.get_mother_handle() == mother:
                 return myfamily
         return None

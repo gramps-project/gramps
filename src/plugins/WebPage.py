@@ -353,7 +353,7 @@ class IndividualPage:
 
         family_handle = self.person.get_main_parents_family_handle()
         if family_handle:
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             self.write_link_row("%s:" % _("Father"), family.get_father_handle())
             self.write_link_row("%s:" % _("Mother"), family.get_mother_handle())
         else:
@@ -629,7 +629,7 @@ class IndividualPage:
         self.doc.start_table("three","IndTable")
         
         for family_handle in self.person.get_family_handle_list():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             if self.person.get_handle() == family.get_father_handle():
                 spouse_id = family.get_mother_handle()
             else:
@@ -1579,7 +1579,7 @@ class MiniTree:
         family_handle = person.get_main_parents_family_handle()
         if not family_handle: return
 
-        family = self.db.find_family_from_handle(family_handle)
+        family = self.db.get_family_from_handle(family_handle)
         father_handle = family.get_father_handle()
         mother_handle = family.get_mother_handle()
 

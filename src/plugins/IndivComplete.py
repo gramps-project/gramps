@@ -205,7 +205,7 @@ class IndivComplete(Report.Report):
             if family_handle == self.person.get_main_parents_family_handle():
                 continue
             
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
@@ -272,7 +272,7 @@ class IndivComplete(Report.Report):
         self.d.end_row()
         
         for family_handle in self.person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             if self.person.get_handle() == family.get_father_handle():
                 spouse_id = family.get_mother_handle()
             else:
@@ -432,7 +432,7 @@ class IndivComplete(Report.Report):
 
         family_handle = self.person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             father_inst_id = family.get_father_handle()
             if father_inst_id:
                 father_inst = self.database.get_person_from_handle(father_inst_id)

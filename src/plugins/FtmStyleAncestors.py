@@ -72,7 +72,7 @@ class FtmAncestorReport(Report.Report):
         person = self.database.get_person_from_handle(person_handle)
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             self.apply_filter(family.get_father_handle(),index*2,generation+1)
             self.apply_filter(family.get_mother_handle(),(index*2)+1,generation+1)
 
@@ -577,7 +577,7 @@ class FtmAncestorReport(Report.Report):
         if not family_list:
             return
         family_handle = family_list[0]
-        family = self.database.find_family_from_handle(family_handle)
+        family = self.database.get_family_from_handle(family_handle)
         if family.get_father_handle() == person.get_handle():
             spouse_id = family.get_mother_handle()
         else:
@@ -958,7 +958,7 @@ class FtmAncestorReport(Report.Report):
     def print_parents(self,person,dead):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()
             if mother_handle:

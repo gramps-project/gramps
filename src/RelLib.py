@@ -581,7 +581,7 @@ class Person(PrimaryObject,SourceNote):
         def parents_too_old (person, age_difference):
             family_handle = person.get_main_parents_family_handle()
             if family_handle:
-                family = db.find_family_from_handle(family_handle)
+                family = db.get_family_from_handle(family_handle)
                 for parent_id in [family.get_father_handle(), family.get_mother_handle()]:
                     if not parent_id:
                         continue
@@ -612,7 +612,7 @@ class Person(PrimaryObject,SourceNote):
         # As a last resort, trying seeing if their spouse's age gives
         # any clue.
         for family_handle in self.get_family_handle_list():
-            family = db.find_family_from_handle(family_handle)
+            family = db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle(), family.get_mother_handle()]:
                 if not spouse_id:
                     continue

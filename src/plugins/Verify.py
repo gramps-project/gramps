@@ -273,7 +273,7 @@ class Verify:
             prev_sdyear=0
             fnum = 0
             for family_handle in person.get_family_handle_list():
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 fnum = fnum + 1
                 mother_handle = family.get_mother_handle()
                 father_handle = family.get_father_handle()

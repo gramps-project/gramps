@@ -521,7 +521,7 @@ def _write_graph_box (self):
         individual = self.db.get_person_from_handle(individual_id)
         for family_handle, mother_rel_ship, father_rel_ship\
                 in individual.get_parent_family_handle_list():
-            family =  self.db.find_family_from_handle(family_handle)
+            family =  self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             if self.ShowFamilies and family_handle in family_nodes:
@@ -542,7 +542,7 @@ def _write_graph_box (self):
         _write_edge(self.File, style="solid", 
                     arrowHead=self.ArrowHeadStyle,arrowTail=self.ArrowTailStyle)
         for family_handle in family_nodes:
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             if father_handle and father_handle in individual_nodes:
                 _write_edge(self.File, family_handle, father_handle)
@@ -603,7 +603,7 @@ def _write_graph_record (self):
             husbands = []           # filtered-in husbands (naturalRelatives)
             unknown_husbands = 0    # filtered-out/unknown husbands
             for family_handle in individual.get_family_handle_list():
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 husband_id = family.get_father_handle()
                 if husband_id and husband_id in self.individual_set:
                     if husband_id not in natural_relatives:
@@ -615,7 +615,7 @@ def _write_graph_record (self):
         else:
             family_nodes[individual_id] = [individual_id]
             for family_handle in individual.get_family_handle_list():
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 wife_id = family.get_mother_handle()
                 if wife_id in self.individual_set:
                     family_nodes[individual_id].append(wife_id)
@@ -636,7 +636,7 @@ def _write_graph_record (self):
             individual_from = self.db.get_person_from_handle(individual_from_handle)
             for family_handle, mother_rel_ship, father_rel_ship\
                     in individual_from.get_parent_family_handle_list():
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 father_handle = family.get_father_handle()
                 mother_handle = family.get_mother_handle()
                 # Things are complicated here because a parent may or
@@ -788,7 +788,7 @@ def _get_edge_style (self, father_rel_ship, mother_rel_ship="Birth"):
 def _get_family_handle_label (self, family_handle):
     """Returns a formatted string of family data suitable for a label"""
 
-    fam = self.db.find_family_from_handle(family_handle)
+    fam = self.db.get_family_from_handle(family_handle)
     for event_handle in fam.get_event_list():
         if event_handle:
             event = self.db.find_event_from_handle(event_handle)
@@ -822,7 +822,7 @@ def _get_family_handle_record_label (self, record):
             marriage_event_handle = None
             for individual_family_handle in individual.get_family_handle_list():
                 if individual_family_handle in spouse.get_family_handle_list():
-                    individual_family = self.db.find_family_from_handle(individual_family_handle)
+                    individual_family = self.db.get_family_from_handle(individual_family_handle)
                     for event_handle in individual_family.get_event_list():
                         if event_handle:
                             event = self.db.find_event_from_handle(event_handle)

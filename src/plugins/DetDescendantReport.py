@@ -87,9 +87,9 @@ class DetDescendantReport(Report.Report):
 
         person = self.database.get_person_from_handle(person_handle)
         for family_handle in person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             for child_handle in family.get_child_handle_list():
-                child = self.database.find_family_from_handle(child_handle)
+                child = self.database.get_family_from_handle(child_handle)
                 ix = max(self.map.keys())
                 self.apply_filter(child_handle, ix+1, cur_gen+1)
 
@@ -407,7 +407,7 @@ class DetDescendantReport(Report.Report):
         famList = person.get_family_handle_list()
         if len(famList):
             for fam_id in famList:
-                fam = self.database.find_family_from_handle(fam_id)
+                fam = self.database.get_family_from_handle(fam_id)
                 buried = None
                 if buried:
                     date = buried.get_date_object().get_start_date()
@@ -447,7 +447,7 @@ class DetDescendantReport(Report.Report):
         """
         ext_family_handle = person.get_main_parents_family_handle()
         if ext_family_handle:
-            ext_family = self.database.find_family_from_handle(ext_family_handle)
+            ext_family = self.database.get_family_from_handle(ext_family_handle)
             father_handle = ext_family.get_father_handle()
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle).get_primary_name().get_regular_name()
@@ -495,7 +495,7 @@ class DetDescendantReport(Report.Report):
         if len(famList):
             fam_num= 0
             for fam_id in famList:
-                fam = self.database.find_family_from_handle(fam_id)
+                fam = self.database.get_family_from_handle(fam_id)
                 fam_num= fam_num + 1
                 spouse = ""
                 if person.get_gender() == RelLib.Person.male:
@@ -576,7 +576,7 @@ class DetDescendantReport(Report.Report):
         """Output birth, death, parentage, marriage and notes information """
 
         for fam_id in person.get_family_handle_list():
-            fam = self.database.find_family_from_handle(fam_id)
+            fam = self.database.get_family_from_handle(fam_id)
             mate = ""
             if person.get_gender() == RelLib.Person.male:
                 heshe = _("She")
@@ -647,7 +647,7 @@ class DetDescendantReport(Report.Report):
         spouseName= ""
         if len(famList):
             for fam_id in famList:
-                fam = self.database.find_family_from_handle(fam_id)
+                fam = self.database.get_family_from_handle(fam_id)
                 if self.start.get_gender() == RelLib.Person.male:
                     mother_handle = fam.get_mother_handle()
                     if mother_handle:
@@ -691,7 +691,7 @@ class DetDescendantReport(Report.Report):
                     if rptOpt.listChildren == reportOptions.Yes and  \
                          len(person.get_family_handle_list()) > 0:
                         family_handle = person.get_family_handle_list()[0]
-                        family = self.database.find_family_from_handle(family_handle)
+                        family = self.database.get_family_from_handle(family_handle)
                         self.write_children(family, rptOpt)
 
                     #if rptOpt.addImages == reportOptions.Yes:

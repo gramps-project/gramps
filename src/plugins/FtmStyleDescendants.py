@@ -99,7 +99,7 @@ class FtmDescendantReport(Report.Report):
 
         person = self.database.get_person_from_handle(person_handle)
         for family_handle in person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             for child_handle in family.get_child_handle_list():
                 ix = max(self.anc_map.keys())
                 self.apply_filter(child_handle,ix+1,generation+1)
@@ -608,7 +608,7 @@ class FtmDescendantReport(Report.Report):
         first = 1
 
         for family_handle in person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle()
             mother_handle = family.get_mother_handle()
             if father_handle and mother_handle:
@@ -663,7 +663,7 @@ class FtmDescendantReport(Report.Report):
         name = person.get_primary_name().get_regular_name()
         
         for family_handle in person.get_family_handle_list():
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             first = 1
         
             father_handle = family.get_father_handle()
@@ -1000,7 +1000,7 @@ class FtmDescendantReport(Report.Report):
         if not family_list:
             return
         family_handle = family_list[0]
-        family = self.database.find_family_from_handle(family_handle)
+        family = self.database.get_family_from_handle(family_handle)
         if family.get_father_handle() == person.get_handle():
             spouse_id = family.get_mother_handle()
         else:
@@ -1381,7 +1381,7 @@ class FtmDescendantReport(Report.Report):
     def print_parents(self,person,dead):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.find_family_from_handle(family_handle)
+            family = self.database.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle()
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)

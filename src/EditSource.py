@@ -392,7 +392,7 @@ class DelSrcQuery:
 
         for p_id in self.db.get_family_handles():
             commit = 0
-            p = self.db.find_family_from_handle(p_id)
+            p = self.db.get_family_from_handle(p_id)
             for v_id in p.get_event_list():
                 v = self.db.find_event_from_handle(v_id)
                 if v:

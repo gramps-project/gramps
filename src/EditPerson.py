@@ -565,7 +565,7 @@ class EditPerson:
             if fam not in flist:
                 flist.append(fam)
         for fam_id in flist:
-            fam = self.db.find_family_from_handle(fam_id)
+            fam = self.db.get_family_from_handle(fam_id)
             if fam == None:
                 continue
             f_id = fam.get_father_handle()

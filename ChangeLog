@@ -1,3 +1,48 @@
+2004-08-19  Don Allingham  <dallingham@users.sourceforge.net>
+	* PeopleModel.py: simplify model interface
+        * AddSpouse.py: get_family_from_handle fixes
+	* EditPerson.py: get_family_from_handle fixes
+	* EditSource.py: get_family_from_handle fixes
+	* GraphLayout.py: get_family_from_handle fixes
+	* ImageSelect.py: get_family_from_handle fixes
+	* MediaView.py: get_family_from_handle fixes
+	* MergeData.py: get_family_from_handle fixes
+	* PlaceView.py: get_family_from_handle fixes
+	* ReadXML.py: get_family_from_handle fixes
+	* RelLib.py: get_family_from_handle fixes
+	* Relationship.py: get_family_from_handle fixes
+	* SelectChild.py: get_family_from_handle fixes
+	* SourceView.py: get_family_from_handle fixes
+	* SubstKeywords.py: get_family_from_handle fixes
+	* WriteXML.py: get_family_from_handle fixes
+	* gramps_main.py: get_family_from_handle fixes
+	* plugins/AncestorChart.py: get_family_from_handle fixes
+	* plugins/AncestorChart2.py: get_family_from_handle fixes
+	* plugins/AncestorReport.py: get_family_from_handle fixes
+	* plugins/Ancestors.py: get_family_from_handle fixes
+	* plugins/Check.py: get_family_from_handle fixes
+	* plugins/CountAncestors.py: get_family_from_handle fixes
+	* plugins/Desbrowser.py: get_family_from_handle fixes
+	* plugins/DescendReport.py: get_family_from_handle fixes
+	* plugins/DetAncestralReport.py: get_family_from_handle fixes
+	* plugins/DetDescendantReport.py: get_family_from_handle fixes
+	* plugins/FamilyGroup.py: get_family_from_handle fixes
+	* plugins/FanChart.py: get_family_from_handle fixes
+	* plugins/FtmStyleAncestors.py: get_family_from_handle fixes
+	* plugins/FtmStyleDescendants.py: get_family_from_handle fixes
+	* plugins/GraphViz.py: get_family_from_handle fixes
+	* plugins/IndivComplete.py: get_family_from_handle fixes
+	* plugins/IndivSummary.py: get_family_from_handle fixes
+	* plugins/Merge.py: get_family_from_handle fixes
+	* plugins/RelGraph.py: get_family_from_handle fixes
+	* plugins/Verify.py: get_family_from_handle fixes
+	* plugins/WebPage.py: get_family_from_handle fixes
+	* plugins/WriteCD.py: get_family_from_handle fixes
+	* plugins/WritePkg.py: get_family_from_handle fixes
+	* plugins/rel_de.py: get_family_from_handle fixes
+	* plugins/rel_hu.py: get_family_from_handle fixes
+	* plugins/rel_ru.py: get_family_from_handle fixes
+
 2004-08-19  Tim Waugh  <twaugh@redhat.com>
 	* src/RelLib.py (probably_alive): Use get_family_from_handle instead
 	of find_family_from_handle.

@@ -1241,7 +1241,7 @@ class Gramps:
         for family_handle in self.active_person.get_family_handle_list():
             if not family_handle:
                 continue
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             if self.active_person.get_handle() == family.get_father_handle():
                 if family.get_mother_handle() == None:
                     for child_handle in family.get_child_handle_list():
@@ -1264,7 +1264,7 @@ class Gramps:
             
         for (family_handle,mrel,frel) in self.active_person.get_parent_family_handle_list():
             if family_handle:
-                family = self.db.find_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 family.remove_child_handle(self.active_person.get_handle())
                 self.db.commit_family(family,trans)
 

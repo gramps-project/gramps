@@ -308,7 +308,7 @@ class MediaView:
 
     def is_object_used(self,mobj):
         for family_handle in self.db.get_family_handles():
-            p = self.db.find_family_from_handle(family_handle)
+            p = self.db.get_family_from_handle(family_handle)
             for o in p.get_media_list():
                 if o.get_reference_handle() == mobj.get_handle():
                     return 1

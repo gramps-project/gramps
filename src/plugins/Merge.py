@@ -150,7 +150,7 @@ class Merge:
         p1 = self.db.get_person_from_handle(p1_id)
         f1_id = p1.get_main_parents_family_handle()
         if f1_id:
-            f1 = self.db.find_family_from_handle(f1_id)
+            f1 = self.db.get_family_from_handle(f1_id)
             self.ancestors_of(f1.get_father_handle(),id_list)
             self.ancestors_of(f1.get_mother_handle(),id_list)
 
@@ -541,8 +541,8 @@ class Merge:
         f2_id = p2.get_main_parents_family_handle()
 
         if f1_id and f2_id:
-            f1 = self.db.find_family_from_handle(f1_id)
-            f2 = self.db.find_family_from_handle(f2_id)
+            f1 = self.db.get_family_from_handle(f1_id)
+            f2 = self.db.get_family_from_handle(f2_id)
             dad1_id = f1.get_father_handle()
             if dad1_id:
             	dad1 = get_name_obj(self.db.get_person_from_handle(dad1_id))
@@ -579,9 +579,9 @@ class Merge:
             chance = chance + value
 
         for f1_id in p1.get_family_handle_list():
-            f1 = self.db.find_family_from_handle(f1_id)
+            f1 = self.db.get_family_from_handle(f1_id)
             for f2_id in p2.get_family_handle_list():
-                f2 = self.db.find_family_from_handle(f2_id)
+                f2 = self.db.get_family_from_handle(f2_id)
                 if p1.get_gender() == RelLib.Person.female:
                     father1_id = f1.get_father_handle()
                     father2_id = f2.get_father_handle()

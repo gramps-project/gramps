@@ -54,7 +54,7 @@ class FamilyGroup:
         self.db = database
         
         if family_handle:
-            self.family = self.db.find_family_from_handle(family_handle)
+            self.family = self.db.get_family_from_handle(family_handle)
         else:
             self.family = None
         self.output = output
@@ -212,7 +212,7 @@ class FamilyGroup:
         father_name = ""
         mother_name = ""
         if family_handle:
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             father_handle = family.get_father_handle() 
             if father_handle:
                 father_name = self.db.get_person_from_handle(father_handle).get_primary_name().get_regular_name()
@@ -317,7 +317,7 @@ class FamilyGroup:
             
         index = 1
         for family_handle in person.get_family_handle_list():
-            family = self.db.find_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             for event_handle in family.get_event_list():
                 if event_handle:
                     event = self.db.find_event_from_handle(event_handle)
@@ -698,7 +698,7 @@ def _build_spouse_map(database,person):
     spouse_map = {}
     family_list = person.get_family_handle_list()
     for family_handle in family_list:
-        family = database.find_family_from_handle(family_handle)
+        family = database.get_family_from_handle(family_handle)
         if person.get_handle() == family.get_father_handle():
             spouse_id = family.get_mother_handle()
         else:
