@@ -34,10 +34,11 @@ import BaseDoc
 import RelLib
 import Errors
 import Plugins
-import Calendar
+import DateHandler
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
+_dd = DateHandler.create_display()
 #------------------------------------------------------------------------
 #
 # ComprehensiveAncestorsReport
@@ -439,20 +440,20 @@ class ComprehensiveAncestorsReport (Report.Report):
         dateobj = event.get_date_object ()
         if dateobj:
             text = dateobj.get_text()
+            date_text = _dd.display(dateobj)
             if text:
                 info += ' ' + text[0].lower() + text[1:]
             elif dateobj.get_valid ():
-                if (dateobj.isRange () or
-                    dateobj.get_start_date ().getModeVal () != Calendar.EXACT):
-                    info += ' ' + dateobj.get_date ()
+                if not dateobj.is_regular():
+                    info += ' ' + date_text
                 elif (dateobj.get_day_valid () and
                     dateobj.get_month_valid () and
                     dateobj.get_year_valid ()):
                     info += _(' on %(specific_date)s') % \
-                            {'specific_date': dateobj.get_date ()}
+                            {'specific_date': date_text}
                 else:
                     info += _(' in %(month_or_year)s') % \
-                            {'month_or_year': dateobj.get_date ()}
+                            {'month_or_year': date_text}
 
         place = self.database.get_place_from_handle(event.get_place_handle())
         if place:
@@ -688,9 +689,9 @@ class ComprehensiveAncestorsReport (Report.Report):
             family = self.database.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle ()
             mother = self.database.get_person_from_handle(mother_handle)
-            for spouse_id in [family.get_father_handle (), mother_handle]:
-                spouse = self.database.get_person_from_handle(spouse_id)
-                if spouse_id == person.get_handle() or not spouse_id:
+            for spouse_handle in [family.get_father_handle (), mother_handle]:
+                spouse = self.database.get_person_from_handle(spouse_handle)
+                if spouse_handle == person.get_handle() or not spouse_handle:
                     continue
 
                 children = ''
@@ -731,37 +732,37 @@ class ComprehensiveAncestorsReport (Report.Report):
                     if not first_rel:
                         if gender == RelLib.Person.female:
                             ret += _('  She later married %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
                         else:
                             ret += _('  He later married %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
 
                     elif (listing_children or
                           spouse == mother or
                           family != from_family):
                         if gender == RelLib.Person.female:
                             ret += _('  She married %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
                         else:
                             ret += _('  He married %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
 
                     ret += self.event_info (marriage)
                 else: # Not a marriage
                     if not first_rel:
                         if gender == RelLib.Person.female:
                             ret += _('  She later had a relationship with %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
                         else:
                             ret += _('  He later had a relationship with %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
                     else:
                         if gender == RelLib.Person.female:
                             ret += _('  She had a relationship with %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
                         else:
                             ret += _('  He had a relationship with %(name)s') % \
-                                   {'name': self.person_name (spouse)}
+                                   {'name': self.person_name (spouse_handle)}
 
                 ret += children + '.'
 

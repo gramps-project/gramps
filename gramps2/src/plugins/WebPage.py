@@ -50,9 +50,9 @@ import RelLib
 import HtmlDoc
 import BaseDoc
 import const
-import GrampsCfg
+import GrampsGconfKeys
 import GenericFilter
-import Date
+import DateHandler
 import Sort
 import Report
 import Errors
@@ -70,6 +70,8 @@ _month = [
 
 _hline = " "    # Everything is underlined, so use blank
 _BORN = _('b.')
+
+_dd = DateHandler.create_display()
 
 #------------------------------------------------------------------------
 #
@@ -232,7 +234,7 @@ class IndividualPage:
             self.write_info(base.get_title())
             self.write_info(base.get_author())
             self.write_info(base.get_publication_info())
-            self.write_info(sref.get_date().get_date())
+            self.write_info(_dd.display(sref.get_date()))
             self.write_info(sref.get_page())
             if self.usecomments:
                 self.write_info(sref.get_text())
@@ -504,7 +506,7 @@ class IndividualPage:
             if event.get_privacy():
                 continue
             name = _(event.get_name())
-            date = event.get_date()
+            date_text = event.get_date()
             descr = event.get_description()
             place_handle = event.get_place_handle()
             place_url = ""
@@ -517,7 +519,7 @@ class IndividualPage:
                 place = ""
             srcref = event.get_source_references()
 
-            if date == "" and descr == "" and place == "" and len(srcref) == 0:
+            if date_text == "" and descr == "" and place == "" and len(srcref) == 0:
                 continue
 
             if count == 0:
@@ -534,13 +536,13 @@ class IndividualPage:
 
             val = []
             
-            if date != "":
+            if date_text != "":
                 if place != "":
-                    val.append(("%s, " % date,""))
+                    val.append(("%s, " % date_text,""))
                     val.append((place,place_url))
                     val.append((".",""))
                 else:
-                    val.append(("%s." % date,""))
+                    val.append(("%s." % date_text,""))
             elif place != "":
                 val.append((place,place_url))
                 val.append((".",""))
@@ -569,7 +571,7 @@ class IndividualPage:
         if event == None:
             return
         name = _(event.get_name())
-        date = event.get_date()
+        date_text = event.get_date()
         place_handle = event.get_place_handle()
         place_url = ""
         if place_handle:
@@ -585,11 +587,11 @@ class IndividualPage:
         if place != "" and place[-1] == ".":
             place = place[0:-1]
 
-        if date == "" and place == "" and descr == "":
+        if date_text == "" and place == "" and descr == "":
             return
         
         val = []
-        if date == "":
+        if date_text == "":
             if place == "":
                 if descr != "":
                     val.append(("%s." % descr,""))
@@ -604,16 +606,16 @@ class IndividualPage:
         else:
             if place == "":
                 if descr == "":
-                    val.append(("%s." % date,""))
+                    val.append(("%s." % date_text,""))
                 else:
-                    val.append(("%s. %s." % (date,descr),""))
+                    val.append(("%s. %s." % (date_text,descr),""))
             else:
                 if descr == "":
-                    val.append(("%s, " %date,""))
+                    val.append(("%s, " % date_text,""))
                     val.append((place,place_url))
                     val.append((".",""))
                 else:
-                    val.append(("%s, " %date,""))
+                    val.append(("%s, " % date_text,""))
                     val.append((place,place_url))
                     val.append((".",""))
                     val.append(("%s." % descr,""))
@@ -769,58 +771,6 @@ class WebReport(Report.Report):
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
     
-    def make_date(self,date):
-        start = date.get_start_date()
-        if date.is_empty():
-            val = date.get_text()
-        elif date.isRange():
-            val = "FROM %s TO %s" % (self.subdate(start),
-                                     self.subdate(date.get_stop_date()))
-        else:
-            val = self.subdate(start)
-        return val
-
-    def subdate(self,subdate):
-        retval = ""
-        day = subdate.getDay()
-        mon = subdate.getMonth()
-        year = subdate.getYear()
-        mode = subdate.getModeVal()
-        day_valid = subdate.getDayValid()
-        mon_valid = subdate.getMonthValid()
-        year_valid = subdate.getYearValid()
-        
-        if not day_valid:
-            try:
-                if not mon_valid:
-                    retval = str(year)
-                elif not year_valid:
-                    retval = _month[mon]
-                else:
-                    retval = "%s %d" % (_month[mon],year)
-            except IndexError:
-                print "Month index error - %d" % mon
-                retval = str(year)
-        elif not mon_valid:
-            retval = str(year)
-        else:
-            try:
-                month = _month[mon]
-                if not year_valid:
-                    retval = "%d %s ????" % (day,month)
-                else:
-                    retval = "%d %s %d" % (day,month,year)
-            except IndexError:
-                print "Month index error - %d" % mon
-                retval = str(year)
-        if mode == Date.Calendar.ABOUT:
-            retval = "ABT %s"  % retval
-        elif mode == Date.Calendar.BEFORE:
-            retval = "BEF %s" % retval
-        elif mode == Date.Calendar.AFTER:
-            retval = "AFT %s" % retval
-        return retval
-
     def dump_gendex(self,person_handle_list,html_dir):
         fname = "%s/gendex.txt" % html_dir
         try:
@@ -846,7 +796,7 @@ class WebReport(Report.Report):
                 else:
                     continue
                 if e:
-                    f.write("%s|" % self.make_date(e.get_date_object()))
+                    f.write("%s|" % _dd.display(e.get_date_object()))
                     if e.get_place_handle():
                         f.write('%s|' % self.db.get_place_from_handle(e.get_place_handle()).get_title())
                     else:
@@ -1376,7 +1326,7 @@ class WebReportDialog(Report.ReportDialog):
         """Get the name of the directory to which the target dialog
         box should default.  This value can be set in the preferences
         panel."""
-        return GrampsCfg.get_web_dir()
+        return GrampsGconfKeys.get_web_dir()
     
     def set_default_directory(self, value):
         """Save the name of the current directory, so that any future
@@ -1386,7 +1336,7 @@ class WebReportDialog(Report.ReportDialog):
         This means that the last directory used will only be
         remembered for this session of gramps unless the user saves
         his/her preferences."""
-        GrampsCfg.save_web_dir(value)
+        GrampsGconfKeys.save_web_dir(value)
     
     def make_default_style(self):
         """Make the default output style for the Web Pages Report."""

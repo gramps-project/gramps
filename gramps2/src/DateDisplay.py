@@ -178,9 +178,11 @@ class DateDisplay:
 
         qual_str = self._qual_str[qual]
         
-        if start == Date.EMPTY:
+        if mod == Date.MOD_TEXTONLY:
+            return date.get_text()
+        elif start == Date.EMPTY:
             return u""
-        if mod == Date.MOD_SPAN:
+        elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             return "%sfrom %s to %s%s" % (qual_str,d1,d2,self.calendar[cal])
