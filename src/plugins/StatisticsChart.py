@@ -91,49 +91,49 @@ class Extract:
 
     def __init__(self):
         """Methods for extracting statistical data from the database"""
-	# key, non-localized name, localized name, type method, data method
+        # key, non-localized name, localized name, type method, data method
         self.extractors = {
             'data_title':  ("Titles", _("Titles"),
-			    self.get_person, self.get_title),
+                            self.get_person, self.get_title),
             'data_fname':  ("Forenames", _("Forenames"),
-			    self.get_person, self.get_forename),
+                            self.get_person, self.get_forename),
             'data_gender': ("Genders", _("Genders"),
-			    self.get_person, self.get_gender),
+                            self.get_person, self.get_gender),
             'data_byear':  ("Birth years", _("Birth years"),
-			     self.get_birth, self.get_year),
+                             self.get_birth, self.get_year),
             'data_dyear':  ("Death years", _("Death years"),
-			     self.get_death, self.get_year),
+                             self.get_death, self.get_year),
             'data_bmonth': ("Birth months", _("Birth months"),
-			    self.get_birth, self.get_month),
+                            self.get_birth, self.get_month),
             'data_dmonth': ("Death months", _("Death months"),
-			    self.get_death, self.get_month),
+                            self.get_death, self.get_month),
             'data_dcause': ("Causes of death", _("Causes of death"),
-			     self.get_death, self.get_cause),
+                             self.get_death, self.get_cause),
             'data_bplace': ("Birth places", _("Birth places"),
-			    self.get_birth, self.get_place),
+                            self.get_birth, self.get_place),
             'data_dplace': ("Death places", _("Death places"),
-			     self.get_death, self.get_place),
+                             self.get_death, self.get_place),
             'data_mplace': ("Marriage places", _("Marriage places"),
-			     self.get_marriage_handles, self.get_places),
+                             self.get_marriage_handles, self.get_places),
             'data_fchild': ("Ages when first child born", _("Ages when first child born"),
-			     self.get_child_handles, self.get_first_child_age),
+                             self.get_child_handles, self.get_first_child_age),
             'data_lchild': ("Ages when last child born", _("Ages when last child born"),
-			     self.get_child_handles, self.get_last_child_age),
+                             self.get_child_handles, self.get_last_child_age),
             'data_ccount': ("Number of children", _("Number of children"),
-			     self.get_child_handles, self.get_child_count),
+                             self.get_child_handles, self.get_child_count),
             'data_mage':   ("Marriage ages", _("Marriage ages"),
-			     self.get_marriage_handles, self.get_event_ages),
+                             self.get_marriage_handles, self.get_event_ages),
             'data_dage':   ("Ages at death", _("Ages at death"),
-			     self.get_person, self.get_death_age),
+                             self.get_person, self.get_death_age),
             'data_age':    ("Ages", _("Ages"),
-			     self.get_person, self.get_person_age)
+                             self.get_person, self.get_person_age)
         }
 
     # ----------------- data extraction methods --------------------
     # take an object and return a list of strings
 
     def get_title(self, person):
-	"return title for given person"
+        "return title for given person"
         # TODO: return all titles, not just primary ones...
         title = person.get_primary_name().get_title()
         if title:
@@ -142,7 +142,7 @@ class Extract:
             return [_("(Preferred) title missing")]
     
     def get_forename(self, person):
-	"return forenames for given person"
+        "return forenames for given person"
         # TODO: return all forenames, not just primary ones...
         firstnames = person.get_primary_name().get_first_name().strip()
         if firstnames:
@@ -151,7 +151,7 @@ class Extract:
             return [_("(Preferred) forename missing")]
         
     def get_gender(self, person):
-	"return gender for given person"
+        "return gender for given person"
         # TODO: why there's no Person.getGenderName?
         # It could be used by getDisplayInfo & this...
         if person.gender == Person.male:
@@ -161,37 +161,37 @@ class Extract:
         return [_("Gender unknown")]
 
     def get_year(self, event):
-	"return year for given event"
-	date = event.get_date_object()
-	if date:
+        "return year for given event"
+        date = event.get_date_object()
+        if date:
             year = date.get_year()
             if year:
                 return [str(year)]
         return [_("Date(s) missing")]
         
     def get_month(self, event):
-	"return month for given event"
-	date = event.get_date_object()
-	if date:
+        "return month for given event"
+        date = event.get_date_object()
+        if date:
             month = date.get_month()
             if month:
                 return [_dd._months[month]]
         return [_("Date(s) missing")]
 
     def get_cause(self, event):
-	"return cause for given event"
-	cause = event.get_cause()
-	if cause:
-	    return [cause]
+        "return cause for given event"
+        cause = event.get_cause()
+        if cause:
+            return [cause]
         return [_("Cause missing")]
 
     def get_place(self, event):
-	"return place for given event"
-	place_handle = event.get_place_handle()
-	if place_handle:
+        "return place for given event"
+        place_handle = event.get_place_handle()
+        if place_handle:
             place = self.db.get_place_from_handle(place_handle).get_title()
-	    if place:
-		return [place]
+            if place:
+                return [place]
         return [_("Place missing")]
 
     def get_places(self, data):
@@ -210,16 +210,16 @@ class Extract:
         return places
     
     def get_person_age(self, person):
-	"return age for given person, if alive"
-	death = person.get_death_handle()
-	if not death:
+        "return age for given person, if alive"
+        death = person.get_death_handle()
+        if not death:
             return [self.estimate_age(person)]
         return [_("Already dead")]
 
     def get_death_age(self, person):
-	"return age at death for given person, if dead"
-	death_handle = person.get_death_handle()
-	if death_handle:
+        "return age at death for given person, if dead"
+        death_handle = person.get_death_handle()
+        if death_handle:
             return [self.estimate_age(person, death_handle)]
         return [_("Still alive")]
 
@@ -231,7 +231,7 @@ class Extract:
             ages.append(self.estimate_age(person, event_handle))
         if ages:
             return ages
-	return [_("Events missing")]
+        return [_("Events missing")]
 
     def get_first_child_age(self, data):
         "return age when first child in given (person,child_handles) was born"
@@ -264,8 +264,8 @@ class Extract:
             child = self.db.get_person_from_handle(child_handle)
             birth_handle = child.get_birth_handle()
             if birth_handle:
-		ages.append(self.estimate_age(person, birth_handle))
-	    else:
+                ages.append(self.estimate_age(person, birth_handle))
+            else:
                 errors.append(_("Birth missing"))
                 continue
         ages.sort()
@@ -289,8 +289,8 @@ class Extract:
     # take db and person and return suitable gramps object(s)
 
     def get_person(self, person):
-	"return person"
-	return person
+        "return person"
+        return person
 
     def get_birth(self, person):
         "return birth event for given person or None"
@@ -345,12 +345,12 @@ class Extract:
         for chart in collect:
             # get the information
             type_func = chart[2]
-	    data_func = chart[3]
-            obj = type_func(person)	# e.g. get_date()
-	    if obj:
-		value = data_func(obj)	# e.g. get_year()
-	    else:
-		value = [_("Personal information missing")]
+            data_func = chart[3]
+            obj = type_func(person)        # e.g. get_date()
+            if obj:
+                value = data_func(obj)        # e.g. get_year()
+            else:
+                value = [_("Personal information missing")]
             # list of information found
             for key in value:
                 if key in chart[1].keys():
@@ -371,13 +371,13 @@ class Extract:
         year_from   - use only persons who've born this year of after
         year_to     - use only persons who've born this year or before
         no_years    - use also people without any birth year
-	
-	Returns an array of tuple of:
-	- Extraction method title
-	- Dict of values with their counts
-	(- Method)
+        
+        Returns an array of tuple of:
+        - Extraction method title
+        - Dict of values with their counts
+        (- Method)
         """
-	self.db = db	# store for use by methods
+        self.db = db        # store for use by methods
 
         data = []
         ext = self.extractors
@@ -396,16 +396,16 @@ class Extract:
                 continue
         
             # check whether birth year is within required range
-	    birth = self.get_birth(person).get_date_object()
-	    if birth:
+            birth = self.get_birth(person).get_date_object()
+            if birth:
                 if birth.get_year_valid():
                     year = birth.get_year()
                     if not (year >= year_from and year <= year_to):
                         continue
                 else:
                     # if death before range, person's out of range too...
-		    death = self.get_death(person).get_date_object()
-		    if death:
+                    death = self.get_death(person).get_date_object()
+                    if death:
                         if death.get_year_valid() and death.get_year() < year_from:
                             continue
                         if not no_years:
@@ -465,7 +465,7 @@ class StatisticsChart(Report.Report):
             'genders': genders,
             'year_from': year_from,
             'year_to': year_to
-	}
+        }
 
         # extract requested items from the database and count them
         tables = _Extract.collect_data(database, filterfun, options,
@@ -484,9 +484,9 @@ class StatisticsChart(Report.Report):
             else:
                 heading = "Persons born %(year_from)04d-%(year_to)04d: %(chart_title)s" % mapping
             self.data.append((heading, table[1], lookup))
-	#DEBUG
-	#print heading
-	#print table[1]
+        #DEBUG
+        #print heading
+        #print table[1]
 
 
     def lookup_compare(self, a, b):
@@ -541,7 +541,7 @@ class StatisticsChart(Report.Report):
         g.set_line_width(0)
         self.doc.add_draw_style("SC-text",g)
 
-	width = 0.8
+        width = 0.8
         self.colors = 7
         # red
         g = BaseDoc.GraphicsStyle()
@@ -635,7 +635,7 @@ class StatisticsChart(Report.Report):
         yoffset = yoffset + 1 + radius
         ReportUtils.draw_pie_chart(self.doc, middle, yoffset, radius, chart_data, -90)
         yoffset = yoffset + radius + 1
-	ReportUtils.draw_legend(self.doc, 2, yoffset, chart_data)
+        ReportUtils.draw_legend(self.doc, 2, yoffset, chart_data)
 
 
     def output_barchart(self, title, data, lookup):
@@ -710,7 +710,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
             'year_from' : 1700,
             'year_to'   : time.localtime()[0],
             'no_years'  : 0,
-	    'bar_items' : 8
+            'bar_items' : 8
         }
         for key in _Extract.extractors:
             self.options_dict[key] = 0
@@ -732,7 +732,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                                 "Smaller than %d" % self.options_dict['year_to']),
             'no_years'  : ("=0/1", "Whether to include people without birth years",
                                 ["Do not include", "Include"], True),
-	    'bar_items' : ("=num", "Use barchart instead of piechart with this many or more items",
+            'bar_items' : ("=num", "Use barchart instead of piechart with this many or more items",
                                 "Number of items with which piecharts still look good...")
         }
         for key in _Extract.extractors:
@@ -740,14 +740,14 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
                                 ["Leave char with this data out", "Include chart with this data"],
                                 True)
 
-				
+                                
     def enable_options(self):
         # Semi-common options that should be enabled for this report
         self.enable_dict = {
             'filter'    : 0,
         }
     
-	
+        
     def make_default_style(self, default_style):
         """Make the default output style for the Statistics report."""
         f = BaseDoc.FontStyle()
@@ -768,7 +768,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         p.set_description(_("The style used for the title of the page."))
         default_style.add_style("SC-Title",p)
 
-	
+        
     def get_report_filters(self, person):
         """Set up the list of possible content filters."""
     
@@ -855,12 +855,12 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         tip = _("With fewer items pie chart and legend will be used instead of a bar chart.")
         self.bar_items = gtk.Entry(2)
         self.bar_items.set_text(str(self.options_dict['bar_items']))
-	dialog.add_option("Min. bar char items", self.bar_items, tip)
+        dialog.add_option("Min. bar char items", self.bar_items, tip)
 
         # -------------------------------------------------
         # List of available charts on a separate option tab
-	idx = 0
-	half = (len(_Extract.extractors)+1)/2
+        idx = 0
+        half = (len(_Extract.extractors)+1)/2
         hbox = gtk.HBox()
         vbox = gtk.VBox()
         self.charts = {}
@@ -868,21 +868,21 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
             check = gtk.CheckButton(_Extract.extractors[key][1])
             check.set_active(self.options_dict[key])
             self.charts[key] = check
-	    vbox.add(check)
-	    idx += 1
-	    if idx == half:
-		hbox.add(vbox)
-		vbox = gtk.VBox()
+            vbox.add(check)
+            idx += 1
+            if idx == half:
+                hbox.add(vbox)
+                vbox = gtk.VBox()
         hbox.add(vbox)
-	tip = _("Mark checkboxes to add charts with indicated data")
-	dialog.add_frame_option("Chart Selection", "", hbox, tip)
+        tip = _("Mark checkboxes to add charts with indicated data")
+        dialog.add_frame_option("Chart Selection", "", hbox, tip)
         hbox.show_all()
 
         # Note about children
         label = gtk.Label(_("Note that both biological and adopted children are taken into account."))
-	dialog.add_frame_option("Chart Selection", "", label)
+        dialog.add_frame_option("Chart Selection", "", label)
 
-	
+        
     def parse_user_options(self, dialog):
         """
         Parses the custom options that we have added.
