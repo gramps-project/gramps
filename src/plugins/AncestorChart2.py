@@ -380,7 +380,7 @@ class AncestorChart:
                     
         if not self.force_fit:
             self.doc.draw_text('box',
-                               '(%d,%d)' % (colx,coly),
+                               '(%d,%d)' % (colx+1,coly+1),
                                self.doc.get_usable_width()+0.5,
                                self.doc.get_usable_height()+0.75)
         self.doc.end_page()
@@ -529,10 +529,9 @@ _style_name = "default"
 _person_id = ""
 _max_gen = 10
 _disp_format = [ "$n", "%s $b" % _BORN, "%s $d" % _DIED ]
-_scale = 1
 _compress = 1
 _title = None
-_options = ( _person_id, _max_gen, _disp_format, _scale, _compress, _title )
+_options = ( _person_id, _max_gen, _disp_format, _compress, _title )
 
 #------------------------------------------------------------------------
 #
@@ -555,10 +554,9 @@ class AncestorChartBareDialog(Report.BareReportDialog):
 
         self.max_gen = int(self.options[1])
         self.disp_format = string.join(self.options[2],'\n')
-        self.do_scale = int(self.options[3])
-        self.do_compress = int(self.options[4])
-        if self.options[5] is not None:
-            self.the_title = self.options[5]
+        self.do_compress = int(self.options[3])
+        if self.options[4] is not None:
+            self.the_title = self.options[4]
         else:
             self.the_title = self.get_the_title()
         self.new_person = None
@@ -566,7 +564,6 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         self.generations_spinbox.set_value(self.max_gen)
         self.extra_textbox.get_buffer().set_text(
             self.disp_format,len(self.disp_format))
-        self.scale.set_active(self.do_scale)
         self.compress.set_active(self.do_compress)
         self.title.set_text(self.the_title)
         
@@ -586,10 +583,6 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         self.compress.set_active(1)
         self.compress.show()
         self.add_option('',self.compress)
-        self.scale = gtk.CheckButton(_('Sc_ale to fit on a single page'))
-        self.scale.set_active(1)
-        self.scale.show()
-        self.add_option('',self.scale)
 
     def get_title(self):
         """The window title for this dialog"""
@@ -622,7 +615,6 @@ class AncestorChartBareDialog(Report.BareReportDialog):
     def parse_report_options_frame (self):
         # Call base class
         Report.BareReportDialog.parse_report_options_frame (self)
-        self.do_scale = self.scale.get_active()
         self.do_compress = self.compress.get_active()
         self.the_title = self.title.get_text()
 
@@ -640,7 +632,7 @@ class AncestorChartBareDialog(Report.BareReportDialog):
         if self.new_person:
             self.person = self.new_person
         self.options = ( self.person.getId(), self.max_gen, self.report_text, 
-                        self.do_scale, self.do_compress, self.the_title )
+                        self.do_compress, self.the_title )
         self.style_name = self.selected_style.get_name()
 
 #------------------------------------------------------------------------
@@ -656,12 +648,11 @@ def write_book_item(database,person,doc,options,newpage=0):
             person = database.getPerson(options[0])
         max_gen = int(options[1])
         disp_format = options[2]
-        scale = int(options[3])
-        compress = int(options[4])
-        title = options[5]
+        compress = int(options[3])
+        title = options[4]
         return AncestorChart(database, person, max_gen,
                                    disp_format, doc, None, 
-                                   scale, compress, title, newpage )
+                                   1, compress, title, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
         ErrorDialog(m1,m2)
