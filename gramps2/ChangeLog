@@ -1,3 +1,7 @@
+2004-02-14  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: fix syntax error
+	* src/EditPerson.py: fix reordering of children
+
 2004-02-13  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py, etc.: move away from references to ids
 
