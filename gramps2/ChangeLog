@@ -1,3 +1,11 @@
+2003-12-01  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/FamilyView.py (add_child_clicked): Return tuple of two 
+	empty strings when the surname guessing is set to None (otherwise
+	it produced traceback and did nothing).
+	* doc/gramps-manual/C/custom.xml: Update.
+	* doc/gramps-manual/C/gramps-manual-C.omf: Update.
+	* doc/gramps.1.in: Update.
+
 2003-12-01  Tim Waugh  <twaugh@redhat.com>
 	* doc/xmldocs.make: Fix builds for $top_srcdir == $top_builddir (oops).
 
