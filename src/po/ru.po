@@ -1,13 +1,13 @@
-# Russian translation for Gramps; 
+# Russian translation for Gramps; Русский перевод для GRAMPS
 # Copyright (C) 2002-2003 Free Software Foundation, Inc.
 # Alex Roitman <shura@alex.neuro.umn.edu>, 2002-2003.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gramps 0.9.3\n"
+"Project-Id-Version: gramps 0.9.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Sat Sep 13 17:25:35 2003\n"
-"PO-Revision-Date: 2003-09-13 23:20-0500\n"
+"PO-Revision-Date: 2003-09-14 12:36-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1176,7 +1176,7 @@ msgstr "Медиа-Объекты"
 
 #: ImageSelect.py:570
 msgid "Open in %s"
-msgstr "Открыто в %s."
+msgstr "Открыть в %s"
 
 #: ImageSelect.py:573 MediaView.py:185
 msgid "Edit with the GIMP"
@@ -6219,7 +6219,7 @@ msgstr "Простое Заглавие Книги"
 
 #: plugins/SimpleBookTitle.py:284
 msgid "Title Page for GRAMPS Book"
-msgstr "Заглавная страница для Книги GRAMPS"
+msgstr "Титульный лист для Книги GRAMPS"
 
 #: plugins/SimpleBookTitle.py:303
 msgid "Subtitle"
@@ -6252,7 +6252,7 @@ msgstr "Выбрать Объект"
 
 #: plugins/SimpleBookTitle.py:565
 msgid "Title Page"
-msgstr "Заглавная Страница"
+msgstr "Титульный Лист"
 
 #: plugins/Summary.py:97
 msgid "Individuals"
