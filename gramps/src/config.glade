@@ -77,8 +77,8 @@
 	<child>
 	  <left_attach>1</left_attach>
 	  <right_attach>2</right_attach>
-	  <top_attach>3</top_attach>
-	  <bottom_attach>4</bottom_attach>
+	  <top_attach>4</top_attach>
+	  <bottom_attach>5</bottom_attach>
 	  <xpad>0</xpad>
 	  <ypad>0</ypad>
 	  <xexpand>True</xexpand>
@@ -92,22 +92,22 @@
 
       <widget>
 	<class>GtkCheckButton</class>
-	<name>usetabs</name>
+	<name>attr_display</name>
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>toggled</name>
 	  <handler>on_object_toggled</handler>
 	  <object>propertybox</object>
-	  <last_modification_time>Thu, 15 Feb 2001 21:32:23 GMT</last_modification_time>
+	  <last_modification_time>Thu, 24 May 2001 21:14:10 GMT</last_modification_time>
 	</signal>
-	<label>Use tabbed pages</label>
+	<label>Display attribute on Edit Person form</label>
 	<active>False</active>
 	<draw_indicator>True</draw_indicator>
 	<child>
 	  <left_attach>0</left_attach>
 	  <right_attach>1</right_attach>
-	  <top_attach>1</top_attach>
-	  <bottom_attach>2</bottom_attach>
+	  <top_attach>4</top_attach>
+	  <bottom_attach>5</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>False</xexpand>
@@ -134,7 +134,7 @@
 	<draw_indicator>True</draw_indicator>
 	<child>
 	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
+	  <right_attach>2</right_attach>
 	  <top_attach>0</top_attach>
 	  <bottom_attach>1</bottom_attach>
 	  <xpad>5</xpad>
@@ -150,22 +150,51 @@
 
       <widget>
 	<class>GtkCheckButton</class>
-	<name>attr_display</name>
+	<name>uncompress</name>
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>toggled</name>
 	  <handler>on_object_toggled</handler>
 	  <object>propertybox</object>
-	  <last_modification_time>Thu, 24 May 2001 21:14:10 GMT</last_modification_time>
+	  <last_modification_time>Sat, 09 Dec 2000 18:11:20 GMT</last_modification_time>
 	</signal>
-	<label>Display attribute on Edit Person form</label>
+	<label>Do not compress XML data file</label>
 	<active>False</active>
 	<draw_indicator>True</draw_indicator>
 	<child>
 	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
-	  <top_attach>3</top_attach>
-	  <bottom_attach>4</bottom_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>1</top_attach>
+	  <bottom_attach>2</bottom_attach>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
+	  <xexpand>False</xexpand>
+	  <yexpand>False</yexpand>
+	  <xshrink>False</xshrink>
+	  <yshrink>False</yshrink>
+	  <xfill>True</xfill>
+	  <yfill>False</yfill>
+	</child>
+      </widget>
+
+      <widget>
+	<class>GtkCheckButton</class>
+	<name>usetabs</name>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>toggled</name>
+	  <handler>on_object_toggled</handler>
+	  <object>propertybox</object>
+	  <last_modification_time>Thu, 15 Feb 2001 21:32:23 GMT</last_modification_time>
+	</signal>
+	<label>Use tabbed pages</label>
+	<active>False</active>
+	<draw_indicator>True</draw_indicator>
+	<child>
+	  <left_attach>0</left_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>2</top_attach>
+	  <bottom_attach>3</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>False</xexpand>
@@ -192,9 +221,9 @@
 	<draw_indicator>True</draw_indicator>
 	<child>
 	  <left_attach>0</left_attach>
-	  <right_attach>1</right_attach>
-	  <top_attach>2</top_attach>
-	  <bottom_attach>3</bottom_attach>
+	  <right_attach>2</right_attach>
+	  <top_attach>3</top_attach>
+	  <bottom_attach>4</bottom_attach>
 	  <xpad>5</xpad>
 	  <ypad>5</ypad>
 	  <xexpand>False</xexpand>

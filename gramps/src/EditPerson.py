@@ -35,7 +35,6 @@ import utils
 from gtk import *
 from gnome.ui import *
 import gnome.mime
-
 import libglade
 
 #-------------------------------------------------------------------------
@@ -238,9 +237,7 @@ class EditPerson:
         # load photos into the photo window
         photo_list = person.getPhotoList()
         if len(photo_list) != 0:
-            thumb = "%s%s.thumb%si%s" % ( self.path,os.sep,os.sep,self.person.getId())
-            RelImage.check_thumb(photo_list[0].getPath(),thumb,const.picWidth)
-            self.load_photo(thumb)
+            self.load_photo(photo_list[0].getPath())
     
         # set notes data
         self.notes_field.set_point(0)
@@ -286,14 +283,7 @@ class EditPerson:
 
 	self.name_index = 0
         for name in self.nlist:
-            attr = ""
-            if Config.show_detail:
-                if name.getNote() != "":
-                    attr = "N"
-                if name.getSourceRef().getBase():
-                    attr = attr + "S"
-                if name.getPrivacy():
-                    attr = attr + "P"
+            attr = get_detail_flags(name)
             self.name_list.append([name.getName(),attr])
             self.name_list.set_row_data(self.name_index,name)
             self.name_index = self.name_index + 1
@@ -348,14 +338,7 @@ class EditPerson:
 
 	self.attr_index = 0
         for attr in self.alist:
-            detail = ""
-            if Config.show_detail:
-                if attr.getNote() != "":
-                    detail = "N"
-                if attr.getSourceRef().getBase():
-                    detail = detail + "S"
-                if attr.getPrivacy():
-                    attr = attr + "P"
+            detail = get_detail_flags(attr)
             self.attr_list.append([const.display_pattr(attr.getType()),\
                                    attr.getValue(),detail])
             self.attr_list.set_row_data(self.attr_index,attr)
@@ -384,14 +367,7 @@ class EditPerson:
 
 	self.address_index = 0
         for address in self.plist:
-            detail = ""
-            if Config.show_detail:
-                if address.getNote() != "":
-                    detail = "N"
-                if address.getSourceRef().getBase():
-                    detail = detail + "S"
-                if address.getPrivacy():
-                    detail = detail + "P"
+            detail = get_detail_flags(address)
             location = address.getCity() + " " + address.getState() + " " + \
                        address.getCountry()
             self.address_list.append([address.getDate(),location,detail])
@@ -422,14 +398,7 @@ class EditPerson:
 
         self.event_index = 0
         for event in self.elist:
-            attr = ""
-            if Config.show_detail:
-                if event.getNote() != "":
-                    attr = "N"
-                if event.getSourceRef().getBase():
-                    attr = attr + "S"
-                if event.getPrivacy():
-                    attr = attr + "P"
+            attr = get_detail_flags(event)
             self.event_list.append([const.display_pevent(event.getName()),\
                                     event.getQuoteDate(), event.getPlace(),attr])
             self.event_list.set_row_data(self.event_index,event)
@@ -484,7 +453,14 @@ class EditPerson:
     #
     #-------------------------------------------------------------------------
     def load_photo(self,photo):
-        self.get_widget("personPix").load_file(photo)
+        import GdkImlib
+
+        i = GdkImlib.Image(photo)
+        scale = float(const.picWidth)/float(max(i.rgb_height,i.rgb_width))
+        x = int(scale*(i.rgb_width))
+        y = int(scale*(i.rgb_height))
+        i = i.clone_scaled_image(x,y)
+        self.get_widget("personPix").load_imlib(i)
 
     #-------------------------------------------------------------------------
     #
@@ -949,12 +925,9 @@ def on_primary_photo_clicked(obj):
     for i in range(0,selectedIcon):
         photolist[selectedIcon-i] = photolist[selectedIcon-i-1]
     photolist[0] = savePhoto
-    epo.load_images()
 
-    thumb = "%s%s.thumb%si%s" % (epo.path,os.sep,os.sep,epo.person.getId())
-    
-    RelImage.mk_thumb(savePhoto,thumb,const.picWidth)
-    epo.load_photo(thumb)
+    epo.load_photo(savePhoto.getPath())
+    epo.load_images()
     utils.modified()
 
 #-------------------------------------------------------------------------
@@ -2070,3 +2043,19 @@ def on_url_edit_ok_clicked(obj):
     ee.parent.redraw_url_list()
     utils.destroy_passed_object(obj)
 
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_detail_flags(obj):
+    detail = ""
+    if Config.show_detail:
+        if obj.getNote() != "":
+            detail = "N"
+        if obj.getSourceRef().getBase():
+            detail = detail + "S"
+        if obj.getPrivacy():
+            detail = detail + "P"
+    return detail
