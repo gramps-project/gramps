@@ -28,6 +28,13 @@ from DrawDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 
+try:
+    from codecs import *
+except:
+    def EncodedFile(a,b,c):
+        return a
+    
+
 class OpenDrawDoc(DrawDoc):
 
     def __init__(self,type,orientation):
@@ -55,8 +62,10 @@ class OpenDrawDoc(DrawDoc):
         os.mkdir(self.tempdir,0700)
         os.mkdir(self.tempdir + os.sep + "Pictures")
         os.mkdir(self.tempdir + os.sep + "META-INF")
-            
-        self.f = open(self.tempdir + os.sep + "content.xml","w")
+
+        fname = self.tempdir + os.sep + "content.xml"
+        self.f = EncodedFile(open(fname,"wb"),'latin-1','utf-8')
+        
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -145,7 +154,7 @@ class OpenDrawDoc(DrawDoc):
         
     def _write_styles_file(self):
 	file = self.tempdir + os.sep + "styles.xml"
-	self.f = open(file,"w")
+	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-styles ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -337,7 +346,7 @@ class OpenDrawDoc(DrawDoc):
 
     def _write_manifest(self):
 	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"
-	self.f = open(file,"w")
+	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
         self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
@@ -360,7 +369,7 @@ class OpenDrawDoc(DrawDoc):
     def _write_meta_file(self):
 	file = self.tempdir + os.sep + "meta.xml"
         name = latin_to_utf8(self.name)
-	self.f = open(file,"w")
+	self.f = EncodedFile(open(file,"wb"),'latin-1','utf-8')
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
 	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
