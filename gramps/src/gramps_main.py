@@ -105,6 +105,7 @@ notebook      = None
 person_list   = None
 database      = None
 nameArrow     = None
+genderArrow   = None
 idArrow       = None
 deathArrow    = None
 dateArrow     = None
@@ -733,6 +734,8 @@ def on_person_list_click_column(obj,column):
         change_sort(5,nameArrow)
     elif column == 1:
         change_sort(1,idArrow)
+    elif column == 2:
+        change_sort(2,genderArrow)
     elif column == 3:
         change_sort(6,dateArrow)
     elif column == 4:
@@ -754,7 +757,7 @@ def change_sort(column,arrow):
     global sort_direct
     global sort_column
 
-    for a in [ nameArrow, deathArrow, dateArrow, idArrow ]:
+    for a in [ nameArrow, genderArrow, deathArrow, dateArrow, idArrow ]:
         if arrow != a:
             a.hide()
     arrow.show()
@@ -1850,7 +1853,7 @@ def main(arg):
     global statusbar,notebook
     global person_list
     global topWindow, preview, merge_button
-    global nameArrow, dateArrow, deathArrow, idArrow
+    global nameArrow, dateArrow, deathArrow, idArrow, genderArrow
     global cNameArrow, cDateArrow
     
     rc_parse(const.gtkrcFile)
@@ -1874,6 +1877,7 @@ def main(arg):
     filter_list = gtop.get_widget("filter_list")
     notebook    = gtop.get_widget(NOTEBOOK)
     nameArrow   = gtop.get_widget("nameSort")
+    genderArrow = gtop.get_widget("genderSort")
     idArrow     = gtop.get_widget("idSort")
     dateArrow   = gtop.get_widget("dateSort")
     deathArrow  = gtop.get_widget("deathSort")
