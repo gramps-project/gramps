@@ -35,6 +35,7 @@ import pickle
 #-------------------------------------------------------------------------
 import gtk
 import gtk.glade
+import gobject
 import gnome
 
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
@@ -165,7 +166,6 @@ class EditPerson:
         self.alt_suffix_field = self.get_widget("alt_suffix")
         self.alt_prefix_field = self.get_widget("alt_prefix")
         self.name_type_field = self.get_widget("name_type")
-        self.surname_field = self.get_widget("surname")
         self.ntype_field = self.get_widget("ntype")
         self.suffix = self.get_widget("suffix")
         self.prefix = self.get_widget("prefix")
@@ -173,12 +173,10 @@ class EditPerson:
         self.nick = self.get_widget("nickname")
         self.title = self.get_widget("title")
         self.bdate  = self.get_widget("birthDate")
-        self.bplace = self.get_widget("birthPlace")
-        self.bpcombo = self.get_widget("bpcombo")
-        self.dpcombo = self.get_widget("dpcombo")
-        self.sncombo = self.get_widget("sncombo")
+        self.bplace = self.get_widget("birth_place")
+        self.surname = self.get_widget("surname")
         self.ddate  = self.get_widget("deathDate")
-        self.dplace = self.get_widget("deathPlace")
+        self.dplace = self.get_widget("death_place")
         self.is_male = self.get_widget("genderMale")
         self.is_female = self.get_widget("genderFemale")
         self.is_unknown = self.get_widget("genderUnknown")
@@ -267,11 +265,12 @@ class EditPerson:
                                          self.on_web_select_row,
                                          self.on_update_url_clicked)
 
-        place_list = self.pdmap.keys()
-        place_list.sort()
-        self.autoplace = AutoComp.AutoCombo(self.bpcombo, place_list)
-        self.autodeath = AutoComp.AutoCombo(self.dpcombo, place_list, self.autoplace)
-        self.comp = AutoComp.AutoCombo(self.sncombo,self.db.get_surnames())
+        self.place_list = self.pdmap.keys()
+        self.place_list.sort()
+
+        build_dropdown(self.bplace,self.place_list)
+        build_dropdown(self.dplace,self.place_list)
+        build_dropdown(self.surname,self.db.get_surnames())
             
         self.gid.set_text(person.get_id())
         self.gid.set_editable(GrampsCfg.id_edit)
@@ -474,7 +473,7 @@ class EditPerson:
             stat = 0
             combo.entry.set_text("")
 
-        AutoComp.AutoEntry(place,None,self.autoplace)
+        build_dropdown(place,self.place_list)
         if ord and ord.get_place_id():
             ord_place = self.db.find_place_from_id(ord.get_place_id())
             place.set_text(ord_place.get_title())
@@ -1047,7 +1046,7 @@ class EditPerson:
         """Check to see if any of the data has changed from the
         orig record"""
 
-        surname = unicode(self.surname_field.get_text())
+        surname = unicode(self.surname.get_text())
         self.birth.set_date(unicode(self.bdate.get_text()))
         self.death.set_date(unicode(self.ddate.get_text()))
 
@@ -1412,7 +1411,7 @@ class EditPerson:
 
         trans = self.db.start_transaction()
         
-        surname = unicode(self.surname_field.get_text())
+        surname = unicode(self.surname.get_text())
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
         ntype = unicode(self.ntype_field.entry.get_text())
@@ -1722,7 +1721,7 @@ class EditPerson:
         self.suffix.set_text(self.pname.get_suffix())
         self.prefix.set_text(self.pname.get_surname_prefix())
 
-        self.surname_field.set_text(self.pname.get_surname())
+        self.surname.set_text(self.pname.get_surname())
         self.given.set_text(self.pname.get_first_name())
 
         self.ntype_field.entry.set_text(_(self.pname.get_type()))
@@ -1814,3 +1813,13 @@ def place_title(db,event):
         return db.find_place_from_id(pid).get_title()
     else:
         return u''
+
+def build_dropdown(entry,strings):
+    store = gtk.ListStore(gobject.TYPE_STRING)
+    for value in strings:
+        iter = store.append()
+        store.set(iter,0,value)
+    completion = gtk.EntryCompletion()
+    completion.set_text_column(0)
+    completion.set_model(store)
+    entry.set_completion(completion)

@@ -331,7 +331,7 @@ class PeopleModel(gtk.GenericTreeModel):
         
     def column_birth_place(self,data):
         if data[6]:
-            event = self.db.find_event_from_id(data[5])
+            event = self.db.find_event_from_id(data[6])
             if event:
                 place_id = event.get_place_id()
                 if place_id:

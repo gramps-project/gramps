@@ -961,20 +961,11 @@ class Gramps:
         """Incremental display update, update only the displayed page"""
         page = self.views.get_current_page()
         if page == PERSON_VIEW:
-            if changed:
-                self.people_view.apply_filter()
-            else:
-                self.goto_active_person()
+            self.people_view.apply_filter()
         elif page == FAMILY_VIEW1 or page == FAMILY_VIEW2:
             self.family_view.load_family()
         elif page == PEDIGREE_VIEW:
             self.pedigree_view.load_canvas(self.active_person)
-        elif page == PLACE_VIEW:
-            if len(self.db.get_place_id_keys()) > 2000:
-                self.status_text(_('Updating display - this may take a few seconds...'))
-            else:
-                self.status_text(_('Updating display...'))
-            self.modify_statusbar()
 
     def on_tools_clicked(self,obj):
         if self.active_person:
