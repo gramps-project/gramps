@@ -383,16 +383,21 @@ class GrampsParser:
             d = self.address.getDateObj()
         else:
             d = self.event.getDateObj()
-        d.get_start_date().setIsoDate(attrs['start'])
-        d.get_stop_date().setIsoDate(attrs['stop'])
+
         if attrs.has_key("calendar"):
             d.set_calendar(int(attrs['calendar']))
+
+        d.get_start_date().setIsoDate(attrs['start'])
+        d.get_stop_date().setIsoDate(attrs['stop'])
         
     def start_dateval(self,attrs):
         if self.address:
             d = self.address.getDateObj()
         else:
             d = self.event.getDateObj()
+
+        if attrs.has_key("calendar"):
+            d.set_calendar(int(attrs['calendar']))
 
         d.get_start_date().setIsoDate(attrs['val'])
         
@@ -401,8 +406,6 @@ class GrampsParser:
         else:
             d.get_start_date().getMode(None)
             
-        if attrs.has_key("calendar"):
-            d.set_calendar(int(attrs['calendar']))
 
     def start_datestr(self,attrs):
         if self.address:
