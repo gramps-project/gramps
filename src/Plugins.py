@@ -347,14 +347,17 @@ class ToolPlugins(PluginDialog):
 #
 #-------------------------------------------------------------------------
 status_up = None
+parent_window = None
 
 class PluginStatus:
     """Displays a dialog showing the status of loaded plugins"""
     
-    def __init__(self):
-        global status_up
+    def __init__(self,parent_class=None):
+        global status_up, parent_window
         if status_up:
             status_up.close(None)
+	if parent_class:
+	    parent_window = parent_class.topWindow
         status_up = self
 
         import cStringIO
@@ -374,6 +377,9 @@ class PluginStatus:
             'on_help_clicked'   : self.help,
             'on_plugstat_delete_event'   : self.on_delete,
             })
+
+	if parent_window:
+	    self.top.set_transient_for(parent_window)
 
         info = cStringIO.StringIO()
 

@@ -173,7 +173,7 @@ class Gramps:
         self.topWindow.show()
         
         if GrampsKeys.get_usetips():
-            TipOfDay.TipOfDay()
+            TipOfDay.TipOfDay(self)
 
         self.db.set_researcher(GrampsCfg.get_researcher())
 
@@ -794,7 +794,7 @@ class Gramps:
         self.edit_item.set_sensitive(val)
             
     def on_show_plugin_status(self,obj):
-        Plugins.PluginStatus()
+        Plugins.PluginStatus(self)
 
     def on_sidebar_activate(self,obj):
         self.enable_sidebar(obj.get_active())
@@ -839,7 +839,7 @@ class Gramps:
         error |= PluginMgr.load_plugins(os.path.expanduser("~/.gramps/plugins"))
 
         if GrampsKeys.get_pop_plugin_status() and error:
-            Plugins.PluginStatus()
+            Plugins.PluginStatus(self)
         Plugins.build_report_menu(self.report_menu,self.menu_report)
         Plugins.build_tools_menu(self.tools_menu,self.menu_tools)
 
