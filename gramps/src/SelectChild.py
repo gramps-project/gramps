@@ -119,9 +119,7 @@ class SelectChild:
         person_list = []
         for person in self.db.getPersonMap().values():
             if filter:
-                if person in slist:
-                    continue
-                if person.getMainFamily() != None:
+                if person in slist or person.getMainFamily():
                     continue
             
                 pdday = person.getDeath().getDateObj()
@@ -129,7 +127,6 @@ class SelectChild:
 
         	if bday.getYearValid():
                     if pbday.getYearValid():
-
                         # reject if child birthdate < parents birthdate + 10
                         if pbday.getLowYear() < bday.getHighYear()+10:
                             continue
@@ -145,13 +142,11 @@ class SelectChild:
                 
                 if dday.getYearValid():
                     if pbday.getYearValid():
-                    
                         # reject if childs birth date > parents deathday + 3
                         if pdday.getLowYear() > dday.getHighYear()+3:
                             continue
 
                     if pdday.getYearValid():
-
                         # reject if childs death date > parents deathday + 150
                         if pbday.getLowYear() > dday.getHighYear() + 150:
                             continue
