@@ -1,3 +1,11 @@
+2003-09-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: re-present the open dialog box on
+	a failure to open a file.
+	* src/gramps.glade: change Home button from stock version
+	to something we can translate
+	* src/const.py.in: Add "Alternate Marriage" as a family 
+	event type.
+
 2003-09-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/SelectObject.py: Add module. 
 	* src/choose.glade: Add select_object dialog. 
