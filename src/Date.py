@@ -61,11 +61,20 @@ class Date:
         match = Date.fmt.match(text)
         if match:
             matches = match.groups()
-            self.start.set(matches[1])
-            self.stop.set(matches[3])
+            try:
+                self.start.set(matches[1])
+            except:
+                pass
+            try:
+                self.stop.set(matches[3])
+            except:
+                pass
             self.range = 1
         else:
-            self.start.set(text)
+            try:
+                self.start.set(text)
+            except:
+                pass
             self.range = 0
 
     #--------------------------------------------------------------------
@@ -102,11 +111,20 @@ class Date:
         match = Date.fmt.match(text)
         if match:
             matches = match.groups()
-            self.start.set(matches[1])
-            self.stop.set(matches[3])
+            try:
+                self.start.set(matches[1])
+            except:
+                pass
+            try:
+                self.stop.set(matches[3])
+            except:
+                pass
             self.range = 1
         else:
-            self.start.quick_set(text)
+            try:
+                self.start.quick_set(text)
+            except:
+                pass
             self.range = 0
 
 #-------------------------------------------------------------------------
