@@ -110,7 +110,6 @@ class Date:
             self.dateval  = source.dateval
             self.text     = source.text
             self.sortval  = source.sortval
-            self.comment  = source.comment
         else:
             self.calendar = CAL_GREGORIAN
             self.modifier = MOD_TEXTONLY
@@ -118,7 +117,6 @@ class Date:
             self.dateval  = EMPTY
             self.text     = u""
             self.sortval  = 0
-            self.comment  = u""
 
     def copy(self,source):
         """
@@ -131,7 +129,6 @@ class Date:
         self.dateval  = source.dateval
         self.text     = source.text
         self.sortval  = source.sortval
-        self.comment  = source.comment
 
     def __cmp__(self,other):
         """
@@ -147,16 +144,12 @@ class Date:
         at the sorting value, and ignores the modifiers/comments.
         """
         
-        if (self.calendar == other.calendar and 
-                        self.modifier == other.modifier and 
-                        self.quality == other.quality and 
-                        self.dateval == other.dateval and 
-                        self.text == other.text and 
-                        self.sortval == other.sortval and 
-                        self.comment == other.comment):
-            return 1
-        else:
-            return 0
+        return (self.calendar == other.calendar and 
+                self.modifier == other.modifier and 
+                self.quality == other.quality and 
+                self.dateval == other.dateval and 
+                self.text == other.text and 
+                self.sortval == other.sortval)
             
     def __str__(self):
         """
@@ -218,18 +211,6 @@ class Date:
            MOD_TEXTONLY   = text only
         """
         return self.modifier
-
-    def set_comment(self,comment):
-        """
-        Sets the comment for the date.
-        """
-        self.comment = comment
-
-    def get_comment(self):
-        """
-        Returns the associated comment.
-        """
-        return self.comment
 
     def set_modifier(self,val):
         """
