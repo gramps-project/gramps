@@ -28,13 +28,9 @@ import const
 import utils
 import Plugins
 import intl
-_ = intl.gettext
+import ImgManip
 
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
+_ = intl.gettext
 
 try:
     from codecs import *
@@ -502,13 +498,12 @@ class OpenOfficeDoc(TextDoc):
             height = file_tuple[2]
             base = os.path.basename(file)
             image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
-            if no_pil:
-                cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,width,height,file,image_name)
-                os.system(cmd)
-            else:
-                im = PIL.Image.open(file)
-                im.thumbnail((width,height))
-                im.save(image_name,"JPEG")
+
+            try:
+                img = ImgManip.ImgManip(file)
+                img.jpg_thumbnail(image_name)
+            except:
+                pass
 
     def _write_manifest(self):
 	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"

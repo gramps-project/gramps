@@ -25,19 +25,10 @@
 #------------------------------------------------------------------------
 from TextDoc import *
 import Plugins
+import ImgManip
+
 import intl
 _ = intl.gettext
-
-#------------------------------------------------------------------------
-#
-# Attempt to load the Python Imaging Library for the handling of photos.
-#
-#------------------------------------------------------------------------
-try:
-    import PIL.Image
-    no_pil = 0
-except:
-    no_pil = 1
 
 #------------------------------------------------------------------------
 #
@@ -324,17 +315,14 @@ class RTFDoc(TextDoc):
     # to JPEG, since it is smaller, and supported by RTF. The data is
     # dumped as a string of HEX numbers.
     #
-    # If the PIL library is not loaded, ignore the request to load the 
-    # photo.
-    #
     #--------------------------------------------------------------------
     def add_photo(self,name,pos,x_cm,y_cm):
 	if no_pil:
 	    return
 
-	im = PIL.Image.open(name)
-        nx,ny = im.size
-        buf = im.tostring("jpeg","RGB")
+	im = ImgManip.ImgManip(name)
+        nx,ny = im.size()
+        buf = im.jpg_data()
 
         scale = float(ny)/float(nx)
         if scale > 1:

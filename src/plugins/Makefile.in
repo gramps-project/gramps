@@ -12,13 +12,12 @@ pycomp		= ${srcdir}/py-compile
 all:
 	${pycomp} *.py
 
-
 install:
 	${INSTALL} -d ${plugins}
 	${INSTALL} *.py *.pyo *.glade ${plugins}
 
 uninstall:
-	rm ${plugins}/*.py ${plugins}/*.pyo ${plugins}/*.glade ${plugins}/*.xpm
+	rm ${plugins}/*.py ${plugins}/*.pyo ${plugins}/*.glade
 	-rmdir ${plugins}
 
 clean:
