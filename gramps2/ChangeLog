@@ -5,6 +5,8 @@
 	* src/edit_person.glade: Likewise.
 	* src/plugins/pafexport.glade: Consistent check box label. 
 	* src/po/template.po: Update the above corrections in template.
+	* src/gramps_main.py (save_file): Remove statusbar.set_pulse_step() 
+	call because gnome.ui.AppBar does not have such method.
 
 2003-08-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/writeftree.glade: Swap OK and Cancel buttons (HIG).
