@@ -278,6 +278,8 @@ class GrampsParser(handler.ContentHandler):
         self.family = self.db.findFamilyNoMap(u2l(attrs["id"]))
         if attrs.has_key("type"):
             self.family.setRelationship(u2l(attrs["type"]))
+        else:
+            self.family.setRelationship("")
 
     #---------------------------------------------------------------------
     #
