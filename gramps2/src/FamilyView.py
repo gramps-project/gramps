@@ -291,12 +291,12 @@ class FamilyView:
             self.add_sp_parents(obj)
 
     def child_key_press(self,obj,event):
-        model, iter = self.child_selection.get_selected()
-        if not iter:
+        model, node = self.child_selection.get_selected()
+        if not node:
             return
-        id = self.child_model.get_value(iter,7)
+        handle = self.child_model.get_value(node,7)
         if event.keyval == gtk.gdk.keyval_from_name("Return") and not event.state:
-            self.child_rel_by_id(id)
+            self.child_rel_by_id(handle)
         elif event.keyval == gtk.gdk.keyval_from_name("Return") \
                                     and event.state == gtk.gdk.SHIFT_MASK:
             self.edit_child_callback(obj)
@@ -429,22 +429,22 @@ class FamilyView:
         menu.popup(None,None,None,event.button,event.time)
 
     def on_child_list_button_press(self,obj,event):
-        model, iter = self.child_selection.get_selected()
-        if not iter:
+        model, node = self.child_selection.get_selected()
+        if not node:
             if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
                 self.build_nav_menu(event)
             return
-        id = self.child_model.get_value(iter,7)
+        handle = self.child_model.get_value(node,7)
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            self.child_rel_by_id(id)
+            self.child_rel_by_id(handle)
         elif event.state == gtk.gdk.SHIFT_MASK and \
                     event.type == gtk.gdk.BUTTON_PRESS and \
                     event.button == 1:
             self.edit_child_callback(obj)
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
-            self.build_child_menu(id,event)
+            self.build_child_menu(handle,event)
 
-    def build_child_menu(self,id,event):
+    def build_child_menu(self,handle,event):
         """Builds the menu that allows editing operations on the child list"""
 
         menu = gtk.Menu()
@@ -480,33 +480,36 @@ class FamilyView:
             (_("Remove the selected child"),self.remove_child_clicked),
             ]
         for msg,callback in entries:
-            Utils.add_menuitem(menu,msg,id,callback)
+            Utils.add_menuitem(menu,msg,handle,callback)
         menu.popup(None,None,None,event.button,event.time)
 
     def edit_child_callback(self,obj):
-        model, iter = self.child_selection.get_selected()
-        if not iter:
+        model, node = self.child_selection.get_selected()
+        if not node:
             return
-        child = self.parent.db.get_person_from_handle(self.child_model.get_value(iter,7))
+        handle = self.child_model.get_value(node,7)
+        child = self.parent.db.get_person_from_handle(handle)
         try:
-            EditPerson.EditPerson(self.parent, child, self.parent.db, self.spouse_after_edit)
+            EditPerson.EditPerson(self.parent, child, self.parent.db,
+                                  self.spouse_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
     def child_rel(self,obj):
-        person = self.parent.db.get_person_from_handle(obj.get_data(Utils.OBJECT))
+        handle = obj.get_data('o')
+        person = self.parent.db.get_person_from_handle(handle)
         SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
         
-    def child_rel_by_id(self,id):
-        person = self.parent.db.get_person_from_handle(id)
+    def child_rel_by_id(self,handle):
+        person = self.parent.db.get_person_from_handle(handle)
         SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
 
     def spouse_changed(self,obj):
-        model, iter = obj.get_selected()
-        if not iter:
+        model, node = obj.get_selected()
+        if not node:
             self.display_marriage(None)
         else:
-            row = model.get_path(iter)
+            row = model.get_path(node)
             family_handle = self.person.get_family_handle_list()[row[0]]
             fam = self.parent.db.get_family_from_handle(family_handle)
             self.display_marriage(fam)
@@ -686,7 +689,7 @@ class FamilyView:
             DisplayTrace.DisplayTrace()
 
     def update_person_list(self,person):
-        trans = self.db.transaction_begin()
+        trans = self.parent.db.transaction_begin()
 
         if not self.family:
             self.family = RelLib.Family()
@@ -701,9 +704,9 @@ class FamilyView:
         person.add_parent_family_handle(self.family.get_handle(),"Birth","Birth")
         self.parent.update_person_list(person)
         self.load_family(self.family)
-        self.db.commit_person(person,trans)
-        self.db.commit_family(self.family,trans)
-        self.db.transaction_commit(trans,_("Modify family"))
+        self.parent.db.commit_person(person,trans)
+        self.parent.db.commit_family(self.family,trans)
+        self.parent.db.transaction_commit(trans,_("Modify family"))
             
     def new_child_after_edit(self,epo,trans):
         
@@ -739,12 +742,12 @@ class FamilyView:
         if not self.family or not self.person:
             return
 
-        model, iter = self.child_selection.get_selected()
-        if not iter:
+        model, node = self.child_selection.get_selected()
+        if not node:
             return
 
-        id = self.child_model.get_value(iter,7)
-        child = self.parent.db.get_person_from_handle(id)
+        handle = self.child_model.get_value(node,7)
+        child = self.parent.db.get_person_from_handle(handle)
 
         trans = self.parent.db.transaction_begin()
         
@@ -834,8 +837,8 @@ class FamilyView:
         if len(plist) == 1:
             family_handle,m,r = plist[0]
         else:
-            model, iter = self.ap_selection.get_selected()
-            path = model.get_path(iter)
+            model, node = self.ap_selection.get_selected()
+            path = model.get_path(node)
             family_handle,m,r = plist[path[0]]
         family = self.parent.db.get_family_from_handle(family_handle)
 
@@ -862,8 +865,8 @@ class FamilyView:
     def load_family(self,family=None):
 
         if self.parent.active_person:
-            id = self.parent.active_person.get_handle()
-            self.person = self.parent.db.get_person_from_handle(id)
+            handle = self.parent.active_person.get_handle()
+            self.person = self.parent.db.get_person_from_handle(handle)
         else:
             self.person = None
             self.clear()
@@ -891,8 +894,8 @@ class FamilyView:
 
         self.ap_model.clear()
         self.ap_data.get_selection().set_mode(gtk.SELECTION_NONE)
-        iter = self.ap_model.append()
-        self.ap_model.set(iter,0,n)
+        node = self.ap_model.append()
+        self.ap_model.set(node,0,n)
 
         self.selected_spouse = None
         self.spouse_model.clear()
@@ -916,8 +919,8 @@ class FamilyView:
             else:
                 sp_id = fm.get_father_handle()
 
-            iter = self.spouse_model.append()
-            flist[f] = iter
+            node = self.spouse_model.append()
+            flist[f] = node
                 
             if sp_id:
                 sp = self.parent.db.get_person_from_handle(sp_id)
@@ -930,20 +933,20 @@ class FamilyView:
                                          sp.get_gramps_id(),
                                          const.family_relations[fm.get_relationship()][0],
                                          mdate)
-                self.spouse_model.set(iter,0,v)
+                self.spouse_model.set(node,0,v)
             else:
-                self.spouse_model.set(iter,0,"%s\n" % _("<double click to add spouse>"))
+                self.spouse_model.set(node,0,"%s\n" % _("<double click to add spouse>"))
 
         if family and family.get_handle() in flist:
             self.display_marriage(family)
-            iter = flist[family.get_handle()]
-            self.spouse_selection.select_iter(iter)
+            node = flist[family.get_handle()]
+            self.spouse_selection.select_iter(node)
         elif len(flist) > 0:
             fid = splist[0]
             fam = self.parent.db.get_family_from_handle(fid)
             self.display_marriage(fam)
-            iter = flist[fid]
-            self.spouse_selection.select_iter(iter)
+            node = flist[fid]
+            self.spouse_selection.select_iter(node)
         else:
             self.display_marriage(None)
 
@@ -961,9 +964,9 @@ class FamilyView:
         model.clear()
         sel = None
         selection = tree.get_selection()
-        list = person.get_parent_family_handle_list()
+        family_list = person.get_parent_family_handle_list()
 
-        for (f,mrel,frel) in list:
+        for (f,mrel,frel) in family_list:
             fam = self.parent.db.get_family_from_handle(f)
             father_handle = fam.get_father_handle()
             mother_handle = fam.get_mother_handle()
@@ -972,12 +975,12 @@ class FamilyView:
             father = self.nameof(_("Father"),f,frel)
             mother = self.nameof(_("Mother"),m,mrel)
 
-            iter = model.append()
+            node = model.append()
             if not sel:
-                sel = iter
+                sel = node
             v = "%s\n%s" % (father,mother)
-            model.set(iter,0,v)
-        if len(list) > 1:
+            model.set(node,0,v)
+        if len(family_list) > 1:
             selection.set_mode(gtk.SELECTION_SINGLE)
             selection.select_iter(sel)
         else:
@@ -1045,11 +1048,11 @@ class FamilyView:
                     else:
                         status = "%s/%s" % (_(fam[1]),_(fam[2]))
 
-            iter = self.child_model.append()
-            self.child_map[iter] = child.get_handle()
+            node = self.child_model.append()
+            self.child_map[node] = child.get_handle()
             
             if fiter == None:
-                fiter = self.child_model.get_path(iter)
+                fiter = self.child_model.get_path(node)
             val = child.get_display_info()
             i += 1
             
@@ -1058,7 +1061,7 @@ class FamilyView:
                 dval = self.dd.display(event.get_date_object())
             else:
                 dval = u''
-            self.child_model.set(iter,0,i,1,val[0],2,val[1],3,val[2],
+            self.child_model.set(node,0,i,1,val[0],2,val[1],3,val[2],
                                  4,dval,5,status,6,val[6],7,child.get_handle())
 
     def build_parents_menu(self,family,event):
@@ -1157,8 +1160,8 @@ class FamilyView:
             elif len(plist) == 1:
                 family,m,r = plist[0]
             else:
-                model, iter = self.ap_selection.get_selected()
-                path = model.get_path(iter)
+                model, node = self.ap_selection.get_selected()
+                path = model.get_path(node)
                 family,m,r = plist[path[0]]
             self.build_parents_menu(family,event)
 
@@ -1177,8 +1180,8 @@ class FamilyView:
             elif len(plist) == 1:
                 family,m,r = plist[0]
             else:
-                model, iter = self.sp_selection.get_selected()
-                path = model.get_path(iter)
+                model, node = self.sp_selection.get_selected()
+                path = model.get_path(node)
                 family,m,r = plist[path[0]]
             self.build_sp_parents_menu(family,event)
 
@@ -1221,16 +1224,16 @@ class FamilyView:
 
     def child_back(self,obj):
         """makes the currently select child the active person"""
-        model, iter = self.child_selection.get_selected()
-        if iter:
-            id = self.child_model.get_value(iter,2)
-            child = self.parent.db.get_person_from_gramps_id(id)
+        model, node = self.child_selection.get_selected()
+        if node:
+            handle = self.child_model.get_value(node,2)
+            child = self.parent.db.get_person_from_gramps_id(handle)
             self.parent.change_active_person(child)
             self.load_family()
         else:
-            list = self.family.get_child_handle_list()
-            if len(list) == 1:
-                p = self.parent.db.get_person_from_handle(list[0])
+            child_list = self.family.get_child_handle_list()
+            if len(child_list) == 1:
+                p = self.parent.db.get_person_from_handle(child_list[0])
                 self.parent.change_active_person(p)
                 self.load_family()
 
@@ -1245,11 +1248,11 @@ class FamilyView:
         elif len(plist) == 1:
             parents,mrel,frel = plist[0]
         else:
-            model, iter = selection.get_selected()
-            if not iter:
+            model, node = selection.get_selected()
+            if not node:
                 return
 
-            row = model.get_path(iter)
+            row = model.get_path(node)
             parents,mrel,frel = plist[row[0]]
 
         try:
@@ -1285,11 +1288,11 @@ class FamilyView:
         if len(plist) == 1:
             person.clear_parent_family_handle_list()
         else:
-            model, iter = selection.get_selected()
-            if not iter:
+            model, node = selection.get_selected()
+            if not node:
                 return
 
-            row = model.get_path(iter)
+            row = model.get_path(node)
             family_handle = person.get_parent_family_handle_list()[row[0]][0]
             person.remove_parent_family_handle(family_handle)
             fam = self.parent.db.get_family_from_handle(family_handle)
@@ -1335,29 +1338,29 @@ class FamilyView:
 
             spath = s.get_path(i)
             src = spath[0] 
-            list = self.family.get_child_handle_list()
+            child_list = self.family.get_child_handle_list()
 
-            obj = list[src]
-            list.remove(obj)
-            list.insert(row,obj)
+            obj = child_list[src]
+            child_list.remove(obj)
+            child_list.insert(row,obj)
             
-            if self.birth_dates_in_order(list) == 0:
+            if self.birth_dates_in_order(child_list) == 0:
                 WarningDialog(_("Attempt to Reorder Children Failed"),
                               _("Children must be ordered by their birth dates."))
                 return
-            self.family.set_child_handle_list(list)
+            self.family.set_child_handle_list(child_list)
             trans = self.parent.db.transaction_begin()
             self.parent.db.commit_family(self.family,trans)
             self.parent.db.transaction_commit(trans,_('Reorder children'))
             self.display_marriage(self.family)
             
     def drag_data_get(self,widget, context, sel_data, info, time):
-        store,iter = self.child_selection.get_selected()
-        if not iter:
+        store,node = self.child_selection.get_selected()
+        if not node:
             return
-        id = self.child_model.get_value(iter,2)
+        handle = self.child_model.get_value(node,2)
         bits_per = 8; # we're going to pass a string
-        data = str(('child',id));
+        data = str(('child',handle));
         sel_data.set(sel_data.target, bits_per, data)
 
     def north_american(self,val):

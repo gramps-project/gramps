@@ -108,8 +108,8 @@ def load_filters(dir):
         return
     sys.path.append(dir)
         
-    for file in os.listdir(dir):
-        name = os.path.split(file)
+    for filename in os.listdir(dir):
+        name = os.path.split(filename)
         match = pymod.match(name[1])
         if match:
             plugin = match.groups()[0]
@@ -127,8 +127,8 @@ def load_filters(dir):
 #-------------------------------------------------------------------------
 def build_filter_menu(callback,fw):
     myMenu = gtk.Menu()
-    for filter in _filter_list:
-        menuitem = gtk.MenuItem(filter[1])
+    for filter_obj in _filter_list:
+        menuitem = gtk.MenuItem(filter_obj[1])
         myMenu.append(menuitem)
         menuitem.set_data("filter",fw)
         menuitem.set_data("name",filter[1])

@@ -25,7 +25,6 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.gdk
 
@@ -36,7 +35,6 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import EditSource
-import Utils
 import DisplayModels
 import const
 

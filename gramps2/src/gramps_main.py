@@ -53,7 +53,6 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import GrampsBSDDB
-import GrampsXMLDB
 import PedView
 import MediaView
 import PlaceView
@@ -61,7 +60,6 @@ import FamilyView
 import SourceView
 import PeopleView
 import GenericFilter
-import GrampsMime
 import DisplayTrace
 import const
 import Plugins
@@ -756,8 +754,6 @@ class Gramps:
             self.toolbardock.hide()
 
     def build_plugin_menus(self):
-        export_menu = self.gtop.get_widget("export1")
-        import_menu = self.gtop.get_widget("import1")
         self.report_menu = self.gtop.get_widget("reports_menu")
         self.tools_menu  = self.gtop.get_widget("tools_menu")
 
@@ -847,19 +843,6 @@ class Gramps:
         self.delete_abandoned_photos()
         self.db.close()
         gtk.main_quit()
-
-    def save_query(self):
-        """Catch the reponse to the save on exit question"""
-        self.on_save_activate_quit()
-        self.delete_abandoned_photos()
-        self.db.close()
-        gtk.main_quit()
-
-    def save_query_noquit(self):
-        """Catch the reponse to the save question, no quitting"""
-        self.on_save_activate_quit()
-        self.delete_abandoned_photos()
-        self.db.close()
 
     def quit(self):
         """Catch the reponse to the save on exit question"""
@@ -969,15 +952,6 @@ class Gramps:
         if self.active_person:
             Plugins.ReportPlugins(self,self.db,self.active_person)
 
-    def on_help_dbopen_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
-        try:
-            gnome.help_display('gramps-manual','open-db')
-        except gobject.GError, msg:
-            ErrorDialog(_("Could not open help"),
-                        str(msg))
-        self.dbopen_button = self.dbopen_fs.run()
-
     def read_gedcom(self,filename):
         import ReadGedcom
         
@@ -1044,7 +1018,6 @@ class Gramps:
     def read_file(self,filename):
         self.topWindow.set_resizable(gtk.FALSE)
         filename = os.path.normpath(os.path.abspath(filename))
-        new_db = 0
         
         if os.path.isdir(filename):
             ErrorDialog(_('Cannot open database'),
@@ -1062,8 +1035,6 @@ class Gramps:
                             _('You do not have write access to the selected '
                               'file.'))
                 return 0
-        else:
-            new_db = 1
 
         try:
             if self.load_database(filename) == 1:
@@ -1138,28 +1109,28 @@ class Gramps:
                                             gtk.STOCK_OPEN,
                                             gtk.RESPONSE_OK))
             
-            filter = gtk.FileFilter()
-            filter.set_name(_('All files'))
-            filter.add_pattern('*')
-            choose.add_filter(filter)
+            mime_filter = gtk.FileFilter()
+            mime_filter.set_name(_('All files'))
+            mime_filter.add_pattern('*')
+            choose.add_filter(mime_filter)
         
             response = choose.run()
             if response == gtk.RESPONSE_OK:
                 name = choose.get_filename()
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
-                    object = self.db.get_object_from_handle(ObjectId)
-                    object.set_path(name)
+                    obj = self.db.get_object_from_handle(ObjectId)
+                    obj.set_path(name)
             choose.destroy()
 
         #-------------------------------------------------------------------------
         for ObjectId in self.db.get_media_object_handles():
-            object = self.db.get_object_from_handle(ObjectId)
+            obj = self.db.get_object_from_handle(ObjectId)
             if 0:
-                oldfile = object.get_path()
+                oldfile = obj.get_path()
                 (base,ext) = os.path.splitext(os.path.basename(oldfile))
                 newfile = os.path.join(filename,os.path.basename(oldfile))
-                object.set_path(newfile)
+                obj.set_path(newfile)
                 if os.path.isfile(oldfile):
                     RelImage.import_media_object(oldfile,filename,base)
                 else:
@@ -1266,12 +1237,12 @@ class Gramps:
                 family.remove_child_handle(self.active_person.get_handle())
                 self.db.commit_family(family,trans)
 
-        id = self.active_person.get_handle()
+        handle = self.active_person.get_handle()
 
         person = self.active_person
         self.people_view.remove_from_person_list(person)
-        self.people_view.remove_from_history(id)
-        self.db.remove_person(id, trans)
+        self.people_view.remove_from_history(handle)
+        self.db.remove_person(handle, trans)
         self.people_view.delete_person(person)
         self.people_view.person_model.rebuild_data()
 
@@ -1358,10 +1329,10 @@ class Gramps:
                 return _("%(relationship)s of %(person)s") % {
                     'relationship' : name, 'person' : pname }
             else:
-                return ""
+                return u""
         except:
             DisplayTrace.DisplayTrace()
-            return ""
+            return u""
 
     def on_open_activate(self,obj):
         prompter = DbPrompter.ExistingDbPrompter(self,self.topWindow)
@@ -1442,8 +1413,8 @@ class Gramps:
         self.people_view.apply_filter_clicked()
 
     def on_filter_name_changed(self,obj):
-        filter = obj.get_menu().get_active().get_data('filter')
-        qual = filter.need_param
+        mime_filter = obj.get_menu().get_active().get_data('filter')
+        qual = mime_filter.need_param
         if qual:
             self.filter_text.show()
             self.filter_text.set_sensitive(1)

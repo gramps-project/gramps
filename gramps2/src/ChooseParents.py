@@ -34,7 +34,6 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-import os
 
 #-------------------------------------------------------------------------
 #
@@ -416,25 +415,6 @@ class ChooseParents:
 
         self.db.commit_family(family,trans)
         return family
-
-    def mother_list_select_row(self,obj):
-        """Called when a row is selected in the mother list. Sets the
-        active mother based off the id associated with the row."""
-        
-        idlist = self.get_selected_mother_handles()
-        if idlist and idlist[0]:
-            self.mother = self.db.get_person_from_handle(idlist[0])
-        else:
-            self.mother = None
-
-        if not self.parent_selected and self.mother:
-            self.parent_selected = 1
-            family_handle_list = self.mother.get_family_handle_list()
-            if len(family_handle_list) >= 1:
-                family = self.db.get_family_from_handle(family_handle_list[0])
-                father_handle = family.get_father_handle()
-                self.father_selection.select(father_handle)
-                #self.father_model.center_selected()
 
     def father_select_function(self,store,path,iter,id_list):
         if len(path) != 1:

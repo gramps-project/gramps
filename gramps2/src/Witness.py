@@ -25,7 +25,6 @@
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.glade
 import gnome
@@ -89,8 +88,8 @@ class WitnessTab:
         self.parent.lists_changed = 1
 
     def edit_clicked(self,obj):
-        store,iter = self.selection.get_selected()
-        if iter:
+        store,node = self.selection.get_selected()
+        if node:
             objs = self.model.get_selected_objects()
             src = objs[0]
             WitnessEditor(src,self.db,self,self.update_clist,self.window)
@@ -104,9 +103,9 @@ class WitnessTab:
         inst.redraw()
 
     def del_clicked(self,obj):
-        (store,iter) = self.selection.get_selected()
-        if iter:
-            path = store.get_path(iter)
+        (store,node) = self.selection.get_selected()
+        if node:
+            path = store.get_path(node)
             del self.list[path[0]]
             self.redraw()
 

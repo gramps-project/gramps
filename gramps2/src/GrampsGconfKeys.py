@@ -36,7 +36,7 @@ except ImportError:
     import gnome.gconf
     gconf = gnome.gconf
 
-
+import gobject
 import os
 
 client = gconf.client_get_default()

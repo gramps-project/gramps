@@ -51,19 +51,14 @@ class BaseModel(gtk.GenericTreeModel):
         
         self.datalist = self.sort_keys()
         
-    def on_row_inserted(self,obj,path,iter):
+    def on_row_inserted(self,obj,path,node):
         self.rebuild_data()
-
-    def delete_row_by_handle(self,handle):
-        index = self.datalist.index(handle)
-        del self.datalist[index]
-        self.row_deleted(index)
 
     def add_row_by_handle(self,handle):
         self.datalist = self.sort_keys()
         index = self.datalist.index(handle)
-        iter = self.get_iter(index)
-        self.row_inserted(index,iter)
+        node = self.get_iter(index)
+        self.row_inserted(index,node)
 
     def delete_row_by_handle(self,handle):
         index = self.datalist.index(handle)
@@ -72,8 +67,8 @@ class BaseModel(gtk.GenericTreeModel):
 
     def update_row_by_handle(self,handle):
         index = self.datalist.index(handle)
-        iter = self.get_iter(index)
-        self.row_changed(index,iter)
+        node = self.get_iter(index)
+        self.row_changed(index,node)
 
     def on_get_flags(self):
 	'''returns the GtkTreeModelFlags for this particular type of model'''
@@ -96,9 +91,9 @@ class BaseModel(gtk.GenericTreeModel):
         except IndexError:
             return None
 
-    def on_get_value(self,iter,col):
+    def on_get_value(self,node,col):
         try:
-            return self.fmap[col](self.map[str(iter)])
+            return self.fmap[col](self.map[str(node)])
         except:
             return u''
 

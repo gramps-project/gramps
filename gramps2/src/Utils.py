@@ -508,7 +508,7 @@ def roman(num):
         rnum = romans[num]
         return rnum
     else:
-        return
+        return '?'
 
 #-------------------------------------------------------------------------
 #

@@ -245,8 +245,8 @@ class XmlWriter:
             sorted_keys = []
             for key in keys:
                 person = self.db.get_person_from_handle (key)
-                tuple = (person.get_gramps_id (), person)
-                sorted_keys.append (tuple)
+                value = (person.get_gramps_id (), person)
+                sorted_keys.append (value)
 
             sorted_keys.sort ()
             for (gramps_id, person) in sorted_keys:
@@ -330,8 +330,8 @@ class XmlWriter:
             sorted_keys = []
             for key in keys:
                  family = self.db.get_family_from_handle(key)
-                 tuple = (family.get_gramps_id (), family)
-                 sorted_keys.append (tuple)
+                 value = (family.get_gramps_id (), family)
+                 sorted_keys.append (value)
 
             sorted_keys.sort ()
             for (gramps_id, family) in sorted_keys:
@@ -409,8 +409,8 @@ class XmlWriter:
             sorted_keys = []
             for key in keys:
                 obj = self.db.get_object_from_handle (key)
-                tuple = (obj.get_gramps_id (), obj)
-                sorted_keys.append (tuple)
+                value = (obj.get_gramps_id (), obj)
+                sorted_keys.append (value)
 
             sorted_keys.sort ()
             for (gramps_id, obj) in sorted_keys:
@@ -714,7 +714,7 @@ class XmlWriter:
         state = self.fix(loc.get_state())
         country = self.fix(loc.get_country())
         county = self.fix(loc.get_county())
-        zip = self.fix(loc.get_postal_code())
+        zip_code = self.fix(loc.get_postal_code())
         phone = self.fix(loc.get_phone())
         
         self.g.write('      <location')
@@ -728,8 +728,8 @@ class XmlWriter:
             self.g.write(' state="%s"' % state)
         if country:
             self.g.write(' country="%s"' % country)
-        if zip:
-            self.g.write(' postal="%s"' % zip)
+        if zip_code:
+            self.g.write(' postal="%s"' % zip_code)
         if phone:
             self.g.write(' phone="%s"' % phone)
         self.g.write('/>\n')
@@ -781,9 +781,9 @@ class XmlWriter:
 
     def write_place_obj(self,place):
         title = self.fix(place.get_title())
-        long = self.fix(place.get_longitude())
+        longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
-        id = place.get_gramps_id()
+        handle = place.get_gramps_id()
         main_loc = place.get_main_location()
         llen = len(place.get_alternate_locations()) + len(place.get_url_list()) + \
                len(place.get_media_list()) + len(place.get_source_references())
@@ -795,16 +795,16 @@ class XmlWriter:
             title = self.fix(self.build_place_title(place.get_main_location()))
     
         self.g.write('    <placeobj id="%s" handle="%s" change="%d" title="%s"' %
-                     (id,place.get_handle(),place.get_change_time(),title))
+                     (handle,place.get_handle(),place.get_change_time(),title))
 
-        if long or lat or not ml_empty or llen > 0 or note:
+        if longitude or lat or not ml_empty or llen > 0 or note:
             self.g.write('>\n')
         else:
             self.g.write('/>\n')
             return
     
-        if long or lat:
-            self.g.write('      <coord long="%s" lat="%s"/>\n' % (long,lat))
+        if longitude or lat:
+            self.g.write('      <coord long="%s" lat="%s"/>\n' % (longitude,lat))
 
         self.dump_location(main_loc)
         for loc in place.get_alternate_locations():
@@ -818,7 +818,7 @@ class XmlWriter:
         self.g.write("    </placeobj>\n")
 
     def write_object(self,obj):
-        id = obj.get_gramps_id()
+        handle = obj.get_gramps_id()
         mime_type = obj.get_mime_type()
         path = obj.get_path()
         if self.strip_photos:
@@ -829,7 +829,7 @@ class XmlWriter:
                 if self.fileroot == path[0:l]:
                     path = path[l+1:]
         self.g.write('    <object id="%s" handle="%s" change="%d" src="%s" mime="%s"' %
-                     (id,obj.get_handle(),obj.get_change_time(),path,mime_type))
+                     (handle,obj.get_handle(),obj.get_change_time(),path,mime_type))
         self.g.write(' description="%s"' % self.fix(obj.get_description()))
         alist = obj.get_attribute_list()
         note = obj.get_note()

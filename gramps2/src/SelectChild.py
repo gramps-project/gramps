@@ -45,7 +45,6 @@ import RelLib
 import const
 import Utils
 import PeopleModel
-from RelLib import Person
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -275,9 +274,9 @@ class SelectChild:
         if not idlist or not idlist[0]:
             return
 
-        id = idlist[0]
-        select_child = self.db.get_person_from_handle(id)
-        if self.person.get_handle() == id:
+        handle = idlist[0]
+        select_child = self.db.get_person_from_handle(handle)
+        if self.person.get_handle() == handle:
             ErrorDialog(_("Error selecting a child"),
                         _("A person cannot be linked as his/her own child"),
                         self.top)
@@ -294,7 +293,7 @@ class SelectChild:
             else:	
                 self.family.set_mother_handle(self.person)
                 
-        if id in (self.family.get_father_handle(),self.family.get_mother_handle()):
+        if handle in (self.family.get_father_handle(),self.family.get_mother_handle()):
             ErrorDialog(_("Error selecting a child"),
                         _("A person cannot be linked as his/her own child"),
                         self.top)
@@ -310,7 +309,7 @@ class SelectChild:
                 
         frel = const.child_relations.find_value(self.frel.get_text())
         father = self.db.get_person_from_handle(self.family.get_father_handle())
-        if father and father.get_gender() !=RelLib. Person.male:
+        if father and father.get_gender() !=RelLib.Person.male:
             if frel == "Birth":
                 frel = "Unknown"
 
@@ -328,7 +327,7 @@ class SelectChild:
         self.redraw_child_list(not obj.get_active())
 
     def north_american(self,val):
-        if self.person.get_gender() == Person.male:
+        if self.person.get_gender() == RelLib.Person.male:
             return self.person.get_primary_name().get_surname()
         elif self.family:
             f = self.family.get_father_handle()
@@ -359,7 +358,7 @@ class SelectChild:
 
     def icelandic(self,val):
         fname = ""
-        if self.person.get_gender() == Person.male:
+        if self.person.get_gender() == RelLib.Person.male:
             fname = self.person.get_primary_name().get_first_name()
         elif self.family:
             f = self.family.get_father_handle()
@@ -446,7 +445,7 @@ class EditRel:
                 
         frel = const.child_relations.find_value(self.fentry.get_text())
         father = self.db.get_person_from_handle(self.family.get_father_handle())
-        if father and father.get_gender() !=RelLib. Person.male:
+        if father and father.get_gender() !=RelLib.Person.male:
             if frel == "Birth":
                 frel = "Unknown"
 

@@ -29,7 +29,6 @@ Handles the place view for GRAMPS.
 # GTK modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.gdk
 
@@ -40,9 +39,7 @@ import gtk.gdk
 #-------------------------------------------------------------------------
 import RelLib
 import EditPlace
-import Utils
 import DisplayModels
-import ColumnOrder
 import const
 
 from QuestionDialog import QuestionDialog, ErrorDialog

@@ -46,7 +46,6 @@ import Sources
 import Witness
 import const
 import Utils
-import GrampsCfg
 import AutoComp
 import RelLib
 import Date
