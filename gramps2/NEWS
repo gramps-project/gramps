@@ -17,6 +17,8 @@ Version 0.98.0
 * Children are enumerated in Family View.
 * ZODB backend is removed. Reald database backend is being worked on and will
   appear in post-1.0 releases.
+* Tab labels in tabbed dialogs reflect the presence of data (bold).
+* Help button available in most dialogs.
 * Bugfixes.
 
 Version 0.9.5 -- the "Fix me up" release

@@ -24,9 +24,5 @@
   see http://sourceforge.net/mailarchive/forum.php?thread_id=3127454&forum_id=1993
   and http://sourceforge.net/mailarchive/forum.php?thread_id=3134932&forum_id=1993
   for the details.
-* Presense of Notes for a person/event/whatever_else. RFE 747527 suggested 
-  either a column in the People View or something like boldfaces "Notes" 
-  tab title. I like the latter because it can be uniformly applied to 
-  any notes, not only people's. Not so hard to implement. 
 * Make Date parsing locale dependent, like relationship calculator
 * And a whole lot more....

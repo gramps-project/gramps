@@ -35,6 +35,7 @@ import pickle
 import gobject
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +64,7 @@ pycode_tgts = [('url', 0, 0)]
 #-------------------------------------------------------------------------
 class EditPlace:
 
-    def __init__(self,parent,place,func=None):
+    def __init__(self,parent,place,func=None,parent_window=None):
         self.place = place
         self.db = parent.db
         self.parent = parent
@@ -150,7 +151,6 @@ class EditPlace:
             Utils.bold_label(self.notes_label)
 
         self.top_window.signal_autoconnect({
-            "destroy_passed_object"     : self.close,
             "on_switch_page"            : self.on_switch_page,
             "on_addphoto_clicked"       : self.glry.on_add_photo_clicked,
             "on_deletephoto_clicked"    : self.glry.on_delete_photo_clicked,
@@ -163,7 +163,7 @@ class EditPlace:
             "on_delete_loc_clicked"     : self.on_delete_loc_clicked,
             "on_update_loc_clicked"     : self.on_update_loc_clicked,
             "on_web_go_clicked"         : self.on_web_go_clicked,
-            "on_apply_clicked"          : self.on_place_apply_clicked
+            "on_help_clicked" : self.on_help_clicked,
             })
 
         self.sourcetab = Sources.SourceTab(self.srcreflist,self,
@@ -188,11 +188,19 @@ class EditPlace:
         self.redraw_url_list()
         self.redraw_location_list()
         self.display_references()
-
-    def close(self,obj):
+        if parent_window:
+            self.top.set_transient_for(parent_window)
+        self.val = self.top.run()
+        if self.val == gtk.RESPONSE_OK:
+            self.on_place_apply_clicked()
         self.glry.close()
         self.top.destroy()
-        
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-plc')
+        self.val = self.top.run()
+
     def build_columns(self,tree,list):
         cnum = 0
         for name in list:

@@ -97,6 +97,7 @@ class PlaceView:
         self.list.get_column(0).clicked()
         self.selection = self.list.get_selection()
         self.list.connect('button-press-event',self.button_press)
+        self.topWindow = self.glade.get_widget("gramps")
 
     def change_db(self,db):
         self.db = db
@@ -157,7 +158,7 @@ class PlaceView:
             mlist = []
             self.selection.selected_foreach(self.blist,mlist)
             if mlist:
-                EditPlace.EditPlace(self,mlist[0],self.update_display)
+                EditPlace.EditPlace(self,mlist[0],self.update_display,self.topWindow)
             return 1
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_context_menu(event)
