@@ -91,6 +91,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         except:
             raise Errors.ReportError("Could not create %s" % self.content_xml)
 
+
+    def init(self):
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.f.write('<office:document-content ')
         self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
@@ -134,7 +136,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	    self.f.write('<style:properties ')
             self.f.write('draw:fill="solid" ')
             self.f.write('draw:fill-color="#%02x%02x%02x" ' % style.get_fill_color())
-                
+
             if style.get_line_style() == BaseDoc.DASHED:
                 self.f.write('draw:color="#cccccc" ')
             else:
@@ -166,9 +168,62 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.f.write('style:parent-style-name="%s">\n' % style_name)
             self.f.write('<style:properties fo:break-before="page"/>\n')
             self.f.write('</style:style>\n')
+
+            self.f.write('<style:style style:name="X%s" ' % style_name)
+            self.f.write('style:family="paragraph" ')
+            self.f.write('style:parent-style-name="Standard" ')
+            self.f.write('style:class="text">\n')
+            self.f.write('<style:properties ')
+
+            if style.get_padding() != 0.0:
+	       self.f.write('fo:padding="%.3fcm" ' % style.get_padding())
+            if style.get_header_level() > 0:
+                self.f.write('fo:keep-with-next="true" ')
+
+            align = style.get_alignment()
+	    if align == BaseDoc.PARA_ALIGN_LEFT:
+	       self.f.write('fo:text-align="start" ')
+            elif align == BaseDoc.PARA_ALIGN_RIGHT:
+               self.f.write('fo:text-align="end" ')
+            elif align == BaseDoc.PARA_ALIGN_CENTER:
+               self.f.write('fo:text-align="center" ')
+               self.f.write('style:justify-single-word="false" ')
+            else:
+               self.f.write('fo:text-align="justify" ')
+               self.f.write('style:justify-single-word="false" ')
+            font = style.get_font()
+            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
+                self.f.write('style:font-name="Arial" ')
+            else:
+                self.f.write('style:font-name="Times New Roman" ')
+            self.f.write('fo:font-size="' + str(font.get_size()) + 'pt" ')
+            color = font.get_color()
+	    self.f.write('fo:color="#%02x%02x%02x" ' % color)
+            if font.get_bold():
+                self.f.write('fo:font-weight="bold" ')
+            if font.get_italic():
+                self.f.write('fo:font-style="italic" ')
+	    if font.get_underline():
+		self.f.write('style:text-underline="single" ')
+                self.f.write('style:text-underline-color="font-color" ')
+            self.f.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
+            self.f.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
+            self.f.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
+            self.f.write('fo:margin-top="0cm" ')
+            self.f.write('fo:margin-bottom="0.212cm"')
+            self.f.write('/>\n')
+            self.f.write('</style:style>\n')
+
             self.f.write('<style:style style:name="F%s" ' % style_name)
             self.f.write('style:family="text">\n')
             self.f.write('<style:properties ')
+            align = style.get_alignment()
+	    if align == BaseDoc.PARA_ALIGN_LEFT:
+	       self.f.write('fo:text-align="start" ')
+            elif align == BaseDoc.PARA_ALIGN_RIGHT:
+               self.f.write('fo:text-align="end" ')
+            elif align == BaseDoc.PARA_ALIGN_CENTER:
+               self.f.write('fo:text-align="center" ')
             font = style.get_font()
             if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                 self.f.write('style:font-name="Arial" ')
@@ -182,7 +237,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.f.write('fo:font-style="italic" ')
             self.f.write('fo:font-size="%dpt"/>' % font.get_size())
             self.f.write('</style:style>\n')
-            
+
 	for style_name in self.table_styles.keys():
 	    style = self.table_styles[style_name]
             self.f.write('<style:style style:name="%s" ' % style_name)
@@ -324,7 +379,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         tag = string.replace(base,'.','_')
         
         if self.new_cell:
-            self.f.write('<text:p>\n')
+            self.f.write('<text:p>')
         if pos == "left":
             self.f.write('<draw:image draw:style-name="Left" ')
         elif pos == "right":
@@ -575,10 +630,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.new_page = 1
 
     def start_page(self):
-        self.f.write('<text:p text:style-name="docgen_page_break">')
+        self.f.write('<text:p text:style-name="docgen_page_break">\n')
 
     def end_page(self):
-        self.f.write('</text:p>')
+        self.f.write('</text:p>\n')
         
     def start_paragraph(self,style_name,leader=None):
 	style = self.style_list[style_name]
@@ -593,10 +648,10 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	else:
 	    self.f.write('<text:h text:style-name="')
             self.f.write(name)
-	    self.f.write('" text:level="' + str(self.level) + '">')
+	    self.f.write('" text:level="' + str(self.level) + '">\n')
         if leader != None:
             self.f.write(leader)
-            self.f.write('<text:tab-stop/>')
+            self.f.write('<text:tab-stop/>\n')
         self.new_cell = 0
 
     def end_paragraph(self):
@@ -709,6 +764,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         size = font.get_size()
 
         height = size*(len(text))
+        oneline = (size/72.0)*2.54
         width = 0
         for line in text:
             width = max(width,FontScale.string_width(font,line))
@@ -722,12 +778,14 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         self.f.write('svg:height="%.3fpt" ' % hcm)
         self.f.write('draw:transform="rotate (%.8f) ' % rangle)
         xloc = x-((wcm/2.0)*cos(-rangle))
-        yloc = y-((hcm)*sin(-rangle))
+        yloc = y-((hcm)*sin(-rangle))-(hcm/2.0)
         self.f.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
         self.f.write('>')
-        self.f.write('<text:p><text:span text:style-name="%s">' % pname)
+        self.f.write('<text:p text:style-name="X%s">' % pname)
+
+        self.f.write('<text:span text:style-name="F%s">\n' % pname)
         self.write_text(string.join(text,'\n'))
-        self.f.write('</text:span></text:p></draw:text-box>\n')
+        self.f.write('</text:span>\n</text:p>\n</draw:text-box>\n')
 
     def draw_path(self,style,path):
         stype = self.draw_styles[style]
@@ -841,6 +899,29 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
             self.f.write('</text:span>')
             self.f.write('</text:p>\n')
         self.f.write('</draw:rect>\n')
+
+    def center_text(self,style,text,x,y):
+	box_style = self.draw_styles[style]
+	para_name = box_style.get_paragraph_style()
+        pstyle = self.style_list[para_name]
+        font = pstyle.get_font()
+
+        size = (FontScale.string_width(font,text)/72.0) * 2.54
+
+	self.f.write('<draw:text-box text:anchor-type="paragraph" ')
+        self.f.write('draw:style-name="%s" ' % style)
+	self.f.write('draw:z-index="0" ')
+        self.f.write('svg:width="%.3fcm" ' % self.get_usable_width())
+	self.f.write('svg:height="%dpt" ' % (font.get_size()*1.1))
+
+	self.f.write('svg:x="0cm" ')
+        self.f.write('svg:y="%.3fcm">\n' % float(y))
+
+	if text != "":
+  	    self.f.write('<text:p text:style-name="X%s">' % para_name)
+	    self.f.write(text)
+            self.f.write('</text:p>\n')
+        self.f.write('</draw:text-box>\n')
 
 #--------------------------------------------------------------------------
 #

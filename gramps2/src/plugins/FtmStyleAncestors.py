@@ -57,6 +57,7 @@ class FtmAncestorReport(Report.Report):
         if output:
             self.standalone = 1
             self.doc.open(output)
+            self.doc.init()
         else:
             self.standalone = 0
         self.sref_map = {}

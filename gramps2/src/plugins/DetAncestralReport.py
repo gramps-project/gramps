@@ -63,6 +63,7 @@ class DetAncestorReport(Report.Report):
             self.standalone = 1
             try:
                 self.doc.open(output)
+                self.doc.init()
             except IOError,msg:
                 ErrorDialog(_("Could not open %s") % output + "\n" + msg)
         else:

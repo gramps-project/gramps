@@ -1091,6 +1091,9 @@ class BaseDoc:
         self.print_req = 0
         self.mode = TEXT_MODE
 
+    def init(self):
+        pass
+    
     def set_mode(self, mode):
         self.mode = mode
 

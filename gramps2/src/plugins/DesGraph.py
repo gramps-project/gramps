@@ -241,6 +241,8 @@ class DescendantReport:
 
         g = BaseDoc.GraphicsStyle()
         self.doc.add_draw_style("line",g)
+        if self.standalone:
+            self.doc.init()
 
     def print_page(self, plist,elist,r,c):
         self.doc.start_page()
