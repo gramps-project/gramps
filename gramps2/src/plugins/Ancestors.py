@@ -421,6 +421,22 @@ class ComprehensiveAncestorsReport (Report.Report):
         info += self.cite_sources (address.getSourceRefList ())
         return info
 
+    def abbrev_born_died (self, person):
+        ret = ''
+        birth = person.getBirth ()
+        date = birth.getDate ()
+        if date:
+            ret += " b. " + date
+            ret += self.cite_sources (birth.getSourceRefList ())
+
+        death = person.getDeath ()
+        date = death.getDate ()
+        if date:
+            ret += " d. " + date
+            ret += self.cite_sources (death.getSourceRefList ())
+
+        return ret
+
     def long_born_died (self, person):
         ret = ''
         born_info = self.event_info (person.getBirth ())
@@ -583,6 +599,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                         children += self.first_name_or_nick (child)
                         children += self.cite_sources (child.getPrimaryName ().
                                                        getSourceRefList ())
+                        children += self.abbrev_born_died (child)
                         if child_count - count > 1:
                             children += ', '
                         elif child_count - count == 1:
