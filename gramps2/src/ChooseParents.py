@@ -66,7 +66,7 @@ class ChooseParents:
     Displays the Choose Parents dialog box, allowing the parents
     to be edited.
     """
-    def __init__(self,db,person,family,family_update,full_update):
+    def __init__(self,parent,db,person,family,family_update,full_update):
         """
         Creates a ChoosePerson dialog box.
 
@@ -76,6 +76,7 @@ class ChooseParents:
         family_update - task that updates the family display
         full_update - task that updates the main display 
         """
+        self.parent = parent
         self.db = db
         self.person = person
         self.family = family
@@ -85,7 +86,11 @@ class ChooseParents:
         self.type = ""
         self.parent_selected = 0
 
-        self.date = person.get_birth().get_date_object()
+        birth_event = self.db.find_event_from_id(person.get_birth_id())
+        if birth_event:
+            self.date = birth_event.get_date_object()
+        else:
+            self.date = None
 
         if self.family:
             self.father = self.family.get_father_id()
@@ -166,8 +171,16 @@ class ChooseParents:
         else:
             father_id = None
             
-        bday = self.person.get_birth().get_date_object()
-        dday = self.person.get_death().get_date_object()
+        birth_event = self.db.find_event_from_id(self.person.get_birth_id())
+        if birth_event:
+            bday = birth_event.get_date_object()
+        else:
+            bday = None
+        death_event = self.db.find_event_from_id(self.person.get_death_id())
+        if death_event:
+            dday = death_event.get_date_object()
+        else:
+            dday = None
 
         person_list = []
         for key in self.db.sort_person_keys():
@@ -180,11 +193,20 @@ class ChooseParents:
 
             if not self.showallf.get_active():
                 
-                pdday = person.get_death().get_date_object()
-                pbday = person.get_birth().get_date_object()
-
-        	if bday.getYearValid():
-                    if pbday.getYearValid():
+                birth_event = self.db.find_event_from_id(person.get_birth_id())
+                if birth_event:
+                    pbday = birth_event.get_date_object()
+                else:
+                    pbday = None
+                
+                death_event = self.db.find_event_from_id(person.get_death_id())
+                if death_event:
+                    pdday = death_event.get_date_object()
+                else:
+                    pdday = None
+ 
+                if bday and bday.getYearValid():
+                    if pbday and pbday.getYearValid():
                         # reject if parents birthdate + 10 > child birthdate
                         if pbday.getLowYear()+10 > bday.getHighYear():
                             continue
@@ -193,18 +215,18 @@ class ChooseParents:
                         if pbday.getHighYear()+90 < bday.getLowYear():
                             continue
 
-                    if pdday.getYearValid():
+                    if pdday and pdday.getYearValid():
                         # reject if parents birthdate + 10 > child deathdate 
-                        if pbday.getLowYear()+10 > dday.getHighYear():
+                        if dday and pbday.getLowYear()+10 > dday.getHighYear():
                             continue
                 
-                if dday.getYearValid():
-                    if pbday.getYearValid():
+                if dday and dday.getYearValid():
+                    if pbday and pbday.getYearValid():
                         # reject if parents deathday + 3 < childs birth date 
-                        if pdday.getHighYear()+3 < bday.getLowYear():
+                        if pdday and bday and pdday.getHighYear()+3 < bday.getLowYear():
                             continue
 
-                    if pdday.getYearValid():
+                    if pdday and pdday.getYearValid():
                         # reject if parents deathday + 150 < childs death date 
                         if pdday.getHighYear() + 150 < dday.getLowYear():
                             continue
@@ -240,8 +262,16 @@ class ChooseParents:
         else:
             mid = None
             
-        bday = self.person.get_birth().get_date_object()
-        dday = self.person.get_death().get_date_object()
+        birth_event = self.db.find_event_from_id(self.person.get_birth_id())
+        if birth_event:
+            bday = birth_event.get_date_object()
+        else:
+            bday = None
+        death_event = self.db.find_event_from_id(self.person.get_death_id())
+        if death_event:
+            dday = death_event.get_date_object()
+        else:
+            dday = None
 
         person_list = []
         for key in self.db.sort_person_keys():
@@ -256,11 +286,20 @@ class ChooseParents:
 
             if not self.showallm.get_active():
                 
-                pdday = person.get_death().get_date_object()
-                pbday = person.get_birth().get_date_object()
+                birth_event = self.db.find_event_from_id(person.get_birth_id())
+                if birth_event:
+                    pbday = birth_event.get_date_object()
+                else:
+                    pbday = None
+                
+                death_event = self.db.find_event_from_id(person.get_death_id())
+                if death_event:
+                    pdday = death_event.get_date_object()
+                else:
+                    pdday = None
 
-        	if bday.getYearValid():
-                    if pbday.getYearValid():
+                if bday and bday.getYearValid():
+                    if pbday and pbday.getYearValid():
                         # reject if parents birthdate + 10 > child birthdate
                         if pbday.getLowYear()+10 > bday.getHighYear():
                             continue
@@ -269,18 +308,18 @@ class ChooseParents:
                         if pbday.getHighYear()+90 < bday.getLowYear():
                             continue
 
-                    if pdday.getYearValid():
+                    if pdday and pdday.getYearValid():
                         # reject if parents birthdate + 10 > child deathdate 
                         if pbday.getLowYear()+10 > dday.getHighYear():
                             continue
                 
-                if dday.getYearValid():
-                    if pbday.getYearValid():
+                if dday and dday.getYearValid():
+                    if pbday and pbday.getYearValid():
                         # reject if parents deathday + 3 < childs birth date 
-                        if pdday.getHighYear()+3 < bday.getLowYear():
+                        if pdday and bday and pdday.getHighYear()+3 < bday.getLowYear():
                             continue
 
-                    if pdday.getYearValid():
+                    if pdday and pdday.getYearValid():
                         # reject if parents deathday + 150 < childs death date 
                         if pdday.getHighYear() + 150 < dday.getLowYear():
                             continue
@@ -463,7 +502,7 @@ class ChooseParents:
         
         try:
             import EditPerson
-            EditPerson.EditPerson(person,self.db,self.add_new_parent)
+            EditPerson.EditPerson(self.parent, person,self.db,self.add_new_parent)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

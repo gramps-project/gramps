@@ -51,7 +51,8 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class MergePeople:
 
-    def __init__(self,db,person1,person2,update,ep_update=None):
+    def __init__(self,parent,db,person1,person2,update,ep_update=None):
+        self.parent = parent
         self.db = db
         self.p1 = person1
         self.p2 = person2
@@ -213,7 +214,7 @@ class MergePeople:
         import EditPerson
         self.on_merge_clicked(obj)
         # This needs to be fixed to provide an update call
-        EditPerson.EditPerson(self.p1,self.db,self.ep_update)
+        EditPerson.EditPerson(self.parent,self.p1,self.db,self.ep_update)
 
     def copy_note(self,one,two):
         if one.get_note() != two.get_note():

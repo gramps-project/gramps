@@ -1695,6 +1695,21 @@ class Event(DataObj):
                 return 0
             index = index + 1
 
+        witness_list = self.get_witness_list()
+        other_list = other.get_witness_list()
+        if (not witness_list) and (not other_list):
+            return 1
+        elif not (witness_list and other_list):
+            return 0
+        other_list = other_list[:]
+        for a in witness_list:
+            if a in other_list:
+                other_list.remove(a)
+            else:
+                return 0
+        if other_list:
+            return 0
+
         return 1
         
     def set_name(self,name):
@@ -2237,8 +2252,10 @@ class GenderStats:
 
         return Person.unknown
 
-
-from bsddb3 import dbshelve, db
+try:    # First try python2.3 and later: this is the future
+    from bsddb import dbshelve, db
+except ImportError: # try python2.2
+    from bsddb3 import dbshelve, db
 
 class GrampsDB:
     """GRAMPS database object. This object is a base class for other

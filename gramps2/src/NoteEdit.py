@@ -46,7 +46,6 @@ class NoteEditor:
 
         self.data = data
         self.parent_window = parent_window
-        self.child_windows = []
         self.parent = parent
         self.draw()
 

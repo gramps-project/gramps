@@ -751,7 +751,7 @@ class Gramps:
                 import MergeData
                 p1 = self.db.get_person(mlist[0])
                 p2 = self.db.get_person(mlist[1])
-                MergeData.MergePeople(self.db,p1,p2,self.merge_update,
+                MergeData.MergePeople(self,self.db,p1,p2,self.merge_update,
                                       self.update_after_edit)
         elif page == PLACE_VIEW:
             self.place_view.merge()

@@ -260,10 +260,11 @@ class Gallery(ImageSelect):
 
     def close(self,ok=0):
         self.iconlist.hide()
-        for a in self.canvas_list.values():
-            a[0].destroy()
-            a[1].destroy()
-            a[2].destroy()
+        if self.canvas_list:
+            for a in self.canvas_list.values():
+                a[0].destroy()
+                a[1].destroy()
+                a[2].destroy()
         self.p_map = None
         self.canvas_list = None
         # restore old photo list, in case we removed some and then 

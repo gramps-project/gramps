@@ -341,7 +341,7 @@ class SourceEditor:
 
     def close_child_windows(self):
         for child_window in self.child_windows:
-            child_window.close()
+            child_window.close(None)
         self.child_windows = []
 
     def add_itself_to_menu(self):
@@ -482,7 +482,7 @@ class SourceEditor:
 
     def add_src_clicked(self,obj):
         import EditSource
-        EditSource.EditSource(RelLib.Source(),self.db, self.sourceDisplay, self.update_display)
+        EditSource.EditSource(RelLib.Source(),self.db, self,self.sourceDisplay, self.update_display)
 
         
 def by_title(first,second):
