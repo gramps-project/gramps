@@ -827,7 +827,7 @@ class Name(DataObj):
             self.Surname = ""
             self.Suffix = ""
             self.Title = ""
-            self.type = ""
+            self.type = "Birth Name"
             self.Prefix = ""
 
     def getSurnamePrefix(self):
