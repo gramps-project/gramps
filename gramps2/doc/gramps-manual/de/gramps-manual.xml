@@ -27,9 +27,9 @@
   <!ENTITY keybind SYSTEM "keybind.xml">
   <!ENTITY filtref SYSTEM "filtref.xml">
   <!ENTITY cmdline SYSTEM "cmdline.xml">
-  <!ENTITY appversion "0.98.0">
-  <!ENTITY manrevision "2.4">
-  <!ENTITY date "Dezember 2003">
+  <!ENTITY appversion "1.0.1">
+  <!ENTITY manrevision "2.6">
+  <!ENTITY date "April 2004">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
@@ -50,9 +50,9 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>&app; Handbuch V&manrevision;</title>       
+    <title>GRAMPS Handbuch V&manrevision;</title>       
 
-    <copyright> <year>2003</year> <holder>Alex Roitman</holder> </copyright> 
+    <copyright> <year>2003-2004</year> <holder>Alex Roitman</holder> </copyright> 
     <copyright> <year>2001</year> <holder>Donald N. Allingham</holder> </copyright>
 
   <copyright>
@@ -121,7 +121,26 @@
                 <para role="publisher">GRAMPS Projekt</para>
 		</revdescription> 
       </revision> 
+      <revision>
+		<revnumber>GRAMPS Handbuch V2.5</revnumber> 
+		<date>Februar 2004</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@alex.neuro.umn.edu</email></para>
+                <para role="publisher">GRAMPS Projekt</para>
+		</revdescription> 
+      </revision> 
       <revision> 
+
+		<revnumber>GRAMPS Handbuch V2.4</revnumber> 
+		<date>Dezember 2003</date> 
+		<revdescription> 
+	  	<para role="author">Alex Roitman
+		    	<email>shura@alex.neuro.umn.edu</email></para>
+                <para role="publisher">GRAMPS Projekt</para>
+		</revdescription> 
+      </revision> 
+      <revision>
 		<revnumber>GRAMPS Handbuch V2.3</revnumber> 
 		<date>September 2003</date> 
 		<revdescription> 
@@ -204,37 +223,38 @@
     <title>Einführung</title> 
     <para> &app; ist eine genealogische Anwendung. &app; steht für 
     Genealogical Research and Analysis Management Programming System. Um es 
-    kurz zu fassen, es ermöglicht Ihnen genealogische Daten mit Ihrem Computer
-    zu speichern, zu bearbeiten uns zu erforschen. Seine Funktionalität ist 
-    vergleichbar zu anderen genealogischen Programmen. Aber, &app; bietet
-    einige einzigartigen Features. </para> 
+    kurz zu fassen, das Programm ermöglicht es Ihnen genealogische Daten mit 
+    Ihrem Computer zu speichern, zu bearbeiten und zu erforschen. Die 
+    Funktionalität ist mit anderen genealogischen Programmen vergleichbar, wobei
+    &app; aber einige einzigartige Features bietet. </para> 
 
     <sect2 id="why-gramps">
-      <title>Warum &app;?</title>
-      <para> &app; wurde entworfen unter dem Konzept dem Forscher die Möglichkeit
-      zu geben, Information bezüglich einem Familienstammbaum einzugeben, wie
-      die meistens genealogischen Programme. Die meisten dieser Programme
-      erlauben es, diese Daten nach dem GEDCOM Standard anzuordnen und zu speichern.
-      Sie bieten Möglichkeiten Nachkommen- und Ahnenverwandtschaften anzuzeigen
-      durch Ansichten, Grafiken und Berichte. Diese können mit Bildern und anderen
-      Medien versehen werden um die Daten zu erweitern. Die meisten erlauben
-      Daten zu unverbundenen Personen und Familien, die eine Beziehung zum
-      primären Nachnamen, der erforscht wird, haben oder auch nicht haben.
-      Viele andere Einweiterungen könnten von dem genealogischen Programm
-      geboten werden, um im verschiedenen Umfang Daten aus anderen Programmen
-      zu importieren oder von dort zu importieren und um diesen Daten in
-      verschiedenen Berichten auszudrucken. </para>
+      <title>Warum GRAMPS?</title>
+      <para> &app; wurde, wie die meistens genealogischen Programme,
+      unter dem Konzept entworfen, dem Forscher die Möglichkeit zu geben, 
+      Information bezüglich eines Familienstammbaums einzugeben. Die meisten
+      dieser Programme erlauben es, diese Daten nach dem GEDCOM-Standard
+      anzuordnen und zu speichern.
+      Weiterhin bieten diese Programme Möglichkeiten Nachkommen- und 
+      Ahnenverwandtschaften mittels Ansichten, Grafiken und Berichten darzustellen.
+      Diese können mit Bildern und anderen Medien versehen werden. 
+      Die meisten Programme erlauben es auch, Daten zu unverbundenen
+      Personen und Familien einzugeben, die aber eine Beziehung zum
+      primär erforschten Nachnamen, haben oder auch nicht haben.
+      In genealogischen Programmen stehen viele andere Erweiterungen zur Verfügung,
+      um in verschiedenem Umfang Daten anderer Programme zu im- und exportieren 
+      oder und um diese Daten in den verschiedensten Berichten auszudrucken. </para>
       
       <para> &app;, andererseits, versucht alle üblichen Funktionen dieser
-      Programme zu bieten, aber, noch wichtiger, eine zusätzliche Fähigkeit
+      Programme zu bieten, aber noch wichtiger, die zusätzliche Fähigkeit
       zur Integration zu bieten. Das ist die Fähigkeit jede Form von Informationen
       direkt in &app; einzugeben und alle Daten und Ereignisse in der
-      gesamten Datenbank neu anzuordenen und zu verändern, um den Benutzer
+      gesamten Datenbank neu anzuordnen und zu verändern, um den Benutzer
       in der Erforschung und Analyse zu unterstützen mit dem Potential
       Verwandtschaftslücken zu füllen. In Kürze, es ist ein Werkzeug, das
-      Ihnen einen Weg ermöglicht, ihre Forschung an einen Ort zusammenzufassen
-      und die Daten zu analysieren with der Geschwindigkeit, die Macht und der
-      Genauigkeit Ihres Computers, anstatt Bleistiften und Unmengen von Papier.
+      Ihnen einen Weg ermöglicht, ihre Forschung an einen Ort zusammenzufassen,
+      und die Daten mit der Geschwindigkeit und der Genauigkeit Ihres Computers,
+      anstatt mit Bleistiften und Unmengen von Papier, zu analysieren.
       </para>
     </sect2>
   </sect1> <!-- ================ End Intro ================================ -->
@@ -250,12 +270,15 @@
      You can use it to describe known bugs and limitations of the 
 	  program if there are any - please be frank and list all
      problems you know of. 
-  
-  <sect1 id="mayapp-bugs">
-  <title>Known Bugs and Limitations</title>
-  <para> </para>
- </sect1>
 -->
+  <sect1 id="mayapp-bugs">
+  <title>Bekannte Fehler und Einschränkungen</title>
+  <para>Im Moment lädt &app; alle in den Speicher, was das System bei großen
+  Datenbanken (über 15000 Personen auf einem typischen System) in die Knie
+  gehen. Dies sollte mit Release 1.2 gelöst sein, weil in diesem ein
+  Datenbank-Backend integriert sein wird. Das Datenbank-Backend sollte dramatisch
+  sowohl die Geschwindigkeit als auch den Speicherverbrauch verbessern.</para>
+ </sect1>
 <!-- ============= About ================================== -->
 <!-- This section contains info about the program (not docs), such as
       author's name(s), web page, license, feedback address. This
@@ -264,8 +287,8 @@
       manual, this is the place to put it. 
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
-    <title>Über &app;</title> 
-    <para> &app; wurde gschrieben von Donald N. Allingham
+    <title>Über GRAMPS</title> 
+    <para> &app; wurde geschrieben von Donald N. Allingham
       (<email>dallingham@users.sourceforge.net</email>). 
       Wenn Sie mehr Information über &app; suchen, besuchen Sie die
       <ulink url="http://gramps.sourceforge.net" type="http">Web Seite des GRAMPS Projekts 
@@ -277,9 +300,9 @@
       <ulink url="ghelp:gnome-feedback"  type="help">Dokument</ulink>.
     </para>
 
-    <para> Dieses Programm wird verbreitet untern den Bedingungen
-      der GNU General Public license, veröffentlicht von der Free Software
-      Foundation; entweder Version 2 der Lizenz oder jede spätere Version.
+    <para> Dieses Programm wird unter den Bedingungen der GNU General 
+      Public License Version 2 oder jede spätere Version verbreitet, welche
+      von der Free Software Foundation veröffentlicht wurden. 
       Eine Kopie dieser Lizenz finden Sie
       <ulink url="ghelp:gpl" type="help">hier</ulink>, oder in der Datei
       COPYING, die dem Quellcode dieses Programms beigefügt ist. </para>

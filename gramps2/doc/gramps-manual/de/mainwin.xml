@@ -24,11 +24,11 @@
  
 	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
-	<title>&app; Hauptfenster</title> 
+	<title>GRAMPS-Hauptfenster</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/mainwin.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Zeigt Hauptfenster von &app;. Es enthält die Titelzeile,
+	<phrase>Zeigt Hauptfenster von GRAMPS. Es enthält die Titelzeile,
 	      die Menüleiste, die Werkzeugleiste, die Seitenleiste, das
 	      Ansichtsfeld, die Statusleiste, die Fortschrittsbalken und die
 	      Scrollbalken. Die Menüleiste enthält das Datei-, das Bearbeiten-,
@@ -48,9 +48,9 @@
         </para></listitem>
       </varlistentry>
       <varlistentry><term>Werkzeugleiste</term>
-	<listitem><para>Die Werkzeugleiste befindet sich sofort The toolbar
+	<listitem><para>Die Werkzeugleiste befindet sich direkt
         unter der Menüzeile. Die Werkzeugleiste bietet Zugriff auf die
-        am häufigsten benutzen Funktionen von &app;. Das Erscheinsbild der
+        am häufigsten benutzen Funktionen von &app;. Das Erscheinungsbild der
         Werkzeugleise kann im <guilabel>Einstellungen</guilabel>-Dialog
         angepasst werden.
         </para></listitem>
@@ -65,7 +65,7 @@
       </varlistentry>
       <varlistentry><term>Statusleiste</term>
 	<listitem><para>Die Statusleiste befindet sich rechts vom
-	Fortschrittsbalken, ganz unten im &app;-Fenster. Es zeigt
+	Fortschrittsbalken, ganz unten im &app;-Fenster. Sie zeigt
 	Informationen über die aktuelle &app;-Aktivität und
 	Kontextinformationen zu den Menüeinträgen. Das Verhalten der
 	Statusleiste kann im <guilabel>Einstellungen</guilabel>-Dialog.
@@ -77,12 +77,12 @@
 	Informationen, abhängig von der ausgewählten Ansicht. Die folgenden
 	sechs Ansichten sind verfügbar in &app;:
 	<itemizedlist>	
-	<listitem><para>Personenansicht</para></listitem>
-	<listitem><para>Familienansicht</para></listitem>
-	<listitem><para>Stammbaumansicht</para></listitem>
-	<listitem><para>Quellenansicht</para></listitem>
-	<listitem><para>Ortsansicht</para></listitem>
-	<listitem><para>Medienansicht</para></listitem>
+	<listitem><para>Personen-Ansicht</para></listitem>
+	<listitem><para>Familien-Ansicht</para></listitem>
+	<listitem><para>Ahnenblatt-Ansicht</para></listitem>
+	<listitem><para>Quellen-Ansicht</para></listitem>
+	<listitem><para>Orte-Ansicht</para></listitem>
+	<listitem><para>Multimedia-Ansicht</para></listitem>
 
 	</itemizedlist>
 	</para></listitem>
@@ -92,23 +92,23 @@
     <!-- ================ Main Window Subsection  -->
     <sect2 id="gramps-views">
       <title>Ansichten</title>
-      <para>Ansichten sind verschiedene Wege verschiedene Aspekte der
+      <para>Ansichten sind unterschiedliche Wege verschiedene Aspekte der
       genealogischen Daten anzuzeigen, wie im Folgenden beschrieben. Weil
       die relevanten Information oft sehr wage und nicht einheitlich in
-      Zusammenhang und Modalität sind, ist es am Besten ihre Ansicht zu in
+      Zusammenhang und Modalität sind, ist es am Besten ihre Ansicht in
       kleinere Kategorien, einheitlich in Zusammenhang und Modalität zu
       unterteilen. Jede Ansicht repräsentiert eine solche Unterteilung und
-      zeigt bestimmt Aspekte der insgesamt verfügbaren Informationen an.
+      zeigt bestimmte Aspekte der insgesamt verfügbaren Informationen an.
       Vor der ausführlichen Beschreibung der verfügbaren Ansichten, führen
       wir Sie durch die Wege zwischen den Ansichten zu wechseln.</para> 
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="view-modes">
         <title>Die Ansichten und Ansichtsmodi wechseln</title>
-	<para>Abhänging vom Status des Menüeintrags <menuchoice> 
+	<para>Abhängig vom Status des Menüeintrags <menuchoice> 
 	<guimenu>Ansicht</guimenu><guimenuitem>Seitenleiste</guimenuitem> 
-	</menuchoice>, kann die Ansichte entweder in der Seitenleiste oder
-	an der Reitern im oberen Teil des Fensters gewechselt werden. 
+	</menuchoice>, kann die Ansicht entweder in der Seitenleiste oder
+	an den Reitern im oberen Teil des Fensters gewechselt werden. 
 	</para>
 
 	<variablelist>
@@ -150,10 +150,10 @@
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="people-view">
-        <title>Personenansicht</title>
+        <title>Personen-Ansicht</title>
 	<para>Wenn &app; eine Datenbank öffnet, wird die Ansicht zuerst
-        auf die Personenansicht (<xref linkend="side-nofilt-fig"/> 
-	und <xref linkend="noside-nofilt-fig"/>). Die Personenansicht
+        auf die Personen-Ansicht (<xref linkend="side-nofilt-fig"/> 
+	und <xref linkend="noside-nofilt-fig"/>). Die Personen-Ansicht
         listet Personen auf, dessen Daten in der Datenbank gespeichert
         sind.</para>
         
@@ -165,7 +165,7 @@
         aufgerollt und ist nicht sichtbar. Jedenfalls sind alle Daten noch
         intakt, werden aber nicht angezeigt.</para>
         
-        <para>Die Personenansicht zeigt die <guilabel>Namen</guilabel>, 
+        <para>Die Personen-Ansicht zeigt die <guilabel>Namen</guilabel>, 
         die &app;-<guilabel>ID</guilabel>-Zahlen, das 
         <guilabel>Geschlecht</guilabel> und die
         <guilabel>Geburts-</guilabel> und <guilabel>Todesdaten</guilabel>
@@ -180,7 +180,7 @@
     <!-- ================ Main Window Sub-sub-subsection  -->
         <sect4 id="filters">
           <title>Filter</title>
-	  <para>Genealogische Datenbank können eine riesige Anzahl an
+	  <para>Genealogische Datenbanken können eine riesige Anzahl an
 	  Personen umfassen. Weil lange Listen für Menschen schwer
 	  zu handhaben sind, bietet &app; einen angenehmen Weg um den
 	  Umfang mit Filtern zu begrenzen. Um Bildschirmplatz zu sparen
@@ -205,7 +205,7 @@
 	  der Personenliste. Wenn der Filter ausgewählt ist, klicken Sie
 	  auf den <guibutton>Anwenden</guibutton>-Knopf in der oberen,
 	  rechten Ecke des Fensters. Sie sehen das Ergebnis des Filters,
-	  sofort nachdem Sie auf den <guibutton>Anwebden</guibutton>-Knopf
+	  sofort nachdem Sie auf den <guibutton>Anwenden</guibutton>-Knopf
 	  geklickt haben. Um den Filter zu invertieren markieren Sie
 	  das <guilabel>Invertieren</guilabel>-Feld links vom
 	  <guibutton>Anwenden</guibutton>-Knopf. </para>
@@ -214,21 +214,21 @@
 	  <guilabel>Personen mit Kindern</guilabel>-Filter, klicken
 	  dann auf das <guilabel>Invertieren</guilabel>-Feld und klicken
 	  dann auf den <guibutton>Anwenden</guibutton>-Knopf. Um einen
-	  Filter rückgangig zu machen, stellen Sie einfach des Filter
+	  Filter rückgängig zu machen, stellen Sie einfach den Filter
 	  <guilabel>Alle Personen</guilabel> ein und klicken Sie auf den
 	  <guibutton>Anwenden</guibutton>-Knopf. </para>
 
 	  <para>Anmerkung: Auch wenn die Filterkontrollen nicht angezeigt
 	  werden (<menuchoice> <guimenu>Ansicht</guimenu>
-	  <guimenuitem>Filter</guimenuitem> </menuchoice> Menüeintrag ist
-	  nichts markiert), kann noch eine Filterung stattfinden. In anderen
+	  <guimenuitem>Filter</guimenuitem> </menuchoice>-Menüeintrag ist
+	  nicht markiert), kann noch eine Filterung stattfinden. In anderen
 	  Worten: die Sichtbarkeit der Filterkontrollen hat nichts mit dem
 	  tatsächlich verwendeten Filter zu tun. Die könnte Verwirrung
 	  verursachen, wenn Sie einen Filter einstellen und dann die
 	  Kontrollen verstecken. Im Zweifelsfall, lassen Sie die
-	  Filterkontrollen anzeigen, in dem den <menuchoice>
-	  <guimenu>Ansicht</guimenu> <guimenuitem>Filter</guimenuitem>
-	  </menuchoice> Menüeintrag markieren, und überprüfen, welche
+	  Filterkontrollen anzeigen, indem Sie den <menuchoice>
+	  <guimenu>Ansicht</guimenu><guimenuitem>Filter</guimenuitem>
+	  </menuchoice>-Menüeintrag markieren, und überprüfen, welche
 	  Art der Filterung gerade eingestellt ist.</para>
         </sect4>
 
@@ -241,9 +241,9 @@
 	  Personenliste in Unterlisten des ersten Buchstabens ihres Namens.
 	  Die alphabetischen Reiter sind im unteren Teil des &app;-Fensters.
 	  Der letzte Reiter, <guilabel>Andere</guilabel>, steht für
-	  unidentifizierte Buchstaben. Alle Einträde, die nicht zu einem
-	  anderen reiter zugeordnet werden können, landen in <guilabel>
-	  Andere</guilabel>. Speziell werden Familien ohne Familennamen
+	  unidentifizierte Buchstaben. Alle Einträge, die nicht zu einem
+	  anderen Reiter zugeordnet werden können, landen in <guilabel>
+	  Andere</guilabel>. Speziell werden Familien ohne Familiennamen
 	  unter dieser Kategorie erscheinen.</para>
         </sect4>
 
@@ -251,8 +251,8 @@
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="family-view">
-        <title>Familienansicht</title>
-	<para>Die Familienansicht zeigt Informationen über die Familie der
+        <title>Familien-Ansicht</title>
+	<para>Die Familien-Ansicht zeigt Informationen über die Familie der
 	aktuell ausgewählten Person. Insbesondere zeigt diese Ansicht die
 	Beziehungen (z.B. Ehen, Partnerschaften usw.) der aktuellen Person,
 	seine Eltern (oder Stiefeltern) und seine Kinder (es können auch
@@ -260,7 +260,7 @@
 
 	<!-- ==== Figure: Family View ==== -->
 	<figure id="family-fig">
-	<title>Familienansicht</title>
+	<title>Familien-Ansicht</title>
 	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/family.png" format="PNG"/></imageobject>
 	<textobject>
@@ -269,8 +269,8 @@
 	<!-- ==== End of Figure ==== -->
 
 	<para>Die Daten der aktuellen Person stehen in dem Listenfeld in der
-	oberen linken Ecke des Fensters. Direkt darunter, ein anderes Feld
-	listet die Daten der (Ehe-)Partner, jeweils mit der Beziehung zur
+	oberen linken Ecke des Fensters. Direkt darunter, listet ein anderes
+	Feld die Daten der (Ehe-)Partner, jeweils mit der Beziehung zur
 	aktuellen Person auf (es können mehr als einer sein). Der
 	Doppelpfeilknopf recht von dem Listenfeld der aktuellen Personen
 	ermöglicht es Ihnen zwischen dem momentan ausgewählten Partner
@@ -294,53 +294,56 @@
 	Rechts-Klick in das Partner-Feld und den entsprechenden
 	Menü-Einträgen im Kontextmenü.</para>
 
-	<para>The parents of both the Active person and the Current spouse
-	are listed in the corresponding list boxes in the right-hand part of
-	the window (Active person's parents on top, Current spouse parents
-	on the bottom). Both list boxes have a set of three buttons on their
-	right side. The <guibutton>+</guibutton> and <guibutton>-</guibutton>
-	buttons allow you to add and remove parents of the Active person and the
-	Current spouse, respectively. Clicking the right arrow button
-	makes the family in the corresponding list box an active family.
-	That is, it makes the selected Father the Active person, and the
-	selected Mother the Current spouse. Most of these
-        functions are also available by right-clicking into the parent box and
-        selecting an appropriate items from the context menu. </para>
+	<para>Der Eltern der aktuellen Person und des aktuellen (Ehe-)Partners
+	sind jeweils in den entsprechenden Listenfeldern aufgelistet im
+	rechten	Teil des Fensters (die der aktuellen Person oben, die des
+	aktuellen (Ehe-)Partners unten). Beide Listenfelder haben drei
+	Knöpfe auf der rechten Seite. Mit den <guibutton>+</guibutton>- und
+	<guibutton>-</guibutton>-Knöpfen können Sie jeweils Eltern der
+	aktiven Person und des aktuellen (Ehe-)Partners hinzufügen und
+	entfernen. Ein Klick auf den Pfeil-Knopf macht die Familie in dem
+	entsprechenden Listenfeld zur aktiven Familie. Das heißt, der
+	ausgewählte Vater wird zur aktiven Person und die ausgewählte
+	Mutter zum aktuellen (Ehe-)Partner. Die meisten dieser Funktionen
+	sind auch so verfügbar durch einen Rechtsklick in das Elternfeld
+	und Auswahl der entsprechenden Menüeinträge aus dem
+	Kontextmenü. </para>
 	
-	<para>The bottom list box displays children of the Active person and 
-	the Current  Spouse. The Children's list can be ordered by the Birth date 
-	in the usual way of clicking on the <guilabel>Birth date</guilabel> column 
-	header. In addition to the <guilabel>Name</guilabel>,
-	<guilabel>ID</guilabel>, <guilabel>Gender</guilabel>, and
-	<guilabel>Birth date</guilabel> columns, the list includes a  
-	<guilabel>Status</guilabel> column. The pair of status words reflect the
-	relationship between the child and his Father/Mother (such as Birth, Adoption, 
-	etc.) Four buttons are available on the right side of the 
-	children list box. The top (left arrow) button makes 
-	the selected child the Active person. The next two buttons add a new
-        child to the family: the upper one adds a new person to the database 
-        and to the family, the lower one just adds a person existing in the
-        database to the family. Finally, the lowest <guibutton>-</guibutton> 
-        button removes the selected child from the family. Note that removing 
-        a child from the family does not remove the person from the 
-        database. Most of these functions are also available by right-clicking 
-        into the children box and selecting an appropriate items from the 
-        context menu.</para> 
+	<para>Das untere Listenfeld zeigt die Kinder der aktuellen Person und
+	des aktuellen (Ehe-)Partners an. Die Kinderliste kann nach
+	Geburtsdaten sortiert werden durch Anklicken der
+	<guilabel>Geburtsdatum</guilabel>-Spaltenkopf. Zusätzlich zu den
+	<guilabel>Name</guilabel>-, <guilabel>ID</guilabel>-,
+	<guilabel>Geschlecht</guilabel>- und <guilabel>Geburtsdatum</guilabel>-
+	Spalten enthält die Liste eine <guilabel>Status</guilabel>-Spalte.
+	Das Paar der Statusworte gibt die Beziehung zwischen den Kind und
+	seinem/r Vater/Mutter (z.B. Geburt, Adoptiert usw.). Vier Knöpfe sind
+	rechts von der Kinderliste. Der obere (Pfeil-)Knopf macht das
+	ausgewählte Kind zur aktiven Person. Die nächsten zwei Knöpfe
+	fügen ein neues Kind zur Familie hinzu: das obere fügt ein neues
+	Kind zur Datenbank und zur Familie hinzu, das untere fügt nur eine
+	bereits in der Datenbank existierende Person zur Familie hinzu.
+	Und der unterste Knopf <guibutton>-</guibutton>-Knopf entfernt das
+	ausgewählte Kind aus der Familie. Beachten Sie, dass das Entfernen
+	eines Kindes aus der Familie, es nicht aus der Datenbank entfernt.
+	Die meisten dieser Funktionen sind auch über das Kontextmenü der
+	Kinderliste verfügbar.</para> 
 
-	<para>The layout of the Family View can be switched from the 
-        left-to-right arrangement (shown above) to the top-to-bottom 
-        arrangement (shown below). This can be done in the 
-        <guilabel>Display</guilabel> section of the 
-        <guilabel>Preferences</guilabel> dialog. The top-to-bottom view 
-        has the same functionality as the left-to-right view. </para>
+	<para>Das Layout der Familienansicht kann von der
+	Links-nach-rechts-Darstellung (oben gezeigt) zur
+	Oben-nach-unten-Darstellung (unten gezeigt) umgeschaltet werden.
+	Dies kann im <guilabel>Anzeige</guilabel>-Abschnitt des
+	<guilabel>Einstellungen</guilabel>-Dialogs getan werden. Die
+	Oben-nach-unten-Ansicht hat die gleichen Funktionen wie die
+	Links-nach-rechts-Ansicht.</para>
 
 	<!-- ==== Figure: Family View ==== -->
 	<figure id="family-alt-fig"> 
-	<title>Alternative Family View</title> 
+	<title>Alternative Familien-Ansicht</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/family-alt.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Alternative Family View.  </phrase>
+	<phrase>Zeigt die alternative Familien-Ansicht.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
@@ -348,140 +351,182 @@
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="pedigree-view">
-        <title>Pedigree View</title>
+        <title>Ahnenblatt-Ansicht</title>
 
 	<!-- ==== Figure: Pedigree View ==== -->
 	<figure id="pedigree-fig"> 
-	<title>Pedigree View</title> 
+	<title>Ahnenblatt-Ansicht</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/pedigree.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Pedigree View.  </phrase>
+	<phrase>Zeigt die Ahnenblatt-Ansicht.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Pedigree View helps to visualize the place of the Active 
-	person in the tree of his/her ancestors. The Pedigree View shows four 
-	generations, going back in time from the Active person
-	<guilabel>1</guilabel> to his/her parents <guilabel>2</guilabel>, 
-	to grandparents <guilabel>3</guilabel>, to great-grandparents 
-	<guilabel>4</guilabel>. 
-	Each person is denoted by a box bearing the person's name. 
-	The two lines that converge on the box represent ties with the 
-	person's Father (top line) and mother (bottom line). Solid lines 
-	represent birth relations, while dashed lines represent non-birth 
-	relations (such as adoption, step-parenthood, guardianship, etc.). 
-	When the mouse moves over the white box, it expands to display the 
-	corresponding person's dates of birth and death. When the mouse is 
-	placed over the family line, the line become highlighted to indicate 
-	an active link: double-clicking on the line makes the corresponding 
-	ancestor the Active person. The display in that case is re-adjusted 
-	to show four generations, starting from the newly selected Active 
-	person. </para>
+	<para>Die Ahnenblatt-Ansicht hilft Ihnen den Ort der aktuellen Person
+	im Baum seiner/ihrer Ahnen darzustellen. Die Ahnenblatt-Ansicht zeigt
+	vier Generationen, von der aktuellen Person <guilabel>1</guilabel>
+	aus zurück in der Zeit über seine/ihre Eltern <guilabel>2</guilabel>, 
+	Großeltern <guilabel>3</guilabel> und Urgroßeltern 
+	<guilabel>4</guilabel>.
+	Zu wird als ein Feld mit dem Namen der Person dargestellt. Die
+	zwei Linien, die auf dem Feld zusammenlaufen repräsentieren die
+	Verbindung zum Vater (obere Linie) und der Mutter (untere Linie).
+	Durchgezogene Linien repräsentieren Geburtsverwandtschaft, während
+	eine gestrichelte Linie für nicht-Geburtsverwandtschaften steht
+	(wie Adoption, Stiefeltern, Vormundschaft usw.). Wenn die Maus über
+	dem weißen Feld bewegt wird, vergrößert es sich und zeigt die
+	Geburts- und Todesdaten der entsprechenden Person. Durch Platzieren der
+  der Maus über eine Familienlinie, wird die Linie hervorgehoben
+	um den aktiven Link anzuzeigen: Ein Doppelklick auf die Linie macht
+	den entsprechenden Ahnen zur aktuellen Person. In dem Fall wird die
+	Ansicht neu aufgebaut um vier Generationen von der neuen aktuellen
+	Person aus zeigen. </para>
 	
 	<!-- ==== Figure: Pedigree View ==== -->
 	<figure id="pedigree-child-cut-fig"> 
-	<title>Children Menu</title> 
+	<title>Kindermenü</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/pedigree-child-cut.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Children Menu in Pedigree View.  </phrase>
+	<phrase>Zeigt das Kindermenü in der Ahnenblatt-Ansicht.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The left-hand side of the window shows the left arrow button. 
-	Upon clicking, the button expands to the menu listing the children 
-	of the Active person. Selecting the menu item makes the corresponding 
-	child the Active person. The appearance of the children's names 
-	in the menu serves to differentiate the "dead ends" of the tree from 
-	the continuing branches as follows. The children who have children 
-	appear in the menu in the boldface and italic typeset, while the 
-	children without children ("dead ends") appear in a regular 
-	font. If the Active person has a single child, no menu will be 
-	displayed (since there is no choice) and the child will become 
-	the Active person upon clicking	the arrow button. </para>
+	<para>Die linke Seite des Fensters zeigt einen Pfeilknopf. Bei einem
+	Klick öffnet sich ein Menü, das die Kinder der aktuellen Person
+	auflistet. Das Wählen eines Menüeintrages macht das entsprechende
+	Kind zu aktuellen Person. Das Erscheinungsbild der Kindernamen im
+	Menü dient dazu "Sackgassen" von weiterführenden Zweigen zu
+	unterscheiden. Die Kinder, die selber Kinder haben, erscheinen im
+	Menü fett und kursiv, die ohne Kinder ("Sackgassen") dagegen in
+	normaler Schrift. Wenn die aktive Person nur ein einziges Kind hat,
+	erscheint kein Menü (denn es gibt keine Auswahl) und das Kind wird
+	zur aktiven Person durch einen Klick auf den Pfeilknopf.</para>
 
-	<para>The right-hand side of the window shows two right arrow buttons. 
-	When the top button is clicked, the Father of the Active person 
-	becomes the Active person. Clicking the bottom button makes the Mother of 
-	the Active person the Active person. Again, the display is re-adjusted 
-	to show four generations, starting from the newly selected Active 
-	person.</para> 
+	<para>Auf der rechten Seite des Fensters befinden sich auch zwei
+	Pfeilknöpfe. Wenn der obere Knopf angeklickt wird, wird der Vater
+	der aktuellen Person zur aktuellen Person. Ein Klick auf den unteren
+	Knopf macht du Mutter zur aktuellen Person. Erneut wird die Ansicht
+	neu aufgebaut um vier Generationen von der neuen aktuellen Person aus
+	anzuzeigen.</para> 
+
+	<!-- ==== Figure: Pedigree View ==== -->
+	<figure id="pedigree-anchor-fig">
+	<title>Ahnenblatt-Ansicht mit Anker</title>
+	<screenshot><mediaobject><imageobject><imagedata
+	fileref="figures/pedigree-anchor.png" format="PNG"/></imageobject>
+	<textobject>
+	<phrase>Zeige die Ahnenblatt-Ansicht mit gesetztem Anker</phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
+	<para>Eine zusätzliche fortgeschrittene Art Generation zu benennen,
+	existiert in der Ahnenblatt-Ansicht. Sie ist erreichbar, indem Sie
+	einen Anker auf eine aktive Person setzen. Wenn der Anker gesetzt ist,
+	werden die Generation wie folgt benannt. Die Ankerperson (oder
+	seine/ihre Generation ist die <guilabel>0</guilabel>. Die
+	Ahnengeneration werden mit positiven Ganzzahl nummeriert
+	(<guilabel>1</guilabel>, <guilabel>2</guilabel>,
+	<guilabel>3</guilabel> usw.), während die Nachkommengenerationen
+	mit negativen Ganzzahlen nummeriert werden (<guilabel>-1</guilabel>,
+	<guilabel>-2</guilabel>, <guilabel>-3</guilabel> usw.). In jedem Fall
+	zeigt die Nummer die Anzahl der Generationen zwischen der beschrifteten
+	Generation und der Ankerperson an. In diesem Modus können Sie durch
+	die Ahnenreise reisen und die Anzahl der Generation von der
+	Ankerperson sehen.</para>
+
+	<para>Um den Anker zu setzen, wählen Sie den <guilabel>Anker
+	setzen</guilabel>-Menüeintrag aus dem Kontextmenü, wenn die
+	gewünschte Person die aktuelle Person in der Ahnenblattansicht ist.
+	Die Beschriftungen verändern sich sofort und der Name der
+	Ankerperson erscheint in der unteren linken Ecke der Ansicht. Der
+	Anker bleibt so lange wirksam, bis entweder entfernt wird (durch
+	wählen des <guilabel>Anker entfernen</guilabel>-Eintrags des
+	Kontextmenüs) oder bis eine, nicht mit der Ankerperson verwandte,
+	aktuelle Person ausgewählt wird. Letzteres kann auch durch die
+	umfassenden Navigationswerkzeuge von &app; geschehen, siehe
+	<xref linkend="gramps-nav"/> für Details. </para>
+
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="sources-view">
-        <title>Sources View</title>
+        <title>Quellen-Ansicht</title>
 
 	<!-- ==== Figure: Sources View ==== -->
 	<figure id="sources-fig"> 
-	<title>Sources View</title> 
+	<title>Quellen-Ansicht</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/sources.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Sources View.  </phrase>
+	<phrase>Zeigt die Quellen-Ansicht.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Sources View lists the sources of information stored in the 
-	database. This can include various documents (birth, death, and 
-	marriage certificates, etc.), books, films, journals, private diaries, 
-	i.e. virtually anything that can be classified as a source of 
-	information. The sources can be used as a reference for any event 
-	stored in the database. The Source View lists the 
-	<guilabel>Title</guilabel>, <guilabel>ID</guilabel>, and the 
-	<guilabel>Author</guilabel> of the source. Any column can be 
-	used for sorting the list. The usual rules apply: one click for 
-	ascending order, another click for descending order.</para> 
+	<para>Die Quellen-Ansicht listet die Quellen der in der Datenbank
+	gespeicherten Informationen auf. Diese kann verschiedene Dokumente
+	umfassen (Geburts-, Sterbe- und Heiratsurkunden usw.), Bücher, Filme,
+	Zeitungen, private Tagebücher, praktisch alles, was als Quelle von
+	Informationen dienen kann. Die Quellen können als Referenz für jedes
+	Ereignis in der Datenbank benutzt werden. Die Quellenansicht listet
+	den <guilabel>Titel</guilabel>, die <guilabel>ID</guilabel> und den
+	<guilabel>Autor</guilabel> der Quelle auf. Jede Spalte kann benutzt
+	werden um die Liste zu sortieren. Die gewöhnlichen Regeln werden
+	befolgt: ein Klick für aufsteigende Ordnung, ein anderer Klick für
+	absteigende Ordnung.</para> 
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="places-view">
-        <title>Places View</title>
+        <title>Orte-Ansicht</title>
 
 	<!-- ==== Figure: Places View ==== -->
 	<figure id="places-fig"> 
-	<title>Places View</title> 
+	<title>Orte-Ansicht</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/places.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Places View.  </phrase>
+	<phrase>Zeigt die Orte-Ansicht.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Places View lists the geographical places in which the events 
-	of the database took place. These could be places of birth, death, 
-	and marriages of people, as well as their home, employment, education 
-	addresses, or any other conceivable reference to the geographical 
-	location. The Places View lists the places' <guilabel>Name</guilabel>,
-	<guilabel>ID</guilabel>, <guilabel>Church Parish</guilabel>,
-	<guilabel>City</guilabel>, <guilabel>County</guilabel>,
-	<guilabel>State</guilabel>, and <guilabel>Country</guilabel>. All of
-	these columns can be used for sorting by the usual sorting rules. </para> 
+	<para>Die Orte-Ansicht listet die geografischen Orte auf, an denen die
+	Ereignisse in der Datenbank stattgefunden haben. Diese können
+	Geburts-, Sterbe- oder Hochzeitsorte sein, aber auch Heimatorte,
+	Arbeitsplätze, Bildungsorte, oder jede denkbare Referenz zu einem
+	geografischen Ort. Die Orte-Ansicht listet den
+	<guilabel>Namen</guilabel>, die <guilabel>ID</guilabel>,
+	die <guilabel>Kirchengemeinde</guilabel>, den
+	<guilabel>Ort</guilabel>, den <guilabel>Kreis</guilabel>,
+	das <guilabel>Bundesland</guilabel> und das
+	<guilabel>Land</guilabel> der Orte auf. Nach allen Spalten kann nach
+	den üblichen Regeln sortiert werden.</para> 
       </sect3>
 
     <!-- ================ Main Window Sub-subsection  -->
       <sect3 id="media-view">
-        <title>Media View</title>
+        <title>Multimedia-Ansicht</title>
 
 	<!-- ==== Figure: Media View ==== -->
 	<figure id="media-fig"> 
-	<title>Media View</title> 
+	<title>Multimedia-Ansicht</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/media.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Media View.  </phrase>
+	<phrase>Zeigt die Multimedia-Ansicht.</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-	<para>The Media View is a list of Media Objects used in the database. 
-	Media Objects are any files that relate somehow to the stored 
-	genealogical data. Technically, any file can be stored as a Media 
-	Object. Most frequently, these are images, audio files, animation 
-	files, etc. The list box on the bottom lists the Name, ID, Type, and 
-	Path to the Media Object. The top part of the GRAMPS window shows 
-	a preview (if available) and information about the Media 
-	Object. </para> 
+	<para>Die Multimedia-Ansicht in eine Liste alle Multimedia-Objekte,
+	die in der Datenbank benutzt werden. Multimedia-Objekte können alle
+	Dateien sein, die irgendwas mit genealogischen Daten zu tun haben.
+	Technisch gesehen kann jede Datei als Multimedia-Objekt gespeichert
+	werden. Am häufigsten sind es Bilder, Audio-Dateien, Video-Dateien
+	usw. Das Listenfeld unten zeigt den Namen, die ID, den Typ und den
+	Pfad zum Multimedia-Objekt. Der obere Teil des &app;-Fensters zeigt
+	eine Vorschau (falls möglich) und Information über das
+	Multimedia-Objekt.</para> 
       </sect3>
 
     </sect2>

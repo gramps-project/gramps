@@ -80,7 +80,7 @@
           </row>
           <row valign="top">
             <entry><para><keycap>Strg</keycap>+<keycap>Unten</keycap>
-            or <keycap>Strg</keycap>+<keycap>Rechts</keycap></para></entry>
+            oder <keycap>Strg</keycap>+<keycap>Rechts</keycap></para></entry>
             <entry><para>Die aktive Person und den ausgewählten Partner vertauschen.
             Benutzen Sie <keycap>Strg</keycap>+<keycap>Unten</keycap> in der 
             Standard-Familienansicht und <keycap>Strg</keycap>+<keycap>Rechts</keycap>
@@ -181,7 +181,7 @@
           </row>
           <row valign="top">
             <entry><para><keycap>Entf</keycap></para></entry>
-            <entry><para>Die ausgwählten Eltern aus der Liste entfernen.
+            <entry><para>Die ausgewählten Eltern aus der Liste entfernen.
             Die Eltern werden nicht aus der Datenbank gelöscht.</para></entry>
           </row>
           <row valign="top">
@@ -216,7 +216,7 @@
           <tbody>
           <row valign="top">
             <entry><para><keycap>Enter</keycap></para></entry>
-            <entry><para>Die Beziehung zwischem dem Kind und seinen/ihren
+            <entry><para>Die Beziehung zwischen dem Kind und seinen/ihren
             Eltern (die aktive Person und der ausgewählte Partner) bearbeiten.
             </para></entry>
           </row>
