@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Sun Apr 13 22:43:06 2003\n"
+"POT-Creation-Date: Mon Apr 14 15:34:42 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4843,17 +4843,17 @@ msgstr ""
 
 #: plugins/Verify.py:128
 msgid ""
-"Died before birth: %s baptized %d, died %d.\n"
+"Died before baptism: %s baptized %d, died %d.\n"
 msgstr ""
 
 #: plugins/Verify.py:130
 msgid ""
-"Buried before birth: %s born %d, died %d.\n"
+"Buried before birth: %s born %d, buried %d.\n"
 msgstr ""
 
 #: plugins/Verify.py:132
 msgid ""
-"Buried before birth: %s baptized %d, died %d.\n"
+"Buried before birth: %s baptized %d, buried %d.\n"
 msgstr ""
 
 #: plugins/Verify.py:142
