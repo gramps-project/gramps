@@ -1,8 +1,8 @@
-2004-01-06  Egyeki Gergely  <egeri@elte.hu>
+2004-01-07  Egyeki Gergely  <egeri@elte.hu>
 	* src/plugins/rel_hu.py: Add to CVS.
 	* src/plugins/Makefile.am: Ship rel_hu.py.
 
-2004-01-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+2004-01-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/IndivComplete.py (write_note): Typo.
 	* src/plugins/DetDescendantReport.py: Correct image insertion.
 	* src/plugins/DetAncestralReport.py: Correct image insertion.
