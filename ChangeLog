@@ -1,3 +1,7 @@
+2003-08-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: reinitialize interface after preferences
+	has been clicked.
+
 2003-08-26  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Bring up to date.
 	* TODO: Likewise. 
