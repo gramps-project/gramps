@@ -1,5 +1,16 @@
 2003-06-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Date.py: Handle date ranges in the form of xxxx - xxxx
+	* src/ListModel.py: Be able to select based off an iter
+	* src/ImageSelect.py: Support keeping selecting attributes after
+	they are edited
+	* src/EventEdit.py: Support keeping selecting events after
+	they are edited
+	* src/AttrEdit.py: Support keeping selecting attributes after
+	they are edited
+	* src/Marriage.py: Support keeping track of events and attributes
+	after they are edited.
+	* src/EditPerson.py: Support keeping track of events and attributes
+	after they are edited.
 
 2003-06-10  Tim Waugh  <twaugh@redhat.com>
 	* gramps.spec.in: Add gramps icon to correct location on install
