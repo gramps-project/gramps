@@ -822,13 +822,13 @@ class Family:
 
     def getMarriage(self):
         for e in self.EventList:
-            if e.getType == "Marriage":
+            if e.getName() == "Marriage":
                 return e
         return None
 
     def getDivorce(self):
         for e in self.EventList:
-            if e.getType == "Divorce":
+            if e.getName() == "Divorce":
                 return e
         return None
 
