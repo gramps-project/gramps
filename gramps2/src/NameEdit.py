@@ -53,6 +53,7 @@ class NameEditor:
         self.db = self.parent.db
         self.name = name
         self.callback = callback
+        self.child_windows = []
         self.top = gtk.glade.XML(const.dialogFile, "name_edit","gramps")
         self.window = self.top.get_widget("name_edit")
         self.given_field  = self.top.get_widget("alt_given")
@@ -102,7 +103,8 @@ class NameEditor:
         self.top.signal_autoconnect({
             "on_help_name_clicked" : self.on_help_clicked,
             "on_name_edit_ok_clicked" : self.on_name_edit_ok_clicked,
-            "destroy_passed_object" : Utils.destroy_passed_object, 
+            "on_name_edit_cancel_clicked" : self.close, 
+            "on_name_edit_delete_event" : self.on_delete_event,
             "on_switch_page" : self.on_switch_page
             })
 
@@ -123,11 +125,34 @@ class NameEditor:
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        #self.val = self.window.run()
-        self.window.show()
-        #if self.val == gtk.RESPONSE_OK:
-        #    self.on_name_edit_ok_clicked()
-        #self.window.destroy()
+        self.parent.child_windows.append(self)
+	self.add_itself_to_menu()
+	self.window.show()
+
+    def on_delete_event(self,obj,b):
+    	self.close_child_windows()
+	self.remove_itself_from_menu()
+
+    def close(self,obj):
+	self.close_child_windows()
+	self.remove_itself_from_menu()
+	Utils.destroy_passed_object(self.window)
+
+    def close_child_windows(self):
+	for child_window in self.child_windows:
+	    child_window.close()
+
+    def add_itself_to_menu(self):
+	self.menu_item = gtk.MenuItem(_('Name Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.parent.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""

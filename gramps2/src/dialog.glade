@@ -3241,6 +3241,7 @@
   <property name="destroy_with_parent">False</property>
   <property name="icon">gramps.png</property>
   <property name="has_separator">True</property>
+  <signal name="delete_event" handler="on_name_edit_delete_event" last_modification_time="Thu, 19 Feb 2004 18:07:08 GMT"/>
 
   <child internal-child="vbox">
     <widget class="GtkVBox" id="vbox32">
@@ -3263,7 +3264,7 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="name_edit"/>
+	      <signal name="clicked" handler="on_name_edit_cancel_clicked" last_modification_time="Thu, 19 Feb 2004 18:07:59 GMT"/>
 	    </widget>
 	  </child>
 
