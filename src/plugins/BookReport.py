@@ -601,10 +601,12 @@ class BookReportSelector:
         self.name_entry.set_text(_('New Book'))
 
         avail_label = self.xml.get_widget('avail_label')
-        avail_label.set_text("<b>%s</b>" % _("Available items"))
+        avail_label.set_text("<b>%s</b>" % _("_Available items"))
         avail_label.set_use_markup(gtk.TRUE)
+        avail_label.set_use_underline(gtk.TRUE)
         book_label = self.xml.get_widget('book_label')
-        book_label.set_text("<b>%s</b>" % _("Current book"))
+        book_label.set_text("<b>%s</b>" % _("Current _book"))
+        book_label.set_use_underline(gtk.TRUE)
         book_label.set_use_markup(gtk.TRUE)
 
         av_titles = [(_('Name'),0,150),(_('Type'),1,50)]
