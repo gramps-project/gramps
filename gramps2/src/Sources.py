@@ -103,7 +103,7 @@ class SourceSelector:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-si')
+        gnome.help_display('gramps-manual','gramps-edit-complete')
         self.val = self.window.run()
 
     def selection_changed(self,obj):

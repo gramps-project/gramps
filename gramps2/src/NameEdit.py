@@ -122,7 +122,7 @@ class NameEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-an')
+        gnome.help_display('gramps-manual','gramps-edit-complete')
         self.val = self.window.run()
 
     def on_name_edit_ok_clicked(self):

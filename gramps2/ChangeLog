@@ -20,6 +20,26 @@
 	* src/plugins/WriteCD.py (on_help_clicked): Add function.
 	* src/Bookmarks.py (draw_window): Add Help button; 
 	(help_clicked): Add function.
+	* src/preferences.glade: Add Help button.
+	* src/GrampsCfg.py (on_propertybox_help): Add function.
+	* src/imagesel.glade: Add Help buttons.
+	* src/ImageSelect.py (ImageSelect.on_help_imagesel_clicked, 
+	GlobalMediaProperties.on_help_clicked): Add functions. 
+	* src/AddMedia.py (on_help_imagesel_clicked): Add function. 
+	* doc/gramps-manual/C/usage.xml: Update.
+	* doc/gramps-manual/C/keybind.xml: Update.
+	* src/AddSpouse.py: Call yelp with sect2 argument. 
+	* src/AddrEdit.py: Likewise.
+	* src/AttrEdit.py: Likewise.
+	* src/ChooseParents.py: Likewise.
+	* src/EditPerson.py: Likewise.
+	* src/EditPlace.py: Likewise.
+	* src/EditSource.py: Likewise.
+	* src/EventEdit.py: Likewise.
+	* src/Marriage.py: Likewise.
+	* src/NameEdit.py: Likewise.
+	* src/SelectChild.py: Likewise.
+	* src/Sources.py: Likewise.
 
 2003-12-01  Tim Waugh  <twaugh@redhat.com>
 	* doc/xmldocs.make: Fix builds for $top_srcdir == $top_builddir (oops).

@@ -125,7 +125,7 @@ class SelectChild:
 
     def on_child_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-spec-ch')
+        gnome.help_display('gramps-manual','gramps-edit-quick')
 
     def close(self,obj):
         self.top.destroy()

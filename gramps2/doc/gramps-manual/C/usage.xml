@@ -208,7 +208,9 @@
       information concerning birth, death, addresses, various events, 
       etc. will be omitted in the exported GEDCOM file. If this option is selected, 
       you can further choose whether to use the word "Living" as first name, exclude
-      notes, and exclude sources for the living people. 
+      notes, and exclude sources for the living people. Check <guilabel>Reference 
+      images from path</guilabel> to tell &app; to use the specific path for your 
+      images when writing image references in GEDCOM. 
       </para>
 
       <para>Upon starting the export, &app; will 

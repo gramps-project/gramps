@@ -192,7 +192,7 @@ class EventEditor:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','adv-ev')
+        gnome.help_display('gramps-manual','gramps-edit-complete')
         self.val = self.window.run()
 
     def add_source(self,obj):

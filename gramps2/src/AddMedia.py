@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """
 Provides the interface to allow a person to add a media object to the database.
 """
@@ -44,6 +46,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 from QuestionDialog import ErrorDialog
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -91,6 +94,10 @@ class AddMediaObject:
             })
         
         self.window.show()
+
+    def on_help_imagesel_clicked(self):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-edit-quick')
 
     def on_savephoto_clicked(self):
         """
@@ -154,12 +161,15 @@ class AddMediaObject:
             self.image.set_from_pixbuf(image)
 
     def run(self):
-        val = self.window.run()
+        while 1:
+            val = self.window.run()
 
-        if val == gtk.RESPONSE_OK:
-            self.on_savephoto_clicked()
-            self.window.destroy()
-	    return self.object
-        else:
-            self.window.destroy()
-            return None
+            if val == gtk.RESPONSE_OK:
+                self.on_savephoto_clicked()
+                self.window.destroy()
+                return self.object
+            elif val == gtk.RESPONSE_HELP: 
+                self.on_help_imagesel_clicked()
+            else:
+                self.window.destroy()
+                return None
