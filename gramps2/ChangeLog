@@ -1,6 +1,6 @@
 2003-07-31  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RelLib.py (LdsOrd.are_equal): Correctly handle the case when 
-	the new object is None and the old is empty. 
+	the new object is None and the old is empty;  
 	(LdsOrd.isEmpty): Add function. 
 
 2003-07-31  Don Allingham  <dallingham@users.sourceforge.net>
