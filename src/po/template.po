@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Fri May 23 11:50:40 2003\n"
+"POT-Creation-Date: Fri May 23 22:14:44 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1017,7 +1017,15 @@ msgstr ""
 msgid "Custom Size"
 msgstr ""
 
-#: PedView.py:369
+#: PedView.py:43
+msgid "b."
+msgstr ""
+
+#: PedView.py:44
+msgid "d."
+msgstr ""
+
+#: PedView.py:373
 msgid "Double clicking will make %s the active person"
 msgstr ""
 
@@ -5719,6 +5727,18 @@ msgstr ""
 msgid "<b>Error Window</b>"
 msgstr ""
 
+#: plugins/eval.py:89
+msgid "Python evaluation window"
+msgstr ""
+
+#: plugins/eval.py:90 plugins/leak.py:79
+msgid "Debug"
+msgstr ""
+
+#: plugins/eval.py:91
+msgid "Provides a window that can evaluate python code"
+msgstr ""
+
 #: plugins/eventcmp.glade:9
 msgid "Save as a Spreadsheet - GRAMPS"
 msgstr ""
@@ -5853,10 +5873,6 @@ msgstr ""
 
 #: plugins/leak.py:78
 msgid "Show uncollected objects"
-msgstr ""
-
-#: plugins/leak.py:79
-msgid "Debug"
 msgstr ""
 
 #: plugins/leak.py:80

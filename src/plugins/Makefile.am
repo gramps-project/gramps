@@ -57,7 +57,9 @@ GLADEFILES = \
 	soundex.glade\
 	summary.glade\
 	verify.glade\
-        cdexport.glade
+	cdexport.glade\
+	eval.glade\
+	leak.glade
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,6 +45,9 @@ import ChooseParents
 
 from intl import gettext as _
 from QuestionDialog import QuestionDialog,WarningDialog
+
+_BORN = _('b.')
+_DIED = _('d.')
 
 pycode_tgts = [('child', 0, 0)]
 
@@ -309,11 +312,12 @@ class FamilyView:
         dd = self.person.getDeath().getDate()
 
         if bd and dd:
-            n = "%s\n\tb. %s\n\td. %s " % (GrampsCfg.nameof(self.person),bd,dd)
+            n = "%s\n\t%s %s\n\t%s %s " % (GrampsCfg.nameof(self.person),
+	    	_BORN,bd,_DIED,dd)
         elif bd:
-            n = "%s\n\tb. %s" % (GrampsCfg.nameof(self.person),bd)
+            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_BORN,bd)
         elif dd:
-            n = "%s\n\td. %s" % (GrampsCfg.nameof(self.person),dd)
+            n = "%s\n\t%s %s" % (GrampsCfg.nameof(self.person),_DIED,dd)
         else:
             n = GrampsCfg.nameof(self.person)
 
