@@ -129,7 +129,7 @@ vc_comment    = 0
 uncompress    = 0
 lastfile      = None
 nameof        = Utils.normal_name
-status_bar    = 0
+status_bar    = 1
 toolbar       = 2
 calendar      = 0
 paper_preference = ""
@@ -591,9 +591,7 @@ class GrampsPreferences:
         self.top.get_widget("sprefix").set_text(sprefix)
         self.top.get_widget("pprefix").set_text(pprefix)
 
-        if status_bar == 0:
-            self.top.get_widget("stat1").set_active(1)
-        elif status_bar == 1:
+        if status_bar == 0 or status_bar == 1:
             self.top.get_widget("stat2").set_active(1)
         else:
             self.top.get_widget("stat3").set_active(1)
@@ -850,9 +848,7 @@ class GrampsPreferences:
         output_obj = self.osubmenu.get_active()
         goutput_obj = self.gsubmenu.get_active()
 
-        if self.top.get_widget("stat1").get_active():
-            status_bar = 0
-        elif self.top.get_widget("stat2").get_active():
+        if self.top.get_widget("stat2").get_active():
             status_bar = 1
         else:
             status_bar = 2

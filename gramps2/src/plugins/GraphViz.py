@@ -517,14 +517,17 @@ def get_description():
 #
 #------------------------------------------------------------------------
 from Plugins import register_report
+import sys
 
-register_report(
-    report,
-    _("Relationship Graph"),
-    status=(_("Beta")),
-    category=_("Graphical Reports"),
-    description=get_description(),
-    author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net"
-    )
+ver = sys.version_info
+if ver[0] == 2 and ver[1] == 2:
+    register_report(
+        report,
+        _("Relationship Graph"),
+        status=(_("Beta")),
+        category=_("Graphical Reports"),
+        description=get_description(),
+        author_name="Donald N. Allingham",
+        author_email="dallingham@users.sourceforge.net"
+        )
 
