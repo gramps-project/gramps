@@ -8,6 +8,12 @@
 	* src/Marriage.py (on_add_clicked,on_event_update_clicked): Typos.
 	* src/AddSpouse.py (select_spouse_clicked): Typo.
 
+	* src/EditPerson.py (__init__): Only set update sources if possible
+	(calls from ChooseParents don't provide the correct parent, but then
+	the full update goes on anyway).
+	* src/ChooseParents.py (mother_list_select_row,
+	father_list_select_row): Comment out auto-selection of parents.
+
 2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py: Typo.
 	* src/EditPerson.py (on_add_addr_clicked): Typos.

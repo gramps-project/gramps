@@ -316,7 +316,7 @@ class ChooseParents:
         """
         if not father_handle and not mother_handle:
             return None
-	
+    
         for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
             if family.get_father_handle() == father_handle and family.get_mother_handle() == mother_handle:
@@ -376,6 +376,7 @@ class ChooseParents:
         else:
             self.father = None
 
+        return
         if not self.parent_selected and self.father:
             self.parent_selected = 1
             family_handle_list = self.father.get_family_handle_list()
@@ -399,6 +400,7 @@ class ChooseParents:
             self.mother = self.db.get_person_from_handle(idlist[0])
         else:
             self.mother = None
+        return
 
         if not self.parent_selected and self.mother:
             self.parent_selected = 1
