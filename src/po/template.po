@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2001-09-15 13:32-0600\n"
+"POT-Creation-Date: 2001-09-15 20:58-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgid "\n"
 msgstr ""
 
 #: glade.c:1977
-msgid "  was born "
+msgid " was born "
 msgstr ""
 
 #: glade.c:10
@@ -920,7 +920,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: glade.c:1983
+#: glade.c:1981
 msgid "Detailed Ancestral Report"
 msgstr ""
 
@@ -2505,12 +2505,12 @@ msgstr ""
 msgid "Probate"
 msgstr ""
 
-#: glade.c:2049
-msgid "Produces a detailed report on the selected person."
+#: glade.c:1983
+msgid "Produces a detailed ancestral report"
 msgstr ""
 
-#: glade.c:1981
-msgid "Produces a detailed textual ancestral report"
+#: glade.c:2049
+msgid "Produces a detailed report on the selected person."
 msgstr ""
 
 #: glade.c:1861
