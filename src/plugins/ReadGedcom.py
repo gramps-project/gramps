@@ -366,6 +366,15 @@ class GedcomParser:
                 self.fam_count = self.fam_count + 1
                 self.family = self.db.findFamily(matches[1],self.fmap)
                 self.parse_family()
+                if self.addr != None:
+                    father = self.family.getFather()
+                    if father:
+                        father.addAddress(self.addr)
+                    mother = self.family.getMother()
+                    if mother:
+                        mother.addAddress(self.addr)
+                    for child in self.family.getChildList():
+                        child.addAddress(self.addr)
             elif matches[2] == "INDI":
                 if self.indi_count % 10 == 0:
                     self.update(self.people_obj,str(self.indi_count))
@@ -451,6 +460,7 @@ class GedcomParser:
     #
     #---------------------------------------------------------------------
     def parse_family(self):
+        self.addr = None
         while 1:
 	    matches = self.get_next()
 
@@ -463,6 +473,10 @@ class GedcomParser:
 	    elif matches[1] == "WIFE":
                 self.family.setMother(self.db.findPerson(matches[2],self.pmap))
                 self.ignore_sub_junk(2)
+	    elif matches[1] == "ADDR":
+                self.addr = Address()
+                self.addr.setStreet(matches[2] + self.parse_continue_data(2))
+                self.parse_address(self.addr,2)
 	    elif matches[1] == "CHIL":
                 type = self.parse_ftw_relations(2)
                 child = self.db.findPerson(matches[2],self.pmap)
