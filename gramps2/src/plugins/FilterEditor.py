@@ -40,6 +40,7 @@ from gettext import gettext as _
 import gtk
 import gtk.glade
 import gobject
+from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
@@ -260,13 +261,16 @@ class MyEntry(gtk.Entry):
 #-------------------------------------------------------------------------
 class FilterEditor:
     def __init__(self,filterdb,db,parent):
+        self.parent = parent
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
+        self.child_windows = {}
+
         self.db = db
         self.filterdb = GenericFilter.GenericFilterList(filterdb)
         self.filterdb.load()
-
-        self.parent = parent
-        self.win_key = self
-        self.child_windows = {}
 
         self.editor = gtk.glade.XML(const.filterFile,'filter_list',"gramps")
         self.window = self.editor.get_widget('filter_list')
@@ -283,6 +287,7 @@ class FilterEditor:
             'on_edit_clicked' : self.edit_filter,
             'on_test_clicked' : self.test_clicked,
             'on_close_clicked' : self.close_filter_editor,
+            "on_help_filters_clicked"  : self.on_help_clicked,
             'on_delete_clicked' : self.delete_filter,
             'on_filter_list_delete_event' : self.on_delete_event,
             })
@@ -294,6 +299,10 @@ class FilterEditor:
         self.draw_filters()
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-util')
 
     def on_delete_event(self,obj,b):
         self.filterdb.save()
@@ -423,6 +432,7 @@ class EditFilter:
             'on_filter_name_changed' : self.filter_name_changed,
             'on_delete_clicked' : self.on_delete_clicked,
             'on_add_clicked' : self.on_add_clicked,
+            "on_help_filtdef_clicked"  : self.on_help_clicked,
             'on_edit_clicked' : self.on_edit_clicked,
             "on_edit_filter_delete_event" : self.on_delete_event,
             })
@@ -442,6 +452,10 @@ class EditFilter:
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-util')
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -705,12 +719,17 @@ class EditRule:
         self.rule.signal_autoconnect({
             'rule_ok_clicked' : self.rule_ok,
             "on_rule_edit_delete_event" : self.on_delete_event,
+            "on_help_rule_clicked"  : self.on_help_clicked,
             'rule_cancel_clicked' : self.close,
             })
 
         self.window.set_transient_for(self.parent.window)
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','append-filtref')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()

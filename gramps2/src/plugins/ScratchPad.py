@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modiy
 # it under the terms of the GNU General Public License as published by
@@ -20,9 +20,15 @@
 
 # $Id$
 
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import pickle
 import os
 from xml.sax.saxutils import escape
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -30,23 +36,19 @@ from xml.sax.saxutils import escape
 #
 #-------------------------------------------------------------------------
 import gtk
-import gtk.gdk
 import gtk.glade
+from gtk.gdk import ACTION_COPY, BUTTON1_MASK
+from gnome import help_display
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-
 import const
 import Utils
 import ListModel
 import TreeTips
-
-from gettext import gettext as _
-
-from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 
 #-------------------------------------------------------------------------
 #
@@ -90,8 +92,6 @@ from DdTargets import DdTargets
 ##              'srcref': [('srcref', 0, 4)],
 ##              TEXT_TARGET: text_tgts}
 
-
-
 #-------------------------------------------------------------------------
 #
 # ScatchPadWindow class
@@ -120,7 +120,10 @@ class ScratchPadWindow:
 
         self.db = database
         self.parent = parent
-        self.win_key = self
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
 
         self.olist = []
         self.otitles = [(_('Type'),-1,150),
@@ -147,6 +150,7 @@ class ScratchPadWindow:
             "on_close_scratchpad" : self.on_close_scratchpad,
             "on_clear_clicked": self.on_clear_clicked,
             "on_clear_all_clicked": self.on_clear_all_clicked,
+            "on_help_clicked": self.on_help_clicked,
             "on_objectlist_delete_event": self.on_delete_event,
             "on_scratchPad_delete_event": self.on_delete_event
             })
@@ -163,7 +167,6 @@ class ScratchPadWindow:
         self.add_itself_to_menu()
         self.window.show()
 
-
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
         
@@ -172,64 +175,71 @@ class ScratchPadWindow:
         main GRAMPS interface. If this is the first instance to be
         created a submenu is created, if it is not the first instance
         then an entry is created in the existing sub menu."""
-        
-        sub_menu_label = _("Scratch Pad Tool")
-        instance_number_key = "scratch_pad_instance_number"
-        
+##ALEX        
+##        sub_menu_label = _("Scratch Pad Tool")
+##        instance_number_key = "scratch_pad_instance_number"
+##        
+##        self.parent.child_windows[self.win_key] = self
+##
+##        # First check to see if the Scratch Pad sub menu already exists.
+##        # The MenuItems contain a list of child widgets, the first one
+##        # should be the AccelLabel so we can check the label text on
+##        # that one.        
+##        sub_menu_list  = [ menu for menu in self.parent.winsmenu.get_children() if \
+##                           menu.get_children()[0].get_label() == sub_menu_label ]
+##
+##        if len(sub_menu_list) > 0:
+##            # This list should always be of length 0 or 1 but in the unlikely
+##            # situation that it is greater than 1 it will still be safe to use
+##            # the first.
+##            self.parent_menu_item = sub_menu_list[0]
+##        else:
+##            # There is no existing instances so we must create the submenu. 
+##            self.parent_menu_item = gtk.MenuItem(sub_menu_label)            
+##            self.parent_menu_item.set_submenu(gtk.Menu())
+##            self.parent_menu_item.show()
+##            self.parent.winsmenu.append(self.parent_menu_item)
+##
+##        # Get a handle to the submenu and remember it so that
+##        # remove_itself_from_menu can delete it later.
+##        self.winsmenu = self.parent_menu_item.get_submenu()
+##
+##        # Get the first available instance number. The instance number
+##        # is stored in the data item store of the menu item so we can
+##        # read it with get_data.
+##        num = 1
+##        existing_instances = [ menu_item.get_data(instance_number_key) \
+##                               for menu_item in self.winsmenu.get_children() ]
+##        
+##        if len(existing_instances) > 0:
+##            # Calculate the first available instance number. 
+##            existing_instances.sort()
+##            for instance_num in existing_instances:
+##                if instance_num != num:
+##                    break
+##                else:
+##                    num += 1
+##
+##        # Create the instance menuitem with the instance number in the
+##        # label.
+##        instance_title = _('Scratch Pad - %d') % (num,)
+##        self.menu_item = gtk.MenuItem(instance_title)
+##        self.menu_item.set_data(instance_number_key,num)
+##        self.menu_item.connect("activate",self.present)
+##        self.menu_item.show()
+##
+##        # Set the window title to the same as the menu label.
+##        self.window.set_title(instance_title)
+##
+##        # Add the item to the submenu.
+##        self.winsmenu.append(self.menu_item)
+##
+##ALEX  This code remporarily replaces the commented above
         self.parent.child_windows[self.win_key] = self
-
-        # First check to see if the Scratch Pad sub menu already exists.
-        # The MenuItems contain a list of child widgets, the first one
-        # should be the AccelLabel so we can check the label text on
-        # that one.        
-        sub_menu_list  = [ menu for menu in self.parent.winsmenu.get_children() if \
-                           menu.get_children()[0].get_label() == sub_menu_label ]
-
-        if len(sub_menu_list) > 0:
-            # This list should always be of length 0 or 1 but in the unlikely
-            # situation that it is greater than 1 it will still be safe to use
-            # the first.
-            self.parent_menu_item = sub_menu_list[0]
-        else:
-            # There is no existing instances so we must create the submenu. 
-            self.parent_menu_item = gtk.MenuItem(sub_menu_label)            
-            self.parent_menu_item.set_submenu(gtk.Menu())
-            self.parent_menu_item.show()
-            self.parent.winsmenu.append(self.parent_menu_item)
-
-        # Get a handle to the submenu and remember it so that
-        # remove_itself_from_menu can delete it later.
-        self.winsmenu = self.parent_menu_item.get_submenu()
-
-        # Get the first available instance number. The instance number
-        # is stored in the data item store of the menu item so we can
-        # read it with get_data.
-        num = 1
-        existing_instances = [ menu_item.get_data(instance_number_key) \
-                               for menu_item in self.winsmenu.get_children() ]
-        
-        if len(existing_instances) > 0:
-            # Calculate the first available instance number. 
-            existing_instances.sort()
-            for instance_num in existing_instances:
-                if instance_num != num:
-                    break
-                else:
-                    num += 1
-
-        # Create the instance menuitem with the instance number in the
-        # label.
-        instance_title = _('Scratch Pad - %d') % (num,)
-        self.menu_item = gtk.MenuItem(instance_title)
-        self.menu_item.set_data(instance_number_key,num)
-        self.menu_item.connect("activate",self.present)
-        self.menu_item.show()
-
-        # Set the window title to the same as the menu label.
-        self.window.set_title(instance_title)
-
-        # Add the item to the submenu.
-        self.winsmenu.append(self.menu_item)
+        self.parent_menu_item = gtk.MenuItem(_('Scratch Pad'))
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
 
     def remove_itself_from_menu(self):
         """Remove the instance of the pad from the Window menu in the
@@ -237,14 +247,20 @@ class ScratchPadWindow:
         ScratchPad sub menu as well."""
         
         del self.parent.child_windows[self.win_key]
-        self.menu_item.destroy()
-        if len(self.winsmenu.get_children()) == 0:            
-            self.winsmenu.destroy()
-            self.parent_menu_item.destroy()
+##ALEX
+##        self.menu_item.destroy()
+##        if len(self.winsmenu.get_children()) == 0:            
+##            self.winsmenu.destroy()
+##            self.parent_menu_item.destroy()
+##ALEX  This code remporarily replaces the commented above
+        self.parent_menu_item.destroy()
 
     def present(self,obj):
         self.window.present()
 
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-util')
 
     def on_close_scratchpad(self,obj):
         self.remove_itself_from_menu()
