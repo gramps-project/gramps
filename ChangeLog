@@ -1,3 +1,8 @@
+2004-12-13  Julio Sanchez <julio.sanchez@gmail.com>
+	* src/dates/Date_es.py: first version of date handler for Spanish
+	starting from the French version
+	* src/dates/Makefile.am: include Spanish date handler
+
 2004-12-13  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py (generation): Avoid empty sections.
 
