@@ -516,6 +516,7 @@
 	    <last_modification_time>Fri, 17 Aug 2001 22:56:32 GMT</last_modification_time>
 	  </signal>
 	  <label>Places</label>
+	  <icon>earth.xpm</icon>
 	</widget>
 
 	<widget>
@@ -2993,7 +2994,7 @@
 	<class>GtkLabel</class>
 	<child_name>Notebook:tab</child_name>
 	<name>label230</name>
-	<label>label230</label>
+	<label>Places</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
