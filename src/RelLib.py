@@ -82,18 +82,15 @@ class SourceNote:
         return self.note
 
 class DataObj(SourceNote):
-    """Base class for data elements, providing source, note, privacy,
-    and confidence data"""
+    """Base class for data elements, providing source, note, and privacy data"""
 
     def __init__(self,source=None):
         """Create a new DataObj, copying data from a source object if provided"""
         SourceNote.__init__(self,source)
         
         if source:
-            self.confidence = source.confidence
             self.private = source.private
         else:
-            self.confidence = CONF_NORMAL
             self.private = 0
 
     def setPrivacy(self,val):
@@ -103,15 +100,6 @@ class DataObj(SourceNote):
     def getPrivacy(self):
         """Returns the privacy level of the data"""
         return self.private
-
-    def setConfidence(self,val):
-        """Sets the confidence level"""
-        self.confidence = val
-
-    def getConfidence(self):
-        """Returns the confidence level"""
-        return self.confidence
-        
 
 class Place(SourceNote):
     """Contains information related to a place, including multiple address
@@ -593,8 +581,6 @@ class Name(DataObj):
             return 0
         if self.private != other.private:
             return 0
-        if self.confidence != other.confidence:
-            return 0
         if self.getNote() != other.getNote():
             return 0
         if not self.getSourceRef().are_equal(other.getSourceRef()):
@@ -913,11 +899,13 @@ class Event(DataObj):
             self.date = Date(source.date)
             self.description = source.description
             self.name = source.name
+            self.cause = source.cause
         else:
             self.place = None
             self.date = Date()
             self.description = ""
             self.name = ""
+            self.cause = ""
 
     def set(self,name,date,place,description):
         """sets the name, date, place, and description of an Event instance"""
@@ -938,7 +926,7 @@ class Event(DataObj):
             return 0
         if self.description != other.description:
             return 0
-        if self.confidence != other.confidence:
+        if self.cause != other.cause:
             return 0
         if self.private != other.private:
             return 0
@@ -961,6 +949,14 @@ class Event(DataObj):
     def getPlace(self):
         """returns the Place instance of the Event"""
         return self.place 
+
+    def setCause(self,cause):
+        """sets the cause of the Event"""
+        self.cause = cause
+
+    def getCause(self):
+        """returns the cause of the Event"""
+        return self.cause 
 
     def getPlaceName(self):
         """returns the title of the Place associated with the Event"""
@@ -1234,18 +1230,28 @@ class SourceRef:
     def __init__(self,source=None):
         """creates a new SourceRef, copying from the source if present"""
         if source:
+            self.confidence = source.confidence
             self.ref = source.ref
             self.page = source.page
             self.date = Date(source.date)
             self.comments = Note(source.comments.get())
             self.text = source.text
         else:
+            self.confidence = CONF_NORMAL
             self.ref = None
             self.page = ""
             self.date = Date()
             self.comments = Note()
             self.text = ""
 
+    def setConfidence(self,val):
+        """Sets the confidence level"""
+        self.confidence = val
+
+    def getConfidence(self):
+        """Returns the confidence level"""
+        return self.confidence
+        
     def setBase(self,ref):
         """sets the Source instance to which the SourceRef refers"""
         self.ref = ref
@@ -1300,6 +1306,8 @@ class SourceRef:
             if self.getText() != other.getText():
                 return 0
             if self.getComments() != other.getComments():
+                return 0
+            if self.confidence != other.confidence:
                 return 0
             return 1
         elif not self.ref and not other.ref:

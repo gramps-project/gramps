@@ -68,7 +68,7 @@ import EditPerson
 import EditPlace
 import Marriage
 import Find
-
+import VersionControl
 #-------------------------------------------------------------------------
 #
 # Global variables.
@@ -1105,18 +1105,94 @@ def on_reports_clicked(obj):
 #-------------------------------------------------------------------------
 def on_ok_button1_clicked(obj):
     new_database_response(0)
-    filename = obj.get_filename()
+    dbname = obj.get_data("dbname")
+    getoldrev = obj.get_data("getoldrev")
+    filename = dbname.get_full_path(1)
     utils.destroy_passed_object(obj)
 
-    if filename != "":
-        read_file(filename)
+    if getoldrev.get_active():
+        dialog = libglade.GladeXML(const.gladeFile, "revselect")
+        revsel = dialog.get_widget("revselect")
+        dialog.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_loadrev_clicked" : on_loadrev_clicked,
+            })
+        revlist = dialog.get_widget("revlist")
+        revsel.set_data("o",revlist)
+        vc = VersionControl.RcsVersionControl(filename)
+        l = vc.revision_list()
+        l.reverse()
+        index = 0
+        for f in l:
+            revlist.append([f[0],f[1],f[2]])
+            revlist.set_row_data(index,f[0])
+            index = index + 1
+        revlist.set_data("n",filename)
+    else:
+        if filename != "":
+            read_file(filename)
 
+def on_loadrev_clicked(obj):
+    clist = obj.get_data("o")
+    filename = clist.get_data("n")
+    if len(clist.selection) > 0:
+        rev = clist.get_row_data(clist.selection[0])
+        vc = VersionControl.RcsVersionControl(filename)
+        f = vc.get_version(rev)
+        load_revision(f,filename,rev)
+        utils.destroy_passed_object(obj)
+
+        active_person = None
+        for person in database.getPersonMap().values():
+            if active_person == None:
+                active_person = person
+            lastname = person.getPrimaryName().getSurname()
+            if lastname and lastname not in const.surnames:
+                const.surnames.append(lastname)
+            
+        statusbar.set_progress(1.0)
+        full_update()
+        statusbar.set_progress(0.0)
+    
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
 def read_file(filename):
+    base = os.path.basename(filename)
+    if base == const.indexFile:
+        filename = os.path.dirname(filename)
+    elif not os.path.isdir(filename):
+        displayError(_("%s is not a directory") % filename)
+        return
+
+    statusbar.set_status(_("Loading %s ...") % filename)
+
+    if load_database(filename) == 1:
+        topWindow.set_title("%s - %s" % (_("Gramps"),filename))
+    else:
+        statusbar.set_status("")
+        Config.save_last_file("")
+
+    active_person = None
+    for person in database.getPersonMap().values():
+        if active_person == None:
+            active_person = person
+        lastname = person.getPrimaryName().getSurname()
+        if lastname and lastname not in const.surnames:
+            const.surnames.append(lastname)
+            
+    statusbar.set_progress(1.0)
+    full_update()
+    statusbar.set_progress(0.0)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def read_revision(filename,rev):
     base = os.path.basename(filename)
     if base == const.indexFile:
         filename = os.path.dirname(filename)
@@ -1164,7 +1240,9 @@ def on_ok_button2_clicked(obj):
 #-------------------------------------------------------------------------
 def save_file(filename):        
     import WriteXML
+    import VersionControl
 
+    path = filename
     filename = os.path.normpath(filename)
     statusbar.set_status(_("Saving %s ...") % filename)
 
@@ -1199,6 +1277,11 @@ def save_file(filename):
     database.setSavePath(old_file)
     utils.clearModified()
     Config.save_last_file(old_file)
+
+    if Config.usevc:
+        vc = VersionControl.RcsVersionControl(path)
+        vc.checkin(filename,"comments not supported yet",not Config.uncompress)
+               
     statusbar.set_status("")
     statusbar.set_progress(0)
 
@@ -1839,14 +1922,19 @@ def on_spouse_list_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_open_activate(obj):
-    wFs = libglade.GladeXML (const.gladeFile, FILESEL)
+    wFs = libglade.GladeXML(const.gladeFile, "dbopen")
     wFs.signal_autoconnect({
         "on_ok_button1_clicked": on_ok_button1_clicked,
         "destroy_passed_object": utils.destroy_passed_object
         })
 
-    fileSelector = wFs.get_widget(FILESEL)
-    fileSelector.set_filename(Config.db_dir)
+    fileSelector = wFs.get_widget("dbopen")
+    dbname = wFs.get_widget("dbname")
+    getoldrev = wFs.get_widget("getoldrev")
+    fileSelector.set_data("dbname",dbname)
+    dbname.set_default_path(Config.db_dir)
+    fileSelector.set_data("getoldrev",getoldrev)
+    getoldrev.set_sensitive(Config.usevc)
     fileSelector.show()
 
 #-------------------------------------------------------------------------
@@ -2739,6 +2827,59 @@ def load_database(name):
     filename = name + os.sep + const.indexFile
 
     if ReadXML.loadData(database,filename,load_progress) == 0:
+        return 0
+
+    database.setSavePath(name)
+
+    res = database.getResearcher()
+    if res.getName() == "" and Config.owner.getName() != "":
+        database.setResearcher(Config.owner)
+        utils.modified()
+
+    setup_bookmarks()
+
+    mylist = database.getPersonEventTypes()
+    for type in mylist:
+        ntype = const.display_pevent(type)
+        if ntype not in const.personalEvents:
+            const.personalEvents.append(ntype)
+
+    mylist = database.getFamilyEventTypes()
+    for type in mylist:
+        ntype = const.display_fevent(type)
+        if ntype not in const.marriageEvents:
+            const.marriageEvents.append(ntype)
+
+    mylist = database.getPersonAttributeTypes()
+    for type in mylist:
+        ntype = const.display_pattr(type)
+        if ntype not in const.personalAttributes:
+            const.personalAttributes.append(ntype)
+
+    mylist = database.getFamilyAttributeTypes()
+    for type in mylist:
+        if type not in const.familyAttributes:
+            const.familyAttributes.append(type)
+
+    mylist = database.getFamilyRelationTypes()
+    for type in mylist:
+        if type not in const.familyRelations:
+            const.familyRelations.append(type)
+
+    Config.save_last_file(name)
+    gtop.get_widget("filter").set_text("")
+    
+    person = database.getDefaultPerson()
+    if person:
+        active_person = person
+    return 1
+
+def load_revision(f,name,revision):
+    global active_person
+	
+    filename = name + os.sep + const.indexFile
+
+    if ReadXML.loadRevision(database,f,filename, revision,load_progress) == 0:
         return 0
 
     database.setSavePath(name)

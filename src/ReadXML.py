@@ -187,6 +187,48 @@ def loadData(database, filename, callback=None):
     xml_file.close()
     return 1
 
+#-------------------------------------------------------------------------
+#
+# Initialization function for the module.  Called to start the reading
+# of data.
+#
+#-------------------------------------------------------------------------
+def loadRevision(database, file, filename, revision, callback=None):
+
+    basefile = os.path.dirname(filename)
+    database.smap = {}
+    database.pmap = {}
+    database.fmap = {}
+
+    parser = make_parser()
+    parser.setContentHandler(GrampsParser(database,callback,basefile))
+
+    filename = _("%s (revision %s)") % (filename,revision)
+    
+    try:
+        parser.parse(file)
+    except SAXParseException,msg:
+        line = string.split(str(msg),':')
+        filemsg = _("%s is a corrupt file.") % filename
+        errtype = string.strip(line[3])
+        errmsg = _('A "%s" error on line %s was detected.') % (errtype,line[1])
+        GnomeErrorDialog("%s\n%s" % (filemsg,errmsg))
+        return 0
+    except IOError,msg:
+        errmsg = "%s\n%s" % (_("Error reading %s") % filename, str(msg))
+        GnomeErrorDialog(errmsg)
+        import traceback
+        traceback.print_exc()
+        return 0
+    except:
+        GnomeErrorDialog(_("Error reading %s") % filename)
+        import traceback
+        traceback.print_exc()
+        return 0
+
+    file.close()
+    return 1
+
 
 if __name__ == "__main__":
     import profile

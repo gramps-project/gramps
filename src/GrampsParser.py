@@ -77,6 +77,7 @@ class GrampsParser(handler.ContentHandler):
         self.scomments_list = []
         self.note_list = []
         self.tlist = []
+        self.conf = 2
         
         self.use_p = 0
         self.in_note = 0
@@ -205,7 +206,9 @@ class GrampsParser(handler.ContentHandler):
         self.event = Event()
         self.event_type = u2l(attrs["type"])
         if attrs.has_key("conf"):
-            self.event.confidence = int(attrs["conf"])
+            self.conf = int(attrs["conf"])
+        else:
+            self.conf = 2
         if attrs.has_key("priv"):
             self.event.private = int(attrs["priv"])
         
@@ -217,7 +220,9 @@ class GrampsParser(handler.ContentHandler):
     def start_attribute(self,attrs):
         self.attribute = Attribute()
         if attrs.has_key("conf"):
-            self.attribute.confidence = int(attrs["conf"])
+            self.conf = int(attrs["conf"])
+        else:
+            self.conf = 2
         if attrs.has_key("priv"):
             self.attribute.privacy = int(attrs["priv"])
         if attrs.has_key('type'):
@@ -239,7 +244,9 @@ class GrampsParser(handler.ContentHandler):
         self.address = Address()
         self.person.addAddress(self.address)
         if attrs.has_key("conf"):
-            self.address.confidence = int(attrs["conf"])
+            self.conf = int(attrs["conf"])
+        else:
+            self.conf = 2
         if attrs.has_key("priv"):
             self.address.private = int(attrs["priv"])
 
@@ -379,7 +386,9 @@ class GrampsParser(handler.ContentHandler):
     def start_name(self,attrs):
         self.name = Name()
         if attrs.has_key("conf"):
-            self.name.confidence = int(attrs["conf"])
+            self.conf = int(attrs["conf"])
+        else:
+            self.conf = 2
         if attrs.has_key("priv"):
             self.name.private = int(attrs["priv"])
         
@@ -399,6 +408,10 @@ class GrampsParser(handler.ContentHandler):
     def start_sourceref(self,attrs):
         self.source_ref = SourceRef()
         source = self.db.findSourceNoMap(u2l(attrs["ref"]))
+        if attrs.has_key("conf"):
+            self.source_ref.confidence = int(u2l(attrs["conf"]))
+        else:
+            self.source_ref.confidence = self.conf
         self.source_ref.setBase(source)
         if self.event:
             self.event.setSourceRef(self.source_ref)
@@ -610,6 +623,14 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_description(self,tag):
         self.event.setDescription(u2l(tag))
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_cause(self,tag):
+        self.event.setCause(u2l(tag))
 
     #---------------------------------------------------------------------
     #
@@ -906,6 +927,7 @@ class GrampsParser(handler.ContentHandler):
         "created"    : (start_created, None),
         "database"   : (None, None),
         "date"       : (None, stop_date),
+        "cause"      : (None, stop_cause),
         "description": (None, stop_description),
         "event"      : (start_event, stop_event),
         "families"   : (None, stop_families),

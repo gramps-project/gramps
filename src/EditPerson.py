@@ -67,7 +67,6 @@ _DEFHTTP = "http://gramps.sourceforge.net"
 INDEX      = "i"
 EDITPERSON = "p"
 OBJECT     = "o"
-MENUVAL    = "a"
 PHOTO      = "p"
 TEXT       = "t"
 NOTEOBJ    = "n"
@@ -101,6 +100,7 @@ class EditPerson:
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
+        self.event_cause_field = self.get_widget("eventCause")
         self.event_date_field  = self.get_widget("eventDate")
         self.event_descr_field = self.get_widget("eventDescription")
         self.event_details_field = self.get_widget("event_details")
@@ -137,8 +137,7 @@ class EditPerson:
         self.title = self.get_widget("title")
         self.bdate  = self.get_widget("birthDate")
         self.bplace = self.get_widget("birthPlace")
-        self.bpcombo = self.get_widget("bp_combo")
-        self.dpcombo = self.get_widget("dp_combo")
+        self.dcause = self.get_widget("deathCause")
         self.ddate  = self.get_widget("deathDate")
         self.dplace = self.get_widget("deathPlace")
         self.is_male = self.get_widget("genderMale")
@@ -173,6 +172,7 @@ class EditPerson:
         self.window.editable_enters(self.bplace);
         self.window.editable_enters(self.ddate);
         self.window.editable_enters(self.dplace);
+        self.window.editable_enters(self.dcause);
         
         self.top.signal_autoconnect({
             "destroy_passed_object"     : on_cancel_edit,
@@ -186,10 +186,8 @@ class EditPerson:
             "on_aka_update_clicked"     : on_aka_update_clicked,
             "on_apply_person_clicked"   : on_apply_person_clicked,
             "on_attr_list_select_row"   : on_attr_list_select_row,
-            "on_birth_note_clicked"     : on_birth_note_clicked,
-            "on_birth_source_clicked"   : on_birth_source_clicked,
-            "on_death_note_clicked"     : on_death_note_clicked,
-            "on_death_source_clicked"   : on_death_source_clicked,
+            "on_edit_birth_clicked"     : on_edit_birth_clicked,
+            "on_edit_death_clicked"     : on_edit_death_clicked,
             "on_delete_address_clicked" : on_delete_addr_clicked,
             "on_delete_attr_clicked"    : on_delete_attr_clicked,
             "on_delete_event"           : on_delete_event,
@@ -224,11 +222,6 @@ class EditPerson:
         self.attr_list.set_column_visibility(2,Config.show_detail)
         self.addr_list.set_column_visibility(2,Config.show_detail)
 
-        plist = self.db.getPlaceMap().values()
-        if len(plist) > 0:
-            utils.attach_places(plist,self.dpcombo,self.death.getPlace())
-            utils.attach_places(plist,self.bpcombo,self.birth.getPlace())
-
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
             val = ""
@@ -257,10 +250,7 @@ class EditPerson:
 
         self.nick.set_text(person.getNickName())
         self.title.set_text(self.pname.getTitle())
-        self.bdate.set_text(self.birth.getDate())
-        self.bplace.set_text(self.birth.getPlaceName())
-        self.ddate.set_text(self.death.getDate())
-        self.dplace.set_text(self.death.getPlaceName())
+        self.update_birth_death()
         
         # load photos into the photo window
         photo_list = person.getPhotoList()
@@ -330,21 +320,26 @@ class EditPerson:
     def redraw_attr_list(self):
         utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
-    #---------------------------------------------------------------------
-    #
-    # redraw_addr_list - redraws the address list for the person
-    #
-    #---------------------------------------------------------------------
     def redraw_addr_list(self):
+        """redraws the address list for the person"""
         utils.redraw_list(self.plist,self.addr_list,disp_addr)
 
-    #---------------------------------------------------------------------
-    #
-    # redraw_event_list - redraws the event list for the person
-    #
-    #---------------------------------------------------------------------
     def redraw_event_list(self):
+        """redraws the event list for the person"""
         utils.redraw_list(self.elist,self.event_list,disp_event)
+
+    def update_birth_death(self):
+        self.bdate.set_text(self.birth.getDate())
+        self.bplace.set_text(self.birth.getPlaceName())
+        self.ddate.set_text(self.death.getDate())
+        self.dplace.set_text(self.death.getPlaceName())
+        self.dplace.set_text(self.death.getPlaceName())
+        self.dcause.set_text(self.death.getCause())
+        self.bdate.set_position(0)
+        self.ddate.set_position(0)
+        self.bplace.set_position(0)
+        self.dplace.set_position(0)
+        self.dcause.set_position(0)
 
     #-------------------------------------------------------------------------
     #
@@ -486,21 +481,8 @@ def did_data_change(obj):
     if not epo.pname.getSourceRef().are_equal(name.getSourceRef()):
         changed = 1
 
-    epo.birth.setDate(bdate)
-
-    bplace_obj = utils.get_place_from_list(epo.bpcombo)
-    if bplace_obj == None and bplace != "":
-        changed = 1
-    epo.birth.setPlace(bplace_obj)
-
     if not epo.birth.are_equal(epo.person.getBirth()):
         changed = 1
-
-    epo.death.setDate(ddate)
-    dplace_obj = utils.get_place_from_list(epo.dpcombo)
-    if dplace_obj == None and dplace != "":
-        changed = 1
-    epo.death.setPlace(dplace_obj)
 
     if not epo.death.are_equal(epo.person.getDeath()):
         changed = 1
@@ -788,6 +770,14 @@ def on_add_addr_clicked(obj):
 def on_event_add_clicked(obj):
     EventEditor(obj.get_data(EDITPERSON),None)
 
+def on_edit_birth_clicked(obj):
+    person = obj.get_data(EDITPERSON)
+    EventEditor(person,person.birth)
+
+def on_edit_death_clicked(obj):
+    person = obj.get_data(EDITPERSON)
+    EventEditor(person,person.death)
+
 #-------------------------------------------------------------------------
 #
 # on_event_update_clicked
@@ -817,6 +807,7 @@ def on_event_select_row(obj,row,b,c):
     epo.event_date_field.set_text(event.getDate())
     epo.event_place_field.set_text(event.getPlaceName())
     epo.event_name_field.set_label(const.display_pevent(event.getName()))
+    epo.event_cause_field.set_text(event.getCause())
     epo.event_descr_field.set_text(event.getDescription())
     epo.event_details_field.set_text(utils.get_detail_text(event))
 
@@ -882,7 +873,7 @@ def on_primary_photo_clicked(obj):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_event(event,name,date,place,desc,note,priv,conf):
+def update_event(event,name,date,place,desc,note,priv,cause):
     changed = 0
 
     if event.getPlace() != place:
@@ -905,14 +896,14 @@ def update_event(event,name,date,place,desc,note,priv,conf):
         event.setDate(date)
         changed = 1
 
+    if event.getCause() != cause:
+        event.setCause(cause)
+        changed = 1
+
     if event.getPrivacy() != priv:
         event.setPrivacy(priv)
         changed = 1
 
-    if event.getConfidence() != conf:
-        event.setConfidence(conf)
-        changed = 1
-        
     return changed
 
 #-------------------------------------------------------------------------
@@ -924,7 +915,7 @@ def update_event(event,name,date,place,desc,note,priv,conf):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_address(addr,date,street,city,state,country,postal,note,priv,conf):
+def update_address(addr,date,street,city,state,country,postal,note,priv):
     changed = 0
 
     d = Date()
@@ -961,10 +952,6 @@ def update_address(addr,date,street,city,state,country,postal,note,priv,conf):
         addr.setPrivacy(priv)
         changed = 1
 
-    if addr.getConfidence() != conf:
-        addr.setConfidence(conf)
-        changed = 1
-
     return changed
 
 #-------------------------------------------------------------------------
@@ -976,7 +963,7 @@ def update_address(addr,date,street,city,state,country,postal,note,priv,conf):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_attrib(attr,type,value,note,priv,conf):
+def update_attrib(attr,type,value,note,priv):
     changed = 0
         
     if attr.getType() != const.save_pattr(type):
@@ -993,10 +980,6 @@ def update_attrib(attr,type,value,note,priv,conf):
 
     if attr.getPrivacy() != priv:
         attr.setPrivacy(priv)
-        changed = 1
-
-    if attr.getConfidence() != conf:
-        attr.setConfidence(conf)
         changed = 1
 
     return changed
@@ -1036,7 +1019,7 @@ def update_url(url,des,addr,priv):
 # actually changed.
 #
 #-------------------------------------------------------------------------
-def update_name(name,first,last,suffix,note,priv,conf):
+def update_name(name,first,last,suffix,note,priv):
     changed = 0
         
     if name.getFirstName() != first:
@@ -1060,10 +1043,6 @@ def update_name(name,first,last,suffix,note,priv,conf):
 
     if name.getPrivacy() != priv:
         name.setPrivacy(priv)
-        changed = 1
-
-    if name.getConfidence() != conf:
-        name.setConfidence(conf)
         changed = 1
 
     return changed
@@ -1174,23 +1153,11 @@ def save_person(obj):
     
     epo.birth.setDate(epo.bdate.get_text())
 
-    p1 = utils.get_place_from_list(epo.bpcombo)
-    if p1 == None and bplace != "":
-        p1 = Place()
-        p1.set_title(bplace)
-        epo.db.addPlace(p1)
-    epo.birth.setPlace(p1)
     if not person.getBirth().are_equal(epo.birth):
         person.setBirth(epo.birth)
     
     epo.death.setDate(epo.ddate.get_text())
 
-    p2 = utils.get_place_from_list(epo.dpcombo)
-    if p2 == None and dplace != "":
-        p2 = Place()
-        p2.set_title(dplace)
-        epo.db.addPlace(p2)
-    epo.death.setPlace(p2)
     if not person.getDeath().are_equal(epo.death):
         person.setDeath(epo.death)
 
@@ -1489,11 +1456,11 @@ class EventEditor:
         self.place_field = self.top.get_widget("eventPlace")
         self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
+        self.cause_field  = self.top.get_widget("eventCause")
         self.descr_field = self.top.get_widget("eventDescription")
         self.note_field = self.top.get_widget("eventNote")
         self.event_menu = self.top.get_widget("personalEvents")
         self.source_field = self.top.get_widget("event_source")
-        self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
         
         name = parent.person.getPrimaryName().getName()
@@ -1505,9 +1472,8 @@ class EventEditor:
         self.window.editable_enters(self.name_field);
         self.window.editable_enters(self.place_field);
         self.window.editable_enters(self.date_field);
+        self.window.editable_enters(self.cause_field);
         self.window.editable_enters(self.descr_field);
-
-        utils.build_confidence_menu(self.conf_menu)
 
         values = self.parent.db.getPlaceMap().values()
         if event != None:
@@ -1516,9 +1482,8 @@ class EventEditor:
             utils.attach_places(values,self.place_combo,event.getPlace())
             self.place_field.set_text(event.getPlaceName())
             self.date_field.set_text(event.getDate())
+            self.cause_field.set_text(event.getCause())
             self.descr_field.set_text(event.getDescription())
-            self.conf_menu.set_history(event.getConfidence())
-
             self.priv.set_active(event.getPrivacy())
             
             srcref_base = self.event.getSourceRef().getBase()
@@ -1532,7 +1497,6 @@ class EventEditor:
             self.note_field.set_word_wrap(1)
         else:
             utils.attach_places(values,self.place_combo,None)
-            self.conf_menu.set_history(2)
 
         self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
@@ -1561,12 +1525,12 @@ def on_event_edit_ok_clicked(obj):
 
     ename = ee.name_field.get_text()
     edate = ee.date_field.get_text()
+    ecause = ee.cause_field.get_text()
     eplace = string.strip(ee.place_field.get_text())
     eplace_obj = utils.get_place_from_list(ee.place_combo)
     enote = ee.note_field.get_chars(0,-1)
     edesc = ee.descr_field.get_text()
     epriv = ee.priv.get_active()
-    econf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if event == None:
         event = Event()
@@ -1577,7 +1541,7 @@ def on_event_edit_ok_clicked(obj):
         eplace_obj.set_title(eplace)
         ee.parent.db.addPlace(eplace_obj)
         
-    if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,econf):
+    if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,ecause):
         ee.parent.lists_changed = 1
         
     if not event.getSourceRef().are_equal(ee.srcref):
@@ -1585,6 +1549,7 @@ def on_event_edit_ok_clicked(obj):
         ee.parent.lists_changed = 1
         
     ee.parent.redraw_event_list()
+    ee.parent.update_birth_death()
     utils.destroy_passed_object(obj)
 
 #-------------------------------------------------------------------------
@@ -1604,7 +1569,6 @@ class AttributeEditor:
         self.note_field = self.top.get_widget("attr_note")
         self.attrib_menu = self.top.get_widget("attr_menu")
         self.source_field = self.top.get_widget("attr_source")
-        self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
         if self.attrib:
             self.srcref = SourceRef(self.attrib.getSourceRef())
@@ -1620,16 +1584,6 @@ class AttributeEditor:
         self.top.get_widget("attrTitle").set_text(_("Attribute Editor for %s") % name) 
         self.attrib_menu.set_popdown_strings(const.personalAttributes)
 
-        myMenu = GtkMenu()
-        index = 0
-        for name in const.confidence:
-            item = GtkMenuItem(name)
-            item.set_data(MENUVAL,index)
-            item.show()
-            myMenu.append(item)
-            index = index + 1
-        self.conf_menu.set_menu(myMenu)
-
         if attrib != None:
             self.type_field.set_text(attrib.getType())
             self.value_field.set_text(attrib.getValue())
@@ -1638,16 +1592,11 @@ class AttributeEditor:
                 self.source_field.set_text(srcref_base.getTitle())
             else:
                 self.source_field.set_text("")
-                 
-            self.conf_menu.set_history(attrib.getConfidence())
-
             self.priv.set_active(attrib.getPrivacy())
 
             self.note_field.set_point(0)
             self.note_field.insert_defaults(attrib.getNote())
             self.note_field.set_word_wrap(1)
-        else:
-            self.conf_menu.set_history(2)
 
         self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
@@ -1678,13 +1627,12 @@ def on_attrib_edit_ok_clicked(obj):
     value = ee.value_field.get_text()
     note = ee.note_field.get_chars(0,-1)
     priv = ee.priv.get_active()
-    conf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if attrib == None:
         attrib = Attribute()
         ee.parent.alist.append(attrib)
         
-    if update_attrib(attrib,type,value,note,priv,conf):
+    if update_attrib(attrib,type,value,note,priv):
         ee.parent.lists_changed = 1
         
     if not attrib.getSourceRef().are_equal(ee.srcref):
@@ -1712,7 +1660,6 @@ class NameEditor:
         self.note_field = self.top.get_widget("alt_note")
         self.source_field = self.top.get_widget("alt_source")
         self.top.get_widget("alt_surname_list").set_popdown_strings(const.surnames)
-        self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
         if self.name:
             self.srcref = SourceRef(self.name.getSourceRef())
@@ -1729,8 +1676,6 @@ class NameEditor:
         self.window.editable_enters(self.surname_field);
         self.window.editable_enters(self.suffix_field);
         
-        utils.build_confidence_menu(self.conf_menu)
-
         if name != None:
             self.given_field.set_text(name.getFirstName())
             self.surname_field.set_text(name.getSurname())
@@ -1740,13 +1685,10 @@ class NameEditor:
                 self.source_field.set_text(srcref_base.getTitle())
             else:
                 self.source_field.set_text("")
-            self.conf_menu.set_history(name.getConfidence())
             self.priv.set_active(name.getPrivacy())
             self.note_field.set_point(0)
             self.note_field.insert_defaults(name.getNote())
             self.note_field.set_word_wrap(1)
-        else:
-            self.conf_menu.set_history(2)
 
         self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
@@ -1778,13 +1720,12 @@ def on_name_edit_ok_clicked(obj):
     suffix = ee.suffix_field.get_text()
     note = ee.note_field.get_chars(0,-1)
     priv = ee.priv.get_active()
-    conf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if name == None:
         name = Name()
         ee.parent.nlist.append(name)
         
-    if update_name(name,first,last,suffix,note,priv,conf):
+    if update_name(name,first,last,suffix,note,priv):
         ee.parent.lists_changed = 1
 
     if not name.getSourceRef().are_equal(ee.srcref):
@@ -1814,7 +1755,6 @@ class AddressEditor:
         self.postal = self.top.get_widget("postal")
         self.note_field = self.top.get_widget("addr_note")
         self.source_field = self.top.get_widget("addr_source")
-        self.conf_menu = self.top.get_widget("conf")
         self.priv = self.top.get_widget("priv")
         if self.addr:
             self.srcref = SourceRef(self.addr.getSourceRef())
@@ -1835,8 +1775,6 @@ class AddressEditor:
         self.window.editable_enters(self.source_field);
         self.window.editable_enters(self.note_field);
         
-        utils.build_confidence_menu(self.conf_menu)
-
         if addr != None:
             self.street.set_text(addr.getStreet())
             self.city.set_text(addr.getCity())
@@ -1849,13 +1787,10 @@ class AddressEditor:
             else:
                 self.source_field.set_text("")
                  
-            self.conf_menu.set_history(addr.getConfidence())
             self.priv.set_active(addr.getPrivacy())
             self.note_field.set_point(0)
             self.note_field.insert_defaults(addr.getNote())
             self.note_field.set_word_wrap(1)
-        else:
-            self.conf_menu.set_history(2)
 
         self.window.set_data(OBJECT,self)
         self.top.signal_autoconnect({
@@ -1890,13 +1825,12 @@ def on_addr_edit_ok_clicked(obj):
     postal = ee.postal.get_text()
     note = ee.note_field.get_chars(0,-1)
     priv = ee.priv.get_active()
-    conf = ee.conf_menu.get_menu().get_active().get_data(MENUVAL)
 
     if addr == None:
         addr = Address()
         ee.parent.plist.append(addr)
         
-    if update_address(addr,date,street,city,state,country,postal,note,priv,conf):
+    if update_address(addr,date,street,city,state,country,postal,note,priv):
         ee.parent.lists_changed = 1
         
     if not addr.getSourceRef().are_equal(ee.srcref):

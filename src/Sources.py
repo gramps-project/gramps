@@ -46,6 +46,7 @@ from RelLib import *
 SOURCEDISP = "s"
 ACTIVESRC  = "a"
 INDEX      = "i"
+MENUVAL    = "a"
 
 #-------------------------------------------------------------------------
 #
@@ -74,7 +75,10 @@ class SourceEditor:
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
         self.title_menu.set_data("o",self)
-        
+        self.conf_menu = self.get_widget("conf")
+        utils.build_confidence_menu(self.conf_menu)
+        self.conf_menu.set_history(srcref.getConfidence())
+
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
@@ -189,12 +193,14 @@ def on_sourceok_clicked(obj):
     page = src_edit.get_widget("spage").get_text()
     date = src_edit.get_widget("sdate").get_text()
     text = src_edit.get_widget("stext").get_chars(0,-1)
+    conf = src_edit.get_widget("conf").get_menu().get_active().get_data(MENUVAL)
     comments = src_edit.get_widget("scomment").get_chars(0,-1)
 
     src_edit.source_ref.setPage(page)
     src_edit.source_ref.getDate().set(date)
     src_edit.source_ref.setText(text)
     src_edit.source_ref.setComments(comments)
+    src_edit.source_ref.setConfidence(conf)
 
     if src_edit.update:
         if src_edit.source_ref.getBase():
@@ -229,3 +235,4 @@ def on_source_changed(obj):
     src_entry.get_widget("sdate").set_sensitive(active)
     src_entry.get_widget("stext").set_sensitive(active)
     src_entry.get_widget("scomment").set_sensitive(active)
+    src_entry.get_widget("conf").set_sensitive(active)
