@@ -110,7 +110,7 @@ class HtmlLinkDoc(HtmlDoc.HtmlDoc):
 class IndividualPage:
 
     def __init__(self,db,person,photos,restrict,private,uc,link,mini_tree,map,
-                 dir_name,imgdir,doc,id,idlink,ext):
+                 dir_name,imgdir,doc,id,idlink,ext,depth):
         self.person = person
         self.db = db
         self.ext = ext
@@ -128,6 +128,7 @@ class IndividualPage:
         self.slist = []
         self.scnt = 1
         self.image_dir = imgdir
+        self.depth = depth
 
         name = person.get_primary_name().get_regular_name()
         self.doc.set_title(_("Summary of %s") % name)
@@ -280,7 +281,7 @@ class IndividualPage:
 
         self.doc.start_paragraph("Data")
         self.doc.write_raw('<PRE>\n')
-        tree = MiniTree(self.db,self.person,self.doc,ind_list)
+        tree = MiniTree(self.db,self.person,self.doc,ind_list,self.depth)
         for line in tree.lines:
             if line: self.doc.write_raw(line + '\n')
         self.doc.write_raw('</PRE>\n')
@@ -315,10 +316,19 @@ class IndividualPage:
             object_id = media_list[0].get_reference_id()
             object = self.database.find_object_from_id(object_id)
             if object.get_mime_type()[0:5] == "image":
-                file = object.get_path()
-                if os.path.isfile(file):
+                src = object.get_path()
+                junk,ext = os.path.splitext(src)
+                base = '%s%s' % (object.get_id(),ext)
+
+                if os.path.isfile(src):
                     self.doc.start_paragraph("Data")
-                    self.doc.add_media_object(file,"row",4.0,4.0)
+                    if self.image_dir:
+                        self.doc.start_link("%s/%s" % (self.image_dir,base))
+                    else:
+                        self.doc.start_link("%s" % base)
+                    description = object.get_description()
+                    self.doc.add_media_object(src,"row",4.0,4.0,description)
+                    self.doc.end_link()
                     self.doc.end_paragraph()
 
         # Start the first table, which consists of basic information, including
@@ -394,13 +404,11 @@ class IndividualPage:
         # since it has been used at the top of the page.
         
         my_list = []
-        index = 0
         for object_ref in self.person.get_media_list():
             object = self.database.find_object_from_id(object_ref.get_ref())
             if object.get_mime_type()[0:5] == "image":
-                if object.get_privacy() == 0 and index != 0:
+                if object.get_privacy() == 0:
                     my_list.append(object)
-            index = 1
             
         # if no images were found, return
         
@@ -415,6 +423,7 @@ class IndividualPage:
         self.doc.end_paragraph()
 
         self.doc.start_table("gallery","IndTable")
+        index = 0
         for obj_id in my_list:
             try:
                 obj = self.database.find_object_from_id(obj_id)
@@ -435,6 +444,14 @@ class IndividualPage:
                     except:
                         pass
 
+                # First image should not appear in the gallery, but needs
+                # the source to be linked to, hence the copy-only.
+                if index == 0: 
+                    index = 1
+                    continue
+
+                description = obj.get_reference().get_description()
+
                 self.doc.start_row()
                 self.doc.start_cell("ImageCell")
                 self.doc.start_paragraph("Data")
@@ -442,13 +459,12 @@ class IndividualPage:
                     self.doc.start_link("%s/%s" % (self.image_dir,base))
                 else:
                     self.doc.start_link("%s" % base)
-                self.doc.add_media_object(src,"row",1.5,1.5)
+                self.doc.add_media_object(src,"row",1.5,1.5,description)
                 self.doc.end_link()
                 
                 self.doc.end_paragraph()
                 self.doc.end_cell()
                 self.doc.start_cell("NoteCell")
-                description = obj.get_reference().get_description()
                 if description != "":
                     self.doc.start_paragraph("PhotoDescription")
                     self.doc.write_text(description)
@@ -658,7 +674,7 @@ class WebReport(Report.Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, include_mini_tree,
                  style, image_dir, template_name,use_id,id_link,gendex,ext,
-                 include_alpha_links,separate_alpha,n_cols,ind_template_name):
+                 include_alpha_links,separate_alpha,n_cols,ind_template_name,depth):
         self.db = db
         self.ext = ext
         self.use_id = use_id
@@ -681,6 +697,7 @@ class WebReport(Report.Report):
         self.separate_alpha = separate_alpha
         self.n_cols = n_cols
         self.ind_template_name = ind_template_name
+        self.depth = depth
 
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
@@ -768,7 +785,7 @@ class WebReport(Report.Report):
         f.close()
 
     def dump_index(self,person_list,styles,template,html_dir):
-        """Writes a index file, listing all people in the person list."""
+        """Writes an index file, listing all people in the person list."""
     
         doc = HtmlLinkDoc(self.selected_style,None,template,None)
         doc.set_extension(self.ext)
@@ -943,7 +960,7 @@ class WebReport(Report.Report):
                                   self.private, self.srccomments,
                                   self.include_link, self.include_mini_tree,
                                   my_map, dir_name, self.image_dir, tdoc,
-                                  self.use_id,self.id_link,self.ext)
+                                  self.use_id,self.id_link,self.ext,self.depth)
             idoc.create_page(my_map)
             idoc.close()
             self.progress_bar_step()
@@ -997,6 +1014,7 @@ class WebReportDialog(Report.ReportDialog):
         include_id_msg = _("Include the GRAMPS ID in the report")
         gendex_msg = _("Create a GENDEX index")
         imgdir_msg = _("Image subdirectory")
+        depth_msg = _("Ancestor tree depth")
         ext_msg = _("File extension")
         alpha_links_msg = _("Links to alphabetical sections in index page")
         sep_alpha_msg = _("Split alphabetical sections to separate pages")
@@ -1004,6 +1022,12 @@ class WebReportDialog(Report.ReportDialog):
         tree_msg = _("Include short ancestor tree")
         self.mini_tree = gtk.CheckButton(tree_msg)
         self.mini_tree.set_active(1)
+        self.depth = gtk.SpinButton()
+        self.depth.set_digits(0)
+        self.depth.set_increments(1,2)
+        self.depth.set_range(1,10)
+        self.depth.set_numeric(gtk.TRUE)
+        self.depth.set_value(3)
 
         self.use_link = gtk.CheckButton(lnk_msg)
         self.use_link.set_active(1) 
@@ -1048,7 +1072,10 @@ class WebReportDialog(Report.ReportDialog):
 
         self.add_option(imgdir_msg,self.imgdir)
         self.add_option('',self.mini_tree)
+        self.add_option(depth_msg,self.depth)
         self.add_option('',self.use_link)
+
+        self.mini_tree.connect('toggled',self.on_mini_tree_toggled)
 
         self.use_alpha_links.connect('toggled',self.on_use_alpha_links_toggled)
         self.ind_template.entry.connect('changed',self.ind_template_changed)
@@ -1303,6 +1330,7 @@ class WebReportDialog(Report.ReportDialog):
         self.restrict = self.restrict_living.get_active()
         self.private = self.no_private.get_active()
         self.img_dir_text = unicode(self.imgdir.get_text())
+        self.depth_value = self.depth.get_value()
 
         self.html_ext = unicode(self.ext.entry.get_text().strip())
         if self.html_ext[0] == '.':
@@ -1358,6 +1386,15 @@ class WebReportDialog(Report.ReportDialog):
         else:
             self.use_sep_alpha.set_sensitive(0)
 
+    def on_mini_tree_toggled(self,obj):
+        """Keep the 'Mini tree depth' spin button in line with 
+        the 'include short tree' checkbox.  If there is no mini tree included, 
+        it makes no sense to worry about its depth."""
+        if obj.get_active():
+            self.depth.set_sensitive(1)
+        else:
+            self.depth.set_sensitive(0)
+
     def ind_template_changed(self,obj):
         text = unicode(obj.get_text())
         if Report._template_map.has_key(text):
@@ -1386,7 +1423,7 @@ class WebReportDialog(Report.ReportDialog):
                                  self.use_id,self.id_link,self.use_gendex,
                                  self.html_ext,self.include_alpha_links,
                                  self.separate_alpha,self.n_cols,
-                                 self.ind_template_name)
+                                 self.ind_template_name,self.depth_value)
             MyReport.write_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
@@ -1398,47 +1435,72 @@ class MiniTree:
     class.  I'm sure that someone with more knowledge of GRAMPS can make
     it much cleaner.
     """
-    def __init__(self,db,person,doc,map):
+    def __init__(self,db,person,doc,map,depth):
         self.map = map
         self.db = db
         self.doc = doc
+        self.depth = depth
         self.person = person
-        self.lines = [ "" for i in range(9) ]
-        name = self.person.get_primary_name().get_regular_name()
-        self.lines[4] = name
-        indent = (len(name) - 1) / 2
-        self.lines[3] = self.lines[5] = self.lines[6] = ' ' * indent + '|'
-        self.draw_parents(person,2,6,indent,1)
+        self.lines_map = {} 
+        self.draw_parents(person,2**(self.depth-1),'',self.depth,1)
+        keys = self.lines_map.keys()
+        keys.sort()
+        self.lines = [ self.lines_map[key] for key in keys ]
 
-    def draw_parents(self, person, father_line, mother_line, indent, recurse):
+    def draw_parents(self,person,position,indent,generations,topline):
+
+        name = person.get_primary_name().get_regular_name()
+        self.lines_map[position] = ""
+
+        if topline and indent:
+            # if we're on top (father's) line, replace last '|' with space
+            self.lines_map[position] += indent[:-1] + ' '
+        else:
+            self.lines_map[position] += indent
+
+        if person and person.get_id() and self.map.has_key(person.get_id()):
+            self.lines_map[position] += "<A HREF='%s%s'>%s</A>" % (person.get_id(),
+                                                           self.doc.ext, name)
+        else:
+            self.lines_map[position] += "<U>%s</U>" % name
+
+        # We are done with this generation
+        generations = generations - 1
+        if not generations: return
+
+        offset = 2**(generations-1)
+
         family_id = person.get_main_parents_family_id()
         if not family_id: return
 
         family = self.db.find_family_from_id(family_id)
-        father_name = mother_name = ""
         father_id = family.get_father_id()
         mother_id = family.get_mother_id()
+
+        if topline:
+            # if we're on top (father's) line, replace last '|' with space
+            # then add '|' to the end for the next generation
+            if indent:
+                father_indent = indent[:-1] + ' ' + ' ' * len(name) + '|'
+            else:
+                father_indent = ' ' * len(name) + '|'
+            mother_indent = indent + ' ' * len(name) + '|'
+        else:
+            # if we're not on top (i.e. mother's) line, remove last '|'
+            # from next mother's indent, then add '|' to both
+            father_indent = indent + ' ' * len(name) + '|'
+            mother_indent = indent[:-1] + ' ' + ' ' * len(name) + '|'
+
         if father_id:
             father = self.db.find_person_from_id(father_id)
-            father_name = father.get_primary_name().get_regular_name()
+            next_pos = position - offset 
+            self.lines_map[position] += '|'
+            self.draw_parents(father,next_pos,father_indent,generations,1)
+            
         if mother_id:
             mother = self.db.find_person_from_id(mother_id)
-            mother_name = mother.get_primary_name().get_regular_name()
-        pad = len(father_name)
-        if pad < len(mother_name):
-            pad = len(mother_name)
-        father_name = _hline + father_name + _hline * (pad-len(father_name)+1)
-        mother_name = _hline + mother_name + _hline * (pad-len(mother_name)+1)
-        self.draw_father(father, father_name, father_line, indent)
-        self.draw_mother(mother, mother_name, mother_line, indent)
-        indent += pad+3
-        if recurse:
-            if father:
-                self.draw_parents(father, father_line-1, father_line-1,
-                                  indent, 0)
-            if mother:
-                self.draw_parents(mother, mother_line+1, mother_line+1,
-                                  indent, 0)
+            next_pos = position + offset
+            self.draw_parents(mother,next_pos,mother_indent,generations,0)
 
     def draw_father(self, person, name, line, indent):
         self.draw_string(line, indent, '|')
