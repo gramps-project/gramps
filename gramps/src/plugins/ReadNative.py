@@ -67,7 +67,7 @@ class ReadNative:
         if name == "":
             return
 
-        name = "%s/%s" % (name,const.indexFile)
+        name = "%s/%s" % (name,const.xmlFile)
         Utils.destroy_passed_object(self.top)
         importData(self.db,name,progress)
         self.callback(1)
