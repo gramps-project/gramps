@@ -301,8 +301,11 @@ def exportData(database, filename, callback):
 
             for photo in person.getPhotoList():
                 path = photo.getPath()
-                if os.path.dirname(path) == fileroot:
-                    path = os.path.basename(path)
+                l = len(fullpath)
+                if len(path) >= l:
+                    if fullpath == path[0:l]:
+                        path = path[l+1:]
+                print path
                 g.write('      <img src="%s"' % fix(path) )
                 g.write(' descrip="%s"' % fix(photo.getDescription()))
                 proplist = photo.getPropertyList()
