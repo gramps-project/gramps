@@ -311,12 +311,12 @@ class IndividualPage:
         self.doc.start_table("gallery","IndTable")
         for obj in my_list:
             try:
+                src = obj.getReference().getPath()
+                base = os.path.basename(src)
                 shutil.copy(src,"%s/images/%s" % (self.dir,base))
                 self.doc.start_row()
                 self.doc.start_cell("ImageCell")
                 self.doc.start_paragraph("Data")
-                src = obj.getReference().getPath()
-                base = os.path.basename(src)
                 self.doc.start_link("images/%s" % base)
                 self.doc.add_photo(src,"row",1.5,1.5)
                 self.doc.end_link()
