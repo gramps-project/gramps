@@ -75,6 +75,7 @@ pkgpython_PYTHON = \
 	RelLib.py\
 	Report.py\
 	SelectChild.py\
+	SelectObject.py\
 	sort.py\
 	soundex.py\
 	Sources.py\
