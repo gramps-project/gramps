@@ -12,7 +12,6 @@ pkgpython_PYTHON = \
 	OpenOfficeDoc.py\
 	OpenSpreadSheet.py\
 	PdfDoc.py\
-	PdfDrawDoc.py\
 	PSDrawDoc.py\
 	RTFDoc.py\
 	SvgDrawDoc.py
