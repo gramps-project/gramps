@@ -85,7 +85,7 @@ class EditPlace:
 
         Utils.set_titles(self.top,title_label,_('Place Editor'))
 
-        self.glry = ImageSelect.Gallery(place, self.path, self.iconlist, self.db, self)
+        self.glry = ImageSelect.Gallery(place, self.path, self.iconlist, self.db, self,self.top)
         self.title = self.top_window.get_widget("place_title")
         self.city = self.top_window.get_widget("city")
         self.parish = self.top_window.get_widget("parish")

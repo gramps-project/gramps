@@ -3,6 +3,9 @@
 	Fall back to not using soundex if the charset can't be latin-1 encoded.
 	* src/plugins/soundgen.py: Fall back to empty input.
 	* src/plugins/rel_ru.py: Add more possible russian LANG values.
+	* src/EditPlace.py: Pass window to the Gallery.
+	* src/ImageSelect.py: Run modal dialog, using parent window.
+	* src/imagesel.glade: Define proper button responses.
 
 2004-02-05  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/cmdline.xml: Update.
