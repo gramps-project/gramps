@@ -38,6 +38,13 @@ import codecs
 
 #-------------------------------------------------------------------------
 #
+# load gtk libraries
+#
+#-------------------------------------------------------------------------
+import gtk
+
+#-------------------------------------------------------------------------
+#
 # load GRAMPS libraries
 #
 #-------------------------------------------------------------------------
@@ -66,7 +73,7 @@ except:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, callback):
+def exportData(database, filename, callback=None):
     if os.path.isfile(filename):
         try:
             shutil.copyfile(filename, filename + ".bak")
@@ -74,7 +81,7 @@ def exportData(database, filename, callback):
         except:
             pass
 
-    compress = GrampsCfg.uncompress == 0 and _gzip_ok == 1
+    compress = _gzip_ok == 1
 
     try:
         g = XmlWriter(database,callback,0,compress)
@@ -798,3 +805,17 @@ def conf_priv(obj):
         return ' priv="%d"' % obj.get_privacy()
     else:
         return ''
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+_mime_type = 'data.gramps'
+_filter = gtk.FileFilter()
+_filter.set_name(_('GRAMPS XML databases'))
+_filter.add_pattern(_mime_type)
+_ext_list = '.gramps'
+
+from Plugins import register_export
+register_export(exportData,_filter,_ext_list)
