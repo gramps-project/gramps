@@ -1,6 +1,7 @@
 2004-03-04  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: New paragraph formatting algorithm.
 	Proper alignment support (no implementation for justify yet).
+	Switch to utf8 capable fonts. Enable monospace for formatted notes.
 
 2004-03-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Superscript support, line breaks, 

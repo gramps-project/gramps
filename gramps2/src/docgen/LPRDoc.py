@@ -70,6 +70,7 @@ _FONT_REGULAR       = "Regular"
 _LINE_BREAK = "Break"
 _BOLD       = "Bold"
 _SUPER      = "Super"
+_MONO       = "Mono"
 
 #------------------------------------------------------------------------
 #
@@ -260,6 +261,8 @@ class GnomePrintParagraph:
             elif directive == _SUPER:
                 size = fontstyle.get_size()
                 fontstyle.set_size(size-2)
+            elif directive == _MONO:
+                fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
             
             font = find_font_from_fontstyle(fontstyle)
             width += font.get_width_utf8(text)
@@ -279,6 +282,8 @@ class GnomePrintParagraph:
             elif directive == _SUPER:
                 size = fontstyle.get_size()
                 fontstyle.set_size(size-2)
+            elif directive == _MONO:
+                fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
 
             for word in text.split():
                 length = get_text_width(word,fontstyle)
@@ -327,6 +332,8 @@ class GnomePrintParagraph:
             elif directive == _SUPER:
                 size = fontstyle.get_size()
                 fontstyle.set_size(size-2)
+            elif directive == _MONO:
+                fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
             
             if text and avail_width > get_text_width(text,fontstyle):
                 avail_width -= get_text_width(text,fontstyle)
@@ -672,6 +679,7 @@ class LPRDoc(BaseDoc.BaseDoc):
         if format == 1:
             for line in text.split('\n'):
                 self.start_paragraph(style_name)
+                self.__paragraph_directive = _MONO
                 self.write_text(line)
                 self.end_paragraph()
         elif format == 0:
@@ -739,6 +747,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                     size = fontstyle.get_size()
                     fontstyle.set_size(size-2)
                     y = y + 0.25 * _LINE_SPACING
+                elif directive == _MONO:
+                    fontstyle.set_type_face(BaseDoc.FONT_MONOSPACE)
 
                 textlist = text.split()
                 if start_piece == end_piece:
