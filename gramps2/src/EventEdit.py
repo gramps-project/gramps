@@ -149,12 +149,13 @@ class EventEditor:
         pass
 
     def on_menu_changed(self,obj):
+        self.date.set(self.date_field.get_text())
         self.date.set_calendar(obj.get_data("d"))
         self.date_field.set_text(self.date.getDate())
         
     def get_place(self,field,makenew=0):
         text = strip(field.get_text())
-        if text != "":
+        if text:
             if self.pmap.has_key(text):
                 return self.parent.db.getPlaceMap()[self.pmap[text]]
             elif makenew:
