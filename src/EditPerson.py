@@ -91,8 +91,8 @@ class EditPerson:
         self.person = person
         self.orig_surname = person.get_primary_name().get_surname()
         self.parent = parent
-        self.orig_id = self.person.get_handle()
-        if self.parent.child_windows.has_key(self.orig_id):
+        self.orig_handle = self.person.get_handle()
+        if self.parent.child_windows.has_key(self.orig_handle):
             self.parent.child_windows[self.person.get_handle()].present(None)
             return
         self.db = db
@@ -106,7 +106,7 @@ class EditPerson:
         self.update_death = 0
         self.pdmap = {}
         self.add_places = []
-        self.should_guess_gender = (self.orig_id == '' and
+        self.should_guess_gender = (person.get_gramps_id() == '' and
                                     person.get_gender () ==
                                     RelLib.Person.unknown)
 
