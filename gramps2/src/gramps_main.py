@@ -178,6 +178,7 @@ class Gramps:
             TipOfDay.TipOfDay()
 
         self.db.set_researcher(GrampsCfg.get_researcher())
+        self.update_display(0)
 
     def date_format_key_update(self,client,cnxn_id,entry,data):
         GrampsCfg.set_calendar_date_format()
