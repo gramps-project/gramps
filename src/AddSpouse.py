@@ -151,6 +151,7 @@ class AddSpouse:
         """
         self.addperson(person)
         self.update_data(person.getId())
+        self.slist.center_selected()
 
     def select_spouse_clicked(self,obj):
         """
