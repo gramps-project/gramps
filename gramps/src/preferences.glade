@@ -328,7 +328,7 @@
 		    <name>dbdir</name>
 		    <history_id>dbdir</history_id>
 		    <max_saved>10</max_saved>
-		    <title>Select default database directory- GRAMPS</title>
+		    <title>Select default database directory - GRAMPS</title>
 		    <directory>True</directory>
 		    <modal>False</modal>
 		    <child>
