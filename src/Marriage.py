@@ -98,6 +98,8 @@ class Marriage:
             "on_marriageUpdateBtn_clicked" : self.on_update_clicked,
             "on_photolist_button_press_event" : self.gallery.on_button_press_event,
             "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
+            "on_event_button_press" : self.event_double_click,
+            "on_attr_button_press" : self.attr_double_click,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
 
@@ -447,6 +449,10 @@ class Marriage:
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.save_pevent,None,None,0,self.cb)
 
+    def event_double_click(self,obj,event):
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
+            self.on_update_clicked(obj)
+
     def on_update_clicked(self,obj):
         import EventEdit
         if len(obj.selection) <= 0:
@@ -491,6 +497,10 @@ class Marriage:
             self.attr_src_field.set_text('')
             self.attr_conf_field.set_text('')
 
+    def attr_double_click(self,obj,event):
+        if event.button == 1 and event.type == _2BUTTON_PRESS:
+            self.on_update_attr_clicked(obj)
+            
     def on_update_attr_clicked(self,obj):
         import AttrEdit
         if len(obj.selection) > 0:

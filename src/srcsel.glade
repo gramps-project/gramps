@@ -770,6 +770,12 @@ Very High
 	  <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
 	  <show_titles>True</show_titles>
 	  <shadow_type>GTK_SHADOW_IN</shadow_type>
+          <signal>
+            <name>button_press_event</name>
+            <handler>on_src_button_press</handler>
+            <last_modification_time>Thu, 14 Nov 2002 20:51:00
+            GMT</last_modification_time>
+          </signal>
 
 	  <widget>
 	    <class>GtkHBox</class>
