@@ -48,6 +48,8 @@ import DbPrompter
 import QuestionDialog
 import GrampsGconfKeys
 import RecentFiles
+import Plugins
+import Report
 
 #-------------------------------------------------------------------------
 #
@@ -174,10 +176,14 @@ class ArgHandler:
                 self.exports.append((outfname,outformat))
             elif o in ( '-a', '--action' ):
                 action = v
-                if action not in ( 'check', 'summary' ):
+                if action not in ( 'check', 'summary', 'report' ):
                     print "Unknown action: %s. Ignoring." % action
                     continue
-                self.actions.append(action)
+                options_str = ""
+                if opt_ix<len(options)-1 \
+                            and options[opt_ix+1][0] in ( '-p', '--options' ): 
+                    options_str = options[opt_ix+1][1]
+                self.actions.append((action,options_str))
             
     #-------------------------------------------------------------------------
     #
@@ -304,9 +310,11 @@ class ArgHandler:
                 print "Exporting: file %s, format %s." % expt
                 self.cl_export(expt[0],expt[1])
 
-            for action in self.actions:
+            for (action,options_str) in self.actions:
                 print "Performing action: %s." % action
-                self.cl_action(action)
+                if options_str:
+                    print "Using options string: %s" % options_str
+                self.cl_action(action,options_str)
             
             print "Cleaning up."
             # remove import db after use
@@ -489,7 +497,7 @@ class ArgHandler:
     # Action handler
     #
     #-------------------------------------------------------------------------
-    def cl_action(self,action):
+    def cl_action(self,action,options_str):
         """
         Command-line action routine. Try to perform specified action.
         Any errors will cause the os._exit(1) call.
@@ -508,6 +516,36 @@ class ArgHandler:
             import Summary
             text = Summary.build_report(self.parent.db,None)
             print text
+        elif action == "report":
+            try:
+                options_str_dict = dict( [ tuple(chunk.split('='))
+                    for chunk in options_str.split(',') ] )
+            except:
+                options_str_dict = {}
+                print "Ignoring invalid options string."
+
+            name = options_str_dict.pop('name',None)
+            if not name:
+                print "Report name not given. Please use name=reportname"
+                os._exit(1)
+
+            found = False
+            for item in Plugins._cl:
+                if name == item[0]:
+                    category = item[1]
+                    report_class = item[2]
+                    options_class = item[3]
+                    if category == const.CATEGORY_BOOK:
+                        options_class(self.parent.db,name,category,options_str_dict)
+                    else:
+                        Report.cl_report(self.parent.db,name,category,
+                                report_class,options_class,options_str_dict)
+                    found = True
+                    return
+
+            print "Unknown report name. Available names are:"
+            for item in Plugins._cl:
+                print "   %s" % item[0]
         else:
             print "Unknown action: %s." % action
             os._exit(1)

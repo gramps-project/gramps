@@ -21044,7 +21044,7 @@ Other</property>
   <property name="title" translatable="yes"></property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
-  <property name="modal">True</property>
+  <property name="modal">False</property>
   <property name="default_width">400</property>
   <property name="default_height">300</property>
   <property name="resizable">True</property>
@@ -21078,7 +21078,6 @@ Other</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="styles"/>
 	    </widget>
 	  </child>
 

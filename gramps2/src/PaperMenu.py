@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -65,6 +67,7 @@ def make_paper_menu(main_menu,default=""):
         name = paper.get_name()
         menuitem = gtk.MenuItem(name)
         menuitem.set_data("i",paper)
+        menuitem.set_data("label",name)
         menuitem.show()
         myMenu.append(menuitem)
         if default == name:
@@ -83,22 +86,23 @@ def make_orientation_menu(main_menu,value=0):
     menuitem = gtk.MenuItem(_("Portrait"))
     menuitem.set_data("i",BaseDoc.PAPER_PORTRAIT)
     menuitem.show()
-    if value == BaseDoc.PAPER_PORTRAIT:
-        menuitem.select()
     myMenu.append(menuitem)
 
     menuitem = gtk.MenuItem(_("Landscape"))
     menuitem.set_data("i",BaseDoc.PAPER_LANDSCAPE)
     menuitem.show()
-    if value == BaseDoc.PAPER_LANDSCAPE:
-        menuitem.select()
     myMenu.append(menuitem)
+
+    if value == BaseDoc.PAPER_PORTRAIT:
+        myMenu.set_active(0)
+    elif value == BaseDoc.PAPER_LANDSCAPE:
+        myMenu.set_active(1)
 
     main_menu.set_menu(myMenu)
 
 #-------------------------------------------------------------------------
 #
-# FilterParser
+# PageSizeParser
 #
 #-------------------------------------------------------------------------
 class PageSizeParser(handler.ContentHandler):

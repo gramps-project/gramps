@@ -52,7 +52,7 @@ class StyleListDisplay:
     add, edit, and delete styles from a StyleSheet.
     """
 
-    def __init__(self,stylesheetlist,callback):
+    def __init__(self,stylesheetlist,callback,parent_window):
         """
         Creates a StyleListDisplay object that displays the styles in the
         StyleSheet.
@@ -64,8 +64,9 @@ class StyleListDisplay:
         
         self.sheetlist = stylesheetlist
         self.top = gtk.glade.XML(const.stylesFile,"styles","gramps")
+        self.window = self.top.get_widget('styles')
 
-        Utils.set_titles(self.top.get_widget('styles'),
+        Utils.set_titles(self.window,
                          self.top.get_widget('title'),
                          _('Document Styles'))
                                              
@@ -85,6 +86,10 @@ class StyleListDisplay:
         self.list = ListModel.ListModel(self.top.get_widget("list"),
                                         [('Style',-1,10)],)
         self.redraw()
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        response = self.window.run()
+        self.window.destroy()
 
     def redraw(self):
         """Redraws the list of styles that are current available"""
@@ -106,8 +111,8 @@ class StyleListDisplay:
         StyleEditor("New Style",style,self)
 
     def on_ok_clicked(self,obj):
-        """Called with the OK button is clicked; Calls the callback task, then
-        saves the stylesheet, and destroys the window."""
+        """Called with the OK button is clicked; Calls the callback task,
+        then saves the stylesheet."""
         self.callback()
         try:
             self.sheetlist.save()
@@ -117,7 +122,6 @@ class StyleListDisplay:
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
-        Utils.destroy_passed_object(obj)
 
     def on_button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
