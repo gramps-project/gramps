@@ -142,6 +142,32 @@ def importData(database, filename, callback,cl=0):
 
     xml_file.close()
     
+    # copy all local images into <database>.images directory
+    db_dir = os.path.abspath(os.path.dirname(database.get_save_path()))
+    db_base = os.path.basename(database.get_save_path())
+    img_dir = "%s/%s.images" % (db_dir,db_base)
+    first = not os.path.exists(img_dir)
+    
+    for m_id in database.get_object_keys():
+        mobject = database.try_to_find_object_from_id(m_id)
+        oldfile = mobject.get_path()
+        if oldfile[0] != '/':
+            if first:
+                os.mkdir(img_dir)
+                first = 0
+            newfile = "%s/%s" % (img_dir,oldfile)
+            try:
+                oldfilename = "%s/%s" % (basefile,oldfile)
+                shutil.copyfile(oldfilename,newfile)
+                try:
+                    shutil.copystat(oldfilename,newfile)
+                except:
+                    pass
+                mobject.set_path(newfile)
+                database.commit_media_object(mobject,None)
+            except:
+                pass
+
 #-------------------------------------------------------------------------
 #     def remove_clicked():
 #         # File is lost => remove all references and the object itself
@@ -690,10 +716,7 @@ class GrampsParser:
         self.object.set_description(attrs['description'])
         src = attrs["src"]
         if src:
-            if src[0] != '/':
-                self.object.set_path("%s/%s" % (self.base,src))
-            else:
-                self.object.set_path(src)
+            self.object.set_path(src)
 
     def stop_people(self,*tag):
         pass
@@ -1090,7 +1113,7 @@ class GrampsParser:
         self.tlist = []
 
         try:
-	    f,self.func = self.func_map[tag]
+            f,self.func = self.func_map[tag]
             if f:
                 f(attrs)
         except KeyError:

@@ -3367,6 +3367,11 @@ class GrampsDB:
             return self.media_map.keys()
         return []
 
+    def get_event_keys(self):
+        if self.event_map:
+            return self.event_map.keys()
+        return []
+
     def sortbysource(self,f,s):
         f1 = self.source_map[f][1].upper()
         s1 = self.source_map[s][1].upper()
