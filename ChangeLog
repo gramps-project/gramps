@@ -1,4 +1,4 @@
-2003-11-19  Alex Roitman  <shura@alex.neuro.umn.edu>
+2003-11-18  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/NameEdit.py (on_help_clicked): Add function.
 	* src/UrlEdit.py (on_help_clicked): Add function.
 	* src/gramps.glade: Add hot keys to the family view list labels.
@@ -8,6 +8,15 @@
 	transient for its parent; (ChooseParents.on_help_clicked): 
 	Add function.
 	* src/FamilyView.py: Pass the window to the ChooseParents classes.
+	* src/Sources.py: (SourceSelector.on_help_clicked, 
+	SourceEditor.on_help_clicked): Add functions.
+	* src/srcsel.glade: Add Help buttons to dialogs.
+	* src/places.glade: Add Help buttons to dialogs.
+	* src/EditSource.py (on_help_clicked): Add function.
+	* src/EditPlace.py (on_help_clicked): Add function; 
+	(__init__): Make the dialog modal and a transient for its parent;
+	* src/PlaceView.py: Pass the window to the EditPlace class.
+    * NEWS, TODO: Update status.
 
 2003-11-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add Help buttons to dialogs.

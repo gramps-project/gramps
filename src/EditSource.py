@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -86,6 +87,7 @@ class EditSource:
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
+            "on_sourceEditor_help_clicked" : self.on_help_clicked,
             })
 
         if self.source.getId() == "":
@@ -97,10 +99,15 @@ class EditSource:
 
         self.display_references()
         self.top.show()
-        val = self.top.run()
-        if val == gtk.RESPONSE_OK:
+        self.val = self.top.run()
+        if self.val == gtk.RESPONSE_OK:
             self.on_source_apply_clicked()
         self.top.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-src')
+        self.val = self.top.run()
 
     def close(self,obj):
         self.gallery.close()

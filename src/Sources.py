@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -26,6 +28,7 @@
 import gobject
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
@@ -62,6 +65,7 @@ class SourceSelector:
             "on_add_src_clicked"    : self.add_src_clicked,
             "on_del_src_clicked"    : self.del_src_clicked,
             "on_edit_src_clicked"   : self.edit_src_clicked,
+            "on_help_srcsel_clicked"   : self.on_help_clicked,
             })
 
         self.slist = self.top.get_widget("slist")
@@ -92,10 +96,15 @@ class SourceSelector:
             self.window.set_transient_for(self.parent.window)
 
         self.window.show()
-        val = self.window.run()
-        if val == gtk.RESPONSE_OK:
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
             self.src_ok_clicked()
         self.window.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-si')
+        self.val = self.window.run()
 
     def selection_changed(self,obj):
         (store,iter) = self.selection.get_selected()
@@ -245,6 +254,7 @@ class SourceEditor:
         self.showSource.signal_autoconnect({
             "on_source_changed"     : self.on_source_changed,
             "on_add_src_clicked"    : self.add_src_clicked,
+            "on_help_srcDisplay_clicked"   : self.on_help_clicked,
             })
         self.source_field = self.get_widget("sourceList")
         self.title_menu = self.get_widget("source_title")
@@ -271,10 +281,15 @@ class SourceEditor:
         self.sourceDisplay.show()
         if self.parent:
             self.sourceDisplay.set_transient_for(self.parent.window)
-        val = self.sourceDisplay.run()
-        if val == gtk.RESPONSE_OK:
+        self.val = self.sourceDisplay.run()
+        if self.val == gtk.RESPONSE_OK:
             self.on_sourceok_clicked()
         self.sourceDisplay.destroy()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','adv-si')
+        self.val = self.sourceDisplay.run()
 
     def set_button(self):
         if self.active_source:
