@@ -1054,8 +1054,6 @@ class GedcomParser:
             elif matches[1] == "PLAC":
                 address.setStreet(matches[2])
                 self.parse_address(address,level+1)
-            elif matches[1] == "PHON":
-                pass
             elif matches[1] == "NOTE":
                 note = self.parse_note(matches,address,level+1,note)
             else:
@@ -1067,7 +1065,10 @@ class GedcomParser:
         while 1:
             matches = self.get_next()
 	    if int(matches[0]) < level:
-                self.backup()
+                if matches[1] == "PHON":
+                    address.setPhone(matches[2])
+                else:
+                    self.backup()
                 return
             elif matches[1] in [ "ADDR", "ADR1", "ADR2" ]:
                 val = address.getStreet()
@@ -1080,8 +1081,6 @@ class GedcomParser:
                 address.setStreet(val)
             elif matches[1] == "CITY":
                 address.setCity(matches[2])
-            elif matches[1] == "PHON":
-                address.setNote(matches[2])
             elif matches[1] == "STAE":
                 address.setState(matches[2])
             elif matches[1] == "POST":

@@ -1,5 +1,11 @@
 2003-12-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/ru/getstart.xml: Translation update.
+	* src/plugins/WriteGedcom.py (export_data): Correct researcher's 
+	PHON field; (write_person): Correct exported PHON fields.
+	* src/plugins/ReadGedcom.py (parse_residence): Remove PHON field since
+	it is taken care of by parse_address() now; 
+	(parse_address): Parse PHON field, provided it immediately follows
+	ADDR structure. 
 
 2003-12-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: Add phone to address, postal code and phone to
