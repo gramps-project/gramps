@@ -425,7 +425,7 @@ class OpenOfficeDoc(TextDoc):
             base = os.path.basename(file)
             image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
             if no_pil:
-                cmd = "%s -size %dx%d %s %s" % (const.convert,width,height,file,image_name)
+                cmd = "%s -size %dx%d '%s' '%s'" % (const.convert,width,height,file,image_name)
                 os.system(cmd)
             else:
                 im = PIL.Image.open(file)

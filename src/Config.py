@@ -288,6 +288,8 @@ def on_propertybox_apply(obj,page):
     global display_attr
     global attr_name
     global hide_altnames
+    global paper_preference
+    global output_preference
 
     if page != -1:
         return

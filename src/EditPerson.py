@@ -699,8 +699,14 @@ def on_add_attr_clicked(obj):
     edit_person_obj = obj.get_data(EDITPERSON)
 
     attr = Attribute()
-    attr.setType(edit_person_obj.attr_type.get_text())
+    name = edit_person_obj.attr_type.get_text()
+    attr.setType(name)
     attr.setValue(edit_person_obj.attr_value.get_text())
+
+    if name not in const.personalAttributes:
+        const.personalAttributes.append(name)
+        menu = edit_person_obj.get_widget("attribute")
+        menu.set_popdown_strings(const.personalAttributes)
 
     edit_person_obj.person.addAttribute(attr)
     edit_person_obj.redraw_attr_list()

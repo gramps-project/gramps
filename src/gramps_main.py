@@ -702,7 +702,7 @@ def on_edit_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def new_source_after_edit(source):
-    database.addSource(source.source)
+    database.addSource(source)
     update_display(1)
 
 #-------------------------------------------------------------------------
