@@ -1,4 +1,4 @@
-#
+#coding: utf-8
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004  Donald N. Allingham
@@ -43,6 +43,23 @@ import locale
 #
 #-------------------------------------------------------------------------
 import Date
+
+#-------------------------------------------------------------------------
+#
+# Top-level module functions
+#
+#-------------------------------------------------------------------------
+def gregorian_valid(date_tuple):
+    day = date_tuple[0]
+    month = date_tuple[1]
+    valid = True
+    if month > 12:
+        valid = False
+    elif day > _max_days[month]:
+        valid = False
+    return valid
+
+_max_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
 
 #-------------------------------------------------------------------------
 #
@@ -486,6 +503,11 @@ class DateParser:
         self.set_date(new_date,text)
         return new_date
 
+#-------------------------------------------------------------------------
+#
+# French parser
+#
+#-------------------------------------------------------------------------
 class DateParserFR(DateParser):
 
     modifier_to_int = {
@@ -531,17 +553,56 @@ class DateParserFR(DateParser):
     _range    = re.compile("(ent.|ent|entre)\s+(.+)\s+et\s+(.+)",
                            re.IGNORECASE)
 
+#-------------------------------------------------------------------------
+#
+# Russian parser
+#
+#-------------------------------------------------------------------------
+class DateParserRU(DateParser):
 
+    modifier_to_int = {
+        u'до'    : Date.MOD_BEFORE, 
+        u'по'    : Date.MOD_BEFORE,
+        u'после' : Date.MOD_AFTER,
+        u'п.'    : Date.MOD_AFTER,
+        u'с'     : Date.MOD_AFTER,
+        u'ок.'   : Date.MOD_ABOUT,
+        u'около'    : Date.MOD_ABOUT,
+        u'примерно'  : Date.MOD_ABOUT,
+        u'прим.'     : Date.MOD_ABOUT,
+        u'приблизительно'  : Date.MOD_ABOUT,
+        u'приб.'  : Date.MOD_ABOUT,
+        }
 
-_max_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+    calendar_to_int = {
+        u'григорианский'      : Date.CAL_GREGORIAN,
+        u'г'                 : Date.CAL_GREGORIAN,
+        u'юлианский'            : Date.CAL_JULIAN,
+        u'ю'                 : Date.CAL_JULIAN,
+        u'еврейский'         : Date.CAL_HEBREW,
+        u'е'                 : Date.CAL_HEBREW,
+        u'исламский'         : Date.CAL_ISLAMIC,
+        u'и'                 : Date.CAL_ISLAMIC,
+        u'республиканский': Date.CAL_FRENCH,
+        u'р'                 : Date.CAL_FRENCH,
+        u'персидский'             : Date.CAL_PERSIAN,
+        u'п'                 : Date.CAL_PERSIAN,
+        }
 
-def gregorian_valid(date_tuple):
-    day = date_tuple[0]
-    month = date_tuple[1]
-    valid = True
-    if month > 12:
-        valid = False
-    elif day > _max_days[month]:
-        valid = False
-    return valid
+    quality_to_int = {
+        u'оценено'  : Date.QUAL_ESTIMATED,
+        u'оцен.'       : Date.QUAL_ESTIMATED,
+        u'оц.'        : Date.QUAL_ESTIMATED,
+        u'оцен'       : Date.QUAL_ESTIMATED,
+        u'оц'        : Date.QUAL_ESTIMATED,
+        u'вычислено'      : Date.QUAL_CALCULATED,
+        u'вычисл.'       : Date.QUAL_CALCULATED,
+        u'выч.' : Date.QUAL_CALCULATED,
+        u'вычисл'       : Date.QUAL_CALCULATED,
+        u'выч' : Date.QUAL_CALCULATED,
+        }
 
+    _span     = re.compile("(с|от)\s+(.+)\s+(по|до)\s+(.+)",
+                           re.IGNORECASE)
+    _range    = re.compile("(между|меж|меж.)\s+(.+)\s+и\s+(.+)",
+                           re.IGNORECASE)
