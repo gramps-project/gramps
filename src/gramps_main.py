@@ -372,9 +372,7 @@ class Gramps:
         self.source_view = SourceView.SourceView(self.db,self.gtop,self.update_display)
         self.media_view  = MediaView.MediaView(self.db,self.gtop,self.update_display)
 
-        self.addbtn = self.gtop.get_widget('addbtn')
-        self.removebtn = self.gtop.get_widget('removebtn')
-        self.editbtn = self.gtop.get_widget('editbtn')
+        self.add_button = self.gtop.get_widget('addbtn')
         self.backbtn = self.gtop.get_widget('back_btn')
         self.fwdbtn = self.gtop.get_widget('fwd_btn')
         self.back = self.gtop.get_widget('back')
@@ -685,9 +683,9 @@ class Gramps:
             self.media_view.on_delete_clicked(obj)
 
     def enable_buttons(self,val):
-        self.addbtn.set_sensitive(val)
-        self.removebtn.set_sensitive(val)
-        self.editbtn.set_sensitive(val)
+        self.add_button.set_sensitive(val)
+        self.remove_button.set_sensitive(val)
+        self.edit_button.set_sensitive(val)
             
     def row_changed(self,obj):
         mlist = self.person_tree.get_selected_objects()
@@ -1646,10 +1644,11 @@ class Gramps:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
      
-        if person:
-            self.set_buttons(1)
-        else:
-            self.set_buttons(0)
+        if self.views.get_current_page == 1:
+            if person:
+                self.set_buttons(1)
+            else:
+                self.set_buttons(0)
         
     def modify_statusbar(self):
         
