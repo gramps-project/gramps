@@ -79,6 +79,8 @@ filtersDir     = "%s/filters" % rootDir
 dataDir        = "%s/data" % rootDir
 gtkrcFile      = "%s/gtkrc" % rootDir
 
+startup        = 1
+
 #-------------------------------------------------------------------------
 #
 # About box information
