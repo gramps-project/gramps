@@ -301,7 +301,7 @@
     <para>When you open a database (either existing or brand new), 
     the following window is displayed.</para>
  
-	<!-- ==== Figure: Tabbed Notebook Mode ==== -->
+	<!-- ==== Figure: Main Window  ==== -->
 	<figure id="mainwin-fig"> 
 	<title>&app; Main Window</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
@@ -865,10 +865,10 @@
       <sect3 id="gramps-add-pers"> 
         <title>To Add a Person</title> 
 	<para> To add a person to the database, switch to the People View 
-	(<xref linkend="people-view"/>) and then click 
+	(<xref linkend="side-nofilt-fig"/>) and then click 
 	<guibutton>Add</guibutton> on the toolbar. 
 	Enter any data you know about this person into the <guilabel>Edit 
-	Person</guilabel> Dialog (see <xref linkend="adv-pers"/> 
+	Person</guilabel> Dialog (see <xref linkend="edit-pers-fig"/> 
 	for details). To edit information about a person already present 
 	in the database, select an entry you would like to view/modify, 
 	and then click	<guibutton>Edit</guibutton> on the toolbar. </para> 
@@ -878,7 +878,7 @@
       <sect3 id="gramps-spec-rel"> 
         <title>To Specify a Relationship</title> 
 	<para>To specify a relationship, first switch to the Family View 
-	(<xref linkend="family-view"/>). Then click <guibutton>+</guibutton>
+	(<xref linkend="family-fig"/>). Then click <guibutton>+</guibutton>
 	button on the right of the spouse box. Select a spouse/partner from the
 	list and specify their relationship using the menu at the bottom. If
 	necessary, you can add a person to the list by clicking 
@@ -892,7 +892,7 @@
       <sect3 id="gramps-spec-par"> 
         <title>To Specify Parents</title> 
 	<para>To specify parents of an active person, first switch to the 
-	Family View (<xref linkend="family-view"/>). Then click
+	Family View (<xref linkend="family-fig"/>). Then click
 	<guibutton>+</guibutton> button on the right of the active person's
 	parents list-box. Select the parents from two lists and specify the
 	parents' relationships to the active person using menus at the bottom. 
@@ -918,7 +918,7 @@
       <sect3 id="gramps-spec-ch"> 
         <title>To Specify Children</title> 
 	<para>To specify children of an active person, switch to the 
-	Family View (<xref linkend="family-view"/>) and then 
+	Family View (<xref linkend="family-fig"/>) and then 
 	click <guibutton>+</guibutton> button on the 
 	right of the children list-box. Select a child from the list and 
 	specify	child's relationship with father and mother using menus 
@@ -940,10 +940,10 @@
 	generally related to the database (e.g. group family photos). </para>
 	
 	<para> To add images related to a single person, switch to the 
-	People View (<xref linkend="people-view"/>), select a person, and 
+	People View (<xref linkend="side-nofilt-fig"/>), select a person, and 
 	then click <guibutton>Edit</guibutton> on the toolbar to invoke 
 	the <guilabel>Edit Person</guilabel> Dialog 
-	(<xref linkend="adv-pers"/>). Then, select the 
+	(<xref linkend="edit-pers-fig"/>). Then, select the 
 	<guilabel>Gallery</guilabel> tab, and click 
 	<guibutton>Add...</guibutton> to invoke <guilabel>Select a media 
 	object</guilabel> dialog. Type filename or select a file with the 
@@ -953,14 +953,14 @@
 	done. </para>
 
 	<para> To add images related to a relationship (e.g. marriage), 
-	switch to the Family View (<xref linkend="family-view"/>) and then
+	switch to the Family View (<xref linkend="family-fig"/>) and then
 	double click on the Spouse box invoke <guilabel>Marriage/Relationship 
 	editor</guilabel> dialog. Select the <guilabel>Gallery</guilabel> 
 	tab and click <guibutton>Add...</guibutton> to add an image. </para>
 
 	<para> To add images related to a source or a place, first switch to 
-	the Sources View (<xref linkend="sources-view"/>) or Places 
-	View (<xref linkend="places-view"/>), respectively. Then select the 
+	the Sources View (<xref linkend="sources-fig"/>) or Places 
+	View (<xref linkend="places-fig"/>), respectively. Then select the 
 	appropriate source or place and then either double click on it 
 	or click <guibutton>Edit</guibutton> on the toolbar to invoke 
 	<guilabel>Source Editor</guilabel> (or <guilabel>Place
@@ -969,7 +969,7 @@
 
 	<para> Finally, to add images that are generally related to the 
 	database but not limited to any person, relationship, source, or place 
-	in particular, switch to the Media View (<xref linkend="media-view"/>). 
+	in particular, switch to the Media View (<xref linkend="media-fig"/>). 
 	Then click <guibutton>Add</guibutton> on the toolbar to add an image. 
 	If you have already added any images to any individual galleries, 
 	you will also find the listed in the Media View. </para>
@@ -989,8 +989,8 @@
         <title>To Edit Sources and Places</title> 
 
 	<para> To add a source or a place to the database, switch to 
-	the appropriate Sources View (<xref linkend="sources-view"/>) or 
-	Places View (<xref linkend="places-view"/>). 
+	the appropriate Sources View (<xref linkend="sources-fig"/>) or 
+	Places View (<xref linkend="places-fig"/>). 
 	Then click <guibutton>Add</guibutton> on the toolbar to add a
 	source/place. Enter the information into the <guilabel>Source 
 	Editor</guilabel> (or <guilabel>Place Editor</guilabel>) dialog. 
@@ -1106,6 +1106,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Names</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - Names ==== -->
+	<figure id="edit-pers-names-fig"> 
+	<title>Edit Person dialog - Names</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-names.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Names Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>Names</guilabel> tab displays information concerning 
 	alternate names of the person and the controls allowing its
 	modification. The bottom part displays the list of all alternate names
@@ -1124,6 +1135,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Events</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - Events ==== -->
+	<figure id="edit-pers-events-fig"> 
+	<title>Edit Person dialog - Events</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-events.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Events Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>Events</guilabel> tab displays information about 
 	the events relevant to the person and the controls allowing its
 	modification. The bottom part displays the list of all such events 
@@ -1142,6 +1164,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Attributes</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - Attributes ==== -->
+	<figure id="edit-pers-attributes-fig"> 
+	<title>Edit Person dialog - Attributes</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-attributes.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Attributes Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>Attributes</guilabel> tab displays information about 
 	the attributes of the person and the controls allowing its
 	modification. These could be any personal attributes of a person whose
@@ -1163,6 +1196,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Addresses</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - Addresses ==== -->
+	<figure id="edit-pers-addresses-fig"> 
+	<title>Edit Person dialog - Addresses</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-addresses.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Addresses Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>Addresses</guilabel> tab displays information about 
 	the addresses of the person and the controls allowing its
 	modification. The bottom part displays the list of all 
@@ -1181,6 +1225,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Notes</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - Notes ==== -->
+	<figure id="edit-pers-notes-fig"> 
+	<title>Edit Person dialog - Notes</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-notes.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Notes Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>Notes</guilabel> tab displays information about 
 	the notes concerning the person. These could be any notes which do not
 	naturally fit into the Parameter-Value pairs available to Attributes. 
@@ -1193,6 +1248,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Gallery</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - Gallery ==== -->
+	<figure id="edit-pers-gallery-fig"> 
+	<title>Edit Person dialog - Gallery</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-gallery.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Gallery Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>Gallery</guilabel> tab displays information about 
 	media objects associated with the person and the controls allowing its
 	modification. The central part shows the list of all such media objects. 
@@ -1214,6 +1280,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>Internet</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - Internet ==== -->
+	<figure id="edit-pers-internet-fig"> 
+	<title>Edit Person dialog - Internet</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-internet.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows Internet Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>Internet</guilabel> tab displays information about 
 	Internet addresses relevant to the person and the controls
 	allowing its modification. The bottom part displays the list of all 
@@ -1234,6 +1311,17 @@
 	<variablelist>
 		<varlistentry><term><guilabel>LDS</guilabel></term>
 		<listitem>
+
+	<!-- ==== Figure: Edit Person dialog - LDS ==== -->
+	<figure id="edit-pers-lds-fig"> 
+	<title>Edit Person dialog - LDS</title> 
+	<screenshot><mediaobject><imageobject><imagedata 
+		fileref="figures/edit-person-lds.png" format="PNG"/></imageobject>
+	<textobject> 
+	<phrase>Shows LDS Tab of Edit Person dialog. </phrase>
+	</textobject></mediaobject></screenshot></figure>
+	<!-- ==== End of Figure ==== -->
+
 	<para> <guilabel>LDS</guilabel> tab displays information 
 	about LDS ordinances of the person and the controls allowing its
 	modification. These are <guilabel>LDS baptism</guilabel>, 
@@ -2515,23 +2603,68 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-tools"> 
         <title>Running Tools</title> 
-	<para> </para>
-
-<!--
-[ FIXME: STOPPED HERE ] 
--->
+	<para> &app; tools allow you to perform various types of analyses
+	of your genealogical data. Typically, the tools do not produce 
+	output in form of printouts or files. Instead, they produce screen
+	output immediately available for the researcher. However, when
+	appropriate, you can save the result of running a tool into a file. 
+	Tools present one of the major strengths of &app; compared to the most
+	genealogical software. </para> 
+	
+	<para>The tools can be accessed through the menu by choosing 
+	<menuchoice><guimenu>Tools</guimenu>
+	<guisubmenu><replaceable>Tool Section</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Particular 
+	Tool</replaceable></guimenuitem></menuchoice>. Alternatively, 
+	you can browse the complete selection of available tools along 
+	with their brief descriptions in a <guilabel>Tool 
+	Selection</guilabel> dialog evoked by clicking 
+	<guibutton>Tools</guibutton> on the toolbar. </para>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="tools-ae"> 
 	<title>Analysis and Exploration</title> 
-	<para> </para>
+	<para> This section contains tools which analyze and explore the
+	database, but do not alter it. The following analysis and exploration
+	tools are currently available in &app;: </para>
 
+	<variablelist>
+
+	<varlistentry><term>Compare individual events</term>
+	<listitem><para>This tool compares events across the selected group of
+	people. The people for this comparison are chosen with the use of 
+	custom filters. The custom filters can be created in the Custom Filter
+	Editor. The resulting table produced by this tool can be saved as a 
+	spreadsheet. </para></listitem>
+	</varlistentry>
+
+ 	<varlistentry><term>Interactive descendant browser</term>
+	<listitem><para>This tool builds a tree with the active person being 
+	the root. Children branch from their parents in a usual manner. 
+	Use this tool for a quick glance on a person's descendants. 
+	</para></listitem>
+	</varlistentry>
+
+	</variablelist>
       </sect3>
 
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="tools-db"> 
 	<title>Database Processing</title> 
-	<para> </para>
+	<para> This section contains tools which may modify your database. 
+	The modifications will only be performed upon your explicit consent. 
+	The tools from this section are used most for finding and correcting
+	errors in the data. The following database processing tools are 
+	currently available in &app;:</para>
+
+	<itemizedlist>
+	<listitem><para>Check and repair database</para></listitem>
+	<listitem><para>Extract information from names</para></listitem>
+	<listitem><para>Find possible duplicate people</para></listitem>
+	<listitem><para>Rename personal event types</para></listitem>
+	<listitem><para>Reorder &app; IDs</para></listitem>
+	</itemizedlist>
+
 
       </sect3>
 
@@ -2540,7 +2673,22 @@
 	<title>Utilities</title> 
 	<para> </para>
 
-      </sect3>
+ 	<para> This section contains tools allowing to perform a simple 
+	operation on a portion of data. The results can be saved in your
+	database, but they will not modify your existing data. 
+	The following utilities are currently available in &app;:</para>
+
+	<itemizedlist>
+	<listitem><para>Custom Filter Editor</para></listitem>
+	<listitem><para>Generate SoundEx codes</para></listitem>
+	<listitem><para>Relationship calculator</para></listitem>
+	<listitem><para>Verify the database</para></listitem>
+	</itemizedlist>
+     </sect3>
+
+<!--
+[ FIXME: STOPPED HERE ] 
+-->
 
     </sect2>
 
