@@ -887,6 +887,41 @@ class Gramps:
         all.add_rule(GenericFilter.SearchName([]))
         filter_list.append(all)
 
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People who were adopted"))
+        all.add_rule(GenericFilter.HaveAltFamilies([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People who have images"))
+        all.add_rule(GenericFilter.HavePhotos([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People with incomplete names"))
+        all.add_rule(GenericFilter.IncompleteNames([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People with children"))
+        all.add_rule(GenericFilter.HaveChildren([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People with no marriage records"))
+        all.add_rule(GenericFilter.NeverMarried([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People without a birth date"))
+        all.add_rule(GenericFilter.NoBirthdate([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("People with multiple marriage records"))
+        all.add_rule(GenericFilter.MultipleMarriages([]))
+        filter_list.append(all)
+
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(self.filter_model.default_index())
