@@ -39,4 +39,5 @@ class MatchSndEx2(Filter.Filter):
 #------------------------------------------------------------------------
 Filter.register_filter(MatchSndEx2,
                        description=_("Names with the specified SoundEx code"),
+                       label=_("SoundEx Code"),
                        qualifier=1)

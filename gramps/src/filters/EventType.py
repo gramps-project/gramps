@@ -39,4 +39,5 @@ class EventType(Filter.Filter):
 #------------------------------------------------------------------------
 Filter.register_filter(EventType,
                        description=_("People who have an event type of ..."),
+                       label=_("Event"),
                        qualifier=1)

@@ -54,5 +54,6 @@ class EventAfter(Filter.Filter):
 #--------------------------------------------------------------------
 Filter.register_filter(EventAfter,
                        description=_("People with an event after ..."),
+                       label=_("Date"),
                        qualifier=1)
 

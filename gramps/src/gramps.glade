@@ -792,13 +792,14 @@
 	    <spacing>0</spacing>
 	    <child>
 	      <padding>5</padding>
-	      <expand>False</expand>
-	      <fill>False</fill>
+	      <expand>True</expand>
+	      <fill>True</fill>
 	    </child>
 
 	    <widget>
 	      <class>GtkLabel</class>
-	      <name>label185</name>
+	      <name>qual</name>
+	      <visible>False</visible>
 	      <label>Qualifier</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
@@ -816,56 +817,69 @@
 	    <widget>
 	      <class>GtkEntry</class>
 	      <name>filter</name>
+	      <visible>False</visible>
 	      <can_focus>True</can_focus>
 	      <signal>
 		<name>activate</name>
 		<handler>on_apply_filter_clicked</handler>
 		<last_modification_time>Thu, 06 Sep 2001 23:02:43 GMT</last_modification_time>
 	      </signal>
-	      <editable>True</editable>
+	      <editable>False</editable>
 	      <text_visible>True</text_visible>
 	      <text_max_length>0</text_max_length>
 	      <text></text>
+	      <child>
+		<padding>0</padding>
+		<expand>True</expand>
+		<fill>True</fill>
+	      </child>
+	    </widget>
+	  </widget>
+
+	  <widget>
+	    <class>GtkHBox</class>
+	    <name>hbox74</name>
+	    <homogeneous>False</homogeneous>
+	    <spacing>0</spacing>
+	    <child>
+	      <padding>3</padding>
+	      <expand>False</expand>
+	      <fill>False</fill>
+	    </child>
+
+	    <widget>
+	      <class>GtkCheckButton</class>
+	      <name>invert</name>
+	      <tooltip>Show persons that do not match the filtering rule</tooltip>
+	      <can_focus>True</can_focus>
+	      <label>Invert</label>
+	      <active>False</active>
+	      <draw_indicator>True</draw_indicator>
 	      <child>
 		<padding>0</padding>
 		<expand>False</expand>
 		<fill>False</fill>
 	      </child>
 	    </widget>
-	  </widget>
 
-	  <widget>
-	    <class>GtkCheckButton</class>
-	    <name>invert</name>
-	    <tooltip>Show persons that do not match the filtering rule</tooltip>
-	    <can_focus>True</can_focus>
-	    <label>Invert</label>
-	    <active>False</active>
-	    <draw_indicator>True</draw_indicator>
-	    <child>
-	      <padding>5</padding>
-	      <expand>False</expand>
-	      <fill>False</fill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkButton</class>
-	    <name>apply_filter</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>clicked</name>
-	      <handler>on_apply_filter_clicked</handler>
-	      <object>filter</object>
-	      <last_modification_time>Sat, 21 Oct 2000 03:36:06 GMT</last_modification_time>
-	    </signal>
-	    <stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
-	    <relief>GTK_RELIEF_NORMAL</relief>
-	    <child>
-	      <padding>4</padding>
-	      <expand>False</expand>
-	      <fill>False</fill>
-	    </child>
+	    <widget>
+	      <class>GtkButton</class>
+	      <name>apply_filter</name>
+	      <can_focus>True</can_focus>
+	      <signal>
+		<name>clicked</name>
+		<handler>on_apply_filter_clicked</handler>
+		<object>filter</object>
+		<last_modification_time>Sat, 21 Oct 2000 03:36:06 GMT</last_modification_time>
+	      </signal>
+	      <stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
+	      <relief>GTK_RELIEF_NORMAL</relief>
+	      <child>
+		<padding>0</padding>
+		<expand>False</expand>
+		<fill>False</fill>
+	      </child>
+	    </widget>
 	  </widget>
 	</widget>
 
