@@ -29,7 +29,7 @@
   <!ENTITY cmdline SYSTEM "cmdline.xml">
   <!ENTITY appversion "1.0.0">
   <!ENTITY manrevision "2.5">
-  <!ENTITY date "January 2003">
+  <!ENTITY date "January 2004">
   <!ENTITY app "<application>GRAMPS</application>">
   <!-- Information about the entities
        The legal.xml file contains legal information, there is no need to edit the file. 
