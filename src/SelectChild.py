@@ -257,6 +257,7 @@ class SelectChild:
         rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
         self.refmodel.add_and_select(rdata)
         self.add_person(person)
+        self.refmodel.center_selected()
 
     def north_american(self,val):
         if self.person.getGender() == Person.male:

@@ -186,6 +186,11 @@ class ListModel:
             col = col + 1
         self.model.set_value(iter,col,info)
         self.selection.select_iter(iter)
+
+    def center_selected(self):
+        model,iter = self.selection.get_selected()
+        path = model.get_path(iter)
+        self.tree.scroll_to_cell(path,None,gtk.TRUE,0.5,0.5)
         
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
