@@ -196,7 +196,10 @@ class PeopleStore:
         self.model.clear()
 
     def remove(self,iter):
+        iter_parent = self.model.iter_parent (iter)
         self.model.remove(iter)
+        if iter_parent and not self.model.iter_has_child (iter_parent):
+            self.model.remove (iter_parent)
         self.count = self.count - 1
         
     def get_row(self,iter):

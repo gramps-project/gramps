@@ -1,4 +1,9 @@
 2003-11-01  Tim Waugh  <twaugh@redhat.com>
+
+	* src/PeopleStore.py (PeopleStore.remove): Remove
+	surname element after last individual with that surname is
+	removed (bug #834105).
+
 	* src/PeopleStore.py: Fixed double-click behaviour (bug #834104).
 
 2003-10-31  Tim Waugh  <twaugh@redhat.com>
