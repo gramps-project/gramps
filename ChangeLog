@@ -1,4 +1,9 @@
 2003-06-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/BookReport.py, src/plugins/FtmStyleDescendants.py,
+	src/plugins/FtmStyleAncestors.py: Further work on option handling. 
+	Start parse/save cycle.
+
+2003-06-09  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReadXML.py, src/plugins/Check.py, src/plugins/WriteCD.py,
 	src/plugins/WritePkg.py: Proper use of dialog.run() in file
 	selector for missing media files.
