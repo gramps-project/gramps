@@ -21,7 +21,7 @@
 
 #
 # Written by Alex Roitman, 
-# largely based on the TextDoc classes by Don Allingham
+# largely based on the BaseDoc classes by Don Allingham
 #
 
 #-------------------------------------------------------------------------
@@ -69,7 +69,7 @@ import ListModel
 import GrampsCfg
 import Plugins
 import Report
-import TextDoc
+import BaseDoc
 
 from QuestionDialog import WarningDialog
 #------------------------------------------------------------------------
@@ -818,22 +818,22 @@ class BookReportDialog(Report.ReportDialog):
     """
 
     def __init__(self,database,person,book):
-        import TextDoc
+        import BaseDoc
         Report.BareReportDialog.__init__(self,database,person)
         self.book = book
         self.database = database 
         self.person = person
-        self.selected_style = TextDoc.StyleSheet()
+        self.selected_style = BaseDoc.StyleSheet()
 
         for item in self.book.get_item_list():
             # Set up default style
-            default_style = TextDoc.StyleSheet()
+            default_style = BaseDoc.StyleSheet()
             make_default_style = item.get_make_default_style()
             make_default_style(default_style)
 
             # Read all style sheets available for this item
             style_file = item.get_style_file()
-            style_list = TextDoc.StyleSheetList(style_file,default_style)
+            style_list = BaseDoc.StyleSheetList(style_file,default_style)
 
             # Get the selected stylesheet
             style_name = item.get_style_name()
