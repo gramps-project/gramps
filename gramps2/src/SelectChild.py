@@ -277,6 +277,12 @@ class SelectChild:
 
         id = idlist[0]
         select_child = self.db.get_person(id)
+        if self.person.get_id() == id:
+            ErrorDialog(_("Error selecting a child"),
+                        _("A person cannot be linked as his/her own child"),
+                        self.top)
+            return
+        
         if self.family == None:
             self.family = self.db.new_family()
             self.person.add_family_id(self.family.get_id())
@@ -285,8 +291,14 @@ class SelectChild:
             else:	
                 self.family.set_mother_id(self.person)
                 
+        if id in (self.family.get_father_id(),self.family.get_mother_id()):
+            ErrorDialog(_("Error selecting a child"),
+                        _("A person cannot be linked as his/her own child"),
+                        self.top)
+            return
+
         self.family.add_child_id(select_child.get_id())
-		
+        
         mrel = const.child_relations.find_value(self.mrel.get_text())
         mother = self.db.find_person_from_id(self.family.get_mother_id())
         if mother and mother.get_gender() != RelLib.Person.female:
@@ -300,12 +312,6 @@ class SelectChild:
                 frel = "Unknown"
 
         select_child.add_parent_family_id(self.family.get_id(),mrel,frel)
-
-        if id in (self.family.get_father_id(),self.family.get_mother_id()):
-            ErrorDialog(_("Error selecting a child"),
-                        _("A person cannot be linked as his/her own child"),
-                        self.top)
-            return
 
         trans = self.db.start_transaction()
         self.db.commit_person(select_child,trans)
