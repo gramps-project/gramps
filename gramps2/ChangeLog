@@ -1,3 +1,6 @@
+2004-11-16  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/MediaView.py: remove obsolete pexists check
+
 2004-11-16 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateParser.py: Typo.
 
