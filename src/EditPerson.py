@@ -63,6 +63,9 @@ import NameDisplay
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog
 
+from DdTargets import DdTargets
+
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -74,12 +77,6 @@ _PICTURE_WIDTH = 200.0
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
-
-pycode_tgts = [('url',    0, 0),
-               ('pevent', 0, 1),
-               ('pattr',  0, 2),
-               ('paddr',  0, 3),
-               ('srcref', 0, 4)]
 
 
 _use_patronymic = [
@@ -403,29 +400,43 @@ class EditPerson:
                 self.flowed.set_active(1)
             Utils.bold_label(self.notes_label)
 
-        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL, pycode_tgts,
+        self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                      [DdTargets.EVENT.target()],
                                       ACTION_COPY)
-        self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.event_list.drag_source_set(BUTTON1_MASK,
+                                        [DdTargets.EVENT.target()],
+                                        ACTION_COPY)
         self.event_list.connect('drag_data_get', self.ev_drag_data_get)
         self.event_list.connect('drag_begin', self.ev_drag_begin)
         self.event_list.connect('drag_data_received',
                                 self.ev_drag_data_received)
 
-        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,
+        self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                    [DdTargets.URL.target()],
                                     ACTION_COPY)
-        self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.web_list.drag_source_set(BUTTON1_MASK,
+                                      [DdTargets.URL.target()],
+                                      ACTION_COPY)
         self.web_list.connect('drag_data_get', self.url_drag_data_get)
         self.web_list.connect('drag_begin', self.url_drag_begin)
         self.web_list.connect('drag_data_received',self.url_drag_data_received)
         
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
-        self.attr_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                     [DdTargets.ATTRIBUTE.target()],
+                                     ACTION_COPY)
+        self.attr_list.drag_source_set(BUTTON1_MASK,
+                                       [DdTargets.ATTRIBUTE.target()],
+                                       ACTION_COPY)
         self.attr_list.connect('drag_data_get', self.at_drag_data_get)
         self.attr_list.connect('drag_data_received',self.at_drag_data_received)
         self.attr_list.connect('drag_begin', self.at_drag_begin)
 
-        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
-        self.addr_list.drag_source_set(BUTTON1_MASK, pycode_tgts,ACTION_COPY)
+        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                     [DdTargets.ADDRESS.target()],
+                                     ACTION_COPY)
+        self.addr_list.drag_source_set(BUTTON1_MASK,
+                                       [DdTargets.ADDRESS.target()],
+                                       ACTION_COPY)
         self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
         self.addr_list.connect('drag_data_received',self.ad_drag_data_received)
         self.addr_list.connect('drag_begin', self.ad_drag_begin)
@@ -813,7 +824,7 @@ class EditPerson:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if mytype != 'pevent':
+            if mytype != DdTargets.EVENT.drag_type:
                 return
             elif person == self.person.get_handle():
                 self.move_element(self.elist,self.etree.get_selected_row(),row)
@@ -843,7 +854,7 @@ class EditPerson:
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev[0]);
-        data = str(('pevent',self.person.get_handle(),pickled));
+        data = str((DdTargets.EVENT.drag_type,self.person.get_handle(),pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def ev_drag_begin(self, context, a):
@@ -862,7 +873,7 @@ class EditPerson:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if mytype != "url":
+            if mytype != DdTargets.URL.drag_type:
                 return
             elif person == self.person.get_handle():
                 self.move_element(self.ulist,self.wtree.get_selected_row(),row)
@@ -881,7 +892,7 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('url',self.person.get_handle(),pickled));
+            data = str((DdTargets.URL.drag_type,self.person.get_handle(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
 
     def at_drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -891,7 +902,7 @@ class EditPerson:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if mytype != 'pattr':
+            if mytype != DdTargets.ATTRIBUTE.drag_type:
                 return
             elif person == self.person.get_handle():
                 self.move_element(self.alist,self.atree.get_selected_row(),row)
@@ -914,7 +925,8 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('pattr',self.person.get_handle(),pickled));
+            data = str((DdTargets.ATTRIBUTE.drag_type,
+                        self.person.get_handle(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
             
     def ad_drag_data_received(self,widget,context,x,y,sel_data,info,time):
@@ -924,7 +936,7 @@ class EditPerson:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if mytype != 'paddr':
+            if mytype != DdTargets.ADDRESS.drag_type:
                 return
             elif person == self.person.get_handle():
                 self.move_element(self.plist,self.ptree.get_selected_row(),row)
@@ -945,7 +957,8 @@ class EditPerson:
         if len(ev):
             bits_per = 8; # we're going to pass a string
             pickled = pickle.dumps(ev[0]);
-            data = str(('paddr',self.person.get_handle(),pickled));
+            data = str((DdTargets.ADDRESS.drag_type,
+                        self.person.get_handle(),pickled));
             sel_data.set(sel_data.target, bits_per, data)
 
     def ad_drag_begin(self, context, a):

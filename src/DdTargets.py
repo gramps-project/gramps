@@ -97,11 +97,17 @@ class _DdTargets(object):
         self._type_map = {}
         self._app_id_map = {}
         
-        self.URL       = _DdType(self,'url',0,0)
-        self.EVENT     = _DdType(self,'pevent',0,1)
-        self.ATTRIBUTE = _DdType(self,'pattr',0,2)
-        self.ADDRESS   = _DdType(self,'paddr',0,3)
-        self.SOURCEREF = _DdType(self,'srcref',0,4)
+        self.URL       = _DdType(self,'url')
+        self.EVENT     = _DdType(self,'pevent')
+        self.ATTRIBUTE = _DdType(self,'pattr')
+        self.ADDRESS   = _DdType(self,'paddr')
+        self.SOURCEREF = _DdType(self,'srcref')
+
+        self.FAMILY_EVENT     = _DdType(self,'fevent')
+        self.FAMILY_ATTRIBUTE = _DdType(self,'fattr')
+        
+        self.CHILD     = _DdType(self,'child')
+        self.SPOUSE    = _DdType(self,'spouce')
 
         self.TEXT          = _DdType(self,'TEXT',0,1)
         self.TEXT_MIME     = _DdType(self,'text/plain',0,0)

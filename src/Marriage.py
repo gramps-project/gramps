@@ -58,6 +58,7 @@ import Date
 import DateEdit
 
 from QuestionDialog import QuestionDialog, WarningDialog, SaveDialog
+from DdTargets import DdTargets
 
 #-------------------------------------------------------------------------
 #
@@ -68,11 +69,6 @@ _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
 
-pycode_tgts = [
-    ('fevent', 0, 0),
-    ('fattr',  0, 1),
-    ('srcref', 0, 4),
-    ]
 
 #-------------------------------------------------------------------------
 #
@@ -270,9 +266,11 @@ class Marriage:
             Utils.unbold_label(self.lds_label)
         
         self.event_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                      pycode_tgts,gtk.gdk.ACTION_COPY)
+                                      [DdTargets.FAMILY_EVENT.target()],
+                                      gtk.gdk.ACTION_COPY)
         self.event_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                        pycode_tgts, gtk.gdk.ACTION_COPY)
+                                        [DdTargets.FAMILY_EVENT.target()],
+                                        gtk.gdk.ACTION_COPY)
         self.event_list.connect('drag_data_get',
                                 self.ev_source_drag_data_get)
         self.event_list.connect('drag_data_received',
@@ -280,9 +278,11 @@ class Marriage:
         self.event_list.connect('drag_begin', self.ev_drag_begin)
 
         self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                     pycode_tgts,gtk.gdk.ACTION_COPY)
+                                     [DdTargets.FAMILY_ATTRIBUTE.target()],
+                                     gtk.gdk.ACTION_COPY)
         self.attr_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                       pycode_tgts,gtk.gdk.ACTION_COPY)
+                                       [DdTargets.FAMILY_ATTRIBUTE.target()],
+                                       gtk.gdk.ACTION_COPY)
         self.attr_list.connect('drag_data_get',
                                self.at_source_drag_data_get)
         self.attr_list.connect('drag_data_received',
