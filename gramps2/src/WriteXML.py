@@ -73,7 +73,7 @@ except:
 #
 #
 #-------------------------------------------------------------------------
-def exportData(database, filename, callback=None):
+def exportData(database, filename, person, callback=None):
     ret = 0
     if os.path.isfile(filename):
         try:
