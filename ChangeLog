@@ -2,6 +2,13 @@
 	* src/SubstKeywords.py: Fixed typo on getName
 	* src/plugins/WriteGedcom.py: Allow iso-8859-1 (ANSI) encoding
 	* src/plugins/gedcomexport.glade: Allow iso-8859-1 (ANSI) encoding
+	* src/docgen/PdfDoc.py: handle page break
+	* src/plugins/BookReport.py: move book report to its own category,
+	handle page break properly
+	* src/plugins/FtmStyleAncestors.py: handle book improvements
+	* src/plugins/FtmStyleDescendants.py: handle book improvements
+	* src/plugins/IndivSummary.py: handle book improvements, rename
+	document styles
 	
 2003-06-24  Tim Waugh  <twaugh@redhat.com>
 	* src/GrampsParser.py: Use access methods rather than poking directly.

@@ -1276,6 +1276,9 @@ class Gramps:
 
     def load_active_person(self,obj):
         self.load_person(self.active_person)
+
+    def update_person_list(self,person):
+        self.add_to_person_list(person,0)
     
     def load_new_person(self,obj):
         self.active_person = RelLib.Person()
@@ -1679,9 +1682,6 @@ class Gramps:
     def redisplay_person_list(self,person):
         self.add_to_person_list(person,1)
 
-    def update_person_list(self,person):
-        self.add_to_person_list(person,0)
-            
     def load_person(self,person):
         if person:
             try:
