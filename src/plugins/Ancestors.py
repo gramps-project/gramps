@@ -337,13 +337,14 @@ class ComprehensiveAncestorsReport (Report.Report):
                     for partner_id in [family.get_father_id (),
                                     family.get_mother_id ()]:
                         partner = self.database.find_person_from_id(partner_id)
-                        if partner == person or not partner:
+                        if partner_id == person_id or not partner:
                             continue
 
                         if (suppress_children or
                             (partner != from_family_father and
                              partner != from_family_mother)):
-                            for object_id in partner.get_media_list ()[:1]:
+                            for media_ref in partner.get_media_list ()[:1]:
+                                object_id = media_ref.get_reference_id()
                                 mobject = self.database.find_object_from_id(object_id)
                                 if mobject.get_mime_type()[0:5] == "image":
                                     spouse.append ((self.doc.add_media_object,
@@ -375,7 +376,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                     ret.append ((self.doc.end_cell, []))
                 else:
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
-                    for object_id in photos[:1]:
+                    for media_ref in photos[:1]:
+                        object_id = media_ref.get_reference_id()
                         mobject = self.database.find_object_from_id(object_id)
                         if mobject.get_mime_type()[0:5] == "image":
                             ret.append ((self.doc.add_media_object,
@@ -617,7 +619,13 @@ class ComprehensiveAncestorsReport (Report.Report):
                 citation += "[%d" % ind
                 comments = ref.get_comments ()
                 if comments and comments.find ('\n') == -1:
-                    citation += " - %s" % comments.rstrip ('.')
+    	            # Work around rstrip('.') which is not working 
+	                # with python2.2.1 and earlier
+                    #citation += " - %s" % comments.rstrip ('.')
+                    comments = comments.rstrip()
+                    if comments[-1] == '.':
+                        comments = comments[:-1]
+                    citation += " - %s" % comments
 
                 citation += "]"
 
@@ -641,8 +649,15 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         nick = person.get_nick_name ()
         if nick:
-            nick.strip ('"')
-            name += ' ("%s")' % nick
+            #nick = nick.strip ('"')
+            # Work around strip('"') which is not working 
+            # with python2.2.1 and earlier
+            nick = nick.strip()
+            if nick[0] == '"':
+            	nick = nick[1:]
+            if nick[-1] == '"':
+                nick = nick[:-1]
+                name += ' ("%s")' % nick
 
         if last.replace ('?', '') == '':
             if first_replaced == '':
@@ -721,8 +736,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                         ret += self.event_info (marriage)
                     ret += children + '.'
                 elif (listing_children or
-                      spouse == mother or
-                      family != from_family):
+                      spouse_id == mother_id or
+                      family_id != from_family.get_id()):
                     if gender == RelLib.Person.female:
                         ret += _('  She married %(name)s') % \
                                {'name': self.person_name (spouse_id)}
