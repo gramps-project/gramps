@@ -1439,7 +1439,11 @@ class Gramps:
 
     def update_after_edit(self,epo,change=1):
         self.active_person = epo.person
-        if epo.orig_surname != self.active_person.get_primary_name().get_surname():
+        pn = self.active_person.get_primary_name()
+
+        mapname = self.db.get_name_group_mapping(pn.get_group_name())
+
+        if epo.orig_surname != pn.get_group_name() or epo.orig_surname != mapname:
             self.people_view.build_tree()
         elif change:
             self.people_view.update_person_list(epo.person)
