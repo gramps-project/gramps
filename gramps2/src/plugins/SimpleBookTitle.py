@@ -116,10 +116,10 @@ _style_file = "simple_book_title.xml"
 _style_name = "default" 
 
 _person_id = ""
-_cpr_str = ""
-_ttl_str = ""
+_title_string = ""
+_copyright_string = ""
 
-_options = [ _person_id, _cpr_str, _ttl_str ]
+_options = [ _person_id, _title_string, _copyright_string ]
 
 
 #------------------------------------------------------------------------
@@ -233,8 +233,17 @@ def write_book_item(database,person,doc,options,newpage=0):
     try:
         if options[0]:
             person = database.getPerson(options[0])
-        title_string = options[1]
-        copyright_string = options[2]
+        if options[1]:
+            title_string = options[1]
+        else:
+            title_string = _('Title of the Book')
+        if options[2]:
+            copyright_string = options[2]
+        else:
+            import time
+            dateinfo = time.localtime(time.time())
+            name = database.getResearcher().getName()
+            copyright_string = _('Copyright %d %s') % (dateinfo[0], name)
         return SimpleBookTitle(database, person, title_string, copyright_string, doc, None, newpage )
     except Errors.ReportError, msg:
         (m1,m2) = msg.messages()
@@ -346,7 +355,7 @@ from Plugins import register_book_item
 # (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
 register_book_item( 
     _("Simple Book Title"), 
-    _("Text"),
+    _("Title"),
     SimpleBookTitleDialog,
     write_book_item,
     _options,

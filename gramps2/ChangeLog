@@ -3,7 +3,14 @@
 	Enable translation for interface strings,   
 	* src/plugins/BookReport.py (BookReportDialog.get_stylesheet_savefile):
 	Add this function to form sane filename for the output. 
+	Add special treatment for Title entries (no central person displayed).
 	* src/plugins/SimpleBookTitle.py: Add configurable title and copyright. 
+	Change type to Title (was Text). 
+	* src/plugins/IndivComplete.py: Use filter number in configurator. 
+	Move get_report_filters out of dialogs classes so that it can be 
+	shared between both dialogs and the write_book_item().
+	* src/plugins/DescendReport.py: Enable book functionality.
+	* src/plugins/AncestorReport.py: Enable book functionality.
 
 2003-07-04  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Really fixed text style for '(no photo)'.
