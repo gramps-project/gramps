@@ -337,7 +337,10 @@ class DateParser:
             y = self._get_int(groups[0])
             m = self._get_int(groups[1])
             d = self._get_int(groups[2])
-            return (d,m,y,False)
+            if gregorian_valid((d,m)):
+                return (d,m,y,False)
+            else:
+                return Date.EMPTY
 
         match = self._rfc.match(text)
         if match:
@@ -345,7 +348,10 @@ class DateParser:
             d = self._get_int(groups[2])
             m = self._rfc_mons_to_int[groups[3]]
             y = self._get_int(groups[4])
-            return (d,m,y,False)
+            if gregorian_valid((d,m)):
+                return (d,m,y,False)
+            else:
+                return Date.EMPTY
 
         match = self._numeric.match(text)
         if match:
@@ -353,7 +359,10 @@ class DateParser:
             m = self._get_int(groups[1])
             d = self._get_int(groups[3])
             y = self._get_int(groups[4])
-            return (d,m,y,False)
+            if gregorian_valid((d,m)):
+                return (d,m,y,False)
+            else:
+                return Date.EMPTY
 
         return Date.EMPTY
 
@@ -451,3 +460,15 @@ class DateParser:
         new_date = Date.Date()
         self.set_date(new_date,text)
         return new_date
+
+_max_days = [ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ]
+
+def gregorian_valid(date_tuple):
+    day = date_tuple[0]
+    month = date_tuple[1]
+    valid = True
+    if month > 12:
+        valid = False
+    elif day > _max_days[month]:
+        valid = False
+    return valid

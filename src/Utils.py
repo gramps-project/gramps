@@ -45,6 +45,7 @@ import gnome
 import const
 import RelImage
 import GrampsMime
+import Date
 
 #-------------------------------------------------------------------------
 #
@@ -663,6 +664,12 @@ def probably_alive(person,db):
             if parents_too_old (spouse, max_age_difference):
                 return False
     return True
+
+def not_too_old(date):
+    time_struct = time.localtime(time.time())
+    current_year = time_struct[0]
+    year = date.get_year()
+    return not( year != 0 and current_year - year > 110)
 
 #-------------------------------------------------------------------------
 #

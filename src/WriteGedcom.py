@@ -51,6 +51,8 @@ import Date
 import GedcomInfo
 import Errors
 import ansel_utf8
+import Utils
+import Date
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -750,7 +752,7 @@ class GedcomWriter:
             
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % person.get_gramps_id())
-        restricted = self.restrict and probably_alive (person,self.db)
+        restricted = self.restrict and Utils.probably_alive (person,self.db)
         self.prefn(person)
         primaryname = person.get_primary_name ()
         if restricted and self.living:
