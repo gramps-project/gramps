@@ -50,12 +50,7 @@ import accent
 # constants
 #
 #-------------------------------------------------------------------------
-COLUMN_NAME      = 0
-COLUMN_VIEW      = 9
-COLUMN_BOLD      = COLUMN_VIEW + 1
-COLUMN_INT_ID    = COLUMN_BOLD + 1
 
-_INT_ID_COL= 0
 _ID_COL    = 1
 _GENDER_COL= 2
 _NAME_COL  = 3
@@ -78,19 +73,6 @@ class PeopleModel(gtk.GenericTreeModel):
         self.visible = {}
         self.top_visible = {}
         
-        self.fmap = [
-            self.column_name,
-            self.column_id,
-            self.column_gender,
-            self.column_birth_day,
-            self.column_birth_place,
-            self.column_death_day,
-            self.column_death_place,
-            self.column_spouse,
-            self.column_change,
-            self.sort_name,
-            ]
-
         maps = self.db.get_people_view_maps()
         if maps[0] != None and len(maps[0]) != 0:
             self.top_path2iter = maps[1]
@@ -155,7 +137,7 @@ class PeopleModel(gtk.GenericTreeModel):
 	return gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
-        return COLUMN_INT_ID + 1
+        return len(COLUMN_DEFS)
 
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various
@@ -167,14 +149,9 @@ class PeopleModel(gtk.GenericTreeModel):
             return (self.top_path2iter.index(surname),index)
 
     def on_get_column_type(self,index):
-        """The visibility column is a boolean, the weight column is an integer,
-        everthing else is a string"""
-        if index == COLUMN_VIEW:
-            return gobject.TYPE_BOOLEAN
-        elif index == COLUMN_BOLD:
-            return gobject.TYPE_INT
-        else:
-            return gobject.TYPE_STRING
+         # return column data-type, from table
+         t = COLUMN_DEFS[index][COLUMN_DEF_TYPE]
+         return t
 
     def on_get_iter(self, path):
         try:
@@ -186,26 +163,21 @@ class PeopleModel(gtk.GenericTreeModel):
         except:
             return None
 
-    def on_get_value(self,iter,col):
-        if col == COLUMN_INT_ID:
-            return iter
-        elif col == COLUMN_BOLD:
-            if self.sname_sub.has_key(iter):
-                return pango.WEIGHT_BOLD
-            else:
-                return pango.WEIGHT_NORMAL
-        elif col == COLUMN_VIEW:
-            if self.sname_sub.has_key(iter):
-                return self.top_visible.has_key(iter)
-            return self.visible.has_key(iter)
-        elif self.sname_sub.has_key(iter):
-            if col == 0:
-                return iter
-            else:
-                return u''            
+    def on_get_value(self,node,col):
+        # test for header or data row-type
+        if self.sname_sub.has_key(node):
+            # test for 'header' column being empty (most are)
+            if not COLUMN_DEFS[col][COLUMN_DEF_HEADER]:
+                return u''
+            # return values for 'header' row, calling a function
+            # according to column_defs table
+            val = COLUMN_DEFS[col][COLUMN_DEF_HEADER](self,node)
+            return val
         else:
+            # return values for 'data' row, calling a function
+            # according to column_defs table
             try:
-                return self.fmap[col](self.db.person_map[str(iter)])
+                return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.db.person_map[str(node)],node)
             except:
                 return u''
 
@@ -213,13 +185,13 @@ class PeopleModel(gtk.GenericTreeModel):
         self.visible = {}
         self.top_visible = {}
 
-    def set_visible(self,iter,val):
+    def set_visible(self,node,val):
         try:
-            col = self.iter2path[iter]
+            col = self.iter2path[node]
             self.top_visible[col[0]] = val
-            self.visible[iter] = val
+            self.visible[node] = val
         except:
-            self.visible[iter] = val
+            self.visible[node] = val
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''
@@ -271,10 +243,10 @@ class PeopleModel(gtk.GenericTreeModel):
             return path[0]
         return None
 
-    def sort_name(self,data):
+    def column_sort_name(self,data,node):
         return data[_NAME_COL].get_sort_name()
 
-    def column_spouse(self,data):
+    def column_spouse(self,data,node):
 	spouses_names = u""
         handle = data[0]
         for family_handle in data[_FAMILY_COL]:
@@ -290,31 +262,31 @@ class PeopleModel(gtk.GenericTreeModel):
                 spouses_names += spouse.get_primary_name().get_regular_name()
 	return spouses_names
 
-    def column_name(self,data):
+    def column_name(self,data,node):
         return data[_NAME_COL].get_name()
 
-    def column_id(self,data):
+    def column_id(self,data,node):
         return data[_ID_COL]
 
-    def column_change(self,data):
+    def column_change(self,data,node):
         return time.asctime(time.localtime(data[_CHANGE_COL]))
 
-    def column_gender(self,data):
+    def column_gender(self,data,node):
         return _GENDER[data[_GENDER_COL]]
 
-    def column_birth_day(self,data):
+    def column_birth_day(self,data,node):
         if data[_BIRTH_COL]:
             return self.db.get_event_from_handle(data[_BIRTH_COL]).get_date()
         else:
             return u""
 
-    def column_death_day(self,data):
+    def column_death_day(self,data,node):
         if data[_DEATH_COL]:
             return self.db.get_event_from_handle(data[_DEATH_COL]).get_date()
         else:
             return u""
         
-    def column_birth_place(self,data):
+    def column_birth_place(self,data,node):
         if data[_BIRTH_COL]:
             event = self.db.get_event_from_handle(data[_BIRTH_COL])
             if event:
@@ -323,7 +295,7 @@ class PeopleModel(gtk.GenericTreeModel):
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
 
-    def column_death_place(self,data):
+    def column_death_place(self,data,node):
         if data[_DEATH_COL]:
             event = self.db.get_event_from_handle(data[_DEATH_COL])
             if event:
@@ -331,6 +303,24 @@ class PeopleModel(gtk.GenericTreeModel):
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
+
+    def column_int_id(self,data,node):
+        return node
+
+    def column_bold(self,data,node):
+        return pango.WEIGHT_NORMAL
+
+    def column_view(self,data,node):
+        return self.visible.has_key(node)
+
+    def column_header(self,node):
+        return node
+
+    def column_header_bold(self,node):
+        return pango.WEIGHT_BOLD
+
+    def column_header_view(self,node):
+        return self.top_visible.has_key(node)
 
 #     def add_person(self,person):
 #         pid = person.get_handle()
@@ -394,3 +384,35 @@ class PeopleModel(gtk.GenericTreeModel):
 #         return 0
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+
+# table of column definitions
+# (unless this is declared after the PeopleModel class, an error is thrown)
+COLUMN_DEFS = [
+    # data column (method)          header column (method)         column data type 
+    (PeopleModel.column_name,       PeopleModel.column_header,     gobject.TYPE_STRING),
+    (PeopleModel.column_id,         None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_gender,     None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_birth_day,  None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_birth_place,None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_death_day,  None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_death_place,None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_spouse,     None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_change,     None,                          gobject.TYPE_STRING),
+    # the order of the above columns must match PeopleView.column_names
+
+    # these columns are hidden, and must always be last in the list
+    (PeopleModel.column_sort_name,  None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_view,       PeopleModel.column_header_view,gobject.TYPE_BOOLEAN),
+    (PeopleModel.column_bold,       PeopleModel.column_header_bold,gobject.TYPE_INT),
+    (PeopleModel.column_int_id,     None,                          gobject.TYPE_STRING),
+    ]
+
+# dynamic calculation of column indices, for use by various Views
+COLUMN_INT_ID = len(COLUMN_DEFS) - 1
+COLUMN_BOLD   = COLUMN_INT_ID - 1 
+COLUMN_VIEW   = COLUMN_BOLD - 1
+
+# indices into main column definition table
+COLUMN_DEF_LIST = 0
+COLUMN_DEF_HEADER = 1
+COLUMN_DEF_TYPE = 2

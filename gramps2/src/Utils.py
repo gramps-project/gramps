@@ -341,7 +341,7 @@ def thumb_path(dir,mobj):
     mime_type = mobj.get_mime_type()
 
     if mime_type[0:5] == "image":
-        thumb = "%s/.thumb/%s.jpg" % (os.path.dirname(dir),mobj.get_handle())
+        thumb = "%s/.thumb/%s.jpg" % (os.path.dirname(dir),mobj.get_gramps_id())
         try:
             if RelImage.check_thumb(mobj.get_path(),thumb,const.thumbScale):
                 return thumb

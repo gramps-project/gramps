@@ -1208,7 +1208,7 @@ class Gramps:
         self.active_person = RelLib.Person()
         try:
             EditPerson.EditPerson(self,self.active_person,self.db,
-                                  self.new_after_edit)
+                                  self.update_after_edit)
         except:
             DisplayTrace.DisplayTrace()
 
@@ -1454,14 +1454,9 @@ class Gramps:
             self.filter_text.hide()
             self.filter_text.set_sensitive(0)
 
-    def new_after_edit(self,epo,trans):
-        if epo:
-            self.db.add_person(epo.person,trans)
-            self.change_active_person(epo.person)
-            self.people_view.add_to_person_list(epo.person)
-        if self.views.get_current_page() in [FAMILY_VIEW1,FAMILY_VIEW2]:
-            self.family_view.load_family()
-
+    def new_after_edit(self,epo,val):
+        self.update_after_edit(epo,val)
+        
     def update_after_newchild(self,family,person,plist):
         self.family_view.load_family(family)
         self.people_view.redisplay_person_list(person)
@@ -1470,7 +1465,7 @@ class Gramps:
 
     def update_after_edit(self,epo,change=1):
         if epo:
-            if change:
+            if change or self.db.get_number_of_people() <= 1:
                 self.people_view.redisplay_person_list(epo.person)
             else:
                 iter = self.people_view.person_model.get_iter((0,))

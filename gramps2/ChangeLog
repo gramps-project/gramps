@@ -1,3 +1,13 @@
+2004-08-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: update properly after an edit
+	* src/Utils.py: generate correct path name, using gramps id
+	instead of handle
+	* src/ImageSelect.py: select correct path name for thumbnail
+
+2004-08-25  Jim Smart  <jim@jimsmart.org>
+	* src/PeopleModel.py: move to a table driven format for 
+	handling columns
+
 2004-08-25  Tim Waugh  <twaugh@redhat.com>
 	* src/WriteGedcom.py (GedcomWriter.write_person): Removed
 	debugging noise.
