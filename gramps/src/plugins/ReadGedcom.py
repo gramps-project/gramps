@@ -416,7 +416,9 @@ class GedcomParser:
                 if self.indi_count % 10 == 0:
                     self.update(self.people_obj,str(self.indi_count))
                 self.indi_count = self.indi_count + 1
-                self.person = self.db.findPerson(matches[1],self.pmap)
+                id = matches[1]
+                id = id[1:-1]
+                self.person = self.find_or_create_person(id)
                 self.added[self.person.getId()] = self.person
                 self.parse_individual()
                 self.db.buildPersonDisplay(self.person.getId())
@@ -444,6 +446,20 @@ class GedcomParser:
                 return
             else:
 	        self.barf(1)
+
+    def find_or_create_person(self,id):
+        
+        if self.pmap.has_key(id):
+            person = self.db.findPersonNoMap(self.pmap[id])
+        elif self.db.getPersonMap().has_key(id):
+            person = Person()
+            self.pmap[id] = self.db.addPerson(person)
+        else:
+            person = Person()
+            person.setId(id)
+            self.db.addPersonAs(person)
+            self.pmap[id] = id
+        return person
 
     def parse_cause(self,event,level):
         while 1:
@@ -509,10 +525,14 @@ class GedcomParser:
                 self.backup()
                 return
 	    elif matches[1] == "HUSB":
-                self.family.setFather(self.db.findPerson(matches[2],self.pmap))
+                id = matches[2]
+                person = self.find_or_create_person(id[1:-1])
+                self.family.setFather(person)
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "WIFE":
-                self.family.setMother(self.db.findPerson(matches[2],self.pmap))
+                id = matches[2]
+                person = self.find_or_create_person(id[1:-1])
+                self.family.setMother(person)
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "SLGS":
                 ord = LdsOrd()
@@ -524,7 +544,8 @@ class GedcomParser:
                 self.parse_address(self.addr,2)
 	    elif matches[1] == "CHIL":
                 mrel,frel = self.parse_ftw_relations(2)
-                child = self.db.findPerson(matches[2],self.pmap)
+                id = matches[2]
+                child = self.find_or_create_person(id[1:-1])
                 self.family.addChild(child)
 
                 for f in child.getParentList():

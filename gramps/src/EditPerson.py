@@ -781,7 +781,6 @@ class EditPerson:
         idval = self.gid.get_text()
 
         changed = 0
-        print self.lists_changed
         name = self.person.getPrimaryName()
 
         if self.person.getId() != idval:
