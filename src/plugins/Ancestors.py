@@ -301,7 +301,6 @@ class ComprehensiveAncestorsReport (Report.Report):
                 already_described = [],
                 needs_name = 0,
                 from_family = None):
-        print person_id
         ret = []
         person = self.database.find_person_from_id(person_id)
         name = self.person_name (person_id)
