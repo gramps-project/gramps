@@ -155,6 +155,7 @@ globalprop    = 1
 localprop     = 1
 defaultview   = 0
 familyview    = 0
+usetips       = 1
 
 #-------------------------------------------------------------------------
 #
@@ -221,6 +222,7 @@ def loadConfig(call):
     global localprop
     global defaultview
     global familyview
+    global usetips
     
     _callback = call
     lastfile = get_string("/apps/gramps/recent-file")
@@ -231,6 +233,8 @@ def loadConfig(call):
     calendar = get_bool("/apps/gramps/show-calendar")
     id_edit = get_bool("/apps/gramps/id-edit")
     index_visible = get_bool("/apps/gramps/index-visible")
+    usetips = get_bool("/apps/gramps/use-tips",1)
+    familyview = get_int("/apps/gramps/familyview")
     status_bar = get_int("/apps/gramps/statusbar")
     gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style","BOTH")
 
@@ -246,7 +250,6 @@ def loadConfig(call):
     else:
         toolbar = save_toolbar
     defaultview = get_int("/apps/gramps/defaultview")
-    familyview = get_int("/apps/gramps/familyview")
     
     autoload = get_bool("/apps/gramps/autoload",0)
     dateFormat = get_int("/apps/gramps/date-format")
@@ -604,6 +607,8 @@ class GrampsPreferences:
         else:
             self.top.get_widget('familyview2').set_active(1)
 
+        self.top.get_widget('usetips').set_active(usetips)
+
         paper_obj = self.top.get_widget("paper_size")
         menu = gtk.Menu()
         choice = 0
@@ -807,6 +812,7 @@ class GrampsPreferences:
         global save_toolbar
         global defaultview
         global familyview
+        global usetips
         global paper_preference
         global output_preference
         global goutput_preference
@@ -850,6 +856,7 @@ class GrampsPreferences:
 
         defaultview = not self.top.get_widget("pvbutton").get_active()
         familyview = not self.top.get_widget("familyview1").get_active()
+        usetips = self.top.get_widget("usetips").get_active()
 
         iprefix = unicode(self.top.get_widget("iprefix").get_text())
         if iprefix == "":
@@ -894,6 +901,7 @@ class GrampsPreferences:
         set_int("/apps/gramps/toolbar",save_toolbar)
         set_int("/apps/gramps/defaultview",defaultview)
         set_int("/apps/gramps/familyview",familyview)
+        set_bool("/apps/gramps/use-tips",usetips)
         set_string("/apps/gramps/paper-preference",paper_preference)
         set_string("/apps/gramps/output-preference",output_preference)
         set_string("/apps/gramps/goutput-preference",goutput_preference)

@@ -68,6 +68,7 @@ import GrampsCfg
 import EditPerson
 import Find
 import DbPrompter
+import TipOfDay
 
 from QuestionDialog import *
 
@@ -114,8 +115,6 @@ class Gramps:
         self.c_details = 6
         self.cl = 0
 
-        gtk.rc_parse(const.gtkrcFile)
-
         if os.getuid() == 0:
             WarningDialog(_("GRAMPS is being run as the 'root' user."),
                          _("This account is not meant for normal appication use. "
@@ -138,6 +137,9 @@ class Gramps:
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(self.db)
         self.init_interface()
+
+        if GrampsCfg.usetips:
+            TipOfDay.TipOfDay()
 
         if args:
             import ArgHandler
