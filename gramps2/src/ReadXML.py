@@ -114,17 +114,18 @@ def importData(database, filename, callback):
     xml_file.close()
     
     # Rename media files if they were conflicting with existing ones
-    #print parser.MediaFileMap
     ObjectMap = parser.db.getObjectMap()
     for OldMediaID in parser.MediaFileMap.keys():
         NewMediaID = parser.MediaFileMap[OldMediaID]
-        oldfile = ObjectMap[NewMediaID].getPath()
-        oldpath = os.path.dirname(oldfile)
-        (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
-        ObjectMap[NewMediaID].setLocal(1)
-	if NewMediaID != OldMediaID:
+        if NewMediaID != OldMediaID:
+            oldfile = ObjectMap[NewMediaID].getPath()
+            oldpath = os.path.dirname(oldfile)
+	    (junk,oldext) = os.path.splitext(os.path.basename(oldfile))
+            oldfile = os.path.join( basefile, OldMediaID + oldext )
             newfile = os.path.join( basefile, NewMediaID + oldext )
             os.rename(oldfile,newfile)
+            ObjectMap[NewMediaID].setPath(os.path.join(oldpath,NewMediaID+oldext))
+            ObjectMap[NewMediaID].setLocal(1)
     
     return 1
 
