@@ -3,6 +3,13 @@
 	window when left arrow button is clicked.
 	* src/FamilyView.py: if only one child exists, choose the child
 	event if not selected if the child arrow button is clicked
+	* src/AddMedia.py: set title for image select dialog
+	* src/DbPrompter.py: set default path in database file entry box
+	* src/gramps_main.py: set default path in database file entry box
+	* src/ImageSelect.py: set default path in image select file entry box,
+	keep track of last directory used
+	* src/Report.py: set default path in report file entry box
+	* src/imagesel.glade: enlarge image select dialog box
 
 2003-08-12  Lorenzo Cappelletti  <lorenzo.cappelletti@email.it>
 	* src/po/it.po: updated Italian translation
