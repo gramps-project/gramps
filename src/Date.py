@@ -140,6 +140,24 @@ class Date:
         """
         return cmp(self.sortval,other.sortval)
 
+    def is_equal(self,other):
+        """
+        Return 1 if the given Date instance is the same as the present
+        instance IN ALL REGARDS. Needed, because the __cmp__ only looks
+        at the sorting value, and ignores the modifiers/comments.
+        """
+        
+        if (self.calendar == other.calendar and 
+                        self.modifier == other.modifier and 
+                        self.quality == other.quality and 
+                        self.dateval == other.dateval and 
+                        self.text == other.text and 
+                        self.sortval == other.sortval and 
+                        self.comment == other.comment):
+            return 1
+        else:
+            return 0
+            
     def __str__(self):
         """
         Produces a string representation of the Date object. If the
@@ -447,4 +465,3 @@ class Date:
         Returns True if the date is a date range or a date span.
         """
         return self.modifier == MOD_RANGE or self.modifier == MOD_SPAN
-
