@@ -121,8 +121,8 @@ class CheckIntegrity:
                 if father.getGender() == mother.getGender():
                     family.setRelationship("Partners")
                     self.fam_rel.append(family)
-                elif father.getGender() != RelLib.Person.male or \
-                     mother.getGender() != RelLib.Person.female:
+                elif (father.getGender() == RelLib.Person.female or
+                      mother.getGender() == RelLib.Person.male):
                     family.setFather(mother)
                     family.setMother(father)
                     self.fam_rel.append(family)

@@ -623,13 +623,23 @@ class LaTeXDoc(TextDoc):
 	    self.f.write('\\includegraphics[%s]{%s}\\hspace*{\\fill}\n' % (mysize,picf))
 	else:
 	    self.f.write('\\hspace*{\\fill}\\includegraphics[%s]{%s}\hspace*{\\fill}\n' % (mysize,picf))
-		
+
     def write_text(self,text):
         """Write the text to the file"""
 	if not self.in_listing:
+            # Quote unsafe characters.
+            text = string.replace(text,'\\','\\\\')
+            text = string.replace(text,'$','\\$')
+            text = string.replace(text,'&','\\&')
+            text = string.replace(text,'%','\\%')
+            text = string.replace(text,'#','\\#')
+            text = string.replace(text,'{','\\{')
+            text = string.replace(text,'}','\\}')
+            text = string.replace(text,'_','\\_')
+            text = string.replace(text,'^','\\verb+^+')
+            text = string.replace(text,'~','\\verb+~+')
 	    if text == '\n':
 	        text = '\\newline\n'
-            text = string.replace(text,'#','\#')
         self.f.write(text)
 	if text:
 	    self.last_char_written = text[-1]
