@@ -10,6 +10,10 @@
 2003-08-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add Go menu with navigation items. Still have to 
 	work out the history menu being built at runtime. Add few shortcuts. 
+	* src/gramps_main.py (change_active_person): Small fix for disabling 
+	back button. 
+	* src/gramps_main.py: Add enabling/disabling for the new back/fwd menu
+	items. 
 
 2003-08-14  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/FrenchRepublic.py: Insert encoding line because non-ascii

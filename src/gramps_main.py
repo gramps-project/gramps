@@ -376,6 +376,8 @@ class Gramps:
         self.editbtn = self.gtop.get_widget('editbtn')
         self.backbtn = self.gtop.get_widget('back_btn')
         self.fwdbtn = self.gtop.get_widget('fwd_btn')
+        self.back = self.gtop.get_widget('back')
+        self.forward = self.gtop.get_widget('forward')
 
         self.gtop.signal_autoconnect({
             "on_back_clicked" : self.back_clicked,
@@ -470,14 +472,19 @@ class Gramps:
                 self.set_buttons(1)
                 if self.hindex == 0:
                     self.backbtn.set_sensitive(0)
+                    self.back.set_sensitive(0)
                 else:
                     self.backbtn.set_sensitive(1)
+                    self.back.set_sensitive(1)
                 self.fwdbtn.set_sensitive(1)
+                self.forward.set_sensitive(1)
             except:
                 self.set_buttons(0)
         else:
             self.backbtn.set_sensitive(0)
+            self.back.set_sensitive(0)
             self.fwdbtn.set_sensitive(1)
+            self.forward.set_sensitive(1)
 
     def fwd_clicked(self,obj):
         if self.hindex+1 < len(self.history):
@@ -489,15 +496,21 @@ class Gramps:
                 self.set_buttons(1)
                 if self.hindex == len(self.history)-1:
                     self.fwdbtn.set_sensitive(0)
+                    self.forward.set_sensitive(0)
                 else:
                     self.fwdbtn.set_sensitive(1)
+                    self.forward.set_sensitive(1)
                 self.backbtn.set_sensitive(1)
+                self.back.set_sensitive(1)
             except:
                 self.backbtn.set_sensitive(1)
+                self.back.set_sensitive(1)
                 self.set_buttons(0)
         else:
             self.fwdbtn.set_sensitive(0)
+            self.forward.set_sensitive(0)
             self.backbtn.set_sensitive(1)
+            self.back.set_sensitive(1)
 
     def change_alpha_page(self,obj,junk,page):
         """Change the page. Be careful not to take action while the pages
@@ -1487,12 +1500,19 @@ class Gramps:
                 if self.hindex+1 < len(self.history):
                     self.history = self.history[0:self.hindex+1]
                     self.fwdbtn.set_sensitive(1)
+                    self.forward.set_sensitive(1)
                 else:
                     self.fwdbtn.set_sensitive(0)
+                    self.forward.set_sensitive(0)
                 self.history.append(person.getId())
                 self.hindex += 1
-                self.backbtn.set_sensitive(1)
-                    
+                if self.hindex > 0:
+                    self.backbtn.set_sensitive(1)
+                    self.back.set_sensitive(1)
+                else:
+                    self.backbtn.set_sensitive(0)
+                    self.back.set_sensitive(0)
+     
         if person:
             self.set_buttons(1)
         else:
