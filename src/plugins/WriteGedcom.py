@@ -250,14 +250,14 @@ def make_date(subdate):
 #
 #
 #-------------------------------------------------------------------------
-def fmtline(text,limit,level):
+def fmtline(text,limit,level,endl):
     new_text = []
     while len(text) > limit:
         new_text.append(text[0:limit-1])
         text = text[limit:]
     if len(text) > 0:
         new_text.append(text)
-    app = "\n%d CONC " % (level+1)
+    app = "%s%d CONC " % (endl,level+1)
     return string.join(new_text,app)
     
 #-------------------------------------------------------------------------
@@ -399,7 +399,7 @@ class GedcomWriter:
             filter_obj.set_menu(self.filter_menu)
 
             gedmap = GedcomInfo.GedcomInfoDB()
-
+            
             target_obj = self.topDialog.get_widget("target")
             myMenu = gtk.Menu()
             for name in gedmap.get_name_list():
@@ -437,6 +437,7 @@ class GedcomWriter:
         act_tgt = self.target_menu.get_active()
 
         self.target_ged =  act_tgt.get_data("data")
+        self.nl = self.target_ged.get_endl()
 
         self.dest = self.target_ged.get_dest()
         self.adopt = self.target_ged.get_adopt()
@@ -538,6 +539,9 @@ class GedcomWriter:
 
         self.export_data(self.name)
 
+    def writeln(self,text):
+        self.g.write('%s%s' % (text,self.nl))
+        
     def export_data(self,filename):
         try:
             self.g = open(filename,"w")
@@ -553,56 +557,56 @@ class GedcomWriter:
 
         date = string.split(time.ctime(time.time()))
 
-        self.g.write("0 HEAD\n")
-        self.g.write("1 SOUR GRAMPS\n")
-        self.g.write("2 VERS %s\n" % const.version)
-        self.g.write("2 NAME GRAMPS\n")
+        self.writeln("0 HEAD")
+        self.writeln("1 SOUR GRAMPS")
+        self.writeln("2 VERS %s" % const.version)
+        self.writeln("2 NAME GRAMPS")
         if self.dest:
-            self.g.write("1 DEST %s\n" % self.dest)
-        self.g.write("1 DATE %s %s %s\n" % (date[2],string.upper(date[1]),date[4]))
+            self.writeln("1 DEST %s" % self.dest)
+        self.writeln("1 DATE %s %s %s" % (date[2],string.upper(date[1]),date[4]))
         if self.cnvtxt == ansel_utf8.utf8_to_ansel:
-            self.g.write("1 CHAR ANSEL\n")
+            self.writeln("1 CHAR ANSEL")
         elif self.cnvtxt == iso8859:
-            self.g.write("1 CHAR ANSI\n")
+            self.writeln("1 CHAR ANSI")
         else:
-            self.g.write("1 CHAR UTF-8\n")
-        self.g.write("1 SUBM @SUBM@\n")
-        self.g.write("1 FILE %s\n" % filename)
+            self.writeln("1 CHAR UTF-8")
+        self.writeln("1 SUBM @SUBM@")
+        self.writeln("1 FILE %s" % filename)
         self.write_copy()
-        self.g.write("1 GEDC\n")
-        self.g.write("2 VERS 5.5\n")
-        self.g.write('2 FORM LINEAGE-LINKED\n')
+        self.writeln("1 GEDC")
+        self.writeln("2 VERS 5.5")
+        self.writeln('2 FORM LINEAGE-LINKED')
         self.gnu_fdl()
-        self.g.write("0 @SUBM@ SUBM\n")
+        self.writeln("0 @SUBM@ SUBM")
         owner = self.db.getResearcher()
         if owner.getName():
-            self.g.write("1 NAME %s\n" % self.cnvtxt(owner.getName()))
+            self.writeln("1 NAME %s" % self.cnvtxt(owner.getName()))
         else:
-            self.g.write('1 NAME Not Provided\n')
+            self.writeln('1 NAME Not Provided')
 
         if owner.getAddress():
             cnt = 0
-            self.g.write("1 ADDR %s\n" % self.cnvtxt(owner.getAddress()))
+            self.writeln("1 ADDR %s" % self.cnvtxt(owner.getAddress()))
             if owner.getCity():
-                self.g.write("2 CONT %s\n" % self.cnvtxt(owner.getCity()))
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.getCity()))
                 cnt = 1
             if owner.getState():
-                self.g.write("2 CONT %s\n" % self.cnvtxt(owner.getState()))
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.getState()))
                 cnt = 1
             if owner.getPostalCode():
-                self.g.write("2 CONT %s\n" % self.cnvtxt(owner.getPostalCode()))
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.getPostalCode()))
                 cnt = 1
             if owner.getCountry():
-                self.g.write("2 CONT %s\n" % self.cnvtxt(owner.getCountry()))
+                self.writeln("2 CONT %s" % self.cnvtxt(owner.getCountry()))
                 cnt = 1
             if owner.getPhone():
-                self.g.write("2 PHON %s\n" % self.cnvtxt(owner.getPhone()))
+                self.writeln("2 PHON %s" % self.cnvtxt(owner.getPhone()))
                 cnt = 1
             if cnt == 0:
-                self.g.write('2 CONT Not Provided\n')
+                self.writeln('2 CONT Not Provided')
         else:
-            self.g.write('1 ADDR Not Provided\n')
-            self.g.write('2 CONT Not Provided\n')
+            self.writeln('1 ADDR Not Provided')
+            self.writeln('2 CONT Not Provided')
 
         pkeys = self.plist.keys()
         pkeys.sort()
@@ -625,7 +629,7 @@ class GedcomWriter:
             if not self.cl:
                 self.sbar.set_fraction(1.0)
 
-        self.g.write("0 TRLR\n")
+        self.writeln("0 TRLR")
         self.g.close()
 
     def write_copy(self):
@@ -636,10 +640,10 @@ class GedcomWriter:
         
         if self.copy == 0:
             o = self.db.getResearcher().getName()
-            self.g.write('1 COPR Copyright (c) %d %s.\n' % (y,o))
+            self.writeln('1 COPR Copyright (c) %d %s.' % (y,o))
         elif self.copy == 1:
             o = self.db.getResearcher().getName()
-            self.g.write('1 COPR Copyright (c) %d %s. See additional copyright NOTE below.\n' % (y,o))
+            self.writeln('1 COPR Copyright (c) %d %s. See additional copyright NOTE below.' % (y,o))
 
     def gnu_fdl(self):
         import time
@@ -651,7 +655,7 @@ class GedcomWriter:
         y = t[0]
         o = self.db.getResearcher().getName()
         
-        self.g.write('1 NOTE       Copyright (c) %d %s.\n' % (y,o))
+        self.writeln('1 NOTE       Copyright (c) %d %s.' % (y,o))
         try:
             f = open(const.fdl,"r")
             for line in f.readlines():
@@ -666,16 +670,16 @@ class GedcomWriter:
         for key in self.flist.keys():
             family = self.db.getFamily(key)
             father_alive = mother_alive = 0
-            self.g.write("0 @%s@ FAM\n" % self.fid(family.getId()))
+            self.writeln("0 @%s@ FAM" % self.fid(family.getId()))
             self.prefn(family)
             person = family.getFather()
             if person != None and self.plist.has_key(person.getId()):
-                self.g.write("1 HUSB @%s@\n" % self.pid(person.getId()))
+                self.writeln("1 HUSB @%s@" % self.pid(person.getId()))
                 father_alive = person.probablyAlive()
 
             person = family.getMother()
             if person != None and self.plist.has_key(person.getId()):
-                self.g.write("1 WIFE @%s@\n" % self.pid(person.getId()))
+                self.writeln("1 WIFE @%s@" % self.pid(person.getId()))
                 mother_alive = person.probablyAlive()
 
             if not self.restrict or ( not father_alive and not mother_alive ):
@@ -692,32 +696,32 @@ class GedcomWriter:
                         val = self.target_ged.gramps2tag(name)
                         
                     if val:
-                        self.g.write("1 %s %s\n" % (self.cnvtxt(val),
-                                                 self.cnvtxt(event.getDescription())))
+                        self.writeln("1 %s %s" % (self.cnvtxt(val),
+                                                  self.cnvtxt(event.getDescription())))
                     else:	
-                        self.g.write("1 EVEN %s\n" % self.cnvtxt(event.getDescription()))
-                        self.g.write("2 TYPE %s\n" % self.cnvtxt(name))
+                        self.writeln("1 EVEN %s" % self.cnvtxt(event.getDescription()))
+                        self.writeln("2 TYPE %s" % self.cnvtxt(name))
 					
                     self.dump_event_stats(event)
 
             for person in family.getChildList():
                 if not self.plist.has_key(person.getId()):
                     continue
-                self.g.write("1 CHIL @%s@\n" % self.pid(person.getId()))
+                self.writeln("1 CHIL @%s@" % self.pid(person.getId()))
                 if self.adopt == GedcomInfo.ADOPT_FTW:
                     if person.getMainParents() == family:
-                        self.g.write('2 _FREL Natural\n')
-                        self.g.write('2 _MREL Natural\n')
+                        self.writeln('2 _FREL Natural')
+                        self.writeln('2 _MREL Natural')
                     else:
                         for f in person.getParentList():
                             if f[0] == family:
-                                self.g.write('2 _FREL %s\n' % f[2])
-                                self.g.write('2 _MREL %s\n' % f[1])
+                                self.writeln('2 _FREL %s' % f[2])
+                                self.writeln('2 _MREL %s' % f[1])
                                 break
                 if self.adopt == GedcomInfo.ADOPT_LEGACY:
                     for f in person.getAltParentList():
                         if f[0] == family:
-                            self.g.write('2 _STAT %s\n' % f[2])
+                            self.writeln('2 _STAT %s' % f[2])
                             break
                 
             index = index + 1
@@ -733,17 +737,17 @@ class GedcomWriter:
         index = 0.0
         for key in self.slist.keys():
             source = self.db.getSource(key)
-            self.g.write("0 @%s@ SOUR\n" % self.sid(source.getId()))
+            self.writeln("0 @%s@ SOUR" % self.sid(source.getId()))
             if source.getTitle():
-                self.g.write("1 TITL %s\n" % fmtline(self.cnvtxt(source.getTitle()),248,1))
+                self.writeln("1 TITL %s" % fmtline(self.cnvtxt(source.getTitle()),248,1,self.nl))
             if source.getAuthor():
-                self.g.write("1 AUTH %s\n" % self.cnvtxt(source.getAuthor()))
+                self.writeln("1 AUTH %s" % self.cnvtxt(source.getAuthor()))
             if source.getPubInfo():
-                self.g.write("1 PUBL %s\n" % self.cnvtxt(source.getPubInfo()))
+                self.writeln("1 PUBL %s" % self.cnvtxt(source.getPubInfo()))
             if source.getTitle():
-                self.g.write("1 ABBR %s\n" % self.cnvtxt(source.getTitle()))
+                self.writeln("1 ABBR %s" % self.cnvtxt(source.getTitle()))
             if source.getCallNumber():
-                self.g.write("1 CALN %s\n" % self.cnvtxt(source.getCallNumber()))
+                self.writeln("1 CALN %s" % self.cnvtxt(source.getCallNumber()))
             if source.getNote():
                 self.write_long_text("NOTE",1,self.cnvtxt(source.getNote()))
             index = index + 1
@@ -755,7 +759,7 @@ class GedcomWriter:
             self.sbar.set_fraction(1.0)
 
     def write_person(self,person):
-        self.g.write("0 @%s@ INDI\n" % self.pid(person.getId()))
+        self.writeln("0 @%s@ INDI" % self.pid(person.getId()))
         self.prefn(person)
         self.write_person_name(person.getPrimaryName(),person.getNickName())
 
@@ -764,27 +768,27 @@ class GedcomWriter:
                 self.write_person_name(name,"")
     
         if person.getGender() == RelLib.Person.male:
-            self.g.write("1 SEX M\n")
+            self.writeln("1 SEX M")
         elif person.getGender() == RelLib.Person.female:	
-            self.g.write("1 SEX F\n")
+            self.writeln("1 SEX F")
 
         if not self.restrict or not person.probablyAlive():
 
             birth = person.getBirth()
             if not (self.private and birth.getPrivacy()):
                 if not birth.getDateObj().isEmpty() or birth.getPlaceName():
-                    self.g.write("1 BIRT\n")
+                    self.writeln("1 BIRT")
                     self.dump_event_stats(birth)
 				
             death = person.getDeath()
             if not (self.private and death.getPrivacy()):
                 if not death.getDateObj().isEmpty() or death.getPlaceName():
-                    self.g.write("1 DEAT\n")
+                    self.writeln("1 DEAT")
                     self.dump_event_stats(death)
 
             uid = person.getPafUid()
             if uid:
-                self.g.write("1 _UID %s\n" % uid)
+                self.writeln("1 _UID %s" % uid)
             
             ad = 0
 
@@ -804,7 +808,7 @@ class GedcomWriter:
                     
                 if self.adopt == GedcomInfo.ADOPT_EVENT and val == "ADOP":
                     ad = 1
-                    self.g.write('1 ADOP\n')
+                    self.writeln('1 ADOP')
                     fam = None
                     for f in person.getParentList():
                         mrel = string.lower(f[1])
@@ -813,24 +817,24 @@ class GedcomWriter:
                             fam = f[0]
                             break
                     if fam:
-                        self.g.write('2 FAMC @%s@\n' % self.fid(fam.getId()))
+                        self.writeln('2 FAMC @%s@' % self.fid(fam.getId()))
                         if mrel == frel:
-                            self.g.write('3 ADOP BOTH\n')
+                            self.writeln('3 ADOP BOTH')
                         elif mrel == "adopted":
-                            self.g.write('3 ADOP WIFE\n')
+                            self.writeln('3 ADOP WIFE')
                         else:
-                            self.g.write('3 ADOP HUSB\n')
+                            self.writeln('3 ADOP HUSB')
                 elif val :
-                    self.g.write("1 %s %s\n" % (self.cnvtxt(val),\
-                                                self.cnvtxt(event.getDescription())))
+                    self.writeln("1 %s %s" % (self.cnvtxt(val),\
+                                              self.cnvtxt(event.getDescription())))
                 else:
-                    self.g.write("1 EVEN %s\n" % self.cnvtxt(event.getDescription()))
-                    self.g.write("2 TYPE %s\n" % self.cnvtxt(event.getName()))
+                    self.writeln("1 EVEN %s" % self.cnvtxt(event.getDescription()))
+                    self.writeln("2 TYPE %s" % self.cnvtxt(event.getName()))
 
                 self.dump_event_stats(event)
 
             if self.adopt == GedcomInfo.ADOPT_EVENT and ad == 0 and len(person.getParentList()) != 0:
-                self.g.write('1 ADOP\n')
+                self.writeln('1 ADOP')
                 fam = None
                 for f in person.getParentList():
                     mrel = string.lower(f[1])
@@ -839,13 +843,13 @@ class GedcomWriter:
                         fam = f[0]
                         break
                 if fam:
-                    self.g.write('2 FAMC @%s@\n' % self.fid(fam.getId()))
+                    self.writeln('2 FAMC @%s@' % self.fid(fam.getId()))
                     if mrel == frel:
-                        self.g.write('3 ADOP BOTH\n')
+                        self.writeln('3 ADOP BOTH')
                     elif mrel == "adopted":
-                        self.g.write('3 ADOP WIFE\n')
+                        self.writeln('3 ADOP WIFE')
                     else:
-                        self.g.write('3 ADOP HUSB\n')
+                        self.writeln('3 ADOP HUSB')
 
             for attr in person.getAttributeList():
                 if self.private and attr.getPrivacy():
@@ -856,11 +860,11 @@ class GedcomWriter:
                 else:
                     val = ""
                 if val : 
-                    self.g.write("1 %s\n" % val)
+                    self.writeln("1 %s" % val)
                 else:
-                    self.g.write("1 EVEN\n")
-                    self.g.write("2 TYPE %s\n" % self.cnvtxt(name))
-                self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(attr.getValue()),'\r',' '))
+                    self.writeln("1 EVEN")
+                    self.writeln("2 TYPE %s" % self.cnvtxt(name))
+                self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(attr.getValue()),'\r',' '))
                 if attr.getNote():
                     self.write_long_text("NOTE",2,self.cnvtxt(attr.getNote()))
                 for srcref in attr.getSourceRefList():
@@ -869,18 +873,18 @@ class GedcomWriter:
             for addr in person.getAddressList():
                 if self.private and addr.getPrivacy():
                     continue
-                self.g.write("1 RESI\n")
+                self.writeln("1 RESI")
                 self.print_date("2 DATE",addr.getDateObj())
                 if self.resi == 0:
                     self.write_long_text("ADDR",2,self.cnvtxt(addr.getStreet()))
                     if addr.getCity():
-                        self.g.write("3 CITY %s\n" % self.cnvtxt(addr.getCity()))
+                        self.writeln("3 CITY %s" % self.cnvtxt(addr.getCity()))
                     if addr.getState():
-                        self.g.write("3 STAE %s\n" % self.cnvtxt(addr.getState()))
+                        self.writeln("3 STAE %s" % self.cnvtxt(addr.getState()))
                     if addr.getPostal():
-                        self.g.write("3 POST %s\n" % self.cnvtxt(addr.getPostal()))
+                        self.writeln("3 POST %s" % self.cnvtxt(addr.getPostal()))
                     if addr.getCountry():
-                        self.g.write("3 CTRY %s\n" % self.cnvtxt(addr.getCountry()))
+                        self.writeln("3 CTRY %s" % self.cnvtxt(addr.getCountry()))
                 else:
                     text = addr.getStreet()
                     text = addr_append(text,addr.getCity())
@@ -888,7 +892,7 @@ class GedcomWriter:
                     text = addr_append(text,addr.getPostal())
                     text = addr_append(text,addr.getCountry())
                     if text:
-                        self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(text),'\r',' '))
+                        self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(text),'\r',' '))
                 if addr.getNote():
                     self.write_long_text("NOTE",2,self.cnvtxt(addr.getNote()))
                 for srcref in addr.getSourceRefList():
@@ -896,23 +900,23 @@ class GedcomWriter:
 
         for family in person.getParentList():
             if self.flist.has_key(family[0].getId()):
-                self.g.write("1 FAMC @%s@\n" % self.fid(family[0].getId()))
+                self.writeln("1 FAMC @%s@" % self.fid(family[0].getId()))
                 if self.adopt == GedcomInfo.ADOPT_PEDI:
                     if string.lower(family[1]) == "adopted":
-                        self.g.write("2 PEDI Adopted\n")
+                        self.writeln("2 PEDI Adopted")
         
         for family in person.getFamilyList():
             if family != None and self.flist.has_key(family.getId()):
-                self.g.write("1 FAMS @%s@\n" % self.fid(family.getId()))
+                self.writeln("1 FAMS @%s@" % self.fid(family.getId()))
 
         if self.obje:
             for url in person.getUrlList():
-                self.g.write('1 OBJE\n')
-                self.g.write('2 FORM URL\n')
+                self.writeln('1 OBJE')
+                self.writeln('2 FORM URL')
                 if url.get_description():
-                    self.g.write('2 TITL %s\n' % url.get_description())
+                    self.writeln('2 TITL %s' % url.get_description())
                 if url.get_path():
-                    self.g.write('2 FILE %s\n' % url.get_path())
+                    self.writeln('2 FILE %s' % url.get_path())
 
         if person.getNote():
             self.write_long_text("NOTE",1,self.cnvtxt(person.getNote()))
@@ -927,7 +931,7 @@ class GedcomWriter:
         prefix = "%d %s" % (level,tag)
         textlines = string.split(note,'\n')
         if len(note) == 0:
-            self.g.write("%s\n" % prefix)
+            self.writeln(prefix)
         else:
             for line in textlines:
                 ll = len(line)
@@ -937,14 +941,14 @@ class GedcomWriter:
                         while (ll > brkpt and line[brkpt] in string.whitespace):
                             brkpt = brkpt+1
                             if ll == brkpt:
-                                self.g.write("%s %s\n" % (prefix,line))
+                                self.writeln("%s %s" % (prefix,line))
                                 line = ''
                                 break
                         else:
-                            self.g.write("%s %s\n" % (prefix,line[0:brkpt+1]))
+                            self.writeln("%s %s" % (prefix,line[0:brkpt+1]))
                             line = line[brkpt+1:]
                     else:
-                        self.g.write("%s %s\n" % (prefix,line))
+                        self.writeln("%s %s" % (prefix,line))
                         line = ""
                     if len(line) > 0:
                         prefix = "%d CONC" % (level+1)
@@ -956,7 +960,7 @@ class GedcomWriter:
         prefix = "%d %s" % (level,tag)
         textlines = string.split(note,'\n')
         if len(note) == 0:
-            self.g.write("%s\n" % prefix)
+            self.writeln(prefix)
         else:
             for line in textlines:
                 ll = len(line)
@@ -966,14 +970,14 @@ class GedcomWriter:
                         while (ll > brkpt and line[brkpt] not in string.whitespace):
                             brkpt = brkpt+1
                             if ll == brkpt:
-                                self.g.write("%s %s\n" % (prefix,line))
+                                self.writeln("%s %s" % (prefix,line))
                                 line = ''
                                 break
                         else:
-                            self.g.write("%s %s\n" % (prefix,line[0:brkpt+1]))
+                            self.writeln("%s %s" % (prefix,line[0:brkpt+1]))
                             line = line[brkpt+1:]
                     else:
-                        self.g.write("%s %s\n" % (prefix,line))
+                        self.writeln("%s %s" % (prefix,line))
                         line = ""
                     if len(line) > 0:
                         prefix = "%d CONC" % (level+1)
@@ -985,9 +989,9 @@ class GedcomWriter:
         dateobj = event.getDateObj()
         self.print_date("2 DATE",dateobj)
         if event.getPlaceName():
-            self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(event.getPlaceName()),'\r',' '))
+            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(event.getPlaceName()),'\r',' '))
         if event.getCause():
-            self.g.write("2 CAUS %s\n" % self.cnvtxt(event.getCause()))
+            self.writeln("2 CAUS %s" % self.cnvtxt(event.getCause()))
         if event.getNote():
             self.write_long_text("NOTE",2,self.cnvtxt(event.getNote()))
         for srcref in event.getSourceRefList():
@@ -996,16 +1000,16 @@ class GedcomWriter:
     def write_ord(self,name,ord,index,statlist):
         if ord == None:
             return
-        self.g.write('%d %s\n' % (index,name))
+        self.writeln('%d %s' % (index,name))
         self.print_date("%d DATE" % (index + 1), ord.getDateObj())
         if ord.getFamily():
-            self.g.write('%d FAMC @%s@\n' % (index+1,self.fid(ord.getFamily().getId())))
+            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.getFamily().getId())))
         if ord.getTemple():
-            self.g.write('%d TEMP %s\n' % (index+1,ord.getTemple()))
+            self.writeln('%d TEMP %s' % (index+1,ord.getTemple()))
         if ord.getPlaceName():
-            self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(ord.getPlaceName()),'\r',' '))
+            self.writeln("2 PLAC %s" % string.replace(self.cnvtxt(ord.getPlaceName()),'\r',' '))
         if ord.getStatus() != 0:
-            self.g.write("2 STAT %s\n" % self.cnvtxt(statlist[ord.getStatus()]))
+            self.writeln("2 STAT %s" % self.cnvtxt(statlist[ord.getStatus()]))
         if ord.getNote():
             self.write_long_text("NOTE",index+1,self.cnvtxt(ord.getNote()))
         for srcref in ord.getSourceRefList():
@@ -1016,14 +1020,14 @@ class GedcomWriter:
         if date.isEmpty():
             val = date.getText()
             if val:
-                self.g.write("%s %s\n" % (prefix,self.cnvtxt(val)))
+                self.writeln("%s %s" % (prefix,self.cnvtxt(val)))
         else:
             if date.isRange():
                 val = "FROM %s TO %s" % (make_date(start),
                                          make_date(date.get_stop_date()))
             else:
                 val = make_date(start)
-            self.g.write("%s %s\n" % (prefix,val))
+            self.writeln("%s %s" % (prefix,val))
 
     def write_person_name(self,name,nick):
         firstName = self.cnvtxt(name.getFirstName())
@@ -1033,34 +1037,34 @@ class GedcomWriter:
         title = self.cnvtxt(name.getTitle())
         if suffix == "":
             if not surPref:
-                self.g.write("1 NAME %s /%s/\n" % (firstName,surName))
+                self.writeln("1 NAME %s /%s/" % (firstName,surName))
             else:
-                self.g.write("1 NAME %s /%s %s/\n" % (firstName,surPref,surName))
+                self.writeln("1 NAME %s /%s %s/" % (firstName,surPref,surName))
         else:
             if not surPref:
-                self.g.write("1 NAME %s /%s %s/, %s\n" % (firstName,surPref,surName,suffix))
+                self.writeln("1 NAME %s /%s %s/, %s" % (firstName,surPref,surName,suffix))
             else:
-                self.g.write("1 NAME %s /%s/, %s\n" % (firstName,surName,suffix))
+                self.writeln("1 NAME %s /%s/, %s" % (firstName,surName,suffix))
 
         if name.getFirstName():
-            self.g.write("2 GIVN %s\n" % firstName)
+            self.writeln("2 GIVN %s" % firstName)
         if self.prefix:
             if surPref:
-                self.g.write('2 SPFX %s\n' % surPref)
+                self.writeln('2 SPFX %s' % surPref)
             if surName:
-                self.g.write("2 SURN %s\n" % surName)
+                self.writeln("2 SURN %s" % surName)
         else:
             if surPref:
-                self.g.write("2 SURN %s %s\n" % (surPref,surName))
+                self.writeln("2 SURN %s %s" % (surPref,surName))
             elif surName:
-                self.g.write("2 SURN %s\n" % surName)
+                self.writeln("2 SURN %s" % surName)
                 
         if name.getSuffix():
-            self.g.write("2 NSFX %s\n" % suffix)
+            self.writeln("2 NSFX %s" % suffix)
         if name.getTitle():
-            self.g.write("2 NPFX %s\n" % title)
+            self.writeln("2 NPFX %s" % title)
         if nick:
-            self.g.write('2 NICK %s\n' % nick)
+            self.writeln('2 NICK %s' % nick)
         if name.getNote():
             self.write_long_text("NOTE",2,self.cnvtxt(name.getNote()))
         for srcref in name.getSourceRefList():
@@ -1071,14 +1075,14 @@ class GedcomWriter:
             return
 
         if self.source_refs:
-            self.g.write("%d SOUR @%s@\n" %
+            self.writeln("%d SOUR @%s@" %
                          (level,self.sid(ref.getBase().getId())))
             if ref.getPage() != "":
-                self.g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
+                self.writeln("%d PAGE %s" % (level+1,ref.getPage()))
 
             ref_text = ref.getText()
             if ref_text != "" or not ref.getDate().isEmpty():
-                self.g.write('%d DATA\n' % (level+1))
+                self.writeln('%d DATA' % (level+1))
                 if ref_text != "":
                     self.write_long_text("TEXT",level+2,self.cnvtxt(ref_text))
                 pfx = "%d DATE" % (level+2)
@@ -1099,7 +1103,7 @@ class GedcomWriter:
             if not ref.getDate().isEmpty():
                 self.print_date("", ref.getDate())
             else:
-                self.g.write("\n")
+                self.writeln("")
             if ref.getText():
                 self.write_long_text("TEXT",level+1,self.cnvtxt(ref_text))
 
@@ -1112,12 +1116,12 @@ class GedcomWriter:
     def prefn(self,person):
         match = _get_int.search(person.getId())
         if match:
-            self.g.write('1 REFN %d\n' % int(match.groups()[0]))
+            self.writeln('1 REFN %d' % int(match.groups()[0]))
 
     def frefn(self,family):
         match = _get_int.search(family.getId())
         if match:
-            self.g.write('1 REFN %d\n' % int(match.groups()[0]))
+            self.writeln('1 REFN %d' % int(match.groups()[0]))
     
     def pid(self,id):
         return id
