@@ -373,6 +373,19 @@ def register_draw_doc(name,classref):
 
 #-------------------------------------------------------------------------
 #
+# Image attributes
+#
+#-------------------------------------------------------------------------
+_image_attributes = []
+def register_image_attribute(name):
+    if name not in _image_attributes:
+        _image_attributes.append(name)
+
+def get_image_attributes():
+    return _image_attributes
+
+#-------------------------------------------------------------------------
+#
 # Building pulldown menus
 #
 #-------------------------------------------------------------------------
