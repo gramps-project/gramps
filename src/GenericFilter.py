@@ -1853,7 +1853,7 @@ class FullTextSearch(Rule):
         return 'Full-text serach for ...'
     
     def description(self):
-        return _("Does a full-text search in all text values of the verson and all linked events and families")
+        return _("Matches persons whose records contain text matching a substring")
 
     def category(self):
         return _('General filters')

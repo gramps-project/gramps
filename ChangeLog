@@ -1,3 +1,8 @@
+2005-03-15  Alex Roitman  <shura@gramps-project.org>
+	* src/RelLib.py (Source.get_text_data_child_list,
+	Family.get_text_data_child_list): Add missing lists.
+	* src/GenericFilter.py (FullTextSearch): Correct description.
+
 2005-03-15  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/Makefile.am : Added TreeTip.py to list of installed modules.
 	* src/TreeTip.py: New module that implements tooltips on TreeView rows.
@@ -7,8 +12,8 @@
 	* src/plugins/scratchpad.glade: New glade file for ScratchPad window.
 	
 2005-03-15  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
-	* src/GenericFilter.py (FullTextSearch): Added new filter thad provides
-	a full-text search thru (nearly) all attributes and linked objexts of a person.
+	* src/GenericFilter.py (FullTextSearch): Added new filter that provides
+	a full-text search thru (nearly) all attributes and linked objects of a person.
 	* src/gramps_main.py: add the new filter to the menu.
 	* src/RelLib.py (Event,Source): fix get_text_data_child_list() to correct
 	attributes of the class; (Family): fix get_sourcref_child_list().
