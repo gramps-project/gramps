@@ -699,8 +699,10 @@ def remove_from_person_list(person):
     person_list.thaw()
     
 def merge_update(p1,p2):
+    remove_from_person_list(p1)
     remove_from_person_list(p2)
-
+    redisplay_person_list(p1)
+    
 #-------------------------------------------------------------------------
 #
 #

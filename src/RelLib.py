@@ -1385,7 +1385,7 @@ class Family:
     def removeChild(self,person):
         """removes the specified Person from the child list"""
         if person in self.Children:
-           self.Children.remove(person)
+            self.Children.remove(person)
         if person.ancestor:
             if self.Father:
                 self.Father.setAncestor(0)

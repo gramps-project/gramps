@@ -394,7 +394,7 @@ class SingleDate:
                 raise Date.Error,val
 
     def setMonth(self,val):
-        if val > 12 or val < 0:
+        if val > 14 or val < 0:
             self.month = UNDEF
         else:
             self.month = val - 1
