@@ -731,7 +731,6 @@ def new_database_response(val):
     const.marriageEvents = const.initialize_marriage_event_list()
     const.familyAttributes = const.initialize_family_attribute_list()
     const.familyRelations = const.initialize_family_relation_list()
-    const.places = []
     
     database.new()
     topWindow.set_title("Gramps")
@@ -1761,7 +1760,6 @@ def on_revert_activate(obj):
 #-------------------------------------------------------------------------
 def revert_query(value):
     if value == 0:
-        const.places = []
         const.personalEvents = const.initialize_personal_event_list()
         const.personalAttributes = const.initialize_personal_attribute_list()
         const.marriageEvents = const.initialize_marriage_event_list()
@@ -2450,9 +2448,6 @@ def load_database(name):
         if ntype not in const.personalEvents:
             const.personalEvents.append(ntype)
 
-    const.places = database.getPlaces()
-    const.places.sort()
-    
     mylist = database.getFamilyEventTypes()
     for type in mylist:
         ntype = const.display_fevent(type)

@@ -83,7 +83,7 @@ class EditPlace:
         self.note = self.top_window.get_widget("place_note")
 
         self.web_list = self.top_window.get_widget("web_list")
-        self.web_url = self.top_window.get_widget("url_addr")
+        self.web_url = self.top_window.get_widget("web_url")
         self.web_description = self.top_window.get_widget("url_des")
         self.source_field = self.top_window.get_widget("source_field")
         
@@ -192,6 +192,12 @@ class EditPlace:
                 current_row = current_row - 1
             self.web_list.select_row(current_row,0)
             self.web_list.moveto(current_row,0)
+            self.web_url.set_sensitive(1)
+        else:
+            self.web_url.set_label("")
+            self.web_url.set_sensitive(0)
+            self.web_description.set_text("")
+            
         self.web_list.set_data(INDEX,current_row)
         self.web_list.thaw()
 
@@ -720,8 +726,9 @@ def on_web_list_select_row(obj,row,b,c):
     epo = obj.get_data(PLACE)
     url = obj.get_row_data(row)
 
-    epo.web_url.set_text(": %s " % url.get_path())
-    epo.web_description.set_text(": %s" % url.get_description())
+    epo.web_url.set_label(url.get_path())
+    epo.web_url.set_url(url.get_path())
+    epo.web_description.set_text(url.get_description())
 
 #-------------------------------------------------------------------------
 #
@@ -736,10 +743,10 @@ def on_loc_list_select_row(obj,row,b,c):
     epo = obj.get_data(PLACE)
     loc = obj.get_row_data(row)
 
-    epo.loc_city.set_text(": %s " % loc.get_city())
-    epo.loc_county.set_text(": %s " % loc.get_county())
-    epo.loc_state.set_text(": %s " % loc.get_state())
-    epo.loc_country.set_text(": %s " % loc.get_country())
+    epo.loc_city.set_text(loc.get_city())
+    epo.loc_county.set_text(loc.get_county())
+    epo.loc_state.set_text(loc.get_state())
+    epo.loc_country.set_text(loc.get_country())
 
 #-------------------------------------------------------------------------
 #
@@ -881,9 +888,6 @@ def on_location_list_select_row(obj,row,b,c):
 
     epo = obj.get_data(PLACE)
     loc = obj.get_row_data(row)
-
-#    epo.web_url.set_text(": %s " % url.get_path())
-#    epo.web_description.set_text(": %s" % url.get_description())
 
 #-------------------------------------------------------------------------
 #
