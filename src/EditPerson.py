@@ -334,8 +334,11 @@ class EditPerson:
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
         src = os.path.basename(photo.getPath())
-        thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
-        RelImage.check_thumb(src,thumb,const.thumbScale)
+        if photo.getPrivate():
+            thumb = "%s%s.thumb%s%s" % (self.path,os.sep,os.sep,src)
+        else:
+            thumb = "%s%s.thumb%s%s.jpg" % (self.path,os.sep,os.sep,os.path.basename(src))
+        RelImage.check_thumb(photo.getPath(),thumb,const.thumbScale)
         self.photo_list.append(thumb,photo.getDescription())
         
     #-------------------------------------------------------------------------
@@ -1194,6 +1197,8 @@ def on_savephoto_clicked(obj):
     if epo.external.get_active() == 1:
         if os.path.isfile(filename):
             name = filename
+            thumb = "%s%s.thumb.jpg" % (path,os.sep,os.path.basename(filename))
+            RelImage.mk_thumb(filename,thumb,const.thumbScale)
         else:
             return
     else:
