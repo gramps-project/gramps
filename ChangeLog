@@ -9,6 +9,8 @@
 	get_family_from_gramps_id,get_place_from_gramps_id,
 	get_source_from_gramps_id,get_object_from_gramps_id):
 	Unserialize tuple and return a proper GRAMPS object.
+	* src/DbPrompter.py (NewNativeDbPrompter.chooser):
+	Initialize natvie database before attempting to load.
 
 2005-01-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: removal of more OptionMenus in favor

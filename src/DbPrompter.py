@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -357,6 +357,7 @@ class NewNativeDbPrompter:
                 if os.path.splitext(filename)[1] != ".grdb":
                     filename = filename + ".grdb"
                 choose.destroy()
+                self.parent.db = GrampsBSDDB.GrampsBSDDB()
                 self.parent.read_file(filename)
                 # Add the file to the recent items
                 RecentFiles.recent_files(filename,const.app_gramps)
