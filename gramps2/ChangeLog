@@ -16,6 +16,8 @@
 	into C-locale string (for saving floats in XML)
 	* src/StyleEditor.py (draw): Call locale.str instead of str.
 	* src/TextDoc.py (StyleSheetList.save): Call gformat instead of '%f'.
+	* src/AutoComp.py (AutoCombo.timer_callback): Fix autocompletion
+	so that the typed portion of the text is always visible.
 
 2003-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/preferences.glade: Don't immediately show preferences dialog
