@@ -71,6 +71,7 @@ class PlaceView:
         self.parent = parent
         self.glade  = glade
         self.list   = glade.get_widget("place_list")
+        #self.list.set_property('fixed-height-mode',True)
         self.list.connect('button-press-event',self.button_press)
         self.list.connect('key-press-event',self.key_press)
         self.selection = self.list.get_selection()

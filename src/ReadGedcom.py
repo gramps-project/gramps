@@ -615,6 +615,7 @@ class GedcomParser:
             intid = Utils.create_id()
             person.set_handle(intid)
             person.set_gramps_id(gramps_id)
+            self.db.add_person(person,self.trans)
             self.gid2id[gramps_id] = intid
         return person
 
@@ -627,6 +628,7 @@ class GedcomParser:
             intid = Utils.create_id()
             source.set_handle(intid)
             source.set_gramps_id(gramps_id)
+            self.db.add_source(source,self.trans)
             self.sid2id[gramps_id] = intid
         return source
 

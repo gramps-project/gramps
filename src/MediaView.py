@@ -77,6 +77,7 @@ class MediaView:
         self.parent = parent
         self.db = db
         self.list = glade.get_widget("media_list")
+        #self.list.set_property('fixed-height-mode',True)
         self.mid = glade.get_widget("mid")
         self.mtype = glade.get_widget("mtype")
         self.mdesc = glade.get_widget("mdesc")

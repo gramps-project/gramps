@@ -70,6 +70,7 @@ class SourceView:
         self.glade = glade
         self.update = update
         self.list = glade.get_widget("source_list")
+        #self.list.set_property('fixed-height-mode',True)
         self.list.connect('button-press-event',self.button_press)        
         self.selection = self.list.get_selection()
 

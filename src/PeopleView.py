@@ -80,6 +80,7 @@ class PeopleView:
 
         self.columns = []
         self.build_columns()
+        #self.person_tree.set_property('fixed-height-mode',True)
         self.person_selection = self.person_tree.get_selection()
         self.person_selection.connect('changed',self.row_changed)
         self.person_tree.connect('row_activated', self.alpha_event)

@@ -1,3 +1,10 @@
+2004-10-17  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: saving grouping name, instead of surname for
+	updating of the person list
+	* src/ReadGedcom.py: save person and source as soon as created
+	* src/gramps_main.py: compare updates based off grouping name 
+	instead of surname
+
 2004-10-17 Julio Sanchez <julio.sanchez@gmail.com>
 	* src/plugins/rel_es.py: Correct levels.
 
