@@ -423,8 +423,6 @@ class EditPerson:
             "on_gender_activate"        : self.on_gender_activate,
             "on_givenName_focus_out_event": self.on_givenName_focus_out_event,
             "on_help_person_clicked"    : self.on_help_clicked,
-            "on_edit_date_birth_clicked": self.on_edit_date_birth_clicked,
-            "on_edit_date_death_clicked": self.on_edit_date_death_clicked,
             })
 
         self.update_birth_death()
@@ -447,16 +445,6 @@ class EditPerson:
         self.given.grab_focus()
         self.add_itself_to_winsmenu()
         self.window.show()
-
-    def on_edit_date_birth_clicked(self,obj):
-        date_dialog = DateEdit.DateEditorDialog(self.bdate_check.checkval)
-        the_date = date_dialog.get_date()
-        print "The date was built as follows:", the_date
-
-    def on_edit_date_death_clicked(self,obj):
-        date_dialog = DateEdit.DateEditorDialog(self.ddate_check.checkval)
-        the_date = date_dialog.get_date()
-        print "The date was built as follows:", the_date
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
