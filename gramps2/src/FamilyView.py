@@ -250,7 +250,6 @@ class FamilyView:
             return
 
         person = RelLib.Person()
-        person.setGender(RelLib.Person.female)
 
         autoname = GrampsCfg.lastnamegen
         
