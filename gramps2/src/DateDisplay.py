@@ -76,18 +76,18 @@ class DateDisplay:
 
     _MONS = (
         "",
-        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset).upper(),
-        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset).upper(),
+        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset),
         )
 
     _tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
@@ -231,9 +231,9 @@ class DateDisplay:
                 if date_val[1] == 0:
                     return year
                 else:
-                    return "%s %s" % (self._MONS[date_val[1]],year)
+                    return "%s %s" % (self._MONS[date_val[1]].upper(),year)
             else:
-                return "%s %d, %s" % (self._MONS[date_val[1]],date_val[0],year)
+                return "%s %d, %s" % (self._MONS[date_val[1]].upper(),date_val[0],year)
         elif self.format == 4:
             # Day Month Year
             if date_val[0] == 0:
@@ -249,9 +249,9 @@ class DateDisplay:
                 if date_val[1] == 0:
                     return year
                 else:
-                    return "%s %s" % (self._MONS[date_val[1]],year)
+                    return "%s %s" % (self._MONS[date_val[1]].upper(),year)
             else:
-                return "%d %s %s" % (date_val[0],self._MONS[date_val[1]],year)
+                return "%d %s %s" % (date_val[0],self._MONS[date_val[1]].upper(),year)
 
     def _display_julian(self,date_val):
         # Julian date display is the same as Gregorian
