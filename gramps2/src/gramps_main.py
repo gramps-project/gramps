@@ -886,6 +886,8 @@ class Gramps:
         self.db.set_sprefix(GrampsCfg.sprefix)
         self.db.set_pprefix(GrampsCfg.pprefix)
 
+        self.relationship.set_db(self.db)
+
         self.place_view.change_db(self.db)
         self.people_view.change_db(self.db)
         self.source_view.change_db(self.db)

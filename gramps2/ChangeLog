@@ -1,3 +1,7 @@
+2004-02-15  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Relationship.py: more fixes
+	* src/gramps_main.py: changed db on relationship calculator when db changes.
+
 2004-02-15  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Relationship.py: More corrections.
 	* src/plugins/rel_ru.py: Corrections. 

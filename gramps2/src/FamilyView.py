@@ -473,11 +473,11 @@ class FamilyView:
 
     def child_rel(self,obj):
         person = self.parent.db.get_person(obj.get_data(Utils.OBJECT))
-        SelectChild.EditRel(person,self.family,self.load_family)
+        SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
         
     def child_rel_by_id(self,id):
         person = self.parent.db.get_person(id)
-        SelectChild.EditRel(person,self.family,self.load_family)
+        SelectChild.EditRel(self.parent.db,person,self.family,self.load_family)
 
     def spouse_changed(self,obj):
         model, iter = obj.get_selected()
