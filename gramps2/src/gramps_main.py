@@ -86,7 +86,7 @@ from bsddb import db
 # Constants
 #
 #-------------------------------------------------------------------------
-_HOMEPAGE  = "http://gramps.sourceforge.net"
+_HOMEPAGE  = "http://gramps-project.org"
 _MAILLIST  = "http://sourceforge.net/mail/?group_id=25770"
 _BUGREPORT = "http://sourceforge.net/tracker/?group_id=25770&atid=385137"
 
