@@ -982,10 +982,10 @@ def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
 
 def find_spouse(person,family):
     if person.get_handle() == family.get_father_handle():
-        spouse_id = family.get_mother_handle()
+        spouse_handle = family.get_mother_handle()
     else:
-        spouse_id = family.get_mother_handle()
-    return spouse_id
+        spouse_handle = family.get_father_handle()
+    return spouse_handle
 
 def find_marriage(database,family):    
     for event_handle in family.get_event_list():
