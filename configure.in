@@ -16,11 +16,21 @@ AC_SUBST(PYTHON)
 AC_SUBST(PYTHON_VERSION)
 AC_SUBST(PACKAGE)
 AC_SUBST(GNOMEHELP)
+AC_SUBST(LIBS)
+AC_SUBST(INCS)
 
 AC_PROG_INSTALL
 AC_PROG_MAKE_SET
 
 AC_PROG_CC
+
+AC_CHECK_HEADER(libintl.h)
+
+AC_CHECK_LIB(c,textdomain,LIBS="",
+ [ AC_CHECK_LIB(intl,textdomain,
+	LIBS="-lintl",
+	AC_MSG_ERROR("Could not find internationalization libraries"))
+        ])
 
 dnl Check for programs
 

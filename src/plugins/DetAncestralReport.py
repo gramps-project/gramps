@@ -351,6 +351,9 @@ class AncestorReport:
         generation = 0
         need_header = 1
 
+        rptOpt.blankDate = reportOptions.No
+        rptOpt.blankPlace = reportOptions.No
+        
         for key in keys :
             if generation == 0 or key >= 2**generation:
                 if self.pgbrk and generation > 0:

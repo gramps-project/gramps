@@ -2063,6 +2063,7 @@ def on_spouselist_changed(obj):
 #-------------------------------------------------------------------------
 def new_after_edit(epo):
     database.addPerson(epo.person)
+    change_active_person(epo.person)
     redisplay_person_list(epo.person)
 
 #-------------------------------------------------------------------------
