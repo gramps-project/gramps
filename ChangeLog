@@ -1,3 +1,14 @@
+2005-02-19 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgHandler.py: Command line support for geneweb import
+	and export; Fix command line exports for gedcom, XML, and package.
+	* src/Exporter.py (help): Point to correct manual section.
+	* src/const.py.in: Add a constant for geneweb mime type name.
+	* src/plugins/WriteFtree.py: Support wizard and fix command line mode.
+	* src/plugins/writeftree.glade: Support export wizard.
+	* src/plugins/WritePkg.py: Support wizard and fix command line mode.
+	* src/plugins/ImportGeneWeb.py: Comment out debugging messages.
+	* src/plugins/WriteGeneWeb.py: Support for command-line export.
+
 2005-02-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: more readonly patches
 	* src/EventEdit.py: more readonly patches

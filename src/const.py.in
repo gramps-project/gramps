@@ -42,10 +42,11 @@ from TransTable import TransTable
 # Mime Types
 #
 #-------------------------------------------------------------------------
-app_gramps         = "application/x-gramps"
-app_gramps_xml     = "application/x-gramps-xml"
-app_gedcom         = "application/x-gedcom"
-app_gramps_package = "application/x-gramps-package"
+app_gramps          = "application/x-gramps"
+app_gramps_xml      = "application/x-gramps-xml"
+app_gedcom          = "application/x-gedcom"
+app_gramps_package  = "application/x-gramps-package"
+app_geneweb         = "application/x-geneweb"
 
 #-------------------------------------------------------------------------
 #

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004 Donald N. Allingham
+# Copyright (C) 2004-2005 Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,9 +20,7 @@
 
 # $Id$
 
-#
-# Written by Alex Roitman, 2004
-#
+# Written by Alex Roitman
 
 #-------------------------------------------------------------------------
 #
@@ -121,8 +119,7 @@ class Exporter:
         """
         Help handler.
         """
-        #FIXME: point to the correct section when it exists
-        gnome.help_display('gramps-manual','index')
+        gnome.help_display('gramps-manual','export-data')
 
     def build_info_page(self):
         """
