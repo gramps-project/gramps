@@ -31,14 +31,14 @@ AC_MSG_CHECKING(Python bindings for sax/xml)
 changequote(,)
 cat > conftest.py <<EOF
 try:
-    from xml.sax import saxlib
+    from xml.sax import make_parser, handler
     f = open("conftest.out", "w")
     f.write("YES")
     f.close()
 except ImportError:
 
     try:
-        from _xmlplus.sax import saxlib
+        from _xmlplus.sax import make_parser, handler
         f = open("conftest.out", "w")
         f.write("YES")
         f.close()
@@ -88,7 +88,7 @@ AC_MSG_CHECKING(Python bindings for GNOME)
 changequote(,)
 cat > conftest.py <<EOF
 try:
-    import gnome, gnome.ui, gnome.xmhtml
+    import gnome, gnome.ui
     f = open("conftest.out", "w")
     f.write("YES")
     f.close()
