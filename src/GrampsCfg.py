@@ -249,7 +249,11 @@ def loadConfig(call):
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
     gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style","BOTH")
-    gnome_toolbar = eval("gtk.TOOLBAR_%s" % string.upper(gnome_toolbar_str))
+
+    try:
+        gnome_toolbar = eval("gtk.TOOLBAR_%s" % gnome_toolbar_str.upper())
+    except:
+        gnome_toolbar = 2
         
     save_toolbar = get_int("/apps/gramps/toolbar",5)
     if save_toolbar == 5:
@@ -865,22 +869,19 @@ class GrampsPreferences:
             status_bar = 2
 
         save_toolbar = self.top.get_widget("tooloptmenu").get_history()
-        gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style")
-        gnome_toolbar = eval("gtk.TOOLBAR_%s" % string.upper(gnome_toolbar_str))
+        gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style",'BOTH')
+        try:
+            gnome_toolbar = eval("gtk.TOOLBAR_%s" % gnome_toolbar_str.upper())
+        except:
+            gnome_toolbar = 2
+
         if save_toolbar == 5:
             toolbar = gnome_toolbar
         else:
             toolbar = save_toolbar
 
-        if self.top.get_widget("pvbutton").get_active():
-            defaultview = 0
-        else:
-            defaultview = 1
-
-        if self.top.get_widget("familyview1").get_active():
-            familyview = 0
-        else:
-            familyview = 1
+        defaultview = not self.top.get_widget("pvbutton").get_active()
+        familyview = not self.top.get_widget("familyview1").get_active()
 
         iprefix = self.top.get_widget("iprefix").get_text()
         if iprefix == "":
