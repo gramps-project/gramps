@@ -8,6 +8,8 @@ Version 0.98.0
 * When choosing parents, select the spouse of the first selected person to
   make picking a family quicker.
 * Instant preferences.
+* People and Relationships can now have sources not associated with any
+  event
 * Bugfixes.
 
 Version 0.9.5 -- the "Fix me up" release

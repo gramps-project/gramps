@@ -51,7 +51,6 @@ import const
 import RelLib
 import Date
 import Calendar
-import Errors
 from gettext import gettext as _
 from Utils import for_each_ancestor
 
@@ -83,7 +82,7 @@ class Rule:
     labels = []
     
     def __init__(self,list):
-        assert(type(list) == type([]),"Argument is not a list")
+        assert type(list) == type([]), "Argument is not a list"
         self.list = list
 
     def values(self):
@@ -790,10 +789,7 @@ class IsParentOfFilterMatch(Rule):
         return self.map.has_key(p.getId())
 
     def init_list(self,p):
-#        if self.map.has_key(p.getId()) == 1:
-#            loop_error(self.orig,p)
-        fam in p.getMainParents()
-        if fam:
+        if fam in p.getMainParents():
             for parent in [fam.getFather (), fam.getMother ()]:
                 if parent:
                     self.map[parent.getId()] = 1

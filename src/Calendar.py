@@ -151,7 +151,7 @@ class Calendar:
         try:
 	    return unicode(Calendar.MONTHS[val-1])
         except:
-            return "Illegal Month"
+            return u'Illegal Month'
 
     def check(self,year,month,day):
         return 1

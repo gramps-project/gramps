@@ -1,3 +1,18 @@
+2003-10-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: pychecker cleanup
+	* src/PeopleView.py: pychecker cleanup
+	* src/PeopleStore.py: pychecker cleanup
+	* src/EditPerson.py: pychecker cleanup
+	* src/QuickAdd.py: remove file
+	* src/SelectChild.py: Remove ability to add new person, since a separate
+	function for this already exists.
+	* src/gramps.glade: remvoe add button from select child dialog
+	* src/Makefile.am: remove QuickAdd.py
+	* src/intl.py: remove
+	* src/intl.c: remove
+	* src/TextDoc.py: remove
+	* src/DrawDoc.py: remove
+
 2003-10-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: Person and Family now inherit from SourceNote
 	* src/EditPerson.py: Added source tab to apply generic sources
