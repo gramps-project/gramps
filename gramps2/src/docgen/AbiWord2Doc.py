@@ -227,16 +227,16 @@ class AbiWordDoc(BaseDoc.BaseDoc):
     def write_note(self,text,format,style_name):
         if format == 1:
             self.start_paragraph(style_name)
+            self.f.write('<c props="font-family:Courier">')
             self.write_text(text)
+            self.f.write('</c>')
             self.end_paragraph()
         elif format == 0:
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
-                self.f.write('<c props="font-family:Courier">')
                 line = line.replace('\n',' ')
                 line = string.join(string.split(line))
                 self.write_text(line)
-                self.f.write('</c>')
                 self.end_paragraph()
 
     def write_text(self,text):
