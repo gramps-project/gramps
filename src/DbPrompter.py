@@ -293,7 +293,7 @@ class NewNativeDbPrompter:
         filter.add_mime_type('application/x-gramps')
         choose.add_filter(filter)
 
-        new_filename = get_new_filename('grdb')
+        new_filename = Utils.get_new_filename('grdb')
         
         choose.set_filename(new_filename)
         choose.set_current_name(os.path.split(new_filename)[1])
@@ -362,7 +362,7 @@ class SaveAsDbPrompter:
         for (exportData,filter,pattern_list) in Plugins._exports:
             self.choose.add_filter(filter)
         
-        new_filename = get_new_filename('grdb')
+        new_filename = Utils.get_new_filename('grdb')
         self.choose.set_filename(new_filename)
         self.choose.set_current_name(os.path.split(new_filename)[1])
 
@@ -414,22 +414,9 @@ class SaveAsDbPrompter:
         if the_filter.get_name().find('XML') + 1:
             new_filename = 'data.gramps'
         elif the_filter.get_name() == _('GRAMPS packages'):
-            new_filename = get_new_filename('gpkg')
+            new_filename = Utils.get_new_filename('gpkg')
             new_filename = os.path.split(new_filename)[1]
         else:
-            new_filename = get_new_filename('grdb')
+            new_filename = Utils.get_new_filename('grdb')
             new_filename = os.path.split(new_filename)[1]
         self.choose.set_current_name()
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-_NEW_NAME_PATTERN = '~/Untitled_%d.%s'
-
-def get_new_filename(ext):
-    ix = 1
-    while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext) )):
-        ix = ix + 1
-    return os.path.expanduser(_NEW_NAME_PATTERN % (ix,ext))

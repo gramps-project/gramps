@@ -1,3 +1,13 @@
+2004-07-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (on_export_activate): Switch to new Exporter.
+	* src/WriteXML.py: Change registration. Return 1 on success and 
+	0 when on failure.
+	* src/Utils.py (get_new_filename): Add function.
+	* src/DbPrompter.py (get_new_filename): Remove function.
+	* src/Exporter.py: Add to CVS.
+	* src/Makefile.am: Ship Exporter.py.
+	* src/Plugins.py (register_export): Change to the new scheme.
+
 2004-07-08  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ChooseParents.py: build an exclusion list of those
 	obviously not the parents
