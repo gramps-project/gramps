@@ -1,3 +1,7 @@
+2004-02-02  Egyeki Gergely  <egeri@elte.hu>
+	* src/plugins/rel_hu.py: New relations added.
+	* src/po/hu.po: Minor corrections.
+
 2004-02-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/rel_hu.py: Typos.
 	* src/po/ru.po: Typo.
