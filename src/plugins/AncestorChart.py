@@ -126,11 +126,7 @@ class AncestorChart:
                     self.print_page(index, generation, page)
                     page = page + 1
             generation = generation + 3
-	try:
-            self.doc.close()
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+        self.doc.close()
 
     def calc(self):
         """
@@ -259,7 +255,8 @@ class AncestorChartDialog(Report.DrawReportDialog):
                                      self.max_gen, self.doc, self.report_text)
             MyReport.write_report()
         except Errors.ReportError, msg:
-            ErrorDialog(str(msg))
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

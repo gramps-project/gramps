@@ -544,7 +544,8 @@ class IndivSummaryDialog(Report.TextReportDialog):
             MyReport.setup()
             MyReport.write_report()
         except Errors.ReportError, msg:
-            ErrorDialog(str(msg))
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()

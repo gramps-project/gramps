@@ -150,7 +150,13 @@ class PdfDoc(TextDoc.TextDoc):
 	self.in_table = 0
 
     def close(self):
-        self.doc.build(self.story)
+        try:
+            self.doc.build(self.story)
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
 
     def end_page(self):
         self.story.append(PageBreak())

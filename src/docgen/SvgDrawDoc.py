@@ -34,6 +34,7 @@ import Plugins
 from intl import gettext as _
 import TextDoc
 import DrawDoc
+import Errors
 
 #-------------------------------------------------------------------------
 #
@@ -74,7 +75,13 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
             name = "%s-%d.svg" % (self.root,self.page)
         else:
             name = "%s.svg" % self.root
-        self.f = open(name,"w")
+
+        try:
+            self.f = open(name,"w")
+        except IOError,msg:
+            raise Errors.ReportError(_("Could not create %s") % name, msg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % name)
             
         self.f.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
         self.f.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ')

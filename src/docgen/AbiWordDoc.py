@@ -63,7 +63,14 @@ class AbiWordDoc(TextDoc.TextDoc):
         else:
             self.filename = filename
 
-        self.f = open(self.filename,"w")
+        try:
+            self.f = open(self.filename,"w")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            
         self.f.write('<?xml version="1.0"?>\n')
         self.f.write('<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML')
         self.f.write('1.0 Strict//EN" "http://www.abisource.com/awml.dtd">\n')

@@ -74,7 +74,13 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         else:
             self.filename = filename
 
-        self.f = open(self.filename,"w")
+        try:
+            self.f = open(self.filename,"w")
+        except IOError,msg:
+            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            raise Errors.ReportError(errmsg)
+        except:
+            raise Errors.ReportError(_("Could not create %s") % self.filename)
         
         self.f.write('%!PS-Adobe-3.0\n')
         self.f.write('%%LanguageLevel: 2\n')

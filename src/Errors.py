@@ -20,12 +20,16 @@
 
 class ReportError(Exception):
     """Error used to report Report errors"""
-    def __init__(self,value):
+    def __init__(self,value,value2=""):
         Exception.__init__(self)
         self.value = value
+        self.value2 = value2
 
     def __str__(self):
         return self.value
+
+    def messages(self):
+        return (self.value,self.value2)
 
 class GedcomError(Exception):
     """Error used to report GEDCOM errors"""
