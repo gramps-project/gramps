@@ -720,16 +720,16 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                         count += 1
 
-                for event_handle in family.get_event_list():
-                    if event_handle:
-                        event = self.database.get_event_from_handle(event_handle)
-                        if event.get_name() == "Marriage":
-                            marriage = event
-                            break
-                else:
-                    continue
+                relationship = family.get_relationship ()
+                if const.save_frel(relationship) == "Married":
+                    marriage = None
+                    for event_handle in family.get_event_list():
+                        if event_handle:
+                            event = self.database.get_event_from_handle(event_handle)
+                            if event.get_name() == "Marriage":
+                                marriage = event
+                                break
 
-                if marriage:
                     if not first_rel:
                         if gender == RelLib.Person.female:
                             ret += _('  She later married %(name)s') % \
@@ -748,7 +748,8 @@ class ComprehensiveAncestorsReport (Report.Report):
                             ret += _('  He married %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
 
-                    ret += self.event_info (marriage)
+                    if marriage:
+                        ret += self.event_info (marriage)
                 else: # Not a marriage
                     if not first_rel:
                         if gender == RelLib.Person.female:
@@ -765,7 +766,9 @@ class ComprehensiveAncestorsReport (Report.Report):
                             ret += _('  He had a relationship with %(name)s') % \
                                    {'name': self.person_name (spouse_handle)}
 
-                ret += children + '.'
+                ret += children
+                if ret and not ret.endswith ("."):
+                    ret += '.'
 
             first_rel = 0
 
