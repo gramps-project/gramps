@@ -5518,6 +5518,8 @@ Unknown
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
+  <default_width>375</default_width>
+  <default_height>175</default_height>
   <allow_shrink>True</allow_shrink>
   <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
@@ -5547,10 +5549,10 @@ Unknown
 	<class>GtkHButtonBox</class>
 	<name>hbuttonbox26</name>
 	<layout_style>GTK_BUTTONBOX_END</layout_style>
-	<spacing>30</spacing>
+	<spacing>15</spacing>
 	<child_min_width>85</child_min_width>
 	<child_min_height>27</child_min_height>
-	<child_ipad_x>7</child_ipad_x>
+	<child_ipad_x>3</child_ipad_x>
 	<child_ipad_y>0</child_ipad_y>
 	<child>
 	  <padding>0</padding>
