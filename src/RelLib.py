@@ -1059,21 +1059,15 @@ class Event(DataObj):
         """returns 1 if the spdcified event is the same as the instance"""
         if other == None:
             return 0
-        if self.name != other.name:
-            return 0
-        if self.place != other.place:
-            return 0
-        if compare_dates(self.getDateObj(),other.getDateObj()):
-            return 0
-        if self.description != other.description:
-            return 0
-        if self.cause != other.cause:
-            return 0
-        if self.private != other.private:
+        if (self.name != other.name or
+            self.place != other.place or
+            self.description != other.description or
+            self.cause != other.cause or
+            self.private != other.private or
+            compare_dates(self.getDateObj(),other.getDateObj()) or
+            len(self.getSourceRefList()) != len(other.getSourceRefList())):
             return 0
 
-        if len(self.getSourceRefList()) != len(other.getSourceRefList()):
-            return 0
         index = 0
         olist = other.getSourceRefList()
         for a in self.getSourceRefList():

@@ -32,8 +32,8 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-import intl
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #

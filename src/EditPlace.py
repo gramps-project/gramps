@@ -20,20 +20,9 @@
 
 #-------------------------------------------------------------------------
 #
-# Standard python modules
-#
-#-------------------------------------------------------------------------
-import string
-import Config
-
-#-------------------------------------------------------------------------
-#
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
-
 import libglade
 
 #-------------------------------------------------------------------------
@@ -41,14 +30,15 @@ import libglade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-import intl
 import const
 import utils
+import Config
 from RelLib import *
 import Sources
 import ImageSelect
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #

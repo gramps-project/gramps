@@ -21,9 +21,9 @@
 import TextDoc
 import gtk
 import Config
-import intl
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 paper_sizes = [
     TextDoc.PaperStyle("Letter",27.94,21.59),

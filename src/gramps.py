@@ -5,7 +5,6 @@ import intl
 import os
 
 intl.textdomain("gramps")
-_ = intl.gettext
 
 if os.environ.has_key("GRAMPSI18N"):
     locale = os.environ["GRAMPSI18N"]

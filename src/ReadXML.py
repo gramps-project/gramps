@@ -18,23 +18,36 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from RelLib import *
-from GrampsParser import *
-
 #-------------------------------------------------------------------------
 #
-#
+# Standard Python Modules
 #
 #-------------------------------------------------------------------------
-
 import string
-import time
 import os
-from gnome.ui import *
 
-import intl
-_ = intl.gettext
+#-------------------------------------------------------------------------
+#
+# Gnome/GTK
+#
+#-------------------------------------------------------------------------
+from gnome.ui import GnomeErrorDialog
 
+#-------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#-------------------------------------------------------------------------
+from RelLib import *
+from GrampsParser import GrampsParser, GrampsImportParser
+from intl import gettext
+_ = gettext
+
+#-------------------------------------------------------------------------
+#
+# Try to detect the presence of gzip
+#
+#-------------------------------------------------------------------------
 try:
     import gzip
     gzip_ok = 1
@@ -232,6 +245,7 @@ def loadRevision(database, file, filename, revision, callback=None):
 if __name__ == "__main__":
     import profile
     import sys
+    import time
     
     database = RelDataBase()
     t1 = time.time()

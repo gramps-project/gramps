@@ -20,18 +20,34 @@
 
 #-------------------------------------------------------------------------
 #
-# GTK/Gnome modules
+# Standard python modules
 #
 #-------------------------------------------------------------------------
 import os
-import const
-import intl
 import string
+
+#-------------------------------------------------------------------------
+#
+# GTK/Gnome modules
+#
+#-------------------------------------------------------------------------
+from gnome.ui import GnomeErrorDialog, GnomeWarningDialog
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+import const
 import utils
-from gnome.ui import *
+from intl import gettext
+_ = gettext
 
-_ = intl.gettext
-
+#-------------------------------------------------------------------------
+#
+# Check for the python imaging library
+#
+#-------------------------------------------------------------------------
 try:
     import PIL.Image
     no_pil = 0

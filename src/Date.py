@@ -23,9 +23,9 @@
 from re import IGNORECASE, compile
 
 import string
-import intl
 
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #

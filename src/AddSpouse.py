@@ -30,18 +30,14 @@ import string
 # internationalization
 #
 #-------------------------------------------------------------------------
-import intl
-_ = intl.gettext
+from intl import gettext
+_ = gettext
 
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
-import GDK
-import GTK
 import libglade
 
 #-------------------------------------------------------------------------

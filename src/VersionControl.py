@@ -18,26 +18,54 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
 import popen2
-import re
 import os
 import string
 import shutil
-import intl
-import libglade
 import const
 import utils
 
-_ = intl.gettext
+from re import compile
 
+#-------------------------------------------------------------------------
+#
+# GTK/GNOME
+#
+#-------------------------------------------------------------------------
+import libglade
+
+#-------------------------------------------------------------------------
+#
+# standard python modules
+#
+#-------------------------------------------------------------------------
+from intl import gettext
+_ = gettext
+
+#-------------------------------------------------------------------------
+#
+# Attempt to load the gzip library (should be standard, but Slackware
+# appears to have problems)
+#
+#-------------------------------------------------------------------------
 try:
     import gzip
     _gzip_ok = 1
 except:
     _gzip_ok = 0
 
-_revision_re = re.compile("revision\s+([\d\.]+)")
-_date_re = re.compile("date:\s+([^;]+);\s+author:\s([^;]+);")
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+_revision_re = compile("revision\s+([\d\.]+)")
+_date_re = compile("date:\s+([^;]+);\s+author:\s([^;]+);")
 _sep = '-' * 10
 _end = "=" * 10
 

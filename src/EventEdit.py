@@ -18,23 +18,21 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+from string import strip
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
-
 import libglade
-import Sources
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-
+import Sources
 import const
 import utils
 from RelLib import *
@@ -119,7 +117,7 @@ class EventEditor:
         ename = self.name_field.get_text()
         edate = self.date_field.get_text()
         ecause = self.cause_field.get_text()
-        eplace = string.strip(self.place_field.get_text())
+        eplace = strip(self.place_field.get_text())
         eplace_obj = utils.get_place_from_list(self.place_combo)
         enote = self.note_field.get_chars(0,-1)
         edesc = self.descr_field.get_text()
