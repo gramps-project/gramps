@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #-------------------------------------------------------------------------
 #
 # python modules
@@ -35,7 +37,7 @@ import PluginMgr
 import Errors
 import BaseDoc
 from Report import run_print_dialog
-from ReportUtils import pt2cm
+from ReportUtils import pt2cm, rgb_color
 
 #-------------------------------------------------------------------------
 #
@@ -404,11 +406,5 @@ class PSDrawDoc(BaseDoc.BaseDoc):
                 self.f.write("(%s) show\n" % lines[i])
         self.f.write('grestore\n')
 
-def rgb_color(color):
-    r = float(color[0])/255.0
-    g = float(color[1])/255.0
-    b = float(color[2])/255.0
-    return (r,g,b)
-        
 PluginMgr.register_draw_doc(_("PostScript"),PSDrawDoc,1,1,".ps",
                           _("Print a copy"));

@@ -8,6 +8,12 @@
 	* src/docgen/PSDrawDoc.py (draw_text,write_at):
 	Attempt latin1 encoding.
 
+	* src/docgen/PSDrawDoc.py (rgb_color): Remove function, import it
+	from ReportUtils instead.
+	* src/ReportUtils.py (rgb_color): Add function.
+	* src/docgen/PdfDoc.py: Use rgb_color from ReportUtils.
+	* src/docgen/LPRDoc.py: Use rgb_color from ReportUtils.
+
 2005-02-20 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py (draw_path,draw_bar): Set proper linewidth.
 	* doc/gramps-manual/C/usage.xml: Update.
