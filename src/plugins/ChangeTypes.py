@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,14 +22,29 @@
 
 "Database Processing/Rename personal event types"
 
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
 import gtk
 import gtk.glade
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
 import const
 import Utils
-from gettext import gettext as _
 from QuestionDialog import OkDialog
 import AutoComp
 
@@ -54,6 +69,12 @@ class ChangeTypes:
     def __init__(self,db,person,parent):
         self.person = person
         self.db = db
+        self.parent = parent
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
+
         self.trans = db.transaction_begin()
         base = os.path.dirname(__file__)
         glade_file = "%s/%s" % (base,"changetype.glade")
@@ -65,15 +86,43 @@ class ChangeTypes:
         AutoComp.fill_combo(self.auto1,const.personalEvents)
         AutoComp.fill_combo(self.auto2,const.personalEvents)
 
-        Utils.set_titles(self.glade.get_widget('top'),
+        self.title = _('Change Event Types')
+        self.window = self.glade.get_widget('top')
+        self.window.set_icon(self.parent.topWindow.get_icon())
+        Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
-                         _('Change event types'))
+                         self.title)
 
         self.glade.signal_autoconnect({
-            "on_close_clicked"     : Utils.destroy_passed_object,
-            "on_apply_clicked"     : self.on_apply_clicked
+            "on_close_clicked"  : self.close,
+            "on_delete_event"   : self.on_delete_event,
+            "on_apply_clicked"  : self.on_apply_clicked,
             })
-    
+
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(self.title)
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
+
     def on_apply_clicked(self,obj):
         modified = 0
         original = unicode(self.auto1.child.get_text())
@@ -95,9 +144,9 @@ class ChangeTypes:
         else:
             msg = _("%d event records were modified") % modified
             
-        OkDialog(_('Change types'),msg)
+        OkDialog(_('Change types'),msg,self.parent)
         self.db.transaction_commit(self.trans,_('Change types'))
-        Utils.destroy_passed_object(obj)
+        self.close(None)
 
 #------------------------------------------------------------------------
 #

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2004  Donald N. Allingham
+# Copyright (C) 2003-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,27 +23,50 @@
 """
 Provides a python evaluation window
 """
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
 import cStringIO
 import sys
+from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
 import gtk
 import gtk.glade
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
 import Utils
 
-from gettext import gettext as _
-
+#-------------------------------------------------------------------------
+#
+# Actual tool
+#
+#-------------------------------------------------------------------------
 class EvalWindow:
 
     def __init__(self,parent):
         self.parent = parent
-        self.win_key = self
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
 
         glade_file = "%s/%s" % (os.path.dirname(__file__),"eval.glade")
         self.glade = gtk.glade.XML(glade_file,"top","gramps")
 
         self.top = self.glade.get_widget("top")
+        self.top.set_icon(self.parent.topWindow.get_icon())
         self.dbuf = self.glade.get_widget("display").get_buffer()
         self.ebuf = self.glade.get_widget("eval").get_buffer()
         self.error = self.glade.get_widget("error").get_buffer()
