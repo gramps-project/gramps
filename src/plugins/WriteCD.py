@@ -258,6 +258,7 @@ class PackageWriter:
         gfile = WriteXML.XmlWriter(self.db,None,1)
         gfile.write_handle(g)
         g.close()
+        os.system("nautilus --no-desktop burn:///")
     
 #-------------------------------------------------------------------------
 #
