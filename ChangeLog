@@ -1,6 +1,11 @@
-2003-12-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+2003-12-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/HtmlDoc.py (write_note): Set monospace font family 
 	for a preformatted note.
+	* src/docgen/LaTeXDoc.py (write_note): Implement function.
+	* src/docgen/PdfDoc.py (write_note): Implement function.
+	* src/docgen/RTFDoc.py (write_note): Implement function.
+	* src/docgen/AbiWordDoc.py (write_note): Implement function.
+	* src/docgen/AbiWord2Doc.py (write_note): Implement function.
 
 2003-12-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteFtree.py (FtreeWriter.export): make sure that the 

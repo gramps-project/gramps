@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ Provides a BaseDoc based interface to the AbiWord document format.
 #-------------------------------------------------------------------------
 import os
 import base64
+import string
 
 import BaseDoc
 from latin_utf8 import latin_to_utf8
@@ -233,6 +234,20 @@ class AbiWordDoc(BaseDoc.BaseDoc):
             self.cdata = self.cdata + '\t'
         else:
             self.f.write('</c></p>\n')
+
+    def write_note(self,text,format,style_name):
+        if format == 1:
+            for line in text.split('\n'):
+                self.start_paragraph(style_name)
+                self.write_text(line)
+                self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                line = line.replace('\n',' ')
+                line = string.join(string.split(line))
+                self.write_text(line)
+                self.end_paragraph()
 
     def write_text(self,text):
         text = text.replace('&','&amp;');       # Must be first

@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #------------------------------------------------------------------------
 #
 # gramps modules
@@ -31,8 +33,12 @@ from gettext import gettext as _
 
 _H = 'Helvetica'
 _HB = 'Helvetica-Bold'
+_HO = 'Helvetica-Oblique'
+_HBO = 'Helvetica-BoldOblique'
 _T = 'Times-Roman'
 _TB = 'Times-Bold'
+_TI = 'Times-Italic'
+_TBI = 'Times-BoldItalic'
 
 #------------------------------------------------------------------------
 #
@@ -113,23 +119,23 @@ class PdfDoc(BaseDoc.BaseDoc):
             if font.get_type_face() == BaseDoc.FONT_SERIF:
                 if font.get_bold():
                     if font.get_italic():
-                        pdf_style.fontName = "Times-BoldItalic"
+                        pdf_style.fontName = _TBI
                     else:
-                        pdf_style.fontName = "Times-Bold"
+                        pdf_style.fontName = _TB
                 else:
                     if font.get_italic():
-                        pdf_style.fontName = _TB
+                        pdf_style.fontName = _TI
                     else:
                         pdf_style.fontName = _T
             else:
                 if font.get_bold():
                     if font.get_italic():
-                        pdf_style.fontName = "Helvetica-BoldOblique"
+                        pdf_style.fontName = _HBO
                     else:
                         pdf_style.fontName = _HB
                 else:
                     if font.get_italic():
-                        pdf_style.fontName = "Helvetica-Oblique"
+                        pdf_style.fontName = _TBI
                     else:
                         pdf_style.fontName = _H
             pdf_style.bulletFontName = pdf_style.fontName
@@ -306,6 +312,28 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.story.append(Image(name,act_width*cm,act_height*cm))
         self.story.append(Spacer(1,0.5*cm))
         self.image = 1
+
+    def write_note(self,text,format,style_name):
+        current_para = self.pdfstyles[style_name]
+        self.my_para = self.style_list[style_name]
+        self.super = "<font size=%d><super>" % (self.my_para.get_font().get_size()-2)
+        self.image = 0
+
+        text = text.replace('&','&amp;')       # Must be first
+        text = text.replace('<','&lt;')
+        text = text.replace('>','&gt;')
+        text = text.replace('&lt;super&gt;',self.super)
+        text = text.replace('&lt;/super&gt;','</super></font>')
+
+        if self.in_table == 0:
+	    if format == 1:
+                text = '<para firstLineIndent="0" fontname="Courier">%s</para>' % text.replace('\t',' '*8)
+                self.story.append(XPreformatted(text,current_para))
+            elif format == 0:
+                for line in text.split('\n\n'):
+                    self.story.append(Paragraph(line,current_para))
+        else:
+            self.image = 0
 
     def write_text(self,text):
         text = text.replace('&','&amp;')       # Must be first
