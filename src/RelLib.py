@@ -2294,6 +2294,7 @@ class GrampsDB:
         self.media_map  = None
         self.event_map  = None
         self.surnames   = None
+        self.metadata   = None
 
     def load(self,name,callback):
         if self.person_map:
@@ -3157,3 +3158,14 @@ class GrampsDB:
             else:
                 map[idVal] = self.add_source(source)
         return source
+
+    def set_column_order(self,list):
+        if self.metadata != None:
+            self.metadata['columns'] = list
+
+    def get_column_order(self):
+        if self.metadata == None:
+            return [(1,1),(1,2),(1,3),(0,4),(1,5),(0,6)]
+        else:
+            return self.metadata.get('columns',[(1,1),(1,2),(1,3),(0,4),(1,5),(0,6)])
+

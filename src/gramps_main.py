@@ -260,6 +260,7 @@ class Gramps:
         self.child_windows = {}
 
         self.gtop.signal_autoconnect({
+            "on_column_order_activate": self.column_order,
             "on_back_clicked" : self.back_clicked,
             "on_back_pressed" : self.back_pressed,
             "on_fwd_clicked" : self.fwd_clicked,
@@ -347,6 +348,14 @@ class Gramps:
         self.topWindow.show()
         self.enable_toolbar(self.use_toolbar)
 
+    def set_column_order(self,list):
+        self.db.set_column_order(list)
+        self.people_view.build_columns()
+
+    def column_order(self,obj):
+        import ColumnOrder
+        ColumnOrder.ColumnOrder(self.db.get_column_order(),self.set_column_order)
+        
     def clear_history(self):
         self.history = []
         self.mhistory = []
