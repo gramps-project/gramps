@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ import GrampsKeys
 #
 #-------------------------------------------------------------------------
 class TipOfDay:
-    def __init__(self):
+    def __init__(self,parent):
         xml = gtk.glade.XML(const.gladeFile, "tod", "gramps")
         top = xml.get_widget("tod")
         tip = xml.get_widget("tip")
@@ -62,6 +62,8 @@ class TipOfDay:
 
         new_index = range(len(tip_list))
         Random().shuffle(new_index)
+
+        top.set_transient_for(parent.topWindow)
 
         index = 0
         rval = 0
