@@ -489,10 +489,8 @@ class GrampsParser:
         if src:
             if src[0] != '/':
                 self.object.set_path("%s/%s" % (self.base,src))
-                self.object.set_local(1)
             else:
                 self.object.set_path(src)
-                self.object.set_local(0)
 
     def stop_people(self,tag):
         pass
@@ -518,10 +516,8 @@ class GrampsParser:
                 src = attrs["src"]
                 if src[0] != '/':
                     self.photo.set_path("%s/%s" % (self.base,src))
-                    self.photo.set_local(1)
                 else:
                     self.photo.set_path(src)
-                    self.photo.set_local(0)
             else:
                 a = RelLib.Attribute()
                 a.set_type(key)
@@ -1038,10 +1034,8 @@ class GrampsImportParser(GrampsParser):
         if src:
             if src[0] != '/':
                 self.object.set_path("%s/%s" % (self.db.get_save_path(),src))
-                self.object.set_local(1)
             else:
                 self.object.set_path(src)
-                self.object.set_local(0)
 
 def append_value(orig,val):
     if orig:

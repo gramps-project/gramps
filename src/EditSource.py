@@ -226,13 +226,15 @@ class EditSource:
             family = self.db.find_family_from_id(family_id)
             f_id = family.get_father_id()
             m_id = family.get_mother_id()
-            f = self.db.find_person_from_id(f_id)
-            m = self.db.find_person_from_id(m_id)
-            if f and m:
+            if f_id:
+                f = self.db.find_person_from_id(f_id)
+            if m_id:
+                m = self.db.find_person_from_id(m_id)
+            if f_id and m_id:
                 name = _("%(father)s and %(mother)s") % {
                     "father" : GrampsCfg.nameof(f),
                     "mother" : GrampsCfg.nameof(m)}
-            elif f:
+            elif f_id:
                 name = GrampsCfg.nameof(f)
             else:
                 name = GrampsCfg.nameof(m)

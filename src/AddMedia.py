@@ -121,14 +121,11 @@ class AddMediaObject:
         mobj = RelLib.MediaObject()
         mobj.set_description(description)
         mobj.set_mime_type(type)
+        if type[0:5] == "image":
+            mobj.set_thumbnail(RelImage.build_thumbnail(filename,const.thumbScale))
         self.db.add_object(mobj)
         
-        if external.get_active() == 0:
-            path = self.db.get_save_path()
-            name = RelImage.import_media_object(filename,path,mobj.get_id())
-            mobj.set_local(1)
-        else:
-            name = filename
+        name = filename
         mobj.set_path(name)
 
         if self.update:
