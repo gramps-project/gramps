@@ -137,11 +137,10 @@ class PackageWriter:
         def select_clicked():
             # File is lost => select a file to replace the lost one
             def fs_close_window(obj):
-                fs_top.destroy()
+                pass
 
             def fs_ok_clicked(obj):
                 name = fs_top.get_filename()
-                fs_top.destroy()
                 if os.path.isfile(name):
                     g = open(name,"rb")
                     t.add_file(base,mtime,g)
@@ -151,8 +150,8 @@ class PackageWriter:
             fs_top.hide_fileop_buttons()
             fs_top.ok_button.connect('clicked',fs_ok_clicked)
             fs_top.cancel_button.connect('clicked',fs_close_window)
-            fs_top.show()
             fs_top.run()
+            fs_top.destroy()
         #---------------------------------------------------------------
 
         t = TarFile.TarFile(filename)
