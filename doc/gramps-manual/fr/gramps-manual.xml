@@ -292,7 +292,7 @@
       manual, this is the place to put it. 
       Alternatively, you can put this information in the title page.-->
   <sect1 id="gramps-about"> 
-    <title>About &app;</title> 
+    <title>A propos de &app;</title> 
     <para> &app; est écrit par Donald N. Allingham
       (<email>dallingham@users.sourceforge.net</email>). 
       Si vous cherchez plus d'information sur &app;, allez à l'URL de la 
