@@ -31,7 +31,7 @@ try:
     import StartupDialog
     
     if StartupDialog.need_to_run():
-        StartupDialog.StartupDialog(gramps_main.main,arg)
+        StartupDialog.StartupDialog(gramps_main.Gramps,arg)
     else:
         gramps_main.Gramps(arg)
 except:
