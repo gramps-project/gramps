@@ -1,0 +1,25 @@
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+bindir 		= @bindir@
+datadir		= @datadir@/@PACKAGE@
+INSTALL		= @INSTALL@
+plugins         = ${datadir}/plugins
+srcdir		= @top_srcdir@
+pycomp		= ${srcdir}/py-compile
+
+@SET_MAKE@
+
+all:
+	${pycomp} *.py
+
+
+install:
+	-mkdir ${plugins}
+	${INSTALL} -c *.py *.pyo *.glade ${plugins}
+
+uninstall:
+	rm ${plugins}/*.py ${plugins}/*.pyo ${plugins}/*.glade ${plugins}/*.xpm
+	-rmdir ${plugins}
+
+clean:
+	-rm -f core *.pyo *.pyc *.bak *~	

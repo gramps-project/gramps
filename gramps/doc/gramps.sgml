@@ -1,0 +1,533 @@
+<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
+        <!-- if not using PNG graphic, replace reference above with
+             .....PUBLIC "-//OASIS//DTD DocBook V3.1//EN"[
+         -->
+<!ENTITY version "0.1.0"> <!-- replace with application version -->
+]>
+
+
+<!-- 
+  This is a GNOME documentation template, designed by the GNOME
+  Documentation Project Team. Please use it for writing GNOME
+  documentation, making obvious changes. In particular, all the words
+  written in UPPERCASE (with the exception of GNOME) should be
+  replaced. As for "legalnotice", please leave the reference
+  unchanged.
+
+  Remember that this is a guide, rather than a perfect model to follow
+  slavishly. Make your manual logical and readable.  And don't forget
+  to remove these comments in your final documentation!  ;-)
+-->
+
+<!-- 
+      (Do not remove this comment block.)
+  Maintained by the GNOME Documentation Project
+  http://developer.gnome.org/projects/gdp
+  Template version: 1.0.3
+  Template last modified: Nov 16, 2000
+-->
+
+
+<!-- =============Document Header ============================= -->
+
+<article id="index"> <!-- please do not change the id -->
+
+  <artheader>
+    <title>GRAMPS User Manual</title>
+    <copyright>
+      <year>2001</year>
+      <holder>Donald N. Allingham</holder>
+    </copyright>
+
+  <!-- translators: uncomment this:
+
+  <copyright>
+   <year>2000</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+   -->
+
+  <!-- do not put authorname in the header except in copyright - use
+  section "authors" below -->
+
+  <!-- Use this legal notice for online documents which depend on -->
+  <!-- core GNOME packages.                                       -->
+  <legalnotice id="legalnotice">
+   <para>
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the <ulink type="help" 
+    url="gnome-help:fdl"><citetitle>GNU Free Documentation
+    License</citetitle></ulink>, Version 1.1 or any later version 
+    published by the Free Software Foundation with no Invariant Sections, 
+    no Front-Cover Texts, and no Back-Cover Texts.  A copy of the license
+    can be found <ulink type="help" url="gnome-help:fdl">here</ulink>.
+   </para>
+   <para>
+    Many of the names used by companies to distinguish their products and
+    services are claimed as trademarks. Where those names appear in any
+    GNOME documentation, and those trademarks are made aware to the members
+    of the GNOME Documentation Project, the names have been printed in caps
+    or initial caps.
+   </para>
+  </legalnotice>
+
+  <!-- Use this legal notice for documents which are placed on  -->
+  <!-- the web, shipped in any way other than online documents  -->
+  <!-- (eg. PS, PDF, or RTF), or which do not depend on the     -->
+  <!-- core GNOME distribution.                                 -->
+  <!--                                                          -->
+  <!-- If you use this version, you must place the following    -->
+  <!-- line in the document declaration at the top of your      -->
+  <!-- document:                                                -->
+  <!--   <!ENTITY FDL SYSTEM "fdl.sgml">                        -->
+  <!-- and the following line at the bottom of your document    -->
+  <!-- after the last </sect1>.                                 -->
+  <!--   &FDL;                                                  -->
+  <!--
+  <legalnotice id="legalnotice">
+   <para>
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the <link linkend="fdl"><citetitle>GNU
+    Free Documentation License</citetitle></link>, Version 1.1 or any later
+    version published by the Free Software Foundation with no Invariant
+    Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of the
+    license can be found in <xref linkend="fdl">.
+   </para>
+   <para>
+    Many of the names used by companies to distinguish their products and
+    services are claimed as trademarks. Where those names appear in any
+    GNOME documentation, and those trademarks are made aware to the members
+    of the GNOME Documentation Project, the names have been printed in caps
+    or initial caps.
+   </para>
+  </legalnotice>
+  -->
+
+  <!-- This is the manual version, not application version. --> 
+    <releaseinfo>
+       This is version 1.0 of GRAMPS manual.
+    </releaseinfo>
+
+  </artheader>
+
+ <!-- ============= Document Body ============================= -->
+
+ <!-- ============= Introduction ============================== -->
+  <sect1 id="intro">
+    <title>Introduction</title>
+
+    <para>
+    GRAMPS is an acronym for the Genealogical Research and Analysis
+    Management Programming System.  It was conceived under the concept
+    that most genealogy programs were designed to provide the
+    researcher the capability to input information related to a
+    particular family tree.  Most of these programs have allowed for
+    the arranging and storing of information consistent with the
+    GEDCOM standards.  They usually provide a means for displaying
+    descendant or ancestral relationships by means of graphical
+    displays, charts, or reports.  These may be augmented with
+    pictures or other media to enhance the data.  Most provide for
+    inputting data on unconnected individuals/families that may or may
+    not have a relationship to the primary surname being researched.
+    Various other enhancements may also be provided in the
+    genealogical program that allows for different degrees of
+    importing and exporting data from other programs and printing of
+    the data contained in the various reports.  GRAMPS, on the other
+    hand, attempts to provide all of the common capabilities of these
+    programs, but, more importantly, to provide a capability not
+    common to these programs.  This is the ability to input any bits
+    and pieces of information directly into GRAMPS and
+    rearrange/manipulate any/all data events in the entire data base
+    (in any order or sequence) to assist the user in doing research,
+    analysis and correlation with the potential of filling
+    relationship gaps.  In short, a tool that provides a way to input
+    all your research into one place and do your analysis and
+    correlation using the speed, power, and accuracy of your computer
+    instead of pencils and unmanageable reams of paper.
+    </para>
+
+
+    <para>
+      To run <application>GRAMPS</application>, select
+      <menuchoice>
+	<guisubmenu>Programs</guisubmenu>
+	<guisubmenu>Applications</guisubmenu>
+	<guimenuitem>gramps</guimenuitem>
+      </menuchoice>
+      from the <guimenu>Main Menu</guimenu>, or type
+      <command>gramps</command> on the command line.
+  </para>
+
+    <para>
+      <application>GRAMPS</application> is included in the
+      <filename>gramps</filename> package, which is part of the
+      GNOME desktop environment. This document describes version
+      &version; of <application>GRAMPS</application>.
+    </para>
+  </sect1>
+
+
+ <!-- ================ Usage ================================ -->
+ <!-- This section should describe basic usage of the application. -->
+
+  <sect1 id="usage">
+    <title>Using GRAMPS</title>
+    <para>
+      <application>GRAMPS</application> is a genealogy program.
+      This section describes basic usage of
+      <application>GRAMPS</application>.
+    </para>
+
+    <!-- ========= Basic Usage =========================== -->
+    <sect2 id="mainwin">
+      <title>Person List</title>
+      <para>
+        Starting <application>GRAMPS</application> opens the
+        <interface>Main window</interface>, shown in <xref
+        linkend="mainwindow-fig">. The window is at first empty.
+
+        <!-- ==== Figure ==== -->
+        <figure id="mainwindow-fig">
+	  <title>GRAMPS Main Window</title>
+	  <screenshot>
+	    <screeninfo>GRAMPS Main Window</screeninfo>
+	    <graphic fileref="mainwin" format="PNG" srccredit="Don Allingham">
+            </graphic>
+	  </screenshot>
+	</figure>
+    <!-- ==== End of Figure ==== -->
+      </para> 
+    </sect2>
+
+    <sect2 id="familyview">
+      <title>Family View</title>
+      <para>
+      </para>
+    </sect2>
+
+    <sect2 id="pedegreeview">
+      <title>Pedegree View</title>
+      <para>
+      </para>
+    </sect2>
+
+    <sect2 id="enteringdata">
+      <title>Entering data</title>
+	<para>
+        </para>
+    </sect2>
+  </sect1>
+
+
+ <!-- ============= Customization ============================= -->
+
+ <sect1 id="prefs">
+  <title>Customization</title>
+  <para>
+   To change the application settings, select
+   <menuchoice>
+    <guimenu>Settings</guimenu>
+    <guimenuitem>Preferences...</guimenuitem>
+   </menuchoice>.  This opens the
+   <interface>Preferences</interface> dialog, shown in <xref
+   linkend="preferences-fig">.
+  </para>
+
+  <figure id="preferences-fig">
+   <title>Preferences Dialog</title>
+   <screenshot>
+    <screeninfo>Preferences Dialog</screeninfo>
+    <graphic fileref="preferences" format="png" srccredit="Don Allingham">
+    </graphic>
+   </screenshot>
+  </figure>
+
+  <para>
+  </para>
+
+ </sect1>
+
+ <!-- ============= Writing Filters ============================= -->
+
+ <sect1 id="writingfilters">
+  <title>Writing Filters</title>
+  <para>
+   Users can create their own filters and add them to
+   <application>GRAMPS</application>.  By adding the filter to the
+   user's private filter directory 
+   (<filename class="directory">~/.gramps/filters</filename>), 
+   the filter will be automatically
+   recognized the next time that the program is started.
+   </para>
+   <sect2 id="createfilter">
+    <title>Creating a filter</title>
+    <para>
+     Filters are written in the <application>python</application>
+     language.  Each filter is initialized with the qualifier string.
+     The qualifier string passes an additional text string to the
+     filter. This string can be used to further qualify the filter.
+     For example, if the filter is used to match names, the qualifier
+     would be used to provide the name that is being compared against.
+    </para>
+    <para>
+    Each filter is a python class, and should be in its own separate
+    module (file). The module should consist of the filter class
+    definition, and two functions &mdash; <function>create</function>,
+    and <function>need_qualifier</function>.
+    </para>
+    <para>
+    The <function>create</function> function takes a string as its
+    only argument, returns a instance of the filter class. The string
+    argument is the qualifier string used to provide more specific
+    information.
+    </para>
+    <para>
+    The <function>need_qualifier</function> function takes no
+    arguments, and returns either a 0 or 1 to indicate if a qualifier
+    string is needed by the filter. Regardless of what
+    <function>need_qualifier</function> indicates, a text string is
+    always passed to the filter and the <function>create</function>
+    function.  The value returned by
+    <function>need_qualifier</function> indicates to the program
+    whether or not the qualifier field in the display should be
+    enabled or disabled.
+    </para>
+    <para>
+    The module documentation string (a text string as the first
+    statement in the module) is used for the description of the
+    module.  This is the description that gets entered into filter
+    selection menus.
+    </para>
+    <para>
+    All filters must be derived from the
+    <function>Filter.Filter</function> class. The
+    <function>__init__</function> task may be overridden, but if so,
+    should call the <function>__init__</function> function on the
+    <function>Filter.Filter</function> class.  The parent class
+    provides the variable <function>self.text</function>, which
+    contains the text string passed as the qualifier.
+    </para>
+    <para>
+    All filter classes must define a <function>match</function>
+    function. The function takes one argument (other than
+    <function>self</function>), which is an object of type
+    <function>Person</function> to compare against. The function
+    should return a 1 if the person matches the filter, or a zero if
+    the person does not.
+    </para>
+    <figure id="filtersrc">
+    <title>Sample filter implementation</title>
+    <programlisting>
+"Names that contain a substring"
+
+import Filter
+import string
+
+class SubString(Filter.Filter):
+    "Names that contain a substring"
+
+    def match(self,person):
+        name = person.getPrimaryName().getName()
+        return string.find(name,self.text) >= 0
+
+def create(text):
+    return SubString(text)
+
+def need_qualifier():
+    return 1
+    </programlisting>
+    </figure>
+   </sect2>
+ </sect1>
+
+ <!-- ============= Writing Reports ============================= -->
+
+ <sect1 id="writingreports">
+  <title>Writing Reports</title>
+   <para>
+   Users can create their own report generators and add them to
+   <application>GRAMPS</application>.  By adding the report generator
+   to the user's private filter directory (<filename
+   class="directory">~/.gramps/plugins</filename>), the report
+   generator filter will be automatically recognized the next time
+   that the program is started.
+   </para>
+   <sect2 id="createreport">
+    <title>Creating a report generator</title>
+    <para>
+     Like filters, report generators are written in the
+     <application>python</application> language. Fewer restrictions
+     are made on report generators than on filters.  The report
+     generator is passed the current <application>GRAMPS</application>
+     database and the active person.  The generator needs to take
+     special care to make sure that it does not alter the database in
+     anyway.
+    </para>
+    <para>
+    The python documentation string (the first text string and first
+    statement) of the module is used to name the report generator. The
+    string consists of two parts, separated by a forward slash.  The
+    first part of the string is the category of the report
+    generator. <application>GRAMPS</application> uses this part to
+    group similar reports together in the interface. The second part
+    of the string is the actual name of the reprot generator, and will
+    be displayed in the report menu.
+    </para>
+    <para>
+    A report generator module must supply the
+    <function>report</function> function, and can optionally define
+    the <function>get_description</function> and
+    <function>get_xpm_data</function> functions.  The
+    <function>report</function> takes two arguments &mdash; a database
+    (of type <function>RelDataBase</function>) and the currently
+    selected person (of type <function>Person</function>). The
+    <function>report</function> is reponsible for generating the
+    actual report.
+    </para>
+    <para>
+    If the <function>get_description</function> is defined, it is used
+    to provide a more detailed description of the report. The
+    description is used to provide the user with more information in
+    the report selection window.  The function takes no arguments, and
+    should return a text string.
+    </para>
+    <para>
+    If the <function>get_xpm_data</function> is defined, it is used to
+    provide an graphic logo for the report in the report selection
+    window.  The function takes no arguments, and should return a list
+    of strings containing the XPM file data.  The XPM image should be
+    48x48 pixels in size.
+    </para>
+    <figure id="reportsrc">
+    <title>Sample report implementation</title>
+    <programlisting>
+"Category/report name"
+
+def report(database,person):
+   ... actual code ...
+
+def get_description():
+   return "A detailed text description of what the report generator does"
+
+def get_xpm_image():
+   return [
+   "... XPM image data"
+   ]
+    </programlisting>
+    </figure>
+   </sect2>
+
+ </sect1>
+
+ <!-- ============= Writing Tools ============================= -->
+
+ <sect1 id="writingtools">
+  <title>Writing Tools</title>
+  <para>
+  </para>
+
+ </sect1>
+
+ <!-- ============= Various Sections ============================= -->
+
+ <!-- Here you should add, if necessary, several more sect1's,
+ describing other windows (besides the main one), file formats,
+ preferences dialogs,  etc. as appropriate. Try not to make any of
+ these sections too long. -->
+
+
+ <!-- ============= Bugs ================================== -->
+ <!-- This section should describe known bugs and limitations of
+      the program if there are any - please be frank and list all
+      problems you know of. -->
+ <sect1 id="bugs">
+  <title>Known Bugs and Limitations</title>
+  <para>
+   This application has no known bugs.
+  </para>
+ </sect1>
+
+
+<!-- ============= Authors ================================ -->
+
+ <sect1 id="authors">
+  <title>Authors</title>
+  <para>
+   <application>GRAMPS</application> was written by Donald N. Allingham
+   (<email>donaldallingham@home.com</email>). To find more information about
+   <application>GRAMPS</application>, please visit the <ulink
+   url="http://gramps.sourceforge.net" type="http">GRAMPS Web
+   page</ulink>.  Please send all comments, suggestions, and bug
+   reports to the <ulink url="http://bugs.gnome.org" type="http">GNOME
+   bug tracking database</ulink>.  (Instructions for submitting bug
+   reports can be found <ulink
+   url="http://bugs.gnome.org/Reporting.html" type="http">
+   on-line</ulink>.)  You can also use <application>Bug Report
+   Tool</application> (<command>bug-buddy</command>), available in the
+   <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
+   Menu</guimenu>, for submitting bug reports.
+  </para>
+
+  <para>
+   This manual was written by Donald N. Allingham
+   (<email>donaldallingham@home.com</email>) and Lawrence L. Allingham
+   (<email>llkla@erinet.com</email>).
+  </para>
+
+  <!-- For translations: uncomment this:
+
+  <para>
+   Latin translation was done by ME
+   (<email>MYNAME@MYADDRESS</email>). Please send all  comments  and
+   suggestions regarding this translation to SOMEWHERE.
+  </para>
+
+  -->
+
+ </sect1>
+
+
+ <!-- ============= Application License ============================= -->
+
+ <sect1 id="license">
+  <title>License</title>
+  <para>
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the  <ulink type="help" url="gnome-help:gpl">
+    <citetitle>GNU General Public License</citetitle></ulink> as
+   published by the Free Software Foundation; 
+   either version 2 of the License, or (at your option) any later
+   version.
+  </para>
+  <para>
+   This program is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   <citetitle>GNU General Public License</citetitle> for more details.
+  </para>
+  <para>
+   A copy of the <citetitle>GNU General Public License</citetitle> is
+   included as an appendix to the <citetitle>GNOME Users
+   Guide</citetitle>.  You may also obtain a copy of the
+   <citetitle>GNU General Public License</citetitle> from the Free
+   Software Foundation by visiting <ulink type="http"
+   url="http://www.fsf.org">their Web site</ulink> or by writing to
+   <address>
+    Free Software Foundation, Inc.
+    <street>59 Temple Place</street> - Suite 330
+    <city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>
+    <country>USA</country>
+   </address>
+  </para>
+ </sect1>
+</article>
+
+
+
+
+
+
+
+
+

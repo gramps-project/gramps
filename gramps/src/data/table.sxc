@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<office:document office:class="spreadsheet" office:version="0.9" xmlns:office="http://openoffice.org/2000/office" xmlns:style="http://openoffice.org/2000/style" xmlns:text="http://openoffice.org/2000/text" xmlns:table="http://openoffice.org/2000/table" xmlns:draw="http://openoffice.org/2000/drawing" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="http://openoffice.org/2000/meta" xmlns:number="http://openoffice.org/2000/datastyle" xmlns:svg="http://www.w3.org/2000/svg" xmlns:chart="http://openoffice.org/2000/chart" xmlns:dr3d="http://openoffice.org/2000/dr3d" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="http://openoffice.org/2000/form" xmlns:script="http://openoffice.org/2000/script">
+ <office:meta>
+  <meta:generator>StarOffice/5.2 (Linux)</meta:generator><!--619b(Build:6103)-->
+  <meta:creation-date>2001-03-15T14:44:55</meta:creation-date>
+  <dc:creator>Don Allingham</dc:creator>
+  <dc:date>2001-03-15T14:46:49</dc:date>
+  <dc:language>en-US</dc:language>
+  <meta:editing-cycles>5</meta:editing-cycles>
+  <meta:editing-duration>PT0S</meta:editing-duration>
+  <meta:user-defined meta:name="Info 0"/>
+  <meta:user-defined meta:name="Info 1"/>
+  <meta:user-defined meta:name="Info 2"/>
+  <meta:user-defined meta:name="Info 3"/>
+  <meta:document-statistic meta:table-count="1" meta:cell-count="344"/>
+ </office:meta>
+ <office:script>
+  <script:library-embedded script:name="Standard"/>
+ </office:script>
+ <office:font-decls>
+  <style:font-decl style:name="Andale WT UI" fo:font-family="&apos;Andale WT UI&apos;, &apos;MS Mincho&apos;, &apos;HG Mincho L&apos;, &apos;MS PGothic&apos;, &apos;Arial Unicode MS&apos;"/>
+  <style:font-decl style:name="Simplified Arabic" fo:font-family="&apos;Simplified Arabic&apos;, &apos;Andale WT UI&apos;, &apos;Arial Unicode MS&apos;"/>
+  <style:font-decl style:name="Arial" fo:font-family="Arial" style:font-family-generic="swiss" style:font-pitch="variable"/>
+ </office:font-decls>
+ <office:styles>
+  <number:number-style style:name="N0" style:family="data-style">
+   <number:number number:min-integer-digits="1"/>
+  </number:number-style>
+  <number:currency-style style:name="N104P0" style:family="data-style">
+   <number:currency-symbol number:language="en" number:country="US">$</number:currency-symbol>
+   <number:number number:decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+  </number:currency-style>
+  <number:currency-style style:name="N104" style:family="data-style">
+   <style:properties fo:color="#ff0000"/>
+   <number:text>-</number:text>
+   <number:currency-symbol number:language="en" number:country="US">$</number:currency-symbol>
+   <number:number number:decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+   <style:map style:condition="value()&gt;=0" style:apply-style-name="N104P0"/>
+  </number:currency-style>
+  <number:currency-style style:name="N106" style:family="data-style">
+   <number:currency-symbol number:language="en" number:country="US">$</number:currency-symbol>
+   <number:number number:decimal-places="2" number:min-integer-digits="1" number:grouping="true"/>
+  </number:currency-style>
+  <style:style style:name="Default" style:family="table-cell" style:data-style-name="N0"/>
+  <style:style style:name="Result" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N0">
+   <style:properties fo:font-style="italic" style:text-underline="single" fo:font-weight="bold"/>
+  </style:style>
+  <style:style style:name="Result2" style:family="table-cell" style:parent-style-name="Result" style:data-style-name="N104"/>
+  <style:style style:name="Heading" style:family="table-cell" style:parent-style-name="Default" style:data-style-name="N0">
+   <style:properties fo:text-align="center" style:text-align-source="fix" fo:font-size="16pt" fo:font-style="italic" fo:font-weight="bold"/>
+  </style:style>
+  <style:style style:name="Heading1" style:family="table-cell" style:parent-style-name="Heading" style:data-style-name="N0">
+   <style:properties fo:direction="ltr" style:rotation-angle="90"/>
+  </style:style>
+ </office:styles>
+ <office:automatic-styles>
+  <style:style style:name="co1" style:family="table-column">
+   <style:properties style:column-width="64.26pt" fo:break-before="auto"/>
+  </style:style>
+  <style:style style:name="ro1" style:family="table-row">
+   <style:properties fo:break-before="auto"/>
+  </style:style>
+  <style:style style:name="ta1" style:family="table">
+   <style:properties table:display="true" table:page-style-name="Default"/>
+  </style:style>
+  <number:number-style style:name="N2" style:family="data-style">
+   <number:number number:decimal-places="2" number:min-integer-digits="1"/>
+  </number:number-style>
+  <style:style style:name="ce1" style:family="table-cell" style:parent-style-name="Default">
+   <style:properties fo:background-color="#99ccff" fo:color="#000000" style:text-outline="false" style:text-crossing-out="none" style:font-name="Arial" fo:font-size="10pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline="none" fo:font-weight="bold" style:font-name-asian="Andale WT UI" style:font-size-asian="10pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Simplified Arabic" style:font-size-complex="10pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce2" style:family="table-cell" style:parent-style-name="Default">
+   <style:properties fo:color="#000000" style:text-outline="false" style:text-crossing-out="none" style:font-name="Arial" fo:font-size="10pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline="none" fo:font-weight="normal" style:font-name-asian="Andale WT UI" style:font-size-asian="10pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Simplified Arabic" style:font-size-complex="10pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce3" style:family="table-cell" style:parent-style-name="Default">
+   <style:properties fo:background-color="#e6e6e6" fo:color="#000000" style:text-outline="false" style:text-crossing-out="none" style:font-name="Arial" fo:font-size="10pt" fo:font-style="normal" fo:text-shadow="none" style:text-underline="none" fo:font-weight="normal" style:font-name-asian="Andale WT UI" style:font-size-asian="10pt" style:font-style-asian="normal" style:font-weight-asian="normal" style:font-name-complex="Simplified Arabic" style:font-size-complex="10pt" style:font-style-complex="normal" style:font-weight-complex="normal"/>
+  </style:style>
+  <style:style style:name="ce4" style:family="table-cell" style:parent-style-name="Default">
+   <style:properties fo:background-color="#99ccff" fo:font-size="10pt" fo:font-weight="bold"/>
+  </style:style>
+  <style:style style:name="ce5" style:family="table-cell" style:parent-style-name="Default">
+   <style:properties fo:background-color="#e6e6e6"/>
+  </style:style>
+  <style:page-master style:name="pm1">
+   <style:header-style>
+    <style:properties fo:min-height="21.29pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-bottom="7.09pt"/>
+   </style:header-style>
+   <style:footer-style>
+    <style:properties fo:min-height="21.29pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-top="7.09pt"/>
+   </style:footer-style>
+  </style:page-master>
+  <style:page-master style:name="pm2">
+   <style:header-style>
+    <style:properties fo:min-height="21.29pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-bottom="7.09pt" fo:border="2.49pt solid #000000" fo:border-top="2.49pt solid #000000" fo:border-bottom="2.49pt solid #000000" fo:border-left="2.49pt solid #000000" fo:border-right="2.49pt solid #000000" fo:padding="0.51pt" fo:padding-top="0.51pt" fo:padding-bottom="0.51pt" fo:padding-left="0.51pt" fo:padding-right="0.51pt" fo:background-color="#c0c0c0"/>
+   </style:header-style>
+   <style:footer-style>
+    <style:properties fo:min-height="21.29pt" fo:margin-left="0pt" fo:margin-right="0pt" fo:margin-top="7.09pt" fo:border="2.49pt solid #000000" fo:border-top="2.49pt solid #000000" fo:border-bottom="2.49pt solid #000000" fo:border-left="2.49pt solid #000000" fo:border-right="2.49pt solid #000000" fo:padding="0.51pt" fo:padding-top="0.51pt" fo:padding-bottom="0.51pt" fo:padding-left="0.51pt" fo:padding-right="0.51pt" fo:background-color="#c0c0c0"/>
+   </style:footer-style>
+  </style:page-master>
+ </office:automatic-styles>
+ <office:master-styles>
+  <style:master-page style:name="Default" style:page-master-name="pm1" style:next-style-name="">
+   <style:header>
+    <text:p><text:sheet-name>???</text:sheet-name></text:p>
+   </style:header>
+   <style:footer>
+    <text:p>Page <text:page-number>1</text:page-number></text:p>
+   </style:footer>
+  </style:master-page>
+  <style:master-page style:name="Report" style:page-master-name="pm2" style:next-style-name="">
+   <style:header>
+    <style:region-left>
+     <text:p><text:sheet-name>???</text:sheet-name> (<text:file-name text:display="full">???</text:file-name>)</text:p>
+    </style:region-left>
+    <style:region-right>
+     <text:p><text:date text:date-value="0-00-00" style:data-style-name="N2">3/15/01</text:date>, <text:time text:time-value="0-00-00" style:data-style-name="N1101133268">?</text:time></text:p>
+    </style:region-right>
+   </style:header>
+   <style:footer>
+    <text:p>Page <text:page-number>1</text:page-number> / <text:page-count>99</text:page-count></text:p>
+   </style:footer>
+  </style:master-page>
+ </office:master-styles>
+ <office:body>
+ </office:body>
+</office:document>

@@ -1,0 +1,24 @@
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+bindir 		= @bindir@
+datadir		= @datadir@/@PACKAGE@
+INSTALL		= @INSTALL@
+filters		= ${datadir}/filters
+srcdir		= @top_srcdir@
+pycomp		= ${srcdir}/py-compile
+
+@SET_MAKE@
+
+all:
+	${pycomp} *.py
+
+install:
+	-mkdir ${filters}
+	${INSTALL} -c *.py *.pyo ${datadir}/filters
+
+uninstall:
+	rm ${filters}/*.py ${filters}/*.pyo ${filters}/*.glade ${filters}/*.xpm
+	-rmdir ${filters}
+
+clean:
+	-rm -f core *.pyo *.pyc *.bak *~	

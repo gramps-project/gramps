@@ -1,0 +1,480 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2000  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+import os
+import tempfile
+import string
+
+from TextDoc import *
+from latin_utf8 import latin_to_utf8
+import const
+
+
+class OpenOfficeDoc(TextDoc):
+
+    def __init__(self,type,orientation):
+        TextDoc.__init__(self,type,orientation)
+        self.f = None
+        self.filename = None
+        self.level = 0
+        self.time = "0000-00-00T00:00:00"
+
+    def open(self,filename):
+        import time
+        
+        t = time.localtime(time.time())
+        self.time = "%04d-%02d-%02dT%02d:%02d:%02d" % \
+                    (t[0],t[1],t[2],t[3],t[4],t[5])
+
+        if filename[-4:] != ".sxw":
+            self.filename = filename + ".sxw"
+        else:
+            self.filename = filename
+            
+        tempfile.tempdir = "/tmp"
+        self.tempdir = tempfile.mktemp()
+        os.mkdir(self.tempdir,0700)
+        os.mkdir(self.tempdir + os.sep + "Pictures")
+        os.mkdir(self.tempdir + os.sep + "META-INF")
+            
+        self.f = open(self.tempdir + os.sep + "content.xml","w")
+        self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        self.f.write('<office:document-content ')
+        self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
+        self.f.write('xmlns:style="http://openoffice.org/2000/style" ')
+        self.f.write('xmlns:text="http://openoffice.org/2000/text" ')
+        self.f.write('xmlns:table="http://openoffice.org/2000/table" ')
+        self.f.write('xmlns:draw="http://openoffice.org/2000/drawing" ')
+        self.f.write('xmlns:fo="http://www.w3.org/1999/XSL/Format" ')
+        self.f.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
+        self.f.write('xmlns:number="http://openoffice.org/2000/datastyle" ')
+        self.f.write('xmlns:svg="http://www.w3.org/2000/svg" ')
+        self.f.write('xmlns:chart="http://openoffice.org/2000/chart" ')
+        self.f.write('xmlns:dr3d="http://openoffice.org/2000/dr3d" ')
+        self.f.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
+        self.f.write('xmlns:form="http://openoffice.org/2000/form" ')
+        self.f.write('xmlns:script="http://openoffice.org/2000/script" ')
+        self.f.write('office:class="text" office:version="0.9">\n')
+        self.f.write('<office:script/>\n')
+        self.f.write('<office:font-decls>\n')
+        self.f.write('<style:font-decl style:name="Times New Roman" ')
+        self.f.write('fo:font-family="&apos;Times New Roman&apos;" ')
+        self.f.write('style:font-family-generic="roman" ')
+        self.f.write('style:font-pitch="variable"/>\n')
+        self.f.write('<style:font-decl style:name="Arial" ')
+        self.f.write('fo:font-family="Arial" ')
+        self.f.write('style:font-family-generic="swiss" ')
+        self.f.write('style:font-pitch="variable"/>\n')
+        self.f.write('</office:font-decls>\n')
+        self.f.write('<office:automatic-styles>\n')
+	for style_name in self.table_styles.keys():
+	    style = self.table_styles[style_name]
+            self.f.write('<style:style style:name="' + style_name + '" ')
+	    self.f.write('style:family="table">\n')
+            table_width = float(self.get_usable_width())
+	    self.f.write('<style:properties style:width="%.3fcm" ' % table_width)
+            self.f.write('/>\n')
+            self.f.write('</style:style>\n')
+	    for col in range(0,style.get_columns()):
+	        self.f.write('<style:style style:name="')
+		self.f.write(style_name + '.' + str(chr(ord('A')+col)) +'" ')
+		self.f.write('style:family="table-column">')
+                width = table_width * float(style.get_column_width(col)/100.0)
+		self.f.write('<style:properties style:column-width="%.3fcm"/>' % width)
+	        self.f.write('</style:style>\n')
+        for cell in self.cell_styles.keys():
+            cell_style = self.cell_styles[cell]
+            self.f.write('<style:style style:name="')
+            self.f.write(cell)
+            self.f.write('" style:family="table-cell">\n')
+            self.f.write('<style:properties')
+            self.f.write(' fo:padding="%.3fcm"' % cell_style.get_padding())
+            if cell_style.get_top_border():
+                self.f.write(' fo:border-top="0.002cm solid #000000"')
+            else:
+                self.f.write(' fo:border-top="none"')
+            if cell_style.get_bottom_border():
+                self.f.write(' fo:border-bottom="0.002cm solid #000000"')
+            else:
+                self.f.write(' fo:border-bottom="none"')
+            if cell_style.get_left_border():
+                self.f.write(' fo:border-left="0.002cm solid #000000"')
+            else:
+                self.f.write(' fo:border-left="none"')
+            if cell_style.get_right_border():
+                self.f.write(' fo:border-right="0.002cm solid #000000"')
+            else:
+                self.f.write(' fo:border-right="none"')
+            self.f.write('/>\n')
+            self.f.write('</style:style>\n')
+            
+        self.f.write('<style:style style:name="T1" style:family="text">\n')
+        self.f.write('<style:properties fo:font-weight="bold"/>\n')
+        self.f.write('</style:style>\n')
+        self.f.write('</office:automatic-styles>\n')
+        self.f.write('<office:body>\n')
+
+    def close(self):
+        self.f.write('</office:body>\n')
+        self.f.write('</office:document-content>\n')
+        self.f.close()
+        self._write_styles_file()
+        self._write_manifest()
+        self._write_meta_file()
+        self._write_zip()
+
+    def start_table(self,name,style_name):
+        self.f.write('<table:table table:name="')
+	self.f.write(name)
+	self.f.write('" table:style-name="' + style_name + '">\n')
+	table = self.table_styles[style_name]
+	for col in range(0,table.get_columns()):
+	    self.f.write('<table:table-column table:style-name="')
+  	    self.f.write(style_name + '.' + str(chr(ord('A')+col)) +'"/>\n')
+
+    def end_table(self):
+        self.f.write('</table:table>\n')
+
+    def start_row(self):
+        self.f.write('<table:table-row>\n')
+
+    def end_row(self):
+        self.f.write('</table:table-row>\n')
+
+    def start_cell(self,style_name,span=1):
+	self.span = span
+	self.f.write('<table:table-cell table:style-name="')
+        self.f.write(style_name)
+        self.f.write('" table:value-type="string"')
+        if span > 1:
+            self.f.write(' table:number-columns-spanned="' + str(span) + '">\n')
+	else:	     
+	    self.f.write('>\n')
+
+    def end_cell(self):
+        self.f.write('</table:table-cell>\n')
+        for col in range(1,self.span):
+            self.f.write('<table:covered-table-cell/>\n')
+
+    def _write_zip(self):
+        
+        if os.path.isfile(self.filename):
+            os.unlink(self.filename)
+
+        os.system("cd " + self.tempdir + "; " + const.zipcmd + " " \
+                  + self.filename + " .")
+
+        os.unlink(self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml")
+        os.unlink(self.tempdir + os.sep + "content.xml")
+        os.unlink(self.tempdir + os.sep + "meta.xml")
+        os.unlink(self.tempdir + os.sep + "styles.xml")
+#        for image in self.image_list:
+#            os.unlink(self.tempdir + os.sep + "Pictures" + os.sep + image)
+        os.rmdir(self.tempdir + os.sep + "Pictures")
+        os.rmdir(self.tempdir + os.sep + "META-INF")
+        os.rmdir(self.tempdir)
+        
+    def _write_styles_file(self):
+	file = self.tempdir + os.sep + "styles.xml"
+	self.f = open(file,"w")
+        self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+        self.f.write('<office:document-styles ')
+        self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
+        self.f.write('xmlns:style="http://openoffice.org/2000/style" ')
+        self.f.write('xmlns:text="http://openoffice.org/2000/text" ')
+        self.f.write('xmlns:table="http://openoffice.org/2000/table" ')
+        self.f.write('xmlns:draw="http://openoffice.org/2000/drawing" ')
+        self.f.write('xmlns:fo="http://www.w3.org/1999/XSL/Format" ')
+        self.f.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
+        self.f.write('xmlns:number="http://openoffice.org/2000/datastyle" ')
+        self.f.write('xmlns:svg="http://www.w3.org/2000/svg" ')
+        self.f.write('xmlns:chart="http://openoffice.org/2000/chart" ')
+        self.f.write('xmlns:dr3d="http://openoffice.org/2000/dr3d" ')
+        self.f.write('xmlns:math="http://www.w3.org/1998/Math/MathML" ')
+        self.f.write('xmlns:form="http://openoffice.org/2000/form" ')
+        self.f.write('xmlns:script="http://openoffice.org/2000/script" ')
+        self.f.write('office:class="text" office:version="0.9">\n')
+        self.f.write('<office:font-decls>\n')
+        self.f.write('<style:font-decl style:name="Times New Roman" ')
+        self.f.write('fo:font-family="&apos;Times New Roman&apos;" ')
+        self.f.write('style:font-family-generic="roman" ')
+        self.f.write('style:font-pitch="variable"/>\n')
+        self.f.write('<style:font-decl style:name="Arial" ')
+        self.f.write('fo:font-family="Arial" ')
+        self.f.write('style:font-family-generic="swiss" ')
+        self.f.write('style:font-pitch="variable"/>\n')
+        self.f.write('</office:font-decls>\n')
+        self.f.write('<office:styles>\n')
+        self.f.write('<style:default-style style:family="paragraph">\n')
+        self.f.write('<style:properties style:font-name="Times New Roman" ')
+        self.f.write('style:font-pitch-asian="fixed" ')
+        self.f.write('style:font-pitch-complex="fixed" ')
+        self.f.write('style:tab-stop-distance="2.205cm"/>\n')
+        self.f.write('</style:default-style>\n')
+        self.f.write('<style:style style:name="Standard" ')
+        self.f.write('style:family="paragraph" style:class="text"/>\n')
+        for key in self.style_list.keys():
+            style = self.style_list[key]
+            self.f.write('<style:style style:name="' + key + '" ')
+            self.f.write('style:family="paragraph" ')
+            self.f.write('style:parent-style-name="Standard" ')
+            self.f.write('style:class="text">\n')
+            self.f.write('<style:properties ')
+
+            if style.get_padding() != 0.0:
+	       self.f.write('fo:padding="%.3fcm" ' % style.get_padding())
+
+            align = style.get_alignment()
+	    if align == PARA_ALIGN_LEFT:
+	       self.f.write('fo:text-align="left" ')
+            elif align == PARA_ALIGN_RIGHT:
+               self.f.write('fo:text-align="right" ')
+            elif align == PARA_ALIGN_CENTER:
+               self.f.write('fo:text-align="center" ')
+               self.f.write('style:justify-single-word="false" ')
+            else:
+               self.f.write('fo:text-align="justify" ')
+               self.f.write('style:justify-single-word="false" ')
+            font = style.get_font()
+            if font.get_type_face() == FONT_SANS_SERIF:
+                self.f.write('style:font-name="Arial" ')
+            else:
+                self.f.write('style:font-name="Times New Roman" ')
+            self.f.write('fo:font-size="' + str(font.get_size()) + 'pt" ')
+            color = font.get_color()
+	    self.f.write('fo:color="#%02x%02x%02x" ' % color)
+            if font.get_bold():
+                self.f.write('fo:font-weight="bold" ')
+            if font.get_italic():
+                self.f.write('fo:font-style="italic" ')
+	    if font.get_underline():
+		self.f.write('style:text-underline="single" ')
+                self.f.write('style:text-underline-color="font-color" ')
+            self.f.write('fo:text-indent="%.2fcm" ' % style.get_first_indent())
+            self.f.write('fo:margin-right="%.2fcm" ' % style.get_right_margin())
+            self.f.write('fo:margin-left="%.2fcm" ' % style.get_left_margin())
+            self.f.write('fo:margin-top="0cm" ')
+            self.f.write('fo:margin-bottom="0.212cm"')
+            self.f.write('/>\n')
+            self.f.write('</style:style>\n')
+
+	# Current no leading number format for headers
+
+	self.f.write('<text:outline-style>\n')
+	self.f.write('<text:outline-level-style text:level="1" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="2" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="3" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="4" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="5" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="6" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="7" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="8" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="9" style:num-format=""/>\n')
+	self.f.write('<text:outline-level-style text:level="10" style:num-format=""/>\n')
+	self.f.write('</text:outline-style>\n')
+            
+        self.f.write('</office:styles>\n')
+        self.f.write('<office:automatic-styles>\n')
+        self.f.write('<style:page-master style:name="pm1">\n')
+        self.f.write('<style:properties fo:page-width="%.2fcm" ' % self.width)
+        self.f.write('fo:page-height="%.2fcm" ' % self.height)
+        self.f.write('style:num-format="1" ')
+        if self.orientation == PAPER_PORTRAIT:
+            self.f.write('style:print-orientation="portrait" ')
+        else:
+            self.f.write('style:print-orientation="landscape" ')
+        self.f.write('fo:margin-top="%.2fcm" ' % self.tmargin)
+        self.f.write('fo:margin-bottom="%.2fcm" ' % self.bmargin)
+        self.f.write('fo:margin-left="%.2fcm" ' % self.lmargin)
+        self.f.write('fo:margin-right="%.2fcm" ' % self.rmargin)
+        self.f.write('style:footnote-max-height="0cm">\n')
+        self.f.write('<style:footnote-sep style:width="0.018cm" ')
+        self.f.write('style:distance-before-sep="0.101cm" ')
+        self.f.write('style:distance-after-sep="0.101cm" ')
+        self.f.write('style:adjustment="left" style:rel-width="25%" ')
+        self.f.write('style:color="#000000"/>\n')
+        self.f.write('</style:properties>\n')
+        self.f.write('<style:header-style/>\n')
+        self.f.write('<style:footer-style/>\n')
+        self.f.write('</style:page-master>\n')
+        self.f.write('</office:automatic-styles>\n')
+        self.f.write('<office:master-styles>\n')
+        self.f.write('<style:master-page style:name="Standard" ')
+        self.f.write('style:page-master-name="pm1"/>\n')
+        self.f.write('</office:master-styles>\n')
+        self.f.write('</office:document-styles>\n')
+	self.f.close()
+        
+    def start_paragraph(self,style_name):
+	style = self.style_list[style_name]
+	self.level = style.get_header_level()
+	if self.level == 0:
+	    self.f.write('<text:p text:style-name="' + style_name + '">')
+	else:
+	    self.f.write('<text:h text:style-name="' + style_name)
+	    self.f.write('" text:level="' + str(self.level) + '">')
+
+    def end_paragraph(self):
+        if self.level == 0:
+            self.f.write('</text:p>\n')
+        else:
+            self.f.write('</text:h>\n')
+
+    def write_text(self,text):
+        text = string.replace(text,'\t','<text:tab-stop/>')
+        text = string.replace(text,'\n','<text:line-break/>')
+	self.f.write(latin_to_utf8(text))
+
+    def _write_manifest(self):
+	file = self.tempdir + os.sep + "META-INF" + os.sep + "manifest.xml"
+	self.f = open(file,"w")
+	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+	self.f.write('<manifest:manifest ')
+        self.f.write('xmlns:manifest="http://openoffice.org/2001/manifest">')
+	self.f.write('<manifest:file-entry ')
+        self.f.write('manifest:media-type="application/vnd.sun.xml.writer" ')
+	self.f.write('manifest:full-path="/"/>')
+        self.f.write('<manifest:file-entry manifest:media-type="" ')
+	self.f.write('manifest:full-path="Pictures/"/>')
+	self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
+	self.f.write('manifest:full-path="content.xml"/>')
+	self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
+	self.f.write('manifest:full-path="styles.xml"/>')
+	self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
+	self.f.write('manifest:full-path="meta.xml"/>')
+	#self.f.write('<manifest:file-entry manifest:media-type="text/xml" ')
+	#self.f.write('manifest:full-path="settings.xml"/>')
+	self.f.write('</manifest:manifest>\n')
+	self.f.close()
+
+    def _write_meta_file(self):
+	file = self.tempdir + os.sep + "meta.xml"
+        name = latin_to_utf8(self.name)
+	self.f = open(file,"w")
+	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+	self.f.write('<office:document-meta ')
+	self.f.write('xmlns:office="http://openoffice.org/2000/office" ')
+	self.f.write('xmlns:xlink="http://www.w3.org/1999/xlink" ')
+	self.f.write('xmlns:dc="http://purl.org/dc/elements/1.1/" ')
+	self.f.write('xmlns:meta="http://openoffice.org/2000/meta" ')
+	self.f.write('office:class="text" office:version="0.9">\n');
+	self.f.write('<office:meta>\n')
+	self.f.write('<meta:generator>')
+        self.f.write(const.progName + ' ' + const.version)
+        self.f.write('</meta:generator>\n')
+	self.f.write('<meta:initial-creator>')
+	self.f.write(name)
+	self.f.write('</meta:initial-creator>\n')
+	self.f.write('<meta:creation-date>')
+	self.f.write(self.time)
+	self.f.write('</meta:creation-date>\n')
+	self.f.write('<dc:creator>')
+	self.f.write(name)
+	self.f.write('</dc:creator>\n')
+	self.f.write('<dc:date>')
+	self.f.write(self.time)
+	self.f.write('</dc:date>\n')
+	self.f.write('<meta:print-date>0-00-00T00:00:00</meta:print-date>\n')
+	self.f.write('<dc:language>en-US</dc:language>\n')
+	self.f.write('<meta:editing-cycles>1</meta:editing-cycles>\n')
+	self.f.write('<meta:editing-duration>PT0S</meta:editing-duration>\n')
+	self.f.write('<meta:user-defined meta:name="Info 0"/>\n')
+	self.f.write('<meta:user-defined meta:name="Info 1"/>\n')
+	self.f.write('<meta:user-defined meta:name="Info 2"/>\n')
+	self.f.write('<meta:user-defined meta:name="Info 3"/>\n')
+	self.f.write('</office:meta>\n')
+	self.f.write('</office:document-meta>\n')
+	self.f.close()
+ 
+if __name__ == "__main__":
+    doc = OpenOfficeDoc(PAPER_US_LETTER,PAPER_PORTRAIT)
+    foo = FontStyle()
+    foo.set_type_face(FONT_SANS_SERIF)
+    foo.set_color((255,0,0))
+    foo.set_size(24)
+
+    para = ParagraphStyle()
+    para.set_font(foo)
+    para.set_alignment(PARA_ALIGN_RIGHT)
+    doc.add_style("MyTitle",para)
+
+    para = ParagraphStyle()
+    para.set_left_margin(1)
+    para.set_right_margin(1)
+    para.set_alignment(PARA_ALIGN_JUSTIFY)
+    doc.add_style("Normal",para)
+
+    table = TableStyle()
+    table.set_width(10)
+    table.set_columns(2)
+    table.set_column_width(0,2)
+    table.set_column_width(1,8)
+    doc.add_table_style("Table1",table)
+
+
+    para = ParagraphStyle()
+    font = FontStyle()
+    font.set_type_face(FONT_SANS_SERIF)
+    font.set_bold(1)
+    font.set_size(16)
+    para.set_font(font)
+    doc.add_style("TableEntry",para)
+
+    cell = TableCellStyle()
+    cell.set_bottom_border(1)
+    cell.set_top_border(1)
+    doc.add_cell_style("TableHeader",cell)
+
+    cell = TableCellStyle()
+    doc.add_cell_style("TableContents",cell)
+
+    doc.open("/home/dona/oo_test.sxw")
+    doc.start_paragraph("MyTitle")
+    doc.write_text("This is my Title")
+    doc.end_paragraph()
+    
+    doc.start_paragraph("Normal")
+    doc.write_text("This is a test of the emergency broadcast system. ")    
+    doc.write_text("This is a only a test.  Repeat.  This is only a test. ")    
+    doc.write_text("Had this been an actual emergency, we would not be here ")
+    doc.write_text("to give you this message.")
+    doc.end_paragraph()
+    doc.start_table("MyTable","Table1")
+
+    doc.start_row()
+    doc.start_cell("TableHeader",2)
+    doc.start_paragraph("TableEntry")
+    doc.write_text("This is my Title")
+    doc.end_paragraph()
+    doc.end_cell()
+    doc.end_row()
+
+    doc.start_row()
+    doc.start_cell("TableContents")
+    doc.write_text("Hello")
+    doc.end_cell()
+    doc.start_cell("TableContents")
+    doc.write_text("Goodbye")
+    doc.end_cell()
+    doc.end_row()
+
+    doc.end_table()
+    doc.close()
+

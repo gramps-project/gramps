@@ -1,0 +1,36 @@
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+bindir 		= @bindir@
+datadir		= @datadir@/@PACKAGE@
+INSTALL		= @INSTALL@
+
+@SET_MAKE@
+
+all:
+	(cd src; ${MAKE} all)
+	(cd src/plugins; ${MAKE} all)
+	(cd src/filters; ${MAKE} all)
+	(cd src/data; ${MAKE} all)
+
+install:
+	(cd src; ${MAKE} install)
+	(cd src/plugins; ${MAKE} install)
+	(cd src/filters; ${MAKE} install)
+	(cd src/data; ${MAKE} install)
+	-${INSTALL} -d ${bindir}
+	${INSTALL} -c gramps.sh ${bindir}/gramps
+	chmod +x ${bindir}/gramps
+
+uninstall:
+	(cd src; ${MAKE} uninstall)
+	(cd src/plugins; ${MAKE} uninstall)
+	(cd src/filters; ${MAKE} uninstall)
+	(cd src/data; ${MAKE} uninstall)
+	rm ${bindir}/gramps
+
+clean:
+	(cd src; ${MAKE} clean)
+	(cd src/plugins; ${MAKE} clean)
+	(cd src/filters; ${MAKE} clean)
+	(cd src/data; ${MAKE} clean)
+	rm -f core *~ config.cache config.log config.status

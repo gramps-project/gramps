@@ -1,0 +1,7 @@
+#! /usr/bin/perl
+
+while (<>) {
+	if (/_\(\"(.*)\"\)/) {
+	   print "gchar *s = N_(\"$1\");\n"
+	}
+}

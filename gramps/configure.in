@@ -1,0 +1,113 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(src/gramps.py)
+
+dnl Checks for programs.
+
+PACKAGE=gramps
+
+AC_PATH_PROG(PYTHON, python)
+AC_PATH_PROG(ZIP, zip)
+
+AC_SUBST(PYTHON)
+AC_SUBST(PACKAGE)
+
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+
+dnl Check for programs
+
+AC_CHECK_PROG(HAVE_GNOME_CONFIG, gnome-config, "YES", "NO")
+
+dnl Check if python bindings for gtk are installed
+
+AC_MSG_CHECKING(Python bindings for sax/xml)
+changequote(,)
+cat > conftest.py <<EOF
+try:
+    from xml.sax import saxexts, saxlib, saxutils
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+changequote([, ])
+$PYTHON conftest.py
+has_sax=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_sax
+then
+   AC_MSG_ERROR([
+
+**** The python interpreter can't find the SAX/XML bindings.])
+fi
+AC_MSG_RESULT(ok)
+
+AC_MSG_CHECKING(Python bindings for gtk+)
+changequote(,)
+cat > conftest.py <<EOF
+try:
+    import gtk
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+changequote([, ])
+$PYTHON conftest.py
+has_pygtk=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_pygtk
+then
+   AC_MSG_ERROR([
+
+**** The python interpreter can't find the python bindings for gtk.])
+fi
+AC_MSG_RESULT(ok)
+
+AC_MSG_CHECKING(Python bindings for GNOME)
+changequote(,)
+cat > conftest.py <<EOF
+try:
+    import gnome, gnome.ui, gnome.xmhtml
+    f = open("conftest.out", "w")
+    f.write("YES")
+    f.close()
+except ImportError:
+    f = open("conftest.out", "w")
+    f.write("NO")
+    f.close()
+EOF
+changequote([, ])
+$PYTHON conftest.py
+has_pygnome=`cat conftest.out`
+rm -f conftest.out conftest.py
+if test "YES" != $has_pygnome
+then
+   AC_MSG_ERROR([
+
+**** The python interpreter can't find the python bindings for GNOME.])
+fi
+AC_MSG_RESULT(ok)
+
+dnl Checks for libraries.
+
+dnl Checks for header files.
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+
+dnl Checks for library functions.
+
+AC_OUTPUT(Makefile \
+	src/Makefile\
+	src/plugins/Makefile\
+	src/filters/Makefile\
+	src/data/Makefile\
+	gramps.sh)
+
+

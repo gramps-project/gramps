@@ -1,0 +1,24 @@
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+bindir 		= @bindir@
+datadir		= @datadir@/@PACKAGE@
+INSTALL		= @INSTALL@
+data		= ${datadir}
+pycomp		= ${srcdir}/py-compile
+
+@SET_MAKE@
+
+all:
+
+install:
+	-mkdir ${data}
+	${INSTALL} -c *.sxw ${data}
+
+uninstall:
+	rm ${data}/*.sxw
+	-rmdir ${data}
+
+clean:
+	-rm -f core *.pyo *.pyc *.bak *~	
+
+
