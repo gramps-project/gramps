@@ -1642,7 +1642,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=rc1
+RELEASE=1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
@@ -1811,13 +1811,12 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-      am_display_PYTHON=$am_cv_pathless_PYTHON
     fi
 
 
 
-  echo "$as_me:$LINENO: checking for $am_display_PYTHON version" >&5
-echo $ECHO_N "checking for $am_display_PYTHON version... $ECHO_C" >&6
+  echo "$as_me:$LINENO: checking for $am_cv_pathless_PYTHON version" >&5
+echo $ECHO_N "checking for $am_cv_pathless_PYTHON version... $ECHO_C" >&6
 if test "${am_cv_python_version+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
@@ -1835,8 +1834,8 @@ echo "${ECHO_T}$am_cv_python_version" >&6
 
 
 
-  echo "$as_me:$LINENO: checking for $am_display_PYTHON platform" >&5
-echo $ECHO_N "checking for $am_display_PYTHON platform... $ECHO_C" >&6
+  echo "$as_me:$LINENO: checking for $am_cv_pathless_PYTHON platform" >&5
+echo $ECHO_N "checking for $am_cv_pathless_PYTHON platform... $ECHO_C" >&6
 if test "${am_cv_python_platform+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
@@ -1850,15 +1849,34 @@ echo "${ECHO_T}$am_cv_python_platform" >&6
 
 
 
-  pythondir=$PYTHON_PREFIX"/lib/python"$PYTHON_VERSION/site-packages
+        echo "$as_me:$LINENO: checking for $am_display_PYTHON script directory" >&5
+echo $ECHO_N "checking for $am_display_PYTHON script directory... $ECHO_C" >&6
+if test "${am_cv_python_pythondir+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  am_cv_python_pythondir=`$PYTHON -c "from distutils import sysconfig; print sysconfig.get_python_lib(0,0,prefix='$PYTHON_PREFIX')" 2>/dev/null ||
+     echo "$PYTHON_PREFIX/lib/python$PYTHON_VERSION/site-packages"`
+fi
+echo "$as_me:$LINENO: result: $am_cv_python_pythondir" >&5
+echo "${ECHO_T}$am_cv_python_pythondir" >&6
+  pythondir=$am_cv_python_pythondir
 
 
 
   pkgpythondir=\${pythondir}/$PACKAGE
 
 
-
-  pyexecdir=${PYTHON_EXEC_PREFIX}/lib/python${PYTHON_VERSION}/site-packages
+            echo "$as_me:$LINENO: checking for $am_display_PYTHON extension module directory" >&5
+echo $ECHO_N "checking for $am_display_PYTHON extension module directory... $ECHO_C" >&6
+if test "${am_cv_python_pyexecdir+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  am_cv_python_pyexecdir=`$PYTHON -c "from distutils import sysconfig; print sysconfig.get_python_lib(1,0,prefix='$PYTHON_EXEC_PREFIX')" 2>/dev/null ||
+     echo "${PYTHON_EXEC_PREFIX}/lib/python${PYTHON_VERSION}/site-packages"`
+fi
+echo "$as_me:$LINENO: result: $am_cv_python_pyexecdir" >&5
+echo "${ECHO_T}$am_cv_python_pyexecdir" >&6
+  pyexecdir=$am_cv_python_pyexecdir
 
 
 
@@ -4170,7 +4188,7 @@ SCROLLKEEPER_BUILD_REQUIRED=0.3.5
 
 
 
-                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile example/Makefile example/gramps/Makefile gramps.spec gramps.sh"
+                                                                                                                                                                          ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile example/Makefile example/gramps/Makefile gramps.spec gramps.sh"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure

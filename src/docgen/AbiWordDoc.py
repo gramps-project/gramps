@@ -336,4 +336,4 @@ class AbiWordDoc(TextDoc.TextDoc):
         self.cdata = self.cdata + "</c>"
         self.cdatalist.append(self.cdata)
 
-Plugins.register_text_doc(_("AbiWord"),AbiWordDoc,1,1,1,".abw")
+Plugins.register_text_doc(_("AbiWord (version 1.0.x)"),AbiWordDoc,1,1,1,".abw")

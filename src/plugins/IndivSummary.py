@@ -327,7 +327,7 @@ class IndivSummaryDialog(Report.TextReportDialog):
     
     def get_stylesheet_savefile(self):
         """Where to save styles for this report."""
-        return "family_group.xml"
+        return "individual_summary.xml"
     
     def doc_uses_tables(self):
         """This report requires table support."""
