@@ -16,6 +16,11 @@
 	* src/data/gramps.schemas: Place dont-ask key into interface dir.
 	* src/Marriage.py (did_data_change): Compare gramps_id, not handle.
 
+	* src/ReadXML.py (start_childof): Use integer relations.
+	* src/WriteXML.py (write_xml_data): Properly test frel.
+	* src/rule.glade: Change button label; add "need to close" label.
+	* src/EditPlace.py: Typo.
+
 2005-03-09  Don Allingham  <don@gramps-project.org>
 	* src/NameEdit.py: assign date on close
 

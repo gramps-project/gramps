@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,11 +30,11 @@ GRAMPS' XML file format.
 # load standard python libraries
 #
 #-------------------------------------------------------------------------
-import string
 import time
 import shutil
 import os
 import codecs
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -51,8 +51,6 @@ import gtk
 import const
 import RelLib 
 import Date
-
-from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
@@ -196,7 +194,7 @@ class XmlWriter:
             
     def write_xml_data(self):
 
-        date = string.split(time.ctime(time.time()))
+        date = time.ctime(time.time()).split()
         owner = self.db.get_researcher()
         person_len = self.db.get_number_of_people()
         family_len = len(self.db.get_family_handles())
@@ -211,7 +209,7 @@ class XmlWriter:
         self.g.write("<database xmlns=\"http://gramps.sourceforge.net/database\">\n")
         self.g.write("  <header>\n")
         self.g.write("    <created date=\"%s %s %s\"" % \
-                     (date[2],string.upper(date[1]),date[4]))
+                     (date[2],date[1].upper(),date[4]))
         self.g.write(" version=\"" + const.version + "\"")
         self.g.write(" people=\"%d\"" % person_len)
         self.g.write(" families=\"%d\"" % family_len)
@@ -304,7 +302,7 @@ class XmlWriter:
                         mrel=' mrel="%s"' % const.child_rel_notrans[alt[1]]
                     else:
                         mrel=''
-                    if alt[2] != "Birth":
+                    if alt[2] != RelLib.Person.CHILD_REL_BIRTH:
                         frel=' frel="%s"' % const.child_rel_notrans[alt[2]]
                     else:
                         frel=''
@@ -455,7 +453,7 @@ class XmlWriter:
             self.g.write('<%s format="%d">' % (val,format))
         else:
             self.g.write('<%s>' % val)
-        self.g.write(self.fix(string.rstrip(text)))
+        self.g.write(self.fix(text.rstrip()))
         self.g.write("</%s>\n" % val)
 
     def write_text(self,val,text,indent=0):
@@ -465,7 +463,7 @@ class XmlWriter:
             self.g.write("  " * indent)
         
         self.g.write('<%s>' % val)
-        self.g.write(self.fix(string.rstrip(text)))
+        self.g.write(self.fix(text.rstrip()))
         self.g.write("</%s>\n" % val)
 
     def dump_event(self,event,index=1):

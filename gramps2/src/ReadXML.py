@@ -797,14 +797,14 @@ class GrampsParser:
             
         if attrs.has_key("mrel"):
             try:
-                mrel = const.child_rel_notrans[attrs["mrel"]]
+                mrel = const.child_rel_notrans.index(attrs["mrel"])
             except:
                 mrel = RelLib.Person.CHILD_REL_NONE
         else:
             mrel = RelLib.Person.CHILD_REL_BIRTH
         if attrs.has_key("frel"):
             try:
-                frel = const.child_rel_notrans[attrs["frel"]]
+                frel = const.child_rel_notrans.index(attrs["frel"])
             except:
                 frel = RelLib.Person.CHILD_REL_NONE
         else:
