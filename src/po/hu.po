@@ -1,5 +1,3 @@
-# translation of hu.po to 
-# translation of hu.po to
 # translation of hu.po to Hungarian
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
@@ -8,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
-"POT-Creation-Date: Thu Jan 15 19:45:56 2004\n"
-"PO-Revision-Date: 2004-01-18 14:18+0100\n"
+"POT-Creation-Date: Sun Jan 18 19:41:31 2004\n"
+"PO-Revision-Date: 2004-01-19 21:30+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -292,7 +290,7 @@ msgstr "(és|-ig|-)"
 msgid "from %(start_date)s to %(stop_date)s"
 msgstr "%(start_date)s -tól %(stop_date)s -ig"
 
-#: DbPrompter.py:64 DbPrompter.py:118 gramps_main.py:1416 revision.glade:143
+#: DbPrompter.py:64 DbPrompter.py:118 gramps_main.py:1425 revision.glade:143
 msgid "Open a database"
 msgstr "Adatbázis megnyitása"
 
@@ -300,12 +298,12 @@ msgstr "Adatbázis megnyitása"
 msgid "Create database"
 msgstr "Egy adatbázis létrehozása"
 
-#: DbPrompter.py:98 gramps.glade:741 gramps_main.py:1468
+#: DbPrompter.py:98 gramps.glade:741 gramps_main.py:1477
 msgid "Save database"
 msgstr "Adatbázis mentése"
 
-#: DbPrompter.py:107 gramps_main.py:1072 gramps_main.py:1485
-#: gramps_main.py:1497
+#: DbPrompter.py:107 gramps_main.py:1072 gramps_main.py:1494
+#: gramps_main.py:1506
 msgid "No Comment Provided"
 msgstr "Nincs megjegyzés"
 
@@ -384,9 +382,9 @@ msgstr "Nincs"
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s és %(mother)s"
 
-#: EditPerson.py:500 choose.glade:218 const.py:140 plugins/Check.py:283
+#: EditPerson.py:500 choose.glade:218 const.py:140 plugins/Check.py:294
 #: plugins/FamilyGroup.py:657 plugins/IndivComplete.py:275
-#: plugins/IndivSummary.py:172 plugins/WebPage.py:590 select_person.glade:218
+#: plugins/IndivSummary.py:172 plugins/WebPage.py:591 select_person.glade:218
 msgid "unknown"
 msgstr "ismeretlen"
 
@@ -531,13 +529,13 @@ msgstr ""
 "Ez a típus az események menüben mostantól elérhető"
 
 #: FamilyView.py:53 PedView.py:45 plugins/AncestorChart.py:52
-#: plugins/AncestorChart2.py:48 plugins/DesGraph.py:52
+#: plugins/AncestorChart2.py:49 plugins/DesGraph.py:52
 #: plugins/DescendReport.py:50
 msgid "b."
 msgstr "születési ideje:"
 
 #: FamilyView.py:54 PedView.py:46 plugins/AncestorChart.py:53
-#: plugins/AncestorChart2.py:49 plugins/DesGraph.py:53
+#: plugins/AncestorChart2.py:50 plugins/DesGraph.py:53
 #: plugins/DescendReport.py:51
 msgid "d."
 msgstr "halálának ideje:"
@@ -641,7 +639,7 @@ msgstr "%s: ismeretlen"
 #: Plugins.py:479 Plugins.py:480 Plugins.py:481 Witness.py:74 const.py:176
 #: const.py:496 const.py:504 gramps.glade:4631 gramps.glade:4824
 #: gramps.glade:5242 gramps.glade:5422 gramps.glade:7067 gramps.glade:7313
-#: gramps.glade:7899 gramps.glade:8070 gramps_main.py:1639
+#: gramps.glade:7899 gramps.glade:8070 gramps_main.py:1648
 #: plugins/WebPage.py:336
 msgid "Unknown"
 msgstr "Ismeretlen"
@@ -735,7 +733,7 @@ msgstr "Általános szűrők"
 
 #: GenericFilter.py:135
 msgid "Matches everyone in the database"
-msgstr "Mindenki megvizsgálása az adatbázisban"
+msgstr "Mindenkire illeszkedik az adatbázisból"
 
 #: GenericFilter.py:149 GenericFilter.py:257 GenericFilter.py:325
 #: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:544
@@ -755,20 +753,22 @@ msgid ""
 "Matches the ancestors of two people back to a common ancestor, producing the "
 "relationship path between two people."
 msgstr ""
-"Két ember őseinek vizsgálata egy közös ősig; ezzel megadván a rokonsági "
+"Két személy őseinek vizsgálata egy közös ősig; ezzel megadván a rokonsági "
 "kapcsolatot két ember között."
 
 #: GenericFilter.py:263
 msgid "Matches the person with a specified GRAMPS ID"
-msgstr "Megadott GRAMPS ID alapján megadott személy megvizsgálása"
+msgstr ""
+"Megadott GRAMPS ID -vel rendelkező "
+"személyre illeszkedik"
 
 #: GenericFilter.py:288
 msgid "Matches all people whose records are complete"
-msgstr "A teljesen megadott inforációval rendelkező emberek"
+msgstr "A teljesen megadott információval rendelkező emberekre illeszkedik"
 
 #: GenericFilter.py:311
 msgid "Matches all females"
-msgstr "Minden nő megvizsgálása"
+msgstr "Minden nőre illeszkedik"
 
 #: GenericFilter.py:325 GenericFilter.py:374 GenericFilter.py:589
 #: GenericFilter.py:645 plugins/FilterEditor.py:466
@@ -782,7 +782,7 @@ msgstr "Utód szűrők"
 
 #: GenericFilter.py:339
 msgid "Matches all descendants for the specified person"
-msgstr "A megadott személy minden utódjának a megvizsgálása"
+msgstr "A megadott személy utódaira illeszkedik"
 
 #: GenericFilter.py:374 GenericFilter.py:503 GenericFilter.py:645
 #: GenericFilter.py:789 GenericFilter.py:876 GenericFilter.py:1245
@@ -792,7 +792,7 @@ msgstr "Szűrő neve:"
 
 #: GenericFilter.py:386
 msgid "Matches people that are descendants of someone matched by a filter"
-msgstr "Egy szűrő által megadott személy összes leszármazottjának a megvizsgálása"
+msgstr "Egy szűrő által megadott személy összes leszármazottjára illeszkedik"
 
 #: GenericFilter.py:415 GenericFilter.py:460 GenericFilter.py:687
 #: GenericFilter.py:739 plugins/FilterEditor.py:458
@@ -804,78 +804,76 @@ msgid ""
 "Matches people that are descendants of a specified person not more than N "
 "generations away"
 msgstr ""
-"Egy meghatározott személy összes leszármazottjának a megvizsgálása nem több "
-"mint N generáción át"
+"Egy megadott személy összes leszármazottjára illeszkedik nem több "
+"mint N generációs távolságra"
 
 #: GenericFilter.py:471
 msgid ""
 "Matches people that are descendants of a specified person at least N "
 "generations away"
 msgstr ""
-"Egy meghatározott személy összes leszármazottjának a megvizsgálása "
-"legfeljebb N generáción át"
+"Egy megadott személy összes leszármazottjára illeszkedik legalább "
+"N generációs távolságra"
 
 #: GenericFilter.py:514
 msgid "Matches the person that is a child of someone matched by a filter"
-msgstr "Egy szűrő által megadott személy gyermekének a vizsgálata"
+msgstr "Egy szűrő által megadott személy gyermekére illeszkedik"
 
 #: GenericFilter.py:517 GenericFilter.py:803 GenericFilter.py:1033
 #: GenericFilter.py:1277
 msgid "Family filters"
-msgstr "Család szűrők"
+msgstr "Családi szűrők"
 
 #: GenericFilter.py:553
 msgid ""
 "Matches people that are descendants or the spouse of a descendant of a "
 "specified person"
-msgstr ""
-"Egy meghatározott személy összes ősének a megvizsgálása nem több mint N "
-"generáción át"
+msgstr "Egy megadott személy összes utódára vagy utódainak a házastársaira illeszkedik"
 
 #: GenericFilter.py:600
 msgid "Matches people that are ancestors of a specified person"
-msgstr "Egy meghatározott személy őseinek a megadása"
+msgstr "A megadott személy őseire illeszkedik"
 
 #: GenericFilter.py:603 GenericFilter.py:658 GenericFilter.py:702
 #: GenericFilter.py:754 GenericFilter.py:840 GenericFilter.py:886
 msgid "Ancestral filters"
-msgstr "Ősök szűrő"
+msgstr "Ősök szűrők"
 
 #: GenericFilter.py:654
 msgid "Matches people that are ancestors of someone matched by a filter"
-msgstr "Egy szűrő által megvizsgált személy összes ősének a megvizsgálása"
+msgstr "Egy szűrő által megadott személy őseire illeszkedik"
 
 #: GenericFilter.py:698
 msgid ""
 "Matches people that are ancestors of a specified person not more than N "
 "generations away"
 msgstr ""
-"Olyan emberek megjelenítése akik egy meghatározott személy ősei nem több "
-"mint N generáción át"
+"Olyan emberekre illeszkedik akik egy megadott személy ősei nem több "
+"mint N generációs távolságra"
 
 #: GenericFilter.py:750
 msgid ""
 "Matches people that are ancestors of a specified person at least N "
 "generations away"
 msgstr ""
-"Olyan emberek megjelenítése akik egy meghatározott személy ősei legkevesebb "
-"N generáción át"
+"Olyan emberekre illeszkedik akik a megadott személy ősei legalább "
+"N generációs távolságra"
 
 #: GenericFilter.py:800
 msgid "Matches the person that is a parent of someone matched by a filter"
-msgstr "Egy szűrő által megadott személy szüleinek a megjelenítése"
+msgstr "Egy szűrő által megadott személy ősére illeszkedik"
 
 #: GenericFilter.py:836
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Egy szűrő által megadott emberrel való közös ősöknek a keresése"
+msgstr "A megadott személlyel közös ősű személyekre illeszkedik"
 
 #: GenericFilter.py:882
 msgid "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Egy szűrő által megadott ember közös ősei"
+msgstr "Egy szűrő által megadott személlyel közös ősű emberekre illeszkedik "
 
 #: GenericFilter.py:916
 msgid "Matches all males"
-msgstr "Összes férfi megvizsgálása"
+msgstr "Összes férfire illeszkedik"
 
 #: GenericFilter.py:929 GenericFilter.py:976 GenericFilter.py:1078
 #: GenericFilter.py:1118 edit_person.glade:1907 edit_person.glade:3979
@@ -903,12 +901,14 @@ msgstr "Személyes esemény:"
 
 #: GenericFilter.py:943
 msgid "Matches the person with a personal event of a particular value"
-msgstr "Különleges eseménnyel rendelkező személy megvizsgálása"
+msgstr ""
+"Megadott személyes esményi adatokkal "
+"rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:946 GenericFilter.py:993 GenericFilter.py:1095
 #: GenericFilter.py:1135
 msgid "Event filters"
-msgstr "Esemény szerkesztők"
+msgstr "Esemény szűrők"
 
 #: GenericFilter.py:976 plugins/FilterEditor.py:59
 msgid "Family event:"
@@ -916,7 +916,9 @@ msgstr "Családi esemény:"
 
 #: GenericFilter.py:990
 msgid "Matches the person with a family event of a particular value"
-msgstr "Különleges családi eseménnyel rendelkező személy megvizsgálása"
+msgstr ""
+"Megadott családi adatokkal "
+"rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1022
 msgid "Number of relationships:"
@@ -932,15 +934,17 @@ msgstr "Gyermekek száma:"
 
 #: GenericFilter.py:1030
 msgid "Matches the person who has a particular relationship"
-msgstr "Különleges kapcsolatú személy megvizsgálása"
+msgstr "A megadott paraméterű kapcsolattal rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1092
 msgid "Matches the person with a birth of a particular value"
-msgstr "Különleges születéssel rendelkező személy megvizsgálása"
+msgstr ""
+"Megadott születési adatokkal "
+"rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1132
 msgid "Matches the person with a death of a particular value"
-msgstr "Különleges halálozással rendelkező személy megvizsgálása"
+msgstr "A megadott halálozási adatokkal rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1158 GenericFilter.py:1180 edit_person.glade:2487
 #: imagesel.glade:957 imagesel.glade:1727
@@ -974,11 +978,13 @@ msgstr "Név:"
 
 #: GenericFilter.py:1212
 msgid "Matches the person with a specified (partial) name"
-msgstr "Hiányos névvel rendelkező személy megvizsgálása."
+msgstr "A megadott névvel rendelkező személyre illeszkedik"
 
 #: GenericFilter.py:1274
 msgid "Matches the person married to someone matching a filter"
-msgstr "Egy szűrő által megadott személyhez hozzáházasodott ember megvizsgálása"
+msgstr ""
+"Egy szűrő által megadott személyhez "
+"házasodottra illeszkedik"
 
 #: GenericFilter.py:1421
 msgid "Everyone"
@@ -986,7 +992,7 @@ msgstr "Mindenki"
 
 #: GenericFilter.py:1422
 msgid "Has the Id"
-msgstr "A következő Id-vel"
+msgstr "Megadott Id-vel"
 
 #: GenericFilter.py:1423
 msgid "Has a name"
@@ -1006,11 +1012,11 @@ msgstr "Születése"
 
 #: GenericFilter.py:1427
 msgid "Is a descendant of"
-msgstr "Az ősei"
+msgstr "Utódai"
 
 #: GenericFilter.py:1428
 msgid "Is a descendant family member of"
-msgstr "A személy akinek az utódaihoz tartozik"
+msgstr "Megadott személyhez tartozó leszármazott családtag"
 
 #: GenericFilter.py:1429
 msgid "Is a descendant of filter match"
@@ -1018,43 +1024,43 @@ msgstr "Szűrő által megadott személy leszármazottai"
 
 #: GenericFilter.py:1430
 msgid "Is a descendant of person not more than N generations away"
-msgstr "Egy leszármazott, nem több mint N generáción belül"
+msgstr "Utód nem több mint N generációs távolságra"
 
 #: GenericFilter.py:1432
 msgid "Is a descendant of person at least N generations away"
-msgstr "Egy leszármazott, kevesebb mint N generáción belűl"
+msgstr "Utód legalább N generációs távolságra"
 
 #: GenericFilter.py:1434
 msgid "Is a child of filter match"
-msgstr "Szűréi eredményből következő gyermek"
+msgstr "Szűrő által megadott személy gyermeke"
 
 #: GenericFilter.py:1435
 msgid "Is an ancestor of"
-msgstr "Utódai"
+msgstr "Ősei"
 
 #: GenericFilter.py:1436
 msgid "Is an ancestor of filter match"
-msgstr "Szűrő által megadott ős"
+msgstr "Szűrő által megadott személy ősei"
 
 #: GenericFilter.py:1437
 msgid "Is an ancestor of person not more than N generations away"
-msgstr "Egy ős, nem több mint N generáción belül"
+msgstr "Ős nem több mint N generációs távolságra"
 
 #: GenericFilter.py:1439
 msgid "Is an ancestor of person at least N generations away"
-msgstr "Egy ős, kevesebb mint N generáción belül"
+msgstr "Ős legalább N generációs távolságra"
 
 #: GenericFilter.py:1441
 msgid "Is a parent of filter match"
-msgstr "Szűrő által megadott szülő"
+msgstr "Szűrő által megadott személy szülője"
 
 #: GenericFilter.py:1442
 msgid "Has a common ancestor with"
-msgstr "A következőkkel közös ősök"
+msgstr "Megadott személlyel közös ősű"
 
 #: GenericFilter.py:1443
 msgid "Has a common ancestor with filter match"
-msgstr "A szűrő által megadottak közös ősök"
+msgstr "Szűrő által megadott személlyel közös ősű"
 
 #: GenericFilter.py:1445
 msgid "Is a female"
@@ -1070,31 +1076,31 @@ msgstr "Teljes információ mező bejelölve"
 
 #: GenericFilter.py:1448
 msgid "Has the personal event"
-msgstr "A személyes eseménye"
+msgstr "Személyes eseménye"
 
 #: GenericFilter.py:1449
 msgid "Has the family event"
-msgstr "A családi eseménye"
+msgstr "Családi eseménye"
 
 #: GenericFilter.py:1450
 msgid "Has the personal attribute"
-msgstr "A személyes tulajdonsága"
+msgstr "Személy tulajdonsága"
 
 #: GenericFilter.py:1451
 msgid "Has the family attribute"
-msgstr "A családi tulajdonsága"
+msgstr "Családi tulajdonsága"
 
 #: GenericFilter.py:1452
 msgid "Matches the filter named"
-msgstr "A megnevezett szűrővel keresés"
+msgstr "Megadott szűrővel keresés"
 
 #: GenericFilter.py:1453
 msgid "Is spouse of filter match"
-msgstr "Szűrő által megadott házastárs"
+msgstr "Szűrő által megadott személlyel házas"
 
 #: GenericFilter.py:1454
 msgid "Relationship path between two people"
-msgstr "Kapcsolat útvonala két ember között"
+msgstr "Kapcsolat útvonala két személy között"
 
 #: GrampsCfg.py:72
 msgid "Father's surname"
@@ -1314,7 +1320,7 @@ msgid "Marriage/Relationship Editor"
 msgstr "Házasság/Kapcsolat szerkesztő"
 
 #: Marriage.py:125 Marriage.py:666 Marriage.py:685 Utils.py:178 Utils.py:192
-#: plugins/Check.py:276 plugins/Check.py:297
+#: plugins/Check.py:287 plugins/Check.py:308
 msgid "%s and %s"
 msgstr "%s és %s"
 
@@ -1327,7 +1333,7 @@ msgid "The GRAMPS ID that you chose for this relationship is already being used.
 msgstr "A GRAMPS ID amit választott a kapcsolatnak már használatban van."
 
 #: MediaView.py:77 SelectObject.py:86 SourceView.py:70 Sources.py:79
-#: Sources.py:175 plugins/AncestorChart2.py:397 plugins/BookReport.py:680
+#: Sources.py:175 plugins/AncestorChart2.py:448 plugins/BookReport.py:680
 #: plugins/BookReport.py:697 plugins/BookReport.py:770
 #: plugins/PatchNames.py:168 plugins/SimpleBookTitle.py:300
 #: plugins/SimpleBookTitle.py:564 plugins/TimeLine.py:437
@@ -1448,7 +1454,7 @@ msgid "Death date"
 msgstr "Elhalálozási idő"
 
 #: PeopleStore.py:247 PeopleView.py:255 PeopleView.py:274 gramps_main.py:946
-#: gramps_main.py:1537
+#: gramps_main.py:1546
 msgid "Updating display..."
 msgstr "Megjelenítés frissítése..."
 
@@ -1487,7 +1493,7 @@ msgstr ""
 msgid "Source Menu"
 msgstr "Forrás menü"
 
-#: PlaceView.py:232 SourceView.py:172 gramps_main.py:1274
+#: PlaceView.py:232 SourceView.py:172 gramps_main.py:1283
 msgid "Delete %s?"
 msgstr "%s törlése?"
 
@@ -1560,30 +1566,30 @@ msgstr "A következő modulok nem tölthetőek be:"
 msgid "Uncategorized"
 msgstr "Kategorizálatlan"
 
-#: ReadXML.py:94 ReadXML.py:101
+#: ReadXML.py:97 ReadXML.py:104
 msgid "%s could not be opened"
 msgstr "%s-t nem lehet megnyitni"
 
-#: ReadXML.py:114 ReadXML.py:124 ReadXML.py:282 ReadXML.py:287 ReadXML.py:316
+#: ReadXML.py:117 ReadXML.py:127 ReadXML.py:293 ReadXML.py:298 ReadXML.py:327
 msgid "Error reading %s"
 msgstr "Hiba %s olvasásakor"
 
-#: ReadXML.py:125
+#: ReadXML.py:128
 msgid "The file is probably either corrupt or not a valid GRAMPS database."
 msgstr "A fájl vagy hibás vagy nem egy szabályos GRAMPS adatbázis."
 
-#: ReadXML.py:194 gramps_main.py:1125 plugins/Check.py:171
-#: plugins/WriteCD.py:231 plugins/WritePkg.py:158
+#: ReadXML.py:197 gramps_main.py:1126 plugins/Check.py:174
+#: plugins/WriteCD.py:232 plugins/WritePkg.py:159
 msgid "Select file"
 msgstr "Fájl kiválasztása"
 
-#: ReadXML.py:226 gramps_main.py:1148 plugins/Check.py:188
-#: plugins/WriteCD.py:253 plugins/WritePkg.py:181
+#: ReadXML.py:230 gramps_main.py:1150 plugins/Check.py:192
+#: plugins/WriteCD.py:255 plugins/WritePkg.py:183
 msgid "Media object could not be found"
 msgstr "Média objektum nem található"
 
-#: ReadXML.py:227 gramps_main.py:1149 plugins/Check.py:189
-#: plugins/WriteCD.py:254 plugins/WritePkg.py:182
+#: ReadXML.py:231 gramps_main.py:1151 plugins/Check.py:193
+#: plugins/WriteCD.py:256 plugins/WritePkg.py:184
 msgid ""
 "%(file_name)s is referenced in the database, but no longer exists. The file "
 "may have been deleted or moved to a different location. You may choose to "
@@ -1595,11 +1601,11 @@ msgstr ""
 "eltávolíthatja, új fájlt választhat ki vagy megtarthatja a jelenlegi "
 "állapotát."
 
-#: ReadXML.py:272 ReadXML.py:276
+#: ReadXML.py:283 ReadXML.py:287
 msgid "%s could not be opened."
 msgstr "%s nem nyitható meg."
 
-#: ReadXML.py:311
+#: ReadXML.py:322
 msgid "%s (revision %s)"
 msgstr "%s (ellenőrzés %s)"
 
@@ -1621,7 +1627,7 @@ msgstr "A fájl át lett helyezve vagy törölve lett"
 #: docgen/OpenSpreadSheet.py:436 docgen/PSDrawDoc.py:103
 #: docgen/PSDrawDoc.py:106 docgen/PdfDoc.py:175 docgen/RTFDoc.py:81
 #: docgen/RTFDoc.py:84 docgen/SvgDrawDoc.py:74 docgen/SvgDrawDoc.py:76
-#: gramps_main.py:1178 gramps_main.py:1183 gramps_main.py:1193
+#: gramps_main.py:1187 gramps_main.py:1192 gramps_main.py:1202
 #: plugins/WriteFtree.py:140 plugins/WriteGedcom.py:580
 #: plugins/WriteGedcom.py:585
 msgid "Could not create %s"
@@ -3145,7 +3151,7 @@ msgid "Enter miscellaneous relevant data and documentation"
 msgstr "Nevezetes adatok és dokumentumok megadása"
 
 #: edit_person.glade:3641 imagesel.glade:898 imagesel.glade:2131
-#: marriage.glade:1398 plugins/IndivComplete.py:167 plugins/WebPage.py:518
+#: marriage.glade:1398 plugins/IndivComplete.py:167 plugins/WebPage.py:519
 msgid "Notes"
 msgstr "Megjegyzések"
 
@@ -3301,6 +3307,20 @@ msgstr "Az elveszett fájl áthelyezése"
 msgid "_Select File"
 msgstr "Fájl _kiválasztása"
 
+#: errdialogs.glade:1086
+msgid ""
+"If you check this button, all the missing media files will be automatically "
+"treated according to the currently selected option. No further dialogs will "
+"be presented for any missing medial files."
+msgstr ""
+"Ha bejelöli ezt a gombot, akkor minden elveszett média fájl a "
+"jelenleg kiválasztott módon lesz kezelve. További hibaüzenet nem "
+"fog megjelenni egyik elveszett média fájlnál sem."
+
+#: errdialogs.glade:1088
+msgid "_Use this selection for all missing media files"
+msgstr "E kijelölés alkalmazása minden elveszett média fájlra"
+
 #: filters/After.py:54
 msgid "People with an event after ..."
 msgstr "Emberek egy közös eseménnyel a következő időpont után..."
@@ -3428,7 +3448,7 @@ msgstr "_Importálás"
 msgid "_Export"
 msgstr "_Exportálás"
 
-#: gramps.glade:169 gramps_main.py:1443
+#: gramps.glade:169 gramps_main.py:1452
 msgid "_Revert"
 msgstr "_Visszaállítás"
 
@@ -3915,11 +3935,11 @@ msgstr ""
 "Pontosan két embert kell kiválasztani az egyesítéshez. A második embert a "
 "ctrl gomb lenyomásával és a másikra való kattintással választható ki."
 
-#: gramps_main.py:761 gramps_main.py:1403 gramps_main.py:1843
+#: gramps_main.py:761 gramps_main.py:1412 gramps_main.py:1852
 msgid "Save Changes Made to the Database?"
 msgstr "Az adatbázis változásainak mentése?"
 
-#: gramps_main.py:762 gramps_main.py:1404 gramps_main.py:1844
+#: gramps_main.py:762 gramps_main.py:1413 gramps_main.py:1853
 msgid ""
 "Unsaved changes exist in the current database. If you close without saving, "
 "the changes you have made will be lost."
@@ -3943,7 +3963,7 @@ msgstr ""
 msgid "_Create New Database"
 msgstr "Ú_j adatbázis létrehozása"
 
-#: gramps_main.py:944 gramps_main.py:1535
+#: gramps_main.py:944 gramps_main.py:1544
 msgid "Updating display - this may take a few seconds..."
 msgstr "Megjelenítés frissítése - egy kis időt vehet igénybe..."
 
@@ -3971,45 +3991,45 @@ msgstr "_Automentés fájl betöltése"
 msgid "Load _saved database"
 msgstr "Mentett _adatbázis betöltése"
 
-#: gramps_main.py:1044 gramps_main.py:1169
+#: gramps_main.py:1044 gramps_main.py:1178
 msgid "Database could not be opened"
 msgstr "Az adatbázis nem nyitható meg"
 
-#: gramps_main.py:1045 gramps_main.py:1170
+#: gramps_main.py:1045 gramps_main.py:1179
 msgid "%s is not a directory."
 msgstr "%s nem egy könyvtár."
 
-#: gramps_main.py:1046 gramps_main.py:1171
+#: gramps_main.py:1046 gramps_main.py:1180
 msgid "You should select a directory that contains a data.gramps file."
 msgstr "Egy data.gramps fájlt tartalmazó könyvtárat kell kiválasztania."
 
-#: gramps_main.py:1160
+#: gramps_main.py:1169
 msgid "Saving %s ..."
 msgstr "%s mentése ..."
 
-#: gramps_main.py:1179
+#: gramps_main.py:1188
 msgid ""
 "An error was detected while attempting to create the file. The operating "
 "system reported \"%s\""
 msgstr "Hiba történt a fájl létrehozása során. Az operációs rendszer jelzése \"%s\""
 
-#: gramps_main.py:1184 gramps_main.py:1194
+#: gramps_main.py:1193 gramps_main.py:1203
 msgid "An error was detected while trying to create the file"
 msgstr "Hiba történt a fájl létrehozása során."
 
-#: gramps_main.py:1230
+#: gramps_main.py:1239
 msgid "autosaving..."
 msgstr "automentés..."
 
-#: gramps_main.py:1233
+#: gramps_main.py:1242
 msgid "autosave complete"
 msgstr "automentés kész"
 
-#: gramps_main.py:1237
+#: gramps_main.py:1246
 msgid "autosave failed"
 msgstr "sikertelen automentés"
 
-#: gramps_main.py:1275
+#: gramps_main.py:1284
 msgid ""
 "Deleting the person will remove the person from the database. The data can "
 "only be recovered by closing the database without saving changes. This "
@@ -4019,19 +4039,19 @@ msgstr ""
 "nélküli kilépéssel állítható vissza. Mentés után a változás "
 "visszaállíthatatlan."
 
-#: gramps_main.py:1280
+#: gramps_main.py:1289
 msgid "_Delete Person"
 msgstr "_Személy törlése"
 
-#: gramps_main.py:1392
+#: gramps_main.py:1401
 msgid "%(relationship)s of %(person)s"
 msgstr "%(person)s  %(relationship)s"
 
-#: gramps_main.py:1439
+#: gramps_main.py:1448
 msgid "Revert to last saved database?"
 msgstr "Visszatérés az utolsó mentett adatbázishoz?"
 
-#: gramps_main.py:1440
+#: gramps_main.py:1449
 msgid ""
 "Reverting to the last saved database will cause all unsaved changes to be "
 "lost, and the last saved database will be loaded."
@@ -4039,51 +4059,51 @@ msgstr ""
 "Az utolsó mentett adatbázishoz való visszatéréssel minden eddigi mentetlen "
 "adat elveszik és az utoljára mentett adatbázis kerül megnyitásra."
 
-#: gramps_main.py:1446
+#: gramps_main.py:1455
 msgid "Could Not Revert to the Previous Database."
 msgstr "Nem lehet visszatérni az előző adatbázishoz."
 
-#: gramps_main.py:1447
+#: gramps_main.py:1456
 msgid "GRAMPS could not find a previous version of the database"
 msgstr "GRAMPS nem találja az előző verzióját az adatbázisnak"
 
-#: gramps_main.py:1727 gramps_main.py:1737
+#: gramps_main.py:1736 gramps_main.py:1746
 msgid "Loading %s..."
 msgstr "%s betöltése ..."
 
-#: gramps_main.py:1763
+#: gramps_main.py:1772
 msgid "No Home Person has been set."
 msgstr "Nincsen központi személy kiválasztva."
 
-#: gramps_main.py:1764
+#: gramps_main.py:1773
 msgid "The Home Person may be set from the Settings menu."
 msgstr "A központi személy a Beállítások menüből változtatható meg."
 
-#: gramps_main.py:1770
+#: gramps_main.py:1779
 msgid "%s has been bookmarked"
 msgstr "%s be lett rakva a könyvjelzőhöz"
 
-#: gramps_main.py:1773
+#: gramps_main.py:1782
 msgid "Could Not Set a Bookmark"
 msgstr "Egy könyvjelzőt lehetetlen beállítani"
 
-#: gramps_main.py:1774
+#: gramps_main.py:1783
 msgid "A bookmark could not be set because no one was selected."
 msgstr "A könyvjelző nem állítható be mert egy sem lett kiválasztva."
 
-#: gramps_main.py:1785
+#: gramps_main.py:1794
 msgid "Could Not Go to a Person"
 msgstr "Nem lehet egy személyt elérni"
 
-#: gramps_main.py:1786
+#: gramps_main.py:1795
 msgid "Either stale bookmark or broken history caused by IDs reorder."
 msgstr "ID-k átrendezéséből könyvjelző vagy eseménylista meghibásodás adódhat."
 
-#: gramps_main.py:1794
+#: gramps_main.py:1803
 msgid "Set %s as the Home Person"
 msgstr "%s kiválasztása központi személynek"
 
-#: gramps_main.py:1795
+#: gramps_main.py:1804
 msgid ""
 "Once a Home Person is defined, pressing the Home button on the toolbar will "
 "make the home person the active person."
@@ -4091,15 +4111,15 @@ msgstr ""
 "Ha már van egy központi személy, akkor a Központ gomb lenyomásával "
 "kiválasztható."
 
-#: gramps_main.py:1798
+#: gramps_main.py:1807
 msgid "_Set Home Person"
 msgstr "_Központi személy kiválasztása"
 
-#: gramps_main.py:1810
+#: gramps_main.py:1819
 msgid "A person must be selected to export"
 msgstr "Exportáláshoz ki kell választani egy személyt"
 
-#: gramps_main.py:1811
+#: gramps_main.py:1820
 msgid ""
 "Exporting requires that an active person be selected. Please select a person "
 "and try again."
@@ -4107,15 +4127,15 @@ msgstr ""
 "Exportáláshoz ki kell választani egy személyt. Kérem válasszon ki egyet és "
 "próbálja újra."
 
-#: gramps_main.py:1857 gramps_main.py:1861 gramps_main.py:1865
+#: gramps_main.py:1866 gramps_main.py:1870 gramps_main.py:1874
 msgid "Could not create database"
 msgstr "Az adatbázis nem hozható létre"
 
-#: gramps_main.py:1858 gramps_main.py:1862 gramps_main.py:1866
+#: gramps_main.py:1867 gramps_main.py:1871 gramps_main.py:1875
 msgid "The directory ~/.gramps/example could not be created."
 msgstr "A ~/.gramps/example nem hozható létre."
 
-#: gramps_main.py:1879 gramps_main.py:1881
+#: gramps_main.py:1888 gramps_main.py:1890
 msgid "Example database not created"
 msgstr "A példa adatbázis nem jött létre"
 
@@ -4291,7 +4311,7 @@ msgstr "Készítő:"
 msgid "Author's email:"
 msgstr "Készítő email címe:"
 
-#: plugins/AncestorChart.py:225 plugins/AncestorChart2.py:369
+#: plugins/AncestorChart.py:225 plugins/AncestorChart2.py:420
 #: plugins/AncestorReport.py:411 plugins/Ancestors.py:791
 #: plugins/Ancestors.py:807 plugins/Ancestors.py:813 plugins/DesGraph.py:315
 #: plugins/FamilyGroup.py:621 plugins/FanChart.py:283
@@ -4305,12 +4325,12 @@ msgstr "A szöveg megjelenítéséhez használt stílus."
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:345
 #: plugins/AncestorChart.py:559 plugins/AncestorChart.py:570
-#: plugins/AncestorChart2.py:409 plugins/AncestorChart2.py:517
+#: plugins/AncestorChart2.py:460 plugins/AncestorChart2.py:568
 msgid "Ancestor Chart"
 msgstr "Ősök grafikonja"
 
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:560
-#: plugins/AncestorChart2.py:409 plugins/AncestorChart2.py:732
+#: plugins/AncestorChart2.py:460 plugins/AncestorChart2.py:783
 #: plugins/DesGraph.py:329 plugins/DesGraph.py:586 plugins/FanChart.py:310
 #: plugins/FanChart.py:462 plugins/GraphViz.py:83 plugins/GraphViz.py:531
 #: plugins/RelGraph.py:111 plugins/RelGraph.py:912 plugins/TimeLine.py:396
@@ -4318,63 +4338,63 @@ msgstr "Ősök grafikonja"
 msgid "Graphical Reports"
 msgstr "Grafikus összesítők"
 
-#: plugins/AncestorChart.py:246 plugins/AncestorChart2.py:413
+#: plugins/AncestorChart.py:246 plugins/AncestorChart2.py:464
 msgid "Ancestor Chart for %s"
 msgstr "%s őseinek grafikonja"
 
-#: plugins/AncestorChart.py:251 plugins/AncestorChart2.py:418
+#: plugins/AncestorChart.py:251 plugins/AncestorChart2.py:469
 msgid "Save Ancestor Chart"
 msgstr "Ősök grafikonjának mentése"
 
 #: plugins/AncestorChart.py:263 plugins/AncestorChart.py:361
-#: plugins/AncestorChart2.py:430 plugins/AncestorChart2.py:533
+#: plugins/AncestorChart2.py:481 plugins/AncestorChart2.py:584
 #: plugins/DesGraph.py:346 plugins/DesGraph.py:440
 msgid "Display Format"
 msgstr "Megjelenítési formátum"
 
 #: plugins/AncestorChart.py:264 plugins/AncestorChart.py:362
-#: plugins/AncestorChart2.py:431 plugins/AncestorChart2.py:534
+#: plugins/AncestorChart2.py:482 plugins/AncestorChart2.py:585
 #: plugins/DesGraph.py:347 plugins/DesGraph.py:441
 msgid "Allows you to customize the data in the boxes in the report"
 msgstr "Az összesítőkben lévő adatok testreszabásának engedélyezése"
 
-#: plugins/AncestorChart.py:349 plugins/AncestorChart2.py:521
+#: plugins/AncestorChart.py:349 plugins/AncestorChart2.py:572
 msgid "Ancestor Chart for GRAMPS Book"
 msgstr "Ősök grafikonja a GRAMPS könyvbe"
 
-#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:733
+#: plugins/AncestorChart.py:561 plugins/AncestorChart2.py:784
 #: plugins/AncestorReport.py:515 plugins/Ancestors.py:1120
 #: plugins/DescendReport.py:405 plugins/DetAncestralReport.py:1210
 #: plugins/DetDescendantReport.py:1219 plugins/FamilyGroup.py:762
 #: plugins/FtmStyleAncestors.py:1253 plugins/FtmStyleDescendants.py:1662
 #: plugins/GraphViz.py:530 plugins/IndivComplete.py:820
 #: plugins/IndivSummary.py:629 plugins/RelGraph.py:911 plugins/Summary.py:162
-#: plugins/TimeLine.py:657 plugins/WebPage.py:1400
+#: plugins/TimeLine.py:657 plugins/WebPage.py:1401
 msgid "Beta"
 msgstr "Béta"
 
-#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:734
+#: plugins/AncestorChart.py:562 plugins/AncestorChart2.py:785
 msgid "Produces a graphical ancestral tree graph"
 msgstr "Grafikus fa készítése az ősökről"
 
-#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:743
+#: plugins/AncestorChart.py:571 plugins/AncestorChart2.py:794
 #: plugins/DesGraph.py:597 plugins/FanChart.py:470 plugins/TimeLine.py:667
 msgid "Graphics"
 msgstr "Grafikák"
 
-#: plugins/AncestorChart2.py:378
+#: plugins/AncestorChart2.py:429
 msgid "The basic style used for the title display."
 msgstr "A cím megjelenítéséhez az alapértelmezett stílus lett felhasználva."
 
-#: plugins/AncestorChart2.py:398
-msgid "Compress graph"
+#: plugins/AncestorChart2.py:449
+msgid "Compress chart"
 msgstr "Grafikon tömörítése"
 
-#: plugins/AncestorChart2.py:402
+#: plugins/AncestorChart2.py:453
 msgid "Scale to fit on a single page"
 msgstr "Megjelenítés egyetlen oldalon"
 
-#: plugins/AncestorChart2.py:731 plugins/AncestorChart2.py:742
+#: plugins/AncestorChart2.py:782 plugins/AncestorChart2.py:793
 msgid "Ancestor Chart (Wall Chart)"
 msgstr "Ősök Grafikon (Fal Grafikon)"
 
@@ -4485,7 +4505,7 @@ msgstr "Ahnentafel összesítő a GRAMPS könyvbe"
 #: plugins/FtmStyleAncestors.py:953 plugins/FtmStyleDescendants.py:1362
 #: plugins/IndivComplete.py:662 plugins/IndivSummary.py:590
 #: plugins/SimpleBookTitle.py:118 plugins/TimeLine.py:339
-#: plugins/WebPage.py:1023
+#: plugins/WebPage.py:1024
 msgid "The style used for the title of the page."
 msgstr "Az oldal címének a stílusa"
 
@@ -4500,7 +4520,7 @@ msgstr "Ősökről szöveges összesítő"
 
 #: plugins/Ancestors.py:118 plugins/FtmStyleAncestors.py:86
 #: plugins/GraphViz.py:112 plugins/IndivComplete.py:711
-#: plugins/RelGraph.py:144 plugins/TimeLine.py:361 plugins/WebPage.py:996
+#: plugins/RelGraph.py:144 plugins/TimeLine.py:361 plugins/WebPage.py:997
 #: plugins/WriteFtree.py:115 plugins/WriteGedcom.py:397
 msgid "Ancestors of %s"
 msgstr "%s ősei"
@@ -4789,7 +4809,7 @@ msgstr "Típusok megváltoztatása"
 msgid "Rename personal event types"
 msgstr "Bizalmas események típusának átnevezése"
 
-#: plugins/ChangeTypes.py:106 plugins/Check.py:362 plugins/Merge.py:554
+#: plugins/ChangeTypes.py:106 plugins/Check.py:373 plugins/Merge.py:554
 #: plugins/PatchNames.py:209 plugins/ReorderIds.py:130
 msgid "Database Processing"
 msgstr "Adatbázis feldolgozása"
@@ -4798,95 +4818,95 @@ msgstr "Adatbázis feldolgozása"
 msgid "Allows all the events of a certain name to be renamed to a new name"
 msgstr "Bizonyos névhez tartozó minden esemény átnevezésének engedélyezése"
 
-#: plugins/Check.py:261
+#: plugins/Check.py:272
 msgid "No errors were found"
 msgstr "Nincsen hiba"
 
-#: plugins/Check.py:262
+#: plugins/Check.py:273
 msgid "The database has passed internal checks"
 msgstr "Az adatbázis megfelelt a belső ellenőrzésnek"
 
-#: plugins/Check.py:268
+#: plugins/Check.py:279
 msgid "1 broken child/family link was fixed\n"
 msgstr "1 rossz gyermek/család mutató lett kijavítva\n"
 
-#: plugins/Check.py:270
+#: plugins/Check.py:281
 msgid "%d broken child/family links were found\n"
 msgstr "%d rossz gyermek/család mutató van\n"
 
-#: plugins/Check.py:285
+#: plugins/Check.py:296
 msgid "%s was removed from the family of %s\n"
 msgstr "%s el lett távolítva a %s családból\n"
 
-#: plugins/Check.py:289
+#: plugins/Check.py:300
 msgid "1 broken spouse/family link was fixed\n"
 msgstr "1 rossz házastárs/család mutató lett kijavítva\n"
 
-#: plugins/Check.py:291
+#: plugins/Check.py:302
 msgid "%d broken spouse/family links were found\n"
 msgstr "%d rossz házastárs/család mutató van\n"
 
-#: plugins/Check.py:304
+#: plugins/Check.py:315
 msgid "%s was restored to the family of %s\n"
 msgstr "%s vissza lett helyezve a(z) %s családba\n"
 
-#: plugins/Check.py:307
+#: plugins/Check.py:318
 msgid "1 empty family was found\n"
 msgstr "Van 1 üres család\n"
 
-#: plugins/Check.py:309
+#: plugins/Check.py:320
 msgid "%d empty families were found\n"
 msgstr "%d üres család van\n"
 
-#: plugins/Check.py:311
+#: plugins/Check.py:322
 msgid "1 corrupted family relationship fixed\n"
 msgstr "1 megsérült családi kapcsolat lett kijavítva\n"
 
-#: plugins/Check.py:313
+#: plugins/Check.py:324
 msgid "%d corrupted family relationship fixed\n"
 msgstr "%d hibás családi kapcsolat lett kijavítva\n"
 
-#: plugins/Check.py:315
+#: plugins/Check.py:326
 msgid "1 media object was referenced, but not found\n"
 msgstr "1 média objektum hivatkozás van, de nem elérhető\n"
 
-#: plugins/Check.py:317
+#: plugins/Check.py:328
 msgid "%d media objects were referenced, but not found\n"
 msgstr "%d média objektum hivatkozás van, de nem elérhető\n"
 
-#: plugins/Check.py:319
+#: plugins/Check.py:330
 msgid "Reference to 1 missing media object was kept\n"
 msgstr "Hivatkozás 1 elveszett média objektumra lett megtartva\n"
 
-#: plugins/Check.py:321
+#: plugins/Check.py:332
 msgid "References to %d media objects were kept\n"
 msgstr "Hivatkozás %d elveszett média objektumra lett megtartva\n"
 
-#: plugins/Check.py:323
+#: plugins/Check.py:334
 msgid "1 missing media object was replaced\n"
 msgstr "1 elveszett média objektum lett áthelyezve\n"
 
-#: plugins/Check.py:325
+#: plugins/Check.py:336
 msgid "%d missing media objects were replaced\n"
 msgstr "%d elveszett média objektum lett áthelyezve\n"
 
-#: plugins/Check.py:327
+#: plugins/Check.py:338
 msgid "1 missing media object was removed\n"
 msgstr "1 elveszett média objektum lett eltávolítva\n"
 
-#: plugins/Check.py:329
+#: plugins/Check.py:340
 msgid "%d missing media objects were removed\n"
 msgstr "%d elveszett média objektum lett eltávolítva\n"
 
-#: plugins/Check.py:343
+#: plugins/Check.py:354
 msgid "Check Integrity"
 msgstr "Integritás ellenőrzés"
 
-#: plugins/Check.py:361
+#: plugins/Check.py:372
 msgid "Check and repair database"
 msgstr "Adatbázis ellenőrzése és rendbehozatala"
 
-#: plugins/Check.py:363
+#: plugins/Check.py:374
 msgid "Checks the database for integrity problems, fixing the problems that it can"
 msgstr "Adatbázis ellenőrzése integritásának ellenőrzése és ha lehet a hibák javítása"
 
@@ -5348,7 +5368,7 @@ msgstr "Esemény összehasonlító szűrő kiválasztása"
 
 #: plugins/EventCmp.py:149 plugins/GraphViz.py:104
 #: plugins/IndivComplete.py:715 plugins/RelGraph.py:132
-#: plugins/TimeLine.py:353 plugins/WebPage.py:984 plugins/WriteFtree.py:107
+#: plugins/TimeLine.py:353 plugins/WebPage.py:985 plugins/WriteFtree.py:107
 #: plugins/WriteGedcom.py:389
 msgid "Entire Database"
 msgstr "Teljes adatbázis"
@@ -5396,7 +5416,7 @@ msgid "Family Group Report"
 msgstr "Családi összesítő"
 
 #: plugins/FamilyGroup.py:335 plugins/IndivComplete.py:287
-#: plugins/IndivSummary.py:185 plugins/WebPage.py:606
+#: plugins/IndivSummary.py:185 plugins/WebPage.py:607
 msgid "Children"
 msgstr "Gyerekek:"
 
@@ -5491,7 +5511,7 @@ msgstr "Szabályok szerkesztése"
 
 #: plugins/FilterEditor.py:467
 msgid "Include original person"
-msgstr "Eredeti személy hozzáadása"
+msgstr "Eredeti személlyel együtt"
 
 #: plugins/FilterEditor.py:480
 msgid "Rule Name"
@@ -5499,7 +5519,7 @@ msgstr "Szabály neve"
 
 #: plugins/FilterEditor.py:543 rule.glade:1213
 msgid "No rule selected"
-msgstr "Nem lett szabály kiválasztva"
+msgstr "Nincsen kiválasztott szabály"
 
 #: plugins/FilterEditor.py:593
 msgid "Filter Test"
@@ -5507,7 +5527,7 @@ msgstr "Szűrő Teszt"
 
 #: plugins/FilterEditor.py:632
 msgid "Custom Filter Editor"
-msgstr "Egyéni szűrő szerkesztő"
+msgstr "Szűrő szerkesztő"
 
 #: plugins/FilterEditor.py:633 plugins/FilterEditor.py:646
 #: plugins/RelCalc.py:160 plugins/Verify.py:418 plugins/soundgen.py:97
@@ -6214,7 +6234,7 @@ msgid "Alternate Names"
 msgstr "Alternatív nevek"
 
 #: plugins/IndivComplete.py:259 plugins/IndivSummary.py:156
-#: plugins/WebPage.py:569
+#: plugins/WebPage.py:570
 msgid "Marriages/Children"
 msgstr "Házasságok/Gyermekek"
 
@@ -6263,7 +6283,7 @@ msgid "The style used for category labels."
 msgstr "Kategória címkékhez használt stílus."
 
 #: plugins/IndivComplete.py:681 plugins/IndivSummary.py:609
-#: plugins/WebPage.py:1081
+#: plugins/WebPage.py:1082
 msgid "The style used for the spouse's name."
 msgstr "Házastársak nevéhez használt stílus."
 
@@ -6495,7 +6515,7 @@ msgstr "Közös ősök: "
 
 #: plugins/RelCalc.py:143
 msgid "%(person)s and %(active_person)s are not related."
-msgstr "%(person)s és %(active_person)s nincsenek kapcsolatban."
+msgstr "%(person)s és %(active_person)s nem állapítható meg kapcsolat."
 
 #: plugins/RelCalc.py:146
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
@@ -6507,7 +6527,7 @@ msgstr "Két ember közötti kapcsolat meghatározása"
 
 #: plugins/RelGraph.py:140
 msgid "Descendant family members of %s"
-msgstr "%s utódjai"
+msgstr "%s utódai"
 
 #: plugins/RelGraph.py:207
 msgid "Show family as a stack"
@@ -7057,164 +7077,164 @@ msgstr "ID szám"
 msgid "Return to the index of people"
 msgstr "Vissza a családfa indexhez"
 
-#: plugins/WebPage.py:484
+#: plugins/WebPage.py:485
 msgid "Facts and Events"
 msgstr "Tények és események"
 
-#: plugins/WebPage.py:660
+#: plugins/WebPage.py:661
 msgid "Creating Web Pages"
 msgstr "Web oldalak létrehozása"
 
-#: plugins/WebPage.py:660
+#: plugins/WebPage.py:661
 msgid "Generate HTML reports - GRAMPS"
 msgstr "HTML összesítő készítése - GRAMPS"
 
-#: plugins/WebPage.py:749 plugins/WebPage.py:753
+#: plugins/WebPage.py:750 plugins/WebPage.py:754
 msgid "Family Tree Index"
 msgstr "Családfa index"
 
-#: plugins/WebPage.py:787
+#: plugins/WebPage.py:788
 msgid "%s (continued)"
 msgstr "%s (folytatás)"
 
-#: plugins/WebPage.py:803
+#: plugins/WebPage.py:804
 msgid "Neither %s nor %s are directories"
 msgstr "Sem %s sem %s nem könyvtár."
 
-#: plugins/WebPage.py:810 plugins/WebPage.py:814 plugins/WebPage.py:826
-#: plugins/WebPage.py:830
+#: plugins/WebPage.py:811 plugins/WebPage.py:815 plugins/WebPage.py:827
+#: plugins/WebPage.py:831
 msgid "Could not create the directory: %s"
 msgstr "Nem lehet létrehozni a könyvtárat : %s"
 
-#: plugins/WebPage.py:901
+#: plugins/WebPage.py:902
 msgid "Include a link to the index page"
 msgstr "Index oldalra hivatkozás hozzáadása"
 
-#: plugins/WebPage.py:902 plugins/pafexport.glade:276
+#: plugins/WebPage.py:903 plugins/pafexport.glade:276
 msgid "Do not include records marked private"
 msgstr "Bizalmas mezők kihagyása"
 
-#: plugins/WebPage.py:903 plugins/pafexport.glade:292
+#: plugins/WebPage.py:904 plugins/pafexport.glade:292
 msgid "Restrict information on living people"
 msgstr "Csak az _élő embereket"
 
-#: plugins/WebPage.py:904
+#: plugins/WebPage.py:905
 msgid "Do not use images"
 msgstr "Képek kihagyása"
 
-#: plugins/WebPage.py:905
+#: plugins/WebPage.py:906
 msgid "Do not use images for living people"
 msgstr "Élő személyeknél kép elhagyása"
 
-#: plugins/WebPage.py:906
+#: plugins/WebPage.py:907
 msgid "Do not include comments and text in source information"
 msgstr "Megjegyzések és szövegek elhagyása a forrás információkból"
 
-#: plugins/WebPage.py:907
+#: plugins/WebPage.py:908
 msgid "Include the GRAMPS ID in the report"
 msgstr "GRAMPS ID hozzáadása az összesítőhöz"
 
-#: plugins/WebPage.py:908
+#: plugins/WebPage.py:909
 msgid "Create a GENDEX index"
 msgstr "GENDEX index létrehozása"
 
-#: plugins/WebPage.py:909
+#: plugins/WebPage.py:910
 msgid "Image subdirectory"
 msgstr "Kép alkönyvtár"
 
-#: plugins/WebPage.py:910
+#: plugins/WebPage.py:911
 msgid "File extension"
 msgstr "Fájl kiterjesztés"
 
-#: plugins/WebPage.py:912
+#: plugins/WebPage.py:913
 msgid "Include short ancestor tree"
 msgstr "Rövidített ősökfa hozzáadása"
 
-#: plugins/WebPage.py:939
+#: plugins/WebPage.py:940
 msgid "Privacy"
 msgstr "Privacy"
 
-#: plugins/WebPage.py:946
+#: plugins/WebPage.py:947
 msgid "Advanced"
 msgstr "Haladó"
 
-#: plugins/WebPage.py:948
+#: plugins/WebPage.py:949
 msgid "GRAMPS ID link URL"
 msgstr "GRAMPS ID link URL"
 
-#: plugins/WebPage.py:959 plugins/WebPage.py:1398
+#: plugins/WebPage.py:960 plugins/WebPage.py:1399
 msgid "Generate Web Site"
 msgstr "Web Site létrehozása"
 
-#: plugins/WebPage.py:959 plugins/WebPage.py:1399
+#: plugins/WebPage.py:960 plugins/WebPage.py:1400
 msgid "Web Page"
 msgstr "Web oldal"
 
-#: plugins/WebPage.py:964
+#: plugins/WebPage.py:965
 msgid "Target Directory"
 msgstr "Célkönyvtár"
 
-#: plugins/WebPage.py:988
+#: plugins/WebPage.py:989
 msgid "Direct Descendants of %s"
 msgstr "%s egyenes leszármazottjai"
 
-#: plugins/WebPage.py:992
+#: plugins/WebPage.py:993
 msgid "Descendant Families of %s"
 msgstr "%s utódainak a családjai"
 
-#: plugins/WebPage.py:1030
+#: plugins/WebPage.py:1031
 msgid "The style used for the header that identifies facts and events."
 msgstr "Az események és tények fejlécéhez használt stílus."
 
-#: plugins/WebPage.py:1038
+#: plugins/WebPage.py:1039
 msgid "The style used for the header for the notes section."
 msgstr "Megjegyzések részleg fejlécéhez használt stílus."
 
-#: plugins/WebPage.py:1045
+#: plugins/WebPage.py:1046
 msgid "The style used for the copyright notice."
 msgstr "Copyright megjegyzésekhez használt stílus."
 
-#: plugins/WebPage.py:1052
+#: plugins/WebPage.py:1053
 msgid "The style used for the header for the sources section."
 msgstr "A források fejlécének a szekcióihoz használt stílus."
 
-#: plugins/WebPage.py:1059
+#: plugins/WebPage.py:1060
 msgid "The style used on the index page that labels each section."
 msgstr "Az index oldalon lévő szekciók címzéséhez használt stílus."
 
-#: plugins/WebPage.py:1066
+#: plugins/WebPage.py:1067
 msgid "The style used for the header for the image section."
 msgstr "Kép részleg fejlécéhez használt stílus."
 
-#: plugins/WebPage.py:1073
+#: plugins/WebPage.py:1074
 msgid "The style used for the header for the marriages and children section."
 msgstr "Házastársak és gyermekek részleg fejlécéhez használt stílus."
 
-#: plugins/WebPage.py:1088
+#: plugins/WebPage.py:1089
 msgid "The style used for the general data labels."
 msgstr "Általános adatcímkékhez használt stílus."
 
-#: plugins/WebPage.py:1095
+#: plugins/WebPage.py:1096
 msgid "The style used for the general data."
 msgstr "Általános adatokhoz használt stílus."
 
-#: plugins/WebPage.py:1102
+#: plugins/WebPage.py:1103
 msgid "The style used for the description of images."
 msgstr "Képek leírásához használt stílus."
 
-#: plugins/WebPage.py:1109
+#: plugins/WebPage.py:1110
 msgid "The style used for the notes associated with images."
 msgstr "Képekkel összekapcsolt megjegyzésekhez használt stílus."
 
-#: plugins/WebPage.py:1116
+#: plugins/WebPage.py:1117
 msgid "The style used for the source information."
 msgstr "Forrásokhoz használt stílus."
 
-#: plugins/WebPage.py:1123
+#: plugins/WebPage.py:1124
 msgid "The style used for the note information."
 msgstr "Megjegyzésekhez használt stílus."
 
-#: plugins/WebPage.py:1401
+#: plugins/WebPage.py:1402
 msgid "Generates web (HTML) pages for individuals, or a set of individuals."
 msgstr "web (HTML) oldalak létrehozása egyénről vagy személyekről."
 
@@ -7936,7 +7956,9 @@ msgstr "_Egy helyi másolat készítése az új objektum használatba vételekor
 
 #: preferences.glade:2297
 msgid "Display _global properties editor when object is dropped"
-msgstr "_Globális tulajdonságszerkesztő megnyitása az új objektum használatba vételekor"
+msgstr ""
+"_Globális tulajdonságszerkesztő megnyitása az új objektum használatba "
+"vételekor"
 
 #: preferences.glade:2319
 msgid "Display _local properties editor when object is dropped"

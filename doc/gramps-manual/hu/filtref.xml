@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
@@ -18,60 +18,60 @@
 
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-filtref">
-      <title>Filter rules reference</title>
-      <para>This appendix lists of all the filter rules currently defined 
-      in &app;. Each of these rules is available for use when creating custom 
-      filters. The rules are listed by their categories. 
+      <title>Szűrő szabályok</title>
+      <para>E fejezet útmutatást ad a &app;ben jelenleg definiált szűrők használatához.
+      Bármelyik szűrőt fel lehet használni saját szűrők készítéséhez. 
+      A szűrők az alábbi csoportosítás szerint vannak megadva. 
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-general">
-        <title>General filters</title>
-        <para>This category includes the following most general rules:</para>
+        <title>Általános szűrők</title>
+        <para>Ez a kategória a következő általános szabályokat tartalmazza:</para>
         
           <variablelist>
 
-          <varlistentry><term>Everyone</term>
-          <listitem><para> This rule matches any person in the database.
-          As such it is not very useful on its own except for testing purposes.
-          However, it may be useful in combinations with other rules. 
+          <varlistentry><term>Mindenki</term>
+          <listitem><para> Ez a szabály mindenkire illeszkedik az adatbázisból. 
+          Önmagában nem túl hasznos szabály, talán csak tesztelési célokra jó. 
+          Ettől függetlenül nagyon sikeresen lehet más szűrökkel együtt használni. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a name</term>
-          <listitem><para> This rule matches any person whose name 
-          matches the specified value in full or in part. For example, 
-          Marta Ericsdotter will be matched by the rule using the 
-          value "eric" for the family name. 
+          <varlistentry><term>Neve</term>
+          <listitem><para> Ez a szabály minden olyan emberre illeszkedik akinek a neve 
+          részben vagy teljesen megegyezik a megadott mezők értékeivel. Például, 
+          Marta Ericsdotter eredményként jelenik meg ha az "eric" értékkel a 
+          családnévmezőben hívjuk meg a szűrőt. 
           </para>
 
-          <para> Separate values can be used for Given name, Family name, 
-          Suffix, and the Title. The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          name. To use just one value, leave the other values empty. 
+          <para> A Név, Családnév, Utótag és Megnevezés mezőkben több részre választott 
+          értékek is felhasználhatóak. Eredmény csak akkor lehet, ha 
+          a nem üres mezők értékei megegyeznek (akár részlegesen) egy személy 
+          név adataival. Csak egy érték használatához egy mező kitöltése és a 
+          többi üresen hagyása szűkséges. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the Id</term>
-          <listitem><para> This rule matches any person with a specified
-          &app; ID. The rule returns a match only if the ID is matched 
-          exactly. 
+          <varlistentry><term>Megadott Id-vel</term>
+          <listitem><para> Ez a szabály minden olyan emberre illeszkedik, akiknek a  
+          megadott &app; ID-je van. Eredmény csak pontos egyezés esetén van. 
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made. 
+          <para> Az ID-t közvetlenül meg lehet adni a szövegmezőben vagy egy személy 
+          kiválasztásával a 
+          <guibutton>Kiválasztás...</guibutton> gomb segítségével. A második 
+          esetben az ID automatikusan megjelenik a szövegmezőben a kiválasztás után.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a female</term>
-          <listitem><para> This rule matches any female person. 
+          <varlistentry><term>Nő</term>
+          <listitem><para> Ez a szabály minden nőre illeszkedik.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a male</term>
-          <listitem><para> This rule matches any male person. 
+          <varlistentry><term>Férfi</term>
+          <listitem><para> Ez a szabály minden férfira illeszkedik.
           </para></listitem>
           </varlistentry>
 
@@ -81,72 +81,78 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-event">
-        <title>Event filters</title>
-        <para>This category includes the following rules that match people
-        based on their recorded events:</para>
+        <title>Esemény szűrők</title>
+        <para>Ez a kategória az emberekkel történt eseményekkel kapcsolatos 
+        szűrőket foglalja össze:</para>
           <variablelist>
 
-          <varlistentry><term>Has the birth</term>
-          <listitem><para> This rule matches people whose birth event 
-          matches specified values for Date, Place, and Description. 
-          The rule returns a match even if the person's birth event matches 
-          the value partially. The matching rules are case-insensitive. 
-          For example, anyone born in Sweden will be matched by the rule 
-          using the value "sw" for the Place. 
+          <varlistentry><term>Születése</term>
+          <listitem><para> Ez a szabály a megadott születési Dátum, Hely és Leírás 
+          mezők értékeire illeszkedő személyeket adja meg. 
+          A szabály találattal tér vissza ha a megadott értékeket akár részleteiben 
+          is tartalmazza a talált személy adatai. Az illeszkedésvizsgálat 
+          nagybetű-kisbetű érzéketlen. 
+          Például, ha valaki Svédországban született és a Hely mező értéke 
+          "sw", akkor ez a személy eredményként jelenik meg.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          birth. To use just one value, leave the other values empty. 
+          <para> Eredmény akkor és csak akkor lehet, ha 
+          a nem üres mezők értékei megegyeznek (akár részlegesen) egy személy 
+          Születési adataival. Csak egy érték használatához egy mező kitöltése és a 
+          többi üresen hagyása szűkséges.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the death</term>
-          <listitem><para> This rule matches people whose death event 
-          matches specified values for Date, Place, and Description. 
-          The rule returns a match even if the person's death event 
-          matches the value partially. The matching rules are case-insensitive. 
-          For example, anyone who died in Sweden
-          will be matched by the rule using the value "sw" for the Place.
+          <varlistentry><term>Halála</term>
+          <listitem><para> Ez a szabály a megadott halálozási Dátum, Hely és Leírás 
+          mezők értékeire illeszkedő személyeket adja meg. 
+          A szabály találattal tér vissza ha a megadott értékeket akár részleteiben 
+          is tartalmazza a talált személy adatai. Az illeszkedésvizsgálat 
+          nagybetű-kisbetű érzéketlen. 
+          Például, ha valaki Svédországban halt meg és a Hely mező értéke 
+          "sw", akkor ez a személy eredményként jelenik meg.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          death. To use just one value, leave the other values empty. 
+          <para> Eredmény akkor és csak akkor lehet, ha 
+          a nem üres mezők értékei megegyeznek (akár részlegesen) egy személy 
+          Halálozási adataival. Csak egy érték használatához egy mező kitöltése és a 
+          többi üresen hagyása szűkséges.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the personal event</term>
-          <listitem><para> This rule matches people that have a personal 
-          event matching specified values for the Event type, Date, Place, 
-          and Description. The rule returns a match even if the person's 
-          event matches the value partially. The matching rules are 
-          case-insensitive. For example, anyone who graduated 
-          in Sweden will be matched by the rule using the Graduation event 
-          and the value "sw" for the Place.
+          <varlistentry><term>Személyes eseménye</term>
+          <listitem><para> Ez a szabály a megadott Személyes esemény, Dátum, 
+          Hely és Leírás mezők értékeire illeszkedő személyeket adja meg. 
+          A szabály találattal tér vissza ha a megadott értékeket akár részleteiben 
+          is tartalmazza a talált személy adatai. Az illeszkedésvizsgálat 
+          nagybetű-kisbetű érzéketlen. 
+          Például, ha valakinek Svédországban a Diploma esemény 
+          Hely értéke "sw", akkor ez a személy eredményként jelenik meg.
           </para>
 
-          <para> The personal events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
-          are (partially) matched by the personal event. 
-          To use just one value, leave the other values empty. 
+          <para> A személyes eseményeket egy legördülő menüből lehet kiválasztani. 
+          Eredmény akkor és csak akkor lehet, ha 
+          a nem üres mezők értékei megegyeznek (akár részlegesen) egy személy 
+          Személyes esemény adataival. Csak egy érték használatához egy mező kitöltése és a 
+          többi üresen hagyása szűkséges.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the family event</term>
-          <listitem><para> This rule matches people that have a family 
-          event matching specified values for the Event type, Date, Place, 
-          and Description. The rule returns a match even if the person's 
-          event matches the value partially. The matching rules are 
-          case-insensitive. For example, anyone who was married in Sweden 
-          will be matched by the rule using the Marriage event and the 
-          value "sw" for the Place. 
+          <varlistentry><term>Családi eseménye</term>
+          <listitem><para> Ez a szabály a megadott Családi esemény, Dátum, 
+          Hely és Leírás mezők értékeire illeszkedő személyeket adja meg. 
+          A szabály találattal tér vissza ha a megadott értékeket akár részleteiben 
+          is tartalmazza a talált személy adatai. Az illeszkedésvizsgálat 
+          nagybetű-kisbetű érzéketlen. 
+          Például, ha valaki Svédországban házasodott meg és a Hely értéke "sw", 
+          akkor ez a személy eredményként jelenik meg. 
           </para>
 
-          <para> The family events should be selected from a pull-down menu. 
-          The rule returns a match if and only if all non-empty values 
-          are (partially) matched by the personal event. 
-          To use just one value, leave the other values empty. 
+          <para> A családi eseményeket egy legördülő menüből lehet kiválasztani. 
+          Eredmény akkor és csak akkor lehet, ha 
+          a nem üres mezők értékei megegyeznek (akár részlegesen) egy személy 
+          Családi adataival. Csak egy érték használatához egy mező kitöltése és a 
+          többi üresen hagyása szűkséges.
           </para></listitem>
           </varlistentry>
 
@@ -156,42 +162,40 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-family">
-        <title>Family filters</title>
-        <para>This category includes the following rules that match people 
-        based on their family relationships:</para>
+        <title>Családi szűrők</title>
+        <para>Ez a kategória a családjaikkal történt eseményeket feldolgozó 
+        szabályokat foglalja össze:</para>
           <variablelist>
 
-          <varlistentry><term>Has the relationships</term>
-          <listitem><para> This rule matches people with a particular 
-          relationship. The relationship must match the type selected from 
-          the menu. Optionally, the number of relationships and the number 
-          of children can be specified. 
+          <varlistentry><term>Kapcsolatai</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          a menüben kiválasztott kapcsolata van. 
+          Meg lehet még adni a kapcsolatok és a született gyermekek számát.
           </para>
 
-          <para> The rule returns a match if and only if 
-          all non-empty values are (partially) matched by a person's 
-          birth. To use just one value, leave the other values empty. 
+          <para> Eredmény akkor és csak akkor lehet, ha 
+          a nem üres mezők értékei megegyeznek (akár részlegesen) egy személy 
+          életének (azonos „időben” éltek) adataival. Csak egy érték használatához 
+          egy mező kitöltése és a többi üresen hagyása szűkséges.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is spouse of filter match</term>
-          <listitem><para> This rule matches people married to someone 
-          who is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Szűrő által megadott személlyel házas</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          a menüben kiválasztott, szűrő által megadott személlyel 
+          házastársi kapcsolata van/volt.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a child of filter match</term>
-          <listitem><para> This rule matches people for whom either parent  
-          is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Szűrő által megadott személy gyermeke</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          a menüben kiválasztott, szűrő által megadott személy az apja.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a parent of filter match</term>
-          <listitem><para> This rule matches people whose child  
-          is matched by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Szűrő által megadott személy szülője</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          a menüben kiválasztott, szűrő által megadott személy a gyereke.
           </para></listitem>
           </varlistentry>
 
@@ -200,64 +204,60 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-ancestral">
-        <title>Ancestral filters</title>
-        <para>This category includes the following rules that match people 
-        based on their ancestral relations to other people:</para>
+        <title>Ősök szűrők</title>
+        <para>Ez a kategória az ősökkel kapcsolatos eseményeket feldolgozó 
+        szabályokat foglalja össze:</para>
           <variablelist>
 
-          <varlistentry><term>Is an ancestor of</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person. The Inclusive option determines whether the 
-          specified person should be considered his/her own ancestor (useful 
-          for building reports). 
+          <varlistentry><term>Ősei</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akik 
+          ősei a kiválasztott személynek. A Hozzávételi opció megadásával 
+          egy meghatározott személy őseit lehet megkeresni. (összesítők 
+          készítéséhez hasznos lehet). 
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made.
+          <para>Az ID-t közvetlenűl meg lehet adni a szövegmezőben vagy egy személy 
+          kiválasztásával a 
+          <guibutton>Kiválasztás...</guibutton> gomb segítségével. A második 
+          esetben az ID automatikusan megjelenik a szövegmezőben a kiválasztás után. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of person at 
-          least N generations away</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person and are at least N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandparents, 
-          great-grandparents, etc., but not the parents of the specified 
-          person. 
+          <varlistentry><term>Ős legalább N generációs távolságra</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akik 
+          ősei a megadott személynek legalább N generáció után. 
+          Például, a Generációk számának kettőt megadva a szűrő eredménye a 
+          nagyszülők, a dédszülők, stb. lesznek; de a szülők nem szerepelnek 
+          az eredmények között.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of person not more 
-          than N generations away</term>
-          <listitem><para> This rule matches people who are ancestors of the 
-          specified person and are no more than N generations away from that 
-          person in their lineage. For example, using this rule with the value 
-          of 2 for the number of generations will match parents and 
-          grandparents, but not great-grandparents, etc., of the specified 
-          person. 
+          <varlistentry><term>Ős nem több mint N generációs távolságra</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akik 
+          ősei a megadott személynek nem több mint N generáción át. 
+          Például, a Generációk számának kettőt megadva a szűrő eredménye a 
+          szülők és nagyszülők lesznek; de a dédszülők már nem szerepelnek 
+          az eredmények között.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a common ancestor with</term>
-          <listitem><para> This rule matches people who have common ancestors 
-          with the specified person. 
+          <varlistentry><term>Megadott személlyel közös ős</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          közös ősük van a megadott személlyel.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has a common ancestor with filter match</term>
-          <listitem><para> This rule matches people who have common ancestors 
-          with someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Szűrő által megadott személlyel közös ős</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          közös ősük van a szűrő által megadott személlyel. 
+          A menüből lehet kiválasztani a megfelelő szűrőt.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is an ancestor of filter match</term>
-          <listitem><para> This rule matches people who are ancestors 
-          of someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Szűrő által megadott személy ősei</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akik 
+          ősei a szűrő által megadott személynek.
+          A menüből lehet kiválasztani a megfelelő szűrőt.
           </para></listitem>
           </varlistentry>
 
@@ -266,58 +266,54 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-descendant">
-        <title>Descendant filters</title>
-        <para>This category includes the following rules that match people 
-        based on their descendant relations to other people:</para>
+        <title>Utód szűrők</title>
+        <para>Ez a kategória az utódokkal kapcsolatos eseményeket feldolgozó 
+        szabályokat foglalja össze:</para>
           <variablelist>
 
-          <varlistentry><term>Is a descendant of</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person. The Inclusive option determines whether the 
-          specified person should be considered his/her own descendant (useful 
-          for building reports). 
+          <varlistentry><term>Utódai</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akik 
+          utódai a kiválasztott személynek. A Hozzávételi opció megadásával 
+          egy meghatározott személy őseit lehet megkeresni. (összesítők 
+          készítéséhez hasznos lehet).
           </para>
 
-          <para> You can either enter the ID into a text entry field, or 
-          select a person from the list by clicking 
-          <guibutton>Select...</guibutton> button. In the latter case, the 
-          ID will appear in the text field after the selection was made.
+          <para> Az ID-t közvetlenűl meg lehet adni a szövegmezőben vagy egy személy 
+          kiválasztásával a 
+          <guibutton>Kiválasztás...</guibutton> gomb segítségével. A második 
+          esetben az ID automatikusan megjelenik a szövegmezőben a kiválasztás után.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of person at 
-          least N generations away</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person and are at least N generations away from that person 
-          in their lineage. For example, using this rule with the value of 2 
-          for the number of generations will match grandchildren, 
-          great-grandchildren, etc., but not the children of the specified 
-          person.
+          <varlistentry><term>Utód legalább N generációs távolságra</term>
+          <listitem><para>Ez a szabály illeszkedik minden olyan emberre akik 
+          utódai a megadott személynek legalább N generáció után. 
+          Például, a Generációk számának kettőt megadva a szűrő eredménye az 
+          unokák, dédunokák, stb. lesznek; de a gyermekek nem szerepelnek 
+          az eredmények között.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of person not more 
-          than N generations away</term>
-          <listitem><para> This rule matches people who are descendants of the 
-          specified person and are no more than N generations away from that 
-          person in their lineage. For example, using this rule with the value 
-          of 2 for the number of generations will match children and 
-          grandchildren, but not great-grandchildren, etc., of the specified 
-          person. 
+          <varlistentry><term>Utód nem több mint N generációs távolságra</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akik 
+          utódai a megadott személynek nem több mint N generáción át. 
+          Például, a Generációk számának kettőt megadva a szűrő eredménye a 
+          gyermekek és unokák lesznek; de a dédunokák, stb. már nem szerepelnek 
+          az eredmények között.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant of filter match</term>
-          <listitem><para> This rule matches people who are descendants 
-          of someone who is matched by the specified filter.
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Szűrő által megadott személy leszármazottai</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akik 
+          utódai a szűrő által megadott személynek.
+          A menüből lehet kiválasztani a megfelelő szűrőt. 
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Is a descendant family member of</term>
-          <listitem><para> This rule not only matches people who are 
-          descendants of the specified person, but also those descendants' 
-          spouses.
+          <varlistentry><term>Megadott személyhez tartozó leszármazott családtag</term>
+          <listitem><para> Ez a szabály nemcsak azokra a személyekre illeszkedik 
+          akik közvetlen leszármazottai a megadott személynek, hanem a 
+          leszármazottak házastársait is.
           </para></listitem>
           </varlistentry>
 
@@ -326,23 +322,22 @@
 
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-relat">
-        <title>Relationship filters</title>
-        <para>This category includes the following rules that match people
-        based on their mutual relationship:</para>
+        <title>Kapcsolatok szűrő</title>
+        <para>Ez a kategória magában foglalja azokat a szűrőket amik a 
+        az emberek kölcsönös kapcsolatait vizsgálják:</para>
           <variablelist>
 
-          <varlistentry><term>Relationship path between two people</term>
-          <listitem><para> This rule matches all ancestors of both people
-          back to their common ancestors (if exist). This produces the 
-          &quot;relationship path&quot; between these two people, through
-          their common ancestors. 
+          <varlistentry><term>Kapcsolat útvonala két személy között</term>
+          <listitem><para> Ez a szabály minden olyan ősre illeszkedik akik 
+          két személy közös ősei (ha léteznek). Így ezzel meg lehet határozni a  
+          &quot;rokonsági kapcsolatot&quot; e két ember között, a közös ősökön 
+          keresztűl.
           </para>
           
-          <para> You can either enter the ID of each person into the 
-          appropriate text entry fields, or select people from the list by 
-          clicking their <guibutton>Select...</guibutton> buttons. In the 
-          latter case, the ID will appear in the text field after the 
-          selection was made.
+          <para> Az ID -t közvetlenül meg lehet adni a szövegmezőben vagy egy személy 
+          kiválasztásával a 
+          <guibutton>Kiválasztás...</guibutton> gomb segítségével. A második 
+          esetben az ID automatikusan megjelenik a szövegmezőben a kiválasztás után.
           </para>
           </listitem>
           </varlistentry>
@@ -352,31 +347,29 @@
         
         <!-- =============== Appendices Sub-subsection ================ -->
     	<sect3 id="filtref-misc">
-        <title>Miscellaneous filters</title>
-        <para>This category includes the following rules which do not
-        naturally fit into any of the above categories:</para>
+        <title>Vegyes szűrők</title>
+        <para>Ebbe a kategóriába kerültek azok a szűrőszabályok amelyeket nem 
+        lehetett egyik kategóriába sem besorolni:</para>
           <variablelist>
 
-          <varlistentry><term>Has the personal attribute</term>
-          <listitem><para> This rule matches people who have the personal 
-          attribute of the specified value. The specified personal attribute
-          name should be selected from the menu. The specified value should 
-          be typed into the text entry field. 
+          <varlistentry><term>Személy tulajdonsága</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          a menüben kiválasztott Személy tulajdonságaik megegyeznek.
+          Az Érték mezőt ki kell tölteni a szűrő használatához.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Has the family attribute</term>
-          <listitem><para> This rule matches people who have the family 
-          attribute of the specified value. The specified family attribute
-          should be selected from the menu. The specified value should be 
-          typed into the text entry field. 
+          <varlistentry><term>Családi tulajdonsága</term>
+          <listitem><para> Ez a szabály illeszkedik minden olyan emberre akiknek 
+          a menüben kiválasztott Családi tulajdonságaik megegyeznek.
+          Az Érték mezőt ki kell tölteni a szűrő használatához.
           </para></listitem>
           </varlistentry>
 
-          <varlistentry><term>Matches the filter named</term>
-          <listitem><para> This rule matches people who are matched 
-          by the specified filter. 
-          The specified filter name should be selected from the menu. 
+          <varlistentry><term>Megadott szűrővel keresés</term>
+          <listitem><para>  Ez a szabály illeszkedik minden olyan emberre akiknek 
+          a menüben kiválasztott Szűrő eredményeik megegyeznek.
+          A szűrőt kötelezően ki kell választani a menüből.
           </para></listitem>
           </varlistentry>
 

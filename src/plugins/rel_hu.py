@@ -21,7 +21,8 @@
 
 #
 # Written by Egyeki Gergely <egeri@elte.hu>, 2004
-#
+# Valószínüleg vannak hibák...
+# TODO: após, anyós, meny, vő
 
 #-------------------------------------------------------------------------
 #
@@ -60,7 +61,12 @@ _level =\
 #-------------------------------------------------------------------------
 
 def get_parents (level):
-    return "%s szülei" % _level[level]
+    if   level == 0: return ""
+    elif level == 1: return "szülei"
+    elif level == 2: return "nagyszülei"
+    elif level == 3: return "dédszülei"
+    elif level == 4: return "ükszülei"
+    else           : return "%s szülei" % _level[level]
 
 
 
@@ -86,6 +92,8 @@ def get_son (level):
     if   level == 0: return ""
     elif level == 1: return "fia"
     elif level == 2: return "unokája"
+    elif level == 3: return "dédunokája"
+    elif level == 4: return "ükunokája"
     else           : return "%s unokája" % (_level[level])
 
 
