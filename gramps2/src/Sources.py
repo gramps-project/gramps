@@ -404,7 +404,7 @@ class SourceEditor:
         if self.source_ref:
             handle = self.source_ref.get_base_handle()
             self.active_source = self.db.get_source_from_handle(handle)
-            self.date_obj = self.source_ref.get_date()
+            self.date_obj = self.source_ref.get_date_object()
             self.date_entry_field.set_text(DateHandler.displayer.display(self.date_obj))
             self.private.set_active(self.source_ref.get_privacy())
         else:
@@ -548,7 +548,7 @@ class SourceEditor:
                                     buf.get_end_iter(),False))
 
         self.source_ref.set_page(page)
-        self.source_ref.set_date(self.date_obj)
+        self.source_ref.set_date_object(self.date_obj)
         self.source_ref.set_text(text)
         self.source_ref.set_comments(comments)
         self.source_ref.set_confidence_level(conf)

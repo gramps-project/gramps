@@ -549,7 +549,7 @@ class IndividualPage(BasePage):
             author = source.get_author()
             title = source.get_title()
             publisher = source.get_publication_info()
-            date = _dd.display(sref.get_date())
+            date = _dd.display(sref.get_date_object())
             of.write('<tr><td class="field">%d. ' % index)
             values = []
             if author:

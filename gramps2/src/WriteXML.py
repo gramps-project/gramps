@@ -541,7 +541,7 @@ class XmlWriter:
             p = source_ref.get_page()
             c = source_ref.get_comments()
             t = source_ref.get_text()
-            d = source_ref.get_date()
+            d = source_ref.get_date_object()
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
             if p == "" and c == "" and t == "" and d.is_empty() and q == 2:

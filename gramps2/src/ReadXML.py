@@ -972,7 +972,7 @@ class GrampsParser:
 
     def start_daterange(self,attrs):
         if self.source_ref:
-            dv = self.source_ref.get_date()
+            dv = self.source_ref.get_date_object()
         elif self.ord:
             dv = self.ord.get_date_object()
         elif self.object:
@@ -1026,7 +1026,7 @@ class GrampsParser:
 
     def start_dateval(self,attrs):
         if self.source_ref:
-            dv = self.source_ref.get_date()
+            dv = self.source_ref.get_date_object()
         elif self.ord:
             dv = self.ord.get_date_object()
         elif self.object:
@@ -1080,7 +1080,7 @@ class GrampsParser:
 
     def start_datestr(self,attrs):
         if self.source_ref:
-            dv = self.source_ref.get_date()
+            dv = self.source_ref.get_date_object()
         elif self.ord:
             dv = self.ord.get_date_object()
         elif self.object:
