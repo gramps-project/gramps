@@ -135,9 +135,6 @@ class DrawDoc:
     def creator(self,name):
         self.name = name
 
-    def add_paragraph_style(self,name,style):
-        self.paragraph_styles[name] = ParagraphStyle(style)
-
     def add_draw_style(self,name,style):
         self.draw_styles[name] = GraphicsStyle(style)
 
