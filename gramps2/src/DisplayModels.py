@@ -395,7 +395,10 @@ class MediaModel(BaseModel):
         return unicode(data[2])
 
     def column_mime(self,data):
-        return unicode(data[3])
+        if data[3]:
+            return unicode(data[3])
+        else:
+            return _('Note')
 
     def column_id(self,data):
         return unicode(data[1])

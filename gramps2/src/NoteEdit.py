@@ -26,6 +26,7 @@
 #
 #-------------------------------------------------------------------------
 import gtk
+import gtk.glade
 
 #-------------------------------------------------------------------------
 #
@@ -33,6 +34,8 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import const
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -41,9 +44,10 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 class NoteEditor:
     """Displays a simple text editor that allows a person to edit a note"""
-    def __init__(self,data,parent,parent_window=None):
+    def __init__(self,data,parent,parent_window=None,callback=None):
 
         self.parent = parent
+        self.callback = callback
         if data:
             if self.parent.child_windows.has_key(data):
                 self.parent.child_windows[data].present(None)
@@ -54,45 +58,36 @@ class NoteEditor:
             self.win_key = self
         self.data = data
         self.parent_window = parent_window
+        self.glade = gtk.glade.XML(const.gladeFile,"note_edit")
         self.draw()
 
     def draw(self):
         """Displays the NoteEditor window"""
         title = "%s - GRAMPS" % _("Edit Note")
 
-        self.top = gtk.Dialog(title)
-        self.top.set_default_size(450,300)
-        
-        vbox = gtk.VBox()
-        self.top.vbox.pack_start(vbox,gtk.TRUE,gtk.TRUE,0)
-        label = gtk.Label('<span weight="bold" size="larger">%s</span>' % _('Edit Note'))
-        label.set_use_markup(gtk.TRUE)
-        vbox.pack_start(label, gtk.FALSE, gtk.FALSE, 10)
+        self.top = self.glade.get_widget('note_edit')
+        alt_title = self.glade.get_widget('title_msg')
+        Utils.set_titles(self.top, alt_title, _('Note Editor'))
 
-        self.entry = gtk.TextView()
+        if self.callback:
+            self.title_entry = self.glade.get_widget('title')
+            self.title_entry.set_text(self.data.get_description())
+        else:
+            self.glade.get_widget('tbox').hide()
+
+        self.entry = self.glade.get_widget('note')
         self.entry.set_editable(gtk.TRUE)
-        self.entry.show()
-        
-        scroll = gtk.ScrolledWindow()
-        scroll.add(self.entry)
-        scroll.set_policy (gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        scroll.set_shadow_type(gtk.SHADOW_IN)
-        scroll.show()
-        vbox.pack_start(scroll, gtk.TRUE, gtk.TRUE, 0)
-
         self.entry.get_buffer().set_text(self.data.get_note())
 
-        cancel_button = self.top.add_button(gtk.STOCK_CANCEL,1)
-        ok_button = self.top.add_button(gtk.STOCK_OK,0)
+        cancel_button = self.glade.get_widget('cancel')
+        ok_button = self.glade.get_widget('ok')
         cancel_button.connect("clicked",self.close)
         ok_button.connect("clicked",self.on_save_note_clicked)
         self.top.connect("delete_event",self.on_delete_event)
-        self.top.show_all()
         
         if self.parent_window:
             self.top.set_transient_for(self.parent_window)
         self.add_itself_to_menu()
-        self.top.show()
         
     def on_delete_event(self,*obj):
         self.remove_itself_from_menu()
@@ -122,4 +117,7 @@ class NoteEditor:
                                         tbuffer.get_end_iter(),gtk.FALSE))
         if text != self.data.get_note():
             self.data.set_note(text)
+        if self.callback:
+            self.data.set_description(self.title_entry.get_text())
+            self.callback(self.data)
         self.close(obj)

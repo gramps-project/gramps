@@ -1,3 +1,12 @@
+2005-02-15  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddMedia.py: handle "note only" media object
+	* src/DisplayModels.py: handle media type of None
+	* src/ImageSelect.py: Add "internal note" check box
+	* src/MediaView.py: handle media type of None
+	* src/NoteEdit.py: use glade definition
+	* src/gramps.glade: add note editor
+	* src/plubins/NavWebPage.py: Add default pages
+
 2005-02-15 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* doc/gramps-manual/C/authors.xml: Add list of contributors.
 	* doc/gramps-manual/C/getstart.xml: Update.

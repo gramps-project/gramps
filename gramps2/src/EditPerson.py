@@ -479,7 +479,9 @@ class EditPerson:
                 ph = media_list[0]
                 object_handle = ph.get_reference_handle()
                 obj = self.db.get_object_from_handle(object_handle)
-                ImageSelect.LocalMediaProperties(ph,obj.get_path(),self,self.window)
+                ImageSelect.LocalMediaProperties(ph,obj.get_path(),
+                                                 self,self.window)
+
         elif event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             media_list = self.person.get_media_list()
             if media_list:

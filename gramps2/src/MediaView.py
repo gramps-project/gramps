@@ -181,23 +181,28 @@ class MediaView:
         mobj = self.db.get_object_from_handle(handle)
         mtype = mobj.get_mime_type()
         path = mobj.get_path()
-        type_name = Utils.get_mime_description(mtype)
-        image = ImgManip.get_thumbnail_image(path)
-        if image != None:
-            self.preview.set_from_pixbuf(image)
+        if mtype:
+            type_name = Utils.get_mime_description(mtype)
+            image = ImgManip.get_thumbnail_image(path)
+            if image != None:
+                self.preview.set_from_pixbuf(image)
+            else:
+                icon = Utils.find_icon(mtype)
+                icon_image = gtk.gdk.pixbuf_new_from_file(icon)
+                self.preview.set_from_pixbuf(icon_image)
         else:
-            icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(mtype))
+            icon = Utils.find_icon('text/plain')
+            icon_image = gtk.gdk.pixbuf_new_from_file(icon)
             self.preview.set_from_pixbuf(icon_image)
+            type_name = _('Note')
         
         self.mid.set_text(mobj.get_gramps_id())
         self.mtype.set_text(type_name)
         self.mdesc.set_text(mobj.get_description())
         if len(path) == 0 or fexists == 0:
             self.mpath.set_text(_("The file no longer exists"))
-        elif path[0] == "/":
-            self.mpath.set_text(path)
         else:
-            self.mpath.set_text(_("<local>"))
+            self.mpath.set_text(path)
         self.mdetails.set_text(Utils.get_detail_text(mobj,0))
 
     def on_button_press_event(self,obj,event):
@@ -230,7 +235,7 @@ class MediaView:
             Utils.add_menuitem(menu,_("View in the default viewer"),None,
                                self.popup_view_photo)
             
-            if mime_type[0:5] == "image":
+            if mime_type and mime_type[0:5] == "image":
                 Utils.add_menuitem(menu,_("Edit with the GIMP"),
                                    None,self.popup_edit_photo)
             item = gtk.MenuItem()
@@ -263,9 +268,8 @@ class MediaView:
             os.execvp(const.editor,[const.editor, self.obj.get_path()])
     
     def popup_change_description(self, obj):
-        ImageSelect.GlobalMediaProperties(self.db,self.obj,
-                                          self.update_display,
-                                          self,self.topWindow)
+        ImageSelect.GlobalMediaProperties(
+            self.db, self.obj, self.update_display, self,self.topWindow)
 
     def on_add_clicked(self,obj):
         """Add a new media object to the media list"""
@@ -289,9 +293,19 @@ class MediaView:
         if node:
             handle = list_store.get_value(node,_HANDLE_COL)
             obj = self.db.get_object_from_handle(handle)
-            ImageSelect.GlobalMediaProperties(self.db,obj,
-                                              self.update_display,
-                                              self,self.topWindow)
+            if obj.get_mime_type():
+                ImageSelect.GlobalMediaProperties(
+                    self.db,obj, self.update_display,
+                    self,self.topWindow)
+            else:
+                import NoteEdit
+                NoteEdit.NoteEditor(obj,self.parent,self.topWindow,
+                                    self.note_callback)
+
+    def note_callback(self,data):
+        trans = self.db.transaction_begin()
+        self.db.commit_media_object(data,trans)
+        self.db.transaction_commit(trans,_("Edit Media Object"))
 
     def on_delete_clicked(self,obj):
         store,node = self.selection.get_selected()
@@ -357,8 +371,9 @@ class MediaView:
         if (const.dnd_images):
             handle = store.get_value(node,_HANDLE_COL)
             obj = self.db.get_object_from_handle(handle)
-            image = ImgManip.get_thumbnail_image(obj.get_path())
-            context.set_icon_pixbuf(image,0,0)
+            if obj.get_path():
+                image = ImgManip.get_thumbnail_image(obj.get_path())
+                context.set_icon_pixbuf(image,0,0)
 
     def on_drag_data_get(self, w, context, selection_data, info, time):
         if info == 1:

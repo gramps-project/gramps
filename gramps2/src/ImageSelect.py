@@ -112,7 +112,9 @@ class ImageSelect:
         self.fname       = self.glade.get_widget("fname")
         self.image       = self.glade.get_widget("image")
         self.description = self.glade.get_widget("photoDescription")
+        self.internal    = self.glade.get_widget('internal')
         self.temp_name   = ""
+        self.internal.hide()
 
         Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
@@ -121,6 +123,8 @@ class ImageSelect:
             "on_fname_update_preview" : self.on_name_changed,
             "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
             })
+
+        self.internal.connect('toggled',self.internal_toggled)
 
         if os.path.isdir(_last_path):
             self.fname.set_current_folder(_last_path)
@@ -953,24 +957,29 @@ class GlobalMediaProperties:
         else:
             self.srcreflist = []
     
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                           self.change_dialog,
-                                           self.window, self.slist,
-                                           self.change_dialog.get_widget('gl_add_src'),
-                                           self.change_dialog.get_widget('gl_edit_src'),
-                                           self.change_dialog.get_widget('gl_del_src'))
-
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist,self,
+            self.change_dialog,
+            self.window, self.slist,
+            self.change_dialog.get_widget('gl_add_src'),
+            self.change_dialog.get_widget('gl_edit_src'),
+            self.change_dialog.get_widget('gl_del_src'))
+        
         self.descr_window.set_text(self.obj.get_description())
         mtype = self.obj.get_mime_type()
-        pb = ImgManip.get_thumbnail_image(self.obj.get_path())
-        self.pixmap.set_from_pixbuf(pb)
+        if mtype:
+            pb = ImgManip.get_thumbnail_image(self.obj.get_path())
+            self.pixmap.set_from_pixbuf(pb)
+            descr = Utils.get_mime_description(mtype)
+            self.change_dialog.get_widget("type").set_text(descr)
+        else:
+            self.change_dialog.get_widget("type").set_text(_('Note'))
+            self.pixmap.hide()
 
         self.change_dialog.get_widget("gid").set_text(self.obj.get_gramps_id())
-        self.makelocal = self.change_dialog.get_widget("makelocal")
 
         self.update_info()
         
-        self.change_dialog.get_widget("type").set_text(Utils.get_mime_description(mtype))
         if self.obj.get_note():
             self.notes.get_buffer().set_text(self.obj.get_note())
             Utils.bold_label(self.notes_label)
