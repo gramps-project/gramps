@@ -86,6 +86,7 @@ class GrampsParser(handler.ContentHandler):
         self.in_scomments = 0
         self.db = database
         self.base = base
+        self.photo = None
         self.person = None
         self.family = None
         self.address = None
@@ -230,7 +231,9 @@ class GrampsParser(handler.ContentHandler):
             self.attribute.setType(u2l(attrs["type"]))
         else:
             self.in_old_attr = 0
-        if self.person:
+        if self.photo:
+            self.photo.addAttribute(self.attribute)
+        elif self.person:
             self.person.addAttribute(self.attribute)
         elif self.family:
             self.family.addAttribute(self.attribute)
@@ -440,28 +443,31 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_photo(self,attrs):
-        photo = Photo()
+        self.photo = Photo()
         for key in attrs.keys():
             if key == "descrip" or key == "description":
-                photo.setDescription(u2l(attrs[key]))
+                self.photo.setDescription(u2l(attrs[key]))
             elif key == "src":
                 src = u2l(attrs["src"])
                 if src[0] != os.sep:
-                    photo.setPath("%s%s%s" % (self.base,os.sep,src))
-                    photo.setPrivate(1)
+                    self.photo.setPath("%s%s%s" % (self.base,os.sep,src))
+                    self.photo.setPrivate(1)
                 else:
-                    photo.setPath(src)
-                    photo.setPrivate(0)
+                    self.photo.setPath(src)
+                    self.photo.setPrivate(0)
                 if self.family:
-                    self.family.addPhoto(photo)
+                    self.family.addPhoto(self.photo)
                 elif self.source:
-                    self.source.addPhoto(photo)
+                    self.source.addPhoto(self.photo)
                 elif self.person:
-                    self.person.addPhoto(photo)
+                    self.person.addPhoto(self.photo)
                 elif self.placeobj:
-                    self.placeobj.addPhoto(photo)
+                    self.placeobj.addPhoto(self.photo)
             else:
-                photo.addProperty(key,u2l(attrs[key]))
+                a = Attribute()
+                a.setType(key)
+                a.setValue(u2l(attrs[key]))
+                self.photo.addAttribute(a)
 
     #---------------------------------------------------------------------
     #
@@ -514,13 +520,11 @@ class GrampsParser(handler.ContentHandler):
     def stop_address(self,tag):
         self.address = None
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def stop_places(self,tag):
         self.placeobj = None
+
+    def stop_photo(self,tag):
+        self.photo = None
 
     def stop_placeobj(self,tag):
         if self.placeobj.get_title() == "":
@@ -951,7 +955,7 @@ class GrampsParser(handler.ContentHandler):
         "parentin"   : (start_parentin,None),
         "people"     : (start_people, stop_people),
         "person"     : (start_person, None),
-        "img"        : (start_photo, None),
+        "img"        : (start_photo, stop_photo),
         "place"      : (start_place, stop_place),
         "places"     : (None, stop_places),
         "placeobj"   : (start_placeobj,stop_placeobj),

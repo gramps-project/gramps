@@ -342,21 +342,17 @@ class Photo:
     
     def __init__(self,source=None):
         """Create a new Photo object, copying from the source if provided"""
+        self.attrlist = []
         if source:
             self.path = source.path
             self.desc = source.desc
             self.private = source.private
-            if self.proplist != None:
-                self.proplist = {}
-                for p in source.proplist.keys():
-                    self.proplist[p] = source.proplist[p]
-            else:
-                self.proplist = None
+            for attr in source.attrlist:
+                self.attrlist.append(Attribute(attr))
         else:
             self.path = ""
             self.desc = ""
             self.private = 0
-            self.proplist = None
 
     def setPath(self,path):
         """set the file path to the passed path"""
@@ -382,18 +378,15 @@ class Photo:
         """returns the description of the image"""
         return self.desc
 
-    def addProperty(self,key,value):
+    def addAttribute(self,attr):
         """Adds a propery to the Photo object. This is not used by gramps,
         but provides a means for XML users to attach other properties to
         the image"""
-        if self.proplist == None:
-            self.proplist = { key: value}
-        else:
-            self.proplist[key] = value;
+        self.attrlist.append(attr)
 
-    def getPropertyList(self):
+    def getAttributeList(self):
         """returns the property list associated with the image"""
-        return self.proplist
+        return self.attrlist
 
 class Attribute(DataObj):
     """Provides a simple key/value pair for describing properties. Used

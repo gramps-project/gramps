@@ -268,18 +268,19 @@ def dump_location(g,loc):
     g.write('/>\n')
 
 
-def write_attribute_list(g, list):
+def write_attribute_list(g, list, indent=3):
+    sp = '  ' * indent
     for attr in list:
-        if len(attr.getSourceRef()) > 0 or attr.getNote():
-            g.write('      <attribute%s>\n' % conf_priv(attr))
+        if len(attr.getSourceRefList()) > 0 or attr.getNote():
+            g.write('%s<attribute%s>\n' % (sp,conf_priv(attr)))
             write_line(g,"attr_type",attr.getType(),4)
             write_line(g,"attr_value",attr.getValue(),4)
             for s in attr.getSourceRefList():
                 dump_source_ref(g,s,index+1)
             writeNote(g,"note",attr.getNote(),4)
-            g.write('      </attribute>\n')
+            g.write('%s</attribute>\n' % sp)
         else:
-            g.write('      <attribute type="%s">' % attr.getType())
+            g.write('%s<attribute type="%s">' % (sp,attr.getType()))
             g.write(fix(attr.getValue()))
             g.write('</attribute>\n')
 
@@ -296,11 +297,13 @@ def write_photo_list(g,list):
                     path = path[l+1:]
         g.write('      <img src="%s"' % fix(path) )
         g.write(' description="%s"' % fix(photo.getDescription()))
-        proplist = photo.getPropertyList()
-        if proplist:
-            for key in proplist.keys():
-                g.write(' %s="%s"' % (key,fix(proplist[key])))
-        g.write("/>\n")
+        proplist = photo.getAttributeList()
+        if len(proplist) == 0:
+            g.write("/>\n")
+        else:
+            g.write(">\n")
+            write_attribute_list(g,proplist,4)
+            g.write('      </img>\n')
 
 
 def write_url_list(g, list):
