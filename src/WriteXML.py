@@ -443,24 +443,24 @@ def exportData(database, filename, callback):
         g.write("  <places>\n")
         for place in placeList:
             g.write('    <placeobj id="%s" title="%s">\n' % \
-                    (place.getId(),place.get_title()))
+                    (place.getId(),fix(place.get_title())))
             if place.get_longitude() != "" or place.get_latitude() != "":
                 g.write('      <coord long="%s" lat=%s"/>\n' % \
-                        (place.get_longitude(),place.get_latitude()))
+                        (fix(place.get_longitude()),fix(place.get_latitude())))
             loc = place.get_main_location()
-            city = loc.get_city()
-            state = loc.get_state()
-            country = loc.get_country()
-            county = loc.get_county()
+            city = fix(loc.get_city())
+            state = fix(loc.get_state())
+            country = fix(loc.get_country())
+            county = fix(loc.get_county())
             if city or state or country or county:
                 g.write('      <location city="%s" ' % city)
                 g.write('county="%s" state="%s" ' % (county,state))
                 g.write('country="%s"/>\n' % country)
             for loc in place.get_alternate_locations():
-                city = loc.get_city()
-                state = loc.get_state()
-                country = loc.get_country()
-                county = loc.get_county()
+                city = fix(loc.get_city())
+                state = fix(loc.get_state())
+                country = fix(loc.get_country())
+                county = fix(loc.get_county())
                 if city or state or country or county:
                     g.write('      <location type="alternate"')
                     g.write('city="%s" county="%s" state="%s" country="%s"/>\n' \
