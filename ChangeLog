@@ -16,7 +16,7 @@
 	* src/EditPlace.py (on_help_clicked): Add function; 
 	(__init__): Make the dialog modal and a transient for its parent;
 	* src/PlaceView.py: Pass the window to the EditPlace class.
-    * NEWS, TODO: Update status.
+	* NEWS, TODO: Update status.
 
 2003-11-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add Help buttons to dialogs.
