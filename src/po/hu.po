@@ -1,15 +1,18 @@
+# translation of hu.po to 
+# translation of hu.po to
+# translation of hu.po to
 # translation of hu.po to Hungarian
 # Hungarian translation for GRAMPS
 # Copyright (C) 2003 the Gramps Project
-# Egyeki Gergely <egeri@elte.hu>, 2003.
+# Egyeki Gergely <egeri@elte.hu>, 2003, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
-"PO-Revision-Date: 2003-11-30 16:27+0100\n"
+"PO-Revision-Date: 2004-01-07 20:01+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
-"Language-Team: Hungarian <->\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -105,7 +108,7 @@ msgstr "körülbelül"
 
 #: Calendar.py:53 Calendar.py:113 Calendar.py:130
 msgid "about"
-msgstr "erről"
+msgstr "körülbelül"
 
 #: Calendar.py:54
 msgid "est\\.?"
@@ -121,11 +124,11 @@ msgstr "körül"
 
 #: Calendar.py:57 Calendar.py:116 Calendar.py:131
 msgid "before"
-msgstr "előtt"
+msgstr "korábban mint"
 
 #: Calendar.py:58 Calendar.py:118 Calendar.py:132
 msgid "after"
-msgstr "után"
+msgstr "később mint "
 
 #: Calendar.py:59
 msgid "aft\\.?"
@@ -234,7 +237,7 @@ msgstr "Szülők kiválasztása"
 #: plugins/EventCmp.py:306 plugins/FamilyGroup.py:153 plugins/GraphViz.py:398
 #: plugins/GraphViz.py:399
 msgid "Birth"
-msgstr "Születés"
+msgstr "Születési ideje és helye"
 
 #: ChooseParents.py:223 ChooseParents.py:299 ChooseParents.py:537
 #: ChooseParents.py:538
@@ -246,14 +249,14 @@ msgstr "Szülő"
 #: plugins/IndivComplete.py:208 plugins/IndivComplete.py:430
 #: plugins/IndivSummary.py:279 plugins/WebPage.py:339 plugins/WebPage.py:342
 msgid "Father"
-msgstr "Édesapa"
+msgstr "Édesapja"
 
 #: ChooseParents.py:301 ChooseParents.py:540 FamilyView.py:838
 #: plugins/FamilyGroup.py:212 plugins/IndivComplete.py:214
 #: plugins/IndivComplete.py:216 plugins/IndivComplete.py:435
 #: plugins/IndivSummary.py:293 plugins/WebPage.py:340 plugins/WebPage.py:343
 msgid "Mother"
-msgstr "Édesanya"
+msgstr "Édesanyja"
 
 #: ChooseParents.py:512
 msgid "Modify the Parents of %s"
@@ -516,18 +519,18 @@ msgstr ""
 #: FamilyView.py:53 PedView.py:45 plugins/AncestorChart.py:52
 #: plugins/DesGraph.py:52 plugins/DescendReport.py:51
 msgid "b."
-msgstr "született"
+msgstr "születési ideje:"
 
 #: FamilyView.py:54 PedView.py:46 plugins/AncestorChart.py:53
 #: plugins/DesGraph.py:53 plugins/DescendReport.py:52
 msgid "d."
-msgstr "meghalt"
+msgstr "halálának ideje:"
 
 #: FamilyView.py:209 PeopleStore.py:55 gramps_main.py:103
 #: plugins/IndivComplete.py:406 plugins/IndivSummary.py:246
 #: plugins/WebPage.py:331 plugins/WebPage.py:333 plugins/WebPage.py:335
 msgid "Gender"
-msgstr "Nem"
+msgstr "Neme"
 
 #: FamilyView.py:210
 msgid "Status"
@@ -844,11 +847,11 @@ msgstr "Egy szűrő által megadott személy szüleinek a megjelenítése"
 
 #: GenericFilter.py:811
 msgid "Matches people that have a common ancestor with a specified person"
-msgstr "Egy szűrő által megadott ember közös őseinek a keresése"
+msgstr "Egy szűrő által megadott emberrel való közös ősöknek a keresése"
 
 #: GenericFilter.py:857
 msgid "Matches people that have a common ancestor with someone matched by a filter"
-msgstr "Egy szűrő által megadott ember közös ősei"
+msgstr "Egy szűrő által megadott ember közös ősök"
 
 #: GenericFilter.py:891
 msgid "Matches all males"
@@ -1031,7 +1034,7 @@ msgstr "A következőkkel közös ősök"
 
 #: GenericFilter.py:1418
 msgid "Has a common ancestor with filter match"
-msgstr "A szűrő által megadottak közös ősei"
+msgstr "A szűrő által megadottak közös ősök"
 
 #: GenericFilter.py:1420
 msgid "Is a female"
@@ -1199,7 +1202,7 @@ msgstr "Keresés"
 
 #: GrampsCfg.py:117
 msgid "Report Preferences"
-msgstr "Riport tulajdonságok"
+msgstr "Összesítő tulajdonságai"
 
 #: GrampsCfg.py:118 StartupDialog.py:141
 msgid "Researcher Information"
@@ -1461,15 +1464,15 @@ msgstr "_Alkalmazás"
 
 #: Plugins.py:276
 msgid "Report Selection"
-msgstr "Riport kiválasztás"
+msgstr "Összesítő kiválasztása"
 
 #: Plugins.py:277 plugins.glade:248
 msgid "Select a report from those available on the left."
-msgstr "A bal oldalon lévőkből válasszon ki egy riportot"
+msgstr "A bal oldalon lévőkből válasszon ki egy összesítőt"
 
 #: Plugins.py:278
 msgid "Generate selected report"
-msgstr "Kiválasztott riport létrehozása"
+msgstr "Kiválasztott összesítő létrehozása"
 
 #: Plugins.py:278
 msgid "_Generate"
@@ -1596,7 +1599,7 @@ msgstr "%s nem helyezhető át"
 
 #: RelImage.py:162 RelImage.py:170
 msgid "Could not create a thumbnail for %s"
-msgstr "Nem lehet létrehozni bemutatóképet %s számára"
+msgstr "Nem lehet létrehozni bemutatóképet %s részére"
 
 #: RelImage.py:163
 msgid "The file has been moved or deleted."
@@ -1732,7 +1735,7 @@ msgstr "Huszonkilencedik"
 
 #: Report.py:137
 msgid "Progress Report"
-msgstr "Haladás riport"
+msgstr "Haladás összesítő"
 
 #: Report.py:137
 msgid "Working"
@@ -1760,7 +1763,7 @@ msgstr "Stílus szerkesztő"
 
 #: Report.py:511
 msgid "Report Options"
-msgstr "Riport tulajdonságok"
+msgstr "Összesítő tulajdonságok"
 
 #: Report.py:529 plugins/FilterEditor.py:252 plugins/pafexport.glade:127
 msgid "Filter"
@@ -1776,7 +1779,7 @@ msgstr "Oldaltörés generációk között"
 
 #: Report.py:809
 msgid "Save Report As"
-msgstr "Riport mentése másként"
+msgstr "Összesítő mentése másként"
 
 #: Report.py:884 Report.py:962 docgen/PSDrawDoc.py:382
 msgid "Print a copy"
@@ -1877,31 +1880,31 @@ msgstr "Gyermek hozzáadása a családhoz"
 
 #: SelectChild.py:92 SelectChild.py:318
 msgid "Relationship to %(father)s"
-msgstr "%(father)s felé irányuló kapcsolat"
+msgstr "%(father)s kapcsolatai"
 
 #: SelectChild.py:99 SelectChild.py:329
 msgid "Relationship to %(mother)s"
-msgstr "Kapcsolat a %(mother)s felé"
+msgstr "%(mother)s kapcsolatai"
 
 #: SelectChild.py:105 plugins/RelCalc.py:82
 msgid "Relationship to %s"
-msgstr "Kapcsolat %s felé"
+msgstr "%s kapcsolatai"
 
 #: SelectChild.py:311
 msgid "Relationships of %s"
-msgstr "%s kapcsolata"
+msgstr "%s kapcsolatai"
 
 #: SelectChild.py:323
 msgid "Relationship to father"
-msgstr "Apa felé irányuló kapcsolat"
+msgstr "Édesapa kapcsolatai"
 
 #: SelectChild.py:334
 msgid "Relationship to mother"
-msgstr "Kapcsolat a mama felé"
+msgstr "Az édesanya kapcsolatai"
 
 #: SourceView.py:71
 msgid "Author"
-msgstr "Alkotó"
+msgstr "Készítő"
 
 #: SourceView.py:175
 msgid ""
@@ -1935,7 +1938,7 @@ msgid ""
 "to be used. Any of this information can be changed in the future in the "
 "Preferences dialog under the Settings menu."
 msgstr ""
-"Üdvözlöm a GRAMPS programban, ez egy leszármazás kutató és elemzést segítő "
+"Üdvözlöm a GRAMPS programban, ez egy leszármazáskutató és elemzést segítő "
 "programrendszer.\n"
 "Néhány információt meg kell adnia mielőtt a GRAMPS kész a futtatásra. Néhány "
 "ezek közül a későbbiekben megváltoztatható a Tulajdonságok dialógus "
@@ -2197,7 +2200,7 @@ msgstr "<b>Információ</b>"
 msgid ""
 "GRAMPS (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
-msgstr "GRAMPS (leszármazás kutató elemző programrendszer) családfakutató program."
+msgstr "GRAMPS (leszármazáskutató és elemző programrendszer) egy családfakutató program."
 
 #: const.py:125
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -2267,7 +2270,7 @@ msgstr "Válás"
 
 #: const.py:212
 msgid "Engagement"
-msgstr "Eljegyzés"
+msgstr "Eljegyzés ideje:"
 
 #: const.py:213
 msgid "Marriage Contract"
@@ -2283,7 +2286,7 @@ msgstr "Házassági hozomány"
 
 #: const.py:216
 msgid "Marriage"
-msgstr "Házasság"
+msgstr "Házasság ideje és helye:"
 
 #: const.py:290
 msgid "Alternate Birth"
@@ -2299,7 +2302,7 @@ msgstr "Felnőttkori megkeresztelés"
 
 #: const.py:293
 msgid "Baptism"
-msgstr "Megkeresztelés"
+msgstr "Keresztelése:"
 
 #: const.py:294
 msgid "Bar Mitzvah"
@@ -2327,7 +2330,7 @@ msgstr "Népszámlálás"
 
 #: const.py:300
 msgid "Christening"
-msgstr "Keresztelő"
+msgstr "Keresztelése:"
 
 #: const.py:301
 msgid "Confirmation"
@@ -2339,11 +2342,11 @@ msgstr "Hamvasztás"
 
 #: const.py:303
 msgid "Degree"
-msgstr "Képzettségi foka"
+msgstr "Iskolai végzettsége:"
 
 #: const.py:305
 msgid "Education"
-msgstr "Képzettség"
+msgstr "Tanulmányai:"
 
 #: const.py:306
 msgid "Elected"
@@ -2387,7 +2390,7 @@ msgstr "Házasság száma"
 
 #: const.py:316
 msgid "Occupation"
-msgstr "Foglalkozás"
+msgstr "Foglalkozása"
 
 #: const.py:317
 msgid "Ordination"
@@ -2719,7 +2722,7 @@ msgstr "LaTeX"
 
 #: docgen/OpenOfficeDoc.py:934 docgen/OpenOfficeDoc.py:942
 msgid "Open in OpenOffice.org"
-msgstr "Megnyitás OpenOffice.org-al"
+msgstr "Megnyitás OpenOffice.orggal"
 
 #: docgen/OpenOfficeDoc.py:936 docgen/OpenOfficeDoc.py:938
 msgid "OpenOffice.org Writer"
@@ -2808,11 +2811,11 @@ msgstr "Ismertebb neve a személynek"
 
 #: edit_person.glade:679
 msgid "<b>Gender</b>"
-msgstr "<b>Neme</b>"
+msgstr "<b>Nem</b>"
 
 #: edit_person.glade:703
 msgid "<b>Preferred name</b>"
-msgstr "<b>A használt Név</b>"
+msgstr "<b>Használt Név</b>"
 
 #: edit_person.glade:734 gramps.glade:6277
 msgid "_male"
@@ -2878,7 +2881,7 @@ msgstr "<b>Alternatív nevek</b>"
 #: edit_person.glade:1465 edit_person.glade:2005 edit_person.glade:2489
 #: edit_person.glade:3039 marriage.glade:563 marriage.glade:984
 msgid "<b>Primary source</b>"
-msgstr "<b>Elsődleges Forrás</b>"
+msgstr "<b>Fő forrás</b>"
 
 #: edit_person.glade:1741
 msgid "Create an alternate name for this person"
@@ -3306,7 +3309,7 @@ msgstr "_Könyvjelzőhöz"
 
 #: gramps.glade:532
 msgid "_Reports"
-msgstr "_Riportok"
+msgstr "_Összesítők"
 
 #: gramps.glade:540
 msgid "_Tools"
@@ -3322,7 +3325,7 @@ msgstr "_Felhasználói kézikönyv"
 
 #: gramps.glade:579
 msgid "_FAQ"
-msgstr "_FAQ"
+msgstr "_GYÍK"
 
 #: gramps.glade:606
 msgid "GRAMPS _home page"
@@ -3338,7 +3341,7 @@ msgstr "_Hiba jelzése"
 
 #: gramps.glade:663
 msgid "_Show plugin status..."
-msgstr "_Modul állapot"
+msgstr "_Modul állapot megjelenítése..."
 
 #: gramps.glade:672
 msgid "_Open example database"
@@ -3386,11 +3389,11 @@ msgstr "Központ"
 
 #: gramps.glade:791
 msgid "Generate reports"
-msgstr "Riportok készítése"
+msgstr "Összesítők készítése"
 
 #: gramps.glade:792
 msgid "Reports"
-msgstr "Riportok"
+msgstr "Összesítők"
 
 #: gramps.glade:806
 msgid "Run tools"
@@ -3578,11 +3581,11 @@ msgstr "Kapcsolat definíció\n"
 
 #: gramps.glade:4109
 msgid "_Father's relationship to child:"
-msgstr "_Apa kapcsolata a gyermek felé:"
+msgstr "_Apa kapcsolata a gyermekkel:"
 
 #: gramps.glade:4137
 msgid "_Mother's relationship to child:"
-msgstr "Anya kapcsolata a gyermek felé:"
+msgstr "Anya kapcsolata a gyermekkel:"
 
 #: gramps.glade:4165
 msgid "_Parents' relationship to each other:"
@@ -3606,15 +3609,15 @@ msgstr "_Minden megjelenítése"
 
 #: gramps.glade:5473
 msgid "Relationship to father:"
-msgstr "Apa felé irányuló kapcsolat:"
+msgstr "Az édesapa kapcsolatai:"
 
 #: gramps.glade:5497
 msgid "Relationship to mother:"
-msgstr "Kapcsolat a mama felé:"
+msgstr "Az édesanya kapcsolatai:"
 
 #: gramps.glade:5681
 msgid "_Author:"
-msgstr "_Alkotó:"
+msgstr "_Készítő:"
 
 #: gramps.glade:5709
 msgid "_Publication information:"
@@ -3657,7 +3660,7 @@ msgid ""
 "Indicates that the parents should be used as the preferred parents for "
 "reporting and display purposes"
 msgstr ""
-"Jelzi, hogy a szülőket kedvelt szülőként kell felhasználni a riportokhoz és "
+"Jelzi, hogy a szülőket kedvelt szülőként kell felhasználni a összesítőkhöz és "
 "megjelenítésekhez"
 
 #: gramps.glade:7291
@@ -3670,7 +3673,7 @@ msgstr "_Szöveg:"
 
 #: gramps.glade:8012
 msgid "FAQ - GRAMPS"
-msgstr "GRAMPS - FAQ"
+msgstr "GRAMPS - GYÍK"
 
 #: gramps_main.py:123
 msgid "GRAMPS is being run as the 'root' user."
@@ -4077,11 +4080,11 @@ msgstr "Állapot:"
 
 #: plugins.glade:324 srcsel.glade:281
 msgid "Author:"
-msgstr "Alkotó:"
+msgstr "Készítő:"
 
 #: plugins.glade:348
 msgid "Author's email:"
-msgstr "Alkotó email címe:"
+msgstr "Készítő email címe:"
 
 #: plugins/AncestorChart.py:225 plugins/AncestorReport.py:411
 #: plugins/Ancestors.py:778 plugins/Ancestors.py:794 plugins/Ancestors.py:800
@@ -4105,7 +4108,7 @@ msgstr "Ősök grafikonja"
 #: plugins/RelGraph.py:111 plugins/RelGraph.py:912 plugins/TimeLine.py:399
 #: plugins/TimeLine.py:660
 msgid "Graphical Reports"
-msgstr "Grafikus riport"
+msgstr "Grafikus összesítők"
 
 #: plugins/AncestorChart.py:246
 msgid "Ancestor Chart for %s"
@@ -4123,7 +4126,7 @@ msgstr "Megjelenítési formátum"
 #: plugins/AncestorChart.py:264 plugins/AncestorChart.py:362
 #: plugins/DesGraph.py:347 plugins/DesGraph.py:441
 msgid "Allows you to customize the data in the boxes in the report"
-msgstr "A riportokban lévő adatok testreszabásának engedélyezése"
+msgstr "Az összesítőkben lévő adatok testreszabásának engedélyezése"
 
 #: plugins/AncestorChart.py:349
 msgid "Ancestor Chart for GRAMPS Book"
@@ -4151,48 +4154,48 @@ msgstr "Grafikák"
 
 #: plugins/AncestorReport.py:84 plugins/AncestorReport.py:242
 msgid "Ahnentafel Report for %s"
-msgstr "%s Ahnentafel riport"
+msgstr "%s Ahnentafel összesítője"
 
 #: plugins/AncestorReport.py:97 plugins/DetAncestralReport.py:646
 #: plugins/DetDescendantReport.py:654
 msgid "%s Generation"
-msgstr "%s generáció"
+msgstr "%s Generáció"
 
 #: plugins/AncestorReport.py:126
 msgid "%s was born on %s in %s. "
-msgstr "%s született %s -ban/-ben %s-ban/-ben. "
+msgstr "%s született %s -ben %s -ben. "
 
 #: plugins/AncestorReport.py:129
 msgid "%s was born on %s. "
-msgstr "%s született %s-ban/-ben. "
+msgstr "%s születési ideje: %s. "
 
 #: plugins/AncestorReport.py:133
 msgid "%s was born in the year %s in %s. "
-msgstr "%s született %s évben %s-ban/-ben. "
+msgstr "%s született %s évben %s helyiségben. "
 
 #: plugins/AncestorReport.py:136
 msgid "%s was born in the year %s. "
-msgstr "%s született %s évben "
+msgstr "%s született %s évben."
 
 #: plugins/AncestorReport.py:161
 msgid "He died on %s in %s"
-msgstr "Meghalt %s -ban/-ben %s-ban/-ben"
+msgstr "Meghalt %s -ben %s-ben"
 
 #: plugins/AncestorReport.py:164
 msgid "He died on %s"
-msgstr "Meghalt %s -ban/-ben"
+msgstr "Halálának ideje: %s"
 
 #: plugins/AncestorReport.py:167
 msgid "She died on %s in %s"
-msgstr "Meghalt %s -ban/-ben %s-ban/-ben"
+msgstr "Meghalt %s -ben %s-ben"
 
 #: plugins/AncestorReport.py:170
 msgid "She died on %s"
-msgstr "Meghalt %s -ban/-ben"
+msgstr "Halálának ideje: %s"
 
 #: plugins/AncestorReport.py:174
 msgid "He died in the year %s in %s"
-msgstr "Meghalt %s évben %s-ban/-ben"
+msgstr "Meghalt %s évben %s helyiségben"
 
 #: plugins/AncestorReport.py:177
 msgid "He died in the year %s"
@@ -4200,7 +4203,7 @@ msgstr "Meghalt %s évben"
 
 #: plugins/AncestorReport.py:180
 msgid "She died in the year %s in %s"
-msgstr "Meghalt %s évben %s-ban/-ben"
+msgstr "Meghalt %s évben %s helyiségben"
 
 #: plugins/AncestorReport.py:183
 msgid "She died in the year %s"
@@ -4208,15 +4211,15 @@ msgstr "Meghalt %s évben"
 
 #: plugins/AncestorReport.py:196
 msgid ", and was buried on %s in %s."
-msgstr ", és el lett temetve %s -ban/-ben %s -ban/-ben."
+msgstr ", és el lett temetve %s -ben %s helyiségben."
 
 #: plugins/AncestorReport.py:199
 msgid ", and was buried on %s."
-msgstr ", és el lett temetve %s -ban/-ben."
+msgstr ", és el lett temetve %s -ben."
 
 #: plugins/AncestorReport.py:203
 msgid ", and was buried in the year %s in %s."
-msgstr ", és el lett temetve %s évben %s -ban/-ben."
+msgstr ", és el lett temetve %s évben %s helyiségben."
 
 #: plugins/AncestorReport.py:206
 msgid ", and was buried in the year %s."
@@ -4224,12 +4227,12 @@ msgstr ", és el lett temetve %s évben."
 
 #: plugins/AncestorReport.py:209
 msgid " and was buried in %s."
-msgstr " és el lett temetve %s -ban/-ben."
+msgstr " és el lett temetve %s helyiségben."
 
 #: plugins/AncestorReport.py:238 plugins/AncestorReport.py:334
 #: plugins/AncestorReport.py:513 plugins/AncestorReport.py:524
 msgid "Ahnentafel Report"
-msgstr "Ahnentafel riport"
+msgstr "Ahnentafel összesítő"
 
 #: plugins/AncestorReport.py:238 plugins/AncestorReport.py:514
 #: plugins/Ancestors.py:833 plugins/Ancestors.py:1106
@@ -4241,15 +4244,15 @@ msgstr "Ahnentafel riport"
 #: plugins/IndivComplete.py:474 plugins/IndivComplete.py:821
 #: plugins/IndivSummary.py:340 plugins/IndivSummary.py:630
 msgid "Text Reports"
-msgstr "Szöveges riportok"
+msgstr "Szöveges összesítők"
 
 #: plugins/AncestorReport.py:247
 msgid "Save Ahnentafel Report"
-msgstr "Ahnentafel riport mentése"
+msgstr "Ahnentafel összesítő mentése"
 
 #: plugins/AncestorReport.py:338
 msgid "Ahnentafel Report for GRAMPS Book"
-msgstr "Ahnentafel riport a GRAMPS könyv számára"
+msgstr "Ahnentafel összesítő a GRAMPS könyvbe"
 
 #: plugins/AncestorReport.py:397 plugins/Ancestors.py:763
 #: plugins/DescendReport.py:294 plugins/FamilyGroup.py:611
@@ -4267,7 +4270,7 @@ msgstr "Generációk fejlécének a stílusa"
 
 #: plugins/AncestorReport.py:516
 msgid "Produces a textual ancestral report"
-msgstr "Ősökről szöveges riport"
+msgstr "Ősökről szöveges összesítő"
 
 #: plugins/Ancestors.py:118 plugins/FtmStyleAncestors.py:85
 #: plugins/GraphViz.py:112 plugins/IndivComplete.py:711
@@ -4306,7 +4309,7 @@ msgstr " (megemlített)"
 
 #: plugins/Ancestors.py:428
 msgid " on %(specific_date)s"
-msgstr " %(specific_date)s -kor/-kör"
+msgstr " %(specific_date)s -ban/-ben"
 
 #: plugins/Ancestors.py:431
 msgid " in %(month_or_year)s"
@@ -4363,12 +4366,12 @@ msgstr "%(father)s gyermeke."
 #: plugins/Ancestors.py:535 plugins/FtmStyleAncestors.py:925
 #: plugins/FtmStyleDescendants.py:1328
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr "Ő %(father)s és %(mother)s lánya."
+msgstr "Aki %(father)s és %(mother)s lánya."
 
 #: plugins/Ancestors.py:539 plugins/FtmStyleAncestors.py:901
 #: plugins/FtmStyleDescendants.py:1304
 msgid "He is the son of %(father)s and %(mother)s."
-msgstr "Ő %(father)s és %(mother)s fia."
+msgstr "Aki %(father)s és %(mother)s fia."
 
 #: plugins/Ancestors.py:562
 msgid "Mrs."
@@ -4424,7 +4427,7 @@ msgstr "  Megjegyzés a nevekről: "
 
 #: plugins/Ancestors.py:731
 msgid "More about %(name)s:"
-msgstr "%(name)s Információi:"
+msgstr "További információk (%(name)s):"
 
 #: plugins/Ancestors.py:782
 msgid "Text style for missing photo."
@@ -4441,7 +4444,7 @@ msgstr "Bevezetés a gyermekekhez."
 #: plugins/Ancestors.py:832 plugins/Ancestors.py:945 plugins/Ancestors.py:1105
 #: plugins/Ancestors.py:1116
 msgid "Comprehensive Ancestors Report"
-msgstr "Átfogó ősök riport"
+msgstr "Átfogó ősök összesítő"
 
 #: plugins/Ancestors.py:837
 msgid "Ancestors for %s"
@@ -4450,7 +4453,7 @@ msgstr "%s ősei"
 #: plugins/Ancestors.py:842 plugins/DetAncestralReport.py:751
 #: plugins/FtmStyleAncestors.py:1016
 msgid "Save Ancestor Report"
-msgstr "Ősök riport mentése"
+msgstr "Ősök összesítő mentése"
 
 #: plugins/Ancestors.py:852 plugins/Ancestors.py:956
 msgid "Cite sources"
@@ -4458,11 +4461,11 @@ msgstr "Város források"
 
 #: plugins/Ancestors.py:949
 msgid "Comprehensive Ancestors Report for GRAMPS Book"
-msgstr "Átfogó ősök riport a GRAMPS könyvbe"
+msgstr "Átfogó ősök összesítő a GRAMPS könyvbe"
 
 #: plugins/Ancestors.py:1108
 msgid "Produces a detailed ancestral report."
-msgstr "Részletes riport létrehozása az ősökről."
+msgstr "Részletes összesítő létrehozása az ősökről."
 
 #: plugins/BookReport.py:496
 msgid "Available Books"
@@ -4475,7 +4478,7 @@ msgstr "Könyv lista"
 #: plugins/BookReport.py:600 plugins/BookReport.py:940
 #: plugins/BookReport.py:1089
 msgid "Book Report"
-msgstr "Könyv riport"
+msgstr "Összesítőkönyv "
 
 #: plugins/BookReport.py:603
 msgid "New Book"
@@ -4487,7 +4490,7 @@ msgstr "_Elérhető elemek"
 
 #: plugins/BookReport.py:610
 msgid "Current _book"
-msgstr "Jelenlegi _könyv"
+msgstr "Aktuális _könyv"
 
 #: plugins/BookReport.py:615
 msgid "Item name"
@@ -4534,7 +4537,7 @@ msgstr "Lehetséges elemek menü"
 
 #: plugins/BookReport.py:943
 msgid "GRAMPS Book"
-msgstr "GRAMPS könyv"
+msgstr "GRAMPS Könyv"
 
 #: plugins/BookReport.py:1090
 msgid "Books"
@@ -4546,7 +4549,7 @@ msgstr "Bizonytalan"
 
 #: plugins/BookReport.py:1092
 msgid "Creates a book containing several reports."
-msgstr "Több riportot tartalmazó könyv létrehozása."
+msgstr "Több összesítőt tartalmazó könyv létrehozása."
 
 #: plugins/ChangeTypes.py:67
 msgid "Change event types"
@@ -4752,19 +4755,19 @@ msgstr "%s utódai"
 #: plugins/DescendReport.py:133 plugins/DescendReport.py:229
 #: plugins/DescendReport.py:404 plugins/DescendReport.py:415
 msgid "Descendant Report"
-msgstr "Leszármazotti riport"
+msgstr "Leszármazott összesítő"
 
 #: plugins/DescendReport.py:137
 msgid "Descendant Report for %s"
-msgstr "%s leszármazotti riportja"
+msgstr "%s leszármazotti összesítője"
 
 #: plugins/DescendReport.py:142 plugins/DetDescendantReport.py:759
 msgid "Save Descendant Report"
-msgstr "Utódok riport mentése"
+msgstr "Utódok összesítő mentése"
 
 #: plugins/DescendReport.py:233
 msgid "Descendant Report for GRAMPS Book"
-msgstr "Utód riport a GRAMPS könyvbe"
+msgstr "Utód összesítő a GRAMPS könyvbe"
 
 #: plugins/DescendReport.py:302
 msgid "The style used for the level %d display."
@@ -4873,15 +4876,15 @@ msgstr "ugyanaz a személy mint [%s]"
 
 #: plugins/DetAncestralReport.py:245 plugins/DetDescendantReport.py:252
 msgid "Notes for %s"
-msgstr "Megjegyzés %s számára"
+msgstr "%s - Megjegyzések "
 
 #: plugins/DetAncestralReport.py:282 plugins/DetDescendantReport.py:289
 msgid " was born on %s in %s."
-msgstr " született %s-ban-ben %s-ban-ben."
+msgstr " született %s -ben %s helyiségben."
 
 #: plugins/DetAncestralReport.py:284 plugins/DetDescendantReport.py:291
 msgid " was born on %s."
-msgstr " született %s-ban-ben."
+msgstr " született %s -ben."
 
 #: plugins/DetAncestralReport.py:286 plugins/DetDescendantReport.py:293
 msgid " was born in the year %s in %s."
@@ -4889,11 +4892,11 @@ msgstr "%s évben %s helyiségben született"
 
 #: plugins/DetAncestralReport.py:289 plugins/DetDescendantReport.py:296
 msgid " was born in the year %s."
-msgstr "%s évben született"
+msgstr "%s évben született."
 
 #: plugins/DetAncestralReport.py:291 plugins/DetDescendantReport.py:298
 msgid " was born in %s."
-msgstr " született %s-ban-ben."
+msgstr " született %s helyiségben."
 
 #: plugins/DetAncestralReport.py:293 plugins/DetAncestralReport.py:296
 #: plugins/DetDescendantReport.py:300 plugins/DetDescendantReport.py:303
@@ -4902,32 +4905,32 @@ msgstr "."
 
 #: plugins/DetAncestralReport.py:347 plugins/DetDescendantReport.py:354
 msgid "  %s died on %s in %s"
-msgstr "  %s meghalt %s-ban-ben %s-ban-ben"
+msgstr "  %s meghalt %s -ben %s helységben"
 
 #: plugins/DetAncestralReport.py:348 plugins/DetDescendantReport.py:355
 msgid "  %s died on %s"
-msgstr "  %s meghalt %s-ban/-ben"
+msgstr "  %s meghalt %s -ben"
 
 #: plugins/DetAncestralReport.py:351 plugins/DetDescendantReport.py:358
 msgid "  %s died in %s in %s"
-msgstr "  %s meghalt %s-ban/-ben %s-ban/-ben"
+msgstr "  %s meghalt %s -ben %s -ben"
 
 #: plugins/DetAncestralReport.py:352 plugins/DetAncestralReport.py:354
 #: plugins/DetDescendantReport.py:359 plugins/DetDescendantReport.py:361
 msgid "  %s died in %s"
-msgstr "  %s meghalt %s-ban/-ben"
+msgstr "  %s meghalt %s helyiségben"
 
 #: plugins/DetAncestralReport.py:382 plugins/DetDescendantReport.py:389
 msgid "  And %s was buried on %s in %s."
-msgstr "  és %s el lett temetve %s-ban/-ben %s-ban/-ben."
+msgstr "  és %s el lett temetve %s -ben %s helyiségben."
 
 #: plugins/DetAncestralReport.py:384 plugins/DetDescendantReport.py:391
 msgid "  And %s was buried on %s."
-msgstr "  és %s el lett temetve %s-ban/-ben."
+msgstr "  és %s el lett temetve %s -ben."
 
 #: plugins/DetAncestralReport.py:386 plugins/DetDescendantReport.py:393
 msgid "  And %s was buried in %s."
-msgstr "  és %s el lett temetve %s-ban/-ben."
+msgstr "  és %s el lett temetve %s helyiségben."
 
 #: plugins/DetAncestralReport.py:416 plugins/DetDescendantReport.py:423
 msgid " %s was the son of %s and %s."
@@ -4994,11 +4997,11 @@ msgstr "  %s megházasodott %s -ban/-ben  %s -ban/-ben"
 
 #: plugins/DetAncestralReport.py:632 plugins/DetAncestralReport.py:746
 msgid "Detailed Ancestral Report for %s"
-msgstr "%s számára részletes riport az ősökről"
+msgstr "%s részére részletes összesítő az ősökről"
 
 #: plugins/DetAncestralReport.py:742 plugins/DetDescendantReport.py:750
 msgid "Gramps - Ahnentafel Report"
-msgstr "Gramps - Ahnentafel riport"
+msgstr "Gramps - Ahnentafel összesítő"
 
 #: plugins/DetAncestralReport.py:793 plugins/DetAncestralReport.py:1013
 #: plugins/DetDescendantReport.py:802 plugins/DetDescendantReport.py:1023
@@ -5066,15 +5069,15 @@ msgstr "Tartalom"
 #: plugins/DetAncestralReport.py:999 plugins/DetAncestralReport.py:1249
 #: plugins/DetAncestralReport.py:1260
 msgid "Detailed Ancestral Report"
-msgstr "Részletes riport az ősökről"
+msgstr "Részletes összesítő az ősökről"
 
 #: plugins/DetAncestralReport.py:1003
 msgid "Detailed Ancestral Report for GRAMPS Book"
-msgstr "Részletes Ősök riport a GRAMPS könyvbe"
+msgstr "Részletes Ősök összesítő a GRAMPS könyvbe"
 
 #: plugins/DetAncestralReport.py:1252
 msgid "Produces a detailed ancestral report"
-msgstr "Részletes riport létrehozása az ősökről"
+msgstr "Részletes összesítő létrehozása az ősökről"
 
 #: plugins/DetAncestralReport.py:1369 plugins/DetDescendantReport.py:1378
 msgid " at the age of %d days"
@@ -5102,7 +5105,7 @@ msgstr " %d évesen"
 
 #: plugins/DetDescendantReport.py:641 plugins/DetDescendantReport.py:754
 msgid "Detailed Descendant Report for %s"
-msgstr "%s részletes utódriportja"
+msgstr "%s részletes utódösszesítője"
 
 #: plugins/DetDescendantReport.py:830
 msgid "Omit duplicate people"
@@ -5111,15 +5114,15 @@ msgstr "Megkettőződött emberek elhagyása"
 #: plugins/DetDescendantReport.py:1009 plugins/DetDescendantReport.py:1258
 #: plugins/DetDescendantReport.py:1269
 msgid "Detailed Descendant Report"
-msgstr "Részletes utódriport"
+msgstr "Részletes utódösszesítő"
 
 #: plugins/DetDescendantReport.py:1013
 msgid "Detailed Descendant Report for GRAMPS Book"
-msgstr "Részletes utódriport a GRAMPS könyvbe"
+msgstr "Részletes utódösszesítő a GRAMPS könyvbe"
 
 #: plugins/DetDescendantReport.py:1261
 msgid "Produces a detailed descendant report"
-msgstr "Részletes utódriport létrehozása"
+msgstr "Részletes utódösszesítő létrehozása"
 
 #: plugins/EventCmp.py:144
 msgid "Event comparison filter selection"
@@ -5143,7 +5146,7 @@ msgstr "Esemény összehasonlítás"
 #: plugins/EventCmp.py:306 plugins/FamilyGroup.py:171
 #: plugins/FamilyGroup.py:274 plugins/FamilyGroup.py:276
 msgid "Death"
-msgstr "Halál"
+msgstr "Halála:"
 
 #: plugins/EventCmp.py:352
 msgid "Compare individual events"
@@ -5174,24 +5177,24 @@ msgstr "Házastárs"
 #: plugins/FamilyGroup.py:479 plugins/FamilyGroup.py:759
 #: plugins/FamilyGroup.py:768
 msgid "Family Group Report"
-msgstr "Családi csoport riport"
+msgstr "Családi összesítő"
 
 #: plugins/FamilyGroup.py:334 plugins/IndivComplete.py:288
 #: plugins/IndivSummary.py:185 plugins/WebPage.py:611
 msgid "Children"
-msgstr "Gyerekek"
+msgstr "Gyerekek:"
 
 #: plugins/FamilyGroup.py:364
 msgid "Family Group Report for %s"
-msgstr "%s családi csoport riportja"
+msgstr "%s családi összesítője"
 
 #: plugins/FamilyGroup.py:369
 msgid "Save Family Group Report"
-msgstr "Családi csoport riport mentése"
+msgstr "Családi összesítő mentése"
 
 #: plugins/FamilyGroup.py:483
 msgid "Family Group Report for GRAMPS Book"
-msgstr "Családi csoport riport a GRAMPS könyvbe"
+msgstr "Családi összesítő a GRAMPS könyvbe"
 
 #: plugins/FamilyGroup.py:629
 msgid "The style used for the text related to the children."
@@ -5207,7 +5210,7 @@ msgid ""
 "their children."
 msgstr ""
 "Szülők csoportjának és gyermekeiknek az információit megjelenítő család "
-"riport készítése."
+"összesítő készítése."
 
 #: plugins/FanChart.py:187
 msgid "Five Generation Fan Chart for %s"
@@ -5300,8 +5303,8 @@ msgid ""
 "The Custom Filter Editor builds custom filters that can be used to select "
 "people included in reports, exports, and other utilities."
 msgstr ""
-"A szűrő szerkesztő segítségével új szűrőket hozhat létre melyekkel a "
-"riportokban, exportokban, stb. kereshet."
+"A szűrő szerkesztő segítségével új szűrőket hozhat létre melyekkel az "
+"összesítőkben, exportokban, stb. kereshet."
 
 #: plugins/FilterEditor.py:643
 msgid "System Filter Editor"
@@ -5314,7 +5317,7 @@ msgid ""
 "utilities."
 msgstr ""
 "A rendszerszűrő szerkesztő segítségével új szűrőket hozhat létre melyekkel "
-"bárki használhatja az eszközöket a riportokban, exportokban, stb."
+"bárki használhatja az eszközöket az összesítőkben, exportokban, stb."
 
 #: plugins/FtmStyleAncestors.py:98 plugins/FtmStyleDescendants.py:124
 msgid "Generation No. %d"
@@ -5587,7 +5590,7 @@ msgstr "%(female_name)s%(endnotes)s meghalt: %(death_place)s%(death_endnotes)s."
 
 #: plugins/FtmStyleAncestors.py:422 plugins/FtmStyleDescendants.py:455
 msgid "Endnotes"
-msgstr "Végszó"
+msgstr "Megjegyzések"
 
 #: plugins/FtmStyleAncestors.py:441 plugins/FtmStyleDescendants.py:474
 msgid "Text:"
@@ -5599,12 +5602,12 @@ msgstr "Megjegyzések:"
 
 #: plugins/FtmStyleAncestors.py:478 plugins/FtmStyleDescendants.py:511
 msgid "Notes for %(person)s:"
-msgstr "Megjegyzések %(person)s számára:"
+msgstr "Megjegyzések %(person)s részére:"
 
 #: plugins/FtmStyleAncestors.py:493 plugins/FtmStyleAncestors.py:514
 #: plugins/FtmStyleDescendants.py:526 plugins/FtmStyleDescendants.py:547
 msgid "More about %(person_name)s:"
-msgstr "%(person_name)s egyéb:"
+msgstr "%(person_name)s - további információk:"
 
 #: plugins/FtmStyleAncestors.py:498 plugins/FtmStyleDescendants.py:531
 msgid "Name %(count)d: %(name)s%(endnotes)s"
@@ -5627,34 +5630,34 @@ msgstr "%(event_name)s: %(place)s%(endnotes)s"
 
 #: plugins/FtmStyleAncestors.py:557 plugins/FtmStyleDescendants.py:954
 msgid "He married %(spouse)s %(date)s in %(place)s%(endnotes)s."
-msgstr "Összehásasodott %(spouse)s személlyel %(date)s %(place)s%(endnotes)s helyen."
+msgstr "Összehásasodott %(spouse)s -val %(date)s %(place)s%(endnotes)s helyen."
 
 #: plugins/FtmStyleAncestors.py:563 plugins/FtmStyleDescendants.py:960
 msgid "She married %(spouse)s %(date)s in %(place)s%(endnotes)s."
 msgstr ""
-"Összeházasodott %(spouse)s személlyel %(date)s időben %(place)s%(endnotes)s "
+"Összeházasodott %(spouse)s -vel %(date)s időben %(place)s%(endnotes)s "
 "helyen."
 
 #: plugins/FtmStyleAncestors.py:570 plugins/FtmStyleDescendants.py:967
 msgid "He married %(spouse)s %(date)s%(endnotes)s."
-msgstr "Összeházasodott %(spouse)s személlyel %(date)s%(endnotes)s időben."
+msgstr "Összeházasodott %(spouse)s -vel %(date)s%(endnotes)s időben."
 
 #: plugins/FtmStyleAncestors.py:575 plugins/FtmStyleAncestors.py:586
 #: plugins/FtmStyleDescendants.py:972 plugins/FtmStyleDescendants.py:983
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Összeházasodott %(spouse)s személlyel %(place)s%(endnotes)s helyen."
+msgstr "Összeházasodott %(spouse)s -vel %(place)s%(endnotes)s helyen."
 
 #: plugins/FtmStyleAncestors.py:581 plugins/FtmStyleDescendants.py:978
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Összeházasodott %(spouse)s személlyel %(place)s%(endnotes)s helyen."
+msgstr "Összeházasodott %(spouse)s -vel %(place)s%(endnotes)s helyen."
 
 #: plugins/FtmStyleAncestors.py:592 plugins/FtmStyleDescendants.py:989
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr "Összeházasodott %(spouse)s%(endnotes)s személlyel."
+msgstr "Összeházasodott %(spouse)s%(endnotes)s -vel."
 
 #: plugins/FtmStyleAncestors.py:597 plugins/FtmStyleDescendants.py:993
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr "Összeházasodott %(spouse)s%(endnotes)s személlyel."
+msgstr "Összeházasodott %(spouse)s%(endnotes)s -vel."
 
 #: plugins/FtmStyleAncestors.py:642 plugins/FtmStyleDescendants.py:693
 msgid ""
@@ -5722,32 +5725,32 @@ msgstr "%(father)s lánya volt."
 
 #: plugins/FtmStyleAncestors.py:1007
 msgid "FTM Style Ancestral Report"
-msgstr "FTM stílusú Ősök riport"
+msgstr "FTM stílusú Ősök összesítő"
 
 #: plugins/FtmStyleAncestors.py:1011
 msgid "FTM Style Ancestral Report for %s"
-msgstr "%s FTM stílusú Ősök riportja"
+msgstr "%s FTM stílusú Ősök összesítője"
 
 #: plugins/FtmStyleAncestors.py:1102 plugins/FtmStyleAncestors.py:1252
 #: plugins/FtmStyleAncestors.py:1263
 msgid "FTM Style Ancestor Report"
-msgstr "FTM stílusú Ős riport"
+msgstr "FTM stílusú Ős összesítő"
 
 #: plugins/FtmStyleAncestors.py:1106
 msgid "FTM Style Ancestor Report for GRAMPS Book"
-msgstr "FTM stílusú Ős riport a GRAMPS könyvbe"
+msgstr "FTM stílusú Ős összesítő a GRAMPS könyvbe"
 
 #: plugins/FtmStyleAncestors.py:1255
 msgid "Produces a textual ancestral report similar to Family Tree Maker."
-msgstr "Family Tree Maker-hez hasonló szöveges riport készít"
+msgstr "Family Tree Maker-hez hasonló szöveges összesítőt készít"
 
 #: plugins/FtmStyleDescendants.py:590
 msgid "More about %(husband)s and %(wife)s:"
-msgstr "%(husband)s és %(wife)s Információi:"
+msgstr "%(husband)s és %(wife)s - további információk:"
 
 #: plugins/FtmStyleDescendants.py:639
 msgid "Children of %(person_name)s and %(spouse_name)s are:"
-msgstr "%(person_name)s gyermekei és %(spouse_name)s:"
+msgstr "%(person_name)s és %(spouse_name)s gyermekei:"
 
 #: plugins/FtmStyleDescendants.py:642
 msgid "Children of %(person_name)s are:"
@@ -5772,23 +5775,23 @@ msgstr "%(female_name)s%(endnotes)s."
 #: plugins/FtmStyleDescendants.py:1415 plugins/FtmStyleDescendants.py:1507
 #: plugins/FtmStyleDescendants.py:1660 plugins/FtmStyleDescendants.py:1671
 msgid "FTM Style Descendant Report"
-msgstr "FTM stílusú Utódok riport"
+msgstr "FTM stílusú Utódok összesítő"
 
 #: plugins/FtmStyleDescendants.py:1419
 msgid "FTM Style Descendant Report for %s"
-msgstr "%s FTM stílusú Utódok riportja"
+msgstr "%s FTM stílusú Utódok összesítője"
 
 #: plugins/FtmStyleDescendants.py:1424
 msgid "Save FTM Style Descendant Report"
-msgstr "FTM stílusú Utódok riport mentése"
+msgstr "FTM stílusú Utódok összesítő mentése"
 
 #: plugins/FtmStyleDescendants.py:1511
 msgid "FTM Style Descendant Report for GRAMPS Book"
-msgstr "FTM stílusú Utódok riport a GRAMPS könyvbe"
+msgstr "FTM stílusú Utódok összesítő a GRAMPS könyvbe"
 
 #: plugins/FtmStyleDescendants.py:1663
 msgid "Produces a textual descendant report similar to Family Tree Maker."
-msgstr "Family Tree Maker-hez hasonó riport készítése."
+msgstr "Family Tree Maker-hez hasonó összesítő készítése."
 
 #: plugins/GraphViz.py:62 plugins/GraphViz.py:92 plugins/RelGraph.py:69
 #: plugins/RelGraph.py:120
@@ -6008,7 +6011,7 @@ msgstr "Egyéni események"
 #: plugins/IndivComplete.py:378 plugins/IndivSummary.py:213
 #: plugins/WebPage.py:131 plugins/WebPage.py:296
 msgid "Summary of %s"
-msgstr "%s összesítője"
+msgstr "%s oldala"
 
 #: plugins/IndivComplete.py:408 plugins/IndivSummary.py:253
 #: plugins/WebPage.py:331
@@ -6027,11 +6030,11 @@ msgstr "Forrás információ hozzáadása"
 #: plugins/IndivComplete.py:474 plugins/IndivComplete.py:478
 #: plugins/IndivComplete.py:819
 msgid "Complete Individual Report"
-msgstr "Egyéni riport befejezése"
+msgstr "Teljes Egyéni összesítő"
 
 #: plugins/IndivComplete.py:483
 msgid "Save Complete Individual Report"
-msgstr "Egyéni riport befejezése és mentése"
+msgstr "Egyéni összesítő befejezése és mentése"
 
 #: plugins/IndivComplete.py:590 plugins/IndivComplete.py:827
 msgid "Individual Complete"
@@ -6039,7 +6042,7 @@ msgstr "Egyéni összesítő"
 
 #: plugins/IndivComplete.py:594
 msgid "Individual Complete Report for GRAMPS Book"
-msgstr "Egyéni összesítő riport hozzáadása a GRAMPS könyvbe"
+msgstr "Egyéni teljes összesítő hozzáadása a GRAMPS könyvhöz"
 
 #: plugins/IndivComplete.py:672 plugins/IndivSummary.py:600
 msgid "The style used for category labels."
@@ -6052,7 +6055,7 @@ msgstr "Házastársak nevéhez használt stílus."
 
 #: plugins/IndivComplete.py:822
 msgid "Produces a complete report on the selected people."
-msgstr "Egy teljes riportot készít a kijelölt emberekről."
+msgstr "Egy teljes összesítőt készít a kijelölt emberekről."
 
 #: plugins/IndivSummary.py:340 plugins/IndivSummary.py:525
 #: plugins/IndivSummary.py:628 plugins/IndivSummary.py:639
@@ -6069,11 +6072,11 @@ msgstr "Egyéni összesítő mentése"
 
 #: plugins/IndivSummary.py:529
 msgid "Individual Summary Report for GRAMPS Book"
-msgstr "Egyénekről összesítő riport a GRAMPS könyvbe"
+msgstr "Egyénekről teljes összesítő a GRAMPS könyvbe"
 
 #: plugins/IndivSummary.py:631
 msgid "Produces a detailed report on the selected person."
-msgstr "A kiválasztott személyről részletes riport."
+msgstr "A kiválasztott személyről részletes összesítő."
 
 #: plugins/Merge.py:111
 msgid "Medium"
@@ -6247,15 +6250,15 @@ msgstr "Születési idő"
 
 #: plugins/RelCalc.py:118
 msgid "Their common ancestor is %s."
-msgstr "%s közös ősei. "
+msgstr "%s közös ősök. "
 
 #: plugins/RelCalc.py:122
 msgid "Their common ancestors are %s and %s."
-msgstr "%s és %s a közös ősei."
+msgstr "%s és %s a közös ősök."
 
 #: plugins/RelCalc.py:127
 msgid "Their common ancestors are : "
-msgstr "Közös őseik: "
+msgstr "Közös ősök: "
 
 #: plugins/RelCalc.py:142
 msgid "%(person)s and %(active_person)s are not related."
@@ -6263,7 +6266,7 @@ msgstr "%(person)s és %(active_person)s nincsenek kapcsolatban."
 
 #: plugins/RelCalc.py:145
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
-msgstr "%(relationship)s kapcsolat van %(person)s és %(active_person)s között."
+msgstr "%(person)s %(relationship)s %(active_person)s -nak."
 
 #: plugins/RelCalc.py:161
 msgid "Calculates the relationship between two people"
@@ -6459,15 +6462,15 @@ msgstr "Év címkékhez használt stílus."
 #: plugins/TimeLine.py:398 plugins/TimeLine.py:546 plugins/TimeLine.py:658
 #: plugins/TimeLine.py:668
 msgid "Timeline Graph"
-msgstr "Idővonal grafikon"
+msgstr "Idővonalas grafikon"
 
 #: plugins/TimeLine.py:403
 msgid "Timeline Graph for %s"
-msgstr "%s idővonal grafikonja"
+msgstr "%s idővonalas grafikonja"
 
 #: plugins/TimeLine.py:412
 msgid "Timeline File"
-msgstr "Idővonal fájl"
+msgstr "Idővonalas grafikon fájl"
 
 #: plugins/TimeLine.py:435 plugins/TimeLine.py:577
 msgid "Sort by"
@@ -6475,11 +6478,11 @@ msgstr "Következők szerinti rendezés"
 
 #: plugins/TimeLine.py:492
 msgid "Generates a timeline graph."
-msgstr "Idővonal grafikon létrahozása."
+msgstr "Idővonalas grafikon létrahozása."
 
 #: plugins/TimeLine.py:550
 msgid "Timeline Graph for GRAMPS Book"
-msgstr "Idővonal grafikon a GRAMPS könyvbe"
+msgstr "Idővonalas grafikon a GRAMPS könyvbe"
 
 #: plugins/Verify.py:91 plugins/Verify.py:398
 msgid "Database Verify"
@@ -6823,7 +6826,7 @@ msgstr "Id szám"
 
 #: plugins/WebPage.py:372
 msgid "Return to the index of people"
-msgstr "Visszatérés az emberek felsorolásához"
+msgstr "Vissza a családfa indexhez"
 
 #: plugins/WebPage.py:487
 msgid "Facts and Events"
@@ -6835,7 +6838,7 @@ msgstr "Web oldalak létrehozása"
 
 #: plugins/WebPage.py:665
 msgid "Generate HTML reports - GRAMPS"
-msgstr "HTML riport készítése - GRAMPS"
+msgstr "HTML összesítő készítése - GRAMPS"
 
 #: plugins/WebPage.py:754 plugins/WebPage.py:758
 msgid "Family Tree Index"
@@ -6843,7 +6846,7 @@ msgstr "Családfa index"
 
 #: plugins/WebPage.py:792
 msgid "%s (continued)"
-msgstr "%s (folytatott)"
+msgstr "%s (folytatás)"
 
 #: plugins/WebPage.py:808
 msgid "Neither %s nor %s are directories"
@@ -6880,7 +6883,7 @@ msgstr "Megjegyzések és szövegek elhagyása a forrás információkból"
 
 #: plugins/WebPage.py:912
 msgid "Include the GRAMPS ID in the report"
-msgstr "GRAMPS ID hozzáadása a riporthoz"
+msgstr "GRAMPS ID hozzáadása az összesítőhöz"
 
 #: plugins/WebPage.py:913
 msgid "Create a GENDEX index"
@@ -6920,7 +6923,7 @@ msgstr "Web oldal"
 
 #: plugins/WebPage.py:969
 msgid "Target Directory"
-msgstr "Cél könyvtár"
+msgstr "Célkönyvtár"
 
 #: plugins/WebPage.py:993
 msgid "Direct Descendants of %s"
@@ -6992,7 +6995,7 @@ msgstr "Exportálás CD-re"
 
 #: plugins/WriteFtree.py:55
 msgid "Export to Web Family Tree"
-msgstr "Web családfába exportálása"
+msgstr "Web Family Tree -be exportálás"
 
 #: plugins/WriteGedcom.py:62
 msgid "Export to GEDCOM"
@@ -7105,7 +7108,7 @@ msgstr "%d generációban %d személy van.\n"
 
 #: plugins/count_anc.py:77
 msgid "Total ancestors in generations %d to -1 is %d .\n"
-msgstr "%d tól 1-ig %d  terjedő generációkban az ősök száma.\n"
+msgstr "%d -tól -1-ig lévő generációkban az ősök száma: %d.\n"
 
 #: plugins/count_anc.py:94
 msgid "Number of ancestors"
@@ -7676,15 +7679,15 @@ msgstr "A4"
 
 #: preferences.glade:2070
 msgid "_Default report directory:"
-msgstr "Alapértelmezett riport könyvtár"
+msgstr "_Alapértelmezett összesítő könyvtár"
 
 #: preferences.glade:2097 preferences.glade:2156
 msgid "Select default report directory - GRAMPS"
-msgstr "Alapértelmezett riport könyvtár kiválasztása - GRAMPS"
+msgstr "Alapértelmezett összesítő könyvtár kiválasztása - GRAMPS"
 
 #: preferences.glade:2104
 msgid "The default directory for the output of many report generators"
-msgstr "Néhány riportkészítő kimenetének az alapértelmezett könyvtára"
+msgstr "Néhány összesítőkészítő kimenetének az alapértelmezett könyvtára"
 
 #: preferences.glade:2129
 msgid "Default _web site directory:"
@@ -7692,11 +7695,11 @@ msgstr "Alapértelmezett _web site könyvtár:"
 
 #: preferences.glade:2163
 msgid "The default directory for the output of the Web Site report generators"
-msgstr "A Web Site riportkészítő kimenetének az alapértelmezett könyvtára"
+msgstr "A Web Site összesítőkészítő kimenetének az alapértelmezett könyvtára"
 
 #: preferences.glade:2188
 msgid "<b>Report preferences</b>"
-msgstr "<b>Tulajdonságok riport</b>"
+msgstr "<b>Összeítő Tulajdonságai</b>"
 
 #: preferences.glade:2256
 msgid "Make a _reference to the object when the object is dropped"
