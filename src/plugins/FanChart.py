@@ -76,6 +76,7 @@ class FanChart:
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style('FC-Title')
+        g.set_line_width(0)
         self.doc.add_draw_style("t",g)
 
         g = BaseDoc.GraphicsStyle()
@@ -136,6 +137,8 @@ class FanChart:
         self.map = [None] * 32
 	self.text= {}
         self.box_width = 0
+        if self.standalone:
+            self.doc.init()
 
     def filter(self,person,index):
         """traverse the ancestors recursively until either the end

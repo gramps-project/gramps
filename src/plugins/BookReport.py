@@ -970,6 +970,7 @@ class BookReportDialog(Report.ReportDialog):
         """The actual book report. Start it out, then go through the item list 
         and call each item's write_book_item method."""
 
+        self.doc.init()
         for item in self.rptlist:
             item.write_report()
         self.doc.close()

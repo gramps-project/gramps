@@ -172,6 +172,8 @@ class AncestorChart:
 
         g = BaseDoc.GraphicsStyle()
         self.doc.add_draw_style("line",g)
+        if self.standalone:
+            self.doc.init()
 
     def get_numbers(self,start,index,vals):
         if index > 4:
