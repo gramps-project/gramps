@@ -76,23 +76,30 @@ _bottom = [
 
 class HtmlDoc(TextDoc):
 
-    def __init__(self,styles,template):
+    def __init__(self,styles,template,source=None):
         TextDoc.__init__(self,styles,PaperStyle("",0,0),None)
-        self.f = None
-        self.filename = None
-        self.template = template
-        self.top = []
-        self.bottom = []
-        self.base = ""
+        if source == None:
+            self.f = None
+            self.filename = None
+            self.template = template
+            self.top = []
+            self.bottom = []
+            self.base = ""
+            
+            self.load_template()
+        else:
+            self.f = None
+            self.filename = source.filename
+            self.template = None
+            self.top = source.top
+            self.bottom = source.bottom
+            self.base = source.base
 
-    def open(self,filename):
-        
+    def load_template(self):
         start = re.compile(r"<!--\s*START\s*-->")
         stop = re.compile(r"<!--\s*STOP\s*-->")
-
         top_add = 1
         bottom_add = 0
-
         if self.template and self.template != "":
             try:
                 templateFile = open(self.template,"r")
@@ -132,6 +139,9 @@ class HtmlDoc(TextDoc):
             self.bottom = _bottom
             self.top = _top
 
+    def open(self,filename):
+        
+
         if filename[-5:] == ".html" or filename[-4:0] == ".htm":
             self.filename = filename
         else:
@@ -140,21 +150,30 @@ class HtmlDoc(TextDoc):
         self.base = os.path.dirname(self.filename)
 
         self.f = open(self.filename,"w")
-        
+
+        need_start = 1
+        need_stop = 0
+        fl2txt = utils.fl2txt
         for line in self.top:
-            match = t_one_line_re.match(line)
-            if match:
-                m = match.groups()
-                self.f.write('%s<TITLE>%s</TITLE>%s\n' % (m[0],self.title,m[1]))
-                continue
-            match = t_start_re.match(line)
-            if match:
-                m =match.groups()
-                self.f.write('%s<TITLE>%s\n' % (m[0],self.title))
-                continue
-            if t_stop_re.match(line):
-                self.f.write('</TITLE>\n')
-                continue 
+            if need_start:
+                match = t_one_line_re.match(line)
+                if match:
+                    m = match.groups()
+                    self.f.write('%s<TITLE>%s</TITLE>%s\n' % (m[0],self.title,m[1]))
+                    need_start = 0
+                    continue
+                match = t_start_re.match(line)
+                if match:
+                    m = match.groups()
+                    self.f.write('%s<TITLE>%s\n' % (m[0],self.title))
+                    need_start = 0
+                    need_stop = 1
+                    continue
+            elif need_stop:
+                if t_stop_re.match(line):
+                    self.f.write('</TITLE>\n')
+                    need_stop = 0
+                    continue 
             self.f.write(line)
 
         self.f.write('<style type="text/css">\n<!--\n')
@@ -163,7 +182,7 @@ class HtmlDoc(TextDoc):
 
             self.f.write('.')
             self.f.write(key)
-            pad = utils.fl2txt("%.3fcm ",style.get_padding())
+            pad = fl2txt("%.3fcm ",style.get_padding())
             self.f.write(' { padding:' + pad + pad + pad + pad +'; ')
             if style.get_top_border():
 	       self.f.write('border-top:thin solid #000000; ')
@@ -201,11 +220,11 @@ class HtmlDoc(TextDoc):
             elif align == PARA_ALIGN_JUSTIFY:
                 self.f.write('text-align:justify; ')
             self.f.write('text-indent:%scm; ' % \
-                         utils.fl2txt("%.2f",style.get_first_indent()))
+                         fl2txt("%.2f",style.get_first_indent()))
             self.f.write('margin-right:%scm; ' % \
-                         utils.fl2txt("%.2f",style.get_right_margin()))
+                         fl2txt("%.2f",style.get_right_margin()))
             self.f.write('margin-left:%scm; ' % \
-                         utils.fl2txt("%.2f",style.get_left_margin()))
+                         fl2txt("%.2f",style.get_left_margin()))
             if style.get_top_border():
 	       self.f.write('border-top:thin solid #000000; ')
             else:
