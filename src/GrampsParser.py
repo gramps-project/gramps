@@ -69,6 +69,7 @@ class GrampsParser(handler.ContentHandler):
         self.scomments_list = []
         self.note_list = []
 
+        self.use_p = 0
         self.in_note = 0
         self.in_attribute = 0
         self.in_old_attr = 0
@@ -398,6 +399,8 @@ class GrampsParser(handler.ContentHandler):
             photo.setPrivate(0)
         if self.in_family == 1:
             self.family.addPhoto(photo)
+        if self.in_source == 1:
+            self.source.addPhoto(photo)
         else:
             self.person.addPhoto(photo)
 
@@ -609,7 +612,12 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_stext(self,tag):
-        self.source_ref.setText(fix_spaces(tag))
+        if self.use_p:
+            self.use_p = 0
+            note = fix_spaces(self.stext_list)
+        else:
+            note = tag
+        self.source_ref.setText(note)
 
     #---------------------------------------------------------------------
     #
@@ -617,7 +625,12 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_scomments(self,tag):
-        self.source_ref.setComments(fix_spaces(self.scomments_list))
+        if self.use_p:
+            self.use_p = 0
+            note = fix_spaces(self.scomments_list)
+        else:
+            note = tag
+        self.source_ref.setComments(note)
 
     #---------------------------------------------------------------------
     #
@@ -658,16 +671,23 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_note(self,tag):
         self.in_note = 0
+        if self.use_p:
+            self.use_p = 0
+            note = fix_spaces(self.note_list)
+        else:
+            note = tag
         if self.in_address == 1:
-            self.address.setNote(fix_spaces(self.note_list))
-        elif self.in_source_ref == 1:
-            self.source_ref.setNote(fix_spaces(self.note_list))
+            self.address.setNote(note)
+        if self.in_attribute == 1:
+            self.attribute.setNote(note)
+        elif self.in_source == 1:
+            self.source.setNote(note)
         elif self.in_event == 1:
-            self.event.setNote(fix_spaces(self.note_list))
+            self.event.setNote(note)
         elif self.in_people == 1:
-            self.person.setNote(fix_spaces(self.note_list))
+            self.person.setNote(note)
         elif self.in_family == 1:
-            self.family.setNote(fix_spaces(self.note_list))
+            self.family.setNote(note)
         self.note_list = []
 
     #---------------------------------------------------------------------
@@ -749,6 +769,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_ptag(self,tag):
+        self.use_p = 1
         if self.in_note:
             self.note_list.append(tag)
         elif self.in_stext:

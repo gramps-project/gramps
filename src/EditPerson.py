@@ -79,7 +79,8 @@ class EditPerson:
         self.surname_list = surname_list
         self.callback = callback
         self.path = db.getSavePath()
-
+        self.not_loaded = 1
+        
         self.top_window = libglade.GladeXML(const.editPersonFile, "editPerson")
 
         # widgets
@@ -123,7 +124,6 @@ class EditPerson:
         self.is_female = self.get_widget("genderFemale")
 
         self.selectedIcon = -1
-        self.currentImages = []
         
         self.top_window.signal_autoconnect({
             "on_eventAddBtn_clicked" : on_event_add_clicked,
@@ -210,7 +210,10 @@ class EditPerson:
         # load photos into the photo window
         photo_list = person.getPhotoList()
         if len(photo_list) != 0:
-            self.load_photo(photo_list[0].getPath())
+            thumb = self.db.getSavePath() + os.sep + ".thumb" + \
+                    os.sep + "i%d.jpg" % self.person.getId()
+            RelImage.check_thumb(photo_list[0].getPath(),thumb,const.picWidth)
+            self.load_photo(thumb)
     
         # set notes data
         self.notes_field.set_point(0)
@@ -386,33 +389,27 @@ class EditPerson:
 
     #-------------------------------------------------------------------------
     #
-    # add_thumbnail - Scale the image and add it to the IconList.  Currently, 
-    # there seems to be a problem with either GdkImlib. A reference has to be
-    # kept to the image, or it gets lost.  This is supposed to be a known
-    # imlib problem
+    # add_thumbnail - Scale the image and add it to the IconList. 
     #
     #-------------------------------------------------------------------------
     def add_thumbnail(self,photo):
+        src = photo.getPath()
+        thumb = self.db.getSavePath() + os.sep + ".thumb" + os.sep + \
+                os.path.basename(src)
 
-        image2 = RelImage.scale_image(photo.getPath(),const.thumbScale)
+        RelImage.check_thumb(src,thumb,const.thumbScale)
 
-        self.currentImages.append(image2)
-        self.photo_list.append_imlib(image2,photo.getDescription())
+        self.photo_list.append(thumb,photo.getDescription())
         
     #-------------------------------------------------------------------------
     #
-    # load_images - clears the currentImages list to free up any cached 
-    # Imlibs.  Then add each photo in the person's list of photos to the 
+    # load_images - add each photo in the person's list of photos to the 
     # photolist window.
     #
     #-------------------------------------------------------------------------
     def load_images(self):
-
         if len(self.person.getPhotoList()) == 0:
             return
-
-        self.currentImages = []
-    
         self.photo_list.freeze()
         self.photo_list.clear()
         for photo in self.person.getPhotoList():
@@ -427,8 +424,7 @@ class EditPerson:
     #
     #-------------------------------------------------------------------------
     def load_photo(self,photo):
-        image2 = RelImage.scale_image(photo,const.picWidth)
-        self.get_widget("personPix").load_imlib(image2)
+        self.get_widget("personPix").load_file(photo)
 
 #-------------------------------------------------------------------------
 #
@@ -840,8 +836,10 @@ def on_event_select_row(obj,row,b,c):
 #
 #-------------------------------------------------------------------------
 def on_switch_page(obj,a,page):
-    if page == 6:
-        obj.get_data(EDITPERSON).load_images()
+    edit_obj = obj.get_data(EDITPERSON)
+    if page == 6 and edit_obj.not_loaded:
+        edit_obj.not_loaded = 0
+        edit_obj.load_images()
 
 #-------------------------------------------------------------------------
 #
@@ -884,7 +882,12 @@ def on_primary_photo_clicked(obj):
         photolist[selectedIcon-i] = photolist[selectedIcon-i-1]
     photolist[0] = savePhoto
     edit_person_obj.load_images()
-    edit_person_obj.load_photo(savePhoto)
+
+    thumb = edit_person_obj.db.getSavePath() + os.sep + ".thumb" + os.sep + \
+            "i%d" % edit_person_obj.person.getId()
+    
+    mk_thumb(savePhoto,thumb,const.picWidth)
+    edit_person_obj.load_photo(thumb)
     utils.modified()
 
 #-------------------------------------------------------------------------

@@ -27,7 +27,7 @@ from latin_utf8 import latin_to_utf8
 import const
 
 try:
-    import PIL
+    import Image
     no_pil = 0
 except:
     no_pil = 1
@@ -425,10 +425,10 @@ class OpenOfficeDoc(TextDoc):
             base = os.path.basename(file)
             image_name = self.tempdir + os.sep + "Pictures" + os.sep + base
             if no_pil:
-                cmd = "%s -size %dx%d '%s' '%s'" % (const.convert,width,height,file,image_name)
+                cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,width,height,file,image_name)
                 os.system(cmd)
             else:
-                im = PIL.Image.open(file)
+                im = Image.open(file)
                 im.thumbnail((width,height))
                 im.save(name,"JPEG")
 

@@ -31,7 +31,7 @@ from gnome.ui import *
 _ = intl.gettext
 
 try:
-    import PIL.Image
+    import Image
     no_pil = 0
 except:
     no_pil = 1
@@ -56,7 +56,15 @@ def import_photo(filename,path,prefix):
         if os.path.exists(name) == 0:
             break
 
+    thumb = path+os.sep+".thumb"
+    if not os.path.exists(thumb):
+        os.mkdir(thumb)
+        
     try:
+        path = thumb + os.sep + base
+        
+        mk_thumb(filename,path,const.thumbScale)
+        
         if type == "image/jpeg":
             shutil.copy(filename,name)
         else:
@@ -64,7 +72,7 @@ def import_photo(filename,path,prefix):
                 cmd = "%s '%s' '%s'" % (const.convert,filename,name)
                 os.system(cmd)
             else:
-                PIL.Image.open(filename).save(name)
+                Image.open(filename).save(name)
     except:
         return None
 
@@ -90,5 +98,39 @@ def scale_image(path,size):
     scale = size / float(max(width,height))
     image2 = image1.clone_scaled_image(int(scale*width), int(scale*height))
     return image2
+
+#-------------------------------------------------------------------------
+#
+# scale_image
+#
+#-------------------------------------------------------------------------
+def mk_thumb(source,dest,size):
+
+    dir = os.path.dirname(dest)
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+    if no_pil:
+        cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
+        print cmd
+        os.system(cmd)
+    else:
+        im = Image.open(source)
+        im.thumbnail((size,size))
+        im.save(dest,"JPEG")
+
+#-------------------------------------------------------------------------
+#
+# scale_image
+#
+#-------------------------------------------------------------------------
+def check_thumb(source,dest,size):
+    if not os.path.isfile(source):
+        return
+    if not os.path.isfile(dest):
+        mk_thumb(source,dest,size)
+    elif os.path.getmtime(source) > os.path.getmtime(dest):
+        mk_thumb(source,dest,size)
+    
 
 

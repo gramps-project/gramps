@@ -2373,6 +2373,11 @@
 	      <handler>on_source_list_select_row</handler>
 	      <last_modification_time>Tue, 29 May 2001 21:23:02 GMT</last_modification_time>
 	    </signal>
+	    <signal>
+	      <name>button_press_event</name>
+	      <handler>on_source_list_button_press_event</handler>
+	      <last_modification_time>Thu, 31 May 2001 17:22:45 GMT</last_modification_time>
+	    </signal>
 	    <columns>2</columns>
 	    <column_widths>300,80</column_widths>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
@@ -3407,7 +3412,7 @@ Other
   <title>Gramps - Source Editor</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_CENTER</position>
-  <modal>True</modal>
+  <modal>False</modal>
   <allow_shrink>False</allow_shrink>
   <allow_grow>False</allow_grow>
   <auto_shrink>False</auto_shrink>
@@ -3519,8 +3524,14 @@ Other
 	<class>GtkNotebook</class>
 	<name>notebook2</name>
 	<width>450</width>
-	<height>250</height>
+	<height>350</height>
 	<can_focus>True</can_focus>
+	<signal>
+	  <name>switch_page</name>
+	  <handler>on_switch_page</handler>
+	  <object>sourceEditor</object>
+	  <last_modification_time>Thu, 31 May 2001 15:04:55 GMT</last_modification_time>
+	</signal>
 	<show_tabs>True</show_tabs>
 	<show_border>True</show_border>
 	<tab_pos>GTK_POS_TOP</tab_pos>
@@ -3711,7 +3722,7 @@ Other
 	  <class>GtkScrolledWindow</class>
 	  <name>scrolledwindow23</name>
 	  <hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
-	  <vscrollbar_policy>GTK_POLICY_ALWAYS</vscrollbar_policy>
+	  <vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
 	  <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
 	  <vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
 
@@ -3738,7 +3749,101 @@ Other
 	</widget>
 
 	<widget>
-	  <class>Placeholder</class>
+	  <class>GtkScrolledWindow</class>
+	  <name>scrolledwindow25</name>
+	  <hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
+	  <vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
+	  <hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
+	  <vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
+
+	  <widget>
+	    <class>GtkViewport</class>
+	    <name>viewport1</name>
+	    <shadow_type>GTK_SHADOW_IN</shadow_type>
+
+	    <widget>
+	      <class>GtkVBox</class>
+	      <name>vbox34</name>
+	      <homogeneous>False</homogeneous>
+	      <spacing>0</spacing>
+
+	      <widget>
+		<class>GnomeIconList</class>
+		<name>photolist</name>
+		<can_focus>True</can_focus>
+		<signal>
+		  <name>select_icon</name>
+		  <handler>on_photolist_select_icon</handler>
+		  <object>sourceEditor</object>
+		  <last_modification_time>Thu, 31 May 2001 14:39:53 GMT</last_modification_time>
+		</signal>
+		<signal>
+		  <name>button_press_event</name>
+		  <handler>on_photolist_button_press_event</handler>
+		  <object>sourceEditor</object>
+		  <last_modification_time>Thu, 31 May 2001 14:40:04 GMT</last_modification_time>
+		</signal>
+		<selection_mode>GTK_SELECTION_SINGLE</selection_mode>
+		<icon_width>100</icon_width>
+		<row_spacing>20</row_spacing>
+		<column_spacing>10</column_spacing>
+		<text_spacing>5</text_spacing>
+		<text_editable>False</text_editable>
+		<text_static>True</text_static>
+		<child>
+		  <padding>0</padding>
+		  <expand>True</expand>
+		  <fill>True</fill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkHButtonBox</class>
+		<name>hbuttonbox21</name>
+		<layout_style>GTK_BUTTONBOX_SPREAD</layout_style>
+		<spacing>30</spacing>
+		<child_min_width>85</child_min_width>
+		<child_min_height>27</child_min_height>
+		<child_ipad_x>7</child_ipad_x>
+		<child_ipad_y>0</child_ipad_y>
+		<child>
+		  <padding>0</padding>
+		  <expand>False</expand>
+		  <fill>True</fill>
+		</child>
+
+		<widget>
+		  <class>GtkButton</class>
+		  <name>add_photo</name>
+		  <can_default>True</can_default>
+		  <can_focus>True</can_focus>
+		  <signal>
+		    <name>clicked</name>
+		    <handler>on_addphoto_clicked</handler>
+		    <object>sourceEditor</object>
+		    <last_modification_time>Thu, 31 May 2001 14:39:32 GMT</last_modification_time>
+		  </signal>
+		  <label>Add Photo</label>
+		  <relief>GTK_RELIEF_NORMAL</relief>
+		</widget>
+
+		<widget>
+		  <class>GtkButton</class>
+		  <name>delete_photo</name>
+		  <can_default>True</can_default>
+		  <can_focus>True</can_focus>
+		  <signal>
+		    <name>clicked</name>
+		    <handler>on_deletephoto_clicked</handler>
+		    <object>sourceEditor</object>
+		    <last_modification_time>Thu, 31 May 2001 14:39:16 GMT</last_modification_time>
+		  </signal>
+		  <label>Delete Photo</label>
+		  <relief>GTK_RELIEF_NORMAL</relief>
+		</widget>
+	      </widget>
+	    </widget>
+	  </widget>
 	</widget>
 
 	<widget>

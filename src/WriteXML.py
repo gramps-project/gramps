@@ -62,11 +62,8 @@ def fix(line):
 def writeNote(g,val,note):
     if not note:
         return
-    g.write("<" + val + ">\n")
-    textlines = string.split(note[:-1],'\n')
-
-    for line in textlines:
-        g.write("<p>" + fix(line) + "</p>\n")
+    g.write("<" + val + ">")
+    g.write(fix(note))
     g.write("</" + val + ">\n")
 			
 #-------------------------------------------------------------------------
@@ -90,7 +87,7 @@ def dump_my_event(g,name,event):
     date = event.getSaveDate()
     place = event.getPlace()
     description = event.getDescription()
-    if not date and not place and not description:
+    if not name and not date and not place and not description:
         return
     
     g.write("<event type=\"" + fix(name) + "\">\n")
@@ -123,7 +120,7 @@ def dump_source_ref(g,source_ref):
                 write_line(g,"spage",p)
                 writeNote(g,"scomments",c)
                 writeNote(g,"stext",t)
-                write_line(g,"sdate",c)
+                write_line(g,"sdate",d)
                 g.write("</sourceref>\n")
 
 #-------------------------------------------------------------------------
@@ -283,7 +280,7 @@ def exportData(database, filename, callback):
             g.write("<attributes>\n")
             for attr in person.getAttributeList():
                 if attr.getSourceRef() or attr.getNote():
-                    g.write('<attribute>')
+                    g.write('<attribute>\n')
                     write_line(g,"attr_type",attr.getType())
                     write_line(g,"attr_value",attr.getValue())
                     dump_source_ref(g,attr.getSourceRef())
@@ -358,6 +355,12 @@ def exportData(database, filename, callback):
             write_line(g,"scallno",source.getCallNumber())
             if source.getNote() != "":
                 writeNote(g,"note",source.getNote())
+            for photo in source.getPhotoList():
+                path = photo.getPath()
+                if os.path.dirname(path) == fileroot:
+                    path = os.path.basename(path)
+                    g.write("<img src=\"" + fix(path) + "\"")
+                    g.write(" descrip=\""  + fix(photo.getDescription()) + "\"/>\n")
             g.write("</source>\n")
         g.write("</sources>\n")
 
