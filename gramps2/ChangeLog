@@ -1,3 +1,11 @@
+2004-06-24  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (on_import_activate,on_export_activate):
+	Add methods.
+	* src/Plugins.py (build_import_menu,build_export_menu): Remove;
+	(register_export): Change to the new scheme.
+	* src/gramps.glade: Add handlers to Import and Export menus. 
+	Rename Export to Save As..., add icons. 
+
 2004-06-23  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ArgHandler.py (handle_args): Add import callback call.
 	* src/gramps_main.py: Use open filters, mime types, and handlers 
