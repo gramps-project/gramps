@@ -55,7 +55,7 @@ def pt2cm(val):
 class PSDrawDoc(BaseDoc.BaseDoc):
 
     def __init__(self,styles,type,template,orientation):
-        BaseDoc.BaseDoc.__init__(self,styles,type,orientation)
+        BaseDoc.BaseDoc.__init__(self,styles,type,template,orientation)
         self.f = None
         self.filename = None
         self.level = 0

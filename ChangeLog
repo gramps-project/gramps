@@ -1,3 +1,8 @@
+2004-09-14  Tim Waugh  <twaugh@redhat.com>
+	* src/docgen/PSDrawDoc.py (PSDrawDoc.__init__): Fixed base method
+	call (missing parameter).
+	* src/docgen/SvgDrawDoc.py (SvgDrawDoc.__init__): Likewise.
+
 2004-09-13  Tim Waugh  <twaugh@redhat.com>
 	* src/GenericFilter.py (IsAncestorOfFilterMatch.apply): Fixed
 	thinko.
