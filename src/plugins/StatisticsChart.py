@@ -304,7 +304,7 @@ class StatisticsChart(Report.Report):
         self.items = _Extract.collect_data(database, filterfun, extractfun,
                         gender, year_from, year_to, options['no_years'])
         # generate sorted item lookup index index
-        self.index_items(options['sort'], options['reverse'])
+        self.index_items(options['sortby'], options['reverse'])
 
         # title needs both data extraction method name + gender name
         if gender == Person.male:
@@ -458,7 +458,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
     # Options specific for this report
         self.options_dict = {
             'extract'   : 0,
-            'sort'      : _SORT_VALUE,
+            'sortby'    : _SORT_VALUE,
             'reverse'   : 0,
             'year_from' : 1700,
             'year_to'   : time.localtime()[0],
@@ -469,7 +469,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
             'extract'   : ("=num", "Data to show",
                                 [item[0] for item in _Extract.extractors],
                                 True),
-            'sort'      : ("=num", "Sorted by",
+            'sortby'    : ("=num", "Sorted by",
                                 ["%d\t%s" % item for item in self._sorts],
                                 False),
             'reverse'   : ("=0/1", "Whether to sort in reverse order",
@@ -558,7 +558,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         for item_idx in range(len(self._sorts)):
             item = self._sorts[item_idx]
             self.sort_menu.append_text(item[1])
-            if item[0] == self.options_dict['sort']:
+            if item[0] == self.options_dict['sortby']:
                 self.sort_menu.set_active(item_idx)
         tip = _("Select how the statistical data is sorted.")
         dialog.add_option(_("Sorted by"), self.sort_menu, tip)
@@ -606,7 +606,7 @@ class StatisticsChartOptions(ReportOptions.ReportOptions):
         Parses the custom options that we have added.
         """
         self.options_dict['extract'] = self.extract_menu.get_active()
-        self.options_dict['sort'] = self._sorts[self.sort_menu.get_active()][0]
+        self.options_dict['sortby'] = self._sorts[self.sort_menu.get_active()][0]
         self.options_dict['reverse'] = int(self.reverse.get_active())
         self.options_dict['year_to'] = int(self.to_box.get_text())
         self.options_dict['year_from'] = int(self.from_box.get_text())
