@@ -1,3 +1,7 @@
+2003-11-26  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (on_faq_activate): Add function.
+	* src/gramps.glade: Add faq window.
+
 2003-11-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: handle update_after edit properly, so that
 	name changes will put entry in the correct category
