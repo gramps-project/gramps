@@ -151,7 +151,10 @@ class GrampsParser:
 
     def start_placeobj(self,attrs):
         self.placeobj = self.db.findPlaceNoMap(u2l(attrs['id']))
-        self.placeobj.set_title(u2l(attrs['title']))
+        title = u2l(attrs['title'])
+        if title == "":
+            title = u2l(attrs['id'])
+        self.placeobj.set_title(title)
         self.locations = 0
         if self.num_places > 0:
             if self.callback != None and self.count % self.increment == 0:
