@@ -152,35 +152,24 @@ class ExistingDbPrompter:
                                             gtk.STOCK_OPEN,
                                             gtk.RESPONSE_OK))
         choose.set_local_only(False)
+
         # Always add automatic (macth all files) filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('All files'))
-        mime_filter.add_pattern('*')
-        choose.add_filter(mime_filter)
-        
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GRAMPS databases'))
-        mime_filter.add_mime_type(const.app_gramps)
-        choose.add_filter(mime_filter)
+        add_all_files_filter(choose)
+        add_grdb_filter(choose)
+        add_xml_filter(choose)
+        add_gedcom_filter(choose)
 
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GRAMPS XML databases'))
-        mime_filter.add_mime_type(const.app_gramps_xml)
-        choose.add_filter(mime_filter)
-
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GEDCOM files'))
-        mime_filter.add_mime_type(const.app_gedcom)
-        choose.add_filter(mime_filter)
-
+        format_list = [const.app_gramps,const.app_gramps_xml,const.app_gedcom]
         # Add more data type selections if opening existing db
         for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
             if not native_format:
                 choose.add_filter(mime_filter)
+                format_list.append(mime_type)
+                _KNOWN_FORMATS[mime_type] = mime_filter.get_name()
         
+        (box,type_selector) = format_maker(format_list)
+        choose.set_extra_widget(box)
+
         # Suggested folder: try last open file, last import, last export, 
         # then home.
         default_dir = os.path.split(GrampsKeys.get_lastfile())[0] + os.path.sep
@@ -197,7 +186,9 @@ class ExistingDbPrompter:
             filename = choose.get_filename()
             if len(filename) == 0:
                 return False
-            filetype = get_mime_type(filename)
+            filetype = type_selector.get_value()
+            if filetype == 'auto':
+                filetype = get_mime_type(filename)
             (the_path,the_file) = os.path.split(filename)
             choose.destroy()
             try:
@@ -267,21 +258,20 @@ class ImportDbPrompter:
                                             gtk.RESPONSE_OK))
         choose.set_local_only(False)
         # Always add automatic (macth all files) filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('All files'))
-        mime_filter.add_pattern('*')
-        choose.add_filter(mime_filter)
-        
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GRAMPS databases'))
-        mime_filter.add_mime_type(const.app_gramps)
-        choose.add_filter(mime_filter)
+        add_all_files_filter(choose)
+        add_grdb_filter(choose)
+
+        format_list = [const.app_gramps]
 
         # Add more data type selections if opening existing db
         for (importData,mime_filter,mime_type,native_format) in PluginMgr.import_list:
             choose.add_filter(mime_filter)
-        
+            format_list.append(mime_type)
+            _KNOWN_FORMATS[mime_type] = mime_filter.get_name()
+
+        (box,type_selector) = format_maker(format_list)
+        choose.set_extra_widget(box)
+
         # Suggested folder: try last open file, import, then last export, 
         # then home.
         default_dir = GrampsKeys.get_last_import_dir()
@@ -296,7 +286,9 @@ class ImportDbPrompter:
         response = choose.run()
         if response == gtk.RESPONSE_OK:
             filename = choose.get_filename()
-            filetype = get_mime_type(filename)
+            filetype = type_selector.get_value()
+            if filetype == 'auto':
+                filetype = get_mime_type(filename)
 
             if filetype == 'application/x-gramps':
                 choose.destroy()
@@ -349,16 +341,8 @@ class NewNativeDbPrompter:
         self.parent.clear_database()
 
         # Always add automatic (macth all files) filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('All files'))
-        mime_filter.add_pattern('*')
-        choose.add_filter(mime_filter)
-        
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GRAMPS databases'))
-        mime_filter.add_mime_type(const.app_gramps)
-        choose.add_filter(mime_filter)
+        add_all_files_filter(choose)
+        add_grdb_filter(choose)
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
@@ -431,32 +415,14 @@ class NewSaveasDbPrompter:
         (box,type_selector) = format_maker([const.app_gramps,
                                     const.app_gramps_xml,
                                     const.app_gedcom])
-        box.show_all()
         choose.set_extra_widget(box)
 
         # Always add automatic (macth all files) filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('All files'))
-        mime_filter.add_pattern('*')
-        choose.add_filter(mime_filter)
-        
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GRAMPS databases'))
-        mime_filter.add_mime_type(const.app_gramps)
-        choose.add_filter(mime_filter)
-
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GRAMPS XML databases'))
-        mime_filter.add_mime_type(const.app_gramps_xml)
-        choose.add_filter(mime_filter)
-
-        # Always add native format filter
-        mime_filter = gtk.FileFilter()
-        mime_filter.set_name(_('GEDCOM files'))
-        mime_filter.add_mime_type(const.app_gedcom)
-        choose.add_filter(mime_filter)
+        add_all_files_filter(choose)
+        add_gramps_files_filter(choose)
+        add_grdb_filter(choose)
+        add_xml_filter(choose)
+        add_gedcom_filter(choose)
 
         # Suggested folder: try last open file, import, then last export, 
         # then home.
@@ -603,4 +569,52 @@ def format_maker(formats):
     label = gtk.Label(_('Select file type:'))
     box.pack_start(label,expand=False,fill=False,padding=6)
     box.add(type_selector)
+    box.show_all()
     return (box,type_selector)
+
+def add_all_files_filter(chooser):
+    """
+    Add an all-permitting filter to the file chooser dialog.
+    """
+    mime_filter = gtk.FileFilter()
+    mime_filter.set_name(_('All files'))
+    mime_filter.add_pattern('*')
+    chooser.add_filter(mime_filter)
+
+def add_gramps_files_filter(chooser):
+    """
+    Add an all-GRAMPS filter to the file chooser dialog.
+    """
+    mime_filter = gtk.FileFilter()
+    mime_filter.set_name(_('All GRAMPS files'))
+    mime_filter.add_mime_type(const.app_gramps)
+    mime_filter.add_mime_type(const.app_gramps_xml)
+    mime_filter.add_mime_type(const.app_gedcom)
+    chooser.add_filter(mime_filter)
+
+def add_grdb_filter(chooser):
+    """
+    Add an GRDB filter to the file chooser dialog.
+    """
+    mime_filter = gtk.FileFilter()
+    mime_filter.set_name(_('GRAMPS databases'))
+    mime_filter.add_mime_type(const.app_gramps)
+    chooser.add_filter(mime_filter)
+
+def add_xml_filter(chooser):
+    """
+    Add a GRAMPS XML filter to the file chooser dialog.
+    """
+    mime_filter = gtk.FileFilter()
+    mime_filter.set_name(_('GRAMPS XML databases'))
+    mime_filter.add_mime_type(const.app_gramps_xml)
+    chooser.add_filter(mime_filter)
+
+def add_gedcom_filter(chooser):
+    """
+    Add a GEDCOM filter to the file chooser dialog.
+    """
+    mime_filter = gtk.FileFilter()
+    mime_filter.set_name(_('GEDCOM files'))
+    mime_filter.add_mime_type(const.app_gedcom)
+    chooser.add_filter(mime_filter)
