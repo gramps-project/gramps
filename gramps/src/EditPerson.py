@@ -193,7 +193,7 @@ class EditPerson:
             self.get_widget("user_label").set_text(Config.attr_name)
             val = ""
             for attr in self.person.getAttributeList():
-                if attr.getType() == Config.attr_name:
+                if attr.getType() == const.save_pattr(Config.attr_name):
                     val = attr.getValue()
                     break
             self.get_widget("user_data").set_text(val)
@@ -338,7 +338,8 @@ class EditPerson:
                     detail = "N"
                 if attr.getSourceRef().getBase():
                     detail = detail + "S"
-            self.attr_list.append([attr.getType(),attr.getValue(),detail])
+            self.attr_list.append([const.display_pattr(attr.getType()),\
+                                   attr.getValue(),detail])
             self.attr_list.set_row_data(self.attr_index,attr)
             self.attr_index = self.attr_index + 1
 
@@ -509,7 +510,7 @@ def on_attr_list_select_row(obj,row,b,c):
     edit_person_obj = obj.get_data(EDITPERSON)
     attr = obj.get_row_data(row)
 
-    edit_person_obj.attr_type.set_text(attr.getType())
+    edit_person_obj.attr_type.set_text(const.display_pattr(attr.getType()))
     edit_person_obj.attr_value.set_text(attr.getValue())
 
 #-------------------------------------------------------------------------
@@ -581,7 +582,7 @@ def on_update_attr_clicked(obj):
 
     edit_person_obj = obj.get_data(EDITPERSON)
     attr = obj.get_row_data(row)
-    attr.setType(edit_person_obj.attr_type.get_text())
+    attr.setType(const.set_pattr(edit_person_obj.attr_type.get_text()))
     attr.setValue(edit_person_obj.attr_value.get_text())
 
     edit_person_obj.redraw_attr_list()
@@ -733,7 +734,7 @@ def on_add_attr_clicked(obj):
 
     attr = Attribute()
     name = edit_person_obj.attr_type.get_text()
-    attr.setType(name)
+    attr.setType(const.set_pattr(name))
     attr.setValue(edit_person_obj.attr_value.get_text())
 
     if name not in const.personalAttributes:

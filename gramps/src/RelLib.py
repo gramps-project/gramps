@@ -881,6 +881,13 @@ class RelDataBase:
                 map[attr.getType()] = 1
         return map.keys()
 
+    def getFamilyEventTypes(self):
+        map = {}
+        for family in self.familyMap.values():
+            for attr in family.getEventList():
+                map[attr.getName()] = 1
+        return map.keys()
+
     def getFamilyRelationTypes(self):
         map = {}
         for family in self.familyMap.values():
