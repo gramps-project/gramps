@@ -4,6 +4,8 @@
 	(HasSourceOf): get handle only once, removed unused code.
 	* src/gramps_main.py: Show label for filter input field.
 
+	* src/Utils.py (probably_alive): Add some checks to make current year parameter work.
+
 2005-04-06  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GenericFilter.py: added a current year parameter to probably alive rule.
 	* src/Utils.py: added a current year parameter to probably alive function.
