@@ -1,4 +1,8 @@
-2004-03-04  Alex Roitman  <shura@alex.neuro.umn.edu>
+2004-03-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/LPRDoc.py: Cell padding support. Images support 
+	(requires CVS version of gnome-python).
+
+2004-03-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Support for paragraph's margins and
 	the first indent properties. Font-specific line spacing. 
 	Padding in paragraphs.
