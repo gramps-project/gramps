@@ -125,6 +125,7 @@ class FindBase:
         return 1
 
     def show(self):
+        self.top.window.raise_()
         self.top.show()
         
     def on_next_clicked(self,obj):
