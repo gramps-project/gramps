@@ -66,11 +66,6 @@ def ancestors_of(p1,list):
 #-------------------------------------------------------------------------
 class Merge:
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def __init__(self,database,callback):
         self.db = database
         self.map = {}
@@ -113,31 +108,18 @@ class Merge:
             })
 
     def on_merge_ok_clicked(self,obj):
-    
         active = self.menu.get_menu().get_active().get_data("v")
         self.use_soundex = self.soundex_obj.get_active()
         utils.destroy_passed_object(obj)
         self.find_potentials(active)
         self.show()
     
-    
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def progress_update(self,val):
         self.progress.set_value(val)
         while events_pending():
             mainiteration()
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def find_potentials(self,thresh):
-
         top = GladeXML(self.glade_file,"message")
         self.topWin = top.get_widget("message")
         self.progress = top.get_widget("progressbar1")
@@ -199,11 +181,6 @@ class Merge:
         self.topWin.destroy()
         self.dellist = {}
 
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def show(self):
         top = GladeXML(self.glade_file,"mergelist")
         self.window = top.get_widget("mergelist")
@@ -266,11 +243,6 @@ class Merge:
         self.update(1)
         utils.destroy_passed_object(obj)
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def list_reduce(self,list1,list2):
         value = 0
         for name in list1:
@@ -292,33 +264,18 @@ class Merge:
         else:
             return min(value,1)
         
-    #-----------------------------------------------------------------
-    #
-    #
-    #
-    #-----------------------------------------------------------------
     def gen_key(self,val):
         if self.use_soundex:
             return soundex.soundex(val)
         else:
             return val
 
-    #-----------------------------------------------------------------
-    #
-    #
-    #
-    #-----------------------------------------------------------------
     def name_compare(self,s1,s2):
         if self.use_soundex:
             return soundex.compare(s1,s2)
         else:
             return s1 == s2
 
-    #-----------------------------------------------------------------
-    #
-    #
-    #
-    #-----------------------------------------------------------------
     def date_match(self,date1,date2):
         if date1.getDate() == "" or date2.getDate() == "":
             return 0
@@ -341,11 +298,6 @@ class Merge:
         else:
             return -1
 
-    #-----------------------------------------------------------------
-    #
-    #
-    #
-    #-----------------------------------------------------------------
     def range_compare(self,date1,date2):
         if date1.isRange() and date2.isRange():
             if date1.get_start_date() >= date2.get_start_date() and \
@@ -372,11 +324,6 @@ class Merge:
             else:
                 return -1
 
-    #-----------------------------------------------------------------
-    #
-    #
-    #
-    #-----------------------------------------------------------------
     def name_match(self,name,name1):
 
         if not name1 or not name:
@@ -404,11 +351,6 @@ class Merge:
             else:
                 return self.list_reduce(list2,list1)
             
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def place_match(self,p1,p2):
         if p1 == p2:
             return 1
@@ -445,11 +387,6 @@ class Merge:
         else:
             return min(value,1)
         
-    #---------------------------------------------------------------------
-    #
-    #
-    #
-    #---------------------------------------------------------------------
     def compare_people(self,p1,p2):
 
         name1 = p1.getPrimaryName()

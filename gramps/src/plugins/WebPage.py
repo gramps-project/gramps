@@ -1,4 +1,4 @@
-#
+
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000  Donald N. Allingham
@@ -777,8 +777,28 @@ class WebReport(Report):
 #------------------------------------------------------------------------
 class WebReportDialog(ReportDialog):
     def __init__(self,database,person):
-        ReportDialog.__init__(self,database,person,"webpage.glade")
+        ReportDialog.__init__(self,database,person)
 
+    def add_user_options(self):
+
+        self.use_link = GtkCheckButton(_("Include a link to the index page"))
+        self.use_link.set_active(1) 
+        self.no_private = GtkCheckButton(_("Do not include records marked private"))
+        self.no_private.set_active(1)
+        self.restrict_living = GtkCheckButton(_("Restrict information on living people"))
+        self.no_images = GtkCheckButton(_("Do not use images"))
+        self.no_living_images = GtkCheckButton(_("Do not use images for living people"))
+        self.no_comments = GtkCheckButton(_("Do not include comments and text in source information"))
+
+        self.add_option('',self.use_link)
+        self.add_option('',self.no_private)
+        self.add_option('',self.restrict_living)
+        self.add_option('',self.no_images)
+        self.add_option('',self.no_living_images)
+        self.add_option('',self.no_comments)
+
+        self.no_images.connect('toggled',self.on_nophotos_toggled)
+        
     #------------------------------------------------------------------------
     #
     # Customization hooks
@@ -936,21 +956,6 @@ class WebReportDialog(ReportDialog):
         page."""
         self.output_notebook.set_page(1)
 
-    def setup_other_frames(self):
-        """Set up the privacy frame of the dialog.  This sole purpose of
-        this function is to grab a pointer for later use in a callback
-        routine."""
-        self.restrict_photos_check = self.topDialog.get_widget("restrict_photos")
-
-    def connect_signals(self):
-        """Connect the signal handlers for this dialog.  This routine
-        uses the parent routine to connect the common handlers, and
-        the connects its own unique handler."""
-        ReportDialog.connect_signals(self)
-        self.topDialog.signal_autoconnect({
-            "on_nophotos_toggled" : self.on_nophotos_toggled,
-            })
-
     #------------------------------------------------------------------------
     #
     # Functions related to retrieving data from the dialog window
@@ -965,17 +970,17 @@ class WebReportDialog(ReportDialog):
         """Parse the report options frame of the dialog.  Save the
         user selected choices for later use."""
         ReportDialog.parse_report_options_frame(self)
-        self.include_link = self.topDialog.get_widget("include_link").get_active()
+        self.include_link = self.use_link.get_active()
 
     def parse_other_frames(self):
         """Parse the privacy options frame of the dialog.  Save the
         user selected choices for later use."""
-        self.restrict = self.topDialog.get_widget("restrict").get_active()
-        self.private = self.topDialog.get_widget("private").get_active()
-        self.srccomments = self.topDialog.get_widget("srccomments").get_active()
-        if (self.topDialog.get_widget("nophotos").get_active() == 1):
+        self.restrict = self.restrict_living.get_active()
+        self.private = self.no_private.get_active()
+        self.srccomments = self.no_comments.get_active()
+        if self.no_images.get_active() == 1:
             self.photos = 0
-        elif (self.restrict_photos_check.get_active() == 1):
+        elif self.no_living_images.get_active() == 1:
             self.photos = 1
         else:
             self.photos = 2
@@ -991,9 +996,9 @@ class WebReportDialog(ReportDialog):
         no sense to worry about restricting which photos are included,
         now does it?"""
         if obj.get_active():
-            self.restrict_photos_check.set_sensitive(0)
+            self.no_living_images.set_sensitive(0)
         else:
-            self.restrict_photos_check.set_sensitive(1)
+            self.no_living_images.set_sensitive(1)
 
     #------------------------------------------------------------------------
     #
