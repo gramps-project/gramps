@@ -2654,27 +2654,6 @@ class GrampsDB(Persistent):
             map[idVal] = family.getId()
         return family
 
-    def findFamilyNoConflict(self,idVal,map):
-        """finds a Family in the database using the idVal and map
-        variables to translate between the external ID and gramps'
-        internal ID. If no such Family exists, a new Family instance
-        is created.
-
-        idVal - external ID number
-        map - map build by findFamily of external to gramp's IDs"""
-
-        if map.has_key(idVal):
-            family = self.familyMap[map[idVal]]
-        else:
-            family = self.familyMap.get(idVal)
-            if not family:
-                family = Family()
-                family.id = idVal
-                self.familyMap[idVal] = family
-                self.fmapIndex = self.fmapIndex + 1
-            map[idVal] = family.getId()
-        return family
-
     def findFamilyNoMap(self,val):
         """finds a Family in the database from the passed gramps' ID.
         If no such Family exists, a new Family is added to the database."""

@@ -880,7 +880,7 @@ class GrampsImportParser(GrampsParser):
         self.func_map["parentin"] = (self.start_parentin,None)
 
     def start_childof(self,attrs):
-        family = self.db.findFamilyNoConflict(attrs["ref"],self.fmap)
+        family = self.db.findFamilyNoConflicts(attrs["ref"],self.fmap)
         if attrs.has_key("mrel"):
             mrel = attrs["mrel"]
         else:
@@ -892,7 +892,7 @@ class GrampsImportParser(GrampsParser):
         self.person.AltFamilyList.append((family,mrel,frel))
 
     def start_parentin(self,attrs):
-        self.person.FamilyList.append(self.db.findFamilyNoConflict(attrs["ref"],self.fmap))
+        self.person.FamilyList.append(self.db.findFamilyNoConflicts(attrs["ref"],self.fmap))
 
     def start_bmark(self,attrs):
         person = self.db.findPersonNoConflicts(attrs["ref"],self.pmap)
