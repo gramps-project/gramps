@@ -85,7 +85,7 @@
 	<guilabel>Préférences</guilabel>, dans la catégorie
 	<guilabel>Usage</guilabel> , sous le choix 
         <guilabel>Recherche d'information/Information sur le chercheur en généalogie</guilabel>.
-	</para>
+	</para></sect2>
 
     <!-- ================ Getting Started Sub-section  -->
       <sect2 id="choose-db-start">
@@ -127,7 +127,8 @@
       </sect2>
       
     <!-- ================ Getting Started Sub-subsection  -->
-      <sect3 id="zodb-support">
+<!--  
+    <sect3 id="zodb-support">
         <title>Support optionnel du format ZODB</title> 
 
       <para>Dans le cas où StandaloneZODB ou bien Zope sont installés sur votre système,
@@ -154,6 +155,7 @@
 
       </sect3>
     </sect2>
+-->
     <!-- ================ Getting Started Subsection ==== -->
     <sect2 id="get-help">
       <title>Avoir de l'aide</title>
