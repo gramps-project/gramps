@@ -908,7 +908,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="button132">
+			    <widget class="GtkButton" id="loc_edit">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">_Edit...</property>
@@ -1548,7 +1548,7 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkButton" id="button135">
+			    <widget class="GtkButton" id="web_edit">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="label" translatable="yes">_Edit...</property>

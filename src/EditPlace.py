@@ -96,6 +96,7 @@ class EditPlace:
         self.web_list = self.top_window.get_widget("web_list")
         self.web_url = self.top_window.get_widget("web_url")
         self.web_go = self.top_window.get_widget("web_go")
+        self.web_edit = self.top_window.get_widget("web_edit")
         self.web_description = self.top_window.get_widget("url_des")
 
         # event display
@@ -104,6 +105,7 @@ class EditPlace:
         self.web_list.set_model(self.web_model)
         self.web_list.get_selection().connect('changed',self.on_web_list_select_row)
         
+        self.loc_edit = self.top_window.get_widget("loc_edit")
         self.loc_list = self.top_window.get_widget("loc_list")
         self.loc_city = self.top_window.get_widget("loc_city")
         self.loc_county = self.top_window.get_widget("loc_county")
@@ -219,13 +221,19 @@ class EditPlace:
         length = Utils.redraw_list(self.ulist,self.web_model,disp_url)
         if length > 0:
             self.web_go.set_sensitive(1)
+            self.web_edit.set_sensitive(1)
         else:
+            self.web_edit.set_sensitive(0)
             self.web_go.set_sensitive(0)
             self.web_url.set_text("")
             self.web_description.set_text("")
 
     def redraw_location_list(self):
         Utils.redraw_list(self.llist,self.loc_model,disp_loc)
+        if len(self.llist) > 0:
+            self.loc_edit.set_sensitive(1)
+        else:
+            self.loc_edit.set_sensitive(0)
 
     def on_web_go_clicked(self,obj):
         import gnome.url
