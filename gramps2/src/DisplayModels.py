@@ -36,19 +36,21 @@ import gtk
 class BaseModel(gtk.GenericTreeModel):
 
     def __init__(self,db):
-
         gtk.GenericTreeModel.__init__(self)
         self.set_property("leak_references",False)
-
+        self.fmap = []
+        self.map = {}
         self.db = db
         self.rebuild_data()
+
+    def sort_keys(self):
+        return []
 
     def rebuild_data(self):
         self.datalist = []
 
         if not self.db.is_open():
             return
-        
         self.datalist = self.sort_keys()
         
     def on_row_inserted(self,obj,path,node):
@@ -138,6 +140,7 @@ class BaseModel(gtk.GenericTreeModel):
 class SourceModel(BaseModel):
 
     def __init__(self,db):
+        BaseModel.__init__(self,db)
         self.sort_keys = db.get_source_handles
         self.map = db.source_map
         self.fmap = [
@@ -149,7 +152,6 @@ class SourceModel(BaseModel):
             self.column_change,
             self.column_handle,
             ]
-        BaseModel.__init__(self,db)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

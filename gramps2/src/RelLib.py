@@ -564,12 +564,10 @@ class Person(PrimaryObject,SourceNote):
             if ev.name in ["Cause Of Death", "Burial", "Cremation"]:
                 return False
 
-        return True
-
         if self.birth_handle:
             birth = db.get_event_from_handle(self.birth_handle)
-            if birth.get_date() != "":
-                return not_too_old(birth.get_date_object().get_start_date())
+            if birth.get_date_object().get_start_date() != Date.EMPTY:
+                return not_too_old(birth.get_date_object())
 
         # Neither birth nor death events are available.  Try looking
         # for descendants that were born more than a lifespan ago.
@@ -584,17 +582,18 @@ class Person(PrimaryObject,SourceNote):
                     child = db.get_person_from_handle(child_handle)
                     if child.birth_handle:
                         child_birth = db.get_event_from_handle(child.birth_handle)
-                        if child_birth.get_date() != "":
-                            d = SingleDate (child_birth.get_date_object().get_start_date())
-                            d.set_year (d.get_year() - years)
+                        dobj = child_birth.get_date_object()
+                        if dobj.get_start_date() != Date.EMPTY:
+                            d = Date(dobj)
+                            d.set_year(d.get_year() - years)
                             if not not_too_old (d):
                                 return True
 
                     if child.death_handle:
                         child_death = db.get_event_from_handle(child.death_handle)
-                        if child_death.get_date() != "":
-                            d = SingleDate (child_death.get_date_object().get_start_date())
-                            if not not_too_old (d):
+                        dobj = child_death.get_date_object()
+                        if dobj.get_start_date != Date.EMPTY:
+                            if not not_too_old (dobj):
                                 return True
 
                     if descendants_too_old (child, years + min_generation):
@@ -603,6 +602,8 @@ class Person(PrimaryObject,SourceNote):
         if descendants_too_old (self, min_generation):
             return False
 
+        return False
+    
         # What about their parents?
         def parents_too_old (person, age_difference):
             family_handle = person.get_main_parents_family_handle()
@@ -2350,4 +2351,8 @@ class GenderStats:
 
         return Person.unknown
 
-
+def not_too_old(date):
+    time_struct = time.localtime(time.time())
+    current_year = time_struct[0]
+    year = date.get_year()
+    return not( year != 0 and current_year - year > 110)

@@ -109,39 +109,31 @@ class GrampsInMemDB(GrampsDbBase):
         if transaction != None:
             old_data = self.event_map.get(str(handle))
             transaction.add(EVENT_KEY,handle,old_data)
-        del self.eid_trans[self.event_map[handle].get_gramps_id()]
         del self.event_map[str(handle)]
 
-    def remove_family(self,handle,transaction):
-        if transaction != None:
-            old_data = self.family_map.get(str(handle))
-            transaction.add(EVENT_KEY,handle,old_data)
-        del self.fid_trans[self.family_map[handle].get_gramps_id()]
-        del self.family_map[str(handle)]
-
     def commit_person(self,person,transaction,change_time=None):
-        id = person.get_gramps_id()
-        self.id_trans[id] = person.get_handle()
+        gid = person.get_gramps_id()
+        self.id_trans[gid] = person.get_handle()
         GrampsDbBase.commit_person(self,person,transaction,change_time)
 
     def commit_place(self,place,transaction,change_time=None):
-        id = place.get_gramps_id()
-        self.pid_trans[id] = place.get_handle()
+        gid = place.get_gramps_id()
+        self.pid_trans[gid] = place.get_handle()
         GrampsDbBase.commit_place(self,place,transaction,change_time)
 
     def commit_family(self,family,transaction,change_time=None):
-        id = family.get_gramps_id()
-        self.fid_trans[id] = family.get_handle()
+        gid = family.get_gramps_id()
+        self.fid_trans[gid] = family.get_handle()
         GrampsDbBase.commit_family(self,family,transaction,change_time)
 
     def commit_media_object(self,obj,transaction,change_time=None):
-        id = obj.get_gramps_id()
-        self.oid_trans[id] = obj.get_handle()
+        gid = obj.get_gramps_id()
+        self.oid_trans[gid] = obj.get_handle()
         GrampsDbBase.commit_media_object(self,obj,transaction,change_time)
 
     def commit_source(self,source,transaction,change_time=None):
-        id = source.get_gramps_id()
-        self.sid_trans[id] = source.get_handle()
+        gid = source.get_gramps_id()
+        self.sid_trans[gid] = source.get_handle()
         GrampsDbBase.commit_source(self,source,transaction,change_time)
 
     def get_person_from_gramps_id(self,val):

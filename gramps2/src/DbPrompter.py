@@ -185,17 +185,17 @@ class ExistingDbPrompter:
                 msg_top = msgxml.get_widget('load_message')
                 self.parent.read_file(filename)
                 msg_top.destroy()
-                return 1
+                return True
             elif filetype == const.app_gramps_xml:
                 choose.destroy()
                 self.parent.db = GrampsXMLDB.GrampsXMLDB()
                 self.parent.read_file(filename)
-                return 1
+                return True
             elif filetype == const.app_gedcom:
                 choose.destroy()
                 self.parent.db = GrampsGEDDB.GrampsGEDDB()
                 self.parent.read_file(filename)
-                return 1
+                return True
 
             # The above native formats did not work, so we need to 
             # look up the importer for this format
@@ -213,13 +213,13 @@ class ExistingDbPrompter:
                     if prompter.chooser():
                         importData(self.parent.db,filename)
                         self.parent.import_tool_callback()
-                        return 1
+                        return True
                     else:
-                        return 0
+                        return False
             QuestionDialog.ErrorDialog( _("Could not open file: %s") % filename,
                         _('The type "%s" is not in the list of known file types') % filetype )
         choose.destroy()
-        return 0
+        return False
 
 #-------------------------------------------------------------------------
 #
@@ -291,7 +291,7 @@ class ImportDbPrompter:
 #            if filetype == 'application/x-gramps':
 #                choose.destroy()
 #                self.parent.read_file(filename)
-#                return 1
+#                return True
 
             (the_path,the_file) = os.path.split(filename)
             GrampsGconfKeys.save_last_import_dir(the_path)
@@ -300,11 +300,11 @@ class ImportDbPrompter:
                     choose.destroy()
                     importData(self.parent.db,filename)
                     self.parent.import_tool_callback()
-                    return 1
+                    return True
             QuestionDialog.ErrorDialog( _("Could not open file: %s") % filename,
                         _('The type "%s" is not in the list of known file types') % filetype )
         choose.destroy()
-        return 0
+        return False
 
 #-------------------------------------------------------------------------
 #
@@ -373,7 +373,8 @@ class NewNativeDbPrompter:
                     filename = filename + ".grdb"
                 choose.destroy()
                 self.parent.read_file(filename)
-                return 1
+                return True
             else:
                 choose.destroy()
-                return 0
+                return False
+        return False
