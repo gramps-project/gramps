@@ -169,6 +169,8 @@ pkgpython_PYTHON = \
 	NoteEdit.py\
 	PaperMenu.py\
 	PedView.py\
+	PeopleView.py\
+	PeopleStore.py\
 	PlaceView.py\
 	Plugins.py\
 	QuestionDialog.py\
@@ -195,7 +197,8 @@ pkgpython_PYTHON = \
 	VersionControl.py\
 	Witness.py\
 	WriteXML.py\
-        SelectPerson.py
+	SelectPerson.py\
+	ArgHandler.py
 
 
 # Could use GNU make's ':=' syntax for nice wildcard use.
@@ -562,8 +565,8 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/gramps.png $(DESTDIR)$(prefix)/share/pixmaps
 	$(INSTALL) -d $(DESTDIR)$(prefix)/share/gnome/apps/Applications
 	$(INSTALL_DATA) $(srcdir)/gramps.desktop $(DESTDIR)$(prefix)/share/gnome/apps/Applications
-	$(INSTALL) -d $(pkglibdir)
-	$(INSTALL_DATA) grampslib.so $(pkglibdir)
+	$(INSTALL) -d $(DESTDIR)$(pkglibdir)
+	$(INSTALL_DATA) grampslib.so $(DESTDIR)$(pkglibdir)
 
 uninstall-local:
 	-rm $(DESTDIR)$(prefix)/share/pixmaps/gramps.png

@@ -1,6 +1,11 @@
-Version 0.9.6?
-* Person View uses a tree format instead of list format
-* Captialization is done as a display format, not as a database modification
+Version 0.9.6
+* More compliance with GNOME HIG.
+* New BookReport dialog layout.
+* Person View uses a tree format instead of list format.
+* Captialization is done as a display format, not as a database modification.
+* New Advanced Relationship Graph report generator (Lorenzo Cappelletti).
+* Italian relationship calculator (Lorenzo Cappelletti).
+* Bugfixes.
 
 Version 0.9.5 -- the "Fix me up" release
 * Fixed problem with deleting/merging people. 
