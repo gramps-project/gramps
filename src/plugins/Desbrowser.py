@@ -21,11 +21,10 @@
 "Analysis and Exploration/Interactive descendant browser"
 
 from RelLib import *
-import re
-import string
 import os
 import utils
 import intl
+import Config
 
 _ = intl.gettext
 
@@ -39,45 +38,47 @@ from libglade import *
 #
 #------------------------------------------------------------------------
 def runTool(database,person,callback):
-    global active_person
-    global topDialog
-    global glade_file
-    global db
-    
-    active_person = person
-    db = database
+    DesBrowse(database,person,callback)
 
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "desbrowse.glade"
+class DesBrowse:
+    def __init__(self,database,person,callback):
+        self.active = person
+        self.db = database
+        self.callback = callback
 
-    topDialog = GladeXML(glade_file,"top")
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
-    })
-    top = topDialog.get_widget("top")
-    tree= topDialog.get_widget("tree1")
+        base = os.path.dirname(__file__)
+        glade_file = base + os.sep + "desbrowse.glade"
 
-    add_to_tree(tree,active_person)
+        self.glade = GladeXML(glade_file,"top")
+        self.glade.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            })
+        top = self.glade.get_widget("top")
+        tree= self.glade.get_widget("tree1")
+        
+        self.add_to_tree(tree,self.active)
+        top.show()
 
-    top.show()
+    def add_to_tree(self,tree,person):
+        item = GtkTreeItem(Config.nameof(person))
+        item.show()
+        item.connect('button-press-event',self.button_press_event)
+        item.set_data('d',person)
+        tree.append(item)
+        subtree = None
+        for family in person.getFamilyList():
+            for child in family.getChildList():
+                if subtree == None:
+                    subtree = GtkTree()
+                    subtree.show()
+                    item.set_subtree(subtree)
+                self.add_to_tree(subtree,child)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def add_to_tree(tree,person):
-    item = GtkTreeItem(person.getPrimaryName().getName())
-    item.show()
-    tree.append(item)
-    subtree = None
-    for family in person.getFamilyList():
-        for child in family.getChildList():
-            if subtree == None:
-                subtree = GtkTree()
-                subtree.show()
-                item.set_subtree(subtree)
-            add_to_tree(subtree,child)
+    def button_press_event(self,obj,event):
+        import EditPerson
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            person = obj.get_data('d')
+            EditPerson.EditPerson(person,self.db,self.callback)
 
 #------------------------------------------------------------------------
 #
@@ -92,4 +93,5 @@ register_tool(
     category=_("Analysis and Exploration"),
     description=_("Provides a browsable hierarchy based on the active person")
     )
+
 
