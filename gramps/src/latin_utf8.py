@@ -37,7 +37,7 @@ else:
         def utf8_to_latin(s):
             y = UTF8String(s)
             try:
-                return y.encode("iso-8859-1",'replace')
+                return y.encode("iso-8859-1")
             except:
                 return s
 
