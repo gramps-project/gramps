@@ -1,7 +1,5 @@
 # translation of nb.po to Norwegian bokmål
-# translation of new_nb.po to Norsk Bokmål
 # translation of nb.po to Norsk Bokmål
-# translation of nb_NO.po to Norsk Bokmål
 # translation of template.po to Norsk Bokmål
 # GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
@@ -12,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nb\n"
 "POT-Creation-Date: Wed Feb  4 11:53:29 2004\n"
-"PO-Revision-Date: 2004-03-23 11:04+0100\n"
+"PO-Revision-Date: 2004-07-20 12:46+0200\n"
 "Last-Translator: Frode Jemtland <frode.jemtland@skolelinux.no>\n"
 "Language-Team: Norsk Bokmål\n"
 "MIME-Version: 1.0\n"
@@ -106,11 +104,11 @@ msgstr "Rediger bokmerke"
 
 #: Calendar.py:52
 msgid "abt\\.?"
-msgstr "omk\\.?"
+msgstr "ca\\.?"
 
 #: Calendar.py:53 Calendar.py:113 Calendar.py:130
 msgid "about"
-msgstr "omkring"
+msgstr "ca."
 
 #: Calendar.py:54
 msgid "est\\.?"
@@ -118,11 +116,11 @@ msgstr "est\\.?"
 
 #: Calendar.py:55 Calendar.py:115
 msgid "circa"
-msgstr "omtrent"
+msgstr "ca."
 
 #: Calendar.py:56 Calendar.py:116
 msgid "around"
-msgstr "omkring"
+msgstr "ca."
 
 #: Calendar.py:57 Calendar.py:116 Calendar.py:131
 msgid "before"
@@ -142,59 +140,59 @@ msgstr "før\\.?"
 
 #: Calendar.py:99
 msgid "April"
-msgstr "April"
+msgstr "april"
 
 #: Calendar.py:99
 msgid "February"
-msgstr "Februar"
+msgstr "februar"
 
 #: Calendar.py:99
 msgid "January"
-msgstr "Januar"
+msgstr "januar"
 
 #: Calendar.py:99
 msgid "March"
-msgstr "Mars"
+msgstr "mars"
 
 #: Calendar.py:100
 msgid "August"
-msgstr "August"
+msgstr "august"
 
 #: Calendar.py:100
 msgid "July"
-msgstr "Juli"
+msgstr "juli"
 
 #: Calendar.py:100
 msgid "June"
-msgstr "Juni"
+msgstr "juni"
 
 #: Calendar.py:100
 msgid "May"
-msgstr "Mai"
+msgstr "mai"
 
 #: Calendar.py:101
 msgid "December"
-msgstr "Desember"
+msgstr "desember"
 
 #: Calendar.py:101
 msgid "November"
-msgstr "November"
+msgstr "november"
 
 #: Calendar.py:101
 msgid "October"
-msgstr "Oktober"
+msgstr "oktober"
 
 #: Calendar.py:101
 msgid "September"
-msgstr "September"
+msgstr "september"
 
 #: Calendar.py:113
 msgid "abt"
-msgstr "omk"
+msgstr "ca"
 
 #: Calendar.py:114
 msgid "abt."
-msgstr "omk."
+msgstr "ca."
 
 #: Calendar.py:114
 msgid "est"
