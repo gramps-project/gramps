@@ -6,7 +6,7 @@ MANDIR = ${GM}
 all: ${MANDIR}/index.html
 
 ${MANDIR}/index.html: ${MANSRC}
-	${DB2HTML} ${MANSRC} -o ${MANDIR}
+	${DB2HTML} ${MANSRC} -o ./tmp
 	mv ./tmp/*.html ./${MANDIR}.junk
 	rmdir ./tmp
 	mv ${MANDIR}/stylesheet-images ./${MANDIR}.junk/
