@@ -152,7 +152,7 @@ class DateDisplay:
             return "%s %s - %s%s" % (qual_str,d1,d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_iso(start)
-            d2 = self.display_cal[cal](date.get_stop_date())
+            d2 = self.display_iso(date.get_stop_date())
             return "%s %s - %s%s" % (qual_str,d1,d2,self.calendar[cal])
         else:
             text = self.display_iso(start)
@@ -206,6 +206,8 @@ class DateDisplayEn(DateDisplay):
         list value (DateDisplay.format[]).
         """
 
+        DateDisplay.__init__(self,format)
+
         self.verify_format(format)
         if format == None:
             self.format = 0
@@ -246,10 +248,12 @@ class DateDisplayEn(DateDisplay):
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "%sbetween %s and %s%s" % (qual_str,d1,d2,self.calendar[cal])
+            return "%sbetween %s and %s%s" % (qual_str,d1,d2,
+                                              self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s%s" % (qual_str,self._mod_str[mod],text,self.calendar[cal])
+            return "%s%s%s%s" % (qual_str,self._mod_str[mod],
+                                 text,self.calendar[cal])
 
     def _display_gregorian(self,date_val):
         year = self._slash_year(date_val[2],date_val[3])

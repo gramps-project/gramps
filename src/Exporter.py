@@ -40,7 +40,7 @@ from gettext import gettext as _
 #-------------------------------------------------------------------------
 import gtk
 import gnome
-import gnome.ui
+from gnome.ui import Druid, DruidPageEdge, DruidPageStandard
 
 #-------------------------------------------------------------------------
 #
@@ -93,7 +93,7 @@ class Exporter:
         self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
         self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
 
-        self.d = gnome.ui.Druid()
+        self.d = Druid()
         self.w.add(self.d)
         self.d.add(self.build_info_page())
         self.d.add(self.build_format_page())
@@ -129,7 +129,7 @@ class Exporter:
         Build initial druid page with the overall information about the process.
         This is a static page, nothing fun here :-)
         """
-        p = gnome.ui.DruidPageEdge(0)
+        p = DruidPageEdge(0)
         p.set_title(_('Saving your data'))
         p.set_title_color(self.fg_color)
         p.set_bg_color(self.bg_color)
@@ -153,7 +153,7 @@ class Exporter:
         Build the last druid page. The actual text will be added after the
         save is performed and the success status us known. 
         """
-        p = gnome.ui.DruidPageEdge(1)
+        p = DruidPageEdge(1)
         p.set_title_color(self.fg_color)
         p.set_bg_color(self.bg_color)
         p.set_logo(self.logo)
@@ -168,7 +168,7 @@ class Exporter:
         is necessary, because no choice is made by the user when this
         page is set up. 
         """
-        p = gnome.ui.DruidPageStandard()
+        p = DruidPageStandard()
         p.set_title(_('Final save confirmation'))
         p.set_title_foreground(self.fg_color)
         p.set_background(self.bg_color)
@@ -235,7 +235,7 @@ class Exporter:
         """
         self.format_buttons = []
 
-        p = gnome.ui.DruidPageStandard()
+        p = DruidPageStandard()
         p.set_title(_('Choosing the format to save'))
         p.set_title_foreground(self.fg_color)
         p.set_background(self.bg_color)
@@ -292,7 +292,7 @@ class Exporter:
             option_box_class = self.exports[ix][3][1]
             self.option_box_instance = option_box_class(self.person)
 
-            p = gnome.ui.DruidPageStandard()
+            p = DruidPageStandard()
             p.set_title(title)
             p.set_title_foreground(self.fg_color)
             p.set_background(self.bg_color)
@@ -310,7 +310,7 @@ class Exporter:
         """
         Build a druid page embedding the FileChooserWidget.
         """
-        p = gnome.ui.DruidPageStandard()
+        p = DruidPageStandard()
         p.set_title(_('Selecting the file name'))
         p.set_title_foreground(self.fg_color)
         p.set_background(self.bg_color)

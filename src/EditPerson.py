@@ -234,8 +234,10 @@ class EditPerson:
             self.prefix_label.set_text(_('Patronymic:'))
             self.prefix_label.set_use_underline(True)
 
-        self.orig_birth = self.db.get_event_from_handle(person.get_birth_handle())
-        self.orig_death = self.db.get_event_from_handle(person.get_death_handle())
+        birth_handle = person.get_birth_handle()
+        death_handle = person.get_death_handle()
+        self.orig_birth = self.db.get_event_from_handle(birth_handle)
+        self.orig_death = self.db.get_event_from_handle(death_handle)
         self.death = RelLib.Event(self.orig_death)
         self.birth = RelLib.Event(self.orig_birth)
         self.pname = RelLib.Name(person.get_primary_name())
@@ -986,7 +988,7 @@ class EditPerson:
             pname = place_title(self.db,event)
             node = self.etree.add([const.display_pevent(event.get_name()),
                                    event.get_description(),
-                                   event.get_quote_date(),pname],event)
+                                   event.get_date(),pname],event)
             self.emap[str(event)] = node
         if self.elist:
             self.etree.select_row(0)

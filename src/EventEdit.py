@@ -104,9 +104,9 @@ class EventEditor:
                 self.witnesslist = []
             self.date = Date.Date(self.event.get_date_object())
             transname = const.display_event(event.get_name())
-            # add the name to the list if it is not already there. This tends to occur
-            # in translated languages with the 'Death' event, which is a partial match
-            # to other events
+            # add the name to the list if it is not already there. This
+            # tends to occur in translated languages with the 'Death'
+            # event, which is a partial match to other events
             if not transname in elist:
                 elist.append(transname)
         else:
@@ -292,7 +292,9 @@ class EventEditor:
         eplace_obj = self.get_place(self.place_field)
         buf = self.note_field.get_buffer()
 
-        enote = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
+        start = buf.get_start_iter()
+        stop = buf.get_end_iter()
+        enote = unicode(buf.get_text(start,stop,False))
         eformat = self.preform.get_active()
         edesc = unicode(self.descr_field.get_text())
         epriv = self.priv.get_active()

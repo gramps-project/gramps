@@ -126,7 +126,7 @@ def importData(database, filename, cb=None, use_trans=True):
 
     ansel = False
     gramps = False
-    for index in range(0,50):
+    for index in range(50):
         line = f.readline().split()
         if len(line) == 0:
             break
@@ -195,7 +195,6 @@ def import2(database, filename, cb, codeset, use_trans):
         ErrorDialog(m1,m2)
         return
     except:
-        import DisplayTrace
         Utils.destroy_passed_object(statusWindow)
         DisplayTrace.DisplayTrace()
         return
@@ -1982,7 +1981,6 @@ def readData(database,active_person,cb):
         try:
             importData(database,filename)
         except:
-            import DisplayTrace
             DisplayTrace.DisplayTrace()
     else:
         choose.destroy()

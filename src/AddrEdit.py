@@ -103,8 +103,7 @@ class AddressEditor:
 
         title_label = self.top.get_widget("title")
 
-        Utils.set_titles(self.window,title_label,
-                         text,_('Address Editor'))
+        Utils.set_titles(self.window,title_label,_('Address Editor'))
 
         if self.addr:
             self.srcreflist = self.addr.get_source_references()

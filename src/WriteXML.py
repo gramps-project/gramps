@@ -479,7 +479,7 @@ class XmlWriter:
             com = self.fix(w.get_comment())
             if w.get_type() == RelLib.Event.ID:
                 self.g.write('%s<witness>\n' % sp)
-                self.g.write('  %s<ref>%s</ref>\n' % (sp,w.get_value()))
+                self.g.write('  %s<hlink>%s</hlink>\n' % (sp,w.get_value()))
                 if com:
                     self.g.write('  %s<comment>%s</comment>\n' % (sp,com))
                 self.g.write('%s</witness>\n' % sp)
@@ -520,7 +520,7 @@ class XmlWriter:
         sp2 = "  " * (index+1)
         self.g.write('%s<lds_ord type="%s">\n' % (sp,self.fix(name)))
         dateobj = ord.get_date_object()
-        if dateobj != None and not dateobj.is_empty():
+        if dateobj and not dateobj.is_empty():
             self.write_date(dateobj,index+1)
         if ord.get_temple():
             self.g.write('%s<temple val="%s"/>\n' % (sp2,self.fix(ord.get_temple())))
@@ -528,8 +528,8 @@ class XmlWriter:
         if ord.get_status() != 0:
             self.g.write('%s<status val="%d"/>\n' % (sp2,ord.get_status()))
         if ord.get_family_handle():
-            self.g.write('%s<sealed_to hlink="%s"/>\n' % \
-                         (sp2,self.fix(ord.get_family_handle().get_handle())))
+            self.g.write('%s<sealed_to hlink="%s"/>\n' % 
+                         (sp2,self.fix(ord.get_family_handle())))
         if ord.get_note() != "":
             self.write_note("note",ord.get_note_object(),index+1)
         for s in ord.get_source_references():

@@ -80,19 +80,34 @@ class PeopleView:
 
         self.columns = []
         self.build_columns()
-        #self.person_tree.set_property('fixed-height-mode',True)
         self.person_selection = self.person_tree.get_selection()
         self.person_selection.connect('changed',self.row_changed)
         self.person_tree.connect('row_activated', self.alpha_event)
         self.person_tree.connect('button-press-event',
                                  self.on_plist_button_press)
 
+    def sort_clicked(self,obj):
+        for col in self.columns:
+            if obj == col:
+                if col.get_sort_indicator():
+                    if col.get_sort_order() == gtk.SORT_ASCENDING:
+                        col.set_sort_order(gtk.SORT_DESCENDING)
+                    else:
+                        col.set_sort_order(gtk.SORT_ASCENDING)
+                else:
+                    col.set_sort_order(gtk.SORT_ASCENDING)
+                col.set_sort_indicator(True)
+            else:
+                col.set_sort_indicator(False)
+        
     def build_columns(self):
         for column in self.columns:
             self.person_tree.remove_column(column)
             
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
-        column.set_resizable(gtk.TRUE)        
+        column.set_resizable(gtk.TRUE)
+        #column.set_clickable(True)
+        #column.connect('clicked',self.sort_clicked)
         column.set_min_width(225)
         column.set_sizing(gtk.TREE_VIEW_COLUMN_FIXED)
         self.person_tree.append_column(column)
@@ -105,6 +120,8 @@ class PeopleView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
+            #column.set_clickable(True)
+            #column.connect('clicked',self.sort_clicked)
             column.set_min_width(60)
             column.set_sizing(gtk.TREE_VIEW_COLUMN_GROW_ONLY)
             self.columns.append(column)
@@ -113,11 +130,10 @@ class PeopleView:
 
     def build_tree(self):
         self.person_model = PeopleModel.PeopleModel(self.parent.db,self.DataFilter)
-        self.sort_model = self.person_model
-        self.person_tree.set_model(self.sort_model)
+        self.person_tree.set_model(self.person_model)
         
     def blist(self, store, path, node, id_list):
-        id_list.append(self.sort_model.get_value(
+        id_list.append(self.person_model.get_value(
             node,
             PeopleModel.COLUMN_INT_ID))
 
@@ -143,8 +159,7 @@ class PeopleView:
     def change_db(self,db):
         self.build_columns()
         self.person_model = PeopleModel.PeopleModel(db,self.DataFilter)
-        self.sort_model = self.person_model
-        self.person_tree.set_model(self.sort_model)
+        self.person_tree.set_model(self.person_model)
 
     def remove_from_person_list(self,person):
         """Remove the selected person from the list. A person object is

@@ -40,7 +40,7 @@ from types import ClassType, InstanceType
 #
 #-------------------------------------------------------------------------
 import gtk
-import gnome.ui
+from gnome.ui import FileEntry
 
 #-------------------------------------------------------------------------
 #
@@ -1069,7 +1069,7 @@ class ReportDialog(BareReportDialog):
         hid = self.get_stylesheet_savefile()
         if hid[-4:]==".xml":
             hid = hid[0:-4]
-        self.target_fileentry = gnome.ui.FileEntry(hid,_("Save As"))
+        self.target_fileentry = FileEntry(hid,_("Save As"))
         self.target_fileentry.set_modal(True)
 
         if self.get_target_is_directory():
@@ -1270,8 +1270,8 @@ class ReportDialog(BareReportDialog):
         label = gtk.Label("%s:" % _("User Template"))
         label.set_alignment(0.0,0.5)
         self.html_table.attach(label, 1, 2, 2, 3, gtk.SHRINK|gtk.FILL)
-        self.html_fileentry = gnome.ui.FileEntry("HTML_Template",
-                                                 _("Choose File"))
+        self.html_fileentry = FileEntry("HTML_Template",
+                                        _("Choose File"))
         self.html_fileentry.set_modal(True)
         if template_name and not active_index:
             active_index = template_index

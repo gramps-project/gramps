@@ -1,3 +1,13 @@
+2005-01-15  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditPerson.py: don't use quote date
+	* src/PeopleModel.py: remove BOLD
+	* src/PeopleView.py: start of sorting support
+	* src/WriteXML.py: use hlink for Witness
+	* various: pychecker fixes
+	* configure.in: bump up to 1.1.3, the "Splunge: this is a
+	greate idea, but possibly lousy, and I'm not being indecisive"
+	release
+
 2005-01-15 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/KwordDoc.py: Register with paper capabilites.
 	* src/docgen/PdfDoc.py: Register with paper capabilites.
