@@ -671,7 +671,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         type = primary.get_type ()
         if type != 'Birth Name':
-            name += ' (%s)' % type
+            name += ' (%s)' % const.NameTypesMap.find_value (type)
 
         name += self.cite_sources (primary.get_source_references ())
         return name

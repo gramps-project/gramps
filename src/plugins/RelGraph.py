@@ -151,7 +151,7 @@ class RelGraphDialog(Report.ReportDialog):
 
         des = GenericFilter.GenericFilter()
         des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle()]))
+        des.add_rule(GenericFilter.IsDescendantOf([self.person.get_handle(),1]))
 
         fam = GenericFilter.GenericFilter()
         fam.set_name(_("Descendant family members of %s") % name)
@@ -159,7 +159,7 @@ class RelGraphDialog(Report.ReportDialog):
 
         ans = GenericFilter.GenericFilter()
         ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle()]))
+        ans.add_rule(GenericFilter.IsAncestorOf([self.person.get_handle(),1]))
 
         com = GenericFilter.GenericFilter()
         com.set_name(_("People with common ancestor with %s") % name)
