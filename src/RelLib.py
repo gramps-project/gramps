@@ -2430,7 +2430,7 @@ class GrampsDB(Persistent):
             if self.placeMap.has_key(idVal):
                 map[idVal] = self.addPlace(place)
             else:
-                place.setid(idVal)
+                place.setId(idVal)
                 map[idVal] = self.addPlaceAs(place)
         return place
 
@@ -2594,5 +2594,5 @@ class GrampsDB(Persistent):
             if self.sourceMap.has_key(idVal):
                 map[idVal] = self.addSource(source)
             else:
-                map[idVal] = self.addSource(source,idVal)
+                map[idVal] = self.addSource(source)
         return source
