@@ -1,3 +1,7 @@
+2003-06-14  Tim Waugh  <twaugh@redhat.com>
+	* Ancestors.py (AncestorsReport.__init__): Define Photo and
+	Entry cell styles.
+
 2003-06-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPerson.py (did_data_change): When checking name type, 
 	compare translated strings (otherwise they always differ in 
