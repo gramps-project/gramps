@@ -78,11 +78,10 @@ INTLLIBS = intl22.so
 LANGUAGES = @LANGUAGES@
 MOFILES = @MOFILES@
 MSGFMT = @MSGFMT@
-P22_INCLUDES = @P22_INCLUDES@
 PACKAGE = @PACKAGE@
 POFILES = @POFILES@
 PYTHON = @PYTHON@
-PYTHON22 = @PYTHON22@
+PYTHON_CPPFLAGS = @PYTHON_CPPFLAGS@
 PYTHON_EXEC_PREFIX = @PYTHON_EXEC_PREFIX@
 PYTHON_PLATFORM = @PYTHON_PLATFORM@
 PYTHON_PREFIX = @PYTHON_PREFIX@
@@ -107,7 +106,6 @@ pythondir = @pythondir@
 SUBDIRS = docgen filters plugins data po calendars
 
 # For intl. support, how do we compile?
-GVFSINC = @GPREF@
 CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
 LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
 CLEANFILES = $(INTLLIBS) grampslib.so
@@ -235,7 +233,8 @@ GRAPHICS = \
 	people.xpm\
 	place.png\
 	sources.png\
-	splash.jpg
+	splash.jpg\
+	tools.png
 
 
 # Other stuff that we need to install
@@ -561,10 +560,10 @@ all-local: $(INTLLIBS) grampslib.so
 # These can probably be done in a better or more elegant/generic way 
 # eventually (libtool?), but this works.
 intl22.so: $(srcdir)/intl.c
-	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -DVER22 -o $@ $(srcdir)/intl.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $(PYTHON_CPPFLAGS) -DVER22 -o $@ $(srcdir)/intl.c
 
 grampslib.so: $(srcdir)/grampslib_wrap.c
-	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 
+	$(CC) $(CFLAGS) $(PYTHON_CPPFLAGS) -o $@ $(srcdir)/grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 
