@@ -27,6 +27,11 @@
     <handler>delete_event</handler>
     <last_modification_time>Tue, 29 May 2001 23:19:12 GMT</last_modification_time>
   </signal>
+  <signal>
+    <name>configure_event</name>
+    <handler>on_gramps_configure_event</handler>
+    <last_modification_time>Sat, 25 Aug 2001 22:08:28 GMT</last_modification_time>
+  </signal>
   <title>Gramps</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
@@ -3011,16 +3016,32 @@
       <widget>
 	<class>GtkScrolledWindow</class>
 	<name>scrolledwindow28</name>
-	<hscrollbar_policy>GTK_POLICY_ALWAYS</hscrollbar_policy>
-	<vscrollbar_policy>GTK_POLICY_ALWAYS</vscrollbar_policy>
+	<hscrollbar_policy>GTK_POLICY_AUTOMATIC</hscrollbar_policy>
+	<vscrollbar_policy>GTK_POLICY_AUTOMATIC</vscrollbar_policy>
 	<hupdate_policy>GTK_UPDATE_CONTINUOUS</hupdate_policy>
 	<vupdate_policy>GTK_UPDATE_CONTINUOUS</vupdate_policy>
 
 	<widget>
 	  <class>GnomeCanvas</class>
 	  <name>canvas1</name>
+	  <border_width>5</border_width>
 	  <can_focus>True</can_focus>
-	  <anti_aliased>True</anti_aliased>
+	  <signal>
+	    <name>check_resize</name>
+	    <handler>on_canvas1_check_resize</handler>
+	    <last_modification_time>Sat, 25 Aug 2001 22:28:28 GMT</last_modification_time>
+	  </signal>
+	  <signal>
+	    <name>realize</name>
+	    <handler>on_canvas1_realize</handler>
+	    <last_modification_time>Sat, 25 Aug 2001 22:28:36 GMT</last_modification_time>
+	  </signal>
+	  <signal>
+	    <name>size_request</name>
+	    <handler>on_canvas1_size_request</handler>
+	    <last_modification_time>Sat, 25 Aug 2001 22:31:38 GMT</last_modification_time>
+	  </signal>
+	  <anti_aliased>False</anti_aliased>
 	  <scroll_x1>0</scroll_x1>
 	  <scroll_y1>0</scroll_y1>
 	  <scroll_x2>100</scroll_x2>
