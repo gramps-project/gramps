@@ -616,3 +616,4 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 	self.f.close()
 
 Plugins.register_text_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")
+Plugins.register_book_doc(_("OpenOffice.org Writer"),OpenOfficeDoc,1,1,1,".sxw")

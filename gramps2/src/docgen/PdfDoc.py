@@ -323,3 +323,12 @@ Plugins.register_text_doc(
     style=1,
     ext=".pdf"
     )
+
+Plugins.register_book_doc(
+    name=_("PDF"),
+    classref=PdfDoc,
+    table=1,
+    paper=1,
+    style=1,
+    ext=".pdf"
+    )

@@ -861,8 +861,8 @@ class BookReportDialog(Report.ReportDialog):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
-        Plugins.get_text_doc_menu(self.format_menu, self.doc_uses_tables(),
-                                  self.doc_type_changed)
+        Plugins.get_book_menu(self.format_menu, self.doc_uses_tables(),
+                              self.doc_type_changed)
 
     def make_document(self):
         """Create a document of the type requested by the user."""

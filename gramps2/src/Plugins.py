@@ -76,6 +76,7 @@ _expect  = []
 _attempt = []
 _loaddir = []
 _textdoc = []
+_bookdoc = []
 _drawdoc = []
 _failmsg = []
 _bkitems = []
@@ -488,6 +489,18 @@ def register_text_doc(name,classref, table, paper, style, ext):
 
 #-------------------------------------------------------------------------
 #
+# Text document registration
+#
+#-------------------------------------------------------------------------
+def register_book_doc(name,classref, table, paper, style, ext):
+    """Register a text document generator"""
+    for n in _bookdoc:
+        if n[0] == name:
+            return
+    _bookdoc.append((name,classref,table,paper,style,ext))
+
+#-------------------------------------------------------------------------
+#
 # Drawing document registration
 #
 #-------------------------------------------------------------------------
@@ -656,6 +669,36 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
 
 #-------------------------------------------------------------------------
 #
+# get_text_doc_menu
+#
+#-------------------------------------------------------------------------
+def get_book_menu(main_menu,tables,callback,obj=None):
+
+    index = 0
+    myMenu = gtk.Menu()
+    _bookdoc.sort()
+    for item in _bookdoc:
+        if tables and item[2] == 0:
+            continue
+        name = item[0]
+        menuitem = gtk.MenuItem(name)
+        menuitem.set_data("name",item[1])
+        menuitem.set_data("styles",item[4])
+        menuitem.set_data("paper",item[3])
+        menuitem.set_data("ext",item[5])
+        menuitem.set_data("obj",obj)
+        if callback:
+            menuitem.connect("activate",callback)
+        menuitem.show()
+        myMenu.append(menuitem)
+        if name == GrampsCfg.output_preference:
+            myMenu.set_active(index)
+            callback(menuitem)
+        index = index + 1
+    main_menu.set_menu(myMenu)
+
+#-------------------------------------------------------------------------
+#
 # get_text_doc_list
 #
 #-------------------------------------------------------------------------
@@ -663,6 +706,18 @@ def get_text_doc_list():
     l = []
     _textdoc.sort()
     for item in _textdoc:
+        l.append(item[0])
+    return l
+
+#-------------------------------------------------------------------------
+#
+# get_text_doc_list
+#
+#-------------------------------------------------------------------------
+def get_book_doc_list():
+    l = []
+    _bookdoc.sort()
+    for item in _bookdoc:
         l.append(item[0])
     return l
 
