@@ -94,6 +94,7 @@ class DbPrompter:
             "on_ok_button1_clicked": self.save_ok_button_clicked,
             "destroy_passed_object": self.cancel_button_clicked,
             })
+        wFs.get_widget('fileselection').set_title('%s - GRAMPS' % _('Save database'))
 
     def save_ok_button_clicked(self,obj):
         filename = obj.get_filename()

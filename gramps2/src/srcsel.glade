@@ -135,7 +135,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label254">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Source Details&lt;/b&gt;</property>
+		      <property name="label" translatable="yes">&lt;b&gt;Source details&lt;/b&gt;</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -456,7 +456,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label255">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Source Selection&lt;/b&gt;</property>
+		      <property name="label" translatable="yes">&lt;b&gt;Source selection&lt;/b&gt;</property>
 		      <property name="use_underline">False</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>

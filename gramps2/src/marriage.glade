@@ -124,7 +124,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label202">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">_Relationship Type:</property>
+			  <property name="label" translatable="yes">_Relationship type:</property>
 			  <property name="use_underline">True</property>
 			  <property name="use_markup">False</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -946,7 +946,7 @@
 		      <child>
 			<widget class="GtkLabel" id="label222">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">&lt;b&gt;Primary Source&lt;/b&gt;</property>
+			  <property name="label" translatable="yes">&lt;b&gt;Primary source&lt;/b&gt;</property>
 			  <property name="use_underline">False</property>
 			  <property name="use_markup">True</property>
 			  <property name="justify">GTK_JUSTIFY_CENTER</property>

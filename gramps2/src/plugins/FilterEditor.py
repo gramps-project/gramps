@@ -31,6 +31,7 @@ import const
 import GenericFilter
 import AutoComp
 import ListModel
+import Utils
 from intl import gettext as _
 
 _name2list = {
@@ -53,6 +54,9 @@ class FilterEditor:
         self.edit = self.editor.get_widget('edit')
         self.delete = self.editor.get_widget('delete')
         self.test = self.editor.get_widget('test')
+
+        Utils.set_titles(self.editor_top,self.editor.get_widget('title'),
+                         _('User defined filters'))
 
         self.editor.signal_autoconnect({
             'on_add_clicked' : self.add_new_filter,
@@ -104,7 +108,7 @@ class FilterEditor:
         store,iter = self.clist.get_selected()
         if iter:
             filt = self.clist.get_object(iter)
-            list = filt.apply(self.db.getPersonMap().values())
+            list = filt.apply(self.db,self.db.getPersonMap().values())
             ShowResults(list)
 
     def delete_filter(self,obj):
@@ -118,6 +122,9 @@ class FilterEditor:
         self.filter = filter
         self.glade = gtk.glade.XML(const.filterFile,'define_filter')
         self.top = self.glade.get_widget('define_filter')
+
+        Utils.set_titles(self.top,self.glade.get_widget('title'),_('Define filter'))
+        
         self.rule_list = self.glade.get_widget('rule_list')
         self.rlist = ListModel.ListModel(self.rule_list,
                                          [(_('Name'),-1,150),(_('Value'),-1,150)],
@@ -220,6 +227,9 @@ class FilterEditor:
         self.frame = self.rule.get_widget('values')
         self.rname = self.rule.get_widget('rule_name')
 
+        Utils.set_titles(self.rule_top, self.rule.get_widget('title'),
+                         _('Add rule'))
+
         self.notebook = gtk.Notebook()
         self.notebook.set_show_tabs(0)
         self.notebook.set_show_border(0)
@@ -303,8 +313,7 @@ class FilterEditor:
             self.draw_rules()
 
     def rule_changed(self,obj):
-        name = obj.get_text()
-        page = self.name2page[name]
+        page = self.name2page[obj.get_text()]
         self.notebook.set_current_page(page)
 
     def rule_ok(self,obj):
@@ -330,6 +339,7 @@ class ShowResults:
     def __init__(self,plist):
         self.glade = gtk.glade.XML(const.filterFile,'test')
         self.top = self.glade.get_widget('test')
+        self.top.set_title('%s - GRAMPS' % _('Test Filter'))
         text = self.glade.get_widget('text')
         self.glade.signal_autoconnect({
             'on_close_clicked' : self.close,

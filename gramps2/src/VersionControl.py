@@ -74,13 +74,13 @@ class RevisionComment:
         self.filename = filename
         self.save = save_file
         self.top = gtk.glade.XML(const.revisionFile, "revcom")
+        self.win = self.top.get_widget("revcom")
         self.top.signal_autoconnect({
             "on_savecomment_clicked" : self.on_savecomment_clicked,
             })
 
-        Utils.set_title_label(self.top,_('Revision control comment'))
+        Utils.set_titles(self.win,self.top.get_widget('title'),_('Revision control comment'))
         self.text = self.top.get_widget("text")
-        self.win = self.top.get_widget("revcom")
         self.win.editable_enters(self.text)
         self.win.show()
 
@@ -105,7 +105,9 @@ class RevisionSelect:
             "on_loadrev_clicked"    : self.on_loadrev_clicked,
             })
 
-        Utils.set_title_label(dialog,_('Select an older revision'))
+        Utils.set_titles(dialog.get_widget('revselect'),
+                         dialog.get_widget('title'),
+                         _('Select an older revision'))
         
         self.revlist = dialog.get_widget("revlist")
         l = self.vc.revision_list()

@@ -509,7 +509,7 @@
 			      <child>
 				<widget class="GtkLabel" id="label122">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Revision Control&lt;/b&gt;</property>
+				  <property name="label" translatable="yes">&lt;b&gt;Revision control&lt;/b&gt;</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">True</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1226,7 +1226,7 @@
 			      <child>
 				<widget class="GtkLabel" id="label127">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Display Formats&lt;/b&gt;</property>
+				  <property name="label" translatable="yes">&lt;b&gt;Display formats&lt;/b&gt;</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">True</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1250,7 +1250,7 @@
 			      <child>
 				<widget class="GtkLabel" id="label128">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Entry Formats&lt;/b&gt;</property>
+				  <property name="label" translatable="yes">&lt;b&gt;Entry formats&lt;/b&gt;</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">True</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -1767,7 +1767,7 @@
 			      <child>
 				<widget class="GtkLabel" id="label130">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Researcher Information&lt;/b&gt;</property>
+				  <property name="label" translatable="yes">&lt;b&gt;Researcher information&lt;/b&gt;</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">True</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -2129,7 +2129,7 @@
 			      <child>
 				<widget class="GtkLabel" id="label131">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Report Preferences&lt;/b&gt;</property>
+				  <property name="label" translatable="yes">&lt;b&gt;Report preferences&lt;/b&gt;</property>
 				  <property name="use_underline">False</property>
 				  <property name="use_markup">True</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>

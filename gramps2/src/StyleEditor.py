@@ -63,10 +63,10 @@ class StyleListDisplay:
         self.sheetlist = stylesheetlist
         self.top = gtk.glade.XML(const.stylesFile,"styles")
 
-        title_label = self.top.get_widget('title')
-        title_label.set_text(Utils.title(_('Document Styles')))
-        title_label.set_use_markup(gtk.TRUE)
-        
+        Utils.set_titles(self.top.get_widget('styles'),
+                         self.top.get_widget('title'),
+                         _('Document Styles'))
+                                             
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_ok_clicked" : self.on_ok_clicked,
@@ -171,6 +171,9 @@ class StyleEditor:
             })
 
         self.window = self.top.get_widget("editor")
+
+        Utils.set_titles(self.window, self.top.get_widget('title'),_('Style editor'))
+
         self.first = 1
         
         titles = [(_('Paragraph'),0,130)]
