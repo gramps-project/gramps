@@ -583,8 +583,8 @@ class DateBase:
     def set_date(self, date) :
         """
         Sets the date of the DateBase instance.
-	
-	The date is parsed into a L{Date} instance.
+        
+        The date is parsed into a L{Date} instance.
 
         @param date: String representation of a date. The locale specific
             L{DateParser} is used to parse the string into a GRAMPS L{Date}
@@ -596,9 +596,9 @@ class DateBase:
     def get_date(self) :
         """
         Returns a string representation of the date of the DateBase instance.
-	
-	This representation is based off the default date display format
-	determined by the locale's L{DateDisplay} instance.
+        
+        This representation is based off the default date display format
+        determined by the locale's L{DateDisplay} instance.
 
         @return: Returns a string representing the DateBase date
         @rtype: str
@@ -610,10 +610,10 @@ class DateBase:
     def get_quote_date(self) :
         """
         Returns a string representation of the date of the DateBase instance.
-	
-	This representation is based off the default date display format
-	determined by the locale's L{DateDisplay} instance. The date is
-	enclosed in quotes if the L{Date} is not a valid date.
+        
+        This representation is based off the default date display format
+        determined by the locale's L{DateDisplay} instance. The date is
+        enclosed in quotes if the L{Date} is not a valid date.
 
         @return: Returns a string representing the DateBase date
         @rtype: str
@@ -698,10 +698,10 @@ class AttributeBase:
             # Ugly hack: the existing objects may have their attribute lists
             # called either attr_list or attribute_list.
             try:
-            	self.attribute_list = [ Attribute(attribute) \
+                self.attribute_list = [ Attribute(attribute) \
                                     for attribute in source.attribute_list ]
             except:
-            	self.attribute_list = [ Attribute(attribute) \
+                self.attribute_list = [ Attribute(attribute) \
                                     for attribute in source.attrlist ]
         else:
             self.attribute_list = []
@@ -1663,7 +1663,7 @@ class Family(PrimaryObject,SourceNote,MediaBase,AttributeBase):
         check_list = [self.lds_seal,self.note]
         add_list = [item for item in check_list if item]
         return self.media_list + self.attribute_list + \
-	    	self.source_list + add_list
+                self.source_list + add_list
 
     def get_sourcref_child_list(self):
         """
@@ -3662,7 +3662,7 @@ class Witness(BaseObject,PrivacyBase):
     the person's name.
     """
     def __init__(self,type=Event.NAME,val="",comment=""):
-        PrivacyBase.__init__(self,source)
+        PrivacyBase.__init__(self)
         self.set_type(type)
         self.set_value(val)
         self.set_comment(comment)

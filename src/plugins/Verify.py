@@ -501,9 +501,10 @@ class VerifyResults:
         self.glade_file = base + os.sep + "verify.glade"
 
         self.top = gtk.glade.XML(self.glade_file,"verify_result","gramps")
+        self.title = _('Database Verification Results')
         Utils.set_titles(self.top.get_widget('verify_result'),
                      self.top.get_widget('title'),
-                     _('Database Verification Results'))
+                     self.title)
     
         self.top.signal_autoconnect({
             "destroy_passed_object"  : self.close_result,
@@ -527,7 +528,7 @@ class VerifyResults:
 
     def add_result_to_menu(self):
         self.parent.child_windows[self.win_key] = self.window
-        self.result_parent_menu_item = gtk.MenuItem(_('Database Verification Results'))
+        self.result_parent_menu_item = gtk.MenuItem(self.title)
         self.result_parent_menu_item.connect("activate",self.present_result)
         self.result_parent_menu_item.show()
         self.parent.winsmenu.append(self.result_parent_menu_item)
