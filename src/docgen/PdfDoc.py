@@ -46,7 +46,7 @@ try:
     from reportlab.lib.units import cm
     from reportlab.lib.colors import Color
     from reportlab.lib.enums import TA_LEFT, TA_RIGHT, TA_CENTER, TA_JUSTIFY
-    from reportlab.graphics.shapes import *
+    import reportlab.graphics.shapes
     import reportlab.lib.styles
 except ImportError:
     raise Errors.PluginError( _("The ReportLab modules are not installed"))
@@ -292,6 +292,7 @@ class PdfDoc(BaseDoc.BaseDoc):
             act_width = x_cm/ratio
 
         self.story.append(Spacer(1,0.5*cm))
+        print Image
         self.story.append(Image(name,act_width*cm,act_height*cm))
         self.story.append(Spacer(1,0.5*cm))
         self.image = 1
@@ -308,7 +309,9 @@ class PdfDoc(BaseDoc.BaseDoc):
         return run_print_dialog (self.filename)
 
     def start_page(self,orientation=None):
-        self.drawing = Drawing(self.get_usable_width()*cm, self.get_usable_height()*cm)
+        x = self.get_usable_width()*cm
+        y = self.get_usable_height()*cm
+        self.drawing = reportlab.graphics.shapes.Drawing(x,y)
 
     def end_page(self):
        self.story.append(self.drawing)
@@ -323,9 +326,11 @@ class PdfDoc(BaseDoc.BaseDoc):
         else:
             line_array = [2,4]
             
-        self.drawing.add(Line(x1*cm,y1*cm,x2*cm,y2*cm,
-                              strokeWidth=stype.get_line_width(),
-                              strokeDashArray=line_array))
+        l = reportlab.graphics.shapes.Line(x1*cm,y1*cm,
+                                           x2*cm,y2*cm,
+                                           strokeWidth=stype.get_line_width(),
+                                           strokeDashArray=line_array)
+        self.drawing.add(l)
 
     def draw_bar(self,style,x1,y1,x2,y2):
         pass
@@ -340,10 +345,11 @@ class PdfDoc(BaseDoc.BaseDoc):
         else:
             line_array = [2,4]
 
-        p = Path(strokeWidth=stype.get_line_width(),
-                 strokeDashArray=line_array,
-                 fillColor=color,
-                 strokeColor=make_color(stype.get_color()))
+        scol = make_color(stype.get_color())
+        p = reportlab.graphics.shapes.Path(strokeWidth=stype.get_line_width(),
+                                           strokeDashArray=line_array,
+                                           fillColor=color,
+                                           strokeColor=scol)
          
         point = path[0]
         p.moveTo(point[0]*cm,y-point[1]*cm)
@@ -364,15 +370,21 @@ class PdfDoc(BaseDoc.BaseDoc):
 
  	if box_style.get_shadow():
             col = make_color((0xc0,0xc0,0xc0))
-            r = Rect((x+0.2)*cm,(y-0.2)*cm-h,w,h,
-                     fillColor=col,
-                     strokeColor=col)
+            r = reportlab.graphics.shapes.Rect((x+0.2)*cm,
+                                               (y-0.2)*cm-h,
+                                               w,h,
+                                               fillColor=col,
+                                               strokeColor=col)
             self.drawing.add(r)
-            
-        self.drawing.add(Rect((x)*cm,(y*cm)-h,w,h,
-                              strokeWidth=box_style.get_line_width(),
-                              fillColor=box_style.get_fill_color(),
-                              strokeColor=box_style.get_color()))
+
+        sw = box_style.get_line_width()
+        fc = box_style.get_fill_color()
+        sc = box_style.get_color()
+        r = reportlab.graphics.shapes.Rect((x)*cm,(y*cm)-h,w,h,
+                                           strokeWidth=sw,
+                                           fillColor=fc,
+                                           strokeColor=sc)
+        self.drawing.add(r)
 
         size = p.get_font().get_size()
 
@@ -387,13 +399,17 @@ class PdfDoc(BaseDoc.BaseDoc):
         p = self.style_list[pname]
  	font = p.get_font()
         size = font.get_size()
-        s = String(x*cm,
-                   (self.get_usable_height()*cm)-(y*cm),
-                   str(text),
-                   strokeColor=make_color(font.get_color()),
-                   fillColor=make_color(font.get_color()),
-                   fontName=self.pdf_set_font(font),
-                   fontSize=size)
+        y = (self.get_usable_height()*cm)-(y*cm)
+        sc = make_color(font.get_color())
+        fc = make_color(font.get_color())
+        fnt = self.pdf_set_font(font),
+        s = reportlab.graphics.shape.String(x*cm,
+                                            y,
+                                            str(text),
+                                            strokeColor=sc,
+                                            fillColor=fc,
+                                            fontName=fnt,
+                                            fontSize=size)
         self.drawing.add(s)
 
     def pdf_set_font(self,font):
@@ -417,14 +433,17 @@ class PdfDoc(BaseDoc.BaseDoc):
         yt = (self.get_usable_height()*cm) - (y*cm) 
 
         yval = 0
-        g = Group()
+        g = reportlab.graphics.shapes.Group()
+        fnt = self.pdf_set_font(font)
+        sc = make_color(font.get_color())
+        fc = make_color(font.get_color())
         for line in text:
-            s = String(0,yval,str(line),
-                       fontName=self.pdf_set_font(font),
-                       fontSize=size,
-                       strokeColor=make_color(font.get_color()),
-                       fillColor=make_color(font.get_color()),
-                       textAnchor='middle')
+            s = reportlab.graphics.shapes.String(0,yval,str(line),
+                                                 fontName=fnt,
+                                                 fontSize=size,
+                                                 strokeColor=sc,
+                                                 fillColor=fc,
+                                                 textAnchor='middle')
             yval -= size
             g.add(s)
             
@@ -439,14 +458,17 @@ class PdfDoc(BaseDoc.BaseDoc):
  	font = p.get_font()
         yt = (self.get_usable_height()*cm) - (y*cm) 
 
-        s = String(x*cm,
-                   yt,
-                   str(text),
-                   fontName=self.pdf_set_font(font),
-                   fontSize=font.get_size(),
-                   strokeColor=make_color(font.get_color()),
-                   fillColor=make_color(font.get_color()),
-                   textAnchor='middle')
+        fnt = self.pdf_set_font(font)
+        sc = make_color(font.get_color())
+        fc = make_color(font.get_color())
+        s = reportlab.graphics.shapes.String(x*cm,
+                                             yt,
+                                             str(text),
+                                             fontName=fnt,
+                                             fontSize=font.get_size(),
+                                             strokeColor=sc,
+                                             fillColor=fc,
+                                             textAnchor='middle')
         self.drawing.add(s)
 
     def center_print(self,lines,font,x,y,w,h):
@@ -456,16 +478,19 @@ class PdfDoc(BaseDoc.BaseDoc):
         start_y = (y + h/2.0 + l/2.0 + l) - ((l*size) + ((l-1)*0.2))/2.0
         start_x = (x + w/2.0)
 
+        fnt = self.pdf_set_font(font)
+        size = font.get_size()
+        sc = make_color(font.get_color())
+        fc = make_color(font.get_color())
         for text in lines:
-            s = String(start_x*cm,
-                       start_y*cm,
-                       str(line),
-                       fontName=self.pdf_set_font(font),
-                       fontSize=font.get_size(),
-                       strokeColor=make_color(font.get_color()),
-                       fillColor=make_color(font.get_color()),
-                       )
-            self.drawing.add(String(start_x,start_y,str(text)))
+            s = reportlab.graphics.shapes.String(start_x*cm,
+                                                 start_y*cm,
+                                                 str(line),
+                                                 fontName=fnt,
+                                                 fontSize=size,
+                                                 strokeColor=sc,
+                                                 fillColor=fc)
+            self.drawing.add(s)
             start_y = start_y - size*1.2
 
     def left_print(self,lines,font,x,y):
@@ -474,14 +499,17 @@ class PdfDoc(BaseDoc.BaseDoc):
         start_y = y
         start_x = x 
 
+        fnt = self.pdf_set_font(font)
+        sc = make_color(font.get_color())
+        fc = make_color(font.get_color())
         for text in lines:
-            s = String(start_x,
-                       start_y,
-                       str(text),
-                       fontSize=size,
-                       strokeColor=make_color(font.get_color()),
-                       fillColor=make_color(font.get_color()),
-                       fontName=self.pdf_set_font(font))
+            s = reportlab.graphics.shapes.String(start_x,
+                                                 start_y,
+                                                 str(text),
+                                                 fontSize=size,
+                                                 strokeColor=sc,
+                                                 fillColor=fc,
+                                                 fontName=fnt)
             self.drawing.add(s)
             start_y = start_y - size*1.2
 
