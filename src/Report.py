@@ -198,6 +198,7 @@ class BareReportDialog:
         # Save info about who the report is about.
         self.option_store = options
             
+        self.style_name = "default"
         self.db = database
         self.person = person
         self.output_notebook = None
@@ -638,10 +639,6 @@ class BareReportDialog:
         pass
 
     def setup_html_frame(self):
-        """Not used in bare report dialogs. Override in the subclass."""
-        pass
-
-    def setup_paper_frame(self):
         """Not used in bare report dialogs. Override in the subclass."""
         pass
 
@@ -1388,12 +1385,12 @@ class TemplateParser(handler.ContentHandler):
 
 try:
     parser = make_parser()
-    spath = const.template_dir
-    parser.setContentHandler(TemplateParser(_template_map,spath))
-    parser.parse("file://%s/templates.xml" % spath)
+    gspath = const.template_dir
+    parser.setContentHandler(TemplateParser(_template_map,gspath))
+    parser.parse("file://%s/templates.xml" % gspath)
     parser = make_parser()
-    spath = os.path.expanduser("~/.gramps/templates")
-    parser.setContentHandler(TemplateParser(_template_map,spath))
-    parser.parse("file://%s/templates.xml" % spath)
+    gspath = os.path.expanduser("~/.gramps/templates")
+    parser.setContentHandler(TemplateParser(_template_map,gspath))
+    parser.parse("file://%s/templates.xml" % gspath)
 except (IOError,OSError,SAXParseException):
     pass

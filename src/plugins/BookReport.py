@@ -32,7 +32,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import string
 
 #-------------------------------------------------------------------------
 #
@@ -526,7 +525,6 @@ class BookListDisplay:
             iter = self.blist.add([name])
         if iter:
             self.blist.selection.select_iter(iter)
-            path = self.blist.model.get_path(iter)
 
     def on_booklist_ok_clicked(self,obj):
         """Returns selected book. Saves the current list into xml file."""
@@ -901,7 +899,6 @@ class BookReportDialog(Report.ReportDialog):
     """
 
     def __init__(self,database,person,book):
-        import BaseDoc
         Report.BareReportDialog.__init__(self,database,person)
         self.book = book
         self.database = database 
@@ -1082,9 +1079,8 @@ def get_xpm_image():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
 
-register_report(
+Plugins.register_report(
     report,
     _("Book Report"),
     category=_("Books"),

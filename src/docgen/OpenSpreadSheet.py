@@ -39,6 +39,9 @@ from SpreadSheetDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 
+from gettext import gettext as _
+import Errors
+
 #-------------------------------------------------------------------------
 #
 # OpenSpreadSheet

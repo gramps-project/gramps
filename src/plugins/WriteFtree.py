@@ -27,7 +27,6 @@
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import time
 import os
 from cStringIO import StringIO
 
@@ -45,8 +44,6 @@ import gnome
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import WriteXML
-import TarFile
 import Utils
 import GenericFilter
 import Errors

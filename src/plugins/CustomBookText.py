@@ -24,28 +24,16 @@
 
 #------------------------------------------------------------------------
 #
-# python modules
-#
-#------------------------------------------------------------------------
-import os
-import string
-import cStringIO
-
-#------------------------------------------------------------------------
-#
 # gramps modules
 #
 #------------------------------------------------------------------------
 import Report
 import BaseDoc
-import RelLib
 import Errors
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
 import gtk
-import gnome
-import gnome.ui
 
 #------------------------------------------------------------------------
 #

@@ -34,8 +34,6 @@ import os
 # GNOME libraries
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -44,7 +42,6 @@ import gtk.glade
 #
 #-------------------------------------------------------------------------
 
-import RelLib
 import Utils
 import ListModel
 import Plugins
@@ -156,9 +153,8 @@ class RelCalc:
 #
 #
 #-------------------------------------------------------------------------
-from Plugins import register_tool
 
-register_tool(
+Plugins.register_tool(
     runTool,
     _("Relationship calculator"),
     category=_("Utilities"),

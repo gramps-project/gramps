@@ -238,10 +238,6 @@ class LaTeXDoc(BaseDoc.BaseDoc):
         self.f.write('\n\\end{document}\n')
         self.f.close()
 
-    def start_page(self,orientation=None):
-        """Nothing needs to be done to start a page"""
-        pass
-
     def end_page(self):
         """Issue a new page command"""
         self.f.write('\\newpage')

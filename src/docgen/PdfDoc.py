@@ -30,6 +30,7 @@ import Plugins
 import Errors
 import ImgManip
 import FontScale
+import grampslib
 from gettext import gettext as _
 
 _H   = 'Helvetica'
@@ -178,12 +179,10 @@ class PdfDoc(BaseDoc.BaseDoc):
             DisplayTrace.DisplayTrace()
 
         if self.print_req:
-            import grampslib
-
             apptype = 'application/pdf'
-            prog = grampslib.default_application_command(apptype)
+            app = grampslib.default_application_command(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog)
+            os.system ('%s "$FILE" &' % app)
 
     def page_break(self):
         self.story.append(PageBreak())
@@ -351,10 +350,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         text = text.replace('&lt;/super&gt;','</super></font>')
         self.text =  self.text + text.replace('\n','<br>')
 
-    def print_report(self):
-        return run_print_dialog (self.filename)
-
-    def start_page(self,orientation=None):
+    def start_page(self):
         x = self.get_usable_width()*cm
         y = self.get_usable_height()*cm
         self.drawing = reportlab.graphics.shapes.Drawing(x,y)
@@ -524,7 +520,6 @@ class PdfDoc(BaseDoc.BaseDoc):
         self.drawing.add(s)
 
     def center_print(self,lines,font,x,y,w,h):
-
         l = len(lines)
         size = font.get_size()
         start_y = (y + h/2.0 + l/2.0 + l) - ((l*size) + ((l-1)*0.2))/2.0
@@ -537,7 +532,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         for text in lines:
             s = reportlab.graphics.shapes.String(start_x*cm,
                                                  start_y*cm,
-                                                 str(line),
+                                                 str(text),
                                                  fontName=fnt,
                                                  fontSize=size,
                                                  strokeColor=sc,
@@ -546,7 +541,6 @@ class PdfDoc(BaseDoc.BaseDoc):
             start_y = start_y - size*1.2
 
     def left_print(self,lines,font,x,y):
-        l = len(lines)
         size = font.get_size()
         start_y = y
         start_x = x 
@@ -581,7 +575,6 @@ def make_color(c):
 
 print_label = None
 try:
-    import grampslib
     import Utils
 
     prog = grampslib.default_application_command("application/pdf")

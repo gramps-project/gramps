@@ -37,6 +37,7 @@ import BaseDoc
 import Errors
 import Plugins
 import ImgManip
+import grampslib
 
 from latin_utf8 import latin_to_utf8
 from gettext import gettext as _
@@ -177,12 +178,10 @@ class AbiWordDoc(BaseDoc.BaseDoc):
         self.f.close()
 
         if self.print_req:
-            import grampslib
-
             apptype = 'application/x-abiword'
-            prog = grampslib.default_application_command(apptype)
+            app = grampslib.default_application_command(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog)
+            os.system ('%s "$FILE" &' % app)
 
     def add_photo(self,name,pos,x_cm,y_cm):
 
@@ -314,7 +313,6 @@ class AbiWordDoc(BaseDoc.BaseDoc):
 
 print_label = None
 try:
-    import grampslib
     import Utils
 
     prog = grampslib.default_application_command("application/x-abiword")

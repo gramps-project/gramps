@@ -1,3 +1,34 @@
+2004-01-12  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/AbiWord2Doc.py: pychecker fixes
+	* src/docgen/HtmlDoc.py: pychecker fixes
+	* src/docgen/KwordDoc.py: pychecker fixes
+	* src/docgen/LaTeXDoc.py: pychecker fixes
+	* src/docgen/OpenOfficeDoc.py: pychecker fixes
+	* src/docgen/OpenSpreadSheet.py: pychecker fixes
+	* src/docgen/PSDrawDoc.py: pychecker fixes
+	* src/docgen/PdfDoc.py: pychecker fixes
+	* src/docgen/SvgDrawDoc.py: pychecker fixes
+	* src/plugins/Ancestors.py: pychecker fixes
+	* src/plugins/BookReport.py: pychecker fixes
+	* src/plugins/CustomBookText.py: pychecker fixes
+	* src/plugins/DescendReport.py: pychecker fixes
+	* src/plugins/DetAncestralReport.py: pychecker fixes
+	* src/plugins/DetDescendantReport.py: pychecker fixes
+	* src/plugins/FtmStyleAncestors.py: pychecker fixes
+	* src/plugins/IndivComplete.py: pychecker fixes
+	* src/plugins/ReadPkg.py: pychecker fixes
+	* src/plugins/RelCalc.py: pychecker fixes
+	* src/plugins/SimpleBookTitle.py: pychecker fixes
+	* src/plugins/TimeLine.py: pychecker fixes
+	* src/plugins/WriteCD.py: pychecker fixes
+	* src/plugins/WriteFtree.py: pychecker fixes
+	* src/plugins/rel_de.py: pychecker fixes
+	* src/GenericFilter.py: pychecker fixes
+	* src/RelLib.py: pychecker fixes
+	* src/Report.py: pychecker fixes
+	* src/SelectPerson.py: pychecker fixes
+	* src/gramps_main.py: pychecker fixes
+	
 2004-01-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PlaceView.py (on_delete_clicked): Use list's copy to avoid
 	modifying the real EventList (closes # 875332).

@@ -25,7 +25,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import string
 
 #------------------------------------------------------------------------
 #
@@ -34,7 +33,6 @@ import string
 #------------------------------------------------------------------------
 import Report
 import BaseDoc
-import RelLib
 import Errors
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
@@ -43,8 +41,6 @@ import Utils
 import AddMedia
 
 import gtk
-import gnome
-import gnome.ui
 
 #------------------------------------------------------------------------
 #

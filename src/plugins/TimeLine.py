@@ -46,7 +46,6 @@ import gtk
 import Utils
 import Report
 import BaseDoc
-import BaseDoc
 import GenericFilter
 import Errors
 import Date

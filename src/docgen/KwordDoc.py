@@ -27,11 +27,14 @@ import time
 import string
 import cStringIO
 import gzip
+import os
 
 import Errors
 from TarFile import TarFile
 import Plugins
 import ImgManip
+import grampslib
+
 from gettext import gettext as _
 
 def points(val):
@@ -260,18 +263,10 @@ class KwordDoc(BaseDoc.BaseDoc):
         self.m.close()
 
         if self.print_req:
-            import grampslib
-
             apptype = 'application/x-kword'
-            prog = grampslib.default_application_command(apptype)
+            app = grampslib.default_application_command(apptype)
             os.environ["FILE"] = self.filename
-            os.system ('%s "$FILE" &' % prog)
-
-    def start_page(self,orientation=None):
-        pass
-
-    def end_page(self):
-        pass
+            os.system ('%s "$FILE" &' % app)
 
     def start_paragraph(self,style_name,leader=None):
         self.format_list = []
@@ -492,7 +487,6 @@ class KwordDoc(BaseDoc.BaseDoc):
 
 print_label = None
 try:
-    import grampslib
     import Utils
 
     prog = grampslib.default_application_command("application/x-kword")
