@@ -1,3 +1,11 @@
+2003-10-09  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.glade: Remove hot keys from toolbar buttons.
+	Add editing items under Edit menu. 
+	* src/gramps_main.py: Enable/disable new menu items. 
+	* NEWS, configure, configure.in, gramps.spec, doc/gramps.1, 
+	doc/gramps-manual/C/gramps-manual-C.omf, 
+	doc/gramps-manual/C/gramps-manual.xml: merge with 0.9.5 branch. 
+
 2003-10-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/sv.po: Typo in keyword. Fixes 820054.
 	* src/gramps_main.py (init_interface, redraw_histmenu): Add
@@ -22,11 +30,19 @@
 	not converted to &lt; and &gt;
 	* src/plugins/WriteGedcom.py: Fixed undefined reference to ref_text
 
+2003-10-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* Version 0.9.5:  the "Fix me up" release.
+	
 2003-10-06  Alex Roitman  <shura@alex.neuro.umn.edu>
-	* src/gramps_main.py (delete_person_response): Add remove_from_history
-	call before deleting the person.
+	* src/gramps_main.py (delete_person_response, merge_update): 
+	Add remove_from_history and redraw_histmenu() calls before deleting 
+	the person. 
 	* src/PeopleView.py (remove_from_history): Add function; 
 	(row_changed) Remove extra change_active_person() call.
+	* doc/gramps.1.in, doc/gramps.1, doc/gramps-manual/C/gramps-manual.xml,
+	doc/gramps-manual/C/gramps-manual.omf, gramps.spec: New version.
+	* configure.in: Fix version and release numbers for 0.9.5-1.
+	* NEWS: Update for a 0.9.5 release.
 
 2003-10-06  Tim Waugh  <twaugh@redhat.com>
 	* src/Makefile.am: Ship PeopleView.py and PeopleStore.py.

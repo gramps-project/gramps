@@ -1,3 +1,6 @@
+Version 0.9.5 -- the "Fix me up" release
+* Fixed problem with deleting/merging people. 
+
 Version 0.9.4 -- the "This used to bug me..." release
 * More compliance with GNOME HIG.
 * Fixed style problems for book items. 
