@@ -498,10 +498,7 @@ class GedcomParser:
         if use_trans:
             self.db.transaction_commit(self.trans,_("GEDCOM import"))
         else:
-            self.db.emit('person-rebuild')
-            self.db.emit('family-rebuild')
-            self.db.emit('place-rebuild')
-            self.db.emit('source-rebuild')
+            self.db.request_rebuild()
         
         if self.window:
             self.infomsg("\n%s" % msg)

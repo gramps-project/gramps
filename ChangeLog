@@ -1,3 +1,11 @@
+2005-04-04  Don Allingham  <don@gramps-project.org>
+	* src/GrampsDbBase.py: add "request_rebuild" to encapsulate rebuild
+	requests in the database instance
+	* src/ReadXML.py: use request_rebuild instead of directly emitting s
+	ignals
+	* src/ReadGedCom.py: use request_rebuild instead of directly emitting 
+	signals
+
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDBCallback.py: Added code to disable/enable signals on
 	a per instance or all instance bassis. Improved test code and 
