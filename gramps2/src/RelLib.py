@@ -923,7 +923,7 @@ class Event(PrimaryObject,DataObj):
         if (self.name != other.name or self.place != other.place or
             self.description != other.description or self.cause != other.cause or
             self.private != other.private or
-            self.get_date_object() != other.get_date_object() or
+            (not self.get_date_object().is_equal(other.get_date_object())) or
             len(self.get_source_references()) != len(other.get_source_references())):
             return 0
 
@@ -1448,7 +1448,7 @@ class LdsOrd(SourceNote):
             self.place != other.place or
             self.status != other.status or
             self.temple != other.temple or
-            self.get_date_object() != other.get_date_object() or
+            not self.get_date_object().is_equal(other.get_date_object()) or
             len(self.get_source_references()) != len(other.get_source_references())):
             return 0
 

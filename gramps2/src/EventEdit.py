@@ -350,7 +350,7 @@ class EventEditor:
         self.event.set_source_reference_list(self.srcreflist)
         self.event.set_witness_list(self.witnesslist)
         
-        if dobj != date:
+        if not dobj.are_equal(date):
             self.event.set_date_object(date)
             self.parent.lists_changed = 1
 

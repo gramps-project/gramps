@@ -235,7 +235,7 @@ class AddressEditor:
     def update(self,date_obj,street,city,state,country,postal,phone,note,format,priv):
         """Compares the data items, and updates if necessary"""
 
-        if self.addr.get_date_object() != date_obj:
+        if not self.addr.get_date_object().is_equal(date_obj):
             self.addr.set_date_object(date_obj)
             self.parent.lists_changed = 1
         
