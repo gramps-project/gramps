@@ -1,3 +1,8 @@
+2004-10-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps.glade: change "Edit..." buttons to an image
+	* src/plugins/CountAncestors.py: handle duplicates across
+	generations
+
 2004-10-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py: Typo.
 

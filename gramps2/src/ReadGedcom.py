@@ -204,8 +204,6 @@ def import2(database, filename, cb, codeset, use_trans):
     if close:
         statusWindow.destroy()
 
-    print database.person_map.stat()
-    
     if cb:
         statusWindow.destroy()
         cb(1)

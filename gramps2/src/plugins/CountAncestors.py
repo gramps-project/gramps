@@ -50,6 +50,7 @@ class CountAncestors:
             "destroy_passed_object" : Utils.destroy_passed_object,
             })
         thisgen = Set()
+        all = Set()
         allgen = 0
         thisgen.add(person.get_handle())
         
@@ -75,10 +76,12 @@ class CountAncestors:
                     family = database.get_family_from_handle(family_handle)
                     father_handle = family.get_father_handle()
                     mother_handle = family.get_mother_handle()
-                    if father_handle:
+                    if father_handle and father_handle not in all:
                         thisgen.add(father_handle)
-                    if mother_handle:
+                        all.add(father_handle)
+                    if mother_handle and mother_handle not in all:
                         thisgen.add(mother_handle)
+                        all.add(mother_handle)
             allgen += len(thisgen)
 	  
         text += _("Total ancestors in generations %d to -1 is %d.\n") % (gen, allgen)
