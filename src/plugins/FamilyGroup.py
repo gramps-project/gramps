@@ -358,7 +358,7 @@ class FamilyGroupDialog(TextReportDialog):
         """No generation options."""
         return (0, 0)
     
-    def get_report_extra_menu_map(self):
+    def get_report_extra_menu_info(self):
         """Create a mapping of all spouse names:families to be put
         into the 'extra' option menu in the report options box.  If
         the selected person has never been married then this routine
@@ -378,7 +378,7 @@ class FamilyGroupDialog(TextReportDialog):
             else:
                 name= _("unknown")
             mapping[name] = family
-        return (_("Spouse"), mapping, None)
+        return (_("Spouse"), mapping, None, None)
 
     #------------------------------------------------------------------------
     #
