@@ -475,7 +475,10 @@ class EditPerson:
             })
 
         if self.parent:
-            self.update_sources = self.parent.source_view.build_tree
+            try:
+                self.update_sources = self.parent.source_view.build_tree
+            except AttributeError:
+                self.update_sources = None
         else:
             self.update_sources = None
         
