@@ -1,3 +1,8 @@
+2003-08-10  Tim Waugh  <twaugh@redhat.com>
+	* configure.in: Use 0.CVS[date] for RELEASE.  '-' is not allowed in
+	RPM release strings, and prefixing with '0.' allows the final version
+	to be version-compared as newer.
+
 2003-08-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GenericFilter.py: Support for categories and descriptions
 	for filters
