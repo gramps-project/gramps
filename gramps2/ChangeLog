@@ -1,4 +1,8 @@
 2004-01-08  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/PSDrawDoc.py: Scaleable shadow
+	* src/docgen/OpenOfficeDoc.py: Scaleable shadow
+	* src/docgen/KwordDoc.py (KwordDoc.close): handle KWord mime type
+	* src/grampslib_wrap.c: handle NULL pointers
 	* src/BaseDoc.py: Scaleable shadow
 	* src/plugins/AncestorChart2.py: Scale to page implemented
 	* src/docgen/PdfDoc.py: Scalable shadow
