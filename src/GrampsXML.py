@@ -47,6 +47,6 @@ class GrampsXML(GrampsDB):
         self.sourceTable = {}
         for key in self.sourceMap.keys():
             src = self.sourceMap[key]
-            self.sourceTable[key] = source.getDisplayInfo()
+            self.sourceTable[key] = src.getDisplayInfo()
 
         return 1

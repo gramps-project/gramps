@@ -72,6 +72,7 @@ import EditPerson
 import Marriage
 import Find
 import VersionControl
+import ReadXML
 
 from GrampsXML import GrampsXML
 try:
@@ -896,22 +897,19 @@ class Gramps:
             gnome.ui.GnomeErrorDialog(msg)
 
     def delete_person_response(self):
-        personmap = self.db.getPersonMap()
-        familymap = self.db.getPersonMap()
-
         for family in self.active_person.getFamilyList():
             if self.active_person.getGender == Person.male:
                 if family.getMother() == None:
                     for child in family.getChildList():
                         child.removeAltFamily(family)
-                    del familymap[family]
+                    self.db.removeFamily(family)
                 else:
                     family.setFather(None)
             else:
                 if family.getFather() == None:
                     for child in family.getChildList():
                         child.removeAltFamily(family)
-                    del familymap[family]
+                    self.db.removeFamily(family)
                 else:
                     family.setMother(None)
 
@@ -1428,9 +1426,6 @@ class Gramps:
     def redisplay_person_list(self,person):
         pos = (person,0)
         self.id2col[person.getId()] = pos
-        gname = Utils.phonebook_from_name
-        bsn = sort.build_sort_name
-        bsd = sort.build_sort_date
         
         if self.DataFilter.compare(person):
             self.person_list.insert(0,person.getDisplayInfo())
@@ -1824,7 +1819,6 @@ class Gramps:
     def apply_filter(self):
         self.person_list.freeze()
         datacomp = self.DataFilter.compare
-        gname = Utils.phonebook_from_name
         
         self.person_list.set_column_visibility(1,GrampsCfg.id_visible)
     

@@ -1620,9 +1620,6 @@ class Family(Persistent):
         """Sets the list of Photo objects"""
         self.photoList = list
 
-    def unique_note(self):
-        self.note = Note(self.note.get())
-
     def someChildIsAncestor(self):
         for child in self.Children:
             if (child.getAncestor()):
