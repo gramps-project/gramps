@@ -80,6 +80,8 @@ class DisplayTrace:
         msg.write("GRAMPS : %s\n" % const.version)
         if os.environ.has_key('LANG'):
             msg.write("LANG : %s\n" % os.environ['LANG'])
+        if os.environ.has_key('LANGUAGE'):
+            msg.write("LANGUAGE : %s\n" % os.environ['LANGUAGE'])
         msg.write("Python : %s.%s.%s %s\n" % (ver[0],ver[1],ver[2],ver[3]))
         msg.write("GTK : %s.%s.%s\n" % gtk.gtk_version)
         msg.write('PyGTK : %d.%d.%d\n' % gtk.pygtk_version)
@@ -88,6 +90,8 @@ class DisplayTrace:
                 try:
                     f = open(n)
                     text = f.readline()
+                    if n.find('debian') != -1:
+                        text = "Debian %s" % text
                     msg.write("OS : %s\n" % text)
                     f.close()
                     break
