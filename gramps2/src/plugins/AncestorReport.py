@@ -222,8 +222,11 @@ class AncestorReport(Report.Report):
 #
 #------------------------------------------------------------------------
 class AncestorReportDialog(Report.TextReportDialog):
+
+    report_options = {}
+
     def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person,self.report_options)
 
     #------------------------------------------------------------------------
     #

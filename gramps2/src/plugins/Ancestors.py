@@ -329,7 +329,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                             (partner != from_family_father and
                              partner != from_family_mother)):
                             for photo in partner.getPhotoList ()[:1]:
-                                if photo.getMimeType()[0:5] == "image":
+                                if photo.ref.getMimeType()[0:5] == "image":
                                     spouse.append ((self.doc.add_photo,
                                                     [photo.ref.getPath (),
                                                      'right', 2, 2]))
@@ -360,7 +360,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 else:
                     ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     for photo in photos[:1]:
-                        if photo.getMimeType()[0:5] == "image":
+                        if photo.ref.getMimeType()[0:5] == "image":
                             ret.append ((self.doc.add_photo,
                                          [photo.ref.getPath (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))
@@ -813,8 +813,11 @@ def _make_default_style(default_style):
 #
 #------------------------------------------------------------------------
 class ComprehensiveAncestorsReportDialog(Report.TextReportDialog):
+
+    report_options = {}
+
     def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person,self.report_options)
 
     #------------------------------------------------------------------------
     #

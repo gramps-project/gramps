@@ -453,8 +453,11 @@ class IndivComplete(Report.Report):
 #
 #------------------------------------------------------------------------
 class IndivCompleteDialog(Report.TextReportDialog):
+
+    report_options = {}
+
     def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person)
+        Report.TextReportDialog.__init__(self,database,person,self.report_options)
 
     def add_user_options(self):
         self.use_srcs = gtk.CheckButton(_('Include Source Information'))

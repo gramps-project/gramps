@@ -231,8 +231,11 @@ def _make_default_style(default_style):
 #
 #------------------------------------------------------------------------
 class AncestorChartDialog(Report.DrawReportDialog):
+
+    report_options = {}
+    
     def __init__(self,database,person):
-        Report.DrawReportDialog.__init__(self,database,person)
+        Report.DrawReportDialog.__init__(self,database,person,self.report_options)
 
     def get_title(self):
         """The window title for this dialog"""
