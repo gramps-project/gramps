@@ -63,13 +63,15 @@ def report(database,person):
     bytes = 0
     namelist = []
     
+    pobjects = len(database.getObjectMap().values())
+    for photo in database.getObjectMap().values():
+        bytes = bytes + posixpath.getsize(photo.getPath())
+        
     for person in personList:
         length = len(person.getPhotoList())
         if length > 0:
             with_photos = with_photos + 1
             total_photos = total_photos + length
-            for file in person.getPhotoList():
-                bytes = bytes + posixpath.getsize(file.getPath())
                 
         name = person.getPrimaryName()
         if name.getFirstName() == "" or name.getSurname() == "":
@@ -93,16 +95,17 @@ def report(database,person):
     text = text + "%s : %d\n" % (_("Individuals with incomplete names"),incomp_names)
     text = text + "%s : %d\n" % (_("Individuals missing birth dates"),missing_bday)
     text = text + "%s : %d\n" % (_("Disconnected individuals"),disconnected)
-    text = text + "\n%s\n" % _("Images and files")
-    text = text + "----------------------------\n"
-    text = text + "%s : %d\n" % (_("Individuals with images"),with_photos)
-    text = text + "%s : %d\n" % (_("Total number of images"),total_photos)
-    text = text + "%s : %d %s\n" % (_("Total size of images"),bytes,\
-                                    _("bytes"))
     text = text + "\n%s\n" % _("Family Information")
     text = text + "----------------------------\n"
     text = text + "%s : %d\n" % (_("Number of families"),len(familyList))
     text = text + "%s : %d\n" % (_("Unique surnames"),len(namelist))
+    text = text + "\n%s\n" % _("Media Objects")
+    text = text + "----------------------------\n"
+    text = text + "%s : %d\n" % (_("Individuals with media objects"),with_photos)
+    text = text + "%s : %d\n" % (_("Total number of media object references"),total_photos)
+    text = text + "%s : %d\n" % (_("Number of unique media objects"),pobjects)
+    text = text + "%s : %d %s\n" % (_("Total size of images"),bytes,\
+                                    _("bytes"))
     
     
     top = topDialog.get_widget("summary")
