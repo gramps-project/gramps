@@ -25,6 +25,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+import string
 
 import PaperMenu
 import Plugins
@@ -134,7 +135,8 @@ nameof        = Utils.normal_name
 display_name  = Utils.normal_name
 display_surname = lambda x : x.getSurname()
 status_bar    = 1
-toolbar       = 2
+toolbar       = gtk.TOOLBAR_BOTH
+save_toolbar  = gtk.TOOLBAR_BOTH
 calendar      = 0
 paper_preference = ""
 output_preference = ""
@@ -215,6 +217,7 @@ def loadConfig(call):
     global db_dir
     global status_bar
     global toolbar
+    global save_toolbar
     global mediaref
     global globalprop
     global localprop
@@ -237,7 +240,13 @@ def loadConfig(call):
 #    capitalize = get_bool("/apps/gramps/capitalize")
     index_visible = get_bool("/apps/gramps/index-visible")
     status_bar = get_int("/apps/gramps/statusbar")
-    toolbar = get_int("/apps/gramps/toolbar",2)
+    gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style")
+    gnome_toolbar = eval("gtk.TOOLBAR_%s" % string.upper(gnome_toolbar_str))
+    save_toolbar = get_int("/apps/gramps/toolbar",gtk.TOOLBAR_BOTH)
+    if save_toolbar == 5:
+        toolbar = gnome_toolbar
+    else:
+        toolbar = save_toolbar
     defaultview = get_int("/apps/gramps/defaultview")
     familyview = get_int("/apps/gramps/familyview")
     
@@ -605,12 +614,7 @@ class GrampsPreferences:
         else:
             self.top.get_widget("stat3").set_active(1)
 
-        if toolbar == 0:
-            self.top.get_widget("tool1").set_active(1)
-        elif toolbar == 1:
-            self.top.get_widget("tool2").set_active(1)
-        else:
-            self.top.get_widget("tool3").set_active(1)
+        self.top.get_widget("tooloptmenu").set_history(save_toolbar)
 
         if defaultview == 0:
             self.top.get_widget('pvbutton').set_active(1)
@@ -826,6 +830,7 @@ class GrampsPreferences:
         global index_visible
         global status_bar
         global toolbar
+        global save_toolbar
         global defaultview
         global familyview
         global paper_preference
@@ -862,12 +867,13 @@ class GrampsPreferences:
         else:
             status_bar = 2
 
-        if self.top.get_widget("tool1").get_active():
-            toolbar = 0
-        elif self.top.get_widget("tool2").get_active():
-            toolbar = 1
+        save_toolbar = self.top.get_widget("tooloptmenu").get_history()
+        gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style")
+        gnome_toolbar = eval("gtk.TOOLBAR_%s" % string.upper(gnome_toolbar_str))
+        if save_toolbar == 5:
+            toolbar = gnome_toolbar
         else:
-            toolbar = 2
+            toolbar = save_toolbar
 
         if self.top.get_widget("pvbutton").get_active():
             defaultview = 0
@@ -924,7 +930,7 @@ class GrampsPreferences:
 #        set_bool("/apps/gramps/capitalize",capitalize)
         set_bool("/apps/gramps/index-visible",index_visible)
         set_int("/apps/gramps/statusbar",status_bar)
-        set_int("/apps/gramps/toolbar",toolbar)
+        set_int("/apps/gramps/toolbar",save_toolbar)
         set_int("/apps/gramps/defaultview",defaultview)
         set_int("/apps/gramps/familyview",familyview)
         set_string("/apps/gramps/paper-preference",paper_preference)

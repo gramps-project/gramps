@@ -703,7 +703,7 @@
 	      <child>
 		<widget class="button" id="button2">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Open file</property>
+		  <property name="tooltip" translatable="yes">Open database</property>
 		  <property name="label" translatable="yes">Open</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-open</property>
@@ -714,7 +714,7 @@
 	      <child>
 		<widget class="button" id="button3">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Save file</property>
+		  <property name="tooltip" translatable="yes">Save database</property>
 		  <property name="label" translatable="yes">Save</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-save</property>
@@ -725,6 +725,7 @@
 	      <child>
 		<widget class="button" id="back_btn">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Go back in history</property>
 		  <property name="label" translatable="yes">Back</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-go-back</property>
@@ -740,6 +741,7 @@
 	      <child>
 		<widget class="button" id="fwd_btn">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Go forward in history</property>
 		  <property name="label" translatable="yes">Forward</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-go-forward</property>
@@ -777,7 +779,7 @@
 	      <child>
 		<widget class="button" id="tools">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Run a tool</property>
+		  <property name="tooltip" translatable="yes">Run tools</property>
 		  <property name="label" translatable="yes">Tools</property>
 		  <property name="use_underline">True</property>
 		  <property name="icon">tools.png</property>
@@ -1302,6 +1304,7 @@
 			  <child>
 			    <widget class="GtkButton" id="apply_filter">
 			      <property name="visible">True</property>
+			      <property name="tooltip" translatable="yes">Apply filter using the selected controls</property>
 			      <property name="can_focus">True</property>
 			      <property name="relief">GTK_RELIEF_NORMAL</property>
 			      <signal name="clicked" handler="on_apply_filter_clicked" object="filter"/>

@@ -171,6 +171,8 @@ class Gramps:
     def pref_callback(self,val):
         self.family_view.init_interface()
         self.update_display(val)
+        self.toolbar.set_style(GrampsCfg.toolbar)
+
 
     def init_interface(self):
         """Initializes the GLADE interface, and gets references to the

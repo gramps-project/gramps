@@ -1,3 +1,10 @@
+2003-10-15  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps.glade: Correct tooltips. 
+	* src/GrampsCfg.py:	Enable using four toolbar styles as well as 
+	the gnome default style.
+	* src/preferences.glade: Add a title for the tree. HIGify toolbar styles. 
+	* src/gramps_main.py (pref_callback): Set toolbar style from prefs.
+
 2003-10-15  Tim Waugh  <twaugh@redhat.com>
 	* src/Makefile.am: Add uninstall rule for grampslib.so (now 'make
 	distcheck' passes again).
