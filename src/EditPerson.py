@@ -53,20 +53,6 @@ _ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
-# Constants - quite frequently, data needs to be attached to a widget.
-# this is done to prevent the use of globals, and to allow data to be
-# passed with a widget (especially critical, since more that one window
-# can be opened at a time). Data is attached to an widget using a string
-# as the key. To avoid a lot of hard coded text strings floating around
-# everywhere, values are defined here as constants with more meaningful
-# names.
-#
-#-------------------------------------------------------------------------
-NOTEOBJ    = "n"
-TEXTOBJ    = "w"
-
-#-------------------------------------------------------------------------
-#
 # EditPerson class
 #
 #-------------------------------------------------------------------------

@@ -25,15 +25,9 @@
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
-import GDK
 
 import libglade
-import os
-import intl
 import Sources
-import AttrEdit
-
-_ = intl.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -42,11 +36,8 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 
 import const
-import Config
 import utils
 from RelLib import *
-import RelImage
-import ImageSelect
 
 #-------------------------------------------------------------------------
 #

@@ -52,7 +52,7 @@ class VersionControl:
         form of three strings - (version,date,comment)."""
         return []
 
-    def checkin(self,name,comment,binary,tag):
+    def checkin(self,name,comment,binary):
         """Checks in a file into the revision control database
 
         name - file to check in
@@ -78,6 +78,7 @@ class RcsVersionControl(VersionControl):
     def __init__(self,wd):
         """Initializes the RCS database if it does not already exist.
         Sets the database to disable locking"""
+        VersionControl.__init__(self,wd)
         self.wd = wd
         self.vfile = "%s/version,v" % wd
         self.tfile = "%s/version" % wd
@@ -90,6 +91,9 @@ class RcsVersionControl(VersionControl):
         rlist = []
         slog = 0
         sname = 0
+        v = None
+        l = None
+        d = None
         r,w = popen2.popen2("rlog %s" % self.vfile)
 
         for line in r.readlines():
@@ -155,8 +159,8 @@ class RcsVersionControl(VersionControl):
     def set_tag(self,tag):
         """Sets the tag to the symbolic string"""
         if tag != "":
-            pproc = popen2.Popen3("rcs -N%s: %s" % (tag,self.tfile),1)
-            proc.tochild.write(comment)
+            proc = popen2.Popen3("rcs -N%s: %s" % (tag,self.tfile),1)
+            proc.tochild.write("")
             proc.tochild.close()
             status = proc.wait()
             del proc
@@ -184,22 +188,4 @@ def get_vc_list():
     """Returns a tuple representing the registered version control
     classes. The tuple is in the format of (class,description)"""
     return _version_control_list
-
-if __name__ == "__main__":
-    import sys
-
-    c = RcsVersionControl(os.getcwd())
-    if sys.argv[1] == "log":
-        for val in c.revision_list():
-            print "%s - %s : %s" % val
-    elif sys.argv[1] == "ci":
-        c.checkin(sys.argv[2],"mycomment",0)
-        for val in c.revision_list():
-            print "%s - %s : %s" % val
-    elif sys.argv[1] == "co":
-        f = c.get_version(sys.argv[2])
-        for l in f.readlines():
-            print l
-        f.close()
-        
 

@@ -23,7 +23,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import os
 import string
 
 #-------------------------------------------------------------------------
@@ -106,6 +105,7 @@ class AddressEditor:
             })
 
     def on_addr_source_clicked(self,obj):
+        import Sources
         Sources.SourceSelector(self.srcreflist,self.parent,src_changed)
 
     def on_addr_edit_ok_clicked(self,obj):

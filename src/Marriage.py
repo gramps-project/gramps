@@ -25,14 +25,9 @@
 #-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
-import GDK
 
 import libglade
-import os
 import intl
-import Sources
-import AttrEdit
-import EventEdit
 
 _ = intl.gettext
 
@@ -46,7 +41,6 @@ import const
 import Config
 import utils
 from RelLib import *
-import RelImage
 import ImageSelect
 
 #-------------------------------------------------------------------------
@@ -79,22 +73,22 @@ class Marriage:
         plwidget = self.top.get_widget("photolist")
         self.gallery = ImageSelect.Gallery(family, self.path, fid, plwidget, db)
         self.top.signal_autoconnect({
-            "destroy_passed_object" : on_cancel_edit,
-            "on_add_attr_clicked" : on_add_attr_clicked,
+            "destroy_passed_object" : self.on_cancel_edit,
+            "on_add_attr_clicked" : self.on_add_attr_clicked,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
-            "on_attr_list_select_row" : on_attr_list_select_row,
-            "on_close_marriage_editor" : on_close_marriage_editor,
-            "on_delete_attr_clicked" : on_delete_attr_clicked,
-            "on_delete_event" : on_delete_event,
+            "on_attr_list_select_row" : self.on_attr_list_select_row,
+            "on_close_marriage_editor" : self.on_close_marriage_editor,
+            "on_delete_attr_clicked" : self.on_delete_attr_clicked,
+            "on_delete_event" : self.on_delete_event,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
-            "on_marriageAddBtn_clicked" : on_add_clicked,
-            "on_marriageDeleteBtn_clicked" : on_delete_clicked,
-            "on_marriageEventList_select_row" : on_select_row,
-            "on_marriageUpdateBtn_clicked" : on_update_clicked,
+            "on_marriageAddBtn_clicked" : self.on_add_clicked,
+            "on_marriageDeleteBtn_clicked" : self.on_delete_clicked,
+            "on_marriageEventList_select_row" : self.on_select_row,
+            "on_marriageUpdateBtn_clicked" : self.on_update_clicked,
             "on_photolist_button_press_event" : self.gallery.on_photolist_button_press_event,
             "on_photolist_select_icon" : self.gallery.on_photo_select_icon,
-            "on_update_attr_clicked" : on_update_attr_clicked,
+            "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
 
         text_win = self.get_widget("marriageTitle")
@@ -162,250 +156,95 @@ class Marriage:
         self.family.setEventList(self.elist)
         self.family.setAttributeList(self.alist)
 
-    #---------------------------------------------------------------------
-    #
-    # redraw_attr_list - redraws the attribute list for the person
-    #
-    #---------------------------------------------------------------------
     def redraw_attr_list(self):
         utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
-    #-------------------------------------------------------------------------
-    #
-    # redraw_events - redraws the event list by deleting all the entries and
-    # reconstructing the list
-    #
-    #-------------------------------------------------------------------------
     def redraw_event_list(self):
         utils.redraw_list(self.elist,self.event_list,disp_event)
 
-    #-------------------------------------------------------------------------
-    #
-    # get_widget - returns the widget associated with the specified name
-    #
-    #-------------------------------------------------------------------------
     def get_widget(self,name):
         return self.top.get_widget(name)
 
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def did_data_change(obj):
-    family_obj = obj.get_data(MARRIAGE)
+    def did_data_change(self):
+        changed = 0
+        relation = self.type_field.entry.get_text()
+        if const.save_frel(relation) != self.family.getRelationship():
+            changed = 1
 
-    changed = 0
-    relation = family_obj.type_field.entry.get_text()
-    if const.save_frel(relation) != family_obj.family.getRelationship():
-        changed = 1
-
-    text = family_obj.notes_field.get_chars(0,-1)
-    if text != family_obj.family.getNote():
-        changed = 1
+        text = self.notes_field.get_chars(0,-1)
+        if text != self.family.getNote():
+            changed = 1
         
-    if family_obj.lists_changed:
-        changed = 1
+        if self.lists_changed:
+            changed = 1
 
-    idval = family_obj.gid.get_text()
-    if family_obj.family.getId() != idval:
-        changed = 1
+        idval = self.gid.get_text()
+        if self.family.getId() != idval:
+            changed = 1
 
-    return changed
+        return changed
 
-#-------------------------------------------------------------------------
-#
-# on_cancel_edit
-#
-#-------------------------------------------------------------------------
-def on_cancel_edit(obj):
+    def on_cancel_edit(self,obj):
 
-    if did_data_change(obj):
-        global quit
-        q = _("Data was modified. Are you sure you want to abandon your changes?")
-        quit = obj
-        GnomeQuestionDialog(q,cancel_callback)
-    else:
-        utils.destroy_passed_object(obj)
+        if self.did_data_change():
+            global quit
+            q = _("Data was modified. Are you sure you want to abandon your changes?")
+            quit = obj
+            GnomeQuestionDialog(q,cancel_callback)
+        else:
+            utils.destroy_passed_object(obj)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def cancel_callback(a):
-    if a==0:
-        utils.destroy_passed_object(quit)
+    def on_delete_event(self,obj,b):
+        self.on_cancel_edit(obj)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def on_delete_event(obj,b):
-    global quit
+    def on_close_marriage_editor(self,obj):
+        idval = self.gid.get_text()
+        family = self.family
+        if idval != family.getId():
+            m = self.db.getFamilyMap() 
+            if not m.has_key(idval):
+                if m.has_key(family.getId()):
+                    del m[family.getId()]
+                    m[idval] = family
+                family.setId(idval)
+                utils.modified()
+            else:
+                msg1 = _("GRAMPS ID value was not changed.")
+                GnomeWarningDialog("%s" % msg1)
 
-    if did_data_change(obj):
-        q = _("Data was modified. Are you sure you want to abandon your changes?")
-        quit = obj
-        GnomeQuestionDialog(q,cancel_callback)
-        return 1
-    else:
-        utils.destroy_passed_object(obj)
-        return 0
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_close_marriage_editor(obj):
-    family_obj = obj.get_data(MARRIAGE)
-
-    idval = family_obj.gid.get_text()
-    family = family_obj.family
-    if idval != family.getId():
-        m = family_obj.db.getFamilyMap() 
-        if not m.has_key(idval):
-            if m.has_key(family.getId()):
-                del m[family.getId()]
-                m[idval] = family
-            family.setId(idval)
+        relation = self.type_field.entry.get_text()
+        if const.save_frel(relation) != self.family.getRelationship():
+            father = self.family.getFather()
+            mother = self.family.getMother()
+            if father.getGender() == mother.getGender():
+                self.family.setRelationship("Partners")
+            else:
+                val = const.save_frel(relation)
+                if val == "Partners":
+                    val = "Unknown"
+                if father.getGender() == Person.female or \
+                   mother.getGender() == Person.male:
+                    self.family.setFather(mother)
+                    self.family.setMother(father)
+                self.family.setRelationship(val)
             utils.modified()
-        else:
-            msg1 = _("GRAMPS ID value was not changed.")
-            GnomeWarningDialog("%s" % msg1)
 
-    relation = family_obj.type_field.entry.get_text()
-    if const.save_frel(relation) != family_obj.family.getRelationship():
-        father = family_obj.family.getFather()
-        mother = family_obj.family.getMother()
-        if father.getGender() == mother.getGender():
-            family_obj.family.setRelationship("Partners")
-        else:
-            val = const.save_frel(relation)
-            if val == "Partners":
-                val = "Unknown"
-            if father.getGender() == Person.female or \
-               mother.getGender() == Person.male:
-                family_obj.family.setFather(mother)
-                family_obj.family.setMother(father)
-            family_obj.family.setRelationship(val)
-        utils.modified()
+        text = self.notes_field.get_chars(0,-1)
+        if text != self.family.getNote():
+            self.family.setNote(text)
+            utils.modified()
 
-    text = family_obj.notes_field.get_chars(0,-1)
-    if text != family_obj.family.getNote():
-        family_obj.family.setNote(text)
-        utils.modified()
+        utils.destroy_passed_object(self.get_widget("marriageEditor"))
 
-    utils.destroy_passed_object(family_obj.get_widget("marriageEditor"))
+        self.update_lists()
+        if self.lists_changed:
+            utils.modified()
 
-    family_obj.update_lists()
-    if family_obj.lists_changed:
-        utils.modified()
-
-#-------------------------------------------------------------------------
-#
-# on_add_clicked - creates a new event from the data displayed in the
-# window. Special care has to be take for the marriage and divorce
-# events, since they are not stored in the event list. 
-#
-#-------------------------------------------------------------------------
-def on_add_clicked(obj):
-    mobj = obj.get_data(MARRIAGE)
-    father = mobj.family.getFather()
-    mother = mobj.family.getMother()
-    if father and mother:
-        name = _("%s and %s") % (father.getPrimaryName().getName(),
-                                 mother.getPrimaryName().getName())
-    elif father:
-        name = father.getPrimaryName().getName()
-    else:
-        name = mother.getPrimaryName().getName()
-    EventEdit.EventEditor(mobj,name,const.marriageEvents,const.save_pevent,None,0)
-
-#-------------------------------------------------------------------------
-#
-# on_update_clicked - updates the selected event with the values in the
-# current display
-#
-#-------------------------------------------------------------------------
-def on_update_clicked(obj):
-    if len(obj.selection) <= 0:
-        return
-
-    mobj = obj.get_data(MARRIAGE)
-    event = obj.get_row_data(obj.selection[0])
-    father = mobj.family.getFather()
-    mother = mobj.family.getMother()
-    if father and mother:
-        name = _("%s and %s") % (father.getPrimaryName().getName(),
-                                 mother.getPrimaryName().getName())
-    elif father:
-        name = father.getPrimaryName().getName()
-    else:
-        name = mother.getPrimaryName().getName()
-    EventEdit.EventEditor(mobj,name,const.marriageEvents,const.save_pevent,event,0)
-
-#-------------------------------------------------------------------------
-#
-# on_delete_clicked - deletes the currently displayed event from the
-# marriage event list.  Special care needs to be taken for the Marriage
-# and Divorce events, since they are not stored in the event list
-#
-#-------------------------------------------------------------------------
-def on_delete_clicked(obj):
-    family_obj = obj.get_data(MARRIAGE)
-    if utils.delete_selected(obj,family_obj.elist):
-        family_obj.lists_changed = 1
-        family_obj.redraw_event_list()
-
-#-------------------------------------------------------------------------
-#
-# on_select_row - updates the internal data attached to the passed object,
-# then updates the display.
-#
-#-------------------------------------------------------------------------
-def on_select_row(obj,row,b,c):
-    family_obj = obj.get_data(MARRIAGE)
-    event = obj.get_row_data(row)
-    
-    family_obj.date_field.set_text(event.getDate())
-    family_obj.place_field.set_text(event.getPlaceName())
-    family_obj.cause_field.set_text(event.getCause())
-    family_obj.name_field.set_label(const.display_fevent(event.getName()))
-    family_obj.event_details.set_text(utils.get_detail_text(event))
-    family_obj.descr_field.set_text(event.getDescription())
-
-
-#-------------------------------------------------------------------------
-#
-# on_attr_list_select_row - sets the row object attached to the passed
-# object, and then updates the display with the data corresponding to
-# the row.
-#
-#-------------------------------------------------------------------------
-def on_attr_list_select_row(obj,row,b,c):
-    family_obj = obj.get_data(MARRIAGE)
-    attr = obj.get_row_data(row)
-
-    family_obj.attr_type.set_label(const.display_fattr(attr.getType()))
-    family_obj.attr_value.set_text(attr.getValue())
-    family_obj.attr_details_field.set_text(utils.get_detail_text(attr))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_update_attr_clicked(obj):
-    if len(obj.selection) > 0:
-        row = obj.selection[0]
-        mobj = obj.get_data(MARRIAGE)
-        attr = obj.get_row_data(row)
-        father = mobj.family.getFather()
-        mother = mobj.family.getMother()
+    def on_add_clicked(self,obj):
+        import EventEdit
+        father = self.family.getFather()
+        mother = self.family.getMother()
         if father and mother:
             name = _("%s and %s") % (father.getPrimaryName().getName(),
                                      mother.getPrimaryName().getName())
@@ -413,36 +252,80 @@ def on_update_attr_clicked(obj):
             name = father.getPrimaryName().getName()
         else:
             name = mother.getPrimaryName().getName()
-        AttrEdit.AttributeEditor(mobj,attr,name,const.familyAttributes)
+        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,None,0)
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_delete_attr_clicked(obj):
-    family_obj = obj.get_data(MARRIAGE)
-    if utils.delete_selected(obj,family_obj.alist):
-        family_obj.lists_changed = 1
-        family_obj.redraw_attr_list()
+    def on_update_clicked(self,obj):
+        import EventEdit
+        if len(obj.selection) <= 0:
+            return
 
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_add_attr_clicked(obj):
-    mobj = obj.get_data(MARRIAGE)
-    father = mobj.family.getFather()
-    mother = mobj.family.getMother()
-    if father and mother:
-        name = _("%s and %s") % (father.getPrimaryName().getName(),
-                                 mother.getPrimaryName().getName())
-    elif father:
-        name = father.getPrimaryName().getName()
-    else:
-        name = mother.getPrimaryName().getName()
-    AttrEdit.AttributeEditor(mobj,None,name,const.familyAttributes)
+        event = obj.get_row_data(obj.selection[0])
+        father = self.family.getFather()
+        mother = self.family.getMother()
+        if father and mother:
+            name = _("%s and %s") % (father.getPrimaryName().getName(),
+                                     mother.getPrimaryName().getName())
+        elif father:
+            name = father.getPrimaryName().getName()
+        else:
+            name = mother.getPrimaryName().getName()
+        EventEdit.EventEditor(self,name,const.marriageEvents,const.save_pevent,event,0)
+
+    def on_delete_clicked(self,obj):
+        if utils.delete_selected(obj,self.elist):
+            self.lists_changed = 1
+            self.redraw_event_list()
+
+    def on_select_row(self,obj,row,b,c):
+        event = obj.get_row_data(row)
+    
+        self.date_field.set_text(event.getDate())
+        self.place_field.set_text(event.getPlaceName())
+        self.cause_field.set_text(event.getCause())
+        self.name_field.set_label(const.display_fevent(event.getName()))
+        self.event_details.set_text(utils.get_detail_text(event))
+        self.descr_field.set_text(event.getDescription())
+
+    def on_attr_list_select_row(self,obj,row,b,c):
+        attr = obj.get_row_data(row)
+
+        self.attr_type.set_label(const.display_fattr(attr.getType()))
+        self.attr_value.set_text(attr.getValue())
+        self.attr_details_field.set_text(utils.get_detail_text(attr))
+
+    def on_update_attr_clicked(self,obj):
+        import AttrEdit
+        if len(obj.selection) > 0:
+            row = obj.selection[0]
+            attr = obj.get_row_data(row)
+            father = self.family.getFather()
+            mother = self.family.getMother()
+            if father and mother:
+                name = _("%s and %s") % (father.getPrimaryName().getName(),
+                                         mother.getPrimaryName().getName())
+            elif father:
+                name = father.getPrimaryName().getName()
+            else:
+                name = mother.getPrimaryName().getName()
+            AttrEdit.AttributeEditor(self,attr,name,const.familyAttributes)
+
+    def on_delete_attr_clicked(self,obj):
+        if utils.delete_selected(obj,self.alist):
+            self.lists_changed = 1
+            self.redraw_attr_list()
+
+    def on_add_attr_clicked(self,obj):
+        import AttrEdit
+        father = self.family.getFather()
+        mother = self.family.getMother()
+        if father and mother:
+            name = _("%s and %s") % (father.getPrimaryName().getName(),
+                                     mother.getPrimaryName().getName())
+        elif father:
+            name = father.getPrimaryName().getName()
+        else:
+            name = mother.getPrimaryName().getName()
+        AttrEdit.AttributeEditor(self,None,name,const.familyAttributes)
 
 
 #-------------------------------------------------------------------------
@@ -462,3 +345,13 @@ def disp_attr(attr):
 def disp_event(event):
     return [const.display_fevent(event.getName()), event.getQuoteDate(),
             event.getPlaceName(), utils.get_detail_flags(event)]
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def cancel_callback(a):
+    if a==0:
+        utils.destroy_passed_object(quit)
+

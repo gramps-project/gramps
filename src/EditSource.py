@@ -44,7 +44,6 @@ import intl
 import const
 import utils
 from RelLib import *
-import RelImage
 import ImageSelect
 
 _ = intl.gettext
