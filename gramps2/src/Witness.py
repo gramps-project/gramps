@@ -141,6 +141,7 @@ class WitnessEditor:
 
         self.window = self.show_witness.get_widget('witness_edit')
         self.name = self.show_witness.get_widget("name")
+        self.private = self.show_witness.get_widget("priv")
         self.select = self.show_witness.get_widget("select")
         self.select.connect('clicked',self.choose)
         self.ok = self.show_witness.get_widget("ok")
@@ -157,6 +158,7 @@ class WitnessEditor:
                 self.name.set_text(self.ref.get_value())
                 self.in_db.set_active(0)
             self.comment.get_buffer().set_text(self.ref.get_comment())
+            self.private.set_active(self.ref.get_privacy())
 
         self.on_toggled(None)
         Utils.set_titles(self.show_witness.get_widget('witness_edit'),
@@ -241,6 +243,8 @@ class WitnessEditor:
 
         c = self.comment.get_buffer()
         self.ref.set_comment(unicode(c.get_text(c.get_start_iter(),c.get_end_iter(),gtk.FALSE)))
+        self.ref.set_privacy(self.private.get_active())
+
         if self.update:
             self.update()
         self.close(obj)

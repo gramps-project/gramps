@@ -332,6 +332,7 @@ class SourceEditor:
         self.title_menu = self.get_widget("source_title")
         self.title_menu.set_data("o",self)
         self.conf_menu = self.get_widget("conf")
+        self.private = self.get_widget("priv")
         self.ok = self.get_widget("ok")
         Utils.build_confidence_menu(self.conf_menu)
         self.conf_menu.set_history(srcref.get_confidence_level())
@@ -351,15 +352,16 @@ class SourceEditor:
             self.active_source = self.db.get_source_from_handle(self.source_ref.get_base_handle())
             self.date_obj = self.source_ref.get_date()
             self.date_entry_field.set_text(self.dd.display(self.date_obj))
+            self.private.set_active(self.source_ref.get_privacy())
         else:
             self.date_obj = Date.Date()
             self.active_source = None
 
         date_stat = self.get_widget("date_stat")
         self.date_check = DateEdit.DateEdit(self.date_obj,
-                                                    self.date_entry_field,
-                                                    date_stat,
-                                                    self.sourceDisplay)
+                                            self.date_entry_field,
+                                            date_stat,
+                                            self.sourceDisplay)
 
         self.draw(self.active_source)
         self.set_button()
@@ -495,6 +497,7 @@ class SourceEditor:
         self.source_ref.set_text(text)
         self.source_ref.set_comments(comments)
         self.source_ref.set_confidence_level(conf)
+        self.source_ref.set_privacy(self.private.get_active())
 
         if self.update:
             self.update(self.parent,self.source_ref)
@@ -518,5 +521,6 @@ class SourceEditor:
 
     def add_src_clicked(self,obj):
         import EditSource
-        EditSource.EditSource(RelLib.Source(),self.db, self,self.sourceDisplay, self.update_display)
+        EditSource.EditSource(RelLib.Source(),self.db, self,
+                              self.sourceDisplay, self.update_display)
 

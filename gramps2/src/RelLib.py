@@ -201,7 +201,7 @@ class DataObj(SourceNote):
         if source:
             self.private = source.private
         else:
-            self.private = 0
+            self.private = False
 
     def set_privacy(self,val):
         """Sets or clears the privacy flag of the data"""
@@ -2115,6 +2115,15 @@ class Witness:
         self.set_type(type)
         self.set_value(val)
         self.set_comment(comment)
+        self.private = False
+
+    def set_privacy(self,val):
+        """Sets or clears the privacy flag of the data"""
+        self.private = val
+
+    def get_privacy(self):
+        """Returns the privacy level of the data"""
+        return self.private
 
     def set_type(self,type):
         self.type = type
@@ -2147,6 +2156,7 @@ class SourceRef:
             self.date = Date.Date(source.date)
             self.comments = Note(source.comments.get())
             self.text = source.text
+            self.private = source.private
         else:
             self.confidence = CONF_NORMAL
             self.ref = None
@@ -2154,6 +2164,15 @@ class SourceRef:
             self.date = Date.Date()
             self.comments = Note()
             self.text = ""
+            self.private = False
+
+    def set_privacy(self,val):
+        """Sets or clears the privacy flag of the data"""
+        self.private = val
+
+    def get_privacy(self):
+        """Returns the privacy level of the data"""
+        return self.private
 
     def set_confidence_level(self,val):
         """Sets the confidence level"""
