@@ -1,3 +1,23 @@
+2005-01-18 Eero Tamminen <eerot@sf>
+	* src/plugins/GraphViz.py:
+	  - Content options are now on the Report tab, Layout/looks
+	    options are left to GraphViz tab
+	  - Remade option lists, there's now a new class that keeps them
+	  - Moved lists from different places in code to the new class
+	  - Added 'rankdir' option for graph direction and 'latin'
+	    option for fonts (visible only on command line, in GUI
+	    it's taken from selected font and set whether labels need
+	    utf8->latin1 conversion)
+	  - Changed 'colorize' option to support color filling in
+	    addition to just outline color (nicer for on-screen docs)
+	  - Changed the options defaults slightly (e.g. "Default" font
+	    is now default, this is a bit contraversial)
+	  - Non-blood relation line changed from dashed to dotted
+	  - Changed three option names to be more understandable:
+	    - sfn -> showfamilies
+	    - repb -> placecause
+	    - incda -> incdate
+
 2005-01-18 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* NEWS: Correct attribution of ini-backend.
 	* configure.in: bump up the version number.

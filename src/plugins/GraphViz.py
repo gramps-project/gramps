@@ -54,20 +54,41 @@ from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
 #
-# constants
+# Constant options items
 #
 #------------------------------------------------------------------------
-_PS_FONT = 'Helvetica'
-_TT_FONT = 'FreeSans'
 
-_formats = (
-    ( _("Postscript"), "ps" ),
-    ( _("Structured Vector Graphics (SVG)"), "svg" ),
-    ( _("Compressed Structured Vector Graphics (SVG)"), "svgz" ),
-    ( _("PNG image"), "png" ),
-    ( _("JPEG image"), "jpg" ),
-    ( _("GIF image"), "gif" ),
-)
+class _options:
+    # internal ID, english option name (for cli), localized option name (for gui)
+    formats = (
+        ("ps", "Postscript", _("Postscript")),
+        ("svg", "Structured Vector Graphics (SVG)", _("Structured Vector Graphics (SVG)")),
+        ("svgz", "Compressed Structured Vector Graphics (SVG)", _("Compressed Structured Vector Graphics (SVG)")),
+        ("png", "PNG image", _("PNG image")),
+        ("jpg", "JPEG image", _("JPEG image")),
+        ("gif", "GIF image", _("GIF image")),
+    )
+    fonts = (
+        # Last items tells whether strings need to be converted to Latin1
+        ("", "Default", _("Default"), 1),
+        ("Helvetica", "Postscript / Helvetica", _("Postscript / Helvetica"), 1),
+        ("FreeSans", "Truetype / FreeSans", _("Truetype / FreeSans"), 0),
+    )
+    colors = (
+        ("outline", "B&W Outline", _("B&W outline")),
+        ("colored", "Colored outline", _("Colored outline")),
+        ("filled", "Color fill", _("Color fill")),
+    )
+    rankdir = (
+        ("LR", "Horizontal", _("Horizontal")),
+        ("RL", "Vertical", _("Vertical")),
+    )
+    arrowstyles = (
+        ('d', "Descendants <- Ancestors",  _("Descendants <- Ancestors")),
+        ('a', "Descendants -> Ancestors",  _("Descendants -> Ancestors")),
+        ('da',"Descendants <-> Ancestors", _("Descendants <-> Ancestors")),
+        ('',  "Descendants - Ancestors",    _("Descendants - Ancestors")),
+    )
 
 dot_found = os.system("dot -V 2>/dev/null") == 0
 
@@ -91,51 +112,67 @@ class GraphViz:
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        filter  - Filter to be applied to the people of the database.
-                  The option class carries its number, and the function
-                  returning the list of filters.
-        font    - Font to use.
-        arrow   - Arrow styles for heads and tails.
-        sfn     - Whether to show family nodes.
-        incid   - Whether to include IDs.
-        incda   - Whether to include dates.
-        yearso  - Use years only.
-        repb    -           THIS ONE IS NOT BACK FROM THE DEAD YET :-)
-        url     - Whether to include URLs.
-        color   - Whether to colorize the graph.
-        dashedl - Whether to use dashed lines for non-birth relationships.
-        margtb  - Top & bottom margins, in cm.
-        marglr  - Left & right margins, in cm.
-        pagesh  - Number of pages in horizontal direction.
-        pagesv  - Number of pages in vertical direction.
+        filter     - Filter to be applied to the people of the database.
+                     The option class carries its number, and the function
+                     returning the list of filters.
+        font       - Font to use.
+        latin      - Set if font supports only Latin1
+        arrow      - Arrow styles for heads and tails.
+        showfamily - Whether to show family nodes.
+        incid      - Whether to include IDs.
+        incdate    - Whether to include dates.
+        justyears  - Use years only.
+        placecause - Whether to replace missing dates with place or cause
+        url        - Whether to include URLs.
+        rankdir    - Graph direction
+        color      - Whether to use outline, colored outline or filled color in graph
+        dashedl    - Whether to use dashed lines for non-birth relationships.
+        margtb     - Top & bottom margins, in cm.
+        marglr     - Left & right margins, in cm.
+        pagesh     - Number of pages in horizontal direction.
+        pagesv     - Number of pages in vertical direction.
         """
+        colored = {
+            'male': 'dodgerblue4',
+            'female': 'deeppink',
+            'unknown': 'black',
+            'family': 'darkgreen'
+        }
+        filled = {
+            'male': 'lightblue',
+            'female': 'lightpink',
+            'unknown': 'lightgray',
+            'family': 'lightyellow'
+        }
         self.database = database
         self.start_person = person
-        self.options_class = options_class
 
-        self.paper = self.options_class.handler.get_paper()
-        self.orien = self.options_class.handler.get_orientation()
-
+        self.paper = options_class.handler.get_paper()
+        self.orient = options_class.handler.get_orientation()
         self.width = self.paper.get_width_inches()
         self.height = self.paper.get_height_inches()
-        self.hpages = self.options_class.handler.options_dict['pagesh']
-        self.vpages = self.options_class.handler.options_dict['pagesv']
-        self.lr_margin = self.options_class.handler.options_dict['marglr']
-        self.tb_margin = self.options_class.handler.options_dict['margtb']
-        self.includeid = self.options_class.handler.options_dict['incid']
-        self.includedates = self.options_class.handler.options_dict['incda']
-        self.includeurl = self.options_class.handler.options_dict['url']
-        self.colorize = self.options_class.handler.options_dict['color']
-        self.adoptionsdashed = self.options_class.handler.options_dict['dashedl']
-        self.show_families = self.options_class.handler.options_dict['sfn']
-        self.just_year = self.options_class.handler.options_dict['yearso']
-        self.placecause = self.options_class.handler.options_dict['repb']
-        self.font = self.options_class.handler.options_dict['font']
-        if self.font == 'tt':
-            self.fontname = _TT_FONT
-        else:
-            self.fontname = _PS_FONT
-        arrow_str = self.options_class.handler.options_dict['arrow']
+
+        options = options_class.handler.options_dict
+        self.hpages = options['pagesh']
+        self.vpages = options['pagesv']
+        self.lr_margin = options['marglr']
+        self.tb_margin = options['margtb']
+        self.includeid = options['incid']
+        self.includedates = options['incdate']
+        self.includeurl = options['url']
+        self.adoptionsdashed = options['dashedl']
+        self.show_families = options['showfamily']
+        self.just_years = options['justyears']
+        self.placecause = options['placecause']
+        self.rankdir = options['rankdir']
+        self.fontname = options['font']
+        self.latin = options['latin']
+        self.colorize = options['color']
+        if self.colorize == 'colored':
+            self.colors = colored
+        elif self.colorize == 'filled':
+            self.colors = filled
+        arrow_str = options['arrow']
         if arrow_str.find('a') + 1:
             self.arrowheadstyle = 'normal'
         else:
@@ -162,7 +199,7 @@ class GraphViz:
         self.write_header()
         self.f.write("digraph GRAMPS_relationship_graph {\n")
         self.f.write("bgcolor=white;\n")
-        self.f.write("rankdir=LR;\n")
+        self.f.write("rankdir=%s;\n" % self.rankdir)
         self.f.write("center=1;\n")
         self.f.write("margin=0.5;\n")
         self.f.write("ratio=fill;\n")
@@ -174,7 +211,7 @@ class GraphViz:
         )
         self.f.write("page=\"%3.1f,%3.1f\";\n" % (self.width,self.height))
 
-        if self.orien == PAPER_LANDSCAPE:
+        if self.orient == PAPER_LANDSCAPE:
             self.f.write("rotate=90;\n")
 
         if len(self.ind_list) > 1:
@@ -207,7 +244,7 @@ class GraphViz:
                     self.f.write('arrowhead=%s, arrowtail=%s, ' %
                            (self.arrowheadstyle, self.arrowtailstyle))
                     if self.adoptionsdashed and (fadopted or madopted):
-                        self.f.write('style=dashed')
+                        self.f.write('style=dotted')
                     else:
                         self.f.write('style=solid')
                     self.f.write('];\n')
@@ -220,7 +257,7 @@ class GraphViz:
                         self.f.write('arrowhead=%s, arrowtail=%s, ' %
                                    (self.arrowheadstyle, self.arrowtailstyle))
                         if self.adoptionsdashed and fadopted:
-                            self.f.write('style=dashed')
+                            self.f.write('style=dotted')
                         else:
                             self.f.write('style=solid')
                         self.f.write('];\n')
@@ -231,7 +268,7 @@ class GraphViz:
                         self.f.write('arrowhead=%s, arrowtail=%s, ' %
                                    (self.arrowheadstyle, self.arrowtailstyle))
                         if self.adoptionsdashed and madopted:
-                            self.f.write('style=dashed')
+                            self.f.write('style=dotted')
                         else:
                             self.f.write('style=solid')
                         self.f.write('];\n')
@@ -264,18 +301,22 @@ class GraphViz:
             self.f.write('p%s [shape=box, ' % the_id)
             if self.includeurl:
                 self.f.write('URL="%s.html", ' % the_id)
-            if self.colorize:
+            if self.colorize != 'outline':
+                if self.colorize == 'filled':
+                    style = 'style=filled, fillcolor'
+                else:
+                    style = 'color'
                 gender = person.get_gender()
                 if gender == person.male:
-                    self.f.write('color=dodgerblue4, ')
+                    self.f.write('%s=%s, ' % (style, self.colors['male']))
                 elif gender == person.female:
-                    self.f.write('color=deeppink, ')
+                    self.f.write('%s=%s, ' % (style, self.colors['female']))
                 else:
-                    self.f.write('color=black, ')
-            if self.font == 'tt':
-                self.f.write('fontname="%s", label="%s"];\n' % (self.fontname,label))
-            else:
-                self.f.write('fontname="%s", label="%s"];\n' % (self.fontname,utf8_to_latin(label)))
+                    self.f.write('%s=%s, ' % (style, self.colors['unknown']))
+            if self.latin:
+                label = utf8_to_latin(label)
+            self.f.write('fontname="%s", label="%s"];\n' % (self.fontname,label))
+
             # Output families's nodes.
             if self.show_families:
                 family_list = person.get_family_handle_list()
@@ -285,8 +326,12 @@ class GraphViz:
                     if fam_handle not in families_done:
                         families_done.append(fam_handle)
                         self.f.write('f%s [shape=ellipse, ' % fid)
-                        marriage = ""
+                        if self.colorize == 'colored':
+                            self.f.write('color=%s, ' % self.colors['family'])
+                        elif self.colorize == 'filled':
+                            self.f.write('style=filled fillcolor=%s, ' % self.colors['family'])
 
+                        marriage = ""
                         for event_handle in fam.get_event_list():
                             if event_handle:
                                 event = self.database.get_event_from_handle(event_handle)
@@ -321,7 +366,7 @@ class GraphViz:
             empty string
         """
         if event.get_date_object().get_year_valid():
-            if self.just_year:
+            if self.just_years:
                 return '%i' % event.get_date_object().get_year()
             else:
                 return event.get_date()
@@ -344,16 +389,16 @@ class GraphViz:
         self.f.write(" *   font style         : %s\n" % self.fontname)
         self.f.write(" *   style arrow head   : %s\n" % self.arrowheadstyle)
         self.f.write(" *               tail   : %s\n" % self.arrowtailstyle)
+        self.f.write(" *   graph direction    : %s\n" % self.rankdir)
         self.f.write(" *   include URLs       : %s\n" % bool(self.includeurl))
         self.f.write(" *           IDs        : %s\n" % bool(self.includeid))
         self.f.write(" *           dates      : %s\n" % bool(self.includedates))
-        self.f.write(" *   just year          : %s\n" % bool(self.just_year))
+        self.f.write(" *   just year          : %s\n" % bool(self.just_years))
         self.f.write(" *   place or cause     : %s\n" % bool(self.placecause))
         self.f.write(" *   colorize           : %s\n" % bool(self.colorize))
-        self.f.write(" *   dashed adoptions   : %s\n" % bool(self.adoptionsdashed))
+        self.f.write(" *   dotted adoptions   : %s\n" % bool(self.adoptionsdashed))
         self.f.write(" *   show family nodes  : %s\n" % bool(self.show_families))
-#        self.f.write(" *        as stack      : %s\n" % self.ShowAsStack)
-        self.f.write(" *   margins top/bottm  : %s\n" % self.tb_margin)
+        self.f.write(" *   margins top/bottom : %s\n" % self.tb_margin)
         self.f.write(" *           left/right : %s\n" % self.lr_margin)
         self.f.write(" *   pages horizontal   : %s\n" % self.hpages)
         self.f.write(" *         vertical     : %s\n" % self.vpages)
@@ -380,57 +425,61 @@ class GraphVizOptions(ReportOptions.ReportOptions):
     def set_new_options(self):
         # Options specific for this report
         self.options_dict = {
-            'font'      : 'tt',
-            'arrow'     : 'd',
-            'sfn'       : 0,
-            'incid'     : 1,
-            'incda'     : 1,
-            'yearso'    : 0,
-            'repb'      : 1,
-            'url'       : 1,
-            'color'     : 1,
-            'dashedl'   : 1,
-            'margtb'    : 0.5,
-            'marglr'    : 0.5,
-            'pagesh'    : 1,
-            'pagesv'    : 1,
-            'gvof'      : 'png',
+            'font'       : "",
+            'latin'      : 1,
+            'arrow'      : 'd',
+            'showfamily' : 1,
+            'incdate'    : 1,
+            'incid'      : 0,
+            'justyears'  : 0,
+            'placecause' : 1,
+            'url'        : 1,
+            'rankdir'    : "LR",
+            'color'      : "filled",
+            'dashedl'    : 1,
+            'margtb'     : 0.5,
+            'marglr'     : 0.5,
+            'pagesh'     : 1,
+            'pagesv'     : 1,
+            'gvof'       : 'ps',
         }
 
         self.options_help = {
             'font'      : ("=str","Font to use in the report.",
-                            ["tt\tTrueType","ps\tPostscript"],
+                            [ "%s\t%s" % (item[0],item[2]) for item in _options.fonts ],
                             False),
+            'latin'     : ("=0/1","Needs to be set if font doesn't support unicode.",
+                            ["Supports unicode","Supports only Latin1"],
+                            True),
             'arrow'     : ("=str","Arrow styles for heads and tails.",
-                            [
-                            'd \tDescendants <- Ancestors',
-                            'a \tDescendants -> Ancestors',
-                            'da\tDescendants <-> Ancestors',
-                            '""\tDescendants - Ancestors'],
+                            [ "%s\t%s" % (item[0],item[2]) for item in _options.arrowstyles ],
                             False),
-            'sfn'       : ("=0/1","Whether to show family nodes.",
+            'showfamily': ("=0/1","Whether to show family nodes.",
                             ["Do not show family nodes","Show family nodes"],
                             True),
-            'incid'     : ("=0/1","Whether to include dates.",
+            'incdate'   : ("=0/1","Whether to include dates.",
                             ["Do not include dates","Include dates"],
                             True),
-            'incda'     : ("=0/1","Whether to include IDs.",
+            'incid'     : ("=0/1","Whether to include IDs.",
                             ["Do not include IDs","Include IDs"],
                             True),
-            'yearso'    : ("=0/1","Whether to use years only.",
+            'justyears' : ("=0/1","Whether to use years only.",
                             ["Do not use years only","Use years only"],
                             True),
-            'repb'      : ("=0/1","Whether to replace missing dates with place/cause.",
+            'placecause': ("=0/1","Whether to replace missing dates with place/cause.",
                             ["Do not replace blank dates","Replace blank dates"],
                             True),
             'url'       : ("=0/1","Whether to include URLs.",
                             ["Do not include URLs","Include URLs"],
                             True),
-            'color'     : ("=0/1","Whether to colorize graph.",
-                            ["Do not colorize graph","Colorize graph"],
-                            True),
-            'dashedl'   : ("=0/1","Whether to use dashed lines for non-birth relationships.",
-                            ["Do not use dashed lines","Use dashed lines"],
+            'rankdir'      : ("=str","Graph direction.",
+                            [ "%s\t%s" % (item[0],item[2]) for item in _options.rankdir ],
+                            False),
+            'color'     : ("=str","Whether and how to colorize graph.",
+                            [ "%s\t%s" % (item[0],item[2]) for item in _options.colors ],
+                            False),
+            'dashedl'   : ("=0/1","Whether to use dotted lines for non-birth relationships.",
+                            ["Do not use dotted lines","Use dotted lines"],
                             True),
             'margtb'    : ("=num","Top & bottom margins.",
                             "Floating point values, in cm"),
@@ -441,7 +490,7 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             'pagesv'    : ("=num","Number of pages in vertical direction.",
                             "Integer values"),
             'gvof'      : ("=str","Output format to convert dot file into.",
-                            [ "%s\t%s" % (item[1],item[0]) for item in _formats ],
+                            [ "%s\t%s" % (item[0],item[2]) for item in _options.formats ],
                             False),
         }
 
@@ -478,7 +527,8 @@ class GraphVizOptions(ReportOptions.ReportOptions):
 
         return [all,des,ans,com]
 
-    def make_doc_menu(self,dialog,active=None): pass
+    def make_doc_menu(self,dialog,active=None):
+        pass
 
     def add_user_options(self,dialog):
         if self.handler.report_name == "rel_graph2":
@@ -486,12 +536,90 @@ class GraphVizOptions(ReportOptions.ReportOptions):
             dialog.format_menu = GraphicsFormatComboBox()
             dialog.format_menu.set(self.options_dict['gvof'])
 
-        self.arrowstyles = (
-            (_("Descendants <- Ancestors"),     'd'),
-            (_("Descendants -> Ancestors"),     'a'),
-            (_("Descendants <-> Ancestors"),    'da'),
-            (_("Descendants - Ancestors"),      ''),
-        )
+        # Content options tab
+        msg = _("Include Birth, Marriage and Death dates")
+        self.includedates_cb = gtk.CheckButton(msg)
+        self.includedates_cb.set_active(self.options_dict['incdate'])
+        dialog.add_option(None,
+                        self.includedates_cb,
+                        _("Include the dates that the individual "
+                          "was born, got married and/or died "
+                          "in the graph labels."))
+
+        self.just_years_cb = gtk.CheckButton(_("Limit dates to years only"))
+        self.just_years_cb.set_active(self.options_dict['justyears'])
+        dialog.add_option(None,
+                        self.just_years_cb,
+                        _("Prints just dates' year, neither "
+                          "month or day nor date approximation "
+                          "or interval are shown."))
+
+        self.place_cause_cb = gtk.CheckButton(_("Place/cause when no date"))
+        self.place_cause_cb.set_active(self.options_dict['placecause'])
+        dialog.add_option(None,
+                        self.place_cause_cb,
+                        _("When no birth, marriage, or death date "
+                          "is available, the correspondent place field "
+                          "(or cause field when blank place) will be used."))
+
+        # disable other date options if no dates
+        self.includedates_cb.connect('toggled',self.toggle_date)
+        self.toggle_date(self.includedates_cb)
+
+        self.includeurl_cb = gtk.CheckButton(_("Include URLs"))
+        self.includeurl_cb.set_active(self.options_dict['url'])
+        dialog.add_option(None,
+                        self.includeurl_cb,
+                        _("Include a URL in each graph node so "
+                          "that PDF and imagemap files can be "
+                          "generated that contain active links "
+                          "to the files generated by the 'Generate "
+                          "Web Site' report."))
+
+        self.includeid_cb = gtk.CheckButton(_("Include IDs"))
+        self.includeid_cb.set_active(self.options_dict['incid'])
+        dialog.add_option(None,
+                        self.includeid_cb,
+                        _("Include individual and family IDs."))
+
+        # GraphViz output options tab
+        self.rank_box = gtk.ComboBox()
+        store = gtk.ListStore(str)
+        self.rank_box.set_model(store)
+        cell = gtk.CellRendererText()
+        self.rank_box.pack_start(cell,True)
+        self.rank_box.add_attribute(cell,'text',0)
+        index = 0
+        for item in _options.rankdir:
+            store.append(row=[item[2]])
+            if item[0] == self.options_dict['rankdir']:
+                self.rank_box.set_active(index)
+            index = index + 1
+        dialog.add_frame_option(_("GraphViz Options"),
+                              _("Graph direction"),
+                              self.rank_box,
+                              _("Whether generations go from top to bottom "
+                                "or left to right."))
+
+        self.color_box = gtk.ComboBox()
+        store = gtk.ListStore(str)
+        self.color_box.set_model(store)
+        cell = gtk.CellRendererText()
+        self.color_box.pack_start(cell,True)
+        self.color_box.add_attribute(cell,'text',0)
+        index = 0
+        for item in _options.colors:
+            store.append(row=[item[2]])
+            if item[0] == self.options_dict['color']:
+                self.color_box.set_active(index)
+            index = index + 1
+        dialog.add_frame_option(_("GraphViz Options"),
+                              _("Graph coloring"),
+                              self.color_box,
+                              _("Males will be shown with blue, females "
+                                "with red.  If the sex of an individual "
+                                "is unknown it will be shown with gray."))
+
         self.arrowstyle_box = gtk.ComboBox()
         store = gtk.ListStore(str)
         self.arrowstyle_box.set_model(store)
@@ -499,24 +627,16 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.arrowstyle_box.pack_start(cell,True)
         self.arrowstyle_box.add_attribute(cell,'text',0)
         index = 0
-        active_index = 0
-        for item in self.arrowstyles:
-            store.append(row=[item[0]])
-            if item[1] == self.options_dict['arrow']:
-                active_index = index
+        for item in _options.arrowstyles:
+            store.append(row=[item[2]])
+            if item[0] == self.options_dict['arrow']:
+                self.arrowstyle_box.set_active(index)
             index = index + 1
-        self.arrowstyle_box.set_active(active_index)
-
         dialog.add_frame_option(_("GraphViz Options"),
-                              _("Arrowhead Options"),
-                              self.arrowstyle_box,
-                              _("Choose the direction that the arrows point."))
-        
+                                _("Arrowhead direction"),
+                                self.arrowstyle_box,
+                                _("Choose the direction that the arrows point."))
 
-        self.font_options = (
-            (_("TrueType"),'tt'),
-            (_("PostScript"),'ps'),
-        )
         self.font_box = gtk.ComboBox()
         store = gtk.ListStore(str)
         self.font_box.set_model(store)
@@ -524,85 +644,38 @@ class GraphVizOptions(ReportOptions.ReportOptions):
         self.font_box.pack_start(cell,True)
         self.font_box.add_attribute(cell,'text',0)
         index = 0
-        active_index = 0
-        for item in self.font_options:
-            store.append(row=[item[0]])
-            if item[1] == self.options_dict['font']:
-                active_index = index
+        for item in _options.fonts:
+            if item[3]:
+                name = "%s (iso-latin1 font)" % item[2]
+            else:
+                name = item[2]
+            store.append(row=[name])
+            if item[0] == self.options_dict['font']:
+                self.font_box.set_active(index)
             index = index + 1
-        self.font_box.set_active(active_index)
-
         dialog.add_frame_option(_("GraphViz Options"),
-                              _("Font Options"),
+                              _("Font family"),
                               self.font_box,
-                              _("Choose the font family."))
+                              _("Choose the font family. If international "
+                                "characters don't show, use FreeSans font. "
+                                "FreeSans is available from: "
+                                "http://www.nongnu.org/freefont/"))
 
-        msg = _("Include Birth, Marriage and Death Dates")
-        self.includedates_cb = gtk.CheckButton(msg)
-        self.includedates_cb.set_active(self.options_dict['incda'])
-        dialog.add_frame_option(_("GraphViz Options"), '',
-                              self.includedates_cb,
-                              _("Include the dates that the individual "
-                                "was born, got married and/or died "
-                                "in the graph labels."))
-
-        self.just_year_cb = gtk.CheckButton(_("Limit dates to years only"))
-        self.just_year_cb.set_active(self.options_dict['yearso'])
-        dialog.add_frame_option(_("GraphViz Options"), '',
-                              self.just_year_cb,
-                              _("Prints just dates' year, neither "
-                                "month or day nor date approximation "
-                                "or interval are shown."))
-
-        self.includedates_cb.connect('toggled',self.toggle_date)
-
-        self.place_cause_cb = gtk.CheckButton(_("Place/cause when no date"))
-        self.place_cause_cb.set_active(self.options_dict['repb'])
-        dialog.add_frame_option(_("GraphViz Options"), '',
-                              self.place_cause_cb,
-                              _("When no birth, marriage, or death date "
-                                "is available, the correspondent place field "
-                                "(or cause field when blank place) will be used."))
-
-        self.includeurl_cb = gtk.CheckButton(_("Include URLs"))
-        self.includeurl_cb.set_active(self.options_dict['url'])
-        dialog.add_frame_option(_("GraphViz Options"), '',
-                              self.includeurl_cb,
-                              _("Include a URL in each graph node so "
-                                "that PDF and imagemap files can be "
-                                "generated that contain active links "
-                                "to the files generated by the 'Generate "
-                                "Web Site' report."))
-
-        self.colorize_cb = gtk.CheckButton(_("Colorize Graph"))
-        self.colorize_cb.set_active(self.options_dict['color'])
-        dialog.add_frame_option(_("GraphViz Options"), '',
-                              self.colorize_cb,
-                              _("Males will be outlined in blue, females "
-                                "will be outlined in pink.  If the sex of "
-                                "an individual is unknown it will be "
-                                "outlined in black."))
-
-        self.adoptionsdashed_cb = gtk.CheckButton(_("Indicate non-birth relationships with dashed lines"))
+        self.adoptionsdashed_cb = gtk.CheckButton(_("Indicate non-birth relationships with dotted lines"))
         self.adoptionsdashed_cb.set_active(self.options_dict['dashedl'])
         dialog.add_frame_option(_("GraphViz Options"), '',
                               self.adoptionsdashed_cb,
                               _("Non-birth relationships will show up "
-                                "as dashed lines in the graph."))
+                                "as dotted lines in the graph."))
 
         self.show_families_cb = gtk.CheckButton(_("Show family nodes"))
-        self.show_families_cb.set_active(self.options_dict['sfn'])
+        self.show_families_cb.set_active(self.options_dict['showfamily'])
         dialog.add_frame_option(_("GraphViz Options"), '',
                               self.show_families_cb,
                               _("Families will show up as ellipses, linked "
                                 "to parents and children."))
 
-        self.includeid_cb = gtk.CheckButton(_("Include IDs"))
-        self.includeid_cb.set_active(self.options_dict['incid'])
-        dialog.add_frame_option(_("GraphViz Options"), '',
-                              self.includeid_cb,
-                              _("Include individual and family IDs."))
-
+        # Page options tab
         tb_margin_adj = gtk.Adjustment(value=self.options_dict['margtb'],
                         lower=0.25, upper=100.0, step_incr=0.25)
         lr_margin_adj = gtk.Adjustment(value=self.options_dict['marglr'],
@@ -642,26 +715,31 @@ class GraphVizOptions(ReportOptions.ReportOptions):
                                 "controls the number pages in the array "
                                 "vertically."))
 
-    def toggle_date(self,obj):
-        self.just_year_cb.set_sensitive(self.includedates_cb.get_active())
+    def toggle_date(self, obj):
+        self.just_years_cb.set_sensitive(self.includedates_cb.get_active())
         self.place_cause_cb.set_sensitive(self.includedates_cb.get_active())
 
     def parse_user_options(self,dialog):
-        self.options_dict['arrow'] = \
-                self.arrowstyles[self.arrowstyle_box.get_active()][1]
-        self.options_dict['incda'] = int(self.includedates_cb.get_active())
+        self.options_dict['incdate'] = int(self.includedates_cb.get_active())
         self.options_dict['url'] = int(self.includeurl_cb.get_active())
         self.options_dict['margtb'] = self.tb_margin_sb.get_value()
         self.options_dict['marglr'] = self.lr_margin_sb.get_value()
-        self.options_dict['color'] = int(self.colorize_cb.get_active())
         self.options_dict['dashedl'] = int(self.adoptionsdashed_cb.get_active())
         self.options_dict['pagesh'] = self.hpages_sb.get_value_as_int()
         self.options_dict['pagesv'] = self.hpages_sb.get_value_as_int()
-        self.options_dict['sfn'] = int(self.show_families_cb.get_active())
+        self.options_dict['showfamily'] = int(self.show_families_cb.get_active())
         self.options_dict['incid'] = int(self.includeid_cb.get_active())
-        self.options_dict['repb'] = int(self.place_cause_cb.get_active())
+        self.options_dict['placecause'] = int(self.place_cause_cb.get_active())
+        self.options_dict['rankdir'] = \
+                _options.rankdir[self.rank_box.get_active()][0]
+        self.options_dict['color'] = \
+                _options.colors[self.color_box.get_active()][0]
+        self.options_dict['arrow'] = \
+                _options.arrowstyles[self.arrowstyle_box.get_active()][0]
         self.options_dict['font'] = \
-                self.font_options[self.font_box.get_active()][1]
+                _options.fonts[self.font_box.get_active()][0]
+        self.options_dict['latin'] = \
+                _options.fonts[self.font_box.get_active()][3]
         if self.handler.report_name == "rel_graph2":
             self.options_dict['gvof'] = dialog.format_menu.get_format_str()
 
@@ -768,15 +846,15 @@ class GraphicsFormatComboBox(gtk.ComboBox):
         self.add_attribute(cell,'text',0)
         active_index = 0
         index = 0
-        for item in _formats:
-            self.store.append(row=[item[0]])
-            if active == item[1]:
+        for item in _options.formats:
+            self.store.append(row=[item[2]])
+            if active == item[0]:
                 active_index = index
             index = index + 1
         self.set_active(active_index)
 
     def get_label(self):
-        return _formats[self.get_active()][0]
+        return _options.formats[self.get_active()][2]
 
     def get_reference(self):
         return EmptyDoc
@@ -788,10 +866,10 @@ class GraphicsFormatComboBox(gtk.ComboBox):
         return 0
 
     def get_ext(self):
-        return '.%s' % _formats[self.get_active()][1]
+        return '.%s' % _options.formats[self.get_active()][0]
 
     def get_format_str(self):
-        return _formats[self.get_active()][1]
+        return _options.formats[self.get_active()][0]
 
     def get_printable(self):
         return None
