@@ -1,3 +1,9 @@
+2004-04-20  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ChooseParents.py: Disallow selecting self as a parent.
+
+2004-04-20  Jason Salaz  <whatsizbucket@comcast.net>
+	* src/SelectChild.py: Disallow selecting self as a child.
+
 2004-04-18  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: support for new GTK 2.4 file chooser
 

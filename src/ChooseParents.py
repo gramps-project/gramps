@@ -55,6 +55,7 @@ import const
 import Utils
 import GrampsCfg
 import PeopleModel
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -472,7 +473,7 @@ class ChooseParents:
 
     def save_parents_clicked(self,obj):
         """
-        Called with the OK button nis pressed. Saves the selected people as parents
+        Called with the OK button is pressed. Saves the selected people as parents
         of the main perosn.
         """
         try:
@@ -489,26 +490,42 @@ class ChooseParents:
             if self.mother and not self.father:
                 if self.mother.get_gender() == RelLib.Person.male:
                     self.father = self.mother
+                    father_id = self.father.get_id()
                     self.mother = None
-                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
+                    mother_id = None
+                else:
+                    mother_id = self.mother.get_id()
+                    father_id = None
             elif self.father and not self.mother: 
                 if self.father.get_gender() == RelLib.Person.female:
                     self.mother = self.father
                     self.father = None
-                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
+                    mother_id = self.mother.get_id()
+                    father_id = None
+                else:
+                    father_id = self.father.get_id()
+                    mother_id = None
             elif self.mother.get_gender() != self.father.get_gender():
                 if self.type == "Partners":
                     self.type = "Unknown"
                 if self.father.get_gender() == RelLib.Person.female:
                     self.father, self.mother = self.mother, self.father
-                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
+                father_id = self.father.get_id()
+                mother_id = self.mother.get_id()
             else:
                 self.type = "Partners"
-                self.family = self.find_family(self.father.get_id(),self.mother.get_id())
+                father_id = self.father.get_id()
+                mother_id = self.mother.get_id()
+            self.family = self.find_family(father_id,mother_id)
         else:    
             self.family = None
 
         if self.family:
+            if self.person.get_id() in (father_id,mother_id):
+                ErrorDialog(_("Error selecting a child"),
+                            _("A person cannot be linked as his/her own parent"),
+                            self.top)
+                return
             self.family.add_child_id(self.person.get_id())
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)

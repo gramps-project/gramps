@@ -47,6 +47,7 @@ import Utils
 import PeopleModel
 import GrampsCfg
 from RelLib import Person
+from QuestionDialog import ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -300,10 +301,16 @@ class SelectChild:
 
         select_child.add_parent_family_id(self.family.get_id(),mrel,frel)
 
+        if id in (self.family.get_father_id(),self.family.get_mother_id()):
+            ErrorDialog(_("Error selecting a child"),
+                        _("A person cannot be linked as his/her own child"),
+                        self.top)
+            return
+
         trans = self.db.start_transaction()
         self.db.commit_person(select_child,trans)
         self.db.add_transaction(trans)
-        
+            
         self.redraw(self.family)
         self.close(obj)
         
