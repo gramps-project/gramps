@@ -51,6 +51,7 @@ import Plugins
 import RelLib
 import RelImage
 import ListModel
+import SelectObject
 import grampslib
 
 from QuestionDialog import ErrorDialog
@@ -550,6 +551,22 @@ class Gallery(ImageSelect):
         """User wants to add a new photo.  Create a dialog to find out
         which photo they want."""
         self.create_add_dialog()
+
+    def on_select_photo_clicked(self,obj):
+        """User wants to add a new object that is already in a database.  
+        Create a dialog to find out which object they want."""
+
+        s_o = SelectObject.SelectObject(self.db,_("Select an Object"))
+        object = s_o.run()
+        if not object:
+            return
+        oref = RelLib.ObjectRef()
+        oref.setReference(object)
+        self.dataobj.addPhoto(oref)
+        self.add_thumbnail(oref)
+
+        self.parent.lists_changed = 1
+        self.load_images()
 
     def on_delete_photo_clicked(self, obj):
         """User wants to delete a new photo. Remove it from the displayed

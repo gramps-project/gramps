@@ -156,9 +156,13 @@ class EditPlace:
             self.note_buffer.set_text(place.getNote())
             Utils.bold_label(self.notes_label)
 
+        if self.place.getPhotoList():
+            Utils.bold_label(self.gallery_label)
+
         self.top_window.signal_autoconnect({
             "on_switch_page"            : self.on_switch_page,
             "on_addphoto_clicked"       : self.glry.on_add_photo_clicked,
+            "on_selectphoto_clicked"    : self.glry.on_select_photo_clicked,
             "on_deletephoto_clicked"    : self.glry.on_delete_photo_clicked,
             "on_edit_photo_clicked"     : self.glry.on_edit_photo_clicked,
             "on_edit_properties_clicked": self.glry.popup_change_description,

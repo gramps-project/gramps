@@ -86,9 +86,13 @@ class EditSource:
             self.notes_buffer.set_text(source.getNote())
             Utils.bold_label(self.notes_label)
 
+        if self.source.getPhotoList():
+            Utils.bold_label(self.gallery_label)
+
         self.top_window.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
+            "on_selectphoto_clicked"    : self.gallery.on_select_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_sourceEditor_help_clicked" : self.on_help_clicked,

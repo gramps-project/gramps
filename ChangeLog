@@ -7,6 +7,17 @@
 	* src/docgen/HtmlDoc.py (write_note): Use styles for preformatted note. 
 	* src/edit_person.glade: Add tooltips and hotkeys to the radiobuttons.
 
+	* src/edit_person.glade: Add from file and Add from database buttons.
+	* src/EditPerson.py (__init__): Add handler for a new button.
+	* src/ImageSelect.py (Gallery.on_select_photo_clicked): Add function.
+	* src/marriage.glade: Add from file and Add from database buttons.
+	* src/Marriage.py (__init__): Add handler for a new button.
+	* src/gramps.glade (sourceEditor): Add from file and Add from database 
+	buttons.
+	* src/EditSource.py (__init__): Add handler for a new button.
+	* src/places.glade: Add from file and Add from database buttons.
+	* src/EditPlace.py (__init__): Add handler for a new button.
+
 2003-12-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsCfg.py: Make sure to return "BOTH" if the gnome
 	toolbar gconf entry is not set. Appears that this can happen

@@ -349,6 +349,7 @@ class EditPerson:
             "on_add_attr_clicked"       : self.on_add_attr_clicked,
             "on_add_url_clicked"        : self.on_add_url_clicked,
             "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
+            "on_selectphoto_clicked"    : self.gallery.on_select_photo_clicked,
             "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
             "on_aka_update_clicked"     : self.on_aka_update_clicked,
             "on_apply_person_clicked"   : self.on_apply_person_clicked,
