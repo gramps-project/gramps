@@ -90,6 +90,11 @@ _name_format_list = [
 
 owner         = Researcher()
 prefsTop      = None
+iprefix       = "I"
+oprefix       = "O"
+sprefix       = "S"
+pprefix       = "P"
+fprefix       = "F"
 autoload      = 0
 usetabs       = 0
 usevc         = 0
@@ -153,6 +158,11 @@ def loadConfig(call):
     global owner
     global usetabs
     global usevc
+    global iprefix
+    global fprefix
+    global pprefix
+    global oprefix
+    global sprefix
     global vc_comment
     global uncompress
     global id_visible
@@ -193,6 +203,12 @@ def loadConfig(call):
     paper_preference = gnome.config.get_string("/gramps/config/paperPreference")
     output_preference = gnome.config.get_string("/gramps/config/outputPreference")
     _name_format = gnome.config.get_int("/gramps/config/nameFormat")
+
+    iprefix = gnome.config.get_string("/gramps/config/iprefix")
+    fprefix = gnome.config.get_string("/gramps/config/fprefix")
+    sprefix = gnome.config.get_string("/gramps/config/sprefix")
+    oprefix = gnome.config.get_string("/gramps/config/oprefix")
+    pprefix = gnome.config.get_string("/gramps/config/pprefix")
 
     report_dir = gnome.config.get_string("/gramps/config/ReportDirectory")
     web_dir = gnome.config.get_string("/gramps/config/WebsiteDirectory")
@@ -239,6 +255,17 @@ def loadConfig(call):
     if output_preference == None:
         output_preference = "OpenOffice"
         
+    if iprefix == None:
+        iprefix = "I"
+    if fprefix == None:
+        fprefix = "F"
+    if sprefix == None:
+        sprefix = "S"
+    if pprefix == None:
+        pprefix = "P"
+    if oprefix == None:
+        oprefix = "O"
+
     if display_attr == None:
         display_attr = 0
 
@@ -359,6 +386,11 @@ def on_propertybox_apply(obj,page):
     global owner
     global usetabs
     global usevc
+    global iprefix
+    global fprefix
+    global pprefix
+    global sprefix
+    global oprefix
     global vc_comment
     global uncompress
     global id_visible
@@ -398,6 +430,22 @@ def on_propertybox_apply(obj,page):
     else:
         status_bar = 2
 
+    iprefix = prefsTop.get_widget("iprefix").get_text()
+    if iprefix == "":
+        iprefix = "I"
+    sprefix = prefsTop.get_widget("sprefix").get_text()
+    if sprefix == "":
+        sprefix = "S"
+    oprefix = prefsTop.get_widget("oprefix").get_text()
+    if oprefix == "":
+        oprefix = "O"
+    fprefix = prefsTop.get_widget("fprefix").get_text()
+    if fprefix == "":
+        fprefix = "F"
+    pprefix = prefsTop.get_widget("pprefix").get_text()
+    if pprefix == "":
+        pprefix = "P"
+
     dbdir_temp = prefsTop.get_widget("dbdir").get_full_path(1)
     if dbdir_temp != None and os.path.isdir(dbdir_temp):
         db_dir = os.path.normpath(dbdir_temp) + os.sep
@@ -430,6 +478,11 @@ def on_propertybox_apply(obj,page):
     gnome.config.set_string("/gramps/config/ReportDirectory",report_dir)
     gnome.config.set_string("/gramps/config/WebsiteDirectory",web_dir)
     gnome.config.set_string("/gramps/config/DbDirectory",db_dir)
+    gnome.config.set_string("/gramps/config/iprefix",iprefix)
+    gnome.config.set_string("/gramps/config/fprefix",fprefix)
+    gnome.config.set_string("/gramps/config/pprefix",pprefix)
+    gnome.config.set_string("/gramps/config/oprefix",oprefix)
+    gnome.config.set_string("/gramps/config/sprefix",sprefix)
 
     # search for the active date format selection
     
@@ -479,6 +532,13 @@ def on_propertybox_apply(obj,page):
     owner.set(name,addr,city,state,country,postal,phone,email)
     store_researcher(owner)
     
+    db = obj.get_data("db")
+    db.set_iprefix(iprefix)
+    db.set_fprefix(fprefix)
+    db.set_sprefix(sprefix)
+    db.set_oprefix(oprefix)
+    db.set_pprefix(pprefix)
+
     # update the config file
     
     gnome.config.sync()
@@ -540,7 +600,7 @@ def on_color_set(obj,r,g,b,a):
 # Create the property box, and set the elements off the current values
 #
 #-------------------------------------------------------------------------
-def display_preferences_box():
+def display_preferences_box(db):
     global prefsTop
 
     prefsTop = libglade.GladeXML(const.configFile,"propertybox")
@@ -554,6 +614,7 @@ def display_preferences_box():
         })
 
     pbox = prefsTop.get_widget("propertybox")
+    pbox.set_data("db",db)
     auto = prefsTop.get_widget("autoload")
     vis = prefsTop.get_widget("gid_visible")
     idedit = prefsTop.get_widget("gid_edit")
@@ -573,6 +634,12 @@ def display_preferences_box():
     vis.set_active(id_visible)
     idedit.set_active(id_edit)
 
+    prefsTop.get_widget("iprefix").set_text(iprefix)
+    prefsTop.get_widget("oprefix").set_text(oprefix)
+    prefsTop.get_widget("fprefix").set_text(fprefix)
+    prefsTop.get_widget("sprefix").set_text(sprefix)
+    prefsTop.get_widget("pprefix").set_text(pprefix)
+    
     if status_bar == 0:
         prefsTop.get_widget("stat1").set_active(1)
     elif status_bar == 1:

@@ -158,3 +158,17 @@ def by_last_name(first, second) :
 #-------------------------------------------------------------------------
 def by_last_name_backwards(first, second) :
     return by_last_name(second,first)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def by_birthdate(first, second) :
+
+    date1 = first.getBirth().getDateObj()
+    date2 = second.getBirth().getDateObj()
+    val = compare_dates(date1,date2)
+    if val == 0:
+        return by_last_name(first,second)
+    return val

@@ -2039,7 +2039,7 @@ def import_callback(obj,plugin_function):
 #
 #-------------------------------------------------------------------------
 def on_preferences_activate(obj):
-    Config.display_preferences_box()
+    Config.display_preferences_box(database)
     
 #-------------------------------------------------------------------------
 #
@@ -2627,6 +2627,11 @@ def main(arg):
     person_list.set_column_visibility(1,Config.id_visible)
 
     notebook.set_show_tabs(Config.usetabs)
+    database.set_iprefix(Config.iprefix)
+    database.set_oprefix(Config.oprefix)
+    database.set_fprefix(Config.fprefix)
+    database.set_sprefix(Config.sprefix)
+    database.set_pprefix(Config.pprefix)
     child_list = gtop.get_widget("child_list")
     child_list.set_column_visibility(4,Config.show_detail)
     child_list.set_column_visibility(6,0)
