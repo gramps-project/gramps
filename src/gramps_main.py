@@ -1631,6 +1631,8 @@ class Gramps:
                 pg = pg[0]
             else:
                 pg = ''
+            if not self.alpha_page.has_key(pg):
+                self.create_new_panel(pg)
             model = self.alpha_page[pg]
             iter = None
 
@@ -2051,6 +2053,11 @@ class Gramps:
         self.statusbar.set_progress_percentage(1.0)
 
         person = self.db.getDefaultPerson()
+        if not person:
+            the_ids = self.db.getPersonMap().keys()
+            if the_ids:
+                the_ids.sort()
+                person = self.db.getPerson(the_ids[0])
         self.change_active_person(person)
 
         self.full_update()
