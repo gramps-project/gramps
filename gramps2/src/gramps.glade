@@ -2854,7 +2854,23 @@
 		  </child>
 
 		  <child>
-		    <placeholder/>
+		    <widget class="GtkCheckButton" id="showall">
+		      <property name="visible">True</property>
+		      <property name="tooltip" translatable="yes">Check to show all people in the list.  Uncheck to get the list filtered by birth and death dates.</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">_Show all</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="active">False</property>
+		      <property name="inconsistent">False</property>
+		      <property name="draw_indicator">True</property>
+		      <signal name="toggled" handler="on_show_toggled"/>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
 		  </child>
 
 		  <child>
