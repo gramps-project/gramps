@@ -7,6 +7,15 @@
 	* src/plugins/Merge.py: Convert to db. 
 	* src/plugins/merge.glade: HIGify dialogs. 
 
+	* src/Plugins.py: Pass parent class to the tools.
+	* src/rule.glade: Define event handlers.
+	* src/gramps_main.py: Pass parent class to the tools.
+	* src/plugins/EventCmp.py: Window management.
+	* src/plugins/FilterEditor.py: Window management.
+	* src/plugins/PatchNames.py: Window management.
+	* src/plugins/eventcmp.glade: Define event handlers.
+	* src/plugins/patchnames.glade: Define event handlers.
+
 2004-05-08  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/EventCmp.py: Convert to db. 
 	* src/plugins/eventcmp.glade: HIGify dialogs. 

@@ -1735,7 +1735,7 @@ class Gramps:
     def menu_tools(self,obj,task):
         """Call the tool plugin selected from the menus"""
         if self.active_person:
-            task(self.db,self.active_person,self.tool_callback)
+            task(self.db,self.active_person,self.tool_callback,self)
     
     def on_main_key_release_event(self,obj,event):
         """Respond to the insert and delete buttons in the person list"""

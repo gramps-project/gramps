@@ -63,9 +63,9 @@ _nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
 # to "Name" and add "Nickname" into the nickname field.
 #
 #-------------------------------------------------------------------------
-def runTool(database,active_person,callback):
+def runTool(database,active_person,callback,parent=None):
     try:
-        PatchNames(database,callback)
+        PatchNames(database,callback,parent)
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
@@ -77,9 +77,12 @@ def runTool(database,active_person,callback):
 #-------------------------------------------------------------------------
 class PatchNames:
 
-    def __init__(self,db,callback):
+    def __init__(self,db,callback,parent):
         self.cb = callback
         self.db = db
+        self.parent = parent
+        self.win_key = self
+        self.child_windows = {}
         self.title_list = []
         self.nick_list = []
 
@@ -98,7 +101,6 @@ class PatchNames:
 
         msg = ""
 
-
         if self.nick_list or self.title_list:
             self.display()
         else:
@@ -113,18 +115,20 @@ class PatchNames:
         self.model.row_changed(path,row.iter)
 
     def display(self):
+
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "patchnames.glade"
         
         self.top = gtk.glade.XML(glade_file,"top","gramps")
+        self.window = self.top.get_widget('top')
         self.top.signal_autoconnect({
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_ok_clicked" : self.on_ok_clicked
+            "destroy_passed_object" : self.close,
+            "on_ok_clicked" : self.on_ok_clicked,
+            "on_delete_event" : self.on_delete_event
             })
         self.list = self.top.get_widget("list")
-        Utils.set_titles(self.top.get_widget('top'),
-                         self.top.get_widget('title'),
-                         _('Name and title extraction tool'))
+        self.label = _('Name and title extraction tool')
+        Utils.set_titles(self.window,self.top.get_widget('title'),self.label)
 
         self.model = gtk.ListStore(gobject.TYPE_BOOLEAN, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
@@ -171,6 +175,30 @@ class PatchNames:
             self.model.set_value(iter,3,nick)
             self.model.set_value(iter,4,p.get_primary_name().get_name())
             self.title_hash[id] = iter
+
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.remove_itself_from_menu()
+        self.window.destroy()
+
+    def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
+        self.parent_menu_item = gtk.MenuItem(self.label)
+        self.parent_menu_item.connect("activate",self.present)
+        self.parent_menu_item.show()
+        self.parent.winsmenu.append(self.parent_menu_item)
+
+    def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
                 
     def on_ok_clicked(self,obj):
         for grp in self.nick_list:
@@ -195,7 +223,7 @@ class PatchNames:
                 self.db.commit_person(p)
                 Utils.modified()
 
-        Utils.destroy_passed_object(obj)
+        self.close(obj)
         self.cb(1)
         
 #------------------------------------------------------------------------

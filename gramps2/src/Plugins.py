@@ -208,9 +208,9 @@ class PluginDialog:
 
         if self.run_tool:
             if self.update:
-                self.run_tool(self.db,self.active,self.update)
+                self.run_tool(self.db,self.active,self.update,self.parent)
             else:
-                self.run_tool(self.db,self.active)
+                self.run_tool(self.db,self.active,None,self.parent)
 
     def on_node_selected(self,obj):
         """Updates the informational display on the right hand side of
