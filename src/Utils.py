@@ -527,9 +527,9 @@ def gfloat(val):
         return float(val)
     except:
         try:
-            return float(val.subst('.',','))
+            return float(val.replace('.',','))
         except:
-            return float(val.subst(',','.'))
+            return float(val.replace(',','.'))
     return 0.0
                   
 #-------------------------------------------------------------------------
