@@ -49,9 +49,10 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-import Calendar
 import Gregorian
 import RelLib 
+import Date
+
 from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
@@ -590,31 +591,48 @@ class XmlWriter:
         if value:
             self.g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,self.fix(value),label))
 
+    def get_iso_date(self,date):
+        if date[2] == 0:
+            y = "????"
+        else:
+            y = "%04d" % date[2]
+            
+        if date[1] == 0:
+            if date[0] == 0:
+                m = ""
+            else:
+                m = "-??"
+        else:
+            m = "-%02d" % (date[1])
+        if date[0] == 0:
+            d = ''
+        else:
+            d = "-%02d" % date[0]
+        return "%s%s%s" % (y,m,d)
+
     def write_date(self,date,indent=1):
         sp = '  '*indent
-        if date.is_empty():
-            return
 
-        name = date.get_calendar().NAME
-        if name != Gregorian.Gregorian.NAME:
-            calstr = ' cformat="%s"' % name
+        cal= date.get_calendar()
+        if cal != Date.CAL_GREGORIAN:
+            calstr = ' cformat="%s"' % Date.Date.calendar_names[cal]
         else:
             calstr = ''
 
-        if date.is_range():
-            d1 = date.get_start_date().get_iso_date()
-            d2 = date.get_stop_date().get_iso_date()
+        mode = date.get_modifier()
+        
+        if date.is_compound():
+            d1 = self.get_iso_date(date.get_start_date())
+            d2 = self.get_iso_date(date.get_stop_date())
             self.g.write('%s<daterange start="%s" stop="%s"%s/>\n' % (sp,d1,d2,calstr))
-        elif date.is_valid():
-            d1 = date.get_start_date()
-            mode = d1.get_mode_val()
-            dstr = d1.get_iso_date()
+        elif mode != Date.MOD_TEXTONLY:
+            dstr = self.get_iso_date(date.get_start_date())
             
-            if mode == Calendar.BEFORE:
+            if mode == Date.MOD_BEFORE:
                 pref = ' type="before"'
-            elif mode == Calendar.AFTER:
+            elif mode == Date.MOD_AFTER:
                 pref = ' type="after"'
-            elif mode == Calendar.ABOUT:
+            elif mode == Date.MOD_ABOUT:
                 pref = ' type="about"'
             else:
                 pref = ""

@@ -237,13 +237,6 @@ class StartupDialog:
         box.add(align)
         vbox = gtk.VBox()
         vbox.set_spacing(6)
-        
-        self.calendar = gtk.CheckButton(label=_("Enable support for alternate calendars"))
-
-        self.calendar.set_active(GrampsCfg.get_calendar())
-        
-        align.add(self.calendar)
-        
         box.show_all()
         return p
 

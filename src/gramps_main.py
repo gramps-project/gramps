@@ -73,6 +73,7 @@ import DbPrompter
 import TipOfDay
 import ArgHandler
 import Exporter
+import DateDisplay
 
 from QuestionDialog import *
 
@@ -140,7 +141,6 @@ class Gramps:
                             "family database to this development version. This version may "
                             "contain bugs which could corrupt your database."))
             GrampsCfg.save_betawarn(1)
-        
 
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(self.db)

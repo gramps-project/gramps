@@ -55,6 +55,8 @@ import ListModel
 import RelLib
 import Sources
 import DateEdit
+import DateParser
+import DateHandler
 import TransTable
 
 from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
@@ -88,6 +90,8 @@ class EditPerson:
     def __init__(self,parent,person,db,callback=None):
         """Creates an edit window.  Associates a person with the window."""
 
+        self.dp = DateHandler.create_parser()
+        self.dd = DateHandler.create_display()
         self.person = person
         self.orig_surname = person.get_primary_name().get_surname()
         self.parent = parent
@@ -1208,14 +1212,12 @@ class EditPerson:
             self.redraw_event_list()
 
     def update_birth_death(self):
-        self.bdate.set_text(self.birth.get_date())
-
         self.bplace.set_text(place_title(self.db,self.birth))
         self.dplace.set_text(place_title(self.db,self.death))
 
-        self.bdate.set_text(self.birth.get_date())
+        self.bdate.set_text(self.dd.display(self.birth.get_date_object()))
         self.bdate_check.set_calendar(self.birth.get_date_object().get_calendar())
-        self.ddate.set_text(self.death.get_date())
+        self.ddate.set_text(self.dd.display(self.death.get_date_object()))
         self.ddate_check.set_calendar(self.death.get_date_object().get_calendar())
 
     def on_update_attr_clicked(self,obj):

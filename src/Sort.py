@@ -62,16 +62,7 @@ def build_sort_date(n):
     use as a sort key in a GtkCList. The resultant string is in the format
     of YYYYMMDD. Unknown values are given as all nines, so that the
     appear at the end"""
-    y = n.start.year
-    if y < 0:
-        y = 9999
-    m = n.start.month
-    if m < 0:
-        m = 99
-    d = n.start.day
-    if d < 0:
-        d = 99
-    return "%04d%02d%02d" % (y,m,d)
+    return "%010d" % n.get_sort_value()
 
 class Sort:
     def __init__(self,database):

@@ -43,6 +43,7 @@ import gtk.gdk
 #
 #-------------------------------------------------------------------------
 import Date
+import DateParser
 import const
 
 #-------------------------------------------------------------------------
@@ -60,15 +61,14 @@ class DateEdit:
     
     def __init__(self,text_obj,pixmap_obj):
         """Creates a connection between the text_obj and the pixmap_obj"""
-        
+
+        self.dp = DateParser.DateParser()
         self.text_obj = text_obj
         self.pixmap_obj = pixmap_obj
-        self.checkval = Date.Date()
         self.text_obj.connect('focus-out-event',self.check)
         self.check(None,None)
 
     def set_calendar(self,cobj):
-        self.checkval.set_calendar_obj(cobj)
         self.check(None,None)
         
     def check(self,obj,val):
@@ -76,11 +76,11 @@ class DateEdit:
         valid date, sets the appropriate pixmap"""
 
         text = unicode(self.text_obj.get_text())
-        self.checkval.set(text)
-        if not self.checkval.is_valid():
+        self.checkval = self.dp.parse(text)
+        if self.checkval.get_modifier() == Date.MOD_TEXTONLY:
             self.pixmap_obj.set_from_pixbuf(DateEdit.bad)
-        elif self.checkval.get_incomplete():
-            self.pixmap_obj.set_from_pixbuf(DateEdit.caution)
+#        elif self.checkval.get_incomplete():
+#            self.pixmap_obj.set_from_pixbuf(DateEdit.caution)
         else:
             self.pixmap_obj.set_from_pixbuf(DateEdit.good)
             

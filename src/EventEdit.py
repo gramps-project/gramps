@@ -42,9 +42,10 @@ import const
 import Utils
 import GrampsCfg
 import AutoComp
-import Calendar
 import RelLib
 import Date
+import DateParser
+import DateHandler
 import ImageSelect
 
 from DateEdit import DateEdit
@@ -77,6 +78,9 @@ class EventEditor:
         self.path = self.db.get_save_path()
         self.plist = []
         self.pmap = {}
+
+        self.dp = DateHandler.create_parser()
+        self.dd = DateHandler.create_display()
 
         values = {}
         for v in elist:
@@ -140,10 +144,7 @@ class EventEditor:
         self.gallery_label = self.top.get_widget("galleryEvent")
         self.witnesses_label = self.top.get_widget("witnessesEvent")
 
-        if GrampsCfg.get_calendar():
-            self.calendar.show()
-        else:
-            self.calendar.hide()
+        self.calendar.show()
         
         if read_only:
             self.event_menu.set_sensitive(0)
@@ -176,7 +177,7 @@ class EventEditor:
                     place_name = self.db.get_place_from_handle(place_handle).get_title()
                 self.place_field.set_text(place_name)
 
-            self.date_field.set_text(self.date.get_date())
+            self.date_field.set_text(self.dd.display(self.date))
             self.cause_field.set_text(event.get_cause())
             self.descr_field.set_text(event.get_description())
             self.priv.set_active(event.get_privacy())
@@ -219,16 +220,16 @@ class EventEditor:
 
         menu = gtk.Menu()
         index = 0
-        for cobj in Calendar.calendar_names():
-            item = gtk.MenuItem(cobj.TNAME)
-            item.set_data("d",cobj)
+        for cobj in Date.Date.calendar:
+            item = gtk.MenuItem(cobj)
+            item.set_data("d",index)
             item.connect("activate",self.on_menu_changed)
             item.show()
             menu.append(item)
-            if self.date.get_calendar().NAME == cobj.NAME:
+            if self.date.get_calendar() == index:
                 menu.set_active(index)
-                self.date_check.set_calendar(cobj())
-            index = index + 1
+                self.date_check.set_calendar(index)
+            index += 1
         self.calendar.set_menu(menu)
 
         self.window.set_transient_for(self.parent.window)
@@ -285,10 +286,10 @@ class EventEditor:
 
     def on_menu_changed(self,obj):
         cobj = obj.get_data("d")
-        self.date.set(unicode(self.date_field.get_text()))
+        self.date = self.dp.parse(self.date_field.get_text())
         self.date.set_calendar(cobj)
-        self.date_field.set_text(self.date.get_date())
-        self.date_check.set_calendar(cobj())
+        self.date_field.set_text(self.dd(self.date))
+        self.date_check.set_calendar(cobj)
         
     def get_place(self,field,trans):
         text = strip(unicode(field.get_text()))
@@ -305,7 +306,7 @@ class EventEditor:
         trans = self.db.transaction_begin()
         
         ename = unicode(self.event_menu.child.get_text())
-        self.date.set(unicode(self.date_field.get_text()))
+        self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
         eplace_obj = self.get_place(self.place_field,trans)
         buf = self.note_field.get_buffer()
@@ -367,7 +368,7 @@ class EventEditor:
         self.event.set_source_reference_list(self.srcreflist)
         self.event.set_witness_list(self.witnesslist)
         
-        if Date.compare_dates(dobj,date) != 0:
+        if dobj != date:
             self.event.set_date_object(date)
             self.parent.lists_changed = 1
 

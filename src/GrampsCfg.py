@@ -59,7 +59,7 @@ import const
 import Utils
 import PaperMenu
 import Plugins
-import Calendar
+import DateHandler
 
 client = gconf.client_get_default()
 client.add_dir("/apps/gramps",gconf.CLIENT_PRELOAD_NONE)
@@ -96,12 +96,6 @@ _date_format_list = [
     _("YYYY.MM.DD"),
     ]
 
-_date_entry_list = [
-    _("MM/DD/YYYY, MM.DD.YYYY, or MM-DD-YYYY"),
-    _("DD/MM/YYYY, DD.MM.YYYY, or DD-MM-YYYY"),
-    _("YYYY/MM/DD, YYYY.MM.DD, or YYYY-MM-DD"),
-    ]
-
 _name_format_list = [
     (_("Firstname Surname"),  Utils.normal_name, Utils.phonebook_name, lambda x: x.get_surname()),
     (_("Surname, Firstname"), Utils.phonebook_name, Utils.phonebook_name, lambda x: x.get_surname()),
@@ -113,10 +107,10 @@ panellist = [
     (_("Database"),
      [( _("General"), 1),
       ( _("Media Objects"), 7),
-      ( _("GRAMPS internal IDs"), 8)]),
+      ( _("GRAMPS IDs"), 8)]),
     (_("Display"),
      [( _("General"), 3),
-      ( _("Dates and Calendars"), 4),
+      ( _("Dates and Names"), 4),
       ( _("Toolbar and Statusbar"), 2)]),
     (_("Usage"),
      [( _("Report Preferences"), 6),
@@ -256,12 +250,6 @@ def get_media_local():
 def save_media_local(val):
     set_bool("/apps/gramps/behavior/media-local",val)
 
-def get_calendar():
-    return get_bool("/apps/gramps/behavior/show-calendar")
-
-def save_calendar(val):
-    set_bool("/apps/gramps/behavior/show-calendar",val)
-
 def get_lastnamegen():
     return get_int("/apps/gramps/behavior/surname-guessing",
                         range(len(_surname_styles)))
@@ -342,14 +330,6 @@ def get_use_tips():
 
 def save_use_tips(val):
     set_bool("/apps/gramps/preferences/use-tips",val)
-
-def get_date_entry():
-    return get_int("/apps/gramps/preferences/date-entry",
-                        range(len(_date_entry_list)))
-
-def save_date_entry(val):
-    set_int("/apps/gramps/preferences/date-entry",val,
-                        range(len(_date_entry_list)))
 
 def get_date_format():
     return get_int("/apps/gramps/preferences/date-format",
@@ -440,10 +420,7 @@ def get_toolbar_style():
         return gnome_toolbar
 
 def set_calendar_date_format():
-    Calendar.set_format_code(get_date_format())
-
-def set_calendar_date_entry():
-    Calendar.Calendar.ENTRYCODE = get_date_entry()
+    DateHandler.set_format(get_date_format())
 
 #-------------------------------------------------------------------------
 #
@@ -749,11 +726,6 @@ class GrampsPreferences:
         dl.set_active(get_media_local())
         dl.connect('toggled',lambda obj: save_media_local(obj.get_active()))
 
-        cal = self.top.get_widget("calendar")
-        cal.set_active(get_calendar())
-
-        cal.connect('toggled',lambda obj: save_calendar(obj.get_active()))
-
         index_vis = self.top.get_widget("show_child_id")
         index_vis.set_active(get_index_visible())
         index_vis.connect('toggled',lambda obj: save_index_visible(obj.get_active()))
@@ -871,27 +843,16 @@ class GrampsPreferences:
 
         date_option = self.top.get_widget("date_format")
         date_menu = gtk.Menu()
-        for index in range(0,len(_date_format_list)):
-            item = gtk.MenuItem(_date_format_list[index])
+        dlist = DateHandler.get_date_formats()
+        for index in range(0,len(dlist)):
+            item = gtk.MenuItem(dlist[index])
             item.set_data(INDEX,index)
             item.show()
             date_menu.append(item)
-        date_menu.set_active(Calendar.get_format_code())
+        date_menu.set_active(get_date_format())
         date_option.set_menu(date_menu)
         date_option.connect("changed",
                     lambda obj: save_date_format(obj.get_menu().get_active().get_data(INDEX)))
-
-        date_entry = self.top.get_widget("date_entry_format")
-        date_menu = gtk.Menu()
-        for index in range(0,len(_date_entry_list)):
-            item = gtk.MenuItem(_date_entry_list[index])
-            item.set_data(INDEX,index)
-            item.show()
-            date_menu.append(item)
-        date_menu.set_active(Calendar.Calendar.ENTRYCODE)
-        date_entry.set_menu(date_menu)
-        date_entry.connect("changed", 
-                    lambda obj: save_date_entry(obj.get_menu().get_active().get_data(INDEX)))
 
         name_option = self.top.get_widget("name_format")
         name_menu = gtk.Menu()

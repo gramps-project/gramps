@@ -17380,74 +17380,6 @@ Other</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkOptionMenu" id="tooloptmenu">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="history">0</property>
-				  <signal name="changed" handler="on_object_toggled" object="propertybox" last_modification_time="Thu, 16 Oct 2003 16:14:49 GMT"/>
-
-				  <child>
-				    <widget class="GtkMenu" id="menu3">
-
-				      <child>
-					<widget class="GtkMenuItem" id="menuitem9">
-					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">Icons Only</property>
-					  <property name="use_underline">True</property>
-					</widget>
-				      </child>
-
-				      <child>
-					<widget class="GtkMenuItem" id="menuitem10">
-					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">Text Only</property>
-					  <property name="use_underline">True</property>
-					</widget>
-				      </child>
-
-				      <child>
-					<widget class="GtkMenuItem" id="menuitem7">
-					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">Text Below Icons</property>
-					  <property name="use_underline">True</property>
-					</widget>
-				      </child>
-
-				      <child>
-					<widget class="GtkMenuItem" id="menuitem8">
-					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">Text Beside Icons</property>
-					  <property name="use_underline">True</property>
-					</widget>
-				      </child>
-
-				      <child>
-					<widget class="GtkMenuItem" id="menuitem11">
-					  <property name="visible">True</property>
-					</widget>
-				      </child>
-
-				      <child>
-					<widget class="GtkMenuItem" id="menuitem12">
-					  <property name="visible">True</property>
-					  <property name="label" translatable="yes">GNOME Settings</property>
-					  <property name="use_underline">True</property>
-					</widget>
-				      </child>
-				    </widget>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="left_attach">1</property>
-				  <property name="right_attach">3</property>
-				  <property name="top_attach">1</property>
-				  <property name="bottom_attach">2</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
 				<widget class="GtkRadioButton" id="stat3">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
@@ -17512,6 +17444,74 @@ Other</property>
 				  <property name="right_attach">3</property>
 				  <property name="top_attach">3</property>
 				  <property name="bottom_attach">4</property>
+				  <property name="x_options">fill</property>
+				  <property name="y_options"></property>
+				</packing>
+			      </child>
+
+			      <child>
+				<widget class="GtkOptionMenu" id="tooloptmenu">
+				  <property name="visible">True</property>
+				  <property name="can_focus">True</property>
+				  <property name="history">0</property>
+				  <signal name="changed" handler="on_object_toggled" object="propertybox" last_modification_time="Thu, 16 Oct 2003 16:14:49 GMT"/>
+
+				  <child>
+				    <widget class="GtkMenu" id="menu3">
+
+				      <child>
+					<widget class="GtkMenuItem" id="menuitem9">
+					  <property name="visible">True</property>
+					  <property name="label" translatable="yes">Icons Only</property>
+					  <property name="use_underline">True</property>
+					</widget>
+				      </child>
+
+				      <child>
+					<widget class="GtkMenuItem" id="menuitem10">
+					  <property name="visible">True</property>
+					  <property name="label" translatable="yes">Text Only</property>
+					  <property name="use_underline">True</property>
+					</widget>
+				      </child>
+
+				      <child>
+					<widget class="GtkMenuItem" id="menuitem7">
+					  <property name="visible">True</property>
+					  <property name="label" translatable="yes">Text Below Icons</property>
+					  <property name="use_underline">True</property>
+					</widget>
+				      </child>
+
+				      <child>
+					<widget class="GtkMenuItem" id="menuitem8">
+					  <property name="visible">True</property>
+					  <property name="label" translatable="yes">Text Beside Icons</property>
+					  <property name="use_underline">True</property>
+					</widget>
+				      </child>
+
+				      <child>
+					<widget class="GtkMenuItem" id="menuitem11">
+					  <property name="visible">True</property>
+					</widget>
+				      </child>
+
+				      <child>
+					<widget class="GtkMenuItem" id="menuitem12">
+					  <property name="visible">True</property>
+					  <property name="label" translatable="yes">GNOME Settings</property>
+					  <property name="use_underline">True</property>
+					</widget>
+				      </child>
+				    </widget>
+				  </child>
+				</widget>
+				<packing>
+				  <property name="left_attach">1</property>
+				  <property name="right_attach">2</property>
+				  <property name="top_attach">1</property>
+				  <property name="bottom_attach">2</property>
 				  <property name="x_options">fill</property>
 				  <property name="y_options"></property>
 				</packing>
@@ -17780,6 +17780,7 @@ Other</property>
 
 			      <child>
 				<widget class="GtkCheckButton" id="usetips">
+				  <property name="border_width">3</property>
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
 				  <property name="label" translatable="yes">_Display Tip of the Day</property>
@@ -17842,7 +17843,7 @@ Other</property>
 			    <widget class="GtkTable" id="table17">
 			      <property name="border_width">12</property>
 			      <property name="visible">True</property>
-			      <property name="n_rows">7</property>
+			      <property name="n_rows">4</property>
 			      <property name="n_columns">3</property>
 			      <property name="homogeneous">False</property>
 			      <property name="row_spacing">6</property>
@@ -17921,76 +17922,6 @@ Other</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkLabel" id="label15">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">D_ate format:</property>
-				  <property name="use_underline">True</property>
-				  <property name="use_markup">False</property>
-				  <property name="justify">GTK_JUSTIFY_CENTER</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">5</property>
-				  <property name="ypad">5</property>
-				  <property name="mnemonic_widget">date_entry_format</property>
-				</widget>
-				<packing>
-				  <property name="left_attach">1</property>
-				  <property name="right_attach">2</property>
-				  <property name="top_attach">4</property>
-				  <property name="bottom_attach">5</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkOptionMenu" id="date_entry_format">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="history">-1</property>
-
-				  <child internal-child="menu">
-				    <widget class="GtkMenu" id="convertwidget7">
-				      <property name="visible">True</property>
-				    </widget>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="left_attach">2</property>
-				  <property name="right_attach">3</property>
-				  <property name="top_attach">4</property>
-				  <property name="bottom_attach">5</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkCheckButton" id="calendar">
-				  <property name="visible">True</property>
-				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">_Show calendar format selection menu</property>
-				  <property name="use_underline">True</property>
-				  <property name="relief">GTK_RELIEF_NORMAL</property>
-				  <property name="focus_on_click">True</property>
-				  <property name="active">False</property>
-				  <property name="inconsistent">False</property>
-				  <property name="draw_indicator">True</property>
-				  <signal name="toggled" handler="on_object_toggled" object="propertybox"/>
-				</widget>
-				<packing>
-				  <property name="left_attach">1</property>
-				  <property name="right_attach">3</property>
-				  <property name="top_attach">6</property>
-				  <property name="bottom_attach">7</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
 				<widget class="GtkLabel" id="label127">
 				  <property name="visible">True</property>
 				  <property name="label" translatable="yes">&lt;b&gt;Display formats&lt;/b&gt;</property>
@@ -18015,54 +17946,6 @@ Other</property>
 			      </child>
 
 			      <child>
-				<widget class="GtkLabel" id="label128">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Entry formats&lt;/b&gt;</property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">True</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="left_attach">0</property>
-				  <property name="right_attach">3</property>
-				  <property name="top_attach">3</property>
-				  <property name="bottom_attach">4</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkLabel" id="label129">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">&lt;b&gt;Calendars&lt;/b&gt;</property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">True</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="left_attach">0</property>
-				  <property name="right_attach">3</property>
-				  <property name="top_attach">5</property>
-				  <property name="bottom_attach">6</property>
-				  <property name="x_options">fill</property>
-				  <property name="y_options"></property>
-				</packing>
-			      </child>
-
-			      <child>
 				<widget class="GtkOptionMenu" id="date_format">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
@@ -18079,6 +17962,7 @@ Other</property>
 				  <property name="right_attach">3</property>
 				  <property name="top_attach">1</property>
 				  <property name="bottom_attach">2</property>
+				  <property name="x_options">fill</property>
 				  <property name="y_options"></property>
 				</packing>
 			      </child>
@@ -18907,7 +18791,7 @@ Other</property>
 			  <property name="border_width">12</property>
 			  <property name="visible">True</property>
 			  <property name="n_rows">6</property>
-			  <property name="n_columns">3</property>
+			  <property name="n_columns">2</property>
 			  <property name="homogeneous">False</property>
 			  <property name="row_spacing">6</property>
 			  <property name="column_spacing">12</property>
@@ -19021,7 +18905,7 @@ Other</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">0</property>
-			      <property name="right_attach">3</property>
+			      <property name="right_attach">2</property>
 			      <property name="top_attach">0</property>
 			      <property name="bottom_attach">1</property>
 			      <property name="x_options">fill</property>
@@ -19045,7 +18929,7 @@ Other</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">0</property>
-			      <property name="right_attach">3</property>
+			      <property name="right_attach">2</property>
 			      <property name="top_attach">4</property>
 			      <property name="bottom_attach">5</property>
 			      <property name="x_options">fill</property>
@@ -19088,7 +18972,7 @@ Other</property>
 			    <widget class="GtkTable" id="table21">
 			      <property name="border_width">12</property>
 			      <property name="visible">True</property>
-			      <property name="n_rows">8</property>
+			      <property name="n_rows">7</property>
 			      <property name="n_columns">3</property>
 			      <property name="homogeneous">False</property>
 			      <property name="row_spacing">6</property>
