@@ -1,3 +1,12 @@
+2005-03-25  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/Sources.py: converted to use DdTargets.py
+	* src/FamilyView.py: converted to use DdTargets.py
+	* src/EditPerson.py: converted to use DdTargets.py
+	* src/EditPlace.py: converted to use DdTargets.py
+	* src/Marriage.py: converted to use DdTargets.py
+	* src/DdTargets.py: added targets for FAMILY_EVENT, FAMILY_ATTRIBUTE,
+	CHILD and SPOUSE
+	
 2005-03-24  Alex Roitman  <shura@gramps-project.org>
 	* src/RelLib.py (Witness.__init__): Typo.
 	* src/plugins/Check.py (cleanup_missing_photos): Use new mediaref

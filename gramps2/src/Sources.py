@@ -51,11 +51,14 @@ import Date
 import DateEdit
 import DateHandler
 
-pycode_tgts = [('url',    0, 0),
-               ('pevent', 0, 1),
-               ('pattr',  0, 2),
-               ('paddr',  0, 3),
-               ('srcref', 0, 4)]
+from DdTargets import DdTargets
+
+
+##pycode_tgts = [('url',    0, 0),
+##               ('pevent', 0, 1),
+##               ('pattr',  0, 2),
+##               ('paddr',  0, 3),
+##               ('srcref', 0, 4)]
 
 #-------------------------------------------------------------------------
 #
@@ -263,8 +266,12 @@ class SourceTab:
         self.redraw()
 
     def setup_drag_n_drop(self):
-        self.slist.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
-        self.slist.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+        self.slist.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                 [DdTargets.SOURCEREF.target()],
+                                 ACTION_COPY)
+        self.slist.drag_source_set(BUTTON1_MASK,
+                                   [DdTargets.SOURCEREF.target()],
+                                   ACTION_COPY)
         self.slist.connect('drag_data_get', self.drag_data_get)
         self.slist.connect('drag_begin', self.drag_begin)
         self.slist.connect('drag_data_received',self.drag_data_received)
@@ -274,7 +281,7 @@ class SourceTab:
             exec 'data = %s' % sel_data.data
             exec 'mytype = "%s"' % data[0]
             exec 'person = "%s"' % data[1]
-            if mytype != 'srcref':
+            if mytype != DdTargets.SOURCEREF.drag_type:
                 return
             else:
                 foo = pickle.loads(data[2]);
@@ -290,7 +297,7 @@ class SourceTab:
 
         bits_per = 8; # we're going to pass a string
         pickled = pickle.dumps(ev);
-        data = str(('srcref',None,pickled));
+        data = str((DdTargets.SOURCEREF.drag_type,None,pickled));
         sel_data.set(sel_data.target, bits_per, data)
 
     def drag_begin(self, context, a):

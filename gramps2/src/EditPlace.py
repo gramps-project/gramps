@@ -49,14 +49,8 @@ import Sources
 import ImageSelect
 import NameDisplay
 
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-pycode_tgts = [
-    ('url'   , 0, 0),
-    ('srcref', 0, 4)]
+from DdTargets import DdTargets
+
 
 #-------------------------------------------------------------------------
 #
@@ -229,9 +223,11 @@ class EditPlace:
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
         self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                    pycode_tgts,gtk.gdk.ACTION_COPY)
+                                    [DdTargets.URL.target()],
+                                    gtk.gdk.ACTION_COPY)
         self.web_list.drag_source_set(gtk.gdk.BUTTON1_MASK,
-                                      pycode_tgts, gtk.gdk.ACTION_COPY)
+                                      [DdTargets.URL.target()],
+                                      gtk.gdk.ACTION_COPY)
         self.web_list.connect('drag_data_get',
                               self.url_source_drag_data_get)
         self.web_list.connect('drag_data_received',

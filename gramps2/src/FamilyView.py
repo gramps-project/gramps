@@ -57,6 +57,8 @@ import NameDisplay
 
 from QuestionDialog import QuestionDialog,WarningDialog
 
+from DdTargets import DdTargets
+
 #-------------------------------------------------------------------------
 #
 # Constants
@@ -65,9 +67,6 @@ from QuestionDialog import QuestionDialog,WarningDialog
 _BORN = _('b.')
 _DIED = _('d.')
 
-pycode_tgts = [('child', 0, 0)]
-
-spcode_tgts = [('spouse', 0, 0)]
 
 column_names = [
     (_('#'),0) ,
@@ -185,9 +184,11 @@ class FamilyView:
             self.parent.views.get_nth_page(2).hide()
 
         self.spouse_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                       spcode_tgts,ACTION_COPY)
+                                       [DdTargets.SPOUSE.target()],
+                                       ACTION_COPY)
         self.spouse_list.drag_source_set(BUTTON1_MASK,
-                                         spcode_tgts, ACTION_COPY)
+                                         [DdTargets.SPOUSE.target()],
+                                         ACTION_COPY)
         self.spouse_list.connect('drag_data_get',
                                  self.sp_drag_data_get)
         self.spouse_list.connect('drag_data_received',
@@ -239,8 +240,11 @@ class FamilyView:
         self.selected_spouse = None
 
         self.child_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                      pycode_tgts,ACTION_COPY)
-        self.child_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
+                                      [DdTargets.CHILD.target()],
+                                      ACTION_COPY)
+        self.child_list.drag_source_set(BUTTON1_MASK,
+                                        [DdTargets.CHILD.target()],
+                                        ACTION_COPY)
         self.child_list.connect('drag_data_get', self.drag_data_get)
         self.child_list.connect('drag_data_received',self.drag_data_received)
 
