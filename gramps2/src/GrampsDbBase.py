@@ -1021,6 +1021,14 @@ class GrampsDbBase:
         if self.metadata != None:
             self.metadata['columns'] = list
 
+    def set_child_column_order(self,list):
+        """
+        Stores the Person display common information in the
+        database's metadata.
+        """
+        if self.metadata != None:
+            self.metadata['child_columns'] = list
+
     def set_place_column_order(self,list):
         """
         Stores the Place display common information in the
@@ -1055,6 +1063,21 @@ class GrampsDbBase:
             return default
         else:
             cols = self.metadata.get('columns',default)
+            if len(cols) != len(default):
+                return cols + default[len(cols):]
+            else:
+                return cols
+
+    def get_child_column_order(self):
+        """
+        Returns the Person display common information stored in the
+        database's metadata.
+        """
+        default = [(1,0),(1,1),(1,2),(1,3),(1,4),(1,5),(0,6),(0,7)]
+        if self.metadata == None:
+            return default
+        else:
+            cols = self.metadata.get('child_columns',default)
             if len(cols) != len(default):
                 return cols + default[len(cols):]
             else:

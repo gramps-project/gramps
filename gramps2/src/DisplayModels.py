@@ -28,6 +28,8 @@ import time
 import gobject
 import gtk
 
+_GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
+
 #-------------------------------------------------------------------------
 #
 # BaseModel
@@ -45,11 +47,10 @@ class BaseModel(gtk.GenericTreeModel):
         return []
 
     def rebuild_data(self):
-        self.datalist = []
-
-        if not self.db.is_open():
-            return
-        self.datalist = self.sort_keys()
+        if self.db.is_open():
+            self.datalist = self.sort_keys()
+        else:
+            self.datalist = []
         
     def on_row_inserted(self,obj,path,node):
         self.rebuild_data()
@@ -130,6 +131,83 @@ class BaseModel(gtk.GenericTreeModel):
 	'''returns the parent of this node'''
         return None
 
+#-------------------------------------------------------------------------
+#
+# ChildModel
+#
+#-------------------------------------------------------------------------
+class ChildModel(gtk.ListStore):
+
+    def __init__(self,child_list,db):
+        gtk.ListStore.__init__(self,int,str,str,str,str,str,str,str,str,str,int,int)
+        self.db = db
+        index = 1
+        for child_handle in child_list:
+            child = db.get_person_from_handle(child_handle)
+            self.append(row=[index,
+                             child.get_gramps_id(),
+                             child.get_primary_name().get_name(),
+                             _GENDER[child.get_gender()],
+                             self.column_birth_day(child),
+                             self.column_death_day(child),
+                             self.column_birth_place(child),
+                             self.column_death_place(child),
+                             child.get_handle(),
+                             child.get_primary_name().get_sort_name(),
+                             self.column_birth_sort(child),
+                             self.column_death_sort(child),
+                             ])
+            index += 1
+
+    def column_birth_day(self,data):
+        event_handle = data.get_birth_handle()
+        if event_handle:
+            return self.db.get_event_from_handle(event_handle).get_date()
+        else:
+            return u""
+
+    def column_birth_sort(self,data):
+        event_handle = data.get_birth_handle()
+        if event_handle:
+            return self.db.get_event_from_handle(event_handle).get_date_object().get_sort_value()
+        else:
+            return 0
+
+    def column_death_day(self,data):
+        event_handle = data.get_death_handle()
+        if event_handle:
+            return self.db.get_event_from_handle(event_handle).get_date()
+        else:
+            return u""
+
+    def column_death_sort(self,data):
+        event_handle = data.get_death_handle()
+        if event_handle:
+            return self.db.get_event_from_handle(event_handle).get_date_object().get_sort_value()
+        else:
+            return 0
+        
+    def column_birth_place(self,data):
+        event_handle = data.get_birth_handle()
+        if event_handle:
+            event = self.db.get_event_from_handle(event_handle)
+            if event:
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    return self.db.get_place_from_handle(place_handle).get_title()
+        return u""
+
+    def column_death_place(self,data):
+        event_handle = data.get_death_handle()
+        if event_handle:
+            event = self.db.get_event_from_handle(event_handle)
+            if event:
+                place_handle = event.get_place_handle()
+                if place_handle:
+                    return self.db.get_place_from_handle(place_handle).get_title()
+        return u""
+
+        
 #-------------------------------------------------------------------------
 #
 # SourceModel
@@ -292,3 +370,4 @@ class MediaModel(BaseModel):
 
     def column_change(self,data):
         return unicode(time.asctime(time.localtime(data[8])))
+

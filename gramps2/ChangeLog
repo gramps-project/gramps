@@ -1,3 +1,11 @@
+2004-11-18  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: Added ChildModel to handle the
+	child list in the Family View
+	* src/gramps_main.py: add column editor for Family View
+	* src/GrampsDbBase.py: add storing/retrieving child column order
+	* src/FamilyView.py: use new ChildModel
+	* src/PlaceView.py: removed unused index
+
 2004-11-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/MediaView.py: remove obsolete pexists check
 

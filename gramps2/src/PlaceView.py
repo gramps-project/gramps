@@ -59,7 +59,6 @@ column_names = [
     ]
 
 _HANDLE_COL = len(column_names)
-
 #-------------------------------------------------------------------------
 #
 # PlaceView class
@@ -98,7 +97,6 @@ class PlaceView:
         self.list.append_column(column)
         self.columns = [column]
 
-        index = 1
         for pair in self.parent.db.get_place_column_order():
             if not pair[0]:
                 continue
@@ -108,7 +106,6 @@ class PlaceView:
             column.set_min_width(75)
             self.columns.append(column)
             self.list.append_column(column)
-            index += 1
 
     def change_db(self,db):
         self.build_columns()
