@@ -120,7 +120,7 @@ class IndividualPage:
     # 
     #
     #--------------------------------------------------------------------
-    def write_normal_row(self,label,data,sref):
+    def write_normal_row(self,label,data,sreflist):
         self.doc.start_row()
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Label")
@@ -131,12 +131,13 @@ class IndividualPage:
         self.doc.start_cell("NormalCell")
         self.doc.start_paragraph("Data")
         self.doc.write_text(data)
-        for sref in srefllist:
-            self.doc.start_link("#s%d" % self.scnt)
-            self.doc.write_text("<SUP>%d</SUP>" % self.scnt)
-            self.doc.end_link()
-            self.scnt = self.scnt + 1
-            self.slist.append(sref)
+        if sreflist:
+            for sref in sreflist:
+                self.doc.start_link("#s%d" % self.scnt)
+                self.doc.write_text("<SUP>%d</SUP>" % self.scnt)
+                self.doc.end_link()
+                self.scnt = self.scnt + 1
+                self.slist.append(sref)
         self.doc.end_paragraph()
         self.doc.end_cell()
         self.doc.end_row()
@@ -238,7 +239,8 @@ class IndividualPage:
         self.doc.end_paragraph()
 
         if self.photos and len(photo_list) > 0:
-            file = photo_list[0].getPath()
+            object = photo_list[0].getReference()
+            file = object.getPath()
             self.doc.start_paragraph("Data")
             self.doc.add_photo(file,4.0,4.0)
             self.doc.end_paragraph()
@@ -308,7 +310,7 @@ class IndividualPage:
             place = event.getPlaceName()
             srcref = event.getSourceRefList()
 
-            if date == "" and descr == "" and place == "" and srcref.getBase() == None:
+            if date == "" and descr == "" and place == "" and len(srcref) == 0:
                 continue
 
             if count == 0:
