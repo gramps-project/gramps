@@ -961,8 +961,8 @@ class EditPerson:
         if self.lds_not_loaded == 0 and self.check_lds():
             changed = 1
 
-        bplace = string.strip(self.bplace.get_text())
-        dplace = string.strip(self.dplace.get_text())
+        bplace = unicode(string.strip(self.bplace.get_text()))
+        dplace = unicode(string.strip(self.dplace.get_text()))
 
         if self.pdmap.has_key(bplace):
             p1 = self.db.getPlaceMap()[self.pdmap[bplace]]
