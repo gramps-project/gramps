@@ -57,7 +57,7 @@ class StartupDialog:
         d.add(self.build_page_last())
 
         d.connect('cancel',self.close)
-        self.w.connect("delete_event", gtk.quit)
+        self.w.connect("delete_event", gtk.main_quit)
         self.w.show_all()
 
     def close(self,obj):
