@@ -830,9 +830,6 @@ class BookReportDialog(Report.ReportDialog):
         self.database = database 
         self.person = person
         
-        # FIXME:
-        # dirty hack to use the style of the first item for the whole book
-
         self.default_style = TextDoc.StyleSheet()
         for item in self.book.get_item_list():
             name = item.get_name()
