@@ -371,15 +371,7 @@ class PedigreeView:
             # button. The menu consists of the children of the current root
             # person of the tree. Attach a child to each menu item.
 
-            def find_children(p):
-                childlist = []
-                for family_id in p.get_family_id_list():
-                    family = self.parent.db.find_family_from_id(family_id)
-                    for child_id in family.get_child_id_list():
-                        childlist.append(child_id)
-                return childlist
-
-            childlist = find_children(self.active_person)
+            childlist = find_children(self.parent.db,self.active_person)
             if len(childlist) == 1:
                 child = self.parent.db.try_to_find_person_from_id(childlist[0])
                 if child:
@@ -390,7 +382,7 @@ class PedigreeView:
                     child = self.parent.db.try_to_find_person_from_id(child_id)
                     cname = GrampsCfg.nameof(child)
                     menuitem = gtk.MenuItem(None)
-                    if find_children(child):
+                    if find_children(self.parent.db,child):
                         label = gtk.Label('<b><i>%s</i></b>' % cname)
                     else:
                         label = gtk.Label(cname)
@@ -525,13 +517,14 @@ class PedigreeView:
     def on_canvas_press(self,obj,event):
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_nav_menu(event)
+            return gtk.TRUE
 
-    def build_nav_menu(self,event):
-        """Builds the menu with only history-based navigation."""
-        
-        menu = gtk.Menu()
-        menu.set_title(_('People Menu'))
-
+    def add_nav_portion_to_menu(self,menu):
+        """
+        This function adds a common history-navigation portion 
+        to the context menu. Used by both build_nav_menu() and 
+        build_full_nav_menu() methods. 
+        """
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
@@ -557,12 +550,19 @@ class PedigreeView:
             item.set_sensitive(sensitivity)
             item.show()
             menu.append(item)
+
+    def build_nav_menu(self,event):
+        """Builds the menu with only history-based navigation."""
+        
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
+        self.add_nav_portion_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
 
     def build_full_nav_menu(self,event,person):
         """
-        Builds the full menu (including Siblings, Spouses, etc)
-        with navigation.
+        Builds the full menu (including Siblings, Spouses, Children, 
+        and Parents) with navigation.
         """
         
         menu = gtk.Menu()
@@ -628,33 +628,82 @@ class PedigreeView:
             item.set_sensitive(0)
         item.show()
         menu.append(item)
+        
+        # Go over children and build their menu
+        item = gtk.MenuItem(_("Children"))
+        no_children = 1
+        childlist = find_children(self.parent.db,person)
+        for child_id in childlist:
+            child = self.parent.db.try_to_find_person_from_id(child_id)
+            if not child:
+                continue
+        
+            if no_children:
+                no_children = 0
+                item.set_submenu(gtk.Menu())
+                child_menu = item.get_submenu()
 
-        back_sensitivity = self.parent.hindex > 0 
-        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
-        entries = [
-            (None,None,0),
-            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
-            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
-            #FIXME: revert to stock item when German gtk translation is fixed
-            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
-            (_("Home"),self.parent.on_home_clicked,1),
-            (None,None,0),
-            (_("Set anchor"),self.on_anchor_set,1),
-            (_("Remove anchor"),self.on_anchor_removed,1),
-        ]
+            if find_children(self.parent.db,child):
+                label = gtk.Label('<b><i>%s</i></b>' % GrampsCfg.nameof(child))
+            else:
+                label = gtk.Label(GrampsCfg.nameof(child))
 
-        for stock_id,callback,sensitivity in entries:
-            item = gtk.ImageMenuItem(stock_id)
-            #FIXME: remove when German gtk translation is fixed
-            if stock_id == _("Home"):
-                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-                im.show()
-                item.set_image(im)
-            if callback:
-                item.connect("activate",callback)
-            item.set_sensitive(sensitivity)
-            item.show()
-            menu.append(item)
+            child_item = gtk.MenuItem(None)
+            label.set_use_markup(gtk.TRUE)
+            label.show()
+            label.set_alignment(0,0)
+            child_item.add(label)
+            child_item.set_data(_PERSON,child_id)
+            child_item.connect("activate",self.on_childmenu_changed)
+            child_item.show()
+            child_menu.append(child_item)
+
+        if no_children:
+            item.set_sensitive(0)
+        item.show()
+        menu.append(item)
+
+        # Go over parents and build their menu
+        item = gtk.MenuItem(_("Parents"))
+        no_parents = 1
+        par_list = find_parents(self.parent.db,person)
+        for par_id in par_list:
+            par = self.parent.db.try_to_find_person_from_id(par_id)
+            if not par:
+                continue
+
+            if no_parents:
+                no_parents = 0
+                item.set_submenu(gtk.Menu())
+                par_menu = item.get_submenu()
+
+            if find_parents(self.parent.db,par):
+                label = gtk.Label('<b><i>%s</i></b>' % GrampsCfg.nameof(par))
+            else:
+                label = gtk.Label(GrampsCfg.nameof(par))
+
+            par_item = gtk.MenuItem(None)
+            label.set_use_markup(gtk.TRUE)
+            label.show()
+            label.set_alignment(0,0)
+            par_item.add(label)
+            par_item.set_data(_PERSON,par_id)
+            par_item.connect("activate",self.on_childmenu_changed)
+            par_item.show()
+            par_menu.append(par_item)
+
+        if no_parents:
+            item.set_sensitive(0)
+        item.show()
+        menu.append(item)
+    
+        # Add separator
+        item = gtk.MenuItem(None)
+        item.show()
+        menu.append(item)
+
+        # Add history-based navigation
+        self.add_nav_portion_to_menu(menu)
         menu.popup(None,None,None,event.button,event.time)
 
 #-------------------------------------------------------------------------
@@ -707,11 +756,45 @@ def get_distance(db,orig_person,other_person):
     firstRel = None
     secondRel = None
 
-    length = len(common)
-    
     person_id = common[0]
     secondRel = secondMap[person_id]
     firstRel = firstMap[person_id]
     if firstRel == None or secondRel == None:
         return None
     return firstRel-secondRel
+
+#-------------------------------------------------------------------------
+#
+# Function to return children's list of a person
+#
+#-------------------------------------------------------------------------
+def find_children(db,p):
+    """
+    Returns the list of all children's IDs for a person.
+    """
+    childlist = []
+    for family_id in p.get_family_id_list():
+        family = db.find_family_from_id(family_id)
+        for child_id in family.get_child_id_list():
+            childlist.append(child_id)
+    return childlist
+
+#-------------------------------------------------------------------------
+#
+# Function to return parent's list of a person
+#
+#-------------------------------------------------------------------------
+def find_parents(db,p):
+    """
+    Returns the unique list of all parents' IDs for a person.
+    """
+    parentlist = []
+    for (f,mrel,frel) in p.get_parent_family_id_list():
+        family = db.find_family_from_id(f)
+        father_id = family.get_father_id()
+        mother_id = family.get_mother_id()
+        if father_id not in parentlist:
+            parentlist.append(father_id)
+        if mother_id not in parentlist:
+            parentlist.append(mother_id)
+    return parentlist
