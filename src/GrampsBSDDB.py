@@ -169,7 +169,7 @@ class GrampsBSDDB(GrampsDbBase):
             self.undodb = db.DB()
             self.undodb.open(self.undolog, db.DB_RECNO, db.DB_CREATE)
 
-        if self.metadata.get('version') == None:
+        if not self.readonly and self.metadata.get('version') == None:
             self.metadata['version'] = _DBVERSION
             
         self.metadata   = self.dbopen(name, "meta")

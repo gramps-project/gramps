@@ -96,17 +96,30 @@ class EditPlace:
 
         self.glry = ImageSelect.Gallery(place, self.db.commit_place, self.path,
                                         self.iconlist, self.db, self,self.top)
+
+        mode = not self.parent.db.readonly
         self.title = self.top_window.get_widget("place_title")
+        self.title.set_editable(mode)
         self.city = self.top_window.get_widget("city")
+        self.city.set_editable(mode)
         self.parish = self.top_window.get_widget("parish")
+        self.parish.set_editable(mode)
         self.county = self.top_window.get_widget("county")
+        self.county.set_editable(mode)
         self.state = self.top_window.get_widget("state")
+        self.state.set_editable(mode)
         self.phone = self.top_window.get_widget("phone")
+        self.phone.set_editable(mode)
         self.postal = self.top_window.get_widget("postal")
+        self.postal.set_editable(mode)
         self.country = self.top_window.get_widget("country")
+        self.country.set_editable(mode)
         self.longitude = self.top_window.get_widget("longitude")
+        self.longitude.set_editable(mode)
         self.latitude = self.top_window.get_widget("latitude")
+        self.latitude.set_editable(mode)
         self.note = self.top_window.get_widget("place_note")
+        self.note.set_editable(mode)
 
         self.web_list = self.top_window.get_widget("web_list")
         self.web_url = self.top_window.get_widget("web_url")
@@ -117,10 +130,12 @@ class EditPlace:
         self.top_window.get_widget('changed').set_text(place.get_change_display())
 
         # event display
-        self.web_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        self.build_columns(self.web_list, [(_('Path'),150), (_('Description'),150)])
+        self.web_model = gtk.ListStore(str,str)
+        self.build_columns(self.web_list, [(_('Path'),150),
+                                           (_('Description'),150)])
         self.web_list.set_model(self.web_model)
-        self.web_list.get_selection().connect('changed',self.on_web_list_select_row)
+        self.web_list.get_selection().connect('changed',
+                                              self.on_web_list_select_row)
         
         self.loc_edit = self.top_window.get_widget("loc_edit")
         self.loc_list = self.top_window.get_widget("loc_list")
@@ -135,8 +150,7 @@ class EditPlace:
         self.ulist = place.get_url_list()[:]
         self.llist = place.get_alternate_locations()[:]
 
-        self.loc_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING,
-                                       gobject.TYPE_STRING,gobject.TYPE_STRING)
+        self.loc_model = gtk.ListStore(str,str,str,str)
         self.build_columns(self.loc_list, [(_('City'),150), (_('County'),100),
                                            (_('State'),100), (_('Country'),50)])
         self.loc_list.set_model(self.loc_model)
@@ -174,6 +188,9 @@ class EditPlace:
             else:
                 self.flowed.set_active(1)
 
+        self.flowed.set_sensitive(mode)
+        self.preform.set_sensitive(mode)
+
         if self.place.get_media_list():
             Utils.bold_label(self.gallery_label)
 
@@ -197,13 +214,15 @@ class EditPlace:
             "on_apply_clicked"          : self.on_place_apply_clicked,
             })
 
-        self.sourcetab = Sources.SourceTab(self.srcreflist,self,
-                                           self.top_window,self.top,self.slist,
-                                           self.top_window.get_widget('add_src'),
-                                           self.top_window.get_widget('edit_src'),
-                                           self.top_window.get_widget('del_src'))
+        self.sourcetab = Sources.SourceTab(
+            self.srcreflist,self,
+            self.top_window,self.top,self.slist,
+            self.top_window.get_widget('add_src'),
+            self.top_window.get_widget('edit_src'),
+            self.top_window.get_widget('del_src'),
+            self.parent.db.readonly)
         
-        if self.place.get_handle() == None:
+        if self.place.get_handle() == None or self.parent.db.readonly:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
@@ -215,6 +234,9 @@ class EditPlace:
                               self.url_source_drag_data_get)
         self.web_list.connect('drag_data_received',
                               self.url_dest_drag_data_received)
+
+        for name in ['del_name','add_name','sel_photo','add_url','del_url']:
+            self.top_window.get_widget(name).set_sensitive(mode)
 
         self.redraw_url_list()
         self.redraw_location_list()

@@ -380,7 +380,7 @@ class Marriage:
         if lds_ord == None:
             lds_ord = RelLib.LdsOrd()
             self.family.set_lds_sealing(lds_ord)
-        NoteEdit.NoteEditor(lds_ord,self,self.window)
+        NoteEdit.NoteEditor(lds_ord,self,self.window,readonly=self.db.readonly)
 
     def on_up_clicked(self,obj):
         model,node = self.etree.get_selected()

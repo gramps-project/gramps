@@ -365,16 +365,18 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
-            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
-            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity,False),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity,False),
             #FIXME: revert to stock item when German gtk translation is fixed
 	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
-            (_("Home"),self.parent.on_home_clicked,1),
-            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1),
+            (_("Home"),self.parent.on_home_clicked,1,False),
+            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,1,True),
         ]
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
-        for stock_id,callback,sensitivity in entries:
+        for stock_id,callback,sensitivity,ro in entries:
+            if ro and self.parent.db.readonly:
+                continue
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
 	    if stock_id == _("Home"):
@@ -422,17 +424,19 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
-            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
-            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
-            #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
-            (_("Home"),self.parent.on_home_clicked,1),
-            (None,None,0),
-            (_("Add parents"),self.add_parents_clicked,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity,False),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity,False),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1,False),
+            (None,None,0,True),
+            (_("Add parents"),self.add_parents_clicked,1,True),
         ]
+
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
-        for stock_id,callback,sensitivity in entries:
+        
+        for (stock_id,callback,sensitivity,ro) in entries:
+            if self.parent.db.readonly and ro:
+                continue
             item = gtk.ImageMenuItem(stock_id)
             #FIXME: remove when German gtk translation is fixed
 	    if stock_id == _("Home"):
@@ -452,23 +456,18 @@ class FamilyView:
         back_sensitivity = self.parent.hindex > 0 
         fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         entries = [
-            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
-            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
-            #FIXME: revert to stock item when German gtk translation is fixed
-	    #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
-            (_("Home"),self.parent.on_home_clicked,1),
-            (None,None,0),
-            (_("Add parents"),self.add_sp_parents,1),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity,False),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity,False),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1,False),
+            (None,None,0,True),
+            (_("Add parents"),self.add_sp_parents,1,True),
         ]
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
-        for stock_id,callback,sensitivity in entries:
+        for stock_id,callback,sensitivity,ro in entries:
+            if ro and self.parent.db.readonly:
+                continue
             item = gtk.ImageMenuItem(stock_id)
-            #FIXME: remove when German gtk translation is fixed
-	    if stock_id == _("Home"):
-	    	im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
-	    	im.show()
-		item.set_image(im)
             if callback:
                 item.connect("activate",callback)
             item.set_sensitive(sensitivity)
@@ -527,8 +526,9 @@ class FamilyView:
             (_("Edit the selected child"),self.edit_child_callback),
             (_("Remove the selected child"),self.remove_child_clicked),
             ]
-        for msg,callback in entries:
-            Utils.add_menuitem(menu,msg,handle,callback)
+        if not self.parent.db.readonly:
+            for msg,callback in entries:
+                Utils.add_menuitem(menu,msg,handle,callback)
         menu.popup(None,None,None,event.button,event.time)
 
     def edit_child_callback(self,obj):
@@ -599,8 +599,9 @@ class FamilyView:
             (_("Edit the selected spouse"), self.edit_spouse_callback),
             (_("Set the selected spouse as the preferred spouse"), self.set_preferred_spouse),
             ]
-        for msg,callback in entries:
-            Utils.add_menuitem(menu,msg,None,callback)
+        if not self.parent.db.readonly:
+            for msg,callback in entries:
+                Utils.add_menuitem(menu,msg,None,callback)
         menu.popup(None,None,None,event.button,event.time)
 
     def set_preferred_spouse(self,obj):
@@ -1158,8 +1159,9 @@ class FamilyView:
             (_("Add parents"), self.add_parents_clicked),
             (_("Remove parents"),self.del_parents_clicked),
             ]
-        for msg,callback in entries:
-            Utils.add_menuitem(menu,msg,family,callback)
+        if not self.parent.db.readonly:
+            for msg,callback in entries:
+                Utils.add_menuitem(menu,msg,family,callback)
         menu.popup(None,None,None,event.button,event.time)
 
     def build_sp_parents_menu(self,family,event):
@@ -1196,8 +1198,9 @@ class FamilyView:
             (_("Add parents"), self.add_sp_parents),
             (_("Remove parents"),self.del_sp_parents),
             ]
-        for msg,callback in entries:
-            Utils.add_menuitem(menu,msg,family,callback)
+        if not self.parent.db.readonly:
+            for msg,callback in entries:
+                Utils.add_menuitem(menu,msg,family,callback)
         menu.popup(None,None,None,event.button,event.time)
 
     def edit_ap_relationships(self,obj):

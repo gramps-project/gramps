@@ -1810,8 +1810,9 @@ class EditPerson:
             item = gtk.TearoffMenuItem()
             item.show()
             menu.append(item)
-            msg = _("Make the selected name the preferred name")
-            Utils.add_menuitem(menu,msg,None,self.change_name)
+            if not self.db.readonly:
+                msg = _("Make the selected name the preferred name")
+                Utils.add_menuitem(menu,msg,None,self.change_name)
             menu.popup(None,None,None,event.button,event.time)
 
     def on_aka_update_clicked(self,obj):

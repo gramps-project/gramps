@@ -55,7 +55,8 @@ import NameDisplay
 
 class EditSource:
 
-    def __init__(self,source,db,parent,parent_window=None,func=None):
+    def __init__(self,source,db,parent,parent_window=None,
+                 func=None,readonly=False):
         if source:
             self.source = source
         else:
@@ -78,6 +79,7 @@ class EditSource:
         self.ref_not_loaded = 1
         self.lists_changed = 0
         self.gallery_ok = 0
+        mode = not self.db.readonly
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
         self.top = self.top_window.get_widget("sourceEditor")
@@ -92,20 +94,33 @@ class EditSource:
         self.pubinfo = self.top_window.get_widget("pubinfo")
         self.abbrev = self.top_window.get_widget("abbrev")
         self.note = self.top_window.get_widget("source_note")
+        self.note.set_editable(mode)
         self.notes_buffer = self.note.get_buffer()
         self.gallery_label = self.top_window.get_widget("gallerySourceEditor")
         self.refs_label = self.top_window.get_widget("refsSourceEditor")
         self.notes_label = self.top_window.get_widget("notesSourceEditor")
         self.flowed = self.top_window.get_widget("source_flowed")
+        self.flowed.set_sensitive(mode)
         self.preform = self.top_window.get_widget("source_preform")
+        self.preform.set_sensitive(mode)
         
         self.refinfo = self.top_window.get_widget("refinfo")
         
         self.title = self.top_window.get_widget("source_title")
         self.title.set_text(source.get_title())
+        self.title.set_editable(mode)
         self.author.set_text(source.get_author())
+        self.author.set_editable(mode)
         self.pubinfo.set_text(source.get_publication_info())
+        self.pubinfo.set_editable(mode)
         self.abbrev.set_text(source.get_abbreviation())
+        self.abbrev.set_editable(mode)
+
+        self.top_window.get_widget('del_data').set_sensitive(mode)
+        self.top_window.get_widget('add_data').set_sensitive(mode)
+        self.top_window.get_widget('add_photo').set_sensitive(mode)
+        self.top_window.get_widget('sel_photo').set_sensitive(mode)
+        self.top_window.get_widget('delete_photo').set_sensitive(mode)
 
         if source.get_note():
             self.notes_buffer.set_text(source.get_note())
@@ -133,9 +148,9 @@ class EditSource:
             "on_add_data_clicked" : self.on_add_data_clicked,
             })
 
-        if self.source.get_handle() == None:
-            self.top_window.get_widget("edit_photo").set_sensitive(0)
-            self.top_window.get_widget("delete_photo").set_sensitive(0)
+        if self.source.get_handle() == None or self.db.readonly:
+            self.top_window.get_widget("edit_photo").set_sensitive(False)
+            self.top_window.get_widget("delete_photo").set_sensitive(False)
 
         self.datalist = self.top_window.get_widget('datalist')
         colno = 0
@@ -165,6 +180,8 @@ class EditSource:
         if parent_window:
             self.top.set_transient_for(parent_window)
 
+        self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
+
         self.display_references()
         if parent_window:
             self.top.set_transient_for(parent_window)
@@ -181,7 +198,6 @@ class EditSource:
                                          focus_cell=None,
                                          start_editing=True)
 
-        self.top_window.get_widget('ok').set_sensitive(not self.db.readonly)
 
     def on_delete_data_clicked(self,widget):
         (model,node) = self.data_sel.get_selected()
