@@ -207,7 +207,7 @@ class Gramps:
         self.tab_list = []
         
         self.filter_list = self.gtop.get_widget("filter_list")
-        self.notebook    = self.gtop.get_widget("notebook1")
+        self.views    = self.gtop.get_widget("views")
         self.merge_button= self.gtop.get_widget("merge")
         self.canvas      = self.gtop.get_widget("canvas1")
         self.toolbar     = self.gtop.get_widget("toolbar1")
@@ -240,7 +240,7 @@ class Gramps:
         self.init_filters()
 
         self.toolbar.set_style(GrampsCfg.toolbar)
-        self.notebook.set_show_tabs(0)
+        self.views.set_show_tabs(0)
 
         self.family_view = FamilyView.FamilyView(self)
 
@@ -263,62 +263,62 @@ class Gramps:
             "on_removebtn_clicked" : self.remove_button_clicked,
             "on_alpha_switch_page" : self.change_alpha_page,
             "delete_event" : self.delete_event,
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_about_activate" : self.on_about_activate,
-            "on_add_bookmark_activate" : self.on_add_bookmark_activate,
-            "on_add_place_clicked" : self.place_view.on_add_place_clicked,
-            "on_add_source_clicked" : self.source_view.on_add_clicked,
-            "on_addperson_clicked" : self.load_new_person,
-            "on_apply_filter_clicked" : self.on_apply_filter_clicked,
-            "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
-            "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
-            "on_contents_activate" : self.on_contents_activate,
-            "on_default_person_activate" : self.on_default_person_activate,
-            "on_delete_person_clicked" : self.delete_person_clicked,
-            "on_delete_place_clicked" : self.place_view.on_delete_clicked,
-            "on_delete_source_clicked" : self.source_view.on_delete_clicked,
-            "on_delete_media_clicked" : self.media_view.on_delete_clicked,
-            "on_edit_active_person" : self.load_active_person,
-            "on_edit_selected_people" : self.load_selected_people,
-            "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
-            "on_exit_activate" : self.on_exit_activate,
-            "on_family1_activate" : self.on_family1_activate,
-            "on_find_activate" : self.on_find_activate,
-            "on_findname_activate" : self.on_findname_activate,
-            "on_home_clicked" : self.on_home_clicked,
-            "on_new_clicked" : self.on_new_clicked,
-            "on_notebook1_switch_page" : self.on_notebook1_switch_page,
-            "on_ok_button1_clicked" : self.on_ok_button1_clicked,
-            "on_open_activate" : self.on_open_activate,
-            "on_pedigree1_activate" : self.on_pedigree1_activate,
-            "on_person_list1_activate" : self.on_person_list1_activate,
-            "on_main_key_release_event" : self.on_main_key_release_event,
-            "on_media_activate" : self.on_media_activate,
-            "on_media_list_select_row" : self.media_view.on_select_row,
-            "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
-            "on_media_list_drag_data_received" : self.media_view.on_drag_data_received,
-            "on_merge_activate" : self.on_merge_activate,
-            "on_sidebar1_activate" : self.on_sidebar_activate,
-            "on_filter1_activate" : self.on_filter_activate,
-            "on_places_activate" : self.on_places_activate,
-            "on_preferences1_activate" : self.on_preferences_activate,
-            "on_reload_plugins_activate" : Plugins.reload_plugins,
-            "on_reports_clicked" : self.on_reports_clicked,
-            "on_revert_activate" : self.on_revert_activate,
-            "on_save_activate" : self.on_save_activate,
-            "on_save_as_activate" : self.on_save_as_activate,
-            "on_show_plugin_status" : self.on_show_plugin_status,
-            "on_source_list_button_press" : self.source_view.button_press,
-            "on_sources_activate" : self.on_sources_activate,
-            "on_tools_clicked" : self.on_tools_clicked,
-            "on_gramps_home_page_activate" : self.home_page_activate,
-            "on_gramps_report_bug_activate" : self.report_bug_activate,
-            "on_gramps_mailing_lists_activate" : self.mailing_lists_activate,
-            "on_writing_extensions_activate" : self.on_writing_extensions_activate,
+             "destroy_passed_object" : Utils.destroy_passed_object,
+             "on_about_activate" : self.on_about_activate,
+             "on_add_bookmark_activate" : self.on_add_bookmark_activate,
+             "on_add_place_clicked" : self.place_view.on_add_place_clicked,
+             "on_add_source_clicked" : self.source_view.on_add_clicked,
+             "on_addperson_clicked" : self.load_new_person,
+             "on_apply_filter_clicked" : self.on_apply_filter_clicked,
+             "on_arrow_left_clicked" : self.pedigree_view.on_show_child_menu,
+             "on_canvas1_event" : self.pedigree_view.on_canvas1_event,
+             "on_contents_activate" : self.on_contents_activate,
+             "on_default_person_activate" : self.on_default_person_activate,
+             "on_delete_person_clicked" : self.delete_person_clicked,
+             "on_delete_place_clicked" : self.place_view.on_delete_clicked,
+             "on_delete_source_clicked" : self.source_view.on_delete_clicked,
+             "on_delete_media_clicked" : self.media_view.on_delete_clicked,
+             "on_edit_active_person" : self.load_active_person,
+             "on_edit_selected_people" : self.load_selected_people,
+             "on_edit_bookmarks_activate" : self.on_edit_bookmarks_activate,
+             "on_exit_activate" : self.on_exit_activate,
+             "on_family1_activate" : self.on_family1_activate,
+             "on_find_activate" : self.on_find_activate,
+             "on_findname_activate" : self.on_findname_activate,
+             "on_home_clicked" : self.on_home_clicked,
+             "on_new_clicked" : self.on_new_clicked,
+             "on_notebook1_switch_page" : self.on_views_switch_page,
+             "on_ok_button1_clicked" : self.on_ok_button1_clicked,
+             "on_open_activate" : self.on_open_activate,
+             "on_pedigree1_activate" : self.on_pedigree1_activate,
+             "on_person_list1_activate" : self.on_person_list1_activate,
+             "on_main_key_release_event" : self.on_main_key_release_event,
+             "on_media_activate" : self.on_media_activate,
+             "on_media_list_select_row" : self.media_view.on_select_row,
+             "on_media_list_drag_data_get" : self.media_view.on_drag_data_get,
+             "on_media_list_drag_data_received" : self.media_view.on_drag_data_received,
+             "on_merge_activate" : self.on_merge_activate,
+             "on_sidebar1_activate" : self.on_sidebar_activate,
+             "on_filter1_activate" : self.on_filter_activate,
+             "on_places_activate" : self.on_places_activate,
+             "on_preferences1_activate" : self.on_preferences_activate,
+             "on_reload_plugins_activate" : Plugins.reload_plugins,
+             "on_reports_clicked" : self.on_reports_clicked,
+             "on_revert_activate" : self.on_revert_activate,
+             "on_save_activate" : self.on_save_activate,
+             "on_save_as_activate" : self.on_save_as_activate,
+             "on_show_plugin_status" : self.on_show_plugin_status,
+             "on_source_list_button_press" : self.source_view.button_press,
+             "on_sources_activate" : self.on_sources_activate,
+             "on_tools_clicked" : self.on_tools_clicked,
+             "on_gramps_home_page_activate" : self.home_page_activate,
+             "on_gramps_report_bug_activate" : self.report_bug_activate,
+             "on_gramps_mailing_lists_activate" : self.mailing_lists_activate,
+             "on_writing_extensions_activate" : self.on_writing_extensions_activate,
             })	
 
-        self.enable_sidebar(self.use_sidebar)
         self.enable_filter(self.use_filter)
+        self.enable_sidebar(self.use_sidebar)
         self.topWindow.show()
         
     def change_alpha_page(self,obj,junk,page):
@@ -330,7 +330,7 @@ class Gramps:
             self.apply_filter(self.person_tree)
         
     def edit_button_clicked(self,obj):
-        cpage = self.notebook.get_current_page()
+        cpage = self.views.get_current_page()
         if cpage == 0:
             self.load_selected_people(obj)
         elif cpage == 3:
@@ -341,7 +341,7 @@ class Gramps:
             self.media_view.on_edit_clicked(obj)
 
     def add_button_clicked(self,obj):
-        cpage = self.notebook.get_current_page()
+        cpage = self.views.get_current_page()
         if cpage == 0:
             self.load_new_person(obj)
         elif cpage == 3:
@@ -352,7 +352,7 @@ class Gramps:
             self.media_view.on_add_clicked(obj)
 
     def remove_button_clicked(self,obj):
-        cpage = self.notebook.get_current_page()
+        cpage = self.views.get_current_page()
         if cpage == 0:
             self.delete_person_clicked(obj)
         elif cpage == 3:
@@ -378,15 +378,15 @@ class Gramps:
     def on_sidebar_activate(self,obj):
         val = obj.get_active()
         self.enable_sidebar(val)
-        GrampsCfg.save_view(val)
 
     def enable_sidebar(self,val):
         if val:
             self.sidebar.show()
-            self.notebook.set_show_tabs(0)
+            self.views.set_show_tabs(0)
         else:
             self.sidebar.hide()
-            self.notebook.set_show_tabs(1)
+            self.views.set_show_tabs(1)
+        GrampsCfg.save_view(val)
 
     def enable_filter(self,val):
         if val:
@@ -431,11 +431,11 @@ class Gramps:
         
     def on_find_activate(self,obj):
         """Display the find box"""
-        if self.notebook.get_current_page() == 4:
+        if self.views.get_current_page() == 4:
             Find.FindPlace(self.active_person.getId(),self.find_goto_place,self.db)
-        elif self.notebook.get_current_page() == 3:
+        elif self.views.get_current_page() == 3:
             Find.FindSource(self.source_view.source_list,self.find_goto_source,self.db)
-        elif self.notebook.get_current_page() == 5:
+        elif self.views.get_current_page() == 5:
             Find.FindMedia(self.media_view.media_list,self.find_goto_media,self.db)
         else:
             Find.FindPerson(self.person_list,self.find_goto_to,self.db)
@@ -473,7 +473,7 @@ class Gramps:
 
     def on_merge_activate(self,obj):
         """Calls up the merge dialog for the selection"""
-        page = self.notebook.get_current_page()
+        page = self.views.get_current_page()
         if page == 0:
 
             mlist = self.person_tree.get_selected_objects()
@@ -641,7 +641,7 @@ class Gramps:
         """Brute force display update, updating all the pages"""
 
         self.complete_rebuild()
-        page = self.notebook.get_current_page()
+        page = self.views.get_current_page()
         
         if page == 1:
             self.family_view.load_family()
@@ -663,7 +663,7 @@ class Gramps:
 
     def update_display(self,changed):
         """Incremental display update, update only the displayed page"""
-        page = self.notebook.get_current_page()
+        page = self.views.get_current_page()
         
         if page == 0:
             if changed:
@@ -864,7 +864,7 @@ class Gramps:
     def autosave_database(self):
         path = self.db.getSavePath()
         if not path:
-            return
+            return 1
         
         filename = os.path.normpath(os.path.abspath(filename))
         Utils.clear_timer()
@@ -1121,19 +1121,19 @@ class Gramps:
     
     def on_person_list1_activate(self,obj):
         """Switches to the person list view"""
-        self.notebook.set_current_page(0)
+        self.views.set_current_page(0)
 
     def on_family1_activate(self,obj):
         """Switches to the family view"""
-        self.notebook.set_current_page(1)
+        self.views.set_current_page(1)
 
     def on_pedigree1_activate(self,obj):
         """Switches to the pedigree view"""
-        self.notebook.set_current_page(2)
+        self.views.set_current_page(2)
 
     def on_sources_activate(self,obj):
         """Switches to the sources view"""
-        self.notebook.set_current_page(3)
+        self.views.set_current_page(3)
 
     def on_places_activate(self,obj):
         """Switches to the places view"""
@@ -1145,13 +1145,13 @@ class Gramps:
             self.place_view.load_places()
             self.place_loaded = 1
         self.modify_statusbar()
-        self.notebook.set_current_page(4)
+        self.views.set_current_page(4)
 
     def on_media_activate(self,obj):
         """Switches to the media view"""
-        self.notebook.set_current_page(5)
+        self.views.set_current_page(5)
 
-    def on_notebook1_switch_page(self,obj,junk,page):
+    def on_views_switch_page(self,obj,junk,page):
         """Load the appropriate page after a notebook switch"""
         if page == 0:
             self.enable_buttons(1)
