@@ -26,6 +26,9 @@
 	* src/plugins/AncestorChart.py: Enable translation for "b." and "d."
 	* src/plugins/DesGraph.py: Likewise.
 	* src/po/template.po: Update the above corrections in template.
+	* src/GrampsCfg.py: Toolbar and statusbar (single word each). 
+	* src/preferences.glade: Statusbar (single word).
+	* doc/gramps-manual/C/gramps-manual.xml: More corrections.
 
 2003-07-14  Donald Peterson  <dpeterson@sigmaxi.org>
 	* src/docgen/LaTeXDoc.py: Regress UNICODE support to be only a

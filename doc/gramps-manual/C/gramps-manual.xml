@@ -2540,7 +2540,7 @@
         </para>
         
         <para> When exactly two people are selected, choose
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge</guimenuitem></menuchoice>
+        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Merge...</guimenuitem></menuchoice>
         to evoke <guilabel>Merge</guilabel> dialog. The dialog allows you to
         retain the data from either person as the primary data for the new
         (merged) person. The data from the other person can be kept as alternate
@@ -2554,24 +2554,23 @@
     <!-- ================ Usage Subsection ================================ -->
     <sect2 id="gramps-nav"> 
        <title>Navigation</title> 
-	<para> As long as any database is open, 
-	&app; is focused on a 
+	<para> As long as any database is open, &app; is focused on a 
 	single person usually referred to as an Active person. This 
 	allows you to view or modify the data concerning this person, 
 	his or her immediate family, etc. Navigating in the database (i.e. 
 	moving from person to person) is in fact nothing else but changing 
 	the Active person. This section describes many alternative ways
-	to navigate through the database using both the complex and the convenient 
-	interfaces &app; provides. All these ways
-	eventually accomplish the same thing, but some are more convenient 
-	than others, depending what you are doing in 
-	&app; at the moment. </para>
+	to navigate through the database using both the complex and the 
+        convenient interfaces &app; provides. All these ways eventually 
+        accomplish the same thing, but some are more convenient than others, 
+        depending what you are doing in &app; at the moment. </para>
        
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-people"> 
-        <title>Using the People View</title> 
+        <title>Using the People View </title> 
 	<para> The most intuitive way to select an active person is 
-	to use the People View. When in the People View, just select the
+	to use the People View (see <xref linkend="people-view"/>). 
+        When in the People View, just select the 
 	name of the desired person from the list by clicking that list 
 	entry. The person you have selected becomes active. The statusbar 
 	updates to reflect the change of the active person. </para> 
@@ -2580,8 +2579,9 @@
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-family"> 
         <title>Using the Family View</title> 
-	<para> When in the Family View, you can easily navigate between the
-	members of the displayed family as follows: </para>
+	<para> When in the Family View (see <xref linkend="family-view"/>), 
+        you can easily navigate between the members of the displayed family 
+        as follows: </para>
 
 	<itemizedlist>
 	<listitem><para>To make the currently selected spouse the active person, 
@@ -2608,7 +2608,8 @@
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-pedigree"> 
         <title>Using the Pedigree View</title> 
-	<para> The Pedigree View also allows you to move along the family tree. 
+	<para> The Pedigree View (see <xref linkend="pedigree-view"/>) also 
+        allows you to move along the family tree. 
 	The benefit of this method is that you can see more than one 
 	generation of the family tree. Also, you can jump directly from a
 	great-grandson to a great-grandfather without going through the 
@@ -2625,7 +2626,7 @@
 	double-click the line that connects to the left side of the
 	corresponding box. </para></listitem>
 
-	<listitem><para>To make a child of currently active person (if any) 
+	<listitem><para>To make a child of the currently active person (if any) 
 	the active person, click the left arrow button to the left of the
 	corresponding box. If there is more than one child, the button expands
 	to the menu listing the children to choose from. </para></listitem> 
@@ -2664,9 +2665,9 @@
       <!-- ================ Usage Sub-subsection ================ -->
       <sect3 id="gramps-nav-bookmk"> 
         <title>Bookmarking People</title> 
-	<para> Similarly to setting the default person, you can bookmark other people 
-	from the database to simplify further navigation. To bookmark a person,
-	first navigate to that person, then choose 
+	<para> Similar to setting the default person, you can bookmark other 
+        people from the database to simplify further navigation. To bookmark 
+        a person, first navigate to that person, then choose 
 	<menuchoice><guimenu>Bookmarks</guimenu>
 	<guimenuitem>Add bookmark</guimenuitem></menuchoice>. To move to that
 	person from anywhere in the database, choose 
@@ -2677,7 +2678,7 @@
 	
 	<para> You can manage your bookmarks by choosing 
 	<menuchoice><guimenu>Bookmarks</guimenu>
-	<guimenuitem>Edit bookmarks</guimenuitem></menuchoice>. This opens
+	<guimenuitem>Edit bookmarks...</guimenuitem></menuchoice>. This opens
 	the following <guilabel>Edit Bookmarks</guilabel> dialog with the 
 	list of	bookmarks and the controls to modify this list. </para>
 	
@@ -2698,12 +2699,12 @@
         <title>Finding People</title> 
 	<para> To find a person in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in People View, Family View, or Pedigree View. This opens a 
+        when in the People View, Family View, or Pedigree View. This opens a 
         <guilabel>Find Person</guilabel> dialog which can be used for searching
         forward and backward. </para>
 	
 	<para> If the search is successful, the found person becomes an active
-        person and the display adjust according to the new active person and the
+        person and the display adjusts according to the new active person and the
         current view. </para>
       </sect3>
 
@@ -2712,7 +2713,7 @@
         <title>Finding Sources</title> 
 	<para> To find a source in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in Sources View. This opens a <guilabel>Find Source</guilabel>
+        when in the Sources View. This opens a <guilabel>Find Source</guilabel>
         dialog which can be used for searching forward and backward. If the
         search is successful, the found source becomes highlighted. </para> 
       </sect3>
@@ -2722,7 +2723,7 @@
         <title>Finding Places</title> 
 	<para> To find a place in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in Places View. This opens a <guilabel>Find Place</guilabel> 
+        when in the Places View. This opens a <guilabel>Find Place</guilabel> 
         dialog which can be used for searching forward and backward. If the 
         search is successful, the found place becomes highlighted. </para> 
       </sect3>
@@ -2732,7 +2733,7 @@
         <title>Finding Media Objects</title> 
 	<para> To find a media object in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
-        when in Media View. This opens a <guilabel>Find Media Objects</guilabel> 
+        when in the Media View. This opens a <guilabel>Find Media Objects</guilabel> 
         dialog which can be used for searching forward and backward. If the 
         search is successful, the found media object becomes highlighted. </para> 
       </sect3>
@@ -2749,9 +2750,10 @@
 	&app; can generate reports in a multitude of open formats, both 
 	text based and graphical. &app; can also produce screen based reports 
 	that are convenient for viewing a summary of your database. 
-	Finally, &app; can generate a web-site suitable for immediate 
+	Finally, &app; can generate a web site suitable for immediate 
 	posting on the Internet. All these are almost infinitely flexible: 
-	you get to design and choose the style for your reports. </para>
+        if you wish to modify or extend the default format of &app; report 
+	you can design and choose the style for each of your reports. </para>
 
 	<para> All reports can be accessed through the menu by choosing
 	<menuchoice><guimenu>Reports</guimenu>
@@ -2764,6 +2766,168 @@
 	<guibutton>Reports</guibutton> icon on the toolbar. 
 	</para>
 
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="rep-graph"> 
+	<title>Graphical Reports</title> 
+	<para> Graphical reports represent information in forms of charts 
+	and graphs. Most of the options are common among graphical reports, 
+	therefore they will be described only once, at the end of this 
+	section. The few options which are specific to a given report will be 
+	described directly in that report's entry.</para>
+
+	<para>The following graphical reports are currently 
+	available in &app;: </para>
+	
+	<variablelist>
+
+	<varlistentry><term>Ancestor Chart</term>
+	<listitem><para>This report generates the chart of people who are
+	ancestors of the Active person. Specific options include 
+	the number of generations considered and the format of the displayed 
+	entries. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Descendant Graph</term>
+	<listitem><para>This report generates a graph of people who are
+	descendants of the Active person. Specific options include 
+	the format of the displayed entries. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Relationship Graph</term>
+	<listitem><para>This report creates a complex relationship graph in 
+	GraphViz format. The GraphViz <command>dot</command> tool can 
+	transform the graph into postscript, jpeg, png, vrml, svg, and many
+	other formats. GraphViz tools are freely available from the 
+	<ulink url="http://www.graphviz.org" type="http">GraphViz 
+	site</ulink>. Specific options for this report 
+	include filter and number of generations considered, as well as 
+	several GraphViz-specific options related to pagination, color, 
+	and details of the graph. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Timeline Graph</term>
+	<listitem><para>This report outputs the list of people with their
+	lifetimes represented by intervals on a common chronological scale. 
+	Specific options include filter, sorting method, and the title of 
+	the report. </para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
+	<para>Common options for graphical reports are the filename of the
+	output, the format of the output, selected style, page size and 
+	orientation. </para>
+
+      </sect3>
+
+      <!-- =============== Usage Sub-subsection ================ -->
+      <sect3 id="rep-text"> 
+	<title>Text Reports</title> 
+	<para> Text reports represent the desired information as formatted 
+	text. Most of the options are common among text reports, 
+	therefore they will be described only once, at the end of this 
+	section. The options which are specific to a given report will be 
+	described directly in that report's entry.</para>
+	
+	<para>The following text reports are currently 
+	available in &app;:</para>
+
+	<variablelist>
+
+	<varlistentry><term>Ahnentafel Report</term>
+	<listitem><para>This report lists the active person and his or her 
+	ancestors along with their vital data. The people are numbered in a 
+	special way which is an established standard called Ahnentafel. 
+	The active person is given number 1. His or her father and mother 
+	have numbers 2 and 3, respectively. This rule holds for every person 
+	while going back in generations: father's parents are numbered 4 and 5, 
+	and mother's parents are numbered 6 and 7, fathers always numbered 
+	with even and mothers with odd numbers. Therefore, for any person 
+	having number N in this tree, the numbers of father and mother 
+	are 2N and 2N+1, respectively. 
+	</para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Ancestors Report</term>
+	<listitem><para>This report produces a detailed description 
+	of ancestors of the active person. The highlights of this report
+        include specific layout, images of children, present and former 
+        spouses, and source citations. Specific options: number 
+	of backward generations to consider, whether to cite sources, 
+        and whether to break pages between generations. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Complete Individual Report</term>
+	<listitem><para>This report provides individual summaries similar to
+	that of the Individual Summary report. The advantage of this report 
+	is the specific filter option. Depending on the filter choice (active
+	person only, his or her descendants, his or her ancestors, or entire
+	database), the report may contain from one to many individual 
+	summaries. Another option for this report is the inclusion of 
+	source information when listing events. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Descendant Report</term>
+	<listitem><para>This report produces a brief description 
+	of descendants of the active person. Specific options: number 
+	of forward generations to consider. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Detailed Ancestral Report</term>
+	<listitem><para>This report covers in detail the ancestors of the
+	active person. It includes vital data (birth and death) as well as 
+	marriages. Specific options: number of backward generations 
+	to consider, as well as a variety of options regarding the exact 
+	contents to include. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Detailed Descendant Report</term>
+	<listitem><para>This report covers in detail the descendants of the
+	active person. It includes vital (birth and death) information as well as 
+	marriages. Specific options: number of forward generations 
+	to consider. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>FTM Style Ancestral Report</term>
+	<listitem><para>This report creates an ancestral report similar to 
+        that produced by the Family Tree Maker (tm) program. It covers in detail the 
+        active person and his/her ancestors It includes vital information 
+        as well as marriages, children, and notes.  Specific options: number 
+        of backward generations to consider. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>FTM Style Descendant Report</term>
+	<listitem><para>This report creates a descendant report similar to 
+        that produced by the Family Tree Maker (tm) program. It covers in detail the 
+        active person and his/her descendants. It includes vital information 
+        as well as marriages, children, and notes. Specific options: 
+        number of forward generations to consider. </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Family Group Report</term>
+	<listitem><para>This creates a family group report, showing
+	information on a set of parents and their children. Specific 
+	options: the spouse (available only if the active person has more
+	than one spouse). </para></listitem>
+	</varlistentry>
+
+	<varlistentry><term>Individual Summary</term>
+	<listitem><para>This report produces a detailed summary on the 
+	active person. The report includes all the facts known to the 
+	database about that person. </para></listitem>
+	</varlistentry>
+
+	</variablelist>
+
+	<para>Common options for text reports are the filename of the
+	output, the format of the output, selected style, page size and 
+	orientation. For HTML reports, there is no page information. 
+	Instead, HTML options include the choice of the HTML template, 
+	either available in &app; or a custom template defined by you. </para>
+
+      </sect3>
+
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-books"> 
 	<title>Books</title> 
@@ -2771,10 +2935,10 @@
         is the Book Report. </para>
 
 	<para> The Book Report creates a single document (i.e. a Book) 
-        containing several separate reports. The plan is to enable all existing
-        reports to be available book items. However, as of version &appversion;,
-        only text reports are available for inclusion in books. Nevertheless,
-        this allows for a very reach set of documents that &app; can produce. 
+        containing a collection of graphical and textual reports.
+        However, as of version &appversion; the Text reports are available 
+        for inclusion in books. Nevertheless, this allows for a very rich set 
+        of documents that &app; can produce. 
         </para>
 
 	<para> When Book Report is selected, the following book configuration
@@ -2827,163 +2991,9 @@
 
       </sect3>
 
-
-      <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="rep-graph"> 
-	<title>Graphical Reports</title> 
-	<para> Graphical reports represent information in forms of charts 
-	and graphs. Most of the options are common among graphical reports, 
-	therefore they will be described only once, at the end of this 
-	section. The few options specific to a given report will be 
-	described directly in that report's entry.</para>
-
-	<para>The following graphical reports are currently 
-	available in &app;: </para>
-	
-	<variablelist>
-
-	<varlistentry><term>Timeline Graph</term>
-	<listitem><para>This report outputs the list of people with their
-	lifetimes represented by intervals on a common chronological scale. 
-	Specific options include filter, sorting method, and the title of 
-	the report. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Relationship Graph</term>
-	<listitem><para>This report creates a complex relationship graph in 
-	GraphViz format. The GraphViz <command>dot</command> tool can 
-	transform the graph into postscript, jpeg, png, vrml, svg, and many
-	other formats. GraphViz tools are freely available from 
-	<ulink url="http://www.graphviz.org" type="http">GraphViz 
-	site</ulink>. Specific options for this report 
-	include filter and number of generations considered, as well as 
-	several GraphViz specific options related to pagination, color, 
-	and details of the graph. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Descendant Graph</term>
-	<listitem><para>This report generates the graph of people who are
-	descendants of a currently active person. Specific options include 
-	the format of the displayed entries. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Ancestor Chart</term>
-	<listitem><para>This report generates the chart of people who are
-	ancestors of a currently active person. Specific options include 
-	the number of generations considered and the format of the displayed 
-	entries. </para></listitem>
-	</varlistentry>
-
-	</variablelist>
-
-	<para>Common options for graphical reports are the filename of the
-	output, the format of the output, selected style, and page size and 
-	orientation. </para>
-
-      </sect3>
-
-      <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="rep-text"> 
-	<title>Text Reports</title> 
-	<para> Text reports represent the desired information as formatted 
-	text. Most of the options are common among text reports, 
-	therefore they will be described only once, at the end of this 
-	section. The options specific to a given report will be 
-	described directly in that report's entry.</para>
-	
-	<para>The following text reports are currently 
-	available in &app;:</para>
-
-	<variablelist>
-
-	<varlistentry><term>Individual Summary</term>
-	<listitem><para>This report produces a detailed summary on the 
-	active person. The report includes all the facts known to the 
-	database about that person. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Family Group Report</term>
-	<listitem><para>This creates a family group report, showing
-	information on a set of parents and their children. Specific 
-	options: the spouse (available only if the active person has more
-	than one spouse). </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Detailed Descendant Report</term>
-	<listitem><para>This report covers in detail the descendants of the
-	active person. It includes vital (birth and death) information as well as 
-	marriages. Specific options: number of forward generations 
-	to consider. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Detailed Ancestral Report</term>
-	<listitem><para>This report covers in detail the ancestors of the
-	active person. It includes vital data (birth and death) as well as 
-	marriages. Specific options: number of backward generations 
-	to consider, as well as a variety of options on what exact 
-	contents to include. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>FTM Style Descendant Report</term>
-	<listitem><para>This report creates a descendant report similar to 
-        that produced by the Family Tree Maker (tm). It covers in detail the 
-        active person and his/her descendants. It includes vital information 
-        as well as marriages, children, and notes. Specific options: 
-        number of forward generations to consider. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>FTM Style Ancestral Report</term>
-	<listitem><para>This report creates an ancestral report similar to 
-        that produced by the Family Tree Maker (tm).It covers in detail the 
-        active person and his/her ancestors It includes vital information 
-        as well as marriages, children, and notes.  Specific options: number 
-        of backward generations to consider, as well as a variety of options 
-        on what exact contents to include. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Descendant Report</term>
-	<listitem><para>This report produces a brief description 
-	of descendants of the active person. Specific options: number 
-	of forward generations to consider. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Complete Individual Report</term>
-	<listitem><para>This report provides individual summaries similar to
-	that of the Individual Summary report. The advantage of this report 
-	is the specific filter option. Depending on the filter choice (active
-	person only, his or her descendants, his or her ancestors, or entire
-	database), the report may contain from one to many individual 
-	summaries. Another option for this report is the inclusion of 
-	source information when listing events. </para></listitem>
-	</varlistentry>
-
-	<varlistentry><term>Ahnentafel Report</term>
-	<listitem><para>This report lists the active person and his or her 
-	ancestors along with their vital data. The people are numbered in a 
-	special way which is an established standard called Ahnentafel. 
-	The active person is given number 1. His or her father and mother 
-	have numbers 2 and 3, respectively. This rule holds for every person 
-	while going back in generations: father's parents are numbered 4 and 5, 
-	and mother's parents are numbered 6 and 7, fathers always numbered 
-	with even and mothers with odd numbers. Therefore, for any person 
-	having number N in this tree, the numbers of father and mother 
-	are 2N and 2N+1, respectively. 
-	</para></listitem>
-	</varlistentry>
-
-	</variablelist>
-
-	<para>Common options for text reports are the filename of the
-	output, the format of the output, selected style, and page size and 
-	orientation. For HTML reports, there is no page information. 
-	Instead, HTML options include the choice of the HTML template, 
-	either available in &app; or a custom template defined by you. </para>
-
-      </sect3>
-
       <!-- =============== Usage Sub-subsection ================ -->
       <sect3 id="rep-view"> 
-	<title>View</title> 
+	<title>View Reports</title> 
 	<para> View reports represent overall summaries of the database 
 	information available immediately for on-screen viewing. 
 	The following view reports are currently available in &app;:</para>
@@ -3015,11 +3025,11 @@
 	scope of the database to consider), number of generations to consider, 
 	destination directory for the images, and a link to the index page.
 	Privacy options allow you to omit private records, restrict 
-	information on living people, to skip images (either all or those of 
-	living people), and to omit comments and text in source information. 
-	Finally, the advanced options allow you to include the optional &app; ID, 
-	create a GENDEX index, and specify the extension of the resulting 
-	files. </para>
+	information on living people, to skip images (either all or only 
+        those of living people), and to omit comments and text in source 
+        information. Finally, the advanced options allow you to include 
+        the optional &app; ID, create a GENDEX index, and specify the 
+        extension of the resulting files. </para>
 
       </sect3>
 
@@ -3214,7 +3224,7 @@
     <title>Settings</title> 
     <para>To configure &app;, choose 
       <menuchoice><guimenu>Settings</guimenu>
-      <guimenuitem>Preferences</guimenuitem></menuchoice>. 
+      <guimenuitem>Preferences...</guimenuitem></menuchoice>. 
       The <guilabel>Preferences</guilabel> dialog contains the following 
       categories: </para>
       
