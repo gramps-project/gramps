@@ -115,15 +115,14 @@ class PeopleView:
             index += 1
 
     def build_tree(self):
-        import time
-        t = time.time()
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
         #self.sort_model = self.person_model.filter_new()
         self.sort_model = self.person_model
         self.person_tree.set_model(self.sort_model)
         
-    def blist(self, store, path, iter, id_list):
-        id_list.append(self.sort_model.get_value(iter,PeopleModel.COLUMN_INT_ID))
+    def blist(self, store, path, node, id_list):
+        id_list.append(self.sort_model.get_value(node,
+                                                 PeopleModel.COLUMN_INT_ID))
 
     def get_selected_objects(self):
         mlist = []
@@ -146,7 +145,6 @@ class PeopleView:
 
     def change_db(self,db):
         self.build_columns()
-        maps = db.get_people_view_maps()
         self.person_model = PeopleModel.PeopleModel(db)
         #self.sort_model = self.person_model.filter_new()
         self.sort_model = self.person_model
@@ -266,11 +264,11 @@ class PeopleView:
         top = person.get_primary_name().get_group_name()
         if len(self.person_model.sname_sub[top]) == 1:
             path = self.person_model.on_get_path(top)
-            iter = self.person_model.get_iter(path)
-            self.person_model.row_inserted(path,iter)
+            node = self.person_model.get_iter(path)
+            self.person_model.row_inserted(path,node)
         path = self.person_model.on_get_path(node)
-        iter = self.person_model.get_iter(path)
-        self.person_model.row_inserted(path,iter)
+        node = self.person_model.get_iter(path)
+        self.person_model.row_inserted(path,node)
 
     def delete_person(self,person):
         node = person.get_handle()

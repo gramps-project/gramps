@@ -31,12 +31,10 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-from re import compile
 
 import os
 import os.path
 import time
-import types
 
 #-------------------------------------------------------------------------
 #
@@ -44,11 +42,9 @@ import types
 #
 #-------------------------------------------------------------------------
 import Date
-import DateParser
 import DateHandler
 import GrampsCfg
 import const
-import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -226,7 +222,7 @@ class Person(PrimaryObject,SourceNote):
     male = 1
     female = 0
 
-    def __init__(self,handle=""):
+    def __init__(self):
         """creates a new Person instance"""
         PrimaryObject.__init__(self)
         SourceNote.__init__(self)
