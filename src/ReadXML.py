@@ -56,17 +56,6 @@ except:
 
 #-------------------------------------------------------------------------
 #
-# Try to abstract SAX1 from SAX2
-#
-#-------------------------------------------------------------------------
-
-try:
-    from xml.sax import make_parser, SAXParseException, SAXReaderNotAvailable
-except:
-    from _xmlplus.sax import make_parser, SAXParseException, SAXReaderNotAvailable
-
-#-------------------------------------------------------------------------
-#
 # Initialization function for the module.  Called to start the reading
 # of data.
 #
@@ -78,15 +67,7 @@ def importData(database, filename, callback):
     database.pmap = {}
     database.fmap = {}
 
-    try:
-        parser = make_parser()
-    except SAXReaderNotAvailable:
-        msg1 = _("GRAMPS is not able to find an XML parser on your system.")
-        msg2 = _("This is probably due to an incomplete python or PyXML installation")
-        GnomeErrorDialog("%s\n%s" % (msg1,msg2))
-        return
-    
-    parser.setContentHandler(GrampsImportParser(database,callback,basefile))
+    parser = GrampsImportParser(database,callback,basefile)
 
     if gzip_ok:
         use_gzip = 1
@@ -114,11 +95,6 @@ def importData(database, filename, callback):
         
     try:
         parser.parse(xml_file)
-    except SAXParseException:
-        GnomeErrorDialog(_("%s is a corrupt file") % filename)
-        import traceback
-        traceback.print_exc()
-        return 0
     except IOError,msg:
         GnomeErrorDialog(_("Error reading %s") % filename + "\n" + str(msg))
         import traceback
@@ -147,8 +123,7 @@ def loadData(database, filename, callback=None):
 
     filename = os.path.normpath(filename)
 
-    parser = make_parser()
-    parser.setContentHandler(GrampsParser(database,callback,basefile))
+    parser = GrampsParser(database,callback,basefile)
 
     if gzip_ok:
         use_gzip = 1
@@ -177,13 +152,6 @@ def loadData(database, filename, callback=None):
 
     try:
         parser.parse(xml_file)
-    except SAXParseException,msg:
-        line = string.split(str(msg),':')
-        filemsg = _("%s is a corrupt file.") % filename
-        errtype = string.strip(line[3])
-        errmsg = _('A "%s" error on line %s was detected.') % (errtype,line[1])
-        GnomeErrorDialog("%s\n%s" % (filemsg,errmsg))
-        return 0
     except IOError,msg:
         errmsg = "%s\n%s" % (_("Error reading %s") % filename,str(msg))
         GnomeErrorDialog(errmsg)
@@ -212,20 +180,12 @@ def loadRevision(database, file, filename, revision, callback=None):
     database.pmap = {}
     database.fmap = {}
 
-    parser = make_parser()
-    parser.setContentHandler(GrampsParser(database,callback,basefile))
+    parser = GrampsParser(database,callback,basefile)
 
     filename = _("%s (revision %s)") % (filename,revision)
     
     try:
         parser.parse(file)
-    except SAXParseException,msg:
-        line = string.split(str(msg),':')
-        filemsg = _("%s is a corrupt file.") % filename
-        errtype = string.strip(line[3])
-        errmsg = _('A "%s" error on line %s was detected.') % (errtype,line[1])
-        GnomeErrorDialog("%s\n%s" % (filemsg,errmsg))
-        return 0
     except IOError,msg:
         errmsg = "%s\n%s" % (_("Error reading %s") % filename, str(msg))
         GnomeErrorDialog(errmsg)

@@ -103,15 +103,15 @@ class AbiWordDoc(TextDoc):
         self.f.write('</abiword>\n')
         self.f.close()
 
-    def add_photo(self,name,x,y):
+    def add_photo(self,pos,name,x_cm,y_cm):
         import GdkImlib
 
         image = GdkImlib.Image(name)
         scale = float(image.rgb_width)/float(image.rgb_height)
-        act_width = x * scale
-        act_height = y * scale
+        act_width = int(((x_cm * scale)*2.54)*72)
+        act_height = int(((y_cm * scale)*2.54)*72)
 
-        self.photo_list.append((name,act_width*40,act_height*40))
+        self.photo_list.append((name,act_width,act_height))
 
 	base = "/tmp/%s.png" % os.path.basename(name)
         tag = string.replace(base,'.','_')

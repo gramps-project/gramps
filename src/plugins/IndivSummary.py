@@ -222,7 +222,7 @@ class IndivSummary:
             if object.getMimeType()[0:5] == "image":
                 file = object.getPath()
                 self.d.start_paragraph("Normal")
-                self.d.add_photo(file,4.0,4.0)
+                self.d.add_photo(file,"row",4.0,4.0)
                 self.d.end_paragraph()
 
         self.d.start_table("one","IndTable")

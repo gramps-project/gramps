@@ -352,7 +352,7 @@ class KwordDoc(TextDoc):
     def end_cell(self):
         pass
 
-    def add_photo(self,name,x,y):
+    def add_photo(self,name,pos,x,y):
         if no_pil:
             return
 

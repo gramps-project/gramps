@@ -576,7 +576,8 @@ class TextDoc:
         self.name = ""
         self.photo_list = []
 
-    def add_photo(self,name,x,y):
+    def add_photo(self,name,align,w_cm,h_cm):
+        """adds a photo of the specified width (in centimeters)"""
         pass
     
     def get_usable_width(self):
