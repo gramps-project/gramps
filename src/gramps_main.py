@@ -930,6 +930,10 @@ class Gramps:
             self.import_tool_callback()
 
     def import_tool_callback(self):
+        home = self.db.get_default_person()
+        if home:
+            self.change_active_person(home)
+            self.update_display(0)
         self.full_update()
             
     def full_update(self):
