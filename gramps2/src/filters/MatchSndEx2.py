@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 "Names with SoundEx code of ..."
 
 import Filter
@@ -36,6 +38,6 @@ class MatchSndEx2(Filter.Filter):
 #
 #------------------------------------------------------------------------
 Filter.register_filter(MatchSndEx2,
-                       description=_("Names with tSoundEx code of ..."),
+                       description=_("Names with the SoundEx code of ..."),
                        label=_("SoundEx Code"),
                        qualifier=1)

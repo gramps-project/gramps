@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Thu Nov 27 11:10:46 2003\n"
+"POT-Creation-Date: Sat Nov 29 20:50:46 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -488,11 +488,11 @@ msgstr ""
 msgid "Event Editor for %s"
 msgstr ""
 
-#: EventEdit.py:236
+#: EventEdit.py:245
 msgid "New event type created"
 msgstr ""
 
-#: EventEdit.py:237
+#: EventEdit.py:246
 msgid ""
 "The \"%s\" event type has been added to this database.\n"
 "It will now appear in the event menus for this database"
@@ -523,7 +523,7 @@ msgid "Add Bookmark"
 msgstr ""
 
 #: FamilyView.py:304 FamilyView.py:325 FamilyView.py:348 FamilyView.py:371
-#: PedView.py:445 PeopleView.py:388
+#: PedView.py:451 PeopleView.py:388
 msgid "People Menu"
 msgstr ""
 
@@ -1327,7 +1327,7 @@ msgstr ""
 msgid "Custom Size"
 msgstr ""
 
-#: PedView.py:393
+#: PedView.py:399
 msgid "Double clicking will make %s the active person"
 msgstr ""
 
@@ -2597,7 +2597,7 @@ msgstr ""
 msgid "OpenOffice.org Draw"
 msgstr ""
 
-#: docgen/PSDrawDoc.py:381 plugins/GraphViz.py:157 plugins/RelGraph.py:187
+#: docgen/PSDrawDoc.py:381 plugins/GraphViz.py:157 plugins/RelGraph.py:189
 msgid "PostScript"
 msgstr ""
 
@@ -3013,11 +3013,11 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-#: filters/MatchSndEx2.py:39
-msgid "Names with tSoundEx code of ..."
+#: filters/MatchSndEx2.py:41
+msgid "Names with the SoundEx code of ..."
 msgstr ""
 
-#: filters/MatchSndEx2.py:40
+#: filters/MatchSndEx2.py:42
 msgid "SoundEx Code"
 msgstr ""
 
@@ -3904,7 +3904,7 @@ msgstr ""
 #: plugins/AncestorChart.py:242 plugins/AncestorChart.py:560
 #: plugins/DesGraph.py:329 plugins/DesGraph.py:586 plugins/FanChart.py:310
 #: plugins/FanChart.py:462 plugins/GraphViz.py:83 plugins/GraphViz.py:531
-#: plugins/RelGraph.py:109 plugins/RelGraph.py:910 plugins/TimeLine.py:399
+#: plugins/RelGraph.py:111 plugins/RelGraph.py:912 plugins/TimeLine.py:399
 #: plugins/TimeLine.py:660
 msgid "Graphical Reports"
 msgstr ""
@@ -3937,7 +3937,7 @@ msgstr ""
 #: plugins/FamilyGroup.py:761 plugins/FtmStyleAncestors.py:1254
 #: plugins/FtmStyleDescendants.py:1662 plugins/GraphViz.py:530
 #: plugins/IndivComplete.py:820 plugins/IndivSummary.py:629
-#: plugins/RelGraph.py:909 plugins/Summary.py:162 plugins/TimeLine.py:659
+#: plugins/RelGraph.py:911 plugins/Summary.py:162 plugins/TimeLine.py:659
 #: plugins/WebPage.py:1404
 msgid "Beta"
 msgstr ""
@@ -4073,7 +4073,7 @@ msgstr ""
 
 #: plugins/Ancestors.py:118 plugins/FtmStyleAncestors.py:85
 #: plugins/GraphViz.py:112 plugins/IndivComplete.py:711
-#: plugins/RelGraph.py:142 plugins/TimeLine.py:364 plugins/WebPage.py:1001
+#: plugins/RelGraph.py:144 plugins/TimeLine.py:364 plugins/WebPage.py:1001
 #: plugins/WriteFtree.py:114 plugins/WriteGedcom.py:393
 msgid "Ancestors of %s"
 msgstr ""
@@ -4536,7 +4536,7 @@ msgstr ""
 msgid "Generates a graph of descendants of the active person"
 msgstr ""
 
-#: plugins/DesGraph.py:588 plugins/FanChart.py:463 plugins/Partition.py:222
+#: plugins/DesGraph.py:588 plugins/FanChart.py:463
 msgid "Alpha"
 msgstr ""
 
@@ -4558,7 +4558,7 @@ msgstr ""
 
 #: plugins/DescendReport.py:94 plugins/FtmStyleDescendants.py:113
 #: plugins/GraphViz.py:108 plugins/IndivComplete.py:707
-#: plugins/RelGraph.py:134 plugins/TimeLine.py:360 plugins/WriteFtree.py:110
+#: plugins/RelGraph.py:136 plugins/TimeLine.py:360 plugins/WriteFtree.py:110
 #: plugins/WriteGedcom.py:389
 msgid "Descendants of %s"
 msgstr ""
@@ -4940,7 +4940,7 @@ msgid "Event comparison filter selection"
 msgstr ""
 
 #: plugins/EventCmp.py:147 plugins/GraphViz.py:104
-#: plugins/IndivComplete.py:715 plugins/RelGraph.py:130
+#: plugins/IndivComplete.py:715 plugins/RelGraph.py:132
 #: plugins/TimeLine.py:356 plugins/WebPage.py:989 plugins/WriteFtree.py:106
 #: plugins/WriteGedcom.py:385
 msgid "Entire Database"
@@ -5477,162 +5477,162 @@ msgstr ""
 msgid "Produces a textual descendant report similar to Family Tree Maker."
 msgstr ""
 
-#: plugins/GraphViz.py:62 plugins/GraphViz.py:92 plugins/RelGraph.py:67
-#: plugins/RelGraph.py:118
+#: plugins/GraphViz.py:62 plugins/GraphViz.py:92 plugins/RelGraph.py:69
+#: plugins/RelGraph.py:120
 msgid "Single (scaled)"
 msgstr ""
 
-#: plugins/GraphViz.py:63 plugins/RelGraph.py:68
+#: plugins/GraphViz.py:63 plugins/RelGraph.py:70
 msgid "Single"
 msgstr ""
 
-#: plugins/GraphViz.py:64 plugins/RelGraph.py:69
+#: plugins/GraphViz.py:64 plugins/RelGraph.py:71
 msgid "Multiple"
 msgstr ""
 
-#: plugins/GraphViz.py:82 plugins/GraphViz.py:529 plugins/RelGraph.py:108
-#: plugins/RelGraph.py:908
+#: plugins/GraphViz.py:82 plugins/GraphViz.py:529 plugins/RelGraph.py:110
+#: plugins/RelGraph.py:910
 msgid "Relationship Graph"
 msgstr ""
 
-#: plugins/GraphViz.py:88 plugins/RelGraph.py:114
+#: plugins/GraphViz.py:88 plugins/RelGraph.py:116
 msgid "Graphviz File"
 msgstr ""
 
-#: plugins/GraphViz.py:116 plugins/RelGraph.py:146 plugins/TimeLine.py:368
+#: plugins/GraphViz.py:116 plugins/RelGraph.py:148 plugins/TimeLine.py:368
 #: plugins/WriteFtree.py:118 plugins/WriteGedcom.py:397
 msgid "People with common ancestor with %s"
 msgstr ""
 
-#: plugins/GraphViz.py:125 plugins/RelGraph.py:155
+#: plugins/GraphViz.py:125 plugins/RelGraph.py:157
 msgid "Descendants <- Ancestors"
 msgstr ""
 
-#: plugins/GraphViz.py:130 plugins/RelGraph.py:160
+#: plugins/GraphViz.py:130 plugins/RelGraph.py:162
 msgid "Descendants -> Ancestors"
 msgstr ""
 
-#: plugins/GraphViz.py:135 plugins/RelGraph.py:165
+#: plugins/GraphViz.py:135 plugins/RelGraph.py:167
 msgid "Descendants <-> Ancestors"
 msgstr ""
 
-#: plugins/GraphViz.py:140 plugins/RelGraph.py:170
+#: plugins/GraphViz.py:140 plugins/RelGraph.py:172
 msgid "Descendants - Ancestors"
 msgstr ""
 
-#: plugins/GraphViz.py:152 plugins/RelGraph.py:182
+#: plugins/GraphViz.py:152 plugins/RelGraph.py:184
 msgid "TrueType"
 msgstr ""
 
 #: plugins/GraphViz.py:164 plugins/GraphViz.py:169 plugins/GraphViz.py:177
 #: plugins/GraphViz.py:185 plugins/GraphViz.py:195 plugins/GraphViz.py:205
-#: plugins/GraphViz.py:215 plugins/GraphViz.py:223 plugins/RelGraph.py:194
-#: plugins/RelGraph.py:199 plugins/RelGraph.py:208 plugins/RelGraph.py:216
-#: plugins/RelGraph.py:223 plugins/RelGraph.py:230 plugins/RelGraph.py:238
-#: plugins/RelGraph.py:247 plugins/RelGraph.py:255 plugins/RelGraph.py:265
-#: plugins/RelGraph.py:275
+#: plugins/GraphViz.py:215 plugins/GraphViz.py:223 plugins/RelGraph.py:196
+#: plugins/RelGraph.py:201 plugins/RelGraph.py:210 plugins/RelGraph.py:218
+#: plugins/RelGraph.py:225 plugins/RelGraph.py:232 plugins/RelGraph.py:240
+#: plugins/RelGraph.py:249 plugins/RelGraph.py:257 plugins/RelGraph.py:267
+#: plugins/RelGraph.py:277
 msgid "GraphViz Options"
 msgstr ""
 
-#: plugins/GraphViz.py:165 plugins/RelGraph.py:195
+#: plugins/GraphViz.py:165 plugins/RelGraph.py:197
 msgid "Font Options"
 msgstr ""
 
-#: plugins/GraphViz.py:167 plugins/RelGraph.py:197
+#: plugins/GraphViz.py:167 plugins/RelGraph.py:199
 msgid "Choose the font family."
 msgstr ""
 
-#: plugins/GraphViz.py:170 plugins/RelGraph.py:200
+#: plugins/GraphViz.py:170 plugins/RelGraph.py:202
 msgid "Arrowhead Options"
 msgstr ""
 
-#: plugins/GraphViz.py:172 plugins/RelGraph.py:202
+#: plugins/GraphViz.py:172 plugins/RelGraph.py:204
 msgid "Choose the direction that the arrows point."
 msgstr ""
 
-#: plugins/GraphViz.py:174 plugins/RelGraph.py:227
+#: plugins/GraphViz.py:174 plugins/RelGraph.py:229
 msgid "Include Birth, Marriage and Death Dates"
 msgstr ""
 
-#: plugins/GraphViz.py:179 plugins/RelGraph.py:232
+#: plugins/GraphViz.py:179 plugins/RelGraph.py:234
 msgid "Include the dates that the individual was born, got married and/or died in the graph labels."
 msgstr ""
 
-#: plugins/GraphViz.py:183 plugins/RelGraph.py:236
+#: plugins/GraphViz.py:183 plugins/RelGraph.py:238
 msgid "Limit dates to years only"
 msgstr ""
 
-#: plugins/GraphViz.py:187 plugins/RelGraph.py:240
+#: plugins/GraphViz.py:187 plugins/RelGraph.py:242
 msgid "Prints just dates' year, neither month or day nor date approximation or interval are shown."
 msgstr ""
 
-#: plugins/GraphViz.py:193 plugins/RelGraph.py:253
+#: plugins/GraphViz.py:193 plugins/RelGraph.py:255
 msgid "Include URLs"
 msgstr ""
 
-#: plugins/GraphViz.py:197 plugins/RelGraph.py:257
+#: plugins/GraphViz.py:197 plugins/RelGraph.py:259
 msgid "Include a URL in each graph node so that PDF and imagemap files can be generated that contain active links to the files generated by the 'Generate Web Site' report."
 msgstr ""
 
-#: plugins/GraphViz.py:203 plugins/RelGraph.py:263
+#: plugins/GraphViz.py:203 plugins/RelGraph.py:265
 msgid "Colorize Graph"
 msgstr ""
 
-#: plugins/GraphViz.py:208 plugins/RelGraph.py:268
+#: plugins/GraphViz.py:208 plugins/RelGraph.py:270
 msgid "Males will be outlined in blue, females will be outlined in pink.  If the sex of an individual is unknown it will be outlined in black."
 msgstr ""
 
-#: plugins/GraphViz.py:213 plugins/RelGraph.py:273
+#: plugins/GraphViz.py:213 plugins/RelGraph.py:275
 msgid "Indicate non-birth relationships with dashed lines"
 msgstr ""
 
-#: plugins/GraphViz.py:218 plugins/RelGraph.py:278
+#: plugins/GraphViz.py:218 plugins/RelGraph.py:280
 msgid "Non-birth relationships will show up as dashed lines in the graph."
 msgstr ""
 
-#: plugins/GraphViz.py:221 plugins/RelGraph.py:213
+#: plugins/GraphViz.py:221 plugins/RelGraph.py:215
 msgid "Show family nodes"
 msgstr ""
 
-#: plugins/GraphViz.py:226 plugins/RelGraph.py:218
+#: plugins/GraphViz.py:226 plugins/RelGraph.py:220
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 
 #: plugins/GraphViz.py:237 plugins/GraphViz.py:240 plugins/GraphViz.py:250
-#: plugins/GraphViz.py:257 plugins/RelGraph.py:289 plugins/RelGraph.py:292
-#: plugins/RelGraph.py:302 plugins/RelGraph.py:309
+#: plugins/GraphViz.py:257 plugins/RelGraph.py:291 plugins/RelGraph.py:294
+#: plugins/RelGraph.py:304 plugins/RelGraph.py:311
 msgid "Page Options"
 msgstr ""
 
-#: plugins/GraphViz.py:238 plugins/RelGraph.py:290
+#: plugins/GraphViz.py:238 plugins/RelGraph.py:292
 msgid "Top & Bottom Margins"
 msgstr ""
 
-#: plugins/GraphViz.py:241 plugins/RelGraph.py:293
+#: plugins/GraphViz.py:241 plugins/RelGraph.py:295
 msgid "Left & Right Margins"
 msgstr ""
 
-#: plugins/GraphViz.py:251 plugins/RelGraph.py:303
+#: plugins/GraphViz.py:251 plugins/RelGraph.py:305
 msgid "Number of Horizontal Pages"
 msgstr ""
 
-#: plugins/GraphViz.py:253 plugins/RelGraph.py:305
+#: plugins/GraphViz.py:253 plugins/RelGraph.py:307
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally."
 msgstr ""
 
-#: plugins/GraphViz.py:258 plugins/RelGraph.py:310
+#: plugins/GraphViz.py:258 plugins/RelGraph.py:312
 msgid "Number of Vertical Pages"
 msgstr ""
 
-#: plugins/GraphViz.py:260 plugins/RelGraph.py:312
+#: plugins/GraphViz.py:260 plugins/RelGraph.py:314
 msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically."
 msgstr ""
 
-#: plugins/GraphViz.py:280 plugins/RelGraph.py:345
+#: plugins/GraphViz.py:280 plugins/RelGraph.py:347
 msgid "Generate print output"
 msgstr ""
 
-#: plugins/GraphViz.py:511 plugins/RelGraph.py:893
+#: plugins/GraphViz.py:511 plugins/RelGraph.py:895
 msgid "Generates relationship graphs, currently only in GraphViz format. GraphViz (dot) can transform the graph into postscript, jpeg, png, vrml, svg, and many other formats. For more information or to get a copy of GraphViz, goto http://www.graphviz.org"
 msgstr ""
 
@@ -5757,21 +5757,6 @@ msgstr ""
 
 #: plugins/Merge.py:555
 msgid "Searches the entire database, looking for individual entries that may represent the same person."
-msgstr ""
-
-#: plugins/Partition.py:221
-msgid "Partitions"
-msgstr ""
-
-#: plugins/Partition.py:223
-msgid "Export"
-msgstr ""
-
-#: plugins/Partition.py:224
-msgid ""
-"This program partitions individuals in a database into disjoint partitions.\n"
-"A partition is composed of people related by one or more multiple relations.\n"
-"There should be no known relationship between people in different partitions."
 msgstr ""
 
 #: plugins/PatchNames.py:103
@@ -5919,31 +5904,31 @@ msgstr ""
 msgid "Calculates the relationship between two people"
 msgstr ""
 
-#: plugins/RelGraph.py:138
+#: plugins/RelGraph.py:140
 msgid "Descendant family members of %s"
 msgstr ""
 
-#: plugins/RelGraph.py:205
+#: plugins/RelGraph.py:207
 msgid "Show family as a stack"
 msgstr ""
 
-#: plugins/RelGraph.py:210
-msgid "The main individual is shown along with their spuses in a stack."
+#: plugins/RelGraph.py:212
+msgid "The main individual is shown along with their spouses in a stack."
 msgstr ""
 
-#: plugins/RelGraph.py:220
+#: plugins/RelGraph.py:222
 msgid "Include IDs"
 msgstr ""
 
-#: plugins/RelGraph.py:225
+#: plugins/RelGraph.py:227
 msgid "Include individual and family IDs."
 msgstr ""
 
-#: plugins/RelGraph.py:244
+#: plugins/RelGraph.py:246
 msgid "Place/cause when no date"
 msgstr ""
 
-#: plugins/RelGraph.py:249
+#: plugins/RelGraph.py:251
 msgid "When no birth, marriage, or death date is available, the correspondent place field (or cause field when blank) will be used."
 msgstr ""
 
@@ -6600,10 +6585,6 @@ msgstr ""
 msgid "Book"
 msgstr ""
 
-#: plugins/book.glade:39
-msgid "title"
-msgstr ""
-
 #: plugins/book.glade:72
 msgid "Book _name:"
 msgstr ""
@@ -6624,14 +6605,6 @@ msgstr ""
 msgid "Manage previously created books"
 msgstr ""
 
-#: plugins/book.glade:262
-msgid "avail_label"
-msgstr ""
-
-#: plugins/book.glade:333
-msgid "book_label"
-msgstr ""
-
 #: plugins/book.glade:418
 msgid "Add an item to the book"
 msgstr ""
@@ -6650,14 +6623,6 @@ msgstr ""
 
 #: plugins/book.glade:530
 msgid "Configure currently selected item"
-msgstr ""
-
-#: plugins/book.glade:622
-msgid "dialog1"
-msgstr ""
-
-#: plugins/book.glade:697
-msgid "label6"
 msgstr ""
 
 #: plugins/cdexport.glade:84
