@@ -1,3 +1,8 @@
+2004-02-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/ReadGedcom.py (GedcomParser.parse_individual): handle event
+	description
+	* src/ImageSelect.py: disable double click to edit in a gallery
+
 2004-02-06  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/*.xml: Replace &app; with gramps inside
 	the title tag.
