@@ -108,6 +108,9 @@ class Place:
     def get_alternate_locations(self):
         return self.alt_loc
 
+    def set_alternate_locations(self,list):
+        self.alt_loc = list
+
     def add_alternate_locations(self,loc):
         if loc not in self.alt_loc:
             self.alt_loc.append(loc)
