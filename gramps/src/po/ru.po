@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3\n"
 "POT-Creation-Date: Wed May  2 12:30:26 2002\n"
-"PO-Revision-Date: 2002-05-05 11:12-0500\n"
+"PO-Revision-Date: 2002-05-06 08:43-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3753,7 +3753,7 @@ msgstr ""
 
 #: plugins/IndivComplete.py:118
 msgid "%(date)s in %(place)s."
-msgstr "%(date)(ы) в %(place)(ах)"
+msgstr "%(date)s в %(place)s"
 
 #: plugins/IndivComplete.py:177
 msgid "Alternate Parents"
