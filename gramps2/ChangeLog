@@ -1,3 +1,8 @@
+2004-02-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: new text string for "unknown" spouse
+	* src/ImageSelect.py: integer conversions for event.x, event.y
+	* src/const.py.in: copyright date update
+
 2004-02-03  Michel Guitel  <michel.guitel@free.fr>
 	* doc/gramps-manual/fr/filtref.xml: Update.
 	* doc/gramps-manual/fr/mainwin.xml: Update.
