@@ -77,12 +77,16 @@ class Marriage:
             "on_marriageUpdateBtn_clicked" : on_update_clicked,
             "on_marriageDeleteBtn_clicked" : on_delete_clicked,
             "on_marriageEventList_select_row" : on_select_row,
+            "on_attr_list_select_row" : on_attr_list_select_row,
+            "on_add_attr_clicked" : on_add_attr_clicked,
+            "on_update_attr_clicked" : on_update_attr_clicked,
+            "on_delete_attr_clicked" : on_delete_attr_clicked,
             "on_showsource_clicked" : on_showsource_clicked,
-            "on_makeprimary_clicked" : on_primary_photo_clicked,
             "on_photolist_select_icon" : on_photo_select_icon,
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_addphoto_clicked" : on_add_photo_clicked,
             "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_event_note_clicked" : on_event_note_clicked,
             "on_close_marriage_editor" : on_close_marriage_editor,
             "destroy_passed_object" : utils.destroy_passed_object
             })
@@ -102,6 +106,9 @@ class Marriage:
         self.descr_field = self.get_widget("marriageDescription")
         self.type_field  = self.get_widget("marriage_type")
         self.notes_field = self.get_widget("marriageNotes")
+        self.attr_list = self.get_widget("attr_list")
+        self.attr_type = self.get_widget("attr_type")
+        self.attr_value = self.get_widget("attr_value")
 
         # set initial data
         mevent_list = self.get_widget("marriageEvent")
@@ -116,6 +123,12 @@ class Marriage:
         top_window.set_data(MARRIAGE,self)
         self.event_list.set_data(MARRIAGE,self)
         self.event_list.set_data(INDEX,-1)
+        self.attr_list.set_data(MARRIAGE,self)
+        self.attr_list.set_data(INDEX,-1)
+
+        attr_names = self.get_widget("attr_combo")
+        attr_names.set_popdown_strings(const.personalAttributes)
+        attr_names.entry.set_text("")
 
         # set notes data
         self.notes_field.set_point(0)
@@ -123,7 +136,35 @@ class Marriage:
         self.notes_field.set_word_wrap(1)
 
         self.redraw_events()
+        self.redraw_attr_list()
         top_window.show()
+
+    #---------------------------------------------------------------------
+    #
+    # redraw_attr_list - redraws the attribute list for the person
+    #
+    #---------------------------------------------------------------------
+    def redraw_attr_list(self):
+        self.attr_list.freeze()
+        self.attr_list.clear()
+
+	self.attr_index = 0
+        for attr in self.family.getAttributeList():
+            self.attr_list.append([attr.getType(),attr.getValue()])
+            self.attr_list.set_row_data(self.attr_index,attr)
+            self.attr_index = self.attr_index + 1
+
+        current_row = self.attr_list.get_data(INDEX)
+        
+        if self.attr_index > 0:
+            if current_row <= 0:
+                current_row = 0
+            elif self.attr_index <= current_row:
+                current_row = current_row - 1
+            self.attr_list.select_row(current_row,0)
+            self.attr_list.moveto(current_row,0)
+        self.attr_list.set_data(INDEX,current_row)
+        self.attr_list.thaw()
 
     #-------------------------------------------------------------------------
     #
@@ -385,25 +426,6 @@ def on_showsource_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_primary_photo_clicked(obj):
-    marriage_obj = obj.get_data(MARRIAGE)
-    if marriage_obj.selectedIcon == None or \
-       marriage_obj.selectedIcon == 0:
-        return
-
-    photolist = marriage.family.getPhotoList()
-    savePhoto = photolist[selectedIcon]
-    for i in range(0,selectedIcon):
-        photolist[selectedIcon-i] = photolist[selectedIcon-i-1]
-    photolist[0] = savePhoto
-    marriage_obj.load_images()
-    utils.modified()
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def on_photolist_button_press_event(obj,event):
     if event.button == 3:
         myobj = obj.get_data(MARRIAGE)
@@ -435,7 +457,7 @@ def on_photolist_button_press_event(obj,event):
 #-------------------------------------------------------------------------
 def on_view_photo(obj):
     myobj = obj.get_data("m")
-    photo = myobj.person.getPhotoList()[myobj.selectedIcon]
+    photo = myobj.family.getPhotoList()[myobj.selectedIcon]
     type = gnome.mime.type(photo.getPath())
     
     prog = string.split(gnome.mime.get_value(type,'view'))
@@ -456,7 +478,7 @@ def on_view_photo(obj):
 #-------------------------------------------------------------------------
 def on_edit_photo(obj):
     myobj = obj.get_data("m")
-    photo = myobj.person.getPhotoList()[myobj.selectedIcon]
+    photo = myobj.family.getPhotoList()[myobj.selectedIcon]
     if os.fork() == 0:
         os.execvp(const.editor,[const.editor, photo.getPath()])
 
@@ -538,7 +560,7 @@ def on_savephoto_clicked(obj):
 def on_change_description(obj):
     
     myobj = obj.get_data("m")
-    photo = myobj.person.getPhotoList()[myobj.selectedIcon]
+    photo = myobj.family.getPhotoList()[myobj.selectedIcon]
     window = libglade.GladeXML(const.imageselFile,"dialog1")
     text = window.get_widget("text")
     text.set_text(photo.getDescription())
@@ -577,3 +599,121 @@ def on_apply_clicked(obj):
 def on_ok_clicked(obj):
     on_apply_clicked(obj)
     utils.destroy_passed_object(obj)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_event_note_clicked(obj):
+    row = obj.get_data(INDEX)
+    data = obj.get_row_data(row)
+    family_obj = obj.get_data(MARRIAGE)
+
+    if row >= 0:
+        editnote = libglade.GladeXML(const.editnoteFile,"editnote")
+        textobj = editnote.get_widget("notetext")
+        en_obj = editnote.get_widget("editnote")
+        en_obj.set_data("n",data)
+        en_obj.set_data("w",textobj)
+
+        textobj.set_point(0)
+        textobj.insert_defaults(data.getNote())
+        textobj.set_word_wrap(1)
+        
+        editnote.signal_autoconnect({
+            "on_save_note_clicked" : on_save_note_clicked,
+            "destroy_passed_object" : utils.destroy_passed_object
+            })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_save_note_clicked(obj):
+    textbox = obj.get_data("w")
+    data = obj.get_data("n")
+
+    text = textbox.get_chars(0,-1)
+    if text != data.getNote():
+        data.setNote(text)
+        utils.modified()
+
+    utils.destroy_passed_object(obj)
+
+
+#-------------------------------------------------------------------------
+#
+# on_attr_list_select_row - sets the row object attached to the passed
+# object, and then updates the display with the data corresponding to
+# the row.
+#
+#-------------------------------------------------------------------------
+def on_attr_list_select_row(obj,row,b,c):
+    obj.set_data(INDEX,row)
+
+    family_obj = obj.get_data(MARRIAGE)
+    attr = obj.get_row_data(row)
+
+    family_obj.attr_type.set_text(attr.getType())
+    family_obj.attr_value.set_text(attr.getValue())
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_update_attr_clicked(obj):
+    row = obj.get_data(INDEX)
+    if row < 0:
+        return
+
+    family_obj = obj.get_data(MARRIAGE)
+    attr = obj.get_row_data(row)
+    attr.setType(family_obj.attr_type.get_text())
+    attr.setValue(family_obj.attr_value.get_text())
+
+    family_obj.redraw_attr_list()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_delete_attr_clicked(obj):
+    row = obj.get_data(INDEX)
+    if row < 0:
+        return
+
+    family_obj = obj.get_data(MARRIAGE)
+    list = family_obj.family.getAttributeList()
+    del list[row]
+
+    if row > len(list)-1:
+        obj.set_data(INDEX,row-1)
+
+    family_obj.redraw_attr_list()
+    utils.modified()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_add_attr_clicked(obj):
+    family_obj = obj.get_data(MARRIAGE)
+
+    attr = Attribute()
+    name = family_obj.attr_type.get_text()
+    attr.setType(name)
+    attr.setValue(family_obj.attr_value.get_text())
+
+    if name not in const.familyAttributes:
+        const.familyAttributes.append(name)
+        menu = family_obj.get_widget("attr_combo")
+        menu.set_popdown_strings(const.familyAttributes)
+
+    family_obj.family.addAttribute(attr)
+    family_obj.redraw_attr_list()
+    utils.modified()

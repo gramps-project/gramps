@@ -1086,7 +1086,11 @@ def on_savephoto_clicked(obj):
     utils.modified()
     utils.destroy_passed_object(obj)
 
-
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_save_note_clicked(obj):
     textbox = obj.get_data("w")
     data = obj.get_data("n")
@@ -1098,12 +1102,17 @@ def on_save_note_clicked(obj):
 
     utils.destroy_passed_object(obj)
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_event_note_clicked(obj):
     row = obj.get_data(INDEX)
     data = obj.get_row_data(row)
     edit_person_obj = obj.get_data(EDITPERSON)
     if row >= 0:
-        editnote = libglade.GladeXML(const.editPersonFile,"editnote")
+        editnote = libglade.GladeXML(const.editnoteFile,"editnote")
         textobj = editnote.get_widget("notetext")
         en_obj = editnote.get_widget("editnote")
         en_obj.set_data("n",data)

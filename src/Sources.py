@@ -105,6 +105,7 @@ class SourceEditor:
         menuitem.show()
         typeMenu.append(menuitem)
         index = 1
+        active = 0
         save = 0
         if self.source_ref:
             self.base = self.source_ref.getBase()
@@ -113,6 +114,7 @@ class SourceEditor:
 
         for src in self.db.getSourceMap().values():
             if src == self.base:
+                active = 1
                 save = index
             menuitem = GtkMenuItem(src.getTitle())
             menuitem.set_data("s",src)
@@ -123,7 +125,12 @@ class SourceEditor:
             index = index + 1
         typeMenu.set_active(save)
         self.title_menu.set_menu(typeMenu)
-        
+
+        self.get_widget("spage").set_sensitive(active)
+        self.get_widget("sdate").set_sensitive(active)
+        self.get_widget("stext").set_sensitive(active)
+        self.get_widget("scomment").set_sensitive(active)
+
         if self.source_ref:
             self.get_widget("spage").set_text(self.source_ref.getPage())
             date = self.source_ref.getDate()
@@ -189,10 +196,17 @@ def on_source_changed(obj):
     src_entry.active_source = obj.get_data("s")
 
     if src_entry.active_source == None:
+        active = 0
         src_entry.author_field.set_text("")
         src_entry.pub_field.set_text("")
     else:
+        active = 1
         src_entry.author_field.set_text(src_entry.active_source.getAuthor())
         src_entry.pub_field.set_text(src_entry.active_source.getPubInfo())
+
+    src_entry.get_widget("spage").set_sensitive(active)
+    src_entry.get_widget("sdate").set_sensitive(active)
+    src_entry.get_widget("stext").set_sensitive(active)
+    src_entry.get_widget("scomment").set_sensitive(active)
         
 

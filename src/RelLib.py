@@ -532,6 +532,21 @@ class Family:
         self.id = -1
         self.photoList = []
         self.note = Note()
+        self.attributeList = []
+
+    def addAttribute(self,attribute) :
+        self.attributeList.append(attribute)
+
+    def removeAttribute(self,attribute):
+        index = 0
+        for attr in self.attributeList:
+            if attr == attribute:
+                del self.attributeList[index]
+                return
+            index = index + 1
+
+    def getAttributeList(self) :
+        return self.attributeList
 
     def getNote(self):
         return self.note.get()
@@ -804,6 +819,13 @@ class RelDataBase:
         map = {}
         for person in self.personMap.values():
             for attr in person.getAttributeList():
+                map[attr.getType()] = 1
+        return map.keys()
+
+    def getFamilyAttributeTypes(self):
+        map = {}
+        for family in self.familyMap.values():
+            for attr in family.getAttributeList():
                 map[attr.getType()] = 1
         return map.keys()
 

@@ -341,6 +341,16 @@ def exportData(database, filename, callback):
             for person in family.getChildList():
                 write_ref(g,"child",person)
             g.write("</childlist>\n")
+        if len(family.getAttributeList()) > 0:
+            g.write("<attributes>\n")
+            for attr in family.getAttributeList():
+                g.write('<attribute>\n')
+                write_line(g,"attr_type",attr.getType())
+                write_line(g,"attr_value",attr.getValue())
+                dump_source_ref(g,attr.getSourceRef())
+                writeNote(g,"note",attr.getNote())
+                g.write('</attribute>\n')
+            g.write('</attributes>\n')
         writeNote(g,"note",family.getNote())
         g.write("</family>\n")
     g.write("</families>\n")

@@ -558,6 +558,8 @@ def new_database_response(val):
     const.personalEvents.sort()
     const.personalAttributes = const.personalConstantAttributes.keys()
     const.personalAttributes.sort()
+    const.familyAttributes = const.familyConstantAttributes.keys()
+    const.familyAttributes.sort()
     const.familyRelations = const.familyConstantRelations
     database.new()
     topWindow.set_title("Gramps")
@@ -1351,6 +1353,9 @@ def revert_query(value):
         const.personalAttributes = const.personalConstantAttributes.keys()
         const.personalAttributes.sort()
 
+        const.familyAttributes = const.familyConstantAttributes.keys()
+        const.familyAttributes.sort()
+
         const.marriageEvents = const.familyConstantEvents.keys()
         const.marriageEvents.sort()
 
@@ -1905,6 +1910,11 @@ def load_database(name):
     for type in mylist:
         if type not in const.personalAttributes:
             const.personalAttributes.append(type)
+
+    mylist = database.getFamilyAttributeTypes()
+    for type in mylist:
+        if type not in const.familyAttributes:
+            const.familyAttributes.append(type)
 
     mylist = database.getFamilyRelationTypes()
     for type in mylist:

@@ -54,8 +54,7 @@ marriageFile   = rootDir + os.sep + "marriage.glade"
 editPersonFile = rootDir + os.sep + "EditPerson.glade"
 bookFile       = rootDir + os.sep + "bookmarks.glade"
 pluginsFile    = rootDir + os.sep + "plugins.glade"
-notesFile      = rootDir + os.sep + "editnote.glade"
-
+editnoteFile   = rootDir + os.sep + "editnote.glade"
 configFile     = rootDir + os.sep + "config.glade"
 pluginsDir     = rootDir + os.sep + "plugins"
 filtersDir     = rootDir + os.sep + "filters"
@@ -155,6 +154,9 @@ personalConstantAttributes = {
     "Social Security Number": "SSN"
     }
 
+familyConstantAttributes = {
+    }
+
 familyConstantRelations = [
     "Married",
     "Common Law",
@@ -167,6 +169,9 @@ personalEvents.sort()
 
 personalAttributes = personalConstantAttributes.keys()
 personalAttributes.sort()
+
+familyAttributes = familyConstantAttributes.keys()
+familyAttributes.sort()
 
 marriageEvents = familyConstantEvents.keys()
 marriageEvents.sort()
