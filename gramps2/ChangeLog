@@ -5,6 +5,12 @@
 	* src/plugins/FtmStyleDescendants.py (FtmDescendantOptions):
 	Derive from base class.
 
+	* src/PeopleModel.py (PeopleModel.__init__): Make data_filter optional.
+	* src/plugins/FtmStyleAncestors.py: Convert to new scheme.
+	* src/plugins/AncestorReport.py: Convert to new scheme.
+	* src/plugins/DescendReport.py: Convert to new scheme.
+	* src/plugins/IndivSummary.py: Convert to new scheme.
+
 2004-12-21 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/AsciiDoc.py (reformat_para): Correctly check for
 	empty paragraph.

@@ -28,6 +28,7 @@
 #
 #------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -39,7 +40,8 @@ import BaseDoc
 import Errors
 import Sort
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
+import ReportOptions
+import const
 
 #------------------------------------------------------------------------
 #
@@ -58,15 +60,42 @@ _DIED = _('d.')
 #------------------------------------------------------------------------
 class DescendantReport:
 
-    def __init__(self,database,person,max,pgbrk,doc,output,newpage=0):
+    def __init__(self,database,person,options_class):
+        """
+        Creates the DescendantReport object that produces the report.
+        
+        The arguments are:
+
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        This report needs the following parameters (class variables)
+        that come in the options class.
+        
+        max_gen   - Maximum number of generations to include.
+        pg_breaks - Whether to include page breaks between generations.
+        document  - BaseDoc instance for the output file. Any class derived
+                    from BaseDoc may be used
+        output    - name of the output file. 
+                    None if report is not a standalone, in which case
+                    somebody must take care of opening and initializing report
+                    prior to writing.
+        newpage   - if True, newpage is made before writing a report
+
+        """
         self.database = database
         self.creator = database.get_researcher().get_name()
-        self.name = output
         self.person = person
-        self.max_generations = max
-        self.pgbrk = pgbrk
-        self.doc = doc
-        self.newpage = newpage
+        self.options_class = options_class
+
+        (self.max_generations,self.pgbrk) \
+                        = options_class.handler.get_report_generations()
+
+        self.doc = options_class.handler.doc
+        output = options_class.handler.output
+        self.newpage = options_class.handler.newpage
+
         if output:
             self.standalone = 1
             self.doc.open(output)
@@ -138,212 +167,60 @@ class DescendantReport:
 
 #------------------------------------------------------------------------
 #
-# DescendantReportDialog
-#
-#------------------------------------------------------------------------
-class DescendantReportDialog(Report.TextReportDialog):
-    def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person)
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Descendant Report"),_("Text Reports"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Descendant Report for %s") % name
-
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Save Descendant Report")
-
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return "descend_report.xml"
-    
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def make_report(self):
-        """Create the object that will produce the Descendant Report.
-        All user dialog has already been handled and the output file
-        opened."""
-        try:
-            MyReport = DescendantReport(self.db, self.person,
-                self.max_gen, self.pg_brk, self.doc, self.target_path)
-            MyReport.write_report()
-        except Errors.ReportError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
-        
-#------------------------------------------------------------------------
-#
-# Standalone report function
-#
-#------------------------------------------------------------------------
-def report(database,person):
-    DescendantReportDialog(database,person)
-
-#------------------------------------------------------------------------
-#
-# Set up sane defaults for the book_item
-#
-#------------------------------------------------------------------------
-_style_file = "descend_report.xml"
-_style_name = "default" 
-
-_person_handle = ""
-_max_gen = 1
-_pg_brk = 0
-_options = ( _person_handle, _max_gen, _pg_brk )
-
-#------------------------------------------------------------------------
-#
-# Book Item Options dialog
-#
-#------------------------------------------------------------------------
-class DescendantBareReportDialog(Report.BareReportDialog):
-
-    def __init__(self,database,person,opt,stl):
-
-        self.options = opt
-        self.db = database
-        if self.options[0]:
-            self.person = self.db.get_person_from_handle(self.options[0])
-        else:
-            self.person = person
-
-        self.style_name = stl
-
-        Report.BareReportDialog.__init__(self,database,self.person)
-
-        self.max_gen = int(self.options[1])
-        self.pg_brk = int(self.options[2])
-        self.new_person = None
-
-        self.generations_spinbox.set_value(self.max_gen)
-        self.pagebreak_checkbox.set_active(self.pg_brk)
-        
-        self.window.run()
-
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Descendant Report"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Descendant Report for GRAMPS Book") 
-
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return _style_file
-    
-    def on_cancel(self, obj):
-        pass
-
-    def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices. Parse all options
-        and close the window."""
-
-        # Preparation
-        self.parse_style_frame()
-        self.parse_report_options_frame()
-        
-        if self.new_person:
-            self.person = self.new_person
-        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk )
-        self.style_name = self.selected_style.get_name()
-
-#------------------------------------------------------------------------
-#
-# Function to write Book Item 
-#
-#------------------------------------------------------------------------
-def write_book_item(database,person,doc,options,newpage=0):
-    """Write the Descendant Report using the options set.
-    All user dialog has already been handled and the output file opened."""
-    try:
-        if options[0]:
-            person = database.get_person_from_handle(options[0])
-        max_gen = int(options[1])
-        pg_brk = int(options[2])
-        return DescendantReport(database, person, max_gen,
-                                   pg_brk, doc, None, newpage )
-    except Errors.ReportError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except Errors.FilterError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
 # 
 #
 #------------------------------------------------------------------------
-def _make_default_style(default_style):
-    """Make the default output style for the Descendant Report."""
-    f = BaseDoc.FontStyle()
-    f.set_size(14)
-    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    f.set_bold(1)
-    p = BaseDoc.ParagraphStyle()
-    p.set_header_level(1)
-    p.set_font(f)
-    p.set_description(_("The style used for the title of the page."))
-    default_style.add_style("DR-Title",p)
+class DescendantOptions(ReportOptions.ReportOptions):
 
-    f = BaseDoc.FontStyle()
-    for i in range(1,32):
+    """
+    Defines options and provides handling interface.
+    """
+
+    def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
+
+    def enable_options(self):
+        # Semi-common options that should be enabled for this report
+        self.enable_dict = {
+            'max_gen'       : 10,
+            'page_breaks'    : 0,
+        }
+
+    def make_default_style(self,default_style):
+        """Make the default output style for the Descendant Report."""
+        f = BaseDoc.FontStyle()
+        f.set_size(14)
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        f.set_bold(1)
         p = BaseDoc.ParagraphStyle()
+        p.set_header_level(1)
         p.set_font(f)
-        p.set_left_margin(min(10.0,float(i-1)))
-        p.set_description(_("The style used for the level %d display.") % i)
-        default_style.add_style("DR-Level%d" % i,p)
+        p.set_description(_("The style used for the title of the page."))
+        default_style.add_style("DR-Title",p)
+
+        f = BaseDoc.FontStyle()
+        for i in range(1,32):
+            p = BaseDoc.ParagraphStyle()
+            p.set_font(f)
+            p.set_left_margin(min(10.0,float(i-1)))
+            p.set_description(_("The style used for the level %d display.") % i)
+            default_style.add_style("DR-Level%d" % i,p)
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report, register_book_item
-
+from Plugins import register_report
 register_report(
-    report,
-    _("Descendant Report"),
-    category=_("Text Reports"),
+    name = 'descend_report',
+    category = const.CATEGORY_TEXT,
+    report_class = DescendantReport,
+    options_class = DescendantOptions,
+    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    translated_name = _("Descendant Report"),
     status=(_("Beta")),
     description=_("Generates a list of descendants of the active person"),
     author_name="Donald N. Allingham",
     author_email="dallingham@users.sourceforge.net"
-    )
-
-# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
-register_book_item( 
-    _("Descendant Report"), 
-    _("Text"),
-    DescendantBareReportDialog,
-    write_book_item,
-    _options,
-    _style_name,
-    _style_file,
-    _make_default_style
     )
