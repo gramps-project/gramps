@@ -765,6 +765,23 @@ class ReportDialog(BareReportDialog):
 
     def setup_center_person(self): pass
 
+    def get_print_dialog_app (self):
+        """Return the name of a program which sends stdin (or the program's
+        arguments) to the printer."""
+        for printdialog in ["/usr/bin/kprinter",
+                            "/usr/share/printconf/util/print.py"]:
+            if os.access (printdialog, os.X_OK):
+                return printdialog
+                break
+
+        return "lpr"
+
+    def run_print_dialog (self, filename):
+        """Send file to the printer, possibly throwing up a dialog to
+        ask which one etc."""
+        args = [self.get_print_dialog_app (), filename]
+        os.spawnvp (os.P_NOWAIT, args[0], args)
+
     #------------------------------------------------------------------------
     #
     # Customization hooks for subclasses
@@ -844,6 +861,14 @@ class ReportDialog(BareReportDialog):
         paper size/orientation options, but it does need a template
         file.  Those chances are made here."""
 
+        label = obj.get_data("printable")
+        if label:
+            self.print_report.set_label (label)
+            self.print_report.set_sensitive (gtk.TRUE)
+        else:
+            self.print_report.set_label (_("Print a copy"))
+            self.print_report.set_sensitive (gtk.FALSE)
+
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
 
@@ -916,6 +941,10 @@ class ReportDialog(BareReportDialog):
         """Set up the format frame of the dialog.  This function
         relies on the make_doc_menu() function to do all the hard
         work."""
+
+        self.print_report = gtk.CheckButton (_("Print a copy"))
+        self.tbl.attach(self.print_report,2,4,self.col,self.col+1)
+        self.col += 1
 
         self.format_menu = gtk.OptionMenu()
         self.make_doc_menu()

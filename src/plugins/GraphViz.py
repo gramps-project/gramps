@@ -233,8 +233,14 @@ class GraphVizDialog(Report.ReportDialog):
     def make_doc_menu(self):
         """Build a one item menu of document types that are
         appropriate for this report."""
-        map = {"Graphviz (dot)" : None}
-        myMenu = Utils.build_string_optmenu(map, None)
+        name = "Graphviz (dot)"
+        menuitem = gtk.MenuItem (name)
+        menuitem.set_data ("d", name)
+        if os.system ("dot </dev/null 2>/dev/null") == 0:
+            menuitem.set_data ("printable", _("Generate print output"))
+        menuitem.show ()
+        myMenu = gtk.Menu ()
+        myMenu.append (menuitem)
         self.format_menu.set_menu(myMenu)
 
     def make_document(self):
@@ -282,6 +288,11 @@ class GraphVizDialog(Report.ReportDialog):
                   self.vpages, self.includedates, self.includeurl,
                   self.colorize, self.adoptionsdashed, self.arrowheadstyle,
                   self.arrowtailstyle, self.show_families)
+
+        if self.print_report.get_active ():
+            os.environ["DOT"] = self.target_path
+            os.system ('dot -Tps "$DOT" | %s' %
+                       self.get_print_dialog_app ())
 
 #------------------------------------------------------------------------
 #
