@@ -27,7 +27,6 @@ Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 import os
 import time
 import locale
-import gtk
 
 from RelLib import *
 from GrampsDbBase import *
@@ -78,9 +77,6 @@ class GrampsBSDDB(GrampsDbBase):
         dbmap.open(name, dbname, db.DB_HASH, db.DB_CREATE, 0666)
         return dbmap
     
-    def get_person_cursor(self):
-        return GrampsBSDDBCursor(self.person_map)
-
     def get_person_cursor(self):
         return GrampsBSDDBCursor(self.person_map)
 

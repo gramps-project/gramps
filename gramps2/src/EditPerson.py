@@ -60,7 +60,6 @@ import DateEdit
 import Date
 import DateHandler
 import TransTable
-import ImageSelect
 
 from QuestionDialog import WarningDialog, ErrorDialog, SaveDialog
 
