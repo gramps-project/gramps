@@ -126,6 +126,8 @@ class EditPerson:
         self.title = self.get_widget("title")
         self.bdate  = self.get_widget("birthDate")
         self.bplace = self.get_widget("birthPlace")
+        self.bpcombo = self.get_widget("bp_combo")
+        self.dpcombo = self.get_widget("dp_combo")
         self.ddate  = self.get_widget("deathDate")
         self.dplace = self.get_widget("deathPlace")
         self.is_male = self.get_widget("genderMale")
@@ -198,8 +200,9 @@ class EditPerson:
         self.attr_list.set_column_visibility(2,Config.show_detail)
         self.address_list.set_column_visibility(2,Config.show_detail)
         if len(const.places) > 0:
-            self.get_widget("dp_combo").set_popdown_strings(const.places)
-            self.get_widget("bp_combo").set_popdown_strings(const.places)
+            plist = self.db.getPlaceMap().values()
+            attach_places(plist,self.dpcombo,self.death.getPlace())
+            attach_places(plist,self.bpcombo,self.birth.getPlace())
 
         if Config.display_attr:
             self.get_widget("user_label").set_text(Config.attr_name)
@@ -229,9 +232,18 @@ class EditPerson:
         self.nick.set_text(person.getNickName())
         self.title.set_text(self.pname.getTitle())
         self.bdate.set_text(self.birth.getDate())
-        self.bplace.set_text(self.birth.getPlace())
+        p = self.birth.getPlace()
+        if p:
+            self.bplace.set_text(p.get_title())
+        else:
+            self.bplace.set_text("")
         self.ddate.set_text(self.death.getDate())
-        self.dplace.set_text(self.death.getPlace())
+
+        p = self.death.getPlace()
+        if p:
+            self.dplace.set_text(p.get_title())
+        else:
+            self.dplace.set_text("")
         
         # load photos into the photo window
         photo_list = person.getPhotoList()
@@ -398,8 +410,12 @@ class EditPerson:
         self.event_index = 0
         for event in self.elist:
             attr = get_detail_flags(event)
+            if event.getPlace():
+                p = event.getPlace().get_title()
+            else:
+                p = ""
             self.event_list.append([const.display_pevent(event.getName()),\
-                                    event.getQuoteDate(), event.getPlace(),attr])
+                                    event.getQuoteDate(),p,attr])
             self.event_list.set_row_data(self.event_index,event)
             self.event_index = self.event_index + 1
 
@@ -518,7 +534,7 @@ def did_data_change(obj):
     nick = epo.nick.get_text()
     title = epo.title.get_text()
     bdate  = epo.bdate.get_text()
-    bplace = epo.bplace.get_text()
+    bplace = string.strip(epo.bplace.get_text())
     ddate  = epo.ddate.get_text()
     dplace = epo.dplace.get_text()
     gender = epo.is_male.get_active()
@@ -539,12 +555,21 @@ def did_data_change(obj):
         changed = 1
 
     epo.birth.setDate(bdate)
-    epo.birth.setPlace(bplace)
+
+    bplace_obj = get_place_from_list(epo.bpcombo)
+    if bplace_obj == None and bplace != "":
+        changed = 1
+    epo.birth.setPlace(bplace_obj)
+
     if not epo.birth.are_equal(epo.person.getBirth()):
         changed = 1
 
     epo.death.setDate(ddate)
-    epo.death.setPlace(dplace)
+    dplace_obj = get_place_from_list(epo.dpcombo)
+    if dplace_obj == None and dplace != "":
+        changed = 1
+    epo.death.setPlace(dplace_obj)
+
     if not epo.death.are_equal(epo.person.getDeath()):
         changed = 1
 
@@ -902,7 +927,10 @@ def on_event_select_row(obj,row,b,c):
 
     epo = obj.get_data(EDITPERSON)
     epo.event_date_field.set_text(": %s" % event.getDate())
-    epo.event_place_field.set_text(": %s" % event.getPlace())
+    if event.getPlace():
+        epo.event_place_field.set_text(": %s" % event.getPlace().get_title())
+    else:
+        epo.event_place_field.set_text(":")
     epo.event_name_field.set_label(const.display_pevent(event.getName()))
     epo.event_descr_field.set_text(": %s" % event.getDescription())
     epo.event_details_field.set_text(": %s" % get_detail_text(event))
@@ -975,6 +1003,7 @@ def on_primary_photo_clicked(obj):
 #-------------------------------------------------------------------------
 def update_event(event,name,date,place,desc,note,priv,conf):
     changed = 0
+
     if event.getPlace() != place:
         event.setPlace(place)
         changed = 1
@@ -1244,23 +1273,30 @@ def save_person(obj):
         person.setNickName(nick)
         utils.modified()
 
-    bplace = epo.bplace.get_text()
-    dplace = epo.dplace.get_text()
+    bplace = string.strip(epo.bplace.get_text())
+    dplace = string.strip(epo.dplace.get_text())
     
     epo.birth.setDate(epo.bdate.get_text())
-    epo.birth.setPlace(bplace)
+
+    p1 = get_place_from_list(epo.bpcombo)
+    if p1 == None and bplace != "":
+        p1 = Place()
+        p1.set_title(bplace)
+        epo.db.addPlace(p1)
+    epo.birth.setPlace(p1)
     if not person.getBirth().are_equal(epo.birth):
         person.setBirth(epo.birth)
     
     epo.death.setDate(epo.ddate.get_text())
-    epo.death.setPlace(dplace)
+
+    p2 = get_place_from_list(epo.dpcombo)
+    if p2 == None and dplace != "":
+        p2 = Place()
+        p2.set_title(dplace)
+        epo.db.addPlace(p2)
+    epo.death.setPlace(p2)
     if not person.getDeath().are_equal(epo.death):
         person.setDeath(epo.death)
-
-    for place in [ dplace, bplace ]:
-        if place not in const.places:
-            const.places.append(place)
-            const.places.sort()
 
     gender = epo.is_male.get_active()
     error = 0
@@ -1631,6 +1667,7 @@ class EventEditor:
         self.window = self.top.get_widget("event_edit")
         self.name_field  = self.top.get_widget("eventName")
         self.place_field = self.top.get_widget("eventPlace")
+        self.place_combo = self.top.get_widget("eventPlace_combo")
         self.date_field  = self.top.get_widget("eventDate")
         self.descr_field = self.top.get_widget("eventDescription")
         self.note_field = self.top.get_widget("eventNote")
@@ -1655,9 +1692,16 @@ class EventEditor:
 
         self.conf_menu.set_menu(myMenu)
 
+        values = self.parent.db.getPlaceMap().values()
         if event != None:
             self.name_field.set_text(event.getName())
-            self.place_field.set_text(event.getPlace())
+
+            attach_places(values,self.place_combo,event.getPlace())
+            if event.getPlace():
+                self.place_field.set_text(event.getPlace().get_title())
+            else:
+                self.place_field.set_text('')
+            
             self.date_field.set_text(event.getDate())
             self.descr_field.set_text(event.getDescription())
             self.conf_menu.set_history(event.getConfidence())
@@ -1674,6 +1718,7 @@ class EventEditor:
             self.note_field.insert_defaults(event.getNote())
             self.note_field.set_word_wrap(1)
         else:
+            attach_places(values,self.place_combo,None)
             self.conf_menu.set_history(2)
 
         self.window.set_data("o",self)
@@ -1703,7 +1748,8 @@ def on_event_edit_ok_clicked(obj):
 
     ename = ee.name_field.get_text()
     edate = ee.date_field.get_text()
-    eplace = ee.place_field.get_text()
+    eplace = string.strip(ee.place_field.get_text())
+    eplace_obj = get_place_from_list(ee.place_combo)
     enote = ee.note_field.get_chars(0,-1)
     edesc = ee.descr_field.get_text()
     epriv = ee.priv.get_active()
@@ -1712,8 +1758,13 @@ def on_event_edit_ok_clicked(obj):
     if event == None:
         event = Event()
         ee.parent.elist.append(event)
+
+    if eplace_obj == None and eplace != "":
+        eplace_obj = Place()
+        eplace_obj.set_title(eplace)
+        ee.parent.db.addPlace(eplace_obj)
         
-    if update_event(event,ename,edate,eplace,edesc,enote,epriv,econf):
+    if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,econf):
         ee.parent.events_changed = 1
         
     if not event.getSourceRef().are_equal(ee.srcref):
@@ -2141,3 +2192,49 @@ def get_detail_text(obj):
             details = "%s, %s" % (details,_("Private"))
     return details
 
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def attach_places(values,combo,place):
+    l = GtkLabel("")
+    l.show()
+    l.set_alignment(0,0.5)
+    c = GtkListItem()
+    c.add(l)
+    c.set_data("s",None)
+    c.show()
+    sel_child = c
+    list = [c]
+    mymap = {}
+    for src in values:
+        l = GtkLabel("%s [%s]" % (src.get_title(),src.getId()))
+        l.show()
+        l.set_alignment(0,0.5)
+        c = GtkListItem()
+        c.add(l)
+        c.set_data("s",src)
+        c.show()
+        list.append(c)
+        if src == place:
+            sel_child = c
+        mymap[src] = c
+
+    combo.list.append_items(list)
+    combo.list.select_child(sel_child)
+
+    for v in mymap.keys():
+        combo.set_item_string(mymap[v],v.get_title())
+        
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def get_place_from_list(obj):
+    select = obj.list.get_selection()
+    if len(select) == 0:
+        return None
+    else:
+        return select[0].get_data("s")

@@ -137,13 +137,18 @@ def by_last_name(first, second) :
     name1 = first.getPrimaryName()
     name2 = second.getPrimaryName()
 
-    if name1.getSurname() == name2.getSurname() :
-        if name1.getFirstName() == name2.getFirstName() :
-            return cmp(name1.getSuffix(), name2.getSuffix())
+    fsn = string.upper(name1.getSurname())
+    ssn = string.upper(name1.getSurname())
+
+    if first == second :
+        ffn = string.upper(name1.getFirstName())
+        sfn = string.upper(name2.getFirstName())
+        if ffn == sfn :
+            return cmp(string.upper(name1.getSuffix()), string.upper(name2.getSuffix()))
         else :
-            return cmp(name1.getFirstName(), name2.getFirstName())
+            return cmp(ffn, sfn)
     else :
-        return cmp(name1.getSurname(), name2.getSurname())
+        return cmp(fsn, ssn)
 
 #-------------------------------------------------------------------------
 #
