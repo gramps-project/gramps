@@ -40,12 +40,14 @@ except:
 import types
 import os
 from string import find,join,strip,replace
+import gtk
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+import const
 from RelLib import *
 import Date
 from intl import gettext
@@ -491,6 +493,23 @@ class HasNameOf(Rule):
             if val == 1:
                 return 1
         return 0
+
+class MatchesFilter(Rule):
+    """Rule that checks against another filter"""
+
+    labels = [_('Filter Name')]
+
+    def name(self):
+        return 'Matches the filter named'
+
+    def apply(self, p):
+        for filter in SystemFilters.get_filters():
+            if filter.get_name() == self.list[0]:
+                return len(filter.apply([p])) > 0
+        for filter in CustomFilters.get_filters():
+            if filter.get_name() == self.list[0]:
+                return len(filter.apply([p])) > 0
+        return 0
     
 #-------------------------------------------------------------------------
 #
@@ -576,6 +595,7 @@ tasks = {
     _("Has the family event")       : HasFamilyEvent,
     _("Has the personal attribute") : HasAttribute,
     _("Has the family attribute")   : HasFamilyAttribute,
+    _("Matches the filter named")   : MatchesFilter,
     }
 
 #-------------------------------------------------------------------------
@@ -680,4 +700,78 @@ class FilterParser(handler.ContentHandler):
     def characters(self, data):
         pass
 
+SystemFilters = None
+CustomFilters = None
 
+def reload_system_filters():
+    global SystemFilters
+    SystemFilters = GenericFilterList(const.system_filters)
+
+def reload_custom_filters():
+    global CustomFilters
+    CustomFilters = GenericFilterList(const.custom_filters)
+
+if not SystemFilters:
+    reload_system_filters()
+
+if not CustomFilters:
+    reload_custom_filters()
+
+def build_filter_menu(local_filters = []):
+    menu = gtk.GtkMenu()
+
+    menuitem = gtk.GtkMenuItem(_("Local Filters"))
+    menu.append(menuitem)
+    menuitem.show()
+    menuitem.set_sensitive(0)
+
+    menuitem = gtk.GtkMenuItem()
+    menuitem.show()
+    menu.append(menuitem)
+    
+    for filter in local_filters:
+        menuitem = gtk.GtkMenuItem(filter.get_name())
+        menuitem.show()
+        menu.append(menuitem)
+        menuitem.set_data("filter", filter)
+
+    menuitem = gtk.GtkMenuItem(_("System Filters"))
+    menuitem.show()
+    menu.append(menuitem)
+    menuitem.set_sensitive(0)
+
+    menuitem = gtk.GtkMenuItem()
+    menuitem.show()
+    menu.append(menuitem)
+
+    for filter in SystemFilters.get_filters():
+        menuitem = gtk.GtkMenuItem(_(filter.get_name()))
+        menuitem.show()
+        menu.append(menuitem)
+        menuitem.set_data("filter", filter)
+
+    menuitem = gtk.GtkMenuItem(_("Custom Filters"))
+    menu.append(menuitem)
+    menuitem.show()
+    menuitem.set_sensitive(0)
+
+    menuitem = gtk.GtkMenuItem()
+    menuitem.show()
+    menu.append(menuitem)
+
+    for filter in CustomFilters.get_filters():
+        menuitem = gtk.GtkMenuItem(_(filter.get_name()))
+        menuitem.show()
+        menu.append(menuitem)
+        menuitem.set_data("filter", filter)
+
+    if len(local_filters):
+        menu.set_active(2)
+    elif len(SystemFilters.get_filters()):
+        menu.set_active(4 + len(local_filters))
+    elif len(CustomFilters.get_filters()):
+        menu.set_active(6 + len(local_filters) + len(SystemFilters.get_filters()))
+    else:
+        menu.set_active(0)
+        
+    return menu

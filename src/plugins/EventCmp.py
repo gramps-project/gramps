@@ -128,21 +128,12 @@ class EventComparison:
         top =self.filterDialog.get_widget("filters")
         filters = self.filterDialog.get_widget("filter_list")
 
-        myMenu = gtk.GtkMenu()
-
         all = GenericFilter.GenericFilter()
         all.set_name(_("Entire Database"))
         all.add_rule(GenericFilter.Everyone([]))
 
-        flist = GenericFilter.GenericFilterList(const.custom_filters)
-        flist.load()
-        for f in [all] + flist.get_filters():
-            menuitem = gtk.GtkMenuItem(_(f.get_name()))
-            myMenu.append(menuitem)
-            menuitem.set_data("filter",f)
-            menuitem.show()
-        self.filter_menu = myMenu
-        filters.set_menu(myMenu)
+        self.filter_menu = GenericFilter.build_filter_menu([all])
+        filters.set_menu(self.filter_menu)
         top.show()
 
     def on_apply_clicked(self,obj):

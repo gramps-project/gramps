@@ -81,6 +81,8 @@ class FilterEditor:
     def close_filter_editor(self,obj):
         self.filterdb.save()
         self.editor_top.destroy()
+        GenericFilter.reload_custom_filters()
+        GenericFilter.reload_system_filters()
         
     def draw_filters(self):
         row = 0
@@ -328,8 +330,16 @@ class ShowResults:
 #
 #
 #-------------------------------------------------------------------------
-def runTool(database,person,callback):
+def CustomFilterEditor(database,person,callback):
     FilterEditor(const.custom_filters,database)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def SystemFilterEditor(database,person,callback):
+    FilterEditor(const.system_filters,database)
 
 #-------------------------------------------------------------------------
 #
@@ -339,10 +349,24 @@ def runTool(database,person,callback):
 from Plugins import register_tool
 
 register_tool(
-    runTool,
+    CustomFilterEditor,
     _("Custom Filter Editor"),
     category=_("Utilities"),
     description=_("The Custom Filter Editor builds custom "
                   "filters that can be used to select people "
                   "included reports, exports, and other utilities.")
     )
+
+if ((os.path.exists(const.system_filters) and
+     os.access(const.system_filters, os.W_OK)) or
+    (os.path.exists(os.path.dirname(const.system_filters)) and
+     os.access(os.path.dirname(const.system_filters), os.W_OK))):
+    register_tool(
+        SystemFilterEditor,
+        _("System Filter Editor"),
+        category=_("Utilities"),
+        description=_("The System Filter Editor builds custom "
+                      "filters that can be used by anyone on the system "
+                      "to select people included reports, exports, "
+                      "and other utilities.")
+        )
