@@ -513,6 +513,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
     def long_born_died (self, person):
         ret = ''
+        born_info = None
         birth_handle = person.get_birth_handle ()
         if birth_handle:
             birth = self.database.get_event_from_handle(birth_handle)

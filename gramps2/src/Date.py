@@ -317,6 +317,11 @@ class Date:
         """
         return self._get_low_item(_POS_YR)
 
+    def set_year(self,year):
+        """
+        """
+        self.dateval = self.dateval[0:2] + (year,) + self.dateval[3:]
+
     def get_year_valid(self):
         return self._get_low_item_valid(_POS_YR)
 

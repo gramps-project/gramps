@@ -1,3 +1,13 @@
+2004-10-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Date.py: Added "set_year" function
+	* src/Utils.py: qualifiy Date calls, eliminate string
+	module usage
+	* src/edit_sm.png: new image
+	* src/Makefile.am: install edit_sm.png
+	* src/gramps_main.py: update relationship calculator
+	on database change
+	* src/Ancestors.py: initialize born_info
+
 2004-10-28 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetDescendantReport.py: New Date usage.
 
