@@ -36,7 +36,7 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK
 #
 #-------------------------------------------------------------------------
 import const
-import sort
+import Sort
 import Utils
 import GrampsCfg
 import AddSpouse
@@ -1381,7 +1381,7 @@ class FamilyView:
             if not birth:
                 continue
             bday = birth.get_date_object()
-            child_date = sort.build_sort_date(bday)
+            child_date = Sort.build_sort_date(bday)
             if (child_date == "99999999"):
                 continue
             if (prev_date <= child_date):	# <= allows for twins

@@ -28,7 +28,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import sort
 
 #------------------------------------------------------------------------
 #
@@ -39,6 +38,7 @@ import Report
 import BaseDoc
 import Errors
 import Date
+import Sort
 from Utils import get_xpm_image
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
@@ -75,6 +75,8 @@ class DescendantReport:
             self.doc.init()
         else:
             self.standalone = 0
+        sort = Sort.Sort(self.database)
+        self.by_birthdate = sort.by_birthdate
         
     def dump_dates(self, person):
         birth_id = person.get_birth_id()
@@ -135,28 +137,6 @@ class DescendantReport:
         for child_id in childlist:
             child = self.database.find_person_from_id(child_id)
             self.dump(level+1,child)
-
-    def by_birthdate(self, first_id, second_id) :
-        """Sort routine for comparing two people by birth dates. 
-        If the birth dates are equal, sorts by name"""
-        first = self.database.find_person_from_id(first_id)
-        second = self.database.find_person_from_id(second_id)
-        birth1_id = first.get_birth_id()
-        if birth1_id:
-            date1 = self.database.find_event_from_id(birth1_id).get_date_object()
-        else:
-            date1 = Date.Date()
-        
-        birth2_id = second.get_birth_id()
-        if birth2_id:
-            date2 = self.database.find_event_from_id(birth2_id).get_date_object()
-        else:
-            date2 = Date.Date()
-
-        val = Date.compare_dates(date1,date2)
-        if val == 0:
-            return sort.by_last_name(first,second)
-        return val
 
 #------------------------------------------------------------------------
 #

@@ -42,7 +42,6 @@ import types
 #-------------------------------------------------------------------------
 from Date import Date, SingleDate, compare_dates, not_too_old
 import GrampsCfg
-import sort
 import const
 
 #-------------------------------------------------------------------------
@@ -1246,8 +1245,6 @@ class Person(SourceNote):
                  bday,
                  dday,
                  self.get_primary_name().get_sort_name(),
-#                  sort.build_sort_date(bday),
-#                  sort.build_sort_date(dday),
                  bday, dday,
                  GrampsCfg.display_surname(self.primary_name)]
                                           
