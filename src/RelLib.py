@@ -898,7 +898,7 @@ class Event(PrimaryObject,DataObj):
     def are_equal(self,other):
         """returns 1 if the specified event is the same as the instance"""
         if other == None:
-            return 0
+            other = Event (None)
         if (self.name != other.name or self.place != other.place or
             self.description != other.description or self.cause != other.cause or
             self.private != other.private or
