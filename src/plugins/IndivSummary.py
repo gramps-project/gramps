@@ -90,19 +90,19 @@ class IndivSummary(Report.Report):
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
-        self.d.add_table_style("IVS:IndTable",tbl)
+        self.d.add_table_style("IVS-IndTable",tbl)
 
         cell = TextDoc.TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
-        self.d.add_cell_style("IVS:TableHead",cell)
+        self.d.add_cell_style("IVS-TableHead",cell)
 
         cell = TextDoc.TableCellStyle()
-        self.d.add_cell_style("IVS:NormalCell",cell)
+        self.d.add_cell_style("IVS-NormalCell",cell)
 
         cell = TextDoc.TableCellStyle()
 	cell.set_longlist(1)
-        self.d.add_cell_style("IVS:ListCell",cell)
+        self.d.add_cell_style("IVS-ListCell",cell)
 
     def end(self):
         if self.standalone:
@@ -127,14 +127,14 @@ class IndivSummary(Report.Report):
                 val = date + " in " + place + ". " +  description
 
         self.d.start_row()
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(name)
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(val)
         self.d.end_paragraph()
         self.d.end_cell()
@@ -147,12 +147,12 @@ class IndivSummary(Report.Report):
     #--------------------------------------------------------------------
     def write_families(self):
 
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_paragraph("IVS-Normal")
         self.d.end_paragraph()
-        self.d.start_table("three","IVS:IndTable")
+        self.d.start_table("three","IVS-IndTable")
         self.d.start_row()
-        self.d.start_cell("IVS:TableHead",2)
-        self.d.start_paragraph("IVS:TableTitle")
+        self.d.start_cell("IVS-TableHead",2)
+        self.d.start_paragraph("IVS-TableTitle")
         self.d.write_text(_("Marriages/Children"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -164,8 +164,8 @@ class IndivSummary(Report.Report):
             else:
                 spouse = family.getFather()
             self.d.start_row()
-            self.d.start_cell("IVS:NormalCell",2)
-            self.d.start_paragraph("IVS:Spouse")
+            self.d.start_cell("IVS-NormalCell",2)
+            self.d.start_paragraph("IVS-Spouse")
             if spouse:
                 self.d.write_text(spouse.getPrimaryName().getRegularName())
             else:
@@ -180,14 +180,14 @@ class IndivSummary(Report.Report):
             child_list = family.getChildList()
             if len(child_list) > 0:
                 self.d.start_row()
-                self.d.start_cell("IVS:NormalCell")
-                self.d.start_paragraph("IVS:Normal")
+                self.d.start_cell("IVS-NormalCell")
+                self.d.start_paragraph("IVS-Normal")
                 self.d.write_text(_("Children"))
                 self.d.end_paragraph()
                 self.d.end_cell()
 
-                self.d.start_cell("IVS:ListCell")
-                self.d.start_paragraph("IVS:Normal")
+                self.d.start_cell("IVS-ListCell")
+                self.d.start_paragraph("IVS-Normal")
                 
                 first = 1
                 for child in family.getChildList():
@@ -209,46 +209,46 @@ class IndivSummary(Report.Report):
         photo_list = self.person.getPhotoList()
 
         name = self.person.getPrimaryName().getRegularName()
-        self.d.start_paragraph("IVS:Title")
+        self.d.start_paragraph("IVS-Title")
         self.d.write_text(_("Summary of %s") % name)
         self.d.end_paragraph()
 
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_paragraph("IVS-Normal")
         self.d.end_paragraph()
 
         if len(photo_list) > 0:
             object = photo_list[0].getReference()
             if object.getMimeType()[0:5] == "image":
                 file = object.getPath()
-                self.d.start_paragraph("IVS:Normal")
+                self.d.start_paragraph("IVS-Normal")
                 self.d.add_photo(file,"row",4.0,4.0)
                 self.d.end_paragraph()
 
-        self.d.start_table("one","IVS:IndTable")
+        self.d.start_table("one","IVS-IndTable")
 
         self.d.start_row()
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Name"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(self.person.getPrimaryName().getRegularName())
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
 
         self.d.start_row()
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Gender"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         if self.person.getGender() == RelLib.Person.male:
             self.d.write_text(_("Male"))
         else:
@@ -274,41 +274,41 @@ class IndivSummary(Report.Report):
             mother = ""
 
         self.d.start_row()
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Father"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(father)
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
 
         self.d.start_row()
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text("%s:" % _("Mother"))
         self.d.end_paragraph()
         self.d.end_cell()
 
-        self.d.start_cell("IVS:NormalCell")
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_cell("IVS-NormalCell")
+        self.d.start_paragraph("IVS-Normal")
         self.d.write_text(mother)
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
         self.d.end_table()
 
-        self.d.start_paragraph("IVS:Normal")
+        self.d.start_paragraph("IVS-Normal")
         self.d.end_paragraph()
         
-        self.d.start_table("two","IVS:IndTable")
+        self.d.start_table("two","IVS-IndTable")
         self.d.start_row()
-        self.d.start_cell("IVS:TableHead",2)
-        self.d.start_paragraph("IVS:TableTitle")
+        self.d.start_cell("IVS-TableHead",2)
+        self.d.start_paragraph("IVS-TableTitle")
         self.d.write_text(_("Individual Facts"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -586,7 +586,7 @@ def _make_default_style(default_style):
     p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     p.set_font(font)
     p.set_description(_("The style used for the title of the page."))
-    default_style.add_style("IVS:Title",p)
+    default_style.add_style("IVS-Title",p)
         
     font = TextDoc.FontStyle()
     font.set_bold(1)
@@ -596,7 +596,7 @@ def _make_default_style(default_style):
     p = TextDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_("The style used for category labels."))
-    default_style.add_style("IVS:TableTitle",p)
+    default_style.add_style("IVS-TableTitle",p)
     
     font = TextDoc.FontStyle()
     font.set_bold(1)
@@ -605,14 +605,14 @@ def _make_default_style(default_style):
     p = TextDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_("The style used for the spouse's name."))
-    default_style.add_style("IVS:Spouse",p)
+    default_style.add_style("IVS-Spouse",p)
     
     font = TextDoc.FontStyle()
     font.set_size(12)
     p = TextDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("IVS:Normal",p)
+    default_style.add_style("IVS-Normal",p)
 
 #------------------------------------------------------------------------
 #
@@ -643,9 +643,4 @@ register_book_item(
     "individual_summary.xml",
     _make_default_style
     )
-
-
-
-
-
 

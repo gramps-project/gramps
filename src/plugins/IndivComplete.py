@@ -90,26 +90,26 @@ class IndivComplete(Report.Report):
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
-        self.d.add_table_style("IDS:IndTable",tbl)
+        self.d.add_table_style("IDS-IndTable",tbl)
 
         tbl = TextDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
         tbl.set_column_width(0,50)
         tbl.set_column_width(1,50)
-        self.d.add_table_style("IDS:ParentsTable",tbl)
+        self.d.add_table_style("IDS-ParentsTable",tbl)
 
         cell = TextDoc.TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
-        self.d.add_cell_style("IDS:TableHead",cell)
+        self.d.add_cell_style("IDS-TableHead",cell)
 
         cell = TextDoc.TableCellStyle()
-        self.d.add_cell_style("IDS:NormalCell",cell)
+        self.d.add_cell_style("IDS-NormalCell",cell)
 
         cell = TextDoc.TableCellStyle()
 	cell.set_longlist(1)
-        self.d.add_cell_style("IDS:ListCell",cell)
+        self.d.add_cell_style("IDS-ListCell",cell)
 
     def end(self):
         if self.standalone:
@@ -159,26 +159,26 @@ class IndivComplete(Report.Report):
         note = self.person.getNote()
         if note == '':
             return
-        self.d.start_table('note','IDS:IndTable')
+        self.d.start_table('note','IDS-IndTable')
         self.d.start_row()
-        self.d.start_cell('IDS:TableHead',2)
-        self.d.start_paragraph('IDS:TableTitle')
+        self.d.start_cell('IDS-TableHead',2)
+        self.d.start_paragraph('IDS-TableTitle')
         self.d.write_text(_('Notes'))
         self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
 
         self.d.start_row()
-        self.d.start_cell('IDS:NormalCell',2)
+        self.d.start_cell('IDS-NormalCell',2)
         for line in string.split(note,'\n'):
-            self.d.start_paragraph('IDS:Normal')
+            self.d.start_paragraph('IDS-Normal')
             self.d.write_text(line)
             self.d.end_paragraph()
         self.d.end_cell()
         self.d.end_row()
 
         self.d.end_table()
-        self.d.start_paragraph("IDS:Normal")
+        self.d.start_paragraph("IDS-Normal")
         self.d.end_paragraph()
 
     def write_alt_parents(self):
@@ -186,10 +186,10 @@ class IndivComplete(Report.Report):
         if len(self.person.getParentList()) < 2:
             return
         
-        self.d.start_table("altparents","IDS:IndTable")
+        self.d.start_table("altparents","IDS-IndTable")
         self.d.start_row()
-        self.d.start_cell("IDS:TableHead",2)
-        self.d.start_paragraph("IDS:TableTitle")
+        self.d.start_cell("IDS-TableHead",2)
+        self.d.start_paragraph("IDS-TableTitle")
         self.d.write_text(_("Alternate Parents"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -216,7 +216,7 @@ class IndivComplete(Report.Report):
                 self.write_p_entry(_('Mother'),'','')
                 
         self.d.end_table()
-        self.d.start_paragraph("IDS:Normal")
+        self.d.start_paragraph("IDS-Normal")
         self.d.end_paragraph()
 
     def write_alt_names(self):
@@ -224,10 +224,10 @@ class IndivComplete(Report.Report):
         if len(self.person.getAlternateNames()) < 1:
             return
         
-        self.d.start_table("altparents","IDS:IndTable")
+        self.d.start_table("altparents","IDS-IndTable")
         self.d.start_row()
-        self.d.start_cell("IDS:TableHead",2)
-        self.d.start_paragraph("IDS:TableTitle")
+        self.d.start_cell("IDS-TableHead",2)
+        self.d.start_paragraph("IDS-TableTitle")
         self.d.write_text(_("Alternate Names"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -245,7 +245,7 @@ class IndivComplete(Report.Report):
             self.normal_cell(text)
             self.d.end_row()
         self.d.end_table()
-        self.d.start_paragraph('IDS:Normal')
+        self.d.start_paragraph('IDS-Normal')
         self.d.end_paragraph()
         
     def write_families(self):
@@ -253,10 +253,10 @@ class IndivComplete(Report.Report):
         if len(self.person.getFamilyList()) == 0:
             return
         
-        self.d.start_table("three","IDS:IndTable")
+        self.d.start_table("three","IDS-IndTable")
         self.d.start_row()
-        self.d.start_cell("IDS:TableHead",2)
-        self.d.start_paragraph("IDS:TableTitle")
+        self.d.start_cell("IDS-TableHead",2)
+        self.d.start_paragraph("IDS-TableTitle")
         self.d.write_text(_("Marriages/Children"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -268,8 +268,8 @@ class IndivComplete(Report.Report):
             else:
                 spouse = family.getFather()
             self.d.start_row()
-            self.d.start_cell("IDS:NormalCell",2)
-            self.d.start_paragraph("IDS:Spouse")
+            self.d.start_cell("IDS-NormalCell",2)
+            self.d.start_paragraph("IDS-Spouse")
             if spouse:
                 text = spouse.getPrimaryName().getRegularName()
             else:
@@ -287,8 +287,8 @@ class IndivComplete(Report.Report):
                 self.d.start_row()
                 self.normal_cell(_("Children"))
 
-                self.d.start_cell("IDS:ListCell")
-                self.d.start_paragraph("IDS:Normal")
+                self.d.start_cell("IDS-ListCell")
+                self.d.start_paragraph("IDS-Normal")
                 
                 first = 1
                 for child in family.getChildList():
@@ -301,7 +301,7 @@ class IndivComplete(Report.Report):
                 self.d.end_cell()
                 self.d.end_row()
         self.d.end_table()
-        self.d.start_paragraph('IDS:Normal')
+        self.d.start_paragraph('IDS-Normal')
         self.d.end_paragraph()
 
     def write_sources(self):
@@ -309,10 +309,10 @@ class IndivComplete(Report.Report):
         if len(self.slist) == 0:
             return
         
-        self.d.start_table("three","IDS:IndTable")
+        self.d.start_table("three","IDS-IndTable")
         self.d.start_row()
-        self.d.start_cell("IDS:TableHead",2)
-        self.d.start_paragraph("IDS:TableTitle")
+        self.d.start_cell("IDS-TableHead",2)
+        self.d.start_paragraph("IDS-TableTitle")
         self.d.write_text(_("Sources"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -327,10 +327,10 @@ class IndivComplete(Report.Report):
         self.d.end_table()
 
     def write_facts(self):
-        self.d.start_table("two","IDS:IndTable")
+        self.d.start_table("two","IDS-IndTable")
         self.d.start_row()
-        self.d.start_cell("IDS:TableHead",2)
-        self.d.start_paragraph("IDS:TableTitle")
+        self.d.start_cell("IDS-TableHead",2)
+        self.d.start_paragraph("IDS-TableTitle")
         self.d.write_text(_("Individual Facts"))
         self.d.end_paragraph()
         self.d.end_cell()
@@ -341,12 +341,12 @@ class IndivComplete(Report.Report):
         for event in event_list:
             self.write_fact(event)
         self.d.end_table()
-        self.d.start_paragraph("IDS:Normal")
+        self.d.start_paragraph("IDS-Normal")
         self.d.end_paragraph()
 
     def normal_cell(self,text):
-        self.d.start_cell('IDS:NormalCell')
-        self.d.start_paragraph('IDS:Normal')
+        self.d.start_cell('IDS-NormalCell')
+        self.d.start_paragraph('IDS-Normal')
         self.d.write_text(text)
         self.d.end_paragraph()
         self.d.end_cell()
@@ -374,22 +374,22 @@ class IndivComplete(Report.Report):
         
         photo_list = self.person.getPhotoList()
         name = self.person.getPrimaryName().getRegularName()
-        self.d.start_paragraph("IDS:Title")
+        self.d.start_paragraph("IDS-Title")
         self.d.write_text(_("Summary of %s") % name)
         self.d.end_paragraph()
 
-        self.d.start_paragraph("IDS:Normal")
+        self.d.start_paragraph("IDS-Normal")
         self.d.end_paragraph()
 
         if len(photo_list) > 0:
             object = photo_list[0].getReference()
             if object.getMimeType()[0:5] == "image":
                 file = object.getPath()
-                self.d.start_paragraph("IDS:Normal")
+                self.d.start_paragraph("IDS-Normal")
                 self.d.add_photo(file,"row",4.0,4.0)
                 self.d.end_paragraph()
 
-        self.d.start_table("one","IDS:IndTable")
+        self.d.start_table("one","IDS-IndTable")
 
         self.d.start_row()
         self.normal_cell("%s:" % _("Name"))
@@ -437,7 +437,7 @@ class IndivComplete(Report.Report):
         self.d.end_row()
         self.d.end_table()
 
-        self.d.start_paragraph("IDS:Normal")
+        self.d.start_paragraph("IDS-Normal")
         self.d.end_paragraph()
 
         self.write_alt_names()
@@ -657,7 +657,7 @@ def _make_default_style(default_style):
     p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     p.set_font(font)
     p.set_description(_("The style used for the title of the page."))
-    default_style.add_style("IDS:Title",p)
+    default_style.add_style("IDS-Title",p)
     
     font = TextDoc.FontStyle()
     font.set_bold(1)
@@ -667,7 +667,7 @@ def _make_default_style(default_style):
     p = TextDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_("The style used for category labels."))
-    default_style.add_style("IDS:TableTitle",p)
+    default_style.add_style("IDS-TableTitle",p)
     
     font = TextDoc.FontStyle()
     font.set_bold(1)
@@ -676,14 +676,14 @@ def _make_default_style(default_style):
     p = TextDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_("The style used for the spouse's name."))
-    default_style.add_style("IDS:Spouse",p)
+    default_style.add_style("IDS-Spouse",p)
     
     font = TextDoc.FontStyle()
     font.set_size(12)
     p = TextDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("IDS:Normal",p)
+    default_style.add_style("IDS-Normal",p)
     
 
 #------------------------------------------------------------------------

@@ -79,15 +79,15 @@ class CustomText(Report.Report):
         if self.newpage:
             self.doc.page_break()
 
-        self.doc.start_paragraph('CBT:Initial')
+        self.doc.start_paragraph('CBT-Initial')
         self.doc.write_text(self.top_text)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph('CBT:Middle')
+        self.doc.start_paragraph('CBT-Middle')
         self.doc.write_text(self.middle_text)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph('CBT:Final')
+        self.doc.start_paragraph('CBT-Final')
         self.doc.write_text(self.bottom_text)
         self.doc.end_paragraph()
 
@@ -104,7 +104,7 @@ def _make_default_style(default_style):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the first portion of the custom text.'))
-    default_style.add_style("CBT:Initial",para)
+    default_style.add_style("CBT-Initial",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
@@ -113,7 +113,7 @@ def _make_default_style(default_style):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the middle portion of the custom text.'))
-    default_style.add_style("CBT:Middle",para)
+    default_style.add_style("CBT-Middle",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=12,bold=0,italic=0)
@@ -122,7 +122,7 @@ def _make_default_style(default_style):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the last portion of the custom text.'))
-    default_style.add_style("CBT:Final",para)
+    default_style.add_style("CBT-Final",para)
 
 #------------------------------------------------------------------------
 #

@@ -1,4 +1,21 @@
 2003-07-18  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/docgen/OpenOfficeDoc.py (_write_styles_file): Switch paragraph
+	alignment to "start" and "end" (was "left and "right").
+	* src/plugins/AncestorReport.py: Change prefixed style name ("AHN-").
+	Needed because HTML gets confised by ":" in the class name.
+	* src/plugins/Ancestors.py: Likewise ("AR-").
+	* src/plugins/DescendReport.py: Likewise ("DR-").
+	* src/plugins/DetAncestralReport.py: Likewise ("DAR-"). 
+	* src/plugins/DetDescendantReport.py: Likewise ("DDR-"). 
+	* src/plugins/FtmStyleAncestors.py: Likewise ("FTA-").
+	* src/plugins/FtmStyleDescendants.py: Likewise ("FTD-").
+	* src/plugins/FamilyGroup.py: Likewise ("FGR-").
+	* src/plugins/CustomBookText.py: Likewise ("CBT-").
+	* src/plugins/SimpleBookTitle.py: Likewise ("SBT-").
+	* src/plugins/IndivSummary.py: Likewise ("IVS-").
+	* src/plugins/IndivComplete.py: Likewise ("IDS-").
+
+2003-07-17  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (open_example): Fix destination name when copying
 	files (was directory name).
 	* doc/gramps-manual/C/gramps-manual.xml: Reflect name change for

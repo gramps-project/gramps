@@ -57,12 +57,12 @@ class ComprehensiveAncestorsReport (Report.Report):
         table = TextDoc.TableStyle ()
         table.set_column_widths ([15, 85])
         table.set_width (100)
-        doc.add_table_style ("AR:PersonNoSpouse", table)
+        doc.add_table_style ("AR-PersonNoSpouse", table)
 
         table = TextDoc.TableStyle ()
         table.set_column_widths ([10, 15, 75])
         table.set_width (100)
-        doc.add_table_style ("AR:ChildNoSpouse", table)
+        doc.add_table_style ("AR-ChildNoSpouse", table)
 
         for nspouse in range (1, 3):
             table = TextDoc.TableStyle ()
@@ -70,18 +70,18 @@ class ComprehensiveAncestorsReport (Report.Report):
             widths = [15, 100 - 15 * (nspouse + 1)]
             widths.extend ([15] * nspouse)
             table.set_column_widths (widths)
-            doc.add_table_style ("AR:PersonWithSpouse%d" % nspouse, table)
+            doc.add_table_style ("AR-PersonWithSpouse%d" % nspouse, table)
 
             table = TextDoc.TableStyle ()
             table.set_width (100)
             widths = [10, 15, 90 - 15 * (nspouse + 1)]
             widths.extend ([15] * nspouse)
             table.set_column_widths (widths)
-            doc.add_table_style ("AR:ChildWithSpouse%d"% nspouse, table)
+            doc.add_table_style ("AR-ChildWithSpouse%d"% nspouse, table)
 
         cell = TextDoc.TableCellStyle ()
         cell.set_padding (1) # each side makes 2cm, the size of the photo
-        doc.add_cell_style ("AR:PaddedCell", cell)
+        doc.add_cell_style ("AR-PaddedCell", cell)
 
         cell = TextDoc.TableCellStyle ()
         cell.set_padding (0.1)
@@ -89,15 +89,15 @@ class ComprehensiveAncestorsReport (Report.Report):
         cell.set_top_border (1)
         cell.set_right_border (1)
         cell.set_bottom_border (1)
-        doc.add_cell_style ("AR:NoPhoto", cell)
+        doc.add_cell_style ("AR-NoPhoto", cell)
 
         cell = TextDoc.TableCellStyle ()
         cell.set_padding (0.1)
-        doc.add_cell_style ("AR:Photo", cell)
+        doc.add_cell_style ("AR-Photo", cell)
 
         cell = TextDoc.TableCellStyle ()
         cell.set_padding (0.1)
-        doc.add_cell_style ("AR:Entry", cell)
+        doc.add_cell_style ("AR-Entry", cell)
 
         if output:
             self.standalone = 1
@@ -111,12 +111,12 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         self.sources = []
         name = self.person_name (self.start)
-        self.doc.start_paragraph("AR:Title")
+        self.doc.start_paragraph("AR-Title")
         title = _("Ancestors of %s") % name
         self.doc.write_text(title)
         self.doc.end_paragraph()
 
-        self.doc.start_paragraph ("AR:Heading")
+        self.doc.start_paragraph ("AR-Heading")
         self.doc.write_text ("Generation 1")
         self.doc.end_paragraph ()
 
@@ -127,11 +127,11 @@ class ComprehensiveAncestorsReport (Report.Report):
             self.generation (self.max_generations, families, [self.start])
 
         if len (self.sources) > 0:
-            self.doc.start_paragraph ("AR:Heading")
+            self.doc.start_paragraph ("AR-Heading")
             self.doc.write_text ("Sources")
             self.doc.end_paragraph ()
 
-            self.doc.start_paragraph ("AR:Entry")
+            self.doc.start_paragraph ("AR-Entry")
             i = 1
             for source in self.sources:
                 self.doc.write_text ("[%d] %s\n" % (i, source.getTitle ()))
@@ -181,7 +181,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         children = family.getChildList ()
         if len (children):
-            ret.append ((self.doc.start_paragraph, ['AR:ChildTitle']))
+            ret.append ((self.doc.start_paragraph, ['AR-ChildTitle']))
             ret.append ((self.doc.write_text, ['Their children:']))
             ret.append ((self.doc.end_paragraph, []))
 
@@ -204,7 +204,7 @@ class ComprehensiveAncestorsReport (Report.Report):
             if len (people):
                 if self.pgbrk:
                     self.doc.page_break()
-                self.doc.start_paragraph ("AR:Heading")
+                self.doc.start_paragraph ("AR-Heading")
                 if thisgen > 4:
                     n = thisgen - 3
                     if n % 10 == 1 and n != 11:
@@ -297,9 +297,9 @@ class ComprehensiveAncestorsReport (Report.Report):
                                                  'right', 2, 2]))
 
                 if suppress_children and len (already_described):
-                    style = "AR:Child"
+                    style = "AR-Child"
                 else:
-                    style = "AR:Person"
+                    style = "AR-Person"
                 if len (spouse):
                     style += "WithSpouse%d" % len (spouse)
                 else:
@@ -310,24 +310,24 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                 if suppress_children and len (already_described):
                     # Can't do proper formatting with TextDoc, so cheat.
-                    ret.append ((self.doc.start_cell, ["AR:PaddedCell"]))
+                    ret.append ((self.doc.start_cell, ["AR-PaddedCell"]))
                     ret.append ((self.doc.end_cell, []))
 
                 if len (photos) == 0:
-                    ret.append ((self.doc.start_cell, ["AR:NoPhoto"]))
-                    ret.append ((self.doc.start_paragraph, ["AR:NoPhotoText"]))
+                    ret.append ((self.doc.start_cell, ["AR-NoPhoto"]))
+                    ret.append ((self.doc.start_paragraph, ["AR-NoPhotoText"]))
                     ret.append ((self.doc.write_text, ["(no photo)"]))
                     ret.append ((self.doc.end_paragraph, []))
                     ret.append ((self.doc.end_cell, []))
                 else:
-                    ret.append ((self.doc.start_cell, ["AR:Photo"]))
+                    ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     for photo in photos[:1]:
                         ret.append ((self.doc.add_photo,
                                      [photo.ref.getPath (), 'left', 2, 2]))
                         ret.append ((self.doc.end_cell, []))
 
-                ret.append ((self.doc.start_cell, ["AR:Entry"]))
-                ret.append ((self.doc.start_paragraph, ["AR:Entry"]))
+                ret.append ((self.doc.start_cell, ["AR-Entry"]))
+                ret.append ((self.doc.start_paragraph, ["AR-Entry"]))
                 ret.append ((self.doc.write_text, [name]))
                 if short_form:
                     ret.append ((self.doc.write_text, [" (mentioned above)."]))
@@ -338,7 +338,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 ret.append ((self.doc.end_cell, []))
 
                 for s in spouse:
-                    ret.append ((self.doc.start_cell, ["AR:Photo"]))
+                    ret.append ((self.doc.start_cell, ["AR-Photo"]))
                     ret.append (s)
                     ret.append ((self.doc.end_cell, []))
 
@@ -650,7 +650,7 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         paras.insert (0, (self.doc.end_paragraph, []))
         paras.insert (0, (self.doc.write_text, [note[:para_end]]))
-        paras.insert (0, (self.doc.start_paragraph, ['AR:Details']))
+        paras.insert (0, (self.doc.start_paragraph, ['AR-Details']))
         return paras
 
     def long_notes (self, person, suppress_children = 0,
@@ -665,7 +665,7 @@ class ComprehensiveAncestorsReport (Report.Report):
         events = person.getEventList ()
         addresses = person.getAddressList ()
         if (len (events) + len (addresses) + len (names)) > 0:
-            paras.append ((self.doc.start_paragraph, ['AR:SubEntry']))
+            paras.append ((self.doc.start_paragraph, ['AR-SubEntry']))
             paras.append ((self.doc.write_text,
                            ["More about " +
                             self.first_name_or_nick (person) +
@@ -673,18 +673,18 @@ class ComprehensiveAncestorsReport (Report.Report):
             paras.append ((self.doc.end_paragraph, []))
 
         for name in names:
-            paras.append ((self.doc.start_paragraph, ['AR:Details']))
+            paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [name.getType () + ': ' +
                                                  name.getRegularName ()]))
             paras.append ((self.doc.end_paragraph, []))
 
         for event in events:
-            paras.append ((self.doc.start_paragraph, ['AR:Details']))
+            paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [self.event_info (event)]))
             paras.append ((self.doc.end_paragraph, []))
 
         for address in addresses:
-            paras.append ((self.doc.start_paragraph, ['AR:Details']))
+            paras.append ((self.doc.start_paragraph, ['AR-Details']))
             paras.append ((self.doc.write_text, [self.address_info (address)]))
             paras.append ((self.doc.end_paragraph, []))
 
@@ -700,7 +700,7 @@ def _make_default_style(default_style):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
-    default_style.add_style("AR:Title",para)
+    default_style.add_style("AR-Title",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -710,38 +710,38 @@ def _make_default_style(default_style):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
-    default_style.add_style("AR:Heading",para)
+    default_style.add_style("AR-Heading",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("AR:Entry",para)
+    default_style.add_style("AR-Entry",para)
 
     para = TextDoc.ParagraphStyle ()
     para.set_description(_('Text style for missing photo.'))
-    default_style.add_style("AR:NoPhotoText", para)
+    default_style.add_style("AR-NoPhotoText", para)
 
     details_font = TextDoc.FontStyle()
     details_font.set(face=TextDoc.FONT_SANS_SERIF,size=8,italic=1)
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.5,pad=0,font = details_font)
     para.set_description(_('Style for details about a person.'))
-    default_style.add_style("AR:Details",para)
+    default_style.add_style("AR-Details",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("AR:SubEntry",para)
+    default_style.add_style("AR-SubEntry",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("AR:Endnotes",para)
+    default_style.add_style("AR-Endnotes",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=2.5,pad=0.05)
     para.set_description(_('Introduction to the children.'))
-    default_style.add_style("AR:ChildTitle",para)
+    default_style.add_style("AR-ChildTitle",para)
 
 
 #------------------------------------------------------------------------
