@@ -276,38 +276,43 @@
       <para>Exporting allows you to share any portion of your &app; database 
       with other researchers as well as to make your database completely 
       portable to another computer. Currently, &app; 
-      can export data  to four different formats: CD, GEDCOM, &app; package, 
-      and Web Family Tree. All of these are available as items of
-      <menuchoice><guimenu>File</guimenu>  
-      <guisubmenu>Export</guisubmenu></menuchoice> submenu.</para>
+      can export data  to the following formats: &app; database (grdb), &app; XML,
+      GEDCOM, &app; package, Web Family Tree, and GeneWeb.</para>
+      
+      <note id="export-note"><title>Export is saving a copy</title>
+      <para>Exporting will create another file with the copy of your data.
+      The database currently opened in your &app; window is NOT
+      the file saved by your export. Future editing of the currently
+      opened database will not alter the copy produced by the export.
+      </para></note>
 
-      <para>Exporting to CD will prepare you database directory with all its
-      contents to be recorded to the CD. This is done through the 
-      <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
-      CD, go to the <guilabel>burn:///</guilabel> location by  
-      selecting <menuchoice><guimenu>Go</guimenu>  
-      <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu. Your
-      database directory will show up. To record it onto the CD, click the CD
-      icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu>  
-      <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
+
+      <para>
+      To export data, choose <menuchoice><guimenu>File</guimenu>  
+      <guimenuitem>Export</guimenuitem></menuchoice>. This will bring up the 
+      <guilabel>Export</guilabel> druid. Its pages will guide you through the
+      format selection (see <xref linkend="export-druid-fig"/>), file selection,
+      and format specific export options (see <xref linkend="gedcom-export-fig"/>).
+      After a final confirmation page, the export will be performed according
+      to the choices you have made. At any time, you can click the
+      <guibutton>Back</guibutton> and revise any selection, and then go
+      forward to redo the export.
       </para>
 
-      <para>Exporting to GEDCOM will create a GEDCOM file, according to the
-      settings set in the following dialog:</para>
-      
 	<!-- ==== Figure: GEDCOM Export ==== -->
-	<figure id="gedcom-export-fig"> 
-	<title>Export GEDCOM File dialog</title> 
+	<figure id="export-druid-fig"> 
+	<title>Export druid: format selection</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/gedcom-export.png" format="PNG"/></imageobject>
+		fileref="figures/export-druid.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Export GEDCOM File dialog</phrase>
+	<phrase>Shows format selection page of an Export druid</phrase>
 	</textobject></mediaobject></screenshot></figure>
-	<!-- ==== End of Export ==== -->
 
-      <para>Type the desired GEDCOM filename into the text entry box or
-      click the <guibutton>Browse...</guibutton> button to evoke the  
-      <guilabel>Save File</guilabel> dialog. 
+    <sect2 id="export-gedcom"> 
+      <title>GEDCOM export</title> 
+
+      <para> GEDCOM export options allow you to fine tune your export
+      (see <xref linkend="gedcom-export-fig"/>).
       Choose the desired <guilabel>Encoding</guilabel> of the exported file. 
       Use the <guilabel>Filter</guilabel>
       pop-up menu to limit the scope of the export according to the stated rule. 
@@ -325,19 +330,51 @@
       images when writing image references in GEDCOM. 
       </para>
 
-      <para>Upon starting the export, &app; will 
-      display the following GEDCOM export progress window with the 
-      progressbars reflecting the current state of exporting. </para>
-
 	<!-- ==== Figure: GEDCOM Export ==== -->
-	<figure id="gedcom-export-progress-fig"> 
-	<title>Export GEDCOM progress dialog</title> 
+	<figure id="gedcom-export-fig"> 
+	<title>Export druid: GEDCOM options</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
-		fileref="figures/gedcom-export-progress.png" format="PNG"/></imageobject>
+		fileref="figures/gedcom-export.png" format="PNG"/></imageobject>
 	<textobject> 
-	<phrase>Shows Export GEDCOM progress dialog. </phrase>
+	<phrase>Shows GEDCOM options page of an Export druid</phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Export ==== -->
+	</sect2>
+
+    <sect2 id="export-grdb"> 
+    <title>&app; database (grdb) export</title>
+    <para>Exporting to the native format will simply make a copy
+    of your data under another name. It also may be useful if you have
+    directly opened XML or GEDCOM file and would like to save it
+    as the grdb file.</para>
+    </sect2>
+
+    <sect2 id="export-xml"> 
+    <title>&app; XML database export</title>
+      <para>Exporting into &app; XML format will
+      produce a database compatible with the previous versions of &app;.
+      As XML is a text-based human-readable format, you may also use it
+      to take a look at your data.
+      </para>
+    </sect2>
+
+    <sect2 id="export-cd"> 
+    <title>Export to CD</title>
+          <para>Exporting to CD will prepare you database directory with all its
+      contents to be recorded to the CD. This is done through the 
+      <guilabel>burn:///</guilabel> location in Nautilus. After exporting to 
+      CD, go to the <guilabel>burn:///</guilabel> location by  
+      selecting <menuchoice><guimenu>Go</guimenu>  
+      <guisubmenu>CD Creator</guisubmenu></menuchoice> in Nautilus menu
+      (unless this location is already displayed by &app;). Your 
+      database directory will show up. To record it onto the CD, click the CD 
+      icon on the Nautilus toolbar, or select <menuchoice><guimenu>File</guimenu> 
+      <guisubmenu>Write to CD</guisubmenu></menuchoice> in Nautilus menu.
+      </para> 
+      </sect2>
+
+    <sect2 id="export-package"> 
+    <title>&app; package export</title>
 
       <para>Exporting to &app; package will create a gzip-compressed tar 
       archive (also known as tarball) which contains gramps database, all 
@@ -346,13 +383,25 @@
       it with somebody, while retaining all the features provided 
       by &app;.
       </para>
-      
+      </sect2>
+
+    <sect2 id="export-wft"> 
+    <title>Web Family Tree export</title>
       <para>Exporting to Web Family Tree will create the text file suitable 
-      as an input for the WFT program. Use the <guilabel>Filter</guilabel>
-      pop-up menu to limit the scope of the export according to the stated rule.
-      Check <guilabel>Restrict data on living people</guilabel> to limit living 
+      as an input for the WFT program. Specific options include filter selecton
+      and the ability to restrict data on living people, that is to limit living 
       people's data to family ties.
       </para>
+      </sect2>
+
+    <sect2 id="export-gw"> 
+    <title>GeneWeb export</title>
+      <para>Exporting to GeneWeb will save a copy of your data into
+      a popular web genealogy format. To find out more about GeneWeb
+      and its format, visit <ulink url="http://cristal.inria.fr/~ddr/GeneWeb/en/"
+       type="http">this site.</ulink>
+      </para>
+      </sect2>
 
       <para>If a media file is not found during export, the following dialog
       will prompt you for the possible actions:</para>

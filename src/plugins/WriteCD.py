@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 #-------------------------------------------------------------------------
 import os
 from cStringIO import StringIO
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -56,8 +57,6 @@ import const
 import QuestionDialog
 import ImgManip
 
-from gettext import gettext as _
-
 _title_string = _("Export to CD")
 
 #-------------------------------------------------------------------------
@@ -65,12 +64,15 @@ _title_string = _("Export to CD")
 # writeData
 #
 #-------------------------------------------------------------------------
-def writeData(database,person):
+def writeData(database,filename,person,option_box=None):
+    ret = 0
     try:
-        PackageWriter(database)
+        writer = PackageWriter(database,filename)
+        ret = writer.export()
     except:
         import DisplayTrace
         DisplayTrace.DisplayTrace()
+    return ret
     
 #-------------------------------------------------------------------------
 #
@@ -79,56 +81,19 @@ def writeData(database,person):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self,database,cl=0,name=""):
+    def __init__(self,database,filename="",cl=0):
         self.db = database
         self.cl = cl
-        self.name = name
-	
+        self.filename = filename
+
+    def export(self):
         if self.cl:
-	    self.cl_run()
+            self.cl_run()
         else:
-            base = os.path.dirname(__file__)
-            glade_file = "%s/%s" % (base,"cdexport.glade")
-        
-            dic = {
-                "destroy_passed_object" : Utils.destroy_passed_object,
-                "on_ok_clicked" : self.on_ok_clicked,
-                "on_help_clicked" : self.on_help_clicked
-                }
-        
-            self.top = gtk.glade.XML(glade_file,"packageExport","gramps")
+            self.gui_run()
 
-            Utils.set_titles(self.top.get_widget('packageExport'),
-                         self.top.get_widget('title'),_title_string)
-        
-            self.top.signal_autoconnect(dic)
-            self.top.get_widget("packageExport").show()
-
-    def copy_file(self,src,dest):
-        original = open(src,"r")
-        destobj = URI(dest)
-        target = create(destobj,OPEN_WRITE)
-        done = 0
-        while 1:
-            buf = original.read(2048)
-            if buf == '':
-                break
-            else:
-                target.write(buf)
-        target.close()
-        original.close()
-
-    def make_thumbnail(self,dbname,root,path):
-        img = ImgManip.ImgManip(path)
-        data = img.jpg_scale_data(const.thumbScale,const.thumbScale)
-        
-        uri = URI('burn:///%s/.thumb/%s.jpg' % (dbname,root))
-        th = create(uri,OPEN_WRITE)
-        th.write(data)
-        th.close()
-                       
     def cl_run(self):
-        base = os.path.basename(self.name)
+        base = os.path.basename(self.filename)
 
         try:
             uri = URI('burn:///%s' % base)
@@ -168,15 +133,11 @@ class PackageWriter:
         gfile.write_handle(g)
         g.close()
 
-    def on_help_clicked(self,obj):
-        """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','export-data')
-
-    def on_ok_clicked(self,obj):
-        Utils.destroy_passed_object(obj)
+    def gui_run(self):
         missmedia_action = 0
 
-        base = os.path.basename(self.db.get_save_path())
+#        base = os.path.basename(self.db.get_save_path())
+        base = os.path.basename(self.filename)
 
         try:
             uri = URI('burn:///%s' % base)
@@ -261,10 +222,10 @@ class PackageWriter:
                 newfile = fs_top.get_filename()
                 if os.path.isfile(newfile):
                     self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
-    	    	    ntype = GrampsMime.get_type(newfile)
-		    if ntype[0:5] == "image":
+                    ntype = GrampsMime.get_type(newfile)
+                    if ntype[0:5] == "image":
                         self.make_thumbnail(base,obase,newfile)
-		    
+    
             fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
             fs_top.hide_fileop_buttons()
             fs_top.ok_button.connect('clicked',fs_ok_clicked)
@@ -290,7 +251,7 @@ class PackageWriter:
                 self.object_handle = obj.get_handle()
                 if missmedia_action == 0:
                     mmd = QuestionDialog.MissingMediaDialog(_("Media object could not be found"),
-	                _("%(file_name)s is referenced in the database, but no longer exists. " 
+                        _("%(file_name)s is referenced in the database, but no longer exists. " 
                             "The file may have been deleted or moved to a different location. " 
                             "You may choose to either remove the reference from the database, " 
                             "keep the reference to the missing file, or select a new file." 
@@ -310,12 +271,43 @@ class PackageWriter:
         gfile.write_handle(g)
         g.close()
         os.system("nautilus --no-desktop burn:///")
-    
+        return 1
+
+    def copy_file(self,src,dest):
+        original = open(src,"r")
+        destobj = URI(dest)
+        target = create(destobj,OPEN_WRITE)
+        done = 0
+        while 1:
+            buf = original.read(2048)
+            if buf == '':
+                break
+            else:
+                target.write(buf)
+        target.close()
+        original.close()
+
+    def make_thumbnail(self,dbname,root,path):
+        img = ImgManip.ImgManip(path)
+        data = img.jpg_scale_data(const.thumbScale,const.thumbScale)
+        
+        uri = URI('burn:///%s/.thumb/%s.jpg' % (dbname,root))
+        th = create(uri,OPEN_WRITE)
+        th.write(data)
+        th.close()
+
 #-------------------------------------------------------------------------
 #
 # Register the plugin
 #
 #-------------------------------------------------------------------------
-from PluginMgr import register_export
+_title = _('Export to CD (p_ortable XML)')
+_description = _('Exporting to CD copies all your data and media '
+    'object files to the CD Creator. You may later burn the CD '
+    'with this data, and that copy will be completely portable '
+    'across different machines and binary architectures.')
+_config = None
+_filename = 'burn'
 
-register_export(writeData,_title_string)
+from PluginMgr import register_export
+register_export(writeData,_title,_description,_config,_filename)

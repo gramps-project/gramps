@@ -199,7 +199,7 @@ class PackageWriter:
 # Register the plugin
 #
 #-------------------------------------------------------------------------
-_title = _('GRAM_PS package')
+_title = _('GRAM_PS package (portable XML)')
 _description = _('GRAMPS package is an archived XML database together with the media object files.')
 _config = None
 _filename = 'gpkg'
