@@ -122,6 +122,7 @@ GRAPHICS = \
 	bad.png\
 	caution.png\
 	edit.png\
+	edit_sm.png \
 	family48.png\
 	good.png\
 	home.png\

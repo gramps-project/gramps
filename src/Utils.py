@@ -25,7 +25,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 import locale
 
@@ -43,7 +42,6 @@ import gnome
 #
 #-------------------------------------------------------------------------
 import const
-import RelImage
 import GrampsMime
 import Date
 
@@ -257,7 +255,7 @@ def view_photo(photo):
     except:
         return
     
-    args = string.split(prog)
+    args = prog.split()
     args.append(photo.get_path())
     
     if os.fork() == 0:
@@ -269,10 +267,10 @@ def view_photo(photo):
 #
 #-------------------------------------------------------------------------
 def strip_id(text):
-    index = string.rfind(text,'[')
+    index = text.rfind('[')
     if (index > 0):
         text = text[:index]
-        text = string.rstrip(text)
+        text = text.rstrip()
     return text
 
 def nautilus_icon(icon,mime_type):
@@ -502,8 +500,8 @@ def bold_label(label):
 
 def unbold_label(label):
     text = unicode(label.get_text())
-    text = string.replace(text,'<b>','')
-    text = string.replace(text,'</b>','')
+    text = text.replace('<b>','')
+    text = text.replace('</b>','')
     label.set_text(text)
     label.set_use_markup(0)
 
@@ -564,15 +562,17 @@ def probably_alive(person,db):
                     child_birth = db.get_event_from_handle(child.birth_handle)
                     dobj = child_birth.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
-                        d = Date(dobj)
-                        d.set_year(d.get_year() - years)
+                        d = Date.Date(dobj)
+                        val = d.get_start_date()
+                        val = (val[0],val[1],d.get_year() - years,val[3])
+                        d.set_year(val)
                         if not not_too_old (d):
                             return True
 
                 if child.death_handle:
                     child_death = db.get_event_from_handle(child.death_handle)
                     dobj = child_death.get_date_object()
-                    if dobj.get_start_date != Date.EMPTY:
+                    if dobj.get_start_date() != Date.EMPTY:
                         if not not_too_old (dobj):
                             return True
 
@@ -627,7 +627,7 @@ def probably_alive(person,db):
             if sp_birth_handle:
                 spouse_birth = db.get_event_from_handle(sp_birth_handle)
                 if not spouse_birth.get_date().is_empty():
-                    d = Date(spouse_birth.get_date_object())
+                    d = Date.Date(spouse_birth.get_date_object())
                     d.set_year(d.get_year() + max_age_difference)
                     if not not_too_old (d):
                         return False
@@ -635,7 +635,7 @@ def probably_alive(person,db):
             if sp_death_handle:
                 spouse_death = db.get_event_from_handle(sp_death_handle)
                 if spouse_death.get_date() != "":
-                    d = Date(spouse_death.get_date_object())
+                    d = Date.Date(spouse_death.get_date_object())
                     d.set_year (d.get_year() - min_generation)
                     if not not_too_old (d):
                         return False

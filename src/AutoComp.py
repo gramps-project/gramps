@@ -29,37 +29,37 @@ import gtk
 import gobject
 
 def fill_combo(combo,data_list):
-        store = gtk.ListStore(gobject.TYPE_STRING)
+    store = gtk.ListStore(gobject.TYPE_STRING)
 
-        for data in data_list:
-            store.append(row=[data])
-        
-        combo.set_model(store)
-        combo.set_text_column(0)
-        completion = gtk.EntryCompletion()
-        completion.set_model(store)
-        completion.set_minimum_key_length(1)
-        completion.set_text_column(0)
-        combo.child.set_completion(completion)
+    for data in data_list:
+        store.append(row=[data])
+	    
+    combo.set_model(store)
+    combo.set_text_column(0)
+    completion = gtk.EntryCompletion()
+    completion.set_model(store)
+    completion.set_minimum_key_length(1)
+    completion.set_text_column(0)
+    combo.child.set_completion(completion)
 
 def fill_entry(entry,data_list):
-        store = gtk.ListStore(gobject.TYPE_STRING)
-        for data in data_list:
-            store.append(row=[data])
+    store = gtk.ListStore(gobject.TYPE_STRING)
+    for data in data_list:
+        store.append(row=[data])
         
-        completion = gtk.EntryCompletion()
-        completion.set_model(store)
-        completion.set_minimum_key_length(1)
-        completion.set_text_column(0)
-        entry.set_completion(completion)
+    completion = gtk.EntryCompletion()
+    completion.set_model(store)
+    completion.set_minimum_key_length(1)
+    completion.set_text_column(0)
+    entry.set_completion(completion)
     
 def fill_option_text(combobox,data):
-	store = gtk.ListStore(gobject.TYPE_STRING)
-	for item in data:
-		store.append(row=[item])
-	combobox.set_model(store)
-	combobox.set_active(0)
+    store = gtk.ListStore(gobject.TYPE_STRING)
+    for item in data:
+        store.append(row=[item])
+    combobox.set_model(store)
+    combobox.set_active(0)
 
 def get_option(combobox):
-	store = combobox.get_model()
-	return store.get_value(combobox.get_active_iter(),0)
+    store = combobox.get_model()
+    return store.get_value(combobox.get_active_iter(),0)

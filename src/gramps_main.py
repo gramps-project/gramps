@@ -1329,6 +1329,7 @@ class Gramps:
             (name,plist) = self.relationship.get_relationship(
                                     default_person,
                                     self.active_person)
+
             if name:
                 if plist == None:
                     return name
@@ -1510,6 +1511,7 @@ class Gramps:
         self.place_view.change_db(self.db)
         self.source_view.change_db(self.db)
         self.media_view.change_db(self.db)
+        self.relationship = self.RelClass(self.db)
 
         self.change_active_person(self.find_initial_person())
         self.statusbar.set_progress_percentage(0.0)
