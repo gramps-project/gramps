@@ -137,6 +137,7 @@ class PedigreeView:
                                               ypts[mindex], h, w, p[0], style, p[1])
                 p = list[i]
                 self.add_box(xpts[i],ypts[i],w,h,p[0],style)
+        self.change_active_person(person)
 
     def make_arrow_button(self,direction,function):
         """Make a button containing an arrow with the attached callback"""
