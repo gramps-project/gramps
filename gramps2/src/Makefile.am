@@ -128,7 +128,8 @@ GRAPHICS = \
 	people.xpm\
 	place.png\
 	sources.png\
-	splash.jpg
+	splash.jpg\
+	tools.png
 
 # Other stuff that we need to install
 dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
