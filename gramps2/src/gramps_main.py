@@ -1470,7 +1470,10 @@ class Gramps:
                 for (importData,filter,mime_type) in Plugins._imports:
                     if filetype == mime_type or the_file == mime_type:
                         OkDialog( _("Opening non-native format"), 
-                                _("New gramps database has to be set up when opening non-native formats. The following dialog will let you select the new database."),
+                                _("New gramps database has to be set up "
+                                  "when opening non-native formats. The "
+                                  "following dialog will let you select "
+                                  "the new database."),
                                 self.topWindow)
                         DbPrompter.DbPrompter(self,1,self.topWindow,filename)
                         importData(self.db,filename)
