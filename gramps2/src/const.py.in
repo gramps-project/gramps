@@ -35,6 +35,7 @@ import os
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+from TransTable import TransTable
 
 #-------------------------------------------------------------------------
 #
@@ -206,7 +207,13 @@ familyConstantEvents = {
     "Marriage"            : "MARR"
     }
 
-_fe_e2l = {
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+
+_family_events = TransTable( {
     "Alternate Marriage"  : _("Alternate Marriage"),
     "Annulment"           : _("Annulment"),
     "Divorce Filing"      : _("Divorce Filing"),
@@ -216,33 +223,13 @@ _fe_e2l = {
     "Marriage License"    : _("Marriage License"),
     "Marriage Settlement" : _("Marriage Settlement"),
     "Marriage"            : _("Marriage")
-    }
+    })
 
-_fe_l2e = {}
-for a in _fe_e2l.keys():
-    _fe_l2e[_fe_e2l[a]] = a
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def display_fevent(st):
-    if _fe_e2l.has_key(st):
-        return _fe_e2l[st]
-    else:
-        return _(st)
+    return _family_events.find_value(st)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def save_fevent(st):
-    if _fe_l2e.has_key(st):
-        return _fe_l2e[st]
-    else:
-        return st
+    return _family_events.find_key(st)
 
 #-------------------------------------------------------------------------
 #
@@ -287,7 +274,13 @@ personalConstantEvents = {
     "Will"                : "WILL"
     }
 
-_pe_e2l = {
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+
+_personal_events = TransTable({
     "Adopted"             : _("Adopted"),
     "Alternate Birth"     : _("Alternate Birth"),
     "Alternate Death"     : _("Alternate Death"),
@@ -323,35 +316,13 @@ _pe_e2l = {
     "Residence"           : _("Residence"),
     "Retirement"          : _("Retirement"),
     "Will"                : _("Will")
-    }
+    })
 
-_pe_l2e = {}
-for a in _pe_e2l.keys():
-    val = _pe_e2l[a]
-    if val:
-        _pe_l2e[val] = a
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def display_pevent(st):
-    if _pe_e2l.has_key(st):
-        return _pe_e2l[st]
-    else:
-        return _(st)
+    return _personal_events.find_value(st)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def save_pevent(st):
-    if _pe_l2e.has_key(st):
-        return _pe_l2e[st]
-    else:
-        return st
+    return _personal_events.find_key(st)
 
 #-------------------------------------------------------------------------
 #
@@ -360,20 +331,18 @@ def save_pevent(st):
 #
 #-------------------------------------------------------------------------
 def display_event(st):
-    if _pe_e2l.has_key(st):
-        return _pe_e2l[st]
-    elif _fe_e2l.has_key(st):
-        return _fe_e2l[st]
-    else:
-        return _(st)
+    if _personal_events.has_key(st):
+        return _personal_events.find_value(st)
+    if _family_events.has_key(st):
+        return _family_events.find_value(st)
+    return _(st)
 
 def save_event(st):
-    if _pe_l2e.has_key(st):
-        return _pe_l2e[st]
-    elif _fe_l2e.has_key(st):
-        return _fe_l2e[st]
-    else:
-        return st
+    if _personal_events.has_value(st):
+        return _personal_events.find_key(st)
+    if _family_events.has_value(st):
+        return _family_events.find_key(st)
+    return st
 
 #-------------------------------------------------------------------------
 #
@@ -388,39 +357,25 @@ personalConstantAttributes = {
     "Social Security Number": "SSN"
     }
 
-_pa_e2l = {
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+
+_personal_attributes = TransTable({
     "Caste"                 : _("Caste"),
     "Description"           : _("Description"),
     "Identification Number" : _("Identification Number"),
     "National Origin"       : _("National Origin"),
     "Social Security Number": _("Social Security Number")
-    }
+    })
 
-_pa_l2e = {}
-for a in _pa_e2l.keys():
-    _pa_l2e[_pa_e2l[a]] = a
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def display_pattr(st):
-    if _pa_e2l.has_key(st):
-        return _pa_e2l[st]
-    else:
-        return _(st)
+    return _personal_attributes.find_value(st)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def save_pattr(st):
-    if _pa_l2e.has_key(st):
-        return _pa_l2e[st]
-    else:
-        return st
+    return _personal_attributes.find_key(st)
 
 #-------------------------------------------------------------------------
 #
@@ -431,35 +386,13 @@ familyConstantAttributes = {
     "Number of Children" : "NCHI",
     }
 
-_fa_e2l = {
-    "Number of Children" : _("Number of Children"),
-    }
+_family_attributes = TransTable({"Number of Children" : _("Number of Children")})
 
-_fa_l2e = {}
-for a in _fa_e2l.keys():
-    _fa_l2e[_fa_e2l[a]] = a
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def display_fattr(st):
-    if _fa_e2l.has_key(st):
-        return _fa_e2l[st]
-    else:
-        return _(st)
+    return _family_attributes.find_value(st)
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def save_fattr(st):
-    if _fa_l2e.has_key(st):
-        return _fa_l2e[st]
-    else:
-        return st
+    return _family_attributes.find_key(st)
 
 #-------------------------------------------------------------------------
 #
@@ -468,79 +401,57 @@ def save_fattr(st):
 #
 #-------------------------------------------------------------------------
 def display_attr(st):
-    if _pa_e2l.has_key(st):
-        return _pa_e2l[st]
-    elif _fa_e2l.has_key(st):
-        return _fa_e2l[st]
-    else:
-        return _(st)
+    if _personal_attributes.has_key(st):
+        return _personal_attributes.find_value(st)
+    if _family_attributes.has_key(st):
+        return _family_attributes.find_value(st)
+    return _(st)
 
 def save_attr(st):
-    if _pa_l2e.has_key(st):
-        return _pa_l2e[st]
-    elif _fa_l2e.has_key(st):
-        return _fa_l2e[st]
-    else:
-        return st
+    if _personal_attributes.has_value(st):
+        return _personal_attributes.find_key(st)
+    if _family_attributes.has_value(st):
+        return _family_attributes.find_key(st)
+    return _(st)
 
 #-------------------------------------------------------------------------
 #
-# 
+# Family Relationship Translation table
 #
 #-------------------------------------------------------------------------
 
-_frel2def = {
+_family_relations = TransTable({
     _("Married")  : _("A legal or common-law relationship between a husband and wife"),
     _("Unmarried"): _("No legal or common-law relationship between man and woman"),
     _("Partners") : _("An established relationship between members of the same sex"),
     _("Unknown")  : _("Unknown relationship between a man and woman"),
     _("Other")    : _("An unspecified relationship between a man and woman")
-}
+    })
 
-_fr_e2l = {
-    "Married"   : _("Married"),
-    "Unmarried" : _("Unmarried"),
-    "Partners"  : _("Partners"),
-    "Unknown"   : _("Unknown"),
-    "Other"     : _("Other")
-}
-
-_fr_l2e = {}
-for r in _fr_e2l.keys():
-    _fr_l2e[_fr_e2l[r]] = r
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def relationship_def(txt):
-    if _frel2def.has_key(txt):
-        return _frel2def[txt]
+    if _family_relations.has_key(txt):
+        return _family_relations.find_value[txt]
     else:
         return _("No definition available")
 
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
 def display_frel(st):
-    if _fr_e2l.has_key(st):
-        return _fr_e2l[st]
-    else:
-        return _(st)
+    return _family_relations.find_value(st)
+
+def save_frel(st):
+    return _family_relations.find_key(st)
 
 #-------------------------------------------------------------------------
 #
 # 
 #
 #-------------------------------------------------------------------------
-def save_frel(st):
-    if _fr_l2e.has_key(st):
-        return _fr_l2e[st]
-    else:
-        return st
+
+NameTypesMap = TransTable({
+    "Also Known As" : _("Also Known As"),
+    "Birth Name"    : _("Birth Name"),
+    "Married Name"  : _("Married Name"),
+    "Other Name"    : _("Other Name"),
+    })
 
 #-------------------------------------------------------------------------
 #
@@ -548,9 +459,7 @@ def save_frel(st):
 #
 #-------------------------------------------------------------------------
 def init_personal_event_list():
-    p = []
-    for event in personalConstantEvents.keys():
-        p.append(_pe_e2l[event])
+    p = _personal_events.get_values()
     p.sort()
     return p
 
@@ -560,9 +469,7 @@ def init_personal_event_list():
 #
 #-------------------------------------------------------------------------
 def init_marriage_event_list():
-    p = []
-    for event in familyConstantEvents.keys():
-        p.append(_fe_e2l[event])
+    p = _family_events.get_values()
     p.sort()
     return p
 
@@ -572,9 +479,7 @@ def init_marriage_event_list():
 #
 #-------------------------------------------------------------------------
 def init_personal_attribute_list():
-    p = []
-    for event in personalConstantAttributes.keys():
-        p.append(_pa_e2l[event])
+    p = _personal_attributes.get_values()
     p.sort()
     return p
 
@@ -584,9 +489,7 @@ def init_personal_attribute_list():
 #
 #-------------------------------------------------------------------------
 def init_family_attribute_list():
-    p = []
-    for event in familyConstantAttributes.keys():
-        p.append(_fa_e2l[event])
+    p = _family_attributes.get_values()
     p.sort()
     return p
 
@@ -596,16 +499,14 @@ def init_family_attribute_list():
 #
 #-------------------------------------------------------------------------
 def init_family_relation_list():
-    p = []
-    for event in _fr_e2l.keys():
-        p.append(_fr_e2l[event])
+    p = _family_relations.get_values()
     p.sort()
     return p
 
 personalEvents = init_personal_event_list()
 personalAttributes = init_personal_attribute_list()
 marriageEvents = init_marriage_event_list()
-defaultMarriageEvent = _fe_e2l["Marriage"]
+defaultMarriageEvent = _family_events.find_value("Marriage")
 familyAttributes = init_family_attribute_list()
 familyRelations = init_family_relation_list()
 places = []
@@ -960,22 +861,7 @@ lds_ssealing = [
     _("DNS"),          _("Pre-1970"),  _("Qualified"),  _("DNS/CAN"),
     _("Submitted"),    _("Uncleared"),
     ]
-
     
-NameTypesMap = {
-    _("Also Known As") : "Also Known As",
-    _("Birth Name")    : "Birth Name",
-    _("Married Name")  : "Married Name",
-    _("Other Name")    : "Other Name",
-    }
-
-InverseNameTypesMap = {
-    "Also Known As" : _("Also Known As"),
-    "Birth Name"    : _("Birth Name"),
-    "Married Name"  : _("Married Name"),
-    "Other Name"    : _("Other Name"),
-    }
-
 logical_functions = ['or', 'and', 'xor', 'one']
 
 notes_formats = [
