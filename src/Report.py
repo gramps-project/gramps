@@ -673,7 +673,6 @@ class ReportDialog:
             table.attach(self.extra_textbox_label,0,1,row,row+1,FILL,FILL,pad,pad)
             table.attach(self.extra_textbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
             row = row + 1
-#            self.topDialog.get_widget("extra_scrolledwindow").show()
 
         # Setup requested widgets
         for (text,widget) in self.widgets:

@@ -105,6 +105,13 @@ class LdsOrd(SourceNote):
             self.status = 0
             self.place = None
 
+    def getPlaceName(self):
+        """returns the title of the Place associated with the Ordinance"""
+        if self.place:
+            return self.place.get_title()
+        else:
+            return ""
+
     def setPlace(self,place):
         """sets the Place instance of the Event"""
         self.place = place

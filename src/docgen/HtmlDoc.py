@@ -76,6 +76,7 @@ class HtmlDoc(TextDoc):
             self.load_template()
             self.build_header()
             self.build_style_declaration()
+            self.image_dir = "images"
             
         else:
             self.f = None
@@ -88,7 +89,11 @@ class HtmlDoc(TextDoc):
             self.style_declaration = source.style_declaration
             self.table_styles = source.table_styles;
             self.cell_styles = source.cell_styles;
+            self.image_dir = source.image_dir
 
+    def set_image_dir(self,dirname):
+        self.image_dir = dirname
+        
     def load_template(self):
         start = re.compile(r"<!--\s*START\s*-->")
         stop = re.compile(r"<!--\s*STOP\s*-->")
@@ -232,7 +237,11 @@ class HtmlDoc(TextDoc):
         size = int(max(x,y) * float(150.0/2.54))
 
         refname = "is%s" % os.path.basename(name)
-        imdir = self.base + os.sep + "images"
+
+        if self.image_dir:
+            imdir = "%s/%s" % (self.base,self.image_dir)
+        else:
+            imdir = self.base
 
         if not os.path.isdir(imdir):
             try:
@@ -242,7 +251,7 @@ class HtmlDoc(TextDoc):
 
         try:
             img = ImgManip.ImgManip(name)
-            img.jpg_thumbnail(imdir + os.sep + refname,size,size)
+            img.jpg_thumbnail("%s/%s" % (imdir,refname),size,size)
         except:
             return
 
@@ -253,8 +262,11 @@ class HtmlDoc(TextDoc):
         else:
             xtra = ''
             
-        self.f.write('<img src="images/%s" border="0""%s>\n' % \
-                     (refname,xtra))
+        if self.image_dir:
+            self.f.write('<img src="%s/%s" border="0""%s>\n' % \
+                         (self.image_dir,refname,xtra))
+        else:
+            self.f.write('<img src="%s" border="0""%s>\n' % (refname,xtra))
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]

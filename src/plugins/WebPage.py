@@ -71,7 +71,7 @@ class HtmlLinkDoc(HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,doc):
+    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,imgdir,doc):
         self.person = person
         self.doc = doc
 	self.list = map
@@ -83,6 +83,7 @@ class IndividualPage:
         self.link = link
         self.slist = []
         self.scnt = 1
+        self.image_dir = imgdir
 
         name = person.getPrimaryName().getRegularName()
         self.doc.set_title(_("Summary of %s") % name)
@@ -199,7 +200,7 @@ class IndividualPage:
         """Generate the HTML page for the specific person"""
         
         filebase = "%s.html" % self.person.getId()
-        self.doc.open("%s%s%s" % (self.dir,os.sep,filebase))
+        self.doc.open("%s/%s" % (self.dir,filebase))
 
         photo_list = self.person.getPhotoList()
         name_obj = self.person.getPrimaryName()
@@ -311,11 +312,19 @@ class IndividualPage:
             try:
                 src = obj.getReference().getPath()
                 base = os.path.basename(src)
-                shutil.copy(src,"%s/images/%s" % (self.dir,base))
+                    
+                if self.image_dir:
+                    shutil.copy(src,"%s/%s/%s" % (self.dir,self.image_dir,base))
+                else:
+                    shutil.copy(src,"%s/%s" % (self.dir,base))
+
                 self.doc.start_row()
                 self.doc.start_cell("ImageCell")
                 self.doc.start_paragraph("Data")
-                self.doc.start_link("images/%s" % base)
+                if self.image_dir:
+                    self.doc.start_link("%s/%s" % (self.image_dir,base))
+                else:
+                    self.doc.start_link("%s" % base)
                 self.doc.add_photo(src,"row",1.5,1.5)
                 self.doc.end_link()
                 
@@ -646,7 +655,8 @@ filter_map = {
 #------------------------------------------------------------------------
 class WebReport(Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
-                 private, srccomments, include_link, style, template_name):
+                 private, srccomments, include_link, style, image_dir,
+                 template_name):
         self.db = db
         self.person = person
         self.target_path = target_path
@@ -658,6 +668,7 @@ class WebReport(Report):
         self.srccomments = srccomments
         self.include_link = include_link
         self.selected_style = style
+        self.image_dir = image_dir
         self.template_name = template_name
 
     def get_progressbar_data(self):
@@ -673,7 +684,7 @@ class WebReport(Report):
         doc = HtmlLinkDoc(self.selected_style,None,template,None)
         doc.set_title(_("Family Tree Index"))
     
-        doc.open(html_dir + os.sep + "index.html")
+        doc.open("%s/index.html" % html_dir)
         doc.start_paragraph("Title")
         doc.write_text(_("Family Tree Index"))
         doc.end_paragraph()
@@ -708,8 +719,11 @@ class WebReport(Report):
                     GnomeErrorDialog(_("Could not create the directory : %s") % \
                                      dir_name)
                     return
-    
-        image_dir_name = os.path.join(dir_name, "images")
+
+        if self.image_dir:
+            image_dir_name = os.path.join(dir_name, self.image_dir)
+        else:
+            image_dir_name = dir_name
         if not os.path.isdir(image_dir_name) and self.photos != 0:
             try:
                 os.mkdir(image_dir_name)
@@ -728,6 +742,8 @@ class WebReport(Report):
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
+        doc.set_image_dir(self.image_dir)
+        
         self.add_styles(doc)
         doc.build_style_declaration()
 
@@ -738,7 +754,8 @@ class WebReport(Report):
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
             idoc = IndividualPage(person, self.photos, self.restrict,
                                   self.private, self.srccomments,
-                                  self.include_link, my_map, dir_name, tdoc)
+                                  self.include_link, my_map, dir_name,
+                                  self.image_dir, tdoc)
             idoc.create_page()
             idoc.close()
             self.progress_bar_step()
@@ -784,6 +801,7 @@ class WebReportDialog(ReportDialog):
         no_img_msg = _("Do not use images")
         no_limg_msg = _("Do not use images for living people")
         no_com_msg = _("Do not include comments and text in source information")
+        imgdir_msg = _("Image subdirectory")
 
         self.use_link = GtkCheckButton(lnk_msg)
         self.use_link.set_active(1) 
@@ -793,8 +811,12 @@ class WebReportDialog(ReportDialog):
         self.no_images = GtkCheckButton(no_img_msg)
         self.no_living_images = GtkCheckButton(no_limg_msg)
         self.no_comments = GtkCheckButton(no_com_msg)
+        self.imgdir = GtkEntry()
+        self.imgdir.set_text("images")
 
+        self.add_option(imgdir_msg,self.imgdir)
         self.add_option('',self.use_link)
+        
         title = _("Privacy Options")
         self.add_frame_option(title,None,self.no_private)
         self.add_frame_option(title,None,self.restrict_living)
@@ -987,6 +1009,8 @@ class WebReportDialog(ReportDialog):
         user selected choices for later use."""
         self.restrict = self.restrict_living.get_active()
         self.private = self.no_private.get_active()
+        self.img_dir_text = self.imgdir.get_text()
+        
         self.srccomments = self.no_comments.get_active()
         if self.no_images.get_active() == 1:
             self.photos = 0
@@ -1021,7 +1045,7 @@ class WebReportDialog(ReportDialog):
                              self.max_gen, self.photos, self.filter,
                              self.restrict, self.private, self.srccomments,
                              self.include_link, self.selected_style,
-                             self.template_name)
+                             self.img_dir_text,self.template_name)
         MyReport.write_report()
     
 #------------------------------------------------------------------------
