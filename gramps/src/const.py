@@ -19,6 +19,7 @@
 #
 
 import os
+import sys
 import intl
 
 _ = intl.gettext
@@ -46,7 +47,12 @@ OpenFailed = "Open Failed"
 # this one, and that the plugins directory is in a directory below this.
 #
 #-------------------------------------------------------------------------
-rootDir        = os.path.dirname(__file__)
+
+if os.environ.has_key('GRAMPSDIR'):
+    rootDir == os.environ['GRAMPSDIR']
+else:
+    rootDir = "."
+
 logo           = rootDir + os.sep + "gramps.xpm"
 gladeFile      = rootDir + os.sep + "gramps.glade"
 imageselFile   = rootDir + os.sep + "imagesel.glade"
@@ -68,7 +74,7 @@ gtkrcFile      = rootDir + os.sep + "gtkrc"
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.2.0"
+version      = "0.3.1"
 copyright    = "(C) 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham"]
 comments     = _("Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program that can be extended by using the Python programming language.")
@@ -101,7 +107,7 @@ helpMenu     = "contents.html"
 output_formats = ["OpenOffice", "AbiWord", "PDF", "HTML" ]
 
 childRelations = [
-    "Biological",
+    "Birth",
     "Adopted",
     "Other"
     ]

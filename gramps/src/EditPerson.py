@@ -171,6 +171,7 @@ class EditPerson:
             self.get_widget("lastNameList").set_popdown_strings(self.surname_list)
 
         event_names = self.get_widget("personalEvents")
+
         event_names.set_popdown_strings(const.personalEvents)
         event_names.entry.set_text("")
 

@@ -1283,7 +1283,7 @@ class GedcomParser:
                 self.backup()
                 return
             elif matches[1] == "ADDR":
-                addr.label = matches[2]
+                addr.label = matches[2] + self.parse_continue_data(level+1)
                 self.parse_sub_addr(level+1, addr)
             elif matches[1] == "PHON":
                 addr.phone = matches[2]

@@ -2,9 +2,9 @@
 # @configure_input@
 
 prefix=@prefix@
-PYTHONPATH=@datadir@/@PACKAGE@
-export PYTHONPATH
-GRAMPSI18N=@prefix@/share/locale
-export GRAMPSI18N
 
-@PYTHON@ @datadir@/@PACKAGE@/gramps.py $*
+export GRAMPSDIR=@datadir@/@PACKAGE@
+export PYTHONPATH=$GRAMPSDIR
+export GRAMPSI18N=@prefix@/share/locale
+
+@PYTHON@ $GRAMPSDIR/gramps.py $*

@@ -39,7 +39,6 @@ import PaperMenu
 from gtk import *
 from gnome.ui import *
 
-import GTK
 import gnome.config
 import gnome.help
 import libglade
