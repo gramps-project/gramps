@@ -20,7 +20,6 @@
 
 import const
 import gtk.glade
-import gnome
 import gconf
 import Utils
 
@@ -75,18 +74,18 @@ class StartupDialog:
             dateFormat = 1
         else:
             dateFormat = 2
-            self.client_set_int("/gramps/config/dateEntry",dateFormat)
+            self.client.set_int("/gramps/config/dateEntry",dateFormat)
 
         showcal = self.druid.get_widget("altcal").get_active()
-        self.client_set_int("/gramps/config/ShowCalendar",showcal)
+        self.client.set_int("/gramps/config/ShowCalendar",showcal)
 
         lds = self.druid.get_widget("enable_lds").get_active()
-        self.client_set_int("/gramps/config/UseLDS",lds)
-        self.client_set_int(_StartupEntry,const.startup)
-        self.client_sync()
+        self.client.set_int("/gramps/config/UseLDS",lds)
+        self.client.set_int(_StartupEntry,const.startup)
+        self.client.sync()
         Utils.destroy_passed_object(obj)
 
     def on_cancel_clicked(self,obj):
-        self.client_set_int(_StartupEntry,const.startup)
-        self.client_sync()
+        self.client.set_int(_StartupEntry,const.startup)
+        self.client.sync()
         Utils.destroy_passed_object(obj)

@@ -24,7 +24,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 import os
 
 import PaperMenu
@@ -40,14 +39,15 @@ import gobject
 import gconf
 import gtk
 import gtk.glade
+import gnome
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-from Date import *
+import RelLib
+#from Date import *
 
 import const
 import Utils
@@ -285,7 +285,7 @@ def loadConfig(call):
     autocomp = not ac
         
     Calendar.set_format_code(dateFormat)
-    Calendar.ENTRYCODE = dateEntry
+    Calendar.Calendar.ENTRYCODE = dateEntry
 
     if _name_format == 0:
         nameof = Utils.normal_name
@@ -354,7 +354,7 @@ def get_researcher():
     ph = get_string("/apps/gramps/researcher-phone")
     e = get_string("/apps/gramps/researcher-email")
 
-    owner = Researcher()
+    owner = RelLib.Researcher()
     owner.set(n,a,c,s,ct,p,ph,e)
     return owner
     
@@ -555,7 +555,6 @@ class GrampsPreferences:
         vc = self.top.get_widget("use_vc")
         vcom = self.top.get_widget("vc_comment")
         compress = self.top.get_widget("uncompress")
-        detail = self.top.get_widget("showdetail")
 
         auto.set_active(autoload)
         asave_int.set_value(int(autosave_int))
@@ -671,7 +670,7 @@ class GrampsPreferences:
             item.connect("activate", self.on_format_toggled)
             item.show()
             date_menu.append(item)
-        date_menu.set_active(Calendar.ENTRYCODE)
+        date_menu.set_active(Calendar.Calendar.ENTRYCODE)
         date_entry.set_menu(date_menu)
 
         name_option = self.top.get_widget("name_format")
@@ -912,7 +911,7 @@ class GrampsPreferences:
         format_menu = self.top.get_widget("date_entry_format").get_menu()
         entry_active = format_menu.get_active().get_data(INDEX)
         
-        Calendar.ENTRYCODE = entry_active
+        Calendar.Calendar.ENTRYCODE = entry_active
         set_int("/apps/gramps/date-entry",entry_active)
         
         # get the name format

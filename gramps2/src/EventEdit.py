@@ -39,10 +39,10 @@ import Utils
 import GrampsCfg
 import AutoComp
 import Calendar
+import RelLib
+import Date
 
 from DateEdit import DateEdit
-from Date import compare_dates
-from RelLib import *
 from intl import gettext as _
 
 #-------------------------------------------------------------------------
@@ -66,10 +66,10 @@ class EventEditor:
 
         if event:
             self.srcreflist = self.event.getSourceRefList()
-            self.date = Date(self.event.getDateObj())
+            self.date = Date.Date(self.event.getDateObj())
         else:
             self.srcreflist = []
-            self.date = Date(None)
+            self.date = Date.Date(None)
 
         self.top = gtk.glade.XML(const.dialogFile, "event_edit")
         self.window = self.top.get_widget("event_edit")
@@ -165,7 +165,7 @@ class EventEditor:
             if self.pmap.has_key(text):
                 return self.parent.db.getPlaceMap()[self.pmap[text]]
             elif makenew:
-                place = Place()
+                place = RelLib.Place()
                 place.set_title(text)
                 self.parent.db.addPlace(place)
                 self.pmap[text] = place.getId()
@@ -190,7 +190,7 @@ class EventEditor:
         epriv = self.priv.get_active()
 
         if self.event == None:
-            self.event = Event()
+            self.event = RelLib.Event()
             self.event.setSourceRefList(self.srcreflist)
             self.parent.elist.append(self.event)
         
@@ -220,7 +220,7 @@ class EventEditor:
 
         self.event.setSourceRefList(self.srcreflist)
         
-        if compare_dates(dobj,date) != 0:
+        if Date.compare_dates(dobj,date) != 0:
             self.event.setDateObj(date)
             self.parent.lists_changed = 1
 

@@ -182,3 +182,4 @@ class ListModel:
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
             self.double_click(obj)
             return 1
+        return 0

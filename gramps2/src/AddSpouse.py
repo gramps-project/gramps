@@ -37,7 +37,6 @@ from intl import gettext as _
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk.glade
 
 #-------------------------------------------------------------------------
@@ -210,8 +209,6 @@ class AddSpouse:
             else:
                 sgender = const.female
             
-        index = 0
-
         self.entries = []
         self.slist.clear()
         for key in self.db.getPersonKeys():

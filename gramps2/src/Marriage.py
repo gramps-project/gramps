@@ -25,10 +25,8 @@ import pickle
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.glade
-import gnome.ui
 
 #-------------------------------------------------------------------------
 #
@@ -41,11 +39,18 @@ import GrampsCfg
 import Utils
 import AutoComp
 import ListModel
-from QuestionDialog import QuestionDialog
-from RelLib import *
+import RelLib
 import ImageSelect
+import Date
+
+from QuestionDialog import QuestionDialog, WarningDialog
 from intl import gettext as _
 
+#-------------------------------------------------------------------------
+#
+# Globals
+#
+#-------------------------------------------------------------------------
 _temple_names = const.lds_temple_codes.keys()
 _temple_names.sort()
 _temple_names = [""] + _temple_names
@@ -210,7 +215,7 @@ class Marriage:
         import Sources
         ord = self.family.getLdsSeal()
         if ord == None:
-            ord = LdsOrd()
+            ord = RelLib.LdsOrd()
             self.family.setLdsSeal(ord)
         Sources.SourceSelector(ord.getSourceRefList(),self)
 
@@ -218,7 +223,7 @@ class Marriage:
         import NoteEdit
         ord = self.family.getLdsSeal()
         if ord == None:
-            ord = LdsOrd()
+            ord = RelLib.LdsOrd()
             self.family.setLdsSeal(ord)
         NoteEdit.NoteEditor(ord)
 
@@ -360,9 +365,9 @@ class Marriage:
             if date or temple or place or self.seal_stat:
                 changed = 1
         else:
-            d = Date()
+            d = Date.Date()
             d.set(date)
-            if compare_dates(d,ord.getDateObj()) != 0 or \
+            if Date.compare_dates(d,ord.getDateObj()) != 0 or \
                ord.getTemple() != temple or \
                ord.getPlace() != place or \
                ord.getStatus() != self.seal_stat:
@@ -401,7 +406,7 @@ class Marriage:
                 Utils.modified()
             else:
                 msg1 = _("GRAMPS ID value was not changed.")
-                GnomeWarningDialog("%s" % msg1)
+                WarningDialog("%s" % msg1)
 
         relation = self.type_field.entry.get_text()
         father = self.family.getFather()
@@ -414,8 +419,8 @@ class Marriage:
                     val = const.save_frel(relation)
                     if val == "Partners":
                         val = "Unknown"
-                    if father.getGender() == Person.female or \
-                       mother.getGender() == Person.male:
+                    if father.getGender() == RelLib.Person.female or \
+                       mother.getGender() == RelLib.Person.male:
                         self.family.setFather(mother)
                         self.family.setMother(father)
                     self.family.setRelationship(val)
@@ -438,7 +443,7 @@ class Marriage:
         ord = self.family.getLdsSeal()
         if not ord:
             if date or temple or place or self.seal_stat:
-                ord = LdsOrd()
+                ord = RelLib.LdsOrd()
                 ord.setDate(date)
                 ord.setTemple(temple)
                 ord.setStatus(self.seal_stat)
@@ -446,9 +451,9 @@ class Marriage:
                 self.family.setLdsSeal(ord)
                 Utils.modified()
         else:
-            d = Date()
+            d = Date.Date()
             d.set(date)
-            if compare_dates(d,ord.getDateObj()) != 0:
+            if Date.compare_dates(d,ord.getDateObj()) != 0:
                 ord.setDateObj(d)
                 Utils.modified()
             if ord.getTemple() != temple:

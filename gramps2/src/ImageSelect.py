@@ -26,13 +26,11 @@
 import os
 import string
 import urlparse
-import gc
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gnome.ui
 import gnome.canvas
@@ -47,13 +45,8 @@ import const
 import Utils
 import GrampsCfg
 import Plugins
-from RelLib import *
+import RelLib
 import RelImage
-
-import EditPerson
-import Marriage
-import EditPlace
-import EditSource
 import ListModel
 import grampslib
 
@@ -157,13 +150,13 @@ class ImageSelect:
                 break
 
         if (already_imported):
-            oref = ObjectRef()
+            oref = RelLib.ObjectRef()
             oref.setReference(already_imported)
             self.dataobj.addPhoto(oref)
             self.add_thumbnail(oref)
         else:
             type = Utils.get_mime_type(filename)
-            mobj = Photo()
+            mobj = RelLib.Photo()
             if description == "":
                 description = os.path.basename(filename)
             mobj.setDescription(description)
@@ -229,7 +222,6 @@ class Gallery(ImageSelect):
         self.root = self.iconlist.root()
 
         # Local object variables
-        x = 0
         self.y = 0
         self.remember_x = -1
         self.remember_y = -1
@@ -260,9 +252,9 @@ class Gallery(ImageSelect):
                 self.drag_item = widget.get_item_at(self.remember_x,
                                                     self.remember_y)
                 if self.drag_item:
-                    context = widget.drag_begin(_drag_targets,
-                                                gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
-                                                self.button, event)
+                    widget.drag_begin(_drag_targets,
+                                      gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
+                                      self.button, event)
             return gtk.TRUE
 
         style = self.iconlist.get_style()
@@ -321,7 +313,7 @@ class Gallery(ImageSelect):
     def savephoto(self, photo):
         """Save the photo in the dataobj object.  (Required function)"""
         self.db.addObject(photo)
-        oref = ObjectRef()
+        oref = RelLib.ObjectRef()
         oref.setReference(photo)
         self.dataobj.addPhoto(oref)
         self.add_thumbnail(oref)
@@ -408,7 +400,7 @@ class Gallery(ImageSelect):
             if protocol == "file":
                 name = file
                 mime = Utils.get_mime_type(name)
-                photo = Photo()
+                photo = RelLib.Photo()
                 photo.setPath(name)
                 photo.setMimeType(mime)
                 basename = os.path.basename(name)
@@ -434,13 +426,13 @@ class Gallery(ImageSelect):
                     ErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
                 mime = Utils.get_mime_type(tfile)
-                photo = Photo()
+                photo = RelLib.Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
                 photo.setLocal(1)
                 photo.setPath(tfile)
                 self.db.addObject(photo)
-                oref = ObjectRef()
+                oref = RelLib.ObjectRef()
                 oref.setReference(photo)
                 self.dataobj.addPhoto(oref)
                 try:
@@ -482,7 +474,7 @@ class Gallery(ImageSelect):
                                 self.load_images()
                                 return
                         index = index + 1
-                    oref = ObjectRef()
+                    oref = RelLib.ObjectRef()
                     oref.setReference(self.db.findObjectNoMap(data.data))
                     self.dataobj.addPhoto(oref)
                     self.add_thumbnail(oref)

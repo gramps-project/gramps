@@ -333,7 +333,7 @@ class SingleDate:
         self.calendar.set_month_string(text)
 
     def getMonthStr(self):
-	return _mname[self.month]
+	return self.calendar.month(self.month)
 
     def getIsoDate(self):
         if self.year == UNDEF:

@@ -48,9 +48,10 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import const
-from RelLib import *
+import RelLib
 import Date
 from intl import gettext as _
+from Utils import for_each_ancestor
 
 #-------------------------------------------------------------------------
 #
@@ -151,7 +152,7 @@ class IsFemale(Rule):
         return 'Is a female'
 
     def apply(self,db,p):
-        return p.getGender() == Person.female
+        return p.getGender() == RelLib.Person.female
 
 #-------------------------------------------------------------------------
 #
@@ -296,7 +297,7 @@ class IsMale(Rule):
         return 'Is a male'
 
     def apply(self,db,p):
-        return p.getGender() == Person.male
+        return p.getGender() == Person.Person.male
 
 #-------------------------------------------------------------------------
 #

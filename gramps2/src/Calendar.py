@@ -28,7 +28,6 @@ web site at http://www.scottlee.com
 __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
-import math
 from intl import gettext as _
 import re
 
@@ -158,7 +157,7 @@ class Calendar:
         return 1
 
     def quote_display(self,year,month,day,mode):
-        return "%s (%s)" % (text,Calendar.NAME)
+        return "%04d-%02d-%02d (%s)" % (year,month,day,Calendar.NAME)
 
     def display(self,year,month,day,mode):
         return _FMT_FUNC[Calendar.FORMATCODE](self,year,month,day,mode)
@@ -168,8 +167,8 @@ class Calendar:
             return ""
         elif day == UNDEF:
             if month == UNDEF:
-                retval = str(self.year)
-            elif self.year == UNDEF:
+                retval = str(year)
+            elif year == UNDEF:
                 retval = "????-%02d-??" % (month)
             else:
                 retval = "%04d-%02d" % (year,month)
@@ -270,7 +269,7 @@ class Calendar:
             retval = str(year)
         else:
             month_str = self.month(month).upper()[0:3]
-            if self.year == UNDEF:
+            if year == UNDEF:
                 retval = "%d %s ????" % (day,month_str)
             else:
                 retval = "%d %s %d" % (day,month_str,year)
@@ -295,7 +294,7 @@ class Calendar:
             retval = str(year)
         else:
             month_str = self.month(month).upper()[0:3]
-            if self.year == UNDEF:
+            if year == UNDEF:
                 retval = "%d. %s ????" % (day,month_str)
             else:
                 retval = "%d. %s %d" % (day,month_str,year)
@@ -356,7 +355,7 @@ class Calendar:
             pass
         elif day == UNDEF:
             if month == UNDEF:
-                retval = str(self.year)
+                retval = str(year)
             elif year == UNDEF:
                 retval = "????%s%02d%s??" % (sep,month+1,sep)
             else:

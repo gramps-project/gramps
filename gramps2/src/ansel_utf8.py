@@ -1,5 +1,6 @@
+import cStringIO
 
-s0 = {
+_s0 = {
 	0xA1 : u'\x01\x41', 0xA2 : u'\xD8',	0xA3 : u'\x01\x10',
 	0xA4 : u'\xDE',	    0xA5 : u'\xC6',	0xA6 : u'\x01\x52',
 	0xA7 : u'\x02\xB9', 0xA8 : u'\xB7',	0xA9 : u'\x26\x6D',

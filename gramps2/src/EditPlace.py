@@ -33,7 +33,6 @@ import pickle
 import gobject
 import gtk
 import gtk.glade
-import gnome.ui
 
 #-------------------------------------------------------------------------
 #
@@ -43,7 +42,6 @@ import gnome.ui
 import const
 import Utils
 import GrampsCfg
-from RelLib import *
 import Sources
 import ImageSelect
 
@@ -78,7 +76,6 @@ class EditPlace:
             self.srcreflist = []
 
         self.top_window = gtk.glade.XML(const.placesFile,"placeEditor")
-        adj = gtk.Adjustment()
         self.iconlist = self.top_window.get_widget('iconlist')
 
         self.glry = ImageSelect.Gallery(place, self.path, self.iconlist, self.db, self)

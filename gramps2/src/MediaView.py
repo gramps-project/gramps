@@ -24,6 +24,7 @@
 #
 #-------------------------------------------------------------------------
 import string
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -34,20 +35,19 @@ import gobject
 import gtk
 import gtk.gdk
 
-import ImageSelect
-
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-from QuestionDialog import QuestionDialog, ErrorDialog
+import RelLib
 import Utils
-import os
 import GrampsCfg
 import const
+import ImageSelect
 import RelImage
+
+from QuestionDialog import QuestionDialog, ErrorDialog
 
 #-------------------------------------------------------------------------
 #
@@ -187,7 +187,7 @@ class MediaView:
     def popup_convert_to_private(self, obj):
         path = self.db.getSavePath()
         id = self.obj.getId()
-        name = RelImage.import_object(self.obj.getPath(),path,id)
+        name = RelImage.import_media_object(self.obj.getPath(),path,id)
         if name:
             self.obj.setPath(name)
             self.obj.setLocal(1)
@@ -302,7 +302,7 @@ class MediaView:
             if protocol == "file":
                 name = file
                 mime = Utils.get_mime_type(name)
-                photo = Photo()
+                photo = RelLib.Photo()
                 photo.setPath(name)
                 photo.setMimeType(mime)
                 description = os.path.basename(name)
@@ -332,13 +332,13 @@ class MediaView:
                     ErrorDialog("%s\n%s %d" % (t,msg[0],msg[1]))
                     return
                 mime = Utils.get_mime_type(tfile)
-                photo = Photo()
+                photo = RelLib.Photo()
                 photo.setMimeType(mime)
                 photo.setDescription(d)
                 photo.setLocal(1)
                 photo.setPath(tfile)
                 self.db.addObject(photo)
-                oref = ObjectRef()
+                oref = RelLib.ObjectRef()
                 oref.setReference(photo)
                 try:
                     id = photo.getId()

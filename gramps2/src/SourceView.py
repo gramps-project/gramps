@@ -38,12 +38,11 @@ import gtk.gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-from QuestionDialog import QuestionDialog
-
+import RelLib
 import EditSource
 import Utils
-import GrampsCfg
+
+from QuestionDialog import QuestionDialog
 
 #-------------------------------------------------------------------------
 #
@@ -109,9 +108,10 @@ class SourceView:
             source = self.db.getSource(id)
             EditSource.EditSource(source,self.db,self.update_display)
             return 1
+        return 0
 
     def on_add_clicked(self,obj):
-        EditSource.EditSource(Source(),self.db,self.new_after_edit)
+        EditSource.EditSource(RelLib.Source(),self.db,self.new_after_edit)
 
     def on_delete_clicked(self,obj):
         

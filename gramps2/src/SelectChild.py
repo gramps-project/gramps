@@ -30,7 +30,6 @@ from intl import gettext as _
 # standard python modules
 #
 #-------------------------------------------------------------------------
-import string
 
 #-------------------------------------------------------------------------
 #
@@ -44,13 +43,9 @@ import gtk.glade
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from RelLib import *
-
+import RelLib
 import const
-import sort
 import Utils
-import GrampsCfg
-import AutoComp
 import ListModel
 
 #-------------------------------------------------------------------------
@@ -96,7 +91,7 @@ class SelectChild:
             fname = self.person.getPrimaryName().getName()
             label = _("Relationship to %s") % fname
             
-            if self.person.getGender() == Person.male:
+            if self.person.getGender() == RelLib.Person.male:
                 self.xml.get_widget("flabel").set_text(label)
                 self.xml.get_widget("mrel_combo").set_sensitive(0)
             else:
@@ -118,8 +113,6 @@ class SelectChild:
 
     def redraw_child_list(self,filter):
         self.refmodel.clear()
-        index = 0
-
         bday = self.person.getBirth().getDateObj()
         dday = self.person.getDeath().getDateObj()
 
@@ -187,7 +180,7 @@ class SelectChild:
         if self.family == None:
             self.family = self.db.newFamily()
             self.person.addFamily(self.family)
-            if self.person.getGender() == Person.male:
+            if self.person.getGender() == RelLib.Person.male:
                 self.family.setFather(self.person)
             else:	
                 self.family.setMother(self.person)
@@ -196,13 +189,13 @@ class SelectChild:
 		
         mrel = const.childRelations[self.mrel.get_text()]
         mother = self.family.getMother()
-        if mother and mother.getGender() != Person.female:
+        if mother and mother.getGender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
         frel = const.childRelations[self.frel.get_text()]
         father = self.family.getFather()
-        if father and father.getGender() != Person.male:
+        if father and father.getGender() !=RelLib. Person.male:
             if frel == "Birth":
                 frel = "Unknown"
 

@@ -50,6 +50,10 @@ import const
 import Utils
 import Date
 import Calendar
+import Julian
+import Hebrew
+import FrenchRepublic
+
 from intl import gettext as _
 from latin_utf8  import latin_to_utf8
 from GedcomInfo import *
@@ -66,7 +70,7 @@ except:
 #-------------------------------------------------------------------------
 
 _hmonth = [
-    "", "ELUL", "TSH", "CSH", "KSL", "TVT", "SHV", "ADR",
+
     "ADS", "NSN", "IYR", "SVN", "TMZ", "AAV", "ELL" ]
 
 _fmonth = [
@@ -78,9 +82,9 @@ _month = [
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 _calmap = {
-    Calendar.Hebrew : (_hmonth, '@#HEBREW@'),
-    Calendar.FrenchRepublic : (_fmonth, '@#FRENCH R@'),
-    Calendar.Julian : (_month, '@#JULIAN@'),
+    Hebrew.Hebrew.NAME : (_hmonth, '@#HEBREW@'),
+    FrenchRepublic.FrenchRepublic.NAME : (_fmonth, '@#FRENCH R@'),
+    Julian.Julian.NAME : (_month, '@#JULIAN@'),
     }
 
 _caldef = {
@@ -201,14 +205,8 @@ def make_date(subdate):
     mon_valid = subdate.getMonthValid()
     year_valid = subdate.getYearValid()
 
-    # Adjust `mon' so it can be used as index in our _Xmonth arrays.
-    if mon_valid:
-        mon += 1
-    else:
-        mon = 0
-
-    if _calmap.has_key(subdate.calendar):
-        (mmap,prefix) = _calmap[subdate.calendar]
+    if _calmap.has_key(subdate.calendar.NAME):
+        (mmap,prefix) = _calmap[subdate.calendar.NAME]
     else:
         mmap = _month
         prefix = ""
@@ -780,7 +778,7 @@ class GedcomWriter:
                     text = addr_append(text,addr.getPostal())
                     text = addr_append(text,addr.getCountry())
                     if text:
-                        self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(text)),'\r',' ')
+                        self.g.write("2 PLAC %s\n" % string.replace(self.cnvtxt(text),'\r',' '))
                 if addr.getNote():
                     self.write_long_text("NOTE",3,self.cnvtxt(addr.getNote()))
                 for srcref in addr.getSourceRefList():

@@ -31,9 +31,7 @@ import pickle
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
-import gnome.ui 
 import gtk.glade
 
 from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_file
@@ -47,13 +45,13 @@ import const
 import Utils
 import GrampsCfg
 import Date
-from RelLib import *
 import ImageSelect
 import sort
 import AutoComp
 import ListModel
+import RelLib
 from DateEdit import DateEdit
-from QuestionDialog import QuestionDialog
+from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog
 
 from intl import gettext as _
 
@@ -168,9 +166,9 @@ class EditPerson:
         self.name_source = self.get_widget("name_source")
         self.gid = self.get_widget("gid")
 
-        self.death = Event(person.getDeath())
-        self.birth = Event(person.getBirth())
-        self.pname = Name(person.getPrimaryName())
+        self.death = RelLib.Event(person.getDeath())
+        self.birth = RelLib.Event(person.getBirth())
+        self.pname = RelLib.Name(person.getPrimaryName())
 
         self.elist = person.getEventList()[:]
         self.nlist = person.getAlternateNames()[:]
@@ -218,9 +216,9 @@ class EditPerson:
         self.gid.set_text(person.getId())
         self.gid.set_editable(GrampsCfg.id_edit)
 
-        self.lds_baptism = LdsOrd(self.person.getLdsBaptism())
-        self.lds_endowment = LdsOrd(self.person.getLdsEndowment())
-        self.lds_sealing = LdsOrd(self.person.getLdsSeal())
+        self.lds_baptism = RelLib.LdsOrd(self.person.getLdsBaptism())
+        self.lds_endowment = RelLib.LdsOrd(self.person.getLdsEndowment())
+        self.lds_sealing = RelLib.LdsOrd(self.person.getLdsSeal())
 
         if GrampsCfg.uselds or self.lds_baptism or self.lds_endowment or self.lds_sealing:
             self.get_widget("lds_tab").show()
@@ -232,9 +230,9 @@ class EditPerson:
         self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
         self.write_primary_name()
         
-        if person.getGender() == Person.male:
+        if person.getGender() == RelLib.Person.male:
             self.is_male.set_active(1)
-        elif person.getGender() == Person.female:
+        elif person.getGender() == RelLib.Person.female:
             self.is_female.set_active(1)
         else:
             self.is_unknown.set_active(1)
@@ -250,32 +248,24 @@ class EditPerson:
         self.event_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.event_list.connect('drag_data_get', self.ev_drag_data_get)
         self.event_list.connect('drag_begin', self.ev_drag_begin)
-        self.event_list.connect('drag_data_received',
-                                self.ev_drag_data_received)
+        self.event_list.connect('drag_data_received',self.ev_drag_data_received)
 
         self.web_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
         self.web_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.web_list.connect('drag_data_get', self.url_drag_data_get)
         self.web_list.connect('drag_begin', self.url_drag_begin)
-        self.web_list.connect('drag_data_received',
-                              self.url_drag_data_received)
+        self.web_list.connect('drag_data_received',self.url_drag_data_received)
         
-        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,
-                                     ACTION_COPY)
-        self.attr_list.drag_source_set(BUTTON1_MASK, pycode_tgts,
-                                       ACTION_COPY)
+        self.attr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.attr_list.drag_source_set(BUTTON1_MASK, pycode_tgts, ACTION_COPY)
         self.attr_list.connect('drag_data_get', self.at_drag_data_get)
-        self.attr_list.connect('drag_data_received',
-                               self.at_drag_data_received)
+        self.attr_list.connect('drag_data_received',self.at_drag_data_received)
         self.attr_list.connect('drag_begin', self.at_drag_begin)
 
-        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                     pycode_tgts,ACTION_COPY)
-        self.addr_list.drag_source_set(BUTTON1_MASK, pycode_tgts,
-                                       ACTION_COPY)
+        self.addr_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,pycode_tgts,ACTION_COPY)
+        self.addr_list.drag_source_set(BUTTON1_MASK, pycode_tgts,ACTION_COPY)
         self.addr_list.connect('drag_data_get', self.ad_drag_data_get)
-        self.addr_list.connect('drag_data_received',
-                               self.ad_drag_data_received)
+        self.addr_list.connect('drag_data_received',self.ad_drag_data_received)
         self.addr_list.connect('drag_begin', self.ev_drag_begin)
 
         self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
@@ -873,7 +863,7 @@ class EditPerson:
         if self.pname.getNote() != name.getNote():
             changed = 1
         if self.lds_not_loaded == 0 and self.check_lds():
-            changed == 1
+            changed = 1
 
         bplace = string.strip(self.bplace.get_text())
         dplace = string.strip(self.dplace.get_text())
@@ -898,11 +888,11 @@ class EditPerson:
             changed = 1
         if not self.death.are_equal(self.person.getDeath()):
             changed = 1
-        if male and self.person.getGender() != Person.male:
+        if male and self.person.getGender() != RelLib.Person.male:
             changed = 1
-        elif female and self.person.getGender() != Person.female:
+        elif female and self.person.getGender() != RelLib.Person.female:
             changed = 1
-        elif unknown and self.person.getGender() != Person.unknown:
+        elif unknown and self.person.getGender() != RelLib.Person.unknown:
             changed = 1
         if text != self.person.getNote() or self.lists_changed:
             changed = 1
@@ -1200,7 +1190,7 @@ class EditPerson:
                 msg2 = _("%(grampsid)s is already used by %(person)s") % {
                     'grampsid' : idval,
                     'person' : n }
-                GnomeWarningDialog("%s\n%s" % (msg1,msg2))
+                WarningDialog("%s\n%s" % (msg1,msg2))
 
         if suffix != name.getSuffix():
             name.setSuffix(suffix)
@@ -1267,8 +1257,8 @@ class EditPerson:
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
         error = 0
-        if male and self.person.getGender() != Person.male:
-            self.person.setGender(Person.male)
+        if male and self.person.getGender() != RelLib.Person.male:
+            self.person.setGender(RelLib.Person.male)
             for temp_family in self.person.getFamilyList():
                 if self.person == temp_family.getMother():
                     if temp_family.getFather() != None:
@@ -1277,8 +1267,8 @@ class EditPerson:
                         temp_family.setMother(None)
                         temp_family.setFather(self.person)
             Utils.modified()
-        elif female and self.person.getGender() != Person.female:
-            self.person.setGender(Person.female)
+        elif female and self.person.getGender() != RelLib.Person.female:
+            self.person.setGender(RelLib.Person.female)
             for temp_family in self.person.getFamilyList():
                 if self.person == temp_family.getFather():
                     if temp_family.getMother() != None:
@@ -1287,8 +1277,8 @@ class EditPerson:
                         temp_family.setFather(None)
                         temp_family.setMother(self.person)
             Utils.modified()
-        elif unknown and self.person.getGender() != Person.unknown:
-            self.person.setGender(Person.unknown)
+        elif unknown and self.person.getGender() != RelLib.Person.unknown:
+            self.person.setGender(RelLib.Person.unknown)
             for temp_family in self.person.getFamilyList():
                 if self.person == temp_family.getFather():
                     if temp_family.getMother() != None:
@@ -1319,17 +1309,17 @@ class EditPerson:
 
         if self.lds_not_loaded == 0:
             self.check_lds()
-            ord = LdsOrd(self.person.getLdsBaptism())
+            ord = RelLib.LdsOrd(self.person.getLdsBaptism())
             if not self.lds_baptism.are_equal(ord):
                 self.person.setLdsBaptism(self.lds_baptism)
                 Utils.modified()
 
-            ord = LdsOrd(self.person.getLdsEndowment())
+            ord = RelLib.LdsOrd(self.person.getLdsEndowment())
             if not self.lds_endowment.are_equal(ord):
                 self.person.setLdsEndowment(self.lds_endowment)
                 Utils.modified()
 
-            ord = LdsOrd(self.person.getLdsSeal())
+            ord = RelLib.LdsOrd(self.person.getLdsSeal())
             if not self.lds_sealing.are_equal(ord):
                 self.person.setLdsSeal(self.lds_sealing)
                 Utils.modified()
@@ -1346,7 +1336,7 @@ class EditPerson:
             if self.pmap.has_key(text):
                 return self.db.getPlaceMap()[self.pmap[text]]
             elif makenew:
-                place = Place()
+                place = RelLib.Place()
                 place.set_title(text)
                 self.db.addPlace(place)
                 self.pmap[text] = place.getId()
@@ -1396,7 +1386,6 @@ class EditPerson:
 
     def on_ldsseal_source_clicked(self,obj):
         import Sources
-        ord = self.person.getLdsSeal()
         Sources.SourceSelector(self.lds_sealing.getSourceRefList(),self,self.lds_seal_list)
 
     def lds_seal_list(self,list):
@@ -1450,7 +1439,7 @@ class EditPerson:
             self.nlist.remove(new)
             self.nlist.append(old)
             self.redraw_name_list()
-            self.pname = Name(new)
+            self.pname = RelLib.Name(new)
             self.lists_changed = 1
             self.write_primary_name()
 

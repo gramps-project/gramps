@@ -20,7 +20,6 @@
 
 import os
 import const
-import string
 
 #-------------------------------------------------------------------------
 #
@@ -44,8 +43,8 @@ class ImgManip:
     if no_pil:
 
         def size(self):
-            img = GdkImlib.Image(self.src)
-            return (img.rgb_width,img.rgb_height)
+            img = gtk.gdk.pixbuf_new_from_file(self.src)
+            return (img.get_width(),img.get_height())
 
         def fmt_thumbnail(self,dest,width,height,cnv):
             w = int(width)

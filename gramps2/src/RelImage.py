@@ -32,7 +32,7 @@ import string
 #
 #-------------------------------------------------------------------------
 import gtk
-from QuestionDialog import ErrorDialog
+from QuestionDialog import ErrorDialog, WarningDialog
 
 #-------------------------------------------------------------------------
 #
@@ -105,7 +105,7 @@ def scale_image(path,size):
     try:
         image1 = gtk.gdk.pixbuf_new_from_file(path)
     except:
-        GnomeWarningDialog(_("Could not load image file %s") % path)
+        WarningDialog(_("Could not load image file %s") % path)
         return gtk.gdk.pixbuf_new_from_file(const.icon)
     
     width  = image1.get_width()
@@ -116,7 +116,7 @@ def scale_image(path,size):
         image1.scale_simple(int(scale*width), int(scale*height), gtk.gdk.INTERP_BILINEAR)
         return image1
     except:
-        GnomeWarningDialog(_("Could not load image file %s") % path)
+        WarningDialog(_("Could not load image file %s") % path)
         return gtk.gdk.pixbuf_new_from_file(const.icon)
 
 #-------------------------------------------------------------------------

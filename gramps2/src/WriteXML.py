@@ -40,6 +40,7 @@ import os
 import const
 import GrampsCfg
 import Calendar
+import Gregorian
 from RelLib import *
 from intl import gettext as _
 from QuestionDialog import ErrorDialog
@@ -455,7 +456,7 @@ class XmlWriter:
             return
 
         name = date.get_calendar().NAME
-        if name != Calendar.Gregorian.NAME:
+        if name != Gregorian.Gregorian.NAME:
             calstr = ' cformat="%s"' % name
         else:
             calstr = ''
