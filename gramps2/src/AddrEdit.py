@@ -143,10 +143,12 @@ class AddressEditor:
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.parent.child_windows.remove(self)
 
     def close(self,obj):
         self.close_child_windows()
         self.remove_itself_from_menu()
+        self.parent.child_windows.remove(self)
         self.window.destroy()
 
     def close_child_windows(self):
