@@ -1,7 +1,13 @@
 2003-10-11  Don Allingham  <dallingham@users.sourceforge.net>
-	* src/GrampsCfg.py: eliminate name only option in status line
+	* src/RelLib.py : support for capitalized name formats
+	* src/EditPerson.py: eliminate capitilzing names, instead rely on
+	the display formats
+	* src/Utils.py: new display formats for names
+	* src/GrampsCfg.py: eliminate name only option in status line,
+	add support for capitalized name formats
 	* src/gramps_main.py: eliminate name only option in status line
-	* src/preferences.py : eliminate name only option in status line
+	* src/preferences.glade : eliminate name only option in status line,
+	drop capitalize in favor of expanded name format
 	* src/plugins/GraphViz.py: install only for python 2.2
 	* src/plugins/WebPage.py: handle page titles
 	* src/docgen/HtmlDoc.py: handle page titles
