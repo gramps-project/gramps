@@ -1,5 +1,9 @@
 2003-11-13  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/FamilyView.py: delete unused code
 	* src/GrampsCfg.py: Fixed name format selection problem
+	* src/PeopleView.py: handle uncaught exception
+	* src/RelLib.py: rebuild person table
+	* src/gramps_main.py: rebuild display after preferences
 
 2003-11-13  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ImageSelect.py (GlobalMediaProperties.__init__): Find labels from
