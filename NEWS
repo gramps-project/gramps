@@ -1,3 +1,24 @@
+Version 0.7.3
+* New Russian (Alex Roitman) and Danish (Lars Lundin) translations.
+  GRAMPS now supports English, Italian, German, French, Spanish,
+  Brazilian-Portuguese, Swedish, Danish, and Russian.
+* Custom filter editor allows you to create your personal complex
+  filters that can be applied to reports to select the people that
+  you want. Tools->Utilites->Custom Filter Editor to access the
+  filter builder. (Thanks to Jeff Ollie for some major contributions 
+  here).
+* New report - Complete Individual Report. Allows you to produce a
+  more complete form of the Individual Summary. You can use filters
+  to select all ancestors, all decendants, or any custom filter you
+  want to create more of a 'book' form of a report.
+* On-the-fly document generation instead of pre-built HTML files
+  (Thanks to Don Peterson)
+* Web page generation now generates a two column list, along with
+  labels.
+* GEDCOM impovements, including the ability to use GRAMPS as a GEDCOM
+  viewer (accepts a GEDCOM file as an argument).
+
+
 Version 0.7.2
 * New Brazilian-Portuguese translation (Marcos Bedinelli)
 * Python Imaging Library no longer required for several report

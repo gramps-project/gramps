@@ -1,5 +1,5 @@
 %define ver      0.7.3
-%define rel      1
+%define rel      2
 %define prefix   /usr
 
 Summary: Genealogical Research and Analysis Management Programming System.
@@ -62,6 +62,8 @@ rm -rf $RPM_BUILD_ROOT
 %{prefix}/share/gramps/*.xpm
 %{prefix}/share/gramps/*.jpg
 %{prefix}/share/gramps/*.png
+%{prefix}/share/gramps/docgen/*.py
+%{prefix}/share/gramps/docgen/*.pyo
 %{prefix}/share/gramps/filters/*.py
 %{prefix}/share/gramps/filters/*.pyo
 %{prefix}/share/gramps/plugins/*.py
