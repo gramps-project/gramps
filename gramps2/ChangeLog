@@ -1,5 +1,6 @@
 2004-02-29  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LPRDoc.py: Add to CVS.
+	* src/docgen/AsciiDoc.py: Correctly treat cells with span>1.
 
 2004-02-28  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsParser.py (start_childof): Call add_parent_family_id()
