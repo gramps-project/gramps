@@ -1,3 +1,6 @@
+2005-02-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/NavWebPage.py: more progress
+
 2005-02-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/GraphViz.py: fix MALE/FEMALE/UNKNOWN
 
