@@ -6,7 +6,7 @@ INSTALL		= @INSTALL@
 srcdir		= @top_srcdir@
 pycomp		= ${srcdir}/py-compile
 CFLAGS          = -fPIC -shared -O @PYTHON_INCLUDES@
-LANG            = sv de fr
+LANG            = sv de fr es
 
 @SET_MAKE@
 
