@@ -243,6 +243,10 @@ class Date:
                 self.range = -1
             self.text = text
 
+    def set_text(self,text):
+        self.range = -1
+        self.text = text
+
     def set_range(self,val):
         self.range = val
 

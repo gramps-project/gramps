@@ -36,7 +36,10 @@ else:
 
         def utf8_to_latin(s):
             y = UTF8String(s)
-            return y.encode("iso-8859-1")
+            try:
+                return y.encode("iso-8859-1")
+            except:
+                return y.encode("<Invalid UNICODE>")
 
         def latin_to_utf8(s):
             buff = cStringIO.StringIO()

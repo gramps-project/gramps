@@ -47,14 +47,3 @@ class QuestionDialog:
             self.task2()
         self.top.destroy()
         
-
-if __name__ == '__main__':
-    def task1(obj):
-        print obj,'1'
-
-    def task2(obj):
-        print obj,'2'
-        
-    QuestionDialog('mytitle','This is my message','Abc',task1,'Def',task2)
-
-    gtk.mainloop()

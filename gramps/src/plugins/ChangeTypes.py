@@ -66,11 +66,8 @@ class ChangeTypes:
         original = self.glade.get_widget("original_text").get_text()
         new = self.glade.get_widget("new_text").get_text()
 
-        print original
-        print new
         for person in self.db.getPersonMap().values():
             for event in person.getEventList():
-                print event.getName()
                 if event.getName() == original:
                     event.setName(new)
                     modified = modified + 1
