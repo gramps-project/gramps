@@ -1,4 +1,6 @@
 2004-01-20  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleView.py: correctly handle disabling report/tool buttons
+	* src/gramps_main.py: correctly handle disabling report/tool buttons
 	* src/const.py.in: handle new translation table class
 	* src/NameEdit.py.in: handle new translation table class
 	* src/EditPerson.py.in: handle new translation table class
