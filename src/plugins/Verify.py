@@ -103,12 +103,12 @@ def on_apply_clicked(obj):
 	    if byear > bapyear:
 	        error = "%sBaptized before birth %s born %d baptized %d.\n" % (error, idstr, byear, bapyear) 
 	    if byear < bapyear:
-	        error = "%sBaptized late %s born %d baptized %d.\n" % (error, idstr, byear, bapyear) 
+	        warn = "%sBaptized late %s born %d baptized %d.\n" % (warn, idstr, byear, bapyear) 
         if dyear>0 and buryear>0:
 	    if dyear > buryear:
 	        error = "%sBuried before death %s died %d buried %d.\n" % (error, idstr, dyear, buryear) 
 	    if dyear < buryear:
-	        error = "%sBuried late %s died %d buried %d.\n" % (error, idstr, dyear, buryear) 
+	        warn = "%sBuried late %s died %d buried %d.\n" % (warn, idstr, dyear, buryear) 
 	if dyear>0 and (byear>dyear):
 	    error = "%sDied before birth %s born %d died %d.\n" % (error, idstr, byear, dyear) 
 	if dyear>0 and (bapyear>dyear):
@@ -164,7 +164,7 @@ def on_apply_clicked(obj):
 	nkids = 0
 	nfam  = len( person.getFamilyList() )
 	if nfam > wedder:
-	    warn = "%sMarried often %d married %d times.\n" % (warn, idstr, nfam)
+	    warn = "%sMarried often %s married %d times.\n" % (warn, idstr, nfam)
 	if ageatdeath>oldunm and nfam == 0:
 	    warn = "%sOld and unmarried %s died unmarried aged %d years.\n" % (warn, idstr, ageatdeath)
 	first_cbyear = 99999
@@ -220,7 +220,7 @@ def on_apply_clicked(obj):
 		    if dyear>0 and maryear > dyear:
 		        error = "%sMarried after death %s died %d married %d to %s.\n" % (error, idstr, dyear, maryear, spouse.getPrimaryName().getName())
 		    if prev_cbyear > maryear:
-		        error = "%sMarriage before birth from previous family %s married %d to %s previous birth %d.\n" % (error, idstr, maryear, spouse.getPrimaryName().getName(), prev_cbyear)
+		        warn = "%sMarriage before birth from previous family %s married %d to %s previous birth %d.\n" % (warn, idstr, maryear, spouse.getPrimaryName().getName(), prev_cbyear)
 		    prev_maryear = maryear
 		else:
 		    maryear = prev_maryear
@@ -234,6 +234,7 @@ def on_apply_clicked(obj):
 		    wdwyear = dyear - sdyear
 		    if wdwyear > lngwdw:
 		        warn = "%sLong widowhood %s %s %d years.\n" % (warn, idstr, waswidstr, wdwyear) 
+
 		nkids = 0
 		for child in family.getChildList():
 		    nkids = nkids+1
