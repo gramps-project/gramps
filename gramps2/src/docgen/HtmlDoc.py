@@ -366,10 +366,10 @@ class HtmlDoc(TextDoc.TextDoc):
             xtra = ''
             
         if self.image_dir:
-            self.f.write('<img src="%s/%s" border="0""%s>\n' % \
+            self.f.write('<img src="%s/%s" border="0"%s>\n' % \
                          (self.image_dir,refname,xtra))
         else:
-            self.f.write('<img src="%s" border="0""%s>\n' % (refname,xtra))
+            self.f.write('<img src="%s" border="0"%s>\n' % (refname,xtra))
 
     def start_table(self,name,style):
         self.tbl = self.table_styles[style]

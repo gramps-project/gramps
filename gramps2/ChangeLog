@@ -1,3 +1,6 @@
+2003-06-11  Tim Waugh  <twaugh@redhat.com>
+	* src/docgen/HtmlDoc.py (add_photo): Fix typo in image reference.
+
 2003-06-10  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Plugins.py: Add more values for book item registration.
 	* src/plugins/FtmStyleDescendants.py: Comply with book changes.
