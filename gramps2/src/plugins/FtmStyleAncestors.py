@@ -298,6 +298,7 @@ class FtmAncestorReport(Report.Report):
             else:
                 self.doc.write_text(_('%(event_name)s: %(place)s%(endnotes)s') % {
                     'event_name' : event.getName(),
+                    'endnotes' : self.endnotes(event),
                     'place' : event.getPlaceName() })
             self.doc.end_paragraph()
 
@@ -361,7 +362,9 @@ class FtmAncestorReport(Report.Report):
                     })
             else:
                 self.doc.write_text(_('She married %(spouse)s%(endnotes)s ') % {
-                    'spouse' : spouse.getPrimaryName().getRegularName(),})
+                    'spouse' : spouse.getPrimaryName().getRegularName(),
+                    'endnotes' : self.endnotes(event),
+                    })
         self.doc.write_text(' ')
 
         death = spouse.getDeath()
@@ -381,19 +384,21 @@ class FtmAncestorReport(Report.Report):
                     if bplace:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("He was born %(birth_date)s in %(birth_place)s"
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s, "
                                                       "and died %(death_date)s in %(death_place)s"
                                                       "%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     'death_date' : ddate,'death_place' : dplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("He was born %(birth_date)s in %(birth_place)s"
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s, "
                                                       "and died %(death_date)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     'death_date' : ddate,
                                     'birth_endnotes' : self.endnotes(birth),
@@ -401,48 +406,54 @@ class FtmAncestorReport(Report.Report):
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("He was born %(birth_date)s in %(birth_place)s"
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s, "
                                                       "and died in %(death_place)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'death_place' : dplace,
                                     })
                             else:
-                                self.doc.write_text(_("He was born %(birth_date)s in "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s in "
                                                       "%(birth_place)s%(birth_endnotes)s. ") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     })
                     else:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("He was born %(birth_date)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s in %(death_place)s"
                                                       "%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate, 'death_date' : ddate,
                                     'death_place' : dplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("He was born %(birth_date)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate, 'death_date' : ddate,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("He was born %(birth_date)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
                                                       "and died in %(death_place)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate, 'death_place' : dplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("He was born %(birth_date)s%(birth_endnotes)s. ") % {
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. ") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_date' : bdate,
                                     'birth_endnotes' : self.endnotes(birth),
                                     })
@@ -450,49 +461,56 @@ class FtmAncestorReport(Report.Report):
                     if bplace:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("He was born in %(birth_place)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s in %(death_place)s"
                                                       "%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_place' : bplace, 'death_date' : ddate, 'death_place' : dplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("He was born in %(birth_place)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s$(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'birth_place' : bplace, 'death_date' : ddate,
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("He was born in %(birth_place)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
                                                       "and died in %(death_place)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_place' : bplace,'death_place' : dplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("He was born in %(birth_place)s%(birth_endnotes)s. ") % {
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. ") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'birth_place' : bplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     })
                     else:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("He died %(death_date)s in "
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s died %(death_date)s in "
                                                       "%(death_place)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'death_date' : ddate, 'death_place' : dplace,
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("He died %(death_date)s%(death_endnotes)s.") % {
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s died %(death_date)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'death_date' : ddate,
                                     'death_endnotes' : self.endnotes(death),
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("He died in %(death_place)s%(death_endnotes)s.") % {
+                                self.doc.write_text(_("%(male_name)s%(endnotes)s died in %(death_place)s%(death_endnotes)s.") % {
+                                    'male_name' : _('He'), 'endnotes' : '',
                                     'death_endnotes' : self.endnotes(death),
                                     'death_place' : dplace,
                                     })
@@ -501,19 +519,21 @@ class FtmAncestorReport(Report.Report):
                     if bplace:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("She was born %(birth_date)s in %(birth_place)s"
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s, "
                                                       "and died %(death_date)s in %(death_place)s"
                                                       "%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     'death_date' : ddate,'death_place' : dplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("She was born %(birth_date)s in %(birth_place)s"
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s, "
                                                       "and died %(death_date)s%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
@@ -521,16 +541,17 @@ class FtmAncestorReport(Report.Report):
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("She was born %(birth_date)s in %(birth_place)s"
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s, "
                                                       "and died in %(death_place)s%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_date' : bdate, 'birth_place' : bplace,
                                     'death_place' : dplace,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     })
                             else:
-                                self.doc.write_text(_("She was born %(birth_date)s in %(birth_place)s"
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s in %(birth_place)s"
                                                       "%(birth_endnotes)s. ") % {
                                     'birth_endnotes' : self.endnotes(birth),
                                     'birth_date' : bdate, 'birth_place' : bplace,
@@ -538,31 +559,35 @@ class FtmAncestorReport(Report.Report):
                     else:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("She was born %(birth_date)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s in %(death_place)s"
                                                       "%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_date' : bdate, 'death_date' : ddate,
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'death_place' : dplace,
                                     })
                             else:
-                                self.doc.write_text(_("She was born %(birth_date)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'birth_date' : bdate, 'death_date' : ddate,
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("She was born %(birth_date)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s, "
                                                       "and died in %(death_place)s%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'birth_date' : bdate, 'death_place' : dplace,
                                     })
                             else:
-                                self.doc.write_text(_("She was born %(birth_date)s%(birth_endnotes)s. ") % {
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born %(birth_date)s%(birth_endnotes)s. ") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'birth_date' : bdate,
                                     })
@@ -570,48 +595,55 @@ class FtmAncestorReport(Report.Report):
                     if bplace:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("She was born in %(birth_place)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'birth_place' : bplace, 'death_date' : ddate, 'death_place' : dplace,
                                     })
                             else:
-                                self.doc.write_text(_("She was born in %(birth_place)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
                                                       "and died %(death_date)s%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'birth_place' : bplace, 'death_date' : ddate,
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("She was born in %(birth_place)s%(birth_endnotes)s, "
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s, "
                                                       "and died in %(death_place)s$(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'death_endnotes' : self.endnotes(death),
                                     'birth_place' : bplace,'death_place' : dplace,
                                     })
                             else:
-                                self.doc.write_text(_("She was born in %(birth_place)s%(birth_endnotes)s. ") % {
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s was born in %(birth_place)s%(birth_endnotes)s. ") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'birth_endnotes' : self.endnotes(birth),
                                     'birth_place' : bplace,
                                     })
                     else:
                         if ddate:
                             if dplace:
-                                self.doc.write_text(_("She died %(death_date)s in "
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s died %(death_date)s in "
                                                       "%(death_place)s%(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'death_endnotes' : self.endnotes(death),
                                     'death_date' : ddate, 'death_place' : dplace,
                                     })
                             else:
-                                self.doc.write_text(_("She died %(death_date)s$(death_endotes)s.") % {
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s died %(death_date)s$(death_endotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'death_endnotes' : self.endnotes(death),
                                     'death_date' : ddate,
                                     })
                         else:
                             if dplace:
-                                self.doc.write_text(_("She died in %(death_place)s$(death_endnotes)s.") % {
+                                self.doc.write_text(_("%(female_name)s%(endnotes)s died in %(death_place)s$(death_endnotes)s.") % {
+                                    'female_name' : _('She'), 'endnotes' : '',
                                     'death_endnotes' : self.endnotes(death),
                                     'birth_date' : bdate, 'death_place' : dplace,
                                     })
@@ -645,10 +677,10 @@ class FtmAncestorReport(Report.Report):
                 elif father:
                     if dead:
                         self.doc.write_text(_("He was the son of %(father)s.") % {
-                            'father' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.getPrimaryName().getRegularName(), })
                     else:
                         self.doc.write_text(_("He is the son of %(father)s.") % {
-                            'father' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.getPrimaryName().getRegularName(), })
             else:
                 if mother and father:
                     if dead:
@@ -669,10 +701,10 @@ class FtmAncestorReport(Report.Report):
                 elif father:
                     if dead:
                         self.doc.write_text(_("She was the daughter of %(father)s.") % {
-                            'father' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.getPrimaryName().getRegularName(), })
                     else:
                         self.doc.write_text(_("She is the daughter of %(father)s.") % {
-                            'father' : mother.getPrimaryName().getRegularName(), })
+                            'father' : father.getPrimaryName().getRegularName(), })
             self.doc.write_text(' ');
 
 
