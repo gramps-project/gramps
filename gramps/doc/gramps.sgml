@@ -1,7 +1,4 @@
 <!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
-        <!-- if not using PNG graphic, replace reference above with
-             .....PUBLIC "-//OASIS//DTD DocBook V3.1//EN"[
-         -->
 <!ENTITY version "0.2.0"> <!-- replace with application version -->
 ]>
 

@@ -1,4 +1,4 @@
-
+#
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000  Donald N. Allingham
@@ -40,13 +40,13 @@ class Date:
     range = 1
     normal = 0
 
-    from_str = _("(from|between|bet)")
+    from_str = _("(from|between|bet|bet.)")
     to_str = _("(and|to|-)")
     
-    efmt = re.compile(r"\s*(from|between|bet)\.?\s+(.+)\s+(and|to)\s+(.+)\s*$",
+    efmt = re.compile(r"\s*(from|between|bet)\s+(.+)\s+(and|to)\s+(.+)\s*$",
                       re.IGNORECASE)
 
-    fmt = re.compile(r"\s*" + from_str + r"\.?\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
+    fmt = re.compile(r"\s*" + from_str + r"\s+(.+)\s+" + to_str + r"\s+(.+)\s*$",
                      re.IGNORECASE)
 
     def __init__(self):
@@ -231,23 +231,31 @@ class SingleDate:
 
     m2v = { _("abt")    : about ,
             _("about")  : about,
+            _("abt.")   : about,
             _("est")    : about ,
+            _("est.")   : about ,
             _("circa")  : about,
             _("around") : about,
             _("before") : before,
             _("bef")    : before,
+            _("bef.")   : before,
             _("after")  : after,
+            _("aft.")   : after,
             _("aft")    : after }
 
     modifiers = "(" + \
                 _("abt") + '|' + \
+                _("abt\.") + '|' + \
                 _("about") + '|' + \
                 _("est") + '|' + \
+                _("est\.") + '|' + \
                 _("circa") + '|' + \
                 _("around") + '|' + \
                 _("before") + '|' + \
                 _("after") + '|' + \
                 _("aft") + '|' + \
+                _("aft\.") + '|' + \
+                _("bef\.") + '|' + \
                 _("bef") + ')'
     
     start = "^\s*" + modifiers + "?\s*"
@@ -896,5 +904,5 @@ if __name__ == "__main__":
         checkit("1/12/1999")
         checkit("12/11/1999")
 
-		
+    checkit("BET. 1994 - 1999")
 

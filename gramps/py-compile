@@ -37,20 +37,6 @@ else
     trans="path = os.path.join('$basedir', file)"
 fi
 
-$PYTHON -c "
-import sys, os, string, py_compile
-
-files = '''$*'''
-print 'Byte-compiling python modules...'
-for file in string.split(files):
-    $trans
-    if not os.path.exists(path) or not (len(path) >= 3 and path[-3:] == '.py'):
-	continue
-    print file,
-    sys.stdout.flush()
-    py_compile.compile(path)
-print" || exit $?
-
 # this will fail for python < 1.5, but that doesn't matter ...
 $PYTHON -O -c "
 import sys, os, string, py_compile
