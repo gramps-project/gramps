@@ -125,17 +125,17 @@ class MergePeople:
             self.glade.get_widget("bfather1").set_active(1)
             
         if f1_handle:
-            f1 = self.db.get_person_from_handle(f1_handle)
-            father1 = name_of(f1.get_father_handle())
-            mother1 = name_of(f1.get_mother_handle())
+            f1 = self.db.get_family_from_handle(f1_handle)
+            father1 = name_of(self.db.get_person_from_handle(f1.get_father_handle()))
+            mother1 = name_of(self.db.get_person_from_handle(f1.get_mother_handle()))
         else:
             father1 = ""
             mother1 = ""
 
-        if f2:
-            f2 = self.db.get_person_from_handle(f2_handle)
-            father2 = name_of(f2.get_father_handle())
-            mother2 = name_of(f2.get_mother_handle())
+        if f2_handle:
+            f2 = self.db.get_family_from_handle(f2_handle)
+            father2 = name_of(self.db.get_person_from_handle(f2.get_father_handle()))
+            mother2 = name_of(self.db.get_person_from_handle(f2.get_mother_handle()))
         else:
             father2 = ""
             mother2 = ""
@@ -280,18 +280,22 @@ class MergePeople:
             else:
                 self.p1.add_attribute(xdata)
 
-        lst = self.p1.get_event_list()[:]
-        for xdata in self.p2.get_event_list():
+        handle_lst = self.p1.get_event_list()[:]
+        lst = []
+        for data_handle in handle_lst:
+            lst.append(self.db.get_event_from_handle(data_handle))
+        for xdata_handle in self.p2.get_event_list():
+            xdata = self.db.get_event_from_handle(xdata_handle)
             for data in lst:
                 if data.are_equal(xdata):
                     self.copy_note(data,xdata)
                     self.copy_sources(data,xdata)
                     break
             else:
-                self.p1.add_event(xdata)
+                self.p1.add_event_handle(xdata_handle)
 
         lst = self.p1.get_address_list()
-        for xdata in self.p2.getAddressList():
+        for xdata in self.p2.get_address_list():
             for data in lst:
                 if data.are_equal(xdata):
                     self.copy_note(data,xdata)
@@ -393,7 +397,8 @@ class MergePeople:
         self.update(self.p1,self.p2,old_id)
         Utils.destroy_passed_object(self.top)
         
-    def find_family(self,family):
+    def find_family(self,family_handle):
+        family = self.db.get_family_from_handle(family_handle)
         if self.p1.get_gender() == RelLib.Person.MALE:
             mother = family.get_mother_handle()
             father = self.p1.get_handle()
@@ -404,7 +409,7 @@ class MergePeople:
         for myfamily_handle in self.db.get_family_handles():
             myfamily = self.db.get_family_from_handle(myfamily_handle)
             if myfamily.get_father_handle() == father and myfamily.get_mother_handle() == mother:
-                return myfamily
+                return myfamily_handle
         return None
 
     def merge_family_pair(self,tgt_family,src_family):
@@ -425,7 +430,10 @@ class MergePeople:
 
         # merge family events
 
-        lst = tgt_family.get_event_list()[:]
+        handle_lst = tgt_family.get_event_list()[:]
+        lst = []
+        for data_handle in handle_lst:
+            lst.append(self.db.get_event_from_handle(data_handle))
         for xdata in src_family.get_event_list():
             for data in lst:
                 if data.are_equal(xdata):
@@ -433,7 +441,7 @@ class MergePeople:
                     self.copy_sources(data,xdata)
                     break
             else:
-                tgt_family.add_event(xdata)
+                tgt_family.add_event_handle(xdata_handle)
 
         # merge family attributes
 
@@ -469,16 +477,19 @@ class MergePeople:
         
         family_num = 0
         mylist = self.p2.get_family_handle_list()[:]
-        for src_family in mylist:
+        for src_family_handle in mylist:
             
             family_num = family_num + 1
 
-            if not self.db.get_family_handle_map().has_key(src_family.get_handle()):
+            if not self.db.has_family_handle(src_family_handle):
                 continue
-            if src_family in self.p1.get_family_handle_list():
+            if src_family_handle in self.p1.get_family_handle_list():
                 continue
 
-            tgt_family = self.find_family(src_family)
+            src_family = self.db.get_family_from_handle(src_family_handle)
+
+            tgt_family_handle = self.find_family(src_family_handle)
+            tgt_family = self.db.get_family_from_handle(tgt_family_handle)
 
             #
             # This is the case where a new family to be added to the
@@ -487,10 +498,10 @@ class MergePeople:
             # family (with the pre-merge identity of the p1) from
             # both the parents
             #
-            if tgt_family in self.p1.get_family_handle_list():
+            if tgt_family_handle in self.p1.get_family_handle_list():
                 if tgt_family.get_father_handle() != None and \
-                   src_family in tgt_family.get_family_handle_list():
-                    tgt_family.get_father_handle().remove_family_handle(src_family)
+                   src_family_handle in tgt_family.get_family_handle_list():
+                    tgt_family.get_father_handle().remove_family_handle(src_family_handle)
                 if tgt_family.get_mother_handle() != None and \
                    src_family in tgt_family.get_mother_handle().get_family_handle_list():
                     tgt_family.get_mother_handle().remove_family_handle(src_family)
@@ -498,7 +509,7 @@ class MergePeople:
                 self.merge_family_pair(tgt_family,src_family)
                         
                 # delete the old source family
-                del self.db.get_family_handle_map()[src_family.get_handle()]
+                del self.db.get_family_handles()[src_family.get_handle()]
 
                 continue
             
@@ -527,7 +538,7 @@ class MergePeople:
                     src_family.get_mother_handle().remove_family_handle(src_family.get_handle())
                     src_family.get_mother_handle().add_family_handle(tgt_family.get_handle())
 
-                del self.db.get_family_handle_map()[src_family.get_handle()]
+                del self.db.get_family_handles()[src_family.get_handle()]
             else:
                 if src_family not in self.p1.get_family_handle_list():
                     self.p1.add_family_handle(src_family)
@@ -539,16 +550,17 @@ class MergePeople:
 
         # a little debugging here
         
-        for fam in self.db.get_family_handle_map().values():
-            if self.p2 in fam.get_child_handle_list():
-                fam.remove_child_handle(self.p2)
-                fam.add_child_handle(self.p1)
-            if self.p2 == fam.get_father_handle():
-                fam.set_father_handle(self.p1)
-            if self.p2 == fam.get_mother_handle():
+        for fam_handle in self.db.get_family_handles():
+            fam = self.db.get_family_from_handle(fam_handle)
+            if self.p2.get_handle() in fam.get_child_handle_list():
+                fam.remove_child_handle(self.p2.get_handle())
+                fam.add_child_handle(self.p1.get_handle())
+            if self.p2.get_handle() == fam.get_father_handle():
+                fam.set_father_handle(self.p1.get_handle())
+            if self.p2.get_handle() == fam.get_mother_handle():
                 fam.set_mother_handle(self.p1)
             if fam.get_father_handle() == None and fam.get_mother_handle() == None:
-                self.delete_empty_family(fam)
+                self.delete_empty_family(fam_handle)
                 
     def remove_marriage(self,family,person):
         if person:
@@ -874,7 +886,7 @@ def ancestors_of(p1,lst):
 def name_of(p):
     if not p:
         return ""
-    return "%s (%s)" % (NameDisplay.displayer.display(p),p.get_handle())
+    return "%s (%s)" % (NameDisplay.displayer.display(p),p.get_gramps_id())
 
 #-------------------------------------------------------------------------
 #
@@ -966,7 +978,8 @@ class MergePlaces:
                     event.set_place_handle(self.p1)
 
         # loop through families, changing event references to P2 to P1
-        for f in self.db.get_family_handle_map().values():
+        for f_handle in self.db.get_family_handles():
+            f = self.db.get_event_from_handle(f_handle)
             for event in f.get_event_list():
                 if event.get_place_handle() == self.p2:
                     event.set_place_handle(self.p1)
