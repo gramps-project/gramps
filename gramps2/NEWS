@@ -1,10 +1,17 @@
-Version 0.9.0-pre8
+Version 0.9.0
+* GNOME 2.0 support. Requires pygtk2 and gnome-python2.
+* The single person list has been replaced with a tabbed person list, sort on
+  by the first character of the surname.
+* Full support for unicode, allowing mixed character sets and non-latin characters.
+* Different views are now selected with a side bar, similar to Evolution. If the 
+  sidebar is disabled, then views are selected by a tabbed interface.
+* Persian and Islamic calendars have been added. The calendar structure has be
+  reworked to allow for different calendars to be added as plugins.
 * Improved support for calendar formats
-* Improved UTF-8 support
-* Tabs for person list based off name first letter of the surname. Dynamically
-  created
-* More features implemented
-* Many bug fixes
+* New Timeline report added.
+* FamilyView redesigned to simplify the handling of spouses and children.
+* Add/Edit/Remove buttons have been removed and replaced with buttons on the
+  toolbar.
 
 Version 0.7.3
 * New Russian (Alex Roitman) and Danish (Lars Lundin) translations.
