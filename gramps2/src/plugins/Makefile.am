@@ -50,7 +50,12 @@ pkgdata_PYTHON = \
 	RelGraph.py\
 	rel_it.py\
 	rel_hu.py\
-	rel_de.py
+	rel_da.py\
+	rel_de.py\
+	rel_fi.py\
+	rel_fr.py\
+	rel_no.py\
+	rel_sv.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
 pkgpythondir = @pkgpythondir@/plugins

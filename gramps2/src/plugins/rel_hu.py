@@ -296,6 +296,9 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         else:
             return ("",[])
 
+        firstRel = len(firstRel)
+        secondRel = len(secondRel)
+
         if firstRel == 0:
             if secondRel == 0:
                 return ('',common)
