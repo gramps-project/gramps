@@ -37,8 +37,6 @@ import string
 #-------------------------------------------------------------------------
 import gtk
 
-cnv = string.lower
-
 #-------------------------------------------------------------------------
 #
 # AutoCompBase
@@ -50,7 +48,11 @@ class AutoCompBase:
         if source:
             self.nlist = source.nlist
         else:
-            self.nlist = map((lambda n: (cnv(n),n)),plist)
+            cnv = string.lower
+            self.nlist = []
+            for n in plist:
+                self.nlist.append((cnv(n),n))
+#            self.nlist = map((lambda n: (cnv(n),n)),plist)
             self.nlist.sort()
         self.nl = "xzsdkdjecsc"
         self.l = 0
@@ -135,7 +137,7 @@ class AutoCombo(AutoCompBase):
         """
         # Clear any timer
         timer = entry.get_data("timer");
-        if (timer):
+        if timer:
             gtk.timeout_remove(timer)
 
         if self.inb == 1:
