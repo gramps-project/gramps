@@ -1,3 +1,6 @@
+2004-10-07 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/EventEdit.py (update_event): Typo.
+
 2004-10-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ReadGedcom.py: remove extra commits
 
