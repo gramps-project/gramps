@@ -59,8 +59,122 @@
       your computer instead of pencils and unmanageable reams of paper. </para>
     </sect1>
     
+
     <sect1 id="whats-new">
+        <title>What's new since 1.0.X</title>
+        <para>This section lists most notable changes from the previous stable branch of 
+        &app;, the 1.0.X.</para>
+
+      <variablelist>
+
+      <varlistentry><term>Berkely database backend</term>
+	<listitem><para>The default format for &app; is now the BSDDB database. This change
+	allowed us to overcome performance issues and memory requirements of the 1.0.X branch.
+	With the database backend, the database sizes of several hunder thousand people do not
+	present a major obstacle any longer.</para>
+	
+	<para>
+	The default extension for &app; BSDDB database files is grdb. The new format is open and
+	fully documented in the developer's API reference distributed with the source of &app;.
+	</para>
+
+	<para>A consequence of the new database backend is that the changes, once approved
+	by the user, are applied immediately. In short, once you click <guibutton>OK</guibutton> 
+	in the Person, Family, Source, Place, Media object, or Event editor, all the changes made to 
+	this object are recorded in the database. No saving is necessary (or even possible). The analog 
+	of quitting without saving would be abandoning all changes and quitting. Also, it is possible 
+	to undo recent actions.
+	
+	</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry><term>Interface improvements</term>
+	<listitem><para>
+	There were numerous changes in the interface. Most of them are subtle and incremental 
+	improvements, and all of them cannot be listed here. The most noticeable changes are:
+	<itemizedlist>
+	<listitem><para>Removal of alphabetical tabs</para></listitem>
+	<listitem><para>Ability to add/remove/rearrange columns in list views</para></listitem>
+	<listitem><para>Removal of Save function and addition of Undo</para></listitem>
+	<listitem><para>Proper window management and removal of most modal windows</para></listitem>
+	<listitem><para>Support for Tip of the Day</para></listitem>
+	<listitem><para>Person-dependent context menus (right-click) in Pedigree View
+	listing parents, children, spouses, and siblings</para></listitem>
+	<listitem><para>Export wizard</para></listitem>
+	<listitem><para>Built-in Find function in list views</para></listitem>
+	<listitem><para>Date selector dialog</para></listitem>
+	<listitem><para>Name editor enhancements: patronymic names and non-default grouping</para></listitem>
+	<listitem><para>Recent file support (both gramps-specific and gnome-wide)</para></listitem>
+	</itemizedlist>	
+
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Other database backends</term>
+	<listitem><para>
+	Along with the BSDDB backend, the in-memory database handling for &app; XML and 
+	GEDCOM formats has been added. Simply put, it is now possible to natively open data
+	in those two formats (although the preferred and default format is grdb) and work with
+	that data, without necessarily setting up an empty database and then importing into it.
+	This approach requires holding all data in memory, so it is only useful for small databases
+	(depending on the available memory size). In such mode, the data is automatically
+	saved upon exit, to mimic the functionality of the real database.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Import and Export</term>
+	<listitem><para>
+	New import and export filters available for the GeneWeb format.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Reports</term>
+	<listitem><para>
+	A new report -- Statistics Chart -- has been added to &app;.
+	</para>
+
+	<para>An overall change of the whole report framework has been acomplished. 
+	All reports now remember their options. It is possible to generate reports from the command
+	line, without launching the interactive &app; session. The report API is much simpler now,
+	making it easy to write custom report. A single code instance may be used for a standalone
+	report,	a book item, and a command-line report. </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Command line</term>
+	<listitem><para>The new command line functionality includes opening the filename
+	argument	given without any flags, as well as new flags and options for report generation.
+	Also, the addition of new formats leads to addition of available format options.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Internationalization</term>
+	<listitem><para>
+	The approach for entering and displaying dates has been completely re-worked. In 
+	particular, the new framework allows for a deeper localization of displayed dates than
+	was ever possible using the translatable strings.</para>
+
+	<para>The internationalization of names have also been improved. Names can be
+	grouped under a non-default string. Patronymic names are supported, and it is easy
+	to program new ways on displaying names, as may be required by other cultures
+	and languages.
+	</para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>Desktop integration</term>
+	<listitem><para>All formats known to &app; are now registered as mime types, each
+	with its icon and &app; as a default handler. Double-clicking on a file with any of these
+	formats will launch &app; and open that file. &app; also added support for the recent
+	documents functinonailty. This is on both for the GNOME-wide level and within the &app;.
+	</para>
+	<para>The preferences are now properly store using GConf, with schemas, partitioning
+	of keys into smaller directories, error checking, and notification. </para>
+	</listitem>
+      </varlistentry>
+
+      </variablelist>
     </sect1>
+
 
     <sect1 id="typography">
         <title>Typographical conventions</title>
@@ -123,4 +237,3 @@
     </sect1>
 
   </preface>
-  
