@@ -1647,7 +1647,6 @@ def on_browse_clicked(obj):
     if path != "":
         gnome.url.show(path)
 
-
 #-------------------------------------------------------------------------
 #
 # EventEditor class
@@ -1772,7 +1771,6 @@ def on_event_edit_ok_clicked(obj):
         
     ee.parent.redraw_event_list()
     utils.destroy_passed_object(obj)
-
 
 #-------------------------------------------------------------------------
 #

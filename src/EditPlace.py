@@ -83,8 +83,17 @@ class EditPlace:
         self.web_list = self.top_window.get_widget("web_list")
         self.web_url = self.top_window.get_widget("url_addr")
         self.web_description = self.top_window.get_widget("url_des")
+
+        self.loc_list = self.top_window.get_widget("loc_list")
+        self.loc_city = self.top_window.get_widget("loc_city")
+        self.loc_county = self.top_window.get_widget("loc_county")
+        self.loc_state  = self.top_window.get_widget("loc_state")
+        self.loc_country = self.top_window.get_widget("loc_country")
+
         self.ulist = place.getUrlList()[:]
         self.urls_changed = 0
+        self.llist = place.get_alternate_locations()[:]
+        self.locations_changed = 0
 
         self.title.set_text(place.get_title())
         mloc = place.get_main_location()
@@ -112,7 +121,11 @@ class EditPlace:
             "on_add_url_clicked" : on_add_url_clicked,
             "on_delete_url_clicked" : on_delete_url_clicked,
             "on_update_url_clicked" : on_update_url_clicked,
+            "on_add_loc_clicked" : on_add_loc_clicked,
+            "on_delete_loc_clicked" : on_delete_loc_clicked,
+            "on_update_loc_clicked" : on_update_loc_clicked,
             "on_web_list_select_row" : on_web_list_select_row,
+            "on_loc_list_select_row" : on_loc_list_select_row,
             "on_apply_clicked" : on_place_apply_clicked
             })
 
@@ -127,6 +140,10 @@ class EditPlace:
         self.web_list.set_data(INDEX,-1)
         self.redraw_url_list()
 
+        self.loc_list.set_data(PLACE,self)
+        self.loc_list.set_data(INDEX,-1)
+        self.redraw_location_list()
+
     #-------------------------------------------------------------------------
     #
     #
@@ -134,6 +151,14 @@ class EditPlace:
     #-------------------------------------------------------------------------
     def update_urls(self):
         self.place.setUrlList(self.ulist)
+
+    #-------------------------------------------------------------------------
+    #
+    #
+    #
+    #-------------------------------------------------------------------------
+    def update_locations(self):
+        self.place.set_alternate_locations(self.ulist)
 
     #---------------------------------------------------------------------
     #
@@ -161,6 +186,34 @@ class EditPlace:
             self.web_list.moveto(current_row,0)
         self.web_list.set_data(INDEX,current_row)
         self.web_list.thaw()
+
+    #---------------------------------------------------------------------
+    #
+    # redraw_location_list
+    #
+    #---------------------------------------------------------------------
+    def redraw_location_list(self):
+        self.loc_list.freeze()
+        self.loc_list.clear()
+
+	self.loc_index = 0
+        for loc in self.llist:
+            self.loc_list.append([loc.get_city(),loc.get_county(),
+                                  loc.get_state(),loc.get_country()])
+            self.loc_list.set_row_data(self.loc_index,loc)
+            self.loc_index = self.loc_index + 1
+
+        current_row = self.loc_list.get_data(INDEX)
+        
+        if self.loc_index > 0:
+            if current_row <= 0:
+                current_row = 0
+            elif self.loc_index <= current_row:
+                current_row = current_row - 1
+            self.loc_list.select_row(current_row,0)
+            self.loc_list.moveto(current_row,0)
+        self.loc_list.set_data(INDEX,current_row)
+        self.loc_list.thaw()
 
     #-------------------------------------------------------------------------
     #
@@ -246,6 +299,10 @@ def on_place_apply_clicked(obj):
     if edit.urls_changed:
         utils.modified()
 
+    edit.update_locations()
+    if edit.locations_changed:
+        utils.modified()
+
     utils.destroy_passed_object(edit.top)
     edit.callback(edit.place)
 
@@ -256,7 +313,7 @@ def on_place_apply_clicked(obj):
 #-------------------------------------------------------------------------
 def on_switch_page(obj,a,page):
     src = obj.get_data(PLACE)
-    if page == 2 and src.not_loaded:
+    if page == 3 and src.not_loaded:
         src.not_loaded = 0
         src.load_images()
 
@@ -509,6 +566,18 @@ def on_update_url_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
+def on_update_loc_clicked(obj):
+    row = obj.get_data(INDEX)
+    if row < 0:
+        return
+
+    LocationEditor(obj.get_data(PLACE),obj.get_row_data(row))
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_delete_url_clicked(obj):
     row = obj.get_data(INDEX)
     if row < 0:
@@ -528,9 +597,37 @@ def on_delete_url_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
+def on_delete_loc_clicked(obj):
+    row = obj.get_data(INDEX)
+    if row < 0:
+        return
+
+    epo = obj.get_data(PLACE)
+    del epo.llist[row]
+
+    if row > len(epo.llist)-1:
+        obj.set_data(INDEX,row-1)
+
+    epo.redraw_location_list()
+    utils.modified()
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_add_url_clicked(obj):
     epo = obj.get_data(PLACE)
     UrlEditor(obj.get_data(PLACE),None)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_add_loc_clicked(obj):
+    epo = obj.get_data(PLACE)
+    LocationEditor(obj.get_data(PLACE),None)
 
 #-------------------------------------------------------------------------
 #
@@ -589,6 +686,183 @@ def on_url_edit_ok_clicked(obj):
     ee.parent.redraw_url_list()
     utils.destroy_passed_object(obj)
 
+#-------------------------------------------------------------------------
+#
+# on_name_list_select_row - sets the row object attached to the passed
+# object, and then updates the display with the data corresponding to
+# the row.
+#
+#-------------------------------------------------------------------------
+def on_web_list_select_row(obj,row,b,c):
+    obj.set_data(INDEX,row)
+
+    epo = obj.get_data(PLACE)
+    url = obj.get_row_data(row)
+
+    epo.web_url.set_text(": %s " % url.get_path())
+    epo.web_description.set_text(": %s" % url.get_description())
+
+#-------------------------------------------------------------------------
+#
+# on_name_list_select_row - sets the row object attached to the passed
+# object, and then updates the display with the data corresponding to
+# the row.
+#
+#-------------------------------------------------------------------------
+def on_loc_list_select_row(obj,row,b,c):
+    obj.set_data(INDEX,row)
+
+    epo = obj.get_data(PLACE)
+    loc = obj.get_row_data(row)
+
+    epo.loc_city.set_text(": %s " % loc.get_city())
+    epo.loc_county.set_text(": %s " % loc.get_county())
+    epo.loc_state.set_text(": %s " % loc.get_state())
+    epo.loc_country.set_text(": %s " % loc.get_country())
+
+#-------------------------------------------------------------------------
+#
+# update_attrib
+# 
+# Updates the specified event with the specified date.  Compares against
+# the previous value, so the that modified flag is not set if nothing has
+# actually changed.
+#
+#-------------------------------------------------------------------------
+def update_url(url,des,addr,priv):
+    changed = 0
+        
+    if url.get_path() != addr:
+        url.set_path(addr)
+        changed = 1
+        
+    if url.get_description() != des:
+        url.set_description(des)
+        changed = 1
+
+    if url.getPrivacy() != priv:
+        url.setPrivacy(priv)
+        changed = 1
+
+    return changed
+
+#-------------------------------------------------------------------------
+#
+# update_attrib
+# 
+# Updates the specified event with the specified date.  Compares against
+# the previous value, so the that modified flag is not set if nothing has
+# actually changed.
+#
+#-------------------------------------------------------------------------
+def update_location(loc,city,county,state,country):
+    changed = 0
+        
+    if loc.get_city() != city:
+        loc.set_city(city)
+        changed = 1
+
+    if loc.get_county() != county:
+        loc.set_county(county)
+        changed = 1
+
+    if loc.get_state() != state:
+        loc.set_state(state)
+        changed = 1
+
+    if loc.get_country() != country:
+        loc.set_country(country)
+        changed = 1
+        
+    return changed
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_browse_clicked(obj):
+    import gnome.url
+
+    path = obj.get()[2:]
+    if path != "":
+        gnome.url.show(path)
+
+#-------------------------------------------------------------------------
+#
+# LocationEditor class
+#
+#-------------------------------------------------------------------------
+class LocationEditor:
+
+    def __init__(self,parent,location):
+        self.parent = parent
+        self.location = location
+        self.top = libglade.GladeXML(const.dialogFile, "loc_edit")
+        self.window = self.top.get_widget("loc_edit")
+        self.city   = self.top.get_widget("city")
+        self.state  = self.top.get_widget("state")
+        self.county = self.top.get_widget("county")
+        self.country = self.top.get_widget("country")
+
+        if parent.place:
+            name = _("Location Editor for %s") % parent.place.get_title()
+        else:
+            name = _("Location Editor")
+            
+        self.top.get_widget("locationTitle").set_text(name) 
+
+        if location != None:
+            self.city.set_text(location.get_city())
+            self.county.set_text(location.get_county())
+            self.country.set_text(location.get_country())
+            self.state.set_text(location.get_state())
+
+        self.window.set_data("o",self)
+        self.top.signal_autoconnect({
+            "destroy_passed_object" : utils.destroy_passed_object,
+            "on_loc_edit_ok_clicked" : on_location_edit_ok_clicked
+            })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_location_edit_ok_clicked(obj):
+    ee = obj.get_data("o")
+    loc = ee.location
+
+    city = ee.city.get_text()
+    county = ee.county.get_text()
+    country = ee.country.get_text()
+    state = ee.state.get_text()
+
+    if loc == None:
+        loc = Location()
+        ee.parent.llist.append(loc)
+        
+    if update_location(loc,city,county,state,country):
+        ee.parent.locations_changed = 1
+        
+    ee.parent.redraw_location_list()
+    utils.destroy_passed_object(obj)
+
+#-------------------------------------------------------------------------
+#
+# on_name_list_select_row - sets the row object attached to the passed
+# object, and then updates the display with the data corresponding to
+# the row.
+#
+#-------------------------------------------------------------------------
+def on_location_list_select_row(obj,row,b,c):
+    obj.set_data(INDEX,row)
+
+    epo = obj.get_data(PLACE)
+    loc = obj.get_row_data(row)
+
+#    epo.web_url.set_text(": %s " % url.get_path())
+#    epo.web_description.set_text(": %s" % url.get_description())
 
 #-------------------------------------------------------------------------
 #
@@ -628,56 +902,4 @@ def get_detail_text(obj):
             details = "%s, %s" % (details,_("Private"))
     return details
 
-#-------------------------------------------------------------------------
-#
-# on_name_list_select_row - sets the row object attached to the passed
-# object, and then updates the display with the data corresponding to
-# the row.
-#
-#-------------------------------------------------------------------------
-def on_web_list_select_row(obj,row,b,c):
-    obj.set_data(INDEX,row)
 
-    epo = obj.get_data(PLACE)
-    url = obj.get_row_data(row)
-
-    epo.web_url.set_text(": %s " % url.get_path())
-    epo.web_description.set_text(": %s" % url.get_description())
-
-#-------------------------------------------------------------------------
-#
-# update_attrib
-# 
-# Updates the specified event with the specified date.  Compares against
-# the previous value, so the that modified flag is not set if nothing has
-# actually changed.
-#
-#-------------------------------------------------------------------------
-def update_url(url,des,addr,priv):
-    changed = 0
-        
-    if url.get_path() != addr:
-        url.set_path(addr)
-        changed = 1
-        
-    if url.get_description() != des:
-        url.set_description(des)
-        changed = 1
-
-    if url.getPrivacy() != priv:
-        url.setPrivacy(priv)
-        changed = 1
-
-    return changed
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_browse_clicked(obj):
-    import gnome.url
-
-    path = obj.get()[2:]
-    if path != "":
-        gnome.url.show(path)

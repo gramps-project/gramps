@@ -105,8 +105,6 @@ source_list   = None
 place_list    = None
 database      = None
 family_window = None
-queryTop      = None
-prefsTop      = None
 pv            = {}
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
@@ -807,9 +805,9 @@ def update_display(changed):
             goto_active_person()
     elif page == 1:
         load_family()
-    elif page == 3:
+    elif page == 2:
         load_sources()
-    elif page == 4:
+    elif page == 3:
         load_tree()
     else:
         load_places()
@@ -822,8 +820,6 @@ def update_display(changed):
 def load_sources():
     source_list.clear()
     source_list.freeze()
-
-    color_clist = ListColors.ColorList(source_list,1)
 
     current_row = source_list.get_data("i")
     if current_row == None:
@@ -1294,9 +1290,8 @@ def on_select_spouse_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
-def on_edit_active_person(obj):
-    if active_person:
-        load_person(active_person)
+def load_active_person(obj):
+    load_person(active_person)
 
 #-------------------------------------------------------------------------
 #
@@ -1304,8 +1299,7 @@ def on_edit_active_person(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_spouse_clicked(obj):
-    if active_spouse:
-        load_person(active_spouse)
+    load_person(active_spouse)
 
 #-------------------------------------------------------------------------
 #
@@ -1313,8 +1307,7 @@ def on_edit_spouse_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_mother_clicked(obj):
-    if active_mother:
-        load_person(active_mother)
+    load_person(active_mother)
 
 #-------------------------------------------------------------------------
 #
@@ -1322,16 +1315,15 @@ def on_edit_mother_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_edit_father_clicked(obj):
-    if active_father:
-        load_person(active_father)
+    load_person(active_father)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def on_addperson_clicked(obj):
-    load_person(None)
+def load_new_person(obj):
+    EditPerson.EditPerson(Person(),database,new_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -1339,11 +1331,9 @@ def on_addperson_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_person_clicked(obj):
-    if not active_person:
-        return
-
-    topWindow.question(_("Do you really wish to delete %s?") % \
-                       Config.nameof(active_person), delete_person_response)
+    if active_person:
+        msg = _("Do you really wish to delete %s?") % Config.nameof(active_person)
+        topWindow.question( msg, delete_person_response)
 
 #-------------------------------------------------------------------------
 #
@@ -1399,14 +1389,6 @@ def remove_from_person_list(person):
         del alt2col[person]
     person_list.thaw()
     
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_editperson_clicked(obj):
-    load_person(active_person)
-
 #-------------------------------------------------------------------------
 #
 #
@@ -1607,8 +1589,7 @@ def on_motherList_select_row(obj,a,b,c):
 #-------------------------------------------------------------------------
 def on_child_list_button_press_event(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        if active_child:
-            load_person(active_child)
+        load_person(active_child)
 
 #-------------------------------------------------------------------------
 #
@@ -1669,14 +1650,6 @@ def on_child_list_select_row(obj,a,b,c):
 def on_spouseList_select_row(obj,a,b,c):
     global select_spouse
     select_spouse = obj.get_row_data(a)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_new_person_activate(obj):
-    load_person(None)
 
 #-------------------------------------------------------------------------
 #
@@ -1804,8 +1777,6 @@ def load_places():
     place_list.freeze()
     place_list.clear()
 
-    color_clist = ListColors.ColorList(place_list,1)
-
     current_row = place_list.get_data("i")
     if current_row == None:
         current_row = -1
@@ -1839,10 +1810,7 @@ def load_places():
 #-------------------------------------------------------------------------
 def on_pv_button_press_event(obj,event):
     if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
-        person = obj.get_data("p")
-        if person == None:
-            return
-        load_person(person)
+        load_person(obj.get_data("p"))
 
 #-------------------------------------------------------------------------
 #
@@ -1956,10 +1924,9 @@ def on_swap_clicked(obj):
     else:
         spouse = gtop.get_widget("fv_spouse1").get_data("person")
 
-    if not spouse:
-        return
-    change_active_person(spouse)
-    load_family()
+    if spouse:
+        change_active_person(spouse)
+        load_family()
 
 #-------------------------------------------------------------------------
 #
@@ -2061,9 +2028,7 @@ def redisplay_person_list(person):
 #
 #-------------------------------------------------------------------------
 def load_person(person):
-    if person == None:
-        EditPerson.EditPerson(Person(),database,new_after_edit)
-    else:
+    if person:
         EditPerson.EditPerson(person,database,update_after_edit)
 
 #-------------------------------------------------------------------------
@@ -2847,12 +2812,12 @@ def main(arg):
         "on_new_clicked" : on_new_clicked,
         "on_add_bookmark_activate" : on_add_bookmark_activate,
         "on_arrow_left_clicked" : on_arrow_left_clicked,
-        "on_addperson_clicked" : on_addperson_clicked,
+        "on_addperson_clicked" : load_new_person,
         "on_delete_person_clicked" : on_delete_person_clicked,
         "on_preferences_activate" : on_preferences_activate,
         "on_pv_button_press_event" : on_pv_button_press_event,
         "on_edit_bookmarks_activate" : on_edit_bookmarks_activate,
-        "on_edit_active_person" : on_edit_active_person,
+        "on_edit_active_person" : load_active_person,
         "on_edit_spouse_clicked" : on_edit_spouse_clicked,
         "on_edit_father_clicked" : on_edit_father_clicked,
         "on_edit_mother_clicked" : on_edit_mother_clicked,
@@ -2864,7 +2829,7 @@ def main(arg):
         "on_place_list_button_press_event" : on_place_list_button_press_event,
         "on_place_list_select_row": on_place_list_select_row,
         "on_delete_source_clicked" : on_delete_source_clicked,
-#        "on_delete_place_clicked" : on_delete_place_clicked,
+        "on_delete_place_clicked" : on_delete_place_clicked,
         "on_edit_source_clicked" : on_edit_source_clicked,
         "on_edit_place_clicked" : on_edit_place_clicked,
         "delete_event" : delete_event,
