@@ -11,6 +11,7 @@ __revision__ = "$Rev$"
 
 #
 # Support for text markup added: March 05 - rjt-gramps <at> thegrindstone.me.uk
+# Support for tooltips to be functions added: March 05 - rjt-gramps <at> thegrindstone.me.uk
 #
 
 import gtk
@@ -191,7 +192,15 @@ class TreeTips(gtk.Widget):
         elif self.path != pathReturn[0]:
             self.path = pathReturn[0]
             rowIter = model.get_iter(self.path)
-            text = model.get_value(rowIter, self.column)
+            tip = model.get_value(rowIter, self.column)
+            # The tip can be either a string or
+            # a function that returns a string.
+            if type(tip) == str:
+                text = tip
+            elif callable(tip):
+                text = tip()
+            else:
+                text = ""
             self.active_tips_data = text
             if not text:
                 if self.markup_enabled:

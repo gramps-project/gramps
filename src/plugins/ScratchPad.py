@@ -46,13 +46,511 @@ from gnome import help_display
 #
 #-------------------------------------------------------------------------
 import const
-import Utils
-import ListModel
 import TreeTips
 
 from DdTargets import DdTargets
 
 
+#-------------------------------------------------------------------------
+#
+# icons used in the object listing
+#
+#-------------------------------------------------------------------------
+
+LINK_PIC = gtk.gdk.pixbuf_new_from_file( "%s/%s" % (os.path.dirname(__file__),
+                                                    'stock_link.png'))
+BLANK_PIC = gtk.gdk.Pixbuf(0,0,8,1,1)
+
+#-------------------------------------------------------------------------
+#
+# wrapper classes to provide objecy specific listing in the ListView
+#
+#-------------------------------------------------------------------------
+
+class ScratchPadWrapper(object):
+
+    def __init__(self,db,obj):
+        self._db = db
+        self._obj = obj
+        self._type  = _("Unknown")
+        self._title = ''
+        self._value = ''
+
+    def get_type(self):
+        return self._type
+
+    def get_title(self):
+        return self._title
+
+    def get_value(self):
+        return self._value
+
+    def pack(self):
+        return str(self._obj)
+
+class ScratchPadGrampsTypeWrapper(ScratchPadWrapper):
+
+    def __init__(self,db,obj):
+        ScratchPadWrapper.__init__(self,db,obj)
+
+        #unpack object
+        exec 'unpack_data = %s' % self._obj
+        exec 'o_type = "%s"' % unpack_data[0]
+        self._obj = pickle.loads(unpack_data[2])
+        self._pickle = obj
+
+    def pack(self):
+        return self._pickle
+
+class ScratchPadAddress(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.ADDRESS]
+    DRAG_TARGET  = DdTargets.ADDRESS
+    ICON         = BLANK_PIC
+    
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("Address")
+        self._title = self._obj.get_date()
+        self._value = "%s %s %s %s" % (self._obj.get_street(),self._obj.get_city(),
+                                       self._obj.get_state(),self._obj.get_country())
+
+
+    def tooltip(self):
+        global escape
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Address"),
+            _("Date"), escape(self._obj.get_date()),
+            _("Location"),
+            escape(self._obj.get_street()),
+            escape(self._obj.get_city()),
+            escape(self._obj.get_state()),
+            escape(self._obj.get_country()),
+            escape(self._obj.get_postal_code()),
+            _("Telephone"), escape(self._obj.get_phone()))
+    
+        if len(self._obj.get_source_references()) > 0:
+            psrc_ref = self._obj.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Sources"),
+                _("Name"),escape(short(psrc.get_title())))
+            
+        return s
+
+class ScratchPadEvent(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.EVENT]
+    DRAG_TARGET  = DdTargets.EVENT
+    ICON         = LINK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("Event")
+        self._title = const.display_pevent(self._obj.get_name())
+        self._value = self._obj.get_description()
+
+
+    def tooltip(self):
+        global escape
+        
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Event"),
+            _("Type"),escape(const.display_pevent(self._obj.get_name())),
+            _("Date"),escape(self._obj.get_date()),
+            _("Place"),escape(place_title(self._db,self._obj)),
+            _("Cause"),escape(self._obj.get_cause()),
+            _("Description"), escape(self._obj.get_description()))
+
+        if len(self._obj.get_source_references()) > 0:
+            psrc_ref = self._obj.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+
+        return s
+
+class ScratchPadFamilyEvent(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.FAMILY_EVENT]
+    DRAG_TARGET  = DdTargets.FAMILY_EVENT
+    ICON         = BLANK_PIC
+    
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("Family Event")
+        self._title = const.display_fevent(self._obj.get_name())
+        self._value = self._obj.get_description()
+
+
+    def tooltip(self):
+        global escape
+        
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n" % (
+            _("Family Event"),
+            _("Type"),escape(const.display_fevent(self._obj.get_name())),
+            _("Date"),escape(self._obj.get_date()),
+            _("Place"),escape(place_title(self.db,self._obj)),
+            _("Cause"),escape(self._obj.get_cause()),
+            _("Description"), escape(self._obj.get_description()))
+
+        if len(self._obj.get_source_references()) > 0:
+            psrc_ref = self._obj.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Primary source"),
+                _("Name"),
+                escape(short(psrc.get_title())))
+
+        return s
+
+class ScratchPadUrl(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.URL]
+    DRAG_TARGET  = DdTargets.URL
+    ICON         = BLANK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("Url")
+        self._title = self._obj.get_path()
+        self._value = self._obj.get_description()
+
+
+    def tooltip(self):
+        global escape
+        return "<big><b>%s</b></big>\n\n"\
+               "\t<b>%s:</b>\t%s\n"\
+               "\t<b>%s:</b>\t%s" % (_("Url"),
+                                     _("Path"),
+                                     escape(self._obj.get_path()),
+                                     _("Description"),
+                                     escape(self._obj.get_description()))
+
+class ScratchPadAttribute(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.ATTRIBUTE]
+    DRAG_TARGET  = DdTargets.ATTRIBUTE
+    ICON         = BLANK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("Attribute")
+        self._title = const.display_pattr(self._obj.get_type())
+        self._value = self._obj.get_value()
+
+    def tooltip(self):
+        global escape
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (_("Attribute"),
+                                  _("Type"),
+                                  escape(const.display_pattr(self._obj.get_type())),
+                                  _("Value"),
+                                  escape(self._obj.get_value()))
+        
+        if len(self._obj.get_source_references()) > 0:
+            psrc_ref = self._obj.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Sources"),
+                _("Name"),escape(short(psrc.get_title())))
+
+        return s
+
+class ScratchPadFamilyAttribute(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.FAMILY_ATTRIBUTE]
+    DRAG_TARGET  = DdTargets.FAMILY_ATTRIBUTE
+    ICON         = BLANK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("Family Attribute")
+        self._title = const.display_fattr(self._obj.get_type())
+        self._value = self._obj.get_value()
+
+    def tooltip(self):
+        global escape
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (_("Family Attribute"),
+                                  _("Type"),
+                                  escape(const.display_fattr(self._obj.get_type())),
+                                  _("Value"),
+                                  escape(self._obj.get_value()))
+        
+        if len(self._obj.get_source_references()) > 0:
+            psrc_ref = self._obj.get_source_references()[0]
+            psrc_id = psrc_ref.get_base_handle()
+            psrc = self._db.get_source_from_handle(psrc_id)
+            s += "\n<big><b>%s</b></big>\n\n"\
+                 "\t<b>%s:</b>\t%s\n" % (
+                _("Sources"),
+                _("Name"),escape(short(psrc.get_title())))
+
+        return s
+
+class ScratchPadSourceRef(ScratchPadGrampsTypeWrapper):
+
+    DROP_TARGETS = [DdTargets.SOURCEREF]
+    DRAG_TARGET  = DdTargets.SOURCEREF
+    ICON         = BLANK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadGrampsTypeWrapper.__init__(self,db,obj)
+        self._type  = _("SourceRef")
+
+        base = self._db.get_source_from_handle(self._obj.get_base_handle())
+        self._title = base.get_title()
+        self._value = self._obj.get_text(),
+
+    def tooltip(self):
+        global escape
+        base = self._db.get_source_from_handle(self._obj.get_base_handle())
+        s = "<big><b>%s</b></big>\n\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s\n"\
+            "\t<b>%s:</b>\t%s" % (
+            _("SourceRef"),
+            _("Title"),escape(base.get_title()),
+            _("Page"), escape(self._obj.get_page()),
+            _("Text"), escape(self._obj.get_text()),
+            _("Comment"), escape(self._obj.get_note()))
+
+        return s
+
+class ScratchPadText(ScratchPadWrapper):
+
+    DROP_TARGETS = DdTargets.all_text()
+    DRAG_TARGET  = DdTargets.TEXT
+    ICON         = BLANK_PIC
+
+    def __init__(self,db,obj):
+        ScratchPadWrapper.__init__(self,db,obj)
+        self._type  = _("Text")
+
+        self._title = ""
+        self._value = self._obj
+
+    def tooltip(self):
+        global escape
+        return "<big><b>%s</b></big>\n"\
+               "%s" % (_("Text"),
+                       escape(self._obj))
+
+
+#-------------------------------------------------------------------------
+#
+# ScratchPadListModel class
+#
+#-------------------------------------------------------------------------
+class ScratchPadListModel(gtk.ListStore):
+
+    def __init__(self):
+        gtk.ListStore.__init__(self,
+                               str,    # object type
+                               object, # object
+                               object  # tooltip callback
+                               )
+
+                               
+
+        
+#-------------------------------------------------------------------------
+#
+# ScratchPadListView class
+#
+#-------------------------------------------------------------------------
+class ScratchPadListView:
+
+    def __init__(self, db, widget):
+        self._db = db
+        self._widget = widget
+
+        self._target_type_to_wrapper_class_map = {}
+        self._previous_drop_time = 0
+
+        self.otitles = [(_('Type'),-1,150),
+                        (_('Title'),-1,150),
+                        (_('Value'),-1,150),
+                        ('',-1,0)] # To hold the tooltip text
+
+        # Create the tree columns
+        self._col1 = gtk.TreeViewColumn(_("Type"))
+        self._col2 = gtk.TreeViewColumn(_("Title"))
+        self._col3 = gtk.TreeViewColumn(_("Value"))
+
+        # Add columns
+        self._widget.append_column(self._col1)
+        self._widget.append_column(self._col2)
+        self._widget.append_column(self._col3)
+
+        # Create cell renders
+        self._col1_cellpb = gtk.CellRendererPixbuf()
+        self._col1_cell = gtk.CellRendererText()
+        self._col2_cell = gtk.CellRendererText()
+        self._col3_cell = gtk.CellRendererText()
+
+        # Add cells to view
+        self._col1.pack_start(self._col1_cellpb, False)
+        self._col1.pack_start(self._col1_cell, True)
+        self._col2.pack_start(self._col2_cell, True)
+        self._col3.pack_start(self._col3_cell, True)
+
+        # Setup the cell data callback funcs
+        self._col1.set_cell_data_func(self._col1_cellpb, self.object_pixbuf)
+        self._col1.set_cell_data_func(self._col1_cell, self.object_type)
+        self._col2.set_cell_data_func(self._col2_cell, self.object_title)
+        self._col3.set_cell_data_func(self._col3_cell, self.object_value)                        
+        
+        self.treetips = TreeTips.TreeTips(self._widget,2,True)
+
+        self._widget.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                                   DdTargets.all_targets(),
+                                   ACTION_COPY)
+
+        self._widget.connect('drag_data_get', self.object_drag_data_get)
+        self._widget.connect('drag_begin', self.object_drag_begin)
+        self._widget.connect('drag_data_received',
+                             self.object_drag_data_received)
+
+        self.register_wrapper_classes()
+
+    # Method to manage the wrapper classes.
+    
+    def register_wrapper_classes(self):
+        self.register_wrapper_class(ScratchPadAddress)
+        self.register_wrapper_class(ScratchPadEvent)
+        self.register_wrapper_class(ScratchPadFamilyEvent)
+        self.register_wrapper_class(ScratchPadUrl)
+        self.register_wrapper_class(ScratchPadAttribute)
+        self.register_wrapper_class(ScratchPadFamilyAttribute)
+        self.register_wrapper_class(ScratchPadSourceRef)
+        self.register_wrapper_class(ScratchPadText)
+
+    def register_wrapper_class(self,wrapper_class):
+        for drop_target in wrapper_class.DROP_TARGETS:            
+            self._target_type_to_wrapper_class_map[drop_target.drag_type] = wrapper_class
+
+
+    # Methods for rendering the cells.
+    
+    def object_pixbuf(self, column, cell, model, iter, user_data=None):
+        o = model.get_value(iter, 1)
+        cell.set_property('pixbuf', o.__class__.ICON)
+        
+    def object_type(self, column, cell, model, iter, user_data=None):
+        o = model.get_value(iter, 1)
+        cell.set_property('text', o.get_type())
+        
+    def object_title(self, column, cell, model, iter, user_data=None):
+        o = model.get_value(iter, 1)
+        cell.set_property('text', o.get_title())
+
+    
+    def object_value(self, column, cell, model, iter, user_data=None):
+        o = model.get_value(iter, 1)
+        cell.set_property('text', o.get_value())
+
+
+    # handlers for the drag and drop events.
+    
+    def on_object_select_row(self,obj):        
+        tree_selection = self._widget.get_selection()
+        model,iter = tree_selection.get_selected()
+
+        self._widget.unset_rows_drag_source()
+
+        if iter != None:
+            o = model.get_value(iter,1)
+
+            targets = [target.target() for target in o.__class__.DROP_TARGETS]
+
+            self._widget.enable_model_drag_source(BUTTON1_MASK, targets, ACTION_COPY)
+
+    def object_drag_begin(self, context, a):
+        return
+
+    def object_drag_data_get(self, widget, context, sel_data, info, time):        
+        tree_selection = widget.get_selection()
+        model,iter = tree_selection.get_selected()
+        o = model.get_value(iter,1)
+        
+        sel_data.set(sel_data.target, 8, o.pack())
+
+    def object_drag_data_received(self,widget,context,x,y,selection,info,time):
+        model = widget.get_model()
+        sel_data = selection.data
+
+        # There is a strange bug that means that if there is a selection
+        # in the list we get multiple drops of the same object. Luckily
+        # the time values are the same so we can drop all but the first.
+        if time == self._previous_drop_time:
+            return 
+        
+        # Find a wrapper class
+        possible_wrappers = [target for target in context.targets \
+                             if target in self._target_type_to_wrapper_class_map.keys()]
+
+        if len(possible_wrappers) == 0:
+            # No wrapper for this class
+            return
+
+        # Just select the first match.
+        wrapper_class = self._target_type_to_wrapper_class_map[possible_wrappers[0]]
+
+        o = wrapper_class(self._db,sel_data)
+        model.append([o.__class__.DRAG_TARGET.drag_type,o,o.tooltip])
+
+        self._previous_drop_time = time
+
+
+    # proxy methods to provide access to the real widget functions.
+    
+    def set_model(self,model=None):
+        self._widget.set_model(model)
+        self._widget.get_selection().connect('changed',self.on_object_select_row)
+
+    def get_model(self):
+        return self._widget.get_model()
+
+    def get_selection(self):
+        return self._widget.get_selection()
+    
+    
+        
 #-------------------------------------------------------------------------
 #
 # ScatchPadWindow class
@@ -81,7 +579,7 @@ class ScratchPadWindow:
     # it preserved even when the ScratchPad window is closed.
     # As there is only ever one ScratchPad we do not need to
     # maintain a list of these.
-    olist = [] 
+    otree = None
     
     def __init__(self,database,parent):
         """Initializes the ScratchPad class, and displays the window"""
@@ -93,10 +591,6 @@ class ScratchPadWindow:
             return
         self.win_key = self.__class__
 
-        self.otitles = [(_('Type'),-1,150),
-                        (_('Title'),-1,150),
-                        (_('Value'),-1,150),
-                        ('',-1,0)] # To hold the tooltip text
 
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"scratchpad.glade")
@@ -104,37 +598,29 @@ class ScratchPadWindow:
         self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
         self.window = self.top.get_widget("scratch_pad")
         self.window.set_icon(self.parent.topWindow.get_icon())
+        self.clear_all_btn = self.top.get_widget("btn_clear_all")
         
-        self.object_list = self.top.get_widget('objectlist')
+        self.object_list = ScratchPadListView(self.db,self.top.get_widget('objectlist'))
 
-        self.otree = ListModel.ListModel(self.object_list,self.otitles,
-                                         self.on_object_select_row,
-                                         self.on_update_object_clicked)
+        # This causes the window open to fail. I don't know why.
+        #if ScratchPadWindow.otree == None:
+        ScratchPadWindow.otree = ScratchPadListModel()
 
-        self.treetips = TreeTips.TreeTips(self.object_list,3,True)
+        self.object_list.set_model(ScratchPadWindow.otree)
+        
 
         self.top.signal_autoconnect({
             "on_close_scratchpad" : self.on_close_scratchpad,
             "on_clear_clicked": self.on_clear_clicked,
-            "on_clear_all_clicked": self.on_clear_all_clicked,
             "on_help_clicked": self.on_help_clicked,
             "on_objectlist_delete_event": self.on_delete_event,
             "on_scratchPad_delete_event": self.on_delete_event
             })
 
-        self.object_list.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                                       DdTargets.all_targets(),
-                                       ACTION_COPY)
-
-        self.object_list.connect('drag_data_get', self.object_drag_data_get)
-        self.object_list.connect('drag_begin', self.object_drag_begin)
-        self.object_list.connect('drag_data_received',
-                                 self.object_drag_data_received)
-
+        self.clear_all_btn.connect_object('clicked', gtk.ListStore.clear, ScratchPadWindow.otree)
+        
         self.add_itself_to_menu()
         self.window.show()
-
-        self.redraw_object_list()
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
@@ -171,337 +657,12 @@ class ScratchPadWindow:
 
     def on_clear_clicked(self,obj):
         """Deletes the selected object from the object list"""
-        store,node = self.otree.get_selected()
-        if node:
-            ScratchPadWindow.olist.remove(self.otree.get_object(node))
-            self.redraw_object_list()
-
-    def on_clear_all_clicked(self,obj):
-        ScratchPadWindow.olist = []
-        self.redraw_object_list()
-
-    def on_object_select_row(self,obj):
+        selection = self.object_list.get_selection()
+        model, iter = selection.get_selected()
+        if iter:
+            model.remove(iter)
+        return        
         
-        o = self.otree.get_selected_objects()
-        
-        if len(o):
-            bits_per = 8; # we're going to pass a string
-
-            obj_targets = o[0]['targets']
-
-            # union with gramps_types
-            if len([target for target \
-                    in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
-
-                exec 'data = %s' % o[0]['data']
-                exec 'mytype = "%s"' % data[0]
-                target = DdTargets.get_dd_type_from_type_name(mytype).target()
-                self.object_list.drag_source_unset()
-                self.object_list.drag_source_set(BUTTON1_MASK, [target], ACTION_COPY)
-
-            
-            # Union with text targets
-            elif len([target for target \
-                      in obj_targets if DdTargets.is_text_type(target)]) > 0:
-                targets = DdTargets.all_text_targets()
-
-                self.object_list.drag_source_unset()
-                self.object_list.drag_source_set(BUTTON1_MASK, targets, ACTION_COPY)
-
-            else:
-                self.object_list.drag_source_unset()
-
-        
-        
-    def on_update_object_clicked(self, obj):
-        pass
-
-    def object_drag_begin(self, context, a):
-        return
-
-    def object_drag_data_get(self,widget, context, sel_data, info, time):
-        
-        o = self.otree.get_selected_objects()
-
-        
-        if len(o):
-            bits_per = 8; # we're going to pass a string
-
-            obj_targets = o[0]['targets']
-
-            # union with gramps_types
-            if len([target for target \
-                    in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
-
-                
-                exec 'data = %s' % o[0]['data']
-                exec 'mytype = "%s"' % data[0]
-                exec 'person = "%s"' % data[1]
-
-                pickled = data[2]
-                send_data = str((mytype,person,pickled));
-            
-            # Union with text targets
-            elif len([target for target \
-                      in obj_targets if DdTargets.is_text_type(target)]) > 0:
-
-                send_data = str(o[0]['data'])
-
-            sel_data.set(sel_data.target, bits_per, send_data)
-
-
-    def object_drag_data_received(self,widget,context,x,y,sel_data,info,time):
-        row = self.otree.get_row_at(x,y)
-            
-        if sel_data and sel_data.data:
-            ScratchPadWindow.olist.insert(row,{'targets':context.targets,
-                                               'data':sel_data.data})
-            self.redraw_object_list()
-            
-
-    def redraw_object_list(self):
-        """Redraws the address list"""
-
-        self.otree.clear()
-        
-        for obj in ScratchPadWindow.olist:
-            obj_targets = obj['targets']
-
-            
-            # union with gramps_types
-            if len([target for target \
-                    in obj_targets if DdTargets.is_gramps_type(target)]) > 0:
-
-                
-                exec 'unpack_data = %s' % obj['data']
-                exec 'mytype = "%s"' % unpack_data[0]
-                data = pickle.loads(unpack_data[2]);
-
-                node = None
-
-                if mytype == DdTargets.ADDRESS.drag_type:                
-                    location = "%s %s %s %s" % (data.get_street(),data.get_city(),
-                                                data.get_state(),data.get_country())
-                    node = self.otree.add([_("Address"),
-                                           data.get_date(),
-                                           location,
-                                           self.generate_addr_tooltip(data)],obj)
-                elif mytype == DdTargets.EVENT.drag_type:
-                    node = self.otree.add([_("Event"),
-                                           const.display_pevent(data.get_name()),
-                                           data.get_description(),
-                                           self.generate_event_tooltip(data)],obj)
-                elif mytype == DdTargets.FAMILY_EVENT.drag_type:
-                    node = self.otree.add([_("Family Event"),
-                                           const.display_fevent(data.get_name()),
-                                           data.get_description(),
-                                           self.generate_family_event_tooltip(data)],obj)
-                elif mytype == DdTargets.URL.drag_type:
-                    node = self.otree.add([_("Url"),
-                                           data.get_path(),
-                                           data.get_description(),
-                                           self.generate_url_tooltip(data)],obj)
-                elif mytype == DdTargets.ATTRIBUTE.drag_type:
-                    node = self.otree.add([_("Attribute"),
-                                           const.display_pattr(data.get_type()),
-                                           data.get_value(),
-                                           self.generate_pattr_tooltip(data)],obj)
-                elif mytype == DdTargets.FAMILY_ATTRIBUTE.drag_type:
-                    node = self.otree.add([_("Family Attribute"),
-                                           const.display_fattr(data.get_type()),
-                                           data.get_value(),
-                                           self.generate_fattr_tooltip(data)],obj)
-                elif mytype == DdTargets.SOURCEREF.drag_type:
-                    base = self.db.get_source_from_handle(data.get_base_handle())
-                    node = self.otree.add([_("SourceRef"),
-                                           base.get_title(),
-                                           data.get_text(),
-                                           self.generate_srcref_tooltip(data)],obj)
-
-            # Union with text targets
-            elif len([target for target \
-                      in obj_targets if DdTargets.is_text_type(target)]) > 0:
-
-                node = self.otree.add([_("Text"),
-                                       "",
-                                       obj['data'],
-                                       self.generate_text_tooltip(obj['data'])],obj)
-                
-
-                
-
-                
-        if ScratchPadWindow.olist:
-            self.otree.select_row(0)
-            
-
-
-    def generate_event_tooltip(self,event):
-        global escape
-        
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Event"),
-            _("Type"),escape(const.display_pevent(event.get_name())),
-            _("Date"),escape(event.get_date()),
-            _("Place"),escape(place_title(self.db,event)),
-            _("Cause"),escape(event.get_cause()),
-            _("Description"), escape(event.get_description()))
-
-        if len(event.get_source_references()) > 0:
-            psrc_ref = event.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
-            psrc = self.db.get_source_from_handle(psrc_id)
-
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Primary source"),
-                _("Name"),
-                escape(short(psrc.get_title())))
-
-        return s
-
-
-    def generate_family_event_tooltip(self,event):
-        global escape
-        
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Family Event"),
-            _("Type"),escape(const.display_fevent(event.get_name())),
-            _("Date"),escape(event.get_date()),
-            _("Place"),escape(place_title(self.db,event)),
-            _("Cause"),escape(event.get_cause()),
-            _("Description"), escape(event.get_description()))
-
-        if len(event.get_source_references()) > 0:
-            psrc_ref = event.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
-            psrc = self.db.get_source_from_handle(psrc_id)
-
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Primary source"),
-                _("Name"),
-                escape(short(psrc.get_title())))
-
-        return s
-
-    def generate_addr_tooltip(self,addr):
-        global escape
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t\t%s\n"\
-            "\t<b>%s:</b>\t%s\n" % (
-            _("Address"),
-            _("Date"), escape(addr.get_date()),
-            _("Location"),
-            escape(addr.get_street()),
-            escape(addr.get_city()),
-            escape(addr.get_state()),
-            escape(addr.get_country()),
-            escape(addr.get_postal_code()),
-            _("Telephone"), escape(addr.get_phone()))
-    
-        if len(addr.get_source_references()) > 0:
-            psrc_ref = addr.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
-            psrc = self.db.get_source_from_handle(psrc_id)
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Sources"),
-                _("Name"),escape(short(psrc.get_title())))
-            
-        return s
-
-    
-    def generate_url_tooltip(self,url):
-        global escape
-        return "<big><b>%s</b></big>\n\n"\
-               "\t<b>%s:</b>\t%s\n"\
-               "\t<b>%s:</b>\t%s" % (_("Url"),
-                                     _("Path"),
-                                     escape(url.get_path()),
-                                     _("Description"),
-                                     escape(url.get_description()))
-
-    def generate_pattr_tooltip(self,attr):
-        global escape
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (_("Attribute"),
-                                  _("Type"),
-                                  escape(const.display_pattr(attr.get_type())),
-                                  _("Value"),
-                                  escape(attr.get_value()))
-        
-        if len(attr.get_source_references()) > 0:
-            psrc_ref = attr.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
-            psrc = self.db.get_source_from_handle(psrc_id)
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Sources"),
-                _("Name"),escape(short(psrc.get_title())))
-
-        return s
-
-    def generate_fattr_tooltip(self,attr):
-        global escape
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (_("Family Attribute"),
-                                  _("Type"),
-                                  escape(const.display_fattr(attr.get_type())),
-                                  _("Value"),
-                                  escape(attr.get_value()))
-        
-        if len(attr.get_source_references()) > 0:
-            psrc_ref = attr.get_source_references()[0]
-            psrc_id = psrc_ref.get_base_handle()
-            psrc = self.db.get_source_from_handle(psrc_id)
-            s += "\n<big><b>%s</b></big>\n\n"\
-                 "\t<b>%s:</b>\t%s\n" % (
-                _("Sources"),
-                _("Name"),escape(short(psrc.get_title())))
-
-        return s
-
-        
-    def generate_srcref_tooltip(self,srcref):
-        global escape
-        base = self.db.get_source_from_handle(srcref.get_base_handle())
-        s = "<big><b>%s</b></big>\n\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s\n"\
-            "\t<b>%s:</b>\t%s" % (
-            _("SourceRef"),
-            _("Title"),escape(base.get_title()),
-            _("Page"), escape(srcref.get_page()),
-            _("Text"), escape(srcref.get_text()),
-            _("Comment"), escape(srcref.get_note()))
-
-        return s
-
-    def generate_text_tooltip(self,text):
-        global escape
-        return "<big><b>%s</b></big>\n"\
-               "%s" % (_("Text"),
-                       escape(text))
 
 def short(val,size=60):
     if len(val) > size:
