@@ -161,6 +161,14 @@ class PeopleModel(gtk.GenericTreeModel):
                     self.path2iter[tpl] = person_id
                     val += 1
                 sval += 1
+        self.db.set_people_view_maps(self.get_maps())
+
+    def get_maps(self):
+        return (self.top_iter2path,
+                self.top_path2iter,
+                self.iter2path,
+                self.path2iter,
+                self.sname_sub)
 
     def add_person(self,person):
         pid = person.get_id()

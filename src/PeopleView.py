@@ -86,11 +86,7 @@ class PeopleView:
                                  self.on_plist_button_press)
 
     def get_maps(self):
-        return (self.person_model.top_iter2path,
-                self.person_model.top_path2iter,
-                self.person_model.iter2path,
-                self.person_model.path2iter,
-                self.person_model.sname_sub)
+        return self.person_model.get_maps()
 
     def build_columns(self):
         for column in self.columns:
