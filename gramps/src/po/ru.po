@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 0.7.3\n"
 "POT-Creation-Date: Wed May  2 12:30:26 2002\n"
-"PO-Revision-Date: 2002-05-06 10:37-0500\n"
+"PO-Revision-Date: 2002-05-06 10:59-0500\n"
 "Last-Translator: Alexander Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3945,25 +3945,25 @@ msgstr ""
 
 #: plugins/RelCalc.py:99
 msgid "%(p1)s is the %(level)dth cousin of %(p2)s."
-msgstr "%(p1)s является %(level)d-юродным братом/сестрой %(p2)s."
+msgstr "%(p1)s является %(level+1)d-юродным братом/сестрой %(p2)s."
 
 #: plugins/RelCalc.py:102
 msgid "%(p1)s is the %(level)dth cousin once removed of %(p2)s."
 msgstr ""
-"%(p1)s является %(level)d-юродным дядей/тетей или %(level)d-юродным "
+"%(p1)s является %(level+1)d-юродным дядей/тетей или %(level+1)d-юродным "
 "племянником/племянницей %(p2)s."
 
 #: plugins/RelCalc.py:105
 msgid "%(p1)s is the %(level)dth cousin twice removed of %(p2)s."
 msgstr ""
-"%(p1)s является %(level)d-юродным дедом/бабушкой или %(level-1)d-юродным "
+"%(p1)s является %(level+1)d-юродным дедом/бабушкой или %(level)d-юродным "
 "внучатым племянником/племянницей %(p2)s."
 
 #: plugins/RelCalc.py:108
 msgid "%(p1)s is the %(level)dth cousin %(removed)d times removed of %(p2)s."
 msgstr ""
-"%(p1)s является %(level)d-юродным %(removed-2)d-прадедом/бабушкой или "
-"%(level-1)d-юродным %(removed-2)d-правнучатым племянником/племянницей %(p2)s."
+"%(p1)s является %(level+1)d-юродным %(removed-2)d-прадедом/бабушкой или "
+"%(level)d-юродным %(removed-2)d-правнучатым племянником/племянницей %(p2)s."
 
 #: plugins/RelCalc.py:113
 msgid "%(p1)s is the father of %(p2)s."
