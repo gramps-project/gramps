@@ -1145,13 +1145,19 @@ class WebReportDialog(Report.ReportDialog):
     #------------------------------------------------------------------------
     def make_report(self):
         """Create the object that will produce the web pages."""
-        MyReport = WebReport(self.db, self.person, self.target_path,
-                             self.max_gen, self.photos, self.filter,
-                             self.restrict, self.private, self.srccomments,
-                             self.include_link, self.selected_style,
-                             self.img_dir_text,self.template_name,
-                             self.use_id,self.id_link,self.use_gendex,
-                             self.html_ext)
+
+        try:
+            MyReport = WebReport(self.db, self.person, self.target_path,
+                                 self.max_gen, self.photos, self.filter,
+                                 self.restrict, self.private, self.srccomments,
+                                 self.include_link, self.selected_style,
+                                 self.img_dir_text,self.template_name,
+                                 self.use_id,self.id_link,self.use_gendex,
+                                 self.html_ext)
+        except Errors.FilterError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
+            
         MyReport.write_report()
     
 #------------------------------------------------------------------------

@@ -383,6 +383,9 @@ class IndivSummaryDialog(Report.TextReportDialog):
             MyReport = IndivSummary(self.db, self.person, self.target_path, self.doc)
             MyReport.setup()
             MyReport.write_report()
+        except Errors.FilterError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)

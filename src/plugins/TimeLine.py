@@ -409,6 +409,9 @@ class TimeLineDialog(Report.DrawReportDialog):
 				self.doc, self.filter, title, sort_func)
 	    MyReport.setup()
             MyReport.write_report()
+        except Errors.FilterError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)

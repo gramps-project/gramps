@@ -18,6 +18,19 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+class FilterError(Exception):
+    """Error used to report Filter errors"""
+    def __init__(self,value,value2=""):
+        Exception.__init__(self)
+        self.value = value
+        self.value2 = value2
+        
+    def __str__(self):
+        return self.value
+
+    def messages(self):
+        return (self.value,self.value2)
+
 class DateError(Exception):
     """Error used to report Date errors"""
     def __init__(self,value=""):
