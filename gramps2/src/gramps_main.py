@@ -522,7 +522,7 @@ class Gramps:
                        const.comments,
                        const.authors,
                        const.documenters,
-                       "",
+                       const.translators,
                        pixbuf).show()
     
     def on_contents_activate(self,obj):
