@@ -107,7 +107,6 @@ class Gramps:
 
         self.parents_index = 0
         self.active_person = None
-        self.place_loaded = 0
         self.bookmarks = None
         self.c_details = 6
         self.cl = 0
@@ -194,7 +193,7 @@ class Gramps:
         self.statusbar   = self.gtop.get_widget("statusbar")
 
         self.filter_list = self.gtop.get_widget("filter_list")
-        self.views    = self.gtop.get_widget("views")
+        self.views       = self.gtop.get_widget("views")
         self.merge_button= self.gtop.get_widget("merge")
         self.canvas      = self.gtop.get_widget("canvas1")
         self.toolbar     = self.gtop.get_widget("toolbar1")
@@ -372,7 +371,6 @@ class Gramps:
                                     PeopleView.column_names,
                                     self.set_column_order)
         elif cpage == SOURCE_VIEW:
-            print self.db.get_source_column_order()
             ColumnOrder.ColumnOrder(self.db.get_source_column_order(),
                                     SourceView.column_names,
                                     self.set_source_column_order)
@@ -815,8 +813,6 @@ class Gramps:
         """Close database and delete abandoned photos, no quit"""
         self.delete_abandoned_photos()
         self.db.close()
-        if GrampsCfg.lastfile:
-            self.delete_autosave(GrampsCfg.lastfile)
 
     def delete_abandoned_photos(self):
         """
@@ -900,7 +896,6 @@ class Gramps:
             self.pedigree_view.clear()
             self.source_view.load_sources()
             self.place_view.load_places()
-            self.place_loaded = 0
             self.media_view.load_media()
     
     def tool_callback(self,val):
@@ -945,7 +940,6 @@ class Gramps:
                 self.status_text(_('Updating display...'))
             self.place_view.load_places()
             self.modify_statusbar()
-            self.place_loaded = 1
         else:
             self.media_view.load_media()
 
@@ -989,33 +983,9 @@ class Gramps:
             dirname = filename
         else:
             dirname = os.path.dirname(filename)
-        autosave = "%s/autosave.gramps" % dirname
 
-        if os.path.isfile(autosave):
-            self.yname = autosave
-            self.nname = filename
-
-            OptionDialog(_('An autosave file was detected'),
-                         _('GRAMPS has detected an autosave file for the '
-                           'selected database. This file is more recent than '
-                           'the last saved database. This typically happens '
-                           'when GRAMPS was unexpected shutdown before the '
-                           'data was saved. You may load this file to try to '
-                           'recover any missing data.'),
-                         _('_Load autosave file'),
-                         self.autosave_query,
-                         _('Load _saved database'),
-                         self.loadsaved_file)
-        else:
-            self.active_person = None
-            self.place_loaded = 0
-            self.read_file(filename)
-
-    def autosave_query(self):
-        self.read_file(self.yname)
-
-    def loadsaved_file(self):
-        self.read_file(self.nname)
+        self.active_person = None
+        self.read_file(filename)
 
     def read_gedcom(self,filename):
         import ReadGedcom
@@ -1194,36 +1164,6 @@ class Gramps:
         self.topWindow.set_title("%s - GRAMPS" % name)
         self.status_text("")
         self.statusbar.set_progress_percentage(0.0)
-        self.delete_autosave(old_file)
-
-    def delete_autosave(self,filename):
-        autosave = "%s/autosave.gramps" % filename
-        if os.path.exists(autosave):
-            try:
-                os.remove(autosave)
-            except:
-                pass
-
-    def autosave_database(self):
-        path = self.db.get_save_path()
-        if not path:
-            return 1
-        
-        Utils.clear_timer()
-
-        filename = "%s/autosave.gramps" % (path)
-    
-        self.status_text(_("autosaving..."));
-        try:
-            self.db.save(filename,self.quick_progress)
-            self.status_text(_("autosave complete"))
-            gtk.timeout_add(5000,self.modify_statusbar)
-            self.load_progress(0)
-        except (IOError,OSError),msg:
-            self.status_text("%s - %s" % (_("autosave failed"),msg))
-        except:
-            DisplayTrace.DisplayTrace()
-        return 0
 
     def load_selected_people(self,obj):
         """Display the selected people in the EditPerson display"""
@@ -1322,7 +1262,12 @@ class Gramps:
         self.people_view.goto_active_person(first)
             
     def change_active_person(self,person):
-        if person != self.active_person:
+        if person == None:
+            self.set_buttons(0)
+            self.active_person = None
+            self.modify_statusbar()
+        elif self.active_person == None or \
+               person.get_id() != self.active_person.get_id():
             self.active_person = person
             self.modify_statusbar()
             if person:
@@ -1347,11 +1292,7 @@ class Gramps:
                 else:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
-
-        if person:
             self.set_buttons(1)
-        else:
-            self.set_buttons(0)
         
     def modify_statusbar(self):
         
@@ -1378,9 +1319,8 @@ class Gramps:
             if name:
                 if plist == None:
                     return name
-                else:
-                    return _("%(relationship)s of %(person)s") % {
-                        'relationship' : name, 'person' : pname }
+                return _("%(relationship)s of %(person)s") % {
+                    'relationship' : name, 'person' : pname }
             else:
                 return ""
         except:
@@ -1582,13 +1522,6 @@ class Gramps:
         while gtk.events_pending():
             gtk.mainiteration()
         
-    def quick_progress(self,value):
-        gtk.threads_enter()
-        self.statusbar.set_progress_percentage(value)
-        while gtk.events_pending():
-            gtk.mainiteration()
-        gtk.threads_leave()
-
     def post_load(self,name):
         self.db.set_save_path(name)
         res = self.db.get_researcher()
@@ -1709,7 +1642,8 @@ class Gramps:
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
             WarningDialog(_("Could Not Set a Bookmark"),
-                          _("A bookmark could not be set because no one was selected."))
+                          _("A bookmark could not be set because "
+                            "no one was selected."))
 
     def on_edit_bookmarks_activate(self,obj):
         self.bookmarks.edit()
@@ -1722,7 +1656,8 @@ class Gramps:
             self.update_display(0)
         except TypeError:
             WarningDialog(_("Could not go to a Person"),
-                          _("Either stale bookmark or broken history caused by IDs reorder."))
+                          _("Either stale bookmark or broken history "
+                            "caused by IDs reorder."))
             self.clear_history()
             self.change_active_person(old_person)
             self.update_display(0)
