@@ -154,7 +154,7 @@ class MyPlaces(gtk.Entry):
 class MyID(gtk.HBox):
     
     def __init__(self,db):
-        gtk.HBox.__init__(self,gtk.FALSE,6)
+        gtk.HBox.__init__(self,False,6)
         self.db = db
 
         self.entry = gtk.Entry()

@@ -124,7 +124,7 @@ class StartupDialog:
         label = gtk.Label(_('In order to create valid GEDCOM files, the following information '
                             'needs to be entered. If you do not plan to generate GEDCOM files, '
                             'you may leave this empty.'))
-        label.set_line_wrap(gtk.TRUE)
+        label.set_line_wrap(True)
         
         box.pack_start(label)
         

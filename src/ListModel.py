@@ -33,7 +33,7 @@ class ListModel:
         l = len(dlist)
         self.mylist = [TYPE_STRING]*l + [TYPE_PYOBJECT]
 
-        self.tree.set_rules_hint(gtk.TRUE)
+        self.tree.set_rules_hint(True)
         self.model = None
         self.selection = None
         self.mode = mode
@@ -49,17 +49,17 @@ class ListModel:
             renderer = gtk.CellRendererText()
             renderer.set_fixed_height_from_font(1)
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
-            column.set_reorderable(gtk.TRUE)
+            column.set_reorderable(True)
             column.set_min_width(name[2])
 
             if name[0] == '':
-                column.set_visible(gtk.FALSE)
+                column.set_visible(False)
             else:
-                column.set_resizable(gtk.TRUE)
+                column.set_resizable(True)
             if name[1] == -1:
-                column.set_clickable(gtk.FALSE)
+                column.set_clickable(False)
             else:
-                column.set_clickable(gtk.TRUE)
+                column.set_clickable(True)
                 column.set_sort_column_id(name[1])
 
             cnum = cnum + 1
@@ -243,7 +243,7 @@ class ListModel:
         model,node = self.selection.get_selected()
         if node:
             path = model.get_path(node)
-            self.tree.scroll_to_cell(path,None,gtk.TRUE,0.5,0.5)
+            self.tree.scroll_to_cell(path,None,True,0.5,0.5)
         
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:

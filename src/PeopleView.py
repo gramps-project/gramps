@@ -75,7 +75,7 @@ class PeopleView:
         self.DataFilter = None
         self.pscroll = self.parent.gtop.get_widget("pscroll")
         self.person_tree = self.parent.gtop.get_widget("person_tree")
-        self.person_tree.set_rules_hint(gtk.TRUE)
+        self.person_tree.set_rules_hint(True)
         self.renderer = gtk.CellRendererText()
 
         self.columns = []
@@ -105,7 +105,7 @@ class PeopleView:
             self.person_tree.remove_column(column)
             
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
-        column.set_resizable(gtk.TRUE)
+        column.set_resizable(True)
         #column.set_clickable(True)
         #column.connect('clicked',self.sort_clicked)
         column.set_min_width(225)
@@ -119,7 +119,7 @@ class PeopleView:
                 continue
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
-            column.set_resizable(gtk.TRUE)
+            column.set_resizable(True)
             #column.set_clickable(True)
             #column.connect('clicked',self.sort_clicked)
             column.set_min_width(60)

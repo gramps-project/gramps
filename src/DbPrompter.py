@@ -139,7 +139,7 @@ class ExistingDbPrompter:
                                             gtk.RESPONSE_CANCEL,
                                             gtk.STOCK_OPEN,
                                             gtk.RESPONSE_OK))
-        choose.set_local_only(gtk.FALSE)
+        choose.set_local_only(False)
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()
         mime_filter.set_name(_('All files'))
@@ -246,7 +246,7 @@ class ImportDbPrompter:
                                             gtk.RESPONSE_CANCEL,
                                             gtk.STOCK_OPEN,
                                             gtk.RESPONSE_OK))
-        choose.set_local_only(gtk.FALSE)
+        choose.set_local_only(False)
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()
         mime_filter.set_name(_('All files'))
@@ -408,7 +408,7 @@ class NewSaveasDbPrompter:
                                             gtk.RESPONSE_CANCEL,
                                             gtk.STOCK_SAVE,
                                             gtk.RESPONSE_OK))
-        choose.set_local_only(gtk.FALSE)
+        choose.set_local_only(False)
 
         # Always add automatic (macth all files) filter
         mime_filter = gtk.FileFilter()

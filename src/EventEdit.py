@@ -391,7 +391,7 @@ class EventEditor:
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()
-        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
+        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

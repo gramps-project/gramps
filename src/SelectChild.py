@@ -131,18 +131,18 @@ class SelectChild:
 
     def add_columns(self,tree):
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
-        column.set_resizable(gtk.TRUE)        
-        #column.set_clickable(gtk.TRUE)
+        column.set_resizable(True)        
+        #column.set_clickable(True)
         column.set_min_width(225)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('ID'), self.renderer,text=1)
-        column.set_resizable(gtk.TRUE)        
-        #column.set_clickable(gtk.TRUE)
+        column.set_resizable(True)        
+        #column.set_clickable(True)
         column.set_min_width(75)
         tree.append_column(column)
         column = gtk.TreeViewColumn(_('Birth date'), self.renderer,text=3)
-        #column.set_resizable(gtk.TRUE)        
-        column.set_clickable(gtk.TRUE)
+        #column.set_resizable(True)        
+        column.set_clickable(True)
         tree.append_column(column)
 
     def on_delete_event(self,obj,b):
@@ -445,8 +445,8 @@ class EditRel:
             self.fentry.set_text(_(f[2]))
             self.mentry.set_text(_(f[1]))
         
-        self.fdesc.set_use_markup(gtk.TRUE)
-        self.mdesc.set_use_markup(gtk.TRUE)
+        self.fdesc.set_use_markup(True)
+        self.mdesc.set_use_markup(True)
         self.top.show()
 
     def close(self,obj):

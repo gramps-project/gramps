@@ -169,7 +169,7 @@ class AddMediaObject:
             if mtype[0:5] == "image":
                 image = RelImage.scale_image(filename,const.thumbScale)
             else:
-                image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(mtype))
+                image = Utils.find_mime_type_pixbuf(mtype)
             self.image.set_from_pixbuf(image)
 
     def run(self):

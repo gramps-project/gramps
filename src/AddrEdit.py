@@ -205,7 +205,7 @@ class AddressEditor:
         phone = unicode(self.phone.get_text())
         postal = unicode(self.postal.get_text())
         b = self.note_field.get_buffer()
-        note = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE))
+        note = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),False))
         format = self.preform.get_active()
         priv = self.priv.get_active()
         
@@ -244,7 +244,7 @@ class AddressEditor:
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()
-        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
+        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

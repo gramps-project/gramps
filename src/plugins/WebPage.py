@@ -1304,7 +1304,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.depth.set_digits(0)
         self.depth.set_increments(1,2)
         self.depth.set_range(1,10)
-        self.depth.set_numeric(gtk.TRUE)
+        self.depth.set_numeric(True)
         self.depth.set_value(self.options_dict['HTMLtreed'])
 
         self.use_link = gtk.CheckButton(lnk_msg)
@@ -1371,7 +1371,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
         self.use_n_cols.set_digits(0)
         self.use_n_cols.set_increments(1,2)
         self.use_n_cols.set_range(1,5)
-        self.use_n_cols.set_numeric(gtk.TRUE)
+        self.use_n_cols.set_numeric(True)
         self.use_n_cols.set_value(self.options_dict['HTMLidxcol'])
 
         tlist = Report._template_map.keys()

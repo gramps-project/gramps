@@ -123,7 +123,7 @@ class PluginDialog:
             self.apply_button.set_label(button_label)
         else:
             self.apply_button.set_label(_("_Apply"))
-        self.apply_button.set_use_underline(gtk.TRUE)
+        self.apply_button.set_use_underline(True)
         if tool_tip:
             try:
                 tt = gtk.tooltips_data_get(self.apply_button)

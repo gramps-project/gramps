@@ -243,7 +243,7 @@ class WitnessEditor:
             self.ref.set_type(RelLib.Event.NAME)
 
         c = self.comment.get_buffer()
-        self.ref.set_comment(unicode(c.get_text(c.get_start_iter(),c.get_end_iter(),gtk.FALSE)))
+        self.ref.set_comment(unicode(c.get_text(c.get_start_iter(),c.get_end_iter(),False)))
         self.ref.set_privacy(self.private.get_active())
 
         if self.update:

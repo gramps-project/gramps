@@ -118,7 +118,7 @@ class NoteEditor:
         """Saves the note and closes the window"""
         tbuffer = self.entry.get_buffer()
         text = unicode(tbuffer.get_text(tbuffer.get_start_iter(),
-                                        tbuffer.get_end_iter(),gtk.FALSE))
+                                        tbuffer.get_end_iter(),False))
         if text != self.data.get_note():
             self.data.set_note(text)
         if self.callback:

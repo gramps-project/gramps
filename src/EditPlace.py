@@ -363,7 +363,7 @@ class EditPlace:
     def on_place_apply_clicked(self,obj):
 
         note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                 self.note_buffer.get_end_iter(),gtk.FALSE))
+                                 self.note_buffer.get_end_iter(),False))
         format = self.preform.get_active()
         mloc = self.place.get_main_location()
 
@@ -411,7 +411,7 @@ class EditPlace:
             self.ref_not_loaded = 0
             self.display_references()
         text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                self.note_buffer.get_end_iter(),gtk.FALSE))
+                                self.note_buffer.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

@@ -35,11 +35,11 @@ class SaveDialog:
         
         label1 = self.xml.get_widget('label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         
         label2 = self.xml.get_widget('label2')
         label2.set_text(msg2)
-        label2.set_use_markup(gtk.TRUE)
+        label2.set_use_markup(True)
 
         self.top.show()
         if parent:
@@ -61,11 +61,11 @@ class QuestionDialog:
 
         label1 = self.xml.get_widget('label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         
         label2 = self.xml.get_widget('label2')
         label2.set_text(msg2)
-        label2.set_use_markup(gtk.TRUE)
+        label2.set_use_markup(True)
 
         self.xml.get_widget('okbutton').set_label(label)
 
@@ -85,11 +85,11 @@ class QuestionDialog2:
 
         label1 = self.xml.get_widget('label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         
         label2 = self.xml.get_widget('label2')
         label2.set_text(msg2)
-        label2.set_use_markup(gtk.TRUE)
+        label2.set_use_markup(True)
 
         self.xml.get_widget('okbutton').set_label(label_msg1)
         self.xml.get_widget('no').set_label(label_msg2)
@@ -110,11 +110,11 @@ class OptionDialog:
 
         label1 = self.xml.get_widget('label1')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         
         label2 = self.xml.get_widget('label2')
         label2.set_text(msg2)
-        label2.set_use_markup(gtk.TRUE)
+        label2.set_use_markup(True)
 
         self.xml.get_widget('option1').set_label(btnmsg1)
         self.xml.get_widget('option2').set_label(btnmsg2)
@@ -142,7 +142,7 @@ class ErrorDialog:
         label1 = self.xml.get_widget('label1')
         label2 = self.xml.get_widget('label2')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % str(msg1))
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         label2.set_text(str(msg2))
         self.top.show()
         if parent:
@@ -159,7 +159,7 @@ class WarningDialog:
         label1 = self.xml.get_widget('label1')
         label2 = self.xml.get_widget('label2')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         label2.set_text(msg2)
         self.top.show()
         if parent:
@@ -176,7 +176,7 @@ class OkDialog:
         label1 = self.xml.get_widget('label1')
         label2 = self.xml.get_widget('label2')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         label2.set_text(msg2)
         self.top.show()
         if parent:
@@ -194,11 +194,11 @@ class MissingMediaDialog:
         
         label1 = self.xml.get_widget('label4')
         label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(gtk.TRUE)
+        label1.set_use_markup(True)
         
         label2 = self.xml.get_widget('label3')
         label2.set_text(msg2)
-        label2.set_use_markup(gtk.TRUE)
+        label2.set_use_markup(True)
 
         check_button = self.xml.get_widget('use_always')
 

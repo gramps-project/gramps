@@ -200,7 +200,7 @@ class AttributeEditor:
         value = unicode(self.value_field.get_text())
 
         buf = self.note_field.get_buffer()
-        note = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
+        note = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
@@ -238,7 +238,7 @@ class AttributeEditor:
 
     def on_switch_page(self,obj,a,page):
         buf = self.note_field.get_buffer()
-        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))
+        text = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

@@ -85,8 +85,8 @@ class DesBrowse:
         self.tree.append_column(col)
         self.model = gtk.TreeStore(gobject.TYPE_STRING,gobject.TYPE_PYOBJECT)
         self.tree.set_model(self.model)
-        self.tree.set_rules_hint(gtk.TRUE)
-        self.tree.set_headers_visible(gtk.FALSE)
+        self.tree.set_rules_hint(True)
+        self.tree.set_headers_visible(False)
         
         self.add_to_tree(None,None,self.active.get_handle())
         self.tree.expand_all()

@@ -169,12 +169,12 @@ class NameEditor:
         
     def on_group_over_toggled(self,obj):
         if obj.get_active():
-            self.group_as.set_sensitive(gtk.TRUE)
-            self.group_as.set_editable(gtk.TRUE)
+            self.group_as.set_sensitive(True)
+            self.group_as.set_editable(True)
         else:
             self.group_as.set_text(self.db.get_name_group_mapping(self.surname_field.get_text()))
-            self.group_as.set_sensitive(gtk.FALSE)
-            self.group_as.set_editable(gtk.FALSE)
+            self.group_as.set_sensitive(False)
+            self.group_as.set_editable(False)
 
     def on_delete_event(self,*obj):
         self.close_child_windows()
@@ -230,7 +230,7 @@ class NameEditor:
         suffix = unicode(self.suffix_field.get_text())
         patronymic = unicode(self.patronymic_field.get_text())
         note = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                 self.note_buffer.get_end_iter(),gtk.FALSE))
+                                 self.note_buffer.get_end_iter(),False))
         format = self.preform.get_active()
         priv = self.priv.get_active()
 
@@ -263,7 +263,7 @@ class NameEditor:
             self.name.set_sort_as(self.sort_as.get_active())
             self.parent.lists_changed = 1
 
-        if self.group_over.get_active() == gtk.FALSE:
+        if self.group_over.get_active() == False:
             self.name.set_group_as("")
             self.parent.lists_changed = 1
         elif self.name.get_group_as() != grp_as:
@@ -329,7 +329,7 @@ class NameEditor:
         
     def on_switch_page(self,obj,a,page):
         text = unicode(self.note_buffer.get_text(self.note_buffer.get_start_iter(),
-                                self.note_buffer.get_end_iter(),gtk.FALSE))
+                                self.note_buffer.get_end_iter(),False))
         if text:
             Utils.bold_label(self.notes_label)
         else:

@@ -202,7 +202,7 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         self.size.set_digits(2)
         self.size.set_increments(1,2)
         self.size.set_range(0,20)
-        self.size.set_numeric(gtk.TRUE)
+        self.size.set_numeric(True)
         self.size.set_value(self.options_dict['imgsize'])
 
         dialog.add_frame_option(_('Image'),_('Preview'),preview_table)
@@ -230,8 +230,8 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         self.options_dict['imgid'] = ""
         self.obj_title.set_text('')
         self.preview.set_from_pixbuf(None)
-        self.remove_obj_button.set_sensitive(gtk.FALSE)
-        self.size.set_sensitive(gtk.FALSE)
+        self.remove_obj_button.set_sensitive(False)
+        self.size.set_sensitive(False)
 
     def select_obj(self,obj,database):
         s_o = SelectObject.SelectObject(database,_("Select an Object"))
@@ -250,8 +250,8 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         self.obj_title.set_text(the_object.get_description())
         icon_image = ImgManip.get_thumbnail_image(the_object.get_path())
         self.preview.set_from_pixbuf(icon_image)
-        self.remove_obj_button.set_sensitive(gtk.TRUE)
-        self.size.set_sensitive(gtk.TRUE)
+        self.remove_obj_button.set_sensitive(True)
+        self.size.set_sensitive(True)
 
     def make_default_style(self,default_style):
         """Make the default output style for the Simple Boot Title report."""

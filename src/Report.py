@@ -261,7 +261,7 @@ class Report:
         # Customize the dialog for this report
         (title, header) = self.get_progressbar_data()
         self.ptop = gtk.Dialog()
-        self.ptop.set_has_separator(gtk.FALSE)
+        self.ptop.set_has_separator(False)
         self.ptop.set_title(title)
         lbl = gtk.Label(header)
         lbl.set_use_markup(True)
@@ -341,7 +341,7 @@ class BareReportDialog:
             self.local_filters = []
 
         self.window = gtk.Dialog('GRAMPS')
-        self.window.set_has_separator(gtk.FALSE)
+        self.window.set_has_separator(False)
         self.cancel = self.window.add_button(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL)
         self.ok = self.window.add_button(gtk.STOCK_OK,gtk.RESPONSE_OK)
 
@@ -356,7 +356,7 @@ class BareReportDialog:
 
         self.setup_title()
         self.setup_header()
-        self.tbl = gtk.Table(4,4,gtk.FALSE)
+        self.tbl = gtk.Table(4,4,False)
         self.tbl.set_col_spacings(12)
         self.tbl.set_row_spacings(6)
         self.tbl.set_border_width(6)
@@ -532,8 +532,8 @@ class BareReportDialog:
 
         title = self.get_header(self.name)
         label = gtk.Label('<span size="larger" weight="bold">%s</span>' % title)
-        label.set_use_markup(gtk.TRUE)
-        self.window.vbox.pack_start(label, gtk.TRUE, gtk.TRUE,
+        label.set_use_markup(True)
+        self.window.vbox.pack_start(label, True, True,
                                     ReportDialog.border_pad)
         
     def setup_target_frame(self):
@@ -551,7 +551,7 @@ class BareReportDialog:
         Should be overwritten by standalone report dialogs. """
 
         center_label = gtk.Label("<b>%s</b>" % _("Center Person"))
-        center_label.set_use_markup(gtk.TRUE)
+        center_label.set_use_markup(True)
         center_label.set_alignment(0.0,0.5)
         self.tbl.set_border_width(12)
         self.tbl.attach(center_label,0,4,self.col,self.col+1)
@@ -637,7 +637,7 @@ class BareReportDialog:
         
         label = gtk.Label("<b>%s</b>" % _("Report Options"))
         label.set_alignment(0.0,0.5)
-        label.set_use_markup(gtk.TRUE)
+        label.set_use_markup(True)
         
         if len(self.frame_names) == 0:
             table.attach(label,0,3,0,1)
@@ -737,7 +737,7 @@ class BareReportDialog:
             table.set_row_spacings(6)
             table.set_border_width(6)
             l = gtk.Label("<b>%s</b>" % _(key))
-            l.set_use_markup(gtk.TRUE)
+            l.set_use_markup(True)
             self.notebook.append_page(table,l)
 
             row = 0
@@ -821,7 +821,7 @@ class BareReportDialog:
 
         if self.extra_textbox:
             b = self.extra_textbox.get_buffer()
-            text_val = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE))
+            text_val = unicode(b.get_text(b.get_start_iter(),b.get_end_iter(),False))
             self.report_text = text_val.split('\n')
             self.options.handler.set_display_format(self.report_text)
         else:
@@ -870,7 +870,7 @@ class BareReportDialog:
             new_name = new_person.get_primary_name().get_regular_name()
             if new_name:
                 self.person_label.set_text( "<i>%s</i>" % new_name )
-                self.person_label.set_use_markup(gtk.TRUE)
+                self.person_label.set_use_markup(True)
 
     #------------------------------------------------------------------------
     #
@@ -1025,10 +1025,10 @@ class ReportDialog(BareReportDialog):
         label = obj.get_printable()
         if label:
             self.print_report.set_label (label)
-            self.print_report.set_sensitive (gtk.TRUE)
+            self.print_report.set_sensitive (True)
         else:
             self.print_report.set_label (_("Print a copy"))
-            self.print_report.set_sensitive (gtk.FALSE)
+            self.print_report.set_sensitive (False)
 
         # Is this to be a printed report or an electronic report
         # (i.e. a set of web pages)
@@ -1173,7 +1173,7 @@ class ReportDialog(BareReportDialog):
         self.output_notebook.append_page(self.paper_table,gtk.Label(_("Paper Options")))
             
         paper_label = gtk.Label("<b>%s</b>" % _("Paper Options"))
-        paper_label.set_use_markup(gtk.TRUE)
+        paper_label.set_use_markup(True)
         paper_label.set_alignment(0.0,0.5)
         self.paper_table.attach(paper_label,0,6,0,1,gtk.SHRINK|gtk.FILL)
 
@@ -1251,7 +1251,7 @@ class ReportDialog(BareReportDialog):
         self.html_table.set_border_width(0)
         html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
         html_label.set_alignment(0.0,0.5)
-        html_label.set_use_markup(gtk.TRUE)
+        html_label.set_use_markup(True)
         self.html_table.attach(html_label,0,3,0,1)
 
         label = gtk.Label(_("HTML Options"))

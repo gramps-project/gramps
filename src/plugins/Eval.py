@@ -84,7 +84,7 @@ class EvalWindow:
 
     def apply_clicked(self,obj):
         text = unicode(self.ebuf.get_text(self.ebuf.get_start_iter(),
-                                  self.ebuf.get_end_iter(),gtk.FALSE))
+                                  self.ebuf.get_end_iter(),False))
 
         outtext = cStringIO.StringIO()
         errtext = cStringIO.StringIO()

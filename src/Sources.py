@@ -105,16 +105,16 @@ class SourceSelector:
             renderer.set_fixed_height_from_font(1)
             column = gtk.TreeViewColumn (title[0], renderer, text=colno)
             colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            column.set_resizable(gtk.TRUE)
+            column.set_clickable (True)
+            column.set_resizable(True)
             column.set_sort_column_id(title[1])
             column.set_min_width(title[2])
             self.slist.append_column (column)
 
         self.selection.connect('changed',self.selection_changed)
 
-        self.delete.set_sensitive(gtk.FALSE)
-        self.edit.set_sensitive(gtk.FALSE)
+        self.delete.set_sensitive(False)
+        self.edit.set_sensitive(False)
         self.redraw()
         if self.parent:
             self.window.set_transient_for(self.parent.window)
@@ -164,11 +164,11 @@ class SourceSelector:
     def selection_changed(self,obj):
         (store,node) = self.selection.get_selected()
         if node:
-            self.delete.set_sensitive(gtk.TRUE)
-            self.edit.set_sensitive(gtk.TRUE)
+            self.delete.set_sensitive(True)
+            self.edit.set_sensitive(True)
         else:
-            self.delete.set_sensitive(gtk.FALSE)
-            self.edit.set_sensitive(gtk.FALSE)
+            self.delete.set_sensitive(False)
+            self.edit.set_sensitive(False)
 
     def redraw(self):
         self.model.clear()
@@ -237,8 +237,8 @@ class SourceTab:
             renderer = gtk.CellRendererText ()
             column = gtk.TreeViewColumn (title[0], renderer, text=colno)
             colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            column.set_resizable(gtk.TRUE)
+            column.set_clickable (True)
+            column.set_resizable(True)
             column.set_sort_column_id(title[1])
             column.set_min_width(title[2])
             self.slist.append_column (column)
@@ -487,15 +487,15 @@ class SourceEditor:
 
         buf = self.get_widget("scomment").get_buffer()
         comments = unicode(buf.get_text(buf.get_start_iter(),
-                                        buf.get_end_iter(),gtk.FALSE))
+                                        buf.get_end_iter(),False))
 
         buf = self.get_widget("stext").get_buffer()
         text = unicode(buf.get_text(buf.get_start_iter(),
-                                    buf.get_end_iter(),gtk.FALSE))
+                                    buf.get_end_iter(),False))
 
         buf = self.get_widget('spage').get_buffer()
         page = unicode(buf.get_text(buf.get_start_iter(),
-                                    buf.get_end_iter(),gtk.FALSE))
+                                    buf.get_end_iter(),False))
 
         self.source_ref.set_page(page)
         self.source_ref.set_date(self.date_obj)
