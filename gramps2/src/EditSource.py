@@ -257,15 +257,25 @@ class EditSource:
 
     def display_references(self):
         p_event_list = []
+        p_event_list_media = []
+        p_event_list_media_attr = []
         p_attr_list = []
         p_addr_list = []
         p_name_list = []
         p_media_list = []
+        p_media_attr_list = []
+        p_lds_list = []
         m_list = []
+        m_attr_list = []
         f_event_list = []
+        f_event_list_media = []
+        f_event_list_media_attr = []
         f_attr_list = []
         f_media_list = []
+        f_media_attr_list = []
+        f_lds_list = []
         person_list = []
+        family_list = []
         p_list = []
         for key in self.db.get_place_handles():
             p = self.db.get_place_from_handle(key) 
@@ -276,39 +286,84 @@ class EditSource:
         for key in self.db.get_person_handles(sort_handles=False):
             p = self.db.get_person_from_handle(key)
             name = self.name_display(p)
+            # Sources of person
             for sref in p.get_source_references():
                 if sref.get_base_handle() == self.source.get_handle():
                     person_list.append((name,''))
             for event_handle in p.get_event_list() + [p.get_birth_handle(), p.get_death_handle()]:
                 if event_handle:
                     event = self.db.get_event_from_handle(event_handle)
+                    # Personal event sources
                     for sref in event.get_source_references():
                         if sref.get_base_handle() == self.source.get_handle():
                             p_event_list.append((name,event.get_name()))
+                    # personal event's media
+                    for v in event.get_media_list():
+                        # personal event's media's sources
+                        for sref in v.get_source_references():
+                            if sref.get_base_handle() == self.source.get_handle():
+                                o_handle = v.get_reference_handle()
+                                o = self.db.get_object_from_handle(o_handle)
+                                p_event_list_media.append((name,o.get_description()))
+                        for vv in v.get_attribute_list():
+                            # personal event's media's attribute's sources
+                            for sref in vv.get_source_references():
+                                if sref.get_base_handle() == self.source.get_handle():
+                                    p_event_list_media_attr.append((name,vv.get_type()))
+            # personal LDS events Sources
+            if p.get_lds_baptism():
+                for sref in p.get_lds_baptism().get_source_references():
+                    if sref.get_base_handle() == self.source.get_handle():
+                        p_lds_list.append((name,_('LDS Baptism')))
+            if p.get_lds_endowment():
+                for sref in p.get_lds_endowment().get_source_references():
+                    if sref.get_base_handle() == self.source.get_handle():
+                        p_lds_list.append((name,_('Endowment')))
+            if p.get_lds_sealing():
+                for sref in p.get_lds_sealing().get_source_references():
+                    if sref.get_base_handle() == self.source.get_handle():
+                        p_lds_list.append((name,_('Sealed to parents')))
+
+            # Personal attribute's sources
             for v in p.get_attribute_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         p_attr_list.append((name,v.get_type()))
+            # personal Names' sources
             for v in p.get_alternate_names() + [p.get_primary_name()]:
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         p_name_list.append((name,v.get_name()))
+            # personal addresses' sources
             for v in p.get_address_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         p_addr_list.append((name,v.get_street()))
+            # personal media sources
             for v in p.get_media_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         o_handle = v.get_reference_handle()
                         o = self.db.get_object_from_handle(o_handle)
                         p_media_list.append((name,o.get_description()))
+                for vv in v.get_attribute_list():
+                    # personal media's attribute's sources
+                    for sref in vv.get_source_references():
+                        if sref.get_base_handle() == self.source.get_handle():
+                            p_media_attr_list.append((name,vv.get_type()))
+        # personal media's sources
         for object_handle in self.db.get_media_object_handles():
             obj = self.db.get_object_from_handle(object_handle)
             name = obj.get_description()
             for sref in obj.get_source_references():
                 if sref.get_base_handle() == self.source.get_handle():
                     m_list.append(name)
+            for v in obj.get_attribute_list():
+                # personal media attribute's sources
+                for sref in v.get_source_references():
+                    if sref.get_base_handle() == self.source.get_handle():
+                        m_attr_list.append((name,v.get_type()))
+
         for family_handle in self.db.get_family_handles():
             family = self.db.get_family_from_handle(family_handle)
             f_id = family.get_father_handle()
@@ -325,23 +380,54 @@ class EditSource:
                 name = self.name_display(f)
             else:
                 name = self.name_display(m)
-            for v_id in p.get_event_list():
+            for v_id in family.get_event_list():
                 v = self.db.get_event_from_handle(v_id)
                 if not v:
                     continue
+                # Family events sources
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         f_event_list.append((name,v.get_name()))
+                # Family event's media
+                for vv in v.get_media_list():
+                    # Family event's media's sources
+                    for sref in vv.get_source_references():
+                        if sref.get_base_handle() == self.source.get_handle():
+                            o_handle = vv.get_reference_handle()
+                            o = self.db.get_object_from_handle(o_handle)
+                            f_event_list_media.append((name,o.get_description()))
+                    for vvv in vv.get_attribute_list():
+                        # Family event's media's attribute's sources
+                        for sref in vvv.get_source_references():
+                            if sref.get_base_handle() == self.source.get_handle():
+                                f_event_list_media_attr.append((name,vvv.get_type()))
+            # Family LDS events' sources
+            if family.get_lds_sealing():
+                for sref in family.get_lds_sealing().get_source_references():
+                    if sref.get_base_handle() == self.source.get_handle():
+                        f_lds_list.append((name,_('Sealed to spouse')))
+            # Family sources
+            for sref in family.get_source_references():
+                if sref.get_base_handle() == self.source.get_handle():
+                    family_list.append((name,''))
+            # Family attributes
             for v in family.get_attribute_list():
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         f_attr_list.append((name,v.get_type()))
+            # Family media
             for v in family.get_media_list():
+                # Family media sources
                 for sref in v.get_source_references():
                     if sref.get_base_handle() == self.source.get_handle():
                         o_handle = v.get_reference_handle()
                         o = self.db.get_object_from_handle(o_handle)
                         f_media_list.append((name,o.get_description()))
+                for vv in v.get_attribute_list():
+                    # Family media's attribute's sources
+                    for sref in vv.get_source_references():
+                        if sref.get_base_handle() == self.source.get_handle():
+                            f_media_attr_list.append((name,vv.get_type()))
 
         slist = self.top_window.get_widget('slist')
 
@@ -360,6 +446,17 @@ class EditSource:
             for p in p_event_list:
                 self.model.add([_("Individual Events"),p[0],
                                 const.display_pevent(p[1])])
+
+        if len(p_event_list_media) > 0:
+            any = 1
+            for p in p_event_list_media:
+                self.model.add([_("Individual Events Galleries"),p[0],p[1]])
+
+        if len(p_event_list_media_attr) > 0:
+            any = 1
+            for p in p_event_list_media_attr:
+                self.model.add([_("Individual Events Galleries' Attributes"),p[0],p[1]])
+
         if len(p_attr_list) > 0:
             any = 1
             for p in p_attr_list:
@@ -373,27 +470,70 @@ class EditSource:
         if len(p_media_list) > 0:
             any = 1
             for p in p_media_list:
-                self.model.add([_("Individual Gallery Objects"),p[0],p[1]])
+                self.model.add([_("Individual Galleries"),p[0],p[1]])
+
+        if len(p_media_attr_list) > 0:
+            any = 1
+            for p in p_media_attr_list:
+                self.model.add([_("Individual Galleries' Attributes"),p[0],p[1]])
+
+        if len(p_lds_list) > 0:
+            any = 1
+            for p in p_lds_list:
+                self.model.add([_("Individual LDS events"),p[0],p[1]])
+
+        if len(family_list) > 0:
+            any = 1
+            for p in family_list:
+                self.model.add([_("Families"),p[0],''])
 
         if len(f_event_list) > 0:
             any = 1
             for p in f_event_list:
                 self.model.add([_("Family Events"),p[0],
                                 const.display_fevent(p[1])])
+
+        if len(f_lds_list) > 0:
+            any = 1
+            for p in f_lds_list:
+                self.model.add([_("Family LDS events"),p[0],p[1]])
+
+        if len(f_event_list_media) > 0:
+            any = 1
+            for p in f_event_list_media:
+                self.model.add([_("Family Events Galleries"),p[0],p[1]])
+
+        if len(f_event_list_media_attr) > 0:
+            any = 1
+            for p in f_event_list_media_attr:
+                self.model.add([_("Family Events Galleries' Attributes"),p[0],p[1]])
+
         if len(f_attr_list) > 0:
             any = 1
             for p in f_event_list:
                 self.model.add([_("Family Attributes"),p[0],
                                 const.display_fattr(p[1])])
+
         if len(f_media_list) > 0:
             any = 1
             for p in f_media_list:
-                self.model.add([_("Family Gallery Objects"),p[0],p[1]])
+                self.model.add([_("Family Galleries"),p[0],p[1]])
+
+        if len(f_media_attr_list) > 0:
+            any = 1
+            for p in f_media_attr_list:
+                self.model.add([_("Family Galleries' Attributes"),p[0],p[1]])
 
         if len(m_list) > 0:
             any = 1
             for p in m_list:
                 self.model.add([_("Media Objects"),p,''])
+
+        if len(m_attr_list) > 0:
+            any = 1
+            for p in m_attr_list:
+                self.model.add([_("Media Attributes"),p[0],p[1]])
+
         if len(p_list) > 0:
             any = 1
             for p in p_list:

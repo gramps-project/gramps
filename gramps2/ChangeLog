@@ -1,3 +1,10 @@
+2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/AddrEdit.py: Typo.
+	* src/EditPerson.py (on_add_addr_clicked): Typos.
+	* src/EditSource.py (display_references): Add lots of missed
+	source references.
+	* src/ImageSelect.py: Use PluginsMgr instead of Plugins.
+
 2005-03-07  Don Allingham  <don@gramps-project.org>
 	* src/RelLib.py: more documentation
 

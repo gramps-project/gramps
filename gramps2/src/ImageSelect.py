@@ -54,7 +54,7 @@ import const
 import Utils
 import GrampsKeys
 import NameDisplay
-import Plugins
+import PluginMgr
 import RelLib
 import RelImage
 import ListModel
@@ -850,7 +850,7 @@ class LocalMediaProperties:
         if node:
             attr = self.atree.get_object(node)
             AttrEdit.AttributeEditor(self,attr,"Media Object",
-                                     Plugins.get_image_attributes(),
+                                     PluginMgr.get_image_attributes(),
                                      self.attr_callback)
 
     def on_delete_attr_clicked(self,obj):
@@ -861,7 +861,7 @@ class LocalMediaProperties:
     def on_add_attr_clicked(self,obj):
         import AttrEdit
         AttrEdit.AttributeEditor(self,None,"Media Object",
-                                 Plugins.get_image_attributes(),
+                                 PluginMgr.get_image_attributes(),
                                  self.attr_callback)
 
 #-------------------------------------------------------------------------
@@ -1251,7 +1251,7 @@ class GlobalMediaProperties:
         if node:
             attr = self.atree.get_object(node)
             AttrEdit.AttributeEditor(self,attr,"Media Object",
-                                     Plugins.get_image_attributes(),
+                                     PluginMgr.get_image_attributes(),
                                      self.attr_callback)
 
     def on_delete_attr_clicked(self,obj):
@@ -1262,7 +1262,7 @@ class GlobalMediaProperties:
     def on_add_attr_clicked(self,obj):
         import AttrEdit
         AttrEdit.AttributeEditor(self,None,"Media Object",
-                                 Plugins.get_image_attributes(),
+                                 PluginMgr.get_image_attributes(),
                                  self.attr_callback)
 
 class DeleteMediaQuery:

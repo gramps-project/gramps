@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ class AddressEditor:
     """
     Displays a dialog that allows the user to edit an address.
     """
-    def __init__(self,parent,addr,callback,parent_window=None
+    def __init__(self,parent,addr,callback,parent_window=None,
                  update_sources=None):
         """
         Displays the dialog box.
