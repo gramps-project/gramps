@@ -326,7 +326,7 @@ def loadConfig(call):
 
 def get_string(value,defval=""):
     v = client.get_string(value)
-    if client.get(key):
+    if client.get(value):
         return v
     else:
         return defval
