@@ -351,7 +351,7 @@ class GedcomParser:
                 else:
                     self.groups = (int(l[0]),l[1],l[2])
             except:
-                msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
+		msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
                 msg = "%s\n\t%s\n" % (msg,self.text)
                 self.errmsg(msg)
                 self.error_count = self.error_count + 1
@@ -360,26 +360,17 @@ class GedcomParser:
         return self.groups
             
     def barf(self,level):
-        msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-        if self.window:
-            self.errmsg(msg)
-        else:
-            print msg
+	msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
+        self.errmsg(msg)
         msg = "\n\t%s\n" % self.text
 
-        if self.window:
-            self.errmsg(msg)
-            self.error_count = self.error_count + 1
-        else:
-            print msg
+        self.errmsg(msg)
+        self.error_count = self.error_count + 1
         self.ignore_sub_junk(level)
 
     def warn(self,msg):
-        if self.window:
-            self.errmsg(msg)
-            self.error_count = self.error_count + 1
-        else:
-            print msg
+        self.errmsg(msg)
+        self.error_count = self.error_count + 1
 
     def backup(self):
         self.backoff = 1
