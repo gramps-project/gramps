@@ -48,6 +48,7 @@ import os
 import sys
 import string
 from re import compile
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -58,10 +59,7 @@ import const
 import Utils
 import GrampsGconfKeys
 import Errors
-
-import gettext
-
-_ = gettext.gettext
+import Report
 
 #-------------------------------------------------------------------------
 #
@@ -81,6 +79,7 @@ _bookdoc = []
 _drawdoc = []
 _failmsg = []
 _bkitems = []
+_cl = []
 
 _status_up = None
 #-------------------------------------------------------------------------
@@ -529,23 +528,6 @@ def register_import(task, ffilter, mime=None, native_format=0):
     if mime:
         _imports.append((task, ffilter, mime, native_format))
 
-def register_report(task, name,
-                    category=_("Uncategorized"),
-                    description=_unavailable,
-                    status=_("Unknown"),
-                    author_name=_("Unknown"),
-                    author_email=_("Unknown")
-                    ):
-    """Register a report with the plugin system"""
-    
-    del_index = -1
-    for i in range(0,len(_reports)):
-        val = _reports[i]
-        if val[2] == name:
-            del_index = i
-    if del_index != -1:
-        del _reports[del_index]
-    _reports.append((task, category, name, description, status, author_name, author_email))
 
 def register_tool(task, name,
                   category=_("Uncategorized"),
@@ -566,41 +548,122 @@ def register_tool(task, name,
 
 #-------------------------------------------------------------------------
 #
-# Text document registration
+# Report registration
+#
+#-------------------------------------------------------------------------
+def register_report(
+                    name,
+                    category,
+                    report_class,
+                    options_class,
+                    modes,
+                    translated_name,
+                    status=_("Unknown"),
+                    description=_unavailable,
+                    author_name=_("Unknown"),
+                    author_email=_("Unknown")
+                    ):
+    """
+    Registers report for all possible flavors.
+
+    This function should be used to register report as a stand-alone,
+    book item, or command-line flavor in any combination of those.
+    The low-level functions (starting with '_') should not be used
+    on their own. Instead, this function will call them as needed.
+    """
+    (junk,standalone_task) = divmod(modes,2**Report.MODE_GUI)
+    if standalone_task:
+        _register_standalone(report_class,options_class,translated_name,
+                        category,description,
+                        status,author_name,author_email)
+
+    (junk,book_item_task) = divmod(modes-standalone_task,2**Report.MODE_BKI)
+    if book_item_task:
+        book_item_category = const.book_categories[category]
+        _register_book_item(translated_name,book_item_category,
+                    report_class,options_class,name)
+
+    (junk,command_line_task) = divmod(modes-standalone_task-book_item_task,
+                                        2**Report.MODE_CLI)
+    if command_line_task:
+        _register_cl_report(name,category,report_class,options_class)
+
+def _register_standalone(report_class, options_class, name,
+                    category=_("Uncategorized"),
+                    description=_unavailable,
+                    status=_("Unknown"),
+                    author_name=_("Unknown"),
+                    author_email=_("Unknown")
+                    ):
+    """Register a report with the plugin system"""
+    
+    del_index = -1
+    for i in range(0,len(_reports)):
+        val = _reports[i]
+        if val[2] == name:
+            del_index = i
+    if del_index != -1:
+        del _reports[del_index]
+    _reports.append((report_class, options_class, 
+            category, name, description, status, author_name, author_email))
+
+def _register_book_item(translated_name,category,report_class,option_class,name):
+    """Register a book item"""
+    
+    for n in _bkitems:
+        if n[0] == name:
+            return
+    _bkitems.append((translated_name,category,report_class,option_class,name))
+
+def _register_cl_report(name,category,report_class,options_class):
+    for n in _cl:
+        if n[0] == name:
+            return
+    _cl.append((name,category,report_class,options_class))
+
+#-------------------------------------------------------------------------
+#
+# Text document generator registration
 #
 #-------------------------------------------------------------------------
 def register_text_doc(name,classref, table, paper, style, ext,
-                      print_report_label = None):
+                      print_report_label=None,clname=''):
     """Register a text document generator"""
     for n in _textdoc:
         if n[0] == name:
             return
-    _textdoc.append((name,classref,table,paper,style,ext,print_report_label))
+    if not clname:
+        clname = ext[1:]
+    _textdoc.append((name,classref,table,paper,style,ext,print_report_label,clname))
 
 #-------------------------------------------------------------------------
 #
-# Text document registration
+# Book document generator registration
 #
 #-------------------------------------------------------------------------
-def register_book_doc(name,classref, table, paper, style, ext):
+def register_book_doc(name,classref, table, paper, style, ext, clname=''):
     """Register a text document generator"""
     for n in _bookdoc:
         if n[0] == name:
             return
-    _bookdoc.append((name,classref,table,paper,style,ext))
+    if not clname:
+        clname = ext[1:]
+    _bookdoc.append((name,classref,table,paper,style,ext,clname))
 
 #-------------------------------------------------------------------------
 #
-# Drawing document registration
+# Drawing document generator registration
 #
 #-------------------------------------------------------------------------
 def register_draw_doc(name,classref,paper,style, ext,
-                      print_report_label = None):
+                      print_report_label=None,clname=''):
     """Register a drawing document generator"""
     for n in _drawdoc:
         if n[0] == name:
             return
-    _drawdoc.append((name,classref,paper,style,ext,print_report_label))
+    if not clname:
+        clname = ext[1:]
+    _drawdoc.append((name,classref,paper,style,ext,print_report_label,clname))
 
 #-------------------------------------------------------------------------
 #
@@ -620,19 +683,6 @@ def register_relcalc(relclass, languages):
 def relationship_class(db):
     global _relcalc_class
     return _relcalc_class(db)
-
-#-------------------------------------------------------------------------
-#
-# Book item registration
-#
-#-------------------------------------------------------------------------
-def register_book_item(name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style):
-    """Register a book item"""
-    
-    for n in _bkitems:
-        if n[0] == name:
-            return
-    _bkitems.append((name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style))
 
 #-------------------------------------------------------------------------
 #
@@ -687,7 +737,39 @@ def build_menu(top_menu,list,callback):
 #
 #-------------------------------------------------------------------------
 def build_report_menu(top_menu,callback):
-    build_menu(top_menu,_reports,callback)
+#    build_menu(top_menu,_reports,callback)
+#def build_menu(top_menu,list,callback):
+    report_menu = gtk.Menu()
+    report_menu.show()
+    
+    hash_data = {}
+    for report in _reports:
+        standalone_category = const.standalone_categories[report[2]]
+        if hash_data.has_key(standalone_category):
+            hash_data[standalone_category].append(
+                    (report[3],report[0],report[1],report[2]))
+        else:
+            hash_data[standalone_category] = [
+                    (report[3],report[0],report[1],report[2])]
+
+    catlist = hash_data.keys()
+    catlist.sort()
+    for key in catlist:
+        entry = gtk.MenuItem(key)
+        entry.show()
+        report_menu.append(entry)
+        submenu = gtk.Menu()
+        submenu.show()
+        entry.set_submenu(submenu)
+        lst = hash_data[key]
+        lst.sort()
+        for name in lst:
+            subentry = gtk.MenuItem("%s..." % name[0])
+            subentry.show()
+            subentry.connect("activate",callback,Report.report,name[1],name[2],name[3],name[0])
+            submenu.append(subentry)
+    top_menu.set_submenu(report_menu)
+
 
 #-------------------------------------------------------------------------
 #
@@ -702,16 +784,19 @@ def build_tools_menu(top_menu,callback):
 # get_text_doc_menu
 #
 #-------------------------------------------------------------------------
-def get_text_doc_menu(main_menu,tables,callback,obj=None):
+def get_text_doc_menu(main_menu,tables,callback,obj=None,active=None):
     index = 0
     myMenu = gtk.Menu()
     _textdoc.sort()
+    active_found = False
+    other_active = None
     for item in _textdoc:
         if tables and item[2] == 0:
             continue
         name = item[0]
         menuitem = gtk.MenuItem(name)
         menuitem.set_data("name",item[1])
+        menuitem.set_data("label",name)
         menuitem.set_data("styles",item[4])
         menuitem.set_data("paper",item[3])
         menuitem.set_data("ext",item[5])
@@ -721,28 +806,42 @@ def get_text_doc_menu(main_menu,tables,callback,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == GrampsGconfKeys.get_output_preference():
+        if name == active:
             myMenu.set_active(index)
-            callback(menuitem)
+            if callback:
+                callback(menuitem)
+            active_found = True
+        elif name == GrampsGconfKeys.get_output_preference():
+            other_active = index
+            other_item = menuitem
         index = index + 1
+
+    if other_active and not active_found:
+        myMenu.set_active(index)
+        if callback:
+            callback(other_item)
+
     main_menu.set_menu(myMenu)
 
 #-------------------------------------------------------------------------
 #
-# get_text_doc_menu
+# get_book_menu
 #
 #-------------------------------------------------------------------------
-def get_book_menu(main_menu,tables,callback,obj=None):
+def get_book_menu(main_menu,tables,callback,obj=None,active=None):
 
     index = 0
     myMenu = gtk.Menu()
     _bookdoc.sort()
+    active_found = False
+    other_active = None
     for item in _bookdoc:
         if tables and item[2] == 0:
             continue
         name = item[0]
         menuitem = gtk.MenuItem(name)
         menuitem.set_data("name",item[1])
+        menuitem.set_data("label",name)
         menuitem.set_data("styles",item[4])
         menuitem.set_data("paper",item[3])
         menuitem.set_data("ext",item[5])
@@ -751,10 +850,20 @@ def get_book_menu(main_menu,tables,callback,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == GrampsGconfKeys.get_output_preference():
+        if name == active:
             myMenu.set_active(index)
-            callback(menuitem)
+            if callback:
+                callback(menuitem)
+            active_found = True
+        elif name == GrampsGconfKeys.get_output_preference():
+            other_active = index
+            other_item = menuitem
         index = index + 1
+
+    if other_active and not active_found:
+        myMenu.set_active(index)
+        if callback:
+            callback(other_item)
     main_menu.set_menu(myMenu)
 
 #-------------------------------------------------------------------------
@@ -771,7 +880,7 @@ def get_text_doc_list():
 
 #-------------------------------------------------------------------------
 #
-# get_text_doc_list
+# get_book_doc_list
 #
 #-------------------------------------------------------------------------
 def get_book_doc_list():
@@ -799,13 +908,16 @@ def get_draw_doc_list():
 # get_draw_doc_menu
 #
 #-------------------------------------------------------------------------
-def get_draw_doc_menu(main_menu,callback=None,obj=None):
+def get_draw_doc_menu(main_menu,callback=None,obj=None,active=None):
 
     index = 0
     myMenu = gtk.Menu()
-    for (name,classref,paper,styles,ext,printable) in _drawdoc:
+    active_found = False
+    other_active = None
+    for (name,classref,paper,styles,ext,printable,clname) in _drawdoc:
         menuitem = gtk.MenuItem(name)
         menuitem.set_data("name",classref)
+        menuitem.set_data("label",name)
         menuitem.set_data("styles",styles)
         menuitem.set_data("paper",paper)
         menuitem.set_data("ext",ext)
@@ -815,11 +927,20 @@ def get_draw_doc_menu(main_menu,callback=None,obj=None):
             menuitem.connect("activate",callback)
         menuitem.show()
         myMenu.append(menuitem)
-        if name == GrampsGconfKeys.get_goutput_preference():
+        if name == active:
             myMenu.set_active(index)
-        if callback:
-            callback(menuitem)
+            if callback:
+                callback(menuitem)
+            active_found = True
+        elif name == GrampsGconfKeys.get_goutput_preference():
+            other_active = index
+            other_item = menuitem
         index = index + 1
+
+    if other_active and not active_found:
+        myMenu.set_active(index)
+        if callback:
+            callback(other_item)
     main_menu.set_menu(myMenu)
 
 #-------------------------------------------------------------------------

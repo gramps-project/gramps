@@ -1167,8 +1167,10 @@ Plugins.register_text_doc(
     table=1,
     paper=1,
     style=1,
-    ext=""
-    )
+    ext="",
+    print_report_label=None,
+    clname='print')
+    
 
 Plugins.register_book_doc(
     _("Print..."),
@@ -1176,11 +1178,14 @@ Plugins.register_book_doc(
     1,
     1,
     1,
-    "")
+    "",
+    'print')
 
 Plugins.register_draw_doc(
     _("Print..."),
     LPRDoc,
     1,
     1,
-    "");
+    "",
+    None,
+    'print')

@@ -78,6 +78,7 @@ caution_xpm    = "%s/caution.png" % rootDir
 
 system_filters = "%s/system_filters.xml" % rootDir
 custom_filters = "~/.gramps/custom_filters.xml"
+report_options = "~/.gramps/report_options.xml"
 icon           = "%s/gramps.png" % rootDir
 logo           = "%s/logo.png" % rootDir
 gladeFile      = "%s/gramps.glade" % rootDir
@@ -151,10 +152,11 @@ unknown      = _("unknown")
 
 # (longName, shortName, type , default, flags, descrip , argDescrip)
 popt_table = [
-    ("import", 'i', str, None, 0, "Import file", "FILENAME"),
-    ("output", 'o', str, None, 0, "Write file",  "FILENAME"),
-    ("format", 'f', str, None, 0, 'Specify format', "FORMAT"),
-    ("action", 'a', str, None, 0, 'Specify action', "ACTION"),
+    ("import",  'i', str, None, 0, "Import file",       "FILENAME"),
+    ("output",  'o', str, None, 0, "Write file",        "FILENAME"),
+    ("format",  'f', str, None, 0, 'Specify format',    "FORMAT"),
+    ("action",  'a', str, None, 0, 'Specify action',    "ACTION"),
+    ("options", 'p', str, None, 0, 'Specify options',   "OPTIONS_STRING"),
 ]
 
 longopts = [
@@ -190,9 +192,10 @@ longopts = [
     "output=",
     "format=",
     "action=",
+    "options=",
 ]
 
-shortopts = "i:o:f:a:?"
+shortopts = "i:o:f:a:p:?"
 
 #-------------------------------------------------------------------------
 #
@@ -886,3 +889,23 @@ notes_formats = [
 ]
 
 
+CATEGORY_TEXT = 0
+CATEGORY_DRAW = 1
+CATEGORY_CODE = 2
+CATEGORY_WEB  = 3
+CATEGORY_VIEW = 4
+CATEGORY_BOOK = 5
+
+standalone_categories = {
+    CATEGORY_TEXT : _("Text Reports"),
+    CATEGORY_DRAW : _("Graphical Reports"),
+    CATEGORY_CODE : _("Code-generating Reports"),
+    CATEGORY_WEB  : _("Web Page"),
+    CATEGORY_VIEW : _("View"),
+    CATEGORY_BOOK : _("Book Reports"),
+}
+
+book_categories = {
+    CATEGORY_TEXT : _("Text"),
+    CATEGORY_DRAW : _("Graphics"),
+}

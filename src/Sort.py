@@ -93,7 +93,7 @@ class Sort:
         else:
             date2 = Date.Date()
 
-        val = date1.is_equal(date2)
+        val = cmp(date1,date2)
         if val == 0:
             return self.by_last_name(first_id,second_id)
         return val

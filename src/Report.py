@@ -1,4 +1,4 @@
-#
+
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001  David R. Hampton
@@ -32,7 +32,8 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 import os
-
+from gettext import gettext as _
+from types import ClassType, InstanceType
 #-------------------------------------------------------------------------
 #
 # GNOME/GTK modules
@@ -55,8 +56,8 @@ import BaseDoc
 import StyleEditor
 import GrampsGconfKeys
 import PaperMenu
+import Errors
 
-from gettext import gettext as _
 from QuestionDialog import  ErrorDialog, OptionDialog
 
 #-------------------------------------------------------------------------
@@ -71,7 +72,7 @@ except:
 
 #-------------------------------------------------------------------------
 #
-# 
+# Constants
 #
 #-------------------------------------------------------------------------
 _default_template = _("Default Template")
@@ -80,6 +81,11 @@ _user_template = _("User Defined Template")
 _template_map = {
     _user_template : None
     }
+
+# Modes for generating reports
+MODE_GUI = 1    # Standalone report using GUI
+MODE_BKI = 2    # Book Item interface using GUI
+MODE_CLI = 4    # Command line interface (CLI)
 
 #-------------------------------------------------------------------------
 #
@@ -193,16 +199,20 @@ class BareReportDialog:
     frame_pad = 5
     border_pad = 6
 
-    def __init__(self,database,person,options={}):
+    def __init__(self,database,person,option_class,name):
         """Initialize a dialog to request that the user select options
         for a basic *bare* report."""
 
-        # Save info about who the report is about.
-        self.option_store = options
-            
-        self.style_name = "default"
         self.db = database
         self.person = person
+        if type(option_class) == ClassType:
+            self.options = option_class(name)
+        elif type(option_class) == InstanceType:
+            self.options = option_class
+        self.report_name = name
+        self.init_interface()
+
+    def init_interface(self):
         self.output_notebook = None
         self.notebook_page = 1
         self.pagecount_menu = None
@@ -216,22 +226,28 @@ class BareReportDialog:
         self.frames = {}
         self.format_menu = None
         self.style_button = None
-        
+
+        self.style_name = self.options.handler.get_default_stylesheet_name()
+        (self.max_gen,self.page_breaks) = self.options.handler.get_report_generations()
+        try:
+            self.local_filters = self.options.get_report_filters(self.person)
+        except AttributeError:
+            self.local_filters = []
+
         self.window = gtk.Dialog('GRAMPS')
         self.window.set_has_separator(gtk.FALSE)
-        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,1)
-        self.ok = self.window.add_button(gtk.STOCK_OK,0)
+        self.cancel = self.window.add_button(gtk.STOCK_CANCEL,False)
+        self.ok = self.window.add_button(gtk.STOCK_OK,True)
 
         self.ok.connect('clicked',self.on_ok_clicked)
         self.cancel.connect('clicked',self.on_cancel)
 
-        self.window.set_response_sensitive(0,gtk.TRUE)
-        self.window.set_response_sensitive(1,gtk.TRUE)
+#        self.window.set_response_sensitive(0,gtk.TRUE)
+#        self.window.set_response_sensitive(1,gtk.TRUE)
         self.window.set_resize_mode(0)
 
         # Build the list of widgets that are used to extend the Options
         # frame and to create other frames
-        
         self.add_user_options()
 
         # Set up and run the dialog.  These calls are not in top down
@@ -257,14 +273,9 @@ class BareReportDialog:
         self.setup_other_frames()
         self.window.show_all()
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks for subclasses
-    #
-    #------------------------------------------------------------------------
     def get_title(self):
-        """The window title for this dialog."""
-        return('')
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % self.report_name
 
     def get_header(self, name):
         """The header line to put at the top of the contents of the
@@ -272,8 +283,14 @@ class BareReportDialog:
         selected person.  Most subclasses will customize this to give
         some indication of what the report will be, i.e. 'Descendant
         Report for %s'."""
-        return(name)
+        return _("%(report_name)s for GRAMPS Book") % { 
+                    'report_name' : self.report_name}
         
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks for subclasses
+    #
+    #------------------------------------------------------------------------
     def get_stylesheet_savefile(self):
         """Where should new styles for this report be saved?  This is
         the name of an XML file that will be located in the ~/.gramps
@@ -325,7 +342,19 @@ class BareReportDialog:
         It is called immediately before the window is displayed. All
         calls to add_option or add_frame_option should be called in
         this task."""
-        pass
+        try:
+            self.options.add_user_options(self)
+        except AttributeError:
+            pass
+
+    def parse_user_options(self):
+        """Called to allow parsing of added widgets.
+        It is called when OK is pressed in a dialog. 
+        All custom widgets should provide a parsing code here."""
+        try:
+            self.options.parse_user_options(self)
+        except AttributeError:
+            pass
 
     def add_option(self,label_text,widget,tooltip=None):
         """Takes a text string and a Gtk Widget, and stores them to be
@@ -362,16 +391,16 @@ class BareReportDialog:
     # Functions to create a default output style.
     #
     #------------------------------------------------------------------------
-    def make_default_style(self):
-        """Create the default style to be used by the associated report.  This
-        routine is a default implementation and should be overridden."""
-        font = BaseDoc.FontStyle()
-        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
-        para = BaseDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(1)
-        para.set(pad=0.5)
-        self.default_style.add_style("Title",para)
+#    def make_default_style(self):
+#        """Create the default style to be used by the associated report.  This
+#        routine is a default implementation and should be overridden."""
+#        font = BaseDoc.FontStyle()
+#        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
+#        para = BaseDoc.ParagraphStyle()
+#        para.set_font(font)
+#        para.set_header_level(1)
+#        para.set(pad=0.5)
+#        self.default_style.add_style("Title",para)
 
     def build_style_menu(self,default=None):
         """Build a menu of style sets that are available for use in
@@ -466,16 +495,17 @@ class BareReportDialog:
         
         # Build the default style set for this report.
         self.default_style = BaseDoc.StyleSheet()
-        self.make_default_style()
+        self.options.make_default_style(self.default_style)
 
         # Build the initial list of available styles sets.  This
         # includes the default style set and any style sets saved from
         # previous invocations of gramps.
-        self.style_sheet_list = BaseDoc.StyleSheetList(self.get_stylesheet_savefile(),
-                                                       self.default_style)
+        self.style_sheet_list = BaseDoc.StyleSheetList(
+                            self.options.handler.get_stylesheet_savefile(),
+                            self.default_style)
 
         # Now build the actual menu.
-        style = self.option_store.get('style',self.default_style.get_name())
+        style = self.options.handler.get_default_stylesheet_name()
         self.build_style_menu(style)
 
     def setup_report_options_frame(self):
@@ -486,18 +516,16 @@ class BareReportDialog:
         generations fields and the filter combo box are used in most
         (but not all) dialog boxes."""
 
-        (use_gen, use_break) = self.get_report_generations()
-        local_filters = self.get_report_filters()
         (em_label, extra_map, preset, em_tip) = self.get_report_extra_menu_info()
         (et_label, string, et_tip) = self.get_report_extra_textbox_info()
 
         row = 0
         max_rows = 0
-        if use_gen:
-            max_rows = max_rows + 1
-            if use_break:
-                max_rows = max_rows + 1
-        if len(local_filters):
+        if self.max_gen:
+            max_rows = max_rows + 2
+            #if self.page_breaks:
+            #    max_rows = max_rows + 1
+        if len(self.local_filters):
             max_rows = max_rows + 1
         if extra_map:
             max_rows = max_rows + 1
@@ -529,23 +557,24 @@ class BareReportDialog:
             self.notebook.append_page(table,label)
         row += 1
 
-        if len(local_filters):
+        if len(self.local_filters):
             self.filter_combo = gtk.OptionMenu()
             l = gtk.Label("%s:" % _("Filter"))
             l.set_alignment(0.0,0.5)
             table.attach(l,1,2,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
             table.attach(self.filter_combo,2,3,row,row+1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
-            menu = GenericFilter.build_filter_menu(local_filters,self.option_store.get('filter',''))
+            menu = GenericFilter.build_filter_menu(self.local_filters)
 
             self.filter_combo.set_menu(menu)
+            self.filter_combo.set_history(self.options.handler.get_filter_number())
             self.filter_menu = menu
             row += 1
             
         # Set up the generations spin and page break checkbox
-        if use_gen:
+        if self.max_gen:
             self.generations_spinbox = gtk.SpinButton(digits=0)
             self.generations_spinbox.set_numeric(1)
-            adjustment = gtk.Adjustment(use_gen,1,31,1,0)
+            adjustment = gtk.Adjustment(self.max_gen,1,31,1,0)
             self.generations_spinbox.set_adjustment(adjustment)
             adjustment.value_changed()
             l = gtk.Label("%s:" % _("Generations"))
@@ -554,11 +583,12 @@ class BareReportDialog:
             table.attach(self.generations_spinbox,2,3,row,row+1,gtk.EXPAND|gtk.FILL,gtk.SHRINK|gtk.FILL)
             row += 1
 
-            if use_break:
-                msg = _("Page break between generations")
-                self.pagebreak_checkbox = gtk.CheckButton(msg)
-                table.attach(self.pagebreak_checkbox,2,3,row,row+1)
-                row += 1
+            #if self.page_breaks:
+            msg = _("Page break between generations")
+            self.pagebreak_checkbox = gtk.CheckButton(msg)
+            self.pagebreak_checkbox.set_active(self.page_breaks)
+            table.attach(self.pagebreak_checkbox,2,3,row,row+1)
+            row += 1
 
         # Now the "extra" option menu
         if extra_map:
@@ -662,7 +692,7 @@ class BareReportDialog:
         item = self.style_menu.get_menu().get_active()
         self.selected_style = item.get_data("d")
         style_name = item.get_data('l')
-        self.option_store['style'] = style_name
+        self.options.handler.set_default_stylesheet_name(style_name)
 
     def parse_report_options_frame(self):
         """Parse the report options frame of the dialog.  Save the
@@ -682,9 +712,12 @@ class BareReportDialog:
         else:
             self.pg_brk = 0
 
+        if self.max_gen or self.pg_brk:
+            self.options.handler.set_report_generations(self.max_gen,self.pg_brk)
+
         if self.filter_combo:
             self.filter = self.filter_menu.get_active().get_data("filter")
-            self.option_store['filter'] = self.filter.get_name()
+            self.options.handler.set_filter_number(self.filter_combo.get_history())
         else:
             self.filter = None
 
@@ -712,7 +745,7 @@ class BareReportDialog:
     #
     #------------------------------------------------------------------------
     def on_cancel(self,*obj):
-        self.window.destroy()
+        pass
 
     def on_ok_clicked(self, obj):
         """The user is satisfied with the dialog choices. Parse all options
@@ -722,16 +755,17 @@ class BareReportDialog:
         self.parse_style_frame()
         self.parse_report_options_frame()
         self.parse_other_frames()
+        self.parse_user_options()
         
-        # Clean up the dialog object
-        self.window.destroy()
+        # Save options
+        self.options.handler.save_options()
 
     def on_style_edit_clicked(self, *obj):
         """The user has clicked on the 'Edit Styles' button.  Create a
         style sheet editor object and let them play.  When they are
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
-        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu)
+        StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu,self.window)
 
     def on_center_person_change_clicked(self,*obj):
         import SelectPerson
@@ -779,36 +813,50 @@ class ReportDialog(BareReportDialog):
     dialog for a stand-alone report.
     """
 
-    def __init__(self,database,person,options={}):
+    def __init__(self,database,person,option_class,name=''):
         """Initialize a dialog to request that the user select options
         for a basic *stand-alone* report."""
         
         self.style_name = "default"
-        BareReportDialog.__init__(self,database,person,options)
+        BareReportDialog.__init__(self,database,person,option_class,name)
 
         # Allow for post processing of the format frame, since the
         # show_all task calls events that may reset values
 
+    def init_interface(self):
+        BareReportDialog.init_interface(self)
         if self.format_menu:
             self.doc_type_changed(self.format_menu.get_menu().get_active())
         self.setup_post_process()
 
+#    def on_cancel(self,*obj):
+#        self.window.destroy()
+
     def setup_post_process(self):
         pass
 
-    def setup_center_person(self): pass
+    def setup_center_person(self):
+        pass
+
+    def get_title(self):
+        """The window title for this dialog"""
+        name = self.report_name
+        category = const.standalone_categories[self.category]
+        return "%s - %s - GRAMPS" % (name,category)
+
+    def get_header(self, name):
+        """The header line to put at the top of the contents of the
+        dialog box.  By default this will just be the name of the
+        report for the selected person. """
+        return _("%(report_name)s for %(person_name)s") % {
+                    'report_name' : self.report_name,
+                    'person_name' : name}
 
     #------------------------------------------------------------------------
     #
     # Customization hooks for subclasses
     #
     #------------------------------------------------------------------------
-    def get_target_browser_title(self):
-        """The title of the window that will be created when the user
-        clicks the 'Browse' button in the 'Save As' File Entry
-        widget."""
-        return("%s - GRAMPS" % _("Save Report As"))
-
     def get_target_is_directory(self):
         """Is the user being asked to input the name of a file or a
         directory in the 'Save As' File Entry widget.  This item
@@ -858,7 +906,7 @@ class ReportDialog(BareReportDialog):
     # Functions related to selecting/changing the current file format.
     #
     #------------------------------------------------------------------------
-    def make_doc_menu(self):
+    def make_doc_menu(self,active=None):
         """Build a menu of document types that are appropriate for
         this report.  This menu will be generated based upon the type
         of document (text, draw, graph, etc. - a subclass), whether or
@@ -866,8 +914,13 @@ class ReportDialog(BareReportDialog):
         pass
 
     def make_document(self):
-        """Create a document of the type selected by the user."""
-        pass
+        """Create a document of the type requested by the user."""
+
+        self.doc = self.format(self.selected_style,self.paper,
+                               self.template_name,self.orien)
+        self.options.handler.doc = self.doc
+        if self.print_report.get_active ():
+            self.doc.print_requested ()
 
     def doc_type_changed(self, obj):
         """This routine is called when the user selects a new file
@@ -937,6 +990,7 @@ class ReportDialog(BareReportDialog):
         if hid[-4:]==".xml":
             hid = hid[0:-4]
         self.target_fileentry = gnome.ui.FileEntry(hid,_("Save As"))
+        self.target_fileentry.set_modal(True)
 
         if self.get_target_is_directory():
             self.target_fileentry.set_directory_entry(1)
@@ -965,7 +1019,7 @@ class ReportDialog(BareReportDialog):
         self.col += 1
 
         self.format_menu = gtk.OptionMenu()
-        self.make_doc_menu()
+        self.make_doc_menu(self.options.handler.get_format_name())
         label = gtk.Label("%s:" % _("Output Format"))
         label.set_alignment(0.0,0.5)
         self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
@@ -1070,9 +1124,11 @@ class ReportDialog(BareReportDialog):
         self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
 
         PaperMenu.make_paper_menu(self.papersize_menu,
-                                  self.option_store.get('paper',GrampsGconfKeys.get_paper_preference()))
+                                    self.options.handler.get_paper_name()
+                                    )
         PaperMenu.make_orientation_menu(self.orientation_menu,
-                                        self.option_store.get('orientation',BaseDoc.PAPER_PORTRAIT))
+                                    self.options.handler.get_orientation()
+                                    )
 
         # The optional pagecount stuff.
         if pagecount_map:
@@ -1129,7 +1185,7 @@ class ReportDialog(BareReportDialog):
         self.template_combo.set_popdown_strings(template_list)
         self.template_combo.entry.set_editable(0)
 
-        def_template = self.option_store.get('default_template','')
+        def_template = ''
         if def_template in template_list:
             self.template_combo.entry.set_text(def_template)
         self.template_combo.entry.connect('changed',self.html_file_enable)
@@ -1139,8 +1195,9 @@ class ReportDialog(BareReportDialog):
         l.set_alignment(0.0,0.5)
         self.html_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
         self.html_fileentry = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
+        self.html_fileentry.set_modal(True)
         self.html_fileentry.set_sensitive(0)
-        user_template = self.option_store.get('user_template','')
+        user_template = ''
         if os.path.isfile(user_template):
             self.html_fileentry.set_filename(user_template)
         self.html_table.attach(self.html_fileentry,2,3,2,3)
@@ -1178,12 +1235,15 @@ class ReportDialog(BareReportDialog):
                 return
         
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
+        self.options.handler.output = self.target_path
         return 1
 
     def parse_format_frame(self):
         """Parse the format frame of the dialog.  Save the user
         selected output format for later use."""
         self.format = self.format_menu.get_menu().get_active().get_data("name")
+        format_name = self.format_menu.get_menu().get_active().get_data("label")
+        self.options.handler.set_format_name(format_name)
 
     def parse_paper_frame(self):
         """Parse the paper frame of the dialog.  Save the user
@@ -1192,7 +1252,8 @@ class ReportDialog(BareReportDialog):
         is displayed on the screen.  The subclass will know which ones
         it has enabled.  This is for simplicity of programming."""
         self.paper = self.papersize_menu.get_menu().get_active().get_data("i")
-        self.option_store['paper'] = self.paper.get_name()
+        paper_name = self.papersize_menu.get_menu().get_active().get_data("label")
+        self.options.handler.set_paper_name(paper_name)
 
         if self.paper.get_height() <= 0 or self.paper.get_width() <= 0:
             try:
@@ -1210,7 +1271,7 @@ class ReportDialog(BareReportDialog):
                 self.paper.set_width(21.0)
         
         self.orien = self.orientation_menu.get_menu().get_active().get_data("i")
-        self.option_store['orientation'] = self.orien
+        self.options.handler.set_orientation(self.orien)
 
         if self.pagecount_menu == None:
             self.pagecount = 0
@@ -1228,14 +1289,11 @@ class ReportDialog(BareReportDialog):
         if _template_map.has_key(text):
             if text == _user_template:
                 self.template_name = self.html_fileentry.get_full_path(0)
-                self.option_store['default_template'] = text
-                self.option_store['user_template'] = ''
             else:
                 self.template_name = "%s/%s" % (const.template_dir,_template_map[text])
-                self.option_store['default_template'] = text
-                self.option_store['user_template'] = self.template_name
         else:
             self.template_name = None
+        self.options.handler.set_template_name(self.template_name)
 
 
     def on_ok_clicked(self, obj):
@@ -1254,28 +1312,33 @@ class ReportDialog(BareReportDialog):
         self.parse_html_frame()
         self.parse_report_options_frame()
         self.parse_other_frames()
-        
+        self.parse_user_options()
+
         # Create the output document.
         self.make_document()
         
-        # Create the report object and product the report.
-        try:
-            self.make_report()
-        except (IOError,OSError),msg:
-            ErrorDialog(str(msg))
+#        # Create the report object and product the report.
+#        try:
+#            self.make_report()
+#        except (IOError,OSError),msg:
+#            ErrorDialog(str(msg))
             
+        # Save options
+        self.options.handler.save_options()
+
         # Clean up the dialog object
-        self.window.destroy()
+        #self.window.destroy()
 
 
 class TextReportDialog(ReportDialog):
     """A class of ReportDialog customized for text based reports."""
 
-    def __init__(self,database,person,options={}):
+    def __init__(self,database,person,options,name=''):
         """Initialize a dialog to request that the user select options
         for a basic text report.  See the ReportDialog class for more
         information."""
-        ReportDialog.__init__(self,database,person, options)
+        self.category = const.CATEGORY_TEXT
+        ReportDialog.__init__(self,database,person,options,name)
 
     #------------------------------------------------------------------------
     #
@@ -1293,60 +1356,46 @@ class TextReportDialog(ReportDialog):
     # Functions related to selecting/changing the current file format.
     #
     #------------------------------------------------------------------------
-    def make_doc_menu(self):
+    def make_doc_menu(self,active=None):
         """Build a menu of document types that are appropriate for
         this text report.  This menu will be generated based upon
         whether the document requires table support, etc."""
         Plugins.get_text_doc_menu(self.format_menu, self.doc_uses_tables(),
-                                  self.doc_type_changed)
-
-    def make_document(self):
-        """Create a document of the type requested by the user."""
-
-        self.doc = self.format(self.selected_style,self.paper,
-                               self.template_name,self.orien)
-        if self.print_report.get_active ():
-            self.doc.print_requested ()
+                                  self.doc_type_changed, None, active)
 
     #------------------------------------------------------------------------
     #
     # Functions related to creating the actual report document.
     #
     #------------------------------------------------------------------------
-    def make_report(self):
-        """Create the contents of the report.  This is a simple
-        default implementation suitable for testing.  Is should be
-        overridden to produce a real report."""
-        self.doc.start_paragraph("Title")
-        title = "Basic Report for %s" % self.name
-        self.doc.write_text(title)
-        self.doc.end_paragraph()
+#    def make_report(self):
+#        """Create the contents of the report.  This is a simple
+#        default implementation suitable for testing.  Is should be
+#        overridden to produce a real report."""
+#        self.doc.start_paragraph("Title")
+#        title = "Basic Report for %s" % self.name
+#        self.doc.write_text(title)
+#        self.doc.end_paragraph()
 
 class DrawReportDialog(ReportDialog):
     """A class of ReportDialog customized for drawing based reports."""
-    def __init__(self,database,person,opt={}):
+    def __init__(self,database,person,opt,name=''):
         """Initialize a dialog to request that the user select options
         for a basic drawing report.  See the ReportDialog class for
         more information."""
-        ReportDialog.__init__(self,database,person,opt)
+        self.category = const.CATEGORY_DRAW
+        ReportDialog.__init__(self,database,person,opt,name)
 
     #------------------------------------------------------------------------
     #
     # Functions related to selecting/changing the current file format.
     #
     #------------------------------------------------------------------------
-    def make_doc_menu(self):
+    def make_doc_menu(self,active=None):
         """Build a menu of document types that are appropriate for
         this drawing report."""
-        Plugins.get_draw_doc_menu(self.format_menu,self.doc_type_changed)
-
-    def make_document(self):
-        """Create a document of the type requested by the user."""
-
-        self.doc = self.format(self.selected_style,self.paper,
-                               self.template_name,self.orien)
-        if self.print_report.get_active ():
-            self.doc.print_requested ()
+        Plugins.get_draw_doc_menu(self.format_menu,self.doc_type_changed, 
+                                    None, active)
 
 class TemplateParser(handler.ContentHandler):
     """
@@ -1377,14 +1426,11 @@ class TemplateParser(handler.ContentHandler):
         if tag == "template":
             self.data[attrs['title']] = attrs['file']
 
-            
-        
 #-----------------------------------------------------------------------
 #
 # Initialization
 #
 #-----------------------------------------------------------------------
-
 try:
     parser = make_parser()
     gspath = const.template_dir
@@ -1396,3 +1442,266 @@ try:
     parser.parse("file://%s/templates.xml" % gspath)
 except (IOError,OSError,SAXParseException):
     pass
+
+#------------------------------------------------------------------------
+#
+# Command-line report
+#
+#------------------------------------------------------------------------
+class CommandLineReport:
+    """
+    Provides a way to generate report from the command line.
+    
+    """
+
+    def __init__(self,database,name,category,option_class,options_str_dict):
+        self.database = database
+        self.category = category
+        self.option_class = option_class(name)
+        self.show = options_str_dict.pop('show',None)
+        self.options_str_dict = options_str_dict
+        self.init_options()
+        self.parse_option_str()
+        self.show_options()
+
+    def init_options(self):
+        self.options_dict = {
+            'of'        : self.option_class.handler.report_name,
+            'off'       : self.option_class.handler.get_format_name(),
+            'style'     : self.option_class.handler.get_default_stylesheet_name(),
+            'papers'    : self.option_class.handler.get_paper_name(),
+            'papero'    : self.option_class.handler.get_orientation(),
+            'template'  : self.option_class.handler.get_orientation(),
+            'id'        : ''
+            }
+
+        self.options_help = {
+            'of'        : ["=filename","Output file name. MANDATORY"],
+            'off'       : ["=format","Output file format."],
+            'style'     : ["=name","Style name."],
+            'papers'    : ["=name","Paper size name."],
+            'papero'    : ["=num","Paper orientation number."],
+            'template'  : ["=name","Template name (HTML only)."],
+            'id'        : ["=ID","Gramps ID of a central person. MANDATORY"],
+            'filter'    : ["=num","Filter number."],
+            'max_gen'   : ["=num","Number generations to follow."],
+            'page_breaks': ["=0/1","Page break between generations."],
+            }
+
+        # Add report-specific options
+        for key in self.option_class.handler.options_dict.keys():
+            if key not in self.options_dict.keys():
+                self.options_dict[key] = self.option_class.handler.options_dict[key]
+
+        # Add help for report-specific options
+        for key in self.option_class.options_help.keys():
+            if key not in self.options_help.keys():
+                self.options_help[key] = self.option_class.options_help[key]
+
+    def parse_option_str(self):
+        for opt in self.options_str_dict.keys():
+            if opt in self.options_dict.keys():
+                converter = Utils.get_type_converter(self.options_dict[opt])
+                self.options_dict[opt] = converter(self.options_str_dict[opt])
+                self.option_class.handler.options_dict[opt] = self.options_dict[opt]
+            else:
+                print "Ignoring unknown option: %s" % opt
+
+        person_id = self.options_dict['id']
+        self.person = self.database.get_person_from_gramps_id(person_id)
+        id_list = []
+        for person_handle in self.database.get_person_handles():
+            person = self.database.get_person_from_handle(person_handle)
+            id_list.append("%s\t%s" % (person.get_gramps_id(),
+                                person.get_primary_name().get_name()))
+        self.options_help['id'].append(id_list)
+        self.options_help['id'].append(False)
+
+        if self.options_dict.has_key('filter'):
+            filter_num = self.options_dict['filter']
+            self.filters = self.option_class.get_report_filters(self.person)
+            self.option_class.handler.set_filter_number(filter_num)
+            
+            filt_list = [ filt.get_name() for filt in self.filters ]
+            cust_filt_list = [ filt2.get_name() for filt2 in 
+                                GenericFilter.CustomFilters.get_filters() ]
+            filt_list.extend(cust_filt_list)
+            self.options_help['filter'].append(filt_list)
+            self.options_help['filter'].append(True)
+
+        if self.options_dict.has_key('max_gen'):
+            max_gen = self.options_dict['max_gen']
+            page_breaks = self.options_dict['page_breaks']
+            self.option_class.handler.set_report_generations(max_gen,page_breaks)
+            
+            self.options_help['max_gen'].append("Whatever Number You Wish")
+            self.options_help['page_breaks'].append([
+                "No page break","Page break"])
+            self.options_help['page_breaks'].append(True)
+
+        self.option_class.handler.output = self.options_dict['of']
+        self.options_help['of'].append(os.path.expanduser("~/whatever_name"))
+                
+        if self.category == const.CATEGORY_TEXT:
+            for item in Plugins._textdoc:
+                if item[7] == self.options_dict['off']:
+                    self.format = item[1]
+            self.options_help['off'].append(
+                [ item[7] for item in Plugins._textdoc ]
+            )
+            self.options_help['off'].append(False)
+        elif self.category == const.CATEGORY_DRAW:
+            for item in Plugins._drawdoc:
+                if item[6] == self.options_dict['off']:
+                    self.format = item[1]
+            self.options_help['off'].append(
+                [ item[6] for item in Plugins._drawdoc ]
+            )
+            self.options_help['off'].append(False)
+        elif self.category == const.CATEGORY_BOOK:
+            for item in Plugins._bookdoc:
+                if item[6] == self.options_dict['off']:
+                    self.format = item[1]
+            self.options_help['off'].append(
+                [ item[6] for item in Plugins._bookdoc ]
+            )
+            self.options_help['off'].append(False)
+        else:
+            self.format = None
+
+        for paper in PaperMenu.paper_sizes:
+            if paper.get_name() == self.options_dict['papers']:
+                self.paper = paper
+        self.options_help['papers'].append(
+            [ paper.get_name() for paper in PaperMenu.paper_sizes 
+                        if paper.get_name() != 'Custom Size' ] )
+        self.options_help['papers'].append(False)
+
+        self.orien = self.options_dict['papero']
+        self.options_help['papero'].append([
+            "%d\tPortrait" % BaseDoc.PAPER_PORTRAIT,
+            "%d\tLandscape" % BaseDoc.PAPER_LANDSCAPE ] )
+        self.options_help['papero'].append(False)
+
+        self.template_name = self.options_dict['template']
+        self.options_help['template'].append(os.path.expanduser("~/whatever_name"))
+
+        if self.category in (const.CATEGORY_TEXT,const.CATEGORY_DRAW):
+            default_style = BaseDoc.StyleSheet()
+            self.option_class.make_default_style(default_style)
+
+            # Read all style sheets available for this item
+            style_file = self.option_class.handler.get_stylesheet_savefile()
+            self.style_list = BaseDoc.StyleSheetList(style_file,default_style)
+
+            # Get the selected stylesheet
+            style_name = self.option_class.handler.get_default_stylesheet_name()
+            self.selected_style = self.style_list.get_style_sheet(style_name)
+            
+            self.options_help['style'].append(
+                self.style_list.get_style_names() )
+            self.options_help['style'].append(False)
+
+    def show_options(self):
+        if not self.show:
+            return
+        elif self.show == 'all':
+            print "   Available options:"
+            for key in self.options_dict.keys():
+                print "      %s" % key
+            print "   Use 'show=option' to see description and acceptable values"
+        elif self.show in self.options_dict.keys():
+            print '   %s%s\t%s' % (self.show,
+                                    self.options_help[self.show][0],
+                                    self.options_help[self.show][1])
+            print "   Available values are:"
+            vals = self.options_help[self.show][2]
+            if type(vals) in [list,tuple]:
+                if self.options_help[self.show][3]:
+                    for num in range(len(vals)):
+                        print "      %d\t%s" % (num,vals[num])
+                else:
+                    for val in vals:
+                        print "      %s" % val
+            else:
+                print "      %s" % self.options_help[self.show][2]
+
+        else:
+            self.show = None
+
+#------------------------------------------------------------------------
+#
+# Generic task functions for reports
+#
+#------------------------------------------------------------------------
+# Standalone GUI report generic task
+def report(database,person,report_class,options_class,category,name):
+    """
+    report - task starts the report. The plugin system requires that the
+    task be in the format of task that takes a database and a person as
+    its arguments.
+    """
+
+    if category == const.CATEGORY_TEXT:
+        dialog_class = TextReportDialog
+    elif category == const.CATEGORY_DRAW:
+        dialog_class = DrawReportDialog
+    elif category == const.CATEGORY_BOOK:
+        report_class(database,person)
+        return
+    else:
+        dialog_class = ReportDialog
+
+    dialog = dialog_class(database,person,options_class,name)
+    response = dialog.window.run()
+    if response == True:
+        try:
+            MyReport = report_class(dialog.db,dialog.person,dialog.options)
+            MyReport.write_report()
+        except Errors.FilterError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
+        except Errors.ReportError, msg:
+            (m1,m2) = msg.messages()
+            ErrorDialog(m1,m2)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
+    dialog.window.destroy()
+
+# Book item generic task
+def write_book_item(database,person,report_class,options_class):
+    """Write the Timeline Graph using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options_class.handler.get_person_id():
+            person = database.get_person_from_gramps_id(options_class.handler.get_person_id())
+        return report_class(database,person,options_class)
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
+
+# Command-line generic task
+def cl_report(database,name,category,report_class,options_class,options_str_dict):
+    
+    clr = CommandLineReport(database,name,category,options_class,options_str_dict)
+
+    # Exit here if show option was given
+    if clr.show:
+        return
+
+    # write report
+    try:
+        clr.option_class.handler.doc = clr.format(
+                    clr.selected_style,clr.paper,clr.template_name,clr.orien)
+        MyReport = report_class(database, clr.person, clr.option_class)
+        MyReport.write_report()
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()

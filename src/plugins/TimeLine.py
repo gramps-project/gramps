@@ -30,6 +30,7 @@ Timeline report
 #
 #------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
@@ -50,9 +51,9 @@ import GenericFilter
 import Errors
 import Date
 import Sort
+import ReportOptions
 from QuestionDialog import ErrorDialog
-
-from gettext import gettext as _
+import const
 
 #------------------------------------------------------------------------
 #
@@ -61,31 +62,59 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 class TimeLine:
 
-    def __init__(self,database,person,filter,title,sort_func,document,output,newpage=0):
+    def __init__(self,database,person,options_class):
         """
-        Creates the Timeline object that produces the report. This class
-        is used by the TimelineDialog class. The arguments are:
+        Creates the Timeline object that produces the report.
+        
+        The arguments are:
 
-        database - the GRAMPS database
-        person   - currently selected person
-        output   - name of the output file
-        document - BaseDoc instance for the output file. Any class derived
-                   from BaseDoc may be used.
-        filter   - filtering function selected by the TimeLineDialog
-                   class.
+        database        - the GRAMPS database instance
+        person          - currently selected person
+        options_class   - instance of the Options class for this report
+
+        This report needs the following parameters (class variables)
+        that come in the options class.
+        
+        filter    - Filter to be applied to the people of the database.
+                    The option class carries its number, and the function
+                    returning the list of filters.
+        title     - Title of the report displayed on top
+        sort_func - function used to sort entries, that returns -1/0/1
+                    when given two personal handles (like cmp).
+                    The option class carries its number, and the function
+                    returning the list of sort functions.
+        document  - BaseDoc instance for the output file. Any class derived
+                    from BaseDoc may be used
+        output    - name of the output file. 
+                    None if report is not a standalone, in which case
+                    somebody must take care of opening and initializing report
+                    prior to writing.
+        newpage   - if True, newpage is made before writing a report
+
         """
-        self.d = document
-        self.filter = filter
+
         self.db = database
         self.person = person
-        self.output = output
-        self.title = title
-        self.sort_func = sort_func
-        self.newpage = newpage
+        self.options_class = options_class
+
+        filter_num = options_class.handler.get_filter_number()
+        filters = options_class.get_report_filters(person)
+        self.filter = filters[filter_num]
+
+        self.title = options_class.handler.options_dict['title']
+
+        sort_func_num = options_class.handler.options_dict['sortby']
+        sort_functions = options_class.get_sort_functions(Sort.Sort(database))
+        self.sort_func = sort_functions[sort_func_num][1]
+
+        self.d = options_class.handler.doc
+        self.output = options_class.handler.output
+        self.newpage = options_class.handler.newpage
+
         self.setup()
-        if output:
+        if self.output:
             self.standalone = 1
-            self.d.open(output)
+            self.d.open(self.output)
             self.d.init()
         else:
             self.standalone = 0
@@ -168,7 +197,7 @@ class TimeLine:
 
         font = self.d.style_list['TLG-Name'].get_font()
         
-        incr = pt2cm(font.get_size())
+        incr = Utils.pt2cm(font.get_size())
         pad =  incr*.75
         
         x1,x2,y1,y2 = (0,0,0,0)
@@ -267,7 +296,7 @@ class TimeLine:
 
         self.d.center_text('TLG-title',self.title,width/2.0,0)
         
-        label_y = self.header - (pt2cm(normal_font.get_size())*1.2)
+        label_y = self.header - (Utils.pt2cm(normal_font.get_size())*1.2)
         top_y = self.header
         bottom_y = self.d.get_usable_height()
         
@@ -330,373 +359,156 @@ class TimeLine:
             p = self.db.get_person_from_handle(p_id)
             n = p.get_primary_name().get_name()
             size = max(self.d.string_width(font,n),size)
-        return pt2cm(size)
-
+        return Utils.pt2cm(size)
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-def _make_default_style(default_style):
-    """Make the default output style for the Timeline report."""
-    f = BaseDoc.FontStyle()
-    f.set_size(10)
-    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(f)
-    p.set_description(_("The style used for the person's name."))
-    default_style.add_style("TLG-Name",p)
+class TimeLineOptions:
 
-    f = BaseDoc.FontStyle()
-    f.set_size(8)
-    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(f)
-    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-    p.set_description(_("The style used for the year labels."))
-    default_style.add_style("TLG-Label",p)
+    """
+    Defines options and provides handling interface.
+    """
 
-    f = BaseDoc.FontStyle()
-    f.set_size(14)
-    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
-    p = BaseDoc.ParagraphStyle()
-    p.set_font(f)
-    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-    p.set_description(_("The style used for the title of the page."))
-    default_style.add_style("TLG-Title",p)
+    def __init__(self,name,person_id=None):
+        # Options specific for this report
+        self.options_dict = {
+            'sortby'    : 0,
+            'title'     : '',
+        }
+        self.options_help = {
+            'sortby'    : ("=num","Number of a sorting function",
+                            [item[0] for item in 
+                                    self.get_sort_functions(Sort.Sort(None))],
+                            True),
+            'title'     : ("=str","Title string for the report",
+                            "Whatever String You Wish"),
+        }
 
-#------------------------------------------------------------------------
-#
-# Builds filter list for this report
-#
-#------------------------------------------------------------------------
-def _get_report_filters(person):
-    """Set up the list of possible content filters."""
+        # Semi-common options that should be enabled for this report
+        self.enable_dict = {
+            'filter'    : 0,
+        }
 
-    name = person.get_primary_name().get_name()
-        
-    all = GenericFilter.GenericFilter()
-    all.set_name(_("Entire Database"))
-    all.add_rule(GenericFilter.Everyone([]))
+        self.options_dict.update(self.enable_dict)
+        self.handler = ReportOptions.OptionHandler(name,
+                                            self.options_dict,person_id)
 
-    des = GenericFilter.GenericFilter()
-    des.set_name(_("Descendants of %s") % name)
-    des.add_rule(GenericFilter.IsDescendantOf([person.get_handle(),1]))
+    def make_default_style(self,default_style):
+        """Make the default output style for the Timeline report."""
+        f = BaseDoc.FontStyle()
+        f.set_size(10)
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(f)
+        p.set_description(_("The style used for the person's name."))
+        default_style.add_style("TLG-Name",p)
 
-    ans = GenericFilter.GenericFilter()
-    ans.set_name(_("Ancestors of %s") % name)
-    ans.add_rule(GenericFilter.IsAncestorOf([person.get_handle(),1]))
+        f = BaseDoc.FontStyle()
+        f.set_size(8)
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(f)
+        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_("The style used for the year labels."))
+        default_style.add_style("TLG-Label",p)
 
-    com = GenericFilter.GenericFilter()
-    com.set_name(_("People with common ancestor with %s") % name)
-    com.add_rule(GenericFilter.HasCommonAncestorWith([person.get_handle()]))
-
-    return [all,des,ans,com]
-
-#------------------------------------------------------------------------
-#
-# Builds list of sorting functions for this report
-#
-#------------------------------------------------------------------------
-def _get_sort_functions(sort):
-    return [
-        (_("Birth Date"),sort.by_birthdate),
-        (_("Name"),sort.by_last_name), 
-    ]
-
-#------------------------------------------------------------------------
-#
-# TimeLineDialog
-#
-#------------------------------------------------------------------------
-class TimeLineDialog(Report.DrawReportDialog):
-
-    report_options = {}
-
-    def __init__(self,database,person):
-        self.database = database
-        Report.DrawReportDialog.__init__(self,database,person,self.report_options)
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Timeline Graph"),
-                                     _("Graphical Reports"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents."""
-        return _("Timeline Graph for %s") % name
-
-    def get_stylesheet_savefile(self):
-        """Where to save user defined styles for this report."""
-        return _style_file
-
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Timeline File")
-
-    def get_report_generations(self):
-        """No generation options."""
-        return (0, 0)
+        f = BaseDoc.FontStyle()
+        f.set_size(14)
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+        p = BaseDoc.ParagraphStyle()
+        p.set_font(f)
+        p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        p.set_description(_("The style used for the title of the page."))
+        default_style.add_style("TLG-Title",p)
     
-    def add_user_options(self):
-        """
-        Override the base class add_user_options task to add a menu that allows
-        the user to select the sort method.
-        """
-        
-        self.sort_style = gtk.OptionMenu()
-        self.sort_menu = gtk.Menu()
-
-        sort_functions = _get_sort_functions(Sort.Sort(self.database))
-        for item in sort_functions:
-            menuitem = gtk.MenuItem(item[0])
-            menuitem.set_data('sort',item[1])
-            menuitem.show()
-            self.sort_menu.append(menuitem)
-
-        self.sort_style.set_menu(self.sort_menu)
-        self.add_option(_('Sort by'),self.sort_style)
-
-        self.title_box = gtk.Entry()
-        self.title_box.set_text(self.get_header(self.person.get_primary_name().get_name()))
-        self.title_box.show()
-        self.add_option(_('Title'),self.title_box)
-        
-    def get_report_filters(self):
-        return _get_report_filters(self.person)
-
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def make_report(self):
-
-        title = unicode(self.title_box.get_text())
-        sort_func = self.sort_menu.get_active().get_data('sort')
-
-        try:
-            MyReport = TimeLine(self.db, self.person, 
-                    self.filter, title, sort_func, self.doc, self.target_path)
-            MyReport.write_report()
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except Errors.ReportError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# point to centimeter convertion
-#
-#------------------------------------------------------------------------
-def pt2cm(val):
-    return (float(val)/28.3465)
-
-#------------------------------------------------------------------------
-#
-# entry point
-#
-#------------------------------------------------------------------------
-def report(database,person):
-    """
-    report - task starts the report. The plugin system requires that the
-    task be in the format of task that takes a database and a person as
-    its arguments.
-    """
-    TimeLineDialog(database,person)
-
-def get_description():
-    """
-    get_description - returns a descriptive name for the report. The plugin
-    system uses this to provide a description in the report selector.
-    """
-    return _("Generates a timeline graph.")
-
-
-#------------------------------------------------------------------------
-#
-# Set up sane defaults for the book_item
-#
-#------------------------------------------------------------------------
-_style_file = "timeline.xml"
-_style_name = "default" 
-
-_person_handle = ""
-_filter_num = 0
-_sort_func_num = 0
-_title_str = ""
-_options = ( _person_handle, _filter_num, _sort_func_num, _title_str )
-
-#------------------------------------------------------------------------
-#
-# Book Item Options dialog
-#
-#------------------------------------------------------------------------
-class TimeLineBareDialog(Report.BareReportDialog):
-
-    def __init__(self,database,person,opt,stl):
-
-        self.options = opt
-        self.db = database
-        if self.options[0]:
-            self.person = self.db.get_person_from_handle(self.options[0])
+    def get_report_filters(self,person):
+        """Set up the list of possible content filters."""
+        if person:
+            name = person.get_primary_name().get_name()
+            handle = person.get_handle()
         else:
-            self.person = person
-        self.style_name = stl
+            name = 'PERSON'
+            handle = ''
 
-        Report.BareReportDialog.__init__(self,database,self.person)
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
 
-        self.filter_num = int(self.options[1])
-        self.sort_func_num = int(self.options[2])
-        self.title_str = self.options[3]
-        self.new_person = None
+        des = GenericFilter.GenericFilter()
+        des.set_name(_("Descendants of %s") % name)
+        des.add_rule(GenericFilter.IsDescendantOf([handle,1]))
 
-        self.filter_combo.set_history(self.filter_num)
-        self.sort_style.set_history(self.sort_func_num)
-        self.title_box.set_text(self.title_str)
+        ans = GenericFilter.GenericFilter()
+        ans.set_name(_("Ancestors of %s") % name)
+        ans.add_rule(GenericFilter.IsAncestorOf([handle,1]))
 
-        self.window.run()
+        com = GenericFilter.GenericFilter()
+        com.set_name(_("People with common ancestor with %s") % name)
+        com.add_rule(GenericFilter.HasCommonAncestorWith([handle]))
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Timeline Graph"))
+        return [all,des,ans,com]
 
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Timeline Graph for GRAMPS Book") 
+    def get_sort_functions(self,sort):
+        return [
+            (_("Birth Date"),sort.by_birthdate),
+            (_("Name"),sort.by_last_name), 
+        ]
 
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return _style_file
-    
-    def get_report_generations(self):
-        """No generations, no page breaks."""
-        return (0, 0)
-    
-    def add_user_options(self):
+    def add_user_options(self,dialog):
         """
         Override the base class add_user_options task to add a menu that allows
         the user to select the sort method.
         """
         
-        self.sort_style = gtk.OptionMenu()
+        sort_style = gtk.OptionMenu()
         self.sort_menu = gtk.Menu()
 
-        sort_functions = _get_sort_functions(Sort.Sort(self.db))
-        for item in sort_functions:
+        sort_functions = self.get_sort_functions(Sort.Sort(dialog.db))
+        for item_index in range(len(sort_functions)):
+            item = sort_functions[item_index]
             menuitem = gtk.MenuItem(item[0])
-            menuitem.set_data('sort',item[1])
+            menuitem.set_data('index',item_index)
             menuitem.show()
             self.sort_menu.append(menuitem)
 
-        self.sort_style.set_menu(self.sort_menu)
-        self.add_option(_('Sort by'),self.sort_style)
+        sort_style.set_menu(self.sort_menu)
+        sort_style.set_history(self.options_dict['sortby'])
+
+        dialog.add_option(_('Sort by'),sort_style)
 
         self.title_box = gtk.Entry()
+        if self.options_dict['title']:
+            self.title_box.set_text(self.options_dict['title'])
+        else:
+            self.title_box.set_text(dialog.get_header(dialog.person.get_primary_name().get_name()))
         self.title_box.show()
-        self.add_option(_('Title'),self.title_box)
+        dialog.add_option(_('Title'),self.title_box)
 
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def get_report_filters(self):
-        return _get_report_filters(self.person)
-
-    def on_cancel(self, obj):
-        pass
-
-    def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices. Parse all options
-        and close the window."""
-
-        # Preparation
-        self.parse_style_frame()
-        
-        if self.new_person:
-            self.person = self.new_person
-        self.filter_num = self.filter_combo.get_history()
-        self.sort_func_num = self.sort_style.get_history()
-        self.title_str = unicode(self.title_box.get_text())
-
-        self.options = ( self.person.get_handle(), self.filter_num, 
-            self.sort_func_num, self.title_str )
-        self.style_name = self.selected_style.get_name()
+    def parse_user_options(self,dialog):
+        """
+        Parses the custom options that we have added.
+        """
+        self.options_dict['title'] = unicode(self.title_box.get_text())
+        self.options_dict['sortby'] = self.sort_menu.get_active().get_data('index')
 
 #------------------------------------------------------------------------
 #
-# Function to write Book Item 
+#
 #
 #------------------------------------------------------------------------
-def write_book_item(database,person,doc,options,newpage=0):
-    """Write the Timeline Graph using options set.
-    All user dialog has already been handled and the output file opened."""
-    try:
-        if options[0]:
-            person = database.get_person_from_handle(options[0])
-        filter_num = int(options[1])
-        filters = _get_report_filters(person)
-        afilter = filters[filter_num]
-        sort_func_num = int(options[2])
-        sort_functions = _get_sort_functions(Sort.Sort(database))
-        sort_func = sort_functions[sort_func_num][1]
-        title_str = options[3]
-        return TimeLine(database, person, 
-                    afilter, title_str, sort_func, doc, None, newpage )
-    except Errors.ReportError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except Errors.FilterError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
-
-
-#------------------------------------------------------------------------
-#
-# Register the TimeLine report with the plugin system. The register_report
-# task of the Plugins module takes the following arguments.
-#
-# task - function that starts the task
-# name - Name of the report
-# status - alpha/beta/production
-# category - Category entry in the menu system.
-# author_name - Name of the author
-# author_email - Author's email address
-# description - function that returns the description of the report
-#
-#------------------------------------------------------------------------
-from Plugins import register_report, register_book_item
-
+from Plugins import register_report
 register_report(
-    task=report,
-    name=_("Timeline Graph"),
-    status=(_("Beta")),
-    category=_("Graphical Reports"),
-    author_name="Donald N. Allingham",
-    author_email="dallingham@users.sourceforge.net",
-    description=get_description()
-    )
-
-# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
-register_book_item( 
-    _("Timeline Graph"), 
-    _("Graphics"),
-    TimeLineBareDialog,
-    write_book_item,
-    _options,
-    _style_name,
-    _style_file,
-    _make_default_style
+    name = 'timeline',
+    category = const.CATEGORY_DRAW,
+    report_class = TimeLine,
+    options_class = TimeLineOptions,
+    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    translated_name = _("Timeline Graph"),
+    status = _("Beta"),
+    author_name = "Donald N. Allingham",
+    author_email = "dallingham@users.sourceforge.net",
+    description = _("Generates a timeline graph.")
     )

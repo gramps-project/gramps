@@ -2,6 +2,33 @@
 	* src/docgen/AsciiDoc.py (reformat_para): Correctly check for
 	empty paragraph.
 
+	* src/ArgHandler.py: Pass category on to CL task.
+	* src/Report.py: Handle showing options centrally.
+	* src/plugins/BookReport.py: Handle showing options centrally.
+	* src/plugins/TimeLine.py: Handle showing options centrally.
+	* src/plugins/FtmStyleDescendants.py: Handle showing options centrally.
+
+	* various: Merge REP_OPT branch with HEAD.
+
+2004-12-20 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgHandler.py: Single out Book by category.
+	* src/Plugins.py: Use category to register cl report.
+	* src/Report.py: Support template; make template file selector modal;
+	change key for orientation.
+	* src/ReportOptions.py: Add get/save template support.
+	* src/plugins/BookReport.py: Reinstate command line mode.
+	* src/plugins/TimeLine.py: Clean up; add docstrings;
+	avoid possible conflicts with dialog's contents.
+	* src/plugins/FtmStyleDescendants.py: Convert to present scheme.
+
+	* src/ArgHandler.py: Remove name and category from options.
+	* src/Plugins.py: Remove name and category from options.
+	* src/Report.py: Remove name and category from options.
+	* src/gramps_main.py: Remove name and category from options.
+	* src/plugins/BookReport.py: Remove name and category from options.
+	* src/plugins/TimeLine.py: Remove name and category from options.
+	* src/plugins/FtmStyleDescendants.py: Remove name and category.
+
 2004-12-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DbPrompter.py: Add display messages during load
 	* src/GrampsBSDDB.py: Add display messages during load
@@ -19,9 +46,45 @@
 	* src/gramps.glade: use gramps.png for loading message window
 	* src/gramps_main.py: remove delete_abandoned_photos calls
 
+2004-12-19 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgHandler.py: Switch to generic task CL function.
+	* src/Plugins.py: Change registration to use generic task functions.
+	* src/Report.py (report,write_book_item,cl_report): Add generic
+	functions.
+	* src/ReportOptions.py: Move doc-related options into OptionHandler.
+	* src/gramps_main.py (menu_report): Call report using new registration.
+	* src/plugins/BookReport.py: Use generic function for writing items.
+	* src/plugins/TimeLine.py: Use generic functions for all three modes.
+
+2004-12-18 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py (BareReportDialog.__init__): Instantiate or assign
+	option_class, depending on the type.
+
+2004-12-17 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/const.py.in: Add category-related constants.
+	* src/Plugins.py: Provide single registration for all report flavors.
+	* src/Report.py: Use new categories; serve the semi-common options.
+	* src/docgen/LPRDoc.py: Register "print" name with book and text.
+	* src/plugins/BookReport.py: Use single registration.
+	* src/plugins/FtmStyleDescendants.py: Properly use semi-common
+	options; Use correct id-search; Use single registration.
+	* src/plugins/TimeLine.py: Properly use semi-common options;
+	Use correct id-search; Use single registration.
+
+	* src/Report.py: Use orientation option. Allow writing book from cl.
+	* src/plugins/BookReport.py: Support for writing book from cl.
+
 2004-12-16  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleModel.py: Fixed rebuild_display
 	* src/ReadXML.py: Fixed calendar handling
+
+2004-12-16 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py: Fixes related to filter and max_gen/page_breaks --
+	the semi-common options.
+	* src/ReportOptions.py: Fixes related to filter.
+	* src/plugins/FtmStyleDescendants.py: Convert to new scheme.
+	* src/plugins/TimeLine.py: Transfer filter to this report for the
+	time being.
 
 2004-12-16  Julio Sanchez <julio.sanchez@gmail.com>
 	* src/po/es.po: forward port of the Spanish translations in STABLE,
@@ -36,8 +99,37 @@
 	starting from the French version
 	* src/dates/Makefile.am: include Spanish date handler
 
+2004-12-15 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Plugins.py: Minor.
+	* src/Report.py: Numerous fixes of running/destroying dialogs;
+	Document report-specific options in Command Line.
+	* src/StyleEditor.py: Take care of modal dialog.
+	* src/gramps.glade: Take care of modal dialog.
+	* src/docgen/LPRDoc.py: Register with "print" name.
+	* src/plugins/BookReport.py: Numerous dialog fixes.
+	* src/plugins/TimeLine.py: Document report-specific options in CL.
+
+	* src/Plugins.py: Remove unneeded registration item.
+	* src/ReportOptions.py: Re-work generations/pagebreak options.
+	* src/Utils.py (get_type_converter_by_name,type_name):
+	Add functions.
+	* src/plugins/BookReport.py: Convert open/save to new system.
+	* src/plugins/TimeLine.py: Correct generations/pagebreak and
+	registration.
+
+2004-12-14 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py: Self-documenting common options.
+	* src/ReportOptions.py: Minor fixes.
+	* src/plugins/BookReport.py: Minor fixes.
+	* src/plugins/TimeLine.py: Commnad line and options fixes.
+
 2004-12-13  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py (generation): Avoid empty sections.
+
+2004-12-13 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgHandler.py: Minor improvements.
+	* src/Report.py: Add Command Line class. 
+	* src/plugins/TimeLine.py: Factor out Command line class.
 
 2004-12-09  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsBSDDB.py: add cursor routines
@@ -63,8 +155,16 @@
 2004-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/Makefile.am: Replace dist_data_DATA with EXTRA_DIST.
 
+	* src/plugins/TimeLine.py: Get rid of dialog classes.
+	* src/plugins/BookReport.py: Minor fixes (still semi-broken).
+	* src/Report.py: Make dialogs modal.
+
 2004-12-06  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: bump up the version.
+
+	* src/plugins/TimeLine.py: Start Grand Report Unification.
+	* src/plugins/BookReport.py: Start Grand Report Unification.
+	* src/Report.py: Start Grand Report Unification.
 
 2004-12-06  Don Allingham  <dallingham@users.sourceforge.net>
 	* NEWS: minor update for 1.1.2 release
@@ -103,6 +203,14 @@
 	* src/gramps.glade: fixed spacing in message
 	* src/gramps_main.py: add disconnected filter
 
+2004-12-03 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ArgHandler.py: Minor.
+	* src/Plugins.py: Add clname to all report registrations.
+	* src/Report.py: Correct save_options order.
+	* src/Sort.py: Correct date comparison.
+	* src/Utils.py (get_type_converter): Correct type comparisons.
+	* src/plugins/TimeLine.py: Clean up command-line support.
+
 2004-12-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: hide window while closing updating info
 	* src/FamilyView.py: Fix deleting of spouses and children
@@ -111,8 +219,18 @@
 	* src/PeopleView.py: text clean up
 	* src/gramps_main.py: disable buttons while deleting a person
 
+	* src/plugins/TimeLine.py: Start on the command-line support.
+	* src/Plugins.py: Command line report registration.
+	* src/ArgHandler.py: Command line support.
+	* src/const.py.in: Add options for command line support.
+
 2004-12-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py (on_center_person_change_clicked): Typo.
+
+	* src/plugins/TimeLine.py: Tweak to finish book support.
+	* src/plugins/BookReport.py: Fully support options.
+	* src/ReportOptions.py: Finish book support.
+	* src/Report.py: Finish book support.
 
 2004-12-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GenericFilter.py: use DateParser to parse dates.
@@ -130,6 +248,12 @@
 	bug by using horrible and ugly hack; (build_backhistmenu,
 	build_fwdhistmenu): Use gramps IDs instead of handles in menus.
 
+	* src/plugins/TimeLine.py: Finish up describing arguments in
+	the doc string. Start working with Book item stuff -- still broken.
+	* src/plugins/BookReport.py: Start using new report options.
+	* src/ReportOptions.py: Add some book support.
+	* src/Report.py: Modify to support book.
+
 2004-11-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: simpler way of handling patronymic names
 	based of LANG
@@ -141,6 +265,10 @@
 	* src/ArgHandler.py: Rebuild recent menu after adding to recent.
 	* src/DbPrompter.py (open_native): Add function.
 	* src/RecentFiles.py (remove_filename): Add function.
+
+2004-11-28 Eero Tamminen <eerot@sf>
+	* src/plugins/TimeLine.py: put the TimeLine init var descriptions
+	  into correct order in comments
 
 2004-11-28 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/PatchNames.py: Typo.
@@ -191,6 +319,15 @@
 	* src/DbPrompter.py: Support for recent-files.
 	* src/ArgHandler.py: Support for recent-files.
 
+	* src/Plugins.py: Add support for setting active menu element
+	in the doc menus. 
+	* src/PaperMenu.py: Add name-based support for paper menu
+	selection. Fix orientation selection.
+	* src/Report.py: Add support paper, orientation, and style
+	persistent options.
+	* src/ReportOptions.py: Add support paper, orientation, and style
+	persistent options.
+
 2004-11-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsDbBase.py: always use external thumbnails
 	* src/GrampsBSDDB.py: always use external thumbnails
@@ -215,6 +352,16 @@
 	* src/WriteXML.py: add support for Source key,value pairs
 	* src/RelLib.py: add support for Source key,value pairs
 	* src/gramps.glade: add support for Source key,value pairs
+
+2004-11-22 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ReportOptions.py: Add support for last-common options.
+	Move common defaults from OptionList to OptionListCollection. Adjust
+	parsing and saving of collection accordingly. Add OptionHandler()
+	class to support most of the common functionality across plugins.
+	* src/Report.py: Use new class for setting/getting options.
+	* src/plugins/TimeLine.py: Simplify the options class, since most
+	of the functionality is moved into ReportOptions.OptionHandler().
+	* src/Utils.py (get_type_converter): Add function.
 
 2004-11-20  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/ChangeNames.py: Add a plugin to change capitalization
@@ -439,6 +586,16 @@
 
 2004-10-21  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateParser.py: fix dates of the format of JAN 2000
+
+2004-10-21 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/ReportOptions.py: Add to CVS.
+	* src/Makefile.am: Shipt ReportOptions.py.
+	* src/Plugins.py: Change registration for book items.
+	* src/Report.py: Use new option class.
+	* src/Utils.py: Move pt2cm() here.
+	* src/const.py.in: Define report options XML filename.
+	* src/plugins/TimeLine.py: Use new class separation scheme.
+	* src/plugins/BookReport.py: Use new class separation scheme.
 
 2004-10-19  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsCfg.py: eliminate unused options

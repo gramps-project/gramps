@@ -490,6 +490,14 @@ def roman(num):
 
 #-------------------------------------------------------------------------
 #
+#  Convert points to cm
+#
+#-------------------------------------------------------------------------
+def pt2cm(val):
+    return (float(val)/28.3465)
+
+#-------------------------------------------------------------------------
+#
 #  Change label apperance
 #
 #-------------------------------------------------------------------------
@@ -662,3 +670,48 @@ def get_new_filename(ext,folder='~/'):
     while os.path.isfile(os.path.expanduser(_NEW_NAME_PATTERN % (folder,ix,ext) )):
         ix = ix + 1
     return os.path.expanduser(_NEW_NAME_PATTERN % (folder,ix,ext))
+
+def get_type_converter(val):
+    """
+    Returns function that converts strings into the type of val.
+    """
+    val_type = type(val)
+    if val_type in (str,unicode):
+        return unicode
+    elif val_type == int:
+        return int
+    elif val_type == float:
+        return float
+    elif val_type in (list,tuple):
+        return list
+
+def type_name(val):
+    """
+    Returns the name the type of val.
+    
+    Only numbers and strings are supported.
+    The rest becomes strings (unicode).
+    """
+    val_type = type(val)
+    if val_type == int:
+        return 'int'
+    elif val_type == float:
+        return 'float'
+    elif val_type in (str,unicode):
+        return 'unicode'
+    return 'unicode'
+
+def get_type_converter_by_name(val_str):
+    """
+    Returns function that converts strings into the type given by val_str.
+    
+    Only numbers and strings are supported.
+    The rest becomes strings (unicode).
+    """
+    if val_str == 'int':
+        return int
+    elif val_str == 'float':
+        return float
+    elif val_str in ('str','unicode'):
+        return unicode
+    return unicode
