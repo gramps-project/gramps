@@ -124,7 +124,7 @@ spanRegexp = re.compile(r"\s*FROM\s+@#D([^@]+)@\s*(.*)\s+TO\s+@#D([^@]+)@\s*(.*)
 def importData(database, filename, cb=None, use_trans=True):
 
     global callback
-
+    
     f = open(filename,"r")
 
     ansel = False
@@ -285,6 +285,7 @@ class GedcomParser:
             self.version_obj = window.get_widget("version")
             self.families_obj = window.get_widget("families")
             self.people_obj = window.get_widget("people")
+            self.source_obj = window.get_widget("sources")
             self.errors_obj = window.get_widget("errors")
             self.close_done = window.get_widget('close_done')
             self.error_text_obj = window.get_widget("error_text")
@@ -434,6 +435,7 @@ class GedcomParser:
         self.index = 0
         self.fam_count = 0
         self.indi_count = 0
+        self.source_count = 0
         try:
             self.parse_header()
             self.parse_submitter()
@@ -575,6 +577,8 @@ class GedcomParser:
             elif matches[1] in ["SUBM","SUBN","OBJE","_EVENT_DEFN"]:
                 self.ignore_sub_junk(1)
             elif matches[2] == "SOUR":
+                if self.source_count % UPDATE == 0 and self.window:
+                    self.update(self.source_obj,str(self.source_count))
                 self.parse_source(matches[1],1)
             elif matches[2][0:4] == "NOTE":
                 if self.nmap.has_key(matches[1]):
@@ -1811,7 +1815,8 @@ class GedcomParser:
                     dateobj.set_calendar(Date.CAL_HEBREW)
                 return dateobj
             else:
-                return self.dp.parse(text)
+                dval = self.dp.parse(text)
+                return dval
         except IOError:
             return self.dp.set_text(text)
 

@@ -158,6 +158,7 @@ class DateParser:
         "Bahman"      : 11, "Esfand"      : 12,
         }
 
+    bce = ["BC", "B\.C", "B\.C\.", "BCE", "B\.C\.E", "B\.C\.E"]
 
     calendar_to_int = {
         'gregorian'        : Date.CAL_GREGORIAN,
@@ -186,7 +187,9 @@ class DateParser:
     
     _rfc_mon_str  = '(' + '|'.join(_rfc_mons_to_int.keys()) + ')'
     _rfc_day_str  = '(' + '|'.join(_rfc_days) + ')'
-        
+
+    _bce_str = '(' + '|'.join(bce) + ')'
+    
     _qual_str = '(' + '|'.join(
         [ key.replace('.','\.') for key in quality_to_int.keys() ]
         ) + ')'
@@ -199,6 +202,8 @@ class DateParser:
     _pmon_str = '(' + '|'.join(persian_to_int.keys()) + ')'
     _cal_str  = '(' + '|'.join(calendar_to_int.keys()) + ')'
     _imon_str = '(' + '|'.join(islamic_to_int.keys()) + ')'
+
+    _bce_re   = re.compile("(.+)\s+%s" % _bce_str)
     
     _cal      = re.compile("(.+)\s\(%s\)" % _cal_str,
                            re.IGNORECASE)
@@ -428,12 +433,21 @@ class DateParser:
                      (d0,m,y,s,d1,m,y,s))
             return
     
+        match = self._bce_re.match(text)
+        bc = False
+        if match:
+            text = match.groups()[0]
+            bc = True
+            
         match = self._modifier.match(text)
         if match:
             grps = match.groups()
             start = self._parse_subdate(grps[1])
             mod = self.modifier_to_int.get(grps[0].lower(),Date.MOD_NONE)
-            date.set(qual,mod,cal,start)
+            if bc:
+                date.set(qual,mod,cal,self.invert_year(start))
+            else:
+                date.set(qual,mod,cal,start)
             return
 
         subdate = self._parse_subdate(text)
@@ -456,9 +470,15 @@ class DateParser:
                     cal = Date.CAL_PERSIAN
             else:
                 cal = Date.CAL_HEBREW
-            
-        date.set(qual,Date.MOD_NONE,cal,subdate)
 
+        if bc:
+            date.set(qual,Date.MOD_NONE,cal,self.invert_year(subdate))
+        else:
+            date.set(qual,Date.MOD_NONE,cal,subdate)
+
+    def invert_year(self,subdate):
+        return (subdate[0],subdate[1],-subdate[2],subdate[3])
+    
     def parse(self,text):
         """
         Parses the text, returning a Date object.

@@ -221,30 +221,36 @@ def make_date(subdate,calendar,mode):
     (day,mon,year,sl) = subdate
     
     (mmap,prefix) = _calmap.get(calendar,(_month,""))
+
+    if year < 0:
+        year = -year
+        bc = " B.C."
+    else:
+        bc = ""
         
     if day == 0:
         try:
             if mon == 0:
-                retval = '%d' % year
+                retval = '%d%s' % (year,bc)
             elif year == 0:
                 retval = '(%s)' % mmap[mon]
             else:
-                retval = "%s %d" % (mmap[mon],year)
+                retval = "%s %d%s" % (mmap[mon],year,bc)
         except IndexError:
             print "Month index error - %d" % mon
-            retval = '%d' % year
+            retval = '%d%s' % (year,bc)
     elif mon == 0:
-        retval = '%d' % year
+        retval = '%d%s' % (year,bc)
     else:
         try:
             month = mmap[mon]
             if year == 0:
                 retval = "(%d %s)" % (day,month)
             else:
-                retval = "%d %s %d" % (day,month,year)
+                retval = "%d %s %d%s" % (day,month,year,bc)
         except IndexError:
             print "Month index error - %d" % mon
-            retval = str(year)
+            retval = "%d%s" % (year,bc)
 
     if prefix:
         retval = "%s %s" % (prefix, retval)
