@@ -174,7 +174,13 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
                 self.f.write('style:font-name="Arial" ')
             else:
                 self.f.write('style:font-name="Times New Roman" ')
-            self.f.write('fo:font-size="' + str(font.get_size()) + 'pt"/>')
+            color = font.get_color()
+	    self.f.write('fo:color="#%02x%02x%02x" ' % color)
+            if font.get_bold():
+                self.f.write('fo:font-weight="bold" ')
+            if font.get_italic():
+                self.f.write('fo:font-style="italic" ')
+            self.f.write('fo:font-size="%dpt"/>' % font.get_size())
             self.f.write('</style:style>\n')
             
 	for style_name in self.table_styles.keys():
@@ -719,7 +725,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         yloc = y-((hcm)*sin(-rangle))
         self.f.write('translate (%.3fcm %.3fcm)"' % (xloc,yloc))
         self.f.write('>')
-        self.f.write('<text:p><text:span text:style-name="T%s">' % pname)
+        self.f.write('<text:p><text:span text:style-name="%s">' % pname)
         self.write_text(string.join(text,'\n'))
         self.f.write('</text:span></text:p></draw:text-box>\n')
 
@@ -786,7 +792,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	self.f.write('svg:x="%.3fcm" ' % float(x))
         self.f.write('svg:y="%.3fcm">' % float(y))
         self.f.write('<text:p text:style-name="P1">')
-        self.f.write('<text:span text:style-name="T%s">' % para_name)
+        self.f.write('<text:span text:style-name="%s">' % para_name)
         self.f.write(text)
         self.f.write('</text:span></text:p>')
         self.f.write('</draw:text-box>\n')
@@ -827,7 +833,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	self.f.write('svg:x="%.3fcm" ' % float(x))
         self.f.write('svg:y="%.3fcm">\n' % float(y))
 	if text != "":
-  	    self.f.write('<text:p text:style-name="T%s">' % para_name)
+  	    self.f.write('<text:p text:style-name="%s">' % para_name)
             self.f.write('<text:span text:style-name="F%s">' % para_name)
             text = string.replace(text,'\t','<text:tab-stop/>')
             text = string.replace(text,'\n','<text:line-break/>')
