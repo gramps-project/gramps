@@ -647,16 +647,16 @@ def probably_alive(person,db):
             sp_death_handle = spouse.get_death_handle()
             if sp_birth_handle:
                 spouse_birth = db.get_event_from_handle(sp_birth_handle)
-                if spouse_birth.get_date() != "":
-                    d = SingleDate (spouse_birth.get_date_object().get_start_date())
-                    d.set_year (d.get_year() + max_age_difference)
+                if not spouse_birth.get_date().is_empty():
+                    d = Date(spouse_birth.get_date_object())
+                    d.set_year(d.get_year() + max_age_difference)
                     if not not_too_old (d):
                         return False
 
             if sp_death_handle:
                 spouse_death = db.get_event_from_handle(sp_death_handle)
                 if spouse_death.get_date() != "":
-                    d = SingleDate (spouse_death.get_date_object().get_start_date())
+                    d = Date(spouse_death.get_date_object())
                     d.set_year (d.get_year() - min_generation)
                     if not not_too_old (d):
                         return False

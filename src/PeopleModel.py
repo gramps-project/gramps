@@ -178,8 +178,7 @@ class PeopleModel(gtk.GenericTreeModel):
             try:
                 return COLUMN_DEFS[col][COLUMN_DEF_LIST](self,self.db.person_map[str(node)],node)
             except:
-                print "except"
-                return u''
+                return u'error'
 
     def reset_visible(self):
         self.visible = {}

@@ -272,7 +272,7 @@ class EventEditor:
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
-    def get_place(self,field,trans):
+    def get_place(self,field):
         text = strip(unicode(field.get_text()))
         if text:
             if self.pmap.has_key(text):
@@ -289,7 +289,7 @@ class EventEditor:
         ename = unicode(self.event_menu.child.get_text())
         #self.date = self.dp.parse(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
-        eplace_obj = self.get_place(self.place_field,trans)
+        eplace_obj = self.get_place(self.place_field)
         buf = self.note_field.get_buffer()
 
         enote = unicode(buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE))

@@ -1,3 +1,14 @@
+2004-10-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateParser.py: dynamically detect numerical parsing based
+	off locale. Do not depend on strptime.
+	* src/Utils.py: remove last remains of SingleDate
+	* src/PeopleModel.py: display "error" instead of a blank string 
+	on an error
+	* src/EventEdit.py: removed unused parameter
+	* src/Exporter.py: remove unused gnome.ui import
+	* src/plugins/FanChart.py: remove old Calendar reference
+	* src/plugins/Verify.py: remove old Calendar reference
+
 2004-10-11 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateDisplay.py (_display_gregorian): Prepend month and
 	day with zeros if needed for the ISO format.
