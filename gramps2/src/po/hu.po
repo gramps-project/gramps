@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu\n"
 "POT-Creation-Date: Mon Jan 19 14:10:17 2004\n"
-"PO-Revision-Date: 2004-01-30 00:34+0100\n"
+"PO-Revision-Date: 2004-02-02 11:50+0100\n"
 "Last-Translator: Egyeki Gergely <egeri@elte.hu>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -6496,7 +6496,7 @@ msgstr "Születési idő"
 
 #: plugins/RelCalc.py:119
 msgid "Their common ancestor is %s."
-msgstr "%s a közös ős."
+msgstr "%s a köztes családtag."
 
 #: plugins/RelCalc.py:123
 msgid "Their common ancestors are %s and %s."
@@ -6508,7 +6508,7 @@ msgstr "Közös ősök: "
 
 #: plugins/RelCalc.py:143
 msgid "%(person)s and %(active_person)s are not related."
-msgstr "%(person)s és %(active_person)s nem állapítható meg kapcsolat."
+msgstr "%(person)s és %(active_person)s között nem állapítható meg kapcsolat."
 
 #: plugins/RelCalc.py:146
 msgid "%(person)s is the %(relationship)s of %(active_person)s."
