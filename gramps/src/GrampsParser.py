@@ -159,22 +159,25 @@ class GrampsParser:
             self.count = self.count + 1
 
     def start_location(self,attrs):
+        """Bypass the function calls for this one, since it appears to
+        take up quite a bit of time"""
+        
         loc = Location()
         if attrs.has_key('city'):
-            loc.set_city(u2l(attrs['city']))
+            loc.city = u2l(attrs['city'])
         if attrs.has_key('parish'):
-            loc.set_parish(u2l(attrs['parish']))
+            loc.parish = u2l(attrs['parish'])
         if attrs.has_key('state'):
-            loc.set_state(u2l(attrs['state']))
+            loc.state = u2l(attrs['state'])
         if attrs.has_key('county'):
-            loc.set_county(u2l(attrs['county']))
+            loc.county = u2l(attrs['county'])
         if attrs.has_key('country'):
-            loc.set_country(u2l(attrs['country']))
+            loc.country = u2l(attrs['country'])
         if self.locations > 0:
             self.placeobj.add_alternate_locations(loc)
         else:
             self.placeobj.set_main_location(loc)
-        self.locations = self.locations + 1
+            self.locations = self.locations + 1
         
     def start_coord(self,attrs):
         if attrs.has_key('lat'):
