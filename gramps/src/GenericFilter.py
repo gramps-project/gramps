@@ -715,7 +715,7 @@ class GenericFilterList:
         try:
             parser = make_parser()
             parser.setContentHandler(FilterParser(self))
-            parser.parse(self.file)
+            parser.parse('file://' + self.file)
         except (IOError,OSError,SAXParseException):
             pass
 
