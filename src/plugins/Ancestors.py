@@ -52,6 +52,7 @@ class AncestorsReport (Report.Report):
         self.doc = doc
         self.sources = []
         self.sourcerefs = []
+        self.newpage = newpage
 
         table = TextDoc.TableStyle ()
         table.set_column_widths ([15, 85])
@@ -103,10 +104,14 @@ class AncestorsReport (Report.Report):
             self.doc.open(output)
         else:
             self.standalone = 0
-            if newpage:
-                self.doc.page_break()
+
+    def setup(self):
+        pass
 
     def write_report(self):
+        if self.newpage:
+            self.doc.page_break()
+
         self.sources = []
         name = self.person_name (self.start)
         self.doc.start_paragraph("Title")
@@ -159,6 +164,8 @@ class AncestorsReport (Report.Report):
 
     def family (self, family, already_described):
         ret = []
+        if not family:
+            return ret
         father = family.getFather ()
         mother = family.getMother ()
         if father:
@@ -605,7 +612,7 @@ class AncestorsReport (Report.Report):
 
         return paras
 
-def _make_default_style(self):
+def _make_default_style(default_style):
     """Make the default output style for the Ancestors report."""
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
@@ -615,7 +622,7 @@ def _make_default_style(self):
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
-    self.default_style.add_style("Title",para)
+    default_style.add_style("Title",para)
     
     font = TextDoc.FontStyle()
     font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
@@ -625,38 +632,38 @@ def _make_default_style(self):
     para.set(pad=0.5)
     para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
-    self.default_style.add_style("Heading",para)
+    default_style.add_style("Heading",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    self.default_style.add_style("Entry",para)
+    default_style.add_style("Entry",para)
 
     para = TextDoc.ParagraphStyle ()
     para.set_description(_('Text style for missing photo.'))
-    self.default_style.add_style("NoPhotoText", para)
+    default_style.add_style("NoPhotoText", para)
 
     details_font = TextDoc.FontStyle()
     details_font.set(face=TextDoc.FONT_SANS_SERIF,size=8,italic=1)
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.5,pad=0,font = details_font)
     para.set_description(_('Style for details about a person.'))
-    self.default_style.add_style("Details",para)
+    default_style.add_style("Details",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
-    self.default_style.add_style("SubEntry",para)
+    default_style.add_style("SubEntry",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
-    self.default_style.add_style("Endnotes",para)
+    default_style.add_style("Endnotes",para)
 
     para = TextDoc.ParagraphStyle()
     para.set(lmargin=2.5,pad=0.05)
     para.set_description(_('Introduction to the children.'))
-    self.default_style.add_style("ChildTitle",para)
+    default_style.add_style("ChildTitle",para)
 
 
 #------------------------------------------------------------------------
@@ -694,7 +701,7 @@ class AncestorReportDialog(Report.TextReportDialog):
         return "ancestors_report.xml"
     
     def make_default_style(self):
-        _make_default_style(self)
+        _make_default_style(self.default_style)
 
     def add_user_options (self):
         self.cb_cite = gtk.CheckButton (_("Cite sources"))
@@ -733,6 +740,121 @@ class AncestorReportDialog(Report.TextReportDialog):
 #------------------------------------------------------------------------
 def report(database,person):
     AncestorReportDialog(database,person)
+
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+_style_file = "ancestors_report.xml"
+_style_name = "default" 
+
+_person_id = ""
+_max_gen = 10
+_pg_brk = 0
+_opt_cite = gtk.TRUE
+
+_options = [ _person_id, _max_gen, _pg_brk, _opt_cite ]
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class AncestorsBareReportDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,opt,stl):
+
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        def make_default_style(self):
+            _make_default_style(self.default_style)
+
+        self.max_gen = int(self.options[1]) 
+        self.pg_brk = int(self.options[2])
+        self.opt_cite = int(self.options[3])
+        self.style_name = stl
+        self.new_person = None
+
+        self.generations_spinbox.set_value(self.max_gen)
+        self.pagebreak_checkbox.set_active(self.pg_brk)
+        self.cb_cite.set_active(self.opt_cite)
+
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Ancestors Report"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Ancestors Report for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return _style_file
+    
+    def add_user_options (self):
+        self.cb_cite = gtk.CheckButton (_("Cite sources"))
+        self.add_option ('', self.cb_cite)
+
+    def parse_report_options_frame (self):
+        # Call base class
+        Report.BareReportDialog.parse_report_options_frame (self)
+        self.opt_cite = self.cb_cite.get_active ()
+
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.new_person:
+            self.person = self.new_person
+        self.options = [ self.person.getId(), self.max_gen, self.pg_brk, self.opt_cite ]
+        self.style_name = self.selected_style.get_name() 
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the Ancestors Report using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        max_gen = int(options[1])
+        pg_brk = int(options[2])
+        opt_cite = int(options[3])
+        return AncestorsReport(database, person,
+            max_gen, pg_brk, opt_cite, doc, None, newpage)
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #
@@ -829,7 +951,7 @@ def get_xpm_image():
 # 
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
+from Plugins import register_report, register_book_item
 
 register_report(
     report,
@@ -841,3 +963,15 @@ register_report(
     author_name="Tim Waugh",
     author_email="twaugh@redhat.com"
     )
+
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
+register_book_item( 
+    _("Ancestors Report"), 
+    _("Text"),
+    AncestorsBareReportDialog,
+    write_book_item,
+    _options,
+    _style_name,
+    _style_file,
+    _make_default_style
+   )

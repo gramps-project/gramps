@@ -11,6 +11,7 @@
 	shared between both dialogs and the write_book_item().
 	* src/plugins/DescendReport.py: Enable book functionality.
 	* src/plugins/AncestorReport.py: Enable book functionality.
+	* src/plugins/Ancestors.py: Enable book functionality.
 
 2003-07-04  Tim Waugh  <twaugh@redhat.com>
 	* src/plugins/Ancestors.py: Really fixed text style for '(no photo)'.
