@@ -11,6 +11,11 @@
   <property name="modal">True</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
 
   <child>
     <widget class="GtkVBox" id="vbox2">
@@ -73,10 +78,6 @@
 	      <property name="orientation">GTK_PROGRESS_LEFT_TO_RIGHT</property>
 	      <property name="fraction">0</property>
 	      <property name="pulse_step">0.1</property>
-	      <property name="activity_mode">False</property>
-	      <property name="show_text">False</property>
-	      <property name="text_xalign">0.5</property>
-	      <property name="text_yalign">0.5</property>
 	    </widget>
 	    <packing>
 	      <property name="padding">20</property>
@@ -105,6 +106,11 @@
   <property name="default_height">350</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">False</property>
 
   <child internal-child="vbox">
@@ -119,19 +125,6 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button7">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label" translatable="yes">_Merge</property>
-	      <property name="use_underline">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_do_merge_clicked"/>
-	    </widget>
-	  </child>
-
-	  <child>
 	    <widget class="GtkButton" id="button9">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -139,8 +132,23 @@
 	      <property name="label">gtk-close</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="destroy_passed_object" object="mergelist"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button7">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label" translatable="yes">_Merge</property>
+	      <property name="use_underline">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="on_do_merge_clicked"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -225,6 +233,11 @@
   <property name="default_width">350</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
+  <property name="decorated">True</property>
+  <property name="skip_taskbar_hint">False</property>
+  <property name="skip_pager_hint">False</property>
+  <property name="type_hint">GDK_WINDOW_TYPE_HINT_DIALOG</property>
+  <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="has_separator">False</property>
 
   <child internal-child="vbox">
@@ -239,19 +252,6 @@
 	  <property name="layout_style">GTK_BUTTONBOX_END</property>
 
 	  <child>
-	    <widget class="GtkButton" id="button10">
-	      <property name="visible">True</property>
-	      <property name="can_default">True</property>
-	      <property name="can_focus">True</property>
-	      <property name="label">gtk-ok</property>
-	      <property name="use_stock">True</property>
-	      <property name="relief">GTK_RELIEF_NORMAL</property>
-	      <property name="response_id">0</property>
-	      <signal name="clicked" handler="on_merge_ok_clicked" object="dialog"/>
-	    </widget>
-	  </child>
-
-	  <child>
 	    <widget class="GtkButton" id="button12">
 	      <property name="visible">True</property>
 	      <property name="can_default">True</property>
@@ -259,8 +259,23 @@
 	      <property name="label">gtk-cancel</property>
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
 	      <property name="response_id">0</property>
 	      <signal name="clicked" handler="destroy_passed_object" object="dialog"/>
+	    </widget>
+	  </child>
+
+	  <child>
+	    <widget class="GtkButton" id="button10">
+	      <property name="visible">True</property>
+	      <property name="can_default">True</property>
+	      <property name="can_focus">True</property>
+	      <property name="label">gtk-ok</property>
+	      <property name="use_stock">True</property>
+	      <property name="relief">GTK_RELIEF_NORMAL</property>
+	      <property name="focus_on_click">True</property>
+	      <property name="response_id">0</property>
+	      <signal name="clicked" handler="on_merge_ok_clicked" object="dialog"/>
 	    </widget>
 	  </child>
 	</widget>
@@ -365,6 +380,7 @@
 		  <property name="label" translatable="yes">Use soundex codes</property>
 		  <property name="use_underline">True</property>
 		  <property name="relief">GTK_RELIEF_NORMAL</property>
+		  <property name="focus_on_click">True</property>
 		  <property name="active">True</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 "Database Processing/Extract information from names"
 
@@ -83,7 +85,7 @@ class PatchNames:
 
         for key in self.db.get_person_keys():
         
-            person = self.db.get_person(key)
+            person = self.db.find_person_from_id(key)
             first = person.get_primary_name().get_first_name()
             match = _title_re.match(first)
             if match:
@@ -97,7 +99,7 @@ class PatchNames:
         msg = ""
 
 
-        if len(self.nick_list) > 0 or len(self.title_list) > 0:
+        if self.nick_list or self.title_list:
             self.display()
         else:
             OkDialog(_('No modifications made'),
@@ -151,7 +153,7 @@ class PatchNames:
         self.title_hash = {}
         
         for (id,name,nick) in self.nick_list:
-            p = self.db.get_person(id)
+            p = self.db.find_person_from_id(id)
             iter = self.model.append()
             self.model.set_value(iter,0,1)
             self.model.set_value(iter,1,id)
@@ -161,7 +163,7 @@ class PatchNames:
             self.nick_hash[id] = iter
             
         for (id,title,nick) in self.title_list:
-            p = self.db.get_person(id)
+            p = self.db.find_person_from_id(id)
             iter = self.model.append()
             self.model.set_value(iter,0,1)
             self.model.set_value(iter,1,id)
@@ -179,18 +181,18 @@ class PatchNames:
                 name = p.get_primary_name()
                 name.set_first_name(grp[1])
                 p.set_nick_name(grp[2])
-                self.db.build_person_display(grp[0])
+                self.db.commit_person(p)
                 Utils.modified()
 
         for grp in self.title_list:
             iter = self.title_hash[grp[0]]
             val = self.model.get_value(iter,0)
             if val:
-                p = self.db.get_person(grp[0])
+                p = self.db.find_person_from_id(grp[0])
                 name = p.get_primary_name()
                 name.set_first_name(grp[2])
                 name.set_title(grp[1])
-                self.db.build_person_display(grp[0])
+                self.db.commit_person(p)
                 Utils.modified()
 
         Utils.destroy_passed_object(obj)
@@ -209,6 +211,3 @@ register_tool(
     category=_("Database Processing"),
     description=_("Searches the entire database and attempts to extract titles and nicknames that may be embedded in a person's given name field.")
     )
-
-
-
