@@ -338,10 +338,15 @@ class XmlWriter:
                 count = count + 1
             
                 self.write_family_handle(family,2)
-                fid = family.get_father_handle()
-                mid = family.get_mother_handle()
-                self.write_ref("father",fid,3)
-                self.write_ref("mother",mid,3)
+                fh = family.get_father_handle()
+                mh = family.get_mother_handle()
+                if fh:
+                    fid = self.db.get_person_from_handle (fh).get_gramps_id ()
+                    self.write_ref("father",fid,3)
+                if mh:
+                    mid = self.db.get_person_from_handle (mh).get_gramps_id ()
+                    self.write_ref("mother",mid,3)
+
                 for event_handle in family.get_event_list():
                     event = self.db.get_event_from_handle(event_handle)
                     self.dump_event(event,3)
@@ -350,8 +355,9 @@ class XmlWriter:
                 self.write_media_list(family.get_media_list())
 
                 if len(family.get_child_handle_list()) > 0:
-                    for person in family.get_child_handle_list():
-                        self.write_ref("child",person,3)
+                    for person_handle in family.get_child_handle_list():
+                        person = self.db.get_person_from_handle (person_handle)
+                        self.write_ref("child",person.get_gramps_id (),3)
                 self.write_attribute_list(family.get_attribute_list())
                 self.write_note("note",family.get_note_object(),3)
                 for s in family.get_source_references():

@@ -6,6 +6,8 @@
 	confusion between handles and GRAMPS IDs.
 	(XmlWriter.write_family_handle): Use GRAMPS ID not DB handle.
 	(XmlWriter.write_xml_data): Sort family IDs before writing.
+	(XmlWriter.write_xml_data): Fixed families output by preventing
+	confusion between handles and GRAMPS IDs.
 
 	* src/RelLib.py (probably_alive): Fixed typo (bug #1012347).
 
