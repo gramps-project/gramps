@@ -77,8 +77,9 @@ class HtmlLinkDoc(HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,imgdir,doc,id,idlink):
+    def __init__(self,person,photos,restrict,private,uc,link,map,dir_name,imgdir,doc,id,idlink,ext):
         self.person = person
+        self.ext = ext
         self.doc = doc
         self.use_id = id
         self.id_link = idlink
@@ -162,7 +163,7 @@ class IndividualPage:
         self.doc.start_paragraph("Data")
         if person:
             if self.list.has_key(person):
-                self.doc.start_link("%s.html" % person.getId())
+                self.doc.start_link("%s.%s" % (person.getId(),self.ext))
 	        self.doc.write_text(person.getPrimaryName().getRegularName())
                 self.doc.end_link()
             else:
@@ -207,7 +208,7 @@ class IndividualPage:
     def create_page(self):
         """Generate the HTML page for the specific person"""
         
-        filebase = "%s.html" % self.person.getId()
+        filebase = "%s.%s" % (self.person.getId(),self.ext)
         self.doc.open("%s/%s" % (self.dir,filebase))
 
         photo_list = self.person.getPhotoList()
@@ -286,7 +287,7 @@ class IndividualPage:
 
         if self.link:
             self.doc.start_paragraph("Data")
-            self.doc.start_link("index.html")
+            self.doc.start_link("index.%s" % self.ext)
             self.doc.write_text(_("Return to the index of people"))
             self.doc.end_link()
             self.doc.end_paragraph()
@@ -511,7 +512,7 @@ class IndividualPage:
             self.doc.start_paragraph("Spouse")
             if spouse:
                 if self.list.has_key(spouse):
-                    self.doc.start_link("%s.html" % spouse.getId())
+                    self.doc.start_link("%s.%s" % (spouse.getId(),self.ext))
                     self.doc.write_text(spouse.getPrimaryName().getRegularName())
                     self.doc.end_link()
                 else:
@@ -548,7 +549,7 @@ class IndividualPage:
                     else:
                         self.doc.write_text('\n')
                     if self.list.has_key(child):
-                        self.doc.start_link("%s.html" % child.getId())
+                        self.doc.start_link("%s.%s" % (child.getId(),self.ext))
                         self.doc.write_text(name)
                         self.doc.end_link()
                     else:
@@ -566,8 +567,9 @@ class IndividualPage:
 class WebReport(Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, style, image_dir,
-                 template_name,use_id,id_link,gendex):
+                 template_name,use_id,id_link,gendex,ext):
         self.db = db
+        self.ext = ext
         self.use_id = use_id
         self.id_link = id_link
         self.person = person
@@ -651,7 +653,7 @@ class WebReport(Report):
             surName = name.getSurname()
             suffix = name.getSuffix()
 
-            f.write("%s.html|" % p.getId())
+            f.write("%s.%s|" % (p.getId(),self.ext))
             f.write("%s|" % surName)
             if suffix == "":
                 f.write("%s /%s/" % (firstName,surName))
@@ -673,9 +675,10 @@ class WebReport(Report):
         """Writes a index file, listing all people in the person list."""
     
         doc = HtmlLinkDoc(self.selected_style,None,template,None)
+        doc.set_extension(self.ext)
         doc.set_title(_("Family Tree Index"))
     
-        doc.open("%s/index.html" % html_dir)
+        doc.open("%s/index.%s" % (html_dir,self.ext))
         doc.start_paragraph("Title")
         doc.write_text(_("Family Tree Index"))
         doc.end_paragraph()
@@ -705,7 +708,7 @@ class WebReport(Report):
                 doc.write_text(name[0])
                 doc.end_paragraph()
                 col_len = col_len - 1
-            doc.start_link("%s.html" % person.getId())
+            doc.start_link("%s.%s" % (person.getId(),self.ext))
             doc.write_text(name)
             doc.end_link()
             if col_len <= 0 and end_col == 0:
@@ -763,6 +766,7 @@ class WebReport(Report):
         self.progress_bar_setup(float(len(ind_list)))
         
         doc = HtmlLinkDoc(self.selected_style,None,self.template_name,None)
+        doc.set_extension(self.ext)
         doc.set_image_dir(self.image_dir)
         
         self.add_styles(doc)
@@ -773,10 +777,11 @@ class WebReport(Report):
             my_map[l] = 1
         for person in ind_list:
             tdoc = HtmlLinkDoc(self.selected_style,None,None,None,doc)
+            tdoc.set_extension(self.ext)
             idoc = IndividualPage(person, self.photos, self.restrict,
                                   self.private, self.srccomments,
                                   self.include_link, my_map, dir_name,
-                                  self.image_dir, tdoc, self.use_id,self.id_link)
+                                  self.image_dir, tdoc, self.use_id,self.id_link,self.ext)
             idoc.create_page()
             idoc.close()
             self.progress_bar_step()
@@ -827,6 +832,7 @@ class WebReportDialog(ReportDialog):
         include_id_msg = _("Include the GRAMPS ID in the report")
         gendex_msg = _("Create a GENDEX index")
         imgdir_msg = _("Image subdirectory")
+        ext_msg = _("File extension")
 
         self.use_link = GtkCheckButton(lnk_msg)
         self.use_link.set_active(1) 
@@ -843,6 +849,9 @@ class WebReportDialog(ReportDialog):
         self.linkpath = GtkEntry()
         self.linkpath.set_sensitive(0)
         self.include_id.connect('toggled',self.show_link)
+        self.ext = GtkCombo()
+        self.ext.set_popdown_strings(['.html','.htm','.php','.php3',
+                                      '.cgi'])
 
         self.add_option(imgdir_msg,self.imgdir)
         self.add_option('',self.use_link)
@@ -858,6 +867,7 @@ class WebReportDialog(ReportDialog):
         self.add_frame_option(title,'',self.include_id)
         self.add_frame_option(title,_('GRAMPS ID link URL'),self.linkpath)
         self.add_frame_option(title,'',self.gendex)
+        self.add_frame_option(title,ext_msg,self.ext)
 
         self.no_images.connect('toggled',self.on_nophotos_toggled)
 
@@ -1080,6 +1090,9 @@ class WebReportDialog(ReportDialog):
         self.private = self.no_private.get_active()
         self.img_dir_text = self.imgdir.get_text()
 
+        self.html_ext = string.strip(self.ext.entry.get_text())
+        if self.html_ext[0] == '.':
+            self.html_ext = self.html_ext[1:]
         self.use_id = self.include_id.get_active()
         self.use_gendex = self.gendex.get_active()
         self.id_link = string.strip(self.linkpath.get_text())
@@ -1118,7 +1131,8 @@ class WebReportDialog(ReportDialog):
                              self.restrict, self.private, self.srccomments,
                              self.include_link, self.selected_style,
                              self.img_dir_text,self.template_name,
-                             self.use_id,self.id_link,self.use_gendex)
+                             self.use_id,self.id_link,self.use_gendex,
+                             self.html_ext)
         MyReport.write_report()
     
 #------------------------------------------------------------------------

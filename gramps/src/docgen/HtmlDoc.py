@@ -104,7 +104,13 @@ class HtmlDoc(TextDoc):
             self.table_styles = source.table_styles;
             self.cell_styles = source.cell_styles;
             self.image_dir = source.image_dir
- 
+            self.ext = '.html'
+
+    def set_extension(self,val):
+        if val[0] != '.':
+            val = "." + val
+        self.ext = val
+        
     def set_owner(self,owner):
         HtmlDoc.set_owner(self,owner)
         self.copyright = 'Copyright &copy; %d %s' % (self.year,self.owner)
@@ -196,10 +202,11 @@ class HtmlDoc(TextDoc):
         return string.replace(l,'$COPYRIGHT',self.copyright)
         
     def open(self,filename):
-        if filename[-5:] == ".html" or filename[-4:0] == ".htm":
+        (r,e) = os.path.splitext(filename)
+        if e == self.ext:
             self.filename = filename
         else:
-            self.filename = filename + ".html"
+            self.filename = filename + self.ext
 
         self.base = os.path.dirname(self.filename)
 
