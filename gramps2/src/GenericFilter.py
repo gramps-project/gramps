@@ -820,7 +820,7 @@ class IsParentOfFilterMatch(Rule):
     def category(self):
         return _('Family filters')
 
-    def apply(self,db,p):
+    def apply(self,db,p_id):
         self.orig_id = p_id
         self.db = db
 

@@ -634,7 +634,7 @@ class Marriage:
         self.update_lists()
         self.update_fv(self.family)
         self.db.commit_family(self.family,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Edit Marriage"))
 
         self.close(1)
 
@@ -777,9 +777,6 @@ class Marriage:
             temple = const.lds_temple_codes[temple]
         else:
             temple = ""
-        trans = self.db.start_transaction()
-        place = self.get_place(1,trans)
-        self.db.add_transaction(trans)
         
         if date or temple or place:
             Utils.bold_label(self.lds_label)

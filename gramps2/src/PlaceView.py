@@ -241,7 +241,7 @@ class PlaceView:
             else:
                 trans = self.db.start_transaction()
                 self.db.remove_place(place.get_id(),trans)
-                self.db.add_transaction(trans)
+                self.db.add_transaction(trans,_("Delete Place (%s)") % place.title())
                 self.build_tree()
 
     def on_edit_clicked(self,obj):

@@ -213,7 +213,9 @@ class Gramps:
         self.spouse_del  = self.gtop.get_widget("delete_sp")
         self.spouse_combo= self.gtop.get_widget("spouse_combo")
         self.spouse_tab  = self.gtop.get_widget("spouse_tab")
+        self.undolabel   = self.gtop.get_widget('undolabel')
 
+        self.db.set_undo_label(self.undolabel)
         self.use_sidebar = GrampsCfg.get_view()
         self.sidebar_btn.set_active(self.use_sidebar)
 
@@ -923,7 +925,6 @@ class Gramps:
             self.topWindow.set_title("GRAMPS")
             self.active_person = None
 
-            Utils.clear_timer()
             self.change_active_person(None)
             self.people_view.clear()
             self.family_view.clear()
@@ -1104,7 +1105,7 @@ class Gramps:
 
             trans = self.db.start_transaction()
             self.db.remove_object(ObjectId)
-            self.db.add_transaction(trans)
+            self.db.add_transaction(trans,_("Save Media Object"))
     
         def leave_clicked():
             # File is lost => do nothing, leave as is
@@ -1130,7 +1131,7 @@ class Gramps:
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
                     object = self.db.find_object_from_id(ObjectId)
-                    object.set_path(newfile)
+                    object.set_path(name)
             choose.destroy()
 
         #-------------------------------------------------------------------------
@@ -1170,8 +1171,6 @@ class Gramps:
         path = filename
         filename = os.path.normpath(os.path.abspath(filename))
         self.status_text(_("Saving %s ...") % filename)
-
-        Utils.clear_timer()
 
         if os.path.exists(filename):
             if not os.path.isdir(filename):
@@ -1302,7 +1301,8 @@ class Gramps:
             self.active_person = self.db.find_person_from_id(self.history[self.hindex])
         else:
             self.change_active_person(None)
-        self.db.add_transaction(trans)
+        n = self.active_person.get_primary_name().get_regular_name()
+        self.db.add_transaction(trans,_("Delete Person (%s)") % n)
         self.redraw_histmenu()
 
     def merge_update(self,p1,p2,old_id):

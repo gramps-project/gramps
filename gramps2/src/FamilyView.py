@@ -552,7 +552,8 @@ class FamilyView:
             self.person.set_preferred_family_id(self.family)
             trans = self.parent.db.start_transaction()
             self.parent.db.commit_person(self.person,trans)
-            self.parent.db.add_transaction(trans)
+            n = self.person.get_primary_name().get_regular_name()
+            self.parent.db.add_transaction(trans,_("Set Preferred Spouse (%s)") % n)
             self.load_family()
             
     def edit_spouse_callback(self,obj):
@@ -621,7 +622,8 @@ class FamilyView:
         if epo:
             trans = self.parent.db.start_transaction()
             self.parent.db.commit_person(epo.person,trans)
-            self.parent.db.add_transaction(trans)
+            n = epo.person.get_primary_name().get_regular_name()
+            self.parent.db.add_transaction(trans,_("Add Person (%s)") % n)
             self.parent.people_view.remove_from_person_list(epo.person,epo.original_id)
             self.parent.people_view.redisplay_person_list(epo.person)
 
@@ -753,7 +755,8 @@ class FamilyView:
 
         self.parent.db.commit_person(child,trans)
         self.parent.db.commit_family(self.family,trans)
-        self.parent.db.add_transaction(trans)
+        n = child.get_primary_name().get_regular_name()
+        self.parent.db.add_transaction(trans,_("Remove Child (%s)") % n)
         
         self.load_family()
 
@@ -799,7 +802,8 @@ class FamilyView:
                 self.load_family(self.family)
         else:
             self.load_family(self.family)
-        self.parent.db.add_transaction(trans)
+        n = self.person.get_primary_name().get_regular_name()
+        self.parent.db.add_transaction(trans,_("Remove Spouse (%s)") % n)
 
         if len(self.person.get_family_id_list()) <= 1:
             self.spouse_selection.set_mode(gtk.SELECTION_NONE)
@@ -837,9 +841,10 @@ class FamilyView:
         person = self.parent.db.find_person_from_id(person_id)
         self.parent.change_active_person(person)
 
+        n = person.get_primary_name().get_name()
         trans = self.parent.db.start_transaction()
         self.parent.db.commit_family(family,trans)
-        self.parent.db.add_transaction(trans)
+        self.parent.db.add_transaction(trans,_("Select Parents (%s)") % n)
         self.load_family(family)
 
     def clear(self):
@@ -983,7 +988,8 @@ class FamilyView:
             self.family = flist[0]
         else:
             self.family = None
-        self.parent.db.add_transaction(trans)
+        n = person.get_primary_name().get_name()
+        self.parent.db.add_transaction(trans,_("Remove from family (%s)") % n)
 
     def display_marriage(self,family):
         self.child_model.clear()
@@ -1273,7 +1279,8 @@ class FamilyView:
 
         trans = self.parent.db.start_transaction()
         self.parent.db.commit_person(person,trans)
-        self.parent.db.add_transaction(trans)
+        n = person.get_primary_name().get_regular_name()
+        self.parent.db.add_transaction(trans,_("Remove Parents (%s)") % n)
         
         self.load_family()
 

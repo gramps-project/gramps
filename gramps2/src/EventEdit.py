@@ -315,7 +315,7 @@ class EventEditor:
         
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Edit Event"))
         self.parent.redraw_event_list()
         self.callback(self.event)
         self.close(obj)

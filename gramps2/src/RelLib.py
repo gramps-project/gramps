@@ -34,6 +34,7 @@ from re import compile
 import os
 import os.path
 import types
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -2402,6 +2403,11 @@ class GrampsDB:
         self.surnames   = None
         self.eventnames = None
         self.metadata   = None
+        self.undolabel  = None
+
+    def set_undo_label(self,label):
+        self.undolabel = label
+        self.undolabel.set_sensitive(0)
 
     def load(self,name,callback):
         if self.person_map:
@@ -2667,14 +2673,19 @@ class GrampsDB:
     def start_transaction(self,msg=""):
         return Transaction(msg)
 
-    def add_transaction(self,transaction):
+    def add_transaction(self,transaction,msg):
+        transaction.set_description(msg)
         self.translist.append(transaction)
+        if self.undolabel:
+            self.undolabel.set_sensitive(1)
+            label = self.undolabel.get_children()[0]
+            label.set_text(_("_Undo %s") % transaction.get_description())
+            label.set_use_underline(1)
 
     def undo(self):
         if len(self.translist) == 0:
             return
         transaction = self.translist.pop()
-        transaction.display()
 
         subitems = transaction.get_data()
         subitems.reverse()
@@ -2709,6 +2720,17 @@ class GrampsDB:
                     del self.media_map[gid]
                 else:
                     self.media_map.put(gid,data)
+
+        if self.undolabel:
+            label = self.undolabel.get_children()[0]
+            if len(self.translist) == 0:
+                label.set_text(_("_Undo"))
+                self.undolabel.set_sensitive(0)
+            else:
+                transaction = self.translist[-1]
+                label.set_text(_("_Undo %s") % transaction.get_description())
+                self.undolabel.set_sensitive(1)
+            label.set_use_underline(1)
 
     def get_surnames(self):
         names = self.surnames.keys()
@@ -3340,10 +3362,9 @@ class GrampsDB:
         If no such Family exists, a new Family is added to the database."""
 
         family = Family()
-        gid = str(gid)
         family.set_id(gid)
         if trans != None:
-            trans.add(FAMILY_KEY, index, None)
+            trans.add(FAMILY_KEY, gid, None)
         self.family_map.put(str(gid),family.serialize())
         self.fmap_index = self.fmap_index + 1
         return family
@@ -3522,7 +3543,6 @@ class GrampsDB:
 class Transaction:
 
     def __init__(self,msg):
-        self.msg = msg
         self.data = []
 
     def get_description(self):
@@ -3541,7 +3561,6 @@ class Transaction:
         return len(self.data)
 
     def display(self):
-        print self
         for (key,gid,val) in self.data:
             if key == PERSON_KEY:
                 if val:

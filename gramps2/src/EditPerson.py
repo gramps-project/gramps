@@ -1585,7 +1585,8 @@ class EditPerson:
             self.callback(self,trans)
 
         self.db.commit_person(self.person, trans)
-        self.db.add_transaction(trans)
+        n = self.person.get_primary_name().get_regular_name()
+        self.db.add_transaction(trans,_("Edit Person (%s)") % n)
         self.close(1)
 
     def get_place(self,field,makenew=0):
