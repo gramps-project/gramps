@@ -82,7 +82,9 @@ class AddSpouse:
         self.spouse_list = self.glade.get_widget("spouseList")
         self.relation_def = self.glade.get_widget("reldef")
         self.top = self.glade.get_widget("spouseDialog")
+        self.ok = self.glade.get_widget('spouse_ok')
 
+        self.ok.set_sensitive(0)
         self.name_list = self.db.getPersonMap().values()
         self.name_list.sort(sort.by_last_name)
         self.rel_combo.set_popdown_strings(const.familyRelations)
@@ -94,11 +96,19 @@ class AddSpouse:
             "on_new_spouse_clicked"    : self.new_spouse_clicked,
             "on_rel_type_changed"      : self.relation_type_changed,
             "on_combo_insert_text"     : Utils.combo_insert_text,
+            "on_select_row"            : self.select_row,
+            "on_unselect_row"          : self.unselect_row,
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
         self.relation_type.set_text(_("Married"))
 
+    def select_row(self,obj,a,b,c):
+        self.ok.set_sensitive(1)
+
+    def unselect_row(self,obj,a,b,c):
+        self.ok.set_sensitive(0)
+        
     def new_spouse_clicked(self,obj):
         """
         Called when the spouse to be added does not exist, and needs
