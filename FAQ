@@ -29,7 +29,7 @@ to gramps-devel@lists.sourceforge.net
 
 10. Can GRAMPS write files readable by GenApp X?
 
-11. Can GRAMPS print Genealogical tree for my family?
+11. Can GRAMPS print a genealogical tree for my family?
 
 12. In what formats can GRAMPS output its reports?
 
@@ -136,9 +136,9 @@ See above.
 See above.
 
 
-11. Can GRAMPS print Genealogical tree for my family?
+11. Can GRAMPS print a genealogical tree for my family?
 
-Yes. Different people have different ideas of what Genealogical tree is. 
+Yes. Different people have different ideas of what a genealogical tree is. 
 Some think of it as a chart going from the distant ancestor and listing 
 all his/her descendants and their families. Others think it should be a 
 chart going from the person back in time, listing the ancestors and their 
@@ -163,14 +163,14 @@ data that you download from the Internet. It can export data that you could
 send over the Internet. GRAMPS is familiar with the standard file formats 
 widely used on the Internet (e.g. JPEG and GIF images, MP3, OGG, and WAV sound 
 files, QuickTime, MPEG, and AVI movie files, etc). Other than that, there is 
-little that genealogical program can do with the Internet :-) 
+little that a genealogical program can do with the Internet :-) 
 
 
 14. What standards does GRAMPS support?
 
 The nice thing about the standards is that there never is a shortage of 
 them :-). GRAMPS is tested to support the following flavors of GEDCOM: 
-GEDCOM5.5, Borther's Keeper, Family Origins, Familty Tree Maker, Ftree, 
+GEDCOM5.5, Brother's Keeper, Family Origins, Familty Tree Maker, Ftree, 
 GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
 Visual Genealogie. 
 
@@ -185,15 +185,16 @@ on the system.
 
 16. How many people can GRAMPS database handle?
 
-We have found that on a typical system, GRAMPS tends to bog down after around
-15,000 users. Again, this is dependant on how much memory you have. 
+We have found that on a typical system, GRAMPS tends to bog down after the
+database has around 15,000 people. Again, this is dependant on how much
+memory you have. 
 
 
 17. My database is really big. 
     Is there a way around loading all the data into memory?
 
 Currently, there is no way around it. However, this is our biggest priority
-after releasing 1.0 version. The real database backend will be incorporated 
+after releasing  version 1.0. The real database backend will be incorporated 
 in the next stable release (1.2) which will dramatically improve performance 
 in both speed and memory usage.
 
@@ -219,7 +220,7 @@ database. Currently, GRAMPS loads all the database into memory, therefore
 large databases tend to be less than responsive. Specifically, the system 
 can be virtually brought to its knees if swapping is needed for GRAMPS' data.
 
-This will be addressed in the next stable release following 1.0 version. 
+This will be addressed in the next stable release following version 1.0. 
 Temporarily, adding more memory could make a huge difference, but we realize
 that this is a poor way of treating the problem. If you would like to help 
 with the implementation of the real database backend, please don't hesitate 
