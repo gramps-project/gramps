@@ -81,6 +81,7 @@ class PeopleView:
         self.columns = []
         self.build_columns()
         self.person_selection = self.person_tree.get_selection()
+        self.person_selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.person_selection.connect('changed',self.row_changed)
         self.person_tree.connect('row_activated', self.alpha_event)
         self.person_tree.connect('button-press-event',

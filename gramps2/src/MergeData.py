@@ -379,6 +379,64 @@ class MergePeople:
                 return myfamily
         return None
 
+    def merge_family_pair(self,tgt_family,src_family):
+
+        # copy children from source to target
+
+        for child in src_family.get_child_handle_list():
+            if child not in tgt_family.get_child_handle_list():
+                parents = child.get_parent_family_handle_list()
+                tgt_family.add_child_handle(child)
+                if child.get_main_parents_family_handle() == src_family:
+                    child.set_main_parent_family_handle(tgt_family)
+                i = 0
+                for fam in parents[:]:
+                    if fam[0] == src_family:
+                        parents[i] = (tgt_family,fam[1],fam[2])
+                    i = i + 1
+
+        # merge family events
+
+        lst = tgt_family.get_event_list()[:]
+        for xdata in src_family.get_event_list():
+            for data in lst:
+                if data.are_equal(xdata):
+                    self.copy_note(data,xdata)
+                    self.copy_sources(data,xdata)
+                    break
+            else:
+                tgt_family.add_event(xdata)
+
+        # merge family attributes
+
+        lst = tgt_family.get_attribute_list()[:]
+        for xdata in src_family.get_attribute_list():
+            for data in lst:
+                if data.get_type() == xdata.get_type() and \
+                   data.getValue() == xdata.get_value():
+                    self.copy_note(data,xdata)
+                    self.copy_sources(data,xdata)
+                    break
+            else:
+                tgt_family.add_attribute(xdata)
+
+        # merge family notes
+
+        if src_family.get_note() != "":
+            old_note = tgt_family.get_note()
+            if old_note:
+                old_note = old_note + "\n\n"
+            tgt_family.set_note(old_note + src_family.get_note())
+
+        # merge family top-level sources
+
+        self.copy_sources(tgt_family,src_family)
+
+        # merge multimedia objects
+
+        for photo in src_family.get_media_list():
+            tgt_family.add_media_reference(photo)
+
     def merge_families(self):
         
         family_num = 0
@@ -409,19 +467,7 @@ class MergePeople:
                    src_family in tgt_family.get_mother_handle().get_family_handle_list():
                     tgt_family.get_mother_handle().remove_family_handle(src_family)
 
-                # copy children from source to target
-
-                for child in src_family.get_child_handle_list():
-                    if child not in tgt_family.get_child_handle_list():
-                        parents = child.get_parent_family_handle_list()
-                        tgt_family.add_child_handle(child)
-                        if child.get_main_parents_family_handle() == src_family:
-                            child.set_main_parent_family_handle(tgt_family)
-                        i = 0
-                        for fam in parents[:]:
-                            if fam[0] == src_family:
-                                parents[i] = (tgt_family,fam[1],fam[2])
-                            i = i + 1
+                self.merge_family_pair(tgt_family,src_family)
                         
                 # delete the old source family
                 del self.db.get_family_handle_map()[src_family.get_handle()]
@@ -440,21 +486,7 @@ class MergePeople:
                 # transfer child to new family, alter children to
                 # point to the correct family
                 
-                for child in src_family.get_child_handle_list():
-                    if child not in tgt_family.get_child_handle_list():
-                        parents = child.get_parent_family_handle_list()
-                        tgt_family.add_child_handle(child)
-                        if child.get_main_parents_family_handle() == src_family:
-                            child.set_main_parent_family_handle(tgt_family)
-                        i = 0
-                        for fam in parents[:]:
-                            if fam[0] == src_family:
-                                parents[i] = (tgt_family,fam[1],fam[2])
-                            i = i + 1
-
-                # add family events from the old to the new
-                for event in src_family.get_event_list():
-                    tgt_family.add_event(event)
+                self.merge_family_pair(tgt_family,src_family)
 
                 # change parents of the family to point to the new
                 # family
