@@ -33,6 +33,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 #-------------------------------------------------------------------------
 import os
 import getopt
+import time
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -46,6 +47,7 @@ import GrampsMime
 import DbPrompter
 import QuestionDialog
 import GrampsGconfKeys
+import RecentFiles
 
 #-------------------------------------------------------------------------
 #
@@ -217,12 +219,14 @@ class ArgHandler:
         if self.open:
             # Filename was given. Open a session with that file. Forget
             # the rest of given arguments.
+            success = False
             filename = os.path.abspath(os.path.expanduser(self.open))
             filetype = GrampsMime.get_type(filename) 
             if filetype == const.app_gramps:
                 print "Type: GRAMPS database"
                 if self.auto_save_load(filename):
                     print "Opened successfully!"
+                    success = True
                 else:
                     print "Cannot open %s. Exiting..."
             elif filetype in (const.app_gedcom,"x-directory/normal",
@@ -246,6 +250,7 @@ class ArgHandler:
                 elif filetype == const.app_gramps_package:
                     print "Type: GRAMPS package"
                     self.parent.read_pkg(filename)
+                success = True
             else:
                 print "Unknown file type: %s" % filetype
                 QuestionDialog.ErrorDialog( 
@@ -253,6 +258,16 @@ class ArgHandler:
                         _('File type "%s" is unknown to GRAMPS.\n\nValid types are: GRAMPS database, GRAMPS XML, GRAMPS package, and GEDCOM.') % filetype)
                 print "Exiting..." 
                 os._exit(1)
+            if success:
+                rf = RecentFiles.RecentFiles()
+                item = RecentFiles.RecentItem(
+                            u='file://%s' % filename,
+                            m=filetype,
+                            t=int(time.time()),
+                            p=False,
+                            g=['Gramps'])
+                rf.add(item)
+                rf.save()
             return
            
         if self.imports:
