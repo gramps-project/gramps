@@ -25,6 +25,7 @@ oddbg    = (0xffff,0xffff,0xffff)
 evenbg   = (0xffff,0xffff,0xffff)
 oddfg    = (0,0,0)
 evenfg   = (0,0,0)
+ancestorfg = (0,0,0)
 
 class ColorList:
     def __init__(self,clist,increment):
