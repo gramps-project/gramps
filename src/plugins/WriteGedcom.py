@@ -1033,6 +1033,7 @@ class GedcomWriter:
         firstName = self.cnvtxt(name.getFirstName())
         surName = self.cnvtxt(name.getSurname())
         surPref = self.cnvtxt(name.getSurnamePrefix())
+        surName = surPref.replace('/','?')
         suffix = self.cnvtxt(name.getSuffix())
         title = self.cnvtxt(name.getTitle())
         if suffix == "":
