@@ -260,9 +260,9 @@ class PdfDoc(TextDoc):
 
         self.col = self.col + self.span
 
-    def add_photo(self,name,pos,x,y):
+    def add_photo(self,name,pos,x_cm,y_cm):
         img = ImgManip.ImgManip(name)
-        nx,ny = img.size()
+        x,y = img.size()
 
         ratio = float(x_cm)*float(y)/(float(y_cm)*float(x))
 

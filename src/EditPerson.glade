@@ -539,7 +539,7 @@
 
 	      <widget>
 		<class>GtkCombo</class>
-		<name>dbcombo</name>
+		<name>dpcombo</name>
 		<width>250</width>
 		<value_in_list>False</value_in_list>
 		<ok_if_empty>True</ok_if_empty>
@@ -1357,7 +1357,7 @@
 	    <widget>
 	      <class>GtkTable</class>
 	      <name>table10</name>
-	      <rows>5</rows>
+	      <rows>6</rows>
 	      <columns>3</columns>
 	      <homogeneous>False</homogeneous>
 	      <row_spacing>0</row_spacing>
@@ -1532,8 +1532,8 @@
 		<child>
 		  <left_attach>0</left_attach>
 		  <right_attach>1</right_attach>
-		  <top_attach>4</top_attach>
-		  <bottom_attach>5</bottom_attach>
+		  <top_attach>5</top_attach>
+		  <bottom_attach>6</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -1558,8 +1558,8 @@
 		<child>
 		  <left_attach>2</left_attach>
 		  <right_attach>3</right_attach>
-		  <top_attach>4</top_attach>
-		  <bottom_attach>5</bottom_attach>
+		  <top_attach>5</top_attach>
+		  <bottom_attach>6</bottom_attach>
 		  <xpad>3</xpad>
 		  <ypad>3</ypad>
 		  <xexpand>False</xexpand>
@@ -1662,8 +1662,8 @@
 		<child>
 		  <left_attach>1</left_attach>
 		  <right_attach>2</right_attach>
-		  <top_attach>4</top_attach>
-		  <bottom_attach>5</bottom_attach>
+		  <top_attach>5</top_attach>
+		  <bottom_attach>6</bottom_attach>
 		  <xpad>0</xpad>
 		  <ypad>0</ypad>
 		  <xexpand>False</xexpand>
@@ -1704,7 +1704,7 @@
 	      <widget>
 		<class>GtkLabel</class>
 		<name>label268</name>
-		<label>Type</label>
+		<label>Title</label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
 		<xalign>1</xalign>
@@ -1729,7 +1729,7 @@
 
 	      <widget>
 		<class>GtkLabel</class>
-		<name>name_type</name>
+		<name>alt_title</name>
 		<label></label>
 		<justify>GTK_JUSTIFY_CENTER</justify>
 		<wrap>False</wrap>
@@ -1742,6 +1742,84 @@
 		  <right_attach>3</right_attach>
 		  <top_attach>3</top_attach>
 		  <bottom_attach>4</bottom_attach>
+		  <xpad>3</xpad>
+		  <ypad>3</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label271</name>
+		<label>Type</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>1</xalign>
+		<yalign>0.5</yalign>
+		<xpad>5</xpad>
+		<ypad>3</ypad>
+		<child>
+		  <left_attach>0</left_attach>
+		  <right_attach>1</right_attach>
+		  <top_attach>4</top_attach>
+		  <bottom_attach>5</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>label272</name>
+		<label>:</label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>3</ypad>
+		<child>
+		  <left_attach>1</left_attach>
+		  <right_attach>2</right_attach>
+		  <top_attach>4</top_attach>
+		  <bottom_attach>5</bottom_attach>
+		  <xpad>0</xpad>
+		  <ypad>0</ypad>
+		  <xexpand>False</xexpand>
+		  <yexpand>False</yexpand>
+		  <xshrink>False</xshrink>
+		  <yshrink>False</yshrink>
+		  <xfill>True</xfill>
+		  <yfill>False</yfill>
+		</child>
+	      </widget>
+
+	      <widget>
+		<class>GtkLabel</class>
+		<name>name_type</name>
+		<label></label>
+		<justify>GTK_JUSTIFY_CENTER</justify>
+		<wrap>False</wrap>
+		<xalign>0</xalign>
+		<yalign>0.5</yalign>
+		<xpad>0</xpad>
+		<ypad>0</ypad>
+		<child>
+		  <left_attach>2</left_attach>
+		  <right_attach>3</right_attach>
+		  <top_attach>4</top_attach>
+		  <bottom_attach>5</bottom_attach>
 		  <xpad>3</xpad>
 		  <ypad>3</ypad>
 		  <xexpand>False</xexpand>
@@ -5509,7 +5587,7 @@
       <widget>
 	<class>GtkTable</class>
 	<name>table23</name>
-	<rows>6</rows>
+	<rows>7</rows>
 	<columns>2</columns>
 	<homogeneous>False</homogeneous>
 	<row_spacing>0</row_spacing>
@@ -5584,8 +5662,8 @@
 	  <child>
 	    <left_attach>1</left_attach>
 	    <right_attach>2</right_attach>
-	    <top_attach>5</top_attach>
-	    <bottom_attach>6</bottom_attach>
+	    <top_attach>6</top_attach>
+	    <bottom_attach>7</bottom_attach>
 	    <xpad>3</xpad>
 	    <ypad>3</ypad>
 	    <xexpand>False</xexpand>
@@ -5618,8 +5696,8 @@
 	  <child>
 	    <left_attach>0</left_attach>
 	    <right_attach>1</right_attach>
-	    <top_attach>5</top_attach>
-	    <bottom_attach>6</bottom_attach>
+	    <top_attach>6</top_attach>
+	    <bottom_attach>7</bottom_attach>
 	    <xpad>0</xpad>
 	    <ypad>0</ypad>
 	    <xexpand>False</xexpand>
@@ -5639,8 +5717,8 @@
 	  <child>
 	    <left_attach>1</left_attach>
 	    <right_attach>2</right_attach>
-	    <top_attach>4</top_attach>
-	    <bottom_attach>5</bottom_attach>
+	    <top_attach>5</top_attach>
+	    <bottom_attach>6</bottom_attach>
 	    <xpad>0</xpad>
 	    <ypad>0</ypad>
 	    <xexpand>False</xexpand>
@@ -5817,8 +5895,8 @@
 	  <child>
 	    <left_attach>0</left_attach>
 	    <right_attach>1</right_attach>
-	    <top_attach>3</top_attach>
-	    <bottom_attach>4</bottom_attach>
+	    <top_attach>4</top_attach>
+	    <bottom_attach>5</bottom_attach>
 	    <xpad>0</xpad>
 	    <ypad>0</ypad>
 	    <xexpand>False</xexpand>
@@ -5844,8 +5922,8 @@
 	  <child>
 	    <left_attach>1</left_attach>
 	    <right_attach>2</right_attach>
-	    <top_attach>3</top_attach>
-	    <bottom_attach>4</bottom_attach>
+	    <top_attach>4</top_attach>
+	    <bottom_attach>5</bottom_attach>
 	    <xpad>3</xpad>
 	    <ypad>3</ypad>
 	    <xexpand>True</xexpand>
@@ -5866,6 +5944,56 @@
 	    <text_max_length>0</text_max_length>
 	    <text></text>
 	  </widget>
+	</widget>
+
+	<widget>
+	  <class>GtkLabel</class>
+	  <name>label270</name>
+	  <label>Title</label>
+	  <justify>GTK_JUSTIFY_CENTER</justify>
+	  <wrap>False</wrap>
+	  <xalign>1</xalign>
+	  <yalign>0.5</yalign>
+	  <xpad>5</xpad>
+	  <ypad>8</ypad>
+	  <child>
+	    <left_attach>0</left_attach>
+	    <right_attach>1</right_attach>
+	    <top_attach>3</top_attach>
+	    <bottom_attach>4</bottom_attach>
+	    <xpad>0</xpad>
+	    <ypad>0</ypad>
+	    <xexpand>False</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
+	</widget>
+
+	<widget>
+	  <class>GtkEntry</class>
+	  <name>alt_title</name>
+	  <can_focus>True</can_focus>
+	  <editable>True</editable>
+	  <text_visible>True</text_visible>
+	  <text_max_length>0</text_max_length>
+	  <text></text>
+	  <child>
+	    <left_attach>1</left_attach>
+	    <right_attach>2</right_attach>
+	    <top_attach>3</top_attach>
+	    <bottom_attach>4</bottom_attach>
+	    <xpad>3</xpad>
+	    <ypad>3</ypad>
+	    <xexpand>True</xexpand>
+	    <yexpand>False</yexpand>
+	    <xshrink>False</xshrink>
+	    <yshrink>False</yshrink>
+	    <xfill>True</xfill>
+	    <yfill>False</yfill>
+	  </child>
 	</widget>
       </widget>
     </widget>

@@ -173,6 +173,7 @@ class EditPerson:
         self.name_frame = self.get_widget("name_frame")
         self.alt_given_field = self.get_widget("alt_given")
         self.alt_last_field = self.get_widget("alt_last")
+        self.alt_title_field = self.get_widget("alt_title")
         self.alt_suffix_field = self.get_widget("alt_suffix")
         self.name_type_field = self.get_widget("name_type")
         self.surname_field = self.get_widget("surname")
@@ -184,7 +185,7 @@ class EditPerson:
         self.bdate  = self.get_widget("birthDate")
         self.bplace = self.get_widget("birthPlace")
         self.bpcombo = self.get_widget("bpcombo")
-        self.dpcombo = self.get_widget("bpcombo")
+        self.dpcombo = self.get_widget("dpcombo")
         self.sncombo = self.get_widget("sncombo")
         self.ddate  = self.get_widget("deathDate")
         self.dplace = self.get_widget("deathPlace")
@@ -223,8 +224,7 @@ class EditPerson:
         self.window.editable_enters(self.dplace);
         
         self.autoplace = AutoComp.AutoCombo(self.bpcombo,self.pmap.keys())
-                
-        AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),self.autoplace)
+        self.autodeath = AutoComp.AutoCombo(self.dpcombo,self.pmap.keys(),self.autoplace)
         self.comp = AutoComp.AutoCombo(self.sncombo,const.surnames)
             
         self.gid.set_text(person.getId())
@@ -258,12 +258,12 @@ class EditPerson:
             self.get_widget("lds_tab").show()
             self.get_widget("lds_page").show()
 
-        self.write_primary_name()
 
         types = const.NameTypesMap.keys()
         types.sort()
         self.ntype_field.set_popdown_strings(types)
         self.autotype = AutoComp.AutoEntry(self.ntype_field.entry,types)
+        self.write_primary_name()
         
         if person.getGender() == Person.male:
             self.is_male.set_active(1)
@@ -975,6 +975,7 @@ class EditPerson:
         name = obj.get_row_data(row)
         self.name_frame.set_label(name.getName())
         self.alt_given_field.set_text(name.getFirstName())
+        self.alt_title_field.set_text(name.getTitle())
         self.alt_last_field.set_text(name.getSurname())
         self.alt_suffix_field.set_text(name.getSuffix())
         self.name_type_field.set_text(name.getType())
@@ -1351,6 +1352,7 @@ class EditPerson:
             self.nlist.append(old)
             self.redraw_name_list()
             self.pname = Name(new)
+            self.lists_changed = 1
             self.write_primary_name()
 
     def write_primary_name(self):
