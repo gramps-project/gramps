@@ -1,3 +1,7 @@
+2003-09-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/FilterEditor.py (MyPlaces): fix handling of get_text,
+	set_text tasks. Use the default from the base class.
+
 2003-09-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Switch to the next release's version in CVS. 
 	Replace build-date with the last ChangeLog entry date in release number.
