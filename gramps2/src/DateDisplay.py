@@ -29,6 +29,7 @@ __author__ = "Donald N. Allingham"
 __version__ = "$Revision$"
 
 import Date
+import locale
 
 class DateDisplay:
     """
@@ -36,83 +37,66 @@ class DateDisplay:
     """
 
     formats = (
-        "YYYY-MM-DD",
-        "MM/DD/YYYY",
-        "Month Day, Year",
-        "MON DAY, YEAR",
-        "Day Month Year",
-        "DAY MON YEAR"
+        "YYYY-MM-DD", "MM/DD/YYYY", "Month Day, Year",
+        "MON DAY, YEAR", "Day Month Year", "DAY MON YEAR"
         )
 
-    _calendar = (
-        "",
-        " (Julian)",
-        " (Hebrew)",
-        " (French Republican)",
-        " (Persian)",
-        " (Islamic)"
+    calendar = (
+        ""," (Julian)"," (Hebrew)"," (French Republican)",
+        " (Persian)"," (Islamic)"
         )
     
     _mod_str = (
-        "",
-        "before ",
-        "after ",
-        "about ",
-        "estimated ",
-        "calculated ",
-        ""
+        "","before ","after ","about ","estimated ","calculated ",""
         )
+
+    # determine the code set returned by nl_langinfo
+    _codeset = locale.nl_langinfo(locale.CODESET)
     
+    # get month information from nl_langinfo. Since nl_langinfo
+    # returns data in the code set specified by the user, and
+    # gnome wants unicode, we need to convert each string from
+    # the native code set into unicode
     _months = (
         "",
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
+        unicode(locale.nl_langinfo(locale.MON_1),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_2),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_3),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_4),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_5),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_6),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_7),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_8),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_9),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_10),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_11),_codeset),
+        unicode(locale.nl_langinfo(locale.MON_12),_codeset),
         )
 
     _MONS = (
         "",
-        "JAN",
-        "FEB",
-        "MAR",
-        "APR",
-        "MAY",
-        "JUN",
-        "JUL",
-        "AUG",
-        "SEP",
-        "OCT",
-        "NOV",
-        "DEC"
+        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset),
+        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset),
         )
     
     _hebrew = (
-        "",
-        "Tishri",
-        "Heshvan",
-        "Kislev",
-        "Tevet",
-        "Shevat",
-        "AdarI",
-        "AdarII",
-        "Nisan",
-        "Iyyar",
-        "Sivan",
-        "Tammuz",
-        "Av",
-        "Elul"
+        "", "Tishri", "Heshvan", "Kislev", "Tevet", "Shevat",
+        "AdarI", "AdarII", "Nisan", "Iyyar", "Sivan", "Tammuz",
+        "Av", "Elul"
         )
     
     _french = (
+        "",
         unicode("Vendémiaire",'latin-1'),
         unicode("Brumaire",'latin-1'),
         unicode("Frimaire",'latin-1'),
@@ -129,33 +113,15 @@ class DateDisplay:
         )
     
     _persian = (
-        "Farvardin",
-        "Ordibehesht",
-        "Khordad",
-        "Tir",
-        "Mordad",
-        "Shahrivar",
-        "Mehr",
-        "Aban",
-        "Azar",
-        "Dey",
-        "Bahman",
-        "Esfand"
+        "", "Farvardin", "Ordibehesht", "Khordad", "Tir",
+        "Mordad", "Shahrivar", "Mehr", "Aban", "Azar",
+        "Dey", "Bahman", "Esfand"
         )
     
     _islamic = (
-        "Muharram",
-        "Safar",
-        "Rabi`al-Awwal",
-        "Rabi`ath-Thani",
-        "Jumada l-Ula",
-        "Jumada t-Tania",
-        "Rajab",
-        "Sha`ban",
-        "Ramadan",
-        "Shawwal",
-        "Dhu l-Qa`da",
-        "Dhu l-Hijja"
+        "", "Muharram", "Safar", "Rabi`al-Awwal", "Rabi`ath-Thani",
+        "Jumada l-Ula", "Jumada t-Tania", "Rajab", "Sha`ban",
+        "Ramadan", "Shawwal", "Dhu l-Qa`da", "Dhu l-Hijja"
         )
 
     def __init__(self,format=None):
@@ -164,6 +130,7 @@ class DateDisplay:
         of the desired format. The format value must correspond to the format
         list value (DateDisplay.format[]).
         """
+
         self.verify_format(format)
         if format == None:
             self.format = 0
@@ -178,7 +145,7 @@ class DateDisplay:
             self._display_persian,
             self._display_islamic,
             ]
-        
+
     def verify_format(self,format):
         """
         Verifies that the format value is within the correct range.
@@ -214,14 +181,14 @@ class DateDisplay:
         if mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "from %s to %s%s" % (d1,d2,self._calendar[cal])
+            return "from %s to %s%s" % (d1,d2,self.calendar[cal])
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
-            return "between %s and %s%s" % (d1,d2,self._calendar[cal])
+            return "between %s and %s%s" % (d1,d2,self.calendar[cal])
         else:
             text = self.display_cal[date.get_calendar()](start)
-            return "%s%s%s" % (self._mod_str[mod],text,self._calendar[cal])
+            return "%s%s%s" % (self._mod_str[mod],text,self.calendar[cal])
 
     def _slash_year(self,val,slash):
         if slash:

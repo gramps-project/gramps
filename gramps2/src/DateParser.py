@@ -28,39 +28,47 @@ __version__ = "$Revision$"
 
 import string
 import re
+import time
+import locale
+
 import Date
+
 
 class DateParser:
     """
     Converts a text string into a Date object. If the date cannot be
     converted, the text string is assigned.
     """
+
+    # determine the code set returned by nl_langinfo
+    _codeset = locale.nl_langinfo(locale.CODESET)
+
     month_to_int = {
-        'jan'      : 1,
-        'january'  : 1,
-        'feb'      : 2,
-        'february' : 2,
-        'mar'      : 3,
-        'march'    : 3,
-        'apr'      : 4,
-        'april'    : 4,
-        'may'      : 5,
-        'june'     : 6,
-        'jun'      : 6,
-        'july'     : 7,
-        'jul'      : 7,
-        'august'   : 8,
-        'aug'      : 8,
-        'september': 9,
-        'sep'      : 9,
-        'sept'     : 9,
-        'oct'      : 10,
-        'october'  : 10,
-        'nov'      : 11,
-        'november' : 11,
-        'dec'      : 12,
-        'december' : 12,
-        }
+        unicode(locale.nl_langinfo(locale.MON_1),_codeset).lower()   : 1,
+        unicode(locale.nl_langinfo(locale.ABMON_1),_codeset).lower() : 1,
+        unicode(locale.nl_langinfo(locale.MON_2),_codeset).lower()   : 2,
+        unicode(locale.nl_langinfo(locale.ABMON_2),_codeset).lower() : 2,
+        unicode(locale.nl_langinfo(locale.MON_3),_codeset).lower()   : 3,
+        unicode(locale.nl_langinfo(locale.ABMON_3),_codeset).lower() : 3,
+        unicode(locale.nl_langinfo(locale.MON_4),_codeset).lower()   : 4,
+        unicode(locale.nl_langinfo(locale.ABMON_4),_codeset).lower() : 4,
+        unicode(locale.nl_langinfo(locale.MON_5),_codeset).lower()   : 5,
+        unicode(locale.nl_langinfo(locale.ABMON_5),_codeset).lower() : 5,
+        unicode(locale.nl_langinfo(locale.MON_6),_codeset).lower()   : 6,
+        unicode(locale.nl_langinfo(locale.ABMON_6),_codeset).lower() : 6,
+        unicode(locale.nl_langinfo(locale.MON_7),_codeset).lower()   : 7,
+        unicode(locale.nl_langinfo(locale.ABMON_7),_codeset).lower() : 7,
+        unicode(locale.nl_langinfo(locale.MON_8),_codeset).lower()   : 8,
+        unicode(locale.nl_langinfo(locale.ABMON_8),_codeset).lower() : 8,
+        unicode(locale.nl_langinfo(locale.MON_9),_codeset).lower()   : 9,
+        unicode(locale.nl_langinfo(locale.ABMON_9),_codeset).lower() : 9,
+        unicode(locale.nl_langinfo(locale.MON_10),_codeset).lower()  : 10,
+        unicode(locale.nl_langinfo(locale.ABMON_10),_codeset).lower(): 10,
+        unicode(locale.nl_langinfo(locale.MON_11),_codeset).lower()  : 11,
+        unicode(locale.nl_langinfo(locale.ABMON_11),_codeset).lower(): 11,
+        unicode(locale.nl_langinfo(locale.MON_12),_codeset).lower()  : 12,
+        unicode(locale.nl_langinfo(locale.ABMON_12),_codeset).lower(): 12,
+       }
 
     modifier_to_int = {
         'before'   : Date.MOD_BEFORE,
@@ -86,6 +94,12 @@ class DateParser:
         'calculated' : Date.QUAL_CALCULATED,
         }
     
+    _qual_str = '(' + '|'.join(
+        [ key.replace('.','\.') for key in quality_to_int.keys() ]
+        ) + ')'
+    _mod_str  = '(' + '|'.join(
+        [ key.replace('.','\.') for key in modifier_to_int.keys() ]
+        ) + ')'
     _qual_str = '(' + string.join(quality_to_int.keys(),'|') + ')'
     _mod_str  = '(' + string.join(modifier_to_int.keys(),'|') + ')'
     _mon_str  = '(' + string.join(month_to_int.keys(),'|') + ')'
@@ -113,6 +127,12 @@ class DateParser:
         """
         Converts only the date portion of a date.
         """
+        try:
+            value = time.strptime(text)
+            return (value[2],value[1],value[0],False)
+        except ValueError:
+            pass
+
         match = self._text.match(text)
         if match:
             groups = match.groups()
@@ -185,7 +205,6 @@ class DateParser:
             grps = match.groups()
             start = self._parse_subdate(grps[0])
             stop = self._parse_subdate(grps[1])
-            date.set_modifier(Date.MOD_SPAN)
             date.set(qual,Date.MOD_SPAN,Date.CAL_GREGORIAN,start + stop)
             return
     

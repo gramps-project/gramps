@@ -28,7 +28,6 @@ def create_parser():
     try:
         return _lang_to_parser[_lang]()
     except:
-        print "not found"
         return DateParser.DateParser()
 
 def create_display():
