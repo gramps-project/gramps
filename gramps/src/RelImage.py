@@ -29,6 +29,12 @@ import intl
 
 _ = intl.gettext
 
+try:
+    import PIL.Image
+    no_pil = 0
+except:
+    no_pil = 1
+
 #-------------------------------------------------------------------------
 #
 # import_photo
@@ -40,7 +46,7 @@ def import_photo(filename,path,prefix):
 
     type = gnome.mime.type_of_file(filename)
     if type[0:6] != "image/":
-        GnomeErrorDialog(_("Currently only JPEG files are supported"))
+        GnomeErrorDialog(_("Currently only image files are supported"))
         return None
         
     for index in range(0,1000):
@@ -53,8 +59,11 @@ def import_photo(filename,path,prefix):
         if type == "image/jpeg":
             shutil.copy(filename,name)
         else:
-            cmd = const.convert + " " + filename + " " + name
-            os.system(cmd)
+            if no_pil:
+                cmd = "%s %s %s" % (const.convert,filename,name)
+                os.system(cmd)
+            else:
+                PIL.Image.open(filename).save(name)
     except:
         return None
 
