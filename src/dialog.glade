@@ -117,7 +117,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label154">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Event Type:</property>
+		      <property name="label" translatable="yes">_Event type:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -475,7 +475,7 @@
 		    <widget class="GtkCheckButton" id="priv">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Private Record</property>
+		      <property name="label" translatable="yes">_Private record</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="active">False</property>
@@ -1052,7 +1052,7 @@
 		    <widget class="GtkCheckButton" id="priv">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Private Record</property>
+		      <property name="label" translatable="yes">_Private record</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="active">False</property>
@@ -1605,7 +1605,7 @@
 	      <child>
 		<widget class="GtkLabel" id="label184">
 		  <property name="visible">True</property>
-		  <property name="label" translatable="yes">Church _Parish:</property>
+		  <property name="label" translatable="yes">Church _parish:</property>
 		  <property name="use_underline">True</property>
 		  <property name="use_markup">False</property>
 		  <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -2031,7 +2031,7 @@
 		    <widget class="GtkCheckButton" id="priv">
 		      <property name="visible">True</property>
 		      <property name="can_focus">True</property>
-		      <property name="label" translatable="yes">_Private Record</property>
+		      <property name="label" translatable="yes">_Private record</property>
 		      <property name="use_underline">True</property>
 		      <property name="relief">GTK_RELIEF_NORMAL</property>
 		      <property name="active">False</property>
@@ -2875,7 +2875,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label181">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Family Name:</property>
+		      <property name="label" translatable="yes">_Family name:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -3008,7 +3008,7 @@
 		  <child>
 		    <widget class="GtkLabel" id="label290">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">Family _Prefix:</property>
+		      <property name="label" translatable="yes">Family _prefix:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">False</property>
 		      <property name="justify">GTK_JUSTIFY_CENTER</property>

@@ -46,7 +46,7 @@ Preferences dialog under the Settings menu.</property>
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard1">
 	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">Researcher Information</property>
+	  <property name="title" translatable="yes">Researcher information</property>
 	  <property name="title_foreground">#53e00817c71b</property>
 	  <property name="background">#53e00817e118</property>
 	  <property name="logo_background">#d7a440c2e108</property>
@@ -486,7 +486,7 @@ files, you may leave it blank.</property>
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard3">
 	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">Numerical Date Formats</property>
+	  <property name="title" translatable="yes">Numerical date formats</property>
 	  <property name="title_foreground">#53e00817c71b</property>
 	  <property name="background">#53e00817e118</property>
 	  <property name="logo_background">#d7a440c2e108</property>
@@ -634,7 +634,7 @@ numerical dates</property>
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard4">
 	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">Alternate Calendar Support</property>
+	  <property name="title" translatable="yes">Alternate calendar support</property>
 	  <property name="title_foreground">#53e00817c71b</property>
 	  <property name="background">#53e00817e118</property>
 	  <property name="logo_background">#d7a440c2e108</property>
@@ -731,7 +731,7 @@ more of these alternate calendars, enable alternate calendar support.</property>
       <child>
 	<widget class="GnomeDruidPageStandard" id="druidpagestandard2">
 	  <property name="visible">True</property>
-	  <property name="title" translatable="yes">LDS Extensions</property>
+	  <property name="title" translatable="yes">LDS extensions</property>
 	  <property name="title_foreground">#53e00817c71b</property>
 	  <property name="background">#53e00817e118</property>
 	  <property name="logo_background">#d7a440c2e108</property>
@@ -790,7 +790,7 @@ change this option in the future in the Preferences dialog.</property>
 			  <property name="border_width">20</property>
 			  <property name="visible">True</property>
 			  <property name="can_focus">True</property>
-			  <property name="label" translatable="yes">Enable LDS Ordinance Support</property>
+			  <property name="label" translatable="yes">Enable LDS ordinance support</property>
 			  <property name="use_underline">True</property>
 			  <property name="relief">GTK_RELIEF_NORMAL</property>
 			  <property name="active">False</property>

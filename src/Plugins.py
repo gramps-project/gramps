@@ -277,21 +277,25 @@ class PluginStatus:
             })
 
         info = cStringIO.StringIO()
-        info.write(_("The following modules could not be loaded:"))
-        info.write("\n\n")
-        
-        for (file,msg) in _expect:
-            info.write("%s: %s\n\n" % (file,msg))
 
-        for (file,msgs) in _failmsg:
-            error = str(msgs[0])
-            if error[0:11] == "exceptions.":
-                error = error[11:]
-            info.write("%s: %s\n" % (file,error) )
-            traceback.print_exception(msgs[0],msgs[1],msgs[2],None,info)
-            info.write('\n')
-        info.seek(0)
-        window.get_buffer().set_text(info.read())
+        if len(_expect) + len(_failmsg) == 0:
+            window.get_buffer().set_text(_('All modules were successfully loaded.'))
+        else:
+            info.write(_("The following modules could not be loaded:"))
+            info.write("\n\n")
+            
+            for (file,msg) in _expect:
+                info.write("%s: %s\n\n" % (file,msg))
+
+            for (file,msgs) in _failmsg:
+                error = str(msgs[0])
+                if error[0:11] == "exceptions.":
+                    error = error[11:]
+                info.write("%s: %s\n" % (file,error) )
+                traceback.print_exception(msgs[0],msgs[1],msgs[2],None,info)
+                info.write('\n')
+            info.seek(0)
+            window.get_buffer().set_text(info.read())
 
     def close(self,obj):
         self.top.destroy()

@@ -1036,6 +1036,7 @@ class Gramps:
             })
 
         fileSelector = wFs.get_widget("fileselection")
+        fileSelector.set_title('%s - GRAMPS' % _('Save database'))
         fileSelector.show()
 
     def on_save_activate(self,obj):

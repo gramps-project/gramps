@@ -130,7 +130,7 @@ class Everyone(Rule):
 class HasIdOf(Rule):
     """Rule that checks for a person with a specific GID"""
 
-    labels = [ _('ID') ]
+    labels = [ _('ID:') ]
     
     def name(self):
         return 'Has the Id'
@@ -163,7 +163,7 @@ class IsDescendantOf(Rule):
     """Rule that checks for a person that is a descendant
     of a specified person"""
 
-    labels = [ _('ID') ]
+    labels = [ _('ID:') ]
     
     def name(self):
         return 'Is a descendant of'
@@ -190,7 +190,7 @@ class IsDescendantFamilyOf(Rule):
     """Rule that checks for a person that is a descendant or the spouse
     of a descendant of a specified person"""
 
-    labels = [ _('ID') ]
+    labels = [ _('ID:') ]
     
     def name(self):
         return "Is a descendant family member of"
@@ -226,7 +226,7 @@ class IsDescendantFamilyOf(Rule):
 class IsAncestorOf(Rule):
     """Rule that checks for a person that is an ancestor of a specified person"""
 
-    labels = [ _('ID') ]
+    labels = [ _('ID:') ]
     
     def name(self):
         return 'Is an ancestor of'
@@ -253,7 +253,7 @@ class IsAncestorOf(Rule):
 class HasCommonAncestorWith(Rule):
     """Rule that checks for a person that has a common ancestor with a specified person"""
 
-    labels = [ _('ID') ]
+    labels = [ _('ID:') ]
 
     def name(self):
         return 'Has a common ancestor with'
@@ -307,7 +307,7 @@ class IsMale(Rule):
 class HasEvent(Rule):
     """Rule that checks for a person with a particular value"""
 
-    labels = [ _('Personal Event'), _('Date'), _('Place'), _('Description') ]
+    labels = [ _('Personal event:'), _('Date:'), _('Place:'), _('Description:') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -345,7 +345,7 @@ class HasFamilyEvent(Rule):
     """Rule that checks for a person who has a relationship event
     with a particular value"""
 
-    labels = [ _('Family Event'), _('Date'), _('Place'), _('Description') ]
+    labels = [ _('Family event:'), _('Date:'), _('Place:'), _('Description:') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -384,9 +384,9 @@ class HasFamilyEvent(Rule):
 class HasRelationship(Rule):
     """Rule that checks for a person who has a particular relationship"""
 
-    labels = [ _('Number of Relationships'),
-               _('Relationship Type'),
-               _('Number of Children') ]
+    labels = [ _('Number of relationships:'),
+               _('Relationship type:'),
+               _('Number of children:') ]
 
     def name(self):
         return 'Has the relationships'
@@ -434,7 +434,7 @@ class HasRelationship(Rule):
 class HasBirth(Rule):
     """Rule that checks for a person with a birth of a particular value"""
 
-    labels = [ _('Date'), _('Place'), _('Description') ]
+    labels = [ _('Date:'), _('Place:'), _('Description:') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -466,7 +466,7 @@ class HasBirth(Rule):
 class HasDeath(Rule):
     """Rule that checks for a person with a death of a particular value"""
 
-    labels = [ _('Date'), _('Place'), _('Description') ]
+    labels = [ _('Date:'), _('Place:'), _('Description:') ]
     
     def __init__(self,list):
         Rule.__init__(self,list)
@@ -498,7 +498,7 @@ class HasDeath(Rule):
 class HasAttribute(Rule):
     """Rule that checks for a person with a particular personal attribute"""
 
-    labels = [ _('Personal Attribute'), _('Value') ]
+    labels = [ _('Personal attribute:'), _('Value:') ]
     
     def name(self):
         return 'Has the personal attribute'
@@ -519,7 +519,7 @@ class HasAttribute(Rule):
 class HasFamilyAttribute(Rule):
     """Rule that checks for a person with a particular family attribute"""
 
-    labels = [ _('Family Attribute'), _('Value') ]
+    labels = [ _('Family attribute:'), _('Value:') ]
     
     def name(self):
         return 'Has the family attribute'
@@ -544,7 +544,7 @@ class HasFamilyAttribute(Rule):
 class HasNameOf(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels = [_('Given Name'),_('Surname'),_('Suffix'),_('Title')]
+    labels = [_('Given name:'),_('Family name:'),_('Suffix:'),_('Title:')]
     
     def name(self):
         return 'Has a name'
@@ -572,7 +572,7 @@ class HasNameOf(Rule):
 class MatchesFilter(Rule):
     """Rule that checks against another filter"""
 
-    labels = [_('Filter Name')]
+    labels = [_('Filter name:')]
 
     def name(self):
         return 'Matches the filter named'

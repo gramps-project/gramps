@@ -60,6 +60,10 @@ class MergePeople:
 
         self.glade = gtk.glade.XML(const.mergeFile,"merge")
         self.top = self.glade.get_widget("merge")
+
+        Utils.set_titles(self.top,self.glade.get_widget('title'),
+                         _('Merge Places'), _('Select the title for the merged place'))
+        
         self.altname = self.glade.get_widget("altname")
         self.altbirth = self.glade.get_widget("altbirth")
         self.altdeath = self.glade.get_widget("altdeath")
@@ -73,8 +77,11 @@ class MergePeople:
 
         fname = GrampsCfg.nameof(person1)
         mname = GrampsCfg.nameof(person2)
-        label_text = "Merge %s and %s" % (fname,mname)
-        self.glade.get_widget("progress").set_text(label_text)
+
+        Utils.set_titles(self.top, self.glade.get_widget('title'),
+                         _("Merge %s and %s") % (fname,mname),
+                         _("Merge people"))
+
         f1 = person1.getMainParents()
         f2 = person2.getMainParents()
         

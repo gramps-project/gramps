@@ -135,7 +135,7 @@ translators  =  u'Radek Malcic <malcic@atlas.cz> - Czech\n' \
 # Constants
 #
 #-------------------------------------------------------------------------
-picWidth     = 200.0
+picWidth     = 275.0
 thumbScale   = 96.0
 xmlFile      = "data.gramps"
 zodbFile     = "gramps.zodb"
