@@ -1,3 +1,7 @@
+2003-09-01  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/PSDrawDoc.py: Change from Text/DrawDoc to BaseDoc
+	* src/docgen/SvgDrawDoc.py: Change from Text/DrawDoc to BaseDoc
+
 2003-09-01  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PaperMenu.py: Change from TextDoc to BaseDoc.
 	* src/Report.py: Likewise.
