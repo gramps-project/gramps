@@ -26,6 +26,7 @@
 from gtk import *
 from gnome.ui import *
 
+import gnome.mime
 import libglade
 import os
 import intl
