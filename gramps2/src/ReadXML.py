@@ -369,6 +369,7 @@ class GrampsParser:
             "cause"      : (None, self.stop_cause),
             "description": (None, self.stop_description),
             "event"      : (self.start_event, self.stop_event),
+            "data_item"  : (self.start_data_item, None),
             "families"   : (None, self.stop_families),
             "family"     : (self.start_family, self.stop_family),
             "father"     : (self.start_father, None),
@@ -577,6 +578,9 @@ class GrampsParser:
 
     def start_temple(self,attrs):
         self.ord.set_temple(attrs['val'])
+
+    def start_data_item(self,attrs):
+        self.source.set_data_item(attrs['key'],attrs['value'])
 
     def start_status(self,attrs):
         self.ord.set_status(int(attrs['val']))

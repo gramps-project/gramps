@@ -129,6 +129,27 @@ class EditSource:
             self.top_window.get_widget("edit_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
+        self.datalist = self.top_window.get_widget('datalist')
+        colno = 0
+        for title in [ (_('Key'),0,175), (_('Value'),1,150)]:
+            renderer = gtk.CellRendererText()
+            renderer.set_property('editable',True)
+            renderer.connect('edited',self.edit_cb, colno)
+            column = gtk.TreeViewColumn(title[0], renderer, text=colno)
+            colno += 1
+            column.set_clickable(True)
+            column.set_resizable(True)
+            column.set_min_width(title[2])
+            column.set_sort_column_id(title[1])
+            self.datalist.append_column(column)
+
+        self.data_model = gtk.ListStore(str,str)
+        self.datalist.set_model(self.data_model)
+        dmap = self.source.get_data_map()
+        for item in dmap.keys():
+            self.data_model.append(row=[item,dmap[item]])
+        self.data_model.append(row=['',''])
+            
         if parent_window:
             self.top.set_transient_for(parent_window)
 
@@ -137,6 +158,12 @@ class EditSource:
             self.top.set_transient_for(parent_window)
         self.add_itself_to_menu()
         self.top.show()
+
+    def edit_cb(self, cell, path, new_text, data):
+        iter = self.data_model.get_iter(path)
+        self.data_model.set_value(iter,data,new_text)
+        if int(path)+1 == len(self.data_model):
+            self.data_model.append(row=['',''])
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
@@ -329,6 +356,15 @@ class EditSource:
         if format != self.source.get_note_format():
             self.source.set_note_format(format)
 
+        new_map = {}
+        for val in range(0,len(self.data_model)-1):
+            node = self.data_model.get_iter(val)
+            key = self.data_model.get_value(node,0)
+            value = self.data_model.get_value(node,1) 
+            new_map[key] = value
+        if new_map != self.source.get_data_map():
+            self.source.set_data_map(new_map)
+        
         self.gallery_ok = 1
 
         trans = self.db.transaction_begin()

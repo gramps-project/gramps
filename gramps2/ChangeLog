@@ -1,3 +1,10 @@
+2004-11-22  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/EditSource.py: add in-place editing for key,value pairs
+	* src/ReadXML.py: add support for Source key,value pairs
+	* src/WriteXML.py: add support for Source key,value pairs
+	* src/RelLib.py: add support for Source key,value pairs
+	* src/gramps.glade: add support for Source key,value pairs
+
 2004-11-20  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/ChangeNames.py: Add a plugin to change capitalization
 	of family names
