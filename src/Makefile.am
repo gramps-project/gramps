@@ -94,8 +94,7 @@ GLADEFILES = \
 	gramps.glade\
 	mergedata.glade\
 	plugins.glade\
-	rule.glade\
-	styles.glade
+	rule.glade
 
 GRAPHICS = \
 	bad.png\

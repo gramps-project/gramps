@@ -112,7 +112,7 @@ target_alias = @target_alias@
 # This is the src/data level Makefile
 SUBDIRS = templates
 
-pkgdata_DATA = gedcom.xml 
+pkgdata_DATA = gedcom.xml papersize.xml
 
 EXTRA_DIST = $(pkgdata_DATA)
 subdir = src/data
