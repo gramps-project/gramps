@@ -131,7 +131,7 @@ class Marriage:
         self.gallery.load_images()
 
         etitles = [(_('Event'),0,150),(_('Date'),1,150),(_('Place'),2,150)]
-        atitles = [(_('Attribute'),-1,150),(_('Value'),-1,150)]
+        atitles = [(_('Attribute'),0,150),(_('Value'),1,150)]
 
         self.etree = ListModel.ListModel(self.event_list, etitles,
                                          self.on_select_row,
@@ -315,11 +315,15 @@ class Marriage:
         for attr in self.alist:
             d = [const.display_fattr(attr.getType()),attr.getValue()]
             self.atree.add(d,attr)
+        if self.alist:
+            self.atree.select_row(0)
 
     def redraw_event_list(self):
         self.etree.clear()
         for data in self.elist:
             self.etree.add([data.getName(),data.getQuoteDate(),data.getPlaceName()],data)
+        if self.elist:
+            self.etree.select_row(0)
 
     def get_widget(self,name):
         return self.top.get_widget(name)

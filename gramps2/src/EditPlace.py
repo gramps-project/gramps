@@ -118,7 +118,8 @@ class EditPlace:
         self.build_columns(self.loc_list, [(_('City'),150), (_('County'),100),
                                            (_('State'),100), (_('Country'),50)])
         self.loc_list.set_model(self.loc_model)
-        self.loc_list.get_selection().connect('changed',self.on_loc_list_select_row)
+        self.sel = self.loc_list.get_selection()
+        self.sel.connect('changed',self.on_loc_list_select_row)
 
         self.title.set_text(place.get_title())
         mloc = place.get_main_location()

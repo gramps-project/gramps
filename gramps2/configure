@@ -1567,7 +1567,7 @@ INSTALL_STRIP_PROGRAM="\${SHELL} \$(install_sh) -c -s"
 
 
 
-RELEASE=pre6
+RELEASE=pre7
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"
@@ -1621,7 +1621,7 @@ fi
 
 
 
-LANGUAGES="sv de fr es it pt_BR ru da_DK cs"
+LANGUAGES="sv pl de fr es it pt_BR ru da_DK cs"
 
 
 DISTLANGS=

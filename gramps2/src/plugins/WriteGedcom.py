@@ -917,7 +917,7 @@ class GedcomWriter:
         else:
             if surPref:
                 self.g.write("2 SURN %s %s\n" % (surPref,surName))
-            else if surName:
+            elif surName:
                 self.g.write("2 SURN %s\n" % surName)
                 
         if name.getSuffix() != "":

@@ -41,8 +41,7 @@ class CountAncestors:
     def __init__(self,database,person):
         
         text = ""
-        base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "summary.glade"
+        glade_file = "%s/summary.glade" % os.path.dirname(__file__)
         topDialog = gtk.glade.XML(glade_file,"summary")
         topDialog.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
@@ -81,7 +80,7 @@ class CountAncestors:
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
         topDialog.get_widget("summaryTitle").set_text(title)
-        textwindow.show_string(text)
+        textwindow.get_buffer().set_text(text)
         top.show()
 
 #-------------------------------------------------------------------------
