@@ -950,4 +950,3 @@ class DeleteMediaQuery:
         if self.update:
             self.update(0)
 
-

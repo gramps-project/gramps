@@ -356,6 +356,11 @@ class GedcomWriter:
 
         target_obj.set_menu(myMenu)
         self.target_menu = myMenu
+
+        pathname = "%s.ged" % os.path.dirname(db.getSavePath())
+        
+        filetgt = self.topDialog.get_widget('fileentry1')
+        filetgt.set_filename(pathname)
         
         self.topDialog.get_widget("gedcomExport").show()
         
