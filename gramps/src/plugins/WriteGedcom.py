@@ -262,8 +262,8 @@ def write_long_text(g,tag,level,note):
 def dump_event_stats(g,event):
     if event.getSaveDate() != "":
         g.write("2 DATE %s\n" % cnvtxt(event.getSaveDate()))
-    if event.getPlace().get_title() != "":
-        g.write("2 PLAC %s\n" % cnvtxt(event.getPlace().get_title()))
+    if event.getPlaceName() != "":
+        g.write("2 PLAC %s\n" % cnvtxt(event.getPlaceName()))
     if event.getNote() != "":
         write_long_text(g,"NOTE",2,event.getNote())
     if event.getSourceRef() != None:
@@ -368,13 +368,13 @@ def write_person(g,person):
 
         birth = person.getBirth()
         if not (private and birth.getPrivacy()):
-            if birth.getSaveDate() != "" or birth.getPlace().get_title() != "":
+            if birth.getSaveDate() != "" or birth.getPlaceName() != "":
                 g.write("1 BIRT\n")
                 dump_event_stats(g,birth)
 				
         death = person.getDeath()
         if not (private and death.getPrivacy()):
-            if death.getSaveDate() != "" or death.getPlace().get_title() != "":
+            if death.getSaveDate() != "" or death.getPlaceName() != "":
                 g.write("1 DEAT\n")
                 dump_event_stats(g,death)
 

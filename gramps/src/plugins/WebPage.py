@@ -301,7 +301,7 @@ class IndividualPage:
             name = _(event.getName())
             date = event.getDate()
             if event.getPlace():
-                place = event.getPlace().get_title()
+                place = event.getPlaceName()
             else:
                 place = ""
             description = event.getDescription()
@@ -350,7 +350,7 @@ class IndividualPage:
         name = event.getName()
         date = event.getDate()
         if event.getPlace():
-            place = event.getPlace().get_title()
+            place = event.getPlaceName()
         else:
             place = ""
         description = event.getDescription()

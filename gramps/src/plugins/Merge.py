@@ -479,15 +479,15 @@ class Merge:
         
         name1 = person1.getPrimaryName().getName()
         death1 = person1.getDeath().getDate()
-        dplace1 = person1.getDeath().getPlace().get_title()
+        dplace1 = person1.getDeath().getPlaceName()
         birth1 = person1.getBirth().getDate()
-        bplace1 = person1.getBirth().getPlace().get_title()
+        bplace1 = person1.getBirth().getPlaceName()
 
         name2 = person2.getPrimaryName().getName()
         death2 = person2.getDeath().getDate()
-        dplace2 = person2.getDeath().getPlace().get_title()
+        dplace2 = person2.getDeath().getPlaceName()
         birth2 = person2.getBirth().getDate()
-        bplace2 = person2.getBirth().getPlace().get_title()
+        bplace2 = person2.getBirth().getPlaceName()
 
         if f2 and not f1:
             self.topDialog.get_widget("bfather2").set_active(1)

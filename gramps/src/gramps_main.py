@@ -2435,7 +2435,7 @@ def add_box(root,x,y,bwidth,bheight,person,style):
 def box_event(obj,event):
     if event.type == GDK._2BUTTON_PRESS:
         if event.button == 1:
-            if event.state & GDK.SHIFT_MASK:
+            if (event.state & GDK.SHIFT_MASK) or (event.state & GDK.CONTROL_MASK):
                 change_active_person(obj.get_data("p"))
                 load_canvas()
             else:
@@ -2464,6 +2464,7 @@ def box_event(obj,event):
                 anchor=ANCHOR_WEST,
                 x=PAD,
                 y=2*h+(h/2))
+        statusbar.set_status(_("Doubleclick to edit, Shift-Doubleclick to make the active person"))
     elif event.type == GDK.LEAVE_NOTIFY:
         ch = obj.children()
         length = len(ch)
@@ -2479,6 +2480,7 @@ def box_event(obj,event):
             ch[4].destroy()
         if length > 3:
             ch[3].destroy()
+        modify_statusbar()
         canvas.update_now()
         
 #-------------------------------------------------------------------------
@@ -3004,6 +3006,7 @@ def main(arg):
         read_file(Config.lastfile)
 
     database.setResearcher(Config.owner)
+
     mainloop()
 
 #-------------------------------------------------------------------------
