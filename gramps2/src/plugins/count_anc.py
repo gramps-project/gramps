@@ -78,7 +78,7 @@ class CountAncestors:
 
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
-        topDialog.get_widget("summaryTitle").set_text(title)
+        topDialog.get_widget("title").set_text(title)
         textwindow.get_buffer().set_text(text)
         top.show()
 
