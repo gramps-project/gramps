@@ -1513,11 +1513,11 @@ def on_event_edit_ok_clicked(obj):
         ee.parent.db.addPlace(eplace_obj)
         
     if update_event(event,ename,edate,eplace_obj,edesc,enote,epriv,econf):
-        ee.parent.events_changed = 1
+        ee.parent.lists_changed = 1
         
     if not event.getSourceRef().are_equal(ee.srcref):
         event.setSourceRef(ee.srcref)
-        ee.parent.events_changed = 1
+        ee.parent.lists_changed = 1
         
     ee.parent.redraw_event_list()
     utils.destroy_passed_object(obj)
@@ -1616,11 +1616,11 @@ def on_attrib_edit_ok_clicked(obj):
         ee.parent.alist.append(attrib)
         
     if update_attrib(attrib,type,value,note,priv,conf):
-        ee.parent.attr_changed = 1
+        ee.parent.lists_changed = 1
         
     if not attrib.getSourceRef().are_equal(ee.srcref):
         attrib.setSourceRef(ee.srcref)
-        ee.parent.events_changed = 1
+        ee.parent.lists_changed = 1
 
     ee.parent.redraw_attr_list()
     utils.destroy_passed_object(obj)
