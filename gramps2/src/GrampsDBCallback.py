@@ -35,8 +35,9 @@
     to communicate events to any callback methods in either the database code
     or the UI code.
 """
-import types
 import sys
+import types
+import traceback
 
 log = sys.stderr.write
 
@@ -364,7 +365,10 @@ class GrampsDBCallback(object):
                     else:
                         self._log("Warning: badly formed entry in callback map.\n")
                 except:
-                    self._log("Warning: exception occured in callback function.\n")
+                    log("%s: %s" % (self.__class__.__name__,
+                                    "Warning: exception occured in callback function.\n"))
+                    log("%s: %s" % (self.__class__.__name__,
+                                    "".join(traceback.format_exception(*sys.exc_info()))))
 
     #
     # instance signals control methods
@@ -430,6 +434,40 @@ if __name__ == "__main__":
             t.connect('test-signal',fn)
             t.emit('test-signal',(1,))
     
+            
+            assert len(rl) == 1, "No signal emitted"
+            assert rl[0] == 1, "Wrong argument recieved"
+
+
+        def test_exception_catch(self):
+
+            class TestSignals(GrampsDBCallback):
+
+                __signals__ = {
+                          'test-signal' : (int,)
+                         }
+
+            rl = []
+            def fn(i,r=rl):
+                rl.append(i)
+
+            def borked(i):
+                rubish.append(i)
+
+            t = TestSignals()
+
+            def null(s):
+                pass
+
+            
+            global log
+            _log = log
+            log = null
+            
+            t.connect('test-signal',borked)
+            t.connect('test-signal',fn)
+            t.emit('test-signal',(1,))
+            log = _log
             
             assert len(rl) == 1, "No signal emitted"
             assert rl[0] == 1, "Wrong argument recieved"
