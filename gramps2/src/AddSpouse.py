@@ -68,21 +68,17 @@ class AddSpouse:
     family with the passed person as one spouse, and another person to
     be selected.
     """
-    def __init__(self,parent,db,person,update,addperson,family=None):
+    def __init__(self,parent,db,person,family=None):
         """
         Displays the AddSpouse dialog box.
 
         db - database to which to add the new family
         person - the current person, will be one of the parents
-        update - function that updates the family display
-        addperson - function that adds a person to the person view
         """
         self.parent = parent
         self.db = db
-        self.update = update
         self.person = person
         self.gender = self.person.get_gender()
-        self.addperson = addperson
         self.active_family = family
 
         self.filter_func = self.likely_filter
@@ -289,7 +285,6 @@ class AddSpouse:
         self.db.transaction_commit(trans,_("Add Spouse"))
 
         Utils.destroy_passed_object(obj)
-        self.update(self.active_family)
         m = Marriage.Marriage(self.parent, self.active_family, self.parent.db)
         m.on_add_clicked()
 

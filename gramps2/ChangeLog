@@ -1,3 +1,7 @@
+2005-04-01  Don Allingham  <don@gramps-project.org>
+	* src/AddSpouse.py: remove unused callbacks
+	* src/FamilyView.py: remove unused callbacks
+
 2005-04-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/TestcaseGenerator.py: Small changes to family generation
 	* src/plugins/StatisticsChart.py: Added statistics for Surnames,
