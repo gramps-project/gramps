@@ -191,8 +191,12 @@ def importData(database, filename, callback):
 	    shutil.copy2(oldfile,newfile)
         except:
             # File is lost => ask what to do
-            MissingMediaDialog(_("The file %s is not found") % oldfile,
-	        _("Please choose what you want to do.\n"), 
+            MissingMediaDialog(_("Media object could not be found"),
+	        _("%(file_name)s was references in the database, but no longer exists. " 
+                    "The file may have been deleted or moved to a different location. " 
+                    "You may choose to either remove the reference from the database, " 
+                    "keep the reference to the missing file, or select a new file." 
+                    ) % { 'file_name' : oldfile },
                 remove_clicked, leave_clicked, select_clicked)
 
     del parser
