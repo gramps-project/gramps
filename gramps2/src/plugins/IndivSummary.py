@@ -111,7 +111,7 @@ class IndivSummary(Report.Report):
     def write_fact(self,event):
         if event == None:
             return
-        name = event.getName()
+        name = const.display_event(event.getName())
         date = event.getDate()
         place = event.getPlaceName()
         description = event.getDescription()

@@ -121,7 +121,7 @@ class FtmAncestorReport(Report.Report):
             if birth_valid or death_valid:
                 self.doc.write_text(', ')
             else:
-                self.doc.write_text('.')
+                self.doc.write_text('. ')
             
             if birth_valid:
                 date = birth.getDateObj().get_start_date()
