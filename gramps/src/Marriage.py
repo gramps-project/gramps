@@ -75,21 +75,22 @@ class Marriage:
 
         self.top = libglade.GladeXML(const.marriageFile,"marriageEditor")
         self.top.signal_autoconnect({
+            "destroy_passed_object" : on_cancel_edit,
+            "on_add_attr_clicked" : on_add_attr_clicked,
+            "on_addphoto_clicked" : on_add_photo_clicked,
+            "on_attr_list_select_row" : on_attr_list_select_row,
+            "on_close_marriage_editor" : on_close_marriage_editor,
+            "on_delete_attr_clicked" : on_delete_attr_clicked,
+            "on_delete_event" : on_delete_event,
+            "on_deletephoto_clicked" : on_delete_photo_clicked,
             "on_marriageAddBtn_clicked" : on_add_clicked,
-            "on_marriageUpdateBtn_clicked" : on_update_clicked,
             "on_marriageDeleteBtn_clicked" : on_delete_clicked,
             "on_marriageEventList_select_row" : on_select_row,
-            "on_attr_list_select_row" : on_attr_list_select_row,
-            "on_add_attr_clicked" : on_add_attr_clicked,
-            "on_update_attr_clicked" : on_update_attr_clicked,
-            "on_delete_attr_clicked" : on_delete_attr_clicked,
-            "on_showsource_clicked" : on_showsource_clicked,
-            "on_photolist_select_icon" : on_photo_select_icon,
+            "on_marriageUpdateBtn_clicked" : on_update_clicked,
             "on_photolist_button_press_event" : on_photolist_button_press_event,
-            "on_addphoto_clicked" : on_add_photo_clicked,
-            "on_deletephoto_clicked" : on_delete_photo_clicked,
-            "on_close_marriage_editor" : on_close_marriage_editor,
-            "destroy_passed_object" : utils.destroy_passed_object
+            "on_photolist_select_icon" : on_photo_select_icon,
+            "on_showsource_clicked" : on_showsource_clicked,
+            "on_update_attr_clicked" : on_update_attr_clicked,
             })
 
         top_window = self.get_widget("marriageEditor")
@@ -273,6 +274,72 @@ class Marriage:
     #-------------------------------------------------------------------------
     def get_widget(self,name):
         return self.top.get_widget(name)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def did_data_change(obj):
+    family_obj = obj.get_data(MARRIAGE)
+
+    changed = 0
+    relation = family_obj.type_field.entry.get_text()
+    if const.save_frel(relation) != family_obj.family.getRelationship():
+        changed = 1
+
+    text = family_obj.notes_field.get_chars(0,-1)
+    if text != family_obj.family.getNote():
+        changed = 1
+        
+    if family_obj.events_changed:
+        changed = 1
+
+    if family_obj.events_changed:
+        changed = 1
+
+    return changed
+
+#-------------------------------------------------------------------------
+#
+# on_cancel_edit
+#
+#-------------------------------------------------------------------------
+def on_cancel_edit(obj):
+
+    if did_data_change(obj):
+        global quit
+        q = _("Data was modified. Are you sure you want to abandon your changes?")
+        quit = obj
+        GnomeQuestionDialog(q,cancel_callback)
+    else:
+        utils.destroy_passed_object(obj)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def cancel_callback(a):
+    if a==0:
+        utils.destroy_passed_object(quit)
+
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+def on_delete_event(obj,b):
+
+    if did_data_change(obj):
+        global quit
+        q = _("Data was modified. Are you sure you want to abandon your changes?")
+        quit = obj
+        GnomeQuestionDialog(q,cancel_callback)
+        return 1
+    else:
+        utils.destroy_passed_object(obj)
+        return 0
 
 #-------------------------------------------------------------------------
 #

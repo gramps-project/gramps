@@ -15,6 +15,11 @@
 <widget>
   <class>GtkDialog</class>
   <name>marriageEditor</name>
+  <signal>
+    <name>delete_event</name>
+    <handler>on_delete_event</handler>
+    <last_modification_time>Fri, 03 Aug 2001 22:30:26 GMT</last_modification_time>
+  </signal>
   <title>Gramps - Marriage/Relationship Editor</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>

@@ -13,6 +13,8 @@ Version 0.4.0
 * Added privacy flag and confidence level to events, attributes, etc.
 * Automatically detect gzip'ed XML vs. XML
 * Added option to write either gzip'ed XML or straight XML
+* Warn on closing the edit person window when modifications have been
+  made.
 
 Version 0.3.2
 * Fixed Style Editor on WebPage.py, to allow styles to be edited.
