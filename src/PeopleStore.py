@@ -85,8 +85,6 @@ class PeopleStore:
                 self.cids.append(name[1])
                 self.tree.append_column(column)
                 
-        if self.cids[0] != -1:
-            self.model.set_sort_column_id(self.cids[0],gtk.SORT_ASCENDING)
         self.connect_model()
         
         if select_func:
@@ -94,6 +92,10 @@ class PeopleStore:
         if event_func:
             self.double_click = event_func
             self.tree.connect('event',self.button_press)
+
+    def enable_sort(self):
+        if self.cids[0] != -1:
+            self.model.set_sort_column_id(self.cids[0],gtk.SORT_ASCENDING)
 
     def unselect(self):
         self.selection.unselect_all()
