@@ -1283,6 +1283,10 @@ class Gramps:
         self.update_display(0)
 
     def delete_person_response(self):
+
+        if self.db.getDefaultPerson() == self.active_person:
+            self.db.setDefaultPerson(None)
+
         for family in self.active_person.getFamilyList():
             if not family:
                 continue
@@ -1301,9 +1305,9 @@ class Gramps:
                 else:
                     family.setMother(None)
 
-        family = self.active_person.getMainParents()
-        if family:
-            family.removeChild(self.active_person)
+        for (family,mrel,frel) in self.active_person.getParentList():
+            if family:
+                family.removeChild(self.active_person)
             
         self.people_view.remove_from_history(self.active_person)
         self.db.removePerson(self.active_person.getId())
@@ -1315,6 +1319,7 @@ class Gramps:
         else:
             self.change_active_person(None)
         self.redraw_histmenu()
+
         Utils.modified()
 
     def merge_update(self,p1,p2,old_id):
