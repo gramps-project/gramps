@@ -408,6 +408,28 @@ class GedcomParser:
                 pass
             else:
                 self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_ftw_relations(self,level):
+        retval = ""
+        
+        while 1:
+            matches = self.get_next()
+	    if int(matches[0]) < level:
+                self.backup()
+                return retval
+            elif matches[1] == "_FREL":
+                if string.lower(matches[2]) != "natural":
+                    retval = matches[2]
+            elif matches[1] == "_MREL":
+                if string.lower(matches[2]) != "natural":
+                    retval = matches[2]
+            else:
+                self.barf(level+1)
     
     #---------------------------------------------------------------------
     #
@@ -428,8 +450,13 @@ class GedcomParser:
                 self.family.setMother(self.db.findPerson(matches[2],self.pmap))
                 self.ignore_sub_junk(2)
 	    elif matches[1] == "CHIL":
-                self.family.addChild(self.db.findPerson(matches[2],self.pmap))
-                self.ignore_sub_junk(2)
+                type = self.parse_ftw_relations(2)
+                child = self.db.findPerson(matches[2],self.pmap)
+                self.family.addChild(child)
+                if type != "":
+                    if child.getMainFamily() == self.family:
+                        child.setMainFamily(None)
+                    child.addAltFamily(self.family,type)
 	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
                 pass
             elif matches[1] == "REFN" or matches[1] == "CHAN":
