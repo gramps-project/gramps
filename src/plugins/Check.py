@@ -110,7 +110,7 @@ class CheckIntegrity:
                 mother = self.db.get_person_from_handle(mother_handle)
                 if not mother:
                     # The person referenced by the mother handle does not exist in the database
-                    family.set_father_handle(None)
+                    family.set_mother_handle(None)
                     self.db.commit_family(family,self.trans)
                     self.broken_parent_links.append((mother_handle,family_handle))
                     mother_handle = None
