@@ -28,6 +28,19 @@ from xml.sax import handler
 
 #-------------------------------------------------------------------------
 #
+# Try to abstract SAX1 from SAX2
+#
+#-------------------------------------------------------------------------
+try:
+    import xml.sax.saxexts
+    sax = 1
+except:
+    sax = 2
+
+from latin_utf8 import utf8_to_latin
+
+#-------------------------------------------------------------------------
+#
 # Remove extraneous spaces
 #
 #-------------------------------------------------------------------------
@@ -201,7 +214,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_bmark(self,attrs):
         if self.is_import:
-            person = self.database.findPerson("x" + attrs["ref"],self.pmap)
+            person = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
             person = self.database.findPersonNoMap(attrs["ref"])
         self.database.bookmarks.append(person)
@@ -216,7 +229,7 @@ class GrampsParser(handler.ContentHandler):
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
         if self.is_import:
-            self.person = self.database.findPerson("x" + attrs["id"],self.pmap)
+            self.person = self.database.findPerson("x%s" % attrs["id"],self.pmap)
         else:
             self.person = self.database.findPersonNoMap(attrs["id"])
 
@@ -239,7 +252,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_father(self,attrs):
         if self.is_import:
-            father = self.database.findPerson("x" + attrs["ref"],self.pmap)
+            father = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
             father = self.database.findPersonNoMap(attrs["ref"])
         self.family.setFather(father)
@@ -251,7 +264,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_mother(self,attrs):
         if self.is_import:
-            mother = self.database.findPerson("x" + attrs["ref"],self.pmap)
+            mother = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
             mother = self.database.findPersonNoMap(attrs["ref"])
         self.family.setMother(mother)
@@ -263,7 +276,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_child(self,attrs):
         if self.is_import:
-            child = self.database.findPerson("x" + attrs["ref"],self.pmap)
+            child = self.database.findPerson("x%s" % attrs["ref"],self.pmap)
         else:
             child = self.database.findPersonNoMap(attrs["ref"])
         self.family.addChild(child)
@@ -277,14 +290,16 @@ class GrampsParser(handler.ContentHandler):
 
         if not attrs.has_key("href"):
             return
-        if attrs.has_key("description"):
+        try:
             desc = attrs["description"]
-        else:
+        except KeyError:
             desc = ""
-            
-        url = Url(attrs["href"],desc)
-        
-        self.person.addUrl(url)
+
+        try:
+            url = Url(attrs["href"],desc)
+            self.person.addUrl(url)
+        except KeyError:
+            return
 
     #---------------------------------------------------------------------
     #
@@ -753,12 +768,10 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def startElement(self,tag,attrs):
 
-        self.data[tag] = ""
         self.active = tag
-
+        self.data[tag] = ""
         if GrampsParser.start.has_key(tag):
             GrampsParser.start[tag](self,attrs)
-            return
 
     #---------------------------------------------------------------------
     #
@@ -766,16 +779,23 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def endElement(self,tag):
-        import latin_utf8
-        
+
         if GrampsParser.stop.has_key(tag):
-            data = latin_utf8.utf8_to_latin(self.data[tag])
+            if sax == 1:
+                data = utf8_to_latin(self.data[tag])
+            else:
+                data = self.data[tag]
             GrampsParser.stop[tag](self,data)
+
+    if sax == 1:
+        def characters(self, data, offset, length):
+            self.data[self.active] = self.data[self.active] + data
+    else:
+        def characters(self, data):
+            self.data[self.active] = self.data[self.active] + data
 
     #---------------------------------------------------------------------
     #
     #
     #
     #---------------------------------------------------------------------
-    def characters(self, data, offset, length):
-        self.data[self.active] = self.data[self.active] + data
