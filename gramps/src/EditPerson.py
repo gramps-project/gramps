@@ -64,7 +64,7 @@ class EditPerson:
     # window.
     #
     #---------------------------------------------------------------------
-    def __init__(self,person,db,callback):
+    def __init__(self,person,db,callback=None):
         self.person = person
         self.db = db
         self.callback = callback
@@ -779,7 +779,8 @@ class EditPerson:
             utils.modified()
 
         self.update_lists()
-        self.callback(self)
+        if self.callback:
+            self.callback(self)
         utils.destroy_passed_object(obj)
 
     def on_primary_name_source_clicked(self,obj):

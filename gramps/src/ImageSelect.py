@@ -48,6 +48,11 @@ import Config
 from RelLib import *
 import RelImage
 
+import EditPerson
+import Marriage
+import EditPlace
+import EditSource
+
 from intl import gettext
 _ = gettext
 
@@ -274,6 +279,15 @@ class Gallery(ImageSelect):
                 (root,ext) = os.path.splitext(basename)
                 photo.setDescription(root)
                 self.savephoto(photo)
+                if Config.mediaref == 0:
+                    name = RelImage.import_media_object(name,
+                                                        self.path,
+                                                        photo.getId())
+                    photo.setPath(name)
+                    photo.setLocal(1)
+                utils.modified()
+                if Config.globalprop:
+                    GlobalMediaProperties(self.db,photo,None)
             elif protocol != "":
                 import urllib
                 u = urllib.URLopener()
@@ -305,6 +319,8 @@ class Gallery(ImageSelect):
                     return
                 self.add_thumbnail(oref)
                 utils.modified()
+                if Config.globalprop:
+                    GlobalMediaProperties(self.db,photo,None)
             else:
                 if self.db.getObjectMap().has_key(data.data):
                     index = 0
@@ -332,6 +348,8 @@ class Gallery(ImageSelect):
                     oref.setReference(self.db.findObjectNoMap(data.data))
                     self.dataobj.addPhoto(oref)
                     self.add_thumbnail(oref)
+                    if Config.globalprop:
+                        LocalMediaProperties(oref,self.path)
                     utils.modified()
             w.drag_finish(context, 1, 0, time)
 	else:
@@ -597,29 +615,47 @@ class GlobalMediaProperties:
         self.object.setPath(name)
         self.object.setLocal(1)
         self.update_info()
-        self.update()
+        if self.update != None:
+            self.update()
 
     def redraw_attr_list(self):
         utils.redraw_list(self.alist,self.attr_list,disp_attr)
 
+    def button_press(self,obj,event):
+        if len(obj.selection) <= 0:
+            return
+        data = obj.get_row_data(obj.selection[0])
+        if data != None:
+            data[0](data[1],data[2])
+        
     def display_refs(self):
+        index = 0
         ref = self.change_dialog.get_widget("refinfo")
+        ref.connect('button-press-event',self.button_press)
         for p in self.db.getPersonMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     ref.append([_("Person"),p.getId(),Config.nameof(p)])
+                    ref.set_row_data(index,(EditPerson.EditPerson,p,self.db))
+                    index = index + 1
         for p in self.db.getFamilyMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     ref.append([_("Family"),p.getId(),utils.family_name(p)])
+                    ref.set_row_data(index,(Marriage.Marriage,p,self.db))
+                    index = index + 1
         for p in self.db.getSourceMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     ref.append([_("Source"),p.getId(),p.getTitle()])
+                    ref.set_row_data(index,(EditSource.EditSource,p,self.db))
+                    index = index + 1
         for p in self.db.getPlaceMap().values():
             for o in p.getPhotoList():
                 if o.getReference() == self.object:
                     ref.append([_("Place"),p.getId(),p.get_title()])
+                    ref.set_row_data(index,(EditPlace.EditPlace,p,self.db))
+                    index = index + 1
         
     def on_notebook_switch_page(self,obj,junk,page):
         if page == 3:
@@ -636,7 +672,8 @@ class GlobalMediaProperties:
         if self.lists_changed:
             self.object.setAttributeList(self.alist)
             utils.modified()
-        self.update()
+        if self.update != None:
+            self.update()
 
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)
@@ -731,7 +768,8 @@ class DeleteMediaQuery:
                     change = 1
             if change:
                 p.setPhotoList(nl)
-                
-        self.update(0)
+
+        if self.update:
+            self.update(0)
 
 
