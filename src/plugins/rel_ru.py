@@ -37,43 +37,66 @@ import GrampsCfg
 #
 #-------------------------------------------------------------------------
 
-_male_cousin_level = [ "", "двоюродный", "троюродный", "четвероюродный", ]
+_male_cousin_level = [ 
+  "", "двоюродный", "троюродный", "четвероюродный",
+  "пятиюродный", "шестиюродный", "семиюродный", "восьмиюродный",
+  "девятиюродный", "десятиюродный", "одиннацатиюродный", "двенадцатиюродный", 
+  "тринадцатиюродный", "четырнадцатиюродный", "пятнадцатиюродный", "шестнадцатиюродный", 
+  "семнадцатиюродный", "восемнадцатиюродный", "девятнадцатиюродный","двадцатиюродный" ]
 
-_female_cousin_level = [ "", "двоюродная", "троюродная", "четвероюродная", ]
+_female_cousin_level = [ 
+  "", "двоюродная", "троюродная", "четвероюродная",
+  "пятиюродная", "шестиюродная", "семиюродная", "восьмиюродная",
+  "девятиюродная", "десятиюродная", "одиннацатиюродная", "двенадцатиюродная", 
+  "тринадцатиюродная", "четырнадцатиюродная", "пятнадцатиюродная", "шестнадцатиюродная", 
+  "семнадцатиюродная", "восемнадцатиюродная", "девятнадцатиюродная","двадцатиюродная" ]
 
-_junior_male_removed_level = [ "брат", "племянник", "внучатый племянник", 
-                             "правнучатый племянник", "праправнучатый племянник", ]
+_junior_male_removed_level = [ 
+  "брат", "племянник", "внучатый племянник", "правнучатый племянник", 
+  "праправнучатый племянник", "прапраправнучатый племянник", 
+  "прапрапраправнучатый племянник" ]
 
-_junior_female_removed_level = [ "сестра", "племянница", "внучатая племянница",
-                             "правнучатая племянница", "праправнучатая племянница", ]
+_junior_female_removed_level = [ 
+  "сестра", "племянница", "внучатая племянница", "правнучатая племянница", 
+  "праправнучатая племянница", "прапраправнучатая племянница", 
+  "прапрапраправнучатая племянница" ]
 
-_senior_male_removed_level = [ "", "дядя", "дед", "прадед", "прапрадед", ]
+_senior_male_removed_level = [ 
+  "", "дядя", "дед", "прадед", "прапрадед", "прапрапрадед","прапрапрапрадед" ]
 
-_senior_female_removed_level = [ "", "тетка", "бабка", "прабабка", "прапрабабка", ]
+_senior_female_removed_level = [ 
+  "", "тетка", "бабка", "прабабка", "прапрабабка", "прапрапрабабка","прапрапрапрабабка" ]
 
-_father_level = [ "", "отец", "дед", "прадед", "прапрадед", 
-                 "пра-пра-прадед", "пра-пра-пра-прадед", ]
+_father_level = [ 
+  "", "отец", "дед", "прадед", "прапрадед", "прапрапрадед", "прапрапрапрадед" ]
 
-_mother_level = [ "", "мать", "бабка", "прабабка", "прапрабабка", 
-                  "пра-пра-прабабка",  "пра-пра-пра-прабабка", ]
+_mother_level = [ 
+   "", "мать", "бабка", "прабабка", "прапрабабка", "прапрапрабабка", "прапрапрапрабабка" ]
 
-_son_level = [ "", "сын", "внук", "правнук", "праправнук", 
-             "пра-пра-правнук", "пра-пра-пра-правнук", ]
+_son_level = [ 
+  "", "сын", "внук", "правнук", "праправнук", "прапраправнук", "прапрапраправнук" ]
 
-_daughter_level = [ "", "дочь", "внучка", "правнучка", "праправнучка", 
-                  "пра-пра-правнучка",  "пра-пра-пра-правнучка", ]
+_daughter_level = [ 
+  "", "дочь", "внучка", "правнучка", "праправнучка", "прапраправнучка",
+  "прапрапраправнучка" ]
 
-_sister_level = [ "", "сестра", "тетка", "двоюродная бабка", 
-                "двоюродная прабабка", "двоюродная прапрабабка", ]
+_sister_level = [ 
+  "", "сестра", "тетка", "двоюродная бабка", "двоюродная прабабка", 
+  "двоюродная прапрабабка", "двоюродная прапрапрабабка", "двоюродная прапрапрапрабабка" ]
 
-_brother_level = [ "", "брат", "дядя", "двоюродный дед", 
-                 "двоюродный прадед", "двоюродный прапрадед", ]
+_brother_level = [ 
+  "", "брат", "дядя", "двоюродный дед", "двоюродный прадед", 
+  "двоюродный прапрадед", "двоюродный прапрапрадед", "двоюродный прапрапрапрадед" ]
 
-_nephew_level = [ "", "племянник", "внучатый племянник", 
-                "правнучатый племянник", "праправнучатый племянник", ]
+_nephew_level = [ 
+  "", "племянник", "внучатый племянник", "правнучатый племянник", 
+  "праправнучатый племянник", "прапраправнучатый племянник", 
+  "прапрапраправнучатый племянник" ]
 
-_niece_level = [ "", "племянница", "внучатая племянница", 
-               "правнучатая племянница", "праправнучатая племянница", ]
+_niece_level = [ 
+  "", "племянница", "внучатая племянница", "правнучатая племянница", 
+  "праправнучатая племянница", "прапраправнучатая племянница", 
+  "прапрапраправнучатая племянница" ]
 
 #-------------------------------------------------------------------------
 #
@@ -92,40 +115,76 @@ def getallancestors(person,index,ancestorlist,ancestormap):
         getallancestors(family.getMother(),index+1,ancestorlist,ancestormap)
 
 def get_junior_male_cousin(level,removed):
-    return "%s %s" % (_male_cousin_level[level],_junior_male_removed_level[removed])
+    if removed > len(_junior_male_removed_level)-1 or level>len(_male_cousin_level)-1:
+        return "дальний родственник"
+    else:
+        return "%s %s" % (_male_cousin_level[level],_junior_male_removed_level[removed])
 
 def get_senior_male_cousin(level,removed):
-    return "%s %s" % (_male_cousin_level[level],_senior_male_removed_level[removed])
+    if removed > len(_senior_male_removed_level)-1 or level>len(_male_cousin_level)-1:
+        return "дальний родственник"
+    else:
+        return "%s %s" % (_male_cousin_level[level],_senior_male_removed_level[removed])
 
 def get_junior_female_cousin(level,removed):
-    return "%s %s" % (_female_cousin_level[level],_junior_female_removed_level[removed])
+    if removed > len(_junior_female_removed_level)-1 or level>len(_male_cousin_level)-1:
+        return "дальняя родственница"
+    else:
+        return "%s %s" % (_female_cousin_level[level],_junior_female_removed_level[removed])
 
 def get_senior_female_cousin(level,removed):
-    return "%s %s" % (_female_cousin_level[level],_senior_female_removed_level[removed])
+    if removed > len(_senior_female_removed_level)-1 or level>len(_male_cousin_level)-1:
+        return "дальняя родственница"
+    else:
+        return "%s %s" % (_female_cousin_level[level],_senior_female_removed_level[removed])
 
 def get_father(level):
-    return _father_level[level]
+    if level>len(_father_level)-1:
+        return "дальний предок"
+    else:
+        return _father_level[level]
 
 def get_son(level):
-    return _son_level[level]
+    if level>len(_son_level)-1:
+        return "дальний потомок"
+    else:
+        return _son_level[level]
 
 def get_mother(level):
-    return _mother_level[level]
+    if level>len(_mother_level)-1:
+        return "дальний предок"
+    else:
+        return _mother_level[level]
 
 def get_daughter(level):
-    return _daughter_level[level]
+    if level>len(_daughter_level)-1:
+        return "дальний потомок"
+    else:
+        return _daughter_level[level]
 
 def get_aunt(level):
-    return _sister_level[level]
+    if level>len(_sister_level)-1:
+        return "дальний предок"
+    else:
+        return _sister_level[level]
 
 def get_uncle(level):
-    return _brother_level[level]
+    if level>len(_brother_level)-1:
+        return "дальний предок"
+    else:
+        return _brother_level[level]
 
 def get_nephew(level):
-    return _nephew_level[level]
+    if level>len(_nephew_level)-1:
+        return "дальний потомок"
+    else:
+        return _nephew_level[level]
 
 def get_niece(level):
-    return _niece_level[level]
+    if level>len(_niece_level)-1:
+        return "дальний потомок"
+    else:
+        return _niece_level[level]
 
 def is_spouse(orig,other):
     for f in orig.getFamilyList():
