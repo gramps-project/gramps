@@ -152,7 +152,9 @@ class _DdTargets(object):
                 self.EVENT.drag_type,
                 self.ATTRIBUTE.drag_type,
                 self.ADDRESS.drag_type,
-                self.SOURCEREF.drag_type)
+                self.SOURCEREF.drag_type,
+                self.FAMILY_EVENT.drag_type,
+                self.FAMILY_ATTRIBUTE.drag_type)
 
     def all_text_targets(self):
         """return a list of all the targets that could be used
@@ -172,7 +174,9 @@ class _DdTargets(object):
                 self.EVENT.target(),
                 self.ATTRIBUTE.target(),
                 self.ADDRESS.target(),
-                self.SOURCEREF.target())
+                self.SOURCEREF.target(),
+                self.FAMILY_EVENT.target(),
+                self.FAMILY_ATTRIBUTE.target())
 
     def all_targets(self):
         """return a list of all the known targets."""
