@@ -856,7 +856,7 @@ class GedcomParser:
                 event.setDate(matches[2])
             elif matches[1] == "AGE" or matches[1] == "AGNC":
                 self.ignore_sub_junk(level+1)
-            elif matches[1] == "CAUS" or matches[1] in "ADDR":
+            elif matches[1] == "CAUS" or matches[1] == "ADDR":
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "STAT" or matches[1] == "TEMP":
                 self.ignore_sub_junk(level+1)
