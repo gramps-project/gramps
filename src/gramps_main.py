@@ -932,7 +932,7 @@ class Gramps:
             
         self.db.removePerson(self.active_person.getId())
         self.remove_from_person_list(self.active_person)
-        self.person_list.sort_list()
+        self.person_sort.sort_list()
         self.update_display(0)
         Utils.modified()
 
