@@ -56,7 +56,6 @@ class ChangeTypes:
 
         self.glade.signal_autoconnect({
             "on_close_clicked"     : Utils.destroy_passed_object,
-            "on_combo_insert_text" : Utils.combo_insert_text,
             "on_apply_clicked"     : self.on_apply_clicked
             })
     

@@ -116,15 +116,17 @@ documenters  = [
     'Lawrence Allingham'
     ]
 
-translators  =  u'Radek Malcic <malcic@atlas.cz>\n' \
-               u'Lars Kristian Lundin <gramps@lklundin.dk>\n' \
-               u'Bernd Schandl <schandl@gmx.net>\n' \
-               u'Andr\xe9s Sep\xfalveda <andres@ccpo.odu.edu>\n' \
-               u'Laurent Protois <laurent.protois@free.fr>\n' \
-               u'Marco Molteni <molter@gufi.org>\n' \
-               u'Marcos Bedinelli\n' \
-               u'Alexander Roitman <shura@alex.neuro.umn.edu>\n' \
-               u'Jens Arvidsson <arvid-jens@algonet.se>' \
+translators  =  u'Radek Malcic <malcic@atlas.cz> - Czech\n' \
+               u'Lars Kristian Lundin <gramps@lklundin.dk> - Danish (Dansk)\n' \
+               u'Bernd Schandl <schandl@gmx.net> - German (Deutsch)\n' \
+               u'Andr\xe9s Sep\xfalveda <andres@ccpo.odu.edu> - Spanish (Espa\xf1ol)\n' \
+               u'Laurent Protois <laurent.protois@free.fr> - French (Fran\xe7ais)\n' \
+               u'Marco Molteni <molter@gufi.org> - Italian (Italiano)\n' \
+               u'Marcos Bedinelli - Brazilian-Portuguese (Portugu\xeas do Brasil)\n' \
+               u'Alex Roitman <shura@alex.neuro.umn.edu> - Russian\n' \
+               u'Jens Arvidsson <arvid-jens@algonet.se> - Swedish (Svenska)' \
+
+
 
 
 #-------------------------------------------------------------------------

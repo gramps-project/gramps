@@ -275,7 +275,7 @@ def on_apply_clicked(obj):
         })
     top = verifyResult.get_widget("verify_result")
     textwindow = verifyResult.get_widget("textwindow")
-    textwindow.show_string(text)
+    textwindow.get_buffer().set_text(text)
     top.show()
     
 #-------------------------------------------------------------------------

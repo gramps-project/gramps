@@ -1,4 +1,3 @@
-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -24,15 +23,15 @@
 import RelLib
 import os
 import sort
+import Errors
+from QuestionDialog import ErrorDialog
 from intl import gettext as _
 
-import Errors
 from Report import *
 from TextDoc import *
 
 import gtk
 import gnome.ui
-from QuestionDialog import ErrorDialog
 
 #------------------------------------------------------------------------
 #
@@ -60,7 +59,7 @@ class DetDescendantReport(Report):
         try:
             self.doc.open(output)
         except IOError,msg:
-            gnome.ui.GnomeErrorDialog(_("Could not open %s") % output + "\n" + msg)
+            ErrorDialog(_("Could not open %s") % output + "\n" + msg)
 
     #--------------------------------------------------------------------
     #
@@ -98,6 +97,9 @@ class DetDescendantReport(Report):
                 NAME Born: DATE PLACE Died: DATE                e
                 NAME Born: DATE PLACE Died: PLACE               d
                 NAME Born: DATE PLACE                           c
+                NAME Born: DATE Died: DATE PLACE                b
+                NAME Born: DATE Died: DATE                      a
+                NAME Born: DATE Died: PLACE                     9
                 NAME Born: DATE                                 8
                 NAME Born: PLACE Died: DATE PLACE               7
                 NAME Born: PLACE Died: DATE                     6
@@ -137,7 +139,7 @@ class DetDescendantReport(Report):
                 #print "Child List: <", birth.getDate(), ">", birth.getPlaceName()
                 if birth.getDate() != "":
                     #print birth.getPlaceName()
-                    if birth.getPlaceName() != None:
+                    if birth.getPlaceName() != "":
                         if death.getDate() != "":
                             if death.getPlaceName() != "":
                                 self.doc.write_text(_("- %s Born: %s %s Died: %s %s") % \
@@ -162,13 +164,13 @@ class DetDescendantReport(Report):
                             else:
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.getDate(), death.getDate())) # a
-                        elif death.PlaceName() != "":
+                        elif death.getPlaceName() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
-                                    (name, birth.getDate(), birth.getPlaceName())) # 9
+                                    (name, birth.getDate(), death.getPlaceName())) # 9
                         else:   self.doc.write_text(_("- %s Born: %s") % \
                                     (name, birth.getDate()))               # 8
                 else:
-                    if birth.getPlaceName() != None:
+                    if birth.getPlaceName() != "":
                         if death.getDate() != "":
                             if death.getPlaceName() != "":
                                 self.doc.write_text(_("- %s Born: %s Died: %s %s") % \
@@ -178,7 +180,7 @@ class DetDescendantReport(Report):
                                 self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.getPlaceName(), death.getDate())) # 6
                         elif death.getPlaceName() != "":
-                                self.doc.write_text(_("- %s Born: %s %s Died: %s") % \
+                                self.doc.write_text(_("- %s Born: %s Died: %s") % \
                                     (name, birth.getPlaceName(), death.getPlaceName())) # 5
                         else:   self.doc.write_text(_("- %s Born: %s") % \
                                     (name, birth.getPlaceName()))             # 4
@@ -290,7 +292,7 @@ class DetDescendantReport(Report):
                 else:
                     self.doc.write_text(_(" was born in the year %s.") % date.getYear())
             elif place != "":
-                self.doc.write_text(_(" in %s.") % place)
+                self.doc.write_text(_(" was born in %s.") % place)
             else:
                 self.doc.write_text(_("."))
 
@@ -415,25 +417,25 @@ class DetDescendantReport(Report):
                 if person.getGender() == RelLib.Person.male:
                     if father != "":
                         if mother != "":
-                            self.doc.write_text(_(" %s was the son of %s and %s." % \
-                                (firstName, father, mother)))
+                            self.doc.write_text(_(" %s was the son of %s and %s.") % \
+                                (firstName, father, mother))
                         else:
-                            self.doc.write_text(_(" %s was the son of %s." % \
-                                (firstName, father)))
+                            self.doc.write_text(_(" %s was the son of %s.") % \
+                                (firstName, father))
                     else:
-                        self.doc.write_text(_(" %s was the son of %s." % \
-                                (firstName, mother)))
+                        self.doc.write_text(_(" %s was the son of %s.") % \
+                                (firstName, mother))
                 else:
                     if father != "":
                         if mother != "":
-                            self.doc.write_text(_(" %s was the daughter of %s and %s." % \
-                                (firstName, father, mother)))
+                            self.doc.write_text(_(" %s was the daughter of %s and %s.") % \
+                                (firstName, father, mother))
                         else:
-                            self.doc.write_text(_(" %s was the daughter of %s." % \
-                                (firstName, father)))
+                            self.doc.write_text(_(" %s was the daughter of %s.") % \
+                                (firstName, father))
                     else:
-                        self.doc.write_text(_(" %s was the daughter of %s." % \
-                                (firstName, mother)))
+                        self.doc.write_text(_(" %s was the daughter of %s.") % \
+                                (firstName, mother))
 
 
     def write_marriage(self, person, rptOptions):
@@ -441,7 +443,7 @@ class DetDescendantReport(Report):
         HE/SHE married SPOUSE on FULLDATE in PLACE.
         HE/SHE married SPOUSE on FULLDATE.
         HE/SHE married SPOUSE in PLACE.
-        He/SHE married SPOUSE
+        HE/SHE married SPOUSE
         """
         famList= person.getFamilyList()
         if len(famList) > 0:
@@ -452,11 +454,11 @@ class DetDescendantReport(Report):
                 if person.getGender() == RelLib.Person.male:
                     if fam.getMother() != None:
                         spouse= fam.getMother().getPrimaryName().getRegularName()
-                        if fam_num == 1:
-                            heshe= _("He")
-                        elif fam_num < len(famList):
-                            heshe= _(",")
-                        else: heshe= _("and he")
+                    if fam_num == 1:
+                        heshe= _("He")
+                    elif fam_num < len(famList):
+                        heshe= _(",")
+                    else: heshe= _("and he")
                 else:
                     if fam_num == 1:
                         heshe= _("She")
@@ -488,22 +490,22 @@ class DetDescendantReport(Report):
 
                 if spouse != "":
                     if fulldate == "" and place == "":
-                        t= _("  %s married %s" % (heshe, spouse))
+                        t= _("  %s married %s") % (heshe, spouse)
                     elif fulldate == "" and place != "":
-                        t= _("  %s married %s in %s" % (heshe, spouse, place))
+                        t= _("  %s married %s in %s") % (heshe, spouse, place)
                     elif fulldate != "" and place == "":
-                        t= _("  %s married %s on %s" % (heshe, spouse, fulldate))
-                    else: t= _("  %s married %s on %s in %s" % \
-                            (heshe, spouse, fulldate, place))
+                        t= _("  %s married %s on %s") % (heshe, spouse, fulldate)
+                    else: t= _("  %s married %s on %s in %s") % \
+                            (heshe, spouse, fulldate, place)
                 else:
                     if fulldate == "" and place == "":
                         t= _("  %s married")
                     elif fulldate == "" and place != "":
-                        t= _("  %s married in %s" % (heshe, place))
+                        t= _("  %s married in %s") % (heshe, place)
                     elif fulldate != "" and place == "":
-                        t= _("  %s married on %s" % (heshe, fulldate))
-                    else: t= _("  %s married on %s in %s" % \
-                       (heshe, fulldate, place))
+                        t= _("  %s married on %s") % (heshe, fulldate)
+                    else: t= _("  %s married on %s in %s") % \
+                       (heshe, fulldate, place)
 
                 if t != "": self.doc.write_text(t)
                 if fam_num == len(famList): self.doc.write_text(".")
@@ -630,7 +632,6 @@ class DetDescendantReport(Report):
                         spouseName= fam.getFather().getPrimaryName().getFirstName()
 
         self.doc.start_paragraph("Title")
-        #print "title: ",  name, spouseName, spouseName
         if spouseName != "":
             name = spouseName + " and " + name
 
@@ -643,7 +644,6 @@ class DetDescendantReport(Report):
         generation = 0
         need_header = 1
 
-#        for generation in xrange(self.max_generations):
         for generation in xrange(len(self.genKeys)):
             if self.pgbrk and generation > 0:
                 self.doc.page_break()
@@ -654,6 +654,7 @@ class DetDescendantReport(Report):
             if rptOpt.childRef == reportOptions.Yes:
                 self.prevGenIDs= self.genIDs.copy()
                 self.genIDs.clear()
+
 
             for key in self.genKeys[generation]:
                 person = self.map[key]
@@ -763,60 +764,10 @@ class DetDescendantReportDialog(TextReportDialog):
         """Create the object that will produce the Detailed Ancestral
         Report.  All user dialog has already been handled and the
         output file opened."""
-        try:
-            MyReport = DetDescendantReport(self.db, self.person, self.target_path,
-                                           self.max_gen, self.pg_brk, self.doc)
-            MyReport.write_report()
-        except Errors.ReportError, msg:
-            ErrorDialog(str(msg))
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
+        MyReport = DetDescendantReport(self.db, self.person, self.target_path,
+                                     self.max_gen, self.pg_brk, self.doc)
+        MyReport.write_report()
 
-    def add_user_options(self):
-        
-        # Create a GTK Checkbox widget for pronoun usage
-        self.first_name_option = gtk.CheckButton(_("Use first names instead of pronouns"))
-        self.first_name_option.set_active(0)
-
-        # Create a GTK Checkbox widget for full date usage
-        self.full_date_option = gtk.CheckButton(_("Use full dates instead of only the year"))
-        self.full_date_option.set_active(1) 
-
-        # Create a GTK Checkbox widget for full date usage
-        self.list_children_option = gtk.CheckButton(_("List children"))
-        self.list_children_option.set_active(1) 
-
-        # Add new options. The first argument is the tab name for grouping options.
-        # if you want to put everyting in the generic "Options" category, use
-        # self.add_option(text,widget) instead of self.add_frame_option(category,text,widget)
-
-        self.add_frame_option('Content','',self.first_name_option)
-        self.add_frame_option('Content','',self.full_date_option)
-        self.add_frame_option('Content','',self.list_children_option)
-
-    def parse_report_options_frame(self):
-        """Parse the report options frame of the dialog.  Save the
-        user selected choices for later use."""
-
-        # call the parent task to handle normal options
-        ReportDialog.parse_report_options_frame(self)
-
-        # get values from the widgets
-        if self.first_name_option.get_active():
-            self.firstName = reportOptions.Yes
-        else:
-            self.firstName = reportOptions.No
-
-        if self.full_date_option.get_active():
-            self.fullDate = reportOptions.Yes
-        else:
-            self.fullDate = reportOptions.No
-
-        if self.list_children_option.get_active():
-            self.listChildren = reportOptions.Yes
-        else:
-            self.listChildren = reportOptions.No
 
 #------------------------------------------------------------------------
 #
@@ -904,7 +855,6 @@ register_report(
     author_email="bdegrasse1@attbi.com"
     )
 
-
 #------------------------------------------------------------------------
 #
 #
@@ -960,7 +910,7 @@ class reportOptions:
 
         #Add Photos and Images to report
         self.addImages= reportOptions.No
-        self.imageAttrTag= "DetDecendantReport"
+        self.imageAttrTag= "DetDescendantReport"
 
         #Omit sensitive information such as birth, christening, marriage
         #   for living after XXXXX date.
@@ -987,7 +937,7 @@ class reportOptions:
         self.t= ""
         if birth.getYearValid() and death.getYearValid():
             self.age= death.getYear() - birth.getYear()
-            self.units= "year"
+            self.units= 3                          # year
             if birth.getMonthValid() and death.getMonthValid():
                 if birth.getMonth() > death.getMonth():
                     self.age= self.age -1
@@ -998,10 +948,22 @@ class reportOptions:
                         self.age= death.getMonth() - birth.getMonth()   # calc age in months
                         if birth.getDay() > death.getDay():
                             self.age= self.age - 1
-			    self.units= "month"
+			    self.units= 2                        # month
                         if self.age == 0:
                             self.age= death.getDay() + 31 - birth.getDay() # calc age in days
-                            self.units= "day"
-            self.t= _(" at the age of %d %s") % (self.age, self.units)
-            if self.age > 1:  self.t= self.t + "s"
+                            self.units= 1            # day
+            if self.age > 1:
+                if self.units == 1:
+                    self.t= _(" at the age of %d days") % self.age
+                elif self.units == 2:
+                    self.t= _(" at the age of %d months") % self.age
+                else:
+                    self.t= _(" at the age of %d years") % self.age
+            else:
+                if self.units == 1:
+                    self.t= _(" at the age of %d day") % self.age
+                elif self.units == 2:
+                    self.t= _(" at the age of %d month") % self.age
+                else:
+                    self.t= _(" at the age of %d year") % self.age
         return self.t
