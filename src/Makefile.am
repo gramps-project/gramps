@@ -4,7 +4,7 @@ SUBDIRS = docgen plugins dates data po
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
-
+CLEANFILES = const.pyc const.pyo
 # What are the PYTHON scripts for this package that need to be handled?
 #
 # We only want optimized byte-compiled (.pyo) versions, no .pyc

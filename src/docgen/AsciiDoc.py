@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,20 +25,18 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import string
 import os
-import GrampsMime
+from gettext import gettext as _
 
 #------------------------------------------------------------------------
 #
-# Load the base BaseDoc class
+# Gramps modules
 #
 #------------------------------------------------------------------------
 import BaseDoc
 import PluginMgr
 import Errors
-
-from gettext import gettext as _
+import GrampsMime
 
 LEFT,RIGHT,CENTER = 'LEFT','RIGHT','CENTER'
 _WIDTH_IN_CHARS = 72
@@ -291,7 +289,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
         for cell in range(self.ncols):
             if self.cell_widths[cell]:
                 blanks = ' '*self.cell_widths[cell] + '\n'
-                if self.cell_lines[cell] < self.maxlines and cell < self.ncols - 1:
+                if self.cell_lines[cell] < self.maxlines:
                     self.cellpars[cell] = self.cellpars[cell] \
                               + blanks * (self.maxlines-self.cell_lines[cell])
                 cell_text[cell] = self.cellpars[cell].split('\n')
@@ -327,6 +325,13 @@ class AsciiDoc(BaseDoc.BaseDoc):
         if self.cell_lines[self.cellnum] > self.maxlines:
             self.maxlines = self.cell_lines[self.cellnum]
 
+    def add_photo(self,name,pos,x,y):
+        this_text = '(photo)'
+        if self.in_cell:
+            self.cellpars[self.cellnum] = self.cellpars[self.cellnum] + this_text
+        else:
+            self.f.write(this_text)
+
     def write_note(self,text,format,style_name):
         if format == 1:
             for line in text.split('\n'):
@@ -337,7 +342,7 @@ class AsciiDoc(BaseDoc.BaseDoc):
             for line in text.split('\n\n'):
                 self.start_paragraph(style_name)
                 line = line.replace('\n',' ')
-                line = string.join(string.split(line))
+                line = ' '.join(line.split())
                 self.write_text(line)
                 self.end_paragraph()
 

@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+
+# $Id$
 
 import const
 
@@ -50,7 +52,7 @@ SOURCE_REFS_YES    = 1
 # XML parser
 #
 #-------------------------------------------------------------------------
-import xml.parsers.expat
+from xml.parsers.expat import ParserCreate
 
 class GedcomDescription:
     def __init__(self,name):
@@ -190,7 +192,7 @@ class GedInfoParser:
         self.current = None
 
     def parse(self,file):
-        p = xml.parsers.expat.ParserCreate()
+        p = ParserCreate()
         p.StartElementHandler = self.startElement
         p.ParseFile(file)
         

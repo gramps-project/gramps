@@ -1050,6 +1050,8 @@ class ReportDialog(BareReportDialog):
             ext_val = obj.get_ext()
             if ext_val:
                 fname = spath + ext_val
+	    else:
+                fname = spath
             self.target_fileentry.set_filename(fname)
 
         # Does this report format use styles?

@@ -1,5 +1,3 @@
-<chapter id="gramps-usage"> 
-
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
@@ -22,6 +20,7 @@
 
 <!-- $Id$ -->
 
+<chapter id="gramps-usage"> 
     <title>Usage</title> 
     <para>As commonly encountered in everyday life, in
     &app; there is usually more than one way to
@@ -33,10 +32,19 @@
       <title>Starting a New Database</title> 
       <para>To start a new database, choose <menuchoice><guimenu>File</guimenu>
       <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
-      prompted with the <guilabel>Save Database</guilabel> dialog asking 
+      prompted with the <guilabel>Create GRAMPS database</guilabel> dialog asking 
       to specify the name under which the new database will be stored. 
-      Choose an <replaceable>empty directory</replaceable> for your new 
-      database (create one if necessary). </para> 
+      The new database will be created in the BSDDB format, with <filename>.grdb</filename>
+      as the default extension.</para> 
+
+          <note id="new-db-notdir-note">
+               <title>Selecting file</title>
+	      <para>
+	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
+	      for the database. Please select filename, as you would in any other application.
+	      </para>
+           </note>
+
     </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
@@ -45,39 +53,77 @@
       <para>To open a database, either choose <menuchoice>
       <guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>
       or click the <guibutton>Open</guibutton> button on the Toolbar. 
-      The <guilabel>Open Database</guilabel> dialog will appear. 
-      Either type the full path into the <guilabel>Database</guilabel> text 
-      entry field, or click the <guibutton>Browse...</guibutton> button to get 
-      the <guilabel>Open File</guilabel> dialog in which you can select the 
-      database that you want to open. After you have selected the database, 
-      click the <guibutton>OK</guibutton> button to open it. </para>
+      The <guilabel>Open database</guilabel> dialog will appear. 
+      </para>
       
-      <para>If you have previously opened databases with &app; you can 
-      retrieve your past selections from the drop-down menu by clicking the 
-      down arrow button. Finally, if the Revision Control System (RCS) is 
-      enabled in the <guilabel>Preferences</guilabel> dialog, the check box 
-      <guilabel>Revert to an older version from RCS</guilabel> will be 
-      available. Check it to revert your database to an older RCS 
-      version. </para>
+      <para>
+      The filetype filter in the <guilabel>Open database</guilabel> dialog allows
+      you to display files of a certain type. If the <guilabel>All files</guilabel>
+      filter is selected (the default), all the files will be shown. The type will
+      be deteremined by the extension of the selected filename.
+      </para>
+
+      <note id="open-db-note"><title>Selecting file</title>
+      <para>
+	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
+	      for the database. Please select filename, as you would in any other application.
+	      </para>
+      </note>
       
-      <para>NOTE: you should open a <replaceable>DIRECTORY</replaceable> and 
-      <replaceable>NOT a FILE</replaceable> when opening 
-      &app; database. The directory you need to open should contain the 
-      database file <replaceable>data.gramps</replaceable> as well as any 
-      possible copies 
-      of media objects. Such a directory is created by &app; when you start 
-      a new database and is updated each time the database is saved. </para> 
+      <para>If you do not have write permissions for the selected database, it will
+      be opened in a Read Only mode. In this mode, the data may be viewed, but
+      no changes will be made to the database. To indicate this mode, the title of the
+      main window will be appended with <guilabel>(Read Only)</guilabel> text.
+      </para>
+
+      <note id="open-db-note2"><title>Opening XML and GEDCOM databases</title>
+      <para>
+      This version allows direct opening and editing of &app; XML and GEDCOM
+      databases. Please keep in mind that, unlike using the native grdb format,
+      these formats require holding all data in memory. This leads to performance
+      and memory consumption problems which grdb was designed to solve.</para>
+      
+      <para>While direct opening of a &app; XML or GEDCOM file is convenient
+      for a small database, it may prove burdensome for large databases.
+      If you experience this, please consider creating a new native (grdb) database
+      and importing your XML or GEDCOM data into it. This will make accessing
+      your data much more efficient and quick.
+	      </para>
+      </note>
+
+      <warning id="open-db-warn">
+               <title>GEDCOM Editing</title>
+	      <para>
+		Please keep in mind that some information in GEDCOM file may be lost
+		during import into &app;. Simply opening and viewing the file will not change it.
+		However, if any changes were made and they were not abandoned upon exit,
+		exiting &app; will save the data, with the possible data loss.
+	      </para>
+           </warning>                
+
+
     </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
     <sect1 id="save-db"> 
-      <title>Saving a Database</title> 
-      <para>To save changes made to your database, choose <menuchoice>
-      <guimenu>File</guimenu>
-      <guimenuitem>Save</guimenuitem></menuchoice> or click the 
-      <guibutton>Save</guibutton> button on the Toolbar. The statusbar will then 
-      display the <guilabel>Saving <replaceable>databasename</replaceable>...</guilabel> 
-      message, and the progressbar will advance as the saving progresses.</para>
+      <title>Saving a Database</title>
+
+      <para>A consequence of the new database backend is that the changes, once approved
+      by the user, are applied immediately. In short, once you click <guibutton>OK</guibutton> 
+      in the Person, Family, Source, Place, Media object, or Event editor, all the changes made to 
+      this object are recorded in the database. No saving is necessary, or even possible.
+      </para>
+
+      <para>Choosing <menuchoice><guimenu>Edit</guimenu><guimenuitem>Undo</guimenuitem>
+      </menuchoice> allows you to undo the changes you made, one step at a time.</para>
+      
+      <tip id="save-tip"><title>Reverting the whole session</title>
+      <para>If you would like to revert the whole editing session, choose
+      <menuchoice><guimenu>File</guimenu><guimenuitem>Abandon changes
+      and quit</guimenuitem></menuchoice>. This will be analogous to quitting
+      without saving any changes in other applications. 
+      </para>
+      </tip>
     </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
@@ -85,33 +131,71 @@
       <title>Importing Data</title> 
       <para>Importing allows you to incorporate the data from other 
       databases into your currently open &app; database. Currently, 
-      &app; can import data from three different 
-      formats: GEDCOM, &app; database, and &app; package. All of these are
-      available as items of <menuchoice><guimenu>File</guimenu>
-      <guisubmenu>Import</guisubmenu></menuchoice> submenu.</para>
+      &app; can import data from the following formats: &app; database (grdb),
+      GEDCOM, &app; XML, &app; package, and GeneWeb. All of these are
+      available by choosing <menuchoice><guimenu>File</guimenu>
+      <guisubmenu>Import</guisubmenu></menuchoice> and
+      selecting an appropriate file.</para>
       
-      <para>Both &app; database, and &app; package are native &app; 
-      formats. The package is a compressed archive containing the database 
-      file and all media objects (images, sound files, etc.) that the 
-      database refers to. The package is created by exporting data to 
-      the &app; package, see <xref linkend="export-data"/>. 
-      The &app; database is a directory containing the database file and 
-      the local media objects. The database may also have references 
+      <para>&app; database (grdb), &app; XML, and &app; package are
+      all native &app; formats in that there is no information loss resulting
+      from reading from and writing into these formats.
+      <variablelist>
+
+      <varlistentry><term>&app; database (grdb)</term>
+      <listitem><para>
+      The native &app; database format is a specific form of Berkeley database (BSDDB)
+      with special structure of data tables. This format is binary and architecture-dependent.
+      It is very quick and efficient, but not generally portable across computers with
+      different binary architecture (e.g. i386 vs alpha).
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>&app; XML</term>
+      <listitem><para>
+      The &app; XML file was the default format for the previous stable
+      version of &app;. Unlike the grdb format, it is architecture
+      independent and human-readable. The database may also have references 
       to non-local (external) media objects, therefore it is not guaranteed 
-      to be completely portable. The &app; database is created by saving 
-      the data in a usual way, see <xref linkend="save-db"/>.
+      to be completely portable. The &app; XML database is created by saving 
+      (<menuchoice><guimenu>File</guimenu><guimenuitem>Save
+      As...</guimenuitem></menuchoice>) or exporting (<menuchoice>
+      <guimenu>File</guimenu><guimenuitem>Export...</guimenuitem>
+      </menuchoice>) data in that format.
+      </para></listitem>
+      </varlistentry>
+
+      <varlistentry><term>&app; package</term>
+      <listitem><para>
+      The package is a compressed archive containing the &app; XML
+      file and all media objects (images, sound files, etc.) that the 
+      database refers to. The &app; package is created by exporting
+      (<menuchoice> <guimenu>File</guimenu><guimenuitem>
+      Export...</guimenuitem></menuchoice>) data in that format.
+      </para></listitem>
+      </varlistentry>
+
+      </variablelist>
+
       </para>
 
-      <para>Note that the difference between opening &app; database and 
-      importing from &app; database is that importing incorporates all the 
-      data into your currently open database, if any. </para>
+      <tip id="import-tip"><title>Opening vs importing</title>
+      <para>The difference between opening &app; database (in any format) and 
+      importing from &app; or GEDCOM database is that importing incorporates all the 
+      data into your currently open database, if any. In contrast, opening the database
+      will switch from editing your current data to editing another file.</para></tip>
+      
+      <para>After choosing an import format, you will be prompted with the 
+      <guilabel>Import database</guilabel> dialog asking you to specify the
+      file name from which to import. 
+      </para> 
 
-      <para>After choosing an import format, you will be prompted with the
-      <guilabel>Open File</guilabel> dialog asking you to specify the 
-      file name from which to import. For GEDCOM and 
-      &app; package, select an appropriate file. 
-      For &app; database, select a directory which stores 
-      the database and all media files (if any).</para> 
+      <note id="import-note"><title>Selecting file</title>
+      <para>
+	      Unlike the version 1.0.X of &app;, this version does not require selecting directory
+	      for the database. Please select filename, as you would in any other application.
+	      </para>
+      </note>
 
       <para>Upon starting the GEDCOM import, &app; 
       will display the following GEDCOM import dialog with the summary of the 

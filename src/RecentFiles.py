@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2004  Donald N. Allingham
+# Copyright (C) 2004-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
 import os
 import fcntl
 import time
-import xml.parsers.expat
+from  xml.parsers.expat import ParserCreate
 
 #-------------------------------------------------------------------------
 #
@@ -285,7 +285,7 @@ class GnomeRecentParser:
             xml_file = open(os.path.expanduser(GNOME_FILENAME))
             fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
-            p = xml.parsers.expat.ParserCreate()
+            p = ParserCreate()
             p.StartElementHandler = self.startElement
             p.EndElementHandler = self.endElement
             p.CharacterDataHandler = self.characters
@@ -345,7 +345,7 @@ class GrampsRecentParser:
             xml_file = open(os.path.expanduser(GRAMPS_FILENAME))
             fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
-            p = xml.parsers.expat.ParserCreate()
+            p = ParserCreate()
             p.StartElementHandler = self.startElement
             p.EndElementHandler = self.endElement
             p.CharacterDataHandler = self.characters
