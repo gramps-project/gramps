@@ -1,3 +1,9 @@
+2003-11-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AttrEdit.py: Add warning when a new attribute type is added
+	to the database
+	* src/EventEdit.py: Add warning when a new event type is added
+	to the database
+
 2003-11-26  Donald Peterson  <dpeterson@sigmaxi.org>
 	* gramps.desktop: Add new file for implementation into GNOME 
 	menu system.  Still needs a place to be installed.
