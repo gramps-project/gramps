@@ -260,7 +260,7 @@ class AddSpouse:
         rtype = const.save_frel(unicode(self.relation_type.get_text()))
         self.active_family.set_relationship(rtype)
         self.db.commit_family(self.active_family,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Add Spouse"))
         Utils.destroy_passed_object(obj)
         self.update(self.active_family)
         m = Marriage.Marriage(self.parent, self.active_family,

@@ -372,7 +372,7 @@ class EditPlace:
 
         trans = self.db.start_transaction()
         self.db.commit_place(self.place,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Edit Place (%s)") % self.place.get_title())
         
         if self.callback:
             self.callback(self.place)
@@ -577,5 +577,5 @@ class DeletePlaceQuery:
                     event.set_place_id(None)
                     self.db.commit_event(event,trans)
 
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Delete Place (%s)") % self.place.get_title())
         self.update(None)

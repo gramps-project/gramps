@@ -198,7 +198,8 @@ class SourceView:
         else:
             trans = self.db.start_transaction()
             self.db.remove_source_id(source.get_id(),trans)
-            self.db.add_transaction(trans)
+            n = source.get_title()
+            self.db.add_transaction(trans,_("Delete Source (%s)") % n)
             self.build_tree()
 
     def is_used(self,source):

@@ -190,7 +190,7 @@ class SelectChild:
                 if family.get_father_id():
                     slist[family.get_father_id()] = 1
                 elif family.get_mother_id():
-                    slist[ffamily.get_mother_id()] = 1
+                    slist[family.get_mother_id()] = 1
                 for c in family.get_child_id_list():
                     slist[c] = 1
             
@@ -315,8 +315,10 @@ class SelectChild:
 
         trans = self.db.start_transaction()
         self.db.commit_person(select_child,trans)
-        self.db.add_transaction(trans)
-            
+        self.db.commit_family(self.family,trans)
+        n = select_child.get_primary_name().get_regular_name()
+        self.db.add_transaction(trans,_("Add Child to Family (%s)") % n)
+
         self.redraw(self.family)
         self.close(obj)
         
@@ -446,9 +448,10 @@ class EditRel:
                 frel = "Unknown"
 
         self.child.change_parent_family_id(self.family.get_id(),mrel,frel)
-        trans = self.start_transaction()
+        trans = self.db.start_transaction()
         self.db.commit_person(self.child,trans)
-        self.db.add_transaction(trans)
+        n = self.child.get_primary_name().get_regular_name()
+        self.db.add_transaction(trans,_("Parent Relationships (%s)") % n)
         
         self.update()
         self.top.destroy()

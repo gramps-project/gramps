@@ -329,7 +329,7 @@ class EditSource:
 
         trans = self.db.start_transaction()
         self.db.commit_source(self.source,trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Edit Source (%s)") % title)
         
         if self.callback:
             self.callback(self.source)
@@ -414,5 +414,5 @@ class DelSrcQuery:
                 self.db.commit_place(p,trans)
 
         self.db.remove_source_id(self.source.get_id(),trans)
-        self.db.add_transaction(trans)
+        self.db.add_transaction(trans,_("Delete Source (%s)") % self.source.get_title())
         self.update()

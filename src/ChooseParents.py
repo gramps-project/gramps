@@ -345,7 +345,7 @@ class ChooseParents:
             self.mother_filter = self.likely_mother_filter
         self.redrawm()
         
-    def find_family(self,father_id,mother_id):
+    def find_family(self,father_id,mother_id,trans):
         """
         Finds the family associated with the father and mother.
         If one does not exist, it is created.
@@ -356,19 +356,14 @@ class ChooseParents:
         for family_id in self.db.get_family_keys():
             family = self.db.find_family_from_id(family_id)
             if family.get_father_id() == father_id and family.get_mother_id() == mother_id:
-                trans = self.db.start_transaction()
                 family.add_child_id(self.person.get_id())
                 self.db.commit_family(family,trans)
-                self.db.add_transaction(trans)
                 return family
             elif family.get_father_id() == mother_id and family.get_mother_id() == father_id:
-                trans = self.db.start_transaction()
                 family.add_child_id(self.person.get_id())
                 self.db.commit_family(family,trans)
-                self.db.add_transaction(trans)
                 return family
 
-        trans = self.db.start_transaction()
         family = self.db.new_family(trans)
         family.set_father_id(father_id)
         family.set_mother_id(mother_id)
@@ -384,7 +379,6 @@ class ChooseParents:
             self.db.commit_person(self.mother,trans)
 
         self.db.commit_family(family,trans)
-        self.db.add_transaction(trans)
         return family
 
     def mother_list_select_row(self,obj):
@@ -485,6 +479,7 @@ class ChooseParents:
         except KeyError:
             father_rel = const.child_relations.find_value("Birth")
 
+        trans = self.db.start_transaction()
         if self.father or self.mother:
             if self.mother and not self.father:
                 if self.mother.get_gender() == RelLib.Person.male:
@@ -515,7 +510,7 @@ class ChooseParents:
                 self.type = "Partners"
                 father_id = self.father.get_id()
                 mother_id = self.mother.get_id()
-            self.family = self.find_family(father_id,mother_id)
+            self.family = self.find_family(father_id,mother_id,trans)
         else:    
             self.family = None
 
@@ -528,8 +523,9 @@ class ChooseParents:
             self.family.add_child_id(self.person.get_id())
             self.family.set_relationship(self.type)
             self.change_family_type(self.family,mother_rel,father_rel)
-            self.db.commit_family(self.family)
+            self.db.commit_family(self.family,trans)
         self.family_update(None)
+        self.db.add_transaction(trans,_("Choose Parents"))
         self.close(obj)
 
     def add_new_parent(self,epo):
@@ -718,4 +714,7 @@ class ModifyParents:
                     mod = 1
 
         if mod:
+            trans = self.db.start_transaction()
+            self.db.commit_person(self.person,trans)
+            self.db.add_transaction(trans,_("Modify Parents"))
             self.family_update(None)

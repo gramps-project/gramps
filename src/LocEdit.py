@@ -94,7 +94,6 @@ class LocationEditor:
         self.window.show()
 
     def on_delete_event(self,obj,b):
-        self.close_child_windows()
         self.remove_itself_from_menu()
 
     def close(self,obj):
@@ -120,8 +119,6 @@ class LocationEditor:
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
     def on_location_edit_ok_clicked(self,obj):
-        self.location = self.location
-
         city = unicode(self.city.get_text())
         county = unicode(self.county.get_text())
         country = unicode(self.country.get_text())
