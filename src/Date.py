@@ -696,7 +696,7 @@ class SingleDate:
             elif self.year == -1:
                 retval = "????%s%02d%s??" % (sep,self.month+1,sep)
             else:
-                retval = "%04d%s%02d%s??" % (self.year,sep,self.month+1,sep)
+                retval = "%04d%s%02d" % (self.year,sep,self.month+1)
         elif self.month == -1:
             retval = "%04d%s??%s%02d" % (self.year,sep,sep,self.day)
         else:
@@ -891,17 +891,30 @@ class SingleDate:
         if match != None:
             matches = match.groups()
             self.getMode(matches[0])
-            try:
-                self.month = int(matches[1])-1
-                if self.month > 11:
-                    raise Date.Error,text
-            except ValueError:
-                self.month = -1
-            try:
-                self.year = int(matches[2])
-            except ValueError:
-                self.year = -1
-            return 1
+            if Date.entryCode == 2:
+                try:
+                    self.month = int(matches[2])-1
+                    if self.month > 11:
+                        raise Date.Error,text
+                except ValueError:
+                    self.month = -1
+                try:
+                    self.year = int(matches[1])
+                except ValueError:
+                    self.year = -1
+                return 1
+            else:
+                try:
+                    self.month = int(matches[1])-1
+                    if self.month > 11:
+                        raise Date.Error,text
+                except ValueError:
+                    self.month = -1
+                try:
+                    self.year = int(matches[2])
+                except ValueError:
+                    self.year = -1
+                return 1
 
         match = SingleDate.fmt3.match(text)
         if match != None:

@@ -72,6 +72,8 @@ class EditPerson:
         self.path = db.getSavePath()
         self.not_loaded = 1
         self.lists_changed = 0
+        self.update_birth = 0
+        self.update_death = 0
         pid = "i%s" % person.getId()
 
         self.load_obj = None
@@ -275,17 +277,43 @@ class EditPerson:
         """redraws the address list for the person"""
         utils.redraw_list(self.plist,self.addr_list,disp_addr)
 
+    #---------------------------------------------------------------------
+    #
+    # redraw_event_list - Update both the birth and death place combo
+    # boxes for any changes that occurred in the 'Event Edit' window.
+    # Make sure not to allow the editing of a birth event to change
+    # any values in the death event, and vice versa.  Since updating a
+    # combo list resets its present value, this code will have to save
+    # and restore the value for the event *not* being edited.
+    #
+    #---------------------------------------------------------------------
     def redraw_event_list(self):
         """redraws the event list for the person"""
         utils.redraw_list(self.elist,self.event_list,disp_event)
+
+        # Remember old combo list input
+        prev_btext = self.bpcombo.entry.get_text()
+        prev_dtext = self.dpcombo.entry.get_text()
+
+        # Update combo lists to add in any new places
         plist = self.db.getPlaceMap().values()
         if len(plist) > 0:
             utils.attach_places(plist,self.dpcombo,self.death.getPlace())
             utils.attach_places(plist,self.bpcombo,self.birth.getPlace())
-        self.bplace.set_text(self.birth.getPlaceName())
-        self.dplace.set_text(self.death.getPlaceName())
-        self.bdate.set_text(self.birth.getDate())
-        self.ddate.set_text(self.death.getDate())
+
+        # Update birth with new values, make sure death values don't change
+        if (self.update_birth):
+            self.update_birth = 0
+            self.bdate.set_text(self.birth.getDate())
+            self.bplace.set_text(self.birth.getPlaceName())
+            self.dplace.set_text(prev_dtext)
+
+        # Update death with new values, make sure birth values don't change
+        if (self.update_death):
+            self.update_death = 0
+            self.ddate.set_text(self.death.getDate())
+            self.dplace.set_text(self.death.getPlaceName())
+            self.bplace.set_text(prev_btext)
 
     def on_add_addr_clicked(self,obj):
         """Invokes the address editor to add a new address"""
@@ -318,6 +346,7 @@ class EditPerson:
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event name cannot be changed"""
         import EventEdit
+        self.update_birth = 1
         pname = self.person.getPrimaryName().getName()
         event = self.birth
         event.setDate(self.bdate.get_text())
@@ -333,6 +362,7 @@ class EditPerson:
     def on_edit_death_clicked(self,obj):
         """Brings up the EventEditor for the death record, event name cannot be changed"""
         import EventEdit
+        self.update_death = 1
         pname = self.person.getPrimaryName().getName()
         event = self.death
         event.setDate(self.ddate.get_text())
@@ -635,9 +665,10 @@ class EditPerson:
         bplace_obj = utils.get_place_from_list(self.bpcombo)
         bplace = string.strip(self.bplace.get_text())
         if bplace_obj == None and bplace != "":
-            p1 = Place()
-            p1.set_title(bplace)
-            self.db.addPlace(p1)
+            bplace_obj = Place()
+            bplace_obj.set_title(bplace)
+            self.db.addPlace(bplace_obj)
+            utils.modified()
         self.birth.setPlace(bplace_obj)
 
         if not self.person.getBirth().are_equal(self.birth):
@@ -657,9 +688,10 @@ class EditPerson:
         dplace_obj = utils.get_place_from_list(self.dpcombo)
         dplace = string.strip(self.dplace.get_text())
         if dplace_obj == None and dplace != "":
-            p1 = Place()
-            p1.set_title(dplace)
-            self.db.addPlace(p1)
+            dplace_obj = Place()
+            dplace_obj.set_title(dplace)
+            self.db.addPlace(dplace_obj)
+            utils.modified()
         self.death.setPlace(dplace_obj)
 
         if not self.person.getDeath().are_equal(self.death):
