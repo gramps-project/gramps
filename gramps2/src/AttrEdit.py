@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,8 +21,8 @@
 # $Id$ 
 
 """
-The AttrEdit module provides the AddressEditor class. This provides a
-mechanism for the user to edit address information.
+The AttrEdit module provides the AttributeEditor class. This provides a
+mechanism for the user to edit attribute information.
 """
 
 __author__ = "Donald N. Allingham"
@@ -85,6 +85,7 @@ class AttributeEditor:
         self.flowed = self.top.get_widget("attr_flowed")
         self.preform = self.top.get_widget("attr_preform")
         self.callback = callback
+        self.child_windows = []
         self.alist = list
 
         self.window = self.top.get_widget("attr_edit")
@@ -123,31 +124,64 @@ class AttributeEditor:
                     self.flowed.set_active(1)
 
         self.top.signal_autoconnect({
-            "on_add_src_clicked" : self.add_source,
-            "on_del_src_clicked" : self.del_source,
             "on_help_attr_clicked" : self.on_help_clicked,
+            "on_ok_attr_clicked" : self.on_ok_clicked,
+            "on_cancel_attr_clicked" : self.close,
+            "on_attr_edit_delete_event" : self.on_delete_event,
             "on_switch_page" : self.on_switch_page
             })
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.val = self.window.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.on_ok_clicked()
+        self.parent.child_windows.append(self)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
         self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
+
+    def add_itself_to_menu(self):
+        if not self.attrib:
+            label = _("New Attribute")
+        else:
+            label = self.attrib.get_type()
+        if not label.strip():
+            label = _("New Attribute")
+        label = "%s: %s" % (_('Attribute'),label)
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.menu.append(self.parent_menu_item)
+        self.menu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Attribute Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+        self.menu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.window.run()
 
-    def add_source(self,obj):
-        pass
-
-    def del_source(self,obj):
-        pass
-
-    def on_ok_clicked(self):
+    def on_ok_clicked(self,obj):
         """
         Called when the OK button is pressed. Gets data from the
         form and updates the Attribute data structure.
@@ -174,6 +208,7 @@ class AttributeEditor:
         self.attrib.set_source_reference_list(self.srcreflist)
         self.update(type,value,note,format,priv)
         self.callback(self.attrib)
+        self.close(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the

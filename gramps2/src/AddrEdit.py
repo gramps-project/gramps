@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -85,6 +85,7 @@ class AddressEditor:
         self.db = self.parent.db
         self.addr = addr
         self.callback = callback
+        self.child_windows = []
         name = parent.person.get_primary_name().get_name()
         if name == ", ":
             text = _("Address Editor")
@@ -127,22 +128,57 @@ class AddressEditor:
 
         self.top.signal_autoconnect({
             "on_switch_page" : self.on_switch_page,
-            "on_help_addr_clicked" : self.on_help_clicked
+            "on_help_addr_clicked" : self.on_help_clicked,
+            "on_ok_addr_clicked" : self.ok_clicked,
+            "on_cancel_addr_clicked" : self.close,
+            "on_addr_edit_delete_event" : self.on_delete_event,
             })
 
         if parent_window:
             self.window.set_transient_for(parent_window)
-        self.val = self.window.run()
-        if self.val == gtk.RESPONSE_OK:
-            self.ok_clicked()
+        self.parent.child_windows.append(self)
+        self.add_itself_to_menu()
+        self.window.show()
+
+    def on_delete_event(self,obj,b):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
+
+    def close(self,obj):
+        self.close_child_windows()
+        self.remove_itself_from_menu()
         self.window.destroy()
+
+    def close_child_windows(self):
+        for child_window in self.child_windows:
+            child_window.close(None)
+        self.child_windows = []
+
+    def add_itself_to_menu(self):
+        label = _('Address')
+        self.parent_menu_item = gtk.MenuItem(label)
+        self.parent_menu_item.set_submenu(gtk.Menu())
+        self.parent_menu_item.show()
+        self.parent.menu.append(self.parent_menu_item)
+        self.menu = self.parent_menu_item.get_submenu()
+        self.menu_item = gtk.MenuItem(_('Address Editor'))
+        self.menu_item.connect("activate",self.present)
+        self.menu_item.show()
+        self.menu.append(self.menu_item)
+
+    def remove_itself_from_menu(self):
+        self.menu_item.destroy()
+        self.menu.destroy()
+        self.parent_menu_item.destroy()
+
+    def present(self,obj):
+        self.window.present()
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
-        self.val = self.window.run()
 
-    def ok_clicked(self):
+    def ok_clicked(self,obj):
         """
         Called when the OK button is pressed. Gets data from the
         form and updates the Address data structure.
@@ -166,6 +202,7 @@ class AddressEditor:
 
         self.update(date,street,city,state,country,postal,phone,note,format,priv)
         self.callback(self.addr)
+        self.close(obj)
 
     def check(self,get,set,data):
         """Compares a data item, updates if necessary, and sets the
