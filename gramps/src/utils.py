@@ -31,6 +31,7 @@ _modifiedFlag  = 0
 
 LISTOBJ = "s"
 INDEX   = "i"
+OBJECT  = "o"
 
 #-------------------------------------------------------------------------
 #
@@ -241,7 +242,7 @@ def delete_selected(obj,list):
 #-------------------------------------------------------------------------
 def add_menuitem(menu,msg,obj,func):
     item = gtk.GtkMenuItem(msg)
-    item.set_data("m",obj)
+    item.set_data(OBJECT,obj)
     item.connect("activate",func)
     item.show()
     menu.append(item)
