@@ -555,7 +555,7 @@
 	      <child>
 		<widget class="button" id="button97">
 		  <property name="visible">True</property>
-		  <property name="tooltip" translatable="yes">Make the default person the active person</property>
+		  <property name="tooltip" translatable="yes">Make the home person the active person</property>
 		  <property name="label" translatable="yes">Home</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-home</property>
@@ -591,6 +591,7 @@
 	      <child>
 		<widget class="button" id="addbtn">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Add a new item</property>
 		  <property name="label" translatable="yes">Add</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-add</property>
@@ -604,6 +605,7 @@
 	      <child>
 		<widget class="button" id="removebtn">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Remove the currently selected item</property>
 		  <property name="label" translatable="yes">Remove</property>
 		  <property name="use_underline">True</property>
 		  <property name="stock_pixmap">gtk-remove</property>
@@ -614,6 +616,7 @@
 	      <child>
 		<widget class="button" id="editbtn">
 		  <property name="visible">True</property>
+		  <property name="tooltip" translatable="yes">Edit the selected item</property>
 		  <property name="label" translatable="yes">Edit</property>
 		  <property name="use_underline">True</property>
 		  <property name="icon">edit.png</property>
@@ -1216,7 +1219,7 @@
 		<widget class="GtkTable" id="table38">
 		  <property name="border_width">6</property>
 		  <property name="visible">True</property>
-		  <property name="n_rows">6</property>
+		  <property name="n_rows">8</property>
 		  <property name="n_columns">6</property>
 		  <property name="homogeneous">False</property>
 		  <property name="row_spacing">6</property>
@@ -1298,7 +1301,7 @@
 			    <widget class="GtkImage" id="image84">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-add</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1324,7 +1327,7 @@
 			    <widget class="GtkImage" id="image86">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-remove</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1342,8 +1345,8 @@
 		    <packing>
 		      <property name="left_attach">2</property>
 		      <property name="right_attach">3</property>
-		      <property name="top_attach">3</property>
-		      <property name="bottom_attach">4</property>
+		      <property name="top_attach">4</property>
+		      <property name="bottom_attach">5</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
 		    </packing>
@@ -1366,7 +1369,7 @@
 			    <widget class="GtkImage" id="image87">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-go-forward</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1392,7 +1395,7 @@
 			    <widget class="GtkImage" id="image91">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-add</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1418,7 +1421,7 @@
 			    <widget class="GtkImage" id="image92">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-remove</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1467,8 +1470,8 @@
 		    <packing>
 		      <property name="left_attach">4</property>
 		      <property name="right_attach">5</property>
-		      <property name="top_attach">3</property>
-		      <property name="bottom_attach">4</property>
+		      <property name="top_attach">4</property>
+		      <property name="bottom_attach">5</property>
 		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
@@ -1490,7 +1493,7 @@
 			    <widget class="GtkImage" id="image88">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-go-forward</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1516,7 +1519,7 @@
 			    <widget class="GtkImage" id="image89">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-add</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1542,7 +1545,7 @@
 			    <widget class="GtkImage" id="image90">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-remove</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1560,8 +1563,8 @@
 		    <packing>
 		      <property name="left_attach">5</property>
 		      <property name="right_attach">6</property>
-		      <property name="top_attach">3</property>
-		      <property name="bottom_attach">4</property>
+		      <property name="top_attach">4</property>
+		      <property name="bottom_attach">5</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
 		    </packing>
@@ -1584,8 +1587,8 @@
 		    <packing>
 		      <property name="left_attach">0</property>
 		      <property name="right_attach">6</property>
-		      <property name="top_attach">4</property>
-		      <property name="bottom_attach">5</property>
+		      <property name="top_attach">6</property>
+		      <property name="bottom_attach">7</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
 		    </packing>
@@ -1656,8 +1659,8 @@
 		    <packing>
 		      <property name="left_attach">0</property>
 		      <property name="right_attach">3</property>
-		      <property name="top_attach">2</property>
-		      <property name="bottom_attach">3</property>
+		      <property name="top_attach">3</property>
+		      <property name="bottom_attach">4</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
 		    </packing>
@@ -1680,8 +1683,8 @@
 		    <packing>
 		      <property name="left_attach">3</property>
 		      <property name="right_attach">6</property>
-		      <property name="top_attach">2</property>
-		      <property name="bottom_attach">3</property>
+		      <property name="top_attach">3</property>
+		      <property name="bottom_attach">4</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options"></property>
 		    </packing>
@@ -1711,8 +1714,8 @@
 		    <packing>
 		      <property name="left_attach">1</property>
 		      <property name="right_attach">5</property>
-		      <property name="top_attach">5</property>
-		      <property name="bottom_attach">6</property>
+		      <property name="top_attach">7</property>
+		      <property name="bottom_attach">8</property>
 		      <property name="x_options">fill</property>
 		    </packing>
 		  </child>
@@ -1801,8 +1804,8 @@
 		    <packing>
 		      <property name="left_attach">1</property>
 		      <property name="right_attach">2</property>
-		      <property name="top_attach">3</property>
-		      <property name="bottom_attach">4</property>
+		      <property name="top_attach">4</property>
+		      <property name="bottom_attach">5</property>
 		      <property name="y_options">fill</property>
 		    </packing>
 		  </child>
@@ -1824,7 +1827,7 @@
 			    <widget class="GtkImage" id="image93">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-go-back</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1850,7 +1853,7 @@
 			    <widget class="GtkImage" id="image94">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-add</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1876,7 +1879,7 @@
 			    <widget class="GtkImage" id="image95">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-remove</property>
-			      <property name="icon_size">4</property>
+			      <property name="icon_size">1</property>
 			      <property name="xalign">0.5</property>
 			      <property name="yalign">0.5</property>
 			      <property name="xpad">0</property>
@@ -1894,8 +1897,8 @@
 		    <packing>
 		      <property name="left_attach">5</property>
 		      <property name="right_attach">6</property>
-		      <property name="top_attach">5</property>
-		      <property name="bottom_attach">6</property>
+		      <property name="top_attach">7</property>
+		      <property name="bottom_attach">8</property>
 		      <property name="x_options">fill</property>
 		      <property name="y_options">fill</property>
 		    </packing>
