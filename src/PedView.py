@@ -87,10 +87,10 @@ class DispBox:
         self.group.set_data('p',person)
 
     def cleanup(self):
-        self.shadow.destroy()
-        self.bkgnd.destroy()
-        self.textbox.destroy()
-        self.group.destroy()
+       self.shadow.destroy()
+       self.bkgnd.destroy()
+       self.textbox.destroy()
+       self.group.destroy()
 
     def group_event(self,obj,event):
         """Handle events over a drawn box. Doubleclick would edit,

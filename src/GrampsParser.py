@@ -181,6 +181,7 @@ class GrampsParser:
             "url"        : (self.start_url, None)
             }
 
+
     def parse(self,file):
         p = xml.parsers.expat.ParserCreate()
         p.StartElementHandler = self.startElement
@@ -194,6 +195,8 @@ class GrampsParser:
             if self.db.personMap.has_key(id) and self.db.getDefaultPerson() == None:
                 person = self.db.personMap[id]
                 self.db.setDefaultPerson(person)
+        for key in self.func_map.keys():
+            del self.func_map[key]
 
     def start_lds_ord(self,attrs):
         type = attrs['type']
