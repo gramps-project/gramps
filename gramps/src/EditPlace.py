@@ -48,6 +48,7 @@ import const
 import utils
 from RelLib import *
 import RelImage
+import Sources
 
 _ = intl.gettext
 
@@ -67,6 +68,7 @@ class EditPlace:
         self.callback = func
         self.path = db.getSavePath()
         self.not_loaded = 1
+        self.sref = SourceRef(place.getSourceRef())
 
         self.selectedIcon = -1
         self.currentImages = []
@@ -83,7 +85,8 @@ class EditPlace:
         self.web_list = self.top_window.get_widget("web_list")
         self.web_url = self.top_window.get_widget("url_addr")
         self.web_description = self.top_window.get_widget("url_des")
-
+        self.source_field = self.top_window.get_widget("source_field")
+        
         self.loc_list = self.top_window.get_widget("loc_list")
         self.loc_city = self.top_window.get_widget("loc_city")
         self.loc_county = self.top_window.get_widget("loc_county")
@@ -103,6 +106,10 @@ class EditPlace:
         self.country.set_text(mloc.get_country())
         self.longitude.set_text(place.get_longitude())
         self.latitude.set_text(place.get_latitude())
+        if self.sref.getBase():
+            self.source_field.set_text(self.sref.getBase().getTitle())
+        else:
+            self.source_field.set_text("")
 
         self.note.set_point(0)
         self.note.insert_defaults(place.getNote())
@@ -112,6 +119,7 @@ class EditPlace:
 
         self.top_window.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
+            "on_source_clicked" : on_source_clicked,
             "on_photolist_select_icon" : on_photo_select_icon,
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_switch_page" : on_switch_page,
@@ -158,7 +166,7 @@ class EditPlace:
     #
     #-------------------------------------------------------------------------
     def update_locations(self):
-        self.place.set_alternate_locations(self.ulist)
+        self.place.set_alternate_locations(self.llist)
 
     #---------------------------------------------------------------------
     #
@@ -265,6 +273,10 @@ def on_place_apply_clicked(obj):
     mloc = edit.place.get_main_location()
     if city != mloc.get_city():
         mloc.set_city(city)
+        utils.modified()
+
+    if not edit.place.getSourceRef().are_equal(edit.sref):
+        edit.place.setSourceRef(edit.sref)
         utils.modified()
 
     if state != mloc.get_state():
@@ -628,6 +640,15 @@ def on_add_url_clicked(obj):
 def on_add_loc_clicked(obj):
     epo = obj.get_data(PLACE)
     LocationEditor(obj.get_data(PLACE),None)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_source_clicked(obj):
+    epo = obj.get_data(PLACE)
+    Sources.SourceEditor(epo.sref,epo.db,epo.source_field)
 
 #-------------------------------------------------------------------------
 #

@@ -914,8 +914,87 @@ def on_delete_source_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_delete_place_clicked(obj):
-    pass
+    global pevent
+    global fevent
+    
+    index = obj.get_data("i")
+    if index == -1:
+        return
 
+    pevent = []
+    fevent = []
+    place = obj.get_row_data(index)
+    for p in database.getPersonMap().values():
+        for event in [p.getBirth(), p.getDeath()] + p.getEventList():
+            if event.getPlace() == place:
+                pevent.append(p,event)
+    for f in database.getFamilyMap().values():
+        for event in f.getEventList():
+            if event.getPlace() == place:
+                fevent.append(f,event)
+
+    if len(pevent) > 0 or len(fevent) > 0:
+        msg = []
+        ptop = libglade.GladeXML(const.gladeFile,"place_query")
+        ptop.signal_autoconnect({
+            'on_force_delete_clicked': on_force_delete_clicked,
+            'destroy_passed_object' : utils.destroy_passed_object}) 
+        
+        fd = ptop.get_widget("place_query")
+        fd.set_data("p",pevent)
+        fd.set_data("f",fevent)
+        fd.set_data("place",place)
+        
+        textbox = ptop.get_widget("text")
+        textbox.set_point(0)
+        textbox.set_word_wrap(1)
+
+        if len(pevent) > 0:
+            textbox.insert_defaults(_("People") + "\n")
+            textbox.insert_defaults("_________________________\n\n")
+            t = _("%s [%s]: event %s\n")
+
+            for e in pevent:
+                msg = t % (Config.nameof(e[0]),e[0].getId(),e[1].getName())
+                textbox.insert_defaults(msg)
+
+        if len(fevent) > 0:
+            textbox.insert_defaults("\n%s\n" % _("Families"))
+            textbox.insert_defaults("_________________________\n\n")
+            t = _("%s [%s]: event %s\n")
+
+            for e in fevent:
+                father = e[0].getFather()
+                mother = e[0].getMother()
+                if father and mother:
+                    fname = "%s and %s" % (Config.nameof(father),Config.nameof(mother))
+                elif father:
+                    fname = "%s" % Config.nameof(father)
+                else:
+                    fname = "%s" % Config.nameof(mother)
+
+                msg = t % (fname,e[0].getId(),e[1].getName())
+                textbox.insert_defaults(msg)
+
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_force_delete_clicked(obj):
+    place = obj.get_data('place')
+    plist = obj.get_data('p')
+    flist = obj.get_data('f')
+
+    for event in plist + flist:
+        event[1].setPlace(None)
+    map = database.getPlaceMap()
+    del map[place.getId()]
+    utils.modified()
+    utils.destroy_passed_object(obj)
+    update_display(0)
+    
 #-------------------------------------------------------------------------
 #
 #
@@ -923,12 +1002,9 @@ def on_delete_place_clicked(obj):
 #-------------------------------------------------------------------------
 def on_edit_source_clicked(obj):
     index = obj.get_data("i")
-    if index == -1:
-        return
-
-    source = obj.get_row_data(index)
-    EditSource.EditSource(source,database,update_source_after_edit)
-
+    if index != -1:
+        source = obj.get_row_data(index)
+        EditSource.EditSource(source,database,update_source_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -937,11 +1013,9 @@ def on_edit_source_clicked(obj):
 #-------------------------------------------------------------------------
 def on_edit_place_clicked(obj):
     index = obj.get_data("i")
-    if index == -1:
-        return
-
-    place = obj.get_row_data(index)
-    EditPlace.EditPlace(place,database,update_place_after_edit)
+    if index != -1:
+        place = obj.get_row_data(index)
+        EditPlace.EditPlace(place,database,update_place_after_edit)
 
 #-------------------------------------------------------------------------
 #
@@ -1782,7 +1856,9 @@ def load_places():
         current_row = -1
 
     index = 0
-    for src in database.getPlaceMap().values():
+    places = database.getPlaceMap().values()
+    
+    for src in places:
         title = src.get_title()
         id = src.getId()
         mloc = src.get_main_location()
@@ -1793,6 +1869,8 @@ def load_places():
         place_list.append([title,id,city,county,state,country])
         place_list.set_row_data(index,src)
         index = index + 1
+
+    place_list.sort()
 
     if index > 0:
         if current_row == -1:
