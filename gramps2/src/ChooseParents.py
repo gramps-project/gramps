@@ -99,13 +99,15 @@ class ChooseParents:
         self.mother_filter = GenericFilter.GenericFilter()
         self.mother_filter.add_rule(GenericFilter.IsFemale([]))
 
-        birth_event = self.db.get_event_from_handle(self.person.get_birth_handle())
+        bhandle = self.person.get_birth_handle()
+        birth_event = self.db.get_event_from_handle(bhandle)
         if birth_event:
             self.bday = birth_event.get_date_object()
         else:
             self.bday = None
 
-        death_event = self.db.get_event_from_handle(self.person.get_death_handle())
+        dhandle = self.person.get_death_handle()
+        death_event = self.db.get_event_from_handle(dhandle)
         if death_event:
             self.dday = death_event.get_date_object()
         else:
@@ -358,12 +360,14 @@ class ChooseParents:
 
     def get_selected_father_handles(self):
         mlist = []
-        self.father_selection.selected_foreach(self.father_select_function,mlist)
+        self.father_selection.selected_foreach(self.father_select_function,
+                                               mlist)
         return mlist
 
     def get_selected_mother_handles(self):
         mlist = []
-        self.mother_selection.selected_foreach(self.mother_select_function,mlist)
+        self.mother_selection.selected_foreach(self.mother_select_function,
+                                               mlist)
         return mlist
 
     def father_list_select_row(self,obj):
@@ -376,7 +380,6 @@ class ChooseParents:
         else:
             self.father = None
 
-        return
         if not self.parent_selected and self.father:
             self.parent_selected = 1
             family_handle_list = self.father.get_family_handle_list()
@@ -385,9 +388,9 @@ class ChooseParents:
                 mother_handle = family.get_mother_handle()
                 mother = self.db.get_person_from_handle(mother_handle)
                 sname = mother.get_primary_name().get_surname()
-                tpath = self.mother_nsort.on_get_path(sname)
+                tpath = self.mother_model.on_get_path(sname)
                 self.mother_list.expand_row(tpath,0)
-                path = self.mother_nsort.on_get_path(mother_handle)
+                path = self.mother_model.on_get_path(mother_handle)
                 self.mother_selection.select_path(path)
                 self.mother_list.scroll_to_cell(path,None,1,0.5,0)
 
@@ -400,7 +403,6 @@ class ChooseParents:
             self.mother = self.db.get_person_from_handle(idlist[0])
         else:
             self.mother = None
-        return
 
         if not self.parent_selected and self.mother:
             self.parent_selected = 1
@@ -410,9 +412,9 @@ class ChooseParents:
                 father_handle = family.get_mother_handle()
                 father = self.db.get_person_from_handle(father_handle)
                 sname = father.get_primary_name().get_surname()
-                tpath = self.father_nsort.on_get_path(sname)
+                tpath = self.father_model.on_get_path(sname)
                 self.father_list.expand_row(tpath,0)
-                path = self.father_nsort.on_get_path(father_handle)
+                path = self.father_model.on_get_path(father_handle)
                 self.father_selection.select_path(path)
                 self.father_list.scroll_to_cell(path,None,1,0.5,0)
 
@@ -492,15 +494,15 @@ class ChooseParents:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.MALE:
             self.redrawf()
-            path = self.father_nsort.on_get_path(handle)
-            top_path = self.father_nsort.on_get_path(name)
+            path = self.father_model.on_get_path(handle)
+            top_path = self.father_model.on_get_path(name)
             self.father_list.expand_row(top_path,0)
             self.father_selection.select_path(path)
             self.father_list.scroll_to_cell(path,None,1,0.5,0)
         else:
             self.redrawm()
-            path = self.mother_nsort.on_get_path(handle)
-            top_path = self.mother_nsort.on_get_path(name)
+            path = self.mother_model.on_get_path(handle)
+            top_path = self.mother_model.on_get_path(name)
             self.mother_list.expand_row(top_path,0)
             self.mother_selection.select_path(path)
             self.mother_list.scroll_to_cell(path,None,1,0.5,0)

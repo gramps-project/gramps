@@ -1,3 +1,8 @@
+2005-03-08  Don Allingham  <don@gramps-project.org>
+	* src/ChooseParents.py: change _nsort to _model
+	* src/GrampsBSDDB.py: fix event secondary index function to that
+	the event name is used instead of the GRAMPS id.
+
 2005-03-08 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/EditPerson.py: Remove numerous multiple definitions.
 	* src/AttrEdit.py (__init__): Set text to translated attribute type.
