@@ -76,6 +76,7 @@ HAVE_PKG_CONFIG = @HAVE_PKG_CONFIG@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LANGUAGES = @LANGUAGES@
 MOFILES = @MOFILES@
+MSGCONV = @MSGCONV@
 MSGFMT = @MSGFMT@
 PACKAGE = @PACKAGE@
 POFILES = @POFILES@
@@ -242,7 +243,9 @@ uninstall-local:
 	done
 
 .po.mo:
-	$(MSGFMT) -v $< -o $@
+	@MSGCONV@ --to-code=UTF-8 $< -o temp.po
+	$(MSGFMT) -v temp.po -o $@
+	rm temp.po
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
