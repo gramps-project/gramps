@@ -2,6 +2,9 @@
 	* src/plugins/ReadGedcom.py: Correct level in parsing LDS ordinance
 	source references. Support for source description-type references. 
 
+	* src/plugins/ReadGedcom.py: Revert brain-dead fix in favor of
+	an existing handle_source() method.
+
 2004-01-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/fr.po: Typo (named format line parameter was translated).
 

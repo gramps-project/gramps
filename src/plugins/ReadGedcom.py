@@ -1054,11 +1054,7 @@ class GedcomParser:
             elif matches[1] in ["AGE","AGNC","CAUS","STAT","TEMP","OBJE","TYPE","_DATE2"]:
                 self.ignore_sub_junk(level+1)
             elif matches[1] == "SOUR":
-                source_ref = RelLib.SourceRef()
-                source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                address.addSourceRef(source_ref)
-                self.source_description = matches[2]
-                self.parse_source_reference(source_ref,level+1)
+                address.addSourceRef(self.handle_source(matches,level+1))
             elif matches[1] == "PLAC":
                 address.setStreet(matches[2])
                 self.parse_address(address,level+1)
@@ -1379,10 +1375,6 @@ class GedcomParser:
             if int(matches[0]) < level:
                 self.backup()
                 return
-            elif matches[1] in ["CONC", "CONT"]:
-                self.backup()
-                self.parse_source_description(source,level)
-                return
             elif matches[1] == "PAGE":
                 source.setPage(matches[2] + self.parse_continue_data(level+1))
             elif matches[1] == "DATA":
@@ -1404,29 +1396,6 @@ class GedcomParser:
             else:
                 self.barf(level+1)
         
-    def parse_source_description(self,source,level):
-        """Reads the data associated with a SOUR description-reference"""
-        note = ""
-        while 1:
-            matches = self.get_next()
-
-            if int(matches[0]) < level:
-                self.backup()
-                return
-            elif matches[1] in ["CONC", "CONT"]: # must be a source description
-                self.backup()
-                comment = self.parse_continue_data(level)
-                source.setComments(comment)
-                comment = "%s\n%s" % (source.getBase().getNote(),comment)
-                source.getBase().setNote(comment)
-                source.getBase().setTitle(self.source_description)
-            elif matches[1] == "NOTE":
-                note = self.parse_comment(matches,source,level+1,note)
-            elif matches[1] == "TEXT":
-                self.ignore_sub_junk(level+1)
-            else:
-                self.barf(level+1)
-
     def parse_source_data(self,level):
         """Parses the source data"""
         date = ""
@@ -1495,11 +1464,7 @@ class GedcomParser:
                     name.setFirstName(string.join(lname[0:l-1]))
                     self.person.addAlternateName(name)
             elif matches[1] == "SOUR":
-                source_ref = RelLib.SourceRef()
-                source_ref.setBase(self.db.findSource(matches[2],self.smap))
-                name.addSourceRef(source_ref)
-                self.source_description = matches[2]
-                self.parse_source_reference(source_ref,level+1)
+                name.addSourceRef(self.handle_source(matches,level+1))
             elif matches[1][0:4] == "NOTE":
                 note = self.parse_note(matches,name,level+1,note)
             else:
@@ -1753,9 +1718,9 @@ class GedcomParser:
             s = self.db.findSource(ref,self.smap)
             source_ref.setBase(s)
             s.setTitle('Imported Source #%d' % self.localref)
-            s.setNote(matches[2] + self.parse_continue_data(1))
+            s.setNote(matches[2] + self.parse_continue_data(level))
             self.db.buildSourceDisplay(s.getId())
-            self.ignore_sub_junk(2)
+            self.ignore_sub_junk(level+1)
         else:
             source_ref.setBase(self.db.findSource(matches[2],self.smap))
             self.source_description = matches[2]
