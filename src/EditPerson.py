@@ -174,6 +174,7 @@ class EditPerson:
         self.event_date_field  = self.get_widget("eventDate")
         self.event_descr_field = self.get_widget("eventDescription")
         self.event_src_field = self.get_widget("event_srcinfo")
+        self.event_conf_field = self.get_widget("event_conf")
         self.attr_details_field = self.get_widget("attr_details")
         self.name_details_field = self.get_widget("name_details")
         self.addr_details_field = self.get_widget("addr_details")
@@ -978,12 +979,11 @@ class EditPerson:
         self.event_descr_field.set_text(event.getDescription())
         if len(event.getSourceRefList()) > 0:
             psrc = event.getSourceRefList()[0]
-            n = _("%(source_title)s; Confidence - %(confidence)s") % {
-                'source_title' : psrc.getBase().getTitle(),
-                'confidence' : const.confidence[psrc.getConfidence()]}
-            self.event_src_field.set_text(n)
+            self.event_src_field.set_text(psrc.getBase().getTitle())
+            self.event_conf_field.set_text(const.confidence[psrc.getConfidence()])
         else:
             self.event_src_field.set_text('')
+            self.event_conf_field.set_text('')
 
     def on_event_unselect_row(self,obj,a,b,c):
         enable = len(obj.selection) > 0

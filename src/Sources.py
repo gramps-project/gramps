@@ -33,6 +33,7 @@ import libglade
 #-------------------------------------------------------------------------
 import const
 import Utils
+import Sorter
 from RelLib import *
 
 #-------------------------------------------------------------------------
@@ -60,7 +61,10 @@ class SourceSelector:
             })
         self.sourcesel = self.top.get_widget("sourcesel")
         self.slist = self.top.get_widget("slist")
-        self.slist.set_data("o",self)
+        slist_map = [ (0, self.top.get_widget('arrow1')),
+                      (1, self.top.get_widget('arrow2'))]
+        
+        self.srcsort = Sorter.Sorter(self.slist, slist_map, 'source', self.top)
         self.redraw()
         self.sourcesel.show()
 
