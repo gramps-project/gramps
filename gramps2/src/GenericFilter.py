@@ -1948,10 +1948,10 @@ class HasTextMatchingSubstringOf(Rule):
                 for handle in place_list:
                     self.place_map[handle] = 1
 
-    def match_object(self,object):
+    def match_object(self,obj):
         if self.regexp_match:
-            return object.matches_regexp(self.list[0],self.case_sensitive)
-        return object.matches_string(self.list[0],self.case_sensitive)
+            return obj.matches_regexp(self.list[0],self.case_sensitive)
+        return obj.matches_string(self.list[0],self.case_sensitive)
 
 #-------------------------------------------------------------------------
 # "HasTextMatchingRegexOf"
