@@ -60,10 +60,14 @@ def report(database,person):
     females = 0
     bytes = 0
     namelist = []
+    notfound = []
     
     pobjects = len(database.getObjectMap().values())
     for photo in database.getObjectMap().values():
-        bytes = bytes + posixpath.getsize(photo.getPath())
+        try:
+            bytes = bytes + posixpath.getsize(photo.getPath())
+        except:
+            notfound.append(photo.getPath())
         
     for person in personList:
         length = len(person.getPhotoList())
@@ -104,7 +108,12 @@ def report(database,person):
     text = text + "%s : %d\n" % (_("Number of unique media objects"),pobjects)
     text = text + "%s : %d %s\n" % (_("Total size of images"),bytes,\
                                     _("bytes"))
-    
+
+    if len(notfound) > 0:
+        text = text + "\n%s\n" % _("Missing Media Objects")
+        text = text + "----------------------------\n"
+        for p in notfound:
+            text = text + "%s\n" % p
     
     top = topDialog.get_widget("summary")
     textwindow = topDialog.get_widget("textwindow")
