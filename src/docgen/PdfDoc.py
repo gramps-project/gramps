@@ -177,6 +177,12 @@ class PdfDoc(TextDoc.TextDoc):
     def end_bold(self):
         self.text = self.text + '</b>'
 
+    def start_superscript(self):
+        self.text = self.text + '<super>'
+
+    def end_superscript(self):
+        self.text = self.text + '</super>'
+
     def start_table(self,name,style_name):
         self.in_table = 1
         self.cur_table = self.table_styles[style_name]
@@ -280,6 +286,8 @@ class PdfDoc(TextDoc.TextDoc):
         text = text.replace('&','&amp;');       # Must be first
         text = text.replace('<','&lt;');
         text = text.replace('>','&gt;');
+        text = text.replace('&lt;super&gt;','<super>');
+        text = text.replace('&lt;/super&gt;','</super>');
         self.text =  self.text + text.replace('\n','<br>');
 
 #------------------------------------------------------------------------

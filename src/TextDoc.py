@@ -1059,6 +1059,12 @@ class TextDoc:
     def end_bold(self):
         pass
 
+    def start_superscript(self):
+        pass
+
+    def end_superscript(self):
+        pass
+
     def start_listing(self,style_name):
         """
 	Starts a new listing block, using the specified style name.
@@ -1122,6 +1128,15 @@ class TextDoc:
         pass
 
     def write_text(self,text):
+        """
+        Writes the text in the current paragraph. Should only be used after a
+        start_paragraph and before an end_paragraph.
+
+        text - text to write.
+        """
+        pass
+
+    def write_cmdstr(self,text):
         """
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
