@@ -1,8 +1,22 @@
 2003-06-03  Don Allingham  <dallingham@users.sourceforge.net>
-	* src/VersionControl.py
+	* src/VersionControl.py:
 	Brought revision selection dialog up to date. Was dependant on
 	the old CList.
 
+2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Plugins.py (on_apply_clicked): Do not destroy dialog window.
+	(on_ok_clicked): Added. Destory the dialog and do on_apply_clicked().
+	* src/plugins.glade: Added tooltips to Apply and OK buttons. 
+	
+2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/FtmStyleAncestor.py (apply_filter): 
+	Fixed generation condition. 
+	* src/plugins/FtmStyleDescendants.py (write_report): 
+	Do not print children if the current generation is the last. 
+	* src/plugins/DetDescendantReport.py (filter): 
+	Make it apply_filter, clean up and make shorter, modify numbering 
+	algorithm so that no gaps occur in people's indices.
+	
 2003-06-03  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/FtmStyleAncestor.py (print_more_about,print_notes):
 	Change to regular name instead of formal name.
