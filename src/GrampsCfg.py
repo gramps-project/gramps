@@ -121,13 +121,11 @@ pprefix       = "P"
 fprefix       = "F"
 autoload      = 0
 autosave_int  = 0
-usetabs       = 0
 uselds        = 0
 autocomp      = 1
 usevc         = 0
 vc_comment    = 0
 uncompress    = 0
-show_detail   = 0
 hide_altnames = 0
 lastfile      = None
 nameof        = Utils.normal_name
@@ -143,7 +141,6 @@ lastnamegen   = None
 report_dir    = "./"
 web_dir       = "./"
 db_dir        = "./"
-id_visible    = 0
 id_edit       = 0
 index_visible = 0
 mediaref      = 1
@@ -191,7 +188,6 @@ def make_path(path):
 def loadConfig(call):
     global autoload
     global autosave_int
-    global usetabs
     global uselds
     global autocomp
     global calendar
@@ -199,10 +195,8 @@ def loadConfig(call):
     global iprefix, fprefix, pprefix, oprefix, sprefix
     global vc_comment
     global uncompress
-    global id_visible
     global id_edit
     global index_visible
-    global show_detail
     global hide_altnames
     global lastfile
     global nameof
@@ -225,7 +219,6 @@ def loadConfig(call):
 
     _callback = call
     lastfile = get_string("/gramps/data/LastFile")
-    usetabs = get_bool("/gramps/config/UseTabs")
     uselds = get_bool("/gramps/config/UseLDS")
     ac = get_bool("/gramps/config/DisableAutoComplete",0)
     mediaref = get_bool("/gramps/config/MakeReference",1)
@@ -235,10 +228,8 @@ def loadConfig(call):
     usevc = get_bool("/gramps/config/UseVersionControl")
     vc_comment = get_bool("/gramps/config/UseComment")
     uncompress = get_bool("/gramps/config/DontCompressXML")
-    id_visible = get_bool("/gramps/config/IdVisible")
     id_edit = get_bool("/gramps/config/IdEdit")
     index_visible = get_bool("/gramps/config/IndexVisible")
-    show_detail = get_bool("/gramps/config/ShowDetail")
     status_bar = get_int("/gramps/config/StatusBar")
     toolbar = get_int("/gramps/config/ToolBar",2)
     display_attr = get_bool("/gramps/config/DisplayAttr")
@@ -583,10 +574,8 @@ class GrampsPreferences:
     def build(self):
         auto = self.top.get_widget("autoload")
         asave_int = self.top.get_widget("autosave_interval")
-        vis = self.top.get_widget("gid_visible")
         idedit = self.top.get_widget("gid_edit")
         index_vis = self.top.get_widget("show_child_id")
-        tabs = self.top.get_widget("usetabs")
         lds = self.top.get_widget("uselds")
         ac = self.top.get_widget("autocomp")
         mr = self.top.get_widget("mediaref")
@@ -603,8 +592,6 @@ class GrampsPreferences:
 
         auto.set_active(autoload)
         asave_int.set_value(int(autosave_int))
-        detail.set_active(show_detail)
-        tabs.set_active(usetabs)
         lds.set_active(uselds)
         ac.set_active(autocomp)
         if mediaref:
@@ -617,7 +604,6 @@ class GrampsPreferences:
         vc.set_active(usevc)
         vcom.set_active(vc_comment)
         compress.set_active(uncompress)
-        vis.set_active(id_visible)
         idedit.set_active(id_edit)
         index_vis.set_active(index_visible)
 
@@ -829,7 +815,6 @@ class GrampsPreferences:
 
     def on_propertybox_apply(self,obj):
         global nameof
-        global usetabs
         global uselds
         global autocomp
         global autosave_int
@@ -845,7 +830,6 @@ class GrampsPreferences:
         global oprefix
         global vc_comment
         global uncompress
-        global id_visible
         global id_edit
         global index_visible
         global status_bar
@@ -856,19 +840,16 @@ class GrampsPreferences:
         global paper_preference
         global output_preference
         global goutput_preference
-        global show_detail
         global report_dir
         global web_dir
         global db_dir
         global lastnamegen
         global autoload
     
-        show_detail = self.top.get_widget("showdetail").get_active()
         autoload = self.top.get_widget("autoload").get_active()
         autosave_int = self.top.get_widget("autosave_interval").get_value_as_int()
         display_attr = self.top.get_widget("attr_display").get_active()
         attr_name = string.strip(self.top.get_widget("attr_name").get_text())
-        usetabs = self.top.get_widget("usetabs").get_active()
         uselds = self.top.get_widget("uselds").get_active()
         autocomp = self.top.get_widget("autocomp").get_active()
         mediaref = self.top.get_widget("mediaref").get_active()
@@ -878,7 +859,6 @@ class GrampsPreferences:
         usevc = self.top.get_widget("use_vc").get_active()
         vc_comment = self.top.get_widget("vc_comment").get_active()
         uncompress = self.top.get_widget("uncompress").get_active()
-        id_visible = self.top.get_widget("gid_visible").get_active()
         id_edit = self.top.get_widget("gid_edit").get_active()
         index_visible = self.top.get_widget("show_child_id").get_active()
         hide_altnames = self.top.get_widget("display_altnames").get_active()
@@ -933,7 +913,6 @@ class GrampsPreferences:
         output_preference = output_obj.get_data(DATA)
         goutput_preference = goutput_obj.get_data(DATA)
     
-        set_bool("/gramps/config/UseTabs",usetabs)
         set_bool("/gramps/config/UseLDS",uselds)
         set_bool("/gramps/config/DisableAutoComplete",not autocomp)
         set_bool("/gramps/config/MakeReference",mediaref)
@@ -943,10 +922,8 @@ class GrampsPreferences:
         set_bool("/gramps/config/UseVersionControl",usevc)
         set_bool("/gramps/config/UseComment",vc_comment)
         set_bool("/gramps/config/DontCompressXML",uncompress)
-        set_bool("/gramps/config/IdVisible",id_visible)
         set_bool("/gramps/config/IdEdit",id_edit)
         set_bool("/gramps/config/IndexVisible",index_visible)
-        set_bool("/gramps/config/ShowDetail",show_detail)
         set_int("/gramps/config/StatusBar",status_bar)
         set_int("/gramps/config/ToolBar",toolbar+1)
         set_bool("/gramps/config/DisplayAttr",display_attr)
