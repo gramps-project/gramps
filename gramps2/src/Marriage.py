@@ -242,7 +242,6 @@ class Marriage:
         self.seal_stat = obj.get_data("val")
 
     def lds_src_clicked(self,obj):
-        import Sources
         ord = self.family.getLdsSeal()
         if ord == None:
             ord = RelLib.LdsOrd()
