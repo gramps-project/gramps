@@ -91,7 +91,7 @@
 	    <widget class="GtkTable" id="table3">
 	      <property name="border_width">12</property>
 	      <property name="visible">True</property>
-	      <property name="n_rows">12</property>
+	      <property name="n_rows">13</property>
 	      <property name="n_columns">3</property>
 	      <property name="homogeneous">False</property>
 	      <property name="row_spacing">6</property>
@@ -418,6 +418,7 @@
 		  <property name="active">True</property>
 		  <property name="inconsistent">False</property>
 		  <property name="draw_indicator">True</property>
+		  <signal name="toggled" handler="on_restrict_toggled" last_modification_time="Tue, 22 Jul 2003 09:50:16 GMT"/>
 		</widget>
 		<packing>
 		  <property name="left_attach">1</property>
@@ -494,6 +495,50 @@
 		  <property name="bottom_attach">6</property>
 		  <property name="x_options">fill</property>
 		  <property name="y_options"></property>
+		</packing>
+	      </child>
+
+	      <child>
+		<widget class="GtkHBox" id="hbox1">
+		  <property name="visible">True</property>
+		  <property name="homogeneous">False</property>
+		  <property name="spacing">0</property>
+
+		  <child>
+		    <widget class="GtkDrawingArea" id="drawingarea1">
+		      <property name="visible">True</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">12</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+
+		  <child>
+		    <widget class="GtkCheckButton" id="living">
+		      <property name="visible">True</property>
+		      <property name="can_focus">True</property>
+		      <property name="label" translatable="yes">Use _Living as first name</property>
+		      <property name="use_underline">True</property>
+		      <property name="relief">GTK_RELIEF_NORMAL</property>
+		      <property name="active">True</property>
+		      <property name="inconsistent">False</property>
+		      <property name="draw_indicator">True</property>
+		    </widget>
+		    <packing>
+		      <property name="padding">0</property>
+		      <property name="expand">False</property>
+		      <property name="fill">False</property>
+		    </packing>
+		  </child>
+		</widget>
+		<packing>
+		  <property name="left_attach">1</property>
+		  <property name="right_attach">3</property>
+		  <property name="top_attach">12</property>
+		  <property name="bottom_attach">13</property>
+		  <property name="x_options">fill</property>
 		</packing>
 	      </child>
 	    </widget>

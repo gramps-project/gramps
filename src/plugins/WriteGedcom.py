@@ -370,6 +370,7 @@ class GedcomWriter:
                 "gnu_free" : self.gnu_free,
                 "standard_copyright" : self.standard_copyright,
                 "no_copyright" : self.no_copyright,
+                "on_restrict_toggled": self.on_restrict_toggled,
                 "on_ok_clicked" : self.on_ok_clicked
                 })
 
@@ -429,10 +430,16 @@ class GedcomWriter:
         
     def no_copyright(self,obj):
         self.copy = 2
-        
+
+    def on_restrict_toggled(self,restrict):
+        living = self.topDialog.get_widget("living")
+        living.set_sensitive (restrict.get_active ())
+
     def on_ok_clicked(self,obj):
     
         self.restrict = self.topDialog.get_widget("restrict").get_active()
+        self.living = (self.restrict and
+                       self.topDialog.get_widget("living").get_active())
         self.private = self.topDialog.get_widget("private").get_active()
 
         cfilter = self.filter_menu.get_active().get_data("filter")
@@ -762,10 +769,21 @@ class GedcomWriter:
 
     def write_person(self,person):
         self.writeln("0 @%s@ INDI" % self.pid(person.getId()))
+        restricted = self.restrict and person.probablyAlive ()
         self.prefn(person)
-        self.write_person_name(person.getPrimaryName(),person.getNickName())
+        primaryname = person.getPrimaryName ()
+        if restricted and self.living:
+            primaryname = RelLib.Name (primaryname)
+            primaryname.setFirstName ("Living")
+            nickname = ""
+        else:
+            primaryname = person.getPrimaryName ()
+            nickname = person.getNickName ()
 
-        if self.altname == GedcomInfo.ALT_NAME_STD:
+        self.write_person_name(primaryname, nickname)
+
+        if (self.altname == GedcomInfo.ALT_NAME_STD and
+            not (restricted and self.living)):
             for name in person.getAlternateNames():
                 self.write_person_name(name,"")
     
@@ -774,7 +792,7 @@ class GedcomWriter:
         elif person.getGender() == RelLib.Person.female:	
             self.writeln("1 SEX F")
 
-        if not self.restrict or not person.probablyAlive():
+        if not restricted:
 
             birth = person.getBirth()
             if not (self.private and birth.getPrivacy()):
@@ -911,18 +929,19 @@ class GedcomWriter:
             if family != None and self.flist.has_key(family.getId()):
                 self.writeln("1 FAMS @%s@" % self.fid(family.getId()))
 
-        if self.obje:
-            for url in person.getUrlList():
-                self.writeln('1 OBJE')
-                self.writeln('2 FORM URL')
-                if url.get_description():
-                    self.writeln('2 TITL %s' % url.get_description())
-                if url.get_path():
-                    self.writeln('2 FILE %s' % url.get_path())
+        if not restricted:
+            if self.obje:
+                for url in person.getUrlList():
+                    self.writeln('1 OBJE')
+                    self.writeln('2 FORM URL')
+                    if url.get_description():
+                        self.writeln('2 TITL %s' % url.get_description())
+                    if url.get_path():
+                        self.writeln('2 FILE %s' % url.get_path())
 
-        if person.getNote():
-            self.write_long_text("NOTE",1,self.cnvtxt(person.getNote()))
-			
+            if person.getNote():
+                self.write_long_text("NOTE",1,self.cnvtxt(person.getNote()))
+
     def write_long_text(self,tag,level,note):
         if self.conc == GedcomInfo.CONC_OK:
             self.write_conc_ok(tag,level,note)
