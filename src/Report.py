@@ -685,8 +685,9 @@ class ReportDialog:
             self.filter_combo = GtkOptionMenu()
             l = GtkLabel(_("Filter"))
             l.set_alignment(1.0,0.5)
-            table.attach(l,0,1,row,row+1,FILL,FILL,pad,pad)
-            table.attach(self.filter_combo,1,2,row,row+1,
+            table.attach(l,0,1,row,row+1,xoptions=FILL,yoptions=0,
+                         xpadding=pad,ypadding=pad)
+            table.attach(self.filter_combo,1,2,row,row+1,yoptions=0,
                          xpadding=pad,ypadding=pad)
 
             menu = GenericFilter.build_filter_menu(local_filters)
@@ -704,9 +705,10 @@ class ReportDialog:
             adjustment.value_changed()
             l = GtkLabel(_("Generations"))
             l.set_alignment(1.0,0.5)
-            table.attach(l,0,1,row,row+1,FILL,FILL,pad,pad)
-            table.attach(self.generations_spinbox,1,2,row,row+1,
+            table.attach(l,0,1,row,row+1,xoptions=FILL,yoptions=0,
                          xpadding=pad,ypadding=pad)
+            table.attach(self.generations_spinbox,1,2,row,row+1,
+                         yoptions=0, xpadding=pad,ypadding=pad)
             row = row + 1
 
             if use_break:
@@ -726,8 +728,8 @@ class ReportDialog:
             self.extra_menu.set_sensitive(len(extra_map) > 1)
             self.add_tooltip(self.extra_menu,em_tip)
             table.attach(self.extra_menu_label,0,1,row,row+1,
-                         FILL,FILL,pad,pad)
-            table.attach(self.extra_menu,1,2,row,row+1,
+                         xoptions=FILL,yoptions=0,xpadding=pad,ypadding=pad)
+            table.attach(self.extra_menu,1,2,row,row+1,yoptions=0,
                          xpadding=pad,ypadding=pad)
             row = row + 1
             
@@ -739,19 +741,21 @@ class ReportDialog:
             self.extra_textbox.insert_defaults(string)
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
-            table.attach(self.extra_textbox_label,0,1,row,row+1,FILL,FILL,pad,pad)
-            table.attach(self.extra_textbox,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            table.attach(self.extra_textbox_label,0,1,row,row+1,xoptions=FILL,
+                         yoptions=0,xpadding=pad,ypadding=pad)
+            table.attach(self.extra_textbox,1,2,row,row+1,
+                         yoptions=0,xpadding=pad,ypadding=pad)
             row = row + 1
 
         # Setup requested widgets
         for (text,widget) in self.widgets:
             if text == None:
-                table.attach(widget,0,2,row,row+1,xpadding=pad,ypadding=pad)
+                table.attach(widget,0,2,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
             else:
                 text_widget = GtkLabel(text)
                 text_widget.set_alignment(1.0,0)
-                table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
-                table.attach(widget,1,2,row,row+1,xpadding=pad,ypadding=pad)
+                table.attach(text_widget,0,1,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
+                table.attach(widget,1,2,row,row+1,yoptions=0,xpadding=pad,ypadding=pad)
             row = row + 1
         
 

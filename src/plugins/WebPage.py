@@ -26,6 +26,7 @@ from HtmlDoc import *
 import const
 import GrampsCfg
 import GenericFilter
+import Date
 import intl
 _ = intl.gettext
 
@@ -40,6 +41,10 @@ from gtk import *
 from gnome.ui import *
 from libglade import *
 from Report import *
+
+_month = [
+    "",    "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
 #------------------------------------------------------------------------
 #
@@ -561,7 +566,7 @@ class IndividualPage:
 class WebReport(Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
                  private, srccomments, include_link, style, image_dir,
-                 template_name,use_id,id_link):
+                 template_name,use_id,id_link,gendex):
         self.db = db
         self.use_id = use_id
         self.id_link = id_link
@@ -576,17 +581,96 @@ class WebReport(Report):
         self.include_link = include_link
         self.selected_style = style
         self.image_dir = image_dir
+        self.use_gendex = gendex
         self.template_name = template_name
 
     def get_progressbar_data(self):
         return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
     
-    #------------------------------------------------------------------------
-    #
-    # Writes a index file, listing all people in the person list.
-    #
-    #------------------------------------------------------------------------
+    def make_date(self,date):
+        start = date.get_start_date()
+        if date.isEmpty():
+            val = date.getText()
+        elif date.isRange():
+            val = "FROM %s TO %s" % (self.subdate(start),
+                                     self.subdate(date.get_stop_date()))
+        else:
+            val = self.subdate(start)
+        return val
+
+    def subdate(self,subdate):
+        retval = ""
+        day = subdate.getDay()
+        mon = subdate.getMonth()
+        year = subdate.getYear()
+        mode = subdate.getModeVal()
+        day_valid = subdate.getDayValid()
+        mon_valid = subdate.getMonthValid()
+        year_valid = subdate.getYearValid()
+        
+        if not day_valid:
+            try:
+                if not mon_valid:
+                    retval = str(year)
+                elif not year_valid:
+                    retval = _month[mon]
+                else:
+                    retval = "%s %d" % (_month[mon],year)
+            except IndexError:
+                print "Month index error - %d" % mon
+                retval = str(year)
+        elif not mon_valid:
+            retval = str(year)
+        else:
+            try:
+                month = _month[mon]
+                if not year_valid:
+                    retval = "%d %s ????" % (day,month)
+                else:
+                    retval = "%d %s %d" % (day,month,year)
+            except IndexError:
+                print "Month index error - %d" % mon
+                retval = str(year)
+        if mode == Date.SingleDate.about:
+            retval = "ABT %s"  % retval
+        elif mode == Date.SingleDate.before:
+            retval = "BEF %s" % retval
+        elif mode == Date.SingleDate.after:
+            retval = "AFT %s" % retval
+        return retval
+
+    def dump_gendex(self,person_list,html_dir):
+        fname = "%s/gendex.txt" % html_dir
+        try:
+            f = open(fname,"w")
+        except:
+            return
+        for p in person_list:
+            name = p.getPrimaryName()
+            firstName = name.getFirstName()
+            surName = name.getSurname()
+            suffix = name.getSuffix()
+
+            f.write("%s.html|" % p.getId())
+            f.write("%s|" % surName)
+            if suffix == "":
+                f.write("%s /%s/" % (firstName,surName))
+            else:
+                f.write("%s /%s/, %s" % (firstName,surName, suffix))
+            for e in [p.getBirth(),p.getDeath()]:
+                if e:
+                    f.write("%s|" % self.make_date(e.getDateObj()))
+                    if e.getPlace():
+                        f.write('%s|' % e.getPlace().get_title())
+                    else:
+                        f.write('|')
+                else:
+                    f.write('||')
+            f.write('\n')
+        f.close()
+
     def dump_index(self,person_list,styles,template,html_dir):
+        """Writes a index file, listing all people in the person list."""
     
         doc = HtmlLinkDoc(self.selected_style,None,template,None)
         doc.set_title(_("Family Tree Index"))
@@ -702,6 +786,8 @@ class WebReport(Report):
         if len(ind_list) > 1:
             self.dump_index(ind_list,self.selected_style,
                             self.template_name,dir_name)
+        if self.use_gendex == 1:
+            self.dump_gendex(ind_list,dir_name)
         self.progress_bar_done()
 
     def add_styles(self,doc):
@@ -739,6 +825,7 @@ class WebReportDialog(ReportDialog):
         no_limg_msg = _("Do not use images for living people")
         no_com_msg = _("Do not include comments and text in source information")
         include_id_msg = _("Include the GRAMPS ID in the report")
+        gendex_msg = _("Create a GENDEX index")
         imgdir_msg = _("Image subdirectory")
 
         self.use_link = GtkCheckButton(lnk_msg)
@@ -750,6 +837,7 @@ class WebReportDialog(ReportDialog):
         self.no_living_images = GtkCheckButton(no_limg_msg)
         self.no_comments = GtkCheckButton(no_com_msg)
         self.include_id = GtkCheckButton(include_id_msg)
+        self.gendex = GtkCheckButton(gendex_msg)
         self.imgdir = GtkEntry()
         self.imgdir.set_text("images")
         self.linkpath = GtkEntry()
@@ -769,6 +857,7 @@ class WebReportDialog(ReportDialog):
         title = _('Advanced')
         self.add_frame_option(title,'',self.include_id)
         self.add_frame_option(title,_('GRAMPS ID link URL'),self.linkpath)
+        self.add_frame_option(title,'',self.gendex)
 
         self.no_images.connect('toggled',self.on_nophotos_toggled)
 
@@ -992,6 +1081,7 @@ class WebReportDialog(ReportDialog):
         self.img_dir_text = self.imgdir.get_text()
 
         self.use_id = self.include_id.get_active()
+        self.use_gendex = self.gendex.get_active()
         self.id_link = string.strip(self.linkpath.get_text())
         self.srccomments = self.no_comments.get_active()
         if self.no_images.get_active() == 1:
@@ -1028,7 +1118,7 @@ class WebReportDialog(ReportDialog):
                              self.restrict, self.private, self.srccomments,
                              self.include_link, self.selected_style,
                              self.img_dir_text,self.template_name,
-                             self.use_id,self.id_link)
+                             self.use_id,self.id_link,self.use_gendex)
         MyReport.write_report()
     
 #------------------------------------------------------------------------
