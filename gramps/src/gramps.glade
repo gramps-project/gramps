@@ -453,7 +453,7 @@
 	    <last_modification_time>Thu, 15 Feb 2001 22:24:33 GMT</last_modification_time>
 	  </signal>
 	  <label>People</label>
-	  <stock_pixmap>GNOME_STOCK_PIXMAP_INDEX</stock_pixmap>
+	  <icon>people.xpm</icon>
 	  <child>
 	    <new_group>True</new_group>
 	  </child>

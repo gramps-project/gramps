@@ -26,6 +26,11 @@
     <object>propertybox</object>
     <last_modification_time>Tue, 05 Dec 2000 01:34:12 GMT</last_modification_time>
   </signal>
+  <signal>
+    <name>help</name>
+    <handler>on_propertybox_help</handler>
+    <last_modification_time>Wed, 22 Aug 2001 02:13:46 GMT</last_modification_time>
+  </signal>
   <title>Gramps - Preferences</title>
   <position>GTK_WIN_POS_CENTER</position>
   <modal>False</modal>
