@@ -293,4 +293,4 @@ def get_relationship(orig_person,other_person):
 from Plugins import register_relcalc
 
 register_relcalc(get_relationship,
-    ["ru","RU","ru_RU","koi8r","ru_koi8r","russian","Russian","ru_RU.koi8r"])
+    ["ru","RU","ru_RU","koi8r","ru_koi8r","russian","Russian","ru_RU.koi8r","ru_RU.KOI8-R","ru_RU.utf8"])

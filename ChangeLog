@@ -1,5 +1,6 @@
 2003-09-25  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/DetAncestralReport.py: Fix translatable string.
+	* src/plugins/rel_ru.py: Add more possible language codes.
 
 2003-09-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/WriteFTree.py: increment the count properly
