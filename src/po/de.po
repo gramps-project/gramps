@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gramps\n"
-"POT-Creation-Date: Tue Mar 12 07:35:37 2002\n"
+"POT-Creation-Date: Tue Mar 12 20:00:53 2002\n"
 "PO-Revision-Date: 2002-03-12 19:33+01:00\n"
 "Last-Translator: Bernd Schandl <schandl@gmx.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -1347,6 +1347,10 @@ msgstr "Ausrichtung"
 #: Report.py:571
 msgid "Page Count"
 msgstr "Seitenzahl"
+
+#: Report.py:581 plugins/eventcmp.glade:225
+msgid "Template"
+msgstr "Vorlage"
 
 #: Report.py:582
 msgid "Choose File"
@@ -4011,10 +4015,6 @@ msgstr "Format"
 #: plugins/eventcmp.glade:173
 msgid "OpenOffice Spreadsheet"
 msgstr "OpenOffice Spreadsheet"
-
-#: plugins/eventcmp.glade:225
-msgid "Template"
-msgstr "Vorlage"
 
 #: plugins/eventcmp.glade:246
 msgid "Choose the HTML template"
