@@ -9,7 +9,6 @@
 	* src/MergeData.py: preserve most data while merging families
 	* src/PeopleView.py: allow multiple selection in people list
 	* src/ReadGedcom.py: keep source information in families
-	* src/RelLib.py
 
 2005-02-26  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/AddrEdit.py: update main source list after source addition
