@@ -44,18 +44,12 @@ class BaseModel(gtk.GenericTreeModel):
         self.connect('row-deleted',self.on_row_deleted)
 
     def rebuild_data(self):
-        self.iter2path = {}
-        self.path2iter = {}
+        self.datalist = []
 
         if not self.db.is_open():
             return
         
-        val = 0
-        keys = self.sort_keys()
-        for place_handle in keys:
-            self.iter2path[place_handle] = (val,)
-            self.path2iter[(val,)] = place_handle
-            val += 1
+        self.datalist = self.sort_keys()
         
     def on_row_inserted(self,obj,path,iter):
         self.rebuild_data()
@@ -65,7 +59,7 @@ class BaseModel(gtk.GenericTreeModel):
 
     def on_get_flags(self):
 	'''returns the GtkTreeModelFlags for this particular type of model'''
-	return gtk.TREE_MODEL_LIST_ONLY
+	return gtk.TREE_MODEL_LIST_ONLY | gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
         return 10
@@ -73,42 +67,47 @@ class BaseModel(gtk.GenericTreeModel):
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various
 	levels) for a particular node.'''
-        return self.iter2path[node]
+        return self.datalist.index(node[0])
 
     def on_get_column_type(self,index):
         return gobject.TYPE_STRING
 
     def on_get_iter(self, path):
-        return self.path2iter.get(path)
+        try:
+            return self.datalist[path[0]]
+        except IndexError:
+            return None
 
     def on_get_value(self,iter,col):
         return self.fmap[col](self.map[str(iter)])
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''
-        path = self.iter2path.get(node)
-        return self.path2iter.get((path[0]+1,))
+        try:
+            return self.datalist[self.datalist.index(node)+1]
+        except IndexError:
+            return None
 
     def on_iter_children(self,node):
         """Return the first child of the node"""
         if node == None:
-            return self.path2iter[(0,)]
+            return self.datalist[0]
         return None
 
     def on_iter_has_child(self, node):
 	'''returns true if this node has children'''
         if node == None:
-            return len(self.iter2path) > 0
+            return len(self.datalist) > 0
         return 0
 
     def on_iter_n_children(self,node):
         if node == None:
-            return len(self.iter2path)
+            return len(self.datalist)
         return 0
 
     def on_iter_nth_child(self,node,n):
         if node == None:
-            return self.path2iter.get((n,))
+            return self.datalist[n]
         return None
 
     def on_iter_parent(self, node):
