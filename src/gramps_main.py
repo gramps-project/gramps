@@ -159,7 +159,7 @@ def on_merge_activate(obj):
     if page == 0:
         if len(person_list.selection) != 2:
             msg = _("Exactly two people must be selected to perform a merge")
-            GnomeErrorDialog()
+            GnomeErrorDialog(msg)
         else:
             import MergeData
             p1 = person_list.get_row_data(person_list.selection[0])
@@ -529,7 +529,7 @@ def on_delete_place_clicked(obj):
     if len(obj.selection) == 0:
         return
     elif len(obj.selection) > 1:
-        msg = _("Currently, you can only delete on place at a time")
+        msg = _("Currently, you can only delete one place at a time")
         topWindow.error(msg)
         return
     else:

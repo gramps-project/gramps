@@ -265,7 +265,7 @@
 	    <class>GtkLabel</class>
 	    <child_name>CList:title</child_name>
 	    <name>label57</name>
-	    <label>Person #1</label>
+	    <label>Person 1</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>0.5</xalign>
@@ -278,7 +278,7 @@
 	    <class>GtkLabel</class>
 	    <child_name>CList:title</child_name>
 	    <name>label58</name>
-	    <label>Person #2</label>
+	    <label>Person 2</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>0.5</xalign>

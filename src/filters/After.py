@@ -37,6 +37,7 @@ class EventAfter(Filter.Filter):
     def __init__(self,text):
         self.date = Date.Date()
         self.date.set(text)
+        Filter.Filter.__init__(self,text)
 
     def match(self,p):
         for event in p.getEventList() + [p.getBirth(), p.getDeath()]:

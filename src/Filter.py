@@ -47,19 +47,15 @@ class Filter:
         self.text = text
         self.invert = 0
 
-    #-------------------------------------------------------------------------
-    #
-    # compare
-    #
-    #-------------------------------------------------------------------------
+    def get_text(self):
+        return self.text
+
+    def get_invert(self):
+        return self.invert
+
     def set_invert(self,invert):
         self.invert = invert
 
-    #-------------------------------------------------------------------------
-    #
-    # compare
-    #
-    #-------------------------------------------------------------------------
     def compare(self,person):
         val = self.match(person)
         if self.invert:
@@ -67,20 +63,9 @@ class Filter:
         else:
             return val
 
-    #-------------------------------------------------------------------------
-    #
-    # __repr__ - print representation
-    #
-    #-------------------------------------------------------------------------
-    def __repr__(self):
+    def get_name(self):
         return str(self.__class__)
 
-    #-------------------------------------------------------------------------
-    #
-    # match - returns true if a match is made.  The base class matches 
-    # everything.  
-    #
-    #-------------------------------------------------------------------------
     def match(self,person):
         return 1
 
@@ -91,11 +76,27 @@ class Filter:
 #-------------------------------------------------------------------------
 
 _filter_list = [(Filter, _("All people"), 0)]
+_filter2class = {}
+_filter2descr = {}
 
 def register_filter(class_name, description=None, qualifier=0):
+    name = str(class_name)
     if description == None:
         description = _("No description")
+    _filter2class[name] = class_name
+    _filter2descr[name] = description
     _filter_list.append((class_name,description,qualifier))
+
+def get_filter_description(name):
+    if _filter2descr.has_key(name):
+        return _filter2descr[name]
+    else:
+        return ""
+
+def make_filter_from_name(name,qualifier,invert):
+    a = _filter2class[name](qualifier)
+    a.set_invert(invert)
+    return a
 
 #-------------------------------------------------------------------------
 #

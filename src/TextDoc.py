@@ -174,7 +174,7 @@ class TableStyle:
         else:
             self.width = 0
             self.columns = 0
-            self.colwid = [ 0 ] * 10
+            self.colwid = [ 0 ] * 100
 
     def set_width(self,width):
         self.width = width
