@@ -1,3 +1,6 @@
+2004-11-06  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DateHandler.py: handle en_GB, en_AU and en_CA locales
+
 2004-11-05  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ImageSelect.py: Add date/place property to media objects
 	* src/ReadXML.py: Add date/place property to media objects
