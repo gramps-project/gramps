@@ -1,3 +1,16 @@
+2003-07-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/ListModel.py: set the cell renderers to a fixed size
+	to improve performance
+	* src/PlaceView.py: set the cell renderers to a fixed size
+	to improve performance
+	* src/SourceView.py: set the cell renderers to a fixed size
+	to improve performance
+	* src/Sources.py: set the cell renderers to a fixed size
+	to improve performance
+	* src/Utils.py: set the cell renderers to a fixed size
+	to improve performance
+	* src/gramps_main.py: prevent double loading of place_view
+
 2003-07-25  Tim Waugh  <twaugh@redhat.com>
 	* src/Report.py: Support for making output formats printable.
 	* src/plugins/GraphViz.py: Make it printable.
