@@ -33,7 +33,6 @@ import os
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-import gobject
 import gtk
 import gtk.gdk
 
@@ -48,7 +47,6 @@ import GrampsCfg
 import const
 import ImageSelect
 import RelImage
-import ColumnOrder
 import DisplayModels
 import GrampsMime
 
@@ -160,22 +158,22 @@ class MediaView:
     def on_select_row(self,obj):
         fexists = 1
 
-        store,iter = self.selection.get_selected()
-        if not iter:
+        store,node = self.selection.get_selected()
+        if not node:
             return
         
-        id = store.get_value(iter,1)
+        handle = store.get_value(node,1)
         
-        mobj = self.db.get_object_from_handle(id)
-        type = mobj.get_mime_type()
-        type_name = Utils.get_mime_description(type)
+        mobj = self.db.get_object_from_handle(handle)
+        mtype = mobj.get_mime_type()
+        type_name = Utils.get_mime_description(mtype)
         path = mobj.get_path()
         thumb_path = Utils.thumb_path(self.db.get_save_path(),mobj)
         pexists = os.path.exists(path)
         if pexists and os.path.exists(thumb_path):
             self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
         else:
-            icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(type))
+            icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(mtype))
             self.preview.set_from_pixbuf(icon_image)
             if not pexists:
                 fexists = 0
@@ -211,12 +209,12 @@ class MediaView:
         menu = gtk.Menu()
         menu.set_title(_("Media Object"))
 
-        store,iter = self.selection.get_selected()
-        if iter:
-            id = store.get_value(iter,1)
-            object = self.db.get_object_from_handle(id)
-            self.obj = object
-            mime_type = object.get_mime_type()
+        store,node = self.selection.get_selected()
+        if node:
+            handle = store.get_value(node,1)
+            obj = self.db.get_object_from_handle(handle)
+            self.obj = obj
+            mime_type = obj.get_mime_type()
             
             Utils.add_menuitem(menu,_("View in the default viewer"),None,
                                self.popup_view_photo)
@@ -255,8 +253,8 @@ class MediaView:
     
     def popup_convert_to_private(self, obj):
         path = self.db.get_save_path()
-        id = self.obj.get_handle()
-        name = RelImage.import_media_object(self.obj.get_path(),path,id)
+        handle = self.obj.get_handle()
+        name = RelImage.import_media_object(self.obj.get_path(),path,handle)
         if name:
             self.obj.set_path(name)
             self.load_media()
@@ -277,20 +275,20 @@ class MediaView:
     def on_edit_clicked(self,obj):
         """Edit the properties of an existing media object in the media list"""
 
-        list_store, iter = self.selection.get_selected()
-        if iter:
-            id = list_store.get_value(iter,1)
-            object = self.db.get_object_from_handle(id)
-            ImageSelect.GlobalMediaProperties(self.db,object,self.load_media,
+        list_store, node = self.selection.get_selected()
+        if node:
+            handle = list_store.get_value(node,1)
+            obj = self.db.get_object_from_handle(handle)
+            ImageSelect.GlobalMediaProperties(self.db,obj,self.load_media,
                                                 self,self.topWindow)
 
     def on_delete_clicked(self,obj):
-        store,iter = self.selection.get_selected()
-        if not iter:
+        store,node = self.selection.get_selected()
+        if not node:
             return
 
-        id = store.get_value(iter,1)
-        mobj = self.db.get_object_from_handle(id)
+        handle = store.get_value(node,1)
+        mobj = self.db.get_object_from_handle(handle)
         if self.is_object_used(mobj):
             ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.build_tree)
             QuestionDialog(_('Delete Media Object?'),
@@ -330,13 +328,12 @@ class MediaView:
         return 0
 
     def on_drag_begin(self,obj,context):
-        store,iter = self.selection.get_selected()
-        if not iter:
+        store,node = self.selection.get_selected()
+        if not node:
             return
         if (const.dnd_images):
-            object = self.db.get_object_from_handle(store.get_value(iter,1))
-            mtype = object.get_mime_type()
-            name = Utils.thumb_path(self.db.get_save_path(),object)
+            obj = self.db.get_object_from_handle(store.get_value(node,1))
+            name = Utils.thumb_path(self.db.get_save_path(),obj)
             pix = gtk.gdk.pixbuf_new_from_file(name)
             context.set_icon_pixbuf(pix,0,0)
 
@@ -344,20 +341,19 @@ class MediaView:
         if info == 1:
             return
 
-        store,iter = self.selection.get_selected()
-        if not iter:
+        store,node = self.selection.get_selected()
+        if not node:
             return
-        id = store.get_value(iter,1)
-        selection_data.set(selection_data.target, 8, id)	
+        handle = store.get_value(node,1)
+        selection_data.set(selection_data.target, 8, handle)	
 
     def on_drag_data_received(self,w, context, x, y, data, info, time):
         print "on_drag_data_received"
         import urlparse
         if data and data.format == 8:
             d = string.strip(string.replace(data.data,'\0',' '))
-            protocol,site,file, j,k,l = urlparse.urlparse(d)
+            protocol,site,name, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
-                name = file
                 mime = GrampsMime.get_type(name)
                 photo = RelLib.MediaObject()
                 photo.set_path(name)
@@ -398,9 +394,9 @@ class MediaView:
                 oref = RelLib.MediaRef()
                 oref.set_reference_handle(photo.get_handle())
                 try:
-                    id = photo.get_handle()
+                    handle = photo.get_handle()
                     path = self.db.get_save_path()
-                    name = RelImage.import_media_object(tfile,path,id)
+                    name = RelImage.import_media_object(tfile,path,handle)
                     if name:
                         photo.set_path(name)
                 except:

@@ -209,15 +209,15 @@ class PedigreeView:
         style = self.canvas.get_style()
         font = gtk.gdk.font_from_description(style.font_desc)
 
-        list = [None]*31
-        self.find_tree(self.active_person,0,1,list)
+        lst = [None]*31
+        self.find_tree(self.active_person,0,1,lst)
 
         # determine the largest string width and height for calcuation
         # of box sizes.
 
         a = pango.Layout(self.canvas.get_pango_context())
         
-        for t in list:
+        for t in lst:
             if t:
                 birth_handle = t[0].get_birth_handle()
                 death_handle = t[0].get_death_handle()
@@ -281,12 +281,12 @@ class PedigreeView:
                 self.canvas_items.append(arrow)
                 break
 
-        if list[1]:
-            p = list[1]
+        if lst[1]:
+            p = lst[1]
             self.add_parent_button(p[0],x2-_PAD,ypts[1],h)
         
-        if list[2]:
-            p = list[2]
+        if lst[2]:
+            p = lst[2]
             self.add_parent_button(p[0],x2-_PAD,ypts[2],h)
 
         gen_no = 1
@@ -306,19 +306,19 @@ class PedigreeView:
             gen_no = gen_no + 1
 
         for i in range(gen):
-            if list[i]:
+            if lst[i]:
                 if i < int(gen/2.0):
                     findex = (2*i)+1 
                     mindex = findex+1
-                    if list[findex]:
-                        p = list[findex]
+                    if lst[findex]:
+                        p = lst[findex]
                         self.draw_canvas_line(xpts[i], ypts[i], xpts[findex],
                                               ypts[findex], h, w, p[0], style, p[1])
-                    if list[mindex]:
-                        p = list[mindex]
+                    if lst[mindex]:
+                        p = lst[mindex]
                         self.draw_canvas_line(xpts[i],ypts[i], xpts[mindex],
                                               ypts[mindex], h, w, p[0], style, p[1])
-                p = list[i]
+                p = lst[i]
                 box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],self.parent.db,
                               self.change_active_person, 
                               self.load_person, self.build_full_nav_menu)
@@ -479,7 +479,7 @@ class PedigreeView:
             obj.set(fill_color_gdk=style.fg[gtk.STATE_NORMAL], width_pixels=2)
             self.update()
 
-    def find_tree(self,person,index,depth,list,val=0):
+    def find_tree(self,person,index,depth,lst,val=0):
         """Recursively build a list of ancestors"""
 
         if depth > 5 or person == None:
@@ -491,16 +491,16 @@ class PedigreeView:
             frel = (f != "Birth")
 
         family = self.parent.db.get_family_from_handle(family_handle)
-        list[index] = (person,val)
+        lst[index] = (person,val)
         if family != None:
             father_handle = family.get_father_handle()
             if father_handle != None:
                 father = self.parent.db.get_person_from_handle(father_handle)
-                self.find_tree(father,(2*index)+1,depth+1,list,frel)
+                self.find_tree(father,(2*index)+1,depth+1,lst,frel)
             mother_handle = family.get_mother_handle()
             if mother_handle != None:
                 mother = self.parent.db.get_person_from_handle(mother_handle)
-                self.find_tree(mother,(2*index)+2,depth+1,list,mrel)
+                self.find_tree(mother,(2*index)+2,depth+1,lst,mrel)
 
     def on_canvas1_event(self,obj,event):
         """Handle resize events over the canvas, redrawing if the size changes"""
@@ -518,6 +518,7 @@ class PedigreeView:
         if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
             self.build_nav_menu(event)
             return gtk.TRUE
+        return gtk.FALSE
 
     def add_nav_portion_to_menu(self,menu):
         """
@@ -738,7 +739,7 @@ def get_distance(db,orig_person,other_person):
         r = Relationship.RelationshipCalculator(db)
         r.apply_filter(orig_person,0,firstList,firstMap)
         r.apply_filter(other_person,0,secondList,secondMap)
-    except RuntimeError,msg:
+    except RuntimeError:
         return None
     
     for person_handle in firstList:

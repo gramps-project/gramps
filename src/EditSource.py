@@ -218,9 +218,9 @@ class EditSource:
                     if sref.get_base_handle() == self.source.get_handle():
                         p_addr_list.append((name,v.get_street()))
         for object_handle in self.db.get_media_object_handles():
-            object = self.db.get_object_from_handle(object_handle)
-            name = object.get_description()
-            for sref in object.get_source_references():
+            obj = self.db.get_object_from_handle(object_handle)
+            name = obj.get_description()
+            for sref in obj.get_source_references():
                 if sref.get_base_handle() == self.source.get_handle():
                     m_list.append(name)
         for family_handle in self.db.get_family_handles():
@@ -356,16 +356,16 @@ class DelSrcQuery:
         self.db = db
         self.update = update
 
-    def delete_source(self,object):
+    def delete_source(self,obj):
         m = 0
         l = []
-        for sref in object.get_source_references():
+        for sref in obj.get_source_references():
             if sref.get_base_handle() != self.source.get_handle():
                 l.append(sref)
             else:
                 m = 1
         if m:
-            object.set_source_reference_list(l)
+            obj.set_source_reference_list(l)
         return m
 
     def query_response(self):

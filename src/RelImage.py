@@ -61,8 +61,8 @@ def import_media_object(filename,path,base):
 
     ext = os.path.splitext(filename)[1]
     
-    type = GrampsMime.get_type(filename)
-    if type[0:5] == "image":
+    mtype = GrampsMime.get_type(filename)
+    if mtype[0:5] == "image":
         name = "%s/%s%s" % (os.path.dirname(path),base,ext)
         thumb = "%s/.thumb" % (os.path.dirname(path))
 
@@ -137,26 +137,26 @@ def scale_image(path,size):
 #
 #-------------------------------------------------------------------------
 def mk_thumb(source,dest,size):
-    dir = os.path.dirname(dest)
+    directory = os.path.dirname(dest)
 
     source = os.path.normpath(source)
     dest = os.path.normpath(dest)
 
     try:
-        if not os.path.exists(dir):
-            os.mkdir(dir)
+        if not os.path.exists(directory):
+            os.mkdir(directory)
     except IOError,msg:
-        ErrorDialog(_("Could not create %s") % dir, str(msg))
+        ErrorDialog(_("Could not create %s") % directory, str(msg))
         return
     except:
-        ErrorDialog(_("Could not create %s") % dir)
+        ErrorDialog(_("Could not create %s") % directory)
         return
 
     if os.path.exists(dest):
         try:
             os.remove(dest)
         except IOError,msg:
-            errmsg = _("Could not replace %s") % dir
+            errmsg = _("Could not replace %s") % directory
             ErrorDialog(errmsg,msg)
             return
 

@@ -215,10 +215,10 @@ class PluginDialog:
         """Updates the informational display on the right hand side of
         the dialog box with the description of the selected report"""
 
-        store,iter = self.selection.get_selected()
-        if iter:
-            path = store.get_path(iter)
-        if not iter or not self.imap.has_key(path):
+        store,node = self.selection.get_selected()
+        if node:
+            path = store.get_path(node)
+        if not node or not self.imap.has_key(path):
             self.statbox.hide()
             return 
         self.statbox.show()
@@ -344,14 +344,14 @@ class PluginStatus:
             info.write(_("The following modules could not be loaded:"))
             info.write("\n\n")
             
-            for (file,msg) in _expect:
-                info.write("%s: %s\n\n" % (file,msg))
+            for (filename,msg) in _expect:
+                info.write("%s: %s\n\n" % (filename,msg))
 
-            for (file,msgs) in _failmsg:
+            for (filename,msgs) in _failmsg:
                 error = str(msgs[0])
                 if error[0:11] == "exceptions.":
                     error = error[11:]
-                info.write("%s: %s\n" % (file,error) )
+                info.write("%s: %s\n" % (filename,error) )
                 traceback.print_exception(msgs[0],msgs[1],msgs[2],None,info)
                 info.write('\n')
             info.seek(0)
@@ -394,20 +394,20 @@ def load_plugins(direct):
     # add it to the _success list. If it fails, add it to the _failure
     # list
     
-    for file in os.listdir(direct):
-        name = os.path.split(file)
+    for filename in os.listdir(direct):
+        name = os.path.split(filename)
         match = pymod.match(name[1])
         if not match:
             continue
-        _attempt.append(file)
+        _attempt.append(filename)
         plugin = match.groups()[0]
         try: 
             a = __import__(plugin)
             _success.append(a)
         except Errors.PluginError, msg:
-            _expect.append((file,str(msg)))
+            _expect.append((filename,str(msg)))
         except:
-            _failmsg.append((file,sys.exc_info()))
+            _failmsg.append((filename,sys.exc_info()))
 
 #-------------------------------------------------------------------------
 #
@@ -438,22 +438,22 @@ def reload_plugins(obj):
             _failmsg.append((plugin,sys.exc_info()))
 
     # attempt to load any new files found
-    for dir in _loaddir:
-        for file in os.listdir(dir):
-            name = os.path.split(file)
+    for directory in _loaddir:
+        for filename in os.listdir(directory):
+            name = os.path.split(filename)
             match = pymod.match(name[1])
             if not match:
                 continue
-            if file in _attempt:
+            if filename in _attempt:
                 return
-            _attempt.append(file)
+            _attempt.append(filename)
             plugin = match.groups()[0]
             try: 
                 a = __import__(plugin)
                 if a not in _success:
                     _success.append(a)
             except:
-                _failmsg.append((file,sys.exc_info()))
+                _failmsg.append((filename,sys.exc_info()))
 
 #-------------------------------------------------------------------------
 #
@@ -600,14 +600,14 @@ def build_menu(top_menu,list,callback):
     report_menu = gtk.Menu()
     report_menu.show()
     
-    hash = {}
+    hash_data = {}
     for report in list:
-        if hash.has_key(report[1]):
-            hash[report[1]].append((report[2],report[0]))
+        if hash_data.has_key(report[1]):
+            hash_data[report[1]].append((report[2],report[0]))
         else:
-            hash[report[1]] = [(report[2],report[0])]
+            hash_data[report[1]] = [(report[2],report[0])]
 
-    catlist = hash.keys()
+    catlist = hash_data.keys()
     catlist.sort()
     for key in catlist:
         entry = gtk.MenuItem(key)
@@ -616,9 +616,9 @@ def build_menu(top_menu,list,callback):
         submenu = gtk.Menu()
         submenu.show()
         entry.set_submenu(submenu)
-        list = hash[key]
-        list.sort()
-        for name in list:
+        lst = hash_data[key]
+        lst.sort()
+        for name in lst:
             subentry = gtk.MenuItem("%s..." % name[0])
             subentry.show()
             subentry.connect("activate",callback,name[1])

@@ -128,9 +128,9 @@ class ListModel:
             return path[0][0]-1
 
     def get_selected_row(self):
-        store, iter = self.selection.get_selected()
-        if iter:
-            rows = store.get_path(iter)
+        store, node = self.selection.get_selected()
+        if node:
+            rows = store.get_path(node)
             return rows[0]
         else:
             return -1
@@ -139,9 +139,9 @@ class ListModel:
         if self.count == 0:
             return []
         elif self.mode == gtk.SELECTION_SINGLE:
-            store,iter = self.selection.get_selected()
-            if iter:
-                return [self.model.get_value(iter,self.data_index)]
+            store,node = self.selection.get_selected()
+            if node:
+                return [self.model.get_value(node,self.data_index)]
             else:
                 return []
         else:
@@ -151,98 +151,98 @@ class ListModel:
 
     def get_icon(self):
         if self.mode == gtk.SELECTION_SINGLE:
-            store,iter = self.selection.get_selected()
-            path = self.model.get_path(iter)
+            store,node = self.selection.get_selected()
+            path = self.model.get_path(node)
         else:
             mlist = []
             self.selection.selected_foreach(self.blist,mlist)
             path = self.model.get_path(mlist[0])
         return self.tree.create_row_drag_icon(path)
 
-    def blist(self,store,path,iter,list):
-        list.append(self.model.get_value(iter,self.data_index))
+    def blist(self,store,path,node,list):
+        list.append(self.model.get_value(node,self.data_index))
 
     def clear(self):
         self.count = 0
         self.model.clear()
 
-    def remove(self,iter):
-        self.model.remove(iter)
+    def remove(self,node):
+        self.model.remove(node)
         self.count = self.count - 1
         
-    def get_row(self,iter):
-        row = self.model.get_path(iter)
+    def get_row(self,node):
+        row = self.model.get_path(node)
         return row[0]
 
     def select_row(self,row):
         self.selection.select_path((row))
 
-    def select_iter(self,iter):
-        self.selection.select_iter(iter)
+    def select_iter(self,node):
+        self.selection.select_iter(node)
     
-    def get_object(self,iter):
-        return self.model.get_value(iter,self.data_index)
+    def get_object(self,node):
+        return self.model.get_value(node,self.data_index)
         
     def insert(self,position,data,info=None,select=0):
         self.count = self.count + 1
-        iter = self.model.insert(position)
+        node = self.model.insert(position)
         col = 0
-        for object in data:
-            self.model.set_value(iter,col,object)
+        for obj in data:
+            self.model.set_value(node,col,obj)
             col = col + 1
-        self.model.set_value(iter,col,info)
+        self.model.set_value(node,col,info)
         if info:
-            self.idmap[str(info)] = iter
+            self.idmap[str(info)] = node
         if select:
-            self.selection.select_iter(iter)
-        return iter
+            self.selection.select_iter(node)
+        return node
     
-    def get_data(self,iter,cols):
-        return [ self.model.get_value(iter,c) for c in cols ]
+    def get_data(self,node,cols):
+        return [ self.model.get_value(node,c) for c in cols ]
     
     def add(self,data,info=None,select=0):
         self.count = self.count + 1
-        iter = self.model.append()
+        node = self.model.append()
         col = 0
-        for object in data:
-            self.model.set_value(iter,col,object)
+        for obj in data:
+            self.model.set_value(node,col,obj)
             col = col + 1
-        self.model.set_value(iter,col,info)
+        self.model.set_value(node,col,info)
         if info:
-            self.idmap[str(info)] = iter
+            self.idmap[str(info)] = node
         if select:
-            self.sel_iter = iter
+            self.sel_iter = node
             self.selection.select_iter(self.sel_iter)
-        return iter
+        return node
 
-    def set(self,iter,data,info=None,select=0):
+    def set(self,node,data,info=None,select=0):
         col = 0
-        for object in data:
-            self.model.set_value(iter,col,object)
+        for obj in data:
+            self.model.set_value(node,col,obj)
             col = col + 1
-        self.model.set_value(iter,col,info)
+        self.model.set_value(node,col,info)
         if info:
-            self.idmap[str(info)] = iter
+            self.idmap[str(info)] = node
         if select:
-            self.sel_iter = iter
-        return iter
+            self.sel_iter = node
+        return node
 
     def add_and_select(self,data,info=None):
         self.count = self.count + 1
-        iter = self.model.append()
+        node = self.model.append()
         col = 0
-        for object in data:
-            self.model.set_value(iter,col,object)
+        for obj in data:
+            self.model.set_value(node,col,obj)
             col = col + 1
         if info:
-            self.idmap[str(info)] = iter
-        self.model.set_value(iter,col,info)
-        self.selection.select_iter(iter)
+            self.idmap[str(info)] = node
+        self.model.set_value(node,col,info)
+        self.selection.select_iter(node)
 
     def center_selected(self):
-        model,iter = self.selection.get_selected()
-        if iter:
-            path = model.get_path(iter)
+        model,node = self.selection.get_selected()
+        if node:
+            path = model.get_path(node)
             self.tree.scroll_to_cell(path,None,gtk.TRUE,0.5,0.5)
         
     def button_press(self,obj,event):
@@ -253,8 +253,8 @@ class ListModel:
 
     def find(self,info):
         if info in self.idmap.keys():
-            iter = self.idmap[str(info)]
-            self.selection.select_iter(iter)
+            node = self.idmap[str(info)]
+            self.selection.select_iter(node)
 
     def cleanup(self):
         pass

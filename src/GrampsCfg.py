@@ -693,11 +693,11 @@ class GrampsPreferences:
     def build_tree(self):
         prev = None
         ilist = []
-        for (name,list) in panellist:
+        for (name,lst) in panellist:
             node = self.store.insert_after(None, prev)
             self.store.set(node,0,name)
             next = None
-            for (subname,tab) in list:
+            for (subname,tab) in lst:
                 next = self.store.insert_after(node,next)
                 ilist.append((next,tab))
                 self.store.set(next,0,subname)
@@ -971,10 +971,10 @@ class GrampsPreferences:
                         col = col + 1
             
     def select(self,obj):
-        store,iter = self.selection.get_selected()
-        if iter:
-            path = store.get_path(iter)
-        if iter and self.imap.has_key(path):
+        store,node = self.selection.get_selected()
+        if node:
+            path = store.get_path(node)
+        if node and self.imap.has_key(path):
             self.panel.set_current_page(self.imap[path])
         
     def on_propertybox_help(self,obj):

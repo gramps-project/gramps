@@ -393,9 +393,9 @@ class EditPlace:
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
-        store,iter = self.web_list.get_selection().get_selected()
-        if iter:
-            row = store.get_path(iter)
+        store,node = self.web_list.get_selection().get_selected()
+        if node:
+            row = store.get_path(node)
             url = self.ulist[row[0]]
             if url:
                 name = _("Internet Address Editor for %s") % self.place.get_title()
@@ -406,9 +406,9 @@ class EditPlace:
     def on_update_loc_clicked(self,obj):
         import LocEdit
 
-        store,iter = self.loc_sel.get_selected()
-        if iter:
-            row = store.get_path(iter)
+        store,node = self.loc_sel.get_selected()
+        if node:
+            row = store.get_path(node)
             loc = self.llist[row[0]]
             LocEdit.LocationEditor(self,loc,self.top)
 
@@ -438,13 +438,13 @@ class EditPlace:
         LocEdit.LocationEditor(self,None,self.top)
 
     def on_web_list_select_row(self,obj):
-        store,iter = obj.get_selected()
-        if not iter:
+        store,node = obj.get_selected()
+        if not node:
             self.web_url.set_text("")
             self.web_go.set_sensitive(0)
             self.web_description.set_text("")
         else:
-            row = store.get_path(iter)
+            row = store.get_path(node)
             url = self.ulist[row[0]]
             path = url.get_path()
             self.web_url.set_text(path)
@@ -452,8 +452,8 @@ class EditPlace:
             self.web_description.set_text(url.get_description())
 
     def on_loc_list_select_row(self,obj):
-        store,iter = self.loc_sel.get_selected()
-        if not iter:
+        store,node = self.loc_sel.get_selected()
+        if not node:
             self.loc_city.set_text('')
             self.loc_county.set_text('')
             self.loc_state.set_text('')
@@ -462,7 +462,7 @@ class EditPlace:
             self.loc_parish.set_text('')
             self.loc_country.set_text('')
         else:
-            row = store.get_path(iter)
+            row = store.get_path(node)
             loc = self.llist[row[0]]
 
             self.loc_city.set_text(loc.get_city())
