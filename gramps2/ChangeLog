@@ -1,3 +1,7 @@
+2004-08-23  Tim Waugh  <twaugh@redhat.com>
+	* src/GrampsDbBase.py (GrampsDbBase.find_source_from_handle): Set
+	GRAMPS ID on new source (bug #1014246).
+
 2004-08-22  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Marriage.py: pychecker fixes
 	* src/RelLib.py: pychecker fixes
@@ -12,12 +16,10 @@
 	* src/WriteXML.py: pychecker fixes
 
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
-
 	* src/WriteGedcom.py (GedcomWriter.write_families): Write families
 	in GRAMPS ID order for easier change tracking.
 
 2004-08-22  Tim Waugh  <twaugh@redhat.com>
-
 	* src/WriteGedcom.py (GedcomWriter.export_data): Write individuals
 	out in GRAMPS ID order.
 	(GedcomWriter.fid): Use GRAMPS ID not DB handle.
