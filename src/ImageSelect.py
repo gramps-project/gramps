@@ -34,6 +34,7 @@ import urlparse
 #
 #-------------------------------------------------------------------------
 import gtk
+import gnome
 import gnome.ui
 import gnome.canvas
 import gtk.glade
@@ -96,7 +97,7 @@ class ImageSelect:
             return
             
         self.glade       = gtk.glade.XML(const.imageselFile,"imageSelect","gramps")
-        window           = self.glade.get_widget("imageSelect")
+        self.window      = self.glade.get_widget("imageSelect")
 
         self.fname       = self.glade.get_widget("fname")
         self.image       = self.glade.get_widget("image")
@@ -105,11 +106,12 @@ class ImageSelect:
         self.photosel    = self.glade.get_widget("photosel")
         self.temp_name   = ""
 
-        Utils.set_titles(window,self.glade.get_widget('title'),
+        Utils.set_titles(self.window,self.glade.get_widget('title'),
                          _('Select a media object'))
         
         self.glade.signal_autoconnect({
             "on_name_changed" : self.on_name_changed,
+            "on_help_imagesel_clicked" : self.on_help_imagesel_clicked,
             })
 
         if os.path.isdir(_last_path):
@@ -118,12 +120,17 @@ class ImageSelect:
             self.photosel.gtk_entry().set_position(len(_last_path))
 
         if self.parent_window:
-            window.set_transient_for(self.parent_window)
-        window.show()
-        val = window.run()
-        if val == gtk.RESPONSE_OK:
+            self.window.set_transient_for(self.parent_window)
+        self.window.show()
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
             self.on_savephoto_clicked()
-        window.destroy()
+        self.window.destroy()
+
+    def on_help_imagesel_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-edit-quick')
+        self.val = self.window.run()
 
     def on_name_changed(self, obj):
         """The filename has changed.  Verify it and load the picture."""
@@ -815,6 +822,7 @@ class GlobalMediaProperties:
             "on_make_local_clicked"  : self.on_make_local_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
+            "on_help_clicked" : self.on_help_clicked,
             })
         self.redraw_attr_list()
         self.display_refs()
@@ -932,10 +940,14 @@ class GlobalMediaProperties:
         if self.update != None:
             self.update()
 
+    def on_help_clicked(self, obj):
+        """Display the relevant portion of GRAMPS manual"""
+        gnome.help_display('gramps-manual','gramps-edit-complete')
+        
     def on_ok_clicked(self, obj):
         self.on_apply_clicked(obj)
         Utils.destroy_passed_object(obj)
-        
+
     def on_attr_list_select_row(self,obj):
         store,iter = self.atree.get_selected()
         if iter:

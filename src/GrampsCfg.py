@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 
 #-------------------------------------------------------------------------
 #
@@ -797,8 +799,7 @@ class GrampsPreferences:
             self.panel.set_current_page(self.imap[path])
         
     def on_propertybox_help(self,obj):
-        import gnome.help
-        gnome.help.display('gramps-manual','prefs.html')
+        gnome.help_display('gramps-manual','gramps-prefs')
 
     def on_close_clicked(self,obj):
         Utils.destroy_passed_object(self.window)

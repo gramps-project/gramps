@@ -150,7 +150,7 @@ class ChooseParents:
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-spec-par')
+        gnome.help_display('gramps-manual','gramps-edit-quick')
         self.val = self.top.run()
 
     def redrawf(self):

@@ -118,7 +118,7 @@ class AddSpouse:
         
     def on_spouse_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
-        gnome.help_display('gramps-manual','gramps-spec-rel')
+        gnome.help_display('gramps-manual','gramps-edit-quick')
 
     def select_row(self,obj):
         """
