@@ -49,7 +49,7 @@ import const
 import Utils
 import GrampsCfg
 import ImageSelect
-import sort
+import Sort
 import AutoComp
 import ListModel
 import RelLib
@@ -1738,7 +1738,7 @@ class EditPerson:
             if child.get_birth_id():
                 event = self.db.find_event_from_id(child.get_birth_id())
                 bday = event.get_date_object()
-                child_date = sort.build_sort_date(bday)
+                child_date = Sort.build_sort_date(bday)
             else:
                 continue
             if (prev_date <= child_date):   # <= allows for twins
@@ -1759,7 +1759,7 @@ class EditPerson:
         event_id = person.get_birth_id()
         if event_id:
             event = self.db.find_event_from_id(event_id)
-            person_bday = sort.build_sort_date(event.get_date_object())
+            person_bday = Sort.build_sort_date(event.get_date_object())
         else:
             person_bday = "99999999"
 
@@ -1771,7 +1771,7 @@ class EditPerson:
             event_id = other.get_birth_id()
             if event_id:
                 event = self.db.find_event_from_id(event_id)
-                other_bday = sort.build_sort_date(event.get_date_object())
+                other_bday = Sort.build_sort_date(event.get_date_object())
                 if (other_bday == "99999999"):
                     continue;
                 if (person_bday < other_bday):
@@ -1786,7 +1786,7 @@ class EditPerson:
                 event_id = other.get_birth_id()
                 if event_id:
                     event = self.db.find_event_from_id(event_id)
-                    other_bday = sort.build_sort_date(event.get_date_object())
+                    other_bday = Sort.build_sort_date(event.get_date_object())
                     if (other_bday == "99999999"):
                         continue;
                     if (person_bday > other_bday):
