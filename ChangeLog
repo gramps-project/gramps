@@ -1,4 +1,12 @@
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
+	* src/plugins/ScratchPad.py (ScratchPadListView.register_wrapper_classes,
+	ScratchPadName): added support for Names
+	* src/EditPerson.py (EditPerson.__init__, EditPerson.name_drag_data_get,
+	EditPerson.name_drag_begin, EditPerson.name_drag_data_received): added dnd for Names
+	* src/DdTargets.py (_DdTargets.__init__, _DdTargets.all_gramps_types, 
+	_DdTargets.all_gramps_targets): added Names as dnd target.
+	
+2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/plugins/ScratchPad.py: changed pickle to cPickle. cPickle is much faster.
 	* src/EditPerson.py: changed pickle to cPickle. cPickle is much faster.
 	* src/EditPlace.py: changed pickle to cPickle. cPickle is much faster.

@@ -102,6 +102,7 @@ class _DdTargets(object):
         self.ATTRIBUTE = _DdType(self,'pattr')
         self.ADDRESS   = _DdType(self,'paddr')
         self.SOURCEREF = _DdType(self,'srcref')
+        self.NAME      = _DdType(self,'name')
 
         self.FAMILY_EVENT     = _DdType(self,'fevent')
         self.FAMILY_ATTRIBUTE = _DdType(self,'fattr')
@@ -160,6 +161,7 @@ class _DdTargets(object):
                 self.ATTRIBUTE.drag_type,
                 self.ADDRESS.drag_type,
                 self.SOURCEREF.drag_type,
+                self.NAME.drag_type,
                 self.FAMILY_EVENT.drag_type,
                 self.FAMILY_ATTRIBUTE.drag_type)
 
@@ -182,6 +184,7 @@ class _DdTargets(object):
                 self.ATTRIBUTE.target(),
                 self.ADDRESS.target(),
                 self.SOURCEREF.target(),
+                self.NAME.target(),
                 self.FAMILY_EVENT.target(),
                 self.FAMILY_ATTRIBUTE.target())
 
