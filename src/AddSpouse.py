@@ -53,6 +53,7 @@ import RelLib
 import const
 import sort
 import utils
+import Config
 
 class AddSpouse:
     """
@@ -94,6 +95,9 @@ class AddSpouse:
 
         self.name_list = self.db.getPersonMap().values()
         self.name_list.sort(sort.by_last_name)
+
+        title = _("Choose Spouse/Partner of %s") % Config.nameof(person)
+        self.glade.get_widget("spouseTitle").set_text(title)
 
         self.glade.signal_autoconnect({
             "on_select_spouse_clicked" : self.select_spouse_clicked,

@@ -323,8 +323,13 @@
 	    <name>bookmarks_menu</name>
 
 	    <widget>
-	      <class>GtkMenuItem</class>
+	      <class>GtkPixmapMenuItem</class>
 	      <name>add_bookmark</name>
+	      <accelerator>
+		<modifiers>GDK_CONTROL_MASK</modifiers>
+		<key>GDK_D</key>
+		<signal>activate</signal>
+	      </accelerator>
 	      <signal>
 		<name>activate</name>
 		<handler>on_add_bookmark_activate</handler>
@@ -332,11 +337,17 @@
 	      </signal>
 	      <label>_Add Bookmark</label>
 	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_INDEX</stock_icon>
 	    </widget>
 
 	    <widget>
-	      <class>GtkMenuItem</class>
+	      <class>GtkPixmapMenuItem</class>
 	      <name>edit_bookmarks</name>
+	      <accelerator>
+		<modifiers>GDK_CONTROL_MASK</modifiers>
+		<key>GDK_B</key>
+		<signal>activate</signal>
+	      </accelerator>
 	      <signal>
 		<name>activate</name>
 		<handler>on_edit_bookmarks_activate</handler>
@@ -344,6 +355,7 @@
 	      </signal>
 	      <label>_Edit Bookmarks</label>
 	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_BOOK_OPEN</stock_icon>
 	    </widget>
 
 	    <widget>
@@ -444,6 +456,19 @@
 	      <label>_Writing Extensions</label>
 	      <right_justify>False</right_justify>
 	      <stock_icon>GNOME_STOCK_MENU_BOOK_BLUE</stock_icon>
+	    </widget>
+
+	    <widget>
+	      <class>GtkPixmapMenuItem</class>
+	      <name>gramps_home_page</name>
+	      <signal>
+		<name>activate</name>
+		<handler>on_gramps_home_page_activate</handler>
+		<last_modification_time>Thu, 20 Dec 2001 22:44:28 GMT</last_modification_time>
+	      </signal>
+	      <label>GRAMPS _Home Page</label>
+	      <right_justify>False</right_justify>
+	      <stock_icon>GNOME_STOCK_MENU_JUMP_TO</stock_icon>
 	    </widget>
 
 	    <widget>
