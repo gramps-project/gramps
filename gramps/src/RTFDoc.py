@@ -158,6 +158,9 @@ class RTFDoc(TextDoc):
             self.f.write('\\qr')
         elif p.get_alignment() == PARA_ALIGN_CENTER:
             self.f.write('\\qc')
+        self.f.write('\\ri%d' % twips(p.get_right_margin()))
+        self.f.write('\\li%d' % twips(p.get_left_margin()))
+        self.f.write('\\fi%d' % twips(p.get_first_indent()))
         if p.get_alignment() == PARA_ALIGN_JUSTIFY:
             self.f.write('\\qj')
         if p.get_padding():
@@ -202,6 +205,8 @@ class RTFDoc(TextDoc):
                 self.open = 0
             self.f.write('\n\\par')
         else:
+            if self.text == "":
+                self.write_text(" ")
             self.text = self.text + '}'
 
     #--------------------------------------------------------------------
@@ -256,7 +261,8 @@ class RTFDoc(TextDoc):
         self.contents = []
 	self.cell = 0
 	self.prev = 0
-	self.f.write('\\trowd ')
+	self.cell_percent = 0.0
+	self.f.write('\\trowd\n')
 
     #--------------------------------------------------------------------
     #
@@ -269,7 +275,7 @@ class RTFDoc(TextDoc):
 	for line in self.contents:
 	    self.f.write(line)
             self.f.write('\\cell ')
-	self.f.write('}\\pard\\intbl\\row ')
+	self.f.write('}\\pard\\intbl\\row\n')
 
     #--------------------------------------------------------------------
     #
@@ -284,21 +290,20 @@ class RTFDoc(TextDoc):
 	s = self.cell_styles[style_name]
 	self.remain = span -1
 	if s.get_top_border():
-	    self.f.write('\\clbrdrt\\brdrs\\brdrw10 ')
+	    self.f.write('\\clbrdrt\\brdrs\\brdrw10\n')
 	if s.get_bottom_border():
-	    self.f.write('\\clbrdrb\\brdrs\\brdrw10 ')
+	    self.f.write('\\clbrdrb\\brdrs\\brdrw10\n')
 	if s.get_left_border():
-	    self.f.write('\\clbrdrl\\brdrs\\brdrw10 ')
+	    self.f.write('\\clbrdrl\\brdrs\\brdrw10\n')
 	if s.get_right_border():
-	    self.f.write('\\clbrdrr\\brdrs\\brdrw10 ')
+	    self.f.write('\\clbrdrr\\brdrs\\brdrw10\n')
 	table_width = float(self.get_usable_width())
-	cell_percent = 0
 	for cell in range(self.cell,self.cell+span):
-	    cell_percent = cell_percent + float(self.tbl_style.get_column_width(cell))
-	cell_percent = cell_percent/100.0
-	cell_width = twips(table_width * cell_percent)
-	self.prev = self.prev + cell_width
-	self.f.write('\\cellx%d\\pard\intbl' % self.prev)
+	    self.cell_percent = self.cell_percent + float(self.tbl_style.get_column_width(cell))
+	cell_width = twips((table_width * self.cell_percent)/100.0)
+#	self.prev = self.prev + cell_width
+        print cell_width,twips(self.get_usable_width())
+	self.f.write('\\cellx%d\\pard\intbl\n' % cell_width)
 	self.cell = self.cell+1
 
     #--------------------------------------------------------------------
