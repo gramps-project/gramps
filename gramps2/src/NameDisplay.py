@@ -1,0 +1,187 @@
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2004  Donald N. Allingham
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id$
+
+"""
+Class handling language-specific displaying of names.
+"""
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import os
+import locale
+
+import RelLib
+
+class NameDisplay:
+    """
+    Base class for displaying of Name instances.
+    """
+    def __init__(self,use_upper=False):
+        """
+        Creates a new NameDisplay class.
+
+        @param use_upper: True indicates that the surname should be
+        displayed in upper case.
+        @type use_upper: bool
+        """
+        self.use_upper = use_upper
+
+    def use_upper(self,upper):
+        """
+        Changes the NameDisplay class to enable or display the displaying
+        of surnames in upper case.
+        
+        @param upper: True indicates that the surname should be
+        displayed in upper case.
+        @type upper: bool
+        """
+        self.use_upper = upper
+
+    def sorted(self,person):
+        """
+        Returns a text string representing the L{RelLib.Person} instance's
+        L{RelLib.Name} in a manner that should be used for displaying a sorted
+        name.
+
+        @param person: L{RelLib.Person} instance that contains the
+        L{RelLib.Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{RelLib.Person}
+        @returns: Returns the L{RelLib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        if name.display_as == RelLib.Name.FNLN:
+            return self._lnfn(name)
+        else:
+            return self._fnln(name)
+
+    def sorted_name(self,name):
+        """
+        Returns a text string representing the L{RelLib.Name} instance
+        in a manner that should be used for displaying a sorted
+        name.
+
+        @param name: L{RelLib.Name} instance that is to be displayed.
+        @type name: L{RelLib.Name}
+        @returns: Returns the L{RelLib.Name} string representation
+        @rtype: str
+        """
+        if name.sort_as == RelLib.Name.FNLN:
+            return self._fnln(name)
+        else:
+            return self._lnfn(name)
+
+    def display(self,person):
+        """
+        Returns a text string representing the L{RelLib.Person} instance's
+        L{RelLib.Name} in a manner that should be used for normal displaying.
+
+        @param person: L{RelLib.Person} instance that contains the
+        L{RelLib.Name} that is to be displayed. The primary name is used for
+        the display.
+        @type person: L{RelLib.Person}
+        @returns: Returns the L{RelLib.Person} instance's name
+        @rtype: str
+        """
+        name = person.get_primary_name()
+        if name.display_as == RelLib.Name.LNFN:
+            return self._lnfn(name)
+        else:
+            return self._fnln(name)
+
+    def display_name(self,name):
+        """
+        Returns a text string representing the L{RelLib.Name} instance
+        in a manner that should be used for normal displaying.
+
+        @param name: L{RelLib.Name} instance that is to be displayed.
+        @type name: L{RelLib.Name}
+        @returns: Returns the L{RelLib.Name} string representation
+        @rtype: str
+        """
+        if name.display_as == RelLib.Name.LNFN:
+            return self._lnfn(name)
+        else:
+            return self._fnln(name)
+
+    def _fnln(self,name):
+        """
+        Prints the Western style first name, last name style.
+        Typically this is::
+
+           FirstName Patronymic SurnamePrefix Surname SurnameSuffix
+        """
+        if name.patronymic:
+            first = "%s %s" % (name.first_name, name.patronymic)
+        else:
+            first = name.first_name
+
+        if self.use_upper:
+            last = name.surname.upper()
+        else:
+            last = name.surname
+            
+        if name.suffix == "":
+            if name.prefix:
+                return "%s %s %s" % (first, name.prefix, last)
+            else:
+                return "%s %s" % (first, last)
+        else:
+            if name.prefix:
+                return "%s %s %s, %s" % (first, name.prefix, last, name.suffix)
+            else:
+                return "%s %s, %s" % (first, last, name.suffix)
+        
+    def _lnfn(self,name):
+        """
+        Prints the Western style last name, first name style.
+        Typically this is::
+
+            SurnamePrefix Surname, FirstName Patronymic SurnameSuffix
+        """
+        if name.patronymic:
+            first = "%s %s" % (name.first_name, name.patronymic)
+        else:
+            first = name.first_name
+
+        if self.use_upper:
+            last = name.surname.upper()
+        else:
+            last = name.surname
+
+        if name.suffix:
+            if name.prefix:
+                return "%s %s, %s %s" % (name.prefix, last, first, name.suffix)
+            else:
+                return "%s, %s %s" % (last, first, name.suffix)
+        else:
+            if name.prefix:
+                return "%s %s, %s" % (name.prefix, last, first)
+            else:
+                return "%s, %s" % (last, first)
+
+    
+displayer = NameDisplay()
