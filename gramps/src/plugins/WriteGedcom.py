@@ -88,7 +88,7 @@ def add_familys_sources(family,slist,private):
             continue
         for source_ref in event.getSourceRefList():
             sbase = source_ref.getBase()
-            if sbase != None and not slist.has_key(sbase):
+            if sbase != None and not slist.has_key(sbase.getId()):
                 slist[sbase.getId()] = 1
     for attr in family.getAttributeList():
         if private and attr.getPrivacy():

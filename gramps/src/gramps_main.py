@@ -929,7 +929,19 @@ class Gramps:
         family = self.active_person.getMainParents()
         if family:
             family.removeChild(self.active_person)
-            
+
+        for key in self.db.getFamilyMap().keys():
+            family = self.db.getFamily(key)
+            if self.active_person == family.getFather():
+                print "removing father"
+                family.setFather(None)
+            if self.active_person == family.getMother():
+                print "removing mother"
+                family.setMother(None)
+            if self.active_person in family.getChildList():
+                print "removing child"
+                family.removeChild(self.active_person)
+
         self.db.removePerson(self.active_person.getId())
         self.remove_from_person_list(self.active_person)
         self.person_sort.sort_list()
