@@ -1,3 +1,11 @@
+2005-01-25 Eero Tamminen <eerot@sf>
+	* src/plugins/StatisticsChart.py:
+	  - Comment out debug output
+	  - Bugfix: each chart to its own page
+	  - Move comparison function to report class
+	  - Make strings about missing information more consistent/clearer
+	  - Use capitalized gender names instead of Gramps (lowercase) consts
+
 2005-01-24  Don Allingham  <dallingham@users.sourceforge.net>
 	* gramps.spec.in: pkill gconfd to fix settings
 

@@ -57,17 +57,9 @@ from DateHandler import displayer as _dd
 
 #------------------------------------------------------------------------
 #
-# Module globals
+# Global options and their names
 #
 #------------------------------------------------------------------------
-
-# needs to be global for the lookup_value_compare()
-_lookup_items = {}
-
-# needs to be global for python sort
-def lookup_value_compare(a, b):
-    "compare given keys according to corresponding _lookup_items values"
-    return cmp(_lookup_items[a],_lookup_items[b])
 
 class _options:
     # sort type identifiers
@@ -152,12 +144,10 @@ class Extract:
         # TODO: why there's no Person.getGenderName?
         # It could be used by getDisplayInfo & this...
         if person.gender == Person.male:
-            gender = const.male
-        elif person.gender == Person.female:
-            gender = const.female
-        else:
-            gender = const.unknown
-        return [gender]
+            return [_("Men")]
+        if person.gender == Person.female:
+            return [_("Women")]
+        return [_("Gender unknown")]
 
     def get_year(self, event):
 	"return year for given event"
@@ -166,7 +156,7 @@ class Extract:
             year = date.get_year()
             if year:
                 return [str(year)]
-        return [_("Date missing/inaccurate")]
+        return [_("Date(s) missing")]
         
     def get_month(self, event):
 	"return month for given event"
@@ -175,7 +165,7 @@ class Extract:
             month = date.get_month()
             if month:
                 return [_dd._months[month]]
-        return [_("Date missing/inaccurate")]
+        return [_("Date(s) missing")]
 
     def get_cause(self, event):
 	"return cause for given event"
@@ -198,14 +188,14 @@ class Extract:
 	death = self.get_death(person)
 	if not death:
             return self.estimate_age(person)
-        return [_("Dead")]
+        return [_("Already dead")]
 
     def get_death_age(self, person):
 	"return age at death for given person, if dead"
 	death = self.get_death(person)
 	if death:
             return self.estimate_age(person)
-        return [_("Alive")]
+        return [_("Still alive")]
 
     def marriage_age(self, person):
         return "TODO: Marriage age stat unimplemented"
@@ -229,7 +219,7 @@ class Extract:
         age = ReportUtils.estimate_age(self.db, person)
         if age[0] < 0 or age[1] < 0:
             # inadequate information
-            return [_("Missing information")]
+            return [_("Date(s) missing")]
         if age[0] == age[1]:
             # exact year
             return [str(age[0])]
@@ -272,7 +262,7 @@ class Extract:
 	    if obj:
 		value = data_func(obj)	# e.g. get_year()
 	    else:
-		value = [_("Information missing")]
+		value = [_("Personal information missing")]
             # list of information found
             for key in value:
                 if key in chart[1].keys():
@@ -299,11 +289,11 @@ class Extract:
 	- Dict of values with their counts
 	(- Method)
         """
-	self.db = db	# store for methods
+	self.db = db	# store for use by methods
 
         data = []
         ext = self.extractors
-        # initialize data
+        # which methods to use
         for key in options:
             if options[key] and key in self.extractors:
                 # localized data title, value dict and method
@@ -405,14 +395,17 @@ class StatisticsChart(Report.Report):
             else:
                 heading = "Persons born %(year_from)04d-%(year_to)04d: %(title)s" % mapping
             self.data.append((heading, table[1], lookup))
-	    # DEBUG
-	    print heading
-	    print table[1]
-	
-        
+	#DEBUG
+	#print heading
+	#print table[1]
+
+
+    def lookup_compare(self, a, b):
+        "compare given keys according to corresponding lookup values"
+        return cmp(self.lookup_items[a], self.lookup_items[b])
+
     def index_items(self, data, sort, reverse):
         """creates & stores a sorted index for the items"""
-        global _lookup_items
 
         # sort by item keys
         index = data.keys()
@@ -422,10 +415,10 @@ class StatisticsChart(Report.Report):
 
         if sort == _options.SORT_VALUE:
             # set for the sorting function
-            _lookup_items = data
+            self.lookup_items = data
         
             # then sort by value
-            index.sort(lookup_value_compare)
+            index.sort(self.lookup_compare)
             if reverse:
                 index.reverse()
 
@@ -468,12 +461,10 @@ class StatisticsChart(Report.Report):
     def write_report(self):
         "output the selected statistics..."
 
-        self.doc.start_page()
-        
         for data in self.data:
+            self.doc.start_page()
             self.output_chart(data[0], data[1], data[2])
-            
-        self.doc.end_page()    
+            self.doc.end_page()    
 
 
     def output_chart(self, title, data, lookup):
@@ -499,7 +490,7 @@ class StatisticsChart(Report.Report):
 
         # start output
         self.doc.center_text('SC-title', title, width/2, 0)
-        print title
+        #print title
 
         yoffset = pt2cm(self.doc.style_list['SC-Title'].get_font().get_size())
         for key in lookup:
@@ -513,7 +504,7 @@ class StatisticsChart(Report.Report):
             # right align the text to the value
             x = start - pt2cm(self.doc.string_width(font, key)) - 1.0
             self.doc.draw_text('SC-text', key, x, yoffset)
-            print key + ":",
+            #print key + ":",
         
             value = data[key]
             stop = start + (size * value / max_value)
@@ -523,7 +514,7 @@ class StatisticsChart(Report.Report):
                     (start, yoffset + row_h))
             self.doc.draw_path('SC-bar', path)
             self.doc.draw_text('SC-text', str(value), stop + 0.5, yoffset)
-            print "%d/%d" % (value, max_value)
+            #print "%d/%d" % (value, max_value)
 
         return
 
