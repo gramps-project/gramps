@@ -114,7 +114,7 @@ SUBDIRS = docgen filters plugins data po
 
 # For intl. support, how do we compile?
 CFLAGS = -fPIC -shared -O @CFLAGS@ @CPPFLAGS@ -I@includedir@
-LDFLAGS = @LDFLAGS@ -L@libdir@ @LIBS@
+LDFLAGS = @LDFLAGS@ -L@libdir@ @LIBS@ 
 CLEANFILES = ${INTLLIBS}
 MOSTLYCLEANFILES = 
 
