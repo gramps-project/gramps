@@ -836,10 +836,25 @@ class Gramps:
         filename = os.path.normpath(os.path.abspath(filename))
         if filename:
             Utils.destroy_passed_object(obj)
+            self.save_media(filename)
             if GrampsCfg.usevc and GrampsCfg.vc_comment:
                 self.display_comment_box(filename)
             else:
                 self.save_file(filename,_("No Comment Provided"))
+
+    def save_media(self,filename):
+        import RelImage
+        ObjectMap = self.db.getObjectMap()
+        for ObjectId in ObjectMap.keys():
+            if ObjectMap[ObjectId].getLocal():
+                oldfile = ObjectMap[ObjectId].getPath()
+                (base,ext) = os.path.splitext(os.path.basename(oldfile))
+                newfile = os.path.join(filename,os.path.basename(oldfile))
+                try:
+                    RelImage.import_media_object(oldfile,filename,base)
+                    ObjectMap[ObjectId].setPath(newfile)
+                except:
+                    pass
 
     def save_file(self,filename,comment):        
 
