@@ -37,8 +37,12 @@ from gettext import gettext as _
 import gtk
 import gnome
 import gnome.ui
-import gnome.canvas
 import gtk.glade
+
+try:
+    from gnomecanvas import CanvasGroup, CanvasRect, CanvasPixbuf, CanvasText
+except:
+    from gnome.canvas import CanvasGroup, CanvasRect, CanvasPixbuf, CanvasText
 
 #-------------------------------------------------------------------------
 #
@@ -386,18 +390,18 @@ class Gallery(ImageSelect):
             x = image.get_width()
             y = image.get_height()
 
-            grp = self.root.add(gnome.canvas.CanvasGroup,x=self.cx,y=self.cy)
+            grp = self.root.add(CanvasGroup,x=self.cx,y=self.cy)
 
             xloc = (_IMAGEX-x)/2
             yloc = (_IMAGEY-y)/2
 
             style = self.iconlist.get_style()
 
-            box = grp.add(gnome.canvas.CanvasRect,x1=0,x2=_IMAGEX,y1=_IMAGEY-20,
+            box = grp.add(CanvasRect,x1=0,x2=_IMAGEX,y1=_IMAGEY-20,
                           y2=_IMAGEY, fill_color_gdk=style.bg[gtk.STATE_NORMAL])
-            item = grp.add(gnome.canvas.CanvasPixbuf,
+            item = grp.add(CanvasPixbuf,
                            pixbuf=image,x=xloc, y=yloc)
-            text = grp.add(gnome.canvas.CanvasText, x=_IMAGEX/2, 
+            text = grp.add(CanvasText, x=_IMAGEX/2, 
                            anchor=gtk.ANCHOR_CENTER,
                            justification=gtk.JUSTIFY_CENTER,
                            y=_IMAGEY-10, text=description)

@@ -36,6 +36,11 @@ import locale
 import gtk
 import gnome
 
+try:
+    from gnomevfs import get_mime_type, mime_get_description
+except:
+    from gnome.vfs import get_mime_type, mime_get_description
+    
 #-------------------------------------------------------------------------
 #
 # Gramps modules
@@ -263,15 +268,9 @@ def find_icon(mtype):
     else:
         return const.icon
 
-def get_mime_type(file):
-    try:
-        return gnome.vfs.get_mime_type(file)
-    except:
-        return "unknown"
-
 def get_mime_description(mime_type):
     try:
-        value = gnome.vfs.mime_get_description(mime_type)
+        value = mime_get_description(mime_type)
         if value:
             return value
         else:

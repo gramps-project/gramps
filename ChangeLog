@@ -1,3 +1,12 @@
+2005-01-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DbPrompter.py: gnome.vfs vs. gnomevfs, tolerence 
+	* src/GrampsMime.py: gnome.vfs vs. gnomevfs tolerence 
+	* src/ImageSelect.py: gnome.canvas vs. gnomecanvas tolerence 
+	* src/NameDisplay.py: gnome.vfs vs. gnomevfs tolerence 
+	* src/PedView.py: gnome.canvas vs. gnomecanvas tolerence 
+	* src/Utils.py: remove mime handling, use GrampsMime
+	* src/plugins/WriteCD.py: gnome.vfs vs. gnomevfs tolerence 
+	
 2005-01-25  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ReportUtils.py: allow start and stop event handle selection
 	for age estimation

@@ -38,7 +38,11 @@ from cStringIO import StringIO
 import gtk
 import gtk.glade
 import gnome
-import gnome.vfs
+
+try:
+    from gnomevfs import URI, create, OPEN_WRITE, make_directory, FileExistsError
+except:
+    from gnome.vfs import URI, create, OPEN_WRITE, make_directory, FileExistsError
 
 #-------------------------------------------------------------------------
 #
@@ -47,6 +51,7 @@ import gnome.vfs
 #-------------------------------------------------------------------------
 import WriteXML
 import Utils
+import GrampsMime
 import const
 import QuestionDialog
 import ImgManip
@@ -101,8 +106,8 @@ class PackageWriter:
 
     def copy_file(self,src,dest):
         original = open(src,"r")
-        destobj = gnome.vfs.URI(dest)
-        target = gnome.vfs.create(destobj,gnome.vfs.OPEN_WRITE)
+        destobj = URI(dest)
+        target = create(destobj,OPEN_WRITE)
         done = 0
         while 1:
             buf = original.read(2048)
@@ -117,8 +122,8 @@ class PackageWriter:
         img = ImgManip.ImgManip(path)
         data = img.jpg_scale_data(const.thumbScale,const.thumbScale)
         
-        uri = gnome.vfs.URI('burn:///%s/.thumb/%s.jpg' % (dbname,root))
-        th = gnome.vfs.create(uri,gnome.vfs.OPEN_WRITE)
+        uri = URI('burn:///%s/.thumb/%s.jpg' % (dbname,root))
+        th = create(uri,OPEN_WRITE)
         th.write(data)
         th.close()
                        
@@ -126,9 +131,9 @@ class PackageWriter:
         base = os.path.basename(self.name)
 
         try:
-            uri = gnome.vfs.URI('burn:///%s' % base)
-            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.FileExistsError, msg:
+            uri = URI('burn:///%s' % base)
+            make_directory(uri,OPEN_WRITE)
+        except FileExistsError, msg:
             QuestionDialog.ErrorDialog(_("CD export preparation failed"),
                                        "1 %s " % str(msg))
             return
@@ -138,9 +143,9 @@ class PackageWriter:
             return
 
         try:
-            uri = gnome.vfs.URI('burn:///%s/.thumb' % base)
-            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.FileExistsError, msg:
+            uri = URI('burn:///%s/.thumb' % base)
+            make_directory(uri,OPEN_WRITE)
+        except FileExistsError, msg:
             QuestionDialog.ErrorDialog("CD export preparation failed",
                                        "2 %s " % str(msg))
             return
@@ -158,7 +163,7 @@ class PackageWriter:
                     "so it was ignored."
             
         # Write XML now
-        g = gnome.vfs.create('burn:///%s/data.gramps' % base,gnome.vfs.OPEN_WRITE )
+        g = create('burn:///%s/data.gramps' % base,OPEN_WRITE )
         gfile = WriteXML.XmlWriter(self.db,None,1)
         gfile.write_handle(g)
         g.close()
@@ -174,9 +179,9 @@ class PackageWriter:
         base = os.path.basename(self.db.get_save_path())
 
         try:
-            uri = gnome.vfs.URI('burn:///%s' % base)
-            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.FileExistsError:
+            uri = URI('burn:///%s' % base)
+            make_directory(uri,OPEN_WRITE)
+        except FileExistsError:
             QuestionDialog.ErrorDialog(_("CD export preparation failed"),
                                        "File already exists")
             return
@@ -186,9 +191,9 @@ class PackageWriter:
             return
 
         try:
-            uri = gnome.vfs.URI('burn:///%s/.thumb' % base)
-            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
-        except gnome.vfs.FileExistsError, msg:
+            uri = URI('burn:///%s/.thumb' % base)
+            make_directory(uri,OPEN_WRITE)
+        except FileExistsError, msg:
             QuestionDialog.ErrorDialog("CD export preparation failed",
                                        "4 %s " % str(msg))
             return
@@ -256,7 +261,7 @@ class PackageWriter:
                 newfile = fs_top.get_filename()
                 if os.path.isfile(newfile):
                     self.copy_file(newfile,'burn:///%s/%s' % (base,obase))
-    	    	    ntype = Utils.get_mime_type(newfile)
+    	    	    ntype = GrampsMime.get_type(newfile)
 		    if ntype[0:5] == "image":
                         self.make_thumbnail(base,obase,newfile)
 		    
@@ -300,7 +305,7 @@ class PackageWriter:
                     select_clicked()
 
         # Write XML now
-        g = gnome.vfs.create('burn:///%s/data.gramps' % base,gnome.vfs.OPEN_WRITE )
+        g = create('burn:///%s/data.gramps' % base,OPEN_WRITE )
         gfile = WriteXML.XmlWriter(self.db,None,1)
         gfile.write_handle(g)
         g.close()

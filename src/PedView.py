@@ -27,8 +27,12 @@
 #-------------------------------------------------------------------------
 import gtk
 import gtk.gdk
-import gnome.canvas
 import pango
+
+try:
+    from gnomecanvas import CanvasGroup, CanvasRect, CanvasText, CanvasWidget, CanvasLine
+except:
+    from gnome.canvas import CanvasGroup, CanvasRect, CanvasText, CanvasWidget, CanvasLine
 
 #-------------------------------------------------------------------------
 #
