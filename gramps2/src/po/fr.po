@@ -5983,7 +5983,7 @@ msgstr ""
 
 #: plugins/IndivComplete.py:134
 msgid "%(date)s in %(place)s."
-msgstr "%(date)s à %(lieu)s."
+msgstr "%(date)s à %(place)s."
 
 #: plugins/IndivComplete.py:193
 msgid "Alternate Parents"
