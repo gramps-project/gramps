@@ -789,6 +789,17 @@
     be listed as appropriate.</para> 
 
     <!-- ================ Usage Subsection ================================ -->
+    <sect2 id="new-db"> 
+      <title>Starting a New Database</title> 
+      <para>To start a new database, choose <menuchoice><guimenu>File</guimenu>
+      <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
+      prompted with the <guilabel>Save Database</guilabel> dialog asking 
+      to specify the name under which the new database will be stored. 
+      Choose an <replaceable>empty directory</replaceable> for your new 
+      database (create one if necessary). </para> 
+    </sect2>
+
+    <!-- ================ Usage Subsection ================================ -->
     <sect2 id="open-db"> 
       <title>Opening a Database</title> 
       <para>To open a database, either choose <menuchoice>
@@ -798,34 +809,23 @@
       Either type the full path into the <guilabel>Database</guilabel> text 
       entry field, or click the <guibutton>Browse...</guibutton> button to get 
       the <guilabel>Open File</guilabel> dialog in which you can select the 
-      file that you want to open. After you have selected the file, click the 
-      <guibutton>OK</guibutton> button to open it. </para>
+      database that you want to open. After you have selected the database, 
+      click the <guibutton>OK</guibutton> button to open it. </para>
       
-      <para>If you have previously opened files with
-      &app; you can retrieve your past selections 
-      from the drop-down menu by clicking the down arrow button. Finally, if 
-      the Revision Control System (RCS) is enabled in the 
-      <guilabel>Preferences</guilabel> dialog, the check box 
-      <guilabel>Revert to an older version from RCS</guilabel> 
-      will be available. Check it to revert your database to an older RCS 
+      <para>If you have previously opened databases with &app; you can 
+      retrieve your past selections from the drop-down menu by clicking the 
+      down arrow button. Finally, if the Revision Control System (RCS) is 
+      enabled in the <guilabel>Preferences</guilabel> dialog, the check box 
+      <guilabel>Revert to an older version from RCS</guilabel> will be 
+      available. Check it to revert your database to an older RCS 
       version. </para>
       
-      <para>NOTE: you should open DIRECTORY and NOT the FILE when opening 
+      <para>NOTE: you should open a <replaceable>DIRECTORY</replaceable> and 
+      <replaceable>NOT a FILE</replaceable> when opening 
       &app; database. The directory you need to open should contain the 
-      database file as well as any possible copies of media objects. Such a 
-      directory is created by &app; when you start a database and is updated 
-      each time the database is saved. </para> 
-    </sect2>
-
-    <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="new-db"> 
-      <title>Starting a New Database</title> 
-      <para>To start a new database, choose <menuchoice><guimenu>File</guimenu>
-      <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
-      prompted with the <guilabel>Save Database</guilabel> dialog asking 
-      to specify the name under which the new database will be stored. 
-      Choose an empty directory for your new database (create one if
-      necessary). </para> 
+      database file (data.gramps or data.zodb) as well as any possible copies 
+      of media objects. Such a directory is created by &app; when you start 
+      a new database and is updated each time the database is saved. </para> 
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
@@ -835,7 +835,7 @@
       <guimenu>File</guimenu>
       <guimenuitem>Save</guimenuitem></menuchoice> or click the 
       <guibutton>Save</guibutton> button on the Toolbar. The statusbar will then 
-      display the <guilabel>Saving <replaceable>filename</replaceable>...</guilabel> 
+      display the <guilabel>Saving <replaceable>databasename</replaceable>...</guilabel> 
       message, and the progressbar will advance as the saving progresses.</para>
     </sect2>
 
