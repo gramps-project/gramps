@@ -258,6 +258,12 @@ class GedcomParser:
         except:
             pass
 
+    def errmsg(self,msg):
+        try:
+            self.error_text_obj.get_buffer().insert_at_cursor(msg)
+        except TypeError:
+            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+
     def find_file(self,fullname,altpath):
         fullname = string.replace(fullname,'\\','/')
         if os.path.isfile(fullname):
@@ -304,9 +310,8 @@ class GedcomParser:
                     self.groups = (int(l[0]),l[1],l[2])
             except:
                 msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
-                self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
-                msg = "\n\t%s\n" % self.text
-                self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+                msg = "%s\n\t%s\n" % (msg,self.text)
+                self.errmsg(msg)
                 self.error_count = self.error_count + 1
                 if self.window:
                     self.update(self.errors_obj,str(self.error_count))
@@ -317,13 +322,13 @@ class GedcomParser:
     def barf(self,level):
         msg = _("Warning: line %d was not understood, so it was ignored.") % self.index
         if self.window:
-            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            self.errmsg(msg)
         else:
             print msg
         msg = "\n\t%s\n" % self.text
 
         if self.window:
-            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            self.errmsg(msg)
             self.error_count = self.error_count + 1
             self.update(self.errors_obj,str(self.error_count))
         else:
@@ -332,7 +337,7 @@ class GedcomParser:
 
     def warn(self,msg):
         if self.window:
-            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            self.errmsg(msg)
             self.error_count = self.error_count + 1
             self.update(self.errors_obj,str(self.error_count))
         else:
@@ -352,8 +357,7 @@ class GedcomParser:
             self.parse_record()
             self.parse_trailer()
         except Errors.GedcomError, err:
-            msg = str(err)
-            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            self.errmsg(str(err))
             
         if self.window:
             self.update(self.families_obj,str(self.fam_count))
@@ -363,7 +367,7 @@ class GedcomParser:
         t = time.time() - t
         msg = _('Import Complete: %d seconds') % t
         if self.window:
-            self.error_text_obj.get_buffer().insert_at_cursor(msg,len(msg))
+            self.errmsg(msg)
             return self.close_done.get_active()
         else:
             print msg

@@ -755,7 +755,12 @@ class ReportDialog:
             self.extra_textbox_label = gtk.Label(et_label)
             self.extra_textbox_label.set_alignment(1.0,0)
             self.extra_textbox = gtk.TextView()
-            self.extra_textbox.get_buffer().set_text(string,len(string))
+
+            try:
+                self.extra_textbox.get_buffer().set_text(string,len(string))
+            except TypeError:
+                self.extra_textbox.get_buffer().set_text(string)
+
             self.extra_textbox.set_editable(1)
             self.add_tooltip(self.extra_textbox,et_tip)
             table.attach(self.extra_textbox_label,0,1,row,row+1,xoptions=gtk.FILL,

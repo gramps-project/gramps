@@ -135,6 +135,8 @@ class FamilyView:
         self.child_list.set_search_column(0)
         self.child_selection = self.child_list.get_selection()
 
+        self.family = None
+
         Utils.build_columns(self.child_list,
                             [ ('',30,-1), (_('Name'),250,-1), (_('ID'),50,-1),
                               (_('Gender'),100,-1), (_('Birth Date'),150,-1),
@@ -183,7 +185,7 @@ class FamilyView:
     def add_child_clicked(self,obj):
         if not self.person:
             return
-        try:
+        try:x
             SelectChild.SelectChild(self.parent.db, self.family,
                                     self.person, self.load_family,
                                     self.parent.update_person_list)
@@ -290,7 +292,11 @@ class FamilyView:
         n = "%s\n\tb. %s\n\td. %s " % (GrampsCfg.nameof(self.person),
                                       self.person.getBirth().getDate(),
                                       self.person.getDeath().getDate())
-        self.ap_data.set_text(n,len(n))
+
+        try:
+            self.ap_data.set_text(n,len(n))
+        except TypeError:
+            self.ap_data.set_text(n)
 
         self.selected_spouse = None
         self.spouse_model.clear()
