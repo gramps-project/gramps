@@ -87,7 +87,7 @@ class Report:
     def get_progressbar_data(self):
         """The window title for this dialog, and the header line to
         put at the top of the contents of the dialog box."""
-        return (_("Gramps - Progress Report"), _("Working"))
+        return (_("Progress Report - GRAMPS"), _("Working"))
 
     def progress_bar_setup(self,total):
         """Create a progress dialog.  This routine calls a
@@ -162,7 +162,7 @@ class ReportDialog:
         self.frame_names = []
         self.frames = {}
         
-        self.window = GnomeDialog('Gramps',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
+        self.window = GnomeDialog('GRAMPS',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
         self.window.set_default(0)
         self.window.button_connect(0,self.on_ok_clicked)
         self.window.button_connect(1,self.on_cancel)
@@ -201,7 +201,7 @@ class ReportDialog:
     #------------------------------------------------------------------------
     def get_title(self):
         """The window title for this dialog."""
-        return(_("Gramps - Base Report"))
+        return(_("Base Report - GRAMPS"))
 
     def get_header(self, name):
         """The header line to put at the top of the contents of the
@@ -215,7 +215,7 @@ class ReportDialog:
         """The title of the window that will be created when the user
         clicks the 'Browse' button in the 'Save As' File Entry
         widget."""
-        return(_("Gramps - Save Report As"))
+        return(_("Save Report As - GRAMPS"))
 
     def get_target_is_directory(self):
         """Is the user being asked to input the name of a file or a

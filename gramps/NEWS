@@ -5,6 +5,7 @@ Version 0.7.2
 * More information in the Startup dialog
 * Fewer intermediate files when handling images for reports
 * Reports are now plugins, stored in the DocGen library
+* Filter out control characters on GEDCOM import
 
 Version 0.7.1
 * A database must now be open at all times. Prevents the problem of

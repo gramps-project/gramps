@@ -2,7 +2,7 @@
 <GTK-Interface>
 
 <project>
-  <name>Gramps Import</name>
+  <name>GRAMPS Import</name>
   <program_name>grampsimport</program_name>
   <directory></directory>
   <source_directory>src</source_directory>
@@ -15,7 +15,7 @@
 <widget>
   <class>GtkWindow</class>
   <name>grampsImport</name>
-  <title>Gramps - Gramps import</title>
+  <title>GRAMPS import - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_CENTER</position>
   <modal>True</modal>
@@ -89,7 +89,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label3</name>
-	<label>Gramps Import</label>
+	<label>GRAMPS Import</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
@@ -152,7 +152,7 @@
 	<width>350</width>
 	<history_id>GrampsImport</history_id>
 	<max_saved>10</max_saved>
-	<title>Gramps file</title>
+	<title>GRAMPS file</title>
 	<directory>False</directory>
 	<modal>True</modal>
 	<child>

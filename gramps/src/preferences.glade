@@ -257,16 +257,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label40</name>
-	      <label>0</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -485,16 +477,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label6</name>
-	      <label>1</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -610,16 +594,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label41</name>
-	      <label>2</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -659,16 +635,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label44</name>
-	      <label>3</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -847,16 +815,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label43</name>
-	      <label>4</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -1085,16 +1045,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label45</name>
-	      <label>5</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -1433,16 +1385,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label42</name>
-	      <label>6</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -1689,16 +1633,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label16</name>
-	      <label>7</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -2181,16 +2117,8 @@
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label25</name>
-	      <label>8</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -2463,16 +2391,8 @@ A4
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label30</name>
-	      <label>9</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -2611,16 +2531,8 @@ A4
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label31</name>
-	      <label>10</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -2977,16 +2889,8 @@ A4
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label37</name>
-	      <label>11</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 
 	    <widget>
@@ -3070,16 +2974,8 @@ A4
 	    </widget>
 
 	    <widget>
-	      <class>GtkLabel</class>
+	      <class>Placeholder</class>
 	      <child_name>Notebook:tab</child_name>
-	      <name>label39</name>
-	      <label>12</label>
-	      <justify>GTK_JUSTIFY_CENTER</justify>
-	      <wrap>False</wrap>
-	      <xalign>0.5</xalign>
-	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
 	    </widget>
 	  </widget>
 	</widget>

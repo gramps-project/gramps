@@ -15,7 +15,7 @@
 <widget>
   <class>GtkDialog</class>
   <name>summary</name>
-  <title>Gramps - Name and Title Extraction Tool</title>
+  <title>Name and Title Extraction Tool - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -134,8 +134,8 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label1</name>
-	<label>Below is a list of the nicknames and titles that Gramps can extract from the 
-current database. If you select 'Yes', Gramps will modify your database as 
+	<label>Below is a list of the nicknames and titles that GRAMPS can extract from the 
+current database. If you select 'Yes', GRAMPS will modify your database as 
 specified below. If you do not approve of these changes, you should select 
 'No', and your database will not be altered.
 

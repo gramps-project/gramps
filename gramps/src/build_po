@@ -1,10 +1,7 @@
 #! /bin/sh
+if [ -f po/template.po ] 
+then
+    mv po/template.po po/template.po.bak
+fi
+./get_strings -o po/template.po *.py */*.py *.glade */*.glade
 
-rm -f glade.c
-mv template.po template.po.bak
-echo "Working on the glade files"
-libglade-xgettext -c -o glade.c *.glade plugins/*.glade
-echo "Working on python files"
-./get_strings *.py plugins/*.py filters/*.py >> glade.c
-echo "Building template.po"
-xgettext -C -s -a -o template.po glade.c
