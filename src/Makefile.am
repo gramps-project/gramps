@@ -1,5 +1,5 @@
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen filters plugins data po calendars
+SUBDIRS = docgen plugins data po calendars
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
@@ -32,7 +32,6 @@ pkgpython_PYTHON = \
 	Errors.py\
 	EventEdit.py\
 	FamilyView.py\
-	Filter.py\
 	Find.py\
 	FontScale.py\
 	FrenchRepublic.py\

@@ -209,7 +209,6 @@ Makefile
 src/Makefile
 src/const.py
 src/docgen/Makefile
-src/filters/Makefile
 src/plugins/Makefile
 src/calendars/Makefile
 src/data/Makefile

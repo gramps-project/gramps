@@ -2340,7 +2340,7 @@ SCROLLKEEPER_BUILD_REQUIRED=0.3.5
 
 
 
-                                                                                                                                                                                                        ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/filters/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile doc/gramps-manual/fr/Makefile doc/gramps-manual/ru/Makefile example/Makefile example/gramps/Makefile gramps.spec gramps-mdk.spec gramps.sh"
+                                                                                                                                                                                              ac_config_files="$ac_config_files Makefile src/Makefile src/const.py src/docgen/Makefile src/plugins/Makefile src/calendars/Makefile src/data/Makefile src/data/templates/Makefile src/po/Makefile doc/Makefile doc/gramps-manual/Makefile doc/gramps-manual/C/Makefile doc/gramps-manual/fr/Makefile doc/gramps-manual/ru/Makefile example/Makefile example/gramps/Makefile gramps.spec gramps-mdk.spec gramps.sh"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -2897,7 +2897,6 @@ do
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
   "src/const.py" ) CONFIG_FILES="$CONFIG_FILES src/const.py" ;;
   "src/docgen/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/docgen/Makefile" ;;
-  "src/filters/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/filters/Makefile" ;;
   "src/plugins/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/plugins/Makefile" ;;
   "src/calendars/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/calendars/Makefile" ;;
   "src/data/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/data/Makefile" ;;

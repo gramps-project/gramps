@@ -63,7 +63,6 @@ import GenericFilter
 from QuestionDialog import *
 
 import DisplayTrace
-import Filter
 import const
 import Plugins
 import Utils
@@ -708,10 +707,6 @@ class Gramps:
         self.relationship = self.RelClass(self.db)
 
     def init_filters(self):
-
-        #Filter.load_filters(const.filtersDir)
-        #Filter.load_filters(os.path.expanduser("~/.gramps/filters"))
-        #menu = Filter.build_filter_menu(self.on_filter_name_changed,self.filter_text)
 
         filter_list = []
 

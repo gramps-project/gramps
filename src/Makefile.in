@@ -35,9 +35,9 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src
-DIST_COMMON = $(dist_pkgdata_DATA) $(pkgpython_PYTHON) \
+DIST_COMMON = README $(dist_pkgdata_DATA) $(pkgpython_PYTHON) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/const.py.in
+	$(srcdir)/const.py.in AUTHORS ChangeLog NEWS
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -140,7 +140,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 
 # This is the src level Makefile for Gramps
-SUBDIRS = docgen filters plugins data po calendars
+SUBDIRS = docgen plugins data po calendars
 
 # For intl. support, how do we compile?
 MOSTLYCLEANFILES = 
@@ -172,7 +172,6 @@ pkgpython_PYTHON = \
 	Errors.py\
 	EventEdit.py\
 	FamilyView.py\
-	Filter.py\
 	Find.py\
 	FontScale.py\
 	FrenchRepublic.py\
@@ -210,7 +209,7 @@ pkgpython_PYTHON = \
 	Report.py\
 	SelectChild.py\
 	SelectObject.py\
-	sort.py\
+	Sort.py\
 	soundex.py\
 	Sources.py\
 	SourceView.py\
