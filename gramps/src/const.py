@@ -74,6 +74,7 @@ findFile       = "%s/find.glade" % rootDir
 mergeFile      = "%s/mergedata.glade" % rootDir
 traceFile      = "%s/trace.glade" % rootDir
 pluginsDir     = "%s/plugins" % rootDir
+docgenDir      = "%s/docgen" % rootDir
 filtersDir     = "%s/filters" % rootDir
 dataDir        = "%s/data" % rootDir
 gtkrcFile      = "%s/gtkrc" % rootDir

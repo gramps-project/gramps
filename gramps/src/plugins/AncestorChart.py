@@ -146,7 +146,7 @@ class AncestorChart:
                     page = page + 1
             generation = generation + 3
 	try:
-	    self.doc.close()
+            self.doc.close()
         except:
             print _("Document write failure")
 
