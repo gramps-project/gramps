@@ -1,3 +1,6 @@
+2005-03-09  Don Allingham  <don@gramps-project.org>
+	* srcNameEdit.py: assign date on close
+
 2005-03-09 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/PedView.py: Import RelLib for accessing relationship constants.
 	* src/NameEdit.py: Use empty Date for newly created name.

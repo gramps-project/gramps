@@ -264,6 +264,8 @@ class NameEditor:
         if self.name == None:
             self.name = RelLib.Name()
             self.parent.nlist.append(self.name)
+
+        self.name.set_date_object(self.date_obj)
         
         self.name.set_source_reference_list(self.srcreflist)
 
