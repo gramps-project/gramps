@@ -34,7 +34,7 @@ if sys.version[0] != '1':
     sax = 2
     try:
         from _xmlplus.sax import handler
-    else:
+    except:
         from xml.sax import handler
 else:
     try:
@@ -494,7 +494,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_gender(self,tag):
-        self.person.gender = (tag == "M")
+        self.person.gender = (u2l(tag) == "M")
 
     #---------------------------------------------------------------------
     #
@@ -535,7 +535,7 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_sdate(self,tag):
         date = Date()
-        date.quick_set(tag)
+        date.quick_set(u2l(tag))
         self.source_ref.setDate(date)
         
     def stop_street(self,tag):
