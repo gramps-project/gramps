@@ -1,0 +1,241 @@
+*** This is GRAMPS Frequently Asked Questions ***
+
+The questions below frequently come up in mailing list discussions and forums.
+This list is by no means complete. If you would like to add questions/answers to
+this list, please email your suggestions to gramps-devel@lists.sourceforge.net
+
+
+*** Index ***
+
+ 1. What is GRAMPS?
+
+ 2. Where do I get it and how much does it cost?
+
+ 3. Does it work with Windows?
+
+ 4. Does it work with the Mac?
+
+ 5. Do I really have to have GNOME installed?
+
+ 6. Does it work with KDE?
+
+ 7. What version of GNOME do I need?
+
+ 8. Is GRAMPS compatible with other genealogical software?
+
+ 9. Can GRAMPS read files created by GenApp X?
+
+10. Can GRAMPS write files readable by GenApp X?
+
+11. Can GRAMPS print Genealogical tree for my family?
+
+12. In what formats can GRAMPS output its reports?
+
+13. Is GRAMPS compatible with the Internet?
+
+14. What standards does GRAMPS support?
+
+15. What is the maximum database size (bytes) GRAMPS can handle?
+
+16. How many people can GRAMPS database handle?
+
+17. How fast is GRAMPS?
+
+18. My database is really big. 
+    Is there a way around loading all the data into memory? 
+
+19. Can I create custom reports/filters/whatever?
+
+20. Why is GRAMPS running so slowly?
+
+21. Why are non-latin characters displayed as garbage in PDF/PS reports?
+
+
+*** Questions and answers ***
+
+
+1. What is GRAMPS?
+
+GRAMPS is the Genealogical Research and Analysis Management Program System. 
+In other words, it a personal genealogy program letting you store, edit, 
+and research genealogical data using the powers of your computer. 
+
+
+2. Where do I get it and how much does it cost?
+
+GRAMPS can be downloaded from http://sf.net/projects/gramps at no charge. 
+GRAMPS is an Open Source project covered by the GNU General Public License. 
+You have full access to the source code and are allowed to distribute the 
+program and source code freely. 
+
+
+3. Does it work with Windows?
+
+In principle, it could. GRAMPS depends on Python (http://www.python.org) 
+and GNOME (http://www.gnome.org), so as long as these two are available, 
+GRAMPS will work. Currently, we are not aware of working GNOME2 port to 
+Windows platform. This, however, may change in the future. 
+
+GRAMPS is being developed and tested on Linux, and virtually all Linux
+distributions satisfy the requirements for GRAMPS. 
+
+
+4. Does it work with the Mac?
+
+A port of GRAMPS to Mac OS X exists from the Fink project
+(http://fink.sourceforge.net/pdb/package.php/gramps). It is not unusual 
+for this version to lag behind the Linux version. The port is not supported 
+by the GRAMPS project (since few if any of us have Macs), but we try to 
+help out where we can. 
+
+If you have problems installing the Mac port, you will need to contact 
+the Fink project. If you encounter a run time bug or have issues not 
+specifically related to the Mac, contact the GRAMPS project. 
+
+
+5. Do I really have to have GNOME installed?
+
+Yes, but you do not have to be running the GNOME desktop.
+
+
+6. Does it work with KDE?
+
+Yes, as long as the required GNOME libraries are installed.
+
+
+7. What version of GNOME do I need?
+
+The latest versions of gramps (0.9.0 and higher) require GNOME 2.0 or higher.
+Previous versions required GNOME 1.X. 
+
+
+8. Is GRAMPS compatible with other genealogical software?
+
+GRAMPS makes every effort to maintain compatibility with GEDCOM, the general
+standard of recording genealogical information. We have import and export
+filters that enable GRAMPS to read and write GEDCOM files. 
+
+It is important to understand that the GEDCOM standard is poorly implemented --
+virtually every genealogical software has its own "flavor" of GEDCOM. As we
+learn about new flavor, the import/export filters can be created very quickly.
+However, finding out about the unknown flavors requires user's feedback. 
+Please feel free to inform us about any GEDCOM flavor not supported by GRAMPS, 
+and we will support it! 
+
+
+9. Can GRAMPS read files created by GenApp X?
+
+See above.
+
+
+10. Can GRAMPS write files readable by GenApp X?
+
+See above.
+
+
+11. Can GRAMPS print Genealogical tree for my family?
+
+Yes. Different people have different ideas of what Genealogical tree is. 
+Some think of it as a chart going from the distant ancestor and listing 
+all his/her descendants and their families. Others think it should be a 
+chart going from the person back in time, listing the ancestors and their 
+families. Yet other people think of a table, text report, etc. 
+
+GRAMPS can produce any of the above, and many more different charts and 
+reports. Moreover, the plugin architechture enables a user (you) to create 
+his own plugins which could be new reports, charts, or research tools. 
+
+
+12. In what formats can GRAMPS output its reports?
+
+Text reports are available in HTML, PDF, AbiWord, KWord, LaTeX, RTF, and
+OpenOffice formats. Graphical reports (charts and diagrams) are available in
+PostScript, PDF, SVG, OpenOffice and GraphViz formats. 
+
+
+13. Is GRAMPS compatible with the Internet?
+
+GRAMPS can store web addresses and direct your browser to them. It can import
+data that you download from the Internet. It can export data that you could 
+send over the Internet. GRAMPS is familiar with the standard file formats 
+widely used on the Internet (e.g. JPEG and GIF images, MP3, OGG, and WAV sound 
+files, QuickTime, MPEG, and AVI movie files, etc). Other than that, there is 
+little that genealogical program can do with the Internet :-) 
+
+
+14. What standards does GRAMPS support?
+
+The nice thing about the standards is that there never is a shortage of 
+them :-). GRAMPS is tested to support the following flavors of GEDCOM: 
+GEDCOM5.5, Borther's Keeper, Family Origins, Familty Tree Maker, Ftree, 
+GeneWeb, Legacy, Personal Ancestral File, Pro-Gen, Reunion, and 
+Visual Genealogie. 
+
+
+15. What is the maximum database size (bytes) GRAMPS can handle?
+
+GRAMPS has no hard limits on the size of a database that it can handle. 
+In reality, however, there are practical limits. Currently GRAMPS loads all 
+data into memory, so the limiting factor tends to be the available memory 
+on the system. 
+
+
+16. How many people can GRAMPS database handle?
+
+We have found that on a typical system, GRAMPS tends to bog down after around
+15,000 users. Again, this is dependant on how much memory you have. 
+
+
+17. How fast is GRAMPS?
+
+No idea.
+
+
+18. My database is really big. 
+    Is there a way around loading all the data into memory?
+
+Currently, there is no way around it. However, this is our biggest priority
+after releasing 1.0 version. The real database backend will be incorporated 
+in the next stable release (1.2) which will dramatically improve performance 
+in both speed and memory usage.
+
+
+19. Can I create custom reports/filters/whatever?
+
+Yes. There are many levels of customization. One is creating or modifying 
+the templates used for the reports. This gives you some control over 
+the fonts, colors, and some layout of the reports. You can also use GRAMPS 
+controls in the report dialogs to tell what contents should be used for a 
+particular report. In addition to this, you have an ability to create your 
+own filters -- this is useful in selecting people based on criteria set 
+by you. You can combine these filters to create new, more complex filters. 
+Finally, you have an option to create your own plugins. These may be new 
+reports, research tools, import/export filters, etc. This assumes some 
+knowledge of programming in Python. 
+
+
+20. Why is GRAMPS running so slowly?
+
+If GRAMPS seems too slow to you, it is most likely that you have a large
+database. Currently, GRAMPS loads all the database into memory, therefore 
+large databases lead to be less than responsive. Specifically, the system 
+can be virtually brought to its knees if swapping is needed for GRAMPS' data.
+
+This will be addressed in the stable release following 1.0 version. 
+Temporarily, adding more memory could make a huge difference, but we realize
+that this is a poor way of treating the problem. If you would like to help 
+with the implementation of the real database backend, please don't hesitate 
+to email us at gramps-devel@lists.sourceforge.net
+
+
+21. Why are non-latin characters displayed as garbage in PDF/PS reports?
+
+This is a known problem -- PS (and PDF) have builtin fonts which pretty much 
+reflect the latin-1 charset. Any font in principle could be used with PS/PDF 
+but then it would have to be embedded in the file. This is problematic since 
+every system has different idea about fonts and their setup.
+
+This should be resolved as we move to gnome-print. In the meantime, a useable 
+workaround is to generate reports in OOo format and the export to PDF from OOo.
+
+*** End of GRAMPS Frequently Asked Questions ***
