@@ -63,7 +63,14 @@ __version__ = "Revision:$"
 #
 #-------------------------------------------------------------------------
 import os
-#import Utils
+from math import pi, cos, sin
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -1086,6 +1093,12 @@ class BaseDoc:
 
     def set_mode(self, mode):
         self.mode = mode
+
+    def start_page(self):
+        pass
+
+    def end_page(self):
+        pass
         
     def print_requested (self):
         self.print_req = 1
@@ -1123,6 +1136,18 @@ class BaseDoc:
         the page height less the margins.
         """
         return self.height - (self.tmargin + self.bmargin)
+
+    def get_right_margin(self):
+        return self.rmargin
+
+    def get_left_margin(self):
+        return self.lmargin
+
+    def get_top_margin(self):
+        return self.tmargin
+
+    def get_bottom_margin(self):
+        return self.bmargin
 
     def creator(self,name):
         "Returns the owner name"
@@ -1173,7 +1198,7 @@ class BaseDoc:
         "Forces a line break within a paragraph"
 	pass
 
-    def page_break(self, mode=-1):
+    def page_break(self):
         "Forces a page break, creating a new page"
         pass
 
