@@ -1,3 +1,9 @@
+2003-10-11  Lorenzo Cappelletti  <lorenzo.cappelletti@email.it>
+	* src/plugins/rel_it.py: Italian relationship calculator
+	added
+	* src/plugins/RelGraph.py: Advanced relationship graph
+	report generator
+
 2003-10-11  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/docgen/HTMLDoc.py: removed references to 
 	gnome.ui.WarningDialog
