@@ -8,6 +8,7 @@
 
 	* src/plugins/AncestorChart2.py: Number pages starting with 1.
 	Do not allow for mutlipage when it's a book item.
+	* src/po/template.po: Update translation template.
 
 2004-01-17  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/plugins/AncestorChart2.py: more multipage improvements
