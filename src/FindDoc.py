@@ -41,6 +41,7 @@ _PDF        = _("PDF")
 _HTML       = _("HTML")
 _LATEX      = _("LaTeX")
 _KWord      = _("KWord")
+_RTF        = _("RTF")
 
 _has_tables = 1
 _no_tables  = 0
@@ -98,6 +99,12 @@ except:
 try:
     import KwordDoc
     _textdoc.append((_KWord, _no_tables, _paper, _styles))
+except:
+    pass
+
+try:
+    import RTFDoc
+    _textdoc.append((_RTF, _no_tables, _paper, _styles))
 except:
     pass
 
@@ -178,6 +185,8 @@ def make_text_doc(styles,name,paper,orien,template):
         return LaTeXDoc.LaTeXDoc(styles,paper,orien)
     elif name == _KWord:
         return KwordDoc.KwordDoc(styles,paper,orien)
+    elif name == _RTF:
+        return RTFDoc.RTFDoc(styles,paper,orien)
     else:
         return HtmlDoc.HtmlDoc(styles,template)
 
