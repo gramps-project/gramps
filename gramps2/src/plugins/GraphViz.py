@@ -496,7 +496,7 @@ def dump_index(database,person_list,file,includedates,includeurl,colorize,
             family_list = person.get_family_id_list()
             for fam_id in family_list:
                 fid = string.replace(fam_id,'-','_')
-                if fam not_id in families_done:
+                if fam_id not in families_done:
                     families_done.append(fam_id)
                     file.write('f%s [shape=ellipse, ' % fid)
                     marriage = ""
