@@ -13,6 +13,14 @@
 	* src/plugins/Leak.py: icon, window management, single instance.
 	* src/plugins/leak.glade: dialog.
 
+	* src/plugins/FilterEditor.py: single instance, help.
+	* src/rule.glade: icon, help.
+	* src/plugins/SoundGen.py: single instance, icon, help.
+	* src/soundex.glade: help.
+	* src/plugins/RelCalc.py: icon.
+	* src/plugins/ScratchPad.py: single instance, help.
+	* src/scratchpad.glade: help.
+
 2005-03-24  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/DdTargets.py: new module to manage drag and drop target data.
 	* src/Makefile.am: added DdTargets.py

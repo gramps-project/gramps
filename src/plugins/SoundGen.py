@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,16 +22,31 @@
 
 "Utilities/Generate SoundEx codes"
 
+#------------------------------------------------------------------------
+#
+# standard python modules
+#
+#------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
+#------------------------------------------------------------------------
+#
+# GNOME/GTK modules
+#
+#------------------------------------------------------------------------
 import gtk
 import gtk.glade
+from gnome import help_display
 
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
 import soundex
 import Utils
 import AutoComp
-
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -40,12 +55,18 @@ from gettext import gettext as _
 def runTool(database,active_person,callback,parent=None):
     SoundGen(database,active_person,parent)
 
-
+#-------------------------------------------------------------------------
+#
+#
+#-------------------------------------------------------------------------
 class SoundGen:
     def __init__(self,database,active_person,parent):
         self.db = database
         self.parent = parent
-        self.win_key = self
+        if self.parent.child_windows.has_key(self.__class__):
+            self.parent.child_windows[self.__class__].present(None)
+            return
+        self.win_key = self.__class__
         
         base = os.path.dirname(__file__)
         glade_file = base + os.sep + "soundex.glade"
@@ -53,10 +74,12 @@ class SoundGen:
         self.glade = gtk.glade.XML(glade_file,"soundEx","gramps")
         self.glade.signal_autoconnect({
             "destroy_passed_object" : self.close,
+            "on_help_clicked"       : self.on_help_clicked,
             "on_delete_event"       : self.on_delete_event,
         })
 
         self.window = self.glade.get_widget("soundEx")
+        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
                          _('SoundEx code generator'))
@@ -89,9 +112,12 @@ class SoundGen:
         else:
             self.name.set_text("")
             
-        self.window.show()    
         self.add_itself_to_menu()
         self.window.show()
+
+    def on_help_clicked(self,obj):
+        """Display the relevant portion of GRAMPS manual"""
+        help_display('gramps-manual','tools-util')
 
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()

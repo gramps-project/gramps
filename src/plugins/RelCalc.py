@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #
 #-------------------------------------------------------------------------
 import os
+from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -41,13 +42,11 @@ import gtk.glade
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-
 import RelLib
 import Utils
 import NameDisplay
 import ListModel
 import PluginMgr
-from gettext import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -80,12 +79,15 @@ class RelCalc:
         self.glade = gtk.glade.XML(glade_file,"relcalc","gramps")
 
         name = self.person.get_primary_name().get_regular_name()
-
+        self.title = _('Relationship calculator: %(person_name)s') % { 
+                                        'person_name' : name }
         self.window = self.glade.get_widget('relcalc')
+        self.window.set_icon(self.parent.topWindow.get_icon())
         Utils.set_titles(self.window,
                          self.glade.get_widget('title'),
-                         _('Relationship to %s') % name,
-                         _('Relationship calculator'))
+                         _('Relationship to %(person_name)s') % { 
+                                        'person_name' : name },
+                         self.title)
     
         self.people = self.glade.get_widget("peopleList")
 
@@ -135,7 +137,7 @@ class RelCalc:
 
     def add_itself_to_menu(self):
         self.parent.child_windows[self.win_key] = self
-        self.parent_menu_item = gtk.MenuItem(_('Relationship calculator tool'))
+        self.parent_menu_item = gtk.MenuItem(self.title)
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.winsmenu.append(self.parent_menu_item)
