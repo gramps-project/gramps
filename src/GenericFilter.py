@@ -2117,7 +2117,7 @@ tasks = {
     unicode(_("People marked private"))                : PeoplePrivate,
     unicode(_("Witnesses"))                            : IsWitness,
 
-    unicode(_("Has text matching substring"))          : HasTextMatchingSubstringOf,
+    unicode(_("Has text matching substring of"))       : HasTextMatchingSubstringOf,
 }
 
 #-------------------------------------------------------------------------
