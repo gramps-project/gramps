@@ -473,7 +473,7 @@ def save_attr(st):
         return personal_attributes.find_key(st)
     if family_attributes.has_value(st):
         return family_attributes.find_key(st)
-    return _(st)
+    return st
 
 #-------------------------------------------------------------------------
 #
