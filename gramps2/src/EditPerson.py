@@ -798,7 +798,7 @@ class EditPerson:
         import EventEdit
         pname = self.person.getPrimaryName().getName()
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,None,None,0,self.event_edit_callback)
+                              const.save_event,None,None,0,self.event_edit_callback)
 
     def on_edit_birth_clicked(self,obj):
         """Brings up the EventEditor for the birth record, event
@@ -817,7 +817,7 @@ class EditPerson:
         if p:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,event,def_placename,1,
+                              const.save_event,event,def_placename,1,
                               self.event_edit_callback)
 
     def on_edit_death_clicked(self,obj):
@@ -837,7 +837,7 @@ class EditPerson:
         if p:
             event.setPlace(p)
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,event,def_placename,1,
+                              const.save_event,event,def_placename,1,
                               self.event_edit_callback)
 
     def on_aka_delete_clicked(self,obj):
@@ -1084,7 +1084,7 @@ class EditPerson:
         pname = self.person.getPrimaryName().getName()
         event = self.etree.get_object(iter)
         EventEdit.EventEditor(self,pname,const.personalEvents,
-                              const.save_fevent,event,None,0,
+                              const.save_event,event,None,0,
                               self.event_edit_callback)
         
     def on_event_select_row(self,obj):
