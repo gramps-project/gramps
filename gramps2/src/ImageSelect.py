@@ -674,10 +674,10 @@ class LocalMediaProperties:
             self.win_key = self
         self.child_windows = {}
         self.photo = photo
+        self.db = parent.db
         self.object = self.db.find_object_from_id(photo.get_reference_id())
         self.alist = photo.get_attribute_list()[:]
         self.lists_changed = 0
-        self.db = parent.db
         
         fname = self.object.get_path()
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_description","gramps")
@@ -937,7 +937,6 @@ class GlobalMediaProperties:
             "on_apply_clicked"       : self.on_apply_clicked,
             "on_add_attr_clicked"    : self.on_add_attr_clicked,
             "on_notebook_switch_page": self.on_notebook_switch_page,
-            "on_make_local_clicked"  : self.on_make_local_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
             "on_update_attr_clicked" : self.on_update_attr_clicked,
             "on_help_clicked" : self.on_help_clicked,
@@ -963,17 +962,6 @@ class GlobalMediaProperties:
     def update_info(self):
         fname = self.object.get_path()
         self.change_dialog.get_widget("path").set_text(fname)
-        self.makelocal.set_sensitive(1)
-
-    def on_make_local_clicked(self, obj):
-        name = RelImage.import_media_object(self.object.get_path(),
-                                            self.path,
-                                            self.object.get_id())
-        self.object.set_path(name)
-        self.object.setLocal(1)
-        self.update_info()
-        if self.update != None:
-            self.update()
 
     def redraw_attr_list(self):
         self.atree.clear()

@@ -1,3 +1,6 @@
+2004-04-18  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DbPrompter.py: support for new GTK 2.4 file chooser
+
 2004-04-10  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/Bookmarks.py: use IDs instead of person references
 	* src/ChooseParents.py: allow for NOSORT option

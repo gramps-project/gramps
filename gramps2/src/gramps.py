@@ -94,4 +94,7 @@ except:
     import DisplayTrace
     DisplayTrace.DisplayTrace()
 
-gtk.mainloop()
+if gtk.pygtk_version[0] == 2 and gtk.pygtk_version[1] >= 3:
+    gtk.main()
+else:
+    gtk.mainloop()

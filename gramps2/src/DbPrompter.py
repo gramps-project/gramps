@@ -86,13 +86,37 @@ class DbPrompter:
         gnome.help_display('gramps-manual','choose-db-start')
 
     def save_as_activate(self):
-        wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
-        wFs.signal_autoconnect({
-            "on_ok_button1_clicked": self.save_ok_button_clicked,
-            "destroy_passed_object": self.cancel_button_clicked,
-            })
-        filesel = wFs.get_widget('fileselection')
-        filesel.set_title('%s - GRAMPS' % _('Create database'))
+        if gtk.pygtk_version[1] >= 3:
+            choose = gtk.FileChooserDialog('Create GRAMPS database',
+                                           None,
+                                           gtk.FILE_CHOOSER_ACTION_SAVE,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_OPEN,
+                                            gtk.RESPONSE_OK))
+            filter = gtk.FileFilter()
+            filter.set_name(_('GRAMPS databases'))
+            filter.add_pattern('*.grdb')
+            choose.add_filter(filter)
+
+            filter = gtk.FileFilter()
+            filter.set_name(_('All files'))
+            filter.add_pattern('*')
+            choose.add_filter(filter)
+
+            response = choose.run()
+            if response == gtk.RESPONSE_OK:
+                filename = choose.get_filename()
+                self.db.read_file(filename)
+            choose.destroy()
+        else:
+            wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
+            wFs.signal_autoconnect({
+                "on_ok_button1_clicked": self.save_ok_button_clicked,
+                "destroy_passed_object": self.cancel_button_clicked,
+                })
+            filesel = wFs.get_widget('fileselection')
+            filesel.set_title('%s - GRAMPS' % _('Create database'))
 
     def save_ok_button_clicked(self,obj):
         filename = obj.get_filename().encode('iso8859-1')
@@ -101,16 +125,42 @@ class DbPrompter:
                 Utils.destroy_passed_object(obj)
 
     def open_activate(self):
+        if gtk.pygtk_version[1] >= 3:
+            choose = gtk.FileChooserDialog('Open GRAMPS database',
+                                                None,
+                                                gtk.FILE_CHOOSER_ACTION_OPEN,
+                                                (gtk.STOCK_CANCEL,
+                                                 gtk.RESPONSE_CANCEL,
+                                                 gtk.STOCK_OPEN,
+                                                 gtk.RESPONSE_OK))
+            filter = gtk.FileFilter()
+            filter.set_name(_('GRAMPS databases'))
+            filter.add_pattern('*.grdb')
+            choose.add_filter(filter)
 
-        wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
-        wFs.signal_autoconnect({
-            "on_ok_button1_clicked": self.ok_button_clicked,
-            "destroy_passed_object": self.cancel_button_clicked,
-            })
-        self.filesel = wFs.get_widget('fileselection')
-        self.filesel.set_title('%s - GRAMPS' % _('Open database'))
-        if GrampsCfg.lastfile:
-            self.filesel.set_filename(GrampsCfg.lastfile)
+            filter = gtk.FileFilter()
+            filter.set_name(_('All files'))
+            filter.add_pattern('*')
+            choose.add_filter(filter)
+
+            if GrampsCfg.lastfile:
+                choose.set_filename(GrampsCfg.lastfile)
+
+            response = choose.run()
+            if response == gtk.RESPONSE_OK:
+                filename = choose.get_filename()
+                self.db.read_file(filename)
+            choose.destroy()
+        else:
+            wFs = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
+            wFs.signal_autoconnect({
+                "on_ok_button1_clicked": self.ok_button_clicked,
+                "destroy_passed_object": self.cancel_button_clicked,
+                })
+            self.filesel = wFs.get_widget('fileselection')
+            self.filesel.set_title('%s - GRAMPS' % _('Open database'))
+            if GrampsCfg.lastfile:
+                self.filesel.set_filename(GrampsCfg.lastfile)
         return
     
     def cancel_button_clicked(self,obj):
