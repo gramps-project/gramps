@@ -1261,7 +1261,7 @@ class ReportDialog(BareReportDialog):
                 self.template_combo.append_text(template)
                 if _template_map[template] == template_name:
                     active_index = template_index
-                template_idex = templatex_index + 1
+                template_index = template_index + 1
         self.template_combo.append_text(_user_template)
 
         self.template_combo.connect('changed',self.html_file_enable)

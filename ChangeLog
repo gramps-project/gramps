@@ -1,3 +1,7 @@
+2005-01-13 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py: Typos.
+	* src/plugins/WebPage.py: Typos.
+
 2005-01-13  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* src/plugins/Check.py: Typos.
 

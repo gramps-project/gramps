@@ -1387,7 +1387,7 @@ class WebReportOptions(ReportOptions.ReportOptions):
                 self.ind_template.append_text(template)
                 if Report._template_map[template] == ind_template_name:
                     active_index = template_index
-                template_idex = templatex_index + 1
+                template_index = template_index + 1
         self.ind_template.append_text(Report._user_template)
 
         self.ind_user_template = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
