@@ -765,6 +765,8 @@ class EditPerson:
 
         date = self.ldsbap_date.get_text()
         temple = self.ldsbap_temple.entry.get_text()
+        place = utils.get_place_from_list(self.ldsbapplace)
+        
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -778,6 +780,8 @@ class EditPerson:
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
                 changed = 1
+            elif ord.getPlace() != place:
+                changed = 1
             elif ord.getStatus() != self.bap_stat:
                 changed = 1
             elif ord.getTemple() != temple:
@@ -785,6 +789,8 @@ class EditPerson:
 
         date = self.ldsend_date.get_text()
         temple = self.ldsend_temple.entry.get_text()
+        place = utils.get_place_from_list(self.ldsendowplace)
+        
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -798,6 +804,8 @@ class EditPerson:
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
                 changed = 1
+            elif ord.getPlace() != place:
+                changed = 1
             elif ord.getStatus() != self.end_stat:
                 changed = 1
             elif ord.getTemple() != temple:
@@ -805,6 +813,7 @@ class EditPerson:
 
         date = self.ldsseal_date.get_text()
         temple = self.ldsseal_temple.entry.get_text()
+        place = utils.get_place_from_list(self.ldssealplace)
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -818,6 +827,8 @@ class EditPerson:
             d = Date()
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
+                changed = 1
+            elif ord.getPlace() != place:
                 changed = 1
             elif ord.getTemple() != temple:
                 changed = 1
@@ -1148,7 +1159,8 @@ class EditPerson:
         else:
             temple = ""
         ord = self.person.getLdsBaptism()
-        update_ord(self.person.setLdsBaptism,ord,date,temple,self.bap_stat)
+        place = utils.get_place_from_list(self.ldsbapplace)
+        update_ord(self.person.setLdsBaptism,ord,date,temple,self.bap_stat,place)
 
         date = self.ldsend_date.get_text()
         temple = self.ldsend_temple.entry.get_text()
@@ -1157,7 +1169,8 @@ class EditPerson:
         else:
             temple = ""
         ord = self.person.getLdsEndowment()
-        update_ord(self.person.setLdsEndowment,ord,date,temple,self.end_stat)
+        place = utils.get_place_from_list(self.ldsendowplace)
+        update_ord(self.person.setLdsEndowment,ord,date,temple,self.end_stat,place)
 
         date = self.ldsseal_date.get_text()
         temple = self.ldsseal_temple.entry.get_text()
@@ -1166,12 +1179,14 @@ class EditPerson:
         else:
             temple = ""
         ord = self.person.getLdsSeal()
+        place = utils.get_place_from_list(self.ldssealplace)
         if not ord:
             if self.ldsfam or date or temple:
                 ord = LdsOrd()
                 ord.setDate(date)
                 ord.setTemple(temple)
                 ord.setFamily(self.ldsfam)
+                ord.setPlace(place)
                 self.person.setLdsSeal(ord)
                 utils.modified()
         else:
@@ -1179,6 +1194,9 @@ class EditPerson:
             d.set(date)
             if compare_dates(d,ord.getDateObj()) != 0:
                 ord.setDateObj(d)
+                utils.modified()
+            if ord.getPlace() != place:
+                ord.setPlace(place)
                 utils.modified()
             if ord.getTemple() != temple:
                 ord.setTemple(temple)
@@ -1292,12 +1310,13 @@ class EditPerson:
                 place = None
             utils.attach_places(plist,self.ldsendowplace,place)
 
-def update_ord(func,ord,date,temple,stat):
+def update_ord(func,ord,date,temple,stat,place):
     if not ord:
         if (date or temple):
             ord = LdsOrd()
             ord.setDate(date)
             ord.setTemple(temple)
+            ord.setPlace(place)
             func(ord)
             utils.modified()
     else:
@@ -1308,6 +1327,9 @@ def update_ord(func,ord,date,temple,stat):
             utils.modified()
         elif ord.getTemple() != temple:
             ord.setTemple(temple)
+            utils.modified()
+        elif ord.getPlace() != place:
+            ord.setPlace(place)
             utils.modified()
         elif ord.getStatus() != stat:
             ord.setStatus(stat)

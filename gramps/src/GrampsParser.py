@@ -511,7 +511,10 @@ class GrampsParser:
                 self.placeobj.set_title(u2l(tag))
                 self.db.addPlace(self.placeobj)
                 self.place_map[u2l(tag)] = self.placeobj
-        self.event.place = self.placeobj
+        if self.ord:
+            self.ord.setPlace(self.placeobj)
+        else:
+            self.event.place = self.placeobj
             
     def stop_uid(self,tag):
         self.person.setPafUid(u2l(tag))
