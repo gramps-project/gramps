@@ -705,7 +705,6 @@ class GrampsParser:
         self.family = None
 
     def stop_person(self,tag):
-        self.db.build_person_display(self.person.get_id())
         self.db.commit_person(self.person)
         self.person = None
 

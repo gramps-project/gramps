@@ -148,7 +148,6 @@ class Gramps:
         self.db.set_researcher(GrampsCfg.get_researcher())
 
     def pref_callback(self,val):
-        self.db.rebuild_person_table()
         self.modify_statusbar()
         self.family_view.init_interface()
         self.update_display(1)
@@ -259,6 +258,7 @@ class Gramps:
         self.child_windows = {}
 
         self.gtop.signal_autoconnect({
+            "on_undo_activate" : self.undo,
             "on_column_order_activate": self.column_order,
             "on_back_clicked" : self.back_clicked,
             "on_back_pressed" : self.back_pressed,
@@ -345,6 +345,16 @@ class Gramps:
 
         self.topWindow.show()
         self.enable_toolbar(self.use_toolbar)
+
+    def undo(self,*args):
+        self.db.undo()
+        p = self.db.try_to_find_person_from_id(self.active_person.get_id())
+        self.change_active_person(p)
+        self.place_view.change_db(self.db)
+        self.people_view.change_db(self.db)
+        self.source_view.change_db(self.db)
+        self.media_view.change_db(self.db)
+        self.family_view.load_family()
 
     def set_column_order(self,list):
         self.db.set_column_order(list)
@@ -894,8 +904,6 @@ class Gramps:
             self.family_view.clear()
             self.family_view.load_family()
             self.pedigree_view.clear()
-            self.source_view.load_sources()
-            self.place_view.load_places()
             self.media_view.load_media()
     
     def tool_callback(self,val):
@@ -931,17 +939,12 @@ class Gramps:
             self.family_view.load_family()
         elif page == PEDIGREE_VIEW:
             self.pedigree_view.load_canvas(self.active_person)
-        elif page == SOURCE_VIEW:
-            self.source_view.load_sources()
         elif page == PLACE_VIEW:
             if len(self.db.get_place_id_keys()) > 2000:
                 self.status_text(_('Updating display - this may take a few seconds...'))
             else:
                 self.status_text(_('Updating display...'))
-            self.place_view.load_places()
             self.modify_statusbar()
-        else:
-            self.media_view.load_media()
 
     def on_tools_clicked(self,obj):
         if self.active_person:
@@ -953,23 +956,13 @@ class Gramps:
             Plugins.ReportPlugins(self,self.db,self.active_person)
 
     def on_ok_button1_clicked(self,obj):
-    
-        dbname = obj.get_data("dbname")
-        getoldrev = obj.get_data("getoldrev")
-        filename = dbname.get_full_path(0)
-
+        filename = self.filesel.get_filename()
         if filename == "" or filename == None:
             return
         filename = os.path.normpath(os.path.abspath(filename))
-        
+        self.filesel.destroy()
         self.clear_database()
-    
-        if getoldrev.get_active():
-            vc = VersionControl.RcsVersionControl(filename)
-            VersionControl.RevisionSelect(self.db,filename,vc,
-                                          self.load_revision)
-        else:
-            self.auto_save_load(filename)
+        self.auto_save_load(filename)
 
     def on_help_dbopen_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -1053,7 +1046,10 @@ class Gramps:
                     if o.get_reference_id() == ObjectId:
                         nl.remove(o) 
                 p.set_media_list(nl)
-            self.db.remove_object(ObjectId) 
+
+            trans = self.db.start_transaction()
+            self.db.remove_object(ObjectId)
+            self.db.add_transaction(trans)
     
         def leave_clicked():
             # File is lost => do nothing, leave as is
@@ -1210,6 +1206,8 @@ class Gramps:
 
     def delete_person_response(self):
 
+        trans = self.db.start_transaction()
+        
         if self.db.get_default_person() == self.active_person:
             self.db.set_default_person(None)
 
@@ -1222,7 +1220,8 @@ class Gramps:
                     for child_id in family.get_child_id_list():
                         child = self.db.find_person_from_id(child_id)
                         child.remove_parent_family_id(family.get_id())
-                    self.db.delete_family(family.get_id())
+                        self.db.commit_person(child,trans)
+                    self.db.delete_family(family.get_id(),trans)
                 else:
                     family.set_father_id(None)
             else:
@@ -1230,23 +1229,27 @@ class Gramps:
                     for child_id in family.get_child_id_list():
                         child = self.db.find_person_from_id(child_id)
                         child.remove_parent_family_id(family)
-                    self.db.delete_family(family)
+                        self.db.commit_person(child,trans)
+                    self.db.delete_family(family,trans)
                 else:
                     family.set_mother_id(None)
-
+            self.db.commit_family(family,trans)
+            
         for (family_id,mrel,frel) in self.active_person.get_parent_family_id_list():
             if family_id:
                 family = self.db.find_family_from_id(family_id)
                 family.remove_child_id(self.active_person.get_id())
-            
+                self.db.commit_family(family,trans)
+                
         self.people_view.remove_from_history(self.active_person)
-        self.db.remove_person_id(self.active_person.get_id())
+        self.db.remove_person_id(self.active_person.get_id(),trans)
         self.people_view.remove_from_person_list(self.active_person)
 
         if self.hindex >= 0:
             self.active_person = self.db.get_person(self.history[self.hindex])
         else:
             self.change_active_person(None)
+        self.db.add_transaction(trans)
         self.redraw_histmenu()
 
     def merge_update(self,p1,p2,old_id):
@@ -1261,15 +1264,16 @@ class Gramps:
     def goto_active_person(self,first=0):
         self.people_view.goto_active_person(first)
             
-    def change_active_person(self,person):
+    def change_active_person(self,person,force=0):
+        self.active_person = person
         if person == None:
             self.set_buttons(0)
             self.active_person = None
             self.modify_statusbar()
         elif self.active_person == None or \
                person.get_id() != self.active_person.get_id():
-            self.active_person = person
             self.modify_statusbar()
+            self.set_buttons(1)
             if person:
                 if self.hindex+1 < len(self.history):
                     self.history = self.history[0:self.hindex+1]
@@ -1292,6 +1296,7 @@ class Gramps:
                 else:
                     self.backbtn.set_sensitive(0)
                     self.back.set_sensitive(0)
+        else:
             self.set_buttons(1)
         
     def modify_statusbar(self):
@@ -1327,31 +1332,19 @@ class Gramps:
             DisplayTrace.DisplayTrace()
             return ""
 	
+    def fs_close_window(self,obj):
+        self.filesel.destroy()
+
     def on_open_activate(self,obj):
-        wFs = gtk.glade.XML(const.revisionFile, "dbopen","gramps")
-        
-        self.dbopen_fs = wFs.get_widget("dbopen")
-        
-        Utils.set_titles(self.dbopen_fs, wFs.get_widget('title'),
-                         _('Open a database'))
-        
-        dbname = wFs.get_widget("dbname")
-        getoldrev = wFs.get_widget("getoldrev")
-        self.dbopen_fs.set_data("dbname",dbname)
-        dbname.set_default_path(GrampsCfg.db_dir)
-        dbname.set_filename(GrampsCfg.db_dir)
-        dbname.gtk_entry().set_position(len(GrampsCfg.db_dir))
-        
-        self.dbopen_fs.set_data("getoldrev",getoldrev)
-        getoldrev.set_sensitive(GrampsCfg.usevc)
-        self.dbopen_fs.set_transient_for(self.topWindow)
-        self.dbopen_fs.show()
-        self.dbopen_button = self.dbopen_fs.run()
-        if self.dbopen_button == gtk.RESPONSE_OK:
-            self.on_ok_button1_clicked(self.dbopen_fs)
-        elif self.dbopen_button == gtk.RESPONSE_HELP:
-            self.on_help_dbopen_clicked(obj)
-        self.dbopen_fs.destroy()
+
+        top = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
+        top.signal_autoconnect({
+            "on_ok_button1_clicked": self.on_ok_button1_clicked,
+            "destroy_passed_object": self.fs_close_window,
+            })
+        self.filesel = top.get_widget('fileselection')
+        if GrampsCfg.lastfile:
+            self.filesel.set_filename(GrampsCfg.lastfile)
 
     def on_revert_activate(self,obj):
         pass
@@ -1429,15 +1422,12 @@ class Gramps:
         elif page == SOURCE_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
-            self.source_view.load_sources()
         elif page == PLACE_VIEW:
             self.enable_buttons(1)
-            self.place_view.load_places()
             self.merge_button.set_sensitive(1)
         elif page == MEDIA_VIEW:
             self.enable_buttons(1)
             self.merge_button.set_sensitive(0)
-            self.media_view.load_media()
             
     def on_apply_filter_clicked(self,obj):
         self.people_view.apply_filter_clicked()
@@ -1455,15 +1445,14 @@ class Gramps:
             filter.hide()
         filter.set_sensitive(qual)
 
-    def new_after_edit(self,epo):
+    def new_after_edit(self,epo,trans):
         if epo:
             if epo.person.get_id() == "":
-                self.db.add_person(epo.person)
+                self.db.add_person(epo.person,trans)
             else:
-                self.db.add_person_no_map(epo.person,epo.person.get_id())
-            self.db.build_person_display(epo.person.get_id())
+                self.db.add_person_no_map(epo.person,epo.person.get_id(),trans)
             self.change_active_person(epo.person)
-            self.people_view.redisplay_person_list(epo.person)
+            self.people_view.add_to_person_list(epo.person)
         if self.views.get_current_page() in [FAMILY_VIEW1,FAMILY_VIEW2]:
             self.family_view.load_family()
 

@@ -369,7 +369,10 @@ class EditPlace:
         self.gallery_ok = 1
         self.update_lists()
 
-        self.db.commit_place(self.place)
+        trans = self.db.start_transaction()
+        self.db.commit_place(self.place,trans)
+        self.db.add_transaction(trans)
+        
         if self.callback:
             self.callback(self.place)
 
@@ -553,16 +556,25 @@ class DeletePlaceQuery:
         self.update = update
         
     def query_response(self):
-        self.db.remove_place(self.place.get_id())
+        trans = self.db.start_transaction()
+        
+        self.db.remove_place(self.place.get_id(),trans)
 
         for key in self.db.get_person_keys():
             p = self.db.get_person(key)
-            for event in [p.get_birth(), p.get_death()] + p.get_event_list():
-                if event.get_place_id() == self.place:
+            for event_id in [p.get_birth_id(), p.get_death_id()] + p.get_event_list():
+                event = self.db.find_event_from_id(event_id)
+                if event and event.get_place_id() == self.place.get_id():
                     event.set_place_id(None)
-        for f in self.db.get_family_id_map().values():
-            for event in f.get_event_list():
-                if event.get_place_id() == self.place:
-                    event.set_place_id(None)
+                    self.db.commit_event(event,trans)
 
+        for fid in self.db.get_family_keys():
+            f = self.db.find_family_from_id(fid)
+            for event_id in f.get_event_list():
+                event = self.db.find_event_from_id(event_id)
+                if event and event.get_place_id() == self.place.get_id():
+                    event.set_place_id(None)
+                    self.db.commit_event(event,trans)
+
+        self.db.add_transaction(trans)
         self.update(None)

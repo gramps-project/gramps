@@ -1,3 +1,6 @@
+2004-03-29  Don Allingham  <dallingham@users.sourceforge.net>
+	* various: Add undo functionality
+
 2004-03-27  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/rel_it.py: Convert to class. 
 

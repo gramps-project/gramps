@@ -1409,6 +1409,9 @@ class EditPerson:
             self.person.set_death_id(self.death.get_id())
 
     def on_apply_person_clicked(self,obj):
+
+        trans = self.db.start_transaction()
+        
         surname = unicode(self.surname_field.get_text())
         suffix = unicode(self.suffix.get_text())
         prefix = unicode(self.prefix.get_text())
@@ -1424,7 +1427,7 @@ class EditPerson:
         self.birth.set_place_id(self.get_place(self.bplace,1))
 
         if idval != self.person.get_id():
-            m = self.db.get_person_id_map() 
+            m = self.db.get_person_keys() 
             if not m.has_key(idval):
                 if m.has_key(self.person.get_id()):
                     del m[self.person.get_id()]
@@ -1476,20 +1479,20 @@ class EditPerson:
             self.pdmap[p[0]] = key
 
         if self.orig_birth == None:
-            self.db.add_event(self.birth)
+            self.db.add_event(self.birth,trans)
             self.person.set_birth_id(self.birth.get_id())
         elif not self.orig_birth.are_equal(self.birth):
-            self.db.commit_event(self.birth)
+            self.db.commit_event(self.birth,trans)
 
         # Update each of the families child lists to reflect any
         # change in ordering due to the new birth date
         family = self.person.get_main_parents_family_id()
         if (family):
-            f = self.db.find_family_no_map(family)
+            f = self.db.find_family_no_map(family,trans)
             new_order = self.reorder_child_list(self.person,f.get_child_id_list())
             f.set_child_id_list(new_order)
         for (family, rel1, rel2) in self.person.get_parent_family_id_list():
-            f = self.db.find_family_no_map(family)
+            f = self.db.find_family_no_map(family,trans)
             new_order = self.reorder_child_list(self.person,f.get_child_id_list())
             f.set_child_id_list(new_order)
     
@@ -1497,10 +1500,10 @@ class EditPerson:
         self.death.set_place_id(self.get_place(self.dplace,1))
 
         if self.orig_death == None:
-            self.db.add_event(self.death)
+            self.db.add_event(self.death,trans)
             self.person.set_death_id(self.death.get_id())
         elif not self.orig_death.are_equal(self.death):
-            self.db.commit_event(self.death)
+            self.db.commit_event(self.death,trans)
 
         male = self.is_male.get_active()
         female = self.is_female.get_active()
@@ -1580,10 +1583,10 @@ class EditPerson:
         self.update_lists()
         if self.callback:
             change = (self.orig_surname != surname) or (self.orig_id != idval)
-            self.callback(self,change)
+            self.callback(self,trans)
 
-        self.db.commit_person(self.person)
-
+        self.db.commit_person(self.person, trans)
+        self.db.add_transaction(trans)
         self.close(1)
 
     def get_place(self,field,makenew=0):

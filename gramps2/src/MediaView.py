@@ -150,14 +150,6 @@ class MediaView:
         self.build_columns()
         self.build_tree()
 
-    def goto(self,id):
-        self.selection.unselect_all()
-        iter = self.id2col[id]
-        self.selection.select_iter(iter)
-        itpath = self.model.get_path (iter)
-        col = self.list.get_column (0)
-        self.list.scroll_to_cell (itpath, col, gtk.TRUE, 0.5, 0)
-
     def build_tree(self):
         self.list.set_model(None)
         self.model = gtk.TreeModelSort(DisplayModels.MediaModel(self.parent.db))
@@ -295,7 +287,7 @@ class MediaView:
         id = store.get_value(iter,1)
         mobj = self.db.find_object_from_id(id)
         if self.is_object_used(mobj):
-            ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.update)
+            ans = ImageSelect.DeleteMediaQuery(mobj,self.db,self.build_tree)
             QuestionDialog(_('Delete Media Object?'),
                            _('This media object is currently being used. '
                              'If you delete this object, it will be removed '
@@ -304,8 +296,10 @@ class MediaView:
                            _('_Delete Media Object'),
                            ans.query_response)
         else:
-            self.db.remove_object(mobj.get_id())
-            self.update(0)
+            trans = self.db.start_transaction()
+            self.db.remove_object(mobj.get_id(),trans)
+            self.db.add_transaction(trans)
+            self.build_tree()
 
     def is_object_used(self,mobj):
         for family_id in self.db.get_family_keys():
@@ -366,7 +360,8 @@ class MediaView:
                     photo.set_thumbnail(RelImage.build_thumbnail(name))
                 description = os.path.basename(name)
                 photo.set_description(description)
-                self.db.add_object(photo)
+                trans = self.db.start_transaction()
+                self.db.add_object(photo,trans)
                 self.load_media()
                 if GrampsCfg.mediaref == 0:
                     name = RelImage.import_media_object(name,
@@ -375,7 +370,10 @@ class MediaView:
                     if name:
                         photo.set_path(name)
                         photo.setLocal(1)
-                self.db.commit_media_object(photo)
+
+                self.db.commit_media_object(photo,trans)
+                self.db.add_transaction(trans)
+                
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,self.load_media)
             elif protocol != "":
@@ -394,7 +392,8 @@ class MediaView:
                 photo.set_description(d)
                 photo.setLocal(1)
                 photo.set_path(tfile)
-                self.db.add_object(photo)
+                trans = self.db.start_transaction()
+                self.db.add_object(photo,trans)
                 oref = RelLib.MediaRef()
                 oref.set_reference(photo)
                 try:
@@ -407,7 +406,10 @@ class MediaView:
                 except:
                     photo.set_path(tfile)
                     return
-                self.db.commit_media_object(photo)
+
+                self.db.commit_media_object(photo,trans)
+                self.db.add_transaction(trans)
+                
                 if GrampsCfg.globalprop:
                     ImageSelect.GlobalMediaProperties(self.db,photo,None)
 

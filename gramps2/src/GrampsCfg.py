@@ -235,7 +235,7 @@ def loadConfig(call):
     global familyview
     
     _callback = call
-    lastfile = get_string("/apps/gramps/last-file")
+    lastfile = get_string("/apps/gramps/recent-file")
     uselds = get_bool("/apps/gramps/use-lds")
     ac = get_bool("/apps/gramps/disable-auto-complete",0)
     mediaref = get_bool("/apps/gramps/make-reference",1)
@@ -372,7 +372,7 @@ def sync():
 #
 #-------------------------------------------------------------------------
 def save_last_file(file):
-    set_string("/apps/gramps/last-file",file)
+    set_string("/apps/gramps/recent-file",file)
     sync()
 
 #-------------------------------------------------------------------------

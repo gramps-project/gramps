@@ -62,7 +62,7 @@ class PeopleModel(gtk.GenericTreeModel):
 
         if not self.db.is_open():
             return
-        
+
         for person_id in self.db.get_person_keys():
             
             person = self.db.find_person_from_id(person_id)
@@ -141,7 +141,8 @@ class PeopleModel(gtk.GenericTreeModel):
             else:
                 return u''            
         else:
-            return self.fmap[col](self.db.person_map[str(iter)])
+            val = self.fmap[col](self.db.person_map[str(iter)])
+            return val
 
     def on_iter_next(self, node):
 	'''returns the next node at this level of the tree'''

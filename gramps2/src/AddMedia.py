@@ -129,7 +129,9 @@ class AddMediaObject:
         if self.update:
             self.update()
         self.object = mobj
-        self.db.commit_media_object(mobj)
+        trans = self.db.start_transaction()
+        self.db.commit_media_object(mobj,trans)
+        self.db.add_transaction(trans)
         
     def on_name_changed(self,obj):
         """
