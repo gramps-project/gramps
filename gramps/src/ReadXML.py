@@ -49,9 +49,9 @@ except:
 #-------------------------------------------------------------------------
 
 try:
-    from xml.sax import make_parser, SAXParseException
+    from xml.sax import make_parser, SAXParseException, SAXReaderNotAvailable
 except:
-    from _xmlplus.sax import make_parser, SAXParseException
+    from _xmlplus.sax import make_parser, SAXParseException, SAXReaderNotAvailable
 
 #-------------------------------------------------------------------------
 #
@@ -66,7 +66,14 @@ def importData(database, filename, callback):
     database.pmap = {}
     database.fmap = {}
 
-    parser = make_parser()
+    try:
+        parser = make_parser()
+    except SAXReaderNotAvailable:
+        msg1 = _("GRAMPS is not able to find an XML parser on your system.")
+        msg2 = _("This is probably due to an incomplete python or PyXML installation")
+        GnomeErrorDialog("%s\n%s" % (msg1,msg2))
+        return
+    
     parser.setContentHandler(GrampsImportParser(database,callback,basefile))
 
     if gzip_ok:
