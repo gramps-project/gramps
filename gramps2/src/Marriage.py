@@ -465,16 +465,18 @@ class Marriage:
         self.etree.clear()
         self.emap = {}
         for event_id in self.elist:
-            data = self.db.find_event_from_id(event_id)
-            place_id = data.get_place_id()
+            event = self.db.find_event_from_id(event_id)
+            if not event:
+                continue
+            place_id = event.get_place_id()
             
             if place_id:
                 place_name = self.db.find_place_from_id(place_id).get_title()
             else:
                 place_name = ""
-            iter = self.etree.add([const.display_fevent(data.get_name()),
-                                   data.get_quote_date(),place_name],data)
-            self.emap[str(data)] = iter
+            iter = self.etree.add([const.display_fevent(event.get_name()),
+                                   event.get_quote_date(),place_name],event)
+            self.emap[str(event)] = iter
         if self.elist:
             self.etree.select_row(0)
             Utils.bold_label(self.events_label)

@@ -6,6 +6,8 @@
 	find_family_no_conflicts): Use str(idVal). 
 	* src/docgen/AsciiDoc.py: Add to CVS.
 	* src/Makefile.am, src/Makefile.in: Ship AsciiDoc.py.
+	* src/FamilyView.py: Corrections.
+	* src/Marriage.py: Corrections.
 
 2004-02-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: switch to DB as default, remove save option
