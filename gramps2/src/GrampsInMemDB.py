@@ -23,9 +23,6 @@
 from RelLib import *
 from GrampsDbBase import *
 
-import ReadGedcom
-import WriteGedcom
-
 #-------------------------------------------------------------------------
 #
 # GrampsInMemDB
