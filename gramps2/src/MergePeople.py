@@ -277,6 +277,11 @@ class MergePeople:
         new.set_attribute_list(self.p1.get_attribute_list() +
                                self.p2.get_attribute_list())
 
+        # copy names
+
+        new.set_alternate_names(self.p1.get_alternate_names() +
+                                self.p2.get_alternate_names())
+        
         # copy addresses
         new.set_address_list(self.p1.get_address_list() + self.p2.get_address_list())
 
