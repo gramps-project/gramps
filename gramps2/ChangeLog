@@ -1,3 +1,11 @@
+2003-06-14  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/IndivComplete.py (write_fact): Enable translation
+	for the event name; 
+	* (get_stylesheet_savefile): Change the name of xml file (and,
+	consequently, the target filename) -- was confused with family group.
+	* src/StyleEditor.py (save_paragraph): Call gfloat instead of float.
+	* src/TextDoc.py (SheetParser.startElement): Likewise.
+
 2003-06-14  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/preferences.glade: Don't immediately show preferences dialog
 	* src/GrampsCfg.py: Handle new callback for preferences dialog
