@@ -213,12 +213,10 @@ def dump_person(person_list,file):
             continue
         father = family.getFather()
         if father and father in person_list:
-            file.write('p' + str(person.getId()) + ' -> p')
-            file.write(str(father.getId()) + ';\n')
+            file.write('p%s -> p%s;\n' % (person.getId(), father.getId()))
         mother = family.getMother()
         if mother and mother in person_list:
-            file.write('p' + str(person.getId()) + ' -> p')
-            file.write(str(mother.getId()) + ';\n')
+            file.write('p%s -> p%s;\n' % (person.getId(), mother.getId()))
 
 #########################################################################
 #
@@ -231,9 +229,8 @@ def dump_index(person_list,file):
     for person in person_list:
         name = person.getPrimaryName().getName()
         id = person.getId()
-#        file.write('p' + str(id) + ' [shape=box, fontsize=11, ')
-        file.write('p' + str(id) + ' [shape=box, ')
-        file.write('fontname="Arial", label="' + name + '"];\n')
+        file.write('p%s [shape=box, ' % id)
+        file.write('fontname="Arial", label="%s"];\n' % name)
 
 #------------------------------------------------------------------------
 #

@@ -114,9 +114,9 @@ def dump_source_ref(g,source_ref):
             t = source_ref.getText()
             d = source_ref.getDate().getSaveDate()
             if p == "" and c == "" and t == "" and d == "":
-                g.write("<sourceref ref=\"%d\"/>\n" % source.getId())
+                g.write("<sourceref ref=\"%s\"/>\n" % source.getId())
             else:
-                g.write("<sourceref ref=\"%d\">\n" % source.getId())
+                g.write("<sourceref ref=\"%s\">\n" % source.getId())
                 write_line(g,"spage",p)
                 writeNote(g,"scomments",c)
                 writeNote(g,"stext",t)
@@ -130,7 +130,7 @@ def dump_source_ref(g,source_ref):
 #-------------------------------------------------------------------------
 def write_ref(g,label,person):
     if person:
-        g.write('<%s ref="%s"/>\n' % (label,str(person.getId())))
+        g.write('<%s ref="%s"/>\n' % (label,person.getId()))
 
 #-------------------------------------------------------------------------
 #
@@ -139,7 +139,7 @@ def write_ref(g,label,person):
 #-------------------------------------------------------------------------
 def write_id(g,label,person):
     if person:
-        g.write('<%s id="%s">\n' % (label,str(person.getId())))
+        g.write('<%s id="%s">\n' % (label,person.getId()))
 
 #-------------------------------------------------------------------------
 #
@@ -150,9 +150,9 @@ def write_family_id(g,family):
     if family:
         rel = family.getRelationship()
         if rel != "":
-            g.write('<family id="%s" type="%s">\n' % (str(family.getId()),rel))
+            g.write('<family id="%s" type="%s">\n' % (family.getId(),rel))
         else:
-            g.write('<family id="%s">\n' % str(family.getId()))
+            g.write('<family id="%s">\n' % family.getId())
 
 #-------------------------------------------------------------------------
 #
@@ -229,7 +229,7 @@ def exportData(database, filename, callback):
     g.write("<people")
     person = database.getDefaultPerson()
     if person:
-        g.write(" default=\"" + str(person.getId()) + "\"")
+        g.write(" default=\"" + person.getId() + "\"")
     g.write(">\n")
 
     total = len(personList) + len(familyList)
@@ -308,7 +308,7 @@ def exportData(database, filename, callback):
         write_ref(g,"childof",person.getMainFamily())
         for alt in person.getAltFamilyList():
             g.write("<childof ref=\"%s\" mrel=\"%s\" frel=\"%s\"/>\n" % \
-                    (str(alt[0].getId()), alt[1], alt[2]))
+                    (alt[0].getId(), alt[1], alt[2]))
 
         for family in person.getFamilyList():
             write_ref(g,"parentin",family)
@@ -362,7 +362,7 @@ def exportData(database, filename, callback):
     if len(sourceList) > 0:
         g.write("<sources>\n")
         for source in sourceList:
-            g.write("<source id=\"" + str(source.getId()) + "\">\n")
+            g.write("<source id=\"" + source.getId() + "\">\n")
             write_line(g,"stitle",source.getTitle())
             write_line(g,"sauthor",source.getAuthor())
             write_line(g,"spubinfo",source.getPubInfo())
@@ -381,7 +381,7 @@ def exportData(database, filename, callback):
     if len(db.getBookmarks()) > 0:
         g.write("<bookmarks>\n")
         for person in db.getBookmarks():
-            g.write("<bookmark ref=\"" + str(person.getId()) + "\"/>\n")
+            g.write("<bookmark ref=\"" + person.getId() + "\"/>\n")
         g.write("</bookmarks>\n")
 
     g.write("</database>\n")

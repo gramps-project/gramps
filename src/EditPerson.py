@@ -183,7 +183,7 @@ class EditPerson:
         birth = person.getBirth()
         death = person.getDeath()
 
-        self.get_widget("gid").set_text(str(person.getId()))
+        self.get_widget("gid").set_text(person.getId())
         self.event_list.set_column_visibility(3,Config.show_detail)
         self.name_list.set_column_visibility(1,Config.show_detail)
         self.attr_list.set_column_visibility(2,Config.show_detail)
@@ -228,7 +228,7 @@ class EditPerson:
         photo_list = person.getPhotoList()
         if len(photo_list) != 0:
             thumb = self.db.getSavePath() + os.sep + ".thumb" + \
-                    os.sep + "i%d.jpg" % self.person.getId()
+                    os.sep + "i%s.jpg" % self.person.getId()
             RelImage.check_thumb(photo_list[0].getPath(),thumb,const.picWidth)
             self.load_photo(thumb)
     
@@ -934,7 +934,7 @@ def on_primary_photo_clicked(obj):
     edit_person_obj.load_images()
 
     thumb = edit_person_obj.db.getSavePath() + os.sep + ".thumb" + os.sep + \
-            "i%d" % edit_person_obj.person.getId()
+            "i%s" % edit_person_obj.person.getId()
     
     RelImage.mk_thumb(savePhoto,thumb,const.picWidth)
     edit_person_obj.load_photo(thumb)
@@ -1123,7 +1123,7 @@ def on_savephoto_clicked(obj):
     if os.path.exists(filename) == 0:
         return
 
-    prefix = "i" + str(edit_person_obj.person.getId())
+    prefix = "i%s" % edit_person_obj.person.getId()
     if edit_person_obj.external.get_active() == 1:
         if os.path.isfile(filename):
             name = filename
@@ -1342,7 +1342,7 @@ def on_convert_to_private(obj):
     edit_person_obj = obj.get_data("m")
     photo = edit_person_obj.person.getPhotoList()[edit_person_obj.selectedIcon]
 
-    prefix = "i" + str(edit_person_obj.person.getId())
+    prefix = "i%s" % edit_person_obj.person.getId()
     name = RelImage.import_photo(photo.getPath(),edit_person_obj.path,prefix)
 
     photo.setPath(name)

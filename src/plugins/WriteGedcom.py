@@ -333,7 +333,7 @@ def write_person_name(g,name,nick):
 def write_source_ref(g,level,ref):
     if ref.getBase() == None:
         return
-    g.write("%d SOUR @S%s@\n" % (level,str(ref.getBase().getId())))
+    g.write("%d SOUR @S%s@\n" % (level,ref.getBase().getId()))
     if ref.getPage() != "":
         g.write("%d PAGE %s\n" % (level+1,ref.getPage()))
     if ref.getText() != "" or ref.getDate().getDate() != "":
@@ -425,11 +425,11 @@ def write_person(g,person):
 
     family = person.getMainFamily()
     if family != None and family in family_list:
-        g.write("1 FAMC @F%s@\n" % str(family.getId()))
+        g.write("1 FAMC @F%s@\n" % family.getId())
         g.write("2 PEDI birth\n")
 
     for family in person.getAltFamilyList():
-        g.write("1 FAMC @F%s@\n" % str(family[0].getId()))
+        g.write("1 FAMC @F%s@\n" % family[0].getId())
         if string.lower(family[1]) == "adopted":
             g.write("2 PEDI adopted\n")
         
@@ -537,7 +537,7 @@ def exportData(database, filename):
             g.write("1 CHIL @I%s@\n" % person.getId())
 
     for source in source_list:
-        g.write("0 @S%s@ SOUR\n" % str(source.getId()))
+        g.write("0 @S%s@ SOUR\n" % source.getId())
         if source.getTitle() != "":
             g.write("1 TITL %s\n" % cnvtxt(source.getTitle()))
         if source.getAuthor() != "":

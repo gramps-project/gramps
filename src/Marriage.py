@@ -554,7 +554,7 @@ def on_savephoto_clicked(obj):
     if os.path.exists(filename) == 0:
         return
 
-    prefix = "f" + str(marriage_obj.family.getId())
+    prefix = "f%s" % marriage_obj.family.getId()
     name = RelImage.import_photo(filename,marriage_obj.path,prefix)
     if name == None:
         return

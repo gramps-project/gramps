@@ -538,8 +538,8 @@ class Merge:
         else:
             mother2 = ""
 
-        label1 = "%s (%s)" % (_("First Person"),str(person1.getId()))
-        label2 = "%s (%s)" % (_("Second Person"),str(person2.getId()))
+        label1 = "%s (%s)" % (_("First Person"),person1.getId())
+        label2 = "%s (%s)" % (_("Second Person"),person2.getId())
         
         self.topDialog.get_widget("PersonFrame1").set_label(label1)
         self.topDialog.get_widget("PersonFrame2").set_label(label2)
@@ -613,7 +613,7 @@ class Merge:
                     name = "unknown"
                 else:
                     name = spouse.getPrimaryName().getName() + \
-                           " (" + str(spouse.getId()) + ")"
+                           " (" + spouse.getId() + ")"
                 self.topDialog.get_widget("spouse1").append([name])
 
         length = min(len(p2list),3)
@@ -631,7 +631,7 @@ class Merge:
                     name = "unknown"
                 else:
                     name = spouse.getPrimaryName().getName()  + \
-                           " (" + str(spouse.getId()) + ")"
+                           " (" + spouse.getId() + ")"
                 self.topDialog.get_widget("spouse2").append([name])
 
         self.mergee = person1

@@ -297,7 +297,7 @@ class Person:
     female = 0
 
     def __init__(self):
-        self.id = -1
+        self.id = ""
         self.PrimaryName = None
         self.EventList = []
         self.FamilyList = []
@@ -342,7 +342,7 @@ class Person:
         self.urls.append(url)
     
     def setId(self,id) :
-        self.id = id
+        self.id = str(id)
 
     def getId(self) :
         return self.id
@@ -581,7 +581,7 @@ class Family:
         self.Divorce = None
         self.type = ""
         self.EventList = []
-        self.id = -1
+        self.id = ""
         self.photoList = []
         self.note = Note()
         self.attributeList = []
@@ -613,7 +613,7 @@ class Family:
         self.note = obj
 
     def setId(self,id) :
-       	self.id = id
+       	self.id = str(id)
 
     def getId(self) :
        	return self.id
@@ -688,10 +688,10 @@ class Source:
         self.callno = ""
         self.note = Note()
         self.photoList = []
-        self.id = -1
+        self.id = ""
         
     def setId(self,newId):
-        self.id = newId
+        self.id = str(newId)
 
     def getId(self):
         return self.id

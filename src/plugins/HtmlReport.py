@@ -369,7 +369,7 @@ def name_or_link(individual, prefix):
     name = individual.getPrimaryName().getRegularName()
     if individual in ind_list:
         id = individual.getId()
-        return "<A HREF=\"" + prefix + str(id) + ".html\">" + name + "</A>"
+        return "<A HREF=\"" + prefix + id + ".html\">" + name + "</A>"
     else:
         return name
 
@@ -392,7 +392,7 @@ def write_reference(html, parent, prefix):
 
 def dump_person(person,prefix,templateTop,templateBottom,targetDir):
 
-    filebase = "%s%d.html" % (prefix,person.getId())
+    filebase = "%s%s.html" % (prefix,person.getId())
     html = open(targetDir + os.sep + filebase,"w")
 
     name = person.getPrimaryName().getRegularName()
@@ -539,7 +539,7 @@ def dump_index(person_list,filename,prefix,templateTop,templateBottom,targetDir)
     for person in person_list:
         name = person.getPrimaryName().getName()
         id = person.getId()
-        html.write("<A HREF=\"%s%d.html\">%s</A><BR>\n" % (prefix,id,name))
+        html.write("<A HREF=\"%s%s.html\">%s</A><BR>\n" % (prefix,id,name))
 
     for line in templateBottom:
         html.write(line)
