@@ -355,7 +355,11 @@ class SingleDate:
     #
     #--------------------------------------------------------------------
     def setMonth(self,val):
-        self.month = val - 1
+        if val > 12:
+            self.month = -1
+            print "Bad month index : %d" % val
+        else:
+            self.month = val - 1
 
     #--------------------------------------------------------------------
     #
@@ -549,7 +553,7 @@ class SingleDate:
             elif self.year == -1:
                 month = SingleDate.mname[self.month]
                 retval = string.upper(month[0:3])
-            else:	
+            else:
                 month = SingleDate.mname[self.month]
                 retval = "%s %d" % (string.upper(month[0:3]),self.year)
         elif self.month == -1:
