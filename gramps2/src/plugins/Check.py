@@ -140,7 +140,7 @@ class CheckIntegrity:
         blink = len(self.broken_links)
         plink = len(self.broken_parent_links)
         rel = len(self.fam_rel)
-        
+
         errors = blink + efam + photos + rel
         
         if errors == 0:
@@ -209,7 +209,7 @@ class CheckIntegrity:
         top = topDialog.get_widget("summary")
         textwindow = topDialog.get_widget("textwindow")
         topDialog.get_widget("summaryTitle").set_text(title)
-        textwindow.show_string(text)
+        textwindow.get_buffer().set_text(text)
         top.show()
 
 #------------------------------------------------------------------------
