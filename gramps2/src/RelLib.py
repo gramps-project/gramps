@@ -31,9 +31,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
-
 import os
-import os.path
 import time
 import re
 
@@ -322,7 +320,7 @@ class NoteBase:
         @param text: Text of the note
         @type text: str
         """
-        if self.note == None:
+        if not self.note:
             self.note = Note()
         self.note.set(text)
 
@@ -333,10 +331,9 @@ class NoteBase:
         @returns: the text of the current note
         @rtype: str
         """
-        if self.note == None:
-            return ""
-        else:
-            return self.note.get() 
+        if self.note:
+            return self.note.get()
+        return ""
 
     def set_note_format(self,val):
         """
@@ -710,14 +707,8 @@ class AttributeBase:
         """
         
         if source:
-            # Ugly hack: the existing objects may have their attribute lists
-            # called either attr_list or attribute_list.
-            try:
-                self.attribute_list = [ Attribute(attribute) \
+            self.attribute_list = [ Attribute(attribute) \
                                     for attribute in source.attribute_list ]
-            except:
-                self.attribute_list = [ Attribute(attribute) \
-                                    for attribute in source.attrlist ]
         else:
             self.attribute_list = []
 
@@ -2484,12 +2475,10 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
             self.mime = source.mime
             self.desc = source.desc
             self.thumb = source.thumb
-            self.place = source.place
         else:
             self.path = ""
             self.mime = ""
             self.desc = ""
-            self.place = ""
             self.thumb = None
 
     def serialize(self):
@@ -2510,7 +2499,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         return (self.handle, self.gramps_id, self.path, self.mime,
                 self.desc, self.attribute_list, self.source_list, self.note,
-                self.change, self.date, self.place)
+                self.change, self.date)
 
     def unserialize(self,data):
         """
@@ -2522,21 +2511,7 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
          self.attribute_list, self.source_list, self.note, self.change,
-         self.date, self.place) = data
-    
-
-    def _has_handle_reference(self,classname,handle):
-        if classname == 'Place':
-            return self.place == handle
-        return False
-
-    def _remove_handle_references(self,classname,handle_list):
-        if classname == 'Place' and self.place in handle_list:
-            self.place = ""
-
-    def _replace_handle_reference(self,classname,old_handle,new_handle):
-        if classname == 'Place' and self.place == old_handle:
-            self.place = new_handle
+         self.date) = data
 
     def get_text_data_list(self):
         """
@@ -2567,25 +2542,6 @@ class MediaObject(PrimaryObject,SourceNote,DateBase,AttributeBase):
         @rtype: list
         """
         return self.attribute_list
-
-    def set_place_handle(self,place_handle):
-        """
-        Sets the handle of the L{Place} instance associated with the MediaRef
-
-        @param place_handle: L{Place} database handle
-        @type place_handle: str
-        """
-        self.place = place_handle
-
-    def get_place_handle(self):
-        """
-        Returns the database handle of the L{Place} assocated with
-        the object.
-
-        @returns: L{Place} database handle
-        @rtype: str
-        """
-        return self.place 
 
     def set_mime_type(self,type):
         """

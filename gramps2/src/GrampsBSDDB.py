@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,16 +24,26 @@
 Provides the Berkeley DB (BSDDB) database backend for GRAMPS
 """
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import os
 import time
 import locale
 from gettext import gettext as _
-
-from RelLib import *
-from GrampsDbBase import *
 from bsddb import dbshelve, db
 
-_DBVERSION = 4
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from RelLib import *
+from GrampsDbBase import *
+
+_DBVERSION = 5
 
 def find_surname(key,data):
     return str(data[3].get_surname())
@@ -88,6 +98,9 @@ class GrampsBSDDB(GrampsDbBase):
 
     def get_family_cursor(self):
         return GrampsBSDDBCursor(self.family_map)
+
+    def get_event_cursor(self):
+        return GrampsBSDDBCursor(self.event_map)
 
     def get_place_cursor(self):
         return GrampsBSDDBCursor(self.place_map)
@@ -369,68 +382,260 @@ class GrampsBSDDB(GrampsDbBase):
         
         version = self.metadata['version']
         if version < 2:
-            print "Upgrading to DB version 2"
-            cursor = self.get_person_cursor()
-            data = cursor.first()
-            while data:
-                handle,info = data
-                person = Person()
-                person.unserialize(info)
-                    
-                plist = person.get_parent_family_handle_list()
-                new_list = []
-                for (f,mrel,frel) in plist:
-                    try:
-                        mrel = child_rel_notrans.index(mrel)
-                    except:
-                        mrel = Person.CHILD_REL_BIRTH
-                    try:
-                        frel = child_rel_notrans.index(frel)
-                    except:
-                        frel = Person.CHILD_REL_BIRTH
-                    new_list.append((f,mrel,frel))
+            self.upgrade_2(child_rel_notrans)
+        if version < 3:
+            self.upgrade_3()
+        if version < 4:
+            self.upgrade_4(child_rel_notrans)
+        if version < 5:
+            self.upgrade_5()
+        self.metadata['version'] = _DBVERSION
+        print 'Successfully finished all upgrades'
+
+    def upgrade_2(self,child_rel_notrans):
+        print "Upgrading to DB version 2"
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            person = Person()
+            person.unserialize(info)
+                
+            plist = person.get_parent_family_handle_list()
+            new_list = []
+            for (f,mrel,frel) in plist:
+                try:
+                    mrel = child_rel_notrans.index(mrel)
+                except:
+                    mrel = Person.CHILD_REL_BIRTH
+                try:
+                    frel = child_rel_notrans.index(frel)
+                except:
+                    frel = Person.CHILD_REL_BIRTH
+                new_list.append((f,mrel,frel))
+            person.parent_family_list = new_list
+            self.commit_person(person,None)
+            data = cursor.next()
+        cursor.close()
+
+    def upgrade_3(self):
+        print "Upgrading to DB version 3"
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            person = Person()
+            person.unserialize(info)
+
+            person.primary_name.date = None
+            for name in person.alternate_names:
+                name.date = None
+            self.commit_person(person,None)
+            data = cursor.next()
+        cursor.close()
+
+    def upgrade_4(self,child_rel_notrans):
+        print "Upgrading to DB version 4"
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            person = Person()
+            person.unserialize(info)
+                
+            plist = person.get_parent_family_handle_list()
+            new_list = []
+            change = False
+            for (f,mrel,frel) in plist:
+                if type(mrel) == str:
+                    mrel = child_rel_notrans.index(mrel)
+                    change = True
+                if type(frel) == str:
+                    frel = child_rel_notrans.index(frel)
+                    change = True
+                new_list.append((f,mrel,frel))
+            if change:
                 person.parent_family_list = new_list
                 self.commit_person(person,None)
-                data = cursor.next()
-            cursor.close()
-        if version < 3:
-            print "Upgrading to DB version 3"
-            cursor = self.get_person_cursor()
-            data = cursor.first()
-            while data:
-                handle,info = data
-                person = Person()
-                person.unserialize(info)
+            data = cursor.next()
+        cursor.close()
 
-                person.primary_name.date = None
-                for name in person.alternate_names:
-                    name.date = None
+    def upgrade_5(self):
+        print "Upgrading to DB version 5 -- this may take a while"
+        # Need to rename:
+        #       attrlist into attribute_list in MediaRefs
+        #       comments into note in SourceRefs
+        # in all primary and secondary objects
+        # Also MediaObject gets place attribute removed
+        cursor = self.get_media_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            obj = MediaObject()
+            # can't use unserialize here, since the new class
+            # defines tuples one element short
+            (obj.handle, obj.gramps_id, obj.path, obj.mime, obj.desc,
+            obj.attribute_list, obj.source_list, obj.note, obj.change,
+            obj.date, junk) = info
+            for src_ref in obj.source_list:
+                src_ref.note = src_ref.comments
+                del src_ref.comments
+            for attr in obj.attribute_list:
+                for src_ref in attr.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+            self.commit_media_object(obj,None)
+            data = cursor.next()
+        cursor.close()
+        # person
+        cursor = self.get_person_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            person = Person()
+            person.unserialize(info)
+            changed = person.media_list or person.source_list or person.attribute_list
+            for media_ref in person.media_list:
+                media_ref.attribute_list = media_ref.attrlist
+                del media_ref.attrlist
+                for src_ref in media_ref.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+            for src_ref in person.source_list:
+                src_ref.note = src_ref.comments
+                del src_ref.comments
+            for attr in person.attribute_list:
+                for src_ref in attr.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+            for o in [o for o in [person.lds_bapt,
+                                person.lds_endow,
+                                person.lds_seal] if o]:
+                for src_ref in o.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                    changed = True
+            for name in person.alternate_names + [person.primary_name]:
+                for src_ref in name.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                    changed = True
+            for addr in person.address_list:
+                for src_ref in addr.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                    changed = True
+            if changed:
                 self.commit_person(person,None)
-                data = cursor.next()
-            cursor.close()
-        if version < 4:
-            print "Upgrading to DB version 4"
-            cursor = self.get_person_cursor()
-            data = cursor.first()
-            while data:
-                handle,info = data
-                person = Person()
-                person.unserialize(info)
-                    
-                plist = person.get_parent_family_handle_list()
-                new_list = []
-                change = False
-                for (f,mrel,frel) in plist:
-                    if type(mrel) == str:
-                        mrel = child_rel_notrans.index(mrel)
-                        change = True
-                    if type(frel) == str:
-                        frel = child_rel_notrans.index(frel)
-                        change = True
-                    new_list.append((f,mrel,frel))
-                if change:
-                    person.parent_family_list = new_list
-                    self.commit_person(person,None)
-                data = cursor.next()
-            cursor.close()
-        self.metadata['version'] = _DBVERSION
+            data = cursor.next()
+        cursor.close()
+        # family
+        cursor = self.get_family_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            family = Family()
+            family.unserialize(info)
+            changed = family.media_list or family.source_list or family.attribute_list
+            for media_ref in family.media_list:
+                media_ref.attribute_list = media_ref.attrlist
+                del media_ref.attrlist
+                for src_ref in media_ref.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+            for src_ref in family.source_list:
+                src_ref.note = src_ref.comments
+                del src_ref.comments
+            for attr in family.attribute_list:
+                for src_ref in attr.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+            if family.lds_seal:
+                for src_ref in family.lds_seal.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                    changed = True
+            if changed:
+                self.commit_family(family,None)
+            data = cursor.next()
+        cursor.close()
+        # event
+        cursor = self.get_event_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            event = Event()
+            event.unserialize(info)
+            changed = event.media_list or event.source_list
+            for media_ref in event.media_list:
+                media_ref.attribute_list = media_ref.attrlist
+                del media_ref.attrlist
+                for src_ref in media_ref.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+            for src_ref in event.source_list:
+                src_ref.note = src_ref.comments
+                del src_ref.comments
+            if changed:
+                self.commit_event(event,None)
+            data = cursor.next()
+        cursor.close()
+        # place
+        cursor = self.get_place_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            place = Place()
+            place.unserialize(info)
+            changed = place.media_list or place.source_list
+            for media_ref in place.media_list:
+                media_ref.attribute_list = media_ref.attrlist
+                del media_ref.attrlist
+                for src_ref in media_ref.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+            for src_ref in place.source_list:
+                src_ref.note = src_ref.comments
+                del src_ref.comments
+            if changed:
+                self.commit_place(place,None)
+            data = cursor.next()
+        cursor.close()
+        # source
+        cursor = self.get_source_cursor()
+        data = cursor.first()
+        while data:
+            handle,info = data
+            source = Source()
+            source.unserialize(info)
+            changed = source.media_list
+            for media_ref in source.media_list:
+                media_ref.attribute_list = media_ref.attrlist
+                del media_ref.attrlist
+                for src_ref in media_ref.source_list:
+                    src_ref.note = src_ref.comments
+                    del src_ref.comments
+                for attr in media_ref.attribute_list:
+                    for src_ref in attr.source_list:
+                        src_ref.note = src_ref.comments
+                        del src_ref.comments
+            if changed:
+                self.commit_source(source,None)
+            data = cursor.next()
+        cursor.close()

@@ -119,8 +119,9 @@ class SourceView:
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            store,node = self.selection.get_selected()
-            handle = store.get_value(node,_HANDLE_COL)
+            mlist = []
+            self.selection.selected_foreach(self.blist,mlist)
+            handle = mlist[0]
             source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source,self.parent.db,self.parent,
                                   self.topWindow,self.update_display)

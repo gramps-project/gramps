@@ -1,3 +1,10 @@
+2005-03-31  Alex Roitman  <shura@gramps-project.org>
+	* src/GrampsBSDDB.py (upgrade): Delegate particular versioned
+	upgrades to separate methods; provide upgrade_5 method.
+	* src/RelLib.py: Remove place from MediaObjects; minor improvements.
+	* src/SourceView.py (button_press): Proper selection on double-click.
+	* src/plugins/Check.py (check_for_broken_family_links): Typo.
+
 2005-03-31  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
 	* plugins/TestcaseGenerator.py: Added a dialog to specify what is to be generated
 	and a ProgressBar. Enhanced family tree generation and randomized names a little more.
