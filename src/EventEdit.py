@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,7 +25,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from string import strip
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -153,7 +152,7 @@ class EventEditor:
         self.witnesses_label = self.top.get_widget("witnessesEvent")
         self.top.get_widget('ok').set_sensitive(not noedit)
             
-        if read_only or not noedit:
+        if read_only or noedit:
             self.event_menu.set_sensitive(False)
             self.date_field.grab_focus()
 
@@ -203,11 +202,11 @@ class EventEditor:
             
             self.note_field.get_buffer().set_text(event.get_note())
             if event.get_note():
-            	self.note_field.get_buffer().set_text(event.get_note())
+                self.note_field.get_buffer().set_text(event.get_note())
                 Utils.bold_label(self.notes_label)
-            	if event.get_note_format() == 1:
+                if event.get_note_format() == 1:
                     self.preform.set_active(1)
-            	else:
+                else:
                     self.flowed.set_active(1)
             if event.get_media_list():
                 Utils.bold_label(self.gallery_label)
@@ -218,8 +217,8 @@ class EventEditor:
                 self.place_field.set_text(def_placename)
         self.date_check = DateEdit.DateEdit(self.date,
                                         self.date_field,
-                                    	self.top.get_widget("date_stat"),
-                                    	self.window)
+                                        self.top.get_widget("date_stat"),
+                                        self.window)
 
         if not event:
             event = RelLib.Event()
@@ -298,7 +297,7 @@ class EventEditor:
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
     def get_place(self,field):
-        text = strip(unicode(field.get_text()))
+        text = unicode(field.get_text()).strip()
         if text:
             if self.pmap.has_key(text):
                 return self.parent.db.get_event_from_handle(self.pmap[text])

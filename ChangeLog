@@ -11,6 +11,9 @@
 	* src/NameEdit.py (__init__): Compare displayed name with empty string,
 	(update_group_as): Only query grouping for existing name.
 
+	* src/EditPerson.py (on_event_update_clicked): Pass callback.
+	* src/EventEdit.py (__init__): Typo.
+
 2005-02-24 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/MediaView.py (on_select_row): Add garbage collection call.
 
