@@ -113,6 +113,7 @@ class PlaceView:
         on large databases, and should only be called when absolutely
         necessary"""
 
+        del self.model
         self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,
                                    gobject.TYPE_STRING, gobject.TYPE_STRING,

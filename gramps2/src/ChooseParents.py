@@ -401,10 +401,19 @@ class ChooseParents:
             self.change_family_type(self.family,mother_rel,father_rel)
         self.family_update(None)
 
-    def add_new_parent(self,person):
+    def add_new_parent(self,epo,plist):
         """Adds a new person to either the father list or the mother list,
         depending on the gender of the person."""
+
+        person = epo.person
         id = person.getId()
+
+        if id == "":
+            id = self.db.addPerson(person)
+        else:
+            self.db.addPersonNoMap(person,id)
+        self.db.buildPersonDisplay(id)
+
         self.type = const.save_frel(self.prel.get_text())
         dinfo = self.db.getPersonDisplay(id)
         rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
@@ -423,8 +432,15 @@ class ChooseParents:
         """Called with the Add New Person button is pressed. Calls the QuickAdd
         class to create a new person."""
         
-        import QuickAdd
-        QuickAdd.QuickAdd(self.db,"male",self.add_new_parent)
+        person = RelLib.Person()
+        person.setGender(RelLib.Person.male)
+        
+        try:
+            import EditPerson
+            EditPerson.EditPerson(person,self.db,self.add_new_parent)
+        except:
+            import DisplayTrace
+            DisplayTrace.DisplayTrace()
 
     def change_family_type(self,family,mother_rel,father_rel):
         """
