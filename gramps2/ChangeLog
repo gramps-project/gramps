@@ -25,6 +25,16 @@
 	doc/gramps-manual/ru/figures/*.png: Add to CVS.
 	* doc/gramps-manual/Makefile.am: Add ru to the SUBDIR list.
 	* configure.in: Add doc/gramps-manual/ru/Makefile to AC_CONFIG_FILES.
+	
+	* doc/gramps-manual/ru/gramps-manual.xml: Translation.
+	* doc/gramps-manual/ru/getstart.xml: Translation.
+
+	* src/RelLib.py (Source.setCallNumber, Source.CallNumber): Remove 
+	functions; (Source.callno): remove attribute. 
+	* src/WriteXML.py (write_xml_data): Remove CallNumber output.
+	* src/GrampsParser.py (GrampsParser.stop_scallno): Remove function.
+	* src/gramps.glade (sourceEditor): Remove Call Number widgets.
+	* src/EditSource.py: Remove Call Number support. 
 
 2003-12-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/filters/Complete.py: Add filter matching people with the 

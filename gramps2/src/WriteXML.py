@@ -332,7 +332,6 @@ class XmlWriter:
                 self.write_force_line("stitle",source.getTitle(),3)
                 self.write_line("sauthor",source.getAuthor(),3)
                 self.write_line("spubinfo",source.getPubInfo(),3)
-                self.write_line("scallno",source.getCallNumber(),3)
                 self.write_line("sabbrev",source.getAbbrev(),3)
                 if source.getNote() != "":
                     self.write_note("note",source.getNote(),3)
