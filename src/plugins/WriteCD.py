@@ -71,26 +71,30 @@ def writeData(database,person):
 #-------------------------------------------------------------------------
 class PackageWriter:
 
-    def __init__(self,database):
+    def __init__(self,database,cl=0,name=""):
         self.db = database
+        self.cl = cl
+        self.name = name
+	
+        if self.cl:
+	    self.cl_run()
+        else:
+            base = os.path.dirname(__file__)
+            glade_file = "%s/%s" % (base,"cdexport.glade")
         
-        base = os.path.dirname(__file__)
-        glade_file = "%s/%s" % (base,"cdexport.glade")
+            dic = {
+                "destroy_passed_object" : Utils.destroy_passed_object,
+                "on_ok_clicked" : self.on_ok_clicked
+                }
         
-        
-        dic = {
-            "destroy_passed_object" : Utils.destroy_passed_object,
-            "on_ok_clicked" : self.on_ok_clicked
-            }
-        
-        self.top = gtk.glade.XML(glade_file,"packageExport")
+            self.top = gtk.glade.XML(glade_file,"packageExport")
 
-        Utils.set_titles(self.top.get_widget('packageExport'),
+            Utils.set_titles(self.top.get_widget('packageExport'),
                          self.top.get_widget('title'),
                          _('Export to CD'))
         
-        self.top.signal_autoconnect(dic)
-        self.top.get_widget("packageExport").show()
+            self.top.signal_autoconnect(dic)
+            self.top.get_widget("packageExport").show()
 
     def copy_file(self,src,dest):
         original = open(src,"r")
@@ -115,6 +119,36 @@ class PackageWriter:
         th.write(data)
         th.close()
                        
+    def cl_run(self):
+        base = os.path.basename(self.name)
+
+        try:
+            uri = gnome.vfs.URI('burn:///%s' % base)
+            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
+        except gnome.vfs.error, msg:
+            print msg
+            os._exit(1)
+
+        try:
+            uri = gnome.vfs.URI('burn:///%s/.thumb' % base)
+            gnome.vfs.make_directory(uri,gnome.vfs.OPEN_WRITE)
+        except gnome.vfs.error, msg:
+            print msg
+            os._exit(1)
+
+        for obj in self.db.getObjectMap().values():
+            oldfile = obj.getPath()
+            root = os.path.basename(oldfile)
+            if os.path.isfile(oldfile):
+                self.copy_file(oldfile,'burn:///%s/%s' % (base,root))
+                if obj.getMimeType()[0:5] == "image":
+                    self.make_thumbnail(base,root,obj.getPath())
+        # Write XML now
+        g = gnome.vfs.create('burn:///%s/data.gramps' % base,gnome.vfs.OPEN_WRITE )
+        gfile = WriteXML.XmlWriter(self.db,None,1)
+        gfile.write_handle(g)
+        g.close()
+
     def on_ok_clicked(self,obj):
         Utils.destroy_passed_object(obj)
 

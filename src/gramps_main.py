@@ -1010,45 +1010,69 @@ class Gramps:
 
     def cl_export(self,filename,format):
         if format == 'gedcom':
-            print "Command-line export to gedcom is not implemented yet."
-            os._exit(0)
+            import WriteGedcom
+            try:
+                g = WriteGedcom.GedcomWriter(self.db,None,1,filename)
+                del g
+            except:
+                print "Error exporting %s" % filename
+                os._exit(1)
         elif format == 'gramps':
             filename = os.path.normpath(os.path.abspath(filename))
             dbname = os.path.join(filename,const.xmlFile)
             if filename:
-                self.save_media(filename)
-                self.db.save(dbname,None)
+                try:
+                    self.save_media(filename)
+                    self.db.save(dbname,None)
+                except:
+                    print "Error exporting %s" % filename
+                    os._exit(1)
         elif format == 'gramps-pkg':
             import TarFile
             import time
             import WriteXML
             from cStringIO import StringIO
 
-            t = TarFile.TarFile(filename)
-            mtime = time.time()
+            try:
+                t = TarFile.TarFile(filename)
+                mtime = time.time()
+            except:
+                print "Error creating %s" % filename
+                os._exit(1)
         
-            # Write media files first, since the database may be modified 
-            # during the process (i.e. when removing object)
-            ObjectMap = self.db.getObjectMap()
-            for ObjectId in ObjectMap.keys():
-                oldfile = ObjectMap[ObjectId].getPath()
-                base = os.path.basename(oldfile)
-                if os.path.isfile(oldfile):
-                    g = open(oldfile,"rb")
-                    t.add_file(base,mtime,g)
-                    g.close()
-
-            # Write XML now
-            g = StringIO()
-            gfile = WriteXML.XmlWriter(self.db,None,1)
-            gfile.write_handle(g)
-            mtime = time.time()
-            t.add_file("data.gramps",mtime,g)
-            g.close()
-            t.close()
+            try:
+                # Write media files first, since the database may be modified 
+                # during the process (i.e. when removing object)
+                ObjectMap = self.db.getObjectMap()
+                for ObjectId in ObjectMap.keys():
+                    oldfile = ObjectMap[ObjectId].getPath()
+                    base = os.path.basename(oldfile)
+                    if os.path.isfile(oldfile):
+                        g = open(oldfile,"rb")
+                        t.add_file(base,mtime,g)
+                        g.close()
+            except:
+                print "Error exporting media files to %s" % filename
+                os._exit(1)
+            try:
+                # Write XML now
+                g = StringIO()
+                gfile = WriteXML.XmlWriter(self.db,None,1)
+                gfile.write_handle(g)
+                mtime = time.time()
+                t.add_file("data.gramps",mtime,g)
+                g.close()
+                t.close()
+            except:
+                print "Error exporting data to %s" % filename
+                os._exit(1)
         elif format == 'iso':
-            print "Command-line export to iso is not implemented yet."
-            os._exit(0)
+            import WriteCD
+            try:
+                WriteCD.PackageWriter(self.db,1,filename)
+            except:
+                print "Error exporting %s" % filename
+                os._exit(1)
         else:
             print "Invalid format:  %s" % format
             os._exit(1)
@@ -1979,7 +2003,7 @@ class Gramps:
                 except OSError,msg:
                     ErrorDialog(_('Example database not created'),str(msg))
 
-                self.read_file(dest)
+            self.read_file(dest)
 
 DARKEN = 1.4
 
