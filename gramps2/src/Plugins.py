@@ -707,7 +707,8 @@ def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
         PluginStatus()
     else:
         global status_up
-        status_up.close(None)
+        if status_up:
+        	status_up.close(None)
         status_up = None
 
 #-------------------------------------------------------------------------
