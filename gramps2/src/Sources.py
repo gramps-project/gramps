@@ -397,7 +397,7 @@ class SourceEditor:
     def on_sourceok_clicked(self,obj):
 
         if self.active_source != self.db.find_source_from_id(self.source_ref.get_base_id()):
-            self.source_ref.set_base_id(self.active_source)
+            self.source_ref.set_base_id(self.active_source.get_id())
         
         date = unicode(self.get_widget("sdate").get_text())
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')
@@ -424,7 +424,7 @@ class SourceEditor:
             self.update(self.parent,self.source_ref)
         
         Utils.modified()
-        self.close()
+        self.close(obj)
 
     def on_source_changed(self,obj):
         sel = obj.list.get_selection()
