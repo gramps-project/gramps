@@ -1,4 +1,8 @@
 2003-08-11  Tim Waugh  <twaugh@redhat.com>
+	* src/docgen/OpenDrawDoc.py: Fixed tag mismatch.  Added report printing
+	support.
+	* src/Report.py: Report printing support added to Draw-style
+	reports.
 	* src/plugins/Ancestors.py: Use Relationship.get_grandparents_string.
 
 2003-08-10  Don Allingham  <dallingham@users.sourceforge.net>

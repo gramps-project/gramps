@@ -1312,7 +1312,8 @@ class DrawReportDialog(ReportDialog):
     def make_document(self):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,self.paper,self.orien)
-
+        if self.print_report.get_active ():
+            self.doc.print_requested ()
 
 class TemplateParser(handler.ContentHandler):
     """
