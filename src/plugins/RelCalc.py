@@ -92,7 +92,7 @@ def get_cousin(f,s,level,removed):
             return _("%(p1)s is the third cousin twice removed of %(p2)s.") % {
                 'p1' : f, 'p2' : s }
         else:
-            return _("%(p1)s is the third cousin %(removed)d times removed of %(p1)s.") % {
+            return _("%(p1)s is the third cousin %(removed)d times removed of %(p2)s.") % {
                 'p1' : f, 'p2' : s, 'removed' : removed }
     else:
         if removed == 0:
@@ -366,7 +366,7 @@ class RelCalc:
             p2 = common[1]
             secondRel = firstMap[p1]
             firstRel = secondMap[p1]
-            commontext = " " + _("Their common ancestors are %s and %s") % \
+            commontext = " " + _("Their common ancestors are %s and %s.") % \
                          (p1.getPrimaryName().getRegularName(),\
                           p2.getPrimaryName().getRegularName())
         elif length > 2:
@@ -379,6 +379,7 @@ class RelCalc:
                     commontext = commontext + ", "
                 commontext = commontext + person.getPrimaryName().getRegularName()
                 index = index + 1
+            commontext = commontext + "."
         else:
             commontext = ""
 

@@ -740,7 +740,7 @@ numerical dates</label>
 	    <name>label144</name>
 	    <label>By default, all dates stored by GRAMPS use the Gregorian calendar. This
 is normally sufficient for most users. Support may be enabled for the Julian,
-French Republican, and Hebrew calendar. If believe you will need one or
+French Republican, and Hebrew calendar. If you believe that you will need one or
 more of these alternate calendars, enable alternate calendar support.</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
