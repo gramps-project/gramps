@@ -531,3 +531,31 @@ def combo_timer_callback(combo):
             entry.set_position(len(typed))
             entry.select_region(len(typed), -1)
             return
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def build_string_optmenu(mapping, start_val):
+    index = 0
+    start_index = 0
+    keys = mapping.keys()
+    keys.sort()
+    myMenu = gtk.GtkMenu()
+
+    for key in keys:
+        if key == "default":
+            menuitem = gtk.GtkMenuItem(_("default"))
+        else:
+            menuitem = gtk.GtkMenuItem(key)
+        menuitem.set_data("d", mapping[key])
+        menuitem.show()
+        myMenu.append(menuitem)
+        if key == start_val:
+            start_index = index
+        index = index + 1
+    
+    if start_index:
+        myMenu.set_active(start_index)
+    return myMenu

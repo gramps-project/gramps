@@ -27,12 +27,7 @@ import intl
 
 _ = intl.gettext
 
-import const
-import Config
-import utils
-from TextDoc import *
-from StyleEditor import *
-import FindDoc
+from Report import *
 
 import gtk
 import libglade
@@ -49,10 +44,11 @@ class DescendantReport:
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,name,person,db,doc):
+    def __init__(self,db,person,name,max,doc):
         self.creator = db.getResearcher().getName()
         self.name = name
         self.person = person
+        self.max_generations = max
         self.doc = doc
         
     #--------------------------------------------------------------------
@@ -116,6 +112,9 @@ class DescendantReport:
             self.dump_dates(person)
             self.doc.end_paragraph()
 
+        if (level >= self.max_generations):
+            return
+        
         childlist = []
         for family in person.getFamilyList():
             for child in family.getChildList():
@@ -130,30 +129,39 @@ class DescendantReport:
 # 
 #
 #------------------------------------------------------------------------
-class DesReportWindow:
-    def __init__(self,person,db):
-        import PaperMenu
-        
-        self.person = person
+class DescendantReportDialog(TextReportDialog):
+    def __init__(self,person,database):
+        ReportDialog.__init__(self,database,person)
 
-        glade_file = os.path.dirname(__file__) + os.sep + "desreport.glade"
-        self.top = libglade.GladeXML(glade_file,"dialog1")
-        self.top.get_widget("fileentry1").set_default_path(Config.report_dir)
-        self.top.signal_autoconnect({
-            "destroy_passed_object" : utils.destroy_passed_object,
-            "on_style_edit_clicked" : on_style_edit_clicked,
-            "on_save_clicked": on_save_clicked
-            })
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return _("Gramps - Descendant Report")
 
-        notebook = self.top.get_widget("option_notebook")
-        notebook.set_data("frame",self.top.get_widget("style_frame"))
-        PaperMenu.make_paper_menu(self.top.get_widget("papersize"))
-        PaperMenu.make_orientation_menu(self.top.get_widget("orientation"))
-        FindDoc.get_text_doc_menu(self.top.get_widget("format"),0,\
-                                  option_switch,notebook)
-        
-        mytop = self.top.get_widget("dialog1")
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Descendant Report for %s") % name
 
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("Save Descendant Report")
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return "descend_report.xml"
+    
+    #------------------------------------------------------------------------
+    #
+    # Create output styles appropriate to this report.
+    #
+    #------------------------------------------------------------------------
+    def make_default_style(self):
+        """Make the default output style for the Descendant Report."""
         f = FontStyle()
         f.set_size(14)
         f.set_type_face(FONT_SANS_SERIF)
@@ -161,56 +169,29 @@ class DesReportWindow:
         p = ParagraphStyle()
         p.set_header_level(1)
         p.set_font(f)
-        
-        sheet = StyleSheet()
-        sheet.add_style("Title",p)
+        self.default_style.add_style("Title",p)
 
         f = FontStyle()
         for i in range(1,10):
             p = ParagraphStyle()
             p.set_font(f)
             p.set_left_margin(float(i-1))
-            sheet.add_style("Level" + str(i),p)
+            self.default_style.add_style("Level" + str(i),p)
 
-        self.style_sheet_list = StyleSheetList("descend_report.xml",sheet)
-        build_menu(self)
-
-        mytop.set_data("o",self)
-        mytop.set_data("d",db)
-        mytop.show()
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def build_menu(object):
-
-    myMenu = gtk.GtkMenu()
-
-    for style in object.style_sheet_list.get_style_names():
-        menuitem = gtk.GtkMenuItem(style)
-        menuitem.set_data("d",object.style_sheet_list.get_style_sheet(style))
-        menuitem.show()
-        myMenu.append(menuitem)
-
-    object.top.get_widget("style_menu").set_menu(myMenu)
-        
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def option_switch(obj):
-    val = obj.get_data("paper")
-    st = obj.get_data("styles")
-    notebook = obj.get_data("obj")
-    frame = notebook.get_data("frame")
-    if val == 1:
-        notebook.set_page(0)
-    else:
-        notebook.set_page(1)
-    frame.set_sensitive(st)
+    #------------------------------------------------------------------------
+    #
+    # Create the contents of the report.
+    #
+    #------------------------------------------------------------------------
+    def make_report(self):
+        """Create the object that will produce the Descendant Report.
+        All user dialog has already been handled and the output file
+        opened."""
+        MyReport = DescendantReport(self.db, self.person, self.target_path,
+                                    self.max_gen, self.doc)
+        MyReport.setup()
+        MyReport.report()
+        MyReport.end()
         
 #------------------------------------------------------------------------
 #
@@ -218,50 +199,7 @@ def option_switch(obj):
 #
 #------------------------------------------------------------------------
 def report(database,person):
-    DesReportWindow(person,database)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_style_edit_clicked(obj):
-    myobj = obj.get_data("o")
-    StyleListDisplay(myobj.style_sheet_list,build_menu,myobj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_save_clicked(obj):
-    myobj = obj.get_data("o")
-    db = obj.get_data("d")
-
-    file = myobj.top.get_widget("fileentry1").get_full_path(0)
-    if file == "":
-        return
-
-    paper_obj = myobj.top.get_widget("papersize")
-    paper = paper_obj.get_menu().get_active().get_data("i")
-
-    orien_obj = myobj.top.get_widget("orientation")
-    orien = orien_obj.get_menu().get_active().get_data("i")
-
-    template = myobj.top.get_widget("htmltemplate").get_full_path(0)
-
-    item = myobj.top.get_widget("format").get_menu().get_active()
-    format = item.get_data("name")
-    
-    styles = myobj.top.get_widget("style_menu").get_menu().get_active().get_data("d")
-    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
-
-    report = DescendantReport(file,myobj.person,db,doc)
-    report.setup()
-    report.report()
-    report.end()
-
-    utils.destroy_passed_object(obj)
+    DescendantReportDialog(person,database)
 
 #------------------------------------------------------------------------
 #

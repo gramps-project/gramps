@@ -21,17 +21,13 @@
 "Generate files/Relationship graph"
 
 import os
-import utils
 import intl
 
 _ = intl.gettext
 
 import libglade
+from Report import *
 
-active_person = None
-db = None
-topDialog = None
-glade_file = None
 ind_list = []
 
 #------------------------------------------------------------------------
@@ -39,49 +35,54 @@ ind_list = []
 # 
 #
 #------------------------------------------------------------------------
-def ancestor_filter(database,person,list):
+def ancestor_filter(database,person,list,generations):
 
     if person == None:
         return
     if person not in list:
         list.append(person)
+    if generations <= 1:
+        return
+    
     family = person.getMainFamily()
     if family != None:
-        ancestor_filter(database,family.getFather(),list)
-        ancestor_filter(database,family.getMother(),list)
+        ancestor_filter(database,family.getFather(),list,generations-1)
+        ancestor_filter(database,family.getMother(),list,generations-1)
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-def descendant_filter(database,person,list):
+def descendant_filter(database,person,list,generations):
 
     if person == None:
         return
     if person not in list:
         list.append(person)
-        
+    if generations <= 1:
+        return
+    
     for family in person.getFamilyList():
         for child in family.getChildList():
-            descendant_filter(database,child,list)
+            descendant_filter(database,child,list,generations-1)
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-def an_des_filter(database,person,list):
+def an_des_filter(database,person,list,generations):
 
-    descendant_filter(database,person,list)
-    ancestor_filter(database,person,list)
+    descendant_filter(database,person,list,generations)
+    ancestor_filter(database,person,list,generations)
 
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-def entire_db_filter(database,person,list):
+def entire_db_filter(database,person,list,generations):
 
     for entry in database.getPersonMap().values():
         list.append(entry)
@@ -99,100 +100,136 @@ filter_map = {
     _("Entire Database") : entire_db_filter
     }
     
+_scaled = 0
+_single = 1
+_multiple = 2
+
+pagecount_map = {
+    _("Single (scaled)") : _scaled,
+    _("Single") : _single,
+    _("Multiple") : _multiple,
+    }
+    
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
+class GraphVizDialog(ReportDialog):
+    def __init__(self,database,person):
+        ReportDialog.__init__(self,database,person)
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return _("Gramps - Generate Relationship Graphs")
+
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("Graphviz File")
+
+    def get_print_pagecount_map(self):
+        """Set up the list of possible page counts."""
+        return (pagecount_map, _("Single (scaled)"))
+
+    def get_report_generations(self):
+        """Default to 10 generations, no page breaks."""
+        return (10, 0)
+
+    def get_report_filter_strings(self):
+        """Set up the list of possible content filters."""
+        return filter_map.keys()
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to selecting/changing the current file format
+    #
+    #------------------------------------------------------------------------
+    def make_doc_menu(self):
+        """Build a one item menu of document types that are
+        appropriate for this report."""
+        map = {"Graphviz (dot)" : None}
+        myMenu = utils.build_string_optmenu(map, None)
+        self.format_menu.set_menu(myMenu)
+
+    def make_document(self):
+        """Do Nothing.  This document will be created in the
+        make_report routine."""
+        pass
+    
+    #------------------------------------------------------------------------
+    #
+    # Functions related to setting up the dialog window
+    #
+    #------------------------------------------------------------------------
+    def setup_style_frame(self):
+        """The style frame is not used in this dialog."""
+        self.topDialog.get_widget("style_frame").hide()
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to retrieving data from the dialog window
+    #
+    #------------------------------------------------------------------------
+    def parse_style_frame(self):
+        """The style frame is not used in this dialog."""
+        pass
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to creating the actual report document.
+    #
+    #------------------------------------------------------------------------
+    def make_report(self):
+        """Create the object that will produce the GraphViz file."""
+        width = self.paper.get_width_inches()
+        height = self.paper.get_height_inches()
+
+        file = open(self.target_path,"w")
+
+        filter = filter_map[self.filter]
+        ind_list = []
+
+        filter(self.db,self.person,ind_list,self.max_gen)
+
+        file.write("digraph g {\n")
+        file.write("bgcolor=white;\n")
+        file.write("rankdir=LR;\n")
+        file.write("center=1;\n")
+
+        if self.pagecount == _scaled:
+            file.write("size=\"%3.1fin,%3.1fin\";\n" % (width-0.5,height-0.5))
+            file.write("ratio=compress;\n")
+        else:
+            file.write("ratio=auto;\n")
+        
+        if self.pagecount == _multiple:
+            file.write("page=\"%3.1f,%3.1f\";\n" % (width,height))
+        
+        if self.orien == PAPER_PORTRAIT:
+            file.write("orientation=portrait;\n")
+        else:
+            file.write("orientation=landscape;\n")
+        
+        if len(ind_list) > 1:
+            dump_index(ind_list,file)
+            dump_person(ind_list,file)
+
+        file.write("}\n")
+        file.close()
+
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
 def report(database,person):
-    global active_person
-    global topDialog
-    global glade_file
-    global db
-    
-    active_person = person
-    db = database
-
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "graphviz.glade"
-    dic = {
-        "destroy_passed_object" : utils.destroy_passed_object,
-        "on_ok_clicked" : on_ok_clicked,
-        }
-
-    topDialog = libglade.GladeXML(glade_file,"top")
-    topDialog.signal_autoconnect(dic)
-    
-    top = topDialog.get_widget("top")
-    topDialog.get_widget("targetDirectory").set_default_path(os.getcwd())
-    filterName = topDialog.get_widget("filterName")
-    popdown_strings = filter_map.keys()
-    popdown_strings.sort()
-    filterName.set_popdown_strings(popdown_strings)
-
-    name = person.getPrimaryName().getName()
-    topDialog.get_widget("personName").set_text(name)
-
-    top.show()
-    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_ok_clicked(obj):
-    global active_person
-    global filter_map
-    global db
-    global glade_file
-    global ind_list
-
-    filterName = topDialog.get_widget("filter").get_text()
-    file_name = topDialog.get_widget("filename").get_text()
-    if file_name == "":
-        return
-
-    paper = topDialog.get_widget("paper")
-    multi = topDialog.get_widget("multi").get_active()
-    scaled = topDialog.get_widget("scaled").get_active()
-    portrait = topDialog.get_widget("portrait").get_active()
-    
-    width = paper.get_width()/72.0
-    height = paper.get_height()/72.0
-
-    file = open(file_name,"w")
-
-    filter = filter_map[filterName]
-    ind_list = []
-
-    filter(db,active_person,ind_list)
-
-    file.write("digraph g {\n")
-    file.write("bgcolor=white;\n")
-    file.write("rankdir=LR;\n")
-    file.write("center=1;\n")
-
-    if scaled == 1:
-        file.write("size=\"%3.1fin,%3.1fin\";\n" % (width-0.5,height-0.5))
-        file.write("ratio=compress;\n")
-    else:
-        file.write("ratio=auto;\n")
-        
-    if multi == 1:
-        file.write("page=\"%3.1f,%3.1f\";\n" % (width,height))
-        
-    if portrait == 1:
-        file.write("orientation=portrait;\n")
-    else:
-        file.write("orientation=landscape;\n")
-        
-    if len(ind_list) > 1:
-        dump_index(ind_list,file)
-        dump_person(ind_list,file)
-
-    file.write("}\n")
-    file.close()
-    utils.destroy_passed_object(obj)
+    GraphVizDialog(database,person)
     
 #------------------------------------------------------------------------
 #

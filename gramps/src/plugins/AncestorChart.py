@@ -21,34 +21,18 @@
 "Generate files/Ancestor Chart"
 
 import Config
-import const
 import os
 import string
-import utils
 
 from FontScale import string_width
-
-from TextDoc import *
 from DrawDoc import *
-from StyleEditor import *
-import FindDoc
+from Report import *
 
 import libglade
 import gtk
 
 import intl
 _ = intl.gettext
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-active_person = None
-db = None
-styles = StyleSheet()
-style_sheet_list = None
-topDialog = None
 
 #------------------------------------------------------------------------
 #
@@ -63,14 +47,14 @@ def pt2cm(pt):
 # 
 #
 #------------------------------------------------------------------------
-class AncestorReport:
+class AncestorChart:
 
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,database,display,person,output,doc,max):
+    def __init__(self,database,person,output,max,doc,display):
         self.doc = doc
         self.doc.creator(database.getResearcher().getName())
         self.map = {}
@@ -141,7 +125,6 @@ class AncestorReport:
     #
     #--------------------------------------------------------------------
     def write_report(self):
-
 	self.calc()
 	try:
             self.doc.open(self.output)
@@ -261,109 +244,76 @@ class AncestorReport:
 # 
 #
 #------------------------------------------------------------------------
+class AncestorChartDialog(DrawReportDialog):
+    def __init__(self,database,person):
+        ReportDialog.__init__(self,database,person)
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return _("Gramps - Ancestor Chart")
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents."""
+        return _("Ancestor Chart for %s") % name
+
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("Save Ancestor Chart")
+
+    def get_stylesheet_savefile(self):
+        """Where to save user defined styles for this report."""
+        return "ancestor_chart.xml"
+    
+    def get_report_generations(self):
+        """Default to 10 generations, no page breaks."""
+        return (10, 0)
+    
+    def get_report_extra_textbox_string(self):
+        """Label the textbox and provide the default contents."""
+        return (_("Display Format"), "$n\nb. $b\nd. $d")
+
+    #------------------------------------------------------------------------
+    #
+    # Create output styles appropriate to this report.
+    #
+    #------------------------------------------------------------------------
+    def make_default_style(self):
+        """Make the default output style for the Ancestor Chart report."""
+        f = FontStyle()
+        f.set_size(9)
+        f.set_type_face(FONT_SANS_SERIF)
+        p = ParagraphStyle()
+        p.set_font(f)
+        self.default_style.add_style("Normal",p)
+
+    #------------------------------------------------------------------------
+    #
+    # Create the contents of the report.
+    #
+    #------------------------------------------------------------------------
+    def make_report(self):
+        """Create the object that will produce the Ancestor Chart.
+        All user dialog has already been handled and the output file
+        opened."""
+        MyReport = AncestorChart(self.db, self.person, self.target_path,
+                                 self.max_gen, self.doc, self.report_text)
+        MyReport.write_report()
+
+
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 def report(database,person):
-    import PaperMenu
-
-    global style_sheet_list
-    global active_person
-    global topDialog
-    global db
-    
-    active_person = person
-    db = database
-
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "ancestorchart.glade"
-    topDialog = libglade.GladeXML(glade_file,"dialog1")
-    topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
-
-    name = person.getPrimaryName().getRegularName()
-
-    PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
-    PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
-    FindDoc.get_draw_doc_menu(topDialog.get_widget("format"))
-
-    styles.clear()
-    f = FontStyle()
-    f.set_size(9)
-    f.set_type_face(FONT_SANS_SERIF)
-    p = ParagraphStyle()
-    p.set_font(f)
-    styles.add_style("Normal",p)
-
-    style_sheet_list = StyleSheetList("ancestor_chart.xml",styles)
-    build_menu(None)
-
-    title = _("Ancestor Chart for %s") % name
-    topDialog.get_widget("labelTitle").set_text(title)
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
-        "on_style_edit_clicked" : on_style_edit_clicked,
-        "on_save_clicked"       : on_save_clicked
-        })
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def build_menu(object):
-    menu = topDialog.get_widget("style_menu")
-
-    myMenu = gtk.GtkMenu()
-    for style in style_sheet_list.get_style_names():
-        menuitem = gtk.GtkMenuItem(style)
-        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
-        menuitem.show()
-        myMenu.append(menuitem)
-    menu.set_menu(myMenu)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def option_switch(obj):
-    pass
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_style_edit_clicked(obj):
-    StyleListDisplay(style_sheet_list,build_menu,None)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_save_clicked(obj):
-    global active_person
-    global db
-
-    outputName = topDialog.get_widget("fileentry1").get_full_path(0)
-    if outputName == "":
-        return
-    
-    paper_obj = topDialog.get_widget("papersize").get_menu().get_active()
-    paper = paper_obj.get_data("i")
-    orien_obj = topDialog.get_widget("orientation").get_menu().get_active()
-    orien = orien_obj.get_data("i")
-    max_gen = topDialog.get_widget("generations").get_value_as_int()
-    text = topDialog.get_widget("display_text").get_chars(0,-1)
-    text = string.split(text,'\n')
-
-    styles = topDialog.get_widget("style_menu").get_menu().get_active().get_data("d")
-    item = topDialog.get_widget("format").get_menu().get_active()
-    format = item.get_data("name")
-    doc = FindDoc.make_draw_doc(styles,format,paper,orien)
-
-    MyReport = AncestorReport(db,text,active_person,outputName,doc,max_gen)
-    MyReport.write_report()
-
-    utils.destroy_passed_object(obj)
+    AncestorChartDialog(database,person)
 
 #------------------------------------------------------------------------
 #

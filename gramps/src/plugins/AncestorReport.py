@@ -21,19 +21,13 @@
 "Generate files/Ahnentafel Report"
 
 import RelLib
-import const
 import os
 import string
-import utils
-import Config
 import intl
 
 _ = intl.gettext
 
-from TextDoc import *
-from StyleEditor import *
-
-import FindDoc
+from Report import *
 
 import gtk
 import gnome.ui
@@ -44,57 +38,14 @@ import libglade
 # 
 #
 #------------------------------------------------------------------------
-active_person = None
-db = None
-styles = StyleSheet()
-style_sheet_list = None
-topDialog = None
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class AncestorReport:
-
-    gen = {
-        1 : _("First"),
-        2 : _("Second"),
-        3 : _("Third"),
-        4 : _("Fourth"),
-        5 : _("Fifth"),
-        6 : _("Sixth"),
-        7 : _("Seventh"),
-        8 : _("Eighth"),
-        9 : _("Ninth"),
-        10: _("Tenth"),
-        11: _("Eleventh"),
-        12: _("Twelfth"),
-        13: _("Thirteenth"),
-        14: _("Fourteenth"),
-        15: _("Fifteenth"),
-        16: _("Sixteenth"),
-        17: _("Seventeenth"),
-        18: _("Eightteenth"),
-        19: _("Nineteenth"),
-        20: _("Twentieth"),
-        21: _("Twenty-first"),
-        22: _("Twenty-second"),
-        23: _("Twenty-third"),
-        24: _("Twenty-fourth"),
-        25: _("Twenty-fifth"),
-        26: _("Twenty-sixth"),
-        27: _("Twenty-seventh"),
-        28: _("Twenty-eighth"),
-        29: _("Twenty-ninth")
-        }
+class AncestorReport(Report):
 
     #--------------------------------------------------------------------
     #
     # 
     #
     #--------------------------------------------------------------------
-    def __init__(self,database,person,output,max,pgbrk,doc):
+    def __init__(self,database,person,output,max,doc,pgbrk):
         self.map = {}
         self.database = database
         self.start = person
@@ -273,130 +224,81 @@ class AncestorReport:
 # 
 #
 #------------------------------------------------------------------------
+class AncestorReportDialog(TextReportDialog):
+    def __init__(self,database,person):
+        ReportDialog.__init__(self,database,person)
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return _("Gramps - Ahnentafel Report")
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Ahnentafel Report for %s") % name
+
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("Save Ancestor Report")
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return "ancestor_report.xml"
+    
+    #------------------------------------------------------------------------
+    #
+    # Create output styles appropriate to this report.
+    #
+    #------------------------------------------------------------------------
+    def make_default_style(self):
+        """Make the default output style for the Ahnentafel report."""
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF,size=16,bold=1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(1)
+        para.set(pad=0.5)
+        self.default_style.add_style("Title",para)
+    
+        font = FontStyle()
+        font.set(face=FONT_SANS_SERIF,size=14,italic=1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(2)
+        para.set(pad=0.5)
+        self.default_style.add_style("Generation",para)
+    
+        para = ParagraphStyle()
+        para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
+        self.default_style.add_style("Entry",para)
+
+    #------------------------------------------------------------------------
+    #
+    # Create the contents of the report.
+    #
+    #------------------------------------------------------------------------
+    def make_report(self):
+        """Create the object that will produce the Ahnentafel Report.
+        All user dialog has already been handled and the output file
+        opened."""
+        MyReport = AncestorReport(self.db, self.person, self.target_path,
+                                  self.max_gen, self.doc, self.pg_brk)
+        MyReport.write_report()
+
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 def report(database,person):
-    import PaperMenu
-    
-    global active_person
-    global topDialog
-    global db
-    global style_sheet_list
-    
-    active_person = person
-    db = database
+    AncestorReportDialog(database,person)
 
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "ancestorreport.glade"
-    topDialog = libglade.GladeXML(glade_file,"dialog1")
-    topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
-
-    name = person.getPrimaryName().getRegularName()
-
-    PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
-    PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
-    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),0,option_switch)
-        
-    styles.clear()
-    font = FontStyle()
-    font.set(face=FONT_SANS_SERIF,size=16,bold=1)
-    para = ParagraphStyle()
-    para.set_font(font)
-    para.set_header_level(1)
-    para.set(pad=0.5)
-    styles.add_style("Title",para)
-
-    font = FontStyle()
-    font.set(face=FONT_SANS_SERIF,size=14,italic=1)
-    para = ParagraphStyle()
-    para.set_font(font)
-    para.set_header_level(2)
-    para.set(pad=0.5)
-    styles.add_style("Generation",para)
-
-    para = ParagraphStyle()
-    para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
-    styles.add_style("Entry",para)
-
-    style_sheet_list = StyleSheetList("ancestor_report.xml",styles)
-    build_menu(None)
-
-    topDialog.get_widget("labelTitle").set_text(_("Ahnentafel Report for %s") % name)
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
-        "on_style_edit_clicked" : on_style_edit_clicked,
-        "on_save_clicked" : on_save_clicked
-        })
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def build_menu(object):
-    menu = topDialog.get_widget("style_menu")
-
-    myMenu = gtk.GtkMenu()
-    for style in style_sheet_list.get_style_names():
-        menuitem = gtk.GtkMenuItem(style)
-        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
-        menuitem.show()
-        myMenu.append(menuitem)
-    menu.set_menu(myMenu)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def option_switch(obj):
-    val = obj.get_data("paper")
-    st = obj.get_data("styles")
-    notebook = topDialog.get_widget("option_notebook")
-    if val == 1:
-        notebook.set_page(0)
-    else:
-        notebook.set_page(1)
-    topDialog.get_widget("style_frame").set_sensitive(st)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_style_edit_clicked(obj):
-    StyleListDisplay(style_sheet_list,build_menu,None)
-    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_save_clicked(obj):
-    global active_person
-    global db
-
-    outputName = topDialog.get_widget("fileentry1").get_full_path(0)
-    if not outputName:
-        return
-
-    max_gen = topDialog.get_widget("generations").get_value_as_int()
-    pgbrk = topDialog.get_widget("pagebreak").get_active()
-    template = topDialog.get_widget("htmltemplate").get_full_path(0)
-    paper_obj = topDialog.get_widget("papersize").get_menu().get_active()
-    paper = paper_obj.get_data("i")
-    orien_obj = topDialog.get_widget("orientation").get_menu().get_active()
-    orien = orien_obj.get_data("i")
-    
-    item = topDialog.get_widget("format").get_menu().get_active()
-    format = item.get_data("name")
-
-    styles = topDialog.get_widget("style_menu").get_menu().get_active().get_data("d")
-    
-    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
-
-    MyReport = AncestorReport(db,active_person,outputName,max_gen,pgbrk,doc)
-    MyReport.write_report()
-        
-    utils.destroy_passed_object(obj)
 
 #------------------------------------------------------------------------
 #

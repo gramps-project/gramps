@@ -21,31 +21,14 @@
 "Generate files/Family Group Report"
 
 import RelLib
-import const
 import os
-import string
-import FindDoc
-import utils
 import intl
-import Config
 _ = intl.gettext
 
-from TextDoc import *
-from StyleEditor import *
+from Report import *
 
 import gtk
 import libglade
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-active_person = None
-db = None
-styles = StyleSheet()
-style_sheet_list = None
-topDialog = None
 
 #------------------------------------------------------------------------
 #
@@ -341,172 +324,127 @@ class FamilyGroup:
 # 
 #
 #------------------------------------------------------------------------
+class FamilyGroupDialog(TextReportDialog):
+    def __init__(self,database,person):
+        ReportDialog.__init__(self,database,person)
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return _("Gramps - Family Group Report")
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Family Group Report for %s") % name
+    
+    def get_target_browser_title(self):
+        """The title of the window created when the 'browse' button is
+        clicked in the 'Save As' frame."""
+        return _("Save Family Group Report")
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return "family_group.xml"
+
+    def doc_uses_tables(self):
+        """This report requires table support."""
+        return 1
+
+    def get_report_generations(self):
+        """No generation options."""
+        return (0, 0)
+    
+    def get_report_extra_menu_map(self):
+        """Create a mapping of all spouse names:families to be put
+        into the 'extra' option menu in the report options box.  If
+        the selected person has never been married then this routine
+        will return a placebo label and disable the OK button."""
+        mapping = {}
+        family_list = self.person.getFamilyList()
+        if not family_list:
+            mapping[_("No known marriages")] = None
+            self.topDialog.get_widget("OK").set_sensitive(0)
+        for family in family_list:
+            if self.person == family.getFather():
+                spouse = family.getMother()
+            else:
+                spouse = family.getFather()
+            if spouse:
+                name = spouse.getPrimaryName().getName()
+            else:
+                name= _("unknown")
+            mapping[name] = family
+        return (_("Spouse"), mapping, None)
+
+    #------------------------------------------------------------------------
+    #
+    # Create output styles appropriate to this report.
+    #
+    #------------------------------------------------------------------------
+    def make_default_style(self):
+        """Make default output style for the Family Group Report."""
+        para = ParagraphStyle()
+        font = FontStyle()
+        font.set_size(4)
+        para.set_font(font)
+        self.default_style.add_style('blank',para)
+            
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(16)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.default_style.add_style('Title',para)
+    
+        font = FontStyle()
+        font.set_type_face(FONT_SERIF)
+        font.set_size(10)
+        font.set_bold(0)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.default_style.add_style('Normal',para)
+    
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(10)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.default_style.add_style('ChildText',para)
+    
+        font = FontStyle()
+        font.set_type_face(FONT_SANS_SERIF)
+        font.set_size(12)
+        font.set_bold(1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        self.default_style.add_style('ParentName',para)
+
+    #------------------------------------------------------------------------
+    #
+    # Create the contents of the report.
+    #
+    #------------------------------------------------------------------------
+    def make_report(self):
+        """Create the object that will produce the Ancestor Chart.
+        All user dialog has already been handled and the output file
+        opened."""
+        MyReport = FamilyGroup(self.db, self.report_menu, self.target_path, self.doc)
+        MyReport.setup()
+        MyReport.write_report()
+
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 def report(database,person):
-    import PaperMenu
-    
-    global active_person
-    global topDialog
-    global db
-    global style_sheet_list
-    
-    active_person = person
-    db = database
-
-    glade_file = "%s/familygroup.glade" % os.path.dirname(__file__)
-    topDialog = libglade.GladeXML(glade_file,"dialog1")
-    topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
-
-    name = person.getPrimaryName().getRegularName()
-    family_list = person.getFamilyList()
-    label = topDialog.get_widget("labelTitle")
-    
-    label.set_text(_("Family Group Report for %s") % name)
-    topDialog.signal_autoconnect({
-        "destroy_passed_object" : utils.destroy_passed_object,
-        "on_style_edit_clicked" : on_style_edit_clicked,
-        "on_save_clicked" : on_save_clicked
-        })
-
-    PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
-    PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
-    FindDoc.get_text_doc_menu(topDialog.get_widget("format"),1,option_switch)
-    styles.clear()
-    
-    para = ParagraphStyle()
-    font = FontStyle()
-    font.set_size(4)
-    para.set_font(font)
-    styles.add_style('blank',para)
-        
-    font = FontStyle()
-    font.set_type_face(FONT_SANS_SERIF)
-    font.set_size(16)
-    font.set_bold(1)
-    para = ParagraphStyle()
-    para.set_font(font)
-    styles.add_style('Title',para)
-
-    font = FontStyle()
-    font.set_type_face(FONT_SERIF)
-    font.set_size(10)
-    font.set_bold(0)
-    para = ParagraphStyle()
-    para.set_font(font)
-    styles.add_style('Normal',para)
-
-    font = FontStyle()
-    font.set_type_face(FONT_SANS_SERIF)
-    font.set_size(10)
-    font.set_bold(1)
-    para = ParagraphStyle()
-    para.set_font(font)
-    styles.add_style('ChildText',para)
-
-    font = FontStyle()
-    font.set_type_face(FONT_SANS_SERIF)
-    font.set_size(12)
-    font.set_bold(1)
-    para = ParagraphStyle()
-    para.set_font(font)
-    styles.add_style('ParentName',para)
-    style_sheet_list = StyleSheetList("family_group.xml",styles)
-    build_menu(None)
-
-    frame = topDialog.get_widget("spouse")
-    option_menu = topDialog.get_widget("spouse_menu")
-
-    if len(family_list) > 1:
-        frame.show()
-    else:
-        frame.hide()
-
-    my_menu = gtk.GtkMenu()
-    for family in family_list:
-        if person == family.getFather():
-            spouse = family.getMother()
-        else:
-            spouse = family.getFather()
-        if spouse:
-            item = gtk.GtkMenuItem(spouse.getPrimaryName().getName())
-        else:
-            item = gtk.GtkMenuItem("unknown")
-        item.set_data("f",family)
-        item.show()
-        my_menu.append(item)
-    option_menu.set_menu(my_menu)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_style_edit_clicked(obj):
-    StyleListDisplay(style_sheet_list,build_menu,None)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def build_menu(object):
-    menu = topDialog.get_widget("style_menu")
-
-    myMenu = gtk.GtkMenu()
-    for style in style_sheet_list.get_style_names():
-        menuitem = gtk.GtkMenuItem(style)
-        menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
-        menuitem.show()
-        myMenu.append(menuitem)
-    menu.set_menu(myMenu)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def option_switch(obj):
-    val = obj.get_data("paper")
-    st = obj.get_data("styles")
-    notebook = topDialog.get_widget("option_notebook")
-    
-    if val == 1:
-        notebook.set_page(0)
-    else:
-        notebook.set_page(1)
-    topDialog.get_widget("style_frame").set_sensitive(st)
-    
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-def on_save_clicked(obj):
-    global active_person
-    global db
-
-    outputName = topDialog.get_widget("fileentry1").get_full_path(0)
-    if not outputName:
-        return
-
-    menu = topDialog.get_widget("spouse_menu").get_menu()
-    family = menu.get_active().get_data("f")
-    paper_obj = topDialog.get_widget("papersize")
-    paper = paper_obj.get_menu().get_active().get_data("i")
-    orien_obj = topDialog.get_widget("orientation")
-    orien = orien_obj.get_menu().get_active().get_data("i")
-    template = topDialog.get_widget("htmlfile").get_text()
-
-    item = topDialog.get_widget("format").get_menu().get_active()
-    format = item.get_data("name")
-    
-    doc = FindDoc.make_text_doc(styles,format,paper,orien,template)
-    
-    MyReport = FamilyGroup(db,family,outputName,doc)
-
-    MyReport.setup()
-    MyReport.write_report()
-        
-    utils.destroy_passed_object(obj)
+    FamilyGroupDialog(database,person)
     
 #------------------------------------------------------------------------
 #
