@@ -755,11 +755,13 @@ class FilterParser(handler.ContentHandler):
                     pass
             self.gfilter_list.add(self.f)
         elif tag == "rule":
-            name = _(u2l(attrs['class']))
+            c = attrs['class']
+            name = _(u2l(c))
             self.a = []
             self.cname = tasks[name]
         elif tag == "arg":
-            self.a.append(u2l(attrs['value']))
+            c = attrs['value']
+            self.a.append(u2l(c))
 
     def endElement(self,tag):
         if tag == "rule":
