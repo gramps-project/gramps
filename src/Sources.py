@@ -150,8 +150,8 @@ class SourceSelector:
         gnome.help_display('gramps-manual','gramps-edit-complete')
 
     def selection_changed(self,obj):
-        (store,iter) = self.selection.get_selected()
-        if iter:
+        (store,node) = self.selection.get_selected()
+        if node:
             self.delete.set_sensitive(gtk.TRUE)
             self.edit.set_sensitive(gtk.TRUE)
         else:
@@ -163,8 +163,8 @@ class SourceSelector:
         for s in self.list:
             base_handle = s.get_base_handle()
             base = self.db.get_source_from_handle(base_handle)
-            iter = self.model.append()
-            self.model.set(iter,0,base_handle,1,base.get_title())
+            node = self.model.append()
+            self.model.set(node,0,base_handle,1,base.get_title())
 
     def src_ok_clicked(self,obj):
         del self.orig[:]
@@ -175,9 +175,9 @@ class SourceSelector:
         self.close(obj)
     
     def edit_src_clicked(self,obj):
-        store,iter = self.selection.get_selected()
-        if iter:
-            col = store.get_path(iter)
+        store,node = self.selection.get_selected()
+        if node:
+            col = store.get_path(node)
             src = self.list[col[0]]
             SourceEditor(src,self.db,self.update_clist,self)
 
@@ -189,9 +189,9 @@ class SourceSelector:
         SourceEditor(src,self.db,self.add_ref,self)
 
     def del_src_clicked(self,obj):
-        (store,iter) = self.selection.get_selected()
-        if iter:
-            path = store.get_path(iter)
+        (store,node) = self.selection.get_selected()
+        if node:
+            path = store.get_path(node)
             del self.list[path[0]]
             self.redraw()
 
@@ -243,9 +243,9 @@ class SourceTab:
         self.model.clear()
         for s in self.list:
             base_handle = s.get_base_handle()
+            node = self.model.append()
             base = self.db.get_source_from_handle(base_handle)
-            iter = self.model.append()
-            self.model.set(iter,0,base.get_gramps_id(),1,base.get_title())
+            self.model.set(node,0,base_handle,1,base.get_title())
         if self.list:
             Utils.bold_label(self.parent.sources_label)
         else:
@@ -256,9 +256,9 @@ class SourceTab:
         self.parent.lists_changed = 1
 
     def edit_src_clicked(self,obj):
-        store,iter = self.selection.get_selected()
-        if iter:
-            col = store.get_path(iter)
+        store,node = self.selection.get_selected()
+        if node:
+            col = store.get_path(node)
             src = self.list[col[0]]
             SourceEditor(src,self.db,self.update_clist,self)
 
@@ -272,9 +272,9 @@ class SourceTab:
         inst.redraw()
 
     def del_src_clicked(self,obj):
-        (store,iter) = self.selection.get_selected()
-        if iter:
-            path = store.get_path(iter)
+        (store,node) = self.selection.get_selected()
+        if node:
+            path = store.get_path(node)
             del self.list[path[0]]
             self.parent.lists_changed = 1
             self.redraw()
@@ -460,17 +460,17 @@ class SourceEditor:
         date = unicode(self.get_widget("sdate").get_text())
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')
 
-        buffer = self.get_widget("scomment").get_buffer()
-        comments = unicode(buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE))
+        buf = self.get_widget("scomment").get_buffer()
+        comments = unicode(buf.get_text(buf.get_start_iter(),
+                                        buf.get_end_iter(),gtk.FALSE))
 
-        buffer = self.get_widget("stext").get_buffer()
-        text = unicode(buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE))
+        buf = self.get_widget("stext").get_buffer()
+        text = unicode(buf.get_text(buf.get_start_iter(),
+                                    buf.get_end_iter(),gtk.FALSE))
 
-        buffer = self.get_widget('spage').get_buffer()
-        page = unicode(buffer.get_text(buffer.get_start_iter(),
-                               buffer.get_end_iter(),gtk.FALSE))
+        buf = self.get_widget('spage').get_buffer()
+        page = unicode(buf.get_text(buf.get_start_iter(),
+                                    buf.get_end_iter(),gtk.FALSE))
 
         self.source_ref.set_page(page)
         self.source_ref.get_date().set(date)

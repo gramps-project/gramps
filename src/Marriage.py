@@ -215,17 +215,17 @@ class Marriage:
         place_list.sort()
         AutoComp.fill_combo(self.lds_place, place_list)
 
-        ord = self.family.get_lds_sealing()
-        if ord:
-            if ord.get_place_handle():
-                self.lds_place.child.set_text(ord.get_place_handle().get_title())
-            self.lds_date.set_text(ord.get_date())
-            if ord.get_temple() != "":
-                name = const.lds_temple_to_abrev[ord.get_temple()]
+        lds_ord = self.family.get_lds_sealing()
+        if lds_ord:
+            if lds_ord.get_place_handle():
+                self.lds_place.child.set_text(lds_ord.get_place_handle().get_title())
+            self.lds_date.set_text(lds_ord.get_date())
+            if lds_ord.get_temple() != "":
+                name = const.lds_temple_to_abrev[lds_ord.get_temple()]
             else:
                 name = ""
             self.lds_temple.child.set_text(name)
-            self.seal_stat = ord.get_status()
+            self.seal_stat = lds_ord.get_status()
         else:
             self.lds_temple.child.set_text("")
             self.lds_place.child.set_text("")
@@ -236,7 +236,7 @@ class Marriage:
 
         self.build_seal_menu()
 
-        if ord:
+        if lds_ord:
             Utils.bold_label(self.lds_label)
         else:
             Utils.unbold_label(self.lds_label)
@@ -344,52 +344,52 @@ class Marriage:
         self.seal_stat = obj.get_data("val")
 
     def lds_src_clicked(self,obj):
-        ord = self.family.get_lds_sealing()
-        if ord == None:
-            ord = RelLib.LdsOrd()
-            self.family.set_lds_sealing(ord)
-        Sources.SourceSelector(ord.get_source_references(),self,self.window)
+        lds_ord = self.family.get_lds_sealing()
+        if lds_ord == None:
+            lds_ord = RelLib.LdsOrd()
+            self.family.set_lds_sealing(lds_ord)
+        Sources.SourceSelector(lds_ord.get_source_references(),self,self.window)
 
     def lds_note_clicked(self,obj):
         import NoteEdit
-        ord = self.family.get_lds_sealing()
-        if ord == None:
-            ord = RelLib.LdsOrd()
-            self.family.set_lds_sealing(ord)
-        NoteEdit.NoteEditor(ord,self,self.window)
+        lds_ord = self.family.get_lds_sealing()
+        if lds_ord == None:
+            lds_ord = RelLib.LdsOrd()
+            self.family.set_lds_sealing(lds_ord)
+        NoteEdit.NoteEditor(lds_ord,self,self.window)
 
     def on_up_clicked(self,obj):
-        model,iter = self.etree.get_selected()
-        if not iter:
+        model,node = self.etree.get_selected()
+        if not node:
             return
         
-        row = self.etree.get_row(iter)
+        row = self.etree.get_row(node)
         if row != 0:
             self.etree.select_row(row-1)
 
     def on_down_clicked(self,obj):
-        model,iter = self.etree.get_selected()
-        if not iter:
+        model,node = self.etree.get_selected()
+        if not node:
             return
 
-        row = self.etree.get_row(iter)
+        row = self.etree.get_row(node)
         self.etree.select_row(row+1)
 
     def on_attr_up_clicked(self,obj):
-        model,iter = self.atree.get_selected()
-        if not iter:
+        model,node = self.atree.get_selected()
+        if not node:
             return
         
-        row = self.atree.get_row(iter)
+        row = self.atree.get_row(node)
         if row != 0:
             self.atree.select_row(row-1)
 
     def on_attr_down_clicked(self,obj):
-        model,iter = self.atree.get_selected()
-        if not iter:
+        model,node = self.atree.get_selected()
+        if not node:
             return
 
-        row = self.atree.get_row(iter)
+        row = self.atree.get_row(node)
         self.atree.select_row(row+1)
 
     def ev_dest_drag_data_received(self,widget,context,x,y,selection_data,info,time):
@@ -467,8 +467,8 @@ class Marriage:
         self.amap = {}
         for attr in self.alist:
             d = [const.display_fattr(attr.get_type()),attr.get_value()]
-            iter = self.atree.add(d,attr)
-            self.amap[str(attr)] = iter
+            node = self.atree.add(d,attr)
+            self.amap[str(attr)] = node
         if self.alist:
             self.atree.select_row(0)
             Utils.bold_label(self.attr_label)
@@ -488,9 +488,9 @@ class Marriage:
                 place_name = self.db.get_place_from_handle(place_handle).get_title()
             else:
                 place_name = ""
-            iter = self.etree.add([const.display_fevent(event.get_name()),
+            node = self.etree.add([const.display_fevent(event.get_name()),
                                    event.get_quote_date(),place_name],event)
-            self.emap[str(event)] = iter
+            self.emap[str(event)] = node
         if self.elist:
             self.etree.select_row(0)
             Utils.bold_label(self.events_label)
@@ -533,17 +533,17 @@ class Marriage:
 
         place = self.get_place(0)
         
-        ord = self.family.get_lds_sealing()
-        if not ord:
+        lds_ord = self.family.get_lds_sealing()
+        if not lds_ord:
             if date or temple or place or self.seal_stat:
                 changed = 1
         else:
             d = Date.Date()
             d.set(date)
-            if Date.compare_dates(d,ord.get_date_object()) != 0 or \
-               ord.get_temple() != temple or \
-               (place and ord.get_place_handle() != place.get_handle()) or \
-               ord.get_status() != self.seal_stat:
+            if Date.compare_dates(d,lds_ord.get_date_object()) != 0 or \
+               lds_ord.get_temple() != temple or \
+               (place and lds_ord.get_place_handle() != place.get_handle()) or \
+               lds_ord.get_status() != self.seal_stat:
                 changed = 1
 
         return changed
@@ -610,26 +610,26 @@ class Marriage:
             temple = ""
         place = self.get_place(1,trans)
 
-        ord = self.family.get_lds_sealing()
-        if not ord:
+        lds_ord = self.family.get_lds_sealing()
+        if not lds_ord:
             if date or temple or place or self.seal_stat:
-                ord = RelLib.LdsOrd()
-                ord.set_date(date)
-                ord.set_temple(temple)
-                ord.set_status(self.seal_stat)
-                ord.set_place_handle(place)
-                self.family.set_lds_sealing(ord)
+                lds_ord = RelLib.LdsOrd()
+                lds_ord.set_date(date)
+                lds_ord.set_temple(temple)
+                lds_ord.set_status(self.seal_stat)
+                lds_ord.set_place_handle(place)
+                self.family.set_lds_sealing(lds_ord)
         else:
             d = Date.Date()
             d.set(date)
-            if Date.compare_dates(d,ord.get_date_object()) != 0:
-                ord.set_date_object(d)
-            if ord.get_temple() != temple:
-                ord.set_temple(temple)
-            if ord.get_status() != self.seal_stat:
-                ord.set_status(self.seal_stat)
-            if ord.get_place_handle() != place.get_handle():
-                ord.set_place_handle(place.get_handle())
+            if Date.compare_dates(d,lds_ord.get_date_object()) != 0:
+                lds_ord.set_date_object(d)
+            if lds_ord.get_temple() != temple:
+                lds_ord.set_temple(temple)
+            if lds_ord.get_status() != self.seal_stat:
+                lds_ord.set_status(self.seal_stat)
+            if lds_ord.get_place_handle() != place.get_handle():
+                lds_ord.set_place_handle(place.get_handle())
 
         if self.lists_changed:
             self.family.set_source_reference_list(self.srcreflist)
@@ -659,10 +659,10 @@ class Marriage:
 
     def on_event_update_clicked(self,obj):
         import EventEdit
-        model,iter = self.etree.get_selected()
-        if not iter:
+        model,node = self.etree.get_selected()
+        if not node:
             return
-        event = self.etree.get_object(iter)
+        event = self.etree.get_object(node)
         name = Utils.family_name(self.family,self.db)
         EventEdit.EventEditor(self,name,const.marriageEvents,
                               const.family_events,event,
@@ -675,10 +675,10 @@ class Marriage:
 
     def on_select_row(self,obj):
         
-        model,iter = self.etree.get_selected()
-        if not iter:
+        model,node = self.etree.get_selected()
+        if not node:
             return
-        event = self.etree.get_object(iter)
+        event = self.etree.get_object(node)
     
         self.date_field.set_text(event.get_date())
         place_handle = event.get_place_handle()
@@ -701,10 +701,10 @@ class Marriage:
         self.descr_field.set_text(event.get_description())
 
     def on_attr_list_select_row(self,obj):
-        model,iter = self.atree.get_selected()
-        if not iter:
+        model,node = self.atree.get_selected()
+        if not node:
             return
-        attr = self.atree.get_object(iter)
+        attr = self.atree.get_object(node)
 
         self.attr_type.set_label(const.display_fattr(attr.get_type()))
         self.attr_value.set_text(attr.get_value())
@@ -720,11 +720,11 @@ class Marriage:
 
     def on_update_attr_clicked(self,obj):
         import AttrEdit
-        model,iter = self.atree.get_selected()
-        if not iter:
+        model,node = self.atree.get_selected()
+        if not node:
             return
 
-        attr = self.atree.get_object(iter)
+        attr = self.atree.get_object(node)
 
         father_handle = self.family.get_father_handle()
         mother_handle = self.family.get_mother_handle()

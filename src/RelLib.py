@@ -529,7 +529,7 @@ class Person(PrimaryObject,SourceNote):
     def probably_alive(self,db):
         """Returns true if the person may be alive."""
         if self.death_handle:
-            return 0
+            return False
         if self.birth_handle:
             birth = db.get_event_from_handle(self.birth_handle)
             if birth.get_date() != "":
@@ -549,25 +549,23 @@ class Person(PrimaryObject,SourceNote):
                     if child.birth_handle:
                         child_birth = db.get_event_from_handle(child.birth_handle)
                         if child_birth.get_date() != "":
-                            d = SingleDate (child_birth.get_date_object().
-                                        get_start_date())
+                            d = SingleDate (child_birth.get_date_object().get_start_date())
                             d.set_year (d.get_year() - years)
                             if not not_too_old (d):
-                                return 1
+                                return True
 
                     if child.death_handle:
                         child_death = db.get_event_from_handle(child.death_handle)
                         if child_death.get_date() != "":
-                            d = SingleDate (child_death.get_date_object().
-                                        get_start_date())
+                            d = SingleDate (child_death.get_date_object().get_start_date())
                             if not not_too_old (d):
-                                return 1
+                                return True
 
                     if descendants_too_old (child, years + min_generation):
-                        return 1
+                        return True
 
         if descendants_too_old (self, min_generation):
-            return 0
+            return False
 
         # What about their parents?
         def parents_too_old (person, age_difference):
@@ -582,12 +580,10 @@ class Person(PrimaryObject,SourceNote):
                     if parent.birth_handle:
                         parent_birth = db.get_event_from_handle(parent.birth_handle)
                         if parent_birth.get_date():
-                            d = SingleDate (parent_birth.get_date_object().
-                                        get_start_date())
-                            d.set_year (d.get_year() + max_generation +
-                                   age_difference)
+                            d = SingleDate (parent_birth.get_date_object().get_start_date())
+                            d.set_year (d.get_year() + max_generation + age_difference)
                             if not not_too_old (d):
-                                return 1
+                                return True
 
                     if parent.death_handle:
                         parent_death = db.get_event_from_handle(parent.death_handle)
@@ -596,43 +592,40 @@ class Person(PrimaryObject,SourceNote):
                                         get_start_date())
                             d.set_year (d.get_year() + age_difference)
                             if not not_too_old (d):
-                                return 1
+                                return True
 
         if parents_too_old (self, 0):
-            return 0
+            return False
 
         # As a last resort, trying seeing if their spouse's age gives
         # any clue.
         for family_handle in self.get_family_handle_list():
             family = db.get_family_from_handle(family_handle)
             for spouse_id in [family.get_father_handle(), family.get_mother_handle()]:
-                if not spouse_id:
-                    continue
-                if spouse_id == self.handle:
+                if not spouse_id or spouse_id == self.handle:
                     continue
                 spouse = db.get_person_from_handle(spouse_id)
-                if spouse.birth_handle:
-                    spouse_birth = db.get_event_from_handle(spouse.birth_handle)
+                sp_birth_handle = spouse.get_birth_handle()
+                sp_death_handle = spouse.get_death_handle()
+                if sp_birth_handle:
+                    spouse_birth = db.find_event_from_handle(sp_birth_handle)
                     if spouse_birth.get_date() != "":
-                        d = SingleDate (spouse_birth.get_date_object().
-                                    get_start_date())
+                        d = SingleDate (spouse_birth.get_date_object().get_start_date())
                         d.set_year (d.get_year() + max_age_difference)
                         if not not_too_old (d):
-                            return 0
+                            return False
 
-                if spouse.death_handle:
-                    spouse_death = db.get_event_from_handle(spouse.death_handle)
+                if sp_death_handle:
+                    spouse_death = db.find_event_from_handle(sp_death_handle)
                     if spouse_death.get_date() != "":
-                        d = SingleDate (spouse_death.get_date_object().
-                                    get_start_date())
+                        d = SingleDate (spouse_birth.get_date_object().get_start_date())
                         d.set_year (d.get_year() - min_generation)
                         if not not_too_old (d):
-                            return 0
+                            return False
 
                 if parents_too_old (spouse, max_age_difference):
-                    return 0
-
-        return 1
+                    return False
+        return True
 
 class Family(PrimaryObject,SourceNote):
     """

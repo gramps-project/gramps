@@ -209,11 +209,11 @@ def redraw_list(dlist,clist,func):
     clist.clear()
     
     index = 0
-    for object in dlist:
+    for obj in dlist:
         col = 0
-        iter = clist.append()
-        for data in func(object):
-            clist.set_value(iter,col,data)
+        node = clist.append()
+        for data in func(obj):
+            clist.set_value(node,col,data)
             col = col + 1
         index = index + 1
     return index
@@ -225,9 +225,9 @@ def redraw_list(dlist,clist,func):
 #-------------------------------------------------------------------------
 def delete_selected(obj,list):
     sel = obj.get_selection()
-    model,iter = sel.get_selected()
-    if iter:
-        index = model.get_path(iter)[0]
+    model,node = sel.get_selected()
+    if node:
+        index = model.get_path(node)[0]
         del list[index]
     return 1
 
@@ -249,9 +249,9 @@ def add_menuitem(menu,msg,obj,func):
 #
 #-------------------------------------------------------------------------
 def view_photo(photo):
-    type = photo.get_mime_type()
+    mime_type = photo.get_mime_type()
     try:
-        data = GrampsMime.get_application(type)
+        data = GrampsMime.get_application(mime_type)
         prog = data[0]
     except:
         return
@@ -274,7 +274,7 @@ def strip_id(text):
         text = string.rstrip(text)
     return text
 
-def nautilus_icon(icon,type):
+def nautilus_icon(icon,mime_type):
     import GrampsCfg
     
     theme = GrampsCfg.client.get_string("/desktop/gnome/file_views/icon_theme")
@@ -288,7 +288,7 @@ def nautilus_icon(icon,type):
             if os.path.isfile(newicon):
                 return newicon
         return None
-    elif type == "x-directory/":
+    elif mime_type == "x-directory/":
         if theme:
             newicon = "%s/%s/i-directory.png" % (const.nautdir,theme)
         else:
@@ -297,7 +297,7 @@ def nautilus_icon(icon,type):
             return newicon
         return None
     else:
-        icontmp = type.replace('/','-')
+        icontmp = mime_type.replace('/','-')
         if theme:
             newicon = "%s/%s/gnome-%s.png" % (const.nautdir,theme,icontmp)
             if os.path.isfile(newicon):
@@ -321,9 +321,9 @@ def get_mime_type(file):
     except:
         return "unknown"
 
-def get_mime_description(type):
+def get_mime_description(mime_type):
     try:
-        value = gnome.vfs.mime_get_description(type)
+        value = gnome.vfs.mime_get_description(mime_type)
         if value:
             return value
         else:
@@ -338,19 +338,19 @@ def get_mime_description(type):
 #
 #-------------------------------------------------------------------------
 def thumb_path(dir,mobj):
-    type = mobj.get_mime_type()
+    mime_type = mobj.get_mime_type()
 
-    if type[0:5] == "image":
+    if mime_type[0:5] == "image":
         thumb = "%s/.thumb/%s.jpg" % (os.path.dirname(dir),mobj.get_handle())
         try:
             if RelImage.check_thumb(mobj.get_path(),thumb,const.thumbScale):
                 return thumb
             else:
-                return find_icon(type)
+                return find_icon(mime_type)
         except:
-            return find_icon(type)
+            return find_icon(mime_type)
     else:
-        return find_icon(type)
+        return find_icon(mime_type)
 
 #-------------------------------------------------------------------------
 #

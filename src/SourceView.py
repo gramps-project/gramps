@@ -120,9 +120,9 @@ class SourceView:
 
     def button_press(self,obj,event):
         if event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            store,iter = self.selection.get_selected()
-            id = store.get_value(iter,_HANDLE_COL)
-            source = self.parent.db.get_source_from_handle(id)
+            store,node = self.selection.get_selected()
+            handle = store.get_value(node,_HANDLE_COL)
+            source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source,self.parent.db,self.parent,
                                   self.topWindow,self.update_display)
             return 1
@@ -141,8 +141,8 @@ class SourceView:
     def build_context_menu(self,event):
         """Builds the menu with editing operations on the source's list"""
         
-        store,iter = self.selection.get_selected()
-        if iter:
+        store,node = self.selection.get_selected()
+        if node:
             sel_sensitivity = 1
         else:
             sel_sensitivity = 0
@@ -168,12 +168,12 @@ class SourceView:
                               self.topWindow,self.new_after_edit)
 
     def on_delete_clicked(self,obj):
-        store,iter = self.selection.get_selected()
-        if not iter:
+        store,node = self.selection.get_selected()
+        if not node:
             return
         
-        id = store.get_value(iter,_HANDLE_COL)
-        source = self.parent.db.get_source_from_handle(id)
+        handle = store.get_value(node,_HANDLE_COL)
+        source = self.parent.db.get_source_from_handle(handle)
 
         if self.is_used(source):
             ans = EditSource.DelSrcQuery(source,self.parent.db,self.build_tree)
@@ -237,10 +237,10 @@ class SourceView:
         return 0
 
     def on_edit_clicked(self,obj):
-        list_store, iter = self.selection.get_selected()
-        if iter:
-            id = list_store.get_value(iter,_HANDLE_COL)
-            source = self.parent.db.get_source_from_handle(id)
+        list_store, node = self.selection.get_selected()
+        if node:
+            handle = list_store.get_value(node,_HANDLE_COL)
+            source = self.parent.db.get_source_from_handle(handle)
             EditSource.EditSource(source, self.parent.db, self.parent,
                                   self.topWindow, self.update_display)
 

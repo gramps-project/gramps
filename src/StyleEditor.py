@@ -128,20 +128,20 @@ class StyleListDisplay:
         Called with the EDIT button is clicked. Calls the StyleEditor to edit the
         selected style.
         """
-        store,iter = self.list.selection.get_selected()
-        if not iter:
+        store,node = self.list.selection.get_selected()
+        if not node:
             return
         
-        name = self.list.model.get_value(iter,0)
+        name = self.list.model.get_value(node,0)
         style = self.sheetlist.get_style_sheet(name)
         StyleEditor(name,style,self)
 
     def on_delete_clicked(self,obj):
         """Deletes the selected style."""
-        store,iter = self.list.selection.get_selected()
-        if not iter:
+        store,node = self.list.selection.get_selected()
+        if not node:
             return
-        name = self.list.model.get_value(iter,0)
+        name = self.list.model.get_value(node,0)
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
@@ -301,8 +301,8 @@ class StyleEditor:
         old paragraph, then draws the newly selected paragraph"""
 
         objs = self.plist.get_selected_objects()
-        store,iter = self.plist.get_selected()
-        name = store.get_value(iter,0)
+        store,node = self.plist.get_selected()
+        name = store.get_value(node,0)
         if self.first == 0:
             self.save_paragraph(self.current_p)
         else:

@@ -99,28 +99,28 @@ class SelectObject:
         self.object_model.new_model()
 
         for key in self.db.get_media_object_handles():
-            object = self.db.get_object_from_handle(key)
-            title = object.get_description()
-            the_id = object.get_handle()
-            the_type = Utils.get_mime_description(object.get_mime_type())
-            path = object.get_path()
-            self.object_model.add([title,the_id,the_type,path],key)
+            obj = self.db.get_object_from_handle(key)
+            title = obj.get_description()
+            handle = obj.get_handle()
+            the_type = Utils.get_mime_description(obj.get_mime_type())
+            path = obj.get_path()
+            self.object_model.add([title,handle,the_type,path],key)
 
         self.object_model.connect_model()
         
     def on_select_row(self,obj):
         fexists = 1
 
-        store,iter = self.object_model.get_selected()
-        if not iter:
+        store,node = self.object_model.get_selected()
+        if not node:
             return
-        data = self.object_model.get_data(iter,range(self.ncols))
-        the_id = data[4]
-        object = self.db.get_object_from_handle(the_id)
-        the_type = Utils.get_mime_description(object.get_mime_type())
-        path = object.get_path()
+        data = self.object_model.get_data(node,range(self.ncols))
+        handle = data[4]
+        obj = self.db.get_object_from_handle(handle)
+        the_type = Utils.get_mime_description(obj.get_mime_type())
+        path = obj.get_path()
 
-        thumb_path = Utils.thumb_path(self.db.get_save_path(),object)
+        thumb_path = Utils.thumb_path(self.db.get_save_path(),obj)
         pexists = os.path.exists(path)
         if pexists and os.path.exists(thumb_path):
             self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
@@ -130,26 +130,26 @@ class SelectObject:
             if not pexists:
                 fexists = 0
         
-        self.object_handle.set_text(object.get_handle())
+        self.object_handle.set_text(obj.get_handle())
         self.object_type.set_text(the_type)
-        self.object_desc.set_text(object.get_description())
+        self.object_desc.set_text(obj.get_description())
         if len(path) == 0 or fexists == 0:
             self.object_path.set_text(_("The file no longer exists"))
         elif path[0] == "/":
             self.object_path.set_text(path)
         else:
             self.object_path.set_text("<local>")
-        self.object_details.set_text(Utils.get_detail_text(object,0))
+        self.object_details.set_text(Utils.get_detail_text(obj,0))
 
     def run(self):
         val = self.top.run()
 
         if val == gtk.RESPONSE_OK:
-            store,iter = self.object_model.get_selected()
-            if iter:
-                data = self.object_model.get_data(iter,range(self.ncols))
-                the_id = data[4]
-                return_value = self.db.get_object_from_handle(the_id)
+            store,node = self.object_model.get_selected()
+            if node:
+                data = self.object_model.get_data(node,range(self.ncols))
+                handle = data[4]
+                return_value = self.db.get_object_from_handle(handle)
             else:
                 return_value = None
             self.top.destroy()
