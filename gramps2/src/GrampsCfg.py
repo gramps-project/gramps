@@ -242,7 +242,7 @@ def loadConfig(call):
     status_bar = get_int("/apps/gramps/statusbar")
     gnome_toolbar_str = get_string("/desktop/gnome/interface/toolbar_style")
     gnome_toolbar = eval("gtk.TOOLBAR_%s" % string.upper(gnome_toolbar_str))
-    save_toolbar = get_int("/apps/gramps/toolbar",gtk.TOOLBAR_BOTH)
+    save_toolbar = get_int("/apps/gramps/toolbar",5)
     if save_toolbar == 5:
         toolbar = gnome_toolbar
     else:
@@ -326,24 +326,24 @@ def loadConfig(call):
 
 def get_string(value,defval=""):
     v = client.get_string(value)
-    if v == None:
-        return defval
-    else:
+    if client.get(key):
         return v
+    else:
+        return defval
 
 def get_bool(key,defval=0):
     v = client.get_bool(key)
-    if v == None:
-        return defval
-    else:
+    if client.get(key):
         return v
+    else:
+        return defval
 
 def get_int(key,defval=0):
     v = client.get_int(key)
-    if v == None:
-        return defval
-    else:
+    if client.get(key):
         return v
+    else:
+        return defval
 
 def set_int(key,value):
     client.set_int(key,value)
