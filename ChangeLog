@@ -1,3 +1,9 @@
+2005-03-03 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/GenericFilter.py (HasAttribute.apply): Fix the rule.
+	(HasFamilyAttribute.apply): Fix the rule.
+	* src/Marriage.py (on_update_attr_clicked,on_add_attr_clicked):
+	Pass the window to the attribute editor.
+
 2005-03-02  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/ChooseParents.py: use integers instead of strings for 
 	relationship types

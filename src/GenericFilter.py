@@ -1238,14 +1238,16 @@ class HasAttribute(Rule):
         return 'Has the personal attribute'
 
     def apply(self,db,p_id):
+        if not self.list[0]:
+            return 0
         p = db.get_person_from_handle(p_id)
-        for event in p.getAttributes():
-            if self.list[0] and event.get_type() != self.list[0]:
-                return 0
-            ev = event.get_value().upper()
-            if self.list[1] and ev.find(self.list[1].upper())==-1:
-                return 0
-        return 1
+        for attr in p.get_attribute_list():
+            name_match = self.list[0] == attr.get_type()
+            value_match = self.list[1] and\
+                    attr.get_value().upper().find(self.list[1].upper()) != -1
+            if name_match and value_match:
+                return 1
+        return 0
 
 #-------------------------------------------------------------------------
 #
@@ -1261,17 +1263,16 @@ class HasFamilyAttribute(Rule):
         return 'Has the family attribute'
 
     def apply(self,db,p_id):
+        if not self.list[0]:
+            return 0
         p = db.get_person_from_handle(p_id)
         for f_id in p.get_family_handle_list():
             f = db.get_family_from_handle(f_id)
-            for event in f.getAttributes():
-                val = 1
-                if self.list[0] and event.get_type() != self.list[0]:
-                    val = 0
-                ev = event.get_value().upper()
-                if self.list[1] and ev.find(self.list[1].upper())==-1:
-                    val = 0
-                if val == 1:
+            for attr in f.get_attribute_list():
+                name_match = self.list[0] == attr.get_type()
+                value_match = self.list[1] and\
+                        attr.get_value().upper().find(self.list[1].upper()) != -1
+                if name_match and value_match:
                     return 1
         return 0
 
