@@ -543,6 +543,14 @@ class Person(PrimaryObject,SourceNote):
         """Returns true if the person may be alive."""
         if self.death_handle:
             return False
+
+	# Look for Cause Of Death, Burial or Cremation events.
+        # These are fairly good indications that someone's not alive.
+	for ev_handle in self.event_list:
+            ev = db.get_event_from_handle(ev_handle)
+            if ev.name in ["Cause Of Death", "Burial", "Cremation"]:
+                return 0
+
         if self.birth_handle:
             birth = db.get_event_from_handle(self.birth_handle)
             if birth.get_date() != "":
