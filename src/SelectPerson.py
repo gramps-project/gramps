@@ -109,7 +109,7 @@ class SelectPerson:
         self.umodel.clear()
         self.umodel.new_model()
 
-        for key in self.db.getPersonKeys():
+        for key in self.db.sortPersonKeys():
             person = self.db.getPerson(key)
             if self.use_filter and not self.filter(person):
                 continue

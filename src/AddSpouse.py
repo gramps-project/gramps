@@ -230,7 +230,7 @@ class AddSpouse:
         self.entries = []
         self.slist.clear()
         self.slist.new_model()
-        for key in self.db.getPersonKeys():
+        for key in self.db.sortPersonKeys():
             data = self.db.getPersonDisplay(key)
             if data[2] == sgender:
                 continue

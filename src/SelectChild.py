@@ -140,7 +140,7 @@ class SelectChild:
                     slist[c.getId()] = 1
             
         person_list = []
-        for key in self.db.getPersonKeys():
+        for key in self.db.sortPersonKeys():
             person = self.db.getPerson(key)
             if filter:
                 if slist.has_key(key) or person.getMainParents():
