@@ -161,7 +161,7 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         footer_string = self.options_dict['footer']
         if not footer_string:
             dateinfo = time.localtime(time.time())
-            name = dialog.database.get_researcher().get_name()
+            name = dialog.db.get_researcher().get_name()
             footer_string = _('Copyright %d %s') % (dateinfo[0], name)
         self.footer_entry = gtk.Entry()
         self.footer_entry.set_text(footer_string)
@@ -186,9 +186,9 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         preview_table.attach(self.obj_title,0,1,0,1,gtk.SHRINK|gtk.FILL,gtk.SHRINK|gtk.FILL)
 
         select_obj_button = gtk.Button(_('From gallery...'))
-        select_obj_button.connect('clicked',self.select_obj,dialog.database)
+        select_obj_button.connect('clicked',self.select_obj,dialog.db)
         select_file_button = gtk.Button(_('From file...'))
-        select_file_button.connect('clicked',self.select_file,dialog.database)
+        select_file_button.connect('clicked',self.select_file,dialog.db)
         select_table = gtk.Table(1,3)
         select_table.set_col_spacings(10)
         select_table.attach(select_obj_button,
@@ -210,9 +210,9 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         dialog.add_frame_option(_('Image'),_('Size'),self.size)
 
         object_id = self.options_dict['imgid']
-        if object_id and dialog.database.get_object_from_gramps_id(object_id):
-            the_object = dialog.database.get_object_from_gramps_id(object_id)
-            self.setup_object(dialog.database,the_object)
+        if object_id and dialog.db.get_object_from_gramps_id(object_id):
+            the_object = dialog.db.get_object_from_gramps_id(object_id)
+            self.setup_object(dialog.db,the_object)
         else:
             self.remove_obj_button.set_sensitive(False)
             self.size.set_sensitive(False)
@@ -250,15 +250,6 @@ class SimpleBookTitleOptions(ReportOptions.ReportOptions):
         self.obj_title.set_text(the_object.get_description())
         icon_image = database.get_thumbnail_image(the_object.get_handle())
         self.preview.set_from_pixbuf(icon_image)
-#        the_type = Utils.get_mime_description(the_object.get_mime_type())
-#        path = the_object.get_path()
-#        thumb_path = Utils.thumb_path(database.get_save_path(),the_object)
-#        pexists = os.path.exists(path)
-#        if pexists and os.path.exists(thumb_path):
-#            self.preview.set_from_pixbuf(gtk.gdk.pixbuf_new_from_file(thumb_path))
-#        else:
-#            icon_image = gtk.gdk.pixbuf_new_from_file(Utils.find_icon(the_type))
-#            self.preview.set_from_pixbuf(icon_image)
         self.remove_obj_button.set_sensitive(gtk.TRUE)
         self.size.set_sensitive(gtk.TRUE)
 

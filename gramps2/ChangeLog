@@ -1,3 +1,10 @@
+2005-01-08 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/Report.py (CommandLineReport.parse_option_str):
+	Fix PluginMgr lists.
+	* src/plugins/CustomBookText.py: Convert to new scheme.
+	* src/plugins/FamilyGroup.py: Switch from handle to id for spouse.
+	* src/plugins/SimpleBookTitle.py: Cleanups.
+
 2005-01-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: removal of more OptionMenus in favor
 	of ComboBoxes
