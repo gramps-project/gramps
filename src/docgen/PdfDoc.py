@@ -78,6 +78,13 @@ class GrampsDocTemplate(BaseDocTemplate):
         self._calc()	
         BaseDocTemplate.build(self,flowables)
 
+def enc(s):
+    try:
+        new_s = s
+        return new_s.encode('iso-8859-1')
+    except:
+        return str(s)
+    
 #------------------------------------------------------------------------
 #
 # 
@@ -199,7 +206,7 @@ class PdfDoc(BaseDoc.BaseDoc):
 
     def end_paragraph(self):
         if self.in_table == 0 and self.image == 0:
-	    self.story.append(Paragraph(self.text.encode('iso-8859-1'),self.current_para))
+	    self.story.append(Paragraph(enc(self.text),self.current_para))
         else:
             self.image = 0
 
@@ -511,7 +518,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         fc = make_color(font.get_color())
         s = reportlab.graphics.shapes.String(x*cm,
                                              yt,
-                                             text.encode('iso-8859-1'),
+                                             enc(text),
                                              fontName=fnt,
                                              fontSize=font.get_size(),
                                              strokeColor=sc,
@@ -532,7 +539,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         for text in lines:
             s = reportlab.graphics.shapes.String(start_x*cm,
                                                  start_y*cm,
-                                                 text.encode('iso-8859-1'),
+                                                 enc(text),
                                                  fontName=fnt,
                                                  fontSize=size,
                                                  strokeColor=sc,
@@ -551,7 +558,7 @@ class PdfDoc(BaseDoc.BaseDoc):
         for text in lines:
             s = reportlab.graphics.shapes.String(start_x,
                                                  start_y,
-                                                 text.encode('iso-8859-1'),
+                                                 enc(text),
                                                  fontSize=size,
                                                  strokeColor=sc,
                                                  fillColor=fc,
