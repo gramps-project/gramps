@@ -2,7 +2,7 @@
 	* src/DisplayModels.py: fix Source column display
 	* src/GrampsDbBase.py: change default display columns
 	* src/ReadGedcom.py: Add default source for a GEDCOM import,
-	attach it to a person that has no attached sources.
+	attach it to people and families with no attached sources.
 
 2004-11-25 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/RecentFiles.py: Make robust to parse/save problems.
