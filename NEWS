@@ -1,3 +1,19 @@
+Version 0.8.0
+* Addiition of ZODB support. Support is still preliminary, and not
+  as feature full as the XML support. Requires python 2.1 or higher,
+  so not a good solution for RedHat users, unless the which to compile
+  the python and python-gnome libraries. (RH7.3 ships with python2.2,
+  but that version is tied to an early beta of the GNOME 2 libraries)
+* New build structure from David Hampton.
+* Significant improvement in speed with the GEDCOM export.
+* Enhanced web page generation.
+* Fixed Mandrake 8.2/imlib problem the could cause GRAMPS to fail to
+  run under Mandrake 8.2.
+* Better importing of GEDCOM ids.
+* Better handling of sources/source entry
+* Better handling of exception conditions.
+* Bug fixes.
+
 Version 0.7.3
 * New Russian (Alex Roitman) and Danish (Lars Lundin) translations.
   GRAMPS now supports English, Italian, German, French, Spanish,
