@@ -1,6 +1,17 @@
 2003-07-12  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Plugins.py (PluginDialog.build_tree): Remove reverse() call.
 	* doc/gramps-manual/C/gramps-manual.xml: More corrections.
+	* src/plugins/BookReport.py (BookReportDialog.make_document): 
+	Move item initialization here (was in make_report). 
+        This is necessary to define all the styles, including non-paragraph 
+        ones, before opening single book doc.
+	* src/plugins/DetDescendantReport.py: Remove empty setup().
+	* src/plugins/AncestorReport.py: Likewise. 
+	* src/plugins/Ancestors.py: Likewise. 
+	* src/plugins/DescendReport.py: Likewise. 
+	* src/plugins/FtmStyleAncestors.py: Likewise. 
+	* src/plugins/FamilyGroup.py: Likewise. 
+	* src/plugins/DetAncestralReport.py: Likewise. 
 
 2003-07-11  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/IndivSummary.py (IndivSummary.__init__):

@@ -68,9 +68,6 @@ class DetAncestorReport(Report.Report):
         else:
             self.standalone = 0
 
-    def setup(self):
-        pass
-
     #--------------------------------------------------------------------
     #
     #

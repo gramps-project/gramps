@@ -864,26 +864,24 @@ class BookReportDialog(Report.ReportDialog):
         """Create a document of the type requested by the user."""
         self.doc = self.format(self.selected_style,self.paper,
             self.template_name,self.orien)
-        self.doc.open(self.target_path)
 
-    def make_report(self):
-        """The actual book report. Start it out, then go through the item list 
-        and call each item's write_book_item method."""
-
-        rptlist = []
-        
+        self.rptlist = []
         newpage = 0
         for item in self.book.get_item_list():
             write_book_item = item.get_write_item()
             options = item.get_options()
             if write_book_item:
                 obj = write_book_item(self.database,self.person,
-                                      self.doc,options,newpage)
-                obj.setup()
-                rptlist.append(obj)
+                        self.doc,options,newpage)
+                self.rptlist.append(obj)
                 newpage = 1
-        
-        for item in rptlist:
+        self.doc.open(self.target_path)
+
+    def make_report(self):
+        """The actual book report. Start it out, then go through the item list 
+        and call each item's write_book_item method."""
+
+        for item in self.rptlist:
             item.write_report()
         self.doc.close()
 

@@ -61,9 +61,6 @@ class AncestorReport(Report.Report):
         else:
             self.standalone = 0
         
-    def setup(self):
-        pass
-
     def filter(self,person,index,generation=1):
         if person == None or generation >= self.max_generations:
             return

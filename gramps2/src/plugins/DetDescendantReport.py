@@ -69,8 +69,6 @@ class DetDescendantReport(Report.Report):
         else:
             self.standalone = 0
 
-    def setup(self):
-        pass
     #--------------------------------------------------------------------
     #
     #
