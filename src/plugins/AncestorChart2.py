@@ -235,16 +235,20 @@ class AncestorChart:
         maxh = int(self.uh/self.box_height)
         
         if self.force_fit:
-            self.print_page(0,maxx,0,maxy)
+            self.print_page(0,maxx,0,maxy,0,0)
         else:
             starty = 0
+            coly = 0
             while starty < maxy-1:
                 startx = 0
+                colx = 0
                 while startx < maxx-1:
                     stopx = min(maxx,startx+self.generations_per_page)
                     stopy = min(maxy,starty+maxh)
-                    self.print_page(startx,stopx,starty,stopy)
+                    self.print_page(startx,stopx,starty,stopy,colx,coly)
+                    colx += 1
                     startx += self.generations_per_page
+                coly += 1
                 starty += maxh-1
         if self.standalone:
             self.doc.close()
@@ -333,7 +337,7 @@ class AncestorChart:
         self.get_numbers(start*2,index+1,vals)
         self.get_numbers((start*2)+1,index+1,vals)
 
-    def print_page(self,startx,stopx,starty,stopy):
+    def print_page(self,startx,stopx,starty,stopy,colx,coly):
 
         self.doc.start_page()
         if self.title and self.force_fit:
@@ -366,6 +370,11 @@ class AncestorChart:
                 phys_x +=1
             phys_y += 1
                     
+        if not self.force_fit:
+            self.doc.draw_text('box',
+                               '(%d,%d)' % (colx,coly),
+                               self.doc.get_usable_width()+0.5,
+                               self.doc.get_usable_height()+0.75)
         self.doc.end_page()
 
 #------------------------------------------------------------------------
