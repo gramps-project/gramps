@@ -111,14 +111,15 @@ class Report:
         # Setup the progress bar limits
         self.pbar = self.pxml.get_widget("progressbar")
         self.pbar.configure(0.0,0.0,total)
+        self.pbar_max = total
         self.pbar_index = 0.0
 
     def progress_bar_step(self):
         """Click the progress bar over to the next value.  Be paranoid
         and insure that it doesn't go over 100%."""
         self.pbar_index = self.pbar_index + 1.0
-        if (self.pbar_index > 100.0):
-            self.pbar_index = 100.0
+        if (self.pbar_index > self.pbar_max):
+            self.pbar_index = self.pbar_max
         self.pbar.set_value(self.pbar_index)
 
     def progress_bar_done(self):
