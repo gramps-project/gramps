@@ -120,6 +120,10 @@ def importData(database, filename, cb=None):
 
     statusTop = gtk.glade.XML(glade_file,"status")
     statusWindow = statusTop.get_widget("status")
+
+    Utils.set_titles(statusWindow,statusTop.get_widget('title'),
+                     _('GEDCOM import status'))
+    
     statusTop.get_widget("close").set_sensitive(0)
     statusTop.signal_autoconnect({
         "destroy_passed_object" : Utils.destroy_passed_object

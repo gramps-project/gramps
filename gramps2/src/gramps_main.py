@@ -1349,6 +1349,7 @@ class Gramps:
     def complete_rebuild(self):
         self.id2col = {}
         self.model_used = {}
+        self.alpha_page = {}
         self.apply_filter()
         self.goto_active_person()
         self.modify_statusbar()
