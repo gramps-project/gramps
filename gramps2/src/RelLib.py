@@ -2281,6 +2281,7 @@ class GrampsDB:
         self.pprefix = "P%04d"
         self.fprefix = "F%04d"
         self.eprefix = "E%04d"
+        self.open = 0
         self.new()
         self.added_files = []
         self.genderStats = GenderStats ()
@@ -2309,6 +2310,7 @@ class GrampsDB:
         self.source_map = dbshelve.open(name, dbname="sources",dbenv=self.env)
         self.media_map  = dbshelve.open(name, dbname="media",  dbenv=self.env)
         self.event_map  = dbshelve.open(name, dbname="events", dbenv=self.env)
+        self.metadata   = dbshelve.open(name, dbname="meta",   dbenv=self.env)
 
         self.surnames = db.DB(self.env)
         self.surnames.set_flags(db.DB_DUP)
@@ -2323,8 +2325,22 @@ class GrampsDB:
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
+        self.metadata.close()
         self.surnames.close()
         self.env.close()
+
+        self.person_map = None
+        self.family_map = None
+        self.place_map  = None
+        self.source_map = None
+        self.media_map  = None
+        self.event_map  = None
+        self.surnames   = None
+        self.env        = None
+        self.metadata   = None
+
+    def is_open(self):
+        return self.person_map != None
 
     def get_added_media_objects(self):
         return self.added_files
@@ -2535,18 +2551,19 @@ class GrampsDB:
         """sets the default Person to the passed instance"""
 #        if (self.default):
 #            self.default.set_ancestor(0)
-        self.default = str(person)
+        self.metadata['default'] = str(person.get_id())
 #        if person:
 #            self.default.set_ancestor(1)
     
     def get_default_person(self):
         """returns the default Person of the database"""
-        if self.default == None:
+        if self.metadata.has_key('default'):
+            person = Person()
+            data = self.person_map.get(self.metadata['default'])
+            person.unserialize(data)
+            return person
+        else:
             return None
-        person = Person()
-        data = self.person_map.get(self.default)
-        person.unserialize(data)
-        return person
 
     def get_person(self,id):
         """returns a Person from a GRAMPS's ID"""
@@ -2689,7 +2706,6 @@ class GrampsDB:
         else:
             person.set_id(val)
             assert(person.get_id())
-            assert(person.get_id()[0] == 'I')
             self.person_map.put(str(val), person.serialize())
             self.pmap_index = self.pmap_index+1
 #            self.genderStats.count_person (person, self)

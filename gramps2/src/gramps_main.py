@@ -159,7 +159,6 @@ class Gramps:
         self.db.rebuild_person_table()
         self.modify_statusbar()
         self.family_view.init_interface()
-        self.people_view.clear_person_tabs()
         self.update_display(1)
         self.goto_active_person()
         self.toolbar.set_style(GrampsCfg.toolbar)
@@ -272,7 +271,6 @@ class Gramps:
             "on_editbtn_clicked" : self.edit_button_clicked,
             "on_addbtn_clicked" : self.add_button_clicked,
             "on_removebtn_clicked" : self.remove_button_clicked,
-            "on_alpha_switch_page" : self.people_view.change_alpha_page,
             "delete_event" : self.delete_event,
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_about_activate" : self.on_about_activate,
@@ -425,7 +423,7 @@ class Gramps:
                         person = self.db.get_person(pid)
                         item = gtk.MenuItem("_%d. %s [%s]" % 
                                             (num,person.get_primary_name().get_name(),pid))
-                        item.connect("activate",self.bookmark_callback,person)
+                        item.connect("activate",self.bookmark_callback,person.get_id())
                         item.show()
                         gomenu.append(item)
                         num = num + 1
@@ -454,7 +452,7 @@ class Gramps:
                     hotkey = "_%s" % chr(ord('a')+num-11)
                 elif num >= 21:
                     break
-                person = self.db.get_person(pid)
+                person = self.db.find_person_from_id(pid)
                 item = gtk.MenuItem("%s. %s [%s]" % 
                     (hotkey,person.get_primary_name().get_name(),pid))
                 item.connect("activate",self.back_clicked,num)
@@ -836,6 +834,8 @@ class Gramps:
 
     def clear_database(self):
         """Clear out the database if permission was granted"""
+
+        return
         const.personalEvents = const.init_personal_event_list()
         const.personalAttributes = const.init_personal_attribute_list()
         const.marriageEvents = const.init_marriage_event_list()
@@ -847,8 +847,6 @@ class Gramps:
         self.hindex = -1
         self.redraw_histmenu()
 
-        self.people_view.clear_person_tabs()
-        
         self.relationship.set_db(self.db)
 
         self.place_view.change_db(self.db)
@@ -876,7 +874,6 @@ class Gramps:
             self.import_tool_callback()
 
     def import_tool_callback(self):
-        self.people_view.clear_person_tabs()
         if Utils.wasHistory_broken():
             self.clear_history()
 	    Utils.clearHistory_broken()
@@ -997,8 +994,6 @@ class Gramps:
     def read_file(self,filename):
         self.topWindow.set_resizable(gtk.FALSE)
         filename = os.path.normpath(os.path.abspath(filename))
-
-        self.clear_database()
         if self.load_database(filename) == 1:
             if filename[-1] == '/':
                 filename = filename[:-1]
@@ -1111,7 +1106,6 @@ class Gramps:
 
     def save_file(self,filename,comment):        
 
-        print "save",filename
         path = filename
         filename = os.path.normpath(os.path.abspath(filename))
         self.status_text(_("Saving %s ...") % filename)
@@ -1142,7 +1136,6 @@ class Gramps:
         
         old_file = filename
         filename = "%s/%s" % (filename,self.db.get_base())
-        print filename
         try:
             self.db.clear_added_media_objects()
         except (OSError,IOError), msg:
@@ -1603,7 +1596,8 @@ class Gramps:
     
         self.statusbar.set_progress_percentage(1.0)
 
-        self.full_update()
+        self.people_view.change_db(self.db)
+        #self.full_update()
 
         self.change_active_person(self.find_initial_person())
         self.goto_active_person()
@@ -1622,7 +1616,7 @@ class Gramps:
     def load_database(self,name):
 
         filename = name
-        self.clear_database()
+        #self.clear_database()
 
         self.status_text(_("Loading %s...") % name)
         if self.db.load(filename,self.load_progress) == 0:
@@ -1683,7 +1677,7 @@ class Gramps:
             self.change_active_person(person)
             self.update_display(0)
         except TypeError:
-            WarningDialog(_("Could Not Go to a Person"),
+            WarningDialog(_("Could not go to a Person"),
                           _("Either stale bookmark or broken history caused by IDs reorder."))
             self.clear_history()
             self.change_active_person(old_person)
