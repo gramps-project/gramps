@@ -2,6 +2,8 @@
 	* doc/gramps-manual/C/figures/pedigree-child-cut.png: Add figure.
 	* doc/gramps-manual/C/mainwin.xml: Add figure. 
 	* FAQ, doc/gramps-manual/C/faq.xml: Add two questions. 
+	* src/plugins/WriteFtree.py (on_help_clicked): Add function. 
+	* doc/gramps.1: Update. 
 
 2003-12-05  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/po/ru.po: Update Russian translation for 0.98.

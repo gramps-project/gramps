@@ -1,4 +1,4 @@
-.TH gramps 1 "0.98.0" "September 2003" "0.98.0"
+.TH gramps 1 "0.98.0" "December 2003" "0.98.0"
 .SH NAME
 gramps \- Genealogical Research and Analysis Management Programming System.
 
@@ -133,6 +133,16 @@ Instead of generating direct printer output, report generators target other
 systems, such as \fIOpen Office\fR, \fIAbiWord\fR, HTML or LaTeX to allow the 
 user to modify the format to suit his or her needs. 
 
+.SH KNOWN BUGS AND LIMITATIONS
+Currently, \fIGramps\fP loads all data into memory, which tends to bog down 
+the system for large databases (over 15000 people for a typical system). 
+This will be addressed with the 1.2 release by incorporating a database 
+backend. The database backend should dramatically improve both speed and 
+memory usage. 
+.LP 
+Direct printing is not currently supported. This is planned to be fixed after
+the stable 1.0 release by using gnome-print architechture. 
+
 .SH FILES
 .LP 
 \fI${PREFIX}/bin/gramps\fP 
@@ -159,7 +169,7 @@ Alex Roitman \fI<shura@alex.neuro.umn.edu>\fR
 
 .SH DOCUMENTATION
 The user documentation is available through standard GNOME Help browser 
-in the form of Gramps Manual. This manual is also available in XML format
+in the form of Gramps Manual. The manual is also available in XML format
 as \fBgramps-manual.xml\fR under \fIdoc/gramps-manual/$LANG\fR in the official
 source distribution.
 .LP 
