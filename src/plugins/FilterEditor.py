@@ -102,7 +102,7 @@ class FilterEditor:
         store,iter = self.clist.get_selected()
         if iter:
             filter = self.clist.get_object(iter)
-            self.filter_editor(GenericFilter.GenericFilter(filter))
+            self.filter_editor(filter)
 
     def test_clicked(self,obj):
         store,iter = self.clist.get_selected()
