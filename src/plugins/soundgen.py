@@ -29,6 +29,9 @@ from libglade import *
 import RelLib
 import soundex
 import utils
+import intl
+
+_ = intl.gettext
 
 topDialog = None
 
