@@ -130,7 +130,7 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def start_paragraph(self,style_name,leader=None):
-        self.open = 0
+        self.opened = 0
         p = self.style_list[style_name]
 
 	# build font information
@@ -181,17 +181,17 @@ class RTFDoc(TextDoc):
             self.f.write('\\ri%d' % twips(p.get_right_margin()))
 
         if leader:
-            self.open = 1
+            self.opened = 1
             self.f.write('\\tx%d' % twips(p.get_left_margin()))
             self.f.write('{%s ' % self.font_type)
             self.write_text(leader)
             self.f.write('\\tab}')
-            self.open = 0
+            self.opened = 0
     
     #--------------------------------------------------------------------
     #
     # Ends a paragraph. Care has to be taken to make sure that the 
-    # braces are closed properly. The self.open flag is used to indicate
+    # braces are closed properly. The self.opened flag is used to indicate
     # if braces are currently open. If the last write was the end of 
     # a bold-faced phrase, braces may already be closed.
     #
@@ -199,10 +199,10 @@ class RTFDoc(TextDoc):
     def end_paragraph(self):
 	if not self.in_table:
             self.f.write(self.text)
-            if self.open:
+            if self.opened:
                 self.f.write('}')
                 self.text = ""
-                self.open = 0
+                self.opened = 0
             self.f.write('\n\\par')
         else:
             if self.text == "":
@@ -215,10 +215,10 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def start_bold(self):
-        if self.open:
+        if self.opened:
             self.f.write('}')
         self.f.write('{%s\\b ' % self.font_type)
-        self.open = 1
+        self.opened = 1
 
     #--------------------------------------------------------------------
     #
@@ -226,7 +226,7 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def end_bold(self):
-        self.open = 0
+        self.opened = 0
         self.f.write('}')
 
     #--------------------------------------------------------------------
@@ -358,8 +358,8 @@ class RTFDoc(TextDoc):
     #
     #--------------------------------------------------------------------
     def write_text(self,text):
-        if self.open == 0:
-            self.open = 1
+        if self.opened == 0:
+            self.opened = 1
             self.text = self.text + '{%s ' % self.font_type
         for i in text:
             if ord(i) > 127:

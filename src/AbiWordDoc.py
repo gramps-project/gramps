@@ -167,7 +167,7 @@ class AbiWordDoc(TextDoc):
             self.f.write(leader)
             self.f.write('\t')
                      
-    def page_break(self,orientation=None):
+    def page_break(self):
         self.new_page = 1
 
     def end_paragraph(self):
@@ -212,26 +212,5 @@ class AbiWordDoc(TextDoc):
         if font.get_underline():
             self.f.write('; text-decoration:underline')
         self.f.write('">')
-
- 
-if __name__ == "__main__":
-    paper = PaperStyle("Letter",27.94,21.59)
-
-    doc = AbiWordDoc(paper,PAPER_PORTRAIT)
-    foo = FontStyle()
-    foo.set_type_face(FONT_SANS_SERIF)
-    foo.set_color((255,0,0))
-    foo.set_size(24)
-
-    para = ParagraphStyle()
-    doc.add_style("Normal",para)
-	
-    doc.open("test")
-
-    doc.start_paragraph("Normal")
-    doc.add_photo("image.jpg",200,200)
-    doc.end_paragraph()
-
-    doc.close()
 
     

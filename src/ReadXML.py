@@ -159,33 +159,3 @@ def loadData(database, filename, callback):
 
     xml_file.close()
     return 1
-
-
-if __name__ == "__main__":
-
-    import sys
-    import time
-    import profile
-    
-    def lcb(val):
-        pass
-    
-    db = RelDataBase()
-    file = sys.argv[1]
-
-    t1 = time.time()
-
-    profile.run('loadData(db,file,lcb)')
-#    loadData(db,file,lcb)
-    t2 = time.time()
-    print t2 - t1
-
-
-
-
-
-
-
-
-
-

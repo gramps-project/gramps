@@ -73,20 +73,12 @@ _t0 = {
 #
 #
 #-------------------------------------------------------------------------
-
-import cStringIO
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def ansel_to_latin(s):
     buff = cStringIO.StringIO()
     while s:
         try:
             head,s = ansel_to_code(s)
-        except Exception,e:
+        except Exception:
             from traceback import print_exc
             print_exc()
             head = s[0]
@@ -116,7 +108,7 @@ def latin_to_ansel(s):
                     ansel = _t1[c]
                     buff.write(ansel[0])
                     buff.write(ansel[1])
-                except Exception,e:
+                except Exception:
                     print "ANSEL decoding error: %x: %s" % (c,orig)
         s = s[1:]
     ans = buff.getvalue()

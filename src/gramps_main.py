@@ -24,9 +24,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import sys
 import string
-import re
 import os
 
 #-------------------------------------------------------------------------
@@ -34,7 +32,7 @@ import os
 # internationalization
 #
 #-------------------------------------------------------------------------
-import intl,sys
+import intl
 _ = intl.gettext
 
 #-------------------------------------------------------------------------
@@ -90,6 +88,9 @@ select_father = None
 select_spouse = None
 select_mother = None
 select_child_list = {}
+childWindow   = None
+newChildWindow= None
+addChildList  = None
 bookmarks     = None
 
 id2col        = {}
@@ -2330,8 +2331,6 @@ def apply_filter():
     person_list.clear()
 
     color_clist = ListColors.ColorList(person_list,1)
-
-    i=0
 
     datacomp = DataFilter.compare
     clistadd = color_clist.add_with_data

@@ -122,7 +122,6 @@ class Marriage:
         self.attr_changed = 0
 
         # set initial data
-        mevent_list = self.get_widget("marriageEvent")
         self.load_images()
 
         self.type_field.set_popdown_strings(const.familyRelations)
@@ -388,7 +387,7 @@ def on_close_marriage_editor(obj):
 #
 #-------------------------------------------------------------------------
 def on_add_clicked(obj):
-    editor = EventEditor(obj.get_data(MARRIAGE),None)
+    EventEditor(obj.get_data(MARRIAGE),None)
 
 #-------------------------------------------------------------------------
 #
@@ -400,10 +399,7 @@ def on_update_clicked(obj):
     row = obj.get_data(INDEX)
     if row < 0:
         return
-
-    family_obj = obj.get_data(MARRIAGE)
-    event = obj.get_row_data(row)
-    editor = EventEditor(family_obj,event)
+    EventEditor(obj.get_data(MARRIAGE),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #

@@ -25,7 +25,6 @@
 #-------------------------------------------------------------------------
 import os
 import string
-import utils
 
 #-------------------------------------------------------------------------
 #
@@ -850,8 +849,7 @@ def on_add_address_clicked(obj):
 #
 #-------------------------------------------------------------------------
 def on_event_add_clicked(obj):
-    epo = obj.get_data(EDITPERSON)
-    editor = EventEditor(epo,None)
+    EventEditor(obj.get_data(EDITPERSON),None)
 
 #-------------------------------------------------------------------------
 #
@@ -889,10 +887,7 @@ def on_event_update_clicked(obj):
     row = obj.get_data(INDEX)
     if row < 0:
         return
-
-    epo = obj.get_data(EDITPERSON)
-    event = obj.get_row_data(row)
-    editor = EventEditor(epo,event)
+    EventEditor(obj.get_data(EDITPERSON),obj.get_row_data(row))
 
 #-------------------------------------------------------------------------
 #

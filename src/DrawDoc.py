@@ -22,7 +22,6 @@ from TextDoc import *
 
 import string
 import os
-import sys
 import utils
 
 #------------------------------------------------------------------------

@@ -50,7 +50,6 @@ def clearModified():
 def wasModified():
     return _modifiedFlag
 
-
 #-------------------------------------------------------------------------
 #
 # Short hand function to return either the person's name, or an empty

@@ -26,7 +26,6 @@
 #-------------------------------------------------------------------------
 import os
 import string
-import utils
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +46,6 @@ import libglade
 import intl
 import const
 import utils
-import Config
 from RelLib import *
 import RelImage
 
@@ -374,6 +372,29 @@ def on_change_description(obj):
         "on_ok_clicked" : on_ok_clicked,
         "on_apply_clicked" : on_apply_clicked
         })
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_ok_clicked(obj):
+    on_apply_clicked(obj)
+    utils.destroy_passed_object(obj)
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+def on_apply_clicked(obj):
+    photo = obj.get_data("p")
+    text = obj.get_data("t").get_text()
+    if text != photo.getDescription():
+        photo.setDescription(text)
+        edit_window = obj.get_data("m")
+        edit_window.load_images()
+        utils.modified()
 
 #-------------------------------------------------------------------------
 #

@@ -910,7 +910,7 @@ class GrampsParser(handler.ContentHandler):
 # Gramps database parsing class.  Derived from SAX XML parser
 #
 #-------------------------------------------------------------------------
-class GrampsImportParser(handler.ContentHandler):
+class GrampsImportParser(GrampsParser):
 
     #---------------------------------------------------------------------
     #

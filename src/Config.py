@@ -24,9 +24,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import sys
 import string
-import re
 import os
 
 import PaperMenu
@@ -92,6 +90,7 @@ _name_format_list = [
 #-------------------------------------------------------------------------
 
 owner         = Researcher.Researcher()
+prefsTop      = None
 autoload      = 0
 usetabs       = 0
 uncompress    = 0

@@ -219,7 +219,6 @@ class KwordDoc(TextDoc):
                 self.f.write('<FLOW value="1"/>\n')
 
             first = p.get_first_indent()
-            right = p.get_right_margin() 
             left = p.get_left_margin()
 
             first = left+first
@@ -318,7 +317,6 @@ class KwordDoc(TextDoc):
         self.f.write('<TEXT>')
         self.f.write(latin_to_utf8(self.text))
         self.f.write('</TEXT>\n')
-        old_pos = 0
         self.f.write('<FORMATS>\n')
         for format in self.format_list:
             self.f.write(format)
@@ -337,7 +335,6 @@ class KwordDoc(TextDoc):
             self.f.write('<FLOW value="1"/>\n')
 
         first = self.p.get_first_indent()
-        right = self.p.get_right_margin()
         left = self.p.get_left_margin()
         
         first = left+first
