@@ -1,6 +1,6 @@
 SUBDIRS = src doc example
 
-EXTRA_DIST = autogen.sh gramps.spec.in COPYING-DOCS FAQ
+EXTRA_DIST = autogen.sh gramps.spec.in gramps.spec COPYING-DOCS FAQ
 
 bin_SCRIPTS = gramps
 distuninstallcheck_listfiles = find . -type -f -print | grep -E -v '/(globs|magic|XMLnamespaces)'
