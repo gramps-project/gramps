@@ -123,6 +123,8 @@ class LPRDoc(BaseDoc.BaseDoc):
         """
         This function returns the gnomeprint.Font() object instance
         corresponding to the parameters of BaseDoc.FontStyle()
+        
+        fontstyle   :   a BaseDoc.FontStyle() instance
         """
 
         if fontstyle.get_type_face() == BaseDoc.FONT_SANS_SERIF:
@@ -221,7 +223,9 @@ class LPRDoc(BaseDoc.BaseDoc):
 # in that the writing is deferred when in tables and/or paragraphs. 
 # Paragraph text is accumulated, so afterwards, when it's tim to write,
 # one would need some pointers as to when to change the font (and where
-# to change it back
+# to change it back. The easiest solution I can see is to replace
+# each paragraph with the list:
+#  [ ['Regular', 'text text'], ['Bold', 'other text'], ['Regular', 'text'] ]
 #===========================
     def start_bold(self):
         """Bold face"""
@@ -260,13 +264,10 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__tbl_style = self.table_styles[style_name]
         self.__ncols = self.__tbl_style.get_columns()
         self.rownum = -1
-        self.__paragrapgh_styles = [[None] * self.__ncols]
-        table_width = (self.__right_margin - self.__left_margin) * \
+        self.__paragrapgh_styles = []
+        self.__table_width = (self.__right_margin - self.__left_margin) * \
                             self.__tbl_style.get_width() / 100.0
-        self.cell_widths = [0] * self.__ncols
-        for cell in range(self.__ncols):
-            self.cell_widths[cell] = table_width * \
-                            self.__tbl_style.get_column_width(cell) / 100.0
+        self.__cell_widths = []
 
     def end_table(self):
         """Close the table environment"""
@@ -284,7 +285,12 @@ class LPRDoc(BaseDoc.BaseDoc):
         self.__row_data=[]
         self.rownum = self.rownum + 1
         self.cellnum = -1
+        self.__span = 1
         self.__paragrapgh_styles.append([None] * self.__ncols)
+        self.__cell_widths.append([0] * self.__ncols)
+        for cell in range(self.__ncols):
+            self.__cell_widths[self.rownum][cell] = self.__table_width * \
+                            self.__tbl_style.get_column_width(cell) / 100.0
 
     def end_row(self):
         """End the row (new line)"""
@@ -298,9 +304,14 @@ class LPRDoc(BaseDoc.BaseDoc):
            for safety of formatting."""
         #print "start cell"
         #reset this state
-        self.__in_cell=1
-        self.__cell_data=""
-        self.cellnum = self.cellnum + span
+        self.__in_cell = 1
+        self.__cell_data = ""
+        self.cellnum = self.cellnum + self.__span
+        self.__span = span
+        for __extra_cell in range(1,span):
+            self.__cell_widths[self.rownum][self.cellnum] += \
+                self.__cell_widths[self.rownum][self.cellnum + __extra_cell]
+            self.__cell_widths[self.rownum][self.cellnum + __extra_cell] = 0
  
     def end_cell(self):
         """Prepares for next cell"""
@@ -422,6 +433,20 @@ class LPRDoc(BaseDoc.BaseDoc):
 #                          self.__left_margin, self.__right_margin)
 #        #self.__y=self.__advance_line(self.__y)
 
+    def write_note(self,text,format,style_name):
+        if format == 1:
+            for line in text.split('\n'):
+                self.start_paragraph(style_name)
+                self.write_text(line)
+                self.end_paragraph()
+        elif format == 0:
+            for line in text.split('\n\n'):
+                self.start_paragraph(style_name)
+                line = line.replace('\n',' ')
+                line = string.join(string.split(line))
+                self.write_text(line)
+                self.end_paragraph()
+
     #function to help us advance a line 
     def __advance_line(self, y):
         return y - _LINE_SPACING
@@ -524,6 +549,10 @@ class LPRDoc(BaseDoc.BaseDoc):
             __row = self.__table_data[__row_num][:]
             #do calcs on each __row and keep track on max length of each column
             for __col in range(self.__ncols):
+                if not self.__cell_widths[__row_num][__col]:
+                    continue
+                if not self.__paragrapgh_styles[__row_num][__col]:
+                    continue
                 fontstyle = self.__paragrapgh_styles[__row_num][__col].get_font()
                 
                 __min = self.__min_column_size(__row[__col]+" "*3,fontstyle)
@@ -531,8 +560,8 @@ class LPRDoc(BaseDoc.BaseDoc):
                     __min_col_size[__col] = __min
 
                 __max = self.__text_height(__row[__col], 
-                                                    self.cell_widths[__col],
-                                                    fontstyle)
+                                        self.__cell_widths[__row_num][__col],
+                                        fontstyle)
                 if __max > __max_vspace[__row_num]:
                     __max_vspace[__row_num] = __max
 
@@ -563,14 +592,20 @@ class LPRDoc(BaseDoc.BaseDoc):
                __min_y=self.__y
             
             for __col in range(self.__ncols):
+                if not self.__cell_widths[__row_num][__col]:
+                    continue
+                if not self.__paragrapgh_styles[__row_num][__col]:
+                    continue
                 fontstyle = self.__paragrapgh_styles[__row_num][__col].get_font()
 
                 __nothing, __y=self.__print_text(__row[__col], 
-                                                 self.__x, self.__y, 
-                                                 __x, __x+self.cell_widths[__col],
-                                                 fontstyle)
+                                     self.__x, 
+                                     self.__y, 
+                                     __x, 
+                                     __x+self.__cell_widths[__row_num][__col],
+                                     fontstyle)
 
-                __x=__x+self.cell_widths[__col]    # set up margin for this row
+                __x=__x+self.__cell_widths[__row_num][__col]    # set up margin for this row
                 if __y < __min_y:     # if we go below current lowest 
                    __min_y=__y        # column
   
