@@ -27,50 +27,42 @@ import string
 #
 #
 #-------------------------------------------------------------------------
-def build_sort_name(person):
-    n = person[0]
-    nm = "%-25s%-30s%s" % (n.Surname,n.FirstName,n.Suffix)
-    return (string.upper(nm),person)
+def build_sort_name(n):
+    return "%-25s%-30s%s" % (n.Surname,n.FirstName,n.Suffix)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def build_sort_birth(person):
-    n = person[1].birth.date.start
-
-    y = n.year
+def build_sort_birth(n):
+    y = n.start.year
     if y == -1:
         y = 9999
-    m = n.month
+    m = n.start.month
     if m == -1:
         m = 99
-    d = n.day
+    d = n.start.day
     if d == -1:
         d = 99
-    nm = "%04d%2d%2d" % (y,m,d)
-    return (nm,person)
+    return "%04d%2d%2d" % (y,m,d)
 
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
-def build_sort_death(person):
-    n = person[1].death.date.start
-
-    y = n.year
+def build_sort_death(n):
+    y = n.start.year
     if y == -1:
         y = 9999
-    m = n.month
+    m = n.start.month
     if m == -1:
         m = 99
-    d = n.day
+    d = n.start.day
     if d == -1:
         d = 99
-    nm = "%04d%2d%2d" % (y,m,d)
-    return (nm,person)
+    return "%04d%2d%2d" % (y,m,d)
 
 #-------------------------------------------------------------------------
 #

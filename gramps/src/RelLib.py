@@ -454,6 +454,7 @@ class Person:
         self.urls = []
         self.note = None
         self.paf_uid = ""
+        self.position = None
 
     def setPrimaryName(self,name) :
          self.PrimaryName = name
@@ -627,7 +628,13 @@ class Person:
         if self.note == None:
             self.note = Note()
         return self.note
-	
+
+    def setPosition(self,pos):
+        self.position = pos
+
+    def getPosition(self):
+        return self.position
+
 #-------------------------------------------------------------------------
 #
 #

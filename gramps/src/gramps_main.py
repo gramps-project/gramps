@@ -104,7 +104,8 @@ family_window = None
 queryTop      = None
 prefsTop      = None
 pv            = {}
-sortFunc      = sort.fast_name_sort
+sort_column   = 5
+sort_direct   = SORT_ASCENDING
 sbar_active   = 1
 DataFilter    = Filter.create("")
 
@@ -792,7 +793,7 @@ def load_sources():
         if current_row == -1:
             current_row = 0
         source_list.select_row(current_row,0)
-        source_list.moveto(current_row,0)
+        source_list.moveto(current_row)
 
     source_list.set_data("i",current_row)
     source_list.thaw()
@@ -1092,7 +1093,7 @@ def on_save_parents_clicked(obj):
 
     mrel = const.childRelations[mrel]
     frel = const.childRelations[frel]
-    type = save_frel(type)
+    type = const.save_frel(type)
     
     if select_father or select_mother:
         if select_mother.getGender() == Person.male and \
@@ -1371,7 +1372,7 @@ def delete_spouse():
 #
 #-------------------------------------------------------------------------
 def on_person_list_select_row(obj,a,b,c):
-    person = obj.get_row_data(a)
+    person,alt = obj.get_row_data(a)
     obj.set_data("a",person)
     change_active_person(person)
 
@@ -1386,7 +1387,8 @@ def on_person_list_select_row(obj,a,b,c):
 #
 #-------------------------------------------------------------------------
 def on_person_list_click_column(obj,column):
-    global sortFunc
+    global sort_column
+    global sort_direct
 
     nameArrow = gtop.get_widget("nameSort")
     dateArrow = gtop.get_widget("dateSort")
@@ -1396,35 +1398,50 @@ def on_person_list_click_column(obj,column):
         dateArrow.hide()
         deathArrow.hide()
         nameArrow.show()
-        if sortFunc != sort.fast_name_sort:
-            sortFunc = sort.fast_name_sort
-            nameArrow.set(GTK.ARROW_DOWN,2)
+        if sort_column == 5:
+            if sort_direct == SORT_DESCENDING:
+                sort_direct = SORT_ASCENDING
+                nameArrow.set(GTK.ARROW_DOWN,2)
+            else:
+                sort_direct = SORT_DESCENDING
+                nameArrow.set(GTK.ARROW_UP,2)
         else:
-            sortFunc = sort.reverse_name_sort
-            nameArrow.set(GTK.ARROW_UP,2)
+            sort_direct = SORT_DESCENDING
+        sort_column = 5
     elif column == 3:
         nameArrow.hide()
         deathArrow.hide()
         dateArrow.show()
-        if sortFunc != sort.fast_birth_sort:
-            sortFunc = sort.fast_birth_sort
-            dateArrow.set(GTK.ARROW_DOWN,2)
+        if sort_column == 6:
+            if sort_direct == SORT_ASCENDING:
+                sort_direct = SORT_DESCENDING
+                dateArrow.set(GTK.ARROW_UP,2)
+            else:
+                sort_direct = SORT_ASCENDING
+                dateArrow.set(GTK.ARROW_DOWN,2)
         else:
-            sortFunc = sort.reverse_birth_sort
-            dateArrow.set(GTK.ARROW_UP,2)
+            sort_direct = SORT_ASCENDING
+        sort_column = 6
     elif column == 4:
         nameArrow.hide()
         deathArrow.show()
         dateArrow.hide()
-        if sortFunc != sort.fast_death_sort:
-            sortFunc = sort.fast_death_sort
-            deathArrow.set(GTK.ARROW_DOWN,2)
+        if sort_column == 7:
+            if sort_direct == SORT_ASCENDING:
+                sort_direct = SORT_DESCENDING
+                deathArrow.set(GTK.ARROW_UP,2)
+            else:
+                sort_direct = SORT_ASCENDING
+                deathArrow.set(GTK.ARROW_DOWN,2)
         else:
-            sortFunc = sort.reverse_death_sort
-            deathArrow.set(GTK.ARROW_UP,2)
+            sort_direct = SORT_ASCENDING
+        sort_column = 7
     else:
         return
-    apply_filter()
+    person_list.set_sort_type(sort_direct)
+    person_list.set_sort_column(sort_column)
+    person_list.sort()
+    person_list.moveto()
 
 #-------------------------------------------------------------------------
 #
@@ -1647,10 +1664,7 @@ def on_notebook1_switch_page(obj,junk,page):
     if not active_person:
         return
     if page == 0:
-        if id2col.has_key(active_person):
-            column = id2col[active_person]
-            person_list.select_row(column,0)
-            person_list.moveto(column,0)
+        goto_active_person()
     elif page == 1:
         load_family()
     elif page == 2:
@@ -2262,8 +2276,6 @@ def apply_filter():
     if Config.hide_altnames == 0:
         names = names + altnames
 
-    names = sortFunc(names)
-    
     person_list.freeze()
     person_list.clear()
 
@@ -2283,18 +2295,22 @@ def apply_filter():
         name = name_tuple[0]
         
         if datacomp(person):
+            pos = (person,alt)
             if not alt:
-                id2col[person] = i
+                id2col[person] = pos
             if person.getGender():
                 gender = const.male
             else:
                 gender = const.female
-            bday = person.getBirth().getQuoteDate()
-            dday = person.getDeath().getQuoteDate()
-            clistadd([gname(name,alt),person.getId(), gender,bday, dday],\
-                     person)
+            bday = person.getBirth().getDateObj()
+            dday = person.getDeath().getDateObj()
+            clistadd([gname(name,alt),person.getId(), gender,bday.getQuoteDate(),
+                      dday.getQuoteDate(), sort.build_sort_name(name),
+                      sort.build_sort_birth(bday), sort.build_sort_death(dday)], pos)
         i = i + 1
 
+    person_list.sort()
+    person_list.moveto()
     person_list.thaw()
 
     if i > 0:
@@ -2307,13 +2323,15 @@ def apply_filter():
 #-------------------------------------------------------------------------
 def goto_active_person():
     if id2col.has_key(active_person):
-        column = id2col[active_person]
-        person_list.select_row(column,0)
-        person_list.moveto(column,0)
+        pos = id2col[active_person]
+        column = person_list.find_row_from_data(pos)
+        if column != -1:
+            person_list.select_row(column,0)
+            person_list.moveto(column)
     else:
         person_list.select_row(0,0)
-        person_list.moveto(0,0)
-        person = person_list.get_row_data(0)
+        person_list.moveto(0)
+        person,alt = person_list.get_row_data(0)
         change_active_person(person)	
     
 #-------------------------------------------------------------------------
@@ -2453,6 +2471,12 @@ def main(arg):
     person_list = gtop.get_widget("person_list")
     source_list = gtop.get_widget("source_list")
     filter_list = gtop.get_widget("filter_list")
+
+    person_list.set_column_visibility(5,0)
+    person_list.set_column_visibility(6,0)
+    person_list.set_column_visibility(7,0)
+    person_list.set_sort_column(sort_column)
+    person_list.set_sort_type(sort_direct)
     
     myMenu = GtkMenu()
     for filter in Filter.filterList:

@@ -392,6 +392,14 @@ class GrampsParser(handler.ContentHandler):
     #
     #
     #---------------------------------------------------------------------
+    def start_pos(self,attrs):
+        self.person.position = (int(u2l(attrs["x"])), int(u2l(attrs["y"])))
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
     def stop_attribute(self,tag):
         if self.in_old_attr:
             self.attribute.setValue(u2l(tag))
@@ -818,6 +826,7 @@ class GrampsParser(handler.ContentHandler):
         "person"     : (start_person, None),
         "img"        : (start_photo, None),
         "place"      : (None, stop_place),
+        "pos"        : (start_pos, None),
         "postal"     : (None, stop_postal),
         "researcher" : (None, stop_research),
     	"resname"    : (None, stop_resname ),
