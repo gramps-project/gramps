@@ -139,6 +139,8 @@ class PluginDialog:
         the dialog box with the description of the selected report"""
 
         data = self.tree.node_get_row_data(node)
+        if not data:
+            return
         task = data[1]
         title = data[0]
         doc = data[2]
