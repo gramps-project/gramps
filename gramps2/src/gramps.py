@@ -22,6 +22,7 @@
 import sys
 import os
 import locale
+import signal
 
 try:
     import pygtk
@@ -61,6 +62,9 @@ import gtk
 #
 #-------------------------------------------------------------------------
 import gramps_main 
+
+
+signal.signal(signal.SIGCHLD, signal.SIG_DFL)
 
 args = sys.argv[1:]
 
