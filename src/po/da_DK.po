@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.2\n"
 "POT-Creation-Date: Wed May  1 16:53:26 2002\n"
-"PO-Revision-Date: 2002-05-06 13:41+0200\n"
+"PO-Revision-Date: 2002-05-07 01:42+0200\n"
 "Last-Translator: Lars Kristian Lundin <gramps@lklundin.dk>\n"
 "Language-Team:  <dk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -4067,8 +4067,7 @@ msgstr "%(p1)s er søster til en tiptipoldeforælder til %(p2)s."
 
 #: plugins/RelCalc.py:211
 msgid "%(p1)s is the %(level)dth great grandaunt of %(p2)s."
-msgstr ""
-"%(p1)s er søster til en tip-(%(level)d - 1)-oldeforælder til af %(p2)s."
+msgstr "%(p1)s er søster til en tip-(%(level)d - 1)-oldeforælder til %(p2)s."
 
 #: plugins/RelCalc.py:216
 msgid "%(p1)s is the brother of %(p2)s."
