@@ -1,3 +1,6 @@
+2005-04-01  Alex Roitman  <shura@gramps-project.org>
+	* src/EditPerson.py (on_edit_name_clicked): Remove unneeded argument.
+
 2005-04-01  Don Allingham  <don@gramps-project.org>
 	* src/AddSpouse.py: remove unused callbacks
 	* src/FamilyView.py: remove unused callbacks
