@@ -30,6 +30,11 @@
 
 	* src/docgen/LPRDoc.py (LPRDoc.draw_box): Shadow support.
 
+	* src/ReportUtils.py (born_died_str,married_str,child_str):
+	Add functions.
+	* src/plugins/FtmStyleDescendants.py,
+	src/plugins/FtmStyleAncestors.py: Use common strings from ReportUtils.
+
 2005-01-23  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/BaseDoc.py: don't check for init on table or cell addition
 	* src/Report.py: Call doc.init() before write_report

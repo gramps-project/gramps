@@ -333,6 +333,492 @@ def roman(num):
 
 #-------------------------------------------------------------------------
 #
+# Strings commonly used in reports
+#
+#-------------------------------------------------------------------------
+def empty_notes():
+    # Empty stab function for when endnotes are not needed
+    return ""
+
+def born_died_str(database,person,endnotes=None,name_object=None,person_name=None):
+    """
+    Composes a string describing birth and death of a person.
+    
+    The string is composed in the following form:
+        "Such-and-such was born on-a-date in a-place, 
+        and died on-a-date in a-place"
+    Missing information will be omitted without loss of readability.
+    Optional references may be added to birth and death events.
+    Optional Name object may be used to override a person's Name instance.
+    Optional string may be used to override the string representation of a name.
+    
+    @param database GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param person: Person instance for which the string has to be composed
+    @type person: Person
+    @param endnotes: Function to use for reference composition. If None
+    then references will not be added
+    @type endnotes: function
+    @param name_object: Name instance for which the phrase is composed. If None
+    then the regular primary name of the person will be used
+    @type name_object: Name
+    @param person_name: String to override the person's name. If None then the
+    regular primary name string will be used
+    @type person_name: unicode
+    @returns: A composed string
+    @rtype: unicode
+    """
+
+    if not endnotes:
+        endnotes = empty_notes
+
+    if not name_object:
+        name_object = person.get_primary_name()
+
+    if person_name == None:
+        person_name = name_object.get_regular_name()
+    elif person_name == 0:
+        if person.get_gender() == RelLib.Person.male:
+            person_name = _('He')
+        else:
+            person_name = _('She')
+
+    birth_handle = person.get_birth_handle()
+    bplace = ""
+    bdate = ""
+    if birth_handle:
+        birth = database.get_event_from_handle(birth_handle)
+        bdate = birth.get_date()
+        bplace_handle = birth.get_place_handle()
+        if bplace_handle:
+            bplace = database.get_place_from_handle(bplace_handle).get_title()
+
+    death_handle = person.get_death_handle()
+    dplace = ""
+    ddate = ""
+    if death_handle:
+        death = database.get_event_from_handle(death_handle)
+        ddate = death.get_date()
+        dplace_handle = death.get_place_handle()
+        if dplace_handle:
+            dplace = database.get_place_from_handle(dplace_handle).get_title()
+
+    if person.get_gender() == RelLib.Person.male:
+        if bdate:
+            if bplace:
+                if ddate:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace,
+                        'death_date' : ddate,'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace, 'death_date' : ddate,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, "
+                            "and died in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace, 'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace,
+                        'birth_endnotes' : endnotes(birth) }
+            else:
+                if ddate:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s, "
+                            "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 
+                        'death_date' : ddate,'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s, "
+                            "and died %(death_date)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'death_date' : ddate,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s, "
+                            "and died in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_endnotes' : endnotes(birth) }
+        else:
+            if bplace:
+                if ddate:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace,
+                        'death_date' : ddate,'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace, 'death_date' : ddate,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s, "
+                            "and died in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace, 'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace,
+                        'birth_endnotes' : endnotes(birth) }
+            else:
+                if ddate:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'death_date' : ddate, 'death_place' : dplace,
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "died %(death_date)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'death_date' : ddate,
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(male_name)s%(endnotes)s "
+                            "died in %(death_place)s%(death_endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'death_place' : dplace,
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(male_name)s%(endnotes)s.") % {
+                        'male_name' : person_name, 'endnotes' : endnotes(name_object) }
+    else:
+        if bdate:
+            if bplace:
+                if ddate:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace,
+                        'death_date' : ddate,'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace, 'death_date' : ddate,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s, "
+                            "and died in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace, 'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s in %(birth_place)s%(birth_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_place' : bplace,
+                        'birth_endnotes' : endnotes(birth) }
+            else:
+                if ddate:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s, "
+                            "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 
+                        'death_date' : ddate,'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s, "
+                            "and died %(death_date)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'death_date' : ddate,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s, "
+                            "and died in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born %(birth_date)s%(birth_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_date' : bdate, 'birth_endnotes' : endnotes(birth) }
+        else:
+            if bplace:
+                if ddate:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace,
+                        'death_date' : ddate,'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s, "
+                            "and died %(death_date)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace, 'death_date' : ddate,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s, "
+                            "and died in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace, 'death_place' : dplace,
+                        'birth_endnotes' : endnotes(birth), 
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "was born in %(birth_place)s%(birth_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'birth_place' : bplace,
+                        'birth_endnotes' : endnotes(birth) }
+            else:
+                if ddate:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "died %(death_date)s in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'death_date' : ddate, 'death_place' : dplace,
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "died %(death_date)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'death_date' : ddate,
+                        'death_endnotes' : endnotes(death) }
+                else:
+                    if dplace:
+                        text = _("%(female_name)s%(endnotes)s "
+                            "died in %(death_place)s%(death_endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object),
+                        'death_place' : dplace,
+                        'death_endnotes' : endnotes(death) }
+                    else:
+                        text = _("%(female_name)s%(endnotes)s.") % {
+                        'female_name' : person_name, 'endnotes' : endnotes(name_object) }
+    return text
+
+def married_str(database,person,spouse,event,endnotes=None):
+    """
+    Composes a string describing marriage of a person.
+    
+    The string is composed in the following form:
+        "He/She married such-and-such on-a-date" or 
+        "He/She married such-and-such in a-place", 
+    Missing information will be omitted without loss of readability.
+    Optional references may be added to birth and death events.
+    
+    @param database GRAMPS database to which the Person object belongs
+    @type db: GrampsDbBase
+    @param person: Person instance whose marriage is discussed
+    @type person: Person
+    @param spouse: Person instance to use as a spouse
+    @type spouse: Person
+    @param event: Event instance of marriage 
+    @type event: Event
+    @param endnotes: Function to use for reference composition. If None
+    then references will not be added
+    @type endnotes: function
+    @returns: A composed string
+    @rtype: unicode
+    """
+
+    if not endnotes:
+        endnotes = empty_notes
+
+    spouse_name = spouse.get_primary_name().get_regular_name()
+
+    date = event.get_date()
+    place_handle = event.get_place_handle()
+    if place_handle:
+        place = database.get_place_from_handle(place_handle).get_title()
+    else:
+        place = ""
+
+    text = ""
+    if date and place:
+        if person.get_gender() == RelLib.Person.male:
+                text = _('He married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'endnotes' : endnotes(event),
+                    'date' : date,
+                    'place' : place}
+        else:
+                text = _('She married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'date' : date,
+                    'endnotes' : endnotes(event),
+                    'place' : place}
+    elif date:
+        if person.get_gender() == RelLib.Person.male:
+                text = _('He married %(spouse)s %(date)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'endnotes' : endnotes(event),
+                    'date' : date,}
+        else:
+                text = _('She married %(spouse)s in %(place)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'endnotes' : endnotes(event),
+                    'place' : place,}
+    elif place:
+        if person.get_gender() == RelLib.Person.male:
+                text = _('He married %(spouse)s in %(place)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'endnotes' : endnotes(event),
+                    'place' : place}
+        else:
+                text = _('She married %(spouse)s in %(place)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'endnotes' : endnotes(event),
+                    'place' : place}
+    else:
+        if person.get_gender() == RelLib.Person.male:
+                text = _('He married %(spouse)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'endnotes' : endnotes(event) }
+        else:
+                text = _('She married %(spouse)s%(endnotes)s.') % {
+                    'spouse' : spouse_name,
+                    'endnotes' : endnotes(event)}
+    return text
+
+def child_str(person_gender,father_name,mother_name,dead):
+    """
+    Composes a string describing marriage of a person.
+    
+    The string is composed in the following form:
+        "He/She is/was the son/daughter of father_name and mother_name"
+    Missing information will be omitted without loss of readability.
+    
+    @param person_gender: Person.male, Person.female, or Person.unknown
+    @type person: Person.male, Person.female, or Person.unknown
+    @param father_name: String to use for father's name
+    @type father_name: unicode
+    @param mother_name: String to use for mother's name
+    @type mother_name: unicode
+    @param dead: Whether the person discussed is dead or not
+    @type dead: bool
+    @returns: A composed string
+    @rtype: unicode
+    """
+    
+    text = ""
+    if person_gender == RelLib.Person.male:
+        if mother_name and father_name:
+            if dead:
+                text = _("He was the son of %(father)s and %(mother)s.") % {
+                    'father' : father_name,
+                    'mother' : mother_name, }
+            else:
+                text = _("He is the son of %(father)s and %(mother)s.") % {
+                    'father' : father_name,
+                    'mother' : mother_name, }
+        elif mother_name:
+            if dead:
+                text = _("He was the son of %(mother)s.") % {
+                    'mother' : mother_name, }
+            else:
+                text = _("He is the son of %(mother)s.") % {
+                    'mother' : mother_name, }
+        elif father_name:
+            if dead:
+                text = _("He was the son of %(father)s.") % {
+                    'father' : father_name, }
+            else:
+                text = _("He is the son of %(father)s.") % {
+                    'father' : father_name, }
+    else:
+        if mother_name and father_name:
+            if dead:
+                text = _("She was the daughter of %(father)s and %(mother)s.") % {
+                    'father' : father_name,
+                    'mother' : mother_name, }
+            else:
+                text = _("She is the daughter of %(father)s and %(mother)s.") % {
+                    'father' : father_name,
+                    'mother' : mother_name, }
+        elif mother_name:
+            if dead:
+                text = _("She was the daughter of %(mother)s.") % {
+                    'mother' : mother_name, }
+            else:
+                text = _("She is the daughter of %(mother)s.") % {
+                    'mother' : mother_name, }
+        elif father_name:
+            if dead:
+                text = _("She was the daughter of %(father)s.") % {
+                    'father' : father_name, }
+            else:
+                text = _("She is the daughter of %(father)s.") % {
+                    'father' : father_name, }
+
+    return text
+
+#-------------------------------------------------------------------------
+#
 #
 #
 #-------------------------------------------------------------------------
