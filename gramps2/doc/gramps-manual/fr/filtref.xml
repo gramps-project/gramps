@@ -13,7 +13,7 @@
 <!-- $Id$ -->
       <!-- =============== Appendices Subsection ================ -->
       <sect2 id="append-filtref">
-      <title>Documentation de reference sur les règles de filtrage</title>
+      <title>Documentation de référence sur les règles de filtrage</title>
       <para>Cette annexe décrit les fonctions de filtrage actuellement définies
       dans &app;. Ces règles sont disponibles quand vous créez des filtres
       personnalisés. Elles sont ici présentées par catégories. 
@@ -25,6 +25,14 @@
         <para>Cette catégorie comprend les fonctions les plus générales : </para>
         
           <variablelist>
+
+          <varlistentry><term>A un enregistrement complet</term>
+          <listitem><para> Cette règle accepte toutes les personnes
+	  dont l'enregistrement est marqué comme complet. Pour le moment,
+	  la complétude de l'enregistrement est marquée par le chercheur
+	  dans le dialogue <guilabel>Modifie Personne</guilabel>. 
+          </para></listitem>
+          </varlistentry>
 
           <varlistentry><term>Tout le monde</term>
           <listitem><para> Cette fonction accepte toutes les personnes de la base de données. 

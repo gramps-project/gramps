@@ -90,7 +90,7 @@
       compris complètement par &app;. Le paquetage est une archive compressée
       incluant le fichier des données et les objets multimédia (images, 
       sons...) que la base de données référence. 
-      Voir <xref linkend="export-data"/> pour la création de paquetage. 
+      Voir <xref linkend="export-data"/> pour la création de paquetage.
       La base de données &app; est un répertoire contenant un fichier
       de données et les objets multimédia locaux. La base peut aussi contenir
       des références vers des objets non locaux (externes) mais dans ce cas
@@ -135,17 +135,17 @@
 	<title>Dialogue d'objet multimedia absent</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/missing-media.png" format="PNG"/></imageobject>
-	<textobject> 
+	<textobject>
 	<phrase>Dialogue d'objet multimedia absent. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-     <itemizedlist>	
+     <itemizedlist>
      <listitem>
      <para>Si vous voulez supprimer l'objet qui utilise le fichier absent
      ainsi que toutes les références qui y sont faites, choisissez le bouton
       <guibutton>Supprime Objet</guibutton>. Ceci modifiera la base de données
-      pour qu'elle soit dans un état cohérent mais toutes les références au fichier 
+      pour qu'elle soit dans un état cohérent mais toutes les références au fichier
       absent auront été supprimées. Faites ce choix si le fichier est
       perdu à jamais et si vous n'avez aucune possibilité de le retrouver. </para>
       </listitem>
@@ -153,34 +153,44 @@
      <listitem>
      <para>Si vous voulez conserver les références à l'objet qui
      utilise le fichier manquant, faites le choix
-     <guibutton>Conserver Référence</guibutton>. 
+     <guibutton>Conserver Référence</guibutton>.
      Ceci conservera les données comme elles sont, c'est à dire
      dans un état incohérent. Vous pourrez donner le fichier plus tard
-     et vous aurez alors à le copies dans le répertoire de la base de données. 
+     et vous aurez alors à le copies dans le répertoire de la base de données.
      Faites ce choix si le remplacement est possible mais pas tout de suite. </para></listitem>
 
      <listitem>
-     <para>Si vous voulez fournir le fichier manquant pendant le chargement, 
+     <para>Si vous voulez fournir le fichier manquant pendant le chargement,
      faites le choix <guibutton>Choisir Fichier</guibutton>. Ceci copiera le fichier
      que vous sélectionnerez à la place du fichier absent. Rien ne sera changé dans
      la base de données et elle sera dans un état cohérent. Ce choix se fait quand
-     le fichier de remplacement est disponible tout de suite. 
+     le fichier de remplacement est disponible tout de suite.
      </para></listitem>
-    
-     </itemizedlist>	
 
-    </sect2>  
+     <listitem>
+     <para>Si vous voulez conserver le choix fait dans ce dialogue pour
+     tous les fichiers manquants, cochez la case
+     <guilabel>Utiliser ce choix pour tous les fichiers manquants</guilabel>.
+     Ceci enregistrera votre choix et l'utilisera pour tous les fichiers
+     manquant lors de l'importation en évitant de réafficher le dialogue.
+     Utilisez cette possibilité quand vous prévoyez que beaucoup de fichiers
+     manqueront et que vous voulez les traiter tous de la même façon.
+     </para></listitem>
+
+     </itemizedlist>
+
+    </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="export-data"> 
-      <title>Export de Données</title> 
-      
+    <sect2 id="export-data">
+      <title>Export de Données</title>
+
       <para>L'export de données vous permet de partager une partie de votre
       base de données avec d'autres chercheurs en généalogie et aussi de
-      rendre votre base de données transportable vers un autre ordinateur. 
-      &app; peut actuellement exporter ses données en quatre formats différents : 
+      rendre votre base de données transportable vers un autre ordinateur.
+      &app; peut actuellement exporter ses données en quatre formats différents :
       CD-Rom, GEDCOM, paquetage &app; et Web Family Tree. ils sont disponibles
-      comme éléments du sous-menu 
+      comme éléments du sous-menu
       <menuchoice><guimenu>Fichier</guimenu>  
       <guisubmenu>Export</guisubmenu></menuchoice>.</para>
 
@@ -215,7 +225,7 @@
       Utilisez le menu pop-up <guilabel>Filtre</guilabel>
       pour restreindre l'export selon la règle de filtrage désirée. 
       Utilisez le menu <guilabel>Cible</guilabel> pour choisir le dialecte GEDCOM voulu. 
-      Choisissez votre revendication de propriété intellectuelle (copyright) dans le 
+      Choisissez votre revendication de propriété intellectuelle (copyright) dans le
       menu <guilabel>Copyright</guilabel>. Validez <guilabel>Ne pas inclure les informations
       privées</guilabel> pour ne pas exporter les données privées. 
       Validez <guilabel>Restreindre les informations sur les personnes vivantes</guilabel>
@@ -258,8 +268,8 @@
       suivant sera affiché, vous proposant différentes actions : </para>
 
 	<!-- ==== Figure: Missing media window  ==== -->
-	<figure id="missing-media-ex"> 
-	<title>Dialogue de fichier multimédia manquants</title> 
+	<figure id="missing-media-ex">
+	<title>Dialogue de fichier multimédia manquants</title>
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/missing-media.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -287,19 +297,29 @@
      Faites ce choix si le remplacement est possible mais pas tout de suite. </para></listitem>
 
      <listitem>
-     <para>Si vous voulez fournir le fichier manquant pendant l'export, 
+     <para>Si vous voulez fournir le fichier manquant pendant l'export,
      faites le choix <guibutton>Choisir Fichier</guibutton>. Ceci copiera le fichier
      que vous sélectionnerez à la place du fichier absent. Rien ne sera changé dans
      la base de données et elle sera dans un état cohérent. Ce choix se fait quand
-     le fichier de remplacement est disponible tout de suite. 
+     le fichier de remplacement est disponible tout de suite.
      </para></listitem>
-     </itemizedlist>	
+
+     <listitem>
+     <para>Si vous voulez conserver le choix fait dans ce dialogue pour
+     tous les fichiers manquants, cochez la case
+     <guilabel>Utiliser ce choix pour tous les fichiers manquants</guilabel>.
+     Ceci enregistrera votre choix et l'utilisera pour tous les fichiers
+     manquant lors de l'importation en évitant de réafficher le dialogue.
+     Utilisez cette possibilité quand vous prévoyez que beaucoup de fichiers
+     manqueront et que vous voulez les traiter tous de la même façon.
+     </para></listitem>
+     </itemizedlist>
 
     </sect2>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gramps-edit-quick"> 
-      <title>La modification des données en deux mots</title> 
+    <sect2 id="gramps-edit-quick">
+      <title>La modification des données en deux mots</title>
 	<para> Vous pouvez modifier n'importe quelle information conservées
 	dans la base de données. Ceci inclut les données liées à des individus
 	et à leurs parents, les sources d'information, les lieux et les objets
@@ -385,7 +405,7 @@
 	les hommes et les femmes. Par défaut, &app; ne proposera dans chaque
 	liste que les personnes qui peuvent être les parents de la personne active 
 	(en utilisant les dates de naissance et de décès). Si vous voulez TOUTES les personnes, 
-	cochez la case <guilabel>Afficher tout</guilabel> pour chaque liste. 
+	cochez la case <guilabel>Afficher tout</guilabel> pour chaque liste.
 	</para>
 	
 	<para>Pour préciser les parents de l'époux/se de la personne active, 
@@ -422,24 +442,24 @@
 	La nature de la relation entre l'enfant et les parents peut être
 	changée par le menu contextuel obtenu en cliquant avec le bouton droit de la souris
 	dans la zone des enfants. La plupart des fonctions décrites ci-dessus sont
-	aussi accessibles par le menu contextuel. 
+	aussi accessibles par le menu contextuel.
 	</para>
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-add-img"> 
-        <title>Pour ajouter des images</title> 
+      <sect3 id="gramps-add-img">
+        <title>Pour ajouter des images</title>
 	<para>Vous pouvez associer des images (ainsi que d'autres objets multimedia)
-	à des individus, des évènements, des sources, des lieux et même des images 
+	à des individus, des évènements, des sources, des lieux et même des images
 	liées plus généralement à la base de données (par exemple des photos de famille). </para>
-	
+
 	<para> Pour ajouter des images à une seule personne, allez dans la vue Individus
-	(<xref linkend="side-nofilt-fig"/>), sélectionnez une personne puis 
+	(<xref linkend="side-nofilt-fig"/>), sélectionnez une personne puis
 	cliquez l'icône <guibutton>Editer</guibutton> dans la barre d'outils pour lancer
-	le dialogue <guilabel>Afficher l'individu</guilabel> (<xref linkend="edit-pers-fig"/>). 
-	A ce moment, sélectionnez l'onglet 
+	le dialogue <guilabel>Afficher l'individu</guilabel> (<xref linkend="edit-pers-fig"/>).
+	A ce moment, sélectionnez l'onglet
 	<guilabel>Galerie</guilabel> puis cliquez sur le bouton
-	<guibutton>Ajouter...</guibutton> pour ouvrir le dialogue pour <guilabel>Choisir un 
+	<guibutton>Ajouter depuis un fichier...</guibutton> pour ouvrir le dialogue pour <guilabel>Choisir un
 	Média </guilabel>. Saisissez le nom du fichier ou allez le chercher avec le bouton
 	<guilabel>Parcourir...</guilabel>. Donnez un titre à l'image.
 	Si vous ne voulez pas faire une copie locale du fichier dans la base de données, cochez la case
@@ -449,104 +469,104 @@
 	<para>Pour associer des images à une relation (par exemple un mariage),
 	allez dans la vue Famille (<xref linkend="family-fig"/>) puis double-cliquez
 	dans la zone de l'époux/se pour ouvrir le dialogue d'
-	 <guilabel>Affichage Mariage/Relation</guilabel>. Sélect l'onglet <guilabel>Galerie</guilabel> 
-	puis le bouton <guibutton>Ajouter...</guibutton> pour ajouter une image. </para>
+	 <guilabel>Affichage Mariage/Relation</guilabel>. Sélect l'onglet <guilabel>Galerie</guilabel>
+	puis le bouton <guibutton>Ajouter depuis un fichier...</guibutton> pour ajouter une image. </para>
 
 	<para>Pour associer une image à une source ou un lieu, allez d'abord
-	dans la vue Sources (<xref linkend="sources-fig"/>) ou Lieux 
+	dans la vue Sources (<xref linkend="sources-fig"/>) ou Lieux
 	(<xref linkend="places-fig"/>). Sélectionnez l'élément cherché
-	puis double-cliquez dessus ou cliquez sur le bouton 
+	puis double-cliquez dessus ou cliquez sur le bouton
 	<guibutton>Editer</guibutton> dans la barre d'outils pour appeler le dialogue
-	d'<guilabel>Affichage des Sources</guilabel> (ou <guilabel>editeur de Lieux</guilabel>). 
-	Sélectionnez l'onglet <guilabel>Galerie</guilabel> 
-	puis cliquez sur le bouton <guibutton>Ajouter...</guibutton> pour ajouter
+	d'<guilabel>Affichage des Sources</guilabel> (ou <guilabel>editeur de Lieux</guilabel>).
+	Sélectionnez l'onglet <guilabel>Galerie</guilabel>
+	puis cliquez sur le bouton <guibutton>Ajouter depuis un fichier...</guibutton> pour ajouter
         une image. </para>
 
 	<para>Enfin, pour ajouter des images dans la base de données mais qui ne sont
-	pas liées à une personne, une relation, une source ou un lieu en particulier, 
-	allez dans la vue Media (<xref linkend="media-fig"/>). 
+	pas liées à une personne, une relation, une source ou un lieu en particulier,
+	allez dans la vue Media (<xref linkend="media-fig"/>).
 	Cliquez alors sur le bouton <guibutton>Ajouter</guibutton> dans la barre d'outils pour
-	ajouter une image. 
+	ajouter une image.
 	Si vous avez déjà ajouté des images dans n'importe quelle Galerie, vous les trouverez
 	listées dans la vue des Médias. </para>
 
-	<para>Dans toutes les Galeries, vous pouvez utiliser les boutons <guibutton>Afficher...</guibutton> 
+	<para>Dans toutes les Galeries, vous pouvez utiliser les boutons <guibutton>Afficher...</guibutton>
 	et <guibutton>Supprimer</guibutton> pour modifier les informations sur les images
 	et supprimer la référence à l'image depuis cette Galerie. Remarquez que supprimer
-	la reéférence à une image depuis une Galerie ne supprime pas l'image de la base de données. 
+	la reéférence à une image depuis une Galerie ne supprime pas l'image de la base de données.
 	Pour supprimer complètement une image de la base de données, il faut
-	la détruire dans la vue Médias en la sélectionnant puis en cliquant sur le bouton 
+	la détruire dans la vue Médias en la sélectionnant puis en cliquant sur le bouton
 	<guibutton>Supprimer</guibutton> dans la barre d'outils. </para>
 
       </sect3>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-src-plc"> 
-        <title>Pour modifier les sources et les lieux</title> 
+      <sect3 id="gramps-edit-src-plc">
+        <title>Pour modifier les sources et les lieux</title>
 
 	<para>Pour ajouter une source ou un lieu à la base de données, allez
-	dans la vue Sources (<xref linkend="sources-fig"/>) ou dans la vue 
-	lieux (<xref linkend="places-fig"/>). 
+	dans la vue Sources (<xref linkend="sources-fig"/>) ou dans la vue
+	lieux (<xref linkend="places-fig"/>).
 	Cliquez ensuite sur le bouton <guibutton>Ajouter</guibutton> dans la barre d'outils
 	pour créer une source ou un lieu. Saisissez les caractéristiques
-	du nouvel élément dans le dialogue <guilabel>Affichage des Sources</guilabel> 
-	(or <guilabel>Editeur de lieu</guilabel>). 
+	du nouvel élément dans le dialogue <guilabel>Affichage des Sources</guilabel>
+	(or <guilabel>Editeur de lieu</guilabel>).
 	</para>
 
-	<para>Si vous voulez modifier des données à propos de sources ou de lieux 
-	déjà déclarés dans la base de données, allez dans la vue concernée (sources ou lieux), 
+	<para>Si vous voulez modifier des données à propos de sources ou de lieux
+	déjà déclarés dans la base de données, allez dans la vue concernée (sources ou lieux),
 	sélectionnez l'élément à modifier puis cliquez sur le bouton
 	<guibutton>Editer</guibutton> dans la barre d'outils. Vous pouvez aussi
-	double-cliquer sur l'élément dans sa liste pour l'éditer. 
+	double-cliquer sur l'élément dans sa liste pour l'éditer.
 	</para>
 
       </sect3>
     </sect2>
-      
+
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gramps-edit-complete"> 
-      <title>Modification de données : Description Complète</title> 
+    <sect2 id="gramps-edit-complete">
+      <title>Modification de données : Description Complète</title>
       <para> Cette section fournit une description complète de toutes
       les options de modification de tous les éléments de données dans
       la base &app;. Vous disposez aussi de nombreux raccourcis claviers
       décrits dans <xref linkend="append-keybind"/>.</para>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-pers"> 
-        <title>Modification d'Information Personnelle</title> 
+      <sect3 id="adv-pers">
+        <title>Modification d'Information Personnelle</title>
 	<para> La modification des informations sur un individu peut se faire
 	de plusieurs manières : </para>
 	<variablelist>
-	<varlistentry><term>Depuis la vue des Individus : </term><listitem><para> 
+	<varlistentry><term>Depuis la vue des Individus : </term><listitem><para>
 	  Double-cliquez sur la personne dont vous voulez modifier les données
 	  ou sélectionnez-la avec un simple clic, puis demander la modification
-	  par le bouton <guibutton>Editer</guibutton> dans la barre d'outils. 
+	  par le bouton <guibutton>Editer</guibutton> dans la barre d'outils.
 	  Vous pouvez aussi lancer la modification en frappant <keycap>Entrée</keycap>
 	  après l'avoir sélectionnée. Enfin, vous pouvez choisir
 	  <guimenuitem>Editer...</guimenuitem> dans le menu <guisubmenu>Editer</guisubmenu>
 	  de &app; ou choisir <guimenuitem>Editer</guimenuitem> dans le menu contextuel
 	  activé en cliquant avec le bouton droit de la souris sur la ligne
-	  de la personne dans la liste des individus. 
+	  de la personne dans la liste des individus.
 	  </para></listitem></varlistentry>
 	<varlistentry><term>Depuis la vue des Familles : </term><listitem><para>
-	  Mettez la souris dans la zone de la <guilabel>Personne Active</guilabel>, 
-	  puis double-cliquez, ou encore utilisez les menus décrits ci-dessus. 
+	  Mettez la souris dans la zone de la <guilabel>Personne Active</guilabel>,
+	  puis double-cliquez, ou encore utilisez les menus décrits ci-dessus.
 	  </para></listitem></varlistentry>
 	</variablelist>
-	
-	<para> Quelle que soit la méthode utilisée, le dialogue suivant 
+
+	<para> Quelle que soit la méthode utilisée, le dialogue suivant
 	<guilabel>Afficher l'individu</guilabel> apparaîtra : </para>
 
 	<!-- ==== Figure: Edit Person dialog ==== -->
-	<figure id="edit-pers-fig"> 
-	<title>Dialogue de modification de personne</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<figure id="edit-pers-fig">
+	<title>Dialogue de modification de personne</title>
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/edit-person.png" format="PNG"/></imageobject>
-	<textobject> 
+	<textobject>
 	<phrase>Montre le dialogue de modification de personne. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
-	
+
 	<para> Le haut de la fenêtre présente le nom de la personne dont les données
 	sont en modification. La partie principale de la fenêtre présente des onglets
 	correspondant à chaque catégorie d'information disponible. 
@@ -640,7 +660,7 @@
 	la modification et la suppression d'une dénomination. 
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
 	<guibutton>Supprimer</guibutton> ne sont disponibles que lors de la sélection
-	d'une dénomination dans la liste. 
+	d'une dénomination dans la liste.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -759,6 +779,17 @@
 	associé à la personne. Pour modifier les notes, simplement modifiez
 	le texte dans la zone de saisie de l'onglet.
 	</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
+	</para>
+
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -767,18 +798,18 @@
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Sources ==== -->
-	<figure id="edit-pers-sources-fig"> 
-	<title>Dialogue Afficher la Personne - Sources</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<figure id="edit-pers-sources-fig">
+	<title>Dialogue Afficher la Personne - Sources</title>
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/edit-person-sources.png" format="PNG"/></imageobject>
-	<textobject> 
+	<textobject>
 	<phrase>Montre l'onglet sources du Dialogue Afficher la Personne. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
 	<para>L'onglet <guilabel>Sources</guilabel> affiche les sources d'information
-	de l'individu et permet leur modification. 
-	Les sources sont liées à la personne mais pas spécifiquement à un évènement. 
+	de l'individu et permet leur modification.
+	Les sources sont liées à la personne mais pas spécifiquement à un évènement.
 	Par exemple, le journal personnel de Tante Marthe peut mentionner son
 	arrière-petit-fils Paul. Dans ce cas, Paul aura comme source ce journal. 
 	Note : si une source est liée à un évènement, il est préférable de la déclarer
@@ -806,36 +837,40 @@
 		<listitem>
 
 	<!-- ==== Figure: Edit Person dialog - Gallery ==== -->
-	<figure id="edit-pers-gallery-fig"> 
-	<title>Dialogue Afficher la Personne - Galerie</title> 
-	<screenshot><mediaobject><imageobject><imagedata 
+	<figure id="edit-pers-gallery-fig">
+	<title>Dialogue Afficher la Personne - Galerie</title>
+	<screenshot><mediaobject><imageobject><imagedata
 		fileref="figures/edit-person-gallery.png" format="PNG"/></imageobject>
-	<textobject> 
+	<textobject>
 	<phrase>Montre l'onglet Galerie du Dialogue Afficher la Personne. </phrase>
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
 	<para>L'onglet <guilabel>Galerie</guilabel> affiche les données des objets multimédias
 	de l'individu et permet leur modification. La partie centrale de la fenêtre montre
-	tous les objets multimédias conservés dans la base de données. 
+	tous les objets multimédias conservés dans la base de données.
 	Les objets qui sont des fichiers-images valides sont représentés par
 	une vignette. Les autres comme des enregistrements sonores ou video sont
 	représentés par une icône générique. Remarquez que la première image
-	est aussi présentée dans la zone <guilabel>Image</guilabel> dans 
-	l'onglet <guilabel>Général</guilabel> de la personne. 
+	est aussi présentée dans la zone <guilabel>Image</guilabel> dans
+	l'onglet <guilabel>Général</guilabel> de la personne.
 	</para>
 	<para>
-	Les boutons 
-	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
-	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
-	modifier et supprimer un objet multimedia. 
-	Notez que les boutons <guibutton>Afficher...</guibutton> et 
-	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
+	Les boutons
+	<guibutton>Ajouter depuis un fichier...</guibutton>,
+	<guibutton>Ajouter depuis la base de données...</guibutton>,
+	<guibutton>Afficher...</guibutton>
+	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter une nouvelle image,
+	ajouter une référence à image déjà dans la base,
+	modifier et supprimer la référence à un objet multimedia.
+	Notez que les boutons <guibutton>Ajouter depuis un fichier...</guibutton>,
+	<guibutton>Ajouter depuis la base de données...</guibutton>, <guibutton>Afficher</guibutton>
+	et <guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
 	sélectionné un objet dans la liste.
 	</para>
-	<para>Note : retirer un objet multimedia de la galerie d'une personne 
+	<para>Note : retirer un objet multimedia de la galerie d'une personne
 	ne le supprime pas de la base de données. Cela ne retire que le lien entre la personne
-	et l'objet. 
+	et l'objet.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1052,7 +1087,7 @@
 	</para>
 	<para>
 	Les boutons 
-	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
+	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton>
 	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
 	modifier et supprimer un attribut et sa valeur pour la relation. 
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
@@ -1070,6 +1105,16 @@
 	associé à la relation. Pour modifier les notes, changez simplement
 	le texte dans la zone de saisie de l'onglet.
 	</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1079,7 +1124,7 @@
 	<para>L'onglet <guilabel>Sources</guilabel> affiche les sources d'information
 	sur la relation et permet leur modification. 
 	Les sources sont liées à la relation mais pas spécifiquement à un évènement. 
-	Par exemple, le journal personnel de Tante Marthe peut mentionner 
+	Par exemple, le journal personnel de Tante Marthe peut mentionner
 	le couple formé par son arrière-petit-fils Paul et Clara. Dans ce cas, 
 	le couple Paul-Clara aura comme source ce journal. 
 	Note : si une source est liée à un évènement (mariage, divorce), 
@@ -1114,11 +1159,14 @@
 	représentés par une icône générique. 
 	</para>
 	<para>
-	Les boutons 
-	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
-	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
-	modifier et supprimer un objet multimedia. 
-	Notez que les boutons <guibutton>Afficher...</guibutton> et 
+	Les boutons
+	<guibutton>Ajouter depuis un fichier...</guibutton>,
+	<guibutton>Ajouter depuis la base...</guibutton>,
+	<guibutton>Afficher...</guibutton>
+	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter un fichier,
+	une référence à un objet de la base,
+	modifier et supprimer un objet multimedia.
+	Notez que les boutons <guibutton>Afficher...</guibutton> et
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
 	sélectionné un objet dans la liste.
 	</para>
@@ -1153,7 +1201,7 @@
 
  	<!-- ==== Figure: Source Editor dialog ==== -->
 	<figure id="edit-src-fig"> 
-	<title>Dialogue de Modification de Source</title> 
+	<title>Dialogue de Modification de Source</title>
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/edit-src.png" format="PNG"/></imageobject>
 	<textobject> 
@@ -1165,7 +1213,7 @@
 	La partie principale de la fenêtre contient des onglets pour afficher différentes
 	catégories d'information. 
 	Le bas de la fenêtre contient les boutons
-	<guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>. 
+	<guibutton>Valider</guibutton> et <guibutton>Annuler</guibutton>.
 	Le bouton <guibutton>Valider</guibutton> a pour effet d'appliquer toutes les modifications
 	dans la base de données et de fermer la fenêtre. 
 	Le bouton <guibutton>Annuler</guibutton> ferme la fenêtre sans modifier
@@ -1177,16 +1225,16 @@
 	<para>
 	Les étiquettes des onglets signalent la présence d'information
 	dans l'onglet : une étiquette écrite en caractères gras marque
-	des données tandis qu'un onglet vide aura une étiquette écrite en caractères
+	la présence de données tandis qu'un onglet vide aura une étiquette écrite en caractères
 	normaux (pas gras). 
-	Les onglets donnent accès aux types d'informations suivants : 
+	Les onglets donnent accès aux types d'informations suivants :
 	</para>
 
 	<variablelist>
 		<varlistentry><term><guilabel>Général</guilabel></term>
 		<listitem><para>
 	L'onglet <guilabel>Général</guilabel> permet la modification des informations
-	générales de la source : son nom, son auteur et l'information de publication. 
+	générales de la source : son nom, son auteur et l'information de publication.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1197,6 +1245,16 @@
 	<para>L'onglet <guilabel>Note</guilabel> contient les notes concernant
 	la source. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
+	</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1212,11 +1270,14 @@
 	représentés par une icône générique. 
 	</para>
 	<para>
-	Les boutons 
-	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
-	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
-	modifier et supprimer un objet multimedia. 
-	Notez que les boutons <guibutton>Afficher...</guibutton> et 
+	Les boutons
+	<guibutton>Ajouter depuis un fichier...</guibutton>,
+	<guibutton>Ajouter depuis la base...</guibutton>,
+	<guibutton>Afficher...</guibutton>
+	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter un fichier,
+	une référence à un objet déjà dans la base,
+	modifier et supprimer un objet multimedia.
+	Notez que les boutons <guibutton>Afficher...</guibutton> et
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
 	sélectionné un objet dans la liste.
 	</para>
@@ -1322,6 +1383,16 @@
 	le lieu. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
 	</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1334,7 +1405,7 @@
 	la liste des sources associées au lieu, conservées dans la base de données.
 	La partie du haut montre le détail de la source sélectionnée s'il y a lieu.
 	Les boutons 
-	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
+	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton>
 	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
 	modifier et supprimer une source pour le lieu. 
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
@@ -1357,8 +1428,11 @@
 	</para>
 	<para>
 	Les boutons 
-	<guibutton>Ajouter...</guibutton>, <guibutton>Afficher...</guibutton> 
-	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter, 
+	<guibutton>Ajouter depuis un fichier...</guibutton>,
+	<guibutton>Ajouter depuis la base...</guibutton>,
+	<guibutton>Afficher...</guibutton>
+	et <guibutton>Supprimer</guibutton> vous permettent respectivement d'ajouter un fichier,
+	une référence à un objet de la base,
 	modifier et supprimer un objet multimedia. 
 	Notez que les boutons <guibutton>Afficher...</guibutton> et 
 	<guibutton>Supprimer</guibutton> ne sont disponibles qu'après avoir
@@ -1381,7 +1455,7 @@
 	la modification et la suppression d'une adresse. Le bouton <guibutton>Go</guibutton> 
 	permet d'ouvrir une page Internet avec votre navigateur favori. 
 	Notez que les boutons <guibutton>Afficher...</guibutton>, 
-	<guibutton>Supprimer</guibutton> et <guibutton>Go</guibutton> 
+	<guibutton>Supprimer</guibutton> et <guibutton>Go</guibutton>
 	ne sont disponibles que lors de la sélection d'une adresse dans la liste. 
 	</para>
 		</listitem></varlistentry>
@@ -1485,6 +1559,16 @@
 	sur l'objet multimedia modification. Les notes sont un simple texte libre
 	associé à la relation. Pour modifier les notes, changez simplement
 	le texte dans la zone de saisie de l'onglet.</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1589,6 +1673,16 @@
 	<para>L'onglet <guilabel>Note</guilabel> contient les notes concernant
 	l'évènement. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
+	</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -1729,6 +1823,16 @@
 	sur le nom et permet leur modification. Les notes sont un simple texte libre
 	associé au nom. Pour modifier les notes, simplement modifiez
 	le texte dans la zone de saisie de l'onglet. </para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
 
@@ -1814,6 +1918,16 @@
 	l'attribut. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
 	</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
+	</para>
 		</listitem></varlistentry>
 	</variablelist>
       </sect3>
@@ -1861,7 +1975,8 @@
 		<listitem><para>
 	L'onglet <guilabel>Général</guilabel> permet la modification des informations
 	générales de l'adresse. Ceci comprend les zones de saisie suivantes : 
-	date, rue et numéro, ville ou département, état ou province, pays et code postal. 
+	date, rue et numéro, ville ou département, état ou province, pays, code postal
+	et numéro de téléphone.
 	Ces données sont saisies dans des zones de texte libre. 
 	Cochez la case <guilabel>Enregistrement Privé</guilabel> pour marquer cette adresse
 	comme privée. Ceci sera utilisé dans les impressions, pour ne pas
@@ -1895,6 +2010,16 @@
 	<para>L'onglet <guilabel>Note</guilabel> contient les notes concernant
 	l'adresse. Si vous voulez ajouter ou modifier des notes, il vous suffit
 	de modifier le contenu de la zone de texte. 
+	</para>
+	<para>L'option <guilabel>Formatté</guilabel> vous permet de choisir le rendu
+	de la note dans la sortie (édition ou bien page Web).
+	Choisir <guilabel>En continu</guilabel> remplacera les espaces multiples,
+	les tabulations et les changements de lignes simples par un espace.
+	Les lignes vides (deux changements de lignes consécutifs) sont comprises
+	comme une fin de paragraphe.
+	Au contraire, choisir <guilabel>Préformatté</guilabel> conservera à l'identique
+	les espaces multiples, les tabulations et les changements de ligne
+	comme ils ont été saisis dans la zone de texte.
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
@@ -2153,7 +2278,7 @@
 	Vous pouvez aussi choisir <menuchoice><guimenu>Aller</guimenu>
 	<guimenuitem>de Cujus</guimenuitem></menuchoice> dans le menu ou choisir l'élément
         <guilabel>de Cujus</guilabel> dans n'importe quel menu contextuel accessible
-	par un clic droit de la souris. 
+	par un clic droit de la souris.
         </para>
 	
       </sect3>
@@ -2317,6 +2442,15 @@
 	des données affichées. </para></listitem>
 	</varlistentry>
 
+	<varlistentry><term>Arbre Généalogique (grand format)</term>
+	<listitem><para>Cette édition est similaire à l'arbre généalogique.
+	Elle propose plus d'options qui la rende utile pour générer
+	de grands arbres pour un poster ou une affiche murale.
+	Il est ainsi possible de compacter le dessin (supprimer les espaces
+	vides) et de réduire l'échelle pour tout faire tenir sur une page.
+	</para></listitem>
+	</varlistentry>
+
 	<varlistentry><term>Graphe des Descendants</term>
 	<listitem><para>Cette édition présente les personnes descendantes
 	de la personne Active. Le format des données présentées
@@ -2346,8 +2480,15 @@
 	</variablelist>
 
 	<para>Les options communes à toutes les éditions graphiques sont 
-	le nom du fichier de sortie, le format du fichier de sortie, 
-	le choix du style, la taille et l'orientation de la page. </para>
+	le nom du fichier de sortie, le format du fichier de sortie,
+	le choix du style, la taille et l'orientation de la page.
+	En option, l'édition peut être ouverte immédiatement avec
+	son application par défaut (choisie dans le menu principal de Gnome
+	par le dialogue <menuchoice><guimenu>Configuration</guimenu>
+	<guisubmenu><replaceable>Avancé</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Applications préférées</replaceable>
+	</guimenuitem></menuchoice>).
+	</para>
 
       </sect3>
 
@@ -2456,7 +2597,13 @@
 	le choix du style, la taille et l'orientation de la page. 
 	Les édition HTML n'ont pas d'option liées au format de page.
 	Elles ont à la place le choix d'un modèle HTML parmi ceux
-	fournis avec &app; ou bien que vous avez défini. 
+	fournis avec &app; ou bien que vous avez défini.
+	En option, l'édition peut être ouverte immédiatement avec
+	son application par défaut (choisie dans le menu principal de Gnome
+	par le dialogue <menuchoice><guimenu>Configuration</guimenu>
+	<guisubmenu><replaceable>Avancé</replaceable></guisubmenu>
+	<guimenuitem><replaceable>Applications préférées</replaceable>
+	</guimenuitem></menuchoice>).
 	</para>
 
       </sect3>
