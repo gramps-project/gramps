@@ -73,7 +73,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
             self.filename = filename
             
         try:
-            self.content_xml = tempfile.TemporaryFile()
+            self.content_xml = tempfile.mktemp()
             self.f = open(self.content_xml,"wb")
         except:
             raise Errors.ReportError("Could not create %s" % self.filename)
@@ -330,7 +330,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
         os.unlink(self.styles_xml)
         
     def _write_styles_file(self):
-        self.styles_xml = tempfile.TemporaryFile()
+        self.styles_xml = tempfile.mktemp()
 	self.f = open(self.styles_xml,"wb")
         
         self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
@@ -502,7 +502,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 	self.f.write(text)
 
     def _write_manifest(self):
-        self.manifest_xml = tempfile.TemporaryFile()
+        self.manifest_xml = tempfile.mktemp()
 	self.f = open(self.manifest_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<manifest:manifest ')
@@ -530,7 +530,7 @@ class OpenOfficeDoc(TextDoc.TextDoc):
 
     def _write_meta_file(self):
         name = self.name
-        self.meta_xml = tempfile.TemporaryFile()
+        self.meta_xml = tempfile.mktemp()
 	self.f = open(self.meta_xml,"wb")
 	self.f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
 	self.f.write('<office:document-meta ')
