@@ -692,7 +692,7 @@ class FamilyView:
         if not self.person:
             return
         try:
-            SelectChild.SelectChild(self.parent.db, self.family,
+            SelectChild.SelectChild(self.parent, self.parent.db, self.family,
                                     self.person, self.load_family,
                                     self.update_person_list)
         except:
