@@ -2343,11 +2343,12 @@ def load_canvas():
 
     cpad = max(h+4,CANVASPAD)
     cw = (cx2-cx1-(2*cpad))
+    ch = (cy2-cy1-(2*cpad))
 
-    if 5*w < cw and 24*h < cy2:
+    if 5*w < cw and 24*h < ch:
         gen = 31
         xdiv = 5.0
-    elif 4*w < cw and 12*h < cy2:
+    elif 4*w < cw and 12*h < ch:
         gen = 15
         xdiv = 4.0
     else:
@@ -2358,7 +2359,7 @@ def load_canvas():
         c.destroy()
 
     xpts = build_x_coords(cw/xdiv,cpad)
-    ypts = build_y_coords(cy2/32.0)
+    ypts = build_y_coords(ch/32.0)
 
     childcnt = 0
     for family in active_person.getFamilyList():
@@ -2366,26 +2367,31 @@ def load_canvas():
             childcnt = 1
             break
 
-    a = GtkArrow(at=GTK.ARROW_LEFT)
-    cnv_button = GtkButton()
-    cnv_button.add(a)
-    a.show()
-    cnv_button.connect("clicked",on_arrow_left_clicked)
-        
     if childcnt != 0:
+        a = GtkArrow(at=GTK.ARROW_LEFT)
+        cnv_button = GtkButton()
+        cnv_button.add(a)
+        a.show()
+        cnv_button.connect("clicked",on_arrow_left_clicked)
+
         cnv_button.show()
         item = root.add("widget",
                         widget=cnv_button,
                         x=cx1,
-                        y=ypts[0]+(h/2.0), #cy2/2.0, #+(h+PAD)/2.0,
+                        y=ypts[0]+(h/2.0), 
                         height=h,
                         width=h,
                         size_pixels=1,
                         anchor=GTK.ANCHOR_WEST)
         canvas_items = [item, cnv_button, a]
     else:
-        cnv_button.hide()
         canvas_items = []
+
+    if list[1]:
+        l = add_parent_button(root,canvas_items,list[1],cx2-PAD,ypts[1],h)
+        
+    if list[2]:
+        l = add_parent_button(root,canvas_items,list[2],cx2-PAD,ypts[2],h)
 
     for i in range(gen):
         if list[i]:
@@ -2399,7 +2405,28 @@ def load_canvas():
                     draw_canvas_line(root,xpts[i],ypts[i], xpts[mindex],
                                      ypts[mindex], h, w, list[mindex], style)
             add_box(root,xpts[i],ypts[i],w,h,list[i],style)
-                    
+
+
+def add_parent_button(root,item_list,parent,x,y,h):
+    a = GtkArrow(at=GTK.ARROW_RIGHT)
+    cnv_button = GtkButton()
+    cnv_button.add(a)
+    a.show()
+    cnv_button.connect("clicked",change_to_parent)
+    cnv_button.set_data("p",parent)
+
+    cnv_button.show()
+    item = root.add("widget", widget=cnv_button, x=x, y=y+(h/2), height=h,
+                    width=h, size_pixels=1, anchor=GTK.ANCHOR_EAST)
+    item_list.append(a)
+    item_list.append(item)
+    item_list.append(cnv_button)
+
+def change_to_parent(obj):
+    person = obj.get_data("p")
+    change_active_person(person)
+    load_canvas()
+    
 #-------------------------------------------------------------------------
 #
 #
