@@ -14,6 +14,7 @@
   <property name="default_height">300</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
+  <property name="icon">gramps.png</property>
   <property name="has_separator">True</property>
 
   <child internal-child="vbox">
@@ -315,6 +316,7 @@
   <property name="modal">True</property>
   <property name="resizable">True</property>
   <property name="destroy_with_parent">False</property>
+  <property name="icon">gramps.png</property>
   <property name="has_separator">True</property>
 
   <child internal-child="vbox">
