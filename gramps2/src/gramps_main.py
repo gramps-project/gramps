@@ -1472,6 +1472,7 @@ class Gramps:
                 id = epo.person.get_handle()
                 path = self.people_view.person_model.on_get_path(id)
                 self.people_view.person_model.row_changed(path,iter)
+            self.family_view.load_family()
         self.update_display(0)
 
     def update_after_merge(self,person,old_id):

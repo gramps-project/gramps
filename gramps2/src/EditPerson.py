@@ -1611,13 +1611,12 @@ class EditPerson:
         if self.lists_changed:
             self.person.set_source_reference_list(self.srcreflist)
 
-        self.update_lists()
-        if self.callback:
-            self.callback(self,trans)
-
         self.db.commit_person(self.person, trans)
         n = self.person.get_primary_name().get_regular_name()
         self.db.transaction_commit(trans,_("Edit Person (%s)") % n)
+        self.update_lists()
+        if self.callback:
+            self.callback(self,0)
         self.close()
 
     def get_place(self,field,makenew=0):

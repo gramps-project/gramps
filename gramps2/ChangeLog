@@ -1,3 +1,7 @@
+2004-08-20  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: update family display after EditPerson
+	* src/EditPerson.py: fix callback
+
 2004-08-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/rel_da.py: Convert to new interface. Add to CVS.
 	* src/plugins/rel_fi.py: Convert to new interface. Add to CVS.
