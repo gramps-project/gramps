@@ -331,7 +331,7 @@
         <title>Vue d'Arborescence</title>
 
 	<!-- ==== Figure: Pedigree View ==== -->
-	<figure id="pedigree-fig"> 
+	<figure id="pedigree-fig">
 	<title>Vue d'Arborescence</title> 
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/pedigree.png" format="PNG"/></imageobject>
@@ -356,7 +356,7 @@
 	
         <!-- ==== Figure: Pedigree View ==== -->
         <figure id="pedigree-child-cut-fig">
-        <title>Children Menu</title>
+        <title>Menu des enfants</title>
         <screenshot><mediaobject><imageobject><imagedata
                 fileref="figures/pedigree-child-cut.png" format="PNG"/></imageobject>
         <textobject>
@@ -369,7 +369,7 @@
 	apparait. Sélectionner un des enfants le met alors comme personne active. 
 	Le nom de chaque enfant est affiché différemment selon que la personne est
 	une feuille de l'arbre (sans enfants connus) ou bien a des enfants connus.
-	Le nim d'une personne dont on connait des enfants apparaît en caractères
+	Le nom d'une personne dont on connait des enfants apparaît en caractères
 	gras et italiques au lieu d'être affiché en caractères normaux. 
 	Si la personne active n'a qu'un enfant, aucun menu ne sera affiché puisqu'il
 	n'y a pas de choix possible. Dans ce cas, l'unique enfant devient la personne
@@ -382,8 +382,8 @@
 	Comme précédemment, tout l'affichage change alors en conséquence. </para>
 
 	<!-- ==== Figure: Pedigree View ==== -->
-	<figure id="pedigree-anchor-fig"> 
-	<title>Pedigree View with the Anchor</title> 
+	<figure id="pedigree-anchor-fig">
+	<title>Vue en arborescence avec ancrage</title>
 	<screenshot><mediaobject><imageobject><imagedata 
 		fileref="figures/pedigree-anchor.png" format="PNG"/></imageobject>
 	<textobject> 

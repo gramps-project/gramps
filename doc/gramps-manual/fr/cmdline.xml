@@ -43,29 +43,29 @@
           <variablelist>
           <varlistentry><term>Options de format</term>
           <listitem><para> Le format des fichiers de lecture ou d'écriture est donné par l'option
-          	<command>-f</command> <replaceable>format</replaceable>
-          <replaceable>format</replaceable> est à choisir parmi un des choix suivants :
+          	<command>-f</command> <replaceable>format</replaceable>.
+          	Le <replaceable>format</replaceable> est à choisir parmi un des choix suivants :
           	<variablelist>
           	<varlistentry><term>gramps</term>
-          	<listitem><para> &app; chemin. Ce format est disponible 
+          	<listitem><para> &app; chemin. Ce format est disponible
 		en lecture comme en écriture. Il est deviné d'après la nature
-		la nature (fichier ou répertoire) du chemin. 
+		la nature (fichier ou répertoire) du chemin.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gedcom</term>
-          	<listitem><para> fichier GEDCOM. Ce format est disponible 
+          	<listitem><para> fichier GEDCOM. Ce format est disponible
 		en lecture comme en écriture. Il est deviné
                 si le nom de fichier a comme suffixe .ged.
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>gramps-pkg</term>
-          	<listitem><para> &app; package. Ce format est disponible 
+          	<listitem><para> &app; package. Ce format est disponible
 		en lecture comme en écriture. Il est deviné
                 si le nom de fichier a comme suffixe .tgz .
                 </para></listitem></varlistentry>
 
           	<varlistentry><term>wft</term>
-          	<listitem><para>Web Family Tree. Ce format est disponible 
+          	<listitem><para>Web Family Tree. Ce format est disponible
 		en écriture seulement. Il est deviné
                 si le nom de fichier a comme suffixe .wft.
                 </para></listitem></varlistentry>
@@ -115,7 +115,7 @@
           et <term>iso</term>, le <replaceable>chemin</replaceable> 
           est en fait le nom du répertoire où seront écrites les données gramps. 
           Pour les formats <term>gedcom</term>, <term>wft</term>, 
-          et <term>gramps-pkg</term>, le <replaceable>chemin</replaceable> 
+          et <term>gramps-pkg</term>, le <replaceable>chemin</replaceable>
           est le nom du fichier écrit.
           </para>
 
