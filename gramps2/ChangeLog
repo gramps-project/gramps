@@ -1,4 +1,10 @@
+2003-12-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/plugins/Check.py (CheckIntegrity.check_parent_relationships): 
+	More complete checks handling unknown genders
+
 2003-12-24  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleView.py: Check for null iters before removing from 
+	the tree store.
 	* src/plugins/Check.py: Fixed handling of Unknown genders in
 	family checks
 
