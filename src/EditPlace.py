@@ -73,6 +73,7 @@ class EditPlace:
         self.not_loaded = 1
         self.ref_not_loaded = 1
         self.lists_changed = 0
+	self.gallery_ok = 0
         if place:
             self.srcreflist = place.getSourceRefList()
         else:
@@ -209,7 +210,7 @@ class EditPlace:
         self.val = self.top.run()
         if self.val == gtk.RESPONSE_OK:
             self.on_place_apply_clicked()
-        self.glry.close()
+        self.glry.close(self.gallery_ok)
         self.top.destroy()
 
     def on_help_clicked(self,obj):
@@ -307,7 +308,7 @@ class EditPlace:
         self.set(self.latitude,self.place.get_latitude,
                  self.place.set_latitude)
 
-        if self.lists_changed:
+	if self.lists_changed:
             self.place.setSourceRefList(self.srcreflist)
             Utils.modified()
         
@@ -319,6 +320,7 @@ class EditPlace:
             self.place.setNoteFormat(format)
             Utils.modified()
 
+	self.gallery_ok = 1
         self.update_lists()
 
         if self.callback:

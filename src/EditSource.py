@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,6 +56,8 @@ class EditSource:
         self.path = db.getSavePath()
         self.not_loaded = 1
         self.ref_not_loaded = 1
+        self.lists_changed = 0
+	self.gallery_ok = 0
 
         self.top_window = gtk.glade.XML(const.gladeFile,"sourceEditor","gramps")
         self.top = self.top_window.get_widget("sourceEditor")
@@ -100,6 +102,7 @@ class EditSource:
             "on_addphoto_clicked" : self.gallery.on_add_photo_clicked,
             "on_selectphoto_clicked"    : self.gallery.on_select_photo_clicked,
             "on_deletephoto_clicked" : self.gallery.on_delete_photo_clicked,
+            "on_editphoto_clicked"     : self.gallery.on_edit_photo_clicked,
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_sourceEditor_help_clicked" : self.on_help_clicked,
             })
@@ -124,7 +127,7 @@ class EditSource:
         self.val = self.top.run()
 
     def close(self,obj):
-        self.gallery.close()
+        self.gallery.close(self.gallery_ok)
         self.top.destroy()
         
     def display_references(self):
@@ -266,6 +269,10 @@ class EditSource:
             self.source.setNoteFormat(format)
             Utils.modified()
 
+	if self.lists_changed:
+            Utils.modified()
+        
+	self.gallery_ok = 1
         self.close(None)
 
         if self.callback:

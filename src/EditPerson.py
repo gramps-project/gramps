@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -967,7 +967,7 @@ class EditPerson:
                        self.cancel_callback,
                        self.save)
         else:
-            self.gallery.close()
+            self.gallery.close(0)
             self.window.destroy()
 
     def save(self):
@@ -985,13 +985,13 @@ class EditPerson:
                        self.save)
             return 1
         else:
-            self.gallery.close()
+            self.gallery.close(0)
             self.window.destroy()
             return 0
 
     def cancel_callback(self):
         """If the user answered yes to abandoning changes, close the window"""
-        self.gallery.close()
+        self.gallery.close(0)
         self.window.destroy()
 
     def did_data_change(self):
@@ -1530,7 +1530,7 @@ class EditPerson:
         if self.callback:
             self.callback(self)
 
-        self.gallery.close()
+        self.gallery.close(1)
         self.window.destroy()
 
     def get_place(self,field,makenew=0):
