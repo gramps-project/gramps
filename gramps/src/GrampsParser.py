@@ -289,9 +289,15 @@ class GrampsParser(handler.ContentHandler):
         if attrs.has_key("type"):
             type = u2l(attrs["type"])
             self.person.AltFamilyList.append((family,type,type))
-        elif attrs.has_key("mrel"):
-            mrel = u2l(attrs["mrel"])
-            frel = u2l(attrs["frel"])
+        elif attrs.has_key("mrel") or attrs.has_key("frel"):
+            if attrs.has_key("mrel"):
+                mrel = u2l(attrs["mrel"])
+            else:
+                mrel = ""
+            if attrs.has_key("frel"):
+                frel = u2l(attrs["frel"])
+            else:
+                frel = ""
             if mrel=="Birth" and frel=="Birth":
                 self.person.MainFamily = family
             else:
