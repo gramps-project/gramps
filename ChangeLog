@@ -1,3 +1,6 @@
+2004-11-11 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DateDisplay.py: Add Russian displayer.
+
 2004-11-10 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DateHandler.py: Add Russian displayer.
 	* src/DateParser.py: Correct parsers -- proper unicode conversions.
