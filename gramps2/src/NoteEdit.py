@@ -32,8 +32,7 @@ import gnome.ui
 #
 #-------------------------------------------------------------------------
 import Utils
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -62,7 +61,7 @@ class NoteEditor:
         self.entry = gtk.TextView()
         self.entry.set_editable(gtk.TRUE)
         self.entry.show()
-
+        
         scroll = gtk.ScrolledWindow()
         scroll.add(self.entry)
         scroll.set_policy (gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)

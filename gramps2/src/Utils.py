@@ -264,24 +264,13 @@ def add_menuitem(menu,msg,obj,func):
 #-------------------------------------------------------------------------
 def view_photo(photo):
     type = photo.getMimeType()
-    prog = grampslib.gnome_vfs_mime_get_value(type,'view')
-    open = grampslib.gnome_vfs_mime_get_value(type,'open')
-    edit = grampslib.gnome_vfs_mime_get_value(type,'edit')
-    if prog == "" and open == "" and edit == "":
-        #GnomeWarningDialog("Sorry, I cannot find a viewer for %s type" % type)
-        return
+    prog = grampslib.default_application_command(type)
 
-    if not prog and not open :
-        prog = edit
-    else:
-        prog = open
+    if not prog:
+        return
     
-    args = []
-    for val in prog:
-        if val == "%f":
-            args.append(photo.getPath())
-        else:
-            args.append(val)
+    args = string.split(prog)
+    args.append(photo.getPath())
     
     if os.fork() == 0:
         os.execvp(args[0],args)

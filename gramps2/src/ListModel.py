@@ -58,9 +58,21 @@ class ListModel:
             renderer = gtk.CellRendererText()
             column = gtk.TreeViewColumn(name[0],renderer,text=cnum)
             column.set_min_width(name[1])
+            if name[2]:
+                column.set_sort_column_id(name[2])
+            if name[0] == '':
+                column.set_clickable(gtk.TRUE)
+                column.set_visible(gtk.FALSE)
+            else:
+                column.set_resizable(gtk.TRUE)
             cnum = cnum + 1
             tree.append_column(column)
+            if cnum == 1:
+                column.clicked()
 
+    def clear(self):
+        self.model.clear()
+        
     def add(self,data):
         iter = self.model.append()
         col = 0

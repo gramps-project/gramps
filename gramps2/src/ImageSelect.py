@@ -25,6 +25,7 @@
 #-------------------------------------------------------------------------
 import os
 import string
+import urlparse
 
 #-------------------------------------------------------------------------
 #
@@ -226,6 +227,47 @@ class Gallery(ImageSelect):
         self.x = 0
         self.y = 0
 
+    def item_event(self, widget, event=None):
+
+        photo = widget.get_data('obj')
+        if event.type == gtk.gdk.BUTTON_PRESS:
+            if event.button == 1:
+                # Remember starting position.
+                self.remember_x = event.x
+                self.remember_y = event.y
+                return gtk.TRUE
+
+            elif event.button == 3:
+                self.show_popup(photo)
+                return gtk.TRUE
+
+        elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
+            #Change the item's color.
+            print photo,self.path,self
+            LocalMediaProperties(photo,self.path,self)
+            return gtk.TRUE
+
+        elif event.type == gtk.gdk.MOTION_NOTIFY:
+            if event.state & gtk.gdk.BUTTON1_MASK:
+                # Get the new position and move by the difference
+                new_x = event.x
+                new_y = event.y
+
+                self.remember_x = new_x
+                self.remember_y = new_y
+
+                return gtk.TRUE
+            
+        elif event.type == gtk.gdk.ENTER_NOTIFY:
+            # Make the outline wide.
+            return gtk.TRUE
+
+        elif event.type == gtk.gdk.LEAVE_NOTIFY:
+            # Make the outline thin.
+            return gtk.TRUE
+
+        return gtk.FALSE
+
     def savephoto(self, photo):
         """Save the photo in the dataobj object.  (Required function)"""
         self.db.addObject(photo)
@@ -247,6 +289,8 @@ class Gallery(ImageSelect):
         y = image.get_height()
 
         grp = self.root.add(gnome.canvas.CanvasGroup,x=self.cx,y=self.cy)
+        grp.connect('event',self.item_event)
+        grp.set_data('obj',photo)
 
         xloc = (_IMAGEX-x)/2
         yloc = (_IMAGEX-y)/2
@@ -284,10 +328,13 @@ class Gallery(ImageSelect):
         self.cx = 10
         self.cy = 10
         
+        (self.x,self.y) = self.iconlist.get_size()
+
+        self.max = (self.x)/(_IMAGEX+10)
+
         for photo in self.dataobj.getPhotoList():
             self.add_thumbnail(photo)
 
-        (self.x,self.y) = self.iconlist.get_size()
         if self.cy > self.y:
             self.iconlist.set_scroll_region(0,0,self.x,self.cy)
         else:
@@ -297,10 +344,16 @@ class Gallery(ImageSelect):
         """User clicked on a photo.  Remember which one."""
         self.selectedIcon = iconNumber
 
+    def get_index(self,obj,x,y):
+        x_offset = x/(_IMAGEX+10)
+        y_offset = y/(_IMAGEY+10)
+        index = (y_offset*self.max)+x_offset
+        return min(index,len(self.dataobj.getPhotoList()))
+
     def on_photolist_drag_data_received(self,w, context, x, y, data, info, time):
-        import urlparse
+        print "receive",w
 	if data and data.format == 8:
-            icon_index = w.get_icon_at(x,y)
+            icon_index = self.get_index(w,x,y)
             d = string.strip(string.replace(data.data,'\0',' '))
             protocol,site,file, j,k,l = urlparse.urlparse(d)
             if protocol == "file":
@@ -348,7 +401,7 @@ class Gallery(ImageSelect):
                     photo.setPath(name)
                 except:
                     photo.setPath(tfile)
-                    w.drag_finish(context, 1, 0, time)
+                    # w.drag_finish(context, 1, 0, time)
                     return
                 self.add_thumbnail(oref)
                 self.parent.lists_changed = 1
@@ -357,14 +410,15 @@ class Gallery(ImageSelect):
                     GlobalMediaProperties(self.db,photo,None)
             else:
                 if self.db.getObjectMap().has_key(data.data):
+                    icon_index = self.get_index(w,x,y)
                     index = 0
                     for p in self.dataobj.getPhotoList():
                         if data.data == p.getReference().getId():
                             if index == icon_index or icon_index == -1:
-                                w.drag_finish(context, 0, 0, time)
+                                # w.drag_finish(context, 0, 0, time)
                                 return
                             else:
-                                w.drag_finish(context, 1, 0, time)
+                                # w.drag_finish(context, 1, 0, time)
                                 nl = self.dataobj.getPhotoList()
                                 item = nl[index]
                                 if icon_index == 0:
@@ -387,11 +441,13 @@ class Gallery(ImageSelect):
                     if GrampsCfg.globalprop:
                         LocalMediaProperties(oref,self.path,self)
                     Utils.modified()
-            w.drag_finish(context, 1, 0, time)
+            #w.drag_finish(context, 1, 0, time)
 	else:
-            w.drag_finish(context, 0, 0, time)
+            pass
+            #w.drag_finish(context, 0, 0, time)
                 
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
+        print "drag data get",w
         if info == 1:
             return
         if self.selectedIcon != -1:
@@ -420,38 +476,34 @@ class Gallery(ImageSelect):
                 self.selectedIcon = 0
                 self.icon_list.select_icon(0)
 
-    def on_button_press_event(self, obj, event):
+    def show_popup(self, photo):
         """Look for right-clicks on a picture and create a popup
         menu of the available actions."""
-        icon = self.selectedIcon
-        if icon == -1:
-            return
-    
-        if event.button == 3:
-            photo = self.dataobj.getPhotoList()[icon]
-            menu = gtk.Menu()
-            item = gtk.TearoffMenuItem()
-            item.show()
-            menu.append(item)
-            mtype = object.getMimeType()
-            progname = grampslib.default_application_name(mtype)
 
-            Utils.add_menuitem(menu,_("Open in %s") % progname,
-                               None,self.popup_view_photo)
-            object = photo.getReference()
-            if mtype[0:5] == "image":
-                Utils.add_menuitem(menu,_("Edit with the GIMP"),
-                                   None,self.popup_edit_photo)
-            Utils.add_menuitem(menu,_("Edit Object Properties"),None,
-                               self.popup_change_description)
-            if object.getLocal() == 0:
-                Utils.add_menuitem(menu,_("Convert to local copy"),None,
-                                   self.popup_convert_to_private)
-            menu.popup(None,None,None,0,0)
-
+        
+        menu = gtk.Menu()
+        item = gtk.TearoffMenuItem()
+        item.show()
+        menu.append(item)
+        object = photo.getReference()
+        mtype = object.getMimeType()
+        progname = grampslib.default_application_name(mtype)
+        
+        Utils.add_menuitem(menu,_("Open in %s") % progname,
+                           photo,self.popup_view_photo)
+        if mtype[0:5] == "image":
+            Utils.add_menuitem(menu,_("Edit with the GIMP"),
+                               photo,self.popup_edit_photo)
+        Utils.add_menuitem(menu,_("Edit Object Properties"),photo,
+                           self.popup_change_description)
+        if object.getLocal() == 0:
+            Utils.add_menuitem(menu,_("Convert to local copy"),photo,
+                               self.popup_convert_to_private)
+        menu.popup(None,None,None,0,0)
+            
     def popup_view_photo(self, obj):
         """Open this picture in a picture viewer"""
-        photo = self.dataobj.getPhotoList()[self.selectedIcon]
+        photo = obj.get_data('o')
         Utils.view_photo(photo.getReference())
     
     def popup_edit_photo(self, obj):
@@ -501,18 +553,19 @@ class LocalMediaProperties:
         self.attr_value = self.change_dialog.get_widget("attr_value")
         self.attr_details = self.change_dialog.get_widget("attr_details")
 
-
         self.attr_list = self.change_dialog.get_widget("attr_list")
         self.attr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        Utils.build_columns(self.attr_list, [(_('Attribute'),150,-1), (_('Value'),100,-1)])
+        Utils.build_columns(self.attr_list, [(_('Attribute'),150,-1),
+                                             (_('Value'),100,-1)])
         self.attr_list.set_model(self.attr_model)
         self.attr_list.get_selection().connect('changed',self.on_attr_list_select_row)
 
         descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
 
-        self.pix = gtk.gdk.pixbuf_new_from_file(path)
-        pixmap.set_from_pixbuf(self.pix)
+        if os.path.isfile(path):
+            self.pix = gtk.gdk.pixbuf_new_from_file(path)
+            pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.getPrivacy())
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
