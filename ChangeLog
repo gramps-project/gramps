@@ -1,4 +1,5 @@
 2004-10-11  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DisplayModels.py: fix initialization of self.map
 	* src/DateParser.py: dynamically detect numerical parsing based
 	off locale. Do not depend on strptime.
 	* src/Utils.py: remove last remains of SingleDate

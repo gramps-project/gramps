@@ -38,8 +38,6 @@ class BaseModel(gtk.GenericTreeModel):
     def __init__(self,db):
         gtk.GenericTreeModel.__init__(self)
         self.set_property("leak_references",False)
-        self.fmap = []
-        self.map = {}
         self.db = db
         self.rebuild_data()
 
