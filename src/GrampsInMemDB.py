@@ -28,10 +28,6 @@ must hold all of their data in memory.
 from RelLib import *
 from GrampsDbBase import *
 
-import os
-import md5
-import gtk
-
 class GrampsInMemCursor(GrampsCursor):
     """
     Cursor class for in-memory database classes. Since the in-memory
@@ -222,32 +218,3 @@ class GrampsInMemDB(GrampsDbBase):
         else:
             return None
 
-    def _build_thumb_path(self,path):
-        base = os.path.expanduser('~/.gramps/thumb')
-        m = md5.md5(path)
-        return os.path.join(base,m.hexdigest()+'.jpg')
-
-    def get_thumbnail_image(self,handle):
-        data = self.media_map.get(handle)
-        if data:
-            filename = self._build_thumb_path(data[2])
-            if not os.path.isfile(filename):
-                self.set_thumbnail_image(handle,filename)
-            return gtk.gdk.pixbuf_new_from_file(filename)
-        else:
-            return None
-
-    def set_thumbnail_image(self,handle,path):
-        try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
-            w = pixbuf.get_width()
-            h = pixbuf.get_height()
-            scale = const.thumbScale / (float(max(w,h)))
-            
-            pw = int(w*scale)
-            ph = int(h*scale)
-            
-            pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
-            pixbuf.save(self._build_thumb_path(path),"jpeg")
-        except:
-            print "Could not create thumbnail for",path

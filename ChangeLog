@@ -1,3 +1,8 @@
+2005-01-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsDbBase.py: move all thumbnail creation here to have
+	a common thumbnail scheme.
+	* src/GrampsInMemDB.py: remove thumbnail handling, use base class
+
 2005-01-02 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Add support for a semi-common 'dispf'.
 	* src/ReportOptions.py: Add support for a semi-common 'dispf'.

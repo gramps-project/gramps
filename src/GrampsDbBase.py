@@ -37,6 +37,9 @@ import time
 import locale
 import re
 from gettext import gettext as _
+import os
+import md5
+import gtk
 
 import GrampsGconfKeys
 import Utils
@@ -1217,13 +1220,35 @@ class GrampsDbBase:
             else:
                 return cols
 
+    def _build_thumb_path(self,path):
+        base = os.path.expanduser('~/.gramps/thumb')
+        m = md5.md5(path)
+        return os.path.join(base,m.hexdigest()+'.jpg')
+
     def get_thumbnail_image(self,handle):
         data = self.media_map.get(handle)
         if data:
-            import ImgManip
-            return ImgManip.get_thumbnail_image(data[2])
+            filename = self._build_thumb_path(data[2])
+            if not os.path.isfile(filename):
+                self.set_thumbnail_image(handle,data[2])
+            return gtk.gdk.pixbuf_new_from_file(filename)
         else:
             return None
+
+    def set_thumbnail_image(self,handle,path):
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file(path)
+            w = pixbuf.get_width()
+            h = pixbuf.get_height()
+            scale = 96.0 / (float(max(w,h)))
+            
+            pw = int(w*scale)
+            ph = int(h*scale)
+            
+            pixbuf = pixbuf.scale_simple(pw,ph,gtk.gdk.INTERP_BILINEAR)
+            pixbuf.save(self._build_thumb_path(path),"jpeg")
+        except:
+            print "Could not create thumbnail for",path
             
 class Transaction:
     """
