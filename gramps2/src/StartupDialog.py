@@ -114,14 +114,14 @@ class StartupDialog:
             return val
 
     def complete(self,obj,obj2):
-        self.client.set_string('/apps/gramps/researcher-name',self.name.get_text())
-        self.client.set_string('/apps/gramps/researcher-addr',self.addr.get_text())
-        self.client.set_string('/apps/gramps/researcher-city',self.city.get_text())
-        self.client.set_string('/apps/gramps/researcher-state',self.state.get_text())
-        self.client.set_string('/apps/gramps/researcher-postal',self.postal.get_text())
-        self.client.set_string('/apps/gramps/researcher-country',self.country.get_text())
-        self.client.set_string('/apps/gramps/researcher-phone',self.phone.get_text())
-        self.client.set_string('/apps/gramps/researcher-email',self.email.get_text())
+        self.client.set_string('/apps/gramps/researcher-name',unicode(self.name.get_text()))
+        self.client.set_string('/apps/gramps/researcher-addr',unicode(self.addr.get_text()))
+        self.client.set_string('/apps/gramps/researcher-city',unicode(self.city.get_text()))
+        self.client.set_string('/apps/gramps/researcher-state',unicode(self.state.get_text()))
+        self.client.set_string('/apps/gramps/researcher-postal',unicode(self.postal.get_text()))
+        self.client.set_string('/apps/gramps/researcher-country',unicode(self.country.get_text()))
+        self.client.set_string('/apps/gramps/researcher-phone',unicode(self.phone.get_text()))
+        self.client.set_string('/apps/gramps/researcher-email',unicode(self.email.get_text()))
 
         if self.date1.get_active():
             self.client.set_int("/apps/gramps/dateEntry",0)

@@ -135,11 +135,11 @@ class ImageSelect:
 
     def on_name_changed(self, obj):
         """The filename has changed.  Verify it and load the picture."""
-        filename = self.fname.get_text()
+        filename = unicode(self.fname.get_text())
 
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
-        old_title  = self.description.get_text()
+        old_title  = unicode(self.description.get_text())
 
         if old_title == "" or old_title == self.temp_name:
             self.description.set_text(root)
@@ -161,7 +161,7 @@ class ImageSelect:
         filename = self.photosel.get_full_path(0)
         _last_path = os.path.dirname(filename)
         
-        description = self.description.get_text()
+        description = unicode(self.description.get_text())
 
         if os.path.exists(filename) == 0:
             msgstr = _("Cannot import %s")
@@ -985,7 +985,7 @@ class GlobalMediaProperties:
     def on_apply_clicked(self, obj):
         t = self.notes.get_buffer()
         text = t.get_text(t.get_start_iter(),t.get_end_iter(),gtk.FALSE)
-        desc = self.descr_window.get_text()
+        desc = unicode(self.descr_window.get_text())
         note = self.object.getNote()
         format = self.preform.get_active()
         if text != note or desc != self.object.getDescription():

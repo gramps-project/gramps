@@ -222,13 +222,13 @@ class SelectChild:
                 
         self.family.addChild(select_child)
 		
-        mrel = const.childRelations[self.mrel.get_text()]
+        mrel = const.childRelations[unicode(self.mrel.get_text())]
         mother = self.family.getMother()
         if mother and mother.getGender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
-        frel = const.childRelations[self.frel.get_text()]
+        frel = const.childRelations[unicode(self.frel.get_text())]
         father = self.family.getFather()
         if father and father.getGender() !=RelLib. Person.male:
             if frel == "Birth":
@@ -352,13 +352,13 @@ class EditRel:
         self.top.destroy()
 
     def on_ok_clicked(self,obj):
-        mrel = const.childRelations[self.mentry.get_text()]
+        mrel = const.childRelations[unicode(self.mentry.get_text())]
         mother = self.family.getMother()
         if mother and mother.getGender() != RelLib.Person.female:
             if mrel == "Birth":
                 mrel = "Unknown"
                 
-        frel = const.childRelations[self.fentry.get_text()]
+        frel = const.childRelations[unicode(self.fentry.get_text())]
         father = self.family.getFather()
         if father and father.getGender() !=RelLib. Person.male:
             if frel == "Birth":

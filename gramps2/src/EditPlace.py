@@ -282,7 +282,7 @@ class EditPlace:
             gnome.url.show(text)
 
     def set(self,field,getf,setf):
-        text = field.get_text()
+        text = unicode(field.get_text())
         if text != getf():
             setf(text)
             Utils.modified()

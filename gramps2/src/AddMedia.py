@@ -105,7 +105,7 @@ class AddMediaObject:
         A new media object is created, and added to the database.
         """
         filename = self.glade.get_widget("photosel").get_full_path(0)
-        description = self.description.get_text()
+        description = unicode(self.description.get_text())
         external = self.glade.get_widget("private")
         
         if os.path.exists(filename) == 0:
@@ -142,10 +142,10 @@ class AddMediaObject:
         see if the file exists. If it does, the imgae is loaded into
         the preview window.
         """
-        filename = self.file_text.get_text()
+        filename = unicode(self.file_text.get_text())
         basename = os.path.basename(filename)
         (root,ext) = os.path.splitext(basename)
-        old_title  = self.description.get_text()
+        old_title  = unicode(self.description.get_text())
 
         if old_title == '' or old_title == self.temp_name:
             self.description.set_text(root)

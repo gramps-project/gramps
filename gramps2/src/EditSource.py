@@ -234,10 +234,10 @@ class EditSource:
 
     def on_source_apply_clicked(self):
 
-        title = self.title.get_text()
-        author = self.author.get_text()
-        pubinfo = self.pubinfo.get_text()
-        abbrev = self.abbrev.get_text()
+        title = unicode(self.title.get_text())
+        author = unicode(self.author.get_text())
+        pubinfo = unicode(self.pubinfo.get_text())
+        abbrev = unicode(self.abbrev.get_text())
         note = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
         format = self.preform.get_active()

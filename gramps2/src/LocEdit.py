@@ -92,13 +92,13 @@ class LocationEditor:
     def on_location_edit_ok_clicked(self):
         self.location = self.location
 
-        city = self.city.get_text()
-        county = self.county.get_text()
-        country = self.country.get_text()
-        state = self.state.get_text()
-        phone = self.phone.get_text()
-        postal = self.postal.get_text()
-        parish = self.parish.get_text()
+        city = unicode(self.city.get_text())
+        county = unicode(self.county.get_text())
+        country = unicode(self.country.get_text())
+        state = unicode(self.state.get_text())
+        phone = unicode(self.phone.get_text())
+        postal = unicode(self.postal.get_text())
+        parish = unicode(self.parish.get_text())
         
         if self.location == None:
             self.location = RelLib.Location()

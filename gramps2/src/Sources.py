@@ -355,7 +355,7 @@ class SourceEditor:
         if self.active_source != self.source_ref.getBase():
             self.source_ref.setBase(self.active_source)
         
-        date = self.get_widget("sdate").get_text()
+        date = unicode(self.get_widget("sdate").get_text())
         conf = self.get_widget("conf").get_menu().get_active().get_data('a')
 
         buffer = self.get_widget("scomment").get_buffer()

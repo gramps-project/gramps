@@ -423,7 +423,7 @@ class Marriage:
 
     def did_data_change(self):
         changed = 0
-        relation = self.type_field.entry.get_text()
+        relation = unicode(self.type_field.entry.get_text())
         if const.save_frel(relation) != self.family.getRelationship():
             changed = 1
 
@@ -442,12 +442,12 @@ class Marriage:
         if self.lists_changed:
             changed = 1
 
-        idval = self.gid.get_text()
+        idval = unicode(self.gid.get_text())
         if self.family.getId() != idval:
             changed = 1
 
-        date = self.lds_date.get_text()
-        temple = self.lds_temple.entry.get_text()
+        date = unicode(self.lds_date.get_text())
+        temple = unicode(self.lds_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -493,7 +493,7 @@ class Marriage:
         self.save()
         
     def save(self):
-        idval = self.gid.get_text()
+        idval = unicode(self.gid.get_text())
         family = self.family
         if idval != family.getId():
             m = self.db.getFamilyMap() 
@@ -508,7 +508,7 @@ class Marriage:
                               _('The GRAMPS ID that you chose for this '
                                 'relationship is already being used.'))
 
-        relation = self.type_field.entry.get_text()
+        relation = unicode(self.type_field.entry.get_text())
         father = self.family.getFather()
         mother = self.family.getMother()
         if father and mother:
@@ -541,8 +541,8 @@ class Marriage:
             self.family.setComplete(self.complete.get_active())
             Utils.modified()
 
-        date = self.lds_date.get_text()
-        temple = self.lds_temple.entry.get_text()
+        date = unicode(self.lds_date.get_text())
+        temple = unicode(self.lds_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -706,8 +706,8 @@ class Marriage:
         else:
             Utils.unbold_label(self.notes_label)
 
-        date = self.lds_date.get_text()
-        temple = self.lds_temple.entry.get_text()
+        date = unicode(self.lds_date.get_text())
+        temple = unicode(self.lds_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
             temple = const.lds_temple_codes[temple]
         else:
@@ -721,9 +721,7 @@ class Marriage:
 
     def get_place(self,makenew=0):
         field = self.lds_place.entry
-        text = string.strip(field.get_text())
-        if type(text) != type(u' '):
-            text = unicode(text)
+        text = unicode(string.strip(field.get_text()))
         if text:
             if self.pmap.has_key(text):
                 return self.db.getPlaceMap()[self.pmap[text]]

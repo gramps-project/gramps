@@ -521,7 +521,7 @@ class EditPerson:
         if not self.should_guess_gender:
             return
 
-        gender = self.db.genderStats.guess_gender (entry.get_text ())
+        gender = self.db.genderStats.guess_gender(unicode(entry.get_text ()))
         if gender == RelLib.Person.unknown:
             self.is_unknown.set_active (1)
         elif gender == RelLib.Person.male:
@@ -821,13 +821,9 @@ class EditPerson:
 
         # Remember old combo list input
 
-        bplace_text = self.bplace.get_text()
-        if type(bplace_text) == type(u''):
-            bplace_text = unicode(bplace_text)
+        bplace_text = unicode(self.bplace.get_text())
 
-        dplace_text = self.dplace.get_text()
-        if type(dplace_text) == type(u''):
-            dplace_text = unicode(dplace_text)
+        dplace_text = unicode(self.dplace.get_text())
             
         prev_btext = Utils.strip_id(bplace_text)
         prev_dtext = Utils.strip_id(dplace_text)
@@ -896,10 +892,8 @@ class EditPerson:
         self.update_birth = 1
         pname = self.person.getPrimaryName().getName()
         event = self.birth
-        event.setDate(self.bdate.get_text())
-        def_placename = self.bplace.get_text()
-        if type(def_placename) == type(u''):
-            def_placename = unicode(def_placename)
+        event.setDate(unicode(self.bdate.get_text()))
+        def_placename = unicode(self.bplace.get_text())
 
         p = self.get_place(self.bplace)
         if p:
@@ -916,10 +910,8 @@ class EditPerson:
         self.update_death = 1
         pname = self.person.getPrimaryName().getName()
         event = self.death
-        event.setDate(self.ddate.get_text())
-        def_placename = self.dplace.get_text()
-        if type(def_placename) == type(u''):
-            def_placename = unicode(def_placename)
+        event.setDate(unicode(self.ddate.get_text()))
+        def_placename = unicode(self.dplace.get_text())
 
         p = self.get_place(self.dplace)
         if p:
@@ -1009,22 +1001,22 @@ class EditPerson:
         original record"""
 
         surname = unicode(self.surname_field.get_text())
-        self.birth.setDate(self.bdate.get_text())
-        self.death.setDate(self.ddate.get_text())
+        self.birth.setDate(unicode(self.bdate.get_text()))
+        self.death.setDate(unicode(self.ddate.get_text()))
 
-        ntype = self.ntype_field.entry.get_text()
-        suffix = self.suffix.get_text()
-        prefix = self.prefix.get_text()
-        given = self.given.get_text()
-        nick = self.nick.get_text()
-        title = self.title.get_text()
+        ntype = unicode(self.ntype_field.entry.get_text())
+        suffix = unicode(self.suffix.get_text())
+        prefix = unicode(self.prefix.get_text())
+        given = unicode(self.given.get_text())
+        nick = unicode(self.nick.get_text())
+        title = unicode(self.title.get_text())
         male = self.is_male.get_active()
         female = self.is_female.get_active()
         unknown = self.is_unknown.get_active()
         text = self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                           self.notes_buffer.get_end_iter(),gtk.FALSE)
         format = self.preform.get_active()
-        idval = self.gid.get_text()
+        idval = unicode(self.gid.get_text())
 
         changed = 0
         name = self.person.getPrimaryName()
@@ -1100,24 +1092,24 @@ class EditPerson:
         return changed
 
     def check_lds(self):
-        self.lds_baptism.setDate(self.ldsbap_date.get_text())
-        temple = self.ldsbap_temple.entry.get_text()
+        self.lds_baptism.setDate(unicode(self.ldsbap_date.get_text()))
+        temple = unicode(self.ldsbap_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
             self.lds_baptism.setTemple(const.lds_temple_codes[temple])
         else:
             self.lds_baptism.setTemple("")
         self.lds_baptism.setPlace(self.get_place(self.ldsbapplace,1))
 
-        self.lds_endowment.setDate(self.ldsend_date.get_text())
-        temple = self.ldsend_temple.entry.get_text()
+        self.lds_endowment.setDate(unicode(self.ldsend_date.get_text()))
+        temple = unicode(self.ldsend_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
             self.lds_endowment.setTemple(const.lds_temple_codes[temple])
         else:
             self.lds_endowment.setTemple("")
         self.lds_endowment.setPlace(self.get_place(self.ldsendowplace,1))
 
-        self.lds_sealing.setDate(self.ldsseal_date.get_text())
-        temple = self.ldsseal_temple.entry.get_text()
+        self.lds_sealing.setDate(unicode(self.ldsseal_date.get_text()))
+        temple = unicode(self.ldsseal_temple.entry.get_text())
         if const.lds_temple_codes.has_key(temple):
             self.lds_sealing.setTemple(const.lds_temple_codes[temple])
         else:
@@ -1360,18 +1352,18 @@ class EditPerson:
             Utils.modified()
 
     def on_apply_person_clicked(self,obj):
-        surname = self.surname_field.get_text()
-        suffix = self.suffix.get_text()
-        prefix = self.prefix.get_text()
-        ntype = self.ntype_field.entry.get_text()
-        given = self.given.get_text()
-        nick = self.nick.get_text()
-        title = self.title.get_text()
-        idval = self.gid.get_text()
+        surname = unicode(self.surname_field.get_text())
+        suffix = unicode(self.suffix.get_text())
+        prefix = unicode(self.prefix.get_text())
+        ntype = unicode(self.ntype_field.entry.get_text())
+        given = unicode(self.given.get_text())
+        nick = unicode(self.nick.get_text())
+        title = unicode(self.title.get_text())
+        idval = unicode(self.gid.get_text())
 
         name = self.pname
 
-        self.birth.setDate(self.bdate.get_text())
+        self.birth.setDate(unicode(self.bdate.get_text()))
         self.birth.setPlace(self.get_place(self.bplace,1))
 
         if idval != self.person.getId():
@@ -1444,7 +1436,7 @@ class EditPerson:
             new_order = reorder_child_list(self.person,family.getChildList())
             family.setChildList(new_order)
     
-        self.death.setDate(self.ddate.get_text())
+        self.death.setDate(unicode(self.ddate.get_text()))
         self.death.setPlace(self.get_place(self.dplace,1))
 
         if not self.person.getDeath().are_equal(self.death):
@@ -1544,9 +1536,7 @@ class EditPerson:
         self.window.destroy()
 
     def get_place(self,field,makenew=0):
-        text = string.strip(field.get_text())
-        if type(text) != type(u' '):
-            text = unicode(text)
+        text = unicode(string.strip(field.get_text()))
         if text:
             if self.pdmap.has_key(text):
                 return self.db.getPlaceMap()[self.pdmap[text]]

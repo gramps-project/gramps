@@ -212,13 +212,13 @@ class EventEditor:
 
     def on_menu_changed(self,obj):
         cobj = obj.get_data("d")
-        self.date.set(self.date_field.get_text())
+        self.date.set(unicode(self.date_field.get_text()))
         self.date.set_calendar(cobj)
         self.date_field.set_text(self.date.getDate())
         self.date_check.set_calendar(cobj())
         
     def get_place(self,field,makenew=0):
-        text = strip(field.get_text())
+        text = unicode(strip(field.get_text()))
         if text:
             if self.pmap.has_key(text):
                 return self.parent.db.getPlaceMap()[self.pmap[text]]
@@ -237,15 +237,15 @@ class EventEditor:
 
     def on_event_edit_ok_clicked(self):
 
-        ename = self.name_field.get_text()
-        self.date.set(self.date_field.get_text())
-        ecause = self.cause_field.get_text()
+        ename = unicode(self.name_field.get_text())
+        self.date.set(unicode(self.date_field.get_text()))
+        ecause = unicode(self.cause_field.get_text())
         eplace_obj = self.get_place(self.place_field,1)
         buf = self.note_field.get_buffer()
 
         enote = buf.get_text(buf.get_start_iter(),buf.get_end_iter(),gtk.FALSE)
         eformat = self.preform.get_active()
-        edesc = self.descr_field.get_text()
+        edesc = unicode(self.descr_field.get_text())
         epriv = self.priv.get_active()
 
         if not ename in self.elist:
