@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2004  Donald N. Allingham
+# Copyright (C) 2000-2005  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -35,7 +35,6 @@ importers, exporters, and document generators.
 #-------------------------------------------------------------------------
 import os
 import sys
-import string
 import re
 from gettext import gettext as _
 
@@ -99,7 +98,7 @@ def load_plugins(direct):
     
     # if the directory does not exist, do nothing
     if not os.path.isdir(direct):
-        return
+        return True
 
     # if the path has not already been loaded, save it in the loaddir_list
     # list for use on reloading
@@ -146,7 +145,7 @@ def reload_plugins(obj=None,junk1=None,junk2=None,junk3=None):
     """Treated as a callback, causes all plugins to get reloaded. This is
     useful when writing and debugging a plugin"""
     
-    pymod = compile(r"^(.*)\.py$")
+    pymod = re.compile(r"^(.*)\.py$")
 
     global _success_list,attempt_list,loaddir_list,failmsg_list
 

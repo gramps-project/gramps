@@ -29,6 +29,8 @@
 	* src/data/gramps.schemas: Correct the default and the 
 	description of the toolbar key.
 
+	* src/PluginMgr.py: Minor fixes.
+
 2005-01-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps.glade: removal of more OptionMenus in favor
 	of ComboBoxes
