@@ -145,6 +145,7 @@ class TimeLine:
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
+        g.set_width(self.d.get_usable_width())
         self.d.add_draw_style("TLG-title",g)
 
         g = BaseDoc.GraphicsStyle()
@@ -249,11 +250,7 @@ class TimeLine:
         normal_font = self.d.style_list['TLG-Name'].get_font()
         label_font = self.d.style_list['TLG-Label'].get_font()
 
-        tstr_width = pt2cm(FontScale.string_width(title_font,self.title))
-
-        title_x = (width - tstr_width )/2.0
-        title_y = 0
-        self.d.draw_text('TLG-title',self.title,title_x,title_y)
+        self.d.center_text('TLG-title',self.title,width/2.0,0)
         
         label_y = self.header - (pt2cm(normal_font.get_size())*1.2)
         top_y = self.header
@@ -264,12 +261,9 @@ class TimeLine:
 
         for val in range(0,6):
             year_str = str(year_low + (incr*val))
-            year_width = pt2cm(FontScale.string_width(label_font,year_str))/2.0
 
             xpos = start_pos+(val*delta)
-            label_xpos = start_pos+(val*delta) - year_width
-            
-            self.d.draw_text('TLG-label', year_str, label_xpos, label_y)
+            self.d.center_text('TLG-label', year_str, xpos, label_y)
             self.d.draw_line('TLG-grid', xpos, top_y, xpos, bottom_y)
 
     def find_year_range(self):
@@ -333,6 +327,7 @@ def _make_default_style(default_style):
     f.set_type_face(BaseDoc.FONT_SANS_SERIF)
     p = BaseDoc.ParagraphStyle()
     p.set_font(f)
+    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     p.set_description(_("The style used for the year labels."))
     default_style.add_style("TLG-Label",p)
 
@@ -341,6 +336,7 @@ def _make_default_style(default_style):
     f.set_type_face(BaseDoc.FONT_SANS_SERIF)
     p = BaseDoc.ParagraphStyle()
     p.set_font(f)
+    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     p.set_description(_("The style used for the title of the page."))
     default_style.add_style("TLG-Title",p)
 
@@ -437,6 +433,7 @@ class TimeLineDialog(Report.DrawReportDialog):
         self.add_option(_('Sort by'),self.sort_style)
 
         self.title_box = gtk.Entry()
+        self.title_box.set_text(self.get_header(self.person.getPrimaryName().getName()))
         self.title_box.show()
         self.add_option(_('Title'),self.title_box)
         

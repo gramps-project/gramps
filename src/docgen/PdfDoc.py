@@ -29,15 +29,16 @@ import BaseDoc
 import Plugins
 import Errors
 import ImgManip
+import FontScale
 from gettext import gettext as _
 
-_H = 'Helvetica'
-_HB = 'Helvetica-Bold'
-_HO = 'Helvetica-Oblique'
+_H   = 'Helvetica'
+_HB  = 'Helvetica-Bold'
+_HO  = 'Helvetica-Oblique'
 _HBO = 'Helvetica-BoldOblique'
-_T = 'Times-Roman'
-_TB = 'Times-Bold'
-_TI = 'Times-Italic'
+_T   = 'Times-Roman'
+_TB  = 'Times-Bold'
+_TI  = 'Times-Italic'
 _TBI = 'Times-BoldItalic'
 
 #------------------------------------------------------------------------
@@ -449,8 +450,13 @@ class PdfDoc(BaseDoc.BaseDoc):
         sc = make_color(font.get_color())
         fc = make_color(font.get_color())
         fnt = self.pdf_set_font(font)
-        s = reportlab.graphics.shapes.String(x*cm,
-                                             y,
+        if p.get_alignment() == BaseDoc.PARA_ALIGN_CENTER:
+            twidth = ((FontScale.string_width(font,str(text)))/2.0)*cm
+            xcm = (stype.get_width() - x) - twidth
+        else:
+            xcm = x * cm
+        s = reportlab.graphics.shapes.String(xcm,
+                                             y-size,
                                              str(text),
                                              strokeColor=sc,
                                              fillColor=fc,

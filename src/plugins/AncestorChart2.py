@@ -29,6 +29,8 @@ import os
 import string
 import math
 
+import gtk
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -56,6 +58,14 @@ def log2(val):
 #------------------------------------------------------------------------
 def pt2cm(pt):
     return (float(pt)/72.0)*(254.0/100.0)
+
+#------------------------------------------------------------------------
+#
+# cm2pt - convert centimeters to points
+#
+#------------------------------------------------------------------------
+def cm2pt(cm):
+    return (float(cm)/2.54)*72
 
 #------------------------------------------------------------------------
 #
@@ -95,7 +105,7 @@ class GenChart :
             x = 0
             y = self.size/2
         
-        if self.compress:
+        if len(self.compress_map) > 0:
             return (x,self.compress_map[y])
         else:
             return (x,y)
@@ -149,8 +159,10 @@ class GenChart :
 #------------------------------------------------------------------------
 class AncestorChart:
 
-    def __init__(self,database,person,max,display,doc,output,newpage=0):
+    def __init__(self,database,person,max,display,doc,output,scale,compress,
+                 title,newpage=0):
         self.doc = doc
+        self.title = title.strip()
         self.doc.creator(database.getResearcher().getName())
         self.map = {}
         self.text = {}
@@ -158,16 +170,17 @@ class AncestorChart:
         self.max_generations = max
         self.output = output
 	self.box_width = 0
-	self.height = 0
+	self.box_height = 0
         self.lines = 0
         self.display = display
         self.newpage = newpage
+        self.force_fit = scale
+        self.compress_chart = compress
         if output:
-            self.standalone = 1
             self.doc.open(output)
-        else:
-            self.standalone = 0
+        self.standalone = output
         self.font = self.doc.style_list["AC-Normal"].get_font()
+        self.tfont = self.doc.style_list["AC-Title"].get_font()
 
         self.filter(self.start,1)
 
@@ -202,7 +215,7 @@ class AncestorChart:
 	self.lines = max(self.lines,len(self.text[index]))    
 
         family = person.getMainParents()
-        if family != None:
+        if family:
             self.filter(family.getFather(),index*2)
             self.filter(family.getMother(),(index*2)+1)
 
@@ -214,17 +227,21 @@ class AncestorChart:
         generation = 1
         done = 0
         page = 1
-        while done == 0:
-            done = 1
-            start = 2**(generation-1)
-            for index in range(start, (start*2)):
-                values = []
-                self.get_numbers(index,1,values)
-                if len(values) > 1 or generation == 1:
-                    done = 0
-                    self.print_page(index, generation, page)
-                    page = page + 1
-            generation = generation + 3
+        if self.force_fit:
+            self.print_page(1,1,1)
+        else:
+            while not done:
+                done = 1
+                start = 2**(generation-1)
+                for index in range(start, (start*2)):
+                    values = []
+                    self.get_numbers(index,1,values)
+                    if len(values) > 1 or generation == 1:
+                        done = 0
+                        self.print_page(index, generation, page)
+                        page = page + 1
+                generation = generation + self.generations_per_page
+             
         if self.standalone:
             self.doc.close()
             
@@ -235,31 +252,36 @@ class AncestorChart:
         the elements on a page.
         """
 
-        self.genchart.compress()
+        if self.compress_chart:
+            self.genchart.compress()
 
-        self.box_pad_pts = 5
-        uh = self.doc.get_usable_height()
-        uw = self.doc.get_usable_width() - pt2cm(2*self.box_pad_pts)
+        self.box_pad_pts = 10
+        if self.title:
+            self.offset = pt2cm(1.25* self.tfont.get_size())
+        else:
+            self.offset = 0
+        uh = self.doc.get_usable_height() - self.offset
+        uw = self.doc.get_usable_width()-pt2cm(self.box_pad_pts)
 
+	calc_width = pt2cm(self.box_width + self.box_pad_pts) + 0.2 
 	self.box_width = pt2cm(self.box_width)
-	self.height = self.lines*pt2cm(1.25*self.font.get_size())
+	self.box_height = self.lines*pt2cm(1.25*self.font.get_size())
 
-        force_fit = 1
         self.scale = 1
         
-        if force_fit:
+        if self.force_fit:
             (maxy,maxx) = self.genchart.dimensions()
 
-            bw = (self.box_width+pt2cm(10))/(uw/maxx)
-            bh = self.height/(uh/maxy)
+            bw = calc_width/(uw/maxx)
+            bh = self.box_height/(uh/maxy)
             
             self.scale = max(bw,bh)
             self.box_width = self.box_width/self.scale
-            self.height = self.height/self.scale
-            self.box_pad_pts = 5/self.scale
+            self.box_height = self.box_height/self.scale
+            self.box_pad_pts = self.box_pad_pts/self.scale
 
-        maxh = int(uh/self.height)
-        maxw = int(uw/self.box_width) 
+        maxh = int(uh/self.box_height)
+        maxw = int(uw/calc_width) 
 
         if log2(maxh) < maxw:
             self.generations_per_page = int(log2(maxh))
@@ -269,30 +291,27 @@ class AncestorChart:
 
         # build array of x indices
 
-        xstart = pt2cm(2)
-        ystart = -self.height/2.0
-        self.delta = pt2cm(10) + self.box_width
+        xstart = 0
+        ystart = self.offset-self.box_height/2.0
+        self.delta = pt2cm(self.box_pad_pts) + self.box_width + 0.2
         
-        self.x = [ xstart ]
-        self.y = [ ystart + uh/2.0 ]
-
         self.font.set_size(self.font.get_size()/self.scale)
         
-        for val in range(1,self.generations_per_page):
-            xstart += self.delta
-            self.x.append(xstart)
-
-            div = 2**(val+1)
-            for i in range(0,div/2):
-                self.y.append(ystart + (1+(i*2))*uh/div)
-        
         g = BaseDoc.GraphicsStyle()
-        g.set_height(self.height)
+        g.set_height(self.box_height)
         g.set_width(self.box_width)
         g.set_paragraph_style("AC-Normal")
         g.set_shadow(1,0.2/self.scale)
         g.set_fill_color((255,255,255))
         self.doc.add_draw_style("box",g)
+
+        g = BaseDoc.GraphicsStyle()
+        g.set_paragraph_style("AC-Title")
+        g.set_color((255,255,255))
+        g.set_fill_color((255,255,255))
+        g.set_line_width(0)
+        g.set_width(self.doc.get_usable_width())
+        self.doc.add_draw_style("title",g)
 
         g = BaseDoc.GraphicsStyle()
         self.doc.add_draw_style("line",g)
@@ -308,53 +327,33 @@ class AncestorChart:
         self.get_numbers((start*2)+1,index+1,vals)
 
     def print_page(self,start,generation, page):
+            
         (maxy,maxx) = self.genchart.dimensions()
         self.doc.start_page()
+        if self.title:
+            self.doc.center_text('title',self.title,self.doc.get_usable_width()/2,0)
         for y in range(0,maxy):
             for x in range(0,maxx):
                 value = self.genchart.get_xy(x,y)
                 if value:
                     (person,index) = value
                     text = string.join(self.text[index],"\n")
-                    self.doc.draw_box("box",text,x*self.delta,y*self.height)
+                    self.doc.draw_box("box",text,x*self.delta,y*self.box_height+self.offset)
                     if index > 1:
                         parent = int(index>>1)
                         (px,py) = self.genchart.index_to_xy(parent)
                         x1 = px*self.delta+(0.5 * self.delta)
                         x2 = x*self.delta
+                        y2 = self.box_height * y + 0.5*self.box_height + self.offset
                         if py > y:
-                            y2 = y  * self.height + 0.5*self.height
-                            y1 = py * self.height + 0.5*self.height
+                            y1 = self.box_height * py + self.offset
                         else:
-                            y1 = (py+1) * self.height
-                            y2 = y  * self.height + 0.5*self.height
+                            y1 = self.box_height * (py+1) + self.offset
                         self.doc.draw_line("line",x1,y1,x1,y2)
                         self.doc.draw_line("line",x1,y2,x2,y2)
                     
         self.doc.end_page()
 
-    def draw_graph(self,index,start,level):
-        if self.map.has_key(start) and index < 2**self.generations_per_page:
-	    text = self.text[start]
-
-	    name = string.join(text,"\n")
-            self.doc.draw_box("box",name,self.x[level],self.y[index-1])
-
-            if index > 1:
-                old_index = int(index/2)-1
-                x2 = self.x[level]
-                x1 = self.x[level-1]+(self.box_width*0.75)
-                if index % 2 == 1:
-                    y1 = self.y[old_index]+self.height
-                else:
-                    y1 = self.y[old_index]
-                    
-                y2 = self.y[index-1]+(self.height/2.0)
-                self.doc.draw_line("line",x1,y1,x1,y2)
-                self.doc.draw_line("line",x1,y2,x2,y2)
-            self.draw_graph(index*2,start*2,level+1)
-            self.draw_graph((index*2)+1,(start*2)+1,level+1)
-        
 #------------------------------------------------------------------------
 #
 # 
@@ -370,6 +369,15 @@ def _make_default_style(default_style):
     p.set_description(_('The basic style used for the text display.'))
     default_style.add_style("AC-Normal",p)
 
+    f = BaseDoc.FontStyle()
+    f.set_size(16)
+    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    p = BaseDoc.ParagraphStyle()
+    p.set_font(f)
+    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+    p.set_description(_('The basic style used for the title display.'))
+    default_style.add_style("AC-Title",p)
+
 #------------------------------------------------------------------------
 #
 # AncestorChartDialog
@@ -381,6 +389,20 @@ class AncestorChartDialog(Report.DrawReportDialog):
     
     def __init__(self,database,person):
         Report.DrawReportDialog.__init__(self,database,person,self.report_options)
+
+    def add_user_options(self):
+        self.title=gtk.Entry()
+        self.title.set_text(self.get_header(self.person.getPrimaryName().getName()))
+        self.title.show()
+        self.add_option(_('Title'),self.title)
+        self.compress = gtk.CheckButton(_('Compress graph'))
+        self.compress.set_active(1)
+        self.compress.show()
+        self.add_option('',self.compress)
+        self.scale = gtk.CheckButton(_('Scale to fit on a single page'))
+        self.scale.set_active(1)
+        self.scale.show()
+        self.add_option('',self.scale)
 
     def get_title(self):
         """The window title for this dialog"""
@@ -418,7 +440,12 @@ class AncestorChartDialog(Report.DrawReportDialog):
 
         try:
             MyReport = AncestorChart(self.db, self.person, 
-                self.max_gen, self.report_text, self.doc,self.target_path)
+                                     self.max_gen, self.report_text,
+                                     self.doc,self.target_path,
+                                     self.scale.get_active(),
+                                     self.compress.get_active(),
+                                     self.title.get_text()
+                                     )
             MyReport.write_report()
         except Errors.ReportError, msg:
             (m1,m2) = msg.messages()

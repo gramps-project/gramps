@@ -876,7 +876,11 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 
         pstyle = self.style_list[para_name]
         font = pstyle.get_font()
-        sw = FontScale.string_width(font,text)*1.3
+        if box_style.get_width():
+            sw = box_style.get_width()
+        else:
+            sw = FontScale.string_width(font,text)*1.3
+
 
 	self.f.write('<draw:text-box draw:style-name="%s" ' % style)
 	self.f.write('draw:layer="layout" ')
@@ -946,15 +950,15 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
         pstyle = self.style_list[para_name]
         font = pstyle.get_font()
 
-        size = (FontScale.string_width(font,text)/72.0) * 2.54
+        size = 1.1*(FontScale.string_width(font,text)/72.0) * 2.54
 
 	self.f.write('<draw:text-box text:anchor-type="paragraph" ')
         self.f.write('draw:style-name="%s" ' % style)
 	self.f.write('draw:z-index="0" ')
-        self.f.write('svg:width="%.3fcm" ' % self.get_usable_width())
+        self.f.write('svg:width="%.3fcm" ' % size)
 	self.f.write('svg:height="%dpt" ' % (font.get_size()*1.1))
 
-	self.f.write('svg:x="0cm" ')
+	self.f.write('svg:x="%.3fcm" ' % (x-(size/2.0)))
         self.f.write('svg:y="%.3fcm">\n' % float(y))
 
 	if text != "":
