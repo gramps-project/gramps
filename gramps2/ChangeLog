@@ -2,6 +2,7 @@
 	* src/plugins/FilterEditor.py: support for selecting a person
 	from a list to get the GRAMPS ID value
 	* src/plugins/FilterEditor.py: handle Add/Edit of rules correctly
+	* src/rule.glade: eliminate unneeded label and increased size
 
 2003-08-10  Tim Waugh  <twaugh@redhat.com>
 	* configure.in: Use 0.CVS[date] for RELEASE.  '-' is not allowed in
