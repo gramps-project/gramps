@@ -122,8 +122,8 @@ class DateDisplayFR(DateDisplay):
 
     def display(self,date):
         """
-    Returns a text string representing the date.
-    """
+        Returns a text string representing the date.
+        """
         mod = date.get_modifier()
         cal = date.get_calendar()
         qual = date.get_quality()
