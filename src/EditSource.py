@@ -53,7 +53,15 @@ class EditSource:
         self.source = source
         self.db = db
         self.parent = parent
-        self.child_windows = []
+        if source:
+            if self.parent.child_windows.has_key(source.get_id()):
+                self.parent.child_windows[source.get_id()].present(None)
+                return
+            else:
+                self.win_key = source.get_id()
+        else:
+            self.win_key = self
+        self.child_windows = {}
         self.callback = func
         self.path = db.get_save_path()
         self.not_loaded = 1
@@ -122,14 +130,12 @@ class EditSource:
         self.display_references()
         if parent_window:
             self.top.set_transient_for(parent_window)
-        self.parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.top.show()
 
     def on_delete_event(self,obj,b):
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
 
     def on_help_clicked(self,obj):
         """Display the relevant portion of GRAMPS manual"""
@@ -139,15 +145,15 @@ class EditSource:
         self.gallery.close(self.gallery_ok)
         self.close_child_windows()
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
         self.top.destroy()
         
     def close_child_windows(self):
-        for child_window in self.child_windows:
+        for child_window in self.child_windows.values():
             child_window.close(None)
-        self.child_windows = []
+        self.child_windows = {}
 
     def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
         if not self.source:
             label = _("New Source")
         else:
@@ -166,6 +172,7 @@ class EditSource:
         self.menu.append(self.menu_item)
 
     def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
         self.menu_item.destroy()
         self.menu.destroy()
         self.parent_menu_item.destroy()

@@ -44,9 +44,17 @@ class NoteEditor:
     """Displays a simple text editor that allows a person to edit a note"""
     def __init__(self,data,parent,parent_window=None):
 
+        self.parent = parent
+        if data:
+            if self.parent.child_windows.has_key(data):
+                self.parent.child_windows[data].present(None)
+                return
+            else:
+                self.win_key = data
+        else:
+            self.win_key = self
         self.data = data
         self.parent_window = parent_window
-        self.parent = parent
         self.draw()
 
     def draw(self):
@@ -84,26 +92,25 @@ class NoteEditor:
         
         if self.parent_window:
             self.top.set_transient_for(self.parent_window)
-        self.parent.child_windows.append(self)
         self.add_itself_to_menu()
         self.top.show()
         
     def on_delete_event(self,obj,b):
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
 
     def close(self,obj):
         self.remove_itself_from_menu()
-        self.parent.child_windows.remove(self)
         self.top.destroy()
 
     def add_itself_to_menu(self):
+        self.parent.child_windows[self.win_key] = self
         self.parent_menu_item = gtk.MenuItem(_('Note'))
         self.parent_menu_item.connect("activate",self.present)
         self.parent_menu_item.show()
         self.parent.menu.append(self.parent_menu_item)
 
     def remove_itself_from_menu(self):
+        del self.parent.child_windows[self.win_key]
         self.parent_menu_item.destroy()
 
     def present(self,obj):
