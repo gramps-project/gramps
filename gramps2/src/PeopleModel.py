@@ -44,7 +44,6 @@ import pango
 #
 #-------------------------------------------------------------------------
 from RelLib import *
-import accent
 
 #-------------------------------------------------------------------------
 #
@@ -75,11 +74,11 @@ class PeopleModel(gtk.GenericTreeModel):
         self.top_visible = {}
         
         maps = self.db.get_people_view_maps()
-        if maps[1] != None and len(maps[1]) != 0:
-            self.top_path2iter = maps[1]
-            self.iter2path = maps[2]
-            self.path2iter = maps[3]
-            self.sname_sub = maps[4]
+        if maps[0] != None and len(maps[0]) != 0:
+            self.top_path2iter = maps[0]
+            self.iter2path = maps[1]
+            self.path2iter = maps[2]
+            self.sname_sub = maps[3]
         else:
             self.rebuild_data()
 
@@ -120,8 +119,7 @@ class PeopleModel(gtk.GenericTreeModel):
         self.db.set_people_view_maps(self.get_maps())
 
     def get_maps(self):
-        return (None,
-                self.top_path2iter,
+        return (self.top_path2iter,
                 self.iter2path,
                 self.path2iter,
                 self.sname_sub)
@@ -320,67 +318,6 @@ class PeopleModel(gtk.GenericTreeModel):
 
     def column_header_view(self,node):
         return self.top_visible.has_key(node)
-
-#     def add_person(self,person):
-#         pid = person.get_handle()
-#         need = 0
-#         surname = person.get_primary_name().get_surname()
-#         if self.sname_sub.has_key(surname):
-#             self.sname_sub[surname].append(pid)
-#         else:
-#             self.sname_sub[surname] = [pid]
-
-#             inscol = 0
-#             sval = 0
-#             name_list = self.db.get_surname_list()
-#             for name in name_list:
-#                 if self.sname_sub.has_key(name):
-#                     self.top_path2iter[sval] = name
-#                 if name == surname:
-#                     inscol = (sval,)
-#                     need = 1
-#                 sval += 1
-
-#         column = 0
-#         val = 0
-#         entries = self.sname_sub[surname]
-#         entries.sort(self.byname)
-#         for person_handle in entries:
-#             tpl = (surname,val)
-#             self.iter2path[person_handle] = tpl
-#             self.path2iter[tpl] = person_handle
-#             if person_handle == pid:
-#                 column = val
-#             val += 1
-
-#         col = self.top_path2iter.index(surname)
-#         mypath = (col[0],column)
-#         if need:
-#             self.row_inserted(inscol,self.get_iter(inscol))
-#         self.row_inserted(mypath,self.get_iter(mypath))
-
-#     def on_row_inserted(self,model,path,iter):
-#         pass
-
-#     def on_row_deleted(self,model,path):
-#         surname = self.top_path2iter[path[0]]
-#         pid = self.path2iter[(surname,path[1])]
-
-#         for idval in self.sname_sub[surname]:
-#             key = self.iter2path[idval]
-#             del self.iter2path[idval]
-#             del self.path2iter[key]
-#         self.sname_sub[surname].remove(pid)
-
-#         val = 0
-#         entries = self.sname_sub[surname]
-#         entries.sort(self.byname)
-#         for person_handle in entries:
-#             tpl = (surname,val)
-#             self.iter2path[person_handle] = tpl
-#             self.path2iter[tpl] = person_handle
-#             val += 1
-#         return 0
 
 _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 

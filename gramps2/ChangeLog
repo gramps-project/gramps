@@ -1,3 +1,16 @@
+2004-09-28  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/RelLib.py: Enhanced Name, adding patronymic name 
+	support and display and sorting formats
+	* src/EditPerson.py: Name editing changes for the Primary
+	name
+	* src/NameEdit.py: support for patronymic names
+	* src/gramps.glade: NameEditor and EditPerson changes for
+	enhanced name support
+
+2004-09-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/PeopleModel.py: remove unused map
+	* src/GrampsDbBase.py: remove unused map
+
 2004-09-27 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Bump up the version number.
 	* src/DateParser.py: Better compliance with the RFC-2822.

@@ -560,13 +560,12 @@ class GrampsDbBase:
         This allows faster display of the treeview.
         """
         if self.metadata:
-            return (self.metadata.get('tp_iter'),
-                    self.metadata.get('tp_path'),
+            return (self.metadata.get('tp_path'),
                     self.metadata.get('p_iter'),
                     self.metadata.get('p_path'),
                     self.metadata.get('sname'))
         else:
-            return (None,None,None,None,None)
+            return (None,None,None,None)
 
     def set_people_view_maps(self,maps):
         """
@@ -574,11 +573,10 @@ class GrampsDbBase:
         This allows faster display of the treeview.
         """
         if self.metadata:
-            self.metadata['tp_iter'] = maps[0]
-            self.metadata['tp_path'] = maps[1]
-            self.metadata['p_iter']  = maps[2]
-            self.metadata['p_path']  = maps[3]
-            self.metadata['sname']  = maps[4]
+            self.metadata['tp_path'] = maps[0]
+            self.metadata['p_iter']  = maps[1]
+            self.metadata['p_path']  = maps[2]
+            self.metadata['sname'] = maps[3]
 
     def get_number_of_people(self):
         """
@@ -970,8 +968,8 @@ class GrampsDbBase:
         return self.media_map.has_key(str(handle)) != None
 
     def _sortbyname(self,f,s):
-        n1 = self.person_map.get(str(f))[2].sname
-        n2 = self.person_map.get(str(s))[2].sname
+        n1 = self.person_map.get(str(f))[3].sname
+        n2 = self.person_map.get(str(s))[3].sname
         return locale.strcoll(n1,n2)
 
     def _sortbyplace(self,f,s):

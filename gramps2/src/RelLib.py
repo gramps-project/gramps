@@ -1821,6 +1821,10 @@ class Address(DataObj):
 class Name(DataObj):
     """Provides name information about a person. A person may have more
     that one name throughout his or her life."""
+
+    DEF  = 0  # locale default
+    LNFN = 1  # last name, first name
+    FNLN = 2  # first name, last name
     
     def __init__(self,source=None):
         """creates a new Name instance, copying from the source if provided"""
@@ -1833,7 +1837,11 @@ class Name(DataObj):
             self.title = source.title
             self.type = source.type
             self.prefix = source.prefix
+            self.patronymic = source.patronymic
             self.sname = source.sname
+            self.group_as = source.group_as
+            self.sort_as = source.sort_as
+            self.display_as = source.display_as
         else:
             self.first_name = ""
             self.surname = ""
@@ -1841,7 +1849,35 @@ class Name(DataObj):
             self.title = ""
             self.type = "Birth Name"
             self.prefix = ""
+            self.patronymic = ""
             self.sname = '@'
+            self.group_as = ""
+            self.sort_as = self.DEF
+            self.display_as = self.DEF
+
+    def get_group_as(self):
+        if self.group_as:
+            return self.group_as
+        else:
+            return self.surname
+
+    def set_group_as(self,name):
+        if name == self.surname:
+            self.group_as = ""
+        else:
+            self.group_as = name
+
+    def set_sort_as(self,value):
+        self.sort_as = value
+
+    def get_sort_as(self):
+        return self.sort_as 
+
+    def set_display_as(self,value):
+        self.display_as = value
+
+    def get_display_as(self):
+        return self.display_as
 
     def get_surname_prefix(self):
         return self.prefix
@@ -1859,9 +1895,7 @@ class Name(DataObj):
 
     def build_sort_name(self):
         if self.surname:
-            self.sname = "%-25s%-30s%s" % (self.surname.upper(),
-                                           self.first_name.upper(),
-                                           self.suffix.upper())
+            self.sname = "%-25s%-30s%s" % (self.surname,self.first_name,self.suffix)
         else:
             self.sname = "@"
 
