@@ -254,9 +254,12 @@ class ReportOptionsDialog(Report.TextReportDialog):
     def on_change_clicked(self,obj):
     	import SelectPerson
 	sel_person = SelectPerson.SelectPerson(self.db,'Select Person')
-	new_name = sel_person.run().getPrimaryName().getRegularName()
-	self.person_label.set_text( "<i>%s</i>" % new_name )
-        self.person_label.set_use_markup(gtk.TRUE)
+	new_person = sel_person.run()
+        if new_person:
+            new_name = new_person.getPrimaryName().getRegularName()
+	    if new_name:
+                self.person_label.set_text( "<i>%s</i>" % new_name )
+                self.person_label.set_use_markup(gtk.TRUE)
 
 #------------------------------------------------------------------------
 #
