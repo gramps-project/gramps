@@ -16,7 +16,7 @@
   </para>
 
   <para>To summarize, the use of the command line options provides 
-  non-interactive behavior, but does not get rid of graphical dsiplay
+  non-interactive behavior, but does not get rid of graphical display
   dependency. Take it or leave it! 
   </para>
 
@@ -33,7 +33,7 @@
           <listitem><para> The format of any file destined for import or export
           can be specified with the 
           	<command>-f</command> <replaceable>format</replaceable>
-          option. The format can be one of the followng:
+          option. The format can be one of the following:
           
           	<variablelist>
 
@@ -124,7 +124,7 @@
           <listitem><para> The action to perform on the imported data can be 
           specified with the 
           	<command>-a</command> <replaceable>action</replaceable>
-          option. This is done after all imports are succesfully completed. 
+          option. This is done after all imports are successfully completed. 
           Currently available actions are <term>summary</term> (same as 
           <menuchoice><guimenu>Reports</guimenu><guisubmenu>View</guisubmenu>
 	  <guimenuitem>Summary</guimenuitem></menuchoice>)
