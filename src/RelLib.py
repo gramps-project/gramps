@@ -35,7 +35,6 @@ import os
 import os.path
 import types
 from gettext import gettext as _
-import cPickle
 
 #-------------------------------------------------------------------------
 #

@@ -211,7 +211,8 @@ class XmlWriter:
         self.g.write('<!DOCTYPE database SYSTEM "gramps.dtd" []>\n')
         self.g.write("<database xmlns=\"http://gramps.sourceforge.net/database\">\n")
         self.g.write("  <header>\n")
-        self.g.write("    <created date=\"%s %s %s\"" % (date[2],string.upper(date[1]),date[4]))
+        self.g.write("    <created date=\"%s %s %s\"" % \
+                     (date[2],string.upper(date[1]),date[4]))
         self.g.write(" version=\"" + const.version + "\"")
         self.g.write(" people=\"%d\"" % person_len)
         self.g.write(" families=\"%d\"" % family_len)
@@ -498,7 +499,8 @@ class XmlWriter:
         if ord.get_status() != 0:
             self.g.write('%s<status val="%d"/>\n' % (sp2,ord.get_status()))
         if ord.get_family_handle():
-            self.g.write('%s<sealed_to ref="%s"/>\n' % (sp2,self.fix(ord.get_family_handle().get_gramps_id())))
+            self.g.write('%s<sealed_to ref="%s"/>\n' % \
+                         (sp2,self.fix(ord.get_family_handle().get_gramps_id())))
         if ord.get_note() != "":
             self.write_note("note",ord.get_note_object(),index+1)
         for s in ord.get_source_references():
@@ -657,9 +659,6 @@ class XmlWriter:
         zip = self.fix(loc.get_postal_code())
         phone = self.fix(loc.get_phone())
         
-        if not city and not state and not parish and not county and not country:
-            return
-    
         self.g.write('      <location')
         if city:
             self.g.write(' city="%s"' % city)

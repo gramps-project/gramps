@@ -427,14 +427,12 @@ class GrampsParser:
         return person
 
     def map_gid(self,id):
-        if self.idswap.get(id):
-            return self.idswap[id]
-        else:
+        if not self.idswap.get(id):
             if self.db.id_trans.get(str(id)):
                 self.idswap[id] = self.db.find_next_gramps_id()
             else:
                 self.idswap[id] = id
-            return self.idswap[id]
+        return self.idswap[id]
 
     def parse(self,file):
         self.trans = self.db.start_transaction()
@@ -590,7 +588,8 @@ class GrampsParser:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
 
-        self.person = self.find_person_by_gramps_id(self.map_gid(attrs['id']))
+        new_id = self.map_gid(attrs['id'])
+        self.person = self.find_person_by_gramps_id(new_id)
         
         if attrs.has_key("complete"):
             self.person.set_complete(int(attrs['complete']))

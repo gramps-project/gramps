@@ -109,7 +109,6 @@ class AddSpouse:
 
         self.relation_def = self.glade.get_widget("reldef")
         self.rel_combo = self.glade.get_widget("rel_combo")
-        self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouse_list")
         self.showall = self.glade.get_widget('showall')
 
@@ -126,7 +125,6 @@ class AddSpouse:
         self.ok = self.glade.get_widget('spouse_ok')
         self.ok.set_sensitive(0)
                      
-        self.rel_combo.set_popdown_strings(const.familyRelations)
         title = _("Choose Spouse/Partner of %s") % GrampsCfg.get_nameof()(person)
 
         Utils.set_titles(self.glade.get_widget('spouseDialog'),
@@ -143,7 +141,7 @@ class AddSpouse:
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-        self.relation_type.set_text(const.family_relations[const.FREL_MARRIED][0])
+        self.rel_combo.set_active(const.FAMILY_MARRIED)
         self.update_data()
         
     def add_columns(self,tree):
@@ -192,8 +190,8 @@ class AddSpouse:
         """
         import EditPerson
 
-        relation = const.save_frel(unicode(self.relation_type.get_text()))
-        if relation == "Partners":
+        relation = self.rel_combo.get_active()
+        if relation == const.FAMILY_CIVIL_UNION:
             if self.person.get_gender() == RelLib.Person.male:
                 gen = RelLib.Person.male
             else:
@@ -275,7 +273,7 @@ class AddSpouse:
             self.active_family.set_father_handle(spouse.get_handle())
             self.active_family.set_mother_handle(self.person.get_handle())
 
-        rtype = const.save_frel(unicode(self.relation_type.get_text()))
+        rtype = self.rel_combo.get_active()
         self.active_family.set_relationship(rtype)
         self.db.commit_family(self.active_family,trans)
         self.db.add_transaction(trans,_("Add Spouse"))
@@ -342,7 +340,7 @@ class AddSpouse:
         return 1
 
     def set_gender(self):
-        if self.rel_type.get_active() == const.FAMILY_CIVIL_UNION:
+        if self.rel_combo.get_active() == const.FAMILY_CIVIL_UNION:
             if self.gender == RelLib.Person.male:
                 self.sgender = RelLib.Person.female
             else:

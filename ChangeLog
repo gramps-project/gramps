@@ -1,3 +1,18 @@
+2004-08-03  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/WriteXML.py: always write the default location for a place
+	* src/EditPerson.py: don't for write of multimedia objects if 
+	not edited
+	* src/ImageSelect.py: don't for write of multimedia objects if 
+	not edited
+	* src/AutoComp.py: build ListStore for ComboBox and Entry
+	* src/AddSpouse.py: use ComboBox
+	* src/Marriage.py: use ComboBox
+	* src/gramps.glade: Switch from gtk.Combo to gtk.ComboBox and
+	gtk.ComboxEntry
+	* src/EventEdit.py: handle autocompletion
+	* src/RelLib.py: remove cPickle import
+	* src/GrampsDbBase.py: fix has_handle functions
+
 2004-08-01  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/WriteGedcom.py: move up from plugins directory
 	* src/ReadGedcom.py: move up from plugins directory

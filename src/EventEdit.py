@@ -121,7 +121,6 @@ class EventEditor:
         Utils.set_titles(self.window,title_label, etitle,
                          _('Event Editor'))
         
-        self.name_field  = self.top.get_widget("eventName")
         self.place_field = self.top.get_widget("eventPlace")
         self.cause_field = self.top.get_widget("eventCause")
         self.slist = self.top.get_widget("slist")
@@ -131,7 +130,7 @@ class EventEditor:
         self.cause_field  = self.top.get_widget("eventCause")
         self.descr_field = self.top.get_widget("event_description")
         self.note_field = self.top.get_widget("eventNote")
-        self.event_menu = self.top.get_widget("personalEvents")
+        self.event_menu = self.top.get_widget("personal_events")
         self.priv = self.top.get_widget("priv")
         self.calendar = self.top.get_widget("calendar")
         self.sources_label = self.top.get_widget("sourcesEvent")
@@ -162,11 +161,11 @@ class EventEditor:
                                            self.top.get_widget('edit_witness'),
                                            self.top.get_widget('del_witness'))
 
-        AutoComp.AutoCombo(self.event_menu,self.elist)
-        AutoComp.AutoEntry(self.place_field,self.pmap.keys())
+        AutoComp.fill_combo(self.event_menu,self.elist)
+        AutoComp.fill_entry(self.place_field,self.pmap.keys())
 
         if event != None:
-            self.name_field.set_text(transname)
+            self.event_menu.child.set_text(transname)
             if (def_placename):
                 self.place_field.set_text(def_placename)
             else:
@@ -194,7 +193,7 @@ class EventEditor:
                 Utils.bold_label(self.gallery_label)
         else:
             if def_event:
-                self.name_field.set_text(def_event)
+                self.event_menu.child.set_text(def_event)
             if def_placename:
                 self.place_field.set_text(def_placename)
         self.date_check = DateEdit(self.date_field,self.top.get_widget("date_stat"))
@@ -237,12 +236,12 @@ class EventEditor:
         self.window.show()
 
     def on_delete_event(self,obj,b):
-        self.gallery.close(0)
+        self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
 
-    def close(self,obj,ok=0):
-        self.gallery.close(ok)
+    def close(self,obj):
+        self.gallery.close()
         self.close_child_windows()
         self.remove_itself_from_menu()
         self.window.destroy()
@@ -305,7 +304,7 @@ class EventEditor:
 
         trans = self.db.start_transaction()
         
-        ename = unicode(self.name_field.get_text())
+        ename = unicode(self.event_menu.child.get_text())
         self.date.set(unicode(self.date_field.get_text()))
         ecause = unicode(self.cause_field.get_text())
         eplace_obj = self.get_place(self.place_field,trans)
@@ -333,7 +332,7 @@ class EventEditor:
         self.update_event(ename,self.date,eplace_obj,edesc,enote,eformat,
                           epriv,ecause,trans)
         self.db.add_transaction(trans,_("Edit Event"))
-        self.close(obj,1)
+        self.close(obj)
         self.parent.redraw_event_list()
         self.callback(self.event)
 
