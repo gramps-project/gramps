@@ -480,10 +480,8 @@ class FtmAncestorReport(Report.Report):
         self.doc.write_text(_('Notes for %(person)s:') % { 
         	'person' : person.getPrimaryName().getRegularName()} )
         self.doc.end_paragraph()
-        for line in note.split('\n'):
-            self.doc.start_paragraph('FTA-Details')
-            self.doc.write_text(line.strip())
-            self.doc.end_paragraph()
+        format = person.getNoteFormat()
+        self.doc.write_note(note,format,'FTA-Details')
         
     def print_more_about(self,person):
 

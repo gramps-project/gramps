@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 #------------------------------------------------------------------------
 #
 # standard python modules
@@ -170,10 +172,8 @@ class IndivComplete(Report.Report):
 
         self.d.start_row()
         self.d.start_cell('IDS-NormalCell',2)
-        for line in string.split(note,'\n'):
-            self.d.start_paragraph('IDS-Normal')
-            self.d.write_text(line)
-            self.d.end_paragraph()
+        format = person.getNoteFormat()
+        self.doc.write_note(note,format,'IDS-Normal')
         self.d.end_cell()
         self.d.end_row()
 
