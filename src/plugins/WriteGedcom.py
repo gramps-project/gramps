@@ -694,7 +694,7 @@ class GedcomWriter:
             family = self.db.getFamily(key)
             father_alive = mother_alive = 0
             self.writeln("0 @%s@ FAM" % self.fid(family.getId()))
-            self.prefn(family)
+            self.frefn(family)
             person = family.getFather()
             if person != None and self.plist.has_key(person.getId()):
                 self.writeln("1 HUSB @%s@" % self.pid(person.getId()))
