@@ -483,7 +483,11 @@ class XmlWriter:
 
     def write_id(self,label,person,index=1):
         if person:
-            self.g.write('%s<%s id="%s">\n' % ("  "*index,label,person.getId()))
+            self.g.write('%s<%s id="%s"' % ("  "*index,label,person.getId()))
+            comp = person.getComplete()
+            if comp:
+                self.g.write(' complete="1"')
+            self.g.write('>\n')
 
     def write_family_id(self,family,index=1):
         if family:

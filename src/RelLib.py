@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+# $Id$
+
 """The core library of the GRAMPS database"""
 
 __author__ = "Donald N. Allingham"
@@ -1035,11 +1037,18 @@ class Person(SourceNote):
         self.lds_bapt = None
         self.lds_endow = None
         self.lds_seal = None
+        self.complete = 0
 
         # We hold a reference to the GrampsDB so that we can maintain
         # its genderStats.  It doesn't get set here, but from
         # GenderStats.count_person.
         self.db = None
+
+    def setComplete(self,val):
+        self.complete = val
+
+    def getComplete(self):
+        return self.complete
 
     def getDisplayInfo(self):
         if self.gender == Person.male:
