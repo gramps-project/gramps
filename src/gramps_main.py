@@ -768,6 +768,11 @@ def read_file(filename):
         statusbar.set_status("")
         Config.save_last_file("")
 
+    for person in database.getPersonMap().values():
+        lastname = person.getPrimaryName().getSurname()
+        if lastname and lastname not in surnameList:
+            surnameList.append(lastname)
+            
     full_update()
     statusbar.set_progress(0.0)
 
@@ -1958,7 +1963,6 @@ def load_database(name):
     Config.save_last_file(name)
     Main.get_widget("filter").set_text("")
     active_person = database.getDefaultPerson()
-    update_display(1)
     return 1
 
 #-------------------------------------------------------------------------
@@ -1982,23 +1986,30 @@ def setup_bookmarks():
 def displayError(msg):
     topWindow.error(msg)
     statusbar.set_status("")
-    
+
 #-------------------------------------------------------------------------
 #
 #
 #
 #-------------------------------------------------------------------------
+
+import time
+
 def apply_filter():
 
+    t1 = time.time()
     people = database.getPersonMap().values()
 
     names = []
+    altnames = []
     for person in people:
         names.append((person.getPrimaryName(),person,0))
-        if Config.hide_altnames == 0:
-            for name in person.getAlternateNames():
-                names.append((name,person,1))
-        
+        for name in person.getAlternateNames():
+            altnames.append((name,person,1))
+
+    if Config.hide_altnames == 0:
+        names = names + altnames
+
     names.sort(sortFunc)
     
     person_list.freeze()
@@ -2007,29 +2018,30 @@ def apply_filter():
     color_clist = ListColors.ColorList(person_list,1)
 
     i=0
+
+    datacomp = DataFilter.compare
+    clistadd = color_clist.add_with_data
+    gname = utils.phonebook_from_name
+    
     for name_tuple in names:
         person = name_tuple[1]
         alt = name_tuple[2]
         name = name_tuple[0]
         
-        pname = utils.phonebook_from_name(name,alt)
-
-        lastname = name.getSurname()
-        if lastname and lastname not in surnameList:
-            surnameList.append(lastname)
-
-        if DataFilter.compare(person):
+        if datacomp(person):
             id2col[person] = i
             if person.getGender():
                 gender = const.male
             else:
                 gender = const.female
-            data = [pname,gender,birthday(person),deathday(person)]
-            color_clist.add_with_data(data,person)
+            clistadd([gname(name,alt),gender,person.getBirth().getQuoteDate(),\
+                      person.getDeath().getQuoteDate()],person)
         i = i + 1
-        
+
     person_list.thaw()
 
+    t2 = time.time()
+    print "apply",t2-t1
     if i > 0:
         goto_active_person()
 
