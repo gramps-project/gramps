@@ -4,7 +4,7 @@
 	* src/gramps_main.py: Support for save as.
 	* src/DbPrompter.py: Support for save as.
 
-	* src/WriteGrdb.py: Copy metadata.
+	* src/WriteGrdb.py: Copy metadata; Remove redundant str conversion.
 
 2005-01-29 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/GraphViz.py (GraphVizDialog.__init__):
