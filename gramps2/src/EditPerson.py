@@ -1099,6 +1099,8 @@ class EditPerson:
                                           self.notes_buffer.get_end_iter(),gtk.FALSE))
         format = self.preform.get_active()
         idval = unicode(self.gid.get_text())
+        if idval == "":
+            idval = None
 
         changed = 0
         name = self.person.get_primary_name()

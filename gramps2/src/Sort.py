@@ -27,6 +27,8 @@ and directly use class members. For this reason, care needs to be taken
 to make sure these remain in sync with the rest of the design.
 """
 
+import locale
+
 #-------------------------------------------------------------------------
 #
 # Imported Modules
@@ -92,11 +94,11 @@ class Sort:
             ffn = name1.get_first_name().upper()
             sfn = name2.get_first_name().upper()
             if ffn == sfn:
-                return cmp(name1.get_suffix().upper(), name2.get_suffix().upper())
+                return locale.strcoll(name1.get_suffix().upper(), name2.get_suffix().upper())
             else:
-                return cmp(ffn, sfn)
+                return locale.strcoll(ffn, sfn)
         else:
-            return cmp(fsn, ssn)
+            return locale.strcoll(fsn, ssn)
 
     def by_birthdate(self,first_id,second_id):
         """Sort routine for comparing two people by birth dates. If the birth dates

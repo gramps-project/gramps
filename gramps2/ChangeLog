@@ -1,3 +1,13 @@
+2004-08-26  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Sort.py: use locale.strcoll for sorting
+	* src/RelLib.py: don't use accent for sort name
+	* src/EditPerson.py: compare edited ID value properly
+	* src/Marriage.py: compare edited ID value properly
+	* src/PeopleModel.py: use locale.strcoll for comparing
+	* src/GrampsBSDDB.py: use locale.strcoll for comparing/sorting
+	* src/GrampsDbBase.py: use locale.strcoll for comparing/sorting
+	* src/DbPrompter.py: handle bad filenames a bit better
+
 2004-08-25  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: update properly after an edit
 	* src/Utils.py: generate correct path name, using gramps id

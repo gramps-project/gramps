@@ -35,7 +35,6 @@ import os
 import os.path
 import time
 import types
-import accent
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -1848,7 +1847,9 @@ class Name(DataObj):
 
     def build_sort_name(self):
         if self.surname:
-            self.sname = accent.deaccent("%-25s%-30s%s" % (self.surname.upper(),self.first_name.upper(),self.suffix.upper()))
+            self.sname = "%-25s%-30s%s" % (self.surname.upper(),
+                                           self.first_name.upper(),
+                                           self.suffix.upper())
         else:
             self.sname = "@"
 

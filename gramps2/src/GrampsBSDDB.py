@@ -22,6 +22,7 @@
 
 import os
 import time
+import locale
 
 from RelLib import *
 from GrampsDbBase import *
@@ -158,7 +159,7 @@ class GrampsBSDDB(GrampsDbBase):
         for name in names:
             a[unicode(name)] = 1
         vals = a.keys()
-        vals.sort(accent.sort_by_accent)
+        vals.sort(locale.strcoll)
         return vals
 
     def get_person_event_type_list(self):
