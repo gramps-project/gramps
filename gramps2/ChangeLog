@@ -1,3 +1,9 @@
+2003-06-11  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/BookReport.py (Book.pop_item): Add missing return
+	statement. 
+	* src/plugins/BookReport.py (BookReportSelector.open_book): 
+	Add a warning if the database for the book is not the same as current.
+
 2003-06-11  Tim Waugh  <twaugh@redhat.com>
 	* src/docgen/HtmlDoc.py (add_photo): Fix typo in image reference.
 
