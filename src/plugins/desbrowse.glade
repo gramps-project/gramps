@@ -15,7 +15,7 @@
 <widget>
   <class>GtkDialog</class>
   <name>top</name>
-  <title>Gramps - Descendant Browser</title>
+  <title>Descendant Browser - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

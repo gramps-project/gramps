@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>relcalc</name>
-  <title>Gramps - Relationship Calculator</title>
+  <title>Relationship Calculator - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

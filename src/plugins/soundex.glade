@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>soundEx</name>
-  <title>Gramps - SoundEx Code Generator</title>
+  <title>SoundEx Code Generator - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

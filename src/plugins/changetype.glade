@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>top</name>
-  <title>Gramps - Change Event Types</title>
+  <title>Change Event Types - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

@@ -491,7 +491,7 @@
 <widget>
   <class>GtkWindow</class>
   <name>gedcomImport</name>
-  <title>Gramps - GEDCOM Import</title>
+  <title>GEDCOM Import - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_CENTER</position>
   <modal>True</modal>

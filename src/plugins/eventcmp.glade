@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>dialog1</name>
-  <title>Gramps - Save as a Spreadsheet</title>
+  <title>Save as a Spreadsheet - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -274,7 +274,7 @@
   <class>GnomeDialog</class>
   <name>view</name>
   <height>350</height>
-  <title>Gramps - Event Comparison</title>
+  <title>Event Comparison - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -417,7 +417,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>filter_file</name>
-  <title>Gramps - Complex Filter</title>
+  <title>Complex Filter - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -563,7 +563,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>filters</name>
-  <title>Gramps - Event Comparison</title>
+  <title>Event Comparison - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

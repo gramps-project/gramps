@@ -15,7 +15,7 @@
 <widget>
   <class>GtkDialog</class>
   <name>summary</name>
-  <title>Gramps - Database Summary</title>
+  <title>Database Summary - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

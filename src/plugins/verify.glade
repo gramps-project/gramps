@@ -15,7 +15,7 @@
 <widget>
   <class>GtkDialog</class>
   <name>verify_result</name>
-  <title>Gramps - Database Verify</title>
+  <title>Database Verify - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

@@ -15,7 +15,7 @@
 <widget>
   <class>GtkWindow</class>
   <name>message</name>
-  <title>Gramps - Merge People</title>
+  <title>Merge People - GRAMPS</title>
   <type>GTK_WINDOW_DIALOG</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
@@ -118,7 +118,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>mergelist</name>
-  <title>Gramps - Merge List</title>
+  <title>Merge List - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
@@ -295,7 +295,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>dialog</name>
-  <title>Gramps - Merge People</title>
+  <title>Merge People - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>

@@ -15,7 +15,7 @@
 <widget>
   <class>GnomeDialog</class>
   <name>packageExport</name>
-  <title>Gramps - Export GRAMPS package</title>
+  <title>Export GRAMPS package - GRAMPS</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
   <position>GTK_WIN_POS_CENTER</position>
   <modal>True</modal>

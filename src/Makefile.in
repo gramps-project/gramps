@@ -49,6 +49,10 @@ uninstall:
 	rm -f ${datadir}/*.py ${datadir}/*.pyo ${datadir}/*.glade ${datadir}/*.xpm
 	-rmdir ${datadir}
 
+trans: po/template.po
+	./build_po
+
+po/template.po: *.py *.glade */*.py */*.glade
 
 clean:
 	-rm -f core *.pyo *.pyc *.bak *~	

@@ -662,7 +662,7 @@ class WebReport(Report):
         self.template_name = template_name
 
     def get_progressbar_data(self):
-        return (_("Gramps - Generate HTML reports"), _("Creating Web Pages"))
+        return (_("Generate HTML reports - GRAMPS"), _("Creating Web Pages"))
     
     #------------------------------------------------------------------------
     #
