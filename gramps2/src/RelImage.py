@@ -48,13 +48,10 @@ from gettext import gettext as _
 #
 #-------------------------------------------------------------------------
 def import_media_object(filename,path,base):
-    import shutil
-
     if not os.path.exists(filename):
         ErrorDialog(_("Could not import %s") % filename,
                     _("The file has been moved or deleted"))
         return ""
-
     return filename
 
 #-------------------------------------------------------------------------

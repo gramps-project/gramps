@@ -538,68 +538,7 @@ def probably_alive(person,db):
 
     if descendants_too_old (person, min_generation):
         return False
-
     return False
-    
-    # What about their parents?
-
-    def parents_too_old (person, age_difference):
-        family_handle = person.get_main_parents_family_handle()
-        if family_handle:
-            family = db.get_family_from_handle(family_handle)
-            for parent_id in [family.get_father_handle(), family.get_mother_handle()]:
-                if not parent_id:
-                    continue
-
-                parent = db.get_person_from_handle(parent_id)
-                if parent.birth_handle:
-                    parent_birth = db.get_event_from_handle(parent.birth_handle)
-                    if parent_birth.get_date():
-                        d = SingleDate (parent_birth.get_date_object().get_start_date())
-                        d.set_year (d.get_year() + max_generation + age_difference)
-                        if not not_too_old (d):
-                            return True
-
-                if parent.death_handle:
-                    parent_death = db.get_event_from_handle(parent.death_handle)
-                    if parent_death.get_date() != "":
-                        d = SingleDate (parent_death.get_date_object().get_start_date())
-                        d.set_year (d.get_year() + age_difference)
-                        if not not_too_old (d):
-                            return True
-
-    if parents_too_old (person, 0):
-        return False
-
-    # As a last resort, trying seeing if their spouse's age gives
-    # any clue.
-    for family_handle in person.get_family_handle_list():
-        family = db.get_family_from_handle(family_handle)
-        for spouse_id in [family.get_father_handle(), family.get_mother_handle()]:
-            if not spouse_id or spouse_id == person.handle:
-                continue
-            spouse = db.get_person_from_handle(spouse_id)
-            sp_birth_handle = spouse.get_birth_handle()
-            sp_death_handle = spouse.get_death_handle()
-            if sp_birth_handle:
-                spouse_birth = db.get_event_from_handle(sp_birth_handle)
-                if not spouse_birth.get_date().is_empty():
-                    d = Date.Date(spouse_birth.get_date_object())
-                    d.set_year(d.get_year() + max_age_difference)
-                    if not not_too_old (d):
-                        return False
-
-            if sp_death_handle:
-                spouse_death = db.get_event_from_handle(sp_death_handle)
-                if spouse_death.get_date() != "":
-                    d = Date.Date(spouse_death.get_date_object())
-                    d.set_year (d.get_year() - min_generation)
-                    if not not_too_old (d):
-                        return False
-
-            if parents_too_old (spouse, max_age_difference):
-                return False
-    return True
 
 def not_too_old(date):
     time_struct = time.localtime(time.time())

@@ -47,8 +47,6 @@ import GrampsKeys
 import RelLib
 import const
 import Utils
-import PaperMenu
-import Plugins
 import DateHandler
 
 #-------------------------------------------------------------------------

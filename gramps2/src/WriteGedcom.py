@@ -302,8 +302,8 @@ class GedcomWriterOptionBox:
         self.person = person
 
     def get_option_box(self):
-        self.restrict = 1
-        self.private = 1
+        self.restrict = True
+        self.private = True
         self.cnvtxt = ansel_utf8.utf8_to_ansel
         self.adopt = GedcomInfo.ADOPT_EVENT
 
@@ -1075,7 +1075,8 @@ class GedcomWriter:
         self.writeln('%d %s' % (index,name))
         self.print_date("%d DATE" % (index + 1), ord.get_date_object())
         if ord.get_family_handle():
-            self.writeln('%d FAMC @%s@' % (index+1,self.fid(ord.get_family_handle().get_gramps_id())))
+            family_id = ord.get_family_handle()
+            self.writeln('%d FAMC @%s@' % (index+1,self.fid(family_id)))
         if ord.get_temple():
             self.writeln('%d TEMP %s' % (index+1,ord.get_temple()))
         if ord.get_place_handle():

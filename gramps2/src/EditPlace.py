@@ -494,8 +494,8 @@ class EditPlace:
                 if event and event.get_place_handle() == self.place.get_handle():
                     fevent.append((f,event))
         for media_handle in self.db.get_media_object_handles():
-            object = self.db.get_object_from_handle(media_handle)
-            if object and object.get_place_handle() == self.place.get_handle():
+            obj = self.db.get_object_from_handle(media_handle)
+            if obj and obj.get_place_handle() == self.place.get_handle():
                 mlist.append(object)
 
         any = 0

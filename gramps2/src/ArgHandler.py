@@ -434,7 +434,6 @@ class ArgHandler:
                     os._exit(1)
         elif format == 'gramps-pkg':
             import TarFile
-            import time
             import WriteXML
             from cStringIO import StringIO
 

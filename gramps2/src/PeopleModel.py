@@ -301,14 +301,8 @@ class PeopleModel(gtk.GenericTreeModel):
     def column_int_id(self,data,node):
         return node
 
-    def column_bold(self,data,node):
-        return pango.WEIGHT_NORMAL
-
     def column_header(self,node):
         return node
-
-    def column_header_bold(self,node):
-        return pango.WEIGHT_NORMAL #BOLD
 
     def column_header_view(self,node):
         return True
@@ -332,13 +326,11 @@ COLUMN_DEFS = [
 
     # these columns are hidden, and must always be last in the list
     (PeopleModel.column_sort_name,  None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_bold,       PeopleModel.column_header_bold,gobject.TYPE_INT),
     (PeopleModel.column_int_id,     None,                          gobject.TYPE_STRING),
     ]
 
 # dynamic calculation of column indices, for use by various Views
 COLUMN_INT_ID = len(COLUMN_DEFS) - 1
-COLUMN_BOLD   = COLUMN_INT_ID - 1 
 
 # indices into main column definition table
 COLUMN_DEF_LIST = 0
