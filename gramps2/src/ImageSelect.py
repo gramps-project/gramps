@@ -734,6 +734,11 @@ class LocalMediaProperties:
             "on_cancel_clicked" : self.close,
             "on_local_delete_event" : self.on_delete_event,
             })
+
+        media_obj = self.db.get_object_from_handle(self.photo.get_reference_handle())
+        global_note = self.change_dialog.get_widget('global_notes').get_buffer()
+        global_note.insert_at_cursor(media_obj.get_note())
+        
         self.redraw_attr_list()
         if parent_window:
             self.window.set_transient_for(parent_window)
