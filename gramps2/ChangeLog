@@ -1,3 +1,8 @@
+2003-08-29  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/plugins/DesGraph.py: Change from TextDoc and DrawDoc to BaseDoc.
+	* src/plugins/FanChart.py: Likewise. Enable Book item functionality. 
+	* src/plugins/TimeLine.py: Likewise.
+
 2003-08-28  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/LaTeXDoc.py: Do not register as a book format (have to
 	support both text and graphics).

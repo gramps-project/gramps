@@ -43,8 +43,8 @@ import gtk
 #------------------------------------------------------------------------
 import Utils
 import Report
-import TextDoc
-import DrawDoc
+import BaseDoc
+import BaseDoc
 import GenericFilter
 import Errors
 import Date
@@ -61,7 +61,7 @@ from gettext import gettext as _
 #------------------------------------------------------------------------
 class TimeLine:
 
-    def __init__(self,database,person,output,document,filter,title,sort_func):
+    def __init__(self,database,person,filter,title,sort_func,document,output,newpage=0):
         """
         Creates the Timeline object that produces the report. This class
         is used by the TimelineDialog class. The arguments are:
@@ -69,8 +69,8 @@ class TimeLine:
         database - the GRAMPS database
         person   - currently selected person
         output   - name of the output file
-        document - DrawDoc instance for the output file. Any class derived
-                   from DrawDoc may be used.
+        document - BaseDoc instance for the output file. Any class derived
+                   from BaseDoc may be used.
         filter   - filtering function selected by the TimeLineDialog
                    class.
         """
@@ -81,6 +81,12 @@ class TimeLine:
 	self.output = output
         self.title = title
         self.sort_func = sort_func
+        self.newpage = newpage
+        if output:
+            self.standalone = 1
+            self.d.open(output)
+        else:
+            self.standalone = 0
 
     def setup(self):
         """
@@ -100,44 +106,44 @@ class TimeLine:
         label - Contains the Label paragraph style used for the year label's
                 in the document.
         """
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         self.d.add_draw_style("line",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         g.set_fill_color((0,0,0))
         self.d.add_draw_style("solid",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
         self.d.add_draw_style("open",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
-        g.set_line_style(DrawDoc.DASHED)
+        g.set_line_style(BaseDoc.DASHED)
         g.set_color((0,0,0))
         self.d.add_draw_style("grid",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("Name")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         self.d.add_draw_style("text",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("Title")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
         self.d.add_draw_style("title",g)
 
-        g = DrawDoc.GraphicsStyle()
+        g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("Label")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
@@ -162,7 +168,9 @@ class TimeLine:
         size = (stop-start)
         self.header = 2.0
         
-	self.d.open(self.output)
+	#self.d.open(self.output)
+        if self.newpage:
+            self.doc.page_break()
         self.d.start_page()
         self.build_grid(low,high,start,stop)
 
@@ -217,7 +225,9 @@ class TimeLine:
             current += 1
             
         self.d.end_page()    
-	self.d.close()
+        if self.standalone:
+            self.d.close()
+	#self.d.close()
 
     def build_grid(self,year_low,year_high,start_pos,stop_pos):
         """
@@ -302,6 +312,65 @@ class TimeLine:
 
 #------------------------------------------------------------------------
 #
+# 
+#
+#------------------------------------------------------------------------
+def _make_default_style(default_style):
+    """Make the default output style for the Timeline report."""
+    f = BaseDoc.FontStyle()
+    f.set_size(10)
+    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    p = BaseDoc.ParagraphStyle()
+    p.set_font(f)
+    p.set_description(_("The style used for the person's name."))
+    default_style.add_style("Name",p)
+
+    f = BaseDoc.FontStyle()
+    f.set_size(8)
+    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    p = BaseDoc.ParagraphStyle()
+    p.set_font(f)
+    p.set_description(_("The style used for the year labels."))
+    default_style.add_style("Label",p)
+
+    f = BaseDoc.FontStyle()
+    f.set_size(14)
+    f.set_type_face(BaseDoc.FONT_SANS_SERIF)
+    p = BaseDoc.ParagraphStyle()
+    p.set_font(f)
+    p.set_description(_("The style used for the title of the page."))
+    default_style.add_style("Title",p)
+
+#------------------------------------------------------------------------
+#
+# Builds filter list for this report
+#
+#------------------------------------------------------------------------
+def _get_report_filters(person):
+    """Set up the list of possible content filters."""
+
+    name = person.getPrimaryName().getName()
+        
+    all = GenericFilter.GenericFilter()
+    all.set_name(_("Entire Database"))
+    all.add_rule(GenericFilter.Everyone([]))
+
+    des = GenericFilter.GenericFilter()
+    des.set_name(_("Descendants of %s") % name)
+    des.add_rule(GenericFilter.IsDescendantOf([person.getId()]))
+
+    ans = GenericFilter.GenericFilter()
+    ans.set_name(_("Ancestors of %s") % name)
+    ans.add_rule(GenericFilter.IsAncestorOf([person.getId()]))
+
+    com = GenericFilter.GenericFilter()
+    com.set_name(_("People with common ancestor with %s") % name)
+    com.add_rule(GenericFilter.HasCommonAncestorWith([person.getId()]))
+
+    return [all,des,ans,com]
+
+#------------------------------------------------------------------------
+#
 # TimeLineDialog
 #
 #------------------------------------------------------------------------
@@ -317,7 +386,7 @@ class TimeLineDialog(Report.DrawReportDialog):
 
     def get_stylesheet_savefile(self):
         """Where to save user defined styles for this report."""
-        return "timeline.xml"
+        return _style_file
 
     def get_target_browser_title(self):
         """The title of the window created when the 'browse' button is
@@ -351,53 +420,10 @@ class TimeLineDialog(Report.DrawReportDialog):
         self.add_option(_('Title'),self.title_box)
         
     def get_report_filters(self):
-        """Set up the list of possible content filters."""
-
-        name = self.person.getPrimaryName().getName()
-        
-        all = GenericFilter.GenericFilter()
-        all.set_name(_("Entire Database"))
-        all.add_rule(GenericFilter.Everyone([]))
-
-        des = GenericFilter.GenericFilter()
-        des.set_name(_("Descendants of %s") % name)
-        des.add_rule(GenericFilter.IsDescendantOf([self.person.getId()]))
-
-        ans = GenericFilter.GenericFilter()
-        ans.set_name(_("Ancestors of %s") % name)
-        ans.add_rule(GenericFilter.IsAncestorOf([self.person.getId()]))
-
-        com = GenericFilter.GenericFilter()
-        com.set_name(_("People with common ancestor with %s") % name)
-        com.add_rule(GenericFilter.HasCommonAncestorWith([self.person.getId()]))
-
-        return [all,des,ans,com]
+        return _get_report_filters(self.person)
 
     def make_default_style(self):
-        """Make the default output style for the Timeline report."""
-        f = TextDoc.FontStyle()
-        f.set_size(10)
-        f.set_type_face(TextDoc.FONT_SANS_SERIF)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(f)
-        p.set_description(_("The style used for the person's name."))
-        self.default_style.add_style("Name",p)
-
-        f = TextDoc.FontStyle()
-        f.set_size(8)
-        f.set_type_face(TextDoc.FONT_SANS_SERIF)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(f)
-        p.set_description(_("The style used for the year labels."))
-        self.default_style.add_style("Label",p)
-
-        f = TextDoc.FontStyle()
-        f.set_size(14)
-        f.set_type_face(TextDoc.FONT_SANS_SERIF)
-        p = TextDoc.ParagraphStyle()
-        p.set_font(f)
-        p.set_description(_("The style used for the title of the page."))
-        self.default_style.add_style("Title",p)
+        _make_default_style(self.default_style)
 
     def make_report(self):
 
@@ -405,8 +431,8 @@ class TimeLineDialog(Report.DrawReportDialog):
         sort_func = self.sort_menu.get_active().get_data('sort')
 
         try:
-            MyReport = TimeLine(self.db, self.person, self.target_path,
-				self.doc, self.filter, title, sort_func)
+            MyReport = TimeLine(self.db, self.person, 
+                    self.filter, title, sort_func, self.doc, self.target_path)
 	    MyReport.setup()
             MyReport.write_report()
         except Errors.FilterError, msg:
@@ -429,20 +455,9 @@ def pt2cm(val):
 
 #------------------------------------------------------------------------
 #
-# Register the TimeLine report with the plugin system. The register_report
-# task of the Plugins module takes the following arguments.
-#
-# task - function that starts the task
-# name - Name of the report
-# status - alpha/beta/production
-# category - Category entry in the menu system.
-# author_name - Name of the author
-# author_email - Author's email address
-# description - function that returns the description of the report
+# entry point
 #
 #------------------------------------------------------------------------
-from Plugins import register_report
-
 def report(database,person):
     """
     report - task starts the report. The plugin system requires that the
@@ -458,6 +473,140 @@ def get_description():
     """
     return _("Generates a timeline graph.")
 
+
+#------------------------------------------------------------------------
+#
+# Set up sane defaults for the book_item
+#
+#------------------------------------------------------------------------
+_style_file = "timeline.xml"
+_style_name = "default" 
+
+_person_id = ""
+_filter_num = 0
+_sort = ""
+_title = ""
+_options = ( _person_id, _filter_num, _sort, _title )
+
+#------------------------------------------------------------------------
+#
+# Book Item Options dialog
+#
+#------------------------------------------------------------------------
+class TimelineGraphBareDialog(Report.BareReportDialog):
+
+    def __init__(self,database,person,opt,stl):
+
+        self.options = opt
+        self.db = database
+        if self.options[0]:
+            self.person = self.db.getPerson(self.options[0])
+        else:
+            self.person = person
+        self.style_name = stl
+
+        Report.BareReportDialog.__init__(self,database,self.person)
+
+        self.filter_num = int(self.options[1])
+        self.sort = self.options[2]
+        self.title = self.options[3]
+        self.new_person = None
+
+        self.filter_combo.set_history(self.filter_num)
+        self.sort_style.set_history(self.filter_num)
+        self.title_box.get_buffer.set_text(self.title)
+
+        self.window.run()
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks
+    #
+    #------------------------------------------------------------------------
+    def get_title(self):
+        """The window title for this dialog"""
+        return "%s - GRAMPS Book" % (_("Ancestor Chart"))
+
+    def get_header(self, name):
+        """The header line at the top of the dialog contents"""
+        return _("Ancestor Chart for GRAMPS Book") 
+
+    def get_stylesheet_savefile(self):
+        """Where to save styles for this report."""
+        return _style_file
+    
+    def get_report_generations(self):
+        """No generations, no page breaks."""
+        return (0, 0)
+    
+    def get_report_extra_textbox_info(self):
+        """Label the textbox and provide the default contents."""
+        return (_("Display Format"), "$n\n%s $b\n%s $d" % (_BORN,_DIED),
+                _("Allows you to customize the data in the boxes in the report"))
+
+    def make_default_style(self):
+        _make_default_style(self.default_style)
+
+    def get_report_filters(self):
+        return _get_report_filters(self.person)
+
+    def on_cancel(self, obj):
+        pass
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices. Parse all options
+        and close the window."""
+
+        # Preparation
+        self.parse_style_frame()
+        self.parse_report_options_frame()
+        
+        if self.new_person:
+            self.person = self.new_person
+        self.options = ( self.person.getId(), self.max_gen, self.report_text )
+        self.style_name = self.selected_style.get_name()
+
+#------------------------------------------------------------------------
+#
+# Function to write Book Item 
+#
+#------------------------------------------------------------------------
+def write_book_item(database,person,doc,options,newpage=0):
+    """Write the Ancestor Chart using options set.
+    All user dialog has already been handled and the output file opened."""
+    try:
+        if options[0]:
+            person = database.getPerson(options[0])
+        max_gen = int(options[1])
+        disp_format = options[2]
+        return TimeLine(database, person, 
+                    afilter, title, sort_func, doc, None, newpage )
+    except Errors.ReportError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except Errors.FilterError, msg:
+        (m1,m2) = msg.messages()
+        ErrorDialog(m1,m2)
+    except:
+        import DisplayTrace
+        DisplayTrace.DisplayTrace()
+
+#------------------------------------------------------------------------
+#
+# Register the TimeLine report with the plugin system. The register_report
+# task of the Plugins module takes the following arguments.
+#
+# task - function that starts the task
+# name - Name of the report
+# status - alpha/beta/production
+# category - Category entry in the menu system.
+# author_name - Name of the author
+# author_email - Author's email address
+# description - function that returns the description of the report
+#
+#------------------------------------------------------------------------
+from Plugins import register_report, register_book_item
+
 register_report(
     task=report,
     name=_("Timeline Graph"),
@@ -468,3 +617,14 @@ register_report(
     description=get_description()
     )
 
+# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
+register_book_item( 
+    _("Timeline Graph"), 
+    _("Graphics"),
+    TimelineGraphBareDialog,
+    write_book_item,
+    _options,
+    _style_name,
+    _style_file,
+    _make_default_style
+    )
