@@ -78,26 +78,13 @@ class AncestorReport(Report.Report):
         newpage   - if True, newpage is made before writing a report
 
         """
-        self.database = database
-        self.start = person
-        self.options_class = options_class
+
+        Report.Report.__init__(self,database,person,options_class)
 
         self.map = {}
-
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
 
-        self.doc = options_class.get_document()
-        output = options_class.get_output()
-        self.newpage = options_class.get_newpage()
-
-        if output:
-            self.standalone = 1
-            self.doc.open(output)
-            self.doc.init()
-        else:
-            self.standalone = 0
-        
     def filter(self,person_handle,index,generation=1):
         if not person_handle or generation >= self.max_generations:
             return
@@ -112,12 +99,9 @@ class AncestorReport(Report.Report):
 
     def write_report(self):
 
-        if self.newpage:
-            self.doc.page_break()
+        self.filter(self.start_person.get_handle(),1)
 
-        self.filter(self.start.get_handle(),1)
-
-        name = self.start.get_primary_name().get_regular_name()
+        name = self.start_person.get_primary_name().get_regular_name()
         self.doc.start_paragraph("AHN-Title")
         title = _("Ahnentafel Report for %s") % name
         self.doc.write_text(title)
@@ -268,9 +252,6 @@ class AncestorReport(Report.Report):
                         self.doc.write_text(".")
                         
             self.doc.end_paragraph()
-        if self.standalone:
-            self.doc.close()
- 
 
 #------------------------------------------------------------------------
 #

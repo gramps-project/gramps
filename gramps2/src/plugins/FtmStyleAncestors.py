@@ -81,25 +81,13 @@ class FtmAncestorReport(Report.Report):
         newpage   - if True, newpage is made before writing a report
 
         """
-        self.database = database
-        self.start = person
-        self.options_class = options_class
+        Report.Report.__init__(self,database,person,options_class)
 
         self.map = {}
 
         (self.max_generations,self.pgbrk) \
                         = options_class.get_report_generations()
 
-        self.doc = options_class.get_document()
-        output = options_class.get_output()
-        self.newpage = options_class.get_newpage()
-
-        if output:
-            self.standalone = 1
-            self.doc.open(output)
-            self.doc.init()
-        else:
-            self.standalone = 0
         self.sref_map = {}
         self.sref_index = 0
         
@@ -117,12 +105,9 @@ class FtmAncestorReport(Report.Report):
 
     def write_report(self):
 
-        if self.newpage:
-            self.doc.page_break()
-
-        self.apply_filter(self.start.get_handle(),1)
+        self.apply_filter(self.start_person.get_handle(),1)
         
-        name = self.start.get_primary_name().get_regular_name()
+        name = self.start_person.get_primary_name().get_regular_name()
         self.doc.start_paragraph("FTA-Title")
         title = _("Ancestors of %s") % name
         self.doc.write_text(title)
@@ -472,8 +457,6 @@ class FtmAncestorReport(Report.Report):
             self.print_more_about(person)
 
         self.write_endnotes()
-        if self.standalone:
-            self.doc.close()
 
     def write_endnotes(self):
         keys = self.sref_map.keys()

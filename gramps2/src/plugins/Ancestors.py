@@ -61,9 +61,7 @@ class ComprehensiveAncestorsReport (Report.Report):
     def __init__(self,database,person,options_class):
         #,max,pgbrk,cite,doc,output,newpage=0):
 
-        self.database = database
-        self.start = person
-        self.options_class = options_class
+        Report.Report.__init__(self,database,person,options_class)
 
         self.map = {}
 
@@ -72,7 +70,6 @@ class ComprehensiveAncestorsReport (Report.Report):
         #self.opt_cite = cite
         self.opt_cite = options_class.handler.options_dict['cites']
 
-        self.doc = options_class.get_document()
         self.output = options_class.get_output()
         self.newpage = options_class.get_newpage()
 
@@ -126,19 +123,10 @@ class ComprehensiveAncestorsReport (Report.Report):
         cell.set_padding (0.1)
         self.doc.add_cell_style ("AR-Entry", cell)
 
-        if self.output:
-            self.standalone = 1
-            self.doc.open(self.output)
-            self.doc.init()
-        else:
-            self.standalone = 0
 
     def write_report(self):
-        if self.newpage:
-            self.doc.page_break()
-
         self.sources = []
-        name = self.person_name (self.start.get_handle())
+        name = self.person_name (self.start_person.get_handle())
         self.doc.start_paragraph("AR-Title")
         title = _("Ancestors of %s") % name
         self.doc.write_text(title)
@@ -148,11 +136,13 @@ class ComprehensiveAncestorsReport (Report.Report):
         self.doc.write_text (_("Generation 1"))
         self.doc.end_paragraph ()
 
-        self.write_paragraphs (self.person (self.start.get_handle(), suppress_children = 1,
+        self.write_paragraphs (self.person (self.start_person.get_handle(),
+                                            suppress_children = 1,
                                             needs_name = 1))
-        family_handles = [self.start.get_main_parents_family_handle ()]
+        family_handles = [self.start_person.get_main_parents_family_handle ()]
         if len (family_handles) > 0:
-            self.generation (self.max_generations, family_handles, [], [self.start.get_handle()])
+            self.generation (self.max_generations, family_handles, [],
+                             [self.start_person.get_handle()])
 
         if len (self.sources) > 0:
             self.doc.start_paragraph ("AR-Heading")
@@ -182,8 +172,6 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                 i += 1
 
-        if self.standalone:
-            self.doc.close()
         return
 
     def write_paragraphs (self, paragraphs):
@@ -255,10 +243,10 @@ class ComprehensiveAncestorsReport (Report.Report):
                     if self.gp:
                         break
 
-                relstring = self.relationship.get_grandparents_string (self.start,
+                relstring = self.relationship.get_grandparents_string (self.start_person,
                                self.database.get_person_from_handle(self.gp))[0]
                 heading = _("%(name)s's maternal %(grandparents)s") % \
-                          { 'name': self.first_name_or_nick (self.start),
+                          { 'name': self.first_name_or_nick (self.start_person),
                             'grandparents': relstring }
                 people.append ((self.doc.start_paragraph, ['AR-Heading']))
                 people.append ((self.doc.write_text, [heading]))
@@ -280,15 +268,15 @@ class ComprehensiveAncestorsReport (Report.Report):
 
                 if paternal_known:
                     self.doc.start_paragraph ("AR-Heading")
-                    relstring = self.relationship.get_grandparents_string (self.start,
+                    relstring = self.relationship.get_grandparents_string (self.start_person,
                                                                            self.database.get_person_from_handle(self.gp))[0]
                     if thisgen == 2:
                         heading = _("%(name)s's %(parents)s") % \
-                                  { 'name': self.first_name_or_nick (self.start),
+                                  { 'name': self.first_name_or_nick (self.start_person),
                                     'parents': relstring }
                     else:
                         heading = _("%(name)s's paternal %(grandparents)s") % \
-                                  { 'name': self.first_name_or_nick (self.start),
+                                  { 'name': self.first_name_or_nick (self.start_person),
                                     'grandparents': relstring }
 
                     self.doc.write_text (heading)

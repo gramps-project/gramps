@@ -60,7 +60,7 @@ import const
 # TimeLine
 #
 #------------------------------------------------------------------------
-class TimeLine:
+class TimeLine(Report.Report):
 
     def __init__(self,database,person,options_class):
         """
@@ -93,9 +93,7 @@ class TimeLine:
 
         """
 
-        self.db = database
-        self.person = person
-        self.options_class = options_class
+        Report.Report.__init__(self,database,person,options_class)
 
         filter_num = options_class.get_filter_number()
         filters = options_class.get_report_filters(person)
@@ -107,17 +105,7 @@ class TimeLine:
         sort_functions = options_class.get_sort_functions(Sort.Sort(database))
         self.sort_func = sort_functions[sort_func_num][1]
 
-        self.d = options_class.get_document()
-        self.output = options_class.get_output()
-        self.newpage = options_class.get_newpage()
-
         self.setup()
-        if self.output:
-            self.standalone = 1
-            self.d.open(self.output)
-            self.d.init()
-        else:
-            self.standalone = 0
 
     def setup(self):
         """
@@ -140,47 +128,47 @@ class TimeLine:
         g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
-        self.d.add_draw_style("TLG-line",g)
+        self.doc.add_draw_style("TLG-line",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         g.set_fill_color((0,0,0))
-        self.d.add_draw_style("TLG-solid",g)
+        self.doc.add_draw_style("TLG-solid",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_color((0,0,0))
         g.set_fill_color((255,255,255))
-        self.d.add_draw_style("open",g)
+        self.doc.add_draw_style("open",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_line_width(0.5)
         g.set_line_style(BaseDoc.DASHED)
         g.set_color((0,0,0))
-        self.d.add_draw_style("TLG-grid",g)
+        self.doc.add_draw_style("TLG-grid",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("TLG-Name")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        self.d.add_draw_style("TLG-text",g)
+        self.doc.add_draw_style("TLG-text",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("TLG-Title")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        g.set_width(self.d.get_usable_width())
-        self.d.add_draw_style("TLG-title",g)
+        g.set_width(self.doc.get_usable_width())
+        self.doc.add_draw_style("TLG-title",g)
 
         g = BaseDoc.GraphicsStyle()
         g.set_paragraph_style("TLG-Label")
         g.set_color((255,255,255))
         g.set_fill_color((255,255,255))
         g.set_line_width(0)
-        self.d.add_draw_style("TLG-label",g)
+        self.doc.add_draw_style("TLG-label",g)
 
     def write_report(self):
 
@@ -188,14 +176,14 @@ class TimeLine:
 
         if low == high:
             if self.standalone:
-                self.d.close()
+                self.doc.close()
             ErrorDialog(_("Report could not be created"),
                         _("The range of dates chosen was not valid"))
             return
 
         st_size = self.name_size()
 
-        font = self.d.style_list['TLG-Name'].get_font()
+        font = self.doc.style_list['TLG-Name'].get_font()
         
         incr = Utils.pt2cm(font.get_size())
         pad =  incr*.75
@@ -203,13 +191,11 @@ class TimeLine:
         x1,x2,y1,y2 = (0,0,0,0)
 
         start = st_size+0.5
-        stop = self.d.get_usable_width()-0.5
+        stop = self.doc.get_usable_width()-0.5
         size = (stop-start)
         self.header = 2.0
         
-        if self.newpage:
-            self.d.page_break()
-        self.d.start_page()
+        self.doc.start_page()
 
         index = 1
         current = 1;
@@ -219,21 +205,21 @@ class TimeLine:
         self.plist.sort(self.sort_func)
         
         for p_id in self.plist:
-            p = self.db.get_person_from_handle(p_id)
+            p = self.database.get_person_from_handle(p_id)
             b_id = p.get_birth_handle()
             if b_id:
-                b = self.db.get_event_from_handle(b_id).get_date_object().get_year()
+                b = self.database.get_event_from_handle(b_id).get_date_object().get_year()
             else:
                 b = None
 
             d_id = p.get_death_handle()
             if d_id:
-                d = self.db.get_event_from_handle(d_id).get_date_object().get_year()
+                d = self.database.get_event_from_handle(d_id).get_date_object().get_year()
             else:
                 d = None
 
             n = p.get_primary_name().get_name()
-            self.d.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
+            self.doc.draw_text('TLG-text',n,incr+pad,self.header + (incr+pad)*index)
             
             y1 = self.header + (pad+incr)*index
             y2 = self.header + ((pad+incr)*index)+incr
@@ -244,13 +230,13 @@ class TimeLine:
                 start_offset = ((float(b-low)/float(high-low)) * (size))
                 x1 = start+start_offset
                 path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                self.d.draw_path('TLG-line',path)
+                self.doc.draw_path('TLG-line',path)
 
             if d:
                 start_offset = ((float(d-low)/float(high-low)) * (size))
                 x1 = start+start_offset
                 path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                self.d.draw_path('TLG-solid',path)
+                self.doc.draw_path('TLG-solid',path)
 
             if b and d:
                 start_offset = ((float(b-low)/float(high-low)) * size) + w
@@ -258,13 +244,13 @@ class TimeLine:
 
                 x1 = start+start_offset
                 x2 = start+stop_offset
-                self.d.draw_line('open',x1,y3,x2,y3)
+                self.doc.draw_line('open',x1,y3,x2,y3)
 
-            if (y2 + incr) >= self.d.get_usable_height():
+            if (y2 + incr) >= self.doc.get_usable_height():
                 if current != length:
                     self.build_grid(low,high,start,stop)
-                    self.d.end_page()
-                    self.d.start_page()
+                    self.doc.end_page()
+                    self.doc.start_page()
                     self.build_grid(low,high,start,stop)
                 index = 1
                 x1,x2,y1,y2 = (0,0,0,0)
@@ -273,9 +259,7 @@ class TimeLine:
             current += 1
             
         self.build_grid(low,high,start,stop)
-        self.d.end_page()    
-        if self.standalone:
-            self.d.close()
+        self.doc.end_page()    
 
     def build_grid(self,year_low,year_high,start_pos,stop_pos):
         """
@@ -288,17 +272,17 @@ class TimeLine:
         start_pos - x position of the lowest leftmost grid line
         stop_pos  - x position of the rightmost grid line
         """
-        width = self.d.get_usable_width()
+        width = self.doc.get_usable_width()
 
-        title_font = self.d.style_list['TLG-Title'].get_font()
-        normal_font = self.d.style_list['TLG-Name'].get_font()
-        label_font = self.d.style_list['TLG-Label'].get_font()
+        title_font = self.doc.style_list['TLG-Title'].get_font()
+        normal_font = self.doc.style_list['TLG-Name'].get_font()
+        label_font = self.doc.style_list['TLG-Label'].get_font()
 
-        self.d.center_text('TLG-title',self.title,width/2.0,0)
+        self.doc.center_text('TLG-title',self.title,width/2.0,0)
         
         label_y = self.header - (Utils.pt2cm(normal_font.get_size())*1.2)
         top_y = self.header
-        bottom_y = self.d.get_usable_height()
+        bottom_y = self.doc.get_usable_height()
         
         incr = (year_high - year_low)/5
         delta = (stop_pos - start_pos)/ 5
@@ -307,26 +291,27 @@ class TimeLine:
             year_str = str(year_low + (incr*val))
 
             xpos = start_pos+(val*delta)
-            self.d.center_text('TLG-label', year_str, xpos, label_y)
-            self.d.draw_line('TLG-grid', xpos, top_y, xpos, bottom_y)
+            self.doc.center_text('TLG-label', year_str, xpos, label_y)
+            self.doc.draw_line('TLG-grid', xpos, top_y, xpos, bottom_y)
 
     def find_year_range(self):
         low  =  999999
         high = -999999
         
-        self.plist = self.filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
+        self.plist = self.filter.apply(self.database,
+                                       self.database.get_person_handles(sort_handles=False))
 
         for p_id in self.plist:
-            p = self.db.get_person_from_handle(p_id)
+            p = self.database.get_person_from_handle(p_id)
             b_id = p.get_birth_handle()
             if b_id:
-                b = self.db.get_event_from_handle(b_id).get_date_object().get_year()
+                b = self.database.get_event_from_handle(b_id).get_date_object().get_year()
             else:
                 b = None
 
             d_id = p.get_death_handle()
             if d_id:
-                d = self.db.get_event_from_handle(d_id).get_date_object().get_year()
+                d = self.database.get_event_from_handle(d_id).get_date_object().get_year()
             else:
                 d = None
 
@@ -349,16 +334,17 @@ class TimeLine:
         return (low,high)
 
     def name_size(self):
-        self.plist = self.filter.apply(self.db,self.db.get_person_handles(sort_handles=False))
+        self.plist = self.filter.apply(self.database,
+                                       self.database.get_person_handles(sort_handles=False))
 
-        style_name = self.d.draw_styles['TLG-text'].get_paragraph_style()
-        font = self.d.style_list[style_name].get_font()
+        style_name = self.doc.draw_styles['TLG-text'].get_paragraph_style()
+        font = self.doc.style_list[style_name].get_font()
         
         size = 0
         for p_id in self.plist:
-            p = self.db.get_person_from_handle(p_id)
+            p = self.database.get_person_from_handle(p_id)
             n = p.get_primary_name().get_name()
-            size = max(self.d.string_width(font,n),size)
+            size = max(self.doc.string_width(font,n),size)
         return Utils.pt2cm(size)
 
 #------------------------------------------------------------------------

@@ -201,6 +201,34 @@ class Report:
         29: _("Twenty-ninth")
         }
 
+    def __init__(self, database, person, options_class):
+        self.database = database
+        self.start_person = person
+        self.options_class = options_class
+
+        self.doc = options_class.get_document()
+
+        creator = database.get_researcher().get_name()
+        self.doc.creator(creator)
+
+        if options_class.get_output():
+            self.standalone = True
+            self.doc.open(output)
+            self.doc.init()
+        else:
+            self.standalone = False
+
+    def begin_report(self):
+        if self.options_class.get_newpage():
+            self.doc.page_break()
+        
+    def write_report(self):
+        pass
+
+    def finish_report(self):
+        if self.standalone:
+            self.doc.close()
+            
     def get_progressbar_data(self):
         """The window title for this dialog, and the header line to
         put at the top of the contents of the dialog box."""
@@ -1232,7 +1260,7 @@ class ReportDialog(BareReportDialog):
                 self.template_combo.append_text(template)
         self.template_combo.append_text(_user_template)
         
-        self.template_combo.set_active(0)
+        self.template_combo.set_active(False)
         self.template_combo.connect('changed',self.html_file_enable)
         
         self.html_table.attach(self.template_combo,2,3,1,2)
@@ -1242,7 +1270,7 @@ class ReportDialog(BareReportDialog):
         self.html_fileentry = gnome.ui.FileEntry("HTML_Template",
                                                  _("Choose File"))
         self.html_fileentry.set_modal(True)
-        self.html_fileentry.set_sensitive(0)
+        self.html_fileentry.set_sensitive(False)
         user_template = ''
         if os.path.isfile(user_template):
             self.html_fileentry.set_filename(user_template)
@@ -1711,7 +1739,9 @@ def report(database,person,report_class,options_class,translated_name,name,categ
     if response == True:
         try:
             MyReport = report_class(dialog.db,dialog.person,dialog.options)
+            MyReport.begin_report()
             MyReport.write_report()
+            MyReport.end_report()
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
