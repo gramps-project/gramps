@@ -208,5 +208,3 @@ def on_source_changed(obj):
     src_entry.get_widget("sdate").set_sensitive(active)
     src_entry.get_widget("stext").set_sensitive(active)
     src_entry.get_widget("scomment").set_sensitive(active)
-        
-
