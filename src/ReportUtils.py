@@ -386,7 +386,7 @@ def insert_images(database, doc, person, w_cm=4.0, h_cm=4.0):
 # Strings commonly used in reports
 #
 #-------------------------------------------------------------------------
-def empty_notes():
+def empty_notes(whatever):
     # Empty stab function for when endnotes are not needed
     return ""
 
@@ -726,7 +726,8 @@ def born_died_str(database,person,endnotes=None,name_object=None,person_name=Non
         text = text + " "
     return text
 
-def married_str(database,person,spouse,event,endnotes=None):
+def married_str(database,person,spouse,event,endnotes=None,
+                                empty_date="",empty_place="",is_first=True):
     """
     Composes a string describing marriage of a person.
     
@@ -754,60 +755,144 @@ def married_str(database,person,spouse,event,endnotes=None):
     if not endnotes:
         endnotes = empty_notes
 
+    date = empty_date
+    place = empty_place
     spouse_name = _nd.display(spouse)
 
-    date = event.get_date()
+    mdate = event.get_date()
+    if mdate:
+        date = mdate
     place_handle = event.get_place_handle()
     if place_handle:
         place = database.get_place_from_handle(place_handle).get_title()
-    else:
-        place = ""
 
     text = ""
-    if date and place:
-        if person.get_gender() == RelLib.Person.MALE:
-                text = _('He married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'endnotes' : endnotes(event),
-                    'date' : date,
-                    'place' : place}
+    if is_first:
+        if date and place:
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'date' : date,
+                        'place' : place}
+            else:
+                    text = _('She married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'date' : date,
+                        'endnotes' : endnotes(event),
+                        'place' : place}
+        elif date:
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He married %(spouse)s %(date)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'date' : date,}
+            else:
+                    text = _('She married %(spouse)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'place' : place,}
+        elif place:
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He married %(spouse)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'place' : place}
+            else:
+                    text = _('She married %(spouse)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'place' : place}
         else:
-                text = _('She married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'date' : date,
-                    'endnotes' : endnotes(event),
-                    'place' : place}
-    elif date:
-        if person.get_gender() == RelLib.Person.MALE:
-                text = _('He married %(spouse)s %(date)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'endnotes' : endnotes(event),
-                    'date' : date,}
-        else:
-                text = _('She married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'endnotes' : endnotes(event),
-                    'place' : place,}
-    elif place:
-        if person.get_gender() == RelLib.Person.MALE:
-                text = _('He married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'endnotes' : endnotes(event),
-                    'place' : place}
-        else:
-                text = _('She married %(spouse)s in %(place)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'endnotes' : endnotes(event),
-                    'place' : place}
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He married %(spouse)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event) }
+            else:
+                    text = _('She married %(spouse)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event)}
     else:
-        if person.get_gender() == RelLib.Person.MALE:
-                text = _('He married %(spouse)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'endnotes' : endnotes(event) }
+        if date and place:
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He also married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'date' : date,
+                        'place' : place}
+            else:
+                    text = _('She also married %(spouse)s %(date)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'date' : date,
+                        'endnotes' : endnotes(event),
+                        'place' : place}
+        elif date:
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He also married %(spouse)s %(date)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'date' : date,}
+            else:
+                    text = _('She also married %(spouse)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'place' : place,}
+        elif place:
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He also married %(spouse)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'place' : place}
+            else:
+                    text = _('She also married %(spouse)s in %(place)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event),
+                        'place' : place}
         else:
-                text = _('She married %(spouse)s%(endnotes)s.') % {
-                    'spouse' : spouse_name,
-                    'endnotes' : endnotes(event)}
+            if person.get_gender() == RelLib.Person.MALE:
+                    text = _('He also married %(spouse)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event) }
+            else:
+                    text = _('She also married %(spouse)s%(endnotes)s.') % {
+                        'spouse' : spouse_name,
+                        'endnotes' : endnotes(event)}
+
+    if text:
+        text = text + " "
+    return text
+
+def married_rel_str(database,person,family,is_first=True):
+    spouse_handle = find_spouse(person,family)
+    spouse = database.get_person_from_handle(spouse_handle)
+    spouse_name = _nd.display(spouse)
+
+    if is_first:
+        if family.get_relationship() == RelLib.Family.MARRIED:
+            if person.get_gender() == RelLib.Person.MALE:
+                text = _('He married %(spouse)s.') % { 'spouse' : spouse_name }
+            else:
+                text = _('She married %(spouse)s.') % { 'spouse' : spouse_name }
+        else:
+            if person.get_gender() == RelLib.Person.MALE:
+                text = _('He had relationship with %(spouse)s.') % { 
+                            'spouse' : spouse_name }
+            else:
+                text = _('She had relationship with %(spouse)s.') % { 
+                            'spouse' : spouse_name }
+    else:
+        if family.get_relationship() == RelLib.Family.MARRIED:
+            if person.get_gender() == RelLib.Person.MALE:
+                text = _('He also married %(spouse)s.') % { 'spouse' : spouse_name }
+            else:
+                text = _('She also married %(spouse)s.') % { 'spouse' : spouse_name }
+        else:
+            if person.get_gender() == RelLib.Person.MALE:
+                text = _('He also had relationship with %(spouse)s.') % { 
+                            'spouse' : spouse_name }
+            else:
+                text = _('She also had relationship with %(spouse)s.') % { 
+                            'spouse' : spouse_name }
     if text:
         text = text + " "
     return text
@@ -890,6 +975,8 @@ def child_str(person,person_name=0,father_name="",mother_name="",dead=0):
             else:
                 text = _("She is the daughter of %(father)s.") % {
                     'father' : father_name, }
+    if text:
+        text = text + " "
     return text
 
 def find_spouse(person,family):
@@ -898,10 +985,13 @@ def find_spouse(person,family):
     else:
         spouse_id = family.get_mother_handle()
     return spouse_id
-    if text:
-        text = text + " "
-    return text
 
+def find_marriage(database,family):    
+    for event_handle in family.get_event_list():
+        event = database.get_event_from_handle(event_handle)
+        if event and event.get_name() == "Marriage":
+            return event
+    return None
 
 def born_str(database,person,person_name=None,empty_date="",empty_place=""):
     """ 
@@ -1392,13 +1482,13 @@ def buried_str(database,person,person_name=None,empty_date="",empty_place=""):
         text = text + " "
     return text
 
-_rtyle = {
-    RelLib.Family.MARRIED : _("Married"),
-    RelLib.Family.UNMARRIED : _("Unmarried"),
-    RelLib.Family.CIVIL_UNION : _("Civil Union"),
-    RelLib.Family.UNKNOWN : _("Unknown"),
-    RelLib.Family.OTHER : _("Other"),
+_rtype = {
+    RelLib.Family.MARRIED       : _("Married"),
+    RelLib.Family.UNMARRIED     : _("Unmarried"),
+    RelLib.Family.CIVIL_UNION   : _("Civil Union"),
+    RelLib.Family.UNKNOWN       : _("Unknown"),
+    RelLib.Family.OTHER         : _("Other"),
     }
 
-def relationship_name(type):
-    return _rtype.get(type)
+def relationship_name(rtype):
+    return _rtype.get(rtype)
