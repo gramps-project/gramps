@@ -188,7 +188,7 @@ class DrawDoc:
     def line_to(self,x,y):
         pass
 
-    def arc_to(self,x,y):
+    def arc_to(self,x,y,angle,extent):
         pass
 
     def end_path(self):

@@ -152,25 +152,7 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         else:
             self.f.drawPath(p,stroke=1,fill=0)
 
-    def start_path(self,style,x,y):
-        self.active_path = self.f.beginPath()
-        self.active_path.move_to(x+self.lmargin,y=self.tmargin)
-        self.active_style = style
-
-    def line_to(self,x,y):
-        self.active_path.line_to(x+self.lmargin,y+self.tmargin)
-
-    def arc_to(self,x,y):
-        self.active_path.arc_to(x+self.lmargin,y+self.tmargin)
-
-    def end_path(self):
-        self.f.draw_path(self.active_path,stroke=1,fill=1)
-
-    def draw_arc(self,style,x1,y1,x2,y2,angle,extent):
-        x1 += self.lmargin
-        y1 += self.tmargin
-        x2 += self.lmargin
-        y2 += self.tmargin
+    def draw_half_circle(self,style,x,y,radius):
 
         stype = self.draw_styles[style]
         if stype.get_line_style() == DrawDoc.SOLID:
@@ -182,18 +164,19 @@ class PdfDrawDoc(DrawDoc.DrawDoc):
         color = stype.get_fill_color()
         self.f.setFillColor((float(color[0])/255.0,float(color[1])/255.0,float(color[2])/255.0))
 
+        x0 = (x+self.lmargin)*cm
+        y0 = (y+self.tmargin)*cm
+        r = radius*cm
+
         p = self.f.beginPath()
-        p.arc(x1*cm,y1*cm,x2*cm,y2*cm,angle,extent)
-        
+        p.moveTo(x0-r,y0)
+        p.arcTo(x0-r,y0-(r/2),x0+r,y0+(r/2))
+        p.lineTo(x0-r,y0)
+        self.f.drawPath(p,fill=1,stroke=1)
+
+#         self.f.arc(x0-r,y0-r,x0+r,y0+r,180,180)
+#         self.f.line(x0-r,y0,x0+r,y0)
         fill = stype.get_color()
-        
-        print x1*cm,y1*cm,x2*cm,y2*cm,angle,extent
-        
-        self.f.drawPath(p,stroke=1,fill=0)
-#        if fill[0] == 0:
-#            self.f.drawPath(p,stroke=1,fill=1)
-#        else:
-#            self.f.drawPath(p,stroke=1,fill=0)
 
     def draw_box(self,style,text,x,y):
         x = x + self.lmargin
