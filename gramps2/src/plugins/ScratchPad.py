@@ -129,8 +129,8 @@ class ScratchPadWindow:
         base = os.path.dirname(__file__)
         self.glade_file = "%s/%s" % (base,"scratchpad.glade")
 
-        self.top = gtk.glade.XML(self.glade_file,"scratchPad","gramps")
-        self.window = self.top.get_widget("scratchPad")
+        self.top = gtk.glade.XML(self.glade_file,"scratch_pad","gramps")
+        self.window = self.top.get_widget("scratch_pad")
         self.window.set_icon(self.parent.topWindow.get_icon())
         
         self.object_list = self.top.get_widget('objectlist')

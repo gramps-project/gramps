@@ -279,6 +279,12 @@ class PeopleModel(gtk.GenericTreeModel):
             return self.db.get_event_from_handle(data[_DEATH_COL]).get_date()
         else:
             return u""
+
+    def column_cause_of_death(self,data,node):
+        if data[_DEATH_COL]:
+            return self.db.get_event_from_handle(data[_DEATH_COL]).get_cause()
+        else:
+            return u""
         
     def column_birth_place(self,data,node):
         if data[_BIRTH_COL]:
@@ -313,20 +319,21 @@ _GENDER = [ _(u'female'), _(u'male'), _(u'unknown') ]
 # (unless this is declared after the PeopleModel class, an error is thrown)
 COLUMN_DEFS = [
     # data column (method)          header column (method)         column data type 
-    (PeopleModel.column_name,       PeopleModel.column_header,     gobject.TYPE_STRING),
-    (PeopleModel.column_id,         None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_gender,     None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_birth_day,  None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_birth_place,None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_death_day,  None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_death_place,None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_spouse,     None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_change,     None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_name,       PeopleModel.column_header, str),
+    (PeopleModel.column_id,         None,                      str),
+    (PeopleModel.column_gender,     None,                      str),
+    (PeopleModel.column_birth_day,  None,                      str),
+    (PeopleModel.column_birth_place,None,                      str),
+    (PeopleModel.column_death_day,  None,                      str),
+    (PeopleModel.column_death_place,None,                      str),
+    (PeopleModel.column_spouse,     None,                      str),
+    (PeopleModel.column_change,     None,                      str),
+    (PeopleModel.column_cause_of_death, None,                  str),
     # the order of the above columns must match PeopleView.column_names
 
     # these columns are hidden, and must always be last in the list
-    (PeopleModel.column_sort_name,  None,                          gobject.TYPE_STRING),
-    (PeopleModel.column_int_id,     None,                          gobject.TYPE_STRING),
+    (PeopleModel.column_sort_name,  None,                      str),
+    (PeopleModel.column_int_id,     None,                      str),
     ]
 
 # dynamic calculation of column indices, for use by various Views
