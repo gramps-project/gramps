@@ -267,20 +267,21 @@ class IndividualPage:
             else:
                 self.doc.write_text("%s. " % info)
                 
-    def write_tree(self):
-        if not self.mini_tree or not self.person.getMainParents(): return
+    def write_tree(self,ind_list):
+        if not self.mini_tree or not self.person.getMainParents():
+            return
         self.doc.start_paragraph("FamilyTitle")
         self.doc.end_paragraph()
 
         self.doc.start_paragraph("Data")
         self.doc.write_raw('<PRE>\n')
-        tree = MiniTree(self.person,self.doc)
+        tree = MiniTree(self.person,self.doc,ind_list)
         for line in tree.lines:
             if line: self.doc.write_raw(line + '\n')
         self.doc.write_raw('</PRE>\n')
         self.doc.end_paragraph()
 
-    def create_page(self):
+    def create_page(self,ind_list):
         """Generate the HTML page for the specific person"""
         
         filebase = "%s.%s" % (self.person.getId(),self.ext)
@@ -364,7 +365,7 @@ class IndividualPage:
             self.write_sources()
 
         # draw mini-tree
-        self.write_tree()
+        self.write_tree(ind_list)
 
         if self.link:
             self.doc.start_paragraph("Data")
@@ -853,7 +854,7 @@ class WebReport(Report.Report):
                                   self.include_link, self.include_mini_tree,
                                   my_map, dir_name, self.image_dir, tdoc,
                                   self.use_id,self.id_link,self.ext)
-            idoc.create_page()
+            idoc.create_page(my_map)
             idoc.close()
             self.progress_bar_step()
             while gtk.events_pending():
@@ -1229,7 +1230,8 @@ class MiniTree:
     class.  I'm sure that someone with more knowledge of GRAMPS can make
     it much cleaner.
     """
-    def __init__(self,person,doc):
+    def __init__(self,person,doc,map):
+        self.map = map
         self.doc = doc
         self.person = person
         self.lines = [ "" for i in range(9) ]
@@ -1279,7 +1281,7 @@ class MiniTree:
         self.lines[line] += ' ' * (indent-len(self.lines[line])) + text
 
     def draw_link(self, line, person, name):
-        if person and person.getId():
+        if person and person.getId() and self.map.has_key(person.getId()):
             self.lines[line] += "<A HREF='%s%s'>%s</A>" % (person.getId(),
                                                            self.doc.ext, name)
         else:
