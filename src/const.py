@@ -95,7 +95,7 @@ gtkrcFile      = "%s/gtkrc" % rootDir
 template_dir   = "%s/templates" % dataDir
 fdl            = "%s/fdl.txt" % dataDir
 
-startup        = 2
+startup        = 1
 
 #-------------------------------------------------------------------------
 #

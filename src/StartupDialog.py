@@ -51,6 +51,9 @@ class StartupDialog:
         self.bg_color = gtk.gdk.color_parse('#e1dbc5')
         self.logo = gtk.gdk.pixbuf_new_from_file("%s/gramps.png" % const.rootDir)
         self.splash = gtk.gdk.pixbuf_new_from_file("%s/splash.jpg" % const.rootDir)
+
+        self.client = gconf.client_get_default()
+
         d = gnome.ui.Druid()
         self.w.add(d)
         d.add(self.build_page1())
@@ -63,7 +66,6 @@ class StartupDialog:
         d.connect('cancel',self.close)
         self.w.connect("destroy_event", self.close)
         
-        self.client = gconf.client_get_default()
         self.w.show_all()
 
     def close(self,obj):
@@ -135,7 +137,7 @@ class StartupDialog:
         p.append_item("",box,"")
         
         label = gtk.Label(_('In order to create valid GEDCOM files, the following information '
-                            'needs to be entered. If you do not plan to generated GEDCOM files, '
+                            'needs to be entered. If you do not plan to generate GEDCOM files, '
                             'you may leave this empty.'))
         label.set_line_wrap(gtk.TRUE)
         
@@ -156,6 +158,16 @@ class StartupDialog:
         
         box.add(table)
         box.show_all()
+
+        self.name.set_text(self.client.get_string('/apps/gramps/researcher-name'))
+        self.addr.set_text(self.client.get_string('/apps/gramps/researcher-addr'))
+        self.city.set_text(self.client.get_string('/apps/gramps/researcher-city'))
+        self.state.set_text(self.client.get_string('/apps/gramps/researcher-state'))
+        self.postal.set_text(self.client.get_string('/apps/gramps/researcher-postal'))
+        self.country.set_text(self.client.get_string('/apps/gramps/researcher-country'))
+        self.phone.set_text(self.client.get_string('/apps/gramps/researcher-phone'))
+        self.email.set_text(self.client.get_string('/apps/gramps/researcher-email'))
+
         return p
 
     def build_page3(self):
@@ -183,6 +195,17 @@ class StartupDialog:
         self.date1 = gtk.RadioButton(label=_("MM/DD/YYYY (United States)"))
         self.date2 = gtk.RadioButton(label=_("DD/MM/YYYY (European)"),group=self.date1)
         self.date3 = gtk.RadioButton(label=_("YYYY-MM-DD (ISO)"),group=self.date1)
+
+        val = self.client.get_int("/apps/gramps/dateEntry")
+        if val == None:
+            val = 0
+            
+        if val == 0:
+            self.date1.set_active(1)
+        elif val == 1:
+            self.date2.set_active(1)
+        elif val == 2:
+            self.date3.set_active(1)
 
         vbox.add(self.date1)
         vbox.add(self.date2)
@@ -214,6 +237,12 @@ class StartupDialog:
         vbox.set_spacing(6)
         
         self.calendar = gtk.CheckButton(label=_("Enable support for alternate calendars"))
+
+        if self.client.get_int("/apps/gramps/ShowCalendar"):
+            self.calendar.set_active(1)
+        else:
+            self.calendar.set_active(0)
+        
         align.add(self.calendar)
         
         box.show_all()
@@ -242,6 +271,12 @@ class StartupDialog:
         vbox.set_spacing(6)
         
         self.lds = gtk.CheckButton(label=_("Enable LDS ordinance support"))
+
+        if self.client.get_int("/apps/gramps/UseLDS"):
+            self.lds.set_active(1)
+        else:
+            self.lds.set_active(0)
+
         align.add(self.lds)
         
         box.show_all()
