@@ -34,6 +34,7 @@ import BaseDoc
 import RelLib
 import Errors
 import Plugins
+import Calendar
 from QuestionDialog import ErrorDialog
 from gettext import gettext as _
 
@@ -441,7 +442,8 @@ class ComprehensiveAncestorsReport (Report.Report):
             if text:
                 info += ' ' + text[0].lower() + text[1:]
             elif dateobj.get_valid ():
-                if dateobj.is_range ():
+                if (dateobj.isRange () or
+                    dateobj.get_start_date ().getModeVal () != Calendar.EXACT):
                     info += ' ' + dateobj.get_date ()
                 elif (dateobj.get_day_valid () and
                     dateobj.get_month_valid () and
