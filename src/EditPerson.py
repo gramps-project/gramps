@@ -48,6 +48,7 @@ import Config
 from RelLib import *
 import RelImage
 import ImageSelect
+import sort
 
 _ = intl.gettext
 
@@ -618,6 +619,16 @@ class EditPerson:
 
         if not self.person.getBirth().are_equal(self.birth):
             self.person.setBirth(self.birth)
+
+        # Update each of the families child lists to reflect any
+        # change in ordering due to the new birth date
+        family = self.person.getMainFamily()
+        if (family):
+            new_order = reorder_child_list(self.person,family.getChildList())
+            family.setChildList(new_order)
+        for (family, rel1, rel2) in self.person.getAltFamilyList():
+            new_order = reorder_child_list(self.person,family.getChildList())
+            family.setChildList(new_order)
     
         self.death.setDate(self.ddate.get_text())
         dplace_obj = utils.get_place_from_list(self.dpcombo)
@@ -794,4 +805,70 @@ def cancel_callback(a):
 
 def src_changed(parent):
     parent.lists_changed = 1
+    
+
+#-------------------------------------------------------------------------
+# 
+# birth_dates_in_order
+# 
+# Check any *valid* birthdates in the list to insure that they are in
+# numerically increasing order.
+# 
+#-------------------------------------------------------------------------
+def birth_dates_in_order(list):
+    inorder = 1
+    prev_date = "00000000"
+    for i in range(len(list)):
+        child = list[i]
+        bday = child.getBirth().getDateObj()
+        child_date = sort.build_sort_birth(bday)
+        if (child_date == "99999999"):
+            continue
+        if (prev_date <= child_date):	# <= allows for twins
+            prev_date = child_date
+        else:
+            inorder = 0
+    return inorder
+
+
+#-------------------------------------------------------------------------
+# 
+# reorder_child_list
+# 
+# Reorder the child list to put the specified person in his/her
+# correct birth orde.  Only check *valid* birthdates.  Move the person
+# as short a distance as possible.
+# 
+#-------------------------------------------------------------------------
+def reorder_child_list(person, list):
+    if (birth_dates_in_order(list)):
+        return(list)
+
+    # Build the person's date string once
+    person_bday = sort.build_sort_birth(person.getBirth().getDateObj())
+
+    # First, see if the person needs to be moved forward in the list
+    index = list.index(person)
+    target = index
+    for i in range(index-1, -1, -1):
+        other_bday = sort.build_sort_birth(list[i].getBirth().getDateObj())
+        if (other_bday == "99999999"):
+            continue;
+        if (person_bday < other_bday):
+            target = i
+
+    # Now try moving to a later position in the list
+    if (target == index):
+        for i in range(index, len(list)):
+            other_bday = sort.build_sort_birth(list[i].getBirth().getDateObj())
+            if (other_bday == "99999999"):
+                continue;
+            if (person_bday > other_bday):
+                target = i
+
+    # Actually need to move?  Do it now.
+    if (target != index):
+        list.remove(person)
+        list.insert(target,person)
+    return list
     

@@ -46,7 +46,7 @@ def build_sort_birth(n):
     d = n.start.day
     if d == -1:
         d = 99
-    return "%04d%2d%2d" % (y,m,d)
+    return "%04d%02d%02d" % (y,m,d)
 
 #-------------------------------------------------------------------------
 #
@@ -63,7 +63,7 @@ def build_sort_death(n):
     d = n.start.day
     if d == -1:
         d = 99
-    return "%04d%2d%2d" % (y,m,d)
+    return "%04d%02d%02d" % (y,m,d)
 
 #-------------------------------------------------------------------------
 #
@@ -158,19 +158,3 @@ def by_last_name(first, second) :
 #-------------------------------------------------------------------------
 def by_last_name_backwards(first, second) :
     return by_last_name(second,first)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def by_birthdate(first, second) :
-
-    date1 = first.getBirth().getDateObj()
-    date2 = second.getBirth().getDateObj()
-    val = compare_dates(date1,date2)
-    if val == 0:
-        return by_last_name(first,second)
-    return val
-
-

@@ -123,6 +123,9 @@ canvas        = None
 sort_column   = 5
 sort_direct   = SORT_ASCENDING
 DataFilter    = Filter.Filter("")
+c_birth_order = 6
+c_sort_column = c_birth_order
+c_sort_direct = SORT_ASCENDING
 
 #-------------------------------------------------------------------------
 #
@@ -1930,9 +1933,129 @@ def on_spouse_list_select_row(obj,row,b,c):
 
 #-------------------------------------------------------------------------
 #
-#
+# on_child_list_click_column
+# 
+# Called when the user selects a column header on the person_list window.
+# Change the sort function (column 0 is the name column, and column 2 is
+# the birthdate column), set the arrows on the labels to the correct
+# orientation, and then call apply_filter to redraw the list
 #
 #-------------------------------------------------------------------------
+def on_child_list_click_column(clist,column):
+    if column == 0:
+        child_change_sort(clist,0,gtop.get_widget("cNameSort"))
+    elif (column == 3) or (column == 6):
+        child_change_sort(clist,6,gtop.get_widget("cDateSort"))
+    else:
+        return
+
+    sort_child_list(clist)
+    if id2col.has_key(active_child):
+        row = clist.find_row_from_data(id2col[active_child])
+        clist.moveto(row)
+
+#-------------------------------------------------------------------------
+# 
+# 
+# 
+#-------------------------------------------------------------------------
+def child_change_sort(clist,column,arrow):
+    global c_sort_direct
+    global c_sort_column
+
+    cNameArrow.hide()
+    cDateArrow.hide()
+    arrow.show()
+    
+    if c_sort_column == column:
+        if c_sort_direct == SORT_DESCENDING:
+            c_sort_direct = SORT_ASCENDING
+            arrow.set(GTK.ARROW_DOWN,2)
+        else:
+            c_sort_direct = SORT_DESCENDING
+            arrow.set(GTK.ARROW_UP,2)
+    else:
+        c_sort_direct = SORT_ASCENDING
+    c_sort_column = column
+    clist.set_sort_type(c_sort_direct)
+    clist.set_sort_column(c_sort_column)
+    clist.set_reorderable(c_sort_column == c_birth_order)
+    
+
+def sort_child_list(clist):
+    clist.freeze()
+    clist.sort()
+    clist.thaw()
+
+#-------------------------------------------------------------------------
+# 
+# on_child_list_row_move
+# 
+# Validate whether or not this child can be moved within the clist.
+# This routine is called in the middle of the clist's callbacks, so
+# the state can be confusing.  If the code is being debugged, the
+# display at this point shows that the list has been reordered when in
+# actuality it hasn't.  All accesses to the clist data structure
+# reference the state just prior to the "move".
+#
+# This routine must keep/compute its own list indices as the functions
+# list.remove(), list.insert(), list.reverse() etc. do not affect the
+# values returned from the list.index() routine.
+#
+#-------------------------------------------------------------------------
+def on_child_list_row_move(clist,fm,to):
+    family = clist.get_data("f")
+
+    # Create a list based upon the current order of the clist
+    clist_order = []
+    for i in range(clist.rows):
+        clist_order = clist_order + [clist.get_row_data(i)]
+    child = clist_order[fm]
+
+    # This function deals with ascending order lists.  Convert if
+    # necessary.
+    if (c_sort_direct == SORT_DESCENDING):
+        clist_order.reverse()
+        max_index = len(clist_order) - 1
+        fm = max_index - fm
+        to = max_index - to
+        
+    # Create a new list to match the requested order
+    desired_order = clist_order[:fm] + clist_order[fm+1:]
+    desired_order = desired_order[:to] + [child] + desired_order[to:]
+
+    # Check birth date order in the new list
+    if (EditPerson.birth_dates_in_order(desired_order) == 0):
+        clist.emit_stop_by_name("row_move")
+        GnomeWarningDialog(_("Invalid move.  Children must be ordered by birth date."))
+        return
+           
+    # OK, this birth order works too.  Update the family data structures.
+    family.setChildList(desired_order)
+
+    # Build a mapping of child item to list position.  This would not
+    # be necessary if indices worked properly
+    i = 0
+    new_order = {}
+    for tmp in desired_order:
+        new_order[tmp] = i
+        i = i + 1
+
+    # Convert the original list back to whatever ordering is being
+    # used by the clist itself.
+    if (c_sort_direct == SORT_DESCENDING):
+        clist_order.reverse()
+
+    # Update the clist indices so any change of sorting works
+    i = 0
+    for tmp in clist_order:
+    	clist.set_text(i, c_birth_order, "%2d"%new_order[tmp])
+        i = i + 1
+
+    # Need to save the changed order
+    utils.modified()
+
+
 def on_open_activate(obj):
     wFs = libglade.GladeXML(const.gladeFile, "dbopen")
     wFs.signal_autoconnect({
@@ -2875,6 +2998,10 @@ def display_marriage(family):
     active_child = None
 
     i = 0
+    clist.set_sort_type(c_sort_direct)
+    clist.set_sort_column(c_sort_column)
+    clist.set_reorderable(c_sort_column == c_birth_order)
+
     if family != None:
         if active_person.getGender() == Person.male:
             active_spouse = family.getMother()
@@ -2882,7 +3009,7 @@ def display_marriage(family):
             active_spouse = family.getFather()
             
         child_list = family.getChildList()
-        child_list.sort(sort.by_birthdate)
+        # List is already sorted by birth date
         attr = ""
         for child in child_list:
             status = _("Unknown")
@@ -2917,7 +3044,7 @@ def display_marriage(family):
                     attr = attr + "P"
 
             clist.append([Config.nameof(child),child.getId(),\
-                          gender,birthday(child),status,attr])
+                          gender,birthday(child),status,attr,"%2d"%i])
             clist.set_row_data(i,child)
             i=i+1
             if i != 0:
@@ -2925,6 +3052,8 @@ def display_marriage(family):
                 clist.select_row(0,0)
             else:	
                 fv_prev.set_sensitive(0)
+        clist.set_data("f",family)
+        clist.sort()
     else:
         fv_prev.set_sensitive(0)
 		
@@ -3304,6 +3433,7 @@ def main(arg):
     global person_list, source_list, place_list, canvas, media_list
     global topWindow, preview
     global nameArrow, dateArrow, deathArrow
+    global cNameArrow, cDateArrow
     global mid, mtype, mdesc, mpath, mdetails
     
     rc_parse(const.gtkrcFile)
@@ -3345,6 +3475,8 @@ def main(arg):
           ('application/x-rootwin-drop',0,1)]
     media_list.drag_source_set(GDK.BUTTON1_MASK|GDK.BUTTON3_MASK,t,GDK.ACTION_COPY)
     media_list.drag_dest_set(DEST_DEFAULT_ALL,t,GDK.ACTION_COPY|GDK.ACTION_MOVE)
+    cNameArrow  = gtop.get_widget("cNameSort")
+    cDateArrow  = gtop.get_widget("cDateSort")
     person_list.set_column_visibility(5,0)
     person_list.set_column_visibility(6,0)
     person_list.set_column_visibility(7,0)
@@ -3377,6 +3509,8 @@ def main(arg):
         "on_canvas1_event"                  : on_canvas1_event,
         "on_child_list_button_press_event"  : on_child_list_button_press_event,
         "on_child_list_select_row"          : on_child_list_select_row,
+        "on_child_list_click_column"        : on_child_list_click_column,
+        "on_child_list_row_move"            : on_child_list_row_move,
         "on_choose_parents_clicked"         : on_choose_parents_clicked, 
         "on_contents_activate"              : on_contents_activate,
         "on_default_person_activate"        : on_default_person_activate,
@@ -3436,7 +3570,10 @@ def main(arg):
     person_list.set_column_visibility(1,Config.id_visible)
 
     notebook.set_show_tabs(Config.usetabs)
-    gtop.get_widget("child_list").set_column_visibility(4,Config.show_detail)
+    child_list = gtop.get_widget("child_list")
+    child_list.set_column_visibility(4,Config.show_detail)
+    child_list.set_column_visibility(6,0)
+    child_list.set_column_visibility(7,0)
         
     if arg != None:
         read_file(arg)
