@@ -21,6 +21,18 @@
 
 # $Id$
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
+from gettext import gettext as _
+
+#------------------------------------------------------------------------
+#
+# GTK modules
+#
+#------------------------------------------------------------------------
 import gtk
 
 #------------------------------------------------------------------------
@@ -36,9 +48,9 @@ import Errors
 import Plugins
 import DateHandler
 from QuestionDialog import ErrorDialog
-from gettext import gettext as _
+import ReportOptions
 
-_dd = DateHandler.create_display()
+_dd = DateHandler.displayer
 #------------------------------------------------------------------------
 #
 # ComprehensiveAncestorsReport
@@ -46,29 +58,38 @@ _dd = DateHandler.create_display()
 #------------------------------------------------------------------------
 class ComprehensiveAncestorsReport (Report.Report):
 
-    def __init__(self,database,person,max,pgbrk,cite,doc,output,newpage=0):
-        self.map = {}
+    def __init__(self,database,person,options_class):
+        #,max,pgbrk,cite,doc,output,newpage=0):
+
         self.database = database
         self.start = person
-        self.max_generations = max
-        self.pgbrk = pgbrk
-        self.opt_cite = cite
-        self.doc = doc
+        self.options_class = options_class
+
+        self.map = {}
+
+        (self.max_generations,self.pgbrk) \
+                        = options_class.get_report_generations()
+        #self.opt_cite = cite
+        self.opt_cite = options_class.handler.options_dict['cites']
+
+        self.doc = options_class.get_document()
+        self.output = options_class.get_output()
+        self.newpage = options_class.get_newpage()
+
         self.sources = []
         self.sourcerefs = []
-        self.newpage = newpage
         self.RelClass = Plugins.relationship_class
         self.relationship = self.RelClass(database)
 
         table = BaseDoc.TableStyle ()
         table.set_column_widths ([15, 85])
         table.set_width (100)
-        doc.add_table_style ("AR-PersonNoSpouse", table)
+        self.doc.add_table_style ("AR-PersonNoSpouse", table)
 
         table = BaseDoc.TableStyle ()
         table.set_column_widths ([10, 15, 75])
         table.set_width (100)
-        doc.add_table_style ("AR-ChildNoSpouse", table)
+        self.doc.add_table_style ("AR-ChildNoSpouse", table)
 
         for nspouse in range (1, 3):
             table = BaseDoc.TableStyle ()
@@ -76,18 +97,18 @@ class ComprehensiveAncestorsReport (Report.Report):
             widths = [15, 100 - 15 * (nspouse + 1)]
             widths.extend ([15] * nspouse)
             table.set_column_widths (widths)
-            doc.add_table_style ("AR-PersonWithSpouse%d" % nspouse, table)
+            self.doc.add_table_style ("AR-PersonWithSpouse%d" % nspouse, table)
 
             table = BaseDoc.TableStyle ()
             table.set_width (100)
             widths = [10, 15, 90 - 15 * (nspouse + 1)]
             widths.extend ([15] * nspouse)
             table.set_column_widths (widths)
-            doc.add_table_style ("AR-ChildWithSpouse%d"% nspouse, table)
+            self.doc.add_table_style ("AR-ChildWithSpouse%d"% nspouse, table)
 
         cell = BaseDoc.TableCellStyle ()
         cell.set_padding (1) # each side makes 2cm, the size of the photo
-        doc.add_cell_style ("AR-PaddedCell", cell)
+        self.doc.add_cell_style ("AR-PaddedCell", cell)
 
         cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
@@ -95,19 +116,19 @@ class ComprehensiveAncestorsReport (Report.Report):
         cell.set_top_border (1)
         cell.set_right_border (1)
         cell.set_bottom_border (1)
-        doc.add_cell_style ("AR-NoPhoto", cell)
+        self.doc.add_cell_style ("AR-NoPhoto", cell)
 
         cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
-        doc.add_cell_style ("AR-Photo", cell)
+        self.doc.add_cell_style ("AR-Photo", cell)
 
         cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
-        doc.add_cell_style ("AR-Entry", cell)
+        self.doc.add_cell_style ("AR-Entry", cell)
 
-        if output:
+        if self.output:
             self.standalone = 1
-            self.doc.open(output)
+            self.doc.open(self.output)
             self.doc.init()
         else:
             self.standalone = 0
@@ -669,7 +690,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 nick = nick[:-1]
                 name += ' ("%s")' % nick
 
-        spfx = primary.getSurnamePrefix ()
+        spfx = primary.get_surname_prefix ()
         if spfx:
             name += ' ' + spfx
 
@@ -863,257 +884,109 @@ class ComprehensiveAncestorsReport (Report.Report):
 
         return paras
 
-def _make_default_style(default_style):
-    """Make the default output style for the Comprehensive Ancestors report."""
-    font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
-    para = BaseDoc.ParagraphStyle()
-    para.set_font(font)
-    para.set_header_level(1)
-    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-    para.set(pad=0.5)
-    para.set_description(_('The style used for the title of the page.'))
-    default_style.add_style("AR-Title",para)
-    
-    font = BaseDoc.FontStyle()
-    font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
-    para = BaseDoc.ParagraphStyle()
-    para.set_font(font)
-    para.set_header_level(2)
-    para.set(pad=0.5)
-    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
-    para.set_description(_('The style used for the generation header.'))
-    default_style.add_style("AR-Heading",para)
-
-    para = BaseDoc.ParagraphStyle()
-    para.set(lmargin=1.0,pad=0.25)
-    para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("AR-Entry",para)
-
-    para = BaseDoc.ParagraphStyle ()
-    para.set_description(_('Text style for missing photo.'))
-    default_style.add_style("AR-NoPhotoText", para)
-
-    details_font = BaseDoc.FontStyle()
-    details_font.set(face=BaseDoc.FONT_SANS_SERIF,size=8,italic=1)
-    para = BaseDoc.ParagraphStyle()
-    para.set(lmargin=2.7,pad=0,font = details_font)
-    para.set_description(_('Style for details about a person.'))
-    default_style.add_style("AR-Details",para)
-
-    para = BaseDoc.ParagraphStyle()
-    para.set(lmargin=2.5,pad=0.25)
-    para.set_description(_('The basic style used for the text display.'))
-    para.set_header_level (4)
-    default_style.add_style("AR-SubEntry",para)
-
-    para = BaseDoc.ParagraphStyle()
-    para.set(pad=0.05)
-    para.set_description(_('The basic style used for the text display.'))
-    default_style.add_style("AR-Endnotes",para)
-
-    para = BaseDoc.ParagraphStyle()
-    para.set(lmargin=1.0,pad=0.05)
-    para.set_description(_('Introduction to the children.'))
-    para.set_header_level (3)
-    default_style.add_style("AR-ChildTitle",para)
-
-
 #------------------------------------------------------------------------
 #
 # 
 #
 #------------------------------------------------------------------------
-class ComprehensiveAncestorsReportDialog(Report.TextReportDialog):
+class ComprehensiveAncestorsOptions(ReportOptions.ReportOptions):
 
-    report_options = {}
+    """
+    Defines options and provides handling interface.
+    """
 
-    def __init__(self,database,person):
-        Report.TextReportDialog.__init__(self,database,person,self.report_options)
+    def __init__(self,name,person_id=None):
+        ReportOptions.ReportOptions.__init__(self,name,person_id)
 
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def doc_uses_tables (self):
-        return 1
+    def set_new_options(self):
+        # Options specific for this report
+        self.options_dict = {
+            'cites'    : 1,
+        }
+        self.options_help = {
+            'cites'    : ("=0/1","Whether to cite sources.",
+                            ["Do not cite sources","Cite sources"],
+                            True),
+        }
 
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - %s - GRAMPS" % (_("Comprehensive Ancestors Report"),
-                                     _("Text Reports"))
+    def enable_options(self):
+        # Semi-common options that should be enabled for this report
+        self.enable_dict = {
+            'max_gen'       : 10,
+            'page_breaks'    : 0,
+        }
 
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Ancestors for %s") % name
+    def make_default_style(self,default_style):
+        """Make the default output style for the Comprehensive Ancestors report."""
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(1)
+        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set(pad=0.5)
+        para.set_description(_('The style used for the title of the page.'))
+        default_style.add_style("AR-Title",para)
 
-    def get_target_browser_title(self):
-        """The title of the window created when the 'browse' button is
-        clicked in the 'Save As' frame."""
-        return _("Save Ancestor Report")
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+        para = BaseDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(2)
+        para.set(pad=0.5)
+        para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
+        para.set_description(_('The style used for the generation header.'))
+        default_style.add_style("AR-Heading",para)
 
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return "ancestors_report.xml"
-    
-    def make_default_style(self):
-        _make_default_style(self.default_style)
+        para = BaseDoc.ParagraphStyle()
+        para.set(lmargin=1.0,pad=0.25)
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_style("AR-Entry",para)
 
-    def add_user_options (self):
+        para = BaseDoc.ParagraphStyle ()
+        para.set_description(_('Text style for missing photo.'))
+        default_style.add_style("AR-NoPhotoText", para)
+
+        details_font = BaseDoc.FontStyle()
+        details_font.set(face=BaseDoc.FONT_SANS_SERIF,size=8,italic=1)
+        para = BaseDoc.ParagraphStyle()
+        para.set(lmargin=2.7,pad=0,font = details_font)
+        para.set_description(_('Style for details about a person.'))
+        default_style.add_style("AR-Details",para)
+
+        para = BaseDoc.ParagraphStyle()
+        para.set(lmargin=2.5,pad=0.25)
+        para.set_description(_('The basic style used for the text display.'))
+        para.set_header_level (4)
+        default_style.add_style("AR-SubEntry",para)
+
+        para = BaseDoc.ParagraphStyle()
+        para.set(pad=0.05)
+        para.set_description(_('The basic style used for the text display.'))
+        default_style.add_style("AR-Endnotes",para)
+
+        para = BaseDoc.ParagraphStyle()
+        para.set(lmargin=1.0,pad=0.05)
+        para.set_description(_('Introduction to the children.'))
+        para.set_header_level (3)
+        default_style.add_style("AR-ChildTitle",para)
+
+    def add_user_options(self,dialog):
+        """
+        Override the base class add_user_options task to add a menu that allows
+        the user to select the sort method.
+        """
+        
         self.cb_cite = gtk.CheckButton (_("Cite sources"))
         self.cb_cite.set_active (gtk.TRUE)
-        self.add_option ('', self.cb_cite)
+        dialog.add_option ('', self.cb_cite)
 
-    def parse_report_options_frame (self):
-        # Call base class
-        Report.ReportDialog.parse_report_options_frame (self)
-        self.opt_cite = self.cb_cite.get_active ()
+    def parse_user_options(self,dialog):
+        """
+        Parses the custom options that we have added.
+        """
+        self.options_dict['cites'] = self.cb_cite.get_active ()
 
-    def make_report(self):
-
-        """Create the object that will produce the Comprehensive
-        Ancestors Report.  All user dialog has already been handled
-        and the output file opened."""
-        try:
-            MyReport = ComprehensiveAncestorsReport(self.db, self.person,
-                                                    self.max_gen, self.pg_brk,
-                                                    self.opt_cite, self.doc,
-                                                    self.target_path)
-            MyReport.write_report()
-        except Errors.ReportError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except Errors.FilterError, msg:
-            (m1,m2) = msg.messages()
-            ErrorDialog(m1,m2)
-        except:
-            import DisplayTrace
-            DisplayTrace.DisplayTrace()
-
-#------------------------------------------------------------------------
-#
-# Standalone report function
-#
-#------------------------------------------------------------------------
-def report(database,person):
-    ComprehensiveAncestorsReportDialog(database,person)
-
-#------------------------------------------------------------------------
-#
-# Set up sane defaults for the book_item
-#
-#------------------------------------------------------------------------
-_style_file = "ancestors_report.xml"
-_style_name = "default" 
-
-_person_handle = ""
-_max_gen = 10
-_pg_brk = 0
-_opt_cite = 1
-
-_options = ( _person_handle, _max_gen, _pg_brk, _opt_cite )
-
-#------------------------------------------------------------------------
-#
-# Book Item Options dialog
-#
-#------------------------------------------------------------------------
-class ComprehensiveAncestorsBareReportDialog(Report.BareReportDialog):
-
-    def __init__(self,database,person,opt,stl):
-
-        self.options = opt
-        self.db = database
-        if self.options[0]:
-            self.person = self.db.get_person_from_handle(self.options[0])
-        else:
-            self.person = person
-        self.style_name = stl
-
-        Report.BareReportDialog.__init__(self,database,self.person)
-
-        self.max_gen = int(self.options[1]) 
-        self.pg_brk = int(self.options[2])
-        self.opt_cite = int(self.options[3])
-        self.new_person = None
-
-        self.generations_spinbox.set_value(self.max_gen)
-        self.pagebreak_checkbox.set_active(self.pg_brk)
-        self.cb_cite.set_active(self.opt_cite)
-
-        self.window.run()
-
-    #------------------------------------------------------------------------
-    #
-    # Customization hooks
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self):
-        _make_default_style(self.default_style)
-
-    def get_title(self):
-        """The window title for this dialog"""
-        return "%s - GRAMPS Book" % (_("Comprehensive Ancestors Report"))
-
-    def get_header(self, name):
-        """The header line at the top of the dialog contents"""
-        return _("Comprehensive Ancestors Report for GRAMPS Book") 
-
-    def get_stylesheet_savefile(self):
-        """Where to save styles for this report."""
-        return _style_file
-    
-    def add_user_options (self):
-        self.cb_cite = gtk.CheckButton (_("Cite sources"))
-        self.add_option ('', self.cb_cite)
-
-    def parse_report_options_frame (self):
-        # Call base class
-        Report.BareReportDialog.parse_report_options_frame (self)
-        self.opt_cite = self.cb_cite.get_active ()
-
-    def on_cancel(self, obj):
-        pass
-
-    def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices. Parse all options
-        and close the window."""
-
-        # Preparation
-        self.parse_style_frame()
-        self.parse_report_options_frame()
-        
-        if self.new_person:
-            self.person = self.new_person
-        self.options = ( self.person.get_handle(), self.max_gen, self.pg_brk, self.opt_cite )
-        self.style_name = self.selected_style.get_name() 
-
-#------------------------------------------------------------------------
-#
-# Function to write Book Item 
-#
-#------------------------------------------------------------------------
-def write_book_item(database,person,doc,options,newpage=0):
-    """Write the Comprehensive Ancestors Report using options set.
-    All user dialog has already been handled and the output file opened."""
-    try:
-        if options[0]:
-            person = database.get_person_from_handle(options[0])
-        max_gen = int(options[1])
-        pg_brk = int(options[2])
-        opt_cite = int(options[3])
-        return ComprehensiveAncestorsReport(database, person,
-            max_gen, pg_brk, opt_cite, doc, None, newpage)
-    except Errors.ReportError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except Errors.FilterError, msg:
-        (m1,m2) = msg.messages()
-        ErrorDialog(m1,m2)
-    except:
-        import DisplayTrace
-        DisplayTrace.DisplayTrace()
 
 #------------------------------------------------------------------------
 #
@@ -1121,23 +994,14 @@ def write_book_item(database,person,doc,options,newpage=0):
 #
 #------------------------------------------------------------------------
 Plugins.register_report(
-    report,
-    _("Comprehensive Ancestors Report"),
-    category=_("Text Reports"),
-    status=(_("Beta")),
+    name = 'ancestors_report',
+    category = const.CATEGORY_TEXT,
+    report_class = ComprehensiveAncestorsReport,
+    options_class = ComprehensiveAncestorsOptions,
+    modes = Report.MODE_GUI | Report.MODE_BKI | Report.MODE_CLI,
+    translated_name = _("Comprehensive Ancestors Report"),
+    status = _("Beta"),
     description= _("Produces a detailed ancestral report."),
     author_name="Tim Waugh",
     author_email="twaugh@redhat.com"
     )
-
-# (name,category,options_dialog,write_book_item,options,style_name,style_file,make_default_style)
-Plugins.register_book_item( 
-    _("Comprehensive Ancestors Report"), 
-    _("Text"),
-    ComprehensiveAncestorsBareReportDialog,
-    write_book_item,
-    _options,
-    _style_name,
-    _style_file,
-    _make_default_style
-   )

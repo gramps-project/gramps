@@ -1,3 +1,10 @@
+2004-12-29 Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/DisplayTrace.py: Typo in the debian version filename.
+	* src/plugins/Ancestors.py: Convert to new scheme.
+	* src/plugins/AncestorReport.py: New date handling.
+	* src/plugins/FtmStyleDescendants.py: New date handling.
+	* src/plugins/FtmStyleAncestors.py: New date handling.
+
 2004-12-28  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/DateEdit.py: use global date displayer/parser
 	* src/DateHandler.py: provide global date displayer/parser 
