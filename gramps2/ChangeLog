@@ -1,3 +1,6 @@
+2004-07-25  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/data/Makefile.am: Execute `pkill gconfd'. 
+
 2004-07-19  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/GrampsCfg.py: More re-work of gconf usage.
 	* src/StartupDialog.py: Access keys through GrampsCfg methods.
