@@ -11,6 +11,8 @@
 	* src/plugins/DescendReport.py: Convert to new scheme.
 	* src/plugins/IndivSummary.py: Convert to new scheme.
 
+	* src/Plugins.py: Fix Reports menu.
+
 2004-12-21 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/docgen/AsciiDoc.py (reformat_para): Correctly check for
 	empty paragraph.
