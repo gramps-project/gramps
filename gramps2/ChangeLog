@@ -1,3 +1,8 @@
+2003-10-05  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/PeopleView.py: Correct references to history in gramps_main.
+	* src/gramps_main.py: Switch away from separate history submenu.
+	* src/gramps.glade: Likewise.
+
 2003-10-04  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/PeopleView.py: broken out of gramps_main.py, fixed 
 	add/delete

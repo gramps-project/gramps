@@ -344,22 +344,22 @@ class PeopleView:
         """Builds the menu with navigation and 
         editing operations on the people's list"""
         
-        back_sensitivity = self.hindex > 0 
-        fwd_sensitivity = self.hindex + 1 < len(self.history)
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
         mlist = self.person_tree.get_selected_objects()
         if mlist:
             sel_sensitivity = 1
         else:
             sel_sensitivity = 0
         entries = [
-            (gtk.STOCK_GO_BACK,self.back_clicked,back_sensitivity),
-            (gtk.STOCK_GO_FORWARD,self.fwd_clicked,fwd_sensitivity),
-            (gtk.STOCK_HOME,self.on_home_clicked,1),
-            (_("Add Bookmark"),self.on_add_bookmark_activate,sel_sensitivity),
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            (gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            (_("Add Bookmark"),self.parent.on_add_bookmark_activate,sel_sensitivity),
             (None,None,0),
-            (gtk.STOCK_ADD, self.add_button_clicked,1),
-            (gtk.STOCK_REMOVE, self.remove_button_clicked,sel_sensitivity),
-            (_("Edit"), self.edit_button_clicked,sel_sensitivity),
+            (gtk.STOCK_ADD, self.parent.add_button_clicked,1),
+            (gtk.STOCK_REMOVE, self.parent.remove_button_clicked,sel_sensitivity),
+            (_("Edit"), self.parent.edit_button_clicked,sel_sensitivity),
         ]
 
         menu = gtk.Menu()
@@ -375,5 +375,3 @@ class PeopleView:
         
     def redisplay_person_list(self,person):
         self.add_to_person_list(person,1)
-
-
