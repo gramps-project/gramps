@@ -18,26 +18,45 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import TextDoc
+#-------------------------------------------------------------------------
+#
+# GNOME modules
+#
+#-------------------------------------------------------------------------
 import gtk
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+import TextDoc
 import GrampsCfg
+import const
+from intl import gettext as _
 
-from intl import gettext
-_ = gettext
+#-------------------------------------------------------------------------
+#
+# Try to abstract SAX1 from SAX2
+#
+#-------------------------------------------------------------------------
+try:
+    from xml.sax import make_parser,handler,SAXParseException
+except:
+    from _xmlplus.sax import make_parser,handler,SAXParseException
 
-paper_sizes = [
-    TextDoc.PaperStyle("Letter",27.94,21.59),
-    TextDoc.PaperStyle("Legal",35.56,21.59),
-    TextDoc.PaperStyle("A3",42.0,29.7),
-    TextDoc.PaperStyle("A4",29.7,21.0),
-    TextDoc.PaperStyle("A5",21.0,14.8),
-    TextDoc.PaperStyle("B4",35.3,25.0),
-    TextDoc.PaperStyle("B6",17.6,12.5),
-    TextDoc.PaperStyle("C4",32.4,22.9),
-    TextDoc.PaperStyle("C5",22.9,16.2),
-    TextDoc.PaperStyle("C6",16.2,11.4)
-    ]
+#-------------------------------------------------------------------------
+#
+# 
+#
+#-------------------------------------------------------------------------
+paper_sizes = []
 
+#-------------------------------------------------------------------------
+#
+# make_paper_menu
+#
+#-------------------------------------------------------------------------
 def make_paper_menu(main_menu):
 
     index = 0
@@ -53,6 +72,11 @@ def make_paper_menu(main_menu):
         index = index + 1
     main_menu.set_menu(myMenu)
 
+#-------------------------------------------------------------------------
+#
+# make_orientation_menu
+#
+#-------------------------------------------------------------------------
 def make_orientation_menu(main_menu):
 
     myMenu = gtk.Menu()
@@ -68,3 +92,46 @@ def make_orientation_menu(main_menu):
 
     main_menu.set_menu(myMenu)
 
+#-------------------------------------------------------------------------
+#
+# FilterParser
+#
+#-------------------------------------------------------------------------
+class PageSizeParser(handler.ContentHandler):
+    """Parses the XML file and builds the list of page sizes"""
+    
+    def __init__(self,paper_list):
+        handler.ContentHandler.__init__(self)
+        self.paper_list = paper_list
+        
+    def setDocumentLocator(self,locator):
+        self.locator = locator
+
+    def startElement(self,tag,attrs):
+        if tag == "page":
+            name = attrs['name']
+            height = float(attrs['height'])
+            width = float(attrs['width'])
+            self.paper_list.append(TextDoc.PaperStyle(name,height,width))
+
+#-------------------------------------------------------------------------
+#
+# Parse XML file. If failed, used default
+#
+#-------------------------------------------------------------------------
+try:
+    parser = make_parser()
+    parser.setContentHandler(PageSizeParser(paper_sizes))
+    parser.parse(const.papersize)
+except (IOError,OSError,SAXParseException):
+    paper_sizes = [
+        TextDoc.PaperStyle("Letter",27.94,21.59),
+        TextDoc.PaperStyle("Legal",35.56,21.59),
+        TextDoc.PaperStyle("A4",29.7,21.0),
+        TextDoc.PaperStyle("A5",21.0,14.8),
+        TextDoc.PaperStyle("B4",35.3,25.0),
+        TextDoc.PaperStyle("B6",17.6,12.5),
+        TextDoc.PaperStyle("C4",32.4,22.9),
+        TextDoc.PaperStyle("C5",22.9,16.2),
+        TextDoc.PaperStyle("C6",16.2,11.4)
+        ]

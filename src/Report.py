@@ -52,11 +52,7 @@ import TextDoc
 import StyleEditor
 import GrampsCfg
 import PaperMenu
-import intl
-import latin_utf8
-
-u2l = latin_utf8.utf8_to_latin
-_ = intl.gettext
+from intl import gettext as _
 
 from QuestionDialog import  ErrorDialog
 
@@ -1077,7 +1073,7 @@ class TemplateParser(handler.ContentHandler):
         """
         
         if tag == "template":
-            self.data[u2l(attrs['title'])] = u2l(attrs['file'])
+            self.data[attrs['title']] = attrs['file']
             
 try:
     parser = make_parser()

@@ -20,18 +20,33 @@
 
 "Utilities/Relationship calculator"
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import os
 
+#-------------------------------------------------------------------------
+#
+# GNOME libraries
+#
+#-------------------------------------------------------------------------
 from gtk import *
 from gnome.ui import *
 import gtk.glade
 
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
+
 import RelLib
 import sort
-import intl
 import Utils
-
-_ = intl.gettext
+import ListModel
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -297,7 +312,7 @@ class RelCalc:
         self.db = database
 
         base = os.path.dirname(__file__)
-        glade_file = base + os.sep + "relcalc.glade"
+        glade_file = "%s/relcalc.glade" % base
         self.glade = gtk.glade.XML(glade_file,"relcalc")
 
         name = self.person.getPrimaryName().getRegularName()
@@ -305,18 +320,16 @@ class RelCalc:
         self.glade.get_widget("name").set_text(_("Relationship to %s") % name)
         self.people = self.glade.get_widget("peopleList")
 
-        name_list = self.db.getPersonMap().values()
-        name_list.sort(sort.by_last_name)
-        index = 0
-        self.people.freeze()
-        for p in name_list:
-            name = p.getPrimaryName().getName()
-            birthday = p.getBirth().getDate()
-            id = p.getId()
-            self.people.append([name,id,birthday])
-            self.people.set_row_data(index,p)
-            index = index + 1
-        self.people.thaw()
+        self.clist = ListModel.ListModel(self.people, [(_('Name'),3,150),(_('ID'),1,50),
+                                                       (_('Birthday'),4,150),
+                                                       ('',-1,0),('',-1,0)])
+        self.clist.new_model()
+        for key in self.db.getPersonKeys():
+            p = self.db.getPerson(key)
+            val = self.db.getPersonDisplay(key)
+            self.clist.add([val[0],val[1],val[3],val[5],val[6]],p.getId())
+
+        self.clist.connect_model()
             
         self.glade.signal_autoconnect({
             "on_close_clicked" : Utils.destroy_passed_object,
@@ -331,10 +344,12 @@ class RelCalc:
         common = []
         rank = 9999999
 
-        if len(self.people.selection) == 0:
+        model,iter = self.clist.get_selected()
+        if not iter:
             return
-
-        other_person = self.people.get_row_data(self.people.selection[0])
+        
+        id = self.clist.get_object(iter)
+        other_person = self.db.getPerson(id)
         filter(self.person,0,firstList,firstMap)
         filter(other_person,0,secondList,secondMap)
 
