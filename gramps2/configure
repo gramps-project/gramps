@@ -3940,7 +3940,8 @@ fi
 GNOMEINC=`pkg-config --cflags gnome-vfs-module-2.0`
 GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
-pygtk_require="try:
+pygtk_require="
+try:
     import pygtk
     pygtk.require('2.0')
 except ImportError:
@@ -3981,6 +3982,7 @@ echo "${ECHO_T}ok" >&6
 echo "$as_me:$LINENO: checking Python bindings for GNOME" >&5
 echo $ECHO_N "checking Python bindings for GNOME... $ECHO_C" >&6
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gnome, gnome.ui
     f = open("conftest.out", "w")

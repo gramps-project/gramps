@@ -72,7 +72,8 @@ AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, "YES", "NO")
 GNOMEINC=`pkg-config --cflags gnome-vfs-module-2.0`
 GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
-pygtk_require="try:
+pygtk_require="
+try:
     import pygtk
     pygtk.require('2.0')
 except ImportError:
@@ -107,6 +108,7 @@ AC_MSG_RESULT(ok)
 
 AC_MSG_CHECKING(Python bindings for GNOME)
 cat > conftest.py <<EOF
+$pygtk_require
 try:
     import gnome, gnome.ui
     f = open("conftest.out", "w")
