@@ -20,6 +20,7 @@
 
 import os
 import const
+import string
 
 #-------------------------------------------------------------------------
 #
@@ -29,6 +30,7 @@ import const
 try:
     import PIL.Image
     import StringIO
+    PIL.Image.init()
     no_pil = 0
 except:
     import popen2
@@ -91,21 +93,26 @@ class ImgManip:
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            im.save(dest,pil)
+            im.save(dest,string.upper(pil))
         
         def fmt_convert(self,dest,pil):
             im = PIL.Image.open(self.src)
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            im.save(dest,pil)
+            im.save(dest,string.upper(pil))
 
         def fmt_data(self,pil):
+            g = StringIO.StringIO()
             im = PIL.Image.open(self.src)
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            return im.tostring(pil,"RGB")
+            im.save(g,string.upper(pil))
+            g.seek(0)
+            buf = g.read()
+            g.close()
+            return buf
 
         def fmt_scale_data(self,x,y,pil):
             im = PIL.Image.open(self.src)
@@ -113,7 +120,7 @@ class ImgManip:
             if im.mode != 'RGB':
                 im.draft('RGB',im.size)
                 im = im.convert("RGB")
-            return im.tostring(pil,"RGB")
+            return im.tostring(string.upper(pil),"RGB")
 
         def eps_data(self):
             g = StringIO.StringIO()
@@ -168,10 +175,10 @@ class ImgManip:
         return self.fmt_data("png")
 
     def jpg_scale_data(self,x,y):
-        return self.fmt(x,y,"jpeg")
+        return self.fmt_scale_data(x,y,"jpeg")
 
     def png_scale_data(self,x,y):
-        return self.fmt(x,y,"png")
+        return self.fmt_scale_data(x,y,"png")
 
 
 if __name__ == "__main__":

@@ -238,21 +238,21 @@ class PdfDoc(TextDoc):
             self.tblstyle.append(('FONT', loc, loc, fn, f.get_size()))
             if self.span == 1 or inc == self.col + self.span - 1:
                 if self.my_table_style.get_right_border():
-                    self.tblstyle.append('LINEAFTER', loc, loc, 1, black)
+                    self.tblstyle.append(('LINEAFTER', loc, loc, 1, black))
             if self.span == 1 or inc == self.col:
                 if self.my_table_style.get_left_border():
-                    self.tblstyle.append('LINEBEFORE', loc, loc, 1, black)
+                    self.tblstyle.append(('LINEBEFORE', loc, loc, 1, black))
             if self.my_table_style.get_top_border():
-                self.tblstyle.append('LINEABOVE', loc, loc, 1, black)
+                self.tblstyle.append(('LINEABOVE', loc, loc, 1, black))
             if self.my_table_style.get_bottom_border():
-                self.tblstyle.append('LINEBELOW', loc, loc, 1, black)
+                self.tblstyle.append(('LINEBELOW', loc, loc, 1, black))
             if p.get_alignment() == PARA_ALIGN_LEFT:
-                self.tblstyle.append('ALIGN', loc, loc, 'LEFT')
+                self.tblstyle.append(('ALIGN', loc, loc, 'LEFT'))
             elif p.get_alignment() == PARA_ALIGN_RIGHT:
-                self.tblstyle.append('ALIGN', loc, loc, 'RIGHT')
+                self.tblstyle.append(('ALIGN', loc, loc, 'RIGHT'))
             else:
-                self.tblstyle.append('ALIGN', loc, loc, 'CENTER')
-            self.tblstyle.append('VALIGN', loc, loc, 'TOP')
+                self.tblstyle.append(('ALIGN', loc, loc, 'CENTER'))
+            self.tblstyle.append(('VALIGN', loc, loc, 'TOP'))
 
         self.col = self.col + self.span
 
@@ -273,6 +273,9 @@ class PdfDoc(TextDoc):
         self.image = 1
 
     def write_text(self,text):
+        text = string.replace(text,'&','&amp;');       # Must be first
+        text = string.replace(text,'<','&lt;');
+        text = string.replace(text,'>','&gt;');
 	self.text = self.text + text
 
 #------------------------------------------------------------------------
