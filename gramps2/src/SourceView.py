@@ -51,8 +51,6 @@ from QuestionDialog import QuestionDialog
 #-------------------------------------------------------------------------
 from intl import gettext as _
 
-_column_headers = [(_('Title'),3,350),(_('ID'),1,50),(_('Author'),4,70),('',3,0),('',4,0) ]
-
 #-------------------------------------------------------------------------
 #
 # SouceView
@@ -66,7 +64,11 @@ class SourceView:
         self.list = glade.get_widget("source_list")
         self.selection = self.list.get_selection()
         colno = 0
-        for title in _column_headers:
+
+        self.column_headers = [(_('Title'),3,350),(_('ID'),1,50),
+                               (_('Author'),4,70),('',3,0),('',4,0) ]
+
+        for title in self.column_headers:
             renderer = gtk.CellRendererText ()
             column = gtk.TreeViewColumn (title[0], renderer, text=colno)
             colno = colno + 1
