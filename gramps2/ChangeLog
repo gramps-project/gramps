@@ -1,3 +1,6 @@
+2003-08-07  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/po/template.po: Update the translation template.
+
 2003-08-07  Lars Kr. Lundin  <gramps@lklundin.dk>
 	* src/plugins/BookReport.py: Fixed typo (containg).
 	* src/plugins/FtmStyleAncestors.py, src/plugins/FtmStyleDescendants.py:
