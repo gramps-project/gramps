@@ -16,7 +16,6 @@ pkgpython_PYTHON = \
 	EventCmp.py\
 	FamilyGroup.py\
 	FilterEditor.py\
-	FullFamily.py\
 	GraphViz.py\
 	IndivComplete.py\
 	IndivSummary.py\
