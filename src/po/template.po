@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: Tue Feb 26 19:46:35 2002\n"
+"POT-Creation-Date: Wed Feb 27 20:10:06 2002\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,12 +23,12 @@ msgstr ""
 msgid "Choose Spouse/Partner of %s"
 msgstr ""
 
-#: AddSpouse.py:110 const.py:394 const.py:402 plugins/FamilyGroup.py:288
+#: AddSpouse.py:110 const.py:392 const.py:400 plugins/FamilyGroup.py:288
 #: plugins/FamilyGroup.py:290
 msgid "Married"
 msgstr ""
 
-#: AddSpouse.py:194 const.py:396 const.py:404
+#: AddSpouse.py:194 const.py:394 const.py:402
 msgid "Partners"
 msgstr ""
 
@@ -451,7 +451,7 @@ msgid "No Events"
 msgstr ""
 
 #: EditPerson.glade:1928 EditPerson.glade:3947 EditPerson.glade:4251
-#: EditPerson.glade:6408 const.py:315 dialog.glade:194 marriage.glade:401
+#: EditPerson.glade:6408 const.py:314 dialog.glade:194 marriage.glade:401
 #: places.glade:1422 places.glade:1654 plugins/pafexport.glade:241
 msgid "Description"
 msgstr ""
@@ -1081,7 +1081,7 @@ msgstr ""
 msgid "Uncategorized"
 msgstr ""
 
-#: Plugins.py:377 Plugins.py:388 const.py:120 const.py:397 const.py:405
+#: Plugins.py:377 Plugins.py:388 const.py:120 const.py:395 const.py:403
 #: gramps.glade:4991 gramps.glade:5186 gramps.glade:5570 gramps.glade:5635
 #: gramps.glade:6570 gramps.glade:6617 gramps_main.py:1522
 msgid "Unknown"
@@ -1508,7 +1508,7 @@ msgstr ""
 msgid "Foster"
 msgstr ""
 
-#: const.py:121 const.py:398 const.py:406 mergedata.glade:268
+#: const.py:121 const.py:396 const.py:404 mergedata.glade:268
 msgid "Other"
 msgstr ""
 
@@ -1696,55 +1696,51 @@ msgstr ""
 msgid "Will"
 msgstr ""
 
-#: const.py:314
+#: const.py:313
 msgid "Caste"
 msgstr ""
 
-#: const.py:316
-msgid "Reference Number"
-msgstr ""
-
-#: const.py:317
+#: const.py:315
 msgid "Identification Number"
 msgstr ""
 
-#: const.py:318
+#: const.py:316
 msgid "National Origin"
 msgstr ""
 
-#: const.py:319
+#: const.py:317
 msgid "Social Security Number"
 msgstr ""
 
-#: const.py:358
+#: const.py:356
 msgid "Number of Children"
 msgstr ""
 
-#: const.py:394
+#: const.py:392
 msgid "A legal or common-law relationship between a husband and wife"
 msgstr ""
 
-#: const.py:395
+#: const.py:393
 msgid "No legal or common-law relationship between man and woman"
 msgstr ""
 
-#: const.py:395 const.py:403
+#: const.py:393 const.py:401
 msgid "Unmarried"
 msgstr ""
 
-#: const.py:396
+#: const.py:394
 msgid "An established relationship between members of the same sex"
 msgstr ""
 
-#: const.py:397
+#: const.py:395
 msgid "Unknown relationship between a man and woman"
 msgstr ""
 
-#: const.py:398
+#: const.py:396
 msgid "An unspecified relationship between a man and woman"
 msgstr ""
 
-#: const.py:422
+#: const.py:420
 msgid "No definition available"
 msgstr ""
 
@@ -1818,6 +1814,14 @@ msgstr ""
 
 #: docgen/PSDrawDoc.py:168
 msgid "PostScript"
+msgstr ""
+
+#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:35
+msgid "Missing Libraries"
+msgstr ""
+
+#: docgen/PdfDoc.py:46 docgen/PdfDrawDoc.py:35
+msgid "The ReportLab modules are not installed"
 msgstr ""
 
 #: docgen/PdfDoc.py:302 docgen/PdfDrawDoc.py:188
@@ -3316,7 +3320,7 @@ msgstr ""
 msgid "Warning: line %d was not understood, so it was ignored."
 msgstr ""
 
-#: plugins/ReadGedcom.py:1729
+#: plugins/ReadGedcom.py:1725
 msgid "Import from GEDCOM"
 msgstr ""
 
