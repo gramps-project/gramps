@@ -23,9 +23,9 @@
 """
 Date editing module for GRAMPS. 
 
-The DateEdit.DateEdit provides two visual feedback to the user via a pixamp
+The DateEdit.DateEdit provides visual feedback to the user via a pixamp
 to indicate if the assocated GtkEntry box contains a valid date. Green
-means complete and valid date. Yellow means a valid, but incomplete date.
+means complete and regular date. Yellow means a valid, but not a regular date.
 Red means that the date is not valid, and will be viewed as a text string
 instead of a date.
 
@@ -59,7 +59,6 @@ import gobject
 #
 #-------------------------------------------------------------------------
 import Date
-import DateDisplay
 import DateHandler
 import const
 import Utils
@@ -83,13 +82,15 @@ QUAL_TEXT = (
     (Date.QUAL_ESTIMATED, _('Estimated')), 
     (Date.QUAL_CALCULATED, _('Calculated')) )
 
+dd = DateHandler.create_display()
+
 CAL_TO_MONTHS_NAMES = { 
-    Date.CAL_GREGORIAN  : DateDisplay.DateDisplay._MONS,
-    Date.CAL_JULIAN     : DateDisplay.DateDisplay._MONS,
-    Date.CAL_HEBREW     : DateDisplay.DateDisplay._hebrew,
-    Date.CAL_FRENCH     : DateDisplay.DateDisplay._french,
-    Date.CAL_PERSIAN    : DateDisplay.DateDisplay._persian,
-    Date.CAL_ISLAMIC    : DateDisplay.DateDisplay._islamic }
+    Date.CAL_GREGORIAN  : dd._MONS,
+    Date.CAL_JULIAN     : dd._MONS,
+    Date.CAL_HEBREW     : dd._hebrew,
+    Date.CAL_FRENCH     : dd._french,
+    Date.CAL_PERSIAN    : dd._persian,
+    Date.CAL_ISLAMIC    : dd._islamic }
 
 #-------------------------------------------------------------------------
 #
@@ -131,11 +132,11 @@ class DateEdit:
         Check current date object and display LED indicating the validity.
         """
         if self.date_obj.get_modifier() == Date.MOD_TEXTONLY:
-            self.pixmap_obj.set_from_pixbuf(DateEdit.bad)
-#        elif self.checkval.get_incomplete():
-#            self.pixmap_obj.set_from_pixbuf(DateEdit.caution)
+            self.pixmap_obj.set_from_pixbuf(self.bad)
+        elif self.date_obj.is_regular():
+            self.pixmap_obj.set_from_pixbuf(self.good)
         else:
-            self.pixmap_obj.set_from_pixbuf(DateEdit.good)
+            self.pixmap_obj.set_from_pixbuf(self.caution)
         
     def parse_and_check(self,obj,val):
         """

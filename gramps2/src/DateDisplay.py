@@ -150,7 +150,7 @@ class DateDisplay:
         """
         Verifies that the format value is within the correct range.
         """
-        assert(format < len(self.formats))
+        assert(format < len(self.formats)-1)
 
     def quote_display(self,date):
         """
