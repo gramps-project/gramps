@@ -1586,8 +1586,7 @@ class Gramps:
     def update_after_edit(self,epo,plist):
         if epo:
             self.db.buildPersonDisplay(epo.person.getId(),epo.original_id)
-            self.people_view.remove_from_person_list(epo.person,epo.original_id)
-            self.people_view.redisplay_person_list(epo.person)
+            self.people_view.update_person_list(epo.person,epo.original_id)
         for p in plist:
             self.place_view.new_place_after_edit(p)
         self.update_display(0)

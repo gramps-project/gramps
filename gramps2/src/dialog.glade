@@ -928,7 +928,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-6</property>
-	      <signal name="clicked" handler="destroy_passed_object" object="attr_edit"/>
 	    </widget>
 	  </child>
 
@@ -942,7 +941,6 @@
 	      <property name="use_stock">True</property>
 	      <property name="relief">GTK_RELIEF_NORMAL</property>
 	      <property name="response_id">-5</property>
-	      <signal name="clicked" handler="on_attr_edit_ok_clicked" object="attr_edit"/>
 	    </widget>
 	  </child>
 

@@ -397,3 +397,21 @@ class PeopleView:
         
     def redisplay_person_list(self,person):
         self.add_to_person_list(person,1)
+
+    def update_person_list(self,person,old_id):
+        key = person.getId()
+        if old_id != key:
+            (model,iter) = self.id2col[old_id]
+            del self.id2col[old_id]
+            self.id2col[key] = (model,iter)
+        else:
+            (model,iter) = self.id2col[key]
+            
+        val = self.parent.db.getPersonDisplay(person.getId())
+        pg = unicode(val[5])
+        pg = pg[0]
+        if self.DataFilter.compare(person):
+            col = 0
+            for object in val[:-1]:
+                model.model.set_value(iter,col,object)
+                col = col + 1
