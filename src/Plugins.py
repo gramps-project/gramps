@@ -166,9 +166,12 @@ class PluginDialog:
             self.apply_button.set_label(_("_Apply"))
         self.apply_button.set_use_underline(gtk.TRUE)
         if tool_tip:
-            tt = gtk.gtk_tooltips_data_get(self.apply_button)
-            if tt:
-                tt[0].set_tip(self.apply_button,tool_tip)
+            try:
+                tt = gtk.gtk_tooltips_data_get(self.apply_button)
+                if tt:
+                    tt[0].set_tip(self.apply_button,tool_tip)
+            except AttributeError:
+                pass
 
         self.run_tool = None
         self.build_tree(list)
