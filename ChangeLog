@@ -1,3 +1,7 @@
+2003-09-07  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/docgen/PdfDoc.py: handle multiple image classes defined
+	by reportlab
+
 2003-09-07  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps_main.py (new_database_response,read_file,save_file): 
 	Pass parent window to DbPrompter.
