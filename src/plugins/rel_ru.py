@@ -31,6 +31,7 @@
 
 import RelLib
 import GrampsCfg
+from Relationship import apply_filter as getallancestors
 
 #-------------------------------------------------------------------------
 #
@@ -104,16 +105,6 @@ _niece_level = [
 #
 #
 #-------------------------------------------------------------------------
-def getallancestors(person,index,ancestorlist,ancestormap):
-    if person == None:
-        return
-    ancestorlist.append(person)
-    ancestormap[person.getId()] = index
-    
-    family = person.getMainParents()
-    if family != None:
-        getallancestors(family.getFather(),index+1,ancestorlist,ancestormap)
-        getallancestors(family.getMother(),index+1,ancestorlist,ancestormap)
 
 def get_junior_male_cousin(level,removed):
     if removed > len(_junior_male_removed_level)-1 or level>len(_male_cousin_level)-1:

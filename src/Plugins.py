@@ -17,6 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
+# $Id$
 
 """
 The core of the GRAMPS plugin system. This module provides tasks to load
@@ -116,7 +117,7 @@ class PluginDialog:
     """Displays the dialog box that allows the user to select the
     report that is desired."""
 
-    def __init__(self,db,active,list,msg,label=None):
+    def __init__(self,db,active,list,msg,label=None,button_label=None,tool_tip=None):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
@@ -158,6 +159,17 @@ class PluginDialog:
         self.author_email = self.dialog.get_widget("author_email")
         self.statbox = self.dialog.get_widget("statbox")
         
+        self.apply_button = self.dialog.get_widget("apply")
+        if button_label:
+            self.apply_button.set_label(button_label)
+        else:
+            self.apply_button.set_label(_("_Apply"))
+        self.apply_button.set_use_underline(gtk.TRUE)
+        if tool_tip:
+            tt = gtk.gtk_tooltips_data_get(self.apply_button)
+            if tt:
+                tt[0].set_tip(self.apply_button,tool_tip)
+
         self.run_tool = None
         self.build_tree(list)
 
@@ -261,7 +273,9 @@ class ReportPlugins(PluginDialog):
         """Display the dialog box, and build up the list of available
         reports. This is used to build the selection tree on the left
         hand side of the dailog box."""
-        PluginDialog.__init__(self,db,active,_reports,_("Report Selection"))
+        PluginDialog.__init__(self,db,active,_reports,_("Report Selection"),
+			_("Select a report from those available on the left."),
+                        _("_Generate"), _("Generate selected report"))
 
 #-------------------------------------------------------------------------
 #
@@ -278,7 +292,8 @@ class ToolPlugins(PluginDialog):
         hand side of the dailog box."""
 
         PluginDialog.__init__(self,db,active,_tools,_("Tool Selection"),
-					_("Select a tool from those available on the left."))
+			_("Select a tool from those available on the left."),
+                        _("_Run"), _("Run selected tool"))
         self.update = update
 
 #-------------------------------------------------------------------------
