@@ -152,10 +152,7 @@ def get_draw_doc_menu(main_menu,callback,obj=None):
 
     index = 0
     myMenu = gtk.GtkMenu()
-    for item in _textdoc:
-        if tables and item[1] == 0:
-            continue
-        name = item[0]
+    for name in _drawdoc:
         menuitem = gtk.GtkMenuItem(name)
         menuitem.set_data("name",name)
         menuitem.set_data("obj",obj)
@@ -195,9 +192,9 @@ def make_text_doc(styles,name,paper,orien,template):
 # 
 #
 #-------------------------------------------------------------------------
-def make_draw_doc(name,paper,orien):
+def make_draw_doc(styles,name,paper,orien):
     if name == _OpenOffice:
-        return OpenDrawDoc.OpenDrawDoc(paper,orien)
+        return OpenDrawDoc.OpenDrawDoc(styles,paper,orien)
     else:
-        return PdfDrawDoc.PdfDrawDoc(paper,orien)
+        return PdfDrawDoc.PdfDrawDoc(styles,paper,orien)
 
