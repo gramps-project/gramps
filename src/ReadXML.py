@@ -197,12 +197,29 @@ def importData(database, filename, callback,cl=0):
                 except:
                     pass
 
-        fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
-        fs_top.hide_fileop_buttons()
-        fs_top.ok_button.connect('clicked',fs_ok_clicked)
-        fs_top.cancel_button.connect('clicked',fs_close_window)
-        fs_top.run()
-        fs_top.destroy()
+        choose = gtk.FileChooserDialog('Select file',
+                                       None,
+                                       gtk.FILE_CHOOSER_ACTION_OPEN,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
+            
+        filter = gtk.FileFilter()
+        filter.set_name(_('All files'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+        
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            name = fs_top.get_filename()
+            if os.path.isfile(name):
+                shutil.copyfile(name,newfile)
+                try:
+                    shutil.copystat(name,newfile)
+                except:
+                    pass
+        choose.destroy()
 
     del parser
     return 1

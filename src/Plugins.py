@@ -171,7 +171,7 @@ class PluginDialog:
         self.apply_button.set_use_underline(gtk.TRUE)
         if tool_tip:
             try:
-                tt = gtk.gtk_tooltips_data_get(self.apply_button)
+                tt = gtk.tooltips_data_get(self.apply_button)
                 if tt:
                     tt[0].set_tip(self.apply_button,tool_tip)
             except AttributeError:

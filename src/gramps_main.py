@@ -1114,25 +1114,28 @@ class Gramps:
             pass
 
         def select_clicked():
-            # File is lost => select a file to replace the lost one
-            def fs_close_window(obj):
-                fs_top.destroy()
-
-            def fs_ok_clicked(obj):
-                name = fs_top.get_filename()
+            choose = gtk.FileChooserDialog('Open GRAMPS database',
+                                           None,
+                                           gtk.FILE_CHOOSER_ACTION_OPEN,
+                                           (gtk.STOCK_CANCEL,
+                                            gtk.RESPONSE_CANCEL,
+                                            gtk.STOCK_OPEN,
+                                            gtk.RESPONSE_OK))
+            
+            filter = gtk.FileFilter()
+            filter.set_name(_('All files'))
+            filter.add_pattern('*')
+            choose.add_filter(filter)
+        
+            response = choose.run()
+            if response == gtk.RESPONSE_OK:
+                name = choose.get_filename()
                 if os.path.isfile(name):
                     RelImage.import_media_object(name,filename,base)
                     object = self.db.find_object_from_id(ObjectId)
                     object.set_path(newfile)
-                Utils.destroy_passed_object(fs_top)
+            choose.destroy()
 
-            fs_top = gtk.FileSelection("%s - GRAMPS" % _("Select file"))
-            fs_top.hide_fileop_buttons()
-            fs_top.ok_button.connect('clicked',fs_ok_clicked)
-            fs_top.cancel_button.connect('clicked',fs_close_window)
-            fs_top.show()
-            fs_top.run()
-            
         #-------------------------------------------------------------------------
         for ObjectId in self.db.get_object_keys():
             object = self.db.find_object_from_id(ObjectId)
@@ -1392,15 +1395,36 @@ class Gramps:
 
     def on_open_activate(self,obj):
 
-        top = gtk.glade.XML (const.gladeFile, "fileselection","gramps")
-        top.signal_autoconnect({
-            "on_ok_button1_clicked": self.on_ok_button1_clicked,
-            "destroy_passed_object": self.fs_close_window,
-            })
-        self.filesel = top.get_widget('fileselection')
-        if GrampsCfg.lastfile:
-            self.filesel.set_filename(GrampsCfg.lastfile)
+        choose = gtk.FileChooserDialog('Open GRAMPS database',
+                                       None,
+                                       gtk.FILE_CHOOSER_ACTION_OPEN,
+                                       (gtk.STOCK_CANCEL,
+                                        gtk.RESPONSE_CANCEL,
+                                        gtk.STOCK_OPEN,
+                                        gtk.RESPONSE_OK))
 
+        filter = gtk.FileFilter()
+        filter.set_name(_('GRAMPS databases'))
+        filter.add_pattern('*.grdb')
+        choose.add_filter(filter)
+        
+        filter = gtk.FileFilter()
+        filter.set_name(_('All files'))
+        filter.add_pattern('*')
+        choose.add_filter(filter)
+        
+        if GrampsCfg.lastfile:
+            choose.set_filename(GrampsCfg.lastfile)
+
+        response = choose.run()
+        if response == gtk.RESPONSE_OK:
+            filename = choose.get_filename()
+            filename = os.path.normpath(os.path.abspath(filename))
+            self.clear_database()
+            if self.auto_save_load(filename) == 0:
+                DbPrompter.DbPrompter(self,0,self.topWindow)
+        choose.destroy()
+ 
     def on_revert_activate(self,obj):
         pass
         
