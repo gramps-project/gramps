@@ -47,14 +47,14 @@ from gtk.gdk import ACTION_COPY, BUTTON1_MASK, INTERP_BILINEAR, pixbuf_new_from_
 import const
 import Utils
 import GrampsCfg
-import Date
 import ImageSelect
 import sort
 import AutoComp
 import ListModel
 import RelLib
 import Sources
-from DateEdit import DateEdit
+import DateEdit
+
 from QuestionDialog import QuestionDialog, WarningDialog, ErrorDialog, SaveDialog
 
 from gettext import gettext as _
@@ -288,10 +288,12 @@ class EditPerson:
         self.addr_list.connect('drag_data_received',self.ad_drag_data_received)
         self.addr_list.connect('drag_begin', self.ad_drag_begin)
 
-        self.bdate_check = DateEdit(self.bdate,self.get_widget("birth_stat"))
+        self.bdate_check = DateEdit.DateEdit(self.bdate,
+                                             self.get_widget("birth_stat"))
         self.bdate_check.set_calendar(self.birth.getDateObj().get_calendar())
 
-        self.ddate_check = DateEdit(self.ddate,self.get_widget("death_stat"))
+        self.ddate_check = DateEdit.DateEdit(self.ddate,
+                                             self.get_widget("death_stat"))
         self.ddate_check.set_calendar(self.death.getDateObj().get_calendar())
 
         self.top.signal_autoconnect({
@@ -1475,8 +1477,8 @@ class EditPerson:
             return None
 
     def on_primary_name_source_clicked(self,obj):
-        import Sources
-        Sources.SourceSelector(self.pname.getSourceRefList(),self,self.update_primary_name)
+        Sources.SourceSelector(self.pname.getSourceRefList(),self,
+                               self.update_primary_name)
 
     def update_primary_name(self,list):
         self.pname.setSourceRefList(list)
@@ -1487,8 +1489,8 @@ class EditPerson:
         NoteEdit.NoteEditor(self.pname,self.window)
 
     def on_ldsbap_source_clicked(self,obj):
-        import Sources
-        Sources.SourceSelector(self.lds_baptism.getSourceRefList(),self,self.update_ldsbap_list)
+        Sources.SourceSelector(self.lds_baptism.getSourceRefList(),
+                               self,self.update_ldsbap_list)
 
     def update_ldsbap_list(self,list):
         self.lds_baptism.setSourceRefList(list)
@@ -1499,8 +1501,8 @@ class EditPerson:
         NoteEdit.NoteEditor(self.lds_baptism,self.window)
 
     def on_ldsendow_source_clicked(self,obj):
-        import Sources
-        Sources.SourceSelector(self.lds_endowment.getSourceRefList(),self,self.set_ldsendow_list)
+        Sources.SourceSelector(self.lds_endowment.getSourceRefList(),
+                               self,self.set_ldsendow_list)
 
     def set_ldsendow_list(self,list):
         self.lds_endowment.setSourceRefList(list)
@@ -1511,8 +1513,8 @@ class EditPerson:
         NoteEdit.NoteEditor(self.lds_endowment,self.window)
 
     def on_ldsseal_source_clicked(self,obj):
-        import Sources
-        Sources.SourceSelector(self.lds_sealing.getSourceRefList(),self,self.lds_seal_list)
+        Sources.SourceSelector(self.lds_sealing.getSourceRefList(),
+                               self,self.lds_seal_list)
 
     def lds_seal_list(self,list):
         self.lds_sealing.setSourceRefList(list)

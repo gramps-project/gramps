@@ -26,7 +26,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-import getopt
 
 #-------------------------------------------------------------------------
 #
@@ -73,7 +72,6 @@ import EditPerson
 import Find
 import VersionControl
 import ReadXML
-import ListModel
 import GrampsXML
 
 try:
@@ -979,8 +977,6 @@ class Gramps:
         autosave = "%s/autosave.gramps" % dirname
 
         if os.path.isfile(autosave):
-            q = _("An autosave file exists for %s.\nShould this "
-                  "be loaded instead of the last saved version?") % dirname
             self.yname = autosave
             self.nname = filename
 

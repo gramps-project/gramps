@@ -68,7 +68,6 @@ class SelectChild:
         self.xml.signal_autoconnect({
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_show_toggled"          : self.on_show_toggled,
-            "on_add_person_clicked"    : self.on_add_person_clicked,
             "destroy_passed_object"    : self.close
             })
 
@@ -236,34 +235,6 @@ class SelectChild:
     def on_show_toggled(self,obj):
         self.redraw_child_list(not obj.get_active())
 
-    def on_add_person_clicked(self,obj):
-        """Called with the Add button is pressed. Calls the QuickAdd
-        class to create a new person."""
-        
-        import QuickAdd
-
-        autoname = GrampsCfg.lastnamegen
-        
-        if autoname == 0:
-            name = self.north_american(0)
-        elif autoname == 2:
-            name = self.latin_american(0)
-        elif autoname == 3:
-            name = self.icelandic(0)
-        else:
-            name = ""
-        QuickAdd.QuickAdd(self.db,"male",self.add_new_parent, name)
-
-    def add_new_parent(self,person):
-        """Adds a new person to either the father list or the mother list,
-        depending on the gender of the person."""
-        id = person.getId()
-        dinfo = self.db.getPersonDisplay(id)
-        rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
-        self.refmodel.add_and_select(rdata)
-        self.add_person(person)
-        self.refmodel.center_selected()
-
     def north_american(self,val):
         if self.person.getGender() == Person.male:
             return self.person.getPrimaryName().getSurname()
@@ -303,7 +274,7 @@ class SelectChild:
             if f:
                 fname = f.getPrimaryName().getFirstName()
         if fname:
-            fname = string.split(fname)[0]
+            fname = fname.split()[0]
         if val == 0:
             return ("","%ssson" % fname)
         elif val == 1:
