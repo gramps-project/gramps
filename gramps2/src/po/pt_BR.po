@@ -5686,7 +5686,7 @@ msgid ""
 "d.\n"
 msgstr ""
 "Sepultado antes do batismo: %(male_name)s batizado em %(bapyear)d, sepultado "
-"em %(buryear)"
+"em %(buryear)d.\n"
 
 #: plugins/Verify.py:173
 msgid ""
