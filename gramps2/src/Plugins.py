@@ -453,7 +453,7 @@ def register_tool(task, name,
             del_index = i
     if del_index != -1:
         del _tools[del_index]
-    _tools.append((task, category, name, description, xpm, status, author_name, author_name))
+    _tools.append((task, category, name, description, xpm, status, author_name, author_email))
 
 
 def register_text_doc(name,classref, table, paper, style, ext):
