@@ -42,7 +42,7 @@ def filter(person,index,list,map):
     if person == None:
         return
     list.append(person)
-    map[person] = index
+    map[person.getId()] = index
     
     family = person.getMainParents()
     if family != None:
@@ -340,7 +340,7 @@ class RelCalc:
 
         for person in firstList:
             if person in secondList:
-                new_rank = firstMap[person]
+                new_rank = firstMap[person.getId()]
                 if new_rank < rank:
                     rank = new_rank
                     common = [ person ]
@@ -357,15 +357,15 @@ class RelCalc:
 
         if length == 1:
             person = common[0]
-            secondRel = firstMap[person]
-            firstRel = secondMap[person]
+            secondRel = firstMap[person.getId()]
+            firstRel = secondMap[person.getId()]
             name = person.getPrimaryName().getRegularName()
             commontext = " " + _("Their common ancestor is %s.") % name
         elif length == 2:
             p1 = common[0]
             p2 = common[1]
-            secondRel = firstMap[p1]
-            firstRel = secondMap[p1]
+            secondRel = firstMap[p1.getId()]
+            firstRel = secondMap[p1.getId()]
             commontext = " " + _("Their common ancestors are %s and %s.") % \
                          (p1.getPrimaryName().getRegularName(),\
                           p2.getPrimaryName().getRegularName())
@@ -373,8 +373,8 @@ class RelCalc:
             index = 0
             commontext = " " + _("Their common ancestors are : ")
             for person in common:
-                secondRel = firstMap[person]
-                firstRel = secondMap[person]
+                secondRel = firstMap[person.getId()]
+                firstRel = secondMap[person.getId()]
                 if index != 0:
                     commontext = commontext + ", "
                 commontext = commontext + person.getPrimaryName().getRegularName()
@@ -414,15 +414,11 @@ class RelCalc:
             else:
                 text = get_cousin(firstName,secondName,secondRel-1,firstRel-secondRel)
 
-        text1 = self.glade.get_widget("text1")
-        text1.set_point(0)
-        length = text1.get_length()
-        text1.forward_delete(length)
+        text1 = self.glade.get_widget("text1").get_buffer()
         if firstRel == 0 or secondRel == 0:
-            text1.insert_defaults(text)
+            text1.set_text(text)
         else:    
-            text1.insert_defaults(text + commontext)
-        text1.set_word_wrap(1)
+            text1.set_text(text + commontext)
     
 #-------------------------------------------------------------------------
 #

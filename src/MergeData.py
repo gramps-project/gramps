@@ -18,16 +18,31 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+import string
+
+#-------------------------------------------------------------------------
+#
+# GNOME
+#
+#-------------------------------------------------------------------------
+import gtk.glade
+
+#-------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#-------------------------------------------------------------------------
 import RelLib
 import Utils
 import GrampsCfg
+import ListModel
 import const
-
-from intl import gettext
-_ = gettext
-
-import string
-import gtk.glade
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -129,8 +144,12 @@ class MergePeople:
         self.set_field(self.glade.get_widget("mother1"),mother1)
         self.set_field(self.glade.get_widget("mother2"),mother2)
 
-        self.build_spouse_list(person1,self.glade.get_widget('spouse1'))
-        self.build_spouse_list(person2,self.glade.get_widget('spouse2'))
+        sp1_list = [('-',0,100)]
+        self.sp1 = ListModel.ListModel(self.glade.get_widget('spouse1'),sp1_list)
+        self.sp2 = ListModel.ListModel(self.glade.get_widget('spouse2'),sp1_list)
+        
+        self.build_spouse_list(person1,self.sp1)
+        self.build_spouse_list(person2,self.sp2)
 
         if name1 != name2:
             self.altname.set_sensitive(1)
@@ -154,28 +173,25 @@ class MergePeople:
             self.altdeath.set_active(0)
 
     def build_spouse_list(self,person,widget):
-        plist = person.getFamilyList()
-        
-        length = min(len(plist),3)
-        widget.clear()
-        for index in range(0,3):
-            if index < length and plist[index]:
-                if person.getGender() == RelLib.Person.male:
-                    spouse = plist[index].getMother()
-                else:
-                    spouse = plist[index].getFather()
 
-                if spouse == None:
-                    name = "unknown"
-                else:
-                    sname = GrampsCfg.nameof(spouse)
-                    name = "%s (%s)" % (sname,spouse.getId())
-                widget.append([name])
+        widget.clear()
+        for fam in person.getFamilyList():
+            if person.getGender() == RelLib.Person.male:
+                spouse = fam.getMother()
+            else:
+                spouse = fam.getFather()
+
+            if spouse == None:
+                name = "unknown"
+            else:
+                sname = GrampsCfg.nameof(spouse)
+                name = "%s [%s]" % (sname,spouse.getId())
+            print name, widget
+            widget.add([name])
 
     def set_field(self,widget,value):
         """Sets the string of the entry field at positions it a space 0"""
         widget.set_text(value)
-        widget.set_position(0)
 
     def place_name(self,event):
         place = event.getPlace()
