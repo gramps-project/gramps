@@ -1,4 +1,9 @@
 2004-08-23  Tim Waugh  <twaugh@redhat.com>
+	* src/WriteXML.py (XmlWriter.write_xml_data): Use GRAMPS ID not DB
+	handle.
+	(XmlWriter.dump_source_ref): Likewise.
+	(XmlWriter.write_ref): Fixed typo.
+
 	* src/GrampsDbBase.py (GrampsDbBase.find_source_from_handle): Set
 	GRAMPS ID on new source (bug #1014246).
 

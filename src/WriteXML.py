@@ -373,7 +373,7 @@ class XmlWriter:
                 if self.callback and count % delta == 0:
                     self.callback(float(count)/float(total))
                 count = count + 1
-                self.g.write("    <source id=\"" + source.get_handle() + "\">\n")
+                self.g.write("    <source id=\"" + source.get_gramps_id() + "\">\n")
                 self.write_force_line("stitle",source.get_title(),3)
                 self.write_line("sauthor",source.get_author(),3)
                 self.write_line("spubinfo",source.get_publication_info(),3)
@@ -535,12 +535,12 @@ class XmlWriter:
             q = source_ref.get_confidence_level()
             self.g.write("  " * index)
             if p == "" and c == "" and t == "" and d.is_empty() and q == 2:
-                self.g.write('<sourceref ref="%s"/>\n' % source.get_handle())
+                self.g.write('<sourceref ref="%s"/>\n' % source.get_gramps_id())
             else:
                 if q == 2:
-                    self.g.write('<sourceref ref="%s">\n' % source.get_handle())
+                    self.g.write('<sourceref ref="%s">\n' % source.get_gramps_id())
                 else:
-                    self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.get_handle(),q))
+                    self.g.write('<sourceref ref="%s" conf="%d">\n' % (source.get_gramps_id(),q))
                 self.write_line("spage",p,index+1)
                 self.write_text("scomments",c,index+1)
                 self.write_text("stext",t,index+1)
@@ -549,7 +549,7 @@ class XmlWriter:
 
     def write_ref(self,label,gid,index=1):
         if gid:
-            self.g.write('%s<%s ref="%s"/>\n' % ("  "*index,label,id))
+            self.g.write('%s<%s ref="%s"/>\n' % ("  "*index,label,gid))
 
     def write_id(self,label,person,index=1):
         if person:
