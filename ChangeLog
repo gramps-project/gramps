@@ -7,6 +7,10 @@
 	* src/plugins/WebPage.py (IndividualPage.write_urls): 
 	Add function; (IndividualPage.create_page): use write_urls().
 
+	* src/RelLib.py: gramps id fixes.
+	* src/ReadXML.py: gramps id fixes.
+	* src/plugins/ReadGedcom.py: gramps id fixes.
+
 2004-06-27  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/gramps_main.py: fix import problem
 
