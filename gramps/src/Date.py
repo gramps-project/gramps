@@ -40,7 +40,6 @@ class Date:
 
     range = 1
     normal = 0
-    invalid = -1
 
     from_str = _("(from|between|bet)")
     to_str = _("(and|to)")
@@ -128,6 +127,18 @@ class Date:
 	else:
             return self.start.getFmt3()
 
+    def isEmpty(self):
+        if self.start.year == -1 and self.start.month == -1 and self.start.day == -1:
+            return 1
+        else:
+            return 0
+
+    def isValid(self):
+        if self.range == -1:
+            return 0
+        else:
+            return 1
+        
     #--------------------------------------------------------------------
     #
     # 
