@@ -585,7 +585,7 @@ def build_menu(top_menu,list,callback):
         list = hash[key]
         list.sort()
         for name in list:
-            subentry = gtk.MenuItem(name[0])
+            subentry = gtk.MenuItem("%s..." % name[0])
             subentry.show()
             subentry.connect("activate",callback,name[1])
             submenu.append(subentry)
@@ -616,7 +616,7 @@ def build_export_menu(top_menu,callback):
     myMenu = gtk.Menu()
 
     for report in _exports:
-        item = gtk.MenuItem(report[1])
+        item = gtk.MenuItem("%s..." % report[1])
         item.connect("activate", callback ,report[0])
         item.show()
         myMenu.append(item)
@@ -631,7 +631,7 @@ def build_import_menu(top_menu,callback):
     myMenu = gtk.Menu()
 
     for report in _imports:
-        item = gtk.MenuItem(report[1])
+        item = gtk.MenuItem("%s..." % report[1])
         item.connect("activate", callback ,report[0])
         item.show()
         myMenu.append(item)

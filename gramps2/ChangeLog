@@ -7,6 +7,13 @@
 	* src/plugins/WritePkg.py: Enable "..." in the menu item.
 	* src/plugins/WriteCD.py: Likewise.
 	* src/plugins/WriteGedcom.py: Likewise.
+	* src/plugins/ReadPkg.py: Remove "..." (move this to Plugins.py).
+	* src/plugins/ReadNative.py: Likewise.
+	* src/plugins/ReadGedcom.py: Likewise.
+	* src/plugins/WritePkg.py: Likewise.
+	* src/plugins/WriteCD.py: Likewise.
+	* src/plugins/WriteGedcom.py: Likewise.
+	* src/Plugins.py: Add "..." at menu generation.
 
 2003-07-14  Donald Peterson  <dpeterson@sigmaxi.org>
 	* src/docgen/LaTeXDoc.py: Regress UNICODE support to be only a
