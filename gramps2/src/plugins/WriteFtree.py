@@ -48,7 +48,7 @@ import Utils
 import GenericFilter
 import Errors
 
-from QuestionDialog import MissingMediaDialog
+from QuestionDialog import MissingMediaDialog, ErrorDialog
 
 from gettext import gettext as _
 
@@ -135,6 +135,8 @@ class FtreeWriter:
         Utils.destroy_passed_object(self.topwin)
         try:
             self.export(name, pfilter, restrict)
+        except (IOError,OSError),msg:
+            ErrorDialog(_("Could not create %s") % name, msg)
         except:
             import DisplayTrace
             DisplayTrace.DisplayTrace()
