@@ -2,7 +2,7 @@
 %define rel      @RELEASE@
 %define prefix   /usr
 %define localstatedir /var/lib
-# Ensure that internal RPM macros for %configure & %makeinstall 
+# Ensure that internal RPM macros for configure & makeinstall 
 # will expand properly
 %define _prefix   %prefix
 %define _localstatedir %localstatedir
@@ -48,7 +48,7 @@ else
   CFLAGS="$MYCFLAGS" %configure
 fi
 
-CFLAGS="$RPM_OPT_FLAGS" make
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
