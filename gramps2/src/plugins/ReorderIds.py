@@ -75,20 +75,23 @@ class ReorderIds:
                 # hasn't already been chosen. If it has, put this
                 # in the duplicate id list
 
-                index = match.groups()[0]
-                newid = prefix % int(index)
-                if newid == id:
-                    continue
-                elif data_map.has_key(newid):
+                try:
+                    index = match.groups()[0]
+                    newid = prefix % int(index)
+                    if newid == id:
+                        continue
+                    elif data_map.has_key(newid):
+                        dups.append(id)
+                    else:
+                        newids.append(id)
+                        data = data_map[id]
+                        data.setId(newid)
+                        data_map[newid] = data
+                        del data_map[id]
+                        if update:
+                            update(newid,id)
+                except:
                     dups.append(id)
-                else:
-                    newids.append(id)
-                    data = data_map[id]
-                    data.setId(newid)
-                    data_map[newid] = data
-                    del data_map[id]
-                    if update:
-                        update(newid,id)
             else:
                 dups.append(id)
             

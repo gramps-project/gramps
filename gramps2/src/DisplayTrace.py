@@ -45,10 +45,14 @@ import const
 from intl import gettext as _
 
 _release_files = [
-    "/etc/redhat-release",
     "/etc/mandrake-release",
+    "/etc/redhat-release",
+    "/etc/turbolinux-release",
+    "/etc/debian-version",
+    "/etc/environment.corel",
     "/etc/debian-release",
     "/etc/SuSE-release",
+    "/etc/slackware-release",
     "/etc/gentoo-release",
     ]
 
@@ -73,6 +77,7 @@ class DisplayTrace:
         msg.write("LANG : %s\n" % os.environ['LANG'])
         msg.write("Python : %s.%s.%s %s\n" % (ver[0],ver[1],ver[2],ver[3]))
         msg.write("GTK : %s.%s.%s\n" % gtk.gtk_version)
+        msg.write('PyGTK : %d.%d.%d\n' % gtk.pygtk_version)
         for n in _release_files:
             if os.path.isfile(n):
                 try:

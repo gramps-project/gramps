@@ -811,9 +811,9 @@ class Gramps:
     
     def tool_callback(self,val):
         if val:
-            import_tool_callback()
+            self.import_tool_callback()
 
-    def import_tool_callback(self,val):
+    def import_tool_callback(self):
         Utils.modified()
         self.clear_person_tabs()
         self.full_update()
