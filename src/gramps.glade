@@ -565,12 +565,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label184</name>
-	      <label>Filter :</label>
+	      <label>Filter</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>0.5</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>3</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<padding>4</padding>
@@ -608,12 +608,12 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label185</name>
-	      <label>Qualifier : </label>
+	      <label>Qualifier</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>0.5</xalign>
 	      <yalign>0.5</yalign>
-	      <xpad>0</xpad>
+	      <xpad>5</xpad>
 	      <ypad>0</ypad>
 	      <child>
 		<padding>3</padding>
@@ -801,7 +801,7 @@
 		  <class>GtkLabel</class>
 		  <child_name>CList:title</child_name>
 		  <name>label6</name>
-		  <label>Birth Date </label>
+		  <label>Birth Date</label>
 		  <justify>GTK_JUSTIFY_CENTER</justify>
 		  <wrap>False</wrap>
 		  <xalign>0.5</xalign>
@@ -858,7 +858,7 @@
 		  <class>GtkLabel</class>
 		  <child_name>CList:title</child_name>
 		  <name>label193</name>
-		  <label>Death Date </label>
+		  <label>Death Date</label>
 		  <justify>GTK_JUSTIFY_CENTER</justify>
 		  <wrap>False</wrap>
 		  <xalign>0.5</xalign>
@@ -1204,7 +1204,7 @@
 	      <handler>on_edit_mother_clicked</handler>
 	      <last_modification_time>Thu, 21 Dec 2000 22:51:56 GMT</last_modification_time>
 	    </signal>
-	    <label>Mother : </label>
+	    <label>Mother</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	    <child>
 	      <left_attach>3</left_attach>
@@ -1231,7 +1231,7 @@
 	      <handler>on_edit_father_clicked</handler>
 	      <last_modification_time>Thu, 21 Dec 2000 22:51:49 GMT</last_modification_time>
 	    </signal>
-	    <label>Father : </label>
+	    <label>Father</label>
 	    <relief>GTK_RELIEF_NORMAL</relief>
 	    <child>
 	      <left_attach>3</left_attach>
@@ -1240,60 +1240,6 @@
 	      <bottom_attach>1</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>0</ypad>
-	      <xexpand>False</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkButton</class>
-	    <name>editSpouse</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>clicked</name>
-	      <handler>on_edit_spouse_clicked</handler>
-	      <last_modification_time>Thu, 21 Dec 2000 22:51:41 GMT</last_modification_time>
-	    </signal>
-	    <label>Spouse : </label>
-	    <relief>GTK_RELIEF_NORMAL</relief>
-	    <child>
-	      <left_attach>0</left_attach>
-	      <right_attach>1</right_attach>
-	      <top_attach>3</top_attach>
-	      <bottom_attach>4</bottom_attach>
-	      <xpad>0</xpad>
-	      <ypad>5</ypad>
-	      <xexpand>False</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkButton</class>
-	    <name>editMainPerson</name>
-	    <can_focus>True</can_focus>
-	    <signal>
-	      <name>clicked</name>
-	      <handler>on_edit_active_person</handler>
-	      <last_modification_time>Thu, 21 Dec 2000 22:51:33 GMT</last_modification_time>
-	    </signal>
-	    <label>Person : </label>
-	    <relief>GTK_RELIEF_NORMAL</relief>
-	    <child>
-	      <left_attach>0</left_attach>
-	      <right_attach>1</right_attach>
-	      <top_attach>1</top_attach>
-	      <bottom_attach>2</bottom_attach>
-	      <xpad>0</xpad>
-	      <ypad>5</ypad>
 	      <xexpand>False</xexpand>
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
@@ -1458,6 +1404,60 @@
 	      <bottom_attach>2</bottom_attach>
 	      <xpad>5</xpad>
 	      <ypad>0</ypad>
+	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkButton</class>
+	    <name>editMainPerson</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_edit_active_person</handler>
+	      <last_modification_time>Thu, 21 Dec 2000 22:51:33 GMT</last_modification_time>
+	    </signal>
+	    <label>Person</label>
+	    <relief>GTK_RELIEF_NORMAL</relief>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>1</top_attach>
+	      <bottom_attach>2</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
+	      <xexpand>False</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkButton</class>
+	    <name>editSpouse</name>
+	    <can_focus>True</can_focus>
+	    <signal>
+	      <name>clicked</name>
+	      <handler>on_edit_spouse_clicked</handler>
+	      <last_modification_time>Thu, 21 Dec 2000 22:51:41 GMT</last_modification_time>
+	    </signal>
+	    <label>Spouse</label>
+	    <relief>GTK_RELIEF_NORMAL</relief>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>3</top_attach>
+	      <bottom_attach>4</bottom_attach>
+	      <xpad>5</xpad>
+	      <ypad>5</ypad>
 	      <xexpand>False</xexpand>
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
@@ -2605,6 +2605,8 @@
       <widget>
 	<class>GtkCList</class>
 	<name>spouseList</name>
+	<width>350</width>
+	<height>200</height>
 	<can_focus>True</can_focus>
 	<signal>
 	  <name>select_row</name>
@@ -2817,12 +2819,12 @@
 	  <class>GtkLabel</class>
 	  <name>label80</name>
 	  <width>100</width>
-	  <label>Mother :</label>
+	  <label>Mother</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <padding>5</padding>
@@ -2919,12 +2921,12 @@
 	  <class>GtkLabel</class>
 	  <name>label83</name>
 	  <width>100</width>
-	  <label>Father :</label>
+	  <label>Father</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <padding>5</padding>
@@ -3021,12 +3023,12 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label186</name>
-	  <label>Relationship Type : </label>
+	  <label>Relationship Type </label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>0.5</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <padding>5</padding>
@@ -3557,12 +3559,12 @@ Other
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label165</name>
-	    <label>Title : </label>
+	    <label>Title</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -3583,12 +3585,12 @@ Other
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label166</name>
-	    <label>Author : </label>
+	    <label>Author</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -3609,12 +3611,12 @@ Other
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label167</name>
-	    <label>Publication Info : </label>
+	    <label>Publication Info</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -3993,12 +3995,12 @@ Other
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label173</name>
-	    <label>Publication Information :</label>
+	    <label>Publication Information</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -4019,12 +4021,12 @@ Other
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label174</name>
-	    <label>Author :</label>
+	    <label>Author</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -4045,12 +4047,12 @@ Other
 	  <widget>
 	    <class>GtkLabel</class>
 	    <name>label175</name>
-	    <label>Title :</label>
+	    <label>Title</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
+	    <xpad>5</xpad>
 	    <ypad>0</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
@@ -4178,58 +4180,6 @@ Other
 	  </child>
 
 	  <widget>
-	    <class>GtkLabel</class>
-	    <name>label180</name>
-	    <label>Volume/Film/Page :</label>
-	    <justify>GTK_JUSTIFY_CENTER</justify>
-	    <wrap>False</wrap>
-	    <xalign>0.5</xalign>
-	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <child>
-	      <left_attach>0</left_attach>
-	      <right_attach>1</right_attach>
-	      <top_attach>0</top_attach>
-	      <bottom_attach>1</bottom_attach>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
-	      <xexpand>False</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>False</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
-	    <class>GtkLabel</class>
-	    <name>label181</name>
-	    <label>Date :</label>
-	    <justify>GTK_JUSTIFY_CENTER</justify>
-	    <wrap>False</wrap>
-	    <xalign>1</xalign>
-	    <yalign>0.5</yalign>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
-	    <child>
-	      <left_attach>0</left_attach>
-	      <right_attach>1</right_attach>
-	      <top_attach>1</top_attach>
-	      <bottom_attach>2</bottom_attach>
-	      <xpad>0</xpad>
-	      <ypad>0</ypad>
-	      <xexpand>False</xexpand>
-	      <yexpand>False</yexpand>
-	      <xshrink>False</xshrink>
-	      <yshrink>False</yshrink>
-	      <xfill>True</xfill>
-	      <yfill>False</yfill>
-	    </child>
-	  </widget>
-
-	  <widget>
 	    <class>GtkScrolledWindow</class>
 	    <name>scrolledwindow20</name>
 	    <hscrollbar_policy>GTK_POLICY_NEVER</hscrollbar_policy>
@@ -4343,22 +4293,74 @@ Other
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label183</name>
-	    <label>Comments :</label>
+	    <name>label180</name>
+	    <label>Volume/Film/Page</label>
+	    <justify>GTK_JUSTIFY_CENTER</justify>
+	    <wrap>False</wrap>
+	    <xalign>0.5</xalign>
+	    <yalign>0.5</yalign>
+	    <xpad>5</xpad>
+	    <ypad>0</ypad>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>0</top_attach>
+	      <bottom_attach>1</bottom_attach>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	      <xexpand>True</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>False</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkLabel</class>
+	    <name>label181</name>
+	    <label>Date</label>
+	    <justify>GTK_JUSTIFY_CENTER</justify>
+	    <wrap>False</wrap>
+	    <xalign>1</xalign>
+	    <yalign>0.5</yalign>
+	    <xpad>5</xpad>
+	    <ypad>0</ypad>
+	    <child>
+	      <left_attach>0</left_attach>
+	      <right_attach>1</right_attach>
+	      <top_attach>1</top_attach>
+	      <bottom_attach>2</bottom_attach>
+	      <xpad>0</xpad>
+	      <ypad>0</ypad>
+	      <xexpand>True</xexpand>
+	      <yexpand>False</yexpand>
+	      <xshrink>False</xshrink>
+	      <yshrink>False</yshrink>
+	      <xfill>True</xfill>
+	      <yfill>False</yfill>
+	    </child>
+	  </widget>
+
+	  <widget>
+	    <class>GtkLabel</class>
+	    <name>label182</name>
+	    <label>Text</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0</yalign>
-	    <xpad>0</xpad>
-	    <ypad>10</ypad>
+	    <xpad>5</xpad>
+	    <ypad>5</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>3</top_attach>
-	      <bottom_attach>4</bottom_attach>
+	      <top_attach>2</top_attach>
+	      <bottom_attach>3</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
-	      <xexpand>False</xexpand>
+	      <xexpand>True</xexpand>
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
 	      <yshrink>False</yshrink>
@@ -4369,22 +4371,22 @@ Other
 
 	  <widget>
 	    <class>GtkLabel</class>
-	    <name>label182</name>
-	    <label>Text :</label>
+	    <name>label183</name>
+	    <label>Comments</label>
 	    <justify>GTK_JUSTIFY_CENTER</justify>
 	    <wrap>False</wrap>
 	    <xalign>1</xalign>
 	    <yalign>0</yalign>
-	    <xpad>0</xpad>
-	    <ypad>5</ypad>
+	    <xpad>5</xpad>
+	    <ypad>10</ypad>
 	    <child>
 	      <left_attach>0</left_attach>
 	      <right_attach>1</right_attach>
-	      <top_attach>2</top_attach>
-	      <bottom_attach>3</bottom_attach>
+	      <top_attach>3</top_attach>
+	      <bottom_attach>4</bottom_attach>
 	      <xpad>0</xpad>
 	      <ypad>0</ypad>
-	      <xexpand>False</xexpand>
+	      <xexpand>True</xexpand>
 	      <yexpand>False</yexpand>
 	      <xshrink>False</xshrink>
 	      <yshrink>False</yshrink>
@@ -4532,13 +4534,13 @@ Other
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label189</name>
-	  <label>Given Name : </label>
+	  <label>Given Name</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>0.5</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
-	  <ypad>0</ypad>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
 	  <child>
 	    <left_attach>0</left_attach>
 	    <right_attach>1</right_attach>
@@ -4558,13 +4560,13 @@ Other
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label190</name>
-	  <label>Surname : </label>
+	  <label>Surname</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
-	  <ypad>0</ypad>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
 	  <child>
 	    <left_attach>0</left_attach>
 	    <right_attach>1</right_attach>
@@ -4584,13 +4586,13 @@ Other
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label191</name>
-	  <label>Gender : </label>
+	  <label>Gender</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
-	  <ypad>0</ypad>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
 	  <child>
 	    <left_attach>0</left_attach>
 	    <right_attach>1</right_attach>
@@ -4610,13 +4612,13 @@ Other
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label192</name>
-	  <label>Status : </label>
+	  <label>Status</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
-	  <ypad>0</ypad>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
 	  <child>
 	    <left_attach>0</left_attach>
 	    <right_attach>1</right_attach>
@@ -4636,6 +4638,7 @@ Other
 	<widget>
 	  <class>GtkEntry</class>
 	  <name>childGiven</name>
+	  <width>250</width>
 	  <can_focus>True</can_focus>
 	  <editable>True</editable>
 	  <text_visible>True</text_visible>

@@ -254,12 +254,12 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label3</name>
-	<label>Target Directory : </label>
+	<label>Target Directory</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
 	<yalign>0.5</yalign>
-	<xpad>0</xpad>
+	<xpad>5</xpad>
 	<ypad>0</ypad>
 	<child>
 	  <left_attach>0</left_attach>
@@ -280,12 +280,12 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label4</name>
-	<label>HTML Template : </label>
+	<label>HTML Template</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
 	<yalign>0.5</yalign>
-	<xpad>0</xpad>
+	<xpad>5</xpad>
 	<ypad>0</ypad>
 	<child>
 	  <left_attach>0</left_attach>
@@ -306,12 +306,12 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label6</name>
-	<label>Filter : </label>
+	<label>Filter</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
 	<yalign>0.5</yalign>
-	<xpad>0</xpad>
+	<xpad>5</xpad>
 	<ypad>0</ypad>
 	<child>
 	  <left_attach>0</left_attach>
@@ -332,12 +332,12 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label7</name>
-	<label>File Prefix : </label>
+	<label>File Prefix</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
 	<yalign>0.5</yalign>
-	<xpad>0</xpad>
+	<xpad>5</xpad>
 	<ypad>0</ypad>
 	<child>
 	  <left_attach>0</left_attach>
@@ -358,12 +358,12 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label5</name>
-	<label>Generations : </label>
+	<label>Generations</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>1</xalign>
 	<yalign>0.5</yalign>
-	<xpad>0</xpad>
+	<xpad>5</xpad>
 	<ypad>0</ypad>
 	<child>
 	  <left_attach>0</left_attach>
@@ -477,6 +477,7 @@
 	  <last_modification_time>Sun, 12 Nov 2000 00:45:16 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
+	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
 
       <widget>
@@ -491,6 +492,7 @@
 	  <last_modification_time>Sun, 12 Nov 2000 00:45:38 GMT</last_modification_time>
 	</signal>
 	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+	<relief>GTK_RELIEF_NORMAL</relief>
       </widget>
     </widget>
   </widget>

@@ -216,7 +216,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label99</name>
-	      <label>Date : </label>
+	      <label>Date</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -266,7 +266,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label100</name>
-	      <label>Description : </label>
+	      <label>Description</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -292,7 +292,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label101</name>
-	      <label>Place : </label>
+	      <label>Place</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>
@@ -434,7 +434,7 @@
 	    <widget>
 	      <class>GtkLabel</class>
 	      <name>label98</name>
-	      <label>Event Type : </label>
+	      <label>Event Type</label>
 	      <justify>GTK_JUSTIFY_CENTER</justify>
 	      <wrap>False</wrap>
 	      <xalign>1</xalign>

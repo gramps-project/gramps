@@ -241,7 +241,7 @@ def dump_index(person_list,file):
 #
 #------------------------------------------------------------------------
 def get_description():
-    return _("Generates relationship graphs, currently only in GraphVis format.") + \
+    return _("Generates relationship graphs, currently only in GraphViz format.") + \
            " " + \
            _("GraphViz (dot) will transform the graph into postscript, jpeg, png, vrml, svg, and many other formats.") + \
            " " + \

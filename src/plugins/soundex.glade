@@ -149,12 +149,12 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label2</name>
-	  <label>Name : </label>
+	  <label>Name</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <left_attach>0</left_attach>
@@ -175,12 +175,12 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label3</name>
-	  <label>SoundEx Code : </label>
+	  <label>SoundEx Code</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>1</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <left_attach>0</left_attach>
@@ -206,8 +206,8 @@
 	  <wrap>False</wrap>
 	  <xalign>0</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>0</xpad>
-	  <ypad>0</ypad>
+	  <xpad>5</xpad>
+	  <ypad>5</ypad>
 	  <child>
 	    <left_attach>1</left_attach>
 	    <right_attach>2</right_attach>
@@ -238,8 +238,8 @@
 	    <right_attach>2</right_attach>
 	    <top_attach>0</top_attach>
 	    <bottom_attach>1</bottom_attach>
-	    <xpad>0</xpad>
-	    <ypad>0</ypad>
+	    <xpad>5</xpad>
+	    <ypad>5</ypad>
 	    <xexpand>True</xexpand>
 	    <yexpand>False</yexpand>
 	    <xshrink>False</xshrink>

@@ -135,12 +135,12 @@
 	<widget>
 	  <class>GtkLabel</class>
 	  <name>label1</name>
-	  <label>Filter : </label>
+	  <label>Filter</label>
 	  <justify>GTK_JUSTIFY_CENTER</justify>
 	  <wrap>False</wrap>
 	  <xalign>0.5</xalign>
 	  <yalign>0.5</yalign>
-	  <xpad>2</xpad>
+	  <xpad>5</xpad>
 	  <ypad>0</ypad>
 	  <child>
 	    <padding>0</padding>
@@ -156,7 +156,7 @@
 	  <items></items>
 	  <initial_choice>0</initial_choice>
 	  <child>
-	    <padding>0</padding>
+	    <padding>5</padding>
 	    <expand>False</expand>
 	    <fill>False</fill>
 	  </child>

@@ -71,6 +71,7 @@
 	    <last_modification_time>Fri, 09 Mar 2001 17:49:10 GMT</last_modification_time>
 	  </signal>
 	  <stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
 
 	<widget>
@@ -85,6 +86,7 @@
 	    <last_modification_time>Fri, 09 Mar 2001 17:48:57 GMT</last_modification_time>
 	  </signal>
 	  <stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
 
 	<widget>
@@ -93,6 +95,7 @@
 	  <can_default>True</can_default>
 	  <can_focus>True</can_focus>
 	  <stock_button>GNOME_STOCK_BUTTON_HELP</stock_button>
+	  <relief>GTK_RELIEF_NORMAL</relief>
 	</widget>
       </widget>
     </widget>
@@ -112,7 +115,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label1</name>
-	<label>Change Event Type of : </label>
+	<label>Change Event Type of</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
@@ -156,7 +159,7 @@
       <widget>
 	<class>GtkLabel</class>
 	<name>label2</name>
-	<label>to:</label>
+	<label>to</label>
 	<justify>GTK_JUSTIFY_CENTER</justify>
 	<wrap>False</wrap>
 	<xalign>0.5</xalign>
