@@ -909,6 +909,7 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
     def draw_box(self,style,text,x,y):
 	box_style = self.draw_styles[style]
 	para_name = box_style.get_paragraph_style()
+        shadow_width = box_style.get_shadow_space()
 
 	self.f.write('<draw:rect text:anchor-type="paragraph" ')
         self.f.write('draw:style-name="%s_shadow" ' % style)
@@ -916,8 +917,8 @@ class OpenOfficeDoc(BaseDoc.BaseDoc):
 	self.f.write('draw:z-index="0" ')
         self.f.write('svg:width="%.3fcm" ' % box_style.get_width())
 	self.f.write('svg:height="%.3fcm" ' % box_style.get_height())
-	self.f.write('svg:x="%.3fcm" ' % (float(x)+0.2))
-        self.f.write('svg:y="%.3fcm">\n' % (float(y)+0.2))
+	self.f.write('svg:x="%.3fcm" ' % (float(x)+shadow_width))
+        self.f.write('svg:y="%.3fcm">\n' % (float(y)+shadow_width))
         self.f.write('</draw:rect>\n')
 
 	self.f.write('<draw:rect text:anchor-type="paragraph" ')
