@@ -1638,6 +1638,11 @@
 	      <handler>on_name_list_select_row</handler>
 	      <last_modification_time>Mon, 18 Dec 2000 22:29:26 GMT</last_modification_time>
 	    </signal>
+	    <signal>
+	      <name>button_press_event</name>
+	      <handler>on_name_button_press</handler>
+	      <last_modification_time>Sun, 04 Nov 2001 15:40:59 GMT</last_modification_time>
+	    </signal>
 	    <columns>2</columns>
 	    <column_widths>450,50</column_widths>
 	    <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
@@ -2201,6 +2206,11 @@
 		<handler>on_event_select_row</handler>
 		<last_modification_time>Fri, 01 Dec 2000 02:58:20 GMT</last_modification_time>
 	      </signal>
+	      <signal>
+		<name>button_press_event</name>
+		<handler>on_event_button_press</handler>
+		<last_modification_time>Sun, 04 Nov 2001 15:29:48 GMT</last_modification_time>
+	      </signal>
 	      <columns>4</columns>
 	      <column_widths>125,150,200,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
@@ -2558,6 +2568,11 @@
 		<name>select_row</name>
 		<handler>on_attr_list_select_row</handler>
 		<last_modification_time>Tue, 01 May 2001 17:24:40 GMT</last_modification_time>
+	      </signal>
+	      <signal>
+		<name>button_press_event</name>
+		<handler>on_attr_button_press</handler>
+		<last_modification_time>Sun, 04 Nov 2001 15:42:49 GMT</last_modification_time>
 	      </signal>
 	      <columns>3</columns>
 	      <column_widths>200,250,50</column_widths>
@@ -3294,6 +3309,11 @@
 		<handler>on_address_list_select_row</handler>
 		<last_modification_time>Wed, 23 May 2001 18:42:16 GMT</last_modification_time>
 	      </signal>
+	      <signal>
+		<name>button_press_event</name>
+		<handler>on_addr_button_press</handler>
+		<last_modification_time>Sun, 04 Nov 2001 15:53:05 GMT</last_modification_time>
+	      </signal>
 	      <columns>3</columns>
 	      <column_widths>150,350,50</column_widths>
 	      <selection_mode>GTK_SELECTION_SINGLE</selection_mode>
@@ -3813,6 +3833,11 @@
 	      <name>select_row</name>
 	      <handler>on_web_list_select_row</handler>
 	      <last_modification_time>Tue, 24 Apr 2001 14:12:50 GMT</last_modification_time>
+	    </signal>
+	    <signal>
+	      <name>button_press_event</name>
+	      <handler>on_web_button_press</handler>
+	      <last_modification_time>Sun, 04 Nov 2001 15:44:20 GMT</last_modification_time>
 	    </signal>
 	    <columns>2</columns>
 	    <column_widths>273,80</column_widths>

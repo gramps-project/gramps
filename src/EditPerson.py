@@ -33,6 +33,7 @@ import string
 from gnome.ui import GnomeErrorDialog, GnomeWarningDialog, GnomeQuestionDialog
 import libglade
 import GdkImlib
+import GDK
 
 #-------------------------------------------------------------------------
 #
@@ -83,11 +84,14 @@ class EditPerson:
             "on_add_aka_clicked"        : self.on_add_aka_clicked,
             "on_add_attr_clicked"       : self.on_add_attr_clicked,
             "on_add_url_clicked"        : self.on_add_url_clicked,
+            "on_addr_button_press"      : self.addr_double_click,
+            "on_web_button_press"       : self.url_double_click,
             "on_addphoto_clicked"       : self.gallery.on_add_photo_clicked,
             "on_address_list_select_row": self.on_addr_list_select_row,
             "on_aka_delete_clicked"     : self.on_aka_delete_clicked,
             "on_aka_update_clicked"     : self.on_aka_update_clicked,
             "on_apply_person_clicked"   : self.on_apply_person_clicked,
+            "on_attr_button_press"      : self.attr_double_click,
             "on_attr_list_select_row"   : self.on_attr_list_select_row,
             "on_combo_insert_text"      : utils.combo_insert_text,
             "on_edit_birth_clicked"     : self.on_edit_birth_clicked,
@@ -100,9 +104,11 @@ class EditPerson:
             "on_edit_properties_clicked": self.gallery.popup_change_description,
             "on_editperson_switch_page" : self.on_switch_page,
             "on_event_add_clicked"      : self.on_event_add_clicked,
+            "on_event_button_press"     : self.event_double_click,
             "on_event_delete_clicked"   : self.on_event_delete_clicked,
             "on_event_select_row"       : self.on_event_select_row,
             "on_event_update_clicked"   : self.on_event_update_clicked,
+            "on_name_button_press"      : self.aka_double_click,
             "on_name_list_select_row"   : self.on_name_list_select_row,
             "on_name_note_clicked"      : self.on_name_note_clicked,
             "on_name_source_clicked"    : self.on_primary_name_source_clicked,
@@ -239,6 +245,7 @@ class EditPerson:
         self.notes_field.set_point(0)
         self.notes_field.insert_defaults(person.getNote())
         self.notes_field.set_word_wrap(1)
+
 
         # draw lists
         self.redraw_event_list()
@@ -502,6 +509,10 @@ class EditPerson:
         self.bplace.set_position(0)
         self.dplace.set_position(0)
 
+    def attr_double_click(self,obj,event):
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            self.on_update_attr_clicked(obj)
+
     def on_update_attr_clicked(self,obj):
         import AttrEdit
         if len(obj.selection) <= 0:
@@ -510,10 +521,18 @@ class EditPerson:
         pname = self.person.getPrimaryName().getName()
         AttrEdit.AttributeEditor(self,attr,pname,const.personalAttributes)
 
+    def addr_double_click(self,obj,event):
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            self.on_update_addr_clicked(obj)
+
     def on_update_addr_clicked(self,obj):
         import AddrEdit
         if len(obj.selection) > 0:
             AddrEdit.AddressEditor(self,obj.get_row_data(obj.selection[0]))
+
+    def url_double_click(self,obj,event):
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            self.on_update_url_clicked(obj)
 
     def on_update_url_clicked(self,obj):
         import UrlEdit
@@ -523,6 +542,10 @@ class EditPerson:
         url = obj.get_row_data(obj.selection[0])
         UrlEdit.UrlEditor(self,pname,url)
 
+    def event_double_click(self,obj,event):
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            self.on_event_update_clicked(obj)
+        
     def on_event_update_clicked(self,obj):
         import EventEdit
         if len(obj.selection) <= 0:
@@ -583,9 +606,13 @@ class EditPerson:
         self.attr_value.set_text(attr.getValue())
         self.attr_details_field.set_text(utils.get_detail_text(attr))
 
+    def aka_double_click(self,obj,event):
+        if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
+            self.on_aka_update_clicked(obj)
+
     def on_aka_update_clicked(self,obj):
         import NameEdit
-        if len(obj.selection) >= 0:
+        if len(obj.selection) > 0:
             NameEdit.NameEditor(self,obj.get_row_data(obj.selection[0]))
 
     def load_photo(self,photo):
