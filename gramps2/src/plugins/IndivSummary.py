@@ -41,7 +41,7 @@ import gtk
 #------------------------------------------------------------------------
 import RelLib
 import const
-import TextDoc
+import BaseDoc
 import StyleEditor
 import Report
 import Errors
@@ -85,22 +85,22 @@ class IndivSummary(Report.Report):
         self.newpage = newpage
         
     def setup(self):
-        tbl = TextDoc.TableStyle()
+        tbl = BaseDoc.TableStyle()
         tbl.set_width(100)
         tbl.set_columns(2)
         tbl.set_column_width(0,20)
         tbl.set_column_width(1,80)
         self.d.add_table_style("IVS-IndTable",tbl)
 
-        cell = TextDoc.TableCellStyle()
+        cell = BaseDoc.TableCellStyle()
         cell.set_top_border(1)
         cell.set_bottom_border(1)
         self.d.add_cell_style("IVS-TableHead",cell)
 
-        cell = TextDoc.TableCellStyle()
+        cell = BaseDoc.TableCellStyle()
         self.d.add_cell_style("IVS-NormalCell",cell)
 
-        cell = TextDoc.TableCellStyle()
+        cell = BaseDoc.TableCellStyle()
 	cell.set_longlist(1)
         self.d.add_cell_style("IVS-ListCell",cell)
 
@@ -578,38 +578,38 @@ def write_book_item(database,person,doc,options,newpage=0):
 #------------------------------------------------------------------------
 def _make_default_style(default_style):
     """Make the default output style for the Individual Summary Report."""
-    font = TextDoc.FontStyle()
+    font = BaseDoc.FontStyle()
     font.set_bold(1)
-    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_type_face(BaseDoc.FONT_SANS_SERIF)
     font.set_size(16)
-    p = TextDoc.ParagraphStyle()
-    p.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    p = BaseDoc.ParagraphStyle()
+    p.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     p.set_font(font)
     p.set_description(_("The style used for the title of the page."))
     default_style.add_style("IVS-Title",p)
         
-    font = TextDoc.FontStyle()
+    font = BaseDoc.FontStyle()
     font.set_bold(1)
-    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_type_face(BaseDoc.FONT_SANS_SERIF)
     font.set_size(12)
     font.set_italic(1)
-    p = TextDoc.ParagraphStyle()
+    p = BaseDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_("The style used for category labels."))
     default_style.add_style("IVS-TableTitle",p)
     
-    font = TextDoc.FontStyle()
+    font = BaseDoc.FontStyle()
     font.set_bold(1)
-    font.set_type_face(TextDoc.FONT_SANS_SERIF)
+    font.set_type_face(BaseDoc.FONT_SANS_SERIF)
     font.set_size(12)
-    p = TextDoc.ParagraphStyle()
+    p = BaseDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_("The style used for the spouse's name."))
     default_style.add_style("IVS-Spouse",p)
     
-    font = TextDoc.FontStyle()
+    font = BaseDoc.FontStyle()
     font.set_size(12)
-    p = TextDoc.ParagraphStyle()
+    p = BaseDoc.ParagraphStyle()
     p.set_font(font)
     p.set_description(_('The basic style used for the text display.'))
     default_style.add_style("IVS-Normal",p)

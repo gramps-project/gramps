@@ -33,7 +33,7 @@ import cStringIO
 #
 #------------------------------------------------------------------------
 import Report
-import TextDoc
+import BaseDoc
 import RelLib
 import Errors
 from QuestionDialog import ErrorDialog
@@ -723,42 +723,42 @@ class FtmAncestorReport(Report.Report):
 
 def _make_default_style(default_style):
     """Make the default output style for the FTM Style Ancestral report."""
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set_header_level(1)
-    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
     default_style.add_style("FTA-Title",para)
     
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set_header_level(2)
     para.set(pad=0.5)
-    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
     default_style.add_style("FTA-Generation",para)
     
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(first_indent=-1.0,lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("FTA-Entry",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("FTA-Details",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("FTA-SubEntry",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("FTA-Endnotes",para)

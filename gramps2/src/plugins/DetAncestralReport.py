@@ -30,7 +30,7 @@ from gettext import gettext as _
 from QuestionDialog import ErrorDialog
 
 import Report
-import TextDoc
+import BaseDoc
 
 import gtk
 import gnome.ui
@@ -669,47 +669,47 @@ class DetAncestorReport(Report.Report):
 #------------------------------------------------------------------------
 def _make_default_style(default_style):
     """Make the default output style for the Detailed Ancestral Report"""
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set_header_level(1)
     para.set(pad=0.5)
     default_style.add_style("DAR-Title",para)
 
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set_header_level(2)
     para.set(pad=0.5)
     default_style.add_style("DAR-Generation",para)
 
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=10,italic=0, bold=0)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     #para.set_header_level(3)
     para.set_left_margin(0.0)   # in centimeters
     para.set(pad=0.5)
     default_style.add_style("DAR-ChildTitle",para)
 
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=9)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=9)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
     default_style.add_style("DAR-ChildList",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(first_indent=0.0,lmargin=0.0,pad=0.25)
     default_style.add_style("DAR-NoteHeader",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(first_indent=0.5,lmargin=0.0,pad=0.25)
     default_style.add_style("DAR-Entry",para)
 
-    table = TextDoc.TableStyle()
+    table = BaseDoc.TableStyle()
     table.set_width(1000)
     table.set_columns(3)
     table.set_column_width(1,"30%")

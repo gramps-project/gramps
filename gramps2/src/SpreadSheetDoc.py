@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-import TextDoc
+import BaseDoc
 
 #------------------------------------------------------------------------
 #
@@ -26,9 +26,9 @@ import TextDoc
 #
 #------------------------------------------------------------------------
 class SpreadSheetDoc:
-    def __init__(self,type,orientation=TextDoc.PAPER_PORTRAIT):
+    def __init__(self,type,orientation=BaseDoc.PAPER_PORTRAIT):
         self.orientation = orientation
-        if orientation == TextDoc.PAPER_PORTRAIT:
+        if orientation == BaseDoc.PAPER_PORTRAIT:
             self.width = type.get_width()
             self.height = type.get_height()
         else:
@@ -39,7 +39,7 @@ class SpreadSheetDoc:
         self.lmargin = 2.54
         self.rmargin = 2.54
                 
-        self.font = TextDoc.FontStyle()
+        self.font = BaseDoc.FontStyle()
         self.actfont = self.font
         self.style_list = {}
 	self.table_styles = {}
@@ -56,16 +56,16 @@ class SpreadSheetDoc:
         self.name = name
 
     def add_style(self,name,style):
-        self.style_list[name] = TextDoc.ParagraphStyle(style)
+        self.style_list[name] = BaseDoc.ParagraphStyle(style)
 
     def add_table_style(self,name,style):
-        self.table_styles[name] = TextDoc.TableStyle(style)
+        self.table_styles[name] = BaseDoc.TableStyle(style)
 
     def add_cell_style(self,name,style):
-        self.cell_styles[name] = TextDoc.TableCellStyle(style)
+        self.cell_styles[name] = BaseDoc.TableCellStyle(style)
 
     def change_font(self,font):
-        self.actfont = TextDoc.FontStyle(font)
+        self.actfont = BaseDoc.FontStyle(font)
 
     def restore_font(self):
         self.actfont = self.font

@@ -30,7 +30,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-import TextDoc
+import BaseDoc
 import GrampsCfg
 import const
 import Utils
@@ -82,12 +82,12 @@ def make_orientation_menu(main_menu):
 
     myMenu = gtk.Menu()
     menuitem = gtk.MenuItem(_("Portrait"))
-    menuitem.set_data("i",TextDoc.PAPER_PORTRAIT)
+    menuitem.set_data("i",BaseDoc.PAPER_PORTRAIT)
     menuitem.show()
     myMenu.append(menuitem)
 
     menuitem = gtk.MenuItem(_("Landscape"))
-    menuitem.set_data("i",TextDoc.PAPER_LANDSCAPE)
+    menuitem.set_data("i",BaseDoc.PAPER_LANDSCAPE)
     menuitem.show()
     myMenu.append(menuitem)
 
@@ -113,7 +113,7 @@ class PageSizeParser(handler.ContentHandler):
             name = attrs['name']
             height = Utils.gfloat(attrs['height'])
             width = Utils.gfloat(attrs['width'])
-            self.paper_list.append(TextDoc.PaperStyle(name,height,width))
+            self.paper_list.append(BaseDoc.PaperStyle(name,height,width))
 
 #-------------------------------------------------------------------------
 #
@@ -124,19 +124,18 @@ try:
     parser = make_parser()
     parser.setContentHandler(PageSizeParser(paper_sizes))
     parser.parse(const.papersize)
-    paper_sizes.append(TextDoc.PaperStyle(_("Custom Size"),-1,-1))
+    paper_sizes.append(BaseDoc.PaperStyle(_("Custom Size"),-1,-1))
 except (IOError,OSError,SAXParseException):
     paper_sizes = [
-        TextDoc.PaperStyle("Letter",27.94,21.59),
-        TextDoc.PaperStyle("Legal",35.56,21.59),
-        TextDoc.PaperStyle("A3",42.0,29.7),
-        TextDoc.PaperStyle("A4",29.7,21.0),
-        TextDoc.PaperStyle("A5",21.0,14.8),
-        TextDoc.PaperStyle("B4",35.3,25.0),
-        TextDoc.PaperStyle("B6",17.6,12.5),
-        TextDoc.PaperStyle("C4",32.4,22.9),
-        TextDoc.PaperStyle("C5",22.9,16.2),
-        TextDoc.PaperStyle("C6",16.2,11.4),
-        TextDoc.PaperStyle(_("Custom Size"),-1,-1)
+        BaseDoc.PaperStyle("Letter",27.94,21.59),
+        BaseDoc.PaperStyle("Legal",35.56,21.59),
+        BaseDoc.PaperStyle("A3",42.0,29.7),
+        BaseDoc.PaperStyle("A4",29.7,21.0),
+        BaseDoc.PaperStyle("A5",21.0,14.8),
+        BaseDoc.PaperStyle("B4",35.3,25.0),
+        BaseDoc.PaperStyle("B6",17.6,12.5),
+        BaseDoc.PaperStyle("C4",32.4,22.9),
+        BaseDoc.PaperStyle("C5",22.9,16.2),
+        BaseDoc.PaperStyle("C6",16.2,11.4),
+        BaseDoc.PaperStyle(_("Custom Size"),-1,-1)
         ]
-

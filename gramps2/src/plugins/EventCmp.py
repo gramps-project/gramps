@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000  Donald N. Allingham
+# Copyright (C) 2000-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ import GenericFilter
 import ListModel
 import sort
 import Utils
-import TextDoc
+import BaseDoc
 import OpenSpreadSheet
 import const
 
@@ -64,26 +64,26 @@ class TableReport:
         
     def initialize(self,cols):
 
-        t = TextDoc.TableStyle()
+        t = BaseDoc.TableStyle()
         t.set_columns(cols)
         for index in range(0,cols):
             t.set_column_width(index,4)
         self.doc.add_table_style("mytbl",t)
 
-        f = TextDoc.FontStyle()
-        f.set_type_face(TextDoc.FONT_SANS_SERIF)
+        f = BaseDoc.FontStyle()
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
         f.set_size(12)
         f.set_bold(1)
-        p = TextDoc.ParagraphStyle()
+        p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         p.set_background_color((0xcc,0xff,0xff))
         p.set_padding(0.1)
         self.doc.add_style("head",p)
 
-        f = TextDoc.FontStyle()
-        f.set_type_face(TextDoc.FONT_SANS_SERIF)
+        f = BaseDoc.FontStyle()
+        f.set_type_face(BaseDoc.FONT_SANS_SERIF)
         f.set_size(10)
-        p = TextDoc.ParagraphStyle()
+        p = BaseDoc.ParagraphStyle()
         p.set_font(f)
         self.doc.add_style("data",p)
 
@@ -323,8 +323,8 @@ class DisplayChart:
         
         name = self.form.get_widget("filename").get_text()
 
-        pstyle = TextDoc.PaperStyle("junk",10,10)
-        doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,TextDoc.PAPER_PORTRAIT)
+        pstyle = BaseDoc.PaperStyle("junk",10,10)
+        doc = OpenSpreadSheet.OpenSpreadSheet(pstyle,BaseDoc.PAPER_PORTRAIT)
         spreadsheet = TableReport(name,doc)
         spreadsheet.initialize(len(self.event_titles))
 

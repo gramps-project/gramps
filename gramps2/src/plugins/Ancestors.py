@@ -30,7 +30,7 @@ import gtk
 #------------------------------------------------------------------------
 import const
 import Report
-import TextDoc
+import BaseDoc
 import RelLib
 import Errors
 import Relationship
@@ -56,36 +56,36 @@ class ComprehensiveAncestorsReport (Report.Report):
         self.sourcerefs = []
         self.newpage = newpage
 
-        table = TextDoc.TableStyle ()
+        table = BaseDoc.TableStyle ()
         table.set_column_widths ([15, 85])
         table.set_width (100)
         doc.add_table_style ("AR-PersonNoSpouse", table)
 
-        table = TextDoc.TableStyle ()
+        table = BaseDoc.TableStyle ()
         table.set_column_widths ([10, 15, 75])
         table.set_width (100)
         doc.add_table_style ("AR-ChildNoSpouse", table)
 
         for nspouse in range (1, 3):
-            table = TextDoc.TableStyle ()
+            table = BaseDoc.TableStyle ()
             table.set_width (100)
             widths = [15, 100 - 15 * (nspouse + 1)]
             widths.extend ([15] * nspouse)
             table.set_column_widths (widths)
             doc.add_table_style ("AR-PersonWithSpouse%d" % nspouse, table)
 
-            table = TextDoc.TableStyle ()
+            table = BaseDoc.TableStyle ()
             table.set_width (100)
             widths = [10, 15, 90 - 15 * (nspouse + 1)]
             widths.extend ([15] * nspouse)
             table.set_column_widths (widths)
             doc.add_table_style ("AR-ChildWithSpouse%d"% nspouse, table)
 
-        cell = TextDoc.TableCellStyle ()
+        cell = BaseDoc.TableCellStyle ()
         cell.set_padding (1) # each side makes 2cm, the size of the photo
         doc.add_cell_style ("AR-PaddedCell", cell)
 
-        cell = TextDoc.TableCellStyle ()
+        cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
         cell.set_left_border (1)
         cell.set_top_border (1)
@@ -93,11 +93,11 @@ class ComprehensiveAncestorsReport (Report.Report):
         cell.set_bottom_border (1)
         doc.add_cell_style ("AR-NoPhoto", cell)
 
-        cell = TextDoc.TableCellStyle ()
+        cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
         doc.add_cell_style ("AR-Photo", cell)
 
-        cell = TextDoc.TableCellStyle ()
+        cell = BaseDoc.TableCellStyle ()
         cell.set_padding (0.1)
         doc.add_cell_style ("AR-Entry", cell)
 
@@ -345,7 +345,7 @@ class ComprehensiveAncestorsReport (Report.Report):
                 ret.append ((self.doc.start_row, []))
 
                 if suppress_children and len (already_described):
-                    # Can't do proper formatting with TextDoc, so cheat.
+                    # Can't do proper formatting with BaseDoc, so cheat.
                     ret.append ((self.doc.start_cell, ["AR-PaddedCell"]))
                     ret.append ((self.doc.end_cell, []))
 
@@ -750,54 +750,54 @@ class ComprehensiveAncestorsReport (Report.Report):
 
 def _make_default_style(default_style):
     """Make the default output style for the Comprehensive Ancestors report."""
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1,italic=1)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set_header_level(1)
-    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set(pad=0.5)
     para.set_description(_('The style used for the title of the page.'))
     default_style.add_style("AR-Title",para)
     
-    font = TextDoc.FontStyle()
-    font.set(face=TextDoc.FONT_SANS_SERIF,size=14,italic=1)
-    para = TextDoc.ParagraphStyle()
+    font = BaseDoc.FontStyle()
+    font.set(face=BaseDoc.FONT_SANS_SERIF,size=14,italic=1)
+    para = BaseDoc.ParagraphStyle()
     para.set_font(font)
     para.set_header_level(2)
     para.set(pad=0.5)
-    para.set_alignment(TextDoc.PARA_ALIGN_CENTER)
+    para.set_alignment(BaseDoc.PARA_ALIGN_CENTER)
     para.set_description(_('The style used for the generation header.'))
     default_style.add_style("AR-Heading",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("AR-Entry",para)
 
-    para = TextDoc.ParagraphStyle ()
+    para = BaseDoc.ParagraphStyle ()
     para.set_description(_('Text style for missing photo.'))
     default_style.add_style("AR-NoPhotoText", para)
 
-    details_font = TextDoc.FontStyle()
-    details_font.set(face=TextDoc.FONT_SANS_SERIF,size=8,italic=1)
-    para = TextDoc.ParagraphStyle()
+    details_font = BaseDoc.FontStyle()
+    details_font.set(face=BaseDoc.FONT_SANS_SERIF,size=8,italic=1)
+    para = BaseDoc.ParagraphStyle()
     para.set(lmargin=2.7,pad=0,font = details_font)
     para.set_description(_('Style for details about a person.'))
     default_style.add_style("AR-Details",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(lmargin=2.5,pad=0.25)
     para.set_description(_('The basic style used for the text display.'))
     para.set_header_level (4)
     default_style.add_style("AR-SubEntry",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(pad=0.05)
     para.set_description(_('The basic style used for the text display.'))
     default_style.add_style("AR-Endnotes",para)
 
-    para = TextDoc.ParagraphStyle()
+    para = BaseDoc.ParagraphStyle()
     para.set(lmargin=1.0,pad=0.05)
     para.set_description(_('Introduction to the children.'))
     para.set_header_level (3)

@@ -49,7 +49,7 @@ import const
 import Utils
 import Plugins
 import GenericFilter
-import TextDoc
+import BaseDoc
 import StyleEditor
 import GrampsCfg
 import PaperMenu
@@ -359,9 +359,9 @@ class BareReportDialog:
     def make_default_style(self):
         """Create the default style to be used by the associated report.  This
         routine is a default implementation and should be overridden."""
-        font = TextDoc.FontStyle()
-        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
-        para = TextDoc.ParagraphStyle()
+        font = BaseDoc.FontStyle()
+        font.set(face=BaseDoc.FONT_SANS_SERIF,size=16,bold=1)
+        para = BaseDoc.ParagraphStyle()
         para.set_font(font)
         para.set_header_level(1)
         para.set(pad=0.5)
@@ -455,13 +455,13 @@ class BareReportDialog:
         self.col += 1
         
         # Build the default style set for this report.
-        self.default_style = TextDoc.StyleSheet()
+        self.default_style = BaseDoc.StyleSheet()
         self.make_default_style()
 
         # Build the initial list of available styles sets.  This
         # includes the default style set and any style sets saved from
         # previous invocations of gramps.
-        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
+        self.style_sheet_list = BaseDoc.StyleSheetList(self.get_stylesheet_savefile(),
                                                        self.default_style)
 
         # Now build the actual menu.
