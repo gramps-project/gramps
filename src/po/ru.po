@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.7.3-snap20020406\n"
 "POT-Creation-Date: Wed Apr 10 10:02:15 2002\n"
-"PO-Revision-Date: 2002-04-10 11:08-0500\n"
+"PO-Revision-Date: 2002-04-10 12:31-0500\n"
 "Last-Translator: Alex Roitman <shura@alex.neuro.umn.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr "с"
 
 #: Date.py:247 Date.py:273 Date.py:286 plugins/changetype.glade:152
 msgid "to"
-msgstr "по"
+msgstr "на"
 
 #: Date.py:256 EditPerson.glade:6648 EventEdit.py:137 dialog.glade:512
 msgid "Julian"
@@ -1096,7 +1096,7 @@ msgstr "Использование"
 
 #: GrampsCfg.py:105 preferences.glade:663
 msgid "Find"
-msgstr "Найти"
+msgstr "Поиск"
 
 #: GrampsCfg.py:106 preferences.glade:2234
 msgid "Report Preferences"
@@ -1112,7 +1112,7 @@ msgstr "Угадывание Дат"
 
 #: GrampsCfg.py:697 GrampsCfg.py:712
 msgid "No default format"
-msgstr "Нет формата-по-умолчанию"
+msgstr "Нет формата по умолчанию"
 
 #: ImageSelect.py:147
 msgid "That is not a valid file name."
@@ -1129,7 +1129,7 @@ msgstr "Не смогла импортировать %s"
 
 #: ImageSelect.py:425 MediaView.py:172
 msgid "View in the default viewer"
-msgstr "Просмотр в устройстве просмотра-по-умолчанию"
+msgstr "Просмотр в устройстве просмотра по умолчанию"
 
 #: ImageSelect.py:428 MediaView.py:174
 msgid "Edit with the GIMP"
@@ -1595,7 +1595,7 @@ msgstr "Город"
 
 #: config.glade:260 preferences.glade:1945
 msgid "email"
-msgstr "email"
+msgstr "Эл. почта"
 
 #: config.glade:312 preferences.glade:1919
 msgid "Phone"
@@ -2275,7 +2275,7 @@ msgstr "Показывает стасус добавлений которые не смогли загрузиться"
 
 #: gramps.glade:510
 msgid "_Show Plugin Status"
-msgstr "Показать Стасус Добавления"
+msgstr "Показать Стасус Добавлений"
 
 #: gramps.glade:559
 msgid "Open File"
@@ -3244,8 +3244,8 @@ msgstr "Проверить и починить базу данных"
 msgid ""
 "Checks the database for integrity problems, fixing the problems that it can"
 msgstr ""
-"Проверяет базу данных на предмет целостности, поправляя ошибки по мере "
-"возможности"
+"Проверяет базу данных на предмет целостности, по мере возможности исправляя "
+"ошибки "
 
 #: plugins/DesGraph.py:307 plugins/DesGraph.py:451
 msgid "Descendant Graph"
@@ -3752,7 +3752,7 @@ msgid ""
 "Searches the entire database and attempts to extract titles and nicknames "
 "that may be embedded in a person's given name field."
 msgstr ""
-"Просматривает всю базу данных и пытается выделить титулы и краткие имена "
+"Просматривает всю базу данных и пытается выделить титулы и краткие имена, "
 "возможно содержащиеся в имени лица."
 
 #: plugins/ReadGedcom.py:237 plugins/ReadGedcom.py:248
@@ -4451,7 +4451,7 @@ msgstr "Лицо 2"
 
 #: plugins/merge.glade:408
 msgid "Match Threshold"
-msgstr "Степень Порог Соответствия"
+msgstr "Степень Порога Соответствия"
 
 #: plugins/merge.glade:451
 msgid "Use SoundEx codes for name matches"
@@ -4862,11 +4862,11 @@ msgstr "Календари"
 
 #: preferences.glade:1706
 msgid "Show calendar format selection menu"
-msgstr "Показать меню выбора формата календаря"
+msgstr "Показывать меню выбора формата календаря"
 
 #: preferences.glade:2255
 msgid "Preferred Text Format"
-msgstr "Прадпочитаемый Формат Текста"
+msgstr "Предпочитаемый Формат Текста"
 
 #: preferences.glade:2281
 msgid "Preferred Paper Size"
@@ -4910,15 +4910,15 @@ msgstr "Переноска Мышью из Внешнего Источника"
 
 #: preferences.glade:2588
 msgid "Make a reference to the object when the object is dropped"
-msgstr "Сделать ссылку на объект когда объект отпущен"
+msgstr "Делать ссылку на объект когда объект отпущен"
 
 #: preferences.glade:2610
 msgid "Make a local copy when the object is dropped"
-msgstr "Сделать локальную копию когда объект отпущен"
+msgstr "Делать локальную копию когда объект отпущен"
 
 #: preferences.glade:2632
 msgid "Display global properties editor when object is dropped"
-msgstr "Вывести редактор глобальных свойств когда объект отпущен"
+msgstr "Выводить редактор глобальных свойств когда объект отпущен"
 
 #: preferences.glade:2648
 msgid "Drag and Drop from an Internal Source"
@@ -4926,7 +4926,7 @@ msgstr "Переноска Мышью из Внутреннего Источника"
 
 #: preferences.glade:2674
 msgid "Display local properties editor when object is dropped"
-msgstr "Вывести редактор локальных свойств когда объект отпущен"
+msgstr "Выводить редактор локальных свойств когда объект отпущен"
 
 #: preferences.glade:2710
 msgid "GRAMPS ID prefixes"
@@ -5026,7 +5026,7 @@ msgstr "Определить Фильтр"
 
 #: rule.glade:246
 msgid "All rules must apply"
-msgstr "Все правилм должны выполняться"
+msgstr "Все правила должны выполняться"
 
 #: rule.glade:270
 msgid "At least one rule must apply"
