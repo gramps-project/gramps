@@ -1085,6 +1085,7 @@ def cl_report(database,name,category,options_str_dict):
         doc.open(clr.option_class.get_output())
         doc.init()
         for item in rptlist:
+            item.begin_report()
             item.write_report()
         doc.close()
     except:

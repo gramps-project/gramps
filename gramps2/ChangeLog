@@ -1,5 +1,7 @@
 2004-12-30 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/Report.py: Change finish_report to end_report.
+	* src/plugins/BookReport.py (cl_report):
+	Use begin_report for each item.
 
 2004-12-30  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/RelLib.py: documentation
