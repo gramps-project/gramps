@@ -8,8 +8,15 @@ Version 0.98.0
 * When choosing parents, select the spouse of the first selected person to
   make picking a family quicker.
 * Instant preferences.
+* FreeBSD compatibility. 
 * People and Relationships can now have sources not associated with any
   event
+* Report options (paper size, orientation, style, and filter) are kept 
+  within the session.
+* Substantial speedups in updating display in tree views. 
+* Children are enumerated in Family View.
+* ZODB backend is removed. Reald database backend is being worked on and will
+  appear in post-1.0 releases.
 * Bugfixes.
 
 Version 0.9.5 -- the "Fix me up" release

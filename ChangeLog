@@ -1,3 +1,21 @@
+2003-11-06  Alex Roitman  <shura@alex.neuro.umn.edu>
+	* src/gramps_main.py (back_pressed, fwd_pressed): Pass event to the
+	build_menu functions; (build_backhistmenu, build_fwdhistmenu): Use 
+	event for popping the menu.
+
+	* NEWS, TODO: catch up with the current CVS state. 
+
+	* src/Utils.py (history_broken, clearHistory_broken, wasHistory_broken):
+	Add functions. 
+	* src/plugins/ReorderIds.py(__init__): Call Utils.history_broken upon
+	reordering. 
+	* src/gramps_main.py (clear_history): Add function; 
+	(redraw_histmenu, fwd_clicked, back_clicked): Clear history if catching
+	an exception (should be actually handled by reorder plugin, leaving here
+       just in case); 
+       (bookmark_callback): Display warning if catching an exception. Should
+       never be reached if reorder properly handles broken history. 
+
 2003-11-05  Tim Waugh  <twaugh@redhat.com>
 
 	* src/PlaceView.py (PlaceView.goto): Scroll to found item.
