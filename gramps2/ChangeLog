@@ -1,3 +1,6 @@
+2005-02-25  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/gramps_main.py: update places and sources after edit
+
 2005-02-25 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/DbPrompter.py (GrampsFormatWidget): Add class;
 	(format_maker): Add_function; (NewSaveasDbPrompter.chooser): Support
