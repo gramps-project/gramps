@@ -906,49 +906,11 @@ class Gramps:
 
     def on_new_clicked(self,obj):
         """Prompt for permission to close the current database"""
-        
-        QuestionDialog(_('Create a New Database'),
-                       _('Creating a new database will close the existing database, '
-                         'discarding any unsaved changes. You will then be prompted '
-                         'to create a new database'),
-                       _('_Create New Database'),
-                       self.new_database_response,self.topWindow)
-                       
-    def new_database_response(self):
         DbPrompter.DbPrompter(self,1,self.topWindow)
 
     def clear_database(self):
         """Clear out the database if permission was granted"""
-
         return
-        const.personalEvents = const.init_personal_event_list()
-        const.personalAttributes = const.init_personal_attribute_list()
-        const.marriageEvents = const.init_marriage_event_list()
-        const.familyAttributes = const.init_family_attribute_list()
-        const.familyRelations = const.init_family_relation_list()
-
-        self.history = []
-        self.mhistory = []
-        self.hindex = -1
-        self.redraw_histmenu()
-
-        self.relationship.set_db(self.db)
-
-        self.place_view.change_db(self.db)
-        self.people_view.change_db(self.db)
-        self.source_view.change_db(self.db)
-        self.media_view.change_db(self.db)
-
-        if not self.cl:
-            self.topWindow.set_title("GRAMPS")
-            self.active_person = None
-
-            self.change_active_person(None)
-            self.people_view.clear()
-            self.family_view.clear()
-            self.family_view.load_family()
-            self.pedigree_view.clear()
-            self.media_view.load_media()
     
     def tool_callback(self,val):
         if val:
@@ -1434,7 +1396,7 @@ class Gramps:
         else:
             if GrampsCfg.status_bar <= 1:
                 pname = GrampsCfg.nameof(self.active_person)
-                name = "[%s] %s" % (self.active_person.get_id(),pname)
+                name = "[%s] %s" % (self.active_person.get_gramps_id(),pname)
             else:
                 name = self.display_relationship()
             self.status_text(name)

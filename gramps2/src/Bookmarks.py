@@ -84,7 +84,7 @@ class Bookmarks :
         """adds a person's name to the drop down menu"""
         data = self.db.person_map.get(str(person_id))
         if data:
-            name = data[2].get_name()
+            name = data[3].get_name()
             item = gtk.MenuItem(name)
             item.connect("activate", self.callback, person_id)
             item.show()
@@ -144,7 +144,7 @@ class Bookmarks :
         index = 0
         for person_id in self.bookmarks:
             data = self.db.person_map.get(str(person_id))
-            name = data[2].get_name()
+            name = data[3].get_name()
             self.namelist.append([name])
             self.namelist.set_row_data(index,person_id)
             index = index + 1

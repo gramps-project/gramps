@@ -30,6 +30,7 @@ import os
 import gtk
 import shutil
 import xml.parsers.expat
+import Utils
 from gettext import gettext as _
 
 #-------------------------------------------------------------------------
@@ -128,8 +129,6 @@ def importData(database, filename, callback=None,cl=0):
             ErrorDialog(_("Error reading %s") % filename,
                         _("The file is probably either corrupt or not a valid GRAMPS database."))
             return 0
-    except ValueError, msg:
-        pass
     except:
         if cl:
             import traceback
@@ -273,6 +272,7 @@ class GrampsParser:
         self.note_list = []
         self.tlist = []
         self.conf = 2
+        self.gid2id = {}
         
         self.ord = None
         self.objref = None
@@ -323,6 +323,7 @@ class GrampsParser:
         self.func_index = 0
         self.func = None
         self.witness_comment = ""
+        self.idswap = {}
 
         self.func_map = {
             "address"    : (self.start_address, self.stop_address),
@@ -407,6 +408,28 @@ class GrampsParser:
             "url"        : (self.start_url, None)
             }
 
+    def find_person_by_gramps_id(self,gramps_id):
+        person = RelLib.Person()
+        intid = self.gid2id.get(gramps_id)
+        if intid:
+            person.unserialize(self.db.person_map.get(intid))
+        else:
+            intid = Utils.create_id()
+            person.set_id(intid)
+            person.set_gramps_id(gramps_id)
+            self.db.add_person_as(person,self.trans)
+            self.gid2id[gramps_id] = intid
+        return person
+
+    def map_gid(self,id):
+        if self.idswap.get(id):
+            return self.idswap[id]
+        else:
+            if self.db.idtrans.get(str(id)):
+                self.idswap[id] = self.db.find_next_gid()
+            else:
+                self.idswap[id] = id
+            return self.idswap[id]
 
     def parse(self,file):
         self.trans = self.db.start_transaction()
@@ -419,8 +442,9 @@ class GrampsParser:
         self.db.set_researcher(self.owner)
         if self.tempDefault != None:
             id = self.tempDefault
-            if self.db.has_person_id(id) and self.db.get_default_person() == None:
-                self.db.set_default_person_id(id)
+            person = self.db.try_to_find_person_from_gramps_id(id)
+            if person:
+                self.db.set_default_person_id(person.get_id())
 
         for key in self.func_map.keys():
             del self.func_map[key]
@@ -450,7 +474,7 @@ class GrampsParser:
         self.ord.set_status(int(attrs['val']))
 
     def start_sealed_to(self,attrs):
-        id = attrs['ref']
+        id = self.map_gid(attrs['ref'])
         self.ord.set_family_id(self.db.find_family_no_map(id,self.trans))
         
     def start_place(self,attrs):
@@ -498,7 +522,7 @@ class GrampsParser:
     def start_witness(self,attrs):
         self.in_witness = 1
         if attrs.has_key('ref'):
-            self.witness = RelLib.Witness(RelLib.Event.ID,attrs['ref'])
+            self.witness = RelLib.Witness(RelLib.Event.ID,self.map_gid(attrs['ref']))
         if attrs.has_key('name'):
             self.witness = RelLib.Witness(RelLib.Event.NAME,attrs['name'])
         
@@ -553,16 +577,16 @@ class GrampsParser:
             self.address.private = int(attrs["priv"])
 
     def start_bmark(self,attrs):
-        person = self.db.find_person_no_conflicts(attrs["ref"],
-                                                  self.pmap,self.trans)
+        person = self.find_person_by_gramps_id(self.map_gid(attrs["ref"]))
         self.db.bookmarks.append(person.get_id())
 
     def start_person(self,attrs):
         if self.callback != None and self.count % self.increment == 0:
             self.callback(float(self.count)/float(self.entries))
         self.count = self.count + 1
-        self.person = self.db.find_person_no_conflicts(attrs["id"],
-                                                       self.pmap, self.trans)
+
+        self.person = self.find_person_by_gramps_id(self.map_gid(attrs['id']))
+        
         if attrs.has_key("complete"):
             self.person.set_complete(int(attrs['complete']))
         else:
@@ -573,16 +597,18 @@ class GrampsParser:
             self.tempDefault = attrs["default"]
 
     def start_father(self,attrs):
-        self.family.set_father_id(attrs["ref"])
+        person = self.db.try_to_find_person_from_gramps_id(self.map_gid(attrs["ref"]))
+        self.family.set_father_id(person.get_id())
 
     def start_mother(self,attrs):
-        self.family.set_mother_id(attrs["ref"])
+        person = self.db.try_to_find_person_from_gramps_id(self.map_gid(attrs["ref"]))
+        self.family.set_mother_id(person.get_id())
     
     def start_child(self,attrs):
-        self.family.add_child_id(attrs["ref"])
+        person = self.db.try_to_find_person_from_gramps_id(self.map_gid(attrs["ref"]))
+        self.family.add_child_id(person.get_id())
 
     def start_url(self,attrs):
-
         if not attrs.has_key("href"):
             return
         try:

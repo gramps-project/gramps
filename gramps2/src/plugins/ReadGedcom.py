@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
+v# $Id$
 
 "Import from GEDCOM"
 
@@ -204,7 +204,6 @@ class GedcomParser:
     def __init__(self, dbase, file, window):
         self.db = dbase
         self.person = None
-        self.pmap = {}
         self.fmap = {}
         self.smap = {}
         self.nmap = {}
@@ -219,6 +218,7 @@ class GedcomParser:
         self.broken_conc_list = [ 'FamilyOrigins', 'FTW' ]
         self.broken_conc = 0
         self.is_ftw = 0
+        self.idswap = {}
 
         self.f = open(file,"r")
         self.filename = file
@@ -541,16 +541,18 @@ class GedcomParser:
             else:
                 self.barf(1)
 
-    def find_or_create_person(self,id):        
-        if self.pmap.has_key(id):
-            person = self.db.find_person_from_id(self.pmap[id],self.trans)
-        elif self.db.has_person_id(id):
-            person = RelLib.Person()
-            self.pmap[id] = self.db.add_person(person,self.trans)
+    def map_gid(self,id):
+        if self.idswap.get(id):
+            return self.idswap[id]
         else:
-            person = RelLib.Person(id)
-            self.db.add_person_as(person,self.trans)
-            self.pmap[id] = id
+            if self.db.idtrans.get(str(id)):
+                self.idswap[id] = self.db.find_next_gid()
+            else:
+                self.idswap[id] = id
+            return self.idswap[id]
+
+    def find_or_create_person(self,id):        
+        person = self.db.try_to_find_person_from_gramps_id(self.map_gid(id))
         return person
 
     def parse_cause(self,event,level):
@@ -1719,9 +1721,12 @@ class GedcomParser:
         return source_ref
 
     def resolve_refns(self):
+        return
+    
         prefix = self.db.iprefix
         index = 0
         new_pmax = self.db.pmap_index
+        print self.added
         for pid in self.added.keys():
             index = index + 1
             if self.refn.has_key(pid):
@@ -1735,6 +1740,7 @@ class GedcomParser:
                 if not self.db.has_person_id(new_key):
                     self.db.remove_person_id(pid,self.trans)
                     person.set_id(new_key)
+                    person.set_gramps_id(new_key)
                     self.db.add_person(person,self.trans)
                 else:
                     tp = self.db.find_person_from_id(new_key,self.trans)
@@ -1742,6 +1748,7 @@ class GedcomParser:
                     if person == tp:
                         self.db.remove_person_id(pid,self.trans)
                         person.set_id(new_key)
+                        person.set_gramps_id(new_key)
                         self.db.add_person_as(person,self.trans)
                     # give up trying to use the refn as a key
                     else:

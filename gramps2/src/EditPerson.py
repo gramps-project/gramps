@@ -81,11 +81,11 @@ class EditPerson:
         """Creates an edit window.  Associates a person with the window."""
 
         self.person = person
-        self.orig_id = person.get_id()
         self.orig_surname = person.get_primary_name().get_surname()
         self.parent = parent
+        self.orig_id = self.person.get_gramps_id()
         if self.parent.child_windows.has_key(self.orig_id):
-            self.parent.child_windows[self.orig_id].present(None)
+            self.parent.child_windows[self.person.get_id()].present(None)
             return
         self.db = db
         self.callback = callback
@@ -288,7 +288,7 @@ class EditPerson:
         build_dropdown(self.dplace,self.place_list)
         build_dropdown(self.surname,self.db.get_surnames())
             
-        self.gid.set_text(person.get_id())
+        self.gid.set_text(person.get_gramps_id())
         self.gid.set_editable(GrampsCfg.id_edit)
 
         self.lds_baptism = RelLib.LdsOrd(self.person.get_lds_baptism())
@@ -1094,7 +1094,7 @@ class EditPerson:
         if self.complete.get_active() != self.person.get_complete():
             changed = 1
 
-        if self.person.get_id() != idval:
+        if self.person.get_gramps_id() != idval:
             changed = 1
         if suffix != name.get_suffix():
             changed = 1
@@ -1449,13 +1449,13 @@ class EditPerson:
         self.birth.set_date(unicode(self.bdate.get_text()))
         self.birth.set_place_id(self.get_place(self.bplace,1))
 
-        if idval != self.person.get_id():
+        if idval != self.person.get_gramps_id():
             m = self.db.get_person_keys() 
             if not m.has_key(idval):
-                if m.has_key(self.person.get_id()):
-                    del m[self.person.get_id()]
+                if m.has_key(self.person.get_gramps_id()):
+                    del m[self.person.get_gramps_id()]
                     m[idval] = self.person
-                self.person.set_id(idval)
+                self.person.set_gramps_id(idval)
             else:
                 n = GrampsCfg.nameof(m[idval])
                 msg1 = _("GRAMPS ID value was not changed.")
@@ -1605,7 +1605,6 @@ class EditPerson:
 
         self.update_lists()
         if self.callback:
-            change = (self.orig_surname != surname) or (self.orig_id != idval)
             self.callback(self,trans)
 
         self.db.commit_person(self.person, trans)

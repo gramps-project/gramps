@@ -52,6 +52,15 @@ COLUMN_NAME      = 0
 COLUMN_NAME_SORT = 8
 COLUMN_VIEW      = COLUMN_NAME_SORT + 1
 COLUMN_BOLD      = COLUMN_VIEW + 1
+COLUMN_INT_ID    = COLUMN_BOLD + 1
+
+_INT_ID_COL= 0
+_ID_COL    = 1
+_GENDER_COL= 2
+_NAME_COL  = 3
+_DEATH_COL = 6
+_BIRTH_COL = 7
+_FAMILY_COL= 9
 
 #-------------------------------------------------------------------------
 #
@@ -194,8 +203,8 @@ class PeopleModel(gtk.GenericTreeModel):
         self.row_inserted(mypath,self.get_iter(mypath))
 
     def byname(self,f,s):
-        n1 = self.db.person_map.get(str(f))[2].get_sort_name()
-        n2 = self.db.person_map.get(str(s))[2].get_sort_name()
+        n1 = self.db.person_map.get(str(f))[_NAME_COL].get_sort_name()
+        n2 = self.db.person_map.get(str(s))[_NAME_COL].get_sort_name()
         return cmp(n1,n2)
 
     def on_get_flags(self):
@@ -203,7 +212,7 @@ class PeopleModel(gtk.GenericTreeModel):
 	return gtk.TREE_MODEL_ITERS_PERSIST
 
     def on_get_n_columns(self):
-        return 9
+        return COLUMN_INT_ID + 1
 
     def on_get_path(self, node):
 	'''returns the tree path (a tuple of indices at the various
@@ -235,7 +244,9 @@ class PeopleModel(gtk.GenericTreeModel):
             return None
 
     def on_get_value(self,iter,col):
-        if col == COLUMN_BOLD:
+        if col == COLUMN_INT_ID:
+            return iter
+        elif col == COLUMN_BOLD:
             if self.top_iter2path.has_key(iter):
                 return pango.WEIGHT_BOLD
             else:
@@ -318,47 +329,47 @@ class PeopleModel(gtk.GenericTreeModel):
         return None
 
     def sort_name(self,data):
-        return data[2].get_sort_name()
+        return data[_NAME_COL].get_sort_name()
 
     def column_spouse(self,data):
         id = data[0]
-        if data[8]:
-            fid = data[8][0]
+        if data[_FAMILY_COL]:
+            fid = data[_FAMILY_COL][0]
         else:
             return u""
         d2 = self.db.family_map.get(str(fid))
         if fid and d2 :
             if d2[1] == id:
-                return self.db.person_map.get(str(d2[2]))[2].get_name()
+                return self.db.person_map.get(str(d2[2]))[_NAME_COL].get_name()
             else:
-                return self.db.person_map.get(str(d2[1]))[2].get_name()
+                return self.db.person_map.get(str(d2[1]))[_NAME_COL].get_name()
         else:
             return u""
 
     def column_name(self,data):
-        return data[2].get_name()
+        return data[_NAME_COL].get_name()
 
     def column_id(self,data):
-        return data[0]
+        return data[_ID_COL]
 
     def column_gender(self,data):
-        return _GENDER[data[1]]
+        return _GENDER[data[_GENDER_COL]]
 
     def column_birth_day(self,data):
-        if data[6]:
-            return self.db.find_event_from_id(data[6]).get_date()
+        if data[_BIRTH_COL]:
+            return self.db.find_event_from_id(data[_BIRTH_COL]).get_date()
         else:
             return u""
 
     def column_death_day(self,data):
-        if data[5]:
-            return self.db.find_event_from_id(data[5]).get_date()
+        if data[_DEATH_COL]:
+            return self.db.find_event_from_id(data[_DEATH_COL]).get_date()
         else:
             return u""
         
     def column_birth_place(self,data):
-        if data[6]:
-            event = self.db.find_event_from_id(data[6])
+        if data[_BIRTH_COL]:
+            event = self.db.find_event_from_id(data[_BIRTH_COL])
             if event:
                 place_id = event.get_place_id()
                 if place_id:
@@ -366,8 +377,8 @@ class PeopleModel(gtk.GenericTreeModel):
         return u""
 
     def column_death_place(self,data):
-        if data[5]:
-            event = self.db.find_event_from_id(data[5])
+        if data[_DEATH_COL]:
+            event = self.db.find_event_from_id(data[_DEATH_COL])
             if event:
                 place_id = event.get_place_id()
                 if place_id:

@@ -401,10 +401,10 @@ class ChooseParents:
                 #self.father_model.center_selected()
 
     def father_select_function(self,store,path,iter,id_list):
-        id_list.append(self.father_model.get_value(iter,1))
+        id_list.append(self.father_model.get_value(iter,PeopleModel.COLUMN_INT_ID))
 
     def mother_select_function(self,store,path,iter,id_list):
-        id_list.append(self.mother_model.get_value(iter,1))
+        id_list.append(self.mother_model.get_value(iter,PeopleModel.COLUMN_INT_ID))
 
     def get_selected_father_ids(self):
         mlist = []
@@ -528,7 +528,7 @@ class ChooseParents:
         self.db.add_transaction(trans,_("Choose Parents"))
         self.close(obj)
 
-    def add_new_parent(self,epo):
+    def add_new_parent(self,epo,trans):
         """Adds a new person to either the father list or the mother list,
         depending on the gender of the person."""
 
@@ -536,22 +536,18 @@ class ChooseParents:
         id = person.get_id()
 
         if id == "":
-            id = self.db.add_person(person)
+            id = self.db.add_person(person,trans)
         else:
-            self.db.add_person_no_map(person,id)
+            self.db.add_person_no_map(person,id,trans)
 
         self.type = const.save_frel(unicode(self.prel.get_text()))
-        dinfo = self.db.get_person_display(id)
-        rdata = [dinfo[0],dinfo[1],dinfo[3],dinfo[5],dinfo[6]]
 
         if self.type == "Partners":
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.male:
-            self.father_model.add(rdata,None,1)
-            self.father_model.center_selected()
+            self.redrawf()
         else:
-            self.mother_model.add(rdata,None,1)
-            self.mother_model.center_selected()
+            self.redrawm()
         self.full_update()
         
     def add_parent_clicked(self,obj):

@@ -172,7 +172,7 @@ class AddSpouse:
         return mlist
 
     def select_function(self,store,path,iter,id_list):
-        id_list.append(store.get_value(iter,1))
+        id_list.append(store.get_value(iter,PeopleModel.COLUMN_INT_ID))
 
     def select_row(self,obj):
         """
@@ -244,7 +244,7 @@ class AddSpouse:
         trans = self.db.start_transaction()
 
         if not self.active_family:
-            self.active_family = self.db.new_family()
+            self.active_family = self.db.new_family(trans)
             self.person.add_family_id(self.active_family.get_id())
             self.db.commit_person(self.person,trans)
         spouse.add_family_id(self.active_family.get_id())
