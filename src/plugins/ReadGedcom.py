@@ -678,7 +678,7 @@ class GedcomParser:
                 except:
                     event.set_name(matches[1])
                 if event.get_name() == "Marriage":
-                    self.family.set_relationship("Married")
+                    self.family.set_relationship(const.FAMILY_MARRIED)
                 self.db.add_event(event,self.trans)
                 self.family.add_event_handle(event.get_handle())
                 self.parse_family_event(event,2)

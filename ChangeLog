@@ -1,3 +1,18 @@
+2004-07-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/GrampsBSDDB.py: broke out support for database class to 
+	make it easier to support multiple backends in the future
+	* src/RelLib.py: broke out support for database class to 
+	make it easier to support multiple backends in the future
+	* src/AddSpouse.py: better support for gay unions
+	* src/ChooseParents.py: better support for gay unions
+	* src/FamilyView.py: better support for gay unions
+	* src/Marriage.py: better support for gay unions
+	* src/ReadXML.py: better support for gay unions
+	* src/gramps.glade: better support for gay unions
+	* src/gramps_main.py: better support for gay unions
+	* src/Check.py: better support for gay unions
+	* src/ReadGedcom.py: better support for gay unions
+
 2004-07-28  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/data/Makefile.am: Uninstall everything that we install.
 	* src/GrampsCfg.py: Remove unneeded id_edit widget. 

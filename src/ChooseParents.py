@@ -125,8 +125,7 @@ class ChooseParents:
         
         self.mother_rel = self.glade.get_widget("mrel")
         self.father_rel = self.glade.get_widget("frel")
-        self.fcombo = self.glade.get_widget("prel_combo")
-        self.prel = self.glade.get_widget("prel")
+        self.prel = self.glade.get_widget("prel_combo")
         self.title = self.glade.get_widget("chooseTitle")
         self.mother_list = self.glade.get_widget("mother_list")
         self.flabel = self.glade.get_widget("flabel")
@@ -134,8 +133,6 @@ class ChooseParents:
         self.showallf = self.glade.get_widget('showallf')
         self.showallm = self.glade.get_widget('showallm')
         
-        self.fcombo.set_popdown_strings(const.familyRelations)
-
         self.build_father_list()
         self.build_mother_list()
 
@@ -151,9 +148,9 @@ class ChooseParents:
         if self.family:
             self.type = self.family.get_relationship()
         else:
-            self.type = "Married"
+            self.type = const.FAMILY_MARRIED
 
-        self.prel.set_text(_(self.type))
+        self.prel.set_active(self.type)
         self.redrawm()
         
         self.glade.signal_autoconnect({
@@ -330,7 +327,7 @@ class ChooseParents:
         self.father_list.set_model(self.father_model)
         self.father_model.refilter()
         
-        if self.type == "Partners":
+        if self.type == const.FAMILY_CIVIL_UNION:
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
             self.flabel.set_label("<b>%s</b>" % _("Fath_er"))
@@ -353,16 +350,16 @@ class ChooseParents:
         self.mother_list.set_model(self.mother_model)
         self.mother_model.refilter()
         
-        if self.type == "Partners":
+        if self.type == const.FAMILY_CIVIL_UNION:
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
         else:
             self.mlabel.set_label("<b>%s</b>" % _("Mothe_r"))
 
     def parent_relation_changed(self,obj):
-        """Called everytime the parent relationship information is changegd"""
+        """Called everytime the parent relationship information is changed"""
         self.old_type = self.type
-        self.type = const.save_frel(unicode(obj.get_text()))
-        if self.old_type == "Partners" or self.type == "Partners":
+        self.type = self.prel.get_active()
+        if self.old_type == const.FAMILY_CIVIL_UNION or self.type == const.FAMILY_CIVIL_UNION:
             self.redrawf()
             self.redrawm()
 
@@ -580,9 +577,9 @@ class ChooseParents:
         else:
             self.db.add_person_no_map(person,id,trans)
 
-        self.type = const.save_frel(unicode(self.prel.get_text()))
+        self.type = self.prel.get_active()
 
-        if self.type == "Partners":
+        if self.type == const.FAMILY_CIVIL_UNION:
             self.parent_relation_changed(self.prel)
         elif person.get_gender() == RelLib.Person.male:
             self.redrawf()
@@ -690,9 +687,9 @@ class ModifyParents:
 
         self.title.set_use_markup(gtk.TRUE)
 
-        if self.family.get_relationship() == "Partners":
-            self.mlabel.set_label('<b>%s</b>' % _("Parent"))
-            self.flabel.set_label('<b>%s</b>' % _("Parent"))
+        if self.family.get_relationship() == const.FAMILY_CIVIL_UNION:
+            self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))
+            self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
         else:
             self.mlabel.set_label('<b>%s</b>' % _("Mother"))
             self.flabel.set_label('<b>%s</b>' % _("Father"))

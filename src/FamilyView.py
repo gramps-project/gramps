@@ -925,7 +925,7 @@ class FamilyView:
                     mdate = ""
                 v = "%s [%s]\n\t%s%s" % (GrampsCfg.get_nameof()(sp),
                                          sp.get_gramps_id(),
-                                         const.display_frel(fm.get_relationship()),
+                                         const.family_relations[fm.get_relationship()][0],
                                          mdate)
                 self.spouse_model.set(iter,0,v)
             else:

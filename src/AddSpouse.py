@@ -143,7 +143,7 @@ class AddSpouse:
             "destroy_passed_object"    : Utils.destroy_passed_object
             })
 
-        self.relation_type.set_text(_("Married"))
+        self.relation_type.set_text(const.family_relations[const.FREL_MARRIED][0])
         self.update_data()
         
     def add_columns(self,tree):
@@ -342,9 +342,8 @@ class AddSpouse:
         return 1
 
     def set_gender(self):
-        text = unicode(self.relation_type.get_text())
-        self.relation_def.set_text(const.relationship_def(text))
-        if text == _("Partners"):
+        family_type = const.family_relations[value][0]
+        if text == const.FAMILY_CIVIL_UNION:
             if self.gender == RelLib.Person.male:
                 self.sgender = RelLib.Person.female
             else:

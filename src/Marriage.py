@@ -31,6 +31,7 @@ import string
 import gtk
 import gtk.glade
 import gnome
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -198,9 +199,8 @@ class Marriage:
                                          self.on_attr_list_select_row,
                                          self.on_update_attr_clicked)
 
-        self.type_field.set_popdown_strings(const.familyRelations)
-        frel = const.display_frel(family.get_relationship())
-        self.type_field.entry.set_text(frel)
+        frel = family.get_relationship()
+        self.type_field.set_active(frel)
         self.gid.set_text(family.get_handle())
         self.gid.set_editable(1)
 
@@ -488,8 +488,7 @@ class Marriage:
 
     def did_data_change(self):
         changed = 0
-        relation = unicode(self.type_field.entry.get_text())
-        if const.save_frel(relation) != self.family.get_relationship():
+        if self.type_field.get_active() != self.family.get_relationship():
             changed = 1
 
         if self.complete.get_active() != self.family.get_complete():
@@ -539,7 +538,6 @@ class Marriage:
         self.close(0)
 
     def on_cancel_edit(self,obj):
-
         if self.did_data_change():
             global quit
             self.quit = obj
@@ -570,22 +568,12 @@ class Marriage:
                               _('The GRAMPS ID that you chose for this '
                                 'relationship is already being used.'))
 
-        relation = unicode(self.type_field.entry.get_text())
+        relation = self.type_field.get_active()
         father = self.family.get_father_handle()
         mother = self.family.get_mother_handle()
         if father and mother:
-            if const.save_frel(relation) != self.family.get_relationship():
-                if father.get_gender() == mother.get_gender():
-                    self.family.set_relationship("Partners")
-                else:
-                    val = const.save_frel(relation)
-                    if val == "Partners":
-                        val = "Unknown"
-                    if father.get_gender() == RelLib.Person.female or \
-                       mother.get_gender() == RelLib.Person.male:
-                        self.family.set_father_handle(mother)
-                        self.family.set_mother_handle(father)
-                    self.family.set_relationship(val)
+            if relation != self.family.get_relationship():
+                self.family.set_relationship(relation)
 
         text = unicode(self.notes_buffer.get_text(self.notes_buffer.get_start_iter(),
                                   self.notes_buffer.get_end_iter(),gtk.FALSE))
@@ -632,9 +620,9 @@ class Marriage:
             self.family.set_source_reference_list(self.srcreflist)
 
         self.update_lists()
-        self.update_fv(self.family)
         self.db.commit_family(self.family,trans)
         self.db.add_transaction(trans,_("Edit Marriage"))
+        self.update_fv(self.family)
 
         self.close(1)
 
