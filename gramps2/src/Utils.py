@@ -438,7 +438,7 @@ def create_id():
     return s
 
 
-def probably_alive(person,db):
+def probably_alive(person,db,current_year=None):
     """Returns true if the person may be alive."""
     if person.death_handle:
         return False
@@ -453,7 +453,7 @@ def probably_alive(person,db):
     if person.birth_handle:
         birth = db.get_event_from_handle(person.birth_handle)
         if birth.get_date_object().get_start_date() != Date.EMPTY:
-            return not_too_old(birth.get_date_object())
+            return not_too_old(birth.get_date_object(),current_year)
 
     # Neither birth nor death events are available.  Try looking
     # for descendants that were born more than a lifespan ago.
@@ -475,14 +475,14 @@ def probably_alive(person,db):
                         val = d.get_start_date()
                         val = d.get_year() - years
                         d.set_year(val)
-                        if not not_too_old (d):
+                        if not not_too_old (d,current_year):
                             return True
 
                 if child.death_handle:
                     child_death = db.get_event_from_handle(child.death_handle)
                     dobj = child_death.get_date_object()
                     if dobj.get_start_date() != Date.EMPTY:
-                        if not not_too_old (dobj):
+                        if not not_too_old (dobj,current_year):
                             return True
 
                 if descendants_too_old (child, years + min_generation):
@@ -492,9 +492,10 @@ def probably_alive(person,db):
         return False
     return False
 
-def not_too_old(date):
-    time_struct = time.localtime(time.time())
-    current_year = time_struct[0]
+def not_too_old(date,current_year=None):
+    if not current_year:
+        time_struct = time.localtime(time.time())
+        current_year = time_struct[0]
     year = date.get_year()
     return not( year != 0 and current_year - year > 110)
 
