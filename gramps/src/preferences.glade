@@ -328,7 +328,7 @@
 		    <name>dbdir</name>
 		    <history_id>dbdir</history_id>
 		    <max_saved>10</max_saved>
-		    <title>Gramps - Select default database directory</title>
+		    <title>Select default database directory- GRAMPS</title>
 		    <directory>True</directory>
 		    <modal>False</modal>
 		    <child>
@@ -2330,7 +2330,7 @@
 		    <name>repdir</name>
 		    <history_id>repdir</history_id>
 		    <max_saved>10</max_saved>
-		    <title>Gramps - Select default report directory</title>
+		    <title>Select default report directory - GRAMPS</title>
 		    <directory>True</directory>
 		    <modal>False</modal>
 		    <child>
@@ -2372,7 +2372,7 @@
 		    <name>htmldir</name>
 		    <history_id>webdir</history_id>
 		    <max_saved>10</max_saved>
-		    <title>Gramps - Select default report directory</title>
+		    <title>Select default report directory - GRAMPS</title>
 		    <directory>True</directory>
 		    <modal>False</modal>
 		    <child>

@@ -226,12 +226,12 @@ def on_about_activate(obj):
                         const.authors,const.comments,const.logo).show()
     
 def on_contents_activate(obj):
-    """Display the Gramps manual"""
+    """Display the GRAMPS manual"""
     import gnome.help
     gnome.help.display("gramps-manual","index.html")
 
 def on_writing_extensions_activate(obj):
-    """Display the Extending Gramps manual"""
+    """Display the Extending GRAMPS manual"""
     import gnome.help
     gnome.help.display("extending-gramps","index.html")
     
@@ -642,8 +642,12 @@ def save_file(filename,comment):
     if Config.usevc:
         vc = VersionControl.RcsVersionControl(path)
         vc.checkin(filename,comment,not Config.uncompress)
-               
-    topWindow.set_title("Gramps - " + database.getSavePath())
+
+    filename = database.getSavePath()
+    if filename[-1] == '/':
+        filename = filename[:-1]
+    name = os.path.basename(filename)
+    topWindow.set_title("%s - %s" % (name,_("GRAMPS")))
     statusbar.set_status("")
     statusbar.set_progress(0)
     if os.path.exists(autosave):
