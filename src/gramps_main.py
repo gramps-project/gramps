@@ -1916,6 +1916,35 @@ def on_pv_n1_clicked(obj):
 #
 #
 #-------------------------------------------------------------------------
+def childmenu (obj,event):
+    if not active_person:
+        return 1
+    
+    if event.type == GDK.BUTTON_PRESS and event.button == 3:
+        myMenu = GtkMenu()
+        for family in active_person.getFamilyList():
+            for child in family.getChildList():
+                menuitem = GtkMenuItem(Config.nameof(child))
+                myMenu.append(menuitem)
+                menuitem.set_data("person",child)
+                menuitem.connect("activate",on_childmenu_changed)
+                menuitem.show()
+        myMenu.popup(None,None,None,0,0)
+    elif event.type == GDK.ENTER_NOTIFY:
+        statusbar.set_status(_("Right clicking will allow you to choose a child"))
+        style = gtop.get_widget("canvas1")['style']
+        obj.set(fill_color=style.fg[STATE_SELECTED])
+    elif event.type == GDK.LEAVE_NOTIFY:
+        style = gtop.get_widget("canvas1")['style']
+        obj.set(fill_color=style.black)
+        modify_statusbar()
+    return 1
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
 def on_arrow_left_clicked(obj):
     if active_person:
         myMenu = GtkMenu()
@@ -1927,6 +1956,7 @@ def on_arrow_left_clicked(obj):
                 menuitem.connect("activate",on_childmenu_changed)
                 menuitem.show()
         myMenu.popup(None,None,None,0,0)
+    return 1
 
 #-------------------------------------------------------------------------
 #
@@ -1938,6 +1968,7 @@ def on_childmenu_changed(obj):
     if person:
         change_active_person(person)
         load_tree()
+    return 1
     
 #-------------------------------------------------------------------------
 #
@@ -2304,14 +2335,16 @@ def load_canvas():
     if active_person == None:
         return
     
+    h = 0
+    w = 0
+    xpad = 15
+
     canvas = gtop.get_widget("canvas1")
     cx1,cy1,cx2,cy2 = canvas.get_allocation()
     root = canvas.root()
-    
-    h = 0
-    w = 0
-    xpad = 10
-    
+
+    cw = (cx2-cx1-(2*xpad))
+
     style = canvas['style']
     font = style.font
 
@@ -2325,10 +2358,10 @@ def load_canvas():
             w = max(w,font.width("d. %s" % t.getDeath().getDate())+2*PAD)
             w = max(w,font.width("b. %s" % t.getBirth().getDate())+2*PAD)
 
-    if 5*w < (cx2-xpad) and 24*h < cy2:
+    if 5*w < cw and 24*h < cy2:
         gen = 31
         xdiv = 5.0
-    elif 4*w < (cx2-xpad) and 12*h < cy2:
+    elif 4*w < cw and 12*h < cy2:
         gen = 15
         xdiv = 4.0
     else:
@@ -2339,7 +2372,7 @@ def load_canvas():
         c.destroy()
     canvas.set_scroll_region(cx1,cy1,cx2,cy2)
 
-    xincr = (cx2-xpad)/xdiv
+    xincr = cw/xdiv
     yincr = cy2/32
 
     xfactor = [xpad] + [xincr+xpad]*2 + [xincr*2+xpad]*4 + [xincr*3+xpad]*8 + [xincr*4+xpad]*16
@@ -2348,6 +2381,23 @@ def load_canvas():
                 yincr*30, yincr, yincr*3, yincr*5, yincr*7, yincr*9, yincr*11,
                 yincr*13, yincr*15, yincr*17, yincr*19, yincr*21, yincr*23,
                 yincr*25, yincr*27, yincr*29, yincr*31]
+
+
+    if len(active_person.getFamilyList()) > 0:
+        ypos = yfactor[0]+h/2.0
+        item = root.add("line",
+                        points=[xpad,ypos,xpad/4.0,ypos],
+                        fill_color_gdk=style.black,
+                        width_pixels=3,
+                        arrow_shape_a=6,
+                        arrow_shape_b=6,
+                        arrow_shape_c=4,
+                        last_arrowhead=1
+                        )
+        item.connect('event',childmenu)
+        canvas_items = [item]
+    else:
+        canvas_items = []
 
     for i in range(gen):
         if list[i]:
@@ -2430,8 +2480,6 @@ def box_event(obj,event):
     if event.type == GDK._2BUTTON_PRESS:
         if event.button == 1 and event.type == GDK._2BUTTON_PRESS:
             load_person(obj.get_data('p'))
-    elif event.type == GDK.BUTTON_PRESS and event.button == 3:
-        on_arrow_left_clicked(obj)
     elif event.type == GDK.ENTER_NOTIFY:
         canvas = gtop.get_widget("canvas1")
         obj.raise_to_top()
@@ -2484,9 +2532,13 @@ def line_event(obj,event):
     elif event.type == GDK.ENTER_NOTIFY:
         canvas = gtop.get_widget("canvas1")
         obj.set(fill_color_gdk=canvas['style'].bg[STATE_SELECTED])
+        name = Config.nameof(obj.get_data("p"))
+        msg = _("Double clicking will make %s the active person") % name
+        statusbar.set_status(msg)
     elif event.type == GDK.LEAVE_NOTIFY:
         canvas = gtop.get_widget("canvas1")
         obj.set(fill_color_gdk=canvas['style'].black)
+        modify_statusbar()
 
 #-------------------------------------------------------------------------
 #
