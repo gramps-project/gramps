@@ -1,5 +1,5 @@
 <!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
-<!ENTITY version "0.6.0"> <!-- replace with application version -->
+<!ENTITY version "0.7.2"> <!-- replace with application version -->
 ]>
 
 <!-- =============Document Header ============================= -->
@@ -1283,25 +1283,42 @@
         <guimenuitem>Preferences...</guimenuitem>
        </menuchoice>.  This opens the
     <interface>Preferences</interface> dialog, shown in <xref
-    linkend="prefs_gen">.
+    linkend="prefs_main">.
     </para>
 
-    <sect2 id="prefs_tab0">
-      <title>General Preferences</title>
-      <figure id="prefs_gen">
+    <sect2 id="prefs_main">
+      <title>Preferences Dialog</title>
+      <figure id="prefs_main_fig">
         <title>Preferences Dialog</title>
         <screenshot>
           <screeninfo>Preferences Dialog</screeninfo>
+          <graphic fileref="prefs_main" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      <para>
+      <application>GRAMPS</application> groups is options into
+      categories visible in the left hand side of the
+      dialog. Selecting one of these entries will display the
+      corresponding settings in the right hand side of the dialog.
+      </para>
+    </sect2>
+    <sect2 id="prefs_gen">
+      <title>General Database options</title>
+      <figure id="prefs_gen_fig">
+        <title>General Database options</title>
+        <screenshot>
+          <screeninfo>General Database Options</screeninfo>
           <graphic fileref="prefs_gen" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
       <para>
-      The General Preferences tab contains basic information to
+      The General Database page contains basic information to
       control the operation of <application>GRAMPS</application>.
       </para>
       <variablelist>
-        <title>General Preferences options</title>
+        <title>General Database options</title>
 	<varlistentry>
   	  <term>Automatically load last database</term>
           <listitem>
@@ -1325,49 +1342,30 @@
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term>Use tabbed pages</term>
+	  <term>Autosave interval (minues)</term>
           <listitem>
             <para>
-	    When this is selected there will be a row of tabs below
-	    the tool bars for the Person View, Family View, Pedigree
-	    View, and Sources View.
-	    </para>
+	    If this value is set to a non-zero value, <application>GRAMPS</application>
+	    will save an autosave file every few minutes, depending on the 
+	    value set. If for some reason the execution of <application>GRAMPS</application>
+	    is interupted, you can recover to the last autosave point.
+  	    </para>
           </listitem>
 	</varlistentry>
 	<varlistentry>
-	  <term>Display GRAMPS ID in list</term>
+	  <term>Default database directory</term>
           <listitem>
             <para>
-	    This will add a new column to the Person View with the
-	    <application>GRAMPS</application> ID for each individual.
-	    </para>
-          </listitem>
-	</varlistentry>
-	<varlistentry>
-	  <term>Allow internal GRAMPS ID numbers to be edited</term>
-          <listitem>
-            <para>
-	    This option allows advanced users to edit the internal
-	    <application>GRAMPS</application> identification strings
-	    for certain entries.
-	    </para>
-          </listitem>
-	</varlistentry>
-	<varlistentry>
-	  <term>Display attribute on Edit Person form</term>
-          <listitem>
-	    <para>
-	    Selecting this and adding a comment/word will add that
-	    comment/word to the Identification part of the Edit Person
-	    view.
-            </para>
+	    This value indicates the default directory for loading and saving
+	    databases.
+  	    </para>
           </listitem>
 	</varlistentry>
       </variablelist>
     </sect2>    
     <sect2 id="prefs_tab1">
       <title>Dates and Calendars</title>
-      <figure id="prefs_fmt">
+      <figure id="prefs_dates">
         <title>Dates and Calendars</title>
         <screenshot>
           <screeninfo>Dates and Calendars</screeninfo>
@@ -1424,85 +1422,88 @@
       </variablelist>
     </sect2>
     <sect2 id="prefs_tab2">
-      <title>Appearance Preferences</title>
-      <figure id="prefs_appear">
-        <title>Preferences Dialog</title>
+      <title>Media Options</title>
+      <figure id="prefs_media">
+        <title>Media Options</title>
         <screenshot>
-          <screeninfo>Appearance Preferences Dialog</screeninfo>
-          <graphic fileref="prefs_appear" format="png" srccredit="Don Allingham">
+          <screeninfo>Media Options</screeninfo>
+          <graphic fileref="prefs_media" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
-      <variablelist>
-        <title>Appearance Preferences</title>
-        <varlistentry>
-	  <term>Custom Colors</term>
-          <listitem>
-	    <para>
-	    Enabling custom colors allows you to choose foreground and
-	    background colors for the Person View list. A different
-	    color combinations may be chosen for odd and even
-	    rows. This may make the display easier to read. It should
-	    be noted that it may slow down redisplays of the window if
-	    a large number (thousands) of people are in the list.
-            </para>
-          </listitem>
-	</varlistentry>
-	<varlistentry>
-	  <term>Status Bar</term>
-          <listitem>
-            <para>
-	    Allows you to change the information displayed in the
-            status bar at the bottom of the window.  There are three
-            (3) preferences from which to chose.  The first is Active
-            person's name only - this will display the active person's
-            name only in the status bar.  The second is Active
-            person's name and GRAMPS ID - This will display the name
-            and ID for the active person ( [I9] Edwin Michael Smith ).
-            The last option is Active person's name and attribute -
-            this is just like the second option but shows the
-            attribute you specified in the General Preferences
-            section.
-            </para>
-          </listitem>
-	</varlistentry>
-	<varlistentry>
-	  <term>List Display Options</term>
-  	  <listitem>
-	    <para>
-  	    Allows you to control what gets displayed in lists. You can
-  	    control if alternate names are displayed in the lists, or
-  	    if the lists will contain detail flags to indicate
-  	    additional information (such as the presence of notes,
-  	    sources, or images).
-            </para>
-          </listitem>
-	</varlistentry>
-      </variablelist>
     </sect2>
-    <sect2 id="prefs_tab3">
-      <title>Researchers Preferences</title>
-      <figure id="prefs_research">
-        <title>Researcher Information Dialog</title>
+    <sect2 id="prefs_tab_ids">
+      <title>GRAMPS ID Options</title>
+      <figure id="prefs_ids">
+        <title>GRAMPS ID Options</title>
         <screenshot>
-          <screeninfo>Researcher Information Dialog</screeninfo>
-          <graphic fileref="prefs_research" format="png" srccredit="Don Allingham">
+          <screeninfo>GRAMPS ID Options</screeninfo>
+          <graphic fileref="prefs_ids" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
-      <para>
-      This is where you are able to change the information you entered
-      when you started GRAMPS for the first time and was asked to
-      enter in some information. (This information shows up in your
-      GEDCOM files as being the researcher/author of the file)
-      </para>
+    </sect2>
+    <sect2 id="prefs_tab_rev">
+      <title>Revision Control Options</title>
+      <figure id="prefs_rev">
+        <title>Revision Control Options</title>
+        <screenshot>
+          <screeninfo>Revision Control Options</screeninfo>
+          <graphic fileref="prefs_revision" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+    </sect2>
+    <sect2 id="prefs_tab_disp">
+      <title>General Display Options</title>
+      <figure id="prefs_disp">
+        <title>General Display Options</title>
+        <screenshot>
+          <screeninfo>General Display Options</screeninfo>
+          <graphic fileref="prefs_disp" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+    </sect2>
+    <sect2 id="prefs_tab_bars">
+      <title>Tool and Status Bar Options</title>
+      <figure id="prefs_bars">
+        <title>Tool and Status Bar Options</title>
+        <screenshot>
+          <screeninfo>Tools and Status Bar Options</screeninfo>
+          <graphic fileref="prefs_bars" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+    </sect2>
+    <sect2 id="prefs_tab_colors">
+      <title>List Color Options</title>
+      <figure id="prefs_color">
+        <title>List Color Options</title>
+        <screenshot>
+          <screeninfo>List Color Options</screeninfo>
+          <graphic fileref="prefs_colors" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+    </sect2>
+    <sect2 id="prefs_tab_find">
+      <title>Find Options</title>
+      <figure id="prefs_find">
+        <title>Find Options</title>
+        <screenshot>
+          <screeninfo>Find Options</screeninfo>
+          <graphic fileref="prefs_find" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
     </sect2>
     <sect2 id="prefs_tab4">
-      <title>Report Preferences</title>
+      <title>Report Options</title>
       <figure id="prefs_report">
-        <title>Report Preferences Dialog</title>
+        <title>Report Options</title>
         <screenshot>
-          <screeninfo>Report Preferences Dialog</screeninfo>
+          <screeninfo>Report Options</screeninfo>
           <graphic fileref="prefs_report" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
@@ -1517,19 +1518,34 @@
       not support all possible formats.
       </para>
     </sect2>
-    <sect2 id="prefs_tab5">
-      <title>Directories Preferences</title>
-      <figure id="prefs_dir">
-        <title>Directory Preferences Dialog</title>
+    <sect2 id="prefs_tab3">
+      <title>Researcher Information</title>
+      <figure id="prefs_research">
+        <title>Researcher Information</title>
         <screenshot>
-          <screeninfo>Directory Preferences Dialog</screeninfo>
-          <graphic fileref="prefs_dir" format="png" srccredit="Don Allingham">
+          <screeninfo>Researcher Information</screeninfo>
+          <graphic fileref="prefs_research" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
       <para>
-      This allows you to set the default directories for your databases,
-      reports, and Web Sites.
+      This is where you are able to change the information you entered
+      when you started GRAMPS for the first time and was asked to
+      enter in some information. (This information shows up in your
+      GEDCOM files as being the researcher/author of the file)
+      </para>
+    </sect2>
+    <sect2 id="prefs_tab5">
+      <title>Data Guessing Options</title>
+      <figure id="prefs_tab_guess">
+        <title>Data Guessing Options</title>
+        <screenshot>
+          <screeninfo>Data Guessing Options</screeninfo>
+          <graphic fileref="prefs_guess" format="png" srccredit="Don Allingham">
+          </graphic>
+        </screenshot>
+      </figure>
+      <para>
       </para>
     </sect2>
   </sect1>

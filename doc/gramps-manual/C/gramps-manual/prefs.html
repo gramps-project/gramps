@@ -84,9 +84,9 @@ CLASS="GUIMENUITEM"
 CLASS="INTERFACE"
 >Preferences</SPAN
 > dialog, shown in <A
-HREF="prefs.html#PREFS_GEN"
->Figure 28 in the section called <I
->General Preferences</I
+HREF="prefs.html#PREFS_MAIN"
+>the section called <I
+>Preferences Dialog</I
 ></A
 >.
     </P
@@ -95,24 +95,55 @@ CLASS="SECT2"
 ><H2
 CLASS="SECT2"
 ><A
-NAME="PREFS_TAB0"
->General Preferences</A
+NAME="PREFS_MAIN"
+>Preferences Dialog</A
 ></H2
 ><DIV
 CLASS="FIGURE"
 ><A
-NAME="PREFS_GEN"
+NAME="PREFS_MAIN_FIG"
 ></A
 ><P
 ><IMG
-SRC="prefs_gen.png"></P
+SRC="prefs_main.png"></P
 ><P
 ><B
 >Figure 28. Preferences Dialog</B
 ></P
 ></DIV
 ><P
->      The General Preferences tab contains basic information to
+>      <TT
+CLASS="APPLICATION"
+>GRAMPS</TT
+> groups is options into
+      categories visible in the left hand side of the
+      dialog. Selecting one of these entries will display the
+      corresponding settings in the right hand side of the dialog.
+      </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREFS_GEN"
+>General Database options</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="PREFS_GEN_FIG"
+></A
+><P
+><IMG
+SRC="prefs_gen.png"></P
+><P
+><B
+>Figure 29. General Database options</B
+></P
+></DIV
+><P
+>      The General Database page contains basic information to
       control the operation of <TT
 CLASS="APPLICATION"
 >GRAMPS</TT
@@ -124,7 +155,7 @@ CLASS="APPLICATION"
 CLASS="VARIABLELIST"
 ><P
 ><B
->General Preferences options</B
+>General Database options</B
 ></P
 ><DL
 ><DT
@@ -154,45 +185,28 @@ CLASS="APPLICATION"
   	    </P
 ></DD
 ><DT
->Use tabbed pages</DT
+>Autosave interval (minues)</DT
 ><DD
 ><P
->	    When this is selected there will be a row of tabs below
-	    the tool bars for the Person View, Family View, Pedigree
-	    View, and Sources View.
-	    </P
-></DD
-><DT
->Display GRAMPS ID in list</DT
-><DD
-><P
->	    This will add a new column to the Person View with the
-	    <TT
+>	    If this value is set to a non-zero value, <TT
 CLASS="APPLICATION"
 >GRAMPS</TT
-> ID for each individual.
-	    </P
-></DD
-><DT
->Allow internal GRAMPS ID numbers to be edited</DT
-><DD
-><P
->	    This option allows advanced users to edit the internal
-	    <TT
+>
+	    will save an autosave file every few minutes, depending on the 
+	    value set. If for some reason the execution of <TT
 CLASS="APPLICATION"
 >GRAMPS</TT
-> identification strings
-	    for certain entries.
-	    </P
+>
+	    is interupted, you can recover to the last autosave point.
+  	    </P
 ></DD
 ><DT
->Display attribute on Edit Person form</DT
+>Default database directory</DT
 ><DD
 ><P
->	    Selecting this and adding a comment/word will add that
-	    comment/word to the Identification part of the Edit Person
-	    view.
-            </P
+>	    This value indicates the default directory for loading and saving
+	    databases.
+  	    </P
 ></DD
 ></DL
 ></DIV
@@ -208,14 +222,14 @@ NAME="PREFS_TAB1"
 ><DIV
 CLASS="FIGURE"
 ><A
-NAME="PREFS_FMT"
+NAME="PREFS_DATES"
 ></A
 ><P
 ><IMG
 SRC="prefs_dates.png"></P
 ><P
 ><B
->Figure 29. Dates and Calendars</B
+>Figure 30. Dates and Calendars</B
 ></P
 ></DIV
 ><P
@@ -289,71 +303,20 @@ CLASS="SECT2"
 CLASS="SECT2"
 ><A
 NAME="PREFS_TAB2"
->Appearance Preferences</A
+>Media Options</A
 ></H2
 ><DIV
 CLASS="FIGURE"
 ><A
-NAME="PREFS_APPEAR"
+NAME="PREFS_MEDIA"
 ></A
 ><P
 ><IMG
-SRC="prefs_appear.png"></P
+SRC="prefs_media.png"></P
 ><P
 ><B
->Figure 30. Preferences Dialog</B
+>Figure 31. Media Options</B
 ></P
-></DIV
-><P
-></P
-><DIV
-CLASS="VARIABLELIST"
-><P
-><B
->Appearance Preferences</B
-></P
-><DL
-><DT
->Custom Colors</DT
-><DD
-><P
->	    Enabling custom colors allows you to choose foreground and
-	    background colors for the Person View list. A different
-	    color combinations may be chosen for odd and even
-	    rows. This may make the display easier to read. It should
-	    be noted that it may slow down redisplays of the window if
-	    a large number (thousands) of people are in the list.
-            </P
-></DD
-><DT
->Status Bar</DT
-><DD
-><P
->	    Allows you to change the information displayed in the
-            status bar at the bottom of the window.  There are three
-            (3) preferences from which to chose.  The first is Active
-            person's name only - this will display the active person's
-            name only in the status bar.  The second is Active
-            person's name and GRAMPS ID - This will display the name
-            and ID for the active person ( [I9] Edwin Michael Smith ).
-            The last option is Active person's name and attribute -
-            this is just like the second option but shows the
-            attribute you specified in the General Preferences
-            section.
-            </P
-></DD
-><DT
->List Display Options</DT
-><DD
-><P
->  	    Allows you to control what gets displayed in lists. You can
-  	    control if alternate names are displayed in the lists, or
-  	    if the lists will contain detail flags to indicate
-  	    additional information (such as the presence of notes,
-  	    sources, or images).
-            </P
-></DD
-></DL
 ></DIV
 ></DIV
 ><DIV
@@ -361,28 +324,132 @@ CLASS="SECT2"
 ><H2
 CLASS="SECT2"
 ><A
-NAME="PREFS_TAB3"
->Researchers Preferences</A
+NAME="PREFS_TAB_IDS"
+>GRAMPS ID Options</A
 ></H2
 ><DIV
 CLASS="FIGURE"
 ><A
-NAME="PREFS_RESEARCH"
+NAME="PREFS_IDS"
 ></A
 ><P
 ><IMG
-SRC="prefs_research.png"></P
+SRC="prefs_ids.png"></P
 ><P
 ><B
->Figure 31. Researcher Information Dialog</B
+>Figure 32. GRAMPS ID Options</B
 ></P
 ></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREFS_TAB_REV"
+>Revision Control Options</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="PREFS_REV"
+></A
 ><P
->      This is where you are able to change the information you entered
-      when you started GRAMPS for the first time and was asked to
-      enter in some information. (This information shows up in your
-      GEDCOM files as being the researcher/author of the file)
-      </P
+><IMG
+SRC="prefs_revision.png"></P
+><P
+><B
+>Figure 33. Revision Control Options</B
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREFS_TAB_DISP"
+>General Display Options</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="PREFS_DISP"
+></A
+><P
+><IMG
+SRC="prefs_disp.png"></P
+><P
+><B
+>Figure 34. General Display Options</B
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREFS_TAB_BARS"
+>Tool and Status Bar Options</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="PREFS_BARS"
+></A
+><P
+><IMG
+SRC="prefs_bars.png"></P
+><P
+><B
+>Figure 35. Tool and Status Bar Options</B
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREFS_TAB_COLORS"
+>List Color Options</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="PREFS_COLOR"
+></A
+><P
+><IMG
+SRC="prefs_colors.png"></P
+><P
+><B
+>Figure 36. List Color Options</B
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREFS_TAB_FIND"
+>Find Options</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="PREFS_FIND"
+></A
+><P
+><IMG
+SRC="prefs_find.png"></P
+><P
+><B
+>Figure 37. Find Options</B
+></P
+></DIV
 ></DIV
 ><DIV
 CLASS="SECT2"
@@ -390,7 +457,7 @@ CLASS="SECT2"
 CLASS="SECT2"
 ><A
 NAME="PREFS_TAB4"
->Report Preferences</A
+>Report Options</A
 ></H2
 ><DIV
 CLASS="FIGURE"
@@ -402,7 +469,7 @@ NAME="PREFS_REPORT"
 SRC="prefs_report.png"></P
 ><P
 ><B
->Figure 32. Report Preferences Dialog</B
+>Figure 38. Report Options</B
 ></P
 ></DIV
 ><P
@@ -433,26 +500,52 @@ CLASS="SECT2"
 ><H2
 CLASS="SECT2"
 ><A
-NAME="PREFS_TAB5"
->Directories Preferences</A
+NAME="PREFS_TAB3"
+>Researcher Information</A
 ></H2
 ><DIV
 CLASS="FIGURE"
 ><A
-NAME="PREFS_DIR"
+NAME="PREFS_RESEARCH"
 ></A
 ><P
 ><IMG
-SRC="prefs_dir.png"></P
+SRC="prefs_research.png"></P
 ><P
 ><B
->Figure 33. Directory Preferences Dialog</B
+>Figure 39. Researcher Information</B
 ></P
 ></DIV
 ><P
->      This allows you to set the default directories for your databases,
-      reports, and Web Sites.
+>      This is where you are able to change the information you entered
+      when you started GRAMPS for the first time and was asked to
+      enter in some information. (This information shows up in your
+      GEDCOM files as being the researcher/author of the file)
       </P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="PREFS_TAB5"
+>Data Guessing Options</A
+></H2
+><DIV
+CLASS="FIGURE"
+><A
+NAME="PREFS_TAB_GUESS"
+></A
+><P
+><IMG
+SRC="prefs_guess.png"></P
+><P
+><B
+>Figure 40. Data Guessing Options</B
+></P
+></DIV
+><P
+>      </P
 ></DIV
 ></DIV
 ><DIV
