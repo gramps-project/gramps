@@ -156,6 +156,8 @@ class ReportDialog:
         self.pagebreak_checkbox = None
         self.generations_spinbox = None
         self.widgets = []
+        self.frame_names = []
+        self.frames = {}
         
         self.window = GnomeDialog('My Window',STOCK_BUTTON_OK,STOCK_BUTTON_CANCEL)
         self.window.set_default(0)
@@ -292,6 +294,13 @@ class ReportDialog:
     def add_option(self,label_text,widget):
         self.widgets.append((label_text,widget))
 
+    def add_frame_option(self,frame_name,label_text,widget):
+        if self.frames.has_key(frame_name):
+            self.frames[frame_name].append((label_text,widget))
+        else:
+            self.frames[frame_name] = [(label_text,widget)]
+            self.frame_names.append(frame_name)
+            
     #------------------------------------------------------------------------
     #
     # Functions to create a default output style.
@@ -636,18 +645,35 @@ class ReportDialog:
 
         # Setup requested widgets
         for (text,widget) in self.widgets:
-            text_widget = GtkLabel(text)
-            text_widget.set_alignment(1.0,0)
-            table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
-            table.attach(widget,1,2,row,row+1,xpadding=pad,ypadding=pad)
+            if text == None:
+                table.attach(widget,0,2,row,row+1,xpadding=pad,ypadding=pad)
+            else:
+                text_widget = GtkLabel(text)
+                text_widget.set_alignment(1.0,0)
+                table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
+                table.attach(widget,1,2,row,row+1,xpadding=pad,ypadding=pad)
             row = row + 1
         
     def setup_other_frames(self):
-        """Do nothing.  This sole purpose of this function is to give
-        subclass a place to hang a routine to handle any other frames
-        that are unique to that specific report."""
-        pass
+        pad = ReportDialog.border_pad
+        for key in self.frame_names:
+            frame = GtkFrame(key)
+            frame.set_border_width(ReportDialog.frame_pad)
+            self.window.vbox.add(frame)
+            list = self.frames[key]
+            table = GtkTable(2,len(list))
+            frame.add(table)
 
+            row = 0
+            for (text,widget) in list:
+                if text == None:
+                    table.attach(widget,0,2,row,row+1,xpadding=pad,ypadding=pad)
+                else:
+                    text_widget = GtkLabel(text)
+                    text_widget.set_alignment(1.0,0)
+                    table.attach(text_widget,0,1,row,row+1,FILL,FILL,pad,pad)
+                    table.attach(widget,1,2,row,row+1,xpadding=pad,ypadding=pad)
+                row = row + 1
 
     #------------------------------------------------------------------------
     #
