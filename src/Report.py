@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2001  David R. Hampton
+# Copyright (C) 2001-2003  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -154,12 +155,15 @@ class Report:
         """Done with the progress bar.  It can be destroyed now."""
         Utils.destroy_passed_object(self.ptop)
 
-class ReportDialog:
+
+class BareReportDialog:
     """
-    The ReportDialog base class.  This is a base class for generating
-    customized dialogs to solicit options for a report.  It cannot be
-    used as is, but it can be easily sub-classed to create a functional
-    dialog.
+    The BareReportDialog base class.  This is a base class for generating
+    customized dialogs to solicit some options for a report.  This class 
+    cannot be meaningfully used on its own since normally more options will 
+    have to be solicited. The ReportDialog class adds this functionality.
+    The intended use of this class is either for ReportDialog or for being 
+    subclassed by Bare Reports that are part of the Book.
     """
 
     frame_pad = 5
@@ -167,7 +171,7 @@ class ReportDialog:
 
     def __init__(self,database,person):
         """Initialize a dialog to request that the user select options
-        for a basic report."""
+        for a basic *bare* report."""
 
         # Save info about who the report is about.
         self.db = database
@@ -225,16 +229,18 @@ class ReportDialog:
         self.setup_other_frames()
         self.window.show_all()
 
-        # Allow for post processing of the format frame, since the
-        # show_all task calls events that may reset values
-
-        if self.format_menu:
-            self.doc_type_changed(self.format_menu.get_menu().get_active())
-        self.setup_post_process()
-
-
-    def setup_post_process(self):
-        pass
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks for stand-alone reports (subclass ReportDialog)
+    #
+    #------------------------------------------------------------------------
+    def setup_target_frame(self): pass
+    def setup_format_frame(self): pass
+    def setup_style_frame(self): pass
+    def setup_paper_frame(self): pass
+    def setup_html_frame(self): pass
+    def setup_paper_frame(self): pass
+    def setup_output_notebook(self): pass
     
     #------------------------------------------------------------------------
     #
@@ -253,43 +259,6 @@ class ReportDialog:
         Report for %s'."""
         return(name)
         
-    def get_target_browser_title(self):
-        """The title of the window that will be created when the user
-        clicks the 'Browse' button in the 'Save As' File Entry
-        widget."""
-        return("%s - GRAMPS" % _("Save Report As"))
-
-    def get_target_is_directory(self):
-        """Is the user being asked to input the name of a file or a
-        directory in the 'Save As' File Entry widget.  This item
-        currently only selects the Filename/Directory prompt, and
-        whether or not the browser accepts filenames.  In the future it
-        may also control checking of the selected filename."""
-        return None
-    
-    def get_stylesheet_savefile(self):
-        """Where should new styles for this report be saved?  This is
-        the name of an XML file that will be located in the ~/.gramps
-        directory.  This file does not have to exist; it will be
-        created when needed.  All subclasses should probably override
-        this function."""
-        return "basic_report.xml"
-
-    def get_default_basename(self):
-        """What should the default name be?
-        """
-        path = self.get_stylesheet_savefile()
-        return path.split('.')[0]
-
-    def get_print_pagecount_map(self):
-        """Return the data used to fill out the 'pagecount' option
-        menu in the print options box.  The first value is a mapping
-        of string:value pairs.  The strings will be used to label
-        individual menu items, and the values are what will be
-        returned if a given menu item is selected.  The second value
-        is the name of menu item to pre-select."""
-        return (None, None)
-    
     def get_report_filters(self):
         """Return the data used to fill out the 'filter' combo box in
         the report options box.  The return value is the list of
@@ -323,27 +292,6 @@ class ReportDialog:
         textbox."""
         return (None, None, None)
     
-    #------------------------------------------------------------------------
-    #
-    # Functions related getting/setting the default directory for a dialog.
-    #
-    #------------------------------------------------------------------------
-    def get_default_directory(self):
-        """Get the name of the directory to which the target dialog
-        box should default.  This value can be set in the preferences
-        panel."""
-        return GrampsCfg.report_dir
-
-    def set_default_directory(self, value):
-        """Save the name of the current directory, so that any future
-        reports will default to the most recently used directory.
-        This also changes the directory name that will appear in the
-        preferences panel, but does not change the preference in disk.
-        This means that the last directory used will only be
-        remembered for this session of gramps unless the user saves
-        his/her preferences."""
-        GrampsCfg.report_dir = value
-
     #------------------------------------------------------------------------
     #
     # Functions related to extending the options
@@ -388,85 +336,6 @@ class ReportDialog:
         
     #------------------------------------------------------------------------
     #
-    # Functions to create a default output style.
-    #
-    #------------------------------------------------------------------------
-    def make_default_style(self):
-        """Create the default style to be used by the associated report.  This
-        routine is a default implementation and should be overridden."""
-        font = TextDoc.FontStyle()
-        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
-        para = TextDoc.ParagraphStyle()
-        para.set_font(font)
-        para.set_header_level(1)
-        para.set(pad=0.5)
-        self.default_style.add_style("Title",para)
-
-    def build_style_menu(self):
-        """Build a menu of style sets that are available for use in
-        this report.  This menu will always have a default style
-        available, and will have any other style set name that the
-        user has previously created for this report.  This menu is
-        created here instead of inline with the rest of the style
-        frame, because it must be recreated to reflect any changes
-        whenever the user closes the style editor dialog."""
-        style_sheet_map = self.style_sheet_list.get_style_sheet_map()
-        myMenu = Utils.build_string_optmenu(style_sheet_map, "default")
-        self.style_menu.set_menu(myMenu)
-
-    #------------------------------------------------------------------------
-    #
-    # Functions related to selecting/changing the current file format.
-    #
-    #------------------------------------------------------------------------
-    def make_doc_menu(self):
-        """Build a menu of document types that are appropriate for
-        this report.  This menu will be generated based upon the type
-        of document (text, draw, graph, etc. - a subclass), whether or
-        not the document requires table support, etc."""
-        pass
-
-    def make_document(self):
-        """Create a document of the type selected by the user."""
-        pass
-
-    def doc_type_changed(self, obj):
-        """This routine is called when the user selects a new file
-        formats for the report.  It adjust the various dialog sections
-        to reflect the appropriate values for the currently selected
-        file format.  For example, a HTML document doesn't need any
-        paper size/orientation options, but it does need a template
-        file.  Those chances are made here."""
-
-        # Is this to be a printed report or an electronic report
-        # (i.e. a set of web pages)
-
-        if obj.get_data("paper") == 1:
-            self.notebook_page = 0
-        else:
-            self.notebook_page = 1
-            
-        if self.output_notebook == None:
-            return
-        
-        self.output_notebook.set_current_page(self.notebook_page)
-
-        if not self.get_target_is_directory():
-            fname = self.target_fileentry.get_full_path(0)
-            (path,ext) = os.path.splitext(fname)
-
-            ext_val = obj.get_data('ext')
-            if ext_val:
-                fname = path + ext_val
-            self.target_fileentry.set_filename(fname)
-
-        # Does this report format use styles?
-        if self.style_button:
-            self.style_button.set_sensitive(obj.get_data("styles"))
-            self.style_menu.set_sensitive(obj.get_data("styles"))
-
-    #------------------------------------------------------------------------
-    #
     # Functions related to setting up the dialog window.
     #
     #------------------------------------------------------------------------
@@ -489,248 +358,7 @@ class ReportDialog:
         label.set_use_markup(gtk.TRUE)
         self.window.vbox.pack_start(label,gtk.TRUE,gtk.TRUE,ReportDialog.border_pad)
         
-    def setup_target_frame(self):
-        """Set up the target frame of the dialog.  This function
-        relies on several target_xxx() customization functions to
-        determine whether the target is a directory or file, what the
-        title of any browser window should be, and what default
-        directory should be used."""
-
-        # Save Frame
-
-        label = gtk.Label("<b>%s</b>" % _('Document Options'))
-        label.set_use_markup(1)
-        label.set_alignment(0.0,0.5)
-        self.tbl.set_border_width(12)
-        self.tbl.attach(label,0,4,self.col,self.col+1)
-        self.col += 1
-        
-        hid = self.get_stylesheet_savefile()
-        if hid[-4:]==".xml":
-            hid = hid[0:-4]
-        self.target_fileentry = gnome.ui.FileEntry(hid,_("Save As"))
-
-        if self.get_target_is_directory():
-            self.target_fileentry.set_directory_entry(1)
-            label = gtk.Label("%s:" % _("Directory"))
-        else:
-            label = gtk.Label("%s:" % _("Filename"))
-        label.set_alignment(0.0,0.5)
-
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.target_fileentry,2,4,self.col,self.col+1)
-        self.col += 1
-        
-        path = self.get_default_directory()
-        self.target_fileentry.set_default_path(path)
-        
-    def setup_format_frame(self):
-        """Set up the format frame of the dialog.  This function
-        relies on the make_doc_menu() function to do all the hard
-        work."""
-
-        self.format_menu = gtk.OptionMenu()
-        self.make_doc_menu()
-        label = gtk.Label("%s:" % _("Output Format"))
-        label.set_alignment(0.0,0.5)
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
-        self.col += 1
-
-        type = self.format_menu.get_menu().get_active()
-        ext = type.get_data('ext')
-        if ext == None:
-            ext = ""
-        if type:
-            path = self.get_default_directory()
-            if self.get_target_is_directory():
-                self.target_fileentry.set_filename(path)
-            else:
-                base = self.get_default_basename()
-                path = os.path.normpath("%s/%s%s" % (path,base,ext))
-                self.target_fileentry.set_filename(path)
-
-
-    def setup_style_frame(self):
-        """Set up the style frame of the dialog.  This function relies
-        on other routines create the default style for this report,
-        and to read in any user defined styles for this report.  It
-        the builds a menu of all the available styles for the user to
-        choose from."""
-
-        # Styles Frame
-        label = gtk.Label("%s:" % _("Styles"))
-        label.set_alignment(0.0,0.5)
-
-        self.style_menu = gtk.OptionMenu()
-        self.style_button = gtk.Button("%s..." % _("Style Editor"))
-        self.style_button.connect('clicked',self.on_style_edit_clicked)
-
-        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
-        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
-        self.col += 1
-        
-        # Build the default style set for this report.
-        self.default_style = TextDoc.StyleSheet()
-        self.make_default_style()
-
-        # Build the initial list of available styles sets.  This
-        # includes the default style set and any style sets saved from
-        # previous invocations of gramps.
-        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
-                                                       self.default_style)
-
-        # Now build the actual menu.
-        self.build_style_menu()
-
-    def setup_output_notebook(self):
-        """Set up the output notebook of the dialog.  This sole
-        purpose of this function is to grab a pointer for later use in
-        the callback from when the file format is changed."""
-
-        self.output_notebook = gtk.Notebook()
-        self.output_notebook.set_show_tabs(0)
-        self.output_notebook.set_show_border(0)
-        self.output_notebook.set_border_width(12)
-        self.output_notebook.set_current_page(self.notebook_page)
-        self.window.vbox.add(self.output_notebook)
-
-    def size_changed(self,obj):
-        paper = self.papersize_menu.get_menu().get_active().get_data('i')
-        if paper.get_width() <= 0:
-            self.pwidth.set_sensitive(1)
-            self.pheight.set_sensitive(1)
-        else:
-            self.pwidth.set_sensitive(0)
-            self.pheight.set_sensitive(0)
-            self.pwidth.set_text("%.2f" % paper.get_width())
-            self.pheight.set_text("%.2f" % paper.get_height())
-        
-    def setup_paper_frame(self):
-        """Set up the paper selection frame of the dialog.  This
-        function relies on a paper_xxx() customization functions to
-        determine whether the pagecount menu should appear and what
-        its strings should be."""
-
-        (pagecount_map, start_text) = self.get_print_pagecount_map()
-
-        if pagecount_map:
-            self.paper_table = gtk.Table(3,6)
-        else:
-            self.paper_table = gtk.Table(4,6)
-        self.paper_table.set_col_spacings(12)
-        self.paper_table.set_row_spacings(6)
-        self.paper_table.set_border_width(0)
-        self.output_notebook.append_page(self.paper_table,gtk.Label(_("Paper Options")))
             
-        paper_label = gtk.Label("<b>%s</b>" % _("Paper Options"))
-        paper_label.set_use_markup(gtk.TRUE)
-        paper_label.set_alignment(0.0,0.5)
-        self.paper_table.attach(paper_label,0,6,0,1,gtk.SHRINK|gtk.FILL)
-
-        self.papersize_menu = gtk.OptionMenu()
-        self.papersize_menu.connect('changed',self.size_changed)
-        
-        self.orientation_menu = gtk.OptionMenu()
-        l = gtk.Label("%s:" % _("Size"))
-        l.set_alignment(0.0,0.5)
-        
-        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.papersize_menu,2,3,1,2)
-        l = gtk.Label("%s:" % _("Height"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
-
-        self.pheight = gtk.Entry()
-        self.pheight.set_sensitive(0)
-        self.paper_table.attach(self.pheight,4,5,1,2)
-        
-        l = gtk.Label(_("cm"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
-
-        l = gtk.Label("%s:" % _("Orientation"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-        self.paper_table.attach(self.orientation_menu,2,3,2,3)
-        l = gtk.Label("%s:" % _("Width"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,3,4,2,3,gtk.SHRINK|gtk.FILL)
-
-        self.pwidth = gtk.Entry()
-        self.pwidth.set_sensitive(0)
-        self.paper_table.attach(self.pwidth,4,5,2,3)
-
-        l = gtk.Label(_("cm"))
-        l.set_alignment(0.0,0.5)
-        self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
-
-        PaperMenu.make_paper_menu(self.papersize_menu)
-        PaperMenu.make_orientation_menu(self.orientation_menu)
-
-        # The optional pagecount stuff.
-        if pagecount_map:
-            self.pagecount_menu = gtk.OptionMenu()
-            myMenu = Utils.build_string_optmenu(pagecount_map, start_text)
-            self.pagecount_menu.set_menu(myMenu)
-            l = gtk.Label("%s:" % _("Page Count"))
-            l.set_alignment(0.0,0.5)
-            self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
-            self.paper_table.attach(self.pagecount_menu,2,3,3,4)
-            
-    def html_file_enable(self,obj):
-        text = obj.get_text()
-        if _template_map.has_key(text):
-            if _template_map[text]:
-                self.html_fileentry.set_sensitive(0)
-            else:
-                self.html_fileentry.set_sensitive(1)
-        else:
-            self.html_fileentry.set_sensitive(0)
-            
-    def setup_html_frame(self):
-        """Set up the html frame of the dialog.  This sole purpose of
-        this function is to grab a pointer for later use in the parse
-        html frame function."""
-
-        self.html_table = gtk.Table(3,3)
-        self.html_table.set_col_spacings(12)
-        self.html_table.set_row_spacings(6)
-        self.html_table.set_border_width(0)
-        html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
-        html_label.set_alignment(0.0,0.5)
-        html_label.set_use_markup(gtk.TRUE)
-        self.html_table.attach(html_label,0,3,0,1)
-
-        self.output_notebook.append_page(self.html_table,gtk.Label(_("HTML Options")))
-
-        l = gtk.Label("%s:" % _("Template"))
-        l.set_alignment(0.0,0.5)
-        self.html_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
-
-        self.template_combo = gtk.Combo()
-        template_list = [ _default_template ]
-        tlist = _template_map.keys()
-        tlist.sort()
-        
-        for template in tlist:
-            if template != _user_template:
-                template_list.append(template)
-        template_list.append(_user_template)
-        
-        self.template_combo.set_popdown_strings(template_list)
-        self.template_combo.entry.set_editable(0)
-        self.template_combo.entry.connect('changed',self.html_file_enable)
-        
-        self.html_table.attach(self.template_combo,2,3,1,2)
-        l = gtk.Label("%s:" % _("User Template"))
-        l.set_alignment(0.0,0.5)
-        self.html_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
-        self.html_fileentry = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
-        self.html_fileentry.set_sensitive(0)
-        self.html_table.attach(self.html_fileentry,2,3,2,3)
-
     def setup_report_options_frame(self):
         """Set up the report options frame of the dialog.  This
         function relies on several report_xxx() customization
@@ -885,6 +513,536 @@ class ReportDialog:
     # Functions related to retrieving data from the dialog window
     #
     #------------------------------------------------------------------------
+    def parse_report_options_frame(self):
+        """Parse the report options frame of the dialog.  Save the
+        user selected choices for later use.  Note that this routine
+        retrieves a value from all fields in the frame, regardless of
+        whether or not they are displayed on the screen.  The subclass
+        will know which ones it has enabled.  This is for simplicity
+        of programming."""
+
+        if self.generations_spinbox:
+            self.max_gen = self.generations_spinbox.get_value_as_int()
+        else:
+            self.max_gen = 0
+            
+        if self.pagebreak_checkbox:
+            self.pg_brk = self.pagebreak_checkbox.get_active()
+        else:
+            self.pg_brk = 0
+
+        if self.filter_combo:
+            self.filter = self.filter_menu.get_active().get_data("filter")
+        else:
+            self.filter = None
+
+        if self.extra_menu:
+            self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")
+        else:
+            self.report_menu = None
+
+        if self.extra_textbox:
+            b = self.extra_textbox.get_buffer()
+            text_val = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
+            self.report_text = string.split(text_val,'\n')
+        else:
+            self.report_text = ""
+        
+    def parse_other_frames(self):
+        """Do nothing.  This sole purpose of this function is to give
+        subclass a place to hang a routine to parser any other frames
+        that are unique to that specific report."""
+        pass
+
+    #------------------------------------------------------------------------
+    #
+    # Callback functions from the dialog
+    #
+    #------------------------------------------------------------------------
+    def on_cancel(self,obj):
+        self.window.destroy()
+
+    def on_ok_clicked(self, obj):
+        """The user is satisfied with the dialog choices.  Validate
+        the output file name before doing anything else.  If there is
+        a file name, gather the options and create the report."""
+
+        # Is there a filename?  This should also test file permissions, etc.
+        if not self.parse_target_frame():
+            return
+
+        # Preparation
+        self.parse_format_frame()
+        self.parse_style_frame()
+        self.parse_paper_frame()
+        self.parse_html_frame()
+        self.parse_report_options_frame()
+        self.parse_other_frames()
+        
+        # Create the output document.
+        self.make_document()
+        
+        # Create the report object and product the report.
+        try:
+            self.make_report()
+        except (IOError,OSError),msg:
+            ErrorDialog(str(msg))
+            
+        # Clean up the dialog object
+        self.window.destroy()
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to creating the actual report document.
+    #
+    #------------------------------------------------------------------------
+    def make_report(self):
+        """Create the contents of the report.  This is the meat and
+        potatoes of reports.  The whole purpose of the dialog is to
+        get to this routine so that data is written to a file.  This
+        routine should either write the data directly to the file, or
+        better yet, should create a subclass of a Report that will
+        write the data to a file."""
+        pass
+
+    #------------------------------------------------------------------------
+    #
+    # Miscellaneous functions.
+    #
+    #------------------------------------------------------------------------
+    def add_tooltip(self,widget,string):
+        """Adds a tooltip to the specified widget"""
+        if not widget or not string:
+            return
+        tip = gtk.Tooltips()
+        tip.set_tip(widget,string)
+
+
+class ReportDialog(BareReportDialog):
+    """
+    The ReportDialog base class.  This is a base class for generating
+    customized dialogs to solicit options for a report.  It cannot be
+    used as is, but it can be easily sub-classed to create a functional
+    dialog for a stand-alone report.
+    """
+
+    def __init__(self,database,person):
+        """Initialize a dialog to request that the user select options
+        for a basic *stand-alone* report."""
+        
+        BareReportDialog.__init__(self,database,person)
+
+        # Allow for post processing of the format frame, since the
+        # show_all task calls events that may reset values
+
+        if self.format_menu:
+            self.doc_type_changed(self.format_menu.get_menu().get_active())
+        self.setup_post_process()
+
+    def setup_post_process(self):
+        pass
+
+
+    #------------------------------------------------------------------------
+    #
+    # Customization hooks for subclasses
+    #
+    #------------------------------------------------------------------------
+    def get_target_browser_title(self):
+        """The title of the window that will be created when the user
+        clicks the 'Browse' button in the 'Save As' File Entry
+        widget."""
+        return("%s - GRAMPS" % _("Save Report As"))
+
+    def get_target_is_directory(self):
+        """Is the user being asked to input the name of a file or a
+        directory in the 'Save As' File Entry widget.  This item
+        currently only selects the Filename/Directory prompt, and
+        whether or not the browser accepts filenames.  In the future it
+        may also control checking of the selected filename."""
+        return None
+    
+    def get_stylesheet_savefile(self):
+        """Where should new styles for this report be saved?  This is
+        the name of an XML file that will be located in the ~/.gramps
+        directory.  This file does not have to exist; it will be
+        created when needed.  All subclasses should probably override
+        this function."""
+        return "basic_report.xml"
+
+    def get_default_basename(self):
+        """What should the default name be?
+        """
+        path = self.get_stylesheet_savefile()
+        return path.split('.')[0]
+
+    def get_print_pagecount_map(self):
+        """Return the data used to fill out the 'pagecount' option
+        menu in the print options box.  The first value is a mapping
+        of string:value pairs.  The strings will be used to label
+        individual menu items, and the values are what will be
+        returned if a given menu item is selected.  The second value
+        is the name of menu item to pre-select."""
+        return (None, None)
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related getting/setting the default directory for a dialog.
+    #
+    #------------------------------------------------------------------------
+    def get_default_directory(self):
+        """Get the name of the directory to which the target dialog
+        box should default.  This value can be set in the preferences
+        panel."""
+        return GrampsCfg.report_dir
+
+    def set_default_directory(self, value):
+        """Save the name of the current directory, so that any future
+        reports will default to the most recently used directory.
+        This also changes the directory name that will appear in the
+        preferences panel, but does not change the preference in disk.
+        This means that the last directory used will only be
+        remembered for this session of gramps unless the user saves
+        his/her preferences."""
+        GrampsCfg.report_dir = value
+
+    #------------------------------------------------------------------------
+    #
+    # Functions to create a default output style.
+    #
+    #------------------------------------------------------------------------
+    def make_default_style(self):
+        """Create the default style to be used by the associated report.  This
+        routine is a default implementation and should be overridden."""
+        font = TextDoc.FontStyle()
+        font.set(face=TextDoc.FONT_SANS_SERIF,size=16,bold=1)
+        para = TextDoc.ParagraphStyle()
+        para.set_font(font)
+        para.set_header_level(1)
+        para.set(pad=0.5)
+        self.default_style.add_style("Title",para)
+
+    def build_style_menu(self):
+        """Build a menu of style sets that are available for use in
+        this report.  This menu will always have a default style
+        available, and will have any other style set name that the
+        user has previously created for this report.  This menu is
+        created here instead of inline with the rest of the style
+        frame, because it must be recreated to reflect any changes
+        whenever the user closes the style editor dialog."""
+        style_sheet_map = self.style_sheet_list.get_style_sheet_map()
+        myMenu = Utils.build_string_optmenu(style_sheet_map, "default")
+        self.style_menu.set_menu(myMenu)
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to selecting/changing the current file format.
+    #
+    #------------------------------------------------------------------------
+    def make_doc_menu(self):
+        """Build a menu of document types that are appropriate for
+        this report.  This menu will be generated based upon the type
+        of document (text, draw, graph, etc. - a subclass), whether or
+        not the document requires table support, etc."""
+        pass
+
+    def make_document(self):
+        """Create a document of the type selected by the user."""
+        pass
+
+    def doc_type_changed(self, obj):
+        """This routine is called when the user selects a new file
+        formats for the report.  It adjust the various dialog sections
+        to reflect the appropriate values for the currently selected
+        file format.  For example, a HTML document doesn't need any
+        paper size/orientation options, but it does need a template
+        file.  Those chances are made here."""
+
+        # Is this to be a printed report or an electronic report
+        # (i.e. a set of web pages)
+
+        if obj.get_data("paper") == 1:
+            self.notebook_page = 0
+        else:
+            self.notebook_page = 1
+            
+        if self.output_notebook == None:
+            return
+        
+        self.output_notebook.set_current_page(self.notebook_page)
+
+        if not self.get_target_is_directory():
+            fname = self.target_fileentry.get_full_path(0)
+            (path,ext) = os.path.splitext(fname)
+
+            ext_val = obj.get_data('ext')
+            if ext_val:
+                fname = path + ext_val
+            self.target_fileentry.set_filename(fname)
+
+        # Does this report format use styles?
+        if self.style_button:
+            self.style_button.set_sensitive(obj.get_data("styles"))
+            self.style_menu.set_sensitive(obj.get_data("styles"))
+
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to setting up the dialog window.
+    #
+    #------------------------------------------------------------------------
+    def setup_target_frame(self):
+        """Set up the target frame of the dialog.  This function
+        relies on several target_xxx() customization functions to
+        determine whether the target is a directory or file, what the
+        title of any browser window should be, and what default
+        directory should be used."""
+
+        # Save Frame
+
+        label = gtk.Label("<b>%s</b>" % _('Document Options'))
+        label.set_use_markup(1)
+        label.set_alignment(0.0,0.5)
+        self.tbl.set_border_width(12)
+        self.tbl.attach(label,0,4,self.col,self.col+1)
+        self.col += 1
+        
+        hid = self.get_stylesheet_savefile()
+        if hid[-4:]==".xml":
+            hid = hid[0:-4]
+        self.target_fileentry = gnome.ui.FileEntry(hid,_("Save As"))
+
+        if self.get_target_is_directory():
+            self.target_fileentry.set_directory_entry(1)
+            label = gtk.Label("%s:" % _("Directory"))
+        else:
+            label = gtk.Label("%s:" % _("Filename"))
+        label.set_alignment(0.0,0.5)
+
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.target_fileentry,2,4,self.col,self.col+1)
+        self.col += 1
+        
+        path = self.get_default_directory()
+        self.target_fileentry.set_default_path(path)
+
+
+    def setup_format_frame(self):
+        """Set up the format frame of the dialog.  This function
+        relies on the make_doc_menu() function to do all the hard
+        work."""
+
+        self.format_menu = gtk.OptionMenu()
+        self.make_doc_menu()
+        label = gtk.Label("%s:" % _("Output Format"))
+        label.set_alignment(0.0,0.5)
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.format_menu,2,4,self.col,self.col+1)
+        self.col += 1
+
+        type = self.format_menu.get_menu().get_active()
+        ext = type.get_data('ext')
+        if ext == None:
+            ext = ""
+        if type:
+            path = self.get_default_directory()
+            if self.get_target_is_directory():
+                self.target_fileentry.set_filename(path)
+            else:
+                base = self.get_default_basename()
+                path = os.path.normpath("%s/%s%s" % (path,base,ext))
+                self.target_fileentry.set_filename(path)
+
+
+    def setup_style_frame(self):
+        """Set up the style frame of the dialog.  This function relies
+        on other routines create the default style for this report,
+        and to read in any user defined styles for this report.  It
+        the builds a menu of all the available styles for the user to
+        choose from."""
+
+        # Styles Frame
+        label = gtk.Label("%s:" % _("Styles"))
+        label.set_alignment(0.0,0.5)
+
+        self.style_menu = gtk.OptionMenu()
+        self.style_button = gtk.Button("%s..." % _("Style Editor"))
+        self.style_button.connect('clicked',self.on_style_edit_clicked)
+
+        self.tbl.attach(label,1,2,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.tbl.attach(self.style_menu,2,3,self.col,self.col+1)
+        self.tbl.attach(self.style_button,3,4,self.col,self.col+1,gtk.SHRINK|gtk.FILL)
+        self.col += 1
+        
+        # Build the default style set for this report.
+        self.default_style = TextDoc.StyleSheet()
+        self.make_default_style()
+
+        # Build the initial list of available styles sets.  This
+        # includes the default style set and any style sets saved from
+        # previous invocations of gramps.
+        self.style_sheet_list = TextDoc.StyleSheetList(self.get_stylesheet_savefile(),
+                                                       self.default_style)
+
+        # Now build the actual menu.
+        self.build_style_menu()
+
+    def setup_output_notebook(self):
+        """Set up the output notebook of the dialog.  This sole
+        purpose of this function is to grab a pointer for later use in
+        the callback from when the file format is changed."""
+
+        self.output_notebook = gtk.Notebook()
+        self.output_notebook.set_show_tabs(0)
+        self.output_notebook.set_show_border(0)
+        self.output_notebook.set_border_width(12)
+        self.output_notebook.set_current_page(self.notebook_page)
+        self.window.vbox.add(self.output_notebook)
+
+    def size_changed(self,obj):
+        paper = self.papersize_menu.get_menu().get_active().get_data('i')
+        if paper.get_width() <= 0:
+            self.pwidth.set_sensitive(1)
+            self.pheight.set_sensitive(1)
+        else:
+            self.pwidth.set_sensitive(0)
+            self.pheight.set_sensitive(0)
+            self.pwidth.set_text("%.2f" % paper.get_width())
+            self.pheight.set_text("%.2f" % paper.get_height())
+        
+
+    def setup_paper_frame(self):
+        """Set up the paper selection frame of the dialog.  This
+        function relies on a paper_xxx() customization functions to
+        determine whether the pagecount menu should appear and what
+        its strings should be."""
+
+        (pagecount_map, start_text) = self.get_print_pagecount_map()
+
+        if pagecount_map:
+            self.paper_table = gtk.Table(3,6)
+        else:
+            self.paper_table = gtk.Table(4,6)
+        self.paper_table.set_col_spacings(12)
+        self.paper_table.set_row_spacings(6)
+        self.paper_table.set_border_width(0)
+        self.output_notebook.append_page(self.paper_table,gtk.Label(_("Paper Options")))
+            
+        paper_label = gtk.Label("<b>%s</b>" % _("Paper Options"))
+        paper_label.set_use_markup(gtk.TRUE)
+        paper_label.set_alignment(0.0,0.5)
+        self.paper_table.attach(paper_label,0,6,0,1,gtk.SHRINK|gtk.FILL)
+
+        self.papersize_menu = gtk.OptionMenu()
+        self.papersize_menu.connect('changed',self.size_changed)
+        
+        self.orientation_menu = gtk.OptionMenu()
+        l = gtk.Label("%s:" % _("Size"))
+        l.set_alignment(0.0,0.5)
+        
+        self.paper_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.papersize_menu,2,3,1,2)
+        l = gtk.Label("%s:" % _("Height"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,3,4,1,2,gtk.SHRINK|gtk.FILL)
+
+        self.pheight = gtk.Entry()
+        self.pheight.set_sensitive(0)
+        self.paper_table.attach(self.pheight,4,5,1,2)
+        
+        l = gtk.Label(_("cm"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,5,6,1,2,gtk.SHRINK|gtk.FILL)
+
+        l = gtk.Label("%s:" % _("Orientation"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+        self.paper_table.attach(self.orientation_menu,2,3,2,3)
+        l = gtk.Label("%s:" % _("Width"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,3,4,2,3,gtk.SHRINK|gtk.FILL)
+
+        self.pwidth = gtk.Entry()
+        self.pwidth.set_sensitive(0)
+        self.paper_table.attach(self.pwidth,4,5,2,3)
+
+        l = gtk.Label(_("cm"))
+        l.set_alignment(0.0,0.5)
+        self.paper_table.attach(l,5,6,2,3,gtk.SHRINK|gtk.FILL)
+
+        PaperMenu.make_paper_menu(self.papersize_menu)
+        PaperMenu.make_orientation_menu(self.orientation_menu)
+
+        # The optional pagecount stuff.
+        if pagecount_map:
+            self.pagecount_menu = gtk.OptionMenu()
+            myMenu = Utils.build_string_optmenu(pagecount_map, start_text)
+            self.pagecount_menu.set_menu(myMenu)
+            l = gtk.Label("%s:" % _("Page Count"))
+            l.set_alignment(0.0,0.5)
+            self.paper_table.attach(l,1,2,3,4,gtk.SHRINK|gtk.FILL)
+            self.paper_table.attach(self.pagecount_menu,2,3,3,4)
+
+
+    def html_file_enable(self,obj):
+        text = obj.get_text()
+        if _template_map.has_key(text):
+            if _template_map[text]:
+                self.html_fileentry.set_sensitive(0)
+            else:
+                self.html_fileentry.set_sensitive(1)
+        else:
+            self.html_fileentry.set_sensitive(0)
+            
+
+    def setup_html_frame(self):
+        """Set up the html frame of the dialog.  This sole purpose of
+        this function is to grab a pointer for later use in the parse
+        html frame function."""
+
+        self.html_table = gtk.Table(3,3)
+        self.html_table.set_col_spacings(12)
+        self.html_table.set_row_spacings(6)
+        self.html_table.set_border_width(0)
+        html_label = gtk.Label("<b>%s</b>" % _("HTML Options"))
+        html_label.set_alignment(0.0,0.5)
+        html_label.set_use_markup(gtk.TRUE)
+        self.html_table.attach(html_label,0,3,0,1)
+
+        self.output_notebook.append_page(self.html_table,gtk.Label(_("HTML Options")))
+
+        l = gtk.Label("%s:" % _("Template"))
+        l.set_alignment(0.0,0.5)
+        self.html_table.attach(l,1,2,1,2,gtk.SHRINK|gtk.FILL)
+
+        self.template_combo = gtk.Combo()
+        template_list = [ _default_template ]
+        tlist = _template_map.keys()
+        tlist.sort()
+        
+        for template in tlist:
+            if template != _user_template:
+                template_list.append(template)
+        template_list.append(_user_template)
+        
+        self.template_combo.set_popdown_strings(template_list)
+        self.template_combo.entry.set_editable(0)
+        self.template_combo.entry.connect('changed',self.html_file_enable)
+        
+        self.html_table.attach(self.template_combo,2,3,1,2)
+        l = gtk.Label("%s:" % _("User Template"))
+        l.set_alignment(0.0,0.5)
+        self.html_table.attach(l,1,2,2,3,gtk.SHRINK|gtk.FILL)
+        self.html_fileentry = gnome.ui.FileEntry("HTML_Template",_("Choose File"))
+        self.html_fileentry.set_sensitive(0)
+        self.html_table.attach(self.html_fileentry,2,3,2,3)
+
+
+    #------------------------------------------------------------------------
+    #
+    # Functions related to retrieving data from the dialog window
+    #
+    #------------------------------------------------------------------------
     def parse_target_frame(self):
         """Parse the target frame of the dialog.  If the target
         filename is empty this routine returns a special value of None
@@ -971,46 +1129,6 @@ class ReportDialog:
         else:
             self.template_name = None
 
-    def parse_report_options_frame(self):
-        """Parse the report options frame of the dialog.  Save the
-        user selected choices for later use.  Note that this routine
-        retrieves a value from all fields in the frame, regardless of
-        whether or not they are displayed on the screen.  The subclass
-        will know which ones it has enabled.  This is for simplicity
-        of programming."""
-
-        if self.generations_spinbox:
-            self.max_gen = self.generations_spinbox.get_value_as_int()
-        else:
-            self.max_gen = 0
-            
-        if self.pagebreak_checkbox:
-            self.pg_brk = self.pagebreak_checkbox.get_active()
-        else:
-            self.pg_brk = 0
-
-        if self.filter_combo:
-            self.filter = self.filter_menu.get_active().get_data("filter")
-        else:
-            self.filter = None
-
-        if self.extra_menu:
-            self.report_menu = self.extra_menu.get_menu().get_active().get_data("d")
-        else:
-            self.report_menu = None
-
-        if self.extra_textbox:
-            b = self.extra_textbox.get_buffer()
-            text_val = b.get_text(b.get_start_iter(),b.get_end_iter(),gtk.FALSE)
-            self.report_text = string.split(text_val,'\n')
-        else:
-            self.report_text = ""
-        
-    def parse_other_frames(self):
-        """Do nothing.  This sole purpose of this function is to give
-        subclass a place to hang a routine to parser any other frames
-        that are unique to that specific report."""
-        pass
 
     #------------------------------------------------------------------------
     #
@@ -1023,64 +1141,6 @@ class ReportDialog:
         done, the previous routine will be called to update the dialog
         menu for selecting a style."""
         StyleEditor.StyleListDisplay(self.style_sheet_list,self.build_style_menu)
-
-    def on_cancel(self,obj):
-        self.window.destroy()
-
-    def on_ok_clicked(self, obj):
-        """The user is satisfied with the dialog choices.  Validate
-        the output file name before doing anything else.  If there is
-        a file name, gather the options and create the report."""
-
-        # Is there a filename?  This should also test file permissions, etc.
-        if not self.parse_target_frame():
-            return
-
-        # Preparation
-        self.parse_format_frame()
-        self.parse_style_frame()
-        self.parse_paper_frame()
-        self.parse_html_frame()
-        self.parse_report_options_frame()
-        self.parse_other_frames()
-        
-        # Create the output document.
-        self.make_document()
-        
-        # Create the report object and product the report.
-        try:
-            self.make_report()
-        except (IOError,OSError),msg:
-            ErrorDialog(str(msg))
-            
-        # Clean up the dialog object
-        self.window.destroy()
-
-    #------------------------------------------------------------------------
-    #
-    # Functions related to creating the actual report document.
-    #
-    #------------------------------------------------------------------------
-    def make_report(self):
-        """Create the contents of the report.  This is the meat and
-        potatoes of reports.  The whole purpose of the dialog is to
-        get to this routine so that data is written to a file.  This
-        routine should either write the data directly to the file, or
-        better yet, should create a subclass of a Report that will
-        write the data to a file."""
-        pass
-
-    #------------------------------------------------------------------------
-    #
-    # Miscellaneous functions.
-    #
-    #------------------------------------------------------------------------
-    def add_tooltip(self,widget,string):
-        """Adds a tooltip to the specified widget"""
-        if not widget or not string:
-            return
-        tip = gtk.Tooltips()
-        tip.set_tip(widget,string)
 
 
 class TextReportDialog(ReportDialog):
