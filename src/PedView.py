@@ -56,12 +56,13 @@ class DispBox:
     shrunk states, as well as the callbacks for events occurring in the box.
     """
 
-    def __init__(self,root,style,x,y,w,h,person,db,change,edit):
+    def __init__(self,root,style,x,y,w,h,person,db,change,edit,build_menu):
         shadow = _PAD
         xpad = _PAD
         
         self.change = change
         self.edit = edit
+        self.build_menu = build_menu
         self.x = x
         self.y = y
         self.w = w
@@ -141,6 +142,9 @@ class DispBox:
         elif event.type == gtk.gdk.LEAVE_NOTIFY:
             self.shrink()
             return 0
+        if event.type == gtk.gdk.BUTTON_PRESS and event.button == 3:
+            self.build_menu(event,self.person)
+            return gtk.TRUE
         return 0
 
     def expand(self):
@@ -177,7 +181,7 @@ class PedigreeView:
         self.change_active_person = change_active
         self.load_person = lp
         self.anchor = None
-        self.canvas.connect('button-press-event',self.on_canvas_press)
+        self.canvas.parent.connect('button-press-event',self.on_canvas_press)
 
     def clear(self):
         for i in self.canvas_items:
@@ -316,7 +320,8 @@ class PedigreeView:
                                               ypts[mindex], h, w, p[0], style, p[1])
                 p = list[i]
                 box = DispBox(self.root,style,xpts[i],ypts[i],w,h,p[0],self.parent.db,
-                              self.change_active_person, self.load_person)
+                              self.change_active_person, 
+                              self.load_person, self.build_full_nav_menu)
                 self.boxes.append(box)
         self.change_active_person(person)
 
@@ -522,12 +527,44 @@ class PedigreeView:
             self.build_nav_menu(event)
 
     def build_nav_menu(self,event):
-        """Builds the menu with navigation."""
+        """Builds the menu with only history-based navigation."""
         
-        # FIXME: need to get a person on whom the click was made,
-        # not the active person!!!
-        person = self.active_person
+        menu = gtk.Menu()
+        menu.set_title(_('People Menu'))
 
+        back_sensitivity = self.parent.hindex > 0 
+        fwd_sensitivity = self.parent.hindex + 1 < len(self.parent.history)
+        entries = [
+            (gtk.STOCK_GO_BACK,self.parent.back_clicked,back_sensitivity),
+            (gtk.STOCK_GO_FORWARD,self.parent.fwd_clicked,fwd_sensitivity),
+            #FIXME: revert to stock item when German gtk translation is fixed
+            #(gtk.STOCK_HOME,self.parent.on_home_clicked,1),
+            (_("Home"),self.parent.on_home_clicked,1),
+            (None,None,0),
+            (_("Set anchor"),self.on_anchor_set,1),
+            (_("Remove anchor"),self.on_anchor_removed,1),
+        ]
+
+        for stock_id,callback,sensitivity in entries:
+            item = gtk.ImageMenuItem(stock_id)
+            #FIXME: remove when German gtk translation is fixed
+            if stock_id == _("Home"):
+                im = gtk.image_new_from_stock(gtk.STOCK_HOME,gtk.ICON_SIZE_MENU)
+                im.show()
+                item.set_image(im)
+            if callback:
+                item.connect("activate",callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        menu.popup(None,None,None,event.button,event.time)
+
+    def build_full_nav_menu(self,event,person):
+        """
+        Builds the full menu (including Siblings, Spouses, etc)
+        with navigation.
+        """
+        
         menu = gtk.Menu()
         menu.set_title(_('People Menu'))
 
