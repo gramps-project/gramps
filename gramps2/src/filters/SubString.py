@@ -23,8 +23,7 @@
 import Filter
 import string
 import Utils
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class SubString(Filter.Filter):
     "Names that contain a substring"

@@ -27,8 +27,7 @@ import const
 import GrampsCfg
 import GenericFilter
 import Date
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 import os
 import re

@@ -25,9 +25,7 @@ scheme specified in the database's prefix ids
 
 import re
 import Utils
-import intl
-
-_ = intl.gettext
+from intl import gettext as _
 
 _findint = re.compile('^[^\d]*(\d+)[^\d]*')
 

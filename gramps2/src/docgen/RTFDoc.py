@@ -27,8 +27,7 @@ from TextDoc import *
 import Plugins
 import ImgManip
 
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 #------------------------------------------------------------------------
 #

@@ -35,8 +35,7 @@ import posixpath
 #------------------------------------------------------------------------
 from RelLib import *
 import Utils
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 #------------------------------------------------------------------------
 #

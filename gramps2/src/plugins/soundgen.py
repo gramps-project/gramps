@@ -29,9 +29,7 @@ from gnome.ui import *
 import RelLib
 import soundex
 import Utils
-import intl
-
-_ = intl.gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

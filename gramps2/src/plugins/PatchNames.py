@@ -22,7 +22,6 @@
 
 import os
 import re
-import intl
 import Utils
 
 from intl import gettext as _

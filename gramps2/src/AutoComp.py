@@ -100,7 +100,7 @@ class AutoCompBase:
         this form of a select_region() call works in a signal handler and
         the other form doesn't is a mystery.
         """
-        entry.select_region(0, 0)
+        gtk.Editable.select_region(entry,0, 0)
 
     def timer_callback(self,entry):
         """
@@ -146,8 +146,10 @@ class AutoCombo(AutoCompBase):
         self.inb = 0
         text = self.entry.entry.get_text()
         if self.nl == string.lower(text):
-            self.entry.entry.set_position(self.l)
-            self.entry.entry.select_region(self.l, -1)
+            gtk.Editable.set_position(self.entry.entry,self.l)
+            gtk.Editable.select_region(self.entry.entry,self.l,-1)
+#            self.entry.entry.set_position(self.l)
+#            self.entry.entry.select_region(self.l, -1)
             
     def build_list(self,widget,event):
         """Internal task that builds the popdown strings. This task is called when the
@@ -202,8 +204,8 @@ class AutoCombo(AutoCompBase):
             n = self.vals[0]
             self.nl = string.lower(n)
             entry.set_text(n)
-            entry.set_position(self.l)
-            entry.select_region(self.l, -1)
+            gtk.Editable.set_position(entry,self.l)
+            gtk.Editable.select_region(entry,self.l, -1)
         else:
             self.vals = [""]
 
@@ -256,7 +258,7 @@ class AutoEntry(AutoCompBase):
             if nl[0:self.l] == typed_lc:
                 self.nl = nl
                 entry.set_text(n)
-                entry.set_position(self.l)
-                entry.select_region(self.l, -1)
+                gtk.Editable.set_position(entry,self.l)
+                gtk.Editable.select_region(entry,self.l, -1)
                 return
 

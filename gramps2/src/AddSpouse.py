@@ -49,6 +49,7 @@ import RelLib
 import const
 import Utils
 import GrampsCfg
+import ListModel
 
 #-------------------------------------------------------------------------
 #
@@ -80,37 +81,14 @@ class AddSpouse:
         self.rel_combo = self.glade.get_widget("rel_combo")
         self.relation_type = self.glade.get_widget("rel_type")
         self.spouse_list = self.glade.get_widget("spouse_list")
-        self.model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING, gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING)
-        self.spouse_list.set_model(self.model)
-        self.selection = self.spouse_list.get_selection()
-        self.selection.connect('changed',self.select_row)
+
+        titles = [ (_('Name'),3,200), (_('ID'),1,50), (_('Birth Date'),4,50),
+                   ('',0,50), ('',0,0)]
+        
+        self.slist = ListModel.ListModel(self.spouse_list, titles, self.select_row )
         
         self.relation_def = self.glade.get_widget("reldef")
         self.ok = self.glade.get_widget('spouse_ok')
-
-        colno = 0
-        for title in [ (_('Name'),3,200),
-                       (_('ID'),1,50),
-                       (_('Birth Date'),4,50),
-                       ('',0,50),
-                       ('',0,0)]:
-            renderer = gtk.CellRendererText ()
-            column = gtk.TreeViewColumn (title[0], renderer, text=colno)
-            colno = colno + 1
-            column.set_clickable (gtk.TRUE)
-            if title[0] == '':
-                column.set_clickable(gtk.TRUE)
-                column.set_visible(gtk.FALSE)
-            else:
-                column.set_resizable(gtk.TRUE)
-            column.set_sort_column_id(title[1])
-            column.set_min_width(title[2])
-            self.spouse_list.append_column(column)
-            if colno == 1:
-                column.clicked()
-
         self.ok.set_sensitive(0)
                      
         self.rel_combo.set_popdown_strings(const.familyRelations)
@@ -234,16 +212,12 @@ class AddSpouse:
         index = 0
 
         self.entries = []
-        self.model.clear()
+        self.slist.clear()
         for key in self.db.getPersonKeys():
             data = self.db.getPersonDisplay(key)
             if data[2] == sgender:
                 continue
-            iter = self.model.append()
-            self.entries.append(key)
-            self.model.set(iter,0,data[0],1,data[1],2,data[3],3,data[5],4,data[6])
-            if person == key:
-                self.selection.select_iter(iter)
+            self.slist.add([data[0],data[1],data[3],data[5],data[6]],key,person==key)
 
 #-------------------------------------------------------------------------
 #

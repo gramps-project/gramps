@@ -36,8 +36,7 @@ import Utils
 import const
 import GrampsCfg
 import VersionControl
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 try:
     import ZODB

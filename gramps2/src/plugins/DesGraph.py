@@ -46,8 +46,7 @@ from Report import *
 from TextDoc import *
 from SubstKeywords import SubstKeywords
 
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 _sep = 0.5
 

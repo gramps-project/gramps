@@ -26,10 +26,8 @@ from TextDoc import *
 from latin_utf8 import latin_to_utf8
 import const
 import Plugins
-import intl
+from intl import gettext as _
 import ImgManip
-
-_ = intl.gettext
 
 try:
     from codecs import *

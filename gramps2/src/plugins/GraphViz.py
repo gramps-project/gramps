@@ -23,12 +23,10 @@
 import os
 import string
 
-import intl
+from intl import gettext as _
 import Utils
 
 import gtk
-
-_ = intl.gettext
 
 from Report import *
 from TextDoc import *

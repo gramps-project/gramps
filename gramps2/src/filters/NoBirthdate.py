@@ -21,8 +21,7 @@
 "People without a birth date"
 
 import Filter
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class NoBirthdate(Filter.Filter):
     "People without a birth date"

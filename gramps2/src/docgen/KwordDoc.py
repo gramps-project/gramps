@@ -28,8 +28,7 @@ import gzip
 from TarFile import TarFile
 import Plugins
 import ImgManip
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 def points(val):
     inch = float(val)/2.54

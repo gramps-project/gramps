@@ -48,8 +48,7 @@ import WriteXML
 import TarFile
 import Utils
 
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

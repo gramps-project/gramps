@@ -38,8 +38,7 @@ import time
 #
 #-------------------------------------------------------------------------
 import Calendar
-from intl import gettext
-_ = gettext
+from intl import gettext as _
 
 #-------------------------------------------------------------------------
 #

@@ -26,8 +26,7 @@ import string
 import time
 import const
 import Utils
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 from gnome.ui import *
 import gtk

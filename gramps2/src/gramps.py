@@ -6,16 +6,19 @@
 #
 #-------------------------------------------------------------------------
 import os
-import intl
 import locale
+import gtk.glade
+import intl
 
 if os.environ.has_key("GRAMPSI18N"):
     loc = os.environ["GRAMPSI18N"]
 else:
     loc = "locale"
 
-intl.textdomain("gramps")
+
 intl.bindtextdomain("gramps",loc)
+intl.bind_textdomain_codeset("gramps",'UTF-8')
+intl.textdomain("gramps")
 locale.setlocale(locale.LC_NUMERIC,"C")
 
 #-------------------------------------------------------------------------

@@ -21,8 +21,7 @@
 "People with children"
 
 import Filter
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class HaveChildren(Filter.Filter):
     "People with children"

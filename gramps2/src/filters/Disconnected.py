@@ -21,8 +21,7 @@
 "Disconnected individuals"
 
 import Filter
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class Disconnected(Filter.Filter):
     "Disconnected individuals"

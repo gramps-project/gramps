@@ -22,8 +22,7 @@
 
 import RelLib
 import os
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 from Report import *
 from TextDoc import *

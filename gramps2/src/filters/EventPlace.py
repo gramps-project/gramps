@@ -22,8 +22,7 @@
 
 import Filter
 import re
-import intl
-_ = intl.gettext
+from intl import gettext as _
 
 class EventPlace(Filter.Filter):
     """Finds people with a specfied event location in any field"""

@@ -81,7 +81,6 @@ class ImageSelect:
         self.parent      = parent
         self.canvas_list = {}
         self.item_map = {}
-        self.item_map = {}
         self.p_map = {}
 
     def add_thumbnail(self, photo):
@@ -241,14 +240,17 @@ class Gallery(ImageSelect):
     def item_event(self, widget, event=None):
 
         if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
-            if widget.drag_check_threshold(self.remember_x,self.remember_y,event.x,event.y):
-                self.drag_item = widget.get_item_at(self.remember_x,self.remember_y)
+            if widget.drag_check_threshold(self.remember_x,self.remember_y,
+                                           event.x,event.y):
+                self.drag_item = widget.get_item_at(self.remember_x,
+                                                    self.remember_y)
                 if self.drag_item:
                     context = widget.drag_begin(_drag_targets,
                                                 gtk.gdk.ACTION_COPY|gtk.gdk.ACTION_MOVE,
                                                 self.button, event)
             return gtk.TRUE
-        photo = widget.get_data('obj')
+
+        style = self.iconlist.get_style()
         
         if event.type == gtk.gdk.BUTTON_PRESS:
             if event.button == 1:
@@ -257,7 +259,6 @@ class Gallery(ImageSelect):
                 item = widget.get_item_at(event.x,event.y)
                 if item:
                     (i,t,b,self.photo) = self.p_map[item]
-                    style = self.iconlist.get_style()
                     t.set(fill_color_gdk=style.fg[gtk.STATE_SELECTED])
                     b.set(fill_color_gdk=style.bg[gtk.STATE_SELECTED])
                     if self.sel:
@@ -281,7 +282,10 @@ class Gallery(ImageSelect):
         elif event.type == gtk.gdk.BUTTON_RELEASE:
             self.button = 0
         elif event.type == gtk.gdk._2BUTTON_PRESS and event.button == 1:
-            LocalMediaProperties(photo,self.path,self)
+            item = widget.get_item_at(event.x,event.y)
+            if item:
+                (i,t,b,self.photo) = self.p_map[item]
+                LocalMediaProperties(self.photo,self.path,self)
             return gtk.TRUE
         elif event.type == gtk.gdk.MOTION_NOTIFY:
             if event.state & gtk.gdk.BUTTON1_MASK:
@@ -313,7 +317,7 @@ class Gallery(ImageSelect):
         oid = object.getId()
         
         if self.canvas_list.has_key(oid):
-            (grp,item,text,bg,x,y) = self.canvas_list[oid]
+            (grp,item,text,x,y) = self.canvas_list[oid]
             if x != self.cx or y != self.cy:
                 grp.move(self.cx-x,self.cy-y)
         else:
@@ -331,39 +335,28 @@ class Gallery(ImageSelect):
             xloc = (_IMAGEX-x)/2
             yloc = (_IMAGEY-y)/2
 
-            bg = grp.add(gnome.canvas.CanvasRect,
-                         x1=0,
-                         x2=_IMAGEX,
-                         y2=_IMAGEY,
-                         y1=_IMAGEY-20)
-            
+            style = self.iconlist.get_style()
+
+            box = grp.add(gnome.canvas.CanvasRect,x1=0,x2=_IMAGEX,y1=_IMAGEY-20,
+                          y2=_IMAGEY, fill_color_gdk=style.bg[gtk.STATE_NORMAL])
             item = grp.add(gnome.canvas.CanvasPixbuf,
-                           pixbuf=image,
-                           x=xloc,
-                           y=yloc)
-            
-            text = grp.add(gnome.canvas.CanvasText,
-                           x=_IMAGEX/2,
-                           y=_IMAGEX,
+                           pixbuf=image,x=xloc, y=yloc)
+            text = grp.add(gnome.canvas.CanvasText, x=_IMAGEX/2, 
                            anchor=gtk.ANCHOR_CENTER,
-                           text=description)
+                           justification=gtk.JUSTIFY_CENTER,
+                           y=_IMAGEY-10, text=description)
 
-
-            self.item_map[item] = oid
+            self.item_map[box] = oid
             self.item_map[text] = oid
             self.item_map[grp] = oid
-            self.item_map[bg] = oid
+            self.item_map[item] = oid
+
+            for i in [ item, text, box, grp ] :
+                self.item_map[i] = oid
+                self.p_map[i] = (item,text,box,photo)
+                i.show()
             
-            self.p_map[item] = (item,text,bg,photo)
-            self.p_map[text] = (item,text,bg,photo)
-            self.p_map[grp] = (item,text,bg,photo)
-            self.p_map[bg] = (item,text,bg,photo)
-                            
-            item.show()
-            text.show()
-            bg.show()
-            
-        self.canvas_list[oid] = (grp,item,text,bg,self.cx,self.cy)
+        self.canvas_list[oid] = (grp,item,text,self.cx,self.cy)
 
         if self.cx + _PAD + _IMAGEX > self.x:
             self.cx = _PAD
@@ -511,7 +504,6 @@ class Gallery(ImageSelect):
             val[0].hide()
             val[1].hide()
             val[2].hide()
-            val[3].hide()
 
             l = self.dataobj.getPhotoList()
             l.remove(photo)
@@ -584,29 +576,31 @@ class LocalMediaProperties:
         self.alist = photo.getAttributeList()[:]
         self.lists_changed = 0
         self.parent = parent
+        self.db = parent.db
         
         fname = self.object.getPath()
         self.change_dialog = gtk.glade.XML(const.imageselFile,
                                                "change_description")
         descr_window = self.change_dialog.get_widget("description")
-        pixmap = self.change_dialog.get_widget("pixmap")
+        self.pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
         self.attr_value = self.change_dialog.get_widget("attr_value")
         self.attr_details = self.change_dialog.get_widget("attr_details")
 
         self.attr_list = self.change_dialog.get_widget("attr_list")
-        self.attr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        Utils.build_columns(self.attr_list, [(_('Attribute'),150,-1),
-                                             (_('Value'),100,-1)])
-        self.attr_list.set_model(self.attr_model)
-        self.attr_list.get_selection().connect('changed',self.on_attr_list_select_row)
+        titles = [(_('Attribute'),-1,150),(_('Value'),-1,100)]
 
+        self.atree = ListModel.ListModel(self.attr_list,titles,
+                                         self.on_attr_list_select_row,
+                                         self.on_update_attr_clicked)
+        
         descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
 
-        if os.path.isfile(path):
-            self.pix = gtk.gdk.pixbuf_new_from_file(path)
-            pixmap.set_from_pixbuf(self.pix)
+        thumb = Utils.thumb_path(path,self.object)
+        if os.path.isfile(thumb):
+            self.pix = gtk.gdk.pixbuf_new_from_file(thumb)
+            self.pixmap.set_from_pixbuf(self.pix)
 
         self.change_dialog.get_widget("private").set_active(photo.getPrivacy())
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
@@ -627,24 +621,28 @@ class LocalMediaProperties:
             "on_apply_clicked" : self.on_apply_clicked,
             "on_add_attr_clicked": self.on_add_attr_clicked,
             "on_delete_attr_clicked" : self.on_delete_attr_clicked,
-            "on_update_attr_clicked" : self.on_update_attr_clicked,
             })
         self.redraw_attr_list()
 
     def on_up_clicked(self,obj):
-        store,iter = obj.get_selected()
+        store,iter = self.atree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            # select row
+            row = self.atree.get_row(iter)
+            if row != 0:
+                self.atree.select_row(row-1)
 
     def on_down_clicked(self,obj):
-        store,iter = obj.get_selected()
-        if iter:
-            row = store.get_path(iter)
-            # select row
+        model,iter = self.atree.get_selected()
+        if not iter:
+            return
+        row = self.atree.get_row(iter)
+        self.atree.select_row(row+1)
 
     def redraw_attr_list(self):
-        Utils.redraw_list(self.alist,self.attr_model,disp_attr)
+        self.atree.clear()
+        for attr in self.alist:
+            d = [attr.getType(),attr.getValue()]
+            self.atree.add(d,attr)
         
     def on_apply_clicked(self, obj):
         priv = self.change_dialog.get_widget("private").get_active()
@@ -666,11 +664,10 @@ class LocalMediaProperties:
         self.on_apply_clicked(obj)
         Utils.destroy_passed_object(obj)
         
-    def on_attr_list_select_row(self,obj,row,b,c):
-        store,iter = obj.get_selected()
+    def on_attr_list_select_row(self,obj):
+        store,iter = self.atree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            attr = self.alist[row[0]]
+            attr = self.atree.get_object(iter)
 
             self.attr_type.set_label(attr.getType())
             self.attr_value.set_text(attr.getValue())
@@ -681,10 +678,9 @@ class LocalMediaProperties:
     def on_update_attr_clicked(self,obj):
         import AttrEdit
 
-        store,iter = obj.get_selected()
+        store,iter = self.atree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            attr = self.alist[row[0]]
+            attr = self.atree.get_object(iter)
             AttrEdit.AttributeEditor(self,attr,"Media Object",
                                      Plugins.get_image_attributes())
 
@@ -717,21 +713,23 @@ class GlobalMediaProperties:
         self.change_dialog = gtk.glade.XML(const.imageselFile,"change_global")
         self.descr_window = self.change_dialog.get_widget("description")
         self.notes = self.change_dialog.get_widget("notes")
-        pixmap = self.change_dialog.get_widget("pixmap")
+        self.pixmap = self.change_dialog.get_widget("pixmap")
         self.attr_type = self.change_dialog.get_widget("attr_type")
         self.attr_value = self.change_dialog.get_widget("attr_value")
         self.attr_details = self.change_dialog.get_widget("attr_details")
 
         self.attr_list = self.change_dialog.get_widget("attr_list")
-        self.attr_model = gtk.ListStore(gobject.TYPE_STRING,gobject.TYPE_STRING)
-        Utils.build_columns(self.attr_list, [(_('Attribute'),150,-1), (_('Value'),100,-1)])
-        self.attr_list.set_model(self.attr_model)
-        self.attr_list.get_selection().connect('changed',self.on_attr_list_select_row)
+
+        titles = [(_('Attribute'),-1,150),(_('Value'),-1,100)]
+
+        self.atree = ListModel.ListModel(self.attr_list,titles,
+                                         self.on_attr_list_select_row,
+                                         self.on_update_attr_clicked)
         
         self.descr_window.set_text(self.object.getDescription())
         mtype = self.object.getMimeType()
         pb = gtk.gdk.pixbuf_new_from_file(Utils.thumb_path(self.path,self.object))
-        pixmap.set_from_pixbuf(pb)
+        self.pixmap.set_from_pixbuf(pb)
 
         self.change_dialog.get_widget("gid").set_text(self.object.getId())
         self.makelocal = self.change_dialog.get_widget("makelocal")
@@ -755,16 +753,18 @@ class GlobalMediaProperties:
         self.redraw_attr_list()
 
     def on_up_clicked(self,obj):
-        store,iter = obj.get_selected()
+        store,iter = self.atree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            # select row
+            row = self.atree.get_row(iter)
+            if row != 0:
+                self.atree.select_row(row-1)
 
     def on_down_clicked(self,obj):
-        store,iter = obj.get_selected()
-        if iter:
-            row = store.get_path(iter)
-            # select row
+        model,iter = self.atree.get_selected()
+        if not iter:
+            return
+        row = self.atree.get_row(iter)
+        self.atree.select_row(row+1)
 
     def update_info(self):
         fname = self.object.getPath()
@@ -786,7 +786,10 @@ class GlobalMediaProperties:
             self.update()
 
     def redraw_attr_list(self):
-        Utils.redraw_list(self.alist,self.attr_model,disp_attr)
+        self.atree.clear()
+        for attr in self.alist:
+            d = [attr.getType(),attr.getValue()]
+            self.atree.add(d,attr)
 
     def button_press(self,obj,event):
         store,iter = self.refmodel.selection.get_selected()
@@ -800,11 +803,9 @@ class GlobalMediaProperties:
             return
         self.refs = 1
 
+        titles = [(_('Type'),0,150),(_('ID'),1,75),(_('Value'),2,100)]
         self.refmodel = ListModel.ListModel(self.change_dialog.get_widget("refinfo"),
-                                            [(_('Type'),150),(_('ID'),75),(_('Value'),100)])
-        ref = self.refmodel.tree 
-
-        ref.connect('button-press-event',self.button_press)
+                                            titles,event_func=self.button_press)
         for key in self.db.getPersonKeys():
             p = self.db.getPerson(key)
             for o in p.getPhotoList():
@@ -849,10 +850,9 @@ class GlobalMediaProperties:
         Utils.destroy_passed_object(obj)
         
     def on_attr_list_select_row(self,obj,row,b,c):
-        store,iter = obj.get_selected()
+        store,iter = self.atree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            attr = self.alist[row[0]]
+            attr = self.atree.get_object(iter)
 
             self.attr_type.set_label(attr.getType())
             self.attr_value.set_text(attr.getValue())
@@ -863,10 +863,9 @@ class GlobalMediaProperties:
     def on_update_attr_clicked(self,obj):
         import AttrEdit
 
-        store,iter = obj.get_selected()
+        store,iter = self.atree.get_selected()
         if iter:
-            row = store.get_path(iter)
-            attr = self.alist[row[0]]
+            attr = self.atree.get_object(iter)
             AttrEdit.AttributeEditor(self,attr,"Media Object",
                                      Plugins.get_image_attributes())
 
@@ -879,15 +878,6 @@ class GlobalMediaProperties:
         import AttrEdit
         AttrEdit.AttributeEditor(self,None,"Media Object",
                                  Plugins.get_image_attributes())
-
-#-------------------------------------------------------------------------
-#
-# 
-#
-#-------------------------------------------------------------------------
-def disp_attr(attr):
-    return [const.display_pattr(attr.getType()),attr.getValue(),'']
-
 
 class DeleteMediaQuery:
 
