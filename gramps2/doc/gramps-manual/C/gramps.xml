@@ -558,7 +558,7 @@
 	etc.) The three buttons are available on the right side of the 
 	children list-box. The <guibutton>+</guibutton> 
 	and <guibutton>+</guibutton> buttons allow to add and remove 
-	children, respectively. Clicking <guibutton><-</guibutton> makes 
+	children, respectively. Clicking left arrow button makes 
 	the selected child the Active person.</para> 
       </sect3>
 
