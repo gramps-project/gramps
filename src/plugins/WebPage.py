@@ -65,6 +65,8 @@ _month = [
     "",    "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ]
 
+_hline = " "    # Everything is underlined, so use blank
+
 #------------------------------------------------------------------------
 #
 # 
@@ -104,7 +106,7 @@ class HtmlLinkDoc(HtmlDoc.HtmlDoc):
 #------------------------------------------------------------------------
 class IndividualPage:
 
-    def __init__(self,person,photos,restrict,private,uc,link,map,
+    def __init__(self,person,photos,restrict,private,uc,link,mini_tree,map,
                  dir_name,imgdir,doc,id,idlink,ext):
         self.person = person
         self.ext = ext
@@ -118,6 +120,7 @@ class IndividualPage:
         self.usecomments = not uc
         self.dir = dir_name
         self.link = link
+        self.mini_tree = mini_tree
         self.slist = []
         self.scnt = 1
         self.image_dir = imgdir
@@ -236,6 +239,19 @@ class IndividualPage:
             else:
                 self.doc.write_text("%s. " % info)
                 
+    def write_tree(self):
+        if not self.mini_tree or not self.person.getMainParents(): return
+        self.doc.start_paragraph("FamilyTitle")
+        self.doc.end_paragraph()
+
+        self.doc.start_paragraph("Data")
+        self.doc.write_raw('<PRE>\n')
+        tree = MiniTree(self.person,self.doc)
+        for line in tree.lines:
+            if line: self.doc.write_raw(line + '\n')
+        self.doc.write_raw('</PRE>\n')
+        self.doc.end_paragraph()
+
     def create_page(self):
         """Generate the HTML page for the specific person"""
         
@@ -318,6 +334,9 @@ class IndividualPage:
         
         if self.scnt > 1:
             self.write_sources()
+
+        # draw mini-tree
+        self.write_tree()
 
         if self.link:
             self.doc.start_paragraph("Data")
@@ -593,8 +612,8 @@ class IndividualPage:
 #------------------------------------------------------------------------
 class WebReport(Report.Report):
     def __init__(self,db,person,target_path,max_gen,photos,filter,restrict,
-                 private, srccomments, include_link, style, image_dir,
-                 template_name,use_id,id_link,gendex,ext):
+                 private, srccomments, include_link, include_mini_tree,
+                 style, image_dir, template_name,use_id,id_link,gendex,ext):
         self.db = db
         self.ext = ext
         self.use_id = use_id
@@ -608,6 +627,7 @@ class WebReport(Report.Report):
         self.private = private
         self.srccomments = srccomments
         self.include_link = include_link
+        self.include_mini_tree = include_mini_tree
         self.selected_style = style
         self.image_dir = image_dir
         self.use_gendex = gendex
@@ -808,8 +828,9 @@ class WebReport(Report.Report):
                                person.getPrimaryName().getRegularName()])
             idoc = IndividualPage(person, self.photos, self.restrict,
                                   self.private, self.srccomments,
-                                  self.include_link, my_map, dir_name,
-                                  self.image_dir, tdoc, self.use_id,self.id_link,self.ext)
+                                  self.include_link, self.include_mini_tree,
+                                  my_map, dir_name, self.image_dir, tdoc,
+                                  self.use_id,self.id_link,self.ext)
             idoc.create_page()
             idoc.close()
             self.progress_bar_step()
@@ -862,6 +883,10 @@ class WebReportDialog(Report.ReportDialog):
         imgdir_msg = _("Image subdirectory")
         ext_msg = _("File extension")
 
+        tree_msg = _("Include short ancestor tree")
+        self.mini_tree = gtk.CheckButton(tree_msg)
+        self.mini_tree.set_active(1)
+
         self.use_link = gtk.CheckButton(lnk_msg)
         self.use_link.set_active(1) 
         self.no_private = gtk.CheckButton(priv_msg)
@@ -882,6 +907,7 @@ class WebReportDialog(Report.ReportDialog):
                                       '.cgi'])
 
         self.add_option(imgdir_msg,self.imgdir)
+        self.add_option('',self.mini_tree)
         self.add_option('',self.use_link)
 
         title = _("Privacy")
@@ -1112,6 +1138,7 @@ class WebReportDialog(Report.ReportDialog):
         user selected choices for later use."""
         Report.ReportDialog.parse_report_options_frame(self)
         self.include_link = self.use_link.get_active()
+        self.include_mini_tree = self.mini_tree.get_active()
 
     def parse_other_frames(self):
         """Parse the privacy options frame of the dialog.  Save the
@@ -1161,7 +1188,8 @@ class WebReportDialog(Report.ReportDialog):
             MyReport = WebReport(self.db, self.person, self.target_path,
                                  self.max_gen, self.photos, self.filter,
                                  self.restrict, self.private, self.srccomments,
-                                 self.include_link, self.selected_style,
+                                 self.include_link, self.include_mini_tree,
+                                 self.selected_style,
                                  self.img_dir_text,self.template_name,
                                  self.use_id,self.id_link,self.use_gendex,
                                  self.html_ext)
@@ -1169,8 +1197,69 @@ class WebReportDialog(Report.ReportDialog):
         except Errors.FilterError, msg:
             (m1,m2) = msg.messages()
             ErrorDialog(m1,m2)
-            
-    
+
+class MiniTree:
+    """
+    This is one dirty piece of code, that is why I made it it's own
+    class.  I'm sure that someone with more knowledge of GRAMPS can make
+    it much cleaner.
+    """
+    def __init__(self,person,doc):
+        self.doc = doc
+        self.person = person
+        self.lines = [ "" for i in range(9) ]
+        name = self.person.getPrimaryName().getRegularName()
+        self.lines[4] = name
+        indent = (len(name) - 1) / 2
+        self.lines[3] = self.lines[5] = self.lines[6] = ' ' * indent + '|'
+        self.draw_parents(person,2,6,indent,1)
+
+    def draw_parents(self, person, father_line, mother_line, indent, recurse):
+        family = person.getMainParents()
+        if not family: return
+
+        father_name = mother_name = ""
+        father = family.getFather()
+        mother = family.getMother()
+        if father:
+            father_name = father.getPrimaryName().getRegularName()
+        if mother:
+            mother_name = mother.getPrimaryName().getRegularName()
+        pad = len(father_name)
+        if pad < len(mother_name):
+            pad = len(mother_name)
+        father_name = _hline + father_name + _hline * (pad-len(father_name)+1)
+        mother_name = _hline + mother_name + _hline * (pad-len(mother_name)+1)
+        self.draw_father(father, father_name, father_line, indent)
+        self.draw_mother(mother, mother_name, mother_line, indent)
+        indent += pad+3
+        if recurse:
+            if father:
+                self.draw_parents(father, father_line-1, father_line-1,
+                                  indent, 0)
+            if mother:
+                self.draw_parents(mother, mother_line+1, mother_line+1,
+                                  indent, 0)
+
+    def draw_father(self, person, name, line, indent):
+        self.draw_string(line, indent, '|')
+        self.draw_string(line-1, indent+1, "")
+        self.draw_link(line-1, person, name)
+
+    def draw_mother(self, person, name, line, indent):
+        self.draw_string(line+1, indent, '|')
+        self.draw_link(line+1, person, name)
+
+    def draw_string(self, line, indent, text):
+        self.lines[line] += ' ' * (indent-len(self.lines[line])) + text
+
+    def draw_link(self, line, person, name):
+        if person and person.getId():
+            self.lines[line] += "<A HREF='%s%s'>%s</A>" % (person.getId(),
+                                                           self.doc.ext, name)
+        else:
+            self.lines[line] += "<U>%s</U>" % name
+
 #------------------------------------------------------------------------
 #
 # 
