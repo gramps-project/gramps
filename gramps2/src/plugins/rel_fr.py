@@ -43,8 +43,8 @@ _level_name = [ "", "premier", "deuxième", "troisième", "quatrième", "cinqui�
                 "treizième", "quatorzième", "quinzième", "seizième",
                 "dix-septième", "dix-huitième", "dix_neuvième", "vingtième", ]
 
-_parents_level = [ "", "parents", "grand-parents", "arrières grand-parents",
-                   "trisaïeux", ]
+_parents_level = [ "", "les parents", "les grand-parents", "les arrières grand-parents",
+                   "les trisaïeux", ]
 
 _father_level = [ "", "le père", "le grand-père", "l'arrière grand-père", "le trisaïeul", ]
 
@@ -73,62 +73,62 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
         Relationship.RelationshipCalculator.__init__(self,db)
 
     def get_male_cousin(self,level):
-        return "cousin au %s degré" % (_level_name[level])
+        return "le cousin au %s degré" % (_level_name[level])
 
     def get_female_cousin(self,level):
-        return "cousine au %s degré" % (_level_name[level])
+        return "la cousine au %s degré" % (_level_name[level])
 
     def get_parents(self,level):
         if level>len(_parents_level)-1:
-            return "ancêtres lointains"
+            return "les ancêtres lointains"
         else:
             return _parents_level[level]
 
     def get_father(self,level):
         if level>len(_father_level)-1:
-            return "ancêtre lointain"
+            return "l'ancêtre lointain"
         else:
             return _father_level[level]
 
     def get_son(self,level):
         if level>len(_son_level)-1:
-            return "descendant lointain"
+            return "le descendant lointain"
         else:
             return _son_level[level]
 
     def get_mother(self,level):
         if level>len(_mother_level)-1:
-            return "ancêtre lointaine"
+            return "l'ancêtre lointaine"
         else:
             return _mother_level[level]
 
     def get_daughter(self,level):
         if level>len(_daughter_level)-1:
-            return "descendante lointaine"
+            return "la descendante lointaine"
         else:
             return _daughter_level[level]
 
     def get_aunt(self,level):
         if level>len(_sister_level)-1:
-            return "ancêtre lointaine"
+            return "l'ancêtre lointaine"
         else:
             return _sister_level[level]
 
     def get_uncle(self,level):
         if level>len(_brother_level)-1:
-            return "ancêtre lointain"
+            return "l'ancêtre lointain"
         else:
             return _brother_level[level]
 
     def get_nephew(self,level):
         if level>len(_nephew_level)-1:
-            return "descendant lointain"
+            return "le descendant lointain"
         else:
             return _nephew_level[level]
 
     def get_niece(self,level):
         if level>len(_niece_level)-1:
-            return "descendant lointaine"
+            return "la descendante lointaine"
         else:
             return _niece_level[level]
 
