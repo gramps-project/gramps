@@ -1639,12 +1639,16 @@ class RelDataBase:
 
     def __init__(self):
         """creates a new RelDataBase"""
-        self.new()
         self.iprefix = "I%d"
         self.sprefix = "S%d"
         self.oprefix = "O%d"
         self.pprefix = "P%d"
         self.fprefix = "F%d"
+        self.familyMap = {}
+        self.personMap = {}
+        self.sourceMap = {}
+        self.placeMap = {}
+        self.new()
 
     def set_iprefix(self,val):
         if _id_reg.search(val):
@@ -1678,8 +1682,20 @@ class RelDataBase:
 
     def new(self):
         """initializes the RelDataBase to empty values"""
-        self.personMap = {}
+
+        # eliminate memory reference cycles for 1.5.2 garbage collection 
+        for f in self.familyMap.values():
+            f.Father = None
+            f.Mother = None
+            f.Children = []
         self.familyMap = {}
+
+        for p in self.personMap.values():
+            p.MainFamily = None
+            p.AltFamilyList = None
+            p.FamilyList = None
+        self.personMap = {}
+
         self.sourceMap = {}
         self.placeMap  = {}
         self.objectMap = {}
