@@ -110,6 +110,7 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
         self.f.write('<office:automatic-styles>\n')
         self.f.write('<style:style style:name="GSuper" style:family="text">')
         self.f.write('<style:properties style:text-position="super 58%"/>')
+	self.f.write('</style:style>\n')
 	self.f.write('<style:style style:name="P1" style:family="paragraph">\n')
 	self.f.write('<style:properties fo:margin-left="0cm" ')
 	self.f.write('fo:margin-right="0cm" fo:text-indent="0cm"/>\n')
@@ -151,6 +152,11 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
             self._write_zip()
         except:
             raise Errors.ReportError("Could not create %s" % self.filename)
+
+        print self.print_req
+        if self.print_req:
+            os.environ["FILE"] = self.filename
+            os.system ('/usr/bin/oodraw "$FILE" &')
 
     def _write_zip(self):
         
@@ -597,4 +603,9 @@ class OpenDrawDoc(DrawDoc.DrawDoc):
 # Register document generator
 #
 #-------------------------------------------------------------------------
-Plugins.register_draw_doc(_("OpenOffice.org Draw"),OpenDrawDoc,1,1,".sxd");
+print_label = None
+if os.access ("/usr/bin/oodraw", os.X_OK):
+    print_label = _("Open in OpenOffice.org")
+
+Plugins.register_draw_doc(_("OpenOffice.org Draw"),OpenDrawDoc,1,1,".sxd",
+                          print_label);
