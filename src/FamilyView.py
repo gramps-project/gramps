@@ -178,11 +178,11 @@ class FamilyView:
         self.child_list.set_search_column(0)
         self.child_selection = self.child_list.get_selection()
 
-        Utils.build_columns(self.child_list,
-                            [ ('',30,0), (_('Name'),250,-1), (_('ID'),50,-1),
-                              (_('Gender'),100,-1), (_('Birth date'),150,6),
-                              (_('Status'),100,-1), ('',0,-1) ])
-
+        if not already_init:
+            Utils.build_columns(self.child_list,
+                                [ ('',30,0), (_('Name'),250,-1), (_('ID'),50,-1),
+                                  (_('Gender'),100,-1), (_('Birth date'),150,6),
+                                  (_('Status'),100,-1), ('',0,-1) ])
         self.cadded[fv] = 1
         
     def edit_active_person(self,obj,event):
