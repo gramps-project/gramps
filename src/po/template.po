@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GRAMPS VERSION\n"
-"POT-Creation-Date: Wed Jul  9 00:04:38 2003\n"
+"POT-Creation-Date: Wed Jul  9 00:10:20 2003\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5854,10 +5854,6 @@ msgstr ""
 
 #: plugins/WritePkg.py:197
 msgid "Export to GRAMPS package"
-msgstr ""
-
-#: plugins/book.glade:26
-msgid "title"
 msgstr ""
 
 #: plugins/book.glade:59
