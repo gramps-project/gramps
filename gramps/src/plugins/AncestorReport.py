@@ -18,7 +18,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-"Generate files/Ahnentalfel Chart"
+"Generate files/Ahnentafel Chart"
 
 import RelLib
 import const
@@ -147,7 +147,7 @@ class AncestorReport:
         
         name = self.start.getPrimaryName().getRegularName()
         self.doc.start_paragraph("Title")
-        self.doc.write_text("Ahnentalfel Chart for " + name)
+        self.doc.write_text("Ahnentafel Chart for " + name)
         self.doc.end_paragraph()
     
         keys = self.map.keys()
@@ -266,7 +266,7 @@ def report(database,person):
     PaperMenu.make_paper_menu(topDialog.get_widget("papersize"))
     PaperMenu.make_orientation_menu(topDialog.get_widget("orientation"))
 
-    topDialog.get_widget("labelTitle").set_text("Ahnentalfel Report for " + name)
+    topDialog.get_widget("labelTitle").set_text("Ahnentafel Report for " + name)
     topDialog.signal_autoconnect({
         "destroy_passed_object" : utils.destroy_passed_object,
         "on_save_clicked" : on_save_clicked,
