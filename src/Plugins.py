@@ -511,7 +511,8 @@ def register_relcalc(func, languages):
     try:
         if os.environ["LANG"] in languages:
             _relcalc_task = func
-    pass
+    except:
+        pass
 
 def relationship_function():
     global _relcalc_task
