@@ -1487,7 +1487,6 @@ class EditPerson:
             self.redraw_event_list()
         elif page == 6 and self.not_loaded:
             self.not_loaded = 0
-            self.gallery.load_images()
         elif page == 8 and self.lds_not_loaded:
             self.lds_not_loaded = 0
             self.draw_lds()
