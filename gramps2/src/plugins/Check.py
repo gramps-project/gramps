@@ -58,15 +58,21 @@ from QuestionDialog import OkDialog, MissingMediaDialog
 def runTool(database,active_person,callback,parent=None):
 
     try:
-        checker = CheckIntegrity(database,parent)
+        trans = database.start_transaction()
+        checker = CheckIntegrity(database,parent,trans)
         checker.check_for_broken_family_links()
         checker.cleanup_missing_photos(0)
         checker.check_parent_relationships()
         checker.cleanup_empty_families(0)
+        database.add_transaction(trans)
+
         errs = checker.build_report(0)
         if errs:
             checker.report(0)
     except:
+        database.add_transaction(trans)
+        database.undo()
+
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
@@ -77,8 +83,9 @@ def runTool(database,active_person,callback,parent=None):
 #-------------------------------------------------------------------------
 class CheckIntegrity:
     
-    def __init__(self,db,parent):
+    def __init__(self,db,parent,trans):
         self.db = db
+        self.trans = trans
         self.bad_photo = []
         self.replaced_photo = []
         self.removed_photo = []
@@ -101,11 +108,11 @@ class CheckIntegrity:
             if father_id and family_id not in father.get_family_id_list():
                 self.broken_parent_links.append((father_id,family_id))
                 father.add_family_id(family_id)
-                self.db.commit_person(father)
+                self.db.commit_person(father,self.trans)
             if mother_id and family_id not in mother.get_family_id_list():
                 self.broken_parent_links.append((mother_id,family_id))
                 mother.add_family_id(family_id)
-                self.db.commit_person(mother)
+                self.db.commit_person(mother,self.trans)
             for child_id in family.get_child_id_list():
                 child = self.db.find_person_from_id(child_id)
                 if family_id == child.get_main_parents_family_id():
@@ -115,7 +122,7 @@ class CheckIntegrity:
                         break
                 else:
                     family.remove_child_id(child_id)
-                    self.db.commit_family(family)
+                    self.db.commit_family(family,self.trans)
                     self.broken_links.append((child_id,family_id))
 
     def cleanup_missing_photos(self,cl=0):
@@ -133,7 +140,7 @@ class CheckIntegrity:
                         nl.remove(o)
                 if changed:
                     p.set_media_list(nl)
-                    self.db.commit_person(p)
+                    self.db.commit_person(p,self.trans)
                     
             for key in self.db.get_person_keys():
                 p = self.db.find_person_from_id(key)
@@ -145,7 +152,7 @@ class CheckIntegrity:
                         nl.remove(o)
                 if changed:
                     p.set_media_list(nl)
-                    self.db.commit_person(p)
+                    self.db.commit_person(p,self.trans)
                     
             for key in self.db.get_source_keys():
                 p = self.db.find_source_from_id(key)
@@ -157,7 +164,7 @@ class CheckIntegrity:
                         nl.remove(o)
                 if changed:
                     p.set_media_list(nl)
-                    self.db.commit_source(p)
+                    self.db.commit_source(p,self.trans)
                 
             for key in self.db.get_place_id_keys():
                 p = self.db.get_place_id(key)
@@ -169,9 +176,9 @@ class CheckIntegrity:
                         nl.remove(o)
                 if changed:
                     p.set_media_list(nl)
-                    self.db.commit_place(p)
+                    self.db.commit_place(p,self.trans)
             self.removed_photo.append(ObjectId)
-            self.db.remove_object(ObjectId) 
+            self.db.remove_object(ObjectId,self.trans) 
     
         def leave_clicked():
             self.bad_photo.append(ObjectId)
@@ -239,7 +246,7 @@ class CheckIntegrity:
             child = self.db.find_person_from_id(key)
             child.remove_parent_family_id(family_id)
             child.remove_family_id(family_id)
-        self.db.delete_family(family_id)
+        self.db.delete_family(family_id,self.trans)
 
     def check_parent_relationships(self):
         for key in self.db.get_family_keys():
@@ -258,12 +265,12 @@ class CheckIntegrity:
                 if mother.get_gender() == RelLib.Person.male:
                     family.set_father_id(mother_id)
                     family.set_mother_id(None)
-                    self.db.commit_family(family)
+                    self.db.commit_family(family,self.trans)
             elif not mother_id:
                 if father.get_gender() == RelLib.Person.female:
                     family.set_mother_id(father_id)
                     family.set_father_id(None)
-                    self.db.commit_family(family)
+                    self.db.commit_family(family,self.trans)
             else:
                 fgender = father.get_gender()
                 mgender = mother.get_gender()
@@ -271,19 +278,19 @@ class CheckIntegrity:
                     if fgender == mgender and fgender != RelLib.Person.unknown:
                         family.set_relationship("Partners")
                         self.fam_rel.append(family_id)
-                        self.db.commit_family(family)
+                        self.db.commit_family(family,self.trans)
                     elif fgender == RelLib.Person.female or mgender == RelLib.Person.male:
                         family.set_father_id(mother_id)
                         family.set_mother_id(father_id)
                         self.fam_rel.append(family_id)
-                        self.db.commit_family(family)
+                        self.db.commit_family(family,self.trans)
                 elif fgender != mgender:
                     family.set_relationship("Unknown")
                     self.fam_rel.append(family_id)
                     if fgender == RelLib.Person.female or mgender == RelLib.Person.male:
                         family.set_father_id(mother_id)
                         family.set_mother_id(father_id)
-                    self.db.commit_family(family)
+                    self.db.commit_family(family,self.trans)
 
     def build_report(self,cl=0):
         bad_photos = len(self.bad_photo)

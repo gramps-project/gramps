@@ -65,8 +65,12 @@ _nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")
 #-------------------------------------------------------------------------
 def runTool(database,active_person,callback,parent=None):
     try:
-        PatchNames(database,callback,parent)
+        trans = database.start_transaction()
+        PatchNames(database,callback,parent,trans)
+        database.add_transaction(trans)
     except:
+        database.add_transaction(trans)
+        database.undo()
         import DisplayTrace
         DisplayTrace.DisplayTrace()
 
@@ -77,10 +81,11 @@ def runTool(database,active_person,callback,parent=None):
 #-------------------------------------------------------------------------
 class PatchNames:
 
-    def __init__(self,db,callback,parent):
+    def __init__(self,db,callback,parent,trans):
         self.cb = callback
         self.db = db
         self.parent = parent
+        self.trans = trans
         self.win_key = self
         self.child_windows = {}
         self.title_list = []
@@ -209,7 +214,7 @@ class PatchNames:
                 name = p.get_primary_name()
                 name.set_first_name(grp[1])
                 p.set_nick_name(grp[2])
-                self.db.commit_person(p)
+                self.db.commit_person(p,self.trans)
 
         for grp in self.title_list:
             iter = self.title_hash[grp[0]]
@@ -219,7 +224,7 @@ class PatchNames:
                 name = p.get_primary_name()
                 name.set_first_name(grp[2])
                 name.set_title(grp[1])
-                self.db.commit_person(p)
+                self.db.commit_person(p,self.trans)
 
         self.close(obj)
         self.cb(1)
