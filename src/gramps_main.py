@@ -1891,6 +1891,10 @@ def load_places():
 
     index = 0
     places = database.getPlaceMap().values()
+
+    nlist = map(lambda x: (string.upper(x.get_title()),x),places)
+    nlist.sort()
+    places = map(lambda(key,x): x, nlist)
     
     for src in places:
         title = src.get_title()
