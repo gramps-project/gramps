@@ -177,6 +177,7 @@ class PlaceView:
         self.selection.selected_foreach(self.blist,mlist)
 
         for place in mlist:
+            used = 0
             for key in self.db.getPersonKeys():
                 p = self.db.getPerson(key)
                 event_list = [p.getBirth(), p.getDeath()] + p.getEventList()
