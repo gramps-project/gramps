@@ -42,7 +42,6 @@ try:
     import xml.sax.saxexts
     sax = 1
 except:
-    from codecs import *
     sax = 2
 
 #-------------------------------------------------------------------------
@@ -67,7 +66,8 @@ def importData(database, filename, callback):
     else:
         parser = xml.sax.make_parser()
         parser.setContentHandler(GrampsParser(database,callback,basefile,1))
-        xml_file = EncodedFile(gzip.open(filename,"rb"),'utf-8','latin-1')
+        xml_file = gzip.open(filename,"rb")
+#        xml_file = EncodedFile(gzip.open(filename,"rb"),'utf-8','latin-1')
         parser.parse(xml_file)
         
     xml_file.close()
@@ -150,6 +150,9 @@ if __name__ == "__main__":
     loadData(db,file,lcb)
     t2 = time.time()
     print t2 - t1
+
+    for person in db.getPersonMap().values():
+        print person.getPrimaryName().getName()
 
 
 

@@ -154,6 +154,7 @@ class EditPerson:
             "on_photolist_button_press_event" : on_photolist_button_press_event,
             "on_addphoto_clicked" : on_add_photo_clicked,
             "on_deletephoto_clicked" : on_delete_photo_clicked,
+            "on_event_note_clicked" : on_event_note_clicked,
             "on_showsource_clicked" : on_showsource_clicked,
             "on_applyPerson_clicked" : on_apply_person_clicked
             })
@@ -261,7 +262,7 @@ class EditPerson:
 
         current_row = self.name_list.get_data(INDEX)
         
-        if self.name_index >= 0:
+        if self.name_index > 0:
             if current_row <= 0:
                 current_row = 0
             elif self.name_index <= current_row:
@@ -288,7 +289,7 @@ class EditPerson:
 
         current_row = self.web_list.get_data(INDEX)
         
-        if self.web_index >= 0:
+        if self.web_index > 0:
             if current_row <= 0:
                 current_row = 0
             elif self.web_index <= current_row:
@@ -315,7 +316,7 @@ class EditPerson:
 
         current_row = self.attr_list.get_data(INDEX)
         
-        if self.attr_index >= 0:
+        if self.attr_index > 0:
             if current_row <= 0:
                 current_row = 0
             elif self.attr_index <= current_row:
@@ -344,7 +345,7 @@ class EditPerson:
 
         current_row = self.address_list.get_data(INDEX)
         
-        if self.address_index >= 0:
+        if self.address_index > 0:
             if current_row <= 0:
                 current_row = 0
             elif self.address_index <= current_row:
@@ -1075,6 +1076,38 @@ def on_savephoto_clicked(obj):
 
     utils.modified()
     utils.destroy_passed_object(obj)
+
+
+def on_save_note_clicked(obj):
+    textbox = obj.get_data("w")
+    data = obj.get_data("n")
+
+    text = textbox.get_chars(0,-1)
+    if text != data.getNote():
+        data.setNote(text)
+        utils.modified()
+
+    utils.destroy_passed_object(obj)
+
+def on_event_note_clicked(obj):
+    row = obj.get_data(INDEX)
+    data = obj.get_row_data(row)
+    edit_person_obj = obj.get_data(EDITPERSON)
+    if row >= 0:
+        editnote = libglade.GladeXML(const.editPersonFile,"editnote")
+        textobj = editnote.get_widget("notetext")
+        en_obj = editnote.get_widget("editnote")
+        en_obj.set_data("n",data)
+        en_obj.set_data("w",textobj)
+
+        textobj.set_point(0)
+        textobj.insert_defaults(data.getNote())
+        textobj.set_word_wrap(1)
+        
+        editnote.signal_autoconnect({
+            "on_save_note_clicked" : on_save_note_clicked,
+            "destroy_passed_object" : utils.destroy_passed_object
+            })
 
 #-------------------------------------------------------------------------
 #

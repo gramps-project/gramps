@@ -70,19 +70,24 @@ class GrampsParser(handler.ContentHandler):
         self.note_list = []
 
         self.in_note = 0
+        self.in_attribute = 0
+        self.in_old_attr = 0
         self.in_stext = 0
         self.in_scomments = 0
         self.in_people = 0
         self.db = database
         self.base = base
         self.in_family = 0
-        self.in_sources = 0
+        self.in_source_ref = 0
+        self.in_source = 0
+        self.in_address = 0
+        self.in_event = 0
         self.person = None
         self.family = None
+        self.address = None
         self.source = None
-        self.sourceRef = None
+        self.source_ref = None
         self.is_import = is_import
-        self.in_address = 0
 
         self.resname = ""
         self.resaddr = "" 
@@ -141,15 +146,21 @@ class GrampsParser(handler.ContentHandler):
     def start_event(self,attrs):
         self.event = Event()
         self.event_type = string.capwords(attrs["type"])
-
+        self.in_event = 1
+        
     #---------------------------------------------------------------------
     #
     #
     #
     #---------------------------------------------------------------------
     def start_attribute(self,attrs):
+        self.in_attribute = 1
         self.attribute = Attribute()
-        self.attribute.setType(string.capwords(attrs["type"]))
+        if attrs.has_key('type'):
+            self.in_old_attr = 1
+            self.attribute.setType(string.capwords(attrs["type"]))
+        else:
+            self.in_old_attr = 0
         self.person.addAttribute(self.attribute)
 
     #---------------------------------------------------------------------
@@ -194,9 +205,9 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_people(self,attrs):
-        self.in_family  = 0
-        self.in_people  = 1
-        self.in_sources = 0
+        self.in_family = 0
+        self.in_people = 1
+        self.in_source = 0
         if self.is_import == 0 and attrs.has_key("default"):
             self.tempDefault = int(attrs["default"])
 
@@ -322,9 +333,9 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_families(self,attrs):
-        self.in_family  = 1
-        self.in_people  = 0
-        self.in_sources = 0
+        self.in_family = 1
+        self.in_people = 0
+        self.in_source = 0
 
     #---------------------------------------------------------------------
     #
@@ -332,9 +343,9 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_sources(self,attrs):
-        self.in_family  = 0
-        self.in_people  = 0
-        self.in_sources = 1
+        self.in_family = 0
+        self.in_people = 0
+        self.in_source = 1
         
     #---------------------------------------------------------------------
     #
@@ -342,13 +353,21 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def start_sourceref(self,attrs):
-        self.source = Source()
+        self.source_ref = SourceRef()
+        self.in_source_ref = 1
         if self.is_import:
-            self.sourceRef = self.db.findSource(attrs["ref"],self.smap)
+            self.source = self.db.findSource(attrs["ref"],self.smap)
         else:
-            self.sourceRef = self.db.findSourceNoMap(attrs["ref"])
-        self.source.setBase(self.sourceRef)
-        self.event.setSource(self.source)
+            self.source = self.db.findSourceNoMap(attrs["ref"])
+        self.source_ref.setBase(self.source)
+        if self.in_address:
+            self.address.setSourceRef(self.source_ref)
+        elif self.in_event:
+            self.event.setSourceRef(self.source_ref)
+        elif self.in_attribute:
+            self.attribute.setSourceRef(self.source_ref)
+        else: 
+            print "Sorry, I'm lost"
 
     #---------------------------------------------------------------------
     #
@@ -357,9 +376,9 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def start_source(self,attrs):
         if self.is_import:
-            self.sourceRef = self.db.findSource(attrs["id"],self.smap)
+            self.source = self.db.findSource(attrs["id"],self.smap)
         else:
-            self.sourceRef = self.db.findSourceNoMap(attrs["id"])
+            self.source = self.db.findSourceNoMap(attrs["id"])
 
     #---------------------------------------------------------------------
     #
@@ -397,6 +416,25 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_attribute(self,tag):
+        self.in_attribute = 0
+        if self.in_old_attr:
+            self.attribute.setValue(tag)
+        self.in_old_attr = 0
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_attr_type(self,tag):
+        self.attribute.setType(tag)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_attr_value(self,tag):
         self.attribute.setValue(tag)
 
     #---------------------------------------------------------------------
@@ -413,6 +451,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_event(self,tag):
+        self.in_event = 0
         self.event.setName(self.event_type)
 
         if self.event_type == "Birth":
@@ -497,7 +536,15 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_stitle(self,tag):
-        self.sourceRef.setTitle(tag)
+        self.source.setTitle(tag)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def stop_sourceref(self,tag):
+        self.in_source_ref = 0
 
     #---------------------------------------------------------------------
     #
@@ -505,7 +552,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_sauthor(self,tag):
-        self.sourceRef.setAuthor(tag)
+        self.source.setAuthor(tag)
 
     #---------------------------------------------------------------------
     #
@@ -515,7 +562,7 @@ class GrampsParser(handler.ContentHandler):
     def stop_sdate(self,tag):
         date = Date()
         date.quick_set(tag)
-        self.source.setDate(date)
+        self.source_ref.setDate(date)
         
     def stop_street(self,tag):
         self.address.setStreet(tag)
@@ -538,7 +585,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_spage(self,tag):
-        self.source.setPage(tag)
+        self.source_ref.setPage(tag)
 
     #---------------------------------------------------------------------
     #
@@ -546,7 +593,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_spubinfo(self,tag):
-        self.sourceRef.setPubInfo(tag)
+        self.source.setPubInfo(tag)
 
     #---------------------------------------------------------------------
     #
@@ -554,7 +601,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_scallno(self,tag):
-        self.sourceRef.setCallNumber(tag)
+        self.source.setCallNumber(tag)
         
     #---------------------------------------------------------------------
     #
@@ -562,7 +609,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_stext(self,tag):
-        self.source.setText(fix_spaces(tag))
+        self.source_ref.setText(fix_spaces(tag))
 
     #---------------------------------------------------------------------
     #
@@ -570,7 +617,7 @@ class GrampsParser(handler.ContentHandler):
     #
     #---------------------------------------------------------------------
     def stop_scomments(self,tag):
-        self.source.setComments(fix_spaces(self.scomments_list))
+        self.source_ref.setComments(fix_spaces(self.scomments_list))
 
     #---------------------------------------------------------------------
     #
@@ -611,7 +658,13 @@ class GrampsParser(handler.ContentHandler):
     #---------------------------------------------------------------------
     def stop_note(self,tag):
         self.in_note = 0
-        if self.in_people == 1:
+        if self.in_address == 1:
+            self.address.setNote(fix_spaces(self.note_list))
+        elif self.in_source_ref == 1:
+            self.source_ref.setNote(fix_spaces(self.note_list))
+        elif self.in_event == 1:
+            self.event.setNote(fix_spaces(self.note_list))
+        elif self.in_people == 1:
             self.person.setNote(fix_spaces(self.note_list))
         elif self.in_family == 1:
             self.family.setNote(fix_spaces(self.note_list))
@@ -715,6 +768,8 @@ class GrampsParser(handler.ContentHandler):
         "address"    : (start_address, stop_address),
         "aka"        : (start_name, stop_aka),
         "attribute"  : (start_attribute, stop_attribute),
+        "attr_type"  : (None,stop_attr_type),
+        "attr_value" : (None,stop_attr_value),
         "bookmark"   : (start_bmark, None),
         "bookmarks"  : (None, None),
         "child"      : (start_child,None),
@@ -759,7 +814,7 @@ class GrampsParser(handler.ContentHandler):
         "scomments"  : (None, stop_scomments),
         "sdate"      : (None,stop_sdate),
         "source"     : (start_source, None),
-        "sourceref"  : (start_sourceref, None),
+        "sourceref"  : (start_sourceref, stop_sourceref),
         "sources"    : (start_sources, None),
         "spage"      : (None, stop_spage),
         "spubinfo"   : (None, stop_spubinfo),

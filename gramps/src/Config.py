@@ -29,6 +29,8 @@ import string
 import re
 import os
 
+import PaperMenu
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -91,6 +93,9 @@ lastfile      = None
 nameof        = utils.normal_name
 display_attr  = 0
 attr_name     = ""
+status_bar    = 0
+paper_preference = None
+output_preference = None
 
 #-------------------------------------------------------------------------
 #
@@ -139,10 +144,14 @@ def loadConfig(call):
     global _druid
     global _name_format
     global _callback
+    global paper_preference
+    global output_preference
+    global status_bar
 
     _callback = call
     lastfile = gnome.config.get_string("/gramps/data/LastFile")
     usetabs = gnome.config.get_bool("/gramps/config/UseTabs")
+    status_bar = gnome.config.get_int("/gramps/config/StatusBar")
     display_attr = gnome.config.get_bool("/gramps/config/DisplayAttr")
     attr_name = gnome.config.get_string("/gramps/config/DisplayAttrName")
     
@@ -150,6 +159,8 @@ def loadConfig(call):
     autoload = gnome.config.get_bool("/gramps/config/autoLoad")
     dateFormat = gnome.config.get_int("/gramps/config/dateFormat")
     dateEntry = gnome.config.get_int("/gramps/config/dateEntry")
+    paper_preference = gnome.config.get_string("/gramps/config/paperPreference")
+    output_preference = gnome.config.get_string("/gramps/config/outputPreference")
     _name_format = gnome.config.get_int("/gramps/config/nameFormat")
 
     name = gnome.config.get_string("/gramps/researcher/name")
@@ -170,6 +181,12 @@ def loadConfig(call):
     ListColors.evenfg = get_config_color(EVENFGCOLOR,(0,0,0))
     ListColors.evenbg = get_config_color(EVENBGCOLOR,(0xffff,0xffff,0xffff))
 
+    if paper_preference == None:
+        paper_preference = "Letter"
+
+    if output_preference == None:
+        output_preference = "OpenOffice"
+        
     if display_attr == None:
         display_attr = 0
 
@@ -180,6 +197,8 @@ def loadConfig(call):
         autoload = 1
     if usetabs == None:
         usetabs = 0
+    if status_bar == None:
+        status_bar = 0
     if hide_altnames == None:
         hide_altnames = 0
     if dateFormat == None:
@@ -265,6 +284,7 @@ def on_propertybox_apply(obj,page):
     global nameof
     global owner
     global usetabs
+    global status_bar
     global display_attr
     global attr_name
     global hide_altnames
@@ -277,10 +297,25 @@ def on_propertybox_apply(obj,page):
     attr_name = string.strip(prefsTop.get_widget("attr_name").get_text())
     usetabs = prefsTop.get_widget("usetabs").get_active()
     hide_altnames = prefsTop.get_widget("display_altnames").get_active()
+    paper_obj = prefsTop.get_widget("paper_size").get_menu().get_active()
+    output_obj = prefsTop.get_widget("output_format").get_menu().get_active()
+
+    if prefsTop.get_widget("stat1").get_active():
+        status_bar = 0
+    elif prefsTop.get_widget("stat2").get_active():
+        status_bar = 1
+    else:
+        status_bar = 2
+        
+    paper_preference = paper_obj.get_data("d")
+    output_preference = output_obj.get_data("d")
     
     gnome.config.set_bool("/gramps/config/UseTabs",usetabs)
+    gnome.config.set_int("/gramps/config/StatusBar",status_bar)
     gnome.config.set_bool("/gramps/config/DisplayAttr",display_attr)
     gnome.config.set_string("/gramps/config/DisplayAttrName",attr_name)
+    gnome.config.set_string("/gramps/config/paperPreference",paper_preference)
+    gnome.config.set_string("/gramps/config/outputPreference",output_preference)
     gnome.config.set_bool("/gramps/config/autoLoad",autoload)
     gnome.config.set_bool("/gramps/config/DisplayAltNames",hide_altnames)
 
@@ -417,6 +452,41 @@ def display_preferences_box():
     prefsTop.get_widget("attr_name").set_text(attr_name)
         
     display_altnames.set_active(hide_altnames)
+
+    paper_obj = prefsTop.get_widget("paper_size")
+    menu = GtkMenu()
+    choice = 0
+    for index in range(0,len(PaperMenu.paper_sizes)):
+        name = PaperMenu.paper_sizes[index].get_name()
+        if name == paper_preference:
+            choice = index
+        item = GtkMenuItem(name)
+        item.set_data("o",pbox)
+        item.set_data("d",name)
+        item.connect("activate", on_format_toggled)
+        item.show()
+        menu.append(item)
+    menu.set_active(choice)
+    paper_obj.set_menu(menu)
+
+    output_obj = prefsTop.get_widget("output_format")
+    menu = GtkMenu()
+    choice = 0
+
+    choice = 0
+    index = 0
+    for name in const.output_formats:
+        if name == output_preference:
+            choice = index
+        item = GtkMenuItem(name)
+        item.set_data("o",pbox)
+        item.set_data("d",name)
+        item.connect("activate", on_format_toggled)
+        item.show()
+        menu.append(item)
+        index = index + 1
+    menu.set_active(choice)
+    output_obj.set_menu(menu)
 
     date_option = prefsTop.get_widget("date_format")
     date_menu = GtkMenu()

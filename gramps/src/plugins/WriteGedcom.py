@@ -26,6 +26,8 @@ import string
 import time
 import const
 import utils
+import intl
+_ = intl.gettext
 
 from gtk import *
 from gnome.ui import *
@@ -192,9 +194,9 @@ def add_persons_sources(person):
     if person.getDeath():
         elist.append(person.getDeath())
     for event in elist:
-        source = event.getSource()
-        if source != None:
-            source_list.append(source)
+        source_ref = event.getSourceRef()
+        if source_ref != None:
+            source_list.append(source_ref)
 
 #-------------------------------------------------------------------------
 #
@@ -208,9 +210,9 @@ def add_familys_sources(family):
     if family.getDivorce():
         elist.append(family.getDivorce())
     for event in elist:
-        source = event.getSource()
-        if source != None:
-            source_list.append(source)
+        source_ref = event.getSourceRef()
+        if source_ref != None:
+            source_list.append(source_ref)
 
 #-------------------------------------------------------------------------
 #

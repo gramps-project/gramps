@@ -54,6 +54,7 @@ marriageFile   = rootDir + os.sep + "marriage.glade"
 editPersonFile = rootDir + os.sep + "EditPerson.glade"
 bookFile       = rootDir + os.sep + "bookmarks.glade"
 pluginsFile    = rootDir + os.sep + "plugins.glade"
+notesFile      = rootDir + os.sep + "editnote.glade"
 
 configFile     = rootDir + os.sep + "config.glade"
 pluginsDir     = rootDir + os.sep + "plugins"
@@ -67,7 +68,7 @@ gtkrcFile      = rootDir + os.sep + "gtkrc"
 #
 #-------------------------------------------------------------------------
 progName     = "gramps"
-version      = "0.1.5"
+version      = "0.2.0pre"
 copyright    = "(C) 2001 Donald N. Allingham"
 authors      = ["Donald N. Allingham"]
 comments     = _("Gramps (Genealogical Research and Analysis Management ") +\
@@ -98,6 +99,9 @@ helpMenu     = "contents.html"
 # Constants
 #
 #-------------------------------------------------------------------------
+
+output_formats = ["OpenOffice", "AbiWord", "PDF", "HTML" ]
+
 childRelations = [
     "Biological",
     "Adopted",

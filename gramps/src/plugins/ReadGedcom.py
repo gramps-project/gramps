@@ -37,12 +37,15 @@ from gtk import *
 from gnome.ui import *
 from libglade import *
 
+ANSEL = 1
+UNICODE = 2
 
 topDialog = None
 db = None
 callback = None
 glade_file = None
 clear_data = 0
+in_obje = 0
 
 InvalidGedcom = "Invalid GEDCOM file"
 
@@ -67,6 +70,9 @@ def find_file(fullname,altpath):
     else:
         return ""
 
+lineRE = re.compile(r"\s*(\d+)\s+(\S+)\s*(.*)$")
+nameRegexp = re.compile(r"([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
+
 #-------------------------------------------------------------------------
 #
 #
@@ -78,547 +84,1108 @@ def importData(database, filename):
     global glade_file
     global statusWindow
     
-    headRegexp   = re.compile(r"\s*0\s+HEAD")
-    charRegexp   = re.compile(r"\s*1\s+CHAR\s+(\S+)\s*$")
-    sourceRegexp = re.compile(r"\s*1\s+SOUR\s+(\S?[\s\S]*\S)\s*$")
-    srcrefRegexp = re.compile(r"\s*2\s+SOUR\s+@(.+)@")
-    indiRegexp   = re.compile(r"\s*0\s+@(.+)@\s+INDI")
-    familyRegexp = re.compile(r"\s*0\s+@(.+)@\s+FAM")
-    srcRegexp    = re.compile(r"\s*0\s+@(.+)@\s+SOUR")
-    topRegexp    = re.compile(r"\s*0\s+")
-    changeRegexp = re.compile(r"\s*1\s+CHAN")
-    geventRegexp = re.compile(r"\s*1\s+EVEN")
-    numRegexp    = re.compile(r"\s*[2-9]\s")
-    eventRegexp  = re.compile(r"\s*1\s+([\S]+)\s*(.*)?$")
-    titleRegexp  = re.compile(r"\s*1\s+TITL\s*(.*)?$")
-    objeRegexp   = re.compile(r"\s*1\s+OBJE")
-    title2Regexp = re.compile(r"\s*2\s+TITL\s*(.*)?$")
-    fileRegexp   = re.compile(r"\s*2\s+FILE\s*(.*)?$")
-    uidRegexp    = re.compile(r"\s*1\s+_UID\s*(.*)?$")
-    authorRegexp = re.compile(r"\s*1\s+AUTH\s*(.*)?$")
-    pubRegexp    = re.compile(r"\s*1\s+PUBL\s*(.*)?$")
-    callnoRegexp = re.compile(r"\s*1\s+CALN\s*(.*)?$")
-    prefixRegexp = re.compile(r"\s*2\s+NPFX\s*(.*)?$")
-    suffixRegexp = re.compile(r"\s*2\s+NSFX\s*(.*)?$")
-    birthRegexp  = re.compile(r"\s*1\s+BIRT\s*(.*)?$")
-    noterefRegexp= re.compile(r"\s*1\s+NOTE\s+@(.+)@")
-    noteactRegexp= re.compile(r"\s*1\s+NOTE\s+(.+)*")
-    refnRegexp   = re.compile(r"\s*1\s+REFN")
-    noteRegexp   = re.compile(r"\s*0\s+@(.+)@\s+NOTE\s*(.*)?$")
-    concRegexp   = re.compile(r"\s*\d\s+CONC\s(.*)?$")
-    contRegexp   = re.compile(r"\s*\d\s+CONT\s(.*)?$")
-    deathRegexp  = re.compile(r"\s*1\s+DEAT\s*(.*)?$")
-    divorceRegexp= re.compile(r"\s*1\s+DIV\s*(.*)?$")
-    marriedRegexp= re.compile(r"\s*1\s+MAR\s*(.*)?$")
-    genderRegexp = re.compile(r"\s*1\s+SEX\s+(\S)?")
-    typeRegexp   = re.compile(r"\s*2\s+TYPE\s*(.*)?$")
-    placeRegexp  = re.compile(r"\s*2\s+PLAC\s*(.*)?$")
-    pageRegexp   = re.compile(r"\s*3\s+PAGE\s*(.*)?$")
-    dateRegexp   = re.compile(r"\s*2\s+DATE\s*(.*)?$")
-    nameRegexp   = re.compile(r"\s*1\s+NAME\s+([\S\s]*\S)?\s*/([^/]+)?/\s*,?\s*([\S]+)?")
-    famsRegexp   = re.compile(r"\s*1\s+FAMS\s+@(.*)@")
-    famcRegexp   = re.compile(r"\s*1\s+FAMC\s+@(.*)@")
-    fatherRegexp = re.compile(r"\s*1\s+HUSB\s+@(.*)@")
-    motherRegexp = re.compile(r"\s*1\s+WIFE\s+@(.*)@")
-    childRegexp  = re.compile(r"\s*1\s+CHIL\s+@(.*)@")
-
-    noteId = ""
-    inlineNote = 0
-    inlocalNote = 0
-    user2note = {}
-    person2note = {}
-    personActive = 0
-    familyActive = 0
-    sourceActive = 0
-    noteActive = 0
-    allLines = []
-    values = {}
-    index = 0
-    currentLine = 0
-    fmap = {}
-    pmap = {}
-    smap = {}
-    familyTree = 0
-    in_change = 0
-    photo = None
-    encoding = 0
 
     # add some checking here
-
-    gedcom = open(filename,"r")
 
     if clear_data == 1:
         database.new()
 
-    statusTop = GladeXML(glade_file,"status")
-    statusWindow = statusTop.get_widget("status")
-    progressWindow = statusTop.get_widget("progress")
-    
-    allLines = gedcom.readlines()
-    gedcom.close()
+    g = GedcomParser(database,filename)
+    g.parse_gedcom_file()
 
-    # use search here instead of match, since PAF5 seems to like to
-    # insert garbage as the first couple of characters in the file
-    
-    regex_match = headRegexp.search(allLines[0])
-    if regex_match == None:
-        raise InvalidGedcom
-	
-    total = len(allLines)
+#    statusTop = GladeXML(glade_file,"status")
+#    statusWindow = statusTop.get_widget("status")
+#    progressWindow = statusTop.get_widget("progress")
 
-    value = 0
-    for index in range(1,51):
-        value = value + total/50
-        values[index] = value
+    utils.modified()
+    callback(1)
 
-    index = 1
-    value = values[1]
-    for line in allLines:
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class AddrStruct:
+    def __init__(self):
+        self.label = ""
+        self.addr1 = ""
+        self.addr2 = ""
+        self.city = ""
+        self.state = ""
+        self.postal = ""
+        self.country = ""
+	self.phone = ""
 
-        line = string.replace(line, '\r', "")
-        if encoding == 1:
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class DateStruct:
+    def __init__(self):
+        self.date = ""
+        self.time = ""
+
+#-------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------
+class GedcomParser:
+
+    SyntaxError = "Syntax Error"
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def __init__(self,db, file):
+        self.db = db
+        self.person = None
+        self.pmap = {}
+        self.fmap = {}
+        self.smap = {}
+        self.nmap = {}
+        f = open(file,"r")
+        self.lines = f.readlines()
+        f.close()
+	self.index = 0
+        self.code = 0
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def get_next(self):
+        line = string.replace(self.lines[self.index],'\r','')
+        if self.code == ANSEL:
             line = latin_ansel.ansel_to_latin(line)
-        elif encoding == 2:
+        elif self.code == UNICODE:
             line = latin_utf8.utf8_to_latin(line)
-            
-        if currentLine == value and index <= 50:
-            index = index + 1
-            if index <= 50:
-                value = values[index]
-                progressWindow.set_percentage(float(currentLine)/float(total))
-                while events_pending():
-                    mainiteration()
+	match = lineRE.match(line)
+        if not match:
+	    raise GedcomParser.SyntaxError, self.lines[self.index]
+        self.index = self.index + 1
+    	return match.groups()
 
-        currentLine = currentLine + 1
+    def barf(self,level):
+        print "IGNORED (%d): %s" % (self.index, self.lines[self.index-1])
+        self.ignore_sub_junk(level)
 
-        regex_match = charRegexp.match(line)
-        if regex_match:
-            id = regex_match.groups()
-            if id[0] == "ANSEL":
-                encoding = 1
-            elif id[0] == "UNICODE" or id[0] == "UTF-8" or id[0] == "UTF8":
-                encoding = 2
-            continue
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def backup(self):
+        self.index = self.index - 1
 
-        regex_match = changeRegexp.match(line)
-        if regex_match:
-            in_change = 1
-            continue
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_gedcom_file(self):
+        self.index = 0
+	self.parse_header()
+        self.parse_submitter()
+	self.parse_record()
+        self.parse_trailer()
 
-        if in_change:
-            if numRegexp.match(line):
-                in_change = 0
-                continue
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_trailer(self):
+	matches = self.get_next()
 
-        regex_match = indiRegexp.match(line)
-        if regex_match:
-            id = regex_match.groups()
-            person = database.findPerson(id[0],pmap)
-            personActive = 1
-            familyActive = 0
-            sourceActive = 0
-            noteActive = 0
-            continue
+        if matches[1] != "TRLR":
+	    self.barf(0)
 
-        regex_match = familyRegexp.match(line)
-        if regex_match:
-            id = regex_match.groups()
-            family = database.findFamily(id[0],fmap)
-            personActive = 0
-            familyActive = 1
-            sourceActive = 0
-            noteActive = 0
-            continue
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header(self):
+	self.parse_header_head()
+        self.parse_header_source()
+        self.parse_header_dest()
+        self.parse_header_date()
+        self.parse_header_subm()
+        self.parse_header_subn()
+        self.parse_header_file()
+        self.parse_header_copr()
+        self.parse_header_gedc() 
+        self.parse_header_char()
+        self.parse_header_lang()
+        self.parse_header_plac()
+        self.parse_header_note()
 
-        regex_match = srcRegexp.match(line)
-        if regex_match:
-            id = regex_match.groups()
-            source = database.findSource(id[0],smap)
-            personActive = 0
-            familyActive = 0
-            sourceActive = 1
-            noteActive = 0
-            continue
-				
-        regex_match = noteRegexp.match(line)
-        if regex_match:
-            matches = regex_match.groups()
-            noteId = matches[0]
-            noteActive = 1
-            sourceActive = 0
-            familyActive = 0
-            personActive = 0
-            if matches[1] == None:
-                user2note[noteId] = ""
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_submitter(self):
+	matches = self.get_next()
+
+        if matches[2] != "SUBN":
+            self.backup()
+	    return
+        else:
+            self.ignore_sub_junk(1)
+
+    def parse_source(self,name,level):
+        self.source = self.db.findSource(name,self.smap)
+        
+        while 1:
+            matches = self.get_next()
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "DATA" or matches[1] == "TEXT":
+                self.ignore_sub_junk(2)
+            elif matches[1] == "TITL":
+                self.source.setTitle(matches[2] + self.parse_continue_data(2))
+            elif matches[1] == "AUTH":
+                self.source.setAuthor(matches[2] + self.parse_continue_data(2))
+            elif matches[1] == "PUBL":
+                self.source.setPubInfo(matches[2] + self.parse_continue_data(2))
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[1] + self.parse_continue_data(1)
+                    self.source.setNote(note)
+                    self.ignore_sub_junk(2)
+                else:
+                    if self.nmap.has_key(matches[2]):
+                        self.source.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        self.source.setNoteObj(noteobj)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_record(self):
+        while 1:
+	    matches = self.get_next()
+
+            if matches[2] == "FAM":
+                self.family = self.db.findFamily(matches[1],self.fmap)
+                self.parse_family()
+            elif matches[2] == "INDI":
+                self.person = self.db.findPerson(matches[1],self.pmap)
+                self.parse_individual()
+            elif matches[2] == "SUBM":
+                self.ignore_sub_junk(1)
+            elif matches[1] == "SUBM":
+                self.ignore_sub_junk(1)
+            elif matches[2] == "SOUR":
+                self.parse_source(matches[1],1)
+            elif matches[2] == "REPO":
+                print "REPO",matches[1]
+                self.ignore_sub_junk(1)
+            elif matches[2] == "NOTE":
+                if self.nmap.has_key(matches[1]):
+                    noteobj = self.nmap[matches[1]]
+                else:
+                    noteobj = Note()
+                    self.nmap[matches[1]] = noteobj
+                noteobj.set(self.parse_continue_data(1))
+                self.parse_note_data(1)
+            elif matches[2] == "OBJE":
+                print "OBJE",matches[1]
+                self.ignore_sub_junk(1)
+	    elif matches[1] == "TRLR":
+                self.backup()
+                return
             else:
-                user2note[noteId] = matches[1]
-                continue
+	        self.barf(1)
 
-        regex_match = sourceRegexp.match(line)
-        if regex_match:
-            matches = regex_match.groups()
-            if matches[0] == "FTW":
-                familyTree = 1
-                continue
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_note_data(self,level):
+        while 1:
+            matches = self.get_next()
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "SOUR":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "CHAN":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "REFN":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "RIN":
+                pass
+            else:
+                self.barf(level+1)
+    
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_source_citation(self,level):
+        while 1:
+            matches = self.get_next()
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "PAGE":
+                pass
+            elif matches[1] == "EVEN":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "DATA":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "QUAY":
+                pass
+            elif matches[1] == "NOTE":
+                note = matches[1] + self.parse_continue_data(level+1)
+                self.ignore_change_data(level+1)
+                pass
+            else:
+                self.barf(level+1)
 
-        regex_match = topRegexp.match(line)
-        if regex_match:
-            personActive = 0
-            familyActive = 0
-            noteActive = 0
-            continue				
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_family(self):
+        while 1:
+	    matches = self.get_next()
 
-        if familyActive == 1:
-            regex_match = srcrefRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                source = database.findSource(matches[0],smap)
-                mySource = Source()
-                mySource.setBase(source)
-                event.setSource(mySource)
-                continue
-
-            regex_match = pageRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                mySource.setPage(matches[0])
-                continue
-
-            regex_match = fatherRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                father = database.findPerson(matches[0],pmap)
-                family.setFather(father)
-                continue
-
-            regex_match = motherRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                mother = database.findPerson(matches[0],pmap)
-                family.setMother(mother)
-                continue
-            
-            regex_match = childRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                child = database.findPerson(matches[0],pmap)
-                family.addChild(child)
-                continue
-
-            regex_match = marriedRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+	    if int(matches[0]) == 0:
+                self.backup()
+                return
+	    elif matches[1] == "HUSB":
+                self.family.setFather(self.db.findPerson(matches[2],self.pmap))
+                self.ignore_sub_junk(2)
+	    elif matches[1] == "WIFE":
+                self.family.setMother(self.db.findPerson(matches[2],self.pmap))
+                self.ignore_sub_junk(2)
+	    elif matches[1] == "CHIL":
+                self.family.addChild(self.db.findPerson(matches[2],self.pmap))
+	    elif matches[1] == "NCHI" or matches[1] == "RIN" or matches[1] == "SUBM":  
+                pass
+            elif matches[1] == "REFN" or matches[1] == "CHAN":
+                self.ignore_sub_junk(2)
+            elif matches[1] == "MARR":
                 event = Event()
                 event.setName("Marriage")
-                family.setMarriage(event)
-                continue
-
-            regex_match = divorceRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+                self.family.setMarriage(event)
+                self.parse_family_event(event,2)
+            elif matches[1] == "DIV":
                 event = Event()
                 event.setName("Divorce")
-                family.setDivorce(event)
-                continue
-
-            regex_match = placeRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                event.setPlace(matches[0])
-                continue
-
-            regex_match = geventRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+                self.family.setDivorce(event)
+                self.parse_family_event(event,2)
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[1] + self.parse_continue_data(1)
+                    self.family.setNote(note)
+                    self.ignore_sub_junk(2)
+                else:
+                    if self.nmap.has_key(matches[2]):
+                        self.family.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        self.family.setNoteObj(noteobj)
+            else:
                 event = Event()
-                family.addEvent(event)
-                continue
-
-            regex_match = dateRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
                 try:
-                    event.setDate(matches[0])
+                    event.setName(ged2fam[matches[2]])
                 except:
-                    pass
-                continue
-            
-            regex_match = typeRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                event.setName(matches[0])
-                continue
+                    event.setName(matches[2])
+                self.family.addEvent(event)
+	        self.parse_family_event(event,2)
 
-        elif personActive == 1:
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_individual(self):
+        while 1:
+	    matches = self.get_next()
 
-            regex_match = nameRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+	    if int(matches[0]) == 0:
+                self.backup()
+                return
+	    elif matches[1] == "NAME":
                 name = Name()
-                if matches[0] :
-                    name.setFirstName(matches[0])
-                if matches[1] :
-                    name.setSurname(matches[1])
-                if matches[2] :
-                    name.setSuffix(matches[2])
-					
-                person.setPrimaryName(name)
-                continue
-
-            regex_match = titleRegexp.match(line)
-            if regex_match:
-                continue
-
-            regex_match = prefixRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                name.setTitle(matches[0])
-                continue
-
-            regex_match = uidRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                person.setPafUid(matches[0])
-                continue
-
-            regex_match = suffixRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                name.setSuffix(matches[0])
-                continue
-
-            if inlocalNote == 1:
-
-                regex_match = concRegexp.match(line)
-                if regex_match :
-                    matches = regex_match.groups()
-                    user2note[noteId] = user2note[noteId] + matches[0]
-                    continue
-
-                regex_match = contRegexp.match(line)
-                if regex_match :
-                    matches = regex_match.groups()
-                    user2note[noteId] = user2note[noteId] + "\n" + matches[0]
-                    continue
-
-                inlocalNote = 0
-                person.setNote(user2note[noteId])
-
-            regex_match = noterefRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                person2note[person] = matches[0]
-                continue
-
-            regex_match = noteactRegexp.match(line)
-            if regex_match :
-                inlocalNote = 1
-                matches = regex_match.groups()
-                noteId = "local%d" % inlineNote
-                inlineNote = inlineNote + 1
-                if matches[0] == None:
-                    user2note[noteId] = ""
+                names = nameRegexp.match(matches[2]).groups()
+                if names[0]:
+                    name.setFirstName(names[0])
+                if names[1]:
+                    name.setSurname(names[1])
+                if names[2]:
+                    name.setSuffix(names[2])
+                self.person.setPrimaryName(name)
+                self.parse_name(name,2)
+	    elif matches[1] == "RIN":
+                pass
+	    elif matches[1] == "RFN":
+                pass
+	    elif matches[1] == "AFN":
+                pass
+	    elif matches[1] == "CHAN":
+                self.ignore_sub_junk(1)
+	    elif matches[1] == "ALIA":
+                pass
+	    elif matches[1] == "ANCI" or matches[1] == "DESI":
+                pass
+	    elif matches[1] == "REFN":
+                self.ignore_sub_junk(1)
+	    elif matches[1] == "SOUR":
+                self.ignore_sub_junk(1)
+	    elif matches[1] == "OBJE":
+                if matches[2] and matches[2][0] == '@':
+                    self.ignore_sub_junk(2)
                 else:
-                    user2note[noteId] = matches[0]
-                continue
-
-            regex_match = srcrefRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                source = database.findSource(matches[0],smap)
-                mySource = Source()
-                mySource.setBase(source)
-                event.setSource(mySource)
-                continue
-
-            regex_match = pageRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                mySource.setPage(matches[0])
-                continue
-
-            regex_match = genderRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                if matches[0] == "M":
-                    person.setGender(Person.male)
+                    self.parse_person_object(2)
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[1] + self.parse_continue_data(1)
+                    self.person.setNote(note)
+                    self.ignore_sub_junk(2)
                 else:
-                    person.setGender(Person.female)
-                continue
-
-            regex_match = famcRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                new_family = database.findFamily(matches[0],fmap)
-                person.setMainFamily(new_family)
-                continue
-
-            regex_match = famsRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                new_family = database.findFamily(matches[0],fmap)
-                person.addFamily(new_family)
-                continue
-
-            regex_match = birthRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+                    if self.nmap.has_key(matches[2]):
+                        self.person.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        self.person.setNoteObj(noteobj)
+	    elif matches[1] == "SEX":
+                if matches[2][0] == "M":
+                    self.person.setGender(Person.male)
+                else:
+                    self.person.setGender(Person.female)
+	    elif matches[1] == "EVEN":
+                pass
+	    elif matches[1] == "FAMS":
+                self.person.addFamily(self.db.findFamily(matches[2],self.fmap))
+                note = self.parse_optional_note(2)
+	    elif matches[1] == "FAMC":
+                type,note = self.parse_famc_type(2)
+                family = self.db.findFamily(matches[2],self.fmap)
+                if type == "" or type == "Birth":
+                    self.person.setMainFamily(family)
+                else:
+                    self.person.addAltFamily(family,type)
+	    elif matches[1] == "RESI":
+                addr = Address()
+                self.person.addAddress(addr)
+                self.parse_residence(addr,2)
+	    elif matches[1] == "BIRT":
                 event = Event()
-
-                # check to see if the person already had a birthdate set.
-                # if he/she does, then add the birthdate as an alternate.
-                # this assumes that the first birthdate in the GEDCOM file
-                # is the one that should be considered the primary
-                
-                lbirth = person.getBirth()
-                if lbirth.getDate() != "" or lbirth.getPlace() != "":
-                    person.addEvent(event)
+                if self.person.getBirth().getDate() != "" or \
+                   self.person.getBirth().getPlace() != "":
                     event.setName("Alternate Birth")
+                    self.person.addEvent(event)
                 else:
-                    person.setBirth(event)
-                continue
-
-            regex_match = deathRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+                    event.setName("Birth")
+                    self.person.setBirth(event)
+                self.parse_person_event(event,2)
+	    elif matches[1] == "ADOP":
                 event = Event()
-
-                # check to see if the person already had a birthdate set.
-                # if he/she does, then add the birthdate as an alternate.
-                # this assumes that the first birthdate in the GEDCOM file
-                # is the one that should be considered the primary
-                
-                ldeath = person.getDeath()
-                if ldeath.getDate() != "" or ldeath.getPlace() != "":
-                    person.addEvent(event)
+                event.setName("Adopted")
+                self.person.addEvent(event)
+                self.parse_person_event(event,2)
+	    elif matches[1] == "DEAT":
+                event = Event()
+                if self.person.getDeath().getDate() != "" or \
+                   self.person.getDeath().getPlace() != "":
                     event.setName("Alternate Death")
+                    self.person.addEvent(event)
                 else:
-                    person.setDeath(event)
-                continue
-
-            regex_match = refnRegexp.match(line)
-            if regex_match :
-                continue
-            
-            regex_match = geventRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+                    event.setName("Death")
+                    self.person.setDeath(event)
+                self.parse_person_event(event,2)
+	    elif matches[1] == "EVEN":
                 event = Event()
-                person.addEvent(event)
-                continue
-
-            regex_match = eventRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
+                self.person.addEvent(event)
+	        self.parse_person_event(event,2)
+            else:
                 event = Event()
-                if ged2rel.has_key(matches[0]):
-                    type = ged2rel[matches[0]]
-                elif ged2fam.has_key(matches[0]):
-                    type = ged2fam[matches[0]]
-                else:
-                    type = matches[0]
-                event.setName(type)
-                if matches[1] :
-                    event.setDescription(matches[1])
-                person.addEvent(event)
-                continue
-				
-            regex_match = typeRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                event.setName(matches[0])
-                continue
-
-            regex_match = placeRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                event.setPlace(matches[0])
-                continue
-
-            regex_match = dateRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
                 try:
-                    event.setDate(matches[0])
+                    event.setName(ged2rel[matches[1]])
                 except:
-                    pass
-                continue
+                    event.setName(matches[1])
+                self.person.addEvent(event)
+	        self.parse_person_event(event,2)
 
-            regex_match = fileRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                imagepath = find_file(matches[0],os.path.dirname(filename))
-                savepath = database.getSavePath()
-                if imagepath != "" and savepath != "":
-                    id = person.getId()
-                    for index in range(0,100):
-                        base = "i%s_%d.jpg" % (id,index)
-                        name = savepath + os.sep + base
-                        if os.path.exists(name) == 0:
-                            break
-                        shutil.copy(imagepath,name)
+    def parse_optional_note(self,level):
+        note = ""
+        while 1:
+            matches = self.get_next()
 
-                    photo = Photo()
-                continue
+	    if int(matches[0]) < level:
+                self.backup()
+                return note
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[2] + self.parse_continue_data(level+1)
+                    self.parse_note_data(level+1)
+                else:
+                    self.ignore_sub_junk(level+1)
+            else:
+	        self.barf(level+1)
 
-            regex_match = title2Regexp.match(line)
-            if regex_match and photo != None:
-                matches = regex_match.groups()
-                photo.setDescripton(matches[0])
-                continue
+    def parse_famc_type(self,level):
+        type = ""
+        note = ""
+        while 1:
+            matches = self.get_next()
 
-            if objeRegexp.match(line):
-                photo = None
-                continue
-			
-        elif noteActive == 1:
+	    if int(matches[0]) < level:
+                self.backup()
+                return (string.capitalize(type),note)
+            elif matches[1] == "PEDI":
+                type = matches[2]
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[2] + self.parse_continue_data(level+1)
+                    self.parse_note_data(level+1)
+                else:
+                    self.ignore_sub_junk(level+1)
+            else:
+	        self.barf(level+1)
 
-            regex_match = concRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                user2note[noteId] = user2note[noteId] + matches[0]
-                continue
+    def parse_person_object(self,level):
+        form = ""
+        file = ""
+        title = ""
+        note = ""
+        while 1:
+            matches = self.get_next()
+            if matches[1] == "FORM":
+                form = matches[2]
+            elif matches[1] == "TITL":
+                title = matches[2]
+            elif matches[1] == "FILE":
+                file = matches[2]
+            elif matches[1] == "NOTE":
+                note = matches[2] + self.parse_continue_data(level+1)
+	    elif int(matches[0]) < level:
+                self.backup()
+                break
+            else:
+	        self.barf(level+1)
 
-            regex_match = contRegexp.match(line)
-            if regex_match :
-                matches = regex_match.groups()
-                user2note[noteId] = user2note[noteId] + "\n" + matches[0]
-                continue
+        if form == "URL":
+            url = Url(file,title)
+            self.person.addUrl(url)
+        else:
+            print "*",form,title
 
-        elif sourceActive == 1:
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_residence(self,address,level):
+        while 1:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                break
+            elif matches[1] == "DATE":
+                address.setDate(matches[2])
+            elif matches[1] == "AGE" or matches[1] == "AGNC":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "CAUS" or matches[1] == "ADDR":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "STAT" or matches[1] == "TEMP":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "OBJE" or matches[1] == "TYPE":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                address.setSourceRef(source_ref)
+                self.parse_source_reference(source_ref,level+1)
+            elif matches[1] == "PLAC":
+                address.setStreet(matches[2])
+                self.parse_address(address,level+1)
+            elif matches[1] == "PHON":
+                pass
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[1] + self.parse_continue_data(1)
+                    self.address.setNote(note)
+                    self.ignore_sub_junk(2)
+                else:
+                    if self.nmap.has_key(matches[2]):
+                        self.address.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        self.address.setNoteObj(noteobj)
+            else:
+	        self.barf(level+1)
 
-            regex_match = titleRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                source.setTitle(matches[0])
-                continue
+    def parse_address(self,address,level):
+        first = 0
+        while 1:
+            matches = self.get_next()
 
-            regex_match = authorRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                source.setAuthor(matches[0])
-                continue
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "ADDR" or matches[1] == "ADR1" or matches[1] == "ADR2":
+                val = address.getStreet()
+                if first == 0:
+                    val = "%s %s" % (matches[2], self.parse_continue_data(level+1))
+                    first = 1
+                else:
+                    val = "%s,%s %s" % (val,matches[2],self.parse_continue_data(level+1))
+                address.setStreet(val)
+            elif matches[1] == "CITY":
+                address.setCity(matches[2])
+            elif matches[1] == "STAE":
+                address.setState(matches[2])
+            elif matches[1] == "POST":
+                address.setPostal(matches[2])
+            elif matches[1] == "CTRY":
+                address.setCountry(matches[2])
+            else:
+	        self.barf(level+1)
 
-            regex_match = pubRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                source.setPubInfo(matches[0])
-                continue
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_person_event(self,event,level):
+        while 1:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                break
+            elif matches[1] == "TYPE":
+                if event.getName() != "":
+                    try:
+                        event.setName(ged2rel[matches[2]])
+                    except:
+                        event.setName(matches[2])
+            elif matches[1] == "DATE":
+                event.setDate(matches[2])
+            elif matches[1] == "AGE" or matches[1] == "AGNC":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "CAUS" or matches[1] == "ADDR":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "STAT" or matches[1] == "TEMP":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "OBJE":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                event.setSourceRef(source_ref)
+                self.parse_source_reference(source,level+1)
+            elif matches[1] == "FAMC":
+                family = self.db.findFamily(matches[2],self.fmap)
+                if event.getName() == "Birth":
+                    self.person.setMainFamily(family)
+                else:
+                    self.person.addAltFamily(family,event.getName())
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "PLAC":
+                event.setPlace(matches[2])
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "NOTE":
+                note = matches[2] + self.parse_continue_data(level+1)
+            else:
+	        self.barf(level+1)
 
-            regex_match = callnoRegexp.match(line)
-            if regex_match:
-                matches = regex_match.groups()
-                source.setCallNumber(matches[0])
-                continue
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_family_event(self,event,level):
+        while 1:
+            matches = self.get_next()
+            if int(matches[0]) < level:
+                self.backup()
+                break
+            elif matches[1] == "TYPE":
+                if event.getName() != "":
+                    try:
+                        event.setName(ged2fam[matches[2]])
+                    except:
+                        event.setName(matches[2])
+            elif matches[1] == "DATE":
+                event.setDate(matches[2])
+            elif matches[1] == "AGE" or matches[1] == "AGNC":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "CAUS" or matches[1] == "ADDR":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "STAT" or matches[1] == "TEMP":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "OBJE":
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "SOUR":
+                source_ref = SourceRef()
+                source_ref.setBase(self.db.findSource(matches[2],self.smap))
+                event.setSourceRef(source_ref)
+                self.parse_source_reference(source_ref,level+1)
+            elif matches[1] == "PLAC":
+                event.setPlace(matches[2])
+                self.ignore_sub_junk(level+1)
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[1] + self.parse_continue_data(1)
+                    event.setNote(note)
+                    self.ignore_sub_junk(2)
+                else:
+                    if self.nmap.has_key(matches[2]):
+                        event.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        event.setNoteObj(noteobj)
+            else:
+	        self.barf(level+1)
 
-    for person in person2note.keys():
-        name = person.getPrimaryName()
-        noteId = person2note[person]
-        person.setNote(user2note[noteId])
+    def parse_source_reference(self,source,level):
+        while 1:
+            matches = self.get_next()
 
-    statusWindow.destroy()
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "PAGE":
+                source.setPage(matches[2])
+            elif matches[1] == "DATA":
+                date,text = self.parse_source_data(level+1)
+                d = Date()
+                d.set(date)
+                source.setDate(d)
+                source.setText(text)
+            elif matches[1] == "QUAY":
+                pass
+            elif matches[1] == "NOTE":
+                if matches[2] and matches[2][0] != "@":
+                    note = matches[1] + self.parse_continue_data(1)
+                    source.setComments(note)
+                    self.ignore_sub_junk(2)
+                else:
+                    if self.nmap.has_key(matches[2]):
+                        source.setNoteObj(self.nmap[matches[2]])
+                    else:
+                        noteobj = Note()
+                        self.nmap[matches[2]] = noteobj
+                        source.setNoteObj(noteobj)
+            else:
+	        self.barf(level+1)
+        
+    def parse_source_data(self,level):
+        date = ""
+        note = ""
+        while 1:
+	    matches = self.get_next()
 
-    callback(1)
+	    if int(matches[0]) < level:
+                self.backup()
+                return (date,note)
+            elif matches[1] == "DATE":
+                date = matches[2]
+
+            elif matches[1] == "TEXT":
+                note = matches[2] + self.parse_continue_data(level+1)
+            else:
+	        self.barf(level+1)
+        
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_name(self,name,level):
+        while 1:
+	    matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+	    elif matches[1] == "NPFX":
+                name.setTitle(matches[1])
+	    elif matches[1] == "GIVN":
+                name.setFirstName(matches[1])
+	    elif matches[1] == "SPFX":
+                pass
+	    elif matches[1] == "SURN":
+                name.setSurname(matches[1])
+	    elif matches[1] == "NSFX":
+                name.setSuffix(matches[1])
+	    elif matches[1] == "NICK":
+                self.person.setNickName(matches[1])
+            elif matches[1] == "SOUR":
+                self.ignore_sub_junk(level+1)
+            else:
+	        self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_head(self):
+	matches = self.get_next()
+
+        if matches[1] != "HEAD":
+	    self.barf(0)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_source(self):
+        while 1:
+	    matches = self.get_next()
+
+            print matches[0],matches[1],matches[2]
+	    if int(matches[0]) == 0:
+                self.backup()
+                return
+	    elif matches[1] == "SOUR":
+                print "Source is",matches[2]
+   	    elif matches[1] == "NAME":
+                print "Name is",matches[2]
+   	    elif matches[1] == "VERS":
+                print "Version is",matches[2]
+   	    elif matches[1] == "CORP":
+                self.ignore_sub_junk(2)
+   	    elif matches[1] == "DATA":
+                print "Data is",matches[2]
+                self.parse_sub_data(3)
+   	    elif matches[1] == "SUBM":
+                pass
+   	    elif matches[1] == "SUBN":
+                pass
+   	    elif matches[1] == "DEST":
+                pass
+   	    elif matches[1] == "FILE":
+                self.ignore_sub_junk(1)
+   	    elif matches[1] == "COPR":
+                pass
+   	    elif matches[1] == "CHAR":
+                if matches[2] == "UNICODE" or matches[2] == "UTF-8" or \
+                   matches[2] == "UTF8":
+                    self.code = UNICODE
+                elif matches[2] == "ANSEL":
+                    self.code = ANSEL
+                self.parse_sub_char(2)
+   	    elif matches[1] == "GEDC":
+                self.parse_gedc(2)
+   	    elif matches[1] == "LANG":
+                print "Language is",matches[2]
+   	    elif matches[1] == "PLAC":
+                self.parse_place_form(2)
+   	    elif matches[1] == "DATE":
+                date = self.parse_date(2)
+                date.date = matches[2]
+   	    elif matches[1] == "NOTE":
+                note = matches[2] + self.parse_continue_data(2)
+                print note
+            elif matches[1][0] == "_":
+                self.ignore_sub_junk(2)
+            else:
+	        self.barf(2)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def ignore_sub_junk(self,level):
+
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def ignore_change_data(self,level):
+
+	matches = self.get_next()
+        if matches[1] == "CHAN":
+	    while 1:
+                matches = self.get_next()
+
+	        if int(matches[0]) < level+1:
+                    self.backup()
+                    return
+        else:
+            self.backup()
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_sub_char(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "VERS":
+               print "CHAR version is",matches[2]
+            else:
+	        self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_place_form(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "FORM":
+               print "FORM",matches[2]
+            else:
+	        self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_continue_data(self,level):
+	data = ""
+        while 1:
+            matches = self.get_next()
+
+            if matches[1] == "CONC":
+               data = "%s%s" % (data,matches[2])
+            elif matches[1] == "CONT":
+               data = "%s\n%s" % (data,matches[2])
+            else:
+                self.backup()
+                return data
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_gedc(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "VERS":
+               print "Gedcom version is",matches[2]
+            elif matches[1] == "FORM":
+               print "Gedcom form is",matches[2]
+            else:
+	        self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_date(self,level):
+        date = DateStruct()
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return date
+            elif matches[1] == "TIME":
+                date.time = matches[2]
+            else:
+	        self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_addr_struct(self,level):
+        addr = AddrStruct()
+
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "ADDR":
+                addr.label = matches[2]
+                self.parse_sub_addr(level+1, addr)
+            elif matches[1] == "PHON":
+                addr.phone = matches[2]
+            else:
+                self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_sub_addr(self,level,addr):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "CONT":
+                addr.label = "%s\n%s" %(addr.label,matches[2])
+            elif matches[1] == "ADR1":
+                addr.addr1 = matches[2]
+            elif matches[1] == "ADR2":
+                addr.addr2 = matches[2]
+            elif matches[1] == "CITY":
+                addr.city = matches[2]
+            elif matches[1] == "STAE":
+                addr.state = matches[2]
+            elif matches[1] == "POST":
+                addr.postal = matches[2]
+            elif matches[1] == "CTRY":
+                addr.country = matches[2]
+            else:
+                self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_sub_data(self,level):
+        while 1:
+            matches = self.get_next()
+
+	    if int(matches[0]) < level:
+                self.backup()
+                return
+            elif matches[1] == "DATE":
+                pass
+            elif matches[1] == "COPR":
+                pass
+            else:
+                self.barf(level+1)
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_dest(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_date(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_subm(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_subn(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_file(self):
+        pass
+    
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_copr(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_gedc(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_char(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_lang(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_plac(self):
+        pass
+
+    #---------------------------------------------------------------------
+    #
+    #
+    #
+    #---------------------------------------------------------------------
+    def parse_header_note(self):
+        pass
 
 #-------------------------------------------------------------------------
 #
@@ -640,16 +1207,7 @@ def on_ok_clicked(obj):
         clear_data = 0
 
     utils.destroy_passed_object(obj)
-    try:
-        importData(db,name)
-    except InvalidGedcom:
-        GnomeErrorDialog(_("%s is not a valid GEDCOM file") % name)
-        statusWindow.destroy()
-    except IOError, val:
-        GnomeErrorDialog(_("Could not load %s") % name + "\n" + val[1])
-    except:
-        GnomeErrorDialog(_("Could not load %s") % name)
-        statusWindow.destroy()
+    importData(db,name)
     
 #-------------------------------------------------------------------------
 #
@@ -684,3 +1242,14 @@ def readData(database,active_person,cb):
 #-------------------------------------------------------------------------
 def get_name():
     return _("Import from GEDCOM")
+
+if __name__ == "__main__":
+
+    import sys
+
+    db = RelDataBase()
+    if len(sys.argv) == 1:
+        g = GedcomParser(db,"test.ged")
+    else:
+        g = GedcomParser(db,sys.argv[1])
+    g.parse_gedcom_file()
