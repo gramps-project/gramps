@@ -2,8 +2,9 @@
 SUBDIRS = docgen filters plugins data po
 
 # For intl. support, how do we compile?
-CFLAGS = -fPIC -shared -O @CFLAGS@ @CPPFLAGS@ -I@includedir@
-LDFLAGS = @LDFLAGS@ -L@libdir@ @LIBS@
+GVFSINC = @GPREF@
+CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
+LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
 CLEANFILES = ${INTLLIBS}
 MOSTLYCLEANFILES = 
 
@@ -37,7 +38,7 @@ intl22.so: intl.c
 
 grampslib.so: grampslib.i
 	swig -python grampslib.i 
-	$(CC) $(CFLAGS) $(LDFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c -lgnomevfs-2
+	$(CC) $(CFLAGS) @P22_INCLUDES@ -o $@ grampslib_wrap.c $(LDFLAGS) 
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 

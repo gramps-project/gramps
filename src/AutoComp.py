@@ -147,9 +147,8 @@ class AutoCombo(AutoCompBase):
         self.inb = 0
         text = self.entry.entry.get_text()
         if self.nl == string.lower(text):
-            #self.entry.entry.set_position(self.l)
-            #self.entry.entry.select_region(self.l, -1)
-            pass
+            self.entry.entry.set_position(self.l)
+            self.entry.entry.select_region(self.l, -1)
             
     def build_list(self,widget,event):
         """Internal task that builds the popdown strings. This task is called when the
@@ -204,8 +203,8 @@ class AutoCombo(AutoCompBase):
             n = self.vals[0]
             self.nl = string.lower(n)
             entry.set_text(n)
-            #entry.set_position(self.l)
-            #entry.select_region(self.l, -1)
+            entry.set_position(self.l)
+            entry.select_region(self.l, -1)
         else:
             self.vals = [""]
 
@@ -258,7 +257,8 @@ class AutoEntry(AutoCompBase):
             if nl[0:self.l] == typed_lc:
                 self.nl = nl
                 entry.set_text(n)
-                #entry.set_position(self.l)
-                #entry.select_region(self.l, -1)
+                print self.l
+                entry.set_position(self.l)
+                entry.select_region(self.l, -1)
                 return
 

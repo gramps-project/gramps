@@ -3559,15 +3559,15 @@ fi
 
 
 
-# Extract the first word of "gnome-config", so it can be a program name with args.
-set dummy gnome-config; ac_word=$2
+# Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_prog_HAVE_GNOME_CONFIG+set}" = set; then
+if test "${ac_cv_prog_HAVE_PKG_CONFIG+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  if test -n "$HAVE_GNOME_CONFIG"; then
-  ac_cv_prog_HAVE_GNOME_CONFIG="$HAVE_GNOME_CONFIG" # Let the user override the test.
+  if test -n "$HAVE_PKG_CONFIG"; then
+  ac_cv_prog_HAVE_PKG_CONFIG="$HAVE_PKG_CONFIG" # Let the user override the test.
 else
 as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
 for as_dir in $PATH
@@ -3576,26 +3576,27 @@ do
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_prog_HAVE_GNOME_CONFIG=""YES""
+    ac_cv_prog_HAVE_PKG_CONFIG=""YES""
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
-  test -z "$ac_cv_prog_HAVE_GNOME_CONFIG" && ac_cv_prog_HAVE_GNOME_CONFIG=""NO""
+  test -z "$ac_cv_prog_HAVE_PKG_CONFIG" && ac_cv_prog_HAVE_PKG_CONFIG=""NO""
 fi
 fi
-HAVE_GNOME_CONFIG=$ac_cv_prog_HAVE_GNOME_CONFIG
-if test -n "$HAVE_GNOME_CONFIG"; then
-  echo "$as_me:$LINENO: result: $HAVE_GNOME_CONFIG" >&5
-echo "${ECHO_T}$HAVE_GNOME_CONFIG" >&6
+HAVE_PKG_CONFIG=$ac_cv_prog_HAVE_PKG_CONFIG
+if test -n "$HAVE_PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $HAVE_PKG_CONFIG" >&5
+echo "${ECHO_T}$HAVE_PKG_CONFIG" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 fi
 
-GNOMEHELP=`gnome-config --prefix`
+GNOMEINC=`pkg-config --cflags gnome-vfs-module-2.0`
+GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
 
 echo "$as_me:$LINENO: checking Python bindings for sax/xml" >&5
@@ -3875,6 +3876,9 @@ if test x$JW = xno; then
 else
   HAVE_JW="yes"
 fi
+
+
+
 
 
 
@@ -4555,7 +4559,7 @@ s,@AMDEP_FALSE@,$AMDEP_FALSE,;t t
 s,@AMDEPBACKSLASH@,$AMDEPBACKSLASH,;t t
 s,@CCDEPMODE@,$CCDEPMODE,;t t
 s,@CPP@,$CPP,;t t
-s,@HAVE_GNOME_CONFIG@,$HAVE_GNOME_CONFIG,;t t
+s,@HAVE_PKG_CONFIG@,$HAVE_PKG_CONFIG,;t t
 s,@SCROLLKEEPER_REQUIRED@,$SCROLLKEEPER_REQUIRED,;t t
 s,@SCROLLKEEPER_CONFIG@,$SCROLLKEEPER_CONFIG,;t t
 s,@DISABLE_SCROLLKEEPER@,$DISABLE_SCROLLKEEPER,;t t
@@ -4566,6 +4570,9 @@ s,@P15_INCLUDES@,$P15_INCLUDES,;t t
 s,@P20_INCLUDES@,$P20_INCLUDES,;t t
 s,@P21_INCLUDES@,$P21_INCLUDES,;t t
 s,@P22_INCLUDES@,$P22_INCLUDES,;t t
+s,@GNOMEINC@,$GNOMEINC,;t t
+s,@GNOMELIB@,$GNOMELIB,;t t
+s,@GPREF@,$GPREF,;t t
 s,@INTLLIBS@,$INTLLIBS,;t t
 CEOF
 

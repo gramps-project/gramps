@@ -71,8 +71,9 @@ AC_CHECK_LIB(c,textdomain,LIBS="",
 
 dnl Check for programs
 
-AC_CHECK_PROG(HAVE_GNOME_CONFIG, gnome-config, "YES", "NO")
-GNOMEHELP=`gnome-config --prefix`
+AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, "YES", "NO")
+GNOMEINC=`pkg-config --cflags gnome-vfs-module-2.0`
+GNOMELIB=`pkg-config --libs gnome-vfs-module-2.0`
 
 dnl Check if python bindings for gtk are installed
 
@@ -271,6 +272,9 @@ AC_SUBST(P15_INCLUDES)
 AC_SUBST(P20_INCLUDES)
 AC_SUBST(P21_INCLUDES)
 AC_SUBST(P22_INCLUDES)
+AC_SUBST(GNOMEINC)
+AC_SUBST(GNOMELIB)
+AC_SUBST(GPREF)
 AC_SUBST(INTLLIBS)
 
 AC_OUTPUT([
