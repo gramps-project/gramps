@@ -149,6 +149,11 @@ class Gramps:
 
         ArgHandler.ArgHandler(self,args)
 
+        # Don't show main window until ArgHandler is done.
+	# This prevents a window from annoyingly popping up when
+	# the command line args are sufficient to operate without it.
+	self.topWindow.show()
+
         if GrampsCfg.usetips:
             TipOfDay.TipOfDay()
 
@@ -352,7 +357,6 @@ class Gramps:
         self.back = gtk.ImageMenuItem(gtk.STOCK_GO_BACK)
         self.forward = gtk.ImageMenuItem(gtk.STOCK_GO_FORWARD)
 
-        self.topWindow.show()
         self.enable_toolbar(self.use_toolbar)
 
     def undo(self,*args):

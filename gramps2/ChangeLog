@@ -5,6 +5,10 @@
 	in the context menu.
 	* NEWS: Update.
 
+	* src/ArgHandler.py: Fixes.
+	* src/gramps_main.py: Don't show topWindow until ArgHandler is done.
+	* src/plugins/Summary.py: Fixes.
+
 2004-06-20  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* configure.in: Bump up the version number. 
 	* src/gramps.py: Pass complete argument string. 

@@ -421,7 +421,7 @@ class ArgHandler:
         """
         if action == 'check':
             import Check
-            checker = Check.CheckIntegrity(self.parent.db)
+            checker = Check.CheckIntegrity(self.parent.db,None,None)
             checker.check_for_broken_family_links()
             checker.cleanup_missing_photos(1)
             checker.check_parent_relationships()
