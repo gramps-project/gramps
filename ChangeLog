@@ -2,6 +2,22 @@
 	* src/plugins/DetAncestralReport.py: Typos.
 	* src/plugins/DetDescendantReport.py: Typos.
 
+	* doc/gramps-manual/C/authors.xml: Add file.
+	* doc/gramps-manual/C/bugs.xml: Add file.
+	* doc/gramps-manual/C/preface.xml: Add file.
+	* doc/gramps-manual/C/Makefile.am: Ship new files.
+	* doc/gramps-manual/C/cmdline.xml: Convert to book.
+	* doc/gramps-manual/C/custom.xml: Convert to book.
+	* doc/gramps-manual/C/faq.xml: Convert to book.
+	* doc/gramps-manual/C/filtref.xml: Convert to book.
+	* doc/gramps-manual/C/getstart.xml: Convert to book.
+	* doc/gramps-manual/C/gramps-manual.xml: Convert to book.
+	* doc/gramps-manual/C/keybind.xml: Convert to book.
+	* doc/gramps-manual/C/legal.xml: Change license to GPL.
+	* doc/gramps-manual/C/mainwin.xml: Convert to book.
+	* doc/gramps-manual/C/usage.xml: Convert to book.
+	* COPYING-DOCS: Change license to GPL.
+
 2005-02-12 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ReadGrdb.py: Check for overlapping handles prior to
 	modifying data.

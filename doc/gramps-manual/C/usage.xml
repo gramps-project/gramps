@@ -1,23 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="gramps-usage"> 
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2004  Alexander Roitman
+	  Copyright (C) 2003-2005  Alexander Roitman
 
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
-          distributed with this manual.
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
 <!-- $Id$ -->
 
-<!-- ================ Usage ================================ -->
-  <sect1 id="gramps-usage"> 
     <title>Usage</title> 
     <para>As commonly encountered in everyday life, in
     &app; there is usually more than one way to
@@ -25,7 +29,7 @@
     be listed as appropriate.</para> 
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="new-db"> 
+    <sect1 id="new-db"> 
       <title>Starting a New Database</title> 
       <para>To start a new database, choose <menuchoice><guimenu>File</guimenu>
       <guimenuitem>New</guimenuitem></menuchoice>. You will then be 
@@ -33,10 +37,10 @@
       to specify the name under which the new database will be stored. 
       Choose an <replaceable>empty directory</replaceable> for your new 
       database (create one if necessary). </para> 
-    </sect2>
+    </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="open-db"> 
+    <sect1 id="open-db"> 
       <title>Opening a Database</title> 
       <para>To open a database, either choose <menuchoice>
       <guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>
@@ -63,10 +67,10 @@
       possible copies 
       of media objects. Such a directory is created by &app; when you start 
       a new database and is updated each time the database is saved. </para> 
-    </sect2>
+    </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="save-db"> 
+    <sect1 id="save-db"> 
       <title>Saving a Database</title> 
       <para>To save changes made to your database, choose <menuchoice>
       <guimenu>File</guimenu>
@@ -74,10 +78,10 @@
       <guibutton>Save</guibutton> button on the Toolbar. The statusbar will then 
       display the <guilabel>Saving <replaceable>databasename</replaceable>...</guilabel> 
       message, and the progressbar will advance as the saving progresses.</para>
-    </sect2>
+    </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="import-data"> 
+    <sect1 id="import-data"> 
       <title>Importing Data</title> 
       <para>Importing allows you to incorporate the data from other 
       databases into your currently open &app; database. Currently, 
@@ -179,10 +183,10 @@
     
      </itemizedlist>	
 
-    </sect2>  
+    </sect1>  
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="export-data"> 
+    <sect1 id="export-data"> 
       <title>Exporting Data</title> 
       
       <para>Exporting allows you to share any portion of your &app; database 
@@ -317,10 +321,10 @@
 
      </itemizedlist>	
 
-    </sect2>
+    </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gramps-edit-quick"> 
+    <sect1 id="gramps-edit-quick"> 
       <title>Editing Data: Quick Start</title> 
 	<para> Editing any portion of data allows you to amend and/or 
 	modify information stored in the database. The available editing 
@@ -338,7 +342,7 @@
     </para>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-add-pers"> 
+      <sect2 id="gramps-add-pers"> 
         <title>To Add a Person</title> 
 	<para> To add a person to the database, switch to the People View 
 	(<xref linkend="side-nofilt-fig"/>) and then click the 
@@ -355,10 +359,10 @@
         and select <guilabel>Add...</guilabel> or <guilabel>Edit...</guilabel>
         from the invoked context menu. 
         </para>
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-spec-rel"> 
+      <sect2 id="gramps-spec-rel"> 
         <title>To Specify a Relationship</title> 
 	<para>To specify a relationship, first switch to the Family View 
 	(<xref linkend="family-fig"/>). Then click one of the two top buttons on 
@@ -387,10 +391,10 @@
         menu available upon right-clicking into the spouse box. Also, most of the 
         above function are available from the items of this context menu. 
 	</para>
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-spec-par"> 
+      <sect2 id="gramps-spec-par"> 
         <title>To Specify Parents</title> 
 	<para>To specify parents of an active person, first switch to the 
 	Family View (<xref linkend="family-fig"/>). Then click the 
@@ -415,10 +419,10 @@
 	the corresponding parents' box and double-click. All these functions can
         also be performed by right-clicking on the parents' box and selecting
         an appropriate item from the context menu. </para>
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-spec-ch"> 
+      <sect2 id="gramps-spec-ch"> 
         <title>To Specify Children</title> 
 	<para>To specify children of an active person, switch to the 
 	Family View (<xref linkend="family-fig"/>) and then click either the 
@@ -442,10 +446,10 @@
         into the children box. Also, most of the above function are available from 
         the items of this context menu.
 	</para>
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-add-img"> 
+      <sect2 id="gramps-add-img"> 
         <title>To Add Images</title> 
 	<para>You can add images (as well as other media objects) to 
 	individual people, events, sources, places, as well as images 
@@ -498,10 +502,10 @@
 	delete it from Media View by first selecting it and then 
 	clicking the <guibutton>Remove</guibutton> icon on the toolbar. </para>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-edit-src-plc"> 
+      <sect2 id="gramps-edit-src-plc"> 
         <title>To Edit Sources and Places</title> 
 
 	<para> To add a source or a place to the database, switch to 
@@ -519,11 +523,11 @@
         may double-click on the entry to edit it. 
 	</para>
 
-      </sect3>
-    </sect2>
+      </sect2>
+    </sect1>
       
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gramps-edit-complete"> 
+    <sect1 id="gramps-edit-complete"> 
       <title>Editing Data: Complete Description</title> 
       <para> This section provides a complete description of all editing 
       options for all pieces of data in the &app; database. It refers mainly 
@@ -533,7 +537,7 @@
       the <xref linkend="append-keybind"/>.</para>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-pers"> 
+      <sect2 id="adv-pers"> 
         <title>Edit Personal Information</title> 
 	<para> Editing of personal data can be performed in the 
 	following ways: </para>
@@ -933,10 +937,10 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-dates"> 
+      <sect2 id="adv-dates"> 
         <title>Edit Dates</title> 
 	<para> Anywhere in &app; where the date 
         is entered or edited, the following rules apply:</para> 
@@ -999,10 +1003,10 @@
         </itemizedlist>
       </listitem></varlistentry>
       </variablelist>
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-rel"> 
+      <sect2 id="adv-rel"> 
         <title>Edit Relationship Data</title> 
 	<para> Editing of relationship data is performed in the following 
 	<guilabel>Marriage/Relationship Editor</guilabel> dialog which appears 
@@ -1180,10 +1184,10 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-     </sect3>
+     </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-src"> 
+      <sect2 id="adv-src"> 
         <title>Edit Source Data</title> 
 	<para> To edit source data, switch to the Sources View and select the
 	desired entry in the list of sources. Double-click on that entry or
@@ -1290,11 +1294,11 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-      </sect3>
+      </sect2>
 
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-plc"> 
+      <sect2 id="adv-plc"> 
         <title>Edit Place Data</title> 
 	<para> To edit place data, switch to the Places View and select the
 	desired entry in the list of places. Double-click on that entry or
@@ -1450,10 +1454,10 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-media"> 
+      <sect2 id="adv-media"> 
         <title>Edit Media Data</title> 
 	<para> To edit media data, switch to the Media View and select the
 	desired entry in the list of sources. Double-click on that entry or
@@ -1561,10 +1565,10 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-ev"> 
+      <sect2 id="adv-ev"> 
         <title>Edit Events</title> 
 	<para> Events are edited through the following <guilabel>Event
 	Editor</guilabel> dialog: </para> 
@@ -1663,10 +1667,10 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-si"> 
+      <sect2 id="adv-si"> 
         <title>Edit Source Information</title> 
 	<para> When adding source references to events, places, etc., 
 	the following dialog appears: </para>
@@ -1701,10 +1705,10 @@
 	The rest of the details can be typed in the appropriate text entry
 	fields. </para>
 
-      </sect3>
+      </sect2>
       
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-an"> 
+      <sect2 id="adv-an"> 
         <title>Edit Alternate Names</title> 
 	<para> Alternate names are edited through the following 
 	<guilabel>Alternate Names Editor</guilabel> dialog: </para>
@@ -1790,10 +1794,10 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-     </sect3>
+     </sect2>
       
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-at"> 
+      <sect2 id="adv-at"> 
         <title>Edit Attributes</title> 
 	<para> Attributes are edited through the following 
 	<guilabel>Attribute Editor</guilabel> dialog: </para>
@@ -1877,10 +1881,10 @@
 	</para>
 		</listitem></varlistentry>
 	</variablelist>
-      </sect3>
+      </sect2>
       
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-ad"> 
+      <sect2 id="adv-ad"> 
         <title>Edit Addresses</title> 
 	<para> Addresses are edited through the following 
 	<guilabel>Address Editor</guilabel> dialog: </para>
@@ -1965,10 +1969,10 @@
 		</listitem></varlistentry>
 	</variablelist>
 
-      </sect3>
+      </sect2>
       
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-wit"> 
+      <sect2 id="adv-wit"> 
         <title>Edit Witnesses</title> 
 	<para> Witnesses are edited through the following 
 	<guilabel>Witness Editor</guilabel> dialog: </para>
@@ -2030,10 +2034,10 @@
 	existing comments simply edit the text in the text area.
 	</para>
 
-      </sect3>
+      </sect2>
       
        <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-merge"> 
+      <sect2 id="adv-merge"> 
         <title>Merge People</title> 
 	<para> Sometime two people entries in the database turn out to be 
         describing the same person. When this happens, merging people is 
@@ -2052,10 +2056,10 @@
         data if you so choose. If you would like to continue editing data of 
         a newly merged person, click the <guibutton>Merge and edit</guibutton>
         button. </para>
-      </sect3>
+      </sect2>
 
        <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="adv-merge-places"> 
+      <sect2 id="adv-merge-places"> 
         <title>Merge Places</title> 
         <para> Sometime two place entries in the database turn out to be 
         describing the same place. When this happens, merging places is 
@@ -2073,12 +2077,12 @@
         the new (merged) place. Alternatively, you may type in other data
         for the new place, if you click <guilabel>Other</guilabel> radio 
         button.</para>
-      </sect3>
+      </sect2>
 
-   </sect2>
+   </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gramps-nav"> 
+    <sect1 id="gramps-nav"> 
        <title>Navigation</title> 
 	<para> As long as any database is open, &app; is focused on a 
 	single person usually referred to as an Active person. This 
@@ -2092,7 +2096,7 @@
         depending what you are doing in &app; at the moment. </para>
        
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-people"> 
+      <sect2 id="gramps-nav-people"> 
         <title>Using the People View </title> 
 	<para> The most intuitive way to select an active person is 
 	to use the People View (see <xref linkend="people-view"/>). 
@@ -2100,10 +2104,10 @@
 	name of the desired person from the list by clicking that list 
 	entry. The person you have selected becomes active. The statusbar 
 	updates to reflect the change of the active person. </para> 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-family"> 
+      <sect2 id="gramps-nav-family"> 
         <title>Using the Family View</title> 
 	<para> When in the Family View (see <xref linkend="family-view"/>), 
         you can easily navigate between the members of the displayed family 
@@ -2147,10 +2151,10 @@
         navigation options. The detailed reference to the keybindings 
         is found in the <xref linkend="append-keybind"/>.</para>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-pedigree"> 
+      <sect2 id="gramps-nav-pedigree"> 
         <title>Using the Pedigree View</title> 
 	<para> The Pedigree View (see <xref linkend="pedigree-view"/>) also 
         allows you to move along the family tree. 
@@ -2186,10 +2190,10 @@
 	boxes for father and mother. </para></listitem>
 	</itemizedlist>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-default"> 
+      <sect2 id="gramps-nav-default"> 
         <title>Setting the Home Person</title> 
 	<para> One and only one person in the database can be selected as the 
 	Home person. Once the Home person is selected, moving to that
@@ -2208,11 +2212,11 @@
         right click. 
         </para>
 	
-      </sect3>
+      </sect2>
 
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-history"> 
+      <sect2 id="gramps-nav-history"> 
         <title>Using history-based tools</title> 
 	<para> &app; also features a powerful set of history-based navigation 
         tools. These tools are similar to those commonly used in web browsers. 
@@ -2227,10 +2231,10 @@
         popup menu with corresponding portion of the history. Select any item
         from the menu to jump directly to it. </para>
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-bookmk"> 
+      <sect2 id="gramps-nav-bookmk"> 
         <title>Bookmarking People</title> 
 	<para> Similar to setting the Home person, you can bookmark other 
         people from the database to simplify further navigation. To bookmark 
@@ -2259,10 +2263,10 @@
 	</textobject></mediaobject></screenshot></figure>
 	<!-- ==== End of Figure ==== -->
 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-find-people"> 
+      <sect2 id="gramps-nav-find-people"> 
         <title>Finding People</title> 
 	<para> To find a person in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
@@ -2273,42 +2277,42 @@
 	<para> If the search is successful, the found person becomes an active
         person and the display adjusts according to the new active person and the
         current view. </para>
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-find-sources"> 
+      <sect2 id="gramps-nav-find-sources"> 
         <title>Finding Sources</title> 
 	<para> To find a source in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
         when in the Sources View. This opens a <guilabel>Find Source</guilabel>
         dialog which can be used for searching forward and backward. If the
         search is successful, the found source becomes highlighted. </para> 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-find-places"> 
+      <sect2 id="gramps-nav-find-places"> 
         <title>Finding Places</title> 
 	<para> To find a place in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
         when in the Places View. This opens a <guilabel>Find Place</guilabel> 
         dialog which can be used for searching forward and backward. If the 
         search is successful, the found place becomes highlighted. </para> 
-      </sect3>
+      </sect2>
 
       <!-- ================ Usage Sub-subsection ================ -->
-      <sect3 id="gramps-nav-find-media"> 
+      <sect2 id="gramps-nav-find-media"> 
         <title>Finding Media Objects</title> 
 	<para> To find a media object in a database, choose 
         <menuchoice><guimenu>Edit</guimenu><guimenuitem>Find...</guimenuitem></menuchoice> 
         when in the Media View. This opens a <guilabel>Find Media Objects</guilabel> 
         dialog which can be used for searching forward and backward. If the 
         search is successful, the found media object becomes highlighted. </para> 
-      </sect3>
+      </sect2>
 
-   </sect2>
+   </sect1>
    
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gen-reports"> 
+    <sect1 id="gen-reports"> 
         <title>Generating Reports</title> 
 	<para> Reports are the most common form of the output produced by
 	genealogical research. The majority of genealogical software puts a lot
@@ -2335,7 +2339,7 @@
 
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="rep-graph"> 
+      <sect2 id="rep-graph"> 
 	<title>Graphical Reports</title> 
 	<para> Graphical reports represent information in forms of charts 
 	and graphs. Most of the options are common among graphical reports, 
@@ -2401,10 +2405,10 @@
     Applications</replaceable></guimenuitem></menuchoice> dialog). 
     </para>
 
-      </sect3>
+      </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="rep-text"> 
+      <sect2 id="rep-text"> 
 	<title>Text Reports</title> 
 	<para> Text reports represent the desired information as formatted 
 	text. Most of the options are common among text reports, 
@@ -2515,10 +2519,10 @@
     Applications</replaceable></guimenuitem></menuchoice> dialog). 
     </para>
 
-      </sect3>
+      </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="rep-books"> 
+      <sect2 id="rep-books"> 
 	<title>Books</title> 
 	<para> Currently, the only available report under this category
         is the Book Report. </para>
@@ -2607,10 +2611,10 @@
 
 	</variablelist>
 
-      </sect3>
+      </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="rep-view"> 
+      <sect2 id="rep-view"> 
 	<title>View Reports</title> 
 	<para> View reports represent overall summaries of the database 
 	information available immediately for on-screen viewing. 
@@ -2630,10 +2634,10 @@
 	</varlistentry>
 
 	</variablelist>
-     </sect3>
+     </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="rep-web"> 
+      <sect2 id="rep-web"> 
 	<title>Web Page</title> 
 
 	<para> This report generates web pages, either for a selected 
@@ -2650,12 +2654,12 @@
         the optional &app; ID, create a GENDEX index, and specify the 
         extension of the resulting files. </para>
 
-      </sect3>
+      </sect2>
 
-   </sect2>
+   </sect1>
 
     <!-- ================ Usage Subsection ================================ -->
-    <sect2 id="gramps-tools"> 
+    <sect1 id="gramps-tools"> 
         <title>Running Tools</title> 
 	<para> &app; tools allow you to perform various types of analyses
 	of your genealogical data. Typically, the tools do not produce 
@@ -2676,7 +2680,7 @@
 	<guibutton>Tools</guibutton> icon on the toolbar. </para>
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="tools-ae"> 
+      <sect2 id="tools-ae"> 
 	<title>Analysis and Exploration</title> 
 	<para> This section contains tools which analyze and explore the
 	database, but do not alter it. The following analysis and exploration
@@ -2700,10 +2704,10 @@
 	</varlistentry>
 
 	</variablelist>
-      </sect3>
+      </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="tools-db"> 
+      <sect2 id="tools-db"> 
 	<title>Database Processing</title> 
 	<para> This section contains tools which may modify your database. 
 	The modifications will only be performed upon your explicit consent. 
@@ -2769,10 +2773,10 @@
 
 	</variablelist>
 
-      </sect3>
+      </sect2>
 
       <!-- =============== Usage Sub-subsection ================ -->
-      <sect3 id="tools-util"> 
+      <sect2 id="tools-util"> 
 	<title>Utilities</title> 
 	<para> </para>
 
@@ -2893,8 +2897,8 @@
 
 	</variablelist>
 
-     </sect3>
+     </sect2>
 
-    </sect2>
+    </sect1>
 
-  </sect1> <!-- ================ End Usage ============== -->
+</chapter>

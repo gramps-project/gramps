@@ -1,28 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="gramps-getting-started"> 
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003  Alexander Roitman
+	  Copyright (C) 2003-2005  Alexander Roitman
 
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
-          distributed with this manual.
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
 <!-- $Id$ -->
 
-<!-- =========== Getting Started ============================== -->
 
-  <sect1 id="gramps-getting-started"> 
     <title>Getting Started</title> 
 
     <!-- ================ Getting Started Subsection ====== -->
-    <sect2 id="gramps-start">
+    <sect1 id="gramps-start">
     <title>To Start GRAMPS</title>
     <para>You can start &app; in the following ways:</para> 
     <variablelist>
@@ -50,10 +54,10 @@
         </para></listitem>
     </varlistentry>
     </variablelist>
-    </sect2>
+    </sect1>
 
     <!-- ================ Getting Started Subsection ==== -->
-    <sect2 id="run-1st-time">
+    <sect1 id="run-1st-time">
       <title>Running GRAMPS for the first time</title>
     <para> 
     The first time you run the program, GRAMPS will display its 
@@ -87,10 +91,10 @@
 	<guilabel>Usage</guilabel> category. 
 	</para>
 
-    </sect2>
+    </sect1>
 
     <!-- ================ Getting Started Subsection  -->
-      <sect2 id="choose-db-start">
+      <sect1 id="choose-db-start">
       <title>Choosing a database on startup</title> 
       <para>If &app; is started without any
       database  to open, the following window will appear prompting you to 
@@ -128,40 +132,11 @@
       created by &app; when you start a new database and is updated each time 
       the database is saved. </para> 
 
-      </sect2>
+      </sect1>
       
-<!-- ================ Getting Started Sub-subsection  
-      <sect3 id="zodb-support">
-        <title>Optional ZODB support</title> 
-
-      <para>If either StandaloneZODB or Zope is installed on your system, 
-      &app; will give you the third option of 
-      creating a new ZODB database. You can choose to start your new database 
-      in either XML or ZODB format. Both formats have their strong and weak 
-      points.</para>
-
-      <para>XML stands for eXtensible Markup Language, and is a human readable
-      structured description of data. It could be easily parsed by other 
-      programs should the need occur. It stores only the data itself. Its weak 
-      point is the relatively low speed of processing large data files. </para>
-
-      <para>ZODB stands for Zope Object Database and provides the full-fledged
-      database support. ZODB files are not human readable. They contain a
-      certain overhead to assist working with large data structures. However,
-      ZODB provides a significant speed-up when the database size is large (over
-      a few thousand people). </para>
-
-      <para>Its is hard to tell which format is better, since this is a typical
-      trade-off situation. If you are starting your research then you are likely
-      to be fine with the regular XML database. If you have tons of data to
-      import describing thousands upon thousands of people, then you are
-      probably better off with ZODB. </para>
-
-      </sect3>
--->
 
     <!-- ================ Getting Started Subsection ==== -->
-    <sect2 id="get-help">
+    <sect1 id="get-help">
       <title>Obtaining Help</title>
     <para> At any time, the following items are available for immediate aid
     from the <menuchoice><guimenu>Help</guimenu></menuchoice> menu: </para>
@@ -205,6 +180,6 @@
 	</varlistentry>
     
 	</variablelist>
-    </sect2>
+    </sect1>
 
-  </sect1> <!-- ================ End Getting Started ======================== -->
+  </chapter>

@@ -1,23 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="append-filtref">
 
 <!--
 	  User Manual for Gramps - a GTK+/GNOME based genealogy program
 
-	  Copyright (C) 2003-2004  Alexander Roitman
+	  Copyright (C) 2003-2005  Alexander Roitman
 
-	  Permission is granted to copy, distribute and/or modify this
-	  document under the terms of the GNU Free Documentation
-	  License (GFDL), Version 1.1 or any later version published
-	  by the Free Software Foundation with no Invariant Sections,
-	  no Front-Cover Texts, and no Back-Cover Texts. 
-          A copy of the license is included in the file COPYING-DOCS 
-          distributed with this manual.
+	  This document is free software; you can redistribute it and/or modify
+	  it under the terms of the GNU General Public License as published by
+	  the Free Software Foundation; either version 2 of the License, or
+	  (at your option) any later version.
+
+	  This document is distributed in the hope that it will be useful,
+	  but WITHOUT ANY WARRANTY; without even the implied warranty of
+	  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	  GNU General Public License for more details.
+
+	  You should have received a copy of the GNU General Public License
+	  along with this program; if not, write to the Free Software
+	  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
 <!-- $Id$ -->
 
-      <!-- =============== Appendices Subsection ================ -->
-      <sect2 id="append-filtref">
       <title>Filter rules reference</title>
       <para>This appendix lists of all the filter rules currently defined 
       in &app;. Each of these rules is available for use when creating custom 
@@ -25,7 +29,7 @@
       </para>
 
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-general">
+    	<sect1 id="filtref-general">
         <title>General filters</title>
         <para>This category includes the following most general rules:</para>
         
@@ -85,10 +89,10 @@
 
           </variablelist>
 
-        </sect3> 
+        </sect1> 
 
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-event">
+    	<sect1 id="filtref-event">
         <title>Event filters</title>
         <para>This category includes the following rules that match people
         based on their recorded events:</para>
@@ -160,10 +164,10 @@
 
 
           </variablelist>
-        </sect3> 
+        </sect1> 
 
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-family">
+    	<sect1 id="filtref-family">
         <title>Family filters</title>
         <para>This category includes the following rules that match people 
         based on their family relationships:</para>
@@ -204,10 +208,10 @@
           </varlistentry>
 
           </variablelist>
-        </sect3> 
+        </sect1> 
 
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-ancestral">
+    	<sect1 id="filtref-ancestral">
         <title>Ancestral filters</title>
         <para>This category includes the following rules that match people 
         based on their ancestral relations to other people:</para>
@@ -270,10 +274,10 @@
           </varlistentry>
 
           </variablelist>
-        </sect3> 
+        </sect1> 
 
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-descendant">
+    	<sect1 id="filtref-descendant">
         <title>Descendant filters</title>
         <para>This category includes the following rules that match people 
         based on their descendant relations to other people:</para>
@@ -330,10 +334,10 @@
           </varlistentry>
 
           </variablelist>
-        </sect3> 
+        </sect1> 
 
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-relat">
+    	<sect1 id="filtref-relat">
         <title>Relationship filters</title>
         <para>This category includes the following rules that match people
         based on their mutual relationship:</para>
@@ -356,10 +360,10 @@
           </varlistentry>
 
           </variablelist>
-        </sect3>
+        </sect1>
         
         <!-- =============== Appendices Sub-subsection ================ -->
-    	<sect3 id="filtref-misc">
+    	<sect1 id="filtref-misc">
         <title>Miscellaneous filters</title>
         <para>This category includes the following rules which do not
         naturally fit into any of the above categories:</para>
@@ -389,6 +393,6 @@
           </varlistentry>
 
           </variablelist>
-        </sect3>
+        </sect1>
         
-      </sect2> 
+</appendix> 
