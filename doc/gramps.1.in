@@ -33,8 +33,9 @@ wide by almost all other geneology software.
 .SH OPTIONS
 .TP 
 .BI \-f " FORMAT"
-Explicitly specify format of the filename. If this option is not given, the 
-format of each file is guessed according to its extension. Formats available 
+Explicitly specify format of the filename given by preceding \fB\-i\fR or 
+\fB\-o\fR options. If the \fB\-f\fR option is not given, the format of each 
+file is guessed according to its extension. Formats available 
 for import are \fBgramps\fR, \fBgedcom\fR, and \fBgramps\-pkg\fR. Formats 
 available for export are \fBgramps\fR, \fBgedcom\fR, \fBgramps\-pkg\fR, 
 and \fBiso\fR.
@@ -76,6 +77,23 @@ The error encountered during import, export, or action, will be either
 dumped to \fIstdout\fR (if these are exceptions handled by gramps) or or 
 to \fIstderr\fR (if these are not handled). Use usual shell redirections 
 of \fIstdout\fR and \fIstderr\fR to save messages and errors in files. 
+
+.SH EXAMPLES
+.TP 
+To import three databases (whose formats can be determined from their names) and then check the resulting database for errors, one may type: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3\fR \fB\-a\fR \fIcheck\fR 
+.TP 
+To explicitly specify the formats in the above example, append filenames with appropriate \fB\-f\fR options: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-f\fR \fIgedcom\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-f\fR \fIgramps-pkg\fR \fB\-i\fR \fI~/dir3\fR \fB\-f\fR \fIgramps\fR  \fB\-a\fR \fIcheck\fR 
+.TP 
+To record the database resulting from all imports, supply \fB\-o\fR flag (use \fB\-f\fR if the filename does not allow gramps to guess the format):
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-o\fR \fI~/new-package\fR \fB\-f\fR \fIgramps-pkg\fR 
+.TP 
+To import three databases and start interactive gramps session with the result: 
+\fBgramps\fR \fB\-i\fR \fIfile1.ged\fR \fB\-i\fR \fIfile2.tgz\fR \fB\-i\fR \fI~/db3\fR 
+.TP 
+Finally, to start normal interactive session type: 
+\fBgramps\fR 
 
 .SH CONCEPTS
 Supports a python\-based plugin system, allowing import and export writers, 
