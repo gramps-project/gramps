@@ -13,7 +13,6 @@
 	of gtk widgets and make more flexible for adding support for new 
 	dnd object types. Added link icon if the object is a link to a primary
 	object.
-
 	
 2005-03-30  Don Allingham  <don@gramps-project.org>
 	* src/MergePeople.py: provide more date in compare window, fix event
