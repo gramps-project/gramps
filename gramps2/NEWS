@@ -1,9 +1,18 @@
 Version 1.1.1 -- the "Rat cake, rat sorbet, rat pudding, or strawberry tart" release
+* New "Save as" wizard interface: replaces old Export and Save as options.
+  Note: this is still unfinished at the 1.1.1 release time, please be patient.
+* New Find interface for People View.
+* Switch to internal IDs. These are universally unique and not user-visible. 
+  The user-visible GRAMPS IDs are kept and are editable now.
+* Re-design of Open and Import options. Both will take any format now.
+  Open will start a new database with the specified data. Import will
+  incorporate new data into the currently opened database.
+* Mime types and icons for gramps package and GEDCOM files. 
 * Pedigree View has person-dependent submenus in the context menu:
   Spouses, Siblings, Children, and Parents.
 * Command line arguments handling is back on track.
 * Sorting improvements.
-* Bug fixes.
+* Numerous bug fixes.
 
 Version 1.1.0 -- the "And now for something completely different" release
 * Berkeley database backend!!! Many thanks to Billy Earney for db expertise!
