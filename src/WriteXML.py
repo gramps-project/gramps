@@ -293,7 +293,7 @@ def exportData(database, filename, callback):
             write_line(g,"nick",person.getNickName(),3)
             pos = person.getPosition()
             if pos != None:
-               g.write('      <pos>%d %d</pos>\n'% pos)
+               g.write('      <pos x="%d" y="%d"/>\n'% pos)
             dump_my_event(g,"Birth",person.getBirth(),3)
             dump_my_event(g,"Death",person.getDeath(),3)
             for event in person.getEventList():
