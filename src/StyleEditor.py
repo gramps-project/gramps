@@ -150,6 +150,11 @@ class StyleEditor:
         self.window.set_data("obj",self)
         self.pnames = self.top.get_widget("name")
 
+        # Typing CR selects OK button
+        self.window.editable_enters(self.top.get_widget("rmargin"))
+        self.window.editable_enters(self.top.get_widget("lmargin"))
+        self.window.editable_enters(self.top.get_widget("pad"))
+
         self.top.get_widget("style_name").set_text(name)
         myMenu = gtk.GtkMenu()
         first = 0

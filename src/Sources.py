@@ -78,6 +78,10 @@ class SourceEditor:
         self.author_field = self.get_widget("sauthor")
         self.pub_field = self.get_widget("spubinfo")
 
+        # Typing CR selects OK button
+        self.sourceDisplay.editable_enters(self.get_widget("spage"))
+        self.sourceDisplay.editable_enters(self.get_widget("sdate"))
+
         if self.source_ref:
             self.active_source = self.source_ref.getBase()
         else:

@@ -100,6 +100,10 @@ class EditSource:
             self.top_window.get_widget("add_photo").set_sensitive(0)
             self.top_window.get_widget("delete_photo").set_sensitive(0)
 
+        self.top.editable_enters(self.title);
+        self.top.editable_enters(self.author);
+        self.top.editable_enters(self.pubinfo);
+
     #-------------------------------------------------------------------------
     #
     # add_thumbnail - Scale the image and add it to the IconList. 
@@ -212,8 +216,10 @@ def on_add_photo_clicked(obj):
     edit_source.fname = image_select.get_widget("fname")
     edit_source.add_image = image_select.get_widget("image")
     edit_source.external = image_select.get_widget("private")
-    image_select.get_widget("imageSelect").set_data(SOURCE,edit_source)
-    image_select.get_widget("imageSelect").show()
+    window = image_select.get_widget("imageSelect")
+    window.editable_enters(image_select.get_widget("photoDescription"))
+    window.set_data(SOURCE,edit_source)
+    window.show()
 
 #-------------------------------------------------------------------------
 #
@@ -333,6 +339,7 @@ def on_change_description(obj):
     window.get_widget("dialog1").set_data("p",photo)
     window.get_widget("dialog1").set_data("t",text)
     window.get_widget("dialog1").set_data("m",obj.get_data("m"))
+    window.get_widget("dialog1").editable_enters(text)
     window.signal_autoconnect({
         "on_cancel_clicked" : utils.destroy_passed_object,
         "on_ok_clicked" : on_ok_clicked,

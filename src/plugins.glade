@@ -13,7 +13,7 @@
 </project>
 
 <widget>
-  <class>GtkWindow</class>
+  <class>GnomeDialog</class>
   <name>pluginsel</name>
   <title>Gramps - Plugin Selection</title>
   <type>GTK_WINDOW_DIALOG</type>
@@ -22,13 +22,80 @@
   <allow_shrink>False</allow_shrink>
   <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
+  <auto_close>False</auto_close>
+  <hide_on_close>False</hide_on_close>
 
   <widget>
     <class>GtkVBox</class>
+    <child_name>GnomeDialog:vbox</child_name>
     <name>vbox33</name>
-    <border_width>10</border_width>
     <homogeneous>False</homogeneous>
     <spacing>0</spacing>
+    <child>
+      <padding>4</padding>
+      <expand>True</expand>
+      <fill>True</fill>
+    </child>
+
+    <widget>
+      <class>GtkHButtonBox</class>
+      <child_name>GnomeDialog:action_area</child_name>
+      <name>hbuttonbox20</name>
+      <layout_style>GTK_BUTTONBOX_END</layout_style>
+      <spacing>8</spacing>
+      <child_min_width>85</child_min_width>
+      <child_min_height>27</child_min_height>
+      <child_ipad_x>7</child_ipad_x>
+      <child_ipad_y>0</child_ipad_y>
+      <child>
+	<padding>0</padding>
+	<expand>False</expand>
+	<fill>True</fill>
+	<pack>GTK_PACK_END</pack>
+      </child>
+
+      <widget>
+	<class>GtkButton</class>
+	<name>button101</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>on_ok_clicked</handler>
+	  <object>pluginsel</object>
+	  <last_modification_time>Sun, 11 Mar 2001 22:54:53 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
+      </widget>
+
+      <widget>
+	<class>GtkButton</class>
+	<name>button102</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>on_apply_clicked</handler>
+	  <object>pluginsel</object>
+	  <last_modification_time>Sun, 11 Mar 2001 22:54:34 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
+      </widget>
+
+      <widget>
+	<class>GtkButton</class>
+	<name>button103</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>destroy_passed_object</handler>
+	  <object>pluginsel</object>
+	  <last_modification_time>Sun, 11 Mar 2001 22:54:19 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+      </widget>
+    </widget>
 
     <widget>
       <class>GtkHPaned</class>
@@ -158,79 +225,11 @@
 	</widget>
       </widget>
     </widget>
-
-    <widget>
-      <class>GtkHSeparator</class>
-      <name>hseparator17</name>
-      <child>
-	<padding>4</padding>
-	<expand>False</expand>
-	<fill>True</fill>
-      </child>
-    </widget>
-
-    <widget>
-      <class>GtkHButtonBox</class>
-      <name>hbuttonbox20</name>
-      <layout_style>GTK_BUTTONBOX_END</layout_style>
-      <spacing>30</spacing>
-      <child_min_width>85</child_min_width>
-      <child_min_height>27</child_min_height>
-      <child_ipad_x>7</child_ipad_x>
-      <child_ipad_y>0</child_ipad_y>
-      <child>
-	<padding>0</padding>
-	<expand>False</expand>
-	<fill>True</fill>
-      </child>
-
-      <widget>
-	<class>GtkButton</class>
-	<name>button101</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>on_ok_clicked</handler>
-	  <object>pluginsel</object>
-	  <last_modification_time>Sun, 11 Mar 2001 22:54:53 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
-      </widget>
-
-      <widget>
-	<class>GtkButton</class>
-	<name>button102</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>on_apply_clicked</handler>
-	  <object>pluginsel</object>
-	  <last_modification_time>Sun, 11 Mar 2001 22:54:34 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
-      </widget>
-
-      <widget>
-	<class>GtkButton</class>
-	<name>button103</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>destroy_passed_object</handler>
-	  <object>pluginsel</object>
-	  <last_modification_time>Sun, 11 Mar 2001 22:54:19 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
-      </widget>
-    </widget>
   </widget>
 </widget>
 
 <widget>
-  <class>GtkWindow</class>
+  <class>GnomeDialog</class>
   <name>report</name>
   <title>Gramps - Report Selection</title>
   <type>GTK_WINDOW_DIALOG</type>
@@ -239,13 +238,80 @@
   <allow_shrink>False</allow_shrink>
   <allow_grow>True</allow_grow>
   <auto_shrink>False</auto_shrink>
+  <auto_close>False</auto_close>
+  <hide_on_close>False</hide_on_close>
 
   <widget>
     <class>GtkVBox</class>
+    <child_name>GnomeDialog:vbox</child_name>
     <name>vbox35</name>
-    <border_width>10</border_width>
     <homogeneous>False</homogeneous>
     <spacing>0</spacing>
+    <child>
+      <padding>4</padding>
+      <expand>True</expand>
+      <fill>True</fill>
+    </child>
+
+    <widget>
+      <class>GtkHButtonBox</class>
+      <child_name>GnomeDialog:action_area</child_name>
+      <name>hbuttonbox21</name>
+      <layout_style>GTK_BUTTONBOX_END</layout_style>
+      <spacing>8</spacing>
+      <child_min_width>85</child_min_width>
+      <child_min_height>27</child_min_height>
+      <child_ipad_x>7</child_ipad_x>
+      <child_ipad_y>0</child_ipad_y>
+      <child>
+	<padding>0</padding>
+	<expand>False</expand>
+	<fill>True</fill>
+	<pack>GTK_PACK_END</pack>
+      </child>
+
+      <widget>
+	<class>GtkButton</class>
+	<name>button104</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>on_report_ok_clicked</handler>
+	  <object>report</object>
+	  <last_modification_time>Thu, 22 Mar 2001 21:28:02 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
+      </widget>
+
+      <widget>
+	<class>GtkButton</class>
+	<name>button105</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>on_report_apply_clicked</handler>
+	  <object>report</object>
+	  <last_modification_time>Thu, 22 Mar 2001 21:28:11 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
+      </widget>
+
+      <widget>
+	<class>GtkButton</class>
+	<name>button106</name>
+	<can_default>True</can_default>
+	<can_focus>True</can_focus>
+	<signal>
+	  <name>clicked</name>
+	  <handler>destroy_passed_object</handler>
+	  <object>report</object>
+	  <last_modification_time>Sun, 11 Mar 2001 22:54:19 GMT</last_modification_time>
+	</signal>
+	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
+      </widget>
+    </widget>
 
     <widget>
       <class>GtkHPaned</class>
@@ -373,74 +439,6 @@
 	    <fill>True</fill>
 	  </child>
 	</widget>
-      </widget>
-    </widget>
-
-    <widget>
-      <class>GtkHSeparator</class>
-      <name>hseparator20</name>
-      <child>
-	<padding>4</padding>
-	<expand>False</expand>
-	<fill>True</fill>
-      </child>
-    </widget>
-
-    <widget>
-      <class>GtkHButtonBox</class>
-      <name>hbuttonbox21</name>
-      <layout_style>GTK_BUTTONBOX_END</layout_style>
-      <spacing>30</spacing>
-      <child_min_width>85</child_min_width>
-      <child_min_height>27</child_min_height>
-      <child_ipad_x>7</child_ipad_x>
-      <child_ipad_y>0</child_ipad_y>
-      <child>
-	<padding>0</padding>
-	<expand>False</expand>
-	<fill>True</fill>
-      </child>
-
-      <widget>
-	<class>GtkButton</class>
-	<name>button104</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>on_report_ok_clicked</handler>
-	  <object>report</object>
-	  <last_modification_time>Thu, 22 Mar 2001 21:28:02 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_OK</stock_button>
-      </widget>
-
-      <widget>
-	<class>GtkButton</class>
-	<name>button105</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>on_report_apply_clicked</handler>
-	  <object>report</object>
-	  <last_modification_time>Thu, 22 Mar 2001 21:28:11 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_APPLY</stock_button>
-      </widget>
-
-      <widget>
-	<class>GtkButton</class>
-	<name>button106</name>
-	<can_default>True</can_default>
-	<can_focus>True</can_focus>
-	<signal>
-	  <name>clicked</name>
-	  <handler>destroy_passed_object</handler>
-	  <object>report</object>
-	  <last_modification_time>Sun, 11 Mar 2001 22:54:19 GMT</last_modification_time>
-	</signal>
-	<stock_button>GNOME_STOCK_BUTTON_CANCEL</stock_button>
       </widget>
     </widget>
   </widget>

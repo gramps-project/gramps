@@ -94,9 +94,10 @@ class EditPerson:
         self.not_loaded = 1
         self.lists_changed = 0
         
-        self.top_window = libglade.GladeXML(const.editPersonFile, "editPerson")
+        self.top = libglade.GladeXML(const.editPersonFile, "editPerson")
 
         # widgets
+        self.window = self.get_widget("editPerson")
         self.notes_field = self.get_widget("personNotes")
         self.event_name_field  = self.get_widget("eventName")
         self.event_place_field = self.get_widget("eventPlace")
@@ -160,8 +161,20 @@ class EditPerson:
         self.birth = Event(person.getBirth())
         self.pname = Name(person.getPrimaryName())
         self.selected_icon = -1
+
+        # Typing CR selects OK button
+        self.window.editable_enters(self.notes_field);
+        self.window.editable_enters(self.given);
+        self.window.editable_enters(self.surname_field);
+        self.window.editable_enters(self.suffix);
+        self.window.editable_enters(self.title);
+        self.window.editable_enters(self.nick);
+        self.window.editable_enters(self.bdate);
+        self.window.editable_enters(self.bplace);
+        self.window.editable_enters(self.ddate);
+        self.window.editable_enters(self.dplace);
         
-        self.top_window.signal_autoconnect({
+        self.top.signal_autoconnect({
             "destroy_passed_object"     : on_cancel_edit,
             "on_add_address_clicked"    : on_add_addr_clicked,
             "on_add_aka_clicked"        : on_add_aka_clicked,
@@ -285,7 +298,7 @@ class EditPerson:
     #
     #---------------------------------------------------------------------
     def get_widget(self,str):
-        return self.top_window.get_widget(str)
+        return self.top.get_widget(str)
 
     #---------------------------------------------------------------------
     #
@@ -1065,6 +1078,7 @@ def on_add_photo_clicked(obj):
     edit_person = obj.get_data(EDITPERSON)
     image_select = libglade.GladeXML(const.imageselFile,"imageSelect")
     edit_person.isel = image_select
+    window = image_select.get_widget("imageSelect")
 
     image_select.signal_autoconnect({
         "on_savephoto_clicked" : on_savephoto_clicked,
@@ -1075,8 +1089,9 @@ def on_add_photo_clicked(obj):
     edit_person.fname = image_select.get_widget("fname")
     edit_person.add_image = image_select.get_widget("image")
     edit_person.external = image_select.get_widget("private")
-    image_select.get_widget("imageSelect").set_data(EDITPERSON,edit_person)
-    image_select.get_widget("imageSelect").show()
+    window.editable_enters(image_select.get_widget("photoDescription"))
+    window.set_data(EDITPERSON,edit_person)
+    window.show()
 
 #-------------------------------------------------------------------------
 #
@@ -1279,6 +1294,7 @@ def display_note(obj,data):
     en_obj = editnote.get_widget("editnote")
     en_obj.set_data(NOTEOBJ,data)
     en_obj.set_data(TEXTOBJ,textobj)
+    en_obj.editable_enters(textobj);
 
     textobj.set_point(0)
     textobj.insert_defaults(data.getNote())
@@ -1423,6 +1439,7 @@ def on_change_description(obj):
     window.get_widget("dialog1").set_data(PHOTO,photo)
     window.get_widget("dialog1").set_data(TEXT,text)
     window.get_widget("dialog1").set_data(OBJECT,obj.get_data(OBJECT))
+    window.get_widget("dialog1").editable_enters(text)
     window.signal_autoconnect({
         "on_cancel_clicked" : utils.destroy_passed_object,
         "on_ok_clicked"     : on_ok_clicked,
@@ -1482,6 +1499,12 @@ class EventEditor:
         title = _("Event Editor for %s") % name 
         self.top.get_widget("eventTitle").set_text(title)
         self.event_menu.set_popdown_strings(const.personalEvents)
+
+        # Typing CR selects OK button
+        self.window.editable_enters(self.name_field);
+        self.window.editable_enters(self.place_field);
+        self.window.editable_enters(self.date_field);
+        self.window.editable_enters(self.descr_field);
 
         utils.build_confidence_menu(self.conf_menu)
 
@@ -1586,6 +1609,10 @@ class AttributeEditor:
             self.srcref = SourceRef(self.attrib.getSourceRef())
         else:
             self.srcref = SourceRef()
+
+        # Typing CR selects OK button
+        self.window.editable_enters(self.type_field);
+        self.window.editable_enters(self.value_field);
 
         name = parent.person.getPrimaryName().getName()
         
@@ -1696,6 +1723,11 @@ class NameEditor:
         self.top.get_widget("altTitle").set_text(
             _("Alternate Name Editor for %s") % full_name)
 
+        # Typing CR selects OK button
+        self.window.editable_enters(self.given_field);
+        self.window.editable_enters(self.surname_field);
+        self.window.editable_enters(self.suffix_field);
+        
         utils.build_confidence_menu(self.conf_menu)
 
         if name != None:
@@ -1792,6 +1824,16 @@ class AddressEditor:
         text = _("Address Editor for %s") % name
         self.top.get_widget("addrTitle").set_text(text)
 
+        # Typing CR selects OK button
+        self.window.editable_enters(self.addr_start);
+        self.window.editable_enters(self.street);
+        self.window.editable_enters(self.city);
+        self.window.editable_enters(self.state);
+        self.window.editable_enters(self.country);
+        self.window.editable_enters(self.postal);
+        self.window.editable_enters(self.source_field);
+        self.window.editable_enters(self.note_field);
+        
         utils.build_confidence_menu(self.conf_menu)
 
         if addr != None:
@@ -1883,6 +1925,9 @@ class UrlEditor:
         title = _("Internet Address Editor for %s") % name
         self.top.get_widget("urlTitle").set_text(title) 
 
+        self.window.editable_enters(self.url_addr);
+        self.window.editable_enters(self.url_des);
+        
         if url != None:
             self.des.set_text(url.get_description())
             self.addr.set_text(url.get_path())

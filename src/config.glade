@@ -32,7 +32,7 @@
     <last_modification_time>Wed, 22 Aug 2001 02:13:46 GMT</last_modification_time>
   </signal>
   <title>Gramps - Preferences</title>
-  <position>GTK_WIN_POS_CENTER</position>
+  <position>GTK_WIN_POS_NONE</position>
   <modal>False</modal>
   <allow_shrink>False</allow_shrink>
   <allow_grow>False</allow_grow>
@@ -1791,7 +1791,7 @@ AbiWord
   <name>initDruid</name>
   <title>Gramps Startup Druid</title>
   <type>GTK_WINDOW_TOPLEVEL</type>
-  <position>GTK_WIN_POS_CENTER</position>
+  <position>GTK_WIN_POS_NONE</position>
   <modal>True</modal>
   <allow_shrink>False</allow_shrink>
   <allow_grow>True</allow_grow>
