@@ -3,6 +3,7 @@
 import traceback
 import intl
 import os
+import gtk
 
 intl.textdomain("gramps")
 

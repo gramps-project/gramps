@@ -40,8 +40,8 @@ _ = gettext
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gtk import *
-from gnome.ui import *
+import gtk
+import gnome.ui
 import GDK
 import GTK
 import libglade
@@ -112,7 +112,7 @@ dateArrow     = None
 
 merge_button  = None
 sort_column   = 0
-sort_direct   = SORT_ASCENDING
+sort_direct   = GTK.SORT_ASCENDING
 DataFilter    = Filter.Filter("")
 c_birth_order = 0
 c_name        = 1
@@ -120,7 +120,7 @@ c_id          = 2
 c_birth_date  = 4
 c_details     = 6
 c_sort_column = c_birth_order
-c_sort_direct = SORT_ASCENDING
+c_sort_direct = GTK.SORT_ASCENDING
 cNameArrow    = None
 cDateArrow    = None
 
@@ -160,7 +160,7 @@ def on_merge_activate(obj):
     if page == 0:
         if len(person_list.selection) != 2:
             msg = _("Exactly two people must be selected to perform a merge")
-            GnomeErrorDialog(msg)
+            gnome.ui.GnomeErrorDialog(msg)
         else:
             import MergeData
             p1 = person_list.get_row_data(person_list.selection[0])
@@ -178,22 +178,22 @@ def delete_event(widget, event):
     """Catch the destruction of the top window, prompt to save if needed"""
     widget.hide()
     on_exit_activate(widget)
-    return TRUE
+    return 1
 
 def on_exit_activate(obj):
     """Prompt to save on exit if needed"""
     if utils.wasModified():
         question = _("Unsaved changes exist in the current database\n") + \
                    _("Do you wish to save the changes?")
-        GnomeQuestionDialog(question,save_query)
+        gnome.ui.GnomeQuestionDialog(question,save_query)
     else:    
-        mainquit(obj)
+        gtk.mainquit(obj)
 
 def save_query(value):
     """Catch the reponse to the save on exit question"""
     if value == 0:
         on_save_activate_quit()
-    mainquit(gtop)
+    gtk.mainquit(gtop)
 
 #-------------------------------------------------------------------------
 #
@@ -202,8 +202,8 @@ def save_query(value):
 #-------------------------------------------------------------------------
 def on_about_activate(obj):
     """Displays the about box.  Called from Help menu"""
-    GnomeAbout(const.progName,const.version,const.copyright,
-               const.authors,const.comments,const.logo).show()
+    gnome.ui.GnomeAbout(const.progName,const.version,const.copyright,
+                        const.authors,const.comments,const.logo).show()
     
 def on_contents_activate(obj):
     """Display the Gramps manual"""
@@ -365,7 +365,7 @@ def on_choose_parents_clicked(obj):
 def on_new_clicked(obj):
     """Prompt for permission to close the current database"""
     msg = _("Do you want to close the current database and create a new one?")
-    GnomeQuestionDialog(msg,new_database_response)
+    gnome.ui.GnomeQuestionDialog(msg,new_database_response)
 
 def new_database_response(val):
     """Clear out the database if permission was granted"""
@@ -556,13 +556,13 @@ def save_file(filename,comment):
         try:
             os.mkdir(filename)
         except IOError, msg:
-            GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
+            gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
             return
         except OSError, msg:
-            GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
+            gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
             return
         except:
-            GnomeErrorDialog(_("Could not create %s") % filename)
+            gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename)
             return
         
     old_file = filename
@@ -570,10 +570,10 @@ def save_file(filename,comment):
     try:
         WriteXML.exportData(database,filename,load_progress)
     except IOError, msg:
-        GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
+        gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
         return
     except OSError, msg:
-        GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
+        gnome.ui.GnomeErrorDialog(_("Could not create %s") % filename + "\n" + str(msg))
         return
 
     database.setSavePath(old_file)
@@ -596,7 +596,7 @@ def load_selected_people(obj):
     """Display the selected people in the EditPerson display"""
     if len(person_list.selection) > 5:
         msg = _("You requested too many people to edit at the same time")
-        GnomeErrorDialog(msg)
+        gnome.ui.GnomeErrorDialog(msg)
     else:
         for p in person_list.selection:
             person = person_list.get_row_data(p)
@@ -635,9 +635,9 @@ def load_new_person(obj):
 def on_delete_person_clicked(obj):
     if len(person_list.selection) == 1:
         msg = _("Do you really wish to delete %s?") % Config.nameof(active_person)
-        GnomeQuestionDialog( msg, delete_person_response)
+        gnome.ui.GnomeQuestionDialog( msg, delete_person_response)
     elif len(person_list.selection) > 1:
-        GnomeErrorDialog(_("Currently, you can only delete one person at a time"))
+        gnome.ui.GnomeErrorDialog(_("Currently, you can only delete one person at a time"))
 
 def delete_person_response(val):
     if val == 1:
@@ -751,7 +751,7 @@ def set_sort_arrow(column,direct):
         if arrow != a:
             a.hide()
     arrow.show()
-    if direct == SORT_ASCENDING:
+    if direct == GTK.SORT_ASCENDING:
         arrow.set(GTK.ARROW_DOWN,2)
     else:
         arrow.set(GTK.ARROW_UP,2)
@@ -769,14 +769,14 @@ def change_sort(column):
     arrow.show()
 
     if sort_column == column:
-        if sort_direct == SORT_DESCENDING:
-            sort_direct = SORT_ASCENDING
+        if sort_direct == GTK.SORT_DESCENDING:
+            sort_direct = GTK.SORT_ASCENDING
             arrow.set(GTK.ARROW_DOWN,2)
         else:
-            sort_direct = SORT_DESCENDING
+            sort_direct = GTK.SORT_DESCENDING
             arrow.set(GTK.ARROW_UP,2)
     else:
-        sort_direct = SORT_ASCENDING
+        sort_direct = GTK.SORT_ASCENDING
         arrow.set(GTK.ARROW_DOWN,2)
     sort_column = column
 
@@ -799,10 +799,10 @@ def sort_person_list():
     person_list.sort()
     if ListColors.get_enable():
         try:
-            oddbg = GdkColor(ListColors.oddbg[0],ListColors.oddbg[1],ListColors.oddbg[2])
-            oddfg = GdkColor(ListColors.oddfg[0],ListColors.oddfg[1],ListColors.oddfg[2])
-            evenbg = GdkColor(ListColors.evenbg[0],ListColors.evenbg[1],ListColors.evenbg[2])
-            evenfg = GdkColor(ListColors.evenfg[0],ListColors.evenfg[1],ListColors.evenfg[2])
+            oddbg = gtk.GdkColor(ListColors.oddbg[0],ListColors.oddbg[1],ListColors.oddbg[2])
+            oddfg = gtk.GdkColor(ListColors.oddfg[0],ListColors.oddfg[1],ListColors.oddfg[2])
+            evenbg = gtk.GdkColor(ListColors.evenbg[0],ListColors.evenbg[1],ListColors.evenbg[2])
+            evenfg = gtk.GdkColor(ListColors.evenfg[0],ListColors.evenfg[1],ListColors.evenfg[2])
             rows = person_list.rows
             for i in range(0,rows,2):
                 person_list.set_background(i,oddbg)
@@ -933,14 +933,14 @@ def child_change_sort(clist,column,arrow):
     arrow.show()
     
     if c_sort_column == column:
-        if c_sort_direct == SORT_DESCENDING:
-            c_sort_direct = SORT_ASCENDING
+        if c_sort_direct == GTK.SORT_DESCENDING:
+            c_sort_direct = GTK.SORT_ASCENDING
             arrow.set(GTK.ARROW_DOWN,2)
         else:
-            c_sort_direct = SORT_DESCENDING
+            c_sort_direct = GTK.SORT_DESCENDING
             arrow.set(GTK.ARROW_UP,2)
     else:
-        c_sort_direct = SORT_ASCENDING
+        c_sort_direct = GTK.SORT_ASCENDING
     c_sort_column = column
     clist.set_sort_type(c_sort_direct)
     clist.set_sort_column(c_sort_column)
@@ -996,7 +996,7 @@ def on_child_list_row_move(clist,fm,to):
 
     # This function deals with ascending order lists.  Convert if
     # necessary.
-    if (c_sort_direct == SORT_DESCENDING):
+    if (c_sort_direct == GTK.SORT_DESCENDING):
         clist_order.reverse()
         max_index = len(clist_order) - 1
         fm = max_index - fm
@@ -1009,7 +1009,7 @@ def on_child_list_row_move(clist,fm,to):
     # Check birth date order in the new list
     if (EditPerson.birth_dates_in_order(desired_order) == 0):
         clist.emit_stop_by_name("row_move")
-        GnomeWarningDialog(_("Invalid move.  Children must be ordered by birth date."))
+        gnome.ui.GnomeWarningDialog(_("Invalid move.  Children must be ordered by birth date."))
         return
            
     # OK, this birth order works too.  Update the family data structures.
@@ -1025,7 +1025,7 @@ def on_child_list_row_move(clist,fm,to):
 
     # Convert the original list back to whatever ordering is being
     # used by the clist itself.
-    if (c_sort_direct == SORT_DESCENDING):
+    if (c_sort_direct == GTK.SORT_DESCENDING):
         clist_order.reverse()
 
     # Update the clist indices so any change of sorting works
@@ -1061,10 +1061,10 @@ def on_open_activate(obj):
 def on_revert_activate(obj):
     if database.getSavePath() != "":
         msg = _("Do you wish to abandon your changes and revert to the last saved database?")
-        GnomeQuestionDialog(msg,revert_query)
+        gnome.ui.GnomeQuestionDialog(msg,revert_query)
     else:
         msg = _("Cannot revert to a previous database, since one does not exist")
-        GnomeWarningDialog(msg)
+        gnome.ui.GnomeWarningDialog(msg)
 
 #-------------------------------------------------------------------------
 #
@@ -1344,18 +1344,18 @@ def load_family(family=None):
         active_parents = None
 
     if len(family_types) > 0:
-        typeMenu = GtkMenu()
+        typeMenu = gtk.GtkMenu()
         if main_family:
-            menuitem = GtkMenuItem(_("Birth"))
+            menuitem = gtk.GtkMenuItem(_("Birth"))
             menuitem.set_data("parents",main_family)
             menuitem.connect("activate",on_current_type_changed)
             menuitem.show()
             typeMenu.append(menuitem)
         for fam in family_types:
             if active_person == fam[0].getFather():
-                menuitem = GtkMenuItem("%s/%s" % (fam[1],fam[2]))
+                menuitem = gtk.GtkMenuItem("%s/%s" % (fam[1],fam[2]))
             else:
-                menuitem = GtkMenuItem("%s/%s" % (fam[2],fam[1]))
+                menuitem = gtk.GtkMenuItem("%s/%s" % (fam[2],fam[1]))
             menuitem.set_data("parents",fam[0])
             menuitem.connect("activate",on_current_type_changed)
             menuitem.show()
@@ -1370,7 +1370,7 @@ def load_family(family=None):
     if active_person:
         number_of_families = len(active_person.getFamilyList())
         if number_of_families > 1:
-            myMenu = GtkMenu()
+            myMenu = gtk.GtkMenu()
             index = 0
             opt_index = 0
             for f in active_person.getFamilyList():
@@ -1382,7 +1382,7 @@ def load_family(family=None):
                     if f.getMother() != None:
                         person = f.getMother()
 
-                menuitem = GtkMenuItem(Config.nameof(person))
+                menuitem = gtk.GtkMenuItem(Config.nameof(person))
                 myMenu.append(menuitem)
                 menuitem.set_data("person",person)
                 menuitem.set_data("family",f)
@@ -1573,8 +1573,8 @@ def display_marriage(family):
 #-------------------------------------------------------------------------
 def load_progress(value):
     statusbar.set_progress(value)
-    while events_pending():
-        mainiteration()
+    while gtk.events_pending():
+        gtk.mainiteration()
 
 #-------------------------------------------------------------------------
 #
@@ -1678,7 +1678,7 @@ def setup_bookmarks():
 #
 #-------------------------------------------------------------------------
 def displayError(msg):
-    GnomeErrorDialog(msg)
+    gnome.ui.GnomeErrorDialog(msg)
     statusbar.set_status("")
 
 #-------------------------------------------------------------------------
@@ -1764,7 +1764,7 @@ def on_home_clicked(obj):
         change_active_person(temp)
         update_display(0)
     else:
-        GnomeErrorDialog(_("No default/home person has been set"))
+        gnome.ui.GnomeErrorDialog(_("No default/home person has been set"))
 
 #-------------------------------------------------------------------------
 #
@@ -1790,7 +1790,7 @@ def on_default_person_activate(obj):
     if active_person:
         name = active_person.getPrimaryName().getRegularName()
         msg = _("Do you wish to set %s as the home person?") % name
-        GnomeQuestionDialog(msg,set_person)
+        gnome.ui.GnomeQuestionDialog(msg,set_person)
 
 #-------------------------------------------------------------------------
 #
@@ -1879,7 +1879,7 @@ def main(arg):
     global cNameArrow, cDateArrow
     global sort_column, sort_direct
     
-    rc_parse(const.gtkrcFile)
+    gtk.rc_parse(const.gtkrcFile)
     database = RelDataBase()
 
     Plugins.load_plugins(const.pluginsDir)
@@ -1927,7 +1927,7 @@ def main(arg):
     fw.set_sensitive(0)
 
     # set the window icon 
-    topWindow.set_icon(GtkPixmap(topWindow,const.icon))
+    topWindow.set_icon(gtk.GtkPixmap(topWindow,const.icon))
     
     person_list.column_titles_active()
     set_sort_arrow(sort_column,sort_direct)
@@ -2021,7 +2021,7 @@ def main(arg):
     database.set_pprefix(Config.pprefix)
     child_list = gtop.get_widget("child_list")
     child_list.set_column_visibility(c_details,Config.show_detail)
-    child_list.set_column_justification(c_birth_order,JUSTIFY_RIGHT)
+    child_list.set_column_justification(c_birth_order,GTK.JUSTIFY_RIGHT)
         
     if arg != None:
         read_file(arg)
@@ -2029,7 +2029,7 @@ def main(arg):
         read_file(Config.lastfile)
 
     database.setResearcher(Config.owner)
-    mainloop()
+    gtk.mainloop()
 
 #-------------------------------------------------------------------------
 #

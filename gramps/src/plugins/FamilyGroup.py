@@ -23,7 +23,6 @@
 import RelLib
 import const
 import os
-import re
 import string
 import FindDoc
 import utils
@@ -34,9 +33,8 @@ _ = intl.gettext
 from TextDoc import *
 from StyleEditor import *
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import gtk
+import libglade
 
 #------------------------------------------------------------------------
 #
@@ -347,16 +345,14 @@ def report(database,person):
     
     global active_person
     global topDialog
-    global glade_file
     global db
     global style_sheet_list
     
     active_person = person
     db = database
 
-    base = os.path.dirname(__file__)
-    glade_file = base + os.sep + "familygroup.glade"
-    topDialog = GladeXML(glade_file,"dialog1")
+    glade_file = "%s/familygroup.glade" % os.path.dirname(__file__)
+    topDialog = libglade.GladeXML(glade_file,"dialog1")
     topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
 
     name = person.getPrimaryName().getRegularName()
@@ -423,16 +419,16 @@ def report(database,person):
     else:
         frame.hide()
 
-    my_menu = GtkMenu()
+    my_menu = gtk.GtkMenu()
     for family in family_list:
         if person == family.getFather():
             spouse = family.getMother()
         else:
             spouse = family.getFather()
         if spouse:
-            item = GtkMenuItem(spouse.getPrimaryName().getName())
+            item = gtk.GtkMenuItem(spouse.getPrimaryName().getName())
         else:
-            item = GtkMenuItem("unknown")
+            item = gtk.GtkMenuItem("unknown")
         item.set_data("f",family)
         item.show()
         my_menu.append(item)
@@ -454,9 +450,9 @@ def on_style_edit_clicked(obj):
 def build_menu(object):
     menu = topDialog.get_widget("style_menu")
 
-    myMenu = GtkMenu()
+    myMenu = gtk.GtkMenu()
     for style in style_sheet_list.get_style_names():
-        menuitem = GtkMenuItem(style)
+        menuitem = gtk.GtkMenuItem(style)
         menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
         menuitem.show()
         myMenu.append(menuitem)

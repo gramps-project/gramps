@@ -30,8 +30,6 @@ _ = intl.gettext
 from gnome.ui import *
 
 import libglade
-import RelLib
-import utils
 
 _title_re = re.compile(r"^([A-Za-z][A-Za-z]+\.)\s+(.*)$")
 _nick_re = re.compile(r"(.+)[(\"](.*)[)\"]")

@@ -499,7 +499,6 @@ class GedcomWriter:
         closebtn.set_sensitive(1)
 
     def export_data(self,filename):
-
         try:
             self.g = open(filename,"w")
         except IOError,msg:
@@ -572,6 +571,13 @@ class GedcomWriter:
                 gtk.mainiteration()
         self.pbar.set_value(100.0)
 
+        self.write_families()
+        self.write_sources()
+        
+        self.g.write("0 TRLR\n")
+        self.g.close()
+
+    def write_families(self):
         nump = float(len(self.flist))
         index = 0.0
         for family in self.flist:
@@ -628,6 +634,7 @@ class GedcomWriter:
                 gtk.mainiteration()
         self.fbar.set_value(100.0)
 
+    def write_sources(self):
         nump = float(len(self.slist))
         index = 0.0
         for source in self.slist:
@@ -649,9 +656,6 @@ class GedcomWriter:
             while(gtk.events_pending()):
                 gtk.mainiteration()
         self.sbar.set_value(100.0)
-        
-        self.g.write("0 TRLR\n")
-        self.g.close()
 
     def write_person(self,person):
         self.g.write("0 @%s@ INDI\n" % self.pid(person.getId()))

@@ -26,19 +26,19 @@
 #
 #------------------------------------------------------------------------
 import os
-import re
 import sort
 import utils
 import string
-from gtk import *
-from gnome.ui import *
-from libglade import *
 import ListColors
 import Filter
 import const
 from TextDoc import *
 from OpenSpreadSheet import *
 import intl
+
+import gtk
+import gnome.ui
+import libglade
 
 _ = intl.gettext
 
@@ -134,7 +134,7 @@ class EventComparison:
         xml = os.path.expanduser("~/.gramps/eventcmp.xml")
         self.interface = ComplexFilterFile(xml)
 
-        self.filterDialog = GladeXML(self.glade_file,"filters")
+        self.filterDialog = libglade.GladeXML(self.glade_file,"filters")
         self.filterDialog.signal_autoconnect({
             "on_add_clicked"         : self.on_add_clicked,
             "on_delete_clicked"      : self.on_delete_clicked,
@@ -167,7 +167,7 @@ class EventComparison:
                 my_list.append(person)
 
         if len(my_list) == 0:
-            GnomeWarningDialog("No matches were found")
+            gnome.ui.GnomeWarningDialog("No matches were found")
         else:
             DisplayChart(my_list)
 
@@ -207,7 +207,7 @@ class EventComparison:
         self.filter_list_obj.append([name,qualifier,invert_text])
 
     def on_filter_save_clicked(self,obj):
-        self.load_dialog = GladeXML(self.glade_file,"filter_file")
+        self.load_dialog = libglade.GladeXML(self.glade_file,"filter_file")
         self.filter_combo = self.load_dialog.get_widget("filter_combo")
         self.load_dialog.get_widget("title").set_text("Save complex filter")
         names = self.interface.get_filter_names()
@@ -220,7 +220,7 @@ class EventComparison:
             })
 
     def on_filter_load_clicked(self,obj):
-        self.load_dialog = GladeXML(self.glade_file,"filter_file")
+        self.load_dialog = libglade.GladeXML(self.glade_file,"filter_file")
         self.filter_combo = self.load_dialog.get_widget("filter_combo")
         self.load_dialog.get_widget("title").set_text("Load complex filter")
         names = self.interface.get_filter_names()
@@ -357,7 +357,7 @@ class DisplayChart:
         base = os.path.dirname(__file__)
         self.glade_file = base + os.sep + "eventcmp.glade"
 
-        self.topDialog = GladeXML(self.glade_file,"view")
+        self.topDialog = libglade.GladeXML(self.glade_file,"view")
         self.topDialog.signal_autoconnect({
             "on_write_table"        : self.on_write_table,
             "destroy_passed_object" : utils.destroy_passed_object
@@ -375,7 +375,7 @@ class DisplayChart:
 
     def draw_clist_display(self):
 
-        eventlist = GtkCList(len(self.event_titles),self.event_titles)
+        eventlist = gtk.GtkCList(len(self.event_titles),self.event_titles)
         self.table.add(eventlist)
         eventlist.show()
         color_clist = ListColors.ColorList(eventlist,2)
@@ -458,7 +458,7 @@ class DisplayChart:
         return [_("Person"),_("Birth"),_("Death")] + sort_list
 
     def on_write_table(self,obj):
-        self.form = GladeXML(self.glade_file,"dialog1")
+        self.form = libglade.GladeXML(self.glade_file,"dialog1")
         self.form.signal_autoconnect({
             "on_save_clicked"       : self.on_save_clicked,
             "on_html_toggled"       : self.on_html_toggled,

@@ -20,13 +20,11 @@
 
 "Generate files/Ancestor Chart"
 
-import RelLib
 import Config
 import const
 import os
 import string
 import utils
-import Config
 
 from FontScale import string_width
 
@@ -35,8 +33,8 @@ from DrawDoc import *
 from StyleEditor import *
 import FindDoc
 
-from libglade import *
-from gtk import *
+import libglade
+import gtk
 
 import intl
 _ = intl.gettext
@@ -275,7 +273,7 @@ def report(database,person):
 
     base = os.path.dirname(__file__)
     glade_file = base + os.sep + "ancestorchart.glade"
-    topDialog = GladeXML(glade_file,"dialog1")
+    topDialog = libglade.GladeXML(glade_file,"dialog1")
     topDialog.get_widget("fileentry1").set_default_path(Config.report_dir)
 
     name = person.getPrimaryName().getRegularName()
@@ -311,9 +309,9 @@ def report(database,person):
 def build_menu(object):
     menu = topDialog.get_widget("style_menu")
 
-    myMenu = GtkMenu()
+    myMenu = gtk.GtkMenu()
     for style in style_sheet_list.get_style_names():
-        menuitem = GtkMenuItem(style)
+        menuitem = gtk.GtkMenuItem(style)
         menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
         menuitem.show()
         myMenu.append(menuitem)

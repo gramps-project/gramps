@@ -201,15 +201,6 @@ def write_line(g,label,value,indent=1):
 #
 #
 #-------------------------------------------------------------------------
-def write_line(g,label,value,indent=1):
-    if value:
-        g.write('%s<%s>%s</%s>\n' % ('  '*indent,label,fix(value),label))
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
 def write_date(g,date,indent=1):
     sp = '  '*indent
     if date.isEmpty():

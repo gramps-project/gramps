@@ -37,9 +37,9 @@ from StyleEditor import *
 
 import FindDoc
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import gtk
+import gnome.ui
+import libglade
 
 #------------------------------------------------------------------------
 #
@@ -106,7 +106,7 @@ class DetAncestorReport:
         try:
             self.doc.open(output)
         except IOError,msg:
-            GnomeErrorDialog(_("Could not open %s") % output + "\n" + msg)
+            gnome.ui.GnomeErrorDialog(_("Could not open %s") % output + "\n" + msg)
 
     #--------------------------------------------------------------------
     #
@@ -503,7 +503,7 @@ def report(database,person):
 
     base = os.path.dirname(__file__)
     glade_file = base + os.sep + "ancestorreport.glade"
-    topDialog = GladeXML(glade_file,"dialog1")
+    topDialog = libglade.GladeXML(glade_file,"dialog1")
 
     name = person.getPrimaryName().getRegularName()
 
@@ -569,9 +569,9 @@ def report(database,person):
 def build_menu(object):
     menu = topDialog.get_widget("style_menu")
 
-    myMenu = GtkMenu()
+    myMenu = gtk.GtkMenu()
     for style in style_sheet_list.get_style_names():
-        menuitem = GtkMenuItem(style)
+        menuitem = gtk.GtkMenuItem(style)
         menuitem.set_data("d",style_sheet_list.get_style_sheet(style))
         menuitem.show()
         myMenu.append(menuitem)

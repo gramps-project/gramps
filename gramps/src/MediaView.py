@@ -26,7 +26,6 @@ import ImageSelect
 
 from RelLib import *
 import utils
-import const
 import os
 import Config
 

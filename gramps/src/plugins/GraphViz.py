@@ -20,19 +20,13 @@
 
 "Generate files/Relationship graph"
 
-from RelLib import *
 import os
-import re
-import sort
-import string
 import utils
 import intl
 
 _ = intl.gettext
 
-from gtk import *
-from gnome.ui import *
-from libglade import *
+import libglade
 
 active_person = None
 db = None
@@ -126,7 +120,7 @@ def report(database,person):
         "on_ok_clicked" : on_ok_clicked,
         }
 
-    topDialog = GladeXML(glade_file,"top")
+    topDialog = libglade.GladeXML(glade_file,"top")
     topDialog.signal_autoconnect(dic)
     
     top = topDialog.get_widget("top")
@@ -200,12 +194,11 @@ def on_ok_clicked(obj):
     file.close()
     utils.destroy_passed_object(obj)
     
-#########################################################################
+#------------------------------------------------------------------------
 #
-# Write a web page for a specific person represented by the key
+# 
 #
-#########################################################################
-
+#------------------------------------------------------------------------
 def dump_person(person_list,file):
     for person in person_list:
         family = person.getMainFamily()
@@ -218,12 +211,12 @@ def dump_person(person_list,file):
         if mother and mother in person_list:
             file.write('p%s -> p%s;\n' % (person.getId(), mother.getId()))
 
-#########################################################################
-#
-# Write a web page for a specific person represented by the key
-#
-#########################################################################
 
+#------------------------------------------------------------------------
+#
+# 
+#
+#------------------------------------------------------------------------
 def dump_index(person_list,file):
 
     for person in person_list:
