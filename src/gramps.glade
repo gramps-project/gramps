@@ -13520,8 +13520,6 @@ Other</property>
 
 			  <child>
 			    <widget class="GtkTreeView" id="marriageEventList">
-			      <property name="width_request">500</property>
-			      <property name="height_request">250</property>
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
 			      <property name="headers_visible">True</property>

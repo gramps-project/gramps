@@ -68,6 +68,16 @@
 	Set both ancestor and descendant filters to be inclusive.
 	* src/plugins/Ancestors.py (person_name): Use translated name type.
 
+	* src/data/gramps.schemas: Add /apps/gramps/interface/size-checked key.
+	* src/GrampsCfg.py (get_screen_size_checked, 
+	save_screen_size_checked): Add functions.
+	* src/gramps_main.py: Enable sidebar depending on the screen 
+	if the screen size has not been checked yet.
+	* src/ChooseParents.py: Set the size request depending on the screen.
+	* src/Marriage.py: Set the size request depending on the screen.
+	* src/gramps.glade (marriageEditor): Unset the height request 
+	for the event list.
+
 2004-08-20  Tim Waugh  <twaugh@redhat.com>
 	* src/RelLib.py (Event.are_equal): Fixed comparison with None.
 

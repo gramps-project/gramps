@@ -42,6 +42,7 @@ import os
 #
 #-------------------------------------------------------------------------
 import gtk.glade
+import gtk.gdk
 import gnome
 
 #-------------------------------------------------------------------------
@@ -126,6 +127,7 @@ class ChooseParents:
         self.father_rel = self.glade.get_widget("frel")
         self.prel = self.glade.get_widget("prel_combo")
         self.title = self.glade.get_widget("chooseTitle")
+        self.father_list = self.glade.get_widget("father_list")
         self.mother_list = self.glade.get_widget("mother_list")
         self.flabel = self.glade.get_widget("flabel")
         self.mlabel = self.glade.get_widget("mlabel")
@@ -134,6 +136,10 @@ class ChooseParents:
         
         self.build_father_list()
         self.build_mother_list()
+
+        if gtk.gdk.screen_height() > 700:
+            self.father_list.set_size_request(-1,150)
+            self.mother_list.set_size_request(-1,150)
 
         for (f,mr,fr) in self.person.get_parent_family_handle_list():
             if f == self.family:
@@ -167,14 +173,12 @@ class ChooseParents:
         self.top.show()
 
     def build_father_list(self):
-        self.father_list = self.glade.get_widget("father_list")
         self.father_selection = self.father_list.get_selection()
         self.father_selection.connect('changed',self.father_list_select_row)
         self.add_columns(self.father_list)
         self.redrawf()
 
     def build_mother_list(self):
-        self.mother_list = self.glade.get_widget("mother_list")
         self.mother_selection = self.mother_list.get_selection()
         self.mother_selection.connect('changed',self.mother_list_select_row)
         self.add_columns(self.mother_list)

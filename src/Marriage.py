@@ -29,6 +29,7 @@ import string
 #
 #-------------------------------------------------------------------------
 import gtk
+import gtk.gdk
 import gtk.glade
 import gnome
 import gobject
@@ -141,6 +142,12 @@ class Marriage:
         Utils.set_title_label(self.top,self.title)
         
         self.event_list = self.get_widget("marriageEventList")
+
+        if gtk.gdk.screen_height() > 700:
+            self.event_list.set_size_request(500,250)
+        else:
+            self.event_list.set_size_request(500,-1)
+
 
         # widgets
         self.complete = self.get_widget('complete')
