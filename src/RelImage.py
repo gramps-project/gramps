@@ -65,15 +65,7 @@ def import_media_object(filename,path,base):
             path = "%s/%s" % (thumb,base)
 
             mk_thumb(filename,path,const.thumbScale)
-        
-            if type == "image/jpeg":
-                shutil.copy(filename,name)
-            else:
-                if no_pil:
-                    cmd = "%s '%s' '%s'" % (const.convert,filename,name)
-                    os.system(cmd)
-                else:
-                    PIL.Image.open(filename).save(name)
+            shutil.copy(filename,name)
         except:
             return None
     else:
@@ -123,12 +115,15 @@ def mk_thumb(source,dest,size):
         GnomeErrorDialog(_("Could not create %s") % dir)
         return
 
-    if no_pil:
+    print source[-3:]
+    if no_pil or source[-4:] == ".gif":
         cmd = "%s -geometry %dx%d '%s' '%s'" % (const.convert,size,size,source,dest)
+        print cmd
         os.system(cmd)
     else:
         try:
             im = PIL.Image.open(source)
+            im.convert("RGB")
             im.thumbnail((size,size))
             im.save(dest,"JPEG")
         except:
