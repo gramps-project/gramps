@@ -282,7 +282,6 @@ class HasCompleteRecord(Rule):
     def apply(self,db,p_id):
         return db.find_person_from_id(p_id).get_complete() == 1
 
-
 #-------------------------------------------------------------------------
 #
 # IsFemale
@@ -939,7 +938,7 @@ class IsMale(Rule):
         return _('Matches all males')
 
     def apply(self,db,p_id):
-        return self.db.find_person_from_id(p_id).get_gender() == RelLib.Person.male
+        return db.find_person_from_id(p_id).get_gender() == RelLib.Person.male
 
 #-------------------------------------------------------------------------
 #

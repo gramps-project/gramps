@@ -58,6 +58,7 @@ import PlaceView
 import FamilyView
 import SourceView
 import PeopleView
+import GenericFilter
 
 from QuestionDialog import *
 
@@ -709,10 +710,28 @@ class Gramps:
 
     def init_filters(self):
 
-        Filter.load_filters(const.filtersDir)
-        Filter.load_filters(os.path.expanduser("~/.gramps/filters"))
+        #Filter.load_filters(const.filtersDir)
+        #Filter.load_filters(os.path.expanduser("~/.gramps/filters"))
+        #menu = Filter.build_filter_menu(self.on_filter_name_changed,self.filter_text)
 
-        menu = Filter.build_filter_menu(self.on_filter_name_changed,self.filter_text)
+        filter_list = []
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Females"))
+        all.add_rule(GenericFilter.IsFemale([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Males"))
+        all.add_rule(GenericFilter.IsMale([]))
+        filter_list.append(all)
+
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+        filter_list.append(all)
+        
+        menu = GenericFilter.build_filter_menu(filter_list)
 
         self.filter_list.set_menu(menu)
         self.filter_text.set_sensitive(0)
@@ -803,14 +822,14 @@ class Gramps:
         """Prompt to save on exit if needed"""
         self.delete_abandoned_photos()
         self.db.close()
-        gtk.mainquit()
+        gtk.main_quit()
 
     def save_query(self):
         """Catch the reponse to the save on exit question"""
         self.on_save_activate_quit()
         self.delete_abandoned_photos()
         self.db.close()
-        gtk.mainquit()
+        gtk.main_quit()
 
     def save_query_noquit(self):
         """Catch the reponse to the save question, no quitting"""
@@ -822,7 +841,7 @@ class Gramps:
         """Catch the reponse to the save on exit question"""
         self.delete_abandoned_photos()
         self.db.close()
-        gtk.mainquit()
+        gtk.main_quit()
         
     def close_noquit(self):
         """Close database and delete abandoned photos, no quit"""
@@ -835,7 +854,7 @@ class Gramps:
         can delete any thumbnail images. The thumbnails may or may not exist, depending
         on if the image was previewed.
         """
-        pass
+        self.db.set_people_view_maps(self.people_view.get_maps())
 
     def on_about_activate(self,obj):
         """Displays the about box.  Called from Help menu"""
@@ -1242,7 +1261,6 @@ class Gramps:
         self.update_display(0)
 
     def delete_person_response(self):
-
         trans = self.db.start_transaction()
         
         if self.db.get_default_person() == self.active_person:
@@ -1277,13 +1295,14 @@ class Gramps:
                 family = self.db.find_family_from_id(family_id)
                 family.remove_child_id(self.active_person.get_id())
                 self.db.commit_family(family,trans)
-                
-        self.people_view.remove_from_history(self.active_person)
-        self.db.remove_person_id(self.active_person.get_id(),trans)
+
+        id = self.active_person.get_id()
         self.people_view.remove_from_person_list(self.active_person)
+        self.people_view.remove_from_history(id)
+        self.db.remove_person_id(id, trans)
 
         if self.hindex >= 0:
-            self.active_person = self.db.get_person(self.history[self.hindex])
+            self.active_person = self.db.find_person_from_id(self.history[self.hindex])
         else:
             self.change_active_person(None)
         self.db.add_transaction(trans)
@@ -1537,12 +1556,12 @@ class Gramps:
     def load_progress(self,value):
         self.statusbar.set_progress_percentage(value)
         while gtk.events_pending():
-            gtk.mainiteration()
+            gtk.main_iteration()
 
     def status_text(self,text):
         self.statusbar.set_status(text)
         while gtk.events_pending():
-            gtk.mainiteration()
+            gtk.main_iteration()
         
     def post_load(self,name):
         self.db.set_save_path(name)
@@ -1726,49 +1745,7 @@ class Gramps:
         #    self.load_new_person(obj)
 
     def open_example(self,obj):
-        if Utils.wasModified():
-            self.delobj = obj
-            SaveDialog(_('Save Changes Made to the Database?'),
-                       _("Unsaved changes exist in the current database. If you "
-                         "close without saving, the changes you have made will "
-                         "be lost."),
-                       self.close_noquit,
-                       self.save_query_noquit)
-
-        if not Utils.wasModified():
-            import shutil
-            dest = os.path.expanduser("~/.gramps/example")
-            if not os.path.isdir(dest):
-                try:
-                    os.mkdir(dest)
-                except IOError,msg:
-                    ErrorDialog(_('Could not create database'),
-                        _('The directory ~/.gramps/example could not '
-                        'be created.') + '\n' + str(msg) )
-                except OSError,msg:
-                    ErrorDialog(_('Could not create database'),
-                        _('The directory ~/.gramps/example could not '
-                        'be created.') + '\n' + str(msg) )
-                except:
-                    ErrorDialog(_('Could not create database'),
-                        _('The directory ~/.gramps/example could not '
-                        'be created.'))
-                try:
-                    dir = "%s/share/gramps/example" % const.prefixdir
-                    for file in os.listdir(dir):
-                        shutil.copyfile("%s/%s" % (dir,file), 
-                            "%s/%s" % (dest,file) )
-                        try:
-                            shutil.copystat("%s/%s" % (dir,file),
-                                "%s/%s" % (dest,file))
-                        except:
-                            pass
-                except IOError,msg:
-                    ErrorDialog(_('Example database not created'),str(msg))
-                except OSError,msg:
-                    ErrorDialog(_('Example database not created'),str(msg))
-
-            self.read_file(dest)
+        pass
 
 DARKEN = 1.4
 

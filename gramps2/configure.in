@@ -54,26 +54,7 @@ def out(str):
 "
 
 dnl Check if python bindings for gtk are installed
-
-AC_MSG_CHECKING(Python bindings for gtk)
-cat > conftest.py <<EOF
-$pygtk_require
-try:
-    import gobject
-    out("YES")
-except ImportError:
-    out("No")
-EOF
-$PYTHON conftest.py
-has_pygtk=`cat conftest.out`
-rm -f conftest.out conftest.py
-if test YES != "$has_pygtk"
-then
-   AC_MSG_ERROR([
-
-**** The python bindings for gtk 2.0 (pygtk2) could not be found.])
-fi
-AC_MSG_RESULT(ok)
+PKG_CHECK_MODULES(PYGTK,pygtk-2.0 >= 2.3.4)
 
 AC_MSG_CHECKING(Python bindings for gnome)
 cat > conftest.py <<EOF

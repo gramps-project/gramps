@@ -48,6 +48,7 @@ _sel_mode = gtk.SELECTION_SINGLE
 #-------------------------------------------------------------------------
 import PeopleModel
 import Filter
+import GenericFilter
 import const
 
 column_names = [
@@ -70,7 +71,11 @@ class PeopleView:
     def __init__(self,parent):
         self.parent = parent
 
-        self.DataFilter = Filter.Filter("")
+        all = GenericFilter.GenericFilter()
+        all.set_name(_("Entire Database"))
+        all.add_rule(GenericFilter.Everyone([]))
+
+        self.DataFilter = all
         self.pscroll = self.parent.gtop.get_widget("pscroll")
         self.person_tree = self.parent.gtop.get_widget("person_tree")
         self.person_tree.set_rules_hint(gtk.TRUE)
@@ -78,18 +83,27 @@ class PeopleView:
 
         self.columns = []
         self.build_columns()
-        self.build_tree()
+        self.person_selection = self.person_tree.get_selection()
+        self.person_selection.connect('changed',self.row_changed)
+        self.person_tree.connect('row_activated', self.alpha_event)
+        self.person_tree.connect('button-press-event',self.on_plist_button_press)
+
+    def get_maps(self):
+        return (self.person_model.top_iter2path,
+                self.person_model.top_path2iter,
+                self.person_model.iter2path,
+                self.person_model.path2iter,
+                self.person_model.sname_sub)
 
     def build_columns(self):
         for column in self.columns:
             self.person_tree.remove_column(column)
             
-        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
+        column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0,weight=9)
         column.set_resizable(gtk.TRUE)        
         column.set_min_width(225)
-        if not const.nosort_tree:
-            column.set_clickable(gtk.TRUE)
-            column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
+        column.set_clickable(gtk.TRUE)
+        column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
         self.person_tree.append_column(column)
         self.columns = [column]
 
@@ -108,19 +122,13 @@ class PeopleView:
             index += 1
 
     def build_tree(self):
-        self.person_tree.set_model(None)
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-
-        if const.nosort_tree:
-            self.sort_model = self.person_model
+        if gtk.pygtk_version >= (2,3,92):
+            self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
         else:
             self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
-
-        self.person_selection = self.person_tree.get_selection()
-        self.person_selection.connect('changed',self.row_changed)
-        self.person_tree.connect('row_activated', self.alpha_event)
-        self.person_tree.connect('button-press-event',self.on_plist_button_press)        
 
     def blist(self,store,path,iter,id_list):
         id_list.append(self.sort_model.get_value(iter,1))
@@ -146,20 +154,31 @@ class PeopleView:
 
     def change_db(self,db):
         self.build_columns()
-        self.build_tree()
-
+        maps = db.get_people_view_maps()
+        self.person_model = PeopleModel.PeopleModel(db)
+        if not maps[0]:
+            self.build_tree()
+        if gtk.pygtk_version >= (2,3,92):
+            self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
+        else:
+            self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
+        self.person_tree.set_model(self.sort_model)
+        
     def clear(self):
         pass
 
     def remove_from_person_list(self,person,old_id=None):
         """Remove the selected person from the list. A person object is expected,
         not an ID"""
-        self.build_tree()
+        if old_id == None:
+            old_id = person.get_id()
+        path = self.person_model.on_get_path(old_id)
+        self.person_model.row_deleted(path)
     
-    def remove_from_history(self,person,old_id=None):
+    def remove_from_history(self,person_id,old_id=None):
         """Removes a person from the history list"""
         
-        person_id = person.get_id()
         if old_id:
             del_id = old_id
         else:
@@ -175,19 +194,14 @@ class PeopleView:
             self.parent.mhistory.remove(del_id)
 
     def apply_filter_clicked(self):
-        invert_filter = self.parent.filter_inv.get_active()
         qualifer = unicode(self.parent.filter_text.get_text())
         mi = self.parent.filter_list.get_menu().get_active()
-        class_init = mi.get_data("function")
-        self.DataFilter = class_init(qualifer)
-        self.DataFilter.set_invert(invert_filter)
-        self.model_used = {}
-        self.clear_person_tabs()
-        self.apply_filter(self.person_tree)
+        self.DataFilter = mi.get_data("filter")
+        self.apply_filter()
         self.goto_active_person()
 
     def add_to_person_list(self,person,change=0):
-        self.build_tree()
+        path = self.person_model.add_person(person)
 
     def goto_active_person(self,first=0):
         if not self.parent.active_person:
@@ -205,6 +219,13 @@ class PeopleView:
 
     def apply_filter(self,current_model=None):
         self.parent.status_text(_('Updating display...'))
+
+        keys = self.DataFilter.apply(self.parent.db,self.parent.db.get_person_keys())
+        self.person_model.reset_visible()
+        for person_id in keys:
+            self.person_model.set_visible(person_id,1)
+
+        self.sort_model.refilter()
         self.parent.modify_statusbar()
         
     def on_plist_button_press(self,obj,event):
@@ -253,9 +274,10 @@ class PeopleView:
         
     def redisplay_person_list(self,person):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        if const.nosort_tree:
-            self.sort_model = self.person_model
+        if gtk.pygtk_version >= (2,3,92):
+            self.sort_model = gtk.TreeModelSort(self.person_model).filter_new()
         else:
             self.sort_model = gtk.TreeModelSort(self.person_model)
+        self.sort_model.set_visible_column(PeopleModel.COLUMN_VIEW)
         self.person_tree.set_model(self.sort_model)
         

@@ -1,3 +1,14 @@
+2004-04-27  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/DbPrompter.py: remove unused functions
+	* src/DisplayModels.py: filtering support
+	* src/GenericFilter.py: filtering support
+	* src/PeopleModel.py: support for filtering
+	* src/PeopleView.py: support for filtering
+	* src/RelLib.py: filtering support
+	* src/Utils.py: filtering support
+	* src/gramps.glade: remove invert for filters
+	* src/gramps_main.py: filtering support
+
 2004-04-25  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/IndivComplete.py: Convert to db interface.
 	* src/plugins/DescendReport.py: Convert to db interface.

@@ -209,7 +209,7 @@ def family_upper_name(family,db):
 def destroy_passed_object(obj):
     obj.destroy()
     while gtk.events_pending():
-        gtk.mainiteration()
+        gtk.main_iteration()
 
 #-------------------------------------------------------------------------
 #
