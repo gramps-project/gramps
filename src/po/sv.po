@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gramps 0.9.2\n"
 "POT-Creation-Date: Tue May 27 12:15:23 2003\n"
-"PO-Revision-Date: 2003-05-28 11:48+0200\n"
+"PO-Revision-Date: 2003-06-25 21:07+0200\n"
 "Last-Translator: Jens Arvidsson <arvid-jens@algonet.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -2573,7 +2573,7 @@ msgstr "Ta bort det valda namnet"
 
 #: edit_person.glade:1803
 msgid "<b>Names</b>"
-msgstr "<b>Namn></b>"
+msgstr "<b>Namn</b>"
 
 #: edit_person.glade:1844
 msgid "<b>Event</b>"
@@ -2987,7 +2987,7 @@ msgstr "_Öppna exempeldatabas"
 
 #: gramps.glade:584
 msgid "_About"
-msgstr "_Omkring"
+msgstr "_Om"
 
 #: gramps.glade:634
 msgid "Open file"
@@ -3883,7 +3883,7 @@ msgstr "Ändra typer"
 
 #: plugins/ChangeTypes.py:103
 msgid "Rename personal event types"
-msgstr "Namna om personliga händelser"
+msgstr "Byt namn på personliga händelsetyper"
 
 #: plugins/ChangeTypes.py:104 plugins/Check.py:331 plugins/Merge.py:554
 #: plugins/PatchNames.py:209 plugins/ReorderIds.py:122
