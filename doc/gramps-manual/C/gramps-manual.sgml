@@ -154,7 +154,7 @@
       </screenshot>
     </figure>
     <para>
-    The second page of the start up screens will prompt you for
+    The second page of the start-up screens will prompt you for
     some personal information. This information is optional, and
     can be changed at any time. The information will be used to
     establish your copyright on the information, and to provide
@@ -201,10 +201,11 @@
       <guibutton>OK</guibutton> to import the file. The
       <interface>GEDCOM Import Status</interface> will tell you what
       the importer is doing and a little bit about your file (file
-      location, what program it was created by, the version, Encoding,
+      location, which program created it, the version, Encoding,
       Number of Families, Number of People, and the Number of Errors).
-      Once the Importer is done, you can click close and start
-      editing/adding to your file.
+      Once the Importer is done, you can click
+      <guibutton>Close</guibutton> and start editing/adding to your
+      file.
       </para>
     </sect2>
     <sect2 id="noimport">
@@ -227,7 +228,7 @@
       <guibutton>Source</guibutton> button and/or a
       <guibutton>Note</guibutton> button.  These buttons are there to
       add more information (<guibutton>Source</guibutton> button to
-      add the source of where you got the information and the
+      add the source of where you acquired the information and the
       <guibutton>Note</guibutton> button to add more detail to the
       information)
       </para>
@@ -242,7 +243,7 @@
     The People View window is the initial view seen on the main
     window.  It displays the name, gender, birth date, and death
     date of all individuals in the database.  At any time, you can
-    return to the this view either by pressing the
+    return to this view either by pressing the
     <guibutton>People</guibutton> button at the top of the screen, or
     by choosing the
       <menuchoice>
@@ -325,12 +326,12 @@
       in the list can be sorted by three of the fields: Name, Birth
       Date, or Death Date.  Clicking on the column label will cause
       the list to be re-sorted by that column.  Arrows on the label
-      indicate whether the list is sort by ascending or descending
+      indicate whether the list is sorted by ascending or descending
       order.
       </para>
       <para>
       If the list is already sorted by a particular column, clicking
-      on the same column label will switch sorting order.  For
+      on the same column label will switch the sorting order.  For
       example, if the list is currently sorted in ascending order by
       Name, clicking on the Name column header will re-sort the list
       in descending order.
@@ -356,7 +357,7 @@
       <para>
       The General Information tab contains the basic information about
       the person. This includes the person's name, gender, birth
-      informaton, and death informaton.
+      information, and death information.
       </para>
       <para>
       If images have been associated with the person, the primary
@@ -375,7 +376,7 @@
       </figure>
       <para>
       It is possible for people to use more than one name during their
-      lifetime. These may be legal names changes, or just informal
+      lifetime. These may be legal name changes, or just informal
       names. An example would be a person changing his or her name due
       to marriage or adoption. <application>GRAMPS</application>
       allows multiple alternate names to be specified for each person.
@@ -383,10 +384,10 @@
       <para>
       The <interface>Alternate Names</interface> tab allows additional
       names to be added or removed from list. Clicking the
-      <guibutton>Add</guibutton> allows a new name to be added to the
-      list. The <guibutton>Edit/View</guibutton> allows the selected
-      alternate name to be edited. The <guibutton>Delete</guibutton>
-      removes the selected name.
+      <guibutton>Add</guibutton> button allows a new name to be added
+      to the list. The <guibutton>Edit/View</guibutton> allows the
+      selected alternate name to be edited. The
+      <guibutton>Delete</guibutton> button removes the selected name.
       </para>
     </sect2>
     <sect2 id="eventtab">
@@ -399,7 +400,7 @@
       choose.
       </para>
       <para>
-      An event consists of a name of an event (such as "Baptism" or
+      An event consists of the name of an event (such as "Baptism" or
       "Education"), a date or date range on which the event occurred,
       the place where the event occurred, and a description of the
       event. A note or a source may also be attached to the event.
@@ -439,11 +440,11 @@
       the window.
       </para>
       <para>
-      An event may be added by by clicking the
-      <guibutton>Add</guibutton> button. This displays a form which
-      allows you to enter the information about the particular
-      event. The <guibutton>Edit/View</guibutton> button allows to view
-      or alter the information of the currently displayed event. The
+      An event may be added by clicking the <guibutton>Add</guibutton>
+      button. This displays a form that allows you to enter the
+      information about the particular event. The
+      <guibutton>Edit/View</guibutton> button allows to view or to
+      alter the information of the currently displayed event. The
       <guibutton>Delete</guibutton> button allows you to delete the
       currently displayed event.
       </para>
@@ -452,9 +453,10 @@
       <title>Attributes Tab</title>
       <para>
       Attributes are similar to events, but are for information items
-      that do not necessary have the concept of a place or a date. An
-      example would be person's Social Security Number or National
-      origin. Attributes consist of an attribute name and its value.
+      that do not necessarily have the concept of a place or a
+      date. An example would be a person's Social Security Number or
+      national origin. Attributes consist of an attribute name and its
+      value.
       </para>
       <para>
       Like events, attributes may also have a note, source, privacy
@@ -477,11 +479,11 @@
       the top of the window.
       </para>
       <para>
-      An attribute may be added by by clicking the
-      <guibutton>Add</guibutton> button. This displays a form which
+      An attribute may be added by clicking the
+      <guibutton>Add</guibutton> button. This displays a form that
       allows you to enter the information about the particular
       attribute. The <guibutton>Edit/View</guibutton> button allows to
-      view or alter the information of the currently displayed
+      view or to alter the information of the currently displayed
       attribute. The <guibutton>Delete</guibutton> button allows you to
       delete the currently displayed attribute.
       </para>
@@ -491,10 +493,10 @@
       <para>
       Addresses are used to record information about where a person
       has lived. Addresses are different from
-      <application>GRAMPS'</application> concept of a place. A address
-      as <application>GRAMPS</application> sees it consists of an
-      equivalent of a mailing address and the date or date range when
-      the person lived at the address.
+      <application>GRAMPS'</application> concept of a place. An
+      address, as <application>GRAMPS</application> sees, it consists
+      of an equivalent of a mailing address and the date or date range
+      when the person lived at the address.
       </para>
       <para>
       Like events and attributes, addresses may also have a note,
@@ -518,11 +520,11 @@
       the top of the window.
       </para>
       <para>
-      An address may be added by by clicking the
-      <guibutton>Add</guibutton> button. This displays a form which
+      An address may be added by clicking the
+      <guibutton>Add</guibutton> button. This displays a form that
       allows you to enter the information about the particular
       address. The <guibutton>Edit/View</guibutton> button allows to
-      view or alter the information of the currently displayed
+      view or to alter the information of the currently displayed
       address. The <guibutton>Delete</guibutton> button allows you to
       delete the currently displayed address.
       </para>
@@ -562,7 +564,7 @@
       are advantages and disadvatages to both approaches. Refering to
       an external copy reduces disk space. Allowing
       <application>GRAMPS</application> to make its own copy
-      eliminates allows GRAMPS to still have the image if the orignal
+      allows GRAMPS to still have the image if the original
       is altered, deleted, or moved. It also simplifies the transfer
       of a database from one machine to another.
       </para>
@@ -639,9 +641,9 @@
       <para>
       Frequently, information about a person is available on the
       internet, frequently on someone else's web site. With multiple
-      people researching the same family, is desirable to keep track
+      people researching the same family, it is desirable to keep track
       of internet sites that contain information about someone in your
-      database. This allows you to keep track of the web sites you you
+      database. This allows you to keep track of the web sites you 
       can periodically check them for any addition information.
       </para>
       <figure id="ep_internet-fig">
@@ -666,8 +668,8 @@
       to display the site using the GNOME default browser.
       </para>
       <para>
-      An internet address may be added by by clicking the
-      <guibutton>Add</guibutton> button. This displays a form which
+      An internet address may be added by clicking on the
+      <guibutton>Add</guibutton> button. This displays a form that
       allows you to enter the information about the internet
       address. This information consists of the web address (URL) and
       a description of the location.  The
@@ -682,7 +684,7 @@
     <title>Family View</title>
     <para>
     The Family View window displays the spouses, parents, and children
-    of the active person. At any time, you can return to the this view
+    of the active person. At any time, you can return to this view
     either by pressing the <guibutton>Family</guibutton> button at the
     top of the screen, or by choosing the
       <menuchoice>
@@ -702,7 +704,7 @@
     <para>
     In the Family View, the family information related to the active
     person is displayed. This information falls into two categories:
-    families in which the person is a child, and families in which
+    families in which the person is a child, and families in which the
     person is a spouse or parent.
     </para>
     <sect2 id="ap_parents">
@@ -714,7 +716,7 @@
       family relationships for each person. For example, a person may
       have natural birth parents and adopted parents. In this case, an
       option menu will appear below the parents names, allowing you to
-      choose which set of parents you which to view.
+      choose which set of parents you wish to view.
       </para>
       <para> 
       Pressing the <guibutton>Add/Edit Parents</guibutton>
@@ -749,8 +751,8 @@
       On the left side of the window, below the active person's name,
       is the information related to the person's marriages and
       relationships.  If the person has one or no relationships, the
-      spouse will appear within a non-editable text box. If more that
-      one relationships exist, the text box will be replaced with an
+      spouse will appear within a non-editable text box. If more than
+      one relationship exists, the text box will be replaced with an
       option menu that allows you to select the relationship to view.
       </para>
       <para>
@@ -786,8 +788,8 @@
       The <guibutton>Remove</guibutton> button removes the current
       spouse from the relationship. If no children exist in the
       relationship, the entire relationship is removed. If children
-      exist in the relationship, the the current spouse is removed,
-      and the children remain in a family with active person as the
+      exist in the relationship, the current spouse is removed,
+      and the children remain in a family with the active person as the
       only parent.
       </para>
     </sect2>
@@ -809,7 +811,7 @@
       not delete the person from the database.
       </para>
       <para>
-      Double clicking on a entry in the list brings up the
+      Double clicking on an entry in the list brings up the
       <interface>Edit Person</interface> dialog for the child.
       </para>
       <para>
@@ -824,7 +826,7 @@
     <para>
     The Pedigree View window displays the active person, the active
     person's parents, and the active parent's grandparents in a
-    somewhat graphical manner. At any time, you can return to the this
+    somewhat graphical manner. At any time, you can return to this
     view either by pressing the Pedigree button at the top of the
     screen, or by choosing the
       <menuchoice>
@@ -846,7 +848,7 @@
     information about a person, including their date of birth and date
     of death. Double-clicking the box will display the <interface>Edit
     Person</interface> dialog box for the person. Holding down the
-    Shift key while double-clicking will will make that person the
+    Shift key while double clicking will will make that person the
     active person.
     </para>
     <para>
@@ -860,9 +862,9 @@
     person's father (top button) or mother (bottom button),
     effectively shifting the pedigree view to the right, or up one
     generation. If the active person does not have any children, then
-    the button on the left hand side of the screen will not
+    the button on the left-hand side of the screen will not
     appear. Similarly, if the active person does have a father or
-    mother, the corresponding button on the right hand side of the
+    mother, the corresponding button on the right-hand side of the
     screen will not appear.
     </para>
     <figure id="navfigure-fig">
@@ -875,11 +877,11 @@
     </figure>
     <para>
     As a quick short cut, double clicking on a line between two people
-    will make the person on the right hand side of the line the active
+    will make the person on the right-hand side of the line the active
     person. <xref linkend="navfigure-fig"> shows navigation using this
     method. When the mouse is over one of the lines connecting
     individuals, the line widens and becomes highlighted. In this
-    case, double-clcking on the line would make Hjalmar Smith the
+    case, double clcking on the line would make Hjalmar Smith the
     active person.
     </para>
   </sect1>
@@ -887,8 +889,8 @@
   <sect1 id="sourcelist">
     <title>Source View</title>
     <para>
-    The Source View window displays the different sources which have
-    been entered into the database. At any time, you can return to the
+    The Source View window displays the different sources that have
+    been entered into the database. At any time, you can return to
     this view either by pressing the <guibutton>Sources</guibutton>
     button at the top of the screen, or by choosing the
       <menuchoice>
@@ -915,8 +917,8 @@
   <sect1 id="placelist">
     <title>Place View</title>
     <para>
-    The Place View window displays the different sources which have
-    been entered into the database. At any time, you can return to the
+    The Place View window displays the different sources that have
+    been entered into the database. At any time, you can return to
     this view either by pressing the <guibutton>Places</guibutton>
     button at the top of the screen, or by choosing the
       <menuchoice>
@@ -1061,7 +1063,7 @@
           <listitem>
             <para>
 	    <application>GRAMPS</application> normally compresses its
-	    data file to conserve disk space. If you do not which to
+	    data file to conserve disk space. If you do not whish to
 	    have the file compressed, selecting this option will cause
 	    <application>GRAMPS</application> to leave the file
 	    uncompressed.  This may be desirable if other applications
@@ -1074,7 +1076,7 @@
           <listitem>
             <para>
 	    When this is selected there will be a row of tabs below
-	    the tool bars for the Person View, Family Fiew, Pedigree
+	    the tool bars for the Person View, Family View, Pedigree
 	    View, and Sources View.
 	    </para>
           </listitem>
@@ -1125,7 +1127,7 @@
 	    and names. Options exist for several different date
 	    formats. Names can be displayed with either the given name
 	    or the surname first. This option typically does not
-	    affect lists which are sorted by last name, in which case
+	    affect lists that are sorted by last name, in which case
 	    the surname is displayed first.
             </para>
           </listitem>
@@ -1149,13 +1151,13 @@
       <figure id="prefs_appear">
         <title>Preferences Dialog</title>
         <screenshot>
-          <screeninfo>Appearence Preferences Dialog</screeninfo>
+          <screeninfo>Appearance Preferences Dialog</screeninfo>
           <graphic fileref="prefs_appear" format="png" srccredit="Don Allingham">
           </graphic>
         </screenshot>
       </figure>
       <variablelist>
-        <title>Appearence Preferences</title>
+        <title>Appearance Preferences</title>
         <varlistentry>
 	  <term><guilabel>Custom Colors</guilabel></term>
           <listitem>
@@ -1173,9 +1175,9 @@
 	  <term><guilabel>Status Bar</guilabel></term>
           <listitem>
             <para>
-	    Allows you can change the information displayed in the
+	    Allows you to change the information displayed in the
             status bar at the bottom of the window.  There are three
-            (3) preferences you can chose from.  The first is Active
+            (3) preferences from which to chose.  The first is Active
             person's name only - this will display the active person's
             name only in the status bar.  The second is Active
             person's name and GRAMPS ID - This will display the name
@@ -1191,10 +1193,10 @@
 	  <term><guilabel>List Display Options</guilabel></term>
   	  <listitem>
 	    <para>
-  	    Allows to control what gets displayed in lists. You can
+  	    Allows you to control what gets displayed in lists. You can
   	    control if alternate names are displayed in the lists, or
   	    if the lists will contain detail flags to indicate
-  	    additional information (such as the presense of notes,
+  	    additional information (such as the presence of notes,
   	    sources, or images).
             </para>
           </listitem>
@@ -1234,8 +1236,8 @@
       different paper sizes. Selecting a <guilabel>Preferred Output
       Format</guilabel> and a <guilabel>Preferred Output
       Format</guilabel> tells the report generator your
-      preferences. It should be noted that a report generator may not
-      support all possible formats.
+      preferences. It should be noted that a report generator might
+      not support all possible formats.
       </para>
     </sect2>
     <sect2 id="prefs_tab5">
@@ -1261,9 +1263,9 @@
     <title>Generating Reports</title>
     <para>
     <application>GRAMPS</application> can produce a wide variety of
-    reports. New report generators can be written by the user without
+    reports. A new report generator can be written by the user without
     modifying the main program. For this reason, there may be more
-    reports available than are documented by this manual
+    reports available than are documented by this manual.
     </para>
     <figure id="report-fig">
       <title>Report Generation Dialog</title>
@@ -1280,11 +1282,11 @@
     are understood by other programs.  These formats include
     OpenOffice, AbiWord, PDF, and HTML, among others. This allows the
     generated reports to be modified after they are generated, stored
-    for use later, or emailed to another person.
+    for use at a later time, or e-mailed to another person.
     </para>
     <para>
     After selecting the report you would like generated there are
-    option you must select.  In the Save As option specify your file
+    options you must select.  In the Save As option specify your file
     name (use /full path/filename to specify a different directory
     than in your Default Report Directory preference in the
     preferences).  The next step is to select the Report Format.
@@ -1298,10 +1300,9 @@
     and dorders).  Once you are satisfied with the style you are ready
     to proceed with the generation of your report.  The next step is
     to choose the options (if any for that specific report) and then
-    Choose the Templete (for HTML format only) and click OK.  Your
+    Choose the Template (for HTML format only) and click OK.  Your
     report will now be in default report directory (unless otherwise
-    specified) for you to view the program you specified the report to
-    be generated for.
+    specified). 
     </para>
     <sect2 id="htmltemplates">
       <title>Using HTML templates</title>
@@ -1319,7 +1320,7 @@
       as the target format, the user can select an HTML template to be
       used.  Since the template is chosen at report generation time, a
       different template may be chosen each time, allowing the user to
-      change the appearence of the generated files at any time.
+      change the appearance of the generated files at any time.
       Nearly any existing HTML file can be used as an HTML template
       for <application>GRAMPS</application>.
       </para>
@@ -1327,8 +1328,8 @@
       When a file has been established as the HTML template file,
       <application>GRAMPS</application> uses the template for each
       file that it generates. <application>GRAMPS</application> starts
-      each file by copying data from the template until it reaches an
-      HTML comment uses as a marker.  At that point,
+      each file by copying data from the template until it reaches the
+      HTML comment, which it uses as a marker.  At that point,
       <application>GRAMPS</application> inserts its data into the
       output file. <application>GRAMPS</application> the continues
       reading the until it reaches a second comment that tells it to
