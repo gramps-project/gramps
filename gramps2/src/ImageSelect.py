@@ -1108,11 +1108,11 @@ class GlobalMediaProperties:
         if self.lists_changed:
             self.obj.set_attribute_list(self.alist)
             self.obj.set_source_reference_list(self.srcreflist)
-        if self.update != None:
-            self.update()
         trans = self.db.transaction_begin()
         self.db.commit_media_object(self.obj,trans)
         self.db.transaction_commit(trans,_("Edit Media Object"))
+        if self.update != None:
+            self.update(self.obj)
 
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""

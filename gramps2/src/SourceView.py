@@ -249,7 +249,7 @@ class SourceView:
                                   self.topWindow, self.update_display)
 
     def new_after_edit(self,source):
-        self.build_tree()
+        self.model.add_row_by_handle(source.get_handle())
 
     def update_display(self,source):
         self.model.update_row_by_handle(source.get_handle())

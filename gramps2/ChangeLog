@@ -1,3 +1,11 @@
+2004-08-30  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/AddMedia.py: use new MediaList update routine
+	* src/DisplayModels.py: new update list routine
+	* src/ImageSelect.py: use new MediaList update routine
+	* src/MediaView.py: use new MediaList update routine
+	* src/PlaceView.py: new update list routine
+	* src/SourceView.py: new update list routine
+	
 2004-08-29  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/GrampsBSDDB.py: add remove_place function
 	* src/DisplayModels.py: added row deletion and updating
