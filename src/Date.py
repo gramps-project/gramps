@@ -33,6 +33,8 @@ _ = intl.gettext
 #-------------------------------------------------------------------------
 class Date:
     formatCode = 0
+    entryCode = 0
+    
     BadFormat = _("Unknown Format")
     Error = _("Illegal Date")
 
@@ -163,8 +165,6 @@ class SingleDate:
     before = 2
     after = 3
     
-    entryCode = 0
-
     mname = [ _("January"),
               _("February"),
               _("March"),
@@ -519,10 +519,14 @@ class SingleDate:
         elif self.day == -1:
             if self.month == -1:
                 retval = "%d" % self.year
+            elif self.year == -1:
+                retval = "%d/??/??" % self.month+1
+            else:
+                retval = "%d/??/%d" % (self.month+1,self.year)
         elif self.month == -1:
             retval = "%d" % self.year
         else:
-            if year == -1:
+            if self.year == -1:
                 retval = "%d/%d/????" % (self.month+1,self.day)
             else:
                 retval = "%d/%d/%d" % (self.month+1,self.day,self.year)
@@ -550,6 +554,10 @@ class SingleDate:
         elif self.day == -1:
             if self.month == -1:
                 retval = "%d" % self.year
+            elif self.year == -1:
+                retval = "%d-??-??" % self.month+1
+            else:
+                retval = "%d-??-%d" % (self.month+1,self.year)
         elif self.month == -1:
             retval = "%d" % self.year
         else:
@@ -581,6 +589,10 @@ class SingleDate:
         elif self.day == -1:
             if self.month == -1:
                 retval = "%d" % self.year
+            elif self.year == -1:
+                retval = "??/%d/??" % self.month+1
+            else:
+                retval = "??/%d/%d" % (self.month+1,self.year)
         elif self.month == -1:
             retval = "%d" % self.year
         else:
@@ -606,19 +618,21 @@ class SingleDate:
     #--------------------------------------------------------------------
     def getFmt7(self):
         retval = ""
-        
         if self.month == -1 and self.day == -1 and self.year == -1 :
             pass
         elif self.day == -1:
             if self.month == -1:
                 retval = "%d" % self.year
+            elif self.year == -1:
+                retval = "??-%d-??" % self.month+1
+            else:
+                retval = "??-%d-%d" % (self.month+1,self.year)
         elif self.month == -1:
             retval = "%d" % self.year
+        elif self.year == -1:
+            retval = "%d-%d-????" % (self.day,self.month+1)
         else:
-            if self.year == -1:
-                retval = "%d-%d-????" % (self.day,self.month+1)
-            else:
-                retval = "%d-%d-%d" % (self.day,self.month+1,self.year)
+            retval = "%d-%d-%d" % (self.day,self.month+1,self.year)
 
         if self.mode == SingleDate.about:
             retval = "ABT" + ' ' + retval
@@ -696,7 +710,7 @@ class SingleDate:
         if match != None:
             matches = match.groups()
             self.getMode(matches[0])
-            if SingleDate.entryCode == 0:
+            if Date.entryCode == 0:
                 self.setMonth(string.atoi(matches[1]))
                 self.setDay(string.atoi(matches[2]))
             else:
@@ -797,20 +811,26 @@ if __name__ == "__main__":
     def checkit(s):
         d = Date()
         d.set(s)
-        print s, ':', d.getDate(), ':', d.getQuoteDate(),'\n'
+        print s, ':', d.getDate(), ':', d.getQuoteDate()
 
-    checkit("June 11")
-    checkit("1923")
-    checkit("11/12/1293")
-    checkit("11 JAN 1923")
-    checkit("11-1-1929")
-    checkit("4/3/1203")
-    checkit("January 4, 1923")
-    checkit("before 3/3/1239")
-    checkit("est 2-3-1023")
-    checkit("between January 4, 1234 and NOV 4, 1245")
-    checkit("from 3-2-1234 to 5-4-2345")
-
+    for code in range(0,7):
+        Date.formatCode = code
+        Date.entryCode = 0
+        print "\nFormat Code = %d\n" % code
+        checkit("June 11")
+        checkit("1923")
+        checkit("11/12/1293")
+        checkit("11 JAN 1923")
+        checkit("11-1-1929")
+        checkit("4/3/1203")
+        checkit("January 4, 1923")
+        checkit("before 3/3/1239")
+        checkit("est 2-3-1023")
+        checkit("between January 4, 1234 and NOV 4, 1245")
+        checkit("from 3-2-1234 to 5-4-2345")
+        Date.entryCode = 1
+        checkit("1/12/1999")
+        checkit("12/11/1999")
 
 		
 
