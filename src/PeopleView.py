@@ -48,6 +48,7 @@ _sel_mode = gtk.SELECTION_SINGLE
 #-------------------------------------------------------------------------
 import PeopleModel
 import Filter
+import const
 
 column_names = [
     _('Name'),
@@ -69,8 +70,6 @@ class PeopleView:
     def __init__(self,parent):
         self.parent = parent
 
-        self.nosort = os.environ.has_key('NOSORT')
-        
         self.DataFilter = Filter.Filter("")
         self.pscroll = self.parent.gtop.get_widget("pscroll")
         self.person_tree = self.parent.gtop.get_widget("person_tree")
@@ -88,7 +87,7 @@ class PeopleView:
         column = gtk.TreeViewColumn(_('Name'), self.renderer,text=0)
         column.set_resizable(gtk.TRUE)        
         column.set_min_width(225)
-        if not self.nosort:
+        if not const.nosort_tree:
             column.set_clickable(gtk.TRUE)
             column.set_sort_column_id(PeopleModel.COLUMN_NAME_SORT)
         self.person_tree.append_column(column)
@@ -112,7 +111,7 @@ class PeopleView:
         self.person_tree.set_model(None)
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
 
-        if self.nosort:
+        if const.nosort_tree:
             self.sort_model = self.person_model
         else:
             self.sort_model = gtk.TreeModelSort(self.person_model)
@@ -254,7 +253,7 @@ class PeopleView:
         
     def redisplay_person_list(self,person):
         self.person_model = PeopleModel.PeopleModel(self.parent.db)
-        if self.nosort:
+        if const.nosort_tree:
             self.sort_model = self.person_model
         else:
             self.sort_model = gtk.TreeModelSort(self.person_model)

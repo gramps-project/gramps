@@ -143,7 +143,7 @@ class Bookmarks :
         """
         self.draw_window()
         index = 0
-        for person in self.bookmarks:
+        for person_id in self.bookmarks:
             data = self.db.person_map.get(str(person_id))
             name = data[2].get_name()
             self.namelist.append([name])

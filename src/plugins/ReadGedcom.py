@@ -71,7 +71,7 @@ UPDATE = 25
 db = None
 callback = None
 
-_title_string = _("Import from GEDCOM")
+_title_string = _("GEDCOM")
 
 def nocnv(s):
     return unicode(s)

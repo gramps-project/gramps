@@ -2,8 +2,6 @@
 SUBDIRS = docgen filters plugins data po calendars
 
 # For intl. support, how do we compile?
-CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
-LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
 MOSTLYCLEANFILES = 
 
 # What are the PYTHON scripts for this package that need to be handled?
@@ -42,9 +40,7 @@ pkgpython_PYTHON = \
 	GenericFilter.py\
 	GrampsCfg.py\
 	gramps_main.py\
-	GrampsParser.py\
 	gramps.py\
-	GrampsXML.py\
 	GraphLayout.py\
 	Gregorian.py\
 	Hebrew.py\
@@ -117,7 +113,7 @@ GRAPHICS = \
 	tools.png
 
 # Other stuff that we need to install
-dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop papersize.xml
+dist_pkgdata_DATA = $(GLADEFILES) $(GRAPHICS) gramps.desktop
 
 # In principle the following rule slightly  violates the automake/autoconf 
 # spirit of keeping each subdirectory as a separate entity unto itself. 

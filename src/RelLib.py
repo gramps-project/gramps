@@ -71,7 +71,6 @@ PLACE_KEY      = 5
 #-------------------------------------------------------------------------
 _id_reg = compile("%\d+d")
 
-
 #-------------------------------------------------------------------------
 #
 # SourceNote
@@ -2426,6 +2425,9 @@ class GrampsDB:
         self.surnames.open(name, "surnames", db.DB_HASH, flags=db.DB_CREATE)
 
         self.person_map.associate(self.surnames, find_surname, db.DB_CREATE)
+        self.bookmarks = self.metadata.get('bookmarks')
+        if self.bookmarks == None:
+            self.bookmarks = []
         return 1
 
     def close(self):
@@ -2435,6 +2437,7 @@ class GrampsDB:
         self.source_map.close()
         self.media_map.close()
         self.event_map.close()
+        self.metadata['bookmarks'] = self.bookmarks
         self.metadata.close()
         self.surnames.close()
         self.env.close()

@@ -34,6 +34,7 @@ __version__ = "$Revision$"
 #
 #-------------------------------------------------------------------------
 from gettext import gettext as _
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -75,6 +76,7 @@ class ChooseParents:
         family_update - task that updates the family display
         full_update - task that updates the main display 
         """
+        self.nosort = os.environ.has_key('NOSORT')
         self.parent = parent
         self.db = db
         self.child_windows = {}
@@ -294,7 +296,10 @@ class ChooseParents:
     def redrawf(self):
         """Redraws the potential father list"""
         self.father_nsort = PeopleModel.PeopleModel(self.db, self.father_filter)
-        self.father_model = gtk.TreeModelSort(self.father_nsort)
+        if self.nosort:
+            self.father_model = self.father_nsort
+        else:
+            self.father_model = gtk.TreeModelSort(self.father_nsort)
         self.father_list.set_model(self.father_model)
         if self.type == "Partners":
             self.flabel.set_label("<b>%s</b>" % _("Par_ent"))
@@ -304,7 +309,11 @@ class ChooseParents:
     def redrawm(self):
         """Redraws the potential mother list"""
         self.mother_nsort = PeopleModel.PeopleModel(self.db, self.mother_filter)
-        self.mother_model = gtk.TreeModelSort(self.mother_nsort)
+        if self.nosort:
+            self.mother_model = self.mother_nsort
+        else:
+            self.mother_model = gtk.TreeModelSort(self.mother_nsort)
+            
         self.mother_list.set_model(self.mother_model)
         if self.type == "Partners":
             self.mlabel.set_label("<b>%s</b>" % _("Pa_rent"))

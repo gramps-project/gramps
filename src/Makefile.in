@@ -113,8 +113,6 @@ target_alias = @target_alias@
 SUBDIRS = docgen filters plugins data po calendars
 
 # For intl. support, how do we compile?
-CFLAGS = -fPIC -shared -O @GNOMEINC@ @CFLAGS@ @CPPFLAGS@ -I@includedir@
-LDFLAGS = @GNOMELIB@ @LDFLAGS@ -L@libdir@ @LIBS@
 MOSTLYCLEANFILES = 
 
 
@@ -153,9 +151,7 @@ pkgpython_PYTHON = \
 	GenericFilter.py\
 	GrampsCfg.py\
 	gramps_main.py\
-	GrampsParser.py\
 	gramps.py\
-	GrampsXML.py\
 	GraphLayout.py\
 	Gregorian.py\
 	Hebrew.py\

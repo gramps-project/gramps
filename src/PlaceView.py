@@ -43,6 +43,7 @@ import EditPlace
 import Utils
 import DisplayModels
 import ColumnOrder
+import const
 
 from QuestionDialog import QuestionDialog, ErrorDialog
 from gettext import gettext as _
@@ -78,7 +79,11 @@ class PlaceView:
 
         self.renderer = gtk.CellRendererText()
 
-        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.db))
+        if const.nosort_tree:
+            self.model = DisplayModels.PlaceModel(self.db)
+        else:
+            self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.db))
+            
         self.list.set_model(self.model)
         self.topWindow = self.glade.get_widget("gramps")
 
@@ -90,10 +95,12 @@ class PlaceView:
             self.list.remove_column(column)
             
         column = gtk.TreeViewColumn(_('Place Name'), self.renderer,text=0)
-        column.set_resizable(gtk.TRUE)        
-        column.set_clickable(gtk.TRUE)
+        column.set_resizable(gtk.TRUE)
+        if not const.nosort_tree:
+            column.set_clickable(gtk.TRUE)
+            column.set_sort_column_id(0)
+
         column.set_min_width(225)
-        column.set_sort_column_id(0)
         self.list.append_column(column)
         self.columns = [column]
 
@@ -104,9 +111,10 @@ class PlaceView:
             name = column_names[pair[1]]
             column = gtk.TreeViewColumn(name, self.renderer, text=pair[1])
             column.set_resizable(gtk.TRUE)
-            column.set_clickable(gtk.TRUE)
+            if not const.nosort_tree:
+                column.set_clickable(gtk.TRUE)
+                column.set_sort_column_id(index)
             column.set_min_width(75)
-            column.set_sort_column_id(index)
             self.columns.append(column)
             self.list.append_column(column)
             index += 1
@@ -120,7 +128,10 @@ class PlaceView:
 
     def build_tree(self):
         self.list.set_model(None)
-        self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
+        if const.nosort_tree:
+            self.model = DisplayModels.PlaceModel(self.parent.db)
+        else:
+            self.model = gtk.TreeModelSort(DisplayModels.PlaceModel(self.parent.db))
         self.list.set_model(self.model)
         self.selection = self.list.get_selection()
 

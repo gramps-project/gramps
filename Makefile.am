@@ -10,7 +10,7 @@ gramps: gramps.sh
 	cp gramps.sh gramps
 
 .PHONY: pycheck trans
-	
+
 pycheck:
 	(cd src; make pycheck) 
 trans:

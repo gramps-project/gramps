@@ -1,3 +1,22 @@
+2004-04-10  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Bookmarks.py: use IDs instead of person references
+	* src/ChooseParents.py: allow for NOSORT option
+	* src/GrampsParser.py: removed
+	* src/GrampsXML.py: removed
+	* src/MediaView.py: allow for NOSORT option
+	* src/PedView.py: double click to edit
+	* src/PeopleView.py: allow for NOSORT option
+	* src/PlaceView.py: allow for NOSORT option
+	* src/RelLib.py: handle bookmarks in metadata
+	* src/ReadXML.py: merge GrampsParser
+	* src/SourceView.py: allow for NOSORT option
+	* src/const.py.in: fix paths for xml files
+	* src/gramps_main.py: bookmark fixes
+	* src/papersize.xml : move to data subdirectory
+	* src/plugins/ReadGedcom.py: fix menu string
+	* src/plugins/ReadNative.py: fix menu string
+	* src/plugins/ReadPkg.py: fix menu string
+
 2004-04-07  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/choose.glade: merged into gramps.glade
 	* src/styles.glade: merged into gramps.glade
