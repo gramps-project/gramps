@@ -301,6 +301,7 @@ class FilterEditor:
         self.remove_itself_from_menu()
         GenericFilter.reload_custom_filters()
         GenericFilter.reload_system_filters()
+        self.parent.init_filters()
 
     def close_child_windows(self):
         for child_window in self.child_windows.values():
@@ -346,6 +347,7 @@ class FilterEditor:
         self.window.destroy()
         GenericFilter.reload_custom_filters()
         GenericFilter.reload_system_filters()
+        self.parent.init_filters()
         
     def draw_filters(self):
         self.clist.clear()

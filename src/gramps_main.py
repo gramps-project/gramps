@@ -856,6 +856,7 @@ class Gramps:
     def init_filters(self):
 
         cell = gtk.CellRendererText()
+        self.filter_list.clear()
         self.filter_list.pack_start(cell,True)
         self.filter_list.add_attribute(cell,'text',0)
 
@@ -886,8 +887,6 @@ class Gramps:
         all.add_rule(GenericFilter.SearchName([]))
         filter_list.append(all)
 
-        menu = GenericFilter.build_filter_menu(filter_list)
-        
         self.filter_model = GenericFilter.FilterStore(filter_list)
         self.filter_list.set_model(self.filter_model)
         self.filter_list.set_active(self.filter_model.default_index())

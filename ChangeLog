@@ -14,6 +14,10 @@
 	* src/ChooseParents.py (mother_list_select_row,
 	father_list_select_row): Comment out auto-selection of parents.
 
+	* src/plugins/FilterEditor.py (on_delete_event,close_filter_editor):
+	Update filter ComboBox in the main window.
+	* src/gramps_main.py (init_filters): Clear layout before rebuilding.
+
 2005-03-07 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/AddrEdit.py: Typo.
 	* src/EditPerson.py (on_add_addr_clicked): Typos.
