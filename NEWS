@@ -15,10 +15,12 @@ Version 0.9.2
 * Long-awaited Export to CD.
 * Added support for AbiWord 1.9 or greater, AbiWord 1.9+ supports tables,
   allowing a greater range of reports to be supported.
-* Save confirmation on Help->Open Example and File->New.
+* Added Save confirmation on Help->Open Example and File->New.
 * Command-line options (-i -o -f -a) support is added in its experimental stage.
   Please try hard to break it and report to gramps-devel.
 * Man page is updated.
+* Huge speed-up in Select Child (~25x) and Choose Parents (75x-150x) dialogs.
+* Dozens of bug fixes.
 
 Version 0.9.1
 * Custom paper sizes may be set for reports
