@@ -21,6 +21,11 @@
 	* src/PedView.py (load_canvas): Add anchor button and label; 
 	(make_anchor_button,make_anchor_label,on_anchor_clicked): Add functions.
 
+	* src/PedView.py (load_canvas): Ditch anchor button in favor of
+	context menu items; (make_anchor_button,on_anchor_clicked): Remove 
+	functions; (on_anchor_set, on_anchor_remove): Add functions; 
+	(build_nav_menu): Add anchor-related context menut items. 
+
 2003-12-31  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/plugins/RelCalc.py (__init__): Skip the person when building the
 	list.
