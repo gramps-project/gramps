@@ -1384,7 +1384,7 @@ class Person(Persistent):
         return self.lds_seal
 
     def probablyAlive(self):
-        if self.death.getDate() != "":
+        if not self.death.is_empty ():
             return 0
         if self.birth.getDate() != "":
             return not_too_old(self.birth.getDateObj().get_start_date())
@@ -1443,9 +1443,10 @@ class Event(DataObj):
         date = self.getDateObj()
         place = self.getPlace()
         description = self.description
+        cause = self.cause
         name = self.name
         if (not name or name == "Birth" or name == "Death") and \
-           date.isEmpty() and not place and not description:
+           date.isEmpty() and not place and not description and not cause:
             return 1
         else:
             return 0
