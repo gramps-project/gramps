@@ -869,3 +869,5 @@ NameTypesMap = {
     _("Married Name")  : "Married Name",
     _("Other Name")    : "Other Name",
     }
+
+logical_functions = ['or', 'and', 'xor', 'one']

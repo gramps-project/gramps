@@ -494,6 +494,7 @@ class HasNameOf(Rule):
                 return 1
         return 0
 
+    
 class MatchesFilter(Rule):
     """Rule that checks against another filter"""
 
@@ -505,10 +506,10 @@ class MatchesFilter(Rule):
     def apply(self, p):
         for filter in SystemFilters.get_filters():
             if filter.get_name() == self.list[0]:
-                return len(filter.apply([p])) > 0
+                return filter.check(p)
         for filter in CustomFilters.get_filters():
             if filter.get_name() == self.list[0]:
-                return len(filter.apply([p])) > 0
+                return filter.check(p)
         return 0
     
 #-------------------------------------------------------------------------
@@ -524,18 +525,35 @@ class GenericFilter:
             self.flist = source.flist[:]
             self.name = source.name
             self.comment = source.comment
-            self.logical_or = source.logical_or
+            self.logical_op = source.logical_op
+            self.invert = source.invert
         else:
             self.flist = []
             self.name = ''
             self.comment = ''
-            self.logical_or = 0
+            self.logical_op = 'and'
+            self.invert = 0
 
     def set_logical_or(self,val):
-        self.logical_or = val
+        self.logical_op = 'or'
 
     def get_logical_or(self):
-        return self.logical_or
+        return self.logical_op == 'or'
+
+    def set_logical_op(self,val):
+        if val in const.logical_functions:
+            self.logical_op = val
+        else:
+            self.logical_op = 'and'
+
+    def get_logical_op(self):
+        return self.logical_op
+
+    def set_invert(self, val):
+        self.invert = not not val
+
+    def get_invert(self):
+        return self.invert
     
     def get_name(self):
         return self.name
@@ -557,23 +575,66 @@ class GenericFilter:
 
     def get_rules(self):
         return self.flist
-    
-    def apply(self,list):
-        result = []
-        if self.logical_or:
-            for p in list:
-                for rule in self.flist:
-                    if rule.apply(p):
-                        result.append(p)
-                        break
+
+    def check_or(self,p):
+        test = 0
+        for rule in self.flist:
+            test = test or rule.apply(p)
+            if test:
+                break
+        if self.invert:
+            return not test
         else:
-            for p in list:
-                for rule in self.flist:
-                    if rule.apply(p) == 0:
-                        break
-                else:
-                    result.append(p)
-        return result
+            return test
+
+    def check_xor(self,p):
+        test = 0
+        for rule in self.flist:
+            temp = rule.apply(p)
+            test = ((not test) and temp) or (test and (not temp))
+        if self.invert:
+            return not test
+        else:
+            return test
+
+    def check_one(self,p):
+        count = 0
+        for rule in self.flist:
+            if rule.apply(p):
+                count = count + 1
+                if count > 1:
+                    break
+        if self.invert:
+            return count != 1
+        else:
+            return count == 1
+
+    def check_and(self,p):
+        test = 1
+        for rule in self.flist:
+            test = test and rule.apply(p)
+            if not test:
+                break
+        if self.invert:
+            return not test
+        else:
+            return test
+    
+    def check(self,p):
+        try:
+            m = getattr(self, 'check_' + self.logical_op)
+        except AttributeError:
+            m = self.check_and
+
+        return m(p)
+
+    def apply(self,list):
+        try:
+            m = getattr(self, 'check_' + self.logical_op)
+        except AttributeError:
+            m = self.check_and
+
+        return filter(m, list)
 
 #-------------------------------------------------------------------------
 #
@@ -642,8 +703,9 @@ class GenericFilterList:
         f.write('<filters>\n')
         for i in self.filter_list:
             f.write('  <filter name="%s"' % self.fix(i.get_name()))
-            if i.get_logical_or():
-                f.write(' function="1"')
+            if i.get_invert():
+                f.write(' invert="1"')
+            f.write(' function="%s"' % i.get_logical_op())
             comment = i.get_comment()
             if comment:
                 f.write(' comment="%s"' % self.fix(comment))
@@ -681,9 +743,21 @@ class FilterParser(handler.ContentHandler):
             self.f = GenericFilter()
             self.f.set_name(attrs['name'])
             if attrs.has_key('function'):
-                self.f.set_logical_or(int(attrs['function']))
+                try:
+                    if int(attrs['function']):
+                        op = 'or'
+                    else:
+                        op = 'and'
+                except ValueError:
+                    op = attrs['function']
+                self.f.set_logical_op(op)
             if attrs.has_key('comment'):
                 self.f.set_comment(attrs['comment'])
+            if attrs.has_key('invert'):
+                try:
+                    self.f.set_invert(int(attrs['invert']))
+                except ValueError:
+                    pass
             self.gfilter_list.add(self.f)
         elif tag == "rule":
             name = attrs['class']
@@ -706,11 +780,13 @@ CustomFilters = None
 def reload_system_filters():
     global SystemFilters
     SystemFilters = GenericFilterList(const.system_filters)
-
+    SystemFilters.load()
+    
 def reload_custom_filters():
     global CustomFilters
     CustomFilters = GenericFilterList(const.custom_filters)
-
+    CustomFilters.load()
+    
 if not SystemFilters:
     reload_system_filters()
 

@@ -128,7 +128,10 @@ class FilterEditor:
         self.top = self.glade.get_widget('define_filter')
         self.rule_list = self.glade.get_widget('rule_list')
         self.fname = self.glade.get_widget('filter_name')
-        self.logor = self.glade.get_widget('logical_or')
+        self.log_not = self.glade.get_widget('logical_not')
+        self.log_and = self.glade.get_widget('logical_and')
+        self.log_or = self.glade.get_widget('logical_or')
+        self.log_one = self.glade.get_widget('logical_one')
         self.comment = self.glade.get_widget('comment')
         self.ok = self.glade.get_widget('ok')
         self.edit_btn = self.glade.get_widget('edit')
@@ -144,7 +147,14 @@ class FilterEditor:
             'on_edit_clicked' : self.on_edit_clicked,
             'on_cancel_clicked' : self.on_cancel_clicked,
             })
-        self.logor.set_active(self.filter.get_logical_or())
+        if self.filter.get_invert():
+            self.log_not.set_active(1)
+        if self.filter.get_logical_op() == 'or':
+            self.log_or.set_active(1)
+        elif self.filter.get_logical_op() == 'one':
+            self.log_one.set_active(1)
+        else:
+            self.log_and.set_active(1)
         if self.filter.get_name():
             self.fname.set_text(self.filter.get_name())
         self.comment.set_text(self.filter.get_comment())
@@ -184,7 +194,14 @@ class FilterEditor:
             if n == f.get_name():
                 self.filterdb.get_filters().remove(f)
                 break
-        self.filter.set_logical_or(self.logor.get_active())
+        self.filter.set_invert(self.log_not.get_active())
+        if self.log_or.get_active():
+            op = 'or'
+        elif self.log_one.get_active():
+            op = 'one'
+        else:
+            op = 'and'
+        self.filter.set_logical_op(op)
         self.filterdb.add(self.filter)
         self.draw_filters()
         self.top.destroy()
