@@ -43,9 +43,7 @@ from RelLib import *
 #
 #-------------------------------------------------------------------------
 
-SOURCEDISP = "s"
-ACTIVESRC  = "a"
-MENUVAL    = "a"
+_MENUVAL    = "a"
 
 class SourceSelector:
 
@@ -60,10 +58,10 @@ class SourceSelector:
         self.top = libglade.GladeXML(const.gladeFile,"sourcesel")
         self.top.signal_autoconnect({
             "destroy_passed_object" : utils.destroy_passed_object,
-            "on_add_src_clicked"    : on_add_src_clicked,
-            "on_del_src_clicked"    : on_del_src_clicked,
-            "on_edit_src_clicked"   : on_edit_src_clicked,
-            "on_src_ok_clicked"     : on_src_ok_clicked,
+            "on_add_src_clicked"    : self.on_add_src_clicked,
+            "on_del_src_clicked"    : self.on_del_src_clicked,
+            "on_edit_src_clicked"   : self.on_edit_src_clicked,
+            "on_src_ok_clicked"     : self.on_src_ok_clicked,
             })
         self.sourcesel = self.top.get_widget("sourcesel")
         self.slist = self.top.get_widget("slist")
@@ -82,43 +80,31 @@ class SourceSelector:
             index = index + 1
         self.slist.thaw()
 
-def on_src_ok_clicked(obj):
-    top = obj.get_data("o")
-    del top.orig[:]
-    for s in top.list:
-        top.orig.append(s)
-    top.update(top.parent)
-    utils.destroy_passed_object(top.sourcesel)
+    def on_src_ok_clicked(self,obj):
+        del self.orig[:]
+        for s in self.list:
+            self.orig.append(s)
+        self.update(self.parent)
+        utils.destroy_passed_object(self.sourcesel)
     
-def on_edit_src_clicked(obj):
-    sel = obj.selection
-    if len(sel) > 0:
-        row = sel[0]
-        src = obj.get_row_data(row)
-        inst = obj.get_data("o")
-        SourceEditor(src,inst.db,update_clist,inst)
+    def on_edit_src_clicked(self,obj):
+        sel = obj.selection
+        if len(sel) > 0:
+            row = sel[0]
+            src = obj.get_row_data(row)
+            SourceEditor(src,self.db,update_clist,self)
 
-def update_clist(inst,ref):
-    inst.redraw()
+    def on_add_src_clicked(self,obj):
+        src = SourceRef()
+        SourceEditor(src,self.db,add_ref,self)
 
-def on_add_src_clicked(obj):
-    inst = obj.get_data("o")
-    src = SourceRef()
-    SourceEditor(src,inst.db,add_ref,inst)
+    def on_del_src_clicked(self,obj):
+        sel = obj.selection
+        if len(sel) > 0:
+            row = sel[0]
+            del self.list[row]
+            self.redraw()
 
-def add_ref(inst,ref):
-    inst.list.append(ref)
-    inst.redraw()
-
-def on_del_src_clicked(obj):
-    inst = obj.get_data("o")
-    
-    sel = obj.selection
-    if len(sel) > 0:
-        row = sel[0]
-        del inst.list[row]
-        inst.redraw()
-        
 #-------------------------------------------------------------------------
 #
 # SourceEditor
@@ -126,11 +112,6 @@ def on_del_src_clicked(obj):
 #-------------------------------------------------------------------------
 class SourceEditor:
 
-    #---------------------------------------------------------------------
-    #
-    # __init__ - Creates a source editor window associated with an event
-    #
-    #---------------------------------------------------------------------
     def __init__(self,srcref,database,update=None,parent=None):
 
         self.db = database
@@ -139,8 +120,8 @@ class SourceEditor:
         self.source_ref = srcref
         self.showSource = libglade.GladeXML(const.gladeFile, "sourceDisplay")
         self.showSource.signal_autoconnect({
-            "on_sourceok_clicked" : on_sourceok_clicked,
-            "on_source_changed": on_source_changed,
+            "on_sourceok_clicked"   : self.on_sourceok_clicked,
+            "on_source_changed"     : self.on_source_changed,
             "destroy_passed_object" : utils.destroy_passed_object
             })
         self.sourceDisplay = self.get_widget("sourceDisplay")
@@ -163,22 +144,12 @@ class SourceEditor:
         else:
             self.active_source = None
         self.draw()
-        self.sourceDisplay.set_data(SOURCEDISP,self)
         self.sourceDisplay.show()
 
-    #---------------------------------------------------------------------
-    #
-    # get_widget - returns the widget associated with the specified name
-    #
-    #---------------------------------------------------------------------
     def get_widget(self,name):
+        """returns the widget associated with the specified name"""
         return self.showSource.get_widget(name)
 
-    #---------------------------------------------------------------------
-    #
-    # draw
-    #
-    #---------------------------------------------------------------------
     def draw(self):
 
         if self.source_ref:
@@ -228,6 +199,35 @@ class SourceEditor:
         if sel_child != None:
             self.title_menu.list.select_child(sel_child)
 
+    def on_sourceok_clicked(self,obj):
+        if self.active_source != self.source_ref.getBase():
+            self.source_ref.setBase(self.active_source)
+        
+        page = self.get_widget("spage").get_text()
+        date = self.get_widget("sdate").get_text()
+        text = self.get_widget("stext").get_chars(0,-1)
+        conf = self.get_widget("conf").get_menu().get_active().get_data(_MENUVAL)
+        comments = self.get_widget("scomment").get_chars(0,-1)
+
+        self.source_ref.setPage(page)
+        self.source_ref.getDate().set(date)
+        self.source_ref.setText(text)
+        self.source_ref.setComments(comments)
+        self.source_ref.setConfidence(conf)
+
+        if self.update:
+            self.update(self.parent,self.source_ref)
+        
+        utils.modified()
+        utils.destroy_passed_object(obj)
+
+    def on_source_changed(self,obj):
+        self.active_source = obj.list.get_selection()[0].get_data("s")
+
+        if self.active_source == None:
+            self.author_field.set_text(self.active_source.getAuthor())
+            self.pub_field.set_text(self.active_source.getPubInfo())
+
 #-------------------------------------------------------------------------
 #
 #
@@ -236,46 +236,11 @@ class SourceEditor:
 def by_title(a,b):
     return cmp(a.getTitle(),b.getTitle())
                
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_sourceok_clicked(obj):
+def update_clist(inst,ref):
+    inst.redraw()
 
-    src_edit = obj.get_data(SOURCEDISP)
+def add_ref(inst,ref):
+    inst.list.append(ref)
+    inst.redraw()
 
-    if src_edit.active_source != src_edit.source_ref.getBase():
-        src_edit.source_ref.setBase(src_edit.active_source)
         
-    page = src_edit.get_widget("spage").get_text()
-    date = src_edit.get_widget("sdate").get_text()
-    text = src_edit.get_widget("stext").get_chars(0,-1)
-    conf = src_edit.get_widget("conf").get_menu().get_active().get_data(MENUVAL)
-    comments = src_edit.get_widget("scomment").get_chars(0,-1)
-
-    src_edit.source_ref.setPage(page)
-    src_edit.source_ref.getDate().set(date)
-    src_edit.source_ref.setText(text)
-    src_edit.source_ref.setComments(comments)
-    src_edit.source_ref.setConfidence(conf)
-
-    if src_edit.update:
-        src_edit.update(src_edit.parent,src_edit.source_ref)
-        
-    utils.modified()
-    utils.destroy_passed_object(obj)
-
-#-------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------
-def on_source_changed(obj):
-
-    src_entry = obj.get_data("o")
-    src_entry.active_source = obj.list.get_selection()[0].get_data("s")
-
-    if src_entry.active_source == None:
-        src_entry.author_field.set_text(src_entry.active_source.getAuthor())
-        src_entry.pub_field.set_text(src_entry.active_source.getPubInfo())
