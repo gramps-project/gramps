@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2003  Donald N. Allingham
+# Copyright (C) 2000-2004  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -284,7 +284,7 @@ class Gallery(ImageSelect):
             return
         self.in_event = 1
         if self.button and event.type == gtk.gdk.MOTION_NOTIFY :
-            if widget.drag_check_threshold(self.remember_x,self.remember_y,
+            if widget.drag_check_threshold(int(self.remember_x),int(self.remember_y),
                                            int(event.x),int(event.y)):
                 self.drag_item = widget.get_item_at(self.remember_x,
                                                     self.remember_y)
@@ -335,7 +335,7 @@ class Gallery(ImageSelect):
             item = widget.get_item_at(event.x,event.y)
             if item:
                 (i,t,b,self.photo,oid) = self.p_map[item]
-                LocalMediaProperties(self.photo,self.path,self)
+                LocalMediaProperties(self.photo,self.path,self,self.parent_window)
             self.in_event = 0
             return gtk.TRUE
         elif event.type == gtk.gdk.MOTION_NOTIFY:
@@ -545,7 +545,7 @@ class Gallery(ImageSelect):
                     self.add_thumbnail(oref)
                     self.parent.lists_changed = 1
                     if GrampsCfg.globalprop:
-                        LocalMediaProperties(oref,self.path,self)
+                        LocalMediaProperties(oref,self.path,self,self.parent_window)
                     Utils.modified()
                 
     def on_photolist_drag_data_get(self,w, context, selection_data, info, time):
@@ -599,7 +599,7 @@ class Gallery(ImageSelect):
 
         if self.sel:
             (i,t,b,photo,oid) = self.p_map[self.sel]
-            LocalMediaProperties(photo,self.path,self)
+            LocalMediaProperties(photo,self.path,self,self.parent_window)
         
     def show_popup(self, photo, event):
         """Look for right-clicks on a picture and create a popup
@@ -658,7 +658,7 @@ class Gallery(ImageSelect):
 #-------------------------------------------------------------------------
 class LocalMediaProperties:
 
-    def __init__(self,photo,path,parent):
+    def __init__(self,photo,path,parent,parent_window=None):
         self.photo = photo
         self.object = photo.getReference()
         self.alist = photo.getAttributeList()[:]
@@ -719,9 +719,6 @@ class LocalMediaProperties:
                 self.flowed.set_active(1)
 
         self.change_dialog.signal_autoconnect({
-            "on_cancel_clicked" : Utils.destroy_passed_object,
-            "on_ok_clicked" : self.on_ok_clicked,
-            "on_apply_clicked" : self.on_apply_clicked,
             "on_add_attr_clicked": self.on_add_attr_clicked,
             "on_notebook_switch_page": self.on_notebook_switch_page,
             "on_update_attr_clicked": self.on_update_attr_clicked,
@@ -729,6 +726,13 @@ class LocalMediaProperties:
             "on_help_clicked" : self.on_help_clicked,
             })
         self.redraw_attr_list()
+        self.window = self.change_dialog.get_widget('change_description')
+        if parent_window:
+            self.window.set_transient_for(parent_window)
+        self.val = self.window.run()
+        if self.val == gtk.RESPONSE_OK:
+            self.on_ok_clicked()
+        self.window.destroy()
 
     def redraw_attr_list(self):
         self.atree.clear()
@@ -750,7 +754,7 @@ class LocalMediaProperties:
         else:
             Utils.unbold_label(self.notes_label)
             
-    def on_apply_clicked(self, obj):
+    def on_apply_clicked(self):
         priv = self.change_dialog.get_widget("private").get_active()
 
         t = self.notes.get_buffer()
@@ -773,10 +777,10 @@ class LocalMediaProperties:
     def on_help_clicked(self, obj):
         """Display the relevant portion of GRAMPS manual"""
         gnome.help_display('gramps-manual','gramps-edit-complete')
+        self.val = self.window.run()
         
-    def on_ok_clicked(self, obj):
-        self.on_apply_clicked(obj)
-        Utils.destroy_passed_object(obj)
+    def on_ok_clicked(self):
+        self.on_apply_clicked()
         
     def on_attr_list_select_row(self,obj):
         store,iter = self.atree.get_selected()
