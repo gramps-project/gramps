@@ -1,3 +1,8 @@
+2004-09-23  Don Allingham  <dallingham@users.sourceforge.net>
+	* src/Date.py: display calendar
+	* src/DateParser.py: parse based on calendars
+	* src/DateDisplay.py: use unicode encodings for french monts
+
 2004-09-22  Don Allingham  <dallingham@users.sourceforge.net>
 	* src/EditPerson.py: change sort mechanism to new Date sort value
 	* src/FamilyView.py: change sort mechanism to new Date sort valu
