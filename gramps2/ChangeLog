@@ -1,3 +1,8 @@
+2005-01-05  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/EditSource.py: Patch to fix the list of References of a 
+	Source, because currently the Source for a Person and Sources 
+	of addresses are omitted.
+
 2005-01-04 Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/ArgeHandler.py: Support for CODE for CLI mode.
 	* src/Plugins.py: Use 'text' instead of 'doc'.
