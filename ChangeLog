@@ -1,3 +1,8 @@
+2005-04-01  Martin Hawlisch  <Martin.Hawlisch@gmx.de>
+	* src/plugins/TestcaseGenerator.py: Small changes to family generation
+	* src/plugins/StatisticsChart.py: Added statistics for Surnames,
+	Number of Families and Event Types
+	
 2005-04-01  Richard Taylor <rjt-gramps@thegrindstone.me.uk>
 	* src/GrampsDBCallback.py: rewrite of new callback scheme using python signals
         * src/GrampsBSDDB.py: handle signals instead of callback functions

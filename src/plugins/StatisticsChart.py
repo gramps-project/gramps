@@ -95,6 +95,8 @@ class Extract:
         self.extractors = {
             'data_title':  ("Titles", _("Titles"),
                             self.get_person, self.get_title),
+            'data_sname':  ("Surnames", _("Surnames"),
+                            self.get_person, self.get_surname),
             'data_fname':  ("Forenames", _("Forenames"),
                             self.get_person, self.get_forename),
             'data_gender': ("Genders", _("Genders"),
@@ -115,18 +117,22 @@ class Extract:
                              self.get_death, self.get_place),
             'data_mplace': ("Marriage places", _("Marriage places"),
                              self.get_marriage_handles, self.get_places),
+            'data_mcount': ("Number of relationships", _("Number of relationships"),
+                             self.get_family_handles, self.get_handle_count),
             'data_fchild': ("Ages when first child born", _("Ages when first child born"),
                              self.get_child_handles, self.get_first_child_age),
             'data_lchild': ("Ages when last child born", _("Ages when last child born"),
                              self.get_child_handles, self.get_last_child_age),
             'data_ccount': ("Number of children", _("Number of children"),
-                             self.get_child_handles, self.get_child_count),
+                             self.get_child_handles, self.get_handle_count),
             'data_mage':   ("Marriage ages", _("Marriage ages"),
                              self.get_marriage_handles, self.get_event_ages),
             'data_dage':   ("Ages at death", _("Ages at death"),
                              self.get_person, self.get_death_age),
             'data_age':    ("Ages", _("Ages"),
-                             self.get_person, self.get_person_age)
+                             self.get_person, self.get_person_age),
+            'data_etypes': ("Event types", _("Event types"),
+                             self.get_event_handles, self.get_event_type)
         }
 
     # ----------------- data extraction methods --------------------
@@ -149,6 +155,15 @@ class Extract:
             return [name.capitalize() for name in firstnames.split()]
         else:
             return [_("(Preferred) forename missing")]
+        
+    def get_surname(self, person):
+        "return surnames for given person"
+        # TODO: return all surnames, not just primary ones...
+        surnames = person.get_primary_name().get_surname().strip()
+        if surnames:
+            return [name.capitalize() for name in surnames.split()]
+        else:
+            return [_("(Preferred) surname missing")]
         
     def get_gender(self, person):
         "return gender for given person"
@@ -233,6 +248,17 @@ class Extract:
             return ages
         return [_("Events missing")]
 
+    def get_event_type(self, data):
+        "return event types at given (person,event_handles)"
+        types = []
+        person, event_handles = data
+        for event_handle in event_handles:
+            event = self.db.get_event_from_handle(event_handle)
+            types.append(event.get_name())
+        if types:
+            return types
+        return [_("Events missing")]
+
     def get_first_child_age(self, data):
         "return age when first child in given (person,child_handles) was born"
         ages, errors = self.get_sorted_child_ages(data)
@@ -249,8 +275,8 @@ class Extract:
             return errors
         return [_("Children missing")]
 
-    def get_child_count(self, data):
-        "return number of children in given (person,child_handles)"
+    def get_handle_count(self, data):
+        "return number of handles in given (person,handle_list) used for child count, family count"
         return [str(len(data[1]))]
 
     # ------------------- utility methods -------------------------
@@ -334,6 +360,22 @@ class Extract:
                             marriages.append(event_handle)
         if marriages:
             return (person, marriages)
+        return None
+
+    def get_family_handles(self, person):
+        "return list of family handles for given person or None"
+        families = person.get_family_handle_list()
+
+        if families:
+            return (person, families)
+        return None
+
+    def get_event_handles(self, person):
+        "return list of event handles for given person or None"
+        events = person.get_event_list()
+
+        if events:
+            return (person, events)
         return None
 
     # ----------------- data collection methods --------------------
