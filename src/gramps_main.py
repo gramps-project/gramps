@@ -57,7 +57,7 @@ import PlaceView
 import FamilyView
 import SourceView
 
-from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog, SaveDialog
+from QuestionDialog import QuestionDialog, ErrorDialog, WarningDialog, SaveDialog, OptionDialog
 
 import DisplayTrace
 import Filter
@@ -115,9 +115,11 @@ class Gramps:
         gtk.rc_parse(const.gtkrcFile)
 
         if os.getuid() == 0:
-            msg = _("You are running GRAMPS as the 'root' user.\n"
-                    "This account is not meant for normal application use.")
-            WarningDialog(msg)
+            WarningDialog(_("GRAMPS is being run as the 'root' user."),
+                         _("This account is not meant for normal appication use. "
+                           "Running user applications in the administrative account "
+                           "is rarely a wise idea, and can open up potential "
+                           "security risks."))
 
         # This will never contain data - It will be replaced by either
         # a GrampsXML or GrampsZODB
@@ -533,7 +535,11 @@ class Gramps:
     def on_contents_activate(self,obj):
         """Display the GRAMPS manual"""
 
-        WarningDialog('HELP currently not available')
+        WarningDialog(_('HELP is currently not available'),
+                      _('Documentation for GRAMPS is currently being '
+                        'developed, but is not yet available for this '
+                        'version.'))
+        
 #	url = gnome.help_display_with_doc_id(self.program,
 #                                             "",
 #                                             "gramps-manual.sgml",
@@ -544,7 +550,10 @@ class Gramps:
 
     def on_writing_extensions_activate(self,obj):
         """Display the Extending GRAMPS manual"""
-        WarningDialog('HELP currently not available')
+        WarningDialog(_('HELP is currently not available'),
+                      _('Documentation for GRAMPS is currently being '
+                        'developed, but is not yet available for this '
+                        'version.'))
 #        import gnome.help
 #         url = gnome.help.file_find_file("extending-gramps","extending-gramps.sgml")
 #         if url:
@@ -996,7 +1005,9 @@ class Gramps:
         else:
             msg = _("Cannot revert to a previous database, since "
                     "one does not exist")
-            WarningDialog(msg)
+            WarningDialog(_('Could Not Revert to the Previous Database.'),
+                          _('GRAMPS could not find a previous version of '
+                            'the database'))
 
     def revert_query(self):
         const.personalEvents = const.init_personal_event_list()
@@ -1402,7 +1413,7 @@ class Gramps:
             self.status_text(_("%s has been bookmarked") % name)
             gtk.timeout_add(5000,self.modify_statusbar)
         else:
-            WarningDialog(_("Could not set bookmark."),
+            WarningDialog(_("Could Not Set a Bookmark."),
                           _("A bookmark could not be set because no one was selected."))
 
     def on_edit_bookmarks_activate(self,obj):
@@ -1492,7 +1503,6 @@ def set_panel(obj):
 #-------------------------------------------------------------------------
 if __name__ == '__main__':
     import gnome
-    import sys
 
     Gramps(None)
     gtk.mainloop()

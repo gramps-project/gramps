@@ -1201,10 +1201,11 @@ class EditPerson:
             else:
                 n = GrampsCfg.nameof(m[idval])
                 msg1 = _("GRAMPS ID value was not changed.")
-                msg2 = _("%(grampsid)s is already used by %(person)s") % {
+                msg2 = _("You have attempted to change the GRAMPS ID to a value "
+                         "of %(grampsid)s. This value is already used by %(person)s.") % {
                     'grampsid' : idval,
                     'person' : n }
-                WarningDialog("%s\n%s" % (msg1,msg2))
+                WarningDialog(msg1,msg2)
 
         if suffix != name.getSuffix():
             name.setSuffix(suffix)

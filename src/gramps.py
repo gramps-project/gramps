@@ -57,5 +57,5 @@ try:
 except:
     import DisplayTrace
     DisplayTrace.DisplayTrace()
-        
+
 gtk.mainloop()
