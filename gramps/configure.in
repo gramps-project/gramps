@@ -31,7 +31,7 @@ AC_MSG_CHECKING(Python bindings for sax/xml)
 changequote(,)
 cat > conftest.py <<EOF
 try:
-    from xml.sax import saxexts, saxlib, saxutils
+    from xml.sax import saxlib
     f = open("conftest.out", "w")
     f.write("YES")
     f.close()
