@@ -135,11 +135,9 @@ class XmlWriter:
         Write the database to the specified file handle.
         """
 
-        use_g = 0
         if self.compress:
             try:
                 g = gzip.GzipFile(mode="wb",fileobj=handle)
-                use_g = 1
             except:
                 g = handle
         else:
@@ -148,9 +146,7 @@ class XmlWriter:
         self.g = codecs.getwriter("utf8")(g)
 
         self.write_xml_data()
-        self.g.close()
-        if use_g:
-            g.close()
+	g.close()
             
     def write_xml_data(self):
 
