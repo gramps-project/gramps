@@ -55,17 +55,22 @@ class SelectChild:
         self.family = family
         self.redraw = redraw
         self.add_person = add_person
-        self.xml = gtk.glade.XML(const.gladeFile,"selectChild")
+        self.xml = gtk.glade.XML(const.gladeFile,"select_child")
     
         self.xml.signal_autoconnect({
             "on_save_child_clicked"    : self.on_save_child_clicked,
             "on_show_toggled"          : self.on_show_toggled,
             "on_add_person_clicked"    : self.on_add_person_clicked,
-            "destroy_passed_object"    : Utils.destroy_passed_object
+            "destroy_passed_object"    : self.close
             })
 
         self.select_child_list = {}
-        self.top = self.xml.get_widget("selectChild")
+        self.top = self.xml.get_widget("select_child")
+
+        title_label = self.xml.get_widget('title')
+        title_label.set_text(Utils.title(_('Add Children')))
+        title_label.set_use_markup(gtk.TRUE)
+        
         self.add_child = self.xml.get_widget("childlist")
 
         if (self.family):
@@ -103,8 +108,10 @@ class SelectChild:
         
         self.refmodel = ListModel.ListModel(self.add_child,titles)
         self.redraw_child_list(2)
-        self.top.show()
 
+    def close(self,obj):
+        self.top.destroy()
+        
     def redraw_child_list(self,filter):
         self.refmodel.clear()
         bday = self.person.getBirth().getDateObj()
@@ -193,18 +200,10 @@ class SelectChild:
             if frel == "Birth":
                 frel = "Unknown"
 
-#            if mrel == "Birth" and frel == "Birth":
-#                family = select_child.getMainFamily()
-#                if family != None and family != self.family:
-#                    family.removeChild(select_child)
-#
-#                select_child.setMainFamily(self.family)
-#            else:
         select_child.addAltFamily(self.family,mrel,frel)
 
         Utils.modified()
-        
-        Utils.destroy_passed_object(obj)
+        self.top.destroy()
         self.redraw(self.family)
         
     def on_show_toggled(self,obj):

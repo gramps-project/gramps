@@ -55,12 +55,7 @@ class LocationEditor:
         self.county = self.top.get_widget("county")
         self.country = self.top.get_widget("country")
 
-        if parent.place:
-            name = _("Location Editor for %s") % parent.place.get_title()
-        else:
-            name = _("Location Editor")
-            
-        self.top.get_widget("locationTitle").set_text(name) 
+        self.top.get_widget("title").set_text(_('Location Editor'))
 
         if location != None:
             self.city.set_text(location.get_city())

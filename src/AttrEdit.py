@@ -88,8 +88,8 @@ class AttributeEditor:
                                            self.top.get_widget('del_src'))
 
         title = _("Attribute Editor for %s") % title
-        l = self.top.get_widget("attrTitle")
-        l.set_text('<span weight="bold" size="larger">%s</span>' % title)
+        l = self.top.get_widget("title")
+        l.set_text(Utils.title(title))
         l.set_use_markup(gtk.TRUE)
 
         AutoComp.AutoEntry(self.attrib_menu.entry,list)

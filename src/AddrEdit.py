@@ -77,7 +77,10 @@ class AddressEditor:
 
         name = parent.person.getPrimaryName().getName()
         text = _("Address Editor for %s") % name
-        self.top.get_widget("addrTitle").set_text(text)
+        
+        title_label = self.top.get_widget("title")
+        title_label.set_text(Utils.title(text))
+        title_label.set_use_markup(gtk.TRUE)
 
         if self.addr:
             self.srcreflist = self.addr.getSourceRefList()

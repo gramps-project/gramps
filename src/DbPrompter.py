@@ -59,6 +59,9 @@ class DbPrompter:
 
     def show(self):
         opendb = gtk.glade.XML(const.gladeFile, "opendb")
+
+        Utils.set_title_label(opendb,_('Open a database'))
+        
         opendb.signal_autoconnect({
             "on_open_ok_clicked" : self.open_ok_clicked,
             "on_open_cancel_clicked" : self.open_cancel_clicked,
@@ -105,6 +108,7 @@ class DbPrompter:
             "destroy_passed_object": self.cancel_button_clicked,
             })
 
+        Utils.set_title_label(wFs,_('Open a database'))
         self.fileSelector = wFs.get_widget("dbopen")
         self.dbname = wFs.get_widget("dbname")
         self.getoldrev = wFs.get_widget("getoldrev")

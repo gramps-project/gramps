@@ -68,9 +68,9 @@
 	  <property name="spacing">0</property>
 
 	  <child>
-	    <widget class="GtkLabel" id="label245">
+	    <widget class="GtkLabel" id="title">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;span weight=&quot;bold&quot; size=&quot;larger&quot;&gt;Open a database&lt;/span&gt;</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -259,9 +259,9 @@
 	  <property name="spacing">6</property>
 
 	  <child>
-	    <widget class="GtkLabel" id="label247">
+	    <widget class="GtkLabel" id="title">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;span weight=&quot;bold&quot; size=&quot;larger&quot;&gt;Select an older revision&lt;/span&gt;</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_CENTER</property>
@@ -368,9 +368,9 @@
 	  <property name="spacing">12</property>
 
 	  <child>
-	    <widget class="GtkLabel" id="label252">
+	    <widget class="GtkLabel" id="title">
 	      <property name="visible">True</property>
-	      <property name="label" translatable="yes">&lt;span weight=&quot;bold&quot; size=&quot;larger&quot;&gt;Revision Control Comment&lt;/span&gt;</property>
+	      <property name="label" translatable="yes"></property>
 	      <property name="use_underline">False</property>
 	      <property name="use_markup">True</property>
 	      <property name="justify">GTK_JUSTIFY_CENTER</property>

@@ -128,6 +128,9 @@ class PluginDialog:
         self.img = self.dialog.get_widget("image")
         self.description = self.dialog.get_widget("description")
         self.status = self.dialog.get_widget("report_status")
+
+        Utils.set_title_label(self.dialog,msg)
+        
         self.title = self.dialog.get_widget("title")
         self.author_name = self.dialog.get_widget("author_name")
         self.author_email = self.dialog.get_widget("author_email")
@@ -136,7 +139,6 @@ class PluginDialog:
         self.run_tool = None
         self.build_tree(list)
         self.title.set_text(msg)
-        self.top.set_title("%s - GRAMPS" % msg)
 
     def on_apply_clicked(self,obj):
         """Execute the selected report"""

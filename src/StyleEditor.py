@@ -62,6 +62,11 @@ class StyleListDisplay:
         
         self.sheetlist = stylesheetlist
         self.top = gtk.glade.XML(const.stylesFile,"styles")
+
+        title_label = self.top.get_widget('title')
+        title_label.set_text(Utils.title(_('Document Styles')))
+        title_label.set_use_markup(gtk.TRUE)
+        
         self.top.signal_autoconnect({
             "destroy_passed_object" : Utils.destroy_passed_object,
             "on_ok_clicked" : self.on_ok_clicked,
@@ -70,6 +75,10 @@ class StyleListDisplay:
             "on_button_press" : self.on_button_press,
             "on_edit_clicked" : self.on_edit_clicked
             })
+
+        title_label = self.top.get_widget('title')
+        title_label.set_text(Utils.title(_('Style Editor')))
+        title_label.set_use_markup(gtk.TRUE)
         
         self.list = ListModel.ListModel(self.top.get_widget("list"),
                                         [('Style',-1,10)],)

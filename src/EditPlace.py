@@ -78,6 +78,10 @@ class EditPlace:
         self.top_window = gtk.glade.XML(const.placesFile,"placeEditor")
         self.iconlist = self.top_window.get_widget('iconlist')
 
+        title_label = self.top_window.get_widget('title')
+        title_label.set_text(Utils.title(_('Place Editor')))
+        title_label.set_use_markup(gtk.TRUE)
+
         self.glry = ImageSelect.Gallery(place, self.path, self.iconlist, self.db, self)
         self.title = self.top_window.get_widget("place_title")
         self.city = self.top_window.get_widget("city")
