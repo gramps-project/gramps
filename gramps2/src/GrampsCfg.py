@@ -48,7 +48,6 @@ import gnome.ui
 #
 #-------------------------------------------------------------------------
 import RelLib
-#from Date import *
 
 import const
 import Utils
@@ -528,6 +527,7 @@ class GrampsPreferences:
         self.build()
         self.build_ext()
         self.apply.set_sensitive(0)
+        self.window.show()
 
     def build_tree(self):
         prev = None
@@ -967,7 +967,7 @@ class GrampsPreferences:
         # update the config file
         
         sync()
-        _callback()
+        _callback(1)
 
     def on_object_toggled(self,obj):
         """Called by the elements on the property box to set the changed flag,

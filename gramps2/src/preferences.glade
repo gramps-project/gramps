@@ -5,7 +5,6 @@
 <requires lib="gnome"/>
 
 <widget class="GtkDialog" id="preferences">
-  <property name="visible">True</property>
   <property name="title" translatable="yes">GRAMPS Preferences</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
@@ -136,8 +135,6 @@
 		      <property name="show_border">False</property>
 		      <property name="tab_pos">GTK_POS_TOP</property>
 		      <property name="scrollable">False</property>
-		      <property name="tab_hborder">2</property>
-		      <property name="tab_vborder">2</property>
 		      <property name="enable_popup">False</property>
 
 		      <child>

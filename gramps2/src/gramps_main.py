@@ -137,7 +137,7 @@ class Gramps:
         self.db.set_sprefix(GrampsCfg.sprefix)
         self.db.set_pprefix(GrampsCfg.pprefix)
 
-        GrampsCfg.loadConfig(self.full_update)
+        GrampsCfg.loadConfig(self.update_display)
         self.relationship = Plugins.relationship_function()
         self.init_interface()
 
@@ -807,26 +807,7 @@ class Gramps:
             
     def full_update(self):
         """Brute force display update, updating all the pages"""
-
-        self.complete_rebuild()
-        page = self.views.get_current_page()
-        
-        if page == 1:
-            self.family_view.load_family()
-        elif page == 2:
-            self.pedigree_view.load_canvas(self.active_person)
-        elif page == 3:
-            self.source_view.load_sources()
-        elif page == 4:
-            if len(self.db.getPlaceKeys()) > 2000:
-                self.status_text(_('Updating display - this may take a few seconds...'))
-            else:
-                self.status_text(_('Updating display...'))
-            self.place_view.load_places()
-            self.modify_statusbar()
-            self.place_loaded = 1
-        elif page == 5:
-            self.media_view.load_media()
+        self.update_display(1)
         self.toolbar.set_style(GrampsCfg.toolbar)
 
     def update_display(self,changed):
