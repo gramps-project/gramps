@@ -1,3 +1,32 @@
+2003-07-16  Donald Peterson  <dpeterson@sigmaxi.org>
+	* doc/gramps-manual/C/figures/bookreport.png:
+	* doc/gramps-manual/C/figures/cfe-df.png:
+	* doc/gramps-manual/C/figures/edit-person-addresses.png:
+	* doc/gramps-manual/C/figures/edit-person-attributes.png:
+	* doc/gramps-manual/C/figures/edit-person-events.png:
+	* doc/gramps-manual/C/figures/edit-person-gallery.png:
+	* doc/gramps-manual/C/figures/edit-person-internet.png:
+	* doc/gramps-manual/C/figures/edit-person-lds.png:
+	* doc/gramps-manual/C/figures/edit-person-names.png:
+	* doc/gramps-manual/C/figures/edit-person-notes.png:
+	* doc/gramps-manual/C/figures/edit-person.png:
+	* doc/gramps-manual/C/figures/edit-plc.png:
+	* doc/gramps-manual/C/figures/edit-rel.png:
+	* doc/gramps-manual/C/figures/edit-si.png:
+	* doc/gramps-manual/C/figures/edit-wi.png:
+	* doc/gramps-manual/C/figures/family.png:
+	* doc/gramps-manual/C/figures/first-open.png:
+	* doc/gramps-manual/C/figures/gedcom-import.png:
+	* doc/gramps-manual/C/figures/mainwin.png:
+	* doc/gramps-manual/C/figures/media.png:
+	* doc/gramps-manual/C/figures/noside-nofilt.png:
+	* doc/gramps-manual/C/figures/pedigree.png:
+	* doc/gramps-manual/C/figures/places.png:
+	* doc/gramps-manual/C/figures/researcher.png:
+	* doc/gramps-manual/C/figures/side-filt.png:
+	* doc/gramps-manual/C/figures/sources.png: HIG-ified images by
+	scaling to the recommended max width of 510 pixels.
+
 2003-07-16  Alex Roitman  <shura@alex.neuro.umn.edu>
 	* src/gramps.glade: Add "..." after Merge, Edit Bookmarks, Preferences, 
 	and "Show plugin status" menu items. 
