@@ -80,6 +80,7 @@ HAVE_PKG_CONFIG = @HAVE_PKG_CONFIG@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LANGUAGES = @LANGUAGES@
 MOFILES = @MOFILES@
+MSGCONV = @MSGCONV@
 MSGFMT = @MSGFMT@
 PACKAGE = @PACKAGE@
 POFILES = @POFILES@
@@ -116,7 +117,6 @@ pkgpython_PYTHON = \
 	OpenOfficeDoc.py\
 	OpenSpreadSheet.py\
 	PdfDoc.py\
-	PdfDrawDoc.py\
 	PSDrawDoc.py\
 	RTFDoc.py\
 	SvgDrawDoc.py
