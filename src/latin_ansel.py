@@ -89,7 +89,7 @@ def ansel_to_latin(s):
         except Exception,e:
             from traceback import print_exc
             print_exc()
-            head = ''
+            head = s[0]
             s = s[1:0]
         buff.write(head)
     ans = buff.getvalue()
@@ -138,5 +138,8 @@ def ansel_to_code(s):
     if c0 >= 0xE0:
         return chr(_s1[c0][c1]),s[2:]
     else:
-        return chr(_s0[c0]), s[1:]
+        try:
+            return chr(_s0[c0]), s[1:]
+        except:
+            return s[0], s[1:]
 
