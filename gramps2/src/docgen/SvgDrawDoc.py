@@ -33,8 +33,7 @@ from math import pi, cos, sin, fabs
 #-------------------------------------------------------------------------
 import Plugins
 from gettext import gettext as _
-import TextDoc
-import DrawDoc
+import BaseDoc
 import Errors
 import FontScale
 
@@ -43,10 +42,10 @@ import FontScale
 # SvgDrawDoc
 #
 #-------------------------------------------------------------------------
-class SvgDrawDoc(DrawDoc.DrawDoc):
+class SvgDrawDoc(BaseDoc.BaseDoc):
 
     def __init__(self,styles,type,orientation):
-        DrawDoc.DrawDoc.__init__(self,styles,type,orientation)
+        BaseDoc.BaseDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -127,7 +126,7 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
             if font.get_italic():
                 self.f.write('font-style:"italic";')
             self.f.write('font-size:%d; ' % size)
-            if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+            if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                 self.f.write('font-family:sans-serif;')
             else:
                 self.f.write('font-family:serif;')
@@ -223,7 +222,7 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
                 if font.get_italic():
                     self.f.write(' font-style:"italic";')
                 self.f.write(' font-size:%d;' % font_size)
-                if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+                if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
                     self.f.write(' font-family:sans-serif;')
                 else:
                     self.f.write(' font-family:serif;')
@@ -251,7 +250,7 @@ class SvgDrawDoc(DrawDoc.DrawDoc):
         if font.get_italic():
             self.f.write('font-style:"italic";')
         self.f.write('font-size:%d; ' % font_size)
-        if font.get_type_face() == TextDoc.FONT_SANS_SERIF:
+        if font.get_type_face() == BaseDoc.FONT_SANS_SERIF:
             self.f.write('font-family:sans-serif;')
         else:
             self.f.write('font-family:serif;')

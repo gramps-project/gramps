@@ -33,8 +33,7 @@ from math import pi, cos, sin
 #-------------------------------------------------------------------------
 import Plugins
 import Errors
-import TextDoc
-import DrawDoc
+import BaseDoc
 from Report import run_print_dialog
 
 from gettext import gettext as _
@@ -53,10 +52,10 @@ def pt2cm(val):
 # PSDrawDoc
 #
 #-------------------------------------------------------------------------
-class PSDrawDoc(DrawDoc.DrawDoc):
+class PSDrawDoc(BaseDoc.BaseDoc):
 
     def __init__(self,styles,type,orientation):
-        DrawDoc.DrawDoc.__init__(self,styles,type,orientation)
+        BaseDoc.BaseDoc.__init__(self,styles,type,orientation)
         self.f = None
         self.filename = None
         self.level = 0
@@ -64,7 +63,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
 
     def fontdef(self,para):
         font = para.get_font()
-        if font.get_type_face() == TextDoc.FONT_SERIF:
+        if font.get_type_face() == BaseDoc.FONT_SERIF:
             if font.get_bold():
                 if font.get_italic():
                     font_name = "/Times-BoldItalic"
@@ -110,7 +109,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%%LanguageLevel: 2\n')
         self.f.write('%%Pages: (atend)\n')
         self.f.write('%%PageOrder: Ascend\n')
-        if self.orientation != TextDoc.PAPER_PORTRAIT:
+        if self.orientation != BaseDoc.PAPER_PORTRAIT:
             self.f.write('%%Orientation: Landscape\n')
         else:
             self.f.write('%%Orientation: Portrait\n')
@@ -140,7 +139,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
 	self.page = self.page + 1
         self.f.write("%%Page:")
         self.f.write("%d %d\n" % (self.page,self.page))
-        if self.orientation != TextDoc.PAPER_PORTRAIT:
+        if self.orientation != BaseDoc.PAPER_PORTRAIT:
             self.f.write('90 rotate %5.2f cm %5.2f cm translate\n' % (0,-1*self.height))
 
     def end_page(self):
@@ -261,7 +260,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('gsave\n')
         self.f.write('newpath\n')
         self.f.write('%.4f setlinewidth\n' % stype.get_line_width())
-        if stype.get_line_style() == DrawDoc.SOLID:
+        if stype.get_line_style() == BaseDoc.SOLID:
             self.f.write('[] 0 setdash\n')
         else:
             self.f.write('[2 4] 0 setdash\n')
@@ -292,7 +291,7 @@ class PSDrawDoc(DrawDoc.DrawDoc):
         self.f.write('%f cm %f cm moveto\n' % self.translate(x1,y1))
         self.f.write('%f cm %f cm lineto\n' % self.translate(x2,y2))
         self.f.write('%.4f setlinewidth\n' % stype.get_line_width())
-        if stype.get_line_style() == DrawDoc.SOLID:
+        if stype.get_line_style() == BaseDoc.SOLID:
             self.f.write('[] 0 setdash\n')
         else:
             self.f.write('[2 4] 0 setdash\n')
