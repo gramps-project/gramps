@@ -131,6 +131,9 @@ class AddSpouse:
         self.name_list.sort(sort.by_last_name)
         self.addperson(person)
         self.relation_type_changed(self.relation_type)
+        row = self.spouse_list.find_row_from_data(person)
+        self.spouse_list.select_row(row,0)
+        self.spouse_list.moveto(row,0)
 
     def select_spouse_clicked(self,obj):
         """
