@@ -1,4 +1,5 @@
 2003-07-10  Tim Waugh  <twaugh@redhat.com>
+	* src/Relationship.py: Fix '[...]teenth' relationship name typos.
 	* src/RelLib.py: Fix for probablyAlive().  If there is no date, but
 	there is other information about the death, the person is not alive.
 
